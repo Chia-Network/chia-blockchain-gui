@@ -1,6 +1,6 @@
-import FileType from '../@types/FileType';
 import type NFTData from '../@types/NFTData';
 import type NFTsDataStatistics from '../@types/NFTsDataStatistics';
+import FileType from '../constants/FileType';
 import hasSensitiveContent from './hasSensitiveContent';
 
 export default function getNFTsDataStatistics(

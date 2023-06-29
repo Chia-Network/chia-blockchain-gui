@@ -65,7 +65,7 @@ export default function ProfileAdd() {
   const navigate = useNavigate();
   const openExternal = useOpenExternal();
   const spendableBalance = mojoToChiaLocaleString(balance?.spendableBalance);
-  const canCreateProfile = spendableBalance > 0;
+  const canCreateProfile = (balance?.spendableBalance ?? 0) > 0;
 
   function handleClick() {
     const url = `https://${isTestnet ? 'testnet10-faucet.chia.net' : 'faucet.chia.net'}/?address=${currentAddress}`;

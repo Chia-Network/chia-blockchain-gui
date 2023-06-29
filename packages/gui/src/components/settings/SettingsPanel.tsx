@@ -24,6 +24,7 @@ import RemovePassphrasePrompt from './RemovePassphrasePrompt';
 import SetPassphrasePrompt from './SetPassphrasePrompt';
 import SettingsDerivationIndex from './SettingsDerivationIndex';
 import SettingsStartup from './SettingsStartup';
+import SettingsVerifiableCredentials from './SettingsVerifiableCredentials';
 
 export default function SettingsPanel() {
   const openDialog = useOpenDialog();
@@ -187,6 +188,7 @@ export default function SettingsPanel() {
         )}
         {addPassphraseOpen && <SetPassphrasePrompt onSuccess={setPassphraseSucceeded} onCancel={closeSetPassphrase} />}
         <PassphraseFeatureStatus />
+        <SettingsVerifiableCredentials />
       </Flex>
     </SettingsApp>
   );

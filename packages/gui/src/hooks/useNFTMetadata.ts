@@ -1,7 +1,6 @@
-import { useContext, useState, useCallback, useMemo, useEffect } from 'react';
+import { useContext, useState, useCallback, useEffect, useMemo } from 'react';
 
 import NFTProviderContext from '../components/nfts/provider/NFTProviderContext';
-import getNFTId from '../util/getNFTId';
 
 export default function useNFTMetadata(id?: string) {
   const context = useContext(NFTProviderContext);
@@ -9,26 +8,22 @@ export default function useNFTMetadata(id?: string) {
     throw new Error('useNFT must be used within NFTProvider');
   }
 
-  const nftId = useMemo(() => id && getNFTId(id), [id]);
-  const { invalidate, getMetadata, events } = context;
+  const { invalidate, getMetadata, subscribeToMetadataChanges } = context;
 
-  const handleInvalidate = useCallback(() => invalidate(nftId), [invalidate, nftId]);
-  const [metadataState, setMetadataState] = useState(getMetadata(nftId));
+  const handleInvalidate = useCallback(() => invalidate(id), [invalidate, id]);
+  const [metadataState, setMetadataState] = useState(() => getMetadata(id));
 
-  useEffect(() => {
-    function handleChange(changedNFTId: string, state: ReturnType<typeof getMetadata>) {
-      if (changedNFTId === nftId) {
-        setMetadataState(state);
-      }
-    }
+  useMemo(() => {
+    setMetadataState(getMetadata(id));
+  }, [id, getMetadata]);
 
-    events.on('metadataChanged', handleChange);
-    setMetadataState(getMetadata(nftId));
-
-    return () => {
-      events.off('metadataChanged', handleChange);
-    };
-  }, [events, getMetadata, nftId]);
+  useEffect(
+    () =>
+      subscribeToMetadataChanges(id, (newMetadataState) => {
+        setMetadataState(newMetadataState);
+      }),
+    [id, subscribeToMetadataChanges]
+  );
 
   return {
     ...metadataState,

@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign -- This file use Immer */
-import { CAT, DID, Farmer, NFT, Pool, WalletService, WalletType, toBech32m } from '@chia-network/api';
+import { CAT, DID, Farmer, NFT, Pool, WalletService, WalletType, toBech32m, VC } from '@chia-network/api';
 import type { NFTInfo, Transaction, Wallet, WalletBalance } from '@chia-network/api';
 import BigNumber from 'bignumber.js';
 
@@ -1339,6 +1339,10 @@ export const walletApi = apiWithTag.injectEndpoints({
       providesTags: (result, _error) => (result ? [{ type: 'NFTInfo', id: result.launcherId }] : []),
     }),
 
+    mintNFT: mutation(build, NFT, 'mintNFT', {
+      invalidatesTags: (result, _error) => (result ? [{ type: 'NFTInfo', id: 'LIST' }] : []),
+    }),
+
     transferNFT: mutation(build, NFT, 'transferNft', {
       invalidatesTags: (result, _error) => (result ? [{ type: 'NFTInfo', id: 'LIST' }] : []),
     }),
@@ -1396,6 +1400,20 @@ export const walletApi = apiWithTag.injectEndpoints({
     }),
 
     verifySignature: mutation(build, WalletService, 'verifySignature'),
+
+    getVC: query(build, VC, 'getVC', {
+      transformResponse: (response) => response.vcRecord,
+    }),
+
+    getVCList: query(build, VC, 'getVCList'),
+
+    spendVC: mutation(build, VC, 'spendVC'),
+
+    addVCProofs: mutation(build, VC, 'addVCProofs'),
+
+    getProofsForRoot: query(build, VC, 'getProofsForRoot'),
+
+    revokeVC: mutation(build, VC, 'revokeVC'),
   }),
 });
 
@@ -1485,6 +1503,7 @@ export const {
   useGetNFTWalletsWithDIDsQuery,
   useGetNFTInfoQuery,
   useLazyGetNFTInfoQuery,
+  useMintNFTMutation,
   useTransferNFTMutation,
   useSetNFTDIDMutation,
   useSetNFTStatusMutation,
@@ -1500,4 +1519,12 @@ export const {
 
   // verify
   useVerifySignatureMutation,
+
+  // VC
+  useGetVCQuery,
+  useGetVCListQuery,
+  useSpendVCMutation,
+  useAddVCProofsMutation,
+  useGetProofsForRootQuery,
+  useRevokeVCMutation,
 } = walletApi;

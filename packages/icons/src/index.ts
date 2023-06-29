@@ -1,5 +1,6 @@
 export { default as Burn } from './Burn';
 export { default as Chia, ChiaBlack } from './Chia';
+export { default as Contacts } from './Contacts';
 export { default as Farm } from './Farm';
 export { default as Farming } from './Farming';
 export { default as Fees } from './Fees';
@@ -24,3 +25,4 @@ export { default as Settings } from './Settings';
 export { default as WalletConnect, ConnectCheckmark, ConnectCancel, ConnectReload, Exit } from './WalletConnect';
 export { default as Search } from './Search';
 export { default as Coins } from './ZeroState';
+export { default as VC } from './VC';

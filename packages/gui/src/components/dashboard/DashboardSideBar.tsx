@@ -1,3 +1,4 @@
+import { useLocalStorage } from '@chia-network/api-react';
 import { Flex, SideBarItem } from '@chia-network/core';
 import {
   Farming as FarmingIcon,
@@ -8,7 +9,8 @@ import {
   Offers as OffersIcon,
   Tokens as TokensIcon,
   Settings as SettingsIcon,
-  Settings as AddressBookIcon,
+  Contacts as AddressBookIcon,
+  VC as VCIcon,
 } from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
 import { Box } from '@mui/material';
@@ -42,6 +44,7 @@ export type DashboardSideBarProps = {
 
 export default function DashboardSideBar(props: DashboardSideBarProps) {
   const { simple = false } = props;
+  const [enableVerifiableCredentials] = useLocalStorage<boolean>('enable-verifiable-credentials', false);
 
   return (
     <StyledRoot>
@@ -58,6 +61,14 @@ export default function DashboardSideBar(props: DashboardSideBarProps) {
           title={<Trans>NFTs</Trans>}
           data-testid="DashboardSideBar-nfts"
         />
+        {enableVerifiableCredentials && (
+          <SideBarItem
+            to="/dashboard/vc"
+            icon={VCIcon}
+            title={<Trans>Credentials</Trans>}
+            data-testid="DashboardSideBar-vc"
+          />
+        )}
         <SideBarItem
           to="/dashboard/offers"
           icon={OffersIcon}
@@ -67,7 +78,7 @@ export default function DashboardSideBar(props: DashboardSideBarProps) {
         <SideBarItem
           to="/dashboard/addressbook"
           icon={AddressBookIcon}
-          title={<Trans>Address Book</Trans>}
+          title={<Trans>Contacts</Trans>}
           data-testid="DashboardSideBar-addressbook"
         />
 

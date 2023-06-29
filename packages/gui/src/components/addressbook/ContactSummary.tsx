@@ -1,30 +1,58 @@
 // import { useGetNFTInfoQuery } from '@chia-network/api-react';
-import { CopyToClipboard, Flex } from '@chia-network/core';
+import {
+  AddressBookContext,
+  ConfirmDialog,
+  CopyToClipboard,
+  Flex,
+  MenuItem,
+  More,
+  useOpenDialog,
+} from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import { EditOutlined } from '@mui/icons-material';
-import { IconButton, InputAdornment, TextField, Typography } from '@mui/material';
+import { Delete, Edit } from '@mui/icons-material';
+import { InputAdornment, ListItemIcon, TextField, Typography } from '@mui/material';
 import React, { useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 // import { launcherIdFromNFTId } from '../../util/nfts';
 // import NFTPreview from '../nfts/NFTPreview';
-import { AddressBookContext } from './AddressBookProvider';
 
 export default function ContactSummary() {
-  const { contactid } = useParams();
+  const { contactId } = useParams();
   const navigate = useNavigate();
-  const [, , , getContactContactId] = useContext(AddressBookContext);
-  const contact = getContactContactId(Number(contactid));
+  const [, , removeAddress, getContactContactId] = useContext(AddressBookContext);
+  const contact = getContactContactId(Number(contactId));
+  const openDialog = useOpenDialog();
 
   // commented out - until this stops throwing an error when not a valid nft
   // const launcherId = launcherIdFromNFTId(contact.nftid ?? '');
 
   // const { data: nft } = useGetNFTInfoQuery({ coinId: launcherId ?? '' });
 
-  if (contactid === undefined || contact === undefined) return <div />;
+  if (contactId === undefined || contact === undefined) return <div />;
 
   function handleEditContact(id: number) {
     navigate(`/dashboard/addressbook/edit/${id}`);
+  }
+
+  async function handleRemove(id: number) {
+    const deleteContact = await openDialog(
+      <ConfirmDialog
+        title={<Trans>Delete contact</Trans>}
+        confirmTitle={<Trans>Delete</Trans>}
+        cancelTitle={<Trans>Cancel</Trans>}
+        confirmColor="danger"
+      >
+        <Trans>
+          Are you sure you want to permanently delete this contact? Once deleted, this contact cannot be recovered.
+        </Trans>
+      </ConfirmDialog>
+    );
+
+    if (deleteContact) {
+      removeAddress(id);
+      navigate(`/dashboard/addressbook/`);
+    }
   }
 
   /*
@@ -34,9 +62,97 @@ export default function ContactSummary() {
   }
   */
 
+  function showAddresses() {
+    if (!contact.addresses || contact.addresses.length === 0) {
+      return null;
+    }
+    return (
+      <Flex flexDirection="column" gap={3} flexGrow={1}>
+        <Typography variant="h6">Addresses</Typography>
+        <Flex flexDirection="column" gap={3} flexGrow={1}>
+          {contact.addresses.map((addressInfo) => (
+            <TextField
+              label={addressInfo.name}
+              value={addressInfo.address}
+              fullWidth
+              InputProps={{
+                readOnly: true,
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <CopyToClipboard value={addressInfo.address} />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          ))}
+        </Flex>
+      </Flex>
+    );
+  }
+
+  function showDIDs() {
+    if (!contact.dids || contact.dids.length === 0) {
+      return null;
+    }
+    return (
+      <Flex flexDirection="column" gap={3} flexGrow={1}>
+        <Typography variant="h6">Profiles</Typography>
+        <Flex flexDirection="column" gap={3} flexGrow={1}>
+          {contact.dids.map((didInfo) => (
+            <TextField
+              label={didInfo.name}
+              value={didInfo.did}
+              fullWidth
+              InputProps={{
+                readOnly: true,
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <CopyToClipboard value={didInfo.did} />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          ))}
+        </Flex>
+      </Flex>
+    );
+  }
+
+  function showDomains() {
+    if (!contact.domainNames || contact.domainNames.length === 0) {
+      return null;
+    }
+    return (
+      <Flex flexDirection="column" gap={3} flexGrow={1}>
+        <Typography variant="h6">Domain Names</Typography>
+        <Flex flexDirection="column" gap={3} flexGrow={1}>
+          {contact.domainNames.map((domainInfo) => (
+            <TextField
+              label={domainInfo.name}
+              value={domainInfo.domain}
+              fullWidth
+              InputProps={{
+                readOnly: true,
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <CopyToClipboard value={domainInfo.domain} />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          ))}
+        </Flex>
+      </Flex>
+    );
+  }
+
   return (
     <div>
-      <Flex flexDirection="row" justifyContent="right" style={{ height: '80px', background: '#CCDDE1' }}>
+      <Flex
+        flexDirection="row"
+        justifyContent="right"
+        style={{ height: '80px', background: '#CCDDE1', borderRadius: '10px' }}
+      >
         <Flex style={{ paddingRight: '30px' }}>
           <Typography
             variant="h5"
@@ -48,16 +164,33 @@ export default function ContactSummary() {
           >
             <Trans>{contact.name}</Trans>
           </Typography>
-          <IconButton
-            onClick={() => handleEditContact(contactid)}
+          <Flex
+            style={{ height: '30px' }}
             sx={{
               position: 'absolute',
               right: 44,
-              top: 44,
+              top: 48,
             }}
           >
-            <EditOutlined />
-          </IconButton>
+            <More>
+              <MenuItem onClick={() => handleEditContact(contactId)} close>
+                <ListItemIcon>
+                  <Edit fontSize="small" />
+                </ListItemIcon>
+                <Typography variant="inherit" noWrap>
+                  <Trans>Edit Contact</Trans>
+                </Typography>
+              </MenuItem>
+              <MenuItem onClick={() => handleRemove(Number(contact.contactId))} close>
+                <ListItemIcon>
+                  <Delete fontSize="small" />
+                </ListItemIcon>
+                <Typography variant="inherit" noWrap>
+                  <Trans>Delete Contact</Trans>
+                </Typography>
+              </MenuItem>
+            </More>
+          </Flex>
         </Flex>
       </Flex>
 
@@ -72,61 +205,10 @@ export default function ContactSummary() {
           </Flex>
         </Flex>
         */}
-        <Flex flexDirection="column" gap={6}>
-          {contact.addresses.map((addressInfo) => (
-            <Flex flexDirection="column" gap={3} style={{ width: '600px' }}>
-              <Typography variant="h6">{addressInfo.name}</Typography>
-              <TextField
-                label={<Trans>Address</Trans>}
-                value={addressInfo.address}
-                fullWidth
-                InputProps={{
-                  readOnly: true,
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <CopyToClipboard value={addressInfo.address} />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            </Flex>
-          ))}
-          {contact.dids.map((didInfo) => (
-            <Flex flexDirection="column" gap={3} style={{ width: '600px' }}>
-              <Typography variant="h6">{didInfo.name}</Typography>
-              <TextField
-                label={<Trans>DID</Trans>}
-                value={didInfo.did}
-                fullWidth
-                InputProps={{
-                  readOnly: true,
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <CopyToClipboard value={didInfo.did} />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            </Flex>
-          ))}
-          {contact.domainnames.map((domainInfo) => (
-            <Flex flexDirection="column" gap={3} style={{ width: '600px' }}>
-              <Typography variant="h6">{domainInfo.name}</Typography>
-              <TextField
-                label={<Trans>Domain</Trans>}
-                value={domainInfo.domainname}
-                fullWidth
-                InputProps={{
-                  readOnly: true,
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <CopyToClipboard value={domainInfo.domainname} />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            </Flex>
-          ))}
+        <Flex flexDirection="column" gap={6} maxWidth="600px" style={{ width: '100%' }}>
+          {showAddresses()}
+          {showDIDs()}
+          {showDomains()}
         </Flex>
       </Flex>
     </div>

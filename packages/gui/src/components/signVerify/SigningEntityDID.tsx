@@ -2,7 +2,7 @@ import type { Wallet } from '@chia-network/api';
 import { useGetDIDInfoQuery, useGetDIDsQuery } from '@chia-network/api-react';
 import { CopyToClipboard, Flex, TextField } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import { Box, Grid, InputAdornment } from '@mui/material';
+import { InputAdornment } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
@@ -63,40 +63,33 @@ export default function SigningEntityDID(props: SigningEntityDIDProps) {
 
   return (
     <Flex flexDirection="column" gap={1}>
-      <Grid item xs={12}>
-        <Box display="flex">
-          <Box flexGrow={1}>
-            <Flex flexDirection="column" gap={1}>
-              <DIDProfileDropdown
-                walletId={walletId}
-                onChange={handleProfileSelected}
-                defaultTitle={<Trans>Select Profile</Trans>}
-                variant="outlined"
-                color="primary"
-                disabled={isLoading}
-              />
-              <TextField
-                label={<Trans>DID</Trans>}
-                variant="filled"
-                name={entityValueName}
-                inputProps={{
-                  'data-testid': 'SigningEntityDID-did',
-                  readOnly: true,
-                }}
-                disabled
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <CopyToClipboard value={currentValue?.didId ?? ''} data-testid="SigningEntityDID-did-copy" />
-                    </InputAdornment>
-                  ),
-                }}
-                fullWidth
-              />
-            </Flex>
-          </Box>
-        </Box>
-      </Grid>
+      <DIDProfileDropdown
+        walletId={walletId}
+        onChange={handleProfileSelected}
+        defaultTitle={<Trans>Select Profile</Trans>}
+        variant="outlined"
+        color="primary"
+        disabled={isLoading}
+        fullWidth
+      />
+      <TextField
+        label={<Trans>DID</Trans>}
+        variant="filled"
+        name={entityValueName}
+        inputProps={{
+          'data-testid': 'SigningEntityDID-did',
+          readOnly: true,
+        }}
+        disabled
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              <CopyToClipboard value={currentValue?.didId ?? ''} data-testid="SigningEntityDID-did-copy" />
+            </InputAdornment>
+          ),
+        }}
+        fullWidth
+      />
     </Flex>
   );
 }

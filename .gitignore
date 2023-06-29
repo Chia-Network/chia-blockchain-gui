@@ -96,7 +96,11 @@ packages/**/playwright-report/index.html
 
 .env
 dist
-**/coverage
 
 # JetBrains
 .idea/
+
+# Test coverage data
+**/coverage
+.coverage
+.nyc_output

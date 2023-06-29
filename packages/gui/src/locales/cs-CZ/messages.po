@@ -6,17 +6,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
 "Language: cs_CZ\n"
-"Project-Id-Version: chia-blockchain\n"
+"Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-10-24 18:15\n"
+"PO-Revision-Date: 2023-03-29 23:26\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 3;\n"
-"X-Crowdin-Project: chia-blockchain\n"
-"X-Crowdin-Project-ID: 440660\n"
+"X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
+"X-Crowdin-Project-ID: 1\n"
 "X-Crowdin-Language: cs\n"
-"X-Crowdin-File: /main/packages/gui/src/locales/en-US/messages.po\n"
-"X-Crowdin-File-ID: 1888\n"
+"X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/packages/gui/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 1306\n"
 
 #: src/components/offers2/OfferBuilderImport.tsx:167
 msgid "(Ctrl-V) a blob"
@@ -52,7 +52,7 @@ msgstr "<0>Potřebujete nějaké XCH?</0>"
 
 #: src/components/settings/ProfileAdd.tsx:92
 msgid "<0>Use one (1) mojo to create a Profile.</0>"
-msgstr "<0>Použijte jeden (1) mojo pro vytvoření profilu</0>"
+msgstr "<0>Použijte jedno (1) mojo pro vytvoření profilu</0>"
 
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:77
 msgid "A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk to a full node to see the state of the chain. View your network of connected harvesters below Learn more"
@@ -75,7 +75,7 @@ msgstr "O Chia Blockchainu"
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:21
 #: src/components/offers2/OfferBuilderViewer.tsx:143
 msgid "Accept Offer"
-msgstr "Přijmout nabídku"
+msgstr "Přijmout Nabídku"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:78
 #: src/components/plot/PlotHarvesterPlotsDuplicate.tsx:19
@@ -109,7 +109,7 @@ msgstr ""
 
 #: src/components/offers/OfferAssetSelector.tsx:144
 msgid "Add CAT wallets to have more options"
-msgstr "Přidejte CAT peněženky pro více možností"
+msgstr ""
 
 #: src/components/walletConnect/WalletConnectConnections.tsx:102
 msgid "Add Connection"
@@ -167,11 +167,11 @@ msgstr "Po úspěšné migraci klíčů do nové klíčenky se můžete rozhodno
 #: src/components/nfts/NFTProfileDropdown.tsx:101
 #: src/components/nfts/NFTProfileDropdown.tsx:114
 msgid "All NFTs"
-msgstr "Všechna NFT"
+msgstr ""
 
 #: src/components/did/DIDProfileDropdown.tsx:23
 msgid "All Profiles"
-msgstr "Všechny profily"
+msgstr ""
 
 #: src/components/settings/SettingsIntegration.tsx:57
 msgid "Allow external Apps and websites to connect to your wallet through WalletConnect."
@@ -201,7 +201,7 @@ msgstr "Alternativní tmpdir/tmpdir2"
 #: src/constants/WalletConnectCommands.tsx:351
 #: src/constants/WalletConnectCommands.tsx:393
 msgid "Amount"
-msgstr "Částka"
+msgstr ""
 
 #: src/components/offers2/OfferBuilderRoyaltyPayouts.tsx:38
 msgid "Amount before adding royalties"
@@ -214,7 +214,7 @@ msgstr ""
 #: src/components/offers/NFTOfferEditor.tsx:596
 #: src/components/offers/OfferEditor.tsx:108
 msgid "Amount exceeds spendable balance"
-msgstr "Částka přesahuje dostupný zůstatek"
+msgstr ""
 
 #: src/util/offerBuilderDataToOffer.ts:86
 msgid "Amount exceeds spendable balance for {0} token"
@@ -223,7 +223,7 @@ msgstr ""
 #: src/components/offers/NFTOfferPreview.tsx:137
 #: src/components/offers2/OfferBuilderNFTProvenance.tsx:23
 msgid "An NFT's provenance is a complete record of its ownership history. It provides a direct lineage that connects everyone who has owned the NFT, all the way back to the original artist. This helps to verify that the NFT is authentic."
-msgstr "NFT provenience je úplný záznam jeho vlastnické historie. Poskytuje přímou linii, která spojuje každého, kdo vlastnil NFT, až zpět k původnímu umělci. To pomáhá ověřovat, zda je NFT pravý."
+msgstr ""
 
 #: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:90
 #: src/hooks/useWalletConnectCommand.tsx:118
@@ -236,7 +236,7 @@ msgstr ""
 
 #: src/components/offers/OfferManager.tsx:105
 msgid "Are you sure you want to cancel your offer?"
-msgstr "Jste si jisti, že chcete zrušit vaši nabídku?"
+msgstr ""
 
 #: src/components/settings/SettingsNFT.tsx:70
 msgid "Are you sure you want to delete the NFT cache?"
@@ -257,7 +257,7 @@ msgstr "Opravdu se chcete odpojit?"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:62
 msgid "Are you sure you want to move this NFT to the specified profile?"
-msgstr "Opravdu chcete přesunout toto NFT do zadaného profilu?"
+msgstr ""
 
 #: src/electron/main.tsx:816
 msgid "Are you sure you want to quit?"
@@ -316,11 +316,11 @@ msgstr "Automaticky generované jméno z adres sdružení"
 
 #: src/components/offers/NFTOfferViewer.tsx:629
 msgid "Back"
-msgstr "Zpět"
+msgstr ""
 
 #: src/components/settings/ProfileAdd.tsx:98
 msgid "Balance: {standardBalance} XCH"
-msgstr "Zůstatek: {standardBalance} XCH"
+msgstr ""
 
 #: src/components/block/Block.jsx:235
 msgid "Base Farmer Reward Amount"
@@ -328,7 +328,7 @@ msgstr "Výše základu odměny farmáře"
 
 #: src/components/offers/OfferShareDialog.tsx:1177
 msgid "Before posting an offer in Keybase to the #{channelName} channel, you must first join the {teamName} team. Please note that it might take a few moments to join the channel."
-msgstr "Před odesláním nabídky v Keybase do kanálu #{channelName} se musíte nejprve připojit k týmu {teamName}. Vezměte prosím na vědomí, že připojení do kanálu může chvíli trvat."
+msgstr ""
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:35
 msgid "Below are the current block challenges. You may or may not have a proof of space for these challenges. These blocks do not currently contain a proof of time."
@@ -376,11 +376,11 @@ msgstr "Procházet"
 #: src/components/nfts/NFTBurnDialog.tsx:184
 #: src/components/nfts/NFTContextualActions.tsx:531
 msgid "Burn"
-msgstr "Spálit"
+msgstr ""
 
 #: src/components/nfts/NFTBurnDialog.tsx:72
 msgid "Burn NFT confirmation"
-msgstr "Potvrzení spálení NFT"
+msgstr ""
 
 #: src/components/nfts/NFTBurnDialog.tsx:143
 msgid "Burning a non-fungible token means removing it from circulation by sending it to a verifiably un-spendable address. However, transactions leading up to the burn will remain on the blockchain ledger."
@@ -388,7 +388,7 @@ msgstr "Spálením nezaměnitelného tokenu se rozumí jeho odstranění z oběh
 
 #: src/components/offers/NFTOfferEditor.tsx:312
 msgid "Buy an NFT"
-msgstr "Koupit NFT"
+msgstr ""
 
 #: src/components/signVerify/VerifyMessage.tsx:252
 msgid "By providing a signing address, the public key can be validated as being associated with the address used for signing."
@@ -432,19 +432,19 @@ msgstr "Zrušit"
 #: src/components/offers/OfferManager.tsx:358
 #: src/constants/WalletConnectCommands.tsx:255
 msgid "Cancel Offer"
-msgstr "Zrušit nabídku"
+msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:283
 msgid "Cancel Unconfirmed Transaction"
-msgstr "Zrušit nepotvrzenou transakci"
+msgstr ""
 
 #: src/components/offers/OfferManager.tsx:128
 msgid "Cancel on blockchain"
-msgstr "Zrušit na blockchainu"
+msgstr ""
 
 #: src/components/offers/utils.ts:157
 msgid "Cancelled"
-msgstr "Zrušeno"
+msgstr ""
 
 #: src/util/offerBuilderDataToOffer.ts:120
 msgid "Cannot offer and request the same asset"
@@ -586,7 +586,7 @@ msgstr ""
 #: src/components/nfts/NFTSummary.tsx:54
 #: src/components/nfts/detail/NFTDetailV2.tsx:301
 msgid "Collection"
-msgstr "Sbírka"
+msgstr ""
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:165
 #: src/electron/main.tsx:814
@@ -600,11 +600,11 @@ msgstr "Potvrdit odpojení"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:54
 msgid "Confirm Move"
-msgstr "Potvrdit přesun"
+msgstr ""
 
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:30
 msgid "Confirm NFT Transfer"
-msgstr "Potvrdit NFT převod"
+msgstr ""
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:237
 msgid "Confirm New Passphrase"
@@ -626,7 +626,7 @@ msgstr ""
 
 #: src/components/offers/utils.ts:159
 msgid "Confirmed"
-msgstr "Potvrzeno"
+msgstr ""
 
 #: src/components/fullNode/FullNodeAddConnection.tsx:103
 msgid "Connect"
@@ -686,11 +686,11 @@ msgstr "Pomoci s vývojem na GitHubu"
 
 #: src/components/nfts/NFTContextualActions.tsx:354
 msgid "Copy Media URL"
-msgstr "Kopírovat URL média"
+msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:107
 msgid "Copy NFT ID"
-msgstr "Kopírovat ID NFT"
+msgstr ""
 
 #: src/components/signVerify/SignMessageResultDialog.tsx:58
 msgid "Copy To Clipboard"
@@ -733,7 +733,7 @@ msgstr ""
 #: src/components/offers/OfferManager.tsx:431
 #: src/components/offers2/CreateOfferBuilder.tsx:137
 msgid "Create Offer"
-msgstr "Vytvořit nabídku"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:226
 msgid "Create Offer for Ids"
@@ -753,16 +753,16 @@ msgstr ""
 
 #: src/components/settings/ProfileAdd.tsx:75
 msgid "Create a new profile"
-msgstr "Vytvořit nový profil"
+msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:735
 msgid "Create an NFT Offer"
-msgstr "Vytvořit NFT nabídku"
+msgstr ""
 
 #: src/components/offers/OfferEditor.tsx:195
 #: src/components/offers/OfferManager.tsx:449
 msgid "Create an Offer"
-msgstr "Vytvořit nabídku"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:346
 msgid "Create new CAT Wallet"
@@ -770,7 +770,7 @@ msgstr ""
 
 #: src/components/offers/OfferManager.tsx:130
 msgid "Creates and submits a transaction on the blockchain that cancels the offer"
-msgstr "Vytvoří a odešle transakci do blockchainu, která zruší nabídku"
+msgstr ""
 
 #: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:63
 msgid "Creating Plot NFT and Joining the Pool"
@@ -783,15 +783,15 @@ msgstr "Vytváří se NFT pole pro vlastní poolování"
 #: src/components/offers/OfferManager.tsx:298
 #: src/components/offers2/OfferIncomingTable.tsx:64
 msgid "Creation Date"
-msgstr "Datum vytvoření"
+msgstr ""
 
 #: src/components/offers/NFTOfferViewer.tsx:514
 msgid "Creator Fee ({0}%)"
-msgstr "Poplatek autora ({0}%)"
+msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:334
 msgid "Creator Fee ({royaltyPercentage}%)"
-msgstr "Poplatek autora ({royaltyPercentage}%)"
+msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:337
 #: src/components/offers/NFTOfferViewer.tsx:517
@@ -890,7 +890,7 @@ msgstr ""
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:291
 msgid "Description"
-msgstr "Popis"
+msgstr ""
 
 #: src/components/nfts/gallery/NFTGallery.tsx:475
 msgid "Deselect all"
@@ -898,15 +898,15 @@ msgstr ""
 
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:69
 msgid "Destination"
-msgstr "Umístění"
+msgstr ""
 
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:59
 msgid "Destination:"
-msgstr "Umístění:"
+msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:351
 msgid "Details"
-msgstr "Podrobnosti"
+msgstr ""
 
 #: src/electron/main.tsx:991
 msgid "Developer"
@@ -962,12 +962,12 @@ msgstr "Odpojit"
 
 #: src/components/offers/OfferManager.tsx:338
 msgid "Display Offer Data"
-msgstr "Zobrazit data nabídky"
+msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:1549
 #: src/hooks/useOpenUnsafeLink.tsx:64
 msgid "Do not show this dialog again"
-msgstr "Tento dialog příště nezobrazovat"
+msgstr ""
 
 #: src/components/farm/FarmHero.tsx:43
 #: src/components/plot/overview/PlotOverviewHero.tsx:53
@@ -976,7 +976,7 @@ msgstr "Máte již na tomto počítači existující pole? <0>Přidejte složku 
 
 #: src/components/nfts/NFTBurnDialog.tsx:134
 msgid "Do you want to burn this NFT?"
-msgstr "Chcete spálit toto NFT?"
+msgstr ""
 
 #: src/components/nfts/NFTBurnDialog.tsx:132
 msgid "Do you want to burn {count} NFTs?"
@@ -1000,7 +1000,7 @@ msgstr "Zvládne vaše zařízení paralelní vytváření polí?"
 
 #: src/components/nfts/NFTContextualActions.tsx:452
 msgid "Download"
-msgstr "Stáhnout"
+msgstr ""
 
 #: src/components/nfts/MultipleDownloadDialog.tsx:91
 msgid "Download failed."
@@ -1032,7 +1032,7 @@ msgstr ""
 
 #: src/components/offers/OfferImport.tsx:167
 msgid "Drag & Drop an Offer File"
-msgstr "Přetáhnout a pustit soubor s nabídkami"
+msgstr ""
 
 #: src/components/offers2/OfferBuilderImport.tsx:166
 msgid "Drag & Drop an Offer File, Paste"
@@ -1062,11 +1062,11 @@ msgstr "Upravit pokyny pro výplatu"
 
 #: src/components/nfts/NFTSummary.tsx:64
 msgid "Edition #"
-msgstr "Edice #"
+msgstr ""
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:312
 msgid "Edition Number"
-msgstr "Číslo edice"
+msgstr ""
 
 #: src/components/settings/SettingsStartup.tsx:28
 msgid "Enable Auto Login"
@@ -1162,7 +1162,7 @@ msgstr "Vynechat cílovou složku"
 
 #: src/components/nfts/gallery/NFTGalleryHero.tsx:18
 msgid "Explore the Chia ecosystem; discover and trade great NFTs"
-msgstr "Prozkoumejte Chia ekosystém; objevte a obchodujte se skvělými NFT"
+msgstr ""
 
 #: src/components/offers/utils.ts:161
 #: src/components/plot/PlotHarvester.tsx:121
@@ -1175,11 +1175,11 @@ msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:587
 msgid "Failed to decode NFT identifier"
-msgstr "Nepodařilo se dekódovat NFT identifikátor"
+msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:462
 msgid "Failed to execute Keybase command: {stderr}"
-msgstr "Provedení příkazu Keybase selhalo: {stderr}"
+msgstr ""
 
 #: src/components/notification/NotificationSendDialog.tsx:147
 msgid "Failed to send the notification: {error}"
@@ -1274,7 +1274,7 @@ msgstr "Poplatek"
 #: src/components/offers/NFTOfferEditor.tsx:86
 #: src/components/offers/OfferEditorConditionsPanel.tsx:386
 msgid "Fee (Optional)"
-msgstr "Poplatek (volitelný)"
+msgstr ""
 
 #: src/components/plotNFT/PlotNFTChangePool.tsx:113
 msgid "Fee is used TWICE: once to leave pool, once to join."
@@ -1291,7 +1291,7 @@ msgstr "Výše poplatků"
 #: src/components/offers/NFTOfferViewer.tsx:197
 #: src/components/offers/OfferSummary.tsx:167
 msgid "Fees included in offer:"
-msgstr "Poplatky zahrnuté v nabídce:"
+msgstr ""
 
 #: src/electron/main.tsx:942
 #: src/electron/main.tsx:1135
@@ -1342,7 +1342,7 @@ msgstr "Uzel"
 
 #: src/components/fullNode/FullNodeConnections.tsx:89
 msgid "Full Node Connections"
-msgstr "Připojení k plnohodnotným uzlům"
+msgstr ""
 
 #: src/electron/main.tsx:1022
 msgid "Full Screen"
@@ -1415,7 +1415,7 @@ msgstr ""
 #: src/components/offers/OfferShareDialog.tsx:1140
 #: src/components/offers/OfferShareDialog.tsx:1191
 msgid "Go to #{channelName}"
-msgstr "Přejít na #{channelName}"
+msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:420
 msgid "Halves the temp2 cache size requirements by alternating bucket writing methods between tables."
@@ -1469,11 +1469,11 @@ msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:499
 msgid "Hide"
-msgstr "Skrýt"
+msgstr ""
 
 #: src/components/settings/SettingsNFT.tsx:125
 msgid "Hide objectionable content"
-msgstr "Skrýt nežádoucí obsah"
+msgstr ""
 
 #: src/components/app/AppPassPrompt.tsx:161
 #: src/components/settings/RemovePassphrasePrompt.tsx:153
@@ -1493,7 +1493,7 @@ msgstr "Název hostitele"
 
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:16
 msgid "I Understand, Create Offer"
-msgstr "Rozumím, vytvořit nabídku"
+msgstr ""
 
 #: src/components/fullNode/FullNodeConnections.tsx:32
 msgid "IP address"
@@ -1513,7 +1513,7 @@ msgstr "Pokud žádnou složku nezvolíte, bude použita výchozí složka s do�
 
 #: src/components/offers/OfferShareDialog.tsx:806
 msgid "If selected, your offer will be not be shared publicly."
-msgstr "Pokud je vybráno, vaše nabídka nebude sdílena veřejně."
+msgstr ""
 
 #: src/components/nfts/NFTBurnDialog.tsx:76
 msgid "If you burn these NFTs, nobody (including you) will ever be able to access it again. Are you sure you want to continue?"
@@ -1525,11 +1525,11 @@ msgstr "Pokud spálíte toto NFT, nikdo (včetně vás) k němu již nikdy nebud
 
 #: src/components/offers/OfferManager.tsx:110
 msgid "If you have already shared your offer file, you may need to submit a transaction to cancel the pending offer. Click \"Cancel on blockchain\" to submit a cancellation transaction."
-msgstr "Pokud jste již sdíleli soubor své nabídky, možná budete muset odeslat transakci pro zrušení čekající nabídky. Klikněte na \"Zrušit na blockchainu\" pro odeslání storno transakce."
+msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:633
 msgid "Image Hash Mismatch"
-msgstr "Hash obrázku nesouhlasí"
+msgstr ""
 
 #: src/components/settings/SettingsNFT.tsx:155
 msgid "Images will be scaled to fill the NFT card and ignore their original proportions."
@@ -1537,7 +1537,7 @@ msgstr ""
 
 #: src/components/offers/OfferDataEntryDialog.tsx:61
 msgid "Import"
-msgstr "Import"
+msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:28
 msgid "In Progress"
@@ -1547,7 +1547,7 @@ msgstr "Probíhá"
 #: src/components/offers/OfferEditorConditionsPanel.tsx:290
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:26
 msgid "In exchange for"
-msgstr "Výměnou za"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:207
 msgid "Include My Offers"
@@ -1560,7 +1560,7 @@ msgstr ""
 #: src/components/offers/NFTOfferEditor.tsx:91
 #: src/components/offers/OfferEditorConditionsPanel.tsx:392
 msgid "Including a fee in the offer can help expedite the transaction when the offer is accepted. The recommended minimum fee is 0.000005 XCH (5,000,000 mojos)"
-msgstr "Zadání poplatku k nabídce může urychlit transakci, když je nabídka přijata. Doporučený minimální poplatek je 0.000005 XCH (5,000,000 mojos)"
+msgstr ""
 
 #: src/components/offers2/OfferIncomingTable.tsx:112
 msgid "Incoming Offers"
@@ -1576,24 +1576,18 @@ msgstr "Inicializuji..."
 
 #: src/components/offers/OfferShareDialog.tsx:1172
 msgid "Install Keybase"
-msgstr "Nainstalovat Keybase"
+msgstr ""
 
 #: src/hooks/useAcceptOfferHook.tsx:67
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
-"Nedostatek dostupných finančních prostředků k přijetí nabídky. Ujistěte se, že Váš\n"
-"disponibilní zůstatek je dostatečný k pokrytí částky nabídky."
 
 #: src/components/offers/OfferEditor.tsx:148
 #: src/components/offers2/CreateOfferBuilder.tsx:121
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
-"Nedostatek dostupných finančních prostředků k vytvoření nabídky. Ujistěte se, že Váš\n"
-"disponibilní zůstatek je dostatečný k pokrytí částky nabídky."
 
 #: src/components/settings/Settings.tsx:73
 msgid "Integration"
@@ -1605,7 +1599,7 @@ msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:585
 msgid "Invalid NFT identifier"
-msgstr "Neplatný NFT identifikátor"
+msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:653
 msgid "Invalid metadata url"
@@ -1649,7 +1643,7 @@ msgstr "Připojit se k poolům"
 
 #: src/components/offers/OfferShareDialog.tsx:1184
 msgid "Join {teamName}"
-msgstr "Připojit se k {teamName}"
+msgstr ""
 
 #: src/components/plot/PlotHarvesterPlots.tsx:39
 #: src/components/plot/PlotPlotting.tsx:18
@@ -1666,11 +1660,11 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:1086
 msgid "Keybase command failed {e}. If you haven't installed Keybase, you can download from https://keybase.io"
-msgstr "Příkaz Keybase selhal {e}. Pokud nemáte nainstalovaný Keybase, můžete jej stáhnout z https://keybase.io"
+msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:1165
 msgid "Keybase is a secure messaging and file sharing application. To share an offer in the Keybase {teamName} team, you must first have Keybase installed."
-msgstr "Keybase je bezpečná aplikace pro sdílení zpráv a souborů. Chcete-li sdílet nabídku v týmu Keybase {teamName}, musíte nejprve Keybase nainstalovat."
+msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:83
 msgid "Keyring migration failed: {0}"
@@ -1699,7 +1693,7 @@ msgstr "Poslední blokové výzvy"
 
 #: src/components/nfts/NFTDetails.tsx:64
 msgid "Launcher ID"
-msgstr "ID spouštěče"
+msgstr ""
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:254
 #: src/components/plotNFT/PlotNFTCard.tsx:290
@@ -1718,19 +1712,19 @@ msgstr "Opustit Pool"
 
 #: src/components/app/AppKeyringMigrator.tsx:93
 msgid "Legacy keyrings are no longer supported. Your keys need to be migrated to a new keyring that is optionally secured by a master passphrase."
-msgstr "Starší klíčenky již nejsou podporovány. Vaše klíče musí být přesunuty do nové klíčenky, která je volitelně zabezpečena hlavním heslem."
+msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:100
 msgid "Legacy keyrings are no longer supported. Your keys need to be migrated to a new keyring that is secured by a master passphrase."
-msgstr "Starší klíčenky již nejsou podporovány. Vaše klíče musí být přesunuty do nové klíčenky, která je zabezpečena hlavním heslem."
+msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:295
 msgid "License Hash"
-msgstr "Hash licence"
+msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:280
 msgid "License URL {0}"
-msgstr "Adresa URL licence {0}"
+msgstr ""
 
 #: src/components/settings/SettingsNFT.tsx:214
 msgid "Limit cache size"
@@ -1738,15 +1732,15 @@ msgstr ""
 
 #: src/components/fullNode/FullNodeConnections.tsx:99
 msgid "List of connections is empty"
-msgstr "Seznam připojení je prázdný"
+msgstr ""
 
 #: src/components/nfts/NFTSummary.tsx:103
 msgid "Loading NFT"
-msgstr "Načítání NFT"
+msgstr ""
 
 #: src/components/offers/NFTOfferPreview.tsx:62
 msgid "Loading NFT Info..."
-msgstr "Načítání NFT informací..."
+msgstr ""
 
 #: src/components/offers2/OfferBuilderValueSearch.tsx:144
 msgid "Loading NFTs..."
@@ -1819,11 +1813,11 @@ msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:265
 msgid "Metadata Hash"
-msgstr "Hash metadat"
+msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:250
 msgid "Metadata URL {0}"
-msgstr "URL metadat {0}"
+msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:649
 msgid "Metadata hash mismatch"
@@ -1855,11 +1849,11 @@ msgstr "Minimální obtížnost"
 
 #: src/components/offers/OfferShareDialog.tsx:681
 msgid "MintGarden URL"
-msgstr "MintGarden URL"
+msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:213
 msgid "Minted at Block Height"
-msgstr "Vytěženo ve výšce bloku"
+msgstr ""
 
 #: src/components/offers2/OfferBuilderNFT.tsx:70
 msgid "Minter"
@@ -1899,15 +1893,15 @@ msgstr "Více paměti mírně zvyšuje rychlost"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:335
 msgid "Move"
-msgstr "Přesunout"
+msgstr ""
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:379
 msgid "Move NFT to Profile"
-msgstr "Přesunout NFT do profilu"
+msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:228
 msgid "Move to Profile"
-msgstr "Přesunout do profilu"
+msgstr ""
 
 #: src/components/nfts/gallery/NFTGallery.tsx:522
 msgid "Multi-select"
@@ -1923,7 +1917,7 @@ msgstr ""
 #: src/components/settings/SettingsNFT.tsx:110
 #: src/components/signVerify/SignMessage.tsx:154
 msgid "NFT"
-msgstr "NFT"
+msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:73
 msgid "NFT Coin ID"
@@ -1937,44 +1931,44 @@ msgstr ""
 #: src/components/offers2/OfferBuilderNFT.tsx:63
 #: src/components/signVerify/SigningEntityNFT.tsx:63
 msgid "NFT ID"
-msgstr "NFT ID"
+msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:218
 msgid "NFT Identifier"
-msgstr "NTF identifikátor"
+msgstr ""
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:209
 msgid "NFT Move Failed"
-msgstr "Přesun NFT se nezdařil"
+msgstr ""
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:184
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:202
 msgid "NFT Move Pending"
-msgstr "NFT přesun čeká na vyřízení"
+msgstr ""
 
 #: src/components/offers/NFTOfferViewer.tsx:494
 msgid "NFT Purchase Price"
-msgstr "Nákupní cena NFT"
+msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:270
 msgid "NFT Status Update Failed"
-msgstr "Aktualizace stavu NFT se nezdařila"
+msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:260
 msgid "NFT Status Updated"
-msgstr "Stav NFT aktualizován"
+msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:182
 msgid "NFT Transfer Failed"
-msgstr "Přenos NFT selhal"
+msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:175
 msgid "NFT Transfer Pending"
-msgstr "NFT přenos čeká na vyřízení"
+msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:622
 msgid "NFT details not available"
-msgstr "NFT podrobnosti nejsou k dispozici"
+msgstr ""
 
 #: src/components/offers2/OfferBuilderNFTRoyalties.tsx:171
 msgid "NFT has no royalties"
@@ -1986,13 +1980,13 @@ msgstr ""
 
 #: src/components/offers/NFTOfferPreview.tsx:44
 msgid "NFT identifier does not reference a valid NFT coin."
-msgstr "NFT identifikátor neodkazuje na platnou NFT minci."
+msgstr ""
 
 #: src/components/offers/NFTOfferPreview.tsx:105
 #: src/components/offers2/OfferBuilderNFT.tsx:91
 #: src/components/offers2/OfferBuilderNFT.tsx:119
 msgid "NFT not specified"
-msgstr "NFT nespecifikováno"
+msgstr ""
 
 #: src/util/offerBuilderDataToOffer.ts:94
 #: src/util/offerBuilderDataToOffer.ts:148
@@ -2013,11 +2007,11 @@ msgstr ""
 
 #: src/components/offers/NFTOfferViewer.tsx:580
 msgid "Net Proceeds"
-msgstr "Čisté výnosy"
+msgstr ""
 
 #: src/components/offers/NFTOfferViewer.tsx:603
 msgid "Network Fee (Optional)"
-msgstr "Síťový poplatek (nepovinné)"
+msgstr ""
 
 #: src/components/fullNode/card/FullNodeCardNetworkName.tsx:14
 msgid "Network Name"
@@ -2063,11 +2057,11 @@ msgstr "Zatím nic nevyfarmařeno"
 
 #: src/components/offers/OfferManager.tsx:394
 msgid "No current offers"
-msgstr "Žádné aktuální nabídky"
+msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:616
 msgid "No file available"
-msgstr "Žádný soubor není k dispozici"
+msgstr ""
 
 #: src/components/offers2/OfferIncomingTable.tsx:207
 msgid "No incoming offers"
@@ -2203,7 +2197,7 @@ msgstr ""
 #: src/constants/WalletConnectCommands.tsx:283
 #: src/constants/WalletConnectCommands.tsx:313
 msgid "Offer Data"
-msgstr "Data nabídky"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:325
 #: src/constants/WalletConnectCommands.tsx:337
@@ -2222,13 +2216,13 @@ msgstr ""
 #: src/components/offers/OfferShareDialog.tsx:1131
 #: src/components/offers/OfferShareDialog.tsx:1245
 msgid "Offer Shared"
-msgstr "Sdílená nabídka"
+msgstr ""
 
 #: src/components/offers/NFTOfferViewer.tsx:170
 #: src/components/offers2/OfferBuilderValue.tsx:200
 #: src/components/offers2/OfferBuilderViewer.tsx:172
 msgid "Offer cannot be accepted because you don't possess the requested assets"
-msgstr "Nabídku nelze přijmout, protože nevlastníte požadované položky"
+msgstr ""
 
 #: src/components/offers2/OfferBuilderImport.tsx:77
 msgid "Offer file is too large (> 1MB)"
@@ -2236,15 +2230,15 @@ msgstr ""
 
 #: src/hooks/useAcceptOfferHook.tsx:55
 msgid "Offer has been accepted and is awaiting confirmation."
-msgstr "Nabídka byla přijata a čeká na potvrzení."
+msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:755
 msgid "OfferBin URL"
-msgstr "OfferBin URL"
+msgstr ""
 
 #: src/components/offers/OfferManager.tsx:266
 msgid "Offered"
-msgstr "Nabídnuto"
+msgstr ""
 
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:22
 #: src/components/offers2/OfferIncomingTable.tsx:60
@@ -2253,7 +2247,7 @@ msgstr ""
 
 #: src/components/offers/utils.ts:145
 msgid "Offering: [{makerString}], Requesting: [{takerString}]"
-msgstr "Nabídka: [{makerString}], Požadováno: [{takerString}]"
+msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:1252
 msgid "Offerpool URL"
@@ -2274,19 +2268,19 @@ msgstr ""
 
 #: src/components/offers/OfferManager.tsx:470
 msgid "Offers you accepted"
-msgstr "Nabídky, které jste přijali"
+msgstr ""
 
 #: src/components/offers/OfferManager.tsx:469
 msgid "Offers you created"
-msgstr "Nabídky, které jste vytvořili"
+msgstr ""
 
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:56
 msgid "Once you accept this offer, you will not be able to cancel the transaction. Are you sure you want to accept this offer?"
-msgstr "Jakmile přijmete tuto nabídku, nebude možné transakci zrušit. Opravdu chcete tuto nabídku přijmout?"
+msgstr ""
 
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:32
 msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer the NFT?"
-msgstr "Jakmile zahájíte tento transfer, nebude možné transakci zrušit. Jste si jisti, že chcete převést NFT?"
+msgstr ""
 
 #: src/components/nfts/NFTTransferAction.tsx:93
 msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer {0} NFTs?"
@@ -2298,7 +2292,7 @@ msgstr ""
 
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:35
 msgid "One or more unknown tokens are being offered. Please verify that the asset IDs of the tokens listed below match the asset IDs of the tokens you expect to receive."
-msgstr "Nabízí se jeden nebo více neznámých tokenů. Ověřte, zda ID aktiva níže uvedených tokenů odpovídá ID aktiva tokenů, které očekáváte, že obdržíte."
+msgstr ""
 
 #: src/components/offers2/OfferBuilderNFTSection.tsx:49
 msgid "One-of-a-kind Collectible assets"
@@ -2306,11 +2300,11 @@ msgstr ""
 
 #: src/hooks/useOpenUnsafeLink.tsx:31
 msgid "Open Link"
-msgstr "Otevřít odkaz"
+msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:322
 msgid "Open in Browser"
-msgstr "Otevřít v prohlížeči"
+msgstr ""
 
 #: src/components/offers2/OfferBuilderFeeSection.tsx:53
 msgid "Optional network fee to expedite acceptance of your offer"
@@ -2400,7 +2394,7 @@ msgstr "Podpora hesla vyžaduje migraci vašich klíčů do nové klíčenky"
 #: src/components/offers/OfferDataEntryDialog.tsx:33
 #: src/components/offers/OfferImport.tsx:157
 msgid "Paste Offer Data"
-msgstr "Vložit data nabídky"
+msgstr ""
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:148
 msgid "Paste link"
@@ -2424,15 +2418,15 @@ msgstr "Čeká na vyřízení"
 
 #: src/components/offers/utils.ts:151
 msgid "Pending Accept"
-msgstr "Čeká na přijetí"
+msgstr ""
 
 #: src/components/offers/utils.ts:155
 msgid "Pending Cancel"
-msgstr "Čeká na zrušení"
+msgstr ""
 
 #: src/components/offers/utils.ts:153
 msgid "Pending Confirm"
-msgstr "Čeká na potvrzení"
+msgstr ""
 
 #: src/components/notification/NotificationsProvider.tsx:224
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:137
@@ -2441,7 +2435,7 @@ msgstr "Prosím potvrďte"
 
 #: src/hooks/useOpenUnsafeLink.tsx:38
 msgid "Please check the following link to verify the site you are going to visit. Proceed at your own risk."
-msgstr "Zkontrolujte prosím následující odkaz, že opravdu odkazuje na místo které chete navštívit. Pokračujte na vlastní riziko."
+msgstr ""
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:75
 msgid "Please enter a URI"
@@ -2454,11 +2448,11 @@ msgstr "Prosím, zadejte heslo"
 
 #: src/components/settings/ProfileAdd.tsx:53
 msgid "Please enter a valid numeric fee"
-msgstr "Prosím, zadejte platnou číselnou hodnotu"
+msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:583
 msgid "Please enter an NFT identifier"
-msgstr "Prosím, zadejte NFT identifikátor"
+msgstr ""
 
 #: src/util/offerBuilderDataToOffer.ts:46
 #: src/util/offerBuilderDataToOffer.ts:111
@@ -2467,11 +2461,11 @@ msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:591
 msgid "Please enter an amount"
-msgstr "Prosím, zadejte částku"
+msgstr ""
 
 #: src/components/offers/OfferEditor.tsx:106
 msgid "Please enter an amount for each row"
-msgstr "Prosím zadejte částku pro každý řádek"
+msgstr ""
 
 #: src/util/offerBuilderDataToOffer.ts:78
 #: src/util/offerBuilderDataToOffer.ts:139
@@ -2494,11 +2488,11 @@ msgstr "Chcete-li pokračovat, zadejte prosím své heslo"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:153
 msgid "Please select a profile to move the NFT to."
-msgstr "Prosím zadejte profil, do kterého přesunout NFT."
+msgstr ""
 
 #: src/components/offers/OfferEditor.tsx:104
 msgid "Please select an asset for each row"
-msgstr "Prosím vyberte aktivum pro každý řádek"
+msgstr ""
 
 #: src/util/offerBuilderDataToOffer.ts:69
 #: src/util/offerBuilderDataToOffer.ts:130
@@ -2507,7 +2501,7 @@ msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:589
 msgid "Please select an asset type"
-msgstr "Vyberte prosím typ aktiva"
+msgstr ""
 
 #: src/components/settings/SettingsNFT.tsx:95
 msgid "Please select an empty folder"
@@ -2546,7 +2540,7 @@ msgstr "Klíč Pole"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:475
 msgid "Plot NFT Plot Target Address"
-msgstr "Cílová adresa NFT pole"
+msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:476
 msgid "Plot NFT Pool Contract Address"
@@ -2719,11 +2713,11 @@ msgstr "Připravuji standardní peněženku"
 #: src/components/nfts/NFTPreview.tsx:417
 #: src/components/offers2/OfferBuilderNFT.tsx:84
 msgid "Preview"
-msgstr "Náhled"
+msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:621
 msgid "Preview URL is not valid"
-msgstr "URL náhledu není platná"
+msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:315
 msgid "Preview image uris"
@@ -2744,12 +2738,12 @@ msgstr "Hash předchozího záhlaví"
 
 #: src/components/settings/ProfileView.tsx:57
 msgid "Profile Name"
-msgstr "Název profilu"
+msgstr ""
 
 #: src/components/settings/Settings.tsx:66
 #: src/components/settings/SettingsProfiles.tsx:55
 msgid "Profiles"
-msgstr "Profily"
+msgstr ""
 
 #: src/components/block/Block.jsx:202
 msgid "Proof of Space Size"
@@ -2761,7 +2755,7 @@ msgstr "Nalezeno důkazů"
 
 #: src/components/nfts/NFTProperties.tsx:101
 msgid "Properties"
-msgstr "Vlastnosti"
+msgstr ""
 
 #: src/components/pool/PoolInfo.tsx:23
 msgid "Protocol Version"
@@ -2777,7 +2771,7 @@ msgstr ""
 
 #: src/components/offers/NFTOfferViewer.tsx:469
 msgid "Purchase Summary"
-msgstr "Souhrn nákupů"
+msgstr ""
 
 #: src/components/plot/PlotPlotting.tsx:22
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:216
@@ -2806,7 +2800,7 @@ msgstr "Doporučeno"
 
 #: src/components/settings/ProfileAdd.tsx:114
 msgid "Recommended: 0.000005 XCH"
-msgstr "Doporučeno: 0.000005 XCH"
+msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:602
 msgid "Refresh NFT data"
@@ -2854,7 +2848,7 @@ msgstr "Nahlásit chybu..."
 
 #: src/components/offers/OfferManager.tsx:281
 msgid "Requested"
-msgstr "Požadováno"
+msgstr ""
 
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:29
 #: src/components/offers2/OfferIncomingTable.tsx:43
@@ -2865,7 +2859,7 @@ msgstr ""
 #: src/components/offers/OfferEditor.tsx:174
 #: src/components/signVerify/VerifyMessage.tsx:266
 msgid "Reset"
-msgstr "Resetovat"
+msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:663
 msgid "Response too large"
@@ -2908,7 +2902,7 @@ msgstr "Uložit"
 
 #: src/components/offers/OfferManager.tsx:348
 msgid "Save Offer File"
-msgstr "Uložit soubor nabídky"
+msgstr ""
 
 #: src/components/signVerify/SignMessageResultDialog.tsx:63
 msgid "Save To File"
@@ -2927,7 +2921,7 @@ msgstr "Vyhledat block podle hashe hlavičky"
 #: src/components/offers/OfferSummaryRow.tsx:171
 #: src/components/offers2/OfferBuilderValue.tsx:103
 msgid "Search on Tail Database"
-msgstr "Hledat v Tail databázi"
+msgstr ""
 
 #: src/components/nfts/gallery/NFTGallery.tsx:520
 msgid "Search..."
@@ -2959,12 +2953,12 @@ msgstr "Zvolte cílovou složku"
 
 #: src/components/offers/OfferImport.tsx:160
 msgid "Select Offer File"
-msgstr "Vybrat soubor nabídky"
+msgstr ""
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:249
 #: src/components/signVerify/SigningEntityDID.tsx:73
 msgid "Select Profile"
-msgstr "Vybrat profil"
+msgstr ""
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:48
 msgid "Select Temporary Directory"
@@ -3032,7 +3026,7 @@ msgstr ""
 #: src/components/nfts/NFTBurnDialog.tsx:159
 #: src/components/nfts/NFTTransferAction.tsx:149
 msgid "Send to Address"
-msgstr "Odeslat na adresu"
+msgstr ""
 
 #: src/components/settings/SetPassphrasePrompt.tsx:159
 #: src/components/settings/SetPassphrasePrompt.tsx:269
@@ -3049,35 +3043,35 @@ msgstr "Nastavení"
 #: src/components/offers/OfferShareDialog.tsx:1198
 #: src/components/offers/OfferShareDialog.tsx:1373
 msgid "Share"
-msgstr "Sdílet"
+msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:1520
 msgid "Share Offer"
-msgstr "Sdílet nabídku"
+msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:804
 msgid "Share Privately"
-msgstr "Sdílet soukromě"
+msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:642
 msgid "Share on Dexie"
-msgstr "Sdílet na Dexie"
+msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:881
 msgid "Share on Hashgreen DEX"
-msgstr "Sdílet na Hashgreen DEX"
+msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:1160
 msgid "Share on Keybase"
-msgstr "Sdílet na Keybase"
+msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:715
 msgid "Share on MintGarden"
-msgstr "Sdílet na MintGarden"
+msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:789
 msgid "Share on OfferBin"
-msgstr "Sdílet na OfferBin"
+msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:975
 msgid "Share on Spacescan.io"
@@ -3085,19 +3079,19 @@ msgstr "Sdílet na Spacescan.io"
 
 #: src/components/offers/OfferShareDialog.tsx:1295
 msgid "Share on offerpool"
-msgstr "Sdílet na offerpool"
+msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:499
 msgid "Show"
-msgstr "Ukázat"
+msgstr ""
 
 #: src/components/offers/OfferManager.tsx:328
 msgid "Show Details"
-msgstr "Zobrazit podrobnosti"
+msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:667
 msgid "Show Preview"
-msgstr "Zobrazit náhled"
+msgstr ""
 
 #: src/components/nfts/gallery/NFTGallery.tsx:541
 msgid "Showing {0} of {1} items"
@@ -3185,7 +3179,7 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:935
 msgid "Spacescan.io URL"
-msgstr "Spacescan.io URL"
+msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:134
 msgid "Specify a value of 0 to use all available threads"
@@ -3248,7 +3242,7 @@ msgstr "Odeslat"
 #: src/components/notification/NotificationSendDialog.tsx:142
 #: src/hooks/useAcceptOfferHook.tsx:54
 msgid "Success"
-msgstr "Úspěch"
+msgstr ""
 
 #: src/components/settings/LimitCacheSize.tsx:63
 msgid "Successfully updated cache size limit."
@@ -3256,7 +3250,7 @@ msgstr ""
 
 #: src/components/settings/SettingsDerivationIndex.tsx:54
 msgid "Successfully updated the derivation index. Your balances may take a while to update."
-msgstr "Index derivace byl úspěšně aktualizován. Aktualizace zůstatků může chvíli trvat."
+msgstr ""
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:50
 msgid "Synced"
@@ -3297,11 +3291,11 @@ msgstr ""
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:203
 msgid "The NFT move transaction has been successfully submitted to the blockchain."
-msgstr "Transakce přesunu NFT byla úspěšně odeslána do blockchainu."
+msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:261
 msgid "The NFT status has been updated. If the transaction was successfully sent to the mempool, it may still complete."
-msgstr "Stav NFT byl aktualizován. Pokud byla transakce úspěšně odeslána do mempoolu, může být stále dokončena."
+msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:271
 msgid "The NFT status update failed: {err}"
@@ -3309,15 +3303,15 @@ msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:183
 msgid "The NFT transfer failed: {error}"
-msgstr "Přesun NFT selhal: {error}"
+msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:176
 msgid "The NFT transfer transaction has been successfully submitted to the blockchain."
-msgstr "Transakce transferu NFT byla úspěšně odeslána do blockchainu."
+msgstr ""
 
 #: src/components/settings/SettingsPanel.tsx:165
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
-msgstr "Derivační index nastavuje rozsah adres peněženky, pro které peněženka skenuje blockchain. Toto číslo je obecně vyšší, pokud máte spoustu transakcí nebo zrušených nabídek pro XCH, CAT, nebo NFT. Pokud se domníváte, že Váš zůstatek je nesprávný, protože chybí mince, pak zvýšení derivačního indexu může pomoci peněžence zahrnout chybějící mince do celkového zůstatku."
+msgstr ""
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:88
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:137
@@ -3408,7 +3402,7 @@ msgstr "Tato pole jsou neplatná, možná je chcete smazat."
 
 #: src/components/offers/NFTOfferEditor.tsx:365
 msgid "They will receive"
-msgstr "Oni obdrží"
+msgstr ""
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:87
 msgid "This allows you to add a directory that has plots in it. If you have not created any plots, go to the plotting screen."
@@ -3448,22 +3442,22 @@ msgstr "Jste plně synchronizováni se sítí"
 #: src/components/offers/NFTOfferViewer.tsx:212
 #: src/components/offers/OfferSummary.tsx:182
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted."
-msgstr "Tato nabídka obsahuje poplatek, který pomůže urychlit transakci při přijetí nabídky."
+msgstr ""
 
 #: src/components/offers/NFTOfferViewer.tsx:207
 #: src/components/offers/OfferSummary.tsx:177
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted. You may specify an additional fee if you feel that the included fee is too small."
-msgstr "Tato nabídka obsahuje poplatek, který pomůže urychlit transakci při přijetí nabídky. Můžete zadat dodatečný poplatek, pokud máte pocit, že je zahrnutý poplatek příliš malý."
+msgstr ""
 
 #: src/components/offers/OfferHeader.tsx:63
 #: src/components/offers2/OfferBuilderViewer.tsx:164
 msgid "This offer has completed successfully"
-msgstr "Tato nabídka byla úspěšně dokončena"
+msgstr ""
 
 #: src/components/offers/OfferHeader.tsx:46
 #: src/components/offers2/OfferBuilderViewer.tsx:151
 msgid "This offer is no longer valid. To understand why, click <0>here</0> to learn more."
-msgstr "Tato nabídka již není platná. Chcete-li pochopit proč, klikněte <0>zde</0> pro více informací."
+msgstr ""
 
 #: src/components/offers2/OfferBuilderViewer.tsx:168
 msgid "This offer was cancelled"
@@ -3499,7 +3493,7 @@ msgstr "Časová značka"
 #: src/components/nfts/detail/NFTDetailV2.tsx:273
 #: src/components/offers2/OfferBuilderValueSearch.tsx:137
 msgid "Title Not Available"
-msgstr "Název není k dispozici"
+msgstr ""
 
 #: src/components/settings/ResyncPrompt.tsx:41
 msgid "To initiate a wallet resync, all Chia services must first be shut down. After shutting down, you will be required to restart Chia to begin the resyncing process. Are you sure you want to shut down and resync?"
@@ -3507,7 +3501,7 @@ msgstr ""
 
 #: src/components/settings/ProfileView.tsx:127
 msgid "Token Standard"
-msgstr "Standardy pro tokeny"
+msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:51
 #: src/components/offers2/OfferBuilderTokensSection.tsx:113
@@ -3525,12 +3519,12 @@ msgstr ""
 #: src/components/offers/NFTOfferEditor.tsx:385
 #: src/components/offers/NFTOfferViewer.tsx:541
 msgid "Total Amount Offered"
-msgstr "Celková nabízená částka"
+msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:383
 #: src/components/offers/NFTOfferViewer.tsx:537
 msgid "Total Amount Requested"
-msgstr "Celková požadovaná částka"
+msgstr ""
 
 #: src/components/offers2/OfferBuilderAmountWithRoyalties.tsx:31
 msgid "Total Amount with Royalties"
@@ -3611,13 +3605,13 @@ msgstr "Hash filtru transakcí"
 #: src/components/nfts/NFTTransferAction.tsx:169
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:37
 msgid "Transfer"
-msgstr "Přenos"
+msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:200
 #: src/components/nfts/NFTTransferAction.tsx:217
 #: src/constants/WalletConnectCommands.tsx:463
 msgid "Transfer NFT"
-msgstr "Přenos NFT"
+msgstr ""
 
 #: src/components/settings/SettingsDataLayer.tsx:51
 msgid "Turn on/off the DataLayer service."
@@ -3633,11 +3627,11 @@ msgstr ""
 
 #: src/hooks/useOpenUnsafeLink.tsx:43
 msgid "URL"
-msgstr "URL"
+msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:638
 msgid "Unable to create an offer for an NFT that you do not own."
-msgstr "Nelze vytvořit nabídku pro NFT, která nevlastníte."
+msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:647
 msgid "Unable to create an offer for an NFT with a creator royalty percentage greater than 100%"
@@ -3645,7 +3639,7 @@ msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:374
 msgid "Unable to create an offer where the net amount is negative"
-msgstr "Nelze vytvořit nabídku, kde je čistá částka záporná"
+msgstr ""
 
 #: src/components/signVerify/SignMessage.tsx:110
 msgid "Unable to find DID {entityId}"
@@ -3657,22 +3651,22 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:1099
 msgid "Unable to open Keybase. Install Keybase from https://keybase.io"
-msgstr "Nelze otevřít Keybase. Nainstalujte Keybase z https://keybase.io"
+msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:1002
 msgid "Unable to open browser. Install Keybase from https://keybase.io"
-msgstr "Nelze otevřít prohlížeč. Nainstalujte Keybase z https://keybase.io"
+msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:141
 #: src/components/nfts/NFTDetails.tsx:162
 #: src/components/nfts/NFTDetails.tsx:205
 msgid "Unassigned"
-msgstr "Nepřiřazeno"
+msgstr ""
 
 #: src/components/nfts/NFTProfileDropdown.tsx:86
 #: src/components/nfts/NFTProfileDropdown.tsx:121
 msgid "Unassigned NFTs"
-msgstr "Nepřiřazená NFT"
+msgstr ""
 
 #: src/components/plotNFT/PlotNFTCard.tsx:133
 msgid "Unclaimed Rewards"
@@ -3685,7 +3679,7 @@ msgstr "Nedokončeno"
 #: src/components/offers/utils.ts:163
 #: src/components/offers2/OfferBuilderTokenSelector.tsx:66
 msgid "Unknown"
-msgstr "Neznámé"
+msgstr ""
 
 #: src/components/walletConnect/WalletConnectConnections.tsx:71
 #: src/components/walletConnect/WalletConnectMetadata.tsx:17
@@ -3698,7 +3692,7 @@ msgstr ""
 #: src/components/walletConnect/WalletConnectCATAmount.tsx:20
 #: src/util/resolveOfferInfo.ts:22
 msgid "Unknown CAT"
-msgstr "Neznámý CAT"
+msgstr ""
 
 #: src/components/app/AppPassPrompt.tsx:93
 msgid "Unlock Keyring"
@@ -3706,7 +3700,7 @@ msgstr "Odemknout klíčenku"
 
 #: src/components/offers/NFTOfferViewer.tsx:139
 msgid "Unrecognized asset"
-msgstr "Nerozpoznané aktivum"
+msgstr ""
 
 #: src/components/settings/LimitCacheSize.tsx:91
 msgid "Update"
@@ -3714,7 +3708,7 @@ msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:625
 msgid "Update Pending"
-msgstr "Čekající aktualizace"
+msgstr ""
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:227
 msgid "Use left and right arrow keys to navigate"
@@ -3784,24 +3778,24 @@ msgstr "Zobrazit odkaz pro přihlášení do Poolu"
 
 #: src/components/offers/OfferImport.tsx:184
 msgid "View an Offer"
-msgstr "Zobrazit nabídku"
+msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:618
 msgid "View on Dexie"
-msgstr "Zobrazit na Dexie"
+msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:862
 msgid "View on Hashgreen DEX"
-msgstr "Zobrazit na Hashgreen DEX"
+msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:671
 #: src/components/offers/OfferShareDialog.tsx:696
 msgid "View on MintGarden"
-msgstr "Zobrazit na MintGarden"
+msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:770
 msgid "View on OfferBin"
-msgstr "Zobrazit na OfferBin"
+msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:1267
 msgid "View on Offerpool"
@@ -3810,11 +3804,11 @@ msgstr ""
 #: src/components/nfts/NFTContextualActions.tsx:678
 #: src/components/offers/OfferShareDialog.tsx:950
 msgid "View on Spacescan.io"
-msgstr "Zobrazit na Spacescan.io"
+msgstr ""
 
 #: src/components/offers/OfferViewerTitle.tsx:49
 msgid "Viewing offer"
-msgstr "Zobrazení nabídky"
+msgstr ""
 
 #: src/components/nfts/gallery/NFTGallery.tsx:583
 msgid "Visible"
@@ -3846,7 +3840,7 @@ msgstr "Čekání na potvrzení transakce"
 #: src/components/app/AppStatusHeader.tsx:109
 #: src/hooks/useWalletConnectCommand.tsx:105
 msgid "Wallet"
-msgstr "Peněženka"
+msgstr ""
 
 #: src/components/signVerify/SignMessage.tsx:153
 msgid "Wallet Address"
@@ -3915,7 +3909,7 @@ msgstr "Teplý start"
 
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:32
 msgid "Warning"
-msgstr "Upozornění"
+msgstr ""
 
 #: src/components/app/AppVersionWarning.tsx:30
 msgid "Warning: Mismatched Versions"
@@ -3924,11 +3918,11 @@ msgstr ""
 #: src/components/offers/OfferSummary.tsx:133
 #: src/components/offers2/OfferBuilderValue.tsx:204
 msgid "Warning: Verify that the offered CAT asset IDs match the asset IDs of the tokens you expect to receive."
-msgstr "Varování: Ověřte, že ID nabízených CAT aktiv odpovídají ID aktiv tokenů, které očekáváte, že obdržíte."
+msgstr ""
 
 #: src/hooks/useOpenUnsafeLink.tsx:30
 msgid "Warning: You're about to visit a website"
-msgstr "Upozornění: Chystáte se navštívit webovou stránku"
+msgstr ""
 
 #: src/components/block/Block.jsx:172
 msgid "Weight"
@@ -3940,7 +3934,7 @@ msgstr "Váha je celková přidaná obtížnost všech bloků až po tento včet
 
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:22
 msgid "When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or cancelled, resulting in your spendable balance changing."
-msgstr "Při vytvoření nabídky budou nabízená aktiva uzamčena a nedostupné do doby, než bude nabídka přijata nebo zrušena, výsledkem je změna disponibilního zůstatku."
+msgstr ""
 
 #: src/electron/main.tsx:1029
 msgid "Window"
@@ -3952,7 +3946,7 @@ msgstr "Bez poplatků"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:389
 msgid "Would you like to move the specified NFT to a profile?"
-msgstr "Chcete přesunout zadanou NFT do profilu?"
+msgstr ""
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:387
 msgid "Would you like to move {count} NFTs to a profile?"
@@ -3973,7 +3967,7 @@ msgstr "Ano"
 
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:22
 msgid "Yes, Accept Offer"
-msgstr "Ano, přijmout nabídku"
+msgstr ""
 
 #: src/components/settings/SettingsNFT.tsx:56
 msgid "Yes, delete"
@@ -3981,7 +3975,7 @@ msgstr ""
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:55
 msgid "Yes, move"
-msgstr "Ano, přesunout"
+msgstr ""
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:167
 msgid "You already have 50 or more Plot NFTs."
@@ -4006,7 +4000,7 @@ msgstr "Stále můžete vytvářet pole pro toto NFT pole, ale nemůžete prová
 #: src/components/offers/OfferHeader.tsx:38
 #: src/components/offers2/OfferBuilderViewer.tsx:183
 msgid "You created this offer"
-msgstr "Tuto nabídku jste vytvořili"
+msgstr ""
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:73
 msgid "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
@@ -4034,12 +4028,12 @@ msgstr ""
 
 #: src/components/offers/OfferEditorConditionsPanel.tsx:289
 msgid "You will offer"
-msgstr "Nabízíte"
+msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:363
 #: src/components/offers/NFTOfferViewer.tsx:474
 msgid "You will receive"
-msgstr "Obdržíte"
+msgstr ""
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:143
 msgid "You will recieve <0/> to {address}"
@@ -4067,7 +4061,7 @@ msgstr "Vaše klíčenka je zamknuta"
 
 #: src/components/offers/OfferShareDialog.tsx:1135
 msgid "Your offer has been successfully posted to Keybase."
-msgstr "Vaše nabídka byla úspěšně odeslána na Keybase."
+msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:229
 #: src/components/settings/ChangePassphrasePrompt.tsx:277
@@ -4165,3 +4159,4 @@ msgstr ""
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:106
 msgid "{warning}"
 msgstr ""
+
