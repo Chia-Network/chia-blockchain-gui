@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-06-30 11:32\n"
+"PO-Revision-Date: 2023-06-30 12:27\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -149,7 +149,7 @@ msgstr "اختصاصی"
 
 #: src/constants/WalletName.ts:29
 msgid "DID Wallet"
-msgstr ""
+msgstr "ولت دید DID"
 
 #: src/constants/WalletName.ts:38
 msgid "Datalayer Wallet"
@@ -165,15 +165,15 @@ msgstr "حذف"
 
 #: src/components/WalletHeader.tsx:68
 msgid "Delete Unconfirmed Transactions"
-msgstr ""
+msgstr "تراکنش های تایید نشده را حذف کنید"
 
 #: src/components/card/WalletCardTotalBalance.tsx:68
 msgid "Derivation Index: {0}"
-msgstr ""
+msgstr "فهرست بهره برداری: {0}"
 
 #: src/components/create/WalletCreateList.tsx:39
 msgid "Distributed Identity"
-msgstr ""
+msgstr "هویت توزیع شده"
 
 #: src/components/WalletImport.tsx:158
 msgid "Enter the {mnemonicWordCount} word mnemonic that you have saved in order to restore your Chia wallet."
@@ -181,7 +181,7 @@ msgstr ""
 
 #: src/components/cat/WalletCATSend.tsx:126
 msgid "Error the entered address appears to be for a different colour."
-msgstr ""
+msgstr "خطای آدرس وارد شده به نظر میرسد برای رنگ دیگری باشد."
 
 #: src/components/WalletSend.tsx:221
 #: src/components/cat/WalletCATSend.tsx:245
@@ -192,27 +192,27 @@ msgstr "مزرعه"
 #: src/components/WalletSend.tsx:197
 #: src/components/cat/WalletCATSend.tsx:221
 msgid "Fee"
-msgstr ""
+msgstr "کارمزد"
 
 #: src/components/WalletReceiveAddress.tsx:32
 msgid "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefore wallet receive addresses) that will all ultimately come back to and be spendable by a single private key."
-msgstr ""
+msgstr "کلیدهای سلسله وار قطعی یا HD نوعی از طرح کلید عمومی/کلید خصوصی هستند که در آن یک کلید خصوصی میتواند تقریباً بی نهایت کلید عمومی مختلف داشته باشد (و در نتیجه آدرس های دریافت کیف پول) که در نهایت همه به یک کلید خصوصی خاص باز می گردند و قابل مصرف هستند."
 
 #: src/components/WalletConnections.tsx:22
 msgid "IP address"
-msgstr ""
+msgstr "آدرس ای پی"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:41
 msgid "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a higher fee."
-msgstr ""
+msgstr "اگر میخواهید سرعت تراکنش را افزایش دهید، لطفا تراکنش‌های تایید نشده را حذف کنید و با کارمزد بالاتر دوباره امتحان کنید."
 
 #: src/components/PasteMnemonic.tsx:79
 msgid "Import"
-msgstr ""
+msgstr "وارد كردن"
 
 #: src/components/WalletImport.tsx:141
 msgid "Import Wallet from Mnemonics"
-msgstr ""
+msgstr "واردکردن کیف پول از طریق کلید خصوصی"
 
 #: src/components/WalletImport.tsx:226
 msgid "Import from {alternativeWordCount} word mnemonic"
@@ -220,29 +220,29 @@ msgstr ""
 
 #: src/components/WalletHistory.tsx:87
 msgid "Incoming"
-msgstr ""
+msgstr "ورودی"
 
 #: src/components/WalletConnections.tsx:71
 msgid "List of connections is empty"
-msgstr ""
+msgstr "لیست اتصالات خالی است"
 
 #: src/components/WalletsManageTokens.tsx:133
 msgid "Manage token list"
-msgstr ""
+msgstr "مدیریت لیست توکن"
 
 #: src/components/WalletHistory.tsx:174
 #: src/components/WalletSend.tsx:211
 #: src/components/cat/WalletCATSend.tsx:235
 msgid "Memo"
-msgstr ""
+msgstr "یادداشت"
 
 #: src/components/WalletHistory.tsx:338
 msgid "Memos"
-msgstr ""
+msgstr "یادداشت ها"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:16
 msgid "Mempool Full"
-msgstr ""
+msgstr "حافظه استخر تراکنش پر است"
 
 #: src/components/WalletConnections.tsx:40
 msgid "MiB Up/Down"
@@ -250,19 +250,19 @@ msgstr "MiB آپلود/دانلود"
 
 #: src/constants/WalletName.ts:17
 msgid "Multi Sig Wallet"
-msgstr ""
+msgstr "کیف پول چند منظوره"
 
 #: src/constants/WalletName.ts:35
 msgid "NFT Wallet"
-msgstr ""
+msgstr "کیف پول ان اف تی"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:68
 msgid "Name"
-msgstr ""
+msgstr "نام"
 
 #: src/components/WalletReceiveAddress.tsx:45
 msgid "New Address"
-msgstr ""
+msgstr "آدرس جدید"
 
 #: src/components/WalletReceiveAddressField.tsx:114
 msgid "New Receive Address"
