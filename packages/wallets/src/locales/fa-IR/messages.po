@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-06-29 18:14\n"
+"PO-Revision-Date: 2023-06-30 11:32\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -85,33 +85,33 @@ msgstr "انصراف"
 #: src/components/WalletSend.tsx:106
 #: src/components/cat/WalletCATSend.tsx:116
 msgid "Cannot send chia to coloured address. Please enter a chia address."
-msgstr ""
+msgstr "خطا: چیـا را به آدرس رنگی نمیتوان ارسال کرد. لطفاً یک آدرس چیا وارد کنید."
 
 #: src/components/WalletsSidebar.tsx:130
 msgid "Check my snapshot balance"
-msgstr ""
+msgstr "تصویر موجودی من را چک کنید"
 
 #: src/components/cat/WalletCATSelect.tsx:25
 #: src/components/create/WalletCreateList.tsx:32
 #: src/constants/WalletName.ts:23
 msgid "Chia Asset Token"
-msgstr ""
+msgstr "توکن دارایی چیا"
 
 #: src/components/WalletsSidebar.tsx:141
 msgid "Click here to download an older version of the wallet"
-msgstr ""
+msgstr "برای دانلود نسخه قدیمی کیف پول اینجا را کلیک کنید"
 
 #: src/components/WalletHeader.tsx:25
 msgid "Confirmation"
-msgstr ""
+msgstr "تائیدیه"
 
 #: src/components/WalletHistory.tsx:170
 msgid "Confirmed"
-msgstr ""
+msgstr "تایید شده"
 
 #: src/components/WalletHistory.tsx:333
 msgid "Confirmed at Height"
-msgstr ""
+msgstr "تایید شده در ارتفاع"
 
 #: src/components/WalletConnections.tsx:47
 msgid "Connection type"
@@ -127,25 +127,25 @@ msgstr ""
 
 #: src/components/cat/WalletCATSelect.tsx:32
 msgid "Create New Wallet"
-msgstr ""
+msgstr "کیف پول جدید ایجاد کنید"
 
 #: src/components/cat/WalletCAT.tsx:104
 #: src/components/standard/WalletStandard.tsx:46
 msgid "Create Offer"
-msgstr ""
+msgstr "ایجاد پیشنهاد"
 
 #: src/components/WalletSend.tsx:154
 #: src/components/cat/WalletCATSend.tsx:177
 msgid "Create Transaction"
-msgstr ""
+msgstr "ایجاد تراکنش"
 
 #: src/constants/WalletName.ts:20
 msgid "Custody Wallet"
-msgstr ""
+msgstr "کیف پول حضانت"
 
 #: src/components/cat/WalletCATCreateSimple.tsx:100
 msgid "Custom"
-msgstr ""
+msgstr "اختصاصی"
 
 #: src/constants/WalletName.ts:29
 msgid "DID Wallet"
