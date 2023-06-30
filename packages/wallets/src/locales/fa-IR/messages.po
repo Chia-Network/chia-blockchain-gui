@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-06-30 14:42\n"
+"PO-Revision-Date: 2023-06-30 16:51\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -355,21 +355,21 @@ msgstr ""
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:46
 msgid "Please enter a valid token name"
-msgstr ""
+msgstr "یک نام توکن معتبر وارد کنید"
 
 #: src/components/WalletRenameDialog.tsx:41
 msgid "Please enter valid wallet name"
-msgstr ""
+msgstr "یک نام کیف پول معتبر وارد کنید"
 
 #: src/components/WalletSend.tsx:91
 #: src/components/cat/WalletCATSend.tsx:93
 msgid "Please finish syncing before making a transaction"
-msgstr ""
+msgstr "صبرکنید سینک به اتمام برسد سپس ایجاد تراکنش کنید"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:38
 #: src/components/cat/WalletCATCreateSimple.tsx:38
 msgid "Please wait for wallet synchronization"
-msgstr ""
+msgstr "صبرکنید کیف پول کامل سینک شود"
 
 #: src/constants/WalletName.ts:32
 msgid "Pooling Wallet"
@@ -401,7 +401,7 @@ msgstr "آدرس گیرنده"
 
 #: src/components/cat/WalletCATSend.tsx:120
 msgid "Recipient address is not a coloured wallet address. Please enter a coloured wallet address"
-msgstr ""
+msgstr "آدرس گیرنده یک آدرس کیف پول رنگی نیست. یک آدرس کیف پول رنگی وارد کنید"
 
 #: src/constants/WalletName.ts:26
 msgid "Recoverable Wallet"
@@ -414,30 +414,30 @@ msgstr "کیف پول بازیابی"
 #: src/components/WalletRenameDialog.tsx:61
 #: src/components/cat/WalletCAT.tsx:87
 msgid "Rename Wallet"
-msgstr ""
+msgstr "تغییر نام کیف پول"
 
 #: src/components/WalletHistory.tsx:175
 msgid "Retire"
-msgstr ""
+msgstr "کنارگذاشته شده"
 
 #: src/components/WalletRenameDialog.tsx:75
 msgid "Save"
-msgstr ""
+msgstr "ذخیره"
 
 #: src/components/WalletTokenCard.tsx:177
 #: src/components/cat/WalletCATTAILDialog.tsx:59
 msgid "Search on Tail Database"
-msgstr ""
+msgstr "جستجو در دیتابیس تیل"
 
 #: src/components/create/WalletCreateList.tsx:25
 msgid "Select Wallet Type"
-msgstr ""
+msgstr "انتخاب نوع کیف پول"
 
 #: src/components/WalletHeader.tsx:47
 #: src/components/WalletSend.tsx:232
 #: src/components/cat/WalletCATSend.tsx:256
 msgid "Send"
-msgstr ""
+msgstr "ارسال"
 
 #: src/components/cat/WalletCAT.tsx:96
 msgid "Show Asset Id"
@@ -453,11 +453,11 @@ msgstr ""
 
 #: src/components/WalletSendTransactionResultDialog.tsx:12
 msgid "Success"
-msgstr ""
+msgstr "با موفقیت"
 
 #: src/components/WalletHeader.tsx:46
 msgid "Summary"
-msgstr ""
+msgstr "خلاصه"
 
 #: src/components/WalletStatus.tsx:70
 msgid "Synced"
@@ -465,7 +465,7 @@ msgstr "همگام سازی شده"
 
 #: src/components/WalletStatus.tsx:82
 msgid "Syncing"
-msgstr ""
+msgstr "درحال سینک"
 
 #: src/components/card/WalletCardTotalBalance.tsx:70
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
@@ -505,7 +505,7 @@ msgstr "این مقدار موجودی کل + موجودی در حال انتظ�
 
 #: src/components/WalletHistory.tsx:181
 msgid "To"
-msgstr ""
+msgstr "به"
 
 #: src/components/cat/WalletCATCreateSimple.tsx:46
 msgid "Token has empty asset id"
@@ -517,11 +517,11 @@ msgstr ""
 
 #: src/components/WalletsSidebar.tsx:187
 msgid "Tokens"
-msgstr ""
+msgstr "توکن ها"
 
 #: src/components/card/WalletCardTotalBalance.tsx:60
 msgid "Total Balance"
-msgstr ""
+msgstr "موجودی کل"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:27
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
