@@ -11,6 +11,7 @@ import {
   dark,
   light,
   ErrorBoundary,
+  AuthProvider,
 } from '@chia-network/core';
 import { nativeTheme } from '@electron/remote';
 import { Trans } from '@lingui/macro';
@@ -26,6 +27,7 @@ import CacheProvider from '../cache/CacheProvider';
 import LRUsProvider from '../lrus/LRUsProvider';
 import NFTProvider from '../nfts/provider/NFTProvider';
 import NotificationsProvider from '../notification/NotificationsProvider';
+import OffersProvider from '../offers2/OffersProvider';
 import WalletConnectProvider, { WalletConnectChiaProjectId } from '../walletConnect/WalletConnectProvider';
 import AppState from './AppState';
 
@@ -97,24 +99,28 @@ export default function App(props: AppProps) {
       <LocaleProvider i18n={i18n} defaultLocale={defaultLocale} locales={locales}>
         <ThemeProvider theme={theme} fonts global>
           <ErrorBoundary>
-            <CacheProvider>
-              <LRUsProvider>
-                <NFTProvider>
-                  <ModalDialogsProvider>
-                    <Suspense fallback={<LayoutLoading />}>
-                      <AddressBookProvider>
-                        <WalletConnectProvider projectId={WalletConnectChiaProjectId}>
-                          <NotificationsProvider>
-                            <AppState>{outlet ? <Outlet /> : children}</AppState>
-                            <ModalDialogs />
-                          </NotificationsProvider>
-                        </WalletConnectProvider>
-                      </AddressBookProvider>
-                    </Suspense>
-                  </ModalDialogsProvider>
-                </NFTProvider>
-              </LRUsProvider>
-            </CacheProvider>
+            <AuthProvider>
+              <CacheProvider>
+                <LRUsProvider>
+                  <NFTProvider>
+                    <ModalDialogsProvider>
+                      <Suspense fallback={<LayoutLoading />}>
+                        <AddressBookProvider>
+                          <OffersProvider>
+                            <NotificationsProvider>
+                              <WalletConnectProvider projectId={WalletConnectChiaProjectId}>
+                                <AppState>{outlet ? <Outlet /> : children}</AppState>
+                                <ModalDialogs />
+                              </WalletConnectProvider>
+                            </NotificationsProvider>
+                          </OffersProvider>
+                        </AddressBookProvider>
+                      </Suspense>
+                    </ModalDialogsProvider>
+                  </NFTProvider>
+                </LRUsProvider>
+              </CacheProvider>
+            </AuthProvider>
           </ErrorBoundary>
         </ThemeProvider>
       </LocaleProvider>

@@ -69,6 +69,23 @@ const walletConnectCommands: WalletConnectCommand[] = [
     ],
   },
   {
+    command: 'getWalletBalances',
+    label: <Trans>Get Wallet Balances</Trans>,
+    description: <Trans>Requests the asset balances for specific wallets associated with the current wallet key</Trans>,
+    service: ServiceName.WALLET,
+    bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.WALLET_IDS,
+        type: 'object',
+        label: <Trans>Wallet Ids</Trans>,
+        isOptional: true,
+        defaultValue: undefined,
+        hide: false,
+      },
+    ],
+  },
+  {
     command: 'getCurrentAddress',
     label: <Trans>Get Current Address</Trans>,
     description: <Trans>Requests the current receive address associated with the current wallet key</Trans>,
@@ -117,11 +134,37 @@ const walletConnectCommands: WalletConnectCommand[] = [
         hide: true,
       },
       {
-        name: WalletConnectCommandParamName.WAIT_FOR_CONFIRMATION,
-        label: <Trans>Wait for Confirmation</Trans>,
-        type: 'boolean',
+        name: WalletConnectCommandParamName.MEMOS,
+        label: <Trans>Memos</Trans>,
+        // type: 'string[]', ??
         isOptional: true,
         hide: true,
+      },
+      {
+        name: WalletConnectCommandParamName.PUZZLE_DECORATOR,
+        label: <Trans>Puzzle Decorator</Trans>,
+        type: 'object',
+        isOptional: true,
+        // hide: true,
+      },
+    ],
+  },
+  {
+    command: 'spendClawbackCoins',
+    label: <Trans>Claw back or claim claw back transaction</Trans>,
+    service: ServiceName.WALLET,
+    waitForSync: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.COIN_IDS,
+        label: <Trans>Coin Ids</Trans>,
+        type: 'object',
+      },
+      {
+        name: WalletConnectCommandParamName.FEE,
+        label: <Trans>Fee</Trans>,
+        type: 'BigNumber',
+        displayComponent: (value) => <MojoToChia value={value} />,
       },
     ],
   },
@@ -287,7 +330,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
     service: ServiceName.WALLET,
     params: [
       {
-        name: WalletConnectCommandParamName.WALLET_IDS_AND_AMOUNTS,
+        name: WalletConnectCommandParamName.OFFER,
         label: <Trans>Wallet Ids and Amounts</Trans>,
         type: 'object',
         displayComponent: (value, params, values, onChange) => (
@@ -345,7 +388,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
     bypassConfirm: true,
     params: [
       {
-        name: WalletConnectCommandParamName.OFFER_DATA,
+        name: WalletConnectCommandParamName.OFFER,
         label: <Trans>Offer Data</Trans>,
         type: 'string',
       },
@@ -495,13 +538,6 @@ const walletConnectCommands: WalletConnectCommand[] = [
         label: <Trans>Memos</Trans>,
         isOptional: true,
       },
-      {
-        name: WalletConnectCommandParamName.WAIT_FOR_CONFIRMATION,
-        label: <Trans>Wait for Confirmation</Trans>,
-        type: 'boolean',
-        isOptional: true,
-        hide: true,
-      },
     ],
   },
   {
@@ -598,7 +634,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
       {
         name: WalletConnectCommandParamName.URIS,
         label: <Trans>Uris</Trans>,
-        type: 'string',
+        type: 'object',
       },
       {
         name: WalletConnectCommandParamName.HASH,
@@ -608,7 +644,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
       {
         name: WalletConnectCommandParamName.META_URIS,
         label: <Trans>Meta Uris</Trans>,
-        type: 'string',
+        type: 'object',
       },
       {
         name: WalletConnectCommandParamName.META_HASH,
@@ -619,7 +655,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
       {
         name: WalletConnectCommandParamName.LICENSE_URIS,
         label: <Trans>License Uris</Trans>,
-        type: 'string',
+        type: 'object',
       },
       {
         name: WalletConnectCommandParamName.LICENSE_HASH,
@@ -665,14 +701,9 @@ const walletConnectCommands: WalletConnectCommand[] = [
         type: 'number',
       },
       {
-        name: WalletConnectCommandParamName.NFT_COIN_ID,
-        label: <Trans>NFT Coin Id</Trans>,
-        type: 'string',
-      },
-      {
-        name: WalletConnectCommandParamName.LAUNCHER_ID,
-        label: <Trans>Launcher Id</Trans>,
-        type: 'string',
+        name: WalletConnectCommandParamName.NFT_COIN_IDS,
+        label: <Trans>NFT Coin Ids</Trans>,
+        type: 'object',
       },
       {
         name: WalletConnectCommandParamName.TARGET_ADDRESS,
@@ -788,6 +819,142 @@ const walletConnectCommands: WalletConnectCommand[] = [
     label: <Trans>Get NFT Wallets with DIDs</Trans>,
     service: ServiceName.WALLET,
     bypassConfirm: true,
+  },
+  {
+    command: 'getVCList',
+    label: <Trans>Get All Verifiable Credentials</Trans>,
+    service: ServiceName.WALLET,
+    bypassConfirm: true,
+  },
+  {
+    command: 'getVC',
+    label: <Trans>Get Verifiable Credential</Trans>,
+    service: ServiceName.WALLET,
+    bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.VC_ID,
+        type: 'string',
+        label: <Trans>Launcher Id</Trans>,
+      },
+    ],
+  },
+  {
+    command: 'spendVC',
+    label: <Trans>Add Proofs To Verifiable Credential</Trans>,
+    service: ServiceName.WALLET,
+    bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.VC_ID,
+        type: 'string',
+        label: <Trans>Launcher Id</Trans>,
+      },
+      {
+        name: WalletConnectCommandParamName.NEW_PUZHASH,
+        type: 'string',
+        label: <Trans>New Puzzle Hash</Trans>,
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.NEW_PROOF_HASH,
+        type: 'string',
+        label: <Trans>New Proof Hash</Trans>,
+      },
+      {
+        name: WalletConnectCommandParamName.PROVIDER_INNER_PUZHASH,
+        type: 'string',
+        label: <Trans>Provider Inner Puzzle Hash</Trans>,
+      },
+      {
+        name: WalletConnectCommandParamName.FEE,
+        type: 'number',
+        label: <Trans>Spend Fee</Trans>,
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.REUSE_PUZHASH,
+        type: 'boolean',
+        label: <Trans>Reuse Puzzle Hash</Trans>,
+        isOptional: true,
+      },
+    ],
+  },
+  {
+    command: 'addVCProofs',
+    label: <Trans>Add Proofs</Trans>,
+    service: ServiceName.WALLET,
+    bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.PROOFS,
+        type: 'string',
+        label: <Trans>Proofs Object (Key Value Pairs)</Trans>,
+      },
+    ],
+  },
+  {
+    command: 'getProofsForRoot',
+    label: <Trans>Get Proofs For Root Hash</Trans>,
+    service: ServiceName.WALLET,
+    bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.ROOT,
+        type: 'string',
+        label: <Trans>Proofs Hash</Trans>,
+      },
+    ],
+  },
+  {
+    command: 'revokeVC',
+    label: <Trans>Revoke Verifiable Credential</Trans>,
+    service: ServiceName.WALLET,
+    bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.VC_PARENT_ID,
+        type: 'string',
+        label: <Trans>Parent Coin Info</Trans>,
+      },
+      { name: WalletConnectCommandParamName.FEE, type: 'number', label: <Trans>Fee</Trans> },
+    ],
+  },
+  {
+    command: 'showNotification',
+    label: <Trans>Show notification with offer or general announcement</Trans>,
+    service: 'NOTIFICATION',
+    params: [
+      {
+        name: WalletConnectCommandParamName.TYPE,
+        type: 'string',
+        label: <Trans>Type</Trans>,
+      },
+      {
+        name: WalletConnectCommandParamName.MESSAGE,
+        type: 'string',
+        label: <Trans>Message</Trans>,
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.URL,
+        type: 'string',
+        label: <Trans>URL</Trans>,
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.OFFER_DATA,
+        type: 'string',
+        label: <Trans>Offer Data</Trans>,
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.ALL_FINGERPRINTS,
+        type: 'boolean',
+        label: <Trans>Is notification visible to all paired fingerprints</Trans>,
+        isOptional: true,
+      },
+    ],
   },
 ];
 

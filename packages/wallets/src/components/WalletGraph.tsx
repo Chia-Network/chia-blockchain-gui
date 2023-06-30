@@ -146,7 +146,16 @@ export type WalletGraphProps = {
 
 export default function WalletGraph(props: WalletGraphProps) {
   const { walletId, walletType, unit = '', height = 150 } = props;
-  const { transactions, isLoading: isWalletTransactionsLoading } = useWalletTransactions(walletId, 50, 0, 'RELEVANCE');
+  const { transactions, isLoading: isWalletTransactionsLoading } = useWalletTransactions({
+    walletId,
+    defaultRowsPerPage: 50,
+    defaultPage: 0,
+    sortKey: 'RELEVANCE',
+    typeFilter: {
+      mode: 2,
+      values: [TransactionType.INCOMING_CLAWBACK_RECEIVE, TransactionType.INCOMING_CLAWBACK_SEND],
+    },
+  });
   const { data: walletBalance, isLoading: isWalletBalanceLoading } = useGetWalletBalanceQuery({
     walletId,
   });

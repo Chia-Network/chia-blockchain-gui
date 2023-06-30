@@ -1,26 +1,29 @@
-import { Loading } from '@chia-network/core';
 import React from 'react';
 
-import NotificationPreviewNFT from './NotificationPreviewNFT';
+import type Notification from '../../@types/Notification';
+import NotificationType from '../../constants/NotificationType';
+import NotificationPreviewOffer from './NotificationPreviewOffer';
 
 export type NotificationPreviewProps = {
-  offer?: any;
-  loading?: boolean;
+  notification: Notification;
   size?: number;
   fallback?: JSX.Element;
+  requested?: boolean;
 };
 
 export default function NotificationPreview(props: NotificationPreviewProps) {
-  const { offer, loading = false, size = 40, fallback = null } = props;
+  const {
+    notification,
+    size = 40,
+    fallback = null,
+    requested = false,
+    notification: { type },
+  } = props;
 
-  if (loading) {
-    return <Loading size={size} />;
-  }
-
-  const [nft] = offer?.offered.nfts ?? [];
-
-  if (nft) {
-    return <NotificationPreviewNFT nftId={nft.nftId} size={size} />;
+  if ([NotificationType.OFFER, NotificationType.COUNTER_OFFER].includes(type)) {
+    return (
+      <NotificationPreviewOffer notification={notification} size={size} fallback={fallback} requested={requested} />
+    );
   }
 
   return fallback;

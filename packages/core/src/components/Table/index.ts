@@ -1,2 +1,2 @@
 export { default } from './Table';
-export { default as TableControlled } from './TableControlled';
+export { default as TableControlled, TableControlledRow } from './TableControlled';

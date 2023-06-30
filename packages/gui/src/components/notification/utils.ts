@@ -1,5 +1,6 @@
 import { t } from '@lingui/macro';
 
+import type Notification from '../../@types/Notification';
 import NotificationType from '../../constants/NotificationType';
 
 const NOTIFICATION_MESSAGE_VERSION = 1;
@@ -86,17 +87,16 @@ export function parseNotificationOfferData(payload: string): NotificationOfferDa
   };
 }
 
-export function pushNotificationStringsForNotificationType(
-  notificationType: NotificationType,
-  debug = false
-): {
+export function pushNotificationStringsForNotificationType(notification: Notification): {
   title: string;
   body: string;
 } {
   let title;
   let body;
 
-  switch (notificationType) {
+  const { type, from } = notification;
+
+  switch (type) {
     case NotificationType.OFFER:
       title = t`New offer`;
       body = t`You have received a new offer`;
@@ -105,13 +105,17 @@ export function pushNotificationStringsForNotificationType(
       title = t`New counter offer`;
       body = t`You have received a new counter offer`;
       break;
+    case NotificationType.ANNOUNCEMENT:
+      title = from ? t`Dapp ${from} sending the message` : t`Dapp sending the message`;
+      body =
+        'message' in notification
+          ? notification.message
+          : 'url' in notification
+          ? notification.url
+          : t`Message not available`;
+      break;
     default:
-      throw new Error(`Unknown notification type: ${notificationType}`);
-  }
-
-  if (debug) {
-    title = `[DEBUG] ${title}`;
-    body = `[DEBUG] ${body}`;
+      throw new Error(`Unknown notification type: ${type}`);
   }
 
   return {
