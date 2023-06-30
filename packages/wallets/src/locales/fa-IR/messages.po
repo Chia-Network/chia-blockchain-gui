@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-06-30 12:27\n"
+"PO-Revision-Date: 2023-06-30 14:42\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -20,11 +20,11 @@ msgstr ""
 
 #: src/components/WalletHistory.tsx:109
 msgid "+"
-msgstr ""
+msgstr "بیشتر"
 
 #: src/components/WalletHistory.tsx:109
 msgid "-"
-msgstr ""
+msgstr "کمتر"
 
 #: src/components/WalletHeader.tsx:62
 msgid "Actions"
@@ -270,20 +270,20 @@ msgstr ""
 
 #: src/components/WalletAdd.tsx:64
 msgid "New Wallet"
-msgstr ""
+msgstr "کیف پول جدید"
 
 #: src/components/WalletAdd.tsx:124
 #: src/components/WalletImport.tsx:196
 msgid "Next"
-msgstr ""
+msgstr "بعدی"
 
 #: src/components/WalletRenameDialog.tsx:67
 msgid "Nickname"
-msgstr ""
+msgstr "نام مستعار"
 
 #: src/components/WalletHistory.tsx:369
 msgid "No previous transactions"
-msgstr ""
+msgstr "بدون تراکنش های قبلی"
 
 #: src/components/WalletConnections.tsx:18
 msgid "Node ID"
@@ -296,7 +296,7 @@ msgstr "در دسترس نیست"
 
 #: src/components/WalletStatus.tsx:58
 msgid "Not Synced"
-msgstr ""
+msgstr "سینک نشده"
 
 #: src/components/cat/WalletCATTAILDialog.tsx:66
 msgid "OK"
@@ -304,12 +304,12 @@ msgstr "تأیید"
 
 #: src/components/WalletHistory.tsx:176
 msgid "Offer Accepted"
-msgstr ""
+msgstr "پیشنهاد پذیرفته شد"
 
 #: src/components/WalletSend.tsx:157
 #: src/components/cat/WalletCATSend.tsx:180
 msgid "On average there is one minute between each transaction block. Unless there is congestion you can expect your transaction to be included in less than a minute."
-msgstr ""
+msgstr "به طور متوسط بین هر بلاک تراکنش یک دقیقه فاصله وجود دارد. مگر اینکه تراکم وجود داشته باشد، میتوانید انتظار داشته باشید که تراکنش شما در کمتر از یک دقیقه شامل شود."
 
 #: src/components/WalletHistory.tsx:87
 msgid "Outgoing"
@@ -317,7 +317,7 @@ msgstr "در حال خروج"
 
 #: src/components/WalletImport.tsx:234
 msgid "Paste Mnemonic"
-msgstr ""
+msgstr "قراردادن کد رمز"
 
 #: src/components/PasteMnemonic.tsx:53
 msgid "Paste Mnemonic ({0} words)"
@@ -325,28 +325,28 @@ msgstr ""
 
 #: src/components/WalletHistory.tsx:172
 msgid "Pending"
-msgstr ""
+msgstr "در انتظار تایید"
 
 #: src/components/card/WalletCardPendingBalance.tsx:40
 msgid "Pending Balance"
-msgstr ""
+msgstr "موجودی در حال تایید"
 
 #: src/components/card/WalletCardPendingChange.tsx:41
 msgid "Pending Change"
-msgstr ""
+msgstr "تغییر در حالت انتظار"
 
 #: src/components/card/WalletCardPendingTotalBalance.tsx:41
 msgid "Pending Total Balance"
-msgstr ""
+msgstr "کل موچودی در حال تایید"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:42
 msgid "Please enter a valid asset id"
-msgstr ""
+msgstr "لطفاً یک شناسه دارایی معتبر وارد کنید"
 
 #: src/components/WalletSend.tsx:96
 #: src/components/cat/WalletCATSend.tsx:102
 msgid "Please enter a valid numeric amount"
-msgstr ""
+msgstr "لطفا مقدار عددی معتبر وارد کنید"
 
 #: src/components/WalletSend.tsx:101
 #: src/components/cat/WalletCATSend.tsx:107
@@ -373,15 +373,15 @@ msgstr ""
 
 #: src/constants/WalletName.ts:32
 msgid "Pooling Wallet"
-msgstr ""
+msgstr "کیف پول برای استخر"
 
 #: src/components/WalletConnections.tsx:28
 msgid "Port"
-msgstr ""
+msgstr "پورت"
 
 #: src/constants/WalletName.ts:8
 msgid "RL Wallet"
-msgstr ""
+msgstr "کیف پول RL"
 
 #: src/components/create/WalletCreateList.tsx:45
 msgid "Rate Limited"
@@ -389,11 +389,11 @@ msgstr "نرخ محدود شده است"
 
 #: src/components/WalletsSidebar.tsx:133
 msgid "Read the blog post for details"
-msgstr ""
+msgstr "برای جزئیات خوانده و پست بگدارید"
 
 #: src/components/WalletHeader.tsx:48
 msgid "Receive"
-msgstr ""
+msgstr "دريافت كردن"
 
 #: src/components/WalletReceiveAddress.tsx:29
 msgid "Receive Address"
@@ -405,11 +405,11 @@ msgstr ""
 
 #: src/constants/WalletName.ts:26
 msgid "Recoverable Wallet"
-msgstr ""
+msgstr "کیف پول قابل بازیابی"
 
 #: src/components/cat/WalletCATSelect.tsx:39
 msgid "Recovery Wallet"
-msgstr ""
+msgstr "کیف پول بازیابی"
 
 #: src/components/WalletRenameDialog.tsx:61
 #: src/components/cat/WalletCAT.tsx:87
