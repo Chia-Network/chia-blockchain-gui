@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-06-29 12:48\n"
+"PO-Revision-Date: 2023-07-01 12:18\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -28,7 +28,7 @@ msgstr "ظاهر برنامه"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:144
 msgid "Are you sure you want to continue? Type in the fingerprint of this wallet key to confirm deletion."
-msgstr ""
+msgstr "آیا مطمئن هستید که میخواهید ادامه دهید؟ برای تایید حذف، کلمات کد این کلید کیف پول را تایپ کنید."
 
 #: src/components/FormBackButton/FormBackButton.tsx:15
 #: src/screens/SelectKey/SelectKey.tsx:80
@@ -84,8 +84,8 @@ msgstr "حذف کلید {fingerprint}"
 
 #: src/screens/SelectKey/SelectKey.tsx:84
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
-msgstr "حذف همه کلیدها، آنها را برای همیشه از روی کامپیوتر شما حذف میکند، مطمئن شوید که نسخه پشتیبان دارید.\n"
-" آیا مطمئنید که می‌خواهید ادامه دهید؟"
+msgstr "حذف همه کلیدها آنها را برای همیشه از روی بارانه شما حذف میکند، مطمئن شوید که نسخه پشتیبان دارید.\n"
+" آیا مطمئنید که میخواهید ادامه دهید?"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:92
 msgid "Details"
@@ -127,7 +127,7 @@ msgstr "کلید عمومی فارمر:"
 
 #: src/components/Settings/SettingsApp.tsx:73
 msgid "Farming"
-msgstr "مزرعه داری"
+msgstr "فارم کردن"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:334
 #: src/components/EstimatedFee/EstimatedFee.tsx:368
@@ -137,11 +137,11 @@ msgstr "کارمزد"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:80
 msgid "Fingerprint does not match"
-msgstr ""
+msgstr "کدها هماهنگی ندارند"
 
 #: src/components/Settings/SettingsApp.tsx:125
 msgid "Frequently Asked Questions"
-msgstr "سوالات متداول"
+msgstr "پرسش ها و پاسخ های متداول"
 
 #: src/components/Settings/SettingsApp.tsx:121
 msgid "Help"
@@ -162,7 +162,7 @@ msgstr "مخفی کردن گزینه های پیشرفته"
 
 #: src/screens/SelectKey/SelectKey.tsx:181
 msgid "Import from Mnemonics (12 or 24 words)"
-msgstr ""
+msgstr "وارد کردن کد رمزها (12 یا 24 کلمه)"
 
 #: src/components/Fee/Fee.tsx:41
 msgid "Incorrect value"
@@ -178,11 +178,11 @@ msgstr "روشن"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:232
 msgid "Likely in {0} seconds"
-msgstr ""
+msgstr "احتمالاً در {0} ثانیه"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:232
 msgid "Likely in {minutes} minutes"
-msgstr ""
+msgstr "احتمالاً در {minutes}"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:46
 msgid "Loading details"
@@ -215,7 +215,7 @@ msgstr "حالت"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:107
 msgid "NEVER SHARE THESE WITH ANYONE"
-msgstr ""
+msgstr "هرگز این موارد را با کسی به اشتراک نگذارید"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:41
 msgid "New passphrase is the same as your current passphrase"
@@ -291,11 +291,11 @@ msgstr "کلید مخفی"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:131
 msgid "Seed Phrase"
-msgstr ""
+msgstr "عبارات کلمه"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:76
 msgid "Seed:"
-msgstr "بذر:"
+msgstr "کلمات:"
 
 #: src/screens/SelectKey/SelectKey.tsx:134
 msgid "Select Key"
@@ -364,7 +364,7 @@ msgstr "این کلید برای دریافت پاداش استخر فارم ش�
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:138
 msgid "This will permanently remove the key from your computer, make sure you have your mnemonic phrase backed up."
-msgstr ""
+msgstr "با این کار کلید برای همیشه از رایانه شما حذف میشود، مطمئن شوید که از کلمات کد خود نسخه پشتیبان تهیه کرده اید."
 
 #: src/utils/getTransactionResult.ts:15
 msgid "Transaction has not been sent to node yet"
@@ -410,7 +410,7 @@ msgstr "کیف پول"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:149
 msgid "Wallet Fingerprint"
-msgstr ""
+msgstr "کلمات کد کیف پول"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:63
 #: src/screens/SelectKey/SelectKeyItem.tsx:69
