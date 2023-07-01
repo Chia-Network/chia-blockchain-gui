@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-06-29 11:48\n"
+"PO-Revision-Date: 2023-07-01 12:18\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -24,15 +24,15 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:63
 msgid "(Not Installed)"
-msgstr ""
+msgstr "(نصب نشده)"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:61
 msgid "(Not Supported)"
-msgstr ""
+msgstr "(پشتیبانی نشده)"
 
 #: src/components/plot/add/PlotAddNFT.tsx:59
 msgid "(Optional)"
-msgstr ""
+msgstr "(اختیاری)"
 
 #: src/components/offers2/OfferBuilderImport.tsx:167
 msgid "(⌘V) a blob"
@@ -44,15 +44,15 @@ msgstr "+ افزودن پلات NFT جدید"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:40
 msgid "+ Add a Plot"
-msgstr ""
+msgstr "+ یک پلات اضافه کنید"
 
 #: src/components/settings/ProfileAdd.tsx:80
 msgid "<0>Need some XCH?</0>"
-msgstr ""
+msgstr "<0>مقداری چیا نیاز است?</0>"
 
 #: src/components/settings/ProfileAdd.tsx:92
 msgid "<0>Use one (1) mojo to create a Profile.</0>"
-msgstr ""
+msgstr "<0>برای ایجاد مشخصات یک (1) موجو پرداخت کنید</0>"
 
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:77
 msgid "A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk to a full node to see the state of the chain. View your network of connected harvesters below Learn more"
@@ -65,7 +65,7 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:152
 msgid "A value of {0} is recommended"
-msgstr ""
+msgstr "مقدار {0} توصیه میشود"
 
 #: src/electron/main.tsx:1101
 #: src/electron/main.tsx:1188
@@ -76,7 +76,7 @@ msgstr "درباره بلاکچین چیـا"
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:21
 #: src/components/offers2/OfferBuilderViewer.tsx:143
 msgid "Accept Offer"
-msgstr ""
+msgstr "تایید پیشنهاد"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:78
 #: src/components/plot/PlotHarvesterPlotsDuplicate.tsx:19
@@ -96,25 +96,25 @@ msgstr "عملیات"
 
 #: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:121
 msgid "Active Sessions"
-msgstr ""
+msgstr "بخشهای فعال"
 
 #: src/components/notification/NotificationsDropdown.tsx:37
 #: src/components/notification/NotificationsDropdown.tsx:44
 #: src/components/notification/NotificationsMenu.tsx:35
 msgid "Activity"
-msgstr ""
+msgstr "وضعیت فعالیت"
 
 #: src/constants/WalletConnectCommands.tsx:421
 msgid "Add CAT Token"
-msgstr ""
+msgstr "افزودن توکن"
 
 #: src/components/offers/OfferAssetSelector.tsx:144
 msgid "Add CAT wallets to have more options"
-msgstr ""
+msgstr "برای گزینه های بیشتر کیف پول های توکن را اضافه کنید"
 
 #: src/components/walletConnect/WalletConnectConnections.tsx:102
 msgid "Add Connection"
-msgstr ""
+msgstr "افزودن اتصال"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:49
 msgid "Add Plot Directory"
@@ -154,25 +154,25 @@ msgstr ""
 #: src/constants/WalletConnectCommands.tsx:136
 #: src/constants/WalletConnectCommands.tsx:388
 msgid "Address"
-msgstr ""
+msgstr "آدرس"
 
 #: src/components/settings/Settings.tsx:81
 #: src/components/settings/SettingsAdvanced.tsx:44
 msgid "Advanced"
-msgstr ""
+msgstr "تنظیمات پیشرفته"
 
 #: src/components/app/AppKeyringMigrator.tsx:250
 msgid "After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring."
-msgstr ""
+msgstr "پس از انتقال موفقیت آمیز کلیدهای شما به جا کلیدی جدید، میتوانید انتخاب کنید که کلیدهای کلیدی قدیمی خود را حذف کنید."
 
 #: src/components/nfts/NFTProfileDropdown.tsx:101
 #: src/components/nfts/NFTProfileDropdown.tsx:114
 msgid "All NFTs"
-msgstr ""
+msgstr "همه ان اف تی ها"
 
 #: src/components/did/DIDProfileDropdown.tsx:23
 msgid "All Profiles"
-msgstr ""
+msgstr "همه مشخصات"
 
 #: src/components/settings/SettingsIntegration.tsx:57
 msgid "Allow external Apps and websites to connect to your wallet through WalletConnect."
@@ -192,7 +192,7 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:345
 msgid "Alternate tmpdir/tmpdir2"
-msgstr ""
+msgstr "جایگزین tmpdir/tmpdir2"
 
 #: src/components/offers/NFTOfferEditor.tsx:236
 #: src/components/offers/OfferEditorConditionsPanel.tsx:128
@@ -202,7 +202,7 @@ msgstr ""
 #: src/constants/WalletConnectCommands.tsx:351
 #: src/constants/WalletConnectCommands.tsx:393
 msgid "Amount"
-msgstr ""
+msgstr "مبلغ"
 
 #: src/components/offers2/OfferBuilderRoyaltyPayouts.tsx:38
 msgid "Amount before adding royalties"
@@ -215,7 +215,7 @@ msgstr ""
 #: src/components/offers/NFTOfferEditor.tsx:596
 #: src/components/offers/OfferEditor.tsx:108
 msgid "Amount exceeds spendable balance"
-msgstr ""
+msgstr "مبلغ از موجودی قابل خرج کردن بیشتر است"
 
 #: src/util/offerBuilderDataToOffer.ts:86
 msgid "Amount exceeds spendable balance for {0} token"
@@ -224,7 +224,7 @@ msgstr ""
 #: src/components/offers/NFTOfferPreview.tsx:137
 #: src/components/offers2/OfferBuilderNFTProvenance.tsx:23
 msgid "An NFT's provenance is a complete record of its ownership history. It provides a direct lineage that connects everyone who has owned the NFT, all the way back to the original artist. This helps to verify that the NFT is authentic."
-msgstr ""
+msgstr "منشأ یک ان اف تی رکورد کامل از تاریخچه مالکیت آن است. این یک اصل و نسب مستقیم را فراهم میکند تا همه کسانی که ان اف تی دارند، را به هنرمند اصلی متصل کند. این به تأیید اعتبار ان اف تی کمک میکند."
 
 #: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:90
 #: src/hooks/useWalletConnectCommand.tsx:118
@@ -743,7 +743,7 @@ msgstr ""
 
 #: src/components/settings/SettingsAdvanced.tsx:69
 msgid "Create Signature"
-msgstr ""
+msgstr "ایجاد امضاء"
 
 #: src/components/plot/add/PlotAddNFT.tsx:39
 msgid "Create a Plot NFT"
@@ -751,7 +751,7 @@ msgstr ""
 
 #: src/components/offers/OfferManager.tsx:440
 msgid "Create a file that you can use to trade XCH, Chia Asset Tokens, or NFTs with no counter-party risk."
-msgstr ""
+msgstr "فایلی ایجاد کنید که بتوانید از آن برای معامله دارایی چیا XCH، یا ان اف تی بدون ریسک طرف مقابل استفاده کنید."
 
 #: src/components/settings/ProfileAdd.tsx:75
 msgid "Create a new profile"
@@ -768,7 +768,7 @@ msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:346
 msgid "Create new CAT Wallet"
-msgstr ""
+msgstr "کیف پول جدید ایجاد کنید"
 
 #: src/components/offers/OfferManager.tsx:130
 msgid "Creates and submits a transaction on the blockchain that cancels the offer"
@@ -821,7 +821,7 @@ msgstr ""
 #: src/components/signVerify/SignMessage.tsx:155
 #: src/components/signVerify/SigningEntityDID.tsx:79
 msgid "DID"
-msgstr ""
+msgstr "شناسه غیرمتمرکز"
 
 #: src/components/nfts/NFTDetails.tsx:235
 msgid "Data Hash"
@@ -833,11 +833,11 @@ msgstr ""
 
 #: src/components/settings/Settings.tsx:70
 msgid "DataLayer"
-msgstr ""
+msgstr "لایه دادها"
 
 #: src/components/settings/SettingsDataLayer.tsx:18
 msgid "DataLayer Services"
-msgstr ""
+msgstr "خدمات لایه داده ها"
 
 #: src/components/settings/SettingsDataLayer.tsx:21
 msgid "DataLayer enables rich data to be stored on mirrored databases that can be verified using the Chia Blockchain."
@@ -896,7 +896,7 @@ msgstr ""
 
 #: src/components/nfts/gallery/NFTGallery.tsx:475
 msgid "Deselect all"
-msgstr ""
+msgstr "لغو انتخاب همه"
 
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:69
 msgid "Destination"
