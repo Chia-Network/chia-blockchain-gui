@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-06-30 16:51\n"
+"PO-Revision-Date: 2023-07-01 12:18\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -119,11 +119,11 @@ msgstr "نوع اتصال"
 
 #: src/components/WalletReceiveAddressField.tsx:71
 msgid "Copied"
-msgstr ""
+msgstr "کپی شد"
 
 #: src/components/WalletReceiveAddressField.tsx:75
 msgid "Copy wallet address"
-msgstr ""
+msgstr "کپی ادرس کیف پول"
 
 #: src/components/cat/WalletCATSelect.tsx:32
 msgid "Create New Wallet"
@@ -153,7 +153,7 @@ msgstr "ولت دید DID"
 
 #: src/constants/WalletName.ts:38
 msgid "Datalayer Wallet"
-msgstr ""
+msgstr "کیف پول لایه داده ها"
 
 #: src/components/WalletHistory.tsx:100
 msgid "Date"
@@ -177,7 +177,7 @@ msgstr "هویت توزیع شده"
 
 #: src/components/WalletImport.tsx:158
 msgid "Enter the {mnemonicWordCount} word mnemonic that you have saved in order to restore your Chia wallet."
-msgstr ""
+msgstr "کد رمزها {mnemonicWordCount} را که ذخیره کرده اید وارد کنید تا کیف پول چیا شما بازیابی شود."
 
 #: src/components/cat/WalletCATSend.tsx:126
 msgid "Error the entered address appears to be for a different colour."
@@ -216,7 +216,7 @@ msgstr "واردکردن کیف پول از طریق کلید خصوصی"
 
 #: src/components/WalletImport.tsx:226
 msgid "Import from {alternativeWordCount} word mnemonic"
-msgstr ""
+msgstr "وارد کردن از {alternativeWordCount} کد رمزها"
 
 #: src/components/WalletHistory.tsx:87
 msgid "Incoming"
@@ -266,7 +266,7 @@ msgstr "آدرس جدید"
 
 #: src/components/WalletReceiveAddressField.tsx:114
 msgid "New Receive Address"
-msgstr ""
+msgstr "آدرس دریافت جدید"
 
 #: src/components/WalletAdd.tsx:64
 msgid "New Wallet"
@@ -321,7 +321,7 @@ msgstr "قراردادن کد رمز"
 
 #: src/components/PasteMnemonic.tsx:53
 msgid "Paste Mnemonic ({0} words)"
-msgstr ""
+msgstr "قراردادن ({0} کد رمزها)"
 
 #: src/components/WalletHistory.tsx:172
 msgid "Pending"
@@ -538,7 +538,7 @@ msgstr ""
 #: src/components/WalletAdd.tsx:101
 #: src/components/WalletImport.tsx:148
 msgid "Wallet Name"
-msgstr ""
+msgstr "نام کیف پول"
 
 #: src/components/cat/WalletCAT.tsx:66
 msgid "Wallet does not exists"
@@ -571,5 +571,5 @@ msgstr ""
 
 #: src/components/WalletImport.tsx:72
 msgid "Your pasted list does not include {mnemonicWordCount} valid mnemonic words."
-msgstr ""
+msgstr "لیست فرارداده شما شامل {mnemonicWordCount} کد رمزهای معتبر نیست."
 
