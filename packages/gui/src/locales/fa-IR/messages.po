@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-02 12:25\n"
+"PO-Revision-Date: 2023-07-02 15:39\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -807,16 +807,16 @@ msgstr ""
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:120
 #: src/components/plotNFT/PlotNFTCard.tsx:153
 msgid "Current Difficulty"
-msgstr ""
+msgstr "مشکل فعلی"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:183
 msgid "Current Passphrase"
-msgstr ""
+msgstr "رمز ورودی کنونی"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:136
 #: src/components/plotNFT/PlotNFTCard.tsx:169
 msgid "Current Points Balance"
-msgstr ""
+msgstr "موجودی امتیازات فعلی"
 
 #: src/components/signVerify/SignMessage.tsx:155
 #: src/components/signVerify/SigningEntityDID.tsx:79
@@ -825,11 +825,11 @@ msgstr "شناسه غیرمتمرکز"
 
 #: src/components/nfts/NFTDetails.tsx:235
 msgid "Data Hash"
-msgstr ""
+msgstr "هش داده"
 
 #: src/components/nfts/NFTDetails.tsx:222
 msgid "Data URL {0}"
-msgstr ""
+msgstr "آدرس داده {0}"
 
 #: src/components/settings/Settings.tsx:70
 msgid "DataLayer"
@@ -863,7 +863,7 @@ msgstr "حذف"
 
 #: src/components/app/AppPassPrompt.tsx:107
 msgid "Delete Key"
-msgstr ""
+msgstr "حذف کلید"
 
 #: src/components/plot/PlotAction.tsx:24
 #: src/components/plot/queue/PlotQueueActions.tsx:32
@@ -872,11 +872,11 @@ msgstr "حذف پلات"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:259
 msgid "Delete Unconfirmed Transactions"
-msgstr ""
+msgstr "حدف معامله های تایید نشده"
 
 #: src/components/app/AppPassPrompt.tsx:100
 msgid "Deleting key"
-msgstr ""
+msgstr "در حال حذف کلید"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:81
 msgid "Depending on your system configuration, you may find that an alternative plotter produces plots faster than the default Chia Proof of Space plotter. If unsure, use the default Chia Proof of Space plotter."
@@ -908,11 +908,11 @@ msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:351
 msgid "Details"
-msgstr ""
+msgstr "جزئیات"
 
 #: src/electron/main.tsx:991
 msgid "Developer"
-msgstr ""
+msgstr "توسعه دهنده"
 
 #: src/electron/main.tsx:994
 msgid "Developer Tools"
