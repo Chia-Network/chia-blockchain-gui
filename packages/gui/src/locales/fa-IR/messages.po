@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-02 11:21\n"
+"PO-Revision-Date: 2023-07-02 12:25\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -61,7 +61,7 @@ msgstr "دروگر (Harvester) یک سرویس در حال اجرا بر روی 
 
 #: src/components/settings/SettingsDataLayer.tsx:79
 msgid "A reference server that enables creating mirrored copies of DataLayer."
-msgstr ""
+msgstr "یک سرور مرجع که امکان ایجاد کپی های همشکل از داده لایه ها را فراهم میکند."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:152
 msgid "A value of {0} is recommended"
@@ -176,15 +176,15 @@ msgstr "همه مشخصات"
 
 #: src/components/settings/SettingsIntegration.tsx:57
 msgid "Allow external Apps and websites to connect to your wallet through WalletConnect."
-msgstr ""
+msgstr "به برنامه‌ها و وب‌سایت‌های دیگر اجازه دهید از طریق اتصال ولت به کیف پول شما متصل شوند."
 
 #: src/components/settings/SettingsIntegration.tsx:81
 msgid "Allow requests that require switching to a different wallet key."
-msgstr ""
+msgstr "به درخواست هایی که نیاز به جابجایی به کلید کیف پول دیگری دارند اجازه دهید."
 
 #: src/components/notification/NotificationSendDialog.tsx:272
 msgid "Allow the NFT holder to send a counter offer"
-msgstr ""
+msgstr "به دارنده ان اف تی اجازه دهید یک پیشنهاد متقابل ارسال کند"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:418
 msgid "Alternate bucket writing"
@@ -386,7 +386,7 @@ msgstr "تاییدیه سوزاندن ان اف تی"
 
 #: src/components/nfts/NFTBurnDialog.tsx:143
 msgid "Burning a non-fungible token means removing it from circulation by sending it to a verifiably un-spendable address. However, transactions leading up to the burn will remain on the blockchain ledger."
-msgstr ""
+msgstr "سوزاندن یک توکن غیر قابل تعویض به معنای حذف آن از گردش با ارسال آن به آدرسی غیرقابل تایید است. با این حال، تراکنش‌های منتهی به سوختن در سیستم بلاک چین باقی میمانند."
 
 #: src/components/offers/NFTOfferEditor.tsx:312
 msgid "Buy an NFT"
@@ -394,7 +394,7 @@ msgstr "خرید یک ان اف تی"
 
 #: src/components/signVerify/VerifyMessage.tsx:252
 msgid "By providing a signing address, the public key can be validated as being associated with the address used for signing."
-msgstr ""
+msgstr "با ارائه یک آدرس امضا، میتوان کلید عمومی را به عنوان مرتبط با آدرس مورد استفاده برای امضا تأیید کرد."
 
 #: src/components/settings/SettingsNFT.tsx:163
 msgid "Cache"
@@ -477,11 +477,11 @@ msgstr "تغییر استخر"
 
 #: src/components/settings/SettingsStartup.tsx:32
 msgid "Changes will take effect the next time Chia is started"
-msgstr ""
+msgstr "تغییرات بعد از اجرای مجدد برنامه چیا اعمال خواهند شد"
 
 #: src/components/settings/SettingsDataLayer.tsx:54
 msgid "Changes will take effect the next time Chia is started."
-msgstr ""
+msgstr "تغییرات بعد از اجرای مجدد برنامه چیا اعمال خواهند شد."
 
 #: src/electron/main.tsx:1080
 msgid "Chat on KeyBase"
@@ -489,7 +489,7 @@ msgstr "در اپلیکیشن KeyBase صبحت کنید"
 
 #: src/constants/WalletConnectCommands.tsx:278
 msgid "Check Offer Validity"
-msgstr ""
+msgstr "اعتبار پیشنهاد را بررسی کنید"
 
 #: src/components/offers/NFTOfferPreview.tsx:151
 #: src/components/offers2/OfferBuilderNFTProvenance.tsx:37
@@ -507,11 +507,11 @@ msgstr "چیـا"
 
 #: src/components/offers2/OfferBuilderXCHSection.tsx:76
 msgid "Chia ({currencyCode}) is a digital currency that is secure and sustainable"
-msgstr ""
+msgstr "چیا ({currencyCode}) یک ارز دیجیتال امن و پایدار است"
 
 #: src/components/offers2/OfferBuilderTokensSection.tsx:114
 msgid "Chia Asset Tokens (CATs) are tokens built on top of XCH"
-msgstr ""
+msgstr "توکن‌های دایی های چیا (CAT) توکن‌هایی هستند که بر روی XCH ساخته شده‌اند"
 
 #: src/electron/main.tsx:1047
 msgid "Chia Blockchain Wiki"
@@ -539,11 +539,11 @@ msgstr "انتخاب حالت کیف پول"
 
 #: src/components/settings/SettingsNFT.tsx:113
 msgid "Choose what you want to see and how you want to view it."
-msgstr ""
+msgstr "آنچه را که میخواهید ببینید و چگونه مشاهده کنید را انتخاب کنید."
 
 #: src/components/settings/SettingsNotifications.tsx:19
 msgid "Choose your notification settings."
-msgstr ""
+msgstr "تنظیمات اعلان خود را انتخاب کنید."
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:129
 #: src/components/plotNFT/PlotNFTCard.tsx:319
@@ -553,7 +553,7 @@ msgstr "برداشت جوایز"
 #: src/components/settings/SettingsNFT.tsx:55
 #: src/components/settings/SettingsNFT.tsx:183
 msgid "Clear NFT cache"
-msgstr ""
+msgstr "حافظه پنهان ان اف تی را پاک کنید"
 
 #: src/components/app/AppVersionWarning.tsx:57
 #: src/components/nfts/MultipleDownloadDialog.tsx:116
@@ -583,52 +583,52 @@ msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:456
 msgid "Coin Id"
-msgstr ""
+msgstr "شناسه ارز"
 
 #: src/components/nfts/NFTSummary.tsx:54
 #: src/components/nfts/detail/NFTDetailV2.tsx:301
 msgid "Collection"
-msgstr ""
+msgstr "مجموعه"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:165
 #: src/electron/main.tsx:814
 #: src/hooks/useWalletConnectCommand.tsx:77
 msgid "Confirm"
-msgstr ""
+msgstr "تایید"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:19
 msgid "Confirm Disconnect"
-msgstr ""
+msgstr "تایید قطع ارتباط"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:54
 msgid "Confirm Move"
-msgstr ""
+msgstr "تایید انتقال"
 
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:30
 msgid "Confirm NFT Transfer"
-msgstr ""
+msgstr "تایید انتقال ان اف تی"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:237
 msgid "Confirm New Passphrase"
-msgstr ""
+msgstr "تایید پسورد جدید"
 
 #: src/components/app/AppKeyringMigrator.tsx:177
 #: src/components/app/AppKeyringMigrator.tsx:178
 #: src/components/settings/SetPassphrasePrompt.tsx:202
 msgid "Confirm Passphrase"
-msgstr ""
+msgstr "تایید پسورد"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:103
 msgid "Confirmation"
-msgstr ""
+msgstr "تائیدیه"
 
 #: src/hooks/useWalletConnectCommand.tsx:75
 msgid "Confirmation Request"
-msgstr ""
+msgstr "تقاضای تایید"
 
 #: src/components/offers/utils.ts:159
 msgid "Confirmed"
-msgstr ""
+msgstr "تایید شده"
 
 #: src/components/fullNode/FullNodeAddConnection.tsx:103
 msgid "Connect"
@@ -641,7 +641,7 @@ msgstr "اتصال به سایر همسان‌ ها"
 
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:90
 msgid "Connect to pool"
-msgstr ""
+msgstr "اتصال به استخر"
 
 #: src/components/fullNode/card/FullNodeCardConnectionStatus.tsx:15
 #: src/components/walletConnect/WalletConnectConnectedDialog.tsx:85
@@ -650,7 +650,7 @@ msgstr "متصل شد"
 
 #: src/components/walletConnect/WalletConnectConnections.tsx:61
 msgid "Connected Applications"
-msgstr ""
+msgstr "برنامه های کاربردی متصل"
 
 #: src/components/app/AppState.tsx:222
 #: src/components/app/AppState.tsx:227
@@ -672,15 +672,15 @@ msgstr "نوع اتصال"
 
 #: src/components/nfts/NFTPreview.tsx:594
 msgid "Content does not match the expected hash value that was specified during NFT minting. The content may have been modified."
-msgstr ""
+msgstr "محتوا با مقدار هش مورد انتظاری که در طول استخراج ان اف تی مشخص شده بود مطابقت ندارد. ممکن است محتوا اصلاح شده باشد."
 
 #: src/components/nfts/NFTPreview.tsx:591
 msgid "Content has not been validated against the hash that was specified during NFT minting."
-msgstr ""
+msgstr "محتوا در برابر هش‌ای که در طول استخراج ان اف تی مشخص شده بود تأیید نشده است."
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:188
 msgid "Continue"
-msgstr ""
+msgstr "ادامه هید"
 
 #: src/electron/main.tsx:1065
 msgid "Contribute on GitHub"
@@ -692,19 +692,19 @@ msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:107
 msgid "Copy NFT ID"
-msgstr ""
+msgstr "کپی شناسه ان اف تی"
 
 #: src/components/signVerify/SignMessageResultDialog.tsx:58
 msgid "Copy To Clipboard"
-msgstr ""
+msgstr "کپی در حافظه"
 
 #: src/components/notification/NotificationSendDialog.tsx:230
 msgid "Cost to send notification to the NFT holder"
-msgstr ""
+msgstr "هزینه ارسال اعلان به دارنده ان اف تی"
 
 #: src/components/fullNode/FullNodeAddConnection.tsx:55
 msgid "Could not connect to host {host} on port {port}"
-msgstr ""
+msgstr "اتصال به میزبان {host} در پورت {port} امکان پذیر نیست"
 
 #: src/components/offers2/OfferBuilderImport.tsx:53
 msgid "Could not parse offer data"
@@ -735,7 +735,7 @@ msgstr ""
 #: src/components/offers/OfferManager.tsx:431
 #: src/components/offers2/CreateOfferBuilder.tsx:137
 msgid "Create Offer"
-msgstr ""
+msgstr "ایجاد پیشنهاد"
 
 #: src/constants/WalletConnectCommands.tsx:226
 msgid "Create Offer for Ids"
@@ -747,7 +747,7 @@ msgstr "ایجاد امضاء"
 
 #: src/components/plot/add/PlotAddNFT.tsx:39
 msgid "Create a Plot NFT"
-msgstr ""
+msgstr "ایجاد یک پلات ان اف تی"
 
 #: src/components/offers/OfferManager.tsx:440
 msgid "Create a file that you can use to trade XCH, Chia Asset Tokens, or NFTs with no counter-party risk."
@@ -759,12 +759,12 @@ msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:735
 msgid "Create an NFT Offer"
-msgstr ""
+msgstr "ایجاد یشنهاد ان اف تی"
 
 #: src/components/offers/OfferEditor.tsx:195
 #: src/components/offers/OfferManager.tsx:449
 msgid "Create an Offer"
-msgstr ""
+msgstr "ایجاد پیشنهاد"
 
 #: src/constants/WalletConnectCommands.tsx:346
 msgid "Create new CAT Wallet"
