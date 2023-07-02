@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-01 13:16\n"
+"PO-Revision-Date: 2023-07-02 11:21\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -206,11 +206,11 @@ msgstr "مبلغ"
 
 #: src/components/offers2/OfferBuilderRoyaltyPayouts.tsx:38
 msgid "Amount before adding royalties"
-msgstr ""
+msgstr "مبلغ قبل از اضافه کردن حق امتیاز"
 
 #: src/util/offerBuilderDataToOffer.ts:59
 msgid "Amount exceeds XCH spendable balance"
-msgstr ""
+msgstr "مقدار از موجودی قابل خرج XCH بیشتر است"
 
 #: src/components/offers/NFTOfferEditor.tsx:596
 #: src/components/offers/OfferEditor.tsx:108
@@ -219,7 +219,7 @@ msgstr "مبلغ از موجودی قابل خرج کردن بیشتر است"
 
 #: src/util/offerBuilderDataToOffer.ts:86
 msgid "Amount exceeds spendable balance for {0} token"
-msgstr ""
+msgstr "مقدار از موجودی قابل خرج کردن برای توکن {0} بیشتر است"
 
 #: src/components/offers/NFTOfferPreview.tsx:137
 #: src/components/offers2/OfferBuilderNFTProvenance.tsx:23
@@ -229,11 +229,11 @@ msgstr "منشأ یک ان اف تی رکورد کامل از تاریخچه م�
 #: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:90
 #: src/hooks/useWalletConnectCommand.tsx:118
 msgid "Application"
-msgstr ""
+msgstr "برنامه کاربردی"
 
 #: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:132
 msgid "Application has no active sessions"
-msgstr ""
+msgstr "برنامه هیچ بخش فعالی ندارد"
 
 #: src/components/offers/OfferManager.tsx:105
 msgid "Are you sure you want to cancel your offer?"
@@ -293,19 +293,19 @@ msgstr "دارایی که دریاقت میکنم:"
 
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:47
 msgid "Assets I would like to receive"
-msgstr ""
+msgstr "دارایی هایی که میخواهم دریافت کنم"
 
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:40
 msgid "Assets I would like to trade"
-msgstr ""
+msgstr "دارایی هایی که میخواهم معامله کنم"
 
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:37
 msgid "Assets you will give"
-msgstr ""
+msgstr "دارایی هایی که شما پرداخت میکنید"
 
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:44
 msgid "Assets you will receive"
-msgstr ""
+msgstr "دارایی هایی که شما دریافت میکنید"
 
 #: src/components/app/AppState.tsx:230
 msgid "Attempt {attempt}"
@@ -398,11 +398,11 @@ msgstr ""
 
 #: src/components/settings/SettingsNFT.tsx:163
 msgid "Cache"
-msgstr ""
+msgstr "حافظه پنهان"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:236
 msgid "Cache size (GB)"
-msgstr ""
+msgstr "مقدار حافظه پنهان (GB)"
 
 #: src/components/app/AppPassPrompt.tsx:183
 #: src/components/farm/FarmManageFarmingRewards.tsx:163
@@ -450,7 +450,7 @@ msgstr "لغو شد"
 
 #: src/util/offerBuilderDataToOffer.ts:120
 msgid "Cannot offer and request the same asset"
-msgstr ""
+msgstr "نمیتوان همان دارایی را ارائه داد و درخواست کرد"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:15
 msgid "Challenge"
