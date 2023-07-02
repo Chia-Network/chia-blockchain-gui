@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-01 12:18\n"
+"PO-Revision-Date: 2023-07-02 15:39\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -97,7 +97,7 @@ msgstr "غیر فعال"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:58
 msgid "Disable Passphrase Protection"
-msgstr "محافظت از کلمه عبور را غیرفعال کنید"
+msgstr "محافظت از رمز ورودی را غیرفعال کنید"
 
 #: src/components/Back/Back.tsx:37
 #: src/components/FormBackButton/FormBackButton.tsx:28
