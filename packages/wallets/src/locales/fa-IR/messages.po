@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-01 13:16\n"
+"PO-Revision-Date: 2023-07-02 15:39\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -51,13 +51,13 @@ msgstr "آدرس"
 #: src/components/WalletSend.tsx:172
 #: src/components/cat/WalletCATSend.tsx:195
 msgid "Address / Puzzle hash"
-msgstr "آدرس/ جورچین هش(در هم ریزی)"
+msgstr "آدرس / هش پازل"
 
 #: src/components/WalletHistory.tsx:119
 #: src/components/WalletSend.tsx:184
 #: src/components/cat/WalletCATSend.tsx:207
 msgid "Amount"
-msgstr "مقدار"
+msgstr "مبلغ"
 
 #: src/components/WalletHeader.tsx:30
 msgid "Are you sure you want to delete unconfirmed transactions?"
@@ -80,7 +80,7 @@ msgstr "کیف پول مجاز شده برای پرداخت"
 #: src/components/PasteMnemonic.tsx:76
 #: src/components/WalletRenameDialog.tsx:72
 msgid "Cancel"
-msgstr "انصراف"
+msgstr "لغو"
 
 #: src/components/WalletSend.tsx:106
 #: src/components/cat/WalletCATSend.tsx:116
@@ -149,7 +149,7 @@ msgstr "اختصاصی"
 
 #: src/constants/WalletName.ts:29
 msgid "DID Wallet"
-msgstr "ولت دید DID"
+msgstr "ولت دید شناسه غیرمتمرکز"
 
 #: src/constants/WalletName.ts:38
 msgid "Datalayer Wallet"
@@ -351,7 +351,7 @@ msgstr "لطفا مقدار عددی معتبر وارد کنید"
 #: src/components/WalletSend.tsx:101
 #: src/components/cat/WalletCATSend.tsx:107
 msgid "Please enter a valid numeric fee"
-msgstr ""
+msgstr "لطفاً کارمزد معتبری اعداد وارد کنید"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:46
 msgid "Please enter a valid token name"
@@ -469,19 +469,19 @@ msgstr "درحال سینک"
 
 #: src/components/card/WalletCardTotalBalance.tsx:70
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
-msgstr ""
+msgstr "شاخص مشتق که کیف پول بلاکچین را اسکن میکند محدوده آدرس های کیف پول را تعیین مینماید. اگر تراکنش‌های زیادی دارید یا پیشنهادات لغو شده برای XCH، CAT یا ان اف تی دارید، این عدد معمولاً بیشتر است. اگر فکر میکنید موجودی‌ شما نادرست است، ارزهای درون آن کمتر است، افزایش شاخص مشتق‌گیری میتواند به کیف پول کمک کندتا ارزهای گمشده را در کل موجودی قراردهد."
 
 #: src/components/WalletSendTransactionResultDialog.tsx:34
 msgid "The transaction could not be immediately included in the mempool because the specified fee is too low. The transaction will be retried periodically, and may be included in the mempool once fees are lower, or if space becomes available."
-msgstr ""
+msgstr "تراکنش نمیتواند فوراً در حافظه استخر تراکنش گنجانده شود زیرا کارمزد تعیین‌شده بسیار کم است. این تراکنش به صورت دوره‌ای تکرار میشود و ممکن است پس از کاهش هزینه‌ها، یا در صورت فراهم شدن فضا، در مجموعه گنجانده شود."
 
 #: src/components/WalletBadge.tsx:26
 msgid "This access token is verified"
-msgstr ""
+msgstr "این توکن در دسترس تأیید شده است"
 
 #: src/components/WalletHistory.tsx:156
 msgid "This is not a valid address for sending funds to"
-msgstr ""
+msgstr "این یک آدرس معتبر برای ارسال وجوه به آن نیست"
 
 #: src/components/standard/WalletStandardCards.tsx:23
 msgid "This is the amount of Chia that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and Chia that you have just spent but is not yet in the blockchain."
@@ -489,15 +489,15 @@ msgstr "این مقدار چیـایی است که در حال حاضر می‌�
 
 #: src/components/standard/WalletStandardCards.tsx:42
 msgid "This is the pending change, which are change coins which you have sent to yourself, but have not been confirmed yet."
-msgstr ""
+msgstr "این تغییر که ارزهای تغییر یافته را برای خود ارسال کردید درحال انجام است، اما هنوز تایید نشده اند."
 
 #: src/components/standard/WalletStandardCards.tsx:36
 msgid "This is the sum of the incoming and outgoing pending transactions (not yet included into the blockchain). This does not include farming rewards."
-msgstr ""
+msgstr "این مجموع تراکنش های معلق ورودی و خروجی است (هنوز در بلاکچین گنجانده نشده). این شامل پاداش فارم نمیشود."
 
 #: src/components/standard/WalletStandardCards.tsx:17
 msgid "This is the total amount of chia in the blockchain at the current peak block that is controlled by your private keys. It includes frozen farming rewards, but not pending incoming and outgoing transactions."
-msgstr ""
+msgstr "این مقدار کل چیا در بلاکچین در بلاک اوج فعلی است که توسط کلیدهای شخصی شما کنترل میشود. این شامل پاداش‌های فارم بلاک شده میشود، اما تراکنش‌های ورودی و خروجی معلق نیست."
 
 #: src/components/standard/WalletStandardCards.tsx:30
 msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
@@ -558,7 +558,7 @@ msgstr "آیا میخواهید موجودی قبلی خود را برای مج�
 
 #: src/components/WalletsSidebar.tsx:110
 msgid "We've made an upgrade to the CAT standard which requires all CATs to be re-issued. You will be airdropped your new tokens as they are re-issued by the original issuers. The airdropped tokens will be based on the balance as of block height:<0/><1/><2/>(Approximate time: July 26th, 2022 @ 17:00 UTC)"
-msgstr ""
+msgstr "ما به استاندارد CAT ارتقاء داده ایم که نیاز به صدور مجدد همه CAT ها دارد. توکن‌های جدید خود را با انتشار مجدد توسط صادرکنندگان اصلی، به شما منتقل می‌کنند. توکن‌های رایگان شده براساس موجودی ارتفاع بلاک خواهند بود:<0/><1/><2/>(زمان تقریبی: 26 ژوئیه 2022 ساعت 17:00 UTC)"
 
 #: src/components/WalletAdd.tsx:67
 msgid "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
@@ -567,7 +567,7 @@ msgstr "خوش آمدید! واژه هایی که در ادامه می‌بین�
 
 #: src/components/WalletsSidebar.tsx:106
 msgid "Your CAT tokens have been upgraded!"
-msgstr ""
+msgstr "توکن های CAT شما ارتقا یافته اند!"
 
 #: src/components/WalletImport.tsx:72
 msgid "Your pasted list does not include {mnemonicWordCount} valid mnemonic words."
