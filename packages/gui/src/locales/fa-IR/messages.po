@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-02 16:47\n"
+"PO-Revision-Date: 2023-07-02 17:49\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -892,7 +892,7 @@ msgstr ""
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:291
 msgid "Description"
-msgstr ""
+msgstr "توضیحات"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:475
 msgid "Deselect all"
@@ -900,11 +900,11 @@ msgstr "لغو انتخاب همه"
 
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:69
 msgid "Destination"
-msgstr ""
+msgstr "مقصد"
 
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:59
 msgid "Destination:"
-msgstr ""
+msgstr "مقصد:"
 
 #: src/components/nfts/NFTDetails.tsx:351
 msgid "Details"
@@ -920,12 +920,12 @@ msgstr "ابزارهای توسعه دهنده"
 
 #: src/components/offers/OfferShareDialog.tsx:603
 msgid "Dexie URL"
-msgstr ""
+msgstr "آدرس سایت دکسی"
 
 #: src/components/block/Block.jsx:181
 #: src/components/fullNode/card/FullNodeCardDifficulty.tsx:14
 msgid "Difficulty"
-msgstr ""
+msgstr "سختی"
 
 #: src/constants/WalletConnectCommands.tsx:247
 msgid "Disable JSON Formatting"
@@ -969,7 +969,7 @@ msgstr ""
 #: src/components/offers/OfferShareDialog.tsx:1549
 #: src/hooks/useOpenUnsafeLink.tsx:64
 msgid "Do not show this dialog again"
-msgstr ""
+msgstr "این مباحثه را دیگر نشان ندهید"
 
 #: src/components/farm/FarmHero.tsx:43
 #: src/components/plot/overview/PlotOverviewHero.tsx:53
@@ -978,7 +978,7 @@ msgstr "پلاتی روی این ماشین دارید؟ <0>اضافه کردن 
 
 #: src/components/nfts/NFTBurnDialog.tsx:134
 msgid "Do you want to burn this NFT?"
-msgstr ""
+msgstr "آیا میخواهید این ان اف تی را ثبت کنید?"
 
 #: src/components/nfts/NFTBurnDialog.tsx:132
 msgid "Do you want to burn {count} NFTs?"
@@ -1046,21 +1046,21 @@ msgstr ""
 
 #: src/components/plot/PlotHarvester.tsx:136
 msgid "Duplicate"
-msgstr ""
+msgstr "تکراری"
 
 #: src/components/plot/card/PlotCardPlotsDuplicate.tsx:11
 msgid "Duplicate Plots"
-msgstr ""
+msgstr "پلاتهای تکرار شده"
 
 #: src/electron/main.tsx:950
 msgid "Edit"
-msgstr ""
+msgstr "ويرايش"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:222
 #: src/components/plotNFT/PlotNFTCard.tsx:250
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:65
 msgid "Edit Payout Instructions"
-msgstr ""
+msgstr "ویرایش دستورالعمل های پرداخت"
 
 #: src/components/nfts/NFTSummary.tsx:64
 msgid "Edition #"
@@ -1072,49 +1072,49 @@ msgstr ""
 
 #: src/components/settings/SettingsStartup.tsx:28
 msgid "Enable Auto Login"
-msgstr ""
+msgstr "فعال کردن ورود خودکار"
 
 #: src/components/settings/SettingsDataLayer.tsx:36
 msgid "Enable DataLayer"
-msgstr ""
+msgstr "فعال کردن داده لایه ها"
 
 #: src/components/settings/SettingsDataLayer.tsx:64
 msgid "Enable File Propagation Server"
-msgstr ""
+msgstr "فعال کردن سروز انتشار فایل"
 
 #: src/components/settings/SettingsIntegration.tsx:41
 #: src/components/walletConnect/WalletConnectConnections.tsx:106
 msgid "Enable WalletConnect"
-msgstr ""
+msgstr "فعال شدن اتصال کیف پول"
 
 #: src/constants/WalletConnectCommands.tsx:189
 msgid "End"
-msgstr ""
+msgstr "خاتمه"
 
 #: src/components/signVerify/SignMessage.tsx:61
 #: src/components/signVerify/SignMessage.tsx:85
 msgid "Enter a message to sign"
-msgstr ""
+msgstr "برای امضاء پیامی وارد کنید"
 
 #: src/components/app/AppKeyringMigrator.tsx:136
 msgid "Enter a strong passphrase and click Migrate Keys to secure your keys"
-msgstr ""
+msgstr "یک رمز ورود قوی وارد کنید و برای ایمن کردن کلیدهای خود روی انتقال کلیدها کلیک کنید"
 
 #: src/components/settings/SetPassphrasePrompt.tsx:164
 msgid "Enter a strong passphrase to secure your keys:"
-msgstr ""
+msgstr "یک رمز عبور ورود برای ایمن کردن کلیدهای خود وارد کنید:"
 
 #: src/components/signVerify/SignMessage.tsx:66
 msgid "Enter a wallet address to sign with"
-msgstr ""
+msgstr "یک آدرس کیف پول برای امضاء وارد کنید"
 
 #: src/components/signVerify/SignMessage.tsx:90
 msgid "Enter an NFT or DID to sign with"
-msgstr ""
+msgstr "یک ان اف تی یا شناسه غیر متمرکز برای امضا وارد کنید"
 
 #: src/components/settings/RemovePassphrasePrompt.tsx:121
 msgid "Enter your passphrase:"
-msgstr ""
+msgstr "رمز ورود خود را وارد کنید:"
 
 #: src/components/farm/card/FarmCardStatus.tsx:35
 #: src/components/farm/card/FarmCardStatus.tsx:49
@@ -1123,7 +1123,7 @@ msgstr ""
 #: src/components/plot/queue/PlotQueueIndicator.tsx:23
 #: src/components/settings/SettingsNFT.tsx:94
 msgid "Error"
-msgstr ""
+msgstr "خطا"
 
 #: src/components/nfts/NFTPreview.tsx:645
 msgid "Error fetching video preview"
@@ -1135,7 +1135,7 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:1272
 msgid "Error posting offer: {0}"
-msgstr ""
+msgstr "خطا در ارسال پیشنهاد: {0}"
 
 #: src/components/signVerify/VerifyMessage.tsx:146
 msgid "Error:"
@@ -1147,12 +1147,12 @@ msgstr "خطا: {0}"
 
 #: src/components/fullNode/card/FullNodeEstimatedNetworkSpace.tsx:14
 msgid "Estimated Network Space"
-msgstr ""
+msgstr "فضای تخمینی شبکه"
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:48
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:53
 msgid "Estimated Time to Win"
-msgstr ""
+msgstr "زمان تخمینی برای برنده شدن"
 
 #: src/components/fullNode/card/FullNodeEstimatedNetworkSpace.tsx:15
 msgid "Estimated sum of all the plotted disk space of all farmers in the network"
@@ -1164,16 +1164,16 @@ msgstr "بجز آخرین پوشه"
 
 #: src/components/nfts/gallery/NFTGalleryHero.tsx:18
 msgid "Explore the Chia ecosystem; discover and trade great NFTs"
-msgstr ""
+msgstr "اکوسیستم چیا را جستجو کنید. ان اف تی های مهم را پیدا و معامله کنید"
 
 #: src/components/offers/utils.ts:161
 #: src/components/plot/PlotHarvester.tsx:121
 msgid "Failed"
-msgstr ""
+msgstr "ناموفق"
 
 #: src/components/nfts/MultipleDownloadDialog.tsx:59
 msgid "Failed downloads:"
-msgstr ""
+msgstr "دانلودهای ناموفق:"
 
 #: src/components/offers/NFTOfferEditor.tsx:587
 msgid "Failed to decode NFT identifier"
@@ -1185,23 +1185,23 @@ msgstr ""
 
 #: src/components/notification/NotificationSendDialog.tsx:147
 msgid "Failed to send the notification: {error}"
-msgstr ""
+msgstr "ارسال اعلان ناموفق: {error}"
 
 #: src/components/settings/SetPassphrasePrompt.tsx:102
 msgid "Failed to set passphrase: {0}"
-msgstr ""
+msgstr "تنظیم ناموفق رمز ورود: {0}"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:126
 msgid "Failed to update passphrase: {0}"
-msgstr ""
+msgstr "بروزرسانی رمز ورود ناموفق: {0}"
 
 #: src/components/notification/NotificationSendDialog.tsx:142
 msgid "Failure"
-msgstr ""
+msgstr "عدم موفقیت"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:454
 msgid "Farmer Public Key"
-msgstr ""
+msgstr "کلید عمومی فارمر"
 
 #: src/components/block/Block.jsx:214
 msgid "Farmer Puzzle Hash"
@@ -1213,16 +1213,16 @@ msgstr "آدرس پاداش مزرعه دار"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:110
 msgid "Farmer Reward Address is not properly formatted."
-msgstr ""
+msgstr "آدرس پاداش فارمر به درستی قالب بندی نشده."
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:105
 msgid "Farmer Reward Address must not be empty."
-msgstr ""
+msgstr "آدرس پاداش فارمر نباید خالی باشد."
 
 #: src/components/farm/card/FarmCardStatus.tsx:38
 #: src/components/plot/PlotStatus.tsx:29
 msgid "Farmer is not connected"
-msgstr ""
+msgstr "فارمر متصل نیست"
 
 #: src/components/farm/card/FarmCardStatus.tsx:52
 #: src/components/plot/PlotStatus.tsx:30
@@ -1241,7 +1241,7 @@ msgstr "مزرعه داری"
 
 #: src/components/app/AppSelectMode.tsx:112
 msgid "Farming Mode"
-msgstr ""
+msgstr "حالت فارم کردن"
 
 #: src/components/farm/card/FarmCardStatus.tsx:15
 #: src/components/farm/card/FarmCardStatus.tsx:26
@@ -1253,7 +1253,7 @@ msgstr "وضعیت مزرعه داری"
 
 #: src/components/settings/SettingsAdvanced.tsx:47
 msgid "Features for advanced users."
-msgstr ""
+msgstr "امکانات برای کاربران پیشرفته."
 
 #: src/components/nfts/NFTBurnDialog.tsx:166
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:324
@@ -1271,20 +1271,20 @@ msgstr ""
 #: src/constants/WalletConnectCommands.tsx:401
 #: src/constants/WalletConnectCommands.tsx:488
 msgid "Fee"
-msgstr ""
+msgstr "کارمزد"
 
 #: src/components/offers/NFTOfferEditor.tsx:86
 #: src/components/offers/OfferEditorConditionsPanel.tsx:386
 msgid "Fee (Optional)"
-msgstr ""
+msgstr "کارمزد (اختیاری)"
 
 #: src/components/plotNFT/PlotNFTChangePool.tsx:113
 msgid "Fee is used TWICE: once to leave pool, once to join."
-msgstr ""
+msgstr "کارمزد دو بار استفاده میشود: یک بار برای خروج از استخر، یک بار برای پیوستن."
 
 #: src/components/offers2/OfferBuilderFeeSection.tsx:52
 msgid "Fees"
-msgstr ""
+msgstr "کارمزدها"
 
 #: src/components/block/Block.jsx:239
 msgid "Fees Amount"
@@ -1293,19 +1293,19 @@ msgstr "مبلغ کارمزد ها"
 #: src/components/offers/NFTOfferViewer.tsx:197
 #: src/components/offers/OfferSummary.tsx:167
 msgid "Fees included in offer:"
-msgstr ""
+msgstr "کارمزد ها در پیشنهاد موجود است:"
 
 #: src/electron/main.tsx:942
 #: src/electron/main.tsx:1135
 msgid "File"
-msgstr ""
+msgstr "فایل"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:70
 #: src/components/plot/PlotHarvesterPlotsDuplicate.tsx:14
 #: src/components/plot/PlotHarvesterPlotsFailed.tsx:14
 #: src/components/plot/PlotHarvesterPlotsNotFound.tsx:14
 msgid "Filename"
-msgstr ""
+msgstr "نام فايل"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:530
 msgid "Filter"
@@ -1330,7 +1330,7 @@ msgstr ""
 
 #: src/electron/main.tsx:1086
 msgid "Follow on Twitter"
-msgstr ""
+msgstr "در توییتر دنبال کنید"
 
 #: src/electron/main.tsx:1053
 msgid "Frequently Asked Questions"
@@ -1344,15 +1344,15 @@ msgstr "گره کامل"
 
 #: src/components/fullNode/FullNodeConnections.tsx:89
 msgid "Full Node Connections"
-msgstr ""
+msgstr "ارتباطات نود کامل"
 
 #: src/electron/main.tsx:1022
 msgid "Full Screen"
-msgstr ""
+msgstr "نمایش تمام صفحه"
 
 #: src/components/settings/Settings.tsx:65
 msgid "General"
-msgstr ""
+msgstr "بطورکلی"
 
 #: src/constants/WalletConnectCommands.tsx:365
 msgid "Get CAT Asset Id"
@@ -1425,7 +1425,7 @@ msgstr ""
 
 #: src/components/plot/PlotHarvesters.tsx:37
 msgid "Harvesters"
-msgstr ""
+msgstr "جمع کننده ها"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:179
 msgid "Hash is validated."
@@ -1451,11 +1451,11 @@ msgstr "عنوان هش"
 #: src/components/fullNode/FullNode.jsx:61
 #: src/components/fullNode/FullNodeConnections.tsx:61
 msgid "Height"
-msgstr ""
+msgstr "ارتفاع"
 
 #: src/electron/main.tsx:1043
 msgid "Help"
-msgstr ""
+msgstr "راهنما"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:51
 msgid "Here are the current block challenges. You may or may not have a proof of space for these challenges. These blocks do not currently contain a proof of time."
@@ -1471,7 +1471,7 @@ msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:499
 msgid "Hide"
-msgstr ""
+msgstr "مخفی"
 
 #: src/components/settings/SettingsNFT.tsx:125
 msgid "Hide objectionable content"
@@ -1543,13 +1543,13 @@ msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:28
 msgid "In Progress"
-msgstr ""
+msgstr "در حال پیشرفت"
 
 #: src/components/offers/NFTOfferViewer.tsx:479
 #: src/components/offers/OfferEditorConditionsPanel.tsx:290
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:26
 msgid "In exchange for"
-msgstr ""
+msgstr "درقبال مبادله برای"
 
 #: src/constants/WalletConnectCommands.tsx:207
 msgid "Include My Offers"
@@ -1562,7 +1562,7 @@ msgstr ""
 #: src/components/offers/NFTOfferEditor.tsx:91
 #: src/components/offers/OfferEditorConditionsPanel.tsx:392
 msgid "Including a fee in the offer can help expedite the transaction when the offer is accepted. The recommended minimum fee is 0.000005 XCH (5,000,000 mojos)"
-msgstr ""
+msgstr "درج کارمزد در پیشنهاد میتواند به سرعت معامله در هنگام پذیرش پیشنهاد کمک کند. حداقل هزینه توصیه شده 0.000005 XCH (5000000 موجو) است"
 
 #: src/components/offers2/OfferIncomingTable.tsx:112
 msgid "Incoming Offers"
@@ -1570,11 +1570,11 @@ msgstr ""
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:17
 msgid "Index"
-msgstr ""
+msgstr "فهرست"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:126
 msgid "Initializing..."
-msgstr ""
+msgstr "در حال شروع..."
 
 #: src/components/offers/OfferShareDialog.tsx:1172
 msgid "Install Keybase"
@@ -1601,7 +1601,7 @@ msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:585
 msgid "Invalid NFT identifier"
-msgstr ""
+msgstr "شناسه ان اف تی نامعتبر"
 
 #: src/components/nfts/NFTPreview.tsx:653
 msgid "Invalid metadata url"
@@ -1609,15 +1609,15 @@ msgstr ""
 
 #: src/components/plotNFT/PlotNFTState.tsx:27
 msgid "Invalid state"
-msgstr ""
+msgstr "حالت نامعتبر"
 
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:66
 msgid "It is a one-time login link that can be used to log in to a pool's website. It contains a signature using the farmer's key from the plot NFT. Not all pools support this feature."
-msgstr ""
+msgstr "این یک لینک ورود به سیستم یک بارمصرف است که میتواند برای ورود به وب سایت یک استخر استفاده شود. این شامل یک امضا با استفاده از کلید فارمر از پلات NFT است. همه استخرها از این ویژگی پشتیبانی نمی کنند."
 
 #: src/components/plotNFT/PlotNFTCard.tsx:334
 msgid "Join Pool"
-msgstr ""
+msgstr "پیوستن به استخر"
 
 #: src/components/plot/add/PlotAddNFT.tsx:56
 #: src/components/plot/add/PlotAddNFT.tsx:130
@@ -1625,27 +1625,27 @@ msgstr ""
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:153
 #: src/components/pool/PoolHero.tsx:24
 msgid "Join a Pool"
-msgstr ""
+msgstr "پیوسوتن به یک استخر"
 
 #: src/components/plot/add/PlotAddNFT.tsx:41
 msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
-msgstr ""
+msgstr "به یک استخر بپیوندید و پاداش فارم پایدار XCH دریافت کنید. میانگین بازدهی یکسان است، اما نوسان بسیار کمتری دارد."
 
 #: src/components/plotNFT/PlotNFTAdd.tsx:61
 msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile. Assign plots to a plot NFT. You can easily switch pools without having to re-plot."
-msgstr ""
+msgstr "به یک استخر بپیوندید و پاداشعلی فارم پایدار XCH دریافت کنید. میانگین بازدهی یکسان است، اما نوسان بسیار کمتری دارد. نپلاتها را به یک پلات NFT اختصاص دهید. شما به راحتی میتوانید استخرها را بدون نیاز به پلات سازی مجدد تغییر دهید."
 
 #: src/components/plot/add/PlotAddNFT.tsx:122
 msgid "Join a pool and get more consistent XCH farming rewards. Create a plot NFT and assign your new plots to a group."
-msgstr ""
+msgstr "به یک استخر بپیوندید و پاداش فارم پایدار XCH دریافت کنید. یک پلات NFT ایجاد کنید و پلاتهای جدید خود را به یک گروه اختصاص دهید."
 
 #: src/components/app/AppSelectMode.tsx:133
 msgid "Join farming pools"
-msgstr ""
+msgstr "به استخرهای فارم بپیوندید"
 
 #: src/components/offers/OfferShareDialog.tsx:1184
 msgid "Join {teamName}"
-msgstr ""
+msgstr "پیوستن به {teamName}"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:39
 #: src/components/plot/PlotPlotting.tsx:18
@@ -1687,7 +1687,7 @@ msgstr "آخرین ارتفاع زراعت شده"
 
 #: src/components/fullNode/card/FullNodeCardPeakTime.tsx:16
 msgid "Last Transaction Block Time"
-msgstr ""
+msgstr "زمان بلاک آخرین تراکنش"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:31
 msgid "Latest Block Challenges"
@@ -1695,22 +1695,22 @@ msgstr "آخرین چالش های بلوک"
 
 #: src/components/nfts/NFTDetails.tsx:64
 msgid "Launcher ID"
-msgstr ""
+msgstr "شناسه لانچر"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:254
 #: src/components/plotNFT/PlotNFTCard.tsx:290
 #: src/constants/WalletConnectCommands.tsx:478
 msgid "Launcher Id"
-msgstr ""
+msgstr "شناسه لانچر"
 
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:75
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:101
 msgid "Learn More"
-msgstr ""
+msgstr "بیشتر بدانید"
 
 #: src/components/plotNFT/PlotNFTState.tsx:56
 msgid "Leaving Pool"
-msgstr ""
+msgstr "خروج از استخر"
 
 #: src/components/app/AppKeyringMigrator.tsx:93
 msgid "Legacy keyrings are no longer supported. Your keys need to be migrated to a new keyring that is optionally secured by a master passphrase."
@@ -1772,7 +1772,7 @@ msgstr ""
 #: src/components/offers2/OfferBuilderTokenSelector.tsx:79
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:27
 msgid "Loading..."
-msgstr ""
+msgstr "بارگذاری..."
 
 #: src/components/plot/PlotHarvester.tsx:60
 msgid "Local"
