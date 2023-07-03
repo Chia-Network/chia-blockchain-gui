@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-03 13:27\n"
+"PO-Revision-Date: 2023-07-03 14:27\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -2970,7 +2970,7 @@ msgstr "انتخاب پوشه موقت"
 
 #: src/components/app/AppSelectMode.tsx:56
 msgid "Select Your Client Mode"
-msgstr ""
+msgstr "انتخاب حالت عملکرد خود"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:475
 msgid "Select all"
@@ -2982,11 +2982,11 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:35
 msgid "Select the final destination for the folder where you would like the plot to be stored. We recommend you use a large slow hard drive (like external HDD)."
-msgstr ""
+msgstr "مقصد نهایی را برای پوشه ای که میخواهید پلات در آن ذخیره شود انتخاب کنید. ما به شما توصیه میکنیم از یک هارد دیسک با سرعت کم بزرگ(مثل هارد خارجی) استفاده کنید."
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:50
 msgid "Select the temporary destination for the folder where you would like the plot to be stored. We recommend you use a fast drive."
-msgstr ""
+msgstr "مقصد موقت پوشه ای را که میخواهید پلاتها در آن ذخیره شود، انتخاب کنید. توصیه میکنیم از یک هاردسریع استفاده کنید."
 
 #: src/components/plot/add/PlotAddNFT.tsx:76
 msgid "Select your Plot NFT"
