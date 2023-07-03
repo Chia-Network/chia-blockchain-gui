@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-03 14:27\n"
+"PO-Revision-Date: 2023-07-03 15:36\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1317,7 +1317,7 @@ msgstr "محل نهایی پوشه"
 
 #: src/constants/WalletConnectCommands.tsx:21
 msgid "Fingerprint"
-msgstr ""
+msgstr "کدهای شخصی"
 
 #: src/components/fullNode/FullNode.jsx:28
 #: src/components/fullNode/FullNode.jsx:77
@@ -1326,7 +1326,7 @@ msgstr "تمام شد"
 
 #: src/components/settings/SettingsNFT.tsx:145
 msgid "Fit images to cards"
-msgstr ""
+msgstr "قراردادن تصاویر روی کارتها"
 
 #: src/electron/main.tsx:1086
 msgid "Follow on Twitter"
@@ -1356,59 +1356,59 @@ msgstr "بطورکلی"
 
 #: src/constants/WalletConnectCommands.tsx:365
 msgid "Get CAT Asset Id"
-msgstr ""
+msgstr "دریافت شناسه دارایی توکن"
 
 #: src/constants/WalletConnectCommands.tsx:59
 msgid "Get Current Address"
-msgstr ""
+msgstr "دریافت آدرس فعلی"
 
 #: src/constants/WalletConnectCommands.tsx:451
 msgid "Get NFT Info"
-msgstr ""
+msgstr "درباقت اطلاعات ان اف تی"
 
 #: src/constants/WalletConnectCommands.tsx:440
 msgid "Get NFTs"
-msgstr ""
+msgstr "دریافت ان اف تی ها"
 
 #: src/constants/WalletConnectCommands.tsx:148
 msgid "Get Next Address"
-msgstr ""
+msgstr "دریافت ادرس بعدی"
 
 #: src/constants/WalletConnectCommands.tsx:320
 msgid "Get Offer Data"
-msgstr ""
+msgstr "دریافت اطلاعات پیشنهاد"
 
 #: src/constants/WalletConnectCommands.tsx:332
 msgid "Get Offer Record"
-msgstr ""
+msgstr "دریافت سوابق پیشنهاد"
 
 #: src/constants/WalletConnectCommands.tsx:308
 msgid "Get Offer Summary"
-msgstr ""
+msgstr "دریافت گزارش پیشنهاد"
 
 #: src/constants/WalletConnectCommands.tsx:221
 msgid "Get Offers Count"
-msgstr ""
+msgstr "دریافت تعداد پیشنهاد"
 
 #: src/constants/WalletConnectCommands.tsx:32
 msgid "Get Transaction"
-msgstr ""
+msgstr "دریافت تراکنش"
 
 #: src/constants/WalletConnectCommands.tsx:44
 msgid "Get Wallet Balance"
-msgstr ""
+msgstr "دریافت موجودی کیف پول"
 
 #: src/constants/WalletConnectCommands.tsx:171
 msgid "Get Wallet Sync Status"
-msgstr ""
+msgstr "دریافت وضعیت سینک کیف پول"
 
 #: src/constants/WalletConnectCommands.tsx:27
 msgid "Get Wallets"
-msgstr ""
+msgstr "دریافت کیف پول ها"
 
 #: src/constants/WalletConnectCommands.tsx:178
 msgid "Get all Offers"
-msgstr ""
+msgstr "دریافت همه پیشنهادات"
 
 #: src/components/nfts/gallery/NFTGalleryHero.tsx:15
 msgid "Go collect some gems"
@@ -3067,7 +3067,7 @@ msgstr "اشتراک در هش گرین DEX"
 
 #: src/components/offers/OfferShareDialog.tsx:1160
 msgid "Share on Keybase"
-msgstr "اشتراک در Keybase"
+msgstr "Keybase اشتراک در"
 
 #: src/components/offers/OfferShareDialog.tsx:715
 msgid "Share on MintGarden"
