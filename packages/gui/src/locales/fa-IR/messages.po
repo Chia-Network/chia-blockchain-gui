@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-02 17:49\n"
+"PO-Revision-Date: 2023-07-03 07:30\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -494,12 +494,12 @@ msgstr "اعتبار پیشنهاد را بررسی کنید"
 #: src/components/offers/NFTOfferPreview.tsx:151
 #: src/components/offers2/OfferBuilderNFTProvenance.tsx:37
 msgid "Check Provenance on MintGarden"
-msgstr ""
+msgstr "منشأ را در MintGarden بررسی کنید"
 
 #: src/components/offers/NFTOfferPreview.tsx:161
 #: src/components/offers2/OfferBuilderNFTProvenance.tsx:47
 msgid "Check Provenance on Spacescan.io"
-msgstr ""
+msgstr "منشأ را در Spacescan.io بررسی کنید"
 
 #: src/electron/main.tsx:1098
 msgid "Chia"
@@ -579,7 +579,7 @@ msgstr "بستن"
 
 #: src/components/app/AppState.tsx:157
 msgid "Closing down services"
-msgstr ""
+msgstr "بسته شدن خدمات"
 
 #: src/constants/WalletConnectCommands.tsx:456
 msgid "Coin Id"
@@ -688,7 +688,7 @@ msgstr "مشارکت در GitHub"
 
 #: src/components/nfts/NFTContextualActions.tsx:354
 msgid "Copy Media URL"
-msgstr ""
+msgstr "لینک آدرس سایت را کپی کنید"
 
 #: src/components/nfts/NFTContextualActions.tsx:107
 msgid "Copy NFT ID"
@@ -722,7 +722,7 @@ msgstr "ایجاد"
 
 #: src/components/app/AppSelectMode.tsx:127
 msgid "Create & Manage plots"
-msgstr ""
+msgstr "پلات ها را ایجاد و مدیریت کنید"
 
 #: src/components/offers2/CreateOfferBuilder.tsx:137
 msgid "Create Counter Offer"
@@ -755,7 +755,7 @@ msgstr "فایلی ایجاد کنید که بتوانید از آن برای م
 
 #: src/components/settings/ProfileAdd.tsx:75
 msgid "Create a new profile"
-msgstr ""
+msgstr "مشخصات جدید ایجاد کنید"
 
 #: src/components/offers/NFTOfferEditor.tsx:735
 msgid "Create an NFT Offer"
@@ -772,37 +772,37 @@ msgstr "کیف پول جدید ایجاد کنید"
 
 #: src/components/offers/OfferManager.tsx:130
 msgid "Creates and submits a transaction on the blockchain that cancels the offer"
-msgstr ""
+msgstr "یک تراکنش در بلاکچین ایجاد و ارسال کنید که پیشنهاد را لغو میکند"
 
 #: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:63
 msgid "Creating Plot NFT and Joining the Pool"
-msgstr ""
+msgstr "ایجاد پلات NFT و پیوستن به استخر"
 
 #: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:61
 msgid "Creating Plot NFT for Self Pooling"
-msgstr ""
+msgstr "ایجاد پلاتNFT برای استخر شخصی"
 
 #: src/components/offers/OfferManager.tsx:298
 #: src/components/offers2/OfferIncomingTable.tsx:64
 msgid "Creation Date"
-msgstr ""
+msgstr "تاریخ ایجاد"
 
 #: src/components/offers/NFTOfferViewer.tsx:514
 msgid "Creator Fee ({0}%)"
-msgstr ""
+msgstr "کارمزد سازنده ({0}%)"
 
 #: src/components/offers/NFTOfferEditor.tsx:334
 msgid "Creator Fee ({royaltyPercentage}%)"
-msgstr ""
+msgstr "کارمزد سازنده ({royaltyPercentage}%)"
 
 #: src/components/offers/NFTOfferEditor.tsx:337
 #: src/components/offers/NFTOfferViewer.tsx:517
 msgid "Creator royalty percentage seems high"
-msgstr ""
+msgstr "درصد حق امتیاز سازنده بالا به نظر میرسد"
 
 #: src/components/plot/add/PlotAddForm.tsx:120
 msgid "Currency code is not defined"
-msgstr ""
+msgstr "نوع ارز تعریف نشده است"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:120
 #: src/components/plotNFT/PlotNFTCard.tsx:153
@@ -880,15 +880,15 @@ msgstr "در حال حذف کلید"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:81
 msgid "Depending on your system configuration, you may find that an alternative plotter produces plots faster than the default Chia Proof of Space plotter. If unsure, use the default Chia Proof of Space plotter."
-msgstr ""
+msgstr "بسته به تنظیمات سیستم شما، امکان دارد یک پلات ساز دیگر که پلات ها را سریعتر از پلات ساز پیش فرض Chia Proof of Space تولید میکند، پیدا کنید. اگر مطمئن نیستید، از پلات ساز پیش فرض Chia Proof of Space استفاده کنید."
 
 #: src/components/settings/SettingsPanel.tsx:163
 msgid "Derivation Index"
-msgstr ""
+msgstr "فهرست استخراج"
 
 #: src/components/settings/SettingsDerivationIndex.tsx:45
 msgid "Derivation index must be greater than {index}"
-msgstr ""
+msgstr "فهرست استخراج باید بزرگتر از {index} باشد"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:291
 msgid "Description"
@@ -933,7 +933,7 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:377
 msgid "Disable NUMA"
-msgstr ""
+msgstr "NUMA را غیرفعال کنید"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:399
 msgid "Disable assigning automatic thread affinity. This is useful when running multiple simultaneous instances of Bladebit as you can manually assign thread affinity yourself when launching Bladebit."
@@ -945,7 +945,7 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:324
 msgid "Disable bitfield plotting"
-msgstr ""
+msgstr "پلات سازی بیت فیلد را غیرفعال کنید"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:90
 msgid "Disable direct I/O on the temp 1 directory in order to extract maximum performance with RAM disk"
@@ -964,7 +964,7 @@ msgstr "قطع ارتباط"
 
 #: src/components/offers/OfferManager.tsx:338
 msgid "Display Offer Data"
-msgstr ""
+msgstr "نمایش اطلاعات پیشنهاد"
 
 #: src/components/offers/OfferShareDialog.tsx:1549
 #: src/hooks/useOpenUnsafeLink.tsx:64
@@ -1002,7 +1002,7 @@ msgstr "آیا دستگاه شما از پلات سازی همزمان پشتی�
 
 #: src/components/nfts/NFTContextualActions.tsx:452
 msgid "Download"
-msgstr ""
+msgstr "دخیره"
 
 #: src/components/nfts/MultipleDownloadDialog.tsx:91
 msgid "Download failed."
@@ -1034,7 +1034,7 @@ msgstr ""
 
 #: src/components/offers/OfferImport.tsx:167
 msgid "Drag & Drop an Offer File"
-msgstr ""
+msgstr "یک فایل پیشنهاد را بکشید و رها کنید"
 
 #: src/components/offers2/OfferBuilderImport.tsx:166
 msgid "Drag & Drop an Offer File, Paste"
@@ -1064,11 +1064,11 @@ msgstr "ویرایش دستورالعمل های پرداخت"
 
 #: src/components/nfts/NFTSummary.tsx:64
 msgid "Edition #"
-msgstr ""
+msgstr "نسخه #"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:312
 msgid "Edition Number"
-msgstr ""
+msgstr "شماره نسخه"
 
 #: src/components/settings/SettingsStartup.tsx:28
 msgid "Enable Auto Login"
@@ -1177,11 +1177,11 @@ msgstr "دانلودهای ناموفق:"
 
 #: src/components/offers/NFTOfferEditor.tsx:587
 msgid "Failed to decode NFT identifier"
-msgstr ""
+msgstr "رمزگشایی شناسه ان اف تی انجام نشد"
 
 #: src/components/offers/OfferShareDialog.tsx:462
 msgid "Failed to execute Keybase command: {stderr}"
-msgstr ""
+msgstr "فرمان Keybase اجرا نشد: {stderr}"
 
 #: src/components/notification/NotificationSendDialog.tsx:147
 msgid "Failed to send the notification: {error}"
@@ -1313,7 +1313,7 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:45
 msgid "Final folder location"
-msgstr ""
+msgstr "محل نهایی پوشه"
 
 #: src/constants/WalletConnectCommands.tsx:21
 msgid "Fingerprint"
@@ -1322,7 +1322,7 @@ msgstr ""
 #: src/components/fullNode/FullNode.jsx:28
 #: src/components/fullNode/FullNode.jsx:77
 msgid "Finished"
-msgstr ""
+msgstr "تمام شد"
 
 #: src/components/settings/SettingsNFT.tsx:145
 msgid "Fit images to cards"
@@ -1412,12 +1412,12 @@ msgstr ""
 
 #: src/components/nfts/gallery/NFTGalleryHero.tsx:15
 msgid "Go collect some gems"
-msgstr ""
+msgstr "برو چند جواهر جمع کن"
 
 #: src/components/offers/OfferShareDialog.tsx:1140
 #: src/components/offers/OfferShareDialog.tsx:1191
 msgid "Go to #{channelName}"
-msgstr ""
+msgstr "رفتن به #{channelName}"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:420
 msgid "Halves the temp2 cache size requirements by alternating bucket writing methods between tables."
@@ -1437,7 +1437,7 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:847
 msgid "Hashgreen DEX URL"
-msgstr ""
+msgstr "لینک آدرس سایت Hashgreen DEX"
 
 #: src/components/fullNode/FullNode.jsx:43
 msgid "Header Hash"
@@ -1459,7 +1459,7 @@ msgstr "راهنما"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:51
 msgid "Here are the current block challenges. You may or may not have a proof of space for these challenges. These blocks do not currently contain a proof of time."
-msgstr ""
+msgstr "در اینجا چالش های بلاک فعلی وجود دارد. ممکن است برای این چالش ها مدرکی برای اثبات فضا داشته باشید یا نداشته باشید. این بلاک ها در حال حاضر حاوی اثبات زمان نیستند."
 
 #: src/components/nfts/gallery/NFTGallery.tsx:589
 msgid "Hidden"
@@ -1475,18 +1475,18 @@ msgstr "مخفی"
 
 #: src/components/settings/SettingsNFT.tsx:125
 msgid "Hide objectionable content"
-msgstr ""
+msgstr "محتوای قابل اعتراض را پنهان کنید"
 
 #: src/components/app/AppPassPrompt.tsx:161
 #: src/components/settings/RemovePassphrasePrompt.tsx:153
 msgid "Hint"
-msgstr ""
+msgstr "اشاره"
 
 #: src/components/plot/PlotHarvesterPlotsDuplicate.tsx:69
 #: src/components/plot/PlotHarvesterPlotsFailed.tsx:69
 #: src/components/plot/PlotHarvesterPlotsNotFound.tsx:69
 msgid "Hooray, no files here!"
-msgstr ""
+msgstr "اینجا فایلی وجود ندارد!"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:31
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:31
@@ -1495,15 +1495,15 @@ msgstr "نام میزبان(هاست)"
 
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:16
 msgid "I Understand, Create Offer"
-msgstr ""
+msgstr "برای ایجاد پیشنهاد متوجه هستم"
 
 #: src/components/fullNode/FullNodeConnections.tsx:32
 msgid "IP address"
-msgstr ""
+msgstr "آی پی آدرس"
 
 #: src/components/fullNode/FullNodeAddConnection.tsx:89
 msgid "IP address / host"
-msgstr ""
+msgstr "آی پی آدرس / میزبان"
 
 #: src/constants/WalletConnectCommands.tsx:119
 msgid "Id"
@@ -1511,11 +1511,11 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:128
 msgid "If none selected, then it will default to the temporary directory."
-msgstr ""
+msgstr "اگر هیچکدام انتخاب نشد، به طور پیش فرض به دایرکتوری موقت تبدیل میشود."
 
 #: src/components/offers/OfferShareDialog.tsx:806
 msgid "If selected, your offer will be not be shared publicly."
-msgstr ""
+msgstr "در صورت انتخاب، پیشنهاد شما به صورت عمومی به اشتراک گذاشته نخواهد شد."
 
 #: src/components/nfts/NFTBurnDialog.tsx:76
 msgid "If you burn these NFTs, nobody (including you) will ever be able to access it again. Are you sure you want to continue?"
@@ -1527,7 +1527,7 @@ msgstr ""
 
 #: src/components/offers/OfferManager.tsx:110
 msgid "If you have already shared your offer file, you may need to submit a transaction to cancel the pending offer. Click \"Cancel on blockchain\" to submit a cancellation transaction."
-msgstr ""
+msgstr "اگر قبلاً فایل پیشنهاد خود را به اشتراک گذاشته‌اید، ممکن است لازم باشد یک تراکنش برای لغو پیشنهاد معلق ارسال کنید. برای ارسال تراکنش لغو، روی «لغو در بلاکچین» کلیک کنید."
 
 #: src/components/nfts/NFTPreview.tsx:633
 msgid "Image Hash Mismatch"
@@ -1958,19 +1958,19 @@ msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:260
 msgid "NFT Status Updated"
-msgstr ""
+msgstr "وضعیت ان اف تی بروز شد"
 
 #: src/components/nfts/NFTContextualActions.tsx:182
 msgid "NFT Transfer Failed"
-msgstr ""
+msgstr "انتقال ان اف تی ناموفق بود"
 
 #: src/components/nfts/NFTContextualActions.tsx:175
 msgid "NFT Transfer Pending"
-msgstr ""
+msgstr "انتقال ان اف تی در انتظار است"
 
 #: src/components/offers/NFTOfferEditor.tsx:622
 msgid "NFT details not available"
-msgstr ""
+msgstr "جزئیات ان اف تی در دسترس نیست"
 
 #: src/components/offers2/OfferBuilderNFTRoyalties.tsx:171
 msgid "NFT has no royalties"
@@ -1982,13 +1982,13 @@ msgstr ""
 
 #: src/components/offers/NFTOfferPreview.tsx:44
 msgid "NFT identifier does not reference a valid NFT coin."
-msgstr ""
+msgstr "شناسه ان اف تی به یک ارز ان اف تی معتبر اشاره نمیکند."
 
 #: src/components/offers/NFTOfferPreview.tsx:105
 #: src/components/offers2/OfferBuilderNFT.tsx:91
 #: src/components/offers2/OfferBuilderNFT.tsx:119
 msgid "NFT not specified"
-msgstr ""
+msgstr "ان اف تی مشخص نشده"
 
 #: src/util/offerBuilderDataToOffer.ts:94
 #: src/util/offerBuilderDataToOffer.ts:148
@@ -1997,7 +1997,7 @@ msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:57
 msgid "NFTs"
-msgstr ""
+msgstr "ان اف تی ها"
 
 #: src/components/settings/SettingsNFT.tsx:135
 msgid "NFTs that have been categorized by the creator as objectionable content will be hidden by default."
@@ -2009,15 +2009,15 @@ msgstr ""
 
 #: src/components/offers/NFTOfferViewer.tsx:580
 msgid "Net Proceeds"
-msgstr ""
+msgstr "درآمد خالص"
 
 #: src/components/offers/NFTOfferViewer.tsx:603
 msgid "Network Fee (Optional)"
-msgstr ""
+msgstr "کارمزد شبکه (اختیاری)"
 
 #: src/components/fullNode/card/FullNodeCardNetworkName.tsx:14
 msgid "Network Name"
-msgstr ""
+msgstr "نام شبکه"
 
 #: src/constants/WalletConnectCommands.tsx:161
 msgid "New Address"
@@ -2025,16 +2025,16 @@ msgstr ""
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:210
 msgid "New Passphrase"
-msgstr ""
+msgstr "رمز ورود جدید"
 
 #: src/components/block/Block.jsx:259
 #: src/components/nfts/detail/NFTDetailV2.tsx:249
 msgid "Next"
-msgstr ""
+msgstr "بعدی"
 
 #: src/electron/main.tsx:813
 msgid "No"
-msgstr ""
+msgstr "خیر"
 
 #: src/util/offerBuilderDataToOffer.ts:74
 #: src/util/offerBuilderDataToOffer.ts:135
@@ -2059,11 +2059,11 @@ msgstr "هنوز هیچ بلاکی مزرعه داری(تولید) نشده اس
 
 #: src/components/offers/OfferManager.tsx:394
 msgid "No current offers"
-msgstr ""
+msgstr "پیشنهاد فعلی وجود ندارد"
 
 #: src/components/nfts/NFTPreview.tsx:616
 msgid "No file available"
-msgstr ""
+msgstr "فایلی موجود نیست"
 
 #: src/components/offers2/OfferIncomingTable.tsx:207
 msgid "No incoming offers"
@@ -2071,7 +2071,7 @@ msgstr ""
 
 #: src/components/plot/PlotHarvesterPlots.tsx:126
 msgid "No plots yet"
-msgstr ""
+msgstr "هیچ پلاتی وجود ندارد"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:125
 msgid "No private keys for one or both addresses. Safe only if you are sending rewards to another wallet."
@@ -2113,11 +2113,11 @@ msgstr "در دسترس نیست"
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:14
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:44
 msgid "Not Synced"
-msgstr ""
+msgstr "سینک نشده"
 
 #: src/components/fullNode/card/FullNodeCardConnectionStatus.tsx:15
 msgid "Not connected"
-msgstr ""
+msgstr "متصل نشده"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:152
 msgid "Note that this does not change your pooling payout addresses. This only affects old format plots, and the 0.25XCH reward for pooling plots."
