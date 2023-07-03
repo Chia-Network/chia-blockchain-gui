@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-03 07:30\n"
+"PO-Revision-Date: 2023-07-03 08:35\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -2121,7 +2121,7 @@ msgstr "متصل نشده"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:152
 msgid "Note that this does not change your pooling payout addresses. This only affects old format plots, and the 0.25XCH reward for pooling plots."
-msgstr ""
+msgstr "توجه داشته باشید که این کار آدرس‌های پرداخت ادغام شما را تغییر نمیدهد. این فقط بر نمودارهای قالب قدیمی و پاداش 0.25XCH برای ادغام نمودارها تأثیر میگذارد."
 
 #: src/components/notification/NotificationSendDialog.tsx:145
 msgid "Notification has successfully been sent to a full node and included in the mempool."
@@ -2141,20 +2141,20 @@ msgstr ""
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:105
 #: src/components/plotNFT/PlotNFTCard.tsx:138
 msgid "Number of Plots"
-msgstr ""
+msgstr "تعداد پلات ها"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:168
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:181
 msgid "Number of buckets"
-msgstr ""
+msgstr "تعداد باکت ها"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:200
 msgid "Number of buckets for phase 3 & 4"
-msgstr ""
+msgstr "تعداد باکت ها دز فاز های 3 و 4"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:130
 msgid "Number of threads"
-msgstr ""
+msgstr "تعداد رشته های پردازنده"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:281
 msgid "Number of threads for C table processing"
@@ -2199,7 +2199,7 @@ msgstr ""
 #: src/constants/WalletConnectCommands.tsx:283
 #: src/constants/WalletConnectCommands.tsx:313
 msgid "Offer Data"
-msgstr ""
+msgstr "اطلاعات پیشنهاد"
 
 #: src/constants/WalletConnectCommands.tsx:325
 #: src/constants/WalletConnectCommands.tsx:337
@@ -2218,13 +2218,13 @@ msgstr ""
 #: src/components/offers/OfferShareDialog.tsx:1131
 #: src/components/offers/OfferShareDialog.tsx:1245
 msgid "Offer Shared"
-msgstr ""
+msgstr "اشتراک گذاری پیشنهاد"
 
 #: src/components/offers/NFTOfferViewer.tsx:170
 #: src/components/offers2/OfferBuilderValue.tsx:200
 #: src/components/offers2/OfferBuilderViewer.tsx:172
 msgid "Offer cannot be accepted because you don't possess the requested assets"
-msgstr ""
+msgstr "پیشنهاد نمیتواند پذیرفته شود زیرا دارایی‌های درخواستی را ندارید"
 
 #: src/components/offers2/OfferBuilderImport.tsx:77
 msgid "Offer file is too large (> 1MB)"
@@ -2232,7 +2232,7 @@ msgstr ""
 
 #: src/hooks/useAcceptOfferHook.tsx:55
 msgid "Offer has been accepted and is awaiting confirmation."
-msgstr ""
+msgstr "پیشنهاد پذیرفته شده و در انتظار تایید است."
 
 #: src/components/offers/OfferShareDialog.tsx:755
 msgid "OfferBin URL"
