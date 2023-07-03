@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-03 10:54\n"
+"PO-Revision-Date: 2023-07-03 12:29\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -2242,7 +2242,7 @@ msgstr ""
 
 #: src/components/offers/OfferManager.tsx:266
 msgid "Offered"
-msgstr ""
+msgstr "پیشنهاد شده"
 
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:22
 #: src/components/offers2/OfferIncomingTable.tsx:60
@@ -2251,7 +2251,7 @@ msgstr ""
 
 #: src/components/offers/utils.ts:145
 msgid "Offering: [{makerString}], Requesting: [{takerString}]"
-msgstr ""
+msgstr "پیشنهادها: [{makerString}]، درخواست شده ها: [{takerString}]"
 
 #: src/components/offers/OfferShareDialog.tsx:1252
 msgid "Offerpool URL"
@@ -2260,7 +2260,7 @@ msgstr ""
 #: src/components/dashboard/DashboardSideBar.tsx:63
 #: src/components/nfts/detail/NFTDetailV2.tsx:331
 msgid "Offers"
-msgstr ""
+msgstr "پیشنهادها"
 
 #: src/components/offers2/OfferNavigationHeader.tsx:19
 msgid "Offers are a way to trade assets in a genuinely peer-to-peer way that eliminates counterparty risk."
@@ -2272,15 +2272,15 @@ msgstr ""
 
 #: src/components/offers/OfferManager.tsx:470
 msgid "Offers you accepted"
-msgstr ""
+msgstr "پیشنهاداتی که پذیرفته اید"
 
 #: src/components/offers/OfferManager.tsx:469
 msgid "Offers you created"
-msgstr ""
+msgstr "پیشنهاداتی که ایجاد کردید"
 
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:56
 msgid "Once you accept this offer, you will not be able to cancel the transaction. Are you sure you want to accept this offer?"
-msgstr ""
+msgstr "پس از پذیرش این پیشنهاد، نمیتوانید معامله را لغو کنید. آیا مطمئن هستید که میخواهید این پیشنهاد را بپذیرید?"
 
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:32
 msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer the NFT?"
@@ -2308,7 +2308,7 @@ msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:322
 msgid "Open in Browser"
-msgstr ""
+msgstr "بازکردن در مرورگر"
 
 #: src/components/offers2/OfferBuilderFeeSection.tsx:53
 msgid "Optional network fee to expedite acceptance of your offer"
@@ -2340,11 +2340,11 @@ msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:108
 msgid "Owner DID"
-msgstr ""
+msgstr "صاحب شناسه غیر متمرکز"
 
 #: src/components/nfts/NFTDetails.tsx:148
 msgid "Owner Public Key"
-msgstr ""
+msgstr "صاحب کلید عمومی"
 
 #: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:75
 msgid "Pair Information"
