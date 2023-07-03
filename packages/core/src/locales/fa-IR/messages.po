@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-02 15:39\n"
+"PO-Revision-Date: 2023-07-03 08:35\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -162,7 +162,7 @@ msgstr "مخفی کردن گزینه های پیشرفته"
 
 #: src/screens/SelectKey/SelectKey.tsx:181
 msgid "Import from Mnemonics (12 or 24 words)"
-msgstr "وارد کردن کد رمزها (12 یا 24 کلمه)"
+msgstr "وارد کردن کد کلمات رمزها (12 یا 24 کلمه)"
 
 #: src/components/Fee/Fee.tsx:41
 msgid "Incorrect value"
@@ -219,12 +219,12 @@ msgstr "هرگز این موارد را با کسی به اشتراک نگذار
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:41
 msgid "New passphrase is the same as your current passphrase"
-msgstr "عبارت عبور جدید با عبارت عبور فعلی شما یکسان است"
+msgstr "رمز ورودی جدید با عبارت عبور فعلی شما یکسان است"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:84
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:138
 msgid "No 24 word seed, since this key is imported."
-msgstr "هیچ بذر ۲۴ کلمه‌ای نیست، از هنگامی که این کلید را وارد کرده اید."
+msgstr "از زمانیکه کلید را وارد کرده اید هیچ کلمات رمز 24 حرفی موجود نیست."
 
 #: src/screens/SelectKey/WalletStatus.tsx:61
 msgid "Not Synced"
@@ -311,7 +311,7 @@ msgstr "ارسال پیشنهاد"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:52
 msgid "Setting a passphrase is strongly recommended to protect your keys. Are you sure you want to skip setting a passphrase?"
-msgstr "تنظیم یک عبارت عبور برای محافظت از کلیدهای شما اکیداً توصیه می شود. آیا مطمئن هستید که می خواهید از تنظیم یک عبارت عبور صرفنظر کنید?"
+msgstr "تنظیم یک رمز ورود برای محافظت از کلیدهای شما اکیداً توصیه می شود. آیا مطمئن هستید که می خواهید از تنظیم یک رمز ورود صرفنظر کنید?"
 
 #: src/components/Settings/Settings.tsx:49
 #: src/components/Settings/Settings.tsx:59
@@ -332,7 +332,7 @@ msgstr "صرف نظر"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:49
 msgid "Skip Passphrase Protection"
-msgstr "صرف نظر از محافظت کلمه عبور"
+msgstr "صرف نظر از محافظت رمز ورود"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:67
 msgid "Something went wrong"
@@ -348,7 +348,7 @@ msgstr "درحال بارگذاری"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:28
 msgid "The provided passphrase and confirmation do not match"
-msgstr "کلمه عبور و تأیید ارائه شده مطابقت ندارند"
+msgstr "رمز ورود تأیید شده مطابقت ندارند"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:126
 msgid "This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
@@ -397,7 +397,7 @@ msgstr "تغییرات ذخیره نشده"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:61
 msgid "Using a passphrase is strongly recommended to protect your keys. Are you sure you want to disable passphrase protection?"
-msgstr "تنظیم یک عبارت عبور برای محافظت از کلیدهای شما اکیداً توصیه می شود. آیا مطمئن هستید که می خواهید از تنظیم یک عبارت عبور صرفنظر کنید?"
+msgstr "تنظیم یک رمز ورود برای محافظت از کلیدهای شما اکیداً توصیه میشود. آیا مطمئن هستید که میخواهید از تنظبم رمز عبور صرفنظر کنید?"
 
 #: src/components/Fee/Fee.tsx:33
 msgid "Value seems high"
@@ -419,16 +419,16 @@ msgstr "کیف پول {0}"
 
 #: src/screens/SelectKey/SelectKey.tsx:142
 msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
-msgstr "به چیـا خوش آمدید. لطفا با کلیدی که از قبل دارید وارد شوید، یا کلیدی جدید بسازید."
+msgstr "به چیـا خوش آمدید. لطفا با کلید قبلی خود وارد شوید یا یک کلید جدید بسازید."
 
 #: src/components/Back/Back.tsx:40
 #: src/components/FormBackButton/FormBackButton.tsx:31
 msgid "You have made changes. Do you want to discard them?"
-msgstr "شما تغییراتی ایجاد کرده اید. آیا می خواهید آنها را فراموش کنید?"
+msgstr "شما تغییراتی ایجاد کرده اید. آیا میخواهید آنها را فراموش کنید?"
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:20
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
-msgstr "کلیدهای شما به یک کلید جدید منتقل نشده. تا زمانی که انتقال کامل نشود، نمی‌توانید کلیدهای جدید ایجاد کنید یا کلیدهای موجود را حذف کنید. آیا می خواهید کلیدهای خود را اکنون انتقال دهید?"
+msgstr "کلیدهای شما به یک کلید جدید منتقل نشده. تا زمانی که انتقال کامل نشود، نمی‌توانید کلیدهای جدید ایجاد کنید یا کلیدهای موجود را حذف کنید. آیا میخواهید کلیدهای خود را اکنون انتقال دهید?"
 
 #: src/components/Amount/Amount.tsx:86
 msgid "{0, plural, one {mojo} other {mojos}}"
@@ -436,5 +436,5 @@ msgstr "{0,plural,one {موجو} other {موجوها}}"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:35
 msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
-msgstr "{minPassphraseLength, plural,one {طول کارکتر عبارات عبور باید حداقل # باشد} other {طول کارکترهای عبارات عبور باید حداقل # باشند}}"
+msgstr "{minPassphraseLength, plural,one {طول کارکتر رمز ورود باید حداقل # باشد} other {طول کارکترهای رمز ورود باید حداقل # باشند}}"
 
