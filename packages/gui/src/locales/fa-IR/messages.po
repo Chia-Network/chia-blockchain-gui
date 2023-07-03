@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-03 08:35\n"
+"PO-Revision-Date: 2023-07-03 09:55\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -329,7 +329,7 @@ msgstr "مقدار پایه جایزه‌ِ مزرعه دار"
 
 #: src/components/offers/OfferShareDialog.tsx:1177
 msgid "Before posting an offer in Keybase to the #{channelName} channel, you must first join the {teamName} team. Please note that it might take a few moments to join the channel."
-msgstr ""
+msgstr "قبل از ارسال پیشنهاد به Keybase در کانال #{channelName}، ابتدا باید به تیم {teamName} بپیوندید. لطفا توجه داشته باشید که ممکن است چند لحظه طول بکشد تا به کانال بپیوندید."
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:35
 msgid "Below are the current block challenges. You may or may not have a proof of space for these challenges. These blocks do not currently contain a proof of time."
@@ -1531,7 +1531,7 @@ msgstr "اگر قبلاً فایل پیشنهاد خود را به اشتراک 
 
 #: src/components/nfts/NFTPreview.tsx:633
 msgid "Image Hash Mismatch"
-msgstr ""
+msgstr "عدم تطابق هش تصویر"
 
 #: src/components/settings/SettingsNFT.tsx:155
 msgid "Images will be scaled to fill the NFT card and ignore their original proportions."
@@ -1539,7 +1539,7 @@ msgstr ""
 
 #: src/components/offers/OfferDataEntryDialog.tsx:61
 msgid "Import"
-msgstr ""
+msgstr "وارد كردن"
 
 #: src/components/fullNode/FullNode.jsx:28
 msgid "In Progress"
@@ -1578,18 +1578,20 @@ msgstr "در حال شروع..."
 
 #: src/components/offers/OfferShareDialog.tsx:1172
 msgid "Install Keybase"
-msgstr ""
+msgstr "نصب Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:67
 msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
+msgstr "مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
+"موجودی قابل مصرف شما برای پوشش مبلغ پیشنهاد کافی است."
 
 #: src/components/offers/OfferEditor.tsx:148
 #: src/components/offers2/CreateOfferBuilder.tsx:121
 msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
+msgstr "مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
+"موجودی قابل مصرف شما برای پوشش مبلغ پیشنهاد کافی است."
 
 #: src/components/settings/Settings.tsx:73
 msgid "Integration"
@@ -1662,15 +1664,15 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:1086
 msgid "Keybase command failed {e}. If you haven't installed Keybase, you can download from https://keybase.io"
-msgstr ""
+msgstr "فرمان Keybase {e} ناموفق بود. اگر Keybase را نصب نکرده اید، میتوانید آنرا از https://keybase.io دانلود کنید"
 
 #: src/components/offers/OfferShareDialog.tsx:1165
 msgid "Keybase is a secure messaging and file sharing application. To share an offer in the Keybase {teamName} team, you must first have Keybase installed."
-msgstr ""
+msgstr "Keybase یک برنامه پیام رسانی ایمن و به اشتراک گذاری فایل است. برای به اشتراک گذاشتن یک پیشنهاد در تیم Keybase {teamName}، ابتدا باید Keybase را نصب کرده باشید."
 
 #: src/components/app/AppKeyringMigrator.tsx:83
 msgid "Keyring migration failed: {0}"
-msgstr ""
+msgstr "انتقال کلید انجام نشد: {0}"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:49
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:49
@@ -1679,7 +1681,7 @@ msgstr "KiB آپلود/دانلود"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:45
 msgid "Last Attempted Proof"
-msgstr ""
+msgstr "آخرین تلاش برای اثبات"
 
 #: src/components/farm/card/FarmCardLastHeightFarmed.tsx:13
 msgid "Last Height Farmed"
@@ -1714,19 +1716,19 @@ msgstr "خروج از استخر"
 
 #: src/components/app/AppKeyringMigrator.tsx:93
 msgid "Legacy keyrings are no longer supported. Your keys need to be migrated to a new keyring that is optionally secured by a master passphrase."
-msgstr ""
+msgstr "کلیدهای قدیمی دیگر پشتیبانی نمیشوند. کلیدهای شما باید به یک کلید جدید منتقل شوند که به صورت اختیاری با یک عبارت عبور اصلی ایمن شده است."
 
 #: src/components/app/AppKeyringMigrator.tsx:100
 msgid "Legacy keyrings are no longer supported. Your keys need to be migrated to a new keyring that is secured by a master passphrase."
-msgstr ""
+msgstr "کلیدهای قدیمی دیگر پشتیبانی نمیشوند. کلیدهای شما باید به یک کلید جدید منتقل شوند که به صورت اختیاری با یک عبارت عبور اصلی ایمن شده است."
 
 #: src/components/nfts/NFTDetails.tsx:295
 msgid "License Hash"
-msgstr ""
+msgstr "مجوز هش"
 
 #: src/components/nfts/NFTDetails.tsx:280
 msgid "License URL {0}"
-msgstr ""
+msgstr "لیست آدرس سایت مجوز {0}"
 
 #: src/components/settings/SettingsNFT.tsx:214
 msgid "Limit cache size"
@@ -1734,15 +1736,15 @@ msgstr ""
 
 #: src/components/fullNode/FullNodeConnections.tsx:99
 msgid "List of connections is empty"
-msgstr ""
+msgstr "لیست اتصالات خالی است"
 
 #: src/components/nfts/NFTSummary.tsx:103
 msgid "Loading NFT"
-msgstr ""
+msgstr "بارگذاری ان اف تی"
 
 #: src/components/offers/NFTOfferPreview.tsx:62
 msgid "Loading NFT Info..."
-msgstr ""
+msgstr "اطلاعات بارکذاری ان اف تی..."
 
 #: src/components/offers2/OfferBuilderValueSearch.tsx:144
 msgid "Loading NFTs..."
@@ -1750,11 +1752,11 @@ msgstr ""
 
 #: src/components/app/AppProviders.tsx:96
 msgid "Loading configuration"
-msgstr ""
+msgstr "بارکذاری پیکربندی"
 
 #: src/components/farm/Farm.tsx:25
 msgid "Loading farming data"
-msgstr ""
+msgstr "بارگداری اطلاعات فارم"
 
 #: src/components/app/AppAutoLogin.tsx:49
 msgid "Loading fingerprint"
@@ -1762,7 +1764,7 @@ msgstr ""
 
 #: src/components/app/AppState.tsx:193
 msgid "Loading keyring status"
-msgstr ""
+msgstr "بارکذاری وضعیت کلید"
 
 #: src/components/did/DIDProfileDropdown.tsx:48
 #: src/components/helpers/HeightToTimestamp.tsx:16
@@ -1776,7 +1778,7 @@ msgstr "بارگذاری..."
 
 #: src/components/plot/PlotHarvester.tsx:60
 msgid "Local"
-msgstr ""
+msgstr "محلی"
 
 #: src/components/settings/SettingsNFT.tsx:196
 msgid "Local folder"
@@ -1788,7 +1790,7 @@ msgstr ""
 
 #: src/components/app/AppSelectMode.tsx:84
 msgid "Manage CAT tokens"
-msgstr ""
+msgstr "مدیریت توکنهای CAT"
 
 #: src/components/farm/FarmHeader.tsx:30
 msgid "Manage Farming Rewards"
@@ -1835,7 +1837,7 @@ msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:268
 msgid "Migrate Keys"
-msgstr ""
+msgstr "انتقال کلیدها"
 
 #: src/components/app/AppKeyringMigrator.tsx:129
 msgid "Migration required"
