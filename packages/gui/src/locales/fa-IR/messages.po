@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-03 09:55\n"
+"PO-Revision-Date: 2023-07-03 10:54\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1672,7 +1672,7 @@ msgstr "Keybase یک برنامه پیام رسانی ایمن و به اشتر�
 
 #: src/components/app/AppKeyringMigrator.tsx:83
 msgid "Keyring migration failed: {0}"
-msgstr "انتقال کلید انجام نشد: {0}"
+msgstr "انتقال دسته کلید انجام نشد: {0}"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:49
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:49
@@ -1716,11 +1716,11 @@ msgstr "خروج از استخر"
 
 #: src/components/app/AppKeyringMigrator.tsx:93
 msgid "Legacy keyrings are no longer supported. Your keys need to be migrated to a new keyring that is optionally secured by a master passphrase."
-msgstr "کلیدهای قدیمی دیگر پشتیبانی نمیشوند. کلیدهای شما باید به یک کلید جدید منتقل شوند که به صورت اختیاری با یک عبارت عبور اصلی ایمن شده است."
+msgstr "دسنه کلیدهای قدیمی دیگر پشتیبانی نمیشوند. کلیدهای شما باید به یک کلید جدید منتقل شوند که به صورت اختیاری با یک عبارت رمز ورودی اصلی ایمن شده است."
 
 #: src/components/app/AppKeyringMigrator.tsx:100
 msgid "Legacy keyrings are no longer supported. Your keys need to be migrated to a new keyring that is secured by a master passphrase."
-msgstr "کلیدهای قدیمی دیگر پشتیبانی نمیشوند. کلیدهای شما باید به یک کلید جدید منتقل شوند که به صورت اختیاری با یک عبارت عبور اصلی ایمن شده است."
+msgstr "دسنه کلیدهای قدیمی دیگر پشتیبانی نمیشوند. کلیدهای شما باید به یک کلید جدید منتقل شوند که به صورت اختیاری با یک عبارت رمز ورودی اصلی ایمن شده است."
 
 #: src/components/nfts/NFTDetails.tsx:295
 msgid "License Hash"
@@ -1764,7 +1764,7 @@ msgstr ""
 
 #: src/components/app/AppState.tsx:193
 msgid "Loading keyring status"
-msgstr "بارکذاری وضعیت کلید"
+msgstr "بارکذاری وضعیت دسته کلید"
 
 #: src/components/did/DIDProfileDropdown.tsx:48
 #: src/components/helpers/HeightToTimestamp.tsx:16
@@ -1841,19 +1841,19 @@ msgstr "انتقال کلیدها"
 
 #: src/components/app/AppKeyringMigrator.tsx:129
 msgid "Migration required"
-msgstr ""
+msgstr "نیاز به انتقال"
 
 #: src/components/settings/SettingsPanel.tsx:92
 msgid "Migration required to support passphrase protection"
-msgstr ""
+msgstr "انتقال برای پشتیبانی از حفاظت رمز ورودی لازم است"
 
 #: src/components/pool/PoolInfo.tsx:28
 msgid "Minimum Difficulty"
-msgstr ""
+msgstr "حداقل سختی"
 
 #: src/components/offers/OfferShareDialog.tsx:681
 msgid "MintGarden URL"
-msgstr ""
+msgstr "آدرس سایت MintGarden"
 
 #: src/components/nfts/NFTDetails.tsx:213
 msgid "Minted at Block Height"
@@ -1873,11 +1873,11 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 msgid "Minutes"
-msgstr ""
+msgstr "دقایق"
 
 #: src/components/plot/PlotHarvester.tsx:108
 msgid "Missing Keys"
-msgstr ""
+msgstr "نبودن کلیدها"
 
 #: src/components/nfts/NFTPreview.tsx:641
 msgid "Missing preview_image_hash key"
@@ -1893,19 +1893,19 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:114
 msgid "More memory slightly increases speed"
-msgstr ""
+msgstr "حافظه بیشتر کمی سرعت را افزایش میدهد"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:335
 msgid "Move"
-msgstr ""
+msgstr "انتقال"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:379
 msgid "Move NFT to Profile"
-msgstr ""
+msgstr "انتقال ان اف تی به حساب کاربری"
 
 #: src/components/nfts/NFTContextualActions.tsx:228
 msgid "Move to Profile"
-msgstr ""
+msgstr "انتقال به حساب کاربری"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:522
 msgid "Multi-select"
@@ -1913,7 +1913,7 @@ msgstr ""
 
 #: src/components/settings/ProfileView.tsx:90
 msgid "My DID"
-msgstr ""
+msgstr "شناسه غیر متمرکز من"
 
 #: src/components/offers/NFTOfferEditor.tsx:216
 #: src/components/offers2/OfferBuilderNFTSection.tsx:48
@@ -1921,7 +1921,7 @@ msgstr ""
 #: src/components/settings/SettingsNFT.tsx:110
 #: src/components/signVerify/SignMessage.tsx:154
 msgid "NFT"
-msgstr ""
+msgstr "ان اف تی"
 
 #: src/components/nfts/NFTDetails.tsx:73
 msgid "NFT Coin ID"
@@ -1935,28 +1935,28 @@ msgstr ""
 #: src/components/offers2/OfferBuilderNFT.tsx:63
 #: src/components/signVerify/SigningEntityNFT.tsx:63
 msgid "NFT ID"
-msgstr ""
+msgstr "شناسه ان اف تی"
 
 #: src/components/offers/NFTOfferEditor.tsx:218
 msgid "NFT Identifier"
-msgstr ""
+msgstr "تصمیم گیرنده ان اف تی"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:209
 msgid "NFT Move Failed"
-msgstr ""
+msgstr "انتقال ان اف تی ناموفق"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:184
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:202
 msgid "NFT Move Pending"
-msgstr ""
+msgstr "درحال انتقال ان اف تی"
 
 #: src/components/offers/NFTOfferViewer.tsx:494
 msgid "NFT Purchase Price"
-msgstr ""
+msgstr "قیمت خرید ان اف تی"
 
 #: src/components/nfts/NFTContextualActions.tsx:270
 msgid "NFT Status Update Failed"
-msgstr ""
+msgstr "بروزرسانی ناموفق وضیعت ان اف تی"
 
 #: src/components/nfts/NFTContextualActions.tsx:260
 msgid "NFT Status Updated"
@@ -2536,28 +2536,28 @@ msgstr ""
 
 #: src/components/block/Block.jsx:222
 msgid "Plot Id"
-msgstr ""
+msgstr "شناسه پلات"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:45
 msgid "Plot Key"
-msgstr ""
+msgstr "کلید پلات"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:475
 msgid "Plot NFT Plot Target Address"
-msgstr ""
+msgstr "آدرس پلات مقصد پلات NFT"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:476
 msgid "Plot NFT Pool Contract Address"
-msgstr ""
+msgstr "آدرس قرارداد استخر پلات NFT"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:107
 #: src/components/plotNFT/PlotNFTChangePool.tsx:81
 msgid "Plot NFT with p2_singleton_puzzle_hash {plotNFTId} does not exists"
-msgstr ""
+msgstr "پلات NFT با p2_singleton_puzzle_hash {plotNFTId} وجود ندارد"
 
 #: src/components/block/Block.jsx:206
 msgid "Plot Public Key"
-msgstr ""
+msgstr "کلید عمومی پلات"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:87
 msgid "Plot Size"
@@ -2565,7 +2565,7 @@ msgstr "اندازه پلات"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:72
 msgid "Plot in Parallel"
-msgstr ""
+msgstr "پلات سازی بصورت موازی"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:23
 msgid "Plot is duplicate of {0}"
@@ -2573,16 +2573,16 @@ msgstr "پلات کپی این {0} پلات است"
 
 #: src/components/plotNFT/PlotNFTState.tsx:44
 msgid "PlotNFT is transitioning to (target state). This can take a while. Please do not close the application until this is finalized."
-msgstr ""
+msgstr "پلاتNFT در حال انتقال به (حالت هدف) است. این میتواند مدتی طول بکشد. لطفاً تا زمانیکه این مورد نهایی نشده است، برنامه را نبندید."
 
 #: src/components/dashboard/DashboardSideBar.tsx:83
 #: src/components/plot/PlotHarvester.tsx:96
 msgid "Plots"
-msgstr ""
+msgstr "پلات ها"
 
 #: src/components/plot/card/PlotCardPlotsFailedToOpen.tsx:11
 msgid "Plots Failed To Open"
-msgstr ""
+msgstr "پلاتها نمیتوانند اجرا شوند"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:21
 msgid "Plots Passed Filter"
@@ -2590,7 +2590,7 @@ msgstr "پلات ها با موفقیت از فیلتر عبور کردند"
 
 #: src/components/plot/card/PlotCardNotFound.tsx:11
 msgid "Plots With Missing Keys"
-msgstr ""
+msgstr "پلاتها با کلیدهای ناموفق"
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:34
 msgid "Plots are allocated space on your hard drive used to farm and earn Chia.  <0>Learn more</0>"
@@ -2602,16 +2602,16 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:91
 msgid "Plotter"
-msgstr ""
+msgstr "پلات ساز"
 
 #: src/components/plot/PlotPlotting.tsx:45
 #: src/components/plot/queue/PlotQueueIndicator.tsx:35
 msgid "Plotting"
-msgstr ""
+msgstr "پلات سازی"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:36
 msgid "Plotting Manager"
-msgstr ""
+msgstr "مدیریت پلات سازی"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:65
 msgid "Plotting in parallel can save time. Otherwise, add plot(s) to the queue."
@@ -2624,17 +2624,17 @@ msgstr "پلات سازی با فعال کردن bitfield حدود ۳۰٪ اعم
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:153
 #: src/components/plotNFT/PlotNFTCard.tsx:186
 msgid "Points Found Since Start"
-msgstr ""
+msgstr "امتیازهای پیداشده از زمان شروع"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:162
 #: src/components/plotNFT/PlotNFTCard.tsx:195
 msgid "Points Found in Last 24 Hours"
-msgstr ""
+msgstr "امتیازهای پیداشده در 24 ساعت گذشته"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:171
 #: src/components/plotNFT/PlotNFTCard.tsx:204
 msgid "Points Successful in Last 24 Hours"
-msgstr ""
+msgstr "امتیاهای موفقیت آمیز در 24 ساعت گذشته"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:64
 msgid "Pool Contract Address"
@@ -2642,20 +2642,20 @@ msgstr "آدرس قرارداد استخر"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:51
 msgid "Pool Key"
-msgstr ""
+msgstr "کلید استخر"
 
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:53
 msgid "Pool Login Link"
-msgstr ""
+msgstr "لینک کلید استخر"
 
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:76
 msgid "Pool Payout Instructions"
-msgstr ""
+msgstr "دستورالعمل پرداخت استخر"
 
 #: src/components/block/Block.jsx:210
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:465
 msgid "Pool Public Key"
-msgstr ""
+msgstr "کلید عمومی استخر"
 
 #: src/components/block/Block.jsx:218
 msgid "Pool Puzzle Hash"
@@ -2667,11 +2667,11 @@ msgstr "آدرس پاداش استخر"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:120
 msgid "Pool Reward Address is not properly formatted."
-msgstr ""
+msgstr "آدرس پاداش استخر به درستی قالب بندی نشده است."
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:115
 msgid "Pool Reward Address must not be empty."
-msgstr ""
+msgstr "آدرس پاداش استخر نباید خالی باشد."
 
 #: src/components/block/Block.jsx:231
 msgid "Pool Reward Amount"
@@ -2679,49 +2679,49 @@ msgstr "مقدار پاداش استخر"
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:33
 msgid "Pool does not provide relativeLockHeight."
-msgstr ""
+msgstr "استخر relativeLockHeight را ارائه نمیدهد."
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:30
 msgid "Pool does not provide targetPuzzleHash."
-msgstr ""
+msgstr "استخر targetPuzzleHash را ارائه نمیدهد."
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:233
 #: src/components/plotNFT/PlotNFTCard.tsx:269
 #: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:69
 msgid "Pool:"
-msgstr ""
+msgstr "استخر:"
 
 #: src/components/dashboard/DashboardSideBar.tsx:103
 #: src/components/plotNFT/PlotNFTExternalState.tsx:25
 #: src/components/plotNFT/PlotNFTState.tsx:57
 msgid "Pooling"
-msgstr ""
+msgstr "درحال استخر"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:37
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:37
 #: src/components/fullNode/FullNodeAddConnection.tsx:95
 #: src/components/fullNode/FullNodeConnections.tsx:38
 msgid "Port"
-msgstr ""
+msgstr "پورت"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:93
 #: src/components/plotNFT/PlotNFTChangePool.tsx:75
 msgid "Preparing Plot NFT"
-msgstr ""
+msgstr "آماده سازی پلات ان اف تی"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:101
 msgid "Preparing standard wallet"
-msgstr ""
+msgstr "آماده سازی کیف پول استاندارد"
 
 #: src/components/nfts/NFTPreview.tsx:406
 #: src/components/nfts/NFTPreview.tsx:417
 #: src/components/offers2/OfferBuilderNFT.tsx:84
 msgid "Preview"
-msgstr ""
+msgstr "پیش نمایش"
 
 #: src/components/nfts/NFTPreview.tsx:621
 msgid "Preview URL is not valid"
-msgstr ""
+msgstr "پیش نمایش ادرس سایت معتبر نیست"
 
 #: src/components/nfts/NFTDetails.tsx:315
 msgid "Preview image uris"
@@ -2734,7 +2734,7 @@ msgstr ""
 #: src/components/block/Block.jsx:256
 #: src/components/nfts/detail/NFTDetailV2.tsx:245
 msgid "Previous"
-msgstr ""
+msgstr "قبلى"
 
 #: src/components/block/Block.jsx:177
 msgid "Previous Header Hash"
@@ -2742,12 +2742,12 @@ msgstr "عنوان هش قبلی"
 
 #: src/components/settings/ProfileView.tsx:57
 msgid "Profile Name"
-msgstr ""
+msgstr "نام حساب کاربر"
 
 #: src/components/settings/Settings.tsx:66
 #: src/components/settings/SettingsProfiles.tsx:55
 msgid "Profiles"
-msgstr ""
+msgstr "حسابهای کاربر"
 
 #: src/components/block/Block.jsx:202
 msgid "Proof of Space Size"
@@ -2763,7 +2763,7 @@ msgstr ""
 
 #: src/components/pool/PoolInfo.tsx:23
 msgid "Protocol Version"
-msgstr ""
+msgstr "نسخه پروتکل"
 
 #: src/components/settings/SettingsAdvanced.tsx:85
 msgid "Prove or verify possession of a wallet address, NFT, or DID using a digital signature."
@@ -2775,12 +2775,12 @@ msgstr ""
 
 #: src/components/offers/NFTOfferViewer.tsx:469
 msgid "Purchase Summary"
-msgstr ""
+msgstr "خلاصه خرید"
 
 #: src/components/plot/PlotPlotting.tsx:22
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:216
 msgid "Queue Name"
-msgstr ""
+msgstr "نام نوبت"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:36
 msgid "Queued"
@@ -2792,7 +2792,7 @@ msgstr "حداکثر مقدار استفاده از فضای رم"
 
 #: src/components/nfts/NFTRankings.tsx:74
 msgid "Rankings"
-msgstr ""
+msgstr "رتبه بندی"
 
 #: src/components/settings/SettingsNotifications.tsx:31
 msgid "Receive push notifications when your wallet is minimized"
@@ -2800,11 +2800,11 @@ msgstr ""
 
 #: src/components/app/AppSelectMode.tsx:103
 msgid "Recommended"
-msgstr ""
+msgstr "توصیه شده"
 
 #: src/components/settings/ProfileAdd.tsx:114
 msgid "Recommended: 0.000005 XCH"
-msgstr ""
+msgstr "توصیه شده: 0.000005 XCH"
 
 #: src/components/nfts/NFTContextualActions.tsx:602
 msgid "Refresh NFT data"
@@ -2822,7 +2822,7 @@ msgstr ""
 
 #: src/components/pool/PoolInfo.tsx:33
 msgid "Relative Lock Height"
-msgstr ""
+msgstr "ارتفاع قفل نسبی"
 
 #: src/electron/main.tsx:1059
 msgid "Release Notes"
@@ -2830,21 +2830,21 @@ msgstr "یادداشت‌های انتشار"
 
 #: src/components/plot/PlotHarvester.tsx:60
 msgid "Remote"
-msgstr ""
+msgstr "از راه دور"
 
 #: src/components/settings/RemovePassphrasePrompt.tsx:116
 #: src/components/settings/RemovePassphrasePrompt.tsx:171
 #: src/components/settings/SettingsPanel.tsx:147
 msgid "Remove Passphrase"
-msgstr ""
+msgstr "حذف رمز ورود"
 
 #: src/components/app/AppKeyringMigrator.tsx:246
 msgid "Remove keys from old keyring upon successful migration"
-msgstr ""
+msgstr "پس از انتقال موفقیت آمیز، کلیدها را از جا کلیدی قدیمی حذف کنید"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:37
 msgid "Removing"
-msgstr ""
+msgstr "درحال حذف کردن"
 
 #: src/electron/main.tsx:1074
 msgid "Report an Issue..."
