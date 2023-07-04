@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-04 11:14\n"
+"PO-Revision-Date: 2023-07-04 12:13\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1732,7 +1732,7 @@ msgstr "لیست آدرس سایت مجوز {0}"
 
 #: src/components/settings/SettingsNFT.tsx:214
 msgid "Limit cache size"
-msgstr ""
+msgstr "محدود کردن اندازه حافظه پنهان"
 
 #: src/components/fullNode/FullNodeConnections.tsx:99
 msgid "List of connections is empty"
@@ -1748,7 +1748,7 @@ msgstr "اطلاعات بارکذاری ان اف تی..."
 
 #: src/components/offers2/OfferBuilderValueSearch.tsx:144
 msgid "Loading NFTs..."
-msgstr ""
+msgstr "بارگذاری ان اف تی ها..."
 
 #: src/components/app/AppProviders.tsx:96
 msgid "Loading configuration"
@@ -1760,7 +1760,7 @@ msgstr "بارگداری اطلاعات فارم"
 
 #: src/components/app/AppAutoLogin.tsx:49
 msgid "Loading fingerprint"
-msgstr ""
+msgstr "بازکذاری کدهای شخصی"
 
 #: src/components/app/AppState.tsx:193
 msgid "Loading keyring status"
@@ -1782,7 +1782,7 @@ msgstr "محلی"
 
 #: src/components/settings/SettingsNFT.tsx:196
 msgid "Local folder"
-msgstr ""
+msgstr "پوشه محلی"
 
 #: src/constants/WalletConnectCommands.tsx:14
 msgid "Log In"
@@ -2771,7 +2771,7 @@ msgstr ""
 
 #: src/components/signVerify/VerifyMessage.tsx:219
 msgid "Public Key"
-msgstr ""
+msgstr "کلید عمومی"
 
 #: src/components/offers/NFTOfferViewer.tsx:469
 msgid "Purchase Summary"
@@ -2910,7 +2910,7 @@ msgstr "دخیره فایل پیشنهاد"
 
 #: src/components/signVerify/SignMessageResultDialog.tsx:63
 msgid "Save To File"
-msgstr ""
+msgstr "ذخیره در فایل"
 
 #: src/components/app/AppKeyringMigrator.tsx:225
 #: src/components/settings/ChangePassphrasePrompt.tsx:273
@@ -2929,7 +2929,7 @@ msgstr "جستجو در دیتابیس تیل"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:520
 msgid "Search..."
-msgstr ""
+msgstr "جستجو..."
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:109
 msgid "Second temporary folder location"
@@ -2937,7 +2937,7 @@ msgstr "مکان دوم پوشه موقت"
 
 #: src/constants/WalletConnectCommands.tsx:265
 msgid "Secure"
-msgstr ""
+msgstr "امن"
 
 #: src/components/settings/SettingsPanel.tsx:95
 msgid "Secure your keychain using a strong passphrase"
@@ -2945,7 +2945,7 @@ msgstr "دسته کلید خود را با استفاده از یک رمز ور�
 
 #: src/components/notification/NotificationsMenu.tsx:60
 msgid "See All Activity"
-msgstr ""
+msgstr "دیدن همه فعالیت ها"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:103
 msgid "Select 2nd Temporary Directory"
@@ -2974,11 +2974,11 @@ msgstr "انتخاب حالت عملکرد خود"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:475
 msgid "Select all"
-msgstr ""
+msgstr "انتخاب همه"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:141
 msgid "Select keys which you want to share with WalletConnect"
-msgstr ""
+msgstr "کلیدهایی را که میخواهید با WalletConnect به اشتراک بگذارید انتخاب کنید"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:35
 msgid "Select the final destination for the folder where you would like the plot to be stored. We recommend you use a large slow hard drive (like external HDD)."
@@ -3017,15 +3017,15 @@ msgstr "فروش یک ان اف تی"
 
 #: src/components/notification/NotificationSendDialog.tsx:294
 msgid "Send Message"
-msgstr ""
+msgstr "ارسال پیام"
 
 #: src/constants/WalletConnectCommands.tsx:75
 msgid "Send Transaction"
-msgstr ""
+msgstr "ارسال تراکنش"
 
 #: src/components/notification/NotificationSendDialog.tsx:178
 msgid "Send offer notification"
-msgstr ""
+msgstr "ارسال اعلان پیشنهاد"
 
 #: src/components/nfts/NFTBurnDialog.tsx:159
 #: src/components/nfts/NFTTransferAction.tsx:149
@@ -3079,7 +3079,7 @@ msgstr "اشتراک در OfferBin"
 
 #: src/components/offers/OfferShareDialog.tsx:975
 msgid "Share on Spacescan.io"
-msgstr ""
+msgstr "اشتراک در Spacescan.io"
 
 #: src/components/offers/OfferShareDialog.tsx:1295
 msgid "Share on offerpool"
@@ -3099,31 +3099,31 @@ msgstr "نمایش پیش نمایش"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:541
 msgid "Showing {0} of {1} items"
-msgstr ""
+msgstr "نمایش {0} از {1} موارد"
 
 #: src/components/settings/ResyncPrompt.tsx:52
 msgid "Shut down"
-msgstr ""
+msgstr "بستن"
 
 #: src/components/signVerify/SignMessage.tsx:208
 msgid "Sign"
-msgstr ""
+msgstr "امضا کردن"
 
 #: src/components/signVerify/SignVerifyDialog.tsx:23
 msgid "Sign Message"
-msgstr ""
+msgstr "امضاء پیام"
 
 #: src/constants/WalletConnectCommands.tsx:131
 msgid "Sign Message by Address"
-msgstr ""
+msgstr "امضاء پیام با آدرس"
 
 #: src/constants/WalletConnectCommands.tsx:114
 msgid "Sign Message by Id"
-msgstr ""
+msgstr "امضاء پیام با شناسه"
 
 #: src/components/signVerify/VerifyMessage.tsx:228
 msgid "Signature"
-msgstr ""
+msgstr "امضاء"
 
 #: src/components/signVerify/VerifyMessage.tsx:197
 msgid "Signature Details"
@@ -3219,7 +3219,7 @@ msgstr "شروع خدمات"
 
 #: src/components/settings/SettingsStartup.tsx:16
 msgid "Startup"
-msgstr ""
+msgstr "شروع"
 
 #: src/components/fullNode/FullNode.jsx:79
 msgid "State"
