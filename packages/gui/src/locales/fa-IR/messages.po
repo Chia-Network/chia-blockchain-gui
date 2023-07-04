@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-03 15:36\n"
+"PO-Revision-Date: 2023-07-04 06:34\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1833,7 +1833,7 @@ msgstr "MiB آپلود/دانلود"
 
 #: src/components/settings/SettingsPanel.tsx:136
 msgid "Migrate Keyring"
-msgstr ""
+msgstr "انتقال دسته کلید"
 
 #: src/components/app/AppKeyringMigrator.tsx:268
 msgid "Migrate Keys"
@@ -1857,7 +1857,7 @@ msgstr "آدرس سایت MintGarden"
 
 #: src/components/nfts/NFTDetails.tsx:213
 msgid "Minted at Block Height"
-msgstr ""
+msgstr "ثبت شده در ارتفاع بالا"
 
 #: src/components/offers2/OfferBuilderNFT.tsx:70
 msgid "Minter"
@@ -2238,7 +2238,7 @@ msgstr "پیشنهاد پذیرفته شده و در انتظار تایید ا�
 
 #: src/components/offers/OfferShareDialog.tsx:755
 msgid "OfferBin URL"
-msgstr ""
+msgstr "آدرس سایت OfferBin"
 
 #: src/components/offers/OfferManager.tsx:266
 msgid "Offered"
@@ -2994,22 +2994,22 @@ msgstr "انتخاب پلات NFT خود"
 
 #: src/components/plot/add/PlotAddNFT.tsx:69
 msgid "Select your Plot NFT from the dropdown or create a new one."
-msgstr ""
+msgstr "پلاتNFT خود را از منوی بازشو انتخاب کنید یا یک مورد جدید ایجاد کنید."
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:71
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:79
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:124
 msgid "Selected"
-msgstr ""
+msgstr "انتخاب شد"
 
 #: src/components/plotNFT/PlotNFTExternalState.tsx:24
 #: src/components/plotNFT/PlotNFTState.tsx:55
 msgid "Self Pooling"
-msgstr ""
+msgstr "استخر شخصی"
 
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:86
 msgid "Self pool. When you win a block you will earn XCH rewards."
-msgstr ""
+msgstr "استخر شخصی. وقتی یک بلاک را برنده میشوید، کل پاداش XCH را دریافت خواهید کرد."
 
 #: src/components/offers/NFTOfferEditor.tsx:313
 msgid "Sell an NFT"
@@ -3295,7 +3295,7 @@ msgstr ""
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:203
 msgid "The NFT move transaction has been successfully submitted to the blockchain."
-msgstr ""
+msgstr "تراکنش انتقال ان اف تی با موفقیت به بلاکچین ارسال شد."
 
 #: src/components/nfts/NFTContextualActions.tsx:261
 msgid "The NFT status has been updated. If the transaction was successfully sent to the mempool, it may still complete."
