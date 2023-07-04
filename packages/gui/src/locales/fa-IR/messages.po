@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-04 06:34\n"
+"PO-Revision-Date: 2023-07-04 07:36\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -3295,11 +3295,11 @@ msgstr ""
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:203
 msgid "The NFT move transaction has been successfully submitted to the blockchain."
-msgstr "تراکنش انتقال ان اف تی با موفقیت به بلاکچین ارسال شد."
+msgstr "تراکنش جابجایی ان اف تی با موفقیت به بلاکچین ارسال شد."
 
 #: src/components/nfts/NFTContextualActions.tsx:261
 msgid "The NFT status has been updated. If the transaction was successfully sent to the mempool, it may still complete."
-msgstr ""
+msgstr "وضعیت ان اف تی بروز شده است. اگر تراکنش با موفقیت به حافظه استخر تراکنش ارسال شود، ممکن است همچنان تکمیل شود."
 
 #: src/components/nfts/NFTContextualActions.tsx:271
 msgid "The NFT status update failed: {err}"
@@ -3307,15 +3307,15 @@ msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:183
 msgid "The NFT transfer failed: {error}"
-msgstr ""
+msgstr "انتقال ان اف تی انجام نشد: {error}"
 
 #: src/components/nfts/NFTContextualActions.tsx:176
 msgid "The NFT transfer transaction has been successfully submitted to the blockchain."
-msgstr ""
+msgstr "تراکنش انتقال NFT با موفقیت به بلاکچین ارسال شد."
 
 #: src/components/settings/SettingsPanel.tsx:165
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
-msgstr ""
+msgstr "شاخص مشتق که کیف پول بلاکچین را اسکن میکند محدوده آدرس های کیف پول را تعیین مینماید. اگر تراکنش‌های زیادی دارید یا پیشنهادات لغو شده برای XCH، CAT یا ان اف تی دارید، این عدد معمولاً بیشتر است. اگر فکر میکنید موجودی‌ شما نادرست است، ارزهای درون آن کمتر است، افزایش شاخص مشتق‌گیری میتواند به کیف پول کمک کندتا ارزهای گمشده را در کل موجودی قراردهد."
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:88
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:137
@@ -3333,7 +3333,7 @@ msgstr "حداقل اندازه مورد نیاز برای شبکه اصلی k =
 
 #: src/components/offers/NFTOfferViewer.tsx:584
 msgid "The net proceeds include the asking price, minus any associated creator fees (if the NFT has royalty payments enabled)."
-msgstr ""
+msgstr "درآمد خالص شامل قیمت درخواستی، به منهای هر گونه کارمزد ایجادکننده مرتبط است (اگر ان اف تی پرداخت حق امتیاز را فعال کرده باشد)."
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:16
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:46
@@ -3342,11 +3342,11 @@ msgstr "گره همگام سازی نشده"
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:35
 msgid "The node is syncing, which means it is downloading blocks from other nodes, to reach the latest block in the chain"
-msgstr ""
+msgstr "نود در حال سینک شدن است،به این معنی که در حال دانلود بلاک ها از نودهای دیگر است تا به آخرین بلاک در زنجیره برسد"
 
 #: src/hooks/usePoolInfo.ts:54
 msgid "The pool URL \"{normalizedUrl}\" is not working. Is it pool? Error: {0}"
-msgstr ""
+msgstr "آدرس سایت استخر \"{normalizedUrl}\" کار نمیکند. مطمئن هستید از آدرس? خطا: {0}"
 
 #: src/hooks/usePoolInfo.ts:43
 msgid "The pool URL is not valid. {normalizedUrl}"
@@ -3354,11 +3354,11 @@ msgstr "ادرس استخر استخراج معین شده معتبر نیست. 
 
 #: src/hooks/usePoolInfo.ts:40
 msgid "The pool URL needs to use protocol https. {normalizedUrl}"
-msgstr ""
+msgstr "آدرس سایت استخر باید از پروتکل https استفاده کند. {normalizedUrl}"
 
 #: src/components/plotNFT/PlotNFTState.tsx:30
 msgid "The pool switching operation was cancelled, please try again by changing pool, or self pooling"
-msgstr ""
+msgstr "عملیات تعویض استخر لغو شد، لطفاً با تغییر استخر یا استخر شخصی مجددامتحان کنید"
 
 #: src/components/block/Block.jsx:224
 msgid "The seed used to create the plot. This depends on the pool pk and plot pk."
@@ -3370,23 +3370,23 @@ msgstr ""
 
 #: src/components/offers/NFTOfferViewer.tsx:558
 msgid "The total amount offered includes the offered purchase price, plus the optional offer creation fee.<0/>If the NFT has royalty payments enabled, those creator fees will be paid from the offered purchase price."
-msgstr ""
+msgstr "کل مبلغ پیشنهاد شامل قیمت خرید پیشنهادی، به اضافه هزینه ایجاد پیشنهاد اختیاری است.<0/>اگر ان اف تی پرداخت حق امتیاز را فعال کرده باشد، همه هزینه‌های ایجادشده از قیمت خرید پیشنهادی پرداخت میشود."
 
 #: src/components/offers/NFTOfferEditor.tsx:400
 msgid "The total amount offered includes the price you're willing to pay for the NFT, plus the optional offer creation fee. One or more coins totalling at least the amount shown below will be deducted from your spendable balance upon offer creation.<0/>If the NFT has royalty payments enabled, those creator fees will be paid by the party that accepts the offer."
-msgstr ""
+msgstr "کل مبلغ ارائه شده شامل قیمتی است که مایلید برای ان اف تی بپردازید،به علاوه کارمزد اختیاری ایجاد پیشنهاد. یک یا چند ارزکه مجموعاً حداقل مبلغ نمایان داده شده در پایین است، پس از ایجاد پیشنهاد، از موجودی قابل خرج کردن شما کسر خواهد شد.<0/>اگر ان اف تی پرداخت حق امتیاز را فعال کرده باشد، آن هزینه های ایجادکننده توسط طرفی که پیشنهاد را میپذیرد پرداخت میشود."
 
 #: src/components/offers/NFTOfferEditor.tsx:391
 msgid "The total amount requested includes the asking price, plus the associated creator fees (if the NFT has royalty payments enabled). Creator fees will be paid by the party that accepts the offer.<0/>The optional offer creation fee is not included in this total, and will be deducted from your spendable balance upon offer creation."
-msgstr ""
+msgstr "کل مبلغ درخواستی شامل قیمت درخواستی، به‌علاوه هزینه‌های مربوط به ایجادکننده است (اگر ان اف تی پرداخت حق امتیاز را فعال کرده باشد). هزینه‌های ایجادکننده توسط طرفی که پیشنهاد را میپذیرد پرداخت میشود.<0/>هزینه اختیاری ایجاد پیشنهاد در این مجموع لحاظ نمیشود و پس از ایجاد پیشنهاد، از موجودی قابل مصرف شما کسر میشود."
 
 #: src/components/offers/NFTOfferViewer.tsx:547
 msgid "The total amount requested includes the asking price, plus the associated creator fees (if the NFT has royalty payments enabled).{0}"
-msgstr ""
+msgstr "کل مبلغ درخواستی شامل قیمت درخواستی، به‌علاوه هزینه‌های سازنده مرتبط است (اگر ان اف تی پرداخت حق امتیاز را فعال کرده باشد).{0}"
 
 #: src/components/block/Block.jsx:188
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on the whole chain up to this block."
-msgstr ""
+msgstr "تعداد کل VDF (تابع تأخیر قابل تأیید) یا تکرارهای اثبات زمانی در کل زنجیره تا این بلاک."
 
 #: src/components/block/Block.jsx:198
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on this block."
@@ -3398,24 +3398,24 @@ msgstr "کل کارمزد های تراکنش ها در این بلوک. به م
 
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:91
 msgid "These are the instructions for how the farmer wants to get paid. By default this will be an XCH address, but it can be set to any string with a size of less than 1024 characters, so it can represent another blockchain or payment system identifier."
-msgstr ""
+msgstr "این دستورالعمل‌هایی است که نشان میدهد فارمر چگونه میخواهد دریافت کند. به طور پیش‌فرض این یک آدرس XCH خواهد بود، اما میتوان آنرا روی هر رشته‌ای با اندازه کمتر از 1024 کاراکتر تنظیم کرد، بنابراین میتواند یک شناسه بلاکچین یا سیستم پرداخت دیگر را نشان دهد."
 
 #: src/components/plot/card/PlotCardPlotsFailedToOpen.tsx:13
 msgid "These plots are invalid, you might want to delete them."
-msgstr ""
+msgstr "این پلاتها نامعتبر هستند، ممکن است بخواهید آنها را حذف کنید."
 
 #: src/components/offers/NFTOfferEditor.tsx:365
 msgid "They will receive"
-msgstr ""
+msgstr "دریافت خواهند کرد"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:87
 msgid "This allows you to add a directory that has plots in it. If you have not created any plots, go to the plotting screen."
-msgstr ""
+msgstr "این به شما اجازه میدهد تا مسر پوشه را اضافه کنید که دارای پلاتهایی در آن است. اگر هیچ پلاتی ایجاد نکرده اید، به صفحه ساختن پلات بروید."
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:113
 #: src/components/plotNFT/PlotNFTCard.tsx:146
 msgid "This difficulty is an artifically lower difficulty than on the real network, and is used when farming, in order to find more proofs and send them to the pool. The more plots you have, the higher difficulty you will have. However, the difficulty does not affect rewards."
-msgstr ""
+msgstr "این سختی مصنوعی نسبت به شبکه واقعی کمتر است و هنگام فارم استفاده میشود تا شاهدهای بیشتری پیدا کرده و آنها را به استخر ارسال کند. هرچه پلات های بیشتری داشته باشید، دشواری بیشتری خواهید داشت. با این حال، دشواری بر پاداش ها تأثیر نمی گذارد."
 
 #: src/hooks/useSelectDirectory.tsx:32
 msgid "This feature is available only from the GUI."
@@ -3427,17 +3427,17 @@ msgstr "این مدت زمان صرف شده برای ساخت بلوک توسط
 
 #: src/components/fullNode/card/FullNodeCardPeakTime.tsx:17
 msgid "This is the timestamp of the most recent transaction block."
-msgstr ""
+msgstr "این زمان وقوع رویداد آخرین بلاک تراکنش است."
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:130
 #: src/components/plotNFT/PlotNFTCard.tsx:163
 msgid "This is the total number of points this plotNFT has with this pool, since the last payout. The pool will reset the points after making a payout."
-msgstr ""
+msgstr "تعداد کل امتیازهایی که این پلاتNFT از زمان آخرین پرداخت در این استخر دارد. پس از پرداخت استخر امتیازها را تنظیم مجدد میکند."
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:146
 #: src/components/plotNFT/PlotNFTCard.tsx:179
 msgid "This is the total number of points your farmer has found for this plot NFT. Each k32 plot will get around 10 points per day, so if you have 10TiB, should should expect around 1000 points per day, or 41 points per hour."
-msgstr ""
+msgstr "این تعداد کل امتیازهایی است که فارم شما برای این پلاتNFT پیدا کرده است. هر پلات k32 حدود 10 امتیاز در روز دریافت میکند، بنابراین اگر 10 ترابایت دارید، باید حدود 1000 امتیاز در روز یا 41 امتیاز در ساعت انتظار داشته باشید."
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:52
 msgid "This node is fully caught up and validating the network"
@@ -3565,7 +3565,7 @@ msgstr "جمع اندازه پلات ها"
 
 #: src/components/block/Block.jsx:185
 msgid "Total VDF Iterations"
-msgstr ""
+msgstr "کل تکرارهای تابع تاخیر قابل تاییدVDF"
 
 #: src/components/offers2/OfferBuilderRoyaltyPayouts.tsx:32
 msgid "Total amount including royalties"
@@ -3605,7 +3605,7 @@ msgstr ""
 
 #: src/components/block/Block.jsx:227
 msgid "Transactions Filter Hash"
-msgstr ""
+msgstr "هش فیلتر معاملات"
 
 #: src/components/nfts/NFTTransferAction.tsx:169
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:37
@@ -3636,15 +3636,15 @@ msgstr "آدرس سایت"
 
 #: src/components/offers/NFTOfferEditor.tsx:638
 msgid "Unable to create an offer for an NFT that you do not own."
-msgstr ""
+msgstr "نمیتوانید برای ان اف تی که مالک آن نیستید پیشنهادی ایجاد کنید."
 
 #: src/components/offers/NFTOfferEditor.tsx:647
 msgid "Unable to create an offer for an NFT with a creator royalty percentage greater than 100%"
-msgstr ""
+msgstr "ایجاد پیشنهاد برای یک ان اف تی با درصد حق امتیاز سازنده بیشتر از 100٪ ممکن نیست"
 
 #: src/components/offers/NFTOfferEditor.tsx:374
 msgid "Unable to create an offer where the net amount is negative"
-msgstr ""
+msgstr "نمیتوان پیشنهادی ایجاد کرد که مبلغ خالص آن منفی است"
 
 #: src/components/signVerify/SignMessage.tsx:110
 msgid "Unable to find DID {entityId}"
@@ -3656,30 +3656,30 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:1099
 msgid "Unable to open Keybase. Install Keybase from https://keybase.io"
-msgstr ""
+msgstr "Keybase باز نمیشود. Keybase را از https://keybase.io نصب کنید"
 
 #: src/components/offers/OfferShareDialog.tsx:1002
 msgid "Unable to open browser. Install Keybase from https://keybase.io"
-msgstr ""
+msgstr "مرورگر باز نمیشود Keybase را از https://keybase.io نصب کنید"
 
 #: src/components/nfts/NFTDetails.tsx:141
 #: src/components/nfts/NFTDetails.tsx:162
 #: src/components/nfts/NFTDetails.tsx:205
 msgid "Unassigned"
-msgstr ""
+msgstr "اختصاص داده نشده"
 
 #: src/components/nfts/NFTProfileDropdown.tsx:86
 #: src/components/nfts/NFTProfileDropdown.tsx:121
 msgid "Unassigned NFTs"
-msgstr ""
+msgstr "ان اف تی های اختصاص نیافته"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:133
 msgid "Unclaimed Rewards"
-msgstr ""
+msgstr "پاداشهای برداشت نشده"
 
 #: src/components/fullNode/FullNode.jsx:77
 msgid "Unfinished"
-msgstr ""
+msgstr "تمام نشده"
 
 #: src/components/offers/utils.ts:163
 #: src/components/offers2/OfferBuilderTokenSelector.tsx:66
@@ -3845,7 +3845,7 @@ msgstr ""
 #: src/components/app/AppStatusHeader.tsx:109
 #: src/hooks/useWalletConnectCommand.tsx:105
 msgid "Wallet"
-msgstr ""
+msgstr "کیف پول"
 
 #: src/components/signVerify/SignMessage.tsx:153
 msgid "Wallet Address"
@@ -3875,11 +3875,11 @@ msgstr ""
 #: src/components/app/AppSelectMode.tsx:70
 #: src/components/app/AppSelectMode.tsx:120
 msgid "Wallet Mode"
-msgstr ""
+msgstr "حالت کیف پول"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:69
 msgid "Wallet is not defined"
-msgstr ""
+msgstr "کیف پول تعریف نشده"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:160
 msgid "Wallet {0}"
@@ -3902,7 +3902,7 @@ msgstr ""
 
 #: src/components/plotNFT/PlotNFTAdd.tsx:59
 msgid "Want to Join a Pool? Create a Plot NFT"
-msgstr ""
+msgstr "میخواهید به یک استخر متصل شوید؟ یک پلاتNFT ایجاد کنید"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:83
 msgid "Want to have a delay before the next plot starts?"
@@ -3910,7 +3910,7 @@ msgstr "آیا می خواهید قبل از شروع ساخت پلات بعدی
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:360
 msgid "Warm start"
-msgstr ""
+msgstr "شروع گرم"
 
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:32
 msgid "Warning"
@@ -4063,29 +4063,29 @@ msgstr "نمای کلی استخر شما"
 
 #: src/components/app/AppPassPrompt.tsx:86
 msgid "Your keyring is locked"
-msgstr ""
+msgstr "دسته کلید شما قفل است"
 
 #: src/components/offers/OfferShareDialog.tsx:1135
 msgid "Your offer has been successfully posted to Keybase."
-msgstr ""
+msgstr "پیشنهاد شما با موفقیت در Keybase ثبت شد."
 
 #: src/components/app/AppKeyringMigrator.tsx:229
 #: src/components/settings/ChangePassphrasePrompt.tsx:277
 #: src/components/settings/SetPassphrasePrompt.tsx:246
 msgid "Your passphrase can be stored in your system's secure credential store. Chia will be able to access your keys without prompting for your passphrase."
-msgstr ""
+msgstr "رمز ورود شما میتواند در بخش اطلاعات کاربری امن سیستم شما ذخیره شود. چیا میتواند به کلیدهای شما بدون درخواست رمز ورودتان دسترسی داشته باشد."
 
 #: src/components/settings/SettingsPanel.tsx:55
 msgid "Your passphrase has been set"
-msgstr ""
+msgstr "رمز ورود شما تنظیم شده"
 
 #: src/components/settings/SettingsPanel.tsx:46
 msgid "Your passphrase has been updated"
-msgstr ""
+msgstr "رمز عبور شما به روز شده"
 
 #: src/components/offers/OfferViewerTitle.tsx:36
 msgid "created {0}"
-msgstr ""
+msgstr "ایجاد شده {0}"
 
 #: src/components/offers2/OfferBuilderImport.tsx:170
 #: src/components/signVerify/VerifyMessageImport.tsx:154
@@ -4094,32 +4094,32 @@ msgstr ""
 
 #: src/components/offers/OfferImport.tsx:170
 msgid "or Paste (Ctrl-V) an Offer blob"
-msgstr ""
+msgstr "یا جای‌گذاری (Ctrl-V) یک پیشنهاد blob"
 
 #: src/components/offers/OfferImport.tsx:170
 msgid "or Paste (⌘V) an Offer blob"
-msgstr ""
+msgstr "یا جای‌گذاری (⌘V) یک پیشنهاد blob"
 
 #: src/components/plot/add/PlotAddForm.tsx:138
 msgid "p2SingletonPuzzleHash is not defined"
-msgstr ""
+msgstr "p2SingletonPuzzleHash تعریف نشده"
 
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:87
 msgid "{0, plural, one {mojo} other {mojos}}"
-msgstr ""
+msgstr "{0, plural, one {موجو} other {موجوها}}"
 
 #: src/components/nfts/NFTPreview.tsx:681
 msgid "{0}"
-msgstr ""
+msgstr "{0}"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:169
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:201
 msgid "{0} buckets is recommended"
-msgstr ""
+msgstr "{0} باکت توصیه میشود"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:316
 msgid "{0} of {1}"
-msgstr ""
+msgstr "{0} از {1}"
 
 #: src/components/nfts/gallery/SelectedActionsDialog.tsx:63
 msgid "{0} of {allCount} items selected:"
@@ -4127,7 +4127,7 @@ msgstr ""
 
 #: src/components/plotNFT/PlotNFTGraph.tsx:63
 msgid "{0} points {1} - {2} hours ago"
-msgstr ""
+msgstr "{0} امتیاز {1} - {2} مدتی قبل"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:194
 msgid "{count} NFTs failed to move."
@@ -4144,11 +4144,11 @@ msgstr ""
 #: src/components/offers/NFTOfferViewer.tsx:203
 #: src/components/offers/OfferSummary.tsx:173
 msgid "{makerFee, plural, one {mojo} other {mojos}}"
-msgstr ""
+msgstr "{makerFee,plural,one {موجو} other {موجوها}}"
 
 #: src/components/offers/OfferSummaryRow.tsx:39
 msgid "{mojos, plural, one {mojo} other {mojos}}"
-msgstr ""
+msgstr "{mojos,plural,one {موجو} other {موجوها}}"
 
 #: src/components/nfts/gallery/FilterPill.tsx:50
 msgid "{title}"
@@ -4160,9 +4160,9 @@ msgstr ""
 
 #: src/components/nfts/NFTRankings.tsx:46
 msgid "{value} of {max_value}"
-msgstr ""
+msgstr "{value} از {max_value}"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:106
 msgid "{warning}"
-msgstr ""
+msgstr "{warning}"
 
