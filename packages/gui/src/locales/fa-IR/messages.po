@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-04 14:17\n"
+"PO-Revision-Date: 2023-07-04 16:14\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -2336,7 +2336,7 @@ msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:87
 msgid "Owner Address"
-msgstr ""
+msgstr "آدرس مالک"
 
 #: src/components/nfts/NFTDetails.tsx:108
 msgid "Owner DID"
@@ -2348,15 +2348,15 @@ msgstr "صاحب کلید عمومی"
 
 #: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:75
 msgid "Pair Information"
-msgstr ""
+msgstr "اطلاعات جفت شدن"
 
 #: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:84
 msgid "Pair does not exists"
-msgstr ""
+msgstr "جفت شدن وجود ندارد"
 
 #: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:97
 msgid "Paired Keys"
-msgstr ""
+msgstr "کلید جفت شده"
 
 #: src/components/app/AppKeyringMigrator.tsx:146
 #: src/components/app/AppKeyringMigrator.tsx:147
@@ -2402,11 +2402,11 @@ msgstr "چسباندن اطلاعات پیشنهاد"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:148
 msgid "Paste link"
-msgstr ""
+msgstr "جای گزاری لینک"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:139
 msgid "Paste the address from WalletConnect below."
-msgstr ""
+msgstr "آدرس را از WalletConnect در زیر جای‌گذاری کنید."
 
 #: src/components/plotNFT/PlotNFTCard.tsx:301
 msgid "Payout Address"
@@ -2443,7 +2443,7 @@ msgstr "لطفا لینک زیر را بررسی کنید تا از سایتی �
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:75
 msgid "Please enter a URI"
-msgstr ""
+msgstr "لطفا یک URI وارد کنید"
 
 #: src/components/app/AppPassPrompt.tsx:49
 #: src/components/settings/SetPassphrasePrompt.tsx:72
