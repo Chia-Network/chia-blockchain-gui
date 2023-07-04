@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-04 13:19\n"
+"PO-Revision-Date: 2023-07-04 14:17\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -3275,7 +3275,7 @@ msgstr "دریافت پیشنهاد"
 
 #: src/constants/WalletConnectCommands.tsx:483
 msgid "Target Address"
-msgstr ""
+msgstr "آدرس مقصد"
 
 #: src/components/pool/PoolInfo.tsx:38
 msgid "Target Puzzle Hash"
@@ -3287,11 +3287,11 @@ msgstr "مکان ثانویه پوشه موقت"
 
 #: src/components/app/AppVersionWarning.tsx:35
 msgid "The Chia application and its services are using different versions. Some functionality may not be behave properly as a result.<0/><1/>Chia services version: {backV}<2/>Chia application version: {guiV}<3/><4/>It is recommended that you quit the Chia application and stop all Chia services."
-msgstr ""
+msgstr "برنامه چیا و سرویس های آن از نسخه های مختلفی استفاده میکنند. در نتیجه برخی از عملکردها ممکن است به درستی عمل نکنند.<0/><1/>نسخه خدمات Chia: {backV}<2/>نسخه برنامه Chia: {guiV}<3/><4/>توصیه میشود که از برنامه چیا خارج شوید و تمام خدمات چیا را متوقف کنید."
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:210
 msgid "The NFT move failed: {err}"
-msgstr ""
+msgstr "حرکت ان اف تی ناموفق بود: {err}"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:203
 msgid "The NFT move transaction has been successfully submitted to the blockchain."
@@ -3303,7 +3303,7 @@ msgstr "وضعیت ان اف تی بروز شده است. اگر تراکنش ب
 
 #: src/components/nfts/NFTContextualActions.tsx:271
 msgid "The NFT status update failed: {err}"
-msgstr ""
+msgstr "بروزرسانی وضعیت ان اف تی انجام نشد: {err}"
 
 #: src/components/nfts/NFTContextualActions.tsx:183
 msgid "The NFT transfer failed: {error}"
@@ -3320,7 +3320,7 @@ msgstr "شاخص مشتق که کیف پول بلاکچین را اسکن میک
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:88
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:137
 msgid "The folder is on a RAM Disk"
-msgstr ""
+msgstr "پوشه در دیسک حافظه"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:77
 msgid "The full node that your farmer is connected to is below. <0>Learn more</0>"
@@ -3366,7 +3366,7 @@ msgstr "بذر مورد استفاده برای ایجاد پلات. این به
 
 #: src/components/signVerify/VerifyMessage.tsx:135
 msgid "The signature was made by the private key associated with the wallet address. The signer can be assumed to be the owner of the private key."
-msgstr ""
+msgstr "امضاء توسط کلید شخصی مرتبط با آدرس کیف پول انجام شده است. امضاء کننده را میتوان مالک کلید شخصی فرض کرد."
 
 #: src/components/offers/NFTOfferViewer.tsx:558
 msgid "The total amount offered includes the offered purchase price, plus the optional offer creation fee.<0/>If the NFT has royalty payments enabled, those creator fees will be paid from the offered purchase price."
@@ -3465,7 +3465,7 @@ msgstr "این پیشنهاد دیگر معتبر نخواهد بود. برای 
 
 #: src/components/offers2/OfferBuilderViewer.tsx:168
 msgid "This offer was cancelled"
-msgstr ""
+msgstr "این پیشنهاد لغو شد"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:267
 msgid "This plot NFT is assigned to a different key. You can still create plots for this plot NFT, but you can not make changes."
@@ -3482,7 +3482,7 @@ msgstr "رشته ها چتد برابر شده برای فاز 2"
 
 #: src/components/nfts/NFTPreview.tsx:629
 msgid "Thumbnail hash mismatch"
-msgstr ""
+msgstr "عدم تطابق هش تصویر کوچک"
 
 #: src/components/fullNode/FullNode.jsx:71
 msgid "Time Created"
@@ -3502,7 +3502,7 @@ msgstr "عنوان موجود نیست"
 
 #: src/components/settings/ResyncPrompt.tsx:41
 msgid "To initiate a wallet resync, all Chia services must first be shut down. After shutting down, you will be required to restart Chia to begin the resyncing process. Are you sure you want to shut down and resync?"
-msgstr ""
+msgstr "برای شروع به سینک مجدد کیف پول، ابتدا باید تمام سرویس‌های چیا را ببندید. پس از بستن، شما باید چیا را مجددا اجرا کنید. آیا مطمئنید که میخواهید ببندید و دوباره شروع به سینک کنید?"
 
 #: src/components/settings/ProfileView.tsx:127
 msgid "Token Standard"
@@ -3519,7 +3519,7 @@ msgstr "تعداد زیاد پلات NFT"
 
 #: src/components/offers2/OfferBuilderWalletAmount.tsx:36
 msgid "Total Amount"
-msgstr ""
+msgstr "کل مبلغ"
 
 #: src/components/offers/NFTOfferEditor.tsx:385
 #: src/components/offers/NFTOfferViewer.tsx:541
@@ -3533,7 +3533,7 @@ msgstr "مجموع مبلغ درخواست شده"
 
 #: src/components/offers2/OfferBuilderAmountWithRoyalties.tsx:31
 msgid "Total Amount with Royalties"
-msgstr ""
+msgstr "کل مبلغ با حق امتیاز"
 
 #: src/components/farm/card/FarmCardTotalChiaFarmed.tsx:27
 msgid "Total Chia Farmed"
@@ -3569,7 +3569,7 @@ msgstr "کل تکرارهای تابع تاخیر قابل تاییدVDF"
 
 #: src/components/offers2/OfferBuilderRoyaltyPayouts.tsx:32
 msgid "Total amount including royalties"
-msgstr ""
+msgstr "مبلغ کل با احتساب حق امتیاز"
 
 #: src/components/fullNode/card/FullNodeCardTotalIterations.tsx:15
 msgid "Total iterations since the start of the blockchain"
@@ -3577,15 +3577,15 @@ msgstr "کل تکرارها از زمان شروع زنجیره بلوکی"
 
 #: src/components/nfts/MultipleDownloadDialog.tsx:67
 msgid "Total size of downloaded files:"
-msgstr ""
+msgstr "حجم کل فایل های ذخیره شده:"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:362
 msgid "Touch all pages of buffer allocations before starting to plot."
-msgstr ""
+msgstr "قبل از شروع پلات،تمام صفحات اختصاص داده شده با بافر را بکار ببرید."
 
 #: src/constants/WalletConnectCommands.tsx:260
 msgid "Trade Id"
-msgstr ""
+msgstr "شناسه معامله"
 
 #: src/components/app/AppSelectMode.tsx:90
 msgid "Trade tokens"
@@ -3593,15 +3593,15 @@ msgstr "معاملع توکن ها"
 
 #: src/components/notification/NotificationSendDialog.tsx:250
 msgid "Transaction Fee"
-msgstr ""
+msgstr "کارمز تراکنش"
 
 #: src/constants/WalletConnectCommands.tsx:38
 msgid "Transaction Id"
-msgstr ""
+msgstr "شناسه تراکنش"
 
 #: src/components/offers2/OfferBuilderFeeSection.tsx:65
 msgid "Transaction Speed"
-msgstr ""
+msgstr "سرعت تراکنش"
 
 #: src/components/block/Block.jsx:227
 msgid "Transactions Filter Hash"
@@ -3620,15 +3620,15 @@ msgstr "انتقال ان اف تی"
 
 #: src/components/settings/SettingsDataLayer.tsx:51
 msgid "Turn on/off the DataLayer service."
-msgstr ""
+msgstr "سرویس لایه داده را فعال یا غیرفعال کنید."
 
 #: src/components/settings/SettingsNotifications.tsx:47
 msgid "Turn on/off the ability to show you notifications on the desktop."
-msgstr ""
+msgstr "قابلیت نمایش اعلان‌ها را روی صفحه فعال یا غیرفعال کنید."
 
 #: src/components/nfts/gallery/NFTGallery.tsx:550
 msgid "Types ({0}/{1})"
-msgstr ""
+msgstr "انواع ({0}/{1})"
 
 #: src/hooks/useOpenUnsafeLink.tsx:43
 msgid "URL"
@@ -3648,11 +3648,11 @@ msgstr "نمیتوان پیشنهادی ایجاد کرد که مبلغ خالص
 
 #: src/components/signVerify/SignMessage.tsx:110
 msgid "Unable to find DID {entityId}"
-msgstr ""
+msgstr "نمیتوان شناسه غیرمتمرکز را پیدا کرد {entityId}"
 
 #: src/components/signVerify/SignMessage.tsx:108
 msgid "Unable to find NFT {entityId}"
-msgstr ""
+msgstr "نمیتوان ان اف تی را پیدا کرد {entityId}"
 
 #: src/components/offers/OfferShareDialog.tsx:1099
 msgid "Unable to open Keybase. Install Keybase from https://keybase.io"
@@ -3689,7 +3689,7 @@ msgstr "ناشناخته"
 #: src/components/walletConnect/WalletConnectConnections.tsx:71
 #: src/components/walletConnect/WalletConnectMetadata.tsx:17
 msgid "Unknown Application"
-msgstr ""
+msgstr "برنامه ناشناخته"
 
 #: src/components/offers/NFTOfferViewer.tsx:368
 #: src/components/offers/OfferSummaryRow.tsx:141
@@ -3709,7 +3709,7 @@ msgstr "دارایی شناسایی نشده"
 
 #: src/components/settings/LimitCacheSize.tsx:91
 msgid "Update"
-msgstr ""
+msgstr "بروز رسانی"
 
 #: src/components/nfts/NFTPreview.tsx:625
 msgid "Update Pending"
@@ -3717,7 +3717,7 @@ msgstr "منتظر بروزرسانی"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:227
 msgid "Use left and right arrow keys to navigate"
-msgstr ""
+msgstr "با استفاده از کلیدهای جهت دار به چپ و راست حرکت کنید"
 
 #: src/components/farm/card/FarmCardUserFees.tsx:28
 msgid "User Transaction Fees"
@@ -3729,31 +3729,31 @@ msgstr "تکرارهای زیر شکافی VDF"
 
 #: src/components/signVerify/VerifyMessage.tsx:165
 msgid "Valid"
-msgstr ""
+msgstr "معتبر"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:197
 msgid "Validate SHA256 SUM"
-msgstr ""
+msgstr "بررسی SHA256 را تأیید کنید"
 
 #: src/constants/WalletConnectCommands.tsx:241
 msgid "Validate only"
-msgstr ""
+msgstr "فقط تایید کنید"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:175
 msgid "Validating hash..."
-msgstr ""
+msgstr "در حال تأیید هش..."
 
 #: src/components/signVerify/VerifyMessage.tsx:123
 msgid "Verification Failed"
-msgstr ""
+msgstr "تأیید ناموفق بود"
 
 #: src/components/signVerify/VerifyMessage.tsx:274
 msgid "Verify"
-msgstr ""
+msgstr "بازبینی"
 
 #: src/components/signVerify/SignVerifyDialog.tsx:23
 msgid "Verify Message"
-msgstr ""
+msgstr "بازبینی پیام"
 
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:126
 msgid "Verify Pool Details"
@@ -3761,7 +3761,7 @@ msgstr "بررسی جزئیات استخر"
 
 #: src/components/settings/SettingsAdvanced.tsx:77
 msgid "Verify Signature"
-msgstr ""
+msgstr "بازبینی امضاء"
 
 #: src/components/offers2/OfferIncomingTable.tsx:90
 #: src/electron/main.tsx:982
@@ -3775,7 +3775,7 @@ msgstr "مشاهده سوابق(لاگ)"
 
 #: src/components/offers/OfferManager.tsx:460
 msgid "View Offer"
-msgstr ""
+msgstr "دیدن پیشنهاد"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:240
 msgid "View Pool Login Link"
@@ -3804,7 +3804,7 @@ msgstr "دیدن در OfferBin"
 
 #: src/components/offers/OfferShareDialog.tsx:1267
 msgid "View on Offerpool"
-msgstr ""
+msgstr "دیدن در Offerpool"
 
 #: src/components/nfts/NFTContextualActions.tsx:678
 #: src/components/offers/OfferShareDialog.tsx:950
@@ -3817,20 +3817,20 @@ msgstr "مشاهده پیشنهاد"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:583
 msgid "Visible"
-msgstr ""
+msgstr "قابل دیدن"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:572
 msgid "Visible ({0})"
-msgstr ""
+msgstr "قابل دیدن ({0})"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:570
 msgid "Visible and hidden ({0})"
-msgstr ""
+msgstr "قابل دیدن و پنهان ({0})"
 
 #: src/constants/WalletConnectCommands.tsx:105
 #: src/constants/WalletConnectCommands.tsx:412
 msgid "Wait for Confirmation"
-msgstr ""
+msgstr "منتظر تایید باشید"
 
 #: src/components/farm/card/FarmCardNotAvailable.tsx:25
 #: src/components/plot/PlotStatus.tsx:27
@@ -3849,11 +3849,11 @@ msgstr "کیف پول"
 
 #: src/components/signVerify/SignMessage.tsx:153
 msgid "Wallet Address"
-msgstr ""
+msgstr "آدرس کیف پول"
 
 #: src/constants/WalletConnectCommands.tsx:98
 msgid "Wallet ID"
-msgstr ""
+msgstr "شناسه کیف پول"
 
 #: src/constants/WalletConnectCommands.tsx:50
 #: src/constants/WalletConnectCommands.tsx:65
@@ -3862,15 +3862,15 @@ msgstr ""
 #: src/constants/WalletConnectCommands.tsx:383
 #: src/constants/WalletConnectCommands.tsx:468
 msgid "Wallet Id"
-msgstr ""
+msgstr "شناسه کیف پول"
 
 #: src/constants/WalletConnectCommands.tsx:445
 msgid "Wallet Ids"
-msgstr ""
+msgstr "شناسه کیف پول"
 
 #: src/constants/WalletConnectCommands.tsx:231
 msgid "Wallet Ids and Amounts"
-msgstr ""
+msgstr "شناسه کیف پول و مبالغ"
 
 #: src/components/app/AppSelectMode.tsx:70
 #: src/components/app/AppSelectMode.tsx:120
@@ -3883,14 +3883,14 @@ msgstr "کیف پول تعریف نشده"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:160
 msgid "Wallet {0}"
-msgstr ""
+msgstr "کیف پول {0}"
 
 #: src/components/settings/SettingsIntegration.tsx:23
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:112
 #: src/components/walletConnect/WalletConnectConnectedDialog.tsx:65
 #: src/components/walletConnect/WalletConnectDropdown.tsx:28
 msgid "WalletConnect"
-msgstr ""
+msgstr "اتصال کیف پول"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:135
 msgid "WalletConnect Integration"
