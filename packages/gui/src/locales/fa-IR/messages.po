@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-04 16:14\n"
+"PO-Revision-Date: 2023-07-04 17:09\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1042,7 +1042,7 @@ msgstr "یک فایل پیشنهاد را بکشید و رها کنید، جای
 
 #: src/constants/WalletConnectCommands.tsx:236
 msgid "Driver Dict"
-msgstr ""
+msgstr "فرهنگ لغت راننده"
 
 #: src/components/plot/PlotHarvester.tsx:136
 msgid "Duplicate"
@@ -2320,19 +2320,19 @@ msgstr "برای پردازش جدول C، تعداد رشته ها را لغو 
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:254
 msgid "Override the thread count for F1 generation"
-msgstr ""
+msgstr "تعداد رشته ها را برای ایجاد F1 لغو کنید"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:296
 msgid "Override the thread count for Phase 2"
-msgstr ""
+msgstr "تعداد رشته ها را برای فاز 2 لغو کنید"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:310
 msgid "Override the thread count for Phase 3"
-msgstr ""
+msgstr "تعداد رشته ها را برای فاز 3 لغو کنید"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:268
 msgid "Override the thread count for forward propagation"
-msgstr ""
+msgstr "برای پردازش رو به جلو، تعداد رشنه ها را لغو کنید"
 
 #: src/components/nfts/NFTDetails.tsx:87
 msgid "Owner Address"
@@ -2461,7 +2461,7 @@ msgstr "لطفاً یک شناسه ان اف تی وارد کنید"
 #: src/util/offerBuilderDataToOffer.ts:46
 #: src/util/offerBuilderDataToOffer.ts:111
 msgid "Please enter an XCH amount"
-msgstr ""
+msgstr "لطفاً یک مبلغ XCH وارد کنید"
 
 #: src/components/offers/NFTOfferEditor.tsx:591
 msgid "Please enter an amount"
@@ -2474,7 +2474,7 @@ msgstr "لطفاً برای هر ردیف مبلغی را وارد کنید"
 #: src/util/offerBuilderDataToOffer.ts:78
 #: src/util/offerBuilderDataToOffer.ts:139
 msgid "Please enter an amount for {0} token"
-msgstr ""
+msgstr "لطفاً مبلغی را برای توکن {0} وارد کنید"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:89
 msgid "Please enter your current passphrase, and a new passphrase"
@@ -2501,7 +2501,7 @@ msgstr "لطفاً برای هر ردیف مبلغی را انتخاب کنید"
 #: src/util/offerBuilderDataToOffer.ts:69
 #: src/util/offerBuilderDataToOffer.ts:130
 msgid "Please select an asset for each token"
-msgstr ""
+msgstr "لطفاً یک دارایی برای هر توکن انتخاب کنید"
 
 #: src/components/offers/NFTOfferEditor.tsx:589
 msgid "Please select an asset type"
@@ -2509,15 +2509,15 @@ msgstr "لطفاً یک نوع دارایی را انتخاب کنید"
 
 #: src/components/settings/SettingsNFT.tsx:95
 msgid "Please select an empty folder"
-msgstr ""
+msgstr "لطفاً یک پوشه خالی انتخاب کنید"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:84
 msgid "Please select at least one key"
-msgstr ""
+msgstr "لطفا حداقل یک کلید را انتخاب کنید"
 
 #: src/util/offerBuilderDataToOffer.ts:39
 msgid "Please specify at least one offered asset"
-msgstr ""
+msgstr "لطفاً حداقل یک دارایی پیشنهادی را مشخص کنید"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:54
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:58
@@ -2598,7 +2598,7 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:217
 msgid "Plots in the same queue will run in serial"
-msgstr ""
+msgstr "پلات ها در همان صف به صورت متوالی اجرا میشوند"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:91
 msgid "Plotter"
@@ -2725,11 +2725,11 @@ msgstr "پیش نمایش ادرس سایت معتبر نیست"
 
 #: src/components/nfts/NFTDetails.tsx:315
 msgid "Preview image uris"
-msgstr ""
+msgstr "پیش نمایش تصویر uris"
 
 #: src/components/nfts/NFTDetails.tsx:331
 msgid "Preview video uris"
-msgstr ""
+msgstr "پیش نمایش ویدئو uris"
 
 #: src/components/block/Block.jsx:256
 #: src/components/nfts/detail/NFTDetailV2.tsx:245
@@ -2767,7 +2767,7 @@ msgstr "نسخه پروتکل"
 
 #: src/components/settings/SettingsAdvanced.tsx:85
 msgid "Prove or verify possession of a wallet address, NFT, or DID using a digital signature."
-msgstr ""
+msgstr "با استفاده از امضاء دیجیتال، داشتن آدرس کیف پول، ان اف تی یا شناسه غیرمتمرکز را اثبات یا تأیید کنید."
 
 #: src/components/signVerify/VerifyMessage.tsx:219
 msgid "Public Key"
@@ -2796,7 +2796,7 @@ msgstr "رتبه بندی"
 
 #: src/components/settings/SettingsNotifications.tsx:31
 msgid "Receive push notifications when your wallet is minimized"
-msgstr ""
+msgstr "هنگامی که کیف پول به حداقل میرسد، اعلان های یاداوری را دریافت کنید"
 
 #: src/components/app/AppSelectMode.tsx:103
 msgid "Recommended"
@@ -2808,7 +2808,7 @@ msgstr "توصیه شده: 0.000005 XCH"
 
 #: src/components/nfts/NFTContextualActions.tsx:602
 msgid "Refresh NFT data"
-msgstr ""
+msgstr "اطلاعات ان اف تی را تازه کنید"
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:46
 #: src/components/plot/overview/PlotOverviewPlots.tsx:57
@@ -2818,7 +2818,7 @@ msgstr "تازه سازی پلات ها"
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:178
 #: src/hooks/useWalletConnectCommand.tsx:78
 msgid "Reject"
-msgstr ""
+msgstr "رد کردن"
 
 #: src/components/pool/PoolInfo.tsx:33
 msgid "Relative Lock Height"
@@ -2857,7 +2857,7 @@ msgstr "درخواست شده"
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:29
 #: src/components/offers2/OfferIncomingTable.tsx:43
 msgid "Requesting"
-msgstr ""
+msgstr "در حال درخواست"
 
 #: src/components/offers/NFTOfferEditor.tsx:439
 #: src/components/offers/OfferEditor.tsx:174
@@ -2867,28 +2867,28 @@ msgstr "تنظیم مجدد"
 
 #: src/components/nfts/NFTPreview.tsx:663
 msgid "Response too large"
-msgstr ""
+msgstr "پاسخ خیلی بزرگ است"
 
 #: src/components/settings/SettingsAdvanced.tsx:102
 msgid "Resync"
-msgstr ""
+msgstr "سبنک مجدد"
 
 #: src/components/settings/ResyncPrompt.tsx:37
 #: src/components/settings/SettingsAdvanced.tsx:94
 msgid "Resync Wallet"
-msgstr ""
+msgstr "سینک مجدد کیف پول"
 
 #: src/components/settings/SettingsAdvanced.tsx:110
 msgid "Resyncing forces reloading data from the blockchain about your transactions without losing other locally stored information like open, accepted, or cancelled offer files. Resyncing will require you to restart the app."
-msgstr ""
+msgstr "سینک مجدد، بارگذاری مجدد داده ها از بلاکچین در مورد تراکنش های شما بدون از دست دادن سایر اطلاعات ذخیره شده داخلی مانند فایل های پیشنهادی باز، پذیرفته شده یا لغو شده انجام میدهد. برای همگام سازی مجدد، باید برنامه را مجدداً اجرا کنید."
 
 #: src/constants/WalletConnectCommands.tsx:201
 msgid "Reverse"
-msgstr ""
+msgstr "برعکس"
 
 #: src/components/offers2/OfferBuilderNFTRoyalties.tsx:93
 msgid "Royalties are built into the NFT, so they will automatically be accounted for when the offer is created/accepted."
-msgstr ""
+msgstr "حق امتیازها در ان اف تی تعبیه شده‌اند، بنابراین به‌طور خودکار هنگام ایجاد/پذیرش پیشنهاد به حساب می‌آیند."
 
 #: src/components/nfts/NFTDetails.tsx:159
 msgid "Royalty Percentage"
@@ -3127,47 +3127,47 @@ msgstr "امضاء"
 
 #: src/components/signVerify/VerifyMessage.tsx:197
 msgid "Signature Details"
-msgstr ""
+msgstr "جزئیات امضاء"
 
 #: src/components/signVerify/VerifyMessage.tsx:161
 msgid "Signature Status:"
-msgstr ""
+msgstr "وضعیت امضاء:"
 
 #: src/components/signVerify/VerifyMessage.tsx:123
 msgid "Signature Verified"
-msgstr ""
+msgstr "امضاء تایید شد"
 
 #: src/components/settings/SettingsAdvanced.tsx:60
 msgid "Signatures"
-msgstr ""
+msgstr "امضاها"
 
 #: src/components/signVerify/VerifyMessage.tsx:129
 msgid "Signed By:"
-msgstr ""
+msgstr "امضاء شده توسط:"
 
 #: src/components/signVerify/SignMessageResultDialog.tsx:35
 msgid "Signed Message"
-msgstr ""
+msgstr "پیام امضاء شده"
 
 #: src/components/signVerify/VerifyMessageImport.tsx:87
 msgid "Signed message file is too large (> 10MB)"
-msgstr ""
+msgstr "فایل پیام امضاء شده خیلی بزرگ است (> 10 مگابایت)"
 
 #: src/components/signVerify/VerifyMessage.tsx:248
 msgid "Signing Address (Optional)"
-msgstr ""
+msgstr "نشانی امضاء (اختیاری)"
 
 #: src/components/signVerify/SignMessage.tsx:164
 msgid "Signing Entity"
-msgstr ""
+msgstr "نهاد امضاکننده"
 
 #: src/components/signVerify/VerifyMessage.tsx:237
 msgid "Signing Mode"
-msgstr ""
+msgstr "حالت امضاء"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:240
 msgid "Size of cache to reserve for I/O"
-msgstr ""
+msgstr "اندازه حافظه پنهان جهت رزرو برای I/O"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:439
 msgid "Skips adding a final directory to harvester for farming"
@@ -3179,11 +3179,11 @@ msgstr "با پیوستن به یک استخر، پاداش فارم XCH خود 
 
 #: src/components/notification/NotificationNFTTitle.tsx:30
 msgid "Something went wrong"
-msgstr ""
+msgstr "مشکلی پیش آمده"
 
 #: src/components/offers/OfferShareDialog.tsx:935
 msgid "Spacescan.io URL"
-msgstr ""
+msgstr "آدرس سایت Spacescan.io"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:134
 msgid "Specify a value of 0 to use all available threads"
@@ -3191,7 +3191,7 @@ msgstr "مقدار 0 را برای استفاده از تمام رشته های 
 
 #: src/components/signVerify/SignMessage.tsx:21
 msgid "Specify a wallet address, NFT, or DID to sign with"
-msgstr ""
+msgstr "آدرس کیف پول، ان اف تی یا شناسه غیرمتمرکز برای امضا را مشخص کنید"
 
 #: src/electron/main.tsx:1149
 msgid "Speech"
@@ -3199,15 +3199,15 @@ msgstr "سخن"
 
 #: src/constants/WalletConnectCommands.tsx:377
 msgid "Spend CAT"
-msgstr ""
+msgstr "توکن خرج کنید"
 
 #: src/components/offers2/OfferBuilderWalletBalance.tsx:44
 msgid "Spendable Balance: {0}"
-msgstr ""
+msgstr "موجودی قابل خرج کزدن: {0}"
 
 #: src/constants/WalletConnectCommands.tsx:183
 msgid "Start"
-msgstr ""
+msgstr "شروع"
 
 #: src/constants/WalletConnectCommands.tsx:195
 msgid "Start Key"
@@ -3976,7 +3976,7 @@ msgstr "بله، پیشنهاد را بپذیرید"
 
 #: src/components/settings/SettingsNFT.tsx:56
 msgid "Yes, delete"
-msgstr ""
+msgstr "بله حذف کنید"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:55
 msgid "Yes, move"
@@ -3996,7 +3996,7 @@ msgstr "همیشه میتوانید حالت خود را بعداً در تنظ�
 
 #: src/components/walletConnect/WalletConnectConnectedDialog.tsx:88
 msgid "You can now connect to {0} in your browser."
-msgstr ""
+msgstr "اکنون میتوانید در مرورگر خود به {0} متصل شوید."
 
 #: src/components/plotNFT/PlotNFTCard.tsx:349
 msgid "You can still create plots for this plot NFT, but you can not make changes until sync is complete."
@@ -4013,7 +4013,7 @@ msgstr "شما نیازی به سینک یا اتصال به پلات نداری
 
 #: src/components/notification/Notification.tsx:53
 msgid "You have a new offer"
-msgstr ""
+msgstr "شما یک پیشنهاد جدید دارید"
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:56
 msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3 to 4 times longer than this estimate."
@@ -4030,7 +4030,7 @@ msgstr "برای پیوستن به یک استخر به {currencyCode} نیاز 
 
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:19
 msgid "You will give"
-msgstr ""
+msgstr "خواهید داد"
 
 #: src/components/offers/OfferEditorConditionsPanel.tsx:289
 msgid "You will offer"
@@ -4090,7 +4090,7 @@ msgstr "ایجاد شده {0}"
 #: src/components/offers2/OfferBuilderImport.tsx:170
 #: src/components/signVerify/VerifyMessageImport.tsx:154
 msgid "or <0>browse</0> on your computer"
-msgstr ""
+msgstr "یا<0>مرورکنید</0> را در رایانه خود"
 
 #: src/components/offers/OfferImport.tsx:170
 msgid "or Paste (Ctrl-V) an Offer blob"
@@ -4123,7 +4123,7 @@ msgstr "{0} از {1}"
 
 #: src/components/nfts/gallery/SelectedActionsDialog.tsx:63
 msgid "{0} of {allCount} items selected:"
-msgstr ""
+msgstr "{0} موارد از {allCount} انتخاب شد:"
 
 #: src/components/plotNFT/PlotNFTGraph.tsx:63
 msgid "{0} points {1} - {2} hours ago"
@@ -4131,15 +4131,15 @@ msgstr "{0} امتیاز {1} - {2} مدتی قبل"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:194
 msgid "{count} NFTs failed to move."
-msgstr ""
+msgstr "{count} ان اف تی ها جابجا نشد."
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:187
 msgid "{count} transactions have been successfully submitted to the blockchain."
-msgstr ""
+msgstr "{count} تراکنش با موفقیت به بلاکچین ارسال شد."
 
 #: src/components/nfts/gallery/NFTGallery.tsx:432
 msgid "{key} ({0})"
-msgstr ""
+msgstr "{key} ({0})"
 
 #: src/components/offers/NFTOfferViewer.tsx:203
 #: src/components/offers/OfferSummary.tsx:173
@@ -4152,11 +4152,11 @@ msgstr "{mojos,plural,one {موجو} other {موجوها}}"
 
 #: src/components/nfts/gallery/FilterPill.tsx:50
 msgid "{title}"
-msgstr ""
+msgstr "{title}"
 
 #: src/components/offers2/OfferBuilderValue.tsx:179
 msgid "{type} is not supported"
-msgstr ""
+msgstr "{type} پشتیبانی نمیشود"
 
 #: src/components/nfts/NFTRankings.tsx:46
 msgid "{value} of {max_value}"
