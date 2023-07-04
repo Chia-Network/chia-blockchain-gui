@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-04 17:09\n"
+"PO-Revision-Date: 2023-07-04 18:22\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -3894,11 +3894,11 @@ msgstr "اتصال کیف پول"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:135
 msgid "WalletConnect Integration"
-msgstr ""
+msgstr "ادغام WalletConnect"
 
 #: src/components/settings/SettingsIntegration.tsx:26
 msgid "WalletConnect enables a decentralized app on the Chia blockchain to communicate and make requests directly to a Chia wallet."
-msgstr ""
+msgstr "WalletConnect یک برنامه غیرمتمرکز در بلاکچین را قادر میسازد تا مستقیماً با کیف پول چیا ارتباط برقرار کرده و درخواست کند."
 
 #: src/components/plotNFT/PlotNFTAdd.tsx:59
 msgid "Want to Join a Pool? Create a Plot NFT"
@@ -3918,7 +3918,7 @@ msgstr "اخطار"
 
 #: src/components/app/AppVersionWarning.tsx:30
 msgid "Warning: Mismatched Versions"
-msgstr ""
+msgstr "هشدار: نسخه های نامتناسب"
 
 #: src/components/offers/OfferSummary.tsx:133
 #: src/components/offers2/OfferBuilderValue.tsx:204
@@ -3955,15 +3955,15 @@ msgstr "آیا میخواهید ان اف تی مشخص شده را به یک ح
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:387
 msgid "Would you like to move {count} NFTs to a profile?"
-msgstr ""
+msgstr "آیا میخواهید {count} ان اف تی را به حساب کاربری منتقل کنید?"
 
 #: src/components/nfts/NFTTransferAction.tsx:227
 msgid "Would you like to transfer the specified NFT to a new owner"
-msgstr ""
+msgstr "آیا میخواهید ان اف تی مشخص شده را به مالک جدیدی منتقل کنید"
 
 #: src/components/nfts/NFTTransferAction.tsx:225
 msgid "Would you like to transfer {count} NFTs to a new owner?"
-msgstr ""
+msgstr "آیا میخواهید {count} از ان اف تی ها را به مالک جدیدی منتقل کنید?"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:47
 #: src/electron/main.tsx:813
