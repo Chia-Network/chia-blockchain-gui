@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-04 18:22\n"
+"PO-Revision-Date: 2023-07-05 07:01\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -2594,7 +2594,7 @@ msgstr "پلاتها با کلیدهای ناموفق"
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:34
 msgid "Plots are allocated space on your hard drive used to farm and earn Chia.  <0>Learn more</0>"
-msgstr ""
+msgstr "پلاتها برای فارم و کسب درآمد چیا فضایی روی هارد دیسک شما اختصاص میدهند. <0>بیشتر بدانید</0>"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:217
 msgid "Plots in the same queue will run in serial"
