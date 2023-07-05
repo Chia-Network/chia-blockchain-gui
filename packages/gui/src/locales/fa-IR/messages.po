@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-05 12:09\n"
+"PO-Revision-Date: 2023-07-05 16:56\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -236,7 +236,7 @@ msgstr "برنامه هیچ بخش فعالی ندارد"
 
 #: src/components/offers/OfferManager.tsx:105
 msgid "Are you sure you want to cancel your offer?"
-msgstr "آیا مطمئن هستید که می خواهید پیشنهاد خود را لغو کنید?"
+msgstr "آیا مطمئن هستید که میخواهید پیشنهاد خود را لغو کنید?"
 
 #: src/components/settings/SettingsNFT.tsx:70
 msgid "Are you sure you want to delete the NFT cache?"
@@ -245,7 +245,7 @@ msgstr "آیا مطمئن هستید که میخواهید حافطه ان اف 
 #: src/components/plot/PlotAction.tsx:29
 #: src/components/plot/queue/PlotQueueActions.tsx:41
 msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
-msgstr "آیا مطمئنید می‌خواهید این پلات را حذف کنید؟ پلات نمی‌تواند بازیابی شود."
+msgstr "آیا مطمئنید میخواهید این پلات را حذف کنید؟ پلات نمیتواند بازیابی شود."
 
 #: src/components/plotNFT/PlotNFTCard.tsx:112
 msgid "Are you sure you want to delete unconfirmed transactions?"
@@ -324,7 +324,7 @@ msgstr "موجودی: {standardBalance} XCH"
 
 #: src/components/block/Block.jsx:235
 msgid "Base Farmer Reward Amount"
-msgstr "مقدار پایه جایزه‌ِ مزرعه دار"
+msgstr "مبلغ پایه پاداش فارمر"
 
 #: src/components/offers/OfferShareDialog.tsx:1177
 msgid "Before posting an offer in Keybase to the #{channelName} channel, you must first join the {teamName} team. Please note that it might take a few moments to join the channel."
@@ -332,20 +332,19 @@ msgstr "قبل از ارسال پیشنهاد به Keybase در کانال #{cha
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:35
 msgid "Below are the current block challenges. You may or may not have a proof of space for these challenges. These blocks do not currently contain a proof of time."
-msgstr "در پایین چالش های بلوک کنونی را می‌بینید. ممکن است شما گواهی حجمی برای این چالش ها داشته باشید یا نداشته باشید.\n"
-" این بلاک ها در حال حاضر گواه زمانی ندارند."
+msgstr "در زیر چالش های فعلی بلاک آورده شده. ممکن است برای این چالش ها مدرکی برای اثبات فضا داشته یا نداشته باشید. این بلاک ها در حال حاضر حاوی اثبات زمان نیستند."
 
 #: src/components/farm/card/FarmCardTotalNetworkSpace.tsx:14
 msgid "Best estimate over last 24 hours"
-msgstr "بهترین ارزیابی بر اساس 24 ساعت اخیر"
+msgstr "بهترین تخمین در 24 ساعت گذشته"
 
 #: src/components/block/Block.jsx:134
 msgid "Block"
-msgstr "بلوک"
+msgstr "بلاک"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:32
 msgid "Block Rewards"
-msgstr "بلاک کردن جوایز"
+msgstr "پاداش بلاک"
 
 #: src/components/block/Block.jsx:195
 msgid "Block VDF Iterations"
@@ -518,7 +517,7 @@ msgstr "بلاکچین چیا در ویکیپدیا"
 
 #: src/components/app/AppSelectMode.tsx:145
 msgid "Choose Farming Mode"
-msgstr "انتخاب حالا فارم کردن"
+msgstr "انتخاب حالات فارم کردن"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:41
 msgid "Choose Number of Plots"
