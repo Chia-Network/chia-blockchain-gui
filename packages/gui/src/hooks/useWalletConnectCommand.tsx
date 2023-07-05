@@ -1,11 +1,14 @@
-import api, { store, useGetLoggedInFingerprintQuery, useLogInMutation } from '@chia-network/api-react';
-import { useOpenDialog } from '@chia-network/core';
+import api, { store, useGetLoggedInFingerprintQuery } from '@chia-network/api-react';
+import { useOpenDialog, useAuth } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import debug from 'debug';
-import React, { ReactNode } from 'react';
+import React, { type ReactNode } from 'react';
 
+import type Notification from '../@types/Notification';
+import type Pair from '../@types/Pair';
 import type WalletConnectCommandParam from '../@types/WalletConnectCommandParam';
 import WalletConnectConfirmDialog from '../components/walletConnect/WalletConnectConfirmDialog';
+import NotificationType from '../constants/NotificationType';
 import walletConnectCommands from '../constants/WalletConnectCommands';
 import prepareWalletConnectCommand from '../util/prepareWalletConnectCommand';
 import waitForWalletSync from '../util/waitForWalletSync';
@@ -14,9 +17,61 @@ import useWalletConnectPreferences from './useWalletConnectPreferences';
 
 const log = debug('chia-gui:walletConnectCommand');
 
-export default function useWalletConnectCommand() {
+type UseWalletConnectCommandOptions = {
+  onNotification?: (notification: Notification) => void;
+};
+
+function parseNotification(
+  fingerprint: number,
+  values: Record<string, string | number | boolean>,
+  pair: Pair
+): Notification {
+  const { type, allFingerprints, offerData } = values;
+
+  const from = pair.metadata?.name ?? <Trans>Unknown Dapp</Trans>;
+  const timestamp = Math.floor(new Date().getTime() / 1000);
+  const fingerprints = allFingerprints ? pair.fingerprints : [fingerprint];
+
+  const base = {
+    from,
+    timestamp,
+    fingerprints,
+  };
+
+  const uniqueRandomId = `wc-${new Date().getTime()}-${Math.floor(Math.random() * 1_000_000_000)}`;
+
+  if (type === NotificationType.OFFER) {
+    if (!offerData) {
+      throw new Error('Notification missing offerData');
+    }
+
+    return {
+      ...base,
+      type,
+      source: 'WALLET_CONNECT',
+      id: uniqueRandomId,
+      offerData: offerData.toString(),
+    };
+  }
+
+  if (type === NotificationType.ANNOUNCEMENT && 'message' in values) {
+    return {
+      ...base,
+      type,
+      source: 'WALLET_CONNECT',
+      id: uniqueRandomId,
+      message: values.message.toString(),
+      url: 'url' in values ? values.url.toString() : undefined,
+    };
+  }
+
+  throw new Error(`Invalid notification type ${type}`);
+}
+
+export default function useWalletConnectCommand(options: UseWalletConnectCommandOptions) {
+  const { onNotification } = options;
   const openDialog = useOpenDialog();
-  const [logIn] = useLogInMutation();
+  const { logIn } = useAuth();
   const { data: currentFingerprint, isLoading: isLoadingLoggedInFingerprint } = useGetLoggedInFingerprintQuery();
   const { getPairBySession } = useWalletConnectPairs();
 
@@ -81,9 +136,24 @@ export default function useWalletConnectCommand() {
       definition,
     } = prepareWalletConnectCommand(walletConnectCommands, requestedCommand, requestedParams);
 
+    const { fingerprint } = requestedParams;
+
+    if (command === 'showNotification') {
+      const pair = getPairBySession(topic);
+      if (!pair) {
+        throw new Error('Invalid session topic');
+      }
+
+      const notification = parseNotification(fingerprint, defaultValues, pair);
+      onNotification?.(notification);
+
+      return {
+        success: true,
+      };
+    }
+
     // validate fingerprint for current command
     const { allFingerprints, waitForSync } = definition;
-    const { fingerprint } = requestedParams;
     const isDifferentFingerprint = fingerprint !== currentFingerprint;
     if (!allFingerprints) {
       if (isDifferentFingerprint && !allowConfirmationFingerprintChange) {
@@ -127,10 +197,7 @@ export default function useWalletConnectCommand() {
     // auto login before execute command
     if (isDifferentFingerprint && allowConfirmationFingerprintChange) {
       log('Changing fingerprint', fingerprint);
-      await logIn({
-        fingerprint,
-        type: 'skip',
-      }).unwrap();
+      await logIn(fingerprint);
     }
 
     // wait for sync

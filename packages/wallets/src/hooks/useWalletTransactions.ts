@@ -2,13 +2,20 @@ import type { Transaction } from '@chia-network/api';
 import { useGetTransactionsQuery, useGetTransactionsCountQuery } from '@chia-network/api-react';
 import { useState } from 'react';
 
-export default function useWalletTransactions(
-  walletId: number,
-  defaultRowsPerPage = 10,
-  defaultPage = 0,
-  sortKey?: 'CONFIRMED_AT_HEIGHT' | 'RELEVANCE',
-  reverse?: boolean
-): {
+type UseWalletTransactionsArgs = {
+  walletId: number;
+  defaultRowsPerPage: number;
+  defaultPage: number;
+  sortKey?: 'CONFIRMED_AT_HEIGHT' | 'RELEVANCE';
+  reverse?: boolean;
+  confirmed?: boolean;
+  typeFilter?: {
+    mode: number;
+    values: number[];
+  };
+};
+
+export default function useWalletTransactions(args: UseWalletTransactionsArgs): {
   isLoading: boolean;
   transactions?: Transaction[];
   count?: number;
@@ -17,6 +24,8 @@ export default function useWalletTransactions(
   rowsPerPage: number;
   pageChange: (rowsPerPage: number, page: number) => void;
 } {
+  const { walletId, defaultRowsPerPage = 10, defaultPage = 0, sortKey, reverse, confirmed, typeFilter } = args;
+
   const [rowsPerPage, setRowsPerPage] = useState<number>(defaultRowsPerPage);
   const [page, setPage] = useState<number>(defaultPage);
 
@@ -26,6 +35,8 @@ export default function useWalletTransactions(
     error: transactionsCountError,
   } = useGetTransactionsCountQuery({
     walletId,
+    typeFilter,
+    confirmed,
   });
 
   const all = rowsPerPage === -1;
@@ -45,6 +56,8 @@ export default function useWalletTransactions(
       end,
       sortKey,
       reverse,
+      confirmed,
+      typeFilter,
     },
     {
       skipToken: count === undefined,

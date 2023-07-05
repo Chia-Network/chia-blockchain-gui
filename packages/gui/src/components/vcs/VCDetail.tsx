@@ -1,4 +1,9 @@
-import { useGetVCQuery, useGetProofsForRootQuery } from '@chia-network/api-react';
+import {
+  useGetVCQuery,
+  useGetProofsForRootQuery,
+  useLocalStorage,
+  useGetLoggedInFingerprintQuery,
+} from '@chia-network/api-react';
 import { ArrowBackIosNew } from '@mui/icons-material';
 import { Box, IconButton } from '@mui/material';
 import React from 'react';
@@ -9,11 +14,18 @@ import VCCard from './VCCard';
 export default function VCDetail() {
   const { vcId } = useParams();
   const { isLoading, data } = useGetVCQuery({ vcId: vcId as string });
-  const proofHash = (data as any)?.vc?.proofHash;
-  const { data: proofsData } = useGetProofsForRootQuery(proofHash, {
-    skip: !proofHash,
-  });
+  const { data: proofsData } = useGetProofsForRootQuery(
+    { root: (data as any)?.vc?.proofHash },
+    { skip: isLoading || !data }
+  );
+  const [VCsLocalStorage] = useLocalStorage<any>('verifiable-credentials-local', {});
+
   const navigate = useNavigate();
+  const { data: fingerprint } = useGetLoggedInFingerprintQuery();
+  const localData =
+    fingerprint && VCsLocalStorage[fingerprint]
+      ? VCsLocalStorage[fingerprint].find((vc: any) => vc.sha256 === vcId)
+      : null;
 
   function renderBackButton() {
     return (
@@ -24,8 +36,12 @@ export default function VCDetail() {
   }
 
   function renderVCCard() {
-    if (isLoading || !data) return null;
-    return <VCCard isDetail vcRecord={data} proofs={proofsData?.proofs} />;
+    let proofs = proofsData?.proofs && Object.keys(proofsData?.proofs).length > 0 ? proofsData?.proofs : {};
+    if (Object.keys(proofs).length === 0 && localData && localData.proof?.values) {
+      proofs = localData.proof?.values;
+    }
+    if (isLoading || (!data && !localData)) return null;
+    return <VCCard isDetail vcRecord={data || localData} proofs={proofs} />;
   }
   return (
     <Box sx={{ padding: '25px' }}>

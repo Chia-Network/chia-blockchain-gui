@@ -1,10 +1,12 @@
 import BigNumber from 'bignumber.js';
 
+import type AutoClaim from '../@types/AutoClaim';
 import type Connection from '../@types/Connection';
 import type FarmedAmount from '../@types/FarmedAmount';
 import type OfferSummaryRecord from '../@types/OfferSummaryRecord';
 import type PoolWalletStatus from '../@types/PoolWalletStatus';
 import type PrivateKey from '../@types/PrivateKey';
+import type PuzzleDecorator from '../@types/PuzzleDecorator';
 import type TradeRecord from '../@types/TradeRecord';
 import type Transaction from '../@types/Transaction';
 import type { WalletListItem } from '../@types/Wallet';
@@ -84,6 +86,10 @@ export default class Wallet extends Service {
     return this.command<{ walletBalance: WalletBalance }>('get_wallet_balance', args);
   }
 
+  async getWalletBalances(args?: { walletIds: number[] }) {
+    return this.command<{ walletBalances: WalletBalance[] }>('get_wallet_balances', args);
+  }
+
   async getFarmedAmount() {
     return this.command<FarmedAmount>('get_farmed_amount');
   }
@@ -94,6 +100,7 @@ export default class Wallet extends Service {
     fee: BigNumber;
     address: string;
     memos?: string[];
+    puzzleDecorator?: PuzzleDecorator[];
   }) {
     return this.command<{ transaction: Transaction; transactionId: string }>('send_transaction', args);
   }
@@ -132,7 +139,7 @@ export default class Wallet extends Service {
   }
 
   async logIn(args: {
-    fingerprint: string;
+    fingerprint: number;
     type?: 'normal' | 'skip' | 'restore_backup'; // skip is used to skip import
   }) {
     const { fingerprint, type = 'normal' } = args;
@@ -148,12 +155,24 @@ export default class Wallet extends Service {
     start?: number;
     end?: number;
     sortKey?: 'CONFIRMED_AT_HEIGHT' | 'RELEVANCE';
+    typeFilter?: {
+      mode: number;
+      values: number[];
+    };
     reverse?: boolean;
+    confirmed?: boolean;
   }) {
     return this.command<{ transactions: Transaction[]; walletId: number }>('get_transactions', args);
   }
 
-  async getTransactionsCount(args: { walletId: number }) {
+  async getTransactionsCount(args: {
+    walletId: number;
+    typeFilter?: {
+      mode: number;
+      values: number[];
+    };
+    confirmed?: boolean;
+  }) {
     return this.command<{ count: number; walletId: number }>('get_transaction_count', args);
   }
 
@@ -225,10 +244,10 @@ export default class Wallet extends Service {
     validateOnly?: boolean;
     disableJSONFormatting?: boolean;
   }) {
-    const { disableJSONFormatting, ...restArgs } = args;
+    const { disableJSONFormatting, driverDict, ...restArgs } = args;
     return this.command<{ offer: string; tradeRecord: TradeRecord }>(
       'create_offer_for_ids',
-      restArgs,
+      { driver_dict: driverDict, ...restArgs },
       false,
       undefined,
       disableJSONFormatting
@@ -298,6 +317,7 @@ export default class Wallet extends Service {
         id: string;
         message: string;
         amount: string;
+        height: number;
       }[];
     }>('get_notifications', args);
   }
@@ -324,6 +344,21 @@ export default class Wallet extends Service {
 
   async resyncWallet() {
     return this.command<void>('set_wallet_resync_on_startup');
+  }
+
+  // Clawback
+  async setAutoClaim(args: AutoClaim) {
+    return this.command<AutoClaim>('set_auto_claim', args);
+  }
+
+  async getAutoClaim() {
+    return this.command<AutoClaim>('get_auto_claim');
+  }
+
+  async spendClawbackCoins(args: { coinIds: string[]; fee: number | BigNumber }) {
+    return this.command<{
+      transactionIds: string[];
+    }>('spend_clawback_coins', args);
   }
 
   onSyncChanged(callback: (data: any, message: Message) => void, processData?: (data: any) => any) {
@@ -429,6 +464,32 @@ export default class Wallet extends Service {
     ) => void
   ) {
     return this.onStateChanged('nft_coin_updated', callback);
+  }
+
+  onVCCoinAdded(
+    callback: (
+      data: {
+        additionalData: Object;
+        state: 'vc_coin_added';
+        walletId: number;
+      },
+      message: Message
+    ) => void
+  ) {
+    return this.onStateChanged('vc_coin_added', callback);
+  }
+
+  onVCCoinRemoved(
+    callback: (
+      data: {
+        additionalData: Object;
+        state: 'vc_coin_removed';
+        walletId: number;
+      },
+      message: Message
+    ) => void
+  ) {
+    return this.onStateChanged('vc_coin_removed', callback);
   }
 
   onNewDerivationIndex(

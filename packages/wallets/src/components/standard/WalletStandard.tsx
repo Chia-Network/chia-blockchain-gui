@@ -2,9 +2,9 @@ import { WalletType } from '@chia-network/api';
 import { Flex, MenuItem } from '@chia-network/core';
 import { Offers as OffersIcon } from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
-import { Box, Typography, ListItemIcon } from '@mui/material';
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Typography, ListItemIcon } from '@mui/material';
+import React from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import WalletHeader from '../WalletHeader';
 import WalletHistory from '../WalletHistory';
@@ -18,9 +18,15 @@ type StandardWalletProps = {
 
 export default function StandardWallet(props: StandardWalletProps) {
   const { walletId } = props;
-  // const showDebugInformation = useShowDebugInformation();
+
   const navigate = useNavigate();
-  const [selectedTab, setSelectedTab] = useState<'summary' | 'send' | 'receive'>('summary');
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const selectedTab = searchParams.get('selectedTab') || 'summary';
+
+  const setSelectedTab = (tab: 'summary' | 'send' | 'receive') => {
+    setSearchParams({ selectedTab: tab });
+  };
 
   function handleCreateOffer() {
     navigate('/dashboard/offers/builder', {
@@ -48,25 +54,22 @@ export default function StandardWallet(props: StandardWalletProps) {
           </MenuItem>
         }
       />
+      <Flex flexDirection="column" gap={4}>
+        <WalletStandardCards walletId={walletId} />
 
-      <Box display={selectedTab === 'summary' ? 'block' : 'none'}>
-        <Flex flexDirection="column" gap={4}>
-          <WalletStandardCards walletId={walletId} />
-          <WalletHistory walletId={walletId} />
-        </Flex>
-      </Box>
-      <Box display={selectedTab === 'send' ? 'block' : 'none'}>
-        <WalletSend walletId={walletId} />
-      </Box>
-      <Box display={selectedTab === 'receive' ? 'block' : 'none'}>
-        <WalletReceiveAddress walletId={walletId} />
-      </Box>
-
-      {/*
-      {showDebugInformation && (
-        <WalletConnections walletId={walletId} />
-      )}
-      */}
+        {(() => {
+          switch (selectedTab) {
+            case 'summary':
+              return <WalletHistory walletId={walletId} />;
+            case 'send':
+              return <WalletSend walletId={walletId} />;
+            case 'receive':
+              return <WalletReceiveAddress walletId={walletId} />;
+            default:
+              return null;
+          }
+        })()}
+      </Flex>
     </Flex>
   );
 }

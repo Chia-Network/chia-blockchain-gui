@@ -1,4 +1,3 @@
-import { Flex /* , Button */ } from '@chia-network/core';
 import { Search as SearchIcon } from '@chia-network/icons';
 import data from '@emoji-mart/data';
 import { t, Trans } from '@lingui/macro';
@@ -7,6 +6,8 @@ import { InputBase /* , InputBaseProps */, Box, Typography } from '@mui/material
 import { useTheme } from '@mui/material/styles';
 import { init, SearchIndex } from 'emoji-mart';
 import React, { useCallback } from 'react';
+
+import Flex from '../../components/Flex';
 
 init({ data });
 

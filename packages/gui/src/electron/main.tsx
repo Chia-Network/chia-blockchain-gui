@@ -259,6 +259,21 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
 
     ipcMain.handle('showOpenDialog', async (_event, options) => dialog.showOpenDialog(options));
 
+    ipcMain.handle('showOpenFileDialog', async (_event, options) => {
+      const result = await dialog.showOpenDialog({
+        ...(options || {}),
+        properties: ['openFile'],
+        multiSelections: false,
+      });
+
+      if (result.filePaths.length > 0) {
+        const filePath = result.filePaths[0];
+        const fileContent = await fs.promises.readFile(filePath, { encoding: 'utf-8' });
+        return fileContent;
+      }
+      return undefined;
+    });
+
     ipcMain.handle('showSaveDialog', async (_event, options) => dialog.showSaveDialog(options));
 
     ipcMain.handle('download', async (_event, options) => {

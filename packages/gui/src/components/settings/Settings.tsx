@@ -1,10 +1,13 @@
+import { useLocalStorage } from '@chia-network/api-react';
 import { Flex, LayoutDashboardSub } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Typography, Tab, Tabs } from '@mui/material';
-import React from 'react';
+import Badge from '@mui/material/Badge';
+import React, { useMemo } from 'react';
 import { Routes, Route, matchPath, useLocation, useNavigate } from 'react-router-dom';
 
 import SettingsAdvanced from './SettingsAdvanced';
+import SettingsCustody from './SettingsCustody';
 import SettingsDataLayer from './SettingsDataLayer';
 import SettingsGeneral from './SettingsGeneral';
 import SettingsIntegration from './SettingsIntegration';
@@ -12,40 +15,49 @@ import SettingsNFT from './SettingsNFT';
 import SettingsNotifications from './SettingsNotifications';
 import SettingsProfiles from './SettingsProfiles';
 
-enum SettingsTab {
-  GENERAL = 'general',
-  PROFILES = 'profiles',
-  NFT = 'nft',
-  DATALAYER = 'datalayer',
-  INTEGRATION = 'integration',
-  NOTIFICATIONS = 'notifications',
-  ADVANCED = 'advanced',
-}
-
-const SettingsTabsPathMapping = {
-  [SettingsTab.GENERAL]: '/dashboard/settings/general',
-  [SettingsTab.PROFILES]: '/dashboard/settings/profiles',
-  [SettingsTab.NFT]: '/dashboard/settings/nft',
-  [SettingsTab.DATALAYER]: '/dashboard/settings/datalayer',
-  [SettingsTab.INTEGRATION]: '/dashboard/settings/integration',
-  [SettingsTab.NOTIFICATIONS]: '/dashboard/settings/notifications',
-  [SettingsTab.ADVANCED]: '/dashboard/settings/advanced',
-};
+const pathPrefix = '/dashboard/settings/';
 
 export default function Settings() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const [wasSettingsCustodyVisited] = useLocalStorage<boolean>('newFlag--wasSettingsCustodyVisited', false);
 
-  const mapping = {
-    ...SettingsTabsPathMapping,
-    [SettingsTab.PROFILES]: '/dashboard/settings/profiles/*',
-  };
+  const settingsTabs = useMemo(
+    () => [
+      { id: 'general', label: 'General', Component: SettingsGeneral, path: 'general' },
+      {
+        id: 'custody',
+        label: 'Custody',
+        Component: SettingsCustody,
+        path: 'custody',
+        badge: wasSettingsCustodyVisited ? undefined : 'NEW',
+      },
+      { id: 'profiles', label: 'Profiles (DIDs)', Component: SettingsProfiles, path: 'profiles/*' },
+      { id: 'nft', label: 'NFT', Component: SettingsNFT, path: 'nft' },
+      { id: 'datalayer', label: 'DataLayer', Component: SettingsDataLayer, path: 'datalayer' },
+      { id: 'integration', label: 'Integration', Component: SettingsIntegration, path: 'integration' },
+      { id: 'notifications', label: 'Notifications', Component: SettingsNotifications, path: 'notifications' },
+      { id: 'advanced', label: 'Advanced', Component: SettingsAdvanced, path: 'advanced' },
+    ],
+    [wasSettingsCustodyVisited]
+  );
 
-  const activeTab =
-    Object.entries(mapping).find(([, pattern]) => !!matchPath(pattern, pathname))?.[0] ?? SettingsTab.GENERAL;
+  const activeTabId = settingsTabs.find((tab) => !!matchPath(pathPrefix + tab.path, pathname))?.id;
 
-  function handleChangeTab(newTab: SettingsTab) {
-    const path = SettingsTabsPathMapping[newTab] ?? SettingsTabsPathMapping[SettingsTab.GENERAL];
+  function handleChangeTab(newTabId: string) {
+    const newTab = settingsTabs.find((tab) => tab.id === newTabId);
+    if (!newTab) {
+      return;
+    }
+
+    let path = pathPrefix + newTab.path;
+
+    // The path in the settingsTabs is used for matching, so it might contain a wildcard.
+    // So we need to remove /* from the path to navigate to the correct path.
+    if (path.endsWith('/*')) {
+      path = path.slice(0, -2);
+    }
+
     navigate(path);
   }
 
@@ -57,42 +69,45 @@ export default function Settings() {
         </Typography>
         <Flex gap={3} flexDirection="column">
           <Tabs
-            value={activeTab}
+            value={activeTabId || settingsTabs[0].id}
             onChange={(_event, newValue) => handleChangeTab(newValue)}
             textColor="primary"
             indicatorColor="primary"
+            sx={{ '& .MuiTabs-flexContainer': { paddingTop: '10px' } }}
           >
-            <Tab value={SettingsTab.GENERAL} label={<Trans>General</Trans>} data-testid="Settings-tab-general" />
-            <Tab
-              value={SettingsTab.PROFILES}
-              label={<Trans>Profiles (DIDs)</Trans>}
-              data-testid="Settings-tab-profiles"
-            />
-
-            <Tab value={SettingsTab.NFT} label={<Trans>NFT</Trans>} data-testid="Settings-tab-nft" />
-
-            <Tab value={SettingsTab.DATALAYER} label={<Trans>DataLayer</Trans>} data-testid="Settings-tab-datalayer" />
-            <Tab
-              value={SettingsTab.INTEGRATION}
-              label={<Trans>Integration</Trans>}
-              data-testid="Settings-tab-integration"
-            />
-            <Tab
-              value={SettingsTab.NOTIFICATIONS}
-              label={<Trans>Notifications</Trans>}
-              data-testid="Settings-tab-notifications"
-            />
-            <Tab value={SettingsTab.ADVANCED} label={<Trans>Advanced</Trans>} data-testid="Settings-tab-advanced" />
+            {settingsTabs.map((tab) => {
+              let TabLabel = <Trans>{tab.label}</Trans>;
+              if (tab.badge) {
+                TabLabel = (
+                  <Badge
+                    badgeContent={tab.badge}
+                    color="primary"
+                    sx={{
+                      '& .MuiBadge-badge': {
+                        top: '-10px',
+                      },
+                    }}
+                  >
+                    {TabLabel}
+                  </Badge>
+                );
+              }
+              return (
+                <Tab
+                  value={tab.id}
+                  label={TabLabel}
+                  data-testid={`Settings-tab-${tab.id}`}
+                  key={tab.id}
+                  sx={{ overflow: 'visible' }}
+                />
+              );
+            })}
           </Tabs>
 
           <Routes>
-            <Route path="profiles/*" element={<SettingsProfiles />} />
-            <Route path="nft" element={<SettingsNFT />} />
-            <Route path="datalayer" element={<SettingsDataLayer />} />
-            <Route path="general" element={<SettingsGeneral />} />
-            <Route path="integration" element={<SettingsIntegration />} />
-            <Route path="notifications" element={<SettingsNotifications />} />
-            <Route path="advanced" element={<SettingsAdvanced />} />
+            {settingsTabs.map(({ id, path, Component }) => (
+              <Route path={path} element={<Component />} key={id} />
+            ))}
           </Routes>
         </Flex>
       </Flex>

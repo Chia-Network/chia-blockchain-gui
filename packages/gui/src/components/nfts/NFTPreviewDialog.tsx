@@ -37,7 +37,7 @@ export default function NFTPreviewDialog(props: NFTPreviewDialogProps) {
       )}
       {...rest}
     >
-      <NFTPreview id={id} width="100%" height="100%" background={StyledNFTPreviewBackground} />
+      <NFTPreview id={id} width="100%" background={StyledNFTPreviewBackground} />
     </Dialog>
   );
 }

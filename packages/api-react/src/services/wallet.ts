@@ -8,38 +8,41 @@ import normalizePoolState from '../utils/normalizePoolState';
 import onCacheEntryAddedInvalidate from '../utils/onCacheEntryAddedInvalidate';
 import { query, mutation } from '../utils/reduxToolkitEndpointAbstractions';
 
+const tagTypes = [
+  'Address',
+  'CATWalletInfo',
+  'DID',
+  'DIDCoinInfo',
+  'DIDInfo',
+  'DIDName',
+  'DIDPubKey',
+  'DIDRecoveryInfo',
+  'DIDRecoveryList',
+  'DIDWallet',
+  'Keys',
+  'LoggedInFingerprint',
+  'NFTCount',
+  'NFTInfo',
+  'NFTRoyalties',
+  'NFTWalletWithDID',
+  'OfferCounts',
+  'OfferTradeRecord',
+  'PlotNFT',
+  'PoolWalletStatus',
+  'TransactionCount',
+  'Transactions',
+  'WalletBalance',
+  'WalletConnections',
+  'Wallets',
+  'DerivationIndex',
+  'CATs',
+  'DaemonKey',
+  'Notification',
+  'AutoClaim',
+];
+
 const apiWithTag = api.enhanceEndpoints({
-  addTagTypes: [
-    'Address',
-    'CATWalletInfo',
-    'DID',
-    'DIDCoinInfo',
-    'DIDInfo',
-    'DIDName',
-    'DIDPubKey',
-    'DIDRecoveryInfo',
-    'DIDRecoveryList',
-    'DIDWallet',
-    'Keys',
-    'LoggedInFingerprint',
-    'NFTCount',
-    'NFTInfo',
-    'NFTRoyalties',
-    'NFTWalletWithDID',
-    'OfferCounts',
-    'OfferTradeRecord',
-    'PlotNFT',
-    'PoolWalletStatus',
-    'TransactionCount',
-    'Transactions',
-    'WalletBalance',
-    'WalletConnections',
-    'Wallets',
-    'DerivationIndex',
-    'CATs',
-    'DaemonKey',
-    'Notification',
-  ],
+  addTagTypes: tagTypes,
 });
 
 export const walletApi = apiWithTag.injectEndpoints({
@@ -164,6 +167,10 @@ export const walletApi = apiWithTag.injectEndpoints({
       ]),
     }),
 
+    getTransactionAsync: mutation(build, WalletService, 'getTransaction', {
+      transformResponse: (response) => response.transaction,
+    }),
+
     getTransactionMemo: mutation(build, WalletService, 'getTransactionMemo', {
       transformResponse: (response) => {
         const id = Object.keys(response)[0];
@@ -258,6 +265,8 @@ export const walletApi = apiWithTag.injectEndpoints({
         },
       ]),
     }),
+
+    getWalletBalances: query(build, WalletService, 'getWalletBalances', {}),
 
     getFarmedAmount: query(build, WalletService, 'getFarmedAmount', {
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
@@ -433,7 +442,9 @@ export const walletApi = apiWithTag.injectEndpoints({
     }),
 
     logIn: mutation(build, WalletService, 'logIn', {
-      invalidatesTags: ['LoggedInFingerprint', 'Address', 'Wallets', 'Transactions', 'WalletBalance', 'Notification'],
+      // we need to use useClearCache after logIn,
+      // invalidateTags will not work because it will just do refetch and user see data from previous key until new data will be fetched
+      // invalidatesTags: tagTypes, // invalidates all tags
     }),
 
     getPrivateKey: query(build, WalletService, 'getPrivateKey', {
@@ -1405,7 +1416,20 @@ export const walletApi = apiWithTag.injectEndpoints({
       transformResponse: (response) => response.vcRecord,
     }),
 
-    getVCList: query(build, VC, 'getVCList'),
+    getVCList: query(build, VC, 'getVCList', {
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
+        {
+          command: 'onVCCoinAdded',
+          service: VC,
+          endpoint: 'getVCList',
+        },
+        {
+          command: 'onVCCoinRemoved',
+          service: VC,
+          endpoint: 'getVCList',
+        },
+      ]),
+    }),
 
     spendVC: mutation(build, VC, 'spendVC'),
 
@@ -1414,6 +1438,15 @@ export const walletApi = apiWithTag.injectEndpoints({
     getProofsForRoot: query(build, VC, 'getProofsForRoot'),
 
     revokeVC: mutation(build, VC, 'revokeVC'),
+    // clawback
+    setAutoClaim: mutation(build, WalletService, 'setAutoClaim', {
+      invalidatesTags: [{ type: 'AutoClaim' }],
+    }),
+    getAutoClaim: query(build, WalletService, 'getAutoClaim', {
+      providesTags: (result) => (result ? [{ type: 'AutoClaim' }] : []),
+    }),
+
+    spendClawbackCoins: mutation(build, WalletService, 'spendClawbackCoins'),
   }),
 });
 
@@ -1422,6 +1455,7 @@ export const {
   useGetLoggedInFingerprintQuery,
   useGetWalletsQuery,
   useGetTransactionQuery,
+  useGetTransactionAsyncMutation,
   useGetTransactionMemoMutation,
   useGetPwStatusQuery,
   usePwAbsorbRewardsMutation,
@@ -1430,6 +1464,7 @@ export const {
   useCreateNewWalletMutation,
   useDeleteUnconfirmedTransactionsMutation,
   useGetWalletBalanceQuery,
+  useGetWalletBalancesQuery,
   useGetFarmedAmountQuery,
   useSendTransactionMutation,
   useGenerateMnemonicMutation,
@@ -1445,6 +1480,7 @@ export const {
   useGetNextAddressMutation,
   useFarmBlockMutation,
   useGetTimestampForHeightQuery,
+  useLazyGetTimestampForHeightQuery,
   useGetHeightInfoQuery,
   useGetNetworkInfoQuery,
   useGetSyncStatusQuery,
@@ -1526,5 +1562,10 @@ export const {
   useSpendVCMutation,
   useAddVCProofsMutation,
   useGetProofsForRootQuery,
+  useLazyGetProofsForRootQuery,
   useRevokeVCMutation,
+  // clawback
+  useSetAutoClaimMutation,
+  useGetAutoClaimQuery,
+  useSpendClawbackCoinsMutation,
 } = walletApi;
