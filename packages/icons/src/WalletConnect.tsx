@@ -21,5 +21,5 @@ export function ConnectReload(props: SvgIconProps) {
   return <SvgIcon component={ConnectReloadIcon} viewBox="-5 -5 21 21" {...props} />;
 }
 export function Exit(props: SvgIconProps) {
-  return <SvgIcon component={ExitIcon} {...props} />;
+  return <SvgIcon component={ExitIcon} {...props} inheritViewBox />;
 }

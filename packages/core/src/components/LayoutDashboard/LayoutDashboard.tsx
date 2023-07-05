@@ -1,14 +1,12 @@
 import { useGetLoggedInFingerprintQuery, useGetKeyQuery, useFingerprintSettings } from '@chia-network/api-react';
-import { Exit as ExitIcon } from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
 import { Edit as EditIcon } from '@mui/icons-material';
 import { Box, AppBar, Toolbar, Drawer, IconButton, Typography, CircularProgress, Button } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import React, { type ReactNode, useState, Suspense, useCallback } from 'react';
-import { useNavigate, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 
-import useAuth from '../../hooks/useAuth';
 import useGetLatestVersionFromWebsite from '../../hooks/useGetLatestVersionFromWebsite';
 import useOpenDialog from '../../hooks/useOpenDialog';
 import EmojiAndColorPicker from '../../screens/SelectKey/EmojiAndColorPicker';
@@ -16,7 +14,6 @@ import SelectKeyRenameForm from '../../screens/SelectKey/SelectKeyRenameForm';
 import Flex from '../Flex';
 import Link from '../Link';
 import Loading from '../Loading';
-import Tooltip from '../Tooltip';
 import NewerAppVersionAvailable from './NewerAppVersionAvailable';
 
 // import LayoutFooter from '../LayoutMain/LayoutFooter';
@@ -42,17 +39,12 @@ const StyledDrawer = styled(Drawer)`
 const StyledToolbar = styled(Toolbar)`
   padding-left: calc(${({ theme }) => theme.spacing(3)} - 12px);
   padding-right: ${({ theme }) => theme.spacing(3)};
+  padding-top: ${({ theme }) => theme.spacing(1)};
+  padding-bottom: ${({ theme }) => theme.spacing(1)};
 `;
 
 const StyledInlineTypography = styled(Typography)`
   display: inline-block;
-`;
-
-const ExitIconStyled = styled(ExitIcon)`
-  fill: none !important;
-  position: relative;
-  top: 2px;
-  left: 4px;
 `;
 
 export type LayoutDashboardProps = {
@@ -65,8 +57,6 @@ export type LayoutDashboardProps = {
 export default function LayoutDashboard(props: LayoutDashboardProps) {
   const { children, sidebar, outlet = false, actions } = props;
 
-  const navigate = useNavigate();
-  const { logOut } = useAuth();
   const [editWalletName, setEditWalletName] = useState(false);
   const [showEmojiPicker, setShowEmojiPicker] = useState<boolean>(false);
   const { data: fingerprint, isLoading: isLoadingFingerprint } = useGetLoggedInFingerprintQuery();
@@ -109,12 +99,6 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
       (window as any).ipcRenderer.removeAllListeners('checkForUpdates');
     };
   }, [openDialog, appVersion]);
-
-  async function handleLogout() {
-    await logOut();
-
-    navigate('/');
-  }
 
   function handleEditWalletName() {
     setEditWalletName(true);
@@ -175,10 +159,10 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
           <StyledAppBar color="transparent" position="static" elevation={0}>
             {renderNewVersionBanner()}
             <StyledToolbar>
-              <Flex width="100%" alignItems="center" justifyContent="space-between" gap={2}>
+              <Flex width="100%" alignItems="center" gap={2} flexWrap="wrap">
                 <Flex
                   alignItems="center"
-                  flexGrow={1}
+                  flexGrow={9999}
                   justifyContent="space-between"
                   flexWrap="wrap"
                   minWidth={0}
@@ -219,7 +203,7 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
                             />
                           )}
                         </span>
-                        <Flex flexDirection="row">
+                        <Flex flexDirection="row" minWidth={0}>
                           <Box
                             sx={{
                               backgroundColor:
@@ -240,7 +224,7 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
                           >
                             {walletKeyTheme.emoji}
                           </Box>
-                          <Flex flexDirection="column">
+                          <Flex flexDirection="column" minWidth={0}>
                             <Flex flexDirection="row" sx={{ height: '39px' }}>
                               <Typography variant="h4" display="flex-inline" noWrap>
                                 {keyData?.label || <Trans>Wallet</Trans>}
@@ -272,17 +256,10 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
                       </Flex>
                     )}
                   </Flex>
-                  <Flex alignItems="center" gap={1}>
-                    {actions}
-                  </Flex>
                 </Flex>
-                <Box>
-                  <Tooltip title={<Trans>Log Out</Trans>}>
-                    <IconButton onClick={handleLogout} data-testid="LayoutDashboard-log-out">
-                      <ExitIconStyled />
-                    </IconButton>
-                  </Tooltip>
-                </Box>
+                <Flex alignItems="center" gap={1} flexGrow={1}>
+                  {actions}
+                </Flex>
               </Flex>
             </StyledToolbar>
           </StyledAppBar>
