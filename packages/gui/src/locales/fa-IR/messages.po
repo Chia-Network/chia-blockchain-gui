@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-05 07:01\n"
+"PO-Revision-Date: 2023-07-05 12:09\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -40,15 +40,15 @@ msgstr "داده های فایل نقل قول (⌘V)"
 
 #: src/components/plot/add/PlotAddNFT.tsx:112
 msgid "+ Add New Plot NFT"
-msgstr "+ افزودن پلات NFT جدید"
+msgstr "+ جدید NFT اضافه کردن پلات"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:40
 msgid "+ Add a Plot"
-msgstr "+ یک پلات اضافه کنید"
+msgstr "+ افزودن یک پلات"
 
 #: src/components/settings/ProfileAdd.tsx:80
 msgid "<0>Need some XCH?</0>"
-msgstr "<0>مقداری چیا نیاز است?</0>"
+msgstr "<0>مقداری چیا نیاز است؟</0>"
 
 #: src/components/settings/ProfileAdd.tsx:92
 msgid "<0>Use one (1) mojo to create a Profile.</0>"
@@ -56,8 +56,7 @@ msgstr "<0>برای ایجاد مشخصات یک (1) موجو پرداخت کن�
 
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:77
 msgid "A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk to a full node to see the state of the chain. View your network of connected harvesters below Learn more"
-msgstr "دروگر (Harvester) یک سرویس در حال اجرا بر روی ماشینی است که پلات (ها) در عمل آنجا ذخیره شده اند. مزرعه دار (Farmer) و دروگر برای دیدن وضعیت رشته (Chain) با گره کامل در تعامل هستند. شبکه دروگر های متصل خود را در زیر ببینید. \n"
-"بیشتر فرار بگیرید"
+msgstr "برداشت کننده سرویسی است بر روی سیستمی که در آن پلات (ها) در واقع ذخیره شده اند اجرا میگردد. یک فارمر و برداشت کننده در یک نود کامل با هم تامل میکنند تا وضعیت بلاکچین را ببینند. شبکه برداشت کننده های متصل خود را در پایین مشاهده کنید بیشتر بدانید"
 
 #: src/components/settings/SettingsDataLayer.tsx:79
 msgid "A reference server that enables creating mirrored copies of DataLayer."
@@ -70,7 +69,7 @@ msgstr "مقدار {0} توصیه میشود"
 #: src/electron/main.tsx:1101
 #: src/electron/main.tsx:1188
 msgid "About Chia Blockchain"
-msgstr "درباره بلاکچین چیـا"
+msgstr "درباره بلاکچین چیا"
 
 #: src/components/offers/NFTOfferViewer.tsx:638
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:21
@@ -84,7 +83,7 @@ msgstr "تایید پیشنهاد"
 #: src/components/plot/PlotHarvesterPlotsNotFound.tsx:19
 #: src/components/plot/PlotPlotting.tsx:30
 msgid "Action"
-msgstr "عملیات"
+msgstr "اقدام"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:52
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:52
@@ -92,7 +91,7 @@ msgstr "عملیات"
 #: src/components/nfts/NFTContextualActions.tsx:623
 #: src/components/offers2/OfferIncomingTable.tsx:102
 msgid "Actions"
-msgstr "عملیات"
+msgstr "اقدامات"
 
 #: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:121
 msgid "Active Sessions"
@@ -118,11 +117,11 @@ msgstr "افزودن اتصال"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:49
 msgid "Add Plot Directory"
-msgstr "افزودن پوشه حاوی پلات"
+msgstr "اضافه کردن پوشه پلات"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:71
 msgid "Add Plot to Queue"
-msgstr "افزودن پلات به صف"
+msgstr "اضافه کردن پلات به صف"
 
 #: src/components/farm/FarmHero.tsx:37
 #: src/components/plot/add/PlotAddForm.tsx:181
@@ -130,19 +129,19 @@ msgstr "افزودن پلات به صف"
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:198
 #: src/components/plotNFT/PlotNFTCard.tsx:231
 msgid "Add a Plot"
-msgstr "افزودن پلات"
+msgstr "افزودن یک پلات"
 
 #: src/components/plotNFT/PlotNFTAdd.tsx:53
 msgid "Add a Plot NFT"
-msgstr "افزودن پلات NFT"
+msgstr "افزودن یک پلات ان اف تی"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:83
 msgid "Add a plot"
-msgstr "افزودن پلات"
+msgstr "افزودن یک پلات"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:114
 msgid "Add plot directory"
-msgstr "افزودن پوشه قرارگیری پلات"
+msgstr "افزودن پوشه پلات"
 
 #: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:42
 msgid "Add {currencyCode} from the Faucet"
@@ -254,7 +253,7 @@ msgstr "آیا مطمئن هستید که میخواهید تراکنش های �
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:28
 msgid "Are you sure you want to disconnect?"
-msgstr "آیا از قطع ارتباط اطمینان دارید؟"
+msgstr "آیا مطمئن هستید که میخواهید خارج شوید?"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:62
 msgid "Are you sure you want to move this NFT to the specified profile?"
