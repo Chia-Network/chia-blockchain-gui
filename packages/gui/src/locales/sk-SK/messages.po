@@ -18,6 +18,162 @@ msgstr ""
 "X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/packages/gui/src/locales/en-US/messages.po\n"
 "X-Crowdin-File-ID: 1306\n"
 
+#. js-lingui-explicit-id
+#: src/components/nfts/NFTBurnDialog.tsx:132
+msgid "Do you want to burn {count} NFTs?"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:184
+msgid "{count} transactions have been successfully submitted to the blockchain."
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:191
+msgid "{count} NFTs failed to move."
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:382
+msgid "Would you like to move {count} NFTs to a profile?"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/nfts/NFTTransferAction.tsx:226
+msgid "Would you like to transfer {count} NFTs to a new owner?"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/main.tsx:488
+msgid "No"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/main.tsx:488
+msgid "Yes"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/main.tsx:489
+msgid "Confirm"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/main.tsx:491
+msgid "Are you sure you want to quit?"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/main.tsx:600
+#: src/electron/main.tsx:808
+msgid "File"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/main.tsx:608
+msgid "Edit"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/main.tsx:640
+msgid "View"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/main.tsx:649
+msgid "Developer"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/main.tsx:652
+msgid "Developer Tools"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/main.tsx:660
+msgid "Trigger Desktop Notification"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/main.tsx:689
+msgid "Full Screen"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/main.tsx:696
+msgid "Window"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/main.tsx:710
+msgid "Help"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/main.tsx:714
+msgid "Chia Blockchain Wiki"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/main.tsx:720
+msgid "Frequently Asked Questions"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/main.tsx:726
+msgid "Release Notes"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/main.tsx:732
+msgid "Contribute on GitHub"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/main.tsx:741
+msgid "Report an Issue..."
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/main.tsx:747
+msgid "Chat on Discord"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/main.tsx:753
+msgid "Follow on Twitter"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/main.tsx:765
+msgid "Chia"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/main.tsx:768
+#: src/electron/main.tsx:861
+msgid "About Chia Blockchain"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/main.tsx:774
+msgid "Check for Updates..."
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/main.tsx:822
+msgid "Speech"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/main.tsx:867
+msgid "Check for updates..."
+msgstr ""
+
+#: src/components/offers2/OfferBuilderImport.tsx:167
+msgid "(⌘V) a blob"
+msgstr ""
+
 #: src/components/offers2/OfferBuilderImport.tsx:167
 msgid "(Ctrl-V) a blob"
 msgstr ""
@@ -31,32 +187,111 @@ msgid "(Not Supported)"
 msgstr "(Nie je podporované)"
 
 #: src/components/plot/add/PlotAddNFT.tsx:59
-msgid "(Optional)"
-msgstr "(voliteľné)"
+#~ msgid "(Optional)"
+#~ msgstr "(voliteľné)"
 
-#: src/components/offers2/OfferBuilderImport.tsx:167
-msgid "(⌘V) a blob"
+#: src/components/plot/add/PlotAddNFT.tsx:59
+msgid "(Recommended)"
 msgstr ""
 
-#: src/components/plot/add/PlotAddNFT.tsx:112
-msgid "+ Add New Plot NFT"
-msgstr "+ Pridať nové NFT poľa"
+#: src/components/nfts/NFTTransferConfirmationDialog.tsx:89
+msgid "{0, plural, one {mojo} other {mojos}}"
+msgstr "{0, plural, one {mojo} few {mojos} many {mojos} other {mojos}}"
+
+#: src/components/nfts/NFTPreview.tsx:431
+#: src/components/settings/Settings.tsx:79
+msgid "{0}"
+msgstr "{0}"
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:169
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:201
+msgid "{0} buckets is recommended"
+msgstr "Odporúča sa {0} sektorov"
+
+#: src/components/nfts/detail/NFTDetailV2.tsx:217
+msgid "{0} of {1}"
+msgstr "{0} z {1}"
+
+#: src/components/nfts/gallery/SelectedActionsDialog.tsx:63
+msgid "{0} of {allCount} items selected:"
+msgstr ""
+
+#: src/components/plotNFT/PlotNFTGraph.tsx:63
+msgid "{0} points {1} - {2} hours ago"
+msgstr "{0} bodov pred {1} - {2} hodinami"
+
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:194
+#~ msgid "{count} NFTs failed to move."
+#~ msgstr ""
+
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:187
+#~ msgid "{count} transactions have been successfully submitted to the blockchain."
+#~ msgstr ""
+
+#: src/components/notification/NotificationAnnouncement.tsx:51
+msgid "{from} <0>sending the message</0>"
+msgstr ""
+
+#: src/components/nfts/gallery/NFTGallery.tsx:432
+#~ msgid "{key} ({0})"
+#~ msgstr ""
+
+#: src/components/offers/NFTOfferViewer.tsx:204
+#: src/components/offers/OfferSummary.tsx:173
+msgid "{makerFee, plural, one {mojo} other {mojos}}"
+msgstr "{makerFee, plural, one {mojo} few {mojos} many {mojos} other {mojos}}"
+
+#: src/components/offers/OfferSummaryRow.tsx:39
+msgid "{mojos, plural, one {mojo} other {mojos}}"
+msgstr "{mojos, plural, one {mojo} few {mojos} many {mojos} other {mojos}}"
+
+#: src/components/nfts/gallery/FilterPill.tsx:50
+#~ msgid "{title}"
+#~ msgstr ""
+
+#: src/components/offers2/OfferBuilderValue.tsx:174
+msgid "{type} is not supported"
+msgstr ""
+
+#: src/components/nfts/NFTRankings.tsx:46
+msgid "{value} of {max_value}"
+msgstr "{value} z {max_value}"
+
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:106
+msgid "{warning}"
+msgstr "{warning}"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:40
 msgid "+ Add a Plot"
 msgstr "+ Pridať pole"
 
+#: src/components/plot/add/PlotAddNFT.tsx:120
+msgid "+ Add New Plot NFT"
+msgstr "+ Pridať nové NFT poľa"
+
+#: src/components/nfts/gallery/NFTGallery.tsx:300
+msgid "<0>Loading...</0> {0}%"
+msgstr ""
+
 #: src/components/settings/ProfileAdd.tsx:80
-msgid "<0>Need some XCH?</0>"
-msgstr "<0>Potrebujete XCH?</0>"
+#~ msgid "<0>Need some XCH?</0>"
+#~ msgstr "<0>Potrebujete XCH?</0>"
+
+#: src/components/nfts/gallery/NFTGallery.tsx:290
+msgid "<0>Showing</0> {0} <1>of</1> {1}  <2>items</2>"
+msgstr ""
 
 #: src/components/settings/ProfileAdd.tsx:92
-msgid "<0>Use one (1) mojo to create a Profile.</0>"
-msgstr "<0>Na vytvorenie profilu použite jedno (1) mojo.</0>"
+#~ msgid "<0>Use one (1) mojo to create a Profile.</0>"
+#~ msgstr "<0>Na vytvorenie profilu použite jedno (1) mojo.</0>"
 
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:77
 msgid "A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk to a full node to see the state of the chain. View your network of connected harvesters below Learn more"
 msgstr "Kombajn je služba bežiaca na stroji, kde sú uložené polia. Farmár a kombajn komunikujú s plným uzlom, aby zistili stav reťaze. Nižšie si pozrite svoju sieť prepojených kombajnov. Viac informácií"
+
+#: src/components/settings/SettingsProfiles.tsx:53
+msgid "A profile is a decentralized identifier (DID) that you can prove control and ownership of without having to rely on any centralized authority."
+msgstr ""
 
 #: src/components/settings/SettingsDataLayer.tsx:79
 msgid "A reference server that enables creating mirrored copies of DataLayer."
@@ -68,12 +303,12 @@ msgstr "Odporúča sa hodnota {0}"
 
 #: src/electron/main.tsx:1101
 #: src/electron/main.tsx:1188
-msgid "About Chia Blockchain"
-msgstr "O Chia blockchaine"
+#~ msgid "About Chia Blockchain"
+#~ msgstr "O Chia blockchaine"
 
 #: src/components/offers/NFTOfferViewer.tsx:638
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:21
-#: src/components/offers2/OfferBuilderViewer.tsx:143
+#: src/components/offers2/OfferBuilderViewer.tsx:214
 msgid "Accept Offer"
 msgstr "Prijať ponuku"
 
@@ -88,43 +323,31 @@ msgstr "Akcia"
 #: src/components/farm/FarmFullNodeConnections.tsx:52
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:52
 #: src/components/fullNode/FullNodeConnections.tsx:64
-#: src/components/nfts/NFTContextualActions.tsx:623
-#: src/components/offers2/OfferIncomingTable.tsx:102
+#: src/components/nfts/NFTContextualActions.tsx:589
+#: src/components/offers2/OfferIncomingTable.tsx:117
 msgid "Actions"
 msgstr "Akcie"
 
-#: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:121
+#: src/components/walletConnect/WalletConnectActiveSessions.tsx:24
 msgid "Active Sessions"
 msgstr ""
 
-#: src/components/notification/NotificationsDropdown.tsx:37
-#: src/components/notification/NotificationsDropdown.tsx:44
-#: src/components/notification/NotificationsMenu.tsx:35
+#: src/components/notification/NotificationsDropdown.tsx:38
+#: src/components/notification/NotificationsDropdown.tsx:45
+#: src/components/notification/NotificationsMenu.tsx:36
 msgid "Activity"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:421
-msgid "Add CAT Token"
-msgstr ""
+#: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:42
+msgid "Add {currencyCode} from the Faucet"
+msgstr "Pridať {currencyCode} z Faucetu"
 
-#: src/components/offers/OfferAssetSelector.tsx:144
-msgid "Add CAT wallets to have more options"
-msgstr "Pridajte CAT peňaženky, aby ste mali viac možností"
-
-#: src/components/walletConnect/WalletConnectConnections.tsx:102
-msgid "Add Connection"
-msgstr ""
-
-#: src/components/plot/overview/PlotOverviewPlots.tsx:49
-msgid "Add Plot Directory"
-msgstr "Pridať adresár polí"
-
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:71
-msgid "Add Plot to Queue"
-msgstr "Pridať pole do fronty"
+#: src/components/plot/PlotAddDirectoryDialog.tsx:83
+msgid "Add a plot"
+msgstr "Pridať pole"
 
 #: src/components/farm/FarmHero.tsx:37
-#: src/components/plot/add/PlotAddForm.tsx:181
+#: src/components/plot/add/PlotAddForm.tsx:192
 #: src/components/plot/overview/PlotOverviewHero.tsx:43
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:198
 #: src/components/plotNFT/PlotNFTCard.tsx:231
@@ -135,27 +358,51 @@ msgstr "Pridať pole"
 msgid "Add a Plot NFT"
 msgstr "Pridať NFT poľa"
 
-#: src/components/plot/PlotAddDirectoryDialog.tsx:83
-msgid "Add a plot"
-msgstr "Pridať pole"
+#: src/constants/WalletConnectCommands.tsx:545
+msgid "Add CAT Token"
+msgstr ""
+
+#: src/components/offers/OfferAssetSelector.tsx:144
+msgid "Add CAT wallets to have more options"
+msgstr "Pridajte CAT peňaženky, aby ste mali viac možností"
+
+#: src/components/walletConnect/WalletConnectConnections.tsx:105
+msgid "Add Connection"
+msgstr ""
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:114
 msgid "Add plot directory"
 msgstr "Pridať adresár polí"
 
-#: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:42
-msgid "Add {currencyCode} from the Faucet"
-msgstr "Pridať {currencyCode} z Faucetu"
+#: src/components/plot/overview/PlotOverviewPlots.tsx:49
+msgid "Add Plot Directory"
+msgstr "Pridať adresár polí"
 
-#: src/components/notification/NotificationSendDialog.tsx:213
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:71
+msgid "Add Plot to Queue"
+msgstr "Pridať pole do fronty"
+
+#: src/constants/WalletConnectCommands.tsx:885
+msgid "Add Proofs"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:844
+msgid "Add Proofs To Verifiable Credential"
+msgstr ""
+
+#: src/components/vcs/VCList.tsx:216
+msgid "Add Verifiable Credential from file"
+msgstr ""
+
+#: src/components/notification/NotificationSendDialog.tsx:219
 #: src/components/signVerify/SigningEntityWalletAddress.tsx:45
-#: src/constants/WalletConnectCommands.tsx:93
-#: src/constants/WalletConnectCommands.tsx:136
-#: src/constants/WalletConnectCommands.tsx:388
+#: src/constants/WalletConnectCommands.tsx:126
+#: src/constants/WalletConnectCommands.tsx:195
+#: src/constants/WalletConnectCommands.tsx:229
+#: src/constants/WalletConnectCommands.tsx:521
 msgid "Address"
 msgstr ""
 
-#: src/components/settings/Settings.tsx:81
 #: src/components/settings/SettingsAdvanced.tsx:44
 msgid "Advanced"
 msgstr ""
@@ -173,16 +420,20 @@ msgstr "Všetky NFT"
 msgid "All Profiles"
 msgstr "Všetky profily"
 
-#: src/components/settings/SettingsIntegration.tsx:57
+#: src/components/settings/SettingsIntegration.tsx:174
 msgid "Allow external Apps and websites to connect to your wallet through WalletConnect."
 msgstr ""
 
-#: src/components/settings/SettingsIntegration.tsx:81
+#: src/components/settings/SettingsIntegration.tsx:199
 msgid "Allow requests that require switching to a different wallet key."
 msgstr ""
 
-#: src/components/notification/NotificationSendDialog.tsx:272
+#: src/components/notification/NotificationSendDialog.tsx:284
 msgid "Allow the NFT holder to send a counter offer"
+msgstr ""
+
+#: src/components/notification/NotificationSendDialog.tsx:286
+msgid "Allow the recipient to send a counter offer"
 msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:418
@@ -193,13 +444,22 @@ msgstr "Alternovať zapisovanie sektorov"
 msgid "Alternate tmpdir/tmpdir2"
 msgstr "Striedať tmpdir/tmpdir2"
 
-#: src/components/offers/NFTOfferEditor.tsx:236
+#: src/components/settings/SettingsIntegration.tsx:308
+msgid "Always Allow"
+msgstr ""
+
+#: src/components/settings/SettingsIntegration.tsx:311
+msgid "Always Reject"
+msgstr ""
+
+#: src/components/offers/NFTOfferEditor.tsx:231
 #: src/components/offers/OfferEditorConditionsPanel.tsx:128
 #: src/components/offers2/OfferBuilderNFTRoyalties.tsx:120
 #: src/components/offers2/OfferBuilderWalletAmount.tsx:36
-#: src/constants/WalletConnectCommands.tsx:81
-#: src/constants/WalletConnectCommands.tsx:351
-#: src/constants/WalletConnectCommands.tsx:393
+#: src/constants/WalletConnectCommands.tsx:114
+#: src/constants/WalletConnectCommands.tsx:469
+#: src/constants/WalletConnectCommands.tsx:526
+#: src/constants/WalletConnectCommands.tsx:747
 msgid "Amount"
 msgstr "Suma"
 
@@ -207,17 +467,25 @@ msgstr "Suma"
 msgid "Amount before adding royalties"
 msgstr ""
 
-#: src/util/offerBuilderDataToOffer.ts:59
-msgid "Amount exceeds XCH spendable balance"
-msgstr ""
-
-#: src/components/offers/NFTOfferEditor.tsx:596
+#: src/components/offers/NFTOfferEditor.tsx:590
 #: src/components/offers/OfferEditor.tsx:108
 msgid "Amount exceeds spendable balance"
 msgstr "Suma presahuje disponibilný zostatok"
 
 #: src/util/offerBuilderDataToOffer.ts:86
-msgid "Amount exceeds spendable balance for {0} token"
+#~ msgid "Amount exceeds spendable balance for {0} token"
+#~ msgstr ""
+
+#: src/util/offerBuilderDataToOffer.ts:241
+msgid "Amount exceeds total balance for {catName} token"
+msgstr ""
+
+#: src/util/offerBuilderDataToOffer.ts:59
+#~ msgid "Amount exceeds XCH spendable balance"
+#~ msgstr ""
+
+#: src/util/offerBuilderDataToOffer.ts:173
+msgid "Amount exceeds XCH total balance"
 msgstr ""
 
 #: src/components/offers/NFTOfferPreview.tsx:137
@@ -225,20 +493,32 @@ msgstr ""
 msgid "An NFT's provenance is a complete record of its ownership history. It provides a direct lineage that connects everyone who has owned the NFT, all the way back to the original artist. This helps to verify that the NFT is authentic."
 msgstr "Pôvod NFT je úplným záznamom histórie jeho vlastníctva. Poskytuje priamu líniu pôvodu, ktorá spája každého, kto vlastnil dané NFT, až po pôvodného umelca. Pomáha to pri overovaní, či je NFT autentický."
 
-#: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:90
-#: src/hooks/useWalletConnectCommand.tsx:118
+#: src/components/notification/NotificationAnnouncementDialog.tsx:35
+msgid "Announcement"
+msgstr ""
+
+#: src/components/settings/SettingsIntegration.tsx:212
+msgid "App Permissions"
+msgstr ""
+
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:121
+#: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:91
 msgid "Application"
 msgstr ""
 
-#: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:132
+#: src/components/walletConnect/WalletConnectActiveSessions.tsx:31
+msgid "Application doesn't have any active pair."
+msgstr ""
+
+#: src/components/walletConnect/WalletConnectActiveSessions.tsx:35
 msgid "Application has no active sessions"
 msgstr ""
 
-#: src/components/offers/OfferManager.tsx:105
+#: src/components/offers/ConfirmOfferCancellation.tsx:69
 msgid "Are you sure you want to cancel your offer?"
 msgstr "Naozaj chcete zrušiť vašu ponuku?"
 
-#: src/components/settings/SettingsNFT.tsx:70
+#: src/components/settings/SettingsNFT.tsx:59
 msgid "Are you sure you want to delete the NFT cache?"
 msgstr ""
 
@@ -255,23 +535,36 @@ msgstr "Naozaj chcete odstrániť nepotvrdené transakcie?"
 msgid "Are you sure you want to disconnect?"
 msgstr "Naozaj sa chcete odpojiť?"
 
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:62
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:63
 msgid "Are you sure you want to move this NFT to the specified profile?"
 msgstr "Naozaj chcete presunúť tento NFT do určeného profilu?"
 
 #: src/electron/main.tsx:816
-msgid "Are you sure you want to quit?"
-msgstr "Naozaj chcete skončiť?"
+#~ msgid "Are you sure you want to quit?"
+#~ msgstr "Naozaj chcete skončiť?"
+
+#: src/components/vcs/VCCard.tsx:191
+msgid "Are you sure you want to remove"
+msgstr ""
+
+#: src/components/vcs/VCCard.tsx:193
+msgid "Are you sure you want to revoke"
+msgstr ""
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:50
 msgid "Are you sure you want to use k={plotSize}?"
 msgstr "Naozaj chcete použiť k={plotSize}?"
 
+#: src/components/offers2/OfferIncomingTable.tsx:211
+msgid "Are you sure you'd like to remove this offer? Please remember that this action is not reversible."
+msgstr ""
+
 #: src/components/offers2/OfferBuilderRoyaltyPayouts.tsx:48
 msgid "Asset"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:426
+#: src/constants/WalletConnectCommands.tsx:489
+#: src/constants/WalletConnectCommands.tsx:550
 msgid "Asset Id"
 msgstr ""
 
@@ -282,11 +575,11 @@ msgstr ""
 msgid "Asset Type"
 msgstr "Typ aktíva"
 
-#: src/components/offers/OfferShareDialog.tsx:1353
+#: src/components/offers/OfferShareDialog.tsx:902
 msgid "Assets I am offering:"
 msgstr ""
 
-#: src/components/offers/OfferShareDialog.tsx:1358
+#: src/components/offers/OfferShareDialog.tsx:907
 msgid "Assets I will receive:"
 msgstr ""
 
@@ -306,9 +599,21 @@ msgstr ""
 msgid "Assets you will receive"
 msgstr ""
 
-#: src/components/app/AppState.tsx:230
+#: src/components/app/AppState.tsx:243
 msgid "Attempt {attempt}"
 msgstr "Pokus {attempt}"
+
+#: src/components/settings/SettingsCustody.tsx:61
+msgid "Auto claim incoming claw back transactions"
+msgstr ""
+
+#: src/components/settings/SettingsCustodyAutoClaim.tsx:134
+msgid "Auto claim is disabled."
+msgstr ""
+
+#: src/components/settings/SettingsCustodyAutoClaim.tsx:119
+msgid "Auto claim is enabled."
+msgstr ""
 
 #: src/components/plotNFT/PlotNFTName.tsx:40
 msgid "Autogenerated name from pool contract address"
@@ -318,17 +623,25 @@ msgstr "Názov automaticky vygenerovaný z adresy zmluvy združenia"
 msgid "Back"
 msgstr "Späť"
 
+#: src/constants/WalletConnectCommands.tsx:759
+msgid "Backup DIDs"
+msgstr ""
+
+#: src/components/vcs/VCList.tsx:268
+msgid "Badging"
+msgstr ""
+
 #: src/components/settings/ProfileAdd.tsx:98
-msgid "Balance: {standardBalance} XCH"
-msgstr "Zostatok: {standardBalance} XCH"
+#~ msgid "Balance: {standardBalance} XCH"
+#~ msgstr "Zostatok: {standardBalance} XCH"
 
 #: src/components/block/Block.jsx:235
 msgid "Base Farmer Reward Amount"
 msgstr "Základná výška odmeny farmára"
 
 #: src/components/offers/OfferShareDialog.tsx:1177
-msgid "Before posting an offer in Keybase to the #{channelName} channel, you must first join the {teamName} team. Please note that it might take a few moments to join the channel."
-msgstr "Pred odoslaním ponuky na Keybase kanál #{channelName} sa musíte najskôr pripojiť k tímu {teamName}. Upozorňujeme, že pripojenie ku kanálu môže chvíľu trvať."
+#~ msgid "Before posting an offer in Keybase to the #{channelName} channel, you must first join the {teamName} team. Please note that it might take a few moments to join the channel."
+#~ msgstr "Pred odoslaním ponuky na Keybase kanál #{channelName} sa musíte najskôr pripojiť k tímu {teamName}. Upozorňujeme, že pripojenie ku kanálu môže chvíľu trvať."
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:35
 msgid "Below are the current block challenges. You may or may not have a proof of space for these challenges. These blocks do not currently contain a proof of time."
@@ -342,6 +655,10 @@ msgstr "Najlepší odhad za posledných 24 hodín"
 msgid "Block"
 msgstr "Blok"
 
+#: src/components/block/Block.jsx:250
+msgid "Block at height {0} in the Chia blockchain"
+msgstr "Blok s výškou {0} v Chia blockchaine"
+
 #: src/components/farm/card/FarmCardBlockRewards.tsx:32
 msgid "Block Rewards"
 msgstr "Blokové odmeny"
@@ -349,10 +666,6 @@ msgstr "Blokové odmeny"
 #: src/components/block/Block.jsx:195
 msgid "Block VDF Iterations"
 msgstr "Blok VDF iterácii"
-
-#: src/components/block/Block.jsx:250
-msgid "Block at height {0} in the Chia blockchain"
-msgstr "Blok s výškou {0} v Chia blockchaine"
 
 #: src/components/block/Block.jsx:120
 msgid "Block with hash {headerHash}"
@@ -372,13 +685,13 @@ msgstr "Bloky"
 msgid "Browse"
 msgstr "Vybrať"
 
-#: src/components/nfts/NFTBurnDialog.tsx:88
+#: src/components/nfts/NFTBurnDialog.tsx:89
 #: src/components/nfts/NFTBurnDialog.tsx:184
-#: src/components/nfts/NFTContextualActions.tsx:531
+#: src/components/nfts/NFTContextualActions.tsx:527
 msgid "Burn"
 msgstr ""
 
-#: src/components/nfts/NFTBurnDialog.tsx:72
+#: src/components/nfts/NFTBurnDialog.tsx:73
 msgid "Burn NFT confirmation"
 msgstr ""
 
@@ -386,7 +699,7 @@ msgstr ""
 msgid "Burning a non-fungible token means removing it from circulation by sending it to a verifiably un-spendable address. However, transactions leading up to the burn will remain on the blockchain ledger."
 msgstr "Spálenie nezameniteľného tokenu znamená jeho odstránenie z obehu odoslaním na overiteľne nepoužiteľnú adresu. Transakcie vedúce k spáleniu však zostanú v účtovnej knihe blockchainu."
 
-#: src/components/offers/NFTOfferEditor.tsx:312
+#: src/components/offers/NFTOfferEditor.tsx:307
 msgid "Buy an NFT"
 msgstr ""
 
@@ -394,7 +707,7 @@ msgstr ""
 msgid "By providing a signing address, the public key can be validated as being associated with the address used for signing."
 msgstr ""
 
-#: src/components/settings/SettingsNFT.tsx:163
+#: src/components/settings/SettingsNFT.tsx:133
 msgid "Cache"
 msgstr ""
 
@@ -407,13 +720,14 @@ msgstr "Veľkosť vyrovnávacej pamäte (GB)"
 #: src/components/fullNode/FullNodeAddConnection.tsx:100
 #: src/components/nfts/MultipleDownloadDialog.tsx:120
 #: src/components/nfts/NFTBurnDialog.tsx:174
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:57
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:58
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:49
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:24
 #: src/components/offers/OfferDataEntryDialog.tsx:58
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:18
-#: src/components/offers/OfferShareDialog.tsx:1195
-#: src/components/offers/OfferShareDialog.tsx:1370
+#: src/components/offers/OfferShareDialog.tsx:919
+#: src/components/offers2/CancelOfferList.tsx:146
+#: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:361
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:110
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:71
 #: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:30
@@ -423,30 +737,32 @@ msgstr "Veľkosť vyrovnávacej pamäte (GB)"
 #: src/components/settings/SetPassphrasePrompt.tsx:260
 #: src/components/signVerify/SignMessage.tsx:205
 #: src/components/signVerify/VerifyMessage.tsx:271
+#: src/components/vcs/VCEditTitle.tsx:76
+#: src/components/vcs/VCRevokeDialog.tsx:28
 #: src/hooks/useOpenUnsafeLink.tsx:33
 msgid "Cancel"
 msgstr "Zrušiť"
 
-#: src/components/offers/OfferManager.tsx:98
-#: src/components/offers/OfferManager.tsx:165
-#: src/components/offers/OfferManager.tsx:358
-#: src/constants/WalletConnectCommands.tsx:255
+#: src/components/offers/ConfirmOfferCancellation.tsx:62
+#: src/components/offers/ConfirmOfferCancellation.tsx:129
+#: src/components/offers/OfferManager.tsx:246
+#: src/constants/WalletConnectCommands.tsx:362
 msgid "Cancel Offer"
 msgstr "Zrušiť ponuku"
 
-#: src/components/nfts/NFTContextualActions.tsx:283
-msgid "Cancel Unconfirmed Transaction"
-msgstr "Odstrániť nepotvrdenú transakciu"
-
-#: src/components/offers/OfferManager.tsx:128
+#: src/components/offers/ConfirmOfferCancellation.tsx:92
 msgid "Cancel on blockchain"
 msgstr "Zrušiť na blockchaine"
 
-#: src/components/offers/utils.ts:157
+#: src/components/nfts/NFTContextualActions.tsx:276
+msgid "Cancel Unconfirmed Transaction"
+msgstr "Odstrániť nepotvrdenú transakciu"
+
+#: src/components/offers/utils.ts:121
 msgid "Cancelled"
 msgstr "Zrušené"
 
-#: src/util/offerBuilderDataToOffer.ts:120
+#: src/util/offerBuilderDataToOffer.ts:306
 msgid "Cannot offer and request the same asset"
 msgstr ""
 
@@ -459,12 +775,12 @@ msgid "Challenge Hash"
 msgstr "Hash výzvy"
 
 #: src/components/plotNFT/PlotNFTChangePool.tsx:108
-#: src/components/settings/SettingsNFT.tsx:201
+#: src/components/settings/SettingsNFT.tsx:171
 msgid "Change"
 msgstr "Zmeniť"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:288
-#: src/components/settings/SettingsPanel.tsx:121
+#: src/components/settings/SettingsPanel.tsx:122
 msgid "Change Passphrase"
 msgstr "Zmeniť prístupovú frázu"
 
@@ -482,10 +798,10 @@ msgid "Changes will take effect the next time Chia is started."
 msgstr ""
 
 #: src/electron/main.tsx:1080
-msgid "Chat on KeyBase"
-msgstr "Chatovať na KeyBase"
+#~ msgid "Chat on KeyBase"
+#~ msgstr "Chatovať na KeyBase"
 
-#: src/constants/WalletConnectCommands.tsx:278
+#: src/constants/WalletConnectCommands.tsx:385
 msgid "Check Offer Validity"
 msgstr ""
 
@@ -500,8 +816,8 @@ msgid "Check Provenance on Spacescan.io"
 msgstr "Skontrolovať pôvod na Spacescan.io"
 
 #: src/electron/main.tsx:1098
-msgid "Chia"
-msgstr "Chia"
+#~ msgid "Chia"
+#~ msgstr "Chia"
 
 #: src/components/offers2/OfferBuilderXCHSection.tsx:76
 msgid "Chia ({currencyCode}) is a digital currency that is secure and sustainable"
@@ -512,8 +828,8 @@ msgid "Chia Asset Tokens (CATs) are tokens built on top of XCH"
 msgstr ""
 
 #: src/electron/main.tsx:1047
-msgid "Chia Blockchain Wiki"
-msgstr "Chia Blockchain Wiki"
+#~ msgid "Chia Blockchain Wiki"
+#~ msgstr "Chia Blockchain Wiki"
 
 #: src/components/app/AppSelectMode.tsx:145
 msgid "Choose Farming Mode"
@@ -535,62 +851,78 @@ msgstr "Vyberte vykresľovač polí"
 msgid "Choose Wallet Mode"
 msgstr "Vyberte režim peňaženky"
 
-#: src/components/settings/SettingsNFT.tsx:113
+#: src/components/settings/SettingsNFT.tsx:83
 msgid "Choose what you want to see and how you want to view it."
 msgstr ""
 
-#: src/components/settings/SettingsNotifications.tsx:19
+#: src/components/settings/SettingsNotifications.tsx:33
 msgid "Choose your notification settings."
 msgstr ""
 
-#: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:129
+#: src/components/settings/SettingsCustody.tsx:65
+msgid "Claim assets sent to you automatically when the claw back time period expires."
+msgstr ""
+
+#: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:130
 #: src/components/plotNFT/PlotNFTCard.tsx:319
 msgid "Claim Rewards"
 msgstr "Vyzdvihnúť odmeny"
 
-#: src/components/settings/SettingsNFT.tsx:55
-#: src/components/settings/SettingsNFT.tsx:183
+#: src/constants/WalletConnectCommands.tsx:154
+msgid "Claw back or claim claw back transaction"
+msgstr ""
+
+#: src/components/settings/SettingsNFT.tsx:52
+#: src/components/settings/SettingsNFT.tsx:153
 msgid "Clear NFT cache"
 msgstr ""
 
 #: src/components/app/AppVersionWarning.tsx:57
 #: src/components/nfts/MultipleDownloadDialog.tsx:116
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:332
-#: src/components/nfts/NFTTransferAction.tsx:166
-#: src/components/notification/NotificationSendDialog.tsx:291
-#: src/components/offers/OfferManager.tsx:162
-#: src/components/offers/OfferShareDialog.tsx:630
-#: src/components/offers/OfferShareDialog.tsx:703
-#: src/components/offers/OfferShareDialog.tsx:777
-#: src/components/offers/OfferShareDialog.tsx:869
-#: src/components/offers/OfferShareDialog.tsx:963
-#: src/components/offers/OfferShareDialog.tsx:1143
-#: src/components/offers/OfferShareDialog.tsx:1283
-#: src/components/offers/OfferShareDialog.tsx:1556
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:327
+#: src/components/nfts/NFTTransferAction.tsx:167
+#: src/components/notification/NotificationAnnouncementDialog.tsx:75
+#: src/components/notification/NotificationSendDialog.tsx:307
+#: src/components/offers/ConfirmOfferCancellation.tsx:126
+#: src/components/offers/OfferShareDialog.tsx:450
+#: src/components/offers/OfferShareDialog.tsx:525
+#: src/components/offers/OfferShareDialog.tsx:598
+#: src/components/offers/OfferShareDialog.tsx:708
+#: src/components/offers/OfferShareDialog.tsx:830
+#: src/components/offers/OfferShareDialog.tsx:1106
+#: src/components/offers2/OfferBuilderViewerDialog.tsx:75
 #: src/components/plot/PlotAddDirectoryDialog.tsx:121
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:66
 #: src/components/signVerify/SignMessageResultDialog.tsx:66
-#: src/components/walletConnect/WalletConnectConnectedDialog.tsx:122
-#: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:154
+#: src/components/walletConnect/WalletConnectConnectedDialog.tsx:124
+#: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:137
 msgid "Close"
 msgstr "Zavrieť"
 
-#: src/components/app/AppState.tsx:157
+#: src/components/app/AppState.tsx:170
 msgid "Closing down services"
 msgstr "Prebieha zatváranie služieb"
 
-#: src/constants/WalletConnectCommands.tsx:456
+#: src/constants/WalletConnectCommands.tsx:601
 msgid "Coin Id"
 msgstr ""
 
-#: src/components/nfts/NFTSummary.tsx:54
-#: src/components/nfts/detail/NFTDetailV2.tsx:301
+#: src/components/vcs/VCCard.tsx:121
+msgid "Coin ID"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:160
+msgid "Coin Ids"
+msgstr ""
+
+#: src/components/nfts/detail/NFTDetailV2.tsx:202
+#: src/components/nfts/NFTSummary.tsx:49
 msgid "Collection"
 msgstr "Zbierka"
 
-#: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:165
-#: src/electron/main.tsx:814
-#: src/hooks/useWalletConnectCommand.tsx:77
+#: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:166
+#: src/components/vcs/VCRevokeDialog.tsx:27
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:70
 msgid "Confirm"
 msgstr "Potvrdiť"
 
@@ -598,17 +930,17 @@ msgstr "Potvrdiť"
 msgid "Confirm Disconnect"
 msgstr "Potvrďte odpojenie"
 
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:54
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:55
 msgid "Confirm Move"
 msgstr "Potvrdiť presun"
-
-#: src/components/nfts/NFTTransferConfirmationDialog.tsx:30
-msgid "Confirm NFT Transfer"
-msgstr "Potvrdiť prenos NFT"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:237
 msgid "Confirm New Passphrase"
 msgstr "Potvrdiť novú prístupovú frázu"
+
+#: src/components/nfts/NFTTransferConfirmationDialog.tsx:30
+msgid "Confirm NFT Transfer"
+msgstr "Potvrdiť prenos NFT"
 
 #: src/components/app/AppKeyringMigrator.tsx:177
 #: src/components/app/AppKeyringMigrator.tsx:178
@@ -616,15 +948,16 @@ msgstr "Potvrdiť novú prístupovú frázu"
 msgid "Confirm Passphrase"
 msgstr "Potvrdiť prístupovú frázu"
 
+#: src/components/offers2/OfferIncomingTable.tsx:210
 #: src/components/plotNFT/PlotNFTCard.tsx:103
 msgid "Confirmation"
 msgstr "Potvrdenie"
 
-#: src/hooks/useWalletConnectCommand.tsx:75
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:68
 msgid "Confirmation Request"
 msgstr ""
 
-#: src/components/offers/utils.ts:159
+#: src/components/offers/utils.ts:123
 msgid "Confirmed"
 msgstr "Potvrdené"
 
@@ -642,16 +975,16 @@ msgid "Connect to pool"
 msgstr "Pripojiť k združeniu"
 
 #: src/components/fullNode/card/FullNodeCardConnectionStatus.tsx:15
-#: src/components/walletConnect/WalletConnectConnectedDialog.tsx:85
+#: src/components/walletConnect/WalletConnectConnectedDialog.tsx:86
 msgid "Connected"
 msgstr "Pripojené"
 
-#: src/components/walletConnect/WalletConnectConnections.tsx:61
+#: src/components/walletConnect/WalletConnectConnections.tsx:64
 msgid "Connected Applications"
 msgstr ""
 
-#: src/components/app/AppState.tsx:222
-#: src/components/app/AppState.tsx:227
+#: src/components/app/AppState.tsx:235
+#: src/components/app/AppState.tsx:240
 msgid "Connecting to daemon"
 msgstr "Pripájanie k démonovi"
 
@@ -668,12 +1001,16 @@ msgstr "Stav pripojenia:"
 msgid "Connection type"
 msgstr "Typ pripojenia"
 
-#: src/components/nfts/NFTPreview.tsx:594
+#: src/components/nfts/NFTHashStatus.tsx:109
 msgid "Content does not match the expected hash value that was specified during NFT minting. The content may have been modified."
 msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:591
-msgid "Content has not been validated against the hash that was specified during NFT minting."
+#~ msgid "Content has not been validated against the hash that was specified during NFT minting."
+#~ msgstr ""
+
+#: src/components/nfts/NFTHashStatus.tsx:102
+msgid "Content has not been validated against the hash that was specified during NFT minting. Error: {0}"
 msgstr ""
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:188
@@ -681,14 +1018,14 @@ msgid "Continue"
 msgstr ""
 
 #: src/electron/main.tsx:1065
-msgid "Contribute on GitHub"
-msgstr "Prispejte na GitHube"
+#~ msgid "Contribute on GitHub"
+#~ msgstr "Prispejte na GitHube"
 
-#: src/components/nfts/NFTContextualActions.tsx:354
+#: src/components/nfts/NFTContextualActions.tsx:347
 msgid "Copy Media URL"
 msgstr "Kopírovať URL adresu média"
 
-#: src/components/nfts/NFTContextualActions.tsx:107
+#: src/components/nfts/NFTContextualActions.tsx:104
 msgid "Copy NFT ID"
 msgstr "Skopírovať NFT ID"
 
@@ -696,7 +1033,11 @@ msgstr "Skopírovať NFT ID"
 msgid "Copy To Clipboard"
 msgstr ""
 
-#: src/components/notification/NotificationSendDialog.tsx:230
+#: src/components/notification/NotificationSendDialog.tsx:239
+msgid "Cost to send notification"
+msgstr ""
+
+#: src/components/notification/NotificationSendDialog.tsx:237
 msgid "Cost to send notification to the NFT holder"
 msgstr ""
 
@@ -708,13 +1049,17 @@ msgstr ""
 msgid "Could not parse offer data"
 msgstr ""
 
-#: src/components/offers2/OfferIncomingTable.tsx:93
+#: src/components/offers2/OfferIncomingTable.tsx:106
 msgid "Counter"
 msgstr ""
 
-#: src/components/plot/add/PlotAddForm.tsx:191
+#: src/components/offers2/OfferBuilderViewer.tsx:202
+msgid "Counter Offer"
+msgstr ""
+
+#: src/components/plot/add/PlotAddForm.tsx:202
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:79
-#: src/components/settings/ProfileAdd.tsx:119
+#: src/components/settings/ProfileAdd.tsx:159
 msgid "Create"
 msgstr "Vytvoriť"
 
@@ -722,55 +1067,71 @@ msgstr "Vytvoriť"
 msgid "Create & Manage plots"
 msgstr "Vytváranie a správa polí"
 
-#: src/components/offers2/CreateOfferBuilder.tsx:137
+#: src/components/offers/OfferManager.tsx:328
+msgid "Create a file that you can use to trade XCH, Chia Asset Tokens, or NFTs with no counter-party risk."
+msgstr ""
+
+#: src/components/settings/ProfileAdd.tsx:113
+msgid "Create a new profile"
+msgstr "Vytvoriť nový profil"
+
+#: src/components/plot/add/PlotAddNFT.tsx:39
+msgid "Create a Plot NFT"
+msgstr "Vytvoriť NFT poľa"
+
+#: src/components/offers/NFTOfferEditor.tsx:720
+msgid "Create an NFT Offer"
+msgstr "Vytvoriť NFT ponuku"
+
+#: src/components/offers/OfferEditor.tsx:192
+#: src/components/offers/OfferManager.tsx:337
+msgid "Create an Offer"
+msgstr "Vytvoriť ponuku"
+
+#: src/components/offers2/CreateOfferBuilder.tsx:150
 msgid "Create Counter Offer"
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:151
-#: src/components/offers/NFTOfferEditor.tsx:442
-#: src/components/offers/OfferEditor.tsx:177
+#: src/constants/WalletConnectCommands.tsx:464
+msgid "Create new CAT Wallet"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:742
+msgid "Create new DID Wallet"
+msgstr ""
+
+#: src/components/nfts/NFTContextualActions.tsx:148
+#: src/components/offers/NFTOfferEditor.tsx:437
+#: src/components/offers/OfferEditor.tsx:174
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:15
-#: src/components/offers/OfferManager.tsx:431
-#: src/components/offers2/CreateOfferBuilder.tsx:137
+#: src/components/offers/OfferManager.tsx:319
+#: src/components/offers2/CreateOfferBuilder.tsx:150
 msgid "Create Offer"
 msgstr "Vytvoriť ponuku"
 
-#: src/constants/WalletConnectCommands.tsx:226
+#: src/constants/WalletConnectCommands.tsx:329
 msgid "Create Offer for Ids"
+msgstr ""
+
+#: src/components/settings/IdentitiesPanel.tsx:98
+msgid "Create Profile"
 msgstr ""
 
 #: src/components/settings/SettingsAdvanced.tsx:69
 msgid "Create Signature"
 msgstr ""
 
-#: src/components/plot/add/PlotAddNFT.tsx:39
-msgid "Create a Plot NFT"
-msgstr "Vytvoriť NFT poľa"
+#: src/components/offers/OfferViewerTitle.tsx:36
+msgid "created {0}"
+msgstr "vytvorené {0}"
 
-#: src/components/offers/OfferManager.tsx:440
-msgid "Create a file that you can use to trade XCH, Chia Asset Tokens, or NFTs with no counter-party risk."
-msgstr ""
-
-#: src/components/settings/ProfileAdd.tsx:75
-msgid "Create a new profile"
-msgstr "Vytvoriť nový profil"
-
-#: src/components/offers/NFTOfferEditor.tsx:735
-msgid "Create an NFT Offer"
-msgstr "Vytvoriť NFT ponuku"
-
-#: src/components/offers/OfferEditor.tsx:195
-#: src/components/offers/OfferManager.tsx:449
-msgid "Create an Offer"
-msgstr "Vytvoriť ponuku"
-
-#: src/constants/WalletConnectCommands.tsx:346
-msgid "Create new CAT Wallet"
-msgstr ""
-
-#: src/components/offers/OfferManager.tsx:130
+#: src/components/offers/ConfirmOfferCancellation.tsx:94
 msgid "Creates and submits a transaction on the blockchain that cancels the offer"
 msgstr "Vytvorí a odošle transakciu, ktorá zruší ponuku, do blockchainu"
+
+#: src/components/settings/ProfileAdd.tsx:130
+msgid "Creating a profile requires 1 mojo"
+msgstr ""
 
 #: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:63
 msgid "Creating Plot NFT and Joining the Pool"
@@ -780,8 +1141,9 @@ msgstr "Vytváranie NFT poľa a pripájanie k združeniu"
 msgid "Creating Plot NFT for Self Pooling"
 msgstr "Vytváranie NFT poľa osobného združenia"
 
-#: src/components/offers/OfferManager.tsx:298
-#: src/components/offers2/OfferIncomingTable.tsx:64
+#: src/components/offers/OfferManager.tsx:186
+#: src/components/offers2/CancelOfferList.tsx:127
+#: src/components/offers2/OfferIncomingTable.tsx:78
 msgid "Creation Date"
 msgstr "Dátum vytvorenia"
 
@@ -789,16 +1151,20 @@ msgstr "Dátum vytvorenia"
 msgid "Creator Fee ({0}%)"
 msgstr "Autorský poplatok ({0}%)"
 
-#: src/components/offers/NFTOfferEditor.tsx:334
+#: src/components/offers/NFTOfferEditor.tsx:329
 msgid "Creator Fee ({royaltyPercentage}%)"
 msgstr "Autorský poplatok ({royaltyPercentage}%)"
 
-#: src/components/offers/NFTOfferEditor.tsx:337
+#: src/components/offers/NFTOfferEditor.tsx:332
 #: src/components/offers/NFTOfferViewer.tsx:517
 msgid "Creator royalty percentage seems high"
 msgstr "Percento autorských honorárov sa zdá byť vysoké"
 
-#: src/components/plot/add/PlotAddForm.tsx:120
+#: src/components/dashboard/DashboardSideBar.tsx:67
+msgid "Credentials"
+msgstr ""
+
+#: src/components/plot/add/PlotAddForm.tsx:128
 msgid "Currency code is not defined"
 msgstr "Kód meny nie je definovaný"
 
@@ -816,9 +1182,12 @@ msgstr "Aktuálna prístupová fráza"
 msgid "Current Points Balance"
 msgstr "Aktuálny počet bodov"
 
-#: src/components/signVerify/SignMessage.tsx:155
-#: src/components/signVerify/SigningEntityDID.tsx:79
-msgid "DID"
+#: src/components/notification/utils.ts:109
+msgid "Dapp {from} sending the message"
+msgstr ""
+
+#: src/components/notification/utils.ts:109
+msgid "Dapp sending the message"
 msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:235
@@ -830,32 +1199,44 @@ msgid "Data URL {0}"
 msgstr "URL adresa údajov {0}"
 
 #: src/components/settings/Settings.tsx:70
-msgid "DataLayer"
+#~ msgid "DataLayer"
+#~ msgstr ""
+
+#: src/components/settings/SettingsDataLayer.tsx:21
+msgid "DataLayer enables rich data to be stored on mirrored databases that can be verified using the Chia Blockchain."
 msgstr ""
 
 #: src/components/settings/SettingsDataLayer.tsx:18
 msgid "DataLayer Services"
 msgstr ""
 
-#: src/components/settings/SettingsDataLayer.tsx:21
-msgid "DataLayer enables rich data to be stored on mirrored databases that can be verified using the Chia Blockchain."
-msgstr ""
-
 #: src/components/farm/FarmLastAttemptedProof.tsx:31
 msgid "Date"
 msgstr "Dátum"
+
+#: src/components/settings/SettingsCustody.tsx:41
+msgid "Default claw back time for outgoing XCH transactions"
+msgstr ""
+
+#: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:114
+msgid "Default claw back time is disabled."
+msgstr ""
+
+#: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:109
+msgid "Default claw back time is enabled."
+msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:89
 msgid "Delay"
 msgstr "Oneskorenie"
 
-#: src/components/notification/NotificationsProvider.tsx:225
-#: src/components/offers2/OfferIncomingTable.tsx:96
+#: src/components/offers2/OfferIncomingTable.tsx:111
 #: src/components/plot/PlotAction.tsx:25
 #: src/components/plot/PlotAction.tsx:41
 #: src/components/plot/queue/PlotQueueActions.tsx:33
 #: src/components/plot/queue/PlotQueueActions.tsx:69
 #: src/components/plotNFT/PlotNFTCard.tsx:104
+#: src/hooks/useBlockchainNotifications.tsx:158
 msgid "Delete"
 msgstr "Zmazať"
 
@@ -872,6 +1253,10 @@ msgstr "Zmazať pole"
 msgid "Delete Unconfirmed Transactions"
 msgstr "Odstrániť nepotvrdené transakcie"
 
+#: src/components/vcs/VCCard.tsx:286
+msgid "Delete Verifiable Credential"
+msgstr ""
+
 #: src/components/app/AppPassPrompt.tsx:100
 msgid "Deleting key"
 msgstr "Odstraňovanie kľúča"
@@ -880,7 +1265,7 @@ msgstr "Odstraňovanie kľúča"
 msgid "Depending on your system configuration, you may find that an alternative plotter produces plots faster than the default Chia Proof of Space plotter. If unsure, use the default Chia Proof of Space plotter."
 msgstr "V závislosti od konfigurácie vášho systému možno zistíte, že alternatívny ploter vykresľuje polia rýchlejšie ako predvolený Chia Proof of Space ploter. Ak si nie ste istí, použite predvolený Chia Proof of Space ploter."
 
-#: src/components/settings/SettingsPanel.tsx:163
+#: src/components/settings/SettingsPanel.tsx:164
 msgid "Derivation Index"
 msgstr "Derivačný index"
 
@@ -888,11 +1273,11 @@ msgstr "Derivačný index"
 msgid "Derivation index must be greater than {index}"
 msgstr "Derivačný index musí byť väčší ako {index}"
 
-#: src/components/nfts/detail/NFTDetailV2.tsx:291
+#: src/components/nfts/detail/NFTDetailV2.tsx:192
 msgid "Description"
 msgstr "Popis"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:475
+#: src/components/nfts/gallery/NFTGallery.tsx:314
 msgid "Deselect all"
 msgstr ""
 
@@ -909,29 +1294,36 @@ msgid "Details"
 msgstr "Podrobnosti"
 
 #: src/electron/main.tsx:991
-msgid "Developer"
-msgstr "Vývojár"
+#~ msgid "Developer"
+#~ msgstr "Vývojár"
 
 #: src/electron/main.tsx:994
-msgid "Developer Tools"
-msgstr "Nástroje pre vývojárov"
+#~ msgid "Developer Tools"
+#~ msgstr "Nástroje pre vývojárov"
 
-#: src/components/offers/OfferShareDialog.tsx:603
+#: src/components/offers/OfferShareDialog.tsx:415
 msgid "Dexie URL"
 msgstr "Dexie URL"
+
+#: src/components/signVerify/SigningEntityDID.tsx:76
+#: src/components/signVerify/SignMessage.tsx:155
+#: src/constants/WalletConnectCommands.tsx:806
+msgid "DID"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:680
+msgid "DID Id"
+msgstr ""
 
 #: src/components/block/Block.jsx:181
 #: src/components/fullNode/card/FullNodeCardDifficulty.tsx:14
 msgid "Difficulty"
 msgstr "Zložitosť"
 
-#: src/constants/WalletConnectCommands.tsx:247
-msgid "Disable JSON Formatting"
+#: src/components/settings/SettingsCustodyAutoClaim.tsx:91
+#: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:77
+msgid "Disable"
 msgstr ""
-
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:377
-msgid "Disable NUMA"
-msgstr "Zakázať NUMA"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:399
 msgid "Disable assigning automatic thread affinity. This is useful when running multiple simultaneous instances of Bladebit as you can manually assign thread affinity yourself when launching Bladebit."
@@ -953,18 +1345,31 @@ msgstr "Zakázať priame I/O v adresári temp 1, aby sa získal maximálny výko
 msgid "Disable direct I/O on the temp 2 directory in order to extract maximum performance with RAM disk"
 msgstr "Zakázať priame I/O v adresári temp 2, aby sa získal maximálny výkon z RAM disku"
 
+#: src/constants/WalletConnectCommands.tsx:354
+msgid "Disable JSON Formatting"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:377
+msgid "Disable NUMA"
+msgstr "Zakázať NUMA"
+
 #: src/components/fullNode/FullNodeCloseConnection.tsx:20
-#: src/components/walletConnect/WalletConnectConnectedDialog.tsx:119
-#: src/components/walletConnect/WalletConnectConnections.tsx:87
-#: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:151
+#: src/components/settings/SettingsIntegration.tsx:271
+#: src/components/walletConnect/WalletConnectConnectedDialog.tsx:121
+#: src/components/walletConnect/WalletConnectConnections.tsx:90
+#: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:134
 msgid "Disconnect"
 msgstr "Odpojiť"
 
-#: src/components/offers/OfferManager.tsx:338
+#: src/components/offers/OfferManager.tsx:226
 msgid "Display Offer Data"
 msgstr "Zobraziť údaje o ponuke"
 
-#: src/components/offers/OfferShareDialog.tsx:1549
+#: src/components/settings/SettingsNotifications.tsx:152
+msgid "Display sharing options after creating a new offer"
+msgstr ""
+
+#: src/components/offers/OfferShareDialog.tsx:1099
 #: src/hooks/useOpenUnsafeLink.tsx:64
 msgid "Do not show this dialog again"
 msgstr "Toto dialógové okno už nezobrazovať"
@@ -974,23 +1379,23 @@ msgstr "Toto dialógové okno už nezobrazovať"
 msgid "Do you have existing plots on this machine? <0>Add Plot Directory</0>"
 msgstr "Máte existujúce ploty na tomto stroji? <0>Pridaj Adresár s Plotmi</0>"
 
+#: src/components/nfts/NFTBurnDialog.tsx:132
+#~ msgid "Do you want to burn {count} NFTs?"
+#~ msgstr ""
+
 #: src/components/nfts/NFTBurnDialog.tsx:134
 msgid "Do you want to burn this NFT?"
 msgstr ""
 
-#: src/components/nfts/NFTBurnDialog.tsx:132
-msgid "Do you want to burn {count} NFTs?"
-msgstr ""
-
-#: src/hooks/useWalletConnectCommand.tsx:177
+#: src/hooks/useWalletConnectCommand.tsx:182
 msgid "Do you want to execute command {command}?"
 msgstr ""
 
-#: src/hooks/useWalletConnectCommand.tsx:173
+#: src/hooks/useWalletConnectCommand.tsx:178
 msgid "Do you want to log in to {fingerprint} and execute command {command}?"
 msgstr ""
 
-#: src/components/notification/NotificationsProvider.tsx:233
+#: src/hooks/useBlockchainNotifications.tsx:166
 msgid "Do you want to remove this offer notification? This action cannot be undone."
 msgstr ""
 
@@ -998,7 +1403,7 @@ msgstr ""
 msgid "Does your machine support parallel plotting?"
 msgstr "Podporuje váše zariadenie paralelné vytváranie polí?"
 
-#: src/components/nfts/NFTContextualActions.tsx:452
+#: src/components/nfts/NFTContextualActions.tsx:445
 msgid "Download"
 msgstr "Stiahnuť"
 
@@ -1038,7 +1443,7 @@ msgstr ""
 msgid "Drag & Drop an Offer File, Paste"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:236
+#: src/constants/WalletConnectCommands.tsx:342
 msgid "Driver Dict"
 msgstr ""
 
@@ -1051,8 +1456,8 @@ msgid "Duplicate Plots"
 msgstr "Duplicitné polia"
 
 #: src/electron/main.tsx:950
-msgid "Edit"
-msgstr "Upraviť"
+#~ msgid "Edit"
+#~ msgstr "Upraviť"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:222
 #: src/components/plotNFT/PlotNFTCard.tsx:250
@@ -1060,13 +1465,23 @@ msgstr "Upraviť"
 msgid "Edit Payout Instructions"
 msgstr "Upraviť platobné pokyny"
 
-#: src/components/nfts/NFTSummary.tsx:64
+#: src/components/nfts/NFTSummary.tsx:59
 msgid "Edition #"
 msgstr "Vydanie #"
 
-#: src/components/nfts/detail/NFTDetailV2.tsx:312
+#: src/components/nfts/detail/NFTDetailV2.tsx:213
+#: src/constants/WalletConnectCommands.tsx:668
 msgid "Edition Number"
 msgstr "Číslo vydania"
+
+#: src/constants/WalletConnectCommands.tsx:674
+msgid "Edition Total"
+msgstr ""
+
+#: src/components/settings/SettingsCustodyAutoClaim.tsx:75
+#: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:63
+msgid "Enable"
+msgstr ""
 
 #: src/components/settings/SettingsStartup.tsx:28
 msgid "Enable Auto Login"
@@ -1080,12 +1495,20 @@ msgstr "Povolit dátovú vrstvu"
 msgid "Enable File Propagation Server"
 msgstr "Povoliť server na šírenie súborov"
 
-#: src/components/settings/SettingsIntegration.tsx:41
-#: src/components/walletConnect/WalletConnectConnections.tsx:106
+#: src/components/settings/SettingsNotifications.tsx:45
+msgid "Enable notifications"
+msgstr ""
+
+#: src/components/settings/SettingsVerifiableCredentials.tsx:28
+msgid "Enable Verifiable Credentials"
+msgstr ""
+
+#: src/components/settings/SettingsIntegration.tsx:157
+#: src/components/walletConnect/WalletConnectConnections.tsx:109
 msgid "Enable WalletConnect"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:189
+#: src/constants/WalletConnectCommands.tsx:290
 msgid "End"
 msgstr ""
 
@@ -1116,22 +1539,28 @@ msgstr "Zadajte svoju prístupovú frázu:"
 
 #: src/components/farm/card/FarmCardStatus.tsx:35
 #: src/components/farm/card/FarmCardStatus.tsx:49
+#: src/components/helpers/ErrorMessage.tsx:14
+#: src/components/offers2/OfferDetails.tsx:42
 #: src/components/plot/PlotStatus.tsx:21
 #: src/components/plot/PlotStatus.tsx:22
 #: src/components/plot/queue/PlotQueueIndicator.tsx:23
-#: src/components/settings/SettingsNFT.tsx:94
+#: src/components/vcs/VCCard.tsx:246
 msgid "Error"
 msgstr "Chyba"
 
 #: src/components/nfts/NFTPreview.tsx:645
-msgid "Error fetching video preview"
-msgstr "Chyba pri načítavaní ukážky videa"
+#~ msgid "Error fetching video preview"
+#~ msgstr "Chyba pri načítavaní ukážky videa"
+
+#: src/components/vcs/VCList.tsx:180
+msgid "Error parsing file"
+msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:657
-msgid "Error parsing json"
-msgstr "Chyba pri analýze JSON"
+#~ msgid "Error parsing json"
+#~ msgstr "Chyba pri analýze JSON"
 
-#: src/components/offers/OfferShareDialog.tsx:1272
+#: src/components/offers/OfferShareDialog.tsx:811
 msgid "Error posting offer: {0}"
 msgstr ""
 
@@ -1143,28 +1572,40 @@ msgstr ""
 msgid "Error: {0}"
 msgstr ""
 
+#: src/components/vcs/VCEditTitle.tsx:77
+msgid "Esc"
+msgstr ""
+
 #: src/components/fullNode/card/FullNodeEstimatedNetworkSpace.tsx:14
 msgid "Estimated Network Space"
 msgstr "Odhadovaná velkosť siete"
+
+#: src/components/fullNode/card/FullNodeEstimatedNetworkSpace.tsx:15
+msgid "Estimated sum of all the plotted disk space of all farmers in the network"
+msgstr "Odhadovaný súčet všetkého obsadeného miesta na disku všetkých ťažiarov v sieti"
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:48
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:53
 msgid "Estimated Time to Win"
 msgstr "Očakávaný čas na výhru"
 
-#: src/components/fullNode/card/FullNodeEstimatedNetworkSpace.tsx:15
-msgid "Estimated sum of all the plotted disk space of all farmers in the network"
-msgstr "Odhadovaný súčet všetkého obsadeného miesta na disku všetkých ťažiarov v sieti"
-
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:437
 msgid "Exclude final directory"
 msgstr "Vylúčiť cieľový adresár"
+
+#: src/components/vcs/VCCard.tsx:135
+msgid "Expiration"
+msgstr ""
+
+#: src/components/vcs/VCCard.tsx:140
+msgid "Expired"
+msgstr ""
 
 #: src/components/nfts/gallery/NFTGalleryHero.tsx:18
 msgid "Explore the Chia ecosystem; discover and trade great NFTs"
 msgstr "Preskúmajte ekosystém Chia; objavte a obchodujte so skvelými NFT"
 
-#: src/components/offers/utils.ts:161
+#: src/components/offers/utils.ts:125
 #: src/components/plot/PlotHarvester.tsx:121
 msgid "Failed"
 msgstr "Nepodarilo sa"
@@ -1173,13 +1614,13 @@ msgstr "Nepodarilo sa"
 msgid "Failed downloads:"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:587
+#: src/components/offers/NFTOfferEditor.tsx:581
 msgid "Failed to decode NFT identifier"
 msgstr "Nepodarilo sa dekódovať NFT identifikátor"
 
 #: src/components/offers/OfferShareDialog.tsx:462
-msgid "Failed to execute Keybase command: {stderr}"
-msgstr "Nepodarilo sa vykonať Keybase príkaz: {stderr}"
+#~ msgid "Failed to execute Keybase command: {stderr}"
+#~ msgstr "Nepodarilo sa vykonať Keybase príkaz: {stderr}"
 
 #: src/components/notification/NotificationSendDialog.tsx:147
 msgid "Failed to send the notification: {error}"
@@ -1196,6 +1637,16 @@ msgstr "Nepodarilo sa aktualizovať prístupovú frázu: {0}"
 #: src/components/notification/NotificationSendDialog.tsx:142
 msgid "Failure"
 msgstr ""
+
+#: src/components/farm/card/FarmCardStatus.tsx:38
+#: src/components/plot/PlotStatus.tsx:29
+msgid "Farmer is not connected"
+msgstr "Farmár nie je pripojený"
+
+#: src/components/farm/card/FarmCardStatus.tsx:52
+#: src/components/plot/PlotStatus.tsx:30
+msgid "Farmer is not running"
+msgstr "Nebeží farmer"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:454
 msgid "Farmer Public Key"
@@ -1217,21 +1668,11 @@ msgstr "Adresa odmeny farmára nemá správny formát."
 msgid "Farmer Reward Address must not be empty."
 msgstr "Adresa odmeny farmára nesmie byť prázdna."
 
-#: src/components/farm/card/FarmCardStatus.tsx:38
-#: src/components/plot/PlotStatus.tsx:29
-msgid "Farmer is not connected"
-msgstr "Farmár nie je pripojený"
-
-#: src/components/farm/card/FarmCardStatus.tsx:52
-#: src/components/plot/PlotStatus.tsx:30
-msgid "Farmer is not running"
-msgstr "Nebeží farmer"
-
 #: src/components/farm/FarmHero.tsx:28
 msgid "Farmers earn block rewards and transaction fees by committing spare space to the network to help secure transactions. This is where your farm will be once you add a plot. <0>Learn more</0>"
 msgstr "Farmári získavajú odmeny za bloky a transakčné poplatky tým, že vložia voľný priestor do siete, aby pomohli zabezpečit transakcie. Tu bude vaša farma akonáhle pridáte svoje pole. <0>Viac informácií</0>"
 
-#: src/components/dashboard/DashboardSideBar.tsx:97
+#: src/components/dashboard/DashboardSideBar.tsx:108
 #: src/components/farm/card/FarmCardStatus.tsx:62
 #: src/components/plot/PlotStatus.tsx:18
 msgid "Farming"
@@ -1253,34 +1694,48 @@ msgstr "Stav ťažby"
 msgid "Features for advanced users."
 msgstr ""
 
+#: src/components/settings/SettingsCustody.tsx:30
+msgid "Features to give you more protection and control over your digital assets."
+msgstr ""
+
 #: src/components/nfts/NFTBurnDialog.tsx:166
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:324
-#: src/components/nfts/NFTTransferAction.tsx:158
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:319
+#: src/components/nfts/NFTTransferAction.tsx:159
+#: src/components/offers/ConfirmOfferCancellation.tsx:109
 #: src/components/offers/NFTOfferViewer.tsx:611
-#: src/components/offers/OfferManager.tsx:145
-#: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:156
+#: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:157
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:115
 #: src/components/pool/PoolInfo.tsx:18
-#: src/components/settings/ProfileAdd.tsx:107
-#: src/constants/WalletConnectCommands.tsx:87
-#: src/constants/WalletConnectCommands.tsx:270
-#: src/constants/WalletConnectCommands.tsx:300
-#: src/constants/WalletConnectCommands.tsx:357
-#: src/constants/WalletConnectCommands.tsx:401
-#: src/constants/WalletConnectCommands.tsx:488
+#: src/components/settings/ProfileAdd.tsx:152
+#: src/components/vcs/VCRevokeDialog.tsx:80
+#: src/constants/WalletConnectCommands.tsx:120
+#: src/constants/WalletConnectCommands.tsx:165
+#: src/constants/WalletConnectCommands.tsx:377
+#: src/constants/WalletConnectCommands.tsx:412
+#: src/constants/WalletConnectCommands.tsx:475
+#: src/constants/WalletConnectCommands.tsx:532
+#: src/constants/WalletConnectCommands.tsx:686
+#: src/constants/WalletConnectCommands.tsx:715
+#: src/constants/WalletConnectCommands.tsx:753
+#: src/constants/WalletConnectCommands.tsx:811
+#: src/constants/WalletConnectCommands.tsx:920
 msgid "Fee"
 msgstr "Poplatok"
 
-#: src/components/offers/NFTOfferEditor.tsx:86
+#: src/components/offers/NFTOfferEditor.tsx:81
 #: src/components/offers/OfferEditorConditionsPanel.tsx:386
 msgid "Fee (Optional)"
 msgstr "Poplatok (nepovinné)"
+
+#: src/util/offerBuilderDataToOffer.ts:198
+msgid "Fee exceeds XCH total balance"
+msgstr ""
 
 #: src/components/plotNFT/PlotNFTChangePool.tsx:113
 msgid "Fee is used TWICE: once to leave pool, once to join."
 msgstr "Poplatok sa použije DVAKRÁT: raz na vystúpenie zo združenia, raz na vstup."
 
-#: src/components/offers2/OfferBuilderFeeSection.tsx:52
+#: src/components/offers2/OfferBuilderFeeSection.tsx:53
 msgid "Fees"
 msgstr ""
 
@@ -1288,15 +1743,15 @@ msgstr ""
 msgid "Fees Amount"
 msgstr "Výška poplatkov"
 
-#: src/components/offers/NFTOfferViewer.tsx:197
+#: src/components/offers/NFTOfferViewer.tsx:198
 #: src/components/offers/OfferSummary.tsx:167
 msgid "Fees included in offer:"
 msgstr "Poplatky zahrnuté v ponuke:"
 
 #: src/electron/main.tsx:942
 #: src/electron/main.tsx:1135
-msgid "File"
-msgstr "Súbor"
+#~ msgid "File"
+#~ msgstr "Súbor"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:70
 #: src/components/plot/PlotHarvesterPlotsDuplicate.tsx:14
@@ -1305,7 +1760,7 @@ msgstr "Súbor"
 msgid "Filename"
 msgstr "Meno súboru"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:530
+#: src/components/nfts/gallery/NFTGallery.tsx:277
 msgid "Filter"
 msgstr ""
 
@@ -1313,7 +1768,7 @@ msgstr ""
 msgid "Final folder location"
 msgstr "Cieľový adresár"
 
-#: src/constants/WalletConnectCommands.tsx:21
+#: src/constants/WalletConnectCommands.tsx:22
 msgid "Fingerprint"
 msgstr ""
 
@@ -1322,20 +1777,24 @@ msgstr ""
 msgid "Finished"
 msgstr "Dokončené"
 
-#: src/components/settings/SettingsNFT.tsx:145
+#: src/components/settings/SettingsNFT.tsx:115
 msgid "Fit images to cards"
 msgstr ""
 
 #: src/electron/main.tsx:1086
-msgid "Follow on Twitter"
-msgstr "Sledovať na Twitteri"
+#~ msgid "Follow on Twitter"
+#~ msgstr "Sledovať na Twitteri"
 
 #: src/electron/main.tsx:1053
-msgid "Frequently Asked Questions"
-msgstr "Často kladené otázky (FAQ)"
+#~ msgid "Frequently Asked Questions"
+#~ msgstr "Často kladené otázky (FAQ)"
 
-#: src/components/app/AppStatusHeader.tsx:84
-#: src/components/dashboard/DashboardSideBar.tsx:76
+#: src/components/notification/NotificationAnnouncementDialog.tsx:44
+msgid "From"
+msgstr ""
+
+#: src/components/app/AppStatusHeader.tsx:116
+#: src/components/dashboard/DashboardSideBar.tsx:87
 #: src/components/fullNode/FullNode.jsx:116
 msgid "Full Node"
 msgstr "Celý uzol"
@@ -1345,67 +1804,99 @@ msgid "Full Node Connections"
 msgstr ""
 
 #: src/electron/main.tsx:1022
-msgid "Full Screen"
-msgstr "Celá obrazovka"
+#~ msgid "Full Screen"
+#~ msgstr "Celá obrazovka"
 
 #: src/components/settings/Settings.tsx:65
-msgid "General"
-msgstr "Všeobecné"
+#~ msgid "General"
+#~ msgstr "Všeobecné"
 
-#: src/constants/WalletConnectCommands.tsx:365
+#: src/constants/WalletConnectCommands.tsx:277
+msgid "Get all Offers"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:825
+msgid "Get All Verifiable Credentials"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:496
 msgid "Get CAT Asset Id"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:59
+#: src/constants/WalletConnectCommands.tsx:483
+msgid "Get CAT Wallet Info"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:90
 msgid "Get Current Address"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:451
-msgid "Get NFT Info"
+#: src/components/settings/ProfileAdd.tsx:124
+msgid "Get Mojos from the Chia Faucet"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:440
-msgid "Get NFTs"
-msgstr ""
-
-#: src/constants/WalletConnectCommands.tsx:148
+#: src/constants/WalletConnectCommands.tsx:243
 msgid "Get Next Address"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:320
+#: src/constants/WalletConnectCommands.tsx:594
+msgid "Get NFT Info"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:819
+msgid "Get NFT Wallets with DIDs"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:564
+msgid "Get NFTs"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:723
+msgid "Get NFTs Count"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:434
 msgid "Get Offer Data"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:332
+#: src/constants/WalletConnectCommands.tsx:448
 msgid "Get Offer Record"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:308
+#: src/constants/WalletConnectCommands.tsx:420
 msgid "Get Offer Summary"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:221
+#: src/constants/WalletConnectCommands.tsx:322
 msgid "Get Offers Count"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:32
+#: src/constants/WalletConnectCommands.tsx:898
+msgid "Get Proofs For Root Hash"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:42
 msgid "Get Transaction"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:44
+#: src/constants/WalletConnectCommands.tsx:831
+msgid "Get Verifiable Credential"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:56
 msgid "Get Wallet Balance"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:171
+#: src/constants/WalletConnectCommands.tsx:73
+msgid "Get Wallet Balances"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:268
 msgid "Get Wallet Sync Status"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:27
+#: src/constants/WalletConnectCommands.tsx:28
 msgid "Get Wallets"
-msgstr ""
-
-#: src/constants/WalletConnectCommands.tsx:178
-msgid "Get all Offers"
 msgstr ""
 
 #: src/components/nfts/gallery/NFTGalleryHero.tsx:15
@@ -1414,8 +1905,12 @@ msgstr "Choďte pozbierať nejaké drahokamy"
 
 #: src/components/offers/OfferShareDialog.tsx:1140
 #: src/components/offers/OfferShareDialog.tsx:1191
-msgid "Go to #{channelName}"
-msgstr "Prejsť na #{channelName}"
+#~ msgid "Go to #{channelName}"
+#~ msgstr "Prejsť na #{channelName}"
+
+#: src/components/vcs/VCList.tsx:284
+msgid "Government IDs"
+msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:420
 msgid "Halves the temp2 cache size requirements by alternating bucket writing methods between tables."
@@ -1425,24 +1920,32 @@ msgstr "Znižuje požiadavky na veľkosť vyrovnávacej pamäte temp2 na polovic
 msgid "Harvesters"
 msgstr "Zberače"
 
+#: src/constants/WalletConnectCommands.tsx:641
+msgid "Hash"
+msgstr ""
+
 #: src/components/nfts/detail/NFTDetailV2.tsx:179
-msgid "Hash is validated."
-msgstr "Hash je overený."
+#~ msgid "Hash is validated."
+#~ msgstr "Hash je overený."
+
+#: src/components/nfts/NFTHashStatus.tsx:73
+msgid "Hash matches"
+msgstr ""
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:184
-msgid "Hash mismatch."
-msgstr "Nezhoda hash."
+#~ msgid "Hash mismatch."
+#~ msgstr "Nezhoda hash."
 
-#: src/components/offers/OfferShareDialog.tsx:847
+#: src/components/offers/OfferShareDialog.tsx:576
 msgid "Hashgreen DEX URL"
 msgstr "Hashgreen DEX URL"
 
-#: src/components/fullNode/FullNode.jsx:43
-msgid "Header Hash"
-msgstr "Hash hlavičky"
-
 #: src/components/block/Block.jsx:155
 msgid "Header hash"
+msgstr "Hash hlavičky"
+
+#: src/components/fullNode/FullNode.jsx:43
+msgid "Header Hash"
 msgstr "Hash hlavičky"
 
 #: src/components/block/Block.jsx:168
@@ -1452,26 +1955,30 @@ msgid "Height"
 msgstr "Poradie"
 
 #: src/electron/main.tsx:1043
-msgid "Help"
-msgstr "Pomoc"
+#~ msgid "Help"
+#~ msgstr "Pomoc"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:51
 msgid "Here are the current block challenges. You may or may not have a proof of space for these challenges. These blocks do not currently contain a proof of time."
 msgstr "Tu sú aktuálne blokové výzvy. Môžete alebo nemusíte mať dôkaz priestoru pre tieto výzvy. Tieto bloky momentálne neobsahujú dôkaz času."
 
-#: src/components/nfts/gallery/NFTGallery.tsx:589
+#: src/components/nfts/gallery/NFTGallery.tsx:422
 msgid "Hidden"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:573
-msgid "Hidden ({0})"
+#: src/components/nfts/gallery/NFTGallery.tsx:385
+msgid "Hidden  <0/>"
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:499
+#: src/components/nfts/gallery/NFTGallery.tsx:573
+#~ msgid "Hidden ({0})"
+#~ msgstr ""
+
+#: src/components/nfts/NFTContextualActions.tsx:495
 msgid "Hide"
 msgstr ""
 
-#: src/components/settings/SettingsNFT.tsx:125
+#: src/components/settings/SettingsNFT.tsx:95
 msgid "Hide objectionable content"
 msgstr ""
 
@@ -1495,15 +2002,7 @@ msgstr "Meno hostiteľa"
 msgid "I Understand, Create Offer"
 msgstr "Rozumiem, vytvoriť ponuku"
 
-#: src/components/fullNode/FullNodeConnections.tsx:32
-msgid "IP address"
-msgstr "IP Adresa"
-
-#: src/components/fullNode/FullNodeAddConnection.tsx:89
-msgid "IP address / host"
-msgstr "IP Adresa / host"
-
-#: src/constants/WalletConnectCommands.tsx:119
+#: src/constants/WalletConnectCommands.tsx:178
 msgid "Id"
 msgstr ""
 
@@ -1512,26 +2011,26 @@ msgid "If none selected, then it will default to the temporary directory."
 msgstr "Ak nie je vybraný žiadny adresár, použije sa ako predvolený, dočasný adresár."
 
 #: src/components/offers/OfferShareDialog.tsx:806
-msgid "If selected, your offer will be not be shared publicly."
-msgstr "Ak je táto možnosť zapnutá, vaša ponuka nebude zdieľaná verejne."
+#~ msgid "If selected, your offer will be not be shared publicly."
+#~ msgstr "Ak je táto možnosť zapnutá, vaša ponuka nebude zdieľaná verejne."
 
-#: src/components/nfts/NFTBurnDialog.tsx:76
+#: src/components/nfts/NFTBurnDialog.tsx:77
 msgid "If you burn these NFTs, nobody (including you) will ever be able to access it again. Are you sure you want to continue?"
 msgstr ""
 
-#: src/components/nfts/NFTBurnDialog.tsx:81
+#: src/components/nfts/NFTBurnDialog.tsx:82
 msgid "If you burn this NFT, nobody (including you) will ever be able to access it again. Are you sure you want to continue?"
 msgstr "Ak toto NFT spálite, nikto (vrátane vás) k nemu už nikdy nebude mať prístup. Ste si istý, že chcete pokračovať?"
 
-#: src/components/offers/OfferManager.tsx:110
+#: src/components/offers/ConfirmOfferCancellation.tsx:74
 msgid "If you have already shared your offer file, you may need to submit a transaction to cancel the pending offer. Click \"Cancel on blockchain\" to submit a cancellation transaction."
 msgstr "Ak ste súbor s ponukou už zdieľali, možno budete musieť odoslať transakciu, ktorá zruší čakajúcu ponuku. Kliknite na „Zrušiť na blockchaine“ pre odoslanie storno transakcie."
 
 #: src/components/nfts/NFTPreview.tsx:633
-msgid "Image Hash Mismatch"
-msgstr "Hash obrázku sa nezhoduje"
+#~ msgid "Image Hash Mismatch"
+#~ msgstr "Hash obrázku sa nezhoduje"
 
-#: src/components/settings/SettingsNFT.tsx:155
+#: src/components/settings/SettingsNFT.tsx:125
 msgid "Images will be scaled to fill the NFT card and ignore their original proportions."
 msgstr ""
 
@@ -1539,30 +2038,34 @@ msgstr ""
 msgid "Import"
 msgstr "Importovať"
 
-#: src/components/fullNode/FullNode.jsx:28
-msgid "In Progress"
-msgstr "Prebieha"
-
 #: src/components/offers/NFTOfferViewer.tsx:479
 #: src/components/offers/OfferEditorConditionsPanel.tsx:290
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:26
 msgid "In exchange for"
 msgstr "Výmenou za"
 
-#: src/constants/WalletConnectCommands.tsx:207
+#: src/components/fullNode/FullNode.jsx:28
+msgid "In Progress"
+msgstr "Prebieha"
+
+#: src/constants/WalletConnectCommands.tsx:308
 msgid "Include My Offers"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:213
+#: src/constants/WalletConnectCommands.tsx:314
 msgid "Include Taken Offers"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:91
+#: src/constants/WalletConnectCommands.tsx:36
+msgid "Include Wallet Metadata"
+msgstr ""
+
+#: src/components/offers/NFTOfferEditor.tsx:86
 #: src/components/offers/OfferEditorConditionsPanel.tsx:392
 msgid "Including a fee in the offer can help expedite the transaction when the offer is accepted. The recommended minimum fee is 0.000005 XCH (5,000,000 mojos)"
 msgstr "Zahrnutie poplatku do ponuky môže pomôcť urýchliť transakciu, keď bude ponuka prijatá. Odporúčaný minimálny poplatok je 0,000005 XCH (5 000 000 mojos)"
 
-#: src/components/offers2/OfferIncomingTable.tsx:112
+#: src/components/offers2/OfferIncomingTable.tsx:127
 msgid "Incoming Offers"
 msgstr ""
 
@@ -1575,52 +2078,80 @@ msgid "Initializing..."
 msgstr "Inicializácia..."
 
 #: src/components/offers/OfferShareDialog.tsx:1172
-msgid "Install Keybase"
-msgstr "Nainštalovať Keybase"
+#~ msgid "Install Keybase"
+#~ msgstr "Nainštalovať Keybase"
 
-#: src/hooks/useAcceptOfferHook.tsx:67
-msgid "Insufficient funds available to accept offer. Ensure that your\n"
+#: src/hooks/useAcceptOfferHook.tsx:107
+msgid ""
+"Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "Nedostatok finančných prostriedkov na prijatie ponuky. Uistite sa, že váš\n"
+msgstr ""
+"Nedostatok finančných prostriedkov na prijatie ponuky. Uistite sa, že váš\n"
 "disponibilný zostatok je dostatočný na pokrytie ponuky."
 
-#: src/components/offers/OfferEditor.tsx:148
-#: src/components/offers2/CreateOfferBuilder.tsx:121
-msgid "Insufficient funds available to create offer. Ensure that your\n"
+#: src/components/offers/OfferEditor.tsx:145
+#: src/components/offers2/CreateOfferBuilder.tsx:132
+msgid ""
+"Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "Nedostatok finančných prostriedkov na vytvorenie ponuky. Uistite sa, že váš\n"
+msgstr ""
+"Nedostatok finančných prostriedkov na vytvorenie ponuky. Uistite sa, že váš\n"
 "disponibilný zostatok je dostatočný na pokrytie ponuky."
 
 #: src/components/settings/Settings.tsx:73
-msgid "Integration"
-msgstr ""
+#~ msgid "Integration"
+#~ msgstr ""
 
 #: src/components/signVerify/VerifyMessage.tsx:169
+#: src/components/vcs/VCCard.tsx:146
 msgid "Invalid"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:585
-msgid "Invalid NFT identifier"
-msgstr "Neplatný NFT identifikátor"
+#: src/components/nfts/NFTHashStatus.tsx:80
+msgid "Invalid hash"
+msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:653
-msgid "Invalid metadata url"
-msgstr ""
+#~ msgid "Invalid metadata url"
+#~ msgstr ""
+
+#: src/components/offers/NFTOfferEditor.tsx:579
+msgid "Invalid NFT identifier"
+msgstr "Neplatný NFT identifikátor"
 
 #: src/components/plotNFT/PlotNFTState.tsx:27
 msgid "Invalid state"
 msgstr "Neplatný stav"
 
+#: src/components/fullNode/FullNodeConnections.tsx:32
+msgid "IP address"
+msgstr "IP Adresa"
+
+#: src/components/fullNode/FullNodeAddConnection.tsx:89
+msgid "IP address / host"
+msgstr "IP Adresa / host"
+
+#: src/constants/WalletConnectCommands.tsx:954
+msgid "Is notification visible to all paired fingerprints"
+msgstr ""
+
+#: src/components/vcs/VCCard.tsx:133
+msgid "Issued"
+msgstr ""
+
+#: src/components/vcs/VCCard.tsx:108
+msgid "Issuer DID"
+msgstr ""
+
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:66
 msgid "It is a one-time login link that can be used to log in to a pool's website. It contains a signature using the farmer's key from the plot NFT. Not all pools support this feature."
 msgstr "Jednorazový odkaz, ktorým sa môžete prihlásiť na webovú stránku združenia. Obsahuje podpis, ktorý používa farmárov kľúč z NFT poľa. Niektoré združenia túto funkciu nepodporujú."
 
-#: src/components/plotNFT/PlotNFTCard.tsx:334
-msgid "Join Pool"
-msgstr "Pripojiť sa k združeniu"
+#: src/components/offers/OfferShareDialog.tsx:1184
+#~ msgid "Join {teamName}"
+#~ msgstr "Pripojiť sa k {teamName}"
 
-#: src/components/plot/add/PlotAddNFT.tsx:56
-#: src/components/plot/add/PlotAddNFT.tsx:130
+#: src/components/plot/add/PlotAddNFT.tsx:138
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:139
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:153
 #: src/components/pool/PoolHero.tsx:24
@@ -1635,7 +2166,7 @@ msgstr "Pripojte sa k združeniu a získajte konzistentné farmárske XCH odmeny
 msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile. Assign plots to a plot NFT. You can easily switch pools without having to re-plot."
 msgstr "Pripojte sa k združeniu a získajte konzistentné farmárske XCH odmeny. Priemerný výnos je rovnaký, je však oveľa menej volatilný. Priraďte polia k NFT poľa. Môžete ľahko prepínať združenia bez nutnosti opakovaného vytvárania polí."
 
-#: src/components/plot/add/PlotAddNFT.tsx:122
+#: src/components/plot/add/PlotAddNFT.tsx:130
 msgid "Join a pool and get more consistent XCH farming rewards. Create a plot NFT and assign your new plots to a group."
 msgstr "Pripojte sa k združeniu a získajte konzistentnejšie farmárske XCH odmeny. Vytvorte NFT poľa a priraďte svoje nové polia do skupiny."
 
@@ -1643,30 +2174,34 @@ msgstr "Pripojte sa k združeniu a získajte konzistentnejšie farmárske XCH od
 msgid "Join farming pools"
 msgstr "Pripojte sa k farmárskym združeniam"
 
-#: src/components/offers/OfferShareDialog.tsx:1184
-msgid "Join {teamName}"
-msgstr "Pripojiť sa k {teamName}"
+#: src/components/plotNFT/PlotNFTCard.tsx:334
+msgid "Join Pool"
+msgstr "Pripojiť sa k združeniu"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:39
 #: src/components/plot/PlotPlotting.tsx:18
 msgid "K-Size"
 msgstr "K-veľkosť"
 
-#: src/hooks/useWalletConnectCommand.tsx:101
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:104
 msgid "Key"
 msgstr ""
 
 #: src/components/settings/SettingsIntegration.tsx:65
-msgid "Key switching"
+#~ msgid "Key switching"
+#~ msgstr ""
+
+#: src/components/settings/SettingsIntegration.tsx:182
+msgid "Key Switching"
 msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:1086
-msgid "Keybase command failed {e}. If you haven't installed Keybase, you can download from https://keybase.io"
-msgstr "Príkaz Keybase zlyhal {e}. Ak nemáte nainštalovaný Keybase, môžete si ho stiahnuť z https://keybase.io"
+#~ msgid "Keybase command failed {e}. If you haven't installed Keybase, you can download from https://keybase.io"
+#~ msgstr "Príkaz Keybase zlyhal {e}. Ak nemáte nainštalovaný Keybase, môžete si ho stiahnuť z https://keybase.io"
 
 #: src/components/offers/OfferShareDialog.tsx:1165
-msgid "Keybase is a secure messaging and file sharing application. To share an offer in the Keybase {teamName} team, you must first have Keybase installed."
-msgstr "Keybase je bezpečná aplikácia na odosielanie správ a zdieľanie súborov. Ak chcete zdieľať ponuku v Keybase tíme {teamName}, musíte mať nainštalovanú aplikáciu Keybase."
+#~ msgid "Keybase is a secure messaging and file sharing application. To share an offer in the Keybase {teamName} team, you must first have Keybase installed."
+#~ msgstr "Keybase je bezpečná aplikácia na odosielanie správ a zdieľanie súborov. Ak chcete zdieľať ponuku v Keybase tíme {teamName}, musíte mať nainštalovanú aplikáciu Keybase."
 
 #: src/components/app/AppKeyringMigrator.tsx:83
 msgid "Keyring migration failed: {0}"
@@ -1676,6 +2211,10 @@ msgstr "Migrácia zväzku kľúčov zlyhala: {0}"
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:49
 msgid "KiB Up/Down"
 msgstr "KiB Odoslané/Stiahnuté"
+
+#: src/components/vcs/VCList.tsx:290
+msgid "KYC status"
+msgstr ""
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:45
 msgid "Last Attempted Proof"
@@ -1693,15 +2232,20 @@ msgstr "Čas posledného transakčného bloku"
 msgid "Latest Block Challenges"
 msgstr "Najnovšie blokové výzvy"
 
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:254
+#: src/components/plotNFT/PlotNFTCard.tsx:290
+#: src/constants/WalletConnectCommands.tsx:838
+#: src/constants/WalletConnectCommands.tsx:851
+msgid "Launcher Id"
+msgstr "Id spúšťača"
+
 #: src/components/nfts/NFTDetails.tsx:64
 msgid "Launcher ID"
 msgstr "ID spúšťača"
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:254
-#: src/components/plotNFT/PlotNFTCard.tsx:290
-#: src/constants/WalletConnectCommands.tsx:478
-msgid "Launcher Id"
-msgstr "Id spúšťača"
+#: src/components/plot/add/PlotAddNFT.tsx:76
+msgid "Learn more"
+msgstr ""
 
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:75
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:101
@@ -1721,14 +2265,19 @@ msgid "Legacy keyrings are no longer supported. Your keys need to be migrated to
 msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:295
+#: src/constants/WalletConnectCommands.tsx:662
 msgid "License Hash"
 msgstr "Hash licencie"
+
+#: src/constants/WalletConnectCommands.tsx:657
+msgid "License Uris"
+msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:280
 msgid "License URL {0}"
 msgstr "URL adresa licencie {0}"
 
-#: src/components/settings/SettingsNFT.tsx:214
+#: src/components/settings/SettingsNFT.tsx:184
 msgid "Limit cache size"
 msgstr ""
 
@@ -1736,19 +2285,7 @@ msgstr ""
 msgid "List of connections is empty"
 msgstr ""
 
-#: src/components/nfts/NFTSummary.tsx:103
-msgid "Loading NFT"
-msgstr "Načítava sa NFT"
-
-#: src/components/offers/NFTOfferPreview.tsx:62
-msgid "Loading NFT Info..."
-msgstr "Načítavajú sa informácie o NFT..."
-
-#: src/components/offers2/OfferBuilderValueSearch.tsx:144
-msgid "Loading NFTs..."
-msgstr ""
-
-#: src/components/app/AppProviders.tsx:96
+#: src/components/app/AppProviders.tsx:88
 msgid "Loading configuration"
 msgstr "Načítavanie konfigurácie"
 
@@ -1760,16 +2297,28 @@ msgstr "Načítavajú sa údaje o farme"
 msgid "Loading fingerprint"
 msgstr "Načítava sa odtlačok"
 
-#: src/components/app/AppState.tsx:193
+#: src/components/app/AppState.tsx:206
 msgid "Loading keyring status"
 msgstr "Načítava sa stav zväzku kľúčov"
 
+#: src/components/nfts/NFTSummary.tsx:98
+msgid "Loading NFT"
+msgstr "Načítava sa NFT"
+
+#: src/components/offers/NFTOfferPreview.tsx:62
+msgid "Loading NFT Info..."
+msgstr "Načítavajú sa informácie o NFT..."
+
+#: src/components/offers2/OfferBuilderValueSearch.tsx:144
+#~ msgid "Loading NFTs..."
+#~ msgstr ""
+
 #: src/components/did/DIDProfileDropdown.tsx:48
 #: src/components/helpers/HeightToTimestamp.tsx:16
-#: src/components/nfts/NFTTitle.tsx:16
-#: src/components/notification/NotificationNFTTitle.tsx:26
+#: src/components/nfts/NFTMetadata.tsx:21
 #: src/components/offers/NFTOfferTokenSelector.tsx:97
 #: src/components/offers2/OfferBuilderTokenSelector.tsx:79
+#: src/components/offers2/OfferDetails.tsx:38
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:27
 msgid "Loading..."
 msgstr "Načítava sa..."
@@ -1778,11 +2327,15 @@ msgstr "Načítava sa..."
 msgid "Local"
 msgstr "Lokálne"
 
-#: src/components/settings/SettingsNFT.tsx:196
+#: src/components/settings/SettingsNFT.tsx:166
 msgid "Local folder"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:14
+#: src/components/offers2/CancelOfferList.tsx:110
+msgid "Locked"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:15
 msgid "Log In"
 msgstr ""
 
@@ -1794,42 +2347,66 @@ msgstr "Spravovať CAT tokeny"
 msgid "Manage Farming Rewards"
 msgstr "Spravovať farmárske odmeny"
 
+#: src/components/settings/SettingsNFT.tsx:136
+msgid "Manage how and where files are stored on this computer."
+msgstr ""
+
+#: src/components/settings/SettingsIntegration.tsx:218
+msgid "Manage permissions for your WalletConnect apps."
+msgstr ""
+
 #: src/components/farm/FarmManageFarmingRewards.tsx:94
 msgid "Manage Your Farming Rewards Target Addresses"
 msgstr "Spravovať cieľové adresy farmárskych odmien"
 
-#: src/components/settings/SettingsNFT.tsx:166
-msgid "Manage how and where files are stored on this computer."
+#: src/components/vcs/VCList.tsx:294
+msgid "Memberships"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:407
+#: src/constants/WalletConnectCommands.tsx:138
+#: src/constants/WalletConnectCommands.tsx:538
 msgid "Memos"
 msgstr ""
 
+#: src/components/notification/NotificationAnnouncementDialog.tsx:53
 #: src/components/signVerify/SignMessage.tsx:194
 #: src/components/signVerify/VerifyMessage.tsx:207
-#: src/constants/WalletConnectCommands.tsx:124
-#: src/constants/WalletConnectCommands.tsx:141
+#: src/constants/WalletConnectCommands.tsx:183
+#: src/constants/WalletConnectCommands.tsx:200
+#: src/constants/WalletConnectCommands.tsx:214
+#: src/constants/WalletConnectCommands.tsx:936
 msgid "Message"
+msgstr ""
+
+#: src/components/notification/utils.ts:115
+msgid "Message not available"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:651
+msgid "Meta Hash"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:646
+msgid "Meta Uris"
 msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:265
 msgid "Metadata Hash"
 msgstr "Hash metadát"
 
+#: src/components/nfts/NFTPreview.tsx:649
+#~ msgid "Metadata hash mismatch"
+#~ msgstr "Hash metadát sa nezhoduje"
+
 #: src/components/nfts/NFTDetails.tsx:250
 msgid "Metadata URL {0}"
 msgstr "URL adresa metadát {0}"
-
-#: src/components/nfts/NFTPreview.tsx:649
-msgid "Metadata hash mismatch"
-msgstr "Hash metadát sa nezhoduje"
 
 #: src/components/fullNode/FullNodeConnections.tsx:50
 msgid "MiB Up/Down"
 msgstr "MiB Odoslané/Stiahnuté"
 
-#: src/components/settings/SettingsPanel.tsx:136
+#: src/components/settings/SettingsPanel.tsx:137
 msgid "Migrate Keyring"
 msgstr "Migrovať zväzok kľúčov"
 
@@ -1841,7 +2418,7 @@ msgstr "Migrovať kľúče"
 msgid "Migration required"
 msgstr "Vyžaduje sa migrácia"
 
-#: src/components/settings/SettingsPanel.tsx:92
+#: src/components/settings/SettingsPanel.tsx:93
 msgid "Migration required to support passphrase protection"
 msgstr "Ochrana prístupovou frázou vyžaduje migráciu"
 
@@ -1849,15 +2426,15 @@ msgstr "Ochrana prístupovou frázou vyžaduje migráciu"
 msgid "Minimum Difficulty"
 msgstr "Minimálna zložitosť"
 
-#: src/components/offers/OfferShareDialog.tsx:681
-msgid "MintGarden URL"
-msgstr "MintGarden URL"
+#: src/constants/WalletConnectCommands.tsx:608
+msgid "Mint NFT"
+msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:213
 msgid "Minted at Block Height"
 msgstr "Vyrazené v bloku s výškou"
 
-#: src/components/offers2/OfferBuilderNFT.tsx:70
+#: src/components/offers2/OfferBuilderNFT.tsx:54
 msgid "Minter"
 msgstr ""
 
@@ -1869,6 +2446,10 @@ msgstr ""
 msgid "Minter:"
 msgstr "Mincovník:"
 
+#: src/components/offers/OfferShareDialog.tsx:503
+msgid "MintGarden URL"
+msgstr "MintGarden URL"
+
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 msgid "Minutes"
 msgstr "Minút"
@@ -1878,14 +2459,14 @@ msgid "Missing Keys"
 msgstr "Chýbajúce kľúče"
 
 #: src/components/nfts/NFTPreview.tsx:641
-msgid "Missing preview_image_hash key"
-msgstr "Chýba kľúč preview_image_hash"
+#~ msgid "Missing preview_image_hash key"
+#~ msgstr "Chýba kľúč preview_image_hash"
 
 #: src/components/nfts/NFTPreview.tsx:637
-msgid "Missing preview_video_hash key"
-msgstr "Chýba kľúč preview_video_hash"
+#~ msgid "Missing preview_video_hash key"
+#~ msgstr "Chýba kľúč preview_video_hash"
 
-#: src/components/walletConnect/WalletConnectConnections.tsx:79
+#: src/components/walletConnect/WalletConnectConnections.tsx:82
 msgid "More Info"
 msgstr ""
 
@@ -1893,19 +2474,19 @@ msgstr ""
 msgid "More memory slightly increases speed"
 msgstr "Viac pamäte mierne zvyšuje rýchlosť"
 
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:335
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:330
 msgid "Move"
 msgstr "Presunúť"
 
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:379
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:374
 msgid "Move NFT to Profile"
 msgstr "Presúť NFT do profilu"
 
-#: src/components/nfts/NFTContextualActions.tsx:228
+#: src/components/nfts/NFTContextualActions.tsx:224
 msgid "Move to Profile"
 msgstr "Presúť do profilu"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:522
+#: src/components/nfts/gallery/NFTGallery.tsx:272
 msgid "Multi-select"
 msgstr ""
 
@@ -1913,98 +2494,13 @@ msgstr ""
 msgid "My DID"
 msgstr "Moje DID"
 
-#: src/components/offers/NFTOfferEditor.tsx:216
-#: src/components/offers2/OfferBuilderNFTSection.tsx:48
-#: src/components/settings/Settings.tsx:68
-#: src/components/settings/SettingsNFT.tsx:110
-#: src/components/signVerify/SignMessage.tsx:154
-msgid "NFT"
-msgstr "NFT"
-
-#: src/components/nfts/NFTDetails.tsx:73
-msgid "NFT Coin ID"
-msgstr ""
-
-#: src/constants/WalletConnectCommands.tsx:473
-msgid "NFT Coin Id"
-msgstr ""
-
-#: src/components/nfts/NFTDetails.tsx:55
-#: src/components/offers2/OfferBuilderNFT.tsx:63
-#: src/components/signVerify/SigningEntityNFT.tsx:63
-msgid "NFT ID"
-msgstr "NFT ID"
-
-#: src/components/offers/NFTOfferEditor.tsx:218
-msgid "NFT Identifier"
-msgstr "Identifikátor NFT"
-
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:209
-msgid "NFT Move Failed"
-msgstr "Presun NFT zlyhal"
-
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:184
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:202
-msgid "NFT Move Pending"
-msgstr "Čaká sa na presun NFT"
-
-#: src/components/offers/NFTOfferViewer.tsx:494
-msgid "NFT Purchase Price"
-msgstr "Kúpna cena NFT"
-
-#: src/components/nfts/NFTContextualActions.tsx:270
-msgid "NFT Status Update Failed"
-msgstr "Aktualizácia stavu NFT zlyhala"
-
-#: src/components/nfts/NFTContextualActions.tsx:260
-msgid "NFT Status Updated"
-msgstr "Stav NFT aktualizovaný"
-
-#: src/components/nfts/NFTContextualActions.tsx:182
-msgid "NFT Transfer Failed"
-msgstr "Prevod NFT zlyhal"
-
-#: src/components/nfts/NFTContextualActions.tsx:175
-msgid "NFT Transfer Pending"
-msgstr "Čaká sa na prevod NFT"
-
-#: src/components/offers/NFTOfferEditor.tsx:622
-msgid "NFT details not available"
-msgstr "Detaily NFT nie sú k dispozícii"
-
-#: src/components/offers2/OfferBuilderNFTRoyalties.tsx:171
-msgid "NFT has no royalties"
-msgstr ""
-
-#: src/components/notification/NotificationSendDialog.tsx:208
-msgid "NFT holder address"
-msgstr ""
-
-#: src/components/offers/NFTOfferPreview.tsx:44
-msgid "NFT identifier does not reference a valid NFT coin."
-msgstr "Identifikátor NFT neodkazuje na platnú NFT mincu."
-
-#: src/components/offers/NFTOfferPreview.tsx:105
-#: src/components/offers2/OfferBuilderNFT.tsx:91
-#: src/components/offers2/OfferBuilderNFT.tsx:119
-msgid "NFT not specified"
-msgstr "Nie je špecifikované NFT"
-
-#: src/util/offerBuilderDataToOffer.ts:94
-#: src/util/offerBuilderDataToOffer.ts:148
-msgid "NFT {nftId} is already used in this offer"
-msgstr ""
-
-#: src/components/dashboard/DashboardSideBar.tsx:57
-msgid "NFTs"
-msgstr "NFT"
-
-#: src/components/settings/SettingsNFT.tsx:135
-msgid "NFTs that have been categorized by the creator as objectionable content will be hidden by default."
-msgstr ""
-
-#: src/constants/WalletConnectCommands.tsx:431
+#: src/constants/WalletConnectCommands.tsx:555
+#: src/constants/WalletConnectCommands.tsx:780
 msgid "Name"
+msgstr ""
+
+#: src/components/settings/ProfileAdd.tsx:121
+msgid "Need some {currencyCode}?"
 msgstr ""
 
 #: src/components/offers/NFTOfferViewer.tsx:580
@@ -2019,37 +2515,137 @@ msgstr "Sieťový poplatok (nepovinné)"
 msgid "Network Name"
 msgstr "Názov siete"
 
-#: src/constants/WalletConnectCommands.tsx:161
+#: src/constants/WalletConnectCommands.tsx:258
 msgid "New Address"
+msgstr ""
+
+#: src/components/notification/utils.ts:105
+msgid "New counter offer"
+msgstr ""
+
+#: src/components/notification/utils.ts:101
+msgid "New offer"
 msgstr ""
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:210
 msgid "New Passphrase"
 msgstr "Nová prístupová fráza"
 
+#: src/constants/WalletConnectCommands.tsx:862
+msgid "New Proof Hash"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:856
+msgid "New Puzzle Hash"
+msgstr ""
+
 #: src/components/block/Block.jsx:259
-#: src/components/nfts/detail/NFTDetailV2.tsx:249
+#: src/components/nfts/detail/NFTDetailV2.tsx:130
 msgid "Next"
 msgstr "Ďalej"
 
-#: src/electron/main.tsx:813
+#: src/components/offers/NFTOfferEditor.tsx:211
+#: src/components/offers2/OfferBuilderNFTSection.tsx:44
+#: src/components/settings/SettingsNFT.tsx:80
+#: src/components/signVerify/SignMessage.tsx:154
+msgid "NFT"
+msgstr "NFT"
+
+#: src/util/offerBuilderDataToOffer.ts:261
+#: src/util/offerBuilderDataToOffer.ts:335
+msgid "NFT {nftId} is already used in this offer"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:473
+#~ msgid "NFT Coin Id"
+#~ msgstr ""
+
+#: src/components/nfts/NFTDetails.tsx:73
+msgid "NFT Coin ID"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:705
+#: src/constants/WalletConnectCommands.tsx:802
+msgid "NFT Coin Ids"
+msgstr ""
+
+#: src/components/offers/NFTOfferEditor.tsx:616
+msgid "NFT details not available"
+msgstr "Detaily NFT nie sú k dispozícii"
+
+#: src/components/offers2/OfferBuilderNFTRoyalties.tsx:171
+msgid "NFT has no royalties"
+msgstr ""
+
+#: src/components/notification/NotificationSendDialog.tsx:211
+msgid "NFT holder address"
+msgstr ""
+
+#: src/components/nfts/NFTDetails.tsx:55
+#: src/components/offers2/OfferBuilderNFT.tsx:50
+#: src/components/signVerify/SigningEntityNFT.tsx:64
+msgid "NFT ID"
+msgstr "NFT ID"
+
+#: src/components/offers/NFTOfferEditor.tsx:213
+msgid "NFT Identifier"
+msgstr "Identifikátor NFT"
+
+#: src/components/offers/NFTOfferPreview.tsx:44
+msgid "NFT identifier does not reference a valid NFT coin."
+msgstr "Identifikátor NFT neodkazuje na platnú NFT mincu."
+
+#: src/constants/WalletConnectCommands.tsx:797
+msgid "NFT Launcher Id"
+msgstr ""
+
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:206
+msgid "NFT Move Failed"
+msgstr "Presun NFT zlyhal"
+
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:181
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:199
+msgid "NFT Move Pending"
+msgstr "Čaká sa na presun NFT"
+
+#: src/components/offers/NFTOfferPreview.tsx:105
+#: src/components/offers2/OfferBuilderNFT.tsx:96
+msgid "NFT not specified"
+msgstr "Nie je špecifikované NFT"
+
+#: src/components/offers/NFTOfferViewer.tsx:494
+msgid "NFT Purchase Price"
+msgstr "Kúpna cena NFT"
+
+#: src/components/nfts/NFTContextualActions.tsx:263
+msgid "NFT Status Update Failed"
+msgstr "Aktualizácia stavu NFT zlyhala"
+
+#: src/components/nfts/NFTContextualActions.tsx:253
+msgid "NFT Status Updated"
+msgstr "Stav NFT aktualizovaný"
+
+#: src/components/nfts/NFTContextualActions.tsx:178
+msgid "NFT Transfer Failed"
+msgstr "Prevod NFT zlyhal"
+
+#: src/components/nfts/NFTContextualActions.tsx:172
+msgid "NFT Transfer Pending"
+msgstr "Čaká sa na prevod NFT"
+
+#: src/components/dashboard/DashboardSideBar.tsx:60
+msgid "NFTs"
+msgstr "NFT"
+
+#: src/components/settings/SettingsNFT.tsx:105
+msgid "NFTs that have been categorized by the creator as objectionable content will be hidden by default."
+msgstr ""
+
+#: src/components/vcs/VCCard.tsx:83
 msgid "No"
 msgstr "Nie"
 
-#: src/util/offerBuilderDataToOffer.ts:74
-#: src/util/offerBuilderDataToOffer.ts:135
-msgid "No CAT wallet found for {assetId} token"
-msgstr ""
-
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:397
-msgid "No CPU Affinity"
-msgstr "Žiadna afinita CPU"
-
-#: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:113
-msgid "No Paired Keys"
-msgstr ""
-
-#: src/components/notification/NotificationsMenu.tsx:49
+#: src/components/notification/NotificationsMenu.tsx:52
 msgid "No activities yet"
 msgstr ""
 
@@ -2057,16 +2653,37 @@ msgstr ""
 msgid "No blocks farmed yet"
 msgstr "Zatiaľ neboli vyťažené žiadne bloky"
 
-#: src/components/offers/OfferManager.tsx:394
+#: src/util/offerBuilderDataToOffer.ts:222
+#: src/util/offerBuilderDataToOffer.ts:322
+msgid "No CAT wallet found for {assetId} token"
+msgstr ""
+
+#: src/components/settings/SettingsIntegration.tsx:258
+msgid "No connected applications"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:397
+msgid "No CPU Affinity"
+msgstr "Žiadna afinita CPU"
+
+#: src/components/offers/OfferManager.tsx:282
 msgid "No current offers"
 msgstr "Žiadne aktuálne ponuky"
 
-#: src/components/nfts/NFTPreview.tsx:616
+#: src/components/settings/SettingsIntegration.tsx:331
+msgid "No Custom Permissions"
+msgstr ""
+
+#: src/components/nfts/NFTPreview.tsx:436
 msgid "No file available"
 msgstr "Nie je k dispozícii žiadny súbor"
 
-#: src/components/offers2/OfferIncomingTable.tsx:207
+#: src/components/offers2/OfferIncomingTable.tsx:276
 msgid "No incoming offers"
+msgstr ""
+
+#: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:114
+msgid "No Paired Keys"
 msgstr ""
 
 #: src/components/plot/PlotHarvesterPlots.tsx:126
@@ -2077,8 +2694,9 @@ msgstr "Zatiaľ žiadne polia"
 msgid "No private keys for one or both addresses. Safe only if you are sending rewards to another wallet."
 msgstr "Žiadne súkromné kľúče pre jednu alebo obidve adresy. Bezpečné iba v prípade, že posielate odmeny do inej peňaženky."
 
-#: src/util/offerBuilderDataToOffer.ts:51
-#: src/util/offerBuilderDataToOffer.ts:116
+#: src/util/offerBuilderDataToOffer.ts:164
+#: src/util/offerBuilderDataToOffer.ts:192
+#: src/util/offerBuilderDataToOffer.ts:302
 msgid "No standard wallet found"
 msgstr ""
 
@@ -2089,11 +2707,15 @@ msgid "Node ID"
 msgstr "ID uzla"
 
 #: src/components/did/DIDProfileDropdown.tsx:88
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:129
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:277
-#: src/components/plot/add/PlotAddNFT.tsx:81
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:130
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:272
+#: src/components/plot/add/PlotAddNFT.tsx:89
 msgid "None"
 msgstr "Žiadny"
+
+#: src/components/nfts/gallery/NFTGallery.tsx:390
+msgid "None (0)"
+msgstr ""
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:67
 msgid "None of your plots have passed the plot filter yet."
@@ -2101,23 +2723,22 @@ msgstr "Žiadne z vašich polí zatiaľ neprešlo filtrom polí."
 
 #: src/components/farm/card/FarmCardNotAvailable.tsx:19
 #: src/components/farm/card/FarmCardNotAvailable.tsx:22
-#: src/components/nfts/detail/NFTDetailV2.tsx:295
-#: src/components/nfts/detail/NFTDetailV2.tsx:305
-#: src/components/offers2/OfferBuilderValue.tsx:72
+#: src/components/nfts/NFTMetadata.tsx:22
+#: src/components/offers2/OfferBuilderValue.tsx:70
 #: src/components/plot/PlotStatus.tsx:20
 #: src/components/plotNFT/PlotNFTCard.tsx:305
-#: src/hooks/useWalletConnectCommand.tsx:91
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:93
 msgid "Not Available"
 msgstr "Nie je k dispozícií"
+
+#: src/components/fullNode/card/FullNodeCardConnectionStatus.tsx:15
+msgid "Not connected"
+msgstr "Nepripojené"
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:14
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:44
 msgid "Not Synced"
 msgstr "Nesynchronizované"
-
-#: src/components/fullNode/card/FullNodeCardConnectionStatus.tsx:15
-msgid "Not connected"
-msgstr "Nepripojené"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:152
 msgid "Note that this does not change your pooling payout addresses. This only affects old format plots, and the 0.25XCH reward for pooling plots."
@@ -2127,21 +2748,23 @@ msgstr "Toto však nezmení vaše platobné adresy združovania. Ovplyvňuje to 
 msgid "Notification has successfully been sent to a full node and included in the mempool."
 msgstr ""
 
-#: src/components/settings/Settings.tsx:78
-#: src/components/settings/SettingsNotifications.tsx:16
+#: src/components/notification/NotificationSendDialog.tsx:213
+msgid "Notification recipient's address"
+msgstr ""
+
+#: src/components/settings/SettingsNotifications.tsx:30
 msgid "Notifications"
 msgstr ""
 
-#: src/components/offers/OfferShareDialog.tsx:626
-#: src/components/offers/OfferShareDialog.tsx:959
-#: src/components/offers/OfferShareDialog.tsx:1279
+#: src/components/offers/OfferShareDialog.tsx:443
+#: src/components/offers/OfferShareDialog.tsx:701
+#: src/components/offers/OfferShareDialog.tsx:823
 msgid "Notify Current Owner"
 msgstr ""
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:105
-#: src/components/plotNFT/PlotNFTCard.tsx:138
-msgid "Number of Plots"
-msgstr "Počet polí"
+#: src/constants/WalletConnectCommands.tsx:763
+msgid "Number of Backup Ids Needed"
+msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:168
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:181
@@ -2151,6 +2774,15 @@ msgstr "Počet sektorov"
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:200
 msgid "Number of buckets for phase 3 & 4"
 msgstr "Počet sektorov pre fázu 3 a 4"
+
+#: src/constants/WalletConnectCommands.tsx:580
+msgid "Number of NFTs"
+msgstr ""
+
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:105
+#: src/components/plotNFT/PlotNFTCard.tsx:138
+msgid "Number of Plots"
+msgstr "Počet polí"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:130
 msgid "Number of threads"
@@ -2164,6 +2796,10 @@ msgstr "Počet vlákien pre spracovanie tabuľky C"
 msgid "Number of threads for F1 generation"
 msgstr "Počet vlákien pre generovanie F1"
 
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:267
+msgid "Number of threads for forward propagation"
+msgstr "Počet vlákien pre dopredné šírenie"
+
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:295
 msgid "Number of threads for Phase 2"
 msgstr "Počet vlákien pre fázu 2"
@@ -2172,91 +2808,90 @@ msgstr "Počet vlákien pre fázu 2"
 msgid "Number of threads for Phase 3"
 msgstr "Počet vlákien pre fázu 3"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:267
-msgid "Number of threads for forward propagation"
-msgstr "Počet vlákien pre dopredné šírenie"
+#: src/components/nfts/gallery/NFTGallery.tsx:360
+msgid "Objectionable Content"
+msgstr ""
 
-#: src/components/offers/OfferDataDialog.tsx:58
-#: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:86
-msgid "OK"
-msgstr "OK"
-
-#: src/components/settings/SettingsNFT.tsx:178
+#: src/components/settings/SettingsNFT.tsx:148
 msgid "Occupied space"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:295
+#: src/constants/WalletConnectCommands.tsx:404
 msgid "Offer"
 msgstr ""
 
-#: src/components/offers/OfferManager.tsx:437
+#: src/components/offers/OfferManager.tsx:325
 #: src/components/offers2/OfferNavigationHeader.tsx:16
 msgid "Offer Builder"
 msgstr ""
 
+#: src/components/offers/NFTOfferViewer.tsx:171
+#: src/components/offers2/OfferBuilderValue.tsx:195
+#: src/components/offers2/OfferBuilderViewer.tsx:245
+msgid "Offer cannot be accepted because you don't possess the requested assets"
+msgstr "Ponuku nemožno prijať, pretože nevlastníte požadované aktíva"
+
 #: src/components/offers/OfferDataDialog.tsx:29
 #: src/components/offers/OfferDataDialog.tsx:37
-#: src/constants/WalletConnectCommands.tsx:283
-#: src/constants/WalletConnectCommands.tsx:313
+#: src/constants/WalletConnectCommands.tsx:392
+#: src/constants/WalletConnectCommands.tsx:427
+#: src/constants/WalletConnectCommands.tsx:948
 msgid "Offer Data"
 msgstr "Údaje o ponuke"
 
-#: src/constants/WalletConnectCommands.tsx:325
-#: src/constants/WalletConnectCommands.tsx:337
-msgid "Offer Id"
+#: src/components/offers2/OfferBuilderViewerDialog.tsx:53
+msgid "Offer Details"
 msgstr ""
-
-#: src/components/offers/OfferManager.tsx:418
-msgid "Offer Management"
-msgstr ""
-
-#: src/components/offers/OfferShareDialog.tsx:598
-#: src/components/offers/OfferShareDialog.tsx:676
-#: src/components/offers/OfferShareDialog.tsx:750
-#: src/components/offers/OfferShareDialog.tsx:842
-#: src/components/offers/OfferShareDialog.tsx:930
-#: src/components/offers/OfferShareDialog.tsx:1131
-#: src/components/offers/OfferShareDialog.tsx:1245
-msgid "Offer Shared"
-msgstr "Zdieľaná ponuka"
-
-#: src/components/offers/NFTOfferViewer.tsx:170
-#: src/components/offers2/OfferBuilderValue.tsx:200
-#: src/components/offers2/OfferBuilderViewer.tsx:172
-msgid "Offer cannot be accepted because you don't possess the requested assets"
-msgstr "Ponuku nemožno prijať, pretože nevlastníte požadované aktíva"
 
 #: src/components/offers2/OfferBuilderImport.tsx:77
 msgid "Offer file is too large (> 1MB)"
 msgstr ""
 
-#: src/hooks/useAcceptOfferHook.tsx:55
+#: src/hooks/useAcceptOfferHook.tsx:98
 msgid "Offer has been accepted and is awaiting confirmation."
 msgstr "Ponuka bola prijatá a čaká na potvrdenie."
 
-#: src/components/offers/OfferShareDialog.tsx:755
-msgid "OfferBin URL"
-msgstr "OfferBin URL"
+#: src/constants/WalletConnectCommands.tsx:441
+#: src/constants/WalletConnectCommands.tsx:455
+msgid "Offer Id"
+msgstr ""
 
-#: src/components/offers/OfferManager.tsx:266
+#: src/components/offers/OfferManager.tsx:306
+msgid "Offer Management"
+msgstr ""
+
+#: src/components/offers/OfferShareDialog.tsx:410
+#: src/components/offers/OfferShareDialog.tsx:498
+#: src/components/offers/OfferShareDialog.tsx:571
+#: src/components/offers/OfferShareDialog.tsx:668
+#: src/components/offers/OfferShareDialog.tsx:784
+msgid "Offer Shared"
+msgstr "Zdieľaná ponuka"
+
+#: src/components/offers/OfferShareDialog.tsx:755
+#~ msgid "OfferBin URL"
+#~ msgstr "OfferBin URL"
+
+#: src/components/offers/OfferManager.tsx:159
+#: src/components/offers2/CancelOfferList.tsx:80
 msgid "Offered"
 msgstr "Ponúknuté"
 
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:22
-#: src/components/offers2/OfferIncomingTable.tsx:60
+#: src/components/offers2/OfferIncomingTable.tsx:74
 msgid "Offering"
 msgstr ""
 
 #: src/components/offers/utils.ts:145
-msgid "Offering: [{makerString}], Requesting: [{takerString}]"
-msgstr "Ponúkam: [{makerString}], žiadam: [{takerString}]"
+#~ msgid "Offering: [{makerString}], Requesting: [{takerString}]"
+#~ msgstr "Ponúkam: [{makerString}], žiadam: [{takerString}]"
 
-#: src/components/offers/OfferShareDialog.tsx:1252
+#: src/components/offers/OfferShareDialog.tsx:791
 msgid "Offerpool URL"
 msgstr ""
 
-#: src/components/dashboard/DashboardSideBar.tsx:63
-#: src/components/nfts/detail/NFTDetailV2.tsx:331
+#: src/components/dashboard/DashboardSideBar.tsx:74
+#: src/components/nfts/detail/NFTDetailV2.tsx:232
 msgid "Offers"
 msgstr "Ponuky"
 
@@ -2264,31 +2899,36 @@ msgstr "Ponuky"
 msgid "Offers are a way to trade assets in a genuinely peer-to-peer way that eliminates counterparty risk."
 msgstr ""
 
-#: src/components/offers/OfferManager.tsx:421
+#: src/components/offers/OfferManager.tsx:309
 msgid "Offers are a way to trade assets in a genuinely peer-to-peer way to eliminate counterparty risk."
 msgstr ""
 
-#: src/components/offers/OfferManager.tsx:470
+#: src/components/offers/OfferManager.tsx:358
 msgid "Offers you accepted"
 msgstr "Ponuky, ktoré ste prijali"
 
-#: src/components/offers/OfferManager.tsx:469
+#: src/components/offers/OfferManager.tsx:357
 msgid "Offers you created"
 msgstr "Ponuky, ktoré ste vytvorili"
+
+#: src/components/offers/OfferDataDialog.tsx:58
+#: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:86
+msgid "OK"
+msgstr "OK"
 
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:56
 msgid "Once you accept this offer, you will not be able to cancel the transaction. Are you sure you want to accept this offer?"
 msgstr "Akonáhle prijmete túto ponuku, nebudete môcť transakciu zrušiť. Naozaj chcete prijať túto ponuku?"
 
-#: src/components/nfts/NFTTransferConfirmationDialog.tsx:32
-msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer the NFT?"
-msgstr "Po spustení tohto prevodu už nebudete môcť transakciu zrušiť. Naozaj chcete previesť toto NFT?"
-
 #: src/components/nfts/NFTTransferAction.tsx:93
 msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer {0} NFTs?"
 msgstr ""
 
-#: src/components/offers2/OfferBuilderViewer.tsx:176
+#: src/components/nfts/NFTTransferConfirmationDialog.tsx:32
+msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer the NFT?"
+msgstr "Po spustení tohto prevodu už nebudete môcť transakciu zrušiť. Naozaj chcete previesť toto NFT?"
+
+#: src/components/offers2/OfferBuilderViewer.tsx:249
 msgid "One or more unknown tokens are being offered. Be sure to verify that the asset IDs of the offered tokens match the asset IDs of the tokens you are expecting."
 msgstr ""
 
@@ -2296,20 +2936,41 @@ msgstr ""
 msgid "One or more unknown tokens are being offered. Please verify that the asset IDs of the tokens listed below match the asset IDs of the tokens you expect to receive."
 msgstr "Ponúka sa jeden alebo viacero neznámych tokenov. Overte, či sa identifikátory aktív nižšie uvedených tokenov zhodujú s identifikátormi aktív tokenov, ktoré očakávate, že dostanete."
 
-#: src/components/offers2/OfferBuilderNFTSection.tsx:49
+#: src/components/offers2/OfferBuilderNFTSection.tsx:45
 msgid "One-of-a-kind Collectible assets"
 msgstr ""
+
+#: src/components/nfts/NFTContextualActions.tsx:315
+msgid "Open in Browser"
+msgstr "Otvoriť v prehliadači"
 
 #: src/hooks/useOpenUnsafeLink.tsx:31
 msgid "Open Link"
 msgstr "Otvoriť odkaz"
 
-#: src/components/nfts/NFTContextualActions.tsx:322
-msgid "Open in Browser"
-msgstr "Otvoriť v prehliadači"
+#: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:311
+msgid "Open offers required to be canceled to refill spendable amount"
+msgstr ""
 
-#: src/components/offers2/OfferBuilderFeeSection.tsx:53
+#: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:333
+msgid "Open offers which lock the same assets as the new offer"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderFeeSection.tsx:54
 msgid "Optional network fee to expedite acceptance of your offer"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderImport.tsx:170
+#: src/components/signVerify/VerifyMessageImport.tsx:154
+msgid "or <0>browse</0> on your computer"
+msgstr ""
+
+#: src/components/offers/OfferImport.tsx:170
+msgid "or Paste (⌘V) an Offer blob"
+msgstr ""
+
+#: src/components/offers/OfferImport.tsx:170
+msgid "or Paste (Ctrl-V) an Offer blob"
 msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:282
@@ -2320,6 +2981,10 @@ msgstr "Vynútiť počet vlákien pre spracovanie tabuľky C"
 msgid "Override the thread count for F1 generation"
 msgstr "Vynútiť počet vlákien pre generovanie F1"
 
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:268
+msgid "Override the thread count for forward propagation"
+msgstr "Vynútiť počet vlákien pri doprednom šírení"
+
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:296
 msgid "Override the thread count for Phase 2"
 msgstr "Vynútiť počet vlákien pre fázu 2"
@@ -2327,10 +2992,6 @@ msgstr "Vynútiť počet vlákien pre fázu 2"
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:310
 msgid "Override the thread count for Phase 3"
 msgstr "Vynútiť počet vlákien pre fázu 3"
-
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:268
-msgid "Override the thread count for forward propagation"
-msgstr "Vynútiť počet vlákien pri doprednom šírení"
 
 #: src/components/nfts/NFTDetails.tsx:87
 msgid "Owner Address"
@@ -2344,16 +3005,24 @@ msgstr "DID majiteľa"
 msgid "Owner Public Key"
 msgstr "Verejný kľúč vlastníka"
 
-#: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:75
-msgid "Pair Information"
-msgstr ""
+#: src/components/plot/add/PlotAddForm.tsx:146
+msgid "p2SingletonPuzzleHash is not defined"
+msgstr "p2SingletonPuzzleHash nie je definovaný"
 
-#: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:84
+#: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:85
 msgid "Pair does not exists"
 msgstr ""
 
-#: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:97
+#: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:76
+msgid "Pair Information"
+msgstr ""
+
+#: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:98
 msgid "Paired Keys"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:918
+msgid "Parent Coin Info"
 msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:146
@@ -2361,7 +3030,7 @@ msgstr ""
 #: src/components/app/AppPassPrompt.tsx:137
 #: src/components/settings/RemovePassphrasePrompt.tsx:129
 #: src/components/settings/SetPassphrasePrompt.tsx:173
-#: src/components/settings/SettingsPanel.tsx:180
+#: src/components/settings/SettingsPanel.tsx:181
 msgid "Passphrase"
 msgstr "Prístupová fráza"
 
@@ -2377,30 +3046,30 @@ msgstr "Nápoveda prístupovej frázy"
 msgid "Passphrase Hint (Optional)"
 msgstr "Nápoveda prístupovej frázy (nepovinná)"
 
-#: src/components/settings/SettingsPanel.tsx:64
+#: src/components/settings/SettingsPanel.tsx:65
 msgid "Passphrase protection has been disabled"
 msgstr "Ochrana prístupovou frázou bola deaktivovaná"
 
-#: src/components/settings/SettingsPanel.tsx:101
+#: src/components/settings/SettingsPanel.tsx:102
 msgid "Passphrase protection is disabled"
 msgstr "Ochrana prístupovou frázou je deaktivovaná"
 
-#: src/components/settings/SettingsPanel.tsx:98
+#: src/components/settings/SettingsPanel.tsx:99
 msgid "Passphrase protection is enabled"
 msgstr "Ochrana prístupovou frázou je aktivovaná"
 
-#: src/components/settings/SettingsPanel.tsx:93
+#: src/components/settings/SettingsPanel.tsx:94
 msgid "Passphrase support requires migrating your keys to a new keyring"
 msgstr "Podpora prístupovej frázy vyžaduje migráciu vašich kľúčov na nový zväzok kľúčov"
+
+#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:148
+msgid "Paste link"
+msgstr ""
 
 #: src/components/offers/OfferDataEntryDialog.tsx:33
 #: src/components/offers/OfferImport.tsx:157
 msgid "Paste Offer Data"
 msgstr "Vložiť údaje ponuky"
-
-#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:148
-msgid "Paste link"
-msgstr ""
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:139
 msgid "Paste the address from WalletConnect below."
@@ -2418,60 +3087,67 @@ msgstr "Najvyššia pozícia"
 msgid "Pending"
 msgstr "Spracúva sa"
 
-#: src/components/offers/utils.ts:151
+#: src/components/offers/utils.ts:115
 msgid "Pending Accept"
 msgstr "Čaká sa na prijatie"
 
-#: src/components/offers/utils.ts:155
+#: src/components/offers/utils.ts:119
 msgid "Pending Cancel"
 msgstr "Čaká sa na zrušenie"
 
-#: src/components/offers/utils.ts:153
+#: src/components/offers/utils.ts:117
 msgid "Pending Confirm"
 msgstr "Čaká sa na potvrdenie"
 
-#: src/components/notification/NotificationsProvider.tsx:224
-#: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:137
-msgid "Please Confirm"
-msgstr "Prosím potvrďte"
+#: src/components/vcs/VCCard.tsx:165
+msgid "Pending removal"
+msgstr ""
 
 #: src/hooks/useOpenUnsafeLink.tsx:38
 msgid "Please check the following link to verify the site you are going to visit. Proceed at your own risk."
 msgstr "Skontrolujte prosím nasledujúci odkaz na overenie stránky, ktorú sa chystáte navštíviť. Pokračujte na vlastné riziko."
 
-#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:75
-msgid "Please enter a URI"
-msgstr ""
+#: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:138
+#: src/hooks/useBlockchainNotifications.tsx:157
+msgid "Please Confirm"
+msgstr "Prosím potvrďte"
 
 #: src/components/app/AppPassPrompt.tsx:49
 #: src/components/settings/SetPassphrasePrompt.tsx:72
 msgid "Please enter a passphrase"
 msgstr "Prosím, zadajte prístupovú frázu"
 
-#: src/components/settings/ProfileAdd.tsx:53
+#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:75
+msgid "Please enter a URI"
+msgstr ""
+
+#: src/components/settings/ProfileAdd.tsx:82
 msgid "Please enter a valid numeric fee"
 msgstr "Prosím zadajte platný číselný poplatok"
 
-#: src/components/offers/NFTOfferEditor.tsx:583
-msgid "Please enter an NFT identifier"
-msgstr "Prosím zadajte identifikátor NFT"
-
-#: src/util/offerBuilderDataToOffer.ts:46
-#: src/util/offerBuilderDataToOffer.ts:111
-msgid "Please enter an XCH amount"
-msgstr ""
-
-#: src/components/offers/NFTOfferEditor.tsx:591
+#: src/components/offers/NFTOfferEditor.tsx:585
 msgid "Please enter an amount"
 msgstr "Prosím zadajte sumu"
+
+#: src/util/offerBuilderDataToOffer.ts:326
+msgid "Please enter an amount for {0} token"
+msgstr ""
+
+#: src/util/offerBuilderDataToOffer.ts:228
+msgid "Please enter an amount for {catName} token"
+msgstr ""
 
 #: src/components/offers/OfferEditor.tsx:106
 msgid "Please enter an amount for each row"
 msgstr "Prosím zadajte sumu pre každý riadok"
 
-#: src/util/offerBuilderDataToOffer.ts:78
-#: src/util/offerBuilderDataToOffer.ts:139
-msgid "Please enter an amount for {0} token"
+#: src/components/offers/NFTOfferEditor.tsx:577
+msgid "Please enter an NFT identifier"
+msgstr "Prosím zadajte identifikátor NFT"
+
+#: src/util/offerBuilderDataToOffer.ts:161
+#: src/util/offerBuilderDataToOffer.ts:297
+msgid "Please enter an XCH amount"
 msgstr ""
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:89
@@ -2488,7 +3164,7 @@ msgstr "Prosím, zadajte svoju prístupovú frázu"
 msgid "Please enter your passphrase to proceed"
 msgstr "Pokračujte zadaním prístupovej frázy"
 
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:153
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:154
 msgid "Please select a profile to move the NFT to."
 msgstr "Vyberte profil, do ktorého chcete presunúť NFT."
 
@@ -2496,24 +3172,24 @@ msgstr "Vyberte profil, do ktorého chcete presunúť NFT."
 msgid "Please select an asset for each row"
 msgstr "Prosím vyberte aktívum pre každý riadok"
 
-#: src/util/offerBuilderDataToOffer.ts:69
-#: src/util/offerBuilderDataToOffer.ts:130
+#: src/util/offerBuilderDataToOffer.ts:217
+#: src/util/offerBuilderDataToOffer.ts:316
 msgid "Please select an asset for each token"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:589
+#: src/components/offers/NFTOfferEditor.tsx:583
 msgid "Please select an asset type"
 msgstr ""
 
 #: src/components/settings/SettingsNFT.tsx:95
-msgid "Please select an empty folder"
-msgstr ""
+#~ msgid "Please select an empty folder"
+#~ msgstr ""
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:84
 msgid "Please select at least one key"
 msgstr ""
 
-#: src/util/offerBuilderDataToOffer.ts:39
+#: src/util/offerBuilderDataToOffer.ts:77
 msgid "Please specify at least one offered asset"
 msgstr ""
 
@@ -2527,6 +3203,10 @@ msgstr "Prosím, vyberte cieľový adresár"
 msgid "Please specify temporary directory"
 msgstr "Prosím, vyberte dočasný adresár"
 
+#: src/components/offers2/OfferBuilderViewer.tsx:185
+msgid "Please wait for wallet synchronization"
+msgstr ""
+
 #: src/components/farm/card/FarmCardPlotCount.tsx:10
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:51
 msgid "Plot Count"
@@ -2535,6 +3215,14 @@ msgstr "Počet plotov"
 #: src/components/block/Block.jsx:222
 msgid "Plot Id"
 msgstr "Id poľa"
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:72
+msgid "Plot in Parallel"
+msgstr "Paralelné vytváranie polí"
+
+#: src/components/plot/PlotHarvesterPlots.tsx:23
+msgid "Plot is duplicate of {0}"
+msgstr "Pole je duplikátom {0}"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:45
 msgid "Plot Key"
@@ -2548,7 +3236,7 @@ msgstr "NFT poľa - Cieľová adresa poľa"
 msgid "Plot NFT Pool Contract Address"
 msgstr "NFT adresa zmluvy združenia"
 
-#: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:107
+#: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:108
 #: src/components/plotNFT/PlotNFTChangePool.tsx:81
 msgid "Plot NFT with p2_singleton_puzzle_hash {plotNFTId} does not exists"
 msgstr "NFT poľa s p2_singleton_puzzle_hash {plotNFTId} neexistuje"
@@ -2561,26 +3249,30 @@ msgstr "Verejný kľúč poľa"
 msgid "Plot Size"
 msgstr "Veľkosť poľa"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:72
-msgid "Plot in Parallel"
-msgstr "Paralelné vytváranie polí"
-
-#: src/components/plot/PlotHarvesterPlots.tsx:23
-msgid "Plot is duplicate of {0}"
-msgstr "Pole je duplikátom {0}"
+#: src/components/plot/add/PlotAddNFT.tsx:56
+msgid "Plot to a Plot NFT"
+msgstr ""
 
 #: src/components/plotNFT/PlotNFTState.tsx:44
 msgid "PlotNFT is transitioning to (target state). This can take a while. Please do not close the application until this is finalized."
 msgstr "NFT poľa prechádza do (cieľového stavu). Môže to chvíľu trvať. Prosím nezatvárajte aplikáciu, kým nebude prechod dokončený."
 
-#: src/components/dashboard/DashboardSideBar.tsx:83
+#: src/components/dashboard/DashboardSideBar.tsx:94
 #: src/components/plot/PlotHarvester.tsx:96
 msgid "Plots"
 msgstr "Polia"
 
+#: src/components/plot/overview/PlotOverviewHero.tsx:34
+msgid "Plots are allocated space on your hard drive used to farm and earn Chia.  <0>Learn more</0>"
+msgstr ""
+
 #: src/components/plot/card/PlotCardPlotsFailedToOpen.tsx:11
 msgid "Plots Failed To Open"
 msgstr "Polia sa nepodarilo otvoriť"
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:217
+msgid "Plots in the same queue will run in serial"
+msgstr "Polia v rovnakom fronte sa budú spúšťať sériovo"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:21
 msgid "Plots Passed Filter"
@@ -2589,14 +3281,6 @@ msgstr "Polia, ktoré prešli filtrom"
 #: src/components/plot/card/PlotCardNotFound.tsx:11
 msgid "Plots With Missing Keys"
 msgstr "Polia s chýbajúcimi kľúčmi"
-
-#: src/components/plot/overview/PlotOverviewHero.tsx:34
-msgid "Plots are allocated space on your hard drive used to farm and earn Chia.  <0>Learn more</0>"
-msgstr ""
-
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:217
-msgid "Plots in the same queue will run in serial"
-msgstr "Polia v rovnakom fronte sa budú spúšťať sériovo"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:91
 msgid "Plotter"
@@ -2607,27 +3291,31 @@ msgstr "Vykresľovač"
 msgid "Plotting"
 msgstr "Vytváranie poľa"
 
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:65
+msgid "Plotting in parallel can save time. Otherwise, add plot(s) to the queue."
+msgstr "Paralelné vytváranie polí môže ušetriť čas. V opačnom prípade sa pridá do frontu."
+
 #: src/components/plot/overview/PlotOverviewPlots.tsx:36
 msgid "Plotting Manager"
 msgstr "Spravovanie vykresľovania"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:65
-msgid "Plotting in parallel can save time. Otherwise, add plot(s) to the queue."
-msgstr "Paralelné vytváranie polí môže ušetriť čas. V opačnom prípade sa pridá do frontu."
+#: src/components/plot/add/PlotAddNFT.tsx:69
+msgid "Plotting to a Plot NFT allows you the flexibility to join a pool or solo farm. You can easily switch between different pools or solo farming at any time. If you choose not to plot to a Plot NFT, you will need to replot in order to join any of the standard pools."
+msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:326
 msgid "Plotting with bitfield enabled has about 30% less overall writes and is now almost always faster. You may see reduced memory requirements with bitfield plotting disabled. If your CPU design is from before 2010 you may have to disable bitfield plotting."
 msgstr "Vykresľovanie s bitovým poľom umožňuje okolo 30% menej zápisov a je teraz takmer vždy rýchlejšie. Vypnutím bitového poľa môžete znížiť požiadavky na pamäť. Ak je vaše CPU z pred roku 2010, možno budete musieť vykresľovanie s bitovým poľom deaktivovať."
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:153
-#: src/components/plotNFT/PlotNFTCard.tsx:186
-msgid "Points Found Since Start"
-msgstr "Body nájdené od spustenia"
-
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:162
 #: src/components/plotNFT/PlotNFTCard.tsx:195
 msgid "Points Found in Last 24 Hours"
 msgstr "Body nájdené za posledných 24 hodín"
+
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:153
+#: src/components/plotNFT/PlotNFTCard.tsx:186
+msgid "Points Found Since Start"
+msgstr "Body nájdené od spustenia"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:171
 #: src/components/plotNFT/PlotNFTCard.tsx:204
@@ -2637,6 +3325,14 @@ msgstr "Úspešné body za posledných 24 hodín"
 #: src/components/plot/PlotHarvesterPlots.tsx:64
 msgid "Pool Contract Address"
 msgstr "Adresa zmluvy združenia"
+
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:33
+msgid "Pool does not provide relativeLockHeight."
+msgstr "Združenie neposkytuje relativeLockHeight."
+
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:30
+msgid "Pool does not provide targetPuzzleHash."
+msgstr "Združenie neposkytuje targetPuzzleHash."
 
 #: src/components/plot/PlotHarvesterPlots.tsx:51
 msgid "Pool Key"
@@ -2675,21 +3371,13 @@ msgstr "Adresa odmeny združenia nesmie byť prázdna."
 msgid "Pool Reward Amount"
 msgstr "Čiastka odmeny združenia"
 
-#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:33
-msgid "Pool does not provide relativeLockHeight."
-msgstr "Združenie neposkytuje relativeLockHeight."
-
-#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:30
-msgid "Pool does not provide targetPuzzleHash."
-msgstr "Združenie neposkytuje targetPuzzleHash."
-
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:233
 #: src/components/plotNFT/PlotNFTCard.tsx:269
 #: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:69
 msgid "Pool:"
 msgstr "Združenie:"
 
-#: src/components/dashboard/DashboardSideBar.tsx:103
+#: src/components/dashboard/DashboardSideBar.tsx:114
 #: src/components/plotNFT/PlotNFTExternalState.tsx:25
 #: src/components/plotNFT/PlotNFTState.tsx:57
 msgid "Pooling"
@@ -2702,35 +3390,36 @@ msgstr "Združovanie"
 msgid "Port"
 msgstr "Port"
 
-#: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:93
+#: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:94
 #: src/components/plotNFT/PlotNFTChangePool.tsx:75
 msgid "Preparing Plot NFT"
 msgstr "Príprava NFT poľa"
 
-#: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:101
+#: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:102
 msgid "Preparing standard wallet"
 msgstr "Príprava štandardnej peňaženky"
 
-#: src/components/nfts/NFTPreview.tsx:406
-#: src/components/nfts/NFTPreview.tsx:417
-#: src/components/offers2/OfferBuilderNFT.tsx:84
+#: src/components/nfts/NFTPreview.tsx:241
+#: src/components/nfts/NFTPreview.tsx:243
+#: src/components/nfts/NFTPreview.tsx:246
+#: src/components/offers2/OfferBuilderNFT.tsx:68
 msgid "Preview"
 msgstr "Náhľad"
-
-#: src/components/nfts/NFTPreview.tsx:621
-msgid "Preview URL is not valid"
-msgstr "Webová adresa ukážky je neplatná"
 
 #: src/components/nfts/NFTDetails.tsx:315
 msgid "Preview image uris"
 msgstr "Náhľad URI, ak ide o obrázok"
+
+#: src/components/nfts/NFTPreview.tsx:621
+#~ msgid "Preview URL is not valid"
+#~ msgstr "Webová adresa ukážky je neplatná"
 
 #: src/components/nfts/NFTDetails.tsx:331
 msgid "Preview video uris"
 msgstr "Náhľad URI, ak ide o video"
 
 #: src/components/block/Block.jsx:256
-#: src/components/nfts/detail/NFTDetailV2.tsx:245
+#: src/components/nfts/detail/NFTDetailV2.tsx:120
 msgid "Previous"
 msgstr "Predchádzajúci"
 
@@ -2738,24 +3427,48 @@ msgstr "Predchádzajúci"
 msgid "Previous Header Hash"
 msgstr "Hash predchádzajúceho záhlavia"
 
+#: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:359
+msgid "Proceed"
+msgstr ""
+
 #: src/components/settings/ProfileView.tsx:57
 msgid "Profile Name"
 msgstr "Názov profilu"
 
+#: src/components/settings/ProfileAdd.tsx:142
+msgid "Profile Name (Optional)"
+msgstr ""
+
 #: src/components/settings/Settings.tsx:66
 #: src/components/settings/SettingsProfiles.tsx:55
-msgid "Profiles"
-msgstr "Profily"
+#~ msgid "Profiles"
+#~ msgstr "Profily"
+
+#: src/components/settings/SettingsProfiles.tsx:50
+msgid "Profiles (DIDs)"
+msgstr ""
 
 #: src/components/block/Block.jsx:202
 msgid "Proof of Space Size"
 msgstr "Dôkaz o veľkosti priestoru"
 
+#: src/components/vcs/VCCard.tsx:153
+msgid "Proofs"
+msgstr ""
+
 #: src/components/farm/FarmLastAttemptedProof.tsx:25
 msgid "Proofs Found"
 msgstr "Nájdené dôkazy"
 
-#: src/components/nfts/NFTProperties.tsx:101
+#: src/constants/WalletConnectCommands.tsx:905
+msgid "Proofs Hash"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:892
+msgid "Proofs Object (Key Value Pairs)"
+msgstr ""
+
+#: src/components/nfts/NFTProperties.tsx:121
 msgid "Properties"
 msgstr "Vlastnosti"
 
@@ -2767,7 +3480,12 @@ msgstr "Verzia protokolu"
 msgid "Prove or verify possession of a wallet address, NFT, or DID using a digital signature."
 msgstr ""
 
+#: src/constants/WalletConnectCommands.tsx:867
+msgid "Provider Inner Puzzle Hash"
+msgstr ""
+
 #: src/components/signVerify/VerifyMessage.tsx:219
+#: src/constants/WalletConnectCommands.tsx:219
 msgid "Public Key"
 msgstr ""
 
@@ -2775,8 +3493,12 @@ msgstr ""
 msgid "Purchase Summary"
 msgstr "Súhrn nákupu"
 
-#: src/components/plot/PlotPlotting.tsx:22
+#: src/constants/WalletConnectCommands.tsx:145
+msgid "Puzzle Decorator"
+msgstr ""
+
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:216
+#: src/components/plot/PlotPlotting.tsx:22
 msgid "Queue Name"
 msgstr "Názov frontu"
 
@@ -2792,7 +3514,15 @@ msgstr "Maximálna spotreba RAM"
 msgid "Rankings"
 msgstr "Rebríček"
 
-#: src/components/settings/SettingsNotifications.tsx:31
+#: src/components/settings/SettingsNotifications.tsx:123
+msgid "Receive general announcement notifications from connected Dapps"
+msgstr ""
+
+#: src/components/settings/SettingsNotifications.tsx:94
+msgid "Receive offer notifications from connected Dapps"
+msgstr ""
+
+#: src/components/settings/SettingsNotifications.tsx:69
 msgid "Receive push notifications when your wallet is minimized"
 msgstr ""
 
@@ -2801,10 +3531,10 @@ msgid "Recommended"
 msgstr "Odporúčané"
 
 #: src/components/settings/ProfileAdd.tsx:114
-msgid "Recommended: 0.000005 XCH"
-msgstr "Odporúčané: 0,000005 XCH"
+#~ msgid "Recommended: 0.000005 XCH"
+#~ msgstr "Odporúčané: 0,000005 XCH"
 
-#: src/components/nfts/NFTContextualActions.tsx:602
+#: src/components/nfts/NFTContextualActions.tsx:568
 msgid "Refresh NFT data"
 msgstr ""
 
@@ -2814,7 +3544,7 @@ msgid "Refresh Plots"
 msgstr "Obnoviť polia"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:178
-#: src/hooks/useWalletConnectCommand.tsx:78
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:71
 msgid "Reject"
 msgstr ""
 
@@ -2823,48 +3553,147 @@ msgid "Relative Lock Height"
 msgstr "Relatívna výška zámku"
 
 #: src/electron/main.tsx:1059
-msgid "Release Notes"
-msgstr "Poznámky k vydaniu"
+#~ msgid "Release Notes"
+#~ msgstr "Poznámky k vydaniu"
 
 #: src/components/plot/PlotHarvester.tsx:60
 msgid "Remote"
 msgstr "Vzdialené"
 
-#: src/components/settings/RemovePassphrasePrompt.tsx:116
-#: src/components/settings/RemovePassphrasePrompt.tsx:171
-#: src/components/settings/SettingsPanel.tsx:147
-msgid "Remove Passphrase"
-msgstr "Odstrániť prístupovú frázu"
+#: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:358
+msgid "Remove Conflicting Offer"
+msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:246
 msgid "Remove keys from old keyring upon successful migration"
 msgstr "Po úspešnej migrácii odstrániť kľúče zo starého zväzku kľúčov"
+
+#: src/components/settings/RemovePassphrasePrompt.tsx:116
+#: src/components/settings/RemovePassphrasePrompt.tsx:171
+#: src/components/settings/SettingsPanel.tsx:148
+msgid "Remove Passphrase"
+msgstr "Odstrániť prístupovú frázu"
+
+#: src/components/vcs/VCCard.tsx:187
+#: src/components/vcs/VCCard.tsx:275
+msgid "Remove Verifiable Credential"
+msgstr ""
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:37
 msgid "Removing"
 msgstr "Odstraňujem"
 
 #: src/electron/main.tsx:1074
-msgid "Report an Issue..."
-msgstr "Nahlásiť Problém..."
+#~ msgid "Report an Issue..."
+#~ msgstr "Nahlásiť Problém..."
 
-#: src/components/offers/OfferManager.tsx:281
+#: src/components/offers/OfferManager.tsx:169
+#: src/components/offers2/CancelOfferList.tsx:95
 msgid "Requested"
 msgstr "Požadované"
 
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:29
-#: src/components/offers2/OfferIncomingTable.tsx:43
+#: src/components/offers2/OfferIncomingTable.tsx:54
 msgid "Requesting"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:439
-#: src/components/offers/OfferEditor.tsx:174
+#: src/constants/WalletConnectCommands.tsx:278
+msgid "Requests a complete listing of the offers associated with the current wallet key"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:29
+msgid "Requests a complete listing of the wallets associated with the current wallet key"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:566
+msgid "Requests a full or paginated listing of NFTs associated with one or more wallets associated with the current wallet key"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:244
+msgid "Requests a new receive address associated with the current wallet key"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:595
+msgid "Requests details for a specific NFT"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:43
+msgid "Requests details for a specific transaction"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:57
+msgid "Requests the asset balance for a specific wallet associated with the current wallet key"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:74
+msgid "Requests the asset balances for specific wallets associated with the current wallet key"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:497
+msgid "Requests the CAT asset ID for a specific CAT wallet"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:91
+msgid "Requests the current receive address associated with the current wallet key"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:450
+msgid "Requests the details for a specific offer"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:725
+msgid "Requests the number of NFTs associated with one or more wallets associated with the current wallet key"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:323
+msgid "Requests the number of offers associated with the current wallet key"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:435
+msgid "Requests the raw offer data for a specific offer"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:421
+msgid "Requests the summarized details of a specific offer"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:269
+msgid "Requests the syncing status of current wallet"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:386
+msgid "Requests the validity status of a specific offer"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:208
+msgid "Requests the verification status for a digital signature"
+msgstr ""
+
+#: src/components/settings/SettingsIntegration.tsx:314
+msgid "Require Confirmation"
+msgstr ""
+
+#: src/components/offers/NFTOfferEditor.tsx:434
+#: src/components/offers/OfferEditor.tsx:171
+#: src/components/settings/SettingsIntegration.tsx:391
 #: src/components/signVerify/VerifyMessage.tsx:266
 msgid "Reset"
 msgstr "Resetovať"
 
+#: src/components/settings/SettingsIntegration.tsx:379
+msgid "Reset WalletConnect Permissions"
+msgstr ""
+
 #: src/components/nfts/NFTPreview.tsx:663
-msgid "Response too large"
+#~ msgid "Response too large"
+#~ msgstr ""
+
+#: src/components/settings/SettingsIntegration.tsx:352
+msgid "Restore"
+msgstr ""
+
+#: src/components/settings/SettingsIntegration.tsx:343
+msgid "Restore Default Dapp Permissions"
 msgstr ""
 
 #: src/components/settings/SettingsAdvanced.tsx:102
@@ -2880,15 +3709,34 @@ msgstr ""
 msgid "Resyncing forces reloading data from the blockchain about your transactions without losing other locally stored information like open, accepted, or cancelled offer files. Resyncing will require you to restart the app."
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:201
+#: src/constants/WalletConnectCommands.tsx:878
+msgid "Reuse Puzzle Hash"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:302
 msgid "Reverse"
+msgstr ""
+
+#: src/components/vcs/VCCard.tsx:187
+#: src/components/vcs/VCCard.tsx:288
+#: src/constants/WalletConnectCommands.tsx:911
+msgid "Revoke Verifiable Credential"
+msgstr ""
+
+#: src/components/vcs/VCCard.tsx:142
+msgid "Revoked"
 msgstr ""
 
 #: src/components/offers2/OfferBuilderNFTRoyalties.tsx:93
 msgid "Royalties are built into the NFT, so they will automatically be accounted for when the offer is created/accepted."
 msgstr ""
 
+#: src/constants/WalletConnectCommands.tsx:618
+msgid "Royalty Address"
+msgstr ""
+
 #: src/components/nfts/NFTDetails.tsx:159
+#: src/constants/WalletConnectCommands.tsx:624
 msgid "Royalty Percentage"
 msgstr "Percento autorského honoráru"
 
@@ -2898,17 +3746,16 @@ msgstr "Spustí úplný uzol"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:166
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:113
+#: src/components/settings/SettingsCustodyAutoClaim.tsx:75
+#: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:63
 #: src/components/settings/SettingsDerivationIndex.tsx:85
+#: src/components/vcs/VCEditTitle.tsx:94
 msgid "Save"
 msgstr "Uložiť"
 
-#: src/components/offers/OfferManager.tsx:348
+#: src/components/offers/OfferManager.tsx:236
 msgid "Save Offer File"
 msgstr "Uložiť súbor ponuky"
-
-#: src/components/signVerify/SignMessageResultDialog.tsx:63
-msgid "Save To File"
-msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:225
 #: src/components/settings/ChangePassphrasePrompt.tsx:273
@@ -2916,16 +3763,20 @@ msgstr ""
 msgid "Save passphrase"
 msgstr "Uložiť prístupovú frázu"
 
+#: src/components/signVerify/SignMessageResultDialog.tsx:63
+msgid "Save To File"
+msgstr ""
+
 #: src/components/fullNode/FullNodeBlockSearch.tsx:38
 msgid "Search block by header hash"
 msgstr "Hľadanie bloku podľa hashu záhlavia"
 
 #: src/components/offers/OfferSummaryRow.tsx:171
-#: src/components/offers2/OfferBuilderValue.tsx:103
+#: src/components/offers2/OfferBuilderValue.tsx:101
 msgid "Search on Tail Database"
 msgstr "Hľadať v Tail databáze"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:520
+#: src/components/nfts/gallery/NFTGallery.tsx:260
 msgid "Search..."
 msgstr ""
 
@@ -2933,15 +3784,15 @@ msgstr ""
 msgid "Second temporary folder location"
 msgstr "Druhý dočasný adresár"
 
-#: src/constants/WalletConnectCommands.tsx:265
+#: src/constants/WalletConnectCommands.tsx:372
 msgid "Secure"
 msgstr ""
 
-#: src/components/settings/SettingsPanel.tsx:95
+#: src/components/settings/SettingsPanel.tsx:96
 msgid "Secure your keychain using a strong passphrase"
 msgstr "Zabezpečte svoj zväzok kľúčov pomocou silnej prístupovej frázy"
 
-#: src/components/notification/NotificationsMenu.tsx:60
+#: src/components/notification/NotificationsMenu.tsx:62
 msgid "See All Activity"
 msgstr ""
 
@@ -2949,34 +3800,38 @@ msgstr ""
 msgid "Select 2nd Temporary Directory"
 msgstr "Vyberte druhý dočasný adresár"
 
+#: src/components/nfts/gallery/NFTGallery.tsx:314
+msgid "Select all"
+msgstr ""
+
+#: src/components/settings/SettingsIntegration.tsx:256
+msgid "Select an application"
+msgstr ""
+
+#: src/components/nfts/NFTAutocomplete.tsx:56
+msgid "Select an NFT"
+msgstr ""
+
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:33
 msgid "Select Final Directory"
 msgstr "Vyberte cieľový adresár"
+
+#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:141
+msgid "Select keys which you want to share with WalletConnect"
+msgstr ""
 
 #: src/components/offers/OfferImport.tsx:160
 msgid "Select Offer File"
 msgstr "Vybrať súbor ponuky"
 
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:249
-#: src/components/signVerify/SigningEntityDID.tsx:73
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:244
+#: src/components/signVerify/SigningEntityDID.tsx:69
 msgid "Select Profile"
 msgstr "Vybrať profil"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:48
 msgid "Select Temporary Directory"
 msgstr "Vyberte dočasný adresár"
-
-#: src/components/app/AppSelectMode.tsx:56
-msgid "Select Your Client Mode"
-msgstr "Vyberte režim vášho klienta"
-
-#: src/components/nfts/gallery/NFTGallery.tsx:475
-msgid "Select all"
-msgstr ""
-
-#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:141
-msgid "Select keys which you want to share with WalletConnect"
-msgstr ""
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:35
 msgid "Select the final destination for the folder where you would like the plot to be stored. We recommend you use a large slow hard drive (like external HDD)."
@@ -2986,13 +3841,17 @@ msgstr "Vyberte cieľový adresár, do ktorého chcete uložiť pole. Odporúča
 msgid "Select the temporary destination for the folder where you would like the plot to be stored. We recommend you use a fast drive."
 msgstr "Vyberte dočasný adresár, do ktorého chcete uložiť pole. Odporúčame vám použiť rýchle úložisko dát."
 
-#: src/components/plot/add/PlotAddNFT.tsx:76
+#: src/components/app/AppSelectMode.tsx:56
+msgid "Select Your Client Mode"
+msgstr "Vyberte režim vášho klienta"
+
+#: src/components/plot/add/PlotAddNFT.tsx:84
 msgid "Select your Plot NFT"
 msgstr "Vyberte NFT vášho poľa"
 
 #: src/components/plot/add/PlotAddNFT.tsx:69
-msgid "Select your Plot NFT from the dropdown or create a new one."
-msgstr "Vyberte svoje NFT poľa z rozbaľovacej ponuky alebo vytvorte nové."
+#~ msgid "Select your Plot NFT from the dropdown or create a new one."
+#~ msgstr "Vyberte svoje NFT poľa z rozbaľovacej ponuky alebo vytvorte nové."
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:71
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:79
@@ -3000,25 +3859,27 @@ msgstr "Vyberte svoje NFT poľa z rozbaľovacej ponuky alebo vytvorte nové."
 msgid "Selected"
 msgstr "Vybrané"
 
+#: src/components/plotNFT/select/PlotNFTSelectBase.tsx:86
+msgid "Self pool. When you win a block you will earn XCH rewards."
+msgstr "Osobné združenie. Keď vyhráte blok, získate XCH odmeny."
+
 #: src/components/plotNFT/PlotNFTExternalState.tsx:24
 #: src/components/plotNFT/PlotNFTState.tsx:55
 msgid "Self Pooling"
 msgstr "Sólo združovanie"
 
-#: src/components/plotNFT/select/PlotNFTSelectBase.tsx:86
-msgid "Self pool. When you win a block you will earn XCH rewards."
-msgstr "Osobné združenie. Keď vyhráte blok, získate XCH odmeny."
-
-#: src/components/offers/NFTOfferEditor.tsx:313
+#: src/components/offers/NFTOfferEditor.tsx:308
 msgid "Sell an NFT"
 msgstr ""
 
-#: src/components/notification/NotificationSendDialog.tsx:294
+#: src/components/notification/NotificationSendDialog.tsx:310
 msgid "Send Message"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:75
-msgid "Send Transaction"
+#: src/components/offers/OfferShareDialog.tsx:445
+#: src/components/offers/OfferShareDialog.tsx:703
+#: src/components/offers/OfferShareDialog.tsx:825
+msgid "Send Notification"
 msgstr ""
 
 #: src/components/notification/NotificationSendDialog.tsx:178
@@ -3026,78 +3887,102 @@ msgid "Send offer notification"
 msgstr ""
 
 #: src/components/nfts/NFTBurnDialog.tsx:159
-#: src/components/nfts/NFTTransferAction.tsx:149
+#: src/components/nfts/NFTTransferAction.tsx:150
 msgid "Send to Address"
 msgstr "Odoslať na adresu"
 
+#: src/constants/WalletConnectCommands.tsx:108
+msgid "Send Transaction"
+msgstr ""
+
+#: src/components/settings/SettingsCustody.tsx:45
+msgid "Set a default time frame for all outbound XCH transactions."
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:770
+msgid "Set DID Name"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:787
+msgid "Set NFT DID"
+msgstr ""
+
 #: src/components/settings/SetPassphrasePrompt.tsx:159
 #: src/components/settings/SetPassphrasePrompt.tsx:269
-#: src/components/settings/SettingsPanel.tsx:153
+#: src/components/settings/SettingsPanel.tsx:154
 msgid "Set Passphrase"
 msgstr "Nastaviť prístupovú frázu"
 
-#: src/components/dashboard/DashboardSideBar.tsx:113
-#: src/components/settings/Settings.tsx:56
+#: src/components/dashboard/DashboardSideBar.tsx:124
+#: src/components/settings/Settings.tsx:68
 msgid "Settings"
 msgstr "Nastavenia"
 
-#: src/components/offers/OfferManager.tsx:314
-#: src/components/offers/OfferShareDialog.tsx:1198
-#: src/components/offers/OfferShareDialog.tsx:1373
+#: src/components/offers/OfferManager.tsx:202
+#: src/components/offers/OfferShareDialog.tsx:922
 msgid "Share"
 msgstr "Zdieľať"
 
-#: src/components/offers/OfferShareDialog.tsx:1520
+#: src/components/offers/OfferShareDialog.tsx:1070
 msgid "Share Offer"
 msgstr "Zdieľať ponuku"
 
-#: src/components/offers/OfferShareDialog.tsx:804
-msgid "Share Privately"
-msgstr "Zdieľať súkromne"
-
-#: src/components/offers/OfferShareDialog.tsx:642
+#: src/components/offers/OfferShareDialog.tsx:464
 msgid "Share on Dexie"
 msgstr "Zdieľať na Dexie"
 
-#: src/components/offers/OfferShareDialog.tsx:881
+#: src/components/offers/OfferShareDialog.tsx:610
 msgid "Share on Hashgreen DEX"
 msgstr "Zdieľať na Hashgreen DEX"
 
 #: src/components/offers/OfferShareDialog.tsx:1160
-msgid "Share on Keybase"
-msgstr "Zdieľať na Keybase"
+#~ msgid "Share on Keybase"
+#~ msgstr "Zdieľať na Keybase"
 
-#: src/components/offers/OfferShareDialog.tsx:715
+#: src/components/offers/OfferShareDialog.tsx:537
 msgid "Share on MintGarden"
 msgstr "Zdieľať na MintGarden"
 
 #: src/components/offers/OfferShareDialog.tsx:789
-msgid "Share on OfferBin"
-msgstr "Zdieľať na OfferBin"
+#~ msgid "Share on OfferBin"
+#~ msgstr "Zdieľať na OfferBin"
 
-#: src/components/offers/OfferShareDialog.tsx:975
-msgid "Share on Spacescan.io"
-msgstr "Zdieľať na Spacescan.io"
-
-#: src/components/offers/OfferShareDialog.tsx:1295
+#: src/components/offers/OfferShareDialog.tsx:844
 msgid "Share on offerpool"
 msgstr "Zdieľať na offerpool"
 
-#: src/components/nfts/NFTContextualActions.tsx:499
+#: src/components/offers/OfferShareDialog.tsx:722
+msgid "Share on Spacescan.io"
+msgstr "Zdieľať na Spacescan.io"
+
+#: src/components/offers/OfferShareDialog.tsx:804
+#~ msgid "Share Privately"
+#~ msgstr "Zdieľať súkromne"
+
+#: src/components/nfts/NFTContextualActions.tsx:495
 msgid "Show"
 msgstr ""
 
-#: src/components/offers/OfferManager.tsx:328
+#: src/components/offers/OfferManager.tsx:216
 msgid "Show Details"
 msgstr "Zobraziť podrobnosti"
 
+#: src/constants/WalletConnectCommands.tsx:925
+msgid "Show notification with offer or general announcement"
+msgstr ""
+
+#: src/components/walletConnect/WalletConnectCreateOfferPreview.tsx:33
+#: src/components/walletConnect/WalletConnectOfferPreview.tsx:70
+msgid "Show Offer Details"
+msgstr ""
+
 #: src/components/nfts/NFTPreview.tsx:667
-msgid "Show Preview"
-msgstr "Zobraziť náhľad"
+#~ msgid "Show Preview"
+#~ msgstr "Zobraziť náhľad"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:541
-msgid "Showing {0} of {1} items"
-msgstr ""
+#~ msgid "Showing {0} of {1} items"
+#~ msgstr ""
 
 #: src/components/settings/ResyncPrompt.tsx:52
 msgid "Shut down"
@@ -3111,15 +3996,16 @@ msgstr ""
 msgid "Sign Message"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:131
+#: src/constants/WalletConnectCommands.tsx:190
 msgid "Sign Message by Address"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:114
+#: src/constants/WalletConnectCommands.tsx:173
 msgid "Sign Message by Id"
 msgstr ""
 
 #: src/components/signVerify/VerifyMessage.tsx:228
+#: src/constants/WalletConnectCommands.tsx:224
 msgid "Signature"
 msgstr ""
 
@@ -3160,12 +4046,17 @@ msgid "Signing Entity"
 msgstr ""
 
 #: src/components/signVerify/VerifyMessage.tsx:237
+#: src/constants/WalletConnectCommands.tsx:235
 msgid "Signing Mode"
 msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:240
 msgid "Size of cache to reserve for I/O"
 msgstr "Veľkosť vyrovnávacej pamäte rezervovaná pre I/O"
+
+#: src/components/settings/SettingsIntegration.tsx:286
+msgid "Skip Confirmation for Commands"
+msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:439
 msgid "Skips adding a final directory to harvester for farming"
@@ -3176,10 +4067,14 @@ msgid "Smooth out your XCH farming rewards by joining a pool."
 msgstr "Zjemnite si svoje farmárske XCH odmeny pripojením sa k združeniu."
 
 #: src/components/notification/NotificationNFTTitle.tsx:30
-msgid "Something went wrong"
+#~ msgid "Something went wrong"
+#~ msgstr ""
+
+#: src/components/app/AppTestnetIndicator.tsx:47
+msgid "Sorry, you can't switch to mainnet by clicking here..."
 msgstr ""
 
-#: src/components/offers/OfferShareDialog.tsx:935
+#: src/components/offers/OfferShareDialog.tsx:673
 msgid "Spacescan.io URL"
 msgstr ""
 
@@ -3192,26 +4087,42 @@ msgid "Specify a wallet address, NFT, or DID to sign with"
 msgstr ""
 
 #: src/electron/main.tsx:1149
-msgid "Speech"
-msgstr "Reč"
+#~ msgid "Speech"
+#~ msgstr "Reč"
 
-#: src/constants/WalletConnectCommands.tsx:377
+#: src/constants/WalletConnectCommands.tsx:510
 msgid "Spend CAT"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:872
+msgid "Spend Fee"
 msgstr ""
 
 #: src/components/offers2/OfferBuilderWalletBalance.tsx:44
 msgid "Spendable Balance: {0}"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:183
+#: src/components/settings/ProfileAdd.tsx:133
+msgid "Spendable Balance: {spendableBalance} {currencyCode}"
+msgstr ""
+
+#: src/components/vcs/VCCard.tsx:150
+msgid "Standard Version Number"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:284
 msgid "Start"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:195
+#: src/constants/WalletConnectCommands.tsx:586
+msgid "Start Index"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:296
 msgid "Start Key"
 msgstr ""
 
-#: src/components/app/AppState.tsx:251
+#: src/components/app/AppState.tsx:264
 msgid "Starting services"
 msgstr "Spúšťajú sa služby"
 
@@ -3225,11 +4136,12 @@ msgstr "Stav"
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:69
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:74
-#: src/components/offers/OfferManager.tsx:251
+#: src/components/offers/OfferManager.tsx:149
 #: src/components/plot/PlotHarvesterPlots.tsx:74
 #: src/components/plot/PlotPlotting.tsx:26
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:100
 #: src/components/plotNFT/PlotNFTCard.tsx:128
+#: src/components/vcs/VCCard.tsx:138
 msgid "Status"
 msgstr "Stav"
 
@@ -3242,11 +4154,12 @@ msgid "Submit"
 msgstr "Odoslať"
 
 #: src/components/notification/NotificationSendDialog.tsx:142
-#: src/hooks/useAcceptOfferHook.tsx:54
+#: src/components/vcs/VCCard.tsx:252
+#: src/hooks/useAcceptOfferHook.tsx:97
 msgid "Success"
 msgstr "Úspech"
 
-#: src/components/settings/LimitCacheSize.tsx:63
+#: src/components/settings/LimitCacheSize.tsx:54
 msgid "Successfully updated cache size limit."
 msgstr ""
 
@@ -3267,11 +4180,12 @@ msgstr "Synchronizácia"
 msgid "Syncing <0/>/<1/>"
 msgstr "Synchronizácia <0/>/<1/>"
 
-#: src/constants/WalletConnectCommands.tsx:290
+#: src/constants/WalletConnectCommands.tsx:399
 msgid "Take Offer"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:483
+#: src/constants/WalletConnectCommands.tsx:630
+#: src/constants/WalletConnectCommands.tsx:710
 msgid "Target Address"
 msgstr ""
 
@@ -3287,31 +4201,11 @@ msgstr "Dočasný adresár"
 msgid "The Chia application and its services are using different versions. Some functionality may not be behave properly as a result.<0/><1/>Chia services version: {backV}<2/>Chia application version: {guiV}<3/><4/>It is recommended that you quit the Chia application and stop all Chia services."
 msgstr ""
 
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:210
-msgid "The NFT move failed: {err}"
+#: src/components/settings/SettingsCustody.tsx:49
+msgid "The claw back time can be manually adjusted per transaction."
 msgstr ""
 
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:203
-msgid "The NFT move transaction has been successfully submitted to the blockchain."
-msgstr "Transakcia presunu NFT bola úspešne odoslaná do blockchainu."
-
-#: src/components/nfts/NFTContextualActions.tsx:261
-msgid "The NFT status has been updated. If the transaction was successfully sent to the mempool, it may still complete."
-msgstr "Stav NFT bol aktualizovaný. Ak bola transakcia úspešne odoslaná do mempoolu, môže sa dokončiť aj napriek pokusu o zrušenie."
-
-#: src/components/nfts/NFTContextualActions.tsx:271
-msgid "The NFT status update failed: {err}"
-msgstr ""
-
-#: src/components/nfts/NFTContextualActions.tsx:183
-msgid "The NFT transfer failed: {error}"
-msgstr "Prevod NFT zlyhal: {error}"
-
-#: src/components/nfts/NFTContextualActions.tsx:176
-msgid "The NFT transfer transaction has been successfully submitted to the blockchain."
-msgstr "Transakcia prevodu NFT bola úspešne odoslaná do blockchainu."
-
-#: src/components/settings/SettingsPanel.tsx:165
+#: src/components/settings/SettingsPanel.tsx:166
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
 msgstr "Derivačný index nastavuje rozsah adries peňaženky, ktoré peňaženka vyhľadáva v blockchaine. Toto číslo je vo všeobecnosti vyššie, ak máte veľa transakcií alebo zrušených ponúk pre XCH, CAT alebo NFT. Ak sa domnievate, že váš zostatok je nesprávny, pretože v ňom chýbajú mince, potom zvýšenie derivačného indexu môže pomôcť peňaženke zahrnúť chýbajúce mince do celkového zostatku."
 
@@ -3333,6 +4227,34 @@ msgstr "Minimálna požadovaná veľkosť pre sieť mainnet je k = 32"
 msgid "The net proceeds include the asking price, minus any associated creator fees (if the NFT has royalty payments enabled)."
 msgstr "Čistý výnos zahŕňa požadovanú cenu mínus všetky súvisiace autorské poplatky (ak má NFT povolené licenčné poplatky)."
 
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:207
+msgid "The NFT move failed: {err}"
+msgstr ""
+
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:200
+msgid "The NFT move transaction has been successfully submitted to the blockchain."
+msgstr "Transakcia presunu NFT bola úspešne odoslaná do blockchainu."
+
+#: src/components/nfts/NFTContextualActions.tsx:254
+msgid "The NFT status has been updated. If the transaction was successfully sent to the mempool, it may still complete."
+msgstr "Stav NFT bol aktualizovaný. Ak bola transakcia úspešne odoslaná do mempoolu, môže sa dokončiť aj napriek pokusu o zrušenie."
+
+#: src/components/nfts/NFTContextualActions.tsx:264
+msgid "The NFT status update failed: {err}"
+msgstr ""
+
+#: src/components/nfts/NFTContextualActions.tsx:179
+msgid "The NFT transfer failed: {0}"
+msgstr ""
+
+#: src/components/nfts/NFTContextualActions.tsx:183
+#~ msgid "The NFT transfer failed: {error}"
+#~ msgstr "Prevod NFT zlyhal: {error}"
+
+#: src/components/nfts/NFTContextualActions.tsx:173
+msgid "The NFT transfer transaction has been successfully submitted to the blockchain."
+msgstr "Transakcia prevodu NFT bola úspešne odoslaná do blockchainu."
+
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:16
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:46
 msgid "The node is not synced"
@@ -3341,6 +4263,14 @@ msgstr "Uzol nie je synchronizovaný"
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:35
 msgid "The node is syncing, which means it is downloading blocks from other nodes, to reach the latest block in the chain"
 msgstr "Uzol sa synchronizuje, čo znamená, že sťahuje bloky z iných uzlov, aby sa dostal k najnovšiemu bloku v reťazci"
+
+#: src/components/offers2/OfferIncomingTable.tsx:96
+msgid "The offer creator has chosen not to allow counter offers"
+msgstr ""
+
+#: src/components/plotNFT/PlotNFTState.tsx:30
+msgid "The pool switching operation was cancelled, please try again by changing pool, or self pooling"
+msgstr "Operácia prepnutia združenia bola zrušená. Skúste to znova zmenou združenia alebo osobným združovaním"
 
 #: src/hooks/usePoolInfo.ts:54
 msgid "The pool URL \"{normalizedUrl}\" is not working. Is it pool? Error: {0}"
@@ -3354,10 +4284,6 @@ msgstr "URL adresa združenia je neplatná. {normalizedUrl}"
 msgid "The pool URL needs to use protocol https. {normalizedUrl}"
 msgstr "URL adresa združenia musí používať protokol https. {normalizedUrl}"
 
-#: src/components/plotNFT/PlotNFTState.tsx:30
-msgid "The pool switching operation was cancelled, please try again by changing pool, or self pooling"
-msgstr "Operácia prepnutia združenia bola zrušená. Skúste to znova zmenou združenia alebo osobným združovaním"
-
 #: src/components/block/Block.jsx:224
 msgid "The seed used to create the plot. This depends on the pool pk and plot pk."
 msgstr "Seed použitý na vytvorenie poľa. Závisí od PK združenia a PK poľa."
@@ -3370,11 +4296,11 @@ msgstr ""
 msgid "The total amount offered includes the offered purchase price, plus the optional offer creation fee.<0/>If the NFT has royalty payments enabled, those creator fees will be paid from the offered purchase price."
 msgstr "Celková ponúkaná suma zahŕňa ponúkanú kúpnu cenu plus voliteľný poplatok za vytvorenie ponuky.<0/>Ak má NFT povolené licenčné poplatky, tieto autorské poplatky budú zaplatené z ponúkanej kúpnej ceny."
 
-#: src/components/offers/NFTOfferEditor.tsx:400
+#: src/components/offers/NFTOfferEditor.tsx:395
 msgid "The total amount offered includes the price you're willing to pay for the NFT, plus the optional offer creation fee. One or more coins totalling at least the amount shown below will be deducted from your spendable balance upon offer creation.<0/>If the NFT has royalty payments enabled, those creator fees will be paid by the party that accepts the offer."
 msgstr "Celková ponúkaná suma zahŕňa cenu, ktorú ste ochotní zaplatiť za NFT, plus voliteľný poplatok za vytvorenie ponuky. Jedna alebo viacero mincí v celkovej hodnote aspoň nižšie uvedenej sumy sa pri vytvorení ponuky odpočíta z vášho disponibilného zostatku.<0/>Ak má NFT povolené licenčné poplatky, tieto autorské poplatky zaplatí strana, ktorá ponuku prijme."
 
-#: src/components/offers/NFTOfferEditor.tsx:391
+#: src/components/offers/NFTOfferEditor.tsx:386
 msgid "The total amount requested includes the asking price, plus the associated creator fees (if the NFT has royalty payments enabled). Creator fees will be paid by the party that accepts the offer.<0/>The optional offer creation fee is not included in this total, and will be deducted from your spendable balance upon offer creation."
 msgstr "Celková požadovaná suma zahŕňa požadovanú cenu plus súvisiace autorské poplatky (ak má NFT povolené licenčné poplatky). Autorské poplatky zaplatí strana, ktorá ponuku prijme.<0/>Voliteľný poplatok za vytvorenie ponuky nie je zahrnutý v tejto sume a bude odpočítaný z vášho disponibilného zostatku pri vytvorení ponuky."
 
@@ -3402,7 +4328,7 @@ msgstr "Toto sú inštrukcie, ako chce farmár dostať zaplatené. V predvolenom
 msgid "These plots are invalid, you might want to delete them."
 msgstr "Tieto polia sú neplatné, asi ich budete chcieť vymazať."
 
-#: src/components/offers/NFTOfferEditor.tsx:365
+#: src/components/offers/NFTOfferEditor.tsx:360
 msgid "They will receive"
 msgstr "Dostanú"
 
@@ -3415,7 +4341,7 @@ msgstr "Toto umožňuje pridať adresár, ktorý obsahuje už vykreslené polia.
 msgid "This difficulty is an artifically lower difficulty than on the real network, and is used when farming, in order to find more proofs and send them to the pool. The more plots you have, the higher difficulty you will have. However, the difficulty does not affect rewards."
 msgstr "Táto zložitosť je umelo nižšou zložitosťou ako v skutočnej sieti a používa sa pri farmárčení na vyhľadanie ďalších dôkazov a ich odoslanie do združenia. Čím viac polí máte, tým vyššia zložitosť. Zložitosť však nemá vplyv na odmeny."
 
-#: src/hooks/useSelectDirectory.tsx:32
+#: src/hooks/useSelectDirectory.tsx:36
 msgid "This feature is available only from the GUI."
 msgstr "Táto možnosť je dostupná iba z Electron aplikácie."
 
@@ -3441,27 +4367,27 @@ msgstr "Toto je celkový počet bodov, ktoré váš farmár našiel pre tento NF
 msgid "This node is fully caught up and validating the network"
 msgstr "Tento uzol je plne aktualizovaný a overuje sieť"
 
-#: src/components/offers/NFTOfferViewer.tsx:212
+#: src/components/offers/NFTOfferViewer.tsx:213
 #: src/components/offers/OfferSummary.tsx:182
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted."
 msgstr "Táto ponuka zahŕňa poplatok, ktorý pomáha urýchliť transakciu po prijatí ponuky."
 
-#: src/components/offers/NFTOfferViewer.tsx:207
+#: src/components/offers/NFTOfferViewer.tsx:208
 #: src/components/offers/OfferSummary.tsx:177
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted. You may specify an additional fee if you feel that the included fee is too small."
 msgstr "Táto ponuka zahŕňa poplatok, ktorý pomáha urýchliť transakciu po prijatí ponuky. Ak máte pocit, že zahrnutý poplatok je príliš nízky, môžete zadať dodatočný poplatok."
 
 #: src/components/offers/OfferHeader.tsx:63
-#: src/components/offers2/OfferBuilderViewer.tsx:164
+#: src/components/offers2/OfferBuilderViewer.tsx:237
 msgid "This offer has completed successfully"
 msgstr "Táto ponuka bola úspešne dokončená"
 
 #: src/components/offers/OfferHeader.tsx:46
-#: src/components/offers2/OfferBuilderViewer.tsx:151
+#: src/components/offers2/OfferBuilderViewer.tsx:224
 msgid "This offer is no longer valid. To understand why, click <0>here</0> to learn more."
 msgstr "Táto ponuka už nie je platná. Ak chcete vedieť prečo, kliknite <0>sem</0> a dozviete sa viac."
 
-#: src/components/offers2/OfferBuilderViewer.tsx:168
+#: src/components/offers2/OfferBuilderViewer.tsx:241
 msgid "This offer was cancelled"
 msgstr ""
 
@@ -3473,13 +4399,21 @@ msgstr "Tento NFT poľa je priradený inému kľúču. Stále môžete vytvára�
 msgid "This table shows you the last time your farm attempted to win a block challenge. <0>Learn more</0>"
 msgstr "Táto tabuľka zobrazuje, kedy sa vaša farma naposledy pokúsila vyhrať blokovú výzvu. <0> Ďalšie informácie </0>"
 
+#: src/components/settings/SettingsIntegration.tsx:398
+msgid "This will reset all previously granted permissions across all Dapps that have been connected to. After resetting you will be asked to grant permission again."
+msgstr ""
+
+#: src/components/settings/SettingsIntegration.tsx:359
+msgid "This will restore the selected Dapp's permissions back to their default values. By default, every command issued by the Dapp will require confirmation in the Chia wallet."
+msgstr ""
+
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:151
 msgid "Thread Multiplier for Phase 2"
 msgstr "Násobiteľ vlákien pre fázu 2"
 
 #: src/components/nfts/NFTPreview.tsx:629
-msgid "Thumbnail hash mismatch"
-msgstr "Nezhoda hashu miniatúr"
+#~ msgid "Thumbnail hash mismatch"
+#~ msgstr "Nezhoda hashu miniatúr"
 
 #: src/components/fullNode/FullNode.jsx:71
 msgid "Time Created"
@@ -3489,11 +4423,7 @@ msgstr "Čas vytvorenia"
 msgid "Timestamp"
 msgstr "Časová značka"
 
-#: src/components/nfts/NFTCard.tsx:99
-#: src/components/nfts/NFTSummary.tsx:136
-#: src/components/nfts/NFTTitle.tsx:19
-#: src/components/nfts/detail/NFTDetailV2.tsx:273
-#: src/components/offers2/OfferBuilderValueSearch.tsx:137
+#: src/components/nfts/NFTTitle.tsx:11
 msgid "Title Not Available"
 msgstr "Názov nie je k dispozícii"
 
@@ -3505,7 +4435,7 @@ msgstr ""
 msgid "Token Standard"
 msgstr "Tokenový štandard"
 
-#: src/components/dashboard/DashboardSideBar.tsx:51
+#: src/components/dashboard/DashboardSideBar.tsx:54
 #: src/components/offers2/OfferBuilderTokensSection.tsx:113
 msgid "Tokens"
 msgstr "Tokeny"
@@ -3518,12 +4448,16 @@ msgstr "Príliš veľa NFT tokenov"
 msgid "Total Amount"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:385
+#: src/components/offers2/OfferBuilderRoyaltyPayouts.tsx:32
+msgid "Total amount including royalties"
+msgstr ""
+
+#: src/components/offers/NFTOfferEditor.tsx:380
 #: src/components/offers/NFTOfferViewer.tsx:541
 msgid "Total Amount Offered"
 msgstr "Celková ponúkaná suma"
 
-#: src/components/offers/NFTOfferEditor.tsx:383
+#: src/components/offers/NFTOfferEditor.tsx:378
 #: src/components/offers/NFTOfferViewer.tsx:537
 msgid "Total Amount Requested"
 msgstr "Celková požadovaná suma"
@@ -3544,6 +4478,10 @@ msgstr "Celkovo zberačov"
 msgid "Total Iterations"
 msgstr "Celkový počet iterácií"
 
+#: src/components/fullNode/card/FullNodeCardTotalIterations.tsx:15
+msgid "Total iterations since the start of the blockchain"
+msgstr "Celkový počet iterácií od začiatku blockchainu"
+
 #: src/components/farm/card/FarmCardTotalNetworkSpace.tsx:12
 msgid "Total Network Space"
 msgstr "Celková veľkosť siete"
@@ -3556,6 +4494,10 @@ msgstr "Celkovo polí"
 msgid "Total Plots Size"
 msgstr "Celková veľkosť polí"
 
+#: src/components/nfts/MultipleDownloadDialog.tsx:67
+msgid "Total size of downloaded files:"
+msgstr ""
+
 #: src/components/farm/card/FarmCardTotalSizeOfPlots.tsx:11
 msgid "Total Size of Plots"
 msgstr "Celková veľkosť polí"
@@ -3564,23 +4506,11 @@ msgstr "Celková veľkosť polí"
 msgid "Total VDF Iterations"
 msgstr "Celkový počet VDF iterácií"
 
-#: src/components/offers2/OfferBuilderRoyaltyPayouts.tsx:32
-msgid "Total amount including royalties"
-msgstr ""
-
-#: src/components/fullNode/card/FullNodeCardTotalIterations.tsx:15
-msgid "Total iterations since the start of the blockchain"
-msgstr "Celkový počet iterácií od začiatku blockchainu"
-
-#: src/components/nfts/MultipleDownloadDialog.tsx:67
-msgid "Total size of downloaded files:"
-msgstr ""
-
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:362
 msgid "Touch all pages of buffer allocations before starting to plot."
 msgstr "Dotknúť sa všetkých stránok vyrovnávacej pamäte pred spustením vykresľovania."
 
-#: src/constants/WalletConnectCommands.tsx:260
+#: src/constants/WalletConnectCommands.tsx:367
 msgid "Trade Id"
 msgstr ""
 
@@ -3588,15 +4518,27 @@ msgstr ""
 msgid "Trade tokens"
 msgstr "Obchodovať s tokenmi"
 
-#: src/components/notification/NotificationSendDialog.tsx:250
+#: src/components/settings/SettingsCustodyAutoClaim.tsx:59
+msgid "Transaction auto claim fee"
+msgstr ""
+
+#: src/components/notification/NotificationSendDialog.tsx:260
 msgid "Transaction Fee"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:38
+#: src/constants/WalletConnectCommands.tsx:50
 msgid "Transaction Id"
 msgstr ""
 
-#: src/components/offers2/OfferBuilderFeeSection.tsx:65
+#: src/components/settings/SettingsCustody.tsx:27
+msgid "Transaction protection"
+msgstr ""
+
+#: src/components/vcs/VCCard.tsx:240
+msgid "Transaction sent to blockchain successfully."
+msgstr ""
+
+#: src/components/offers2/OfferBuilderFeeSection.tsx:66
 msgid "Transaction Speed"
 msgstr ""
 
@@ -3604,42 +4546,67 @@ msgstr ""
 msgid "Transactions Filter Hash"
 msgstr "Hash filtra transakcií"
 
-#: src/components/nfts/NFTTransferAction.tsx:169
+#: src/components/settings/SettingsCustodyAutoClaim.tsx:127
+msgid "Transactions less than the fee will not be auto claimed."
+msgstr ""
+
+#: src/components/nfts/NFTTransferAction.tsx:170
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:37
 msgid "Transfer"
 msgstr "Prevod"
 
-#: src/components/nfts/NFTContextualActions.tsx:200
-#: src/components/nfts/NFTTransferAction.tsx:217
-#: src/constants/WalletConnectCommands.tsx:463
+#: src/components/nfts/NFTContextualActions.tsx:196
+#: src/components/nfts/NFTTransferAction.tsx:218
+#: src/constants/WalletConnectCommands.tsx:695
 msgid "Transfer NFT"
 msgstr "Previesť NFT"
+
+#: src/components/settings/SettingsNotifications.tsx:61
+msgid "Turn on/off the ability to process and display notifications."
+msgstr ""
+
+#: src/components/settings/SettingsNotifications.tsx:140
+msgid "Turn on/off the ability to receive general announcements and updates from any Dapp connected to your wallet. This allows you to stay informed about new features and important updates directly from the Dapps you use."
+msgstr ""
+
+#: src/components/settings/SettingsNotifications.tsx:111
+msgid "Turn on/off the ability to receive notifications about new offers from Dapps connected to your wallet. By turning this on, you stay informed about the latest offers and opportunities brought forth by your trusted Dapps, ensuring you never miss out on a potential deal."
+msgstr ""
+
+#: src/components/settings/SettingsNotifications.tsx:86
+msgid "Turn on/off the ability to show you notifications on the desktop."
+msgstr ""
+
+#: src/components/settings/SettingsNotifications.tsx:168
+msgid "Turn on/off the automatic display of the sharing options panel after creating a new offer."
+msgstr ""
 
 #: src/components/settings/SettingsDataLayer.tsx:51
 msgid "Turn on/off the DataLayer service."
 msgstr ""
 
-#: src/components/settings/SettingsNotifications.tsx:47
-msgid "Turn on/off the ability to show you notifications on the desktop."
+#: src/components/vcs/VCCard.tsx:137
+#: src/constants/WalletConnectCommands.tsx:931
+msgid "Type"
 msgstr ""
 
 #: src/components/nfts/gallery/NFTGallery.tsx:550
-msgid "Types ({0}/{1})"
+#~ msgid "Types ({0}/{1})"
+#~ msgstr ""
+
+#: src/components/nfts/gallery/NFTGallery.tsx:323
+msgid "Types{0}"
 msgstr ""
 
-#: src/hooks/useOpenUnsafeLink.tsx:43
-msgid "URL"
-msgstr "URL"
-
-#: src/components/offers/NFTOfferEditor.tsx:638
+#: src/components/offers/NFTOfferEditor.tsx:632
 msgid "Unable to create an offer for an NFT that you do not own."
 msgstr "Nie je možné vytvoriť ponuku pre NFT, ktorý nevlastníte."
 
-#: src/components/offers/NFTOfferEditor.tsx:647
+#: src/components/offers/NFTOfferEditor.tsx:641
 msgid "Unable to create an offer for an NFT with a creator royalty percentage greater than 100%"
 msgstr "Nie je možné vytvoriť ponuku pre NFT s percentuálnym podielom autorského honoráru vyšším ako 100%"
 
-#: src/components/offers/NFTOfferEditor.tsx:374
+#: src/components/offers/NFTOfferEditor.tsx:369
 msgid "Unable to create an offer where the net amount is negative"
 msgstr "Nie je možné vytvoriť ponuku, ktorej čistá suma záporná"
 
@@ -3651,13 +4618,13 @@ msgstr ""
 msgid "Unable to find NFT {entityId}"
 msgstr ""
 
-#: src/components/offers/OfferShareDialog.tsx:1099
-msgid "Unable to open Keybase. Install Keybase from https://keybase.io"
-msgstr "Nie je možné otvoriť Keybase. Nainštalujte Keybase z https://keybase.io"
-
 #: src/components/offers/OfferShareDialog.tsx:1002
-msgid "Unable to open browser. Install Keybase from https://keybase.io"
-msgstr "Nie je možné otvoriť prehliadač. Nainštalujte Keybase z https://keybase.io"
+#~ msgid "Unable to open browser. Install Keybase from https://keybase.io"
+#~ msgstr "Nie je možné otvoriť prehliadač. Nainštalujte Keybase z https://keybase.io"
+
+#: src/components/offers/OfferShareDialog.tsx:1099
+#~ msgid "Unable to open Keybase. Install Keybase from https://keybase.io"
+#~ msgstr "Nie je možné otvoriť Keybase. Nainštalujte Keybase z https://keybase.io"
 
 #: src/components/nfts/NFTDetails.tsx:141
 #: src/components/nfts/NFTDetails.tsx:162
@@ -3678,41 +4645,72 @@ msgstr "Nevyzdvihnuté odmeny"
 msgid "Unfinished"
 msgstr "Nedokončené"
 
-#: src/components/offers/utils.ts:163
+#: src/components/offers/utils.ts:127
 #: src/components/offers2/OfferBuilderTokenSelector.tsx:66
 msgid "Unknown"
 msgstr "Neznámy"
 
-#: src/components/walletConnect/WalletConnectConnections.tsx:71
+#: src/components/settings/SettingsIntegration.tsx:248
+msgid "Unknown App - {0}"
+msgstr ""
+
+#: src/components/walletConnect/WalletConnectConnections.tsx:74
 #: src/components/walletConnect/WalletConnectMetadata.tsx:17
 msgid "Unknown Application"
+msgstr ""
+
+#: src/util/resolveOfferInfo.ts:71
+msgid "Unknown Asset"
 msgstr ""
 
 #: src/components/offers/NFTOfferViewer.tsx:368
 #: src/components/offers/OfferSummaryRow.tsx:141
 #: src/components/offers/OfferSummaryRow.tsx:142
 #: src/components/walletConnect/WalletConnectCATAmount.tsx:20
-#: src/util/resolveOfferInfo.ts:22
+#: src/util/resolveOfferInfo.ts:59
+#: src/util/resolveOfferInfo.ts:108
 msgid "Unknown CAT"
 msgstr "Neznámy CAT"
+
+#: src/hooks/useWalletConnectCommand.tsx:31
+msgid "Unknown Dapp"
+msgstr ""
 
 #: src/components/app/AppPassPrompt.tsx:93
 msgid "Unlock Keyring"
 msgstr "Odomknúť zväzok kľúčov"
 
-#: src/components/offers/NFTOfferViewer.tsx:139
+#: src/components/offers/NFTOfferViewer.tsx:140
 msgid "Unrecognized asset"
 msgstr "Nerozpoznané aktívum"
 
-#: src/components/settings/LimitCacheSize.tsx:91
+#: src/components/walletConnect/WalletConnectActiveSessions.tsx:54
+msgid "Unsupported commands"
+msgstr ""
+
+#: src/components/settings/LimitCacheSize.tsx:82
 msgid "Update"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:625
+#: src/components/nfts/NFTHashStatus.tsx:69
 msgid "Update Pending"
 msgstr "Čakajúca aktualizácia"
 
-#: src/components/nfts/detail/NFTDetailV2.tsx:227
+#: src/constants/WalletConnectCommands.tsx:636
+msgid "Uris"
+msgstr ""
+
+#: src/components/notification/NotificationAnnouncementDialog.tsx:62
+#: src/constants/WalletConnectCommands.tsx:942
+#: src/hooks/useOpenUnsafeLink.tsx:43
+msgid "URL"
+msgstr "URL"
+
+#: src/components/nfts/NFTHashStatus.tsx:77
+msgid "URL is not valid"
+msgstr ""
+
+#: src/components/nfts/detail/NFTDetailV2.tsx:125
 msgid "Use left and right arrow keys to navigate"
 msgstr ""
 
@@ -3720,25 +4718,60 @@ msgstr ""
 msgid "User Transaction Fees"
 msgstr "Používateľské transakčné poplatky"
 
+#: src/components/signVerify/VerifyMessage.tsx:165
+#: src/components/vcs/VCCard.tsx:144
+msgid "Valid"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:348
+msgid "Validate only"
+msgstr ""
+
+#: src/components/nfts/detail/NFTDetailV2.tsx:197
+#~ msgid "Validate SHA256 SUM"
+#~ msgstr "Overiť SHA256 SUM"
+
+#: src/components/nfts/detail/NFTDetailV2.tsx:175
+#~ msgid "Validating hash..."
+#~ msgstr "Overuje sa hash..."
+
 #: src/components/fullNode/card/FullNodeCardVDFSubSlotIterations.tsx:14
 msgid "VDF Sub Slot Iterations"
 msgstr "VDF dielčie iterácie slotu"
 
-#: src/components/signVerify/VerifyMessage.tsx:165
-msgid "Valid"
+#: src/components/vcs/VCCard.tsx:49
+msgid "Verifiable Credential"
 msgstr ""
 
-#: src/components/nfts/detail/NFTDetailV2.tsx:197
-msgid "Validate SHA256 SUM"
-msgstr "Overiť SHA256 SUM"
-
-#: src/constants/WalletConnectCommands.tsx:241
-msgid "Validate only"
+#: src/components/vcs/VCList.tsx:194
+msgid "Verifiable Credential already exists."
 msgstr ""
 
-#: src/components/nfts/detail/NFTDetailV2.tsx:175
-msgid "Validating hash..."
-msgstr "Overuje sa hash..."
+#: src/components/vcs/VCCard.tsx:239
+msgid "Verifiable Credential Removed"
+msgstr ""
+
+#: src/components/vcs/VCCard.tsx:254
+msgid "Verifiable Credential Removed."
+msgstr ""
+
+#: src/components/vcs/VCCard.tsx:256
+msgid "Verifiable Credential Revoked."
+msgstr ""
+
+#: src/components/vcs/VCList.tsx:202
+msgid "Verifiable Credential successfully added."
+msgstr ""
+
+#: src/components/settings/SettingsVerifiableCredentials.tsx:17
+#: src/components/vcs/VCList.tsx:256
+#: src/components/vcs/VCList.tsx:316
+msgid "Verifiable Credentials"
+msgstr ""
+
+#: src/components/vcs/VCList.tsx:259
+msgid "Verifiable Credentials are like digital ID cards that can prove certain information about you without giving away your private details."
+msgstr ""
 
 #: src/components/signVerify/VerifyMessage.tsx:123
 msgid "Verification Failed"
@@ -3757,77 +4790,93 @@ msgid "Verify Pool Details"
 msgstr "Overte detaily združenia"
 
 #: src/components/settings/SettingsAdvanced.tsx:77
+#: src/constants/WalletConnectCommands.tsx:207
 msgid "Verify Signature"
 msgstr ""
 
-#: src/components/offers2/OfferIncomingTable.tsx:90
-#: src/electron/main.tsx:982
+#: src/components/nfts/NFTHashStatus.tsx:65
+msgid "Verifying hash..."
+msgstr ""
+
+#: src/components/offers2/OfferIncomingTable.tsx:101
 msgid "View"
 msgstr "Zobrazenie"
+
+#: src/components/offers/OfferImport.tsx:184
+msgid "View an Offer"
+msgstr "Zobraziť ponuku"
+
+#: src/components/vcs/VCCard.tsx:172
+msgid "View Credential Data"
+msgstr ""
 
 #: src/components/plot/queue/PlotQueueActions.tsx:58
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:44
 msgid "View Log"
 msgstr "Zobraziť záznam"
 
-#: src/components/offers/OfferManager.tsx:460
+#: src/components/offers/OfferManager.tsx:348
 msgid "View Offer"
 msgstr ""
+
+#: src/components/offers/OfferShareDialog.tsx:430
+msgid "View on Dexie"
+msgstr "Zobraziť na Dexie"
+
+#: src/components/offers/OfferShareDialog.tsx:591
+msgid "View on Hashgreen DEX"
+msgstr "Zobraziť na Hashgreen DEX"
+
+#: src/components/nfts/NFTContextualActions.tsx:645
+#: src/components/offers/OfferShareDialog.tsx:518
+msgid "View on MintGarden"
+msgstr "Zobraziť na MintGarden"
+
+#: src/components/offers/OfferShareDialog.tsx:770
+#~ msgid "View on OfferBin"
+#~ msgstr "Zobraziť na OfferBin"
+
+#: src/components/offers/OfferShareDialog.tsx:806
+msgid "View on Offerpool"
+msgstr ""
+
+#: src/components/nfts/NFTContextualActions.tsx:653
+#: src/components/offers/OfferShareDialog.tsx:688
+msgid "View on Spacescan.io"
+msgstr "Zobraziť na Spacescan.io"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:240
 msgid "View Pool Login Link"
 msgstr "Zobraziť odkaz na prihlásenie do združenia"
 
-#: src/components/offers/OfferImport.tsx:184
-msgid "View an Offer"
-msgstr "Zobraziť ponuku"
-
-#: src/components/offers/OfferShareDialog.tsx:618
-msgid "View on Dexie"
-msgstr "Zobraziť na Dexie"
-
-#: src/components/offers/OfferShareDialog.tsx:862
-msgid "View on Hashgreen DEX"
-msgstr "Zobraziť na Hashgreen DEX"
-
-#: src/components/nfts/NFTContextualActions.tsx:671
-#: src/components/offers/OfferShareDialog.tsx:696
-msgid "View on MintGarden"
-msgstr "Zobraziť na MintGarden"
-
-#: src/components/offers/OfferShareDialog.tsx:770
-msgid "View on OfferBin"
-msgstr "Zobraziť na OfferBin"
-
-#: src/components/offers/OfferShareDialog.tsx:1267
-msgid "View on Offerpool"
-msgstr ""
-
-#: src/components/nfts/NFTContextualActions.tsx:678
-#: src/components/offers/OfferShareDialog.tsx:950
-msgid "View on Spacescan.io"
-msgstr "Zobraziť na Spacescan.io"
-
 #: src/components/offers/OfferViewerTitle.tsx:49
 msgid "Viewing offer"
 msgstr "Zobrazenie ponuky"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:583
+#: src/components/nfts/gallery/NFTGallery.tsx:406
 msgid "Visible"
 msgstr ""
 
+#: src/components/nfts/gallery/NFTGallery.tsx:380
+msgid "Visible  <0/>"
+msgstr ""
+
 #: src/components/nfts/gallery/NFTGallery.tsx:572
-msgid "Visible ({0})"
+#~ msgid "Visible ({0})"
+#~ msgstr ""
+
+#: src/components/nfts/gallery/NFTGallery.tsx:375
+msgid "Visible and Hidden  <0/>"
 msgstr ""
 
 #: src/components/nfts/gallery/NFTGallery.tsx:570
-msgid "Visible and hidden ({0})"
-msgstr ""
+#~ msgid "Visible and hidden ({0})"
+#~ msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:105
 #: src/constants/WalletConnectCommands.tsx:412
-msgid "Wait for Confirmation"
-msgstr ""
+#~ msgid "Wait for Confirmation"
+#~ msgstr ""
 
 #: src/components/farm/card/FarmCardNotAvailable.tsx:25
 #: src/components/plot/PlotStatus.tsx:27
@@ -3839,71 +4888,76 @@ msgstr "Čakanie na synchronizáciu"
 msgid "Waiting for the transaction to be confirmed"
 msgstr "Čaká sa na potvrdenie transakcie"
 
-#: src/components/app/AppStatusHeader.tsx:109
-#: src/hooks/useWalletConnectCommand.tsx:105
+#: src/components/app/AppStatusHeader.tsx:141
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:108
 msgid "Wallet"
+msgstr ""
+
+#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:160
+msgid "Wallet {0}"
 msgstr ""
 
 #: src/components/signVerify/SignMessage.tsx:153
 msgid "Wallet Address"
 msgstr ""
 
+#: src/constants/WalletConnectCommands.tsx:64
 #: src/constants/WalletConnectCommands.tsx:98
-msgid "Wallet ID"
-msgstr ""
-
-#: src/constants/WalletConnectCommands.tsx:50
-#: src/constants/WalletConnectCommands.tsx:65
-#: src/constants/WalletConnectCommands.tsx:153
-#: src/constants/WalletConnectCommands.tsx:370
-#: src/constants/WalletConnectCommands.tsx:383
-#: src/constants/WalletConnectCommands.tsx:468
+#: src/constants/WalletConnectCommands.tsx:250
+#: src/constants/WalletConnectCommands.tsx:503
+#: src/constants/WalletConnectCommands.tsx:516
+#: src/constants/WalletConnectCommands.tsx:613
+#: src/constants/WalletConnectCommands.tsx:700
+#: src/constants/WalletConnectCommands.tsx:776
+#: src/constants/WalletConnectCommands.tsx:793
 msgid "Wallet Id"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:445
+#: src/constants/WalletConnectCommands.tsx:131
+msgid "Wallet ID"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:81
+#: src/constants/WalletConnectCommands.tsx:576
+#: src/constants/WalletConnectCommands.tsx:734
 msgid "Wallet Ids"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:231
+#: src/constants/WalletConnectCommands.tsx:334
 msgid "Wallet Ids and Amounts"
 msgstr ""
+
+#: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:70
+msgid "Wallet is not defined"
+msgstr "Peňaženka nie je definovaná"
 
 #: src/components/app/AppSelectMode.tsx:70
 #: src/components/app/AppSelectMode.tsx:120
 msgid "Wallet Mode"
 msgstr "Režim peňaženky"
 
-#: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:69
-msgid "Wallet is not defined"
-msgstr "Peňaženka nie je definovaná"
-
-#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:160
-msgid "Wallet {0}"
+#: src/components/settings/SettingsIntegration.tsx:139
+#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:112
+#: src/components/walletConnect/WalletConnectConnectedDialog.tsx:66
+#: src/components/walletConnect/WalletConnectDropdown.tsx:24
+msgid "WalletConnect"
 msgstr ""
 
-#: src/components/settings/SettingsIntegration.tsx:23
-#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:112
-#: src/components/walletConnect/WalletConnectConnectedDialog.tsx:65
-#: src/components/walletConnect/WalletConnectDropdown.tsx:28
-msgid "WalletConnect"
+#: src/components/settings/SettingsIntegration.tsx:142
+msgid "WalletConnect enables a decentralized app on the Chia blockchain to communicate and make requests directly to a Chia wallet."
 msgstr ""
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:135
 msgid "WalletConnect Integration"
 msgstr ""
 
-#: src/components/settings/SettingsIntegration.tsx:26
-msgid "WalletConnect enables a decentralized app on the Chia blockchain to communicate and make requests directly to a Chia wallet."
-msgstr ""
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:83
+msgid "Want to have a delay before the next plot starts?"
+msgstr "Chcete oneskoriť začiatok vykresľovania ďalšieho poľa?"
 
 #: src/components/plotNFT/PlotNFTAdd.tsx:59
 msgid "Want to Join a Pool? Create a Plot NFT"
 msgstr "Chcete sa pripojiť k združeniu? Vytvorte NFT poľa"
-
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:83
-msgid "Want to have a delay before the next plot starts?"
-msgstr "Chcete oneskoriť začiatok vykresľovania ďalšieho poľa?"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:360
 msgid "Warm start"
@@ -3918,7 +4972,7 @@ msgid "Warning: Mismatched Versions"
 msgstr ""
 
 #: src/components/offers/OfferSummary.tsx:133
-#: src/components/offers2/OfferBuilderValue.tsx:204
+#: src/components/offers2/OfferBuilderValue.tsx:199
 msgid "Warning: Verify that the offered CAT asset IDs match the asset IDs of the tokens you expect to receive."
 msgstr "Upozornenie: Overte, či sa ID ponúkaných CAT aktív zhodujú s ID aktív tokenov, ktoré očakávate, že dostanete."
 
@@ -3939,31 +4993,36 @@ msgid "When creating an offer, any assets that are being offered will be locked 
 msgstr "Pri vytváraní ponuky budú všetky ponúkané aktíva uzamknuté a nedostupné, kým ponuku neprijmete alebo nezrušíte, čo bude mať za následok zmenu disponibilného zostatku."
 
 #: src/electron/main.tsx:1029
-msgid "Window"
-msgstr "Okno"
+#~ msgid "Window"
+#~ msgstr "Okno"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:33
 msgid "Without fees"
 msgstr "Bez poplatkov"
 
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:389
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:387
+#~ msgid "Would you like to move {count} NFTs to a profile?"
+#~ msgstr ""
+
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:384
 msgid "Would you like to move the specified NFT to a profile?"
 msgstr "Chcete presunúť zadaný NFT do profilu?"
 
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:387
-msgid "Would you like to move {count} NFTs to a profile?"
-msgstr ""
+#: src/components/nfts/NFTTransferAction.tsx:225
+#~ msgid "Would you like to transfer {count} NFTs to a new owner?"
+#~ msgstr ""
 
 #: src/components/nfts/NFTTransferAction.tsx:227
-msgid "Would you like to transfer the specified NFT to a new owner"
+#~ msgid "Would you like to transfer the specified NFT to a new owner"
+#~ msgstr ""
+
+#: src/components/nfts/NFTTransferAction.tsx:228
+msgid "Would you like to transfer the specified NFT to a new owner?"
 msgstr ""
 
-#: src/components/nfts/NFTTransferAction.tsx:225
-msgid "Would you like to transfer {count} NFTs to a new owner?"
-msgstr ""
-
+#: src/components/offers2/OfferIncomingTable.tsx:210
 #: src/components/plot/add/PlotAddChooseSize.tsx:47
-#: src/electron/main.tsx:813
+#: src/components/vcs/VCCard.tsx:83
 msgid "Yes"
 msgstr "Áno"
 
@@ -3971,11 +5030,11 @@ msgstr "Áno"
 msgid "Yes, Accept Offer"
 msgstr "Áno, prijať ponuku"
 
-#: src/components/settings/SettingsNFT.tsx:56
+#: src/components/settings/SettingsNFT.tsx:53
 msgid "Yes, delete"
 msgstr ""
 
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:55
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:56
 msgid "Yes, move"
 msgstr "Áno, presunúť"
 
@@ -3991,7 +5050,7 @@ msgstr "Už máte viac ako 10 NFT tokenov. Ak ste si istí, že chcete vytvoriť
 msgid "You can always change your mode later in the settings"
 msgstr "Režim môžete kedykoľvek neskôr zmeniť v nastaveniach"
 
-#: src/components/walletConnect/WalletConnectConnectedDialog.tsx:88
+#: src/components/walletConnect/WalletConnectConnectedDialog.tsx:89
 msgid "You can now connect to {0} in your browser."
 msgstr ""
 
@@ -4000,7 +5059,7 @@ msgid "You can still create plots for this plot NFT, but you can not make change
 msgstr "Stále môžete vytvárať polia pre tento NFT, ale nemôžete robiť zmeny, kým nie je dokončená synchronizácia."
 
 #: src/components/offers/OfferHeader.tsx:38
-#: src/components/offers2/OfferBuilderViewer.tsx:183
+#: src/components/offers2/OfferBuilderViewer.tsx:256
 msgid "You created this offer"
 msgstr "Túto ponuku ste vytvorili vy"
 
@@ -4008,21 +5067,41 @@ msgstr "Túto ponuku ste vytvorili vy"
 msgid "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 msgstr "Na vykreslenie poľa nemusí byť počítač synchronizovaný ani pripojený. Počas procesu vykresľovania sa vytvárajú dočasné súbory, ktoré presahujú veľkosť konečných súborov poľa. Uistite sa, že máte dostatok miesta. <0> Ďalšie informácie </0>"
 
-#: src/components/notification/Notification.tsx:53
-msgid "You have a new offer"
-msgstr ""
-
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:56
 msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3 to 4 times longer than this estimate."
 msgstr "Máte {0}% miesta v sieti, takže vyfarmárčenie jedného bloku zaberie odhadom {expectedTimeToWin}. Skutočné výsledky môžu trvať 3 až 4 krát dlhšie, ako je tento odhad."
 
-#: src/components/pool/PoolJoin.tsx:34
-msgid "You need to claim your rewards first"
-msgstr "Najprv musíte získať svoje odmeny"
+#: src/components/notification/NotificationOffer.tsx:91
+msgid "You have a new counter offer"
+msgstr ""
+
+#: src/components/notification/NotificationOffer.tsx:93
+msgid "You have a new offer"
+msgstr ""
+
+#: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:304
+msgid "You have coins/assets locked for your open offers thus the spendable balance is not sufficient for the amounts you are offering. You need to cancel open offers to unlock coins/asset for the new offer."
+msgstr ""
+
+#: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:326
+msgid "You have open offers which lock the same assets as your new offer. You may want to cancel those offers if they are no longer needed."
+msgstr ""
+
+#: src/components/notification/utils.ts:106
+msgid "You have received a new counter offer"
+msgstr ""
+
+#: src/components/notification/utils.ts:102
+msgid "You have received a new offer"
+msgstr ""
 
 #: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:37
 msgid "You need {currencyCode} to join a pool."
 msgstr "Na pripojenie sa k združeniu potrebujete {currencyCode}."
+
+#: src/components/pool/PoolJoin.tsx:34
+msgid "You need to claim your rewards first"
+msgstr "Najprv musíte získať svoje odmeny"
 
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:19
 msgid "You will give"
@@ -4032,14 +5111,18 @@ msgstr ""
 msgid "You will offer"
 msgstr "Ponúknete"
 
-#: src/components/offers/NFTOfferEditor.tsx:363
+#: src/components/offers/NFTOfferEditor.tsx:358
 #: src/components/offers/NFTOfferViewer.tsx:474
 msgid "You will receive"
 msgstr "Dostanete"
 
-#: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:143
+#: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:144
 msgid "You will recieve <0/> to {address}"
 msgstr "Dostanete <0/> na {address}"
+
+#: src/components/walletConnect/WalletConnectActiveSessions.tsx:56
+msgid "Your current version of the Chia application may not support some commands requested by the dApp. For the best experience, consider updating to the latest version."
+msgstr ""
 
 #: src/components/farm/FarmHeader.tsx:21
 msgid "Your Farm Overview"
@@ -4053,17 +5136,13 @@ msgstr "Vaše pripojenie k sieti"
 msgid "Your Harvester Network"
 msgstr "Sieť vašich zberačov"
 
-#: src/components/pool/PoolOverview.tsx:39
-msgid "Your Pool Overview"
-msgstr "Prehľad vašich združení"
-
 #: src/components/app/AppPassPrompt.tsx:86
 msgid "Your keyring is locked"
 msgstr "Zväzok kľúčov je uzamknutý"
 
 #: src/components/offers/OfferShareDialog.tsx:1135
-msgid "Your offer has been successfully posted to Keybase."
-msgstr "Vaša ponuka bola úspešne odoslaná na Keybase."
+#~ msgid "Your offer has been successfully posted to Keybase."
+#~ msgstr "Vaša ponuka bola úspešne odoslaná na Keybase."
 
 #: src/components/app/AppKeyringMigrator.tsx:229
 #: src/components/settings/ChangePassphrasePrompt.tsx:277
@@ -4071,94 +5150,22 @@ msgstr "Vaša ponuka bola úspešne odoslaná na Keybase."
 msgid "Your passphrase can be stored in your system's secure credential store. Chia will be able to access your keys without prompting for your passphrase."
 msgstr "Vaša prístupová fráza môže byť uložená v bezpečnom úložisku poverení vášho systému. Chia bude mať prístup k vašim kľúčom bez výzvy na zadanie vašej prístupovej frázy."
 
-#: src/components/settings/SettingsPanel.tsx:55
+#: src/components/settings/SettingsPanel.tsx:56
 msgid "Your passphrase has been set"
 msgstr "Vaša prístupová fráza bola nastavená"
 
-#: src/components/settings/SettingsPanel.tsx:46
+#: src/components/settings/SettingsPanel.tsx:47
 msgid "Your passphrase has been updated"
 msgstr "Vaša prístupová fráza bola aktualizovaná"
 
-#: src/components/offers/OfferViewerTitle.tsx:36
-msgid "created {0}"
-msgstr "vytvorené {0}"
+#: src/components/pool/PoolOverview.tsx:39
+msgid "Your Pool Overview"
+msgstr "Prehľad vašich združení"
 
-#: src/components/offers2/OfferBuilderImport.tsx:170
-#: src/components/signVerify/VerifyMessageImport.tsx:154
-msgid "or <0>browse</0> on your computer"
+#: src/components/settings/ProfileAdd.tsx:77
+msgid "Your spendable balance must be greater than 1 mojo to create a profile"
 msgstr ""
 
-#: src/components/offers/OfferImport.tsx:170
-msgid "or Paste (Ctrl-V) an Offer blob"
+#: src/components/settings/SettingsCustodyAutoClaim.tsx:124
+msgid "Your wallet is required to be running for auto claim to work."
 msgstr ""
-
-#: src/components/offers/OfferImport.tsx:170
-msgid "or Paste (⌘V) an Offer blob"
-msgstr ""
-
-#: src/components/plot/add/PlotAddForm.tsx:138
-msgid "p2SingletonPuzzleHash is not defined"
-msgstr "p2SingletonPuzzleHash nie je definovaný"
-
-#: src/components/nfts/NFTTransferConfirmationDialog.tsx:87
-msgid "{0, plural, one {mojo} other {mojos}}"
-msgstr "{0, plural, one {mojo} few {mojos} many {mojos} other {mojos}}"
-
-#: src/components/nfts/NFTPreview.tsx:681
-msgid "{0}"
-msgstr "{0}"
-
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:169
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:201
-msgid "{0} buckets is recommended"
-msgstr "Odporúča sa {0} sektorov"
-
-#: src/components/nfts/detail/NFTDetailV2.tsx:316
-msgid "{0} of {1}"
-msgstr "{0} z {1}"
-
-#: src/components/nfts/gallery/SelectedActionsDialog.tsx:63
-msgid "{0} of {allCount} items selected:"
-msgstr ""
-
-#: src/components/plotNFT/PlotNFTGraph.tsx:63
-msgid "{0} points {1} - {2} hours ago"
-msgstr "{0} bodov pred {1} - {2} hodinami"
-
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:194
-msgid "{count} NFTs failed to move."
-msgstr ""
-
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:187
-msgid "{count} transactions have been successfully submitted to the blockchain."
-msgstr ""
-
-#: src/components/nfts/gallery/NFTGallery.tsx:432
-msgid "{key} ({0})"
-msgstr ""
-
-#: src/components/offers/NFTOfferViewer.tsx:203
-#: src/components/offers/OfferSummary.tsx:173
-msgid "{makerFee, plural, one {mojo} other {mojos}}"
-msgstr "{makerFee, plural, one {mojo} few {mojos} many {mojos} other {mojos}}"
-
-#: src/components/offers/OfferSummaryRow.tsx:39
-msgid "{mojos, plural, one {mojo} other {mojos}}"
-msgstr "{mojos, plural, one {mojo} few {mojos} many {mojos} other {mojos}}"
-
-#: src/components/nfts/gallery/FilterPill.tsx:50
-msgid "{title}"
-msgstr ""
-
-#: src/components/offers2/OfferBuilderValue.tsx:179
-msgid "{type} is not supported"
-msgstr ""
-
-#: src/components/nfts/NFTRankings.tsx:46
-msgid "{value} of {max_value}"
-msgstr "{value} z {max_value}"
-
-#: src/components/plot/add/PlotAddChoosePlotter.tsx:106
-msgid "{warning}"
-msgstr "{warning}"
-

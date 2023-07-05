@@ -18,11 +18,39 @@ msgstr ""
 "X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/packages/core/src/locales/en-US/messages.po\n"
 "X-Crowdin-File-ID: 1304\n"
 
+#: src/components/EstimatedFee/EstimatedFee.tsx:61
+msgid "(>5 min)"
+msgstr ""
+
+#: src/components/EstimatedFee/EstimatedFee.tsx:61
+msgid "(~{selectedTime} min)"
+msgstr ""
+
+#: src/components/Amount/Amount.tsx:86
+msgid "{0, plural, one {mojo} other {mojos}}"
+msgstr "{0, plural, one {mojo} few {mojos} many {mojos} other {mojos}}"
+
+#: src/hooks/useValidateChangePassphraseParams.tsx:35
+msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
+msgstr "{minPassphraseLength, plural, one {Prístupové frázy musia mať dĺžku aspoň # znak} few {Prístupové frázy musia mať dĺžku aspoň # znaky} many {Prístupové frázy musia mať dĺžku aspoň # znakov} other {Prístupové frázy musia mať dĺžku aspoň # znakov}}"
+
+#: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:95
+msgid "A new version of Chia is available!"
+msgstr ""
+
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:258
+msgid "Add Icon"
+msgstr ""
+
+#: src/screens/SelectKey/SelectKey.tsx:172
+msgid "Add wallet"
+msgstr ""
+
 #: src/components/Amount/Amount.tsx:36
 msgid "Amount"
 msgstr "Suma"
 
-#: src/components/Settings/SettingsApp.tsx:88
+#: src/components/Settings/SettingsApp.tsx:93
 msgid "Appearance"
 msgstr "Vzhľad"
 
@@ -31,62 +59,94 @@ msgid "Are you sure you want to continue? Type in the fingerprint of this wallet
 msgstr "Ste si istý, že chcete pokračovať? Vymazanie potvrďte zadaním odtlačku tohto kľúča peňaženky."
 
 #: src/components/FormBackButton/FormBackButton.tsx:15
-#: src/screens/SelectKey/SelectKey.tsx:80
+#: src/screens/SelectKey/SelectKey.tsx:127
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:156
 msgid "Back"
 msgstr "Späť"
 
-#: src/components/ConfirmDialog/ConfirmDialog.tsx:27
+#: src/components/ConfirmDialog/ConfirmDialog.tsx:29
 #: src/hooks/useKeyringMigrationPrompt.tsx:17
 #: src/screens/SelectKey/SelectKeyRenameForm.tsx:90
 msgid "Cancel"
 msgstr "Zrušiť"
 
+#: src/components/Settings/SettingsApp.tsx:139
+msgid "Check for updates"
+msgstr ""
+
+#: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:93
+msgid "Checking for updates..."
+msgstr ""
+
+#: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:82
+msgid "Chia {latestVersion} is currently the latest version available."
+msgstr ""
+
+#: src/components/Settings/SettingsApp.tsx:125
+msgid "Chia Application Version:"
+msgstr ""
+
+#: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:110
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:47
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:70
 msgid "Close"
 msgstr "Zavrieť"
 
-#: src/components/FormatConnectionStatus/FormatConnectionStatus.tsx:37
+#: src/components/FormatConnectionStatus/FormatConnectionStatus.tsx:32
 msgid "Connected"
 msgstr "Pripojené"
 
-#: src/components/CopyToClipboard/CopyToClipboard.tsx:51
+#: src/components/CopyToClipboard/CopyToClipboard.tsx:42
 msgid "Copied"
 msgstr "Skopírované"
 
-#: src/components/CopyToClipboard/CopyToClipboard.tsx:51
+#: src/components/CopyToClipboard/CopyToClipboard.tsx:42
 msgid "Copy to Clipboard"
 msgstr "Skopírovať do schránky"
 
 #: src/screens/SelectKey/SelectKey.tsx:170
-msgid "Create a new private key"
-msgstr "Vytvoriť nový privátny kľúč"
+#~ msgid "Create a new private key"
+#~ msgstr "Vytvoriť nový privátny kľúč"
 
-#: src/components/Settings/SettingsApp.tsx:105
+#: src/screens/SelectKey/SelectKey.tsx:270
+msgid "Create a new wallet key"
+msgstr ""
+
+#: src/screens/SelectKey/SelectKey.tsx:262
+msgid "Create a new wallet key to get started with Chia."
+msgstr ""
+
+#: src/screens/SelectKey/SelectKey.tsx:175
+msgid "Create New"
+msgstr ""
+
+#: src/components/Settings/SettingsApp.tsx:110
 msgid "Dark"
 msgstr "Tmavý"
 
-#: src/screens/SelectKey/SelectKey.tsx:79
-#: src/screens/SelectKey/SelectKeyItem.tsx:100
+#: src/screens/SelectKey/SelectKey.tsx:126
+#: src/screens/SelectKey/SelectKeyItem.tsx:113
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:166
 msgid "Delete"
 msgstr "Zmazať"
 
-#: src/screens/SelectKey/SelectKey.tsx:193
-#: src/screens/SelectKey/SelectKey.tsx:78
+#: src/screens/SelectKey/SelectKey.tsx:125
 msgid "Delete all keys"
 msgstr "Zmazať všetky kľúče"
+
+#: src/screens/SelectKey/SelectKey.tsx:200
+msgid "Delete All Keys"
+msgstr ""
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:96
 msgid "Delete key {fingerprint}"
 msgstr "Odstrániť kľúč {fingerprint}"
 
-#: src/screens/SelectKey/SelectKey.tsx:84
+#: src/screens/SelectKey/SelectKey.tsx:131
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
 msgstr "Po stlačení tlačidla zmazať odstránite natrvalo všetký kľúče z počítača. Uistite sa, že máte zálohu. Ste si istý, že chcete pokračovať?"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:92
+#: src/screens/SelectKey/SelectKeyItem.tsx:105
 msgid "Details"
 msgstr "Podrobnosti"
 
@@ -103,8 +163,12 @@ msgstr "Deaktivovať ochranu prístupovou frázou"
 msgid "Discard"
 msgstr "Odstrániť"
 
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:183
+msgid "Download"
+msgstr ""
+
 #: src/components/CardSimple/CardSimple.tsx:52
-#: src/hooks/useShowError.tsx:11
+#: src/hooks/useShowError.tsx:13
 msgid "Error"
 msgstr "Chyba"
 
@@ -116,6 +180,10 @@ msgstr "Chyba:"
 msgid "Esc"
 msgstr ""
 
+#: src/components/LayoutMain/LayoutFooter.tsx:48
+msgid "FAQ"
+msgstr ""
+
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:90
 msgid "Farmer Public Key"
 msgstr "Verejný kľúč farmára"
@@ -124,13 +192,13 @@ msgstr "Verejný kľúč farmára"
 msgid "Farmer public key:"
 msgstr "Verejný kľúč farmára:"
 
-#: src/components/Settings/SettingsApp.tsx:73
+#: src/components/Settings/SettingsApp.tsx:78
 msgid "Farming"
 msgstr "Ťažba"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:334
-#: src/components/EstimatedFee/EstimatedFee.tsx:368
-#: src/components/Fee/Fee.tsx:53
+#: src/components/EstimatedFee/EstimatedFee.tsx:333
+#: src/components/EstimatedFee/EstimatedFee.tsx:367
+#: src/components/Fee/Fee.tsx:44
 msgid "Fee"
 msgstr "Poplatok"
 
@@ -138,11 +206,15 @@ msgstr "Poplatok"
 msgid "Fingerprint does not match"
 msgstr "Odtlačok sa nezhoduje"
 
-#: src/components/Settings/SettingsApp.tsx:125
+#: src/components/Settings/SettingsApp.tsx:151
 msgid "Frequently Asked Questions"
 msgstr "Často kladené otázky (FAQ)"
 
-#: src/components/Settings/SettingsApp.tsx:121
+#: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:121
+msgid "Go To Download Page"
+msgstr ""
+
+#: src/components/Settings/SettingsApp.tsx:147
 msgid "Help"
 msgstr "Pomoc"
 
@@ -155,48 +227,64 @@ msgstr "Pomôcť s prekladom"
 msgid "Hide"
 msgstr "Skryť"
 
-#: src/components/AdvancedOptions/AdvancedOptions.tsx:32
+#: src/components/AdvancedOptions/AdvancedOptions.tsx:27
 msgid "Hide Advanced Options"
 msgstr "Skryť rozšírené možnosti"
 
-#: src/screens/SelectKey/SelectKey.tsx:181
-msgid "Import from Mnemonics (12 or 24 words)"
+#: src/screens/SelectKey/SelectKey.tsx:180
+msgid "Import Existing"
 msgstr ""
 
-#: src/components/Fee/Fee.tsx:41
+#: src/screens/SelectKey/SelectKey.tsx:181
+#~ msgid "Import from Mnemonics (12 or 24 words)"
+#~ msgstr ""
+
+#: src/components/Fee/Fee.tsx:32
 msgid "Incorrect value"
 msgstr "Nesprávna hodnota"
 
-#: src/components/Settings/SettingsApp.tsx:112
+#: src/components/Settings/SettingsApp.tsx:117
 msgid "Language"
 msgstr "Jazyk"
 
-#: src/components/Settings/SettingsApp.tsx:97
+#: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:57
+msgid "Latest Version:"
+msgstr ""
+
+#: src/components/Settings/SettingsApp.tsx:102
 msgid "Light"
 msgstr "Svetlý"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:232
+#: src/components/EstimatedFee/EstimatedFee.tsx:222
 msgid "Likely in {0} seconds"
 msgstr ""
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:232
+#: src/components/EstimatedFee/EstimatedFee.tsx:219
 msgid "Likely in {minutes} minutes"
+msgstr ""
+
+#: src/components/EstimatedFee/EstimatedFee.tsx:221
+msgid "Likely in >5 minutes"
 msgstr ""
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:46
 msgid "Loading details"
 msgstr "Načítavanie podrobností"
 
-#: src/screens/SelectKey/SelectKey.tsx:117
-msgid "Loading list of the keys"
-msgstr "Načítavanie zoznamu kľúčov"
+#: src/screens/SelectKey/SelectKey.tsx:232
+msgid "Loading keys"
+msgstr ""
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:150
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:169
+#: src/screens/SelectKey/SelectKey.tsx:117
+#~ msgid "Loading list of the keys"
+#~ msgstr "Načítavanie zoznamu kľúčov"
+
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:317
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:336
 msgid "Log Out"
 msgstr "Odhlásiť sa"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:168
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:335
 msgid "Logout"
 msgstr "Odhlásiť"
 
@@ -208,7 +296,7 @@ msgstr "Migrovať"
 msgid "Migration required"
 msgstr "Vyžaduje sa migrácia"
 
-#: src/components/Settings/SettingsApp.tsx:64
+#: src/components/Settings/SettingsApp.tsx:69
 msgid "Mode"
 msgstr "Režim"
 
@@ -220,23 +308,31 @@ msgstr "TIETO NIKDY NIKOMU NEPREZRÁDZAJTE"
 msgid "New passphrase is the same as your current passphrase"
 msgstr "Nová prístupová fráza je rovnaká ako vaša aktuálna prístupová fráza"
 
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:168
+msgid "New version {latestVersion} available"
+msgstr ""
+
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:84
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:138
 msgid "No 24 word seed, since this key is imported."
 msgstr "Žiadny 24-slovný seed, pretože tento kľúč je importovaný."
 
-#: src/screens/SelectKey/WalletStatus.tsx:61
-msgid "Not Synced"
-msgstr "Nesynchronizované"
-
-#: src/components/FormatConnectionStatus/FormatConnectionStatus.tsx:38
+#: src/components/FormatConnectionStatus/FormatConnectionStatus.tsx:33
 msgid "Not connected"
 msgstr "Nepripojené"
 
+#: src/screens/SelectKey/WalletStatus.tsx:61
+#~ msgid "Not Synced"
+#~ msgstr "Nesynchronizované"
+
 #: src/components/AlertDialog/AlertDialog.tsx:23
-#: src/components/ConfirmDialog/ConfirmDialog.tsx:28
+#: src/components/ConfirmDialog/ConfirmDialog.tsx:30
 msgid "OK"
 msgstr "OK"
+
+#: src/screens/SelectKey/SelectKey.tsx:254
+msgid "Open a world of possibilities."
+msgstr ""
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:98
 msgid "Pool Public Key"
@@ -263,11 +359,27 @@ msgstr "Verejný kľúč"
 msgid "Public key:"
 msgstr "Verejný kľúč:"
 
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:277
+msgid "Random"
+msgstr ""
+
+#: src/components/Fee/Fee.tsx:18
+msgid "Recommended value: 0.000005"
+msgstr ""
+
+#: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:71
+msgid "Release Notes"
+msgstr ""
+
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:85
 msgid "Reload Application"
 msgstr "Znova načítať aplikáciu"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:84
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:258
+msgid "Remove Icon"
+msgstr ""
+
+#: src/screens/SelectKey/SelectKeyItem.tsx:97
 msgid "Rename"
 msgstr "Premenovať"
 
@@ -284,6 +396,11 @@ msgstr "Zobraziť"
 msgid "Save"
 msgstr "Uložiť"
 
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:170
+#: src/screens/SelectKey/Search.tsx:34
+msgid "Search"
+msgstr ""
+
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:113
 msgid "Secret Key"
 msgstr "Tajný kľúč"
@@ -297,14 +414,15 @@ msgid "Seed:"
 msgstr "Zrnko:"
 
 #: src/screens/SelectKey/SelectKey.tsx:134
-msgid "Select Key"
-msgstr "Vyberte kľúč"
+#~ msgid "Select Key"
+#~ msgstr "Vyberte kľúč"
 
 #: src/components/Dropdown/Dropdown.tsx:28
 msgid "Select..."
 msgstr "Vybrať..."
 
-#: src/components/Settings/SettingsApp.tsx:128
+#: src/components/LayoutMain/LayoutFooter.tsx:51
+#: src/components/Settings/SettingsApp.tsx:154
 msgid "Send Feedback"
 msgstr "Odoslať spätnú väzbu"
 
@@ -317,14 +435,15 @@ msgstr "Na ochranu vašich kľúčov sa dôrazne odporúča nastaviť prístupov
 msgid "Settings"
 msgstr "Nastavenia"
 
-#: src/components/AdvancedOptions/AdvancedOptions.tsx:31
+#: src/components/AdvancedOptions/AdvancedOptions.tsx:26
 msgid "Show Advanced Options"
 msgstr "Zobraziť rozšírené možnosti"
 
 #: src/screens/SelectKey/SelectKey.tsx:139
-msgid "Sign In"
-msgstr "Prihlásiť sa"
+#~ msgid "Sign In"
+#~ msgstr "Prihlásiť sa"
 
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:171
 #: src/hooks/useValidateChangePassphraseParams.tsx:50
 msgid "Skip"
 msgstr "Preskočiť"
@@ -338,12 +457,12 @@ msgid "Something went wrong"
 msgstr "Niečo sa pokazilo"
 
 #: src/screens/SelectKey/WalletStatus.tsx:73
-msgid "Synced"
-msgstr "Synchronizované"
+#~ msgid "Synced"
+#~ msgstr "Synchronizované"
 
 #: src/screens/SelectKey/WalletStatus.tsx:85
-msgid "Syncing"
-msgstr "Synchronizácia"
+#~ msgid "Syncing"
+#~ msgstr "Synchronizácia"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:28
 msgid "The provided passphrase and confirmation do not match"
@@ -377,13 +496,17 @@ msgstr "Transakcia bola odoslaná úplnému uzlu a čaká na zahrnutie do pamä�
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "Transakcia bola úspešne odoslaná úplnému uzlu a zahrnutá do pamäťového fondu."
 
-#: src/screens/SelectKey/SelectKey.tsx:124
+#: src/screens/SelectKey/SelectKey.tsx:239
 msgid "Try Again"
 msgstr "Skúsiť znova"
 
+#: src/screens/SelectKey/SelectKey.tsx:243
+msgid "Unable to load keys"
+msgstr ""
+
 #: src/screens/SelectKey/SelectKey.tsx:128
-msgid "Unable to load the list of the keys"
-msgstr "Nie je možné načítať zoznam kľúčov"
+#~ msgid "Unable to load the list of the keys"
+#~ msgstr "Nie je možné načítať zoznam kľúčov"
 
 #: src/components/LocaleToggle/LocaleToggle.tsx:44
 msgid "Unknown"
@@ -398,42 +521,50 @@ msgstr "Neuložené zmeny"
 msgid "Using a passphrase is strongly recommended to protect your keys. Are you sure you want to disable passphrase protection?"
 msgstr "Na ochranu vašich kľúčov sa dôrazne odporúča používať prístupovú frázu. Naozaj chcete deaktivovať ochranu prístupovou frázou?"
 
-#: src/components/Fee/Fee.tsx:33
+#: src/components/Fee/Fee.tsx:24
 msgid "Value seems high"
 msgstr "Hodnota sa zdá byť vysoká"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:116
-#: src/components/Settings/SettingsApp.tsx:81
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:270
+#: src/components/Settings/SettingsApp.tsx:86
 msgid "Wallet"
 msgstr "Peňaženka"
+
+#: src/screens/SelectKey/SelectKeyDetailDialog.tsx:63
+#: src/screens/SelectKey/SelectKeyItem.tsx:233
+msgid "Wallet {0}"
+msgstr "Peňaženka {0}"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:149
 msgid "Wallet Fingerprint"
 msgstr "Odtlačok peňaženky"
 
-#: src/screens/SelectKey/SelectKeyDetailDialog.tsx:63
-#: src/screens/SelectKey/SelectKeyItem.tsx:69
-msgid "Wallet {0}"
-msgstr "Peňaženka {0}"
+#: src/screens/SelectKey/SelectKey.tsx:219
+msgid "Wallet Keys"
+msgstr ""
 
 #: src/screens/SelectKey/SelectKey.tsx:142
-msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
-msgstr "Vitajte v Chia. Prosím prihláste sa s existujúcim kľúčom, alebo si vytvorte nový."
+#~ msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
+#~ msgstr "Vitajte v Chia. Prosím prihláste sa s existujúcim kľúčom, alebo si vytvorte nový."
+
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:177
+#: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:66
+msgid "What's New"
+msgstr ""
 
 #: src/components/Back/Back.tsx:40
 #: src/components/FormBackButton/FormBackButton.tsx:31
 msgid "You have made changes. Do you want to discard them?"
 msgstr "Urobili ste zmeny. Chcete ich zrušiť?"
 
+#: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:97
+msgid "You're up to date"
+msgstr ""
+
+#: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:49
+msgid "Your Current Version:"
+msgstr ""
+
 #: src/hooks/useKeyringMigrationPrompt.tsx:20
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr "Vaše kľúče zatiaľ neboli migrované do nového zväzku kľúčov. Kým sa migrácia nedokončí, nebudete môcť vytvárať nové kľúče ani odstraňovať existujúce kľúče. Chcete teraz migrovať svoje kľúče?"
-
-#: src/components/Amount/Amount.tsx:86
-msgid "{0, plural, one {mojo} other {mojos}}"
-msgstr "{0, plural, one {mojo} few {mojos} many {mojos} other {mojos}}"
-
-#: src/hooks/useValidateChangePassphraseParams.tsx:35
-msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
-msgstr "{minPassphraseLength, plural, one {Prístupové frázy musia mať dĺžku aspoň # znak} few {Prístupové frázy musia mať dĺžku aspoň # znaky} many {Prístupové frázy musia mať dĺžku aspoň # znakov} other {Prístupové frázy musia mať dĺžku aspoň # znakov}}"
-
