@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-05 15:51\n"
+"PO-Revision-Date: 2023-07-05 21:40\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -18,13 +18,13 @@ msgstr ""
 "X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/packages/wallets/src/locales/en-US/messages.po\n"
 "X-Crowdin-File-ID: 1308\n"
 
-#: src/components/WalletHistory.tsx:109
-msgid "+"
-msgstr "بیشتر"
-
-#: src/components/WalletHistory.tsx:109
+#: src/components/WalletHistory.tsx:116
 msgid "-"
 msgstr "کمتر"
+
+#: src/components/WalletHistory.tsx:116
+msgid "+"
+msgstr "بیشتر"
 
 #: src/components/WalletHeader.tsx:62
 msgid "Actions"
@@ -34,9 +34,9 @@ msgstr "عملیات"
 msgid "Add"
 msgstr "اضافه کنید"
 
-#: src/components/WalletsManageTokens.tsx:156
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:61
 #: src/components/cat/WalletCATCreateSimple.tsx:68
+#: src/components/WalletsManageTokens.tsx:156
 msgid "Add Token"
 msgstr "اضافه نمودن توکن"
 
@@ -48,20 +48,23 @@ msgstr "اضافه شدن{0} توکن"
 msgid "Address"
 msgstr "آدرس"
 
-#: src/components/WalletSend.tsx:172
-#: src/components/cat/WalletCATSend.tsx:195
+#: src/components/cat/WalletCATSend.tsx:196
+#: src/components/WalletSend.tsx:220
 msgid "Address / Puzzle hash"
 msgstr "آدرس / هش پازل"
 
-#: src/components/WalletHistory.tsx:119
-#: src/components/WalletSend.tsx:184
-#: src/components/cat/WalletCATSend.tsx:207
+#: src/components/cat/WalletCATSend.tsx:208
+#: src/components/WalletSend.tsx:232
 msgid "Amount"
 msgstr "مبلغ"
 
 #: src/components/WalletHeader.tsx:30
 msgid "Are you sure you want to delete unconfirmed transactions?"
 msgstr "آیا مطمئن هستید که میخواهید تراکنش های تایید نشده را حذف کنید؟"
+
+#: src/components/WalletHistory.tsx:127
+msgid "Asset"
+msgstr ""
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:71
 #: src/components/cat/WalletCATTAILDialog.tsx:33
@@ -77,19 +80,27 @@ msgstr "کیف پول سواپ اتمیک"
 msgid "Authorized Payee Wallet"
 msgstr "کیف پول مجاز شده برای پرداخت"
 
+#: src/components/ClawbackClaimTransactionDialog.tsx:226
+msgid "Auto-claim transactions with this fee from now on."
+msgstr ""
+
+#: src/components/WalletHistoryClawbackChip.tsx:46
+msgid "Can be claimed in "
+msgstr ""
+
 #: src/components/PasteMnemonic.tsx:76
 #: src/components/WalletRenameDialog.tsx:72
 msgid "Cancel"
 msgstr "لغو"
 
-#: src/components/WalletSend.tsx:106
-#: src/components/cat/WalletCATSend.tsx:116
+#: src/components/cat/WalletCATSend.tsx:117
+#: src/components/WalletSend.tsx:142
 msgid "Cannot send chia to coloured address. Please enter a chia address."
 msgstr "خطا: چیـا را به آدرس رنگی نمیتوان ارسال کرد. لطفاً یک آدرس چیا وارد کنید."
 
 #: src/components/WalletsSidebar.tsx:130
-msgid "Check my snapshot balance"
-msgstr "تصویر موجودی من را چک کنید"
+#~ msgid "Check my snapshot balance"
+#~ msgstr "Check my snapshot balance"
 
 #: src/components/cat/WalletCATSelect.tsx:25
 #: src/components/create/WalletCreateList.tsx:32
@@ -97,19 +108,69 @@ msgstr "تصویر موجودی من را چک کنید"
 msgid "Chia Asset Token"
 msgstr "توکن دارایی چیا"
 
+#: src/components/WalletHistoryClawbackChip.tsx:53
+msgid "Claim transaction"
+msgstr ""
+
+#: src/components/ClawbackClaimTransactionDialog.tsx:136
+#: src/components/ClawbackClaimTransactionDialog.tsx:259
+msgid "Claim Transaction"
+msgstr ""
+
+#: src/components/WalletHistoryClawbackChip.tsx:68
+msgid "Claiming..."
+msgstr ""
+
+#: src/components/WalletHistoryClawbackChip.tsx:79
+msgid "Claw back this transaction"
+msgstr ""
+
+#: src/components/ClawbackClaimTransactionDialog.tsx:259
+msgid "Claw back Transaction"
+msgstr ""
+
+#: src/components/ClawbackClaimTransactionDialog.tsx:136
+msgid "Claw Back Transaction"
+msgstr ""
+
+#: src/components/ClawbackClaimTransactionDialog.tsx:128
+msgid "Clawback payment claimed"
+msgstr ""
+
+#: src/components/ClawbackClaimTransactionDialog.tsx:128
+msgid "Clawback payment clawed back"
+msgstr ""
+
+#: src/components/WalletSend.tsx:340
+msgid "Clawback will be applied."
+msgstr ""
+
+#: src/components/WalletSend.tsx:346
+msgid "Clawback will not be applied."
+msgstr ""
+
+#: src/components/WalletHistoryClawbackChip.tsx:94
+msgid "Clawing back..."
+msgstr ""
+
 #: src/components/WalletsSidebar.tsx:141
-msgid "Click here to download an older version of the wallet"
-msgstr "برای ذخیره نسخه قدیمی کیف پول اینجا را کلیک کنید"
+#~ msgid "Click here to download an older version of the wallet"
+#~ msgstr "Click here to download an older version of the wallet"
+
+#: src/components/ClawbackClaimTransactionDialog.tsx:157
+#: src/components/ClawbackClaimTransactionDialog.tsx:248
+msgid "Close"
+msgstr ""
 
 #: src/components/WalletHeader.tsx:25
 msgid "Confirmation"
 msgstr "تائیدیه"
 
-#: src/components/WalletHistory.tsx:170
+#: src/components/WalletHistory.tsx:183
 msgid "Confirmed"
 msgstr "تایید شده"
 
-#: src/components/WalletHistory.tsx:333
+#: src/components/WalletHistory.tsx:372
 msgid "Confirmed at Height"
 msgstr "تایید شده در ارتفاع"
 
@@ -130,14 +191,18 @@ msgid "Create New Wallet"
 msgstr "کیف پول جدید ایجاد کنید"
 
 #: src/components/cat/WalletCAT.tsx:104
-#: src/components/standard/WalletStandard.tsx:46
+#: src/components/standard/WalletStandard.tsx:52
 msgid "Create Offer"
 msgstr "ایجاد پیشنهاد"
 
-#: src/components/WalletSend.tsx:154
-#: src/components/cat/WalletCATSend.tsx:177
+#: src/components/cat/WalletCATSend.tsx:178
+#: src/components/WalletSend.tsx:202
 msgid "Create Transaction"
 msgstr "ایجاد تراکنش"
+
+#: src/components/WalletHistory.tsx:206
+msgid "Creation Date"
+msgstr ""
 
 #: src/constants/WalletName.ts:20
 msgid "Custody Wallet"
@@ -147,17 +212,13 @@ msgstr "کیف پول حضانت"
 msgid "Custom"
 msgstr "اختصاصی"
 
-#: src/constants/WalletName.ts:29
-msgid "DID Wallet"
-msgstr "ولت شناسه غیرمتمرکز"
-
 #: src/constants/WalletName.ts:38
 msgid "Datalayer Wallet"
 msgstr "کیف پول لایه داده ها"
 
 #: src/components/WalletHistory.tsx:100
-msgid "Date"
-msgstr "تاریخ"
+#~ msgid "Date"
+#~ msgstr "Date"
 
 #: src/components/WalletHeader.tsx:26
 msgid "Delete"
@@ -171,36 +232,40 @@ msgstr "تراکنش های تایید نشده را حذف کنید"
 msgid "Derivation Index: {0}"
 msgstr "فهرست بهره‌برداری: {0}"
 
+#: src/constants/WalletName.ts:29
+msgid "DID Wallet"
+msgstr "ولت شناسه غیرمتمرکز"
+
 #: src/components/create/WalletCreateList.tsx:39
 msgid "Distributed Identity"
 msgstr "هویت توزیع شده"
 
-#: src/components/WalletImport.tsx:158
+#: src/components/WalletImport.tsx:157
 msgid "Enter the {mnemonicWordCount} word mnemonic that you have saved in order to restore your Chia wallet."
 msgstr "کد رمزها {mnemonicWordCount} را که ذخیره کرده اید وارد کنید تا کیف پول چیا شما بازیابی شود."
 
-#: src/components/cat/WalletCATSend.tsx:126
+#: src/components/cat/WalletCATSend.tsx:127
 msgid "Error the entered address appears to be for a different colour."
 msgstr "خطای آدرس وارد شده به نظر میرسد برای رنگ دیگری باشد."
 
-#: src/components/WalletSend.tsx:221
-#: src/components/cat/WalletCATSend.tsx:245
+#: src/components/cat/WalletCATSend.tsx:246
+#: src/components/WalletSend.tsx:384
 msgid "Farm"
 msgstr "فارم"
 
-#: src/components/WalletHistory.tsx:131
-#: src/components/WalletSend.tsx:197
-#: src/components/cat/WalletCATSend.tsx:221
+#: src/components/cat/WalletCATSend.tsx:222
+#: src/components/WalletHistory.tsx:220
+#: src/components/WalletSend.tsx:245
 msgid "Fee"
 msgstr "کارمزد"
+
+#: src/components/ClawbackClaimTransactionDialog.tsx:175
+msgid "From:"
+msgstr ""
 
 #: src/components/WalletReceiveAddress.tsx:32
 msgid "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefore wallet receive addresses) that will all ultimately come back to and be spendable by a single private key."
 msgstr "کلیدهای سلسله وار قطعی یا HD نوعی از طرح کلید عمومی/کلید خصوصی هستند که در آن یک کلید خصوصی میتواند تقریباً بی نهایت کلید عمومی مختلف داشته باشد (و در نتیجه آدرس های دریافت کیف پول) که در نهایت همه به یک کلید خصوصی خاص باز می گردند و قابل مصرف هستند."
-
-#: src/components/WalletConnections.tsx:22
-msgid "IP address"
-msgstr "آدرس ای پی"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:41
 msgid "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a higher fee."
@@ -210,17 +275,21 @@ msgstr "اگر میخواهید سرعت تراکنش را افزایش دهید
 msgid "Import"
 msgstr "وارد كردن"
 
-#: src/components/WalletImport.tsx:141
-msgid "Import Wallet from Mnemonics"
-msgstr "واردکردن کیف پول از طریق کد کلمات رمزها"
-
-#: src/components/WalletImport.tsx:226
+#: src/components/WalletImport.tsx:225
 msgid "Import from {alternativeWordCount} word mnemonic"
 msgstr "وارد کردن از {alternativeWordCount} کد رمزها"
 
+#: src/components/WalletImport.tsx:140
+msgid "Import Wallet from Mnemonics"
+msgstr "واردکردن کیف پول از طریق کد کلمات رمزها"
+
 #: src/components/WalletHistory.tsx:87
-msgid "Incoming"
-msgstr "ورودی"
+#~ msgid "Incoming"
+#~ msgstr "Incoming"
+
+#: src/components/WalletConnections.tsx:22
+msgid "IP address"
+msgstr "آدرس ای پی"
 
 #: src/components/WalletConnections.tsx:71
 msgid "List of connections is empty"
@@ -230,13 +299,12 @@ msgstr "لیست اتصالات خالی است"
 msgid "Manage token list"
 msgstr "مدیریت لیست توکن"
 
-#: src/components/WalletHistory.tsx:174
-#: src/components/WalletSend.tsx:211
-#: src/components/cat/WalletCATSend.tsx:235
+#: src/components/cat/WalletCATSend.tsx:236
+#: src/components/WalletSend.tsx:373
 msgid "Memo"
 msgstr "یادداشت"
 
-#: src/components/WalletHistory.tsx:338
+#: src/components/WalletHistory.tsx:377
 msgid "Memos"
 msgstr "یادداشت ها"
 
@@ -252,10 +320,6 @@ msgstr "MiB بالا/پایین"
 msgid "Multi Sig Wallet"
 msgstr "کیف پول چند منظوره"
 
-#: src/constants/WalletName.ts:35
-msgid "NFT Wallet"
-msgstr "کیف پول ان اف تی"
-
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:68
 msgid "Name"
 msgstr "نام"
@@ -268,20 +332,24 @@ msgstr "آدرس جدید"
 msgid "New Receive Address"
 msgstr "آدرس دریافت جدید"
 
-#: src/components/WalletAdd.tsx:64
+#: src/components/WalletAdd.tsx:62
 msgid "New Wallet"
 msgstr "کیف پول جدید"
 
-#: src/components/WalletAdd.tsx:124
-#: src/components/WalletImport.tsx:196
+#: src/components/WalletAdd.tsx:122
+#: src/components/WalletImport.tsx:195
 msgid "Next"
 msgstr "بعدی"
+
+#: src/constants/WalletName.ts:35
+msgid "NFT Wallet"
+msgstr "کیف پول ان اف تی"
 
 #: src/components/WalletRenameDialog.tsx:67
 msgid "Nickname"
 msgstr "نام مستعار"
 
-#: src/components/WalletHistory.tsx:369
+#: src/components/WalletHistory.tsx:445
 msgid "No previous transactions"
 msgstr "بدون تراکنش های قبلی"
 
@@ -289,8 +357,8 @@ msgstr "بدون تراکنش های قبلی"
 msgid "Node ID"
 msgstr "شناسه نود"
 
-#: src/components/WalletHistory.tsx:327
-#: src/components/WalletHistory.tsx:334
+#: src/components/WalletHistory.tsx:366
+#: src/components/WalletHistory.tsx:373
 msgid "Not Available"
 msgstr "غیرقابل دسترسی"
 
@@ -298,24 +366,24 @@ msgstr "غیرقابل دسترسی"
 msgid "Not Synced"
 msgstr "سینک نشده"
 
+#: src/components/WalletHistory.tsx:192
+msgid "Offer Accepted"
+msgstr "پیشنهاد پذیرفته شد"
+
 #: src/components/cat/WalletCATTAILDialog.tsx:66
 msgid "OK"
 msgstr "تأیید"
 
-#: src/components/WalletHistory.tsx:176
-msgid "Offer Accepted"
-msgstr "پیشنهاد پذیرفته شد"
-
-#: src/components/WalletSend.tsx:157
-#: src/components/cat/WalletCATSend.tsx:180
+#: src/components/cat/WalletCATSend.tsx:181
+#: src/components/WalletSend.tsx:205
 msgid "On average there is one minute between each transaction block. Unless there is congestion you can expect your transaction to be included in less than a minute."
 msgstr "به طور متوسط بین هر بلاک تراکنش یک دقیقه فاصله وجود دارد. مگر اینکه تراکم وجود داشته باشد، میتوانید انتظار داشته باشید که تراکنش شما در کمتر از یک دقیقه شامل شود."
 
 #: src/components/WalletHistory.tsx:87
-msgid "Outgoing"
-msgstr "در حال خروج"
+#~ msgid "Outgoing"
+#~ msgstr "Outgoing"
 
-#: src/components/WalletImport.tsx:234
+#: src/components/WalletImport.tsx:233
 msgid "Paste Mnemonic"
 msgstr "جایگزاری کد کلمات رمز"
 
@@ -323,7 +391,7 @@ msgstr "جایگزاری کد کلمات رمز"
 msgid "Paste Mnemonic ({0} words)"
 msgstr "قراردادن ({0} کد رمزها)"
 
-#: src/components/WalletHistory.tsx:172
+#: src/components/WalletHistory.tsx:185
 msgid "Pending"
 msgstr "در انتظار تایید"
 
@@ -335,21 +403,33 @@ msgstr "موجودی در حال تایید"
 msgid "Pending Change"
 msgstr "تغییر در حالت انتظار"
 
+#: src/components/WalletHistoryPending.tsx:62
+msgid "Pending claw back transactions"
+msgstr ""
+
 #: src/components/card/WalletCardPendingTotalBalance.tsx:41
 msgid "Pending Total Balance"
 msgstr "کل موچودی در حال تایید"
+
+#: src/components/ClawbackClaimTransactionDialog.tsx:206
+msgid "Please enter a transaction fee to claim the above amount:"
+msgstr ""
+
+#: src/components/ClawbackClaimTransactionDialog.tsx:208
+msgid "Please enter a transaction fee to claw back the above amount:"
+msgstr ""
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:42
 msgid "Please enter a valid asset id"
 msgstr "لطفاً یک شناسه دارایی معتبر وارد کنید"
 
-#: src/components/WalletSend.tsx:96
-#: src/components/cat/WalletCATSend.tsx:102
+#: src/components/cat/WalletCATSend.tsx:103
+#: src/components/WalletSend.tsx:132
 msgid "Please enter a valid numeric amount"
 msgstr "لطفا مقدار عددی معتبر وارد کنید"
 
-#: src/components/WalletSend.tsx:101
-#: src/components/cat/WalletCATSend.tsx:107
+#: src/components/cat/WalletCATSend.tsx:108
+#: src/components/WalletSend.tsx:137
 msgid "Please enter a valid numeric fee"
 msgstr "لطفاً کارمزد معتبری اعداد وارد کنید"
 
@@ -361,8 +441,8 @@ msgstr "یک نام توکن معتبر وارد کنید"
 msgid "Please enter valid wallet name"
 msgstr "یک نام کیف پول معتبر وارد کنید"
 
-#: src/components/WalletSend.tsx:91
-#: src/components/cat/WalletCATSend.tsx:93
+#: src/components/cat/WalletCATSend.tsx:94
+#: src/components/WalletSend.tsx:127
 msgid "Please finish syncing before making a transaction"
 msgstr "صبرکنید سینک به اتمام برسد سپس ایجاد تراکنش کنید"
 
@@ -379,17 +459,13 @@ msgstr "کیف پول برای استخر"
 msgid "Port"
 msgstr "پورت"
 
-#: src/constants/WalletName.ts:8
-msgid "RL Wallet"
-msgstr "کیف پول RL"
-
 #: src/components/create/WalletCreateList.tsx:45
 msgid "Rate Limited"
 msgstr "نرخ محدود شده"
 
 #: src/components/WalletsSidebar.tsx:133
-msgid "Read the blog post for details"
-msgstr "برای جزئیات بیشتر بخوانید و پست بگدارید"
+#~ msgid "Read the blog post for details"
+#~ msgstr "Read the blog post for details"
 
 #: src/components/WalletHeader.tsx:48
 msgid "Receive"
@@ -399,7 +475,7 @@ msgstr "دريافت كردن"
 msgid "Receive Address"
 msgstr "آدرس گیرنده"
 
-#: src/components/cat/WalletCATSend.tsx:120
+#: src/components/cat/WalletCATSend.tsx:121
 msgid "Recipient address is not a coloured wallet address. Please enter a coloured wallet address"
 msgstr "آدرس گیرنده یک آدرس کیف پول رنگی نیست. یک آدرس کیف پول رنگی وارد کنید"
 
@@ -411,21 +487,25 @@ msgstr "کیف پول قابل بازیابی"
 msgid "Recovery Wallet"
 msgstr "کیف پول بازیابی"
 
-#: src/components/WalletRenameDialog.tsx:61
 #: src/components/cat/WalletCAT.tsx:87
+#: src/components/WalletRenameDialog.tsx:61
 msgid "Rename Wallet"
 msgstr "تغییر نام کیف پول"
 
-#: src/components/WalletHistory.tsx:175
+#: src/components/WalletHistory.tsx:191
 msgid "Retire"
 msgstr "کنارگذاشته شده"
+
+#: src/constants/WalletName.ts:8
+msgid "RL Wallet"
+msgstr "کیف پول RL"
 
 #: src/components/WalletRenameDialog.tsx:75
 msgid "Save"
 msgstr "ذخیره"
 
-#: src/components/WalletTokenCard.tsx:177
 #: src/components/cat/WalletCATTAILDialog.tsx:59
+#: src/components/WalletTokenCard.tsx:177
 msgid "Search on Tail Database"
 msgstr "جستجو در دیتابیس تیل"
 
@@ -433,9 +513,9 @@ msgstr "جستجو در دیتابیس تیل"
 msgid "Select Wallet Type"
 msgstr "انتخاب نوع کیف پول"
 
+#: src/components/cat/WalletCATSend.tsx:257
 #: src/components/WalletHeader.tsx:47
-#: src/components/WalletSend.tsx:232
-#: src/components/cat/WalletCATSend.tsx:256
+#: src/components/WalletSend.tsx:395
 msgid "Send"
 msgstr "ارسال"
 
@@ -450,6 +530,10 @@ msgstr "موجودی قابل خرج کردن"
 #: src/constants/WalletName.ts:5
 msgid "Standard Wallet"
 msgstr "کیف پول استاندارد"
+
+#: src/components/WalletHistory.tsx:197
+msgid "Status"
+msgstr ""
 
 #: src/components/WalletSendTransactionResultDialog.tsx:12
 msgid "Success"
@@ -479,7 +563,7 @@ msgstr "تراکنش نمیتواند فوراً در حافظه استخر تر
 msgid "This access token is verified"
 msgstr "این توکن در دسترس تأیید شده است"
 
-#: src/components/WalletHistory.tsx:156
+#: src/components/WalletHistory.tsx:160
 msgid "This is not a valid address for sending funds to"
 msgstr "این یک آدرس معتبر برای ارسال وجوه به آن نیست"
 
@@ -503,9 +587,17 @@ msgstr "این مقدار کل چیا در بلاکچین در بلاک اوج �
 msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
 msgstr "این کل موجودی + موجودی در انتظار است: نشان میدهد پس از تأیید همه تراکنش‌های معلق، موجودی شما چقدر خواهد بود."
 
+#: src/components/ClawbackClaimTransactionDialog.tsx:193
+msgid "This transaction will be automatically claimed with a fee:"
+msgstr ""
+
 #: src/components/WalletHistory.tsx:181
-msgid "To"
-msgstr "به"
+#~ msgid "To"
+#~ msgstr "To"
+
+#: src/components/ClawbackClaimTransactionDialog.tsx:175
+msgid "To:"
+msgstr ""
 
 #: src/components/cat/WalletCATCreateSimple.tsx:46
 msgid "Token has empty asset id"
@@ -515,7 +607,7 @@ msgstr "توکن دارای شناسه دارایی خالی است"
 msgid "Token has empty name"
 msgstr "توکن نام خالی دارد"
 
-#: src/components/WalletsSidebar.tsx:187
+#: src/components/WalletsSidebar.tsx:92
 msgid "Tokens"
 msgstr "توکن ها"
 
@@ -527,48 +619,68 @@ msgstr "موجودی کل"
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "تراکنش به نودکامل منتقل شد و در حافظه استخر تراکنش قرار گرفت."
 
-#: src/components/WalletHistory.tsx:258
+#: src/components/WalletHistory.tsx:422
 msgid "Transactions"
 msgstr "تراکنش ها"
 
-#: src/components/WalletConnections.tsx:67
-msgid "Wallet Connections"
-msgstr "اتصالات کیف پول"
+#: src/components/ClawbackClaimTransactionDialog.tsx:232
+msgid "Transactions will be claimed automatically when the Clawback time expires."
+msgstr ""
 
-#: src/components/WalletAdd.tsx:101
-#: src/components/WalletImport.tsx:148
-msgid "Wallet Name"
-msgstr "نام کیف پول"
-
-#: src/components/cat/WalletCAT.tsx:66
-msgid "Wallet does not exists"
-msgstr "کیف پول وجود ندارد"
-
-#: src/components/Wallet.tsx:37
-msgid "Wallet with type {0} not supported"
-msgstr "کیف پول با نوع {0} پشتیبانی نمیشود"
+#: src/components/ClawbackClaimTransactionDialog.tsx:235
+msgid "Transactions with values smaller than the fee will not be auto claimed."
+msgstr ""
 
 #: src/components/Wallet.tsx:22
 msgid "Wallet {walletId} not found"
 msgstr "کیف پول {walletId} یافت نشد"
 
+#: src/components/WalletConnections.tsx:67
+msgid "Wallet Connections"
+msgstr "اتصالات کیف پول"
+
+#: src/components/cat/WalletCAT.tsx:66
+msgid "Wallet does not exists"
+msgstr "کیف پول وجود ندارد"
+
+#: src/components/WalletAdd.tsx:99
+#: src/components/WalletImport.tsx:147
+msgid "Wallet Name"
+msgstr "نام کیف پول"
+
+#: src/components/ClawbackClaimTransactionDialog.tsx:200
+msgid "Wallet needs to be synced for claiming clawback transactions"
+msgstr ""
+
+#: src/components/Wallet.tsx:37
+msgid "Wallet with type {0} not supported"
+msgstr "کیف پول با نوع {0} پشتیبانی نمیشود"
+
 #: src/components/WalletsSidebar.tsx:138
-msgid "Want to see your old balance for yourself?"
-msgstr "آیا میخواهید موجودی قبلی خود را مجدد ببینید?"
+#~ msgid "Want to see your old balance for yourself?"
+#~ msgstr "Want to see your old balance for yourself?"
 
 #: src/components/WalletsSidebar.tsx:110
-msgid "We've made an upgrade to the CAT standard which requires all CATs to be re-issued. You will be airdropped your new tokens as they are re-issued by the original issuers. The airdropped tokens will be based on the balance as of block height:<0/><1/><2/>(Approximate time: July 26th, 2022 @ 17:00 UTC)"
-msgstr "ما به استاندارد CAT ارتقاء داده ایم که نیاز به صدور مجدد همه CAT ها دارد. توکن‌های جدید خود را با انتشار مجدد توسط صادرکنندگان اصلی، به شما منتقل می‌کنند. توکن‌های رایگان شده براساس موجودی ارتفاع بلاک خواهند بود:<0/><1/><2/>(زمان تقریبی: 26 ژوئیه 2022 ساعت 17:00 UTC)"
+#~ msgid "We've made an upgrade to the CAT standard which requires all CATs to be re-issued. You will be airdropped your new tokens as they are re-issued by the original issuers. The airdropped tokens will be based on the balance as of block height:<0/><1/><2/>(Approximate time: July 26th, 2022 @ 17:00 UTC)"
+#~ msgstr "We've made an upgrade to the CAT standard which requires all CATs to be re-issued. You will be airdropped your new tokens as they are re-issued by the original issuers. The airdropped tokens will be based on the balance as of block height:<0/><1/><2/>(Approximate time: July 26th, 2022 @ 17:00 UTC)"
 
-#: src/components/WalletAdd.tsx:67
+#: src/components/WalletAdd.tsx:65
 msgid "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
 msgstr "خوش آمدید. کلمات زیر برای پشتیبان گیری کیف پول شما استفاده میشود. بدون آنها، دسترسی به کیف پول خود را از دست خواهید داد، آنها را در محل امن نگه دارید! هر کلمه را همراه با شماره ترتیب کنار آنها یادداشت کنید. (ترتیب مهم است)"
 
-#: src/components/WalletsSidebar.tsx:106
-msgid "Your CAT tokens have been upgraded!"
-msgstr "توکن های CAT شما ارتقا یافته اند!"
+#: src/components/WalletHistoryClawbackChip.tsx:41
+msgid "Will be autoclaimed in "
+msgstr ""
 
-#: src/components/WalletImport.tsx:72
+#: src/components/ClawbackClaimTransactionDialog.tsx:238
+msgid "You can change the Clawback Auto Claim fee in Settings."
+msgstr ""
+
+#: src/components/WalletsSidebar.tsx:106
+#~ msgid "Your CAT tokens have been upgraded!"
+#~ msgstr "Your CAT tokens have been upgraded!"
+
+#: src/components/WalletImport.tsx:73
 msgid "Your pasted list does not include {mnemonicWordCount} valid mnemonic words."
 msgstr "لیست فرارداده شما شامل {mnemonicWordCount} کد رمزهای معتبر نیست."
 
