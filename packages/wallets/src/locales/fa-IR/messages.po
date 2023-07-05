@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-05 12:09\n"
+"PO-Revision-Date: 2023-07-05 14:49\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -32,7 +32,7 @@ msgstr "عملیات"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:79
 msgid "Add"
-msgstr "افزودن"
+msgstr "اضافه کنید"
 
 #: src/components/WalletsManageTokens.tsx:156
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:61
@@ -99,7 +99,7 @@ msgstr "توکن دارایی چیا"
 
 #: src/components/WalletsSidebar.tsx:141
 msgid "Click here to download an older version of the wallet"
-msgstr "برای دانلود نسخه قدیمی کیف پول اینجا را کلیک کنید"
+msgstr "برای ذخیره نسخه قدیمی کیف پول اینجا را کلیک کنید"
 
 #: src/components/WalletHeader.tsx:25
 msgid "Confirmation"
@@ -212,7 +212,7 @@ msgstr "وارد كردن"
 
 #: src/components/WalletImport.tsx:141
 msgid "Import Wallet from Mnemonics"
-msgstr "واردکردن کیف پول از طریق کلید خصوصی"
+msgstr "واردکردن کیف پول از طریق کد کلمات رمزها"
 
 #: src/components/WalletImport.tsx:226
 msgid "Import from {alternativeWordCount} word mnemonic"
