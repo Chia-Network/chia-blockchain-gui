@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-05 16:56\n"
+"PO-Revision-Date: 2023-07-05 17:52\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -644,7 +644,7 @@ msgstr "اتصال به استخر"
 #: src/components/fullNode/card/FullNodeCardConnectionStatus.tsx:15
 #: src/components/walletConnect/WalletConnectConnectedDialog.tsx:85
 msgid "Connected"
-msgstr "متصل شد"
+msgstr "متصل شده"
 
 #: src/components/walletConnect/WalletConnectConnections.tsx:61
 msgid "Connected Applications"
@@ -958,7 +958,7 @@ msgstr "برای استخراج حداکثر کارایی با دیسک حافظ
 #: src/components/walletConnect/WalletConnectConnections.tsx:87
 #: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:151
 msgid "Disconnect"
-msgstr "قطع ارتباط"
+msgstr "قطع شده"
 
 #: src/components/offers/OfferManager.tsx:338
 msgid "Display Offer Data"
@@ -972,7 +972,7 @@ msgstr "این مباحثه را دیگر نشان ندهید"
 #: src/components/farm/FarmHero.tsx:43
 #: src/components/plot/overview/PlotOverviewHero.tsx:53
 msgid "Do you have existing plots on this machine? <0>Add Plot Directory</0>"
-msgstr "پلاتی روی این ماشین دارید؟ <0>اضافه کردن پوشه داری پلات</0>"
+msgstr "آیا پلات هایی از قبل روی این سیستم دارید؟ <0>اضاقه کزدن پوشه پلات Plot</0>"
 
 #: src/components/nfts/NFTBurnDialog.tsx:134
 msgid "Do you want to burn this NFT?"
@@ -996,7 +996,7 @@ msgstr "آیا میخواهید این اعلان پیشنهاد را حذف ک�
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:62
 msgid "Does your machine support parallel plotting?"
-msgstr "آیا دستگاه شما از پلات سازی همزمان پشتیبانی می‌کند؟"
+msgstr "آیا سیستم شما از پلات سازی موازی پشتیبانی میکند?"
 
 #: src/components/nfts/NFTContextualActions.tsx:452
 msgid "Download"
@@ -1100,7 +1100,7 @@ msgstr "یک رمز ورود قوی وارد کنید و برای ایمن کر�
 
 #: src/components/settings/SetPassphrasePrompt.tsx:164
 msgid "Enter a strong passphrase to secure your keys:"
-msgstr "یک رمز عبور ورود برای ایمن کردن کلیدهای خود وارد کنید:"
+msgstr "یک رمز ورود برای ایمن کردن کلیدهای خود وارد کنید:"
 
 #: src/components/signVerify/SignMessage.tsx:66
 msgid "Enter a wallet address to sign with"
@@ -1154,11 +1154,11 @@ msgstr "زمان تخمینی برای برنده شدن"
 
 #: src/components/fullNode/card/FullNodeEstimatedNetworkSpace.tsx:15
 msgid "Estimated sum of all the plotted disk space of all farmers in the network"
-msgstr "تخمین مجموع دیسک های پلات شده همه مزرعه داران در شبکه"
+msgstr "مجموع تخمینی تمام فضای پلاتهای ساخته شده همه فارمرها در شبکه"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:437
 msgid "Exclude final directory"
-msgstr "بجز آخرین پوشه"
+msgstr "فهرست نهایی را حذف کنید"
 
 #: src/components/nfts/gallery/NFTGalleryHero.tsx:18
 msgid "Explore the Chia ecosystem; discover and trade great NFTs"
@@ -1203,7 +1203,7 @@ msgstr "کلید عمومی فارمر"
 
 #: src/components/block/Block.jsx:214
 msgid "Farmer Puzzle Hash"
-msgstr "مزرعه دارِ جورچین در هم ریزی(هش)"
+msgstr "هش پازل فارمر"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:131
 msgid "Farmer Reward Address"
@@ -1229,13 +1229,13 @@ msgstr "مزرعه دار درحال اجرا نیست"
 
 #: src/components/farm/FarmHero.tsx:28
 msgid "Farmers earn block rewards and transaction fees by committing spare space to the network to help secure transactions. This is where your farm will be once you add a plot. <0>Learn more</0>"
-msgstr "مزرعه داران با در اختیار گذاشتن فضای خالی برای کمک در امن کردن معاملات شبکه، جایزه های بلوکی و کارمزد تراکنش کسب می‌کنند.وقتی پلاتی را اضافه کنید قرار می‌گیرد، مزرعه شما اینجا قرار می‌گیرد. <0>بیشتر بدانید</0>"
+msgstr "فارمرها با اختصاص فضای خالی به شبکه برای کمک به ایمن تراکنش ها، پاداش های بلاکی و کارمزد تراکنش ها را دریافت میکنند. فارم شما به محض اضافه کردن یک پلات در این مکان خواهد بود. <0>بیشتر بیاموزید</0>"
 
 #: src/components/dashboard/DashboardSideBar.tsx:97
 #: src/components/farm/card/FarmCardStatus.tsx:62
 #: src/components/plot/PlotStatus.tsx:18
 msgid "Farming"
-msgstr "مزرعه داری"
+msgstr "درحال فارم"
 
 #: src/components/app/AppSelectMode.tsx:112
 msgid "Farming Mode"
@@ -1247,7 +1247,7 @@ msgstr "حالت فارم کردن"
 #: src/components/farm/card/FarmCardStatus.tsx:46
 #: src/components/farm/card/FarmCardStatus.tsx:59
 msgid "Farming Status"
-msgstr "وضعیت مزرعه داری"
+msgstr "وضعیت فارم"
 
 #: src/components/settings/SettingsAdvanced.tsx:47
 msgid "Features for advanced users."
@@ -1286,7 +1286,7 @@ msgstr "کارمزدها"
 
 #: src/components/block/Block.jsx:239
 msgid "Fees Amount"
-msgstr "مبلغ کارمزد ها"
+msgstr "هزینه کارمزدها"
 
 #: src/components/offers/NFTOfferViewer.tsx:197
 #: src/components/offers/OfferSummary.tsx:167
@@ -1332,13 +1332,13 @@ msgstr "در توییتر دنبال کنید"
 
 #: src/electron/main.tsx:1053
 msgid "Frequently Asked Questions"
-msgstr "سوالات متداول"
+msgstr "پرسش ها و پاسخ های متداول"
 
 #: src/components/app/AppStatusHeader.tsx:84
 #: src/components/dashboard/DashboardSideBar.tsx:76
 #: src/components/fullNode/FullNode.jsx:116
 msgid "Full Node"
-msgstr "گره کامل"
+msgstr "نود کامل"
 
 #: src/components/fullNode/FullNodeConnections.tsx:89
 msgid "Full Node Connections"
@@ -1350,7 +1350,7 @@ msgstr "نمایش تمام صفحه"
 
 #: src/components/settings/Settings.tsx:65
 msgid "General"
-msgstr "بطورکلی"
+msgstr "به‌طورکلی"
 
 #: src/constants/WalletConnectCommands.tsx:365
 msgid "Get CAT Asset Id"
@@ -1423,7 +1423,7 @@ msgstr "با استفاده از روشهای متناوب نوشتن bucket ب�
 
 #: src/components/plot/PlotHarvesters.tsx:37
 msgid "Harvesters"
-msgstr "جمع کننده ها"
+msgstr "برداشت کننده ها"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:179
 msgid "Hash is validated."
@@ -1489,7 +1489,7 @@ msgstr "اینجا فایلی وجود ندارد!"
 #: src/components/farm/FarmFullNodeConnections.tsx:31
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:31
 msgid "Host Name"
-msgstr "نام میزبان(هاست)"
+msgstr "نام میزبان"
 
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:16
 msgid "I Understand, Create Offer"
