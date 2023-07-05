@@ -1,5 +1,6 @@
-import { useAddressBook } from '@chia-network/core';
 import React, { createContext, useEffect, useMemo } from 'react';
+
+import useAddressBook from '../../hooks/useAddressBook';
 
 const initialState = {
   addressBook: [],

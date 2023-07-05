@@ -297,9 +297,13 @@ export default function WalletHistory(props: Props) {
   const handleCloseClawbackClaimTransactionDialog = useCallback(() => setClawbackClaimTransactionDialogProps(null), []);
 
   const contacts = useMemo(() => {
-    const contactList = [];
+    if (!transactions || isWalletTransactionsLoading) {
+      return [];
+    }
 
-    transactions.forEach((transaction) => {
+    const contactList: { displayName: string; address: string }[] = [];
+
+    (transactions ?? []).forEach((transaction) => {
       const match = getContactByAddress(transaction.toAddress);
 
       if (match) {
@@ -314,7 +318,7 @@ export default function WalletHistory(props: Props) {
       }
     });
     return contactList;
-  }, [transactions, getContactByAddress]);
+  }, [transactions, getContactByAddress, isWalletTransactionsLoading]);
 
   const metadata = useMemo(() => {
     const retireAddress =
