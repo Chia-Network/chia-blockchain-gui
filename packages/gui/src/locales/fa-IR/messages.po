@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-06 08:33\n"
+"PO-Revision-Date: 2023-07-06 09:36\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -92,7 +92,7 @@ msgstr "ابزارهای توسعه دهنده"
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:660
 msgid "Trigger Desktop Notification"
-msgstr ""
+msgstr "راه‌اندازی اعلان دسکتاپ"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:689
@@ -137,7 +137,7 @@ msgstr "گزارش یک مشکل یا خطا..."
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:747
 msgid "Chat on Discord"
-msgstr ""
+msgstr "بحث در Discord"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:753
@@ -158,7 +158,7 @@ msgstr "درباره بلاکچین چیا"
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:774
 msgid "Check for Updates..."
-msgstr ""
+msgstr "بروز رسانی را بررسی کنید..."
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:822
@@ -168,7 +168,7 @@ msgstr "سخن"
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:867
 msgid "Check for updates..."
-msgstr ""
+msgstr "بروز رسانی را بررسی کنید..."
 
 #: src/components/offers2/OfferBuilderImport.tsx:167
 msgid "(⌘V) a blob"
@@ -192,7 +192,7 @@ msgstr "(پشتیبانی نشده)"
 
 #: src/components/plot/add/PlotAddNFT.tsx:59
 msgid "(Recommended)"
-msgstr ""
+msgstr "(توصیه شده)"
 
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:89
 msgid "{0, plural, one {mojo} other {mojos}}"
@@ -230,7 +230,7 @@ msgstr "{0} امتیاز {1} - {2} مدتی قبل"
 
 #: src/components/notification/NotificationAnnouncement.tsx:51
 msgid "{from} <0>sending the message</0>"
-msgstr ""
+msgstr "{from} <0>ارسال پیام</0>"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:432
 #~ msgid "{key} ({0})"
