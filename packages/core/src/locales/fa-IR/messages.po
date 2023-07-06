@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-06 10:31\n"
+"PO-Revision-Date: 2023-07-06 14:25\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -145,7 +145,7 @@ msgstr "حذف کلید {fingerprint}"
 #: src/screens/SelectKey/SelectKey.tsx:131
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
 msgstr "حذف همه کلیدها آنها را برای همیشه از روی رایانه شما حذف میکند، مطمئن شوید که نسخه پشتیبان دارید.\n"
-" آیا مطمئنید که میخواهید ادامه دهید?"
+" آیا مطمئنید که میخواهید ادامه دهید؟"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:105
 msgid "Details"
@@ -162,7 +162,7 @@ msgstr "محافظت از رمز ورودی را غیرفعال کنید"
 #: src/components/Back/Back.tsx:37
 #: src/components/FormBackButton/FormBackButton.tsx:28
 msgid "Discard"
-msgstr "لغو"
+msgstr "دست برداشتن"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:183
 msgid "Download"
@@ -329,7 +329,7 @@ msgstr "متضل نیست"
 #: src/components/AlertDialog/AlertDialog.tsx:23
 #: src/components/ConfirmDialog/ConfirmDialog.tsx:30
 msgid "OK"
-msgstr "تأیید"
+msgstr "قبول"
 
 #: src/screens/SelectKey/SelectKey.tsx:254
 msgid "Open a world of possibilities."
@@ -520,7 +520,7 @@ msgstr "تغییرات ذخیره نشده"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:61
 msgid "Using a passphrase is strongly recommended to protect your keys. Are you sure you want to disable passphrase protection?"
-msgstr "تنظیم یک رمز ورود برای محافظت از کلیدهای شما اکیداً توصیه میشود. آیا مطمئن هستید که میخواهید از تنظبم رمز عبور صرفنظر کنید?"
+msgstr "تنظیم یک رمز ورود برای محافظت از کلیدهای شما اکیداً توصیه میشود. آیا مطمئن هستید که میخواهید از تنظبم رمز عبور صرفنظر کنید؟"
 
 #: src/components/Fee/Fee.tsx:24
 msgid "Value seems high"
@@ -556,7 +556,7 @@ msgstr "اخبار جدید"
 #: src/components/Back/Back.tsx:40
 #: src/components/FormBackButton/FormBackButton.tsx:31
 msgid "You have made changes. Do you want to discard them?"
-msgstr "شما تغییراتی ایجاد کرده اید. آیا میخواهید آنها را فراموش کنید?"
+msgstr "شما تغییراتی ایجاد کرده اید. آیا میخواهید آنها را فراموش کنید؟"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:97
 msgid "You're up to date"
@@ -568,5 +568,5 @@ msgstr "نسخه فعلی شما:"
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:20
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
-msgstr "کلیدهای شما به یک کلید جدید منتقل نشده. تا زمانی که انتقال کامل نشود، نمی‌توانید کلیدهای جدید ایجاد کنید یا کلیدهای موجود را حذف کنید. آیا میخواهید کلیدهای خود را اکنون انتقال دهید?"
+msgstr "کلیدهای شما به یک کلید جدید منتقل نشده. تا زمانی که انتقال کامل نشود، نمی‌توانید کلیدهای جدید ایجاد کنید یا کلیدهای موجود را حذف کنید. آیا میخواهید کلیدهای خود را اکنون انتقال دهید؟"
 
