@@ -5,7 +5,7 @@ import {
   useLazyGetProofsForRootQuery,
   useVCCoinAdded,
 } from '@chia-network/api-react';
-import { Flex, More, MenuItem, AlertDialog, useOpenDialog, useDarkMode } from '@chia-network/core';
+import { Flex, More, MenuItem, AlertDialog, Loading, useOpenDialog, useDarkMode } from '@chia-network/core';
 import {
   VCZeroStateBackground as VCZeroStateBackgroundIcon,
   VCZeroStateBackgroundDark as VCZeroStateBackgroundDarkIcon,
@@ -149,7 +149,9 @@ export default function VCList() {
     return [];
   }, [VCsLocalStorage, blockchainVCs?.vcRecords, fingerprint, proofs]);
 
-  if (isLoading) return null;
+  if (isLoading) {
+    return <Loading center />;
+  }
 
   const allVCsSortLatest = sortByTimestamp
     ? allVCs.sort((a: any, b: any) => {
@@ -300,7 +302,7 @@ export default function VCList() {
     );
   }
 
-  if (allVCsSortLatest.length === 0) {
+  if (!allVCsSortLatest?.length) {
     return renderZeroState();
   }
 
@@ -313,7 +315,7 @@ export default function VCList() {
       <Flex sx={{ justifyContent: 'space-between', marginBottom: '10px', padding: '15px' }}>
         <Flex>
           <Typography variant="h6">
-            <Trans>Verifiable Credentials</Trans>: {allVCs.length}
+            <Trans>Verifiable Credentials</Trans>: {allVCs?.length ?? 0}
           </Typography>
         </Flex>
         {renderActionsDropdown()}
