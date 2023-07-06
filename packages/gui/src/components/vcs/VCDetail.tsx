@@ -22,10 +22,14 @@ export default function VCDetail() {
 
   const navigate = useNavigate();
   const { data: fingerprint } = useGetLoggedInFingerprintQuery();
-  const localData =
+  let localData =
     fingerprint && VCsLocalStorage[fingerprint]
       ? VCsLocalStorage[fingerprint].find((vc: any) => vc.sha256 === vcId)
       : null;
+
+  if (localData) {
+    localData = { ...localData, isLocal: true };
+  }
 
   function renderBackButton() {
     return (

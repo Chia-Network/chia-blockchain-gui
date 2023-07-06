@@ -1,7 +1,6 @@
 import {
   useGetTimestampForHeightQuery,
   useRevokeVCMutation,
-  usePrefs,
   useLocalStorage,
   useGetLoggedInFingerprintQuery,
   useGetTransactionAsyncMutation,
@@ -44,7 +43,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
   const [revokeVC] = useRevokeVCMutation();
   const theme: any = useTheme();
   const openDialog = useOpenDialog();
-  const [vcTitlesObject] = usePrefs<any>('verifiable-credentials-titles', {});
+  const [vcTitlesObject] = useLocalStorage<any>('verifiable-credentials-titles', {});
   const vcTitle = React.useMemo(
     () => vcTitlesObject[vcRecord?.vc?.launcherId] || vcTitlesObject[vcRecord?.sha256] || t`Verifiable Credential`,
     [vcRecord?.vc?.launcherId, vcRecord?.sha256, vcTitlesObject]
@@ -55,6 +54,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
   const [pendingRevoke, setPendingRevoke] = useLocalStorage<any>('verifiable-credentials-pending-revoke', {});
   const { data: fingerprint } = useGetLoggedInFingerprintQuery();
   const [getTransactionAsync] = useGetTransactionAsyncMutation();
+  const isVCLocal = React.useMemo(() => !!vcRecord.isLocal, [vcRecord.isLocal]);
 
   React.useEffect(() => {
     if (vcRecord?.vc?.launcherId && pendingRevoke[vcRecord.vc.launcherId]) {
@@ -84,10 +84,14 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
   }
 
   function renderProperties() {
-    const didString = vcRecord?.vc?.proofProvider
-      ? didToDIDId(vcRecord?.vc?.proofProvider)
-      : vcRecord.credentialSubject?.id || '/';
-
+    let didString: string = vcRecord.credentialSubject?.id || '/';
+    try {
+      if (vcRecord?.vc?.proofProvider) {
+        didString = didToDIDId(vcRecord?.vc?.proofProvider);
+      }
+    } catch (e) {
+      /* ignore */
+    }
     const issuanceDate =
       vcRecord.confirmedAtHeight && !isLoadingMintHeight && mintedTimestamp
         ? moment(mintedTimestamp.timestamp * 1000).format('LLL')
@@ -146,7 +150,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
             <Trans>Invalid</Trans>
           )}
         </RenderProperty>
-        {isDetail && isVCLocal() && vcRecord.format && (
+        {isDetail && isVCLocal && vcRecord.format && (
           <RenderProperty label={<Trans>Standard Version Number</Trans>}>{vcRecord.format}</RenderProperty>
         )}
         {isDetail && proofs && Object.keys(proofs).length > 0 && (
@@ -174,15 +178,11 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
     );
   }
 
-  function isVCLocal() {
-    return !vcRecord.vc;
-  }
-
   async function openRevokeVCDialog(type: string) {
     const confirmedWithFee = await openDialog(
       <VCRevokeDialog
         vcTitle={vcTitle}
-        isLocal={!vcRecord.vc}
+        isLocal={isVCLocal}
         title={
           type === 'remove' ? <Trans>Remove Verifiable Credential</Trans> : <Trans>Revoke Verifiable Credential</Trans>
         }
@@ -266,7 +266,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
     return (
       <Flex sx={{ marginBottom: '10px', padding: '8px' }}>
         <More>
-          {isVCLocal() && (
+          {isVCLocal && (
             <MenuItem onClick={() => openRevokeVCDialog('remove')} close>
               <ListItemIcon>
                 <DeleteIcon />
@@ -276,17 +276,13 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
               </Typography>
             </MenuItem>
           )}
-          {!isVCLocal() && (
+          {!isVCLocal && (
             <MenuItem onClick={() => openRevokeVCDialog('revoke')} close>
               <ListItemIcon>
                 <BurnIcon />
               </ListItemIcon>
               <Typography variant="inherit" noWrap>
-                {isVCLocal() ? (
-                  <Trans>Delete Verifiable Credential</Trans>
-                ) : (
-                  <Trans>Revoke Verifiable Credential</Trans>
-                )}
+                {isVCLocal ? <Trans>Delete Verifiable Credential</Trans> : <Trans>Revoke Verifiable Credential</Trans>}
               </Typography>
             </MenuItem>
           )}

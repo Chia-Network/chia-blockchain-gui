@@ -143,7 +143,7 @@ export default function VCList() {
           ...record,
           isValid: !!(proofs[record.vc.proofHash] && Object.keys(proofs[record.vc.proofHash]).length > 0),
         }))
-        .concat(VCsLocalStorage[fingerprint])
+        .concat((VCsLocalStorage[fingerprint] || []).map((record: any) => ({ ...record, isLocal: true })))
         .filter(Boolean);
     }
     return [];
