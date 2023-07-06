@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-05 21:40\n"
+"PO-Revision-Date: 2023-07-06 05:22\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -20,11 +20,11 @@ msgstr ""
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:61
 msgid "(>5 min)"
-msgstr ""
+msgstr "(>5分钟)"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:61
 msgid "(~{selectedTime} min)"
-msgstr ""
+msgstr "(~{selectedTime} 分钟)"
 
 #: src/components/Amount/Amount.tsx:86
 msgid "{0, plural, one {mojo} other {mojos}}"
@@ -36,15 +36,15 @@ msgstr "{minPassphraseLength, plural, other {密码长度必须至少为 # 个�
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:95
 msgid "A new version of Chia is available!"
-msgstr ""
+msgstr "新版Chia可用！"
 
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:258
 msgid "Add Icon"
-msgstr ""
+msgstr "添加图标"
 
 #: src/screens/SelectKey/SelectKey.tsx:172
 msgid "Add wallet"
-msgstr ""
+msgstr "添加钱包"
 
 #: src/components/Amount/Amount.tsx:36
 msgid "Amount"
@@ -72,19 +72,19 @@ msgstr "取消"
 
 #: src/components/Settings/SettingsApp.tsx:139
 msgid "Check for updates"
-msgstr ""
+msgstr "检查更新"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:93
 msgid "Checking for updates..."
-msgstr ""
+msgstr "正在检查更新..."
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:82
 msgid "Chia {latestVersion} is currently the latest version available."
-msgstr ""
+msgstr "Chia {latestVersion} 已经是最新版本。"
 
 #: src/components/Settings/SettingsApp.tsx:125
 msgid "Chia Application Version:"
-msgstr ""
+msgstr "Chia程序版本："
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:110
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:47
@@ -110,15 +110,15 @@ msgstr "复制到剪贴板"
 
 #: src/screens/SelectKey/SelectKey.tsx:270
 msgid "Create a new wallet key"
-msgstr ""
+msgstr "新建钱包"
 
 #: src/screens/SelectKey/SelectKey.tsx:262
 msgid "Create a new wallet key to get started with Chia."
-msgstr ""
+msgstr "使用Chia，从新建一个钱包开始。"
 
 #: src/screens/SelectKey/SelectKey.tsx:175
 msgid "Create New"
-msgstr ""
+msgstr "新建"
 
 #: src/components/Settings/SettingsApp.tsx:110
 msgid "Dark"
@@ -136,7 +136,7 @@ msgstr "删除所有密钥"
 
 #: src/screens/SelectKey/SelectKey.tsx:200
 msgid "Delete All Keys"
-msgstr ""
+msgstr "删除所有密钥"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:96
 msgid "Delete key {fingerprint}"
@@ -165,7 +165,7 @@ msgstr "放弃"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:183
 msgid "Download"
-msgstr ""
+msgstr "下载"
 
 #: src/components/CardSimple/CardSimple.tsx:52
 #: src/hooks/useShowError.tsx:13
@@ -212,7 +212,7 @@ msgstr "常见问题解答"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:121
 msgid "Go To Download Page"
-msgstr ""
+msgstr "转到下载页面"
 
 #: src/components/Settings/SettingsApp.tsx:147
 msgid "Help"
@@ -233,7 +233,7 @@ msgstr "隐藏高级选项"
 
 #: src/screens/SelectKey/SelectKey.tsx:180
 msgid "Import Existing"
-msgstr ""
+msgstr "导入"
 
 #: src/screens/SelectKey/SelectKey.tsx:181
 #~ msgid "Import from Mnemonics (12 or 24 words)"
@@ -249,7 +249,7 @@ msgstr "语言"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:57
 msgid "Latest Version:"
-msgstr ""
+msgstr "最新版本："
 
 #: src/components/Settings/SettingsApp.tsx:102
 msgid "Light"
@@ -265,7 +265,7 @@ msgstr "可能在 {minutes} 分钟内"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:221
 msgid "Likely in >5 minutes"
-msgstr ""
+msgstr "可能大于5分钟"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:46
 msgid "Loading details"
@@ -273,7 +273,7 @@ msgstr "正在加载详细信息"
 
 #: src/screens/SelectKey/SelectKey.tsx:232
 msgid "Loading keys"
-msgstr ""
+msgstr "正在载入密钥"
 
 #: src/screens/SelectKey/SelectKey.tsx:117
 #~ msgid "Loading list of the keys"
@@ -310,7 +310,7 @@ msgstr "新私钥密码与当前私钥密码相同"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:168
 msgid "New version {latestVersion} available"
-msgstr ""
+msgstr "新版本 {latestVersion} 可用"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:84
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:138
@@ -332,7 +332,7 @@ msgstr "确定"
 
 #: src/screens/SelectKey/SelectKey.tsx:254
 msgid "Open a world of possibilities."
-msgstr ""
+msgstr "打开无限可能的世界。"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:98
 msgid "Pool Public Key"
@@ -361,15 +361,15 @@ msgstr "公钥："
 
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:277
 msgid "Random"
-msgstr ""
+msgstr "随机"
 
 #: src/components/Fee/Fee.tsx:18
 msgid "Recommended value: 0.000005"
-msgstr ""
+msgstr "推荐值︰ 0.000005"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:71
 msgid "Release Notes"
-msgstr ""
+msgstr "更新日志"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:85
 msgid "Reload Application"
@@ -377,7 +377,7 @@ msgstr "重新加载程序"
 
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:258
 msgid "Remove Icon"
-msgstr ""
+msgstr "删除图标"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:97
 msgid "Rename"
@@ -399,7 +399,7 @@ msgstr "保存"
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:170
 #: src/screens/SelectKey/Search.tsx:34
 msgid "Search"
-msgstr ""
+msgstr "搜索"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:113
 msgid "Secret Key"
@@ -502,7 +502,7 @@ msgstr "请重试"
 
 #: src/screens/SelectKey/SelectKey.tsx:243
 msgid "Unable to load keys"
-msgstr ""
+msgstr "无法加载密钥"
 
 #: src/screens/SelectKey/SelectKey.tsx:128
 #~ msgid "Unable to load the list of the keys"
@@ -541,7 +541,7 @@ msgstr "钱包指纹"
 
 #: src/screens/SelectKey/SelectKey.tsx:219
 msgid "Wallet Keys"
-msgstr ""
+msgstr "钱包密钥"
 
 #: src/screens/SelectKey/SelectKey.tsx:142
 #~ msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
@@ -550,7 +550,7 @@ msgstr ""
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:177
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:66
 msgid "What's New"
-msgstr ""
+msgstr "更新日志"
 
 #: src/components/Back/Back.tsx:40
 #: src/components/FormBackButton/FormBackButton.tsx:31
@@ -559,11 +559,11 @@ msgstr "你已经做了一些更改。你确定要放弃这些修改吗？"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:97
 msgid "You're up to date"
-msgstr ""
+msgstr "已是最新版本"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:49
 msgid "Your Current Version:"
-msgstr ""
+msgstr "当前的版本："
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:20
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
