@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-06 05:22\n"
+"PO-Revision-Date: 2023-07-06 16:33\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -1162,7 +1162,7 @@ msgstr "创建者版税比率似乎高"
 
 #: src/components/dashboard/DashboardSideBar.tsx:67
 msgid "Credentials"
-msgstr ""
+msgstr "证件"
 
 #: src/components/plot/add/PlotAddForm.tsx:128
 msgid "Currency code is not defined"
@@ -1255,7 +1255,7 @@ msgstr "删除未确认的交易"
 
 #: src/components/vcs/VCCard.tsx:286
 msgid "Delete Verifiable Credential"
-msgstr ""
+msgstr "删除可信证件"
 
 #: src/components/app/AppPassPrompt.tsx:100
 msgid "Deleting key"
@@ -1501,7 +1501,7 @@ msgstr ""
 
 #: src/components/settings/SettingsVerifiableCredentials.tsx:28
 msgid "Enable Verifiable Credentials"
-msgstr ""
+msgstr "启用可信证件"
 
 #: src/components/settings/SettingsIntegration.tsx:157
 #: src/components/walletConnect/WalletConnectConnections.tsx:109
@@ -4763,7 +4763,7 @@ msgstr ""
 #: src/components/vcs/VCList.tsx:256
 #: src/components/vcs/VCList.tsx:316
 msgid "Verifiable Credentials"
-msgstr ""
+msgstr "可信证件"
 
 #: src/components/vcs/VCList.tsx:259
 msgid "Verifiable Credentials are like digital ID cards that can prove certain information about you without giving away your private details."
