@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-06 12:25\n"
+"PO-Revision-Date: 2023-07-06 13:28\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1131,7 +1131,7 @@ msgstr "یک تراکنش در بلاکچین ایجاد و ارسال کنید 
 
 #: src/components/settings/ProfileAdd.tsx:130
 msgid "Creating a profile requires 1 mojo"
-msgstr ""
+msgstr "ایجاد مشخصات به 1 موجو نیاز دارد"
 
 #: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:63
 msgid "Creating Plot NFT and Joining the Pool"
@@ -1162,7 +1162,7 @@ msgstr "درصد حق امتیاز سازنده بالا به نظر میرسد"
 
 #: src/components/dashboard/DashboardSideBar.tsx:67
 msgid "Credentials"
-msgstr ""
+msgstr "اعتبارنامه"
 
 #: src/components/plot/add/PlotAddForm.tsx:128
 msgid "Currency code is not defined"
@@ -1184,11 +1184,11 @@ msgstr "موجودی امتیازات فعلی"
 
 #: src/components/notification/utils.ts:109
 msgid "Dapp {from} sending the message"
-msgstr ""
+msgstr "Dapp {from} در حال ارسال پیام"
 
 #: src/components/notification/utils.ts:109
 msgid "Dapp sending the message"
-msgstr ""
+msgstr "Dapp در حال ارسال پیام"
 
 #: src/components/nfts/NFTDetails.tsx:235
 msgid "Data Hash"
@@ -1216,15 +1216,15 @@ msgstr "تاریخ"
 
 #: src/components/settings/SettingsCustody.tsx:41
 msgid "Default claw back time for outgoing XCH transactions"
-msgstr ""
+msgstr "زمان پیش‌فرض ادعای بازگرداندن برای تراکنش‌های خروجی XCH"
 
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:114
 msgid "Default claw back time is disabled."
-msgstr ""
+msgstr "زمان پیش‌فرض ادعای بازگرداندن غیرفعال است."
 
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:109
 msgid "Default claw back time is enabled."
-msgstr ""
+msgstr "زمان پیش‌فرض ادعای بازگرداندن فعال است."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:89
 msgid "Delay"
@@ -1255,7 +1255,7 @@ msgstr "حدف معامله های تایید نشده"
 
 #: src/components/vcs/VCCard.tsx:286
 msgid "Delete Verifiable Credential"
-msgstr ""
+msgstr "اعتبار قابل تأیید را حذف کنید"
 
 #: src/components/app/AppPassPrompt.tsx:100
 msgid "Deleting key"
@@ -1313,7 +1313,7 @@ msgstr "شناسه غیرمتمرکز"
 
 #: src/constants/WalletConnectCommands.tsx:680
 msgid "DID Id"
-msgstr ""
+msgstr "شناسه، شناسه غیرمتمرکز"
 
 #: src/components/block/Block.jsx:181
 #: src/components/fullNode/card/FullNodeCardDifficulty.tsx:14
@@ -1323,7 +1323,7 @@ msgstr "سختی"
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:91
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:77
 msgid "Disable"
-msgstr ""
+msgstr "غیر فعال"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:399
 msgid "Disable assigning automatic thread affinity. This is useful when running multiple simultaneous instances of Bladebit as you can manually assign thread affinity yourself when launching Bladebit."
@@ -1367,7 +1367,7 @@ msgstr "نمایش اطلاعات پیشنهاد"
 
 #: src/components/settings/SettingsNotifications.tsx:152
 msgid "Display sharing options after creating a new offer"
-msgstr ""
+msgstr "نمایش گزینه های اشتراک گذاری پس از ایجاد یک پیشنهاد جدید"
 
 #: src/components/offers/OfferShareDialog.tsx:1099
 #: src/hooks/useOpenUnsafeLink.tsx:64
@@ -1476,12 +1476,12 @@ msgstr "شماره نسخه"
 
 #: src/constants/WalletConnectCommands.tsx:674
 msgid "Edition Total"
-msgstr ""
+msgstr "کل ویرایش"
 
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:75
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:63
 msgid "Enable"
-msgstr ""
+msgstr "فعال"
 
 #: src/components/settings/SettingsStartup.tsx:28
 msgid "Enable Auto Login"
@@ -1497,11 +1497,11 @@ msgstr "فعال کردن سروز انتشار فایل"
 
 #: src/components/settings/SettingsNotifications.tsx:45
 msgid "Enable notifications"
-msgstr ""
+msgstr "فعال کردن اغلان ها"
 
 #: src/components/settings/SettingsVerifiableCredentials.tsx:28
 msgid "Enable Verifiable Credentials"
-msgstr ""
+msgstr "فعال کردن اعتبارنامه قابل تأیید"
 
 #: src/components/settings/SettingsIntegration.tsx:157
 #: src/components/walletConnect/WalletConnectConnections.tsx:109
@@ -1554,7 +1554,7 @@ msgstr "خطا"
 
 #: src/components/vcs/VCList.tsx:180
 msgid "Error parsing file"
-msgstr ""
+msgstr "خطا در تجزیه فایل"
 
 #: src/components/nfts/NFTPreview.tsx:657
 #~ msgid "Error parsing json"
@@ -1574,7 +1574,7 @@ msgstr "خطا: {0}"
 
 #: src/components/vcs/VCEditTitle.tsx:77
 msgid "Esc"
-msgstr ""
+msgstr "خروج"
 
 #: src/components/fullNode/card/FullNodeEstimatedNetworkSpace.tsx:14
 msgid "Estimated Network Space"
@@ -1595,11 +1595,11 @@ msgstr "فهرست نهایی را حذف کنید"
 
 #: src/components/vcs/VCCard.tsx:135
 msgid "Expiration"
-msgstr ""
+msgstr "انقضاء"
 
 #: src/components/vcs/VCCard.tsx:140
 msgid "Expired"
-msgstr ""
+msgstr "منقضی شده"
 
 #: src/components/nfts/gallery/NFTGalleryHero.tsx:18
 msgid "Explore the Chia ecosystem; discover and trade great NFTs"
@@ -1696,7 +1696,7 @@ msgstr "امکانات برای کاربران پیشرفته."
 
 #: src/components/settings/SettingsCustody.tsx:30
 msgid "Features to give you more protection and control over your digital assets."
-msgstr ""
+msgstr "ویژگی هایی برای محافظت و کنترل بیشتر بر دارایی های دیجیتال شما."
 
 #: src/components/nfts/NFTBurnDialog.tsx:166
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:319
@@ -1729,7 +1729,7 @@ msgstr "کارمزد (اختیاری)"
 
 #: src/util/offerBuilderDataToOffer.ts:198
 msgid "Fee exceeds XCH total balance"
-msgstr ""
+msgstr "کارمزد از موجودی کل XCH بیشتر است"
 
 #: src/components/plotNFT/PlotNFTChangePool.tsx:113
 msgid "Fee is used TWICE: once to leave pool, once to join."
@@ -1791,7 +1791,7 @@ msgstr "قراردادن تصاویر روی کارتها"
 
 #: src/components/notification/NotificationAnnouncementDialog.tsx:44
 msgid "From"
-msgstr ""
+msgstr "از"
 
 #: src/components/app/AppStatusHeader.tsx:116
 #: src/components/dashboard/DashboardSideBar.tsx:87
@@ -1817,7 +1817,7 @@ msgstr "دریافت همه پیشنهادات"
 
 #: src/constants/WalletConnectCommands.tsx:825
 msgid "Get All Verifiable Credentials"
-msgstr ""
+msgstr "گرفتن تمام اعتبارنامه های قابل تأیید"
 
 #: src/constants/WalletConnectCommands.tsx:496
 msgid "Get CAT Asset Id"
@@ -1825,7 +1825,7 @@ msgstr "دریافت شناسه دارایی توکن"
 
 #: src/constants/WalletConnectCommands.tsx:483
 msgid "Get CAT Wallet Info"
-msgstr ""
+msgstr "گرفتن اطلاعات کیف پول CAT"
 
 #: src/constants/WalletConnectCommands.tsx:90
 msgid "Get Current Address"
@@ -1833,7 +1833,7 @@ msgstr "دریافت آدرس فعلی"
 
 #: src/components/settings/ProfileAdd.tsx:124
 msgid "Get Mojos from the Chia Faucet"
-msgstr ""
+msgstr "گرفتن موجوها از توزیع کننده چیا"
 
 #: src/constants/WalletConnectCommands.tsx:243
 msgid "Get Next Address"
@@ -1845,7 +1845,7 @@ msgstr "درباقت اطلاعات ان اف تی"
 
 #: src/constants/WalletConnectCommands.tsx:819
 msgid "Get NFT Wallets with DIDs"
-msgstr ""
+msgstr "گرفتن کیف پول ان اف تی با شناسه غیرمتمرکز"
 
 #: src/constants/WalletConnectCommands.tsx:564
 msgid "Get NFTs"
@@ -1853,7 +1853,7 @@ msgstr "دریافت ان اف تی ها"
 
 #: src/constants/WalletConnectCommands.tsx:723
 msgid "Get NFTs Count"
-msgstr ""
+msgstr "گرفتن تعداد ان اف تی ها"
 
 #: src/constants/WalletConnectCommands.tsx:434
 msgid "Get Offer Data"
@@ -1873,7 +1873,7 @@ msgstr "دریافت تعداد پیشنهاد"
 
 #: src/constants/WalletConnectCommands.tsx:898
 msgid "Get Proofs For Root Hash"
-msgstr ""
+msgstr "گرفتن شواهد برای روت هش"
 
 #: src/constants/WalletConnectCommands.tsx:42
 msgid "Get Transaction"
@@ -1881,7 +1881,7 @@ msgstr "دریافت تراکنش"
 
 #: src/constants/WalletConnectCommands.tsx:831
 msgid "Get Verifiable Credential"
-msgstr ""
+msgstr "گرفتن اعتبار قابل تایید"
 
 #: src/constants/WalletConnectCommands.tsx:56
 msgid "Get Wallet Balance"
@@ -1889,7 +1889,7 @@ msgstr "دریافت موجودی کیف پول"
 
 #: src/constants/WalletConnectCommands.tsx:73
 msgid "Get Wallet Balances"
-msgstr ""
+msgstr "گرفتن موجودی کیف پول"
 
 #: src/constants/WalletConnectCommands.tsx:268
 msgid "Get Wallet Sync Status"
@@ -1910,7 +1910,7 @@ msgstr "برو چند جواهر جمع کن"
 
 #: src/components/vcs/VCList.tsx:284
 msgid "Government IDs"
-msgstr ""
+msgstr "شناسه های دولتی"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:420
 msgid "Halves the temp2 cache size requirements by alternating bucket writing methods between tables."
@@ -1922,7 +1922,7 @@ msgstr "برداشت کننده ها"
 
 #: src/constants/WalletConnectCommands.tsx:641
 msgid "Hash"
-msgstr ""
+msgstr "هش"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:179
 #~ msgid "Hash is validated."
@@ -4648,7 +4648,7 @@ msgstr "ناشناخته"
 
 #: src/components/settings/SettingsIntegration.tsx:248
 msgid "Unknown App - {0}"
-msgstr ""
+msgstr "برنامه ناشناس - {0}"
 
 #: src/components/walletConnect/WalletConnectConnections.tsx:74
 #: src/components/walletConnect/WalletConnectMetadata.tsx:17
@@ -4657,7 +4657,7 @@ msgstr "برنامه ناشناخته"
 
 #: src/util/resolveOfferInfo.ts:71
 msgid "Unknown Asset"
-msgstr ""
+msgstr "دارایی ناشناخته"
 
 #: src/components/offers/NFTOfferViewer.tsx:368
 #: src/components/offers/OfferSummaryRow.tsx:141
@@ -4670,7 +4670,7 @@ msgstr "توکن ناشناخته"
 
 #: src/hooks/useWalletConnectCommand.tsx:31
 msgid "Unknown Dapp"
-msgstr ""
+msgstr "Dapp ناشناس"
 
 #: src/components/app/AppPassPrompt.tsx:93
 msgid "Unlock Keyring"
@@ -4682,7 +4682,7 @@ msgstr "دارایی شناسایی نشده"
 
 #: src/components/walletConnect/WalletConnectActiveSessions.tsx:54
 msgid "Unsupported commands"
-msgstr ""
+msgstr "دستورات پشتیبانی نشده"
 
 #: src/components/settings/LimitCacheSize.tsx:82
 msgid "Update"
@@ -4694,7 +4694,7 @@ msgstr "منتظر بروزرسانی"
 
 #: src/constants/WalletConnectCommands.tsx:636
 msgid "Uris"
-msgstr ""
+msgstr "Uris"
 
 #: src/components/notification/NotificationAnnouncementDialog.tsx:62
 #: src/constants/WalletConnectCommands.tsx:942
@@ -4704,7 +4704,7 @@ msgstr "آدرس سایت"
 
 #: src/components/nfts/NFTHashStatus.tsx:77
 msgid "URL is not valid"
-msgstr ""
+msgstr "آدرس سایت معتبر نیست"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:125
 msgid "Use left and right arrow keys to navigate"
@@ -4737,37 +4737,37 @@ msgstr "تعداد تکرار زیرمجموعه تابع تاخیر قابل ت
 
 #: src/components/vcs/VCCard.tsx:49
 msgid "Verifiable Credential"
-msgstr ""
+msgstr "اعتبار قابل تایید"
 
 #: src/components/vcs/VCList.tsx:194
 msgid "Verifiable Credential already exists."
-msgstr ""
+msgstr "اعتبار قابل تأیید از قبل وجود دارد."
 
 #: src/components/vcs/VCCard.tsx:239
 msgid "Verifiable Credential Removed"
-msgstr ""
+msgstr "اعتبار قابل تأیید حذف شد"
 
 #: src/components/vcs/VCCard.tsx:254
 msgid "Verifiable Credential Removed."
-msgstr ""
+msgstr "اعتبار قابل تأیید حذف شد."
 
 #: src/components/vcs/VCCard.tsx:256
 msgid "Verifiable Credential Revoked."
-msgstr ""
+msgstr "اعتبار قابل تأیید باطل شد."
 
 #: src/components/vcs/VCList.tsx:202
 msgid "Verifiable Credential successfully added."
-msgstr ""
+msgstr "اعتبار قابل تأیید با موفقیت اضافه شد."
 
 #: src/components/settings/SettingsVerifiableCredentials.tsx:17
 #: src/components/vcs/VCList.tsx:256
 #: src/components/vcs/VCList.tsx:316
 msgid "Verifiable Credentials"
-msgstr ""
+msgstr "اعتبار قابل تایید"
 
 #: src/components/vcs/VCList.tsx:259
 msgid "Verifiable Credentials are like digital ID cards that can prove certain information about you without giving away your private details."
-msgstr ""
+msgstr "اعتبارنامه‌های قابل تأیید مانند کارت‌های شناسایی دیجیتال هستند که میتوانند اطلاعات خاصی را در مورد شما بدون ارائه اطلاعات شخصیتان ثابت کنند."
 
 #: src/components/signVerify/VerifyMessage.tsx:123
 msgid "Verification Failed"
@@ -4792,7 +4792,7 @@ msgstr "بازبینی امضاء"
 
 #: src/components/nfts/NFTHashStatus.tsx:65
 msgid "Verifying hash..."
-msgstr ""
+msgstr "در حال تأیید هش..."
 
 #: src/components/offers2/OfferIncomingTable.tsx:101
 msgid "View"
@@ -4804,7 +4804,7 @@ msgstr "دیدن یک پیشنهاد"
 
 #: src/components/vcs/VCCard.tsx:172
 msgid "View Credential Data"
-msgstr ""
+msgstr "مشاهده اطلاعات اعتبار"
 
 #: src/components/plot/queue/PlotQueueActions.tsx:58
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:44
@@ -4855,7 +4855,7 @@ msgstr "قابل دیدن"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:380
 msgid "Visible  <0/>"
-msgstr ""
+msgstr "قابل دیدن <0/>"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:572
 #~ msgid "Visible ({0})"
@@ -4863,7 +4863,7 @@ msgstr ""
 
 #: src/components/nfts/gallery/NFTGallery.tsx:375
 msgid "Visible and Hidden  <0/>"
-msgstr ""
+msgstr "قابل دیدن و پنهان <0/>"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:570
 #~ msgid "Visible and hidden ({0})"
@@ -5069,7 +5069,7 @@ msgstr "شما {0}٪ از فضای شبکه را در اختیار دارید، 
 
 #: src/components/notification/NotificationOffer.tsx:91
 msgid "You have a new counter offer"
-msgstr ""
+msgstr "شما یک پیشنهاد شمارنده جدید دارید"
 
 #: src/components/notification/NotificationOffer.tsx:93
 msgid "You have a new offer"
@@ -5077,19 +5077,19 @@ msgstr "شما یک پیشنهاد جدید دارید"
 
 #: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:304
 msgid "You have coins/assets locked for your open offers thus the spendable balance is not sufficient for the amounts you are offering. You need to cancel open offers to unlock coins/asset for the new offer."
-msgstr ""
+msgstr "برای پیشنهادات باز خود ارز یا دارایی قفل شده‌ دارید، بنابراین موجودی قابل خرج کردن شما برای مبالغی که ارائه میدهید کافی نیست. برای باز کردن قفل سکه ها یا دارایی ها برای پیشنهاد جدید، باید پیشنهادات باز را لغو کنید."
 
 #: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:326
 msgid "You have open offers which lock the same assets as your new offer. You may want to cancel those offers if they are no longer needed."
-msgstr ""
+msgstr "شما پیشنهادات باز دارید که دارایی های مشابه پیشنهاد جدید شما را قفل میکند. ممکن است بخواهید آن پیشنهادها را که دیگر مورد نیاز نیستند لغو کنید."
 
 #: src/components/notification/utils.ts:106
 msgid "You have received a new counter offer"
-msgstr ""
+msgstr "شما یک پیشنهاد متقابل جدید دریافت کرده اید"
 
 #: src/components/notification/utils.ts:102
 msgid "You have received a new offer"
-msgstr ""
+msgstr "شما یک پیشنهاد جدید دریافت کرده اید"
 
 #: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:37
 msgid "You need {currencyCode} to join a pool."
@@ -5118,7 +5118,7 @@ msgstr "شما دریافت خواهید کرد <0/> به{address}"
 
 #: src/components/walletConnect/WalletConnectActiveSessions.tsx:56
 msgid "Your current version of the Chia application may not support some commands requested by the dApp. For the best experience, consider updating to the latest version."
-msgstr ""
+msgstr "نسخه فعلی برنامه چیا شما ممکن است برخی از دستورات درخواست شده توسط dApp را پشتیبانی نکند. برای بهترین تجربه، بروزرسانی به آخرین نسخه را در نظر بگیرید."
 
 #: src/components/farm/FarmHeader.tsx:21
 msgid "Your Farm Overview"
@@ -5160,9 +5160,9 @@ msgstr "نمای کلی استخر شما"
 
 #: src/components/settings/ProfileAdd.tsx:77
 msgid "Your spendable balance must be greater than 1 mojo to create a profile"
-msgstr ""
+msgstr "برای ایجاد حساب کاربری، موجودی قابل خرج شما باید بیشتر از 1 موجو باشد"
 
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
-msgstr ""
+msgstr "برای انجام مطالبه خودکار، باید کیف پول شما در حال اجرا باشد."
 
