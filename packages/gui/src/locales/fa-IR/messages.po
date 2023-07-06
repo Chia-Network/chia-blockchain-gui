@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-06 13:28\n"
+"PO-Revision-Date: 2023-07-06 17:36\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -3462,7 +3462,7 @@ msgstr "هش شواهد"
 
 #: src/constants/WalletConnectCommands.tsx:892
 msgid "Proofs Object (Key Value Pairs)"
-msgstr ""
+msgstr "شواهد اثبات (جفت مقادیر کلیدی)"
 
 #: src/components/nfts/NFTProperties.tsx:121
 msgid "Properties"
@@ -3558,7 +3558,7 @@ msgstr "از راه دور"
 
 #: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:358
 msgid "Remove Conflicting Offer"
-msgstr ""
+msgstr "پیشنهاد متناقض را بردارید"
 
 #: src/components/app/AppKeyringMigrator.tsx:246
 msgid "Remove keys from old keyring upon successful migration"
@@ -3573,7 +3573,7 @@ msgstr "حذف رمز ورود"
 #: src/components/vcs/VCCard.tsx:187
 #: src/components/vcs/VCCard.tsx:275
 msgid "Remove Verifiable Credential"
-msgstr ""
+msgstr "اعتبار قابل تأیید را بردارید"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:37
 msgid "Removing"
@@ -3595,79 +3595,79 @@ msgstr "در حال درخواست"
 
 #: src/constants/WalletConnectCommands.tsx:278
 msgid "Requests a complete listing of the offers associated with the current wallet key"
-msgstr ""
+msgstr "فهرست کاملی از پیشنهادات مرتبط با کلید کیف پول فعلی را درخواست میکند"
 
 #: src/constants/WalletConnectCommands.tsx:29
 msgid "Requests a complete listing of the wallets associated with the current wallet key"
-msgstr ""
+msgstr "فهرست کامل کیف پول های مرتبط با کلید کیف پول فعلی را درخواست میکند"
 
 #: src/constants/WalletConnectCommands.tsx:566
 msgid "Requests a full or paginated listing of NFTs associated with one or more wallets associated with the current wallet key"
-msgstr ""
+msgstr "فهرست کامل یا صفحه بندی شده ان اف تی های مرتبط با یک یا چند کیف پول مرتبط با کلید کیف پول فعلی را درخواست میکند"
 
 #: src/constants/WalletConnectCommands.tsx:244
 msgid "Requests a new receive address associated with the current wallet key"
-msgstr ""
+msgstr "یک آدرس دریافت جدید مرتبط با کلید کیف پول فعلی را درخواست میکند"
 
 #: src/constants/WalletConnectCommands.tsx:595
 msgid "Requests details for a specific NFT"
-msgstr ""
+msgstr "جزئیات یک ان اف تی خاص را درخواست میکند"
 
 #: src/constants/WalletConnectCommands.tsx:43
 msgid "Requests details for a specific transaction"
-msgstr ""
+msgstr "جزئیات را برای یک تراکنش خاص درخواست میکند"
 
 #: src/constants/WalletConnectCommands.tsx:57
 msgid "Requests the asset balance for a specific wallet associated with the current wallet key"
-msgstr ""
+msgstr "موجودی دارایی برای یک کیف پول خاص مرتبط با کلید کیف پول فعلی را درخواست میکند"
 
 #: src/constants/WalletConnectCommands.tsx:74
 msgid "Requests the asset balances for specific wallets associated with the current wallet key"
-msgstr ""
+msgstr "موجودی دارایی برای کیف پول های خاص مرتبط با کلید کیف پول فعلی را درخواست میکند"
 
 #: src/constants/WalletConnectCommands.tsx:497
 msgid "Requests the CAT asset ID for a specific CAT wallet"
-msgstr ""
+msgstr "شناسه دارایی CAT را برای یک کیف پول CAT خاص درخواست میکند"
 
 #: src/constants/WalletConnectCommands.tsx:91
 msgid "Requests the current receive address associated with the current wallet key"
-msgstr ""
+msgstr "آدرس دریافت فعلی مرتبط با کلید کیف پول فعلی را درخواست میکند"
 
 #: src/constants/WalletConnectCommands.tsx:450
 msgid "Requests the details for a specific offer"
-msgstr ""
+msgstr "جزئیات را برای یک پیشنهاد خاص درخواست میکند"
 
 #: src/constants/WalletConnectCommands.tsx:725
 msgid "Requests the number of NFTs associated with one or more wallets associated with the current wallet key"
-msgstr ""
+msgstr "تعداد ان اف تی های مرتبط با یک یا چند کیف پول مرتبط با کلید کیف پول فعلی را درخواست میکند"
 
 #: src/constants/WalletConnectCommands.tsx:323
 msgid "Requests the number of offers associated with the current wallet key"
-msgstr ""
+msgstr "تعداد پیشنهادهای مرتبط با کلید کیف پول فعلی را درخواست میکند"
 
 #: src/constants/WalletConnectCommands.tsx:435
 msgid "Requests the raw offer data for a specific offer"
-msgstr ""
+msgstr "داده های پیشنهاد خام برای یک پیشنهاد خاص را درخواست میکند"
 
 #: src/constants/WalletConnectCommands.tsx:421
 msgid "Requests the summarized details of a specific offer"
-msgstr ""
+msgstr "جزئیات خلاصه شده یک پیشنهاد خاص را درخواست میکند"
 
 #: src/constants/WalletConnectCommands.tsx:269
 msgid "Requests the syncing status of current wallet"
-msgstr ""
+msgstr "وضعیت سینک کیف پول فعلی را درخواست میکند"
 
 #: src/constants/WalletConnectCommands.tsx:386
 msgid "Requests the validity status of a specific offer"
-msgstr ""
+msgstr "وضعیت اعتبار یک پیشنهاد خاص را درخواست میکند"
 
 #: src/constants/WalletConnectCommands.tsx:208
 msgid "Requests the verification status for a digital signature"
-msgstr ""
+msgstr "وضعیت تأیید برای امضای دیجیتال را درخواست میکند"
 
 #: src/components/settings/SettingsIntegration.tsx:314
 msgid "Require Confirmation"
-msgstr ""
+msgstr "نیاز به تایید"
 
 #: src/components/offers/NFTOfferEditor.tsx:434
 #: src/components/offers/OfferEditor.tsx:171
@@ -3678,7 +3678,7 @@ msgstr "تنظیم مجدد"
 
 #: src/components/settings/SettingsIntegration.tsx:379
 msgid "Reset WalletConnect Permissions"
-msgstr ""
+msgstr "بازنشانی مجوزهای WalletConnect"
 
 #: src/components/nfts/NFTPreview.tsx:663
 #~ msgid "Response too large"
@@ -3686,11 +3686,11 @@ msgstr ""
 
 #: src/components/settings/SettingsIntegration.tsx:352
 msgid "Restore"
-msgstr ""
+msgstr "بازگرداندن"
 
 #: src/components/settings/SettingsIntegration.tsx:343
 msgid "Restore Default Dapp Permissions"
-msgstr ""
+msgstr "بازیابی مجوزهای پیش فرض Dapp"
 
 #: src/components/settings/SettingsAdvanced.tsx:102
 msgid "Resync"
@@ -3707,7 +3707,7 @@ msgstr "سینک مجدد، بارگذاری مجدد داده ها از بلا�
 
 #: src/constants/WalletConnectCommands.tsx:878
 msgid "Reuse Puzzle Hash"
-msgstr ""
+msgstr "استفاده مجدد از پازل هش"
 
 #: src/constants/WalletConnectCommands.tsx:302
 msgid "Reverse"
@@ -3717,11 +3717,11 @@ msgstr "برعکس"
 #: src/components/vcs/VCCard.tsx:288
 #: src/constants/WalletConnectCommands.tsx:911
 msgid "Revoke Verifiable Credential"
-msgstr ""
+msgstr "لغو اعتبار قابل تأیید"
 
 #: src/components/vcs/VCCard.tsx:142
 msgid "Revoked"
-msgstr ""
+msgstr "لغو شد"
 
 #: src/components/offers2/OfferBuilderNFTRoyalties.tsx:93
 msgid "Royalties are built into the NFT, so they will automatically be accounted for when the offer is created/accepted."
@@ -3729,7 +3729,7 @@ msgstr "حق امتیازها در ان اف تی تعبیه شده‌اند، �
 
 #: src/constants/WalletConnectCommands.tsx:618
 msgid "Royalty Address"
-msgstr ""
+msgstr "آدرس حق امتیاز"
 
 #: src/components/nfts/NFTDetails.tsx:159
 #: src/constants/WalletConnectCommands.tsx:624
