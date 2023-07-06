@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-05 21:40\n"
+"PO-Revision-Date: 2023-07-06 08:33\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -20,11 +20,11 @@ msgstr ""
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:61
 msgid "(>5 min)"
-msgstr ""
+msgstr "(> 5 دقیقه)"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:61
 msgid "(~{selectedTime} min)"
-msgstr ""
+msgstr "(~{selectedTime} دقیقه)"
 
 #: src/components/Amount/Amount.tsx:86
 msgid "{0, plural, one {mojo} other {mojos}}"
@@ -36,15 +36,15 @@ msgstr "{minPassphraseLength, plural,one {طول کارکتر رمز ورود ب
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:95
 msgid "A new version of Chia is available!"
-msgstr ""
+msgstr "نسخه جدید چیا در دسترس است!"
 
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:258
 msgid "Add Icon"
-msgstr ""
+msgstr "اصافه نمودن نماد"
 
 #: src/screens/SelectKey/SelectKey.tsx:172
 msgid "Add wallet"
-msgstr ""
+msgstr "اضافه نمودن کیف پول"
 
 #: src/components/Amount/Amount.tsx:36
 msgid "Amount"
@@ -72,19 +72,19 @@ msgstr "لغو"
 
 #: src/components/Settings/SettingsApp.tsx:139
 msgid "Check for updates"
-msgstr ""
+msgstr "بروز رسانی را بررسی کنید"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:93
 msgid "Checking for updates..."
-msgstr ""
+msgstr "بروز رسانی را بررسی کنید..."
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:82
 msgid "Chia {latestVersion} is currently the latest version available."
-msgstr ""
+msgstr "چیا {latestVersion} در حال حاضر آخرین نسخه موجود است."
 
 #: src/components/Settings/SettingsApp.tsx:125
 msgid "Chia Application Version:"
-msgstr ""
+msgstr "نسخه برنامه چیا:"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:110
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:47
@@ -110,15 +110,15 @@ msgstr "کپی در حافظه"
 
 #: src/screens/SelectKey/SelectKey.tsx:270
 msgid "Create a new wallet key"
-msgstr ""
+msgstr "ایجاد یک کلید کیف پول جدید"
 
 #: src/screens/SelectKey/SelectKey.tsx:262
 msgid "Create a new wallet key to get started with Chia."
-msgstr ""
+msgstr "برای شروع کار با چیا یک کلید کیف پول جدید ایجاد کنید."
 
 #: src/screens/SelectKey/SelectKey.tsx:175
 msgid "Create New"
-msgstr ""
+msgstr "ایجاد جدید"
 
 #: src/components/Settings/SettingsApp.tsx:110
 msgid "Dark"
@@ -136,7 +136,7 @@ msgstr "حذف تمامی کلید ها"
 
 #: src/screens/SelectKey/SelectKey.tsx:200
 msgid "Delete All Keys"
-msgstr ""
+msgstr "حذف تمامی کلید ها"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:96
 msgid "Delete key {fingerprint}"
@@ -166,7 +166,7 @@ msgstr "لغو"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:183
 msgid "Download"
-msgstr ""
+msgstr "دخیره"
 
 #: src/components/CardSimple/CardSimple.tsx:52
 #: src/hooks/useShowError.tsx:13
@@ -213,7 +213,7 @@ msgstr "پرسش ها و پاسخ های متداول"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:121
 msgid "Go To Download Page"
-msgstr ""
+msgstr "به صفحه ذخیره بروید"
 
 #: src/components/Settings/SettingsApp.tsx:147
 msgid "Help"
