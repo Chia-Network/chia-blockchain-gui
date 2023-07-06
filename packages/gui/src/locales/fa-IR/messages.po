@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-06 09:36\n"
+"PO-Revision-Date: 2023-07-06 10:31\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -271,7 +271,7 @@ msgstr "+ جدید NFT اضافه کردن پلات"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:300
 msgid "<0>Loading...</0> {0}%"
-msgstr ""
+msgstr "<0>درحال بارگزاری...</0>{0}%"
 
 #: src/components/settings/ProfileAdd.tsx:80
 #~ msgid "<0>Need some XCH?</0>"
@@ -279,7 +279,7 @@ msgstr ""
 
 #: src/components/nfts/gallery/NFTGallery.tsx:290
 msgid "<0>Showing</0> {0} <1>of</1> {1}  <2>items</2>"
-msgstr ""
+msgstr "<0>نمایش</0>{0}<1>از</1>{1}<2>موارد</2>"
 
 #: src/components/settings/ProfileAdd.tsx:92
 #~ msgid "<0>Use one (1) mojo to create a Profile.</0>"
@@ -291,7 +291,7 @@ msgstr "برداشت کننده سرویسی است بر روی سیستمی ک�
 
 #: src/components/settings/SettingsProfiles.tsx:53
 msgid "A profile is a decentralized identifier (DID) that you can prove control and ownership of without having to rely on any centralized authority."
-msgstr ""
+msgstr "یک کاربر شناسه غیرمتمرکز (DID) که با آن میتوانید مالکیت و کنترل آنرا بدون تکیه به هیچ مرجع متمرکز ثابت کنید."
 
 #: src/components/settings/SettingsDataLayer.tsx:79
 msgid "A reference server that enables creating mirrored copies of DataLayer."
@@ -384,15 +384,15 @@ msgstr "اضافه کردن پلات به صف"
 
 #: src/constants/WalletConnectCommands.tsx:885
 msgid "Add Proofs"
-msgstr ""
+msgstr "شواهد اضافه کنید"
 
 #: src/constants/WalletConnectCommands.tsx:844
 msgid "Add Proofs To Verifiable Credential"
-msgstr ""
+msgstr "اضافه کردن شواهد به اعتبارنامه قابل تأیید"
 
 #: src/components/vcs/VCList.tsx:216
 msgid "Add Verifiable Credential from file"
-msgstr ""
+msgstr "اعتبار قابل تأیید را از فایل اضافه کنید"
 
 #: src/components/notification/NotificationSendDialog.tsx:219
 #: src/components/signVerify/SigningEntityWalletAddress.tsx:45
@@ -434,7 +434,7 @@ msgstr "به دارنده ان اف تی اجازه دهید یک پیشنهاد
 
 #: src/components/notification/NotificationSendDialog.tsx:286
 msgid "Allow the recipient to send a counter offer"
-msgstr ""
+msgstr "به گیرنده اجازه دهید یک پیشنهاد متقابل ارسال کند"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:418
 msgid "Alternate bucket writing"
@@ -446,11 +446,11 @@ msgstr "جایگزین tmpdir/tmpdir2"
 
 #: src/components/settings/SettingsIntegration.tsx:308
 msgid "Always Allow"
-msgstr ""
+msgstr "همیشه اجازه دهید"
 
 #: src/components/settings/SettingsIntegration.tsx:311
 msgid "Always Reject"
-msgstr ""
+msgstr "همیشه رد کنید"
 
 #: src/components/offers/NFTOfferEditor.tsx:231
 #: src/components/offers/OfferEditorConditionsPanel.tsx:128
@@ -478,7 +478,7 @@ msgstr "مبلغ از موجودی قابل خرج کردن بیشتر است"
 
 #: src/util/offerBuilderDataToOffer.ts:241
 msgid "Amount exceeds total balance for {catName} token"
-msgstr ""
+msgstr "مقدار از کل موجودی برای توکن {catName} بیشتر است"
 
 #: src/util/offerBuilderDataToOffer.ts:59
 #~ msgid "Amount exceeds XCH spendable balance"
@@ -486,7 +486,7 @@ msgstr ""
 
 #: src/util/offerBuilderDataToOffer.ts:173
 msgid "Amount exceeds XCH total balance"
-msgstr ""
+msgstr "مقدار از موجودی کل XCH بیشتر است"
 
 #: src/components/offers/NFTOfferPreview.tsx:137
 #: src/components/offers2/OfferBuilderNFTProvenance.tsx:23
@@ -495,11 +495,11 @@ msgstr "منشأ یک ان اف تی رکورد کامل از تاریخچه م�
 
 #: src/components/notification/NotificationAnnouncementDialog.tsx:35
 msgid "Announcement"
-msgstr ""
+msgstr "اعلامیه"
 
 #: src/components/settings/SettingsIntegration.tsx:212
 msgid "App Permissions"
-msgstr ""
+msgstr "مجوزهای برنامه"
 
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:121
 #: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:91
@@ -1968,7 +1968,7 @@ msgstr "پنهان شده"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:385
 msgid "Hidden  <0/>"
-msgstr ""
+msgstr "پنهان شده <0/>"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:573
 #~ msgid "Hidden ({0})"
@@ -2058,7 +2058,7 @@ msgstr "شامل پیشنهادات گرفته شده"
 
 #: src/constants/WalletConnectCommands.tsx:36
 msgid "Include Wallet Metadata"
-msgstr ""
+msgstr "شامل کیف پول Metadata"
 
 #: src/components/offers/NFTOfferEditor.tsx:86
 #: src/components/offers/OfferEditorConditionsPanel.tsx:392
@@ -2105,7 +2105,7 @@ msgstr "بی اعتبار"
 
 #: src/components/nfts/NFTHashStatus.tsx:80
 msgid "Invalid hash"
-msgstr ""
+msgstr "هش نامعتبر"
 
 #: src/components/nfts/NFTPreview.tsx:653
 #~ msgid "Invalid metadata url"
@@ -2129,15 +2129,15 @@ msgstr "آی پی آدرس / میزبان"
 
 #: src/constants/WalletConnectCommands.tsx:954
 msgid "Is notification visible to all paired fingerprints"
-msgstr ""
+msgstr "آیا اعلان برای همه کدهای شخصی جفتی قابل مشاهده است"
 
 #: src/components/vcs/VCCard.tsx:133
 msgid "Issued"
-msgstr ""
+msgstr "صادر شده"
 
 #: src/components/vcs/VCCard.tsx:108
 msgid "Issuer DID"
-msgstr ""
+msgstr "صادرکننده شناسه غیرمتمرکز"
 
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:66
 msgid "It is a one-time login link that can be used to log in to a pool's website. It contains a signature using the farmer's key from the plot NFT. Not all pools support this feature."
@@ -2189,7 +2189,7 @@ msgstr "کلید"
 
 #: src/components/settings/SettingsIntegration.tsx:182
 msgid "Key Switching"
-msgstr ""
+msgstr "تغییر کلید"
 
 #: src/components/offers/OfferShareDialog.tsx:1086
 #~ msgid "Keybase command failed {e}. If you haven't installed Keybase, you can download from https://keybase.io"
@@ -2210,7 +2210,7 @@ msgstr "KiB بالا/پایین"
 
 #: src/components/vcs/VCList.tsx:290
 msgid "KYC status"
-msgstr ""
+msgstr "وضعیت شناختن مشتری KYC"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:45
 msgid "Last Attempted Proof"
@@ -2241,7 +2241,7 @@ msgstr "شناسه لانچر"
 
 #: src/components/plot/add/PlotAddNFT.tsx:76
 msgid "Learn more"
-msgstr ""
+msgstr "بیشتر بدانید"
 
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:75
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:101
@@ -2267,7 +2267,7 @@ msgstr "مجوز هش"
 
 #: src/constants/WalletConnectCommands.tsx:657
 msgid "License Uris"
-msgstr ""
+msgstr "مجوز Uris"
 
 #: src/components/nfts/NFTDetails.tsx:280
 msgid "License URL {0}"
@@ -2329,7 +2329,7 @@ msgstr "پوشه محلی"
 
 #: src/components/offers2/CancelOfferList.tsx:110
 msgid "Locked"
-msgstr ""
+msgstr "قفل شده است"
 
 #: src/constants/WalletConnectCommands.tsx:15
 msgid "Log In"
@@ -2349,7 +2349,7 @@ msgstr "نحوه و مکان ذخیره فایل ها در این رایانه �
 
 #: src/components/settings/SettingsIntegration.tsx:218
 msgid "Manage permissions for your WalletConnect apps."
-msgstr ""
+msgstr "مجوزها را برای برنامه های WalletConnect خود مدیریت کنید."
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:94
 msgid "Manage Your Farming Rewards Target Addresses"
@@ -2357,7 +2357,7 @@ msgstr "آدرس های مقصد پاداش فارم خود را مدیریت ک
 
 #: src/components/vcs/VCList.tsx:294
 msgid "Memberships"
-msgstr ""
+msgstr "عضویت ها"
 
 #: src/constants/WalletConnectCommands.tsx:138
 #: src/constants/WalletConnectCommands.tsx:538
@@ -2376,15 +2376,15 @@ msgstr "پیام"
 
 #: src/components/notification/utils.ts:115
 msgid "Message not available"
-msgstr ""
+msgstr "پیام موجود نیست"
 
 #: src/constants/WalletConnectCommands.tsx:651
 msgid "Meta Hash"
-msgstr ""
+msgstr "هش داده"
 
 #: src/constants/WalletConnectCommands.tsx:646
 msgid "Meta Uris"
-msgstr ""
+msgstr "داده Uris"
 
 #: src/components/nfts/NFTDetails.tsx:265
 msgid "Metadata Hash"
@@ -2424,7 +2424,7 @@ msgstr "حداقل سختی"
 
 #: src/constants/WalletConnectCommands.tsx:608
 msgid "Mint NFT"
-msgstr ""
+msgstr "ثبت ان اف تی"
 
 #: src/components/nfts/NFTDetails.tsx:213
 msgid "Minted at Block Height"
@@ -2497,7 +2497,7 @@ msgstr "نام"
 
 #: src/components/settings/ProfileAdd.tsx:121
 msgid "Need some {currencyCode}?"
-msgstr ""
+msgstr "به مقداری {currencyCode} نیاز دارید؟"
 
 #: src/components/offers/NFTOfferViewer.tsx:580
 msgid "Net Proceeds"
@@ -2517,11 +2517,11 @@ msgstr "آدرس جدید"
 
 #: src/components/notification/utils.ts:105
 msgid "New counter offer"
-msgstr ""
+msgstr "پیشنهاد شمارنده جدید"
 
 #: src/components/notification/utils.ts:101
 msgid "New offer"
-msgstr ""
+msgstr "پیشنهاد جدید"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:210
 msgid "New Passphrase"
@@ -2529,11 +2529,11 @@ msgstr "رمز ورود جدید"
 
 #: src/constants/WalletConnectCommands.tsx:862
 msgid "New Proof Hash"
-msgstr ""
+msgstr "هش اثبات جدید"
 
 #: src/constants/WalletConnectCommands.tsx:856
 msgid "New Puzzle Hash"
-msgstr ""
+msgstr "هش پازل جدید"
 
 #: src/components/block/Block.jsx:259
 #: src/components/nfts/detail/NFTDetailV2.tsx:130
@@ -2563,7 +2563,7 @@ msgstr "شناسه ارز ان اف تی"
 #: src/constants/WalletConnectCommands.tsx:705
 #: src/constants/WalletConnectCommands.tsx:802
 msgid "NFT Coin Ids"
-msgstr ""
+msgstr "شناسه ارز ان اف تی"
 
 #: src/components/offers/NFTOfferEditor.tsx:616
 msgid "NFT details not available"
@@ -2593,7 +2593,7 @@ msgstr "شناسه ان اف تی به یک ارز ان اف تی معتبر ا�
 
 #: src/constants/WalletConnectCommands.tsx:797
 msgid "NFT Launcher Id"
-msgstr ""
+msgstr "شناسه لانچر ان اف تی"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:206
 msgid "NFT Move Failed"
@@ -2656,7 +2656,7 @@ msgstr "هیچ کیف پول CAT برای توکن {assetId} یافت نشد"
 
 #: src/components/settings/SettingsIntegration.tsx:258
 msgid "No connected applications"
-msgstr ""
+msgstr "هیچ برنامه متصلی وجود ندارد"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:397
 msgid "No CPU Affinity"
@@ -2668,7 +2668,7 @@ msgstr "پیشنهاد فعلی وجود ندارد"
 
 #: src/components/settings/SettingsIntegration.tsx:331
 msgid "No Custom Permissions"
-msgstr ""
+msgstr "بدون مجوزهای سفارشی"
 
 #: src/components/nfts/NFTPreview.tsx:436
 msgid "No file available"
@@ -2711,7 +2711,7 @@ msgstr "هیچ یک"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:390
 msgid "None (0)"
-msgstr ""
+msgstr "هیچ (0)"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:67
 msgid "None of your plots have passed the plot filter yet."
@@ -2746,7 +2746,7 @@ msgstr "اعلان با موفقیت به نود کامل منتقل شد و د�
 
 #: src/components/notification/NotificationSendDialog.tsx:213
 msgid "Notification recipient's address"
-msgstr ""
+msgstr "آدرس گیرنده اعلان"
 
 #: src/components/settings/SettingsNotifications.tsx:30
 msgid "Notifications"
@@ -2760,7 +2760,7 @@ msgstr "اطلاع به مالک فعلی"
 
 #: src/constants/WalletConnectCommands.tsx:763
 msgid "Number of Backup Ids Needed"
-msgstr ""
+msgstr "تعداد شناسه های پشتیبان مورد نیاز"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:168
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:181
@@ -2773,7 +2773,7 @@ msgstr "تعداد باکت ها دز فاز های 3 و 4"
 
 #: src/constants/WalletConnectCommands.tsx:580
 msgid "Number of NFTs"
-msgstr ""
+msgstr "تعداد ان اف تی ها"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:105
 #: src/components/plotNFT/PlotNFTCard.tsx:138
@@ -2806,7 +2806,7 @@ msgstr "تعداد رشته ها برای فاز 3"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:360
 msgid "Objectionable Content"
-msgstr ""
+msgstr "موارد قابل اعتراض"
 
 #: src/components/settings/SettingsNFT.tsx:148
 msgid "Occupied space"
@@ -2837,7 +2837,7 @@ msgstr "اطلاعات پیشنهاد"
 
 #: src/components/offers2/OfferBuilderViewerDialog.tsx:53
 msgid "Offer Details"
-msgstr ""
+msgstr "جزئیات پیشنهاد"
 
 #: src/components/offers2/OfferBuilderImport.tsx:77
 msgid "Offer file is too large (> 1MB)"
@@ -2946,11 +2946,11 @@ msgstr "بازکردن لینک"
 
 #: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:311
 msgid "Open offers required to be canceled to refill spendable amount"
-msgstr ""
+msgstr "برای بازیابی موجودی قابل مصرف، پیشنهادهای باز باید لغو شوند"
 
 #: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:333
 msgid "Open offers which lock the same assets as the new offer"
-msgstr ""
+msgstr "پیشنهادهایی را باز کنید که دارایی‌های مشابه پیشنهاد جدید را قفل می‌کنند"
 
 #: src/components/offers2/OfferBuilderFeeSection.tsx:54
 msgid "Optional network fee to expedite acceptance of your offer"
@@ -3019,7 +3019,7 @@ msgstr "کلید جفت شده"
 
 #: src/constants/WalletConnectCommands.tsx:918
 msgid "Parent Coin Info"
-msgstr ""
+msgstr "اطلاعات ارز مادر"
 
 #: src/components/app/AppKeyringMigrator.tsx:146
 #: src/components/app/AppKeyringMigrator.tsx:147
@@ -3097,7 +3097,7 @@ msgstr "در انتظار تایید"
 
 #: src/components/vcs/VCCard.tsx:165
 msgid "Pending removal"
-msgstr ""
+msgstr "در انتظار حذف"
 
 #: src/hooks/useOpenUnsafeLink.tsx:38
 msgid "Please check the following link to verify the site you are going to visit. Proceed at your own risk."
@@ -3131,7 +3131,7 @@ msgstr "لطفاً مبلغی را برای توکن {0} وارد کنید"
 
 #: src/util/offerBuilderDataToOffer.ts:228
 msgid "Please enter an amount for {catName} token"
-msgstr ""
+msgstr "لطفاً مبلغی را برای توکن {catName} وارد کنید"
 
 #: src/components/offers/OfferEditor.tsx:106
 msgid "Please enter an amount for each row"
@@ -3247,7 +3247,7 @@ msgstr "اندازه پلات"
 
 #: src/components/plot/add/PlotAddNFT.tsx:56
 msgid "Plot to a Plot NFT"
-msgstr ""
+msgstr "پلات برای یک پلاتNFT"
 
 #: src/components/plotNFT/PlotNFTState.tsx:44
 msgid "PlotNFT is transitioning to (target state). This can take a while. Please do not close the application until this is finalized."
@@ -3297,7 +3297,7 @@ msgstr "مدیریت پلات سازی"
 
 #: src/components/plot/add/PlotAddNFT.tsx:69
 msgid "Plotting to a Plot NFT allows you the flexibility to join a pool or solo farm. You can easily switch between different pools or solo farming at any time. If you choose not to plot to a Plot NFT, you will need to replot in order to join any of the standard pools."
-msgstr ""
+msgstr "پلات سازی برای پلاتNFT به شما این امکان را میدهد که به یک استخر یا فارم شخصی بپیوندید. شما براحتی میتوانید در هر زمان بین استخرهای مختلف یا فارم شخصی جابجا شوید. اگر تصمیم گرفتید که پلات برای پلاتNFT استفاده نشود، برای پیوستن به هر یک از استخرهای استاندارد، باید پلات جدید بسازید."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:326
 msgid "Plotting with bitfield enabled has about 30% less overall writes and is now almost always faster. You may see reduced memory requirements with bitfield plotting disabled. If your CPU design is from before 2010 you may have to disable bitfield plotting."
