@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-06 10:31\n"
+"PO-Revision-Date: 2023-07-06 11:28\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -3297,7 +3297,7 @@ msgstr "مدیریت پلات سازی"
 
 #: src/components/plot/add/PlotAddNFT.tsx:69
 msgid "Plotting to a Plot NFT allows you the flexibility to join a pool or solo farm. You can easily switch between different pools or solo farming at any time. If you choose not to plot to a Plot NFT, you will need to replot in order to join any of the standard pools."
-msgstr "پلات سازی برای پلاتNFT به شما این امکان را میدهد که به یک استخر یا فارم شخصی بپیوندید. شما براحتی میتوانید در هر زمان بین استخرهای مختلف یا فارم شخصی جابجا شوید. اگر تصمیم گرفتید که پلات برای پلاتNFT استفاده نشود، برای پیوستن به هر یک از استخرهای استاندارد، باید پلات جدید بسازید."
+msgstr "ساختن یک پلاتNFT به شما این امکان را میدهدکه به یک استخر یا فارم شخصی بپیوندید. شما براحتی میتوانید استخر را عوض کنیدیا هر زمان که بخواهید به فارم شخصی بروید. اگر تصمیم گرفتید که یک پلات برای پلاتNFT استفاده نشود، برای پیوستن به هر یک از استخرهای استاندارد باید پلات جدید بسازید."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:326
 msgid "Plotting with bitfield enabled has about 30% less overall writes and is now almost always faster. You may see reduced memory requirements with bitfield plotting disabled. If your CPU design is from before 2010 you may have to disable bitfield plotting."
@@ -3425,7 +3425,7 @@ msgstr "عنوان هش قبلی"
 
 #: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:359
 msgid "Proceed"
-msgstr ""
+msgstr "ادامه دهید"
 
 #: src/components/settings/ProfileView.tsx:57
 msgid "Profile Name"
@@ -3433,7 +3433,7 @@ msgstr "نام حساب کاربر"
 
 #: src/components/settings/ProfileAdd.tsx:142
 msgid "Profile Name (Optional)"
-msgstr ""
+msgstr "نام کاربر(اختیاری)"
 
 #: src/components/settings/Settings.tsx:66
 #: src/components/settings/SettingsProfiles.tsx:55
@@ -3442,7 +3442,7 @@ msgstr ""
 
 #: src/components/settings/SettingsProfiles.tsx:50
 msgid "Profiles (DIDs)"
-msgstr ""
+msgstr "کاربرهای شناسه غیرمتمرکز (DIDs)"
 
 #: src/components/block/Block.jsx:202
 msgid "Proof of Space Size"
@@ -3450,7 +3450,7 @@ msgstr "اندازه اثبات فضا"
 
 #: src/components/vcs/VCCard.tsx:153
 msgid "Proofs"
-msgstr ""
+msgstr "شواهد"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:25
 msgid "Proofs Found"
@@ -3458,7 +3458,7 @@ msgstr "شواهد پیدا شد"
 
 #: src/constants/WalletConnectCommands.tsx:905
 msgid "Proofs Hash"
-msgstr ""
+msgstr "هش شواهد"
 
 #: src/constants/WalletConnectCommands.tsx:892
 msgid "Proofs Object (Key Value Pairs)"
@@ -3478,7 +3478,7 @@ msgstr "با استفاده از امضاء دیجیتال، داشتن آدرس
 
 #: src/constants/WalletConnectCommands.tsx:867
 msgid "Provider Inner Puzzle Hash"
-msgstr ""
+msgstr "ارائه دهنده پازل هش Inner"
 
 #: src/components/signVerify/VerifyMessage.tsx:219
 #: src/constants/WalletConnectCommands.tsx:219
@@ -3512,11 +3512,11 @@ msgstr "رتبه بندی"
 
 #: src/components/settings/SettingsNotifications.tsx:123
 msgid "Receive general announcement notifications from connected Dapps"
-msgstr ""
+msgstr "اعلان‌های عمومی را از Dapps متصل دریافت کنید"
 
 #: src/components/settings/SettingsNotifications.tsx:94
 msgid "Receive offer notifications from connected Dapps"
-msgstr ""
+msgstr "اعلان‌های پیشنهاد را از Dapps متصل دریافت کنید"
 
 #: src/components/settings/SettingsNotifications.tsx:69
 msgid "Receive push notifications when your wallet is minimized"
@@ -4212,12 +4212,12 @@ msgstr "پوشه در دیسک حافظه"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:77
 msgid "The full node that your farmer is connected to is below. <0>Learn more</0>"
-msgstr "گره کاملی که مزرعه شما به آن متصل است. <0>اطلاعات بیشتر</0>"
+msgstr "نودکاملی که فارم شما که آن متصل شده در زیر آمده است. <0>بیشتر بیاموزید</0>"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:46
 #: src/components/plot/add/PlotAddChooseSize.tsx:98
 msgid "The minimum required size for mainnet is k=32"
-msgstr "حداقل اندازه مورد نیاز برای شبکه اصلی k = 32 است"
+msgstr "حداقل اندازه مورد نیاز برای شبکه اصلی k=32 است"
 
 #: src/components/offers/NFTOfferViewer.tsx:584
 msgid "The net proceeds include the asking price, minus any associated creator fees (if the NFT has royalty payments enabled)."
@@ -4249,12 +4249,12 @@ msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:173
 msgid "The NFT transfer transaction has been successfully submitted to the blockchain."
-msgstr "تراکنش انتقال NFT با موفقیت به بلاکچین ارسال شد."
+msgstr "تراکنش انتقال ان اف تی با موفقیت به بلاکچین ارسال شد."
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:16
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:46
 msgid "The node is not synced"
-msgstr "گره همگام سازی نشده"
+msgstr "نود سینک نشده"
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:35
 msgid "The node is syncing, which means it is downloading blocks from other nodes, to reach the latest block in the chain"
@@ -4274,7 +4274,7 @@ msgstr "آدرس سایت استخر \"{normalizedUrl}\" کار نمیکند. م
 
 #: src/hooks/usePoolInfo.ts:43
 msgid "The pool URL is not valid. {normalizedUrl}"
-msgstr "ادرس استخر استخراج معین شده معتبر نیست. {normalizedUrl}"
+msgstr "آدرس سایت استخر معتبر نیست. {normalizedUrl}"
 
 #: src/hooks/usePoolInfo.ts:40
 msgid "The pool URL needs to use protocol https. {normalizedUrl}"
@@ -4282,7 +4282,7 @@ msgstr "آدرس سایت استخر باید از پروتکل https استفا
 
 #: src/components/block/Block.jsx:224
 msgid "The seed used to create the plot. This depends on the pool pk and plot pk."
-msgstr "بذر مورد استفاده برای ایجاد پلات. این به pk استخر و pk پلات بستگی دارد."
+msgstr "کلمات رمز برای ایجاد پلات استفاده شد. این بستگی به کلید عمومی استخر و کلید عمومی پلات دارد."
 
 #: src/components/signVerify/VerifyMessage.tsx:135
 msgid "The signature was made by the private key associated with the wallet address. The signer can be assumed to be the owner of the private key."
@@ -4310,11 +4310,11 @@ msgstr "تعداد کل VDF (تابع تأخیر قابل تأیید) یا تک�
 
 #: src/components/block/Block.jsx:198
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on this block."
-msgstr "تعداد کل VDF (عملکرد تأخیری قابل تأیید) یا اثبات تکرار زمان در این بلوک."
+msgstr "تعداد کل VDF (عملکرد تأخیری قابل تأیید) یا اثبات تکرار زمان در این بلاک."
 
 #: src/components/block/Block.jsx:241
 msgid "The total transactions fees in this block. Rewarded to the farmer."
-msgstr "کل کارمزد های تراکنش ها در این بلوک. به مزرعه دار پاداش داده شده."
+msgstr "کل کارمزدهای تراکنش ها در این بلاک. به فارم کننده پاداش داده میشود."
 
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:91
 msgid "These are the instructions for how the farmer wants to get paid. By default this will be an XCH address, but it can be set to any string with a size of less than 1024 characters, so it can represent another blockchain or payment system identifier."
@@ -4330,20 +4330,20 @@ msgstr "دریافت خواهند کرد"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:87
 msgid "This allows you to add a directory that has plots in it. If you have not created any plots, go to the plotting screen."
-msgstr "این به شما اجازه میدهد تا مسر پوشه را اضافه کنید که دارای پلاتهایی در آن است. اگر هیچ پلاتی ایجاد نکرده اید، به صفحه ساختن پلات بروید."
+msgstr "این به شما اجازه میدهد تا مسیر پوشه ای که پلاتهایی در آن است را اضافه کنید. اگر هیچ پلاتی ایجاد نکرده اید، به صفحه ساختن پلات بروید."
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:113
 #: src/components/plotNFT/PlotNFTCard.tsx:146
 msgid "This difficulty is an artifically lower difficulty than on the real network, and is used when farming, in order to find more proofs and send them to the pool. The more plots you have, the higher difficulty you will have. However, the difficulty does not affect rewards."
-msgstr "این سختی مصنوعی نسبت به شبکه واقعی کمتر است و هنگام فارم استفاده میشود تا شاهدهای بیشتری پیدا کرده و آنها را به استخر ارسال کند. هرچه پلات های بیشتری داشته باشید، دشواری بیشتری خواهید داشت. با این حال، دشواری بر پاداش ها تأثیر نمی گذارد."
+msgstr "این سختی مصنوعی نسبت به شبکه واقعی کمتر است و هنگام فارم استفاده میشود تا شاهدهای بیشتری پیدا کرده و آنها را به استخر ارسال کند. هرچه پلات های بیشتری داشته باشید، دشواری بیشتری خواهید داشت. با این حال، دشواری بر پاداش ها تأثیر نمیگذارد."
 
 #: src/hooks/useSelectDirectory.tsx:36
 msgid "This feature is available only from the GUI."
-msgstr "این ویژگی تنها در نسخه داری واسط گرافیکی در دسترس است."
+msgstr "این ویژگی فقط در نسخه گرافیکی برنامه در دسترس است."
 
 #: src/components/block/Block.jsx:162
 msgid "This is the time the block was created by the farmer, which is before it is finalized with a proof of time"
-msgstr "این مدت زمان صرف شده برای ساخت بلوک توسط مزرعه دار است،که قبلا با توجه به زمان سپری شده به انتها رسیده است"
+msgstr "این زمان زمانی است که بلاک توسط فارم کننده ایجاد شده، بنابراین این زمان زودتر از زمانی خواهد بود که در نهایت توسط مکانیزم تایید زمانی تایید شد"
 
 #: src/components/fullNode/card/FullNodeCardPeakTime.tsx:17
 msgid "This is the timestamp of the most recent transaction block."
@@ -4361,7 +4361,7 @@ msgstr "این تعداد کل امتیازهایی است که فارم شما 
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:52
 msgid "This node is fully caught up and validating the network"
-msgstr "این گره کاملا درگیر و در حال اعتبار سنجی شبکه است"
+msgstr "این نود به طور کامل با نودهای اطراف ارتباط پیدا کرده و اعتبارسنجی را در شبکه انجام میدهد"
 
 #: src/components/offers/NFTOfferViewer.tsx:213
 #: src/components/offers/OfferSummary.tsx:182
@@ -4393,8 +4393,7 @@ msgstr "این پلاتNFT به کلید دیگری اختصاص داده شده
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:48
 msgid "This table shows you the last time your farm attempted to win a block challenge. <0>Learn more</0>"
-msgstr "این جدول آخرین زمانی را به شما نشان میدهد که مزرعه شما تلاشی برای برنده شدن در چالش و پردازش یک بلوک کرده است.\n"
-"<0>بیشتر بدانید</0>"
+msgstr "این جدول به شما نشان میدهد که آخرین بار چه زمانی فارم شما در چالش فارم یک بلاک برنده شد. <0>بیشتر بدانید</0>"
 
 #: src/components/settings/SettingsIntegration.tsx:398
 msgid "This will reset all previously granted permissions across all Dapps that have been connected to. After resetting you will be asked to grant permission again."
@@ -4517,7 +4516,7 @@ msgstr "معاملع توکن ها"
 
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:59
 msgid "Transaction auto claim fee"
-msgstr ""
+msgstr "کارمزد برداشت خودکار تراکنش"
 
 #: src/components/notification/NotificationSendDialog.tsx:260
 msgid "Transaction Fee"
@@ -4529,11 +4528,11 @@ msgstr "شناسه تراکنش"
 
 #: src/components/settings/SettingsCustody.tsx:27
 msgid "Transaction protection"
-msgstr ""
+msgstr "حفاظت از تراکنش"
 
 #: src/components/vcs/VCCard.tsx:240
 msgid "Transaction sent to blockchain successfully."
-msgstr ""
+msgstr "تراکنش با موفقیت به بلاکچین ارسال شد."
 
 #: src/components/offers2/OfferBuilderFeeSection.tsx:66
 msgid "Transaction Speed"
@@ -4545,7 +4544,7 @@ msgstr "هش فیلتر معاملات"
 
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:127
 msgid "Transactions less than the fee will not be auto claimed."
-msgstr ""
+msgstr "تراکنش های کمتر از کارمزد به صورت خودکار برداشته نمیشود."
 
 #: src/components/nfts/NFTTransferAction.tsx:170
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:37
@@ -4560,15 +4559,15 @@ msgstr "انتقال ان اف تی"
 
 #: src/components/settings/SettingsNotifications.tsx:61
 msgid "Turn on/off the ability to process and display notifications."
-msgstr ""
+msgstr "قابلیت پردازش و نمایش اعلان ها را روشن/خاموش کنید."
 
 #: src/components/settings/SettingsNotifications.tsx:140
 msgid "Turn on/off the ability to receive general announcements and updates from any Dapp connected to your wallet. This allows you to stay informed about new features and important updates directly from the Dapps you use."
-msgstr ""
+msgstr "قابلیت دریافت اعلان‌ها و بروزرسانی‌های عمومی را از هر Dapp متصل به کیف پول خود روشن/خاموش کنید. این به شما امکان اطلاع از ویژگی های جدید و بروز رسانی های مهم Dappهایی که استفاده میکنید را میدهد."
 
 #: src/components/settings/SettingsNotifications.tsx:111
 msgid "Turn on/off the ability to receive notifications about new offers from Dapps connected to your wallet. By turning this on, you stay informed about the latest offers and opportunities brought forth by your trusted Dapps, ensuring you never miss out on a potential deal."
-msgstr ""
+msgstr "قابلیت دریافت اعلان‌های پیشنهادات جدید از Dapps متصل به کیف پول خود را روشن/خاموش کنید. با روشن کردن این گزینه، از آخرین پیشنهادات و فرصت‌های ارائه شده توسط Dapps مورد اعتماد خود مطلع شده و مطمئن میشوید که هرگز یک معامله بالقوه را از دست نمیدهید."
 
 #: src/components/settings/SettingsNotifications.tsx:86
 msgid "Turn on/off the ability to show you notifications on the desktop."
@@ -4576,7 +4575,7 @@ msgstr "قابلیت نمایش اعلان‌ها را روی صفحه فعال 
 
 #: src/components/settings/SettingsNotifications.tsx:168
 msgid "Turn on/off the automatic display of the sharing options panel after creating a new offer."
-msgstr ""
+msgstr "پس از ایجاد یک پیشنهاد جدید، نمایش خودکار قاب گزینه های اشتراک گذاری را روشن/خاموش کنید."
 
 #: src/components/settings/SettingsDataLayer.tsx:51
 msgid "Turn on/off the DataLayer service."
@@ -4585,7 +4584,7 @@ msgstr "سرویس لایه داده را فعال یا غیرفعال کنید.
 #: src/components/vcs/VCCard.tsx:137
 #: src/constants/WalletConnectCommands.tsx:931
 msgid "Type"
-msgstr ""
+msgstr "نوع"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:550
 #~ msgid "Types ({0}/{1})"
@@ -4593,7 +4592,7 @@ msgstr ""
 
 #: src/components/nfts/gallery/NFTGallery.tsx:323
 msgid "Types{0}"
-msgstr ""
+msgstr "انواع{0}"
 
 #: src/components/offers/NFTOfferEditor.tsx:632
 msgid "Unable to create an offer for an NFT that you do not own."
