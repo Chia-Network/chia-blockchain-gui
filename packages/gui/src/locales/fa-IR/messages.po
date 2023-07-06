@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-06 17:36\n"
+"PO-Revision-Date: 2023-07-06 18:41\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1930,7 +1930,7 @@ msgstr "هش"
 
 #: src/components/nfts/NFTHashStatus.tsx:73
 msgid "Hash matches"
-msgstr ""
+msgstr "مسابقات هش"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:184
 #~ msgid "Hash mismatch."
@@ -3491,7 +3491,7 @@ msgstr "خلاصه خرید"
 
 #: src/constants/WalletConnectCommands.tsx:145
 msgid "Puzzle Decorator"
-msgstr ""
+msgstr "دکوراتور پازل"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:216
 #: src/components/plot/PlotPlotting.tsx:22
@@ -3802,11 +3802,11 @@ msgstr "انتخاب همه"
 
 #: src/components/settings/SettingsIntegration.tsx:256
 msgid "Select an application"
-msgstr ""
+msgstr "انتخاب یک برنامه کاربردی"
 
 #: src/components/nfts/NFTAutocomplete.tsx:56
 msgid "Select an NFT"
-msgstr ""
+msgstr "انتخاب یک ان اف تی"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:33
 msgid "Select Final Directory"
@@ -3876,7 +3876,7 @@ msgstr "ارسال پیام"
 #: src/components/offers/OfferShareDialog.tsx:703
 #: src/components/offers/OfferShareDialog.tsx:825
 msgid "Send Notification"
-msgstr ""
+msgstr "ارسال اعلان"
 
 #: src/components/notification/NotificationSendDialog.tsx:178
 msgid "Send offer notification"
@@ -3893,15 +3893,15 @@ msgstr "ارسال تراکنش"
 
 #: src/components/settings/SettingsCustody.tsx:45
 msgid "Set a default time frame for all outbound XCH transactions."
-msgstr ""
+msgstr "یک چارچوب زمانی پیش‌فرض برای تمام تراکنش‌های XCH خروجی تنظیم کنید."
 
 #: src/constants/WalletConnectCommands.tsx:770
 msgid "Set DID Name"
-msgstr ""
+msgstr "تنظیم نام شناسه غیر متمرکز"
 
 #: src/constants/WalletConnectCommands.tsx:787
 msgid "Set NFT DID"
-msgstr ""
+msgstr "تنظیم شناسه غیرمتمرکز ان اف تی"
 
 #: src/components/settings/SetPassphrasePrompt.tsx:159
 #: src/components/settings/SetPassphrasePrompt.tsx:269
@@ -3965,12 +3965,12 @@ msgstr "نمایش جزئیات"
 
 #: src/constants/WalletConnectCommands.tsx:925
 msgid "Show notification with offer or general announcement"
-msgstr ""
+msgstr "نمایش اعلان با پیشنهاد یا اعلان عمومی"
 
 #: src/components/walletConnect/WalletConnectCreateOfferPreview.tsx:33
 #: src/components/walletConnect/WalletConnectOfferPreview.tsx:70
 msgid "Show Offer Details"
-msgstr ""
+msgstr "نمایش جزئیات پیشنهاد"
 
 #: src/components/nfts/NFTPreview.tsx:667
 #~ msgid "Show Preview"
@@ -4052,7 +4052,7 @@ msgstr "اندازه حافظه پنهان جهت رزرو برای I/O"
 
 #: src/components/settings/SettingsIntegration.tsx:286
 msgid "Skip Confirmation for Commands"
-msgstr ""
+msgstr "رد شدن از تأیید برای دستورات"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:439
 msgid "Skips adding a final directory to harvester for farming"
@@ -4068,7 +4068,7 @@ msgstr "برای به دست آوردن پاداش پایدار XCH به است�
 
 #: src/components/app/AppTestnetIndicator.tsx:47
 msgid "Sorry, you can't switch to mainnet by clicking here..."
-msgstr ""
+msgstr "با عرض پوزش، نمیتوانید با کلیک کردن در اینجا به شبکه اصلی تغییر دهید..."
 
 #: src/components/offers/OfferShareDialog.tsx:673
 msgid "Spacescan.io URL"
@@ -4092,7 +4092,7 @@ msgstr "توکن خرج کنید"
 
 #: src/constants/WalletConnectCommands.tsx:872
 msgid "Spend Fee"
-msgstr ""
+msgstr "کارمزد خرج کتید"
 
 #: src/components/offers2/OfferBuilderWalletBalance.tsx:44
 msgid "Spendable Balance: {0}"
@@ -4100,11 +4100,11 @@ msgstr "موجودی قابل خرج کزدن: {0}"
 
 #: src/components/settings/ProfileAdd.tsx:133
 msgid "Spendable Balance: {spendableBalance} {currencyCode}"
-msgstr ""
+msgstr "موجودی قابل خرج کزدن: {spendableBalance} {currencyCode}"
 
 #: src/components/vcs/VCCard.tsx:150
 msgid "Standard Version Number"
-msgstr ""
+msgstr "شماره نسخه استاندارد"
 
 #: src/constants/WalletConnectCommands.tsx:284
 msgid "Start"
@@ -4112,7 +4112,7 @@ msgstr "شروع"
 
 #: src/constants/WalletConnectCommands.tsx:586
 msgid "Start Index"
-msgstr ""
+msgstr "فهرست شروع"
 
 #: src/constants/WalletConnectCommands.tsx:296
 msgid "Start Key"
@@ -4199,7 +4199,7 @@ msgstr "برنامه چیا و سرویس های آن از نسخه های مخ�
 
 #: src/components/settings/SettingsCustody.tsx:49
 msgid "The claw back time can be manually adjusted per transaction."
-msgstr ""
+msgstr "زمان ادعای بازگرداندن را میتوان به صورت دستی در هر تراکنش تنظیم کرد."
 
 #: src/components/settings/SettingsPanel.tsx:166
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
@@ -4241,7 +4241,7 @@ msgstr "بروزرسانی وضعیت ان اف تی انجام نشد: {err}"
 
 #: src/components/nfts/NFTContextualActions.tsx:179
 msgid "The NFT transfer failed: {0}"
-msgstr ""
+msgstr "انتقال ان اف تی انجام نشد: {0}"
 
 #: src/components/nfts/NFTContextualActions.tsx:183
 #~ msgid "The NFT transfer failed: {error}"
@@ -4262,7 +4262,7 @@ msgstr "نود در حال سینک شدن است،به این معنی که د�
 
 #: src/components/offers2/OfferIncomingTable.tsx:96
 msgid "The offer creator has chosen not to allow counter offers"
-msgstr ""
+msgstr "سازنده پیشنهاد انتخاب کرده که پیشنهادات متقابل را مجاز نکند"
 
 #: src/components/plotNFT/PlotNFTState.tsx:30
 msgid "The pool switching operation was cancelled, please try again by changing pool, or self pooling"
@@ -4397,11 +4397,11 @@ msgstr "این جدول به شما نشان میدهد که آخرین بار �
 
 #: src/components/settings/SettingsIntegration.tsx:398
 msgid "This will reset all previously granted permissions across all Dapps that have been connected to. After resetting you will be asked to grant permission again."
-msgstr ""
+msgstr "با این کار همه مجوزهای قبلاً اعطا شده در همه Dappهایی که به آنها متصل شده اند بتنظیم مجدد میشود. پس از تنظیم مجدد، از شما خواسته میشود که دوباره مجوز بدهید."
 
 #: src/components/settings/SettingsIntegration.tsx:359
 msgid "This will restore the selected Dapp's permissions back to their default values. By default, every command issued by the Dapp will require confirmation in the Chia wallet."
-msgstr ""
+msgstr "با این کار مجوزهای Dapp انتخاب شده به مقادیر پیش‌فرض خود بازمیگردند. به طور پیش فرض، هر فرمان صادر شده توسط Dapp به تأیید در کیف پول چیا نیاز دارد."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:151
 msgid "Thread Multiplier for Phase 2"
