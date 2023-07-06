@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-06 13:28\n"
+"PO-Revision-Date: 2023-07-06 18:41\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -629,7 +629,7 @@ msgstr "با پایان یافتن زمان بازگرداندن، تراکنش�
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:235
 msgid "Transactions with values smaller than the fee will not be auto claimed."
-msgstr ""
+msgstr "تراکنش‌هایی که مقادیر کمتر از کارمزد دارند، به‌طور خودکار برداشته نمیشوند."
 
 #: src/components/Wallet.tsx:22
 msgid "Wallet {walletId} not found"
@@ -650,7 +650,7 @@ msgstr "نام کیف پول"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:200
 msgid "Wallet needs to be synced for claiming clawback transactions"
-msgstr ""
+msgstr "کیف پول برای برداشت تراکنش‌های مدعی بازگرداندن باید سینک شود"
 
 #: src/components/Wallet.tsx:37
 msgid "Wallet with type {0} not supported"
@@ -670,11 +670,11 @@ msgstr "خوش آمدید. کلمات زیر برای پشتیبان گیری ک
 
 #: src/components/WalletHistoryClawbackChip.tsx:41
 msgid "Will be autoclaimed in "
-msgstr ""
+msgstr "برداشت خودکار خواهد شد در "
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:238
 msgid "You can change the Clawback Auto Claim fee in Settings."
-msgstr ""
+msgstr "میتوانید کارمزد برداشت خودکار ادعای بازگرداندن را در تنظیمات تغییر دهید."
 
 #: src/components/WalletsSidebar.tsx:106
 #~ msgid "Your CAT tokens have been upgraded!"
