@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-06 08:33\n"
+"PO-Revision-Date: 2023-07-06 09:36\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -250,7 +250,7 @@ msgstr "زبان"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:57
 msgid "Latest Version:"
-msgstr ""
+msgstr "آخرین نسخه:"
 
 #: src/components/Settings/SettingsApp.tsx:102
 msgid "Light"
@@ -266,7 +266,7 @@ msgstr "احتمالاً در {minutes}"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:221
 msgid "Likely in >5 minutes"
-msgstr ""
+msgstr "ممکن است بیشتر از 5 دقیقه باشد"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:46
 msgid "Loading details"
@@ -274,7 +274,7 @@ msgstr "در حال بارگیری جزئیات"
 
 #: src/screens/SelectKey/SelectKey.tsx:232
 msgid "Loading keys"
-msgstr ""
+msgstr "بارگذاری کلیدها"
 
 #: src/screens/SelectKey/SelectKey.tsx:117
 #~ msgid "Loading list of the keys"
@@ -311,7 +311,7 @@ msgstr "رمز ورودی جدید با عبارت عبور فعلی شما یک
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:168
 msgid "New version {latestVersion} available"
-msgstr ""
+msgstr "نسخه جدید {latestVersion} موجود است"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:84
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:138
@@ -333,7 +333,7 @@ msgstr "تأیید"
 
 #: src/screens/SelectKey/SelectKey.tsx:254
 msgid "Open a world of possibilities."
-msgstr ""
+msgstr "دنیایی از امکانات را باز کنید."
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:98
 msgid "Pool Public Key"
@@ -362,15 +362,15 @@ msgstr "کلید عمومی:"
 
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:277
 msgid "Random"
-msgstr ""
+msgstr "تصادفی"
 
 #: src/components/Fee/Fee.tsx:18
 msgid "Recommended value: 0.000005"
-msgstr ""
+msgstr "مقدار پیشنهادی: 0.000005"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:71
 msgid "Release Notes"
-msgstr ""
+msgstr "یادداشت های انتشار"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:85
 msgid "Reload Application"
@@ -378,7 +378,7 @@ msgstr "بارگذاری مجدد برنامه"
 
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:258
 msgid "Remove Icon"
-msgstr ""
+msgstr "حذف نماد"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:97
 msgid "Rename"
@@ -400,7 +400,7 @@ msgstr "ذخیره"
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:170
 #: src/screens/SelectKey/Search.tsx:34
 msgid "Search"
-msgstr ""
+msgstr "جستجو"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:113
 msgid "Secret Key"
@@ -503,7 +503,7 @@ msgstr "مجدد تلاش کنید"
 
 #: src/screens/SelectKey/SelectKey.tsx:243
 msgid "Unable to load keys"
-msgstr ""
+msgstr "کلیدها بارگیری نمیشوند"
 
 #: src/screens/SelectKey/SelectKey.tsx:128
 #~ msgid "Unable to load the list of the keys"
@@ -542,7 +542,7 @@ msgstr "کلمات کد کیف پول"
 
 #: src/screens/SelectKey/SelectKey.tsx:219
 msgid "Wallet Keys"
-msgstr ""
+msgstr "کلیدهای کیف پول"
 
 #: src/screens/SelectKey/SelectKey.tsx:142
 #~ msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
@@ -551,7 +551,7 @@ msgstr ""
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:177
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:66
 msgid "What's New"
-msgstr ""
+msgstr "اخبار جدید"
 
 #: src/components/Back/Back.tsx:40
 #: src/components/FormBackButton/FormBackButton.tsx:31
@@ -560,11 +560,11 @@ msgstr "شما تغییراتی ایجاد کرده اید. آیا میخواه�
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:97
 msgid "You're up to date"
-msgstr ""
+msgstr "شما بروز هستید"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:49
 msgid "Your Current Version:"
-msgstr ""
+msgstr "نسخه فعلی شما:"
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:20
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
