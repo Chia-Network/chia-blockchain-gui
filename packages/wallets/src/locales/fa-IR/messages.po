@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-05 21:40\n"
+"PO-Revision-Date: 2023-07-06 13:28\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -64,7 +64,7 @@ msgstr "آیا مطمئن هستید که میخواهید تراکنش های �
 
 #: src/components/WalletHistory.tsx:127
 msgid "Asset"
-msgstr ""
+msgstr "دارایی"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:71
 #: src/components/cat/WalletCATTAILDialog.tsx:33
@@ -82,11 +82,11 @@ msgstr "کیف پول مجاز شده برای پرداخت"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:226
 msgid "Auto-claim transactions with this fee from now on."
-msgstr ""
+msgstr "از این پس تراکنش ها را با این کارمزد مطالبه کنید."
 
 #: src/components/WalletHistoryClawbackChip.tsx:46
 msgid "Can be claimed in "
-msgstr ""
+msgstr "قابل مطالبه در "
 
 #: src/components/PasteMnemonic.tsx:76
 #: src/components/WalletRenameDialog.tsx:72
@@ -110,48 +110,48 @@ msgstr "توکن دارایی چیا"
 
 #: src/components/WalletHistoryClawbackChip.tsx:53
 msgid "Claim transaction"
-msgstr ""
+msgstr "مطالبه تراکنش"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:136
 #: src/components/ClawbackClaimTransactionDialog.tsx:259
 msgid "Claim Transaction"
-msgstr ""
+msgstr "مطالبه تراکنش"
 
 #: src/components/WalletHistoryClawbackChip.tsx:68
 msgid "Claiming..."
-msgstr ""
+msgstr "مطالبه..."
 
 #: src/components/WalletHistoryClawbackChip.tsx:79
 msgid "Claw back this transaction"
-msgstr ""
+msgstr "این نراکنش را بازگردانید"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:259
 msgid "Claw back Transaction"
-msgstr ""
+msgstr "نراکنش را بازگردانید"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:136
 msgid "Claw Back Transaction"
-msgstr ""
+msgstr "نراکنش را بازگردانید"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:128
 msgid "Clawback payment claimed"
-msgstr ""
+msgstr "پرداخت بازگزداندن درخواست شد"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:128
 msgid "Clawback payment clawed back"
-msgstr ""
+msgstr "پرداخت بازگزداندن برگشت خوزد"
 
 #: src/components/WalletSend.tsx:340
 msgid "Clawback will be applied."
-msgstr ""
+msgstr "بازگرداندن اعمال خواهد شد."
 
 #: src/components/WalletSend.tsx:346
 msgid "Clawback will not be applied."
-msgstr ""
+msgstr "بازگرداندن اعمال نخواهد شد."
 
 #: src/components/WalletHistoryClawbackChip.tsx:94
 msgid "Clawing back..."
-msgstr ""
+msgstr "بازگرداندن..."
 
 #: src/components/WalletsSidebar.tsx:141
 #~ msgid "Click here to download an older version of the wallet"
@@ -160,7 +160,7 @@ msgstr ""
 #: src/components/ClawbackClaimTransactionDialog.tsx:157
 #: src/components/ClawbackClaimTransactionDialog.tsx:248
 msgid "Close"
-msgstr ""
+msgstr "ببندید"
 
 #: src/components/WalletHeader.tsx:25
 msgid "Confirmation"
@@ -202,7 +202,7 @@ msgstr "ایجاد تراکنش"
 
 #: src/components/WalletHistory.tsx:206
 msgid "Creation Date"
-msgstr ""
+msgstr "تاریخ ایجاد"
 
 #: src/constants/WalletName.ts:20
 msgid "Custody Wallet"
@@ -261,7 +261,7 @@ msgstr "کارمزد"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:175
 msgid "From:"
-msgstr ""
+msgstr "از:"
 
 #: src/components/WalletReceiveAddress.tsx:32
 msgid "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefore wallet receive addresses) that will all ultimately come back to and be spendable by a single private key."
@@ -405,7 +405,7 @@ msgstr "تغییر در حالت انتظار"
 
 #: src/components/WalletHistoryPending.tsx:62
 msgid "Pending claw back transactions"
-msgstr ""
+msgstr "بازگرداندن تراکنش معلق"
 
 #: src/components/card/WalletCardPendingTotalBalance.tsx:41
 msgid "Pending Total Balance"
@@ -413,11 +413,11 @@ msgstr "کل موچودی در حال تایید"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:206
 msgid "Please enter a transaction fee to claim the above amount:"
-msgstr ""
+msgstr "لطفاً یک کارمزد تراکنش برای مطالبه مبلغ فوق وارد کنید:"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:208
 msgid "Please enter a transaction fee to claw back the above amount:"
-msgstr ""
+msgstr "لطفاً یک کارمزد تراکنش برای بازگرداندن مبلغ فوق وارد کنید:"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:42
 msgid "Please enter a valid asset id"
@@ -533,7 +533,7 @@ msgstr "کیف پول استاندارد"
 
 #: src/components/WalletHistory.tsx:197
 msgid "Status"
-msgstr ""
+msgstr "وضعیت"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:12
 msgid "Success"
@@ -589,7 +589,7 @@ msgstr "این کل موجودی + موجودی در انتظار است: نشا
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:193
 msgid "This transaction will be automatically claimed with a fee:"
-msgstr ""
+msgstr "این تراکنش به صورت خودکار با کارمزد مطالبه میشود:"
 
 #: src/components/WalletHistory.tsx:181
 #~ msgid "To"
@@ -597,7 +597,7 @@ msgstr ""
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:175
 msgid "To:"
-msgstr ""
+msgstr "به:"
 
 #: src/components/cat/WalletCATCreateSimple.tsx:46
 msgid "Token has empty asset id"
@@ -625,7 +625,7 @@ msgstr "تراکنش ها"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:232
 msgid "Transactions will be claimed automatically when the Clawback time expires."
-msgstr ""
+msgstr "با پایان یافتن زمان بازگرداندن، تراکنش‌ها به‌طور مطالبه ادعا میشوند."
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:235
 msgid "Transactions with values smaller than the fee will not be auto claimed."
