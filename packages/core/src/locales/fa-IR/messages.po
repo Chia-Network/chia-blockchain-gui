@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-07 11:27\n"
+"PO-Revision-Date: 2023-07-07 12:35\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -455,7 +455,7 @@ msgstr "صرف نظر از محافظت رمز ورود"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:67
 msgid "Something went wrong"
-msgstr "مشکلی پیش آمده است"
+msgstr "مشکلی پیش آمد"
 
 #: src/screens/SelectKey/WalletStatus.tsx:73
 #~ msgid "Synced"
@@ -487,7 +487,7 @@ msgstr "با این کار کلید برای همیشه از رایانه شما
 
 #: src/utils/getTransactionResult.ts:15
 msgid "Transaction has not been sent to node yet"
-msgstr "تراکنش هنوز به نود ارسال نشده است"
+msgstr "تراکنش هنوز به نود ارسال نشده"
 
 #: src/utils/getTransactionResult.ts:33
 msgid "Transaction has sent to a full node and is pending inclusion into the mempool. {0}"
