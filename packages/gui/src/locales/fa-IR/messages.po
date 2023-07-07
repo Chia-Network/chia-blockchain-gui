@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-06 18:41\n"
+"PO-Revision-Date: 2023-07-07 07:40\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -21,7 +21,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/components/nfts/NFTBurnDialog.tsx:132
 msgid "Do you want to burn {count} NFTs?"
-msgstr "آیا میخواهید {count} ان اف تی را ثبت کنید?"
+msgstr "آیا میخواهید {count} ان اف تی را ثبت کنید؟"
 
 #. js-lingui-explicit-id
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:184
@@ -36,12 +36,12 @@ msgstr "{count} ان اف تی ها جابجا نشد."
 #. js-lingui-explicit-id
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:382
 msgid "Would you like to move {count} NFTs to a profile?"
-msgstr "آیا میخواهید {count} ان اف تی را به حساب کاربری منتقل کنید?"
+msgstr "آیا میخواهید {count} ان اف تی را به حساب کاربری منتقل کنید؟"
 
 #. js-lingui-explicit-id
 #: src/components/nfts/NFTTransferAction.tsx:226
 msgid "Would you like to transfer {count} NFTs to a new owner?"
-msgstr "آیا میخواهید {count} از ان اف تی ها را به مالک جدیدی منتقل کنید?"
+msgstr "آیا میخواهید {count} از ان اف تی ها را به مالک جدیدی منتقل کنید؟"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:488
@@ -137,7 +137,7 @@ msgstr "گزارش یک مشکل یا خطا..."
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:747
 msgid "Chat on Discord"
-msgstr "بحث در Discord"
+msgstr "اشتراک گداری در Discord"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:753
@@ -360,7 +360,7 @@ msgstr "افزودن یک پلات ان اف تی"
 
 #: src/constants/WalletConnectCommands.tsx:545
 msgid "Add CAT Token"
-msgstr "افزودن توکن"
+msgstr "اضافه نمودن توکن"
 
 #: src/components/offers/OfferAssetSelector.tsx:144
 msgid "Add CAT wallets to have more options"
@@ -368,7 +368,7 @@ msgstr "برای گزینه های بیشتر کیف پول های توکن را
 
 #: src/components/walletConnect/WalletConnectConnections.tsx:105
 msgid "Add Connection"
-msgstr "افزودن اتصال"
+msgstr "اضافه نمودن اتصال"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:114
 msgid "Add plot directory"
@@ -384,15 +384,15 @@ msgstr "اضافه کردن پلات به صف"
 
 #: src/constants/WalletConnectCommands.tsx:885
 msgid "Add Proofs"
-msgstr "شواهد اضافه کنید"
+msgstr "اضافه نمودن شواهد"
 
 #: src/constants/WalletConnectCommands.tsx:844
 msgid "Add Proofs To Verifiable Credential"
-msgstr "اضافه کردن شواهد به اعتبارنامه قابل تأیید"
+msgstr "اضافه نمودن شواهد به اعتبارنامه قابل تأیید"
 
 #: src/components/vcs/VCList.tsx:216
 msgid "Add Verifiable Credential from file"
-msgstr "اعتبار قابل تأیید را از فایل اضافه کنید"
+msgstr "اضافه نمودن اعتبار قابل تأیید را از فایل"
 
 #: src/components/notification/NotificationSendDialog.tsx:219
 #: src/components/signVerify/SigningEntityWalletAddress.tsx:45
@@ -495,7 +495,7 @@ msgstr "منشأ یک ان اف تی رکورد کامل از تاریخچه م�
 
 #: src/components/notification/NotificationAnnouncementDialog.tsx:35
 msgid "Announcement"
-msgstr "اعلامیه"
+msgstr "اعلان"
 
 #: src/components/settings/SettingsIntegration.tsx:212
 msgid "App Permissions"
@@ -520,7 +520,7 @@ msgstr "آیا مطمئن هستید که میخواهید پیشنهاد خود
 
 #: src/components/settings/SettingsNFT.tsx:59
 msgid "Are you sure you want to delete the NFT cache?"
-msgstr "آیا مطمئن هستید که میخواهید حافطه ان اف تی را حذف کنید?"
+msgstr "آیا مطمئن هستید که میخواهید حافطه ان اف تی را حذف کنید؟"
 
 #: src/components/plot/PlotAction.tsx:29
 #: src/components/plot/queue/PlotQueueActions.tsx:41
@@ -545,11 +545,11 @@ msgstr "آیا مطمئن هستید که میخواهید این ان اف تی
 
 #: src/components/vcs/VCCard.tsx:191
 msgid "Are you sure you want to remove"
-msgstr "آیا مطمئن هستید که میخواهید حذف کنید"
+msgstr "آیا مطمئن هستید که میخواهید حذف کنید؟"
 
 #: src/components/vcs/VCCard.tsx:193
 msgid "Are you sure you want to revoke"
-msgstr "آیا مطمئن هستید که میخواهید لغو کنید"
+msgstr "آیا مطمئن هستید که میخواهید لغو کنید؟"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:50
 msgid "Are you sure you want to use k={plotSize}?"
@@ -697,7 +697,7 @@ msgstr "تاییدیه سوزاندن ان اف تی"
 
 #: src/components/nfts/NFTBurnDialog.tsx:143
 msgid "Burning a non-fungible token means removing it from circulation by sending it to a verifiably un-spendable address. However, transactions leading up to the burn will remain on the blockchain ledger."
-msgstr "سوزاندن یک توکن غیر قابل تعویض به معنای حذف آن از گردش با ارسال آن به آدرسی غیرقابل تایید است. با این حال، تراکنش‌های منتهی به سوختن در سیستم بلاک چین باقی میمانند."
+msgstr "سوزاندن یک توکن غیرقابل تعویض به معنای حذف آن از گردش با ارسال آن به آدرسی غیرقابل تایید است. با این حال، تراکنش‌های منتهی به سوختن در سیستم بلاک چین باقی میمانند."
 
 #: src/components/offers/NFTOfferEditor.tsx:307
 msgid "Buy an NFT"
@@ -1043,7 +1043,7 @@ msgstr "هزینه ارسال اعلان به دارنده ان اف تی"
 
 #: src/components/fullNode/FullNodeAddConnection.tsx:55
 msgid "Could not connect to host {host} on port {port}"
-msgstr "اتصال به میزبان {host} در پورت {port} امکان پذیر نیست"
+msgstr "اتصال به میزبان {host} در پورت {port} امکان‌پذیر نیست"
 
 #: src/components/offers2/OfferBuilderImport.tsx:53
 msgid "Could not parse offer data"
@@ -1090,7 +1090,7 @@ msgstr "ایجاد پیشنهاد"
 
 #: src/components/offers2/CreateOfferBuilder.tsx:150
 msgid "Create Counter Offer"
-msgstr "ایجاد پیشنهاد زمان بندی شده"
+msgstr "ایجاد پیشنهاد زمان‌بندی شده"
 
 #: src/constants/WalletConnectCommands.tsx:464
 msgid "Create new CAT Wallet"
@@ -1327,7 +1327,7 @@ msgstr "غیر فعال"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:399
 msgid "Disable assigning automatic thread affinity. This is useful when running multiple simultaneous instances of Bladebit as you can manually assign thread affinity yourself when launching Bladebit."
-msgstr "غیرفعال کردن اختصاص پیوند خودکار رشته. این در هنگام اجرای چندین نمونه به طور همزمان از Bladebit مفید است زیرا میتوانید خودتان هنگام راه اندازی Bladebit به صورت دستی thread affinity اختصاص دهید."
+msgstr "غیرفعال کردن اختصاص پیوند خودکار رشته. این در هنگام اجرای چندین نمونه به طور همزمان از Bladebit مفید است زیرا میتوانید خودتان هنگام راه‌اندازی Bladebit به صورت دستی thread affinity اختصاص دهید."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:379
 msgid "Disable automatic NUMA aware memory binding. If you set this parameter in a NUMA system you will likely get degraded performance."
@@ -1389,15 +1389,15 @@ msgstr "آیا میخواهید این ان اف تی را ثبت کنید?"
 
 #: src/hooks/useWalletConnectCommand.tsx:182
 msgid "Do you want to execute command {command}?"
-msgstr "آیا میخواهید دستور {command} را اجرا کنید?"
+msgstr "آیا میخواهید دستور {command} را اجرا کنید؟"
 
 #: src/hooks/useWalletConnectCommand.tsx:178
 msgid "Do you want to log in to {fingerprint} and execute command {command}?"
-msgstr "آیا میخواهید وارد {fingerprint} شوید و دستور {command} را اجرا کنید?"
+msgstr "آیا میخواهید وارد {fingerprint} شوید و دستور {command} را اجرا کنید؟"
 
 #: src/hooks/useBlockchainNotifications.tsx:166
 msgid "Do you want to remove this offer notification? This action cannot be undone."
-msgstr "آیا میخواهید این اعلان پیشنهاد را حذف کنید? این عمل قابل لغو نیست."
+msgstr "آیا میخواهید این اعلان پیشنهاد را حذف کنید؟ این عمل قابل لغو نیست."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:62
 msgid "Does your machine support parallel plotting?"
@@ -1813,7 +1813,7 @@ msgstr "ارتباطات نود کامل"
 
 #: src/constants/WalletConnectCommands.tsx:277
 msgid "Get all Offers"
-msgstr "دریافت همه پیشنهادات"
+msgstr "گرفتن همه پیشنهادات"
 
 #: src/constants/WalletConnectCommands.tsx:825
 msgid "Get All Verifiable Credentials"
@@ -1821,15 +1821,15 @@ msgstr "گرفتن تمام اعتبارنامه های قابل تأیید"
 
 #: src/constants/WalletConnectCommands.tsx:496
 msgid "Get CAT Asset Id"
-msgstr "دریافت شناسه دارایی توکن"
+msgstr "گرفتن شناسه دارایی توکن"
 
 #: src/constants/WalletConnectCommands.tsx:483
 msgid "Get CAT Wallet Info"
-msgstr "گرفتن اطلاعات کیف پول CAT"
+msgstr "گرفتن اطلاعات کیف پولCAT"
 
 #: src/constants/WalletConnectCommands.tsx:90
 msgid "Get Current Address"
-msgstr "دریافت آدرس فعلی"
+msgstr "گرفتن آدرس فعلی"
 
 #: src/components/settings/ProfileAdd.tsx:124
 msgid "Get Mojos from the Chia Faucet"
@@ -1837,7 +1837,7 @@ msgstr "گرفتن موجوها از توزیع کننده چیا"
 
 #: src/constants/WalletConnectCommands.tsx:243
 msgid "Get Next Address"
-msgstr "دریافت ادرس بعدی"
+msgstr "گرفتن ادرس بعدی"
 
 #: src/constants/WalletConnectCommands.tsx:594
 msgid "Get NFT Info"
@@ -1849,7 +1849,7 @@ msgstr "گرفتن کیف پول ان اف تی با شناسه غیرمتمرک
 
 #: src/constants/WalletConnectCommands.tsx:564
 msgid "Get NFTs"
-msgstr "دریافت ان اف تی ها"
+msgstr "گرفتن ان اف تی ها"
 
 #: src/constants/WalletConnectCommands.tsx:723
 msgid "Get NFTs Count"
@@ -1857,19 +1857,19 @@ msgstr "گرفتن تعداد ان اف تی ها"
 
 #: src/constants/WalletConnectCommands.tsx:434
 msgid "Get Offer Data"
-msgstr "دریافت اطلاعات پیشنهاد"
+msgstr "گرفتن اطلاعات پیشنهاد"
 
 #: src/constants/WalletConnectCommands.tsx:448
 msgid "Get Offer Record"
-msgstr "دریافت سوابق پیشنهاد"
+msgstr "گرفتن سوابق پیشنهاد"
 
 #: src/constants/WalletConnectCommands.tsx:420
 msgid "Get Offer Summary"
-msgstr "دریافت گزارش پیشنهاد"
+msgstr "گرفتن گزارش پیشنهاد"
 
 #: src/constants/WalletConnectCommands.tsx:322
 msgid "Get Offers Count"
-msgstr "دریافت تعداد پیشنهاد"
+msgstr "گرفتن تعداد پیشنهاد"
 
 #: src/constants/WalletConnectCommands.tsx:898
 msgid "Get Proofs For Root Hash"
@@ -1877,7 +1877,7 @@ msgstr "گرفتن شواهد برای روت هش"
 
 #: src/constants/WalletConnectCommands.tsx:42
 msgid "Get Transaction"
-msgstr "دریافت تراکنش"
+msgstr "گرفتن تراکنش"
 
 #: src/constants/WalletConnectCommands.tsx:831
 msgid "Get Verifiable Credential"
@@ -1885,7 +1885,7 @@ msgstr "گرفتن اعتبار قابل تایید"
 
 #: src/constants/WalletConnectCommands.tsx:56
 msgid "Get Wallet Balance"
-msgstr "دریافت موجودی کیف پول"
+msgstr "گرفتن موجودی کیف پول"
 
 #: src/constants/WalletConnectCommands.tsx:73
 msgid "Get Wallet Balances"
@@ -1893,11 +1893,11 @@ msgstr "گرفتن موجودی کیف پول"
 
 #: src/constants/WalletConnectCommands.tsx:268
 msgid "Get Wallet Sync Status"
-msgstr "دریافت وضعیت سینک کیف پول"
+msgstr "گرفتن وضعیت سینک کیف پول"
 
 #: src/constants/WalletConnectCommands.tsx:28
 msgid "Get Wallets"
-msgstr "دریافت کیف پول ها"
+msgstr "گرفتن کیف پول ها"
 
 #: src/components/nfts/gallery/NFTGalleryHero.tsx:15
 msgid "Go collect some gems"
@@ -2016,11 +2016,11 @@ msgstr "اگر هیچکدام انتخاب نشد، به طور پیش فرض ب
 
 #: src/components/nfts/NFTBurnDialog.tsx:77
 msgid "If you burn these NFTs, nobody (including you) will ever be able to access it again. Are you sure you want to continue?"
-msgstr "اگر این ان اف تی ها را ثبت کنید، هیچ کس (از جمله شما) هرگز نمیتواند دوباره به آن دسترسی پیدا کند. آیا مطمئن هستید که میخواهید ادامه دهید?"
+msgstr "اگر این ان اف تی ها را ثبت کنید، هیچ کس (از جمله شما) هرگز نمیتواند دوباره به آن دسترسی پیدا کند. آیا مطمئن هستید که میخواهید ادامه دهید؟"
 
 #: src/components/nfts/NFTBurnDialog.tsx:82
 msgid "If you burn this NFT, nobody (including you) will ever be able to access it again. Are you sure you want to continue?"
-msgstr "اگر این ان اف تی را ثبت کنید، هیچ کس (از جمله شما) هرگز نمیتواند دوباره به آن دسترسی پیدا کند. آیا مطمئن هستید که میخواهید ادامه دهید?"
+msgstr "اگر این ان اف تی را ثبت کنید، هیچ کس (از جمله شما) هرگز نمیتواند دوباره به آن دسترسی پیدا کند. آیا مطمئن هستید که میخواهید ادامه دهید؟"
 
 #: src/components/offers/ConfirmOfferCancellation.tsx:74
 msgid "If you have already shared your offer file, you may need to submit a transaction to cancel the pending offer. Click \"Cancel on blockchain\" to submit a cancellation transaction."
@@ -2210,7 +2210,7 @@ msgstr "KiB بالا/پایین"
 
 #: src/components/vcs/VCList.tsx:290
 msgid "KYC status"
-msgstr "وضعیت شناختن مشتری KYC"
+msgstr "وضعیت شناختن مشتری یا KYC"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:45
 msgid "Last Attempted Proof"
@@ -2918,7 +2918,7 @@ msgstr "پس از پذیرش این پیشنهاد، نمیتوانید معام
 
 #: src/components/nfts/NFTTransferAction.tsx:93
 msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer {0} NFTs?"
-msgstr "پس از شروع این انتقال، نمیتوانید تراکنش را لغو کنید. آیا مطمئن هستید که میخواهید {0} ان اف تی را انتقال دهید?"
+msgstr "پس از شروع این انتقال، نمیتوانید تراکنش را لغو کنید. آیا مطمئن هستید که میخواهید {0} ان اف تی را انتقال دهید؟"
 
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:32
 msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer the NFT?"
@@ -2971,23 +2971,23 @@ msgstr "یا جای‌گذاری (Ctrl-V) یک پیشنهاد blob"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:282
 msgid "Override the thread count for C table processing"
-msgstr "برای پردازش جدول C، تعداد رشته ها را لغو کنید"
+msgstr "نادیده گرفتن تعداد رشته ها برای پردازش جدول C"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:254
 msgid "Override the thread count for F1 generation"
-msgstr "تعداد رشته ها را برای ایجاد F1 لغو کنید"
+msgstr "نادیده گرفتن تعداد رشته ها را برای ایجاد F1"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:268
 msgid "Override the thread count for forward propagation"
-msgstr "برای پردازش رو به جلو، تعداد رشنه ها را لغو کنید"
+msgstr "نادیده گرفتن تعداد رشنه ها برای پردازش رو به جلو"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:296
 msgid "Override the thread count for Phase 2"
-msgstr "تعداد رشته ها را برای فاز 2 لغو کنید"
+msgstr "نادیده گرفتن تعداد رشته ها را برای فاز 2"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:310
 msgid "Override the thread count for Phase 3"
-msgstr "تعداد رشته ها را برای فاز 3 لغو کنید"
+msgstr "نادیده گرفتن تعداد رشته ها را برای فاز 3"
 
 #: src/components/nfts/NFTDetails.tsx:87
 msgid "Owner Address"
@@ -4425,7 +4425,7 @@ msgstr "عنوان موجود نیست"
 
 #: src/components/settings/ResyncPrompt.tsx:41
 msgid "To initiate a wallet resync, all Chia services must first be shut down. After shutting down, you will be required to restart Chia to begin the resyncing process. Are you sure you want to shut down and resync?"
-msgstr "برای شروع به سینک مجدد کیف پول، ابتدا باید تمام سرویس‌های چیا را ببندید. پس از بستن، شما باید چیا را مجددا اجرا کنید. آیا مطمئنید که میخواهید ببندید و دوباره شروع به سینک کنید?"
+msgstr "برای شروع به سینک مجدد کیف پول، ابتدا باید تمام سرویس‌های چیا را ببندید. پس از بستن، شما باید چیا را مجددا اجرا کنید. آیا مطمئنید که میخواهید ببندید و دوباره شروع به سینک کنید?؟"
 
 #: src/components/settings/ProfileView.tsx:127
 msgid "Token Standard"
@@ -4559,23 +4559,23 @@ msgstr "انتقال ان اف تی"
 
 #: src/components/settings/SettingsNotifications.tsx:61
 msgid "Turn on/off the ability to process and display notifications."
-msgstr "قابلیت پردازش و نمایش اعلان ها را روشن/خاموش کنید."
+msgstr "قابلیت پردازش و نمایش اعلان ها را فعال یا غیرفعال کنید."
 
 #: src/components/settings/SettingsNotifications.tsx:140
 msgid "Turn on/off the ability to receive general announcements and updates from any Dapp connected to your wallet. This allows you to stay informed about new features and important updates directly from the Dapps you use."
-msgstr "قابلیت دریافت اعلان‌ها و بروزرسانی‌های عمومی را از هر Dapp متصل به کیف پول خود روشن/خاموش کنید. این به شما امکان اطلاع از ویژگی های جدید و بروز رسانی های مهم Dappهایی که استفاده میکنید را میدهد."
+msgstr "قابلیت دریافت اعلان‌ها و بروزرسانی‌های عمومی را از هر Dapp متصل به کیف پول خود فعال یا غیرفعال کنید. این به شما امکان اطلاع از ویژگی های جدید و بروز رسانی های مهم Dappهایی که استفاده میکنید را میدهد."
 
 #: src/components/settings/SettingsNotifications.tsx:111
 msgid "Turn on/off the ability to receive notifications about new offers from Dapps connected to your wallet. By turning this on, you stay informed about the latest offers and opportunities brought forth by your trusted Dapps, ensuring you never miss out on a potential deal."
-msgstr "قابلیت دریافت اعلان‌های پیشنهادات جدید از Dapps متصل به کیف پول خود را روشن/خاموش کنید. با روشن کردن این گزینه، از آخرین پیشنهادات و فرصت‌های ارائه شده توسط Dapps مورد اعتماد خود مطلع شده و مطمئن میشوید که هرگز یک معامله بالقوه را از دست نمیدهید."
+msgstr "قابلیت دریافت اعلان‌های پیشنهادات جدید از Dapps متصل به کیف پول خود را فعال یا غیرفعال کنید. با روشن کردن این گزینه، از آخرین پیشنهادات و فرصت‌های ارائه شده توسط Dapps مورد اعتماد خود مطلع شده و مطمئن میشوید که هرگز یک معامله بالقوه را از دست نمیدهید."
 
 #: src/components/settings/SettingsNotifications.tsx:86
 msgid "Turn on/off the ability to show you notifications on the desktop."
-msgstr "قابلیت نمایش اعلان‌ها را روی صفحه فعال یا غیرفعال کنید."
+msgstr "قابلیت نمایش اعلان‌ها را روی صفحه را فعال یا غیرفعال کنید."
 
 #: src/components/settings/SettingsNotifications.tsx:168
 msgid "Turn on/off the automatic display of the sharing options panel after creating a new offer."
-msgstr "پس از ایجاد یک پیشنهاد جدید، نمایش خودکار قاب گزینه های اشتراک گذاری را روشن/خاموش کنید."
+msgstr "پس از ایجاد یک پیشنهاد جدید، نمایش خودکار قاب گزینه های اشتراک گذاری را فعال یا غیرفعال کنید."
 
 #: src/components/settings/SettingsDataLayer.tsx:51
 msgid "Turn on/off the DataLayer service."
