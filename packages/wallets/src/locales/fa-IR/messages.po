@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-06 18:41\n"
+"PO-Revision-Date: 2023-07-07 12:35\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -96,7 +96,7 @@ msgstr "لغو"
 #: src/components/cat/WalletCATSend.tsx:117
 #: src/components/WalletSend.tsx:142
 msgid "Cannot send chia to coloured address. Please enter a chia address."
-msgstr "خطا: چیـا را به آدرس رنگی نمیتوان ارسال کرد. لطفاً یک آدرس چیا وارد کنید."
+msgstr "خطا: چیا را به آدرس رنگی نمیتوان ارسال کرد. لطفاً یک آدرس چیا وارد کنید."
 
 #: src/components/WalletsSidebar.tsx:130
 #~ msgid "Check my snapshot balance"
@@ -265,7 +265,7 @@ msgstr "از:"
 
 #: src/components/WalletReceiveAddress.tsx:32
 msgid "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefore wallet receive addresses) that will all ultimately come back to and be spendable by a single private key."
-msgstr "کلیدهای سلسله وار قطعی یا HD نوعی از طرح کلید عمومی/کلید خصوصی هستند که در آن یک کلید خصوصی میتواند تقریباً بی نهایت کلید عمومی مختلف داشته باشد (و در نتیجه آدرس های دریافت کیف پول) که در نهایت همه به یک کلید خصوصی خاص باز می گردند و قابل مصرف هستند."
+msgstr "کلیدهای قطعی سلسله مراتب نوعی از طرح کلید عمومی یا کلید شخصی هستند که در آن یک کلید شخصی میتواند تقریباً بی نهایت کلید عمومی مختلف داشته باشد (همچنین آدرس های دریافت کیف پول) که در نهایت همه به یک کلید شحصی خاص باز میگردند و قابل خرج کردن هستند."
 
 #: src/components/WalletSendTransactionResultDialog.tsx:41
 msgid "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a higher fee."
