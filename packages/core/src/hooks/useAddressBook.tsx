@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 
 export default function useAddressBook(): [
   AddressContact[] | undefined, // contacts
@@ -26,14 +26,21 @@ export default function useAddressBook(): [
   const [addressBook, setAddressBook] = useState<AddressContact[]>([]);
   const LOCAL_STORAGE_KEY = 'addressbook';
   const contactBookJSON = JSON.stringify(addressBook);
+
+  const updateAddressBook = useCallback((contacts) => {
+    const contactsJSON = JSON.stringify(contacts);
+    (window as any).ipcRenderer.invoke('saveAddressBook', contactsJSON);
+    setAddressBook(contacts);
+  }, []);
+
   useEffect(() => {
     if (localStorage.getItem(LOCAL_STORAGE_KEY) === undefined || localStorage.getItem(LOCAL_STORAGE_KEY) === null) {
-      setAddressBook([]);
+      updateAddressBook([]);
     } else {
       const addresses: AddressContact[] = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-      setAddressBook([...addresses]);
+      updateAddressBook([...addresses]);
     }
-  }, []);
+  }, [updateAddressBook]);
 
   useEffect(() => {
     if (addressBook !== undefined) localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(addressBook));
@@ -63,13 +70,13 @@ export default function useAddressBook(): [
       domainNames,
     };
 
-    setAddressBook([...addressBook, newAddress]);
+    updateAddressBook([...addressBook, newAddress]);
   }
 
   function removeContact(contactId: number) {
     const filteredContacts = addressBook.filter((contact) => contact.contactId !== contactId);
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(filteredContacts));
-    setAddressBook([...filteredContacts]);
+    updateAddressBook([...filteredContacts]);
   }
 
   function getContactByContactId(contactId: number) {
@@ -99,7 +106,7 @@ export default function useAddressBook(): [
       domainNames,
     };
 
-    setAddressBook([...filteredContacts, newAddress]);
+    updateAddressBook([...filteredContacts, newAddress]);
   }
 
   function getContactByAddress(address: string) {
