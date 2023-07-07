@@ -6,14 +6,17 @@ import onCacheEntryAddedInvalidate from '../utils/onCacheEntryAddedInvalidate';
 import { query, mutation } from '../utils/reduxToolkitEndpointAbstractions';
 
 const apiWithTag = api.enhanceEndpoints({
-  addTagTypes: ['KeyringStatus', 'ServiceRunning', 'DaemonKey', 'RunningServices'],
+  addTagTypes: ['KeyringStatus', 'ServiceRunning', 'DaemonKey', 'RunningServices', 'WalletAddress'],
 });
 
 export const daemonApi = apiWithTag.injectEndpoints({
   endpoints: (build) => ({
     addPrivateKey: mutation(build, Daemon, 'addPrivateKey', {
       transformResponse: (response) => response.fingerprint,
-      invalidatesTags: [{ type: 'DaemonKey', id: 'LIST' }],
+      invalidatesTags: [
+        { type: 'DaemonKey', id: 'LIST' },
+        { type: 'WalletAddress', id: 'LIST' },
+      ],
     }),
 
     getKey: query(build, Daemon, 'getKey', {
@@ -30,6 +33,22 @@ export const daemonApi = apiWithTag.injectEndpoints({
               { type: 'DaemonKey', id: 'LIST' },
             ]
           : [{ type: 'DaemonKey', id: 'LIST' }],
+    }),
+
+    getWalletAddresses: query(build, Daemon, 'getWalletAddresses', {
+      transformResponse: (response) => response.walletAddresses,
+      providesTags: (walletAddresses) =>
+        walletAddresses
+          ? [
+              ...Object.keys(walletAddresses).flatMap((fingerprint) =>
+                walletAddresses[fingerprint].map((address) => ({
+                  type: 'WalletAddress',
+                  id: `${fingerprint}:${address.hdPath}`,
+                }))
+              ),
+              { type: 'WalletAddress', id: 'LIST' },
+            ]
+          : [{ type: 'WalletAddress', id: 'LIST' }],
     }),
 
     setLabel: mutation(build, Daemon, 'setLabel', {
@@ -200,6 +219,7 @@ export const {
   useAddPrivateKeyMutation,
   useGetKeyQuery,
   useGetKeysQuery,
+  useGetWalletAddressesQuery,
   useSetLabelMutation,
   useDeleteLabelMutation,
 } = daemonApi;
