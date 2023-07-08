@@ -64,7 +64,7 @@ export default class Daemon extends Service {
   }
 
   getWalletAddresses(args: {
-    fingerprints?: string[];
+    fingerprints?: number[];
     count?: number;
     index?: number;
     nonObserverDerivation?: boolean;
