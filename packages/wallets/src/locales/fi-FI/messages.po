@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-08 10:14\n"
+"PO-Revision-Date: 2023-07-08 11:15\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -147,11 +147,11 @@ msgstr "Takaisinveto mahdollistetaan."
 
 #: src/components/WalletSend.tsx:346
 msgid "Clawback will not be applied."
-msgstr ""
+msgstr "Takaisinvetoa ei mahdollisteta."
 
 #: src/components/WalletHistoryClawbackChip.tsx:94
 msgid "Clawing back..."
-msgstr ""
+msgstr "Vedetään takaisin..."
 
 #: src/components/WalletsSidebar.tsx:141
 #~ msgid "Click here to download an older version of the wallet"
@@ -160,7 +160,7 @@ msgstr ""
 #: src/components/ClawbackClaimTransactionDialog.tsx:157
 #: src/components/ClawbackClaimTransactionDialog.tsx:248
 msgid "Close"
-msgstr ""
+msgstr "Sulje"
 
 #: src/components/WalletHeader.tsx:25
 msgid "Confirmation"
@@ -202,7 +202,7 @@ msgstr "Luo Transaktio"
 
 #: src/components/WalletHistory.tsx:206
 msgid "Creation Date"
-msgstr ""
+msgstr "Luontipäivämäärä"
 
 #: src/constants/WalletName.ts:20
 msgid "Custody Wallet"
@@ -261,7 +261,7 @@ msgstr "Veloitus"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:175
 msgid "From:"
-msgstr ""
+msgstr "Lähettäjä:"
 
 #: src/components/WalletReceiveAddress.tsx:32
 msgid "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefore wallet receive addresses) that will all ultimately come back to and be spendable by a single private key."
@@ -405,7 +405,7 @@ msgstr "Avoimet Vaihtorahat"
 
 #: src/components/WalletHistoryPending.tsx:62
 msgid "Pending claw back transactions"
-msgstr ""
+msgstr "Takaisinvetotransaktiot kesken"
 
 #: src/components/card/WalletCardPendingTotalBalance.tsx:41
 msgid "Pending Total Balance"
@@ -413,11 +413,11 @@ msgstr "Avoin Kokonaissumma"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:206
 msgid "Please enter a transaction fee to claim the above amount:"
-msgstr ""
+msgstr "Anna siirtomaksu lunastaaksesi yllä olevan summan:"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:208
 msgid "Please enter a transaction fee to claw back the above amount:"
-msgstr ""
+msgstr "Anna siirtomaksu takaisinvetääkseksi yllä mainitun summan:"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:42
 msgid "Please enter a valid asset id"
@@ -533,7 +533,7 @@ msgstr "Vakiolompakko"
 
 #: src/components/WalletHistory.tsx:197
 msgid "Status"
-msgstr ""
+msgstr "Tila"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:12
 msgid "Success"
@@ -589,7 +589,7 @@ msgstr "Nykyinen saldo + avoin saldo, eli tuleva saldo avointen transaktioiden j
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:193
 msgid "This transaction will be automatically claimed with a fee:"
-msgstr ""
+msgstr "Tämä tapahtuma lunastetaan automaattisesti maksulla:"
 
 #: src/components/WalletHistory.tsx:181
 #~ msgid "To"
@@ -597,7 +597,7 @@ msgstr ""
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:175
 msgid "To:"
-msgstr ""
+msgstr "Vastaanottaja:"
 
 #: src/components/cat/WalletCATCreateSimple.tsx:46
 msgid "Token has empty asset id"
@@ -625,11 +625,11 @@ msgstr "Transaktiot"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:232
 msgid "Transactions will be claimed automatically when the Clawback time expires."
-msgstr ""
+msgstr "Transaktiot lunastetaan automaattisesti, kun takaisinvetoaika umpeutuu."
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:235
 msgid "Transactions with values smaller than the fee will not be auto claimed."
-msgstr ""
+msgstr "Transaktioita, joiden arvo on pienempi kuin maksu, ei lunasteta automaattisesti."
 
 #: src/components/Wallet.tsx:22
 msgid "Wallet {walletId} not found"
@@ -650,7 +650,7 @@ msgstr "Lompakon Nimi"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:200
 msgid "Wallet needs to be synced for claiming clawback transactions"
-msgstr ""
+msgstr "Lompakon on oltava synkronissa takaisinvetoa varten"
 
 #: src/components/Wallet.tsx:37
 msgid "Wallet with type {0} not supported"
@@ -670,11 +670,11 @@ msgstr "Tervetuloa! Seuraavia muistisanoja käytetään lompakon varmuuskopioint
 
 #: src/components/WalletHistoryClawbackChip.tsx:41
 msgid "Will be autoclaimed in "
-msgstr ""
+msgstr "Lunastetaan automaattisesti "
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:238
 msgid "You can change the Clawback Auto Claim fee in Settings."
-msgstr ""
+msgstr "Voit muuttaa automaattista lunastusmaksua Asetuksista."
 
 #: src/components/WalletsSidebar.tsx:106
 #~ msgid "Your CAT tokens have been upgraded!"
