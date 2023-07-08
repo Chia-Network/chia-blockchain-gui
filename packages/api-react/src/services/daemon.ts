@@ -128,12 +128,12 @@ export const daemonApi = apiWithTag.injectEndpoints({
             const bbRam = PlotterName.BLADEBIT_RAM;
             availablePlotters[bbRam] = {
               displayName,
-              version: `${version} (RAM plot)`,
+              version: typeof version === 'string' ? `${version} (RAM plot)` : version,
               options: optionsForPlotter(bbRam),
               defaults: defaultsForPlotter(bbRam),
               installInfo: {
-                installed: false,
-                canInstall: false,
+                installed,
+                canInstall,
                 bladebitMemoryWarning,
               },
             };
