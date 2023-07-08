@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-05 21:40\n"
+"PO-Revision-Date: 2023-07-08 11:15\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -20,11 +20,11 @@ msgstr ""
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:61
 msgid "(>5 min)"
-msgstr ""
+msgstr "(>5 min)"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:61
 msgid "(~{selectedTime} min)"
-msgstr ""
+msgstr "(~{selectedTime} min)"
 
 #: src/components/Amount/Amount.tsx:86
 msgid "{0, plural, one {mojo} other {mojos}}"
@@ -36,15 +36,15 @@ msgstr "{minPassphraseLength, plural, one {Salasanojen on oltava vähintään # 
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:95
 msgid "A new version of Chia is available!"
-msgstr ""
+msgstr "Uusi versio Chiasta on saatavilla!"
 
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:258
 msgid "Add Icon"
-msgstr ""
+msgstr "Lisää Ikoni"
 
 #: src/screens/SelectKey/SelectKey.tsx:172
 msgid "Add wallet"
-msgstr ""
+msgstr "Lisää Lompakko"
 
 #: src/components/Amount/Amount.tsx:36
 msgid "Amount"
@@ -72,11 +72,11 @@ msgstr "Peru"
 
 #: src/components/Settings/SettingsApp.tsx:139
 msgid "Check for updates"
-msgstr ""
+msgstr "Tarkista päivitykset"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:93
 msgid "Checking for updates..."
-msgstr ""
+msgstr "Tarkistetaan päivityksiä..."
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:82
 msgid "Chia {latestVersion} is currently the latest version available."
