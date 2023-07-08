@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-05 21:40\n"
+"PO-Revision-Date: 2023-07-08 10:14\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -64,7 +64,7 @@ msgstr "Haluatko varmasti poistaa nämä vahvistamattomat tapahtumat?"
 
 #: src/components/WalletHistory.tsx:127
 msgid "Asset"
-msgstr ""
+msgstr "Assetti"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:71
 #: src/components/cat/WalletCATTAILDialog.tsx:33
@@ -82,11 +82,11 @@ msgstr "Valtuutettu Lompakko"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:226
 msgid "Auto-claim transactions with this fee from now on."
-msgstr ""
+msgstr "Lunasta transaktiot automaattisesti tällä maksusummalla tästä lähtien."
 
 #: src/components/WalletHistoryClawbackChip.tsx:46
 msgid "Can be claimed in "
-msgstr ""
+msgstr "Voidaan lunastaa "
 
 #: src/components/PasteMnemonic.tsx:76
 #: src/components/WalletRenameDialog.tsx:72
@@ -110,40 +110,40 @@ msgstr "Chia Asset Token"
 
 #: src/components/WalletHistoryClawbackChip.tsx:53
 msgid "Claim transaction"
-msgstr ""
+msgstr "Lunasta transaktio"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:136
 #: src/components/ClawbackClaimTransactionDialog.tsx:259
 msgid "Claim Transaction"
-msgstr ""
+msgstr "Lunasta Transaktio"
 
 #: src/components/WalletHistoryClawbackChip.tsx:68
 msgid "Claiming..."
-msgstr ""
+msgstr "Lunastetaan..."
 
 #: src/components/WalletHistoryClawbackChip.tsx:79
 msgid "Claw back this transaction"
-msgstr ""
+msgstr "Takaisinvedä transaktio"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:259
 msgid "Claw back Transaction"
-msgstr ""
+msgstr "Takaisinvedä transaktio"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:136
 msgid "Claw Back Transaction"
-msgstr ""
+msgstr "Takaisinvedä transaktio"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:128
 msgid "Clawback payment claimed"
-msgstr ""
+msgstr "Takaisinvedettävä maksu lunastettu"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:128
 msgid "Clawback payment clawed back"
-msgstr ""
+msgstr "Takaisinvedettävä maksu vedetty takaisin"
 
 #: src/components/WalletSend.tsx:340
 msgid "Clawback will be applied."
-msgstr ""
+msgstr "Takaisinveto mahdollistetaan."
 
 #: src/components/WalletSend.tsx:346
 msgid "Clawback will not be applied."
