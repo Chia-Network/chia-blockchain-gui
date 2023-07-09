@@ -36,11 +36,9 @@ export default function PlotAddNumberOfPlots(props: Props) {
   const parallel = watch('parallel');
 
   const op = plotter.options;
-  const isBladebit3OrNewer =
-    plotter.defaults.plotterName.startsWith('bladebit') && plotter.version && +plotter.version.split('.')[0] >= 3;
 
   return (
-    <CardStep step={step} title={<Trans>Choose Number of Plots</Trans>}>
+    <CardStep step={step} title={<Trans>Options</Trans>}>
       <Grid spacing={2} direction="column" container>
         <Grid xs={12} md={8} lg={6} item>
           <FormControl variant="filled" fullWidth>
@@ -105,25 +103,6 @@ export default function PlotAddNumberOfPlots(props: Props) {
 
       <AdvancedOptions>
         <Grid spacing={1} container>
-          {op.haveBladebitCompressionLevel && isBladebit3OrNewer && (
-            <Grid xs={12} sm={12} item>
-              <FormControl variant="filled" fullWidth>
-                <InputLabel>
-                  <Trans>Compression level</Trans>
-                </InputLabel>
-                <Select name="bladebitCompressionLevel" defaultValue={plotter.defaults.bladebitCompressionLevel}>
-                  <MenuItem value={0}>0 - No compression</MenuItem>
-                  <MenuItem value={1}>1</MenuItem>
-                  <MenuItem value={2}>2</MenuItem>
-                  <MenuItem value={3}>3</MenuItem>
-                  <MenuItem value={4}>4</MenuItem>
-                  <MenuItem value={5}>5</MenuItem>
-                  <MenuItem value={6}>6</MenuItem>
-                  <MenuItem value={7}>7</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
-          )}
           {op.canSetBufferSize && (
             <Grid xs={12} sm={6} item>
               <FormControl fullWidth>

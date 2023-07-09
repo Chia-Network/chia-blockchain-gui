@@ -38,6 +38,8 @@ type PlotAdd = {
   queue: string;
   workspaceLocation: string;
   workspaceLocation2: string;
+  farmerPublicKey?: string;
+  poolPublicKey?: string;
 };
 
 export default PlotAdd;

@@ -68,3 +68,4 @@ export type { default as Transaction } from './Transaction';
 export type { default as UnconfirmedPlotNFT } from './UnconfirmedPlotNFT';
 export type { default as Wallet } from './Wallet';
 export type { default as WalletBalance } from './WalletBalance';
+export type { default as WalletCreate, WalletCreatePool } from './WalletCreate';

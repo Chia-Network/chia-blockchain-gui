@@ -114,8 +114,8 @@ export default class Daemon extends Service {
   }
 
   startPlotting(inputArgs: {
-    bladebitDisableNUMA: boolean;
-    bladebitWarmStart: boolean;
+    bladebitDisableNUMA?: boolean;
+    bladebitWarmStart?: boolean;
     bladebitNoCpuAffinity?: boolean;
     bladebitCompressionLevel?: number;
     bladebitDiskCache?: number;

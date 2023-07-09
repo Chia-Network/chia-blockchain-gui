@@ -7,13 +7,13 @@ interface CommonOptions {
   canPlotInParallel: boolean;
   canDelayParallelPlots: boolean;
   canSetBufferSize: boolean;
+  haveTempDir: boolean;
 }
 
 interface BladeBitRamOptions extends CommonOptions {
   haveBladebitWarmStart: boolean;
   haveBladebitDisableNUMA: boolean;
   haveBladebitNoCpuAffinity: boolean;
-  haveBladebitOutputDir: boolean;
   haveBladebitCompressionLevel: boolean;
 }
 
