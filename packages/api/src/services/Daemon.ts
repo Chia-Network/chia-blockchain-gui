@@ -133,6 +133,7 @@ export default class Daemon extends Service {
     delay: number;
     disableBitfieldPlotting?: boolean;
     excludeFinalDir?: boolean;
+    farmerPublicKey?: string;
     finalLocation: string;
     fingerprint?: number;
     madmaxNumBucketsPhase3?: number;
@@ -147,6 +148,7 @@ export default class Daemon extends Service {
     plotSize: number;
     plotterName: string;
     plotType?: string;
+    poolPublicKey?: string;
     queue: string;
     workspaceLocation: string;
     workspaceLocation2: string;
@@ -169,6 +171,7 @@ export default class Daemon extends Service {
       bladebitDisableDirectDownloads: 'no_direct_downloads',
       disableBitfieldPlotting: 'e',
       excludeFinalDir: 'x',
+      farmerPublicKey: 'f',
       finalLocation: 'd',
       fingerprint: 'a',
       madmaxNumBucketsPhase3: 'v',

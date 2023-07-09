@@ -24,16 +24,14 @@ import { useFormContext } from 'react-hook-form';
 
 import PlotterName from '../../../constants/PlotterName';
 import Plotter from '../../../types/Plotter';
-import PlotAddNFT from './PlotAddNFT';
 
 type Props = {
   step: number;
   plotter: Plotter;
-  addNftRef: React.Ref<unknown>;
 };
 
 export default function PlotAddNumberOfPlots(props: Props) {
-  const { step, plotter, addNftRef } = props;
+  const { step, plotter } = props;
   const { watch } = useFormContext();
   const parallel = watch('parallel');
 
@@ -500,7 +498,6 @@ export default function PlotAddNumberOfPlots(props: Props) {
                 </FormControl>
               </Grid>
             )}
-            <PlotAddNFT ref={addNftRef} />
           </Grid>
         </Grid>
       </AdvancedOptions>
