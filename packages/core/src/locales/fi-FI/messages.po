@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-08 11:15\n"
+"PO-Revision-Date: 2023-07-10 15:56\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -80,11 +80,11 @@ msgstr "Tarkistetaan päivityksiä..."
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:82
 msgid "Chia {latestVersion} is currently the latest version available."
-msgstr ""
+msgstr "Chia {latestVersion} on tällä hetkellä uusin versio."
 
 #: src/components/Settings/SettingsApp.tsx:125
 msgid "Chia Application Version:"
-msgstr ""
+msgstr "Chia-sovelluksen Versio:"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:110
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:47
@@ -110,7 +110,7 @@ msgstr "Kopioi Leikepöydälle"
 
 #: src/screens/SelectKey/SelectKey.tsx:270
 msgid "Create a new wallet key"
-msgstr ""
+msgstr "Luo yksityinen avain"
 
 #: src/screens/SelectKey/SelectKey.tsx:262
 msgid "Create a new wallet key to get started with Chia."
