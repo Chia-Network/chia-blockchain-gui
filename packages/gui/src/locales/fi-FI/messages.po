@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-05 21:40\n"
+"PO-Revision-Date: 2023-07-10 16:55\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -92,7 +92,7 @@ msgstr "Kehitystyökalut"
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:660
 msgid "Trigger Desktop Notification"
-msgstr ""
+msgstr "Käynnistä Työpöytä-ilmoitus"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:689
@@ -137,7 +137,7 @@ msgstr "Raportoi Ongelma..."
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:747
 msgid "Chat on Discord"
-msgstr ""
+msgstr "Chattaa Discordissa"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:753
@@ -158,7 +158,7 @@ msgstr "Chia Lohkoketjusta"
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:774
 msgid "Check for Updates..."
-msgstr ""
+msgstr "Tarkista päivitykset..."
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:822
@@ -168,7 +168,7 @@ msgstr "Puhe"
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:867
 msgid "Check for updates..."
-msgstr ""
+msgstr "Tarkista päivitykset..."
 
 #: src/components/offers2/OfferBuilderImport.tsx:167
 msgid "(⌘V) a blob"
@@ -192,7 +192,7 @@ msgstr "(Ei tuettu)"
 
 #: src/components/plot/add/PlotAddNFT.tsx:59
 msgid "(Recommended)"
-msgstr ""
+msgstr "(Suositus)"
 
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:89
 msgid "{0, plural, one {mojo} other {mojos}}"
@@ -230,7 +230,7 @@ msgstr "{0} pistettä {1} - {2} tuntia sitten"
 
 #: src/components/notification/NotificationAnnouncement.tsx:51
 msgid "{from} <0>sending the message</0>"
-msgstr ""
+msgstr "{from} <0>lähetetään viesti</0>"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:432
 #~ msgid "{key} ({0})"
@@ -271,7 +271,7 @@ msgstr "+ Lisää Uusi Plot NFT"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:300
 msgid "<0>Loading...</0> {0}%"
-msgstr ""
+msgstr "<0>Ladataan...</0> {0}%"
 
 #: src/components/settings/ProfileAdd.tsx:80
 #~ msgid "<0>Need some XCH?</0>"
@@ -279,7 +279,7 @@ msgstr ""
 
 #: src/components/nfts/gallery/NFTGallery.tsx:290
 msgid "<0>Showing</0> {0} <1>of</1> {1}  <2>items</2>"
-msgstr ""
+msgstr "<0>Näytetään</0>{0}<1>/</1>{1}<2>kohdetta</2>"
 
 #: src/components/settings/ProfileAdd.tsx:92
 #~ msgid "<0>Use one (1) mojo to create a Profile.</0>"
@@ -291,7 +291,7 @@ msgstr "Harvesteri on palvelu koneella, jolle plot-tiedostot on tallennettu. Far
 
 #: src/components/settings/SettingsProfiles.tsx:53
 msgid "A profile is a decentralized identifier (DID) that you can prove control and ownership of without having to rely on any centralized authority."
-msgstr ""
+msgstr "Profiili on hajautettu tunniste (DID), jolla voit osoittaa hallinan ja omistajuuden ilman kolmatta osapuolta."
 
 #: src/components/settings/SettingsDataLayer.tsx:79
 msgid "A reference server that enables creating mirrored copies of DataLayer."
@@ -384,15 +384,15 @@ msgstr "Lisää Plottausprosessi Jonoon"
 
 #: src/constants/WalletConnectCommands.tsx:885
 msgid "Add Proofs"
-msgstr ""
+msgstr "Lisää Todisteita"
 
 #: src/constants/WalletConnectCommands.tsx:844
 msgid "Add Proofs To Verifiable Credential"
-msgstr ""
+msgstr "Lisää Todisteet Todennettavaan Käyttöoikeustietoon"
 
 #: src/components/vcs/VCList.tsx:216
 msgid "Add Verifiable Credential from file"
-msgstr ""
+msgstr "Lisää todennettava käyttöoikeustieto tiedostosta"
 
 #: src/components/notification/NotificationSendDialog.tsx:219
 #: src/components/signVerify/SigningEntityWalletAddress.tsx:45
@@ -434,7 +434,7 @@ msgstr "Salli NFT:n haltijan lähettää vastatarjous"
 
 #: src/components/notification/NotificationSendDialog.tsx:286
 msgid "Allow the recipient to send a counter offer"
-msgstr ""
+msgstr "Salli vastaanottajan lähettää vastatarjous"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:418
 msgid "Alternate bucket writing"
@@ -446,11 +446,11 @@ msgstr "Vaihtoehtoinen tmpdir/tmpdir2"
 
 #: src/components/settings/SettingsIntegration.tsx:308
 msgid "Always Allow"
-msgstr ""
+msgstr "Salli Aina"
 
 #: src/components/settings/SettingsIntegration.tsx:311
 msgid "Always Reject"
-msgstr ""
+msgstr "Hylkää Aina"
 
 #: src/components/offers/NFTOfferEditor.tsx:231
 #: src/components/offers/OfferEditorConditionsPanel.tsx:128
@@ -478,7 +478,7 @@ msgstr "Määrä ylittää käytettävissä olevan saldon"
 
 #: src/util/offerBuilderDataToOffer.ts:241
 msgid "Amount exceeds total balance for {catName} token"
-msgstr ""
+msgstr "Summa ylittää käytettävissä olevan saldon {catName} tokenille"
 
 #: src/util/offerBuilderDataToOffer.ts:59
 #~ msgid "Amount exceeds XCH spendable balance"
@@ -486,7 +486,7 @@ msgstr ""
 
 #: src/util/offerBuilderDataToOffer.ts:173
 msgid "Amount exceeds XCH total balance"
-msgstr ""
+msgstr "Määrä ylittää käytettävissä olevan XCH-saldon"
 
 #: src/components/offers/NFTOfferPreview.tsx:137
 #: src/components/offers2/OfferBuilderNFTProvenance.tsx:23
@@ -495,11 +495,11 @@ msgstr "NFT:n alkuperä on täydellinen historia sen omistusoikeudesta. Se yhdis
 
 #: src/components/notification/NotificationAnnouncementDialog.tsx:35
 msgid "Announcement"
-msgstr ""
+msgstr "Tiedotus"
 
 #: src/components/settings/SettingsIntegration.tsx:212
 msgid "App Permissions"
-msgstr ""
+msgstr "Sovelluksen Oikeudet"
 
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:121
 #: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:91
@@ -508,7 +508,7 @@ msgstr "Sovellus"
 
 #: src/components/walletConnect/WalletConnectActiveSessions.tsx:31
 msgid "Application doesn't have any active pair."
-msgstr ""
+msgstr "Sovelluksella ei ole aktiivista paria."
 
 #: src/components/walletConnect/WalletConnectActiveSessions.tsx:35
 msgid "Application has no active sessions"
@@ -545,11 +545,11 @@ msgstr "Oletko varma, että haluat siirtää tämän NFT:n määriteltyyn profii
 
 #: src/components/vcs/VCCard.tsx:191
 msgid "Are you sure you want to remove"
-msgstr ""
+msgstr "Oletko varma, että haluat poistaa"
 
 #: src/components/vcs/VCCard.tsx:193
 msgid "Are you sure you want to revoke"
-msgstr ""
+msgstr "Oletko varma että haluat kumota"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:50
 msgid "Are you sure you want to use k={plotSize}?"
@@ -557,7 +557,7 @@ msgstr "Haluatko käyttää arvoa k={plotSize}?"
 
 #: src/components/offers2/OfferIncomingTable.tsx:211
 msgid "Are you sure you'd like to remove this offer? Please remember that this action is not reversible."
-msgstr ""
+msgstr "Oletko varma, että haluat poistaa tarjouksen? Muista, että tämä toiminto ei ole peruutettavissa."
 
 #: src/components/offers2/OfferBuilderRoyaltyPayouts.tsx:48
 msgid "Asset"
@@ -605,15 +605,15 @@ msgstr "Yritys {attempt}"
 
 #: src/components/settings/SettingsCustody.tsx:61
 msgid "Auto claim incoming claw back transactions"
-msgstr ""
+msgstr "Lunasta takaisinvedettävät transaktiot automaattisesti"
 
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:134
 msgid "Auto claim is disabled."
-msgstr ""
+msgstr "Automaattinen lunastus on pois päältä."
 
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:119
 msgid "Auto claim is enabled."
-msgstr ""
+msgstr "Automaattinen lunastus käytössä."
 
 #: src/components/plotNFT/PlotNFTName.tsx:40
 msgid "Autogenerated name from pool contract address"
@@ -625,11 +625,11 @@ msgstr "Takaisin"
 
 #: src/constants/WalletConnectCommands.tsx:759
 msgid "Backup DIDs"
-msgstr ""
+msgstr "Varmuuskopioi DID:t"
 
 #: src/components/vcs/VCList.tsx:268
 msgid "Badging"
-msgstr ""
+msgstr "Merkintä"
 
 #: src/components/settings/ProfileAdd.tsx:98
 #~ msgid "Balance: {standardBalance} XCH"
@@ -861,7 +861,7 @@ msgstr "Valitse ilmoitusasetukset."
 
 #: src/components/settings/SettingsCustody.tsx:65
 msgid "Claim assets sent to you automatically when the claw back time period expires."
-msgstr ""
+msgstr "Lunasta vastaanottamasi assetit automaattisesti kun takaisinvetoaika umpeutuu."
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:130
 #: src/components/plotNFT/PlotNFTCard.tsx:319
@@ -870,7 +870,7 @@ msgstr "Lunasta Palkkiot"
 
 #: src/constants/WalletConnectCommands.tsx:154
 msgid "Claw back or claim claw back transaction"
-msgstr ""
+msgstr "Takaisinvedä tai lunasta transaktio"
 
 #: src/components/settings/SettingsNFT.tsx:52
 #: src/components/settings/SettingsNFT.tsx:153
@@ -909,11 +909,11 @@ msgstr "Kolikon Tunnuste"
 
 #: src/components/vcs/VCCard.tsx:121
 msgid "Coin ID"
-msgstr ""
+msgstr "Kolikon Tunniste"
 
 #: src/constants/WalletConnectCommands.tsx:160
 msgid "Coin Ids"
-msgstr ""
+msgstr "Kolikon Tunnisteet"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:202
 #: src/components/nfts/NFTSummary.tsx:49
@@ -1011,7 +1011,7 @@ msgstr "Sisältö ei vastaa NFT:n luomisen aikana määritettyä tiivistettä. S
 
 #: src/components/nfts/NFTHashStatus.tsx:102
 msgid "Content has not been validated against the hash that was specified during NFT minting. Error: {0}"
-msgstr ""
+msgstr "Sisältöä ei ole validoitu NFT:n luonnin aikana määritettyä tiivistettä vastaan. Virhe: {0}"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:188
 msgid "Continue"
@@ -1035,7 +1035,7 @@ msgstr "Kopioi Leikepöydälle"
 
 #: src/components/notification/NotificationSendDialog.tsx:239
 msgid "Cost to send notification"
-msgstr ""
+msgstr "Ilmoituksen lähettämisen kustannukset"
 
 #: src/components/notification/NotificationSendDialog.tsx:237
 msgid "Cost to send notification to the NFT holder"
@@ -1055,7 +1055,7 @@ msgstr "Vastaus"
 
 #: src/components/offers2/OfferBuilderViewer.tsx:202
 msgid "Counter Offer"
-msgstr ""
+msgstr "Vastatarjous"
 
 #: src/components/plot/add/PlotAddForm.tsx:202
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:79
@@ -1098,7 +1098,7 @@ msgstr "Luo uusi CAT-lompakko"
 
 #: src/constants/WalletConnectCommands.tsx:742
 msgid "Create new DID Wallet"
-msgstr ""
+msgstr "Luo uusi DID-lompakko"
 
 #: src/components/nfts/NFTContextualActions.tsx:148
 #: src/components/offers/NFTOfferEditor.tsx:437
@@ -1115,7 +1115,7 @@ msgstr "Luo tarjous tunnisteille"
 
 #: src/components/settings/IdentitiesPanel.tsx:98
 msgid "Create Profile"
-msgstr ""
+msgstr "Luo Profiili"
 
 #: src/components/settings/SettingsAdvanced.tsx:69
 msgid "Create Signature"
@@ -1131,7 +1131,7 @@ msgstr "Luo ja lähettää transaktion lohkoketjuun, joka peruuttaa tarjouksen"
 
 #: src/components/settings/ProfileAdd.tsx:130
 msgid "Creating a profile requires 1 mojo"
-msgstr ""
+msgstr "Profiilin luominen vaatii yhden mojon"
 
 #: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:63
 msgid "Creating Plot NFT and Joining the Pool"
@@ -1162,7 +1162,7 @@ msgstr "Tekijän rojaltiprosentti vaikuttaa korkealta"
 
 #: src/components/dashboard/DashboardSideBar.tsx:67
 msgid "Credentials"
-msgstr ""
+msgstr "Käyttöoikeustiedot"
 
 #: src/components/plot/add/PlotAddForm.tsx:128
 msgid "Currency code is not defined"
@@ -1184,11 +1184,11 @@ msgstr "Tämänhetkinen Pistesaldo"
 
 #: src/components/notification/utils.ts:109
 msgid "Dapp {from} sending the message"
-msgstr ""
+msgstr "Dapp {from} lähettää viestin"
 
 #: src/components/notification/utils.ts:109
 msgid "Dapp sending the message"
-msgstr ""
+msgstr "Dapp lähettää viestin"
 
 #: src/components/nfts/NFTDetails.tsx:235
 msgid "Data Hash"
@@ -2517,11 +2517,11 @@ msgstr "Uusi Osoite"
 
 #: src/components/notification/utils.ts:105
 msgid "New counter offer"
-msgstr ""
+msgstr "Uusi vastatarjous"
 
 #: src/components/notification/utils.ts:101
 msgid "New offer"
-msgstr ""
+msgstr "Uusi tarjous"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:210
 msgid "New Passphrase"
