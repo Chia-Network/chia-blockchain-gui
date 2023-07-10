@@ -126,7 +126,7 @@ export const bladebitCudaOptions: PlotterOptions = {
   haveBladebitWarmStart: true,
   haveBladebitDisableNUMA: true,
   haveBladebitNoCpuAffinity: true,
-  haveTempDir: false,
+  haveTempDir: true,
   haveBladebitCompressionLevel: true,
   haveBladebitDiskCache: false,
   haveBladebitDiskF1Threads: false,

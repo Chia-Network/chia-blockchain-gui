@@ -10,9 +10,9 @@ type PlotSize = {
 export function getEffectivePlotSize(kSize: 25 | 32 | 33 | 34 | 35) {
   const sizeInBytes = (2 * kSize + 1) * 2 ** (kSize - 1);
   if (kSize < 32) {
-    return `${sizeInBytes / 1024 / 1024} MiB`;
+    return `${sizeInBytes / 1024 / 1024}MiBe`;
   }
-  return `${sizeInBytes / 1024 / 1024 / 1024} GiB`;
+  return `${sizeInBytes / 1024 / 1024 / 1024}GiBe`;
 }
 
 export const plottingInfo: Record<PlotterName, PlotSize[]> = {

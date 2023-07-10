@@ -198,7 +198,6 @@ export default class Daemon extends Service {
 
     if (outputArgs.plotter && (outputArgs.plotter as string).startsWith('bladebit')) outputArgs.plotter = 'bladebit';
     if (outputArgs.cache) outputArgs.cache = `${outputArgs.cache}G`;
-    if (!outputArgs.compressionLevel) delete outputArgs.compressionLevel;
 
     Object.keys(outputArgs).forEach((key) => {
       if (outputArgs[key] === undefined) delete outputArgs[key];
