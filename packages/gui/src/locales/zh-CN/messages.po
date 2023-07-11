@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-06 16:33\n"
+"PO-Revision-Date: 2023-07-11 07:58\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -291,7 +291,7 @@ msgstr "收割机是一个在存有地块文件的机器上运行的服务。农
 
 #: src/components/settings/SettingsProfiles.tsx:53
 msgid "A profile is a decentralized identifier (DID) that you can prove control and ownership of without having to rely on any centralized authority."
-msgstr ""
+msgstr "个人资料是一种去中心化身份标识符（DID），可以证明对其的控制和所有权，而无需依赖任何中央机构。"
 
 #: src/components/settings/SettingsDataLayer.tsx:79
 msgid "A reference server that enables creating mirrored copies of DataLayer."
@@ -384,7 +384,7 @@ msgstr "将生成地块任务加入队列"
 
 #: src/constants/WalletConnectCommands.tsx:885
 msgid "Add Proofs"
-msgstr ""
+msgstr "添加证明"
 
 #: src/constants/WalletConnectCommands.tsx:844
 msgid "Add Proofs To Verifiable Credential"
@@ -4434,7 +4434,7 @@ msgstr "代币标准"
 #: src/components/dashboard/DashboardSideBar.tsx:54
 #: src/components/offers2/OfferBuilderTokensSection.tsx:113
 msgid "Tokens"
-msgstr "资产代币"
+msgstr "代币"
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:111
 msgid "Too Many Plot NFTs"
