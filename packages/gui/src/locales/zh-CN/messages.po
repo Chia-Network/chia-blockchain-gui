@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-11 10:09\n"
+"PO-Revision-Date: 2023-07-11 11:04\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -5069,7 +5069,7 @@ msgstr "您在网络上拥有{0}%的空间，因此收割一个区块所花费�
 
 #: src/components/notification/NotificationOffer.tsx:91
 msgid "You have a new counter offer"
-msgstr "收到一个新的商议报价"
+msgstr "收到一个还价"
 
 #: src/components/notification/NotificationOffer.tsx:93
 msgid "You have a new offer"
@@ -5077,19 +5077,19 @@ msgstr "收到一个新的报价"
 
 #: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:304
 msgid "You have coins/assets locked for your open offers thus the spendable balance is not sufficient for the amounts you are offering. You need to cancel open offers to unlock coins/asset for the new offer."
-msgstr ""
+msgstr "由于已生成的报价中锁定了一定数量的币/资产，因此可用余额不足以满足所报价的金额。需要取消已生成报价以解锁币/资产，以用于新的报价。"
 
 #: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:326
 msgid "You have open offers which lock the same assets as your new offer. You may want to cancel those offers if they are no longer needed."
-msgstr ""
+msgstr "有一些已生成报价锁定了与新报价相同的资产。如果不再需要，可以取消报价。"
 
 #: src/components/notification/utils.ts:106
 msgid "You have received a new counter offer"
-msgstr ""
+msgstr "收到一个还价"
 
 #: src/components/notification/utils.ts:102
 msgid "You have received a new offer"
-msgstr ""
+msgstr "您收到了一个新的报价"
 
 #: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:37
 msgid "You need {currencyCode} to join a pool."
@@ -5118,7 +5118,7 @@ msgstr "你将会收到 <0/> 至 {address}"
 
 #: src/components/walletConnect/WalletConnectActiveSessions.tsx:56
 msgid "Your current version of the Chia application may not support some commands requested by the dApp. For the best experience, consider updating to the latest version."
-msgstr ""
+msgstr "当前使用的Chia应用版本可能不支持dApp请求的某些命令。为了获得最佳体验，建议更新到最新版本。"
 
 #: src/components/farm/FarmHeader.tsx:21
 msgid "Your Farm Overview"
@@ -5160,9 +5160,9 @@ msgstr "耕种状态概览"
 
 #: src/components/settings/ProfileAdd.tsx:77
 msgid "Your spendable balance must be greater than 1 mojo to create a profile"
-msgstr ""
+msgstr "可用余额必须大于1 mojo才能创建个人资料"
 
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
-msgstr ""
+msgstr "需确保钱包正在运行才能完成自动认领。"
 
