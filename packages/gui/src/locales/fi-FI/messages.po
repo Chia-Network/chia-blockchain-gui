@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-10 16:55\n"
+"PO-Revision-Date: 2023-07-11 17:24\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1216,15 +1216,15 @@ msgstr "Päiväys"
 
 #: src/components/settings/SettingsCustody.tsx:41
 msgid "Default claw back time for outgoing XCH transactions"
-msgstr ""
+msgstr "Oletustakaisinvetoaika lähteville XCH-transaktioille"
 
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:114
 msgid "Default claw back time is disabled."
-msgstr ""
+msgstr "Oletustakaisinvetoaika pois käytöstä."
 
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:109
 msgid "Default claw back time is enabled."
-msgstr ""
+msgstr "Oletustakaisinvetoaika kätössä."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:89
 msgid "Delay"
@@ -1255,7 +1255,7 @@ msgstr "Poista Vahvistamattomat Transaktiot"
 
 #: src/components/vcs/VCCard.tsx:286
 msgid "Delete Verifiable Credential"
-msgstr ""
+msgstr "Poista Todennettavissa Olevat Käyttöoikeustiedot"
 
 #: src/components/app/AppPassPrompt.tsx:100
 msgid "Deleting key"
@@ -1313,7 +1313,7 @@ msgstr "DID"
 
 #: src/constants/WalletConnectCommands.tsx:680
 msgid "DID Id"
-msgstr ""
+msgstr "DID-tunniste"
 
 #: src/components/block/Block.jsx:181
 #: src/components/fullNode/card/FullNodeCardDifficulty.tsx:14
@@ -1323,7 +1323,7 @@ msgstr "Vaikeusaste"
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:91
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:77
 msgid "Disable"
-msgstr ""
+msgstr "Poista Käytöstä"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:399
 msgid "Disable assigning automatic thread affinity. This is useful when running multiple simultaneous instances of Bladebit as you can manually assign thread affinity yourself when launching Bladebit."
@@ -1367,7 +1367,7 @@ msgstr "Näytä Tarjouksen Tiedot"
 
 #: src/components/settings/SettingsNotifications.tsx:152
 msgid "Display sharing options after creating a new offer"
-msgstr ""
+msgstr "Näytä jakamisvaihtoehdot uuden tarjouksen luomisen jälkeen"
 
 #: src/components/offers/OfferShareDialog.tsx:1099
 #: src/hooks/useOpenUnsafeLink.tsx:64
@@ -1476,12 +1476,12 @@ msgstr "Painoksen Nro"
 
 #: src/constants/WalletConnectCommands.tsx:674
 msgid "Edition Total"
-msgstr ""
+msgstr "Painos Yhteensä"
 
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:75
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:63
 msgid "Enable"
-msgstr ""
+msgstr "Käytä"
 
 #: src/components/settings/SettingsStartup.tsx:28
 msgid "Enable Auto Login"
@@ -1497,11 +1497,11 @@ msgstr "Ota Käyttöön Tiedostonvälityksen Palvelin"
 
 #: src/components/settings/SettingsNotifications.tsx:45
 msgid "Enable notifications"
-msgstr ""
+msgstr "Ota ilmoitukset käyttöön"
 
 #: src/components/settings/SettingsVerifiableCredentials.tsx:28
 msgid "Enable Verifiable Credentials"
-msgstr ""
+msgstr "Ota Käyttöön Todennettavissa Olevat Käyttöoikeustiedot"
 
 #: src/components/settings/SettingsIntegration.tsx:157
 #: src/components/walletConnect/WalletConnectConnections.tsx:109
@@ -1554,7 +1554,7 @@ msgstr "Virhe"
 
 #: src/components/vcs/VCList.tsx:180
 msgid "Error parsing file"
-msgstr ""
+msgstr "Tiedoston parsiminen epäonnistui"
 
 #: src/components/nfts/NFTPreview.tsx:657
 #~ msgid "Error parsing json"
@@ -1574,7 +1574,7 @@ msgstr "Virhe: {0}"
 
 #: src/components/vcs/VCEditTitle.tsx:77
 msgid "Esc"
-msgstr ""
+msgstr "Esc"
 
 #: src/components/fullNode/card/FullNodeEstimatedNetworkSpace.tsx:14
 msgid "Estimated Network Space"
@@ -1595,11 +1595,11 @@ msgstr "Jätä pois lopullinen hakemisto"
 
 #: src/components/vcs/VCCard.tsx:135
 msgid "Expiration"
-msgstr ""
+msgstr "Viimeinen voimassaolo"
 
 #: src/components/vcs/VCCard.tsx:140
 msgid "Expired"
-msgstr ""
+msgstr "Vanhentunut"
 
 #: src/components/nfts/gallery/NFTGalleryHero.tsx:18
 msgid "Explore the Chia ecosystem; discover and trade great NFTs"
@@ -1696,7 +1696,7 @@ msgstr "Ominaisuudet edistyneille käyttäjille."
 
 #: src/components/settings/SettingsCustody.tsx:30
 msgid "Features to give you more protection and control over your digital assets."
-msgstr ""
+msgstr "Ominaisuudet jotka antavat digitaalisille asseteillesi enemmän suojaa ja hallittavuutta."
 
 #: src/components/nfts/NFTBurnDialog.tsx:166
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:319
@@ -1729,7 +1729,7 @@ msgstr "Transaktiomaksu (Valinnainen)"
 
 #: src/util/offerBuilderDataToOffer.ts:198
 msgid "Fee exceeds XCH total balance"
-msgstr ""
+msgstr "Maksu ylittää XCH-kokonaissaldon"
 
 #: src/components/plotNFT/PlotNFTChangePool.tsx:113
 msgid "Fee is used TWICE: once to leave pool, once to join."
@@ -1791,7 +1791,7 @@ msgstr "Sovita kuvat kortteihin"
 
 #: src/components/notification/NotificationAnnouncementDialog.tsx:44
 msgid "From"
-msgstr ""
+msgstr "Lähettäjä"
 
 #: src/components/app/AppStatusHeader.tsx:116
 #: src/components/dashboard/DashboardSideBar.tsx:87
@@ -1817,7 +1817,7 @@ msgstr "Hae kaikki tarjoukset"
 
 #: src/constants/WalletConnectCommands.tsx:825
 msgid "Get All Verifiable Credentials"
-msgstr ""
+msgstr "Hanki Kaikki Todennettavissa Olevat Tunnistetiedot"
 
 #: src/constants/WalletConnectCommands.tsx:496
 msgid "Get CAT Asset Id"
@@ -1825,7 +1825,7 @@ msgstr "Hae CAT assetin tunniste"
 
 #: src/constants/WalletConnectCommands.tsx:483
 msgid "Get CAT Wallet Info"
-msgstr ""
+msgstr "Hae CAT-lompakon Tiedot"
 
 #: src/constants/WalletConnectCommands.tsx:90
 msgid "Get Current Address"
@@ -1833,7 +1833,7 @@ msgstr "Hae Nykyinen Osoite"
 
 #: src/components/settings/ProfileAdd.tsx:124
 msgid "Get Mojos from the Chia Faucet"
-msgstr ""
+msgstr "Hanki Mojoja Chia-hanasta"
 
 #: src/constants/WalletConnectCommands.tsx:243
 msgid "Get Next Address"
@@ -1922,7 +1922,7 @@ msgstr "Harvesterit"
 
 #: src/constants/WalletConnectCommands.tsx:641
 msgid "Hash"
-msgstr ""
+msgstr "Tiiviste"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:179
 #~ msgid "Hash is validated."
@@ -1930,7 +1930,7 @@ msgstr ""
 
 #: src/components/nfts/NFTHashStatus.tsx:73
 msgid "Hash matches"
-msgstr ""
+msgstr "Tiivisteosumat"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:184
 #~ msgid "Hash mismatch."
@@ -1968,7 +1968,7 @@ msgstr "Piilotettu"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:385
 msgid "Hidden  <0/>"
-msgstr ""
+msgstr "Piilotettu <0/>"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:573
 #~ msgid "Hidden ({0})"
@@ -2105,7 +2105,7 @@ msgstr "Virheellinen"
 
 #: src/components/nfts/NFTHashStatus.tsx:80
 msgid "Invalid hash"
-msgstr ""
+msgstr "Virheellinen tiiviste"
 
 #: src/components/nfts/NFTPreview.tsx:653
 #~ msgid "Invalid metadata url"
@@ -2133,11 +2133,11 @@ msgstr ""
 
 #: src/components/vcs/VCCard.tsx:133
 msgid "Issued"
-msgstr ""
+msgstr "Myönnetty"
 
 #: src/components/vcs/VCCard.tsx:108
 msgid "Issuer DID"
-msgstr ""
+msgstr "Myöntäjän DID"
 
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:66
 msgid "It is a one-time login link that can be used to log in to a pool's website. It contains a signature using the farmer's key from the plot NFT. Not all pools support this feature."
@@ -2329,7 +2329,7 @@ msgstr "Paikallinen kansio"
 
 #: src/components/offers2/CancelOfferList.tsx:110
 msgid "Locked"
-msgstr ""
+msgstr "Lukittu"
 
 #: src/constants/WalletConnectCommands.tsx:15
 msgid "Log In"
@@ -2357,7 +2357,7 @@ msgstr "Hallitse Farmeripalkkioiden Kohdeosoitteita"
 
 #: src/components/vcs/VCList.tsx:294
 msgid "Memberships"
-msgstr ""
+msgstr "Jäsenyydet"
 
 #: src/constants/WalletConnectCommands.tsx:138
 #: src/constants/WalletConnectCommands.tsx:538
@@ -2376,15 +2376,15 @@ msgstr "Viesti"
 
 #: src/components/notification/utils.ts:115
 msgid "Message not available"
-msgstr ""
+msgstr "Viesti ei saatavilla"
 
 #: src/constants/WalletConnectCommands.tsx:651
 msgid "Meta Hash"
-msgstr ""
+msgstr "Metatiiviste"
 
 #: src/constants/WalletConnectCommands.tsx:646
 msgid "Meta Uris"
-msgstr ""
+msgstr "Meta-URIt"
 
 #: src/components/nfts/NFTDetails.tsx:265
 msgid "Metadata Hash"
@@ -2424,7 +2424,7 @@ msgstr "Pienin Vaikeustaso"
 
 #: src/constants/WalletConnectCommands.tsx:608
 msgid "Mint NFT"
-msgstr ""
+msgstr "Luo NFT"
 
 #: src/components/nfts/NFTDetails.tsx:213
 msgid "Minted at Block Height"
@@ -2497,7 +2497,7 @@ msgstr "Nimi"
 
 #: src/components/settings/ProfileAdd.tsx:121
 msgid "Need some {currencyCode}?"
-msgstr ""
+msgstr "Tarvitsetko {currencyCode}?"
 
 #: src/components/offers/NFTOfferViewer.tsx:580
 msgid "Net Proceeds"
@@ -2529,11 +2529,11 @@ msgstr "Uusi Salasana"
 
 #: src/constants/WalletConnectCommands.tsx:862
 msgid "New Proof Hash"
-msgstr ""
+msgstr "Uusi Todisteen Tiiviste"
 
 #: src/constants/WalletConnectCommands.tsx:856
 msgid "New Puzzle Hash"
-msgstr ""
+msgstr "Uusi Osoitetiiviste"
 
 #: src/components/block/Block.jsx:259
 #: src/components/nfts/detail/NFTDetailV2.tsx:130
@@ -2563,7 +2563,7 @@ msgstr "NFT-kolikon Tunniste"
 #: src/constants/WalletConnectCommands.tsx:705
 #: src/constants/WalletConnectCommands.tsx:802
 msgid "NFT Coin Ids"
-msgstr ""
+msgstr "NFT-tunnisteet"
 
 #: src/components/offers/NFTOfferEditor.tsx:616
 msgid "NFT details not available"
