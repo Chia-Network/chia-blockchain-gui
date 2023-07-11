@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-06 05:22\n"
+"PO-Revision-Date: 2023-07-11 11:04\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -143,15 +143,15 @@ msgstr "取消已撤销的支付"
 
 #: src/components/WalletSend.tsx:340
 msgid "Clawback will be applied."
-msgstr ""
+msgstr "将会执行可撤回交易。"
 
 #: src/components/WalletSend.tsx:346
 msgid "Clawback will not be applied."
-msgstr ""
+msgstr "不会执行可撤回交易。"
 
 #: src/components/WalletHistoryClawbackChip.tsx:94
 msgid "Clawing back..."
-msgstr ""
+msgstr "正在撤回交易..."
 
 #: src/components/WalletsSidebar.tsx:141
 #~ msgid "Click here to download an older version of the wallet"
@@ -405,7 +405,7 @@ msgstr "待处理的变更"
 
 #: src/components/WalletHistoryPending.tsx:62
 msgid "Pending claw back transactions"
-msgstr ""
+msgstr "待处理的可撤回交易"
 
 #: src/components/card/WalletCardPendingTotalBalance.tsx:41
 msgid "Pending Total Balance"
@@ -413,11 +413,11 @@ msgstr "待处理总余额"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:206
 msgid "Please enter a transaction fee to claim the above amount:"
-msgstr ""
+msgstr "请提供认领的手续费："
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:208
 msgid "Please enter a transaction fee to claw back the above amount:"
-msgstr ""
+msgstr "请提供撤回的手续费："
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:42
 msgid "Please enter a valid asset id"
@@ -589,7 +589,7 @@ msgstr "这是总余额+待处理余额，即：待处理的交易确认后的�
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:193
 msgid "This transaction will be automatically claimed with a fee:"
-msgstr ""
+msgstr "此交易将自动用以下手续费进行认领："
 
 #: src/components/WalletHistory.tsx:181
 #~ msgid "To"
@@ -625,11 +625,11 @@ msgstr "交易"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:232
 msgid "Transactions will be claimed automatically when the Clawback time expires."
-msgstr ""
+msgstr "当可撤回时间到期时，交易将自动完成。"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:235
 msgid "Transactions with values smaller than the fee will not be auto claimed."
-msgstr ""
+msgstr "小于手续费的交易将不会自动完成。"
 
 #: src/components/Wallet.tsx:22
 msgid "Wallet {walletId} not found"
@@ -650,7 +650,7 @@ msgstr "钱包名称"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:200
 msgid "Wallet needs to be synced for claiming clawback transactions"
-msgstr ""
+msgstr "需要同步钱包才能完成可撤回交易"
 
 #: src/components/Wallet.tsx:37
 msgid "Wallet with type {0} not supported"
@@ -670,11 +670,11 @@ msgstr "欢迎！以下是用于备份您的钱包的单词。如果没有它们
 
 #: src/components/WalletHistoryClawbackChip.tsx:41
 msgid "Will be autoclaimed in "
-msgstr ""
+msgstr "将自动完成于 "
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:238
 msgid "You can change the Clawback Auto Claim fee in Settings."
-msgstr ""
+msgstr "可以在设置中更改可撤回交易自动完成的手续费。"
 
 #: src/components/WalletsSidebar.tsx:106
 #~ msgid "Your CAT tokens have been upgraded!"
