@@ -13,7 +13,7 @@ export type HarvesterConfig = {
   enforceGpuIndex: boolean | null;
   disableCpuAffinity: boolean | null;
   parallelDecompressersCount: number | null;
-  decompresserThreadCount: number | null;
+  decompressorThreadCount: number | null;
   recursivePlotScan: boolean | null;
   refreshParameterIntervalSeconds: number | null;
 };
@@ -71,7 +71,7 @@ export default class Harvester extends Service {
     enforceGpuIndex?: boolean;
     disableCpuAffinity?: boolean;
     parallelDecompressersCount?: number;
-    decompresserThreadCount?: number;
+    decompressorThreadCount?: number;
     recursivePlotScan?: boolean;
     refreshParameterIntervalSeconds?: number;
   }) {

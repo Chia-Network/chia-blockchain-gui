@@ -25,7 +25,7 @@ export default function SettingsHarvester() {
     enforceGpuIndex: null,
     disableCpuAffinity: null,
     parallelDecompressersCount: null,
-    decompresserThreadCount: null,
+    decompressorThreadCount: null,
     recursivePlotScan: null,
     refreshParameterIntervalSeconds: null,
   });
@@ -107,7 +107,7 @@ export default function SettingsHarvester() {
       }
       setConfigUpdateRequests((prev) => ({
         ...prev,
-        decompresserThreadCount: value,
+        decompressorThreadCount: value,
       }));
     },
     [data, setConfigUpdateRequests, isProcessing]
@@ -158,7 +158,7 @@ export default function SettingsHarvester() {
       enforceGpuIndex: configUpdateRequests.enforceGpuIndex ?? undefined,
       disableCpuAffinity: configUpdateRequests.disableCpuAffinity ?? undefined,
       parallelDecompressersCount: configUpdateRequests.parallelDecompressersCount ?? undefined,
-      decompresserThreadCount: configUpdateRequests.decompresserThreadCount ?? undefined,
+      decompressorThreadCount: configUpdateRequests.decompressorThreadCount ?? undefined,
       recursivePlotScan: configUpdateRequests.recursivePlotScan ?? undefined,
       refreshParameterIntervalSeconds: configUpdateRequests.refreshParameterIntervalSeconds ?? undefined,
     })
@@ -231,11 +231,11 @@ export default function SettingsHarvester() {
     );
   }, [data, isLoading, onChangeParallelDecompressorsCount, isProcessing, configUpdateRequests]);
 
-  const decompresserThreadCountInput = React.useMemo(() => {
+  const decompressorThreadCountInput = React.useMemo(() => {
     if (isLoading || !data) {
       return <TextField size="small" type="number" disabled />;
     }
-    const value = configUpdateRequests.decompresserThreadCount ?? data.decompresserThreadCount;
+    const value = configUpdateRequests.decompressorThreadCount ?? data.decompressorThreadCount;
     return (
       <TextField
         size="small"
@@ -456,7 +456,7 @@ export default function SettingsHarvester() {
             </SettingsTitle>
           </Grid>
           <Grid item container xs justifyContent="flex-end" marginTop="-6px">
-            <FormControlLabel control={decompresserThreadCountInput} />
+            <FormControlLabel control={decompressorThreadCountInput} />
           </Grid>
           <Grid item container style={{ width: '400px' }} gap={2}>
             <SettingsText>
