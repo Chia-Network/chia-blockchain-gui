@@ -16,7 +16,6 @@ import path from 'path';
 import url from 'url';
 
 import { NFTInfo } from '@chia-network/api';
-import { Color } from '@chia-network/core';
 import { initialize, enable } from '@electron/remote/main';
 import axios from 'axios';
 import windowStateKeeper from 'electron-window-state';
@@ -442,7 +441,7 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
       height: mainWindowState.height,
       minWidth: 500,
       minHeight: 500,
-      backgroundColor: Color.Neutral[50],
+      backgroundColor: '#ffffff',
       show: isPlaywrightTesting,
       webPreferences: {
         preload: `${__dirname}/preload.js`,
