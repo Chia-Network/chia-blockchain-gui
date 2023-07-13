@@ -85,7 +85,7 @@ export default function SettingsHarvester() {
     [data, setConfigUpdateRequests, isProcessing]
   );
 
-  const onChangeParallelDecompressorsCount = React.useCallback(
+  const onChangeParallelDecompressorCount = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const value = +e.target.value;
       if (isProcessing || !data || Number.isNaN(value)) {
@@ -225,11 +225,11 @@ export default function SettingsHarvester() {
         size="small"
         type="number"
         value={value}
-        onChange={onChangeParallelDecompressorsCount}
+        onChange={onChangeParallelDecompressorCount}
         disabled={isProcessing}
       />
     );
-  }, [data, isLoading, onChangeParallelDecompressorsCount, isProcessing, configUpdateRequests]);
+  }, [data, isLoading, onChangeParallelDecompressorCount, isProcessing, configUpdateRequests]);
 
   const decompressorThreadCountInput = React.useMemo(() => {
     if (isLoading || !data) {

@@ -221,4 +221,11 @@ export default class Daemon extends Service {
   getVersion() {
     return this.command<{ version: string }>('get_version');
   }
+
+  getKeysForPlot(args?: { fingerprints?: number[] }) {
+    return this.command<{ keys: { [fingerprint: number]: { farmerPublicKey: string; poolPublicKey: string } } }>(
+      'get_keys_for_plot',
+      args
+    );
+  }
 }

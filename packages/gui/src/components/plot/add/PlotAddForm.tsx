@@ -23,6 +23,7 @@ type FormData = PlotAddConfig & {
   p2SingletonPuzzleHash?: string;
   createNFT?: boolean;
   plotNFTContractAddr?: string;
+  useManualKeySetup: boolean;
 };
 
 type Props = {
@@ -117,9 +118,12 @@ export default function PlotAddForm(props: Props) {
         plotterName: formPlotterName,
         workspaceLocation,
         workspaceLocation2,
+        useManualKeySetup,
+        farmerPublicKey,
+        poolPublicKey,
+        plotNFTContractAddr,
         ...rest
       } = data;
-      const { farmerPublicKey, poolPublicKey, plotNFTContractAddr } = rest;
 
       let selectedP2SingletonPuzzleHash = p2SingletonPuzzleHash;
 
@@ -160,6 +164,8 @@ export default function PlotAddForm(props: Props) {
         plotterName: formPlotterName,
         workspaceLocation,
         workspaceLocation2: formPlotterName === 'madmax' ? workspaceLocation2 || workspaceLocation : workspaceLocation2,
+        farmerPublicKey: undefined as string | undefined,
+        poolPublicKey: undefined as string | undefined,
       };
 
       if (!selectedP2SingletonPuzzleHash && plotNFTContractAddr) {
@@ -172,6 +178,15 @@ export default function PlotAddForm(props: Props) {
 
       if (!selectedP2SingletonPuzzleHash && !farmerPublicKey && !poolPublicKey && fingerprint) {
         plotAddConfig.fingerprint = fingerprint;
+      }
+
+      if (useManualKeySetup) {
+        if (farmerPublicKey) {
+          plotAddConfig.farmerPublicKey = farmerPublicKey;
+        }
+        if (poolPublicKey && !selectedP2SingletonPuzzleHash) {
+          plotAddConfig.poolPublicKey = poolPublicKey;
+        }
       }
 
       await startPlotting(plotAddConfig).unwrap();
@@ -190,9 +205,9 @@ export default function PlotAddForm(props: Props) {
         <Back variant="h5" form>
           <Trans>Add a Plot</Trans>
         </Back>
-        <PlotAddNFT ref={addNFTref} step={step++} plotter={plotter} />
+        <PlotAddNFT ref={addNFTref} step={step++} />
         <PlotAddChoosePlotter step={step++} onChange={handlePlotterChanged} />
-        <PlotAddChooseKeys step={step++} currencyCode={currencyCode} />
+        <PlotAddChooseKeys step={step++} currencyCode={currencyCode} fingerprint={fingerprint} />
         <PlotAddChooseSize step={step++} plotter={plotter} />
         <PlotAddSelectFinalDirectory step={step++} plotter={plotter} />
         <PlotAddNumberOfPlots step={step++} plotter={plotter} />

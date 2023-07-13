@@ -1,7 +1,8 @@
 import { toBech32m } from '@chia-network/api';
+import { useGetKeysForPlotQuery } from '@chia-network/api-react';
 import { CardStep, TextField, Button } from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
-import { Grid, FormControl, Typography, Switch, FormGroup, FormControlLabel, ButtonGroup } from '@mui/material';
+import { Grid, FormControl, Typography, Switch, FormControlLabel, ButtonGroup } from '@mui/material';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 
@@ -10,16 +11,26 @@ import { getUniqueName } from '../../../hooks/usePlotNFTName';
 type Props = {
   step: number;
   currencyCode: string;
+  fingerprint: number;
 };
 
 export default function PlotAddChooseKeys(props: Props) {
-  const { step, currencyCode } = props;
+  const { step, currencyCode, fingerprint } = props;
   const { watch, setValue } = useFormContext();
+  const { isLoading, data } = useGetKeysForPlotQuery({ fingerprints: [fingerprint] });
   const [manualSetup, setManualSetup] = React.useState(false);
   const [poolKeyType, setPoolKeyType] = React.useState<'p2SingletonPuzzleHash' | 'poolPublicKey'>(
     'p2SingletonPuzzleHash'
   );
   const p2SingletonPuzzleHash = watch('p2SingletonPuzzleHash');
+  const farmerPKInput = watch('farmerPublicKey');
+  const prevP2SingletonPuzzleHash = React.useRef(p2SingletonPuzzleHash);
+
+  let p2SingletonPuzzleHashChanged = false;
+  if (prevP2SingletonPuzzleHash.current !== p2SingletonPuzzleHash) {
+    p2SingletonPuzzleHashChanged = true;
+    prevP2SingletonPuzzleHash.current = p2SingletonPuzzleHash;
+  }
 
   const plotNFTContractAddressHelperText = React.useMemo(() => {
     if (!p2SingletonPuzzleHash) {
@@ -56,13 +67,45 @@ export default function PlotAddChooseKeys(props: Props) {
     setPoolKeyType('p2SingletonPuzzleHash');
   }, [setPoolKeyType, setValue]);
 
+  const isFarmerPKForCurrentWallet = React.useMemo(() => {
+    const farmerPublicKeyForFingerprint =
+      isLoading || !data || !data.keys[fingerprint] ? undefined : data.keys[fingerprint].farmerPublicKey;
+    return farmerPublicKeyForFingerprint && farmerPKInput === farmerPublicKeyForFingerprint;
+  }, [isLoading, data, fingerprint, farmerPKInput]);
+
   React.useEffect(() => {
-    if (!p2SingletonPuzzleHash) {
-      setValue('plotNFTContractAddr', '');
+    if (!p2SingletonPuzzleHashChanged) {
+      return;
+    }
+    if (poolKeyType === 'p2SingletonPuzzleHash') {
+      if (!p2SingletonPuzzleHash) {
+        setValue('plotNFTContractAddr', '');
+      } else {
+        setValue('plotNFTContractAddr', toBech32m(p2SingletonPuzzleHash, currencyCode.toLowerCase()));
+      }
     } else {
+      setValue('poolPublicKey', '');
+      setPoolKeyType('p2SingletonPuzzleHash');
+    }
+  }, [p2SingletonPuzzleHash, setValue, currencyCode, poolKeyType, p2SingletonPuzzleHashChanged]);
+
+  React.useEffect(() => {
+    if (isLoading || !data || !data.keys[fingerprint]) {
+      return;
+    }
+    setValue('farmerPublicKey', data.keys[fingerprint].farmerPublicKey);
+  }, [isLoading, data, fingerprint, setValue]);
+
+  React.useEffect(() => {
+    if (isLoading || !data || !data.keys[fingerprint]) {
+      return;
+    }
+    if (poolKeyType === 'poolPublicKey') {
+      setValue('poolPublicKey', data.keys[fingerprint].poolPublicKey);
+    } else if (p2SingletonPuzzleHash) {
       setValue('plotNFTContractAddr', toBech32m(p2SingletonPuzzleHash, currencyCode.toLowerCase()));
     }
-  }, [p2SingletonPuzzleHash, setValue, currencyCode]);
+  }, [isLoading, data, fingerprint, setValue, poolKeyType, p2SingletonPuzzleHash, currencyCode]);
 
   return (
     <CardStep step={step} title={<Trans>Keys</Trans>}>
@@ -75,12 +118,13 @@ export default function PlotAddChooseKeys(props: Props) {
           hardware.
         </Trans>
       </Typography>
-      <FormGroup>
+      <FormControl variant="filled" fullWidth>
         <FormControlLabel
+          name="useManualKeySetup"
           control={<Switch checked={manualSetup} onChange={onChangeSetupKeys} />}
           label={<Trans>Set up keys manually</Trans>}
         />
-      </FormGroup>
+      </FormControl>
       <Grid container spacing={2}>
         <Grid xs={12} item>
           <FormControl variant="filled" fullWidth>
@@ -91,10 +135,9 @@ export default function PlotAddChooseKeys(props: Props) {
               placeholder="Hex farmer public key"
               label={<Trans>Farmer Public Key</Trans>}
               helperText={
-                <Trans>
-                  If you leave this input blank, farmer key will be automatically chosen from the master sk of the
-                  wallet currently you logged in.
-                </Trans>
+                isFarmerPKForCurrentWallet ? (
+                  <Trans>This is the farmer public key corresponding to the current logged-in wallet</Trans>
+                ) : undefined
               }
               disabled={!manualSetup}
             />
