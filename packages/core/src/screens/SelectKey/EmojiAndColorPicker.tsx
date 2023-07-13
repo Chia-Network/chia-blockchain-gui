@@ -2,12 +2,13 @@ import { Search as SearchIcon } from '@chia-network/icons';
 import data from '@emoji-mart/data';
 import { t, Trans } from '@lingui/macro';
 import ShuffleIcon from '@mui/icons-material/Shuffle';
-import { InputBase /* , InputBaseProps */, Box, Typography } from '@mui/material';
+import { alpha, InputBase /* , InputBaseProps */, Box, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { init, SearchIndex } from 'emoji-mart';
 import React, { useCallback } from 'react';
 
 import Flex from '../../components/Flex';
+import Color from '../../constants/Color';
 
 init({ data });
 
@@ -47,9 +48,9 @@ export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
   const theme: any = useTheme();
 
   const pickerStyle: any = {
-    backgroundColor: isDark ? '#292929' : '#FFFFFF',
+    backgroundColor: isDark ? Color.Neutral[800] : Color.Neutral[50],
     border: `1px solid ${isDark ? theme.palette.border.dark : theme.palette.border.main}`,
-    boxShadow: '0px 6px 19px rgba(15, 37, 42, 0.28), 0px 27px 65px rgba(101, 131, 138, 0.39)',
+    boxShadow: `0px 6px 19px ${alpha(Color.Neutral[800], 0.28)}, 0px 27px 65px ${alpha(Color.Neutral[500], 0.39)}`,
     borderRadius: '8px',
     padding: '0px',
     position: 'absolute',
@@ -148,7 +149,7 @@ export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
               width: '17px',
               height: '17px',
               path: {
-                stroke: isDark ? '#eee' : '#999',
+                stroke: isDark ? Color.Neutral[100] : Color.Neutral[400],
                 fill: 'none',
               },
             }}

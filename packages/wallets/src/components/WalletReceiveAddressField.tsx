@@ -1,8 +1,8 @@
 import { useGetCurrentAddressQuery, useGetNextAddressMutation } from '@chia-network/api-react';
-import { Flex, Loading, truncateValue, useColorModeValue } from '@chia-network/core';
+import { Color, Flex, Loading, truncateValue, useColorModeValue } from '@chia-network/core';
 import { Reload } from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
-import { Button, IconButton, Tooltip, Typography } from '@mui/material';
+import { alpha, Button, IconButton, Tooltip, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { useCopyToClipboard } from 'react-use';
 import { useTimeout } from 'react-use-timeout';
@@ -27,7 +27,7 @@ const WalletReceiveAddressWrapper = styled.div`
     border: 1px solid
       ${(props) => (props.isDarkMode ? props.theme.palette.border.dark : props.theme.palette.border.main)};
     border-radius: 4px;
-    background: ${(props) => (props.isDarkMode ? '#333' : '#f4f4f4')};
+    background: ${(props) => (props.isDarkMode ? Color.Neutral[800] : Color.Neutral[100])};
   }
   > .MuiButton-root:hover {
     background: ${({ theme }) => useColorModeValue(theme, 'sidebarBackground')};
@@ -42,7 +42,7 @@ const WalletReceiveAddressWrapper = styled.div`
     padding: 3px 5px;
   }
   fieldSet {
-    border: 1px solid rgba(0, 0, 0, 0.15);
+    border: 1px solid ${alpha(Color.Neutral[900], 0.15)};
   }
 `;
 

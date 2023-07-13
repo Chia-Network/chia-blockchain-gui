@@ -1,3 +1,4 @@
+import { Color } from '@chia-network/core';
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 
@@ -18,8 +19,8 @@ const GlobalStyle = createGlobalStyle`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: rgb(31, 31, 31);
-    background-color: rgb(238, 238, 238);
+    color: ${Color.Neutral[900]};
+    background-color: ${Color.Neutral[200]};
     font-size: 12px;
     font-family: 'Helvetica', 'Arial', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
   }
@@ -46,25 +47,25 @@ const StyledLogoContainer = styled.div`
 const StyledTitle = styled.h2`
   margin-top: 0;
   margin-bottom: 1rem;
-  color: rgb(31, 31, 31);
+  color: ${Color.Neutral[900]};
 `;
 
 const StyledSubTitle = styled.h3`
   margin-top: 0;
   margin-bottom: 1rem;
-  color: rgb(31, 31, 31);
+  color: ${Color.Neutral[900]};
 `;
 
 const BugReport = styled.a`
   position: absolute;
   right: 0.5rem;
   bottom: 0.5rem;
-  color: rgb(128, 160, 194);
+  color: ${Color.Royal[300]};
 `;
 
 const VersionsTable = styled.table`
   border-collapse: collapse;
-  color: rgb(153, 153, 153);
+  color: ${Color.Neutral[400]};
   font-size: 12px;
 `;
 

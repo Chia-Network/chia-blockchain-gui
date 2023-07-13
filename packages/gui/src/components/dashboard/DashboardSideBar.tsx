@@ -1,5 +1,5 @@
 import { useLocalStorage } from '@chia-network/api-react';
-import { Flex, SideBarItem } from '@chia-network/core';
+import { Color, Flex, SideBarItem } from '@chia-network/core';
 import {
   Farm as FarmIcon,
   FullNode as FullNodeIcon,
@@ -14,7 +14,7 @@ import {
   VC as VCIcon,
 } from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
-import { Box } from '@mui/material';
+import { alpha, Box } from '@mui/material';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -32,7 +32,11 @@ const StyledRoot = styled(Flex)`
 
 const StyledSideBarDivider = styled(Box)`
   height: 1px;
-  background: radial-gradient(36.59% 100.8% at 50% 50%, rgba(0, 0, 0, 0.18) 99.54%, rgba(255, 255, 255, 0) 100%);
+  background: radial-gradient(
+    36.59% 100.8% at 50% 50%,
+    ${alpha(Color.Neutral[900], 0.18)} 99.54%,
+    ${alpha(Color.Neutral[50], 0)} 100%
+  );
 `;
 
 const StyledSettingsContainer = styled(Box)`

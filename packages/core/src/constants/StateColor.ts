@@ -1,7 +1,9 @@
+import Color from './Color';
+
 enum StateColor {
-  SUCCESS = '#3AAC59',
-  WARNING = '#f57c00',
-  ERROR = '#F44336',
+  SUCCESS = Color.Green[500],
+  WARNING = Color.Orange[500],
+  ERROR = Color.Red[500],
 }
 
 export default StateColor;

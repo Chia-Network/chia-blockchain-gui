@@ -1,6 +1,7 @@
-import { Box, Card, CardContent, CardActionArea } from '@mui/material';
+import { alpha, Box, Card, CardContent, CardActionArea } from '@mui/material';
 import React, { type ReactNode } from 'react';
 
+import Color from '../../constants/Color';
 import getColorModeValue from '../../utils/useColorModeValue';
 import Loading from '../Loading';
 
@@ -52,7 +53,7 @@ export default function CardListItem(props: CardListItemProps) {
           display="flex"
           alignItems="center"
           justifyContent="center"
-          bgcolor={disabled ? 'rgba(0, 0, 0, 0.2)' : 'transparent'}
+          bgcolor={disabled ? alpha(Color.Neutral[900], 0.2) : 'transparent'}
           zIndex={1}
         >
           {loading && <Loading center />}

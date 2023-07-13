@@ -1,3 +1,4 @@
+import { alpha } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
 
 import Color from '../constants/Color';
@@ -9,20 +10,21 @@ export default createTheme({
     ...theme.palette,
     background: {
       ...theme.palette.background,
-      default: '#212121',
-      paper: '#333333',
-      card: 'rgba(255, 255, 255, 0.08)',
+      default: Color.Neutral[900],
+      paper: Color.Neutral[800],
+      card: alpha(Color.Neutral[50], 0.08),
     },
     secondary: {
       ...theme.palette.secondary,
-      main: '#ffffff',
-      contrastText: '#000000',
+      main: Color.Neutral[50],
+      contrastText: Color.Neutral[900],
     },
     info: {
       ...theme.palette.info,
-      main: '#fff',
+      main: Color.Neutral[50],
     },
     sidebarBackground: theme.palette.sidebarBackground.dark,
+
     colors: {
       royal: {
         main: Color.Royal[100],

@@ -9,9 +9,11 @@ export default createTheme({
     ...theme.palette,
     background: {
       ...theme.palette.background,
-      card: '#fff',
+      card: Color.Neutral[50],
+      paper: Color.Neutral[50],
     },
     sidebarBackground: theme.palette.sidebarBackground.main,
+
     colors: {
       royal: {
         main: Color.Royal[200],

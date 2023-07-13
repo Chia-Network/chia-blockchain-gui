@@ -6,11 +6,11 @@ import {
   useGetTransactionAsyncMutation,
   usePrefs,
 } from '@chia-network/api-react';
-import { Truncate, Button, useOpenDialog, AlertDialog, Flex, More, MenuItem } from '@chia-network/core';
+import { Truncate, Button, Color, useOpenDialog, AlertDialog, Flex, More, MenuItem } from '@chia-network/core';
 import { Burn as BurnIcon } from '@chia-network/icons';
 import { Trans, t } from '@lingui/macro';
 import { Delete as DeleteIcon, Edit as EditIcon } from '@mui/icons-material';
-import { Box, Card, Typography, Table, TableRow, TableCell, ListItemIcon, IconButton } from '@mui/material';
+import { alpha, Box, Card, Typography, Table, TableRow, TableCell, ListItemIcon, IconButton } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import moment from 'moment';
 import React from 'react';
@@ -72,9 +72,9 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
   function renderProofs() {
     if (isDetail && proofs && Object.keys(proofs).length > 0) {
       const proofsRows = Object.keys(proofs).map((key) => (
-        <TableRow key={key} sx={{ background: 'rgba(255, 255, 255, 0.3)' }}>
-          <TableCell sx={{ border: '1px solid rgba(255, 255, 255, 0.5)' }}>{key}</TableCell>
-          <TableCell sx={{ border: '1px solid rgba(255, 255, 255, 0.5)' }}>{proofs[key]}</TableCell>
+        <TableRow key={key} sx={{ background: alpha(Color.Neutral[50], 0.3) }}>
+          <TableCell sx={{ border: `1px solid ${alpha(Color.Neutral[50], 0.5)}` }}>{key}</TableCell>
+          <TableCell sx={{ border: `1px solid ${alpha(Color.Neutral[50], 0.5)}` }}>{proofs[key]}</TableCell>
         </TableRow>
       ));
       return <Table sx={{ width: 'inherit', margin: '5px 0 25px 0' }}>{proofsRows}</Table>;
@@ -105,7 +105,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
     return (
       <Box
         sx={{
-          color: vcRecord?.vc?.launcherId && pendingRevoke[vcRecord.vc.launcherId] ? '#999' : 'inherit',
+          color: vcRecord?.vc?.launcherId && pendingRevoke[vcRecord.vc.launcherId] ? Color.Neutral[400] : 'inherit',
         }}
       >
         {didString && (

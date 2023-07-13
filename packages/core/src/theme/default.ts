@@ -1,3 +1,5 @@
+import Color from '../constants/Color';
+
 declare module '@mui/material' {
   interface Color {
     main: string;
@@ -8,46 +10,46 @@ declare module '@mui/material' {
 export default {
   palette: {
     background: {
-      default: '#fafafa',
+      default: Color.Neutral[50],
     },
     primary: {
-      main: '#3AAC59', // '#00C853',
-      contrastText: '#ffffff',
+      main: Color.Green[500],
+      contrastText: Color.Neutral[50],
     },
     secondary: {
-      main: '#000000',
-      contrastText: '#ffffff',
+      main: Color.Neutral[900],
+      contrastText: Color.Neutral[50],
     },
     danger: {
-      main: '#dc3545',
-      contrastText: '#ffffff',
+      main: Color.Red[600],
+      contrastText: Color.Neutral[50],
     },
     highlight: {
-      main: '#00C853',
+      main: Color.Chia.Primary,
     },
     border: {
-      main: '#E0E0E0',
-      dark: '#484747',
+      main: Color.Neutral[200],
+      dark: Color.Neutral[700],
     },
     sidebarBackground: {
-      main: '#E8F5E9',
-      dark: '#505C4E',
+      main: Color.Green[50],
+      dark: Color.Neutral[600],
     },
     sidebarIconSelected: {
-      main: '#1B5E20',
-      dark: '#3AAC59',
+      main: Color.Green[800],
+      dark: Color.Green[500],
     },
     sidebarIcon: {
-      main: '#9E9E9E',
-      dark: '#9E9E9E',
+      main: Color.Neutral[400],
+      dark: Color.Neutral[400],
     },
     sidebarIconHover: {
-      main: '#424242',
-      dark: 'white',
+      main: Color.Neutral[700],
+      dark: Color.Neutral[50],
     },
     info: {
-      main: '#757575',
-      dark: '#fff',
+      main: Color.Neutral[500],
+      dark: Color.Neutral[50],
     },
   },
   drawer: {
