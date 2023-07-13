@@ -15,7 +15,7 @@ const messageAnchorOrigin = { vertical: 'bottom' as const, horizontal: 'center' 
 
 export default function SettingsHarvester() {
   const { data, isLoading } = useGetHarvesterConfigQuery();
-  const [updateHarvestingMode, { isLoading: isUpdating }] = useUpdateHarvesterConfigMutation();
+  const [updateHarvesterConfig, { isLoading: isUpdating }] = useUpdateHarvesterConfigMutation();
   const [startService, { isLoading: isStarting }] = useClientStartServiceMutation();
   const [stopService, { isLoading: isStopping }] = useClientStopServiceMutation();
   const [message, setMessage] = React.useState<React.ReactElement | false>(false);
@@ -24,8 +24,8 @@ export default function SettingsHarvester() {
     gpuIndex: null,
     enforceGpuIndex: null,
     disableCpuAffinity: null,
-    parallelDecompressersCount: null,
-    decompresserThreadCount: null,
+    parallelDecompressorCount: null,
+    decompressorThreadCount: null,
     recursivePlotScan: null,
     refreshParameterIntervalSeconds: null,
   });
@@ -93,13 +93,13 @@ export default function SettingsHarvester() {
       }
       setConfigUpdateRequests((prev) => ({
         ...prev,
-        parallelDecompressersCount: value,
+        parallelDecompressorCount: value,
       }));
     },
     [data, setConfigUpdateRequests, isProcessing]
   );
 
-  const onChangeDecompresserThreadCount = React.useCallback(
+  const onChangeDecompressorThreadCount = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const value = +e.target.value;
       if (isProcessing || !data || Number.isNaN(value)) {
@@ -107,7 +107,7 @@ export default function SettingsHarvester() {
       }
       setConfigUpdateRequests((prev) => ({
         ...prev,
-        decompresserThreadCount: value,
+        decompressorThreadCount: value,
       }));
     },
     [data, setConfigUpdateRequests, isProcessing]
@@ -152,13 +152,13 @@ export default function SettingsHarvester() {
       setMessage(<Trans>Failed to update Harvester config</Trans>);
     };
 
-    await updateHarvestingMode({
+    await updateHarvesterConfig({
       useGpuHarvesting: configUpdateRequests.useGpuHarvesting ?? undefined,
       gpuIndex: configUpdateRequests.gpuIndex ?? undefined,
       enforceGpuIndex: configUpdateRequests.enforceGpuIndex ?? undefined,
       disableCpuAffinity: configUpdateRequests.disableCpuAffinity ?? undefined,
-      parallelDecompressersCount: configUpdateRequests.parallelDecompressersCount ?? undefined,
-      decompresserThreadCount: configUpdateRequests.decompresserThreadCount ?? undefined,
+      parallelDecompressorCount: configUpdateRequests.parallelDecompressorCount ?? undefined,
+      decompressorThreadCount: configUpdateRequests.decompressorThreadCount ?? undefined,
       recursivePlotScan: configUpdateRequests.recursivePlotScan ?? undefined,
       refreshParameterIntervalSeconds: configUpdateRequests.refreshParameterIntervalSeconds ?? undefined,
     })
@@ -177,7 +177,7 @@ export default function SettingsHarvester() {
       return;
     }
     setMessage(<Trans>Successfully restarted Harvester</Trans>);
-  }, [stopService, isProcessing, startService, updateHarvestingMode, configUpdateRequests]);
+  }, [stopService, isProcessing, startService, updateHarvesterConfig, configUpdateRequests]);
 
   const onCloseMessage = React.useCallback(() => {
     setMessage(false);
@@ -215,11 +215,11 @@ export default function SettingsHarvester() {
     return <Switch checked={checked} onChange={onChangeDisableCpuAffinity} readOnly={isProcessing} />;
   }, [data, isLoading, onChangeDisableCpuAffinity, isProcessing, configUpdateRequests]);
 
-  const parallelDecompressersCountInput = React.useMemo(() => {
+  const parallelDecompressorCountInput = React.useMemo(() => {
     if (isLoading || !data) {
       return <TextField size="small" type="number" disabled />;
     }
-    const value = configUpdateRequests.parallelDecompressersCount ?? data.parallelDecompressersCount;
+    const value = configUpdateRequests.parallelDecompressorCount ?? data.parallelDecompressorCount;
     return (
       <TextField
         size="small"
@@ -231,21 +231,21 @@ export default function SettingsHarvester() {
     );
   }, [data, isLoading, onChangeParallelDecompressorsCount, isProcessing, configUpdateRequests]);
 
-  const decompresserThreadCountInput = React.useMemo(() => {
+  const decompressorThreadCountInput = React.useMemo(() => {
     if (isLoading || !data) {
       return <TextField size="small" type="number" disabled />;
     }
-    const value = configUpdateRequests.decompresserThreadCount ?? data.decompresserThreadCount;
+    const value = configUpdateRequests.decompressorThreadCount ?? data.decompressorThreadCount;
     return (
       <TextField
         size="small"
         type="number"
         value={value}
-        onChange={onChangeDecompresserThreadCount}
+        onChange={onChangeDecompressorThreadCount}
         disabled={isProcessing}
       />
     );
-  }, [data, isLoading, onChangeDecompresserThreadCount, isProcessing, configUpdateRequests]);
+  }, [data, isLoading, onChangeDecompressorThreadCount, isProcessing, configUpdateRequests]);
 
   const recursivePlotScanSwitch = React.useMemo(() => {
     if (isLoading || !data) {
@@ -436,11 +436,11 @@ export default function SettingsHarvester() {
         <Grid container>
           <Grid item style={{ width: '400px' }}>
             <SettingsTitle>
-              <Trans>Parallel Decompressors Count</Trans>
+              <Trans>Parallel Decompressor Count</Trans>
             </SettingsTitle>
           </Grid>
           <Grid item container xs justifyContent="flex-end" marginTop="-6px">
-            <FormControlLabel control={parallelDecompressersCountInput} />
+            <FormControlLabel control={parallelDecompressorCountInput} />
           </Grid>
           <Grid item container style={{ width: '400px' }} gap={2}>
             <SettingsText>
@@ -456,7 +456,7 @@ export default function SettingsHarvester() {
             </SettingsTitle>
           </Grid>
           <Grid item container xs justifyContent="flex-end" marginTop="-6px">
-            <FormControlLabel control={decompresserThreadCountInput} />
+            <FormControlLabel control={decompressorThreadCountInput} />
           </Grid>
           <Grid item container style={{ width: '400px' }} gap={2}>
             <SettingsText>
