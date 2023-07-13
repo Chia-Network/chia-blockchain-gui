@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-11 17:24\n"
+"PO-Revision-Date: 2023-07-13 16:13\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1845,7 +1845,7 @@ msgstr "Hae NFT-tiedot"
 
 #: src/constants/WalletConnectCommands.tsx:819
 msgid "Get NFT Wallets with DIDs"
-msgstr ""
+msgstr "Hae NFT-lompakot DID-tunnuksilla"
 
 #: src/constants/WalletConnectCommands.tsx:564
 msgid "Get NFTs"
@@ -1853,7 +1853,7 @@ msgstr "Hae NFT:t"
 
 #: src/constants/WalletConnectCommands.tsx:723
 msgid "Get NFTs Count"
-msgstr ""
+msgstr "Hae NFT-määrä"
 
 #: src/constants/WalletConnectCommands.tsx:434
 msgid "Get Offer Data"
@@ -1873,7 +1873,7 @@ msgstr "Hae Tarjousten Lukumäärä"
 
 #: src/constants/WalletConnectCommands.tsx:898
 msgid "Get Proofs For Root Hash"
-msgstr ""
+msgstr "Hae todisteet juuritiivisteelle"
 
 #: src/constants/WalletConnectCommands.tsx:42
 msgid "Get Transaction"
@@ -1881,7 +1881,7 @@ msgstr "Hae Transaktio"
 
 #: src/constants/WalletConnectCommands.tsx:831
 msgid "Get Verifiable Credential"
-msgstr ""
+msgstr "Hae Todennettavissa Oleva Käyttöoikeustieto"
 
 #: src/constants/WalletConnectCommands.tsx:56
 msgid "Get Wallet Balance"
@@ -1889,7 +1889,7 @@ msgstr "Hae Lompakon Saldo"
 
 #: src/constants/WalletConnectCommands.tsx:73
 msgid "Get Wallet Balances"
-msgstr ""
+msgstr "Hae Lompakoiden Saldot"
 
 #: src/constants/WalletConnectCommands.tsx:268
 msgid "Get Wallet Sync Status"
@@ -1910,7 +1910,7 @@ msgstr "Kerää helmiä"
 
 #: src/components/vcs/VCList.tsx:284
 msgid "Government IDs"
-msgstr ""
+msgstr "Julkishalllinnon Tunnistetiedot"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:420
 msgid "Halves the temp2 cache size requirements by alternating bucket writing methods between tables."
@@ -2058,7 +2058,7 @@ msgstr "Sisällytä Otetut Tarjoukset"
 
 #: src/constants/WalletConnectCommands.tsx:36
 msgid "Include Wallet Metadata"
-msgstr ""
+msgstr "Sisällytä Lompakon Metatiedot"
 
 #: src/components/offers/NFTOfferEditor.tsx:86
 #: src/components/offers/OfferEditorConditionsPanel.tsx:392
@@ -2129,7 +2129,7 @@ msgstr "IP-osoite / nimi"
 
 #: src/constants/WalletConnectCommands.tsx:954
 msgid "Is notification visible to all paired fingerprints"
-msgstr ""
+msgstr "Ilmoitus näkyy kaikille paritetuille sormenjäljille"
 
 #: src/components/vcs/VCCard.tsx:133
 msgid "Issued"
@@ -2189,7 +2189,7 @@ msgstr "Avain"
 
 #: src/components/settings/SettingsIntegration.tsx:182
 msgid "Key Switching"
-msgstr ""
+msgstr "Avaimen Vaihto"
 
 #: src/components/offers/OfferShareDialog.tsx:1086
 #~ msgid "Keybase command failed {e}. If you haven't installed Keybase, you can download from https://keybase.io"
@@ -2210,7 +2210,7 @@ msgstr "KiB Lähetys/Lataus"
 
 #: src/components/vcs/VCList.tsx:290
 msgid "KYC status"
-msgstr ""
+msgstr "KYC tila"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:45
 msgid "Last Attempted Proof"
@@ -2241,7 +2241,7 @@ msgstr "Käynnistimen Tunnus"
 
 #: src/components/plot/add/PlotAddNFT.tsx:76
 msgid "Learn more"
-msgstr ""
+msgstr "Lisätietoja"
 
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:75
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:101
@@ -2267,7 +2267,7 @@ msgstr "Lisenssin Tiiviste"
 
 #: src/constants/WalletConnectCommands.tsx:657
 msgid "License Uris"
-msgstr ""
+msgstr "Lisenssi-URIt"
 
 #: src/components/nfts/NFTDetails.tsx:280
 msgid "License URL {0}"
@@ -2349,7 +2349,7 @@ msgstr "Hallitse kuinka ja mihin tiedostot tallennetaan tällä tietokoneella."
 
 #: src/components/settings/SettingsIntegration.tsx:218
 msgid "Manage permissions for your WalletConnect apps."
-msgstr ""
+msgstr "Hallitse WalletConnect -sovellusten käyttöoikeuksia."
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:94
 msgid "Manage Your Farming Rewards Target Addresses"
@@ -2593,7 +2593,7 @@ msgstr "NFT:n tunnuste ei viittaa käypään NFT:hen"
 
 #: src/constants/WalletConnectCommands.tsx:797
 msgid "NFT Launcher Id"
-msgstr ""
+msgstr "NFT Launcherin Tunnus"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:206
 msgid "NFT Move Failed"
@@ -2656,7 +2656,7 @@ msgstr "CAT-lompakkoa ei löydy tokenille {assetId}"
 
 #: src/components/settings/SettingsIntegration.tsx:258
 msgid "No connected applications"
-msgstr ""
+msgstr "Ei yhdistettyjä sovelluksia"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:397
 msgid "No CPU Affinity"
@@ -2668,7 +2668,7 @@ msgstr "Ei tarjouksia"
 
 #: src/components/settings/SettingsIntegration.tsx:331
 msgid "No Custom Permissions"
-msgstr ""
+msgstr "Ei Mukautettuja Oikeuksia"
 
 #: src/components/nfts/NFTPreview.tsx:436
 msgid "No file available"
@@ -2711,7 +2711,7 @@ msgstr "Ei yhtään"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:390
 msgid "None (0)"
-msgstr ""
+msgstr "Ei Yhtään (0)"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:67
 msgid "None of your plots have passed the plot filter yet."
@@ -2746,7 +2746,7 @@ msgstr "Ilmoitus on onnistuneesti lähetetty noodille, ja se on sisällytetty me
 
 #: src/components/notification/NotificationSendDialog.tsx:213
 msgid "Notification recipient's address"
-msgstr ""
+msgstr "Ilmoituksen vastaanottajan osoite"
 
 #: src/components/settings/SettingsNotifications.tsx:30
 msgid "Notifications"
@@ -2760,7 +2760,7 @@ msgstr "Ilmoita Nykyiselle Omistajalle"
 
 #: src/constants/WalletConnectCommands.tsx:763
 msgid "Number of Backup Ids Needed"
-msgstr ""
+msgstr "Tarvittavien varmuuskopiointitunnusten määrä"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:168
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:181
@@ -2773,7 +2773,7 @@ msgstr "Vaiheen 3 ja 4 muistilohkojen (bucket) määrä"
 
 #: src/constants/WalletConnectCommands.tsx:580
 msgid "Number of NFTs"
-msgstr ""
+msgstr "NFT:ien lukumäärä"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:105
 #: src/components/plotNFT/PlotNFTCard.tsx:138
@@ -2806,7 +2806,7 @@ msgstr "Vaiheen 3 säikeiden määrä"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:360
 msgid "Objectionable Content"
-msgstr ""
+msgstr "Kyseenalainen sisältö"
 
 #: src/components/settings/SettingsNFT.tsx:148
 msgid "Occupied space"
@@ -2837,7 +2837,7 @@ msgstr "Tarjouksen Tiedot"
 
 #: src/components/offers2/OfferBuilderViewerDialog.tsx:53
 msgid "Offer Details"
-msgstr ""
+msgstr "Tarjouksen Tiedot"
 
 #: src/components/offers2/OfferBuilderImport.tsx:77
 msgid "Offer file is too large (> 1MB)"
@@ -2946,11 +2946,11 @@ msgstr "Avaa linkki"
 
 #: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:311
 msgid "Open offers required to be canceled to refill spendable amount"
-msgstr ""
+msgstr "Avoimet tarjoukset, jotka on peruutettava, jotta kulutettava summa on saatavilka"
 
 #: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:333
 msgid "Open offers which lock the same assets as the new offer"
-msgstr ""
+msgstr "Avoimet tarjoukset, jotka lukitsevat samat assetit kuin uusi tarjous"
 
 #: src/components/offers2/OfferBuilderFeeSection.tsx:54
 msgid "Optional network fee to expedite acceptance of your offer"
@@ -3019,7 +3019,7 @@ msgstr "Ei Avainpareja"
 
 #: src/constants/WalletConnectCommands.tsx:918
 msgid "Parent Coin Info"
-msgstr ""
+msgstr "Edeltävän Kolikon Tiedot"
 
 #: src/components/app/AppKeyringMigrator.tsx:146
 #: src/components/app/AppKeyringMigrator.tsx:147
@@ -3097,7 +3097,7 @@ msgstr "Vahvistus kesken"
 
 #: src/components/vcs/VCCard.tsx:165
 msgid "Pending removal"
-msgstr ""
+msgstr "Odottaa poistamista"
 
 #: src/hooks/useOpenUnsafeLink.tsx:38
 msgid "Please check the following link to verify the site you are going to visit. Proceed at your own risk."
@@ -3131,7 +3131,7 @@ msgstr "Ole hyvä ja syötä summa {0} tokenille"
 
 #: src/util/offerBuilderDataToOffer.ts:228
 msgid "Please enter an amount for {catName} token"
-msgstr ""
+msgstr "Ole hyvä ja syötä summa {catName} tokenille"
 
 #: src/components/offers/OfferEditor.tsx:106
 msgid "Please enter an amount for each row"
@@ -3247,7 +3247,7 @@ msgstr "Plotin Koko"
 
 #: src/components/plot/add/PlotAddNFT.tsx:56
 msgid "Plot to a Plot NFT"
-msgstr ""
+msgstr "Plottaa NFT-plotti"
 
 #: src/components/plotNFT/PlotNFTState.tsx:44
 msgid "PlotNFT is transitioning to (target state). This can take a while. Please do not close the application until this is finalized."
@@ -3425,7 +3425,7 @@ msgstr "Edellinen Tunnistetiiviste"
 
 #: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:359
 msgid "Proceed"
-msgstr ""
+msgstr "Jatka"
 
 #: src/components/settings/ProfileView.tsx:57
 msgid "Profile Name"
@@ -3433,7 +3433,7 @@ msgstr "Profiilin nimi"
 
 #: src/components/settings/ProfileAdd.tsx:142
 msgid "Profile Name (Optional)"
-msgstr ""
+msgstr "Profiilin Nimi (Vapaaehtoinen)"
 
 #: src/components/settings/Settings.tsx:66
 #: src/components/settings/SettingsProfiles.tsx:55
@@ -3442,7 +3442,7 @@ msgstr ""
 
 #: src/components/settings/SettingsProfiles.tsx:50
 msgid "Profiles (DIDs)"
-msgstr ""
+msgstr "Profiilit (DID)"
 
 #: src/components/block/Block.jsx:202
 msgid "Proof of Space Size"
@@ -3450,7 +3450,7 @@ msgstr "Tilatodisteavaruuden Koko"
 
 #: src/components/vcs/VCCard.tsx:153
 msgid "Proofs"
-msgstr ""
+msgstr "Todisteet"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:25
 msgid "Proofs Found"
@@ -3458,11 +3458,11 @@ msgstr "Todisteita Löytynyt"
 
 #: src/constants/WalletConnectCommands.tsx:905
 msgid "Proofs Hash"
-msgstr ""
+msgstr "Todisteiden Tiivisteet"
 
 #: src/constants/WalletConnectCommands.tsx:892
 msgid "Proofs Object (Key Value Pairs)"
-msgstr ""
+msgstr "Todisteiden Objekti (Avainarvoparit)"
 
 #: src/components/nfts/NFTProperties.tsx:121
 msgid "Properties"
@@ -3478,7 +3478,7 @@ msgstr "Todista tai vahvista lompakon osoitteen, NFT:n tai DID:n hallinta digita
 
 #: src/constants/WalletConnectCommands.tsx:867
 msgid "Provider Inner Puzzle Hash"
-msgstr ""
+msgstr "Tuottajan Sisäinen Puzzletiiviste"
 
 #: src/components/signVerify/VerifyMessage.tsx:219
 #: src/constants/WalletConnectCommands.tsx:219
@@ -3491,7 +3491,7 @@ msgstr "Ostoksen Yhteenveto"
 
 #: src/constants/WalletConnectCommands.tsx:145
 msgid "Puzzle Decorator"
-msgstr ""
+msgstr "Puzzle Dekoraattori"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:216
 #: src/components/plot/PlotPlotting.tsx:22
