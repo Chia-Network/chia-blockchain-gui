@@ -8,15 +8,15 @@ msgstr ""
 "Language: fr_FR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-03-29 23:27\n"
+"PO-Revision-Date: 2023-07-14 17:42\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "X-Crowdin-Project-ID: 1\n"
 "X-Crowdin-Language: fr\n"
-"X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/packages/wallets/src/locales/en-US/messages.po\n"
-"X-Crowdin-File-ID: 1308\n"
+"X-Crowdin-File: /main/packages/wallets/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 25\n"
 
 #: src/components/WalletHistory.tsx:116
 msgid "-"
@@ -64,7 +64,7 @@ msgstr "Êtes-vous sûr de vouloir supprimer les transactions non confirmées ?"
 
 #: src/components/WalletHistory.tsx:127
 msgid "Asset"
-msgstr ""
+msgstr "Actif"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:71
 #: src/components/cat/WalletCATTAILDialog.tsx:33
@@ -82,11 +82,11 @@ msgstr "Portefeuille des bénéficiaires autorisés"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:226
 msgid "Auto-claim transactions with this fee from now on."
-msgstr ""
+msgstr "Réclamer automatiquement les transactions avec ces frais."
 
 #: src/components/WalletHistoryClawbackChip.tsx:46
 msgid "Can be claimed in "
-msgstr ""
+msgstr "Peut être réclamé dans "
 
 #: src/components/PasteMnemonic.tsx:76
 #: src/components/WalletRenameDialog.tsx:72
@@ -100,7 +100,7 @@ msgstr "Impossible d'envoyer des chias à une adresse colorée. Merci d'entrer u
 
 #: src/components/WalletsSidebar.tsx:130
 #~ msgid "Check my snapshot balance"
-#~ msgstr "Vérifier le solde du snapshot"
+#~ msgstr "Check my snapshot balance"
 
 #: src/components/cat/WalletCATSelect.tsx:25
 #: src/components/create/WalletCreateList.tsx:32
@@ -110,36 +110,36 @@ msgstr "Chia Asset Token"
 
 #: src/components/WalletHistoryClawbackChip.tsx:53
 msgid "Claim transaction"
-msgstr ""
+msgstr "Réclamer la transaction"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:136
 #: src/components/ClawbackClaimTransactionDialog.tsx:259
 msgid "Claim Transaction"
-msgstr ""
+msgstr "Réclamer la transaction"
 
 #: src/components/WalletHistoryClawbackChip.tsx:68
 msgid "Claiming..."
-msgstr ""
+msgstr "Réclamation..."
 
 #: src/components/WalletHistoryClawbackChip.tsx:79
 msgid "Claw back this transaction"
-msgstr ""
+msgstr "Annuler cette transaction"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:259
 msgid "Claw back Transaction"
-msgstr ""
+msgstr "Annuler la transaction"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:136
 msgid "Claw Back Transaction"
-msgstr ""
+msgstr "Annuler la transaction"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:128
 msgid "Clawback payment claimed"
-msgstr ""
+msgstr "Paiement réclamé"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:128
 msgid "Clawback payment clawed back"
-msgstr ""
+msgstr "Paiement repris par l'émetteur"
 
 #: src/components/WalletSend.tsx:340
 msgid "Clawback will be applied."
@@ -155,7 +155,7 @@ msgstr ""
 
 #: src/components/WalletsSidebar.tsx:141
 #~ msgid "Click here to download an older version of the wallet"
-#~ msgstr "Cliquez ici pour télécharger une ancienne version du portefeuille"
+#~ msgstr "Click here to download an older version of the wallet"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:157
 #: src/components/ClawbackClaimTransactionDialog.tsx:248
@@ -180,11 +180,11 @@ msgstr "Type de connexion"
 
 #: src/components/WalletReceiveAddressField.tsx:71
 msgid "Copied"
-msgstr ""
+msgstr "Copié"
 
 #: src/components/WalletReceiveAddressField.tsx:75
 msgid "Copy wallet address"
-msgstr ""
+msgstr "Copier l'adresse du portefeuille"
 
 #: src/components/cat/WalletCATSelect.tsx:32
 msgid "Create New Wallet"
@@ -214,7 +214,7 @@ msgstr "Personnaliser"
 
 #: src/constants/WalletName.ts:38
 msgid "Datalayer Wallet"
-msgstr ""
+msgstr "Portefeuille du Datalayer"
 
 #: src/components/WalletHistory.tsx:100
 #~ msgid "Date"
@@ -285,7 +285,7 @@ msgstr "Importer un portefeuille depuis une phrase mnémonique"
 
 #: src/components/WalletHistory.tsx:87
 #~ msgid "Incoming"
-#~ msgstr "Entrant"
+#~ msgstr "Incoming"
 
 #: src/components/WalletConnections.tsx:22
 msgid "IP address"
@@ -330,7 +330,7 @@ msgstr "Nouvelle Adresse"
 
 #: src/components/WalletReceiveAddressField.tsx:114
 msgid "New Receive Address"
-msgstr ""
+msgstr "Nouvelle adresse de réception"
 
 #: src/components/WalletAdd.tsx:62
 msgid "New Wallet"
@@ -381,7 +381,7 @@ msgstr "En moyenne, il y a une minute entre chaque bloc de transaction. À moins
 
 #: src/components/WalletHistory.tsx:87
 #~ msgid "Outgoing"
-#~ msgstr "Sortant"
+#~ msgstr "Outgoing"
 
 #: src/components/WalletImport.tsx:233
 msgid "Paste Mnemonic"
@@ -389,7 +389,7 @@ msgstr "Coller la phrase mnémonique"
 
 #: src/components/PasteMnemonic.tsx:53
 msgid "Paste Mnemonic ({0} words)"
-msgstr ""
+msgstr "Coller la phrase mnémonique ({0} mots)"
 
 #: src/components/WalletHistory.tsx:185
 msgid "Pending"
@@ -465,7 +465,7 @@ msgstr "Débit limité"
 
 #: src/components/WalletsSidebar.tsx:133
 #~ msgid "Read the blog post for details"
-#~ msgstr "Lire le billet de blog pour plus de détails"
+#~ msgstr "Read the blog post for details"
 
 #: src/components/WalletHeader.tsx:48
 msgid "Receive"
@@ -593,7 +593,7 @@ msgstr ""
 
 #: src/components/WalletHistory.tsx:181
 #~ msgid "To"
-#~ msgstr "À"
+#~ msgstr "To"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:175
 msgid "To:"
@@ -658,11 +658,11 @@ msgstr "Portefeuille de type {0} non pris en charge"
 
 #: src/components/WalletsSidebar.tsx:138
 #~ msgid "Want to see your old balance for yourself?"
-#~ msgstr "Vous voulez voir votre ancien solde par vous-même ?"
+#~ msgstr "Want to see your old balance for yourself?"
 
 #: src/components/WalletsSidebar.tsx:110
 #~ msgid "We've made an upgrade to the CAT standard which requires all CATs to be re-issued. You will be airdropped your new tokens as they are re-issued by the original issuers. The airdropped tokens will be based on the balance as of block height:<0/><1/><2/>(Approximate time: July 26th, 2022 @ 17:00 UTC)"
-#~ msgstr "Nous avons fait une mise à jour de la norme CAT qui exige que tous les CAT soient réémis. Vous recevrez vos nouveaux jetons une fois réémis par les créateurs initiaux. Le montant sera basé sur le solde au bloc :<0/><1/><2/>(Date approximative : 26 juillet 2022 @ 17:00 UTC)"
+#~ msgstr "We've made an upgrade to the CAT standard which requires all CATs to be re-issued. You will be airdropped your new tokens as they are re-issued by the original issuers. The airdropped tokens will be based on the balance as of block height:<0/><1/><2/>(Approximate time: July 26th, 2022 @ 17:00 UTC)"
 
 #: src/components/WalletAdd.tsx:65
 msgid "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
@@ -678,8 +678,9 @@ msgstr ""
 
 #: src/components/WalletsSidebar.tsx:106
 #~ msgid "Your CAT tokens have been upgraded!"
-#~ msgstr "Vos jetons CAT ont été mis à jour !"
+#~ msgstr "Your CAT tokens have been upgraded!"
 
 #: src/components/WalletImport.tsx:73
 msgid "Your pasted list does not include {mnemonicWordCount} valid mnemonic words."
 msgstr ""
+
