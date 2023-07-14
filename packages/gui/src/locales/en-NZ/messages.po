@@ -8,15 +8,15 @@ msgstr ""
 "Language: en_NZ\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-03-29 23:27\n"
+"PO-Revision-Date: 2023-07-14 17:45\n"
 "Last-Translator: \n"
 "Language-Team: English, New Zealand\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "X-Crowdin-Project-ID: 1\n"
 "X-Crowdin-Language: en-NZ\n"
-"X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/packages/gui/src/locales/en-US/messages.po\n"
-"X-Crowdin-File-ID: 1306\n"
+"X-Crowdin-File: /main/packages/gui/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 35\n"
 
 #. js-lingui-explicit-id
 #: src/components/nfts/NFTBurnDialog.tsx:132
@@ -46,48 +46,48 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:488
 msgid "No"
-msgstr ""
+msgstr "No"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:488
 msgid "Yes"
-msgstr ""
+msgstr "Yes"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:489
 msgid "Confirm"
-msgstr ""
+msgstr "Confirm"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:491
 msgid "Are you sure you want to quit?"
-msgstr ""
+msgstr "Are you sure you want to quit?"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:600
 #: src/electron/main.tsx:808
 msgid "File"
-msgstr ""
+msgstr "File"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:608
 msgid "Edit"
-msgstr ""
+msgstr "Edit"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:640
 msgid "View"
-msgstr ""
+msgstr "View"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:649
 msgid "Developer"
-msgstr ""
+msgstr "Developer"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:652
 msgid "Developer Tools"
-msgstr ""
+msgstr "Developer Tools"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:660
@@ -97,42 +97,42 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:689
 msgid "Full Screen"
-msgstr ""
+msgstr "Full Screen"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:696
 msgid "Window"
-msgstr ""
+msgstr "Window"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:710
 msgid "Help"
-msgstr ""
+msgstr "Help"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:714
 msgid "Chia Blockchain Wiki"
-msgstr ""
+msgstr "Chia Blockchain Wiki"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:720
 msgid "Frequently Asked Questions"
-msgstr ""
+msgstr "Frequently Asked Questions"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:726
 msgid "Release Notes"
-msgstr ""
+msgstr "Release Notes"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:732
 msgid "Contribute on GitHub"
-msgstr ""
+msgstr "Contribute on GitHub"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:741
 msgid "Report an Issue..."
-msgstr ""
+msgstr "Report an Issue..."
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:747
@@ -142,18 +142,18 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:753
 msgid "Follow on Twitter"
-msgstr ""
+msgstr "Follow on Twitter"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:765
 msgid "Chia"
-msgstr ""
+msgstr "Chia"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:768
 #: src/electron/main.tsx:861
 msgid "About Chia Blockchain"
-msgstr ""
+msgstr "About Chia Blockchain"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:774
@@ -163,7 +163,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:822
 msgid "Speech"
-msgstr ""
+msgstr "Speech"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:867
@@ -924,7 +924,7 @@ msgstr "Collection"
 #: src/components/vcs/VCRevokeDialog.tsx:27
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:70
 msgid "Confirm"
-msgstr "Confirm"
+msgstr ""
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:19
 msgid "Confirm Disconnect"
@@ -2082,20 +2082,16 @@ msgstr "Initialising..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:107
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgstr "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 
 #: src/components/offers/OfferEditor.tsx:145
 #: src/components/offers2/CreateOfferBuilder.tsx:132
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgstr "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 
 #: src/components/settings/Settings.tsx:73
@@ -2197,7 +2193,7 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:1086
 #~ msgid "Keybase command failed {e}. If you haven't installed Keybase, you can download from https://keybase.io"
-#~ msgstr "Keybase command failed {e}. If you haven't installed Keybase, you can download it from https://keybase.io"
+#~ msgstr "Keybase command failed {e}. If you haven't installed Keybase, you can download from https://keybase.io"
 
 #: src/components/offers/OfferShareDialog.tsx:1165
 #~ msgid "Keybase is a secure messaging and file sharing application. To share an offer in the Keybase {teamName} team, you must first have Keybase installed."
@@ -2643,7 +2639,7 @@ msgstr ""
 
 #: src/components/vcs/VCCard.tsx:83
 msgid "No"
-msgstr "No"
+msgstr ""
 
 #: src/components/notification/NotificationsMenu.tsx:52
 msgid "No activities yet"
@@ -3205,7 +3201,7 @@ msgstr "Please specify temporary directory"
 
 #: src/components/offers2/OfferBuilderViewer.tsx:185
 msgid "Please wait for wallet synchronization"
-msgstr ""
+msgstr "Please wait for wallet synchronisation"
 
 #: src/components/farm/card/FarmCardPlotCount.tsx:10
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:51
@@ -4800,7 +4796,7 @@ msgstr ""
 
 #: src/components/offers2/OfferIncomingTable.tsx:101
 msgid "View"
-msgstr "View"
+msgstr ""
 
 #: src/components/offers/OfferImport.tsx:184
 msgid "View an Offer"
@@ -5018,13 +5014,13 @@ msgstr "Would you like to move the specified NFT to a profile?"
 
 #: src/components/nfts/NFTTransferAction.tsx:228
 msgid "Would you like to transfer the specified NFT to a new owner?"
-msgstr ""
+msgstr "Would you like to transfer the specified NFT to a new owner?"
 
 #: src/components/offers2/OfferIncomingTable.tsx:210
 #: src/components/plot/add/PlotAddChooseSize.tsx:47
 #: src/components/vcs/VCCard.tsx:83
 msgid "Yes"
-msgstr "Yes"
+msgstr ""
 
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:22
 msgid "Yes, Accept Offer"
@@ -5169,3 +5165,4 @@ msgstr ""
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr ""
+
