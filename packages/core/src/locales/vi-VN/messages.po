@@ -8,7 +8,7 @@ msgstr ""
 "Language: vi_VN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-14 17:42\n"
+"PO-Revision-Date: 2023-07-14 18:45\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -122,7 +122,7 @@ msgstr ""
 
 #: src/components/Settings/SettingsApp.tsx:110
 msgid "Dark"
-msgstr ""
+msgstr "Tối"
 
 #: src/screens/SelectKey/SelectKey.tsx:126
 #: src/screens/SelectKey/SelectKeyItem.tsx:113
@@ -140,7 +140,7 @@ msgstr ""
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:96
 msgid "Delete key {fingerprint}"
-msgstr ""
+msgstr "Xóa khóa {fingerprint}"
 
 #: src/screens/SelectKey/SelectKey.tsx:131
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
@@ -152,16 +152,16 @@ msgstr ""
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:59
 msgid "Disable"
-msgstr ""
+msgstr "Vô hiệu hóa"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:58
 msgid "Disable Passphrase Protection"
-msgstr ""
+msgstr "Vô hiệu hóa cụm mật khẩu bảo vệ"
 
 #: src/components/Back/Back.tsx:37
 #: src/components/FormBackButton/FormBackButton.tsx:28
 msgid "Discard"
-msgstr ""
+msgstr "Loại bỏ"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:183
 msgid "Download"
@@ -174,7 +174,7 @@ msgstr "Lỗi"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:72
 msgid "Error:"
-msgstr ""
+msgstr "Lỗi:"
 
 #: src/screens/SelectKey/SelectKeyRenameForm.tsx:91
 msgid "Esc"
@@ -182,7 +182,7 @@ msgstr ""
 
 #: src/components/LayoutMain/LayoutFooter.tsx:48
 msgid "FAQ"
-msgstr ""
+msgstr "Câu hỏi thường gặp"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:90
 msgid "Farmer Public Key"
@@ -190,11 +190,11 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:58
 msgid "Farmer public key:"
-msgstr ""
+msgstr "Khóa công khai của farmer:"
 
 #: src/components/Settings/SettingsApp.tsx:78
 msgid "Farming"
-msgstr ""
+msgstr "Farming"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:333
 #: src/components/EstimatedFee/EstimatedFee.tsx:367
@@ -241,11 +241,11 @@ msgstr ""
 
 #: src/components/Fee/Fee.tsx:32
 msgid "Incorrect value"
-msgstr ""
+msgstr "Giá trị không chính xác"
 
 #: src/components/Settings/SettingsApp.tsx:117
 msgid "Language"
-msgstr ""
+msgstr "Ngôn ngữ"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:57
 msgid "Latest Version:"
@@ -253,7 +253,7 @@ msgstr ""
 
 #: src/components/Settings/SettingsApp.tsx:102
 msgid "Light"
-msgstr ""
+msgstr "Sáng"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:222
 msgid "Likely in {0} seconds"
@@ -282,23 +282,23 @@ msgstr ""
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:317
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:336
 msgid "Log Out"
-msgstr ""
+msgstr "Đăng xuất"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:335
 msgid "Logout"
-msgstr ""
+msgstr "Đăng xuất"
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:16
 msgid "Migrate"
-msgstr ""
+msgstr "Di chuyển"
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:15
 msgid "Migration required"
-msgstr ""
+msgstr "Yêu cầu di chuyển"
 
 #: src/components/Settings/SettingsApp.tsx:69
 msgid "Mode"
-msgstr ""
+msgstr "Chế độ"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:107
 msgid "NEVER SHARE THESE WITH ANYONE"
@@ -306,7 +306,7 @@ msgstr ""
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:41
 msgid "New passphrase is the same as your current passphrase"
-msgstr ""
+msgstr "Cụm mật khẩu mới giống với cụm mật khẩu hiện tại của bạn"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:168
 msgid "New version {latestVersion} available"
@@ -340,12 +340,12 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:66
 msgid "Pool public key:"
-msgstr ""
+msgstr "Khoá công khai của Pool:"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:27
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:34
 msgid "Private key {fingerprint}"
-msgstr ""
+msgstr "Khóa cá nhân {fingerprint}"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:42
 msgid "Private key:"
@@ -373,7 +373,7 @@ msgstr ""
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:85
 msgid "Reload Application"
-msgstr ""
+msgstr "Tải lại ứng dụng"
 
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:258
 msgid "Remove Icon"
