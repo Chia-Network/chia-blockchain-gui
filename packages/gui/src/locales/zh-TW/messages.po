@@ -8,15 +8,15 @@ msgstr ""
 "Language: zh_TW\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-03-29 23:27\n"
+"PO-Revision-Date: 2023-07-14 17:44\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "X-Crowdin-Project-ID: 1\n"
 "X-Crowdin-Language: zh-TW\n"
-"X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/packages/gui/src/locales/en-US/messages.po\n"
-"X-Crowdin-File-ID: 1306\n"
+"X-Crowdin-File: /main/packages/gui/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 35\n"
 
 #. js-lingui-explicit-id
 #: src/components/nfts/NFTBurnDialog.tsx:132
@@ -46,48 +46,48 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:488
 msgid "No"
-msgstr ""
+msgstr "否"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:488
 msgid "Yes"
-msgstr ""
+msgstr "是"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:489
 msgid "Confirm"
-msgstr ""
+msgstr "確認"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:491
 msgid "Are you sure you want to quit?"
-msgstr ""
+msgstr "你確定要離開嗎?"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:600
 #: src/electron/main.tsx:808
 msgid "File"
-msgstr ""
+msgstr "檔案"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:608
 msgid "Edit"
-msgstr ""
+msgstr "編輯"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:640
 msgid "View"
-msgstr ""
+msgstr "檢視"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:649
 msgid "Developer"
-msgstr ""
+msgstr "開發者"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:652
 msgid "Developer Tools"
-msgstr ""
+msgstr "開發者工具"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:660
@@ -97,42 +97,42 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:689
 msgid "Full Screen"
-msgstr ""
+msgstr "全畫面"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:696
 msgid "Window"
-msgstr ""
+msgstr "視窗"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:710
 msgid "Help"
-msgstr ""
+msgstr "幫助"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:714
 msgid "Chia Blockchain Wiki"
-msgstr ""
+msgstr "Chia 區塊鏈維基"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:720
 msgid "Frequently Asked Questions"
-msgstr ""
+msgstr "常見問題"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:726
 msgid "Release Notes"
-msgstr ""
+msgstr "發行說明"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:732
 msgid "Contribute on GitHub"
-msgstr ""
+msgstr "在 GitHub 上貢獻"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:741
 msgid "Report an Issue..."
-msgstr ""
+msgstr "回報問題..."
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:747
@@ -142,18 +142,18 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:753
 msgid "Follow on Twitter"
-msgstr ""
+msgstr "Twitter 上追隨"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:765
 msgid "Chia"
-msgstr ""
+msgstr "奇亞"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:768
 #: src/electron/main.tsx:861
 msgid "About Chia Blockchain"
-msgstr ""
+msgstr "關於 Chia 區塊鏈"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:774
@@ -163,7 +163,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:822
 msgid "Speech"
-msgstr ""
+msgstr "語音"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:867
@@ -180,15 +180,15 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:63
 msgid "(Not Installed)"
-msgstr ""
+msgstr "(尚未安裝)"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:61
 msgid "(Not Supported)"
-msgstr ""
+msgstr "(不支援)"
 
 #: src/components/plot/add/PlotAddNFT.tsx:59
 #~ msgid "(Optional)"
-#~ msgstr "(選用)"
+#~ msgstr "(Optional)"
 
 #: src/components/plot/add/PlotAddNFT.tsx:59
 msgid "(Recommended)"
@@ -263,7 +263,7 @@ msgstr ""
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:40
 msgid "+ Add a Plot"
-msgstr ""
+msgstr "+新增一個耕地"
 
 #: src/components/plot/add/PlotAddNFT.tsx:120
 msgid "+ Add New Plot NFT"
@@ -275,7 +275,7 @@ msgstr ""
 
 #: src/components/settings/ProfileAdd.tsx:80
 #~ msgid "<0>Need some XCH?</0>"
-#~ msgstr ""
+#~ msgstr "<0>Need some XCH?</0>"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:290
 msgid "<0>Showing</0> {0} <1>of</1> {1}  <2>items</2>"
@@ -283,7 +283,7 @@ msgstr ""
 
 #: src/components/settings/ProfileAdd.tsx:92
 #~ msgid "<0>Use one (1) mojo to create a Profile.</0>"
-#~ msgstr ""
+#~ msgstr "<0>Use one (1) mojo to create a Profile.</0>"
 
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:77
 msgid "A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk to a full node to see the state of the chain. View your network of connected harvesters below Learn more"
@@ -299,18 +299,18 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:152
 msgid "A value of {0} is recommended"
-msgstr ""
+msgstr "推薦數值為{0}"
 
 #: src/electron/main.tsx:1101
 #: src/electron/main.tsx:1188
 #~ msgid "About Chia Blockchain"
-#~ msgstr "關於 Chia 區塊鏈"
+#~ msgstr "About Chia Blockchain"
 
 #: src/components/offers/NFTOfferViewer.tsx:638
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:21
 #: src/components/offers2/OfferBuilderViewer.tsx:214
 msgid "Accept Offer"
-msgstr ""
+msgstr "接受報價單"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:78
 #: src/components/plot/PlotHarvesterPlotsDuplicate.tsx:19
@@ -364,7 +364,7 @@ msgstr ""
 
 #: src/components/offers/OfferAssetSelector.tsx:144
 msgid "Add CAT wallets to have more options"
-msgstr ""
+msgstr "添加 CAT 錢包以獲得更多選項"
 
 #: src/components/walletConnect/WalletConnectConnections.tsx:105
 msgid "Add Connection"
@@ -409,16 +409,16 @@ msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:250
 msgid "After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring."
-msgstr ""
+msgstr "在您的密鑰成功遷移到新的密鑰圈之後，您可以選擇將您的密鑰從舊的密鑰圈中刪除。"
 
 #: src/components/nfts/NFTProfileDropdown.tsx:101
 #: src/components/nfts/NFTProfileDropdown.tsx:114
 msgid "All NFTs"
-msgstr ""
+msgstr "所有的NFTs"
 
 #: src/components/did/DIDProfileDropdown.tsx:23
 msgid "All Profiles"
-msgstr ""
+msgstr "所有的檔案(DIDs)"
 
 #: src/components/settings/SettingsIntegration.tsx:174
 msgid "Allow external Apps and websites to connect to your wallet through WalletConnect."
@@ -442,7 +442,7 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:345
 msgid "Alternate tmpdir/tmpdir2"
-msgstr ""
+msgstr "輪流使用暫存1資料夾與暫存2資料夾"
 
 #: src/components/settings/SettingsIntegration.tsx:308
 msgid "Always Allow"
@@ -461,7 +461,7 @@ msgstr ""
 #: src/constants/WalletConnectCommands.tsx:526
 #: src/constants/WalletConnectCommands.tsx:747
 msgid "Amount"
-msgstr ""
+msgstr "數量"
 
 #: src/components/offers2/OfferBuilderRoyaltyPayouts.tsx:38
 msgid "Amount before adding royalties"
@@ -470,7 +470,7 @@ msgstr ""
 #: src/components/offers/NFTOfferEditor.tsx:590
 #: src/components/offers/OfferEditor.tsx:108
 msgid "Amount exceeds spendable balance"
-msgstr ""
+msgstr "超出可使用的餘額"
 
 #: src/util/offerBuilderDataToOffer.ts:86
 #~ msgid "Amount exceeds spendable balance for {0} token"
@@ -491,7 +491,7 @@ msgstr ""
 #: src/components/offers/NFTOfferPreview.tsx:137
 #: src/components/offers2/OfferBuilderNFTProvenance.tsx:23
 msgid "An NFT's provenance is a complete record of its ownership history. It provides a direct lineage that connects everyone who has owned the NFT, all the way back to the original artist. This helps to verify that the NFT is authentic."
-msgstr ""
+msgstr "一個NFT的出處是其所有權歷史的完整記錄。它提供了一個類似祖譜/血統的概念，將擁有該NFT的所有人連接起來，一直追溯到原始藝術家。這有助於驗證NFT的真實性。"
 
 #: src/components/notification/NotificationAnnouncementDialog.tsx:35
 msgid "Announcement"
@@ -516,7 +516,7 @@ msgstr ""
 
 #: src/components/offers/ConfirmOfferCancellation.tsx:69
 msgid "Are you sure you want to cancel your offer?"
-msgstr ""
+msgstr "你確定你要取消你的報價嗎?"
 
 #: src/components/settings/SettingsNFT.tsx:59
 msgid "Are you sure you want to delete the NFT cache?"
@@ -537,11 +537,11 @@ msgstr "您確定要斷線嗎？"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:63
 msgid "Are you sure you want to move this NFT to the specified profile?"
-msgstr ""
+msgstr "你確定你要將這個NFT移動到指定的檔案(DIDs)嗎?"
 
 #: src/electron/main.tsx:816
 #~ msgid "Are you sure you want to quit?"
-#~ msgstr ""
+#~ msgstr "Are you sure you want to quit?"
 
 #: src/components/vcs/VCCard.tsx:191
 msgid "Are you sure you want to remove"
@@ -573,7 +573,7 @@ msgstr ""
 #: src/components/offers2/OfferBuilderToken.tsx:52
 #: src/components/offers2/OfferBuilderTokenSelector.tsx:74
 msgid "Asset Type"
-msgstr ""
+msgstr "資產類型"
 
 #: src/components/offers/OfferShareDialog.tsx:902
 msgid "Assets I am offering:"
@@ -601,7 +601,7 @@ msgstr ""
 
 #: src/components/app/AppState.tsx:243
 msgid "Attempt {attempt}"
-msgstr ""
+msgstr "嘗試 {attempt}"
 
 #: src/components/settings/SettingsCustody.tsx:61
 msgid "Auto claim incoming claw back transactions"
@@ -621,7 +621,7 @@ msgstr "自動從農會合約地址建立名稱"
 
 #: src/components/offers/NFTOfferViewer.tsx:629
 msgid "Back"
-msgstr ""
+msgstr "返回"
 
 #: src/constants/WalletConnectCommands.tsx:759
 msgid "Backup DIDs"
@@ -633,7 +633,7 @@ msgstr ""
 
 #: src/components/settings/ProfileAdd.tsx:98
 #~ msgid "Balance: {standardBalance} XCH"
-#~ msgstr ""
+#~ msgstr "Balance: {standardBalance} XCH"
 
 #: src/components/block/Block.jsx:235
 msgid "Base Farmer Reward Amount"
@@ -641,7 +641,7 @@ msgstr "基礎塊農獎勵數量"
 
 #: src/components/offers/OfferShareDialog.tsx:1177
 #~ msgid "Before posting an offer in Keybase to the #{channelName} channel, you must first join the {teamName} team. Please note that it might take a few moments to join the channel."
-#~ msgstr ""
+#~ msgstr "Before posting an offer in Keybase to the #{channelName} channel, you must first join the {teamName} team. Please note that it might take a few moments to join the channel."
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:35
 msgid "Below are the current block challenges. You may or may not have a proof of space for these challenges. These blocks do not currently contain a proof of time."
@@ -661,7 +661,7 @@ msgstr "Chia 區塊鏈區塊高度 {0}"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:32
 msgid "Block Rewards"
-msgstr ""
+msgstr "區塊獎勵"
 
 #: src/components/block/Block.jsx:195
 msgid "Block VDF Iterations"
@@ -689,11 +689,11 @@ msgstr "瀏覽"
 #: src/components/nfts/NFTBurnDialog.tsx:184
 #: src/components/nfts/NFTContextualActions.tsx:527
 msgid "Burn"
-msgstr ""
+msgstr "燒毀"
 
 #: src/components/nfts/NFTBurnDialog.tsx:73
 msgid "Burn NFT confirmation"
-msgstr ""
+msgstr "確定燒毀 NFT"
 
 #: src/components/nfts/NFTBurnDialog.tsx:143
 msgid "Burning a non-fungible token means removing it from circulation by sending it to a verifiably un-spendable address. However, transactions leading up to the burn will remain on the blockchain ledger."
@@ -701,7 +701,7 @@ msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:307
 msgid "Buy an NFT"
-msgstr ""
+msgstr "購買一個NFT"
 
 #: src/components/signVerify/VerifyMessage.tsx:252
 msgid "By providing a signing address, the public key can be validated as being associated with the address used for signing."
@@ -748,19 +748,19 @@ msgstr "取消"
 #: src/components/offers/OfferManager.tsx:246
 #: src/constants/WalletConnectCommands.tsx:362
 msgid "Cancel Offer"
-msgstr ""
+msgstr "取消報價單"
 
 #: src/components/offers/ConfirmOfferCancellation.tsx:92
 msgid "Cancel on blockchain"
-msgstr ""
+msgstr "在區塊鏈上取消"
 
 #: src/components/nfts/NFTContextualActions.tsx:276
 msgid "Cancel Unconfirmed Transaction"
-msgstr ""
+msgstr "取消未確認的交易"
 
 #: src/components/offers/utils.ts:121
 msgid "Cancelled"
-msgstr ""
+msgstr "取消"
 
 #: src/util/offerBuilderDataToOffer.ts:306
 msgid "Cannot offer and request the same asset"
@@ -782,7 +782,7 @@ msgstr "變更"
 #: src/components/settings/ChangePassphrasePrompt.tsx:288
 #: src/components/settings/SettingsPanel.tsx:122
 msgid "Change Passphrase"
-msgstr ""
+msgstr "變更私鑰密碼"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:334
 #: src/components/plotNFT/PlotNFTChangePool.tsx:107
@@ -799,7 +799,7 @@ msgstr ""
 
 #: src/electron/main.tsx:1080
 #~ msgid "Chat on KeyBase"
-#~ msgstr "在 KeyBase 上閒聊"
+#~ msgstr "Chat on KeyBase"
 
 #: src/constants/WalletConnectCommands.tsx:385
 msgid "Check Offer Validity"
@@ -808,16 +808,16 @@ msgstr ""
 #: src/components/offers/NFTOfferPreview.tsx:151
 #: src/components/offers2/OfferBuilderNFTProvenance.tsx:37
 msgid "Check Provenance on MintGarden"
-msgstr ""
+msgstr "在MintGarden上面檢查出處"
 
 #: src/components/offers/NFTOfferPreview.tsx:161
 #: src/components/offers2/OfferBuilderNFTProvenance.tsx:47
 msgid "Check Provenance on Spacescan.io"
-msgstr ""
+msgstr "在Spacescan.io上面檢查出處"
 
 #: src/electron/main.tsx:1098
 #~ msgid "Chia"
-#~ msgstr ""
+#~ msgstr "Chia"
 
 #: src/components/offers2/OfferBuilderXCHSection.tsx:76
 msgid "Chia ({currencyCode}) is a digital currency that is secure and sustainable"
@@ -829,11 +829,11 @@ msgstr ""
 
 #: src/electron/main.tsx:1047
 #~ msgid "Chia Blockchain Wiki"
-#~ msgstr "Chia 區塊鏈維基"
+#~ msgstr "Chia Blockchain Wiki"
 
 #: src/components/app/AppSelectMode.tsx:145
 msgid "Choose Farming Mode"
-msgstr ""
+msgstr "選擇耕種模式"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:41
 msgid "Choose Number of Plots"
@@ -845,11 +845,11 @@ msgstr "選擇耕地大小"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:79
 msgid "Choose Plotter"
-msgstr ""
+msgstr "選擇P圖工具"
 
 #: src/components/app/AppSelectMode.tsx:96
 msgid "Choose Wallet Mode"
-msgstr ""
+msgstr "選擇錢包模式"
 
 #: src/components/settings/SettingsNFT.tsx:83
 msgid "Choose what you want to see and how you want to view it."
@@ -901,7 +901,7 @@ msgstr "關閉"
 
 #: src/components/app/AppState.tsx:170
 msgid "Closing down services"
-msgstr ""
+msgstr "關閉服務"
 
 #: src/constants/WalletConnectCommands.tsx:601
 msgid "Coin Id"
@@ -918,13 +918,13 @@ msgstr ""
 #: src/components/nfts/detail/NFTDetailV2.tsx:202
 #: src/components/nfts/NFTSummary.tsx:49
 msgid "Collection"
-msgstr ""
+msgstr "收藏"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:166
 #: src/components/vcs/VCRevokeDialog.tsx:27
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:70
 msgid "Confirm"
-msgstr "確認"
+msgstr ""
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:19
 msgid "Confirm Disconnect"
@@ -932,21 +932,21 @@ msgstr "確認斷線"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:55
 msgid "Confirm Move"
-msgstr ""
+msgstr "確認移動"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:237
 msgid "Confirm New Passphrase"
-msgstr ""
+msgstr "確認新的私鑰密碼"
 
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:30
 msgid "Confirm NFT Transfer"
-msgstr ""
+msgstr "確認NFT轉移"
 
 #: src/components/app/AppKeyringMigrator.tsx:177
 #: src/components/app/AppKeyringMigrator.tsx:178
 #: src/components/settings/SetPassphrasePrompt.tsx:202
 msgid "Confirm Passphrase"
-msgstr ""
+msgstr "確認私鑰密碼"
 
 #: src/components/offers2/OfferIncomingTable.tsx:210
 #: src/components/plotNFT/PlotNFTCard.tsx:103
@@ -959,7 +959,7 @@ msgstr ""
 
 #: src/components/offers/utils.ts:123
 msgid "Confirmed"
-msgstr ""
+msgstr "確認"
 
 #: src/components/fullNode/FullNodeAddConnection.tsx:103
 msgid "Connect"
@@ -986,7 +986,7 @@ msgstr ""
 #: src/components/app/AppState.tsx:235
 #: src/components/app/AppState.tsx:240
 msgid "Connecting to daemon"
-msgstr ""
+msgstr "連接到daemon"
 
 #: src/components/fullNode/card/FullNodeCardConnectionStatus.tsx:14
 msgid "Connection Status"
@@ -1019,15 +1019,15 @@ msgstr ""
 
 #: src/electron/main.tsx:1065
 #~ msgid "Contribute on GitHub"
-#~ msgstr "在 GitHub 上貢獻"
+#~ msgstr "Contribute on GitHub"
 
 #: src/components/nfts/NFTContextualActions.tsx:347
 msgid "Copy Media URL"
-msgstr ""
+msgstr "複製多媒體URL"
 
 #: src/components/nfts/NFTContextualActions.tsx:104
 msgid "Copy NFT ID"
-msgstr ""
+msgstr "複製NFT ID"
 
 #: src/components/signVerify/SignMessageResultDialog.tsx:58
 msgid "Copy To Clipboard"
@@ -1065,7 +1065,7 @@ msgstr "建立"
 
 #: src/components/app/AppSelectMode.tsx:127
 msgid "Create & Manage plots"
-msgstr ""
+msgstr "建立與管理耕地"
 
 #: src/components/offers/OfferManager.tsx:328
 msgid "Create a file that you can use to trade XCH, Chia Asset Tokens, or NFTs with no counter-party risk."
@@ -1073,7 +1073,7 @@ msgstr ""
 
 #: src/components/settings/ProfileAdd.tsx:113
 msgid "Create a new profile"
-msgstr ""
+msgstr "建立一個新的檔案(DIDs)"
 
 #: src/components/plot/add/PlotAddNFT.tsx:39
 msgid "Create a Plot NFT"
@@ -1081,12 +1081,12 @@ msgstr "建立一塊農場"
 
 #: src/components/offers/NFTOfferEditor.tsx:720
 msgid "Create an NFT Offer"
-msgstr ""
+msgstr "建立一個NFT報價單"
 
 #: src/components/offers/OfferEditor.tsx:192
 #: src/components/offers/OfferManager.tsx:337
 msgid "Create an Offer"
-msgstr ""
+msgstr "建立一個報價單"
 
 #: src/components/offers2/CreateOfferBuilder.tsx:150
 msgid "Create Counter Offer"
@@ -1107,7 +1107,7 @@ msgstr ""
 #: src/components/offers/OfferManager.tsx:319
 #: src/components/offers2/CreateOfferBuilder.tsx:150
 msgid "Create Offer"
-msgstr ""
+msgstr "建立報價單"
 
 #: src/constants/WalletConnectCommands.tsx:329
 msgid "Create Offer for Ids"
@@ -1127,7 +1127,7 @@ msgstr ""
 
 #: src/components/offers/ConfirmOfferCancellation.tsx:94
 msgid "Creates and submits a transaction on the blockchain that cancels the offer"
-msgstr ""
+msgstr "在區塊鏈上建立並送出一個取消報價的交易"
 
 #: src/components/settings/ProfileAdd.tsx:130
 msgid "Creating a profile requires 1 mojo"
@@ -1145,20 +1145,20 @@ msgstr "正在為自己的農會建立農場"
 #: src/components/offers2/CancelOfferList.tsx:127
 #: src/components/offers2/OfferIncomingTable.tsx:78
 msgid "Creation Date"
-msgstr ""
+msgstr "創建日期"
 
 #: src/components/offers/NFTOfferViewer.tsx:514
 msgid "Creator Fee ({0}%)"
-msgstr ""
+msgstr "創建費用({0}%)"
 
 #: src/components/offers/NFTOfferEditor.tsx:329
 msgid "Creator Fee ({royaltyPercentage}%)"
-msgstr ""
+msgstr "創建費用({royaltyPercentage}%)"
 
 #: src/components/offers/NFTOfferEditor.tsx:332
 #: src/components/offers/NFTOfferViewer.tsx:517
 msgid "Creator royalty percentage seems high"
-msgstr ""
+msgstr "創建版稅的比例似乎有點高"
 
 #: src/components/dashboard/DashboardSideBar.tsx:67
 msgid "Credentials"
@@ -1175,7 +1175,7 @@ msgstr "目前難度"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:183
 msgid "Current Passphrase"
-msgstr ""
+msgstr "當前私鑰密碼"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:136
 #: src/components/plotNFT/PlotNFTCard.tsx:169
@@ -1192,11 +1192,11 @@ msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:235
 msgid "Data Hash"
-msgstr ""
+msgstr "資料哈希值(Hash)"
 
 #: src/components/nfts/NFTDetails.tsx:222
 msgid "Data URL {0}"
-msgstr ""
+msgstr "資料URL {0}"
 
 #: src/components/settings/Settings.tsx:70
 #~ msgid "DataLayer"
@@ -1242,7 +1242,7 @@ msgstr "刪除"
 
 #: src/components/app/AppPassPrompt.tsx:107
 msgid "Delete Key"
-msgstr ""
+msgstr "刪除私鑰"
 
 #: src/components/plot/PlotAction.tsx:24
 #: src/components/plot/queue/PlotQueueActions.tsx:32
@@ -1259,23 +1259,23 @@ msgstr ""
 
 #: src/components/app/AppPassPrompt.tsx:100
 msgid "Deleting key"
-msgstr ""
+msgstr "正在刪除私鑰"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:81
 msgid "Depending on your system configuration, you may find that an alternative plotter produces plots faster than the default Chia Proof of Space plotter. If unsure, use the default Chia Proof of Space plotter."
-msgstr ""
+msgstr "根據您系統的規格，您可能會發現替代耕地軟體產生耕地速度快於預設Chia空間證明耕地軟體。若不確定，請使用預設Chia空間證明耕地軟體。"
 
 #: src/components/settings/SettingsPanel.tsx:164
 msgid "Derivation Index"
-msgstr ""
+msgstr "派生索引"
 
 #: src/components/settings/SettingsDerivationIndex.tsx:45
 msgid "Derivation index must be greater than {index}"
-msgstr ""
+msgstr "派生索引必须大於  {index}"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:192
 msgid "Description"
-msgstr ""
+msgstr "描述"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:314
 msgid "Deselect all"
@@ -1283,27 +1283,27 @@ msgstr ""
 
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:69
 msgid "Destination"
-msgstr ""
+msgstr "目标路徑"
 
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:59
 msgid "Destination:"
-msgstr ""
+msgstr "目标路徑:"
 
 #: src/components/nfts/NFTDetails.tsx:351
 msgid "Details"
-msgstr ""
+msgstr "詳細資料"
 
 #: src/electron/main.tsx:991
 #~ msgid "Developer"
-#~ msgstr "開發者"
+#~ msgstr "Developer"
 
 #: src/electron/main.tsx:994
 #~ msgid "Developer Tools"
-#~ msgstr "開發者工具"
+#~ msgstr "Developer Tools"
 
 #: src/components/offers/OfferShareDialog.tsx:415
 msgid "Dexie URL"
-msgstr ""
+msgstr "Dexie URL"
 
 #: src/components/signVerify/SigningEntityDID.tsx:76
 #: src/components/signVerify/SignMessage.tsx:155
@@ -1351,7 +1351,7 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:377
 msgid "Disable NUMA"
-msgstr ""
+msgstr "禁用 NUMA"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:20
 #: src/components/settings/SettingsIntegration.tsx:271
@@ -1363,7 +1363,7 @@ msgstr "斷線"
 
 #: src/components/offers/OfferManager.tsx:226
 msgid "Display Offer Data"
-msgstr ""
+msgstr "顯示報價單資料"
 
 #: src/components/settings/SettingsNotifications.tsx:152
 msgid "Display sharing options after creating a new offer"
@@ -1372,7 +1372,7 @@ msgstr ""
 #: src/components/offers/OfferShareDialog.tsx:1099
 #: src/hooks/useOpenUnsafeLink.tsx:64
 msgid "Do not show this dialog again"
-msgstr ""
+msgstr "不要再顯示這個對話窗"
 
 #: src/components/farm/FarmHero.tsx:43
 #: src/components/plot/overview/PlotOverviewHero.tsx:53
@@ -1385,7 +1385,7 @@ msgstr "你有已存在的耕地在本機上？ <0>增加耕地資料夾</0>"
 
 #: src/components/nfts/NFTBurnDialog.tsx:134
 msgid "Do you want to burn this NFT?"
-msgstr ""
+msgstr "你想要燒毀這個NFT嗎?"
 
 #: src/hooks/useWalletConnectCommand.tsx:182
 msgid "Do you want to execute command {command}?"
@@ -1405,7 +1405,7 @@ msgstr "你的機器支援平行耕地嗎？"
 
 #: src/components/nfts/NFTContextualActions.tsx:445
 msgid "Download"
-msgstr ""
+msgstr "下載"
 
 #: src/components/nfts/MultipleDownloadDialog.tsx:91
 msgid "Download failed."
@@ -1437,7 +1437,7 @@ msgstr ""
 
 #: src/components/offers/OfferImport.tsx:167
 msgid "Drag & Drop an Offer File"
-msgstr ""
+msgstr "拖放報價單檔案"
 
 #: src/components/offers2/OfferBuilderImport.tsx:166
 msgid "Drag & Drop an Offer File, Paste"
@@ -1449,15 +1449,15 @@ msgstr ""
 
 #: src/components/plot/PlotHarvester.tsx:136
 msgid "Duplicate"
-msgstr ""
+msgstr "複製"
 
 #: src/components/plot/card/PlotCardPlotsDuplicate.tsx:11
 msgid "Duplicate Plots"
-msgstr ""
+msgstr "複製耕地"
 
 #: src/electron/main.tsx:950
 #~ msgid "Edit"
-#~ msgstr "編輯"
+#~ msgstr "Edit"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:222
 #: src/components/plotNFT/PlotNFTCard.tsx:250
@@ -1467,12 +1467,12 @@ msgstr "編輯支付說明"
 
 #: src/components/nfts/NFTSummary.tsx:59
 msgid "Edition #"
-msgstr ""
+msgstr "版本 #"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:213
 #: src/constants/WalletConnectCommands.tsx:668
 msgid "Edition Number"
-msgstr ""
+msgstr "編輯號碼"
 
 #: src/constants/WalletConnectCommands.tsx:674
 msgid "Edition Total"
@@ -1519,11 +1519,11 @@ msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:136
 msgid "Enter a strong passphrase and click Migrate Keys to secure your keys"
-msgstr ""
+msgstr "請輸入較強的私鑰密碼，然後點擊\"搬移私鑰\"以保護您的私鑰"
 
 #: src/components/settings/SetPassphrasePrompt.tsx:164
 msgid "Enter a strong passphrase to secure your keys:"
-msgstr ""
+msgstr "輸入複雜的私鑰密碼來包護你的私鑰:"
 
 #: src/components/signVerify/SignMessage.tsx:66
 msgid "Enter a wallet address to sign with"
@@ -1535,7 +1535,7 @@ msgstr ""
 
 #: src/components/settings/RemovePassphrasePrompt.tsx:121
 msgid "Enter your passphrase:"
-msgstr ""
+msgstr "輸入你的私鑰密碼"
 
 #: src/components/farm/card/FarmCardStatus.tsx:35
 #: src/components/farm/card/FarmCardStatus.tsx:49
@@ -1603,12 +1603,12 @@ msgstr ""
 
 #: src/components/nfts/gallery/NFTGalleryHero.tsx:18
 msgid "Explore the Chia ecosystem; discover and trade great NFTs"
-msgstr ""
+msgstr "探索Chia生態；發現並較易良好的NFTs"
 
 #: src/components/offers/utils.ts:125
 #: src/components/plot/PlotHarvester.tsx:121
 msgid "Failed"
-msgstr ""
+msgstr "失敗"
 
 #: src/components/nfts/MultipleDownloadDialog.tsx:59
 msgid "Failed downloads:"
@@ -1616,11 +1616,11 @@ msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:581
 msgid "Failed to decode NFT identifier"
-msgstr ""
+msgstr "解碼NFT標示碼失敗"
 
 #: src/components/offers/OfferShareDialog.tsx:462
 #~ msgid "Failed to execute Keybase command: {stderr}"
-#~ msgstr ""
+#~ msgstr "Failed to execute Keybase command: {stderr}"
 
 #: src/components/notification/NotificationSendDialog.tsx:147
 msgid "Failed to send the notification: {error}"
@@ -1628,11 +1628,11 @@ msgstr ""
 
 #: src/components/settings/SetPassphrasePrompt.tsx:102
 msgid "Failed to set passphrase: {0}"
-msgstr ""
+msgstr "設定私鑰密碼失敗: {0}"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:126
 msgid "Failed to update passphrase: {0}"
-msgstr ""
+msgstr "更新私鑰密碼失敗: {0}"
 
 #: src/components/notification/NotificationSendDialog.tsx:142
 msgid "Failure"
@@ -1680,7 +1680,7 @@ msgstr "耕種中"
 
 #: src/components/app/AppSelectMode.tsx:112
 msgid "Farming Mode"
-msgstr ""
+msgstr "耕種模式"
 
 #: src/components/farm/card/FarmCardStatus.tsx:15
 #: src/components/farm/card/FarmCardStatus.tsx:26
@@ -1725,7 +1725,7 @@ msgstr "費用"
 #: src/components/offers/NFTOfferEditor.tsx:81
 #: src/components/offers/OfferEditorConditionsPanel.tsx:386
 msgid "Fee (Optional)"
-msgstr ""
+msgstr "費用(可選)"
 
 #: src/util/offerBuilderDataToOffer.ts:198
 msgid "Fee exceeds XCH total balance"
@@ -1733,7 +1733,7 @@ msgstr ""
 
 #: src/components/plotNFT/PlotNFTChangePool.tsx:113
 msgid "Fee is used TWICE: once to leave pool, once to join."
-msgstr ""
+msgstr "費用使用兩次: 一次是離開農會，一次是加入。"
 
 #: src/components/offers2/OfferBuilderFeeSection.tsx:53
 msgid "Fees"
@@ -1746,12 +1746,12 @@ msgstr "費用數量"
 #: src/components/offers/NFTOfferViewer.tsx:198
 #: src/components/offers/OfferSummary.tsx:167
 msgid "Fees included in offer:"
-msgstr ""
+msgstr "報價中包含費用"
 
 #: src/electron/main.tsx:942
 #: src/electron/main.tsx:1135
 #~ msgid "File"
-#~ msgstr "檔案"
+#~ msgstr "File"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:70
 #: src/components/plot/PlotHarvesterPlotsDuplicate.tsx:14
@@ -1783,11 +1783,11 @@ msgstr ""
 
 #: src/electron/main.tsx:1086
 #~ msgid "Follow on Twitter"
-#~ msgstr "Twitter 上追隨"
+#~ msgstr "Follow on Twitter"
 
 #: src/electron/main.tsx:1053
 #~ msgid "Frequently Asked Questions"
-#~ msgstr "常見問題"
+#~ msgstr "Frequently Asked Questions"
 
 #: src/components/notification/NotificationAnnouncementDialog.tsx:44
 msgid "From"
@@ -1801,15 +1801,15 @@ msgstr "完整節點"
 
 #: src/components/fullNode/FullNodeConnections.tsx:89
 msgid "Full Node Connections"
-msgstr ""
+msgstr "完整節點連接"
 
 #: src/electron/main.tsx:1022
 #~ msgid "Full Screen"
-#~ msgstr "全畫面"
+#~ msgstr "Full Screen"
 
 #: src/components/settings/Settings.tsx:65
 #~ msgid "General"
-#~ msgstr ""
+#~ msgstr "General"
 
 #: src/constants/WalletConnectCommands.tsx:277
 msgid "Get all Offers"
@@ -1901,12 +1901,12 @@ msgstr ""
 
 #: src/components/nfts/gallery/NFTGalleryHero.tsx:15
 msgid "Go collect some gems"
-msgstr ""
+msgstr "收集一些寶石"
 
 #: src/components/offers/OfferShareDialog.tsx:1140
 #: src/components/offers/OfferShareDialog.tsx:1191
 #~ msgid "Go to #{channelName}"
-#~ msgstr ""
+#~ msgstr "Go to #{channelName}"
 
 #: src/components/vcs/VCList.tsx:284
 msgid "Government IDs"
@@ -1918,7 +1918,7 @@ msgstr ""
 
 #: src/components/plot/PlotHarvesters.tsx:37
 msgid "Harvesters"
-msgstr ""
+msgstr "收割機"
 
 #: src/constants/WalletConnectCommands.tsx:641
 msgid "Hash"
@@ -1938,7 +1938,7 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:576
 msgid "Hashgreen DEX URL"
-msgstr ""
+msgstr "Hashgreen去中心化交易所 URL"
 
 #: src/components/block/Block.jsx:155
 msgid "Header hash"
@@ -1956,11 +1956,11 @@ msgstr "高度"
 
 #: src/electron/main.tsx:1043
 #~ msgid "Help"
-#~ msgstr "幫助"
+#~ msgstr "Help"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:51
 msgid "Here are the current block challenges. You may or may not have a proof of space for these challenges. These blocks do not currently contain a proof of time."
-msgstr ""
+msgstr "以下是目前的區塊挑戰。你可能會或可能不會有這些挑戰的空間證明。這些區塊目前不包含時間證明。"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:422
 msgid "Hidden"
@@ -1976,22 +1976,22 @@ msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:495
 msgid "Hide"
-msgstr ""
+msgstr "隱藏"
 
 #: src/components/settings/SettingsNFT.tsx:95
 msgid "Hide objectionable content"
-msgstr ""
+msgstr "隱藏令人反感的內容"
 
 #: src/components/app/AppPassPrompt.tsx:161
 #: src/components/settings/RemovePassphrasePrompt.tsx:153
 msgid "Hint"
-msgstr ""
+msgstr "提示"
 
 #: src/components/plot/PlotHarvesterPlotsDuplicate.tsx:69
 #: src/components/plot/PlotHarvesterPlotsFailed.tsx:69
 #: src/components/plot/PlotHarvesterPlotsNotFound.tsx:69
 msgid "Hooray, no files here!"
-msgstr ""
+msgstr "萬歲，這裡沒有文件!"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:31
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:31
@@ -2000,7 +2000,7 @@ msgstr "主機名稱"
 
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:16
 msgid "I Understand, Create Offer"
-msgstr ""
+msgstr "我了解，建立報價單"
 
 #: src/constants/WalletConnectCommands.tsx:178
 msgid "Id"
@@ -2012,7 +2012,7 @@ msgstr "如無選擇，將會預設至臨時資料夾。"
 
 #: src/components/offers/OfferShareDialog.tsx:806
 #~ msgid "If selected, your offer will be not be shared publicly."
-#~ msgstr ""
+#~ msgstr "If selected, your offer will not be shared publicly."
 
 #: src/components/nfts/NFTBurnDialog.tsx:77
 msgid "If you burn these NFTs, nobody (including you) will ever be able to access it again. Are you sure you want to continue?"
@@ -2024,11 +2024,11 @@ msgstr ""
 
 #: src/components/offers/ConfirmOfferCancellation.tsx:74
 msgid "If you have already shared your offer file, you may need to submit a transaction to cancel the pending offer. Click \"Cancel on blockchain\" to submit a cancellation transaction."
-msgstr ""
+msgstr "如果您已經分享了您的報價單檔案，您可能需要提交一筆交易來取消待交易的報價。請點擊 \"在區塊鏈上取消\" 以提交取消交易。"
 
 #: src/components/nfts/NFTPreview.tsx:633
 #~ msgid "Image Hash Mismatch"
-#~ msgstr ""
+#~ msgstr "Image Hash Mismatch"
 
 #: src/components/settings/SettingsNFT.tsx:125
 msgid "Images will be scaled to fill the NFT card and ignore their original proportions."
@@ -2036,13 +2036,13 @@ msgstr ""
 
 #: src/components/offers/OfferDataEntryDialog.tsx:61
 msgid "Import"
-msgstr ""
+msgstr "匯入"
 
 #: src/components/offers/NFTOfferViewer.tsx:479
 #: src/components/offers/OfferEditorConditionsPanel.tsx:290
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:26
 msgid "In exchange for"
-msgstr ""
+msgstr "以換取"
 
 #: src/components/fullNode/FullNode.jsx:28
 msgid "In Progress"
@@ -2063,7 +2063,7 @@ msgstr ""
 #: src/components/offers/NFTOfferEditor.tsx:86
 #: src/components/offers/OfferEditorConditionsPanel.tsx:392
 msgid "Including a fee in the offer can help expedite the transaction when the offer is accepted. The recommended minimum fee is 0.000005 XCH (5,000,000 mojos)"
-msgstr ""
+msgstr "在報價單中加入費用可以幫助在接受報價單時加速交易。建議最低的費用為0.000005 XCH(5,000,000 mojos)"
 
 #: src/components/offers2/OfferIncomingTable.tsx:127
 msgid "Incoming Offers"
@@ -2075,22 +2075,20 @@ msgstr "索引"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:126
 msgid "Initializing..."
-msgstr ""
+msgstr "正在初始化..."
 
 #: src/components/offers/OfferShareDialog.tsx:1172
 #~ msgid "Install Keybase"
-#~ msgstr ""
+#~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:107
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
+msgstr "可用資金不足，無法接受報價單。請確保您的 可花用餘額 可以支付報價單金額。"
 
 #: src/components/offers/OfferEditor.tsx:145
 #: src/components/offers2/CreateOfferBuilder.tsx:132
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
 
@@ -2145,7 +2143,7 @@ msgstr "這是一個一次性登錄連結, 可用於登記在農會的網站. �
 
 #: src/components/offers/OfferShareDialog.tsx:1184
 #~ msgid "Join {teamName}"
-#~ msgstr ""
+#~ msgstr "Join {teamName}"
 
 #: src/components/plot/add/PlotAddNFT.tsx:138
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:139
@@ -2193,11 +2191,11 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:1086
 #~ msgid "Keybase command failed {e}. If you haven't installed Keybase, you can download from https://keybase.io"
-#~ msgstr ""
+#~ msgstr "Keybase command failed {e}. If you haven't installed Keybase, you can download from https://keybase.io"
 
 #: src/components/offers/OfferShareDialog.tsx:1165
 #~ msgid "Keybase is a secure messaging and file sharing application. To share an offer in the Keybase {teamName} team, you must first have Keybase installed."
-#~ msgstr ""
+#~ msgstr "Keybase is a secure messaging and file sharing application. To share an offer in the Keybase {teamName} team, you must first have Keybase installed."
 
 #: src/components/app/AppKeyringMigrator.tsx:83
 msgid "Keyring migration failed: {0}"
@@ -2501,11 +2499,11 @@ msgstr ""
 
 #: src/components/offers/NFTOfferViewer.tsx:580
 msgid "Net Proceeds"
-msgstr ""
+msgstr "淨收益"
 
 #: src/components/offers/NFTOfferViewer.tsx:603
 msgid "Network Fee (Optional)"
-msgstr ""
+msgstr "網路費用(可選)"
 
 #: src/components/fullNode/card/FullNodeCardNetworkName.tsx:14
 msgid "Network Name"
@@ -2525,7 +2523,7 @@ msgstr ""
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:210
 msgid "New Passphrase"
-msgstr ""
+msgstr "新的私鑰密碼"
 
 #: src/constants/WalletConnectCommands.tsx:862
 msgid "New Proof Hash"
@@ -2607,7 +2605,7 @@ msgstr ""
 #: src/components/offers/NFTOfferPreview.tsx:105
 #: src/components/offers2/OfferBuilderNFT.tsx:96
 msgid "NFT not specified"
-msgstr ""
+msgstr "NFT未指定"
 
 #: src/components/offers/NFTOfferViewer.tsx:494
 msgid "NFT Purchase Price"
@@ -2631,7 +2629,7 @@ msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:60
 msgid "NFTs"
-msgstr ""
+msgstr "NFTs"
 
 #: src/components/settings/SettingsNFT.tsx:105
 msgid "NFTs that have been categorized by the creator as objectionable content will be hidden by default."
@@ -2639,7 +2637,7 @@ msgstr ""
 
 #: src/components/vcs/VCCard.tsx:83
 msgid "No"
-msgstr "否"
+msgstr ""
 
 #: src/components/notification/NotificationsMenu.tsx:52
 msgid "No activities yet"
@@ -2664,7 +2662,7 @@ msgstr ""
 
 #: src/components/offers/OfferManager.tsx:282
 msgid "No current offers"
-msgstr ""
+msgstr "當前沒有報價單"
 
 #: src/components/settings/SettingsIntegration.tsx:331
 msgid "No Custom Permissions"
@@ -2672,7 +2670,7 @@ msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:436
 msgid "No file available"
-msgstr ""
+msgstr "沒有可用檔案"
 
 #: src/components/offers2/OfferIncomingTable.tsx:276
 msgid "No incoming offers"
@@ -2684,7 +2682,7 @@ msgstr ""
 
 #: src/components/plot/PlotHarvesterPlots.tsx:126
 msgid "No plots yet"
-msgstr ""
+msgstr "還沒有耕地"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:125
 msgid "No private keys for one or both addresses. Safe only if you are sending rewards to another wallet."
@@ -2769,7 +2767,7 @@ msgstr "桶數量"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:200
 msgid "Number of buckets for phase 3 & 4"
-msgstr ""
+msgstr "第三與第四階段的桶數"
 
 #: src/constants/WalletConnectCommands.tsx:580
 msgid "Number of NFTs"
@@ -2825,7 +2823,7 @@ msgstr ""
 #: src/components/offers2/OfferBuilderValue.tsx:195
 #: src/components/offers2/OfferBuilderViewer.tsx:245
 msgid "Offer cannot be accepted because you don't possess the requested assets"
-msgstr ""
+msgstr "因為你沒有被請求的資產，所以不能接受報價單。"
 
 #: src/components/offers/OfferDataDialog.tsx:29
 #: src/components/offers/OfferDataDialog.tsx:37
@@ -2833,7 +2831,7 @@ msgstr ""
 #: src/constants/WalletConnectCommands.tsx:427
 #: src/constants/WalletConnectCommands.tsx:948
 msgid "Offer Data"
-msgstr ""
+msgstr "報價單資料"
 
 #: src/components/offers2/OfferBuilderViewerDialog.tsx:53
 msgid "Offer Details"
@@ -2845,7 +2843,7 @@ msgstr ""
 
 #: src/hooks/useAcceptOfferHook.tsx:98
 msgid "Offer has been accepted and is awaiting confirmation."
-msgstr ""
+msgstr "報價單已接受，正在等待確定。"
 
 #: src/constants/WalletConnectCommands.tsx:441
 #: src/constants/WalletConnectCommands.tsx:455
@@ -2862,16 +2860,16 @@ msgstr ""
 #: src/components/offers/OfferShareDialog.tsx:668
 #: src/components/offers/OfferShareDialog.tsx:784
 msgid "Offer Shared"
-msgstr ""
+msgstr "分享報價單"
 
 #: src/components/offers/OfferShareDialog.tsx:755
 #~ msgid "OfferBin URL"
-#~ msgstr ""
+#~ msgstr "OfferBin URL"
 
 #: src/components/offers/OfferManager.tsx:159
 #: src/components/offers2/CancelOfferList.tsx:80
 msgid "Offered"
-msgstr ""
+msgstr "已報價"
 
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:22
 #: src/components/offers2/OfferIncomingTable.tsx:74
@@ -2880,7 +2878,7 @@ msgstr ""
 
 #: src/components/offers/utils.ts:145
 #~ msgid "Offering: [{makerString}], Requesting: [{takerString}]"
-#~ msgstr ""
+#~ msgstr "Offering: [{makerString}], Requesting: [{takerString}]"
 
 #: src/components/offers/OfferShareDialog.tsx:791
 msgid "Offerpool URL"
@@ -2889,7 +2887,7 @@ msgstr ""
 #: src/components/dashboard/DashboardSideBar.tsx:74
 #: src/components/nfts/detail/NFTDetailV2.tsx:232
 msgid "Offers"
-msgstr ""
+msgstr "報價單"
 
 #: src/components/offers2/OfferNavigationHeader.tsx:19
 msgid "Offers are a way to trade assets in a genuinely peer-to-peer way that eliminates counterparty risk."
@@ -2901,11 +2899,11 @@ msgstr ""
 
 #: src/components/offers/OfferManager.tsx:358
 msgid "Offers you accepted"
-msgstr ""
+msgstr "您已接受報價單"
 
 #: src/components/offers/OfferManager.tsx:357
 msgid "Offers you created"
-msgstr ""
+msgstr "已建立你的報價單"
 
 #: src/components/offers/OfferDataDialog.tsx:58
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:86
@@ -2914,7 +2912,7 @@ msgstr "好"
 
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:56
 msgid "Once you accept this offer, you will not be able to cancel the transaction. Are you sure you want to accept this offer?"
-msgstr ""
+msgstr "一旦你接受此報價單，您將無法取消交易。您確定要接受此報價單嗎?"
 
 #: src/components/nfts/NFTTransferAction.tsx:93
 msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer {0} NFTs?"
@@ -2922,7 +2920,7 @@ msgstr ""
 
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:32
 msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer the NFT?"
-msgstr ""
+msgstr "一旦您啟動此交易，您將無法取消交易。您確定要交易這個NFT嗎?"
 
 #: src/components/offers2/OfferBuilderViewer.tsx:249
 msgid "One or more unknown tokens are being offered. Be sure to verify that the asset IDs of the offered tokens match the asset IDs of the tokens you are expecting."
@@ -2930,7 +2928,7 @@ msgstr ""
 
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:35
 msgid "One or more unknown tokens are being offered. Please verify that the asset IDs of the tokens listed below match the asset IDs of the tokens you expect to receive."
-msgstr ""
+msgstr "正在提供一個或多個未知代幣。請驗證以下列出的代幣的資產ID與您預期接收的代幣的資產ID相匹配。"
 
 #: src/components/offers2/OfferBuilderNFTSection.tsx:45
 msgid "One-of-a-kind Collectible assets"
@@ -2938,11 +2936,11 @@ msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:315
 msgid "Open in Browser"
-msgstr ""
+msgstr "在瀏覽器中打開"
 
 #: src/hooks/useOpenUnsafeLink.tsx:31
 msgid "Open Link"
-msgstr ""
+msgstr "打開連結"
 
 #: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:311
 msgid "Open offers required to be canceled to refill spendable amount"
@@ -2995,11 +2993,11 @@ msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:108
 msgid "Owner DID"
-msgstr ""
+msgstr "擁有者 DID"
 
 #: src/components/nfts/NFTDetails.tsx:148
 msgid "Owner Public Key"
-msgstr ""
+msgstr "擁有者公鑰"
 
 #: src/components/plot/add/PlotAddForm.tsx:146
 msgid "p2SingletonPuzzleHash is not defined"
@@ -3028,35 +3026,35 @@ msgstr ""
 #: src/components/settings/SetPassphrasePrompt.tsx:173
 #: src/components/settings/SettingsPanel.tsx:181
 msgid "Passphrase"
-msgstr ""
+msgstr "私鑰密碼"
 
 #: src/components/app/AppKeyringMigrator.tsx:208
 #: src/components/settings/ChangePassphrasePrompt.tsx:265
 #: src/components/settings/SetPassphrasePrompt.tsx:232
 msgid "Passphrase Hint"
-msgstr ""
+msgstr "私鑰密碼提示"
 
 #: src/components/app/AppKeyringMigrator.tsx:207
 #: src/components/settings/ChangePassphrasePrompt.tsx:264
 #: src/components/settings/SetPassphrasePrompt.tsx:231
 msgid "Passphrase Hint (Optional)"
-msgstr ""
+msgstr "私鑰密碼提示(可選)"
 
 #: src/components/settings/SettingsPanel.tsx:65
 msgid "Passphrase protection has been disabled"
-msgstr ""
+msgstr "私鑰密碼保護已經禁用"
 
 #: src/components/settings/SettingsPanel.tsx:102
 msgid "Passphrase protection is disabled"
-msgstr ""
+msgstr "私鑰密碼保護已禁用"
 
 #: src/components/settings/SettingsPanel.tsx:99
 msgid "Passphrase protection is enabled"
-msgstr ""
+msgstr "私鑰密碼保護已開啟"
 
 #: src/components/settings/SettingsPanel.tsx:94
 msgid "Passphrase support requires migrating your keys to a new keyring"
-msgstr ""
+msgstr "啟用私鑰密碼保護需要將您的私鑰遷移到新的私鑰環。"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:148
 msgid "Paste link"
@@ -3065,7 +3063,7 @@ msgstr ""
 #: src/components/offers/OfferDataEntryDialog.tsx:33
 #: src/components/offers/OfferImport.tsx:157
 msgid "Paste Offer Data"
-msgstr ""
+msgstr "貼上報價單資料"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:139
 msgid "Paste the address from WalletConnect below."
@@ -3085,15 +3083,15 @@ msgstr "待確認中"
 
 #: src/components/offers/utils.ts:115
 msgid "Pending Accept"
-msgstr ""
+msgstr "等待接受"
 
 #: src/components/offers/utils.ts:119
 msgid "Pending Cancel"
-msgstr ""
+msgstr "等待取消"
 
 #: src/components/offers/utils.ts:117
 msgid "Pending Confirm"
-msgstr ""
+msgstr "等待確認"
 
 #: src/components/vcs/VCCard.tsx:165
 msgid "Pending removal"
@@ -3101,7 +3099,7 @@ msgstr ""
 
 #: src/hooks/useOpenUnsafeLink.tsx:38
 msgid "Please check the following link to verify the site you are going to visit. Proceed at your own risk."
-msgstr ""
+msgstr "請檢查以下連結以驗證您要訪問的網站。請自行承擔風險。"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:138
 #: src/hooks/useBlockchainNotifications.tsx:157
@@ -3111,7 +3109,7 @@ msgstr "請確認"
 #: src/components/app/AppPassPrompt.tsx:49
 #: src/components/settings/SetPassphrasePrompt.tsx:72
 msgid "Please enter a passphrase"
-msgstr ""
+msgstr "請輸入私鑰密碼"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:75
 msgid "Please enter a URI"
@@ -3119,11 +3117,11 @@ msgstr ""
 
 #: src/components/settings/ProfileAdd.tsx:82
 msgid "Please enter a valid numeric fee"
-msgstr ""
+msgstr "請輸入有效費用"
 
 #: src/components/offers/NFTOfferEditor.tsx:585
 msgid "Please enter an amount"
-msgstr ""
+msgstr "請輸入金額"
 
 #: src/util/offerBuilderDataToOffer.ts:326
 msgid "Please enter an amount for {0} token"
@@ -3135,11 +3133,11 @@ msgstr ""
 
 #: src/components/offers/OfferEditor.tsx:106
 msgid "Please enter an amount for each row"
-msgstr ""
+msgstr "請為每一行輸入一個金額"
 
 #: src/components/offers/NFTOfferEditor.tsx:577
 msgid "Please enter an NFT identifier"
-msgstr ""
+msgstr "請輸入一個NFT標識符"
 
 #: src/util/offerBuilderDataToOffer.ts:161
 #: src/util/offerBuilderDataToOffer.ts:297
@@ -3148,13 +3146,13 @@ msgstr ""
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:89
 msgid "Please enter your current passphrase, and a new passphrase"
-msgstr ""
+msgstr "請輸入你當前的私鑰密碼與新的私鑰密碼"
 
 #: src/components/app/AppPassPrompt.tsx:89
 #: src/components/app/AppPassPrompt.tsx:110
 #: src/components/settings/RemovePassphrasePrompt.tsx:62
 msgid "Please enter your passphrase"
-msgstr ""
+msgstr "請輸入你的私鑰密碼"
 
 #: src/components/app/AppPassPrompt.tsx:103
 msgid "Please enter your passphrase to proceed"
@@ -3201,7 +3199,7 @@ msgstr "請指定暫存目錄"
 
 #: src/components/offers2/OfferBuilderViewer.tsx:185
 msgid "Please wait for wallet synchronization"
-msgstr ""
+msgstr "請等候錢包同步"
 
 #: src/components/farm/card/FarmCardPlotCount.tsx:10
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:51
@@ -3408,7 +3406,7 @@ msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:621
 #~ msgid "Preview URL is not valid"
-#~ msgstr ""
+#~ msgstr "Preview URL is not valid"
 
 #: src/components/nfts/NFTDetails.tsx:331
 msgid "Preview video uris"
@@ -3438,7 +3436,7 @@ msgstr ""
 #: src/components/settings/Settings.tsx:66
 #: src/components/settings/SettingsProfiles.tsx:55
 #~ msgid "Profiles"
-#~ msgstr ""
+#~ msgstr "Profiles"
 
 #: src/components/settings/SettingsProfiles.tsx:50
 msgid "Profiles (DIDs)"
@@ -3528,7 +3526,7 @@ msgstr ""
 
 #: src/components/settings/ProfileAdd.tsx:114
 #~ msgid "Recommended: 0.000005 XCH"
-#~ msgstr ""
+#~ msgstr "Recommended: 0.000005 XCH"
 
 #: src/components/nfts/NFTContextualActions.tsx:568
 msgid "Refresh NFT data"
@@ -3550,7 +3548,7 @@ msgstr "相對鎖定高度"
 
 #: src/electron/main.tsx:1059
 #~ msgid "Release Notes"
-#~ msgstr "發行說明"
+#~ msgstr "Release Notes"
 
 #: src/components/plot/PlotHarvester.tsx:60
 msgid "Remote"
@@ -3581,7 +3579,7 @@ msgstr "移除中"
 
 #: src/electron/main.tsx:1074
 #~ msgid "Report an Issue..."
-#~ msgstr "回報問題..."
+#~ msgstr "Report an Issue..."
 
 #: src/components/offers/OfferManager.tsx:169
 #: src/components/offers2/CancelOfferList.tsx:95
@@ -3847,7 +3845,7 @@ msgstr "選擇您的農場"
 
 #: src/components/plot/add/PlotAddNFT.tsx:69
 #~ msgid "Select your Plot NFT from the dropdown or create a new one."
-#~ msgstr "在下拉式選單中選擇你的農場或是創建一個新的。"
+#~ msgstr "Select your Plot NFT from the dropdown or create a new one."
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:71
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:79
@@ -3933,7 +3931,7 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:1160
 #~ msgid "Share on Keybase"
-#~ msgstr ""
+#~ msgstr "Share on Keybase"
 
 #: src/components/offers/OfferShareDialog.tsx:537
 msgid "Share on MintGarden"
@@ -3941,7 +3939,7 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:789
 #~ msgid "Share on OfferBin"
-#~ msgstr ""
+#~ msgstr "Share on OfferBin"
 
 #: src/components/offers/OfferShareDialog.tsx:844
 msgid "Share on offerpool"
@@ -3953,7 +3951,7 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:804
 #~ msgid "Share Privately"
-#~ msgstr ""
+#~ msgstr "Share Privately"
 
 #: src/components/nfts/NFTContextualActions.tsx:495
 msgid "Show"
@@ -3974,7 +3972,7 @@ msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:667
 #~ msgid "Show Preview"
-#~ msgstr ""
+#~ msgstr "Show Preview"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:541
 #~ msgid "Showing {0} of {1} items"
@@ -4084,7 +4082,7 @@ msgstr ""
 
 #: src/electron/main.tsx:1149
 #~ msgid "Speech"
-#~ msgstr "語音"
+#~ msgstr "Speech"
 
 #: src/constants/WalletConnectCommands.tsx:510
 msgid "Spend CAT"
@@ -4245,7 +4243,7 @@ msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:183
 #~ msgid "The NFT transfer failed: {error}"
-#~ msgstr ""
+#~ msgstr "The NFT transfer failed: {error}"
 
 #: src/components/nfts/NFTContextualActions.tsx:173
 msgid "The NFT transfer transaction has been successfully submitted to the blockchain."
@@ -4616,11 +4614,11 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:1002
 #~ msgid "Unable to open browser. Install Keybase from https://keybase.io"
-#~ msgstr ""
+#~ msgstr "Unable to open browser. Install Keybase from https://keybase.io"
 
 #: src/components/offers/OfferShareDialog.tsx:1099
 #~ msgid "Unable to open Keybase. Install Keybase from https://keybase.io"
-#~ msgstr ""
+#~ msgstr "Unable to open Keybase. Install Keybase from https://keybase.io"
 
 #: src/components/nfts/NFTDetails.tsx:141
 #: src/components/nfts/NFTDetails.tsx:162
@@ -4796,7 +4794,7 @@ msgstr ""
 
 #: src/components/offers2/OfferIncomingTable.tsx:101
 msgid "View"
-msgstr "檢視"
+msgstr ""
 
 #: src/components/offers/OfferImport.tsx:184
 msgid "View an Offer"
@@ -4830,7 +4828,7 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:770
 #~ msgid "View on OfferBin"
-#~ msgstr ""
+#~ msgstr "View on OfferBin"
 
 #: src/components/offers/OfferShareDialog.tsx:806
 msgid "View on Offerpool"
@@ -4990,7 +4988,7 @@ msgstr ""
 
 #: src/electron/main.tsx:1029
 #~ msgid "Window"
-#~ msgstr "視窗"
+#~ msgstr "Window"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:33
 msgid "Without fees"
@@ -5020,7 +5018,7 @@ msgstr ""
 #: src/components/plot/add/PlotAddChooseSize.tsx:47
 #: src/components/vcs/VCCard.tsx:83
 msgid "Yes"
-msgstr "是"
+msgstr ""
 
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:22
 msgid "Yes, Accept Offer"
@@ -5138,7 +5136,7 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:1135
 #~ msgid "Your offer has been successfully posted to Keybase."
-#~ msgstr ""
+#~ msgstr "Your offer has been successfully posted to Keybase."
 
 #: src/components/app/AppKeyringMigrator.tsx:229
 #: src/components/settings/ChangePassphrasePrompt.tsx:277
@@ -5165,3 +5163,4 @@ msgstr ""
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr ""
+
