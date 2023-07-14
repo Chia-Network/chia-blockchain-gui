@@ -8,15 +8,15 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-03-29 23:28\n"
+"PO-Revision-Date: 2023-07-14 17:43\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "X-Crowdin-Project-ID: 1\n"
 "X-Crowdin-Language: sv\n"
-"X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/packages/wallets/src/locales/en-US/messages.po\n"
-"X-Crowdin-File-ID: 1308\n"
+"X-Crowdin-File: /main/packages/wallets/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 25\n"
 
 #: src/components/WalletHistory.tsx:116
 msgid "-"
@@ -100,7 +100,7 @@ msgstr "Det går inte att skicka chia till färgad adress. Ange en chia-adress."
 
 #: src/components/WalletsSidebar.tsx:130
 #~ msgid "Check my snapshot balance"
-#~ msgstr ""
+#~ msgstr "Check my snapshot balance"
 
 #: src/components/cat/WalletCATSelect.tsx:25
 #: src/components/create/WalletCreateList.tsx:32
@@ -155,7 +155,7 @@ msgstr ""
 
 #: src/components/WalletsSidebar.tsx:141
 #~ msgid "Click here to download an older version of the wallet"
-#~ msgstr "Klicka här för att ladda ner en äldre version av plånboken"
+#~ msgstr "Click here to download an older version of the wallet"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:157
 #: src/components/ClawbackClaimTransactionDialog.tsx:248
@@ -218,7 +218,7 @@ msgstr "Plånbok för DataLayer"
 
 #: src/components/WalletHistory.tsx:100
 #~ msgid "Date"
-#~ msgstr "Datum"
+#~ msgstr "Date"
 
 #: src/components/WalletHeader.tsx:26
 msgid "Delete"
@@ -285,7 +285,7 @@ msgstr "Importera plånbok från minnesfras"
 
 #: src/components/WalletHistory.tsx:87
 #~ msgid "Incoming"
-#~ msgstr "Inkommande"
+#~ msgstr "Incoming"
 
 #: src/components/WalletConnections.tsx:22
 msgid "IP address"
@@ -381,7 +381,7 @@ msgstr "I genomsnitt är det en minut mellan varje transaktionsblock. Om det int
 
 #: src/components/WalletHistory.tsx:87
 #~ msgid "Outgoing"
-#~ msgstr "Utgående"
+#~ msgstr "Outgoing"
 
 #: src/components/WalletImport.tsx:233
 msgid "Paste Mnemonic"
@@ -465,7 +465,7 @@ msgstr "Spenderbegränsad (Rate limited)"
 
 #: src/components/WalletsSidebar.tsx:133
 #~ msgid "Read the blog post for details"
-#~ msgstr "Läs blogginlägget för mer information"
+#~ msgstr "Read the blog post for details"
 
 #: src/components/WalletHeader.tsx:48
 msgid "Receive"
@@ -593,7 +593,7 @@ msgstr ""
 
 #: src/components/WalletHistory.tsx:181
 #~ msgid "To"
-#~ msgstr "Till"
+#~ msgstr "To"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:175
 msgid "To:"
@@ -658,11 +658,11 @@ msgstr "Plånbok av typ {0} stöds inte"
 
 #: src/components/WalletsSidebar.tsx:138
 #~ msgid "Want to see your old balance for yourself?"
-#~ msgstr "Vill du se ditt gamla saldo för dig själv?"
+#~ msgstr "Want to see your old balance for yourself?"
 
 #: src/components/WalletsSidebar.tsx:110
 #~ msgid "We've made an upgrade to the CAT standard which requires all CATs to be re-issued. You will be airdropped your new tokens as they are re-issued by the original issuers. The airdropped tokens will be based on the balance as of block height:<0/><1/><2/>(Approximate time: July 26th, 2022 @ 17:00 UTC)"
-#~ msgstr "Vi har gjort en uppgradering av CAT-standarden som kräver att alla CAT:er ges ut på nytt. Du kommer automatiskt att få dina nya token allteftersom de ges ut på nytt av de ursprungliga utgivarna. Dessa återutgivna token kommer att baseras på saldot vid blockhöjden: <0/><1/><2/>(Ungefärlig tidpunkt: 26 juli, 2022 @ 17:00 UTC)"
+#~ msgstr "We've made an upgrade to the CAT standard which requires all CATs to be re-issued. You will be airdropped your new tokens as they are re-issued by the original issuers. The airdropped tokens will be based on the balance as of block height:<0/><1/><2/>(Approximate time: July 26th, 2022 @ 17:00 UTC)"
 
 #: src/components/WalletAdd.tsx:65
 msgid "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
@@ -678,8 +678,9 @@ msgstr ""
 
 #: src/components/WalletsSidebar.tsx:106
 #~ msgid "Your CAT tokens have been upgraded!"
-#~ msgstr "Dina CAT-token har uppgraderats!"
+#~ msgstr "Your CAT tokens have been upgraded!"
 
 #: src/components/WalletImport.tsx:73
 msgid "Your pasted list does not include {mnemonicWordCount} valid mnemonic words."
 msgstr ""
+
