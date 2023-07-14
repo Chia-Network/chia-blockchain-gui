@@ -8,15 +8,15 @@ msgstr ""
 "Language: zh_TW\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-03-29 23:28\n"
+"PO-Revision-Date: 2023-07-14 17:43\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "X-Crowdin-Project-ID: 1\n"
 "X-Crowdin-Language: zh-TW\n"
-"X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/packages/wallets/src/locales/en-US/messages.po\n"
-"X-Crowdin-File-ID: 1308\n"
+"X-Crowdin-File: /main/packages/wallets/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 25\n"
 
 #: src/components/WalletHistory.tsx:116
 msgid "-"
@@ -100,7 +100,7 @@ msgstr "不能寄送奇亞到有色地址。請輸入奇亞地址。"
 
 #: src/components/WalletsSidebar.tsx:130
 #~ msgid "Check my snapshot balance"
-#~ msgstr ""
+#~ msgstr "Check my snapshot balance"
 
 #: src/components/cat/WalletCATSelect.tsx:25
 #: src/components/create/WalletCreateList.tsx:32
@@ -155,7 +155,7 @@ msgstr ""
 
 #: src/components/WalletsSidebar.tsx:141
 #~ msgid "Click here to download an older version of the wallet"
-#~ msgstr ""
+#~ msgstr "Click here to download an older version of the wallet"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:157
 #: src/components/ClawbackClaimTransactionDialog.tsx:248
@@ -218,7 +218,7 @@ msgstr ""
 
 #: src/components/WalletHistory.tsx:100
 #~ msgid "Date"
-#~ msgstr "日期"
+#~ msgstr "Date"
 
 #: src/components/WalletHeader.tsx:26
 msgid "Delete"
@@ -265,8 +265,7 @@ msgstr ""
 
 #: src/components/WalletReceiveAddress.tsx:32
 msgid "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefore wallet receive addresses) that will all ultimately come back to and be spendable by a single private key."
-msgstr ""
-"HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefore wallet receive addresses) that will all ultimately come back to and be spendable by a single private key.\n"
+msgstr "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefore wallet receive addresses) that will all ultimately come back to and be spendable by a single private key.\n"
 "一個私鑰可以分成幾乎無限數量的不同公鑰(指錢包地址)，這些不同的公鑰(指錢包地址)都將回歸到同一個私鑰。"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:41
@@ -287,7 +286,7 @@ msgstr "以助記符號匯入錢包"
 
 #: src/components/WalletHistory.tsx:87
 #~ msgid "Incoming"
-#~ msgstr "轉入"
+#~ msgstr "Incoming"
 
 #: src/components/WalletConnections.tsx:22
 msgid "IP address"
@@ -383,7 +382,7 @@ msgstr "平均每個交易區塊之間有 1 分鐘的時間。除非出現擁塞
 
 #: src/components/WalletHistory.tsx:87
 #~ msgid "Outgoing"
-#~ msgstr "匯出"
+#~ msgstr "Outgoing"
 
 #: src/components/WalletImport.tsx:233
 msgid "Paste Mnemonic"
@@ -467,7 +466,7 @@ msgstr "已限速"
 
 #: src/components/WalletsSidebar.tsx:133
 #~ msgid "Read the blog post for details"
-#~ msgstr ""
+#~ msgstr "Read the blog post for details"
 
 #: src/components/WalletHeader.tsx:48
 msgid "Receive"
@@ -595,7 +594,7 @@ msgstr ""
 
 #: src/components/WalletHistory.tsx:181
 #~ msgid "To"
-#~ msgstr "到"
+#~ msgstr "To"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:175
 msgid "To:"
@@ -660,11 +659,11 @@ msgstr ""
 
 #: src/components/WalletsSidebar.tsx:138
 #~ msgid "Want to see your old balance for yourself?"
-#~ msgstr ""
+#~ msgstr "Want to see your old balance for yourself?"
 
 #: src/components/WalletsSidebar.tsx:110
 #~ msgid "We've made an upgrade to the CAT standard which requires all CATs to be re-issued. You will be airdropped your new tokens as they are re-issued by the original issuers. The airdropped tokens will be based on the balance as of block height:<0/><1/><2/>(Approximate time: July 26th, 2022 @ 17:00 UTC)"
-#~ msgstr ""
+#~ msgstr "We've made an upgrade to the CAT standard which requires all CATs to be re-issued. You will be airdropped your new tokens as they are re-issued by the original issuers. The airdropped tokens will be based on the balance as of block height:<0/><1/><2/>(Approximate time: July 26th, 2022 @ 17:00 UTC)"
 
 #: src/components/WalletAdd.tsx:65
 msgid "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
@@ -680,8 +679,9 @@ msgstr ""
 
 #: src/components/WalletsSidebar.tsx:106
 #~ msgid "Your CAT tokens have been upgraded!"
-#~ msgstr ""
+#~ msgstr "Your CAT tokens have been upgraded!"
 
 #: src/components/WalletImport.tsx:73
 msgid "Your pasted list does not include {mnemonicWordCount} valid mnemonic words."
 msgstr ""
+
