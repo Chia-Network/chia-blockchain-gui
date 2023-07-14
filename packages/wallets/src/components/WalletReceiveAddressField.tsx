@@ -99,7 +99,7 @@ export default function WalletReceiveAddressField(props: WalletReceiveAddressPro
   return (
     <WalletReceiveAddressWrapper isDarkMode={props?.isDarkMode}>
       <Tooltip title={tooltipTitle}>
-        <Button onClick={handleCopyToClipboard} variant="text" sx={{ textTransform: 'none' }}>
+        <Button onClick={handleCopyToClipboard} variant="text" sx={{ textTransform: 'none', flexGrow: 1 }}>
           <Typography variant="body1" color="primary">
             {rejoinedPrefix}
           </Typography>

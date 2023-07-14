@@ -876,6 +876,10 @@ export const walletApi = apiWithTag.injectEndpoints({
       ],
     }),
 
+    crCatApprovePending: mutation(build, CAT, 'crCatApprovePending', {
+      invalidatesTags: [{ type: 'Transactions', id: 'LIST' }],
+    }),
+
     // PlotNFTs
 
     // TODO refactor

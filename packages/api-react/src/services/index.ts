@@ -37,6 +37,7 @@ export const {
   useAddPrivateKeyMutation,
   useGetKeyQuery,
   useGetKeysQuery,
+  useGetWalletAddressesQuery,
   useSetLabelMutation,
   useDeleteLabelMutation,
 } = daemon;
