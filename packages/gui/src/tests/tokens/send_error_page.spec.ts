@@ -1,5 +1,9 @@
-import { ElectronApplication, Page, _electron as electron } from 'playwright';
+import { dialog } from 'electron';
+
 import { test, expect } from '@playwright/test';
+import { ElectronApplication, Page, _electron as electron } from 'playwright';
+
+import { LoginPage } from '../data_object_model/passphrase_login';
 import { isWalletSynced, getWalletBalance } from '../utils/wallet';
 
 let electronApp: ElectronApplication;
@@ -15,43 +19,43 @@ test.afterAll(async () => {
 });
 
 test('Confirm Error Dialog when wrong data is entered on Send Page for 1922132445 ID', async () => {
-  let fundedWallet = '1922132445';
+  const funded_wallet = '1922132445';
 
-  //Pre-requisites to get user back to Wallet selection page
+  // Pre-requisites to get user back to Wallet selection page
   await page.locator('button:has-text("Close")').click();
 
-  //Given I navigate to a wallet with funds
-  await page.locator(`text=${fundedWallet}`).click();
+  // Given I navigate to a wallet with funds
+  await page.locator(`text=${funded_wallet}`).click();
 
   // Begin: Wait for Wallet to Sync
-  while (!isWalletSynced(fundedWallet)) {
+  while (!isWalletSynced(funded_wallet)) {
     console.log('Waiting for wallet to sync...');
     await page.waitForTimeout(1000);
   }
 
-  console.log(`Wallet ${fundedWallet} is now fully synced`);
+  console.log(`Wallet ${funded_wallet} is now fully synced`);
 
-  const balance = getWalletBalance(fundedWallet);
+  const balance = getWalletBalance(funded_wallet);
 
   console.log(`XCH Balance: ${balance}`);
-  //End: Wait for Wallet to Sync
+  // End: Wait for Wallet to Sync
 
-  //And I click on Send Page
+  // And I click on Send Page
   await page.locator('[data-testid="WalletHeader-tab-send"]').click();
 
-  //When I enter an invalid address in address field
+  // When I enter an invalid address in address field
   await page.locator('[data-testid="WalletSend-address"]').fill('$$%R*(%^&%&&^%');
 
-  //And I enter a valid Amount
+  // And I enter a valid Amount
   await page.locator('[data-testid="WalletSend-amount"]').fill('.0005');
 
-  //And I enter a valid Fee
-  //await page.locator('[data-testid="WalletSend-fee"]').fill('.00000005');
+  // And I enter a valid Fee
+  // await page.locator('[data-testid="WalletSend-fee"]').fill('.00000005');
 
-  //And I click Send button
+  // And I click Send button
   await page.locator('[data-testid="WalletSend-send"]').click();
 
-  //Then I receive an informative error message
+  // Then I receive an informative error message
   await expect(page.locator('div[role="dialog"]')).toHaveText(
     'ErrorUnexpected Address PrefixOK' || 'ErrorPlease finish syncing before making a transactionOK'
   );

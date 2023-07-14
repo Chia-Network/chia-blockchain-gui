@@ -1,5 +1,8 @@
+import ChildProcess from 'child_process';
+
+import { test, expect } from '@playwright/test';
 import { ElectronApplication, Page, _electron as electron } from 'playwright';
-import { test } from '@playwright/test';
+
 import { LoginPage } from '../data_object_model/passphrase_login';
 import { stopAllChia } from '../utils/wallet';
 
@@ -16,38 +19,38 @@ test.afterAll(async () => {
 });
 
 test('Confirm Enable Auto Login feature works as expected. ', async () => {
-  //Pre-requisites to get user back to Wallet selection page
+  // Pre-requisites to get user back to Wallet selection page
   await page.locator('button:has-text("Close")').click();
 
-  //Given I navigate to a Wallet
+  // Given I navigate to a Wallet
   await new LoginPage(page).getPlayWrightWallet();
 
-  //And I navigate to the Setting's Gear
+  // And I navigate to the Setting's Gear
   await page.locator('[data-testid="DashboardSideBar-settings"]').click();
 
-  //When I enable Auto Login feature
+  // When I enable Auto Login feature
   await page.locator('input[type="checkbox"]').check();
 
-  //Then Auto Login setting is saved
+  // Then Auto Login setting is saved
   await page.close();
   stopAllChia();
 
-  //And User is Auto logged in upon next visit
+  // And User is Auto logged in upon next visit
   electronApp = await electron.launch({ args: ['./build/electron/main.js'] });
   page = await electronApp.firstWindow();
   await page.locator('button:has-text("Close")').click();
   await page.locator('[data-testid="DashboardSideBar-settings"]').click();
 
-  //When I disable Auto Login
+  // When I disable Auto Login
   await page.locator('[data-testid="DashboardSideBar-settings"]').click();
   await page.locator('input[type="checkbox"]').uncheck();
 
-  //Then I can confirm Wallet page loads
-  //await page.locator('[data-testid="LayoutDashboard-log-out"]').click();
+  // Then I can confirm Wallet page loads
+  // await page.locator('[data-testid="LayoutDashboard-log-out"]').click();
   await page.close();
   stopAllChia();
 
-  //And User is not Auto logged in upon next visit
+  // And User is not Auto logged in upon next visit
   electronApp = await electron.launch({ args: ['./build/electron/main.js'] });
   page = await electronApp.firstWindow();
   await page.locator('button:has-text("Close")').click();

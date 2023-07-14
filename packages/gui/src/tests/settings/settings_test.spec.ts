@@ -1,5 +1,7 @@
+import { test, expect } from '@playwright/test';
 import { ElectronApplication, Page, _electron as electron } from 'playwright';
-import { test } from '@playwright/test';
+
+import { stopAllChia } from '../utils/wallet';
 
 let electronApp: ElectronApplication;
 let page: Page;
@@ -13,38 +15,39 @@ test.afterAll(async () => {
   await page.close();
 });
 
-//Works and Passes
+// Works and Passes
 test('Confirm user can navigate and interact with the Settings page in user acceptable manner. ', async () => {
-  //Pre-requisites to get user back to Wallet selection page
+  // Pre-requisites to get user back to Wallet selection page
   await page.locator('button:has-text("Close")').click();
+  // await page.locator('[data-testid="LayoutDashboard-log-out"]').click();
 
-  //Given I navigate to 1922132445 Wallet
+  // Given I navigate to 1922132445 Wallet
   await page.locator('h6:has-text("Jahi 1st Wallet")').click();
 
-  //When I click on the Setting's Gear
+  // When I click on the Setting's Gear
   await page.locator('div[role="button"]:has-text("Settings")').click();
 
-  //Then I can confirm Wallet page loads
+  // Then I can confirm Wallet page loads
   await page.locator('[data-testid="SettingsApp-mode-wallet"]').click();
 
-  //And I confirm that Farming app loads
+  // And I confirm that Farming app loads
   await page.locator('[data-testid="SettingsApp-mode-farming"]').click();
 
-  //And I confirm that Dark theme works
+  // And I confirm that Dark theme works
   await page.locator('text=Dark').click();
 
-  //And I confirm that Light theme works
+  // And I confirm that Light theme works
   await page.locator('text=Light').click();
 
-  //And I confirm the user can select a language
+  // And I confirm the user can select a language
   await page.locator('button:has-text("English")').click();
 
-  //Confirmation of Language
+  // Confirmation of Language
   await page.locator('text=English').nth(1).click();
 
-  //Click text=Frequently Asked Questions
+  // Click text=Frequently Asked Questions
   await page.locator('text=Frequently Asked Questions').click();
 
-  //Then I can confirm Wallet page loads
+  // Then I can confirm Wallet page loads
   await page.locator('[data-testid="LayoutDashboard-log-out"]').click();
 });

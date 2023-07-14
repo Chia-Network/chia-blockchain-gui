@@ -1,5 +1,9 @@
-import { ElectronApplication, Page, _electron as electron } from 'playwright';
+import { dialog } from 'electron';
+
 import { test, expect } from '@playwright/test';
+import { ElectronApplication, Page, _electron as electron } from 'playwright';
+
+import { LoginPage } from '../data_object_model/passphrase_login';
 import { isWalletSynced, getWalletBalance } from '../utils/wallet';
 
 let electronApp: ElectronApplication;
@@ -15,57 +19,58 @@ test.afterAll(async () => {
 });
 
 test('Confirm that User cannot send a TXCH amount greater then in Wallet', async () => {
-  let receiveWallet = 'txch1ksr59en3j3t9zaprmya0jp9k6mkazq2u5lfccaf85sej7kgmvjjscanfxd';
-  let fundedWallet = '1922132445';
+  const receive_wallet = 'txch1ksr59en3j3t9zaprmya0jp9k6mkazq2u5lfccaf85sej7kgmvjjscanfxd';
+  const funded_wallet = '1922132445';
 
-  //Pre-requisites to get user back to Wallet selection page
+  // Pre-requisites to get user back to Wallet selection page
   await page.locator('button:has-text("Close")').click();
 
-  //And I navigate to a wallet with funds
-  await page.locator(`text=${fundedWallet}`).click();
+  // And I navigate to a wallet with funds
+  await page.locator(`text=${funded_wallet}`).click();
 
-  //Begin: Wait for Wallet to Sync
-  while (!isWalletSynced(fundedWallet)) {
+  // Begin: Wait for Wallet to Sync
+  while (!isWalletSynced(funded_wallet)) {
     console.log('Waiting for wallet to sync...');
     await page.waitForTimeout(1000);
   }
 
-  console.log(`Wallet ${fundedWallet} is now fully synced`);
+  console.log(`Wallet ${funded_wallet} is now fully synced`);
 
-  const balance = getWalletBalance(fundedWallet);
+  const balance = getWalletBalance(funded_wallet);
 
   console.log(`XCH Balance: ${balance}`);
-  //End: Wait for Wallet to Sync
+  // End: Wait for Wallet to Sync
 
-  //And I click on Send Page
+  // And I click on Send Page
   await page.locator('[data-testid="WalletHeader-tab-send"]').click();
 
-  //When I enter a valid wallet address in address field
-  await page.locator('[data-testid="WalletSend-address"]').fill(receiveWallet);
+  // When I enter a valid wallet address in address field
+  await page.locator('[data-testid="WalletSend-address"]').fill(receive_wallet);
 
-  //And I enter an amount higher then in account
+  // And I enter an amount higher then in account
   await page.locator('[data-testid="WalletSend-amount"]').fill('200');
 
-  //Have to revisit the FEE component. And I enter a valid Fee
-  //await page.locator('text=Fee *TXCH >> input[type="text"]').fill('0.000005');
+  // Have to revisit the FEE component. And I enter a valid Fee
+  // await page.locator('text=Fee *TXCH >> input[type="text"]').fill('0.000005');
 
-  //And I click Send button
+  // And I click Send button
   await page.locator('[data-testid="WalletSend-send"]').click();
 
-  //Then I receive an error message
-  let haveBalanceString, stringBalance;
+  // Then I receive an error message
+  let haveBalanceString;
+  let stringBalance;
   stringBalance = balance?.toString();
   haveBalanceString = stringBalance.replace(/\./g, '');
   console.log(haveBalanceString);
   await expect(page.locator('div[role="dialog"]')).toHaveText(
-    //`ErrorCan\'t send more than ${haveBalanceString} in a single transactionOK`
+    // `ErrorCan\'t send more than ${haveBalanceString} in a single transactionOK`
     `ErrorCan't send more than ${haveBalanceString} mojos in a single transaction, got 200000000000000OK`
   );
   await page.locator('div[role="dialog"] >> text=OK').click();
 
-  //And I navigate to Summary page
+  // And I navigate to Summary page
   await page.locator('[data-testid="WalletHeader-tab-summary"]').click();
 
-  //Then there are no changes in the Pending Balance section
+  // Then there are no changes in the Pending Balance section
   await expect(page.getByText('Pending Balance0 TXCH')).toBeVisible();
 });
