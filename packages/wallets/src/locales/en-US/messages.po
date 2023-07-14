@@ -8,15 +8,15 @@ msgstr ""
 "Language: en_US\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-03-29 23:28\n"
+"PO-Revision-Date: 2023-07-14 17:43\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "X-Crowdin-Project-ID: 1\n"
 "X-Crowdin-Language: en\n"
-"X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/packages/wallets/src/locales/en-US/messages.po\n"
-"X-Crowdin-File-ID: 1308\n"
+"X-Crowdin-File: /main/packages/wallets/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 25\n"
 
 #: src/components/WalletHistory.tsx:116
 msgid "-"
@@ -64,7 +64,7 @@ msgstr "Are you sure you want to delete unconfirmed transactions?"
 
 #: src/components/WalletHistory.tsx:127
 msgid "Asset"
-msgstr "Asset"
+msgstr ""
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:71
 #: src/components/cat/WalletCATTAILDialog.tsx:33
@@ -82,11 +82,11 @@ msgstr "Authorized Payee Wallet"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:226
 msgid "Auto-claim transactions with this fee from now on."
-msgstr "Auto-claim transactions with this fee from now on."
+msgstr ""
 
 #: src/components/WalletHistoryClawbackChip.tsx:46
 msgid "Can be claimed in "
-msgstr "Can be claimed in "
+msgstr ""
 
 #: src/components/PasteMnemonic.tsx:76
 #: src/components/WalletRenameDialog.tsx:72
@@ -110,48 +110,48 @@ msgstr "Chia Asset Token"
 
 #: src/components/WalletHistoryClawbackChip.tsx:53
 msgid "Claim transaction"
-msgstr "Claim transaction"
+msgstr ""
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:136
 #: src/components/ClawbackClaimTransactionDialog.tsx:259
 msgid "Claim Transaction"
-msgstr "Claim Transaction"
+msgstr ""
 
 #: src/components/WalletHistoryClawbackChip.tsx:68
 msgid "Claiming..."
-msgstr "Claiming..."
+msgstr ""
 
 #: src/components/WalletHistoryClawbackChip.tsx:79
 msgid "Claw back this transaction"
-msgstr "Claw back this transaction"
+msgstr ""
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:259
 msgid "Claw back Transaction"
-msgstr "Claw back Transaction"
+msgstr ""
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:136
 msgid "Claw Back Transaction"
-msgstr "Claw Back Transaction"
+msgstr ""
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:128
 msgid "Clawback payment claimed"
-msgstr "Clawback payment claimed"
+msgstr ""
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:128
 msgid "Clawback payment clawed back"
-msgstr "Clawback payment clawed back"
+msgstr ""
 
 #: src/components/WalletSend.tsx:340
 msgid "Clawback will be applied."
-msgstr "Clawback will be applied."
+msgstr ""
 
 #: src/components/WalletSend.tsx:346
 msgid "Clawback will not be applied."
-msgstr "Clawback will not be applied."
+msgstr ""
 
 #: src/components/WalletHistoryClawbackChip.tsx:94
 msgid "Clawing back..."
-msgstr "Clawing back..."
+msgstr ""
 
 #: src/components/WalletsSidebar.tsx:141
 #~ msgid "Click here to download an older version of the wallet"
@@ -160,7 +160,7 @@ msgstr "Clawing back..."
 #: src/components/ClawbackClaimTransactionDialog.tsx:157
 #: src/components/ClawbackClaimTransactionDialog.tsx:248
 msgid "Close"
-msgstr "Close"
+msgstr ""
 
 #: src/components/WalletHeader.tsx:25
 msgid "Confirmation"
@@ -202,7 +202,7 @@ msgstr "Create Transaction"
 
 #: src/components/WalletHistory.tsx:206
 msgid "Creation Date"
-msgstr "Creation Date"
+msgstr ""
 
 #: src/constants/WalletName.ts:20
 msgid "Custody Wallet"
@@ -261,7 +261,7 @@ msgstr "Fee"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:175
 msgid "From:"
-msgstr "From:"
+msgstr ""
 
 #: src/components/WalletReceiveAddress.tsx:32
 msgid "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefore wallet receive addresses) that will all ultimately come back to and be spendable by a single private key."
@@ -405,7 +405,7 @@ msgstr "Pending Change"
 
 #: src/components/WalletHistoryPending.tsx:62
 msgid "Pending claw back transactions"
-msgstr "Pending claw back transactions"
+msgstr ""
 
 #: src/components/card/WalletCardPendingTotalBalance.tsx:41
 msgid "Pending Total Balance"
@@ -413,11 +413,11 @@ msgstr "Pending Total Balance"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:206
 msgid "Please enter a transaction fee to claim the above amount:"
-msgstr "Please enter a transaction fee to claim the above amount:"
+msgstr ""
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:208
 msgid "Please enter a transaction fee to claw back the above amount:"
-msgstr "Please enter a transaction fee to claw back the above amount:"
+msgstr ""
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:42
 msgid "Please enter a valid asset id"
@@ -533,7 +533,7 @@ msgstr "Standard Wallet"
 
 #: src/components/WalletHistory.tsx:197
 msgid "Status"
-msgstr "Status"
+msgstr ""
 
 #: src/components/WalletSendTransactionResultDialog.tsx:12
 msgid "Success"
@@ -589,7 +589,7 @@ msgstr "This is the total balance + pending balance: it is what your balance wil
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:193
 msgid "This transaction will be automatically claimed with a fee:"
-msgstr "This transaction will be automatically claimed with a fee:"
+msgstr ""
 
 #: src/components/WalletHistory.tsx:181
 #~ msgid "To"
@@ -597,7 +597,7 @@ msgstr "This transaction will be automatically claimed with a fee:"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:175
 msgid "To:"
-msgstr "To:"
+msgstr ""
 
 #: src/components/cat/WalletCATCreateSimple.tsx:46
 msgid "Token has empty asset id"
@@ -625,11 +625,11 @@ msgstr "Transactions"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:232
 msgid "Transactions will be claimed automatically when the Clawback time expires."
-msgstr "Transactions will be claimed automatically when the Clawback time expires."
+msgstr ""
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:235
 msgid "Transactions with values smaller than the fee will not be auto claimed."
-msgstr "Transactions with values smaller than the fee will not be auto claimed."
+msgstr ""
 
 #: src/components/Wallet.tsx:22
 msgid "Wallet {walletId} not found"
@@ -650,7 +650,7 @@ msgstr ""
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:200
 msgid "Wallet needs to be synced for claiming clawback transactions"
-msgstr "Wallet needs to be synced for claiming clawback transactions"
+msgstr ""
 
 #: src/components/Wallet.tsx:37
 msgid "Wallet with type {0} not supported"
@@ -670,11 +670,11 @@ msgstr "Welcome! The following words are used for your wallet backup. Without th
 
 #: src/components/WalletHistoryClawbackChip.tsx:41
 msgid "Will be autoclaimed in "
-msgstr "Will be autoclaimed in "
+msgstr ""
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:238
 msgid "You can change the Clawback Auto Claim fee in Settings."
-msgstr "You can change the Clawback Auto Claim fee in Settings."
+msgstr ""
 
 #: src/components/WalletsSidebar.tsx:106
 #~ msgid "Your CAT tokens have been upgraded!"
@@ -683,3 +683,4 @@ msgstr "You can change the Clawback Auto Claim fee in Settings."
 #: src/components/WalletImport.tsx:73
 msgid "Your pasted list does not include {mnemonicWordCount} valid mnemonic words."
 msgstr ""
+
