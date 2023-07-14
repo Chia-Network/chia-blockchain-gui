@@ -8,23 +8,23 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-03-29 23:25\n"
+"PO-Revision-Date: 2023-07-14 17:41\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "X-Crowdin-Project-ID: 1\n"
 "X-Crowdin-Language: fi\n"
-"X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/packages/core/src/locales/en-US/messages.po\n"
-"X-Crowdin-File-ID: 1304\n"
+"X-Crowdin-File: /main/packages/core/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 15\n"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:61
 msgid "(>5 min)"
-msgstr ""
+msgstr "(>5 min)"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:61
 msgid "(~{selectedTime} min)"
-msgstr ""
+msgstr "(~{selectedTime} min)"
 
 #: src/components/Amount/Amount.tsx:86
 msgid "{0, plural, one {mojo} other {mojos}}"
@@ -36,15 +36,15 @@ msgstr "{minPassphraseLength, plural, one {Salasanojen on oltava vähintään # 
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:95
 msgid "A new version of Chia is available!"
-msgstr ""
+msgstr "Uusi versio Chiasta on saatavilla!"
 
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:258
 msgid "Add Icon"
-msgstr ""
+msgstr "Lisää Ikoni"
 
 #: src/screens/SelectKey/SelectKey.tsx:172
 msgid "Add wallet"
-msgstr ""
+msgstr "Lisää Lompakko"
 
 #: src/components/Amount/Amount.tsx:36
 msgid "Amount"
@@ -72,19 +72,19 @@ msgstr "Peru"
 
 #: src/components/Settings/SettingsApp.tsx:139
 msgid "Check for updates"
-msgstr ""
+msgstr "Tarkista päivitykset"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:93
 msgid "Checking for updates..."
-msgstr ""
+msgstr "Tarkistetaan päivityksiä..."
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:82
 msgid "Chia {latestVersion} is currently the latest version available."
-msgstr ""
+msgstr "Chia {latestVersion} on tällä hetkellä uusin versio."
 
 #: src/components/Settings/SettingsApp.tsx:125
 msgid "Chia Application Version:"
-msgstr ""
+msgstr "Chia-sovelluksen Versio:"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:110
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:47
@@ -106,19 +106,19 @@ msgstr "Kopioi Leikepöydälle"
 
 #: src/screens/SelectKey/SelectKey.tsx:170
 #~ msgid "Create a new private key"
-#~ msgstr "Luo yksityinen avain"
+#~ msgstr "Create a new private key"
 
 #: src/screens/SelectKey/SelectKey.tsx:270
 msgid "Create a new wallet key"
-msgstr ""
+msgstr "Luo uusi lompakon avain"
 
 #: src/screens/SelectKey/SelectKey.tsx:262
 msgid "Create a new wallet key to get started with Chia."
-msgstr ""
+msgstr "Luo uusi lompakon avain päästäksesi alkuun Chian kanssa."
 
 #: src/screens/SelectKey/SelectKey.tsx:175
 msgid "Create New"
-msgstr ""
+msgstr "Luo Uusi"
 
 #: src/components/Settings/SettingsApp.tsx:110
 msgid "Dark"
@@ -136,7 +136,7 @@ msgstr "Poista kaikki avaimet"
 
 #: src/screens/SelectKey/SelectKey.tsx:200
 msgid "Delete All Keys"
-msgstr ""
+msgstr "Poista Kaikki Avaimet"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:96
 msgid "Delete key {fingerprint}"
@@ -165,7 +165,7 @@ msgstr "Hylkää"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:183
 msgid "Download"
-msgstr ""
+msgstr "Lataa"
 
 #: src/components/CardSimple/CardSimple.tsx:52
 #: src/hooks/useShowError.tsx:13
@@ -182,7 +182,7 @@ msgstr "Poistu"
 
 #: src/components/LayoutMain/LayoutFooter.tsx:48
 msgid "FAQ"
-msgstr ""
+msgstr "USEIN KYSYTTYÄ"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:90
 msgid "Farmer Public Key"
@@ -194,7 +194,7 @@ msgstr "Farmarin julkinen avain:"
 
 #: src/components/Settings/SettingsApp.tsx:78
 msgid "Farming"
-msgstr "Farmaroidaan"
+msgstr "Farmarointi"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:333
 #: src/components/EstimatedFee/EstimatedFee.tsx:367
@@ -212,7 +212,7 @@ msgstr "Usein Kysytyt Kysymykset"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:121
 msgid "Go To Download Page"
-msgstr ""
+msgstr "Siirry Lataussivulle"
 
 #: src/components/Settings/SettingsApp.tsx:147
 msgid "Help"
@@ -233,7 +233,7 @@ msgstr "Piilota Lisävalinnat"
 
 #: src/screens/SelectKey/SelectKey.tsx:180
 msgid "Import Existing"
-msgstr ""
+msgstr "Tuo Olemassaoleva"
 
 #: src/screens/SelectKey/SelectKey.tsx:181
 #~ msgid "Import from Mnemonics (12 or 24 words)"
@@ -249,7 +249,7 @@ msgstr "Kieli"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:57
 msgid "Latest Version:"
-msgstr ""
+msgstr "Viimeisin Versio:"
 
 #: src/components/Settings/SettingsApp.tsx:102
 msgid "Light"
@@ -257,15 +257,15 @@ msgstr "Vaalea"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:222
 msgid "Likely in {0} seconds"
-msgstr ""
+msgstr "Todennäköisesti {0} sekunnissa"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:219
 msgid "Likely in {minutes} minutes"
-msgstr ""
+msgstr "Todennäköisesti {minutes} minuutissa"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:221
 msgid "Likely in >5 minutes"
-msgstr ""
+msgstr "Todennäköisesti >5 minuutissa"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:46
 msgid "Loading details"
@@ -273,11 +273,11 @@ msgstr "Ladataan lisätietoja"
 
 #: src/screens/SelectKey/SelectKey.tsx:232
 msgid "Loading keys"
-msgstr ""
+msgstr "Ladataan avaimia"
 
 #: src/screens/SelectKey/SelectKey.tsx:117
 #~ msgid "Loading list of the keys"
-#~ msgstr "Ladataan avaimien luetteloa"
+#~ msgstr "Loading list of the keys"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:317
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:336
@@ -310,7 +310,7 @@ msgstr "Uusi salasana on sama kuin nykyinen salasana"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:168
 msgid "New version {latestVersion} available"
-msgstr ""
+msgstr "Uusi versio {latestVersion} saatavilla"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:84
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:138
@@ -323,7 +323,7 @@ msgstr "Ei yhteyttä"
 
 #: src/screens/SelectKey/WalletStatus.tsx:61
 #~ msgid "Not Synced"
-#~ msgstr "Ei synkronoitu"
+#~ msgstr ""
 
 #: src/components/AlertDialog/AlertDialog.tsx:23
 #: src/components/ConfirmDialog/ConfirmDialog.tsx:30
@@ -332,7 +332,7 @@ msgstr "OK"
 
 #: src/screens/SelectKey/SelectKey.tsx:254
 msgid "Open a world of possibilities."
-msgstr ""
+msgstr "Avaa mahdollisuuksien maailma."
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:98
 msgid "Pool Public Key"
@@ -361,15 +361,15 @@ msgstr "Julkinen avain:"
 
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:277
 msgid "Random"
-msgstr ""
+msgstr "Satunnainen"
 
 #: src/components/Fee/Fee.tsx:18
 msgid "Recommended value: 0.000005"
-msgstr ""
+msgstr "Suositeltu arvo: 0.000005"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:71
 msgid "Release Notes"
-msgstr ""
+msgstr "Version Muutokset"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:85
 msgid "Reload Application"
@@ -377,7 +377,7 @@ msgstr "Uudelleenkäynnistä Sovellus"
 
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:258
 msgid "Remove Icon"
-msgstr ""
+msgstr "Poista Kuvake"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:97
 msgid "Rename"
@@ -399,7 +399,7 @@ msgstr "Tallenna"
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:170
 #: src/screens/SelectKey/Search.tsx:34
 msgid "Search"
-msgstr ""
+msgstr "Etsi"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:113
 msgid "Secret Key"
@@ -415,7 +415,7 @@ msgstr "Siemenarvo:"
 
 #: src/screens/SelectKey/SelectKey.tsx:134
 #~ msgid "Select Key"
-#~ msgstr "Valitse Avain"
+#~ msgstr "Select Key"
 
 #: src/components/Dropdown/Dropdown.tsx:28
 msgid "Select..."
@@ -441,7 +441,7 @@ msgstr "Näytä Lisävalinnat"
 
 #: src/screens/SelectKey/SelectKey.tsx:139
 #~ msgid "Sign In"
-#~ msgstr "Kirjaudu"
+#~ msgstr "Sign In"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:171
 #: src/hooks/useValidateChangePassphraseParams.tsx:50
@@ -458,11 +458,11 @@ msgstr "Jokin meni pieleen"
 
 #: src/screens/SelectKey/WalletStatus.tsx:73
 #~ msgid "Synced"
-#~ msgstr "Synkronissa"
+#~ msgstr ""
 
 #: src/screens/SelectKey/WalletStatus.tsx:85
 #~ msgid "Syncing"
-#~ msgstr "Synkronoi"
+#~ msgstr ""
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:28
 msgid "The provided passphrase and confirmation do not match"
@@ -502,11 +502,11 @@ msgstr "Yritä uudelleen"
 
 #: src/screens/SelectKey/SelectKey.tsx:243
 msgid "Unable to load keys"
-msgstr ""
+msgstr "Avaimia ei voi ladata"
 
 #: src/screens/SelectKey/SelectKey.tsx:128
 #~ msgid "Unable to load the list of the keys"
-#~ msgstr "Avainten luetteloa ei voitu ladata"
+#~ msgstr "Unable to load the list of the keys"
 
 #: src/components/LocaleToggle/LocaleToggle.tsx:44
 msgid "Unknown"
@@ -541,16 +541,16 @@ msgstr "Lompakon Sormenjälki"
 
 #: src/screens/SelectKey/SelectKey.tsx:219
 msgid "Wallet Keys"
-msgstr ""
+msgstr "Lompakon Avaimet"
 
 #: src/screens/SelectKey/SelectKey.tsx:142
 #~ msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
-#~ msgstr "Tervetuloa Chiaan. Kirjaudu sisään avaimella tai luo uusi avain."
+#~ msgstr "Welcome to Chia. Please log in with an existing key, or create a new key."
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:177
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:66
 msgid "What's New"
-msgstr ""
+msgstr "Mitä Uutta"
 
 #: src/components/Back/Back.tsx:40
 #: src/components/FormBackButton/FormBackButton.tsx:31
@@ -559,12 +559,13 @@ msgstr "Olet tehnyt muutoksia. Haluatko hylätä ne?"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:97
 msgid "You're up to date"
-msgstr ""
+msgstr "Olet ajan tasalla"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:49
 msgid "Your Current Version:"
-msgstr ""
+msgstr "Tämänhetkinen Versio:"
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:20
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr "Avaimiasi ei ole siirretty uuteen avainrenkaaseen. Et voi luoda uusia avaimia tai poistaa olemassa olevia avaimia ennen kuin siirto on tehty. Haluatko siirtää avaimesi nyt?"
+
