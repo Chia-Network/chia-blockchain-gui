@@ -8,23 +8,23 @@ msgstr ""
 "Language: en_US\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-03-29 23:26\n"
+"PO-Revision-Date: 2023-07-14 17:42\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "X-Crowdin-Project-ID: 1\n"
 "X-Crowdin-Language: en\n"
-"X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/packages/core/src/locales/en-US/messages.po\n"
-"X-Crowdin-File-ID: 1304\n"
+"X-Crowdin-File: /main/packages/core/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 15\n"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:61
 msgid "(>5 min)"
-msgstr "(>5 min)"
+msgstr ""
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:61
 msgid "(~{selectedTime} min)"
-msgstr "(~{selectedTime} min)"
+msgstr ""
 
 #: src/components/Amount/Amount.tsx:86
 msgid "{0, plural, one {mojo} other {mojos}}"
@@ -36,15 +36,15 @@ msgstr "{minPassphraseLength, plural, one {Passphrases must be at least # charac
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:95
 msgid "A new version of Chia is available!"
-msgstr "A new version of Chia is available!"
+msgstr ""
 
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:258
 msgid "Add Icon"
-msgstr "Add Icon"
+msgstr ""
 
 #: src/screens/SelectKey/SelectKey.tsx:172
 msgid "Add wallet"
-msgstr "Add wallet"
+msgstr ""
 
 #: src/components/Amount/Amount.tsx:36
 msgid "Amount"
@@ -72,19 +72,19 @@ msgstr "Cancel"
 
 #: src/components/Settings/SettingsApp.tsx:139
 msgid "Check for updates"
-msgstr "Check for updates"
+msgstr ""
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:93
 msgid "Checking for updates..."
-msgstr "Checking for updates..."
+msgstr ""
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:82
 msgid "Chia {latestVersion} is currently the latest version available."
-msgstr "Chia {latestVersion} is currently the latest version available."
+msgstr ""
 
 #: src/components/Settings/SettingsApp.tsx:125
 msgid "Chia Application Version:"
-msgstr "Chia Application Version:"
+msgstr ""
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:110
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:47
@@ -110,15 +110,15 @@ msgstr "Copy to Clipboard"
 
 #: src/screens/SelectKey/SelectKey.tsx:270
 msgid "Create a new wallet key"
-msgstr "Create a new wallet key"
+msgstr ""
 
 #: src/screens/SelectKey/SelectKey.tsx:262
 msgid "Create a new wallet key to get started with Chia."
-msgstr "Create a new wallet key to get started with Chia."
+msgstr ""
 
 #: src/screens/SelectKey/SelectKey.tsx:175
 msgid "Create New"
-msgstr "Create New"
+msgstr ""
 
 #: src/components/Settings/SettingsApp.tsx:110
 msgid "Dark"
@@ -136,7 +136,7 @@ msgstr "Delete all keys"
 
 #: src/screens/SelectKey/SelectKey.tsx:200
 msgid "Delete All Keys"
-msgstr "Delete All Keys"
+msgstr ""
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:96
 msgid "Delete key {fingerprint}"
@@ -165,7 +165,7 @@ msgstr "Discard"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:183
 msgid "Download"
-msgstr "Download"
+msgstr ""
 
 #: src/components/CardSimple/CardSimple.tsx:52
 #: src/hooks/useShowError.tsx:13
@@ -212,7 +212,7 @@ msgstr "Frequently Asked Questions"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:121
 msgid "Go To Download Page"
-msgstr "Go To Download Page"
+msgstr ""
 
 #: src/components/Settings/SettingsApp.tsx:147
 msgid "Help"
@@ -233,7 +233,7 @@ msgstr "Hide Advanced Options"
 
 #: src/screens/SelectKey/SelectKey.tsx:180
 msgid "Import Existing"
-msgstr "Import Existing"
+msgstr ""
 
 #: src/screens/SelectKey/SelectKey.tsx:181
 #~ msgid "Import from Mnemonics (12 or 24 words)"
@@ -249,7 +249,7 @@ msgstr "Language"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:57
 msgid "Latest Version:"
-msgstr "Latest Version:"
+msgstr ""
 
 #: src/components/Settings/SettingsApp.tsx:102
 msgid "Light"
@@ -265,7 +265,7 @@ msgstr ""
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:221
 msgid "Likely in >5 minutes"
-msgstr "Likely in >5 minutes"
+msgstr ""
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:46
 msgid "Loading details"
@@ -273,7 +273,7 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKey.tsx:232
 msgid "Loading keys"
-msgstr "Loading keys"
+msgstr ""
 
 #: src/screens/SelectKey/SelectKey.tsx:117
 #~ msgid "Loading list of the keys"
@@ -310,7 +310,7 @@ msgstr "New passphrase is the same as your current passphrase"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:168
 msgid "New version {latestVersion} available"
-msgstr "New version {latestVersion} available"
+msgstr ""
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:84
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:138
@@ -332,7 +332,7 @@ msgstr "OK"
 
 #: src/screens/SelectKey/SelectKey.tsx:254
 msgid "Open a world of possibilities."
-msgstr "Open a world of possibilities."
+msgstr ""
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:98
 msgid "Pool Public Key"
@@ -361,15 +361,15 @@ msgstr "Public key:"
 
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:277
 msgid "Random"
-msgstr "Random"
+msgstr ""
 
 #: src/components/Fee/Fee.tsx:18
 msgid "Recommended value: 0.000005"
-msgstr "Recommended value: 0.000005"
+msgstr ""
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:71
 msgid "Release Notes"
-msgstr "Release Notes"
+msgstr ""
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:85
 msgid "Reload Application"
@@ -377,7 +377,7 @@ msgstr "Reload Application"
 
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:258
 msgid "Remove Icon"
-msgstr "Remove Icon"
+msgstr ""
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:97
 msgid "Rename"
@@ -399,7 +399,7 @@ msgstr ""
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:170
 #: src/screens/SelectKey/Search.tsx:34
 msgid "Search"
-msgstr "Search"
+msgstr ""
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:113
 msgid "Secret Key"
@@ -502,7 +502,7 @@ msgstr "Try Again"
 
 #: src/screens/SelectKey/SelectKey.tsx:243
 msgid "Unable to load keys"
-msgstr "Unable to load keys"
+msgstr ""
 
 #: src/screens/SelectKey/SelectKey.tsx:128
 #~ msgid "Unable to load the list of the keys"
@@ -541,7 +541,7 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKey.tsx:219
 msgid "Wallet Keys"
-msgstr "Wallet Keys"
+msgstr ""
 
 #: src/screens/SelectKey/SelectKey.tsx:142
 #~ msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
@@ -550,7 +550,7 @@ msgstr "Wallet Keys"
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:177
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:66
 msgid "What's New"
-msgstr "What's New"
+msgstr ""
 
 #: src/components/Back/Back.tsx:40
 #: src/components/FormBackButton/FormBackButton.tsx:31
@@ -559,12 +559,13 @@ msgstr "You have made changes. Do you want to discard them?"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:97
 msgid "You're up to date"
-msgstr "You're up to date"
+msgstr ""
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:49
 msgid "Your Current Version:"
-msgstr "Your Current Version:"
+msgstr ""
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:20
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
+
