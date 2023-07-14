@@ -8,15 +8,15 @@ msgstr ""
 "Language: ko_KR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-03-29 23:25\n"
+"PO-Revision-Date: 2023-07-14 17:42\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "X-Crowdin-Project-ID: 1\n"
 "X-Crowdin-Language: ko\n"
-"X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/packages/core/src/locales/en-US/messages.po\n"
-"X-Crowdin-File-ID: 1304\n"
+"X-Crowdin-File: /main/packages/core/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 15\n"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:61
 msgid "(>5 min)"
@@ -106,7 +106,7 @@ msgstr "클립보드에 복사"
 
 #: src/screens/SelectKey/SelectKey.tsx:170
 #~ msgid "Create a new private key"
-#~ msgstr "새로운 개인 키 만들기"
+#~ msgstr "Create a new private key"
 
 #: src/screens/SelectKey/SelectKey.tsx:270
 msgid "Create a new wallet key"
@@ -182,7 +182,7 @@ msgstr ""
 
 #: src/components/LayoutMain/LayoutFooter.tsx:48
 msgid "FAQ"
-msgstr ""
+msgstr "자주하는 질문"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:90
 msgid "Farmer Public Key"
@@ -277,7 +277,7 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKey.tsx:117
 #~ msgid "Loading list of the keys"
-#~ msgstr "키 목록 로드 중"
+#~ msgstr "Loading list of the keys"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:317
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:336
@@ -415,7 +415,7 @@ msgstr "시드:"
 
 #: src/screens/SelectKey/SelectKey.tsx:134
 #~ msgid "Select Key"
-#~ msgstr "키 선택"
+#~ msgstr "Select Key"
 
 #: src/components/Dropdown/Dropdown.tsx:28
 msgid "Select..."
@@ -441,7 +441,7 @@ msgstr "고급 옵션 표시"
 
 #: src/screens/SelectKey/SelectKey.tsx:139
 #~ msgid "Sign In"
-#~ msgstr "로그인"
+#~ msgstr "Sign In"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:171
 #: src/hooks/useValidateChangePassphraseParams.tsx:50
@@ -506,7 +506,7 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKey.tsx:128
 #~ msgid "Unable to load the list of the keys"
-#~ msgstr "키 목록을 로드할 수 없습니다."
+#~ msgstr "Unable to load the list of the keys"
 
 #: src/components/LocaleToggle/LocaleToggle.tsx:44
 msgid "Unknown"
@@ -545,7 +545,7 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKey.tsx:142
 #~ msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
-#~ msgstr "Chia에 오신 것을 환영합니다. 사용하고 계신 키로 로그인하시거나 새로운 키를 만드세요."
+#~ msgstr "Welcome to Chia. Please log in with an existing key, or create a new key."
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:177
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:66
@@ -568,3 +568,4 @@ msgstr ""
 #: src/hooks/useKeyringMigrationPrompt.tsx:20
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr "키가 새 키링으로 마이그레이션되지 않았습니다. 마이그레이션이 완료될 때까지 새 키를 생성하거나 기존 키를 삭제할 수 없습니다. 지금 키를 마이그레이션하시겠습니까?"
+
