@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-14 17:44\n"
+"PO-Revision-Date: 2023-07-15 14:19\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -3297,7 +3297,7 @@ msgstr "Plottausmanageri"
 
 #: src/components/plot/add/PlotAddNFT.tsx:69
 msgid "Plotting to a Plot NFT allows you the flexibility to join a pool or solo farm. You can easily switch between different pools or solo farming at any time. If you choose not to plot to a Plot NFT, you will need to replot in order to join any of the standard pools."
-msgstr ""
+msgstr "Plottaaminen Plot-NFT:tä varten mahdollistaa liitymisen pooliin. Voit vaihtaa helposti poolia tai farmata yksin. Jos et käytä Plot-NFT:tä, farmaat yksin ja joudut uudelleenplottaamaan, jos haluat liittyä pooliin."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:326
 msgid "Plotting with bitfield enabled has about 30% less overall writes and is now almost always faster. You may see reduced memory requirements with bitfield plotting disabled. If your CPU design is from before 2010 you may have to disable bitfield plotting."
@@ -3512,11 +3512,11 @@ msgstr "Sijoitus"
 
 #: src/components/settings/SettingsNotifications.tsx:123
 msgid "Receive general announcement notifications from connected Dapps"
-msgstr ""
+msgstr "Vastaanota yleisiä ilmoituksia yhdistetyistä Dapps -sovelluksista"
 
 #: src/components/settings/SettingsNotifications.tsx:94
 msgid "Receive offer notifications from connected Dapps"
-msgstr ""
+msgstr "Vastaanota tarjousilmoituksia yhdistetyistä Dapps -sovelluksista"
 
 #: src/components/settings/SettingsNotifications.tsx:69
 msgid "Receive push notifications when your wallet is minimized"
@@ -3595,11 +3595,11 @@ msgstr "Pyydetään"
 
 #: src/constants/WalletConnectCommands.tsx:278
 msgid "Requests a complete listing of the offers associated with the current wallet key"
-msgstr ""
+msgstr "Pyytää täydellistä listaa tarjouksista, jotka liittyvät nykyiseen lompakko-avaimeen"
 
 #: src/constants/WalletConnectCommands.tsx:29
 msgid "Requests a complete listing of the wallets associated with the current wallet key"
-msgstr ""
+msgstr "Pyytää täydellistä luetteloa lompakoista, jotka liittyvät nykyiseen lompakkoavaimeen"
 
 #: src/constants/WalletConnectCommands.tsx:566
 msgid "Requests a full or paginated listing of NFTs associated with one or more wallets associated with the current wallet key"
