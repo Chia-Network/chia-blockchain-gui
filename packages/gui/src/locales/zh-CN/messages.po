@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-14 17:44\n"
+"PO-Revision-Date: 2023-07-15 01:07\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -924,7 +924,7 @@ msgstr "收藏"
 #: src/components/vcs/VCRevokeDialog.tsx:27
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:70
 msgid "Confirm"
-msgstr ""
+msgstr "确定"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:19
 msgid "Confirm Disconnect"
@@ -2639,7 +2639,7 @@ msgstr "由创建者标注为不宜展示的NFT将被默认隐藏。"
 
 #: src/components/vcs/VCCard.tsx:83
 msgid "No"
-msgstr ""
+msgstr "否"
 
 #: src/components/notification/NotificationsMenu.tsx:52
 msgid "No activities yet"
@@ -4796,7 +4796,7 @@ msgstr "正在验证哈希值..."
 
 #: src/components/offers2/OfferIncomingTable.tsx:101
 msgid "View"
-msgstr ""
+msgstr "查看"
 
 #: src/components/offers/OfferImport.tsx:184
 msgid "View an Offer"
@@ -5020,7 +5020,7 @@ msgstr "您想要将指定的 NFT 转移给一个新的所有者吗？"
 #: src/components/plot/add/PlotAddChooseSize.tsx:47
 #: src/components/vcs/VCCard.tsx:83
 msgid "Yes"
-msgstr ""
+msgstr "是"
 
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:22
 msgid "Yes, Accept Offer"
