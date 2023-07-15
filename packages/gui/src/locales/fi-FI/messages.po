@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-15 14:19\n"
+"PO-Revision-Date: 2023-07-15 15:19\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -3603,71 +3603,71 @@ msgstr "Pyytää täydellistä luetteloa lompakoista, jotka liittyvät nykyiseen
 
 #: src/constants/WalletConnectCommands.tsx:566
 msgid "Requests a full or paginated listing of NFTs associated with one or more wallets associated with the current wallet key"
-msgstr ""
+msgstr "Pyytää täydellistä tai sivutettua luetteloa NFT:istä, jotka liittyvät yhteen tai useampaan lompakkoon jotka liityvät nykyiseen lompakkoavaimeen"
 
 #: src/constants/WalletConnectCommands.tsx:244
 msgid "Requests a new receive address associated with the current wallet key"
-msgstr ""
+msgstr "Pyytää uuden vastaanotto-osoitteen, joka liittyy nykyiseen lompakkoavaimeen"
 
 #: src/constants/WalletConnectCommands.tsx:595
 msgid "Requests details for a specific NFT"
-msgstr ""
+msgstr "Pyytää tietyn NFT:n tiedot"
 
 #: src/constants/WalletConnectCommands.tsx:43
 msgid "Requests details for a specific transaction"
-msgstr ""
+msgstr "Pyytää tietyn transaktion tiedot"
 
 #: src/constants/WalletConnectCommands.tsx:57
 msgid "Requests the asset balance for a specific wallet associated with the current wallet key"
-msgstr ""
+msgstr "Pyytää assettisaldoa tietylle lompakolle, joka liittyy nykyiseen lompakkoavaimeen"
 
 #: src/constants/WalletConnectCommands.tsx:74
 msgid "Requests the asset balances for specific wallets associated with the current wallet key"
-msgstr ""
+msgstr "Pyytää assettisaldoa tietyille lompakoille, jotka liittyvät nykyiseen lompakkoavaimeen"
 
 #: src/constants/WalletConnectCommands.tsx:497
 msgid "Requests the CAT asset ID for a specific CAT wallet"
-msgstr ""
+msgstr "Pyytää CAT:n assettittunnusta tietylle CAT:n lompakolle"
 
 #: src/constants/WalletConnectCommands.tsx:91
 msgid "Requests the current receive address associated with the current wallet key"
-msgstr ""
+msgstr "Pyytää nykyisen vastaanottavan osoitteen, joka liittyy nykyiseen lompakkoavaimeen"
 
 #: src/constants/WalletConnectCommands.tsx:450
 msgid "Requests the details for a specific offer"
-msgstr ""
+msgstr "Pyytää tietyn tarjouksen tietoja"
 
 #: src/constants/WalletConnectCommands.tsx:725
 msgid "Requests the number of NFTs associated with one or more wallets associated with the current wallet key"
-msgstr ""
+msgstr "Pyytää NFT:ien lukumäärää, joka liittyy yhteen tai useampaan lompakkoon, joka liittyy nykyiseen lompakko-avaimeen"
 
 #: src/constants/WalletConnectCommands.tsx:323
 msgid "Requests the number of offers associated with the current wallet key"
-msgstr ""
+msgstr "Pyytää nykyisen lompakon avaimeen liittyvien tarjousten lukumäärää"
 
 #: src/constants/WalletConnectCommands.tsx:435
 msgid "Requests the raw offer data for a specific offer"
-msgstr ""
+msgstr "Pyytää tietyn tarjouksen raakatietoja"
 
 #: src/constants/WalletConnectCommands.tsx:421
 msgid "Requests the summarized details of a specific offer"
-msgstr ""
+msgstr "Pyytää tietyn tarjouksen tiivistettyjä yksityiskohtia"
 
 #: src/constants/WalletConnectCommands.tsx:269
 msgid "Requests the syncing status of current wallet"
-msgstr ""
+msgstr "Pyytää nykyisen lompakon synkronoinnin tilaa"
 
 #: src/constants/WalletConnectCommands.tsx:386
 msgid "Requests the validity status of a specific offer"
-msgstr ""
+msgstr "Pyytää tietyn tarjouksen voimassaolon tilaa"
 
 #: src/constants/WalletConnectCommands.tsx:208
 msgid "Requests the verification status for a digital signature"
-msgstr ""
+msgstr "Pyytää digitaalisen allekirjoituksen varmentamisen tilaa"
 
 #: src/components/settings/SettingsIntegration.tsx:314
 msgid "Require Confirmation"
-msgstr ""
+msgstr "Vaadi Vahvistus"
 
 #: src/components/offers/NFTOfferEditor.tsx:434
 #: src/components/offers/OfferEditor.tsx:171
@@ -3678,7 +3678,7 @@ msgstr "Palauta"
 
 #: src/components/settings/SettingsIntegration.tsx:379
 msgid "Reset WalletConnect Permissions"
-msgstr ""
+msgstr "Nollaa WalletConnectin Käyttöoikeudet"
 
 #: src/components/nfts/NFTPreview.tsx:663
 #~ msgid "Response too large"
@@ -3717,11 +3717,11 @@ msgstr "Peruuta"
 #: src/components/vcs/VCCard.tsx:288
 #: src/constants/WalletConnectCommands.tsx:911
 msgid "Revoke Verifiable Credential"
-msgstr ""
+msgstr "Peruuta Todennettavissa Oleva Käyttöoikeustieto"
 
 #: src/components/vcs/VCCard.tsx:142
 msgid "Revoked"
-msgstr ""
+msgstr "Peruttu"
 
 #: src/components/offers2/OfferBuilderNFTRoyalties.tsx:93
 msgid "Royalties are built into the NFT, so they will automatically be accounted for when the offer is created/accepted."
@@ -3729,7 +3729,7 @@ msgstr "Rojaltit on sisäänrakennettu NFT:ään, joten ne kirjataan automaattis
 
 #: src/constants/WalletConnectCommands.tsx:618
 msgid "Royalty Address"
-msgstr ""
+msgstr "Rojaltin Osoite"
 
 #: src/components/nfts/NFTDetails.tsx:159
 #: src/constants/WalletConnectCommands.tsx:624
@@ -3802,11 +3802,11 @@ msgstr "Valitse kaikki"
 
 #: src/components/settings/SettingsIntegration.tsx:256
 msgid "Select an application"
-msgstr ""
+msgstr "Valitse sovellus"
 
 #: src/components/nfts/NFTAutocomplete.tsx:56
 msgid "Select an NFT"
-msgstr ""
+msgstr "Valitse NFT"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:33
 msgid "Select Final Directory"
@@ -3876,7 +3876,7 @@ msgstr "Lähetä Viesti"
 #: src/components/offers/OfferShareDialog.tsx:703
 #: src/components/offers/OfferShareDialog.tsx:825
 msgid "Send Notification"
-msgstr ""
+msgstr "Lähetä Ilmoitus"
 
 #: src/components/notification/NotificationSendDialog.tsx:178
 msgid "Send offer notification"
@@ -3893,11 +3893,11 @@ msgstr "Lähetä Tapahtuma"
 
 #: src/components/settings/SettingsCustody.tsx:45
 msgid "Set a default time frame for all outbound XCH transactions."
-msgstr ""
+msgstr "Aseta oletusaikaraja kaikille lähteville XCH-tapahtumille."
 
 #: src/constants/WalletConnectCommands.tsx:770
 msgid "Set DID Name"
-msgstr ""
+msgstr "Aseta DID-nimi"
 
 #: src/constants/WalletConnectCommands.tsx:787
 msgid "Set NFT DID"
@@ -3965,12 +3965,12 @@ msgstr "Näytä Tiedot"
 
 #: src/constants/WalletConnectCommands.tsx:925
 msgid "Show notification with offer or general announcement"
-msgstr ""
+msgstr "Näytä ilmoitus tarjouksen tai yleisen ilmoituksen kanssa"
 
 #: src/components/walletConnect/WalletConnectCreateOfferPreview.tsx:33
 #: src/components/walletConnect/WalletConnectOfferPreview.tsx:70
 msgid "Show Offer Details"
-msgstr ""
+msgstr "Näytä Tarjouksen Tiedot"
 
 #: src/components/nfts/NFTPreview.tsx:667
 #~ msgid "Show Preview"
@@ -4052,7 +4052,7 @@ msgstr "Varattavan välimuistin koko I/O:lle"
 
 #: src/components/settings/SettingsIntegration.tsx:286
 msgid "Skip Confirmation for Commands"
-msgstr ""
+msgstr "Ohita komentojen vahvistus"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:439
 msgid "Skips adding a final directory to harvester for farming"
@@ -4068,7 +4068,7 @@ msgstr "Tasaa XCH-farmauspalkkioita liittymällä pooliin."
 
 #: src/components/app/AppTestnetIndicator.tsx:47
 msgid "Sorry, you can't switch to mainnet by clicking here..."
-msgstr ""
+msgstr "Pahoittelut, et voi vaihtaa mainnettiin klikkaamalla tästä..."
 
 #: src/components/offers/OfferShareDialog.tsx:673
 msgid "Spacescan.io URL"
@@ -4104,7 +4104,7 @@ msgstr "Käytettävissä oleva saldo: {spendableBalance} {currencyCode}"
 
 #: src/components/vcs/VCCard.tsx:150
 msgid "Standard Version Number"
-msgstr ""
+msgstr "Vakioversionumero"
 
 #: src/constants/WalletConnectCommands.tsx:284
 msgid "Start"
@@ -4199,7 +4199,7 @@ msgstr "Chia-sovellus ja sen palvelut käyttävät eri versioita. Jotkin toiminn
 
 #: src/components/settings/SettingsCustody.tsx:49
 msgid "The claw back time can be manually adjusted per transaction."
-msgstr ""
+msgstr "Takaisinvetoaika voidaan asettaa transaktiokohtaisesti"
 
 #: src/components/settings/SettingsPanel.tsx:166
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
@@ -4241,7 +4241,7 @@ msgstr "NFT-päivitys epäonnistui: {err}"
 
 #: src/components/nfts/NFTContextualActions.tsx:179
 msgid "The NFT transfer failed: {0}"
-msgstr ""
+msgstr "NFT-siirto epäonnistui: {0}"
 
 #: src/components/nfts/NFTContextualActions.tsx:183
 #~ msgid "The NFT transfer failed: {error}"
@@ -4262,7 +4262,7 @@ msgstr "Noodi synkronoi. Se lataa lohkoketjua muilta solmuilta"
 
 #: src/components/offers2/OfferIncomingTable.tsx:96
 msgid "The offer creator has chosen not to allow counter offers"
-msgstr ""
+msgstr "Tarjouksen luoja on päättänyt olla sallimatta vastatarjouksia"
 
 #: src/components/plotNFT/PlotNFTState.tsx:30
 msgid "The pool switching operation was cancelled, please try again by changing pool, or self pooling"
@@ -4397,11 +4397,11 @@ msgstr "Taulukko näyttää farmisi viimeksi yrittämän lohkohaasteen ajankohda
 
 #: src/components/settings/SettingsIntegration.tsx:398
 msgid "This will reset all previously granted permissions across all Dapps that have been connected to. After resetting you will be asked to grant permission again."
-msgstr ""
+msgstr "Tämä nollaa kaikki aiemmin myönnetyt oikeudet kaikkiin yhdistettyihin Dapps -sovelluksiin. Nollauksen jälkeen sinua pyydetään myöntämään käyttöoikeus uudelleen."
 
 #: src/components/settings/SettingsIntegration.tsx:359
 msgid "This will restore the selected Dapp's permissions back to their default values. By default, every command issued by the Dapp will require confirmation in the Chia wallet."
-msgstr ""
+msgstr "Tämä palauttaa valitun Dappin oikeudet takaisin niiden oletusarvoihin. Oletuksena jokainen Dappin komento vaatii vahvistuksen Chian lompakossa."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:151
 msgid "Thread Multiplier for Phase 2"
@@ -4544,7 +4544,7 @@ msgstr "Transaktion Filtteritiiviste"
 
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:127
 msgid "Transactions less than the fee will not be auto claimed."
-msgstr ""
+msgstr "Transaktioita, joiden arvo on pienempi kuin maksu, ei lunasteta automaattisesti."
 
 #: src/components/nfts/NFTTransferAction.tsx:170
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:37
@@ -4563,11 +4563,11 @@ msgstr "Ota käyttöön/pois päältä ilmoitukset."
 
 #: src/components/settings/SettingsNotifications.tsx:140
 msgid "Turn on/off the ability to receive general announcements and updates from any Dapp connected to your wallet. This allows you to stay informed about new features and important updates directly from the Dapps you use."
-msgstr ""
+msgstr "Ota käyttöön tai poista käytöstä mahdollisuus vastaanottaa yleisiä ilmoituksia ja päivityksiä mistä tahansa lompakkoon yhdistetystä DAppista. Tämän avulla voit pysyä ajan tasalla uusista ominaisuuksista ja tärkeistä päivityksistä suoraan käyttämistäsi Dapps -sovelluksista."
 
 #: src/components/settings/SettingsNotifications.tsx:111
 msgid "Turn on/off the ability to receive notifications about new offers from Dapps connected to your wallet. By turning this on, you stay informed about the latest offers and opportunities brought forth by your trusted Dapps, ensuring you never miss out on a potential deal."
-msgstr ""
+msgstr "Ota käyttöön tai poista käytöstä mahdollisuus vastaanottaa ilmoituksia uusista tarjouksista lompakkoon yhdistetyistä Dapps-sovelluksista. Kytkemällä tämän päälle pysyt ajan tasalla luotettujen Dappsien uusimmista tarjouksista ja mahdollisuuksista ja varmistut että et koskaan menetä mahdollisuutta kauppaan."
 
 #: src/components/settings/SettingsNotifications.tsx:86
 msgid "Turn on/off the ability to show you notifications on the desktop."
@@ -4575,7 +4575,7 @@ msgstr "Ota käyttöön/poista käytöstä mahdollisuus näyttää ilmoituksia t
 
 #: src/components/settings/SettingsNotifications.tsx:168
 msgid "Turn on/off the automatic display of the sharing options panel after creating a new offer."
-msgstr ""
+msgstr "Ota käyttöön tai pois käytöstä jakamisen valintapaneelin automaattinäyttö uuden tarjouksen tekemisen jälkeen."
 
 #: src/components/settings/SettingsDataLayer.tsx:51
 msgid "Turn on/off the DataLayer service."
@@ -4745,29 +4745,29 @@ msgstr "Todennettavissa oleva käyttöoikeus on jo olemassa."
 
 #: src/components/vcs/VCCard.tsx:239
 msgid "Verifiable Credential Removed"
-msgstr ""
+msgstr "Todennettavissa Oleva Käyttöoikeustieto Poistettu"
 
 #: src/components/vcs/VCCard.tsx:254
 msgid "Verifiable Credential Removed."
-msgstr ""
+msgstr "Todennettavissa Oleva Käyttöoikeustieto Poistettu."
 
 #: src/components/vcs/VCCard.tsx:256
 msgid "Verifiable Credential Revoked."
-msgstr ""
+msgstr "Todennettavissa Oleva Käyttöoikeustieto Poistettu."
 
 #: src/components/vcs/VCList.tsx:202
 msgid "Verifiable Credential successfully added."
-msgstr ""
+msgstr "Todennettavissa oleva käyttöoikeustieto lisätty onnistuneesti."
 
 #: src/components/settings/SettingsVerifiableCredentials.tsx:17
 #: src/components/vcs/VCList.tsx:256
 #: src/components/vcs/VCList.tsx:316
 msgid "Verifiable Credentials"
-msgstr ""
+msgstr "Todennettavissa Oleva Käyttöoikeustieto"
 
 #: src/components/vcs/VCList.tsx:259
 msgid "Verifiable Credentials are like digital ID cards that can prove certain information about you without giving away your private details."
-msgstr ""
+msgstr "Todennettavissa valtakirjat ovat kuin digitaalinen henkilöllisyystodistus, joka voi todistaa tiettyjä tietoja sinusta antamatta pois yksityisiä tietoja."
 
 #: src/components/signVerify/VerifyMessage.tsx:123
 msgid "Verification Failed"
@@ -4792,7 +4792,7 @@ msgstr "Varmenna Allekirjoitus"
 
 #: src/components/nfts/NFTHashStatus.tsx:65
 msgid "Verifying hash..."
-msgstr ""
+msgstr "Tarkistetaan tiivistettä..."
 
 #: src/components/offers2/OfferIncomingTable.tsx:101
 msgid "View"
@@ -4804,7 +4804,7 @@ msgstr "Näytä Tarjous"
 
 #: src/components/vcs/VCCard.tsx:172
 msgid "View Credential Data"
-msgstr ""
+msgstr "Näytä Käyttöoikeustiedot"
 
 #: src/components/plot/queue/PlotQueueActions.tsx:58
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:44
@@ -4855,7 +4855,7 @@ msgstr "Näkyvissä"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:380
 msgid "Visible  <0/>"
-msgstr ""
+msgstr "Näkyvissä <0/>"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:572
 #~ msgid "Visible ({0})"
@@ -4863,7 +4863,7 @@ msgstr ""
 
 #: src/components/nfts/gallery/NFTGallery.tsx:375
 msgid "Visible and Hidden  <0/>"
-msgstr ""
+msgstr "Näkyvät ja piilotetut <0/>"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:570
 #~ msgid "Visible and hidden ({0})"
@@ -5069,7 +5069,7 @@ msgstr "Sinulla on {0}% verkossa olevasta tilasta, joten lohkon farmarointi vie 
 
 #: src/components/notification/NotificationOffer.tsx:91
 msgid "You have a new counter offer"
-msgstr ""
+msgstr "Olet saanut uuden vastatarjouksen"
 
 #: src/components/notification/NotificationOffer.tsx:93
 msgid "You have a new offer"
@@ -5077,19 +5077,19 @@ msgstr "Olet saanut uuden tarjouksen"
 
 #: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:304
 msgid "You have coins/assets locked for your open offers thus the spendable balance is not sufficient for the amounts you are offering. You need to cancel open offers to unlock coins/asset for the new offer."
-msgstr ""
+msgstr "Sinulla on kolikoita/varoja lukittu avoimiin tarjouksiisi, joten käytettävissä oleva saldo ei ole riittävä tarjoamiesi summien kannalta. Sinun täytyy peruuttaa avoimia tarjouksia avataksesi kolikoita/assetteja uutta tarjousta varten."
 
 #: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:326
 msgid "You have open offers which lock the same assets as your new offer. You may want to cancel those offers if they are no longer needed."
-msgstr ""
+msgstr "Sinulla on avoimia tarjouksia, jotka lukitsevat samoja assetteja kuin uusi tarjous. Voit halutessasi peruuttaa nämä tarjoukset, jos niitä ei enää tarvita."
 
 #: src/components/notification/utils.ts:106
 msgid "You have received a new counter offer"
-msgstr ""
+msgstr "Olet saanut uuden vastatarjouksen"
 
 #: src/components/notification/utils.ts:102
 msgid "You have received a new offer"
-msgstr ""
+msgstr "Olet saanut uuden tarjouksen"
 
 #: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:37
 msgid "You need {currencyCode} to join a pool."
@@ -5118,7 +5118,7 @@ msgstr "Saat <0/> osoitteeseen {address}"
 
 #: src/components/walletConnect/WalletConnectActiveSessions.tsx:56
 msgid "Your current version of the Chia application may not support some commands requested by the dApp. For the best experience, consider updating to the latest version."
-msgstr ""
+msgstr "Chia-sovelluksen tämänhetkinen versio ei välttämättä tue joitakin dAppin pyytämiä komentoja. Saadaksesi parhaan kokemuksen, harkitse päivittämistä uusimpaan versioon."
 
 #: src/components/farm/FarmHeader.tsx:21
 msgid "Your Farm Overview"
@@ -5160,9 +5160,9 @@ msgstr "Poolin Yleiskatsaus"
 
 #: src/components/settings/ProfileAdd.tsx:77
 msgid "Your spendable balance must be greater than 1 mojo to create a profile"
-msgstr ""
+msgstr "Käytettävissä olevan saldon on oltava suurempi kuin 1 mojo luodaksesi profiilin"
 
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
-msgstr ""
+msgstr "Lompakkosi on oltava käynnissä, jotta automaattinen lunastaminen toimii."
 
