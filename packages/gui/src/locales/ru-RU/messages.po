@@ -8,7 +8,7 @@ msgstr ""
 "Language: ru_RU\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-16 08:21\n"
+"PO-Revision-Date: 2023-07-16 09:18\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
@@ -456,7 +456,7 @@ msgstr ""
 #: src/components/notification/NotificationsDropdown.tsx:45
 #: src/components/notification/NotificationsMenu.tsx:36
 msgid "Activity"
-msgstr ""
+msgstr "Активность"
 
 #: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:42
 msgid "Add {currencyCode} from the Faucet"
@@ -480,7 +480,7 @@ msgstr "Добавить участок NFT"
 
 #: src/constants/WalletConnectCommands.tsx:545
 msgid "Add CAT Token"
-msgstr ""
+msgstr "Добавить CAT токен"
 
 #: src/components/offers/OfferAssetSelector.tsx:144
 msgid "Add CAT wallets to have more options"
@@ -488,7 +488,7 @@ msgstr "Добавьте CAT кошельки, чтобы иметь больш�
 
 #: src/components/walletConnect/WalletConnectConnections.tsx:105
 msgid "Add Connection"
-msgstr ""
+msgstr "Добавить подключение"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:114
 msgid "Add plot directory"
@@ -504,7 +504,7 @@ msgstr "Добавить участок в очередь"
 
 #: src/constants/WalletConnectCommands.tsx:885
 msgid "Add Proofs"
-msgstr ""
+msgstr "Добавить подтверждения"
 
 #: src/constants/WalletConnectCommands.tsx:844
 msgid "Add Proofs To Verifiable Credential"
@@ -521,11 +521,11 @@ msgstr ""
 #: src/constants/WalletConnectCommands.tsx:229
 #: src/constants/WalletConnectCommands.tsx:521
 msgid "Address"
-msgstr ""
+msgstr "Адрес"
 
 #: src/components/settings/SettingsAdvanced.tsx:44
 msgid "Advanced"
-msgstr ""
+msgstr "Расширенный"
 
 #: src/components/app/AppKeyringMigrator.tsx:250
 msgid "After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring."
@@ -542,7 +542,7 @@ msgstr "Все профили"
 
 #: src/components/settings/SettingsIntegration.tsx:174
 msgid "Allow external Apps and websites to connect to your wallet through WalletConnect."
-msgstr ""
+msgstr "Разрешить внешним приложениям и веб-сайтам подключаться к вашему кошельку через WalletConnect."
 
 #: src/components/settings/SettingsIntegration.tsx:199
 msgid "Allow requests that require switching to a different wallet key."
@@ -619,12 +619,12 @@ msgstr ""
 
 #: src/components/settings/SettingsIntegration.tsx:212
 msgid "App Permissions"
-msgstr ""
+msgstr "Разрешения приложения"
 
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:121
 #: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:91
 msgid "Application"
-msgstr ""
+msgstr "Приложение"
 
 #: src/components/walletConnect/WalletConnectActiveSessions.tsx:31
 msgid "Application doesn't have any active pair."
@@ -665,11 +665,11 @@ msgstr "Вы уверены, что хотите перенести этот NFT
 
 #: src/components/vcs/VCCard.tsx:191
 msgid "Are you sure you want to remove"
-msgstr ""
+msgstr "Вы уверены, что хотите удалить"
 
 #: src/components/vcs/VCCard.tsx:193
 msgid "Are you sure you want to revoke"
-msgstr ""
+msgstr "Вы действительно хотите отозвать"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:50
 msgid "Are you sure you want to use k={plotSize}?"
@@ -677,7 +677,7 @@ msgstr "Вы уверены, что хотите использовать k={plo
 
 #: src/components/offers2/OfferIncomingTable.tsx:211
 msgid "Are you sure you'd like to remove this offer? Please remember that this action is not reversible."
-msgstr ""
+msgstr "Вы уверены, что хотите удалить это предложение? Пожалуйста, помните, что это действие необратимо."
 
 #: src/components/offers2/OfferBuilderRoyaltyPayouts.tsx:48
 msgid "Asset"
@@ -1025,15 +1025,15 @@ msgstr "Закрытие сервисов"
 
 #: src/constants/WalletConnectCommands.tsx:601
 msgid "Coin Id"
-msgstr ""
+msgstr "Идентификатор монет"
 
 #: src/components/vcs/VCCard.tsx:121
 msgid "Coin ID"
-msgstr ""
+msgstr "Идентификатор монет"
 
 #: src/constants/WalletConnectCommands.tsx:160
 msgid "Coin Ids"
-msgstr ""
+msgstr "Идентификаторы монет"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:202
 #: src/components/nfts/NFTSummary.tsx:49
@@ -1075,7 +1075,7 @@ msgstr "Подтверждение"
 
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:68
 msgid "Confirmation Request"
-msgstr ""
+msgstr "Запрос подтверждения"
 
 #: src/components/offers/utils.ts:123
 msgid "Confirmed"
@@ -1101,7 +1101,7 @@ msgstr "Подключен"
 
 #: src/components/walletConnect/WalletConnectConnections.tsx:64
 msgid "Connected Applications"
-msgstr ""
+msgstr "Подключенные приложения"
 
 #: src/components/app/AppState.tsx:235
 #: src/components/app/AppState.tsx:240
@@ -1135,7 +1135,7 @@ msgstr ""
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:188
 msgid "Continue"
-msgstr ""
+msgstr "Продолжить"
 
 #: src/electron/main.tsx:1065
 #~ msgid "Contribute on GitHub"
@@ -1151,11 +1151,11 @@ msgstr "Копировать NFT ID"
 
 #: src/components/signVerify/SignMessageResultDialog.tsx:58
 msgid "Copy To Clipboard"
-msgstr ""
+msgstr "Скопировать в буфер обмена"
 
 #: src/components/notification/NotificationSendDialog.tsx:239
 msgid "Cost to send notification"
-msgstr ""
+msgstr "Стоимость отправки уведомления"
 
 #: src/components/notification/NotificationSendDialog.tsx:237
 msgid "Cost to send notification to the NFT holder"
@@ -5138,7 +5138,7 @@ msgstr ""
 #: src/components/plot/add/PlotAddChooseSize.tsx:47
 #: src/components/vcs/VCCard.tsx:83
 msgid "Yes"
-msgstr ""
+msgstr "Да"
 
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:22
 msgid "Yes, Accept Offer"
