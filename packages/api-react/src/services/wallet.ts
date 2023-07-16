@@ -1360,12 +1360,6 @@ export const walletApi = apiWithTag.injectEndpoints({
           // Handle the error here
           console.error('An error occurred during mintNFT:', error);
 
-          // Identify the specific variable in the command that caused the error
-          if (error.variables && Object.keys(error.variables).length > 0) {
-            const errorVariable = Object.keys(error.variables)[0];
-            console.error(`Error occurred in variable "${errorVariable}"`);
-          }
-
           // Return the invalidation tags if necessary
           return [{ type: 'NFTInfo', id: 'LIST' }];
         }
