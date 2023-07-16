@@ -1355,7 +1355,28 @@ export const walletApi = apiWithTag.injectEndpoints({
     }),
 
     mintNFT: mutation(build, NFT, 'mintNFT', {
-      invalidatesTags: (result, _error) => (result ? [{ type: 'NFTInfo', id: 'LIST' }] : []),
+      invalidatesTags: (result, error) => {
+        if (error) {
+          // Handle the error here
+          console.error('An error occurred during mintNFT:', error);
+
+          // Identify the specific variable in the command that caused the error
+          if (error.variables && Object.keys(error.variables).length > 0) {
+            const errorVariable = Object.keys(error.variables)[0];
+            console.error(`Error occurred in variable "${errorVariable}"`);
+          }
+
+          // Return the invalidation tags if necessary
+          return [{ type: 'NFTInfo', id: 'LIST' }];
+        }
+
+        // Handle the successful result here
+        // You can access the result using the `result` parameter
+        console.log('Mutation result:', result);
+
+        // Return the invalidation tags if necessary
+        return [{ type: 'NFTInfo', id: 'LIST' }];
+      },
     }),
 
     transferNFT: mutation(build, NFT, 'transferNft', {
