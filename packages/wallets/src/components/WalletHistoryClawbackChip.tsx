@@ -40,7 +40,9 @@ export default function WalletHistoryClawbackChip(props: Props) {
   if (transactionRow.metadata?.timeLock) {
     canBeClaimedAt.add(transactionRow.metadata.timeLock, 'seconds');
   }
-  const currentTime = moment.unix(lastBlockTimeStamp + 2000);
+  const currentTime = moment.unix(lastBlockTimeStamp - 20); // extra 20 seconds so if the auto claim is enabled, it will not show to button to claim it
+  // console.log('currentTime___: ', currentTime.format());
+  // console.log('canBeClaimedAt: ', canBeClaimedAt.format());
 
   const timeLeft = canBeClaimedAt.diff(currentTime, 'seconds');
 
@@ -60,7 +62,7 @@ export default function WalletHistoryClawbackChip(props: Props) {
               message: 'Can be claimed in ',
             })
           );
-      text += canBeClaimedAt.fromNow(true); // ... 3 days
+      text += canBeClaimedAt.from(currentTime, true); // ... 3 days
     } else if (transactionRow.sent === 0) {
       text = t(
         defineMessage({
