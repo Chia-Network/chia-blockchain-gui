@@ -2,6 +2,7 @@ import KeyData from '../@types/KeyData';
 import KeyringStatus from '../@types/KeyringStatus';
 import PlotQueueItem from '../@types/PlotQueueItem';
 import { PlottersApi } from '../@types/Plotter';
+import WalletAddress from '../@types/WalletAddress';
 import type Client from '../Client';
 import type Message from '../Message';
 import ServiceName, { type ServiceNameValue } from '../constants/ServiceName';
@@ -60,6 +61,19 @@ export default class Daemon extends Service {
     return this.command<{
       keys: [KeyData];
     }>('get_keys', args);
+  }
+
+  getWalletAddresses(args: {
+    fingerprints?: number[];
+    count?: number;
+    index?: number;
+    nonObserverDerivation?: boolean;
+  }) {
+    return this.command<{
+      walletAddresses: {
+        [key: string]: WalletAddress[];
+      };
+    }>('get_wallet_addresses', args);
   }
 
   setLabel(args: { fingerprint: string; label: string }) {

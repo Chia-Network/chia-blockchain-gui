@@ -1,3 +1,5 @@
+import type BigNumber from 'bignumber.js';
+
 import CATToken, { type CATTokenStray } from '../@types/CATToken';
 import type Transaction from '../@types/Transaction';
 import Wallet from '../services/WalletService';
@@ -73,5 +75,19 @@ export default class CATWallet extends Wallet {
     return this.command<{
       strayCats: CATTokenStray[];
     }>('get_stray_cats');
+  }
+
+  async crCatApprovePending(args: {
+    walletId: number;
+    minAmountToClaim: number | BigNumber;
+    fee: number | BigNumber;
+    minCoinAmount?: number | BigNumber;
+    maxCoinAmount?: number | BigNumber;
+    excludedCoinAmounts?: Array<number | BigNumber>;
+    reusePuzhash?: boolean;
+  }) {
+    return this.command<{
+      transactions: Transaction[];
+    }>('crcat_approve_pending', args);
   }
 }
