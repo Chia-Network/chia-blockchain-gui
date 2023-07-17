@@ -18,11 +18,39 @@ msgstr ""
 "X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/packages/core/src/locales/en-US/messages.po\n"
 "X-Crowdin-File-ID: 1304\n"
 
+#: src/components/EstimatedFee/EstimatedFee.tsx:61
+msgid "(>5 min)"
+msgstr ""
+
+#: src/components/EstimatedFee/EstimatedFee.tsx:61
+msgid "(~{selectedTime} min)"
+msgstr ""
+
+#: src/components/Amount/Amount.tsx:86
+msgid "{0, plural, one {mojo} other {mojos}}"
+msgstr "{0, plural, one {mojo} other {mojos}}"
+
+#: src/hooks/useValidateChangePassphraseParams.tsx:35
+msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
+msgstr "{minPassphraseLength, plural, one {Пароль повинен містити щонайменше # символ} few {Пароль повинен містити щонайменше # символи} many {Пароль повинен містити щонайменше # символів} other {Пароль повинен містити щонайменше # символів}}"
+
+#: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:95
+msgid "A new version of Chia is available!"
+msgstr ""
+
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:258
+msgid "Add Icon"
+msgstr ""
+
+#: src/screens/SelectKey/SelectKey.tsx:172
+msgid "Add wallet"
+msgstr ""
+
 #: src/components/Amount/Amount.tsx:36
 msgid "Amount"
 msgstr "Кількість"
 
-#: src/components/Settings/SettingsApp.tsx:88
+#: src/components/Settings/SettingsApp.tsx:93
 msgid "Appearance"
 msgstr "Зовнішній вигляд"
 
@@ -31,62 +59,94 @@ msgid "Are you sure you want to continue? Type in the fingerprint of this wallet
 msgstr "Ви впевнені, що хочете продовжити? Введіть fingerprint цього гаманця для підтвердження видалення."
 
 #: src/components/FormBackButton/FormBackButton.tsx:15
-#: src/screens/SelectKey/SelectKey.tsx:80
+#: src/screens/SelectKey/SelectKey.tsx:127
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:156
 msgid "Back"
 msgstr "Назад"
 
-#: src/components/ConfirmDialog/ConfirmDialog.tsx:27
+#: src/components/ConfirmDialog/ConfirmDialog.tsx:29
 #: src/hooks/useKeyringMigrationPrompt.tsx:17
 #: src/screens/SelectKey/SelectKeyRenameForm.tsx:90
 msgid "Cancel"
 msgstr "Відміна"
 
+#: src/components/Settings/SettingsApp.tsx:139
+msgid "Check for updates"
+msgstr ""
+
+#: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:93
+msgid "Checking for updates..."
+msgstr ""
+
+#: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:82
+msgid "Chia {latestVersion} is currently the latest version available."
+msgstr ""
+
+#: src/components/Settings/SettingsApp.tsx:125
+msgid "Chia Application Version:"
+msgstr ""
+
+#: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:110
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:47
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:70
 msgid "Close"
 msgstr "Закрити"
 
-#: src/components/FormatConnectionStatus/FormatConnectionStatus.tsx:37
+#: src/components/FormatConnectionStatus/FormatConnectionStatus.tsx:32
 msgid "Connected"
 msgstr "Підключено"
 
-#: src/components/CopyToClipboard/CopyToClipboard.tsx:51
+#: src/components/CopyToClipboard/CopyToClipboard.tsx:42
 msgid "Copied"
 msgstr "Скопійовано"
 
-#: src/components/CopyToClipboard/CopyToClipboard.tsx:51
+#: src/components/CopyToClipboard/CopyToClipboard.tsx:42
 msgid "Copy to Clipboard"
 msgstr "Скопіювати до буферу обміну"
 
 #: src/screens/SelectKey/SelectKey.tsx:170
-msgid "Create a new private key"
-msgstr "Створити новий приватний ключ"
+#~ msgid "Create a new private key"
+#~ msgstr "Створити новий приватний ключ"
 
-#: src/components/Settings/SettingsApp.tsx:105
+#: src/screens/SelectKey/SelectKey.tsx:270
+msgid "Create a new wallet key"
+msgstr ""
+
+#: src/screens/SelectKey/SelectKey.tsx:262
+msgid "Create a new wallet key to get started with Chia."
+msgstr ""
+
+#: src/screens/SelectKey/SelectKey.tsx:175
+msgid "Create New"
+msgstr ""
+
+#: src/components/Settings/SettingsApp.tsx:110
 msgid "Dark"
 msgstr "Темний"
 
-#: src/screens/SelectKey/SelectKey.tsx:79
-#: src/screens/SelectKey/SelectKeyItem.tsx:100
+#: src/screens/SelectKey/SelectKey.tsx:126
+#: src/screens/SelectKey/SelectKeyItem.tsx:113
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:166
 msgid "Delete"
 msgstr "Видалити"
 
-#: src/screens/SelectKey/SelectKey.tsx:193
-#: src/screens/SelectKey/SelectKey.tsx:78
+#: src/screens/SelectKey/SelectKey.tsx:125
 msgid "Delete all keys"
 msgstr "Видалити всі ключі"
+
+#: src/screens/SelectKey/SelectKey.tsx:200
+msgid "Delete All Keys"
+msgstr ""
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:96
 msgid "Delete key {fingerprint}"
 msgstr "Видалити ключ {fingerprint}"
 
-#: src/screens/SelectKey/SelectKey.tsx:84
+#: src/screens/SelectKey/SelectKey.tsx:131
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
 msgstr "Видалення усіх ключів призведе до безповоротного видалення ключів з Вашого комп'ютеру. Переконайтесь, що маєте резервні копії. Ви впевнені, що хочете продовжити?"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:92
+#: src/screens/SelectKey/SelectKeyItem.tsx:105
 msgid "Details"
 msgstr "Докладніше"
 
@@ -103,8 +163,12 @@ msgstr "Вимкнути захист кодовою фразою"
 msgid "Discard"
 msgstr "Скасувати"
 
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:183
+msgid "Download"
+msgstr ""
+
 #: src/components/CardSimple/CardSimple.tsx:52
-#: src/hooks/useShowError.tsx:11
+#: src/hooks/useShowError.tsx:13
 msgid "Error"
 msgstr "Помилка"
 
@@ -116,6 +180,10 @@ msgstr "Помилка:"
 msgid "Esc"
 msgstr ""
 
+#: src/components/LayoutMain/LayoutFooter.tsx:48
+msgid "FAQ"
+msgstr ""
+
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:90
 msgid "Farmer Public Key"
 msgstr "Публічний ключ фермера"
@@ -124,13 +192,13 @@ msgstr "Публічний ключ фермера"
 msgid "Farmer public key:"
 msgstr "Публічний ключ фермера:"
 
-#: src/components/Settings/SettingsApp.tsx:73
+#: src/components/Settings/SettingsApp.tsx:78
 msgid "Farming"
 msgstr "Фермерство"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:334
-#: src/components/EstimatedFee/EstimatedFee.tsx:368
-#: src/components/Fee/Fee.tsx:53
+#: src/components/EstimatedFee/EstimatedFee.tsx:333
+#: src/components/EstimatedFee/EstimatedFee.tsx:367
+#: src/components/Fee/Fee.tsx:44
 msgid "Fee"
 msgstr "Комісія"
 
@@ -138,11 +206,15 @@ msgstr "Комісія"
 msgid "Fingerprint does not match"
 msgstr "Fingerprint не збігається"
 
-#: src/components/Settings/SettingsApp.tsx:125
+#: src/components/Settings/SettingsApp.tsx:151
 msgid "Frequently Asked Questions"
 msgstr "Найчастіші питання"
 
-#: src/components/Settings/SettingsApp.tsx:121
+#: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:121
+msgid "Go To Download Page"
+msgstr ""
+
+#: src/components/Settings/SettingsApp.tsx:147
 msgid "Help"
 msgstr "Допомога"
 
@@ -155,48 +227,64 @@ msgstr "Допомогти з перекладом"
 msgid "Hide"
 msgstr "Приховати"
 
-#: src/components/AdvancedOptions/AdvancedOptions.tsx:32
+#: src/components/AdvancedOptions/AdvancedOptions.tsx:27
 msgid "Hide Advanced Options"
 msgstr "Приховати додаткові параметри"
 
-#: src/screens/SelectKey/SelectKey.tsx:181
-msgid "Import from Mnemonics (12 or 24 words)"
+#: src/screens/SelectKey/SelectKey.tsx:180
+msgid "Import Existing"
 msgstr ""
 
-#: src/components/Fee/Fee.tsx:41
+#: src/screens/SelectKey/SelectKey.tsx:181
+#~ msgid "Import from Mnemonics (12 or 24 words)"
+#~ msgstr ""
+
+#: src/components/Fee/Fee.tsx:32
 msgid "Incorrect value"
 msgstr "Некоректне значення"
 
-#: src/components/Settings/SettingsApp.tsx:112
+#: src/components/Settings/SettingsApp.tsx:117
 msgid "Language"
 msgstr "Мова"
 
-#: src/components/Settings/SettingsApp.tsx:97
+#: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:57
+msgid "Latest Version:"
+msgstr ""
+
+#: src/components/Settings/SettingsApp.tsx:102
 msgid "Light"
 msgstr "Світлий"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:232
+#: src/components/EstimatedFee/EstimatedFee.tsx:222
 msgid "Likely in {0} seconds"
 msgstr ""
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:232
+#: src/components/EstimatedFee/EstimatedFee.tsx:219
 msgid "Likely in {minutes} minutes"
+msgstr ""
+
+#: src/components/EstimatedFee/EstimatedFee.tsx:221
+msgid "Likely in >5 minutes"
 msgstr ""
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:46
 msgid "Loading details"
 msgstr "Завантаження подробиць"
 
-#: src/screens/SelectKey/SelectKey.tsx:117
-msgid "Loading list of the keys"
-msgstr "Завантаження списку ключів"
+#: src/screens/SelectKey/SelectKey.tsx:232
+msgid "Loading keys"
+msgstr ""
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:150
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:169
+#: src/screens/SelectKey/SelectKey.tsx:117
+#~ msgid "Loading list of the keys"
+#~ msgstr "Завантаження списку ключів"
+
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:317
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:336
 msgid "Log Out"
 msgstr "Вийти"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:168
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:335
 msgid "Logout"
 msgstr "Вийти"
 
@@ -208,7 +296,7 @@ msgstr "Мігрувати"
 msgid "Migration required"
 msgstr "Необхідна міграція"
 
-#: src/components/Settings/SettingsApp.tsx:64
+#: src/components/Settings/SettingsApp.tsx:69
 msgid "Mode"
 msgstr "Режим роботи"
 
@@ -220,23 +308,31 @@ msgstr "НІКОЛИ НІ З КИМ НЕ ДІЛІТЬСЯ ЦИМ"
 msgid "New passphrase is the same as your current passphrase"
 msgstr "Новий пароль такий самий, як і ваш поточний пароль"
 
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:168
+msgid "New version {latestVersion} available"
+msgstr ""
+
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:84
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:138
 msgid "No 24 word seed, since this key is imported."
 msgstr "Відсутні 24 ключових слова, оскільки ключ імпортовано."
 
-#: src/screens/SelectKey/WalletStatus.tsx:61
-msgid "Not Synced"
-msgstr "Не синхронізовано"
-
-#: src/components/FormatConnectionStatus/FormatConnectionStatus.tsx:38
+#: src/components/FormatConnectionStatus/FormatConnectionStatus.tsx:33
 msgid "Not connected"
 msgstr "Немає з'єднання"
 
+#: src/screens/SelectKey/WalletStatus.tsx:61
+#~ msgid "Not Synced"
+#~ msgstr "Не синхронізовано"
+
 #: src/components/AlertDialog/AlertDialog.tsx:23
-#: src/components/ConfirmDialog/ConfirmDialog.tsx:28
+#: src/components/ConfirmDialog/ConfirmDialog.tsx:30
 msgid "OK"
 msgstr "ОК"
+
+#: src/screens/SelectKey/SelectKey.tsx:254
+msgid "Open a world of possibilities."
+msgstr ""
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:98
 msgid "Pool Public Key"
@@ -263,11 +359,27 @@ msgstr "Публічний ключ"
 msgid "Public key:"
 msgstr "Публічний ключ:"
 
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:277
+msgid "Random"
+msgstr ""
+
+#: src/components/Fee/Fee.tsx:18
+msgid "Recommended value: 0.000005"
+msgstr ""
+
+#: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:71
+msgid "Release Notes"
+msgstr ""
+
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:85
 msgid "Reload Application"
 msgstr "Перезавантажити додаток"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:84
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:258
+msgid "Remove Icon"
+msgstr ""
+
+#: src/screens/SelectKey/SelectKeyItem.tsx:97
 msgid "Rename"
 msgstr "Перейменувати"
 
@@ -284,6 +396,11 @@ msgstr "Показати"
 msgid "Save"
 msgstr "Зберегти"
 
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:170
+#: src/screens/SelectKey/Search.tsx:34
+msgid "Search"
+msgstr ""
+
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:113
 msgid "Secret Key"
 msgstr "Секретний ключ"
@@ -297,14 +414,15 @@ msgid "Seed:"
 msgstr "Фраза:"
 
 #: src/screens/SelectKey/SelectKey.tsx:134
-msgid "Select Key"
-msgstr "Вибрати ключ"
+#~ msgid "Select Key"
+#~ msgstr "Вибрати ключ"
 
 #: src/components/Dropdown/Dropdown.tsx:28
 msgid "Select..."
 msgstr "Обрати..."
 
-#: src/components/Settings/SettingsApp.tsx:128
+#: src/components/LayoutMain/LayoutFooter.tsx:51
+#: src/components/Settings/SettingsApp.tsx:154
 msgid "Send Feedback"
 msgstr "Надіслати відгук"
 
@@ -317,14 +435,15 @@ msgstr "Встановлення пароля рекомендується дл�
 msgid "Settings"
 msgstr "Налаштування"
 
-#: src/components/AdvancedOptions/AdvancedOptions.tsx:31
+#: src/components/AdvancedOptions/AdvancedOptions.tsx:26
 msgid "Show Advanced Options"
 msgstr "Показати розширені параметри"
 
 #: src/screens/SelectKey/SelectKey.tsx:139
-msgid "Sign In"
-msgstr "Увійти"
+#~ msgid "Sign In"
+#~ msgstr "Увійти"
 
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:171
 #: src/hooks/useValidateChangePassphraseParams.tsx:50
 msgid "Skip"
 msgstr "Пропустити"
@@ -338,12 +457,12 @@ msgid "Something went wrong"
 msgstr "Сталася помилка"
 
 #: src/screens/SelectKey/WalletStatus.tsx:73
-msgid "Synced"
-msgstr "Синхронізовано"
+#~ msgid "Synced"
+#~ msgstr "Синхронізовано"
 
 #: src/screens/SelectKey/WalletStatus.tsx:85
-msgid "Syncing"
-msgstr "Синхронізація"
+#~ msgid "Syncing"
+#~ msgstr "Синхронізація"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:28
 msgid "The provided passphrase and confirmation do not match"
@@ -377,13 +496,17 @@ msgstr "Транзакція була відправлена на повний �
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "Транзакція успішно відправлена до повного вузла та була включена в mempool."
 
-#: src/screens/SelectKey/SelectKey.tsx:124
+#: src/screens/SelectKey/SelectKey.tsx:239
 msgid "Try Again"
 msgstr "Спробувати ще раз"
 
+#: src/screens/SelectKey/SelectKey.tsx:243
+msgid "Unable to load keys"
+msgstr ""
+
 #: src/screens/SelectKey/SelectKey.tsx:128
-msgid "Unable to load the list of the keys"
-msgstr "Не вдалося завантажити список ключів"
+#~ msgid "Unable to load the list of the keys"
+#~ msgstr "Не вдалося завантажити список ключів"
 
 #: src/components/LocaleToggle/LocaleToggle.tsx:44
 msgid "Unknown"
@@ -398,42 +521,50 @@ msgstr "Незбережені зміни"
 msgid "Using a passphrase is strongly recommended to protect your keys. Are you sure you want to disable passphrase protection?"
 msgstr "Рекомендовано використовувати пароль для захисту ваших ключів. Ви впевнені, що хочете вимкнути захист паролем?"
 
-#: src/components/Fee/Fee.tsx:33
+#: src/components/Fee/Fee.tsx:24
 msgid "Value seems high"
 msgstr "Значення здається високим"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:116
-#: src/components/Settings/SettingsApp.tsx:81
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:270
+#: src/components/Settings/SettingsApp.tsx:86
 msgid "Wallet"
 msgstr "Гаманець"
+
+#: src/screens/SelectKey/SelectKeyDetailDialog.tsx:63
+#: src/screens/SelectKey/SelectKeyItem.tsx:233
+msgid "Wallet {0}"
+msgstr "Гаманець {0}"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:149
 msgid "Wallet Fingerprint"
 msgstr "Fingerprint Гаманця"
 
-#: src/screens/SelectKey/SelectKeyDetailDialog.tsx:63
-#: src/screens/SelectKey/SelectKeyItem.tsx:69
-msgid "Wallet {0}"
-msgstr "Гаманець {0}"
+#: src/screens/SelectKey/SelectKey.tsx:219
+msgid "Wallet Keys"
+msgstr ""
 
 #: src/screens/SelectKey/SelectKey.tsx:142
-msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
-msgstr "Ласкаво просимо в Chia. Будь ласка, увійдіть за допомогою існуючого ключа або створіть новий ключ."
+#~ msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
+#~ msgstr "Ласкаво просимо в Chia. Будь ласка, увійдіть за допомогою існуючого ключа або створіть новий ключ."
+
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:177
+#: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:66
+msgid "What's New"
+msgstr ""
 
 #: src/components/Back/Back.tsx:40
 #: src/components/FormBackButton/FormBackButton.tsx:31
 msgid "You have made changes. Do you want to discard them?"
 msgstr "У вас є незбережені зміни. Скасувати їх?"
 
+#: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:97
+msgid "You're up to date"
+msgstr ""
+
+#: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:49
+msgid "Your Current Version:"
+msgstr ""
+
 #: src/hooks/useKeyringMigrationPrompt.tsx:20
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr "Ваші ключі не були перенесені до нової системи ключів. Ви не зможете створювати нові ключі або видаляти існуючі ключі, доки не завершиться міграція. Бажаєте перенести ваші ключі зараз?"
-
-#: src/components/Amount/Amount.tsx:86
-msgid "{0, plural, one {mojo} other {mojos}}"
-msgstr "{0, plural, one {mojo} other {mojos}}"
-
-#: src/hooks/useValidateChangePassphraseParams.tsx:35
-msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
-msgstr "{minPassphraseLength, plural, one {Пароль повинен містити щонайменше # символ} few {Пароль повинен містити щонайменше # символи} many {Пароль повинен містити щонайменше # символів} other {Пароль повинен містити щонайменше # символів}}"
-
