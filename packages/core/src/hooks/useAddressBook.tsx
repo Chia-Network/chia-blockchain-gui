@@ -13,6 +13,7 @@ export default function useAddressBook(): [
   (contactId: number) => void, // removeContact
   (contactId: number) => AddressContact | undefined, // getContactContactId
   (
+    contactId: number,
     name: string,
     addresses: ContactAddress[],
     dids: ContactDID[],
@@ -24,27 +25,20 @@ export default function useAddressBook(): [
 ] {
   // editContact
   const [addressBook, setAddressBook] = useState<AddressContact[]>([]);
-  const LOCAL_STORAGE_KEY = 'addressbook';
-  const contactBookJSON = JSON.stringify(addressBook);
 
   const updateAddressBook = useCallback((contacts) => {
-    const contactsJSON = JSON.stringify(contacts);
-    (window as any).ipcRenderer.invoke('saveAddressBook', contactsJSON);
+    (window as any).ipcRenderer.invoke('saveAddressBook', contacts);
     setAddressBook(contacts);
   }, []);
 
   useEffect(() => {
-    if (localStorage.getItem(LOCAL_STORAGE_KEY) === undefined || localStorage.getItem(LOCAL_STORAGE_KEY) === null) {
-      updateAddressBook([]);
-    } else {
-      const addresses: AddressContact[] = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-      updateAddressBook([...addresses]);
+    async function getAddressBook() {
+      const contacts = await (window as any).ipcRenderer.invoke('readAddressBook');
+      setAddressBook(contacts);
     }
-  }, [updateAddressBook]);
 
-  useEffect(() => {
-    if (addressBook !== undefined) localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(addressBook));
-  }, [contactBookJSON, addressBook]);
+    getAddressBook();
+  }, []);
 
   function getNewContactId(): number {
     if (addressBook.length === 0 || addressBook === undefined) return 1;
@@ -75,7 +69,6 @@ export default function useAddressBook(): [
 
   function removeContact(contactId: number) {
     const filteredContacts = addressBook.filter((contact) => contact.contactId !== contactId);
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(filteredContacts));
     updateAddressBook([...filteredContacts]);
   }
 
@@ -94,7 +87,6 @@ export default function useAddressBook(): [
     domainNames: ContactDomainName[]
   ) {
     const filteredContacts = addressBook.filter((contact) => contact.contactId !== contactId);
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(filteredContacts));
 
     const newAddress: AddressContact = {
       contactId,

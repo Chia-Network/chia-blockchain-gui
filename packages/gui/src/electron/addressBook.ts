@@ -11,20 +11,17 @@ function getAddressBookPath() {
   return path.join(userDataDir, 'contacts.yaml');
 }
 
-export function readAddressBook(): string {
-  const contacts = readData(getAddressBookPath());
-  const contactsJSON = JSON.stringify(contacts);
-  return contactsJSON;
+export function readAddressBook(): any[] {
+  const result = readData(getAddressBookPath());
+  const contacts = result?.contacts || [];
+  return contacts;
 }
 
-export function saveAddressBook(contactsJSON: string): void {
+export function saveAddressBook(contacts: any[]): void {
   try {
-    if (!contactsJSON) {
-      return;
-    }
     const addressBookPath = getAddressBookPath();
-    const contacts = JSON.parse(contactsJSON);
-    writeData(contacts, addressBookPath);
+    const data = { contacts: contacts || [] };
+    writeData(data, addressBookPath);
   } catch (e) {
     console.warn(e);
   }
