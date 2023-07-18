@@ -259,11 +259,7 @@ export default function ContactEdit() {
   return (
     <div>
       <Form methods={methods} key={0} onSubmit={handleSubmit}>
-        <Flex
-          flexDirection="row"
-          justifyContent="right"
-          style={{ height: '80px', background: '#CCDDE1', borderRadius: '10px' }}
-        >
+        <Flex flexDirection="row" justifyContent="right" style={{ height: '80px' }}>
           <Flex flexGrow={1}>
             <Typography
               variant="h5"
