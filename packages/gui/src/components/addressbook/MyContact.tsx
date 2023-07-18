@@ -111,11 +111,7 @@ export default function MyContact() {
 
   return (
     <div>
-      <Flex
-        flexDirection="row"
-        justifyContent="right"
-        style={{ height: '80px', background: '#CCDDE1', borderRadius: '10px' }}
-      >
+      <Flex flexDirection="row" justifyContent="right" style={{ height: '80px' }}>
         <Flex style={{ paddingRight: '30px' }}>
           <Typography
             variant="h5"
