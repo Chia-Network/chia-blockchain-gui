@@ -30,7 +30,7 @@ export const {
   useMigrateKeyringMutation,
   useUnlockKeyringMutation,
   useGetVersionQuery,
-  useGetKeysForPlotQuery,
+  useGetKeysForPlottingQuery,
 
   useGetPlottersQuery,
   useStopPlottingMutation,

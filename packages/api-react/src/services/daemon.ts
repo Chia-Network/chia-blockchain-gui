@@ -194,7 +194,7 @@ export const daemonApi = apiWithTag.injectEndpoints({
       providesTags: [{ type: 'RunningServices', id: 'LIST' }],
     }),
 
-    getKeysForPlot: query(build, Daemon, 'getKeysForPlot'),
+    getKeysForPlotting: query(build, Daemon, 'getKeysForPlotting'),
   }),
 });
 
@@ -210,7 +210,7 @@ export const {
   useMigrateKeyringMutation,
   useUnlockKeyringMutation,
   useGetVersionQuery,
-  useGetKeysForPlotQuery,
+  useGetKeysForPlottingQuery,
 
   useGetPlottersQuery,
   useStopPlottingMutation,

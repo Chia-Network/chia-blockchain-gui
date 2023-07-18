@@ -1,5 +1,5 @@
 import { toBech32m } from '@chia-network/api';
-import { useGetKeysForPlotQuery } from '@chia-network/api-react';
+import { useGetKeysForPlottingQuery } from '@chia-network/api-react';
 import { CardStep, TextField, Button } from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
 import { Grid, FormControl, Typography, Switch, FormControlLabel, ButtonGroup } from '@mui/material';
@@ -17,7 +17,7 @@ type Props = {
 export default function PlotAddChooseKeys(props: Props) {
   const { step, currencyCode, fingerprint } = props;
   const { watch, setValue } = useFormContext();
-  const { isLoading, data } = useGetKeysForPlotQuery({ fingerprints: [fingerprint] });
+  const { isLoading, data } = useGetKeysForPlottingQuery({ fingerprints: [fingerprint] });
   const [manualSetup, setManualSetup] = React.useState(false);
   const [poolKeyType, setPoolKeyType] = React.useState<'p2SingletonPuzzleHash' | 'poolPublicKey'>(
     'p2SingletonPuzzleHash'
