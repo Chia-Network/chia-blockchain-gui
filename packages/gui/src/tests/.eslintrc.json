@@ -1,0 +1,14 @@
+// THIS FILE SHOULD CONTAIN ONLY OVERRIDES FOR THE TESTS DIRECTORY
+//
+// To add or update the rule, please make a separate PR with only this file changed
+// PRs where a rule is changed within a lager PR will be rejected.
+//
+{
+  "rules": {
+    "no-await-in-loop": "off"
+
+    //
+    // ** Before adding or updating any rule, please read the comments at the top of this file
+    //
+  }
+}
