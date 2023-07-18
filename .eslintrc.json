@@ -98,7 +98,7 @@
           // You can change the file name extension to .dev.ts to avoid the: "XX should be listed in the project's dependencies, not devDependencies."
           "**/*.dev.{js,jsx,ts,tsx}"
         ],
-        "optionalDependencies": false
+        "optionalDependencies": true
       }
     ],
 
