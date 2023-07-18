@@ -1,5 +1,5 @@
 // import { useGetNFTInfoQuery } from '@chia-network/api-react';
-import { useGetKeysQuery, usePrefs } from '@chia-network/api-react';
+import { useGetKeysQuery, usePrefs, type Serializable } from '@chia-network/api-react';
 import { CopyToClipboard, Flex } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { InputAdornment, TextField, Typography } from '@mui/material';
@@ -8,40 +8,51 @@ import React, { useEffect, useState } from 'react';
 
 import useWalletKeyAddresses from '../../hooks/useWalletKeyAddresses';
 
+type MyContactKeyEntry = {
+  fingerprint: string;
+  label: string;
+  emoji?: string;
+  color?: string;
+  address?: string;
+};
+
 export default function MyContact() {
   const theme: any = useTheme();
-  const { data: publicKeyFingerprints, isLoading: isLoadingPublicKeys } = useGetKeysQuery();
-  const [keyList, setKeyList] = useState([]);
+  const { data: publicKeyFingerprints, isLoading: isLoadingPublicKeys } = useGetKeysQuery({});
+  const [keyList, setKeyList] = useState<MyContactKeyEntry[]>([]);
   const { addresses: walletKeyAddresses, isLoading: isLoadingWKAddresses } = useWalletKeyAddresses();
+  type LocalStorageType = Record<string, Record<string, Serializable>>;
   const [themeList] = usePrefs<LocalStorageType>('fingerprintSettings', {});
 
   useEffect(() => {
-    if (!isLoadingPublicKeys) {
-      if (publicKeyFingerprints) {
-        const newList = [];
-        publicKeyFingerprints.forEach((key) => {
-          const keyIndex = publicKeyFingerprints.indexOf(key) + 1;
-          const newLabel = !key.label ? `Wallet ${keyIndex}` : key.label;
-          newList.push({ fingerprint: key.fingerprint, label: newLabel });
-        });
-        if (themeList) {
-          newList.forEach((key) => {
-            const element = key;
-            element.emoji = themeList[key.fingerprint].walletKeyTheme.emoji;
-            element.color = themeList[key.fingerprint].walletKeyTheme.color;
-          });
-        }
-        if (walletKeyAddresses.length > 0 && newList.length > 0) {
-          newList.forEach((key) => {
-            const element = key;
-            const match = walletKeyAddresses.find(({ fingerprint }) => fingerprint === key.fingerprint);
-            element.address = match.address;
-          });
-        }
-        setKeyList(newList);
-      }
+    if (isLoadingPublicKeys || isLoadingWKAddresses || !walletKeyAddresses || !publicKeyFingerprints) {
+      return;
     }
-  }, [publicKeyFingerprints, themeList, walletKeyAddresses, isLoadingPublicKeys]);
+
+    const keyEntries: MyContactKeyEntry[] = [];
+    publicKeyFingerprints.forEach((key) => {
+      const keyIndex = publicKeyFingerprints.indexOf(key) + 1;
+      const newLabel = !key.label ? `Wallet ${keyIndex}` : key.label;
+      keyEntries.push({ fingerprint: key.fingerprint.toString(), label: newLabel });
+    });
+    if (themeList) {
+      keyEntries.forEach((key) => {
+        const element = key;
+        element.emoji = themeList[key.fingerprint].walletKeyTheme.emoji;
+        element.color = themeList[key.fingerprint].walletKeyTheme.color;
+      });
+    }
+    if (walletKeyAddresses.length > 0 && keyEntries.length > 0) {
+      keyEntries.forEach((key) => {
+        const element = key;
+        const match = walletKeyAddresses.find(({ fingerprint }) => fingerprint === key.fingerprint);
+        if (match) {
+          element.address = match.address;
+        }
+      });
+    }
+    setKeyList(keyEntries);
+  }, [publicKeyFingerprints, themeList, walletKeyAddresses, isLoadingPublicKeys, isLoadingWKAddresses]);
 
   function showIcons() {
     return (
@@ -64,7 +75,7 @@ export default function MyContact() {
                     style={{
                       height: '40px',
                       width: '40px',
-                      background: theme.palette.colors[key.color].main,
+                      background: key.color ? theme.palette.colors[key.color].main : theme.palette.background.paper,
                       borderRadius: '5px',
                       fontSize: '26px',
                       paddingLeft: '7px',

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 
 export default function useAddressBook(): [
   AddressContact[] | undefined, // contacts
@@ -13,6 +13,7 @@ export default function useAddressBook(): [
   (contactId: number) => void, // removeContact
   (contactId: number) => AddressContact | undefined, // getContactContactId
   (
+    contactId: number,
     name: string,
     addresses: ContactAddress[],
     dids: ContactDID[],
@@ -24,20 +25,20 @@ export default function useAddressBook(): [
 ] {
   // editContact
   const [addressBook, setAddressBook] = useState<AddressContact[]>([]);
-  const LOCAL_STORAGE_KEY = 'addressbook';
-  const contactBookJSON = JSON.stringify(addressBook);
-  useEffect(() => {
-    if (localStorage.getItem(LOCAL_STORAGE_KEY) === undefined || localStorage.getItem(LOCAL_STORAGE_KEY) === null) {
-      setAddressBook([]);
-    } else {
-      const addresses: AddressContact[] = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-      setAddressBook([...addresses]);
-    }
+
+  const updateAddressBook = useCallback((contacts) => {
+    (window as any).ipcRenderer.invoke('saveAddressBook', contacts);
+    setAddressBook(contacts);
   }, []);
 
   useEffect(() => {
-    if (addressBook !== undefined) localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(addressBook));
-  }, [contactBookJSON, addressBook]);
+    async function getAddressBook() {
+      const contacts = await (window as any).ipcRenderer.invoke('readAddressBook');
+      setAddressBook(contacts);
+    }
+
+    getAddressBook();
+  }, []);
 
   function getNewContactId(): number {
     if (addressBook.length === 0 || addressBook === undefined) return 1;
@@ -63,13 +64,12 @@ export default function useAddressBook(): [
       domainNames,
     };
 
-    setAddressBook([...addressBook, newAddress]);
+    updateAddressBook([...addressBook, newAddress]);
   }
 
   function removeContact(contactId: number) {
     const filteredContacts = addressBook.filter((contact) => contact.contactId !== contactId);
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(filteredContacts));
-    setAddressBook([...filteredContacts]);
+    updateAddressBook([...filteredContacts]);
   }
 
   function getContactByContactId(contactId: number) {
@@ -87,7 +87,6 @@ export default function useAddressBook(): [
     domainNames: ContactDomainName[]
   ) {
     const filteredContacts = addressBook.filter((contact) => contact.contactId !== contactId);
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(filteredContacts));
 
     const newAddress: AddressContact = {
       contactId,
@@ -99,7 +98,7 @@ export default function useAddressBook(): [
       domainNames,
     };
 
-    setAddressBook([...filteredContacts, newAddress]);
+    updateAddressBook([...filteredContacts, newAddress]);
   }
 
   function getContactByAddress(address: string) {
