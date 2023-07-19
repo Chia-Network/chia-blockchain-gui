@@ -7,6 +7,7 @@ import {
   ModalDialogs,
   LocaleProvider,
   LayoutLoading,
+  AddressBookProvider,
   dark,
   light,
   ErrorBoundary,
@@ -104,14 +105,16 @@ export default function App(props: AppProps) {
                   <NFTProvider>
                     <ModalDialogsProvider>
                       <Suspense fallback={<LayoutLoading />}>
-                        <OffersProvider>
-                          <NotificationsProvider>
-                            <WalletConnectProvider projectId={WalletConnectChiaProjectId}>
-                              <AppState>{outlet ? <Outlet /> : children}</AppState>
-                              <ModalDialogs />
-                            </WalletConnectProvider>
-                          </NotificationsProvider>
-                        </OffersProvider>
+                        <AddressBookProvider>
+                          <OffersProvider>
+                            <NotificationsProvider>
+                              <WalletConnectProvider projectId={WalletConnectChiaProjectId}>
+                                <AppState>{outlet ? <Outlet /> : children}</AppState>
+                                <ModalDialogs />
+                              </WalletConnectProvider>
+                            </NotificationsProvider>
+                          </OffersProvider>
+                        </AddressBookProvider>
                       </Suspense>
                     </ModalDialogsProvider>
                   </NFTProvider>

@@ -10,6 +10,7 @@ import {
   Offers as OffersIcon,
   Tokens as TokensIcon,
   Settings as SettingsIcon,
+  Contacts as AddressBookIcon,
   VC as VCIcon,
 } from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
@@ -74,6 +75,12 @@ export default function DashboardSideBar(props: DashboardSideBarProps) {
           icon={OffersIcon}
           title={<Trans>Offers</Trans>}
           data-testid="DashboardSideBar-offers"
+        />
+        <SideBarItem
+          to="/dashboard/addressbook"
+          icon={AddressBookIcon}
+          title={<Trans>Contacts</Trans>}
+          data-testid="DashboardSideBar-addressbook"
         />
 
         {!simple && (

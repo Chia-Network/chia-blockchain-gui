@@ -18,3 +18,4 @@ export { default as useSkipMigration } from './useSkipMigration';
 export { default as useTrans } from './useTrans';
 export { default as useValidateChangePassphraseParams } from './useValidateChangePassphraseParams';
 export { default as useWalletThemeColor } from './useWalletThemeColor';
+export { default as useAddressBook } from './useAddressBook';
