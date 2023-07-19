@@ -198,7 +198,7 @@ export default function ContactEdit() {
       dids: contact.dids,
       domains: contact.domainNames,
       notes: '',
-      nftid: '',
+      nftId: '',
     },
   });
 
@@ -250,7 +250,7 @@ export default function ContactEdit() {
       filteredAddresses,
       filteredProfiles,
       data.notes,
-      data.nftid,
+      data.nftId,
       filteredDomains
     );
     navigate(`/dashboard/addressbook/${Number(contact.contactId)}`);
@@ -338,5 +338,5 @@ type ContactEditData = {
   dids: [];
   domains: [];
   notes: string;
-  nftid: string;
+  nftId: string;
 };

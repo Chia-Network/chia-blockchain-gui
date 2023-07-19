@@ -192,7 +192,7 @@ export default function ContactAdd() {
       dids: [],
       domains: [],
       notes: '',
-      nftid: '',
+      nftId: '',
     },
   });
 
@@ -238,7 +238,7 @@ export default function ContactAdd() {
         throw new Error(`${entry.did} is not a valid DID`);
       }
     });
-    addContact(data.name, filteredAddresses, filteredProfiles, data.notes, data.nftid, filteredDomains);
+    addContact(data.name, filteredAddresses, filteredProfiles, data.notes, data.nftId, filteredDomains);
     navigate(`/dashboard/addressbook/`);
   }
 
@@ -330,5 +330,5 @@ type ContactAddData = {
   dids: [];
   domains: [];
   notes: string;
-  nftid: string;
+  nftId: string;
 };

@@ -15,7 +15,7 @@ export default function AddressBookMenuItem({ contact }) {
   }
 
   // commented out - until this stops throwing an error when not a valid nft
-  // const launcherId = launcherIdFromNFTId(contact.nftid ?? '');
+  // const launcherId = launcherIdFromNFTId(contact.nftId ?? '');
   // const { data: nft } = useGetNFTInfoQuery({ coinId: launcherId ?? '' });
 
   /*

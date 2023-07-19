@@ -7,7 +7,7 @@ export default function useAddressBook(): [
     addresses: ContactAddress[],
     dids: ContactDID[],
     notes: string,
-    nftid: string,
+    nftId: string,
     domainNames: ContactDomainName[]
   ) => void, // addContact
   (contactId: number) => void, // removeContact
@@ -18,7 +18,7 @@ export default function useAddressBook(): [
     addresses: ContactAddress[],
     dids: ContactDID[],
     notes: string,
-    nftid: string,
+    nftId: string,
     domainNames: ContactDomainName[]
   ) => void, // editContact
   (address: string) => AddressContact | undefined // getContactByAddress
@@ -50,7 +50,7 @@ export default function useAddressBook(): [
     addresses: ContactAddress[],
     dids: ContactDID[],
     notes: string,
-    nftid: string,
+    nftId: string,
     domainNames: ContactDomainName[]
   ) {
     const contactId = getNewContactId();
@@ -60,7 +60,7 @@ export default function useAddressBook(): [
       addresses: [...addresses],
       dids,
       notes,
-      nftid,
+      nftId,
       domainNames,
     };
 
@@ -83,7 +83,7 @@ export default function useAddressBook(): [
     addresses: ContactAddress[],
     dids: ContactDID[],
     notes: string,
-    nftid: string,
+    nftId: string,
     domainNames: ContactDomainName[]
   ) {
     const filteredContacts = addressBook.filter((contact) => contact.contactId !== contactId);
@@ -94,7 +94,7 @@ export default function useAddressBook(): [
       addresses: [...addresses],
       dids,
       notes,
-      nftid,
+      nftId,
       domainNames,
     };
 
@@ -111,27 +111,27 @@ export default function useAddressBook(): [
   return [addressBook, addContact, removeContact, getContactByContactId, editContact, getContactByAddress];
 }
 
-interface AddressContact {
+type AddressContact = {
   contactId: number;
   name: string;
   addresses: ContactAddress[];
   dids: ContactDID[];
   notes: string;
-  nftid: string;
+  nftId: string;
   domainNames: ContactDomainName[];
-}
+};
 
-interface ContactAddress {
+type ContactAddress = {
   name: string;
   address: string;
-}
+};
 
-interface ContactDID {
+type ContactDID = {
   name: string;
   did: string;
-}
+};
 
-interface ContactDomainName {
+type ContactDomainName = {
   name: string;
   domain: string;
-}
+};
