@@ -116,7 +116,7 @@ export async function processSessionProposal(
     });
 
     const result = await acknowledged();
-    if (!result?.acknowledged) {
+    if (!('topic' in result) || !result.topic) {
       return;
     }
 
