@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_TW\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-14 17:44\n"
+"PO-Revision-Date: 2023-07-19 16:06\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -196,21 +196,21 @@ msgstr ""
 
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:89
 msgid "{0, plural, one {mojo} other {mojos}}"
-msgstr ""
+msgstr "{0, plural,one {translate}other {translate}}"
 
 #: src/components/nfts/NFTPreview.tsx:431
 #: src/components/settings/Settings.tsx:79
 msgid "{0}"
-msgstr ""
+msgstr "{0}"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:169
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:201
 msgid "{0} buckets is recommended"
-msgstr ""
+msgstr "推薦 {0} 桶"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:217
 msgid "{0} of {1}"
-msgstr ""
+msgstr "{0} of {1}"
 
 #: src/components/nfts/gallery/SelectedActionsDialog.tsx:63
 msgid "{0} of {allCount} items selected:"
@@ -239,11 +239,11 @@ msgstr ""
 #: src/components/offers/NFTOfferViewer.tsx:204
 #: src/components/offers/OfferSummary.tsx:173
 msgid "{makerFee, plural, one {mojo} other {mojos}}"
-msgstr ""
+msgstr "{makerFee, plural, one {mojo} other {mojos}}"
 
 #: src/components/offers/OfferSummaryRow.tsx:39
 msgid "{mojos, plural, one {mojo} other {mojos}}"
-msgstr ""
+msgstr "{mojos, plural, one {mojo} other {mojos}}"
 
 #: src/components/nfts/gallery/FilterPill.tsx:50
 #~ msgid "{title}"
@@ -255,11 +255,11 @@ msgstr ""
 
 #: src/components/nfts/NFTRankings.tsx:46
 msgid "{value} of {max_value}"
-msgstr ""
+msgstr "{value} of {max_value}"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:106
 msgid "{warning}"
-msgstr ""
+msgstr "{warning}"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:40
 msgid "+ Add a Plot"
@@ -924,7 +924,7 @@ msgstr "收藏"
 #: src/components/vcs/VCRevokeDialog.tsx:27
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:70
 msgid "Confirm"
-msgstr ""
+msgstr "確認"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:19
 msgid "Confirm Disconnect"
@@ -1123,7 +1123,7 @@ msgstr ""
 
 #: src/components/offers/OfferViewerTitle.tsx:36
 msgid "created {0}"
-msgstr ""
+msgstr "已建立{0}"
 
 #: src/components/offers/ConfirmOfferCancellation.tsx:94
 msgid "Creates and submits a transaction on the blockchain that cancels the offer"
@@ -2090,7 +2090,7 @@ msgstr "可用資金不足，無法接受報價單。請確保您的 可花用�
 #: src/components/offers2/CreateOfferBuilder.tsx:132
 msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
+msgstr "可用資金不足，無法建立報價單。請確保你的可支出餘額足以支付報價單金額。"
 
 #: src/components/settings/Settings.tsx:73
 #~ msgid "Integration"
@@ -2111,7 +2111,7 @@ msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:579
 msgid "Invalid NFT identifier"
-msgstr ""
+msgstr "無效的 NFT 標示符"
 
 #: src/components/plotNFT/PlotNFTState.tsx:27
 msgid "Invalid state"
