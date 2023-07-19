@@ -132,7 +132,7 @@ export default function VCList() {
   function renderVCCard(index: number, vcRecord: any) {
     const proofHash = vcRecord?.vc?.proofHash;
     const vcProofs = proofHash ? proofs[proofHash] : undefined;
-    return <VCCard vcRecord={vcRecord} proofs={vcProofs} />;
+    return <VCCard vcRecord={vcRecord} proofs={vcProofs} isLocal={!!vcRecord.isLocal} />;
   }
 
   const allVCs = React.useMemo(() => {

@@ -22,14 +22,10 @@ export default function VCDetail() {
 
   const navigate = useNavigate();
   const { data: fingerprint } = useGetLoggedInFingerprintQuery();
-  let localData =
+  const localData =
     fingerprint && VCsLocalStorage[fingerprint]
       ? VCsLocalStorage[fingerprint].find((vc: any) => vc.sha256 === vcId)
       : null;
-
-  if (localData) {
-    localData = { ...localData, isLocal: true };
-  }
 
   function renderBackButton() {
     return (
@@ -45,7 +41,7 @@ export default function VCDetail() {
       proofs = localData.proof?.values;
     }
     if (isLoading || (!data && !localData)) return null;
-    return <VCCard isDetail vcRecord={data || localData} proofs={proofs} />;
+    return <VCCard isDetail vcRecord={data || localData} proofs={proofs} isLocal={!!localData} />;
   }
   return (
     <Box sx={{ padding: '25px' }}>
