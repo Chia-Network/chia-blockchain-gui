@@ -69,7 +69,7 @@ export default function useAddressBook(): [
 
   function removeContact(contactId: number) {
     const filteredContacts = addressBook.filter((contact) => contact.contactId !== contactId);
-    updateAddressBook([...filteredContacts]);
+    updateAddressBook(filteredContacts);
   }
 
   function getContactByContactId(contactId: number) {
