@@ -55,6 +55,7 @@ export default function PlotNFTAdd(props: Props) {
         </HeaderTag>
       )}
       <PlotNFTSelectPool
+        step={1}
         onSubmit={handleSubmit}
         title={<Trans>Want to Join a Pool? Create a Plot NFT</Trans>}
         description={

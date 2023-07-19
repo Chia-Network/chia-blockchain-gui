@@ -12,6 +12,7 @@ export const {
   useCloseMutation,
   useGetStateQuery,
   useClientStartServiceMutation,
+  useClientStopServiceMutation,
 } = client;
 
 // daemon hooks
@@ -29,6 +30,7 @@ export const {
   useMigrateKeyringMutation,
   useUnlockKeyringMutation,
   useGetVersionQuery,
+  useGetKeysForPlottingQuery,
 
   useGetPlottersQuery,
   useStopPlottingMutation,
@@ -62,7 +64,13 @@ export const {
   useGetSignagePointsQuery,
   useGetPoolStateQuery,
   useSetPayoutInstructionsMutation,
-  useGetFarmingInfoQuery,
+  useGetNewFarmingInfoQuery,
+  useGetMissingSignagePointsQuery,
+  useResetMissingSignagePointsMutation,
+  useGetFilterChallengeStatQuery,
+  useResetFilterChallengeStatMutation,
+  useGetPartialStatsOffsetQuery,
+  useResetPartialStatsMutation,
 } = farmer;
 
 // full node hooks
@@ -214,6 +222,9 @@ export const {
   useGetPlotDirectoriesQuery,
   useAddPlotDirectoryMutation,
   useRemovePlotDirectoryMutation,
+  useGetFarmingInfoQuery,
+  useGetHarvesterConfigQuery,
+  useUpdateHarvesterConfigMutation,
 } = harvester;
 
 // plotter hooks

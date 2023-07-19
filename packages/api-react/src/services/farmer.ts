@@ -20,6 +20,9 @@ export const apiWithTag = api.enhanceEndpoints({
     'HarvestersSummary',
     'HarvesterPlotsKeysMissing',
     'HarvesterPlotsDuplicates',
+    'MissingSignagePoints',
+    'FilterChallengeStat',
+    'partialStats',
   ],
 });
 
@@ -32,7 +35,12 @@ export const farmerApi = apiWithTag.injectEndpoints({
       providesTags: [{ type: 'Harvesters', id: 'LIST' }],
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
-          command: 'onHarvesterChanged',
+          command: 'onHarvesterUpdated',
+          service: Farmer,
+          endpoint: 'getHarvesters',
+        },
+        {
+          command: 'onHarvesterRemoved',
           service: Farmer,
           endpoint: 'getHarvesters',
         },
@@ -231,25 +239,75 @@ export const farmerApi = apiWithTag.injectEndpoints({
               { type: 'Pools', id: 'LIST' },
             ]
           : [{ type: 'Pools', id: 'LIST' }],
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
+        {
+          command: 'onSubmittedPartial',
+          service: Farmer,
+          endpoint: 'getPoolState',
+        },
+        {
+          command: 'onFailedPartial',
+          service: Farmer,
+          endpoint: 'getPoolState',
+        },
+      ]),
+    }),
+
+    getPartialStatsOffset: query(build, Farmer, 'getPartialStatsOffset', {
+      providesTags: ['partialStats'],
+    }),
+
+    resetPartialStats: mutation(build, Farmer, 'resetPartialStats', {
+      invalidatesTags: ['partialStats'],
     }),
 
     setPayoutInstructions: mutation(build, Farmer, 'setPayoutInstructions', {
       invalidatesTags: (_result, _error, { launcherId }) => [{ type: 'PayoutInstructions', id: launcherId }],
     }),
 
-    getFarmingInfo: query(build, Farmer, 'getFarmingInfo', {
+    getNewFarmingInfo: query(build, Farmer, 'getNewFarmingInfo', {
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onFarmingInfoChanged',
           service: Farmer,
-          endpoint: 'getFarmingInfo',
+          endpoint: 'getNewFarmingInfo',
         },
       ]),
+    }),
+
+    getMissingSignagePoints: query(build, Farmer, 'getMissingSignagePoints', {
+      providesTags: ['MissingSignagePoints'],
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
+        {
+          command: 'onNewSignagePoint',
+          service: Farmer,
+          endpoint: 'getMissingSignagePoints',
+        },
+      ]),
+    }),
+
+    resetMissingSignagePoints: mutation(build, Farmer, 'resetMissingSignagePoints', {
+      invalidatesTags: ['MissingSignagePoints'],
+    }),
+
+    getFilterChallengeStat: query(build, Farmer, 'getFilterChallengeStat', {
+      providesTags: ['FilterChallengeStat'],
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
+        {
+          command: 'onFarmingInfoChanged',
+          service: Farmer,
+          endpoint: 'getFilterChallengeStat',
+        },
+      ]),
+    }),
+
+    resetFilterChallengeStat: mutation(build, Farmer, 'resetFilterChallengeStat', {
+      invalidatesTags: ['FilterChallengeStat'],
     }),
   }),
 });
 
-// TODO add new farming info query and event for last_attepmtp_proofs
+// TODO add new farming info query and event for last_attempt_proofs
 
 export const {
   useFarmerPingQuery,
@@ -268,5 +326,11 @@ export const {
   useGetSignagePointsQuery,
   useGetPoolStateQuery,
   useSetPayoutInstructionsMutation,
-  useGetFarmingInfoQuery,
+  useGetNewFarmingInfoQuery,
+  useGetMissingSignagePointsQuery,
+  useResetMissingSignagePointsMutation,
+  useGetFilterChallengeStatQuery,
+  useResetFilterChallengeStatMutation,
+  useGetPartialStatsOffsetQuery,
+  useResetPartialStatsMutation,
 } = farmerApi;

@@ -44,7 +44,10 @@ export const clientApi = apiWithTag.injectEndpoints({
     }),
 
     clientStartService: mutation(build, Client, 'startService'),
+
+    clientStopService: mutation(build, Client, 'stopService'),
   }),
 });
 
-export const { useCloseMutation, useGetStateQuery, useClientStartServiceMutation } = clientApi;
+export const { useCloseMutation, useGetStateQuery, useClientStartServiceMutation, useClientStopServiceMutation } =
+  clientApi;
