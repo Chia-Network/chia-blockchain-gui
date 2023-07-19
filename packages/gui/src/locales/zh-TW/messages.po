@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_TW\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-19 16:06\n"
+"PO-Revision-Date: 2023-07-19 17:03\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -418,7 +418,7 @@ msgstr "所有的NFTs"
 
 #: src/components/did/DIDProfileDropdown.tsx:23
 msgid "All Profiles"
-msgstr "所有的檔案(DIDs)"
+msgstr "所有的個人檔案"
 
 #: src/components/settings/SettingsIntegration.tsx:174
 msgid "Allow external Apps and websites to connect to your wallet through WalletConnect."
@@ -537,7 +537,7 @@ msgstr "您確定要斷線嗎？"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:63
 msgid "Are you sure you want to move this NFT to the specified profile?"
-msgstr "你確定你要將這個NFT移動到指定的檔案(DIDs)嗎?"
+msgstr "你確定你要將這個NFT移動到指定的個人檔案嗎?"
 
 #: src/electron/main.tsx:816
 #~ msgid "Are you sure you want to quit?"
@@ -1073,7 +1073,7 @@ msgstr ""
 
 #: src/components/settings/ProfileAdd.tsx:113
 msgid "Create a new profile"
-msgstr "建立一個新的檔案(DIDs)"
+msgstr "建立一個新的個人檔案"
 
 #: src/components/plot/add/PlotAddNFT.tsx:39
 msgid "Create a Plot NFT"
@@ -2166,7 +2166,7 @@ msgstr "加入農會以獲得更多持續性的 XCH 耕種獎勵。建立農場�
 
 #: src/components/app/AppSelectMode.tsx:133
 msgid "Join farming pools"
-msgstr ""
+msgstr "加入農會耕種"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:334
 msgid "Join Pool"
@@ -2199,7 +2199,7 @@ msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:83
 msgid "Keyring migration failed: {0}"
-msgstr ""
+msgstr "鑰匙串轉移失敗:{0}"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:49
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:49
@@ -2220,7 +2220,7 @@ msgstr "最後耕種高度"
 
 #: src/components/fullNode/card/FullNodeCardPeakTime.tsx:16
 msgid "Last Transaction Block Time"
-msgstr ""
+msgstr "上一次交易區塊時間"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:31
 msgid "Latest Block Challenges"
@@ -2235,7 +2235,7 @@ msgstr "啟動器 ID"
 
 #: src/components/nfts/NFTDetails.tsx:64
 msgid "Launcher ID"
-msgstr ""
+msgstr "啟動器 ID"
 
 #: src/components/plot/add/PlotAddNFT.tsx:76
 msgid "Learn more"
@@ -2252,16 +2252,16 @@ msgstr "離開農會"
 
 #: src/components/app/AppKeyringMigrator.tsx:93
 msgid "Legacy keyrings are no longer supported. Your keys need to be migrated to a new keyring that is optionally secured by a master passphrase."
-msgstr ""
+msgstr "舊密鑰不再支持。你的密鑰需要遷移到一個新的密鑰環，這個密鑰環可以選擇通過主密碼保護。"
 
 #: src/components/app/AppKeyringMigrator.tsx:100
 msgid "Legacy keyrings are no longer supported. Your keys need to be migrated to a new keyring that is secured by a master passphrase."
-msgstr ""
+msgstr "舊密鑰不再支持。你的密鑰需要遷移到一個新的密鑰環，這個密鑰環由主密碼保護。"
 
 #: src/components/nfts/NFTDetails.tsx:295
 #: src/constants/WalletConnectCommands.tsx:662
 msgid "License Hash"
-msgstr ""
+msgstr "牌照哈希值"
 
 #: src/constants/WalletConnectCommands.tsx:657
 msgid "License Uris"
@@ -2269,7 +2269,7 @@ msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:280
 msgid "License URL {0}"
-msgstr ""
+msgstr "牌照 URL {0}"
 
 #: src/components/settings/SettingsNFT.tsx:184
 msgid "Limit cache size"
@@ -2277,15 +2277,15 @@ msgstr ""
 
 #: src/components/fullNode/FullNodeConnections.tsx:99
 msgid "List of connections is empty"
-msgstr ""
+msgstr "連接列表是空的"
 
 #: src/components/app/AppProviders.tsx:88
 msgid "Loading configuration"
-msgstr ""
+msgstr "正在加載設定"
 
 #: src/components/farm/Farm.tsx:25
 msgid "Loading farming data"
-msgstr ""
+msgstr "正在加載耕種資料"
 
 #: src/components/app/AppAutoLogin.tsx:49
 msgid "Loading fingerprint"
@@ -2293,15 +2293,15 @@ msgstr ""
 
 #: src/components/app/AppState.tsx:206
 msgid "Loading keyring status"
-msgstr ""
+msgstr "正在加載密鑰環狀態"
 
 #: src/components/nfts/NFTSummary.tsx:98
 msgid "Loading NFT"
-msgstr ""
+msgstr "正在加載 NFT"
 
 #: src/components/offers/NFTOfferPreview.tsx:62
 msgid "Loading NFT Info..."
-msgstr ""
+msgstr "正在加載 NFT 資訊"
 
 #: src/components/offers2/OfferBuilderValueSearch.tsx:144
 #~ msgid "Loading NFTs..."
@@ -2319,7 +2319,7 @@ msgstr "載入中..."
 
 #: src/components/plot/PlotHarvester.tsx:60
 msgid "Local"
-msgstr ""
+msgstr "本地"
 
 #: src/components/settings/SettingsNFT.tsx:166
 msgid "Local folder"
@@ -2335,7 +2335,7 @@ msgstr ""
 
 #: src/components/app/AppSelectMode.tsx:84
 msgid "Manage CAT tokens"
-msgstr ""
+msgstr "管理CAT代幣"
 
 #: src/components/farm/FarmHeader.tsx:30
 msgid "Manage Farming Rewards"
@@ -2386,7 +2386,7 @@ msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:265
 msgid "Metadata Hash"
-msgstr ""
+msgstr "元數據哈希值"
 
 #: src/components/nfts/NFTPreview.tsx:649
 #~ msgid "Metadata hash mismatch"
@@ -2394,7 +2394,7 @@ msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:250
 msgid "Metadata URL {0}"
-msgstr ""
+msgstr "元數據 URL {0}"
 
 #: src/components/fullNode/FullNodeConnections.tsx:50
 msgid "MiB Up/Down"
@@ -2402,19 +2402,19 @@ msgstr "MiB 上傳/下傳"
 
 #: src/components/settings/SettingsPanel.tsx:137
 msgid "Migrate Keyring"
-msgstr ""
+msgstr "遷移鑰匙環"
 
 #: src/components/app/AppKeyringMigrator.tsx:268
 msgid "Migrate Keys"
-msgstr ""
+msgstr "遷移鑰匙"
 
 #: src/components/app/AppKeyringMigrator.tsx:129
 msgid "Migration required"
-msgstr ""
+msgstr "需要遷移"
 
 #: src/components/settings/SettingsPanel.tsx:93
 msgid "Migration required to support passphrase protection"
-msgstr ""
+msgstr "遷移需要有密碼保護"
 
 #: src/components/pool/PoolInfo.tsx:28
 msgid "Minimum Difficulty"
@@ -2426,7 +2426,7 @@ msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:213
 msgid "Minted at Block Height"
-msgstr ""
+msgstr "鑄造區塊高度"
 
 #: src/components/offers2/OfferBuilderNFT.tsx:54
 msgid "Minter"
@@ -2442,7 +2442,7 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:503
 msgid "MintGarden URL"
-msgstr ""
+msgstr "MintGarden URL"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 msgid "Minutes"
@@ -2450,7 +2450,7 @@ msgstr "分鐘"
 
 #: src/components/plot/PlotHarvester.tsx:108
 msgid "Missing Keys"
-msgstr ""
+msgstr "缺少密鑰"
 
 #: src/components/nfts/NFTPreview.tsx:641
 #~ msgid "Missing preview_image_hash key"
@@ -2470,15 +2470,15 @@ msgstr "更多記憶體可略微提高速度"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:330
 msgid "Move"
-msgstr ""
+msgstr "移動"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:374
 msgid "Move NFT to Profile"
-msgstr ""
+msgstr "移動NFT到個人檔案"
 
 #: src/components/nfts/NFTContextualActions.tsx:224
 msgid "Move to Profile"
-msgstr ""
+msgstr "移動到個人檔案"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:272
 msgid "Multi-select"
@@ -2486,7 +2486,7 @@ msgstr ""
 
 #: src/components/settings/ProfileView.tsx:90
 msgid "My DID"
-msgstr ""
+msgstr "我的去中心化個人檔案"
 
 #: src/constants/WalletConnectCommands.tsx:555
 #: src/constants/WalletConnectCommands.tsx:780
@@ -2543,7 +2543,7 @@ msgstr "下一步"
 #: src/components/settings/SettingsNFT.tsx:80
 #: src/components/signVerify/SignMessage.tsx:154
 msgid "NFT"
-msgstr ""
+msgstr "NFT"
 
 #: src/util/offerBuilderDataToOffer.ts:261
 #: src/util/offerBuilderDataToOffer.ts:335
@@ -2565,7 +2565,7 @@ msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:616
 msgid "NFT details not available"
-msgstr ""
+msgstr "NFT詳細資料不可用"
 
 #: src/components/offers2/OfferBuilderNFTRoyalties.tsx:171
 msgid "NFT has no royalties"
@@ -2579,15 +2579,15 @@ msgstr ""
 #: src/components/offers2/OfferBuilderNFT.tsx:50
 #: src/components/signVerify/SigningEntityNFT.tsx:64
 msgid "NFT ID"
-msgstr ""
+msgstr "NFT ID"
 
 #: src/components/offers/NFTOfferEditor.tsx:213
 msgid "NFT Identifier"
-msgstr ""
+msgstr "NFT標示符"
 
 #: src/components/offers/NFTOfferPreview.tsx:44
 msgid "NFT identifier does not reference a valid NFT coin."
-msgstr ""
+msgstr "NFT標示符沒有引用一個有效的NFT硬幣"
 
 #: src/constants/WalletConnectCommands.tsx:797
 msgid "NFT Launcher Id"
@@ -2595,12 +2595,12 @@ msgstr ""
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:206
 msgid "NFT Move Failed"
-msgstr ""
+msgstr "NFT移動失敗"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:181
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:199
 msgid "NFT Move Pending"
-msgstr ""
+msgstr "NFT待移動"
 
 #: src/components/offers/NFTOfferPreview.tsx:105
 #: src/components/offers2/OfferBuilderNFT.tsx:96
@@ -2609,11 +2609,11 @@ msgstr "NFT未指定"
 
 #: src/components/offers/NFTOfferViewer.tsx:494
 msgid "NFT Purchase Price"
-msgstr ""
+msgstr "NFT購買價格"
 
 #: src/components/nfts/NFTContextualActions.tsx:263
 msgid "NFT Status Update Failed"
-msgstr ""
+msgstr "NFT狀態更新失敗"
 
 #: src/components/nfts/NFTContextualActions.tsx:253
 msgid "NFT Status Updated"
@@ -2993,7 +2993,7 @@ msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:108
 msgid "Owner DID"
-msgstr "擁有者 DID"
+msgstr "擁有者的去中心化個人檔案"
 
 #: src/components/nfts/NFTDetails.tsx:148
 msgid "Owner Public Key"
@@ -3821,7 +3821,7 @@ msgstr ""
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:244
 #: src/components/signVerify/SigningEntityDID.tsx:69
 msgid "Select Profile"
-msgstr ""
+msgstr "選擇個人檔案"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:48
 msgid "Select Temporary Directory"
@@ -3959,7 +3959,7 @@ msgstr ""
 
 #: src/components/offers/OfferManager.tsx:216
 msgid "Show Details"
-msgstr ""
+msgstr "顯示詳細資料"
 
 #: src/constants/WalletConnectCommands.tsx:925
 msgid "Show notification with offer or general announcement"
@@ -4074,7 +4074,7 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:134
 msgid "Specify a value of 0 to use all available threads"
-msgstr ""
+msgstr "輸入0即可使用所有執行緒"
 
 #: src/components/signVerify/SignMessage.tsx:21
 msgid "Specify a wallet address, NFT, or DID to sign with"
@@ -4118,7 +4118,7 @@ msgstr ""
 
 #: src/components/app/AppState.tsx:264
 msgid "Starting services"
-msgstr ""
+msgstr "正在啟動服務"
 
 #: src/components/settings/SettingsStartup.tsx:16
 msgid "Startup"
@@ -4141,7 +4141,7 @@ msgstr "狀態"
 
 #: src/components/app/AppSelectMode.tsx:78
 msgid "Store and Send XCH"
-msgstr ""
+msgstr "儲存並發送XCH"
 
 #: src/components/app/AppPassPrompt.tsx:111
 msgid "Submit"
@@ -4151,7 +4151,7 @@ msgstr "確認"
 #: src/components/vcs/VCCard.tsx:252
 #: src/hooks/useAcceptOfferHook.tsx:97
 msgid "Success"
-msgstr ""
+msgstr "成功"
 
 #: src/components/settings/LimitCacheSize.tsx:54
 msgid "Successfully updated cache size limit."
@@ -4159,7 +4159,7 @@ msgstr ""
 
 #: src/components/settings/SettingsDerivationIndex.tsx:54
 msgid "Successfully updated the derivation index. Your balances may take a while to update."
-msgstr ""
+msgstr "成功更新索引。你的餘額可能需要一段時間才能更新。"
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:50
 msgid "Synced"
@@ -4201,7 +4201,7 @@ msgstr ""
 
 #: src/components/settings/SettingsPanel.tsx:166
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
-msgstr ""
+msgstr "派生索引設置錢包掃描區塊鏈的錢包地址範圍。如果您有大量交易或取消了 XCH、CAT 或 NFT 的報價，則該數字通常會更高。如果您認為您的餘額因缺少硬幣而不正確，那麼增加派生指數可以幫助錢包將缺少的硬幣納入餘額總額中。"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:88
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:137
@@ -4219,7 +4219,7 @@ msgstr "主網最小要求的大小是 k=32"
 
 #: src/components/offers/NFTOfferViewer.tsx:584
 msgid "The net proceeds include the asking price, minus any associated creator fees (if the NFT has royalty payments enabled)."
-msgstr ""
+msgstr "淨收益包含收取價格、減去任何相關創作者收費(如果啟用了版稅付款)。"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:207
 msgid "The NFT move failed: {err}"
@@ -4227,11 +4227,11 @@ msgstr ""
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:200
 msgid "The NFT move transaction has been successfully submitted to the blockchain."
-msgstr ""
+msgstr "NFT移動交易已成功提交至區塊鏈。"
 
 #: src/components/nfts/NFTContextualActions.tsx:254
 msgid "The NFT status has been updated. If the transaction was successfully sent to the mempool, it may still complete."
-msgstr ""
+msgstr "NFT 狀態已更新。如果交易已成功發送到內存池，它仍可能完成。"
 
 #: src/components/nfts/NFTContextualActions.tsx:264
 msgid "The NFT status update failed: {err}"
@@ -4247,7 +4247,7 @@ msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:173
 msgid "The NFT transfer transaction has been successfully submitted to the blockchain."
-msgstr ""
+msgstr "NFT轉移交易已成功提交至區塊鏈。"
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:16
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:46
@@ -4288,23 +4288,23 @@ msgstr ""
 
 #: src/components/offers/NFTOfferViewer.tsx:558
 msgid "The total amount offered includes the offered purchase price, plus the optional offer creation fee.<0/>If the NFT has royalty payments enabled, those creator fees will be paid from the offered purchase price."
-msgstr ""
+msgstr "報價總額包含購買價格、加上可選擇的報價創作者費用。<0/>如果 NFT 啟用了版稅支付，這些創作者費用將從提供的購買價格中支付。"
 
 #: src/components/offers/NFTOfferEditor.tsx:395
 msgid "The total amount offered includes the price you're willing to pay for the NFT, plus the optional offer creation fee. One or more coins totalling at least the amount shown below will be deducted from your spendable balance upon offer creation.<0/>If the NFT has royalty payments enabled, those creator fees will be paid by the party that accepts the offer."
-msgstr ""
+msgstr "報價總額包括您願意為 NFT 支付的價格，加上可選的報價創建費用。創建要約時，將從您的可使用餘額中扣除一枚或多枚硬幣，總金額至少如下所示。<0/>如果 NFT 啟用了版稅支付，這些創建者費用將由接受要約的一方支付。"
 
 #: src/components/offers/NFTOfferEditor.tsx:386
 msgid "The total amount requested includes the asking price, plus the associated creator fees (if the NFT has royalty payments enabled). Creator fees will be paid by the party that accepts the offer.<0/>The optional offer creation fee is not included in this total, and will be deducted from your spendable balance upon offer creation."
-msgstr ""
+msgstr "請求的總金額包括要價，加上相關的創建者費用(如果 NFT 啟用了版稅支付)。創建者費用將由接受優惠的一方支付。<0/>可選優惠創建費用不包含在該總額中，並將在優惠創建時從您的可使用餘額中扣除。"
 
 #: src/components/offers/NFTOfferViewer.tsx:547
 msgid "The total amount requested includes the asking price, plus the associated creator fees (if the NFT has royalty payments enabled).{0}"
-msgstr ""
+msgstr "請求的總金額包括要價以及相關的創作者費用(如果 NFT 啟用了特許權使用費)。{0}"
 
 #: src/components/block/Block.jsx:188
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on the whole chain up to this block."
-msgstr ""
+msgstr "直到該區塊的整個鏈上的 VDF(可驗證延遲函數) 或時間證明迭代的總數。"
 
 #: src/components/block/Block.jsx:198
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on this block."
@@ -4324,7 +4324,7 @@ msgstr "這些耕地是無效的，你可能想要刪除他們。"
 
 #: src/components/offers/NFTOfferEditor.tsx:360
 msgid "They will receive"
-msgstr ""
+msgstr "他們將收到"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:87
 msgid "This allows you to add a directory that has plots in it. If you have not created any plots, go to the plotting screen."
@@ -4345,7 +4345,7 @@ msgstr "這是塊農建立區塊的時間，這是在用時間證明最終確定
 
 #: src/components/fullNode/card/FullNodeCardPeakTime.tsx:17
 msgid "This is the timestamp of the most recent transaction block."
-msgstr ""
+msgstr "這是最近交易塊的時間戳。"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:130
 #: src/components/plotNFT/PlotNFTCard.tsx:163
@@ -4364,7 +4364,7 @@ msgstr "此節點已完全跟上和驗證網路"
 #: src/components/offers/NFTOfferViewer.tsx:213
 #: src/components/offers/OfferSummary.tsx:182
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted."
-msgstr ""
+msgstr "此優惠包含費用，以幫助在接受優惠時加快交易速度。"
 
 #: src/components/offers/NFTOfferViewer.tsx:208
 #: src/components/offers/OfferSummary.tsx:177
@@ -4374,12 +4374,12 @@ msgstr ""
 #: src/components/offers/OfferHeader.tsx:63
 #: src/components/offers2/OfferBuilderViewer.tsx:237
 msgid "This offer has completed successfully"
-msgstr ""
+msgstr "此報價單已成功完成"
 
 #: src/components/offers/OfferHeader.tsx:46
 #: src/components/offers2/OfferBuilderViewer.tsx:224
 msgid "This offer is no longer valid. To understand why, click <0>here</0> to learn more."
-msgstr ""
+msgstr "此報價單不再有效。要了解原因，請點擊<0>這裡</0>了解更多資訊"
 
 #: src/components/offers2/OfferBuilderViewer.tsx:241
 msgid "This offer was cancelled"
@@ -4403,7 +4403,7 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:151
 msgid "Thread Multiplier for Phase 2"
-msgstr ""
+msgstr "第二階段的執行緒倍數"
 
 #: src/components/nfts/NFTPreview.tsx:629
 #~ msgid "Thumbnail hash mismatch"
@@ -4419,7 +4419,7 @@ msgstr "時間戳記"
 
 #: src/components/nfts/NFTTitle.tsx:11
 msgid "Title Not Available"
-msgstr ""
+msgstr "標題不可用"
 
 #: src/components/settings/ResyncPrompt.tsx:41
 msgid "To initiate a wallet resync, all Chia services must first be shut down. After shutting down, you will be required to restart Chia to begin the resyncing process. Are you sure you want to shut down and resync?"
@@ -4427,16 +4427,16 @@ msgstr ""
 
 #: src/components/settings/ProfileView.tsx:127
 msgid "Token Standard"
-msgstr ""
+msgstr "代幣標準"
 
 #: src/components/dashboard/DashboardSideBar.tsx:54
 #: src/components/offers2/OfferBuilderTokensSection.tsx:113
 msgid "Tokens"
-msgstr ""
+msgstr "代幣"
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:111
 msgid "Too Many Plot NFTs"
-msgstr ""
+msgstr "過多NFT地塊"
 
 #: src/components/offers2/OfferBuilderWalletAmount.tsx:36
 msgid "Total Amount"
