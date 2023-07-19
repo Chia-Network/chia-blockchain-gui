@@ -14,7 +14,7 @@ import {
   VC as VCIcon,
 } from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
-import { alpha, Box } from '@mui/material';
+import { Box } from '@mui/material';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -32,11 +32,7 @@ const StyledRoot = styled(Flex)`
 
 const StyledSideBarDivider = styled(Box)`
   height: 1px;
-  background: radial-gradient(
-    36.59% 100.8% at 50% 50%,
-    ${alpha(Color.Neutral[900], 0.18)} 99.54%,
-    ${alpha(Color.Neutral[50], 0)} 100%
-  );
+  background: ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[300])};
 `;
 
 const StyledSettingsContainer = styled(Box)`
@@ -89,7 +85,7 @@ export default function DashboardSideBar(props: DashboardSideBarProps) {
 
         {!simple && (
           <>
-            <Box my={1}>
+            <Box my={1} mx={2}>
               <StyledSideBarDivider />
             </Box>
 

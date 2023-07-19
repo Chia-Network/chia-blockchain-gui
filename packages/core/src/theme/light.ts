@@ -12,6 +12,10 @@ export default createTheme({
       card: Color.Neutral[50],
       paper: Color.Neutral[50],
     },
+    info: {
+      ...theme.palette.info,
+      main: Color.Neutral[500],
+    },
     text: {
       primary: Color.Text.Light.Primary,
       secondary: Color.Text.Light.Secondary,
