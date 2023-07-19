@@ -15,9 +15,9 @@ import WalletTokenCard from './WalletTokenCard';
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: theme.palette.action.selected,
+  backgroundColor: theme.palette.mode === 'dark' ? Color.Neutral[800] : Color.Neutral[100],
   '&:hover': {
-    backgroundColor: theme.palette.action.hover,
+    backgroundColor: theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[200],
   },
   paddingLeft: theme.spacing(1),
   paddingRight: theme.spacing(1),
