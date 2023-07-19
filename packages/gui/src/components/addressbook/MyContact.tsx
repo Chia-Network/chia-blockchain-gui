@@ -110,7 +110,7 @@ export default function MyContact() {
   }
 
   return (
-    <div>
+    <Flex flexDirection="column">
       <Flex flexDirection="row" justifyContent="right" style={{ height: '80px' }}>
         <Flex style={{ paddingRight: '30px' }}>
           <Typography
@@ -133,6 +133,6 @@ export default function MyContact() {
           {showAddresses()}
         </Flex>
       </Flex>
-    </div>
+    </Flex>
   );
 }
