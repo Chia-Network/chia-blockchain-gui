@@ -273,7 +273,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
           {isLocal && (
             <MenuItem onClick={() => openRevokeVCDialog('remove')} close>
               <ListItemIcon>
-                <DeleteIcon />
+                <DeleteIcon color="info" />
               </ListItemIcon>
               <Typography variant="inherit" noWrap>
                 <Trans>Remove Verifiable Credential</Trans>
@@ -283,7 +283,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
           {!isLocal && (
             <MenuItem onClick={() => openRevokeVCDialog('revoke')} close>
               <ListItemIcon>
-                <BurnIcon />
+                <BurnIcon color="info" />
               </ListItemIcon>
               <Typography variant="inherit" noWrap>
                 {isLocal ? <Trans>Delete Verifiable Credential</Trans> : <Trans>Revoke Verifiable Credential</Trans>}
@@ -315,7 +315,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
         </Flex>
         {isDetail && (
           <IconButton onClick={() => setIsEditingTitle(true)} size="small" sx={{ padding: '4px' }}>
-            <EditIcon color="disabled" />
+            <EditIcon color="info" />
           </IconButton>
         )}
       </Flex>

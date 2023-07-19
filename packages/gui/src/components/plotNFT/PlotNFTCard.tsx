@@ -226,7 +226,7 @@ export default function PlotNFTCard(props: Props) {
               <More>
                 <MenuItem onClick={handleAddPlot} close>
                   <ListItemIcon>
-                    <PlotIcon />
+                    <PlotIcon color="info" />
                   </ListItemIcon>
                   <Typography variant="inherit" noWrap>
                     <Trans>Add a Plot</Trans>
@@ -235,7 +235,7 @@ export default function PlotNFTCard(props: Props) {
                 {!isSelfPooling && (
                   <MenuItem onClick={handleGetPoolLoginLink} close>
                     <ListItemIcon>
-                      <LinkIcon />
+                      <LinkIcon color="info" />
                     </ListItemIcon>
                     <Typography variant="inherit" noWrap>
                       <Trans>View Pool Login Link</Trans>
@@ -245,7 +245,7 @@ export default function PlotNFTCard(props: Props) {
                 {!isSelfPooling && (
                   <MenuItem onClick={handlePayoutInstructions} close>
                     <ListItemIcon>
-                      <PaymentIcon />
+                      <PaymentIcon color="info" />
                     </ListItemIcon>
                     <Typography variant="inherit" noWrap>
                       <Trans>Edit Payout Instructions</Trans>
@@ -254,7 +254,7 @@ export default function PlotNFTCard(props: Props) {
                 )}
                 <MenuItem onClick={handleDeleteUnconfirmedTransactions} close>
                   <ListItemIcon>
-                    <DeleteIcon />
+                    <DeleteIcon color="info" />
                   </ListItemIcon>
                   <Typography variant="inherit" noWrap>
                     <Trans>Delete Unconfirmed Transactions</Trans>

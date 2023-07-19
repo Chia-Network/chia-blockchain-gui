@@ -195,7 +195,7 @@ export default function SelectKey() {
           <More>
             <MenuItem onClick={handleDeleteAllKeys} close>
               <ListItemIcon>
-                <DeleteIcon />
+                <DeleteIcon color="info" />
               </ListItemIcon>
               <Typography variant="inherit" noWrap>
                 <Trans>Delete All Keys</Trans>

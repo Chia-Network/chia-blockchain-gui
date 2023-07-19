@@ -271,12 +271,12 @@ export default function NFTGallery() {
               >
                 <Tooltip title={<Trans>Multi-select</Trans>} placement="top">
                   <IconButton onClick={toggleMultipleSelection} color={inMultipleSelectionMode ? 'primary' : undefined}>
-                    <LibraryAddCheckIcon />
+                    <LibraryAddCheckIcon color="info" />
                   </IconButton>
                 </Tooltip>
                 <Tooltip title={<Trans>Filter</Trans>} placement="top">
                   <IconButton onClick={toggleShowFilters} color={showFilters ? 'primary' : undefined}>
-                    <FilterListIcon />
+                    <FilterListIcon color="info" />
                   </IconButton>
                 </Tooltip>
               </Flex>
