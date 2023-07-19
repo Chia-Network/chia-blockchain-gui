@@ -161,7 +161,7 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
       }
     }
 
-    const { params: definitionParams = [], bypassConfirm } = definition;
+    const { service, params: definitionParams = [], bypassConfirm } = definition;
 
     log('Confirm arguments', definitionParams);
 
@@ -205,6 +205,17 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
       log('Waiting for sync');
       // wait for wallet synchronisation
       await waitForWalletSync();
+    }
+
+    if (service === 'TEST' && 'response' in definition) {
+      const { response } = definition;
+
+      const responseValue = typeof response === 'function' ? response(values) : response;
+
+      return {
+        success: true,
+        ...responseValue,
+      };
     }
 
     // validate current fingerprint again
