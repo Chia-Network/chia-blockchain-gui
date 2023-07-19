@@ -31,6 +31,7 @@ import isNumeric from 'validator/es/lib/isNumeric';
 
 import useClawbackDefaultTime, { getClawbackTimeInSeconds } from '../hooks/useClawbackDefaultTime';
 import useWallet from '../hooks/useWallet';
+import AddressBookAutocomplete from './AddressBookAutocomplete';
 import CreateWalletSendTransactionResultDialog from './WalletSendTransactionResultDialog';
 
 type SendCardProps = {
@@ -39,6 +40,7 @@ type SendCardProps = {
 
 type SendTransactionData = {
   address: string;
+  addressAuto: string;
   amount: string;
   fee: string;
   memo: string;
@@ -67,6 +69,7 @@ export default function WalletSend(props: SendCardProps) {
   const methods = useForm<SendTransactionData>({
     defaultValues: {
       address: '',
+      addressAuto: '',
       amount: '',
       fee: '',
       memo: '',
@@ -211,15 +214,13 @@ export default function WalletSend(props: SendCardProps) {
         <Card>
           <Grid spacing={2} container>
             <Grid xs={12} item>
-              <TextField
+              <AddressBookAutocomplete
                 name="address"
+                getType="address"
+                freeSolo
                 variant="filled"
-                color="secondary"
-                fullWidth
-                disabled={isSubmitting}
-                label={<Trans>Address / Puzzle hash</Trans>}
-                data-testid="WalletSend-address"
                 required
+                disabled={isSubmitting}
               />
             </Grid>
             <Grid xs={12} md={6} item>

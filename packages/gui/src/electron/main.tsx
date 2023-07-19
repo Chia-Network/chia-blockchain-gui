@@ -35,6 +35,7 @@ import loadConfig from '../util/loadConfig';
 import manageDaemonLifetime from '../util/manageDaemonLifetime';
 import { setUserDataDir } from '../util/userData';
 import CacheManager from './CacheManager';
+import { readAddressBook, saveAddressBook } from './addressBook';
 import installDevTools from './installDevTools.dev';
 import { readPrefs, savePrefs, migratePrefs } from './prefs';
 
@@ -62,6 +63,8 @@ const cacheManager = new CacheManager({
 ipcMain.handle('readPrefs', (_event) => readPrefs());
 ipcMain.handle('savePrefs', (_event, prefsObj) => savePrefs(prefsObj));
 ipcMain.handle('migratePrefs', (_event, prefsObj) => migratePrefs(prefsObj));
+ipcMain.handle('saveAddressBook', (_event, addressBook) => saveAddressBook(addressBook));
+ipcMain.handle('readAddressBook', (_event) => readAddressBook());
 
 let mainWindow: BrowserWindow | null = null;
 

@@ -3,6 +3,7 @@ import { WalletAdd, WalletImport, Wallets } from '@chia-network/wallets';
 import React from 'react';
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 
+import AddressBook from '../addressbook/AddressBook';
 import Block from '../block/Block';
 import DashboardSideBar from '../dashboard/DashboardSideBar';
 import Farm from '../farm/Farm';
@@ -43,6 +44,7 @@ export default function AppRouter() {
               <Route path="dashboard/vc/*" element={<VCs />} />
               <Route path="dashboard/*" element={<Navigate to="wallets" />} />
               <Route path="dashboard/settings/*" element={<Settings />} />
+              <Route path="dashboard/addressbook/*" element={<AddressBook />} />
             </Route>
           ) : (
             <Route element={<LayoutDashboard sidebar={<DashboardSideBar />} actions={<AppStatusHeader />} outlet />}>
@@ -57,6 +59,7 @@ export default function AppRouter() {
               <Route path="dashboard/plot/*" element={<Plot />} />
               <Route path="dashboard/farm/*" element={<Farm />} />
               <Route path="dashboard/pool/*" element={<Pool />} />
+              <Route path="dashboard/addressbook/*" element={<AddressBook />} />
             </Route>
           )}
         </Route>
