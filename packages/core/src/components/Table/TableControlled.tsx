@@ -19,17 +19,21 @@ import Color from '../../constants/Color';
 import LoadingOverlay from '../LoadingOverlay';
 
 const StyledTableHead = styled(TableHead)`
-  background-color: ${({ theme }) => theme.palette.action.selected};
+  background-color: ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[200])};
   font-weight: 500;
 `;
 
 export const StyledTableRow = styled(({ odd, oddRowBackgroundColor, ...rest }) => <TableRow {...rest} />)`
   ${({ odd, oddRowBackgroundColor, theme }) =>
-    odd ? `background-color: ${oddRowBackgroundColor || theme.palette.action.hover};` : undefined}
+    odd
+      ? `background-color: ${
+          oddRowBackgroundColor || theme.palette.mode === 'dark' ? Color.Neutral[800] : Color.Neutral[100]
+        };`
+      : undefined}
 `;
 
 const StyledExpandedTableRow = styled(({ isExpanded, ...rest }) => <TableRow {...rest} />)`
-  background-color: ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[900] : Color.Neutral[100])};
+  background-color: ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[200])};
   ${({ isExpanded }) => (!isExpanded ? 'display: none;' : undefined)}
 `;
 

@@ -11,7 +11,7 @@ import styled from 'styled-components';
 const ReloadIconSvg = styled(Reload)`
   path {
     fill: none;
-    stroke: ${(props) => (props.isDarkMode ? props.theme.palette.common.white : props.theme.palette.sidebarIcon)};
+    stroke: ${({ theme }) => useColorModeValue(theme, 'sidebarIcon')};
   }
 `;
 

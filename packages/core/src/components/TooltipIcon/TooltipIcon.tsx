@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import Color from '../../constants/Color';
 
 const StyledHelpIcon = styled(HelpIcon)`
-  color: ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[300] : Color.Neutral[500])};
+  color: ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[500] : Color.Neutral[400])};
   font-size: 1rem;
 `;
 
