@@ -28,7 +28,7 @@ export default {
       main: Color.Chia.Primary,
     },
     border: {
-      main: Color.Neutral[200],
+      main: Color.Neutral[300],
       dark: Color.Neutral[700],
     },
     sidebarBackground: {
@@ -40,7 +40,7 @@ export default {
       dark: Color.Green[500],
     },
     sidebarIcon: {
-      main: Color.Neutral[400],
+      main: Color.Neutral[500],
       dark: Color.Neutral[400],
     },
     sidebarIconHover: {

@@ -208,11 +208,13 @@ export default function SelectKey() {
   );
 
   function renderTopSection() {
+    const isDark = theme.palette.mode === 'dark';
+    const level = isDark ? '700' : '300';
     return (
       <Flex
         justifyContent="space-between"
         width="100%"
-        sx={{ borderBottom: `1px solid ${Color.Neutral[300]}`, paddingBottom: '30px' }}
+        sx={{ borderBottom: `1px solid ${Color.Neutral[level]}`, paddingBottom: '30px' }}
       >
         <Flex alignItems="left">
           <ChiaBlack color="secondary" />

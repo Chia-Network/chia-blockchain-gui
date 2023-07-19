@@ -11,6 +11,7 @@ import useGetLatestVersionFromWebsite from '../../hooks/useGetLatestVersionFromW
 import useOpenDialog from '../../hooks/useOpenDialog';
 import EmojiAndColorPicker from '../../screens/SelectKey/EmojiAndColorPicker';
 import SelectKeyRenameForm from '../../screens/SelectKey/SelectKeyRenameForm';
+import useColorModeValue from '../../utils/useColorModeValue';
 import Flex from '../Flex';
 import Link from '../Link';
 import Loading from '../Loading';
