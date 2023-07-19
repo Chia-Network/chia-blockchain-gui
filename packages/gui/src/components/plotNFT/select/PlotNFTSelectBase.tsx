@@ -24,7 +24,7 @@ type Props = {
 };
 
 export default function PlotNFTSelectBase(props: Props) {
-  const { step = 1, onCancel, title, description, hideFee = false, feeDescription } = props;
+  const { step, onCancel, title, description, hideFee = false, feeDescription } = props;
   // const { nfts } = usePlotNFTs();
   const { setValue } = useFormContext();
   const self = useWatch<boolean>({
@@ -123,7 +123,7 @@ export default function PlotNFTSelectBase(props: Props) {
       </CardStep>
 
       <StyledCollapse in={showPoolInfo}>
-        <CardStep step={step + 1} title={<Trans>Verify Pool Details</Trans>}>
+        <CardStep step={typeof step === 'number' ? step + 1 : undefined} title={<Trans>Verify Pool Details</Trans>}>
           {poolInfo.error && <Alert severity="warning">{poolInfo.error.message}</Alert>}
 
           {poolInfo.loading && <Loading center />}

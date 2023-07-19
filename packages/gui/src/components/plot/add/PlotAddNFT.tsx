@@ -76,7 +76,6 @@ const PlotAddNFT = forwardRef((props: Props, ref) => {
               <Trans>Learn more</Trans>
             </Link>
           </Typography>
-
           <Grid spacing={2} direction="column" container>
             <Grid xs={12} md={8} lg={6} item>
               <FormControl variant="filled" fullWidth>

@@ -103,6 +103,7 @@ export default function PlotNFTChangePool(props: Props) {
         </HeaderTag>
       )}
       <PlotNFTSelectPool
+        step={1}
         onSubmit={handleSubmit}
         title={<Trans>Change Pool</Trans>}
         submitTitle={<Trans>Change</Trans>}

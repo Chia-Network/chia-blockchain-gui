@@ -9,7 +9,7 @@ const LOCAL_STORAGE_KEY = 'unconfirmedPlotNFTsV2';
 export default function useUnconfirmedPlotNFTs(): {
   isLoading: boolean;
   unconfirmed: UnconfirmedPlotNFT[];
-  add: (item: UnconfirmedPlotNFT) => void;
+  add: (item: Omit<UnconfirmedPlotNFT, 'fingerprint'>) => void;
   remove: (transactionId: string) => void;
 } {
   const { data: fingerprint, isLoading } = useGetLoggedInFingerprintQuery();

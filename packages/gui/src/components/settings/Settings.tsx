@@ -10,6 +10,7 @@ import SettingsAdvanced from './SettingsAdvanced';
 import SettingsCustody from './SettingsCustody';
 import SettingsDataLayer from './SettingsDataLayer';
 import SettingsGeneral from './SettingsGeneral';
+import SettingsHarvester from './SettingsHarvester';
 import SettingsIntegration from './SettingsIntegration';
 import SettingsNFT from './SettingsNFT';
 import SettingsNotifications from './SettingsNotifications';
@@ -35,6 +36,7 @@ export default function Settings() {
       { id: 'profiles', label: 'Profiles (DIDs)', Component: SettingsProfiles, path: 'profiles/*' },
       { id: 'nft', label: 'NFT', Component: SettingsNFT, path: 'nft' },
       { id: 'datalayer', label: 'DataLayer', Component: SettingsDataLayer, path: 'datalayer' },
+      { id: 'harvester', label: 'Harvester', Component: SettingsHarvester, path: 'harvester' },
       { id: 'integration', label: 'Integration', Component: SettingsIntegration, path: 'integration' },
       { id: 'notifications', label: 'Notifications', Component: SettingsNotifications, path: 'notifications' },
       { id: 'advanced', label: 'Advanced', Component: SettingsAdvanced, path: 'advanced' },
