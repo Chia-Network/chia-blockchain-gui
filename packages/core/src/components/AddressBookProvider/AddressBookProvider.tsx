@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useMemo } from 'react';
+import React, { createContext, useMemo } from 'react';
 
 import useAddressBook from '../../hooks/useAddressBook';
 
@@ -17,6 +17,5 @@ export default function AddressBookProvider({ children }) {
     [addressBook, addContact, removeContact, getContactByContactId, editContact, getContactByAddress]
   );
 
-  useEffect(() => {}, []);
   return <AddressBookContext.Provider value={value}>{children}</AddressBookContext.Provider>;
 }
