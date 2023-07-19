@@ -8,7 +8,7 @@ msgstr ""
 "Language: fr_FR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-19 09:45\n"
+"PO-Revision-Date: 2023-07-19 10:57\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -870,7 +870,7 @@ msgstr "Réclamer les récompenses"
 
 #: src/constants/WalletConnectCommands.tsx:154
 msgid "Claw back or claim claw back transaction"
-msgstr ""
+msgstr "Récupérer ou revendiquer la transaction récupérable"
 
 #: src/components/settings/SettingsNFT.tsx:52
 #: src/components/settings/SettingsNFT.tsx:153
@@ -909,11 +909,11 @@ msgstr "ID de la pièce"
 
 #: src/components/vcs/VCCard.tsx:121
 msgid "Coin ID"
-msgstr ""
+msgstr "ID de Pièce"
 
 #: src/constants/WalletConnectCommands.tsx:160
 msgid "Coin Ids"
-msgstr ""
+msgstr "ID des Pièces"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:202
 #: src/components/nfts/NFTSummary.tsx:49
@@ -1011,7 +1011,7 @@ msgstr "Le hash du contenu ne correspond pas à la valeur spécifiée pendant la
 
 #: src/components/nfts/NFTHashStatus.tsx:102
 msgid "Content has not been validated against the hash that was specified during NFT minting. Error: {0}"
-msgstr ""
+msgstr "Le contenu n'a pas été validé par rapport au hachage spécifié pendant la frappe du NFT. Erreur : {0}"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:188
 msgid "Continue"
@@ -1035,7 +1035,7 @@ msgstr "Copier dans le presse-papier"
 
 #: src/components/notification/NotificationSendDialog.tsx:239
 msgid "Cost to send notification"
-msgstr ""
+msgstr "Coût d'envoi de la notification"
 
 #: src/components/notification/NotificationSendDialog.tsx:237
 msgid "Cost to send notification to the NFT holder"
@@ -1055,7 +1055,7 @@ msgstr "Compteur"
 
 #: src/components/offers2/OfferBuilderViewer.tsx:202
 msgid "Counter Offer"
-msgstr ""
+msgstr "Contre-Offre"
 
 #: src/components/plot/add/PlotAddForm.tsx:202
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:79
@@ -1098,7 +1098,7 @@ msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:742
 msgid "Create new DID Wallet"
-msgstr ""
+msgstr "Créer un nouveau portefeuille DID"
 
 #: src/components/nfts/NFTContextualActions.tsx:148
 #: src/components/offers/NFTOfferEditor.tsx:437
@@ -1115,7 +1115,7 @@ msgstr "Créer une offre pour les ID"
 
 #: src/components/settings/IdentitiesPanel.tsx:98
 msgid "Create Profile"
-msgstr ""
+msgstr "Créer un Profil"
 
 #: src/components/settings/SettingsAdvanced.tsx:69
 msgid "Create Signature"
