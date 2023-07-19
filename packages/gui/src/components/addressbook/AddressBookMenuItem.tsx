@@ -1,5 +1,6 @@
 // import { useGetNFTInfoQuery } from '@chia-network/api-react';
 import { CardListItem } from '@chia-network/core';
+import { t } from '@lingui/macro';
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
@@ -47,7 +48,7 @@ export default function AddressBookMenuItem({ contact }) {
         <div style={{ flexGrow: 4, flexBasis: '100', paddingLeft: '10px', paddingTop: '8px', overflow: 'hidden' }}>
           <div>
             <span style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>
-              {contact.name !== '' ? contact.name : 'Unnamed Contact'}
+              {contact.name !== '' ? contact.name : t`Unnamed Contact`}
             </span>
           </div>
         </div>

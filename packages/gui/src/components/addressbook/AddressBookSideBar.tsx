@@ -10,7 +10,7 @@ import AddressBookMenuItem from './AddressBookMenuItem';
 export default function AddressBookSideBar() {
   const [filter, setFilter] = useState<string>('');
   const navigate = useNavigate();
-  const [addressBook, ,] = useContext(AddressBookContext);
+  const [addressBook] = useContext(AddressBookContext);
 
   // Function that filters a contact by a child property using either
   // - address.name or address.address
@@ -23,12 +23,14 @@ export default function AddressBookSideBar() {
 
       if (search === '') return true;
 
+      const searchTerm = search.toLowerCase();
+
       // filter by address name or address
       if (addresses && addresses.length > 0) {
         const filteredAddressesByName = addresses.filter(
           (t: any) =>
-            (t.name && t.name.toLowerCase().includes(search.toLowerCase())) ||
-            (t.address && t.address.toLowerCase().includes(search.toLowerCase()))
+            (t.name && t.name.toLowerCase().includes(searchTerm)) ||
+            (t.address && t.address.toLowerCase().includes(searchTerm))
         );
         if (filteredAddressesByName && filteredAddressesByName.length > 0) {
           return true;
@@ -39,8 +41,8 @@ export default function AddressBookSideBar() {
       if (dids && dids.length > 0) {
         const filteredDids = dids.filter(
           (did: any) =>
-            (did.name && did.name.toLowerCase().includes(search.toLowerCase())) ||
-            (did.did && did.did.toLowerCase().includes(search.toLowerCase()))
+            (did.name && did.name.toLowerCase().includes(searchTerm)) ||
+            (did.did && did.did.toLowerCase().includes(searchTerm))
         );
         if (filteredDids && filteredDids.length > 0) {
           return true;
@@ -50,8 +52,8 @@ export default function AddressBookSideBar() {
       if (domainNames && domainNames.length > 0) {
         const filteredDomains = domainNames.filter(
           (domain: any) =>
-            (domain.name && domain.name.toLowerCase().includes(search.toLowerCase())) ||
-            (domain.domain && domain.domain.toLowerCase().includes(search.toLowerCase()))
+            (domain.name && domain.name.toLowerCase().includes(searchTerm)) ||
+            (domain.domain && domain.domain.toLowerCase().includes(searchTerm))
         );
         if (filteredDomains && filteredDomains.length > 0) {
           return true;
@@ -59,7 +61,7 @@ export default function AddressBookSideBar() {
       }
 
       // filter by name
-      if (name.toLowerCase().includes(search.toLowerCase())) {
+      if (name.toLowerCase().includes(searchTerm)) {
         return true;
       }
 
@@ -79,7 +81,11 @@ export default function AddressBookSideBar() {
 
       return filtered.map((contact: AddressContact) => <AddressBookMenuItem contact={contact} />);
     }
-    return <div>No Contacts</div>;
+    return (
+      <div>
+        <Trans>No Contacts</Trans>
+      </div>
+    );
   }
 
   function handleCreateNewContact() {

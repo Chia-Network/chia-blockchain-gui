@@ -243,84 +243,82 @@ export default function ContactAdd() {
   }
 
   return (
-    <div>
-      <Form methods={methods} key={0} onSubmit={handleSubmit}>
-        <Flex flexDirection="row" justifyContent="right" style={{ height: '80px' }}>
-          <Flex flexGrow={1}>
-            <Typography
-              variant="h5"
-              sx={{
-                position: 'absolute',
-                left: 44,
-                top: 48,
-              }}
-            >
-              <Trans>Create Contact</Trans>
-              &nbsp;
-              <TooltipIcon>
-                <Trans>
-                  Creating a contact enables you to keep track of people who you know and store information such as
-                  their DIDs, Profile NFT or Websites.
-                </Trans>
-              </TooltipIcon>
+    <Form methods={methods} key={0} onSubmit={handleSubmit}>
+      <Flex flexDirection="row" justifyContent="right" style={{ height: '80px' }}>
+        <Flex flexGrow={1}>
+          <Typography
+            variant="h5"
+            sx={{
+              position: 'absolute',
+              left: 44,
+              top: 48,
+            }}
+          >
+            <Trans>Create Contact</Trans>
+            &nbsp;
+            <TooltipIcon>
+              <Trans>
+                Creating a contact enables you to keep track of people who you know and store information such as their
+                DIDs, Profile NFT or Websites.
+              </Trans>
+            </TooltipIcon>
+          </Typography>
+        </Flex>
+        <Flex style={{ paddingRight: '30px' }}>
+          <Button
+            variant="outlined"
+            color="secondary"
+            type="submit"
+            sx={{
+              position: 'absolute',
+              right: 44,
+              top: 44,
+            }}
+          >
+            <Trans>Save</Trans>
+          </Button>
+          <Button
+            variant="outlined"
+            color="secondary"
+            onClick={() => handleCancel()}
+            sx={{
+              position: 'absolute',
+              right: 122,
+              top: 44,
+            }}
+          >
+            <Trans>Cancel</Trans>
+          </Button>
+        </Flex>
+      </Flex>
+      <Flex flexDirection="column" gap={6} alignItems="center" style={{ paddingBottom: '40px' }}>
+        <Flex flexDirection="column" gap={6} maxWidth="600px" style={{ width: '100%', paddingTop: '40px' }}>
+          <Flex gap={2} flexDirection="column">
+            <Typography variant="h6">
+              <Trans>Contact Name</Trans>
             </Typography>
+            <TextField
+              name="name"
+              variant="filled"
+              color="secondary"
+              fullWidth
+              disabled={false}
+              label={<Trans>Name</Trans>}
+              required
+            />
           </Flex>
-          <Flex style={{ paddingRight: '30px' }}>
-            <Button
-              variant="outlined"
-              color="secondary"
-              type="submit"
-              sx={{
-                position: 'absolute',
-                right: 44,
-                top: 44,
-              }}
-            >
-              <Trans>Save</Trans>
-            </Button>
-            <Button
-              variant="outlined"
-              color="secondary"
-              onClick={() => handleCancel()}
-              sx={{
-                position: 'absolute',
-                right: 122,
-                top: 44,
-              }}
-            >
-              <Trans>Cancel</Trans>
-            </Button>
+          <Flex gap={2} flexDirection="column">
+            <AddressFields />
+          </Flex>
+          <Flex gap={2} flexDirection="column">
+            <ProfileFields />
+          </Flex>
+          <Flex gap={2} flexDirection="column">
+            <DomainFields />
           </Flex>
         </Flex>
-        <Flex flexDirection="column" gap={6} alignItems="center" style={{ paddingBottom: '40px' }}>
-          <Flex flexDirection="column" gap={6} maxWidth="600px" style={{ width: '100%', paddingTop: '40px' }}>
-            <Flex gap={2} flexDirection="column">
-              <Typography variant="h6">
-                <Trans>Contact Name</Trans>
-              </Typography>
-              <TextField
-                name="name"
-                variant="filled"
-                color="secondary"
-                fullWidth
-                disabled={false}
-                label={<Trans>Name</Trans>}
-                required
-              />
-            </Flex>
-            <Flex gap={2} flexDirection="column">
-              <AddressFields />
-            </Flex>
-            <Flex gap={2} flexDirection="column">
-              <ProfileFields />
-            </Flex>
-            <Flex gap={2} flexDirection="column">
-              <DomainFields />
-            </Flex>
-          </Flex>
-        </Flex>
-      </Form>
-    </div>
+      </Flex>
+    </Form>
   );
 }
 
