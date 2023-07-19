@@ -85,8 +85,9 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
   function renderProperties() {
     let didString: string = vcRecord.credentialSubject?.id || '/';
     try {
-      if (vcRecord?.vc?.proofProvider) {
-        didString = didToDIDId(vcRecord?.vc?.proofProvider);
+      const proofProvider = vcRecord?.vc?.proofProvider;
+      if (proofProvider) {
+        didString = didToDIDId(proofProvider);
       }
     } catch (e) {
       /* ignore */

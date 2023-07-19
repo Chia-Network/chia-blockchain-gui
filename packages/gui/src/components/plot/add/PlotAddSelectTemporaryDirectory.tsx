@@ -1,5 +1,5 @@
 import { usePrefs } from '@chia-network/api-react';
-import { AdvancedOptions, ButtonSelected, CardStep, Flex, TextField, Checkbox, TooltipIcon } from '@chia-network/core';
+import { AdvancedOptions, ButtonSelected, Flex, TextField, Checkbox, TooltipIcon } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { FormControl, FormControlLabel, Typography } from '@mui/material';
 import React from 'react';
@@ -10,12 +10,11 @@ import useSelectDirectory from '../../../hooks/useSelectDirectory';
 import Plotter from '../../../types/Plotter';
 
 type Props = {
-  step: number;
   plotter: Plotter;
 };
 
 export default function PlotAddSelectTemporaryDirectory(props: Props) {
-  const { step, plotter } = props;
+  const { plotter } = props;
   const selectDirectory = useSelectDirectory();
   const { setValue, watch } = useFormContext();
   const op = plotter.options;
@@ -45,7 +44,7 @@ export default function PlotAddSelectTemporaryDirectory(props: Props) {
   }
 
   return (
-    <CardStep step={step} title={<Trans>Select Temporary Directory</Trans>}>
+    <>
       <Typography variant="subtitle1">
         <Trans>
           Select the temporary destination for the folder where you would like the plot to be stored. We recommend you
@@ -146,6 +145,6 @@ export default function PlotAddSelectTemporaryDirectory(props: Props) {
           </FormControl>
         )}
       </AdvancedOptions>
-    </CardStep>
+    </>
   );
 }

@@ -1,9 +1,11 @@
-import { Flex, useMode, Mode, useDarkMode } from '@chia-network/core';
+import { Flex, useMode, Mode, useDarkMode, useAuth, Tooltip } from '@chia-network/core';
 import { WalletConnections, WalletStatus, WalletReceiveAddressField } from '@chia-network/wallets';
 import { Trans } from '@lingui/macro';
-import { Box, ButtonGroup, Button, Popover, PopoverProps } from '@mui/material';
+import { Logout as LogoutIcon } from '@mui/icons-material';
+import { Box, ButtonGroup, Button, Popover, PopoverProps, IconButton } from '@mui/material';
 import { useTheme, styled, alpha } from '@mui/material/styles';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Connections from '../fullNode/FullNodeConnections';
 import FullNodeStateIndicator from '../fullNode/FullNodeStateIndicator';
@@ -83,6 +85,8 @@ export default function AppStatusHeader() {
   };
 
   const [mode] = useMode();
+  const navigate = useNavigate();
+  const { logOut } = useAuth();
 
   const [anchorElFN, setAnchorElFN] = useState<HTMLButtonElement | null>(null);
   const [anchorElW, setAnchorElW] = useState<HTMLButtonElement | null>(null);
@@ -103,73 +107,79 @@ export default function AppStatusHeader() {
     setAnchorElW(null);
   };
 
+  async function handleLogout() {
+    await logOut();
+
+    navigate('/');
+  }
+
   return (
-    <Flex gap={2}>
+    <Flex flexGrow={1} gap={2} flexWrap="wrap" alignItems="center">
       <AppTestnetIndicator />
       <WalletReceiveAddressField variant="outlined" size="small" fullWidth isDarkMode={isDarkMode} />
-      <ButtonGroup variant="outlined" color="secondary" size="small">
-        {mode === Mode.FARMING && (
-          <>
-            <Button onClick={handleClickFN} aria-describedby="fullnode-connections" sx={ButtonStyle}>
-              <Flex gap={1} alignItems="center">
-                <FullNodeStateIndicator />
-                <Trans>Full Node</Trans>
-              </Flex>
-            </Button>
-            <StyledPopover
-              open={!!anchorElFN}
-              anchorEl={anchorElFN}
-              onClose={handleCloseFN}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'right',
-              }}
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-            >
-              <Box sx={{ minWidth: 800 }}>
-                <Connections />
-              </Box>
-            </StyledPopover>
-          </>
-        )}
-        <Button onClick={handleClickW} sx={ButtonStyle}>
-          <Flex gap={1} alignItems="center">
-            <WalletStatus indicator hideTitle />
-            <Trans>Wallet</Trans>
-          </Flex>
-        </Button>
-        <StyledPopover
-          open={!!anchorElW}
-          anchorEl={anchorElW}
-          onClose={handleCloseW}
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'right',
-          }}
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-          }}
-        >
-          <Box sx={{ minWidth: 800 }}>
-            <WalletConnections walletId={1} />
-          </Box>
-        </StyledPopover>
-        <Flex
-          sx={{
-            marginLeft: '15px',
-            '> div + div': {
-              marginLeft: '15px',
-            },
-          }}
-        >
+      <Flex flexGrow={1} gap={2} alignItems="center" justifyContent="space-between">
+        <ButtonGroup variant="outlined" color="secondary" size="small">
+          {mode === Mode.FARMING && (
+            <>
+              <Button onClick={handleClickFN} aria-describedby="fullnode-connections" sx={ButtonStyle}>
+                <Flex gap={1} alignItems="center">
+                  <FullNodeStateIndicator />
+                  <Trans>Full Node</Trans>
+                </Flex>
+              </Button>
+              <StyledPopover
+                open={!!anchorElFN}
+                anchorEl={anchorElFN}
+                onClose={handleCloseFN}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'right',
+                }}
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+              >
+                <Box sx={{ minWidth: 800 }}>
+                  <Connections />
+                </Box>
+              </StyledPopover>
+            </>
+          )}
+          <Button onClick={handleClickW} sx={ButtonStyle}>
+            <Flex gap={1} alignItems="center">
+              <WalletStatus indicator hideTitle />
+              <Trans>Wallet</Trans>
+            </Flex>
+          </Button>
+          <StyledPopover
+            open={!!anchorElW}
+            anchorEl={anchorElW}
+            onClose={handleCloseW}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'right',
+            }}
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+          >
+            <Box sx={{ minWidth: 800 }}>
+              <WalletConnections walletId={1} />
+            </Box>
+          </StyledPopover>
+        </ButtonGroup>
+        <Flex gap={0.5} alignItems="center">
           <WalletConnectDropdown />
           <NotificationsDropdown />
+          <Tooltip title={<Trans>Log Out</Trans>}>
+            <IconButton onClick={handleLogout} data-testid="AppStatusHeader-log-out">
+              <LogoutIcon />
+            </IconButton>
+          </Tooltip>
         </Flex>
-      </ButtonGroup>
+      </Flex>
     </Flex>
   );
 }

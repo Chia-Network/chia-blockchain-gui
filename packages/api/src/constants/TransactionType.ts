@@ -8,6 +8,7 @@ enum TransactionType {
   INCOMING_CLAWBACK_RECEIVE = 6,
   INCOMING_CLAWBACK_SEND = 7,
   OUTGOING_CLAWBACK = 8,
+  INCOMING_CRCAT_PENDING = 9,
 }
 
 export default TransactionType;

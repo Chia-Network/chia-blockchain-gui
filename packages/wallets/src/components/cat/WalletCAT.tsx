@@ -4,7 +4,7 @@ import { Flex, Loading, MenuItem, useOpenDialog } from '@chia-network/core';
 import { Offers as OffersIcon } from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
 import { Edit as RenameIcon, Fingerprint as FingerprintIcon } from '@mui/icons-material';
-import { Box, ListItemIcon, Alert, Typography } from '@mui/material';
+import { ListItemIcon, Alert, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -107,18 +107,22 @@ export default function WalletCAT(props: Props) {
         ]}
       />
 
-      <Box display={selectedTab === 'summary' ? 'block' : 'none'}>
-        <Flex flexDirection="column" gap={4}>
-          <WalletCards walletId={walletId} />
-          <WalletHistory walletId={walletId} />
-        </Flex>
-      </Box>
-      <Box display={selectedTab === 'send' ? 'block' : 'none'}>
-        <WalletCATSend walletId={walletId} />
-      </Box>
-      <Box display={selectedTab === 'receive' ? 'block' : 'none'}>
-        <WalletReceiveAddress walletId={walletId} />
-      </Box>
+      <Flex flexDirection="column" gap={4}>
+        <WalletCards walletId={walletId} />
+
+        {(() => {
+          switch (selectedTab) {
+            case 'summary':
+              return <WalletHistory walletId={walletId} />;
+            case 'send':
+              return <WalletCATSend walletId={walletId} />;
+            case 'receive':
+              return <WalletReceiveAddress walletId={walletId} />;
+            default:
+              return null;
+          }
+        })()}
+      </Flex>
     </Flex>
   );
 }

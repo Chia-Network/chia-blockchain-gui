@@ -2,6 +2,7 @@ import KeyData from '../@types/KeyData';
 import KeyringStatus from '../@types/KeyringStatus';
 import PlotQueueItem from '../@types/PlotQueueItem';
 import { PlottersApi } from '../@types/Plotter';
+import WalletAddress from '../@types/WalletAddress';
 import type Client from '../Client';
 import type Message from '../Message';
 import ServiceName, { type ServiceNameValue } from '../constants/ServiceName';
@@ -62,6 +63,19 @@ export default class Daemon extends Service {
     }>('get_keys', args);
   }
 
+  getWalletAddresses(args: {
+    fingerprints?: number[];
+    count?: number;
+    index?: number;
+    nonObserverDerivation?: boolean;
+  }) {
+    return this.command<{
+      walletAddresses: {
+        [key: string]: WalletAddress[];
+      };
+    }>('get_wallet_addresses', args);
+  }
+
   setLabel(args: { fingerprint: string; label: string }) {
     return this.command<void>('set_label', args);
   }
@@ -114,9 +128,10 @@ export default class Daemon extends Service {
   }
 
   startPlotting(inputArgs: {
-    bladebitDisableNUMA: boolean;
-    bladebitWarmStart: boolean;
+    bladebitDisableNUMA?: boolean;
+    bladebitWarmStart?: boolean;
     bladebitNoCpuAffinity?: boolean;
+    bladebitCompressionLevel?: number;
     bladebitDiskCache?: number;
     bladebitDiskF1Threads?: number;
     bladebitDiskFpThreads?: number;
@@ -126,6 +141,8 @@ export default class Daemon extends Service {
     bladebitDiskAlternate?: boolean;
     bladebitDiskNoT1Direct?: boolean;
     bladebitDiskNoT2Direct?: boolean;
+    bladebitDeviceIndex?: number;
+    bladebitDisableDirectDownloads?: boolean;
     c?: string;
     delay: number;
     disableBitfieldPlotting?: boolean;
@@ -154,6 +171,7 @@ export default class Daemon extends Service {
       bladebitDisableNUMA: 'm',
       bladebitWarmStart: 'w',
       bladebitNoCpuAffinity: 'no_cpu_affinity',
+      bladebitCompressionLevel: 'compress',
       bladebitDiskCache: 'cache',
       bladebitDiskF1Threads: 'f1_threads',
       bladebitDiskFpThreads: 'fp_threads',
@@ -163,6 +181,8 @@ export default class Daemon extends Service {
       bladebitDiskAlternate: 'alternate',
       bladebitDiskNoT1Direct: 'no_t1_direct',
       bladebitDiskNoT2Direct: 'no_t2_direct',
+      bladebitDeviceIndex: 'device',
+      bladebitDisableDirectDownloads: 'no_direct_downloads',
       disableBitfieldPlotting: 'e',
       excludeFinalDir: 'x',
       farmerPublicKey: 'f',
@@ -214,5 +234,12 @@ export default class Daemon extends Service {
 
   getVersion() {
     return this.command<{ version: string }>('get_version');
+  }
+
+  getKeysForPlotting(args?: { fingerprints?: number[] }) {
+    return this.command<{ keys: { [fingerprint: number]: { farmerPublicKey: string; poolPublicKey: string } } }>(
+      'get_keys_for_plotting',
+      args
+    );
   }
 }

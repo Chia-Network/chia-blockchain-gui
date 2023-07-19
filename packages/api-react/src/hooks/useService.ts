@@ -82,6 +82,8 @@ export default function useService(
       }).unwrap();
 
       refetch();
+    } catch (e) {
+      console.error(e);
     } finally {
       setIsStarting(false);
     }
@@ -99,6 +101,8 @@ export default function useService(
       }).unwrap();
 
       refetch();
+    } catch (e) {
+      console.error(e);
     } finally {
       setIsStopping(false);
     }

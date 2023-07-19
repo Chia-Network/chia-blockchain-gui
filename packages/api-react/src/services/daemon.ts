@@ -6,14 +6,17 @@ import onCacheEntryAddedInvalidate from '../utils/onCacheEntryAddedInvalidate';
 import { query, mutation } from '../utils/reduxToolkitEndpointAbstractions';
 
 const apiWithTag = api.enhanceEndpoints({
-  addTagTypes: ['KeyringStatus', 'ServiceRunning', 'DaemonKey', 'RunningServices'],
+  addTagTypes: ['KeyringStatus', 'ServiceRunning', 'DaemonKey', 'RunningServices', 'WalletAddress'],
 });
 
 export const daemonApi = apiWithTag.injectEndpoints({
   endpoints: (build) => ({
     addPrivateKey: mutation(build, Daemon, 'addPrivateKey', {
       transformResponse: (response) => response.fingerprint,
-      invalidatesTags: [{ type: 'DaemonKey', id: 'LIST' }],
+      invalidatesTags: [
+        { type: 'DaemonKey', id: 'LIST' },
+        { type: 'WalletAddress', id: 'LIST' },
+      ],
     }),
 
     getKey: query(build, Daemon, 'getKey', {
@@ -30,6 +33,22 @@ export const daemonApi = apiWithTag.injectEndpoints({
               { type: 'DaemonKey', id: 'LIST' },
             ]
           : [{ type: 'DaemonKey', id: 'LIST' }],
+    }),
+
+    getWalletAddresses: query(build, Daemon, 'getWalletAddresses', {
+      transformResponse: (response) => response.walletAddresses,
+      providesTags: (walletAddresses) =>
+        walletAddresses
+          ? [
+              ...Object.keys(walletAddresses).flatMap((fingerprint) =>
+                walletAddresses[fingerprint].map((address) => ({
+                  type: 'WalletAddress',
+                  id: `${fingerprint}:${address.hdPath}`,
+                }))
+              ),
+              { type: 'WalletAddress', id: 'LIST' },
+            ]
+          : [{ type: 'WalletAddress', id: 'LIST' }],
     }),
 
     setLabel: mutation(build, Daemon, 'setLabel', {
@@ -104,6 +123,7 @@ export const daemonApi = apiWithTag.injectEndpoints({
             installed,
             canInstall,
             bladebitMemoryWarning,
+            cudaSupport,
           } = plotters[plotterName] as PlotterApi;
 
           if (!plotterName.startsWith('bladebit')) {
@@ -123,43 +143,58 @@ export const daemonApi = apiWithTag.injectEndpoints({
 
           // if (plotterName.startsWith('bladebit'))
           const majorVersion = typeof version === 'string' ? +version.split('.')[0] : 0;
-          if (majorVersion > 1) {
-            const bbDisk = PlotterName.BLADEBIT_DISK;
-            availablePlotters[bbDisk] = {
+          if (majorVersion <= 1) {
+            const bbRam = PlotterName.BLADEBIT_RAM;
+            availablePlotters[bbRam] = {
               displayName,
-              version: `${version} (Disk plot)`,
-              options: optionsForPlotter(bbDisk),
-              defaults: defaultsForPlotter(bbDisk),
+              version: typeof version === 'string' ? `${version} (RAM plot)` : version,
+              options: optionsForPlotter(bbRam),
+              defaults: defaultsForPlotter(bbRam),
               installInfo: {
                 installed,
                 canInstall,
                 bladebitMemoryWarning,
               },
             };
+            return;
+          }
+          const bbDisk = PlotterName.BLADEBIT_DISK;
+          availablePlotters[bbDisk] = {
+            displayName,
+            version: `${version} (Disk plot)`,
+            options: optionsForPlotter(bbDisk),
+            defaults: defaultsForPlotter(bbDisk),
+            installInfo: {
+              installed,
+              canInstall,
+              bladebitMemoryWarning,
+            },
+          };
 
-            const bbRam = PlotterName.BLADEBIT_RAM;
-            availablePlotters[bbRam] = {
+          const bbRam = PlotterName.BLADEBIT_RAM;
+          availablePlotters[bbRam] = {
+            displayName,
+            version: `${version} (RAM plot)`,
+            options: optionsForPlotter(bbRam),
+            defaults: defaultsForPlotter(bbRam),
+            installInfo: {
+              installed,
+              canInstall,
+              bladebitMemoryWarning,
+            },
+          };
+          if (cudaSupport) {
+            const bbCuda = PlotterName.BLADEBIT_CUDA;
+            availablePlotters[bbCuda] = {
               displayName,
-              version: `${version} (RAM plot)`,
-              options: optionsForPlotter(bbRam),
-              defaults: defaultsForPlotter(bbRam),
+              version: `${version} (CUDA plot)`,
+              options: optionsForPlotter(bbCuda),
+              defaults: defaultsForPlotter(bbCuda),
               installInfo: {
                 installed,
                 canInstall,
                 bladebitMemoryWarning,
-              },
-            };
-          } else {
-            const bbRam = PlotterName.BLADEBIT_RAM;
-            availablePlotters[bbRam] = {
-              displayName,
-              version: `${version} (RAM plot)`,
-              options: optionsForPlotter(bbRam),
-              defaults: defaultsForPlotter(bbRam),
-              installInfo: {
-                installed: false,
-                canInstall: false,
-                bladebitMemoryWarning,
+                cudaSupport,
               },
             };
           }
@@ -177,6 +212,8 @@ export const daemonApi = apiWithTag.injectEndpoints({
       transformResponse: (response) => response.version,
       providesTags: [{ type: 'RunningServices', id: 'LIST' }],
     }),
+
+    getKeysForPlotting: query(build, Daemon, 'getKeysForPlotting'),
   }),
 });
 
@@ -192,6 +229,7 @@ export const {
   useMigrateKeyringMutation,
   useUnlockKeyringMutation,
   useGetVersionQuery,
+  useGetKeysForPlottingQuery,
 
   useGetPlottersQuery,
   useStopPlottingMutation,
@@ -200,6 +238,7 @@ export const {
   useAddPrivateKeyMutation,
   useGetKeyQuery,
   useGetKeysQuery,
+  useGetWalletAddressesQuery,
   useSetLabelMutation,
   useDeleteLabelMutation,
 } = daemonApi;

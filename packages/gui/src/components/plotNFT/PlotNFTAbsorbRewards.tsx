@@ -131,7 +131,7 @@ export default function PlotNFTAbsorbRewards(props: Props) {
             </Typography>
           </Back>
           <CardStep
-            step="1"
+            step={1}
             title={
               <Flex gap={1} alignItems="center">
                 <Flex flexGrow={1}>
