@@ -8,7 +8,7 @@ import {
   TooltipIcon,
   Select,
 } from '@chia-network/core';
-import { Trans, t } from '@lingui/macro';
+import { Trans } from '@lingui/macro';
 import {
   Grid,
   FormControl,
@@ -38,7 +38,7 @@ export default function PlotAddNumberOfPlots(props: Props) {
   const op = plotter.options;
 
   return (
-    <CardStep step={step} title={<Trans>Choose Number of Plots</Trans>}>
+    <CardStep step={step} title={<Trans>Options</Trans>}>
       <Grid spacing={2} direction="column" container>
         <Grid xs={12} md={8} lg={6} item>
           <FormControl variant="filled" fullWidth>
@@ -443,39 +443,40 @@ export default function PlotAddNumberOfPlots(props: Props) {
                 />
               </FormControl>
             </Grid>
-          </Grid>
-          <Grid xs={12} item>
-            <FormControl variant="filled" fullWidth>
-              <TextField
-                name="farmerPublicKey"
-                type="text"
-                variant="filled"
-                placeholder="Hex farmer public key"
-                label={<Trans>Farmer Public Key</Trans>}
-              />
-            </FormControl>
-          </Grid>
-          <Grid xs={12} item>
-            <FormControl variant="filled" fullWidth>
-              <TextField
-                name="poolPublicKey"
-                type="text"
-                variant="filled"
-                placeholder="Hex public key of pool"
-                label={<Trans>Pool Public Key</Trans>}
-              />
-            </FormControl>
-          </Grid>
-          <Grid xs={12} item>
-            <FormControl variant="filled" fullWidth>
-              <TextField
-                name="plotNFTContractAddr"
-                type="text"
-                variant="filled"
-                placeholder={t`Plot NFT Plot Target Address`}
-                label={<Trans>Plot NFT Pool Contract Address</Trans>}
-              />
-            </FormControl>
+            {op.haveBladebitDisableDirectDownloads && (
+              <Grid xs={12} sm={4} item>
+                <FormControl variant="filled" fullWidth>
+                  <FormControlLabel
+                    control={<Checkbox name="bladebitDisableDirectDownloads" />}
+                    label={
+                      <>
+                        <Trans>Disable direct download</Trans>{' '}
+                        <TooltipIcon>
+                          <Trans>
+                            Don't allocate host tables using pinned buffers, instead download to intermediate pinned
+                            buffers then copy to the final host buffer.
+                          </Trans>
+                        </TooltipIcon>
+                      </>
+                    }
+                  />
+                </FormControl>
+              </Grid>
+            )}
+            {op.haveBladebitDeviceIndex && (
+              <Grid xs={12} sm={12} item>
+                <FormControl variant="filled" fullWidth>
+                  <TextField
+                    name="bladebitDeviceIndex"
+                    type="number"
+                    variant="filled"
+                    placeholder="default"
+                    label={<Trans>GPU Device Index</Trans>}
+                    helperText={<Trans>Which CUDA device to use when plotting</Trans>}
+                  />
+                </FormControl>
+              </Grid>
+            )}
           </Grid>
         </Grid>
       </AdvancedOptions>

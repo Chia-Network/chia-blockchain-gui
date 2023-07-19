@@ -128,9 +128,10 @@ export default class Daemon extends Service {
   }
 
   startPlotting(inputArgs: {
-    bladebitDisableNUMA: boolean;
-    bladebitWarmStart: boolean;
+    bladebitDisableNUMA?: boolean;
+    bladebitWarmStart?: boolean;
     bladebitNoCpuAffinity?: boolean;
+    bladebitCompressionLevel?: number;
     bladebitDiskCache?: number;
     bladebitDiskF1Threads?: number;
     bladebitDiskFpThreads?: number;
@@ -140,6 +141,8 @@ export default class Daemon extends Service {
     bladebitDiskAlternate?: boolean;
     bladebitDiskNoT1Direct?: boolean;
     bladebitDiskNoT2Direct?: boolean;
+    bladebitDeviceIndex?: number;
+    bladebitDisableDirectDownloads?: boolean;
     c?: string;
     delay: number;
     disableBitfieldPlotting?: boolean;
@@ -168,6 +171,7 @@ export default class Daemon extends Service {
       bladebitDisableNUMA: 'm',
       bladebitWarmStart: 'w',
       bladebitNoCpuAffinity: 'no_cpu_affinity',
+      bladebitCompressionLevel: 'compress',
       bladebitDiskCache: 'cache',
       bladebitDiskF1Threads: 'f1_threads',
       bladebitDiskFpThreads: 'fp_threads',
@@ -177,6 +181,8 @@ export default class Daemon extends Service {
       bladebitDiskAlternate: 'alternate',
       bladebitDiskNoT1Direct: 'no_t1_direct',
       bladebitDiskNoT2Direct: 'no_t2_direct',
+      bladebitDeviceIndex: 'device',
+      bladebitDisableDirectDownloads: 'no_direct_downloads',
       disableBitfieldPlotting: 'e',
       excludeFinalDir: 'x',
       farmerPublicKey: 'f',
@@ -228,5 +234,12 @@ export default class Daemon extends Service {
 
   getVersion() {
     return this.command<{ version: string }>('get_version');
+  }
+
+  getKeysForPlotting(args?: { fingerprints?: number[] }) {
+    return this.command<{ keys: { [fingerprint: number]: { farmerPublicKey: string; poolPublicKey: string } } }>(
+      'get_keys_for_plotting',
+      args
+    );
   }
 }

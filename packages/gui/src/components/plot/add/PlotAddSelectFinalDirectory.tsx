@@ -7,13 +7,17 @@ import { useFormContext } from 'react-hook-form';
 
 import PlotLocalStorageKeys from '../../../constants/plotLocalStorage';
 import useSelectDirectory from '../../../hooks/useSelectDirectory';
+import Plotter from '../../../types/Plotter';
+import PlotAddSelectTemporaryDirectory from './PlotAddSelectTemporaryDirectory';
 
 type Props = {
   step: number;
+  plotter: Plotter;
 };
 
 export default function PlotAddSelectFinalDirectory(props: Props) {
-  const { step } = props;
+  const { step, plotter } = props;
+  const allowTempDirSelection = plotter.options.haveTempDir === true;
   const selectDirectory = useSelectDirectory();
   const { setValue, watch } = useFormContext();
 
@@ -30,7 +34,11 @@ export default function PlotAddSelectFinalDirectory(props: Props) {
   }
 
   return (
-    <CardStep step={step} title={<Trans>Select Final Directory</Trans>}>
+    <CardStep
+      step={step}
+      title={allowTempDirSelection ? <Trans>Select Temp/Final Directory</Trans> : <Trans>Select Final Directory</Trans>}
+    >
+      {allowTempDirSelection && <PlotAddSelectTemporaryDirectory plotter={plotter} />}
       <Typography variant="subtitle1">
         <Trans>
           Select the final destination for the folder where you would like the plot to be stored. We recommend you use a

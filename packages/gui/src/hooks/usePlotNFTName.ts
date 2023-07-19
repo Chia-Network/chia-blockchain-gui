@@ -7,7 +7,7 @@ const uniqueNames: {
   [key: string]: string;
 } = {};
 
-function getUniqueName(seed: string, iteration = 0): string {
+export function getUniqueName(seed: string, iteration = 0): string {
   const computedName = Object.keys(uniqueNames).find((key) => uniqueNames[key] === seed);
   if (computedName) {
     return computedName;
