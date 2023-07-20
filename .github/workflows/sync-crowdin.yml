@@ -25,7 +25,7 @@ jobs:
           role_name: github
 
       - name: Get secrets from vault
-        uses: hashicorp/vault-action@v2
+        uses: hashicorp/vault-action@v2.7.3
         with:
           url: ${{ secrets.VAULT_URL }}
           token: ${{ env.VAULT_TOKEN }}
