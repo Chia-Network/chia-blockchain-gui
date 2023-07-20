@@ -311,7 +311,7 @@ function FarmHealth() {
       return (
         <Box>
           <Typography variant="body2">
-            <Trans>Missing signage point</Trans>
+            <Trans>Missing signage points</Trans>
           </Typography>
           <StateIndicator state={State.SUCCESS} indicator reversed>
             <Trans>None</Trans>
@@ -330,7 +330,7 @@ function FarmHealth() {
       <Tooltip title={tooltipTitle}>
         <Box>
           <Typography variant="body2">
-            <Trans>Missing signage point</Trans>
+            <Trans>Missing signage points</Trans>
           </Typography>
           <StateIndicator state={State.WARNING} indicator reversed>
             {missingSpsData.totalMissingSps}
