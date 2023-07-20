@@ -209,7 +209,7 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
 
     if (service === 'EXECUTE') {
       const { execute } = definition;
-      const result = typeof execute === 'function' ? execute(values) : execute;
+      const result = typeof execute === 'function' ? await execute(values) : execute;
 
       return {
         success: true,
