@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_TW\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-19 17:03\n"
+"PO-Revision-Date: 2023-07-20 11:25\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -2617,7 +2617,7 @@ msgstr "NFT狀態更新失敗"
 
 #: src/components/nfts/NFTContextualActions.tsx:253
 msgid "NFT Status Updated"
-msgstr ""
+msgstr "NFT狀態已更新"
 
 #: src/components/nfts/NFTContextualActions.tsx:178
 msgid "NFT Transfer Failed"
