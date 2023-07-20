@@ -1,0 +1,61 @@
+name: Crowdin Action
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * 0'
+
+permissions:
+  id-token: write
+  contents: write
+  pull-requests: write
+
+jobs:
+  synchronize-with-crowdin:
+    runs-on: [k8s-internal]
+    container: python:3.9.7
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Vault Login
+        uses: Chia-Network/actions/vault/login@main
+        with:
+          vault_url: ${{ secrets.VAULT_URL }}
+          role_name: github
+
+      - name: Get secrets from vault
+        uses: hashicorp/vault-action@v2.7.3
+        with:
+          url: ${{ secrets.VAULT_URL }}
+          token: ${{ env.VAULT_TOKEN }}
+          secrets: |
+            secret/data/crowdin token | CROWDIN_PERSONAL_TOKEN;
+            secret/data/crowdin project-id-blockchain-gui | CROWDIN_PROJECT_ID;
+
+      - name: Install J2
+        run: |
+          pip install j2cli
+
+      - name: Generate crowdin configuration file
+        run: |
+          j2 crowdin.yml.j2 -o crowdin.yml
+
+      - name: crowdin action
+        uses: crowdin/github-action@v1
+        with:
+          upload_sources: true
+          upload_translations: true
+          download_translations: true
+          localization_branch_name: l10n_crowdin_translations
+          create_pull_request: true
+          pull_request_title: 'New Crowdin Translations'
+          pull_request_body: 'New Crowdin translations by [Crowdin GH Action](https://github.com/crowdin/github-action)'
+          pull_request_base_branch_name: 'main'
+          github_user_name: 'Chia Automation'
+          github_user_email: 'automation@chia.net'
+          gpg_private_key: ${{ secrets.CHIA_AUTOMATION_PRIVATE_GPG_KEY_RSA }}
+          gpg_passphrase: ${{ secrets.CHIA_AUTOMATION_PRIVATE_GPG_PASSPHRASE }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GIT_TRACE: 1
