@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_TW\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-20 11:25\n"
+"PO-Revision-Date: 2023-07-20 15:56\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -196,7 +196,7 @@ msgstr ""
 
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:89
 msgid "{0, plural, one {mojo} other {mojos}}"
-msgstr "{0, plural,one {translate}other {translate}}"
+msgstr "{0, plural, one {mojo} other {mojos}}"
 
 #: src/components/nfts/NFTPreview.tsx:431
 #: src/components/settings/Settings.tsx:79
@@ -206,7 +206,7 @@ msgstr "{0}"
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:169
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:201
 msgid "{0} buckets is recommended"
-msgstr "推薦 {0} 桶"
+msgstr "建議使用 {0} 個桶"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:217
 msgid "{0} of {1}"
@@ -287,7 +287,7 @@ msgstr ""
 
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:77
 msgid "A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk to a full node to see the state of the chain. View your network of connected harvesters below Learn more"
-msgstr "收割機是在實際存放耕地的機器上運作的服務。塊農和收割機會與一個完整節點溝通以取得區塊鍵狀態。以下是你的收割機與塊農網路 學習更多"
+msgstr "收割機是運行在實際存放耕地的機器上的服務。塊農和收割機通過與完整節點進行通信來查看區塊鏈的狀態。在下方查看您連接的收割機的網路。了解更多。"
 
 #: src/components/settings/SettingsProfiles.tsx:53
 msgid "A profile is a decentralized identifier (DID) that you can prove control and ownership of without having to rely on any centralized authority."
@@ -409,7 +409,7 @@ msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:250
 msgid "After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring."
-msgstr "在您的密鑰成功遷移到新的密鑰圈之後，您可以選擇將您的密鑰從舊的密鑰圈中刪除。"
+msgstr "在您的金鑰成功遷移至新的金鑰圈之後，您可以選擇從舊的金鑰圈中移除您的金鑰。"
 
 #: src/components/nfts/NFTProfileDropdown.tsx:101
 #: src/components/nfts/NFTProfileDropdown.tsx:114
@@ -418,7 +418,7 @@ msgstr "所有的NFTs"
 
 #: src/components/did/DIDProfileDropdown.tsx:23
 msgid "All Profiles"
-msgstr "所有的個人檔案"
+msgstr "所有個人檔案"
 
 #: src/components/settings/SettingsIntegration.tsx:174
 msgid "Allow external Apps and websites to connect to your wallet through WalletConnect."
@@ -442,7 +442,7 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:345
 msgid "Alternate tmpdir/tmpdir2"
-msgstr "輪流使用暫存1資料夾與暫存2資料夾"
+msgstr "替換式臨時目錄（tmpdir/tmpdir2）"
 
 #: src/components/settings/SettingsIntegration.tsx:308
 msgid "Always Allow"
@@ -461,7 +461,7 @@ msgstr ""
 #: src/constants/WalletConnectCommands.tsx:526
 #: src/constants/WalletConnectCommands.tsx:747
 msgid "Amount"
-msgstr "數量"
+msgstr "金額"
 
 #: src/components/offers2/OfferBuilderRoyaltyPayouts.tsx:38
 msgid "Amount before adding royalties"
@@ -470,7 +470,7 @@ msgstr ""
 #: src/components/offers/NFTOfferEditor.tsx:590
 #: src/components/offers/OfferEditor.tsx:108
 msgid "Amount exceeds spendable balance"
-msgstr "超出可使用的餘額"
+msgstr "金額超過可用餘額"
 
 #: src/util/offerBuilderDataToOffer.ts:86
 #~ msgid "Amount exceeds spendable balance for {0} token"
@@ -491,7 +491,7 @@ msgstr ""
 #: src/components/offers/NFTOfferPreview.tsx:137
 #: src/components/offers2/OfferBuilderNFTProvenance.tsx:23
 msgid "An NFT's provenance is a complete record of its ownership history. It provides a direct lineage that connects everyone who has owned the NFT, all the way back to the original artist. This helps to verify that the NFT is authentic."
-msgstr "一個NFT的出處是其所有權歷史的完整記錄。它提供了一個類似祖譜/血統的概念，將擁有該NFT的所有人連接起來，一直追溯到原始藝術家。這有助於驗證NFT的真實性。"
+msgstr "NFT 的來源是它的所有權歷史的完整記錄。它提供了一條直接的血統，將所有擁有過該 NFT 的人連接起來，直至原始藝術家。這有助於驗證 NFT 的真實性。"
 
 #: src/components/notification/NotificationAnnouncementDialog.tsx:35
 msgid "Announcement"
@@ -516,7 +516,7 @@ msgstr ""
 
 #: src/components/offers/ConfirmOfferCancellation.tsx:69
 msgid "Are you sure you want to cancel your offer?"
-msgstr "你確定你要取消你的報價嗎?"
+msgstr "您確定要取消您的報價嗎？"
 
 #: src/components/settings/SettingsNFT.tsx:59
 msgid "Are you sure you want to delete the NFT cache?"
@@ -525,19 +525,19 @@ msgstr ""
 #: src/components/plot/PlotAction.tsx:29
 #: src/components/plot/queue/PlotQueueActions.tsx:41
 msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
-msgstr "你確要刪除這個耕地嗎？此耕地將無法尋回。"
+msgstr "您確定要刪除該耕地嗎？該耕地將無法恢復。"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:112
 msgid "Are you sure you want to delete unconfirmed transactions?"
-msgstr "你確認要刪除未確認的交易?"
+msgstr "您確定要刪除未確認的交易嗎？"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:28
 msgid "Are you sure you want to disconnect?"
-msgstr "您確定要斷線嗎？"
+msgstr "您確定要斷開連接嗎？"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:63
 msgid "Are you sure you want to move this NFT to the specified profile?"
-msgstr "你確定你要將這個NFT移動到指定的個人檔案嗎?"
+msgstr "您確定要將此 NFT 移動到指定的個人檔案嗎？"
 
 #: src/electron/main.tsx:816
 #~ msgid "Are you sure you want to quit?"
@@ -553,7 +553,7 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:50
 msgid "Are you sure you want to use k={plotSize}?"
-msgstr "你確定 k 的大小為 {plotSize}?"
+msgstr "您確定要使用 k={plotSize} 嗎？"
 
 #: src/components/offers2/OfferIncomingTable.tsx:211
 msgid "Are you sure you'd like to remove this offer? Please remember that this action is not reversible."
@@ -617,7 +617,7 @@ msgstr ""
 
 #: src/components/plotNFT/PlotNFTName.tsx:40
 msgid "Autogenerated name from pool contract address"
-msgstr "自動從農會合約地址建立名稱"
+msgstr "從農會合約地址自動生成的名稱"
 
 #: src/components/offers/NFTOfferViewer.tsx:629
 msgid "Back"
@@ -645,11 +645,11 @@ msgstr "基礎塊農獎勵數量"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:35
 msgid "Below are the current block challenges. You may or may not have a proof of space for these challenges. These blocks do not currently contain a proof of time."
-msgstr "以下是目前的區塊挑戰。你可能會或可能不會有這些挑戰的空間證明。這些區塊目前不包含時間證明。"
+msgstr "以下是目前的區塊挑戰。您可能有或可能沒有這些挑戰的空間證明。這些區塊目前不包含時間證明。"
 
 #: src/components/farm/card/FarmCardTotalNetworkSpace.tsx:14
 msgid "Best estimate over last 24 hours"
-msgstr "已過 24 小時最佳預估值"
+msgstr "過去 24 小時的最佳估算"
 
 #: src/components/block/Block.jsx:134
 msgid "Block"
@@ -657,7 +657,7 @@ msgstr "區塊"
 
 #: src/components/block/Block.jsx:250
 msgid "Block at height {0} in the Chia blockchain"
-msgstr "Chia 區塊鏈區塊高度 {0}"
+msgstr "Chia 區塊鏈高度為 {0} 的區塊"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:32
 msgid "Block Rewards"
@@ -669,11 +669,11 @@ msgstr "區塊 VDF 疊代次數"
 
 #: src/components/block/Block.jsx:120
 msgid "Block with hash {headerHash}"
-msgstr "帶雜湊值 {headerHash} 的區塊"
+msgstr "具有哈希值 {headerHash} 的區塊"
 
 #: src/components/block/Block.jsx:139
 msgid "Block with hash {headerHash} does not exist."
-msgstr "帶雜湊值 {headerHash} 的區塊不存在。"
+msgstr "哈希值為 {headerHash} 的區塊不存在。"
 
 #: src/components/fullNode/FullNode.jsx:105
 msgid "Blocks"
@@ -772,7 +772,7 @@ msgstr "挑戰"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:13
 msgid "Challenge Hash"
-msgstr "挑戰雜湊值"
+msgstr "挑戰哈希"
 
 #: src/components/plotNFT/PlotNFTChangePool.tsx:108
 #: src/components/settings/SettingsNFT.tsx:171
@@ -968,7 +968,7 @@ msgstr "連線"
 #: src/components/fullNode/FullNodeAddConnection.tsx:82
 #: src/components/fullNode/FullNodeConnections.tsx:92
 msgid "Connect to other peers"
-msgstr "連線到其他同儕"
+msgstr "連接至其他節點"
 
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:90
 msgid "Connect to pool"
@@ -1192,7 +1192,7 @@ msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:235
 msgid "Data Hash"
-msgstr "資料哈希值(Hash)"
+msgstr "資料雜湊值"
 
 #: src/components/nfts/NFTDetails.tsx:222
 msgid "Data URL {0}"
@@ -1401,7 +1401,7 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:62
 msgid "Does your machine support parallel plotting?"
-msgstr "你的機器支援平行耕地嗎？"
+msgstr "您的機器支援平行繪製嗎？"
 
 #: src/components/nfts/NFTContextualActions.tsx:445
 msgid "Download"
@@ -1519,11 +1519,11 @@ msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:136
 msgid "Enter a strong passphrase and click Migrate Keys to secure your keys"
-msgstr "請輸入較強的私鑰密碼，然後點擊\"搬移私鑰\"以保護您的私鑰"
+msgstr "輸入一個強壯的密碼並點擊「遷移金鑰」以保護您的金鑰"
 
 #: src/components/settings/SetPassphrasePrompt.tsx:164
 msgid "Enter a strong passphrase to secure your keys:"
-msgstr "輸入複雜的私鑰密碼來包護你的私鑰:"
+msgstr "輸入一個強壯的密碼以保護您的金鑰："
 
 #: src/components/signVerify/SignMessage.tsx:66
 msgid "Enter a wallet address to sign with"
@@ -1535,7 +1535,7 @@ msgstr ""
 
 #: src/components/settings/RemovePassphrasePrompt.tsx:121
 msgid "Enter your passphrase:"
-msgstr "輸入你的私鑰密碼"
+msgstr "輸入您的密碼："
 
 #: src/components/farm/card/FarmCardStatus.tsx:35
 #: src/components/farm/card/FarmCardStatus.tsx:49
@@ -1603,7 +1603,7 @@ msgstr ""
 
 #: src/components/nfts/gallery/NFTGalleryHero.tsx:18
 msgid "Explore the Chia ecosystem; discover and trade great NFTs"
-msgstr "探索Chia生態；發現並較易良好的NFTs"
+msgstr "探索 Chia 生態系統；發現並交易精彩的 NFT"
 
 #: src/components/offers/utils.ts:125
 #: src/components/plot/PlotHarvester.tsx:121
@@ -1628,11 +1628,11 @@ msgstr ""
 
 #: src/components/settings/SetPassphrasePrompt.tsx:102
 msgid "Failed to set passphrase: {0}"
-msgstr "設定私鑰密碼失敗: {0}"
+msgstr "設定密碼失敗: {0}"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:126
 msgid "Failed to update passphrase: {0}"
-msgstr "更新私鑰密碼失敗: {0}"
+msgstr "更新密碼失敗: {0}"
 
 #: src/components/notification/NotificationSendDialog.tsx:142
 msgid "Failure"
@@ -1720,12 +1720,12 @@ msgstr ""
 #: src/constants/WalletConnectCommands.tsx:811
 #: src/constants/WalletConnectCommands.tsx:920
 msgid "Fee"
-msgstr "費用"
+msgstr "手續費"
 
 #: src/components/offers/NFTOfferEditor.tsx:81
 #: src/components/offers/OfferEditorConditionsPanel.tsx:386
 msgid "Fee (Optional)"
-msgstr "費用(可選)"
+msgstr "手續費(可選)"
 
 #: src/util/offerBuilderDataToOffer.ts:198
 msgid "Fee exceeds XCH total balance"
@@ -1741,12 +1741,12 @@ msgstr ""
 
 #: src/components/block/Block.jsx:239
 msgid "Fees Amount"
-msgstr "費用數量"
+msgstr "手續費金額"
 
 #: src/components/offers/NFTOfferViewer.tsx:198
 #: src/components/offers/OfferSummary.tsx:167
 msgid "Fees included in offer:"
-msgstr "報價中包含費用"
+msgstr "報價中包含的費用："
 
 #: src/electron/main.tsx:942
 #: src/electron/main.tsx:1135
