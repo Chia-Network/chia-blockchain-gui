@@ -132,7 +132,7 @@ export default function VCList() {
   function renderVCCard(index: number, vcRecord: any) {
     const proofHash = vcRecord?.vc?.proofHash;
     const vcProofs = proofHash ? proofs[proofHash] : undefined;
-    return <VCCard vcRecord={vcRecord} proofs={vcProofs} />;
+    return <VCCard vcRecord={vcRecord} proofs={vcProofs} isLocal={!!vcRecord.isLocal} />;
   }
 
   const allVCs = React.useMemo(() => {
@@ -143,7 +143,7 @@ export default function VCList() {
           ...record,
           isValid: !!(proofs[record.vc.proofHash] && Object.keys(proofs[record.vc.proofHash]).length > 0),
         }))
-        .concat(VCsLocalStorage[fingerprint])
+        .concat((VCsLocalStorage[fingerprint] || []).map((record: any) => ({ ...record, isLocal: true })))
         .filter(Boolean);
     }
     return [];

@@ -1,10 +1,10 @@
 import {
   useGetTimestampForHeightQuery,
   useRevokeVCMutation,
-  usePrefs,
   useLocalStorage,
   useGetLoggedInFingerprintQuery,
   useGetTransactionAsyncMutation,
+  usePrefs,
 } from '@chia-network/api-react';
 import { Truncate, Button, useOpenDialog, AlertDialog, Flex, More, MenuItem } from '@chia-network/core';
 import { Burn as BurnIcon } from '@chia-network/icons';
@@ -35,8 +35,8 @@ function RenderProperty(props: RenderPropertyProps) {
   );
 }
 
-export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proofs?: any }) {
-  const { vcRecord, isDetail, proofs } = props;
+export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proofs?: any; isLocal: boolean }) {
+  const { vcRecord, isDetail, proofs, isLocal } = props;
   const { data: mintedTimestamp, isLoading: isLoadingMintHeight } = useGetTimestampForHeightQuery({
     height: vcRecord?.confirmedAtHeight || 0,
   });
@@ -44,7 +44,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
   const [revokeVC] = useRevokeVCMutation();
   const theme: any = useTheme();
   const openDialog = useOpenDialog();
-  const [vcTitlesObject] = usePrefs<any>('verifiable-credentials-titles', {});
+  const [vcTitlesObject, setVcTitlesObject] = usePrefs<any>('verifiable-credentials-titles', {});
   const vcTitle = React.useMemo(
     () => vcTitlesObject[vcRecord?.vc?.launcherId] || vcTitlesObject[vcRecord?.sha256] || t`Verifiable Credential`,
     [vcRecord?.vc?.launcherId, vcRecord?.sha256, vcTitlesObject]
@@ -55,7 +55,6 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
   const [pendingRevoke, setPendingRevoke] = useLocalStorage<any>('verifiable-credentials-pending-revoke', {});
   const { data: fingerprint } = useGetLoggedInFingerprintQuery();
   const [getTransactionAsync] = useGetTransactionAsyncMutation();
-
   React.useEffect(() => {
     if (vcRecord?.vc?.launcherId && pendingRevoke[vcRecord.vc.launcherId]) {
       getTransactionAsync({ transactionId: pendingRevoke[vcRecord.vc.launcherId] }).then((res) => {
@@ -84,10 +83,15 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
   }
 
   function renderProperties() {
-    const didString = vcRecord?.vc?.proofProvider
-      ? didToDIDId(vcRecord?.vc?.proofProvider)
-      : vcRecord.credentialSubject?.id || '/';
-
+    let didString: string = vcRecord.credentialSubject?.id || '/';
+    try {
+      const proofProvider = vcRecord?.vc?.proofProvider;
+      if (proofProvider) {
+        didString = didToDIDId(proofProvider);
+      }
+    } catch (e) {
+      /* ignore */
+    }
     const issuanceDate =
       vcRecord.confirmedAtHeight && !isLoadingMintHeight && mintedTimestamp
         ? moment(mintedTimestamp.timestamp * 1000).format('LLL')
@@ -146,7 +150,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
             <Trans>Invalid</Trans>
           )}
         </RenderProperty>
-        {isDetail && isVCLocal() && vcRecord.format && (
+        {isDetail && isLocal && vcRecord.format && (
           <RenderProperty label={<Trans>Standard Version Number</Trans>}>{vcRecord.format}</RenderProperty>
         )}
         {isDetail && proofs && Object.keys(proofs).length > 0 && (
@@ -174,15 +178,11 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
     );
   }
 
-  function isVCLocal() {
-    return !vcRecord.vc;
-  }
-
   async function openRevokeVCDialog(type: string) {
     const confirmedWithFee = await openDialog(
       <VCRevokeDialog
         vcTitle={vcTitle}
-        isLocal={!vcRecord.vc}
+        isLocal={isLocal}
         title={
           type === 'remove' ? <Trans>Remove Verifiable Credential</Trans> : <Trans>Revoke Verifiable Credential</Trans>
         }
@@ -211,6 +211,10 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
             delete vcsLocalStorage[fingerprint];
           }
           setVCsLocalStorage(vcsLocalStorage);
+          /* remove title from prefs */
+          const vcTitlesObjectCopy = { ...vcTitlesObject };
+          delete vcTitlesObjectCopy[vcRecord.sha256];
+          setVcTitlesObject(vcTitlesObjectCopy);
         }
         if (type === 'revoke') {
           /* add revoked flaglocal storage */
@@ -266,7 +270,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
     return (
       <Flex sx={{ marginBottom: '10px', padding: '8px' }}>
         <More>
-          {isVCLocal() && (
+          {isLocal && (
             <MenuItem onClick={() => openRevokeVCDialog('remove')} close>
               <ListItemIcon>
                 <DeleteIcon />
@@ -276,17 +280,13 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
               </Typography>
             </MenuItem>
           )}
-          {!isVCLocal() && (
+          {!isLocal && (
             <MenuItem onClick={() => openRevokeVCDialog('revoke')} close>
               <ListItemIcon>
                 <BurnIcon />
               </ListItemIcon>
               <Typography variant="inherit" noWrap>
-                {isVCLocal() ? (
-                  <Trans>Delete Verifiable Credential</Trans>
-                ) : (
-                  <Trans>Revoke Verifiable Credential</Trans>
-                )}
+                {isLocal ? <Trans>Delete Verifiable Credential</Trans> : <Trans>Revoke Verifiable Credential</Trans>}
               </Typography>
             </MenuItem>
           )}
