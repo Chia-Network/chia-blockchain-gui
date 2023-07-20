@@ -42,7 +42,7 @@ jobs:
           j2 crowdin.yml.j2 -o crowdin.yml
 
       - name: crowdin action
-        uses: crowdin/github-action@v1
+        uses: crowdin/github-action@v1.11.0
         with:
           upload_sources: true
           upload_translations: true
