@@ -1,13 +1,24 @@
 import { Stack, type StackProps } from '@mui/material';
-import React from 'react';
+import { useOverlayScrollbars } from 'overlayscrollbars-react';
+import React, { useEffect, useRef } from 'react';
 
 export type FlexProps = StackProps & {
   flexDirection?: 'row' | 'column';
   inline?: boolean;
+  overrideScrollbar?: boolean;
 };
 
 export default function Flex(props: FlexProps) {
-  const { flexDirection = 'row', direction, inline, sx, ...rest } = props;
+  const { flexDirection = 'row', direction, inline, sx, overrideScrollbar, ...rest } = props;
+
+  const ref = useRef();
+  const [initialize] = useOverlayScrollbars({ defer: true });
+
+  useEffect(() => {
+    if (overrideScrollbar) {
+      initialize(ref.current);
+    }
+  }, [initialize, overrideScrollbar]);
 
   const computedDirection = direction ?? flexDirection;
 
@@ -19,6 +30,7 @@ export default function Flex(props: FlexProps) {
         ...sx,
       }}
       {...rest}
+      ref={ref}
     />
   );
 }

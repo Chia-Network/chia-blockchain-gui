@@ -29,7 +29,16 @@ const StyledContent = styled(({ header, sidebar, fullHeight, ...rest }) => <Box 
   flex-direction: column;
   height: 100%;
   flex-grow: 1;
-  overflow-y: auto;
+  overflow-y: hidden;
+  position: relative;
+  margin-left: ${({ sidebar }) => (!sidebar ? `0` : '-10px')};
+`;
+
+const StyledContentWrapper = styled(({ header, sidebar, fullHeight, ...rest }) => <Flex {...rest} />)`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex-grow: 1;
   position: relative;
 
   padding-top: ${({ theme, header }) => (header ? 0 : theme.spacing(3))};
@@ -37,7 +46,11 @@ const StyledContent = styled(({ header, sidebar, fullHeight, ...rest }) => <Box 
   padding-right: ${({ theme }) => theme.spacing(3)};
 
   padding-left: ${({ theme, sidebar }) => (!sidebar ? theme.spacing(3) : '10px')};
-  margin-left: ${({ sidebar }) => (!sidebar ? `0` : '-10px')};
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
 `;
 
 export type DashboardLayoutProps = {
@@ -63,11 +76,15 @@ export default function DashboardLayout(props: DashboardLayoutProps) {
             {header}
           </StyledHeader>
           <StyledContent sidebar={!!sidebar} header={!!header} onScroll={props?.onScroll} fullHeight={fullHeight}>
-            {outlet ? <Outlet /> : children}
+            <StyledContentWrapper fullHeight={fullHeight} header={!!header} overrideScrollbar>
+              {outlet ? <Outlet /> : children}
+            </StyledContentWrapper>
           </StyledContent>
         </Flex>
       ) : (
-        <StyledContent sidebar={!!sidebar}>{outlet ? <Outlet /> : children}</StyledContent>
+        <StyledContent sidebar={!!sidebar}>
+          <StyledContentWrapper overrideScrollbar>{outlet ? <Outlet /> : children}</StyledContentWrapper>
+        </StyledContent>
       )}
     </StyledRoot>
   );

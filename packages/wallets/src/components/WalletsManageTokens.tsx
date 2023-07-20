@@ -93,16 +93,10 @@ const StyledContent = styled(Box)`
 `;
 
 const StyledListBody = styled(Flex)`
-  overflow-y: overlay;
+  overflow-y: hidden;
   flex-direction: column;
   flex-grow: 1;
   margin-top: ${({ theme }) => theme.spacing(2)};
-  padding-left: ${({ theme }) => theme.spacing(2)};
-  padding-right: ${({ theme }) => theme.spacing(2)};
-`;
-
-const StyledButtonText = styled(Box)`
-  position: relative;
 `;
 
 const StyledExpandButtonContainer = styled(Box)`
@@ -129,12 +123,12 @@ export default function WalletsManageTokens() {
     <StyledRoot>
       <StyledButtonContainer>
         <StyledMainButton onClick={toggle} data-testid="WalletsManageTokens-manage-token-list" fullWidth>
-          <StyledButtonText>
+          <Box position="relative">
             <Trans>Manage token list</Trans>
             <StyledExpandButtonContainer>
               {expanded ? <KeyboardArrowDown /> : <KeyboardArrowUp />}
             </StyledExpandButtonContainer>
-          </StyledButtonText>
+          </Box>
         </StyledMainButton>
       </StyledButtonContainer>
       <StyledBody expanded={expanded}>
@@ -160,16 +154,18 @@ export default function WalletsManageTokens() {
               </Tooltip>
             </Box>
           </Flex>
-          <StyledListBody>
-            {isLoading ? (
-              <Spinner center />
-            ) : (
-              <Flex gap={1} flexDirection="column" width="100%">
-                {list?.map((listItem) => (
-                  <WalletTokenCard item={listItem} key={listItem.id} onHide={hide} onShow={show} />
-                ))}
-              </Flex>
-            )}
+          <StyledListBody overrideScrollbar>
+            <Flex flexDirection="column" alignItems="center" paddingLeft={2} paddingRight={2} paddingBottom={1}>
+              {isLoading ? (
+                <Spinner center />
+              ) : (
+                <Flex gap={1} flexDirection="column" width="100%">
+                  {list?.map((listItem) => (
+                    <WalletTokenCard item={listItem} key={listItem.id} onHide={hide} onShow={show} />
+                  ))}
+                </Flex>
+              )}
+            </Flex>
           </StyledListBody>
         </StyledContent>
       </StyledBody>

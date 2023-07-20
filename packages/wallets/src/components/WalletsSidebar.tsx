@@ -25,7 +25,7 @@ const StyledContent = styled(Box)`
   padding-right: ${({ theme }: { theme: Theme }) => theme.spacing(3)};
   margin-right: ${({ theme }: { theme: Theme }) => theme.spacing(2)};
   min-height: ${({ theme }: { theme: Theme }) => theme.spacing(5)};
-  overflow-y: overlay;
+  overflow: hidden;
 `;
 
 const StyledBody = styled(Box)`
@@ -39,9 +39,17 @@ const StyledItemsContainer = styled(Flex)`
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
+  right: ${({ theme }: { theme: Theme }) => theme.spacing(2)};
   bottom: 0;
   padding-bottom: ${({ theme }: { theme: Theme }) => theme.spacing(6)};
+`;
+
+const StyledItemsContent = styled(Box)`
+  padding-left: ${({ theme }: { theme: Theme }) => theme.spacing(3)};
+  padding-bottom: ${({ theme }: { theme: Theme }) => theme.spacing(1)};
+  margin-right: ${({ theme }: { theme: Theme }) => theme.spacing(2)};
+  min-height: ${({ theme }: { theme: Theme }) => theme.spacing(5)};
+  overflow: hidden;
 `;
 
 export default function WalletsSidebar() {
@@ -93,12 +101,12 @@ export default function WalletsSidebar() {
           </Typography>
         </StyledContent>
         <StyledBody>
-          <StyledItemsContainer>
-            <StyledContent>
+          <StyledItemsContainer overrideScrollbar>
+            <StyledItemsContent>
               <Flex gap={1} flexDirection="column">
                 {items}
               </Flex>
-            </StyledContent>
+            </StyledItemsContent>
           </StyledItemsContainer>
           <WalletsManageTokens />
         </StyledBody>

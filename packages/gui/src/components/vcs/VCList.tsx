@@ -244,7 +244,7 @@ export default function VCList() {
 
   function renderZeroState() {
     return (
-      <>
+      <Flex flexDirection="column" overrideScrollbar>
         <Box sx={{ marginBottom: '10px', padding: '25px 25px 0 25px' }}>{renderActionsDropdown()}</Box>
         <Flex flexDirection="column" sx={{ alignItems: 'center', zIndex: 2 }}>
           <Flex
@@ -298,7 +298,7 @@ export default function VCList() {
             </Flex>
           </Flex>
         </Flex>
-      </>
+      </Flex>
     );
   }
 
@@ -308,27 +308,29 @@ export default function VCList() {
 
   return (
     <Box sx={{ height: '100%', padding: '25px 0 0 25px', overflowY: 'hidden' }}>
-      {Array.isArray(blockchainVCs?.vcRecords) &&
-        blockchainVCs?.vcRecords.map((vcRecord: any) => (
-          <VCGetTimestamp vcRecord={vcRecord} onVCTimestamp={onVCTimestamp} />
-        ))}
-      <Flex sx={{ justifyContent: 'space-between', marginBottom: '10px', padding: '15px' }}>
-        <Flex>
-          <Typography variant="h6">
-            <Trans>Verifiable Credentials</Trans>: {allVCs?.length ?? 0}
-          </Typography>
+      <Flex flexDirection="column" overrideScrollbar>
+        {Array.isArray(blockchainVCs?.vcRecords) &&
+          blockchainVCs?.vcRecords.map((vcRecord: any) => (
+            <VCGetTimestamp vcRecord={vcRecord} onVCTimestamp={onVCTimestamp} />
+          ))}
+        <Flex sx={{ justifyContent: 'space-between', marginBottom: '10px', padding: '15px' }}>
+          <Flex>
+            <Typography variant="h6">
+              <Trans>Verifiable Credentials</Trans>: {allVCs?.length ?? 0}
+            </Typography>
+          </Flex>
+          {renderActionsDropdown()}
         </Flex>
-        {renderActionsDropdown()}
+        <Box sx={{ height: 'calc(100% - 75px)' }}>
+          <VirtuosoGrid
+            style={{ height: '100%' }}
+            data={allVCsSortLatest}
+            components={COMPONENTS}
+            itemContent={renderVCCard}
+            scrollerRef={handleScrollRef}
+          />
+        </Box>
       </Flex>
-      <Box sx={{ height: 'calc(100% - 75px)' }}>
-        <VirtuosoGrid
-          style={{ height: '100%' }}
-          data={allVCsSortLatest}
-          components={COMPONENTS}
-          itemContent={renderVCCard}
-          scrollerRef={handleScrollRef}
-        />
-      </Box>
     </Box>
   );
 }
