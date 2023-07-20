@@ -104,3 +104,6 @@ dist
 **/coverage
 .coverage
 .nyc_output
+
+# Crowdin
+crowdin.yml
