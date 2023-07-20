@@ -1,5 +1,5 @@
 import { useLocalStorage } from '@chia-network/api-react';
-import { Flex, SideBarItem } from '@chia-network/core';
+import { Flex, SideBarItem, ScrollbarFlex } from '@chia-network/core';
 import {
   Farm as FarmIcon,
   FullNode as FullNodeIcon,
@@ -18,7 +18,7 @@ import { Box } from '@mui/material';
 import React from 'react';
 import styled from 'styled-components';
 
-const StyledItemsContainer = styled(Flex)`
+const StyledItemsContainer = styled(ScrollbarFlex)`
   flex-direction: column;
   flex-grow: 1;
   overflow: hidden;
@@ -39,7 +39,7 @@ export default function DashboardSideBar(props: DashboardSideBarProps) {
 
   return (
     <Flex height="100%" flexDirection="column">
-      <StyledItemsContainer overrideScrollbar>
+      <StyledItemsContainer>
         <Flex flexDirection="column" alignItems="center" paddingTop={5}>
           <SideBarItem
             to="/dashboard/wallets"

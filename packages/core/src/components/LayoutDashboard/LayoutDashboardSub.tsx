@@ -4,6 +4,7 @@ import { Outlet } from 'react-router';
 import styled from 'styled-components';
 
 import Flex from '../Flex';
+import ScrollbarFlex from '../Scrollbar/ScrollbarFlex';
 
 const StyledRoot = styled(Flex)`
   width: 100%;
@@ -34,7 +35,7 @@ const StyledContent = styled(({ header, sidebar, fullHeight, ...rest }) => <Box 
   margin-left: ${({ sidebar }) => (!sidebar ? `0` : '-10px')};
 `;
 
-const StyledContentWrapper = styled(({ header, sidebar, fullHeight, ...rest }) => <Flex {...rest} />)`
+const StyledContentWrapper = styled(({ header, sidebar, fullHeight, ...rest }) => <ScrollbarFlex {...rest} />)`
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -76,14 +77,14 @@ export default function DashboardLayout(props: DashboardLayoutProps) {
             {header}
           </StyledHeader>
           <StyledContent sidebar={!!sidebar} header={!!header} onScroll={props?.onScroll} fullHeight={fullHeight}>
-            <StyledContentWrapper fullHeight={fullHeight} header={!!header} overrideScrollbar>
+            <StyledContentWrapper fullHeight={fullHeight} header={!!header}>
               {outlet ? <Outlet /> : children}
             </StyledContentWrapper>
           </StyledContent>
         </Flex>
       ) : (
         <StyledContent sidebar={!!sidebar}>
-          <StyledContentWrapper overrideScrollbar>{outlet ? <Outlet /> : children}</StyledContentWrapper>
+          <StyledContentWrapper>{outlet ? <Outlet /> : children}</StyledContentWrapper>
         </StyledContent>
       )}
     </StyledRoot>

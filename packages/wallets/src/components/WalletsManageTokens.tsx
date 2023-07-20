@@ -1,5 +1,5 @@
 import { WalletType } from '@chia-network/api';
-import { Button, useColorModeValue, Spinner, Flex, Tooltip, useTrans } from '@chia-network/core';
+import { Button, useColorModeValue, Spinner, Flex, ScrollbarFlex, Tooltip, useTrans } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Add, KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
 import SearchIcon from '@mui/icons-material/Search';
@@ -92,7 +92,7 @@ const StyledContent = styled(Box)`
   flex-direction: column;
 `;
 
-const StyledListBody = styled(Flex)`
+const StyledListBody = styled(ScrollbarFlex)`
   overflow-y: hidden;
   flex-direction: column;
   flex-grow: 1;
@@ -154,7 +154,7 @@ export default function WalletsManageTokens() {
               </Tooltip>
             </Box>
           </Flex>
-          <StyledListBody overrideScrollbar>
+          <StyledListBody>
             <Flex flexDirection="column" alignItems="center" paddingLeft={2} paddingRight={2} paddingBottom={1}>
               {isLoading ? (
                 <Spinner center />

@@ -1,6 +1,6 @@
 import { WalletType } from '@chia-network/api';
 import { useGetWalletsQuery } from '@chia-network/api-react';
-import { Flex, CardListItem } from '@chia-network/core';
+import { Flex, CardListItem, ScrollbarFlex } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Box, Typography, Theme } from '@mui/material';
 import { orderBy } from 'lodash';
@@ -33,7 +33,7 @@ const StyledBody = styled(Box)`
   position: relative;
 `;
 
-const StyledItemsContainer = styled(Flex)`
+const StyledItemsContainer = styled(ScrollbarFlex)`
   flex-direction: column;
   height: 100%;
   position: absolute;
@@ -101,7 +101,7 @@ export default function WalletsSidebar() {
           </Typography>
         </StyledContent>
         <StyledBody>
-          <StyledItemsContainer overrideScrollbar>
+          <StyledItemsContainer>
             <StyledItemsContent>
               <Flex gap={1} flexDirection="column">
                 {items}

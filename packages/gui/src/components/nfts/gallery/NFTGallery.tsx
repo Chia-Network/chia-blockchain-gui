@@ -9,8 +9,7 @@ import {
   Tooltip,
   usePersistState,
   Mute,
-  // Scrollbar,
-  ScrollbarContainer,
+  Scrollbar,
 } from '@chia-network/core';
 import { t, Trans } from '@lingui/macro';
 import { FilterList as FilterListIcon, LibraryAddCheck as LibraryAddCheckIcon } from '@mui/icons-material';
@@ -80,7 +79,7 @@ const ListContainer = styled('div')({
 const COMPONENTS = {
   Item: ItemContainer,
   List: ListContainer,
-  Scroller: ScrollbarContainer,
+  Scroller: Scrollbar,
 };
 
 export const defaultCacheSizeLimit = 1024; /* MB */
