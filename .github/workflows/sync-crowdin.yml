@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   synchronize-with-crowdin:
-    runs-on: [k8s-internal]
+    runs-on: [k8s-public]
     container: python:3.9.7
     steps:
       - name: Checkout
