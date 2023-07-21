@@ -7,6 +7,7 @@ import React, { type ReactNode, useState, Suspense, useCallback } from 'react';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 
+import Color from '../../constants/Color';
 import useGetLatestVersionFromWebsite from '../../hooks/useGetLatestVersionFromWebsite';
 import useOpenDialog from '../../hooks/useOpenDialog';
 import EmojiAndColorPicker from '../../screens/SelectKey/EmojiAndColorPicker';
@@ -236,7 +237,11 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
                                 data-testid="LayoutDashboard-edit-walletName"
                                 sx={{ padding: '8px' }}
                               >
-                                <EditIcon color="disabled" />
+                                <EditIcon
+                                  style={{
+                                    color: isDark ? Color.Neutral[600] : Color.Neutral[400],
+                                  }}
+                                />
                               </IconButton>
                             </Flex>
                             {fingerprint && (
