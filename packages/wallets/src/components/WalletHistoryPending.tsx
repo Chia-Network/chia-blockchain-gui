@@ -1,8 +1,8 @@
 import { TransactionType, TransactionTypeFilterMode } from '@chia-network/api';
-import { TableControlledRow } from '@chia-network/core';
+import { Color, TableControlledRow } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { AccessTime as AccessTimeIcon } from '@mui/icons-material';
-import { TableCell, TableRow, Chip } from '@mui/material';
+import { alpha, TableCell, TableRow, Chip } from '@mui/material';
 import React, { useState, ReactNode } from 'react';
 
 import useWalletTransactions from '../hooks/useWalletTransactions';
@@ -51,7 +51,7 @@ function WalletHistoryPending(props: Props) {
           colSpan={cols.length}
           sx={{
             backgroundColor: (theme) => theme.palette.grey[600],
-            color: 'white',
+            color: Color.Neutral[50],
             fontSize: 16,
             '& svg': {
               verticalAlign: 'middle',
@@ -66,7 +66,7 @@ function WalletHistoryPending(props: Props) {
               backgroundColor: (theme) => theme.palette.grey[800],
               marginLeft: 1,
               minWidth: '30px',
-              color: 'white',
+              color: Color.Neutral[50],
             }}
             size="small"
           />
@@ -77,7 +77,7 @@ function WalletHistoryPending(props: Props) {
         <TableControlledRow
           row={row}
           rowIndex={rowIndex}
-          oddRowBackgroundColor="rgba(0,0,0,0.10);"
+          oddRowBackgroundColor={alpha(Color.Neutral[900], 0.1)}
           currentCols={cols}
           metadata={metadata}
           expandedField={expandedField}

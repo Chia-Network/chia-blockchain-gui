@@ -43,7 +43,7 @@ export default function PlotOverviewPlots() {
             <More>
               <MenuItem onClick={handleAddPlotDirectory} close>
                 <ListItemIcon>
-                  <Add fontSize="small" />
+                  <Add fontSize="small" color="info" />
                 </ListItemIcon>
                 <Typography variant="inherit" noWrap>
                   <Trans>Add Plot Directory</Trans>
@@ -51,7 +51,7 @@ export default function PlotOverviewPlots() {
               </MenuItem>
               <MenuItem onClick={handleRefreshPlots} close>
                 <ListItemIcon>
-                  <Refresh fontSize="small" />
+                  <Refresh fontSize="small" color="info" />
                 </ListItemIcon>
                 <Typography variant="inherit" noWrap>
                   <Trans>Refresh Plots</Trans>

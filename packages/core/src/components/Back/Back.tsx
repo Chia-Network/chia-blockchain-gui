@@ -59,7 +59,7 @@ export default function Back(props: BackProps) {
   return (
     <Flex gap={1} alignItems={alignItems}>
       <IconButton onClick={handleGoBack} sx={iconStyle}>
-        <ArrowBackIosNew />
+        <ArrowBackIosNew color="info" />
       </IconButton>
 
       <Typography variant={variant}>{children}</Typography>

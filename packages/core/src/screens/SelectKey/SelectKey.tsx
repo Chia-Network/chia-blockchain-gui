@@ -24,6 +24,7 @@ import Loading from '../../components/Loading';
 import MenuItem from '../../components/MenuItem/MenuItem';
 import More from '../../components/More';
 import TooltipIcon from '../../components/TooltipIcon';
+import Color from '../../constants/Color';
 import useAuth from '../../hooks/useAuth';
 import useKeyringMigrationPrompt from '../../hooks/useKeyringMigrationPrompt';
 import useOpenDialog from '../../hooks/useOpenDialog';
@@ -194,7 +195,7 @@ export default function SelectKey() {
           <More>
             <MenuItem onClick={handleDeleteAllKeys} close>
               <ListItemIcon>
-                <DeleteIcon />
+                <DeleteIcon color="info" />
               </ListItemIcon>
               <Typography variant="inherit" noWrap>
                 <Trans>Delete All Keys</Trans>
@@ -207,11 +208,13 @@ export default function SelectKey() {
   );
 
   function renderTopSection() {
+    const isDark = theme.palette.mode === 'dark';
+    const level = isDark ? '700' : '300';
     return (
       <Flex
         justifyContent="space-between"
         width="100%"
-        sx={{ borderBottom: '1px solid #CCDDE1', paddingBottom: '30px' }}
+        sx={{ borderBottom: `1px solid ${Color.Neutral[level]}`, paddingBottom: '30px' }}
       >
         <Flex alignItems="left">
           <ChiaBlack color="secondary" />

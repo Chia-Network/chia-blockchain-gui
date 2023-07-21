@@ -1,6 +1,7 @@
 import type { NFTInfo } from '@chia-network/api';
 import { useGetCatListQuery } from '@chia-network/api-react';
 import {
+  Color,
   CopyToClipboard,
   Flex,
   FormatLargeNumber,
@@ -15,7 +16,7 @@ import {
   mojoToCATLocaleString,
 } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import { Box, Typography } from '@mui/material';
+import { alpha, Box, Typography } from '@mui/material';
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
 
@@ -23,7 +24,7 @@ import useOfferBuilderContext from '../../hooks/useOfferBuilderContext';
 
 const StyledTitle = styled(Box)`
   font-size: 0.625rem;
-  color: rgba(255, 255, 255, 0.7);
+  color: ${alpha(Color.Neutral[50], 0.7)};
 `;
 
 const StyledValue = styled(Box)`
