@@ -3,6 +3,7 @@ import type { NFTInfo } from '@chia-network/api';
 import { useLocalStorage } from '@chia-network/api-react';
 import {
   Button,
+  Color,
   FormatLargeNumber,
   Flex,
   LayoutDashboardSub,
@@ -23,6 +24,7 @@ import {
   Typography,
   IconButton,
 } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import { styled } from '@mui/styles';
 import { xor, intersection /* , sortBy */ } from 'lodash';
 import React, { useMemo, useCallback, useRef, useEffect } from 'react';
@@ -83,6 +85,7 @@ const COMPONENTS = {
 export const defaultCacheSizeLimit = 1024; /* MB */
 
 export default function NFTGallery() {
+  const theme: any = useTheme();
   const {
     nfts,
     isLoading,
@@ -264,7 +267,7 @@ export default function NFTGallery() {
                   backgroundColor: 'background.paper',
                   paddingX: 1,
                   borderRadius: 1,
-                  borderColor: 'action.focus',
+                  borderColor: theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[300],
                   borderWidth: 1,
                   borderStyle: 'solid',
                 }}

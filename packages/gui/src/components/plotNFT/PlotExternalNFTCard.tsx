@@ -193,7 +193,7 @@ export default function PlotExternalNFTCard(props: PlotExternalNFTCardProps) {
               <More>
                 <MenuItem onClick={handleAddPlot} close>
                   <ListItemIcon>
-                    <PlotIcon />
+                    <PlotIcon color="info" />
                   </ListItemIcon>
                   <Typography variant="inherit" noWrap>
                     <Trans>Add a Plot</Trans>
@@ -217,7 +217,7 @@ export default function PlotExternalNFTCard(props: PlotExternalNFTCardProps) {
                 {!isSelfPooling && (
                   <MenuItem onClick={handlePayoutInstructions} close>
                     <ListItemIcon>
-                      <PaymentIcon />
+                      <PaymentIcon color="info" />
                     </ListItemIcon>
                     <Typography variant="inherit" noWrap>
                       <Trans>Edit Payout Instructions</Trans>

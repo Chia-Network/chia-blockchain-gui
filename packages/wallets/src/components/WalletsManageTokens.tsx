@@ -142,7 +142,7 @@ export default function WalletsManageTokens() {
             <Box flexGrow={1} ml={2}>
               <Search>
                 <SearchIconWrapper>
-                  <SearchIcon />
+                  <SearchIcon color="info" />
                 </SearchIconWrapper>
                 <StyledInputBase
                   value={search}
@@ -154,7 +154,7 @@ export default function WalletsManageTokens() {
             <Box mr={2}>
               <Tooltip title={<Trans>Add Token</Trans>}>
                 <IconButton onClick={handleAddToken}>
-                  <Add />
+                  <Add color="info" />
                 </IconButton>
               </Tooltip>
             </Box>
