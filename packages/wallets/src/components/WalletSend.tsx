@@ -40,7 +40,6 @@ type SendCardProps = {
 
 type SendTransactionData = {
   address: string;
-  addressAuto: string;
   amount: string;
   fee: string;
   memo: string;
@@ -69,7 +68,6 @@ export default function WalletSend(props: SendCardProps) {
   const methods = useForm<SendTransactionData>({
     defaultValues: {
       address: '',
-      addressAuto: '',
       amount: '',
       fee: '',
       memo: '',
