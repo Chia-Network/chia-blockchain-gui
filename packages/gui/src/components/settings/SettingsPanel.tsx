@@ -2,8 +2,9 @@
 
 import { useGetKeyringStatusQuery } from '@chia-network/api-react';
 import {
-  Button,
   AlertDialog,
+  Button,
+  Color,
   Suspender,
   useOpenDialog,
   useSkipMigration,
@@ -84,7 +85,7 @@ export default function SettingsPanel() {
     let statusMessage: JSX.Element | null = null;
     let tooltipTitle: React.ReactElement;
     const tooltipIconStyle: React.CSSProperties = {
-      color: '#c8c8c8',
+      color: Color.Neutral[300],
       fontSize: 12,
     };
 

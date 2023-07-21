@@ -97,7 +97,7 @@ export default function IdentitiesPanel() {
             <Typography>
               <Trans>Create Profile</Trans>
             </Typography>
-            <Add />
+            <Add color="info" />
           </Flex>
         </Flex>
       </CardListItem>

@@ -15,20 +15,25 @@ import { get } from 'lodash';
 import React, { ReactNode, useMemo, useState, SyntheticEvent, Fragment } from 'react';
 import styled from 'styled-components';
 
+import Color from '../../constants/Color';
 import LoadingOverlay from '../LoadingOverlay';
 
 const StyledTableHead = styled(TableHead)`
-  background-color: ${({ theme }) => theme.palette.action.selected};
+  background-color: ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[200])};
   font-weight: 500;
 `;
 
 export const StyledTableRow = styled(({ odd, oddRowBackgroundColor, ...rest }) => <TableRow {...rest} />)`
   ${({ odd, oddRowBackgroundColor, theme }) =>
-    odd ? `background-color: ${oddRowBackgroundColor || theme.palette.action.hover};` : undefined}
+    odd
+      ? `background-color: ${
+          oddRowBackgroundColor || theme.palette.mode === 'dark' ? Color.Neutral[800] : Color.Neutral[100]
+        };`
+      : undefined}
 `;
 
 const StyledExpandedTableRow = styled(({ isExpanded, ...rest }) => <TableRow {...rest} />)`
-  background-color: ${({ theme }) => (theme.palette.mode === 'dark' ? '#1E1E1E' : '#EEEEEE')};
+  background-color: ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[200])};
   ${({ isExpanded }) => (!isExpanded ? 'display: none;' : undefined)}
 `;
 
@@ -36,7 +41,7 @@ const StyledTableCell = styled(({ width, minWidth, maxWidth, ...rest }) => <Tabl
   max-width: ${({ minWidth, maxWidth, width }) => (maxWidth || width || minWidth) ?? 'none'};
   min-width: ${({ minWidth }) => minWidth || '0'};
   width: ${({ width, minWidth }) => (width || minWidth ? width : 'auto')}};
-  border-bottom: 1px solid ${({ theme }) => (theme.palette.mode === 'dark' ? '#353535' : '#e0e0e0')};
+  border-bottom: 1px solid ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[800] : Color.Neutral[200])};
 `;
 
 const StyledTableCellContent = styled(Box)<{ forceWrap: boolean }>`

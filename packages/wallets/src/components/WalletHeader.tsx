@@ -62,7 +62,7 @@ export default function WalletHeader(props: StandardWalletProps) {
           <DropdownActions label={<Trans>Actions</Trans>} variant="outlined">
             <MenuItem onClick={handleDeleteUnconfirmedTransactions} close>
               <ListItemIcon>
-                <DeleteIcon />
+                <DeleteIcon color="info" />
               </ListItemIcon>
               <Typography variant="inherit" noWrap>
                 <Trans>Delete Unconfirmed Transactions</Trans>

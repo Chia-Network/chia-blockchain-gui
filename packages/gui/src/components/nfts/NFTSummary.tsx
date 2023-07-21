@@ -1,7 +1,7 @@
 import type { NFTAttribute } from '@chia-network/api';
-import { CopyToClipboard, Flex, Loading, TooltipIcon, truncateValue } from '@chia-network/core';
+import { Color, CopyToClipboard, Flex, Loading, TooltipIcon, truncateValue } from '@chia-network/core';
 import { t, Trans } from '@lingui/macro';
-import { Box, Card, CardContent, Typography } from '@mui/material';
+import { alpha, Box, Card, CardContent, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
@@ -17,7 +17,7 @@ import NFTTitle from './NFTTitle';
 
 const StyledTitle = styled(Box)`
   font-size: 0.625rem;
-  color: rgba(255, 255, 255, 0.7);
+  color: ${alpha(Color.Neutral[50], 0.7)};
 `;
 
 const StyledValue = styled(Box)`
