@@ -27,7 +27,7 @@ export const StyledTableRow = styled(({ odd, oddRowBackgroundColor, ...rest }) =
   ${({ odd, oddRowBackgroundColor, theme }) =>
     odd
       ? `background-color: ${
-          oddRowBackgroundColor || theme.palette.mode === 'dark' ? Color.Neutral[800] : Color.Neutral[100]
+          oddRowBackgroundColor || (theme.palette.mode === 'dark' ? Color.Neutral[800] : Color.Neutral[100])
         };`
       : undefined}
 `;
