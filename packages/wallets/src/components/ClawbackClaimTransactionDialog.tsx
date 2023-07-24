@@ -39,7 +39,7 @@ import React from 'react';
 import { useForm, useWatch } from 'react-hook-form';
 
 type FormData = {
-  fee: number;
+  fee: string;
   shouldEnableAutoClaim: boolean;
 };
 
@@ -53,7 +53,6 @@ type Props = {
 };
 
 export default function ClawbackClaimTransactionDialog(props: Props) {
-  // console.log('props: ', props);
   const { onClose, open, coinId, amountInMojo, fromOrTo, address } = props;
   const [setAutoClaim] = useSetAutoClaimMutation();
   const [spendClawbackCoins] = useSpendClawbackCoinsMutation();
@@ -67,15 +66,15 @@ export default function ClawbackClaimTransactionDialog(props: Props) {
 
   const currencyCode = useCurrencyCode();
   const methods = useForm<FormData>({
-    defaultValues: { fee: undefined, shouldEnableAutoClaim: false },
+    defaultValues: { fee: '', shouldEnableAutoClaim: false },
   });
 
-  const shouldEnableAutoClaimValue = useWatch<boolean>({
+  const shouldEnableAutoClaimValue = useWatch({
     control: methods.control,
     name: 'shouldEnableAutoClaim',
   });
 
-  const feeValue = useWatch<number | undefined>({
+  const feeValue = useWatch({
     control: methods.control,
     name: 'fee',
   });
@@ -87,7 +86,8 @@ export default function ClawbackClaimTransactionDialog(props: Props) {
 
   const { isSubmitting } = methods.formState;
 
-  const canSubmit = !isSyncing && !isSubmitting && !isGetAutoClaimLoading && feeValue;
+  // The fee from EstimatedFee is a string
+  const canSubmit = !isSyncing && !isSubmitting && !isGetAutoClaimLoading && feeValue !== '';
 
   function handleClose() {
     methods.reset();
