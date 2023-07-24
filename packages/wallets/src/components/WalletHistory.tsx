@@ -55,6 +55,12 @@ function getIsOutgoingTransaction(transactionRow: Transaction) {
   );
 }
 
+function getPuzzleHasFromRemovals(removals) {
+  if (removals && Array.isArray(removals) && removals.length === 1 && removals[0]?.puzzleHash)
+    return removals[0].puzzleHash;
+  return null;
+}
+
 const StyledTableCellSmall = styled(TableCell)`
   border-bottom: 0;
   padding-left: 0;
@@ -137,16 +143,30 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate, location
       // const hasMemos = !!memos && !!Object.keys(memos).length && !!memos[Object.keys(memos)[0]];
       const isRetire = row.toAddress === metadata.retireAddress;
       const isOffer = row.toAddress === metadata.offerTakerAddress;
-      const shouldObscureAddress = isRetire || isOffer;
+      let shouldObscureAddress = isRetire || isOffer;
 
-      let displayAddress = truncateValue(row.toAddress, {});
+      let address = row.toAddress;
+      if (!isOutgoing) {
+        const puzzleHash = getPuzzleHasFromRemovals(row.removals);
+        if (typeof puzzleHash === 'string') address = toBech32m(puzzleHash, metadata.unit);
+        else {
+          shouldObscureAddress = true;
+          address = null;
+        }
+      }
 
-      if (metadata.matchList) {
-        metadata.matchList.forEach((contact) => {
-          if (contact.address === row.toAddress) {
-            displayAddress = contact.displayName;
-          }
-        });
+      let displayAddress;
+
+      if (address) {
+        displayAddress = truncateValue(address, {});
+
+        if (metadata.matchList) {
+          metadata.matchList.forEach((contact) => {
+            if (contact.address === address) {
+              displayAddress = contact.displayName;
+            }
+          });
+        }
       }
 
       return (
@@ -172,13 +192,13 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate, location
                     </StyledWarning>
                   )}
                   <Flex flexDirection="row" alignItems="center" gap={1}>
-                    <Box maxWidth={200}>{row.toAddress}</Box>
-                    {!shouldObscureAddress && <CopyToClipboard value={row.toAddress} fontSize="small" />}
+                    <Box maxWidth={200}>{address}</Box>
+                    {!shouldObscureAddress && <CopyToClipboard value={address} fontSize="small" />}
                   </Flex>
                 </Flex>
               }
             >
-              <span>{displayAddress}</span>
+              <span>{displayAddress || 'Unknown'}</span>
             </Tooltip>
           </div>
           <Flex gap={0.5}>
@@ -276,7 +296,7 @@ export default function WalletHistory(props: Props) {
       values: [TransactionType.INCOMING_CLAWBACK_RECEIVE, TransactionType.INCOMING_CLAWBACK_SEND],
     },
   });
-
+  // console.log(transactions);
   const feeUnit = useCurrencyCode();
   const [getOfferRecord] = useGetOfferRecordMutation();
   const { navigate, location } = useSerializedNavigationState();
