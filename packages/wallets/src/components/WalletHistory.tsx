@@ -55,9 +55,9 @@ function getIsOutgoingTransaction(transactionRow: Transaction) {
   );
 }
 
-function getPuzzleHasFromRemovals(removals) {
-  if (removals && Array.isArray(removals) && removals.length === 1 && removals[0]?.puzzleHash)
-    return removals[0].puzzleHash;
+function getPuzzleHasFromAdditions(additions) {
+  if (additions && Array.isArray(additions) && additions.length === 1 && additions[0]?.parentCoinInfo)
+    return additions[0].parentCoinInfo;
   return null;
 }
 
@@ -147,7 +147,7 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate, location
 
       let address = row.toAddress;
       if (!isOutgoing) {
-        const puzzleHash = getPuzzleHasFromRemovals(row.removals);
+        const puzzleHash = getPuzzleHasFromAdditions(row.additions);
         if (typeof puzzleHash === 'string') address = toBech32m(puzzleHash, metadata.unit);
         else {
           shouldObscureAddress = true;
