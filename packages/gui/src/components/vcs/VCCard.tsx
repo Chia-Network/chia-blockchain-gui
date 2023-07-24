@@ -296,6 +296,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
   }
 
   function renderTitle() {
+    const isDark = theme.palette.mode === 'dark';
     if (isEditingTitle) {
       return (
         <Box sx={{ marginBottom: '10px' }}>
@@ -315,7 +316,11 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
         </Flex>
         {isDetail && (
           <IconButton onClick={() => setIsEditingTitle(true)} size="small" sx={{ padding: '4px' }}>
-            <EditIcon color="info" />
+            <EditIcon
+              style={{
+                color: isDark ? Color.Neutral[600] : Color.Neutral[400],
+              }}
+            />
           </IconButton>
         )}
       </Flex>
@@ -344,7 +349,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
       </Flex>
       <Box
         sx={{
-          background: theme.palette.colors.default.background,
+          background: theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[200],
           borderRadius: '15px',
           padding: '25px',
           '> div': {
