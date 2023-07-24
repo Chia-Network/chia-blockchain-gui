@@ -258,7 +258,11 @@ export default function WalletSend(props: SendCardProps) {
                 }}
                 sx={{ boxShadow: 'none' }}
               >
-                <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel2bh-content" id="panel2bh-header">
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon color="info" />}
+                  aria-controls="panel2bh-content"
+                  id="panel2bh-header"
+                >
                   <Badge
                     badgeContent="New"
                     color="primary"
@@ -354,7 +358,11 @@ export default function WalletSend(props: SendCardProps) {
                 }}
                 sx={{ boxShadow: 'none' }}
               >
-                <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1bh-content" id="panel1bh-header">
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon color="info" />}
+                  aria-controls="panel1bh-content"
+                  id="panel1bh-header"
+                >
                   <Typography variant="subtitle2">Add transaction memo</Typography>
                 </AccordionSummary>
                 <AccordionDetails>

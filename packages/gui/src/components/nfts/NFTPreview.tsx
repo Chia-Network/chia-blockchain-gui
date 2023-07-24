@@ -1,7 +1,7 @@
-import { IconMessage, Loading, Flex, SandboxedIframe, usePersistState, useDarkMode } from '@chia-network/core';
+import { Color, IconMessage, Loading, Flex, SandboxedIframe, usePersistState, useDarkMode } from '@chia-network/core';
 import { t, Trans } from '@lingui/macro';
 import { NotInterested /* , Error as ErrorIcon */ } from '@mui/icons-material';
-import { Box } from '@mui/material';
+import { alpha, Box } from '@mui/material';
 import React, { useMemo, useRef, Fragment, useCallback, useEffect } from 'react';
 import { renderToString } from 'react-dom/server';
 import styled from 'styled-components';
@@ -62,10 +62,10 @@ const ModelExtension = styled.div<{ isDarkMode: boolean }>`
   justify-content: center;
   align-items: center;
   padding: 8px 16px;
-  background: ${(props) => (props.isDarkMode ? '#333' : '#fff')};
-  box-shadow: 0px 0px 24px rgba(24, 162, 61, 0.5), 0px 4px 8px rgba(18, 99, 60, 0.32);
+  background: ${(props) => (props.isDarkMode ? Color.Neutral[800] : Color.Neutral[50])};
+  box-shadow: 0px 0px 24px ${alpha(Color.Green[500], 0.5)}, 0px 4px 8px ${alpha(Color.Green[700], 0.32)};
   border-radius: 32px;
-  color: ${(props) => (props.isDarkMode ? '#fff' : '#333')};
+  color: ${(props) => (props.isDarkMode ? Color.Neutral[50] : Color.Neutral[800])};
 `;
 
 const BlobBg = styled.div<{ isDarkMode: boolean }>`
@@ -78,10 +78,10 @@ const BlobBg = styled.div<{ isDarkMode: boolean }>`
     margin: auto;
     linearGradient {
       >stop: first-child {
-        stop-color: ${(props) => (props.isDarkMode ? '#3C5E42' : '#DCFFBC')};
+        stop-color: ${(props) => (props.isDarkMode ? Color.Green[800] : Color.Lime[100])};
       }
       >stop: last-child {
-        stop-color: ${(props) => (props.isDarkMode ? '#7EE890' : '#5ECE71')};
+        stop-color: ${(props) => (props.isDarkMode ? Color.Green[300] : Color.Green[400])};
       }
     }
   }
@@ -102,7 +102,7 @@ const CompactExtension = styled.div`
   left: 0;
   right: 4px;
   text-align: center;
-  color: #3aac59;
+  color: ${Color.Green[500]};
 `;
 
 export type NFTPreviewProps = {

@@ -67,7 +67,7 @@ const cols = [
         <FullNodeCloseConnection nodeId={row.nodeId}>
           {({ onClose }) => (
             <StyledIconButton onClick={onClose}>
-              <DeleteIcon />
+              <DeleteIcon color="info" />
             </StyledIconButton>
           )}
         </FullNodeCloseConnection>

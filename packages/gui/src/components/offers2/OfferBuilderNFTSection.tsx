@@ -40,7 +40,7 @@ export default function OfferBuilderNFTSection(props: OfferBuilderNFTSectionProp
 
   return (
     <OfferBuilderSection
-      icon={<NFTs />}
+      icon={<NFTs color="info" />}
       title={<Trans>NFT</Trans>}
       subtitle={<Trans>One-of-a-kind Collectible assets</Trans>}
       onAdd={canAdd ? handleAdd : undefined}

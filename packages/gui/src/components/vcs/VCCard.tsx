@@ -6,11 +6,11 @@ import {
   useGetTransactionAsyncMutation,
   usePrefs,
 } from '@chia-network/api-react';
-import { Truncate, Button, useOpenDialog, AlertDialog, Flex, More, MenuItem } from '@chia-network/core';
+import { Truncate, Button, Color, useOpenDialog, AlertDialog, Flex, More, MenuItem } from '@chia-network/core';
 import { Burn as BurnIcon } from '@chia-network/icons';
 import { Trans, t } from '@lingui/macro';
 import { Delete as DeleteIcon, Edit as EditIcon } from '@mui/icons-material';
-import { Box, Card, Typography, Table, TableRow, TableCell, ListItemIcon, IconButton } from '@mui/material';
+import { alpha, Box, Card, Typography, Table, TableRow, TableCell, ListItemIcon, IconButton } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import moment from 'moment';
 import React from 'react';
@@ -72,9 +72,9 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
   function renderProofs() {
     if (isDetail && proofs && Object.keys(proofs).length > 0) {
       const proofsRows = Object.keys(proofs).map((key) => (
-        <TableRow key={key} sx={{ background: 'rgba(255, 255, 255, 0.3)' }}>
-          <TableCell sx={{ border: '1px solid rgba(255, 255, 255, 0.5)' }}>{key}</TableCell>
-          <TableCell sx={{ border: '1px solid rgba(255, 255, 255, 0.5)' }}>{proofs[key]}</TableCell>
+        <TableRow key={key} sx={{ background: alpha(Color.Neutral[50], 0.3) }}>
+          <TableCell sx={{ border: `1px solid ${alpha(Color.Neutral[50], 0.5)}` }}>{key}</TableCell>
+          <TableCell sx={{ border: `1px solid ${alpha(Color.Neutral[50], 0.5)}` }}>{proofs[key]}</TableCell>
         </TableRow>
       ));
       return <Table sx={{ width: 'inherit', margin: '5px 0 25px 0' }}>{proofsRows}</Table>;
@@ -105,7 +105,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
     return (
       <Box
         sx={{
-          color: vcRecord?.vc?.launcherId && pendingRevoke[vcRecord.vc.launcherId] ? '#999' : 'inherit',
+          color: vcRecord?.vc?.launcherId && pendingRevoke[vcRecord.vc.launcherId] ? Color.Neutral[400] : 'inherit',
         }}
       >
         {didString && (
@@ -273,7 +273,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
           {isLocal && (
             <MenuItem onClick={() => openRevokeVCDialog('remove')} close>
               <ListItemIcon>
-                <DeleteIcon />
+                <DeleteIcon color="info" />
               </ListItemIcon>
               <Typography variant="inherit" noWrap>
                 <Trans>Remove Verifiable Credential</Trans>
@@ -283,7 +283,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
           {!isLocal && (
             <MenuItem onClick={() => openRevokeVCDialog('revoke')} close>
               <ListItemIcon>
-                <BurnIcon />
+                <BurnIcon color="info" />
               </ListItemIcon>
               <Typography variant="inherit" noWrap>
                 {isLocal ? <Trans>Delete Verifiable Credential</Trans> : <Trans>Revoke Verifiable Credential</Trans>}
@@ -296,6 +296,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
   }
 
   function renderTitle() {
+    const isDark = theme.palette.mode === 'dark';
     if (isEditingTitle) {
       return (
         <Box sx={{ marginBottom: '10px' }}>
@@ -315,7 +316,11 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
         </Flex>
         {isDetail && (
           <IconButton onClick={() => setIsEditingTitle(true)} size="small" sx={{ padding: '4px' }}>
-            <EditIcon color="disabled" />
+            <EditIcon
+              style={{
+                color: isDark ? Color.Neutral[600] : Color.Neutral[400],
+              }}
+            />
           </IconButton>
         )}
       </Flex>
@@ -344,7 +349,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
       </Flex>
       <Box
         sx={{
-          background: theme.palette.colors.default.background,
+          background: theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[200],
           borderRadius: '15px',
           padding: '25px',
           '> div': {
