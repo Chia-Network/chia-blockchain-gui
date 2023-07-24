@@ -55,12 +55,6 @@ function getIsOutgoingTransaction(transactionRow: Transaction) {
   );
 }
 
-function getPuzzleHasFromAdditions(additions) {
-  if (additions && Array.isArray(additions) && additions.length === 1 && additions[0]?.parentCoinInfo)
-    return additions[0].parentCoinInfo;
-  return null;
-}
-
 const StyledTableCellSmall = styled(TableCell)`
   border-bottom: 0;
   padding-left: 0;
@@ -143,30 +137,16 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate, location
       // const hasMemos = !!memos && !!Object.keys(memos).length && !!memos[Object.keys(memos)[0]];
       const isRetire = row.toAddress === metadata.retireAddress;
       const isOffer = row.toAddress === metadata.offerTakerAddress;
-      let shouldObscureAddress = isRetire || isOffer;
+      const shouldObscureAddress = isRetire || isOffer;
 
-      let address = row.toAddress;
-      if (!isOutgoing) {
-        const puzzleHash = getPuzzleHasFromAdditions(row.additions);
-        if (typeof puzzleHash === 'string') address = toBech32m(puzzleHash, metadata.unit);
-        else {
-          shouldObscureAddress = true;
-          address = null;
-        }
-      }
+      let displayAddress = truncateValue(row.toAddress, {});
 
-      let displayAddress;
-
-      if (address) {
-        displayAddress = truncateValue(address, {});
-
-        if (metadata.matchList) {
-          metadata.matchList.forEach((contact) => {
-            if (contact.address === address) {
-              displayAddress = contact.displayName;
-            }
-          });
-        }
+      if (metadata.matchList) {
+        metadata.matchList.forEach((contact) => {
+          if (contact.address === row.toAddress) {
+            displayAddress = contact.displayName;
+          }
+        });
       }
 
       return (
@@ -179,28 +159,30 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate, location
             }
           }}
         >
-          <div>
-            <Typography variant="caption" component="span">
-              {isOutgoing ? 'To: ' : 'From: '}
-            </Typography>
-            <Tooltip
-              title={
-                <Flex flexDirection="column" gap={1}>
-                  {shouldObscureAddress && (
-                    <StyledWarning>
-                      <Trans>This is not a valid address for sending funds to</Trans>
-                    </StyledWarning>
-                  )}
-                  <Flex flexDirection="row" alignItems="center" gap={1}>
-                    <Box maxWidth={200}>{address}</Box>
-                    {!shouldObscureAddress && <CopyToClipboard value={address} fontSize="small" />}
+          {isOutgoing && (
+            <div>
+              <Typography variant="caption" component="span">
+                <Trans>To: </Trans>
+              </Typography>
+              <Tooltip
+                title={
+                  <Flex flexDirection="column" gap={1}>
+                    {shouldObscureAddress && (
+                      <StyledWarning>
+                        <Trans>This is not a valid address for sending funds to</Trans>
+                      </StyledWarning>
+                    )}
+                    <Flex flexDirection="row" alignItems="center" gap={1}>
+                      <Box maxWidth={200}>{row.toAddress}</Box>
+                      {!shouldObscureAddress && <CopyToClipboard value={row.toAddress} fontSize="small" />}
+                    </Flex>
                   </Flex>
-                </Flex>
-              }
-            >
-              <span>{displayAddress || 'Unknown'}</span>
-            </Tooltip>
-          </div>
+                }
+              >
+                <span>{displayAddress}</span>
+              </Tooltip>
+            </div>
+          )}
           <Flex gap={0.5}>
             {isIncomingClawback && (
               <WalletHistoryClawbackChip
@@ -296,7 +278,7 @@ export default function WalletHistory(props: Props) {
       values: [TransactionType.INCOMING_CLAWBACK_RECEIVE, TransactionType.INCOMING_CLAWBACK_SEND],
     },
   });
-  // console.log(transactions);
+
   const feeUnit = useCurrencyCode();
   const [getOfferRecord] = useGetOfferRecordMutation();
   const { navigate, location } = useSerializedNavigationState();
