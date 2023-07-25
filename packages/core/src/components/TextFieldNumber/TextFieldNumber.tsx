@@ -15,7 +15,7 @@ export default function TextFieldNumber(props: TextFieldNumberProps) {
   const { children, name, variant, fullWidth, currency, ...rest } = props;
   const { control } = useFormContext();
 
-  const value = useWatch<string>({
+  const value: string = useWatch({
     control,
     name,
   });

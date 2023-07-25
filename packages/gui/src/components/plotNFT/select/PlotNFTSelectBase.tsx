@@ -27,11 +27,11 @@ export default function PlotNFTSelectBase(props: Props) {
   const { step, onCancel, title, description, hideFee = false, feeDescription } = props;
   // const { nfts } = usePlotNFTs();
   const { setValue } = useFormContext();
-  const self = useWatch<boolean>({
+  const self: boolean = useWatch({
     name: 'self',
   });
 
-  const poolUrl = useWatch<string>({
+  const poolUrl: string = useWatch({
     name: 'poolUrl',
   });
 
