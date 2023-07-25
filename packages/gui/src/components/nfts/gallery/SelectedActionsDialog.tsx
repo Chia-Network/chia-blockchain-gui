@@ -1,5 +1,7 @@
 import type { NFTInfo } from '@chia-network/api';
+import { Color } from '@chia-network/core';
 import { t } from '@lingui/macro';
+import { alpha } from '@mui/material';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -7,10 +9,10 @@ import useHiddenNFTs from '../../../hooks/useHiddenNFTs';
 import NFTContextualActions, { NFTContextualActionTypes } from '../NFTContextualActions';
 
 const SelectedItemsContainer = styled.div`
-  color: #fff;
-  background: rgba(0, 0, 0, 0.87);
-  box-shadow: 0px 11px 14px -7px rgba(0, 0, 0, 0.2), 0px 23px 36px 3px rgba(0, 0, 0, 0.14),
-    0px 9px 44px 8px rgba(0, 0, 0, 0.12);
+  color: ${Color.Neutral[50]};
+  background: ${alpha(Color.Neutral[900], 0.87)};
+  box-shadow: 0px 11px 14px -7px ${alpha(Color.Neutral[900], 0.2)}, 0px 23px 36px 3px ${alpha(Color.Neutral[900], 0.14)},
+    0px 9px 44px 8px ${alpha(Color.Neutral[900], 0.12)};
   border-radius: 16px;
   padding: 12px 32px;
   display: inline-block;

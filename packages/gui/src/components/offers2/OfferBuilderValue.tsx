@@ -178,7 +178,7 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
           {onRemove && (
             <Box>
               <IconButton onClick={onRemove}>
-                <Remove />
+                <Remove color="info" />
               </IconButton>
             </Box>
           )}

@@ -27,6 +27,7 @@ import isNumeric from 'validator/es/lib/isNumeric';
 
 import useWallet from '../../hooks/useWallet';
 import useWalletState from '../../hooks/useWalletState';
+import AddressBookAutocomplete from '../AddressBookAutocomplete';
 import CreateWalletSendTransactionResultDialog from '../WalletSendTransactionResultDialog';
 
 type Props = {
@@ -187,15 +188,13 @@ export default function WalletCATSend(props: Props) {
         <Card>
           <Grid spacing={2} container>
             <Grid xs={12} item>
-              <TextField
+              <AddressBookAutocomplete
                 name="address"
+                getType="address"
+                freeSolo
                 variant="filled"
-                color="secondary"
-                fullWidth
-                disabled={isSubmitting}
-                label={<Trans>Address / Puzzle hash</Trans>}
-                data-testid="WalletCATSend-address"
                 required
+                disabled={isSubmitting}
               />
             </Grid>
             <Grid xs={12} md={6} item>

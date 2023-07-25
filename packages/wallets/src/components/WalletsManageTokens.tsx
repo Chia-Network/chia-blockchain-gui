@@ -1,5 +1,5 @@
 import { WalletType } from '@chia-network/api';
-import { Button, useColorModeValue, Spinner, Flex, Tooltip, useTrans } from '@chia-network/core';
+import { Button, Color, useColorModeValue, Spinner, Flex, Tooltip, useTrans } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Add, KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
 import SearchIcon from '@mui/icons-material/Search';
@@ -15,9 +15,9 @@ import WalletTokenCard from './WalletTokenCard';
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: theme.palette.action.selected,
+  backgroundColor: theme.palette.mode === 'dark' ? Color.Neutral[800] : Color.Neutral[100],
   '&:hover': {
-    backgroundColor: theme.palette.action.hover,
+    backgroundColor: theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[200],
   },
   paddingLeft: theme.spacing(1),
   paddingRight: theme.spacing(1),
@@ -64,19 +64,18 @@ const StyledButtonContainer = styled(Box)`
 const StyledMainButton = styled(Button)`
   border-radius: ${({ theme }) => `${theme.spacing(2)} ${theme.spacing(2)} 0 0`};
   border: ${({ theme }) => `1px solid ${useColorModeValue(theme, 'border')}`};
-  background-color: ${({ theme }) => theme.palette.action.hover};
+  background-color: ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[200])};
   height: ${({ theme }) => theme.spacing(6)};
   pointer-events: auto;
 
   &:hover {
-    background-color: ${({ theme }) => theme.palette.action.selected};
-    border-color: ${({ theme }) => theme.palette.highlight.main};
+    background-color: ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[800] : Color.Neutral[300])};
   }
 `;
 
 const StyledBody = styled(({ expanded, ...rest }) => <Box {...rest} />)`
   pointer-events: auto;
-  background-color: ${({ theme }) => theme.palette.background.default};
+  background-color: ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[200])};
   transition: all 0.25s ease-out;
   overflow: hidden;
   height: ${({ expanded }) => (expanded ? '100%' : '0%')};
@@ -86,8 +85,8 @@ const StyledContent = styled(Box)`
   height: 100%;
   background-color: ${({ theme }) => theme.palette.action.hover};
   padding-top: ${({ theme }) => theme.spacing(2)};
-  border-left: 1px solid ${({ theme }) => useColorModeValue(theme, 'border')};
-  border-right: 1px solid ${({ theme }) => useColorModeValue(theme, 'border')};
+  border-left: 1px solid ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[300])};
+  border-right: 1px solid ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[300])};
   display: flex;
   flex-direction: column;
 `;
@@ -143,7 +142,7 @@ export default function WalletsManageTokens() {
             <Box flexGrow={1} ml={2}>
               <Search>
                 <SearchIconWrapper>
-                  <SearchIcon />
+                  <SearchIcon color="info" />
                 </SearchIconWrapper>
                 <StyledInputBase
                   value={search}
@@ -155,7 +154,7 @@ export default function WalletsManageTokens() {
             <Box mr={2}>
               <Tooltip title={<Trans>Add Token</Trans>}>
                 <IconButton onClick={handleAddToken}>
-                  <Add />
+                  <Add color="info" />
                 </IconButton>
               </Tooltip>
             </Box>

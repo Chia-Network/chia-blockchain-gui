@@ -23,6 +23,7 @@ import {
 import { ConnectCheckmark } from '@chia-network/icons';
 import { Trans, t } from '@lingui/macro';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ReportProblemOutlinedIcon from '@mui/icons-material/ReportProblemOutlined';
 import { Grid, Typography, Accordion, AccordionDetails, AccordionSummary, Badge, Alert } from '@mui/material';
 import React from 'react';
 import { useForm, useWatch } from 'react-hook-form';
@@ -40,7 +41,6 @@ type SendCardProps = {
 
 type SendTransactionData = {
   address: string;
-  addressAuto: string;
   amount: string;
   fee: string;
   memo: string;
@@ -69,7 +69,6 @@ export default function WalletSend(props: SendCardProps) {
   const methods = useForm<SendTransactionData>({
     defaultValues: {
       address: '',
-      addressAuto: '',
       amount: '',
       fee: '',
       memo: '',
@@ -260,7 +259,11 @@ export default function WalletSend(props: SendCardProps) {
                 }}
                 sx={{ boxShadow: 'none' }}
               >
-                <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel2bh-content" id="panel2bh-header">
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon color="info" />}
+                  aria-controls="panel2bh-content"
+                  id="panel2bh-header"
+                >
                   <Badge
                     badgeContent="New"
                     color="primary"
@@ -277,8 +280,10 @@ export default function WalletSend(props: SendCardProps) {
                 </AccordionSummary>
                 <AccordionDetails>
                   <Alert severity="info" sx={{ marginBottom: 3 }}>
-                    - Set a time frame which allows you claw back (revoke) the transaction.
-                    <br />- Recipient of the transaction can only claim the funds once that time frame expires.
+                    <Trans>
+                      - Set a time frame which allows you claw back (revoke) the transaction.
+                      <br />- Recipient of the transaction can only claim the funds once that time frame expires.
+                    </Trans>
                   </Alert>
                   <Flex gap={2}>
                     {fields.map((field) => (
@@ -308,39 +313,48 @@ export default function WalletSend(props: SendCardProps) {
                           methods.setValue('minutes', 0);
                         }}
                       >
-                        Disable
+                        <Trans>Disable</Trans>
                       </Button>
                     )}
                   </Flex>
                   {willClawbackBeEnabled && (
-                    <Flex gap={2} justifyContent="flex-start" sx={{ marginTop: 3 }} alignItems="center">
-                      <Typography
-                        component="div"
-                        variant="subtitle2"
-                        sx={(theme) => ({ color: theme.palette.primary.main })}
-                      >
-                        <ConnectCheckmark
-                          sx={(theme) => ({
-                            verticalAlign: 'middle',
-                            position: 'relative',
-                            top: '-5px',
-                            left: '-7px',
-                            width: '31px',
-                            height: '31px',
+                    <>
+                      <Alert severity="info" sx={{ marginTop: 3 }} icon={<ReportProblemOutlinedIcon />}>
+                        <Trans>
+                          Before sending this transaction, you should ensure that the recipient has a wallet with the
+                          capability to claim it manually after the timer has expired.
+                        </Trans>
+                      </Alert>
 
-                            circle: {
-                              stroke: theme.palette.primary.main,
-                              fill: theme.palette.primary.main,
-                            },
-                            path: {
-                              stroke: theme.palette.primary.main,
-                              fill: theme.palette.primary.main,
-                            },
-                          })}
-                        />
-                        <Trans>Clawback will be applied. </Trans>{' '}
-                      </Typography>
-                    </Flex>
+                      <Flex gap={2} justifyContent="flex-start" sx={{ marginTop: 3 }} alignItems="center">
+                        <Typography
+                          component="div"
+                          variant="subtitle2"
+                          sx={(theme) => ({ color: theme.palette.primary.main })}
+                        >
+                          <ConnectCheckmark
+                            sx={(theme) => ({
+                              verticalAlign: 'middle',
+                              position: 'relative',
+                              top: '-5px',
+                              left: '-7px',
+                              width: '31px',
+                              height: '31px',
+
+                              circle: {
+                                stroke: theme.palette.primary.main,
+                                fill: theme.palette.primary.main,
+                              },
+                              path: {
+                                stroke: theme.palette.primary.main,
+                                fill: theme.palette.primary.main,
+                              },
+                            })}
+                          />
+                          <Trans>Clawback will be applied. </Trans>{' '}
+                        </Typography>
+                      </Flex>
+                    </>
                   )}
                   {!willClawbackBeEnabled && (
                     <Typography component="div" variant="subtitle2" sx={{ width: '100%', marginTop: 3 }}>
@@ -356,7 +370,11 @@ export default function WalletSend(props: SendCardProps) {
                 }}
                 sx={{ boxShadow: 'none' }}
               >
-                <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1bh-content" id="panel1bh-header">
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon color="info" />}
+                  aria-controls="panel1bh-content"
+                  id="panel1bh-header"
+                >
                   <Typography variant="subtitle2">Add transaction memo</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
