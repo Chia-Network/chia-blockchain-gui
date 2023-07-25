@@ -130,7 +130,6 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate, location
   {
     field: (row: Row, metadata) => {
       const isIncomingClawback = getIsIncomingClawbackTransaction(row);
-      const isOutgoing = getIsOutgoingTransaction(row);
 
       const { confirmed: isConfirmed } = row;
       // const { memos } = row;
@@ -159,30 +158,29 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate, location
             }
           }}
         >
-          {isOutgoing && (
-            <div>
-              <Typography variant="caption" component="span">
-                <Trans>To: </Trans>
-              </Typography>
-              <Tooltip
-                title={
-                  <Flex flexDirection="column" gap={1}>
-                    {shouldObscureAddress && (
-                      <StyledWarning>
-                        <Trans>This is not a valid address for sending funds to</Trans>
-                      </StyledWarning>
-                    )}
-                    <Flex flexDirection="row" alignItems="center" gap={1}>
-                      <Box maxWidth={200}>{row.toAddress}</Box>
-                      {!shouldObscureAddress && <CopyToClipboard value={row.toAddress} fontSize="small" />}
-                    </Flex>
+          <div>
+            <Typography variant="caption" component="span">
+              <Trans>To: </Trans>
+            </Typography>
+            <Tooltip
+              title={
+                <Flex flexDirection="column" gap={1}>
+                  {shouldObscureAddress && (
+                    <StyledWarning>
+                      <Trans>This is not a valid address for sending funds to</Trans>
+                    </StyledWarning>
+                  )}
+                  <Flex flexDirection="row" alignItems="center" gap={1}>
+                    <Box maxWidth={200}>{row.toAddress}</Box>
+                    {!shouldObscureAddress && <CopyToClipboard value={row.toAddress} fontSize="small" />}
                   </Flex>
-                }
-              >
-                <span>{displayAddress}</span>
-              </Tooltip>
-            </div>
-          )}
+                </Flex>
+              }
+            >
+              <span>{displayAddress}</span>
+            </Tooltip>
+          </div>
+
           <Flex gap={0.5}>
             {isIncomingClawback && (
               <WalletHistoryClawbackChip
