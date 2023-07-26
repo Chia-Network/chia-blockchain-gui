@@ -130,7 +130,6 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate, location
   {
     field: (row: Row, metadata) => {
       const isIncomingClawback = getIsIncomingClawbackTransaction(row);
-      const isOutgoing = getIsOutgoingTransaction(row);
 
       const { confirmed: isConfirmed } = row;
       // const { memos } = row;
@@ -161,7 +160,7 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate, location
         >
           <div>
             <Typography variant="caption" component="span">
-              {isOutgoing ? 'To: ' : 'From: '}
+              <Trans>To: </Trans>
             </Typography>
             <Tooltip
               title={
