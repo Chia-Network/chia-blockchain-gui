@@ -71,7 +71,7 @@ export default function WalletCATSend(props: Props) {
     formState: { isSubmitting },
   } = methods;
 
-  const addressValue = useWatch<string>({
+  const addressValue = useWatch({
     control: methods.control,
     name: 'address',
   });

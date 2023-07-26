@@ -39,7 +39,7 @@ export default function Amount(props: AmountProps) {
   const { control } = useFormContext();
   const defaultCurrencyCode = useCurrencyCode();
 
-  const value = useWatch<string>({
+  const value: string = useWatch({
     control,
     name,
   });

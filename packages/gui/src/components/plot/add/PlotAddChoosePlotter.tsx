@@ -19,7 +19,7 @@ const StyledFormHelperText = styled(FormHelperText)`
 
 export default function PlotAddChoosePlotter(props: Props) {
   const { step, onChange } = props;
-  const plotterName: PlotterName | undefined = useWatch<PlotterName>({ name: 'plotterName' });
+  const plotterName: PlotterName | undefined = useWatch({ name: 'plotterName' });
   const { data: plotters } = useGetPlottersQuery();
 
   function getDisplayablePlotters(p: PlotterMap<PlotterName, Plotter>): PlotterName[] {

@@ -84,12 +84,12 @@ export default function WalletSend(props: SendCardProps) {
     formState: { isSubmitting },
   } = methods;
 
-  const addressValue = useWatch<string>({
+  const addressValue = useWatch({
     control: methods.control,
     name: 'address',
   });
 
-  const clawbackValues = useWatch<(number | string)[]>({
+  const clawbackValues = useWatch({
     control: methods.control,
     name: ['days', 'hours', 'minutes'],
   });
