@@ -42,7 +42,8 @@
     "*": "prettier --check --ignore-unknown --ignore-path .gitignore"
   },
   "dependencies": {
-    "lerna": "^7.0.0"
+    "lerna": "7.1.3",
+    "nx": "16.3.2"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "5.46.1",
