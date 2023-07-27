@@ -5,10 +5,10 @@ import {
   useClientStartServiceMutation,
   useClientStopServiceMutation,
 } from '@chia-network/api-react';
-import { ButtonLoading, Flex, SettingsHR, SettingsSection, SettingsTitle, SettingsText } from '@chia-network/core';
+import { ButtonLoading, Flex, SettingsSection, SettingsTitle, SettingsText } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Warning as WarningIcon } from '@mui/icons-material';
-import { FormControlLabel, FormHelperText, Grid, Switch, TextField, Snackbar } from '@mui/material';
+import { Alert, Divider, FormControlLabel, Grid, Switch, TextField, Snackbar } from '@mui/material';
 import React from 'react';
 
 const messageAnchorOrigin = { vertical: 'bottom' as const, horizontal: 'center' as const };
@@ -271,37 +271,51 @@ export default function SettingsHarvester() {
     );
   }, [data, isLoading, onChangeRefreshParameterIntervalSeconds, isProcessing, configUpdateRequests]);
 
-  const restartButton = React.useMemo(() => {
+  const isRestartRequired = React.useMemo(() => {
     if (!data || isLoading) {
-      return null;
+      return false;
     }
 
-    let isRestartRequired = false;
-
+    let ret = false;
     const updateRequestsKeys = Object.keys(configUpdateRequests) as Array<keyof HarvesterConfig>;
     for (let i = 0; i < updateRequestsKeys.length; i++) {
       const key = updateRequestsKeys[i];
       if (configUpdateRequests[key] !== null && data[key] !== configUpdateRequests[key]) {
-        isRestartRequired = true;
+        ret = true;
         break;
       }
     }
+    return ret;
+  }, [configUpdateRequests, data, isLoading]);
 
+  const restartButton = React.useMemo(() => {
+    if (!isRestartRequired) {
+      return null;
+    }
     return (
-      <ButtonLoading
-        onClick={onClickRestartHarvester}
-        variant="contained"
-        color="danger"
-        data-testid="restartHarvester"
-        loading={isProcessing}
-        loadingPosition="start"
-        startIcon={<WarningIcon />}
-        disabled={!isRestartRequired}
-      >
-        <Trans>Restart Local Harvester to apply changes</Trans>
-      </ButtonLoading>
+      <Grid container>
+        <Grid item style={{ width: '400px' }}>
+          <ButtonLoading
+            onClick={onClickRestartHarvester}
+            variant="contained"
+            color="danger"
+            data-testid="restartHarvester"
+            loading={isProcessing}
+            loadingPosition="start"
+            startIcon={<WarningIcon />}
+            disabled={!isRestartRequired || !data || isLoading}
+          >
+            <Trans>Restart Local Harvester to apply changes</Trans>
+          </ButtonLoading>
+        </Grid>
+        <Grid item container style={{ width: '400px', marginTop: 8 }} gap={2}>
+          <SettingsText>
+            <Trans>*Usually it takes seconds to complete restarting.</Trans>
+          </SettingsText>
+        </Grid>
+      </Grid>
     );
-  }, [data, isLoading, configUpdateRequests, onClickRestartHarvester, isProcessing]);
+  }, [data, isLoading, onClickRestartHarvester, isProcessing, isRestartRequired]);
 
   return (
     <Grid container style={{ maxWidth: '624px' }} gap={3}>
@@ -312,20 +326,24 @@ export default function SettingsHarvester() {
           </SettingsSection>
           <SettingsText>
             <Trans>
-              Harvester manages plots and fetches proofs of space corresponding to challenges sent by a farmer.
+              The Harvester manages plots and fetches proofs of space corresponding to challenges sent by a farmer.
             </Trans>
           </SettingsText>
         </Flex>
       </Grid>
 
-      <Grid item xs={12} sm={12} lg={12}>
-        <SettingsHR />
-      </Grid>
+      {isRestartRequired && (
+        <Grid>
+          <Alert severity="warning">
+            <Trans>Please restart your harvester in order for any changes to take effect.</Trans>
+          </Alert>
+        </Grid>
+      )}
 
-      <Grid>
-        <FormHelperText>
-          <Trans>All changes below will take effect the next time Harvester restarts.</Trans>
-        </FormHelperText>
+      <Grid item xs={12} sm={12} lg={12}>
+        <Divider textAlign="left">
+          <Trans>Plot</Trans>
+        </Divider>
       </Grid>
 
       <Grid container gap={3}>
@@ -340,7 +358,7 @@ export default function SettingsHarvester() {
           </Grid>
           <Grid item container style={{ width: '400px' }} gap={2}>
             <SettingsText>
-              <Trans>Whether to scan plots directory recursively</Trans>
+              <Trans>Enable/Disable the ability to scan all subdirectories automatically for plots</Trans>
             </SettingsText>
           </Grid>
         </Grid>
@@ -356,9 +374,59 @@ export default function SettingsHarvester() {
           </Grid>
           <Grid item container style={{ width: '400px' }} gap={2}>
             <SettingsText>
-              <Trans>Interval seconds to refresh plots.</Trans>
+              <Trans>
+                Interval (in seconds) in which directories are scanned to refresh the list of available plots
+              </Trans>
             </SettingsText>
           </Grid>
+        </Grid>
+
+        <Grid item xs={12} sm={12} lg={12}>
+          <Divider textAlign="left">
+            <Trans>CPU Harvesting</Trans>
+          </Divider>
+        </Grid>
+
+        <Grid container>
+          <Grid item style={{ width: '400px' }}>
+            <SettingsTitle>
+              <Trans>Parallel Decompressor Count</Trans>
+            </SettingsTitle>
+          </Grid>
+          <Grid item container xs justifyContent="flex-end" marginTop="-6px">
+            <FormControlLabel control={parallelDecompressorCountInput} />
+          </Grid>
+          <Grid item container style={{ width: '400px' }} gap={2}>
+            <SettingsText>
+              <Trans>Specify a value if using CPU as your harvester. Typical values will be 0, 1, or 2.</Trans>
+            </SettingsText>
+          </Grid>
+        </Grid>
+
+        <Grid container>
+          <Grid item style={{ width: '400px' }}>
+            <SettingsTitle>
+              <Trans>Decompressor Thread Count</Trans>
+            </SettingsTitle>
+          </Grid>
+          <Grid item container xs justifyContent="flex-end" marginTop="-6px">
+            <FormControlLabel control={decompressorThreadCountInput} />
+          </Grid>
+          <Grid item container style={{ width: '400px' }} gap={2}>
+            <SettingsText>
+              <Trans>Number of threads for a decompressor context.</Trans>
+            </SettingsText>
+            <SettingsText>
+              *Note: Multiplying Parallel Decompressor Count and Decompressor Thread count must not exceed the number of
+              CPU cores. The higher the combined value, the greater the CPU usage required.
+            </SettingsText>
+          </Grid>
+        </Grid>
+
+        <Grid item xs={12} sm={12} lg={12}>
+          <Divider textAlign="left">
+            <Trans>GPU Harvesting</Trans>
+          </Divider>
         </Grid>
 
         <Grid container>
@@ -372,7 +440,7 @@ export default function SettingsHarvester() {
           </Grid>
           <Grid item container style={{ width: '400px' }} gap={2}>
             <SettingsText>
-              <Trans>Enable/Disable GPU harvesting</Trans>
+              <Trans>Enable to use GPU for harvesting, disable to use CPU for harvesting.</Trans>
             </SettingsText>
           </Grid>
         </Grid>
@@ -388,7 +456,7 @@ export default function SettingsHarvester() {
           </Grid>
           <Grid item container style={{ width: '400px' }} gap={2}>
             <SettingsText>
-              <Trans>Specify GPU device to harvest</Trans>
+              <Trans>Specify GPU index (0, 1, 2, etc) for harvesting if more than one GPU is present)</Trans>
             </SettingsText>
           </Grid>
         </Grid>
@@ -433,60 +501,14 @@ export default function SettingsHarvester() {
           </Grid>
         </Grid>
 
-        <Grid container>
-          <Grid item style={{ width: '400px' }}>
-            <SettingsTitle>
-              <Trans>Parallel Decompressor Count</Trans>
-            </SettingsTitle>
-          </Grid>
-          <Grid item container xs justifyContent="flex-end" marginTop="-6px">
-            <FormControlLabel control={parallelDecompressorCountInput} />
-          </Grid>
-          <Grid item container style={{ width: '400px' }} gap={2}>
-            <SettingsText>
-              <Trans>Number of proofs decompressed in parallel during harvesting</Trans>
-            </SettingsText>
-          </Grid>
-        </Grid>
-
-        <Grid container>
-          <Grid item style={{ width: '400px' }}>
-            <SettingsTitle>
-              <Trans>Decompressor Thread Count</Trans>
-            </SettingsTitle>
-          </Grid>
-          <Grid item container xs justifyContent="flex-end" marginTop="-6px">
-            <FormControlLabel control={decompressorThreadCountInput} />
-          </Grid>
-          <Grid item container style={{ width: '400px' }} gap={2}>
-            <SettingsText>
-              <Trans>
-                Number of threads for a decompressor context.
-                <br />
-                The product of "Parallel Decompressors Count" and this value must be less than or equal to the total
-                thread count on system.
-              </Trans>
-            </SettingsText>
-          </Grid>
-        </Grid>
-
-        <Grid container>
-          <Grid item style={{ width: '400px' }}>
-            {restartButton}
-            <Snackbar
-              open={Boolean(message)}
-              onClose={onCloseMessage}
-              autoHideDuration={3000}
-              message={message}
-              anchorOrigin={messageAnchorOrigin}
-            />
-          </Grid>
-          <Grid item container style={{ width: '400px', marginTop: 8 }} gap={2}>
-            <SettingsText>
-              <Trans>*Usually it takes seconds to complete restarting.</Trans>
-            </SettingsText>
-          </Grid>
-        </Grid>
+        {restartButton}
+        <Snackbar
+          open={Boolean(message)}
+          onClose={onCloseMessage}
+          autoHideDuration={3000}
+          message={message}
+          anchorOrigin={messageAnchorOrigin}
+        />
       </Grid>
     </Grid>
   );
