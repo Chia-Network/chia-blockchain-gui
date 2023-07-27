@@ -283,7 +283,9 @@ export default function WalletSend(props: SendCardProps) {
                     }}
                     invisible={wasClawbackSendTransactionVisited}
                   >
-                    <Typography variant="subtitle2">Add option to claw back transaction</Typography>
+                    <Typography variant="subtitle2">
+                      <Trans>Add option to claw back transaction</Trans>
+                    </Typography>
                   </Badge>
                 </AccordionSummary>
                 <AccordionDetails>
@@ -327,7 +329,9 @@ export default function WalletSend(props: SendCardProps) {
                   </Flex>
                   {willClawbackBeEnabled && (
                     <Alert severity="info" sx={{ marginTop: 3 }} icon={<ReportProblemOutlinedIcon />}>
-                      <AlertTitle>Clawback will be applied.</AlertTitle>
+                      <AlertTitle>
+                        <Trans>Clawback will be applied.</Trans>
+                      </AlertTitle>
                       <Trans>
                         Before sending this transaction, you should ensure that the recipient has a wallet that can
                         claim it manually after the timer has expired.
@@ -353,12 +357,16 @@ export default function WalletSend(props: SendCardProps) {
                   aria-controls="panel1bh-content"
                   id="panel1bh-header"
                 >
-                  <Typography variant="subtitle2">Add transaction memo</Typography>
+                  <Typography variant="subtitle2">
+                    <Trans>Add transaction memo</Trans>
+                  </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                   <Alert severity="info" sx={{ marginBottom: 3 }}>
-                    - Memo helps the receiver side to identify the payment.
-                    <br />- Anything you enter will be publicly accessible on the blockchain.
+                    <Trans>
+                      - Memo helps the receiver side to identify the payment.
+                      <br />- Anything you enter will be publicly accessible on the blockchain.
+                    </Trans>
                   </Alert>
 
                   <TextField
