@@ -416,6 +416,14 @@ export default function WalletHistory(props: Props) {
           label: <Trans>Memos</Trans>,
           value: memosDescription,
         },
+        TransactionType.INCOMING_CLAWBACK_SEND === row.type &&
+          row.metadata?.timeLock && {
+            key: 'clawBackExpiration',
+            label: <Trans>Claw back expiration</Trans>,
+            value: moment(row.createdAtTime * 1000)
+              .add(row.metadata.timeLock, 'seconds')
+              .format('LLL'),
+          },
       ].filter((item) => !!item);
 
       return (
