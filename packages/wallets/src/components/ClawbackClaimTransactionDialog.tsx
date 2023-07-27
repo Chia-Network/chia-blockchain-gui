@@ -83,11 +83,12 @@ export default function ClawbackClaimTransactionDialog(props: Props) {
     pollingInterval: 10_000,
   });
   const isSyncing = isWalletSyncLoading || !!walletState?.syncing;
+  const isSynced = !isSyncing && walletState?.synced;
 
   const { isSubmitting } = methods.formState;
 
   // The fee from EstimatedFee is a string
-  const canSubmit = !isSyncing && !isSubmitting && !isGetAutoClaimLoading && feeValue !== '';
+  const canSubmit = isSynced && !isSubmitting && !isGetAutoClaimLoading && feeValue !== '';
 
   function handleClose() {
     methods.reset();
@@ -195,7 +196,7 @@ export default function ClawbackClaimTransactionDialog(props: Props) {
                 </Alert>
               )}
 
-              {isSyncing && (
+              {!isSynced && (
                 <Alert severity="info" sx={{ marginBottom: 3 }}>
                   <Trans>Wallet needs to be synced for claiming clawback transactions</Trans>
                 </Alert>
