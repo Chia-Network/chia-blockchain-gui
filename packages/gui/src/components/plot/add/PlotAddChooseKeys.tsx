@@ -1,8 +1,8 @@
 import { toBech32m } from '@chia-network/api';
 import { useGetKeysForPlottingQuery } from '@chia-network/api-react';
-import { CardStep, TextField, Button } from '@chia-network/core';
+import { CardStep, TextField, Button, Checkbox } from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
-import { Grid, FormControl, Typography, Switch, FormControlLabel, ButtonGroup } from '@mui/material';
+import { Grid, FormControl, Typography, FormControlLabel, ButtonGroup } from '@mui/material';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 
@@ -150,8 +150,7 @@ export default function PlotAddChooseKeys(props: Props) {
       </Typography>
       <FormControl variant="filled" fullWidth>
         <FormControlLabel
-          name="useManualKeySetup"
-          control={<Switch checked={manualSetup} onChange={onChangeSetupKeys} />}
+          control={<Checkbox name="useManualKeySetup" checked={manualSetup} onChange={onChangeSetupKeys} />}
           label={<Trans>Set up keys manually</Trans>}
         />
       </FormControl>

@@ -189,9 +189,17 @@ export default function PlotAddForm(props: Props) {
 
       if (useManualKeySetup) {
         if (farmerPublicKey) {
+          if (farmerPublicKey.length !== 96) {
+            await showError(new Error(t`Farmer public key is invalid`));
+            return;
+          }
           plotAddConfig.farmerPublicKey = farmerPublicKey;
         }
         if (poolPublicKey && !selectedP2SingletonPuzzleHash) {
+          if (poolPublicKey.length !== 96) {
+            await showError(new Error(t`Pool public key is invalid`));
+            return;
+          }
           plotAddConfig.poolPublicKey = poolPublicKey;
         }
       }
