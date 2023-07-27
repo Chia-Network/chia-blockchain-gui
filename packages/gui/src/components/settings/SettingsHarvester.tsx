@@ -289,7 +289,8 @@ export default function SettingsHarvester() {
   }, [configUpdateRequests, data, isLoading]);
 
   const restartButton = React.useMemo(() => {
-    if (!isRestartRequired) {
+    // Show restart button when restarting harvester
+    if (!isRestartRequired && !(isStarting || isStopping || isUpdating)) {
       return null;
     }
     return (
@@ -315,7 +316,7 @@ export default function SettingsHarvester() {
         </Grid>
       </Grid>
     );
-  }, [data, isLoading, onClickRestartHarvester, isProcessing, isRestartRequired]);
+  }, [data, isLoading, onClickRestartHarvester, isProcessing, isRestartRequired, isStarting, isStopping, isUpdating]);
 
   return (
     <Grid container style={{ maxWidth: '624px' }} gap={3}>
