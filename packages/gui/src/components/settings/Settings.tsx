@@ -1,5 +1,5 @@
 import { useLocalStorage } from '@chia-network/api-react';
-import { Flex, LayoutDashboardSub } from '@chia-network/core';
+import { Flex, LayoutDashboardSub, Mode, useMode } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Typography, Tab, Tabs } from '@mui/material';
 import Badge from '@mui/material/Badge';
@@ -19,12 +19,13 @@ import SettingsProfiles from './SettingsProfiles';
 const pathPrefix = '/dashboard/settings/';
 
 export default function Settings() {
+  const [mode] = useMode();
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const [wasSettingsCustodyVisited] = useLocalStorage<boolean>('newFlag--wasSettingsCustodyVisited', false);
 
-  const settingsTabs = useMemo(
-    () => [
+  const settingsTabs = useMemo(() => {
+    let tabs = [
       { id: 'general', label: 'General', Component: SettingsGeneral, path: 'general' },
       {
         id: 'custody',
@@ -40,9 +41,12 @@ export default function Settings() {
       { id: 'integration', label: 'Integration', Component: SettingsIntegration, path: 'integration' },
       { id: 'notifications', label: 'Notifications', Component: SettingsNotifications, path: 'notifications' },
       { id: 'advanced', label: 'Advanced', Component: SettingsAdvanced, path: 'advanced' },
-    ],
-    [wasSettingsCustodyVisited]
-  );
+    ];
+    if (mode === Mode.WALLET) {
+      tabs = tabs.filter((t) => t.id !== 'harvester');
+    }
+    return tabs;
+  }, [wasSettingsCustodyVisited, mode]);
 
   const activeTabId = settingsTabs.find((tab) => !!matchPath(pathPrefix + tab.path, pathname))?.id;
 
