@@ -89,7 +89,7 @@ export default function PlotAddForm(props: Props) {
     defaultValues: defaultsForPlotter(PlotterName.BLADEBIT_DISK),
   });
 
-  const { watch, setValue, reset } = methods;
+  const { watch, setValue, reset, getValues } = methods;
   const plotterName = watch('plotterName') as PlotterName;
   const plotSize = watch('plotSize');
 
@@ -105,7 +105,14 @@ export default function PlotAddForm(props: Props) {
 
   const handlePlotterChanged = (newPlotterName: PlotterName) => {
     const defaults = defaultsForPlotter(newPlotterName);
-    reset(defaults);
+    const formValues = getValues();
+    reset({
+      ...defaults,
+      farmerPublicKey: formValues.farmerPublicKey,
+      p2SingletonPuzzleHash: formValues.p2SingletonPuzzleHash,
+      plotNFTContractAddr: formValues.plotNFTContractAddr,
+      poolPublicKey: formValues.poolPublicKey,
+    });
   };
 
   const handleSubmit: SubmitHandler<FormData> = async (data) => {

@@ -24,6 +24,7 @@ export default function PlotAddChooseKeys(props: Props) {
   );
   const p2SingletonPuzzleHash = watch('p2SingletonPuzzleHash');
   const farmerPKInput = watch('farmerPublicKey');
+  const poolPKInput = watch('poolPublicKey');
   const prevP2SingletonPuzzleHash = React.useRef(p2SingletonPuzzleHash);
 
   let p2SingletonPuzzleHashChanged = false;
@@ -45,16 +46,39 @@ export default function PlotAddChooseKeys(props: Props) {
     );
   }, [p2SingletonPuzzleHash]);
 
-  const poolPublicKeyHelperText = React.useMemo(
-    () => <Trans>(Not recommended) Used to create an old style plot for solo farming.</Trans>,
-    []
+  const farmerPublicKeyForFingerprint = React.useMemo(
+    () => (isLoading || !data || !data.keys[fingerprint] ? undefined : data.keys[fingerprint].farmerPublicKey),
+    [isLoading, data, fingerprint]
   );
+
+  const poolPublicKeyForFingerprint = React.useMemo(
+    () => (isLoading || !data || !data.keys[fingerprint] ? undefined : data.keys[fingerprint].poolPublicKey),
+    [isLoading, data, fingerprint]
+  );
+
+  const poolPKOrP2SingletonPuzzleHashHelperText = React.useMemo(() => {
+    if (poolKeyType === 'p2SingletonPuzzleHash') {
+      return plotNFTContractAddressHelperText;
+    }
+    return poolPublicKeyForFingerprint && poolPublicKeyForFingerprint === poolPKInput ? (
+      <Trans>(Not recommended) Used to create an old style plot for solo farming.</Trans>
+    ) : (
+      <Trans>
+        Note: the pool public key corresponding to the current logged-in wallet is {poolPublicKeyForFingerprint}
+      </Trans>
+    );
+  }, [poolKeyType, plotNFTContractAddressHelperText, poolPKInput, poolPublicKeyForFingerprint]);
 
   const onChangeSetupKeys = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      setManualSetup(e.target.checked);
+      const isManual = e.target.checked;
+      if (!isManual) {
+        setValue('farmerPublicKey', farmerPublicKeyForFingerprint);
+        setValue('poolPublicKey', poolPublicKeyForFingerprint);
+      }
+      setManualSetup(isManual);
     },
-    [setManualSetup]
+    [setManualSetup, farmerPublicKeyForFingerprint, poolPublicKeyForFingerprint, setValue]
   );
 
   const handleSetPoolPublicKey = React.useCallback(() => {
@@ -67,11 +91,17 @@ export default function PlotAddChooseKeys(props: Props) {
     setPoolKeyType('p2SingletonPuzzleHash');
   }, [setPoolKeyType, setValue]);
 
-  const isFarmerPKForCurrentWallet = React.useMemo(() => {
-    const farmerPublicKeyForFingerprint =
-      isLoading || !data || !data.keys[fingerprint] ? undefined : data.keys[fingerprint].farmerPublicKey;
-    return farmerPublicKeyForFingerprint && farmerPKInput === farmerPublicKeyForFingerprint;
-  }, [isLoading, data, fingerprint, farmerPKInput]);
+  const farmerPKhelperText = React.useMemo(
+    () =>
+      farmerPublicKeyForFingerprint && farmerPKInput === farmerPublicKeyForFingerprint ? (
+        <Trans>This is the farmer public key corresponding to the current logged-in wallet</Trans>
+      ) : (
+        <Trans>
+          Note: the farmer public key corresponding to the current logged-in wallet is {farmerPublicKeyForFingerprint}
+        </Trans>
+      ),
+    [farmerPKInput, farmerPublicKeyForFingerprint]
+  );
 
   React.useEffect(() => {
     if (!p2SingletonPuzzleHashChanged) {
@@ -134,11 +164,7 @@ export default function PlotAddChooseKeys(props: Props) {
               variant="filled"
               placeholder="Hex farmer public key"
               label={<Trans>Farmer Public Key</Trans>}
-              helperText={
-                isFarmerPKForCurrentWallet ? (
-                  <Trans>This is the farmer public key corresponding to the current logged-in wallet</Trans>
-                ) : undefined
-              }
+              helperText={farmerPKhelperText}
               disabled={!manualSetup}
             />
           </FormControl>
@@ -179,9 +205,7 @@ export default function PlotAddChooseKeys(props: Props) {
                   <Trans>Pool Public Key</Trans>
                 )
               }
-              helperText={
-                poolKeyType === 'p2SingletonPuzzleHash' ? plotNFTContractAddressHelperText : poolPublicKeyHelperText
-              }
+              helperText={poolPKOrP2SingletonPuzzleHashHelperText}
               disabled={(poolKeyType === 'p2SingletonPuzzleHash' && Boolean(p2SingletonPuzzleHash)) || !manualSetup}
             />
           </FormControl>
