@@ -32,6 +32,19 @@ export default function SettingsHarvester() {
 
   const isProcessing = isStarting || isStopping || isUpdating || isLoading;
 
+  const onChangeEnableCompressionSupport = React.useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (isProcessing || !data) {
+        return;
+      }
+      setConfigUpdateRequests((prev) => ({
+        ...prev,
+        parallelDecompressorCount: e.target.checked ? 1 : 0,
+      }));
+    },
+    [data, setConfigUpdateRequests, isProcessing]
+  );
+
   const onChangeHarvestingMode = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       if (isProcessing || !data) {
@@ -88,7 +101,10 @@ export default function SettingsHarvester() {
   const onChangeParallelDecompressorCount = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const value = +e.target.value;
-      if (isProcessing || !data || Number.isNaN(value)) {
+      // `value` cannot be set to a value less than or equal to 0 while `enableCompressionSupportSwitch` is turned on.
+      // `value === 0` disables compressed plot support and toggling enable/disable the support must be done
+      // with dedicated <Switch /> component (enableCompressionSupportSwitch).
+      if (isProcessing || !data || Number.isNaN(value) || value <= 0) {
         return;
       }
       setConfigUpdateRequests((prev) => ({
@@ -215,6 +231,18 @@ export default function SettingsHarvester() {
     return <Switch checked={checked} onChange={onChangeDisableCpuAffinity} readOnly={isProcessing} />;
   }, [data, isLoading, onChangeDisableCpuAffinity, isProcessing, configUpdateRequests]);
 
+  const enableCompressionSupportSwitch = React.useMemo(() => {
+    if (isLoading || !data) {
+      return <Switch disabled />;
+    }
+    return (
+      <Switch
+        checked={(configUpdateRequests.parallelDecompressorCount ?? data.parallelDecompressorCount) !== 0}
+        onChange={onChangeEnableCompressionSupport}
+      />
+    );
+  }, [isLoading, data, configUpdateRequests, onChangeEnableCompressionSupport]);
+
   const parallelDecompressorCountInput = React.useMemo(() => {
     if (isLoading || !data) {
       return <TextField size="small" type="number" disabled />;
@@ -318,6 +346,11 @@ export default function SettingsHarvester() {
     );
   }, [data, isLoading, onClickRestartHarvester, isProcessing, isRestartRequired, isStarting, isStopping, isUpdating]);
 
+  const compressionOptionStyle = React.useMemo(
+    () => (configUpdateRequests.parallelDecompressorCount === 0 ? { display: 'none' } : undefined),
+    [configUpdateRequests]
+  );
+
   return (
     <Grid container style={{ maxWidth: '624px' }} gap={3}>
       <Grid item>
@@ -384,11 +417,27 @@ export default function SettingsHarvester() {
 
         <Grid item xs={12} sm={12} lg={12}>
           <Divider textAlign="left">
-            <Trans>CPU Harvesting</Trans>
+            <Trans>Compressed plot support</Trans>
           </Divider>
         </Grid>
 
         <Grid container>
+          <Grid item style={{ width: '400px' }}>
+            <SettingsTitle>
+              <Trans>Enable compressed plot support</Trans>
+            </SettingsTitle>
+          </Grid>
+          <Grid item container xs justifyContent="flex-end" marginTop="-6px">
+            {enableCompressionSupportSwitch}
+          </Grid>
+          <Grid item container style={{ width: '400px' }} gap={2}>
+            <SettingsText>
+              <Trans>Turn this off if you don't have any compressed plots to harvest</Trans>
+            </SettingsText>
+          </Grid>
+        </Grid>
+
+        <Grid container sx={compressionOptionStyle}>
           <Grid item style={{ width: '400px' }}>
             <SettingsTitle>
               <Trans>Parallel Decompressor Count</Trans>
@@ -399,12 +448,12 @@ export default function SettingsHarvester() {
           </Grid>
           <Grid item container style={{ width: '400px' }} gap={2}>
             <SettingsText>
-              <Trans>Specify a value if using CPU as your harvester. Typical values will be 0, 1, or 2.</Trans>
+              <Trans>Specify a value if using CPU as your harvester. Typical values will be 1 or 2.</Trans>
             </SettingsText>
           </Grid>
         </Grid>
 
-        <Grid container>
+        <Grid container sx={compressionOptionStyle}>
           <Grid item style={{ width: '400px' }}>
             <SettingsTitle>
               <Trans>Decompressor Thread Count</Trans>
@@ -424,13 +473,7 @@ export default function SettingsHarvester() {
           </Grid>
         </Grid>
 
-        <Grid item xs={12} sm={12} lg={12}>
-          <Divider textAlign="left">
-            <Trans>GPU Harvesting</Trans>
-          </Divider>
-        </Grid>
-
-        <Grid container>
+        <Grid container sx={compressionOptionStyle}>
           <Grid item style={{ width: '400px' }}>
             <SettingsTitle>
               <Trans>Enable GPU Harvesting</Trans>
@@ -446,7 +489,7 @@ export default function SettingsHarvester() {
           </Grid>
         </Grid>
 
-        <Grid container>
+        <Grid container sx={compressionOptionStyle}>
           <Grid item style={{ width: '400px' }}>
             <SettingsTitle>
               <Trans>GPU Device Index</Trans>
