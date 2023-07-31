@@ -215,7 +215,9 @@ export default class Daemon extends Service {
 
     Object.keys(outputArgs).forEach((key) => {
       if (outputArgs[key] === undefined) delete outputArgs[key];
-      // if (outputArgs[key] === '') delete outputArgs[key];
+      if (['t', 't2'].includes(key) && outputArgs[key] === '') {
+        delete outputArgs[key];
+      }
     });
 
     // some keys must be provided as empty strings and some must not be provided at all
