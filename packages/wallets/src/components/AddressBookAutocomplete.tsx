@@ -65,7 +65,7 @@ export default function AddressBookAutocomplete(props: Props) {
         renderInput={(params) => (
           <TextField
             autoComplete="off"
-            label={<Trans>Address / Puzzle hash or Address Book Contact</Trans>}
+            label={<Trans>Address or Contact</Trans>}
             required={required}
             onBlur={onBlur}
             {...rest}

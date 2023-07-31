@@ -244,55 +244,30 @@ export default function ContactAdd() {
 
   return (
     <Form methods={methods} key={0} onSubmit={handleSubmit}>
-      <Flex flexDirection="row" justifyContent="right" style={{ height: '80px' }}>
-        <Flex flexGrow={1}>
-          <Typography
-            variant="h5"
-            sx={{
-              position: 'absolute',
-              left: 44,
-              top: 48,
-            }}
-          >
-            <Trans>Create Contact</Trans>
-            &nbsp;
-            <TooltipIcon>
-              <Trans>
-                Creating a contact enables you to keep track of people who you know and store information such as their
-                DIDs, Profile NFT or Websites.
-              </Trans>
-            </TooltipIcon>
-          </Typography>
+      <Flex flexDirection="column" gap={1} alignItems="left" style={{ paddingLeft: '44px', paddingRight: '44px' }}>
+        <Flex flexDirection="row" alignItems="center" style={{ paddingTop: '2px' }}>
+          <Flex flexGrow={1}>
+            <Typography variant="h5">
+              <Trans>Create Contact</Trans>
+              &nbsp;
+              <TooltipIcon>
+                <Trans>
+                  Creating a contact enables you to keep track of people who you know and store information such as
+                  their DIDs, Profile NFT or Websites.
+                </Trans>
+              </TooltipIcon>
+            </Typography>
+          </Flex>
+          <Flex gap={1}>
+            <Button variant="contained" color="primary" type="submit">
+              <Trans>Save</Trans>
+            </Button>
+            <Button variant="outlined" color="secondary" onClick={() => handleCancel()}>
+              <Trans>Cancel</Trans>
+            </Button>
+          </Flex>
         </Flex>
-        <Flex style={{ paddingRight: '30px' }}>
-          <Button
-            variant="outlined"
-            color="secondary"
-            type="submit"
-            sx={{
-              position: 'absolute',
-              right: 44,
-              top: 44,
-            }}
-          >
-            <Trans>Save</Trans>
-          </Button>
-          <Button
-            variant="outlined"
-            color="secondary"
-            onClick={() => handleCancel()}
-            sx={{
-              position: 'absolute',
-              right: 122,
-              top: 44,
-            }}
-          >
-            <Trans>Cancel</Trans>
-          </Button>
-        </Flex>
-      </Flex>
-      <Flex flexDirection="column" gap={6} alignItems="center" style={{ paddingBottom: '40px' }}>
-        <Flex flexDirection="column" gap={6} maxWidth="600px" style={{ width: '100%', paddingTop: '40px' }}>
+        <Flex flexDirection="column" gap={6} style={{ width: '100%', paddingTop: '38px' }}>
           <Flex gap={2} flexDirection="column">
             <Typography variant="h6">
               <Trans>Contact Name</Trans>
