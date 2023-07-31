@@ -1,6 +1,7 @@
 import { ServiceName, HarvesterConfig } from '@chia-network/api';
 import {
   useGetHarvesterConfigQuery,
+  useGetPlottersQuery,
   useUpdateHarvesterConfigMutation,
   useClientStartServiceMutation,
   useClientStopServiceMutation,
@@ -14,6 +15,7 @@ import React from 'react';
 const messageAnchorOrigin = { vertical: 'bottom' as const, horizontal: 'center' as const };
 
 export default function SettingsHarvester() {
+  const { data: plotters } = useGetPlottersQuery();
   const { data, isLoading } = useGetHarvesterConfigQuery();
   const [updateHarvesterConfig, { isLoading: isUpdating }] = useUpdateHarvesterConfigMutation();
   const [startService, { isLoading: isStarting }] = useClientStartServiceMutation();
@@ -351,6 +353,17 @@ export default function SettingsHarvester() {
     [configUpdateRequests]
   );
 
+  const gpuOptionStyle = React.useMemo(
+    () =>
+      !plotters ||
+      !plotters.bladebit_cuda ||
+      !plotters.bladebit_cuda.installInfo.cudaSupport ||
+      configUpdateRequests.parallelDecompressorCount === 0
+        ? { display: 'none' }
+        : undefined,
+    [configUpdateRequests, plotters]
+  );
+
   return (
     <Grid container style={{ maxWidth: '624px' }} gap={3}>
       <Grid item>
@@ -473,7 +486,7 @@ export default function SettingsHarvester() {
           </Grid>
         </Grid>
 
-        <Grid container sx={compressionOptionStyle}>
+        <Grid container sx={gpuOptionStyle}>
           <Grid item style={{ width: '400px' }}>
             <SettingsTitle>
               <Trans>Enable GPU Harvesting</Trans>
@@ -489,7 +502,7 @@ export default function SettingsHarvester() {
           </Grid>
         </Grid>
 
-        <Grid container sx={compressionOptionStyle}>
+        <Grid container sx={gpuOptionStyle}>
           <Grid item style={{ width: '400px' }}>
             <SettingsTitle>
               <Trans>GPU Device Index</Trans>
