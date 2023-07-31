@@ -208,12 +208,12 @@
     "ws": "8.4.2"
   },
   "devDependencies": {
-    "@babel/core": "7.21.0",
+    "@babel/core": "7.22.9",
     "@babel/helper-get-function-arity": "^7.16.7",
-    "@babel/preset-env": "7.16.8",
-    "@babel/preset-react": "7.16.7",
-    "@babel/preset-typescript": "7.16.7",
-    "@babel/register": "7.16.9",
+    "@babel/preset-env": "7.22.9",
+    "@babel/preset-react": "7.22.5",
+    "@babel/preset-typescript": "7.22.5",
+    "@babel/register": "7.22.5",
     "@lingui/cli": "4.2.1",
     "@loadable/babel-plugin": "5.13.2",
     "@loadable/webpack-plugin": "5.15.2",
