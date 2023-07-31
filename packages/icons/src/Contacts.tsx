@@ -4,5 +4,5 @@ import React from 'react';
 import ContactsIcon from './images/contacts.svg';
 
 export default function Contacts(props: SvgIconProps) {
-  return <SvgIcon component={ContactsIcon} viewBox="0 0 40 40" {...props} />;
+  return <SvgIcon component={ContactsIcon} viewBox="0 0 30 32" {...props} />;
 }
