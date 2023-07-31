@@ -38,8 +38,9 @@ export default function MyContact() {
     if (themeList) {
       keyEntries.forEach((key) => {
         const element = key;
-        element.emoji = themeList[key.fingerprint].walletKeyTheme.emoji;
-        element.color = themeList[key.fingerprint].walletKeyTheme.color;
+        element.color = themeList[key.fingerprint].walletKeyTheme
+          ? themeList[key.fingerprint].walletKeyTheme.color
+          : 'default';
       });
     }
     if (walletKeyAddresses.length > 0 && keyEntries.length > 0) {
@@ -54,19 +55,12 @@ export default function MyContact() {
     setKeyList(keyEntries);
   }, [publicKeyFingerprints, themeList, walletKeyAddresses, isLoadingPublicKeys, isLoadingWKAddresses]);
 
-  function showIcons() {
-    return (
-      <Flex flexDirection="column" gap={2} flexGrow={1}>
-        <Typography variant="h6">Addresses</Typography>
-      </Flex>
-    );
-  }
-
   function showAddresses() {
     if (!isLoadingWKAddresses && keyList.length > 0) {
       return (
         <Flex flexDirection="column" gap={3} flexGrow={1}>
-          <Flex flexDirection="column" gap={5} flexGrow={1}>
+          <Typography variant="h6">Addresses</Typography>
+          <Flex flexDirection="column" gap={4} flexGrow={1}>
             {keyList.map((key) => (
               <div>
                 <Flex flexDirection="row" gap={1} alignItems="center" marginBottom="15px">
@@ -81,9 +75,7 @@ export default function MyContact() {
                       paddingLeft: '7px',
                       paddingTop: '2px',
                     }}
-                  >
-                    {key.emoji}
-                  </Flex>
+                  />
                   <Flex>{key.label}</Flex>
                 </Flex>
                 <TextField
@@ -110,26 +102,16 @@ export default function MyContact() {
   }
 
   return (
-    <Flex flexDirection="column">
-      <Flex flexDirection="row" justifyContent="right" style={{ height: '80px' }}>
-        <Flex style={{ paddingRight: '30px' }}>
-          <Typography
-            variant="h5"
-            sx={{
-              position: 'absolute',
-              left: 44,
-              top: 48,
-            }}
-          >
+    <Flex flexDirection="column" gap={1} alignItems="left" style={{ paddingLeft: '44px', paddingRight: '44px' }}>
+      <Flex flexDirection="row" alignItems="center" style={{ paddingTop: '4px' }}>
+        <Flex flexGrow={1}>
+          <Typography variant="h5">
             <Trans>My Contact Info</Trans>
           </Typography>
         </Flex>
       </Flex>
-      <Flex flexDirection="column" gap={2} alignItems="center" style={{ marginTop: '40px', paddingBottom: '40px' }}>
-        <Flex flexDirection="column" gap={6} maxWidth="600px" style={{ width: '100%' }}>
-          {showIcons()}
-        </Flex>
-        <Flex flexDirection="column" gap={6} maxWidth="600px" style={{ width: '100%' }}>
+      <Flex flexDirection="column" gap={6} style={{ width: '100%', paddingTop: '40px' }}>
+        <Flex flexDirection="column" gap={6} style={{ width: '100%' }}>
           {showAddresses()}
         </Flex>
       </Flex>
