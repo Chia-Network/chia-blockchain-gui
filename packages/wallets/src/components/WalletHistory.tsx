@@ -285,6 +285,7 @@ export default function WalletHistory(props: Props) {
 
   const isLoading = isWalletTransactionsLoading || isWalletLoading;
   const isSyncing = isWalletSyncLoading || !walletState || !!walletState?.syncing;
+  const isSynced = !isSyncing && walletState?.synced;
 
   const [clawbackClaimTransactionDialogProps, setClawbackClaimTransactionDialogProps] = React.useState<{
     coinId: string;
@@ -453,16 +454,17 @@ export default function WalletHistory(props: Props) {
   );
 
   const ExtraRowsAfterHeader = useMemo(
-    () => (
-      <WalletHistoryPending
-        walletId={walletId}
-        cols={cols}
-        metadata={metadata}
-        expandedField={expandedField}
-        expandedCellShift={1}
-      />
-    ),
-    [cols, expandedField, metadata, walletId]
+    () =>
+      isSynced && (
+        <WalletHistoryPending
+          walletId={walletId}
+          cols={cols}
+          metadata={metadata}
+          expandedField={expandedField}
+          expandedCellShift={1}
+        />
+      ),
+    [cols, expandedField, metadata, walletId, isSynced]
   );
 
   return (
