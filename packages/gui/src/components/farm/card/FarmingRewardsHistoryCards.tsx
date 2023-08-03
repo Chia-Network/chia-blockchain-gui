@@ -94,6 +94,9 @@ function FarmingRewardsHistoryCards() {
     if (!data || isLoading) {
       return <CardSimple title={<Trans>Last block won</Trans>} value="-" loading={isLoading} error={error} />;
     }
+    if (data.lastTimeFarmed === 0) {
+      return <CardSimple title={<Trans>Last block won</Trans>} value="Never" loading={isLoading} error={error} />;
+    }
 
     const time = moment(data.lastTimeFarmed * 1000);
     const cardValue = (
