@@ -2,8 +2,8 @@
 <circle cx="50" cy="50" r="49.5845" fill="white" stroke="#E0E0E0" stroke-width="0.831025"/>
 <rect x="17.1055" y="21.0526" width="65.1007" height="56.3758" fill="url(#pattern0)"/>
 <rect x="74" y="5" width="32" height="32" rx="16" fill="white"/>
-<circle cx="90" cy="21" r="13" fill="#3AAC59" fill-opacity="0.2" stroke="#3AAC59" stroke-width="2"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M95.6001 16.2001C96.0419 16.5314 96.1314 17.1582 95.8001 17.6001L89.8001 25.6001C89.4687 26.0419 88.8419 26.1314 88.4001 25.8001L84.4001 22.8001C83.9582 22.4687 83.8687 21.8419 84.2001 21.4001C84.5314 20.9582 85.1582 20.8687 85.6001 21.2001L88.8001 23.6001L94.2001 16.4001C94.5314 15.9582 95.1582 15.8687 95.6001 16.2001Z" fill="#3AAC59"/>
+<circle cx="90" cy="21" r="13" fill="#5ECE71" fill-opacity="0.2" stroke="#5ECE71" stroke-width="2"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M95.6001 16.2001C96.0419 16.5314 96.1314 17.1582 95.8001 17.6001L89.8001 25.6001C89.4687 26.0419 88.8419 26.1314 88.4001 25.8001L84.4001 22.8001C83.9582 22.4687 83.8687 21.8419 84.2001 21.4001C84.5314 20.9582 85.1582 20.8687 85.6001 21.2001L88.8001 23.6001L94.2001 16.4001C94.5314 15.9582 95.1582 15.8687 95.6001 16.2001Z" fill="#5ECE71"/>
 <defs>
 <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
 <use xlink:href="#image0_2288_59146" transform="translate(-0.00153238) scale(0.00167177 0.0019305)"/>

@@ -163,7 +163,7 @@ const CompactExtension = styled.div`
   right: 4px;
   text-align: center;
   font-size: 11px;
-  color: #3aac59;
+  color: #5ECE71;
 `;
 
 const Sha256ValidatedIcon = styled.div`

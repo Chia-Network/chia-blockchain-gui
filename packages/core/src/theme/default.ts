@@ -11,7 +11,7 @@ export default {
       default: '#fafafa',
     },
     primary: {
-      main: '#3AAC59', // '#00C853',
+      main: '#5ECE71', //'#3AAC59', '#00C853',
       contrastText: '#ffffff',
     },
     secondary: {
@@ -35,7 +35,7 @@ export default {
     },
     sidebarIconSelected: {
       main: '#1B5E20',
-      dark: '#3AAC59',
+      dark: '#5ECE71',
     },
     sidebarIcon: {
       main: '#9E9E9E',
