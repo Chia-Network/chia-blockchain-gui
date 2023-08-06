@@ -1,20 +1,40 @@
+import debug from 'debug';
+
 import KeyData from '../@types/KeyData';
 import KeyringStatus from '../@types/KeyringStatus';
 import PlotQueueItem from '../@types/PlotQueueItem';
 import { PlottersApi } from '../@types/Plotter';
+import Response from '../@types/Response';
 import WalletAddress from '../@types/WalletAddress';
 import type Client from '../Client';
-import type Message from '../Message';
+import Message from '../Message';
 import ServiceName, { type ServiceNameValue } from '../constants/ServiceName';
+import sleep from '../utils/sleep';
 import Service from './Service';
 import type { Options } from './Service';
 
+const log = debug('chia-api:daemon');
+
 export default class Daemon extends Service {
+  static isDaemon = true;
+
+  private serviceStartPromises: Partial<
+    Record<
+      ServiceNameValue,
+      Promise<{
+        service: ServiceNameValue;
+      }>
+    >
+  > = {};
+
+  private serviceStopPromises: Partial<Record<ServiceNameValue, Promise<void>>> = {};
+
+  #runningServices: Partial<Record<ServiceNameValue, boolean>> = {};
+
+  private waitForKeyringUnlockedPromise: Promise<void> | null = null;
+
   constructor(client: Client, options?: Options) {
-    super(ServiceName.DAEMON, client, {
-      skipAddService: true,
-      ...options,
-    });
+    super(ServiceName.DAEMON, client, options);
   }
 
   registerService(args: { service: ServiceNameValue }) {
@@ -23,14 +43,83 @@ export default class Daemon extends Service {
     }>('register_service', args);
   }
 
-  startService(args: { service: ServiceNameValue; testing?: boolean }) {
-    return this.command<{
-      service: ServiceNameValue;
-    }>('start_service', args);
+  async startService(args: { service: ServiceNameValue; testing?: boolean; noWait?: boolean }) {
+    const { noWait, ...rest } = args;
+    const { service } = args;
+
+    if (noWait) {
+      return this.command<{
+        service: ServiceNameValue;
+      }>('start_service', rest);
+    }
+
+    if (service in this.serviceStartPromises) {
+      return this.serviceStartPromises[service];
+    }
+
+    const startServiceAndWait = async () => {
+      const response = await this.command<{
+        service: ServiceNameValue;
+      }>('start_service', rest);
+
+      // wait for service to be running
+      await this.waitForService(service, true);
+
+      // remove service from serviceStartPromises
+      if (service in this.serviceStartPromises) {
+        delete this.serviceStartPromises[service];
+      }
+
+      this.#runningServices[service] = true;
+
+      return response;
+    };
+
+    const promise = startServiceAndWait();
+
+    this.serviceStartPromises[service] = promise;
+
+    return promise;
   }
 
-  stopService(args: { service: ServiceNameValue }) {
-    return this.command<void>('stop_service', args);
+  async stopService(args: { service: ServiceNameValue; noWait?: boolean }) {
+    // remove service from servicesState
+    const { noWait, ...rest } = args;
+    const { service } = args;
+
+    this.#runningServices[service] = false;
+
+    if (noWait) {
+      return this.command<void>('stop_service', rest);
+    }
+
+    if (service in this.serviceStopPromises) {
+      return this.serviceStopPromises[service];
+    }
+
+    const stopServiceAndWait = async () => {
+      const response = await this.command<void>('stop_service', rest);
+
+      // wait for service to be stopped
+      await this.waitForService(service, false);
+
+      // remove service from serviceStartPromises
+      if (service in this.serviceStopPromises) {
+        delete this.serviceStopPromises[service];
+      }
+
+      return response;
+    };
+
+    const promise = stopServiceAndWait();
+
+    this.serviceStopPromises[service] = promise;
+
+    return promise;
+  }
+
+  isServiceStarted(service: ServiceNameValue) {
+    return service in this.#runningServices && this.#runningServices[service];
   }
 
   isRunning(args: { service: ServiceNameValue }) {
@@ -39,10 +128,48 @@ export default class Daemon extends Service {
     }>('is_running', args);
   }
 
-  runningServices() {
+  async runningServices() {
     return this.command<{
       runningServices: [string];
     }>('running_services');
+  }
+
+  async waitForService(service: ServiceNameValue, waitForStart: boolean, maxRetries: number = 600) {
+    // 10 minutes
+    const { client } = this;
+
+    if (maxRetries <= 0) {
+      throw new Error(`Max retries reached. Service: ${service} did not start`);
+    }
+
+    if (waitForStart) {
+      try {
+        const { data } = <Message & { data: Response }>await client.send(
+          new Message({
+            command: 'ping',
+            origin: client.origin,
+            destination: service,
+          }),
+          1000
+        );
+
+        if (data.success) {
+          log(`Service: ${service} started`);
+          return;
+        }
+      } catch (error) {
+        log(`Service ping: ${service} failed. ${error.message}`);
+      }
+    } else {
+      const { isRunning } = await this.isRunning({ service });
+      if (!isRunning) {
+        log(`Service: ${service} stopped`);
+        return;
+      }
+    }
+
+    await sleep(1000);
+    await this.waitForService(service, waitForStart, maxRetries - 1);
   }
 
   addPrivateKey(args: { mnemonic: string; label?: string }) {
@@ -84,7 +211,7 @@ export default class Daemon extends Service {
     return this.command<void>('delete_label', args);
   }
 
-  keyringStatus() {
+  async keyringStatus() {
     return this.command<KeyringStatus>('keyring_status');
   }
 
@@ -230,8 +357,64 @@ export default class Daemon extends Service {
     return this.command<void>('exit');
   }
 
+  async stopAllServices() {
+    const { runningServices } = (await this.runningServices()) as { runningServices: ServiceNameValue[] };
+
+    return Promise.all(
+      runningServices.map((service) => {
+        if (service.startsWith('chia_')) {
+          return this.stopService({ service });
+        }
+
+        return undefined;
+      })
+    );
+  }
+
   onKeyringStatusChanged(callback: (data: any, message: Message) => void, processData?: (data: any) => any) {
-    return this.onStateChanged('keyring_status_changed', callback, processData);
+    return this.onCommand('keyring_status_changed', callback, processData);
+  }
+
+  async waitForKeyringUnlocked(): Promise<void> {
+    const checkKeyringStatusAndWait = async (resolve: (value: void) => void, reject: (reason: Error) => void) => {
+      let unsubscribe: undefined | (() => void);
+
+      try {
+        unsubscribe = this.onKeyringStatusChanged((data: any) => {
+          if (data.isKeyringLocked === false) {
+            if (unsubscribe) {
+              unsubscribe();
+            }
+            resolve();
+          }
+        });
+
+        const { isKeyringLocked } = await this.keyringStatus();
+        if (!isKeyringLocked) {
+          if (unsubscribe) {
+            unsubscribe();
+          }
+          resolve();
+        }
+      } catch (err) {
+        if (unsubscribe) {
+          unsubscribe();
+        }
+        reject(err as Error);
+      }
+    };
+
+    if (this.waitForKeyringUnlockedPromise) {
+      return this.waitForKeyringUnlockedPromise;
+    }
+
+    this.waitForKeyringUnlockedPromise = new Promise<void>((resolve, reject) => {
+      checkKeyringStatusAndWait(resolve, reject);
+    }).finally(() => {
+      this.waitForKeyringUnlockedPromise = null;
+    });
+
+    return this.waitForKeyringUnlockedPromise;
   }
 
   getVersion() {

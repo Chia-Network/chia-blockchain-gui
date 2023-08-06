@@ -68,13 +68,7 @@ export const daemonApi = apiWithTag.injectEndpoints({
           command: 'onKeyringStatusChanged',
           service: Daemon,
           onUpdate: (draft, data) => {
-            // empty base array
-            draft.splice(0);
-
-            const { status, ...rest } = data;
-
-            // assign new items
-            Object.assign(draft, rest);
+            Object.assign(draft, data);
           },
         },
       ]),
