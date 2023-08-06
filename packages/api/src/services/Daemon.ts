@@ -158,7 +158,7 @@ export default class Daemon extends Service {
           return;
         }
       } catch (error) {
-        log(`Service ping: ${service} failed. ${error.message}`);
+        log(`Service ping: ${service} failed. ${(error as Error).message}`);
       }
     } else {
       const { isRunning } = await this.isRunning({ service });
