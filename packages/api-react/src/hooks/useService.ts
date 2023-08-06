@@ -1,15 +1,18 @@
 import { ServiceNameValue } from '@chia-network/api';
-import { useEffect, useState, useMemo, useCallback } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
-import { useClientStartServiceMutation } from '../services/client';
-import { useStopServiceMutation, useRunningServicesQuery } from '../services/daemon';
+import { useStartServiceMutation, useStopServiceMutation } from '../services/daemon';
 
-export type ServiceState = 'starting' | 'running' | 'stopping' | 'stopped';
+export enum ServiceState {
+  STARTING = 'starting',
+  RUNNING = 'running',
+  STOPPING = 'stopping',
+  STOPPED = 'stopped',
+}
 
 type Options = {
   keepState?: ServiceState;
   disabled?: boolean;
-  disableWait?: boolean; // Don't wait for ping when starting service
 };
 
 export default function useService(
@@ -17,117 +20,81 @@ export default function useService(
   options: Options = {}
 ): {
   isLoading: boolean;
-  isProcessing: boolean;
   isRunning: boolean;
   state: ServiceState;
   start: () => Promise<void>;
   stop: () => Promise<void>;
-  error?: Error | unknown;
+  error: Error | undefined;
   service: ServiceNameValue;
 } {
-  const { keepState, disabled = false, disableWait = false } = options;
+  const { keepState, disabled = false } = options;
 
-  const [isStarting, setIsStarting] = useState<boolean>(false);
-  const [isStopping, setIsStopping] = useState<boolean>(false);
-  const [startService] = useClientStartServiceMutation();
+  const [error, setError] = useState<Error | undefined>();
+  const [state, setState] = useState<ServiceState>(ServiceState.STOPPED);
+
+  const [startService] = useStartServiceMutation();
   const [stopService] = useStopServiceMutation();
-  const [latestIsProcessing, setLatestIsProcessing] = useState<boolean>(false);
 
-  // isRunning is not working when stopService is called (backend issue)
-  const {
-    data: runningServices,
-    isLoading,
-    refetch,
-    error,
-  } = useRunningServicesQuery(undefined, {
-    pollingInterval: latestIsProcessing ? 1000 : 10_000,
-    skip: disabled,
-    selectFromResult: (state) => ({
-      data: state.data,
-      error: state.error,
-      isLoading: state.isLoading,
-    }),
-  });
-
-  const isRunning = useMemo(
-    () => !!(runningServices && runningServices?.includes(service)),
-    [runningServices, service]
-  );
-
-  const isProcessing = isStarting || isStopping;
-
-  useEffect(() => {
-    setLatestIsProcessing(isProcessing);
-  }, [isProcessing]);
-
-  let state: ServiceState = 'stopped';
-  if (isRunning) {
-    state = 'running';
-  } else if (isStarting) {
-    state = 'starting';
-  } else if (isStopping) {
-    state = 'stopping';
-  }
+  const isLoading = [ServiceState.STARTING, ServiceState.STOPPING].includes(state);
 
   const handleStart = useCallback(async () => {
-    if (isProcessing) {
+    if (isLoading || disabled || state === ServiceState.RUNNING) {
       return;
     }
 
     try {
-      setIsStarting(true);
+      setState(ServiceState.STARTING);
+
       await startService({
         service,
-        disableWait,
       }).unwrap();
 
-      refetch();
+      setState(ServiceState.RUNNING);
     } catch (e) {
+      setState(ServiceState.STOPPED);
+      setError(e as Error);
       console.error(e);
-    } finally {
-      setIsStarting(false);
     }
-  }, [disableWait, isProcessing, refetch, service, startService]);
+  }, [isLoading, service, startService, disabled, state]);
 
   const handleStop = useCallback(async () => {
-    if (isProcessing) {
+    if (isLoading || disabled || state === ServiceState.STOPPED) {
       return;
     }
 
     try {
-      setIsStopping(true);
+      setState(ServiceState.STOPPING);
       await stopService({
         service,
       }).unwrap();
 
-      refetch();
+      setState(ServiceState.STOPPED);
     } catch (e) {
+      setState(ServiceState.RUNNING);
+      setError(e as Error);
       console.error(e);
-    } finally {
-      setIsStopping(false);
     }
-  }, [isProcessing, refetch, service, stopService]);
+  }, [isLoading, service, stopService, disabled, state]);
 
   useEffect(() => {
-    if (disabled || !runningServices) {
+    if (disabled || isLoading) {
       return;
     }
 
-    if (keepState === 'running' && keepState !== state && !isProcessing && isRunning === false) {
+    if (keepState === 'running' && keepState !== state) {
       handleStart();
-    } else if (keepState === 'stopped' && keepState !== state && !isProcessing && isRunning === true) {
+    } else if (keepState === 'stopped' && keepState !== state) {
       handleStop();
     }
-  }, [runningServices, keepState, service, state, isProcessing, disabled, isRunning, handleStart, handleStop]);
+  }, [keepState, service, state, isLoading, disabled, handleStart, handleStop]);
 
   return {
     state,
     isLoading,
-    isProcessing,
-    isRunning,
-    error,
+    isRunning: state === ServiceState.RUNNING,
     start: handleStart,
     stop: handleStop,
     service,
+    error,
   };
 }
