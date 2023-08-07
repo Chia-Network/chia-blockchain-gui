@@ -1,5 +1,5 @@
 import { useLocalStorage } from '@chia-network/api-react';
-import { Flex, SideBarItem } from '@chia-network/core';
+import { Color, Flex, SideBarItem } from '@chia-network/core';
 import {
   Farm as FarmIcon,
   FullNode as FullNodeIcon,
@@ -32,7 +32,7 @@ const StyledRoot = styled(Flex)`
 
 const StyledSideBarDivider = styled(Box)`
   height: 1px;
-  background: radial-gradient(36.59% 100.8% at 50% 50%, rgba(0, 0, 0, 0.18) 99.54%, rgba(255, 255, 255, 0) 100%);
+  background: ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[300])};
 `;
 
 const StyledSettingsContainer = styled(Box)`
@@ -85,7 +85,7 @@ export default function DashboardSideBar(props: DashboardSideBarProps) {
 
         {!simple && (
           <>
-            <Box my={1}>
+            <Box my={1} mx={2}>
               <StyledSideBarDivider />
             </Box>
 

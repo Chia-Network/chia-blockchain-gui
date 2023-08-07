@@ -7,13 +7,13 @@ import {
   FeeTxType,
   Form,
   Flex,
-  TextField,
   chiaToMojo,
   useCurrencyCode,
   useOpenDialog,
   validAddress,
   useShowError,
 } from '@chia-network/core';
+import { AddressBookAutocomplete } from '@chia-network/wallets';
 import { Trans } from '@lingui/macro';
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Typography } from '@mui/material';
 import React from 'react';
@@ -142,14 +142,13 @@ export default function NFTTransferAction(props: NFTTransferActionProps) {
     <Form methods={methods} onSubmit={handleSubmit}>
       <Flex flexDirection="column" gap={3}>
         {renderNFTPreview()}
-        <TextField
+        <AddressBookAutocomplete
           name="destination"
+          getType="address"
+          freeSolo
           variant="filled"
-          color="secondary"
-          fullWidth
-          label={<Trans>Send to Address</Trans>}
-          disabled={isTransferNFTLoading}
           required
+          disabled={isTransferNFTLoading}
         />
         <EstimatedFee
           id="filled-secondary"

@@ -1,13 +1,15 @@
 import type { AddressContact } from '@chia-network/core';
-import { AddressBookContext, ButtonLoading, CardListItem, Flex, LayoutDashboardSub } from '@chia-network/core';
-import { Trans } from '@lingui/macro';
-import { Divider, TextField, Typography } from '@mui/material';
+import { AddressBookContext, CardListItem, Color, Flex, LayoutDashboardSub, Tooltip } from '@chia-network/core';
+import { t, Trans } from '@lingui/macro';
+import { Add, Search as SearchIcon } from '@mui/icons-material';
+import { Divider, IconButton, InputBase, Typography, useTheme } from '@mui/material';
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import AddressBookMenuItem from './AddressBookMenuItem';
 
 export default function AddressBookSideBar() {
+  const theme: any = useTheme();
   const [filter, setFilter] = useState<string>('');
   const navigate = useNavigate();
   const [addressBook] = useContext(AddressBookContext);
@@ -28,9 +30,9 @@ export default function AddressBookSideBar() {
       // filter by address name or address
       if (addresses && addresses.length > 0) {
         const filteredAddressesByName = addresses.filter(
-          (t: any) =>
-            (t.name && t.name.toLowerCase().includes(searchTerm)) ||
-            (t.address && t.address.toLowerCase().includes(searchTerm))
+          (addr: any) =>
+            (addr.name && addr.name.toLowerCase().includes(searchTerm)) ||
+            (addr.address && addr.address.toLowerCase().includes(searchTerm))
         );
         if (filteredAddressesByName && filteredAddressesByName.length > 0) {
           return true;
@@ -115,20 +117,37 @@ export default function AddressBookSideBar() {
           },
         }}
       >
-        <Typography variant="h5">
-          <Trans>Contacts</Trans>
-        </Typography>
+        <Flex flexDirection="row" alignItems="center">
+          <Flex flexGrow={1}>
+            <Typography variant="h5">
+              <Trans>Contacts</Trans>
+            </Typography>
+          </Flex>
+          <Flex>
+            <Tooltip title={<Trans>Add Contact</Trans>}>
+              <IconButton onClick={handleCreateNewContact}>
+                <Add color="info" />
+              </IconButton>
+            </Tooltip>
+          </Flex>
+        </Flex>
+        <Flex
+          gap={1}
+          alignItems="center"
+          sx={{
+            borderColor: theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[300],
+            backgroundColor: 'background.paper',
+            paddingX: 1,
+            paddingY: 0.5,
+            borderRadius: 1,
+            borderWidth: 1,
+            borderStyle: 'solid',
+          }}
+        >
+          <SearchIcon sx={{ color: theme.palette.mode === 'dark' ? Color.Neutral[400] : Color.Neutral[500] }} />
+          <InputBase onChange={handleFilterChanged} placeholder={t`Search...`} />
+        </Flex>
         <Flex gap={2} flexDirection="column">
-          <TextField
-            name="name"
-            variant="filled"
-            color="secondary"
-            fullWidth
-            disabled={false}
-            label={<Trans>Filter</Trans>}
-            data-testid="WalletCATSend-address"
-            onChange={handleFilterChanged}
-          />
           <Flex flexDirection="column" gap={1.5}>
             <CardListItem onSelect={() => handleSelectMyContact()}>
               <div
@@ -151,11 +170,6 @@ export default function AddressBookSideBar() {
           </Flex>
           <Divider />
           <Flex flexDirection="column" gap={1.5}>
-            <Flex flexDirection="column" gap={2.5}>
-              <ButtonLoading variant="contained" color="primary" onClick={handleCreateNewContact} disableElevation>
-                <Trans>New Contact</Trans>
-              </ButtonLoading>
-            </Flex>
             {listOfContacts()}
           </Flex>
         </Flex>

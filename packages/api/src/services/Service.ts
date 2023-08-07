@@ -8,7 +8,6 @@ import { type ServiceNameValue } from '../constants/ServiceName';
 
 export type Options = {
   origin?: ServiceNameValue;
-  skipAddService?: boolean;
 };
 
 export default abstract class Service extends EventEmitter {
@@ -23,15 +22,11 @@ export default abstract class Service extends EventEmitter {
   constructor(name: ServiceNameValue, client: Client, options: Options = {}, onInit?: () => Promise<void>) {
     super();
 
-    const { origin, skipAddService } = options;
+    const { origin } = options;
 
     this.client = client;
     this.name = name;
     this.origin = origin ?? client.origin;
-
-    if (!skipAddService) {
-      client.addService({ service: this });
-    }
 
     client.on('message', this.handleMessage);
 

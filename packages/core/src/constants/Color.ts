@@ -281,9 +281,9 @@ const Color = {
       Disabled: alpha('#0F252A', 0.32),
     },
     Dark: {
-      Primary: alpha('#FFFFFF', 0.9),
-      Secondary: alpha('#FFFFFF', 0.7),
-      Disabled: alpha('#FFFFFF', 0.32),
+      Primary: alpha('#F8FBFC', 0.9),
+      Secondary: alpha('#F8FBFC', 0.7),
+      Disabled: alpha('#F8FBFC', 0.32),
     },
   },
 };

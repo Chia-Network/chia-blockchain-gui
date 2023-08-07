@@ -11,8 +11,6 @@ export const {
 
   useCloseMutation,
   useGetStateQuery,
-  useClientStartServiceMutation,
-  useClientStopServiceMutation,
 } = client;
 
 // daemon hooks

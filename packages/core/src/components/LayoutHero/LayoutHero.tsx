@@ -4,6 +4,7 @@ import React, { type ReactNode } from 'react';
 import { Outlet, Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+import Color from '../../constants/Color';
 import Flex from '../Flex';
 
 const StyledWrapper = styled(Box)`
@@ -13,8 +14,8 @@ const StyledWrapper = styled(Box)`
   flex-grow: 1;
   background: ${({ theme }) =>
     theme.palette.mode === 'dark'
-      ? `linear-gradient(45deg, #222222 30%, #333333 90%)`
-      : `linear-gradient(45deg, #ffffff 30%, #fdfdfd 90%)`};
+      ? `linear-gradient(45deg, ${Color.Neutral[900]} 30%, ${Color.Neutral[800]} 90%)`
+      : `linear-gradient(45deg, ${Color.Neutral[50]} 30%, ${Color.Neutral[100]} 90%)`};
 `;
 
 const StyledBody = styled(Box)`

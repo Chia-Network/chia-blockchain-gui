@@ -130,7 +130,6 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate, location
   {
     field: (row: Row, metadata) => {
       const isIncomingClawback = getIsIncomingClawbackTransaction(row);
-      const isOutgoing = getIsOutgoingTransaction(row);
 
       const { confirmed: isConfirmed } = row;
       // const { memos } = row;
@@ -161,7 +160,7 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate, location
         >
           <div>
             <Typography variant="caption" component="span">
-              {isOutgoing ? 'To: ' : 'From: '}
+              <Trans>To: </Trans>
             </Typography>
             <Tooltip
               title={
@@ -235,7 +234,7 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate, location
     width: '70px',
     field: (row: Row, metadata, isExpanded, toggleExpand) => (
       <IconButton aria-label="expand row" size="small" onClick={() => toggleExpand(row)}>
-        {isExpanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+        {isExpanded ? <ExpandLessIcon color="info" /> : <ExpandMoreIcon color="info" />}
       </IconButton>
     ),
   },
@@ -286,6 +285,7 @@ export default function WalletHistory(props: Props) {
 
   const isLoading = isWalletTransactionsLoading || isWalletLoading;
   const isSyncing = isWalletSyncLoading || !walletState || !!walletState?.syncing;
+  const isSynced = !isSyncing && walletState?.synced;
 
   const [clawbackClaimTransactionDialogProps, setClawbackClaimTransactionDialogProps] = React.useState<{
     coinId: string;
@@ -417,6 +417,14 @@ export default function WalletHistory(props: Props) {
           label: <Trans>Memos</Trans>,
           value: memosDescription,
         },
+        TransactionType.INCOMING_CLAWBACK_SEND === row.type &&
+          row.metadata?.timeLock && {
+            key: 'clawBackExpiration',
+            label: <Trans>Claw back expiration</Trans>,
+            value: moment(row.createdAtTime * 1000)
+              .add(row.metadata.timeLock, 'seconds')
+              .format('LLL'),
+          },
       ].filter((item) => !!item);
 
       return (
@@ -446,16 +454,17 @@ export default function WalletHistory(props: Props) {
   );
 
   const ExtraRowsAfterHeader = useMemo(
-    () => (
-      <WalletHistoryPending
-        walletId={walletId}
-        cols={cols}
-        metadata={metadata}
-        expandedField={expandedField}
-        expandedCellShift={1}
-      />
-    ),
-    [cols, expandedField, metadata, walletId]
+    () =>
+      isSynced && (
+        <WalletHistoryPending
+          walletId={walletId}
+          cols={cols}
+          metadata={metadata}
+          expandedField={expandedField}
+          expandedCellShift={1}
+        />
+      ),
+    [cols, expandedField, metadata, walletId, isSynced]
   );
 
   return (
