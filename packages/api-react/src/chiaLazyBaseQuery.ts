@@ -21,9 +21,15 @@ async function getInstance<TService extends ServiceConstructor>(
     } else {
       const client = await getInstance(Client, api);
 
+      if (service.isDaemon) {
+        return client.daemon as InstanceType<TService>;
+      }
+
       const Service = service;
-      const serviceInstance = new Service(client);
-      instances.set(service, serviceInstance);
+      // client is async operation, so we need to check if instance is already set
+      if (!instances.has(Service)) {
+        instances.set(service, new Service(client));
+      }
     }
   }
 
@@ -64,6 +70,7 @@ const chiaLazyBaseQuery = async <
   try {
     const instance = await getInstance(service, api);
     const arrayArgs = Array.isArray(args) ? args : [args];
+
     const data = (await instance[command](...arrayArgs)) as TResult;
 
     return {

@@ -23,6 +23,8 @@
   },
   "dependencies": {
     "@babel/runtime": "7.22.6",
+    "@chia-network/api": "1.0.0",
+    "@chia-network/api-react": "1.0.0",
     "@chia-network/icons": "1.0.0",
     "@emoji-mart/data": "1.1.2",
     "@fontsource/roboto": "4.5.1",
@@ -59,8 +61,6 @@
     "@babel/preset-env": "7.22.9",
     "@babel/preset-react": "7.22.5",
     "@babel/preset-typescript": "7.22.5",
-    "@chia-network/api": "1.0.0",
-    "@chia-network/api-react": "1.0.0",
     "@electron/remote": "2.0.8",
     "@emotion/react": "11.10.4",
     "@emotion/styled": "11.10.4",
@@ -108,6 +108,7 @@
   "peerDependencies": {
     "@chia-network/api": "1.0.0",
     "@chia-network/api-react": "1.0.0",
+    "@chia-network/icons": "1.0.0",
     "@electron/remote": "2.0.8",
     "@lingui/core": "4.2.1",
     "@lingui/react": "4.2.1",
