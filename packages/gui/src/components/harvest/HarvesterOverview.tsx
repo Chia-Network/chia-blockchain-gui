@@ -1,16 +1,18 @@
-import { useGetHarvestersQuery, useGetNewFarmingInfoQuery } from '@chia-network/api-react';
-import { Flex, FormatBytes, FormatLargeNumber, CardSimple } from '@chia-network/core';
+import { useGetBlockchainStateQuery, useGetHarvestersQuery, useGetNewFarmingInfoQuery } from '@chia-network/api-react';
+import { Flex, FormatBytes, FormatLargeNumber, CardSimple, useCurrencyCode } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Grid, Typography } from '@mui/material';
 import BigNumber from 'bignumber.js';
 import React from 'react';
 
-import { PLOT_FILTER } from '../../util/plot';
+import { getPlotFilter } from '../../util/plot';
 import HarvesterDetail from './HarvesterDetail';
 
 export default function HarvesterOverview() {
+  const { isLoading: isLoadingBlockchainState, data: blockChainState } = useGetBlockchainStateQuery();
   const { isLoading: isLoadingHarvesters, data: harvesters } = useGetHarvestersQuery();
   const { isLoading: isLoadingFarmingInfo, data } = useGetNewFarmingInfoQuery();
+  const isTestnet = (useCurrencyCode() ?? 'XCH').toUpperCase() === 'TXCH';
 
   const newFarmingInfo = data?.newFarmingInfo;
   const latencyData = data?.latencyData;
@@ -88,18 +90,20 @@ export default function HarvesterOverview() {
       sumPassedFilter += passedFilter;
     }
 
-    const expectedAvgPassedFilter = Math.round((latestTotalPlots / PLOT_FILTER) * 1000) / 1000;
+    const peak = !isLoadingBlockchainState && blockChainState ? blockChainState.peak.height : 0;
+    const plotFilter = getPlotFilter(peak, isTestnet);
+    const expectedAvgPassedFilter = Math.round((latestTotalPlots / plotFilter) * 1000) / 1000;
     const avgPassedFilter = sps.length > 0 ? Math.round((sumPassedFilter / sps.length) * 1000) / 1000 : 0;
     return {
       tooltip: (
         <Trans>
           The average number of plots which passed filter over the last 64 signage points. It is expected to be{' '}
-          {expectedAvgPassedFilter} for total {latestTotalPlots} plots
+          {expectedAvgPassedFilter} for total {latestTotalPlots} plots. (Current plot filter: 1 / {plotFilter})
         </Trans>
       ),
       value: avgPassedFilter,
     };
-  }, [newFarmingInfo]);
+  }, [newFarmingInfo, isTestnet, blockChainState, isLoadingBlockchainState]);
 
   const duplicatePlots = React.useMemo(() => {
     if (!harvesters) {
