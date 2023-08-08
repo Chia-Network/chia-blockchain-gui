@@ -31,19 +31,23 @@ export default function PlotAddChooseSize(props: Props) {
   const plotterName = watch('plotterName');
   const plotSize = watch('plotSize');
   const overrideK = watch('overrideK');
+  const compressionLevelStr = watch('bladebitCompressionLevel');
+  const compressionLevel = compressionLevelStr ? +compressionLevelStr : undefined;
   const isKLow = plotSize < MIN_MAINNET_K_SIZE;
 
   const compressionAvailable = op.haveBladebitCompressionLevel && isBladebit3OrNewer;
 
   const [allowedPlotSizes, setAllowedPlotSizes] = useState(
-    getPlotSizeOptions(plotterName).filter((option) => plotter.options.kSizes.includes(option.value))
+    getPlotSizeOptions(plotterName, compressionLevel).filter((option) => plotter.options.kSizes.includes(option.value))
   );
 
   useEffect(() => {
     setAllowedPlotSizes(
-      getPlotSizeOptions(plotterName).filter((option) => plotter.options.kSizes.includes(option.value))
+      getPlotSizeOptions(plotterName, compressionLevel).filter((option) =>
+        plotter.options.kSizes.includes(option.value)
+      )
     );
-  }, [plotter.options.kSizes, plotterName]);
+  }, [plotter.options.kSizes, plotterName, compressionLevel]);
 
   useEffect(() => {
     async function getConfirmation() {
