@@ -34,7 +34,9 @@ export default function PlotAddChooseSize(props: Props) {
   const compressionLevel = compressionLevelStr ? +compressionLevelStr : undefined;
   const isKLow = plotSize < MIN_MAINNET_K_SIZE;
 
-  const compressionAvailable = op.haveBladebitCompressionLevel && plotterName === PlotterName.BLADEBIT_CUDA;
+  const compressionAvailable =
+    op.haveBladebitCompressionLevel &&
+    (plotterName === PlotterName.BLADEBIT_CUDA || plotterName === PlotterName.BLADEBIT_RAM);
 
   const [allowedPlotSizes, setAllowedPlotSizes] = useState(
     getPlotSizeOptions(plotterName, compressionLevel).filter((option) => plotter.options.kSizes.includes(option.value))
