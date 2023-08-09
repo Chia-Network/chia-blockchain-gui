@@ -21,10 +21,11 @@ type Props = {
   description?: ReactNode;
   hideFee?: boolean;
   feeDescription?: ReactNode;
+  setShowingPoolDetails?: (showing: boolean) => void;
 };
 
 export default function PlotNFTSelectBase(props: Props) {
-  const { step, onCancel, title, description, hideFee = false, feeDescription } = props;
+  const { step, onCancel, title, description, hideFee = false, feeDescription, setShowingPoolDetails } = props;
   // const { nfts } = usePlotNFTs();
   const { setValue } = useFormContext();
   const self = useWatch<boolean>({
@@ -58,6 +59,12 @@ export default function PlotNFTSelectBase(props: Props) {
   }
 
   const showPoolInfo = !self && !!poolUrl;
+
+  React.useEffect(() => {
+    if (setShowingPoolDetails) {
+      setShowingPoolDetails(showPoolInfo);
+    }
+  }, [showPoolInfo, setShowingPoolDetails]);
 
   return (
     <>
