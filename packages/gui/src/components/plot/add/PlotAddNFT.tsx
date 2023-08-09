@@ -10,15 +10,22 @@ import PlotNFTSelectPool from '../../plotNFT/select/PlotNFTSelectPool';
 
 type Props = {
   step: number;
+  setShowingPoolDetails?: (showing: boolean) => void;
 };
 
 const PlotAddNFT = forwardRef((props: Props, ref) => {
-  const { step } = props;
+  const { step, setShowingPoolDetails } = props;
   const { nfts, external, loading } = usePlotNFTs();
   const [showCreatePlotNFT, setShowCreatePlotNFT] = useState<boolean>(false);
   const { setValue } = useFormContext();
 
   const hasNFTs = !!nfts?.length || !!external?.length;
+
+  React.useEffect(() => {
+    if (!showCreatePlotNFT && setShowingPoolDetails) {
+      setShowingPoolDetails(false);
+    }
+  }, [showCreatePlotNFT, setShowingPoolDetails]);
 
   function handleJoinPool() {
     setShowCreatePlotNFT(true);
@@ -37,6 +44,7 @@ const PlotAddNFT = forwardRef((props: Props, ref) => {
         onCancel={handleCancelPlotNFT}
         ref={ref}
         title={<Trans>Create a Plot NFT</Trans>}
+        setShowingPoolDetails={setShowingPoolDetails}
         description={
           <Trans>
             Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less
