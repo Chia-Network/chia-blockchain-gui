@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
 
+import PlotterName from '../../../constants/PlotterName';
 import { getPlotSizeOptions } from '../../../constants/plotSizes';
 import Plotter from '../../../types/Plotter';
 
@@ -25,25 +26,29 @@ export default function PlotAddChooseSize(props: Props) {
   const openDialog = useOpenDialog();
 
   const op = plotter.options;
-  const isBladebit3OrNewer =
-    plotter.defaults.plotterName.startsWith('bladebit') && plotter.version && +plotter.version.split('.')[0] >= 3;
 
   const plotterName = watch('plotterName');
   const plotSize = watch('plotSize');
   const overrideK = watch('overrideK');
+  const compressionLevelStr = watch('bladebitCompressionLevel');
+  const compressionLevel = compressionLevelStr ? +compressionLevelStr : undefined;
   const isKLow = plotSize < MIN_MAINNET_K_SIZE;
 
-  const compressionAvailable = op.haveBladebitCompressionLevel && isBladebit3OrNewer;
+  const compressionAvailable =
+    op.haveBladebitCompressionLevel &&
+    (plotterName === PlotterName.BLADEBIT_CUDA || plotterName === PlotterName.BLADEBIT_RAM);
 
   const [allowedPlotSizes, setAllowedPlotSizes] = useState(
-    getPlotSizeOptions(plotterName).filter((option) => plotter.options.kSizes.includes(option.value))
+    getPlotSizeOptions(plotterName, compressionLevel).filter((option) => plotter.options.kSizes.includes(option.value))
   );
 
   useEffect(() => {
     setAllowedPlotSizes(
-      getPlotSizeOptions(plotterName).filter((option) => plotter.options.kSizes.includes(option.value))
+      getPlotSizeOptions(plotterName, compressionLevel).filter((option) =>
+        plotter.options.kSizes.includes(option.value)
+      )
     );
-  }, [plotter.options.kSizes, plotterName]);
+  }, [plotter.options.kSizes, plotterName, compressionLevel]);
 
   useEffect(() => {
     async function getConfirmation() {
