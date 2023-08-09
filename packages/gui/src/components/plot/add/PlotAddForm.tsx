@@ -57,6 +57,7 @@ export default function PlotAddForm(props: Props) {
   const [createNewPoolWallet] = useCreateNewPoolWalletMutation();
   const addNFTref = useRef();
   const { state } = useLocation();
+  const [showingPoolDetails, setShowingPoolDetails] = useState<boolean>(false);
 
   const otherDefaults = {
     plotCount: 1,
@@ -214,14 +215,21 @@ export default function PlotAddForm(props: Props) {
     }
   };
 
+  function adjustStepCount() {
+    if (showingPoolDetails) {
+      step++;
+    }
+    return step++;
+  }
+
   return (
     <Form methods={methods} onSubmit={handleSubmit}>
       <Flex flexDirection="column" gap={3}>
         <Back variant="h5" form>
           <Trans>Add a Plot</Trans>
         </Back>
-        <PlotAddNFT ref={addNFTref} step={step++} />
-        <PlotAddChoosePlotter step={step++} onChange={handlePlotterChanged} />
+        <PlotAddNFT ref={addNFTref} step={step++} setShowingPoolDetails={setShowingPoolDetails} />
+        <PlotAddChoosePlotter step={adjustStepCount()} onChange={handlePlotterChanged} />
         <PlotAddChooseKeys step={step++} currencyCode={currencyCode} fingerprint={fingerprint} />
         <PlotAddChooseSize step={step++} plotter={plotter} />
         <PlotAddSelectFinalDirectory step={step++} plotter={plotter} />
