@@ -8,19 +8,19 @@ msgstr ""
 "Language: ru_RU\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-05 21:41\n"
+"PO-Revision-Date: 2023-08-10 16:27\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
 "X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "X-Crowdin-Project-ID: 1\n"
 "X-Crowdin-Language: ru\n"
-"X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/packages/core/src/locales/en-US/messages.po\n"
-"X-Crowdin-File-ID: 1304\n"
+"X-Crowdin-File: /main/packages/core/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 15\n"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:61
 msgid "(>5 min)"
-msgstr ""
+msgstr "(>5 мин)"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:61
 msgid "(~{selectedTime} min)"
@@ -36,7 +36,7 @@ msgstr "{minPassphraseLength, plural, one {Парольные фразы дол�
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:95
 msgid "A new version of Chia is available!"
-msgstr ""
+msgstr "Доступна новая версия Chia!"
 
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:258
 msgid "Add Icon"
@@ -44,7 +44,7 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKey.tsx:172
 msgid "Add wallet"
-msgstr ""
+msgstr "Добавить кошелек"
 
 #: src/components/Amount/Amount.tsx:36
 msgid "Amount"
@@ -72,11 +72,11 @@ msgstr "Отмена"
 
 #: src/components/Settings/SettingsApp.tsx:139
 msgid "Check for updates"
-msgstr ""
+msgstr "Проверить обновления"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:93
 msgid "Checking for updates..."
-msgstr ""
+msgstr "Проверка обновлений..."
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:82
 msgid "Chia {latestVersion} is currently the latest version available."
@@ -84,7 +84,7 @@ msgstr ""
 
 #: src/components/Settings/SettingsApp.tsx:125
 msgid "Chia Application Version:"
-msgstr ""
+msgstr "Версия приложения Chia:"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:110
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:47
@@ -110,15 +110,15 @@ msgstr "Скопировать в буфер обмена"
 
 #: src/screens/SelectKey/SelectKey.tsx:270
 msgid "Create a new wallet key"
-msgstr ""
+msgstr "Создать новый ключ кошелька"
 
 #: src/screens/SelectKey/SelectKey.tsx:262
 msgid "Create a new wallet key to get started with Chia."
-msgstr ""
+msgstr "Создайте новый ключ кошелька, чтобы начать с Chia."
 
 #: src/screens/SelectKey/SelectKey.tsx:175
 msgid "Create New"
-msgstr ""
+msgstr "Создать новый"
 
 #: src/components/Settings/SettingsApp.tsx:110
 msgid "Dark"
@@ -136,7 +136,7 @@ msgstr "Удалить все ключи"
 
 #: src/screens/SelectKey/SelectKey.tsx:200
 msgid "Delete All Keys"
-msgstr ""
+msgstr "Удалить все ключи"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:96
 msgid "Delete key {fingerprint}"
@@ -165,7 +165,7 @@ msgstr "Oтказаться"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:183
 msgid "Download"
-msgstr ""
+msgstr "Загрузить"
 
 #: src/components/CardSimple/CardSimple.tsx:52
 #: src/hooks/useShowError.tsx:13
@@ -204,7 +204,7 @@ msgstr "Комиссия"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:80
 msgid "Fingerprint does not match"
-msgstr ""
+msgstr "Отпечаток не совпадает"
 
 #: src/components/Settings/SettingsApp.tsx:151
 msgid "Frequently Asked Questions"
@@ -212,7 +212,7 @@ msgstr "Часто задаваемые вопросы"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:121
 msgid "Go To Download Page"
-msgstr ""
+msgstr "Перейти на страницу загрузки"
 
 #: src/components/Settings/SettingsApp.tsx:147
 msgid "Help"
@@ -249,7 +249,7 @@ msgstr "Язык"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:57
 msgid "Latest Version:"
-msgstr ""
+msgstr "Последняя версия:"
 
 #: src/components/Settings/SettingsApp.tsx:102
 msgid "Light"
@@ -273,7 +273,7 @@ msgstr "Загрузка сведений"
 
 #: src/screens/SelectKey/SelectKey.tsx:232
 msgid "Loading keys"
-msgstr ""
+msgstr "Загрузка ключей"
 
 #: src/screens/SelectKey/SelectKey.tsx:117
 #~ msgid "Loading list of the keys"
@@ -399,7 +399,7 @@ msgstr "Сохранить"
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:170
 #: src/screens/SelectKey/Search.tsx:34
 msgid "Search"
-msgstr ""
+msgstr "Поиск"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:113
 msgid "Secret Key"
@@ -502,7 +502,7 @@ msgstr "Попробовать снова"
 
 #: src/screens/SelectKey/SelectKey.tsx:243
 msgid "Unable to load keys"
-msgstr ""
+msgstr "Не удается загрузить ключи"
 
 #: src/screens/SelectKey/SelectKey.tsx:128
 #~ msgid "Unable to load the list of the keys"
@@ -541,7 +541,7 @@ msgstr "Отпечаток кошелька"
 
 #: src/screens/SelectKey/SelectKey.tsx:219
 msgid "Wallet Keys"
-msgstr ""
+msgstr "Ключи кошелька"
 
 #: src/screens/SelectKey/SelectKey.tsx:142
 #~ msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
@@ -550,7 +550,7 @@ msgstr ""
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:177
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:66
 msgid "What's New"
-msgstr ""
+msgstr "Что нового"
 
 #: src/components/Back/Back.tsx:40
 #: src/components/FormBackButton/FormBackButton.tsx:31
@@ -559,11 +559,11 @@ msgstr "У вас есть несохраненные изменения. Хот
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:97
 msgid "You're up to date"
-msgstr ""
+msgstr "Вы обновлены"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:49
 msgid "Your Current Version:"
-msgstr ""
+msgstr "Ваша текущая версия:"
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:20
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
