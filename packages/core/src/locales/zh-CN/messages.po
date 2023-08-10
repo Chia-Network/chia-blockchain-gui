@@ -8,23 +8,23 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-03-29 23:26\n"
+"PO-Revision-Date: 2023-08-10 16:27\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "X-Crowdin-Project-ID: 1\n"
 "X-Crowdin-Language: zh-CN\n"
-"X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/packages/core/src/locales/en-US/messages.po\n"
-"X-Crowdin-File-ID: 1304\n"
+"X-Crowdin-File: /main/packages/core/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 15\n"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:61
 msgid "(>5 min)"
-msgstr ""
+msgstr "(>5分钟)"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:61
 msgid "(~{selectedTime} min)"
-msgstr ""
+msgstr "(~{selectedTime} 分钟)"
 
 #: src/components/Amount/Amount.tsx:86
 msgid "{0, plural, one {mojo} other {mojos}}"
@@ -36,15 +36,15 @@ msgstr "{minPassphraseLength, plural, other {密码长度必须至少为 # 个�
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:95
 msgid "A new version of Chia is available!"
-msgstr ""
+msgstr "新版Chia可用！"
 
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:258
 msgid "Add Icon"
-msgstr ""
+msgstr "添加图标"
 
 #: src/screens/SelectKey/SelectKey.tsx:172
 msgid "Add wallet"
-msgstr ""
+msgstr "添加钱包"
 
 #: src/components/Amount/Amount.tsx:36
 msgid "Amount"
@@ -56,7 +56,7 @@ msgstr "界面"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:144
 msgid "Are you sure you want to continue? Type in the fingerprint of this wallet key to confirm deletion."
-msgstr ""
+msgstr "确定要继续吗？输入钱包密钥的指纹以确认删除。"
 
 #: src/components/FormBackButton/FormBackButton.tsx:15
 #: src/screens/SelectKey/SelectKey.tsx:127
@@ -72,25 +72,25 @@ msgstr "取消"
 
 #: src/components/Settings/SettingsApp.tsx:139
 msgid "Check for updates"
-msgstr ""
+msgstr "检查更新"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:93
 msgid "Checking for updates..."
-msgstr ""
+msgstr "正在检查更新..."
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:82
 msgid "Chia {latestVersion} is currently the latest version available."
-msgstr ""
+msgstr "Chia {latestVersion} 已经是最新版本。"
 
 #: src/components/Settings/SettingsApp.tsx:125
 msgid "Chia Application Version:"
-msgstr ""
+msgstr "Chia程序版本："
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:110
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:47
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:70
 msgid "Close"
-msgstr ""
+msgstr "关闭"
 
 #: src/components/FormatConnectionStatus/FormatConnectionStatus.tsx:32
 msgid "Connected"
@@ -106,19 +106,19 @@ msgstr "复制到剪贴板"
 
 #: src/screens/SelectKey/SelectKey.tsx:170
 #~ msgid "Create a new private key"
-#~ msgstr "创建新私钥"
+#~ msgstr "Create a new private key"
 
 #: src/screens/SelectKey/SelectKey.tsx:270
 msgid "Create a new wallet key"
-msgstr ""
+msgstr "新建钱包"
 
 #: src/screens/SelectKey/SelectKey.tsx:262
 msgid "Create a new wallet key to get started with Chia."
-msgstr ""
+msgstr "使用Chia，从新建一个钱包开始。"
 
 #: src/screens/SelectKey/SelectKey.tsx:175
 msgid "Create New"
-msgstr ""
+msgstr "新建"
 
 #: src/components/Settings/SettingsApp.tsx:110
 msgid "Dark"
@@ -136,7 +136,7 @@ msgstr "删除所有密钥"
 
 #: src/screens/SelectKey/SelectKey.tsx:200
 msgid "Delete All Keys"
-msgstr ""
+msgstr "删除所有密钥"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:96
 msgid "Delete key {fingerprint}"
@@ -144,11 +144,11 @@ msgstr "删除密钥 {fingerprint}"
 
 #: src/screens/SelectKey/SelectKey.tsx:131
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
-msgstr "删除所有密钥将会把你的密钥从你的计算机中永久移除，请确保你已经将其备份。确定继续？"
+msgstr "删除所有密钥将会把密钥从计算机中永久移除，请确保已经将其备份。确定继续？"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:105
 msgid "Details"
-msgstr ""
+msgstr "详情"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:59
 msgid "Disable"
@@ -156,7 +156,7 @@ msgstr "禁用"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:58
 msgid "Disable Passphrase Protection"
-msgstr "跳过私钥密码保护"
+msgstr "禁用密码保护"
 
 #: src/components/Back/Back.tsx:37
 #: src/components/FormBackButton/FormBackButton.tsx:28
@@ -165,7 +165,7 @@ msgstr "放弃"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:183
 msgid "Download"
-msgstr ""
+msgstr "下载"
 
 #: src/components/CardSimple/CardSimple.tsx:52
 #: src/hooks/useShowError.tsx:13
@@ -178,15 +178,15 @@ msgstr "错误:"
 
 #: src/screens/SelectKey/SelectKeyRenameForm.tsx:91
 msgid "Esc"
-msgstr ""
+msgstr "关闭"
 
 #: src/components/LayoutMain/LayoutFooter.tsx:48
 msgid "FAQ"
-msgstr ""
+msgstr "常见问题"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:90
 msgid "Farmer Public Key"
-msgstr ""
+msgstr "农民公钥："
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:58
 msgid "Farmer public key:"
@@ -200,11 +200,11 @@ msgstr "正在耕种"
 #: src/components/EstimatedFee/EstimatedFee.tsx:367
 #: src/components/Fee/Fee.tsx:44
 msgid "Fee"
-msgstr "费用"
+msgstr "手续费"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:80
 msgid "Fingerprint does not match"
-msgstr ""
+msgstr "指纹不匹配"
 
 #: src/components/Settings/SettingsApp.tsx:151
 msgid "Frequently Asked Questions"
@@ -212,7 +212,7 @@ msgstr "常见问题解答"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:121
 msgid "Go To Download Page"
-msgstr ""
+msgstr "转到下载页面"
 
 #: src/components/Settings/SettingsApp.tsx:147
 msgid "Help"
@@ -225,7 +225,7 @@ msgstr "改进翻译"
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:124
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:146
 msgid "Hide"
-msgstr ""
+msgstr "隐藏"
 
 #: src/components/AdvancedOptions/AdvancedOptions.tsx:27
 msgid "Hide Advanced Options"
@@ -233,7 +233,7 @@ msgstr "隐藏高级选项"
 
 #: src/screens/SelectKey/SelectKey.tsx:180
 msgid "Import Existing"
-msgstr ""
+msgstr "导入"
 
 #: src/screens/SelectKey/SelectKey.tsx:181
 #~ msgid "Import from Mnemonics (12 or 24 words)"
@@ -241,7 +241,7 @@ msgstr ""
 
 #: src/components/Fee/Fee.tsx:32
 msgid "Incorrect value"
-msgstr "数值错误"
+msgstr "值不正确"
 
 #: src/components/Settings/SettingsApp.tsx:117
 msgid "Language"
@@ -249,7 +249,7 @@ msgstr "语言"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:57
 msgid "Latest Version:"
-msgstr ""
+msgstr "最新版本："
 
 #: src/components/Settings/SettingsApp.tsx:102
 msgid "Light"
@@ -257,36 +257,36 @@ msgstr "浅色"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:222
 msgid "Likely in {0} seconds"
-msgstr ""
+msgstr "可能在 {0} 秒内"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:219
 msgid "Likely in {minutes} minutes"
-msgstr ""
+msgstr "可能在 {minutes} 分钟内"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:221
 msgid "Likely in >5 minutes"
-msgstr ""
+msgstr "可能大于5分钟"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:46
 msgid "Loading details"
-msgstr ""
+msgstr "正在加载详细信息"
 
 #: src/screens/SelectKey/SelectKey.tsx:232
 msgid "Loading keys"
-msgstr ""
+msgstr "正在载入密钥"
 
 #: src/screens/SelectKey/SelectKey.tsx:117
 #~ msgid "Loading list of the keys"
-#~ msgstr "加载密钥列表"
+#~ msgstr "Loading list of the keys"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:317
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:336
 msgid "Log Out"
-msgstr "登出"
+msgstr "退出"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:335
 msgid "Logout"
-msgstr "登出"
+msgstr "退出"
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:16
 msgid "Migrate"
@@ -298,11 +298,11 @@ msgstr "需要迁移"
 
 #: src/components/Settings/SettingsApp.tsx:69
 msgid "Mode"
-msgstr "显示方式"
+msgstr "工作模式"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:107
 msgid "NEVER SHARE THESE WITH ANYONE"
-msgstr ""
+msgstr "永远不要与任何人分享这些信息"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:41
 msgid "New passphrase is the same as your current passphrase"
@@ -310,7 +310,7 @@ msgstr "新私钥密码与当前私钥密码相同"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:168
 msgid "New version {latestVersion} available"
-msgstr ""
+msgstr "新版本 {latestVersion} 可用"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:84
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:138
@@ -332,15 +332,15 @@ msgstr "确定"
 
 #: src/screens/SelectKey/SelectKey.tsx:254
 msgid "Open a world of possibilities."
-msgstr ""
+msgstr "打开无限可能的世界。"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:98
 msgid "Pool Public Key"
-msgstr ""
+msgstr "联合耕种公钥"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:66
 msgid "Pool public key:"
-msgstr "奖励池公钥："
+msgstr "联合耕种公钥："
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:27
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:34
@@ -353,7 +353,7 @@ msgstr "私钥:"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:82
 msgid "Public Key"
-msgstr ""
+msgstr "公钥："
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:50
 msgid "Public key:"
@@ -361,15 +361,15 @@ msgstr "公钥："
 
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:277
 msgid "Random"
-msgstr ""
+msgstr "随机"
 
 #: src/components/Fee/Fee.tsx:18
 msgid "Recommended value: 0.000005"
-msgstr ""
+msgstr "推荐值︰ 0.000005"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:71
 msgid "Release Notes"
-msgstr ""
+msgstr "更新日志"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:85
 msgid "Reload Application"
@@ -377,11 +377,11 @@ msgstr "重新加载程序"
 
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:258
 msgid "Remove Icon"
-msgstr ""
+msgstr "删除图标"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:97
 msgid "Rename"
-msgstr ""
+msgstr "重命名"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:80
 msgid "Report an Issue"
@@ -390,24 +390,24 @@ msgstr "反馈问题"
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:124
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:146
 msgid "Reveal"
-msgstr ""
+msgstr "显示"
 
 #: src/screens/SelectKey/SelectKeyRenameForm.tsx:109
 msgid "Save"
-msgstr ""
+msgstr "保存"
 
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:170
 #: src/screens/SelectKey/Search.tsx:34
 msgid "Search"
-msgstr ""
+msgstr "搜索"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:113
 msgid "Secret Key"
-msgstr ""
+msgstr "选择密钥"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:131
 msgid "Seed Phrase"
-msgstr ""
+msgstr "种子密钥"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:76
 msgid "Seed:"
@@ -415,7 +415,7 @@ msgstr "种子："
 
 #: src/screens/SelectKey/SelectKey.tsx:134
 #~ msgid "Select Key"
-#~ msgstr "选择密钥"
+#~ msgstr "Select Key"
 
 #: src/components/Dropdown/Dropdown.tsx:28
 msgid "Select..."
@@ -428,7 +428,7 @@ msgstr "发送反馈"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:52
 msgid "Setting a passphrase is strongly recommended to protect your keys. Are you sure you want to skip setting a passphrase?"
-msgstr "强烈建议设置私钥密码以保护您的密钥。是否要跳过设置私钥密码？"
+msgstr "强烈建议设置密码来保护密钥。确定要跳过设置密码吗？"
 
 #: src/components/Settings/Settings.tsx:49
 #: src/components/Settings/Settings.tsx:59
@@ -441,7 +441,7 @@ msgstr "显示高级选项"
 
 #: src/screens/SelectKey/SelectKey.tsx:139
 #~ msgid "Sign In"
-#~ msgstr "登录"
+#~ msgstr "Sign In"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:171
 #: src/hooks/useValidateChangePassphraseParams.tsx:50
@@ -450,7 +450,7 @@ msgstr "跳过"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:49
 msgid "Skip Passphrase Protection"
-msgstr "跳过私钥密码保护"
+msgstr "跳过密码保护"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:67
 msgid "Something went wrong"
@@ -466,23 +466,23 @@ msgstr "出错了"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:28
 msgid "The provided passphrase and confirmation do not match"
-msgstr "提供的私钥密码跟确认的不匹配"
+msgstr "密码错误"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:126
 msgid "This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
-msgstr ""
+msgstr "警告：此密钥用于可能有余额的钱包。删除此密钥可能导致无法访问该钱包。"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:108
 msgid "This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
-msgstr ""
+msgstr "警告：此密钥用于耕作奖励地址。删除此密钥后可能会无法提取将来的耕作奖励。"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:117
 msgid "This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
-msgstr ""
+msgstr "此密钥用作联合耕种奖励地址。删除此密钥可能导致无法获得未来所有来自联合耕种的奖励。"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:138
 msgid "This will permanently remove the key from your computer, make sure you have your mnemonic phrase backed up."
-msgstr ""
+msgstr "这将永久从计算机中删除该密钥，请确保备份了助记词。"
 
 #: src/utils/getTransactionResult.ts:15
 msgid "Transaction has not been sent to node yet"
@@ -490,11 +490,11 @@ msgstr "交易尚未发送到节点"
 
 #: src/utils/getTransactionResult.ts:33
 msgid "Transaction has sent to a full node and is pending inclusion into the mempool. {0}"
-msgstr "交易已经发送到一个完整的节点，正在等待加入备注。 {0}"
+msgstr "交易已经发送到全节点，并等待添加到内存池中。{0}"
 
 #: src/utils/getTransactionResult.ts:24
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
-msgstr "交易已成功发送到一个完整的节点，并包含在备注库中。"
+msgstr "交易已成功发送到全节点，且已添加到内存池中。"
 
 #: src/screens/SelectKey/SelectKey.tsx:239
 msgid "Try Again"
@@ -502,11 +502,11 @@ msgstr "请重试"
 
 #: src/screens/SelectKey/SelectKey.tsx:243
 msgid "Unable to load keys"
-msgstr ""
+msgstr "无法加载密钥"
 
 #: src/screens/SelectKey/SelectKey.tsx:128
 #~ msgid "Unable to load the list of the keys"
-#~ msgstr "无法加载密钥列表"
+#~ msgstr "Unable to load the list of the keys"
 
 #: src/components/LocaleToggle/LocaleToggle.tsx:44
 msgid "Unknown"
@@ -515,15 +515,15 @@ msgstr "未知"
 #: src/components/Back/Back.tsx:36
 #: src/components/FormBackButton/FormBackButton.tsx:27
 msgid "Unsaved Changes"
-msgstr "未保存的更改"
+msgstr "更改未保存"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:61
 msgid "Using a passphrase is strongly recommended to protect your keys. Are you sure you want to disable passphrase protection?"
-msgstr "强烈建议设置私钥密码以保护您的密钥。是否要跳过禁用私钥密码？"
+msgstr "强烈建议设置密码来保护密钥。确定禁用密码保护？"
 
 #: src/components/Fee/Fee.tsx:24
 msgid "Value seems high"
-msgstr "值似乎过高"
+msgstr "手续费似乎太高"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:270
 #: src/components/Settings/SettingsApp.tsx:86
@@ -533,24 +533,24 @@ msgstr "钱包"
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:63
 #: src/screens/SelectKey/SelectKeyItem.tsx:233
 msgid "Wallet {0}"
-msgstr ""
+msgstr "钱包 {0}"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:149
 msgid "Wallet Fingerprint"
-msgstr ""
+msgstr "钱包指纹"
 
 #: src/screens/SelectKey/SelectKey.tsx:219
 msgid "Wallet Keys"
-msgstr ""
+msgstr "钱包密钥"
 
 #: src/screens/SelectKey/SelectKey.tsx:142
 #~ msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
-#~ msgstr "欢迎来到奇亚。请用已有的密钥登录，或者创建一个新的密钥。"
+#~ msgstr "Welcome to Chia. Please log in with an existing key, or create a new key."
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:177
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:66
 msgid "What's New"
-msgstr ""
+msgstr "更新日志"
 
 #: src/components/Back/Back.tsx:40
 #: src/components/FormBackButton/FormBackButton.tsx:31
@@ -559,12 +559,13 @@ msgstr "你已经做了一些更改。你确定要放弃这些修改吗？"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:97
 msgid "You're up to date"
-msgstr ""
+msgstr "已是最新版本"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:49
 msgid "Your Current Version:"
-msgstr ""
+msgstr "当前的版本："
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:20
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
-msgstr "您的密钥尚未迁移到新的密钥串。在迁移完成之前，您将无法创建新密钥或删除现有密钥。您想要现在迁移密钥吗？"
+msgstr "密钥尚未迁移到新的密钥环。在迁移完成之前，将无法创建新的密钥或删除现有密钥。是否立即迁移密钥？"
+
