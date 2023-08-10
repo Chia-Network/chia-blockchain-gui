@@ -8,15 +8,15 @@ msgstr ""
 "Language: it_IT\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-03-29 23:25\n"
+"PO-Revision-Date: 2023-08-10 16:27\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "X-Crowdin-Project-ID: 1\n"
 "X-Crowdin-Language: it\n"
-"X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/packages/core/src/locales/en-US/messages.po\n"
-"X-Crowdin-File-ID: 1304\n"
+"X-Crowdin-File: /main/packages/core/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 15\n"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:61
 msgid "(>5 min)"
@@ -106,7 +106,7 @@ msgstr "Copia negli appunti"
 
 #: src/screens/SelectKey/SelectKey.tsx:170
 #~ msgid "Create a new private key"
-#~ msgstr "Crea una nuova chiave privata"
+#~ msgstr "Create a new private key"
 
 #: src/screens/SelectKey/SelectKey.tsx:270
 msgid "Create a new wallet key"
@@ -182,7 +182,7 @@ msgstr ""
 
 #: src/components/LayoutMain/LayoutFooter.tsx:48
 msgid "FAQ"
-msgstr ""
+msgstr "FAQ"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:90
 msgid "Farmer Public Key"
@@ -277,7 +277,7 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKey.tsx:117
 #~ msgid "Loading list of the keys"
-#~ msgstr "Caricamento lista delle chiavi"
+#~ msgstr "Loading list of the keys"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:317
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:336
@@ -415,7 +415,7 @@ msgstr "Seed:"
 
 #: src/screens/SelectKey/SelectKey.tsx:134
 #~ msgid "Select Key"
-#~ msgstr "Selezione Chiave"
+#~ msgstr "Select Key"
 
 #: src/components/Dropdown/Dropdown.tsx:28
 msgid "Select..."
@@ -441,7 +441,7 @@ msgstr "Mostra Opzioni Avanzate"
 
 #: src/screens/SelectKey/SelectKey.tsx:139
 #~ msgid "Sign In"
-#~ msgstr "Registrati"
+#~ msgstr "Sign In"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:171
 #: src/hooks/useValidateChangePassphraseParams.tsx:50
@@ -506,7 +506,7 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKey.tsx:128
 #~ msgid "Unable to load the list of the keys"
-#~ msgstr "Impossibile caricare la lista delle chiavi"
+#~ msgstr "Unable to load the list of the keys"
 
 #: src/components/LocaleToggle/LocaleToggle.tsx:44
 msgid "Unknown"
@@ -545,7 +545,7 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKey.tsx:142
 #~ msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
-#~ msgstr "Benvenuto da Chia. Per favore accedi con una chiave esistente, o crea una nuova chiave."
+#~ msgstr "Welcome to Chia. Please log in with an existing key, or create a new key."
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:177
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:66
@@ -568,3 +568,4 @@ msgstr ""
 #: src/hooks/useKeyringMigrationPrompt.tsx:20
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr "Le chiavi non sono state migrate ad un nuovo keyring. Non sarà possibile creare nuove chiavi o eliminare le chiavi esistenti fino al completamento della migrazione. Vuoi migrare le tue chiavi ora?"
+
