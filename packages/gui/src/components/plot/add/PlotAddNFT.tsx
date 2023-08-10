@@ -87,10 +87,10 @@ const PlotAddNFT = forwardRef((props: Props, ref) => {
           <Grid spacing={2} direction="column" container>
             <Grid xs={12} md={8} lg={6} item>
               <FormControl variant="filled" fullWidth>
-                <InputLabel required>
+                <InputLabel shrink>
                   <Trans>Select your Plot NFT</Trans>
                 </InputLabel>
-                <Select name="p2SingletonPuzzleHash">
+                <Select name="p2SingletonPuzzleHash" displayEmpty>
                   <MenuItem value="">
                     <em>
                       <Trans>None</Trans>
