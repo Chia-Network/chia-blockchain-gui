@@ -29,11 +29,13 @@ type SignMessageFormData = {
 };
 
 export type SignMessageProps = {
+  defaultEntityType?: SignMessageEntityType;
+  defaultEntity?: SignMessageEntity;
   onComplete: () => void;
 };
 
 export default function SignMessage(props: SignMessageProps) {
-  const { onComplete } = props;
+  const { onComplete, defaultEntity, defaultEntityType = SignMessageEntityType.WalletAddress } = props;
   const [signMessageByAddress] = useSignMessageByAddressMutation();
   const [signMessageById] = useSignMessageByIdMutation();
   const openDialog = useOpenDialog();
@@ -42,8 +44,8 @@ export default function SignMessage(props: SignMessageProps) {
   const methods = useForm<SignMessageFormData>({
     defaultValues: {
       message: '',
-      selectedEntityType: SignMessageEntityType.WalletAddress,
-      entity: undefined,
+      selectedEntityType: defaultEntityType,
+      entity: defaultEntity,
     },
   });
 

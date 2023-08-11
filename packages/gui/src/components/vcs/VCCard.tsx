@@ -9,14 +9,16 @@ import {
 import { Truncate, Button, Color, useOpenDialog, AlertDialog, Flex, More, MenuItem } from '@chia-network/core';
 import { Burn as BurnIcon } from '@chia-network/icons';
 import { Trans, t } from '@lingui/macro';
-import { Delete as DeleteIcon, Edit as EditIcon } from '@mui/icons-material';
+import { RateReview as SignIcon, Delete as DeleteIcon, Edit as EditIcon } from '@mui/icons-material';
 import { alpha, Box, Card, Typography, Table, TableRow, TableCell, ListItemIcon, IconButton } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import moment from 'moment';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { didToDIDId } from '../../util/dids';
+import { SignMessageEntityType } from '../signVerify/SignMessageEntities';
+import SignVerifyDialog, { SignVerifyDialogMode } from '../signVerify/SignVerifyDialog';
 import VCEditTitle from './VCEditTitle';
 import VCRevokeDialog from './VCRevokeDialog';
 
@@ -67,6 +69,25 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
     }
   }, [getTransactionAsync, pendingRevoke, vcRecord?.vc?.launcherId, setPendingRevoke]);
 
+  const handleCreateSignature = useCallback(
+    (launcherId) => {
+      const entity = {
+        type: SignMessageEntityType.VC,
+        vcId: launcherId.replace(/^0x/, ''),
+        address: undefined,
+      };
+
+      openDialog(
+        <SignVerifyDialog
+          mode={SignVerifyDialogMode.Sign}
+          defaultEntityType={SignMessageEntityType.VC}
+          defaultEntity={entity}
+        />
+      );
+    },
+    [openDialog]
+  );
+
   if (!vcRecord) return null;
 
   function renderProofs() {
@@ -101,6 +122,18 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
 
     const expirationDate = vcRecord.expirationDate ? moment(vcRecord.expirationDate).format('LLL') : null;
     const vcType = Array.isArray(vcRecord.type) && vcRecord.type.indexOf('KYCCredential') > -1 ? 'KYCCredential' : null;
+
+    if (isDetail) {
+      if (didString === 'did:chia:19qf3g9876t0rkq7tfdkc28cxfy424yzanea29rkzylq89kped9hq3q7wd2') {
+        didString = 'Chia Network';
+      }
+      if (didString === 'did:chia:1vkmjsnjensahrkynpafh6v09nt3cq0qf876xcc44xvp4yn86edsqz7mmsp') {
+        didString = 'Zorg Industries';
+      }
+      if (didString === 'did:chia:1vm4j9udue9d3gttlr0ppyf77z8hfe6gz9wt09ydcpg6zfx58verq0cn9aq') {
+        didString = 'ChatGPT';
+      }
+    }
 
     return (
       <Box
@@ -270,6 +303,14 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
     return (
       <Flex sx={{ marginBottom: '10px', padding: '8px' }}>
         <More>
+          <MenuItem onClick={() => handleCreateSignature(vcRecord?.vc?.launcherId)} close>
+            <ListItemIcon>
+              <SignIcon color="info" />
+            </ListItemIcon>
+            <Typography variant="inherit" noWrap>
+              <Trans>Sign Message</Trans>
+            </Typography>
+          </MenuItem>
           {isLocal && (
             <MenuItem onClick={() => openRevokeVCDialog('remove')} close>
               <ListItemIcon>

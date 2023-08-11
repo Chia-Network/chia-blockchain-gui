@@ -4,6 +4,7 @@ import { Dialog, DialogContent, DialogTitle, Typography } from '@mui/material';
 import React from 'react';
 
 import SignMessage from './SignMessage';
+import { SignMessageEntity, SignMessageEntityType } from './SignMessageEntities';
 import VerifyMessage from './VerifyMessage';
 
 export enum SignVerifyDialogMode {
@@ -16,10 +17,12 @@ export type SignVerifyDialogProps = {
   onClose?: (value: any) => void;
   onComplete?: () => void;
   mode: SignVerifyDialogMode;
+  defaultEntityType?: SignMessageEntityType;
+  defaultEntity?: SignMessageEntity;
 };
 
 export default function SignVerifyDialog(props: SignVerifyDialogProps) {
-  const { onComplete, mode, open = false, onClose = () => ({}), ...rest } = props;
+  const { onComplete, mode, defaultEntityType, defaultEntity, open = false, onClose = () => ({}), ...rest } = props;
   const title = { [SignVerifyDialogMode.Sign]: t`Sign Message`, [SignVerifyDialogMode.Verify]: t`Verify Message` }[
     mode
   ];
@@ -36,7 +39,9 @@ export default function SignVerifyDialog(props: SignVerifyDialogProps) {
   }
 
   const content = {
-    [SignVerifyDialogMode.Sign]: <SignMessage onComplete={handleCompletion} />,
+    [SignVerifyDialogMode.Sign]: (
+      <SignMessage onComplete={handleCompletion} defaultEntityType={defaultEntityType} defaultEntity={defaultEntity} />
+    ),
     [SignVerifyDialogMode.Verify]: <VerifyMessage onComplete={handleCompletion} />,
   }[mode];
 

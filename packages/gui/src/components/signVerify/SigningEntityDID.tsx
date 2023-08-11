@@ -81,6 +81,9 @@ export default function SigningEntityDID(props: SigningEntityDIDProps) {
           readOnly: true,
         }}
         disabled
+        InputLabelProps={{
+          shrink: !!currentValue?.didId,
+        }}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">

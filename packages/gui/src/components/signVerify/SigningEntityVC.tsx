@@ -1,9 +1,10 @@
 import { CopyToClipboard, Flex, TextField } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import { Box, Grid, InputAdornment } from '@mui/material';
-import React, { useEffect } from 'react';
+import { InputAdornment } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
+import VCDropdown from '../vcs/VCDropdown';
 import { SignMessageEntityType, SignMessageVCEntity } from './SignMessageEntities';
 
 export type SigningEntityVCProps = {
@@ -14,6 +15,12 @@ export type SigningEntityVCProps = {
 export default function SigningEntityVC(props: SigningEntityVCProps) {
   const { entityName, entityValueName } = props;
   const { getValues, setValue } = useFormContext();
+  const [vcLauncherId, setVCLauncherId] = useState<string | undefined>(getValues(entityValueName));
+
+  function handleVCSelected(newVCLauncherId?: string) {
+    setVCLauncherId(newVCLauncherId);
+    setValue(entityValueName, newVCLauncherId);
+  }
 
   useEffect(() => {
     if (entityName && entityValueName) {
@@ -32,29 +39,36 @@ export default function SigningEntityVC(props: SigningEntityVCProps) {
 
   return (
     <Flex flexDirection="column" gap={1}>
-      <Grid item xs={12}>
-        <Box display="flex">
-          <Box flexGrow={1}>
-            <TextField
-              label={<Trans>Credential Id</Trans>}
-              variant="filled"
-              name={entityValueName}
-              inputProps={{
-                'data-testid': 'SigningEntityVC-launcherId',
-                readOnly: false,
-              }}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <CopyToClipboard value="" data-testid="SigningEntityVC-launcherId-copy" />
-                  </InputAdornment>
-                ),
-              }}
-              fullWidth
-            />
-          </Box>
-        </Box>
-      </Grid>
+      <VCDropdown
+        vcLauncherId={vcLauncherId}
+        onChange={handleVCSelected}
+        defaultTitle={<Trans>Select a Credential</Trans>}
+        variant="outlined"
+        color="primary"
+        // disabled={isLoading}
+        fullWidth
+      />
+      <TextField
+        label={<Trans>Credential Id</Trans>}
+        variant="filled"
+        name={entityValueName}
+        inputProps={{
+          'data-testid': 'signing-entity-vc-launcher-id',
+          readOnly: true,
+        }}
+        disabled
+        InputLabelProps={{
+          shrink: !!vcLauncherId,
+        }}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              <CopyToClipboard value={vcLauncherId ?? ''} data-testid="signing-entity-vc-launcher-id-copy" />
+            </InputAdornment>
+          ),
+        }}
+        fullWidth
+      />
     </Flex>
   );
 }

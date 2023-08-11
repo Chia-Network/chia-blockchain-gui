@@ -31,6 +31,12 @@ export function truncateValue(children: string, opts: TruncateValueOptions): str
   if (stringValue === 'did:chia:19qf3g9876t0rkq7tfdkc28cxfy424yzanea29rkzylq89kped9hq3q7wd2') {
     return 'Chia Network';
   }
+  if (stringValue === 'did:chia:1vkmjsnjensahrkynpafh6v09nt3cq0qf876xcc44xvp4yn86edsqz7mmsp') {
+    return 'Zorg Industries';
+  }
+  if (stringValue === 'did:chia:1vm4j9udue9d3gttlr0ppyf77z8hfe6gz9wt09ydcpg6zfx58verq0cn9aq') {
+    return 'ChatGPT';
+  }
 
   const parts = stringValue.split(splitSeparator);
 
