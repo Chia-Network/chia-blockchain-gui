@@ -1451,6 +1451,8 @@ export const walletApi = apiWithTag.injectEndpoints({
     }),
 
     spendClawbackCoins: mutation(build, WalletService, 'spendClawbackCoins'),
+
+    getAssetId: query(build, CAT, 'getAssetId'),
   }),
 });
 
@@ -1516,6 +1518,7 @@ export const {
   useSpendCATMutation,
   useAddCATTokenMutation,
   useGetStrayCatsQuery,
+  useGetAssetIdQuery,
 
   // PlotNFTS
   useGetPlotNFTsQuery,

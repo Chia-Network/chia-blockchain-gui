@@ -1,4 +1,5 @@
-import { ServiceName } from '@chia-network/api';
+import { ServiceName, TransactionType, TransactionTypeFilterMode, WalletType } from '@chia-network/api';
+import api, { store } from '@chia-network/api-react';
 import { MojoToChia } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import React from 'react';
@@ -8,6 +9,8 @@ import WalletConnectCommandParamName from '../@types/WalletConnectCommandParamNa
 import WalletConnectCATAmount from '../components/walletConnect/WalletConnectCATAmount';
 import WalletConnectCreateOfferPreview from '../components/walletConnect/WalletConnectCreateOfferPreview';
 import WalletConnectOfferPreview from '../components/walletConnect/WalletConnectOfferPreview';
+import offerBuilderDataToOffer from '../util/offerBuilderDataToOffer';
+import removeHexPrefix from '../util/removeHexPrefix';
 
 const walletConnectCommands: WalletConnectCommand[] = [
   {
@@ -36,6 +39,72 @@ const walletConnectCommands: WalletConnectCommand[] = [
         label: <Trans>Include Wallet Metadata</Trans>,
       },
     ],
+  },
+  {
+    command: 'getTransactions',
+    label: <Trans>Get Transactions</Trans>,
+    description: <Trans>Requests a complete listing of transactions associated with the current wallet key</Trans>,
+    service: ServiceName.WALLET,
+    bypassConfirm: true,
+    service: 'EXECUTE',
+    execute: async (params: Record<string, any>) => {
+      let result;
+      try {
+        const resultPromise = store.dispatch(
+          api.endpoints.getTransactions.initiate({
+            ...params,
+            walletId: 1,
+            typeFilter: {
+              mode: TransactionTypeFilterMode.EXCLUDE,
+              values: [TransactionType.INCOMING_CLAWBACK_RECEIVE, TransactionType.INCOMING_CLAWBACK_SEND],
+            },
+          })
+        );
+        result = await resultPromise;
+      } catch (err) {
+        return err.message;
+      }
+      return result;
+    },
+  },
+  {
+    command: 'getClawbackTransactions',
+    label: <Trans>Get Claw Back Transactions</Trans>,
+    description: (
+      <Trans>Requests a complete listing of the claw back transactions associated with the current wallet key</Trans>
+    ),
+    service: ServiceName.WALLET,
+    bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.CONFIRMED,
+        type: 'boolean',
+        label: <Trans>Confirmed</Trans>,
+        isOptional: true,
+        defaultValue: undefined,
+        hide: false,
+      },
+    ],
+    service: 'EXECUTE',
+    execute: async (params: Record<string, any>) => {
+      const resultPromise = store.dispatch(
+        api.endpoints.getTransactions.initiate({
+          ...params,
+          walletId: 1,
+          defaultRowsPerPage: 100,
+          defaultPage: 0,
+          sortKey: 'RELEVANCE',
+          reverse: false,
+          confirmed: params.confirmed,
+          typeFilter: {
+            mode: TransactionTypeFilterMode.INCLUDE,
+            values: [TransactionType.INCOMING_CLAWBACK_RECEIVE, TransactionType.INCOMING_CLAWBACK_SEND],
+          },
+        })
+      );
+      const result = await resultPromise;
+      return result;
+    },
   },
   {
     command: 'getTransaction',
@@ -146,6 +215,74 @@ const walletConnectCommands: WalletConnectCommand[] = [
         type: 'object',
         isOptional: true,
         // hide: true,
+      },
+    ],
+  },
+  {
+    command: 'sendTransactionSDK',
+    label: <Trans>Send Transaction</Trans>,
+    service: ServiceName.WALLET,
+    waitForSync: true,
+    service: 'EXECUTE',
+    execute: async (params: Record<string, any>) => {
+      let tempParams = params;
+      if (params.clawBackTimelockInSeconds) {
+        tempParams = {
+          ...params,
+          puzzleDecorator: [
+            {
+              clawbackTimelock: params.clawBackTimelockInSeconds,
+              decorator: 'CLAWBACK',
+            },
+          ],
+          waitForConfirmation: true,
+        };
+      }
+      delete tempParams.clawBackTimelockInSeconds;
+      const resultPromise = store.dispatch(api.endpoints.sendTransaction.initiate(tempParams));
+      const result = await resultPromise;
+      return result;
+    },
+    params: [
+      {
+        name: WalletConnectCommandParamName.AMOUNT,
+        label: <Trans>Amount</Trans>,
+        type: 'BigNumber',
+      },
+      {
+        name: WalletConnectCommandParamName.FEE,
+        label: <Trans>Fee</Trans>,
+        type: 'BigNumber',
+      },
+      {
+        name: WalletConnectCommandParamName.ADDRESS,
+        label: <Trans>Address</Trans>,
+        type: 'string',
+      },
+      {
+        name: WalletConnectCommandParamName.WALLET_ID,
+        label: <Trans>Wallet ID</Trans>,
+        type: 'number',
+        defaultValue: 1,
+        hide: true,
+      },
+      {
+        name: WalletConnectCommandParamName.MEMOS,
+        label: <Trans>Memos</Trans>,
+        isOptional: true,
+        hide: true,
+      },
+      {
+        name: WalletConnectCommandParamName.PUZZLE_DECORATOR,
+        label: <Trans>Puzzle Decorator</Trans>,
+        type: 'object',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.CLAWBACK_TIMELOCK_IN_SECONDS,
+        label: <Trans>Clawback Timelock In Seconds</Trans>,
+        type: 'number',
+        isOptional: true,
       },
     ],
   },
@@ -342,6 +479,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
         label: <Trans>Driver Dict</Trans>,
         type: 'object',
         displayComponent: (value) => <>{JSON.stringify(value)}</>,
+        isOptional: true,
       },
       {
         name: WalletConnectCommandParamName.VALIDATE_ONLY,
@@ -457,6 +595,102 @@ const walletConnectCommands: WalletConnectCommand[] = [
       },
     ],
   },
+  {
+    command: 'createOfferForIdsSDK',
+    label: <Trans>Create Offer for Ids</Trans>,
+    service: ServiceName.WALLET,
+    params: [
+      {
+        name: WalletConnectCommandParamName.OFFER,
+        label: <Trans>Offer Object</Trans>,
+        type: 'object',
+        displayComponent: (value) => <>{JSON.stringify(value)}</>,
+      },
+      {
+        name: WalletConnectCommandParamName.DRIVER_DICT,
+        label: <Trans>Driver Dict</Trans>,
+        type: 'object',
+        displayComponent: (value) => <>{JSON.stringify(value)}</>,
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.VALIDATE_ONLY,
+        label: <Trans>Validate only</Trans>,
+        isOptional: true,
+        type: 'boolean',
+      },
+      {
+        name: WalletConnectCommandParamName.DISABLE_JSON_FORMATTING,
+        label: <Trans>Disable JSON Formatting</Trans>,
+        isOptional: true,
+        type: 'boolean',
+      },
+    ],
+    service: 'EXECUTE',
+    execute: async (params: Record<string, any>) => {
+      const getAllOffersPromise = store.dispatch(
+        api.endpoints.getAllOffers.initiate({
+          includeMyOffers: true,
+          includeTakenOffers: true,
+        })
+      );
+      const getAllOffersResponse = await getAllOffersPromise;
+      const offers = getAllOffersResponse.data;
+      const getWalletsPromise = store.dispatch(api.endpoints.getWallets.initiate());
+      const getWalletsResponse = await getWalletsPromise;
+      const wallets = getWalletsResponse.data;
+      const { offer } = params;
+
+      const data = {
+        offered: {
+          xch: offer.offered.xch ? [{ amount: offer.offered.xch }] : [],
+          tokens: offer.offered.tokens,
+          nfts: offer.offered.nftIds ? offer.offered.nftIds.map((nftId: string) => ({ nftId })) : [],
+          fee: offer.offered.fee ? [{ amount: offer.offered.fee }] : [],
+        },
+        requested: {
+          xch: offer.requested.xch ? [{ amount: offer.requested.xch }] : [],
+          tokens: offer.requested.tokens,
+          nfts: offer.requested.nfts ? offer.requested.nfts : [],
+          fee: offer.requested.fee ? [{ amount: offer.requested.fee }] : [],
+        },
+      };
+      let response = null;
+      try {
+        const { assetsToUnlock, ...localOffer } = await offerBuilderDataToOffer({
+          data,
+          wallets,
+          offers,
+          validateOnly: false,
+          considerNftRoyalty: true,
+          allowEmptyOfferColumn: false,
+        });
+        const assetsRequiredToBeUnlocked = [];
+        for (let i = 0; i < assetsToUnlock.length; i++) {
+          const atu = assetsToUnlock[i];
+          if (atu.status === 'conflictsWithNewOffer') {
+            assetsRequiredToBeUnlocked.push(atu);
+          }
+        }
+        if (assetsRequiredToBeUnlocked.length) {
+          throw new Error(`Assets locked`);
+        }
+        const values = {
+          offer: localOffer.walletIdsAndAmounts,
+          fee: localOffer.feeInMojos,
+          driver_dict: localOffer.driverDict, // snake case is intentional since disableJSONFormatting is true
+          validate_only: localOffer.validateOnly, // snake case is intentional since disableJSONFormatting is true
+          disableJSONFormatting: true, // true to avoid converting driver_dict keys/values to camel case. The camel case conversion breaks the driver_dict and causes offer creation to fail.
+        };
+        const createOfferPromise = store.dispatch(api.endpoints.createOfferForIds.initiate(values));
+        const createResponse = await createOfferPromise;
+        response = createResponse.data;
+      } catch (err: any) {
+        return { error: err.message };
+      }
+      return response;
+    },
+  },
 
   // CAT
   {
@@ -538,7 +772,74 @@ const walletConnectCommands: WalletConnectCommand[] = [
         label: <Trans>Memos</Trans>,
         isOptional: true,
       },
+      {
+        name: WalletConnectCommandParamName.ASSET_ID,
+        label: <Trans>Asset Id</Trans>,
+        isOptional: true,
+      },
     ],
+  },
+  {
+    command: 'spendCatSDK',
+    label: <Trans>Spend CAT</Trans>,
+    waitForSync: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.ADDRESS,
+        label: <Trans>Address</Trans>,
+        type: 'string',
+      },
+      {
+        name: WalletConnectCommandParamName.AMOUNT,
+        label: <Trans>Amount</Trans>,
+        type: 'BigNumber',
+        displayComponent: (value, _params, values) => <WalletConnectCATAmount amount={value} values={values} />,
+      },
+      {
+        name: WalletConnectCommandParamName.FEE,
+        label: <Trans>Fee</Trans>,
+        type: 'BigNumber',
+        displayComponent: (value) => <MojoToChia value={value} />,
+      },
+      {
+        name: WalletConnectCommandParamName.MEMOS,
+        label: <Trans>Memos</Trans>,
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.ASSET_ID,
+        label: <Trans>Asset Id</Trans>,
+        isOptional: true,
+      },
+    ],
+    service: 'EXECUTE',
+    execute: async (params: Record<string, any>) => {
+      let response: any;
+      try {
+        const getWalletsPromise = store.dispatch(api.endpoints.getWallets.initiate());
+        const wallets = await getWalletsPromise;
+        const CATWallets = wallets.data.filter((wallet: any) => wallet.type === WalletType.CAT);
+        const CATWalletsWithAssetIds = await Promise.all(
+          CATWallets.map(async (wallet: any) => {
+            const getAssetIdPromise = store.dispatch(api.endpoints.getAssetId.initiate({ walletId: wallet.id }));
+            const assetObject = await getAssetIdPromise;
+            return { assetId: assetObject.data.assetId, walletId: wallet.id };
+          })
+        );
+        const wallet = CATWalletsWithAssetIds.find((w: any) => w.assetId === params.assetId);
+        if (wallet && wallet.walletId) {
+          const spendCATPromise = store.dispatch(
+            api.endpoints.spendCAT.initiate({ ...params, walletId: wallet.walletId })
+          );
+          response = await spendCATPromise;
+        } else {
+          return { error: 'No CAT wallet found with that asset ID' };
+        }
+      } catch (err) {
+        return { error: 'Error spending CAT' };
+      }
+      return response;
+    },
   },
   {
     command: 'addCATToken',
@@ -574,6 +875,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
       {
         name: WalletConnectCommandParamName.WALLET_IDS,
         label: <Trans>Wallet Ids</Trans>,
+        isOptional: true,
       },
       {
         name: WalletConnectCommandParamName.NUM,
@@ -588,6 +890,47 @@ const walletConnectCommands: WalletConnectCommand[] = [
         isOptional: true,
       },
     ],
+  },
+  {
+    command: 'getNFTsSDK',
+    label: <Trans>Get NFTs</Trans>,
+    description: <Trans>Requests a listing of NFTs associated with the current wallet key</Trans>,
+    service: ServiceName.WALLET,
+    bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.NUM,
+        label: <Trans>Number of NFTs</Trans>,
+        type: 'number',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.START_INDEX,
+        label: <Trans>Start Index</Trans>,
+        type: 'number',
+        isOptional: true,
+      },
+    ],
+    service: 'EXECUTE',
+    execute: async (params: Record<string, any>) => {
+      const resultPromise = store.dispatch(api.endpoints.getWallets.initiate());
+      const wallets = await resultPromise;
+      const nftWalletIds = wallets.data.filter((wallet: any) => wallet.type === 10).map((wallet: any) => wallet.id);
+
+      const resultPromise2 = store.dispatch(api.endpoints.getNFTs.initiate({ ...params, walletIds: nftWalletIds }));
+      const result = await resultPromise2;
+      let nftList: any[] = [];
+      Object.keys(result.data).forEach((walletId) => {
+        if (Array.isArray(result.data[walletId])) {
+          nftList = [...nftList, result.data[walletId]];
+        }
+      });
+      nftList = nftList.flat();
+      return {
+        data: nftList,
+        // data: nftList.map((nft: any) => ({ id: nft.$nftId })), /* TODO: GUI is unable to send a lot of data */
+      };
+    },
   },
   {
     command: 'getNFTInfo',
@@ -645,6 +988,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
         name: WalletConnectCommandParamName.META_URIS,
         label: <Trans>Meta Uris</Trans>,
         type: 'object',
+        isOptional: true,
       },
       {
         name: WalletConnectCommandParamName.META_HASH,
@@ -656,6 +1000,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
         name: WalletConnectCommandParamName.LICENSE_URIS,
         label: <Trans>License Uris</Trans>,
         type: 'object',
+        isOptional: true,
       },
       {
         name: WalletConnectCommandParamName.LICENSE_HASH,
@@ -691,6 +1036,97 @@ const walletConnectCommands: WalletConnectCommand[] = [
     ],
   },
   {
+    command: 'mintNftSDK',
+    label: <Trans>Mint NFT</Trans>,
+    service: 'EXECUTE',
+    execute: async (params: Record<string, any>) => {
+      const resultPromise = store.dispatch(api.endpoints.getWallets.initiate());
+      const wallets = await resultPromise;
+      const nftWalletId = wallets.data.find((wallet: any) => wallet.type === 10).id;
+      const resultPromise2 = store.dispatch(api.endpoints.mintNFT.initiate({ ...params, walletId: nftWalletId }));
+      const result = await resultPromise2;
+      return result && result.data;
+    },
+    params: [
+      {
+        name: WalletConnectCommandParamName.ROYALTY_ADDRESS,
+        label: <Trans>Royalty Address</Trans>,
+        type: 'string',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.ROYALTY_PERCENTAGE,
+        label: <Trans>Royalty Percentage</Trans>,
+        type: 'BigNumber',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.TARGET_ADDRESS,
+        label: <Trans>Target Address</Trans>,
+        type: 'string',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.URIS,
+        label: <Trans>Uris</Trans>,
+        type: 'object',
+      },
+      {
+        name: WalletConnectCommandParamName.HASH,
+        label: <Trans>Hash</Trans>,
+        type: 'string',
+      },
+      {
+        name: WalletConnectCommandParamName.META_URIS,
+        label: <Trans>Meta Uris</Trans>,
+        type: 'object',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.META_HASH,
+        label: <Trans>Meta Hash</Trans>,
+        type: 'string',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.LICENSE_URIS,
+        label: <Trans>License Uris</Trans>,
+        type: 'object',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.LICENSE_HASH,
+        label: <Trans>License Hash</Trans>,
+        type: 'string',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.EDITION_NUMBER,
+        label: <Trans>Edition Number</Trans>,
+        type: 'number',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.EDITION_TOTAL,
+        label: <Trans>Edition Total</Trans>,
+        type: 'number',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.DID_ID,
+        label: <Trans>DID Id</Trans>,
+        type: 'string',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.FEE,
+        label: <Trans>Fee</Trans>,
+        type: 'BigNumber',
+        isOptional: true,
+      },
+    ],
+  },
+  {
     command: 'transferNFT',
     label: <Trans>Transfer NFT</Trans>,
     service: ServiceName.WALLET,
@@ -700,6 +1136,29 @@ const walletConnectCommands: WalletConnectCommand[] = [
         label: <Trans>Wallet Id</Trans>,
         type: 'number',
       },
+      {
+        name: WalletConnectCommandParamName.NFT_COIN_IDS,
+        label: <Trans>NFT Coin Ids</Trans>,
+        type: 'object',
+      },
+      {
+        name: WalletConnectCommandParamName.TARGET_ADDRESS,
+        label: <Trans>Target Address</Trans>,
+        type: 'string',
+      },
+      {
+        name: WalletConnectCommandParamName.FEE,
+        label: <Trans>Fee</Trans>,
+        type: 'BigNumber',
+        displayComponent: (value) => <MojoToChia value={value} />,
+      },
+    ],
+  },
+  {
+    command: 'transferNftSDK',
+    label: <Trans>Transfer NFT</Trans>,
+    service: ServiceName.WALLET,
+    params: [
       {
         name: WalletConnectCommandParamName.NFT_COIN_IDS,
         label: <Trans>NFT Coin Ids</Trans>,
@@ -732,8 +1191,21 @@ const walletConnectCommands: WalletConnectCommand[] = [
       {
         name: WalletConnectCommandParamName.WALLET_IDS,
         label: <Trans>Wallet Ids</Trans>,
+        isOptional: true,
       },
     ],
+  },
+  {
+    command: 'getNFTsCountSDK',
+    label: <Trans>Get NFTs Count</Trans>,
+    description: <Trans>Requests the number of NFTs associated with the current wallet key</Trans>,
+    bypassConfirm: true,
+    service: 'EXECUTE',
+    execute: async () => {
+      const resultPromise = store.dispatch(api.endpoints.getNFTsCount.initiate({ walletIds: null }));
+      const count = await resultPromise;
+      return count;
+    },
   },
 
   // DIDs
@@ -783,6 +1255,41 @@ const walletConnectCommands: WalletConnectCommand[] = [
     ],
   },
   {
+    command: 'setDidNameSDK',
+    label: <Trans>Set DID Name using didId parameter</Trans>,
+    allFingerprints: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.DID_ID,
+        type: 'string',
+        label: <Trans>DID Id</Trans>,
+      },
+      {
+        name: WalletConnectCommandParamName.NAME,
+        label: <Trans>Name</Trans>,
+        type: 'string',
+      },
+    ],
+    service: 'EXECUTE',
+    execute: async (params: Record<string, any>) => {
+      const resultPromise = store.dispatch(api.endpoints.getNFTWalletsWithDIDs.initiate());
+      const wallets = await resultPromise;
+      const walletObj = wallets.data.find((wallet: any) => wallet.didId === params.didId);
+      const walletId = walletObj ? walletObj.didWalletId : null;
+      if (walletId) {
+        try {
+          const resultPromise2 = store.dispatch(api.endpoints.setDIDName.initiate({ name: params.name, walletId }));
+          const result = await resultPromise2;
+          return result.data;
+        } catch (err: any) {
+          return err;
+        }
+      } else {
+        return new Error('Wallet not found');
+      }
+    },
+  },
+  {
     command: 'setNFTDID',
     label: <Trans>Set NFT DID</Trans>,
     service: ServiceName.WALLET,
@@ -796,6 +1303,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
         name: WalletConnectCommandParamName.NFT_LAUNCHER_ID,
         label: <Trans>NFT Launcher Id</Trans>,
         type: 'string',
+        isOptional: true,
       },
       {
         name: WalletConnectCommandParamName.NFT_COIN_IDS,
@@ -814,6 +1322,54 @@ const walletConnectCommands: WalletConnectCommand[] = [
       },
     ],
   },
+  {
+    command: 'setNftDidSDK',
+    label: <Trans>Set NFT DID</Trans>,
+    service: ServiceName.WALLET,
+    params: [
+      {
+        name: WalletConnectCommandParamName.NFT_COIN_IDS,
+        label: <Trans>NFT Coin Ids</Trans>,
+      },
+      {
+        name: WalletConnectCommandParamName.DID,
+        label: <Trans>DID</Trans>,
+        type: 'string',
+      },
+      {
+        name: WalletConnectCommandParamName.FEE,
+        label: <Trans>Fee</Trans>,
+        type: 'BigNumber',
+        displayComponent: (value) => <MojoToChia value={value} />,
+      },
+    ],
+    service: 'EXECUTE',
+    execute: async (params: Record<string, any>) => {
+      const resultPromise = store.dispatch(api.endpoints.getWallets.initiate());
+      const wallets = await resultPromise;
+      const walletId = wallets.data.find((wallet: any) => wallet.type === 10).id;
+      if (walletId) {
+        try {
+          const nftCoinIds = params.nftCoinIds.map((nftId) => removeHexPrefix(nftId));
+          const resultPromise2 = store.dispatch(
+            api.endpoints.setNFTDID.initiate({
+              did: params.did,
+              walletId,
+              nftCoinIds,
+              fee: params.fee,
+            })
+          );
+          const result = await resultPromise2;
+          return result.data;
+        } catch (err: any) {
+          return err.message;
+        }
+      } else {
+        return 'Wallet not found';
+      }
+    },
+  },
+
   {
     command: 'getNFTWalletsWithDIDs',
     label: <Trans>Get NFT Wallets with DIDs</Trans>,
@@ -886,8 +1442,9 @@ const walletConnectCommands: WalletConnectCommand[] = [
     params: [
       {
         name: WalletConnectCommandParamName.PROOFS,
-        type: 'string',
+        type: 'object',
         label: <Trans>Proofs Object (Key Value Pairs)</Trans>,
+        displayComponent: (value) => <>{JSON.stringify(value)}</>,
       },
     ],
   },

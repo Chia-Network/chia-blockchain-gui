@@ -171,15 +171,32 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
       values = newValues;
     }
 
+    function renameSDKcommands(name: string) {
+      const sdkTranslations: any = {
+        getNFTsSDK: 'getNfts',
+        transferNftSDK: 'transferNfts',
+        getNFTInfo: 'getNftInfo',
+        setDIDNameSDK: 'setDidName',
+        signMessageById: 'signMessageWithId',
+        signMessageByAddress: 'signMessageWithAddress',
+        spendCatSDK: 'spendCat',
+        mintNftSDK: 'mintNft',
+        sendTransactionSDK: 'sendTransaction',
+        createOfferForIdsSDK: 'createOfferForIds',
+        getNFTsCountSDK: 'getNftsCount',
+      };
+      return sdkTranslations[name] || name;
+    }
+
     const confirmed = await confirm({
       topic,
       message:
         !allFingerprints && isDifferentFingerprint ? (
           <Trans>
-            Do you want to log in to {fingerprint} and execute command {command}?
+            Do you want to log in to {fingerprint} and execute command {renameSDKcommands(command)}?
           </Trans>
         ) : (
-          <Trans>Do you want to execute command {command}?</Trans>
+          <Trans>Do you want to execute command {renameSDKcommands(command)}?</Trans>
         ),
       params: definitionParams,
       values,
