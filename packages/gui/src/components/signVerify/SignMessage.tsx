@@ -11,11 +11,13 @@ import {
   SignMessageEntity,
   SignMessageDIDEntity,
   SignMessageNFTEntity,
+  SignMessageVCEntity,
   SignMessageWalletAddressEntity,
 } from './SignMessageEntities';
 import SignMessageResultDialog from './SignMessageResultDialog';
 import SigningEntityDID from './SigningEntityDID';
 import SigningEntityNFT from './SigningEntityNFT';
+import SigningEntityVC from './SigningEntityVC';
 import SigningEntityWalletAddress from './SigningEntityWalletAddress';
 
 const ERROR_MISSING_ENTITY = t`Specify a wallet address, NFT, or DID to sign with`;
@@ -139,6 +141,9 @@ export default function SignMessage(props: SignMessageProps) {
       case SignMessageEntityType.DID:
         await handleSignById(message, (entity as SignMessageDIDEntity).didId, (entity as SignMessageDIDEntity).address);
         break;
+      case SignMessageEntityType.VC:
+        await handleSignById(message, (entity as SignMessageVCEntity).vcId, (entity as SignMessageVCEntity).address);
+        break;
       default:
         throw new Error(`Unknown entity type used for signing: ${selectedEntityType}`);
     }
@@ -153,6 +158,7 @@ export default function SignMessage(props: SignMessageProps) {
     { type: SignMessageEntityType.WalletAddress, label: <Trans>Wallet Address</Trans> },
     { type: SignMessageEntityType.NFT, label: <Trans>NFT</Trans> },
     { type: SignMessageEntityType.DID, label: <Trans>DID</Trans> },
+    { type: SignMessageEntityType.VC, label: <Trans>Credential</Trans> },
   ];
 
   return (
@@ -179,6 +185,9 @@ export default function SignMessage(props: SignMessageProps) {
               )}
               {selectedEntityType === SignMessageEntityType.DID && (
                 <SigningEntityDID entityName="entity" entityValueName="entity.didId" />
+              )}
+              {selectedEntityType === SignMessageEntityType.VC && (
+                <SigningEntityVC entityName="entity" entityValueName="entity.vcId" />
               )}
             </Flex>
           </Flex>

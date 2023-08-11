@@ -2,6 +2,7 @@ export enum SignMessageEntityType {
   WalletAddress = 'WALLET_ADDRESS',
   NFT = 'NFT',
   DID = 'DID',
+  VC = 'CREDENTIAL',
 }
 
 export interface SignMessageWalletAddressEntity {
@@ -21,4 +22,14 @@ export interface SignMessageDIDEntity {
   address: string;
 }
 
-export type SignMessageEntity = SignMessageWalletAddressEntity | SignMessageNFTEntity | SignMessageDIDEntity;
+export interface SignMessageVCEntity {
+  type: SignMessageEntityType.VC;
+  vcId: string;
+  address: string;
+}
+
+export type SignMessageEntity =
+  | SignMessageWalletAddressEntity
+  | SignMessageNFTEntity
+  | SignMessageDIDEntity
+  | SignMessageVCEntity;
