@@ -4,6 +4,7 @@ import { Outlet } from 'react-router';
 import styled from 'styled-components';
 
 import Flex from '../Flex';
+import { Scrollbar } from '../Scrollbar';
 
 const StyledRoot = styled(Flex)`
   width: 100%;
@@ -24,20 +25,30 @@ const StyledHeader = styled(({ sidebar, gap, ...rest }) => <Box {...rest} />)`
   margin-left: ${({ sidebar }) => (!sidebar ? `0` : '-10px')};
 `;
 
-const StyledContent = styled(({ header, sidebar, fullHeight, ...rest }) => <Box {...rest} />)`
+const StyledContent = styled(({ sidebar, ...rest }) => <Box {...rest} />)`
   display: flex;
   flex-direction: column;
-  height: 100%;
   flex-grow: 1;
-  overflow-y: auto;
+  overflow-y: hidden;
+  position: relative;
+  margin-left: ${({ sidebar }) => (!sidebar ? `0` : '-10px')};
+`;
+
+const StyledScrollbarWrapper = styled(Scrollbar)`
+  flex-grow: 1;
+`;
+
+const StyledContentWrapper = styled(({ header, sidebar, fullHeight, ...rest }) => <Box {...rest} />)`
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  flex-grow: 1;
   position: relative;
 
   padding-top: ${({ theme, header }) => (header ? 0 : theme.spacing(3))};
   padding-bottom: ${({ theme, fullHeight }) => (fullHeight ? 0 : theme.spacing(3))};
   padding-right: ${({ theme }) => theme.spacing(3)};
-
   padding-left: ${({ theme, sidebar }) => (!sidebar ? theme.spacing(3) : '10px')};
-  margin-left: ${({ sidebar }) => (!sidebar ? `0` : '-10px')};
 `;
 
 export type DashboardLayoutProps = {
@@ -62,12 +73,22 @@ export default function DashboardLayout(props: DashboardLayoutProps) {
           <StyledHeader sidebar={!!sidebar} gap={gap}>
             {header}
           </StyledHeader>
-          <StyledContent sidebar={!!sidebar} header={!!header} onScroll={props?.onScroll} fullHeight={fullHeight}>
-            {outlet ? <Outlet /> : children}
+          <StyledContent sidebar={!!sidebar}>
+            <StyledScrollbarWrapper onScroll={props?.onScroll}>
+              <StyledContentWrapper fullHeight={fullHeight} header={!!header} sidebar={!!sidebar}>
+                {outlet ? <Outlet /> : children}
+              </StyledContentWrapper>
+            </StyledScrollbarWrapper>
           </StyledContent>
         </Flex>
       ) : (
-        <StyledContent sidebar={!!sidebar}>{outlet ? <Outlet /> : children}</StyledContent>
+        <StyledContent sidebar={!!sidebar}>
+          <StyledScrollbarWrapper onScroll={props?.onScroll}>
+            <StyledContentWrapper fullHeight={fullHeight} sidebar={!!sidebar}>
+              {outlet ? <Outlet /> : children}
+            </StyledContentWrapper>
+          </StyledScrollbarWrapper>
+        </StyledContent>
       )}
     </StyledRoot>
   );

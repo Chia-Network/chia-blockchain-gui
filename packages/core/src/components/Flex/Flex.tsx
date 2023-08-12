@@ -1,12 +1,12 @@
 import { Stack, type StackProps } from '@mui/material';
-import React from 'react';
+import React, { forwardRef } from 'react';
 
 export type FlexProps = StackProps & {
   flexDirection?: 'row' | 'column';
   inline?: boolean;
 };
 
-export default function Flex(props: FlexProps) {
+function Flex(props: FlexProps, ref: any) {
   const { flexDirection = 'row', direction, inline, sx, ...rest } = props;
 
   const computedDirection = direction ?? flexDirection;
@@ -19,6 +19,9 @@ export default function Flex(props: FlexProps) {
         ...sx,
       }}
       {...rest}
+      ref={ref}
     />
   );
 }
+
+export default forwardRef(Flex);
