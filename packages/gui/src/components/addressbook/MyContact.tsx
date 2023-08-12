@@ -40,7 +40,10 @@ export default function MyContact() {
         const element = key;
         element.color = themeList[key.fingerprint].walletKeyTheme
           ? themeList[key.fingerprint].walletKeyTheme.color
-          : 'default';
+          : 'green';
+        element.emoji = themeList[key.fingerprint].walletKeyTheme
+          ? themeList[key.fingerprint].walletKeyTheme.emoji
+          : null;
       });
     }
     if (walletKeyAddresses.length > 0 && keyEntries.length > 0) {
@@ -65,17 +68,17 @@ export default function MyContact() {
               <div>
                 <Flex flexDirection="row" gap={1} alignItems="center" marginBottom="15px">
                   <Flex
-                    justifyContent="left"
+                    justifyContent="center"
                     style={{
-                      height: '40px',
-                      width: '40px',
-                      background: key.color ? theme.palette.colors[key.color].main : theme.palette.background.paper,
+                      height: '36px',
+                      width: '36px',
+                      background: key.emoji ? theme.palette.background.paper : theme.palette.colors[key.color].main,
                       borderRadius: '5px',
                       fontSize: '26px',
-                      paddingLeft: '7px',
-                      paddingTop: '2px',
                     }}
-                  />
+                  >
+                    {key.emoji ? key.emoji : null}
+                  </Flex>
                   <Flex>{key.label}</Flex>
                 </Flex>
                 <TextField
