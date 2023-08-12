@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-08-10 17:56\n"
+"PO-Revision-Date: 2023-08-12 08:59\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -924,7 +924,7 @@ msgstr "Samling"
 #: src/components/vcs/VCRevokeDialog.tsx:27
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:70
 msgid "Confirm"
-msgstr ""
+msgstr "Bekräfta"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:19
 msgid "Confirm Disconnect"
@@ -1267,7 +1267,7 @@ msgstr "Beroende på din systemkonfiguration, kan det visa sig att en alternativ
 
 #: src/components/settings/SettingsPanel.tsx:164
 msgid "Derivation Index"
-msgstr ""
+msgstr "Deriveringsindex"
 
 #: src/components/settings/SettingsDerivationIndex.tsx:45
 msgid "Derivation index must be greater than {index}"
