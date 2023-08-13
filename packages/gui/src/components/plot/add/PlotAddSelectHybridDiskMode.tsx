@@ -73,8 +73,9 @@ export default function PlotAddSelectHybridDiskMode(props: Props) {
     <CardStep step={step} title={<Trans>Select Hybrid disk mode</Trans>}>
       <Typography variant="subtitle1">
         <Trans>
-          Hybrid disk mode reduces RAM consumption by offloading intermediate data to disk. If you enable hybrid disk
-          mode, you need to specify temp folder location.
+          Hybrid disk mode allows computers with lower amounts of RAM to plot by offloading intermediate data to disk.
+          If you enable hybrid disk mode, you need to specify temp folder(s). We recommend using SSDs when supporting a
+          hybrid disk mode.
         </Trans>
       </Typography>
 
