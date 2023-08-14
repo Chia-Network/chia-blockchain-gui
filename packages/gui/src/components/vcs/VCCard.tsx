@@ -155,7 +155,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
         <RenderProperty
           label={
             <Typography sx={{ fontSize: '12px' }}>
-              <Trans>Coin ID</Trans>
+              <Trans>Launcher ID</Trans>
             </Typography>
           }
         >
