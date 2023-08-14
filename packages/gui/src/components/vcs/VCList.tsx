@@ -131,7 +131,17 @@ export default function VCList() {
 
   function renderVCCard(index: number, vcRecord: any) {
     const proofHash = vcRecord?.vc?.proofHash;
-    const vcProofs = proofHash ? proofs[proofHash] : undefined;
+    let vcProofs = proofHash ? proofs[proofHash] : undefined;
+    if (vcRecord.isLocal) {
+      const localData =
+        fingerprint && VCsLocalStorage[fingerprint]
+          ? VCsLocalStorage[fingerprint].find((vc: any) => vc.sha256 === vcRecord.sha256)
+          : null;
+
+      if ((!vcProofs || Object.keys(vcProofs).length === 0) && localData && localData.proof?.values) {
+        vcProofs = localData.proof?.values;
+      }
+    }
     return <VCCard vcRecord={vcRecord} proofs={vcProofs} isLocal={!!vcRecord.isLocal} />;
   }
 

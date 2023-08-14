@@ -303,14 +303,16 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
     return (
       <Flex sx={{ marginBottom: '10px', padding: '8px' }}>
         <More>
-          <MenuItem onClick={() => handleCreateSignature(vcRecord?.vc?.launcherId)} close>
-            <ListItemIcon>
-              <SignIcon color="info" />
-            </ListItemIcon>
-            <Typography variant="inherit" noWrap>
-              <Trans>Sign Message</Trans>
-            </Typography>
-          </MenuItem>
+          {!isLocal && (
+            <MenuItem onClick={() => handleCreateSignature(vcRecord?.vc?.launcherId)} close>
+              <ListItemIcon>
+                <SignIcon color="info" />
+              </ListItemIcon>
+              <Typography variant="inherit" noWrap>
+                <Trans>Sign Message</Trans>
+              </Typography>
+            </MenuItem>
+          )}
           {isLocal && (
             <MenuItem onClick={() => openRevokeVCDialog('remove')} close>
               <ListItemIcon>
