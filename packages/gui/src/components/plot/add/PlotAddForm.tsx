@@ -113,6 +113,7 @@ export default function PlotAddForm(props: Props) {
       p2SingletonPuzzleHash: formValues.p2SingletonPuzzleHash,
       plotNFTContractAddr: formValues.plotNFTContractAddr,
       poolPublicKey: formValues.poolPublicKey,
+      createNFT: formValues.createNFT,
     });
   };
 
