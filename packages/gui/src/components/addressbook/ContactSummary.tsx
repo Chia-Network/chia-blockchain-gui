@@ -152,14 +152,16 @@ export default function ContactSummary() {
         <Flex flexDirection="row" alignItems="center" style={{ paddingTop: '4px' }}>
           <Flex flexGrow={1}>
             <Typography variant="h5">
-              <Trans>{contact.name}</Trans>
+              <Trans>
+                {contact.emoji} {contact.name}
+              </Trans>
             </Typography>
           </Flex>
           <Flex>
             <More>
               <MenuItem onClick={() => handleEditContact(contactId)} close>
                 <ListItemIcon>
-                  <Edit fontSize="small" />
+                  <Edit fontSize="small" color="info" />
                 </ListItemIcon>
                 <Typography variant="inherit" noWrap>
                   <Trans>Edit Contact</Trans>
@@ -167,7 +169,7 @@ export default function ContactSummary() {
               </MenuItem>
               <MenuItem onClick={() => handleRemove(Number(contact.contactId))} close>
                 <ListItemIcon>
-                  <Delete fontSize="small" />
+                  <Delete fontSize="small" color="info" />
                 </ListItemIcon>
                 <Typography variant="inherit" noWrap>
                   <Trans>Delete Contact</Trans>
