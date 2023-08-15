@@ -164,6 +164,12 @@ export default function HarvesterOverview() {
               valueColor="primary"
               title={<Trans>Total farm size effective</Trans>}
               value={<FormatBytes value={totalFarmSizeEffective} precision={3} effectiveSize />}
+              tooltip={
+                <Trans>
+                  This is a sum of effective plot sizes currently farming. An effective plot size is a theoretical value
+                  which is derived only by kSize
+                </Trans>
+              }
             />
           </Grid>
           <Grid xs={12} sm={6} md={4} item>
