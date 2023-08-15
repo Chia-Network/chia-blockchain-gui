@@ -8,15 +8,25 @@ import {
   Form,
   Loading,
   useCurrencyCode,
-  CardListItem,
 } from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
 import CloseIcon from '@mui/icons-material/Close';
-import { Box, Divider, Dialog, DialogContent, DialogTitle, IconButton, Typography, Checkbox } from '@mui/material';
+import {
+  Box,
+  Divider,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  IconButton,
+  Typography,
+  Select,
+  MenuItem,
+} from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
 
 import useWalletConnectContext from '../../hooks/useWalletConnectContext';
+import useWalletConnectPreferences from '../../hooks/useWalletConnectPreferences';
 import HeroImage from './images/walletConnectToChia.svg';
 
 enum Step {
@@ -57,6 +67,8 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
     defaultValue: [],
   });
 
+  const { allowConfirmationFingerprintChange, setAllowConfirmationFingerprintChange } = useWalletConnectPreferences();
+
   function handleClose() {
     onClose();
   }
@@ -84,6 +96,10 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
       throw new Error(t`Please select at least one key`);
     }
 
+    if (!allowConfirmationFingerprintChange && fingerprints.length > 1) {
+      setAllowConfirmationFingerprintChange(true);
+    }
+
     const topic = await pair(uri, selectedFingerprints, mainnet);
     onClose(topic);
   }
@@ -91,6 +107,7 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
   function handleToggleSelectFingerprint(fingerprintLocal: number) {
     const { setValue } = methods;
     const { fingerprints } = methods.getValues();
+    if (fingerprints.length === 1 && fingerprints[0] === fingerprintLocal) return;
     const index = fingerprints.indexOf(fingerprintLocal);
     if (index === -1) {
       setValue('fingerprints', [...fingerprints, fingerprintLocal]);
@@ -105,6 +122,34 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
   const { isSubmitting } = methods.formState;
   const isStepValid = step === Step.CONNECT || selectedFingerprints.length > 0;
   const canSubmit = !isSubmitting && !isLoading && isStepValid;
+
+  function renderKeysMultiSelect() {
+    return (
+      <Select sx={{ width: '100%' }} multiple value={selectedFingerprints}>
+        {keys?.map((key, index) => (
+          <MenuItem
+            key={key.fingerprint}
+            value={key.fingerprint}
+            onClick={() => handleToggleSelectFingerprint(key.fingerprint)}
+          >
+            {key.label || <Trans>Wallet {index + 1}</Trans>} ({key.fingerprint})
+          </MenuItem>
+        ))}
+      </Select>
+    );
+  }
+
+  function renderMultipleKeySelectedWarning() {
+    const { fingerprints } = methods.getValues();
+    if (!allowConfirmationFingerprintChange && fingerprints.length > 1) {
+      return (
+        <Typography variant="body2" textAlign="center" color="red">
+          <Trans>Selecting multiple keys will enable "Key Switching" inside Settings / Integration tab.</Trans>
+        </Typography>
+      );
+    }
+    return null;
+  }
 
   return (
     <Dialog onClose={handleClose} maxWidth="xs" open={open} fullWidth>
@@ -147,26 +192,9 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
               ) : step === Step.CONNECT ? (
                 <TextField name="uri" label={<Trans>Paste link</Trans>} multiline required autoFocus />
               ) : (
-                <Flex flexDirection="column" gap={2} minWidth={0}>
-                  {keys?.map((key, index) => (
-                    <CardListItem
-                      key={key.fingerprint}
-                      selected={selectedFingerprints.includes(key.fingerprint)}
-                      onSelect={() => handleToggleSelectFingerprint(key.fingerprint)}
-                    >
-                      <Flex flexDirection="row" gap={2} alignItems="center" justifyContent="space-between">
-                        <Flex flexDirection="column" gap={1} minWidth={0}>
-                          <Typography variant="body1" noWrap>
-                            {key.label || <Trans>Wallet {index + 1}</Trans>}
-                          </Typography>
-                          <Typography variant="body2" color="textSecondary">
-                            {key.fingerprint}
-                          </Typography>
-                        </Flex>
-                        <Checkbox checked={selectedFingerprints.includes(key.fingerprint)} disableRipple />
-                      </Flex>
-                    </CardListItem>
-                  ))}
+                <Flex gap={3} flexDirection="column">
+                  {renderMultipleKeySelectedWarning()}
+                  {renderKeysMultiSelect()}
                 </Flex>
               )}
             </Flex>
