@@ -55,6 +55,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
   const [isEditingTitle, setIsEditingTitle] = React.useState(false);
   const [VCsLocalStorage, setVCsLocalStorage] = useLocalStorage<any>('verifiable-credentials-local', {});
   const [pendingRevoke, setPendingRevoke] = useLocalStorage<any>('verifiable-credentials-pending-revoke', {});
+  const [didNameMapping] = useLocalStorage<any>('didNameMapping', {});
   const { data: fingerprint } = useGetLoggedInFingerprintQuery();
   const [getTransactionAsync] = useGetTransactionAsyncMutation();
   React.useEffect(() => {
@@ -124,14 +125,18 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
     const vcType = Array.isArray(vcRecord.type) && vcRecord.type.indexOf('KYCCredential') > -1 ? 'KYCCredential' : null;
 
     if (isDetail) {
-      if (didString === 'did:chia:19qf3g9876t0rkq7tfdkc28cxfy424yzanea29rkzylq89kped9hq3q7wd2') {
-        didString = 'Chia Network';
-      }
-      if (didString === 'did:chia:1vkmjsnjensahrkynpafh6v09nt3cq0qf876xcc44xvp4yn86edsqz7mmsp') {
-        didString = 'Zorg Industries';
-      }
-      if (didString === 'did:chia:1vm4j9udue9d3gttlr0ppyf77z8hfe6gz9wt09ydcpg6zfx58verq0cn9aq') {
-        didString = 'ChatGPT';
+      if (didNameMapping[didString]) {
+        didString = didNameMapping[didString];
+      } else {
+        if (didString === 'did:chia:19qf3g9876t0rkq7tfdkc28cxfy424yzanea29rkzylq89kped9hq3q7wd2') {
+          didString = 'Chia Network';
+        }
+        if (didString === 'did:chia:1vkmjsnjensahrkynpafh6v09nt3cq0qf876xcc44xvp4yn86edsqz7mmsp') {
+          didString = 'Zorg Industries';
+        }
+        if (didString === 'did:chia:1vm4j9udue9d3gttlr0ppyf77z8hfe6gz9wt09ydcpg6zfx58verq0cn9aq') {
+          didString = 'ChatGPT';
+        }
       }
     }
 

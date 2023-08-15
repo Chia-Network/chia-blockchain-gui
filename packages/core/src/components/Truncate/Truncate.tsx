@@ -21,12 +21,17 @@ export function truncateValue(children: string, opts: TruncateValueOptions): str
     splitSeparator = ':',
     prefixes = ['nft1', 'txch1', 'xch1', 'did:chia:1', '0x'],
   } = opts;
+  const didNameMapping = JSON.parse(window.localStorage.getItem('didNameMapping') || '{}');
 
   if (!children) {
     return children;
   }
 
   const stringValue = children.toString();
+
+  if (didNameMapping[stringValue]) {
+    return didNameMapping[stringValue];
+  }
 
   if (stringValue === 'did:chia:19qf3g9876t0rkq7tfdkc28cxfy424yzanea29rkzylq89kped9hq3q7wd2') {
     return 'Chia Network';
