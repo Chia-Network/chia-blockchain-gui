@@ -8,7 +8,8 @@ export default function useAddressBook(): [
     dids: ContactDID[],
     notes: string,
     nftId: string,
-    domainNames: ContactDomainName[]
+    domainNames: ContactDomainName[],
+    emoji: string
   ) => void, // addContact
   (contactId: number) => void, // removeContact
   (contactId: number) => AddressContact | undefined, // getContactContactId
@@ -19,7 +20,8 @@ export default function useAddressBook(): [
     dids: ContactDID[],
     notes: string,
     nftId: string,
-    domainNames: ContactDomainName[]
+    domainNames: ContactDomainName[],
+    emoji: string
   ) => void, // editContact
   (address: string) => AddressContact | undefined // getContactByAddress
 ] {
@@ -51,7 +53,8 @@ export default function useAddressBook(): [
     dids: ContactDID[],
     notes: string,
     nftId: string,
-    domainNames: ContactDomainName[]
+    domainNames: ContactDomainName[],
+    emoji: string
   ) {
     const contactId = getNewContactId();
     const newAddress: AddressContact = {
@@ -62,6 +65,7 @@ export default function useAddressBook(): [
       notes,
       nftId,
       domainNames,
+      emoji,
     };
 
     updateAddressBook([...addressBook, newAddress]);
@@ -84,7 +88,8 @@ export default function useAddressBook(): [
     dids: ContactDID[],
     notes: string,
     nftId: string,
-    domainNames: ContactDomainName[]
+    domainNames: ContactDomainName[],
+    emoji: string
   ) {
     const filteredContacts = addressBook.filter((contact) => contact.contactId !== contactId);
 
@@ -96,6 +101,7 @@ export default function useAddressBook(): [
       notes,
       nftId,
       domainNames,
+      emoji,
     };
 
     updateAddressBook([...filteredContacts, newAddress]);
@@ -119,6 +125,7 @@ type AddressContact = {
   notes: string;
   nftId: string;
   domainNames: ContactDomainName[];
+  emoji: string;
 };
 
 type ContactAddress = {

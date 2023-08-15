@@ -1,5 +1,6 @@
 import type { AddressContact } from '@chia-network/core';
 import { AddressBookContext, CardListItem, Color, Flex, LayoutDashboardSub, Tooltip } from '@chia-network/core';
+import { MyContacts as MyContactsIcon } from '@chia-network/icons';
 import { t, Trans } from '@lingui/macro';
 import { Add, Search as SearchIcon } from '@mui/icons-material';
 import { Divider, IconButton, InputBase, Typography, useTheme } from '@mui/material';
@@ -131,45 +132,42 @@ export default function AddressBookSideBar() {
             </Tooltip>
           </Flex>
         </Flex>
-        <Flex
-          gap={1}
-          alignItems="center"
-          sx={{
-            borderColor: theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[300],
-            backgroundColor: 'background.paper',
-            paddingX: 1,
-            paddingY: 0.5,
-            borderRadius: 1,
-            borderWidth: 1,
-            borderStyle: 'solid',
-          }}
-        >
-          <SearchIcon sx={{ color: theme.palette.mode === 'dark' ? Color.Neutral[400] : Color.Neutral[500] }} />
-          <InputBase onChange={handleFilterChanged} placeholder={t`Search...`} />
-        </Flex>
-        <Flex gap={2} flexDirection="column">
-          <Flex flexDirection="column" gap={1.5}>
-            <CardListItem onSelect={() => handleSelectMyContact()}>
-              <div
-                style={{
-                  display: 'flex',
-                  minHeight: '40px',
-                  height: '40px',
-                  paddingBottom: '0px',
-                }}
-              >
-                <div
-                  style={{ flexGrow: 4, flexBasis: '100', paddingLeft: '10px', paddingTop: '8px', overflow: 'hidden' }}
-                >
-                  <div>
-                    <span style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>My Contact Info</span>
-                  </div>
-                </div>
-              </div>
+        <Flex flexDirection="column" gap={4}>
+          <Flex
+            gap={1}
+            alignItems="center"
+            sx={{
+              borderColor: theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[300],
+              backgroundColor: 'background.paper',
+              paddingX: 1,
+              paddingY: 0.5,
+              borderRadius: 1,
+              borderWidth: 1,
+              borderStyle: 'solid',
+            }}
+          >
+            <SearchIcon sx={{ color: theme.palette.mode === 'dark' ? Color.Neutral[400] : Color.Neutral[500] }} />
+            <InputBase onChange={handleFilterChanged} placeholder={t`Search...`} />
+          </Flex>
+          <Flex>
+            <CardListItem onSelect={() => handleSelectMyContact()} borderTransparency="true">
+              <Flex flexDirection="row" gap={1} alignItems="center" height="22px">
+                <Flex>
+                  <MyContactsIcon color="info" />
+                </Flex>
+                <Flex>
+                  <span style={{ fontSize: '1.2rem' }}>
+                    <Trans>My Contact Info</Trans>
+                  </span>
+                </Flex>
+              </Flex>
             </CardListItem>
           </Flex>
-          <Divider />
-          <Flex flexDirection="column" gap={1.5}>
+        </Flex>
+
+        <Flex gap={1} flexDirection="column">
+          <Divider color={Color.Neutral[100]} />
+          <Flex flexDirection="column" gap={1}>
             {listOfContacts()}
           </Flex>
         </Flex>

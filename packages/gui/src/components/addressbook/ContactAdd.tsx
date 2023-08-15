@@ -1,9 +1,10 @@
 import { fromBech32m } from '@chia-network/api';
-import { AddressBookContext, Form, TextField, TooltipIcon, Flex } from '@chia-network/core';
+import { AddressBookContext, Color, EmojiAndColorPicker, Form, TextField, TooltipIcon, Flex } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Add, Remove } from '@mui/icons-material';
 import { Button, IconButton, Typography, Box } from '@mui/material';
-import React, { useContext } from 'react';
+import { useTheme } from '@mui/material/styles';
+import React, { useContext, useState } from 'react';
 import { useForm, useFormContext, useFieldArray } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
@@ -185,6 +186,11 @@ export default function ContactAdd() {
   const [, addContact] = useContext(AddressBookContext);
   const navigate = useNavigate();
 
+  const theme: any = useTheme();
+  const isDark = theme.palette.mode === 'dark';
+  const [showEmojiPicker, setShowEmojiPicker] = useState<boolean>(false);
+  const [chosenEmoji, setChosenEmoji] = useState(``);
+
   const methods = useForm<ContactAddData>({
     defaultValues: {
       name: '',
@@ -238,7 +244,7 @@ export default function ContactAdd() {
         throw new Error(`${entry.did} is not a valid DID`);
       }
     });
-    addContact(data.name, filteredAddresses, filteredProfiles, data.notes, data.nftId, filteredDomains);
+    addContact(data.name, filteredAddresses, filteredProfiles, data.notes, data.nftId, filteredDomains, chosenEmoji);
     navigate(`/dashboard/addressbook/`);
   }
 
@@ -268,6 +274,56 @@ export default function ContactAdd() {
           </Flex>
         </Flex>
         <Flex flexDirection="column" gap={6} style={{ width: '100%', paddingTop: '38px' }}>
+          <Flex gap={2} flexDirection="column">
+            <Typography variant="h6">
+              <Trans>Emoji</Trans>
+            </Typography>
+            <Flex minWidth={0} alignItems="baseline">
+              <span
+                style={{ display: showEmojiPicker ? 'inline' : 'none', position: 'fixed', zIndex: 10 }}
+                onClick={() => {}}
+              >
+                {showEmojiPicker && (
+                  <EmojiAndColorPicker
+                    onSelect={(result: any) => {
+                      setChosenEmoji(result);
+                      setShowEmojiPicker(false);
+                    }}
+                    onClickOutside={() => {
+                      setShowEmojiPicker(false);
+                    }}
+                    currentEmoji={chosenEmoji}
+                    themeColors={theme.palette.colors}
+                    isDark={isDark}
+                    emojiOnly
+                  />
+                )}
+              </span>
+              <Flex flexDirection="row" minWidth={0}>
+                <Box
+                  sx={{
+                    backgroundColor: 'none',
+                    fontSize: '26px',
+                    marginRight: '10px',
+                    width: '40px',
+                    height: '40px',
+                    lineHeight: '42px',
+                    textAlign: 'center',
+                    borderRadius: '5px',
+                    border: 1,
+                    borderColor: isDark ? Color.Neutral[400] : Color.Neutral[300],
+                    ':hover': {
+                      cursor: 'pointer',
+                      backgroundColor: isDark ? Color.Neutral[400] : Color.Neutral[300],
+                    },
+                  }}
+                  onClick={() => setShowEmojiPicker(true)}
+                >
+                  {chosenEmoji}
+                </Box>
+              </Flex>
+            </Flex>
+          </Flex>
           <Flex gap={2} flexDirection="column">
             <Typography variant="h6">
               <Trans>Contact Name</Trans>
