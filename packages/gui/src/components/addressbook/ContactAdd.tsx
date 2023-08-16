@@ -183,7 +183,7 @@ function DomainFields() {
 }
 
 export default function ContactAdd() {
-  const [, addContact] = useContext(AddressBookContext);
+  const [addressBook, addContact] = useContext(AddressBookContext);
   const navigate = useNavigate();
 
   const theme: any = useTheme();
@@ -232,6 +232,13 @@ export default function ContactAdd() {
       } catch (err) {
         throw new Error(`${entry.address} is not a valid address`);
       }
+      addressBook.forEach((contact) => {
+        contact.addresses.forEach((contactAddress) => {
+          if (contactAddress.address === entry.address) {
+            throw new Error(`The address ${entry.address} is already assigned to an existing contact: ${contact.name}`);
+          }
+        });
+      });
     });
     filteredProfiles.forEach((entry) => {
       try {
@@ -243,6 +250,13 @@ export default function ContactAdd() {
       } catch (err) {
         throw new Error(`${entry.did} is not a valid DID`);
       }
+      addressBook.forEach((contact) => {
+        contact.dids.forEach((contactDID) => {
+          if (contactDID.did === entry.did) {
+            throw new Error(`The profile ${entry.did} is already assigned to an existing contact: ${contact.name}`);
+          }
+        });
+      });
     });
     addContact(data.name, filteredAddresses, filteredProfiles, data.notes, data.nftId, filteredDomains, chosenEmoji);
     navigate(`/dashboard/addressbook/`);
