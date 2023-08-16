@@ -140,6 +140,7 @@ export default function VerifyMessageImport(props: VerifyMessageImportProps) {
       sx={{
         height: '100%',
         display: 'flex',
+        paddingBottom: 3,
         justifyContent: 'center',
         alignItems: 'center',
         cursor: 'pointer',

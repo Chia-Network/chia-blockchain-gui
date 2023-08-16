@@ -117,7 +117,7 @@ export default function SignMessage(props: SignMessageProps) {
         showError(error);
       }
     } else {
-      const content = toSnakeCase({ ...result, message: messageToSign, address });
+      const content = toSnakeCase({ address, ...result, message: messageToSign });
       delete content.success;
       delete content.latest_coin_id;
 

@@ -1,4 +1,4 @@
-import { useVerifySignatureMutation } from '@chia-network/api-react';
+import { useVerifySignatureMutation, useLocalStorage } from '@chia-network/api-react';
 import {
   AlertDialog,
   Button,
@@ -20,6 +20,7 @@ import {
   AccordionDetails,
   DialogActions,
   CardContent,
+  Divider,
   Typography,
 } from '@mui/material';
 import React, { useState } from 'react';
@@ -45,6 +46,7 @@ type VerifyMessageFormData = {
   pubkey: string;
   signature: string;
   signing_mode: string;
+  claims: string;
   address: string;
   imported: boolean;
 };
@@ -59,6 +61,7 @@ export default function VerifyMessage(props: VerifyMessageProps) {
   const openDialog = useOpenDialog();
   // const showError = useShowError();
   const [expanded, setExpanded] = useState(false);
+  const [claimsValid] = useLocalStorage<boolean>('claimsValid', true);
 
   const methods = useForm<VerifyMessageFormData>({
     defaultValues: {
@@ -66,18 +69,20 @@ export default function VerifyMessage(props: VerifyMessageProps) {
       pubkey: '',
       signature: '',
       signing_mode: '',
+      claims: '',
       address: '',
       imported: false,
     },
   });
 
-  const { message, pubkey, signature, signing_mode: signingMode, address, imported } = methods.watch();
+  const { message, pubkey, signature, signing_mode: signingMode, claims, address, imported } = methods.watch();
 
   function importComplete(data: {
     message: string;
     pubkey: string;
     signature: string;
     signing_mode: string;
+    claims?: string;
     address?: string;
   }) {
     const {
@@ -85,12 +90,14 @@ export default function VerifyMessage(props: VerifyMessageProps) {
       pubkey: importedPubkey,
       signature: importedSignature,
       signing_mode: importedSigningMode,
+      claims: importedClaims = '',
       address: importedAddress = '',
     } = data;
     methods.setValue('message', importedMessage);
     methods.setValue('pubkey', importedPubkey);
     methods.setValue('signature', importedSignature);
     methods.setValue('signing_mode', importedSigningMode);
+    methods.setValue('claims', importedClaims);
     methods.setValue('address', importedAddress);
     methods.setValue('imported', true);
 
@@ -174,6 +181,29 @@ export default function VerifyMessage(props: VerifyMessageProps) {
               {errorElem}
             </Flex>
           </CardContent>
+          {claims.length && (
+            <>
+              <Divider />
+              <CardContent>
+                <Flex flexDirection="column" gap={3}>
+                  <Flex flexDirection="row" gap={1}>
+                    <Typography variant="body1">
+                      <Trans>Claims Status:</Trans>
+                    </Typography>
+                    {claimsValid === true ? (
+                      <Typography variant="body1" color="primary">
+                        <Trans>Valid</Trans>
+                      </Typography>
+                    ) : (
+                      <Typography variant="body1" color="error">
+                        <Trans>Invalid</Trans>
+                      </Typography>
+                    )}
+                  </Flex>
+                </Flex>
+              </CardContent>
+            </>
+          )}
         </Card>
       </AlertDialog>
     );
@@ -237,6 +267,17 @@ export default function VerifyMessage(props: VerifyMessageProps) {
                 label={<Trans>Signing Mode</Trans>}
                 fullWidth
               />
+              {(claims || !imported) && (
+                <TextField
+                  variant="filled"
+                  InputProps={{
+                    readOnly: imported,
+                  }}
+                  name="claims"
+                  label={<Trans>Claims</Trans>}
+                  fullWidth
+                />
+              )}
               {(address || !imported) && (
                 <>
                   <TextField
