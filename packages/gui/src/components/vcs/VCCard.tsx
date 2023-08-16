@@ -123,20 +123,19 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
 
     const expirationDate = vcRecord.expirationDate ? moment(vcRecord.expirationDate).format('LLL') : null;
     const vcType = Array.isArray(vcRecord.type) && vcRecord.type.indexOf('KYCCredential') > -1 ? 'KYCCredential' : null;
+    let issuerName: string | undefined;
 
-    if (isDetail) {
-      if (didNameMapping[didString]) {
-        didString = didNameMapping[didString];
-      } else {
-        if (didString === 'did:chia:19qf3g9876t0rkq7tfdkc28cxfy424yzanea29rkzylq89kped9hq3q7wd2') {
-          didString = 'Chia Network';
-        }
-        if (didString === 'did:chia:1vkmjsnjensahrkynpafh6v09nt3cq0qf876xcc44xvp4yn86edsqz7mmsp') {
-          didString = 'Zorg Industries';
-        }
-        if (didString === 'did:chia:1vm4j9udue9d3gttlr0ppyf77z8hfe6gz9wt09ydcpg6zfx58verq0cn9aq') {
-          didString = 'ChatGPT';
-        }
+    if (didNameMapping[didString]) {
+      issuerName = didNameMapping[didString];
+    } else {
+      if (didString === 'did:chia:19qf3g9876t0rkq7tfdkc28cxfy424yzanea29rkzylq89kped9hq3q7wd2') {
+        issuerName = 'Chia Network';
+      }
+      if (didString === 'did:chia:1vkmjsnjensahrkynpafh6v09nt3cq0qf876xcc44xvp4yn86edsqz7mmsp') {
+        issuerName = 'Zorg Industries';
+      }
+      if (didString === 'did:chia:1vm4j9udue9d3gttlr0ppyf77z8hfe6gz9wt09ydcpg6zfx58verq0cn9aq') {
+        issuerName = 'ChatGPT';
       }
     }
 
@@ -146,6 +145,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
           color: vcRecord?.vc?.launcherId && pendingRevoke[vcRecord.vc.launcherId] ? Color.Neutral[400] : 'inherit',
         }}
       >
+        {issuerName && <RenderProperty label={<Trans>Issuer Name</Trans>}>{issuerName}</RenderProperty>}
         {didString && (
           <RenderProperty label={<Trans>Issuer DID</Trans>}>
             {isDetail ? (
