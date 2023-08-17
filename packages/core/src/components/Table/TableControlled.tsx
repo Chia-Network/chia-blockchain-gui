@@ -12,6 +12,7 @@ import {
   Collapse,
 } from '@mui/material';
 import { get } from 'lodash';
+import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 import React, { ReactNode, useMemo, useState, SyntheticEvent, Fragment } from 'react';
 import styled from 'styled-components';
 
@@ -55,6 +56,30 @@ const StyledExpandedTableCell = styled(({ isExpanded, ...rest }) => <TableCell {
 const StyledExpandedTableCellContent = styled(Box)`
   padding: 1rem 0;
 `;
+
+function PaperScrollbar(props) {
+  const { children, rest } = props;
+
+  return (
+    <Paper {...rest}>
+      <OverlayScrollbarsComponent options={{ scrollbars: { autoHide: 'leave' } }}>
+        {children}
+      </OverlayScrollbarsComponent>
+    </Paper>
+  );
+}
+
+function PaginationScrollbar(props) {
+  const { children, rest } = props;
+
+  return (
+    <Box sx={{ display: 'table', width: '100%' }} {...rest}>
+      <OverlayScrollbarsComponent options={{ scrollbars: { autoHide: 'leave' } }}>
+        {children}
+      </OverlayScrollbarsComponent>
+    </Box>
+  );
+}
 
 export type Col = {
   key?: number | string;
@@ -177,7 +202,7 @@ export default function TableControlled(props: TableControlledProps) {
 
   return (
     <LoadingOverlay loading={isLoading}>
-      <TableContainer component={Paper}>
+      <TableContainer component={PaperScrollbar}>
         <TableBase>
           {caption && <caption>{caption}</caption>}
           {!hideHeader && (
@@ -213,7 +238,7 @@ export default function TableControlled(props: TableControlledProps) {
         {pages && (
           <TablePagination
             rowsPerPageOptions={rowsPerPageOptions}
-            component="div"
+            component={PaginationScrollbar}
             count={count ?? rows.length ?? 0}
             rowsPerPage={rowsPerPage}
             page={page}

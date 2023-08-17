@@ -98,74 +98,87 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
   }
 
   return (
-    <Flex flexDirection="column" gap={2}>
-      <Flex sx={{ bgcolor: 'background.paper' }} justifyContent="center" py={{ xs: 2, sm: 3, md: 5 }} px={3}>
-        <Flex flexDirection="column" gap={3} position="relative" maxWidth="1200px" width="100%" justifyContent="center">
-          <Box
-            sx={{
-              display: 'grid',
-              gridTemplateColumns: '1fr auto 1fr',
-              alignItems: 'center',
-              width: '100%',
-            }}
-          >
-            <Box>
-              <IconButton onClick={handleGoBack} sx={{ backgroundColor: 'action.hover' }}>
-                <ArrowBackIosNew />
-              </IconButton>
-            </Box>
-            <Box>
-              {nfts.length > 1 && (
-                <Flex gap={2} alignItems="center">
-                  <Tooltip title={<Trans>Previous</Trans>}>
-                    <IconButton onClick={() => navigateToDetail(-1)} disabled={position === 0}>
-                      <ArrowBackIcon />
-                    </IconButton>
-                  </Tooltip>
-                  <Tooltip title={<Trans>Use left and right arrow keys to navigate</Trans>}>
-                    <Typography variant="body2">
-                      {nfts.length > 1 ? `${position + 1} / ${nfts.length}` : null}
-                    </Typography>
-                  </Tooltip>
-                  <Tooltip title={<Trans>Next</Trans>}>
-                    <IconButton onClick={() => navigateToDetail(1)} disabled={isLastPosition}>
-                      <ArrowForwardIcon />
-                    </IconButton>
-                  </Tooltip>
-                </Flex>
-              )}
-            </Box>
-            <Box display="flex" justifyContent="flex-end">
-              <NFTHashStatus nftId={nftId} />
-            </Box>
-          </Box>
-          <Box
-            overflow="hidden"
-            alignItems="center"
-            justifyContent="center"
-            maxWidth="800px"
-            alignSelf="center"
-            width="100%"
+    <LayoutDashboardSub>
+      <Flex flexDirection="column" gap={2}>
+        <Flex
+          sx={{ bgcolor: 'background.paper' }}
+          justifyContent="center"
+          paddingBottom={{ xs: 2, sm: 3, md: 5 }}
+          px={3}
+        >
+          <Flex
+            flexDirection="column"
+            gap={3}
             position="relative"
+            maxWidth="1200px"
+            width="100%"
+            justifyContent="center"
           >
-            {nft && (
-              <Flex flexDirection="column">
-                <Box onClick={handleShowFullScreen} sx={{ cursor: 'pointer' }}>
-                  <NFTPreview id={nftId} height={412} fit="contain" hideStatus />
-                </Box>
-                {/*
+            <Box
+              sx={{
+                display: 'grid',
+                gridTemplateColumns: '1fr auto 1fr',
+                alignItems: 'center',
+                width: '100%',
+              }}
+            >
+              <Box>
+                <IconButton onClick={handleGoBack} sx={{ backgroundColor: 'action.hover' }}>
+                  <ArrowBackIosNew />
+                </IconButton>
+              </Box>
+              <Box>
+                {nfts.length > 1 && (
+                  <Flex gap={2} alignItems="center">
+                    <Tooltip title={<Trans>Previous</Trans>}>
+                      <IconButton onClick={() => navigateToDetail(-1)} disabled={position === 0}>
+                        <ArrowBackIcon />
+                      </IconButton>
+                    </Tooltip>
+                    <Tooltip title={<Trans>Use left and right arrow keys to navigate</Trans>}>
+                      <Typography variant="body2">
+                        {nfts.length > 1 ? `${position + 1} / ${nfts.length}` : null}
+                      </Typography>
+                    </Tooltip>
+                    <Tooltip title={<Trans>Next</Trans>}>
+                      <IconButton onClick={() => navigateToDetail(1)} disabled={isLastPosition}>
+                        <ArrowForwardIcon />
+                      </IconButton>
+                    </Tooltip>
+                  </Flex>
+                )}
+              </Box>
+              <Box display="flex" justifyContent="flex-end">
+                <NFTHashStatus nftId={nftId} />
+              </Box>
+            </Box>
+            <Box
+              overflow="hidden"
+              alignItems="center"
+              justifyContent="center"
+              maxWidth="800px"
+              alignSelf="center"
+              width="100%"
+              position="relative"
+            >
+              {nft && (
+                <Flex flexDirection="column">
+                  <Box onClick={handleShowFullScreen} sx={{ cursor: 'pointer' }}>
+                    <NFTPreview id={nftId} height={412} fit="contain" hideStatus />
+                  </Box>
+                  {/*
                 <NFTProgressBar
                   nftIdUrl={`${nft.$nftId}_${uri}`}
                   setValidateNFT={setValidateNFT}
                   fetchBinaryContentDone={fetchBinaryContentDone}
                 />
                 */}
-              </Flex>
-            )}
-          </Box>
+                </Flex>
+              )}
+            </Box>
+          </Flex>
         </Flex>
-      </Flex>
-      <LayoutDashboardSub>
+
         <Flex flexDirection="column" gap={2} maxWidth="1200px" width="100%" alignSelf="center" mb={3}>
           <Flex alignItems="center" justifyContent="space-between">
             <Typography variant="h4" overflow="hidden">
@@ -231,7 +244,7 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
 
           <OfferIncomingTable nftId={nftId} title={<Trans>Offers</Trans>} />
         </Flex>
-      </LayoutDashboardSub>
-    </Flex>
+      </Flex>
+    </LayoutDashboardSub>
   );
 }

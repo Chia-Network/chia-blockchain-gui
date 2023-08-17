@@ -5,14 +5,13 @@ import Loading from '../Loading';
 
 export type LayoutLoadingProps = {
   children?: ReactNode;
-  hideSettings?: boolean;
 };
 
 export default function LayoutLoading(props: LayoutLoadingProps) {
-  const { children, hideSettings } = props;
+  const { children } = props;
 
   return (
-    <LayoutHero hideSettings={hideSettings}>
+    <LayoutHero>
       <Loading center />
       {children}
     </LayoutHero>
