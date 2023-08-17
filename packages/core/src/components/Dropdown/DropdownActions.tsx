@@ -8,7 +8,6 @@ import { Menu, type MenuProps } from '../Menu';
 
 const StyledMenu = styled((props: MenuProps) => (
   <Menu
-    elevation={0}
     anchorOrigin={{
       vertical: 'bottom',
       horizontal: 'right',
@@ -25,10 +24,13 @@ const StyledMenu = styled((props: MenuProps) => (
     marginTop: theme.spacing(1),
     minWidth: 180,
     color: theme.palette.mode === 'light' ? Color.Comet[700] : theme.palette.grey[300],
-    boxShadow: `${Color.Neutral[50]} 0px 0px 0px 0px, ${alpha(Color.Neutral[900], 0.05)} 0px 0px 0px 1px, ${alpha(
+    boxShadow: `${Color.Neutral[50]} 0px 0px 0px 0px, ${alpha(
       Color.Neutral[900],
-      0.1
-    )} 0px 10px 15px -3px, ${alpha(Color.Neutral[900], 0.05)} 0px 4px 6px -2px`,
+      theme.palette.mode === 'dark' ? 0.15 : 0.05
+    )} 0px 0px 0px 1px, ${alpha(
+      Color.Neutral[900],
+      theme.palette.mode === 'dark' ? 0.01 : 0.1
+    )} 0px 10px 15px -3px, ${alpha(Color.Neutral[900], theme.palette.mode === 'dark' ? 0.15 : 0.05)} 0px 4px 6px -2px`,
     '& .MuiMenu-list': {
       padding: '4px 0',
     },
