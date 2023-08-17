@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 
 import useWallet from '../../hooks/useWallet';
 import WalletCards from '../WalletCards';
+import WalletCardsCRCat from '../WalletCardsCRCat';
 import WalletHeader from '../WalletHeader';
 import WalletHistory from '../WalletHistory';
 import WalletReceiveAddress from '../WalletReceiveAddress';
@@ -109,7 +110,7 @@ export default function WalletCAT(props: Props) {
 
       <Flex flexDirection="column" gap={4}>
         <WalletCards walletId={walletId} />
-
+        {wallet?.type === WalletType.CRCAT && <WalletCardsCRCat walletId={walletId} />}
         {(() => {
           switch (selectedTab) {
             case 'summary':

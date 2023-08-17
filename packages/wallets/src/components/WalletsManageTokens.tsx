@@ -115,7 +115,11 @@ export default function WalletsManageTokens() {
   const t = useTrans();
   const navigate = useNavigate();
   const [search, setSearch] = useState('');
-  const { list, hide, show, isLoading } = useWalletsList(search, [WalletType.STANDARD_WALLET, WalletType.CAT]);
+  const { list, hide, show, isLoading } = useWalletsList(search, [
+    WalletType.STANDARD_WALLET,
+    WalletType.CAT,
+    WalletType.CRCAT,
+  ]);
 
   function handleAddToken(event) {
     event.preventDefault();

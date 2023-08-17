@@ -20,7 +20,7 @@ export default function useWallet(walletId?: number | string): {
 
   const unit = useMemo(() => {
     if (wallet) {
-      if (!isCatListLoading && wallet.type === WalletType.CAT) {
+      if (!isCatListLoading && [WalletType.CAT, WalletType.CRCAT].includes(wallet.type)) {
         const token = catList.find((item) => item.assetId === wallet.meta?.assetId);
         if (token) {
           return token.symbol;
