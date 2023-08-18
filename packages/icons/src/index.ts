@@ -1,6 +1,7 @@
 export { default as Burn } from './Burn';
 export { default as Chia, ChiaBlack } from './Chia';
 export { default as Contacts } from './Contacts';
+export { default as CrCat } from './CrCat';
 export { default as Farm } from './Farm';
 export { default as Farming } from './Farming';
 export { default as Fees } from './Fees';

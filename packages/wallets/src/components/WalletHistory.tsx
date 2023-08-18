@@ -118,7 +118,9 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate, location
           </Box>
           &nbsp;
           <strong>
-            <FormatLargeNumber value={type === WalletType.CAT ? mojoToCAT(row.amount) : mojoToChia(row.amount)} />
+            <FormatLargeNumber
+              value={[WalletType.CAT, WalletType.CRCAT].includes(type) ? mojoToCAT(row.amount) : mojoToChia(row.amount)}
+            />
           </strong>
           &nbsp;
           {metadata.unit}
@@ -279,6 +281,7 @@ export default function WalletHistory(props: Props) {
       values: [TransactionType.INCOMING_CLAWBACK_RECEIVE, TransactionType.INCOMING_CLAWBACK_SEND],
     },
   });
+  // console.log(transactions);
 
   const feeUnit = useCurrencyCode();
   const [getOfferRecord] = useGetOfferRecordMutation();
