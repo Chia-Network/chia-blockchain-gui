@@ -18,7 +18,7 @@ export default function FarmHeader() {
     <Flex gap={2} alignItems="center">
       <Flex flexGrow={1}>
         <Typography variant="h5">
-          <Trans>Your Farm Overview</Trans>
+          <Trans>Farm Summary</Trans>
         </Typography>
       </Flex>
       <More>

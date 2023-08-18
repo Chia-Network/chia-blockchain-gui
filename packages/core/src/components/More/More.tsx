@@ -26,7 +26,7 @@ export default function More(props: MoreProps) {
   return (
     <>
       <IconButton aria-label="more" aria-haspopup="true" onClick={handleClick} disabled={disabled}>
-        <MoreVertIcon />
+        <MoreVertIcon color="info" />
       </IconButton>
       <Menu anchorEl={anchorEl} onClose={handleClose} {...rest} open={open}>
         {children}

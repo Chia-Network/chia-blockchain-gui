@@ -1,3 +1,4 @@
+import { Color } from '@chia-network/core';
 import { Box, Paper, Popper, Typography } from '@mui/material';
 import React, { ReactNode, useRef } from 'react';
 
@@ -20,7 +21,7 @@ export default function WalletGraphTooltip(props: WalletGraphTooltipProps) {
       <foreignObject x={x - Math.floor(dotSize / 2)} y={y - Math.floor(dotSize / 2)} width={dotSize} height={dotSize}>
         <Box
           sx={{
-            backgroundColor: '#5DAA62',
+            backgroundColor: Color.Green[500],
             width: dotSize,
             height: dotSize,
             borderRadius: 9999,

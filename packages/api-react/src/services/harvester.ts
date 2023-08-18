@@ -1,10 +1,12 @@
 import { Harvester } from '@chia-network/api';
 
+import api, { baseQuery } from '../api';
+import onCacheEntryAddedInvalidate from '../utils/onCacheEntryAddedInvalidate';
 import { query, mutation } from '../utils/reduxToolkitEndpointAbstractions';
 import { apiWithTag } from './farmer';
 
 const apiWithTag2 = apiWithTag.enhanceEndpoints({
-  addTagTypes: ['Plots', 'PlotDirectories'],
+  addTagTypes: ['Plots', 'PlotDirectories', 'harvesterConfig'],
 });
 
 export const harvesterApi = apiWithTag2.injectEndpoints({
@@ -71,6 +73,24 @@ export const harvesterApi = apiWithTag2.injectEndpoints({
         { type: 'PlotDirectories', id: dirname },
       ],
     }),
+
+    getHarvesterConfig: query(build, Harvester, 'getHarvesterConfig', {
+      providesTags: ['harvesterConfig'],
+    }),
+
+    updateHarvesterConfig: mutation(build, Harvester, 'updateHarvesterConfig', {
+      invalidatesTags: ['harvesterConfig'],
+    }),
+
+    getFarmingInfo: query(build, Harvester, 'getFarmingInfo', {
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
+        {
+          command: 'onFarmingInfoChanged',
+          service: Harvester,
+          endpoint: 'getFarmingInfo',
+        },
+      ]),
+    }),
   }),
 });
 
@@ -81,4 +101,7 @@ export const {
   useGetPlotDirectoriesQuery,
   useAddPlotDirectoryMutation,
   useRemovePlotDirectoryMutation,
+  useGetFarmingInfoQuery,
+  useGetHarvesterConfigQuery,
+  useUpdateHarvesterConfigMutation,
 } = harvesterApi;

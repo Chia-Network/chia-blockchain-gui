@@ -109,7 +109,7 @@ export default function OfferBuilderTokensSection(props: OfferBuilderTokensSecti
 
   return (
     <OfferBuilderSection
-      icon={<Tokens />}
+      icon={<Tokens color="info" />}
       title={<Trans>Tokens</Trans>}
       subtitle={<Trans>Chia Asset Tokens (CATs) are tokens built on top of XCH</Trans>}
       onAdd={showAdd ? handleAdd : undefined}

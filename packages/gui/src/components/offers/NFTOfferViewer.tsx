@@ -4,6 +4,7 @@ import {
   Back,
   Button,
   ButtonLoading,
+  Color,
   Fee,
   Flex,
   Form,
@@ -19,7 +20,7 @@ import {
 } from '@chia-network/core';
 import { Plural, Trans, t } from '@lingui/macro';
 import { Warning as WarningIcon } from '@mui/icons-material';
-import { Box, Divider, Grid, Typography } from '@mui/material';
+import { alpha, Box, Divider, Grid, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import BigNumber from 'bignumber.js';
 import React, { useMemo, useState } from 'react';
@@ -453,8 +454,10 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
             border: `1px solid ${useColorModeValue(theme, 'border')}`,
             borderRadius: '4px',
             bgcolor: 'background.paper',
-            boxShadow:
-              '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)',
+            boxShadow: `0px 2px 1px -1px ${alpha(Color.Neutral[900], 0.2)}, 0px 1px 1px 0px ${alpha(
+              Color.Neutral[900],
+              0.14
+            )}, 0px 1px 3px 0px ${alpha(Color.Neutral[900], 0.12)}`,
             overflow: 'hidden',
           }}
         >

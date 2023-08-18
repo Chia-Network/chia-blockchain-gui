@@ -55,6 +55,7 @@ type BlockchainState = {
   nodeId: string;
   peak: Peak;
   space: number;
+  averageBlockTime: number;
   subSlotIters: number;
   sync: Sync;
 };

@@ -170,7 +170,7 @@ export default function AppState(props: Props) {
             <Trans>Closing down services</Trans>
           </Typography>
           <Flex flexDirection="column" gap={0.5}>
-            {ALL_SERVICES.filter((service) => !!clientState?.startedServices.includes(service)).map((service) => (
+            {servicesState.running.map((service) => (
               <Collapse key={service} in timeout={{ enter: 0, exit: 1000 }}>
                 <Typography variant="body1" color="textSecondary" align="center">
                   {ServiceHumanName[service]}

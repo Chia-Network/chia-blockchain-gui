@@ -1,6 +1,7 @@
 import { useDeleteUnconfirmedTransactionsMutation } from '@chia-network/api-react';
 import {
   Button,
+  Color,
   TooltipTypography,
   Flex,
   State,
@@ -50,10 +51,10 @@ const StyledCardContent = styled(CardContent)`
 `;
 
 const StyledSyncingFooter = styled(CardContent)`
-  background-color: ${({ theme }) => (theme.palette.mode === 'dark' ? '#515151' : '#F6F6F6')};
+  background-color: ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[600] : Color.Neutral[50])};
   padding: 2rem 3rem;
   text-align: center;
-  borer-top: 1px solid #d8d6d6;
+  borer-top: 1px solid ${Color.Neutral[200]};
 `;
 
 const StyledInvisibleContainer = styled(Box)`
@@ -225,7 +226,7 @@ export default function PlotNFTCard(props: Props) {
               <More>
                 <MenuItem onClick={handleAddPlot} close>
                   <ListItemIcon>
-                    <PlotIcon />
+                    <PlotIcon color="info" />
                   </ListItemIcon>
                   <Typography variant="inherit" noWrap>
                     <Trans>Add a Plot</Trans>
@@ -234,7 +235,7 @@ export default function PlotNFTCard(props: Props) {
                 {!isSelfPooling && (
                   <MenuItem onClick={handleGetPoolLoginLink} close>
                     <ListItemIcon>
-                      <LinkIcon />
+                      <LinkIcon color="info" />
                     </ListItemIcon>
                     <Typography variant="inherit" noWrap>
                       <Trans>View Pool Login Link</Trans>
@@ -244,7 +245,7 @@ export default function PlotNFTCard(props: Props) {
                 {!isSelfPooling && (
                   <MenuItem onClick={handlePayoutInstructions} close>
                     <ListItemIcon>
-                      <PaymentIcon />
+                      <PaymentIcon color="info" />
                     </ListItemIcon>
                     <Typography variant="inherit" noWrap>
                       <Trans>Edit Payout Instructions</Trans>
@@ -253,7 +254,7 @@ export default function PlotNFTCard(props: Props) {
                 )}
                 <MenuItem onClick={handleDeleteUnconfirmedTransactions} close>
                   <ListItemIcon>
-                    <DeleteIcon />
+                    <DeleteIcon color="info" />
                   </ListItemIcon>
                   <Typography variant="inherit" noWrap>
                     <Trans>Delete Unconfirmed Transactions</Trans>

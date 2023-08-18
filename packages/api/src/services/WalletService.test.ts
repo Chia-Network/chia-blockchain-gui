@@ -20,7 +20,6 @@ describe('WalletService', () => {
 
     client = {
       origin: 'test_origin',
-      addService: jest.fn(),
       on: jest.fn(),
       send: jest.fn(),
     };

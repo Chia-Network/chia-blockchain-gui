@@ -5,11 +5,15 @@ import React from 'react';
 
 import FarmFullNodeConnections from './FarmFullNodeConnections';
 import FarmHeader from './FarmHeader';
+import FarmHealth from './FarmHealth';
 import FarmHero from './FarmHero';
 import FarmLastAttemptedProof from './FarmLastAttemptedProof';
 import FarmLatestBlockChallenges from './FarmLatestBlockChallenges';
 import FarmYourHarvesterNetwork from './FarmYourHarvesterNetwork';
-import FarmCards from './card/FarmCards';
+import PoolingHealth from './PoolingHealth';
+import FarmingRewardsCards from './card/FarmingRewardsCards';
+import FarmingRewardsHistoryCards from './card/FarmingRewardsHistoryCards';
+import NetspaceCards from './card/NetspaceCards';
 
 export default function Farm() {
   const { hasPlots, initialized, isLoading } = useGetTotalHarvestersSummaryQuery();
@@ -27,10 +31,13 @@ export default function Farm() {
         ) : hasPlots ? (
           <>
             <FarmHeader />
-            <Flex flexDirection="column" gap={4}>
-              <FarmCards />
+            <Flex flexDirection="column" gap={2}>
+              <FarmHealth />
+              <NetspaceCards />
+              <FarmingRewardsCards />
+              <FarmingRewardsHistoryCards />
+              <PoolingHealth />
               <FarmLastAttemptedProof />
-              <FarmLatestBlockChallenges />
               <AdvancedOptions>
                 <Flex flexDirection="column" gap={3}>
                   <FarmFullNodeConnections />

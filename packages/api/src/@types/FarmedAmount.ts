@@ -4,6 +4,8 @@ type FarmedAmount = {
   feeAmount: number;
   lastHeightFarmed: number;
   poolRewardAmount: number;
+  lastTimeFarmed: number;
+  blocksWon: number;
 };
 
 export default FarmedAmount;

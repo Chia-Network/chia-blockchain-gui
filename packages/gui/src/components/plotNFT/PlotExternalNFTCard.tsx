@@ -1,4 +1,5 @@
 import {
+  Color,
   TooltipTypography,
   Flex,
   CardKeyValue,
@@ -42,10 +43,10 @@ const StyledCardContent = styled(CardContent)`
 `;
 
 const StyledSyncingFooter = styled(CardContent)`
-  background-color: ${({ theme }) => (theme.palette.mode === 'dark' ? '#515151' : '#F6F6F6')};
+  background-color: ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[600] : Color.Neutral[50])};
   padding: 2rem 3rem;
   text-align: center;
-  borer-top: 1px solid #d8d6d6;
+  borer-top: 1px solid ${Color.Neutral[200]};
 `;
 
 const StyledInvisibleContainer = styled(Box)`
@@ -192,7 +193,7 @@ export default function PlotExternalNFTCard(props: PlotExternalNFTCardProps) {
               <More>
                 <MenuItem onClick={handleAddPlot} close>
                   <ListItemIcon>
-                    <PlotIcon />
+                    <PlotIcon color="info" />
                   </ListItemIcon>
                   <Typography variant="inherit" noWrap>
                     <Trans>Add a Plot</Trans>
@@ -216,7 +217,7 @@ export default function PlotExternalNFTCard(props: PlotExternalNFTCardProps) {
                 {!isSelfPooling && (
                   <MenuItem onClick={handlePayoutInstructions} close>
                     <ListItemIcon>
-                      <PaymentIcon />
+                      <PaymentIcon color="info" />
                     </ListItemIcon>
                     <Typography variant="inherit" noWrap>
                       <Trans>Edit Payout Instructions</Trans>

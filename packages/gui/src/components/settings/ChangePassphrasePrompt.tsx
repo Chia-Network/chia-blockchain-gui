@@ -6,6 +6,7 @@ import {
 import {
   AlertDialog,
   Button,
+  Color,
   DialogActions,
   Flex,
   useOpenDialog,
@@ -276,7 +277,7 @@ export default function ChangePassphrasePrompt(props: Props) {
               <Tooltip
                 title={t`Your passphrase can be stored in your system's secure credential store. Chia will be able to access your keys without prompting for your passphrase.`}
               >
-                <HelpIcon style={{ color: '#c8c8c8', fontSize: 12 }} />
+                <HelpIcon style={{ color: Color.Neutral[300], fontSize: 12 }} />
               </Tooltip>
             </Box>
           )}

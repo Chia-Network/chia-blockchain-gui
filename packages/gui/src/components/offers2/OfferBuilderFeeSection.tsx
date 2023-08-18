@@ -49,7 +49,7 @@ export default function OfferBuilderFeeSection(props: OfferBuilderFeeSectionProp
 
   return (
     <OfferBuilderSection
-      icon={<Fees />}
+      icon={<Fees color="info" />}
       title={<Trans>Fees</Trans>}
       subtitle={<Trans>Optional network fee to expedite acceptance of your offer</Trans>}
       onAdd={canAdd ? handleAdd : undefined}

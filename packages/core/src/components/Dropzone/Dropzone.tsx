@@ -2,6 +2,7 @@ import { Paper, CircularProgress } from '@mui/material';
 import React, { ReactNode } from 'react';
 import { useDropzone, DropzoneOptions } from 'react-dropzone';
 
+import Color from '../../constants/Color';
 import AspectRatio from '../AspectRatio';
 import Flex from '../Flex';
 
@@ -9,7 +10,7 @@ function StyledPaper({ children }: { children: ReactNode | ChildrenRender }) {
   return (
     <Paper
       sx={{
-        backgroundColor: '#999999',
+        backgroundColor: Color.Neutral[400],
         padding: (theme) => `${theme.spacing(1)} ${theme.spacing(2)}`,
       }}
     >

@@ -41,7 +41,7 @@ export default function VCDetail() {
       proofs = localData.proof?.values;
     }
     if (isLoading || (!data && !localData)) return null;
-    return <VCCard isDetail vcRecord={data || localData} proofs={proofs} />;
+    return <VCCard isDetail vcRecord={data || localData} proofs={proofs} isLocal={!!localData} />;
   }
   return (
     <Box sx={{ padding: '25px' }}>

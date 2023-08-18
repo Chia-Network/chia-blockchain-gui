@@ -25,7 +25,7 @@ type WalletCreateRecoveryDID = {
   numVerificationsRequired: number;
 };
 
-type WalletCreatePool = {
+export type WalletCreatePool = {
   totalFee: number;
   transaction: Transaction;
   launcherId: string;

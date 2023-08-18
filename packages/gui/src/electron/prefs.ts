@@ -1,9 +1,7 @@
-import fs from 'fs';
 import path from 'path';
 
-import { dump, load } from 'js-yaml';
-
 import { getUserDataDir } from '../util/userData';
+import { readData, writeData } from './utils/yamlUtils';
 
 function getPrefsPath() {
   const userDataDir = getUserDataDir();
@@ -14,31 +12,11 @@ function getPrefsPath() {
 }
 
 export function readPrefs(): Record<string, any> {
-  try {
-    const prefsPath = getPrefsPath();
-    if (!fs.existsSync(prefsPath)) {
-      return {};
-    }
-
-    const yamlData = fs.readFileSync(prefsPath, 'utf-8');
-    return load(yamlData) as Record<string, any>;
-  } catch (e) {
-    console.warn(e);
-    return {};
-  }
+  return readData(getPrefsPath());
 }
 
 export function savePrefs(prefs: Record<string, any>) {
-  try {
-    if (!prefs) {
-      return;
-    }
-    const prefsPath = getPrefsPath();
-    const yamlData = dump(prefs);
-    fs.writeFileSync(prefsPath, yamlData, { encoding: 'utf-8' });
-  } catch (e) {
-    console.warn(e);
-  }
+  writeData(prefs, getPrefsPath());
 }
 
 export function migratePrefs(prefs: Record<string, any>) {

@@ -142,7 +142,11 @@ export default function PlotHarvester(props: PlotHarvesterProps) {
             )}
           </Tabs>
           &nbsp;
-          {expanded ? <ExpandLess onClick={toggleExpand} /> : <ExpandMore onClick={toggleExpand} />}
+          {expanded ? (
+            <ExpandLess onClick={toggleExpand} color="info" />
+          ) : (
+            <ExpandMore onClick={toggleExpand} color="info" />
+          )}
         </Flex>
       </Flex>
 

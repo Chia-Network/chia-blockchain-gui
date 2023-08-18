@@ -55,7 +55,7 @@ const cols = [
         <FarmCloseConnection nodeId={row.nodeId}>
           {({ onClose }) => (
             <StyledIconButton onClick={() => onClose()}>
-              <DeleteIcon />
+              <DeleteIcon color="info" />
             </StyledIconButton>
           )}
         </FarmCloseConnection>

@@ -71,7 +71,7 @@ export default function OfferBuilderXCHSection(props: OfferBuilderXCHSectionProp
 
   return (
     <OfferBuilderSection
-      icon={<Farming />}
+      icon={<Farming color="info" />}
       title={currencyCode}
       subtitle={<Trans>Chia ({currencyCode}) is a digital currency that is secure and sustainable</Trans>}
       onAdd={!fields.length ? handleAdd : undefined}

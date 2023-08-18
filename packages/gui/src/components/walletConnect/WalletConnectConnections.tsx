@@ -76,7 +76,7 @@ export default function WalletConnectConnections(props: WalletConnectConnections
                 <More>
                   <MenuItem onClick={() => handleShowMoreInfo(pair.topic)} close>
                     <ListItemIcon>
-                      <EditIcon fontSize="small" />
+                      <EditIcon fontSize="small" color="info" />
                     </ListItemIcon>
                     <Typography variant="inherit" noWrap>
                       <Trans>More Info</Trans>
@@ -84,7 +84,7 @@ export default function WalletConnectConnections(props: WalletConnectConnections
                   </MenuItem>
                   <MenuItem onClick={() => handleDisconnect(pair.topic)} close>
                     <ListItemIcon>
-                      <DeleteIcon fontSize="small" />
+                      <DeleteIcon fontSize="small" color="info" />
                     </ListItemIcon>
                     <Typography variant="inherit" noWrap>
                       <Trans>Disconnect</Trans>

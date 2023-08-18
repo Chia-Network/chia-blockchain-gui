@@ -1,10 +1,11 @@
+import BigNumber from 'bignumber.js';
+
 type FarmingInfo = {
   challengeHash: string;
-  signagePoint: string;
-  timestamp: number;
-  passedFilter: number;
-  proofs: number;
   totalPlots: number;
+  foundProofs: number;
+  eligiblePlots: number;
+  time: BigNumber;
 };
 
 export default FarmingInfo;
