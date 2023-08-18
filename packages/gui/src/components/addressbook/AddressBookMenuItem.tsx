@@ -1,5 +1,5 @@
 // import { useGetNFTInfoQuery } from '@chia-network/api-react';
-import { CardListItem } from '@chia-network/core';
+import { CardListItem, Flex } from '@chia-network/core';
 import { t } from '@lingui/macro';
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -36,23 +36,23 @@ export default function AddressBookMenuItem({ contact }) {
       key={contact.contactId}
       selected={Number(contact.contactId) === Number(contactId)}
       data-testid={`WalletsSidebar-wallet-${contactId}`}
+      borderTransparency
     >
-      <div
+      <Flex
         style={{
-          display: 'flex',
-          minHeight: '40px',
-          height: '40px',
           paddingBottom: '0px',
         }}
       >
-        <div style={{ flexGrow: 4, flexBasis: '100', paddingLeft: '10px', paddingTop: '8px', overflow: 'hidden' }}>
-          <div>
-            <span style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>
-              {contact.name !== '' ? contact.name : t`Unnamed Contact`}
-            </span>
-          </div>
-        </div>
-      </div>
+        <Flex flexGrow={4} flexBasis={100} style={{ overflow: 'hidden' }}>
+          <span style={{ fontSize: '1.2rem' }}>
+            <Flex direction="row">
+              <Flex>
+                {contact.emoji ? contact.emoji : null} {contact.name !== '' ? contact.name : t`Unnamed Contact`}
+              </Flex>
+            </Flex>
+          </span>
+        </Flex>
+      </Flex>
     </CardListItem>
   );
 }
