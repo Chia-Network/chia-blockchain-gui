@@ -186,7 +186,7 @@ function DomainFields() {
 }
 
 export default function ContactEdit() {
-  const [, , , getContactContactId, editContact] = useContext(AddressBookContext);
+  const [addressBook, , , getContactContactId, editContact] = useContext(AddressBookContext);
   const { contactId } = useParams();
   const navigate = useNavigate();
   const contact = getContactContactId(Number(contactId));
@@ -237,6 +237,17 @@ export default function ContactEdit() {
       } catch (err) {
         throw new Error(`${entry.address} is not a valid address`);
       }
+      addressBook.forEach((abContact) => {
+        if (abContact.contactId.toString() !== contactId) {
+          abContact.addresses.forEach((contactAddress) => {
+            if (contactAddress.address === entry.address) {
+              throw new Error(
+                `The address ${entry.address} is already assigned to an existing contact: ${abContact.name}`
+              );
+            }
+          });
+        }
+      });
     });
     filteredProfiles.forEach((entry) => {
       try {
@@ -248,6 +259,15 @@ export default function ContactEdit() {
       } catch (err) {
         throw new Error(`${entry.did} is not a valid DID`);
       }
+      addressBook.forEach((abContact) => {
+        if (abContact.contactId.toString() !== contactId) {
+          abContact.dids.forEach((contactDID) => {
+            if (contactDID.did === entry.did) {
+              throw new Error(`The profile ${entry.did} is already assigned to an existing contact: ${abContact.name}`);
+            }
+          });
+        }
+      });
     });
     editContact(
       contact.contactId,
