@@ -46,7 +46,7 @@ export default function AddressBookMenuItem({ contact }) {
         <Flex flexGrow={4} flexBasis={100} style={{ overflow: 'hidden' }}>
           <span style={{ fontSize: '1.2rem' }}>
             <Flex direction="row">
-              <Flex height="22px">
+              <Flex>
                 {contact.emoji ? contact.emoji : null} {contact.name !== '' ? contact.name : t`Unnamed Contact`}
               </Flex>
             </Flex>
