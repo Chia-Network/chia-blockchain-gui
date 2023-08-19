@@ -6,7 +6,7 @@ import {
   useResetFilterChallengeStatMutation,
   useGetPartialStatsOffsetQuery,
 } from '@chia-network/api-react';
-import { Flex, StateIndicator, State, Tooltip } from '@chia-network/core';
+import { Flex, StateIndicator, State, Tooltip, useCurrencyCode } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Box, Button, Paper, Typography, CircularProgress } from '@mui/material';
 import React from 'react';
@@ -93,9 +93,11 @@ function FarmHealth() {
   const { data: missingSpsData, isLoading: isLoadingMissingSps } = useGetMissingSignagePointsQuery();
   const [resetMissingSps] = useResetMissingSignagePointsMutation();
   const { data: poolStateData, isLoading: isLoadingPoolStateData } = useGetPoolStateQuery();
-  const { data: filterChallengeStat, isLoading: isLoadingFilterChallengeStat } = useGetFilterChallengeStatQuery(
-    blockchainState?.peak.height || 0
-  );
+  const isTestnet = (useCurrencyCode() ?? 'XCH').toUpperCase() === 'TXCH';
+  const { data: filterChallengeStat, isLoading: isLoadingFilterChallengeStat } = useGetFilterChallengeStatQuery({
+    height: blockchainState?.peak.height || 0,
+    isTestnet,
+  });
   const [resetFilterChallengeStat] = useResetFilterChallengeStatMutation();
   const { data: partialStatsOffset, isLoading: isLoadingPartialStatsOffset } = useGetPartialStatsOffsetQuery();
   const [significantLevel, setSignificantLevel] = React.useState(1); // 1%
