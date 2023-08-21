@@ -155,6 +155,21 @@ const walletConnectCommands: WalletConnectCommand[] = [
     ],
   },
   {
+    command: 'getCATWalletBalances',
+    label: <Trans>Get CAT Wallet Balances</Trans>,
+    description: <Trans>Requests the asset balances for CAT associated with the current fingerprint</Trans>,
+    bypassConfirm: true,
+    service: 'EXECUTE',
+    execute: async () => {
+      const resultPromise = store.dispatch(api.endpoints.getWalletBalances.initiate());
+      const result = await resultPromise;
+      const balances = Object.keys(result.data.walletBalances)
+        .map((key: any) => result.data.walletBalances[key])
+        .filter((balanceObject: any) => balanceObject.walletType === WalletType.CAT);
+      return { balances };
+    },
+  },
+  {
     command: 'getCurrentAddress',
     label: <Trans>Get Current Address</Trans>,
     description: <Trans>Requests the current receive address associated with the current wallet key</Trans>,
@@ -897,27 +912,42 @@ const walletConnectCommands: WalletConnectCommand[] = [
     description: <Trans>Requests a listing of NFTs associated with the current wallet key</Trans>,
     service: ServiceName.WALLET,
     bypassConfirm: true,
-    params: [
-      {
-        name: WalletConnectCommandParamName.NUM,
-        label: <Trans>Number of NFTs</Trans>,
-        type: 'number',
-        isOptional: true,
-      },
-      {
-        name: WalletConnectCommandParamName.START_INDEX,
-        label: <Trans>Start Index</Trans>,
-        type: 'number',
-        isOptional: true,
-      },
-    ],
     service: 'EXECUTE',
-    execute: async (params: Record<string, any>) => {
+    execute: async () => {
       const resultPromise = store.dispatch(api.endpoints.getWallets.initiate());
       const wallets = await resultPromise;
       const nftWalletIds = wallets.data.filter((wallet: any) => wallet.type === 10).map((wallet: any) => wallet.id);
-
-      const resultPromise2 = store.dispatch(api.endpoints.getNFTs.initiate({ ...params, walletIds: nftWalletIds }));
+      const resultPromise2 = store.dispatch(api.endpoints.getNFTs.initiate({ walletIds: nftWalletIds }));
+      const result = await resultPromise2;
+      let nftList: any[] = [];
+      Object.keys(result.data).forEach((walletId) => {
+        if (Array.isArray(result.data[walletId])) {
+          nftList = [...nftList, result.data[walletId]];
+        }
+      });
+      nftList = nftList.flat();
+      if (new TextEncoder().encode(JSON.stringify(nftList)).length > 70_000) {
+        return {
+          error: 'Response too big. Try using "getNftIds" instead',
+        };
+      }
+      return {
+        data: nftList,
+      };
+    },
+  },
+  {
+    command: 'getNftIds',
+    label: <Trans>Get NFTIds</Trans>,
+    description: <Trans>Requests a listing of NFT Ids associated with the current wallet key</Trans>,
+    service: ServiceName.WALLET,
+    bypassConfirm: true,
+    service: 'EXECUTE',
+    execute: async () => {
+      const resultPromise = store.dispatch(api.endpoints.getWallets.initiate());
+      const wallets = await resultPromise;
+      const nftWalletIds = wallets.data.filter((wallet: any) => wallet.type === 10).map((wallet: any) => wallet.id);
+      const resultPromise2 = store.dispatch(api.endpoints.getNFTs.initiate({ walletIds: nftWalletIds }));
       const result = await resultPromise2;
       let nftList: any[] = [];
       Object.keys(result.data).forEach((walletId) => {
@@ -927,8 +957,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
       });
       nftList = nftList.flat();
       return {
-        data: nftList,
-        // data: nftList.map((nft: any) => ({ id: nft.$nftId })), /* TODO: GUI is unable to send a lot of data */
+        nftIds: nftList.map((nft: any) => nft.$nftId),
       };
     },
   },
