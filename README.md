@@ -133,6 +133,11 @@ Do not edit files directly in the repo, but instead please head over to our [Cro
   }
   ```
 
+## Debugging
+
+1. In the Chia Electron app, click `View -> Developer -> Developer tools`.
+2. In the console tab of the developer tools, change the default console events to include `verbose` events. These are the events emitted from the `debug` package.
+
 ## Chia FAQ/WIKI
 
 Please check out the [wiki](https://github.com/Chia-Network/chia-blockchain/wiki)
