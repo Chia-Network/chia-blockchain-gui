@@ -6,7 +6,7 @@ import Color from '../../constants/Color';
 import Flex from '../Flex';
 
 const StyledCircularProgress = styled(CircularProgress)`
-  color: ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[50] : 'inherit')}; ;
+  color: ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[50] : 'inherit')};
 `;
 
 export type LoadingProps = CircularProgressProps & {

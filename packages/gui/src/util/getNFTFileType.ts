@@ -1,6 +1,7 @@
 import { type NFTInfo } from '@chia-network/api';
 
 import FileType from '../constants/FileType';
+
 import getFileType from './getFileType';
 
 export default function getNFTFileType(nft: NFTInfo): FileType {

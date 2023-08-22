@@ -6,6 +6,7 @@ import { orderBy } from 'lodash';
 import React, { useMemo } from 'react';
 
 import isLocalhost from '../../util/isLocalhost';
+
 import PlotHarvester from './PlotHarvester';
 
 function getIpAddress(harvester) {

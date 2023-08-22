@@ -13,6 +13,7 @@ import { Grid } from '@mui/material';
 import React from 'react';
 
 import SignVerifyDialog, { SignVerifyDialogMode } from '../signVerify/SignVerifyDialog';
+
 import ResyncPrompt from './ResyncPrompt';
 
 export default function SettingsAdvanced() {

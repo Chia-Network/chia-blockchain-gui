@@ -32,6 +32,7 @@ import { VirtuosoGrid } from 'react-virtuoso';
 
 import VCEmptyPng from '../../assets/img/vc_empty.png';
 import { sha256, arrToHex } from '../../util/utils';
+
 import VCCard from './VCCard';
 import VCGetTimestamp from './VCGetTimestamp';
 

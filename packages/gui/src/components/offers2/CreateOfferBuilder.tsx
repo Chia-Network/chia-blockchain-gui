@@ -11,6 +11,7 @@ import useSuppressShareOnCreate from '../../hooks/useSuppressShareOnCreate';
 import useWalletOffers from '../../hooks/useWalletOffers';
 import offerBuilderDataToOffer from '../../util/offerBuilderDataToOffer';
 import OfferEditorConfirmationDialog from '../offers/OfferEditorConfirmationDialog';
+
 import OfferBuilder from './OfferBuilder';
 import OfferEditorConflictAlertDialog from './OfferEditorCancelConflictingOffersDialog';
 import OfferNavigationHeader from './OfferNavigationHeader';

@@ -7,6 +7,7 @@ import BigNumber from 'bignumber.js';
 import type Driver from '../@types/Driver';
 import type OfferBuilderData from '../@types/OfferBuilderData';
 import type { OfferTradeRecordFormatted } from '../hooks/useWalletOffers';
+
 import findCATWalletByAssetId from './findCATWalletByAssetId';
 import { getBalance, WalletBalanceFormatted } from './hasSpendableBalance';
 import { prepareNFTOfferFromNFTId } from './prepareNFTOffer';

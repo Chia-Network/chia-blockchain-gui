@@ -6,6 +6,7 @@ import BigNumber from 'bignumber.js';
 import * as React from 'react';
 
 import isLocalhost from '../../util/isLocalhost';
+
 import HarvesterLatency from './HarvesterLatency';
 import HarvesterPlotDetails from './HarvesterPlotDetails';
 

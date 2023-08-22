@@ -10,6 +10,7 @@ import styled from 'styled-components';
 
 import useHiddenWallet from '../hooks/useHiddenWallet';
 import getWalletPrimaryTitle from '../utils/getWalletPrimaryTitle';
+
 import WalletIcon from './WalletIcon';
 import WalletsManageTokens from './WalletsManageTokens';
 

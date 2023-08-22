@@ -3,6 +3,7 @@ import { useService } from '@chia-network/api-react';
 
 import FarmerStatus from '../constants/FarmerStatus';
 import FullNodeState from '../constants/FullNodeState';
+
 import useFullNodeState from './useFullNodeState';
 
 export default function useFarmerStatus(): {

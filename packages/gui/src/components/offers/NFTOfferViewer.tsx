@@ -35,6 +35,7 @@ import useNFTs from '../../hooks/useNFTs';
 import useWalletOffers from '../../hooks/useWalletOffers';
 import { convertRoyaltyToPercentage, launcherIdToNFTId } from '../../util/nfts';
 import removeHexPrefix from '../../util/removeHexPrefix';
+
 import NFTOfferExchangeType from './NFTOfferExchangeType';
 import NFTOfferPreview from './NFTOfferPreview';
 import OfferAsset from './OfferAsset';

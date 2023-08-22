@@ -18,6 +18,7 @@ import useCache from '../../hooks/useCache';
 import useHideObjectionableContent from '../../hooks/useHideObjectionableContent';
 import useNFTImageFittingMode from '../../hooks/useNFTImageFittingMode';
 import useSelectDirectory from '../../hooks/useSelectDirectory';
+
 import LimitCacheSize from './LimitCacheSize';
 
 /* todo it is deprecated we should remove it from users local storage

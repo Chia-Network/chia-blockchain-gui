@@ -7,6 +7,7 @@ import React from 'react';
 import { type NotificationAnnouncement as NotificationAnnouncementType } from '../../@types/Notification';
 import NotificationType from '../../constants/NotificationType';
 import HumanTimestamp from '../helpers/HumanTimestamp';
+
 import NotificationAnnouncementDialog from './NotificationAnnouncementDialog';
 import NotificationPreview from './NotificationPreview';
 import NotificationWrapper from './NotificationWrapper';

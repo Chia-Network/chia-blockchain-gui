@@ -9,6 +9,7 @@ import React, { useMemo } from 'react';
 import { useFieldArray, useWatch } from 'react-hook-form';
 
 import useOfferBuilderContext from '../../hooks/useOfferBuilderContext';
+
 import OfferBuilderSection from './OfferBuilderSection';
 import OfferBuilderToken from './OfferBuilderToken';
 

@@ -2,6 +2,7 @@ import { randomBytes } from 'crypto';
 
 import Message from '../Message';
 import { ServiceNameValue } from '../constants/ServiceName';
+
 import Service from './Service';
 
 jest.mock('crypto', () => ({

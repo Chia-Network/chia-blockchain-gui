@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import type Notification from '../@types/Notification';
 import type OfferState from '../@types/OfferState';
 import NotificationType from '../constants/NotificationType';
+
 import useNotifications from './useNotifications';
 import useOffers from './useOffers';
 

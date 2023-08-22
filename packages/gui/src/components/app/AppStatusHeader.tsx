@@ -11,6 +11,7 @@ import Connections from '../fullNode/FullNodeConnections';
 import FullNodeStateIndicator from '../fullNode/FullNodeStateIndicator';
 import NotificationsDropdown from '../notification/NotificationsDropdown';
 import WalletConnectDropdown from '../walletConnect/WalletConnectDropdown';
+
 import AppTestnetIndicator from './AppTestnetIndicator';
 
 const StyledPopover = styled((props: PopoverProps) => <Popover {...props} />)(({ theme }) => ({

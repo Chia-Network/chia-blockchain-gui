@@ -9,6 +9,7 @@ import { useController, useFormContext } from 'react-hook-form';
 import useHideObjectionableContent from '../../hooks/useHideObjectionableContent';
 import useNFTs from '../../hooks/useNFTs';
 import getNFTId from '../../util/getNFTId';
+
 import NFTMetadata from './NFTMetadata';
 import NFTPreview from './NFTPreview';
 import NFTTitle from './NFTTitle';

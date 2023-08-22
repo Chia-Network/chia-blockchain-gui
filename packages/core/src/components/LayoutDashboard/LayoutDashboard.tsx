@@ -15,6 +15,7 @@ import SelectKeyRenameForm from '../../screens/SelectKey/SelectKeyRenameForm';
 import Flex from '../Flex';
 import Link from '../Link';
 import Loading from '../Loading';
+
 import NewerAppVersionAvailable from './NewerAppVersionAvailable';
 
 // import LayoutFooter from '../LayoutMain/LayoutFooter';

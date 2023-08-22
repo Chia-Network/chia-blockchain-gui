@@ -17,6 +17,7 @@ import React, { useEffect, useState } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
 
 import useWalletConnectContext from '../../hooks/useWalletConnectContext';
+
 import HeroImage from './images/walletConnectToChia.svg';
 
 enum Step {

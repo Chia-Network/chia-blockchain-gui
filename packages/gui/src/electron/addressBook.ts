@@ -1,6 +1,7 @@
 import path from 'path';
 
 import { getUserDataDir } from '../util/userData';
+
 import { readData, writeData } from './utils/yamlUtils';
 
 function getAddressBookPath() {

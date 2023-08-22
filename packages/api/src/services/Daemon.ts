@@ -10,6 +10,7 @@ import type Client from '../Client';
 import Message from '../Message';
 import ServiceName, { type ServiceNameValue } from '../constants/ServiceName';
 import sleep from '../utils/sleep';
+
 import Service from './Service';
 import type { Options } from './Service';
 
