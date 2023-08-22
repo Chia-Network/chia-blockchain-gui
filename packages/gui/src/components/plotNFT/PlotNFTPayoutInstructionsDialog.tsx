@@ -31,7 +31,7 @@ export default function PlotNFTPayoutInstructionsDialog(props: Props) {
     },
   });
 
-  const currentPayoutAddress = useWatch<string>({
+  const currentPayoutAddress = useWatch({
     name: 'payoutAddress',
     control: methods.control,
   });

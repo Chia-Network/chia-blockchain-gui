@@ -101,7 +101,7 @@ export default function PlotAddDirectoryDialog(props: Props) {
                 <ListItemText primary={dir} />
                 <ListItemSecondaryAction>
                   <IconButton edge="end" aria-label="delete" onClick={() => removePlotDir(dir)}>
-                    <DeleteIcon />
+                    <DeleteIcon color="info" />
                   </IconButton>
                 </ListItemSecondaryAction>
               </ListItem>

@@ -6,6 +6,7 @@ import React, { useMemo, ReactNode } from 'react';
 import { useNavigate, useParams } from 'react-router';
 
 import PlotNFTStateEnum from '../../constants/PlotNFTState';
+
 import PlotNFTName from './PlotNFTName';
 import PlotNFTSelectPool, { SubmitData } from './select/PlotNFTSelectPool';
 
@@ -103,6 +104,7 @@ export default function PlotNFTChangePool(props: Props) {
         </HeaderTag>
       )}
       <PlotNFTSelectPool
+        step={1}
         onSubmit={handleSubmit}
         title={<Trans>Change Pool</Trans>}
         submitTitle={<Trans>Change</Trans>}

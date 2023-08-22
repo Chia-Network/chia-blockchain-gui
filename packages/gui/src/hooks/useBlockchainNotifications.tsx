@@ -13,6 +13,7 @@ import React, { useEffect, useCallback, useRef } from 'react';
 
 import type Notification from '../@types/Notification';
 import NotificationType from '../constants/NotificationType';
+
 import useStateAbort from './useStateAbort';
 
 const log = debug('chia-gui:useNotifications');

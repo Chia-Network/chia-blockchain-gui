@@ -9,6 +9,7 @@ import useStandardWallet from '../../../hooks/useStandardWallet';
 import InitialTargetState from '../../../types/InitialTargetState';
 import getPoolInfo from '../../../util/getPoolInfo';
 import normalizeUrl from '../../../util/normalizeUrl';
+
 import PlotNFTSelectBase from './PlotNFTSelectBase';
 import PlotNFTSelectFaucet from './PlotNFTSelectFaucet';
 
@@ -66,6 +67,7 @@ type Props = {
     poolUrl?: string;
   };
   feeDescription?: ReactNode;
+  setShowingPoolDetails?: (showing: boolean) => void;
 };
 
 const PlotNFTSelectPool = forwardRef((props: Props, ref) => {
@@ -79,6 +81,7 @@ const PlotNFTSelectPool = forwardRef((props: Props, ref) => {
     submitTitle = <Trans>Create</Trans>,
     hideFee = false,
     feeDescription,
+    setShowingPoolDetails,
   } = props;
   const [loading, setLoading] = useState<boolean>(false);
   const { balance, loading: walletLoading } = useStandardWallet();
@@ -161,6 +164,7 @@ const PlotNFTSelectPool = forwardRef((props: Props, ref) => {
           description={description}
           hideFee={hideFee}
           feeDescription={feeDescription}
+          setShowingPoolDetails={setShowingPoolDetails}
         />
         {exceededNFTLimit && (
           <Alert severity="error">

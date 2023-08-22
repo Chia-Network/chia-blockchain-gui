@@ -13,6 +13,7 @@ export default function useGetTotalHarvestersSummaryQuery() {
     let plots = new BigNumber(0);
     let plotsProcessed = new BigNumber(0);
     let totalPlotSize = new BigNumber(0);
+    let totalEffectivePlotSize = new BigNumber(0);
     let plotFilesTotal = new BigNumber(0);
     let initialized = !!data?.length;
     let initializedHarvesters = 0;
@@ -22,6 +23,7 @@ export default function useGetTotalHarvestersSummaryQuery() {
       failedToOpenFilenames = failedToOpenFilenames.plus(harvester.failedToOpenFilenames);
       noKeyFilenames = noKeyFilenames.plus(harvester.noKeyFilenames);
       totalPlotSize = totalPlotSize.plus(harvester.totalPlotSize);
+      totalEffectivePlotSize = totalEffectivePlotSize.plus(harvester.totalEffectivePlotSize);
       plots = plots.plus(harvester.plots);
 
       if (harvester.syncing) {
@@ -45,6 +47,7 @@ export default function useGetTotalHarvestersSummaryQuery() {
       plots,
       plotsProcessed,
       totalPlotSize,
+      totalEffectivePlotSize,
       plotFilesTotal,
       initialized,
       initializedHarvesters,
@@ -63,6 +66,7 @@ export default function useGetTotalHarvestersSummaryQuery() {
     harvesters: data?.length ?? 0,
     plotsProcessed: memoized.plotsProcessed,
     totalPlotSize: memoized.totalPlotSize,
+    totalEffectivePlotSize: memoized.totalEffectivePlotSize,
     plotFilesTotal: memoized.plotFilesTotal,
     initializedHarvesters: memoized.initializedHarvesters,
   };

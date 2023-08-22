@@ -4,6 +4,7 @@ import BigNumber from 'bignumber.js';
 
 import Message from '../Message';
 import { ServiceNameValue } from '../constants/ServiceName';
+
 import Wallet from './WalletService';
 
 jest.mock('crypto', () => ({
@@ -20,7 +21,6 @@ describe('WalletService', () => {
 
     client = {
       origin: 'test_origin',
-      addService: jest.fn(),
       on: jest.fn(),
       send: jest.fn(),
     };

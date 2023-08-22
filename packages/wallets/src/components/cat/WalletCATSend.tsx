@@ -1,4 +1,4 @@
-import { SyncingStatus, toBech32m } from '@chia-network/api';
+import { SyncingStatus, toBech32m, WalletType } from '@chia-network/api';
 import { useSpendCATMutation, useFarmBlockMutation } from '@chia-network/api-react';
 import {
   AdvancedOptions,
@@ -27,6 +27,7 @@ import isNumeric from 'validator/es/lib/isNumeric';
 
 import useWallet from '../../hooks/useWallet';
 import useWalletState from '../../hooks/useWalletState';
+import AddressBookAutocomplete from '../AddressBookAutocomplete';
 import CreateWalletSendTransactionResultDialog from '../WalletSendTransactionResultDialog';
 
 type Props = {
@@ -70,13 +71,12 @@ export default function WalletCATSend(props: Props) {
     formState: { isSubmitting },
   } = methods;
 
-  const addressValue = useWatch<string>({
+  const addressValue = useWatch({
     control: methods.control,
     name: 'address',
   });
 
   const { wallet, unit, loading } = useWallet(walletId);
-
   async function farm() {
     if (addressValue) {
       await farmBlock({
@@ -187,16 +187,22 @@ export default function WalletCATSend(props: Props) {
         <Card>
           <Grid spacing={2} container>
             <Grid xs={12} item>
-              <TextField
+              <AddressBookAutocomplete
                 name="address"
+                getType="address"
+                freeSolo
                 variant="filled"
-                color="secondary"
-                fullWidth
-                disabled={isSubmitting}
-                label={<Trans>Address / Puzzle hash</Trans>}
-                data-testid="WalletCATSend-address"
                 required
+                disabled={isSubmitting}
               />
+              {wallet?.type === WalletType.CRCAT && (
+                <Typography variant="caption">
+                  <Trans>
+                    The recipient of this transaction will need to have valid credentials in order to claim the sent
+                    assets. See the CR CAT restrictions above.
+                  </Trans>
+                </Typography>
+              )}
             </Grid>
             <Grid xs={12} md={6} item>
               <TextFieldNumber

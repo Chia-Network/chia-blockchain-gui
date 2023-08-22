@@ -1,4 +1,4 @@
-import { Flex, Indicator, StateColor, TooltipIcon } from '@chia-network/core';
+import { Color, Flex, Indicator, StateColor, TooltipIcon } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Box } from '@mui/material';
 import React from 'react';
@@ -31,7 +31,7 @@ export default function PlotQueueIndicator(props: Props) {
   }
 
   return (
-    <Indicator color="#979797" progress={progress}>
+    <Indicator color={Color.Neutral[400]} progress={progress}>
       {state === PlotStatusEnum.RUNNING && <Trans>Plotting</Trans>}
       {state === PlotStatusEnum.SUBMITTED && <Trans>Queued</Trans>}
       {state === PlotStatusEnum.REMOVING && <Trans>Removing</Trans>}

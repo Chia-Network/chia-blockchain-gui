@@ -7,6 +7,7 @@ import React, { type ReactNode, useState, Suspense, useCallback } from 'react';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 
+import Color from '../../constants/Color';
 import useGetLatestVersionFromWebsite from '../../hooks/useGetLatestVersionFromWebsite';
 import useOpenDialog from '../../hooks/useOpenDialog';
 import EmojiAndColorPicker from '../../screens/SelectKey/EmojiAndColorPicker';
@@ -14,12 +15,13 @@ import SelectKeyRenameForm from '../../screens/SelectKey/SelectKeyRenameForm';
 import Flex from '../Flex';
 import Link from '../Link';
 import Loading from '../Loading';
+
 import NewerAppVersionAvailable from './NewerAppVersionAvailable';
 
 // import LayoutFooter from '../LayoutMain/LayoutFooter';
 
 const StyledAppBar = styled(({ drawer, ...rest }) => <AppBar {...rest} />)`
-  border-bottom: 1px solid ${({ theme }) => theme.palette.divider};
+  border-bottom: 1px solid ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[300])};
   width: ${({ theme, drawer }) => (drawer ? `calc(100% - ${theme.drawer.width})` : '100%')};
   margin-left: ${({ theme, drawer }) => (drawer ? theme.drawer.width : 0)};
   z-index: ${({ theme }) => theme.zIndex.drawer + 1};};
@@ -33,6 +35,7 @@ const StyledDrawer = styled(Drawer)`
   > div {
     width: ${({ theme }) => theme.drawer.width};
     // border-width: 0px;
+    border-right: 1px solid ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[300])};
   }
 `;
 
@@ -235,7 +238,11 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
                                 data-testid="LayoutDashboard-edit-walletName"
                                 sx={{ padding: '8px' }}
                               >
-                                <EditIcon color="disabled" />
+                                <EditIcon
+                                  style={{
+                                    color: isDark ? Color.Neutral[600] : Color.Neutral[400],
+                                  }}
+                                />
                               </IconButton>
                             </Flex>
                             {fingerprint && (

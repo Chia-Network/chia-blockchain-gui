@@ -6,6 +6,7 @@ import {
   useGetTransactionMemoMutation,
 } from '@chia-network/api-react';
 import {
+  AddressBookContext,
   Card,
   CopyToClipboard,
   Flex,
@@ -33,11 +34,12 @@ import {
   Chip,
 } from '@mui/material';
 import moment from 'moment';
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useContext, useMemo } from 'react';
 import styled from 'styled-components';
 
 import useWallet from '../hooks/useWallet';
 import useWalletTransactions from '../hooks/useWalletTransactions';
+
 import ClawbackClaimTransactionDialog from './ClawbackClaimTransactionDialog';
 import WalletHistoryClawbackChip from './WalletHistoryClawbackChip';
 import WalletHistoryPending from './WalletHistoryPending';
@@ -117,7 +119,9 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate, location
           </Box>
           &nbsp;
           <strong>
-            <FormatLargeNumber value={type === WalletType.CAT ? mojoToCAT(row.amount) : mojoToChia(row.amount)} />
+            <FormatLargeNumber
+              value={[WalletType.CAT, WalletType.CRCAT].includes(type) ? mojoToCAT(row.amount) : mojoToChia(row.amount)}
+            />
           </strong>
           &nbsp;
           {metadata.unit}
@@ -129,7 +133,6 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate, location
   {
     field: (row: Row, metadata) => {
       const isIncomingClawback = getIsIncomingClawbackTransaction(row);
-      const isOutgoing = getIsOutgoingTransaction(row);
 
       const { confirmed: isConfirmed } = row;
       // const { memos } = row;
@@ -137,6 +140,18 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate, location
       const isRetire = row.toAddress === metadata.retireAddress;
       const isOffer = row.toAddress === metadata.offerTakerAddress;
       const shouldObscureAddress = isRetire || isOffer;
+
+      let displayAddress = truncateValue(row.toAddress, {});
+      let displayEmoji = null;
+
+      if (metadata.matchList) {
+        metadata.matchList.forEach((contact) => {
+          if (contact.address === row.toAddress) {
+            displayAddress = contact.displayName;
+            displayEmoji = contact.emoji;
+          }
+        });
+      }
 
       return (
         <Flex
@@ -150,7 +165,7 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate, location
         >
           <div>
             <Typography variant="caption" component="span">
-              {isOutgoing ? 'To: ' : 'From: '}
+              <Trans>To: </Trans>
             </Typography>
             <Tooltip
               title={
@@ -167,7 +182,9 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate, location
                 </Flex>
               }
             >
-              <span>{truncateValue(row.toAddress, {})}</span>
+              <span>
+                {displayEmoji} {displayAddress}
+              </span>
             </Tooltip>
           </div>
           <Flex gap={0.5}>
@@ -224,7 +241,7 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate, location
     width: '70px',
     field: (row: Row, metadata, isExpanded, toggleExpand) => (
       <IconButton aria-label="expand row" size="small" onClick={() => toggleExpand(row)}>
-        {isExpanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+        {isExpanded ? <ExpandLessIcon color="info" /> : <ExpandMoreIcon color="info" />}
       </IconButton>
     ),
   },
@@ -265,14 +282,18 @@ export default function WalletHistory(props: Props) {
       values: [TransactionType.INCOMING_CLAWBACK_RECEIVE, TransactionType.INCOMING_CLAWBACK_SEND],
     },
   });
+  // console.log(transactions);
 
   const feeUnit = useCurrencyCode();
   const [getOfferRecord] = useGetOfferRecordMutation();
   const { navigate, location } = useSerializedNavigationState();
   const [getTransactionMemo] = useGetTransactionMemoMutation();
 
+  const [, , , , , getContactByAddress] = useContext(AddressBookContext);
+
   const isLoading = isWalletTransactionsLoading || isWalletLoading;
   const isSyncing = isWalletSyncLoading || !walletState || !!walletState?.syncing;
+  const isSynced = !isSyncing && walletState?.synced;
 
   const [clawbackClaimTransactionDialogProps, setClawbackClaimTransactionDialogProps] = React.useState<{
     coinId: string;
@@ -283,6 +304,32 @@ export default function WalletHistory(props: Props) {
 
   const handleCloseClawbackClaimTransactionDialog = useCallback(() => setClawbackClaimTransactionDialogProps(null), []);
 
+  const contacts = useMemo(() => {
+    if (!transactions || isWalletTransactionsLoading) {
+      return [];
+    }
+
+    const contactList: { displayName: string; address: string }[] = [];
+
+    (transactions ?? []).forEach((transaction) => {
+      const match = getContactByAddress(transaction.toAddress);
+
+      if (match) {
+        match.addresses.forEach((addressInfo) => {
+          if (transaction.toAddress === addressInfo.address) {
+            const nameStr = JSON.stringify(match.name).slice(1, -1);
+            const emojiStr = match.emoji ? match.emoji : '';
+            const matchColor = (theme) => `${match.color ? theme.palette.colors[match.color].main : null}`;
+            const addNameStr = JSON.stringify(addressInfo.name).slice(1, -1);
+            const matchName = `${emojiStr} ${nameStr} | ${addNameStr}`;
+            contactList.push({ displayName: matchName, address: addressInfo.address, color: matchColor });
+          }
+        });
+      }
+    });
+    return contactList;
+  }, [transactions, getContactByAddress, isWalletTransactionsLoading]);
+
   const metadata = useMemo(() => {
     const retireAddress =
       feeUnit && toBech32m('0000000000000000000000000000000000000000000000000000000000000000', feeUnit);
@@ -290,14 +337,17 @@ export default function WalletHistory(props: Props) {
     const offerTakerAddress =
       feeUnit && toBech32m('0101010101010101010101010101010101010101010101010101010101010101', feeUnit);
 
+    const matchList = contacts;
+
     return {
       unit,
       feeUnit,
       retireAddress,
       offerTakerAddress,
       setClawbackClaimTransactionDialogProps,
+      matchList,
     };
-  }, [unit, feeUnit]);
+  }, [unit, feeUnit, contacts]);
 
   const cols = useMemo(() => {
     if (!wallet) {
@@ -377,6 +427,14 @@ export default function WalletHistory(props: Props) {
           label: <Trans>Memos</Trans>,
           value: memosDescription,
         },
+        TransactionType.INCOMING_CLAWBACK_SEND === row.type &&
+          row.metadata?.timeLock && {
+            key: 'clawBackExpiration',
+            label: <Trans>Claw back expiration</Trans>,
+            value: moment(row.createdAtTime * 1000)
+              .add(row.metadata.timeLock, 'seconds')
+              .format('LLL'),
+          },
       ].filter((item) => !!item);
 
       return (
@@ -406,16 +464,17 @@ export default function WalletHistory(props: Props) {
   );
 
   const ExtraRowsAfterHeader = useMemo(
-    () => (
-      <WalletHistoryPending
-        walletId={walletId}
-        cols={cols}
-        metadata={metadata}
-        expandedField={expandedField}
-        expandedCellShift={1}
-      />
-    ),
-    [cols, expandedField, metadata, walletId]
+    () =>
+      isSynced && (
+        <WalletHistoryPending
+          walletId={walletId}
+          cols={cols}
+          metadata={metadata}
+          expandedField={expandedField}
+          expandedCellShift={1}
+        />
+      ),
+    [cols, expandedField, metadata, walletId, isSynced]
   );
 
   return (

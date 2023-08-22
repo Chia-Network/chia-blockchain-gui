@@ -6,6 +6,7 @@ import { Alert, Divider, Dialog, DialogContent, DialogTitle, IconButton } from '
 import React, { useEffect, useRef } from 'react';
 
 import type OfferBuilderData from '../../@types/OfferBuilderData';
+
 import OfferBuilderViewer from './OfferBuilderViewer';
 
 export type OfferBuilderViewerDialogProps = {

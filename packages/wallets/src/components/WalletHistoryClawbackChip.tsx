@@ -1,6 +1,6 @@
 import { TransactionType } from '@chia-network/api';
 import type { Transaction } from '@chia-network/api';
-import { useGetAutoClaimQuery } from '@chia-network/api-react';
+import { useGetAutoClaimQuery, useGetTimestampForHeightQuery, useGetHeightInfoQuery } from '@chia-network/api-react';
 import { useTrans, Button } from '@chia-network/core';
 import { defineMessage } from '@lingui/macro';
 import { AccessTime as AccessTimeIcon } from '@mui/icons-material';
@@ -16,10 +16,22 @@ type Props = {
 export default function WalletHistoryClawbackChip(props: Props) {
   const { transactionRow, setClawbackClaimTransactionDialogProps } = props;
 
-  const { data: autoClaimData, isLoading } = useGetAutoClaimQuery();
-  const isAutoClaimEnabled = !isLoading && autoClaimData?.enabled;
+  const { data: autoClaimData, isLoading: isGetAutoClaimLoading } = useGetAutoClaimQuery();
+  const isAutoClaimEnabled = !isGetAutoClaimLoading && autoClaimData?.enabled;
+
+  const { data: height, isLoading: isGetHeightInfoLoading } = useGetHeightInfoQuery(undefined, {
+    pollingInterval: 3000,
+  });
+
+  const { data: lastBlockTimeStampData, isLoading: isGetTimestampForHeightLoading } = useGetTimestampForHeightQuery({
+    height: height || 0,
+  });
+
+  const lastBlockTimeStamp = lastBlockTimeStampData?.timestamp || 0;
 
   const t = useTrans();
+
+  if (isGetHeightInfoLoading || isGetTimestampForHeightLoading || !lastBlockTimeStamp) return null;
 
   let text = '';
   let Icon;
@@ -28,7 +40,10 @@ export default function WalletHistoryClawbackChip(props: Props) {
   if (transactionRow.metadata?.timeLock) {
     canBeClaimedAt.add(transactionRow.metadata.timeLock, 'seconds');
   }
-  const currentTime = moment();
+  const currentTime = moment.unix(lastBlockTimeStamp - 20); // extra 20 seconds so if the auto claim is enabled, it will not show to button to claim it
+  // console.log('currentTime___: ', currentTime.format());
+  // console.log('canBeClaimedAt: ', canBeClaimedAt.format());
+
   const timeLeft = canBeClaimedAt.diff(currentTime, 'seconds');
 
   // when you are a recipient of a new clawback transaction
@@ -47,7 +62,7 @@ export default function WalletHistoryClawbackChip(props: Props) {
               message: 'Can be claimed in ',
             })
           );
-      text += canBeClaimedAt.fromNow(true); // ... 3 days
+      text += canBeClaimedAt.from(currentTime, true); // ... 3 days
     } else if (transactionRow.sent === 0) {
       text = t(
         defineMessage({

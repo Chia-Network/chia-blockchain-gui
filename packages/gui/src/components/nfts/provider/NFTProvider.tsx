@@ -3,6 +3,7 @@ import React, { useMemo, useCallback, type ReactNode } from 'react';
 
 import useCache from '../../../hooks/useCache';
 import NFTFilterProvider from '../NFTFilterProvider';
+
 import NFTProviderContext from './NFTProviderContext';
 import useMetadataData from './hooks/useMetadataData';
 import useNFTData from './hooks/useNFTData';

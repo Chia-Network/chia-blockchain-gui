@@ -37,7 +37,7 @@ export default function FullNodeBlockSearch() {
           <Box />
           <StyledInputBase name="hash" placeholder={t`Search block by header hash`} fullWidth />
           <IconButton type="submit" aria-label="search">
-            <SearchIcon />
+            <SearchIcon color="info" />
           </IconButton>
         </Flex>
       </Paper>

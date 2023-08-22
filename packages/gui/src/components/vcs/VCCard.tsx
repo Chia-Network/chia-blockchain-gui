@@ -1,22 +1,23 @@
 import {
   useGetTimestampForHeightQuery,
   useRevokeVCMutation,
-  usePrefs,
   useLocalStorage,
   useGetLoggedInFingerprintQuery,
   useGetTransactionAsyncMutation,
+  usePrefs,
 } from '@chia-network/api-react';
-import { Truncate, Button, useOpenDialog, AlertDialog, Flex, More, MenuItem } from '@chia-network/core';
+import { Truncate, Button, Color, useOpenDialog, AlertDialog, Flex, More, MenuItem } from '@chia-network/core';
 import { Burn as BurnIcon } from '@chia-network/icons';
 import { Trans, t } from '@lingui/macro';
 import { Delete as DeleteIcon, Edit as EditIcon } from '@mui/icons-material';
-import { Box, Card, Typography, Table, TableRow, TableCell, ListItemIcon, IconButton } from '@mui/material';
+import { alpha, Box, Card, Typography, Table, TableRow, TableCell, ListItemIcon, IconButton } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import moment from 'moment';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { didToDIDId } from '../../util/dids';
+
 import VCEditTitle from './VCEditTitle';
 import VCRevokeDialog from './VCRevokeDialog';
 
@@ -35,8 +36,8 @@ function RenderProperty(props: RenderPropertyProps) {
   );
 }
 
-export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proofs?: any }) {
-  const { vcRecord, isDetail, proofs } = props;
+export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proofs?: any; isLocal: boolean }) {
+  const { vcRecord, isDetail, proofs, isLocal } = props;
   const { data: mintedTimestamp, isLoading: isLoadingMintHeight } = useGetTimestampForHeightQuery({
     height: vcRecord?.confirmedAtHeight || 0,
   });
@@ -44,7 +45,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
   const [revokeVC] = useRevokeVCMutation();
   const theme: any = useTheme();
   const openDialog = useOpenDialog();
-  const [vcTitlesObject] = usePrefs<any>('verifiable-credentials-titles', {});
+  const [vcTitlesObject, setVcTitlesObject] = usePrefs<any>('verifiable-credentials-titles', {});
   const vcTitle = React.useMemo(
     () => vcTitlesObject[vcRecord?.vc?.launcherId] || vcTitlesObject[vcRecord?.sha256] || t`Verifiable Credential`,
     [vcRecord?.vc?.launcherId, vcRecord?.sha256, vcTitlesObject]
@@ -55,7 +56,6 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
   const [pendingRevoke, setPendingRevoke] = useLocalStorage<any>('verifiable-credentials-pending-revoke', {});
   const { data: fingerprint } = useGetLoggedInFingerprintQuery();
   const [getTransactionAsync] = useGetTransactionAsyncMutation();
-
   React.useEffect(() => {
     if (vcRecord?.vc?.launcherId && pendingRevoke[vcRecord.vc.launcherId]) {
       getTransactionAsync({ transactionId: pendingRevoke[vcRecord.vc.launcherId] }).then((res) => {
@@ -73,9 +73,9 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
   function renderProofs() {
     if (isDetail && proofs && Object.keys(proofs).length > 0) {
       const proofsRows = Object.keys(proofs).map((key) => (
-        <TableRow key={key} sx={{ background: 'rgba(255, 255, 255, 0.3)' }}>
-          <TableCell sx={{ border: '1px solid rgba(255, 255, 255, 0.5)' }}>{key}</TableCell>
-          <TableCell sx={{ border: '1px solid rgba(255, 255, 255, 0.5)' }}>{proofs[key]}</TableCell>
+        <TableRow key={key} sx={{ background: alpha(Color.Neutral[50], 0.3) }}>
+          <TableCell sx={{ border: `1px solid ${alpha(Color.Neutral[50], 0.5)}` }}>{key}</TableCell>
+          <TableCell sx={{ border: `1px solid ${alpha(Color.Neutral[50], 0.5)}` }}>{proofs[key]}</TableCell>
         </TableRow>
       ));
       return <Table sx={{ width: 'inherit', margin: '5px 0 25px 0' }}>{proofsRows}</Table>;
@@ -84,10 +84,15 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
   }
 
   function renderProperties() {
-    const didString = vcRecord?.vc?.proofProvider
-      ? didToDIDId(vcRecord?.vc?.proofProvider)
-      : vcRecord.credentialSubject?.id || '/';
-
+    let didString: string = vcRecord.credentialSubject?.id || '/';
+    try {
+      const proofProvider = vcRecord?.vc?.proofProvider;
+      if (proofProvider) {
+        didString = didToDIDId(proofProvider);
+      }
+    } catch (e) {
+      /* ignore */
+    }
     const issuanceDate =
       vcRecord.confirmedAtHeight && !isLoadingMintHeight && mintedTimestamp
         ? moment(mintedTimestamp.timestamp * 1000).format('LLL')
@@ -101,7 +106,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
     return (
       <Box
         sx={{
-          color: vcRecord?.vc?.launcherId && pendingRevoke[vcRecord.vc.launcherId] ? '#999' : 'inherit',
+          color: vcRecord?.vc?.launcherId && pendingRevoke[vcRecord.vc.launcherId] ? Color.Neutral[400] : 'inherit',
         }}
       >
         {didString && (
@@ -146,7 +151,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
             <Trans>Invalid</Trans>
           )}
         </RenderProperty>
-        {isDetail && isVCLocal() && vcRecord.format && (
+        {isDetail && isLocal && vcRecord.format && (
           <RenderProperty label={<Trans>Standard Version Number</Trans>}>{vcRecord.format}</RenderProperty>
         )}
         {isDetail && proofs && Object.keys(proofs).length > 0 && (
@@ -174,15 +179,11 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
     );
   }
 
-  function isVCLocal() {
-    return !vcRecord.vc;
-  }
-
   async function openRevokeVCDialog(type: string) {
     const confirmedWithFee = await openDialog(
       <VCRevokeDialog
         vcTitle={vcTitle}
-        isLocal={!vcRecord.vc}
+        isLocal={isLocal}
         title={
           type === 'remove' ? <Trans>Remove Verifiable Credential</Trans> : <Trans>Revoke Verifiable Credential</Trans>
         }
@@ -211,6 +212,10 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
             delete vcsLocalStorage[fingerprint];
           }
           setVCsLocalStorage(vcsLocalStorage);
+          /* remove title from prefs */
+          const vcTitlesObjectCopy = { ...vcTitlesObject };
+          delete vcTitlesObjectCopy[vcRecord.sha256];
+          setVcTitlesObject(vcTitlesObjectCopy);
         }
         if (type === 'revoke') {
           /* add revoked flaglocal storage */
@@ -266,27 +271,23 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
     return (
       <Flex sx={{ marginBottom: '10px', padding: '8px' }}>
         <More>
-          {isVCLocal() && (
+          {isLocal && (
             <MenuItem onClick={() => openRevokeVCDialog('remove')} close>
               <ListItemIcon>
-                <DeleteIcon />
+                <DeleteIcon color="info" />
               </ListItemIcon>
               <Typography variant="inherit" noWrap>
                 <Trans>Remove Verifiable Credential</Trans>
               </Typography>
             </MenuItem>
           )}
-          {!isVCLocal() && (
+          {!isLocal && (
             <MenuItem onClick={() => openRevokeVCDialog('revoke')} close>
               <ListItemIcon>
-                <BurnIcon />
+                <BurnIcon color="info" />
               </ListItemIcon>
               <Typography variant="inherit" noWrap>
-                {isVCLocal() ? (
-                  <Trans>Delete Verifiable Credential</Trans>
-                ) : (
-                  <Trans>Revoke Verifiable Credential</Trans>
-                )}
+                {isLocal ? <Trans>Delete Verifiable Credential</Trans> : <Trans>Revoke Verifiable Credential</Trans>}
               </Typography>
             </MenuItem>
           )}
@@ -296,6 +297,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
   }
 
   function renderTitle() {
+    const isDark = theme.palette.mode === 'dark';
     if (isEditingTitle) {
       return (
         <Box sx={{ marginBottom: '10px' }}>
@@ -315,7 +317,11 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
         </Flex>
         {isDetail && (
           <IconButton onClick={() => setIsEditingTitle(true)} size="small" sx={{ padding: '4px' }}>
-            <EditIcon color="disabled" />
+            <EditIcon
+              style={{
+                color: isDark ? Color.Neutral[600] : Color.Neutral[400],
+              }}
+            />
           </IconButton>
         )}
       </Flex>
@@ -344,7 +350,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
       </Flex>
       <Box
         sx={{
-          background: theme.palette.colors.default.background,
+          background: theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[200],
           borderRadius: '15px',
           padding: '25px',
           '> div': {

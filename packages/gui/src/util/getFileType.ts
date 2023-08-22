@@ -1,6 +1,7 @@
 import mime from 'mime-types';
 
 import FileType from '../constants/FileType';
+
 import getFileExtension from './getFileExtension';
 import { isDocument } from './utils';
 

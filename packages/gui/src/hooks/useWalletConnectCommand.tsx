@@ -12,6 +12,7 @@ import NotificationType from '../constants/NotificationType';
 import walletConnectCommands from '../constants/WalletConnectCommands';
 import prepareWalletConnectCommand from '../util/prepareWalletConnectCommand';
 import waitForWalletSync from '../util/waitForWalletSync';
+
 import useWalletConnectPairs from './useWalletConnectPairs';
 import useWalletConnectPreferences from './useWalletConnectPreferences';
 
@@ -161,7 +162,7 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
       }
     }
 
-    const { params: definitionParams = [], bypassConfirm } = definition;
+    const { service, params: definitionParams = [], bypassConfirm } = definition;
 
     log('Confirm arguments', definitionParams);
 
@@ -205,6 +206,16 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
       log('Waiting for sync');
       // wait for wallet synchronisation
       await waitForWalletSync();
+    }
+
+    if (service === 'EXECUTE') {
+      const { execute } = definition;
+      const result = typeof execute === 'function' ? await execute(values) : execute;
+
+      return {
+        success: true,
+        ...result,
+      };
     }
 
     // validate current fingerprint again

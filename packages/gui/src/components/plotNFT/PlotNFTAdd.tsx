@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router';
 
 import PlotNFTState from '../../constants/PlotNFTState';
 import useUnconfirmedPlotNFTs from '../../hooks/useUnconfirmedPlotNFTs';
+
 import PlotNFTSelectPool, { SubmitData } from './select/PlotNFTSelectPool';
 
 type Props = {
@@ -55,6 +56,7 @@ export default function PlotNFTAdd(props: Props) {
         </HeaderTag>
       )}
       <PlotNFTSelectPool
+        step={1}
         onSubmit={handleSubmit}
         title={<Trans>Want to Join a Pool? Create a Plot NFT</Trans>}
         description={

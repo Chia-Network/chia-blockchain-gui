@@ -5,6 +5,7 @@ import { Badge, Box, Button } from '@mui/material';
 import React from 'react';
 
 import useNotifications from '../../hooks/useNotifications';
+
 import NotificationsMenu from './NotificationsMenu';
 
 const buttonStyle = (theme) => ({

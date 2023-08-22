@@ -1,5 +1,3 @@
-/* eslint-disable no-constant-condition -- Used for waiting for service to start */
-/* eslint-disable no-await-in-loop -- Used for waiting for service to start */
 import EventEmitter from 'events';
 
 import debug from 'debug';
@@ -9,7 +7,6 @@ import Message from './Message';
 import ConnectionState from './constants/ConnectionState';
 import ServiceName, { type ServiceNameValue } from './constants/ServiceName';
 import Daemon from './services/Daemon';
-import type Service from './services/Service';
 import ErrorData from './utils/ErrorData';
 import sleep from './utils/sleep';
 
@@ -43,25 +40,17 @@ export default class Client extends EventEmitter {
     }
   > = new Map();
 
-  private services: Set<ServiceNameValue> = new Set();
-
-  private started: Set<ServiceNameValue> = new Set();
-
   private connectedPromise: Promise<void> | null = null;
 
   private connectedPromiseResponse: { resolve: any; reject: any } | null = null;
 
-  private connectServicePromise: Map<ServiceNameValue, Promise<void>> = new Map();
-
-  private daemon: Daemon;
+  readonly daemon: Daemon;
 
   private closed = false;
 
   private state: ConnectionState = ConnectionState.DISCONNECTED;
 
   private reconnectAttempt = 0;
-
-  private startingService?: ServiceNameValue;
 
   constructor(options: Options) {
     super();
@@ -83,10 +72,6 @@ export default class Client extends EventEmitter {
 
     this.daemon = new Daemon(this);
 
-    this.options.services.forEach((service) => {
-      this.services.add(service);
-    });
-
     if (this.options.services.length) {
       this.connect();
     }
@@ -95,14 +80,10 @@ export default class Client extends EventEmitter {
   getState(): {
     state: ConnectionState;
     attempt: number;
-    startingService?: string;
-    startedServices: ServiceNameValue[];
   } {
     return {
       state: this.state,
       attempt: this.reconnectAttempt,
-      startingService: this.startingService,
-      startedServices: Array.from(this.started),
     };
   }
 
@@ -113,10 +94,6 @@ export default class Client extends EventEmitter {
       log(`Reconnect attempt ${this.reconnectAttempt}`);
     } else {
       this.reconnectAttempt = 0;
-    }
-
-    if (state !== ConnectionState.CONNECTING) {
-      this.startingService = undefined;
     }
 
     this.state = state;
@@ -137,18 +114,6 @@ export default class Client extends EventEmitter {
 
   get debug(): boolean {
     return this.options.debug;
-  }
-
-  isStarted(args: { service: ServiceNameValue }) {
-    const { service } = args;
-    return this.started.has(service);
-  }
-
-  addService(args: { service: Service }) {
-    const { service } = args;
-    if (!this.services.has(service.name)) {
-      this.services.add(service.name);
-    }
   }
 
   async connect(reconnect?: boolean) {
@@ -202,116 +167,15 @@ export default class Client extends EventEmitter {
     return this.connectedPromise;
   }
 
-  async startService(args: { service: ServiceNameValue; disableWait?: boolean }) {
-    const { service, disableWait } = args;
-
-    const startServiceAction = async () => {
-      if (this.started.has(service)) {
-        return;
-      }
-
-      const response = await this.daemon.isRunning({ service });
-      if (!response.isRunning) {
-        log(`Starting service: ${service}`);
-        await this.daemon.startService({ service });
-      }
-
-      // wait for service initialisation
-      log(`Waiting for ping from service: ${service}`);
-      if (!disableWait) {
-        while (true) {
-          try {
-            const { data } = <Message & { data: Response }>await this.send(
-              new Message({
-                command: 'ping',
-                origin: this.origin,
-                destination: service,
-              }),
-              1000
-            );
-
-            if (data.success) {
-              break;
-            }
-          } catch (error) {
-            await sleep(1000);
-          }
-        }
-
-        log(`Service: ${service} started`);
-      }
-
-      this.started.add(service);
-      this.emit('state', this.getState());
-    };
-
-    const startServiceTask = startServiceAction();
-    this.connectServicePromise.set(service, startServiceTask);
-    await startServiceTask.finally(() => {
-      this.connectServicePromise.delete(service);
-    });
-  }
-
-  private async startServices() {
-    if (!this.connected) {
-      return;
-    }
-
-    const services = Array.from(this.services);
-
-    await Promise.all(services.map(async (service) => this.startService({ service })));
-  }
-
-  async stopService(args: { service: ServiceNameValue }) {
-    const { service } = args;
-    if (!this.started.has(service)) {
-      return;
-    }
-
-    const response = await this.daemon.isRunning({ service });
-    if (response.isRunning) {
-      log(`Closing down service: ${service}`);
-      await this.daemon.stopService({ service });
-    }
-
-    // wait for service initialisation
-    log(`Waiting for service: ${service}`);
-    while (true) {
-      try {
-        const { data } = <Message & { data: Response }>await this.send(
-          new Message({
-            command: 'ping',
-            origin: this.origin,
-            destination: service,
-          }),
-          1000
-        );
-
-        if (data.success) {
-          await sleep(1000);
-        }
-      } catch (error) {
-        break;
-      }
-    }
-
-    log(`Service: ${service} stopped`);
-
-    this.started.delete(service);
-    this.connectServicePromise.delete(service);
-    this.emit('state', this.getState());
-  }
-
   private handleOpen = async () => {
     this.connected = true;
 
-    this.started.clear();
+    // todo clear deamon running services because it has old state
     this.emit('state', this.getState());
 
     this.changeState(ConnectionState.CONNECTED);
 
     await this.registerService(ServiceName.EVENTS);
-    await this.startServices();
 
     if (this.connectedPromiseResponse) {
       this.connectedPromiseResponse.resolve();
@@ -326,7 +190,6 @@ export default class Client extends EventEmitter {
   private handleClose = () => {
     this.connected = false;
     this.connectedPromise = null;
-    this.connectServicePromise.clear();
 
     this.requests.forEach((request) => {
       request.reject(new Error(`Connection closed`));
@@ -394,16 +257,34 @@ export default class Client extends EventEmitter {
     } = this;
 
     const currentTimeout = timeout ?? defaultTimeout;
+    const serviceName = message.destination;
 
     if (!connected) {
       log('API is not connected trying to connect');
       await this.connect();
     }
 
-    if (message.destination !== ServiceName.DAEMON && message.command !== 'ping') {
-      const isServiceLaunching = this.connectServicePromise.has(message.destination);
-      if (isServiceLaunching) {
-        await this.connectServicePromise.get(message.destination);
+    if (serviceName !== ServiceName.DAEMON && message.command !== 'ping') {
+      // when client was closed we need to wait for new connection
+      if (this.closed) {
+        await new Promise((resolve) => {
+          // wait for connected event
+          const handleStateChange = (state: { state: ConnectionState }) => {
+            if (state.state === ConnectionState.CONNECTED) {
+              this.off('state', handleStateChange);
+              resolve(undefined);
+            }
+          };
+
+          this.on('state', handleStateChange);
+        });
+      }
+
+      // verify if service is started
+      const isStarted = await this.daemon.isServiceStarted(serviceName);
+      if (!isStarted) {
+        await this.daemon.waitForKeyringUnlocked();
+        await this.daemon.startService({ service: serviceName });
       }
     }
 
@@ -440,11 +321,11 @@ export default class Client extends EventEmitter {
       return;
     }
 
-    await Promise.all(Array.from(this.started).map(async (service) => this.stopService({ service })));
+    await this.daemon.stopAllServices();
 
     await this.daemon.exit();
 
     this.ws.close();
-    // this.changeState(ConnectionState.DISCONNECTED);
+    this.changeState(ConnectionState.DISCONNECTED);
   }
 }

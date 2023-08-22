@@ -93,7 +93,7 @@ export default function OfferBuilderSectionCard(props: OfferBuilderSectionCardPr
               }}
             >
               <IconButton onClick={handleAdd}>
-                <Add />
+                <Add color="info" />
               </IconButton>
             </Box>
           </Flex>

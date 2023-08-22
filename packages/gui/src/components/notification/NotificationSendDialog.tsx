@@ -36,6 +36,7 @@ import { useForm } from 'react-hook-form';
 import useNFT from '../../hooks/useNFT';
 import { launcherIdFromNFTId } from '../../util/nfts';
 import NFTPreview from '../nfts/NFTPreview';
+
 import { createOfferNotificationPayload } from './utils';
 
 // const DEFAULT_MESSAGE_COST = '0.00001';

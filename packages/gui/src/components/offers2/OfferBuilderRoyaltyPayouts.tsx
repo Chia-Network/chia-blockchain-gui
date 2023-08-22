@@ -1,13 +1,13 @@
 import { RoyaltyCalculationFungibleAssetPayout } from '@chia-network/api';
-import { CopyToClipboard, Flex } from '@chia-network/core';
+import { Color, CopyToClipboard, Flex } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import { Box, Divider } from '@mui/material';
+import { alpha, Box, Divider } from '@mui/material';
 import React from 'react';
 import styled from 'styled-components';
 
 const StyledTitle = styled(Box)`
   font-size: 0.625rem;
-  color: rgba(255, 255, 255, 0.7);
+  color: ${alpha(Color.Neutral[50], 0.7)};
 `;
 
 const StyledValue = styled(Box)`

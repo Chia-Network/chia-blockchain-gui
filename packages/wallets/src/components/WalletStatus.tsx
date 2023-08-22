@@ -6,6 +6,7 @@ import { Box, Typography } from '@mui/material';
 import React from 'react';
 
 import getWalletSyncingStatus from '../utils/getWalletSyncingStatus';
+
 import WalletStatusHeight from './WalletStatusHeight';
 
 export type WalletStatusProps = {

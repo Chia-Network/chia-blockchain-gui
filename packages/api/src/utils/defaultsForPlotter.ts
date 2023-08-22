@@ -1,6 +1,12 @@
 import { PlotterDefaults } from '../@types/Plotter';
 import PlotterName from '../constants/PlotterName';
-import { bladebitRamDefaults, bladebitDiskDefaults, madmaxDefaults, chiaposDefaults } from '../constants/Plotters';
+import {
+  bladebitRamDefaults,
+  bladebitDiskDefaults,
+  bladebitCudaDefaults,
+  madmaxDefaults,
+  chiaposDefaults,
+} from '../constants/Plotters';
 
 export default function defaultsForPlotter(plotterName: PlotterName): PlotterDefaults {
   switch (plotterName) {
@@ -8,6 +14,8 @@ export default function defaultsForPlotter(plotterName: PlotterName): PlotterDef
       return bladebitRamDefaults;
     case PlotterName.BLADEBIT_DISK:
       return bladebitDiskDefaults;
+    case PlotterName.BLADEBIT_CUDA:
+      return bladebitCudaDefaults;
     case PlotterName.MADMAX:
       return madmaxDefaults;
     case PlotterName.CHIAPOS: // fallthrough

@@ -1,8 +1,8 @@
 import { fromBech32m } from '@chia-network/api';
 import { useGetDIDQuery, useGetDIDNameQuery, useSetDIDNameMutation } from '@chia-network/api-react';
-import { CopyToClipboard, Flex, Suspender, Tooltip, truncateValue } from '@chia-network/core';
+import { Color, CopyToClipboard, Flex, Suspender, Tooltip, truncateValue } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import { Box, Card, TextField, Typography } from '@mui/material';
+import { alpha, Box, Card, TextField, Typography } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
@@ -21,7 +21,7 @@ const StyledCard = styled(Card)(
 
 const StyledTitle = styled(Box)`
   font-size: 0.625rem;
-  color: rgba(255, 255, 255, 0.7);
+  color: ${alpha(Color.Neutral[50], 0.7)};
 `;
 
 const StyledValue = styled(Box)`

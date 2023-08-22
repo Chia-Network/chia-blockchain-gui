@@ -4,6 +4,7 @@ import { useCallback } from 'react';
 import type Metadata from '../@types/Metadata';
 import compareChecksums from '../util/compareChecksums';
 import parseFileContent from '../util/parseFileContent';
+
 import useCache from './useCache';
 
 const log = debug('chia-gui:useFetchAndProcessMetadata');

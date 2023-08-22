@@ -7,6 +7,7 @@ import {
   ModalDialogs,
   LocaleProvider,
   LayoutLoading,
+  AddressBookProvider,
   dark,
   light,
   ErrorBoundary,
@@ -28,6 +29,7 @@ import NFTProvider from '../nfts/provider/NFTProvider';
 import NotificationsProvider from '../notification/NotificationsProvider';
 import OffersProvider from '../offers2/OffersProvider';
 import WalletConnectProvider, { WalletConnectChiaProjectId } from '../walletConnect/WalletConnectProvider';
+
 import AppState from './AppState';
 
 async function waitForConfig() {
@@ -104,14 +106,16 @@ export default function App(props: AppProps) {
                   <NFTProvider>
                     <ModalDialogsProvider>
                       <Suspense fallback={<LayoutLoading />}>
-                        <OffersProvider>
-                          <NotificationsProvider>
-                            <WalletConnectProvider projectId={WalletConnectChiaProjectId}>
-                              <AppState>{outlet ? <Outlet /> : children}</AppState>
-                              <ModalDialogs />
-                            </WalletConnectProvider>
-                          </NotificationsProvider>
-                        </OffersProvider>
+                        <AddressBookProvider>
+                          <OffersProvider>
+                            <NotificationsProvider>
+                              <WalletConnectProvider projectId={WalletConnectChiaProjectId}>
+                                <AppState>{outlet ? <Outlet /> : children}</AppState>
+                                <ModalDialogs />
+                              </WalletConnectProvider>
+                            </NotificationsProvider>
+                          </OffersProvider>
+                        </AddressBookProvider>
                       </Suspense>
                     </ModalDialogsProvider>
                   </NFTProvider>

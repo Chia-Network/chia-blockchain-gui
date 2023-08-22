@@ -7,6 +7,7 @@ import { useFieldArray } from 'react-hook-form';
 
 import useOfferBuilderContext from '../../hooks/useOfferBuilderContext';
 import useStandardWallet from '../../hooks/useStandardWallet';
+
 import OfferBuilderSection from './OfferBuilderSection';
 import OfferBuilderValue from './OfferBuilderValue';
 import OfferBuilderWalletBalance from './OfferBuilderWalletBalance';
@@ -49,7 +50,7 @@ export default function OfferBuilderFeeSection(props: OfferBuilderFeeSectionProp
 
   return (
     <OfferBuilderSection
-      icon={<Fees />}
+      icon={<Fees color="info" />}
       title={<Trans>Fees</Trans>}
       subtitle={<Trans>Optional network fee to expedite acceptance of your offer</Trans>}
       onAdd={canAdd ? handleAdd : undefined}

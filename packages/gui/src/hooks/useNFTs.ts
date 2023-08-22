@@ -9,6 +9,7 @@ import NFTsDataStatistics from '../@types/NFTsDataStatistics';
 import FileType from '../constants/FileType';
 import getNFTFileType from '../util/getNFTFileType';
 import hasSensitiveContent from '../util/hasSensitiveContent';
+
 import useHiddenNFTs from './useHiddenNFTs';
 import useNFTProvider from './useNFTProvider';
 

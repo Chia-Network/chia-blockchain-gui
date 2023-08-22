@@ -21,6 +21,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router';
 
 import useStandardWallet from '../../hooks/useStandardWallet';
+
 import PlotNFTName from './PlotNFTName';
 import { SubmitData } from './select/PlotNFTSelectPool';
 
@@ -131,7 +132,7 @@ export default function PlotNFTAbsorbRewards(props: Props) {
             </Typography>
           </Back>
           <CardStep
-            step="1"
+            step={1}
             title={
               <Flex gap={1} alignItems="center">
                 <Flex flexGrow={1}>

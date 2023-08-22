@@ -36,7 +36,7 @@ type Props = {
 
 export default function PlotStatus(props: Props) {
   const { plot } = props;
-  const farmerStatus = useFarmerStatus();
+  const { farmerStatus } = useFarmerStatus();
   const color = Color[farmerStatus];
   const title = Title[farmerStatus];
   const description = Description[farmerStatus];

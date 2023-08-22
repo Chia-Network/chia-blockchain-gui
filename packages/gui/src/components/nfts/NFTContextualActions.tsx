@@ -33,6 +33,7 @@ import useViewNFTOnExplorer, { NFTExplorer } from '../../hooks/useViewNFTOnExplo
 import NFTSelection from '../../types/NFTSelection';
 import download from '../../util/download';
 import removeHexPrefix from '../../util/removeHexPrefix';
+
 import MultipleDownloadDialog from './MultipleDownloadDialog';
 import NFTBurnDialog from './NFTBurnDialog';
 import NFTMoveToProfileDialog from './NFTMoveToProfileDialog';

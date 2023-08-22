@@ -1,4 +1,4 @@
-import { useGetFarmingInfoQuery } from '@chia-network/api-react';
+import { useGetNewFarmingInfoQuery } from '@chia-network/api-react';
 import { Link, Table, Card } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import moment from 'moment';
@@ -35,9 +35,14 @@ const cols = [
 export default function FarmLastAttemptedProof() {
   // const { size } = usePlots();
 
-  const { data: lastAttemptedProof, isLoading } = useGetFarmingInfoQuery();
+  const { data, isLoading } = useGetNewFarmingInfoQuery();
 
-  const reducedLastAttemptedProof = lastAttemptedProof?.slice(0, 5);
+  const reducedLastAttemptedProof = React.useMemo(() => {
+    if (!data) {
+      return data;
+    }
+    return data.newFarmingInfo.slice(0, 5);
+  }, [data]);
   const isEmpty = !reducedLastAttemptedProof?.length;
 
   return (

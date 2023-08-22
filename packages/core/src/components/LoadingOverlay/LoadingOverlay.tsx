@@ -1,7 +1,8 @@
-import { Box } from '@mui/material';
+import { alpha, Box } from '@mui/material';
 import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 
+import Color from '../../constants/Color';
 import Loading from '../Loading';
 
 const StyledLoadingContainer = styled(Box)`
@@ -13,7 +14,7 @@ const StyledLoadingContainer = styled(Box)`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: ${alpha(Color.Neutral[900], 0.2)};
 `;
 
 export type LoadingOverlayProps = {

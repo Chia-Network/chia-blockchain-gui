@@ -6,6 +6,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 
 import useWallet from '../hooks/useWallet';
+
 import WalletCAT from './cat/WalletCAT';
 import WalletStandard from './standard/WalletStandard';
 
@@ -28,7 +29,7 @@ export default function Wallet() {
     return <WalletStandard walletId={Number(walletId)} />;
   }
 
-  if (wallet.type === WalletType.CAT) {
+  if ([WalletType.CAT, WalletType.CRCAT].includes(wallet.type)) {
     return <WalletCAT walletId={Number(walletId)} />;
   }
 

@@ -5,6 +5,7 @@ import React from 'react';
 import { useNavigate } from 'react-router';
 
 import useValidNotifications from '../../hooks/useValidNotifications';
+
 import Notification from './Notification';
 
 export type NotificationsMenuProps = {

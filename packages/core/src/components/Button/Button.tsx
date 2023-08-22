@@ -1,7 +1,9 @@
-import { Button as BaseButton, ButtonProps as BaseButtonProps } from '@mui/material';
+import { alpha, Button as BaseButton, ButtonProps as BaseButtonProps } from '@mui/material';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+
+import Color from '../../constants/Color';
 
 const StyledBaseButton = styled(({ nowrap: boolean, selected, ...rest }) => <BaseButton {...rest} />)`
   white-space: ${({ nowrap }) => (nowrap ? 'nowrap' : 'normal')};
@@ -11,11 +13,11 @@ const StyledBaseButton = styled(({ nowrap: boolean, selected, ...rest }) => <Bas
     }
 
     const isDark = theme.palette.mode === 'dark';
-    const color = isDark ? '255' : '0';
+    const level = isDark ? '50' : '900';
 
     return `
-      background-color: rgba(${color}, ${color}, ${color}, 0.1);
-      border-color: rgba(${color}, ${color}, ${color}, 0.3) !important;
+      background-color: ${alpha(Color.Neutral[level], 0.1)};
+      border-color: ${alpha(Color.Neutral[level], 0.3)} !important;
     `;
   }}
 `;

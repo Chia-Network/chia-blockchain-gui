@@ -13,6 +13,7 @@ import NotificationType from '../../constants/NotificationType';
 import useOffer from '../../hooks/useOffer';
 import HumanTimestamp from '../helpers/HumanTimestamp';
 import OfferDetails from '../offers2/OfferDetails';
+
 import NotificationPreview from './NotificationPreview';
 import NotificationWrapper from './NotificationWrapper';
 

@@ -11,6 +11,7 @@ import Flex from '../../components/Flex';
 import { MenuItem } from '../../components/MenuItem';
 import More from '../../components/More';
 import useOpenDialog from '../../hooks/useOpenDialog';
+
 import EmojiAndColorPicker from './EmojiAndColorPicker';
 import SelectKeyDetailDialog from './SelectKeyDetailDialog';
 import SelectKeyRenameForm from './SelectKeyRenameForm';
@@ -91,7 +92,7 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
         <More>
           <MenuItem onClick={handleRename} close>
             <ListItemIcon>
-              <EditIcon />
+              <EditIcon color="info" />
             </ListItemIcon>
             <Typography variant="inherit" noWrap>
               <Trans>Rename</Trans>
@@ -99,7 +100,7 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
           </MenuItem>
           <MenuItem onClick={handleShowKey} close>
             <ListItemIcon>
-              <VisibilityIcon />
+              <VisibilityIcon color="info" />
             </ListItemIcon>
             <Typography variant="inherit" noWrap>
               <Trans>Details</Trans>
@@ -107,7 +108,7 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
           </MenuItem>
           <MenuItem onClick={handleDeletePrivateKey} close>
             <ListItemIcon>
-              <DeleteIcon />
+              <DeleteIcon color="info" />
             </ListItemIcon>
             <Typography variant="inherit" noWrap>
               <Trans>Delete</Trans>

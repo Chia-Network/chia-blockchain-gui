@@ -40,12 +40,12 @@ export default function AdvancedOptions(props: Props) {
         <Typography variant="caption" onClick={handleToggle} sx={{ cursor: 'pointer' }}>
           {isExpanded ? (
             <Flex alignItems="center">
-              <KeyboardArrowUpIcon />
+              <KeyboardArrowUpIcon color="info" />
               {lessTitle}
             </Flex>
           ) : (
             <Flex alignItems="center">
-              <KeyboardArrowDownIcon />
+              <KeyboardArrowDownIcon color="info" />
               {moreTitle}
             </Flex>
           )}

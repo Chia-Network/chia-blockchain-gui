@@ -8,6 +8,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { serviceConnectionTypes } from '../../util/service_names';
+
 import FullNodeAddConnection from './FullNodeAddConnection';
 import FullNodeCloseConnection from './FullNodeCloseConnection';
 
@@ -67,7 +68,7 @@ const cols = [
         <FullNodeCloseConnection nodeId={row.nodeId}>
           {({ onClose }) => (
             <StyledIconButton onClick={onClose}>
-              <DeleteIcon />
+              <DeleteIcon color="info" />
             </StyledIconButton>
           )}
         </FullNodeCloseConnection>

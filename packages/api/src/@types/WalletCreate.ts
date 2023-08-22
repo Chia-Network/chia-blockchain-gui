@@ -1,4 +1,5 @@
 import WalletType from '../constants/WalletType';
+
 import type Transaction from './Transaction';
 
 type WalletCreateCAT = {
@@ -25,7 +26,7 @@ type WalletCreateRecoveryDID = {
   numVerificationsRequired: number;
 };
 
-type WalletCreatePool = {
+export type WalletCreatePool = {
   totalFee: number;
   transaction: Transaction;
   launcherId: string;

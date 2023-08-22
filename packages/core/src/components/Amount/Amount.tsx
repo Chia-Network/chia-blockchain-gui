@@ -11,6 +11,7 @@ import chiaToMojo from '../../utils/chiaToMojo';
 import Flex from '../Flex';
 import FormatLargeNumber from '../FormatLargeNumber';
 import TextField, { TextFieldProps } from '../TextField';
+
 import NumberFormatCustom from './NumberFormatCustom';
 
 export type AmountProps = TextFieldProps & {
@@ -39,7 +40,7 @@ export default function Amount(props: AmountProps) {
   const { control } = useFormContext();
   const defaultCurrencyCode = useCurrencyCode();
 
-  const value = useWatch<string>({
+  const value: string = useWatch({
     control,
     name,
   });

@@ -1,4 +1,4 @@
-import { Button, Flex, Logo, Card, useMode, Mode } from '@chia-network/core';
+import { Button, Color, Flex, Logo, Card, useMode, Mode } from '@chia-network/core';
 import { Farming as FarmingIcon } from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
 import {
@@ -6,14 +6,14 @@ import {
   Settings as SettingsIcon,
   Check as CheckIcon,
 } from '@mui/icons-material';
-import { Box, Typography, Container, Grid } from '@mui/material';
+import { alpha, Box, Typography, Container, Grid } from '@mui/material';
 import React from 'react';
 import styled from 'styled-components';
 
 const StyledCheckIcon = styled(CheckIcon)`
   border-radius: 9999px;
   padding: ${({ theme }) => theme.spacing(0.5)};
-  background-color: rgba(97, 188, 122, 0.2);
+  background-color: ${alpha(Color.Green[400], 0.2)};
 `;
 
 const StyledSettingsIcon = styled(SettingsIcon)`
@@ -33,7 +33,7 @@ const StyledContainer = styled(Container)`
 `;
 
 const StyledAccountBalanceWalletIconBase = styled(AccountBalanceWalletIcon)`
-  color: ${({ theme }) => (theme.palette.mode === 'dark' ? 'white' : 'rgba(0, 0, 0, 0.54)')};
+  color: ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[50] : alpha(Color.Neutral[900], 0.54))};
 `;
 
 const StyledAccountBalanceWalletIcon = styled(StyledAccountBalanceWalletIconBase)`

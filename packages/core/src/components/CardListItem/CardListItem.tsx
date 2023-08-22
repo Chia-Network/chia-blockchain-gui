@@ -1,6 +1,7 @@
-import { Box, Card, CardContent, CardActionArea } from '@mui/material';
+import { alpha, Box, Card, CardContent, CardActionArea } from '@mui/material';
 import React, { type ReactNode } from 'react';
 
+import Color from '../../constants/Color';
 import getColorModeValue from '../../utils/useColorModeValue';
 import Loading from '../Loading';
 
@@ -11,10 +12,11 @@ export type CardListItemProps = {
   disabled?: boolean;
   loading?: boolean;
   noPadding: boolean;
+  borderTransparency?: boolean;
 };
 
 export default function CardListItem(props: CardListItemProps) {
-  const { children, selected, onSelect, loading, disabled, noPadding = false, ...rest } = props;
+  const { children, selected, onSelect, loading, disabled, noPadding = false, borderTransparency, ...rest } = props;
 
   const content = (
     <CardContent sx={{ padding: (theme) => (noPadding ? `0px !important` : `${theme.spacing(2)}`) }}>
@@ -29,7 +31,14 @@ export default function CardListItem(props: CardListItemProps) {
       sx={{
         width: '100%',
         borderRadius: (theme) => `${theme.spacing(1)}`,
-        border: (theme) => `1px solid ${selected ? theme.palette.highlight.main : theme.palette.divider}`,
+        border: (theme) =>
+          `1px solid ${
+            selected
+              ? theme.palette.highlight.main
+              : borderTransparency
+              ? theme.palette.background.default
+              : getColorModeValue(theme, 'border')
+          }`,
         backgroundColor: (theme) =>
           `${selected ? getColorModeValue(theme, 'sidebarBackground') : theme.palette.background.paper}`,
         position: 'relative',
@@ -52,7 +61,7 @@ export default function CardListItem(props: CardListItemProps) {
           display="flex"
           alignItems="center"
           justifyContent="center"
-          bgcolor={disabled ? 'rgba(0, 0, 0, 0.2)' : 'transparent'}
+          bgcolor={disabled ? alpha(Color.Neutral[900], 0.2) : 'transparent'}
           zIndex={1}
         >
           {loading && <Loading center />}
