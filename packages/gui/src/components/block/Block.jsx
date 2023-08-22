@@ -22,6 +22,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 import { hexToArray, arrToHex, sha256 } from '../../util/utils';
+
 import BlockTitle from './BlockTitle';
 
 async function computeNewPlotId(block) {

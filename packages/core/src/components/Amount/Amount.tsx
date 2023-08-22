@@ -11,6 +11,7 @@ import chiaToMojo from '../../utils/chiaToMojo';
 import Flex from '../Flex';
 import FormatLargeNumber from '../FormatLargeNumber';
 import TextField, { TextFieldProps } from '../TextField';
+
 import NumberFormatCustom from './NumberFormatCustom';
 
 export type AmountProps = TextFieldProps & {

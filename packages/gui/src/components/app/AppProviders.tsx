@@ -29,6 +29,7 @@ import NFTProvider from '../nfts/provider/NFTProvider';
 import NotificationsProvider from '../notification/NotificationsProvider';
 import OffersProvider from '../offers2/OffersProvider';
 import WalletConnectProvider, { WalletConnectChiaProjectId } from '../walletConnect/WalletConnectProvider';
+
 import AppState from './AppState';
 
 async function waitForConfig() {

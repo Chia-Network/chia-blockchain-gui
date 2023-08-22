@@ -3,6 +3,7 @@ import { type IpcRenderer } from 'electron';
 import React, { useMemo, useState, useEffect, useCallback, type ReactNode } from 'react';
 
 import type CacheAPI from '../../@types/CacheAPI';
+
 import CacheContext from './CacheContext';
 
 export type CacheProviderProps = {
