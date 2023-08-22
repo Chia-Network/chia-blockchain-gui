@@ -3,7 +3,7 @@ import { AddressBookContext } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Autocomplete as MaterialAutocomplete, FormControl, TextField, TextFieldProps } from '@mui/material';
 import React, { useEffect, useState, useContext } from 'react';
-import { useController, useFormContext } from 'react-hook-form';
+import { useController } from 'react-hook-form';
 
 type Props = TextFieldProps &
   AddressBookAutocompleteProps<string, false, false, true> & {
@@ -16,15 +16,13 @@ type Props = TextFieldProps &
 
 export default function AddressBookAutocomplete(props: Props) {
   const { name, getType, required, fullWidth, freeSolo, disableClearable, ...rest } = props;
-  const [addressBook, ,] = useContext(AddressBookContext);
+  const [addressBook] = useContext(AddressBookContext);
   const [options, setOptions] = useState([]);
-  const { control } = useFormContext();
 
   const {
     field: { onChange, onBlur },
   } = useController({
     name,
-    control,
   });
 
   function handleChange(newValue: any) {
@@ -39,7 +37,7 @@ export default function AddressBookAutocomplete(props: Props) {
       if (getType === 'address') {
         contact.addresses.forEach((addressInfo) => {
           const addNameStr = JSON.stringify(addressInfo.name).slice(1, -1);
-          const optionStr = `${nameStr} | ${addNameStr}`;
+          const optionStr = `${contact.emoji} ${nameStr} | ${addNameStr}`;
           contactList.push({ label: optionStr, id: addressInfo.address });
         });
       } else if (getType === 'did') {
@@ -57,7 +55,6 @@ export default function AddressBookAutocomplete(props: Props) {
     <FormControl variant="filled" fullWidth>
       <MaterialAutocomplete
         autoComplete
-        autoSelect
         blurOnSelect
         options={options}
         onChange={(_e, newValue) => handleChange(newValue)}

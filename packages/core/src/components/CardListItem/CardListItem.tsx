@@ -12,10 +12,11 @@ export type CardListItemProps = {
   disabled?: boolean;
   loading?: boolean;
   noPadding: boolean;
+  borderTransparency?: boolean;
 };
 
 export default function CardListItem(props: CardListItemProps) {
-  const { children, selected, onSelect, loading, disabled, noPadding = false, ...rest } = props;
+  const { children, selected, onSelect, loading, disabled, noPadding = false, borderTransparency, ...rest } = props;
 
   const content = (
     <CardContent sx={{ padding: (theme) => (noPadding ? `0px !important` : `${theme.spacing(2)}`) }}>
@@ -30,7 +31,14 @@ export default function CardListItem(props: CardListItemProps) {
       sx={{
         width: '100%',
         borderRadius: (theme) => `${theme.spacing(1)}`,
-        border: (theme) => `1px solid ${selected ? theme.palette.highlight.main : getColorModeValue(theme, 'border')}`,
+        border: (theme) =>
+          `1px solid ${
+            selected
+              ? theme.palette.highlight.main
+              : borderTransparency
+              ? theme.palette.background.default
+              : getColorModeValue(theme, 'border')
+          }`,
         backgroundColor: (theme) =>
           `${selected ? getColorModeValue(theme, 'sidebarBackground') : theme.palette.background.paper}`,
         position: 'relative',

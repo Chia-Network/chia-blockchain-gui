@@ -1,4 +1,4 @@
-import { SyncingStatus, toBech32m } from '@chia-network/api';
+import { SyncingStatus, toBech32m, WalletType } from '@chia-network/api';
 import { useSpendCATMutation, useFarmBlockMutation } from '@chia-network/api-react';
 import {
   AdvancedOptions,
@@ -77,7 +77,6 @@ export default function WalletCATSend(props: Props) {
   });
 
   const { wallet, unit, loading } = useWallet(walletId);
-
   async function farm() {
     if (addressValue) {
       await farmBlock({
@@ -196,6 +195,14 @@ export default function WalletCATSend(props: Props) {
                 required
                 disabled={isSubmitting}
               />
+              {wallet?.type === WalletType.CRCAT && (
+                <Typography variant="caption">
+                  <Trans>
+                    The recipient of this transaction will need to have valid credentials in order to claim the sent
+                    assets. See the CR CAT restrictions above.
+                  </Trans>
+                </Typography>
+              )}
             </Grid>
             <Grid xs={12} md={6} item>
               <TextFieldNumber

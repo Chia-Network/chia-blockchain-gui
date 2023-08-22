@@ -23,6 +23,7 @@ enum WalletConnectCommandParamName {
   INCLUDE_MY_OFFERS = 'includeMyOffers',
   INCLUDE_TAKEN_OFFERS = 'includeTakenOffers',
   INDEX = 'index',
+  IS_HEX = 'isHex',
   LAUNCHER_ID = 'launcherId',
   LICENSE_HASH = 'licenseHash',
   LICENSE_URIS = 'licenseUris',

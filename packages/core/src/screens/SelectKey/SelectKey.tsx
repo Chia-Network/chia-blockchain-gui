@@ -286,7 +286,6 @@ export default function SelectKey() {
                 flexWrap: 'wrap',
                 rowGap: '22px',
                 columnGap: '22px',
-                paddingBottom: '230px',
                 '> div': {
                   '@media (min-width: 983px)': {
                     flexBasis: '292px',

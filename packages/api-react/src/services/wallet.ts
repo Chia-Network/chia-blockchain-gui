@@ -1516,6 +1516,7 @@ export const {
   useSpendCATMutation,
   useAddCATTokenMutation,
   useGetStrayCatsQuery,
+  useCrCatApprovePendingMutation,
 
   // PlotNFTS
   useGetPlotNFTsQuery,

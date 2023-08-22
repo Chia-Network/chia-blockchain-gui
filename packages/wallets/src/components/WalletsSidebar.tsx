@@ -1,6 +1,6 @@
 import { WalletType } from '@chia-network/api';
 import { useGetWalletsQuery } from '@chia-network/api-react';
-import { Flex, CardListItem } from '@chia-network/core';
+import { Flex, CardListItem, ScrollbarFlex } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Box, Typography, Theme } from '@mui/material';
 import { orderBy } from 'lodash';
@@ -25,7 +25,7 @@ const StyledContent = styled(Box)`
   padding-right: ${({ theme }: { theme: Theme }) => theme.spacing(3)};
   margin-right: ${({ theme }: { theme: Theme }) => theme.spacing(2)};
   min-height: ${({ theme }: { theme: Theme }) => theme.spacing(5)};
-  overflow-y: overlay;
+  overflow: hidden;
 `;
 
 const StyledBody = styled(Box)`
@@ -33,15 +33,23 @@ const StyledBody = styled(Box)`
   position: relative;
 `;
 
-const StyledItemsContainer = styled(Flex)`
+const StyledItemsContainer = styled(ScrollbarFlex)`
   flex-direction: column;
   height: 100%;
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
+  right: ${({ theme }: { theme: Theme }) => theme.spacing(2)};
   bottom: 0;
   padding-bottom: ${({ theme }: { theme: Theme }) => theme.spacing(6)};
+`;
+
+const StyledItemsContent = styled(Box)`
+  padding-left: ${({ theme }: { theme: Theme }) => theme.spacing(3)};
+  padding-bottom: ${({ theme }: { theme: Theme }) => theme.spacing(1)};
+  margin-right: ${({ theme }: { theme: Theme }) => theme.spacing(2)};
+  min-height: ${({ theme }: { theme: Theme }) => theme.spacing(5)};
+  overflow: hidden;
 `;
 
 export default function WalletsSidebar() {
@@ -60,7 +68,10 @@ export default function WalletsSidebar() {
     const orderedWallets = orderBy(wallets, ['type', 'name'], ['asc', 'asc']);
 
     return orderedWallets
-      .filter((wallet) => [WalletType.STANDARD_WALLET, WalletType.CAT].includes(wallet.type) && !isHidden(wallet.id))
+      .filter(
+        (wallet) =>
+          [WalletType.STANDARD_WALLET, WalletType.CAT, WalletType.CRCAT].includes(wallet.type) && !isHidden(wallet.id)
+      )
       .map((wallet) => {
         const primaryTitle = getWalletPrimaryTitle(wallet);
 
@@ -94,11 +105,11 @@ export default function WalletsSidebar() {
         </StyledContent>
         <StyledBody>
           <StyledItemsContainer>
-            <StyledContent>
+            <StyledItemsContent>
               <Flex gap={1} flexDirection="column">
                 {items}
               </Flex>
-            </StyledContent>
+            </StyledItemsContent>
           </StyledItemsContainer>
           <WalletsManageTokens />
         </StyledBody>
