@@ -21,6 +21,7 @@ import {
   Typography,
   Select,
   MenuItem,
+  Checkbox,
 } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
@@ -125,13 +126,25 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
 
   function renderKeysMultiSelect() {
     return (
-      <Select sx={{ width: '100%' }} multiple value={selectedFingerprints}>
+      <Select
+        multiple
+        value={selectedFingerprints}
+        sx={{
+          '.MuiSelect-select .Mui-checked': {
+            display: 'none',
+          },
+        }}
+      >
         {keys?.map((key, index) => (
           <MenuItem
             key={key.fingerprint}
             value={key.fingerprint}
             onClick={() => handleToggleSelectFingerprint(key.fingerprint)}
+            sx={{
+              paddingLeft: '4px',
+            }}
           >
+            <Checkbox checked={selectedFingerprints.includes(key.fingerprint)} disableRipple />
             {key.label || <Trans>Wallet {index + 1}</Trans>} ({key.fingerprint})
           </MenuItem>
         ))}
