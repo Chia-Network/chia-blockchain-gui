@@ -1,6 +1,7 @@
 import type BigNumber from 'bignumber.js';
 
 import type TransactionType from '../constants/TransactionType';
+
 import type SpendBundle from './SpendBundle';
 
 type AdditionsOrRemovals = {

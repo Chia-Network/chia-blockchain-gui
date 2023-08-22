@@ -2,6 +2,7 @@ import { Trans } from '@lingui/macro';
 import React from 'react';
 
 import AlertDialog from '../components/AlertDialog';
+
 import useOpenDialog from './useOpenDialog';
 
 export default function useShowError() {

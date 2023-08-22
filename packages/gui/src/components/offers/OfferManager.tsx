@@ -33,6 +33,7 @@ import CreateOfferBuilder from '../offers2/CreateOfferBuilder';
 import OfferBuilderImport from '../offers2/OfferBuilderImport';
 import OfferBuilderViewer from '../offers2/OfferBuilderViewer';
 import OfferIncomingTable from '../offers2/OfferIncomingTable';
+
 import { ConfirmOfferCancellation } from './ConfirmOfferCancellation';
 import { CreateNFTOfferEditor } from './NFTOfferEditor';
 import NFTOfferViewer from './NFTOfferViewer';

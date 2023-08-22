@@ -2,6 +2,7 @@ import React from 'react';
 
 import type NotificationData from '../../@types/Notification';
 import NotificationType from '../../constants/NotificationType';
+
 import NotificationAnnouncement from './NotificationAnnouncement';
 import NotificationOffer from './NotificationOffer';
 

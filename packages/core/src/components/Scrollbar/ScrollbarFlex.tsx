@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Flex, { type FlexProps } from '../Flex';
+
 import Scrollbar from './Scrollbar';
 
 export type ScrollbarFlexProps = FlexProps & {};

@@ -7,6 +7,7 @@ import React, { useMemo } from 'react';
 import styled from 'styled-components';
 
 import useAssetIdName from '../../hooks/useAssetIdName';
+
 import OfferExchangeRate from './OfferExchangeRate';
 import { OfferSummaryTokenRow } from './OfferSummaryRow';
 

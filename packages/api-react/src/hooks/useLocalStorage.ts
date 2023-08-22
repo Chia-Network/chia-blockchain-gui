@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
 
 import EventEmitter from '../utils/EventEmitter';
+
 import { isEqual } from './usePrefs';
 
 const eventEmitter = new EventEmitter();

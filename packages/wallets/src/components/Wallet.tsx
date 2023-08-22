@@ -6,6 +6,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 
 import useWallet from '../hooks/useWallet';
+
 import WalletCAT from './cat/WalletCAT';
 import WalletStandard from './standard/WalletStandard';
 

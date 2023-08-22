@@ -17,6 +17,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { didToDIDId } from '../../util/dids';
+
 import VCEditTitle from './VCEditTitle';
 import VCRevokeDialog from './VCRevokeDialog';
 

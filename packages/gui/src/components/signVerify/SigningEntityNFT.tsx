@@ -9,6 +9,7 @@ import useNFT from '../../hooks/useNFT';
 import { launcherIdFromNFTId } from '../../util/nfts';
 import NFTAutocomplete from '../nfts/NFTAutocomplete';
 import NFTSummary from '../nfts/NFTSummary';
+
 import { SignMessageEntityType, SignMessageNFTEntity } from './SignMessageEntities';
 
 export type SigningEntityNFTProps = {

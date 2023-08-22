@@ -7,6 +7,7 @@ import React, { useMemo, useState, useCallback } from 'react';
 
 import { AssetStatusForOffer } from '../../util/offerBuilderDataToOffer';
 import { PendingAsset, resolvePendingAssets } from '../../util/resolveOfferInfo';
+
 import CancelOfferList from './CancelOfferList';
 
 /* ========================================================================== */

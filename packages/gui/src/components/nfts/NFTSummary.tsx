@@ -10,6 +10,7 @@ import useNFT from '../../hooks/useNFT';
 import useNFTMetadata from '../../hooks/useNFTMetadata';
 import isRankingAttribute from '../../util/isRankingAttribute';
 import { launcherIdToNFTId } from '../../util/nfts';
+
 import NFTPreview from './NFTPreview';
 import { NFTProperty } from './NFTProperties';
 import { NFTRanking } from './NFTRankings';

@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 
 import type OfferBuilderData from '../../@types/OfferBuilderData';
 import OfferState from '../offers/OfferState';
+
 import OfferBuilderProvider from './OfferBuilderProvider';
 import OfferBuilderTradeColumn from './OfferBuilderTradeColumn';
 import { emptyDefaultValues } from './utils/defaultValues';

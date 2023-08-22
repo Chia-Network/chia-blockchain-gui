@@ -39,7 +39,6 @@ export default abstract class Service extends EventEmitter {
             await onInit();
           }
           resolve(null);
-          return;
         } catch (error: any) {
           reject(error);
         }

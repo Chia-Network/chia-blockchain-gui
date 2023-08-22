@@ -36,6 +36,7 @@ import getFileExtension from '../../util/getFileExtension';
 import getNFTId from '../../util/getNFTId';
 import hasSensitiveContent from '../../util/hasSensitiveContent';
 import parseFileContent from '../../util/parseFileContent';
+
 import NFTHashStatus from './NFTHashStatus';
 
 const StyledCardPreview = styled(Box)`

@@ -11,6 +11,7 @@ import styled from 'styled-components';
 import { VictoryChart, VictoryAxis, VictoryArea, VictoryTooltip, VictoryVoronoiContainer } from 'victory';
 
 import useWalletTransactions from '../hooks/useWalletTransactions';
+
 import WalletGraphTooltip from './WalletGraphTooltip';
 
 const StyledGraphContainer = styled.div`

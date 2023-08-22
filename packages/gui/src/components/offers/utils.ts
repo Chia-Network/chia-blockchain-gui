@@ -6,6 +6,7 @@ import type { ChipProps } from '@mui/material';
 
 import { AssetIdMapEntry } from '../../hooks/useAssetIdName';
 import { launcherIdToNFTId } from '../../util/nfts';
+
 import NFTOfferExchangeType from './NFTOfferExchangeType';
 import OfferAsset from './OfferAsset';
 import OfferState from './OfferState';

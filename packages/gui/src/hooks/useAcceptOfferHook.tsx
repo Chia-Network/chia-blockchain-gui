@@ -11,6 +11,7 @@ import { offerAssetTypeForAssetId } from '../components/offers/utils';
 import OfferEditorConflictAlertDialog from '../components/offers2/OfferEditorCancelConflictingOffersDialog';
 import offerBuilderDataToOffer from '../util/offerBuilderDataToOffer';
 import offerToOfferBuilderData from '../util/offerToOfferBuilderData';
+
 import useAssetIdName from './useAssetIdName';
 import { OfferTradeRecordFormatted } from './useWalletOffers';
 

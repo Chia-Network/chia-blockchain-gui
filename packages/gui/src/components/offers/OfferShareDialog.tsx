@@ -27,6 +27,7 @@ import React, { useCallback, useEffect, useMemo } from 'react';
 import useResolveNFTOffer from '../../hooks/useResolveNFTOffer';
 import useSuppressShareOnCreate from '../../hooks/useSuppressShareOnCreate';
 import NotificationSendDialog from '../notification/NotificationSendDialog';
+
 import { NFTOfferSummary } from './NFTOfferViewer';
 import OfferSummary from './OfferSummary';
 import { offerContainsAssetOfType } from './utils';

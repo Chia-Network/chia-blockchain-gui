@@ -10,6 +10,7 @@ import { useToggle } from 'react-use';
 import styled from 'styled-components';
 
 import useWalletsList from '../hooks/useWalletsList';
+
 import WalletTokenCard from './WalletTokenCard';
 
 const Search = styled('div')(({ theme }) => ({

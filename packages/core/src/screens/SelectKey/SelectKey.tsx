@@ -30,6 +30,7 @@ import useKeyringMigrationPrompt from '../../hooks/useKeyringMigrationPrompt';
 import useOpenDialog from '../../hooks/useOpenDialog';
 import useShowError from '../../hooks/useShowError';
 import useSkipMigration from '../../hooks/useSkipMigration';
+
 import { randomEmoji } from './EmojiAndColorPicker';
 // import Search from './Search';
 import SelectKeyItem from './SelectKeyItem';
