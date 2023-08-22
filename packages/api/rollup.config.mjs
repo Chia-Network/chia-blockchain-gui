@@ -1,17 +1,14 @@
 import externals from 'rollup-plugin-node-externals';
 import babel from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
-import json from '@rollup/plugin-json';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
-import pkg from './package.json';
+import pkg from './load-package.cjs';
 
 const extensions = ['.js', '.jsx', '.ts', '.tsx'];
 
 export default {
   input: './src/index.ts',
   plugins: [
-    json(),
-
     externals({
       deps: true,
     }),
@@ -25,20 +22,20 @@ export default {
     // Compile TypeScript/JavaScript files
     babel({
       extensions,
-      babelHelpers: 'runtime',
       include: ['src/**/*'],
+      babelHelpers: 'runtime',
     }),
   ],
   output: [
     {
       file: pkg.module,
       format: 'es',
-      sourcemap: false,
+      sourcemap: true,
     },
     {
       file: pkg.main,
       format: 'cjs',
-      sourcemap: false,
+      sourcemap: true,
     },
   ],
 };
