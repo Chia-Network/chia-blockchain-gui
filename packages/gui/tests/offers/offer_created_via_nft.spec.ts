@@ -20,7 +20,10 @@ test('Verify that an Offer can created via the NFT page', async () => {
   //Pre-requisites to get user back to Wallet selection page
   await new CloseDialog(page).closeIt();
 
-  // Given I navigate to an NFT page within wallet
+  //Given I navigate to a Wallet
+  //await new LoginPage(page).getPlayWrightWallet()
+
+  //Given I navigate to an NFT page within wallet
   await page.getByRole('button', { name: 'Jahi 1st Wallet' }).click();
 
   //When I create an offer for an NFT

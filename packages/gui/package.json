@@ -242,6 +242,7 @@
     "concurrently": "8.2.1",
     "copy-webpack-plugin": "11.0.0",
     "cross-env": "7.0.3",
+    "date-and-time": "2.4.3",
     "css-loader": "6.8.1",
     "electron": "26.0.0",
     "electron-devtools-assembler": "1.2.0",

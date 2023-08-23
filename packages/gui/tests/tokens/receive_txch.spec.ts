@@ -1,12 +1,10 @@
 import { ElectronApplication, Page, _electron as electron } from 'playwright';
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../data_object_model/passphrase_login';
 import { SendFunds } from '../data_object_model/send_funds';
 import { isWalletSynced, getWalletBalance } from '../utils/wallet';
 
 let electronApp: ElectronApplication;
 let page: Page;
-let appWindow: Page;
 
 test.beforeAll(async () => {
   electronApp = await electron.launch({ args: ['./build/electron/main.js'] });
@@ -19,8 +17,8 @@ test.afterAll(async () => {
 
 test('Verify that a recipient wallet receives funds from sending wallet!', async () => {
   //Pre-requisites
-  let receive_wallet = 'txch17m0jla968szqmw7mf6msaea2jxl553g9m5kx8ryuqadvml8w49tqr75l9y';
-  let send_wallet = 'txch1rkk6haccvw095t9ajc6h9tqekm2rz4zwurhep8dcrmsr2q2446zsndld57';
+  let receiveWallet = 'txch17m0jla968szqmw7mf6msaea2jxl553g9m5kx8ryuqadvml8w49tqr75l9y';
+  let sendWallet = 'txch1rkk6haccvw095t9ajc6h9tqekm2rz4zwurhep8dcrmsr2q2446zsndld57';
 
   //Pre-requisites to get user back to Wallet selection page
   await page.locator('button:has-text("Close")').click();
@@ -38,7 +36,7 @@ test('Verify that a recipient wallet receives funds from sending wallet!', async
   await page.locator('[data-testid="WalletHeader-tab-send"]').click();
 
   //When I complete the send page required fields
-  await new SendFunds(page).send(receive_wallet, '0.01'); //, '0.00000275276505264396');
+  await new SendFunds(page).send(receiveWallet, '0.01'); //, '0.00000275276505264396');
 
   //Then I receive a success message
   await expect(page.locator('div[role="dialog"]')).toHaveText(
@@ -73,5 +71,5 @@ test('Verify that a recipient wallet receives funds from sending wallet!', async
 
   // Given I send funds back
   await page.locator('[data-testid="WalletHeader-tab-send"]').click();
-  await new SendFunds(page).send(send_wallet, '0.01'); //, '0.00000275276505264396');
+  await new SendFunds(page).send(sendWallet, '0.01');
 });

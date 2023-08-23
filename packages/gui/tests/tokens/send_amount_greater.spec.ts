@@ -1,7 +1,5 @@
 import { ElectronApplication, Page, _electron as electron } from 'playwright';
 import { test, expect } from '@playwright/test';
-import { dialog } from 'electron';
-import { LoginPage } from '../data_object_model/passphrase_login';
 import { isWalletSynced, getWalletBalance } from '../utils/wallet';
 
 let electronApp: ElectronApplication;
@@ -17,24 +15,24 @@ test.afterAll(async () => {
 });
 
 test('Confirm that User cannot send a TXCH amount greater then in Wallet', async () => {
-  let receive_wallet = 'txch1ksr59en3j3t9zaprmya0jp9k6mkazq2u5lfccaf85sej7kgmvjjscanfxd';
-  let funded_wallet = '1922132445';
+  let receiveWallet = 'txch1ksr59en3j3t9zaprmya0jp9k6mkazq2u5lfccaf85sej7kgmvjjscanfxd';
+  let fundedWallet = '1922132445';
 
   //Pre-requisites to get user back to Wallet selection page
   await page.locator('button:has-text("Close")').click();
 
   //And I navigate to a wallet with funds
-  await page.locator(`text=${funded_wallet}`).click();
+  await page.locator(`text=${fundedWallet}`).click();
 
   //Begin: Wait for Wallet to Sync
-  while (!isWalletSynced(funded_wallet)) {
+  while (!isWalletSynced(fundedWallet)) {
     console.log('Waiting for wallet to sync...');
     await page.waitForTimeout(1000);
   }
 
-  console.log(`Wallet ${funded_wallet} is now fully synced`);
+  console.log(`Wallet ${fundedWallet} is now fully synced`);
 
-  const balance = getWalletBalance(funded_wallet);
+  const balance = getWalletBalance(fundedWallet);
 
   console.log(`XCH Balance: ${balance}`);
   //End: Wait for Wallet to Sync
@@ -43,7 +41,7 @@ test('Confirm that User cannot send a TXCH amount greater then in Wallet', async
   await page.locator('[data-testid="WalletHeader-tab-send"]').click();
 
   //When I enter a valid wallet address in address field
-  await page.locator('[data-testid="WalletSend-address"]').fill(receive_wallet);
+  await page.locator('[data-testid="WalletSend-address"]').fill(receiveWallet);
 
   //And I enter an amount higher then in account
   await page.locator('[data-testid="WalletSend-amount"]').fill('200');
