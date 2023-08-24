@@ -1,4 +1,4 @@
-import { useGetKeysQuery, useGetLoggedInFingerprintQuery } from '@chia-network/api-react';
+import { useGetKeysQuery, useGetLoggedInFingerprintQuery, usePrefs } from '@chia-network/api-react';
 import {
   ButtonLoading,
   DialogActions,
@@ -22,6 +22,7 @@ import {
   Select,
   MenuItem,
   Checkbox,
+  Chip,
 } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
@@ -51,6 +52,8 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
   const [step, setStep] = useState<Step>(Step.CONNECT);
   const { pair, isLoading: isLoadingWallet } = useWalletConnectContext();
   const { data: keys, isLoading: isLoadingPublicKeys } = useGetKeysQuery({});
+  const [sortedWallets] = usePrefs('sortedWallets', []);
+
   const { data: fingerprint, isLoading: isLoadingLoggedInFingerprint } = useGetLoggedInFingerprintQuery();
   const mainnet = useCurrencyCode() === 'XCH';
   const methods = useForm<FormData>({
@@ -69,6 +72,18 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
   });
 
   const { allowConfirmationFingerprintChange, setAllowConfirmationFingerprintChange } = useWalletConnectPreferences();
+
+  const sortedKeysMemo = React.useMemo(() => {
+    const sortedKeys: any[] = sortedWallets
+      .map((value: string) => (keys || []).find((f: any) => value === String(f.fingerprint)))
+      .filter((x: any) => !!x); /* if we added a new wallet and order was not saved yet case */
+    (keys || []).forEach((f: any) => {
+      if (sortedKeys.map((f2: any) => f2.fingerprint).indexOf(f.fingerprint) === -1) {
+        sortedKeys.push(f);
+      }
+    });
+    return sortedKeys;
+  }, [sortedWallets, keys]);
 
   function handleClose() {
     onClose();
@@ -134,8 +149,10 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
             display: 'none',
           },
         }}
+        native={false}
+        renderValue={() => t`Select keys`}
       >
-        {keys?.map((key, index) => (
+        {sortedKeysMemo?.map((key, index) => (
           <MenuItem
             key={key.fingerprint}
             value={key.fingerprint}
@@ -152,12 +169,34 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
     );
   }
 
+  function renderSelectedAsPills() {
+    const keysWithIdxs = sortedKeysMemo?.map((key, index) => ({ ...key, idx: index }));
+    return keysWithIdxs
+      ?.filter((key: any) => selectedFingerprints.indexOf(key.fingerprint) > -1)
+      .map((key: any) => {
+        if (selectedFingerprints.length < 2) {
+          return <Chip label={`${key.label || `${t`Wallet`} ${key.idx + 1}`} (${key.fingerprint})`} />;
+        }
+        return (
+          <Chip
+            label={`${key.label || `${t`Wallet`} ${key.idx + 1}`} (${key.fingerprint})`}
+            onDelete={() => {
+              methods.setValue(
+                'fingerprints',
+                selectedFingerprints.filter((f) => f !== key.fingerprint)
+              );
+            }}
+          />
+        );
+      });
+  }
+
   function renderMultipleKeySelectedWarning() {
     const { fingerprints } = methods.getValues();
     if (!allowConfirmationFingerprintChange && fingerprints.length > 1) {
       return (
-        <Typography variant="body2" textAlign="center" color="red">
-          <Trans>Selecting multiple keys will enable "Key Switching" inside Settings / Integration tab.</Trans>
+        <Typography variant="body2" textAlign="center">
+          <Trans>Warning! Selecting multiple keys will enable "Key Switching" inside Settings / Integration tab.</Trans>
         </Typography>
       );
     }
@@ -207,6 +246,9 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
               ) : (
                 <Flex gap={3} flexDirection="column">
                   {renderMultipleKeySelectedWarning()}
+                  <Flex sx={{ flexWrap: 'wrap' }} gap={1}>
+                    {renderSelectedAsPills()}
+                  </Flex>
                   {renderKeysMultiSelect()}
                 </Flex>
               )}
