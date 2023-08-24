@@ -29,6 +29,7 @@ import { useForm, useWatch } from 'react-hook-form';
 
 import useWalletConnectContext from '../../hooks/useWalletConnectContext';
 import useWalletConnectPreferences from '../../hooks/useWalletConnectPreferences';
+
 import HeroImage from './images/walletConnectToChia.svg';
 
 enum Step {
