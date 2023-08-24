@@ -7,6 +7,7 @@ import React, { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 import DIDProfileDropdown from '../did/DIDProfileDropdown';
+
 import { SignMessageEntityType, SignMessageDIDEntity } from './SignMessageEntities';
 
 export type SigningEntityDIDProps = {

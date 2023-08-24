@@ -41,6 +41,7 @@ import LabelProgress from '../../helpers/LabelProgress';
 import NFTCard from '../NFTCard';
 import { NFTContextualActionTypes } from '../NFTContextualActions';
 import NFTProfileDropdown from '../NFTProfileDropdown';
+
 import FilterPill from './FilterPill';
 import NFTGalleryHero from './NFTGalleryHero';
 import Search from './NFTGallerySearch';

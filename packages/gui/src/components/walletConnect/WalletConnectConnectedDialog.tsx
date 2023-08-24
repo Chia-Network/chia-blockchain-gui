@@ -6,6 +6,7 @@ import { Box, Divider, Dialog, DialogContent, DialogTitle, IconButton, Typograph
 import React, { useMemo, useState } from 'react';
 
 import useWalletConnectContext from '../../hooks/useWalletConnectContext';
+
 import WalletConnectActiveSessions from './WalletConnectActiveSessions';
 import HeroImage from './images/walletConnectConnected.svg';
 

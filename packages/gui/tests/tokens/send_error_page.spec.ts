@@ -1,7 +1,5 @@
 import { ElectronApplication, Page, _electron as electron } from 'playwright';
 import { test, expect } from '@playwright/test';
-import { dialog } from 'electron';
-import { LoginPage } from '../data_object_model/passphrase_login';
 import { isWalletSynced, getWalletBalance } from '../utils/wallet';
 
 let electronApp: ElectronApplication;
@@ -17,23 +15,23 @@ test.afterAll(async () => {
 });
 
 test('Confirm Error Dialog when wrong data is entered on Send Page for 1922132445 ID', async () => {
-  let funded_wallet = '1922132445';
+  let fundedWallet = '1922132445';
 
   //Pre-requisites to get user back to Wallet selection page
   await page.locator('button:has-text("Close")').click();
 
   //Given I navigate to a wallet with funds
-  await page.locator(`text=${funded_wallet}`).click();
+  await page.locator(`text=${fundedWallet}`).click();
 
   // Begin: Wait for Wallet to Sync
-  while (!isWalletSynced(funded_wallet)) {
+  while (!isWalletSynced(fundedWallet)) {
     console.log('Waiting for wallet to sync...');
     await page.waitForTimeout(1000);
   }
 
-  console.log(`Wallet ${funded_wallet} is now fully synced`);
+  console.log(`Wallet ${fundedWallet} is now fully synced`);
 
-  const balance = getWalletBalance(funded_wallet);
+  const balance = getWalletBalance(fundedWallet);
 
   console.log(`XCH Balance: ${balance}`);
   //End: Wait for Wallet to Sync

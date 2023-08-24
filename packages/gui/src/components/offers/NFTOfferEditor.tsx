@@ -41,6 +41,7 @@ import useNFT from '../../hooks/useNFT';
 import useNFTs from '../../hooks/useNFTs';
 import useSuppressShareOnCreate from '../../hooks/useSuppressShareOnCreate';
 import { convertRoyaltyToPercentage, isValidNFTId, launcherIdFromNFTId } from '../../util/nfts';
+
 import NFTOfferExchangeType from './NFTOfferExchangeType';
 import NFTOfferPreview from './NFTOfferPreview';
 import NFTOfferTokenSelector from './NFTOfferTokenSelector';

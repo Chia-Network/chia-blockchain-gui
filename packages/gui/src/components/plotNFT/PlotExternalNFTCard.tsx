@@ -23,6 +23,7 @@ import usePlotNFTExternalDetails from '../../hooks/usePlotNFTExternalDetails';
 import PlotNFTExternal from '../../types/PlotNFTExternal';
 // import PlotNFTGetPoolLoginLinkDialog from './PlotNFTGetPoolLoginLinkDialog';
 import getPercentPointsSuccessfull from '../../util/getPercentPointsSuccessfull';
+
 import PlotNFTExternalState from './PlotNFTExternalState';
 import PlotNFTGraph from './PlotNFTGraph';
 import PlotNFTName from './PlotNFTName';

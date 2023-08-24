@@ -1,6 +1,5 @@
 import { ElectronApplication, Page, _electron as electron } from 'playwright';
-import { test, expect } from '@playwright/test';
-import { stopAllChia } from '../utils/wallet';
+import { test } from '@playwright/test';
 
 let electronApp: ElectronApplication;
 let page: Page;
@@ -18,7 +17,6 @@ test.afterAll(async () => {
 test('Confirm user can navigate and interact with the Settings page in user acceptable manner. ', async () => {
   //Pre-requisites to get user back to Wallet selection page
   await page.locator('button:has-text("Close")').click();
-  //await page.locator('[data-testid="LayoutDashboard-log-out"]').click();
 
   //Given I navigate to 1922132445 Wallet
   await page.locator('h6:has-text("Jahi 1st Wallet")').click();

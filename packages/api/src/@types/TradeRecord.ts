@@ -1,6 +1,7 @@
 import type BigNumber from 'bignumber.js';
 
 import OfferState from '../constants/OfferState';
+
 import type OfferCoinOfInterest from './OfferCoinOfInterest';
 import OfferSummaryRecord from './OfferSummaryRecord';
 

@@ -2,6 +2,7 @@ import React from 'react';
 
 import type Notification from '../../@types/Notification';
 import NotificationType from '../../constants/NotificationType';
+
 import NotificationPreviewOffer from './NotificationPreviewOffer';
 
 export type NotificationPreviewProps = {

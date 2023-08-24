@@ -21,6 +21,7 @@ import Flex from '../Flex';
 import NewerAppVersionAvailable from '../LayoutDashboard/NewerAppVersionAvailable';
 import Link from '../Link';
 import LocaleToggle from '../LocaleToggle';
+
 import SettingsLabel from './SettingsLabel';
 
 export type SettingsAppProps = {

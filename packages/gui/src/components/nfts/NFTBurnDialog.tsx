@@ -18,6 +18,7 @@ import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 import useBurnAddress from '../../hooks/useBurnAddress';
+
 import NFTSummary from './NFTSummary';
 import NFTTransferConfirmationDialog from './NFTTransferConfirmationDialog';
 

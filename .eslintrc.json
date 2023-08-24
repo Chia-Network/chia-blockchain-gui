@@ -32,7 +32,11 @@
     // Automatically order imports
     "import/order": [
       "error",
-      { "groups": ["builtin", "external", "internal"], "alphabetize": { "order": "asc" }, "newlines-between": "always" }
+      {
+        "groups": ["builtin", "external", "internal", "parent", "sibling"],
+        "alphabetize": { "order": "asc" },
+        "newlines-between": "always"
+      }
     ],
     // Already taken care of by import/order. This must stay here, so require(); is before any import
     "import/first": "off",
@@ -98,7 +102,7 @@
           // You can change the file name extension to .dev.ts to avoid the: "XX should be listed in the project's dependencies, not devDependencies."
           "**/*.dev.{js,jsx,ts,tsx}"
         ],
-        "optionalDependencies": false
+        "optionalDependencies": true
       }
     ],
 

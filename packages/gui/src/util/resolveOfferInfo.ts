@@ -8,6 +8,7 @@ import { OfferTradeRecordFormatted } from 'hooks/useWalletOffers';
 import OfferAsset from '../components/offers/OfferAsset';
 import { offerAssetTypeForAssetId, formatAmountForWalletType } from '../components/offers/utils';
 import type { AssetIdMapEntry } from '../hooks/useAssetIdName';
+
 import { launcherIdToNFTId } from './nfts';
 
 export type PendingAsset = {

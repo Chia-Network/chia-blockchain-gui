@@ -8,7 +8,9 @@ import type RewardTargets from '../@types/RewardTargets';
 import type SignagePoint from '../@types/SignagePoint';
 import Client from '../Client';
 import type Message from '../Message';
+import PLOT_FILTER_CONSTANTS from '../constants/PlotFilter';
 import ServiceName from '../constants/ServiceName';
+
 import Service from './Service';
 import type { Options } from './Service';
 
@@ -182,21 +184,25 @@ export default class Farmer extends Service {
     this.totalMissingSps = 0;
   }
 
-  getFilterChallengeStat(height: number) {
+  getFilterChallengeStat(args: { height: number; isTestnet: boolean }) {
     const n = this.totalPlotFilterChallenge;
     const x = this.totalPlotsPassingFilter;
-    let fb = 9; // Filter bits
-    if (height < 5_496_000) {
-      fb = 9;
-    } else if (height < 10_542_000) {
-      fb = 8;
-    } else if (height < 15_592_000) {
-      fb = 7;
-    } else if (height < 20_643_000) {
-      fb = 6;
-    } else {
-      fb = 5;
+
+    const constants = args.isTestnet ? PLOT_FILTER_CONSTANTS.testnet10 : PLOT_FILTER_CONSTANTS.mainnet;
+    let fb = 9;
+
+    if (args.height >= constants.PLOT_FILTER_32_HEIGHT) {
+      fb -= 4;
+    } else if (args.height >= constants.PLOT_FILTER_64_HEIGHT) {
+      fb -= 3;
+    } else if (args.height >= constants.PLOT_FILTER_128_HEIGHT) {
+      fb -= 2;
+    } else if (args.height >= constants.HARD_FORK_HEIGHT) {
+      fb -= 1;
     }
+
+    fb = Math.max(0, fb);
+
     return {
       n,
       x,

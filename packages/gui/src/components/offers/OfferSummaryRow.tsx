@@ -17,6 +17,7 @@ import useAssetIdName from '../../hooks/useAssetIdName';
 import useNFTMinterDID from '../../hooks/useNFTMinterDID';
 import { launcherIdToNFTId } from '../../util/nfts';
 import NFTSummary from '../nfts/NFTSummary';
+
 import { formatAmountForWalletType } from './utils';
 
 /* ========================================================================== */

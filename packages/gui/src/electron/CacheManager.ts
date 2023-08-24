@@ -12,6 +12,7 @@ import type CacheInfoBase from '../@types/CacheInfoBase';
 import type Headers from '../@types/Headers';
 import CacheState from '../constants/CacheState';
 import limit from '../util/limit';
+
 import downloadFile from './utils/downloadFile';
 import ensureDirectoryExists from './utils/ensureDirectoryExists';
 import getChecksum from './utils/getChecksum';

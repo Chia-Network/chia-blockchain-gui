@@ -2,6 +2,7 @@ import { useEffect, useCallback, useRef } from 'react';
 
 import type Notification from '../@types/Notification';
 import { disconnectPair, bindEvents, cleanupPairings } from '../util/walletConnect';
+
 import useWalletConnectClient from './useWalletConnectClient';
 import useWalletConnectCommand from './useWalletConnectCommand';
 import useWalletConnectPairs from './useWalletConnectPairs';

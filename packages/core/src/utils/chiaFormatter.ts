@@ -2,6 +2,7 @@ import BigNumber from 'bignumber.js';
 
 import type Unit from '../constants/Unit';
 import UnitValue from '../constants/UnitValue';
+
 import bigNumberToLocaleString from './bigNumberToLocaleString';
 
 class Chia {

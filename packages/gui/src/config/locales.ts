@@ -1,41 +1,6 @@
 import * as coreLocales from '@chia-network/core/src/locales';
 import * as walletsLocales from '@chia-network/wallets/src/locales';
 import { i18n } from '@lingui/core';
-import {
-  ar,
-  be,
-  bg,
-  ca,
-  cs,
-  da,
-  de,
-  el,
-  en,
-  es,
-  fa,
-  fi,
-  fr,
-  hr,
-  hu,
-  id,
-  it,
-  ja,
-  ko,
-  nl,
-  no,
-  pl,
-  pt,
-  ro,
-  ru,
-  sk,
-  sq,
-  sr,
-  sv,
-  tr,
-  uk,
-  vi,
-  zh,
-} from 'make-plural/plurals';
 
 import * as guiLocales from '../locales';
 
@@ -204,47 +169,6 @@ export const locales = [
     label: '日本語 (日本)',
   },
 ];
-
-i18n.loadLocaleData('ar-SA', { plurals: ar });
-i18n.loadLocaleData('be-BY', { plurals: be });
-i18n.loadLocaleData('bg-BG', { plurals: bg });
-i18n.loadLocaleData('ca-ES', { plurals: ca });
-i18n.loadLocaleData('cs-CZ', { plurals: cs });
-i18n.loadLocaleData('da-DK', { plurals: da });
-i18n.loadLocaleData('de-DE', { plurals: de });
-i18n.loadLocaleData('el-GR', { plurals: el });
-i18n.loadLocaleData('en-AU', { plurals: en });
-i18n.loadLocaleData('en-PT', { plurals: en });
-i18n.loadLocaleData('en-US', { plurals: en });
-i18n.loadLocaleData('en-NZ', { plurals: en });
-i18n.loadLocaleData('es-ES', { plurals: es });
-i18n.loadLocaleData('es-AR', { plurals: es });
-i18n.loadLocaleData('es-MX', { plurals: es });
-i18n.loadLocaleData('fa-IR', { plurals: fa });
-i18n.loadLocaleData('fi-FI', { plurals: fi });
-i18n.loadLocaleData('fr-FR', { plurals: fr });
-i18n.loadLocaleData('hr-HR', { plurals: hr });
-i18n.loadLocaleData('hu-HU', { plurals: hu });
-i18n.loadLocaleData('id-ID', { plurals: id });
-i18n.loadLocaleData('it-IT', { plurals: it });
-i18n.loadLocaleData('ja-JP', { plurals: ja });
-i18n.loadLocaleData('ko-KR', { plurals: ko });
-i18n.loadLocaleData('nl-NL', { plurals: nl });
-i18n.loadLocaleData('no-NO', { plurals: no });
-i18n.loadLocaleData('pl-PL', { plurals: pl });
-i18n.loadLocaleData('pt-BR', { plurals: pt });
-i18n.loadLocaleData('pt-PT', { plurals: pt });
-i18n.loadLocaleData('ro-RO', { plurals: ro });
-i18n.loadLocaleData('ru-RU', { plurals: ru });
-i18n.loadLocaleData('sk-SK', { plurals: sk });
-i18n.loadLocaleData('sq-AL', { plurals: sq });
-i18n.loadLocaleData('sr-SP', { plurals: sr });
-i18n.loadLocaleData('sv-SE', { plurals: sv });
-i18n.loadLocaleData('tr-TR', { plurals: tr });
-i18n.loadLocaleData('uk-UA', { plurals: uk });
-i18n.loadLocaleData('vi-VN', { plurals: vi });
-i18n.loadLocaleData('zh-TW', { plurals: zh });
-i18n.loadLocaleData('zh-CN', { plurals: zh });
 
 locales.forEach(({ locale }) => {
   const importName = locale.replace('-', '');

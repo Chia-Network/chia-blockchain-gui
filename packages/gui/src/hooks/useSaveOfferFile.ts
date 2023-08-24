@@ -5,6 +5,7 @@ import { useGetOfferDataMutation } from '@chia-network/api-react';
 import { useShowSaveDialog } from '@chia-network/core';
 
 import { suggestedFilenameForOffer } from '../components/offers/utils';
+
 import useAssetIdName from './useAssetIdName';
 
 export type SaveOfferFileHook = (tradeId: string) => Promise<void>;

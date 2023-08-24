@@ -2,7 +2,7 @@ import './wdyr.dev'; // must be first
 import './polyfill';
 import './config/env';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import App from './components/app/App';
 import initPrefs from './init-prefs';
@@ -13,8 +13,11 @@ function Root() {
 }
 
 const onInit = () => {
-  ReactDOM.render(<Root />, document.querySelector('#root'));
+  const container = document.querySelector('#root');
+  const root = createRoot(container!);
+  root.render(<Root />);
 };
+
 initPrefs(onInit).catch(() => {
   // window.alert(e);
 });

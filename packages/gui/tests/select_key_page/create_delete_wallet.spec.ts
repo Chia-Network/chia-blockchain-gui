@@ -1,8 +1,5 @@
 import { ElectronApplication, Page, _electron as electron } from 'playwright';
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../data_object_model/passphrase_login';
-import { isWalletSynced, getWalletBalance } from '../utils/wallet';
-import { waitForDebugger } from 'inspector';
 import { CloseDialog } from '../data_object_model/close_dialog';
 
 let electronApp: ElectronApplication;
@@ -17,6 +14,7 @@ test.afterAll(async () => {
   await page.close();
 });
 
+//PASSED AS OF 7/9/2023
 test('Create a new Wallet , logout and Delete new Wallet', async () => {
   //Pre-requisites to get user back to Wallet selection page
   await new CloseDialog(page).closeIt();
@@ -28,17 +26,15 @@ test('Create a new Wallet , logout and Delete new Wallet', async () => {
   await page.getByText('Create New').click();
 
   //When I enter a Wallet Name
-  // await page.getByLabel('Wallet Name').fill('New Wallet');
   await page.locator('text=Wallet NameWallet Name >> input[type="text"]').fill('New Wallet');
 
   //And I click on the Next button
   await page.getByRole('button', { name: 'Next' }).click();
-  //await page.locator('button:has-text("Next")').click();
 
   //And I save the Wallet ID of the wallet
   await page.waitForTimeout(10000);
   const deleteWallet = await page.$eval('[data-testid="LayoutDashboard-fingerprint"]', (el) => el.textContent);
-  console.log(deleteWallet);
+  //console.log(deleteWallet);
   const newlyDeleteWallet = deleteWallet.trim();
 
   //Then I am able to check the balance of that wallet
@@ -68,13 +64,4 @@ test('Create a new Wallet , logout and Delete new Wallet', async () => {
   expect(
     await page.locator(`[data-testid="SelectKeyItem-fingerprint-${newlyDeleteWallet}"] [aria-label="more"]`).count()
   ).toEqual(0);
-
-  //
-
-  // await page.getByTestId('SelectKeyItem-fingerprint-1362932744').getByRole('button', { name: 'more', exact: true }).click();
-  // await page.getByText('Delete', { exact: true }).click();
-  // await page.getByRole('heading', { name: 'Delete key 1362932744' }).click();
-  // await page.getByLabel('Wallet Fingerprint').click();
-  // await page.getByLabel('Wallet Fingerprint').fill('1362932744');
-  // await page.getByRole('button', { name: 'Delete' }).click();
 });

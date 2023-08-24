@@ -15,6 +15,7 @@ import WalletHeader from '../WalletHeader';
 import WalletHistory from '../WalletHistory';
 import WalletReceiveAddress from '../WalletReceiveAddress';
 import WalletRenameDialog from '../WalletRenameDialog';
+
 import WalletCATSend from './WalletCATSend';
 import WalletCATTAILDialog from './WalletCATTAILDialog';
 

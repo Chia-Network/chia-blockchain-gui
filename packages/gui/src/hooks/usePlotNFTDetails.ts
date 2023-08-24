@@ -3,6 +3,7 @@ import { useIsWalletSynced } from '@chia-network/wallets';
 import { useMemo } from 'react';
 
 import PlotNFTState from '../constants/PlotNFTState';
+
 import usePlotNFTName from './usePlotNFTName';
 
 export default function usePlotNFTDetails(nft: PlotNFT): {

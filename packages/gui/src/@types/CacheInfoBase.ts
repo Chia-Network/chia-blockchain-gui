@@ -1,4 +1,5 @@
 import type CacheState from '../constants/CacheState';
+
 import type Headers from './Headers';
 
 type CacheInfoBase =
