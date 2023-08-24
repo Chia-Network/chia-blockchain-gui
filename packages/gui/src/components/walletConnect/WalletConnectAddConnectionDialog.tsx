@@ -150,7 +150,7 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
           },
         }}
         native={false}
-        renderValue={() => t`Select keys`}
+        renderValue={() => t`Select Keys`}
         MenuProps={{
           PaperProps: {
             style: {
