@@ -38,10 +38,10 @@ export default function MyContact() {
     if (themeList) {
       keyEntries.forEach((key) => {
         const element = key;
-        element.color = themeList[key.fingerprint].walletKeyTheme
+        element.color = themeList[key.fingerprint]?.walletKeyTheme
           ? themeList[key.fingerprint].walletKeyTheme.color
           : 'green';
-        element.emoji = themeList[key.fingerprint].walletKeyTheme
+        element.emoji = themeList[key.fingerprint]?.walletKeyTheme
           ? themeList[key.fingerprint].walletKeyTheme.emoji
           : null;
       });
