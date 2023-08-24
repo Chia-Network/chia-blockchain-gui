@@ -151,6 +151,14 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
         }}
         native={false}
         renderValue={() => t`Select keys`}
+        MenuProps={{
+          PaperProps: {
+            style: {
+              maxHeight: '250px',
+              overflowY: 'auto',
+            },
+          },
+        }}
       >
         {sortedKeysMemo?.map((key, index) => (
           <MenuItem
