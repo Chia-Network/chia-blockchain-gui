@@ -19,7 +19,7 @@ export default function WalletBadge(props: Props) {
   const { wallet, tooltip, ...rest } = props;
   const { data: catList = [], isLoading } = useGetCatListQuery();
 
-  if (!isLoading && wallet.type === WalletType.CAT) {
+  if (!isLoading && [WalletType.CAT, WalletType.CRCAT].includes(wallet.type)) {
     const token = catList.find((tokenItem) => tokenItem.assetId === wallet.meta?.assetId);
     if (token) {
       return (
