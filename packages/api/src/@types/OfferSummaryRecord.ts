@@ -10,6 +10,12 @@ export type OfferSummaryAssetInfo = {
 
 export type OfferSummaryCATInfo = OfferSummaryAssetInfo & {
   tail: string;
+  also?: {
+    authorizedProviders: string[];
+    flags: string[];
+    proofsChecker: string;
+    type: string;
+  };
 };
 
 export type OfferSummaryNFTInfo = OfferSummaryAssetInfo & {
