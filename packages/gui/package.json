@@ -201,7 +201,7 @@
     "seedrandom": "3.0.5",
     "stream-browserify": "3.0.0",
     "styled-components": "6.0.7",
-    "unique-names-generator": "4.6.0",
+    "unique-names-generator": "4.7.1",
     "validator": "13.11.0",
     "victory": "^36.6.11",
     "ws": "8.4.2"
