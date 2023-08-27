@@ -8,7 +8,7 @@ msgstr ""
 "Language: sk_SK\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-08-27 13:36\n"
+"PO-Revision-Date: 2023-08-27 14:37\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 3;\n"
@@ -137,7 +137,7 @@ msgstr "Nahlásiť Problém..."
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:747
 msgid "Chat on Discord"
-msgstr ""
+msgstr "Chatovať na Discorde"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:753
@@ -158,7 +158,7 @@ msgstr "O Chia blockchaine"
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:774
 msgid "Check for Updates..."
-msgstr ""
+msgstr "Skontrolovať aktualizácie..."
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:822
@@ -168,7 +168,7 @@ msgstr "Reč"
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:867
 msgid "Check for updates..."
-msgstr ""
+msgstr "Skontrolovať aktualizácie..."
 
 #: src/components/offers2/OfferBuilderImport.tsx:167
 msgid "(⌘V) a blob"
@@ -192,7 +192,7 @@ msgstr "(Nie je podporované)"
 
 #: src/components/plot/add/PlotAddNFT.tsx:59
 msgid "(Recommended)"
-msgstr ""
+msgstr "(Odporúčané)"
 
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:89
 msgid "{0, plural, one {mojo} other {mojos}}"
@@ -336,7 +336,7 @@ msgstr ""
 #: src/components/notification/NotificationsDropdown.tsx:45
 #: src/components/notification/NotificationsMenu.tsx:36
 msgid "Activity"
-msgstr ""
+msgstr "Aktivita"
 
 #: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:42
 msgid "Add {currencyCode} from the Faucet"
@@ -401,11 +401,11 @@ msgstr ""
 #: src/constants/WalletConnectCommands.tsx:229
 #: src/constants/WalletConnectCommands.tsx:521
 msgid "Address"
-msgstr ""
+msgstr "Adresa"
 
 #: src/components/settings/SettingsAdvanced.tsx:44
 msgid "Advanced"
-msgstr ""
+msgstr "Pokročilé"
 
 #: src/components/app/AppKeyringMigrator.tsx:250
 msgid "After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring."
@@ -446,11 +446,11 @@ msgstr "Striedať tmpdir/tmpdir2"
 
 #: src/components/settings/SettingsIntegration.tsx:308
 msgid "Always Allow"
-msgstr ""
+msgstr "Vždy povoliť"
 
 #: src/components/settings/SettingsIntegration.tsx:311
 msgid "Always Reject"
-msgstr ""
+msgstr "Vždy odmietnuť"
 
 #: src/components/offers/NFTOfferEditor.tsx:231
 #: src/components/offers/OfferEditorConditionsPanel.tsx:128
@@ -924,7 +924,7 @@ msgstr "Zbierka"
 #: src/components/vcs/VCRevokeDialog.tsx:27
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:70
 msgid "Confirm"
-msgstr ""
+msgstr "Potvrdiť"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:19
 msgid "Confirm Disconnect"
@@ -1385,7 +1385,7 @@ msgstr "Máte existujúce ploty na tomto stroji? <0>Pridaj Adresár s Plotmi</0>
 
 #: src/components/nfts/NFTBurnDialog.tsx:134
 msgid "Do you want to burn this NFT?"
-msgstr ""
+msgstr "Chcete spáliť toto NFT?"
 
 #: src/hooks/useWalletConnectCommand.tsx:182
 msgid "Do you want to execute command {command}?"
@@ -1527,7 +1527,7 @@ msgstr "Zadajte silnú prístupovú frázu pre zabezpečenie svojich kľúčov:"
 
 #: src/components/signVerify/SignMessage.tsx:66
 msgid "Enter a wallet address to sign with"
-msgstr ""
+msgstr "Zadajte adresu peňaženky, s ktorou chcete podpisovať"
 
 #: src/components/signVerify/SignMessage.tsx:90
 msgid "Enter an NFT or DID to sign with"
@@ -1829,7 +1829,7 @@ msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:90
 msgid "Get Current Address"
-msgstr ""
+msgstr "Získať aktuálnu adresu"
 
 #: src/components/settings/ProfileAdd.tsx:124
 msgid "Get Mojos from the Chia Faucet"
@@ -1837,7 +1837,7 @@ msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:243
 msgid "Get Next Address"
-msgstr ""
+msgstr "Získať ďalšiu adresu"
 
 #: src/constants/WalletConnectCommands.tsx:594
 msgid "Get NFT Info"
@@ -1976,11 +1976,11 @@ msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:495
 msgid "Hide"
-msgstr ""
+msgstr "Skryť"
 
 #: src/components/settings/SettingsNFT.tsx:95
 msgid "Hide objectionable content"
-msgstr ""
+msgstr "Skryť nevhodný obsah"
 
 #: src/components/app/AppPassPrompt.tsx:161
 #: src/components/settings/RemovePassphrasePrompt.tsx:153
@@ -2279,7 +2279,7 @@ msgstr ""
 
 #: src/components/fullNode/FullNodeConnections.tsx:99
 msgid "List of connections is empty"
-msgstr ""
+msgstr "Zoznam pripojení je prázdny"
 
 #: src/components/app/AppProviders.tsx:88
 msgid "Loading configuration"
@@ -2513,7 +2513,7 @@ msgstr "Názov siete"
 
 #: src/constants/WalletConnectCommands.tsx:258
 msgid "New Address"
-msgstr ""
+msgstr "Nová adresa"
 
 #: src/components/notification/utils.ts:105
 msgid "New counter offer"
@@ -2575,7 +2575,7 @@ msgstr ""
 
 #: src/components/notification/NotificationSendDialog.tsx:211
 msgid "NFT holder address"
-msgstr ""
+msgstr "Adresa držiteľa NFT"
 
 #: src/components/nfts/NFTDetails.tsx:55
 #: src/components/offers2/OfferBuilderNFT.tsx:50
@@ -2639,7 +2639,7 @@ msgstr ""
 
 #: src/components/vcs/VCCard.tsx:83
 msgid "No"
-msgstr ""
+msgstr "Nie"
 
 #: src/components/notification/NotificationsMenu.tsx:52
 msgid "No activities yet"
@@ -2746,7 +2746,7 @@ msgstr ""
 
 #: src/components/notification/NotificationSendDialog.tsx:213
 msgid "Notification recipient's address"
-msgstr ""
+msgstr "Adresa príjemcu oznámenia"
 
 #: src/components/settings/SettingsNotifications.tsx:30
 msgid "Notifications"
@@ -2991,7 +2991,7 @@ msgstr "Vynútiť počet vlákien pre fázu 3"
 
 #: src/components/nfts/NFTDetails.tsx:87
 msgid "Owner Address"
-msgstr ""
+msgstr "Adresa vlastníka"
 
 #: src/components/nfts/NFTDetails.tsx:108
 msgid "Owner DID"
@@ -3729,7 +3729,7 @@ msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:618
 msgid "Royalty Address"
-msgstr ""
+msgstr "Adresa autorského honoráru"
 
 #: src/components/nfts/NFTDetails.tsx:159
 #: src/constants/WalletConnectCommands.tsx:624
@@ -3774,7 +3774,7 @@ msgstr "Hľadať v Tail databáze"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:260
 msgid "Search..."
-msgstr ""
+msgstr "Vyhľadať..."
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:109
 msgid "Second temporary folder location"
@@ -3957,7 +3957,7 @@ msgstr "Zdieľať na Spacescan.io"
 
 #: src/components/nfts/NFTContextualActions.tsx:495
 msgid "Show"
-msgstr ""
+msgstr "Zobraziť"
 
 #: src/components/offers/OfferManager.tsx:216
 msgid "Show Details"
@@ -4183,7 +4183,7 @@ msgstr ""
 #: src/constants/WalletConnectCommands.tsx:630
 #: src/constants/WalletConnectCommands.tsx:710
 msgid "Target Address"
-msgstr ""
+msgstr "Cieľová adresa"
 
 #: src/components/pool/PoolInfo.tsx:38
 msgid "Target Puzzle Hash"
@@ -4887,7 +4887,7 @@ msgstr "Čaká sa na potvrdenie transakcie"
 #: src/components/app/AppStatusHeader.tsx:141
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:108
 msgid "Wallet"
-msgstr ""
+msgstr "Peňaženka"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:160
 msgid "Wallet {0}"
@@ -4895,7 +4895,7 @@ msgstr ""
 
 #: src/components/signVerify/SignMessage.tsx:153
 msgid "Wallet Address"
-msgstr ""
+msgstr "Adresa peňaženky"
 
 #: src/constants/WalletConnectCommands.tsx:64
 #: src/constants/WalletConnectCommands.tsx:98
@@ -4965,7 +4965,7 @@ msgstr "Upozornenie"
 
 #: src/components/app/AppVersionWarning.tsx:30
 msgid "Warning: Mismatched Versions"
-msgstr ""
+msgstr "Upozornenie: Nezhodné verzie"
 
 #: src/components/offers/OfferSummary.tsx:133
 #: src/components/offers2/OfferBuilderValue.tsx:199
@@ -5020,7 +5020,7 @@ msgstr "Chcete previesť špecifikovaný NFT na nového vlastníka?"
 #: src/components/plot/add/PlotAddChooseSize.tsx:47
 #: src/components/vcs/VCCard.tsx:83
 msgid "Yes"
-msgstr ""
+msgstr "Áno"
 
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:22
 msgid "Yes, Accept Offer"
