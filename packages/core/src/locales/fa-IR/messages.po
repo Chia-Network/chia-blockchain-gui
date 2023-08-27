@@ -15,8 +15,8 @@ msgstr ""
 "X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "X-Crowdin-Project-ID: 1\n"
 "X-Crowdin-Language: fa\n"
-"X-Crowdin-File: messages.po\n"
-"X-Crowdin-File-ID: 2667\n"
+"X-Crowdin-File: /main/packages/core/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 15\n"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:61
 msgid "(>5 min)"
@@ -28,7 +28,7 @@ msgstr "(~{selectedTime} دقیقه)"
 
 #: src/components/Amount/Amount.tsx:86
 msgid "{0, plural, one {mojo} other {mojos}}"
-msgstr "{0, plural, one {موجو} other {موجوها}}"
+msgstr "{0,plural,one {موجو} other {موجوها}}"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:35
 msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
@@ -56,7 +56,7 @@ msgstr "ظاهر برنامه"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:144
 msgid "Are you sure you want to continue? Type in the fingerprint of this wallet key to confirm deletion."
-msgstr "آیا مطمئن هستید که میخواهید ادامه دهید؟ برای تایید حذف،کدهای شخصی این کلید کیف پول را تایپ کنید."
+msgstr "آیا مطمئن هستید که میخواهید ادامه دهید؟ برای تایید حذف، کلمات کد این کلید کیف پول را تایپ کنید."
 
 #: src/components/FormBackButton/FormBackButton.tsx:15
 #: src/screens/SelectKey/SelectKey.tsx:127
@@ -90,11 +90,11 @@ msgstr "نسخه برنامه چیا:"
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:47
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:70
 msgid "Close"
-msgstr "ببندید"
+msgstr "بستن"
 
 #: src/components/FormatConnectionStatus/FormatConnectionStatus.tsx:32
 msgid "Connected"
-msgstr "متصل شده"
+msgstr "متصل شد"
 
 #: src/components/CopyToClipboard/CopyToClipboard.tsx:42
 msgid "Copied"
@@ -140,7 +140,7 @@ msgstr "حذف تمامی کلید ها"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:96
 msgid "Delete key {fingerprint}"
-msgstr "حذف کد شخصی {fingerprint}"
+msgstr "حذف کلید {fingerprint}"
 
 #: src/screens/SelectKey/SelectKey.tsx:131
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
@@ -162,7 +162,7 @@ msgstr "محافظت از رمز ورودی را غیرفعال کنید"
 #: src/components/Back/Back.tsx:37
 #: src/components/FormBackButton/FormBackButton.tsx:28
 msgid "Discard"
-msgstr "لغو"
+msgstr "دست برداشتن"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:183
 msgid "Download"
@@ -187,7 +187,7 @@ msgstr "پاسخ به سوالات"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:90
 msgid "Farmer Public Key"
-msgstr "کلید عمومی فارم کننده"
+msgstr "کلید عمومی فارمر"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:58
 msgid "Farmer public key:"
@@ -195,7 +195,7 @@ msgstr "کلید عمومی فارم کننده:"
 
 #: src/components/Settings/SettingsApp.tsx:78
 msgid "Farming"
-msgstr "درحال فارم"
+msgstr "فارم کردن"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:333
 #: src/components/EstimatedFee/EstimatedFee.tsx:367
@@ -205,11 +205,11 @@ msgstr "کارمزد"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:80
 msgid "Fingerprint does not match"
-msgstr "کدهای شحصی مظابقت ندارند"
+msgstr "کدها هماهنگی ندارند"
 
 #: src/components/Settings/SettingsApp.tsx:151
 msgid "Frequently Asked Questions"
-msgstr "سوالات متداول"
+msgstr "پرسش ها و پاسخ های متداول"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:121
 msgid "Go To Download Page"
@@ -262,7 +262,7 @@ msgstr "احتمالاً در {0} ثانیه"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:219
 msgid "Likely in {minutes} minutes"
-msgstr "احتمالاً در {minutes} دقیقه"
+msgstr "احتمالاً در {minutes}"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:221
 msgid "Likely in >5 minutes"
@@ -274,7 +274,7 @@ msgstr "در حال بارگیری جزئیات"
 
 #: src/screens/SelectKey/SelectKey.tsx:232
 msgid "Loading keys"
-msgstr "در حال بارگیری کلیدها"
+msgstr "بارگذاری کلیدها"
 
 #: src/screens/SelectKey/SelectKey.tsx:117
 #~ msgid "Loading list of the keys"
@@ -307,7 +307,7 @@ msgstr "هرگز این موارد را با کسی به اشتراک نگذار
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:41
 msgid "New passphrase is the same as your current passphrase"
-msgstr "رمز ورودی جدید با رمز ورودی فعلی شما یکسان است"
+msgstr "رمز ورودی جدید با عبارت عبور فعلی شما یکسان است"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:168
 msgid "New version {latestVersion} available"
@@ -316,11 +316,11 @@ msgstr "نسخه جدید {latestVersion} موجود است"
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:84
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:138
 msgid "No 24 word seed, since this key is imported."
-msgstr "هیچ بذر ۲۴ کلمه‌ای نیست، از هنگامی که این کلید را وارد کرده اید."
+msgstr "از زمانیکه کلید را وارد کرده اید هیچ کلمات رمز 24 حرفی موجود نیست."
 
 #: src/components/FormatConnectionStatus/FormatConnectionStatus.tsx:33
 msgid "Not connected"
-msgstr "متصل نشده"
+msgstr "متضل نیست"
 
 #: src/screens/SelectKey/WalletStatus.tsx:61
 #~ msgid "Not Synced"
@@ -329,7 +329,7 @@ msgstr "متصل نشده"
 #: src/components/AlertDialog/AlertDialog.tsx:23
 #: src/components/ConfirmDialog/ConfirmDialog.tsx:30
 msgid "OK"
-msgstr "تأیید"
+msgstr "قبول"
 
 #: src/screens/SelectKey/SelectKey.tsx:254
 msgid "Open a world of possibilities."
@@ -346,7 +346,7 @@ msgstr "کلید عمومی استخر:"
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:27
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:34
 msgid "Private key {fingerprint}"
-msgstr "کد شخصی {fingerprint}"
+msgstr "کلید شخصی {fingerprint}"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:42
 msgid "Private key:"
@@ -370,7 +370,7 @@ msgstr "مقدار پیشنهادی: 0.000005"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:71
 msgid "Release Notes"
-msgstr "یادداشت‌های انتشار"
+msgstr "یادداشت های انتشار"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:85
 msgid "Reload Application"
@@ -408,11 +408,11 @@ msgstr "کلید مخفی"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:131
 msgid "Seed Phrase"
-msgstr "کلمات رمز"
+msgstr "عبارات کلمه"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:76
 msgid "Seed:"
-msgstr "بذر:"
+msgstr "کلمات:"
 
 #: src/screens/SelectKey/SelectKey.tsx:134
 #~ msgid "Select Key"
@@ -475,7 +475,7 @@ msgstr "این کلید برای کیف پول استفاده شده است و �
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:108
 msgid "This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
-msgstr "این کلید برای دریافت پاداش فارم شما استفاده شده است. با حذف کلید دسترسی به پاداشهای بعدی را از دست میدهید"
+msgstr "این کلید برای دریافت پاداش استخر فارم شما استفاده شده است. با حذف کلید دسترسی به پاداشهای بعدی استخر را از دست میدهید"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:117
 msgid "This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
@@ -520,7 +520,7 @@ msgstr "تغییرات ذخیره نشده"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:61
 msgid "Using a passphrase is strongly recommended to protect your keys. Are you sure you want to disable passphrase protection?"
-msgstr "یک رمز ورود برای محافظت از کلیدهای شما قویا توصیه میشود. آیا مطمئن هستید که میخواهید از رمز ورود صرفنظر کنید؟"
+msgstr "تنظیم یک رمز ورود برای محافظت از کلیدهای شما اکیداً توصیه میشود. آیا مطمئن هستید که میخواهید از تنظبم رمز عبور صرفنظر کنید؟"
 
 #: src/components/Fee/Fee.tsx:24
 msgid "Value seems high"
@@ -538,7 +538,7 @@ msgstr "کیف پول {0}"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:149
 msgid "Wallet Fingerprint"
-msgstr "کدهای شحصی کیف پول"
+msgstr "کلمات کد کیف پول"
 
 #: src/screens/SelectKey/SelectKey.tsx:219
 msgid "Wallet Keys"
@@ -568,5 +568,5 @@ msgstr "نسخه فعلی شما:"
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:20
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
-msgstr "کلیدهای شما به یک کلید جدید منتقل نشده. تا زمانی که انتقال کامل نشود، نمیتوانید کلیدهای جدید ایجاد کنید یا کلیدهای موجود را حذف کنید. آیا میخواهید کلیدهای خود را اکنون انتقال دهید؟"
+msgstr "کلیدهای شما به یک کلید جدید منتقل نشده. تا زمانی که انتقال کامل نشود، نمی‌توانید کلیدهای جدید ایجاد کنید یا کلیدهای موجود را حذف کنید. آیا میخواهید کلیدهای خود را اکنون انتقال دهید؟"
 
