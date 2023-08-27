@@ -15,8 +15,8 @@ msgstr ""
 "X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "X-Crowdin-Project-ID: 1\n"
 "X-Crowdin-Language: pt\n"
-"X-Crowdin-File: messages.po\n"
-"X-Crowdin-File-ID: 2667\n"
+"X-Crowdin-File: /main/packages/core/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 15\n"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:61
 msgid "(>5 min)"
@@ -90,7 +90,7 @@ msgstr ""
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:47
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:70
 msgid "Close"
-msgstr "Fechar"
+msgstr ""
 
 #: src/components/FormatConnectionStatus/FormatConnectionStatus.tsx:32
 msgid "Connected"
@@ -182,11 +182,11 @@ msgstr ""
 
 #: src/components/LayoutMain/LayoutFooter.tsx:48
 msgid "FAQ"
-msgstr ""
+msgstr "FAQ"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:90
 msgid "Farmer Public Key"
-msgstr "Chave pública do Farmer"
+msgstr ""
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:58
 msgid "Farmer public key:"
@@ -328,7 +328,7 @@ msgstr "Não conectado"
 #: src/components/AlertDialog/AlertDialog.tsx:23
 #: src/components/ConfirmDialog/ConfirmDialog.tsx:30
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: src/screens/SelectKey/SelectKey.tsx:254
 msgid "Open a world of possibilities."
@@ -336,7 +336,7 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:98
 msgid "Pool Public Key"
-msgstr "Chave Pública da Pool"
+msgstr ""
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:66
 msgid "Pool public key:"
@@ -394,7 +394,7 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKeyRenameForm.tsx:109
 msgid "Save"
-msgstr "Salvar"
+msgstr ""
 
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:170
 #: src/screens/SelectKey/Search.tsx:34
@@ -433,7 +433,7 @@ msgstr ""
 #: src/components/Settings/Settings.tsx:49
 #: src/components/Settings/Settings.tsx:59
 msgid "Settings"
-msgstr "Configurações"
+msgstr ""
 
 #: src/components/AdvancedOptions/AdvancedOptions.tsx:26
 msgid "Show Advanced Options"
