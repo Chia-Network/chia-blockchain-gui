@@ -15,8 +15,8 @@ msgstr ""
 "X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "X-Crowdin-Project-ID: 1\n"
 "X-Crowdin-Language: fi\n"
-"X-Crowdin-File: messages.po\n"
-"X-Crowdin-File-ID: 2667\n"
+"X-Crowdin-File: /main/packages/core/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 15\n"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:61
 msgid "(>5 min)"
@@ -48,7 +48,7 @@ msgstr "Lisää Lompakko"
 
 #: src/components/Amount/Amount.tsx:36
 msgid "Amount"
-msgstr "Summa"
+msgstr "Määrä"
 
 #: src/components/Settings/SettingsApp.tsx:93
 msgid "Appearance"
@@ -62,7 +62,7 @@ msgstr "Oletko varma, että haluat jatkaa? Kirjoita tämän lompakon sormenjälk
 #: src/screens/SelectKey/SelectKey.tsx:127
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:156
 msgid "Back"
-msgstr "Takaisin"
+msgstr "Palaa"
 
 #: src/components/ConfirmDialog/ConfirmDialog.tsx:29
 #: src/hooks/useKeyringMigrationPrompt.tsx:17
@@ -80,7 +80,7 @@ msgstr "Tarkistetaan päivityksiä..."
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:82
 msgid "Chia {latestVersion} is currently the latest version available."
-msgstr "Chia {latestVersion} on tällä hetkellä uusin käytettävissä oleva versio."
+msgstr "Chia {latestVersion} on tällä hetkellä uusin versio."
 
 #: src/components/Settings/SettingsApp.tsx:125
 msgid "Chia Application Version:"
@@ -182,11 +182,11 @@ msgstr "Poistu"
 
 #: src/components/LayoutMain/LayoutFooter.tsx:48
 msgid "FAQ"
-msgstr "UKK"
+msgstr "USEIN KYSYTTYÄ"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:90
 msgid "Farmer Public Key"
-msgstr "Farmarin Julkinen Avain"
+msgstr "Farmarin julkinen avain"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:58
 msgid "Farmer public key:"
@@ -194,13 +194,13 @@ msgstr "Farmarin julkinen avain:"
 
 #: src/components/Settings/SettingsApp.tsx:78
 msgid "Farming"
-msgstr "Farmaroidaan"
+msgstr "Farmarointi"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:333
 #: src/components/EstimatedFee/EstimatedFee.tsx:367
 #: src/components/Fee/Fee.tsx:44
 msgid "Fee"
-msgstr "Veloitus"
+msgstr "Maksu"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:80
 msgid "Fingerprint does not match"
@@ -494,7 +494,7 @@ msgstr "Tapahtuma on lähetetty noodille ja odottaa sisällyttämistä mempoolii
 
 #: src/utils/getTransactionResult.ts:24
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
-msgstr "Transaktio on onnistuneesti lähetetty noodille ja sisällytetty mempooliin."
+msgstr "Tapahtuma on onnistuneesti lähetetty noodille ja sisällytetty mempooliin."
 
 #: src/screens/SelectKey/SelectKey.tsx:239
 msgid "Try Again"
@@ -528,7 +528,7 @@ msgstr "Arvo vaikuttaa suurelta"
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:270
 #: src/components/Settings/SettingsApp.tsx:86
 msgid "Wallet"
-msgstr "Lompakot"
+msgstr "Lompakko"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:63
 #: src/screens/SelectKey/SelectKeyItem.tsx:233
