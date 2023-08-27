@@ -8,7 +8,7 @@ msgstr ""
 "Language: sk_SK\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-08-27 14:37\n"
+"PO-Revision-Date: 2023-08-27 15:37\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 3;\n"
@@ -21,17 +21,17 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/components/nfts/NFTBurnDialog.tsx:132
 msgid "Do you want to burn {count} NFTs?"
-msgstr ""
+msgstr "Chcete spáliť {count} NFT?"
 
 #. js-lingui-explicit-id
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:184
 msgid "{count} transactions have been successfully submitted to the blockchain."
-msgstr ""
+msgstr "{count} transakcií bolo úspešne odoslaných do blockchainu."
 
 #. js-lingui-explicit-id
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:191
 msgid "{count} NFTs failed to move."
-msgstr ""
+msgstr "{count} NFT sa nepodarilo presunúť."
 
 #. js-lingui-explicit-id
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:382
@@ -92,7 +92,7 @@ msgstr "Nástroje pre vývojárov"
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:660
 msgid "Trigger Desktop Notification"
-msgstr ""
+msgstr "Spustiť upozornenie na pracovnej ploche"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:689
@@ -251,7 +251,7 @@ msgstr "{mojos, plural, one {mojo} few {mojos} many {mojos} other {mojos}}"
 
 #: src/components/offers2/OfferBuilderValue.tsx:174
 msgid "{type} is not supported"
-msgstr ""
+msgstr "{type} nie je podporovaný"
 
 #: src/components/nfts/NFTRankings.tsx:46
 msgid "{value} of {max_value}"
@@ -271,7 +271,7 @@ msgstr "+ Pridať nové NFT poľa"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:300
 msgid "<0>Loading...</0> {0}%"
-msgstr ""
+msgstr "<0>Načítava sa...</0> {0}%"
 
 #: src/components/settings/ProfileAdd.tsx:80
 #~ msgid "<0>Need some XCH?</0>"
@@ -330,7 +330,7 @@ msgstr "Akcie"
 
 #: src/components/walletConnect/WalletConnectActiveSessions.tsx:24
 msgid "Active Sessions"
-msgstr ""
+msgstr "Aktívne relácie"
 
 #: src/components/notification/NotificationsDropdown.tsx:38
 #: src/components/notification/NotificationsDropdown.tsx:45
@@ -360,7 +360,7 @@ msgstr "Pridať NFT poľa"
 
 #: src/constants/WalletConnectCommands.tsx:545
 msgid "Add CAT Token"
-msgstr ""
+msgstr "Pridať CAT token"
 
 #: src/components/offers/OfferAssetSelector.tsx:144
 msgid "Add CAT wallets to have more options"
@@ -368,7 +368,7 @@ msgstr "Pridajte CAT peňaženky, aby ste mali viac možností"
 
 #: src/components/walletConnect/WalletConnectConnections.tsx:105
 msgid "Add Connection"
-msgstr ""
+msgstr "Pridať pripojenie"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:114
 msgid "Add plot directory"
@@ -384,7 +384,7 @@ msgstr "Pridať pole do fronty"
 
 #: src/constants/WalletConnectCommands.tsx:885
 msgid "Add Proofs"
-msgstr ""
+msgstr "Pridať dôkazy"
 
 #: src/constants/WalletConnectCommands.tsx:844
 msgid "Add Proofs To Verifiable Credential"
@@ -495,16 +495,16 @@ msgstr "Pôvod NFT je úplným záznamom histórie jeho vlastníctva. Poskytuje 
 
 #: src/components/notification/NotificationAnnouncementDialog.tsx:35
 msgid "Announcement"
-msgstr ""
+msgstr "Oznámenie"
 
 #: src/components/settings/SettingsIntegration.tsx:212
 msgid "App Permissions"
-msgstr ""
+msgstr "Povolenia aplikácie"
 
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:121
 #: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:91
 msgid "Application"
-msgstr ""
+msgstr "Aplikácia"
 
 #: src/components/walletConnect/WalletConnectActiveSessions.tsx:31
 msgid "Application doesn't have any active pair."
@@ -1801,7 +1801,7 @@ msgstr "Celý uzol"
 
 #: src/components/fullNode/FullNodeConnections.tsx:89
 msgid "Full Node Connections"
-msgstr ""
+msgstr "Pripojenia k sieti"
 
 #: src/electron/main.tsx:1022
 #~ msgid "Full Screen"
