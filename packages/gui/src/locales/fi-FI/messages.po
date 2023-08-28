@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-08-28 15:07\n"
+"PO-Revision-Date: 2023-08-28 16:07\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -184,7 +184,7 @@ msgstr "(Ei asennettu)"
 
 #: src/components/plot/add/PlotAddChooseKeys.tsx:64
 msgid "(Not recommended) Used to create an old style plot for solo farming."
-msgstr ""
+msgstr "(Ei suositella) Käytetään vanhanmallisen plottitiedoston tekoon yksinfarmattavaksi."
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:61
 msgid "(Not Supported)"
@@ -209,7 +209,7 @@ msgstr "{0}"
 
 #: src/components/addressbook/ContactSummary.tsx:155
 msgid "{0} {1}"
-msgstr ""
+msgstr "{0} {1}"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:169
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:201
@@ -271,15 +271,15 @@ msgstr "{warning}"
 
 #: src/components/settings/SettingsHarvester.tsx:534
 msgid "* Disabled - use device at specified index if available; if not, attempt to use device at other indices; if no GPUs available, use CPU"
-msgstr ""
+msgstr "* Pois käytöstä - käytä laitetta määrätyssä indeksissä, jos käytettävissä; jos ei, yritä käyttää laitetta muissa indekseissä; jos GPU ei saatavilla, käytä CPU:ta"
 
 #: src/components/settings/SettingsHarvester.tsx:532
 msgid "* Enabled - use device at specified index if available; else error"
-msgstr ""
+msgstr "* Käytössä - käytä laitetta määritetyssä indeksissä, jos käytettävissä; muuten virhe"
 
 #: src/components/settings/SettingsHarvester.tsx:344
 msgid "*Usually it takes seconds to complete restarting."
-msgstr ""
+msgstr "*Yleensä täydellinen uudelleenkäynnistys kestää sekunteja."
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:41
 msgid "+ Add a Plot"
@@ -392,7 +392,7 @@ msgstr "Lisää Yhteys"
 
 #: src/components/addressbook/AddressBookSideBar.tsx:128
 msgid "Add Contact"
-msgstr ""
+msgstr "Lisää Yhteystieto"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:114
 msgid "Add plot directory"
@@ -432,7 +432,7 @@ msgstr "Osoite"
 #: src/components/addressbook/ContactAdd.tsx:30
 #: src/components/addressbook/ContactEdit.tsx:33
 msgid "Addresses"
-msgstr ""
+msgstr "Osoite"
 
 #: src/components/settings/SettingsAdvanced.tsx:45
 msgid "Advanced"
