@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-08-28 15:08\n"
+"PO-Revision-Date: 2023-08-28 16:07\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -209,7 +209,7 @@ msgstr "{0}"
 
 #: src/components/addressbook/ContactSummary.tsx:155
 msgid "{0} {1}"
-msgstr ""
+msgstr "{0} {1}"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:169
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:201
@@ -392,7 +392,7 @@ msgstr "添加连接"
 
 #: src/components/addressbook/AddressBookSideBar.tsx:128
 msgid "Add Contact"
-msgstr ""
+msgstr "添加联系人"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:114
 msgid "Add plot directory"
@@ -432,7 +432,7 @@ msgstr "地址"
 #: src/components/addressbook/ContactAdd.tsx:30
 #: src/components/addressbook/ContactEdit.tsx:33
 msgid "Addresses"
-msgstr ""
+msgstr "地址"
 
 #: src/components/settings/SettingsAdvanced.tsx:45
 msgid "Advanced"
@@ -701,7 +701,7 @@ msgstr "奇亚区块链上高度为 {0} 的区块"
 
 #: src/components/farm/card/FarmingRewardsHistoryCards.tsx:61
 msgid "Block Fee"
-msgstr ""
+msgstr "区块手续费"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:32
 #~ msgid "Block Rewards"
@@ -726,7 +726,7 @@ msgstr "区块"
 #: src/components/farm/card/FarmingRewardsHistoryCards.tsx:87
 #: src/components/farm/card/FarmingRewardsHistoryCards.tsx:90
 msgid "Blocks won"
-msgstr ""
+msgstr "获得的区块"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:80
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:78
@@ -889,11 +889,11 @@ msgstr "选择耕种模式"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:84
 msgid "Choose K value"
-msgstr ""
+msgstr "选择K值"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:84
 msgid "Choose K value and compression level"
-msgstr ""
+msgstr "选择K值和压缩等级"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:41
 #~ msgid "Choose Number of Plots"
@@ -982,15 +982,15 @@ msgstr "收藏"
 
 #: src/components/settings/SettingsHarvester.tsx:433
 msgid "Compressed plot support"
-msgstr ""
+msgstr "压缩地块支持"
 
 #: src/components/harvest/HarvesterPlotDetails.tsx:132
 msgid "Compression"
-msgstr ""
+msgstr "压缩"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:121
 msgid "Compression level"
-msgstr ""
+msgstr "压缩等级"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:167
 #: src/components/vcs/VCRevokeDialog.tsx:27
@@ -1076,12 +1076,12 @@ msgstr "连接类型"
 #: src/components/addressbook/ContactAdd.tsx:343
 #: src/components/addressbook/ContactEdit.tsx:358
 msgid "Contact Name"
-msgstr ""
+msgstr "联系人名称"
 
 #: src/components/addressbook/AddressBookSideBar.tsx:124
 #: src/components/dashboard/DashboardSideBar.tsx:73
 msgid "Contacts"
-msgstr ""
+msgstr "联系人"
 
 #: src/components/nfts/NFTHashStatus.tsx:109
 msgid "Content does not match the expected hash value that was specified during NFT minting. The content may have been modified."
@@ -1176,7 +1176,7 @@ msgstr "创建报价"
 
 #: src/components/addressbook/ContactAdd.tsx:271
 msgid "Create Contact"
-msgstr ""
+msgstr "新建联系人"
 
 #: src/components/offers2/CreateOfferBuilder.tsx:151
 msgid "Create Counter Offer"
@@ -1221,7 +1221,7 @@ msgstr "在区块链上创建和提交一个取消报价的交易"
 
 #: src/components/addressbook/ContactAdd.tsx:274
 msgid "Creating a contact enables you to keep track of people who you know and store information such as their DIDs, Profile NFT or Websites."
-msgstr ""
+msgstr "创建一个联系人使您能够跟踪您认识的人，并存储诸如他们的DID、个人资料NFT或网站等信息。"
 
 #: src/components/settings/ProfileAdd.tsx:130
 msgid "Creating a profile requires 1 mojo"
@@ -1310,7 +1310,7 @@ msgstr "日期"
 
 #: src/components/settings/SettingsHarvester.tsx:472
 msgid "Decompressor Thread Count"
-msgstr ""
+msgstr "解压线程数"
 
 #: src/components/settings/SettingsCustody.tsx:41
 msgid "Default claw back time for outgoing XCH transactions"
@@ -1341,11 +1341,11 @@ msgstr "删除"
 
 #: src/components/addressbook/ContactSummary.tsx:41
 msgid "Delete contact"
-msgstr ""
+msgstr "删除联系人"
 
 #: src/components/addressbook/ContactSummary.tsx:175
 msgid "Delete Contact"
-msgstr ""
+msgstr "删除联系人"
 
 #: src/components/app/AppPassPrompt.tsx:107
 msgid "Delete Key"
@@ -1527,12 +1527,12 @@ msgstr "当前机器是否支持并行生成？"
 #: src/components/addressbook/ContactAdd.tsx:174
 #: src/components/addressbook/ContactEdit.tsx:177
 msgid "Domain"
-msgstr ""
+msgstr "域名"
 
 #: src/components/addressbook/ContactAdd.tsx:146
 #: src/components/addressbook/ContactEdit.tsx:149
 msgid "Domain Names"
-msgstr ""
+msgstr "域名名称"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:455
 msgid "Don't allocate host tables using pinned buffers, instead download to intermediate pinned buffers then copy to the final host buffer."
@@ -1588,7 +1588,7 @@ msgstr "复制"
 
 #: src/components/harvest/HarvesterOverview.tsx:204
 msgid "Duplicate plots"
-msgstr ""
+msgstr "重复地块"
 
 #: src/components/plot/card/PlotCardPlotsDuplicate.tsx:11
 msgid "Duplicate Plots"
@@ -1596,7 +1596,7 @@ msgstr "重复地块"
 
 #: src/components/harvest/HarvesterDetail.tsx:123
 msgid "Earned"
-msgstr ""
+msgstr "已赚取"
 
 #: src/electron/main.tsx:950
 #~ msgid "Edit"
@@ -1605,7 +1605,7 @@ msgstr ""
 #: src/components/addressbook/ContactEdit.tsx:292
 #: src/components/addressbook/ContactSummary.tsx:167
 msgid "Edit Contact"
-msgstr ""
+msgstr "编辑联系人"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:224
 #: src/components/plotNFT/PlotNFTCard.tsx:252
@@ -1628,7 +1628,7 @@ msgstr "总版数"
 
 #: src/components/harvest/HarvesterDetail.tsx:159
 msgid "Effective Space"
-msgstr ""
+msgstr "有效空间"
 
 #: src/components/harvest/HarvesterOverview.tsx:195
 msgid "Eligible plots per signage point"
@@ -1636,7 +1636,7 @@ msgstr ""
 
 #: src/components/addressbook/ContactAdd.tsx:293
 msgid "Emoji"
-msgstr ""
+msgstr "表情符号"
 
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:75
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:63
@@ -1841,7 +1841,7 @@ msgstr "失败"
 
 #: src/components/dashboard/DashboardSideBar.tsx:93
 msgid "Farm"
-msgstr ""
+msgstr "耕种"
 
 #: src/components/farm/FarmHealth.tsx:386
 msgid "Farm Health"
@@ -2825,7 +2825,7 @@ msgstr "多选"
 #: src/components/addressbook/AddressBookSideBar.tsx:160
 #: src/components/addressbook/MyContact.tsx:112
 msgid "My Contact Info"
-msgstr ""
+msgstr "我的联系方式"
 
 #: src/components/settings/ProfileView.tsx:90
 msgid "My DID"
@@ -3018,7 +3018,7 @@ msgstr "没有已连接的应用程序"
 
 #: src/components/addressbook/AddressBookSideBar.tsx:89
 msgid "No Contacts"
-msgstr ""
+msgstr "没有联系人"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:397
 msgid "No CPU Affinity"
@@ -3910,7 +3910,7 @@ msgstr "个人资料名称 (可选)"
 #: src/components/addressbook/ContactAdd.tsx:88
 #: src/components/addressbook/ContactEdit.tsx:91
 msgid "Profiles"
-msgstr ""
+msgstr "个人资料"
 
 #: src/components/settings/SettingsProfiles.tsx:50
 msgid "Profiles (DIDs)"
@@ -4865,7 +4865,7 @@ msgstr "该区块中的总交易手续费。将奖励给矿工。"
 
 #: src/components/addressbook/ContactEdit.tsx:308
 msgid "Theme"
-msgstr ""
+msgstr "主题"
 
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:91
 msgid "These are the instructions for how the farmer wants to get paid. By default this will be an XCH address, but it can be set to any string with a size of less than 1024 characters, so it can represent another blockchain or payment system identifier."
@@ -5294,7 +5294,7 @@ msgstr "解锁钥匙串"
 
 #: src/components/addressbook/AddressBookMenuItem.tsx:50
 msgid "Unnamed Contact"
-msgstr ""
+msgstr "未命名联系人"
 
 #: src/components/offers/NFTOfferViewer.tsx:142
 msgid "Unrecognized asset"
