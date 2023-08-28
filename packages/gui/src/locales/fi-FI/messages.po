@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-08-28 16:07\n"
+"PO-Revision-Date: 2023-08-28 17:12\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -572,7 +572,7 @@ msgstr "Oletko varma, että haluat siirtää tämän NFT:n määriteltyyn profii
 
 #: src/components/addressbook/ContactSummary.tsx:46
 msgid "Are you sure you want to permanently delete this contact? Once deleted, this contact cannot be recovered."
-msgstr ""
+msgstr "Oletko varma, että haluat poistaa yhteystiedon pysyvästi? Kun yhteystieto on poistettu, sitä ei voi palauttaa."
 
 #: src/electron/main.tsx:816
 #~ msgid "Are you sure you want to quit?"
@@ -656,7 +656,7 @@ msgstr "Automaattisesti luotu nimi poolin sopimusosoitteesta"
 
 #: src/components/harvest/HarvesterLatency.tsx:108
 msgid "Avg"
-msgstr ""
+msgstr "Keskim."
 
 #: src/components/offers/NFTOfferViewer.tsx:633
 msgid "Back"
@@ -701,7 +701,7 @@ msgstr "Lohko korkeudessa {0} Chian lohkoketjussa"
 
 #: src/components/farm/card/FarmingRewardsHistoryCards.tsx:61
 msgid "Block Fee"
-msgstr ""
+msgstr "Lohkon Maksu"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:32
 #~ msgid "Block Rewards"
@@ -726,7 +726,7 @@ msgstr "Lohkot"
 #: src/components/farm/card/FarmingRewardsHistoryCards.tsx:87
 #: src/components/farm/card/FarmingRewardsHistoryCards.tsx:90
 msgid "Blocks won"
-msgstr ""
+msgstr "Voitetut lohkot"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:80
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:78
@@ -889,11 +889,11 @@ msgstr "Valitse Farmaustila"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:84
 msgid "Choose K value"
-msgstr ""
+msgstr "Valitse K-arvo"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:84
 msgid "Choose K value and compression level"
-msgstr ""
+msgstr "Valitse K-arvo ja pakkaustaso"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:41
 #~ msgid "Choose Number of Plots"
@@ -982,15 +982,15 @@ msgstr "Kokoelma"
 
 #: src/components/settings/SettingsHarvester.tsx:433
 msgid "Compressed plot support"
-msgstr ""
+msgstr "Pakattujen plottien tuki"
 
 #: src/components/harvest/HarvesterPlotDetails.tsx:132
 msgid "Compression"
-msgstr ""
+msgstr "Pakkaus"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:121
 msgid "Compression level"
-msgstr ""
+msgstr "Pakkaustaso"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:167
 #: src/components/vcs/VCRevokeDialog.tsx:27
@@ -1076,12 +1076,12 @@ msgstr "Yhteystyyppi"
 #: src/components/addressbook/ContactAdd.tsx:343
 #: src/components/addressbook/ContactEdit.tsx:358
 msgid "Contact Name"
-msgstr ""
+msgstr "Yhteystiedon Nimi"
 
 #: src/components/addressbook/AddressBookSideBar.tsx:124
 #: src/components/dashboard/DashboardSideBar.tsx:73
 msgid "Contacts"
-msgstr ""
+msgstr "Yhteystiedot"
 
 #: src/components/nfts/NFTHashStatus.tsx:109
 msgid "Content does not match the expected hash value that was specified during NFT minting. The content may have been modified."
@@ -1133,7 +1133,7 @@ msgstr "Tarjoustietojen purkaminen ei onnistunut"
 
 #: src/constants/WalletConnectCommands.tsx:991
 msgid "Count"
-msgstr ""
+msgstr "Määrä"
 
 #: src/components/offers2/OfferIncomingTable.tsx:107
 msgid "Counter"
@@ -1176,7 +1176,7 @@ msgstr "Luo Tarjous"
 
 #: src/components/addressbook/ContactAdd.tsx:271
 msgid "Create Contact"
-msgstr ""
+msgstr "Luo Yhteystieto"
 
 #: src/components/offers2/CreateOfferBuilder.tsx:151
 msgid "Create Counter Offer"
@@ -1221,7 +1221,7 @@ msgstr "Luo ja lähettää transaktion lohkoketjuun, joka peruuttaa tarjouksen"
 
 #: src/components/addressbook/ContactAdd.tsx:274
 msgid "Creating a contact enables you to keep track of people who you know and store information such as their DIDs, Profile NFT or Websites."
-msgstr ""
+msgstr "Yhteystiedon luomisen avulla voit listata henkilöitä, jotka tunnet ja joista tallennat tietoja, kuten heidän DID:n, Profiili-NFT:n tai Webbisivustoja."
 
 #: src/components/settings/ProfileAdd.tsx:130
 msgid "Creating a profile requires 1 mojo"
@@ -1310,7 +1310,7 @@ msgstr "Päiväys"
 
 #: src/components/settings/SettingsHarvester.tsx:472
 msgid "Decompressor Thread Count"
-msgstr ""
+msgstr "Purkamisen Säikeiden Lukumäärä"
 
 #: src/components/settings/SettingsCustody.tsx:41
 msgid "Default claw back time for outgoing XCH transactions"
@@ -1341,11 +1341,11 @@ msgstr "Poista"
 
 #: src/components/addressbook/ContactSummary.tsx:41
 msgid "Delete contact"
-msgstr ""
+msgstr "Poista yhteystieto"
 
 #: src/components/addressbook/ContactSummary.tsx:175
 msgid "Delete Contact"
-msgstr ""
+msgstr "Poista Yhteystieto"
 
 #: src/components/app/AppPassPrompt.tsx:107
 msgid "Delete Key"
@@ -1440,7 +1440,7 @@ msgstr "Poista auotmaattinen säikeiden affiniteetin määrittäminen. Tämä on
 
 #: src/components/settings/SettingsHarvester.tsx:553
 msgid "Disable assigning automatic thread affinity. This is useful when you want to manually assign thread affinity."
-msgstr ""
+msgstr "Poista automaattinen säikeiden affiniteettiasetus käytöstä. Tämä on hyödyllistä, kun haluat määrittää affiniteetin manuaalisesti."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:379
 msgid "Disable automatic NUMA aware memory binding. If you set this parameter in a NUMA system you will likely get degraded performance."
@@ -1452,11 +1452,11 @@ msgstr "Kytke bitfield-plottaus pois"
 
 #: src/components/settings/SettingsHarvester.tsx:545
 msgid "Disable CPU Affinity"
-msgstr ""
+msgstr "Poista CPU-affiniteetti"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:453
 msgid "Disable direct download"
-msgstr ""
+msgstr "Poista suoralataus käytöstä"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:89
 msgid "Disable direct I/O on the temp 1 directory in order to extract maximum performance with RAM disk"
@@ -1527,12 +1527,12 @@ msgstr "Tukeeko tietokoneesi rinnakkaisplottausta?"
 #: src/components/addressbook/ContactAdd.tsx:174
 #: src/components/addressbook/ContactEdit.tsx:177
 msgid "Domain"
-msgstr ""
+msgstr "Toimialue"
 
 #: src/components/addressbook/ContactAdd.tsx:146
 #: src/components/addressbook/ContactEdit.tsx:149
 msgid "Domain Names"
-msgstr ""
+msgstr "Toimialuenimet"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:455
 msgid "Don't allocate host tables using pinned buffers, instead download to intermediate pinned buffers then copy to the final host buffer."
@@ -1588,7 +1588,7 @@ msgstr "Duplikaatti"
 
 #: src/components/harvest/HarvesterOverview.tsx:204
 msgid "Duplicate plots"
-msgstr ""
+msgstr "Duplikaattiplotit"
 
 #: src/components/plot/card/PlotCardPlotsDuplicate.tsx:11
 msgid "Duplicate Plots"
@@ -1596,7 +1596,7 @@ msgstr "Duplikaattiplotit"
 
 #: src/components/harvest/HarvesterDetail.tsx:123
 msgid "Earned"
-msgstr ""
+msgstr "Saatu"
 
 #: src/electron/main.tsx:950
 #~ msgid "Edit"
@@ -1605,7 +1605,7 @@ msgstr ""
 #: src/components/addressbook/ContactEdit.tsx:292
 #: src/components/addressbook/ContactSummary.tsx:167
 msgid "Edit Contact"
-msgstr ""
+msgstr "Muokkaa Yhteystietoa"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:224
 #: src/components/plotNFT/PlotNFTCard.tsx:252
@@ -1628,11 +1628,11 @@ msgstr "Painos Yhteensä"
 
 #: src/components/harvest/HarvesterDetail.tsx:159
 msgid "Effective Space"
-msgstr ""
+msgstr "Tehollinen Plottitila"
 
 #: src/components/harvest/HarvesterOverview.tsx:195
 msgid "Eligible plots per signage point"
-msgstr ""
+msgstr "Hyväksyty plotit merkkipistettä kohti"
 
 #: src/components/addressbook/ContactAdd.tsx:293
 msgid "Emoji"
