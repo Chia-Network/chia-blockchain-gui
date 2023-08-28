@@ -1,4 +1,4 @@
-import api, { store, useGetLoggedInFingerprintQuery } from '@chia-network/api-react';
+import api, { store, useGetLoggedInFingerprintQuery, useLocalStorage } from '@chia-network/api-react';
 import { useOpenDialog, useAuth } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import debug from 'debug';
@@ -79,6 +79,8 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
   const { allowConfirmationFingerprintChange } = useWalletConnectPreferences();
 
   const isLoading = isLoadingLoggedInFingerprint;
+
+  const [bypassReadonlyCommands] = useLocalStorage('bypass-readonly-commands', false);
 
   async function confirm(props: {
     topic: string;
@@ -172,24 +174,31 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
       values = newValues;
     }
 
-    const confirmed = await confirm({
-      topic,
-      message:
-        !allFingerprints && isDifferentFingerprint ? (
-          <Trans>
-            Do you want to log in to {fingerprint} and execute command {command}?
-          </Trans>
-        ) : (
-          <Trans>Do you want to execute command {command}?</Trans>
-        ),
-      params: definitionParams,
-      values,
-      fingerprint,
-      isDifferentFingerprint,
-      command,
-      bypassConfirm,
-      onChange: handleChangeParam,
-    });
+    const isReadOnly =
+      ['spend', 'cancel', 'create', 'transfer', 'send', 'take', 'add', 'set'].filter(
+        (startsWith: string) => command.indexOf(startsWith) === 0
+      ).length === 0;
+
+    const confirmed =
+      (bypassReadonlyCommands && isReadOnly) ||
+      (await confirm({
+        topic,
+        message:
+          !allFingerprints && isDifferentFingerprint ? (
+            <Trans>
+              Do you want to log in to {fingerprint} and execute command {command}?
+            </Trans>
+          ) : (
+            <Trans>Do you want to execute command {command}?</Trans>
+          ),
+        params: definitionParams,
+        values,
+        fingerprint,
+        isDifferentFingerprint,
+        command,
+        bypassConfirm,
+        onChange: handleChangeParam,
+      }));
 
     if (!confirmed) {
       throw new Error(`User cancelled command ${requestedCommand}`);

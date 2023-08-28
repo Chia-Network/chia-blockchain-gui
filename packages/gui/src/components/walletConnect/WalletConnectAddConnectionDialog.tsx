@@ -1,4 +1,4 @@
-import { useGetKeysQuery, useGetLoggedInFingerprintQuery, usePrefs } from '@chia-network/api-react';
+import { useGetKeysQuery, useGetLoggedInFingerprintQuery, usePrefs, useLocalStorage } from '@chia-network/api-react';
 import {
   ButtonLoading,
   DialogActions,
@@ -51,6 +51,7 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
   const { onClose = () => {}, open = false } = props;
 
   const [step, setStep] = useState<Step>(Step.CONNECT);
+  const [bypassReadonlyCommands, toggleBypassReadonlyCommands] = useLocalStorage('bypass-readonly-commands', false);
   const { pair, isLoading: isLoadingWallet } = useWalletConnectContext();
   const { data: keys, isLoading: isLoadingPublicKeys } = useGetKeysQuery({});
   const [sortedWallets] = usePrefs('sortedWallets', []);
@@ -212,6 +213,23 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
     return null;
   }
 
+  function renderQuietModeOption() {
+    return (
+      <Flex
+        sx={{ cursor: 'pointer' }}
+        alignItems="center"
+        onClick={() => {
+          toggleBypassReadonlyCommands(!bypassReadonlyCommands);
+        }}
+      >
+        <Checkbox checked={bypassReadonlyCommands} disableRipple sx={{ paddingLeft: 0 }} />
+        <Typography variant="body2">
+          <Trans>Bypass confirmation for all read-only commands</Trans>
+        </Typography>
+      </Flex>
+    );
+  }
+
   return (
     <Dialog onClose={handleClose} maxWidth="xs" open={open} fullWidth>
       <DialogTitle>
@@ -259,6 +277,7 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
                     {renderSelectedAsPills()}
                   </Flex>
                   {renderKeysMultiSelect()}
+                  {renderQuietModeOption()}
                 </Flex>
               )}
             </Flex>
