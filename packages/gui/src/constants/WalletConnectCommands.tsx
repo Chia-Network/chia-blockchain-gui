@@ -472,25 +472,6 @@ const walletConnectCommands: WalletConnectCommand[] = [
 
   // CAT
   {
-    command: 'createNewCATWallet',
-    label: <Trans>Create new CAT Wallet</Trans>,
-    service: ServiceName.WALLET,
-    params: [
-      {
-        name: WalletConnectCommandParamName.AMOUNT,
-        label: <Trans>Amount</Trans>,
-        type: 'BigNumber',
-        displayComponent: (value) => <MojoToChia value={value} />,
-      },
-      {
-        name: WalletConnectCommandParamName.FEE,
-        label: <Trans>Fee</Trans>,
-        type: 'BigNumber',
-        displayComponent: (value) => <MojoToChia value={value} />,
-      },
-    ],
-  },
-  {
     command: 'getCATWalletInfo',
     label: <Trans>Get CAT Wallet Info</Trans>,
     service: ServiceName.WALLET,
