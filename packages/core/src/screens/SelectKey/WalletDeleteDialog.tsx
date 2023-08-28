@@ -1,4 +1,9 @@
-import { useCheckDeleteKeyMutation, useDeleteKeyMutation, useGetKeyringStatusQuery } from '@chia-network/api-react';
+import {
+  useCheckDeleteKeyMutation,
+  useDeleteKeyMutation,
+  useGetKeyringStatusQuery,
+  usePrefs,
+} from '@chia-network/api-react';
 import { Trans, t } from '@lingui/macro';
 import { Button, Dialog, DialogTitle, DialogContent, Alert, Typography } from '@mui/material';
 import React, { useEffect } from 'react';
@@ -25,6 +30,8 @@ export type WalletDeleteDialogProps = {
 
 export default function WalletDeleteDialog(props: WalletDeleteDialogProps) {
   const { fingerprint, onClose = () => ({}), open = false } = props;
+
+  const [settings, setSettings] = usePrefs<LocalStorageType>('fingerprintSettings', {});
 
   const { data: keyringState, isLoading: isLoadingKeyringStatus } = useGetKeyringStatusQuery();
 
@@ -75,13 +82,17 @@ export default function WalletDeleteDialog(props: WalletDeleteDialogProps) {
   const { usedForFarmerRewards, walletBalance, usedForPoolRewards } = checkDeleteKeyData ?? {};
   const hasWarning = usedForFarmerRewards || walletBalance || usedForPoolRewards;
 
+  function removeFingerprintPrefs() {
+    delete settings[fingerprint];
+    setSettings(settings);
+  }
+
   async function handleSubmit(values: FormData) {
     if (values.fingerprint !== fingerprint.toString()) {
       throw new Error(t`Fingerprint does not match`);
     }
-
     await deleteKey({ fingerprint }).unwrap();
-
+    removeFingerprintPrefs();
     onClose?.();
   }
 
