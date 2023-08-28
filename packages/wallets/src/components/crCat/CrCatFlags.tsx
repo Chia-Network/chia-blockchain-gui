@@ -39,7 +39,6 @@ export default function CrCatFlags(props: Props) {
           vcs.vcRecords.forEach((vcRecord) => {
             if (vcRecord.vc.proofHash === `0x${proofHash}`) {
               // check if the VC is from the authorized provider
-              // TODO remove .map() line after backend change
               if (
                 restrictions.authorizedProviders
                   .map((provider) => (provider.startsWith('0x') ? provider : `0x${provider}`))
