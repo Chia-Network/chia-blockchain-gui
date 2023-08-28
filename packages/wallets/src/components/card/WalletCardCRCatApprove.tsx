@@ -6,7 +6,7 @@ import React, { useCallback } from 'react';
 
 import useWallet from '../../hooks/useWallet';
 import useWalletHumanValue from '../../hooks/useWalletHumanValue';
-import CrCatApprovePendingDialog from '../CrCatApprovePendingDialog';
+import CrCatApprovePendingDialog from '../crCat/CrCatApprovePendingDialog';
 
 type Props = {
   walletId: number;
