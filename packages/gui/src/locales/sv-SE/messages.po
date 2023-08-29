@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-08-29 12:42\n"
+"PO-Revision-Date: 2023-08-29 13:48\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -238,7 +238,7 @@ msgstr "{0} poäng {1} - {2} timmar sedan"
 
 #: src/components/notification/NotificationAnnouncement.tsx:52
 msgid "{from} <0>sending the message</0>"
-msgstr ""
+msgstr "{from} <0>skickar meddelandet</0>"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:432
 #~ msgid "{key} ({0})"
@@ -356,7 +356,7 @@ msgstr ""
 #: src/components/notification/NotificationsDropdown.tsx:46
 #: src/components/notification/NotificationsMenu.tsx:37
 msgid "Activity"
-msgstr ""
+msgstr "Aktivitet"
 
 #: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:46
 msgid "Add {currencyCode} from the Faucet"
@@ -427,7 +427,7 @@ msgstr ""
 #: src/constants/WalletConnectCommands.tsx:241
 #: src/constants/WalletConnectCommands.tsx:533
 msgid "Address"
-msgstr ""
+msgstr "Adress"
 
 #: src/components/addressbook/ContactAdd.tsx:30
 #: src/components/addressbook/ContactEdit.tsx:33
@@ -917,7 +917,7 @@ msgstr ""
 
 #: src/components/settings/SettingsNotifications.tsx:33
 msgid "Choose your notification settings."
-msgstr ""
+msgstr "Välj aviseringsinställningar."
 
 #: src/components/settings/SettingsCustody.tsx:65
 msgid "Claim assets sent to you automatically when the claw back time period expires."
@@ -1117,11 +1117,11 @@ msgstr ""
 
 #: src/components/notification/NotificationSendDialog.tsx:240
 msgid "Cost to send notification"
-msgstr ""
+msgstr "Kostnad för att skicka avisering"
 
 #: src/components/notification/NotificationSendDialog.tsx:238
 msgid "Cost to send notification to the NFT holder"
-msgstr ""
+msgstr "Kostnad för att skicka avisering till NFT-innehavaren"
 
 #: src/components/fullNode/FullNodeAddConnection.tsx:55
 msgid "Could not connect to host {host} on port {port}"
@@ -1221,7 +1221,7 @@ msgstr "Skapar och skickar en transaktion till blockkedjan som avbryter erbjudan
 
 #: src/components/addressbook/ContactAdd.tsx:274
 msgid "Creating a contact enables you to keep track of people who you know and store information such as their DIDs, Profile NFT or Websites."
-msgstr ""
+msgstr "Genom att skapa en kontakt kan du hålla reda på personer du känner och lagra information såsom deras DID, profil-NFT eller webbplatser."
 
 #: src/components/settings/ProfileAdd.tsx:130
 msgid "Creating a profile requires 1 mojo"
@@ -1665,7 +1665,7 @@ msgstr "Aktivera GPU-skörd"
 
 #: src/components/settings/SettingsNotifications.tsx:45
 msgid "Enable notifications"
-msgstr ""
+msgstr "Aktivera aviseringar"
 
 #: src/components/settings/SettingsHarvester.tsx:500
 msgid "Enable to use GPU for harvesting, disable to use CPU for harvesting."
@@ -1821,7 +1821,7 @@ msgstr "Det gick inte att avkoda NFT-identifierare"
 
 #: src/components/notification/NotificationSendDialog.tsx:148
 msgid "Failed to send the notification: {error}"
-msgstr ""
+msgstr "Det gick inte att skicka aviseringen: {error}"
 
 #: src/components/settings/SetPassphrasePrompt.tsx:103
 msgid "Failed to set passphrase: {0}"
@@ -2024,7 +2024,7 @@ msgstr ""
 
 #: src/components/notification/NotificationAnnouncementDialog.tsx:44
 msgid "From"
-msgstr ""
+msgstr "Från"
 
 #: src/components/app/AppStatusHeader.tsx:133
 #: src/components/dashboard/DashboardSideBar.tsx:86
@@ -2688,7 +2688,7 @@ msgstr "Meddelanden"
 #: src/constants/WalletConnectCommands.tsx:226
 #: src/constants/WalletConnectCommands.tsx:945
 msgid "Message"
-msgstr ""
+msgstr "Meddelande"
 
 #: src/constants/WalletConnectCommands.tsx:188
 #: src/constants/WalletConnectCommands.tsx:211
@@ -2697,7 +2697,7 @@ msgstr ""
 
 #: src/components/notification/utils.ts:115
 msgid "Message not available"
-msgstr ""
+msgstr "Meddelandet är inte tillgängligt"
 
 #: src/constants/WalletConnectCommands.tsx:663
 msgid "Meta Hash"
@@ -2999,7 +2999,7 @@ msgstr ""
 
 #: src/components/notification/NotificationsMenu.tsx:53
 msgid "No activities yet"
-msgstr ""
+msgstr "Inga aktiviteter ännu"
 
 #: src/components/farm/card/FarmCardLastHeightFarmed.tsx:15
 #~ msgid "No blocks farmed yet"
@@ -3134,7 +3134,7 @@ msgstr ""
 
 #: src/components/notification/NotificationSendDialog.tsx:146
 msgid "Notification has successfully been sent to a full node and included in the mempool."
-msgstr ""
+msgstr "Aviseringen har skickats till en fullständig nod och lagts till i mempoolen."
 
 #: src/components/notification/NotificationSendDialog.tsx:214
 msgid "Notification recipient's address"
@@ -3142,13 +3142,13 @@ msgstr ""
 
 #: src/components/settings/SettingsNotifications.tsx:30
 msgid "Notifications"
-msgstr ""
+msgstr "Aviseringar"
 
 #: src/components/offers/OfferShareDialog.tsx:444
 #: src/components/offers/OfferShareDialog.tsx:702
 #: src/components/offers/OfferShareDialog.tsx:824
 msgid "Notify Current Owner"
-msgstr ""
+msgstr "Meddela nuvarande ägare"
 
 #: src/constants/WalletConnectCommands.tsx:775
 msgid "Number of Backup Ids Needed"
@@ -3982,11 +3982,11 @@ msgstr "Rankningar"
 
 #: src/components/settings/SettingsNotifications.tsx:123
 msgid "Receive general announcement notifications from connected Dapps"
-msgstr ""
+msgstr "Få allmänna aviseringar från anslutna Dappar"
 
 #: src/components/settings/SettingsNotifications.tsx:94
 msgid "Receive offer notifications from connected Dapps"
-msgstr ""
+msgstr "Ta emot erbjudandeaviseringar från anslutna Dappar"
 
 #: src/components/settings/SettingsNotifications.tsx:69
 msgid "Receive push notifications when your wallet is minimized"
@@ -4277,7 +4277,7 @@ msgstr "Säkra din nyckelring med en stark lösenfras"
 
 #: src/components/notification/NotificationsMenu.tsx:63
 msgid "See All Activity"
-msgstr ""
+msgstr "Se all aktivitet"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:102
 msgid "Select 2nd Temporary Directory"
@@ -4365,13 +4365,13 @@ msgstr "Sälj en NFT"
 
 #: src/components/notification/NotificationSendDialog.tsx:311
 msgid "Send Message"
-msgstr ""
+msgstr "Skicka meddelande"
 
 #: src/components/offers/OfferShareDialog.tsx:446
 #: src/components/offers/OfferShareDialog.tsx:704
 #: src/components/offers/OfferShareDialog.tsx:826
 msgid "Send Notification"
-msgstr ""
+msgstr "Skicka avisering"
 
 #: src/components/notification/NotificationSendDialog.tsx:179
 msgid "Send offer notification"
@@ -5130,7 +5130,7 @@ msgstr ""
 
 #: src/components/notification/NotificationSendDialog.tsx:261
 msgid "Transaction Fee"
-msgstr ""
+msgstr "Transaktionsavgift"
 
 #: src/constants/WalletConnectCommands.tsx:50
 msgid "Transaction Id"
@@ -5569,7 +5569,7 @@ msgstr ""
 
 #: src/components/settings/SettingsIntegration.tsx:142
 msgid "WalletConnect enables a decentralized app on the Chia blockchain to communicate and make requests directly to a Chia wallet."
-msgstr ""
+msgstr "WalletConnect gör det möjligt för en decentraliserad app på Chia-blockkedjan att kommunicera med och göra förfrågningar direkt till en Chia-plånbok."
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:241
 msgid "WalletConnect Integration"
