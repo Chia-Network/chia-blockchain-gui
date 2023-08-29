@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-08-28 17:12\n"
+"PO-Revision-Date: 2023-08-29 17:34\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1536,7 +1536,7 @@ msgstr "Toimialuenimet"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:455
 msgid "Don't allocate host tables using pinned buffers, instead download to intermediate pinned buffers then copy to the final host buffer."
-msgstr ""
+msgstr "Älä varaa isäntätauluja käyttämällä kiinnitettyjä puskurimuisteja, vaan lataa väliaikaisesti kiinnitettyihin puskureita ja kopioi sitten lopulliseen isäntäpuskuriin."
 
 #: src/components/nfts/NFTContextualActions.tsx:446
 msgid "Download"
@@ -1636,7 +1636,7 @@ msgstr "Hyväksyty plotit merkkipistettä kohti"
 
 #: src/components/addressbook/ContactAdd.tsx:293
 msgid "Emoji"
-msgstr ""
+msgstr "Emoji"
 
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:75
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:63
@@ -1649,7 +1649,7 @@ msgstr "Salli automaattinen käynnistys"
 
 #: src/components/settings/SettingsHarvester.tsx:440
 msgid "Enable compressed plot support"
-msgstr ""
+msgstr "Ota käyttöön pakattujen plottien tuki"
 
 #: src/components/settings/SettingsDataLayer.tsx:36
 msgid "Enable DataLayer"
@@ -1661,7 +1661,7 @@ msgstr "Ota Käyttöön Tiedostonvälityksen Palvelin"
 
 #: src/components/settings/SettingsHarvester.tsx:492
 msgid "Enable GPU Harvesting"
-msgstr ""
+msgstr "Ota Käyttöön GPU-harvesteri"
 
 #: src/components/settings/SettingsNotifications.tsx:45
 msgid "Enable notifications"
@@ -1669,7 +1669,7 @@ msgstr "Ota ilmoitukset käyttöön"
 
 #: src/components/settings/SettingsHarvester.tsx:500
 msgid "Enable to use GPU for harvesting, disable to use CPU for harvesting."
-msgstr ""
+msgstr "Ota käyttöön - GPU-harvesteri, poista käytöstä - CPU-harvesteri."
 
 #: src/components/settings/SettingsVerifiableCredentials.tsx:28
 msgid "Enable Verifiable Credentials"
@@ -1682,7 +1682,7 @@ msgstr "Ota WalletConnect Käyttöön"
 
 #: src/components/settings/SettingsHarvester.tsx:408
 msgid "Enable/Disable the ability to scan all subdirectories automatically for plots"
-msgstr ""
+msgstr "Ota käyttöön/Poista käytöstä kaikkien alihakemistojen skannaus"
 
 #: src/constants/WalletConnectCommands.tsx:302
 msgid "End"
@@ -1690,7 +1690,7 @@ msgstr "Lopeta"
 
 #: src/components/settings/SettingsHarvester.tsx:524
 msgid "Enforce GPU Index"
-msgstr ""
+msgstr "Pakota GPU-indeksi"
 
 #: src/components/signVerify/SignMessage.tsx:61
 #: src/components/signVerify/SignMessage.tsx:85
@@ -1758,13 +1758,13 @@ msgstr "Esc"
 #: src/components/farm/card/FarmingRewardsCards.tsx:105
 #: src/components/farm/card/FarmingRewardsCards.tsx:115
 msgid "Estimated daily XCH"
-msgstr ""
+msgstr "Arvioitu päivittäinen XCH-määrä"
 
 #: src/components/farm/card/EstimatedEarning.tsx:65
 #: src/components/farm/card/FarmingRewardsCards.tsx:133
 #: src/components/farm/card/FarmingRewardsCards.tsx:143
 msgid "Estimated monthly XCH"
-msgstr ""
+msgstr "Arvioitu kuukausittainen XCH-määrä"
 
 #: src/components/fullNode/card/FullNodeEstimatedNetworkSpace.tsx:14
 msgid "Estimated Network Space"
@@ -1788,7 +1788,7 @@ msgstr "Jätä pois lopullinen hakemisto"
 
 #: src/components/farm/FarmHealth.tsx:246
 msgid "Expected Total plots passing filter"
-msgstr ""
+msgstr "Odotettavissa oleva filtterin läpäisevä plotittimäärä"
 
 #: src/components/vcs/VCCard.tsx:140
 msgid "Expiration"
@@ -1829,7 +1829,7 @@ msgstr "Salasanan asettaminen epäonnistui: {0}"
 
 #: src/components/settings/SettingsHarvester.tsx:170
 msgid "Failed to update Harvester config"
-msgstr ""
+msgstr "Harvesterin asetusten päivitys epäonnistui"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:127
 msgid "Failed to update passphrase: {0}"
@@ -1841,15 +1841,15 @@ msgstr "Epäonnistuminen"
 
 #: src/components/dashboard/DashboardSideBar.tsx:93
 msgid "Farm"
-msgstr ""
+msgstr "Farmi"
 
 #: src/components/farm/FarmHealth.tsx:386
 msgid "Farm Health"
-msgstr ""
+msgstr "Farmin Kunto"
 
 #: src/components/farm/FarmHeader.tsx:21
 msgid "Farm Summary"
-msgstr ""
+msgstr "Farmin Yhteenveto"
 
 #: src/components/plot/PlotStatus.tsx:29
 msgid "Farmer is not connected"
@@ -1865,7 +1865,7 @@ msgstr "Farmerin Julkinen Avain"
 
 #: src/components/plot/add/PlotAddForm.tsx:196
 msgid "Farmer public key is invalid"
-msgstr ""
+msgstr "Farmerin julkinen avain ei kelpaa"
 
 #: src/components/block/Block.jsx:215
 msgid "Farmer Puzzle Hash"
@@ -1873,7 +1873,7 @@ msgstr "Farmarin Osoitetiiviste"
 
 #: src/components/farm/card/FarmingRewardsHistoryCards.tsx:51
 msgid "Farmer Reward"
-msgstr ""
+msgstr "Farmerin Palkkio"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:131
 msgid "Farmer Reward Address"
@@ -1901,15 +1901,15 @@ msgstr "Farmaustila"
 
 #: src/components/farm/card/FarmingRewardsCards.tsx:160
 msgid "Farming Rewards"
-msgstr ""
+msgstr "Farmauspalkkiot"
 
 #: src/components/farm/card/FarmingRewardsHistoryCards.tsx:113
 msgid "Farming Rewards History"
-msgstr ""
+msgstr "Farmauspalkkiohistoria"
 
 #: src/components/farm/card/TotalSizeOfPlots.tsx:12
 msgid "Farming Space"
-msgstr ""
+msgstr "Farmaustila"
 
 #: src/components/farm/card/FarmCardStatus.tsx:15
 #: src/components/farm/card/FarmCardStatus.tsx:26
@@ -2003,7 +2003,7 @@ msgstr "Sormenjälki"
 
 #: src/constants/WalletConnectCommands.tsx:977
 msgid "Fingerprints"
-msgstr ""
+msgstr "Sormenjäljet"
 
 #: src/components/fullNode/FullNode.jsx:28
 #: src/components/fullNode/FullNode.jsx:77
@@ -2118,7 +2118,7 @@ msgstr "Hae Todennettavissa Oleva Käyttöoikeustieto"
 
 #: src/constants/WalletConnectCommands.tsx:970
 msgid "Get wallet addresses for one or more wallet keys"
-msgstr ""
+msgstr "Hae lompakko-osoitteet yhdelle tai useammalle lompakon avaimelle"
 
 #: src/constants/WalletConnectCommands.tsx:56
 msgid "Get Wallet Balance"
@@ -2152,7 +2152,7 @@ msgstr "Julkishalllinnon Tunnistetiedot"
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:474
 #: src/components/settings/SettingsHarvester.tsx:508
 msgid "GPU Device Index"
-msgstr ""
+msgstr "GPU-laiteindeksi"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:420
 msgid "Halves the temp2 cache size requirements by alternating bucket writing methods between tables."
@@ -2160,15 +2160,15 @@ msgstr "Puolittaa temp2 -välimuistin tarpeen vaihtelemalla bukettien kirjoitusm
 
 #: src/components/dashboard/DashboardSideBar.tsx:105
 msgid "Harvest"
-msgstr ""
+msgstr "Harvestoi"
 
 #: src/components/harvest/HarvesterLatency.tsx:75
 msgid "Harvester latency"
-msgstr ""
+msgstr "Harvesterin viive"
 
 #: src/components/settings/SettingsHarvester.tsx:372
 msgid "Harvester Services"
-msgstr ""
+msgstr "Harvesteripalvelut"
 
 #: src/components/harvest/HarvesterOverview.tsx:147
 msgid "Harvester Summary"
