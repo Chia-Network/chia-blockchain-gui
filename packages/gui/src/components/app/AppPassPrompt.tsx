@@ -1,6 +1,6 @@
 import { PassphrasePromptReason } from '@chia-network/api';
 import { useUnlockKeyringMutation, useGetKeyringStatusQuery } from '@chia-network/api-react';
-import { Button, Flex, TooltipIcon, useShowError, Suspender, ButtonLoading, Form, TextField } from '@chia-network/core';
+import { Button, Flex, TooltipIcon, useShowError, Loading, ButtonLoading, Form, TextField } from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
 import { KeyboardCapslock as KeyboardCapslockIcon, Visibility as VisibilityIcon } from '@mui/icons-material';
 import {
@@ -37,11 +37,7 @@ export default function AppPassPrompt(props: Props) {
     },
   });
 
-  if (isLoading) {
-    return <Suspender />;
-  }
-
-  const { userPassphraseIsSet, passphraseHint } = keyringState;
+  const { userPassphraseIsSet, passphraseHint } = keyringState ?? {};
 
   async function handleSubmit({ passphrase }: FormData): Promise<void> {
     try {
@@ -124,67 +120,73 @@ export default function AppPassPrompt(props: Props) {
           maxWidth="xs"
         >
           <DialogTitle id="form-dialog-title">{dialogTitle}</DialogTitle>
-          <Form methods={formMethods} onSubmit={formMethods.handleSubmit(handleSubmit)}>
+          {isLoading ? (
             <DialogContent>
-              <Flex flexDirection="column" gap={1}>
-                <Flex flexDirection="row" gap={1.5} alignItems="center">
-                  <TextField
-                    autoFocus
-                    color="secondary"
-                    disabled={isLoadingUnlockKeyring}
-                    margin="dense"
-                    name="passphrase"
-                    label={<Trans>Passphrase</Trans>}
-                    type={showPassphraseText ? 'text' : 'password'}
-                    InputProps={{
-                      endAdornment: (
-                        <Flex alignItems="center">
-                          <InputAdornment position="end">
-                            {showCapsLock && (
-                              <Flex>
-                                <KeyboardCapslockIcon />
-                              </Flex>
-                            )}
-                            <IconButton onClick={() => setShowPassphraseText((s) => !s)}>
-                              <VisibilityIcon />
-                            </IconButton>
-                          </InputAdornment>
-                        </Flex>
-                      ),
-                    }}
-                    fullWidth
-                  />
-                </Flex>
-                {passphraseHint && passphraseHint.length > 0 && (
-                  <Flex gap={1} alignItems="center">
-                    <Typography variant="body2" color="textSecondary">
-                      <Trans>Hint</Trans>
-                    </Typography>
-                    <TooltipIcon>
-                      <Typography variant="inherit">{passphraseHint}</Typography>
-                    </TooltipIcon>
-                  </Flex>
-                )}
-              </Flex>
+              <Loading center />
             </DialogContent>
-            <DialogActions>
-              <ButtonLoading
-                type="submit"
-                color="primary"
-                disabled={isLoadingUnlockKeyring}
-                loading={isLoadingUnlockKeyring}
-                variant="contained"
-                style={{ marginBottom: '8px', marginRight: '8px' }}
-              >
-                {submitButtonTitle}
-              </ButtonLoading>
-              {cancellable && (
-                <Button>
-                  <Trans>Cancel</Trans>
-                </Button>
-              )}
-            </DialogActions>
-          </Form>
+          ) : (
+            <Form methods={formMethods} onSubmit={formMethods.handleSubmit(handleSubmit)}>
+              <DialogContent>
+                <Flex flexDirection="column" gap={1}>
+                  <Flex flexDirection="row" gap={1.5} alignItems="center">
+                    <TextField
+                      autoFocus
+                      color="secondary"
+                      disabled={isLoadingUnlockKeyring}
+                      margin="dense"
+                      name="passphrase"
+                      label={<Trans>Passphrase</Trans>}
+                      type={showPassphraseText ? 'text' : 'password'}
+                      InputProps={{
+                        endAdornment: (
+                          <Flex alignItems="center">
+                            <InputAdornment position="end">
+                              {showCapsLock && (
+                                <Flex>
+                                  <KeyboardCapslockIcon />
+                                </Flex>
+                              )}
+                              <IconButton onClick={() => setShowPassphraseText((s) => !s)}>
+                                <VisibilityIcon />
+                              </IconButton>
+                            </InputAdornment>
+                          </Flex>
+                        ),
+                      }}
+                      fullWidth
+                    />
+                  </Flex>
+                  {passphraseHint && passphraseHint.length > 0 && (
+                    <Flex gap={1} alignItems="center">
+                      <Typography variant="body2" color="textSecondary">
+                        <Trans>Hint</Trans>
+                      </Typography>
+                      <TooltipIcon>
+                        <Typography variant="inherit">{passphraseHint}</Typography>
+                      </TooltipIcon>
+                    </Flex>
+                  )}
+                </Flex>
+              </DialogContent>
+              <DialogActions>
+                <ButtonLoading
+                  type="submit"
+                  color="primary"
+                  disabled={isLoadingUnlockKeyring}
+                  loading={isLoadingUnlockKeyring}
+                  variant="contained"
+                  style={{ marginBottom: '8px', marginRight: '8px' }}
+                >
+                  {submitButtonTitle}
+                </ButtonLoading>
+                {cancellable && (
+                  <Button>
+                    <Trans>Cancel</Trans>
+                  </Button>
+                )}
+              </DialogActions>
+            </Form>
+          )}
         </Dialog>
       </div>
     );

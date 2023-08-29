@@ -7,7 +7,7 @@ import {
   Flex,
   useValidateChangePassphraseParams,
   useOpenDialog,
-  Suspender,
+  Loading,
   Form,
   TextField,
   Checkbox,
@@ -141,11 +141,7 @@ export default function SetPassphrasePrompt(props: Props) {
     }
   };
 
-  if (isLoading) {
-    return <Suspender />;
-  }
-
-  const { canSavePassphrase, canSetPassphraseHint } = keyringState;
+  const { canSavePassphrase, canSetPassphraseHint } = keyringState ?? {};
 
   return (
     <Dialog
@@ -159,118 +155,124 @@ export default function SetPassphrasePrompt(props: Props) {
       <DialogTitle id="form-dialog-title">
         <Trans>Set Passphrase</Trans>
       </DialogTitle>
-      <Form methods={formMethods} onSubmit={formMethods.handleSubmit(handleSubmit)}>
+      {isLoading ? (
         <DialogContent>
-          <DialogContentText>
-            <Trans>Enter a strong passphrase to secure your keys:</Trans>
-          </DialogContentText>
-          <Flex flexDirection="row" gap={1.5} alignItems="center">
-            <TextField
-              autoFocus
-              disabled={isLoadingSetKeyringPassphrase}
-              color="secondary"
-              margin="dense"
-              name="passphrase"
-              label={<Trans>Passphrase</Trans>}
-              placeholder="Passphrase"
-              type={showPassphraseText1 ? 'text' : 'password'}
-              InputProps={{
-                endAdornment: (
-                  <Flex alignItems="center">
-                    <InputAdornment position="end">
-                      {showCapsLock && (
-                        <Flex>
-                          <KeyboardCapslockIcon />
-                        </Flex>
-                      )}
-                      <IconButton onClick={() => setShowPassphraseText1((s) => !s)}>
-                        <VisibilityIcon />
-                      </IconButton>
-                    </InputAdornment>
-                  </Flex>
-                ),
-              }}
-              data-testid="SetPassphrasePrompt-passphrase"
-              fullWidth
-            />
-          </Flex>
-          <Flex flexDirection="row" gap={1.5} alignItems="center">
-            <TextField
-              disabled={isLoadingSetKeyringPassphrase}
-              color="secondary"
-              margin="dense"
-              name="passphraseConfirmation"
-              label={<Trans>Confirm Passphrase</Trans>}
-              placeholder="Confirm Passphrase"
-              type={showPassphraseText2 ? 'text' : 'password'}
-              InputProps={{
-                endAdornment: (
-                  <Flex alignItems="center">
-                    <InputAdornment position="end">
-                      {showCapsLock && (
-                        <Flex>
-                          <KeyboardCapslockIcon />
-                        </Flex>
-                      )}
-                      <IconButton onClick={() => setShowPassphraseText2((s) => !s)}>
-                        <VisibilityIcon />
-                      </IconButton>
-                    </InputAdornment>
-                  </Flex>
-                ),
-              }}
-              data-testid="SetPassphrasePrompt-confirm-passphrase"
-              fullWidth
-            />
-          </Flex>
-          {!!canSetPassphraseHint && (
-            <TextField
-              disabled={isLoadingSetKeyringPassphrase}
-              color="secondary"
-              margin="dense"
-              name="passphraseHint"
-              label={<Trans>Passphrase Hint (Optional)</Trans>}
-              placeholder={t`Passphrase Hint`}
-              data-testid="SetPassphrasePrompt-hint"
-              fullWidth
-            />
-          )}
-          {!!canSavePassphrase && (
-            <Box display="flex" alignItems="center">
-              <FormControlLabel
-                control={<Checkbox disabled={isLoadingSetKeyringPassphrase} name="savePassphrase" />}
-                label={t`Save passphrase`}
-                style={{ marginRight: '8px' }}
-                data-testid="SetPassphrasePrompt-save-passphrase"
-              />
-              <Tooltip
-                title={t`Your passphrase can be stored in your system's secure credential store. Chia will be able to access your keys without prompting for your passphrase.`}
-              >
-                <HelpIcon style={{ color: Color.Neutral[300], fontSize: 12 }} />
-              </Tooltip>
-            </Box>
-          )}
+          <Loading center />
         </DialogContent>
-        <DialogActions>
-          <Button
-            disabled={isLoadingSetKeyringPassphrase}
-            onClick={handleCancel}
-            variant="outlined"
-            data-testid="SetPassphrasePrompt-cancel"
-          >
-            <Trans>Cancel</Trans>
-          </Button>
-          <Button
-            disabled={isLoadingSetKeyringPassphrase}
-            type="submit"
-            color="primary"
-            variant="contained"
-            data-testid="SetPassphrasePrompt-set-passphrase"
-          >
-            <Trans>Set Passphrase</Trans>
-          </Button>
-        </DialogActions>
-      </Form>
+      ) : (
+        <Form methods={formMethods} onSubmit={formMethods.handleSubmit(handleSubmit)}>
+          <DialogContent>
+            <DialogContentText>
+              <Trans>Enter a strong passphrase to secure your keys:</Trans>
+            </DialogContentText>
+            <Flex flexDirection="row" gap={1.5} alignItems="center">
+              <TextField
+                autoFocus
+                disabled={isLoadingSetKeyringPassphrase}
+                color="secondary"
+                margin="dense"
+                name="passphrase"
+                label={<Trans>Passphrase</Trans>}
+                placeholder="Passphrase"
+                type={showPassphraseText1 ? 'text' : 'password'}
+                InputProps={{
+                  endAdornment: (
+                    <Flex alignItems="center">
+                      <InputAdornment position="end">
+                        {showCapsLock && (
+                          <Flex>
+                            <KeyboardCapslockIcon />
+                          </Flex>
+                        )}
+                        <IconButton onClick={() => setShowPassphraseText1((s) => !s)}>
+                          <VisibilityIcon />
+                        </IconButton>
+                      </InputAdornment>
+                    </Flex>
+                  ),
+                }}
+                data-testid="SetPassphrasePrompt-passphrase"
+                fullWidth
+              />
+            </Flex>
+            <Flex flexDirection="row" gap={1.5} alignItems="center">
+              <TextField
+                disabled={isLoadingSetKeyringPassphrase}
+                color="secondary"
+                margin="dense"
+                name="passphraseConfirmation"
+                label={<Trans>Confirm Passphrase</Trans>}
+                placeholder="Confirm Passphrase"
+                type={showPassphraseText2 ? 'text' : 'password'}
+                InputProps={{
+                  endAdornment: (
+                    <Flex alignItems="center">
+                      <InputAdornment position="end">
+                        {showCapsLock && (
+                          <Flex>
+                            <KeyboardCapslockIcon />
+                          </Flex>
+                        )}
+                        <IconButton onClick={() => setShowPassphraseText2((s) => !s)}>
+                          <VisibilityIcon />
+                        </IconButton>
+                      </InputAdornment>
+                    </Flex>
+                  ),
+                }}
+                data-testid="SetPassphrasePrompt-confirm-passphrase"
+                fullWidth
+              />
+            </Flex>
+            {!!canSetPassphraseHint && (
+              <TextField
+                disabled={isLoadingSetKeyringPassphrase}
+                color="secondary"
+                margin="dense"
+                name="passphraseHint"
+                label={<Trans>Passphrase Hint (Optional)</Trans>}
+                placeholder={t`Passphrase Hint`}
+                data-testid="SetPassphrasePrompt-hint"
+                fullWidth
+              />
+            )}
+            {!!canSavePassphrase && (
+              <Box display="flex" alignItems="center">
+                <FormControlLabel
+                  control={<Checkbox disabled={isLoadingSetKeyringPassphrase} name="savePassphrase" />}
+                  label={t`Save passphrase`}
+                  style={{ marginRight: '8px' }}
+                  data-testid="SetPassphrasePrompt-save-passphrase"
+                />
+                <Tooltip
+                  title={t`Your passphrase can be stored in your system's secure credential store. Chia will be able to access your keys without prompting for your passphrase.`}
+                >
+                  <HelpIcon style={{ color: Color.Neutral[300], fontSize: 12 }} />
+                </Tooltip>
+              </Box>
+            )}
+          </DialogContent>
+          <DialogActions>
+            <Button
+              disabled={isLoadingSetKeyringPassphrase}
+              onClick={handleCancel}
+              variant="outlined"
+              data-testid="SetPassphrasePrompt-cancel"
+            >
+              <Trans>Cancel</Trans>
+            </Button>
+            <Button
+              disabled={isLoadingSetKeyringPassphrase}
+              type="submit"
+              color="primary"
+              variant="contained"
+              data-testid="SetPassphrasePrompt-set-passphrase"
+            >
+              <Trans>Set Passphrase</Trans>
+            </Button>
+          </DialogActions>
+        </Form>
+      )}
     </Dialog>
   );
 }

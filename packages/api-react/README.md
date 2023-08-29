@@ -22,13 +22,14 @@ It is designed to simplify common cases for loading data in a web application, e
 ```tsx
 import React from 'react';
 import { useGetPublicKeysQuery } from '@chia-network/api-react';
+import { Loading } from '@chia-network/core';
 import Suspender from 'react-suspender';
 
 export default function PublicKeys() {
   const { data: publicKeys, isLoading, error } = useGetPublicKeysQuery();
 
   if (isLoading) {
-    return <Suspender />;
+    return <Loading center />;
   }
 
   if (error) {
