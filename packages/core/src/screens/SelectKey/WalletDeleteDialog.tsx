@@ -31,7 +31,8 @@ export type WalletDeleteDialogProps = {
 export default function WalletDeleteDialog(props: WalletDeleteDialogProps) {
   const { fingerprint, onClose = () => ({}), open = false } = props;
 
-  const [settings, setSettings] = usePrefs<LocalStorageType>('fingerprintSettings', {});
+  const [fingerprintPrefs, setFingerprintPrefs] = usePrefs<LocalStorageType>('fingerprintSettings', {});
+  const [sortedWalletsPrefs, setSortedWalletsPrefs] = usePrefs<LocalStorageType>('sortedWallets', {});
 
   const { data: keyringState, isLoading: isLoadingKeyringStatus } = useGetKeyringStatusQuery();
 
@@ -83,8 +84,10 @@ export default function WalletDeleteDialog(props: WalletDeleteDialogProps) {
   const hasWarning = usedForFarmerRewards || walletBalance || usedForPoolRewards;
 
   function removeFingerprintPrefs() {
-    delete settings[fingerprint];
-    setSettings(settings);
+    delete fingerprintPrefs[fingerprint];
+    setFingerprintPrefs(fingerprintPrefs);
+    const newSortedWalletsPrefs = sortedWalletsPrefs.filter((f: string) => f !== String(fingerprint));
+    setSortedWalletsPrefs(newSortedWalletsPrefs);
   }
 
   async function handleSubmit(values: FormData) {
