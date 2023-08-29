@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-08-29 17:34\n"
+"PO-Revision-Date: 2023-08-29 18:33\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1632,7 +1632,7 @@ msgstr "Tehollinen Plottitila"
 
 #: src/components/harvest/HarvesterOverview.tsx:195
 msgid "Eligible plots per signage point"
-msgstr "Hyväksyty plotit merkkipistettä kohti"
+msgstr "Hyväksyty plotit kirjauspistettä kohti"
 
 #: src/components/addressbook/ContactAdd.tsx:293
 msgid "Emoji"
@@ -2172,7 +2172,7 @@ msgstr "Harvesteripalvelut"
 
 #: src/components/harvest/HarvesterOverview.tsx:147
 msgid "Harvester Summary"
-msgstr ""
+msgstr "Harvesterin Yhteenveto"
 
 #: src/components/harvest/HarvesterOverview.tsx:212
 #: src/components/plot/PlotHarvesters.tsx:38
@@ -2181,7 +2181,7 @@ msgstr "Harvesterit"
 
 #: src/components/harvest/HarvesterOverview.tsx:188
 msgid "Harvesting Effectiveness"
-msgstr ""
+msgstr "Harvestointiteho"
 
 #: src/constants/WalletConnectCommands.tsx:653
 msgid "Hash"
@@ -2227,7 +2227,7 @@ msgstr "Tämänhetkiset lohkohaasteet, joiden tilatodisteet voivat löytyä plot
 
 #: src/components/plot/add/PlotAddChooseKeys.tsx:198
 msgid "Hex public key of pool"
-msgstr ""
+msgstr "Poolin julkinen heksa-avain"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:428
 msgid "Hidden"
@@ -2368,7 +2368,7 @@ msgstr "Riittämätön määrä varoja tarjouksen luomiseen. Varmista, että\n"
 
 #: src/components/settings/SettingsHarvester.tsx:424
 msgid "Interval (in seconds) in which directories are scanned to refresh the list of available plots"
-msgstr ""
+msgstr "Plottihakemistojen päivitysskannausaikaväli"
 
 #: src/components/signVerify/VerifyMessage.tsx:169
 #: src/components/vcs/VCCard.tsx:151
@@ -2389,7 +2389,7 @@ msgstr "Virheellinen NFT-tunniste"
 
 #: src/components/farm/PoolingHealth.tsx:260
 msgid "Invalid partials"
-msgstr ""
+msgstr "Virheelliset partiaalit"
 
 #: src/components/plotNFT/PlotNFTState.tsx:27
 msgid "Invalid state"
@@ -2452,7 +2452,7 @@ msgstr "Liity Pooliin"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:101
 msgid "K value"
-msgstr ""
+msgstr "K-arvo"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:39
 #: src/components/plot/PlotPlotting.tsx:18
@@ -2485,7 +2485,7 @@ msgstr "Avainten siirto epäonnistui: {0}"
 
 #: src/components/plot/add/PlotAddChooseKeys.tsx:141
 msgid "Keys"
-msgstr ""
+msgstr "Avaimet"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:49
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:49
@@ -2498,19 +2498,19 @@ msgstr "KYC tila"
 
 #: src/components/harvest/HarvesterLatency.tsx:88
 msgid "LAST 1 HOUR"
-msgstr ""
+msgstr "VIIMEINEN TUNTI"
 
 #: src/components/harvest/HarvesterLatency.tsx:93
 msgid "LAST 12 HOURS"
-msgstr ""
+msgstr "VIIMEISET 12 TUNTIA"
 
 #: src/components/harvest/HarvesterLatency.tsx:98
 msgid "LAST 24 HOURS"
-msgstr ""
+msgstr "VIIMEISET 24 TUNTIA"
 
 #: src/components/harvest/HarvesterLatency.tsx:83
 msgid "LAST 64 SPs"
-msgstr ""
+msgstr "VIIMEISET 64 KIRJAUSPISTETTÄ"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:50
 msgid "Last Attempted Proof"
@@ -2792,7 +2792,7 @@ msgstr ""
 #: src/components/farm/FarmHealth.tsx:316
 #: src/components/farm/FarmHealth.tsx:335
 msgid "Missing signage points"
-msgstr ""
+msgstr "Puuttuvat kirjauspisteet"
 
 #: src/components/walletConnect/WalletConnectConnections.tsx:83
 msgid "More Info"
