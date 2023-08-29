@@ -63,6 +63,7 @@ export default function CrCatFlags(props: Props) {
 
         return (
           <Tooltip
+            key={flagName}
             title={
               haveValidCredential ? (
                 <Trans>You have this verifiable credential from the correct authorized provider</Trans>
