@@ -27,6 +27,7 @@ export default function CrCatAuthorizedProviders(props: Props) {
 
         return (
           <Tooltip
+            key={providerHash}
             title={
               <Flex flexDirection="column" gap={1}>
                 <Flex flexDirection="column" gap={0}>
