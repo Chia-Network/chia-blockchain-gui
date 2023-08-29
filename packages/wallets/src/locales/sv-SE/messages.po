@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-08-29 07:07\n"
+"PO-Revision-Date: 2023-08-29 08:18\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -24,7 +24,7 @@ msgstr "-"
 
 #: src/components/WalletSend.tsx:367
 msgid "- Memo helps the receiver side to identify the payment.<0/>- Anything you enter will be publicly accessible on the blockchain."
-msgstr "- Memo hjälper mottagarsidan att identifiera betalningen.<0/>- Allt du anger kommer att vara publikt åtkomligt på blockkedjan."
+msgstr "- Meddelande hjälper mottagarsidan att identifiera betalningen.<0/>- Allt du anger kommer att vara publikt åtkomligt på blockkedjan."
 
 #: src/components/WalletSend.tsx:294
 msgid "- Set a time frame which allows you claw back (revoke) the transaction.<0/>- Recipient of the transaction can only claim the funds once that time frame expires."
@@ -54,7 +54,7 @@ msgstr "Lägg till token"
 
 #: src/components/WalletSend.tsx:362
 msgid "Add transaction memo"
-msgstr ""
+msgstr "Lägg till transaktionsmeddelande"
 
 #: src/components/cat/WalletCATCreateSimple.tsx:92
 msgid "Adding {0} token"
@@ -287,7 +287,7 @@ msgstr "DID-plånbok"
 
 #: src/components/WalletSend.tsx:327
 msgid "Disable"
-msgstr ""
+msgstr "Inaktivera"
 
 #: src/components/create/WalletCreateList.tsx:39
 msgid "Distributed Identity"
@@ -355,11 +355,11 @@ msgstr "Hantera tokenlista"
 #: src/components/cat/WalletCATSend.tsx:242
 #: src/components/WalletSend.tsx:379
 msgid "Memo"
-msgstr "Anteckning"
+msgstr "Meddelande"
 
 #: src/components/WalletHistory.tsx:427
 msgid "Memos"
-msgstr "Anteckningar"
+msgstr "Meddelanden"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:16
 msgid "Mempool Full"
