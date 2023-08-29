@@ -31,25 +31,26 @@ export default function CrCatFlags(props: Props) {
     const toReturn: string[] = [];
 
     Object.entries(vcs.proofs).forEach(([proofHash, proofObject]) => {
-      Object.keys(proofObject).forEach((proofFlag) => {
-        // check if we have the proof flag
-        const foundFlag = flags.find((flag) => flag.flagCamelCase === proofFlag);
-        if (foundFlag) {
-          // check if we have a VC with the proofHash
-          vcs.vcRecords.forEach((vcRecord) => {
-            if (vcRecord.vc.proofHash === `0x${proofHash}`) {
-              // check if the VC is from the authorized provider
-              if (
-                restrictions.authorizedProviders
-                  .map((provider) => (provider.startsWith('0x') ? provider : `0x${provider}`))
-                  .includes(vcRecord.vc.proofProvider)
-              ) {
-                toReturn.push(foundFlag.flag);
+      if (proofObject)
+        Object.keys(proofObject).forEach((proofFlag) => {
+          // check if we have the proof flag
+          const foundFlag = flags.find((flag) => flag.flagCamelCase === proofFlag);
+          if (foundFlag) {
+            // check if we have a VC with the proofHash
+            vcs.vcRecords.forEach((vcRecord) => {
+              if (vcRecord.vc.proofHash === `0x${proofHash}`) {
+                // check if the VC is from the authorized provider
+                if (
+                  restrictions.authorizedProviders
+                    .map((provider) => (provider.startsWith('0x') ? provider : `0x${provider}`))
+                    .includes(vcRecord.vc.proofProvider)
+                ) {
+                  toReturn.push(foundFlag.flag);
+                }
               }
-            }
-          });
-        }
-      });
+            });
+          }
+        });
     });
 
     return toReturn;
