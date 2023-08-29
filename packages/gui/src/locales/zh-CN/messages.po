@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-08-28 16:07\n"
+"PO-Revision-Date: 2023-08-29 11:36\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -3303,11 +3303,11 @@ msgstr "报价是以真正的点对点方式交易资产的一种方法，消除
 
 #: src/components/offers/OfferManager.tsx:359
 msgid "Offers you accepted"
-msgstr "您已接受的报价"
+msgstr "已接受的报价"
 
 #: src/components/offers/OfferManager.tsx:358
 msgid "Offers you created"
-msgstr "您创建的报价"
+msgstr "创建的报价"
 
 #: src/components/farm/FarmHealth.tsx:203
 #: src/components/offers/OfferDataDialog.tsx:58
