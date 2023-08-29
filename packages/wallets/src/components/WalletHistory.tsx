@@ -39,6 +39,7 @@ import styled from 'styled-components';
 
 import useWallet from '../hooks/useWallet';
 import useWalletTransactions from '../hooks/useWalletTransactions';
+
 import ClawbackClaimTransactionDialog from './ClawbackClaimTransactionDialog';
 import WalletHistoryClawbackChip from './WalletHistoryClawbackChip';
 import WalletHistoryPending from './WalletHistoryPending';
@@ -118,7 +119,9 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate, location
           </Box>
           &nbsp;
           <strong>
-            <FormatLargeNumber value={type === WalletType.CAT ? mojoToCAT(row.amount) : mojoToChia(row.amount)} />
+            <FormatLargeNumber
+              value={[WalletType.CAT, WalletType.CRCAT].includes(type) ? mojoToCAT(row.amount) : mojoToChia(row.amount)}
+            />
           </strong>
           &nbsp;
           {metadata.unit}
@@ -139,11 +142,13 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate, location
       const shouldObscureAddress = isRetire || isOffer;
 
       let displayAddress = truncateValue(row.toAddress, {});
+      let displayEmoji = null;
 
       if (metadata.matchList) {
         metadata.matchList.forEach((contact) => {
           if (contact.address === row.toAddress) {
             displayAddress = contact.displayName;
+            displayEmoji = contact.emoji;
           }
         });
       }
@@ -177,7 +182,9 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate, location
                 </Flex>
               }
             >
-              <span>{displayAddress}</span>
+              <span>
+                {displayEmoji} {displayAddress}
+              </span>
             </Tooltip>
           </div>
           <Flex gap={0.5}>
@@ -275,6 +282,7 @@ export default function WalletHistory(props: Props) {
       values: [TransactionType.INCOMING_CLAWBACK_RECEIVE, TransactionType.INCOMING_CLAWBACK_SEND],
     },
   });
+  // console.log(transactions);
 
   const feeUnit = useCurrencyCode();
   const [getOfferRecord] = useGetOfferRecordMutation();
@@ -310,9 +318,11 @@ export default function WalletHistory(props: Props) {
         match.addresses.forEach((addressInfo) => {
           if (transaction.toAddress === addressInfo.address) {
             const nameStr = JSON.stringify(match.name).slice(1, -1);
+            const emojiStr = match.emoji ? match.emoji : '';
+            const matchColor = (theme) => `${match.color ? theme.palette.colors[match.color].main : null}`;
             const addNameStr = JSON.stringify(addressInfo.name).slice(1, -1);
-            const matchName = `${nameStr} | ${addNameStr}`;
-            contactList.push({ displayName: matchName, address: addressInfo.address });
+            const matchName = `${emojiStr} ${nameStr} | ${addNameStr}`;
+            contactList.push({ displayName: matchName, address: addressInfo.address, color: matchColor });
           }
         });
       }

@@ -1,11 +1,12 @@
 import { HarvesterInfo, LatencyData } from '@chia-network/api';
-import { Flex, FormatBytes, Tooltip } from '@chia-network/core';
+import { Flex, FormatBytes, Tooltip, TooltipIcon } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Box, Paper, Typography, LinearProgress, Chip } from '@mui/material';
 import BigNumber from 'bignumber.js';
 import * as React from 'react';
 
 import isLocalhost from '../../util/isLocalhost';
+
 import HarvesterLatency from './HarvesterLatency';
 import HarvesterPlotDetails from './HarvesterPlotDetails';
 
@@ -154,7 +155,15 @@ function HarvesterLatencyGraph(props: HarvesterLatencyGraphProps) {
                 <tr>
                   <td colSpan={2}>
                     <Typography variant="body2" color="textSecondary">
-                      <Trans>Effective Space</Trans>
+                      <Flex alignItems="center" gap={1}>
+                        <Trans>Effective Space</Trans>
+                        <TooltipIcon>
+                          <Trans>
+                            This is a sum of effective plot sizes currently harvesting. An effective plot size is a
+                            theoretical value which is derived only by kSize.
+                          </Trans>
+                        </TooltipIcon>
+                      </Flex>
                     </Typography>
                   </td>
                 </tr>

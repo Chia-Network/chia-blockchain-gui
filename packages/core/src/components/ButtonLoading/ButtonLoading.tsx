@@ -5,8 +5,9 @@ export type ButtonLoadingProps = LoadingButtonProps & {
   loading?: boolean;
   mode?: 'autodisable' | 'hidecontent';
 };
+type Ref = HTMLButtonElement;
 
-export default function ButtonLoading(props: ButtonLoadingProps) {
+const ButtonLoading = React.forwardRef<Ref, ButtonLoadingProps>((props, ref) => {
   const { color = 'secondary', loading, onClick, ...rest } = props;
 
   function handleClick(...args: any[]) {
@@ -15,5 +16,7 @@ export default function ButtonLoading(props: ButtonLoadingProps) {
     }
   }
 
-  return <LoadingButton onClick={handleClick} loading={loading} color={color} {...rest} />;
-}
+  return <LoadingButton onClick={handleClick} loading={loading} color={color} ref={ref} {...rest} />;
+});
+
+export default ButtonLoading;

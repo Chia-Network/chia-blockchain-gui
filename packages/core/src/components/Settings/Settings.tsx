@@ -6,6 +6,7 @@ import styled from 'styled-components';
 
 import Flex from '../Flex';
 import Tooltip from '../Tooltip';
+
 import SettingsApp from './SettingsApp';
 import SettingsFooter from './SettingsFooter';
 

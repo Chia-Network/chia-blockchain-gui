@@ -10,6 +10,7 @@ import WalletHeader from '../WalletHeader';
 import WalletHistory from '../WalletHistory';
 import WalletReceiveAddress from '../WalletReceiveAddress';
 import WalletSend from '../WalletSend';
+
 import WalletStandardCards from './WalletStandardCards';
 
 type StandardWalletProps = {

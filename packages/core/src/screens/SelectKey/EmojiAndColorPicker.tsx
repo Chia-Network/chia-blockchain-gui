@@ -21,6 +21,7 @@ type EmojiAndColorPickerType = {
   currentEmoji?: string;
   themeColors: any;
   isDark: boolean;
+  emojiOnly?: boolean;
 };
 
 const colorCircleStyle: any = {
@@ -42,7 +43,15 @@ export function randomEmoji() {
 }
 
 export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
-  const { onSelect = () => {}, onClickOutside = () => {}, currentColor, currentEmoji, themeColors, isDark } = props;
+  const {
+    onSelect = () => {},
+    onClickOutside = () => {},
+    currentColor,
+    currentEmoji,
+    themeColors,
+    isDark,
+    emojiOnly,
+  } = props;
   const cmpRef = React.useRef(null);
   const [emojiFilter, setEmojiFilter] = React.useState<string[]>([]);
   const theme: any = useTheme();
@@ -286,7 +295,7 @@ export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
 
   return (
     <Box style={pickerStyle} ref={cmpRef}>
-      {renderColorPicker()}
+      {emojiOnly ? null : renderColorPicker()}
       {renderAddRemoveRandom()}
       {renderSearch()}
       {renderEmojis()}

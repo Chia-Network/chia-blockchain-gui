@@ -5,6 +5,7 @@ import Notification from '../../@types/Notification';
 import NotificationType from '../../constants/NotificationType';
 import useOffer from '../../hooks/useOffer';
 import offerToOfferBuilderData from '../../util/offerToOfferBuilderData';
+
 import NotificationPreviewNFT from './NotificationPreviewNFT';
 
 type NotificationPreviewOfferProps = {

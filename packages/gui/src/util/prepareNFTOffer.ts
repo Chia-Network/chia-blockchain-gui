@@ -3,6 +3,7 @@ import { store, walletApi } from '@chia-network/api-react';
 import BigNumber from 'bignumber.js';
 
 import type Driver from '../@types/Driver';
+
 import { launcherIdFromNFTId } from './nfts';
 
 export async function prepareNFTOfferFromNFTId(nftId: string, offeredNFT: boolean) {

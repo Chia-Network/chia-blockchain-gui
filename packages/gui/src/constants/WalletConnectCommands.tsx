@@ -335,6 +335,12 @@ const walletConnectCommands: WalletConnectCommand[] = [
         label: <Trans>Message</Trans>,
         type: 'string',
       },
+      {
+        name: WalletConnectCommandParamName.IS_HEX,
+        label: <Trans>Message Is Hex Encoded String</Trans>,
+        type: 'boolean',
+        isOptional: true,
+      },
     ],
   },
   {
@@ -351,6 +357,12 @@ const walletConnectCommands: WalletConnectCommand[] = [
         name: WalletConnectCommandParamName.MESSAGE,
         label: <Trans>Message</Trans>,
         type: 'string',
+      },
+      {
+        name: WalletConnectCommandParamName.IS_HEX,
+        label: <Trans>Message Is Hex Encoded String</Trans>,
+        type: 'boolean',
+        isOptional: true,
       },
     ],
   },

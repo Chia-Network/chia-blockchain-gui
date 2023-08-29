@@ -1,4 +1,5 @@
 import WalletType from '../constants/WalletType';
+
 import type Transaction from './Transaction';
 import WalletBalance from './WalletBalance';
 
@@ -19,6 +20,8 @@ type Wallet = {
   sending_transaction: boolean;
   send_transaction_result?: string | null;
   wallet_balance?: WalletBalance;
+  flagsNeeded: string[];
+  authorizedProviders: string[];
 };
 
 export type WalletListItem = Pick<Wallet, 'id' | 'name' | 'type' | 'data'>;

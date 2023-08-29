@@ -2,6 +2,7 @@ import { WalletType } from '@chia-network/api';
 import _ from 'lodash';
 
 import type OfferBuilderData from '../../../@types/OfferBuilderData';
+
 import { emptyDefaultValues } from './defaultValues';
 
 type CreateDefaultValuesParams = {

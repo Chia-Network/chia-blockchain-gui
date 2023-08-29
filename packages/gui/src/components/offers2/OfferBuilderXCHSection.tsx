@@ -6,6 +6,7 @@ import { useFieldArray, useWatch } from 'react-hook-form';
 
 import useOfferBuilderContext from '../../hooks/useOfferBuilderContext';
 import useStandardWallet from '../../hooks/useStandardWallet';
+
 import OfferBuilderSection from './OfferBuilderSection';
 import OfferBuilderWalletAmount from './OfferBuilderWalletAmount';
 

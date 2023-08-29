@@ -17,6 +17,7 @@ test.afterAll(async () => {
   await page.close();
 });
 
+//PASSED AS OF 7/9/23
 test('Read data from Json file and Paste in Mnemonic', async () => {
   //Pre-requisites to get user back to Wallet selection page
   await new CloseDialog(page).closeIt();
@@ -32,7 +33,7 @@ test('Read data from Json file and Paste in Mnemonic', async () => {
   //And I click on PASTE MNEMONIC
   await page.getByRole('button', { name: 'Paste Mnemonic' }).click();
 
-  await page.pause();
+  //await page.pause();
   //And I enter the first 24 words of the mnemonic
   //await new ReadData(page).pasteWords();
   await page
@@ -46,7 +47,6 @@ test('Read data from Json file and Paste in Mnemonic', async () => {
 
   //And I click on PASTE MNEMONIC and complete Import process
   await page.getByRole('button', { name: 'Paste Mnemonic' }).click();
-  //await page.locator('#mui-52').fill(' "abandon" "ability" "able" "about" "above" "absent" "baby" "bachelor" "bacon" "badge" "bag" "balance" "cabbage" "cabin" "cable" "cactus" "cage" "cake" "dad" "damage" "damp" "dance" "danger" "daring"');
   await new ReadData(page).pasteWords();
   await page.getByRole('button', { name: 'Import' }).click();
   await page.getByRole('button', { name: 'Next' }).click();

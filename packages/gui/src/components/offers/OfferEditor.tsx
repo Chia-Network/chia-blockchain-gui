@@ -20,6 +20,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import useSuppressShareOnCreate from '../../hooks/useSuppressShareOnCreate';
+
 import OfferEditorConditionsPanel from './OfferEditorConditionsPanel';
 import OfferEditorConfirmationDialog from './OfferEditorConfirmationDialog';
 import type OfferEditorRowData from './OfferEditorRowData';

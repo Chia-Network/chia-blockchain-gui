@@ -8,6 +8,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { serviceConnectionTypes } from '../../util/service_names';
+
 import FullNodeAddConnection from './FullNodeAddConnection';
 import FullNodeCloseConnection from './FullNodeCloseConnection';
 

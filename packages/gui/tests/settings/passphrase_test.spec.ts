@@ -1,7 +1,6 @@
 import { ElectronApplication, Page, _electron as electron } from 'playwright';
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
 import { LoginPage } from '../data_object_model/passphrase_login';
-import { waitForDebugger } from 'inspector';
 import { stopAllChia } from '../utils/wallet';
 
 let electronApp: ElectronApplication;
@@ -22,8 +21,8 @@ test('Confirm user can add and remove passphrase ', async () => {
   //Pre-requisites to get user back to Wallet selection page
   await page.locator('button:has-text("Close")').click();
 
-  //Given I navigate to 1922132445 Wallet
-  await page.locator('h6:has-text("Jahi 1st Wallet")').click();
+  //Given I navigate to a Wallet
+  await new LoginPage(page).getPlayWrightWallet();
 
   //And I navigate to Setting's Page
   await page.locator('div[role="button"]:has-text("Settings")').click();
@@ -56,7 +55,8 @@ test('Confirm user can add and remove passphrase ', async () => {
   await new LoginPage(page).login('password2023!@');
 
   //Given I navigate back to settings page
-  await page.locator('h6:has-text("Jahi 1st Wallet")').click();
+  //await page.locator('h6:has-text("Jahi 1st Wallet")').click();
+  await new LoginPage(page).getPlayWrightWallet();
   await page.locator('div[role="button"]:has-text("Settings")').click();
 
   //And I remove passphrase and close chia

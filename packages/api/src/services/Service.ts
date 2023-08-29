@@ -28,6 +28,8 @@ export default abstract class Service extends EventEmitter {
     this.name = name;
     this.origin = origin ?? client.origin;
 
+    this.setMaxListeners(100);
+
     client.on('message', this.handleMessage);
 
     this.#readyPromise = new Promise((resolve, reject) => {
@@ -37,7 +39,6 @@ export default abstract class Service extends EventEmitter {
             await onInit();
           }
           resolve(null);
-          return;
         } catch (error: any) {
           reject(error);
         }

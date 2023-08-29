@@ -154,6 +154,7 @@ export const {
   useAddCATTokenMutation,
   useGetStrayCatsQuery,
   useGetAssetIdQuery,
+  useCrCatApprovePendingMutation,
 
   // PlotNFTs
   useGetPlotNFTsQuery,

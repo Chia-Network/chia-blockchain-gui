@@ -10,6 +10,7 @@ import {
   Tooltip,
   usePersistState,
   Mute,
+  ScrollbarVirtuoso,
 } from '@chia-network/core';
 import { t, Trans } from '@lingui/macro';
 import { FilterList as FilterListIcon, LibraryAddCheck as LibraryAddCheckIcon } from '@mui/icons-material';
@@ -40,6 +41,7 @@ import LabelProgress from '../../helpers/LabelProgress';
 import NFTCard from '../NFTCard';
 import { NFTContextualActionTypes } from '../NFTContextualActions';
 import NFTProfileDropdown from '../NFTProfileDropdown';
+
 import FilterPill from './FilterPill';
 import NFTGalleryHero from './NFTGalleryHero';
 import Search from './NFTGallerySearch';
@@ -80,6 +82,7 @@ const ListContainer = styled('div')({
 const COMPONENTS = {
   Item: ItemContainer,
   List: ListContainer,
+  Scroller: ScrollbarVirtuoso,
 };
 
 export const defaultCacheSizeLimit = 1024; /* MB */
@@ -448,17 +451,19 @@ export default function NFTGallery() {
       {!nfts?.length && !isLoading ? (
         <NFTGalleryHero />
       ) : (
-        <Box sx={{ height: '100%', marginLeft: -3, marginRight: -3 }}>
-          <VirtuosoGrid
-            style={{ height: '100%' }}
-            data={nfts}
-            overscan={2000}
-            computeItemKey={(_index, nft) => nft.launcherId}
-            components={COMPONENTS}
-            itemContent={renderNFTCard}
-            scrollerRef={handleScrollRef}
-            isScrolling={handleScrolling}
-          />
+        <Box sx={{ flexGrow: 1, position: 'relative', marginLeft: -3, marginRight: -3 }}>
+          <Box sx={{ position: 'absolute', left: 0, top: 0, bottom: 0, right: 0 }}>
+            <VirtuosoGrid
+              style={{ height: '100%' }}
+              data={nfts}
+              overscan={2000}
+              computeItemKey={(_index, nft) => nft.launcherId}
+              components={COMPONENTS}
+              itemContent={renderNFTCard}
+              scrollerRef={handleScrollRef}
+              isScrolling={handleScrolling}
+            />
+          </Box>
         </Box>
       )}
     </LayoutDashboardSub>

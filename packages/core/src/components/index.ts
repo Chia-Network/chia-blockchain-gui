@@ -65,6 +65,7 @@ export { default as TextFieldNumber } from './TextFieldNumber';
 export { default as PrivateRoute } from './PrivateRoute';
 export { default as RadioGroup } from './RadioGroup';
 export { default as SandboxedIframe } from './SandboxedIframe';
+export * from './Scrollbar';
 export { default as Select } from './Select';
 export { SettingsApp, SettingsHR, SettingsLabel, SettingsSection, SettingsText, SettingsTitle } from './Settings';
 export { default as SideBarItem } from './SideBarItem';

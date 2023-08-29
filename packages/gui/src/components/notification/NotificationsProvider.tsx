@@ -10,6 +10,7 @@ import type Notification from '../../@types/Notification';
 import useBlockchainNotifications from '../../hooks/useBlockchainNotifications';
 import useNotificationSettings from '../../hooks/useNotificationSettings';
 import useShowNotification from '../../hooks/useShowNotification';
+
 import { pushNotificationStringsForNotificationType } from './utils';
 
 const MAX_NOTIFICATIONS = 500;

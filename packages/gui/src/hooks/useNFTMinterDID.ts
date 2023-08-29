@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 
 import { didToDIDId } from '../util/dids';
 import removeHexPrefix from '../util/removeHexPrefix';
+
 import useNFT from './useNFT';
 
 export type UseNFTMinterDIDResult = {

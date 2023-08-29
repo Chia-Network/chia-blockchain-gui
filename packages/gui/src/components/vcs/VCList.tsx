@@ -5,7 +5,17 @@ import {
   useLazyGetProofsForRootQuery,
   useVCCoinAdded,
 } from '@chia-network/api-react';
-import { Flex, More, MenuItem, AlertDialog, Loading, useOpenDialog, useDarkMode } from '@chia-network/core';
+import {
+  Flex,
+  More,
+  MenuItem,
+  AlertDialog,
+  Loading,
+  useOpenDialog,
+  useDarkMode,
+  LayoutDashboardSub,
+  ScrollbarVirtuoso,
+} from '@chia-network/core';
 import {
   VCZeroStateBackground as VCZeroStateBackgroundIcon,
   VCZeroStateBackgroundDark as VCZeroStateBackgroundDarkIcon,
@@ -22,6 +32,7 @@ import { VirtuosoGrid } from 'react-virtuoso';
 
 import VCEmptyPng from '../../assets/img/vc_empty.png';
 import { sha256, arrToHex } from '../../util/utils';
+
 import VCCard from './VCCard';
 import VCGetTimestamp from './VCGetTimestamp';
 
@@ -52,9 +63,15 @@ function ItemContainer(props: { children?: React.ReactNode }) {
 const ListContainer = styled('div')({
   display: 'flex',
   flexWrap: 'wrap',
-  paddingLeft: 0,
-  paddingRight: 0,
+  paddingLeft: 16,
+  paddingRight: 16,
 });
+
+const COMPONENTS = {
+  Item: ItemContainer,
+  List: ListContainer,
+  Scroller: ScrollbarVirtuoso,
+};
 
 export default function VCList() {
   const { isLoading, data: blockchainVCs } = useGetVCListQuery({});
@@ -110,11 +127,6 @@ export default function VCList() {
 
     loadProofsData();
   }, [isLoading, blockchainVCs, getProofsForRoot]);
-
-  const COMPONENTS = {
-    Item: ItemContainer,
-    List: ListContainer,
-  };
 
   const theme = useTheme();
 
@@ -244,8 +256,8 @@ export default function VCList() {
 
   function renderZeroState() {
     return (
-      <>
-        <Box sx={{ marginBottom: '10px', padding: '25px 25px 0 25px' }}>{renderActionsDropdown()}</Box>
+      <LayoutDashboardSub fullHeight>
+        <Box>{renderActionsDropdown()}</Box>
         <Flex flexDirection="column" sx={{ alignItems: 'center', zIndex: 2 }}>
           <Flex
             flexDirection="column"
@@ -298,7 +310,7 @@ export default function VCList() {
             </Flex>
           </Flex>
         </Flex>
-      </>
+      </LayoutDashboardSub>
     );
   }
 
@@ -307,28 +319,32 @@ export default function VCList() {
   }
 
   return (
-    <Box sx={{ height: '100%', padding: '25px 0 0 25px', overflowY: 'hidden' }}>
+    <LayoutDashboardSub fullHeight>
       {Array.isArray(blockchainVCs?.vcRecords) &&
         blockchainVCs?.vcRecords.map((vcRecord: any) => (
           <VCGetTimestamp vcRecord={vcRecord} onVCTimestamp={onVCTimestamp} />
         ))}
-      <Flex sx={{ justifyContent: 'space-between', marginBottom: '10px', padding: '15px' }}>
-        <Flex>
-          <Typography variant="h6">
-            <Trans>Verifiable Credentials</Trans>: {allVCs?.length ?? 0}
-          </Typography>
+      <Flex flexDirection="column" flexGrow={1} gap={2}>
+        <Flex sx={{ justifyContent: 'space-between' }}>
+          <Flex>
+            <Typography variant="h6">
+              <Trans>Verifiable Credentials</Trans>: {allVCs?.length ?? 0}
+            </Typography>
+          </Flex>
+          {renderActionsDropdown()}
         </Flex>
-        {renderActionsDropdown()}
+        <Box sx={{ flexGrow: 1, position: 'relative', marginLeft: -3, marginRight: -3 }}>
+          <Box sx={{ position: 'absolute', left: 0, top: 0, bottom: 0, right: 0 }}>
+            <VirtuosoGrid
+              style={{ height: '100%' }}
+              data={allVCsSortLatest}
+              components={COMPONENTS}
+              itemContent={renderVCCard}
+              scrollerRef={handleScrollRef}
+            />
+          </Box>
+        </Box>
       </Flex>
-      <Box sx={{ height: 'calc(100% - 75px)' }}>
-        <VirtuosoGrid
-          style={{ height: '100%' }}
-          data={allVCsSortLatest}
-          components={COMPONENTS}
-          itemContent={renderVCCard}
-          scrollerRef={handleScrollRef}
-        />
-      </Box>
-    </Box>
+    </LayoutDashboardSub>
   );
 }

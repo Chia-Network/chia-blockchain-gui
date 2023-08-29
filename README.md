@@ -133,6 +133,28 @@ Do not edit files directly in the repo, but instead please head over to our [Cro
   }
   ```
 
+## Debugging
+
+1. In the Chia Electron app, click `View -> Developer -> Developer tools`.
+2. In the console tab of the developer tools, change the default console events to include `verbose` events. These are the events emitted from the `debug` package.
+
+## Simulator / SimNet
+
+1. Please follow the [Install and configure the simulator](https://docs.chia.net/guides/simulator-user-guide/). Do this step only once.
+2. In the chia-blockchain directory, run this to setup the ENV variables. Use these instead the ones mentioned in the above guide.
+
+```
+export CHIA_ROOT=~/.chia/simulator/main
+export CHIA_SIMULATOR_ROOT=~/.chia/simulator
+export CHIA_KEYS_ROOT=~/.chia_keys_simulator
+```
+
+3. `. ./activate`
+4. `chia start simulator`
+5. `cd chia-blockchain-gui/packages/gui`
+6. `npm run dev:skipLocales`
+7. You should see your simulator wallets. You should not see your testNet / mainNet wallets.
+
 ## Chia FAQ/WIKI
 
 Please check out the [wiki](https://github.com/Chia-Network/chia-blockchain/wiki)

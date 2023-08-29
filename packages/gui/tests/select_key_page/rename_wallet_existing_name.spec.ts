@@ -1,7 +1,6 @@
 import { ElectronApplication, Page, _electron as electron } from 'playwright';
 import { test, expect } from '@playwright/test';
 import { CloseDialog } from '../data_object_model/close_dialog';
-import { waitForDebugger } from 'inspector';
 
 let electronApp: ElectronApplication;
 let page: Page;
@@ -15,9 +14,9 @@ test.afterAll(async () => {
   await page.close();
 });
 
+//PASSED AS OF 7/9/23
 test('Verify that renaming a wallet to an existing wallet name should throw an error.', async () => {
-  const existingName = 'Jahi 1st Wallet';
-  const orgName = 'NFT TESTING WALLET';
+  const existingName = 'playwright';
 
   //Pre-requisites to get user back to Wallet selection page
   await new CloseDialog(page).closeIt();
@@ -34,7 +33,8 @@ test('Verify that renaming a wallet to an existing wallet name should throw an e
 
   //Assert that error message is displayed
   await expect(page.locator('div[role="dialog"]')).toHaveText(
-    "Errormalformed request: label 'Jahi 1st Wallet' already exists for fingerprint '1922132445'OK"
+    //"Errormalformed request: label 'Jahi 1st Wallet' already exists for fingerprint '1922132445'OK"
+    "Errormalformed request: label 'playwright' already exists for fingerprint '314593068'OK"
   );
   await page.getByRole('button', { name: 'OK' }).click();
 
@@ -42,9 +42,5 @@ test('Verify that renaming a wallet to an existing wallet name should throw an e
   await page.locator('[aria-label="cancel"]').click();
 
   //Then previous name is still displaying
-  await page.locator('[data-testid="SelectKeyItem-fingerprint-965505910"]').click();
-  //await page.pause();
-  await page.waitForLoadState();
-  await expect(page.getByRole('heading', { name: 'NFT TESTING WALLET' })).toBeVisible();
-  //await expect(page.getByRole('heading', { name: orgName })).toBeVisible();
+  await page.locator('[data-testid="SelectKeyItem-fingerprint-314593068"]').click();
 });

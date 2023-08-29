@@ -1,15 +1,10 @@
 import { ElectronApplication, Page, _electron as electron } from 'playwright';
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../data_object_model/passphrase_login';
-import { SendFunds } from '../data_object_model/send_funds';
-import { isWalletSynced, getWalletBalance } from '../utils/wallet';
+import { isWalletSynced } from '../utils/wallet';
 import { CloseDialog } from '../data_object_model/close_dialog';
-import date from 'date-and-time';
-const now = new Date();
 
 let electronApp: ElectronApplication;
 let page: Page;
-let appWindow: Page;
 
 test.beforeAll(async () => {
   electronApp = await electron.launch({ args: ['./build/electron/main.js'] });
@@ -22,8 +17,8 @@ test.afterAll(async () => {
 
 test('Verify that a recipient wallet receives funds from sending wallet!', async () => {
   //Pre-requisites
-  let receive_wallet = 'txch1km02nle6485x6fv676m7nx67zfyk75ed0znq3dwumj8wvxm2pvms9m0dnf';
-  let send_wallet = 'txch1ls7ur56shuh58zlvzkqkwgzch8zy6llfwr7ydm3n8rvky4rdf3dqlceyzx';
+  let receiveWallet = 'txch1km02nle6485x6fv676m7nx67zfyk75ed0znq3dwumj8wvxm2pvms9m0dnf';
+  let sendWallet = 'txch1ls7ur56shuh58zlvzkqkwgzch8zy6llfwr7ydm3n8rvky4rdf3dqlceyzx';
 
   //Pre-requisites to get user back to Wallet selection page
   await new CloseDialog(page).closeIt();
@@ -46,7 +41,7 @@ test('Verify that a recipient wallet receives funds from sending wallet!', async
   await page.getByLabel('Fee').fill('0.0005');
 
   //And I enter a valid wallet address in address field
-  await page.locator('[data-testid="WalletSend-address"]').fill(receive_wallet);
+  await page.locator('[data-testid="WalletSend-address"]').fill(receiveWallet);
 
   //And I enter an amount
   await page.locator('[data-testid="WalletSend-amount"]').fill('.09');
@@ -83,7 +78,7 @@ test('Verify that a recipient wallet receives funds from sending wallet!', async
   await page.locator('[data-testid="WalletHeader-tab-send"]').click();
 
   //And I enter a valid wallet address in address field and amount
-  await page.locator('[data-testid="WalletSend-address"]').fill(send_wallet);
+  await page.locator('[data-testid="WalletSend-address"]').fill(sendWallet);
   await page.locator('[data-testid="WalletSend-amount"]').fill('.05');
   await page.getByText('Show Advanced Options').click();
   await page.getByTestId('WalletSend-memo').click();

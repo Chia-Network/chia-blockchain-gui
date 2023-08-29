@@ -1,4 +1,5 @@
 import WalletType from '../constants/WalletType';
+
 import type Transaction from './Transaction';
 
 type WalletCreateCAT = {

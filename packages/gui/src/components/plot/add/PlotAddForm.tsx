@@ -12,6 +12,7 @@ import { plottingInfo } from '../../../constants/plotSizes';
 import useUnconfirmedPlotNFTs from '../../../hooks/useUnconfirmedPlotNFTs';
 import PlotAddConfig from '../../../types/PlotAdd';
 import { PlotterDefaults, PlotterOptions } from '../../../types/Plotter';
+
 import PlotAddChooseKeys from './PlotAddChooseKeys';
 import PlotAddChoosePlotter from './PlotAddChoosePlotter';
 import PlotAddChooseSize from './PlotAddChooseSize';
@@ -113,6 +114,7 @@ export default function PlotAddForm(props: Props) {
       p2SingletonPuzzleHash: formValues.p2SingletonPuzzleHash,
       plotNFTContractAddr: formValues.plotNFTContractAddr,
       poolPublicKey: formValues.poolPublicKey,
+      createNFT: formValues.createNFT,
     });
   };
 

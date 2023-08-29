@@ -5,6 +5,7 @@ import { useAsync } from 'react-use';
 import type PoolInfo from '../types/PoolInfo';
 import getPoolInfo from '../util/getPoolInfo';
 import normalizeUrl from '../util/normalizeUrl';
+
 import useIsMainnet from './useIsMainnet';
 
 export default function usePoolInfo(poolUrl?: string): {

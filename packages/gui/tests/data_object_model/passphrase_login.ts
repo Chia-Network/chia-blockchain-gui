@@ -23,6 +23,11 @@ export class LoginPage {
     await this.page.locator('text=Unlock Keyring').click();
   }
 
+  async getPlayWrightWallet() {
+    // Get the Playwright Wallet
+    await this.page.locator('h6:has-text("playwright")').click();
+  }
+
   async changePassphrase() {
     // Given I enter my Current Passphrase
     await this.page

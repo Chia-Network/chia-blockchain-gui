@@ -1,6 +1,8 @@
 import { WalletType, type Wallet } from '@chia-network/api';
 import { useGetCatListQuery } from '@chia-network/api-react';
 import { useCurrencyCode } from '@chia-network/core';
+import { CrCat } from '@chia-network/icons';
+import { Trans } from '@lingui/macro';
 import { Typography, type TypographyProps } from '@mui/material';
 import React from 'react';
 import styled from 'styled-components';
@@ -23,6 +25,14 @@ export default function WalletIcon(props: WalletIconProps) {
     return (
       <StyledSymbol color={color} {...rest}>
         {currencyCode}
+      </StyledSymbol>
+    );
+  }
+
+  if (wallet.type === WalletType.CRCAT) {
+    return (
+      <StyledSymbol color={color} {...rest}>
+        <CrCat sx={{ verticalAlign: 'middle' }} /> <Trans>Restricted CAT</Trans>
       </StyledSymbol>
     );
   }

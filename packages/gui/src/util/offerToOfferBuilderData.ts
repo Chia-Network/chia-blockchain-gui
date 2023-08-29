@@ -4,6 +4,7 @@ import BigNumber from 'bignumber.js';
 
 import type OfferBuilderData from '../@types/OfferBuilderData';
 import type OfferSummary from '../@types/OfferSummary';
+
 import { launcherIdToNFTId } from './nfts';
 
 export default function offerToOfferBuilderData(

@@ -6,8 +6,6 @@ import { ReadData } from '../data_object_model/read_data_file';
 let electronApp: ElectronApplication;
 let page: Page;
 
-let dataFile = require('../data_fixtures/data.json');
-
 test.beforeAll(async () => {
   electronApp = await electron.launch({ args: ['./build/electron/main.js'] });
   page = await electronApp.firstWindow();
@@ -17,6 +15,7 @@ test.afterAll(async () => {
   await page.close();
 });
 
+//PASSED AS OF 7/9/23
 test('Read data from Json file', async () => {
   //Pre-requisites to get user back to Wallet selection page
   await new CloseDialog(page).closeIt();

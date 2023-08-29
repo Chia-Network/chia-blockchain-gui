@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import useHiddenNFTs from '../../hooks/useHiddenNFTs';
 import useNFT from '../../hooks/useNFT';
 import getNFTId from '../../util/getNFTId';
+
 import NFTContextualActions, { NFTContextualActionTypes } from './NFTContextualActions';
 import NFTPreview from './NFTPreview';
 import NFTTitle from './NFTTitle';

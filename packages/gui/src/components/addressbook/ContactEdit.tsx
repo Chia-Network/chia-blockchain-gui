@@ -1,10 +1,11 @@
 // import { useGetNFTInfoQuery } from '@chia-network/api-react';
 import { fromBech32m } from '@chia-network/api';
-import { AddressBookContext, Flex, Form, TextField } from '@chia-network/core';
+import { AddressBookContext, Color, EmojiAndColorPicker, Flex, Form, TextField } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Add, Remove } from '@mui/icons-material';
 import { Box, Button, IconButton, Typography } from '@mui/material';
-import React, { useContext } from 'react';
+import { useTheme } from '@mui/material/styles';
+import React, { useContext, useState } from 'react';
 import { useForm, useFormContext, useFieldArray } from 'react-hook-form';
 import { useParams, useNavigate } from 'react-router-dom';
 
@@ -14,7 +15,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 function AddressFields() {
   const { control } = useFormContext();
   const { fields, append, remove } = useFieldArray({
-    control,
     name: 'addresses',
   });
 
@@ -186,10 +186,15 @@ function DomainFields() {
 }
 
 export default function ContactEdit() {
-  const [, , , getContactContactId, editContact] = useContext(AddressBookContext);
+  const [addressBook, , , getContactContactId, editContact] = useContext(AddressBookContext);
   const { contactId } = useParams();
   const navigate = useNavigate();
   const contact = getContactContactId(Number(contactId));
+
+  const theme: any = useTheme();
+  const isDark = theme.palette.mode === 'dark';
+  const [showEmojiPicker, setShowEmojiPicker] = useState<boolean>(false);
+  const [chosenEmoji, setChosenEmoji] = useState(contact.emoji);
 
   const methods = useForm<ContactEditData>({
     defaultValues: {
@@ -232,6 +237,17 @@ export default function ContactEdit() {
       } catch (err) {
         throw new Error(`${entry.address} is not a valid address`);
       }
+      addressBook.forEach((abContact) => {
+        if (abContact.contactId.toString() !== contactId) {
+          abContact.addresses.forEach((contactAddress) => {
+            if (contactAddress.address === entry.address) {
+              throw new Error(
+                `The address ${entry.address} is already assigned to an existing contact: ${abContact.name}`
+              );
+            }
+          });
+        }
+      });
     });
     filteredProfiles.forEach((entry) => {
       try {
@@ -243,6 +259,15 @@ export default function ContactEdit() {
       } catch (err) {
         throw new Error(`${entry.did} is not a valid DID`);
       }
+      addressBook.forEach((abContact) => {
+        if (abContact.contactId.toString() !== contactId) {
+          abContact.dids.forEach((contactDID) => {
+            if (contactDID.did === entry.did) {
+              throw new Error(`The profile ${entry.did} is already assigned to an existing contact: ${abContact.name}`);
+            }
+          });
+        }
+      });
     });
     editContact(
       contact.contactId,
@@ -251,7 +276,8 @@ export default function ContactEdit() {
       filteredProfiles,
       data.notes,
       data.nftId,
-      filteredDomains
+      filteredDomains,
+      chosenEmoji
     );
     navigate(`/dashboard/addressbook/${Number(contact.contactId)}`);
   }
@@ -277,6 +303,56 @@ export default function ContactEdit() {
           </Flex>
 
           <Flex flexDirection="column" gap={6} style={{ width: '100%', paddingTop: '38px' }}>
+            <Flex gap={2} flexDirection="column">
+              <Typography variant="h6">
+                <Trans>Theme</Trans>
+              </Typography>
+              <Flex minWidth={0} alignItems="baseline">
+                <span
+                  style={{ display: showEmojiPicker ? 'inline' : 'none', position: 'fixed', zIndex: 10 }}
+                  onClick={() => {}}
+                >
+                  {showEmojiPicker && (
+                    <EmojiAndColorPicker
+                      onSelect={(result: any) => {
+                        setChosenEmoji(result);
+                        setShowEmojiPicker(false);
+                      }}
+                      onClickOutside={() => {
+                        setShowEmojiPicker(false);
+                      }}
+                      currentEmoji={chosenEmoji}
+                      themeColors={theme.palette.colors}
+                      isDark={isDark}
+                      emojiOnly
+                    />
+                  )}
+                </span>
+                <Flex flexDirection="row" minWidth={0}>
+                  <Box
+                    sx={{
+                      backgroundColor: 'none',
+                      fontSize: '26px',
+                      marginRight: '10px',
+                      width: '40px',
+                      height: '40px',
+                      lineHeight: '42px',
+                      textAlign: 'center',
+                      borderRadius: '5px',
+                      border: 1,
+                      borderColor: isDark ? Color.Neutral[400] : Color.Neutral[300],
+                      ':hover': {
+                        cursor: 'pointer',
+                        backgroundColor: isDark ? Color.Neutral[400] : Color.Neutral[300],
+                      },
+                    }}
+                    onClick={() => setShowEmojiPicker(true)}
+                  >
+                    {chosenEmoji}
+                  </Box>
+                </Flex>
+              </Flex>
+            </Flex>
             <Flex gap={2} flexDirection="column">
               <Typography variant="h6">
                 <Trans>Contact Name</Trans>

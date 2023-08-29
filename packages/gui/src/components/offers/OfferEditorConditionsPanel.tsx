@@ -20,6 +20,7 @@ import React, { useMemo } from 'react';
 import { useFormContext, useFieldArray } from 'react-hook-form';
 
 import useAssetIdName, { AssetIdMapEntry } from '../../hooks/useAssetIdName';
+
 import OfferAssetSelector from './OfferAssetSelector';
 import type OfferEditorRowData from './OfferEditorRowData';
 import OfferExchangeRate from './OfferExchangeRate';
