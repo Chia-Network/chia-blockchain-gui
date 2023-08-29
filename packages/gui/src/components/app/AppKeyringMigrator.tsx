@@ -6,7 +6,7 @@ import {
   Flex,
   useOpenDialog,
   useValidateChangePassphraseParams,
-  Suspender,
+  Loading,
 } from '@chia-network/core';
 import { t, Trans } from '@lingui/macro';
 import {
@@ -42,7 +42,7 @@ export default function AppKeyringMigrator() {
   const [showCapsLock, setShowCapsLock] = useState(false);
 
   if (isLoading) {
-    return <Suspender />;
+    return <Loading center />;
   }
 
   const {
