@@ -1,5 +1,6 @@
 const CrCatsWellKnownProviders = {
   a8f06692e013166feffb0fa10db1f2d594350a84e0dcbb8ad8c156f00bb86c8f: {
+    // TODO: this is a test provider, please remove after initial testing or before release
     name: 'Quex Inc.',
     url: 'example.com/quex',
   },
