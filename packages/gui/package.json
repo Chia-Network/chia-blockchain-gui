@@ -244,7 +244,7 @@
     "cross-env": "7.0.3",
     "date-and-time": "2.4.3",
     "css-loader": "6.8.1",
-    "electron": "26.0.0",
+    "electron": "26.1.0",
     "electron-devtools-assembler": "1.2.0",
     "electron-playwright-helpers": "^1.6.0",
     "electron-winstaller": "5.1.0",
