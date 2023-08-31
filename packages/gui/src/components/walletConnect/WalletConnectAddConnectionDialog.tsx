@@ -51,7 +51,8 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
   const { onClose = () => {}, open = false } = props;
 
   const [step, setStep] = useState<Step>(Step.CONNECT);
-  const [bypassReadonlyCommands, toggleBypassReadonlyCommands] = useLocalStorage('bypass-readonly-commands', false);
+  const [bypassReadonlyCommands, setBypassReadonlyCommands] = useLocalStorage<any>('bypass-readonly-commands', {});
+  const [bypassCheckbox, toggleBypassCheckbox] = useState(false);
   const { pair, isLoading: isLoadingWallet } = useWalletConnectContext();
   const { data: keys, isLoading: isLoadingPublicKeys } = useGetKeysQuery({});
   const [sortedWallets] = usePrefs('sortedWallets', []);
@@ -119,6 +120,13 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
     }
 
     const topic = await pair(uri, selectedFingerprints, mainnet);
+    if (bypassCheckbox) {
+      let skipReadOnlyObject = {};
+      selectedFingerprints.forEach((f: number) => {
+        skipReadOnlyObject = { ...skipReadOnlyObject, [f]: true };
+      });
+      setBypassReadonlyCommands({ ...bypassReadonlyCommands, [topic.toString()]: skipReadOnlyObject });
+    }
     onClose(topic);
   }
 
@@ -219,10 +227,10 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
         sx={{ cursor: 'pointer' }}
         alignItems="center"
         onClick={() => {
-          toggleBypassReadonlyCommands(!bypassReadonlyCommands);
+          toggleBypassCheckbox(!bypassCheckbox);
         }}
       >
-        <Checkbox checked={bypassReadonlyCommands} disableRipple sx={{ paddingLeft: 0 }} />
+        <Checkbox checked={bypassCheckbox} disableRipple sx={{ paddingLeft: 0 }} />
         <Typography variant="body2">
           <Trans>Bypass confirmation for all read-only commands</Trans>
         </Typography>

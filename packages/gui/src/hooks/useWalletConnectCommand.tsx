@@ -80,7 +80,7 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
 
   const isLoading = isLoadingLoggedInFingerprint;
 
-  const [bypassReadonlyCommands] = useLocalStorage('bypass-readonly-commands', false);
+  const [bypassReadonlyCommands] = useLocalStorage<any>('bypass-readonly-commands', {});
 
   async function confirm(props: {
     topic: string;
@@ -141,8 +141,9 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
 
     const { fingerprint } = requestedParams;
 
+    const pair = getPairBySession(topic);
+    const pairedTopic = pair?.topic!;
     if (command === 'showNotification') {
-      const pair = getPairBySession(topic);
       if (!pair) {
         throw new Error('Invalid session topic');
       }
@@ -174,13 +175,10 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
       values = newValues;
     }
 
-    const isReadOnly =
-      ['spend', 'cancel', 'create', 'transfer', 'send', 'take', 'add', 'set'].filter(
-        (startsWith: string) => command.indexOf(startsWith) === 0
-      ).length === 0;
+    const isReadOnlyEnabled = bypassReadonlyCommands?.[pairedTopic]?.[fingerprint];
 
     const confirmed =
-      (bypassReadonlyCommands && isReadOnly) ||
+      (isReadOnlyEnabled && definition.bypassConfirm) ||
       (await confirm({
         topic,
         message:

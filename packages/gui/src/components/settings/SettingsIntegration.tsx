@@ -1,3 +1,4 @@
+import { useLocalStorage, useGetLoggedInFingerprintQuery } from '@chia-network/api-react';
 import { Flex, MenuItem, SettingsHR, SettingsSection, SettingsTitle, SettingsText } from '@chia-network/core';
 import { t, Trans } from '@lingui/macro';
 import {
@@ -45,6 +46,9 @@ export default function SettingsIntegration() {
     useWalletConnectPairs();
 
   const pairs = get();
+  const { data: fingerprint } = useGetLoggedInFingerprintQuery();
+
+  const [bypassReadonlyCommands, setBypassReadonlyCommands] = useLocalStorage<any>('bypass-readonly-commands', {});
 
   const refreshBypassCommands = React.useCallback(() => {
     if (selectedPair.current) {
@@ -130,6 +134,9 @@ export default function SettingsIntegration() {
       setBypassCommands(undefined);
     }
   }, [topic, pairs, refreshBypassCommands]);
+
+  const readonlySkipValue =
+    bypassReadonlyCommands && topic && fingerprint ? bypassReadonlyCommands[topic][fingerprint] : false;
 
   return (
     <Grid container style={{ maxWidth: '624px' }} gap={3}>
@@ -334,6 +341,31 @@ export default function SettingsIntegration() {
                 </Box>
               )}
             </Flex>
+            <Box {...borderStyle}>
+              <Typography variant="h6">
+                <Trans>Skip Confirmation For All Readonly Commands</Trans>
+                <Grid item container xs marginTop="20px" marginRight="8px">
+                  <FormControl size="small">
+                    <Select
+                      value={readonlySkipValue}
+                      onChange={(evt: PointerEvent) => {
+                        setBypassReadonlyCommands((localBypassReadonlyCommands) => ({
+                          ...localBypassReadonlyCommands,
+                          [topic]: { [fingerprint]: evt.target.value },
+                        }));
+                      }}
+                    >
+                      <MenuItem value>
+                        <Trans>Always Skip</Trans>
+                      </MenuItem>
+                      <MenuItem value={false} onClick={() => {}}>
+                        <Trans>Require Confirmation</Trans>
+                      </MenuItem>
+                    </Select>
+                  </FormControl>
+                </Grid>
+              </Typography>
+            </Box>
 
             {topic && commands.length > 0 && (
               <>
