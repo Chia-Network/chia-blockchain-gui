@@ -43,7 +43,7 @@ export default function useAssetIdName() {
         name = 'Chia';
         symbol = currencyCode;
         isVerified = true;
-      } else if (walletType === WalletType.CAT) {
+      } else if ([WalletType.CAT, WalletType.CRCAT].includes(walletType)) {
         const lowercaseTail = wallet.meta.assetId.toLowerCase();
         const cat = catList.find((catItem: CATToken) => catItem.assetId.toLowerCase() === lowercaseTail);
 

@@ -3,7 +3,7 @@ import {
   useRemovePlotDirectoryMutation,
   useGetPlotDirectoriesQuery,
 } from '@chia-network/api-react';
-import { useShowError, Button, Suspender } from '@chia-network/core';
+import { useShowError, Button, Loading } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Folder as FolderIcon, Delete as DeleteIcon } from '@mui/icons-material';
 import {
@@ -39,10 +39,6 @@ export default function PlotAddDirectoryDialog(props: Props) {
   const selectDirectory = useSelectDirectory({
     buttonLabel: 'Select Plot Directory',
   });
-
-  if (isLoading) {
-    return <Suspender />;
-  }
 
   function handleClose() {
     onClose();
@@ -90,23 +86,27 @@ export default function PlotAddDirectoryDialog(props: Props) {
           </Trans>
         </Typography>
         <Box display="flex">
-          <List dense>
-            {directories?.map((dir: string) => (
-              <ListItem key={dir}>
-                <ListItemAvatar>
-                  <Avatar>
-                    <FolderIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText primary={dir} />
-                <ListItemSecondaryAction>
-                  <IconButton edge="end" aria-label="delete" onClick={() => removePlotDir(dir)}>
-                    <DeleteIcon color="info" />
-                  </IconButton>
-                </ListItemSecondaryAction>
-              </ListItem>
-            ))}
-          </List>
+          {isLoading ? (
+            <Loading center />
+          ) : (
+            <List dense>
+              {directories?.map((dir: string) => (
+                <ListItem key={dir}>
+                  <ListItemAvatar>
+                    <Avatar>
+                      <FolderIcon />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText primary={dir} />
+                  <ListItemSecondaryAction>
+                    <IconButton edge="end" aria-label="delete" onClick={() => removePlotDir(dir)}>
+                      <DeleteIcon color="info" />
+                    </IconButton>
+                  </ListItemSecondaryAction>
+                </ListItem>
+              ))}
+            </List>
+          )}
         </Box>
         <Box display="flex">
           <Box>

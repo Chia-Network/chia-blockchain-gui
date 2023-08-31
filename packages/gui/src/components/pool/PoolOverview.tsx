@@ -1,4 +1,4 @@
-import { Button, Flex, Suspender } from '@chia-network/core';
+import { Button, Flex, Loading } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Grid, Typography } from '@mui/material';
 import React from 'react';
@@ -24,7 +24,7 @@ export default function PoolOverview() {
   }
 
   if (loading) {
-    return <Suspender />;
+    return <Loading center />;
   }
 
   if (!hasNFTs) {
