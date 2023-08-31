@@ -1006,7 +1006,6 @@ const walletConnectCommands: WalletConnectCommand[] = [
     label: <Trans>Get public key</Trans>,
     description: <Trans>Requests a master public key from your wallet</Trans>,
     service: ServiceName.DAEMON,
-    bypassConfirm: true,
     params: [
       {
         name: WalletConnectCommandParamName.FINGERPRINT,
