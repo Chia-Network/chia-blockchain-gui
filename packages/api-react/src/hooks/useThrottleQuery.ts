@@ -38,7 +38,7 @@ export default function useThrottleQuery(
 
       processUpdate();
 
-      return null;
+      return state;
     },
   });
 
