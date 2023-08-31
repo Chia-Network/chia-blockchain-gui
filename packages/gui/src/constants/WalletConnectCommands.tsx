@@ -1001,6 +1001,19 @@ const walletConnectCommands: WalletConnectCommand[] = [
       },
     ],
   },
+  {
+    command: 'getPublicKey',
+    label: <Trans>Get public key</Trans>,
+    description: <Trans>Requests a master public key from your wallet</Trans>,
+    service: ServiceName.DAEMON,
+    params: [
+      {
+        name: WalletConnectCommandParamName.FINGERPRINT,
+        type: 'number',
+        label: <Trans>Fingerprint</Trans>,
+      },
+    ],
+  },
 ];
 
 export default walletConnectCommands;

@@ -428,4 +428,10 @@ export default class Daemon extends Service {
       args
     );
   }
+
+  getPublicKey(args?: { fingerprint: number }) {
+    return this.command<{
+      key: any;
+    }>('get_public_key', args);
+  }
 }
