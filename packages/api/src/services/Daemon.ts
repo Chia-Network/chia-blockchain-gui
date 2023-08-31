@@ -272,7 +272,7 @@ export default class Daemon extends Service {
     bladebitDeviceIndex?: number;
     bladebitDisableDirectDownloads?: boolean;
     bladebitEnableDisk128Mode?: boolean;
-    bladebitEnableDisk64Mode?: boolean;
+    bladebitEnableDisk16Mode?: boolean;
     c?: string;
     delay: number;
     disableBitfieldPlotting?: boolean;
@@ -314,7 +314,7 @@ export default class Daemon extends Service {
       bladebitDeviceIndex: 'device',
       bladebitDisableDirectDownloads: 'no_direct_downloads',
       bladebitEnableDisk128Mode: 'disk_128',
-      bladebitEnableDisk64Mode: 'disk_64',
+      bladebitEnableDisk16Mode: 'disk_16',
       disableBitfieldPlotting: 'e',
       excludeFinalDir: 'x',
       farmerPublicKey: 'f',

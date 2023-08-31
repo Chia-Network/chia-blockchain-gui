@@ -33,7 +33,7 @@ interface BladeBitCudaOptions extends BladeBitRamOptions {
   haveBladebitDeviceIndex: boolean;
   haveBladebitDisableDirectDownloads: boolean;
   haveBladebitDisk128Mode: boolean;
-  haveBladebitDisk64Mode: boolean;
+  haveBladebitDisk16Mode: boolean;
 }
 
 interface MadMaxOptions extends CommonOptions {
@@ -82,7 +82,7 @@ interface BladeBitCudaDefaults extends BladeBitRamDefaults {
   bladebitDeviceIndex?: number;
   bladebitDisableDirectDownloads?: boolean;
   bladebitEnableDisk128Mode?: boolean;
-  bladebitEnableDisk64Mode?: boolean;
+  bladebitEnableDisk16Mode?: boolean;
 }
 
 interface MadMaxDefaults extends CommonDefaults {

@@ -171,7 +171,7 @@ export default function PlotAddForm(props: Props) {
       }
 
       if (bladebitEnableHybridDiskMode && !workspaceLocation) {
-        throw new Error(t`Temp folder location is required for hybrid disk plotting with 64/128G RAM`);
+        throw new Error(t`Temp folder location is required for hybrid disk plotting with 16/128G RAM`);
       }
 
       const plotAddConfig = {
@@ -181,7 +181,7 @@ export default function PlotAddForm(props: Props) {
         workspaceLocation,
         workspaceLocation2: formPlotterName === 'madmax' ? workspaceLocation2 || workspaceLocation : workspaceLocation2,
         bladebitEnableDisk128Mode: bladebitEnableHybridDiskMode === '128' ? true : undefined,
-        bladebitEnableDisk64Mode: bladebitEnableHybridDiskMode === '64' ? true : undefined,
+        bladebitEnableDisk16Mode: bladebitEnableHybridDiskMode === '16' ? true : undefined,
         farmerPublicKey: undefined as string | undefined,
         poolPublicKey: undefined as string | undefined,
       };
