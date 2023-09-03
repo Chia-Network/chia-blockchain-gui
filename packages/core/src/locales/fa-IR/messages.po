@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-08-20 00:04\n"
+"PO-Revision-Date: 2023-09-03 00:05\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -140,12 +140,11 @@ msgstr "حذف تمامی کلید ها"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:96
 msgid "Delete key {fingerprint}"
-msgstr "حذف کد شخصی {fingerprint}"
+msgstr "حذف کلید {fingerprint}"
 
 #: src/screens/SelectKey/SelectKey.tsx:133
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
-msgstr ""
-"حذف همه کلیدها آنها را برای همیشه از روی رایانه شما حذف میکند، مطمئن شوید که نسخه پشتیبان دارید.\n"
+msgstr "حذف همه کلیدها آنها را برای همیشه از روی رایانه شما حذف میکند، مطمئن شوید که نسخه پشتیبان دارید.\n"
 " آیا مطمئنید که میخواهید ادامه دهید؟"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:106
@@ -210,7 +209,7 @@ msgstr "کدهای شحصی مظابقت ندارند"
 
 #: src/components/Settings/SettingsApp.tsx:152
 msgid "Frequently Asked Questions"
-msgstr "سوالات متداول"
+msgstr "پرسش ها و پاسخ های متداول"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:121
 msgid "Go To Download Page"
@@ -284,11 +283,11 @@ msgstr "در حال بارگیری کلیدها"
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:317
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:336
 #~ msgid "Log Out"
-#~ msgstr "خروج"
+#~ msgstr ""
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:335
 #~ msgid "Logout"
-#~ msgstr "خارج شد"
+#~ msgstr ""
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:17
 msgid "Migrate"
@@ -317,7 +316,7 @@ msgstr "نسخه جدید {latestVersion} موجود است"
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:84
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:138
 msgid "No 24 word seed, since this key is imported."
-msgstr "هیچ بذر ۲۴ کلمه‌ای نیست، از هنگامی که این کلید را وارد کرده اید."
+msgstr "از زمانیکه کلید را وارد کرده اید هیچ کلمات رمز 24 حرفی موجود نیست."
 
 #: src/components/FormatConnectionStatus/FormatConnectionStatus.tsx:33
 msgid "Not connected"
@@ -413,7 +412,7 @@ msgstr "کلمات رمز"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:76
 msgid "Seed:"
-msgstr "بذر:"
+msgstr "کلمات زمز:"
 
 #: src/screens/SelectKey/SelectKey.tsx:134
 #~ msgid "Select Key"
@@ -570,3 +569,4 @@ msgstr "نسخه فعلی شما:"
 #: src/hooks/useKeyringMigrationPrompt.tsx:21
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr "کلیدهای شما به یک کلید جدید منتقل نشده. تا زمانی که انتقال کامل نشود، نمیتوانید کلیدهای جدید ایجاد کنید یا کلیدهای موجود را حذف کنید. آیا میخواهید کلیدهای خود را اکنون انتقال دهید؟"
+

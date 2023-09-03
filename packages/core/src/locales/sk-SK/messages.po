@@ -8,7 +8,7 @@ msgstr ""
 "Language: sk_SK\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-08-13 00:04\n"
+"PO-Revision-Date: 2023-09-03 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 3;\n"
@@ -36,7 +36,7 @@ msgstr "{minPassphraseLength, plural, one {Prístupové frázy musia mať dĺžk
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:95
 msgid "A new version of Chia is available!"
-msgstr ""
+msgstr "K dispozícii je nová verzia Chia!"
 
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:268
 msgid "Add Icon"
@@ -76,15 +76,15 @@ msgstr ""
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:93
 msgid "Checking for updates..."
-msgstr ""
+msgstr "Kontrolujú sa aktualizácie..."
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:82
 msgid "Chia {latestVersion} is currently the latest version available."
-msgstr ""
+msgstr "Chia {latestVersion} je momentálne najnovšia dostupná verzia."
 
 #: src/components/Settings/SettingsApp.tsx:126
 msgid "Chia Application Version:"
-msgstr ""
+msgstr "Verzia aplikácie Chia:"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:110
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:47
@@ -178,7 +178,7 @@ msgstr "Chyba:"
 
 #: src/screens/SelectKey/SelectKeyRenameForm.tsx:91
 msgid "Esc"
-msgstr ""
+msgstr "Esc"
 
 #: src/components/LayoutMain/LayoutFooter.tsx:49
 msgid "FAQ"
@@ -212,7 +212,7 @@ msgstr "Často kladené otázky (FAQ)"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:121
 msgid "Go To Download Page"
-msgstr ""
+msgstr "Prejsť na stránku sťahovania"
 
 #: src/components/Settings/SettingsApp.tsx:148
 msgid "Help"
@@ -249,7 +249,7 @@ msgstr "Jazyk"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:57
 msgid "Latest Version:"
-msgstr ""
+msgstr "Najnovšia verzia:"
 
 #: src/components/Settings/SettingsApp.tsx:103
 msgid "Light"
@@ -257,11 +257,11 @@ msgstr "Svetlý"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:223
 msgid "Likely in {0} seconds"
-msgstr ""
+msgstr "Pravdepodobne o {0} sekúnd"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:220
 msgid "Likely in {minutes} minutes"
-msgstr ""
+msgstr "Pravdepodobne o {minutes} minút"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:222
 msgid "Likely in >5 minutes"
@@ -282,11 +282,11 @@ msgstr ""
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:317
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:336
 #~ msgid "Log Out"
-#~ msgstr "Odhlásiť sa"
+#~ msgstr ""
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:335
 #~ msgid "Logout"
-#~ msgstr "Odhlásiť"
+#~ msgstr ""
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:17
 msgid "Migrate"
@@ -310,7 +310,7 @@ msgstr "Nová prístupová fráza je rovnaká ako vaša aktuálna prístupová f
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:133
 msgid "New version {latestVersion} available"
-msgstr ""
+msgstr "K dispozícii je nová verzia {latestVersion}"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:84
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:138
@@ -328,7 +328,7 @@ msgstr "Nepripojené"
 #: src/components/AlertDialog/AlertDialog.tsx:23
 #: src/components/ConfirmDialog/ConfirmDialog.tsx:30
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: src/screens/SelectKey/SelectKey.tsx:258
 msgid "Open a world of possibilities."
@@ -361,15 +361,15 @@ msgstr "Verejný kľúč:"
 
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:287
 msgid "Random"
-msgstr ""
+msgstr "Náhodne"
 
 #: src/components/Fee/Fee.tsx:18
 msgid "Recommended value: 0.000005"
-msgstr ""
+msgstr "Odporúčaná hodnota: 0,000005"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:71
 msgid "Release Notes"
-msgstr ""
+msgstr "Poznámky k vydaniu"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:85
 msgid "Reload Application"
@@ -399,7 +399,7 @@ msgstr "Uložiť"
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:180
 #: src/screens/SelectKey/Search.tsx:34
 msgid "Search"
-msgstr ""
+msgstr "Vyhľadať"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:113
 msgid "Secret Key"
@@ -550,7 +550,7 @@ msgstr ""
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:142
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:66
 msgid "What's New"
-msgstr ""
+msgstr "Čo je nové"
 
 #: src/components/Back/Back.tsx:40
 #: src/components/FormBackButton/FormBackButton.tsx:31
@@ -559,12 +559,13 @@ msgstr "Urobili ste zmeny. Chcete ich zrušiť?"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:97
 msgid "You're up to date"
-msgstr ""
+msgstr "Aplikácia je aktuálna"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:49
 msgid "Your Current Version:"
-msgstr ""
+msgstr "Vaša aktuálna verzia:"
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:21
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr "Vaše kľúče zatiaľ neboli migrované do nového zväzku kľúčov. Kým sa migrácia nedokončí, nebudete môcť vytvárať nové kľúče ani odstraňovať existujúce kľúče. Chcete teraz migrovať svoje kľúče?"
+

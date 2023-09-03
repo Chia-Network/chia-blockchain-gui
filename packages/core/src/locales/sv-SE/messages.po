@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-08-13 00:04\n"
+"PO-Revision-Date: 2023-09-03 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -40,7 +40,7 @@ msgstr ""
 
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:268
 msgid "Add Icon"
-msgstr ""
+msgstr "Lägg till ikon"
 
 #: src/screens/SelectKey/SelectKey.tsx:174
 msgid "Add wallet"
@@ -72,11 +72,11 @@ msgstr "Avbryt"
 
 #: src/components/Settings/SettingsApp.tsx:140
 msgid "Check for updates"
-msgstr ""
+msgstr "Sök efter uppdateringar"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:93
 msgid "Checking for updates..."
-msgstr ""
+msgstr "Söker efter uppdateringar ..."
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:82
 msgid "Chia {latestVersion} is currently the latest version available."
@@ -84,7 +84,7 @@ msgstr ""
 
 #: src/components/Settings/SettingsApp.tsx:126
 msgid "Chia Application Version:"
-msgstr ""
+msgstr "Chia programversion:"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:110
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:47
@@ -282,11 +282,11 @@ msgstr ""
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:317
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:336
 #~ msgid "Log Out"
-#~ msgstr "Logga ut"
+#~ msgstr ""
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:335
 #~ msgid "Logout"
-#~ msgstr "Logga ut"
+#~ msgstr ""
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:17
 msgid "Migrate"
@@ -328,7 +328,7 @@ msgstr "Inte ansluten"
 #: src/components/AlertDialog/AlertDialog.tsx:23
 #: src/components/ConfirmDialog/ConfirmDialog.tsx:30
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: src/screens/SelectKey/SelectKey.tsx:258
 msgid "Open a world of possibilities."
@@ -361,7 +361,7 @@ msgstr "Publik nyckel:"
 
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:287
 msgid "Random"
-msgstr ""
+msgstr "Slumpmässig"
 
 #: src/components/Fee/Fee.tsx:18
 msgid "Recommended value: 0.000005"
@@ -373,11 +373,11 @@ msgstr ""
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:85
 msgid "Reload Application"
-msgstr "Läs in applikationen på nytt"
+msgstr "Läs in programmet på nytt"
 
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:268
 msgid "Remove Icon"
-msgstr ""
+msgstr "Ta bort ikon"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:98
 msgid "Rename"
@@ -399,7 +399,7 @@ msgstr "Spara"
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:180
 #: src/screens/SelectKey/Search.tsx:34
 msgid "Search"
-msgstr ""
+msgstr "Sök"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:113
 msgid "Secret Key"
@@ -568,3 +568,4 @@ msgstr ""
 #: src/hooks/useKeyringMigrationPrompt.tsx:21
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr "Dina nycklar har inte migrerats till en ny nyckelring. Du kommer inte att kunna skapa nya nycklar eller ta bort befintliga nycklar tills migreringen är klar. Vill du migrera nycklarna nu?"
+
