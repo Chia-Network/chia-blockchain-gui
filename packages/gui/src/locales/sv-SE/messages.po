@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-09-03 00:04\n"
+"PO-Revision-Date: 2023-09-03 07:57\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1829,7 +1829,7 @@ msgstr "Det gick inte att ange lösenfras: {0}"
 
 #: src/components/settings/SettingsHarvester.tsx:170
 msgid "Failed to update Harvester config"
-msgstr ""
+msgstr "Det gick inte att uppdatera skördarkonfigurationen"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:127
 msgid "Failed to update passphrase: {0}"
@@ -2164,11 +2164,11 @@ msgstr ""
 
 #: src/components/harvest/HarvesterLatency.tsx:75
 msgid "Harvester latency"
-msgstr ""
+msgstr "Skördarens latens"
 
 #: src/components/settings/SettingsHarvester.tsx:372
 msgid "Harvester Services"
-msgstr ""
+msgstr "Skördartjänster"
 
 #: src/components/harvest/HarvesterOverview.tsx:147
 msgid "Harvester Summary"
@@ -2181,7 +2181,7 @@ msgstr "Skördare"
 
 #: src/components/harvest/HarvesterOverview.tsx:188
 msgid "Harvesting Effectiveness"
-msgstr ""
+msgstr "Skördareffektivitet"
 
 #: src/constants/WalletConnectCommands.tsx:653
 msgid "Hash"
@@ -2633,7 +2633,7 @@ msgstr ""
 
 #: src/components/harvest/HarvesterDetail.tsx:47
 msgid "Local Harvester"
-msgstr ""
+msgstr "Lokal skördare"
 
 #: src/components/offers2/CancelOfferList.tsx:110
 msgid "Locked"
@@ -3587,7 +3587,7 @@ msgstr "Ange din lösenfras för att fortsätta"
 
 #: src/components/settings/SettingsHarvester.tsx:385
 msgid "Please restart your harvester in order for any changes to take effect."
-msgstr ""
+msgstr "Starta om din skördare för att eventuella ändringar ska träda i kraft."
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:155
 msgid "Please select a profile to move the NFT to."
@@ -4032,7 +4032,7 @@ msgstr "Fjärr-"
 
 #: src/components/harvest/HarvesterDetail.tsx:47
 msgid "Remote Harvester"
-msgstr ""
+msgstr "Fjärrskördare"
 
 #: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:359
 msgid "Remove Conflicting Offer"
@@ -4166,7 +4166,7 @@ msgstr ""
 
 #: src/components/settings/SettingsHarvester.tsx:339
 msgid "Restart Local Harvester to apply changes"
-msgstr ""
+msgstr "Starta om lokal skördare för att tillämpa ändringar"
 
 #: src/components/settings/SettingsIntegration.tsx:352
 msgid "Restore"
@@ -4583,7 +4583,7 @@ msgstr ""
 
 #: src/components/settings/SettingsHarvester.tsx:464
 msgid "Specify a value if using CPU as your harvester. Typical values will be 1 or 2."
-msgstr ""
+msgstr "Ange ett värde om du använder CPU som skördare. Typiska värden är 1 eller 2."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:134
 msgid "Specify a value of 0 to use all available threads"
