@@ -15,8 +15,8 @@ msgstr ""
 "X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "X-Crowdin-Project-ID: 1\n"
 "X-Crowdin-Language: vi\n"
-"X-Crowdin-File: messages.po\n"
-"X-Crowdin-File-ID: 2667\n"
+"X-Crowdin-File: /main/packages/core/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 15\n"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:62
 msgid "(>5 min)"
@@ -90,7 +90,7 @@ msgstr ""
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:47
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:70
 msgid "Close"
-msgstr "Đóng"
+msgstr ""
 
 #: src/components/FormatConnectionStatus/FormatConnectionStatus.tsx:32
 msgid "Connected"
@@ -122,7 +122,7 @@ msgstr ""
 
 #: src/components/Settings/SettingsApp.tsx:111
 msgid "Dark"
-msgstr ""
+msgstr "Tối"
 
 #: src/screens/SelectKey/SelectKey.tsx:128
 #: src/screens/SelectKey/SelectKeyItem.tsx:114
@@ -140,7 +140,7 @@ msgstr ""
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:96
 msgid "Delete key {fingerprint}"
-msgstr ""
+msgstr "Xóa khóa {fingerprint}"
 
 #: src/screens/SelectKey/SelectKey.tsx:133
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
@@ -152,16 +152,16 @@ msgstr ""
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:60
 msgid "Disable"
-msgstr ""
+msgstr "Vô hiệu hóa"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:59
 msgid "Disable Passphrase Protection"
-msgstr ""
+msgstr "Vô hiệu hóa cụm mật khẩu bảo vệ"
 
 #: src/components/Back/Back.tsx:37
 #: src/components/FormBackButton/FormBackButton.tsx:28
 msgid "Discard"
-msgstr ""
+msgstr "Loại bỏ"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:148
 msgid "Download"
@@ -174,7 +174,7 @@ msgstr "Lỗi"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:72
 msgid "Error:"
-msgstr ""
+msgstr "Lỗi:"
 
 #: src/screens/SelectKey/SelectKeyRenameForm.tsx:91
 msgid "Esc"
@@ -182,7 +182,7 @@ msgstr ""
 
 #: src/components/LayoutMain/LayoutFooter.tsx:49
 msgid "FAQ"
-msgstr ""
+msgstr "Câu hỏi thường gặp"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:90
 msgid "Farmer Public Key"
@@ -190,11 +190,11 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:58
 msgid "Farmer public key:"
-msgstr ""
+msgstr "Khóa công khai của farmer:"
 
 #: src/components/Settings/SettingsApp.tsx:79
 msgid "Farming"
-msgstr ""
+msgstr "Farming"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:334
 #: src/components/EstimatedFee/EstimatedFee.tsx:368
@@ -241,11 +241,11 @@ msgstr ""
 
 #: src/components/Fee/Fee.tsx:32
 msgid "Incorrect value"
-msgstr ""
+msgstr "Giá trị không chính xác"
 
 #: src/components/Settings/SettingsApp.tsx:118
 msgid "Language"
-msgstr ""
+msgstr "Ngôn ngữ"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:57
 msgid "Latest Version:"
@@ -253,7 +253,7 @@ msgstr ""
 
 #: src/components/Settings/SettingsApp.tsx:103
 msgid "Light"
-msgstr ""
+msgstr "Sáng"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:223
 msgid "Likely in {0} seconds"
@@ -290,15 +290,15 @@ msgstr ""
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:17
 msgid "Migrate"
-msgstr ""
+msgstr "Di chuyển"
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:16
 msgid "Migration required"
-msgstr ""
+msgstr "Yêu cầu di chuyển"
 
 #: src/components/Settings/SettingsApp.tsx:70
 msgid "Mode"
-msgstr ""
+msgstr "Chế độ"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:107
 msgid "NEVER SHARE THESE WITH ANYONE"
@@ -306,7 +306,7 @@ msgstr ""
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:42
 msgid "New passphrase is the same as your current passphrase"
-msgstr ""
+msgstr "Cụm mật khẩu mới giống với cụm mật khẩu hiện tại của bạn"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:133
 msgid "New version {latestVersion} available"
@@ -336,16 +336,16 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:98
 msgid "Pool Public Key"
-msgstr "Khoá công khai của Pool"
+msgstr ""
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:66
 msgid "Pool public key:"
-msgstr ""
+msgstr "Khoá công khai của Pool:"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:27
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:34
 msgid "Private key {fingerprint}"
-msgstr ""
+msgstr "Khóa cá nhân {fingerprint}"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:42
 msgid "Private key:"
@@ -369,11 +369,11 @@ msgstr ""
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:71
 msgid "Release Notes"
-msgstr "Ghi chú phát hành"
+msgstr ""
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:85
 msgid "Reload Application"
-msgstr ""
+msgstr "Tải lại ứng dụng"
 
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:268
 msgid "Remove Icon"
@@ -394,7 +394,7 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKeyRenameForm.tsx:109
 msgid "Save"
-msgstr "Lưu"
+msgstr ""
 
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:180
 #: src/screens/SelectKey/Search.tsx:34
