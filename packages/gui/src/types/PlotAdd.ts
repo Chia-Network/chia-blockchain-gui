@@ -16,7 +16,6 @@ type PlotAdd = {
   bladebit2NoT1Direct?: boolean;
   bladebit2NoT2Direct?: boolean;
   bladebitDeviceIndex?: number;
-  bladebitDisableDirectDownloads?: boolean;
   bladebitEnableHybridDiskMode?: false | '16' | '128';
   c: string;
   delay: number;

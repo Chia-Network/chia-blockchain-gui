@@ -443,26 +443,6 @@ export default function PlotAddNumberOfPlots(props: Props) {
                 />
               </FormControl>
             </Grid>
-            {op.haveBladebitDisableDirectDownloads && (
-              <Grid xs={12} sm={4} item>
-                <FormControl variant="filled" fullWidth>
-                  <FormControlLabel
-                    control={<Checkbox name="bladebitDisableDirectDownloads" />}
-                    label={
-                      <>
-                        <Trans>Disable direct download</Trans>{' '}
-                        <TooltipIcon>
-                          <Trans>
-                            Don't allocate host tables using pinned buffers, instead download to intermediate pinned
-                            buffers then copy to the final host buffer.
-                          </Trans>
-                        </TooltipIcon>
-                      </>
-                    }
-                  />
-                </FormControl>
-              </Grid>
-            )}
             {op.haveBladebitDeviceIndex && (
               <Grid xs={12} sm={12} item>
                 <FormControl variant="filled" fullWidth>
