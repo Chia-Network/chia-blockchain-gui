@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-09-03 07:57\n"
+"PO-Revision-Date: 2023-09-03 09:06\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -656,7 +656,7 @@ msgstr "Autogenererat namn från poolkontraktsadress"
 
 #: src/components/harvest/HarvesterLatency.tsx:108
 msgid "Avg"
-msgstr ""
+msgstr "Genomsnittlig"
 
 #: src/components/offers/NFTOfferViewer.tsx:633
 msgid "Back"
@@ -1588,7 +1588,7 @@ msgstr "Dubblett"
 
 #: src/components/harvest/HarvesterOverview.tsx:204
 msgid "Duplicate plots"
-msgstr ""
+msgstr "Dubbletter av plotter"
 
 #: src/components/plot/card/PlotCardPlotsDuplicate.tsx:11
 msgid "Duplicate Plots"
@@ -4595,7 +4595,7 @@ msgstr ""
 
 #: src/components/settings/SettingsHarvester.tsx:516
 msgid "Specify GPU index (0, 1, 2, etc) for harvesting if more than one GPU is present)"
-msgstr ""
+msgstr "Ange GPU-index (0, 1, 2 etc) för skörd om det finns fler än en GPU"
 
 #: src/electron/main.tsx:1149
 #~ msgid "Speech"
