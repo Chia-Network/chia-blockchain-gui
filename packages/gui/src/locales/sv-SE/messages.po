@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-09-03 15:08\n"
+"PO-Revision-Date: 2023-09-04 10:30\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -21,7 +21,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/components/nfts/NFTBurnDialog.tsx:133
 msgid "Do you want to burn {count} NFTs?"
-msgstr ""
+msgstr "Vill du bränna {count} NFT:er?"
 
 #. js-lingui-explicit-id
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:185
@@ -259,7 +259,7 @@ msgstr ""
 
 #: src/components/offers2/OfferBuilderValue.tsx:175
 msgid "{type} is not supported"
-msgstr ""
+msgstr "{type} stöds inte"
 
 #: src/components/nfts/NFTRankings.tsx:46
 msgid "{value} of {max_value}"
@@ -738,15 +738,15 @@ msgstr "Bläddra"
 #: src/components/nfts/NFTBurnDialog.tsx:185
 #: src/components/nfts/NFTContextualActions.tsx:528
 msgid "Burn"
-msgstr ""
+msgstr "Bränn"
 
 #: src/components/nfts/NFTBurnDialog.tsx:74
 msgid "Burn NFT confirmation"
-msgstr ""
+msgstr "Bekräftelse av att bränna NFT"
 
 #: src/components/nfts/NFTBurnDialog.tsx:144
 msgid "Burning a non-fungible token means removing it from circulation by sending it to a verifiably un-spendable address. However, transactions leading up to the burn will remain on the blockchain ledger."
-msgstr ""
+msgstr "Att bränna en icke-fungibel token (NFT) innebär att ta den ur cirkulation genom att skicka den till en bevisligen ospenderbar adress. Transaktioner som leder fram till att den bränns kommer dock att finnas kvar på blockkedjan."
 
 #: src/components/offers/NFTOfferEditor.tsx:309
 msgid "Buy an NFT"
@@ -1155,7 +1155,7 @@ msgstr "Skapa och hantera plottar"
 
 #: src/components/offers/OfferManager.tsx:329
 msgid "Create a file that you can use to trade XCH, Chia Asset Tokens, or NFTs with no counter-party risk."
-msgstr ""
+msgstr "Skapa en fil som du kan använda för att handla XCH, Chia Asset Tokens, eller NFT:er utan någon motpartsrisk."
 
 #: src/components/settings/ProfileAdd.tsx:113
 msgid "Create a new profile"
@@ -1506,7 +1506,7 @@ msgstr "Har du redan några plottar på denna maskin? <0>Lägg till plottmapp</0
 
 #: src/components/nfts/NFTBurnDialog.tsx:135
 msgid "Do you want to burn this NFT?"
-msgstr ""
+msgstr "Vill du bränna denna NFT?"
 
 #: src/hooks/useWalletConnectCommand.tsx:183
 msgid "Do you want to execute command {command}?"
@@ -1758,13 +1758,13 @@ msgstr ""
 #: src/components/farm/card/FarmingRewardsCards.tsx:105
 #: src/components/farm/card/FarmingRewardsCards.tsx:115
 msgid "Estimated daily XCH"
-msgstr ""
+msgstr "Beräknad antal XCH per dag"
 
 #: src/components/farm/card/EstimatedEarning.tsx:65
 #: src/components/farm/card/FarmingRewardsCards.tsx:133
 #: src/components/farm/card/FarmingRewardsCards.tsx:143
 msgid "Estimated monthly XCH"
-msgstr ""
+msgstr "Beräknad mängd XCH per månad"
 
 #: src/components/fullNode/card/FullNodeEstimatedNetworkSpace.tsx:14
 msgid "Estimated Network Space"
@@ -2330,7 +2330,7 @@ msgstr ""
 #: src/components/offers/NFTOfferEditor.tsx:88
 #: src/components/offers/OfferEditorConditionsPanel.tsx:393
 msgid "Including a fee in the offer can help expedite the transaction when the offer is accepted. The recommended minimum fee is 0.000005 XCH (5,000,000 mojos)"
-msgstr ""
+msgstr "Att lägga till en avgift i erbjudandet kan hjälpa till att påskynda transaktionen när erbjudandet accepteras. Rekommenderad minimiavgift är 0,000005 XCH (5 000 000 mojos)"
 
 #: src/components/offers2/OfferIncomingTable.tsx:128
 msgid "Incoming Offers"
@@ -2483,7 +2483,7 @@ msgstr "Det gick inte att migrera nyckelring: {0}"
 
 #: src/components/plot/add/PlotAddChooseKeys.tsx:141
 msgid "Keys"
-msgstr ""
+msgstr "Nycklar"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:49
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:49
@@ -2545,7 +2545,7 @@ msgstr "Launcher-ID"
 
 #: src/components/plot/add/PlotAddNFT.tsx:84
 msgid "Learn more"
-msgstr ""
+msgstr "Läs mer"
 
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:75
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:101
@@ -2645,7 +2645,7 @@ msgstr ""
 
 #: src/components/app/AppStatusHeader.tsx:182
 msgid "Log Out"
-msgstr ""
+msgstr "Logga ut"
 
 #: src/components/app/AppSelectMode.tsx:84
 msgid "Manage CAT tokens"
@@ -2995,7 +2995,7 @@ msgstr ""
 
 #: src/components/vcs/VCCard.tsx:83
 msgid "No"
-msgstr ""
+msgstr "Nej"
 
 #: src/components/notification/NotificationsMenu.tsx:53
 msgid "No activities yet"
@@ -3165,11 +3165,11 @@ msgstr "Antal buckets för fas 3 & 4"
 
 #: src/constants/WalletConnectCommands.tsx:592
 msgid "Number of NFTs"
-msgstr ""
+msgstr "Antal NFT:er"
 
 #: src/components/harvest/HarvesterOverview.tsx:180
 msgid "Number of plots"
-msgstr ""
+msgstr "Antal plottar"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:107
 #: src/components/plotNFT/PlotNFTCard.tsx:140
@@ -4301,7 +4301,7 @@ msgstr "Välj slutlig mapp"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:154
 msgid "Select Keys"
-msgstr ""
+msgstr "Välj nycklar"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:247
 msgid "Select keys which you want to share with WalletConnect"
@@ -4950,7 +4950,7 @@ msgstr "Erbjudandet har slutförts"
 #: src/components/offers/OfferHeader.tsx:46
 #: src/components/offers2/OfferBuilderViewer.tsx:225
 msgid "This offer is no longer valid. To understand why, click <0>here</0> to learn more."
-msgstr ""
+msgstr "Detta erbjudande är inte längre giltigt. För att förstå varför, klicka <0>här</0> för att läsa mer."
 
 #: src/components/offers2/OfferBuilderViewer.tsx:242
 msgid "This offer was cancelled"
@@ -4970,7 +4970,7 @@ msgstr ""
 
 #: src/components/settings/SettingsIntegration.tsx:359
 msgid "This will restore the selected Dapp's permissions back to their default values. By default, every command issued by the Dapp will require confirmation in the Chia wallet."
-msgstr ""
+msgstr "Detta kommer att återställa den valda Dappens behörigheter till deras standardvärden. Som standard kommer varje kommando som utfärdas av Dappen att kräva bekräftelse i Chia-plånboken."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:151
 msgid "Thread Multiplier for Phase 2"
@@ -5326,7 +5326,7 @@ msgstr ""
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:138
 msgid "Use left and right arrow keys to navigate"
-msgstr ""
+msgstr "Använd vänster och höger piltangent för att navigera"
 
 #: src/components/plot/add/PlotAddChooseKeys.tsx:38
 msgid "Used to create a pool plot."
@@ -5627,7 +5627,7 @@ msgstr "När du skapar ett erbjudande kommer alla tillgångar som erbjuds att l�
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:475
 msgid "Which CUDA device to use when plotting"
-msgstr ""
+msgstr "Vilken CUDA-enhet som ska användas vid plottning"
 
 #: src/electron/main.tsx:1029
 #~ msgid "Window"
