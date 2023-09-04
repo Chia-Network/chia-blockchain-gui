@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-09-04 09:09\n"
+"PO-Revision-Date: 2023-09-04 10:30\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -36,7 +36,7 @@ msgstr "{minPassphraseLength, plural, one {Lösenfraser måste vara minst # teck
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:95
 msgid "A new version of Chia is available!"
-msgstr ""
+msgstr "En ny version av Chia finns tillgänglig!"
 
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:268
 msgid "Add Icon"
@@ -80,7 +80,7 @@ msgstr "Söker efter uppdateringar ..."
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:82
 msgid "Chia {latestVersion} is currently the latest version available."
-msgstr ""
+msgstr "Chia {latestVersion} är för närvarande den senaste tillgängliga versionen."
 
 #: src/components/Settings/SettingsApp.tsx:126
 msgid "Chia Application Version:"
@@ -136,7 +136,7 @@ msgstr "Ta bort alla nycklar"
 
 #: src/screens/SelectKey/SelectKey.tsx:202
 msgid "Delete All Keys"
-msgstr ""
+msgstr "Ta bort alla nycklar"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:96
 msgid "Delete key {fingerprint}"
@@ -165,7 +165,7 @@ msgstr "Spara inte"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:148
 msgid "Download"
-msgstr ""
+msgstr "Ladda ner"
 
 #: src/components/CardSimple/CardSimple.tsx:52
 #: src/hooks/useShowError.tsx:14
@@ -212,7 +212,7 @@ msgstr "Vanliga frågor"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:121
 msgid "Go To Download Page"
-msgstr ""
+msgstr "Gå till nedladdningssidan"
 
 #: src/components/Settings/SettingsApp.tsx:148
 msgid "Help"
@@ -249,7 +249,7 @@ msgstr "Språk"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:57
 msgid "Latest Version:"
-msgstr ""
+msgstr "Senaste version:"
 
 #: src/components/Settings/SettingsApp.tsx:103
 msgid "Light"
@@ -273,7 +273,7 @@ msgstr "Läser in information"
 
 #: src/screens/SelectKey/SelectKey.tsx:236
 msgid "Loading keys"
-msgstr ""
+msgstr "Läser in nycklar"
 
 #: src/screens/SelectKey/SelectKey.tsx:117
 #~ msgid "Loading list of the keys"
@@ -310,7 +310,7 @@ msgstr "Ny lösenfras är densamma som din nuvarande lösenfras"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:133
 msgid "New version {latestVersion} available"
-msgstr ""
+msgstr "Ny version {latestVersion} finns tillgänglig"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:84
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:138
@@ -502,7 +502,7 @@ msgstr "Försök igen"
 
 #: src/screens/SelectKey/SelectKey.tsx:247
 msgid "Unable to load keys"
-msgstr ""
+msgstr "Det gick inte att läsa in nycklar"
 
 #: src/screens/SelectKey/SelectKey.tsx:128
 #~ msgid "Unable to load the list of the keys"
@@ -541,7 +541,7 @@ msgstr "Plånbokens fingeravtryck"
 
 #: src/screens/SelectKey/SelectKey.tsx:223
 msgid "Wallet Keys"
-msgstr ""
+msgstr "Plånboksnycklar"
 
 #: src/screens/SelectKey/SelectKey.tsx:142
 #~ msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
@@ -563,7 +563,7 @@ msgstr ""
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:49
 msgid "Your Current Version:"
-msgstr ""
+msgstr "Din nuvarande version:"
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:21
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
