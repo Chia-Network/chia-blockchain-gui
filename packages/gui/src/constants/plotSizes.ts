@@ -19,12 +19,17 @@ export const compressedSizes: Record<number, Record<number, string>> = {
   9: { 32: '75.2GiB', 33: '154.1GiB', 34: '315.5GiB', 35: '645.8GiB' },
 };
 
+export const UI_CONSTANT_FACTOR = 0.78;
+
 export function getEffectivePlotSize(kSize: 25 | 32 | 33 | 34 | 35) {
   const sizeInBytes = (2 * kSize + 1) * 2 ** (kSize - 1);
+  let size;
   if (kSize < 32) {
-    return `${sizeInBytes / 1024 / 1024}MiBe`;
+    size = (sizeInBytes / 1024 / 1024) * UI_CONSTANT_FACTOR;
+    return `${Math.floor(size * 10) / 10}MiBe`;
   }
-  return `${sizeInBytes / 1024 / 1024 / 1024}GiBe`;
+  size = (sizeInBytes / 1024 / 1024 / 1024) * UI_CONSTANT_FACTOR;
+  return `${Math.floor(size * 10) / 10}GiBe`;
 }
 
 export const plottingInfo: Record<PlotterName, PlotSize[]> = {
