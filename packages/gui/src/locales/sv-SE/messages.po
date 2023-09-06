@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-09-06 08:58\n"
+"PO-Revision-Date: 2023-09-06 10:21\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1243,7 +1243,7 @@ msgstr "Skapat (datum)"
 
 #: src/components/offers/NFTOfferViewer.tsx:518
 msgid "Creator Fee ({0}%)"
-msgstr ""
+msgstr "Skaparavgift ({0}%)"
 
 #: src/components/offers/NFTOfferEditor.tsx:331
 msgid "Creator Fee ({royaltyPercentage}%)"
@@ -1252,7 +1252,7 @@ msgstr "Skaparavgift ({royaltyPercentage}%)"
 #: src/components/offers/NFTOfferEditor.tsx:334
 #: src/components/offers/NFTOfferViewer.tsx:521
 msgid "Creator royalty percentage seems high"
-msgstr ""
+msgstr "Skaparens royaltyprocent verkar hög"
 
 #: src/components/dashboard/DashboardSideBar.tsx:60
 msgid "Credentials"
@@ -2927,7 +2927,7 @@ msgstr ""
 
 #: src/components/offers2/OfferBuilderNFTRoyalties.tsx:172
 msgid "NFT has no royalties"
-msgstr "NFT:n har inga royalties"
+msgstr "NFT:n har inga royaltyer"
 
 #: src/components/notification/NotificationSendDialog.tsx:212
 msgid "NFT holder address"
@@ -2991,7 +2991,7 @@ msgstr "NFT:er"
 
 #: src/components/settings/SettingsNFT.tsx:106
 msgid "NFTs that have been categorized by the creator as objectionable content will be hidden by default."
-msgstr ""
+msgstr "NFT:er som har kategoriserats av skaparen som stötande innehåll kommer att döljas som standard."
 
 #: src/components/vcs/VCCard.tsx:83
 msgid "No"
@@ -4766,7 +4766,7 @@ msgstr "Den minsta storlek som krävs för mainnet är k=32"
 
 #: src/components/offers/NFTOfferViewer.tsx:588
 msgid "The net proceeds include the asking price, minus any associated creator fees (if the NFT has royalty payments enabled)."
-msgstr ""
+msgstr "Nettointäkterna inkluderar det begärda priset, minus eventuella associerade skaparavgifter (om NFT:n har royaltybetalningar aktiverade)."
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:208
 msgid "The NFT move failed: {err}"
@@ -4807,7 +4807,7 @@ msgstr "Noden synkroniserar, vilket betyder att den laddar ner block från andra
 
 #: src/components/offers2/OfferIncomingTable.tsx:97
 msgid "The offer creator has chosen not to allow counter offers"
-msgstr ""
+msgstr "Den som skapat erbjudandet har valt att inte tillåta moterbjudanden"
 
 #: src/components/plotNFT/PlotNFTState.tsx:30
 msgid "The pool switching operation was cancelled, please try again by changing pool, or self pooling"
@@ -5015,7 +5015,7 @@ msgstr ""
 
 #: src/components/offers2/OfferBuilderRoyaltyPayouts.tsx:32
 msgid "Total amount including royalties"
-msgstr "Totalt belopp inklusive royalties"
+msgstr "Totalt belopp inklusive royaltyer"
 
 #: src/components/offers/NFTOfferEditor.tsx:382
 #: src/components/offers/NFTOfferViewer.tsx:545
@@ -5029,7 +5029,7 @@ msgstr ""
 
 #: src/components/offers2/OfferBuilderAmountWithRoyalties.tsx:31
 msgid "Total Amount with Royalties"
-msgstr "Totalt belopp med royalties"
+msgstr "Totalt belopp med royaltyer"
 
 #: src/components/farm/card/FarmCardTotalChiaFarmed.tsx:27
 #~ msgid "Total Chia Farmed"
@@ -5214,7 +5214,7 @@ msgstr "Det går inte att skapa ett erbjudande för en NFT som du inte äger."
 
 #: src/components/offers/NFTOfferEditor.tsx:643
 msgid "Unable to create an offer for an NFT with a creator royalty percentage greater than 100%"
-msgstr ""
+msgstr "Det går inte att skapa ett erbjudande för en NFT om skaparens royaltyprocent är högre än 100 %"
 
 #: src/components/offers/NFTOfferEditor.tsx:371
 msgid "Unable to create an offer where the net amount is negative"
