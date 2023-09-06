@@ -208,6 +208,8 @@ export const daemonApi = apiWithTag.injectEndpoints({
     }),
 
     getKeysForPlotting: query(build, Daemon, 'getKeysForPlotting'),
+
+    getPublicKey: query(build, Daemon, 'getPublicKey'),
   }),
 });
 
@@ -235,4 +237,5 @@ export const {
   useGetWalletAddressesQuery,
   useSetLabelMutation,
   useDeleteLabelMutation,
+  useGetPublicKeyQuery,
 } = daemonApi;

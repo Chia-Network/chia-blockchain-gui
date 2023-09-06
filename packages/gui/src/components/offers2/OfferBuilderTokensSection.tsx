@@ -102,7 +102,7 @@ export default function OfferBuilderTokensSection(props: OfferBuilderTokensSecti
 
     const emptyTokensCount = tokens?.filter((token) => !token.assetId).length ?? 0;
 
-    const catWallets = wallets.filter((wallet: Wallet) => wallet.type === WalletType.CAT);
+    const catWallets = wallets.filter((wallet: Wallet) => [WalletType.CAT, WalletType.CRCAT].includes(wallet.type));
 
     const availableTokensCount = catWallets.length - usedAssetIds.length;
     return availableTokensCount > emptyTokensCount;

@@ -6,7 +6,7 @@ import {
   Flex,
   TooltipIcon,
   useOpenDialog,
-  Suspender,
+  Loading,
   TextField,
   Form,
 } from '@chia-network/core';
@@ -48,11 +48,7 @@ export default function RemovePassphrasePrompt(props: Props) {
   const [showPassphraseText, setShowPassphraseText] = useState(false);
   const [showCapsLock, setShowCapsLock] = useState(false);
 
-  if (isLoading) {
-    return <Suspender />;
-  }
-
-  const { passphraseHint } = keyringState;
+  const { passphraseHint } = keyringState ?? {};
 
   async function handleSubmit(values: RemovePassphrasePromptFormData) {
     const { passphrase } = values;
@@ -115,63 +111,69 @@ export default function RemovePassphrasePrompt(props: Props) {
       <DialogTitle id="form-dialog-title">
         <Trans>Remove Passphrase</Trans>
       </DialogTitle>
-      <Form methods={formMethods} onSubmit={formMethods.handleSubmit(handleSubmit)}>
+      {isLoading ? (
         <DialogContent>
-          <DialogContentText>
-            <Trans>Enter your passphrase:</Trans>
-          </DialogContentText>
-          <Flex flexDirection="row" gap={1.5} alignItems="center">
-            <TextField
-              name="passphrase"
-              disabled={isLoadingRemoveKeyringPassphrase}
-              color="secondary"
-              margin="dense"
-              label={<Trans>Passphrase</Trans>}
-              type={showPassphraseText ? 'text' : 'password'}
-              InputProps={{
-                endAdornment: (
-                  <Flex alignItems="center">
-                    <InputAdornment position="end">
-                      {showCapsLock && (
-                        <Flex>
-                          <KeyboardCapslockIcon />
-                        </Flex>
-                      )}
-                      <IconButton onClick={() => setShowPassphraseText((s) => !s)}>
-                        <VisibilityIcon />
-                      </IconButton>
-                    </InputAdornment>
-                  </Flex>
-                ),
-              }}
-              fullWidth
-            />
-          </Flex>
-          {!!passphraseHint && (
-            <Flex gap={1} alignItems="center" style={{ marginTop: '8px' }}>
-              <Typography variant="body2" color="textSecondary">
-                <Trans>Hint</Trans>
-              </Typography>
-              <TooltipIcon>
-                <Typography variant="inherit">{passphraseHint}</Typography>
-              </TooltipIcon>
-            </Flex>
-          )}
+          <Loading center />
         </DialogContent>
-        <DialogActions>
-          <Button
-            disabled={isLoadingRemoveKeyringPassphrase}
-            onClick={handleCancel}
-            color="secondary"
-            variant="outlined"
-          >
-            <Trans>Cancel</Trans>
-          </Button>
-          <Button disabled={isLoadingRemoveKeyringPassphrase} type="submit" color="primary" variant="contained">
-            <Trans>Remove Passphrase</Trans>
-          </Button>
-        </DialogActions>
-      </Form>
+      ) : (
+        <Form methods={formMethods} onSubmit={formMethods.handleSubmit(handleSubmit)}>
+          <DialogContent>
+            <DialogContentText>
+              <Trans>Enter your passphrase:</Trans>
+            </DialogContentText>
+            <Flex flexDirection="row" gap={1.5} alignItems="center">
+              <TextField
+                name="passphrase"
+                disabled={isLoadingRemoveKeyringPassphrase}
+                color="secondary"
+                margin="dense"
+                label={<Trans>Passphrase</Trans>}
+                type={showPassphraseText ? 'text' : 'password'}
+                InputProps={{
+                  endAdornment: (
+                    <Flex alignItems="center">
+                      <InputAdornment position="end">
+                        {showCapsLock && (
+                          <Flex>
+                            <KeyboardCapslockIcon />
+                          </Flex>
+                        )}
+                        <IconButton onClick={() => setShowPassphraseText((s) => !s)}>
+                          <VisibilityIcon />
+                        </IconButton>
+                      </InputAdornment>
+                    </Flex>
+                  ),
+                }}
+                fullWidth
+              />
+            </Flex>
+            {!!passphraseHint && (
+              <Flex gap={1} alignItems="center" style={{ marginTop: '8px' }}>
+                <Typography variant="body2" color="textSecondary">
+                  <Trans>Hint</Trans>
+                </Typography>
+                <TooltipIcon>
+                  <Typography variant="inherit">{passphraseHint}</Typography>
+                </TooltipIcon>
+              </Flex>
+            )}
+          </DialogContent>
+          <DialogActions>
+            <Button
+              disabled={isLoadingRemoveKeyringPassphrase}
+              onClick={handleCancel}
+              color="secondary"
+              variant="outlined"
+            >
+              <Trans>Cancel</Trans>
+            </Button>
+            <Button disabled={isLoadingRemoveKeyringPassphrase} type="submit" color="primary" variant="contained">
+              <Trans>Remove Passphrase</Trans>
+            </Button>
+          </DialogActions>
+        </Form>
+      )}
     </Dialog>
   );
 }

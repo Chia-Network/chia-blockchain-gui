@@ -56,7 +56,7 @@ export default function NFTOfferTokenSelector(props: Props) {
       })
     );
     const catOptions = wallets
-      .filter((wallet: Wallet) => wallet.type === WalletType.CAT)
+      .filter((wallet: Wallet) => [WalletType.CAT, WalletType.CRCAT].includes(wallet.type))
       .map((wallet: Wallet) => {
         const cat: CATToken | undefined = catList.find(
           (catItem: CATToken) => catItem.assetId.toLowerCase() === wallet.tail?.toLowerCase()

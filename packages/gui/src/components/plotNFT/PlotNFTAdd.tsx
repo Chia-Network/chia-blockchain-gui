@@ -1,5 +1,5 @@
 import { useCreateNewPoolWalletMutation } from '@chia-network/api-react';
-import { Flex, Suspender } from '@chia-network/core';
+import { Flex, Loading } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { ChevronRight as ChevronRightIcon } from '@mui/icons-material';
 import React, { ReactNode } from 'react';
@@ -19,10 +19,6 @@ export default function PlotNFTAdd(props: Props) {
   const navigate = useNavigate();
   const { isLoading: isLoadingUnconfirmedPlotNFTs, add: addUnconfirmedPlotNFT } = useUnconfirmedPlotNFTs();
   const [createNewPoolWallet] = useCreateNewPoolWalletMutation();
-
-  if (isLoadingUnconfirmedPlotNFTs) {
-    return <Suspender />;
-  }
 
   async function handleSubmit(data: SubmitData) {
     const {
@@ -55,17 +51,21 @@ export default function PlotNFTAdd(props: Props) {
           </Flex>
         </HeaderTag>
       )}
-      <PlotNFTSelectPool
-        step={1}
-        onSubmit={handleSubmit}
-        title={<Trans>Want to Join a Pool? Create a Plot NFT</Trans>}
-        description={
-          <Trans>
-            Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less
-            volatile. Assign plots to a plot NFT. You can easily switch pools without having to re-plot.
-          </Trans>
-        }
-      />
+      {isLoadingUnconfirmedPlotNFTs ? (
+        <Loading center />
+      ) : (
+        <PlotNFTSelectPool
+          step={1}
+          onSubmit={handleSubmit}
+          title={<Trans>Want to Join a Pool? Create a Plot NFT</Trans>}
+          description={
+            <Trans>
+              Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less
+              volatile. Assign plots to a plot NFT. You can easily switch pools without having to re-plot.
+            </Trans>
+          }
+        />
+      )}
     </>
   );
 }
