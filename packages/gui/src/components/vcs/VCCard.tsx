@@ -38,6 +38,7 @@ function RenderProperty(props: RenderPropertyProps) {
 
 export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proofs?: any; isLocal: boolean }) {
   const { vcRecord, isDetail, proofs, isLocal } = props;
+  const [vCCoinIds] = useLocalStorage<any>('vc-coin-ids', {});
   const { data: mintedTimestamp, isLoading: isLoadingMintHeight } = useGetTimestampForHeightQuery({
     height: vcRecord?.confirmedAtHeight || 0,
   });
@@ -123,7 +124,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
         <RenderProperty
           label={
             <Typography sx={{ fontSize: '12px' }}>
-              <Trans>Coin ID</Trans>
+              <Trans>Launcher ID</Trans>
             </Typography>
           }
         >
@@ -132,6 +133,21 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
           ) : (
             <Truncate tooltip copyToClipboard>
               {vcRecord.vc?.launcherId || '/'}
+            </Truncate>
+          )}
+        </RenderProperty>
+        <RenderProperty
+          label={
+            <Typography sx={{ fontSize: '12px' }}>
+              <Trans>Coin ID</Trans>
+            </Typography>
+          }
+        >
+          {isDetail ? (
+            vcRecord.coinId || vCCoinIds[vcRecord.vc?.launcherId] || '/'
+          ) : (
+            <Truncate tooltip copyToClipboard>
+              {vcRecord.coinId || vCCoinIds[vcRecord.vc?.launcherId] || '/'}
             </Truncate>
           )}
         </RenderProperty>

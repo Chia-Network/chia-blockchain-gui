@@ -101,6 +101,8 @@ export default function VCList() {
 
   const [proofs, setProofs] = React.useState<any>({});
 
+  const [, setVCCoinIds] = useLocalStorage<any>('vc-coin-ids', {});
+
   /* We only need to subscribe to event and the list will be updated automatically on added VC */
   useVCCoinAdded(() => {});
 
@@ -127,6 +129,16 @@ export default function VCList() {
 
     loadProofsData();
   }, [isLoading, blockchainVCs, getProofsForRoot]);
+
+  React.useEffect(() => {
+    const coinIds: any = {};
+    if (Array.isArray(blockchainVCs?.vcRecords) && blockchainVCs?.vcRecords.length) {
+      blockchainVCs?.vcRecords.forEach((vcRecord: any) => {
+        coinIds[vcRecord.vc.launcherId] = vcRecord.coinId;
+      });
+    }
+    setVCCoinIds(coinIds);
+  }, [blockchainVCs, setVCCoinIds]);
 
   const theme = useTheme();
 
