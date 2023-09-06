@@ -1,6 +1,7 @@
-import { Flex } from '@chia-network/core';
+import { Color, Flex } from '@chia-network/core';
 import { Offering, Requesting } from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
+import { useTheme } from '@mui/material/styles';
 import React from 'react';
 import { useWatch } from 'react-hook-form';
 
@@ -63,6 +64,7 @@ export type OfferBuilderTradeColumnProps = {
 export default function OfferBuilderTradeColumn(props: OfferBuilderTradeColumnProps) {
   const { name, offering = false, viewer = false, isMyOffer = false } = props;
   const { readOnly } = useOfferBuilderContext();
+  const theme = useTheme();
 
   const xch = useWatch({
     name: `${name}.xch`,
@@ -98,9 +100,9 @@ export default function OfferBuilderTradeColumn(props: OfferBuilderTradeColumnPr
         gap={1}
         sx={{
           borderRadius: 2,
-          backgroundColor: 'action.hover',
+          backgroundColor: theme.palette.mode === 'light' ? Color.Neutral[200] : Color.Neutral[800],
           border: '1px solid',
-          borderColor: 'divider',
+          borderColor: `${theme.palette.border.main}`,
           padding: 1,
         }}
       >

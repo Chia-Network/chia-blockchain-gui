@@ -5,6 +5,7 @@ import {
   Table,
   LoadingOverlay,
   Button,
+  StateColor,
   useShowError,
   Tooltip,
   useCurrencyCode,
@@ -74,7 +75,15 @@ const cols = [
     title: <Trans>Offering</Trans>,
   },
   {
-    field: (notification: Notification) => <HumanTimestamp value={notification.timestamp} />,
+    field: (notification: Notification) => (
+      <Flex flexDirection="column">
+        <HumanTimestamp value={notification.timestamp} />
+        <Typography variant="caption">expires at TIME</Typography>
+        <Typography color={StateColor.WARNING} variant="caption">
+          WARNING: expiring soon
+        </Typography>
+      </Flex>
+    ),
     title: <Trans>Creation Date</Trans>,
   },
   {

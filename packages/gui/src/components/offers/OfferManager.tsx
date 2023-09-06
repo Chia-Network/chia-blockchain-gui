@@ -1,5 +1,10 @@
 import { OfferTradeRecord, toBech32m } from '@chia-network/api';
-import { useCancelOfferMutation, useGetWalletsQuery } from '@chia-network/api-react';
+import {
+  useCancelOfferMutation,
+  useGetTimestampForHeightQuery,
+  useGetHeightInfoQuery,
+  useGetWalletsQuery,
+} from '@chia-network/api-react';
 import {
   Button,
   Card,
@@ -17,7 +22,7 @@ import {
   MenuItem,
 } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import { Cancel, GetApp as Download, Info, Reply as Share, Visibility } from '@mui/icons-material';
+import { Cancel, GetApp as Download, Info, Loop, Reply as Share, Visibility } from '@mui/icons-material';
 import { Box, Chip, Grid, ListItemIcon, Typography } from '@mui/material';
 import moment from 'moment';
 import React, { useMemo } from 'react';
@@ -30,6 +35,7 @@ import resolveOfferInfo from '../../util/resolveOfferInfo';
 import NFTTitle from '../nfts/NFTTitle';
 import NotificationPreviewNFT from '../notification/NotificationPreviewNFT';
 import CreateOfferBuilder from '../offers2/CreateOfferBuilder';
+import OfferBuilderExpirationCountdown from '../offers2/OfferBuilderExpirationCountdown';
 import OfferBuilderImport from '../offers2/OfferBuilderImport';
 import OfferBuilderViewer from '../offers2/OfferBuilderViewer';
 import OfferIncomingTable from '../offers2/OfferIncomingTable';
@@ -93,7 +99,24 @@ function OfferList(props: OfferListProps) {
     pageChange,
   } = useWalletOffers(5, 0, includeMyOffers, includeTakenOffers, 'RELEVANCE', false);
 
+  const { data: height } = useGetHeightInfoQuery(undefined, {
+    pollingInterval: 3000,
+  });
+  const { data: lastBlockTimeStampData } = useGetTimestampForHeightQuery({
+    height: height || 0,
+  });
+  const lastBlockTimeStamp = lastBlockTimeStampData?.timestamp || 0;
+  const currentTimeMoment = moment.unix(lastBlockTimeStamp - 20);
+  // eslint-disable-next-line no-underscore-dangle -- description
+  const currentTime = currentTimeMoment._i / 1000;
+
   const cols = useMemo(() => {
+    /*
+    async function handleRelistOffer(offerData: string) {
+
+    }
+    */
+
     async function handleShowOfferData(offerData: string) {
       openDialog(<OfferDataDialog offerData={offerData} />);
     }
@@ -171,13 +194,19 @@ function OfferList(props: OfferListProps) {
       {
         // eslint-disable-next-line react/no-unstable-nested-components -- The result is memoized. No performance issue
         field: (row: OfferTradeRecord) => {
-          const { createdAtTime } = row;
+          const { createdAtTime, validTimes } = row;
+          const expirationTime = validTimes.maxTime ? createdAtTime + validTimes.maxTime : null;
+          let countdownDisplay = null;
+          if (validTimes.maxTime) {
+            countdownDisplay = OfferBuilderExpirationCountdown(currentTime, expirationTime);
+          }
 
           return (
             <Box onClick={(event) => handleRowClick(event, row)}>
               <Typography color="textSecondary" variant="body2">
                 {moment(createdAtTime * 1000).format('LLL')}
               </Typography>
+              {countdownDisplay}
             </Box>
           );
         },
@@ -188,12 +217,15 @@ function OfferList(props: OfferListProps) {
       {
         // eslint-disable-next-line react/no-unstable-nested-components -- The result is memoized. No performance issue
         field: (row: OfferTradeRecord) => {
-          const { tradeId, status } = row;
+          const { tradeId, status, createdAtTime, validTimes } = row;
           const canExport = status === OfferState.PENDING_ACCEPT; // implies isMyOffer === true
           const canDisplayData = status === OfferState.PENDING_ACCEPT;
           const canCancel = status === OfferState.PENDING_ACCEPT || status === OfferState.PENDING_CONFIRM;
           const canShare = status === OfferState.PENDING_ACCEPT;
           const canCancelWithTransaction = canCancel && status === OfferState.PENDING_ACCEPT;
+
+          const expirationTime = validTimes.maxTime ? createdAtTime + validTimes.maxTime : null;
+          const isExpired = expirationTime - currentTime < 0;
 
           return (
             <Flex flexDirection="row" justifyContent="center" gap={0}>
@@ -201,7 +233,7 @@ function OfferList(props: OfferListProps) {
                 {canShare && (
                   <Tooltip title={<Trans>Share</Trans>}>
                     <IconButton size="small" disabled={!canShare} onClick={() => handleShare(undefined, row)}>
-                      <Share style={{ transform: 'scaleX(-1)' }} />
+                      <Share style={{ transform: 'scaleX(-1)' }} color="info" />
                     </IconButton>
                   </Tooltip>
                 )}
@@ -210,17 +242,27 @@ function OfferList(props: OfferListProps) {
                 <More>
                   <MenuItem onClick={() => handleRowClick(undefined, row)} close>
                     <ListItemIcon>
-                      <Info fontSize="small" />
+                      <Info fontSize="small" color="info" />
                     </ListItemIcon>
                     <Typography variant="inherit" noWrap>
                       <Trans>Show Details</Trans>
                     </Typography>
                   </MenuItem>
+                  {isExpired && (
+                    <MenuItem>
+                      <ListItemIcon>
+                        <Loop fontSize="small" color="info" />
+                      </ListItemIcon>
+                      <Typography variant="inherit" noWrap>
+                        <Trans>Relist Offer</Trans>
+                      </Typography>
+                    </MenuItem>
+                  )}
                   {canDisplayData && (
                     // eslint-disable-next-line no-underscore-dangle -- Can't do anything about it
                     <MenuItem onClick={() => handleShowOfferData(row._offerData)} close>
                       <ListItemIcon>
-                        <Visibility fontSize="small" />
+                        <Visibility fontSize="small" color="info" />
                       </ListItemIcon>
                       <Typography variant="inherit" noWrap>
                         <Trans>Display Offer Data</Trans>
@@ -230,7 +272,7 @@ function OfferList(props: OfferListProps) {
                   {canExport && (
                     <MenuItem onClick={() => saveOffer(tradeId)} close>
                       <ListItemIcon>
-                        <Download fontSize="small" />
+                        <Download fontSize="small" color="info" />
                       </ListItemIcon>
                       <Typography variant="inherit" noWrap>
                         <Trans>Save Offer File</Trans>
@@ -240,7 +282,7 @@ function OfferList(props: OfferListProps) {
                   {canCancel && (
                     <MenuItem onClick={() => handleCancelOffer(tradeId, canCancelWithTransaction)} close>
                       <ListItemIcon>
-                        <Cancel fontSize="small" />
+                        <Cancel fontSize="small" color="info" />
                       </ListItemIcon>
                       <Typography variant="inherit" noWrap>
                         <Trans>Cancel Offer</Trans>
@@ -257,7 +299,7 @@ function OfferList(props: OfferListProps) {
         title: <Flex justifyContent="center">Actions</Flex>,
       },
     ];
-  }, [cancelOffer, lookupByAssetId, navigate, openDialog, saveOffer, testnet]);
+  }, [cancelOffer, lookupByAssetId, navigate, openDialog, saveOffer, testnet, currentTime]);
 
   const hasOffers = !!offers?.length;
 

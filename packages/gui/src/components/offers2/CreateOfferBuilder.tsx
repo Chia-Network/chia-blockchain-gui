@@ -3,7 +3,7 @@ import { useGetWalletsQuery, useCreateOfferForIdsMutation } from '@chia-network/
 import { Flex, ButtonLoading, useOpenDialog, Loading } from '@chia-network/core';
 import { t, Trans } from '@lingui/macro';
 import { Grid } from '@mui/material';
-import React, { useRef, useMemo, useCallback } from 'react';
+import React, { useRef, useMemo, useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import type OfferBuilderData from '../../@types/OfferBuilderData';
@@ -12,6 +12,7 @@ import useWalletOffers from '../../hooks/useWalletOffers';
 import offerBuilderDataToOffer from '../../util/offerBuilderDataToOffer';
 import OfferEditorConfirmationDialog from '../offers/OfferEditorConfirmationDialog';
 import OfferBuilder from './OfferBuilder';
+import OfferBuilderExpirationSection from './OfferBuilderExpirationSection';
 import OfferEditorConflictAlertDialog from './OfferEditorCancelConflictingOffersDialog';
 import OfferNavigationHeader from './OfferNavigationHeader';
 import createDefaultValues from './utils/createDefaultValues';
@@ -50,6 +51,8 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
   const [createOfferForIds] = useCreateOfferForIdsMutation();
   const offerBuilderRef = useRef<{ submit: () => void } | undefined>(undefined);
 
+  const [expirationTimeMax, setExpirationTimeMax] = useState(0);
+
   const defaultValues = useMemo(() => {
     if (offer) {
       return offer;
@@ -68,6 +71,10 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
   const handleCreateOffer = useCallback(() => {
     offerBuilderRef.current?.submit();
   }, []);
+
+  const handleExpirationSubmit = (data) => {
+    setExpirationTimeMax(data);
+  };
 
   const handleSubmit = useCallback(
     async (values: OfferBuilderData) => {
@@ -118,6 +125,7 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
           driver_dict: localOffer.driverDict, // snake case is intentional since disableJSONFormatting is true
           validate_only: localOffer.validateOnly, // snake case is intentional since disableJSONFormatting is true
           disableJSONFormatting: true, // true to avoid converting driver_dict keys/values to camel case. The camel case conversion breaks the driver_dict and causes offer creation to fail.
+          max_time: expirationTimeMax,
         }).unwrap();
 
         const { offer: offerData, tradeRecord: offerRecord } = response;
@@ -138,19 +146,30 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
         }
       }
     },
-    [wallets, createOfferForIds, navigate, suppressShareOnCreate, onOfferCreated, address, openDialog, offers, nftId]
+    [
+      wallets,
+      createOfferForIds,
+      navigate,
+      suppressShareOnCreate,
+      onOfferCreated,
+      address,
+      openDialog,
+      offers,
+      nftId,
+      expirationTimeMax,
+    ]
   );
 
   return (
     <Grid container>
-      <Flex flexDirection="column" flexGrow={1} gap={4}>
+      <Flex flexDirection="column" flexGrow={1} gap={3}>
         <Flex alignItems="center" justifyContent="space-between" gap={2}>
           <OfferNavigationHeader referrerPath={referrerPath} />
           <ButtonLoading variant="contained" color="primary" onClick={handleCreateOffer} disableElevation>
             {isCounterOffer ? <Trans>Create Counter Offer</Trans> : <Trans>Create Offer</Trans>}
           </ButtonLoading>
         </Flex>
-
+        <OfferBuilderExpirationSection isViewing={false} onSubmit={handleExpirationSubmit} />
         {isLoadingWallets || isOffersLoading ? (
           <Loading center />
         ) : (

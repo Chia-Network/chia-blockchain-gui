@@ -23,6 +23,7 @@ import getUnknownCATs from '../../util/getUnknownCATs';
 import offerToOfferBuilderData from '../../util/offerToOfferBuilderData';
 import OfferState from '../offers/OfferState';
 import OfferBuilder from './OfferBuilder';
+import OfferBuilderExpirationSection from './OfferBuilderExpirationSection';
 import OfferNavigationHeader from './OfferNavigationHeader';
 
 export type OfferBuilderViewerProps = {
@@ -53,6 +54,10 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
     address,
     fee,
   } = props;
+
+  // console.log(offerSummary);
+  const testHasExpiration = true;
+  const testIsExpired = false;
 
   const showError = useShowError();
   const navigate = useNavigate();
@@ -140,9 +145,14 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
   const missingRequestedCATs = !!requestedUnknownCATs?.length;
 
   const canAccept = !!offerData;
-  const disableAccept = missingOfferedCATs || showInvalid;
+  const disableAccept = missingOfferedCATs || showInvalid || testIsExpired;
 
   const isLoading = isLoadingWallets || (!computedOfferBuilderData && !prepopulatedOfferBuilderData) || isOffersLoading;
+
+  const handleExpirationSubmit = (_data) => {
+    // console.log(data);
+    // setExpirationTimeMax(data);
+  };
 
   async function handleSubmit(values: OfferBuilderData) {
     const { offered } = values;
@@ -259,16 +269,25 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
         {error ? null : isLoading ? (
           <Loading center />
         ) : (
-          <OfferBuilder
-            defaultValues={computedOfferBuilderData || prepopulatedOfferBuilderData}
-            onSubmit={handleSubmit}
-            ref={offerBuilderRef}
-            isMyOffer={isMyOffer}
-            imported={imported}
-            state={state}
-            readOnly
-            viewer
-          />
+          <Flex flexDirection="column" gap={3}>
+            <OfferBuilderExpirationSection
+              isViewing
+              canCounter={canCounterOffer}
+              hasExpiration={testHasExpiration}
+              isExpired={testIsExpired}
+              onSubmit={handleExpirationSubmit}
+            />
+            <OfferBuilder
+              defaultValues={computedOfferBuilderData || prepopulatedOfferBuilderData}
+              onSubmit={handleSubmit}
+              ref={offerBuilderRef}
+              isMyOffer={isMyOffer}
+              imported={imported}
+              state={state}
+              readOnly
+              viewer
+            />
+          </Flex>
         )}
       </Flex>
     </Grid>
