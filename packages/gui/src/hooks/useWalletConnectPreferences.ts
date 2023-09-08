@@ -4,6 +4,7 @@ import { useCallback } from 'react';
 export type WalletConnectPreferences = {
   enabled?: boolean;
   allowConfirmationFingerprintChange?: boolean;
+  bypassReadonlyCommands: any;
 };
 
 export default function useWalletConnectPreferences(): {
@@ -11,12 +12,15 @@ export default function useWalletConnectPreferences(): {
   setEnabled: (enabled: boolean) => void;
   allowConfirmationFingerprintChange: boolean;
   setAllowConfirmationFingerprintChange: (enabled: boolean) => void;
+  bypassReadonlyCommands: any;
+  setBypassReadonlyCommands: (obj: any) => void;
 } {
   const [preferences, setPreferences] = useLocalStorage<WalletConnectPreferences>('walletConnectPreferences', {});
 
   const enabled = preferences?.enabled ?? false;
   const allowConfirmationFingerprintChange = preferences?.allowConfirmationFingerprintChange ?? false;
 
+  const bypassReadonlyCommands = preferences?.bypassReadonlyCommands ?? {};
   const setEnabled = useCallback(
     (value: boolean) => {
       setPreferences((currentPreferences: WalletConnectPreferences) => ({
@@ -37,10 +41,22 @@ export default function useWalletConnectPreferences(): {
     [setPreferences]
   );
 
+  const setBypassReadonlyCommands = useCallback(
+    (value: any) => {
+      setPreferences((currentPreferences: WalletConnectPreferences) => ({
+        ...currentPreferences,
+        bypassReadonlyCommands: value,
+      }));
+    },
+    [setPreferences]
+  );
+
   return {
     enabled,
     setEnabled,
     allowConfirmationFingerprintChange,
     setAllowConfirmationFingerprintChange,
+    bypassReadonlyCommands,
+    setBypassReadonlyCommands,
   };
 }

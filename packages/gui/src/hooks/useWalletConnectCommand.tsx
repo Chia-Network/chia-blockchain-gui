@@ -1,4 +1,4 @@
-import api, { store, useGetLoggedInFingerprintQuery, useLocalStorage } from '@chia-network/api-react';
+import api, { store, useGetLoggedInFingerprintQuery } from '@chia-network/api-react';
 import { useOpenDialog, useAuth } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import debug from 'debug';
@@ -76,11 +76,9 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
   const { data: currentFingerprint, isLoading: isLoadingLoggedInFingerprint } = useGetLoggedInFingerprintQuery();
   const { getPairBySession } = useWalletConnectPairs();
 
-  const { allowConfirmationFingerprintChange } = useWalletConnectPreferences();
+  const { allowConfirmationFingerprintChange, bypassReadonlyCommands } = useWalletConnectPreferences();
 
   const isLoading = isLoadingLoggedInFingerprint;
-
-  const [bypassReadonlyCommands] = useLocalStorage<any>('bypass-readonly-commands', {});
 
   async function confirm(props: {
     topic: string;
@@ -175,7 +173,7 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
       values = newValues;
     }
 
-    const isReadOnlyEnabled = bypassReadonlyCommands?.[pairedTopic]?.[fingerprint];
+    const isReadOnlyEnabled = bypassReadonlyCommands?.[pairedTopic].indexOf(fingerprint) > -1;
 
     const confirmed =
       (isReadOnlyEnabled && definition.bypassConfirm) ||

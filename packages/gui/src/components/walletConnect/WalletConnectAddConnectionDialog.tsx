@@ -1,4 +1,4 @@
-import { useGetKeysQuery, useGetLoggedInFingerprintQuery, usePrefs, useLocalStorage } from '@chia-network/api-react';
+import { useGetKeysQuery, useGetLoggedInFingerprintQuery, usePrefs } from '@chia-network/api-react';
 import {
   ButtonLoading,
   DialogActions,
@@ -8,6 +8,7 @@ import {
   Form,
   Loading,
   useCurrencyCode,
+  TooltipIcon,
 } from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
 import CloseIcon from '@mui/icons-material/Close';
@@ -51,7 +52,6 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
   const { onClose = () => {}, open = false } = props;
 
   const [step, setStep] = useState<Step>(Step.CONNECT);
-  const [bypassReadonlyCommands, setBypassReadonlyCommands] = useLocalStorage<any>('bypass-readonly-commands', {});
   const [bypassCheckbox, toggleBypassCheckbox] = useState(false);
   const { pair, isLoading: isLoadingWallet } = useWalletConnectContext();
   const { data: keys, isLoading: isLoadingPublicKeys } = useGetKeysQuery({});
@@ -74,7 +74,12 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
     defaultValue: [],
   });
 
-  const { allowConfirmationFingerprintChange, setAllowConfirmationFingerprintChange } = useWalletConnectPreferences();
+  const {
+    allowConfirmationFingerprintChange,
+    setAllowConfirmationFingerprintChange,
+    bypassReadonlyCommands,
+    setBypassReadonlyCommands,
+  } = useWalletConnectPreferences();
 
   const sortedKeysMemo = React.useMemo(() => {
     const sortedKeys: any[] = sortedWallets
@@ -115,18 +120,23 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
       throw new Error(t`Please select at least one key`);
     }
 
-    if (!allowConfirmationFingerprintChange && fingerprints.length > 1) {
-      setAllowConfirmationFingerprintChange(true);
+    const topic = await pair(uri, selectedFingerprints, mainnet);
+
+    if (bypassCheckbox) {
+      if (!bypassReadonlyCommands[topic.toString()]) {
+        bypassReadonlyCommands[topic.toString()] = [];
+      }
+      setBypassReadonlyCommands({
+        ...bypassReadonlyCommands,
+        [topic.toString()]: (bypassReadonlyCommands[topic.toString()] || []).concat(selectedFingerprints),
+      });
     }
 
-    const topic = await pair(uri, selectedFingerprints, mainnet);
-    if (bypassCheckbox) {
-      let skipReadOnlyObject = {};
-      selectedFingerprints.forEach((f: number) => {
-        skipReadOnlyObject = { ...skipReadOnlyObject, [f]: true };
-      });
-      setBypassReadonlyCommands({ ...bypassReadonlyCommands, [topic.toString()]: skipReadOnlyObject });
-    }
+    setTimeout(() => {
+      if (!allowConfirmationFingerprintChange && fingerprints.length > 1) {
+        setAllowConfirmationFingerprintChange(true);
+      }
+    }, 1500);
     onClose(topic);
   }
 
@@ -231,9 +241,19 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
         }}
       >
         <Checkbox checked={bypassCheckbox} disableRipple sx={{ paddingLeft: 0 }} />
-        <Typography variant="body2">
-          <Trans>Bypass confirmation for all read-only commands</Trans>
-        </Typography>
+        <Flex flexDirection="row" alignItems="center" gap={1}>
+          <Typography variant="body2">
+            <Trans>Skip confirmation for all read-only commands</Trans>
+          </Typography>
+          <TooltipIcon>
+            <Trans>
+              By default, a prompt will be presented each time a WalletConnect command is invoked. Select this option if
+              you would like to skip the prompt for all read-only WalletConnect commands.
+              <p />
+              Commands that create a transaction or otherwise modify your wallet will still require confirmation.
+            </Trans>
+          </TooltipIcon>
+        </Flex>
       </Flex>
     );
   }
