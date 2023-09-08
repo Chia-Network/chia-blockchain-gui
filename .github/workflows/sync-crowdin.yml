@@ -25,21 +25,13 @@ jobs:
           role_name: github-chia-blockchain-gui
 
       - name: Get secrets from vault
-        uses: hashicorp/vault-action@v2.7.3
+        uses: hashicorp/vault-action@v2
         with:
           url: ${{ secrets.VAULT_URL }}
           token: ${{ env.VAULT_TOKEN }}
           secrets: |
             secret/data/crowdin token | CROWDIN_PERSONAL_TOKEN;
             secret/data/crowdin project-id-blockchain-gui | CROWDIN_PROJECT_ID;
-
-      - name: Install J2
-        run: |
-          pip install j2cli
-
-      - name: Generate crowdin configuration file
-        run: |
-          j2 crowdin.yml.j2 -o crowdin.yml
 
       - name: crowdin action
         uses: crowdin/github-action@v1.11.0
@@ -56,6 +48,7 @@ jobs:
           github_user_email: 'automation@chia.net'
           gpg_private_key: ${{ secrets.CHIA_AUTOMATION_PRIVATE_GPG_KEY_RSA }}
           gpg_passphrase: ${{ secrets.CHIA_AUTOMATION_PRIVATE_GPG_PASSPHRASE }}
+          project_id: CROWDIN_PROJECT_ID
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GIT_TRACE: 1
