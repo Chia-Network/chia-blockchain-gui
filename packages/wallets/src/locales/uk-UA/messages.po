@@ -18,11 +18,19 @@ msgstr ""
 "X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/packages/wallets/src/locales/en-US/messages.po\n"
 "X-Crowdin-File-ID: 1308\n"
 
-#: src/components/WalletHistory.tsx:116
+#: src/components/WalletHistory.tsx:118
 msgid "-"
 msgstr "-"
 
-#: src/components/WalletHistory.tsx:116
+#: src/components/WalletSend.tsx:367
+msgid "- Memo helps the receiver side to identify the payment.<0/>- Anything you enter will be publicly accessible on the blockchain."
+msgstr ""
+
+#: src/components/WalletSend.tsx:294
+msgid "- Set a time frame which allows you claw back (revoke) the transaction.<0/>- Recipient of the transaction can only claim the funds once that time frame expires."
+msgstr ""
+
+#: src/components/WalletHistory.tsx:118
 msgid "+"
 msgstr "+"
 
@@ -34,11 +42,19 @@ msgstr "Дії"
 msgid "Add"
 msgstr "Додати"
 
+#: src/components/WalletSend.tsx:288
+msgid "Add option to claw back transaction"
+msgstr ""
+
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:61
 #: src/components/cat/WalletCATCreateSimple.tsx:68
-#: src/components/WalletsManageTokens.tsx:156
+#: src/components/WalletsManageTokens.tsx:154
 msgid "Add Token"
 msgstr "Додати токен"
+
+#: src/components/WalletSend.tsx:362
+msgid "Add transaction memo"
+msgstr ""
 
 #: src/components/cat/WalletCATCreateSimple.tsx:92
 msgid "Adding {0} token"
@@ -50,19 +66,35 @@ msgstr "Адреса"
 
 #: src/components/cat/WalletCATSend.tsx:196
 #: src/components/WalletSend.tsx:220
-msgid "Address / Puzzle hash"
-msgstr "Адреса / Хеш-головоломка"
+#~ msgid "Address / Puzzle hash"
+#~ msgstr "Адреса / Хеш-головоломка"
 
-#: src/components/cat/WalletCATSend.tsx:208
-#: src/components/WalletSend.tsx:232
+#: src/components/AddressBookAutocomplete.tsx:65
+msgid "Address or Contact"
+msgstr ""
+
+#: src/components/cat/WalletCATSend.tsx:214
+#: src/components/WalletSend.tsx:241
 msgid "Amount"
 msgstr "Кількість"
+
+#: src/components/card/WalletCardCRCatApprove.tsx:71
+msgid "Approve"
+msgstr ""
+
+#: src/components/CrCatApprovePendingDialog.tsx:91
+msgid "Approve pending CR-CAT transactions"
+msgstr ""
+
+#: src/components/CrCatApprovePendingDialog.tsx:147
+msgid "Approve pending transactions"
+msgstr ""
 
 #: src/components/WalletHeader.tsx:30
 msgid "Are you sure you want to delete unconfirmed transactions?"
 msgstr "Ви дійсно бажаєте видалити непідтверджені транзакції?"
 
-#: src/components/WalletHistory.tsx:127
+#: src/components/WalletHistory.tsx:131
 msgid "Asset"
 msgstr ""
 
@@ -80,11 +112,19 @@ msgstr "Гаманець для атомарного обміну"
 msgid "Authorized Payee Wallet"
 msgstr "Авторизований Payee Гаманець"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:226
+#: src/components/card/WalletCardCRCatRestrictions.tsx:121
+msgid "Authorized providers"
+msgstr ""
+
+#: src/components/ClawbackClaimTransactionDialog.tsx:227
 msgid "Auto-claim transactions with this fee from now on."
 msgstr ""
 
-#: src/components/WalletHistoryClawbackChip.tsx:46
+#: src/components/WalletSend.tsx:336
+msgid "Before sending this transaction, you should ensure that the recipient has a wallet that can claim it manually after the timer has expired."
+msgstr ""
+
+#: src/components/WalletHistoryClawbackChip.tsx:61
 msgid "Can be claimed in "
 msgstr ""
 
@@ -94,9 +134,13 @@ msgid "Cancel"
 msgstr "Відміна"
 
 #: src/components/cat/WalletCATSend.tsx:117
-#: src/components/WalletSend.tsx:142
+#: src/components/WalletSend.tsx:153
 msgid "Cannot send chia to coloured address. Please enter a chia address."
 msgstr "Не вдалося відправити Chia за кольоровою адресою. Будь ласка, введіть звичайну адресу Chia."
+
+#: src/components/card/WalletCardCRCatRestrictions.tsx:92
+msgid "CAT credential restrictions"
+msgstr ""
 
 #: src/components/WalletsSidebar.tsx:130
 #~ msgid "Check my snapshot balance"
@@ -108,48 +152,52 @@ msgstr "Не вдалося відправити Chia за кольоровою 
 msgid "Chia Asset Token"
 msgstr "Chia Asset Token"
 
-#: src/components/WalletHistoryClawbackChip.tsx:53
+#: src/components/WalletHistoryClawbackChip.tsx:68
 msgid "Claim transaction"
 msgstr ""
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:136
-#: src/components/ClawbackClaimTransactionDialog.tsx:259
+#: src/components/ClawbackClaimTransactionDialog.tsx:137
+#: src/components/ClawbackClaimTransactionDialog.tsx:260
 msgid "Claim Transaction"
 msgstr ""
 
-#: src/components/WalletHistoryClawbackChip.tsx:68
+#: src/components/WalletHistoryClawbackChip.tsx:83
 msgid "Claiming..."
 msgstr ""
 
-#: src/components/WalletHistoryClawbackChip.tsx:79
-msgid "Claw back this transaction"
-msgstr ""
-
-#: src/components/ClawbackClaimTransactionDialog.tsx:259
-msgid "Claw back Transaction"
-msgstr ""
-
-#: src/components/ClawbackClaimTransactionDialog.tsx:136
-msgid "Claw Back Transaction"
-msgstr ""
-
-#: src/components/ClawbackClaimTransactionDialog.tsx:128
-msgid "Clawback payment claimed"
-msgstr ""
-
-#: src/components/ClawbackClaimTransactionDialog.tsx:128
-msgid "Clawback payment clawed back"
-msgstr ""
-
-#: src/components/WalletSend.tsx:340
-msgid "Clawback will be applied."
-msgstr ""
-
-#: src/components/WalletSend.tsx:346
-msgid "Clawback will not be applied."
+#: src/components/WalletHistory.tsx:433
+msgid "Claw back expiration"
 msgstr ""
 
 #: src/components/WalletHistoryClawbackChip.tsx:94
+msgid "Claw back this transaction"
+msgstr ""
+
+#: src/components/ClawbackClaimTransactionDialog.tsx:260
+msgid "Claw back Transaction"
+msgstr ""
+
+#: src/components/ClawbackClaimTransactionDialog.tsx:137
+msgid "Claw Back Transaction"
+msgstr ""
+
+#: src/components/ClawbackClaimTransactionDialog.tsx:129
+msgid "Clawback payment claimed"
+msgstr ""
+
+#: src/components/ClawbackClaimTransactionDialog.tsx:129
+msgid "Clawback payment clawed back"
+msgstr ""
+
+#: src/components/WalletSend.tsx:334
+msgid "Clawback will be applied."
+msgstr ""
+
+#: src/components/WalletSend.tsx:344
+msgid "Clawback will not be applied."
+msgstr ""
+
+#: src/components/WalletHistoryClawbackChip.tsx:109
 msgid "Clawing back..."
 msgstr ""
 
@@ -157,8 +205,9 @@ msgstr ""
 #~ msgid "Click here to download an older version of the wallet"
 #~ msgstr "Натисніть тут, щоб завантажити старішу версію гаманця"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:157
-#: src/components/ClawbackClaimTransactionDialog.tsx:248
+#: src/components/ClawbackClaimTransactionDialog.tsx:158
+#: src/components/ClawbackClaimTransactionDialog.tsx:249
+#: src/components/CrCatApprovePendingDialog.tsx:136
 msgid "Close"
 msgstr ""
 
@@ -166,11 +215,11 @@ msgstr ""
 msgid "Confirmation"
 msgstr "Підтвердження"
 
-#: src/components/WalletHistory.tsx:183
+#: src/components/WalletHistory.tsx:200
 msgid "Confirmed"
 msgstr "Підтверджено"
 
-#: src/components/WalletHistory.tsx:372
+#: src/components/WalletHistory.tsx:422
 msgid "Confirmed at Height"
 msgstr "Підтверджено на висоті блоку"
 
@@ -190,17 +239,17 @@ msgstr ""
 msgid "Create New Wallet"
 msgstr "Створити новий гаманець"
 
-#: src/components/cat/WalletCAT.tsx:104
-#: src/components/standard/WalletStandard.tsx:52
+#: src/components/cat/WalletCAT.tsx:106
+#: src/components/standard/WalletStandard.tsx:53
 msgid "Create Offer"
 msgstr "Створити пропозицію"
 
 #: src/components/cat/WalletCATSend.tsx:178
-#: src/components/WalletSend.tsx:202
+#: src/components/WalletSend.tsx:213
 msgid "Create Transaction"
 msgstr "Створити транзакцію"
 
-#: src/components/WalletHistory.tsx:206
+#: src/components/WalletHistory.tsx:223
 msgid "Creation Date"
 msgstr ""
 
@@ -236,6 +285,10 @@ msgstr "Індекс деривації: {0}"
 msgid "DID Wallet"
 msgstr "DID гаманець"
 
+#: src/components/WalletSend.tsx:327
+msgid "Disable"
+msgstr ""
+
 #: src/components/create/WalletCreateList.tsx:39
 msgid "Distributed Identity"
 msgstr "Розподілена ідентифікація"
@@ -248,18 +301,18 @@ msgstr ""
 msgid "Error the entered address appears to be for a different colour."
 msgstr "Помилка при введенні адреси, здається, це адреса для іншого кольору."
 
-#: src/components/cat/WalletCATSend.tsx:246
-#: src/components/WalletSend.tsx:384
+#: src/components/cat/WalletCATSend.tsx:252
+#: src/components/WalletSend.tsx:390
 msgid "Farm"
 msgstr "Ферма"
 
-#: src/components/cat/WalletCATSend.tsx:222
-#: src/components/WalletHistory.tsx:220
-#: src/components/WalletSend.tsx:245
+#: src/components/cat/WalletCATSend.tsx:228
+#: src/components/WalletHistory.tsx:237
+#: src/components/WalletSend.tsx:254
 msgid "Fee"
 msgstr "Комісія"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:175
+#: src/components/ClawbackClaimTransactionDialog.tsx:176
 msgid "From:"
 msgstr ""
 
@@ -295,16 +348,16 @@ msgstr "ІР-адреса"
 msgid "List of connections is empty"
 msgstr "Список підключень порожній"
 
-#: src/components/WalletsManageTokens.tsx:133
+#: src/components/WalletsManageTokens.tsx:131
 msgid "Manage token list"
 msgstr "Керування списком токенів"
 
-#: src/components/cat/WalletCATSend.tsx:236
-#: src/components/WalletSend.tsx:373
+#: src/components/cat/WalletCATSend.tsx:242
+#: src/components/WalletSend.tsx:379
 msgid "Memo"
 msgstr "Примітка"
 
-#: src/components/WalletHistory.tsx:377
+#: src/components/WalletHistory.tsx:427
 msgid "Memos"
 msgstr "Примітки"
 
@@ -349,7 +402,7 @@ msgstr "NFT Гаманець"
 msgid "Nickname"
 msgstr "Прізвисько"
 
-#: src/components/WalletHistory.tsx:445
+#: src/components/WalletHistory.tsx:504
 msgid "No previous transactions"
 msgstr "Немає попередніх транзакцій"
 
@@ -357,16 +410,16 @@ msgstr "Немає попередніх транзакцій"
 msgid "Node ID"
 msgstr "ID вузла"
 
-#: src/components/WalletHistory.tsx:366
-#: src/components/WalletHistory.tsx:373
+#: src/components/WalletHistory.tsx:416
+#: src/components/WalletHistory.tsx:423
 msgid "Not Available"
 msgstr "Не доступно"
 
-#: src/components/WalletStatus.tsx:58
+#: src/components/WalletStatus.tsx:59
 msgid "Not Synced"
 msgstr "Не синхронізовано"
 
-#: src/components/WalletHistory.tsx:192
+#: src/components/WalletHistory.tsx:209
 msgid "Offer Accepted"
 msgstr "Пропозицію прийнято"
 
@@ -375,7 +428,7 @@ msgid "OK"
 msgstr "ОК"
 
 #: src/components/cat/WalletCATSend.tsx:181
-#: src/components/WalletSend.tsx:205
+#: src/components/WalletSend.tsx:216
 msgid "On average there is one minute between each transaction block. Unless there is congestion you can expect your transaction to be included in less than a minute."
 msgstr "У середньому між кожним блоком транзакції триває одна хвилина. За відсутністю заторів ви можете очікувати, що ваша транзакція буде включена менш ніж за хвилину."
 
@@ -391,7 +444,11 @@ msgstr "Вставити мнемоніку"
 msgid "Paste Mnemonic ({0} words)"
 msgstr ""
 
-#: src/components/WalletHistory.tsx:185
+#: src/components/CrCatApprovePendingDialog.tsx:82
+msgid "Payments approved"
+msgstr ""
+
+#: src/components/WalletHistory.tsx:202
 msgid "Pending"
 msgstr "В очікуванні"
 
@@ -399,11 +456,15 @@ msgstr "В очікуванні"
 msgid "Pending Balance"
 msgstr "Баланс в очікуванні"
 
+#: src/components/card/WalletCardCRCatApprove.tsx:47
+msgid "Pending Balance for Approval"
+msgstr ""
+
 #: src/components/card/WalletCardPendingChange.tsx:41
 msgid "Pending Change"
 msgstr "Зміни очікуються"
 
-#: src/components/WalletHistoryPending.tsx:62
+#: src/components/WalletHistoryPending.tsx:63
 msgid "Pending claw back transactions"
 msgstr ""
 
@@ -411,11 +472,19 @@ msgstr ""
 msgid "Pending Total Balance"
 msgstr "Загальний баланс очікується"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:206
+#: src/components/CrCatApprovePendingDialog.tsx:83
+msgid "Please allow some time for the payments to reflect in the blockchain."
+msgstr ""
+
+#: src/components/CrCatApprovePendingDialog.tsx:120
+msgid "Please enter a transaction fee to approve the above amount:"
+msgstr ""
+
+#: src/components/ClawbackClaimTransactionDialog.tsx:207
 msgid "Please enter a transaction fee to claim the above amount:"
 msgstr ""
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:208
+#: src/components/ClawbackClaimTransactionDialog.tsx:209
 msgid "Please enter a transaction fee to claw back the above amount:"
 msgstr ""
 
@@ -424,12 +493,12 @@ msgid "Please enter a valid asset id"
 msgstr "Введіть дійсний ID активу"
 
 #: src/components/cat/WalletCATSend.tsx:103
-#: src/components/WalletSend.tsx:132
+#: src/components/WalletSend.tsx:143
 msgid "Please enter a valid numeric amount"
 msgstr "Будь ласка, введіть припустиму числову кількість"
 
 #: src/components/cat/WalletCATSend.tsx:108
-#: src/components/WalletSend.tsx:137
+#: src/components/WalletSend.tsx:148
 msgid "Please enter a valid numeric fee"
 msgstr "Будь ласка, введіть припустиму числову комісію"
 
@@ -442,7 +511,7 @@ msgid "Please enter valid wallet name"
 msgstr "Будь ласка, введіть коректну назву гаманця"
 
 #: src/components/cat/WalletCATSend.tsx:94
-#: src/components/WalletSend.tsx:127
+#: src/components/WalletSend.tsx:138
 msgid "Please finish syncing before making a transaction"
 msgstr "Будь ласка, завершіть синхронізацію перед створенням транзакції"
 
@@ -458,6 +527,14 @@ msgstr "Пул гаманець"
 #: src/components/WalletConnections.tsx:28
 msgid "Port"
 msgstr "Порт"
+
+#: src/components/card/WalletCardCRCatRestrictions.tsx:135
+msgid "Provider's ID"
+msgstr ""
+
+#: src/components/card/WalletCardCRCatRestrictions.tsx:149
+msgid "Provider's website"
+msgstr ""
 
 #: src/components/create/WalletCreateList.tsx:45
 msgid "Rate Limited"
@@ -487,12 +564,16 @@ msgstr "Гаманець, що відновлюється"
 msgid "Recovery Wallet"
 msgstr "Відновити гаманець"
 
-#: src/components/cat/WalletCAT.tsx:87
+#: src/components/cat/WalletCAT.tsx:89
 #: src/components/WalletRenameDialog.tsx:61
 msgid "Rename Wallet"
 msgstr "Перейменувати гаманець"
 
-#: src/components/WalletHistory.tsx:191
+#: src/components/WalletIcon.tsx:35
+msgid "Restricted CAT"
+msgstr ""
+
+#: src/components/WalletHistory.tsx:208
 msgid "Retire"
 msgstr "Відкликати"
 
@@ -513,13 +594,13 @@ msgstr "Пошук в Tail Database"
 msgid "Select Wallet Type"
 msgstr "Оберіть тип гаманця"
 
-#: src/components/cat/WalletCATSend.tsx:257
+#: src/components/cat/WalletCATSend.tsx:263
 #: src/components/WalletHeader.tsx:47
-#: src/components/WalletSend.tsx:395
+#: src/components/WalletSend.tsx:401
 msgid "Send"
 msgstr "Надіслати"
 
-#: src/components/cat/WalletCAT.tsx:96
+#: src/components/cat/WalletCAT.tsx:98
 msgid "Show Asset Id"
 msgstr "Показати Id активу"
 
@@ -531,7 +612,7 @@ msgstr "Витратний баланс"
 msgid "Standard Wallet"
 msgstr "Стандартний гаманець"
 
-#: src/components/WalletHistory.tsx:197
+#: src/components/WalletHistory.tsx:214
 msgid "Status"
 msgstr ""
 
@@ -543,17 +624,21 @@ msgstr "Успіх"
 msgid "Summary"
 msgstr "Звіт"
 
-#: src/components/WalletStatus.tsx:70
+#: src/components/WalletStatus.tsx:71
 msgid "Synced"
 msgstr "Синхронізовано"
 
-#: src/components/WalletStatus.tsx:82
+#: src/components/WalletStatus.tsx:83
 msgid "Syncing"
 msgstr "Синхронізація"
 
 #: src/components/card/WalletCardTotalBalance.tsx:70
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
 msgstr "Індекс деривації встановлює діапазон адрес гаманця, для яких гаманець відсканує блокчейн. Це число, в загальному, більше за використання багатьох транзакцій або скасованих пропозицій для XCH, CATS або NFTs. Якщо ви вважаєте, що ваш баланс неправильний тому що на ньому недостатньо транзакцій, тоді збільшення індексу деривації може допомогти для формування правильного балансу."
+
+#: src/components/cat/WalletCATSend.tsx:200
+msgid "The recipient of this transaction will need to have valid credentials in order to claim the sent assets. See the CR CAT restrictions above."
+msgstr ""
 
 #: src/components/WalletSendTransactionResultDialog.tsx:34
 msgid "The transaction could not be immediately included in the mempool because the specified fee is too low. The transaction will be retried periodically, and may be included in the mempool once fees are lower, or if space becomes available."
@@ -563,7 +648,7 @@ msgstr "Транзакція не може бути одразу включен�
 msgid "This access token is verified"
 msgstr "Цей токен доступу перевірено"
 
-#: src/components/WalletHistory.tsx:160
+#: src/components/WalletHistory.tsx:175
 msgid "This is not a valid address for sending funds to"
 msgstr "Це не є дійсною адресою для відправки на неї коштів"
 
@@ -587,7 +672,7 @@ msgstr "Це загальна кількість монет Chia у блокче
 msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
 msgstr "Це сукупний баланс + очікуваний баланс: це ваш майбутній баланс після підтвердження усіх очікуючих транзакцій."
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:193
+#: src/components/ClawbackClaimTransactionDialog.tsx:194
 msgid "This transaction will be automatically claimed with a fee:"
 msgstr ""
 
@@ -595,7 +680,8 @@ msgstr ""
 #~ msgid "To"
 #~ msgstr "До"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:175
+#: src/components/ClawbackClaimTransactionDialog.tsx:176
+#: src/components/WalletHistory.tsx:168
 msgid "To:"
 msgstr ""
 
@@ -607,7 +693,7 @@ msgstr "Токен має порожній Id активу"
 msgid "Token has empty name"
 msgstr "Токен має порожнє ім'я"
 
-#: src/components/WalletsSidebar.tsx:92
+#: src/components/WalletsSidebar.tsx:104
 msgid "Tokens"
 msgstr "Токени"
 
@@ -619,19 +705,19 @@ msgstr "Загальний баланс"
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "Транзакція успішно відправлена на повний вузол та включена до мемпулу."
 
-#: src/components/WalletHistory.tsx:422
+#: src/components/WalletHistory.tsx:481
 msgid "Transactions"
 msgstr "Транзакції"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:232
+#: src/components/ClawbackClaimTransactionDialog.tsx:233
 msgid "Transactions will be claimed automatically when the Clawback time expires."
 msgstr ""
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:235
+#: src/components/ClawbackClaimTransactionDialog.tsx:236
 msgid "Transactions with values smaller than the fee will not be auto claimed."
 msgstr ""
 
-#: src/components/Wallet.tsx:22
+#: src/components/Wallet.tsx:23
 msgid "Wallet {walletId} not found"
 msgstr "Гаманець {walletId} не знайдено"
 
@@ -639,7 +725,7 @@ msgstr "Гаманець {walletId} не знайдено"
 msgid "Wallet Connections"
 msgstr "З'єднання з гаманцем"
 
-#: src/components/cat/WalletCAT.tsx:66
+#: src/components/cat/WalletCAT.tsx:68
 msgid "Wallet does not exists"
 msgstr "Гаманець не існує"
 
@@ -648,11 +734,15 @@ msgstr "Гаманець не існує"
 msgid "Wallet Name"
 msgstr "Назва Гаманця"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:200
+#: src/components/CrCatApprovePendingDialog.tsx:115
+msgid "Wallet needs to be synced before approving transactions"
+msgstr ""
+
+#: src/components/ClawbackClaimTransactionDialog.tsx:201
 msgid "Wallet needs to be synced for claiming clawback transactions"
 msgstr ""
 
-#: src/components/Wallet.tsx:37
+#: src/components/Wallet.tsx:38
 msgid "Wallet with type {0} not supported"
 msgstr "Гаманець з типом {0} не підтримується"
 
@@ -668,12 +758,20 @@ msgstr "Гаманець з типом {0} не підтримується"
 msgid "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
 msgstr "Ласкаво просимо! Ці слова використовуються для резервної копії вашого гаманця. Без них Ви втратите доступ до свого гаманця, тримайте їх у безпеці! Запишіть кожне слово разом з порядковим номером поруч з ними. (Порядок важливий)"
 
-#: src/components/WalletHistoryClawbackChip.tsx:41
+#: src/components/WalletHistoryClawbackChip.tsx:56
 msgid "Will be autoclaimed in "
 msgstr ""
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:238
+#: src/components/ClawbackClaimTransactionDialog.tsx:239
 msgid "You can change the Clawback Auto Claim fee in Settings."
+msgstr ""
+
+#: src/components/card/WalletCardCRCatRestrictions.tsx:105
+msgid "You do not have this verifiable credential or it is not from the correct authorized provided"
+msgstr ""
+
+#: src/components/card/WalletCardCRCatRestrictions.tsx:103
+msgid "You have this verifiable credential from the correct authorized provider"
 msgstr ""
 
 #: src/components/WalletsSidebar.tsx:106

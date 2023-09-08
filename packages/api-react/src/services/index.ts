@@ -40,6 +40,7 @@ export const {
   useGetWalletAddressesQuery,
   useSetLabelMutation,
   useDeleteLabelMutation,
+  useGetPublicKeyQuery,
 } = daemon;
 
 // farmer hooks

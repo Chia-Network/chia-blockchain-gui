@@ -472,25 +472,6 @@ const walletConnectCommands: WalletConnectCommand[] = [
 
   // CAT
   {
-    command: 'createNewCATWallet',
-    label: <Trans>Create new CAT Wallet</Trans>,
-    service: ServiceName.WALLET,
-    params: [
-      {
-        name: WalletConnectCommandParamName.AMOUNT,
-        label: <Trans>Amount</Trans>,
-        type: 'BigNumber',
-        displayComponent: (value) => <MojoToChia value={value} />,
-      },
-      {
-        name: WalletConnectCommandParamName.FEE,
-        label: <Trans>Fee</Trans>,
-        type: 'BigNumber',
-        displayComponent: (value) => <MojoToChia value={value} />,
-      },
-    ],
-  },
-  {
     command: 'getCATWalletInfo',
     label: <Trans>Get CAT Wallet Info</Trans>,
     service: ServiceName.WALLET,
@@ -998,6 +979,19 @@ const walletConnectCommands: WalletConnectCommand[] = [
         label: <Trans>Non Observer Derivation</Trans>,
         isOptional: true,
         defaultValue: undefined,
+      },
+    ],
+  },
+  {
+    command: 'getPublicKey',
+    label: <Trans>Get public key</Trans>,
+    description: <Trans>Requests a master public key from your wallet</Trans>,
+    service: ServiceName.DAEMON,
+    params: [
+      {
+        name: WalletConnectCommandParamName.FINGERPRINT,
+        type: 'number',
+        label: <Trans>Fingerprint</Trans>,
       },
     ],
   },

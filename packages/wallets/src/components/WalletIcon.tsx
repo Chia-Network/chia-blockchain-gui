@@ -37,7 +37,7 @@ export default function WalletIcon(props: WalletIconProps) {
     );
   }
 
-  if (!isLoading && wallet.type === WalletType.CAT) {
+  if (!isLoading && [WalletType.CAT, WalletType.CRCAT].includes(wallet.type)) {
     const token = catList.find((tokenItem) => tokenItem.assetId === wallet.meta?.assetId);
     if (token) {
       return (

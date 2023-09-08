@@ -13,7 +13,7 @@ import {
   calculateBaseFarmerReward,
   useCurrencyCode,
   mojoToChia,
-  Suspender,
+  Loading,
 } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Alert, Paper, TableRow, Table, TableBody, TableCell, TableContainer } from '@mui/material';
@@ -110,7 +110,7 @@ export default function Block() {
   }
 
   if (isLoading) {
-    return <Suspender />;
+    return <Loading center />;
   }
 
   if (error) {

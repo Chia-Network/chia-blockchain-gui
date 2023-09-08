@@ -108,7 +108,7 @@ export default function ProfileAdd() {
 
   return (
     <Form methods={methods} onSubmit={handleSubmit}>
-      <Flex flexDirection="column" flexGrow={1} marginTop={-0.5}>
+      <Flex flexDirection="column" flexGrow={1}>
         <Typography variant="h6">
           <Trans>Create a new profile</Trans>
         </Typography>

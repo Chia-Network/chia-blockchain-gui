@@ -1,6 +1,6 @@
 import { fromBech32m } from '@chia-network/api';
 import { useGetDIDQuery, useGetDIDNameQuery, useSetDIDNameMutation } from '@chia-network/api-react';
-import { Color, CopyToClipboard, Flex, Suspender, Tooltip, truncateValue } from '@chia-network/core';
+import { Color, CopyToClipboard, Flex, Loading, Tooltip, truncateValue } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { alpha, Box, Card, TextField, Typography } from '@mui/material';
 import React, { useState, useEffect } from 'react';
@@ -65,12 +65,17 @@ function InlineEdit({ text, walletId }) {
 }
 
 export default function ProfileView() {
-  const { walletId } = useParams();
-  const { data: did, isLoading } = useGetDIDQuery({ walletId });
-  const { data: didName, loading } = useGetDIDNameQuery({ walletId });
+  const { walletId } = useParams<{
+    walletId: string;
+  }>();
 
-  if (isLoading || loading) {
-    return <Suspender />;
+  const { data: did, isLoading: isLoadingDID } = useGetDIDQuery({ walletId: Number(walletId) });
+  const { data: didName, isLoading: isLoadingDIDName } = useGetDIDNameQuery({ walletId: Number(walletId) });
+
+  const isLoading = isLoadingDID || isLoadingDIDName;
+
+  if (isLoading) {
+    return <Loading center />;
   }
 
   if (did && didName) {
@@ -81,7 +86,7 @@ export default function ProfileView() {
 
     return (
       <div style={{ width: '100%' }}>
-        <StyledCard sx={{ marginTop: '-16px' }}>
+        <StyledCard>
           <Flex flexDirection="column" gap={2.5} paddingBottom={3}>
             <InlineEdit text={nameText} walletId={walletId} />
           </Flex>
@@ -132,5 +137,6 @@ export default function ProfileView() {
       </div>
     );
   }
+
   return null;
 }

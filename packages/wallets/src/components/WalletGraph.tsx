@@ -105,8 +105,14 @@ function prepareGraphPoints(
   const points = [
     {
       x: blockHeightToTimestamp(peakTransaction.confirmedAtHeight, peakTransaction),
-      y: BigNumber.max(0, (walletType === WalletType.CAT ? mojoToCAT(start) : mojoToChia(start)).toNumber()), // max 21,000,000 safe to number
-      tooltip: (walletType === WalletType.CAT ? mojoToCAT(balance) : mojoToChia(balance)).toString(), // bignumber is not supported by react
+      y: BigNumber.max(
+        0,
+        ([WalletType.CAT, WalletType.CRCAT].includes(walletType) ? mojoToCAT(start) : mojoToChia(start)).toNumber()
+      ), // max 21,000,000 safe to number
+      tooltip: ([WalletType.CAT, WalletType.CRCAT].includes(walletType)
+        ? mojoToCAT(balance)
+        : mojoToChia(balance)
+      ).toString(), // bignumber is not supported by react
     },
   ];
 
@@ -122,8 +128,13 @@ function prepareGraphPoints(
 
     points.push({
       x: timestamp,
-      y: BigNumber.max(0, (walletType === WalletType.CAT ? mojoToCAT(start) : mojoToChia(start)).toNumber()), // max 21,000,000 safe to number
-      tooltip: walletType === WalletType.CAT ? mojoToCAT(start) : mojoToChia(start).toString(), // bignumber is not supported by react
+      y: BigNumber.max(
+        0,
+        ([WalletType.CAT, WalletType.CRCAT].includes(walletType) ? mojoToCAT(start) : mojoToChia(start)).toNumber()
+      ), // max 21,000,000 safe to number
+      tooltip: [WalletType.CAT, WalletType.CRCAT].includes(walletType)
+        ? mojoToCAT(start)
+        : mojoToChia(start).toString(), // bignumber is not supported by react
     });
   });
 

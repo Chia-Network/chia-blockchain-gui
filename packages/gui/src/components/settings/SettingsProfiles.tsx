@@ -1,6 +1,6 @@
 import { WalletType } from '@chia-network/api';
 import { useGetWalletsQuery } from '@chia-network/api-react';
-import { Flex, LayoutDashboardSub, SettingsHR, SettingsSection, SettingsText } from '@chia-network/core';
+import { Flex, SettingsHR, SettingsSection, SettingsText } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Grid } from '@mui/material';
 import React, { useEffect, useMemo, useState } from 'react';
@@ -63,12 +63,15 @@ export default function SettingsProfiles() {
       </Grid>
 
       <Grid item xs={12} sm={12} lg={12}>
-        <Routes>
-          <Route element={<LayoutDashboardSub sidebar={<IdentitiesPanel />} outlet />}>
-            <Route path=":walletId" element={<ProfileView />} />
-            <Route path="add" element={<ProfileAdd />} />
-          </Route>
-        </Routes>
+        <Flex flexDirection="row" gap={2}>
+          <IdentitiesPanel />
+          <Flex flexDirection="column" flexGrow={1}>
+            <Routes>
+              <Route path=":walletId" element={<ProfileView />} />
+              <Route path="add" element={<ProfileAdd />} />
+            </Routes>
+          </Flex>
+        </Flex>
       </Grid>
     </Grid>
   );

@@ -1,8 +1,9 @@
 import type { Wallet } from '@chia-network/api';
 import { useGetWalletsQuery } from '@chia-network/api-react';
 import { Flex } from '@chia-network/core';
+import { CrCatFlags, CrCatAuthorizedProviders } from '@chia-network/wallets';
 import { Trans } from '@lingui/macro';
-import { Grid } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import React from 'react';
 import { useWatch } from 'react-hook-form';
 
@@ -22,13 +23,11 @@ export type OfferBuilderTokenProps = {
 export default function OfferBuilderToken(props: OfferBuilderTokenProps) {
   const { name, onRemove, usedAssets, hideBalance, amountWithRoyalties, royaltyPayments } = props;
 
-  const assetIdFieldName = `${name}.assetId`;
-  const assetId = useWatch({
-    name: assetIdFieldName,
+  const valueObj = useWatch({
+    name,
   });
-  const value = useWatch({
-    name: `${name}.amount`,
-  });
+
+  const { assetId, amount, crCat } = valueObj;
 
   const { data: wallets } = useGetWalletsQuery();
   const wallet = wallets?.find((walletItem: Wallet) => walletItem.meta?.assetId?.toLowerCase() === assetId);
@@ -47,18 +46,30 @@ export default function OfferBuilderToken(props: OfferBuilderTokenProps) {
         </Grid>
         <Grid xs={12} md={7} item>
           <OfferBuilderValue
-            name={assetIdFieldName}
+            name={`${name}.assetId`}
             type="token"
             label={<Trans>Asset Type</Trans>}
             usedAssets={usedAssets}
             onRemove={onRemove}
             warnUnknownCAT={warnUnknownCAT}
           />
+          {crCat && (
+            <Flex gap={1} flexDirection="column" sx={{ mt: 2 }}>
+              <Typography variant="body1">
+                <Trans>CAT credential restrictions</Trans>:
+              </Typography>
+              <CrCatFlags restrictions={crCat} />
+              <Typography variant="body1">
+                <Trans>Authorized providers</Trans>:
+              </Typography>
+              <CrCatAuthorizedProviders authorizedProviders={crCat.authorizedProviders} />
+            </Flex>
+          )}
         </Grid>
       </Grid>
       {royaltyPayments && amountWithRoyalties && (
         <OfferBuilderAmountWithRoyalties
-          originalAmount={value}
+          originalAmount={amount}
           totalAmount={amountWithRoyalties}
           royaltyPayments={royaltyPayments}
         />

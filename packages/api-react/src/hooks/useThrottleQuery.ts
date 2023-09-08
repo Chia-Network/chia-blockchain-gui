@@ -3,6 +3,8 @@ import { useRef, useMemo } from 'react';
 
 import useForceUpdate from './useForceUpdate';
 
+const emptyObject = {};
+
 export default function useThrottleQuery(
   queryHook: Function,
   variables?: Object,
@@ -38,7 +40,7 @@ export default function useThrottleQuery(
 
       processUpdate();
 
-      return null;
+      return emptyObject;
     },
   });
 
