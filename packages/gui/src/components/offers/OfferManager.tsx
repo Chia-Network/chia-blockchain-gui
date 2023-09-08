@@ -4,7 +4,6 @@ import {
   useGetTimestampForHeightQuery,
   useGetHeightInfoQuery,
   useGetWalletsQuery,
-  useGetSyncStatusQuery,
 } from '@chia-network/api-react';
 import {
   Button,
@@ -100,17 +99,10 @@ function OfferList(props: OfferListProps) {
     pageChange,
   } = useWalletOffers(5, 0, includeMyOffers, includeTakenOffers, 'RELEVANCE', false);
 
-  const { data: walletState, isLoading: isWalletSyncLoading } = useGetSyncStatusQuery(undefined, {
-    pollingInterval: 10_000,
-  });
-
-  const isSyncing = isWalletSyncLoading || !!walletState?.syncing;
-  const isSynced = !isSyncing && walletState?.synced;
-
-  const { data: height } = useGetHeightInfoQuery(undefined, {
+  const { data: height, isLoading: isGetHeightInfoLoading } = useGetHeightInfoQuery(undefined, {
     pollingInterval: 3000,
   });
-  const { data: lastBlockTimeStampData } = useGetTimestampForHeightQuery({
+  const { data: lastBlockTimeStampData, isLoading: isGetTimestampForHeightLoading } = useGetTimestampForHeightQuery({
     height: height || 0,
   });
   const lastBlockTimeStamp = lastBlockTimeStampData?.timestamp || 0;
@@ -209,9 +201,10 @@ function OfferList(props: OfferListProps) {
           const { createdAtTime, status, validTimes } = row;
           let countdownDisplay = null;
           if (status !== 'CANCELLED' && validTimes.maxTime) {
-            countdownDisplay = isSynced
-              ? OfferBuilderExpirationCountdown(currentTime, validTimes.maxTime, true)
-              : 'Loading expiration time...';
+            countdownDisplay =
+              !isGetHeightInfoLoading && !isGetTimestampForHeightLoading
+                ? OfferBuilderExpirationCountdown(currentTime, validTimes.maxTime, true)
+                : 'Loading expiration time...';
           }
 
           return (
@@ -299,7 +292,17 @@ function OfferList(props: OfferListProps) {
         title: <Flex justifyContent="center">Actions</Flex>,
       },
     ];
-  }, [cancelOffer, lookupByAssetId, navigate, openDialog, saveOffer, testnet, currentTime, isSynced]);
+  }, [
+    cancelOffer,
+    lookupByAssetId,
+    navigate,
+    openDialog,
+    saveOffer,
+    testnet,
+    currentTime,
+    isGetHeightInfoLoading,
+    isGetTimestampForHeightLoading,
+  ]);
 
   const hasOffers = !!offers?.length;
 

@@ -1,4 +1,4 @@
-import { useGetSyncStatusQuery, useLocalStorage } from '@chia-network/api-react';
+import { useLocalStorage } from '@chia-network/api-react';
 import { Button, Color, Flex, Form, TextField } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -28,6 +28,8 @@ export type OfferExpirationSectionProps = {
   currentTime: number;
   expirationTime: number;
   onSubmit: (values: SetExpirationData) => Promise<void>;
+  isGetHeightInfoLoading?: boolean;
+  isGetTimestampForHeightLoading?: boolean;
 };
 
 type SetExpirationData = {
@@ -44,7 +46,15 @@ const fields = [
 
 export default function OfferBuilderExpirationSection(props: OfferExpirationProps) {
   const theme = useTheme();
-  const { isViewing, canCounter, currentTime, expirationTime, onSubmit } = props;
+  const {
+    isViewing,
+    canCounter,
+    currentTime,
+    expirationTime,
+    onSubmit,
+    isGetHeightInfoLoading,
+    isGetTimestampForHeightLoading,
+  } = props;
   const { offerExpirationDefaultTime } = useOfferExpirationDefaultTime();
   const methods = useForm<SetExpirationData>({
     defaultValues: {
@@ -54,13 +64,6 @@ export default function OfferBuilderExpirationSection(props: OfferExpirationProp
       ...offerExpirationDefaultTime,
     },
   });
-
-  const { data: walletState, isLoading: isWalletSyncLoading } = useGetSyncStatusQuery(undefined, {
-    pollingInterval: 10_000,
-  });
-
-  const isSyncing = isWalletSyncLoading || !!walletState?.syncing;
-  const isSynced = !isSyncing && walletState?.synced;
 
   const [wasOfferExpirationVisited, setWasOfferExpirationVisited] = useLocalStorage<boolean>(
     'newFlag--wasOfferExpirationVisited',
@@ -84,13 +87,16 @@ export default function OfferBuilderExpirationSection(props: OfferExpirationProp
   }
 
   function viewSection() {
-    const countdownDisplay = OfferBuilderExpirationCountdown(currentTime, expirationTime, false);
+    const countdownDisplay =
+      !isGetHeightInfoLoading && !isGetTimestampForHeightLoading
+        ? OfferBuilderExpirationCountdown(currentTime, expirationTime, false)
+        : 'Loading expiration time...';
     return (
       <Grid xs={12} item>
         {isExpired ? (
           <Alert severity="error">Offer has expired and cannot be accepted.</Alert>
         ) : (
-          <Alert severity="warning">{isSynced ? countdownDisplay : 'Loading expiration time...'}</Alert>
+          <Alert severity="warning">{countdownDisplay}</Alert>
         )}
       </Grid>
     );

@@ -84,14 +84,14 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
   let expirationTime = null;
   let isExpired = false;
 
-  const { data: height } = useGetHeightInfoQuery(undefined, {
+  const { data: height, isLoading: isGetHeightInfoLoading } = useGetHeightInfoQuery(undefined, {
     pollingInterval: 3000,
   });
-  const { data: lastBlockTimeStampData } = useGetTimestampForHeightQuery({
+  const { data: lastBlockTimeStampData, isLoading: isGetTimestampForHeightLoading } = useGetTimestampForHeightQuery({
     height: height || 0,
   });
 
-  if (hasExpiration) {
+  if (hasExpiration && !isExpired) {
     const lastBlockTimeStamp = lastBlockTimeStampData?.timestamp || 0;
     const currentTimeMoment = moment.unix(lastBlockTimeStamp - 20);
     // eslint-disable-next-line no-underscore-dangle -- description
@@ -303,6 +303,8 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
                 currentTime={currentTime}
                 expirationTime={expirationTime}
                 onSubmit={handleExpirationSubmit}
+                isGetHeightInfoLoading={isGetHeightInfoLoading}
+                isGetTimestampForHeightLoading={isGetTimestampForHeightLoading}
               />
             )}
             <OfferBuilder
