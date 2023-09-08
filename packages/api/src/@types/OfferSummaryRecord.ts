@@ -20,11 +20,16 @@ export type OfferSummaryInfos = {
   [key: string]: OfferSummaryCATInfo | OfferSummaryNFTInfo;
 };
 
+export type OfferSummaryValidTimes = {
+  [key: string]: number;
+};
+
 type OfferSummaryRecord = {
   offered: OfferSummaryAssetAndAmount;
   requested: OfferSummaryAssetAndAmount;
   infos: OfferSummaryInfos;
   fees: number;
+  validTimes: OfferSummaryValidTimes;
 };
 
 export default OfferSummaryRecord;

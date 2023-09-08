@@ -1,8 +1,14 @@
 import { WalletType } from '@chia-network/api';
-import { useGetWalletsQuery, useCreateOfferForIdsMutation } from '@chia-network/api-react';
+import {
+  useGetWalletsQuery,
+  useCreateOfferForIdsMutation,
+  useGetTimestampForHeightQuery,
+  useGetHeightInfoQuery,
+} from '@chia-network/api-react';
 import { Flex, ButtonLoading, useOpenDialog, Loading } from '@chia-network/core';
 import { t, Trans } from '@lingui/macro';
 import { Grid } from '@mui/material';
+import moment from 'moment';
 import React, { useRef, useMemo, useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -68,12 +74,24 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
 
   const [suppressShareOnCreate] = useSuppressShareOnCreate();
 
+  const { data: height } = useGetHeightInfoQuery(undefined, {
+    pollingInterval: 3000,
+  });
+  const { data: lastBlockTimeStampData } = useGetTimestampForHeightQuery({
+    height: height || 0,
+  });
+  const lastBlockTimeStamp = lastBlockTimeStampData?.timestamp || 0;
+  const currentTimeMoment = moment.unix(lastBlockTimeStamp - 20);
+  // eslint-disable-next-line no-underscore-dangle -- description
+  const currentTime = currentTimeMoment._i / 1000;
+
   const handleCreateOffer = useCallback(() => {
     offerBuilderRef.current?.submit();
   }, []);
 
   const handleExpirationSubmit = (data) => {
-    setExpirationTimeMax(data);
+    const expirationTime = data === 0 ? data : data + currentTime;
+    setExpirationTimeMax(expirationTime);
   };
 
   const handleSubmit = useCallback(

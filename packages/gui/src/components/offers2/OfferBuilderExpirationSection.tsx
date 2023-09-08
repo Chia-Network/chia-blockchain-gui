@@ -1,4 +1,4 @@
-import { useLocalStorage } from '@chia-network/api-react';
+import { useGetSyncStatusQuery, useLocalStorage } from '@chia-network/api-react';
 import { Button, Color, Flex, Form, TextField } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -20,12 +20,13 @@ import { useForm, useWatch } from 'react-hook-form';
 import useOfferExpirationDefaultTime, {
   getOfferExpirationTimeInSeconds,
 } from '../../hooks/useOfferExpirationDefaultTime';
+import OfferBuilderExpirationCountdown from './OfferBuilderExpirationCountdown';
 
 export type OfferExpirationSectionProps = {
   isViewing: boolean;
-  canCounter?: boolean;
-  hasExpiration?: boolean;
-  isExpired?: boolean;
+  canCounter: boolean;
+  currentTime: number;
+  expirationTime: number;
   onSubmit: (values: SetExpirationData) => Promise<void>;
 };
 
@@ -43,7 +44,7 @@ const fields = [
 
 export default function OfferBuilderExpirationSection(props: OfferExpirationProps) {
   const theme = useTheme();
-  const { isViewing, canCounter, hasExpiration, isExpired, onSubmit } = props;
+  const { isViewing, canCounter, currentTime, expirationTime, onSubmit } = props;
   const { offerExpirationDefaultTime } = useOfferExpirationDefaultTime();
   const methods = useForm<SetExpirationData>({
     defaultValues: {
@@ -53,6 +54,13 @@ export default function OfferBuilderExpirationSection(props: OfferExpirationProp
       ...offerExpirationDefaultTime,
     },
   });
+
+  const { data: walletState, isLoading: isWalletSyncLoading } = useGetSyncStatusQuery(undefined, {
+    pollingInterval: 10_000,
+  });
+
+  const isSyncing = isWalletSyncLoading || !!walletState?.syncing;
+  const isSynced = !isSyncing && walletState?.synced;
 
   const [wasOfferExpirationVisited, setWasOfferExpirationVisited] = useLocalStorage<boolean>(
     'newFlag--wasOfferExpirationVisited',
@@ -67,6 +75,8 @@ export default function OfferBuilderExpirationSection(props: OfferExpirationProp
   const willExpirationBeEnabled = expirationValues.map((value) => Number(value)).some((value) => value > 0);
   const [isExpirationExpanded, setIsExpirationExpanded] = React.useState<boolean>(willExpirationBeEnabled);
 
+  const isExpired = expirationTime < currentTime;
+
   function setExpirationTime() {
     const formatTime = { days: expirationValues[0], hours: expirationValues[1], minutes: expirationValues[2] };
     const timeInSeconds = getOfferExpirationTimeInSeconds(formatTime);
@@ -74,14 +84,13 @@ export default function OfferBuilderExpirationSection(props: OfferExpirationProp
   }
 
   function viewSection() {
+    const countdownDisplay = OfferBuilderExpirationCountdown(currentTime, expirationTime, false);
     return (
-      <Grid xs={12} item border={1} borderColor={theme.palette.border.main} borderRadius={1} padding={2}>
-        {!hasExpiration ? (
-          <Alert severity="success">This offer has no expiration time.</Alert>
-        ) : isExpired ? (
-          <Alert severity="error">This offer has expired and cannot be accepted.</Alert>
+      <Grid xs={12} item>
+        {isExpired ? (
+          <Alert severity="error">Offer has expired and cannot be accepted.</Alert>
         ) : (
-          <Alert severity="warning">This offer has not yet expired.</Alert>
+          <Alert severity="warning">{isSynced ? countdownDisplay : 'Loading expiration time...'}</Alert>
         )}
       </Grid>
     );
@@ -118,7 +127,7 @@ export default function OfferBuilderExpirationSection(props: OfferExpirationProp
                 invisible={wasOfferExpirationVisited}
               >
                 <Typography variant="subtitle2">
-                  <Trans>Add option to set expiration time</Trans>
+                  <Trans>Add option to set expiration time {canCounter ? ' to counteroffer' : null}</Trans>
                 </Typography>
               </Badge>
             </AccordionSummary>
@@ -191,10 +200,10 @@ export default function OfferBuilderExpirationSection(props: OfferExpirationProp
   }
 
   return (
-    <div>
-      {isViewing && !canCounter && viewSection()}
+    <Flex flexDirection="column" gap={3}>
+      {isViewing && viewSection()}
       {isViewing && canCounter && editSection()}
       {!isViewing && editSection()}
-    </div>
+    </Flex>
   );
 }

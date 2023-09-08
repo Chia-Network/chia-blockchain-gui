@@ -4,6 +4,7 @@ import {
   useGetTimestampForHeightQuery,
   useGetHeightInfoQuery,
   useGetWalletsQuery,
+  useGetSyncStatusQuery,
 } from '@chia-network/api-react';
 import {
   Button,
@@ -22,7 +23,7 @@ import {
   MenuItem,
 } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import { Cancel, GetApp as Download, Info, Loop, Reply as Share, Visibility } from '@mui/icons-material';
+import { Cancel, GetApp as Download, Info, Reply as Share, Visibility } from '@mui/icons-material';
 import { Box, Chip, Grid, ListItemIcon, Typography } from '@mui/material';
 import moment from 'moment';
 import React, { useMemo } from 'react';
@@ -99,6 +100,13 @@ function OfferList(props: OfferListProps) {
     pageChange,
   } = useWalletOffers(5, 0, includeMyOffers, includeTakenOffers, 'RELEVANCE', false);
 
+  const { data: walletState, isLoading: isWalletSyncLoading } = useGetSyncStatusQuery(undefined, {
+    pollingInterval: 10_000,
+  });
+
+  const isSyncing = isWalletSyncLoading || !!walletState?.syncing;
+  const isSynced = !isSyncing && walletState?.synced;
+
   const { data: height } = useGetHeightInfoQuery(undefined, {
     pollingInterval: 3000,
   });
@@ -111,12 +119,6 @@ function OfferList(props: OfferListProps) {
   const currentTime = currentTimeMoment._i / 1000;
 
   const cols = useMemo(() => {
-    /*
-    async function handleRelistOffer(offerData: string) {
-
-    }
-    */
-
     async function handleShowOfferData(offerData: string) {
       openDialog(<OfferDataDialog offerData={offerData} />);
     }
@@ -159,11 +161,21 @@ function OfferList(props: OfferListProps) {
       {
         // eslint-disable-next-line react/no-unstable-nested-components -- The result is memoized. No performance issue
         field: (row: OfferTradeRecord) => {
-          const { status } = row;
+          const { status, validTimes } = row;
+          const labelString = validTimes.maxTime
+            ? validTimes.maxTime < currentTime
+              ? 'Expired'
+              : displayStringForOfferState(status)
+            : displayStringForOfferState(status);
+          const stateColor = validTimes.maxTime
+            ? validTimes.maxTime < currentTime
+              ? 'default'
+              : colorForOfferState(status)
+            : colorForOfferState(status);
 
           return (
             <Box onClick={(event) => handleRowClick(event, row)}>
-              <Chip label={displayStringForOfferState(status)} variant="outlined" color={colorForOfferState(status)} />
+              <Chip label={labelString} variant="outlined" color={stateColor} />
             </Box>
           );
         },
@@ -194,11 +206,12 @@ function OfferList(props: OfferListProps) {
       {
         // eslint-disable-next-line react/no-unstable-nested-components -- The result is memoized. No performance issue
         field: (row: OfferTradeRecord) => {
-          const { createdAtTime, validTimes } = row;
-          const expirationTime = validTimes.maxTime ? createdAtTime + validTimes.maxTime : null;
+          const { createdAtTime, status, validTimes } = row;
           let countdownDisplay = null;
-          if (validTimes.maxTime) {
-            countdownDisplay = OfferBuilderExpirationCountdown(currentTime, expirationTime);
+          if (status !== 'CANCELLED' && validTimes.maxTime) {
+            countdownDisplay = isSynced
+              ? OfferBuilderExpirationCountdown(currentTime, validTimes.maxTime, true)
+              : 'Loading expiration time...';
           }
 
           return (
@@ -217,15 +230,12 @@ function OfferList(props: OfferListProps) {
       {
         // eslint-disable-next-line react/no-unstable-nested-components -- The result is memoized. No performance issue
         field: (row: OfferTradeRecord) => {
-          const { tradeId, status, createdAtTime, validTimes } = row;
+          const { tradeId, status } = row;
           const canExport = status === OfferState.PENDING_ACCEPT; // implies isMyOffer === true
           const canDisplayData = status === OfferState.PENDING_ACCEPT;
           const canCancel = status === OfferState.PENDING_ACCEPT || status === OfferState.PENDING_CONFIRM;
           const canShare = status === OfferState.PENDING_ACCEPT;
           const canCancelWithTransaction = canCancel && status === OfferState.PENDING_ACCEPT;
-
-          const expirationTime = validTimes.maxTime ? createdAtTime + validTimes.maxTime : null;
-          const isExpired = expirationTime - currentTime < 0;
 
           return (
             <Flex flexDirection="row" justifyContent="center" gap={0}>
@@ -248,16 +258,6 @@ function OfferList(props: OfferListProps) {
                       <Trans>Show Details</Trans>
                     </Typography>
                   </MenuItem>
-                  {isExpired && (
-                    <MenuItem>
-                      <ListItemIcon>
-                        <Loop fontSize="small" color="info" />
-                      </ListItemIcon>
-                      <Typography variant="inherit" noWrap>
-                        <Trans>Relist Offer</Trans>
-                      </Typography>
-                    </MenuItem>
-                  )}
                   {canDisplayData && (
                     // eslint-disable-next-line no-underscore-dangle -- Can't do anything about it
                     <MenuItem onClick={() => handleShowOfferData(row._offerData)} close>
@@ -299,7 +299,7 @@ function OfferList(props: OfferListProps) {
         title: <Flex justifyContent="center">Actions</Flex>,
       },
     ];
-  }, [cancelOffer, lookupByAssetId, navigate, openDialog, saveOffer, testnet, currentTime]);
+  }, [cancelOffer, lookupByAssetId, navigate, openDialog, saveOffer, testnet, currentTime, isSynced]);
 
   const hasOffers = !!offers?.length;
 

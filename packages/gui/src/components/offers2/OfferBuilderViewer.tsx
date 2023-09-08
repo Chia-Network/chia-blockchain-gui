@@ -1,4 +1,9 @@
-import { useGetWalletsQuery, useCheckOfferValidityMutation } from '@chia-network/api-react';
+import {
+  useGetWalletsQuery,
+  useCheckOfferValidityMutation,
+  useGetTimestampForHeightQuery,
+  useGetHeightInfoQuery,
+} from '@chia-network/api-react';
 import {
   AlertDialog,
   Flex,
@@ -12,6 +17,7 @@ import {
 import { useIsWalletSynced } from '@chia-network/wallets';
 import { Trans } from '@lingui/macro';
 import { Alert, Grid } from '@mui/material';
+import moment from 'moment';
 import React, { useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState, forwardRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -55,10 +61,6 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
     fee,
   } = props;
 
-  // console.log(offerSummary);
-  const testHasExpiration = true;
-  const testIsExpired = false;
-
   const showError = useShowError();
   const navigate = useNavigate();
   const location = useLocation();
@@ -76,6 +78,31 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
   const openDialog = useOpenDialog();
 
   const showInvalid = !isValidating && isValid === false;
+
+  const hasExpiration = offerSummary.validTimes?.maxTime !== undefined && offerSummary.validTimes?.maxTime !== 0;
+  let currentTime = null;
+  let expirationTime = null;
+  let isExpired = false;
+
+  const { data: height } = useGetHeightInfoQuery(undefined, {
+    pollingInterval: 3000,
+  });
+  const { data: lastBlockTimeStampData } = useGetTimestampForHeightQuery({
+    height: height || 0,
+  });
+
+  if (hasExpiration) {
+    const lastBlockTimeStamp = lastBlockTimeStampData?.timestamp || 0;
+    const currentTimeMoment = moment.unix(lastBlockTimeStamp - 20);
+    // eslint-disable-next-line no-underscore-dangle -- description
+    currentTime = currentTimeMoment._i / 1000;
+
+    expirationTime = offerSummary.validTimes.maxTime;
+
+    if (expirationTime !== 0) {
+      isExpired = expirationTime < currentTime;
+    }
+  }
 
   useImperativeHandle(ref, () => ({
     submit: () => offerBuilderRef.current?.submit(),
@@ -145,13 +172,12 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
   const missingRequestedCATs = !!requestedUnknownCATs?.length;
 
   const canAccept = !!offerData;
-  const disableAccept = missingOfferedCATs || showInvalid || testIsExpired;
+  const disableAccept = missingOfferedCATs || showInvalid || isExpired;
 
   const isLoading = isLoadingWallets || (!computedOfferBuilderData && !prepopulatedOfferBuilderData) || isOffersLoading;
 
   const handleExpirationSubmit = (_data) => {
-    // console.log(data);
-    // setExpirationTimeMax(data);
+    setExpirationTimeMax(data);
   };
 
   async function handleSubmit(values: OfferBuilderData) {
@@ -270,13 +296,15 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
           <Loading center />
         ) : (
           <Flex flexDirection="column" gap={3}>
-            <OfferBuilderExpirationSection
-              isViewing
-              canCounter={canCounterOffer}
-              hasExpiration={testHasExpiration}
-              isExpired={testIsExpired}
-              onSubmit={handleExpirationSubmit}
-            />
+            {hasExpiration && (
+              <OfferBuilderExpirationSection
+                isViewing
+                canCounter={canCounterOffer}
+                currentTime={currentTime}
+                expirationTime={expirationTime}
+                onSubmit={handleExpirationSubmit}
+              />
+            )}
             <OfferBuilder
               defaultValues={computedOfferBuilderData || prepopulatedOfferBuilderData}
               onSubmit={handleSubmit}
