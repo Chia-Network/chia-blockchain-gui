@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_TW\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-08-13 00:04\n"
+"PO-Revision-Date: 2023-09-03 00:05\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -282,11 +282,11 @@ msgstr "正在載入金鑰"
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:317
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:336
 #~ msgid "Log Out"
-#~ msgstr "登出"
+#~ msgstr ""
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:335
 #~ msgid "Logout"
-#~ msgstr "登出"
+#~ msgstr ""
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:17
 msgid "Migrate"
@@ -568,3 +568,4 @@ msgstr "您目前的版本："
 #: src/hooks/useKeyringMigrationPrompt.tsx:21
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr "您的金鑰尚未遷移到新的金鑰圈。在遷移完成之前，您將無法創建新的金鑰或刪除現有的金鑰。您想現在遷移您的金鑰嗎？"
+
