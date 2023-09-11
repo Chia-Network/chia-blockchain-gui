@@ -1,4 +1,4 @@
-project_id_env: CROWDIN_PROJECT_ID
+project_id: 1
 api_token_env: CROWDIN_PERSONAL_TOKEN
 files:
   - source: /packages/core/src/locales/en-US/*.po
