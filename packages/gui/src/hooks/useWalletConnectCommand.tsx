@@ -173,7 +173,7 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
       values = newValues;
     }
 
-    const isReadOnlyEnabled = bypassReadonlyCommands?.[pairedTopic].indexOf(fingerprint) > -1;
+    const isReadOnlyEnabled = bypassReadonlyCommands?.[pairedTopic]?.indexOf(fingerprint) > -1;
 
     const confirmed =
       (isReadOnlyEnabled && definition.bypassConfirm) ||
