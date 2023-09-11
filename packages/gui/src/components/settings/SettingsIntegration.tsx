@@ -314,12 +314,13 @@ export default function SettingsIntegration() {
                             <Select
                               value={(bypassCommands ?? {})[commandInfo.command] ? 1 : 0}
                               id={`${idx}`}
-                              onChange={() =>
+                              onChange={(e) => {
+                                if (e.target.value === 'requireConfirmation') return;
                                 handleBypassCommandChange(
                                   commandInfo.command,
                                   !(bypassCommands ?? {})[commandInfo.command]
-                                )
-                              }
+                                );
+                              }}
                             >
                               <MenuItem value={1}>
                                 <Trans>Always Allow</Trans>
@@ -327,7 +328,10 @@ export default function SettingsIntegration() {
                               <MenuItem value={0} divider>
                                 <Trans>Always Reject</Trans>
                               </MenuItem>
-                              <MenuItem onClick={() => handleRemoveBypassCommand(commandInfo.command)}>
+                              <MenuItem
+                                value="requireConfirmation"
+                                onClick={() => handleRemoveBypassCommand(commandInfo.command)}
+                              >
                                 <Trans>Require Confirmation</Trans>
                               </MenuItem>
                             </Select>
