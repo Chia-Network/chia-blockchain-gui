@@ -48,8 +48,8 @@ jobs:
           github_user_email: 'automation@chia.net'
           gpg_private_key: ${{ secrets.CHIA_AUTOMATION_PRIVATE_GPG_KEY_RSA }}
           gpg_passphrase: ${{ secrets.CHIA_AUTOMATION_PRIVATE_GPG_PASSPHRASE }}
-          api_token: ${{ env.CROWDIN_PERSONAL_TOKEN }}
-          project_id: ${{ env.CROWDIN_PROJECT_ID }}
+          api_token: CROWDIN_PERSONAL_TOKEN
+          project_id: CROWDIN_PROJECT_ID
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GIT_TRACE: 1
