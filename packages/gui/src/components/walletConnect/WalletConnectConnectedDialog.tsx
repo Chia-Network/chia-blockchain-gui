@@ -52,9 +52,10 @@ export default function WalletConnectConnectedDialog(props: WalletConnectAddConn
     setIsProcessing(true);
 
     try {
+      const tempObj = { ...bypassReadonlyCommands };
+      delete tempObj[pair.topic];
+      setBypassReadonlyCommands(tempObj);
       await disconnect(topic);
-      delete bypassReadonlyCommands[pair.topic];
-      setBypassReadonlyCommands(bypassReadonlyCommands);
       onClose();
     } catch (e) {
       showError(e);

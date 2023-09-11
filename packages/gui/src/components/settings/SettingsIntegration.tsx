@@ -73,9 +73,10 @@ export default function SettingsIntegration() {
     if (!pair) {
       return;
     }
+    const tempObj = { ...bypassReadonlyCommands };
+    delete tempObj[pair.topic];
+    setBypassReadonlyCommands(tempObj);
     disconnect(pair.topic);
-    delete bypassReadonlyCommands[pair.topic];
-    setBypassReadonlyCommands(bypassReadonlyCommands);
     setTopic(null);
     setBypassCommands(undefined);
     selectedPair.current = undefined;

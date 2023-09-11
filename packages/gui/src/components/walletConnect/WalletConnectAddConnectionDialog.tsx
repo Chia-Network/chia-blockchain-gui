@@ -105,7 +105,7 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
     }
   }, [fingerprint, methods]);
 
-  async function handleSubmit(values: FormData) {
+  function handleSubmit(values: FormData) {
     const { uri, fingerprints } = values;
     if (!uri) {
       throw new Error(t`Please enter a URI`);
@@ -120,24 +120,24 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
       throw new Error(t`Please select at least one key`);
     }
 
-    const topic = await pair(uri, selectedFingerprints, mainnet);
-
-    if (bypassCheckbox) {
-      if (!bypassReadonlyCommands[topic.toString()]) {
-        bypassReadonlyCommands[topic.toString()] = [];
-      }
-      setBypassReadonlyCommands({
-        ...bypassReadonlyCommands,
-        [topic.toString()]: (bypassReadonlyCommands[topic.toString()] || []).concat(selectedFingerprints),
-      });
+    if (!allowConfirmationFingerprintChange && fingerprints.length > 1) {
+      setAllowConfirmationFingerprintChange(true);
     }
 
-    setTimeout(() => {
-      if (!allowConfirmationFingerprintChange && fingerprints.length > 1) {
-        setAllowConfirmationFingerprintChange(true);
+    /* for some bizarre reason, "pair" function below needs to be written as a Promise, otherwise
+       a caching mechanism (useState) in useLocalStorage will not work reliably */
+    pair(uri, selectedFingerprints, mainnet).then((topic: any) => {
+      if (bypassCheckbox) {
+        if (!bypassReadonlyCommands[topic.toString()]) {
+          bypassReadonlyCommands[topic.toString()] = [];
+        }
+        setBypassReadonlyCommands({
+          ...bypassReadonlyCommands,
+          [topic.toString()]: (bypassReadonlyCommands[topic.toString()] || []).concat(selectedFingerprints),
+        });
       }
-    }, 1500);
-    onClose(topic);
+      onClose(topic);
+    });
   }
 
   function handleToggleSelectFingerprint(fingerprintLocal: number) {

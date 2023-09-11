@@ -23,7 +23,7 @@ export default function WalletConnectConnections(props: WalletConnectConnections
   const { onClose } = props;
   const openDialog = useOpenDialog();
   const showError = useShowError();
-  const { enabled, setEnabled } = useWalletConnectPreferences();
+  const { enabled, setEnabled, bypassReadonlyCommands, setBypassReadonlyCommands } = useWalletConnectPreferences();
   const { disconnect, pairs, isLoading } = useWalletConnectContext();
 
   const handleAddConnection = useCallback(async () => {
@@ -37,6 +37,9 @@ export default function WalletConnectConnections(props: WalletConnectConnections
 
   async function handleDisconnect(topic: string) {
     try {
+      const tempObj = { ...bypassReadonlyCommands };
+      delete tempObj[topic];
+      setBypassReadonlyCommands(tempObj);
       onClose?.();
       await disconnect(topic);
     } catch (error) {

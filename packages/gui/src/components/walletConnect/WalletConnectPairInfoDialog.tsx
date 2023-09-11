@@ -54,8 +54,9 @@ export default function WalletConnectPairInfoDialog(props: WalletConnectPairInfo
     setIsProcessing(true);
 
     try {
-      delete bypassReadonlyCommands[topic];
-      setBypassReadonlyCommands(bypassReadonlyCommands);
+      const tempObj = { ...bypassReadonlyCommands };
+      delete tempObj[topic];
+      setBypassReadonlyCommands(tempObj);
       await disconnect(topic);
       onClose();
     } catch (e) {
