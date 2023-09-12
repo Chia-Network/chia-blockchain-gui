@@ -115,7 +115,8 @@ function OfferList(props: OfferListProps) {
   const currentTime = currentTimeMoment._i / 1000;
 
   const cols = useMemo(() => {
-    async function relistOffer(row: OfferTradeRecord) {
+    async function relistOffer(row: OfferTradeRecord, tradeId: string) {
+      await cancelOffer({ tradeId, secure: false, fee: 0 });
       const newSummary = { ...row.summary };
       // swap offering and requested
       newSummary.offered = row.summary.requested;
@@ -282,7 +283,7 @@ function OfferList(props: OfferListProps) {
                     </Typography>
                   </MenuItem>
                   {isExpired && (
-                    <MenuItem onClick={() => relistOffer(row)} close>
+                    <MenuItem onClick={() => relistOffer(row, tradeId)} close>
                       <ListItemIcon>
                         <Loop fontSize="small" color="info" />
                       </ListItemIcon>
