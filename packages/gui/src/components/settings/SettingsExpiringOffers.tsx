@@ -25,8 +25,16 @@ export default function SettingsExpiringOffers(props) {
   });
 
   async function handleSubmit(valuesLocal: OfferExpirationDefaultTimeInput) {
-    setOfferExpirationDefaultTime(valuesLocal);
+    const newValues = { ...valuesLocal, enabled: true };
+    setOfferExpirationDefaultTime(newValues);
     methods.reset({}, { keepValues: true });
+  }
+
+  async function handleDisable() {
+    const defaults = offerExpirationDefaultTimeDefaults;
+    defaults.enabled = false;
+    methods.reset(defaults);
+    setOfferExpirationDefaultTime(defaults);
   }
 
   return (
@@ -51,6 +59,7 @@ export default function SettingsExpiringOffers(props) {
                     max: field.max,
                   },
                 }}
+                disabled={!isOfferExpirationDefaultTimeEnabled}
                 data-testid={`SettingsDefaultExpirationTime-${field.name}`}
                 fullWidth
               />
@@ -62,7 +71,7 @@ export default function SettingsExpiringOffers(props) {
             type="submit"
             variant="contained"
             color="primary"
-            disabled={!methods.formState.isDirty}
+            disabled={!methods.formState.isDirty && isOfferExpirationDefaultTimeEnabled}
             data-testid="SettingsDefaultExpirationTime-submit"
           >
             {isOfferExpirationDefaultTimeEnabled ? <Trans>Save</Trans> : <Trans>Enable</Trans>}
@@ -73,10 +82,7 @@ export default function SettingsExpiringOffers(props) {
               type="submit"
               variant="outlined"
               color="secondary"
-              onClick={() => {
-                methods.reset(offerExpirationDefaultTimeDefaults);
-                setOfferExpirationDefaultTime(offerExpirationDefaultTimeDefaults);
-              }}
+              onClick={handleDisable}
               data-testid="SettingsOfferExpirationTime-disable"
             >
               <Trans>Disable</Trans>

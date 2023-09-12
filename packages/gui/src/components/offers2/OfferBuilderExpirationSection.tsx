@@ -1,5 +1,6 @@
 import { useLocalStorage } from '@chia-network/api-react';
 import { Button, Color, Flex, Form, TextField } from '@chia-network/core';
+import { useIsWalletSynced } from '@chia-network/wallets';
 import { Trans } from '@lingui/macro';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ReportProblemOutlinedIcon from '@mui/icons-material/ReportProblemOutlined';
@@ -55,13 +56,17 @@ export default function OfferBuilderExpirationSection(props: OfferExpirationProp
     isGetHeightInfoLoading,
     isGetTimestampForHeightLoading,
   } = props;
-  const { offerExpirationDefaultTime } = useOfferExpirationDefaultTime();
+  const { offerExpirationDefaultTime, isOfferExpirationDefaultTimeEnabled } = useOfferExpirationDefaultTime();
+  const isWalletSynced = useIsWalletSynced();
+
+  const defaults = { ...offerExpirationDefaultTime };
+  defaults.days = isOfferExpirationDefaultTimeEnabled ? defaults.days : 0;
+  defaults.hours = isOfferExpirationDefaultTimeEnabled ? defaults.hours : 0;
+  defaults.minutes = isOfferExpirationDefaultTimeEnabled ? defaults.minutes : 0;
+
   const methods = useForm<SetExpirationData>({
     defaultValues: {
-      days: '0',
-      hours: '0',
-      minutes: '0',
-      ...offerExpirationDefaultTime,
+      ...defaults,
     },
   });
 
@@ -88,7 +93,7 @@ export default function OfferBuilderExpirationSection(props: OfferExpirationProp
 
   function viewSection() {
     const countdownDisplay =
-      !isGetHeightInfoLoading && !isGetTimestampForHeightLoading
+      !isGetHeightInfoLoading && !isGetTimestampForHeightLoading && isWalletSynced && currentTime !== -20
         ? OfferBuilderExpirationCountdown(currentTime, expirationTime, false)
         : 'Loading expiration time...';
     return (

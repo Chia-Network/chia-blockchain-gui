@@ -2,19 +2,22 @@ import { usePrefs } from '@chia-network/api-react';
 import { useCallback, useMemo } from 'react';
 
 export type OfferExpirationDefaultTimeInput = {
+  enabled: boolean;
   days: number | string;
   hours: number | string;
   minutes: number | string;
 };
 
 export type OfferExpirationDefaultTimeOutput = {
+  enabled: boolean;
   days: number;
   hours: number;
   minutes: number;
 };
 
 export const offerExpirationDefaultTimeDefaults = {
-  days: 0,
+  enabled: true,
+  days: 7,
   hours: 0,
   minutes: 0,
 };
@@ -36,6 +39,7 @@ export function getOfferExpirationTimeAsTuple(timeInSeconds) {
 
 function stringPropertiesToNumbers(objWithStrings: OfferExpirationDefaultTimeInput) {
   return {
+    enabled: Boolean(objWithStrings.enabled),
     days: Number(objWithStrings.days),
     hours: Number(objWithStrings.hours),
     minutes: Number(objWithStrings.minutes),
@@ -49,10 +53,7 @@ export default function useOfferExpirationDefaultTime() {
   );
 
   const isOfferExpirationDefaultTimeEnabled = useMemo(
-    () =>
-      offerExpirationDefaultTime.days > 0 ||
-      offerExpirationDefaultTime.hours > 0 ||
-      offerExpirationDefaultTime.minutes > 0,
+    () => offerExpirationDefaultTime.enabled === true,
     [offerExpirationDefaultTime]
   );
 
