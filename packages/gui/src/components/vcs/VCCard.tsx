@@ -36,8 +36,14 @@ function RenderProperty(props: RenderPropertyProps) {
   );
 }
 
-export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proofs?: any; isLocal: boolean }) {
-  const { vcRecord, isDetail, proofs, isLocal } = props;
+export default function VCCard(props: {
+  vcRecord: any;
+  isDetail?: boolean;
+  proofs?: any;
+  isLocal: boolean;
+  coinId: string;
+}) {
+  const { vcRecord, isDetail, proofs, isLocal, coinId } = props;
   const { data: mintedTimestamp, isLoading: isLoadingMintHeight } = useGetTimestampForHeightQuery({
     height: vcRecord?.confirmedAtHeight || 0,
   });
@@ -123,7 +129,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
         <RenderProperty
           label={
             <Typography sx={{ fontSize: '12px' }}>
-              <Trans>Coin ID</Trans>
+              <Trans>Launcher ID</Trans>
             </Typography>
           }
         >
@@ -132,6 +138,21 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
           ) : (
             <Truncate tooltip copyToClipboard>
               {vcRecord.vc?.launcherId || '/'}
+            </Truncate>
+          )}
+        </RenderProperty>
+        <RenderProperty
+          label={
+            <Typography sx={{ fontSize: '12px' }}>
+              <Trans>Coin ID</Trans>
+            </Typography>
+          }
+        >
+          {isDetail ? (
+            vcRecord.coinId || coinId || '/'
+          ) : (
+            <Truncate tooltip copyToClipboard>
+              {vcRecord.coinId || coinId || '/'}
             </Truncate>
           )}
         </RenderProperty>
@@ -341,7 +362,10 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
         cursor: 'pointer',
       }}
       onClick={() => {
-        navigate(`/dashboard/vc/${vcRecord?.vc?.launcherId || vcRecord.sha256}`);
+        /* getVC doesn't get us coinId, so we must pass it in from vcList method */
+        navigate(`/dashboard/vc/${vcRecord?.vc?.launcherId || vcRecord.sha256}`, {
+          state: { coinId: vcRecord?.coinId },
+        });
       }}
     >
       <Flex flexDirection="row" justifyContent="space-between">
