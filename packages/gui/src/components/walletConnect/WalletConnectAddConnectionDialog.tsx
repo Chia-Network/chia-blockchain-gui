@@ -25,7 +25,7 @@ import {
   Checkbox,
   Chip,
 } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
 
 import useWalletConnectContext from '../../hooks/useWalletConnectContext';
@@ -56,6 +56,7 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
   const { pair, isLoading: isLoadingWallet } = useWalletConnectContext();
   const { data: keys, isLoading: isLoadingPublicKeys } = useGetKeysQuery({});
   const [sortedWallets] = usePrefs('sortedWallets', []);
+  const [pairingTopic, setPairingTopic] = useState<string | undefined>();
 
   const { data: fingerprint, isLoading: isLoadingLoggedInFingerprint } = useGetLoggedInFingerprintQuery();
   const mainnet = useCurrencyCode() === 'XCH';
@@ -76,7 +77,7 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
 
   const {
     allowConfirmationFingerprintChange,
-    setAllowConfirmationFingerprintChange,
+    // setAllowConfirmationFingerprintChange,
     bypassReadonlyCommands,
     setBypassReadonlyCommands,
   } = useWalletConnectPreferences();
@@ -105,40 +106,115 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
     }
   }, [fingerprint, methods]);
 
-  function handleSubmit(values: FormData) {
-    const { uri, fingerprints } = values;
-    if (!uri) {
-      throw new Error(t`Please enter a URI`);
-    }
+  // const enableBypassReadonlyCommands = useCallback(
+  //   (topic: string, fingerprints: number[]) => {
+  //     if (!bypassReadonlyCommands[topic.toString()]) {
+  //       bypassReadonlyCommands[topic.toString()] = [];
+  //     }
+  //     setBypassReadonlyCommands({
+  //       ...bypassReadonlyCommands,
+  //       [topic.toString()]: (bypassReadonlyCommands[topic.toString()] || []).concat(fingerprints),
+  //     });
+  //   },
+  //   [bypassReadonlyCommands, setBypassReadonlyCommands]
+  // );
 
-    if (step === Step.CONNECT) {
-      setStep(Step.SELECT_KEYS);
-      return;
-    }
-
-    if (!fingerprints.length) {
-      throw new Error(t`Please select at least one key`);
-    }
-
-    if (!allowConfirmationFingerprintChange && fingerprints.length > 1) {
-      setAllowConfirmationFingerprintChange(true);
-    }
-
-    /* for some bizarre reason, "pair" function below needs to be written as a Promise, otherwise
-       a caching mechanism (useState) in useLocalStorage will not work reliably */
-    pair(uri, selectedFingerprints, mainnet).then((topic: any) => {
-      if (bypassCheckbox) {
-        if (!bypassReadonlyCommands[topic.toString()]) {
-          bypassReadonlyCommands[topic.toString()] = [];
-        }
-        setBypassReadonlyCommands({
-          ...bypassReadonlyCommands,
-          [topic.toString()]: (bypassReadonlyCommands[topic.toString()] || []).concat(selectedFingerprints),
-        });
+  const enableBypassReadonlyCommands = useCallback(
+    async (topic: string) => {
+      console.log('entered enableBypassReadonlyCommands');
+      if (!topic || !bypassCheckbox) {
+        return;
       }
+
+      // create a copy of bypassReadonlyCommands
+      const bypassReadonlyCommandsCopy = { ...bypassReadonlyCommands };
+
+      console.log('updating bypassReadonlyCommands');
+      if (!bypassReadonlyCommandsCopy[topic.toString()]) {
+        bypassReadonlyCommandsCopy[topic.toString()] = [];
+      }
+      setBypassReadonlyCommands({
+        ...bypassReadonlyCommandsCopy,
+        [topic.toString()]: (bypassReadonlyCommandsCopy[topic.toString()] || []).concat(selectedFingerprints),
+      });
+    },
+    [bypassCheckbox, bypassReadonlyCommands, selectedFingerprints, setBypassReadonlyCommands]
+  );
+
+  const advanceStep = useCallback(async () => {
+    setStep(Step.SELECT_KEYS);
+  }, []);
+
+  const handleSubmit = useCallback(
+    async (values: FormData) => {
+      const { uri, fingerprints } = values;
+      if (!uri) {
+        throw new Error(t`Please enter a URI`);
+      }
+
+      if (step === Step.CONNECT) {
+        setStep(Step.SELECT_KEYS);
+        return;
+      }
+
+      if (!fingerprints.length) {
+        throw new Error(t`Please select at least one key`);
+      }
+
+      // if (!allowConfirmationFingerprintChange && fingerprints.length > 1) {
+      //   setAllowConfirmationFingerprintChange(true);
+      // }
+
+      /* for some bizarre reason, "pair" function below needs to be written as a Promise, otherwise
+       a caching mechanism (useState) in useLocalStorage will not work reliably */
+      // pair(uri, selectedFingerprints, mainnet).then((topic: any) => {
+      //   if (bypassCheckbox) {
+      //     if (!bypassReadonlyCommands[topic.toString()]) {
+      //       bypassReadonlyCommands[topic.toString()] = [];
+      //     }
+      //     setBypassReadonlyCommands({
+      //       ...bypassReadonlyCommands,
+      //       [topic.toString()]: (bypassReadonlyCommands[topic.toString()] || []).concat(selectedFingerprints),
+      //     });
+      //   }
+      //   onClose(topic);
+      // });
+
+      const topic = await pair(uri, selectedFingerprints, mainnet);
+
+      // if (bypassCheckbox) {
+      //   enableBypassReadonlyCommands(topic, selectedFingerprints);
+      //   // if (!bypassReadonlyCommands[topic.toString()]) {
+      //   //   bypassReadonlyCommands[topic.toString()] = [];
+      //   // }
+      //   // setBypassReadonlyCommands({
+      //   //   ...bypassReadonlyCommands,
+      //   //   [topic.toString()]: (bypassReadonlyCommands[topic.toString()] || []).concat(selectedFingerprints),
+      //   // });
+      // }
+
       onClose(topic);
-    });
-  }
+
+      // setPairingTopic(topic);
+      await enableBypassReadonlyCommands(topic);
+
+      console.log('finished handleSubmit');
+    },
+    [
+      // allowConfirmationFingerprintChange,
+      // bypassCheckbox,
+      // bypassReadonlyCommands,
+      enableBypassReadonlyCommands,
+      mainnet,
+      onClose,
+      pair,
+      selectedFingerprints,
+      // setAllowConfirmationFingerprintChange,
+      // setBypassReadonlyCommands,
+      setPairingTopic,
+      step,
+    ]
+  );
 
   function handleToggleSelectFingerprint(fingerprintLocal: number) {
     const { setValue } = methods;
@@ -275,7 +351,7 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
         <CloseIcon />
       </IconButton>
 
-      <Form methods={methods} onSubmit={handleSubmit}>
+      <Form methods={methods} onSubmit={step === Step.CONNECT ? advanceStep : handleSubmit}>
         <DialogContent>
           <Flex flexDirection="column" gap={3}>
             <Box alignSelf="center">

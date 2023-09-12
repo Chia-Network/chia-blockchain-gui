@@ -28,7 +28,7 @@ export default function useWalletConnectPreferences(): {
         enabled: value,
       }));
     },
-    [setPreferences]
+    [preferences, setPreferences]
   );
 
   const setAllowConfirmationFingerprintChange = useCallback(
@@ -38,18 +38,32 @@ export default function useWalletConnectPreferences(): {
         allowConfirmationFingerprintChange: value,
       }));
     },
-    [setPreferences]
+    [preferences, setPreferences]
   );
 
   const setBypassReadonlyCommands = useCallback(
     (value: any) => {
-      setPreferences((currentPreferences: WalletConnectPreferences) => ({
-        ...currentPreferences,
-        bypassReadonlyCommands: value,
-      }));
+      console.log('in setBypassReadonlyCommands');
+      console.log(value);
+      console.log('preferences: ');
+      console.log(preferences);
+      console.log('value: ', value);
+      debugger;
+
+      setPreferences((currentPreferences: WalletConnectPreferences) => {
+        debugger;
+        console.log('in setBypassReadonlyCommands: setPreferences: currentPreferences');
+        return {
+          ...currentPreferences,
+          bypassReadonlyCommands: value,
+        };
+      });
     },
-    [setPreferences]
+    [preferences, setPreferences]
   );
+
+  console.log('preferences: ');
+  console.log(JSON.stringify(preferences));
 
   return {
     enabled,
