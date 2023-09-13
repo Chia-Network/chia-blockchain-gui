@@ -8,15 +8,15 @@ msgstr ""
 "Language: ko_KR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-03-29 23:26\n"
+"PO-Revision-Date: 2023-09-13 22:28\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "X-Crowdin-Project-ID: 1\n"
 "X-Crowdin-Language: ko\n"
-"X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/packages/gui/src/locales/en-US/messages.po\n"
-"X-Crowdin-File-ID: 1306\n"
+"X-Crowdin-File: /packages/gui/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 3133\n"
 
 #. js-lingui-explicit-id
 #: src/components/nfts/NFTBurnDialog.tsx:133
@@ -46,17 +46,17 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:492
 msgid "No"
-msgstr ""
+msgstr "아니오"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:492
 msgid "Yes"
-msgstr ""
+msgstr "예"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:493
 msgid "Confirm"
-msgstr ""
+msgstr "확인"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:495
@@ -67,27 +67,27 @@ msgstr ""
 #: src/electron/main.tsx:604
 #: src/electron/main.tsx:812
 msgid "File"
-msgstr ""
+msgstr "파일"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:612
 msgid "Edit"
-msgstr ""
+msgstr "편집"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:644
 msgid "View"
-msgstr ""
+msgstr "보기"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:653
 msgid "Developer"
-msgstr ""
+msgstr "개발자"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:656
 msgid "Developer Tools"
-msgstr ""
+msgstr "개발자 도구"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:664
@@ -97,42 +97,42 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:693
 msgid "Full Screen"
-msgstr ""
+msgstr "전체 화면"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:700
 msgid "Window"
-msgstr ""
+msgstr "창"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:714
 msgid "Help"
-msgstr ""
+msgstr "도움말"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:718
 msgid "Chia Blockchain Wiki"
-msgstr ""
+msgstr "치아 블록체인 위키"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:724
 msgid "Frequently Asked Questions"
-msgstr ""
+msgstr "자주 묻는 질문"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:730
 msgid "Release Notes"
-msgstr ""
+msgstr "릴리스 노트"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:736
 msgid "Contribute on GitHub"
-msgstr ""
+msgstr "GitHub에서 기여"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:745
 msgid "Report an Issue..."
-msgstr ""
+msgstr "문제 보고하기..."
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:751
@@ -142,18 +142,18 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:757
 msgid "Follow on Twitter"
-msgstr ""
+msgstr "트위터 팔로우하기"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:769
 msgid "Chia"
-msgstr ""
+msgstr "치아"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:772
 #: src/electron/main.tsx:865
 msgid "About Chia Blockchain"
-msgstr ""
+msgstr "치아 블록체인에 대하여"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:778
@@ -163,7 +163,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:826
 msgid "Speech"
-msgstr ""
+msgstr "말하다"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:871
@@ -192,7 +192,7 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddNFT.tsx:59
 #~ msgid "(Optional)"
-#~ msgstr ""
+#~ msgstr "(Optional)"
 
 #: src/components/plot/add/PlotAddNFT.tsx:67
 msgid "(Recommended)"
@@ -295,7 +295,7 @@ msgstr ""
 
 #: src/components/settings/ProfileAdd.tsx:80
 #~ msgid "<0>Need some XCH?</0>"
-#~ msgstr ""
+#~ msgstr "<0>Need some XCH?</0>"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:296
 msgid "<0>Showing</0> {0} <1>of</1> {1}  <2>items</2>"
@@ -303,7 +303,7 @@ msgstr ""
 
 #: src/components/settings/ProfileAdd.tsx:92
 #~ msgid "<0>Use one (1) mojo to create a Profile.</0>"
-#~ msgstr ""
+#~ msgstr "<0>Use one (1) mojo to create a Profile.</0>"
 
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:77
 msgid "A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk to a full node to see the state of the chain. View your network of connected harvesters below Learn more"
@@ -324,7 +324,7 @@ msgstr ""
 #: src/electron/main.tsx:1101
 #: src/electron/main.tsx:1188
 #~ msgid "About Chia Blockchain"
-#~ msgstr "치아 블록체인에 대하여"
+#~ msgstr "About Chia Blockchain"
 
 #: src/components/offers/NFTOfferViewer.tsx:642
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:21
@@ -575,7 +575,7 @@ msgstr ""
 
 #: src/electron/main.tsx:816
 #~ msgid "Are you sure you want to quit?"
-#~ msgstr ""
+#~ msgstr "Are you sure you want to quit?"
 
 #: src/components/vcs/VCCard.tsx:213
 msgid "Are you sure you want to remove"
@@ -675,7 +675,7 @@ msgstr ""
 
 #: src/components/settings/ProfileAdd.tsx:98
 #~ msgid "Balance: {standardBalance} XCH"
-#~ msgstr ""
+#~ msgstr "Balance: {standardBalance} XCH"
 
 #: src/components/block/Block.jsx:236
 msgid "Base Farmer Reward Amount"
@@ -683,7 +683,7 @@ msgstr "파밍에 대한 보상 지급의 최소 금액"
 
 #: src/components/offers/OfferShareDialog.tsx:1177
 #~ msgid "Before posting an offer in Keybase to the #{channelName} channel, you must first join the {teamName} team. Please note that it might take a few moments to join the channel."
-#~ msgstr ""
+#~ msgstr "Before posting an offer in Keybase to the #{channelName} channel, you must first join the {teamName} team. Please note that it might take a few moments to join the channel."
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:35
 msgid "Below are the current block challenges. You may or may not have a proof of space for these challenges. These blocks do not currently contain a proof of time."
@@ -708,7 +708,7 @@ msgstr ""
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:32
 #~ msgid "Block Rewards"
-#~ msgstr ""
+#~ msgstr "Block Rewards"
 
 #: src/components/block/Block.jsx:196
 msgid "Block VDF Iterations"
@@ -860,7 +860,7 @@ msgstr ""
 
 #: src/electron/main.tsx:1080
 #~ msgid "Chat on KeyBase"
-#~ msgstr "키베이스에서 채팅하기"
+#~ msgstr "Chat on KeyBase"
 
 #: src/constants/WalletConnectCommands.tsx:397
 msgid "Check Offer Validity"
@@ -878,7 +878,7 @@ msgstr ""
 
 #: src/electron/main.tsx:1098
 #~ msgid "Chia"
-#~ msgstr "치아"
+#~ msgstr "Chia"
 
 #: src/components/offers2/OfferBuilderXCHSection.tsx:77
 msgid "Chia ({currencyCode}) is a digital currency that is secure and sustainable"
@@ -890,7 +890,7 @@ msgstr ""
 
 #: src/electron/main.tsx:1047
 #~ msgid "Chia Blockchain Wiki"
-#~ msgstr "치아 블록체인 위키"
+#~ msgstr "Chia Blockchain Wiki"
 
 #: src/components/app/AppSelectMode.tsx:145
 msgid "Choose Farming Mode"
@@ -906,11 +906,11 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:41
 #~ msgid "Choose Number of Plots"
-#~ msgstr "몇 개의 플롯을 만들까요?"
+#~ msgstr "Choose Number of Plots"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:71
 #~ msgid "Choose Plot Size"
-#~ msgstr "플롯 사이즈를 선택해 주십시오."
+#~ msgstr "Choose Plot Size"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:79
 msgid "Choose Plotter"
@@ -1110,7 +1110,7 @@ msgstr ""
 
 #: src/electron/main.tsx:1065
 #~ msgid "Contribute on GitHub"
-#~ msgstr "GitHub에서 기여"
+#~ msgstr "Contribute on GitHub"
 
 #: src/components/nfts/NFTContextualActions.tsx:348
 msgid "Copy Media URL"
@@ -1411,11 +1411,11 @@ msgstr ""
 
 #: src/electron/main.tsx:991
 #~ msgid "Developer"
-#~ msgstr "개발자"
+#~ msgstr "Developer"
 
 #: src/electron/main.tsx:994
 #~ msgid "Developer Tools"
-#~ msgstr "개발자 도구"
+#~ msgstr "Developer Tools"
 
 #: src/components/offers/OfferShareDialog.tsx:416
 msgid "Dexie URL"
@@ -1465,7 +1465,7 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:453
 #~ msgid "Disable direct download"
-#~ msgstr ""
+#~ msgstr "Disable direct download"
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:140
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:89
@@ -1547,7 +1547,7 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:455
 #~ msgid "Don't allocate host tables using pinned buffers, instead download to intermediate pinned buffers then copy to the final host buffer."
-#~ msgstr ""
+#~ msgstr "Don't allocate host tables using pinned buffers, instead download to intermediate pinned buffers then copy to the final host buffer."
 
 #: src/components/nfts/NFTContextualActions.tsx:446
 msgid "Download"
@@ -1611,7 +1611,7 @@ msgstr ""
 
 #: src/electron/main.tsx:950
 #~ msgid "Edit"
-#~ msgstr "편집"
+#~ msgstr "Edit"
 
 #: src/components/addressbook/ContactEdit.tsx:292
 #: src/components/addressbook/ContactSummary.tsx:167
@@ -1828,7 +1828,7 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:462
 #~ msgid "Failed to execute Keybase command: {stderr}"
-#~ msgstr ""
+#~ msgstr "Failed to execute Keybase command: {stderr}"
 
 #: src/components/notification/NotificationSendDialog.tsx:148
 msgid "Failed to send the notification: {error}"
@@ -1928,7 +1928,7 @@ msgstr ""
 #: src/components/farm/card/FarmCardStatus.tsx:46
 #: src/components/farm/card/FarmCardStatus.tsx:59
 #~ msgid "Farming Status"
-#~ msgstr "수확 상태"
+#~ msgstr "Farming Status"
 
 #: src/components/settings/SettingsAdvanced.tsx:48
 msgid "Features for advanced users."
@@ -1990,7 +1990,7 @@ msgstr ""
 #: src/electron/main.tsx:942
 #: src/electron/main.tsx:1135
 #~ msgid "File"
-#~ msgstr "파일"
+#~ msgstr "File"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:70
 #: src/components/plot/PlotHarvesterPlotsDuplicate.tsx:14
@@ -2027,11 +2027,11 @@ msgstr ""
 
 #: src/electron/main.tsx:1086
 #~ msgid "Follow on Twitter"
-#~ msgstr "트위터 팔로우하기"
+#~ msgstr "Follow on Twitter"
 
 #: src/electron/main.tsx:1053
 #~ msgid "Frequently Asked Questions"
-#~ msgstr "자주 묻는 질문"
+#~ msgstr "Frequently Asked Questions"
 
 #: src/components/notification/NotificationAnnouncementDialog.tsx:44
 msgid "From"
@@ -2049,11 +2049,11 @@ msgstr ""
 
 #: src/electron/main.tsx:1022
 #~ msgid "Full Screen"
-#~ msgstr "전체 화면"
+#~ msgstr "Full Screen"
 
 #: src/components/settings/Settings.tsx:65
 #~ msgid "General"
-#~ msgstr ""
+#~ msgstr "General"
 
 #: src/constants/WalletConnectCommands.tsx:289
 msgid "Get all Offers"
@@ -2158,7 +2158,7 @@ msgstr ""
 #: src/components/offers/OfferShareDialog.tsx:1140
 #: src/components/offers/OfferShareDialog.tsx:1191
 #~ msgid "Go to #{channelName}"
-#~ msgstr ""
+#~ msgstr "Go to #{channelName}"
 
 #: src/components/vcs/VCList.tsx:298
 msgid "Government IDs"
@@ -2234,7 +2234,7 @@ msgstr "높이"
 
 #: src/electron/main.tsx:1043
 #~ msgid "Help"
-#~ msgstr "도움말"
+#~ msgstr "Help"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:51
 msgid "Here are the current block challenges. You may or may not have a proof of space for these challenges. These blocks do not currently contain a proof of time."
@@ -2307,7 +2307,7 @@ msgstr "아무 것도 선택 되지 않으면, 기본 임시 디렉토리로 설
 
 #: src/components/offers/OfferShareDialog.tsx:806
 #~ msgid "If selected, your offer will be not be shared publicly."
-#~ msgstr ""
+#~ msgstr "If selected, your offer will not be shared publicly."
 
 #: src/components/nfts/NFTBurnDialog.tsx:78
 msgid "If you burn these NFTs, nobody (including you) will ever be able to access it again. Are you sure you want to continue?"
@@ -2323,7 +2323,7 @@ msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:633
 #~ msgid "Image Hash Mismatch"
-#~ msgstr ""
+#~ msgstr "Image Hash Mismatch"
 
 #: src/components/settings/SettingsNFT.tsx:126
 msgid "Images will be scaled to fill the NFT card and ignore their original proportions."
@@ -2375,18 +2375,16 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:1172
 #~ msgid "Install Keybase"
-#~ msgstr ""
+#~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:133
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
 
@@ -2449,7 +2447,7 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:1184
 #~ msgid "Join {teamName}"
-#~ msgstr ""
+#~ msgstr "Join {teamName}"
 
 #: src/components/plot/add/PlotAddNFT.tsx:145
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:142
@@ -2501,11 +2499,11 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:1086
 #~ msgid "Keybase command failed {e}. If you haven't installed Keybase, you can download from https://keybase.io"
-#~ msgstr ""
+#~ msgstr "Keybase command failed {e}. If you haven't installed Keybase, you can download from https://keybase.io"
 
 #: src/components/offers/OfferShareDialog.tsx:1165
 #~ msgid "Keybase is a secure messaging and file sharing application. To share an offer in the Keybase {teamName} team, you must first have Keybase installed."
-#~ msgstr ""
+#~ msgstr "Keybase is a secure messaging and file sharing application. To share an offer in the Keybase {teamName} team, you must first have Keybase installed."
 
 #: src/components/app/AppKeyringMigrator.tsx:84
 msgid "Keyring migration failed: {0}"
@@ -2552,7 +2550,7 @@ msgstr ""
 
 #: src/components/farm/card/FarmCardLastHeightFarmed.tsx:13
 #~ msgid "Last Height Farmed"
-#~ msgstr "마지막 채굴 높이"
+#~ msgstr "Last Height Farmed"
 
 #: src/components/fullNode/card/FullNodeCardPeakTime.tsx:16
 msgid "Last Transaction Block Time"
@@ -3034,7 +3032,7 @@ msgstr ""
 
 #: src/components/farm/card/FarmCardLastHeightFarmed.tsx:15
 #~ msgid "No blocks farmed yet"
-#~ msgstr "아직 수확한 블록이 없습니다"
+#~ msgstr "No blocks farmed yet"
 
 #: src/util/offerBuilderDataToOffer.ts:223
 #: src/util/offerBuilderDataToOffer.ts:323
@@ -3301,7 +3299,7 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:755
 #~ msgid "OfferBin URL"
-#~ msgstr ""
+#~ msgstr "OfferBin URL"
 
 #: src/components/offers/OfferManager.tsx:160
 #: src/components/offers2/CancelOfferList.tsx:80
@@ -3315,7 +3313,7 @@ msgstr ""
 
 #: src/components/offers/utils.ts:145
 #~ msgid "Offering: [{makerString}], Requesting: [{takerString}]"
-#~ msgstr ""
+#~ msgstr "Offering: [{makerString}], Requesting: [{takerString}]"
 
 #: src/components/offers/OfferShareDialog.tsx:792
 msgid "Offerpool URL"
@@ -3720,7 +3718,7 @@ msgstr "구성 공개 키"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:87
 #~ msgid "Plot Size"
-#~ msgstr "플롯의 크기"
+#~ msgstr "Plot Size"
 
 #: src/components/harvest/HarvesterPlotDetails.tsx:175
 msgid "Plot Sizes"
@@ -3915,7 +3913,7 @@ msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:621
 #~ msgid "Preview URL is not valid"
-#~ msgstr ""
+#~ msgstr "Preview URL is not valid"
 
 #: src/components/nfts/NFTDetails.tsx:332
 msgid "Preview video uris"
@@ -4035,7 +4033,7 @@ msgstr ""
 
 #: src/components/settings/ProfileAdd.tsx:114
 #~ msgid "Recommended: 0.000005 XCH"
-#~ msgstr ""
+#~ msgstr "Recommended: 0.000005 XCH"
 
 #: src/components/settings/SettingsHarvester.tsx:400
 msgid "Recursive Plot Scan"
@@ -4061,7 +4059,7 @@ msgstr ""
 
 #: src/electron/main.tsx:1059
 #~ msgid "Release Notes"
-#~ msgstr "릴리스 노트"
+#~ msgstr "Release Notes"
 
 #: src/components/plot/PlotHarvester.tsx:61
 msgid "Remote"
@@ -4096,7 +4094,7 @@ msgstr "제거"
 
 #: src/electron/main.tsx:1074
 #~ msgid "Report an Issue..."
-#~ msgstr "문제 보고하기..."
+#~ msgstr "Report an Issue..."
 
 #: src/components/offers/OfferManager.tsx:170
 #: src/components/offers2/CancelOfferList.tsx:95
@@ -4369,7 +4367,7 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:48
 #~ msgid "Select Temporary Directory"
-#~ msgstr "플롯 생성을 위한 임시 폴더를 선택"
+#~ msgstr "Select Temporary Directory"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:44
 msgid "Select the final destination for the folder where you would like the plot to be stored. We recommend you use a large slow hard drive (like external HDD)."
@@ -4389,7 +4387,7 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddNFT.tsx:69
 #~ msgid "Select your Plot NFT from the dropdown or create a new one."
-#~ msgstr ""
+#~ msgstr "Select your Plot NFT from the dropdown or create a new one."
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:80
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:129
@@ -4480,7 +4478,7 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:1160
 #~ msgid "Share on Keybase"
-#~ msgstr ""
+#~ msgstr "Share on Keybase"
 
 #: src/components/offers/OfferShareDialog.tsx:538
 msgid "Share on MintGarden"
@@ -4488,7 +4486,7 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:789
 #~ msgid "Share on OfferBin"
-#~ msgstr ""
+#~ msgstr "Share on OfferBin"
 
 #: src/components/offers/OfferShareDialog.tsx:845
 msgid "Share on offerpool"
@@ -4500,7 +4498,7 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:804
 #~ msgid "Share Privately"
-#~ msgstr ""
+#~ msgstr "Share Privately"
 
 #: src/components/nfts/NFTContextualActions.tsx:496
 msgid "Show"
@@ -4521,7 +4519,7 @@ msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:667
 #~ msgid "Show Preview"
-#~ msgstr ""
+#~ msgstr "Show Preview"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:541
 #~ msgid "Showing {0} of {1} items"
@@ -4648,7 +4646,7 @@ msgstr ""
 
 #: src/electron/main.tsx:1149
 #~ msgid "Speech"
-#~ msgstr "말하다"
+#~ msgstr "Speech"
 
 #: src/constants/WalletConnectCommands.tsx:503
 msgid "Spend CAT"
@@ -4846,7 +4844,7 @@ msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:183
 #~ msgid "The NFT transfer failed: {error}"
-#~ msgstr ""
+#~ msgstr "The NFT transfer failed: {error}"
 
 #: src/components/nfts/NFTContextualActions.tsx:174
 msgid "The NFT transfer transaction has been successfully submitted to the blockchain."
@@ -5089,7 +5087,7 @@ msgstr ""
 
 #: src/components/farm/card/FarmCardTotalChiaFarmed.tsx:27
 #~ msgid "Total Chia Farmed"
-#~ msgstr ""
+#~ msgstr "Total Chia Farmed"
 
 #: src/components/harvest/HarvesterOverview.tsx:166
 msgid "Total farm size effective"
@@ -5117,7 +5115,7 @@ msgstr ""
 
 #: src/components/farm/card/FarmCardTotalNetworkSpace.tsx:12
 #~ msgid "Total Network Space"
-#~ msgstr "총 네트워크 공간"
+#~ msgstr "Total Network Space"
 
 #: src/components/harvest/HarvesterPlotDetails.tsx:166
 msgid "Total OG"
@@ -5153,7 +5151,7 @@ msgstr ""
 
 #: src/components/farm/card/FarmCardTotalSizeOfPlots.tsx:11
 #~ msgid "Total Size of Plots"
-#~ msgstr "전체 플롯의 용량"
+#~ msgstr "Total Size of Plots"
 
 #: src/components/harvest/HarvesterDetail.tsx:115
 msgid "Total Space"
@@ -5286,11 +5284,11 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:1002
 #~ msgid "Unable to open browser. Install Keybase from https://keybase.io"
-#~ msgstr ""
+#~ msgstr "Unable to open browser. Install Keybase from https://keybase.io"
 
 #: src/components/offers/OfferShareDialog.tsx:1099
 #~ msgid "Unable to open Keybase. Install Keybase from https://keybase.io"
-#~ msgstr ""
+#~ msgstr "Unable to open Keybase. Install Keybase from https://keybase.io"
 
 #: src/components/nfts/NFTDetails.tsx:142
 #: src/components/nfts/NFTDetails.tsx:163
@@ -5390,7 +5388,7 @@ msgstr ""
 
 #: src/components/farm/card/FarmCardUserFees.tsx:28
 #~ msgid "User Transaction Fees"
-#~ msgstr ""
+#~ msgstr "User Transaction Fees"
 
 #: src/components/signVerify/VerifyMessage.tsx:165
 #: src/components/vcs/VCCard.tsx:170
@@ -5512,7 +5510,7 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:770
 #~ msgid "View on OfferBin"
-#~ msgstr ""
+#~ msgstr "View on OfferBin"
 
 #: src/components/offers/OfferShareDialog.tsx:807
 msgid "View on Offerpool"
@@ -5687,11 +5685,11 @@ msgstr ""
 
 #: src/electron/main.tsx:1029
 #~ msgid "Window"
-#~ msgstr "창"
+#~ msgstr "Window"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:33
 #~ msgid "Without fees"
-#~ msgstr "무수수료"
+#~ msgstr "Without fees"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:387
 #~ msgid "Would you like to move {count} NFTs to a profile?"
@@ -5828,7 +5826,7 @@ msgstr ""
 
 #: src/components/farm/FarmHeader.tsx:21
 #~ msgid "Your Farm Overview"
-#~ msgstr "내 농장 둘러보기"
+#~ msgstr "Your Farm Overview"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:74
 msgid "Your Full Node Connection"
@@ -5844,7 +5842,7 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:1135
 #~ msgid "Your offer has been successfully posted to Keybase."
-#~ msgstr ""
+#~ msgstr "Your offer has been successfully posted to Keybase."
 
 #: src/components/app/AppKeyringMigrator.tsx:230
 #: src/components/settings/ChangePassphrasePrompt.tsx:279
@@ -5871,3 +5869,4 @@ msgstr ""
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr ""
+

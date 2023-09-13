@@ -8,15 +8,15 @@ msgstr ""
 "Language: id_ID\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-09-03 00:05\n"
+"PO-Revision-Date: 2023-09-13 22:39\n"
 "Last-Translator: \n"
 "Language-Team: Indonesian\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "X-Crowdin-Project-ID: 1\n"
 "X-Crowdin-Language: id\n"
-"X-Crowdin-File: messages.po\n"
-"X-Crowdin-File-ID: 2667\n"
+"X-Crowdin-File: /packages/core/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 3123\n"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:62
 msgid "(>5 min)"
@@ -90,7 +90,7 @@ msgstr ""
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:47
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:70
 msgid "Close"
-msgstr "Tutup"
+msgstr ""
 
 #: src/components/FormatConnectionStatus/FormatConnectionStatus.tsx:32
 msgid "Connected"
@@ -170,7 +170,7 @@ msgstr ""
 #: src/components/CardSimple/CardSimple.tsx:52
 #: src/hooks/useShowError.tsx:14
 msgid "Error"
-msgstr "Kesalahan"
+msgstr "Error"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:72
 msgid "Error:"
@@ -182,11 +182,11 @@ msgstr ""
 
 #: src/components/LayoutMain/LayoutFooter.tsx:49
 msgid "FAQ"
-msgstr ""
+msgstr "Pertanyaan Umum"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:90
 msgid "Farmer Public Key"
-msgstr "Kunci Publik Farmer"
+msgstr ""
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:58
 msgid "Farmer public key:"
@@ -194,7 +194,7 @@ msgstr "Kunci Publik Farmer:"
 
 #: src/components/Settings/SettingsApp.tsx:79
 msgid "Farming"
-msgstr ""
+msgstr "Farming"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:334
 #: src/components/EstimatedFee/EstimatedFee.tsx:368
@@ -328,7 +328,7 @@ msgstr "Tidak terhubung"
 #: src/components/AlertDialog/AlertDialog.tsx:23
 #: src/components/ConfirmDialog/ConfirmDialog.tsx:30
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: src/screens/SelectKey/SelectKey.tsx:258
 msgid "Open a world of possibilities."
@@ -336,7 +336,7 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:98
 msgid "Pool Public Key"
-msgstr "Pool Kunci Publik"
+msgstr ""
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:66
 msgid "Pool public key:"
@@ -394,7 +394,7 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKeyRenameForm.tsx:109
 msgid "Save"
-msgstr "Simpan"
+msgstr ""
 
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:180
 #: src/screens/SelectKey/Search.tsx:34
@@ -568,3 +568,4 @@ msgstr ""
 #: src/hooks/useKeyringMigrationPrompt.tsx:21
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr "Kunci anda belum migrasi ke penyimpanan kunci baru. Anda tidak akan bisa membuat kunci baru atau menghapus kunci yang ada sampai dengan migrasi selesai. Apa anda mau migrasi kunci anda sekarang?"
+
