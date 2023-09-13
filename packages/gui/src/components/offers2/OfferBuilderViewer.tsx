@@ -17,7 +17,6 @@ import {
 import { useIsWalletSynced } from '@chia-network/wallets';
 import { Trans } from '@lingui/macro';
 import { Alert, Grid } from '@mui/material';
-import moment from 'moment';
 import React, { useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState, forwardRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -25,6 +24,7 @@ import type OfferBuilderData from '../../@types/OfferBuilderData';
 import type OfferSummary from '../../@types/OfferSummary';
 import useAcceptOfferHook from '../../hooks/useAcceptOfferHook';
 import useWalletOffers from '../../hooks/useWalletOffers';
+import getCurrentTime from '../../util/getCurrentTime';
 import getUnknownCATs from '../../util/getUnknownCATs';
 import offerToOfferBuilderData from '../../util/offerToOfferBuilderData';
 import OfferState from '../offers/OfferState';
@@ -87,15 +87,13 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
   const { data: height, isLoading: isGetHeightInfoLoading } = useGetHeightInfoQuery(undefined, {
     pollingInterval: 3000,
   });
-  const { data: lastBlockTimeStampData, isLoading: isGetTimestampForHeightLoading } = useGetTimestampForHeightQuery({
-    height: height || 0,
-  });
+  const { data: lastBlockTimeStampData, isLoading: isGetTimestampForHeightLoading } = useGetTimestampForHeightQuery(
+    { height: height || 0 },
+    { skip: !height }
+  );
 
   if (hasExpiration && !isExpired) {
-    const lastBlockTimeStamp = lastBlockTimeStampData?.timestamp || 0;
-    const currentTimeMoment = moment.unix(lastBlockTimeStamp - 20);
-    // eslint-disable-next-line no-underscore-dangle -- description
-    currentTime = currentTimeMoment._i / 1000;
+    currentTime = getCurrentTime(lastBlockTimeStampData);
 
     expirationTime = offerSummary.validTimes.maxTime;
 

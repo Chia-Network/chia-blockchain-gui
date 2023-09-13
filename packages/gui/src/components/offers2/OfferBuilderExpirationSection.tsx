@@ -1,7 +1,7 @@
 import { useLocalStorage } from '@chia-network/api-react';
 import { Button, Color, Flex, Form, TextField } from '@chia-network/core';
 import { useIsWalletSynced } from '@chia-network/wallets';
-import { Trans } from '@lingui/macro';
+import { Trans, t } from '@lingui/macro';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ReportProblemOutlinedIcon from '@mui/icons-material/ReportProblemOutlined';
 import {
@@ -40,9 +40,9 @@ type SetExpirationData = {
 };
 
 const fields = [
-  { name: 'days', label: 'Days', max: 365 },
-  { name: 'hours', label: 'Hours', max: 24 },
-  { name: 'minutes', label: 'Minutes', max: 60 },
+  { name: 'days', label: t`Days`, max: 365 },
+  { name: 'hours', label: t`Hours`, max: 24 },
+  { name: 'minutes', label: t`Minutes`, max: 60 },
 ];
 
 export default function OfferBuilderExpirationSection(props: OfferExpirationProps) {
@@ -95,11 +95,11 @@ export default function OfferBuilderExpirationSection(props: OfferExpirationProp
     const countdownDisplay =
       !isGetHeightInfoLoading && !isGetTimestampForHeightLoading && isWalletSynced && currentTime !== -20
         ? OfferBuilderExpirationCountdown(currentTime, expirationTime, false)
-        : 'Loading expiration time...';
+        : t`Loading expiration time...`;
     return (
       <Grid xs={12} item>
         {isExpired ? (
-          <Alert severity="error">Offer has expired and cannot be accepted.</Alert>
+          <Alert severity="error">{t`Offer has expired and cannot be accepted.`}</Alert>
         ) : (
           <Alert severity="warning">{countdownDisplay}</Alert>
         )}

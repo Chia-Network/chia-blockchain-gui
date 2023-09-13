@@ -1,6 +1,6 @@
 import { ButtonLoading, Flex, Form, SettingsLabel, TextField } from '@chia-network/core';
 import { ConnectCheckmark } from '@chia-network/icons';
-import { Trans } from '@lingui/macro';
+import { Trans, t } from '@lingui/macro';
 import { Box, Typography } from '@mui/material';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -11,9 +11,9 @@ import useOfferExpirationDefaultTime, {
 } from '../../hooks/useOfferExpirationDefaultTime';
 
 const fields = [
-  { name: 'days', label: 'Days', max: 365 },
-  { name: 'hours', label: 'Hours', max: 24 },
-  { name: 'minutes', label: 'Minutes', max: 60 },
+  { name: 'days', label: t`Days`, max: 365 },
+  { name: 'hours', label: t`Hours`, max: 24 },
+  { name: 'minutes', label: t`Minutes`, max: 60 },
 ];
 
 export default function SettingsExpiringOffers(props) {

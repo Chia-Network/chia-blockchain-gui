@@ -22,7 +22,7 @@ import {
   MenuItem,
 } from '@chia-network/core';
 import { useIsWalletSynced } from '@chia-network/wallets';
-import { Trans } from '@lingui/macro';
+import { Trans, t } from '@lingui/macro';
 import { Cancel, GetApp as Download, Info, Loop, Reply as Share, Visibility } from '@mui/icons-material';
 import { Box, Chip, Grid, ListItemIcon, Typography } from '@mui/material';
 import moment from 'moment';
@@ -32,6 +32,7 @@ import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import useAssetIdName from '../../hooks/useAssetIdName';
 import useSaveOfferFile from '../../hooks/useSaveOfferFile';
 import useWalletOffers from '../../hooks/useWalletOffers';
+import getCurrentTime from '../../util/getCurrentTime';
 import offerToOfferBuilderData from '../../util/offerToOfferBuilderData';
 import resolveOfferInfo from '../../util/resolveOfferInfo';
 import NFTTitle from '../nfts/NFTTitle';
@@ -106,13 +107,11 @@ function OfferList(props: OfferListProps) {
   const { data: height, isLoading: isGetHeightInfoLoading } = useGetHeightInfoQuery(undefined, {
     pollingInterval: 3000,
   });
-  const { data: lastBlockTimeStampData, isLoading: isGetTimestampForHeightLoading } = useGetTimestampForHeightQuery({
-    height: height || 0,
-  });
-  const lastBlockTimeStamp = lastBlockTimeStampData?.timestamp || 0;
-  const currentTimeMoment = moment.unix(lastBlockTimeStamp - 20);
-  // eslint-disable-next-line no-underscore-dangle -- description
-  const currentTime = currentTimeMoment._i / 1000;
+  const { data: lastBlockTimeStampData, isLoading: isGetTimestampForHeightLoading } = useGetTimestampForHeightQuery(
+    { height: height || 0 },
+    { skip: !height }
+  );
+  const currentTime = getCurrentTime(lastBlockTimeStampData);
 
   const cols = useMemo(() => {
     async function relistOffer(row: OfferTradeRecord, tradeId: string) {
@@ -179,9 +178,9 @@ function OfferList(props: OfferListProps) {
             validTimes.maxTime && status !== 'CANCELLED'
               ? isWalletSynced
                 ? validTimes.maxTime < currentTime
-                  ? 'Expired'
+                  ? t`Expired`
                   : displayStringForOfferState(status)
-                : 'Loading...'
+                : t`Loading...`
               : displayStringForOfferState(status);
 
           const stateColor =
@@ -230,9 +229,9 @@ function OfferList(props: OfferListProps) {
           let countdownDisplay = null;
           if (status !== 'CANCELLED' && validTimes.maxTime) {
             countdownDisplay =
-              !isGetHeightInfoLoading && !isGetTimestampForHeightLoading && isWalletSynced && currentTime !== -20
+              !isGetHeightInfoLoading && !isGetTimestampForHeightLoading && isWalletSynced && currentTime !== 0
                 ? OfferBuilderExpirationCountdown(currentTime, validTimes.maxTime, true)
-                : 'Loading expiration time...';
+                : t`Loading expiration time...`;
           }
 
           return (

@@ -6,15 +6,16 @@ import {
   useGetHeightInfoQuery,
 } from '@chia-network/api-react';
 import { Flex, ButtonLoading, useOpenDialog, Loading } from '@chia-network/core';
+import { useIsWalletSynced } from '@chia-network/wallets';
 import { t, Trans } from '@lingui/macro';
 import { Grid } from '@mui/material';
-import moment from 'moment';
 import React, { useRef, useMemo, useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import type OfferBuilderData from '../../@types/OfferBuilderData';
 import useSuppressShareOnCreate from '../../hooks/useSuppressShareOnCreate';
 import useWalletOffers from '../../hooks/useWalletOffers';
+import getCurrentTime from '../../util/getCurrentTime';
 import offerBuilderDataToOffer from '../../util/offerBuilderDataToOffer';
 import OfferEditorConfirmationDialog from '../offers/OfferEditorConfirmationDialog';
 import OfferBuilder from './OfferBuilder';
@@ -56,6 +57,7 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
   const { offers, isLoading: isOffersLoading } = useWalletOffers(-1, 0, true, false, 'RELEVANCE', false);
   const [createOfferForIds] = useCreateOfferForIdsMutation();
   const offerBuilderRef = useRef<{ submit: () => void } | undefined>(undefined);
+  const isWalletSynced = useIsWalletSynced();
 
   const [expirationTimeMax, setExpirationTimeMax] = useState(0);
 
@@ -74,28 +76,34 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
 
   const [suppressShareOnCreate] = useSuppressShareOnCreate();
 
-  const { data: height } = useGetHeightInfoQuery(undefined, {
+  const { data: height, isLoading: isGetHeightInfoLoading } = useGetHeightInfoQuery(undefined, {
     pollingInterval: 3000,
   });
-  const { data: lastBlockTimeStampData } = useGetTimestampForHeightQuery({
-    height: height || 0,
-  });
-  const lastBlockTimeStamp = lastBlockTimeStampData?.timestamp || 0;
-  const currentTimeMoment = moment.unix(lastBlockTimeStamp - 20);
-  // eslint-disable-next-line no-underscore-dangle -- description
-  const currentTime = currentTimeMoment._i / 1000;
+  const { data: lastBlockTimeStampData, isLoading: isGetTimestampForHeightLoading } = useGetTimestampForHeightQuery(
+    { height: height || 0 },
+    { skip: !height }
+  );
+  const currentTime = getCurrentTime(lastBlockTimeStampData);
 
   const handleCreateOffer = useCallback(() => {
     offerBuilderRef.current?.submit();
   }, []);
 
   const handleExpirationSubmit = (data) => {
-    const expirationTime = data === 0 ? data : data + currentTime;
-    setExpirationTimeMax(expirationTime);
+    setExpirationTimeMax(data);
   };
 
   const handleSubmit = useCallback(
     async (values: OfferBuilderData) => {
+      if (
+        expirationTimeMax !== 0 &&
+        (isGetHeightInfoLoading || isGetTimestampForHeightLoading || !isWalletSynced || currentTime === 0)
+      ) {
+        throw new Error(t`Wallet must be synced before creating an offer with an expiration time`);
+      }
+
+      const expirationTimeForOffer = expirationTimeMax === 0 ? 0 : expirationTimeMax + currentTime;
+
       const { assetsToUnlock, ...localOffer } = await offerBuilderDataToOffer({
         data: values,
         wallets,
@@ -143,7 +151,7 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
           driver_dict: localOffer.driverDict, // snake case is intentional since disableJSONFormatting is true
           validate_only: localOffer.validateOnly, // snake case is intentional since disableJSONFormatting is true
           disableJSONFormatting: true, // true to avoid converting driver_dict keys/values to camel case. The camel case conversion breaks the driver_dict and causes offer creation to fail.
-          max_time: expirationTimeMax,
+          max_time: expirationTimeForOffer,
         }).unwrap();
 
         const { offer: offerData, tradeRecord: offerRecord } = response;
@@ -175,6 +183,10 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
       offers,
       nftId,
       expirationTimeMax,
+      currentTime,
+      isGetHeightInfoLoading,
+      isGetTimestampForHeightLoading,
+      isWalletSynced,
     ]
   );
 

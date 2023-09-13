@@ -1,4 +1,5 @@
 import { StateColor } from '@chia-network/core';
+import { t } from '@lingui/macro';
 import { Typography } from '@mui/material';
 import React from 'react';
 
@@ -12,22 +13,22 @@ export default function OfferBuilderExpirationCountdown(currentTime, expirationT
   let countdownDisplay = null;
 
   if (timeUntilExpiration > 86_399) {
-    countdownDisplay = `Offer will expire in ${timeUntilExpirationAsTuple.days} day${
-      timeUntilExpirationAsTuple.days > 1 ? 's' : ''
+    countdownDisplay = t`Offer will expire in ${timeUntilExpirationAsTuple.days} ${
+      timeUntilExpirationAsTuple.days > 1 ? `days` : `day`
     }`;
   } else if (timeUntilExpiration > 3599) {
     countdownColor = isCaption ? StateColor.WARNING : countdownColor;
-    countdownDisplay = `Offer will expire in ${timeUntilExpirationAsTuple.hours} hour${
-      timeUntilExpirationAsTuple.hours > 1 ? 's' : ''
+    countdownDisplay = t`Offer will expire in ${timeUntilExpirationAsTuple.hours} ${
+      timeUntilExpirationAsTuple.hours > 1 ? `hours` : `hour`
     }`;
   } else if (timeUntilExpiration > 59) {
     countdownColor = isCaption ? StateColor.WARNING : countdownColor;
-    countdownDisplay = `Offer will expire in ${timeUntilExpirationAsTuple.minutes} minute${
-      timeUntilExpirationAsTuple.minutes > 1 ? 's' : ''
+    countdownDisplay = t`Offer will expire in ${timeUntilExpirationAsTuple.minutes} ${
+      timeUntilExpirationAsTuple.minutes > 1 ? `minutes` : `minute`
     }`;
   } else if (timeUntilExpiration < 0) {
     countdownColor = isCaption ? StateColor.ERROR : countdownColor;
-    countdownDisplay = `Offer has expired`;
+    countdownDisplay = t`Offer has expired`;
   }
 
   return (
