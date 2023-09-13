@@ -36,6 +36,7 @@ jobs:
       - name: crowdin action
         uses: crowdin/github-action@v1.11.0
         with:
+          verbose: true
           upload_sources: true
           upload_translations: true
           download_translations: true
