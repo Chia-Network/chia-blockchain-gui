@@ -75,7 +75,11 @@ const cols = [
     title: <Trans>Offering</Trans>,
   },
   {
-    field: (notification: Notification) => <HumanTimestamp value={notification.timestamp} />,
+    field: (notification: Notification) => (
+      <Flex flexDirection="column">
+        <HumanTimestamp value={notification.timestamp} />
+      </Flex>
+    ),
     title: <Trans>Creation Date</Trans>,
   },
   {
