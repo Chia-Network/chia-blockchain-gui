@@ -31,6 +31,7 @@ import type PlotNFT from '../../types/PlotNFT';
 import getPercentPointsSuccessfull from '../../util/getPercentPointsSuccessfull';
 import PoolAbsorbRewards from '../pool/PoolAbsorbRewards';
 import PoolJoin from '../pool/PoolJoin';
+
 import PlotNFTGetPoolLoginLinkDialog from './PlotNFTGetPoolLoginLinkDialog';
 import PlotNFTGraph from './PlotNFTGraph';
 import PlotNFTName from './PlotNFTName';

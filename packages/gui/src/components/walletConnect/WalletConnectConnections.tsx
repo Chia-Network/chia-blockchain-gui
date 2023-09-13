@@ -10,6 +10,7 @@ import React, { useCallback } from 'react';
 
 import useWalletConnectContext from '../../hooks/useWalletConnectContext';
 import useWalletConnectPreferences from '../../hooks/useWalletConnectPreferences';
+
 import WalletConnectAddConnectionDialog from './WalletConnectAddConnectionDialog';
 import WalletConnectConnectedDialog from './WalletConnectConnectedDialog';
 import WalletConnectPairInfoDialog from './WalletConnectPairInfoDialog';

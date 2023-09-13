@@ -15,6 +15,7 @@ import Plot from '../plot/Plot';
 import Pool from '../pool/Pool';
 import Settings from '../settings/Settings';
 import VCs from '../vcs/VCs';
+
 import AppProviders from './AppProviders';
 import AppStatusHeader from './AppStatusHeader';
 

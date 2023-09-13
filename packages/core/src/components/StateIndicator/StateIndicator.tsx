@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import State from '../../constants/State';
 import StateColor from '../../constants/StateColor';
 import Flex from '../Flex';
+
 import StateIndicatorDot from './StateIndicatorDot';
 
 const Color = {

@@ -65,6 +65,7 @@ export default function AddressBookAutocomplete(props: Props) {
             label={<Trans>Address or Contact</Trans>}
             required={required}
             onBlur={onBlur}
+            onChange={(_e) => handleChange(_e.target.value)}
             {...rest}
             {...params}
           />

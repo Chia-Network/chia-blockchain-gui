@@ -7,6 +7,7 @@ import React from 'react';
 
 import PlotStatus from '../../../constants/PlotStatus';
 import type PlotQueueItem from '../../../types/PlotQueueItem';
+
 import PlotQueueLogDialog from './PlotQueueLogDialog';
 
 export type PlotQueueActionProps = {

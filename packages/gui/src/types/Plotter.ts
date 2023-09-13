@@ -29,7 +29,6 @@ interface BladeBitDiskOptions extends BladeBitRamOptions {
 
 interface BladeBitCudaOptions extends BladeBitRamOptions {
   haveBladebitDeviceIndex: boolean;
-  haveBladebitDisableDirectDownloads: boolean;
 }
 
 interface MadMaxOptions extends CommonOptions {
@@ -76,7 +75,6 @@ interface BladeBitDiskDefaults extends BladeBitRamDefaults {
 
 interface BladeBitCudaDefaults extends BladeBitRamDefaults {
   bladebitDeviceIndex?: number;
-  bladebitDisableDirectDownloads?: boolean;
 }
 
 interface MadMaxDefaults extends CommonDefaults {

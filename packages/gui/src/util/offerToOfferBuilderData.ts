@@ -1,9 +1,10 @@
-import { OfferSummaryRecord } from '@chia-network/api';
+import { OfferSummaryRecord, type OfferSummaryCATInfo } from '@chia-network/api';
 import { mojoToCAT, mojoToChia } from '@chia-network/core';
 import BigNumber from 'bignumber.js';
 
 import type OfferBuilderData from '../@types/OfferBuilderData';
 import type OfferSummary from '../@types/OfferSummary';
+
 import { launcherIdToNFTId } from './nfts';
 
 export default function offerToOfferBuilderData(
@@ -30,9 +31,11 @@ export default function offerToOfferBuilderData(
     const info = infos[id];
 
     if (info?.type === 'CAT') {
+      const crCat = extractCrCatData(info);
       offeredTokens.push({
         amount: mojoToCAT(amount).toFixed(),
         assetId: id,
+        crCat,
       });
     } else if (info?.type === 'singleton') {
       offeredNfts.push({
@@ -50,9 +53,11 @@ export default function offerToOfferBuilderData(
     const info = infos[id];
 
     if (info?.type === 'CAT') {
+      const crCat = extractCrCatData(info);
       requestedTokens.push({
         amount: mojoToCAT(amount).toFixed(),
         assetId: id,
+        crCat,
       });
     } else if (info?.type === 'singleton') {
       requestedNfts.push({
@@ -82,5 +87,15 @@ export default function offerToOfferBuilderData(
         },
       ],
     },
+  };
+}
+
+function extractCrCatData(info: OfferSummaryCATInfo) {
+  if (!info.also) return undefined;
+  if (info.also.type !== 'credential restricted') return undefined;
+  const { flags, authorizedProviders } = info.also;
+  return {
+    flags,
+    authorizedProviders,
   };
 }

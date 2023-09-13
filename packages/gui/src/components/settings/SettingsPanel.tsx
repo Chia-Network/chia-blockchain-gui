@@ -5,7 +5,7 @@ import {
   AlertDialog,
   Button,
   Color,
-  Suspender,
+  Loading,
   useOpenDialog,
   useSkipMigration,
   SettingsApp,
@@ -35,12 +35,6 @@ export default function SettingsPanel() {
   const [changePassphraseOpen, setChangePassphraseOpen] = React.useState(false);
   const [removePassphraseOpen, setRemovePassphraseOpen] = React.useState(false);
   const [addPassphraseOpen, setAddPassphraseOpen] = React.useState(false);
-
-  if (isLoading) {
-    return <Suspender />;
-  }
-
-  const { userPassphraseIsSet, needsMigration = false } = keyringStatus;
 
   async function changePassphraseSucceeded() {
     closeChangePassphrase();
@@ -82,6 +76,7 @@ export default function SettingsPanel() {
   }
 
   function PassphraseFeatureStatus() {
+    const { userPassphraseIsSet, needsMigration = false } = keyringStatus ?? {};
     let state: State = null;
     let statusMessage: JSX.Element | null = null;
     let tooltipTitle: React.ReactElement;
@@ -117,6 +112,7 @@ export default function SettingsPanel() {
   }
 
   function DisplayChangePassphrase() {
+    const { userPassphraseIsSet, needsMigration = false } = keyringStatus ?? {};
     if (needsMigration === false && userPassphraseIsSet) {
       return (
         <>
@@ -133,6 +129,7 @@ export default function SettingsPanel() {
   }
 
   function ActionButtons() {
+    const { userPassphraseIsSet, needsMigration = false } = keyringStatus ?? {};
     if (needsMigration) {
       return (
         <Button onClick={() => setSkipMigration(false)} variant="outlined">
@@ -160,39 +157,47 @@ export default function SettingsPanel() {
 
   return (
     <SettingsApp>
-      <Flex flexDirection="column" gap={1}>
-        <SettingsLabel>
-          <Flex gap={1} alignItems="center">
-            <Trans>Derivation Index</Trans>
-            <TooltipIcon>
-              <Trans>
-                The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This
-                number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs.
-                If you believe your balance is incorrect because it’s missing coins, then increasing the derivation
-                index could help the wallet include the missing coins in the balance total.
-              </Trans>
-            </TooltipIcon>
+      {isLoading ? (
+        <Loading center />
+      ) : (
+        <>
+          <Flex flexDirection="column" gap={1}>
+            <SettingsLabel>
+              <Flex gap={1} alignItems="center">
+                <Trans>Derivation Index</Trans>
+                <TooltipIcon>
+                  <Trans>
+                    The derivation index sets the range of wallet addresses that the wallet scans the blockchain for.
+                    This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs,
+                    or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the
+                    derivation index could help the wallet include the missing coins in the balance total.
+                  </Trans>
+                </TooltipIcon>
+              </Flex>
+            </SettingsLabel>
+
+            <SettingsDerivationIndex />
           </Flex>
-        </SettingsLabel>
+          <SettingsStartup />
+          <Flex flexDirection="column" gap={1}>
+            <SettingsLabel>
+              <Trans>Passphrase</Trans>
+            </SettingsLabel>
 
-        <SettingsDerivationIndex />
-      </Flex>
-      <SettingsStartup />
-      <Flex flexDirection="column" gap={1}>
-        <SettingsLabel>
-          <Trans>Passphrase</Trans>
-        </SettingsLabel>
-
-        <DisplayChangePassphrase />
-        <ActionButtons />
-        {removePassphraseOpen && (
-          <RemovePassphrasePrompt onSuccess={removePassphraseSucceeded} onCancel={closeRemovePassphrase} />
-        )}
-        {addPassphraseOpen && <SetPassphrasePrompt onSuccess={setPassphraseSucceeded} onCancel={closeSetPassphrase} />}
-        <PassphraseFeatureStatus />
-        <SettingsVerifiableCredentials />
-        <SettingsExpiringOffers />
-      </Flex>
+            <DisplayChangePassphrase />
+            <ActionButtons />
+            {removePassphraseOpen && (
+              <RemovePassphrasePrompt onSuccess={removePassphraseSucceeded} onCancel={closeRemovePassphrase} />
+            )}
+            {addPassphraseOpen && (
+              <SetPassphrasePrompt onSuccess={setPassphraseSucceeded} onCancel={closeSetPassphrase} />
+            )}
+            <PassphraseFeatureStatus />
+            <SettingsVerifiableCredentials />
+            <SettingsExpiringOffers />
+          </Flex>
+        </>
+      )}
     </SettingsApp>
   );
 }

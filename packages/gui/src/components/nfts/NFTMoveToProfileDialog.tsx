@@ -26,6 +26,7 @@ import styled from 'styled-components';
 import { didToDIDId } from '../../util/dids';
 import removeHexPrefix from '../../util/removeHexPrefix';
 import DIDProfileDropdown from '../did/DIDProfileDropdown';
+
 import NFTSummary from './NFTSummary';
 import { getNFTInbox } from './utils';
 

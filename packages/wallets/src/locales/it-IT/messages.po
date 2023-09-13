@@ -18,11 +18,19 @@ msgstr ""
 "X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/packages/wallets/src/locales/en-US/messages.po\n"
 "X-Crowdin-File-ID: 1308\n"
 
-#: src/components/WalletHistory.tsx:116
+#: src/components/WalletHistory.tsx:118
 msgid "-"
 msgstr "-"
 
-#: src/components/WalletHistory.tsx:116
+#: src/components/WalletSend.tsx:367
+msgid "- Memo helps the receiver side to identify the payment.<0/>- Anything you enter will be publicly accessible on the blockchain."
+msgstr ""
+
+#: src/components/WalletSend.tsx:294
+msgid "- Set a time frame which allows you claw back (revoke) the transaction.<0/>- Recipient of the transaction can only claim the funds once that time frame expires."
+msgstr ""
+
+#: src/components/WalletHistory.tsx:118
 msgid "+"
 msgstr "+"
 
@@ -34,11 +42,19 @@ msgstr "Azioni"
 msgid "Add"
 msgstr "Aggiungi"
 
+#: src/components/WalletSend.tsx:288
+msgid "Add option to claw back transaction"
+msgstr ""
+
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:61
 #: src/components/cat/WalletCATCreateSimple.tsx:68
-#: src/components/WalletsManageTokens.tsx:156
+#: src/components/WalletsManageTokens.tsx:154
 msgid "Add Token"
 msgstr "Aggiungi token"
+
+#: src/components/WalletSend.tsx:362
+msgid "Add transaction memo"
+msgstr ""
 
 #: src/components/cat/WalletCATCreateSimple.tsx:92
 msgid "Adding {0} token"
@@ -50,19 +66,35 @@ msgstr "Indirizzo"
 
 #: src/components/cat/WalletCATSend.tsx:196
 #: src/components/WalletSend.tsx:220
-msgid "Address / Puzzle hash"
-msgstr "Indirizzo / Puzzle hash"
+#~ msgid "Address / Puzzle hash"
+#~ msgstr "Indirizzo / Puzzle hash"
 
-#: src/components/cat/WalletCATSend.tsx:208
-#: src/components/WalletSend.tsx:232
+#: src/components/AddressBookAutocomplete.tsx:65
+msgid "Address or Contact"
+msgstr ""
+
+#: src/components/cat/WalletCATSend.tsx:214
+#: src/components/WalletSend.tsx:241
 msgid "Amount"
 msgstr "Totale"
+
+#: src/components/card/WalletCardCRCatApprove.tsx:71
+msgid "Approve"
+msgstr ""
+
+#: src/components/crCat/CrCatApprovePendingDialog.tsx:91
+msgid "Approve pending CR-CAT transactions"
+msgstr ""
+
+#: src/components/crCat/CrCatApprovePendingDialog.tsx:147
+msgid "Approve pending transactions"
+msgstr ""
 
 #: src/components/WalletHeader.tsx:30
 msgid "Are you sure you want to delete unconfirmed transactions?"
 msgstr "Sei sicuro di voler eliminare queste transazioni non confermate?"
 
-#: src/components/WalletHistory.tsx:127
+#: src/components/WalletHistory.tsx:131
 msgid "Asset"
 msgstr ""
 
@@ -80,11 +112,19 @@ msgstr "Atomic Swap Wallet"
 msgid "Authorized Payee Wallet"
 msgstr "Portafoglio Beneficiario Autorizzato"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:226
+#: src/components/card/WalletCardCRCatRestrictions.tsx:44
+msgid "Authorized providers"
+msgstr ""
+
+#: src/components/ClawbackClaimTransactionDialog.tsx:227
 msgid "Auto-claim transactions with this fee from now on."
 msgstr ""
 
-#: src/components/WalletHistoryClawbackChip.tsx:46
+#: src/components/WalletSend.tsx:336
+msgid "Before sending this transaction, you should ensure that the recipient has a wallet that can claim it manually after the timer has expired."
+msgstr ""
+
+#: src/components/WalletHistoryClawbackChip.tsx:61
 msgid "Can be claimed in "
 msgstr ""
 
@@ -94,9 +134,13 @@ msgid "Cancel"
 msgstr "Annulla"
 
 #: src/components/cat/WalletCATSend.tsx:117
-#: src/components/WalletSend.tsx:142
+#: src/components/WalletSend.tsx:153
 msgid "Cannot send chia to coloured address. Please enter a chia address."
 msgstr "Errore: impossibile inviare chia ad un indirizzo colorato. Perfavore inserisci un indirizzo chia."
+
+#: src/components/card/WalletCardCRCatRestrictions.tsx:40
+msgid "CAT credential restrictions"
+msgstr ""
 
 #: src/components/WalletsSidebar.tsx:130
 #~ msgid "Check my snapshot balance"
@@ -108,48 +152,56 @@ msgstr "Errore: impossibile inviare chia ad un indirizzo colorato. Perfavore ins
 msgid "Chia Asset Token"
 msgstr "Chia Asset Token"
 
-#: src/components/WalletHistoryClawbackChip.tsx:53
+#: src/components/WalletHistoryClawbackChip.tsx:68
 msgid "Claim transaction"
 msgstr ""
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:136
-#: src/components/ClawbackClaimTransactionDialog.tsx:259
+#: src/components/ClawbackClaimTransactionDialog.tsx:137
+#: src/components/ClawbackClaimTransactionDialog.tsx:260
 msgid "Claim Transaction"
 msgstr ""
 
-#: src/components/WalletHistoryClawbackChip.tsx:68
+#: src/components/WalletHistoryClawbackChip.tsx:83
 msgid "Claiming..."
 msgstr ""
 
-#: src/components/WalletHistoryClawbackChip.tsx:79
-msgid "Claw back this transaction"
+#: src/components/WalletIcon.tsx:17
+msgid "Classic version of Stably USDS as held by Prime Trust"
 msgstr ""
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:259
-msgid "Claw back Transaction"
-msgstr ""
-
-#: src/components/ClawbackClaimTransactionDialog.tsx:136
-msgid "Claw Back Transaction"
-msgstr ""
-
-#: src/components/ClawbackClaimTransactionDialog.tsx:128
-msgid "Clawback payment claimed"
-msgstr ""
-
-#: src/components/ClawbackClaimTransactionDialog.tsx:128
-msgid "Clawback payment clawed back"
-msgstr ""
-
-#: src/components/WalletSend.tsx:340
-msgid "Clawback will be applied."
-msgstr ""
-
-#: src/components/WalletSend.tsx:346
-msgid "Clawback will not be applied."
+#: src/components/WalletHistory.tsx:433
+msgid "Claw back expiration"
 msgstr ""
 
 #: src/components/WalletHistoryClawbackChip.tsx:94
+msgid "Claw back this transaction"
+msgstr ""
+
+#: src/components/ClawbackClaimTransactionDialog.tsx:260
+msgid "Claw back Transaction"
+msgstr ""
+
+#: src/components/ClawbackClaimTransactionDialog.tsx:137
+msgid "Claw Back Transaction"
+msgstr ""
+
+#: src/components/ClawbackClaimTransactionDialog.tsx:129
+msgid "Clawback payment claimed"
+msgstr ""
+
+#: src/components/ClawbackClaimTransactionDialog.tsx:129
+msgid "Clawback payment clawed back"
+msgstr ""
+
+#: src/components/WalletSend.tsx:334
+msgid "Clawback will be applied."
+msgstr ""
+
+#: src/components/WalletSend.tsx:344
+msgid "Clawback will not be applied."
+msgstr ""
+
+#: src/components/WalletHistoryClawbackChip.tsx:109
 msgid "Clawing back..."
 msgstr ""
 
@@ -157,8 +209,9 @@ msgstr ""
 #~ msgid "Click here to download an older version of the wallet"
 #~ msgstr ""
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:157
-#: src/components/ClawbackClaimTransactionDialog.tsx:248
+#: src/components/ClawbackClaimTransactionDialog.tsx:158
+#: src/components/ClawbackClaimTransactionDialog.tsx:249
+#: src/components/crCat/CrCatApprovePendingDialog.tsx:136
 msgid "Close"
 msgstr ""
 
@@ -166,11 +219,11 @@ msgstr ""
 msgid "Confirmation"
 msgstr "Conferma"
 
-#: src/components/WalletHistory.tsx:183
+#: src/components/WalletHistory.tsx:200
 msgid "Confirmed"
 msgstr "Confermato"
 
-#: src/components/WalletHistory.tsx:372
+#: src/components/WalletHistory.tsx:422
 msgid "Confirmed at Height"
 msgstr "Confermato all'altezza"
 
@@ -190,17 +243,17 @@ msgstr ""
 msgid "Create New Wallet"
 msgstr "Crea un nuovo portafoglio"
 
-#: src/components/cat/WalletCAT.tsx:104
-#: src/components/standard/WalletStandard.tsx:52
+#: src/components/cat/WalletCAT.tsx:106
+#: src/components/standard/WalletStandard.tsx:53
 msgid "Create Offer"
 msgstr ""
 
 #: src/components/cat/WalletCATSend.tsx:178
-#: src/components/WalletSend.tsx:202
+#: src/components/WalletSend.tsx:213
 msgid "Create Transaction"
 msgstr "Crea una transazione"
 
-#: src/components/WalletHistory.tsx:206
+#: src/components/WalletHistory.tsx:223
 msgid "Creation Date"
 msgstr ""
 
@@ -236,6 +289,10 @@ msgstr ""
 msgid "DID Wallet"
 msgstr "Portafoglio DID"
 
+#: src/components/WalletSend.tsx:327
+msgid "Disable"
+msgstr ""
+
 #: src/components/create/WalletCreateList.tsx:39
 msgid "Distributed Identity"
 msgstr "Distributed Identity"
@@ -248,18 +305,18 @@ msgstr ""
 msgid "Error the entered address appears to be for a different colour."
 msgstr "Errore l'indirizzo inserito sembra essere di un colore diverso."
 
-#: src/components/cat/WalletCATSend.tsx:246
-#: src/components/WalletSend.tsx:384
+#: src/components/cat/WalletCATSend.tsx:252
+#: src/components/WalletSend.tsx:390
 msgid "Farm"
 msgstr "Coltiva"
 
-#: src/components/cat/WalletCATSend.tsx:222
-#: src/components/WalletHistory.tsx:220
-#: src/components/WalletSend.tsx:245
+#: src/components/cat/WalletCATSend.tsx:228
+#: src/components/WalletHistory.tsx:237
+#: src/components/WalletSend.tsx:254
 msgid "Fee"
 msgstr "Costo della commissione"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:175
+#: src/components/ClawbackClaimTransactionDialog.tsx:176
 msgid "From:"
 msgstr ""
 
@@ -295,16 +352,16 @@ msgstr "Indirizzo IP"
 msgid "List of connections is empty"
 msgstr "La lista delle connessioni è vuoto"
 
-#: src/components/WalletsManageTokens.tsx:133
+#: src/components/WalletsManageTokens.tsx:131
 msgid "Manage token list"
 msgstr "Gestisci l'elenco dei token"
 
-#: src/components/cat/WalletCATSend.tsx:236
-#: src/components/WalletSend.tsx:373
+#: src/components/cat/WalletCATSend.tsx:242
+#: src/components/WalletSend.tsx:379
 msgid "Memo"
 msgstr "Memo"
 
-#: src/components/WalletHistory.tsx:377
+#: src/components/WalletHistory.tsx:427
 msgid "Memos"
 msgstr "Memo"
 
@@ -349,7 +406,7 @@ msgstr ""
 msgid "Nickname"
 msgstr "Nickname"
 
-#: src/components/WalletHistory.tsx:445
+#: src/components/WalletHistory.tsx:504
 msgid "No previous transactions"
 msgstr "Nessuna transazione precedente"
 
@@ -357,16 +414,16 @@ msgstr "Nessuna transazione precedente"
 msgid "Node ID"
 msgstr "ID nodo"
 
-#: src/components/WalletHistory.tsx:366
-#: src/components/WalletHistory.tsx:373
+#: src/components/WalletHistory.tsx:416
+#: src/components/WalletHistory.tsx:423
 msgid "Not Available"
 msgstr "Non Disponibile"
 
-#: src/components/WalletStatus.tsx:58
+#: src/components/WalletStatus.tsx:59
 msgid "Not Synced"
 msgstr "Non Sincronizzato"
 
-#: src/components/WalletHistory.tsx:192
+#: src/components/WalletHistory.tsx:209
 msgid "Offer Accepted"
 msgstr "Offerta accettata"
 
@@ -375,7 +432,7 @@ msgid "OK"
 msgstr "OK"
 
 #: src/components/cat/WalletCATSend.tsx:181
-#: src/components/WalletSend.tsx:205
+#: src/components/WalletSend.tsx:216
 msgid "On average there is one minute between each transaction block. Unless there is congestion you can expect your transaction to be included in less than a minute."
 msgstr "Il tempo medio che passa tra un blocco di transazioni e l'altro è di un minuto. Pertanto, salvo casi di congestione, è possibile aspettarsi che una transazione appena effettuata sarà inclusa nel primo blocco utile, quindi validata, in meno di un minuto."
 
@@ -391,7 +448,11 @@ msgstr "Incolla il Mnemonico"
 msgid "Paste Mnemonic ({0} words)"
 msgstr ""
 
-#: src/components/WalletHistory.tsx:185
+#: src/components/crCat/CrCatApprovePendingDialog.tsx:82
+msgid "Payments approved"
+msgstr ""
+
+#: src/components/WalletHistory.tsx:202
 msgid "Pending"
 msgstr "In attesa"
 
@@ -399,11 +460,15 @@ msgstr "In attesa"
 msgid "Pending Balance"
 msgstr "Bilancio in attesa"
 
+#: src/components/card/WalletCardCRCatApprove.tsx:47
+msgid "Pending Balance for Approval"
+msgstr ""
+
 #: src/components/card/WalletCardPendingChange.tsx:41
 msgid "Pending Change"
 msgstr "Cambiamento in attesa"
 
-#: src/components/WalletHistoryPending.tsx:62
+#: src/components/WalletHistoryPending.tsx:63
 msgid "Pending claw back transactions"
 msgstr ""
 
@@ -411,11 +476,19 @@ msgstr ""
 msgid "Pending Total Balance"
 msgstr "Bilancio Totale in attesa"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:206
+#: src/components/crCat/CrCatApprovePendingDialog.tsx:83
+msgid "Please allow some time for the payments to reflect in the blockchain."
+msgstr ""
+
+#: src/components/crCat/CrCatApprovePendingDialog.tsx:120
+msgid "Please enter a transaction fee to approve the above amount:"
+msgstr ""
+
+#: src/components/ClawbackClaimTransactionDialog.tsx:207
 msgid "Please enter a transaction fee to claim the above amount:"
 msgstr ""
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:208
+#: src/components/ClawbackClaimTransactionDialog.tsx:209
 msgid "Please enter a transaction fee to claw back the above amount:"
 msgstr ""
 
@@ -424,12 +497,12 @@ msgid "Please enter a valid asset id"
 msgstr "Inserisci un Asset ID valido."
 
 #: src/components/cat/WalletCATSend.tsx:103
-#: src/components/WalletSend.tsx:132
+#: src/components/WalletSend.tsx:143
 msgid "Please enter a valid numeric amount"
 msgstr "Per favore inserisci una ammontare numerico valido"
 
 #: src/components/cat/WalletCATSend.tsx:108
-#: src/components/WalletSend.tsx:137
+#: src/components/WalletSend.tsx:148
 msgid "Please enter a valid numeric fee"
 msgstr "Per favore inserisci un valore numerico valido per la tassa"
 
@@ -442,7 +515,7 @@ msgid "Please enter valid wallet name"
 msgstr "Per favore inserisci un nome valido per il portafoglio"
 
 #: src/components/cat/WalletCATSend.tsx:94
-#: src/components/WalletSend.tsx:127
+#: src/components/WalletSend.tsx:138
 msgid "Please finish syncing before making a transaction"
 msgstr "Per favore completa la sincronizzazione prima di fare una transazione"
 
@@ -458,6 +531,14 @@ msgstr "Pooling Wallet"
 #: src/components/WalletConnections.tsx:28
 msgid "Port"
 msgstr "Porta"
+
+#: src/components/crCat/CrCatAuthorizedProviders.tsx:37
+msgid "Provider's ID"
+msgstr ""
+
+#: src/components/crCat/CrCatAuthorizedProviders.tsx:51
+msgid "Provider's website"
+msgstr ""
 
 #: src/components/create/WalletCreateList.tsx:45
 msgid "Rate Limited"
@@ -487,12 +568,16 @@ msgstr "Wallet ripristinabile"
 msgid "Recovery Wallet"
 msgstr "Ripristina Wallet"
 
-#: src/components/cat/WalletCAT.tsx:87
+#: src/components/cat/WalletCAT.tsx:89
 #: src/components/WalletRenameDialog.tsx:61
 msgid "Rename Wallet"
 msgstr "Rinomina Portafoglio"
 
-#: src/components/WalletHistory.tsx:191
+#: src/components/WalletIcon.tsx:41
+msgid "Restricted CAT"
+msgstr ""
+
+#: src/components/WalletHistory.tsx:208
 msgid "Retire"
 msgstr "Ritira"
 
@@ -513,13 +598,13 @@ msgstr "Cerca nel Tail Database"
 msgid "Select Wallet Type"
 msgstr "Seleziona Tipo di Wallet"
 
-#: src/components/cat/WalletCATSend.tsx:257
+#: src/components/cat/WalletCATSend.tsx:263
 #: src/components/WalletHeader.tsx:47
-#: src/components/WalletSend.tsx:395
+#: src/components/WalletSend.tsx:401
 msgid "Send"
 msgstr "Invia"
 
-#: src/components/cat/WalletCAT.tsx:96
+#: src/components/cat/WalletCAT.tsx:98
 msgid "Show Asset Id"
 msgstr "Mostra Asset Id"
 
@@ -531,7 +616,7 @@ msgstr "Bilancio Spendibile"
 msgid "Standard Wallet"
 msgstr "Portafoglio Standard"
 
-#: src/components/WalletHistory.tsx:197
+#: src/components/WalletHistory.tsx:214
 msgid "Status"
 msgstr ""
 
@@ -543,16 +628,20 @@ msgstr "Operazione riuscita"
 msgid "Summary"
 msgstr "Sommario"
 
-#: src/components/WalletStatus.tsx:70
+#: src/components/WalletStatus.tsx:71
 msgid "Synced"
 msgstr "Sincronizzato"
 
-#: src/components/WalletStatus.tsx:82
+#: src/components/WalletStatus.tsx:83
 msgid "Syncing"
 msgstr "Sincronizzando"
 
 #: src/components/card/WalletCardTotalBalance.tsx:70
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
+msgstr ""
+
+#: src/components/cat/WalletCATSend.tsx:200
+msgid "The recipient of this transaction will need to have valid credentials in order to claim the sent assets. See the CR CAT restrictions above."
 msgstr ""
 
 #: src/components/WalletSendTransactionResultDialog.tsx:34
@@ -563,7 +652,7 @@ msgstr "La transazione non può essere immediatamente inclusa nella mempool perc
 msgid "This access token is verified"
 msgstr "Questo token di accesso è stato verificato"
 
-#: src/components/WalletHistory.tsx:160
+#: src/components/WalletHistory.tsx:175
 msgid "This is not a valid address for sending funds to"
 msgstr "Questo indirizzo non è valido per l'invio di fondi"
 
@@ -587,7 +676,7 @@ msgstr "Questo è l'ammontare totale di chia all'attuale blocco di picco nella b
 msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
 msgstr "Questo è il bilancio totale + il bilancio in attesa: questo è il bilancio che apparirà dopo che tutte le transazioni in attesa saranno confermate."
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:193
+#: src/components/ClawbackClaimTransactionDialog.tsx:194
 msgid "This transaction will be automatically claimed with a fee:"
 msgstr ""
 
@@ -595,7 +684,8 @@ msgstr ""
 #~ msgid "To"
 #~ msgstr "A"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:175
+#: src/components/ClawbackClaimTransactionDialog.tsx:176
+#: src/components/WalletHistory.tsx:168
 msgid "To:"
 msgstr ""
 
@@ -607,7 +697,7 @@ msgstr "Il token ha un id asset vuoto"
 msgid "Token has empty name"
 msgstr "Il token ha un nome vuoto"
 
-#: src/components/WalletsSidebar.tsx:92
+#: src/components/WalletsSidebar.tsx:104
 msgid "Tokens"
 msgstr "Tokens"
 
@@ -619,19 +709,19 @@ msgstr "Bilancio Totale"
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "La transazione é stata inviata con successo ad un nodo completo ed inclusa nella mempol."
 
-#: src/components/WalletHistory.tsx:422
+#: src/components/WalletHistory.tsx:481
 msgid "Transactions"
 msgstr "Transazioni"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:232
+#: src/components/ClawbackClaimTransactionDialog.tsx:233
 msgid "Transactions will be claimed automatically when the Clawback time expires."
 msgstr ""
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:235
+#: src/components/ClawbackClaimTransactionDialog.tsx:236
 msgid "Transactions with values smaller than the fee will not be auto claimed."
 msgstr ""
 
-#: src/components/Wallet.tsx:22
+#: src/components/Wallet.tsx:23
 msgid "Wallet {walletId} not found"
 msgstr "Portafoglio {walletId} non trovato"
 
@@ -639,7 +729,7 @@ msgstr "Portafoglio {walletId} non trovato"
 msgid "Wallet Connections"
 msgstr ""
 
-#: src/components/cat/WalletCAT.tsx:66
+#: src/components/cat/WalletCAT.tsx:68
 msgid "Wallet does not exists"
 msgstr "Il portafoglio non esiste."
 
@@ -648,11 +738,15 @@ msgstr "Il portafoglio non esiste."
 msgid "Wallet Name"
 msgstr ""
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:200
+#: src/components/crCat/CrCatApprovePendingDialog.tsx:115
+msgid "Wallet needs to be synced before approving transactions"
+msgstr ""
+
+#: src/components/ClawbackClaimTransactionDialog.tsx:201
 msgid "Wallet needs to be synced for claiming clawback transactions"
 msgstr ""
 
-#: src/components/Wallet.tsx:37
+#: src/components/Wallet.tsx:38
 msgid "Wallet with type {0} not supported"
 msgstr "Portafoglio con tipo {0} non supportato"
 
@@ -668,12 +762,20 @@ msgstr "Portafoglio con tipo {0} non supportato"
 msgid "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
 msgstr "Benvenuto! Le parole seguenti sono utilizzate per il backup del tuo wallet. Senza di queste, perderai l'accesso al tuo wallet, tienile al sicuro! Scrivi ogni parola insieme al suo vicino numero d'ordine. (L'ordine è importate)"
 
-#: src/components/WalletHistoryClawbackChip.tsx:41
+#: src/components/WalletHistoryClawbackChip.tsx:56
 msgid "Will be autoclaimed in "
 msgstr ""
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:238
+#: src/components/ClawbackClaimTransactionDialog.tsx:239
 msgid "You can change the Clawback Auto Claim fee in Settings."
+msgstr ""
+
+#: src/components/crCat/CrCatFlags.tsx:71
+msgid "You do not have this verifiable credential or it is not from the correct authorized provided"
+msgstr ""
+
+#: src/components/crCat/CrCatFlags.tsx:69
+msgid "You have this verifiable credential from the correct authorized provider"
 msgstr ""
 
 #: src/components/WalletsSidebar.tsx:106

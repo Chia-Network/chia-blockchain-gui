@@ -1,6 +1,7 @@
 export { default as ConnectionState } from './ConnectionState';
 export { default as defaultPlotter } from './defaultPlotter';
 export { default as PassphrasePromptReason } from './PassphrasePromptReason';
+export { default as PLOT_FILTER_CONSTANTS } from './PlotFilter';
 export { default as PlotterName } from './PlotterName';
 export { default as ServiceConnectionName } from './ServiceConnectionName';
 export { default as ServiceName, type ServiceNameValue } from './ServiceName';

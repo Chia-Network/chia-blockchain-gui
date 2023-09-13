@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 
 import resolveOfferInfo from '../util/resolveOfferInfo';
+
 import useAssetIdName from './useAssetIdName';
 import useOffer from './useOffer';
 

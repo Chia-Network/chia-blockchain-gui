@@ -13,7 +13,7 @@ import {
   calculateBaseFarmerReward,
   useCurrencyCode,
   mojoToChia,
-  Suspender,
+  Loading,
 } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Alert, Paper, TableRow, Table, TableBody, TableCell, TableContainer } from '@mui/material';
@@ -22,6 +22,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 import { hexToArray, arrToHex, sha256 } from '../../util/utils';
+
 import BlockTitle from './BlockTitle';
 
 async function computeNewPlotId(block) {
@@ -109,7 +110,7 @@ export default function Block() {
   }
 
   if (isLoading) {
-    return <Suspender />;
+    return <Loading center />;
   }
 
   if (error) {

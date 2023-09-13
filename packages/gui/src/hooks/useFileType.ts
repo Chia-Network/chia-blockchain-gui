@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback } from 'react';
 
 import FileType from '../constants/FileType';
 import getFileType from '../util/getFileType';
+
 import useCache from './useCache';
 
 export default function useFileType(uri?: string) {

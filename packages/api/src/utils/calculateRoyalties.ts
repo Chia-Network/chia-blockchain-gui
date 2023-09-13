@@ -1,6 +1,7 @@
 import BigNumber from 'bignumber.js';
 
 import { NFTInfo, RoyaltyCalculationFungibleAsset, RoyaltyCalculationRoyaltyAsset } from '../@types';
+
 import toBech32m from './toBech32m';
 
 // TODO remove the added fields or move this whole file to the GUI

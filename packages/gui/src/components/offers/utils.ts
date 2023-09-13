@@ -6,6 +6,7 @@ import type { ChipProps } from '@mui/material';
 
 import { AssetIdMapEntry } from '../../hooks/useAssetIdName';
 import { launcherIdToNFTId } from '../../util/nfts';
+
 import NFTOfferExchangeType from './NFTOfferExchangeType';
 import OfferAsset from './OfferAsset';
 import OfferState from './OfferState';
@@ -151,7 +152,7 @@ export function formatAmountForWalletType(amount: string | number, walletType: W
   if (walletType === WalletType.STANDARD_WALLET) {
     return mojoToChiaLocaleString(amount, locale);
   }
-  if (walletType === WalletType.CAT) {
+  if ([WalletType.CAT, WalletType.CRCAT].includes(walletType)) {
     return mojoToCATLocaleString(amount, locale);
   }
 

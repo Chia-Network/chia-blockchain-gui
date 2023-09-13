@@ -2,6 +2,7 @@ import { Trans } from '@lingui/macro';
 import React from 'react';
 
 import ConfirmDialog from '../components/ConfirmDialog';
+
 import useOpenDialog from './useOpenDialog';
 import useSkipMigration from './useSkipMigration';
 

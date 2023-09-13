@@ -7,6 +7,7 @@ import { useFieldArray } from 'react-hook-form';
 
 import useOfferBuilderContext from '../../hooks/useOfferBuilderContext';
 import useStandardWallet from '../../hooks/useStandardWallet';
+
 import OfferBuilderSection from './OfferBuilderSection';
 import OfferBuilderValue from './OfferBuilderValue';
 import OfferBuilderWalletBalance from './OfferBuilderWalletBalance';

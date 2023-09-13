@@ -7,6 +7,7 @@ import React, { useMemo } from 'react';
 
 import FullNodeState from '../../../constants/FullNodeState';
 import useFullNodeState from '../../../hooks/useFullNodeState';
+
 import FarmCardNotAvailable from './FarmCardNotAvailable';
 
 export default React.memo(ExpectedTimeToWin);

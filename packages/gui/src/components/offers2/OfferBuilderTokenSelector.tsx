@@ -30,13 +30,13 @@ export default function OfferBuilderTokenSelector(props: OfferBuilderTokenSelect
     }
 
     const allOptions = wallets
-      .filter((wallet: Wallet) => wallet.type === WalletType.CAT)
+      .filter((wallet: Wallet) => [WalletType.CAT, WalletType.CRCAT].includes(wallet.type))
       .map((wallet: Wallet) => {
-        const cat: CATToken | undefined = catList.find(
-          (catItem: CATToken) => catItem.assetId.toLowerCase() === wallet.meta?.assetId?.toLowerCase()
-        );
+        const assetId = wallet.meta?.assetId ? wallet.meta.assetId.toLowerCase() : '';
 
-        const assetId = wallet.meta?.assetId.toLowerCase();
+        const cat: CATToken | undefined = catList.find(
+          (catItem: CATToken) => catItem.assetId.toLowerCase() === assetId
+        );
 
         if (assetId && assetId !== currentValue && usedAssetIds.includes(assetId)) {
           return undefined;

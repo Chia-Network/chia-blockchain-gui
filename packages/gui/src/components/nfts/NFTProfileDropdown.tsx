@@ -9,6 +9,7 @@ import { orderBy } from 'lodash';
 import React, { useMemo } from 'react';
 
 import useNachoNFTs from '../../hooks/useNachoNFTs';
+
 import { getNFTInbox } from './utils';
 
 type Profile = Wallet & {

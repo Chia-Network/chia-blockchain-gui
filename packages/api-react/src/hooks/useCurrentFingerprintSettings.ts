@@ -1,4 +1,5 @@
 import { useGetLoggedInFingerprintQuery } from '../services/wallet';
+
 import useFingerprintSettings from './useFingerprintSettings';
 import { type Serializable } from './usePrefs';
 

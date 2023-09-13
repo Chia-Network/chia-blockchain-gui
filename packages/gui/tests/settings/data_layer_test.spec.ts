@@ -1,7 +1,6 @@
 import { ElectronApplication, Page, _electron as electron } from 'playwright';
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../data_object_model/passphrase_login';
-import ChildProcess from 'child_process';
 import { stopAllChia } from '../utils/wallet';
 
 let electronApp: ElectronApplication;
@@ -21,8 +20,8 @@ test('Confirm user can navigate and interact with the Settings page in user acce
   //Pre-requisites to Close Version dialog
   await page.locator('button:has-text("Close")').click();
 
-  //Given I navigate to 1922132445 Wallet
-  await page.locator('h6:has-text("Jahi 1st Wallet")').click();
+  //Given I navigate to a Wallet
+  await new LoginPage(page).getPlayWrightWallet();
 
   //Given I navigate to the Setting's Gear
   await page.locator('[data-testid="DashboardSideBar-settings"]').click();
@@ -41,7 +40,7 @@ test('Confirm user can navigate and interact with the Settings page in user acce
   electronApp = await electron.launch({ args: ['./build/electron/main.js'] });
   page = await electronApp.firstWindow();
   await page.locator('button:has-text("Close")').click();
-  await page.locator('h6:has-text("Jahi 1st Wallet")').click();
+  await new LoginPage(page).getPlayWrightWallet();
 
   //And I navigate back to Data layer tab
   await page.locator('[data-testid="DashboardSideBar-settings"]').click();

@@ -4,6 +4,7 @@ import BigNumber from 'bignumber.js';
 
 import Message from '../Message';
 import { ServiceNameValue } from '../constants/ServiceName';
+
 import Wallet from './WalletService';
 
 jest.mock('crypto', () => ({

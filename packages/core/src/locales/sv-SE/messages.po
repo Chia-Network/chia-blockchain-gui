@@ -8,83 +8,83 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-03-29 23:26\n"
+"PO-Revision-Date: 2023-09-11 16:35\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "X-Crowdin-Project-ID: 1\n"
 "X-Crowdin-Language: sv\n"
-"X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/packages/core/src/locales/en-US/messages.po\n"
-"X-Crowdin-File-ID: 1304\n"
+"X-Crowdin-File: messages.po\n"
+"X-Crowdin-File-ID: 2667\n"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:61
+#: src/components/EstimatedFee/EstimatedFee.tsx:62
 msgid "(>5 min)"
 msgstr ""
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:61
+#: src/components/EstimatedFee/EstimatedFee.tsx:62
 msgid "(~{selectedTime} min)"
 msgstr ""
 
-#: src/components/Amount/Amount.tsx:86
+#: src/components/Amount/Amount.tsx:87
 msgid "{0, plural, one {mojo} other {mojos}}"
 msgstr "{0, plural, one {mojo} other {mojo}}"
 
-#: src/hooks/useValidateChangePassphraseParams.tsx:35
+#: src/hooks/useValidateChangePassphraseParams.tsx:36
 msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
 msgstr "{minPassphraseLength, plural, one {Lösenfraser måste vara minst # tecken lång} other {Lösenfraser måste vara minst # tecken lång}}"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:95
 msgid "A new version of Chia is available!"
-msgstr ""
+msgstr "En ny version av Chia finns tillgänglig!"
 
-#: src/screens/SelectKey/EmojiAndColorPicker.tsx:258
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:268
 msgid "Add Icon"
-msgstr ""
+msgstr "Lägg till ikon"
 
-#: src/screens/SelectKey/SelectKey.tsx:172
+#: src/screens/SelectKey/SelectKey.tsx:174
 msgid "Add wallet"
-msgstr ""
+msgstr "Lägg till plånbok"
 
-#: src/components/Amount/Amount.tsx:36
+#: src/components/Amount/Amount.tsx:37
 msgid "Amount"
 msgstr "Belopp"
 
-#: src/components/Settings/SettingsApp.tsx:93
+#: src/components/Settings/SettingsApp.tsx:94
 msgid "Appearance"
 msgstr "Utseende"
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:144
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:158
 msgid "Are you sure you want to continue? Type in the fingerprint of this wallet key to confirm deletion."
 msgstr "Är du säker på att du vill fortsätta? Skriv in fingeravtrycket för denna plånboksnyckel för att bekräfta borttagning."
 
 #: src/components/FormBackButton/FormBackButton.tsx:15
-#: src/screens/SelectKey/SelectKey.tsx:127
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:156
+#: src/screens/SelectKey/SelectKey.tsx:129
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:170
 msgid "Back"
 msgstr "Tillbaka"
 
 #: src/components/ConfirmDialog/ConfirmDialog.tsx:29
-#: src/hooks/useKeyringMigrationPrompt.tsx:17
+#: src/hooks/useKeyringMigrationPrompt.tsx:18
 #: src/screens/SelectKey/SelectKeyRenameForm.tsx:90
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: src/components/Settings/SettingsApp.tsx:139
+#: src/components/Settings/SettingsApp.tsx:140
 msgid "Check for updates"
-msgstr ""
+msgstr "Sök efter uppdateringar"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:93
 msgid "Checking for updates..."
-msgstr ""
+msgstr "Söker efter uppdateringar ..."
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:82
 msgid "Chia {latestVersion} is currently the latest version available."
-msgstr ""
+msgstr "Chia {latestVersion} är för närvarande den senaste tillgängliga versionen."
 
-#: src/components/Settings/SettingsApp.tsx:125
+#: src/components/Settings/SettingsApp.tsx:126
 msgid "Chia Application Version:"
-msgstr ""
+msgstr "Chia programversion:"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:110
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:47
@@ -106,55 +106,55 @@ msgstr "Kopiera till Urklipp"
 
 #: src/screens/SelectKey/SelectKey.tsx:170
 #~ msgid "Create a new private key"
-#~ msgstr "Skapa ny privat nyckel"
+#~ msgstr "Create a new private key"
 
-#: src/screens/SelectKey/SelectKey.tsx:270
+#: src/screens/SelectKey/SelectKey.tsx:274
 msgid "Create a new wallet key"
-msgstr ""
+msgstr "Skapa en ny plånboksnyckel"
 
-#: src/screens/SelectKey/SelectKey.tsx:262
+#: src/screens/SelectKey/SelectKey.tsx:266
 msgid "Create a new wallet key to get started with Chia."
-msgstr ""
+msgstr "Skapa en ny plånboksnyckel för att komma igång med Chia."
 
-#: src/screens/SelectKey/SelectKey.tsx:175
+#: src/screens/SelectKey/SelectKey.tsx:177
 msgid "Create New"
 msgstr ""
 
-#: src/components/Settings/SettingsApp.tsx:110
+#: src/components/Settings/SettingsApp.tsx:111
 msgid "Dark"
 msgstr "Mörkt"
 
-#: src/screens/SelectKey/SelectKey.tsx:126
-#: src/screens/SelectKey/SelectKeyItem.tsx:113
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:166
+#: src/screens/SelectKey/SelectKey.tsx:128
+#: src/screens/SelectKey/SelectKeyItem.tsx:114
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:180
 msgid "Delete"
 msgstr "Ta bort"
 
-#: src/screens/SelectKey/SelectKey.tsx:125
+#: src/screens/SelectKey/SelectKey.tsx:127
 msgid "Delete all keys"
 msgstr "Ta bort alla nycklar"
 
-#: src/screens/SelectKey/SelectKey.tsx:200
+#: src/screens/SelectKey/SelectKey.tsx:202
 msgid "Delete All Keys"
-msgstr ""
+msgstr "Ta bort alla nycklar"
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:96
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:110
 msgid "Delete key {fingerprint}"
 msgstr "Ta bort nyckel {fingerprint}"
 
-#: src/screens/SelectKey/SelectKey.tsx:131
+#: src/screens/SelectKey/SelectKey.tsx:133
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
 msgstr "Om du tar bort alla nycklar kommer de att permanent tas bort från datorn. Se till att du har säkerhetskopierat dem. Är du säker på att du vill fortsätta?"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:105
+#: src/screens/SelectKey/SelectKeyItem.tsx:106
 msgid "Details"
 msgstr "Detaljer"
 
-#: src/hooks/useValidateChangePassphraseParams.tsx:59
+#: src/hooks/useValidateChangePassphraseParams.tsx:60
 msgid "Disable"
 msgstr "Inaktivera"
 
-#: src/hooks/useValidateChangePassphraseParams.tsx:58
+#: src/hooks/useValidateChangePassphraseParams.tsx:59
 msgid "Disable Passphrase Protection"
 msgstr "Inaktivera lösenfrasskydd"
 
@@ -163,12 +163,12 @@ msgstr "Inaktivera lösenfrasskydd"
 msgid "Discard"
 msgstr "Spara inte"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:183
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:148
 msgid "Download"
-msgstr ""
+msgstr "Ladda ner"
 
 #: src/components/CardSimple/CardSimple.tsx:52
-#: src/hooks/useShowError.tsx:13
+#: src/hooks/useShowError.tsx:14
 msgid "Error"
 msgstr "Fel"
 
@@ -178,11 +178,11 @@ msgstr "Fel:"
 
 #: src/screens/SelectKey/SelectKeyRenameForm.tsx:91
 msgid "Esc"
-msgstr ""
+msgstr "Esc"
 
-#: src/components/LayoutMain/LayoutFooter.tsx:48
+#: src/components/LayoutMain/LayoutFooter.tsx:49
 msgid "FAQ"
-msgstr ""
+msgstr "FAQ"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:90
 msgid "Farmer Public Key"
@@ -192,29 +192,29 @@ msgstr "Publik nyckel för odlare"
 msgid "Farmer public key:"
 msgstr "Publik nyckel för odlare:"
 
-#: src/components/Settings/SettingsApp.tsx:78
+#: src/components/Settings/SettingsApp.tsx:79
 msgid "Farming"
 msgstr "Odlar"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:333
-#: src/components/EstimatedFee/EstimatedFee.tsx:367
+#: src/components/EstimatedFee/EstimatedFee.tsx:334
+#: src/components/EstimatedFee/EstimatedFee.tsx:368
 #: src/components/Fee/Fee.tsx:44
 msgid "Fee"
 msgstr "Avgift"
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:80
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:95
 msgid "Fingerprint does not match"
 msgstr "Fingeravtrycket matchar inte"
 
-#: src/components/Settings/SettingsApp.tsx:151
+#: src/components/Settings/SettingsApp.tsx:152
 msgid "Frequently Asked Questions"
 msgstr "Vanliga frågor"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:121
 msgid "Go To Download Page"
-msgstr ""
+msgstr "Gå till nedladdningssidan"
 
-#: src/components/Settings/SettingsApp.tsx:147
+#: src/components/Settings/SettingsApp.tsx:148
 msgid "Help"
 msgstr "Hjälp"
 
@@ -231,7 +231,7 @@ msgstr "Dölj"
 msgid "Hide Advanced Options"
 msgstr "Dölj avancerade alternativ"
 
-#: src/screens/SelectKey/SelectKey.tsx:180
+#: src/screens/SelectKey/SelectKey.tsx:182
 msgid "Import Existing"
 msgstr ""
 
@@ -243,27 +243,27 @@ msgstr ""
 msgid "Incorrect value"
 msgstr "Felaktigt värde"
 
-#: src/components/Settings/SettingsApp.tsx:117
+#: src/components/Settings/SettingsApp.tsx:118
 msgid "Language"
 msgstr "Språk"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:57
 msgid "Latest Version:"
-msgstr ""
+msgstr "Senaste version:"
 
-#: src/components/Settings/SettingsApp.tsx:102
+#: src/components/Settings/SettingsApp.tsx:103
 msgid "Light"
 msgstr "Ljust"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:222
+#: src/components/EstimatedFee/EstimatedFee.tsx:223
 msgid "Likely in {0} seconds"
 msgstr ""
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:219
+#: src/components/EstimatedFee/EstimatedFee.tsx:220
 msgid "Likely in {minutes} minutes"
 msgstr ""
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:221
+#: src/components/EstimatedFee/EstimatedFee.tsx:222
 msgid "Likely in >5 minutes"
 msgstr ""
 
@@ -271,32 +271,32 @@ msgstr ""
 msgid "Loading details"
 msgstr "Läser in information"
 
-#: src/screens/SelectKey/SelectKey.tsx:232
+#: src/screens/SelectKey/SelectKey.tsx:236
 msgid "Loading keys"
-msgstr ""
+msgstr "Läser in nycklar"
 
 #: src/screens/SelectKey/SelectKey.tsx:117
 #~ msgid "Loading list of the keys"
-#~ msgstr "Läser in en lista över nycklarna"
+#~ msgstr "Loading list of the keys"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:317
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:336
-msgid "Log Out"
-msgstr "Logga ut"
+#~ msgid "Log Out"
+#~ msgstr ""
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:335
-msgid "Logout"
-msgstr "Logga ut"
+#~ msgid "Logout"
+#~ msgstr ""
 
-#: src/hooks/useKeyringMigrationPrompt.tsx:16
+#: src/hooks/useKeyringMigrationPrompt.tsx:17
 msgid "Migrate"
 msgstr "Migrera"
 
-#: src/hooks/useKeyringMigrationPrompt.tsx:15
+#: src/hooks/useKeyringMigrationPrompt.tsx:16
 msgid "Migration required"
 msgstr "Migrering krävs"
 
-#: src/components/Settings/SettingsApp.tsx:69
+#: src/components/Settings/SettingsApp.tsx:70
 msgid "Mode"
 msgstr "Läge"
 
@@ -304,13 +304,13 @@ msgstr "Läge"
 msgid "NEVER SHARE THESE WITH ANYONE"
 msgstr "DELA ALDRIG DESSA MED NÅGON ANNAN"
 
-#: src/hooks/useValidateChangePassphraseParams.tsx:41
+#: src/hooks/useValidateChangePassphraseParams.tsx:42
 msgid "New passphrase is the same as your current passphrase"
 msgstr "Ny lösenfras är densamma som din nuvarande lösenfras"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:168
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:133
 msgid "New version {latestVersion} available"
-msgstr ""
+msgstr "Ny version {latestVersion} finns tillgänglig"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:84
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:138
@@ -323,14 +323,14 @@ msgstr "Inte ansluten"
 
 #: src/screens/SelectKey/WalletStatus.tsx:61
 #~ msgid "Not Synced"
-#~ msgstr "Ej synkad"
+#~ msgstr ""
 
 #: src/components/AlertDialog/AlertDialog.tsx:23
 #: src/components/ConfirmDialog/ConfirmDialog.tsx:30
 msgid "OK"
 msgstr "OK"
 
-#: src/screens/SelectKey/SelectKey.tsx:254
+#: src/screens/SelectKey/SelectKey.tsx:258
 msgid "Open a world of possibilities."
 msgstr ""
 
@@ -359,27 +359,27 @@ msgstr "Publik nyckel"
 msgid "Public key:"
 msgstr "Publik nyckel:"
 
-#: src/screens/SelectKey/EmojiAndColorPicker.tsx:277
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:287
 msgid "Random"
-msgstr ""
+msgstr "Slumpmässig"
 
 #: src/components/Fee/Fee.tsx:18
 msgid "Recommended value: 0.000005"
-msgstr ""
+msgstr "Rekommenderat värde: 0,000005"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:71
 msgid "Release Notes"
-msgstr ""
+msgstr "Viktig information"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:85
 msgid "Reload Application"
-msgstr "Läs in applikationen på nytt"
+msgstr "Läs in programmet på nytt"
 
-#: src/screens/SelectKey/EmojiAndColorPicker.tsx:258
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:268
 msgid "Remove Icon"
-msgstr ""
+msgstr "Ta bort ikon"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:97
+#: src/screens/SelectKey/SelectKeyItem.tsx:98
 msgid "Rename"
 msgstr "Byt namn"
 
@@ -396,10 +396,10 @@ msgstr ""
 msgid "Save"
 msgstr "Spara"
 
-#: src/screens/SelectKey/EmojiAndColorPicker.tsx:170
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:180
 #: src/screens/SelectKey/Search.tsx:34
 msgid "Search"
-msgstr ""
+msgstr "Sök"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:113
 msgid "Secret Key"
@@ -415,23 +415,23 @@ msgstr "Minnesfras:"
 
 #: src/screens/SelectKey/SelectKey.tsx:134
 #~ msgid "Select Key"
-#~ msgstr "Välj nyckel"
+#~ msgstr "Select Key"
 
 #: src/components/Dropdown/Dropdown.tsx:28
 msgid "Select..."
 msgstr "Välj..."
 
-#: src/components/LayoutMain/LayoutFooter.tsx:51
-#: src/components/Settings/SettingsApp.tsx:154
+#: src/components/LayoutMain/LayoutFooter.tsx:52
+#: src/components/Settings/SettingsApp.tsx:155
 msgid "Send Feedback"
 msgstr "Skicka feedback"
 
-#: src/hooks/useValidateChangePassphraseParams.tsx:52
+#: src/hooks/useValidateChangePassphraseParams.tsx:53
 msgid "Setting a passphrase is strongly recommended to protect your keys. Are you sure you want to skip setting a passphrase?"
 msgstr "Att ange en lösenfras rekommenderas starkt för att skydda dina nycklar. Är du säker på att du inte vill ange en lösenfras?"
 
-#: src/components/Settings/Settings.tsx:49
-#: src/components/Settings/Settings.tsx:59
+#: src/components/Settings/Settings.tsx:50
+#: src/components/Settings/Settings.tsx:60
 msgid "Settings"
 msgstr "Inställningar"
 
@@ -441,14 +441,14 @@ msgstr "Visa avancerade alternativ"
 
 #: src/screens/SelectKey/SelectKey.tsx:139
 #~ msgid "Sign In"
-#~ msgstr "Logga in"
+#~ msgstr "Sign In"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:171
-#: src/hooks/useValidateChangePassphraseParams.tsx:50
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:136
+#: src/hooks/useValidateChangePassphraseParams.tsx:51
 msgid "Skip"
 msgstr "Hoppa över"
 
-#: src/hooks/useValidateChangePassphraseParams.tsx:49
+#: src/hooks/useValidateChangePassphraseParams.tsx:50
 msgid "Skip Passphrase Protection"
 msgstr "Hoppa över lösenfrasskydd"
 
@@ -458,29 +458,29 @@ msgstr "Något gick fel"
 
 #: src/screens/SelectKey/WalletStatus.tsx:73
 #~ msgid "Synced"
-#~ msgstr "Synkad"
+#~ msgstr ""
 
 #: src/screens/SelectKey/WalletStatus.tsx:85
 #~ msgid "Syncing"
-#~ msgstr "Synkar"
+#~ msgstr ""
 
-#: src/hooks/useValidateChangePassphraseParams.tsx:28
+#: src/hooks/useValidateChangePassphraseParams.tsx:29
 msgid "The provided passphrase and confirmation do not match"
 msgstr "Lösenfras och bekräftelse matchar inte"
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:126
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:140
 msgid "This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
 msgstr "Denna nyckel används för en plånbok som kan ha ett saldo som inte är noll. Genom att ta bort denna nyckel kan du förlora åtkomst till plånboken"
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:108
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:122
 msgid "This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
 msgstr ""
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:117
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:131
 msgid "This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
 msgstr ""
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:138
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:152
 msgid "This will permanently remove the key from your computer, make sure you have your mnemonic phrase backed up."
 msgstr "Detta kommer att permanent ta bort nyckeln från din dator. Se till att du har en säkerhetskopia av din minnesfras."
 
@@ -494,19 +494,19 @@ msgstr "Transaktionen har skickats till en fullständig nod och väntar på att 
 
 #: src/utils/getTransactionResult.ts:24
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
-msgstr "Transaktionen har skickats till en hel nod och inkluderats i mempoolen."
+msgstr "Transaktionen har skickats till en fullständig nod och inkluderats i mempoolen."
 
-#: src/screens/SelectKey/SelectKey.tsx:239
+#: src/screens/SelectKey/SelectKey.tsx:243
 msgid "Try Again"
 msgstr "Försök igen"
 
-#: src/screens/SelectKey/SelectKey.tsx:243
+#: src/screens/SelectKey/SelectKey.tsx:247
 msgid "Unable to load keys"
-msgstr ""
+msgstr "Det gick inte att läsa in nycklar"
 
 #: src/screens/SelectKey/SelectKey.tsx:128
 #~ msgid "Unable to load the list of the keys"
-#~ msgstr "Det gick inte att läsa in listan över nycklarna"
+#~ msgstr "Unable to load the list of the keys"
 
 #: src/components/LocaleToggle/LocaleToggle.tsx:44
 msgid "Unknown"
@@ -517,7 +517,7 @@ msgstr "Okänd"
 msgid "Unsaved Changes"
 msgstr "Osparade ändringar"
 
-#: src/hooks/useValidateChangePassphraseParams.tsx:61
+#: src/hooks/useValidateChangePassphraseParams.tsx:62
 msgid "Using a passphrase is strongly recommended to protect your keys. Are you sure you want to disable passphrase protection?"
 msgstr "Att använda en lösenfras rekommenderas starkt för att skydda dina nycklar. Är du säker på att du vill ta bort lösenfrasskyddet?"
 
@@ -525,32 +525,32 @@ msgstr "Att använda en lösenfras rekommenderas starkt för att skydda dina nyc
 msgid "Value seems high"
 msgstr "Värdet verkar högt"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:270
-#: src/components/Settings/SettingsApp.tsx:86
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:233
+#: src/components/Settings/SettingsApp.tsx:87
 msgid "Wallet"
 msgstr "Plånbok"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:63
-#: src/screens/SelectKey/SelectKeyItem.tsx:233
+#: src/screens/SelectKey/SelectKeyItem.tsx:234
 msgid "Wallet {0}"
 msgstr "Plånbok {0}"
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:149
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:163
 msgid "Wallet Fingerprint"
 msgstr "Plånbokens fingeravtryck"
 
-#: src/screens/SelectKey/SelectKey.tsx:219
+#: src/screens/SelectKey/SelectKey.tsx:223
 msgid "Wallet Keys"
-msgstr ""
+msgstr "Plånboksnycklar"
 
 #: src/screens/SelectKey/SelectKey.tsx:142
 #~ msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
-#~ msgstr "Välkommen till Chia. Logga in med en existerande nyckel, eller skapa en ny nyckel."
+#~ msgstr "Welcome to Chia. Please log in with an existing key, or create a new key."
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:177
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:142
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:66
 msgid "What's New"
-msgstr ""
+msgstr "Vad är nytt"
 
 #: src/components/Back/Back.tsx:40
 #: src/components/FormBackButton/FormBackButton.tsx:31
@@ -559,12 +559,12 @@ msgstr "Du har gjort ändringar. Vill du kasta dem?"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:97
 msgid "You're up to date"
-msgstr ""
+msgstr "Du är uppdaterad"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:49
 msgid "Your Current Version:"
-msgstr ""
+msgstr "Din nuvarande version:"
 
-#: src/hooks/useKeyringMigrationPrompt.tsx:20
+#: src/hooks/useKeyringMigrationPrompt.tsx:21
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr "Dina nycklar har inte migrerats till en ny nyckelring. Du kommer inte att kunna skapa nya nycklar eller ta bort befintliga nycklar tills migreringen är klar. Vill du migrera nycklarna nu?"

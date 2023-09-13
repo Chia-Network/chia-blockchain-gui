@@ -6,6 +6,7 @@ import React, { type ReactNode, useState, useMemo } from 'react';
 
 import type WalletConnectCommandParam from '../../@types/WalletConnectCommandParam';
 import useWalletConnectPairs from '../../hooks/useWalletConnectPairs';
+
 import WalletConnectMetadata from './WalletConnectMetadata';
 
 export type WalletConnectConfirmDialogProps = {

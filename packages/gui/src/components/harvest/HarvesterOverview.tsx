@@ -6,6 +6,7 @@ import BigNumber from 'bignumber.js';
 import React from 'react';
 
 import { getPlotFilter } from '../../util/plot';
+
 import HarvesterDetail from './HarvesterDetail';
 
 export default function HarvesterOverview() {

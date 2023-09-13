@@ -5,6 +5,7 @@ import { Box, Button } from '@mui/material';
 import React from 'react';
 
 import useWalletConnectContext from '../../hooks/useWalletConnectContext';
+
 import WalletConnectConnections from './WalletConnectConnections';
 
 export default function WalletConnectDropdown() {

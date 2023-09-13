@@ -28,6 +28,7 @@ import getCurrentTime from '../../util/getCurrentTime';
 import getUnknownCATs from '../../util/getUnknownCATs';
 import offerToOfferBuilderData from '../../util/offerToOfferBuilderData';
 import OfferState from '../offers/OfferState';
+
 import OfferBuilder from './OfferBuilder';
 import OfferBuilderExpirationSection from './OfferBuilderExpirationSection';
 import OfferNavigationHeader from './OfferNavigationHeader';

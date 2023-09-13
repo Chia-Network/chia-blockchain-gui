@@ -10,6 +10,7 @@ import type Client from '../Client';
 import Message from '../Message';
 import ServiceName, { type ServiceNameValue } from '../constants/ServiceName';
 import sleep from '../utils/sleep';
+
 import Service from './Service';
 import type { Options } from './Service';
 
@@ -269,7 +270,8 @@ export default class Daemon extends Service {
     bladebitDiskNoT1Direct?: boolean;
     bladebitDiskNoT2Direct?: boolean;
     bladebitDeviceIndex?: number;
-    bladebitDisableDirectDownloads?: boolean;
+    bladebitEnableDisk128Mode?: boolean;
+    bladebitEnableDisk16Mode?: boolean;
     c?: string;
     delay: number;
     disableBitfieldPlotting?: boolean;
@@ -309,7 +311,8 @@ export default class Daemon extends Service {
       bladebitDiskNoT1Direct: 'no_t1_direct',
       bladebitDiskNoT2Direct: 'no_t2_direct',
       bladebitDeviceIndex: 'device',
-      bladebitDisableDirectDownloads: 'no_direct_downloads',
+      bladebitEnableDisk128Mode: 'disk_128',
+      bladebitEnableDisk16Mode: 'disk_16',
       disableBitfieldPlotting: 'e',
       excludeFinalDir: 'x',
       farmerPublicKey: 'f',
@@ -426,5 +429,11 @@ export default class Daemon extends Service {
       'get_keys_for_plotting',
       args
     );
+  }
+
+  getPublicKey(args?: { fingerprint: number }) {
+    return this.command<{
+      key: any;
+    }>('get_public_key', args);
   }
 }

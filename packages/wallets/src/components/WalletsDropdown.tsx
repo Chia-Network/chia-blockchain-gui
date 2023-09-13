@@ -6,6 +6,7 @@ import React, { useMemo } from 'react';
 import { useNavigate } from 'react-router';
 
 import WalletName from '../constants/WalletName';
+
 import WalletBadge from './WalletBadge';
 import WalletIcon from './WalletIcon';
 

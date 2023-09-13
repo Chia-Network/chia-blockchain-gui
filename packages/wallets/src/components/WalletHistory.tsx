@@ -39,6 +39,7 @@ import styled from 'styled-components';
 
 import useWallet from '../hooks/useWallet';
 import useWalletTransactions from '../hooks/useWalletTransactions';
+
 import ClawbackClaimTransactionDialog from './ClawbackClaimTransactionDialog';
 import WalletHistoryClawbackChip from './WalletHistoryClawbackChip';
 import WalletHistoryPending from './WalletHistoryPending';

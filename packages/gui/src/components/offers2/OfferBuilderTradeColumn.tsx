@@ -6,6 +6,7 @@ import React from 'react';
 import { useWatch } from 'react-hook-form';
 
 import useOfferBuilderContext from '../../hooks/useOfferBuilderContext';
+
 import OfferBuilderFeeSection from './OfferBuilderFeeSection';
 import OfferBuilderHeader from './OfferBuilderHeader';
 import OfferBuilderNFTSection from './OfferBuilderNFTSection';
