@@ -8,15 +8,15 @@ msgstr ""
 "Language: sk_SK\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-03-29 23:28\n"
+"PO-Revision-Date: 2023-09-13 22:28\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 3;\n"
 "X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "X-Crowdin-Project-ID: 1\n"
 "X-Crowdin-Language: sk\n"
-"X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/packages/wallets/src/locales/en-US/messages.po\n"
-"X-Crowdin-File-ID: 1308\n"
+"X-Crowdin-File: /packages/wallets/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 3143\n"
 
 #: src/components/WalletHistory.tsx:118
 msgid "-"
@@ -67,7 +67,7 @@ msgstr "Adresa"
 #: src/components/cat/WalletCATSend.tsx:196
 #: src/components/WalletSend.tsx:220
 #~ msgid "Address / Puzzle hash"
-#~ msgstr "Adresa"
+#~ msgstr "Address / Puzzle hash"
 
 #: src/components/AddressBookAutocomplete.tsx:65
 msgid "Address or Contact"
@@ -144,7 +144,7 @@ msgstr ""
 
 #: src/components/WalletsSidebar.tsx:130
 #~ msgid "Check my snapshot balance"
-#~ msgstr "Skontrolovať môj zostatok na snímke"
+#~ msgstr "Check my snapshot balance"
 
 #: src/components/cat/WalletCATSelect.tsx:25
 #: src/components/create/WalletCreateList.tsx:32
@@ -207,13 +207,13 @@ msgstr ""
 
 #: src/components/WalletsSidebar.tsx:141
 #~ msgid "Click here to download an older version of the wallet"
-#~ msgstr "Kliknutím sem stiahnete staršiu verziu peňaženky"
+#~ msgstr "Click here to download an older version of the wallet"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:158
 #: src/components/ClawbackClaimTransactionDialog.tsx:249
 #: src/components/crCat/CrCatApprovePendingDialog.tsx:136
 msgid "Close"
-msgstr ""
+msgstr "Zavrieť"
 
 #: src/components/WalletHeader.tsx:25
 msgid "Confirmation"
@@ -233,11 +233,11 @@ msgstr "Typ pripojenia"
 
 #: src/components/WalletReceiveAddressField.tsx:71
 msgid "Copied"
-msgstr ""
+msgstr "Skopírované"
 
 #: src/components/WalletReceiveAddressField.tsx:75
 msgid "Copy wallet address"
-msgstr ""
+msgstr "Skopírovať adresu peňaženky"
 
 #: src/components/cat/WalletCATSelect.tsx:32
 msgid "Create New Wallet"
@@ -255,7 +255,7 @@ msgstr "Vytvoriť transakciu"
 
 #: src/components/WalletHistory.tsx:223
 msgid "Creation Date"
-msgstr ""
+msgstr "Dátum vytvorenia"
 
 #: src/constants/WalletName.ts:20
 msgid "Custody Wallet"
@@ -271,7 +271,7 @@ msgstr "Peňaženka dátovej vrstvy"
 
 #: src/components/WalletHistory.tsx:100
 #~ msgid "Date"
-#~ msgstr "Dátum"
+#~ msgstr "Date"
 
 #: src/components/WalletHeader.tsx:26
 msgid "Delete"
@@ -342,7 +342,7 @@ msgstr "Obnoviť peňaženku pomocou mnemotechnickej pomôcky"
 
 #: src/components/WalletHistory.tsx:87
 #~ msgid "Incoming"
-#~ msgstr "Prichádzajúce"
+#~ msgstr "Incoming"
 
 #: src/components/WalletConnections.tsx:22
 msgid "IP address"
@@ -387,7 +387,7 @@ msgstr "Nová adresa"
 
 #: src/components/WalletReceiveAddressField.tsx:114
 msgid "New Receive Address"
-msgstr ""
+msgstr "Nová adresa príjemcu"
 
 #: src/components/WalletAdd.tsx:62
 msgid "New Wallet"
@@ -438,7 +438,7 @@ msgstr "Priemerný čas medzi jednotlivými blokmi transakcií je jedna minúta.
 
 #: src/components/WalletHistory.tsx:87
 #~ msgid "Outgoing"
-#~ msgstr "Odchádzajúce"
+#~ msgstr "Outgoing"
 
 #: src/components/WalletImport.tsx:233
 msgid "Paste Mnemonic"
@@ -546,7 +546,7 @@ msgstr "S obmedzenou sadzbou"
 
 #: src/components/WalletsSidebar.tsx:133
 #~ msgid "Read the blog post for details"
-#~ msgstr "Podrobnosti nájdete v blogovom príspevku"
+#~ msgstr "Read the blog post for details"
 
 #: src/components/WalletHeader.tsx:48
 msgid "Receive"
@@ -618,7 +618,7 @@ msgstr "Štandardná peňaženka"
 
 #: src/components/WalletHistory.tsx:214
 msgid "Status"
-msgstr ""
+msgstr "Stav"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:12
 msgid "Success"
@@ -682,7 +682,7 @@ msgstr ""
 
 #: src/components/WalletHistory.tsx:181
 #~ msgid "To"
-#~ msgstr "Príjemca"
+#~ msgstr "To"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:176
 #: src/components/WalletHistory.tsx:168
@@ -752,11 +752,11 @@ msgstr "Peňaženka typu {0} nie je podporovaná"
 
 #: src/components/WalletsSidebar.tsx:138
 #~ msgid "Want to see your old balance for yourself?"
-#~ msgstr "Chcete si sami prezrieť svoju starú bilanciu?"
+#~ msgstr "Want to see your old balance for yourself?"
 
 #: src/components/WalletsSidebar.tsx:110
 #~ msgid "We've made an upgrade to the CAT standard which requires all CATs to be re-issued. You will be airdropped your new tokens as they are re-issued by the original issuers. The airdropped tokens will be based on the balance as of block height:<0/><1/><2/>(Approximate time: July 26th, 2022 @ 17:00 UTC)"
-#~ msgstr "Vykonali sme upgrade na štandard CAT, ktorý vyžaduje opätovné vydanie všetkých CAT. Vaše nové tokeny vám zhodia zo vzduchu (anglicky: airdrop), keď ich znovu vydajú pôvodní emitenti. Zo vzduchu zhodené tokeny budú založené na zostatku podľa výšky bloku:<0/><1/><2/>(Približný čas: 26. júla 2022 o 17:00 UTC)"
+#~ msgstr "We've made an upgrade to the CAT standard which requires all CATs to be re-issued. You will be airdropped your new tokens as they are re-issued by the original issuers. The airdropped tokens will be based on the balance as of block height:<0/><1/><2/>(Approximate time: July 26th, 2022 @ 17:00 UTC)"
 
 #: src/components/WalletAdd.tsx:65
 msgid "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
@@ -780,8 +780,9 @@ msgstr ""
 
 #: src/components/WalletsSidebar.tsx:106
 #~ msgid "Your CAT tokens have been upgraded!"
-#~ msgstr "Vaše tokeny CAT boli inovované!"
+#~ msgstr "Your CAT tokens have been upgraded!"
 
 #: src/components/WalletImport.tsx:73
 msgid "Your pasted list does not include {mnemonicWordCount} valid mnemonic words."
 msgstr ""
+

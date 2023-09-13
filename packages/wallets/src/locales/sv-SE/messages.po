@@ -8,15 +8,15 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-03-29 23:28\n"
+"PO-Revision-Date: 2023-09-13 22:28\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "X-Crowdin-Project-ID: 1\n"
 "X-Crowdin-Language: sv\n"
-"X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/packages/wallets/src/locales/en-US/messages.po\n"
-"X-Crowdin-File-ID: 1308\n"
+"X-Crowdin-File: /packages/wallets/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 3143\n"
 
 #: src/components/WalletHistory.tsx:118
 msgid "-"
@@ -24,7 +24,7 @@ msgstr "-"
 
 #: src/components/WalletSend.tsx:367
 msgid "- Memo helps the receiver side to identify the payment.<0/>- Anything you enter will be publicly accessible on the blockchain."
-msgstr ""
+msgstr "- Meddelande hjälper mottagarsidan att identifiera betalningen.<0/>- Allt du anger kommer att vara publikt åtkomligt på blockkedjan."
 
 #: src/components/WalletSend.tsx:294
 msgid "- Set a time frame which allows you claw back (revoke) the transaction.<0/>- Recipient of the transaction can only claim the funds once that time frame expires."
@@ -54,7 +54,7 @@ msgstr "Lägg till token"
 
 #: src/components/WalletSend.tsx:362
 msgid "Add transaction memo"
-msgstr ""
+msgstr "Lägg till transaktionsmeddelande"
 
 #: src/components/cat/WalletCATCreateSimple.tsx:92
 msgid "Adding {0} token"
@@ -67,11 +67,11 @@ msgstr "Adress"
 #: src/components/cat/WalletCATSend.tsx:196
 #: src/components/WalletSend.tsx:220
 #~ msgid "Address / Puzzle hash"
-#~ msgstr "Adress/pusselhash"
+#~ msgstr "Address / Puzzle hash"
 
 #: src/components/AddressBookAutocomplete.tsx:65
 msgid "Address or Contact"
-msgstr ""
+msgstr "Adress eller kontakt"
 
 #: src/components/cat/WalletCATSend.tsx:214
 #: src/components/WalletSend.tsx:241
@@ -80,7 +80,7 @@ msgstr "Belopp"
 
 #: src/components/card/WalletCardCRCatApprove.tsx:71
 msgid "Approve"
-msgstr ""
+msgstr "Godkänn"
 
 #: src/components/crCat/CrCatApprovePendingDialog.tsx:91
 msgid "Approve pending CR-CAT transactions"
@@ -88,15 +88,15 @@ msgstr ""
 
 #: src/components/crCat/CrCatApprovePendingDialog.tsx:147
 msgid "Approve pending transactions"
-msgstr ""
+msgstr "Godkänn väntande transaktioner"
 
 #: src/components/WalletHeader.tsx:30
 msgid "Are you sure you want to delete unconfirmed transactions?"
-msgstr "Är du säker på att du vill radera obekräftade transaktioner?"
+msgstr "Är du säker på att du vill ta bort obekräftade transaktioner?"
 
 #: src/components/WalletHistory.tsx:131
 msgid "Asset"
-msgstr ""
+msgstr "Tillgång"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:71
 #: src/components/cat/WalletCATTAILDialog.tsx:33
@@ -114,7 +114,7 @@ msgstr "Plånbok för auktoriserad betalningsmottagare"
 
 #: src/components/card/WalletCardCRCatRestrictions.tsx:44
 msgid "Authorized providers"
-msgstr ""
+msgstr "Auktoriserade leverantörer"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:227
 msgid "Auto-claim transactions with this fee from now on."
@@ -144,7 +144,7 @@ msgstr ""
 
 #: src/components/WalletsSidebar.tsx:130
 #~ msgid "Check my snapshot balance"
-#~ msgstr ""
+#~ msgstr "Check my snapshot balance"
 
 #: src/components/cat/WalletCATSelect.tsx:25
 #: src/components/create/WalletCreateList.tsx:32
@@ -207,7 +207,7 @@ msgstr ""
 
 #: src/components/WalletsSidebar.tsx:141
 #~ msgid "Click here to download an older version of the wallet"
-#~ msgstr "Klicka här för att ladda ner en äldre version av plånboken"
+#~ msgstr "Click here to download an older version of the wallet"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:158
 #: src/components/ClawbackClaimTransactionDialog.tsx:249
@@ -233,11 +233,11 @@ msgstr "Anslutningstyp"
 
 #: src/components/WalletReceiveAddressField.tsx:71
 msgid "Copied"
-msgstr ""
+msgstr "Kopierades"
 
 #: src/components/WalletReceiveAddressField.tsx:75
 msgid "Copy wallet address"
-msgstr ""
+msgstr "Kopiera plånboksadress"
 
 #: src/components/cat/WalletCATSelect.tsx:32
 msgid "Create New Wallet"
@@ -271,7 +271,7 @@ msgstr "Plånbok för DataLayer"
 
 #: src/components/WalletHistory.tsx:100
 #~ msgid "Date"
-#~ msgstr "Datum"
+#~ msgstr "Date"
 
 #: src/components/WalletHeader.tsx:26
 msgid "Delete"
@@ -283,7 +283,7 @@ msgstr "Ta bort obekräftade transaktioner"
 
 #: src/components/card/WalletCardTotalBalance.tsx:68
 msgid "Derivation Index: {0}"
-msgstr ""
+msgstr "Deriveringsindex: {0}"
 
 #: src/constants/WalletName.ts:29
 msgid "DID Wallet"
@@ -291,7 +291,7 @@ msgstr "DID-plånbok"
 
 #: src/components/WalletSend.tsx:327
 msgid "Disable"
-msgstr ""
+msgstr "Inaktivera"
 
 #: src/components/create/WalletCreateList.tsx:39
 msgid "Distributed Identity"
@@ -342,7 +342,7 @@ msgstr "Importera plånbok från minnesfras"
 
 #: src/components/WalletHistory.tsx:87
 #~ msgid "Incoming"
-#~ msgstr "Inkommande"
+#~ msgstr "Incoming"
 
 #: src/components/WalletConnections.tsx:22
 msgid "IP address"
@@ -359,11 +359,11 @@ msgstr "Hantera tokenlista"
 #: src/components/cat/WalletCATSend.tsx:242
 #: src/components/WalletSend.tsx:379
 msgid "Memo"
-msgstr "Anteckning"
+msgstr "Meddelande"
 
 #: src/components/WalletHistory.tsx:427
 msgid "Memos"
-msgstr "Anteckningar"
+msgstr "Meddelanden"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:16
 msgid "Mempool Full"
@@ -387,7 +387,7 @@ msgstr "Ny adress"
 
 #: src/components/WalletReceiveAddressField.tsx:114
 msgid "New Receive Address"
-msgstr ""
+msgstr "Ny mottagaradress"
 
 #: src/components/WalletAdd.tsx:62
 msgid "New Wallet"
@@ -438,7 +438,7 @@ msgstr "I genomsnitt är det en minut mellan varje transaktionsblock. Om det int
 
 #: src/components/WalletHistory.tsx:87
 #~ msgid "Outgoing"
-#~ msgstr "Utgående"
+#~ msgstr "Outgoing"
 
 #: src/components/WalletImport.tsx:233
 msgid "Paste Mnemonic"
@@ -450,7 +450,7 @@ msgstr ""
 
 #: src/components/crCat/CrCatApprovePendingDialog.tsx:82
 msgid "Payments approved"
-msgstr ""
+msgstr "Betalningar godkända"
 
 #: src/components/WalletHistory.tsx:202
 msgid "Pending"
@@ -462,7 +462,7 @@ msgstr "Väntande saldo"
 
 #: src/components/card/WalletCardCRCatApprove.tsx:47
 msgid "Pending Balance for Approval"
-msgstr ""
+msgstr "Väntande saldo för godkännande"
 
 #: src/components/card/WalletCardPendingChange.tsx:41
 msgid "Pending Change"
@@ -482,7 +482,7 @@ msgstr ""
 
 #: src/components/crCat/CrCatApprovePendingDialog.tsx:120
 msgid "Please enter a transaction fee to approve the above amount:"
-msgstr ""
+msgstr "Ange en transaktionsavgift för att godkänna ovanstående belopp:"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:207
 msgid "Please enter a transaction fee to claim the above amount:"
@@ -534,11 +534,11 @@ msgstr "Port"
 
 #: src/components/crCat/CrCatAuthorizedProviders.tsx:37
 msgid "Provider's ID"
-msgstr ""
+msgstr "Leverantörens ID"
 
 #: src/components/crCat/CrCatAuthorizedProviders.tsx:51
 msgid "Provider's website"
-msgstr ""
+msgstr "Leverantörens webbplats"
 
 #: src/components/create/WalletCreateList.tsx:45
 msgid "Rate Limited"
@@ -546,7 +546,7 @@ msgstr "Spenderbegränsad (Rate limited)"
 
 #: src/components/WalletsSidebar.tsx:133
 #~ msgid "Read the blog post for details"
-#~ msgstr "Läs blogginlägget för mer information"
+#~ msgstr "Read the blog post for details"
 
 #: src/components/WalletHeader.tsx:48
 msgid "Receive"
@@ -610,7 +610,7 @@ msgstr "Visa tillgångs-ID"
 
 #: src/components/card/WalletCardSpendableBalance.tsx:41
 msgid "Spendable Balance"
-msgstr "Spenderbart belopp"
+msgstr "Spenderbart saldo"
 
 #: src/constants/WalletName.ts:5
 msgid "Standard Wallet"
@@ -618,7 +618,7 @@ msgstr "Standardplånbok"
 
 #: src/components/WalletHistory.tsx:214
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:12
 msgid "Success"
@@ -682,7 +682,7 @@ msgstr ""
 
 #: src/components/WalletHistory.tsx:181
 #~ msgid "To"
-#~ msgstr "Till"
+#~ msgstr "To"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:176
 #: src/components/WalletHistory.tsx:168
@@ -740,7 +740,7 @@ msgstr "Plånboksnamn"
 
 #: src/components/crCat/CrCatApprovePendingDialog.tsx:115
 msgid "Wallet needs to be synced before approving transactions"
-msgstr ""
+msgstr "Plånboken måste synkroniseras innan transaktionerna godkänns"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:201
 msgid "Wallet needs to be synced for claiming clawback transactions"
@@ -752,11 +752,11 @@ msgstr "Plånbok av typ {0} stöds inte"
 
 #: src/components/WalletsSidebar.tsx:138
 #~ msgid "Want to see your old balance for yourself?"
-#~ msgstr "Vill du se ditt gamla saldo för dig själv?"
+#~ msgstr "Want to see your old balance for yourself?"
 
 #: src/components/WalletsSidebar.tsx:110
 #~ msgid "We've made an upgrade to the CAT standard which requires all CATs to be re-issued. You will be airdropped your new tokens as they are re-issued by the original issuers. The airdropped tokens will be based on the balance as of block height:<0/><1/><2/>(Approximate time: July 26th, 2022 @ 17:00 UTC)"
-#~ msgstr "Vi har gjort en uppgradering av CAT-standarden som kräver att alla CAT:er ges ut på nytt. Du kommer automatiskt att få dina nya token allteftersom de ges ut på nytt av de ursprungliga utgivarna. Dessa återutgivna token kommer att baseras på saldot vid blockhöjden: <0/><1/><2/>(Ungefärlig tidpunkt: 26 juli, 2022 @ 17:00 UTC)"
+#~ msgstr "We've made an upgrade to the CAT standard which requires all CATs to be re-issued. You will be airdropped your new tokens as they are re-issued by the original issuers. The airdropped tokens will be based on the balance as of block height:<0/><1/><2/>(Approximate time: July 26th, 2022 @ 17:00 UTC)"
 
 #: src/components/WalletAdd.tsx:65
 msgid "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
@@ -780,8 +780,9 @@ msgstr ""
 
 #: src/components/WalletsSidebar.tsx:106
 #~ msgid "Your CAT tokens have been upgraded!"
-#~ msgstr "Dina CAT-token har uppgraderats!"
+#~ msgstr "Your CAT tokens have been upgraded!"
 
 #: src/components/WalletImport.tsx:73
 msgid "Your pasted list does not include {mnemonicWordCount} valid mnemonic words."
-msgstr ""
+msgstr "Den lista du klistrat in är inte en giltig minnesfras med {mnemonicWordCount} ord."
+
