@@ -362,23 +362,23 @@ msgstr ""
 msgid "Add {currencyCode} from the Faucet"
 msgstr "Tambah {currencyCode} dari sebuah Faucet"
 
-#: src/components/plot/PlotAddDirectoryDialog.tsx:83
+#: src/components/plot/PlotAddDirectoryDialog.tsx:79
 msgid "Add a plot"
 msgstr "Tambah sebuah plot"
 
 #: src/components/farm/FarmHero.tsx:37
-#: src/components/plot/add/PlotAddForm.tsx:231
+#: src/components/plot/add/PlotAddForm.tsx:239
 #: src/components/plot/overview/PlotOverviewHero.tsx:43
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:200
 #: src/components/plotNFT/PlotNFTCard.tsx:233
 msgid "Add a Plot"
 msgstr "Tambah sebuah Plot"
 
-#: src/components/plotNFT/PlotNFTAdd.tsx:54
+#: src/components/plotNFT/PlotNFTAdd.tsx:50
 msgid "Add a Plot NFT"
 msgstr "Tambah Plot NFT"
 
-#: src/constants/WalletConnectCommands.tsx:557
+#: src/constants/WalletConnectCommands.tsx:538
 msgid "Add CAT Token"
 msgstr ""
 
@@ -406,11 +406,11 @@ msgstr "Tambah Direktori Plot"
 msgid "Add Plot to Queue"
 msgstr "Tambahkan Plot ke Antrian"
 
-#: src/constants/WalletConnectCommands.tsx:896
+#: src/constants/WalletConnectCommands.tsx:877
 msgid "Add Proofs"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:856
+#: src/constants/WalletConnectCommands.tsx:837
 msgid "Add Proofs To Verifiable Credential"
 msgstr ""
 
@@ -425,7 +425,7 @@ msgstr ""
 #: src/constants/WalletConnectCommands.tsx:126
 #: src/constants/WalletConnectCommands.tsx:201
 #: src/constants/WalletConnectCommands.tsx:241
-#: src/constants/WalletConnectCommands.tsx:533
+#: src/constants/WalletConnectCommands.tsx:514
 msgid "Address"
 msgstr ""
 
@@ -488,9 +488,8 @@ msgstr ""
 #: src/components/offers2/OfferBuilderNFTRoyalties.tsx:121
 #: src/components/offers2/OfferBuilderWalletAmount.tsx:36
 #: src/constants/WalletConnectCommands.tsx:114
-#: src/constants/WalletConnectCommands.tsx:481
-#: src/constants/WalletConnectCommands.tsx:538
-#: src/constants/WalletConnectCommands.tsx:759
+#: src/constants/WalletConnectCommands.tsx:519
+#: src/constants/WalletConnectCommands.tsx:740
 msgid "Amount"
 msgstr ""
 
@@ -498,7 +497,7 @@ msgstr ""
 msgid "Amount before adding royalties"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:592
+#: src/components/offers/NFTOfferEditor.tsx:593
 #: src/components/offers/OfferEditor.tsx:109
 msgid "Amount exceeds spendable balance"
 msgstr ""
@@ -578,11 +577,11 @@ msgstr ""
 #~ msgid "Are you sure you want to quit?"
 #~ msgstr "Apakah Anda yakin Anda ingin keluar?"
 
-#: src/components/vcs/VCCard.tsx:192
+#: src/components/vcs/VCCard.tsx:213
 msgid "Are you sure you want to remove"
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:194
+#: src/components/vcs/VCCard.tsx:215
 msgid "Are you sure you want to revoke"
 msgstr ""
 
@@ -598,14 +597,14 @@ msgstr ""
 msgid "Asset"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:501
-#: src/constants/WalletConnectCommands.tsx:562
+#: src/constants/WalletConnectCommands.tsx:482
+#: src/constants/WalletConnectCommands.tsx:543
 msgid "Asset Id"
 msgstr ""
 
 #: src/components/offers/NFTOfferTokenSelector.tsx:92
 #: src/components/offers/OfferAssetSelector.tsx:139
-#: src/components/offers2/OfferBuilderToken.tsx:52
+#: src/components/offers2/OfferBuilderToken.tsx:51
 #: src/components/offers2/OfferBuilderTokenSelector.tsx:74
 msgid "Asset Type"
 msgstr ""
@@ -638,6 +637,10 @@ msgstr ""
 msgid "Attempt {attempt}"
 msgstr "Percobaan {attempt}"
 
+#: src/components/offers2/OfferBuilderToken.tsx:63
+msgid "Authorized providers"
+msgstr ""
+
 #: src/components/settings/SettingsCustody.tsx:61
 msgid "Auto claim incoming claw back transactions"
 msgstr ""
@@ -662,7 +665,7 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:771
+#: src/constants/WalletConnectCommands.tsx:752
 msgid "Backup DIDs"
 msgstr ""
 
@@ -729,6 +732,8 @@ msgid "Blocks won"
 msgstr ""
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:80
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:129
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:174
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:78
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:123
 msgid "Browse"
@@ -767,7 +772,7 @@ msgstr ""
 #: src/components/addressbook/ContactAdd.tsx:286
 #: src/components/addressbook/ContactEdit.tsx:300
 #: src/components/addressbook/ContactSummary.tsx:43
-#: src/components/app/AppPassPrompt.tsx:183
+#: src/components/app/AppPassPrompt.tsx:184
 #: src/components/farm/FarmManageFarmingRewards.tsx:163
 #: src/components/fullNode/FullNodeAddConnection.tsx:100
 #: src/components/nfts/MultipleDownloadDialog.tsx:120
@@ -783,10 +788,10 @@ msgstr ""
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:110
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:78
 #: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:34
-#: src/components/settings/ChangePassphrasePrompt.tsx:286
-#: src/components/settings/RemovePassphrasePrompt.tsx:168
+#: src/components/settings/ChangePassphrasePrompt.tsx:287
+#: src/components/settings/RemovePassphrasePrompt.tsx:169
 #: src/components/settings/ResyncPrompt.tsx:49
-#: src/components/settings/SetPassphrasePrompt.tsx:261
+#: src/components/settings/SetPassphrasePrompt.tsx:262
 #: src/components/signVerify/SignMessage.tsx:205
 #: src/components/signVerify/VerifyMessage.tsx:271
 #: src/components/vcs/VCEditTitle.tsx:76
@@ -818,6 +823,10 @@ msgstr ""
 msgid "Cannot offer and request the same asset"
 msgstr ""
 
+#: src/components/offers2/OfferBuilderToken.tsx:59
+msgid "CAT credential restrictions"
+msgstr ""
+
 #: src/components/farm/FarmLastAttemptedProof.tsx:15
 msgid "Challenge"
 msgstr "Percobaan"
@@ -831,8 +840,8 @@ msgstr "Challenge Hash"
 msgid "Change"
 msgstr "Ubah"
 
-#: src/components/settings/ChangePassphrasePrompt.tsx:289
-#: src/components/settings/SettingsPanel.tsx:123
+#: src/components/settings/ChangePassphrasePrompt.tsx:290
+#: src/components/settings/SettingsPanel.tsx:119
 msgid "Change Passphrase"
 msgstr "Ubah Kata Sandi"
 
@@ -963,11 +972,11 @@ msgstr "Tutup"
 msgid "Closing down services"
 msgstr "Menutup layanan"
 
-#: src/constants/WalletConnectCommands.tsx:613
+#: src/constants/WalletConnectCommands.tsx:594
 msgid "Coin Id"
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:126
+#: src/components/vcs/VCCard.tsx:147
 msgid "Coin ID"
 msgstr ""
 
@@ -1006,7 +1015,7 @@ msgstr "Konfirmasi Pemutusan Koneksi"
 msgid "Confirm Move"
 msgstr ""
 
-#: src/components/settings/ChangePassphrasePrompt.tsx:238
+#: src/components/settings/ChangePassphrasePrompt.tsx:239
 msgid "Confirm New Passphrase"
 msgstr "Konfirmasi Kata Sandi Baru"
 
@@ -1016,7 +1025,7 @@ msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:178
 #: src/components/app/AppKeyringMigrator.tsx:179
-#: src/components/settings/SetPassphrasePrompt.tsx:203
+#: src/components/settings/SetPassphrasePrompt.tsx:204
 msgid "Confirm Passphrase"
 msgstr "Knfirmasi Kata Sandi"
 
@@ -1131,7 +1140,7 @@ msgstr ""
 msgid "Could not parse offer data"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:991
+#: src/constants/WalletConnectCommands.tsx:972
 msgid "Count"
 msgstr ""
 
@@ -1143,7 +1152,7 @@ msgstr ""
 msgid "Counter Offer"
 msgstr ""
 
-#: src/components/plot/add/PlotAddForm.tsx:241
+#: src/components/plot/add/PlotAddForm.tsx:250
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:81
 #: src/components/settings/ProfileAdd.tsx:159
 msgid "Create"
@@ -1165,7 +1174,7 @@ msgstr ""
 msgid "Create a Plot NFT"
 msgstr "Buat sebuah Plot NFT"
 
-#: src/components/offers/NFTOfferEditor.tsx:724
+#: src/components/offers/NFTOfferEditor.tsx:725
 msgid "Create an NFT Offer"
 msgstr ""
 
@@ -1183,10 +1192,10 @@ msgid "Create Counter Offer"
 msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:476
-msgid "Create new CAT Wallet"
-msgstr ""
+#~ msgid "Create new CAT Wallet"
+#~ msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:754
+#: src/constants/WalletConnectCommands.tsx:735
 msgid "Create new DID Wallet"
 msgstr ""
 
@@ -1203,7 +1212,7 @@ msgstr ""
 msgid "Create Offer for Ids"
 msgstr ""
 
-#: src/components/settings/IdentitiesPanel.tsx:98
+#: src/components/settings/IdentitiesPanel.tsx:61
 msgid "Create Profile"
 msgstr ""
 
@@ -1258,7 +1267,7 @@ msgstr ""
 msgid "Credentials"
 msgstr ""
 
-#: src/components/plot/add/PlotAddForm.tsx:141
+#: src/components/plot/add/PlotAddForm.tsx:143
 msgid "Currency code is not defined"
 msgstr "Kode mata uang diperlukan"
 
@@ -1267,7 +1276,7 @@ msgstr "Kode mata uang diperlukan"
 msgid "Current Difficulty"
 msgstr "Tingkat ke rumitan saat ini"
 
-#: src/components/settings/ChangePassphrasePrompt.tsx:184
+#: src/components/settings/ChangePassphrasePrompt.tsx:185
 msgid "Current Passphrase"
 msgstr "Kaata Kunci Sekarang"
 
@@ -1347,7 +1356,7 @@ msgstr ""
 msgid "Delete Contact"
 msgstr ""
 
-#: src/components/app/AppPassPrompt.tsx:107
+#: src/components/app/AppPassPrompt.tsx:103
 msgid "Delete Key"
 msgstr "Hapus Kunci"
 
@@ -1360,11 +1369,11 @@ msgstr "Hapus Plot"
 msgid "Delete Unconfirmed Transactions"
 msgstr "Hapus transaksi yang belum di konfirmasi"
 
-#: src/components/vcs/VCCard.tsx:290
+#: src/components/vcs/VCCard.tsx:311
 msgid "Delete Verifiable Credential"
 msgstr ""
 
-#: src/components/app/AppPassPrompt.tsx:100
+#: src/components/app/AppPassPrompt.tsx:96
 msgid "Deleting key"
 msgstr "Menghapus Kunci"
 
@@ -1372,7 +1381,7 @@ msgstr "Menghapus Kunci"
 msgid "Depending on your system configuration, you may find that an alternative plotter produces plots faster than the default Chia Proof of Space plotter. If unsure, use the default Chia Proof of Space plotter."
 msgstr "Tergantung konfigurasi sistem anda, plotter alternatif mungkin bisa lebih cepat membuat plot dari plotter Chia Proof Of Space plotter. Bila tidak yakin, gunakan Chia Proof of Space plotter bawaan."
 
-#: src/components/settings/SettingsPanel.tsx:165
+#: src/components/settings/SettingsPanel.tsx:166
 msgid "Derivation Index"
 msgstr ""
 
@@ -1416,11 +1425,11 @@ msgstr ""
 #: src/components/addressbook/ContactEdit.tsx:119
 #: src/components/signVerify/SigningEntityDID.tsx:77
 #: src/components/signVerify/SignMessage.tsx:155
-#: src/constants/WalletConnectCommands.tsx:818
+#: src/constants/WalletConnectCommands.tsx:799
 msgid "DID"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:692
+#: src/constants/WalletConnectCommands.tsx:673
 msgid "DID Id"
 msgstr ""
 
@@ -1455,13 +1464,15 @@ msgid "Disable CPU Affinity"
 msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:453
-msgid "Disable direct download"
-msgstr ""
+#~ msgid "Disable direct download"
+#~ msgstr ""
 
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:140
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:89
 msgid "Disable direct I/O on the temp 1 directory in order to extract maximum performance with RAM disk"
 msgstr ""
 
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:189
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:138
 msgid "Disable direct I/O on the temp 2 directory in order to extract maximum performance with RAM disk"
 msgstr ""
@@ -1535,8 +1546,8 @@ msgid "Domain Names"
 msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:455
-msgid "Don't allocate host tables using pinned buffers, instead download to intermediate pinned buffers then copy to the final host buffer."
-msgstr ""
+#~ msgid "Don't allocate host tables using pinned buffers, instead download to intermediate pinned buffers then copy to the final host buffer."
+#~ msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:446
 msgid "Download"
@@ -1618,11 +1629,11 @@ msgid "Edition #"
 msgstr ""
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:226
-#: src/constants/WalletConnectCommands.tsx:680
+#: src/constants/WalletConnectCommands.tsx:661
 msgid "Edition Number"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:686
+#: src/constants/WalletConnectCommands.tsx:667
 msgid "Edition Total"
 msgstr ""
 
@@ -1701,7 +1712,7 @@ msgstr ""
 msgid "Enter a strong passphrase and click Migrate Keys to secure your keys"
 msgstr "Masukan kata kunci yang kuat dan Migrasi Kunci untuk mengamankan kunci anda"
 
-#: src/components/settings/SetPassphrasePrompt.tsx:165
+#: src/components/settings/SetPassphrasePrompt.tsx:166
 msgid "Enter a strong passphrase to secure your keys:"
 msgstr "Masukan kata kunci yang kuat untuk mengamankan kunci anda:"
 
@@ -1713,7 +1724,7 @@ msgstr ""
 msgid "Enter an NFT or DID to sign with"
 msgstr ""
 
-#: src/components/settings/RemovePassphrasePrompt.tsx:121
+#: src/components/settings/RemovePassphrasePrompt.tsx:122
 msgid "Enter your passphrase:"
 msgstr "Masukkan kata sandi:"
 
@@ -1722,7 +1733,7 @@ msgstr "Masukkan kata sandi:"
 #: src/components/plot/PlotStatus.tsx:21
 #: src/components/plot/PlotStatus.tsx:22
 #: src/components/plot/queue/PlotQueueIndicator.tsx:23
-#: src/components/vcs/VCCard.tsx:251
+#: src/components/vcs/VCCard.tsx:272
 msgid "Error"
 msgstr "Kesalahan"
 
@@ -1790,11 +1801,11 @@ msgstr "Kecualikan direktori akhir"
 msgid "Expected Total plots passing filter"
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:140
+#: src/components/vcs/VCCard.tsx:161
 msgid "Expiration"
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:145
+#: src/components/vcs/VCCard.tsx:166
 msgid "Expired"
 msgstr ""
 
@@ -1811,7 +1822,7 @@ msgstr "Gagal"
 msgid "Failed downloads:"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:583
+#: src/components/offers/NFTOfferEditor.tsx:584
 msgid "Failed to decode NFT identifier"
 msgstr ""
 
@@ -1831,7 +1842,7 @@ msgstr "Gagal memasang kata kunci: {0}"
 msgid "Failed to update Harvester config"
 msgstr ""
 
-#: src/components/settings/ChangePassphrasePrompt.tsx:127
+#: src/components/settings/ChangePassphrasePrompt.tsx:123
 msgid "Failed to update passphrase: {0}"
 msgstr "Gagal mengubah kata kunci: {0}"
 
@@ -1863,7 +1874,7 @@ msgstr "Farmer sedang tidak berjalan"
 msgid "Farmer Public Key"
 msgstr "Kunci Publik Farmer"
 
-#: src/components/plot/add/PlotAddForm.tsx:196
+#: src/components/plot/add/PlotAddForm.tsx:204
 msgid "Farmer public key is invalid"
 msgstr ""
 
@@ -1941,13 +1952,12 @@ msgstr ""
 #: src/constants/WalletConnectCommands.tsx:165
 #: src/constants/WalletConnectCommands.tsx:389
 #: src/constants/WalletConnectCommands.tsx:424
-#: src/constants/WalletConnectCommands.tsx:487
-#: src/constants/WalletConnectCommands.tsx:544
-#: src/constants/WalletConnectCommands.tsx:698
-#: src/constants/WalletConnectCommands.tsx:727
-#: src/constants/WalletConnectCommands.tsx:765
-#: src/constants/WalletConnectCommands.tsx:823
-#: src/constants/WalletConnectCommands.tsx:929
+#: src/constants/WalletConnectCommands.tsx:525
+#: src/constants/WalletConnectCommands.tsx:679
+#: src/constants/WalletConnectCommands.tsx:708
+#: src/constants/WalletConnectCommands.tsx:746
+#: src/constants/WalletConnectCommands.tsx:804
+#: src/constants/WalletConnectCommands.tsx:910
 msgid "Fee"
 msgstr "Biaya"
 
@@ -1998,10 +2008,11 @@ msgid "Final folder location"
 msgstr "Lokasi folder akhir"
 
 #: src/constants/WalletConnectCommands.tsx:22
+#: src/constants/WalletConnectCommands.tsx:994
 msgid "Fingerprint"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:977
+#: src/constants/WalletConnectCommands.tsx:958
 msgid "Fingerprints"
 msgstr ""
 
@@ -2048,15 +2059,15 @@ msgstr ""
 msgid "Get all Offers"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:837
+#: src/constants/WalletConnectCommands.tsx:818
 msgid "Get All Verifiable Credentials"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:508
+#: src/constants/WalletConnectCommands.tsx:489
 msgid "Get CAT Asset Id"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:495
+#: src/constants/WalletConnectCommands.tsx:476
 msgid "Get CAT Wallet Info"
 msgstr ""
 
@@ -2072,19 +2083,19 @@ msgstr ""
 msgid "Get Next Address"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:606
+#: src/constants/WalletConnectCommands.tsx:587
 msgid "Get NFT Info"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:831
+#: src/constants/WalletConnectCommands.tsx:812
 msgid "Get NFT Wallets with DIDs"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:576
+#: src/constants/WalletConnectCommands.tsx:557
 msgid "Get NFTs"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:735
+#: src/constants/WalletConnectCommands.tsx:716
 msgid "Get NFTs Count"
 msgstr ""
 
@@ -2104,19 +2115,23 @@ msgstr ""
 msgid "Get Offers Count"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:908
+#: src/constants/WalletConnectCommands.tsx:889
 msgid "Get Proofs For Root Hash"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:987
+msgid "Get public key"
 msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:42
 msgid "Get Transaction"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:843
+#: src/constants/WalletConnectCommands.tsx:824
 msgid "Get Verifiable Credential"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:970
+#: src/constants/WalletConnectCommands.tsx:951
 msgid "Get wallet addresses for one or more wallet keys"
 msgstr ""
 
@@ -2149,7 +2164,7 @@ msgstr ""
 msgid "Government IDs"
 msgstr ""
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:474
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:454
 #: src/components/settings/SettingsHarvester.tsx:508
 msgid "GPU Device Index"
 msgstr ""
@@ -2183,7 +2198,7 @@ msgstr "Pemanen"
 msgid "Harvesting Effectiveness"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:653
+#: src/constants/WalletConnectCommands.tsx:634
 msgid "Hash"
 msgstr ""
 
@@ -2249,8 +2264,8 @@ msgstr ""
 msgid "Hide objectionable content"
 msgstr ""
 
-#: src/components/app/AppPassPrompt.tsx:161
-#: src/components/settings/RemovePassphrasePrompt.tsx:153
+#: src/components/app/AppPassPrompt.tsx:162
+#: src/components/settings/RemovePassphrasePrompt.tsx:154
 msgid "Hint"
 msgstr "Petunjuk"
 
@@ -2265,6 +2280,18 @@ msgstr "Hore, tidak ada file disini!"
 msgid "Host Name"
 msgstr "Nama Host"
 
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:87
+msgid "Hybrid disk mode 1 (RAM required: 128G)"
+msgstr ""
+
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:92
+msgid "Hybrid disk mode 2 (RAM required: 16G)"
+msgstr ""
+
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:75
+msgid "Hybrid disk mode allows computers with lower amounts of RAM to plot by offloading intermediate data to disk. If you enable hybrid disk mode, you need to specify temp folder(s). We recommend using SSDs when supporting a hybrid disk mode."
+msgstr ""
+
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:16
 msgid "I Understand, Create Offer"
 msgstr ""
@@ -2273,6 +2300,7 @@ msgstr ""
 msgid "Id"
 msgstr ""
 
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:178
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:127
 msgid "If none selected, then it will default to the temporary directory."
 msgstr "Jika tidak ada yang dipilih, maka akan default ke direktori sementara."
@@ -2337,7 +2365,7 @@ msgid "Incoming Offers"
 msgstr ""
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:17
-#: src/constants/WalletConnectCommands.tsx:984
+#: src/constants/WalletConnectCommands.tsx:965
 msgid "Index"
 msgstr "Index"
 
@@ -2371,7 +2399,7 @@ msgid "Interval (in seconds) in which directories are scanned to refresh the lis
 msgstr ""
 
 #: src/components/signVerify/VerifyMessage.tsx:169
-#: src/components/vcs/VCCard.tsx:151
+#: src/components/vcs/VCCard.tsx:172
 msgid "Invalid"
 msgstr ""
 
@@ -2383,7 +2411,7 @@ msgstr ""
 #~ msgid "Invalid metadata url"
 #~ msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:581
+#: src/components/offers/NFTOfferEditor.tsx:582
 msgid "Invalid NFT identifier"
 msgstr ""
 
@@ -2403,15 +2431,15 @@ msgstr "Alamat IP"
 msgid "IP address / host"
 msgstr "Alamat IP / host"
 
-#: src/constants/WalletConnectCommands.tsx:963
+#: src/constants/WalletConnectCommands.tsx:944
 msgid "Is notification visible to all paired fingerprints"
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:138
+#: src/components/vcs/VCCard.tsx:159
 msgid "Issued"
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:113
+#: src/components/vcs/VCCard.tsx:119
 msgid "Issuer DID"
 msgstr ""
 
@@ -2434,7 +2462,7 @@ msgstr "Gabung ke Pool"
 msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
 msgstr "Gabung ke pool untuk mendapatkan hasil XCH parming yang konsisten. Rata rata penghasilan menyerupai, tapi lebih terduga."
 
-#: src/components/plotNFT/PlotNFTAdd.tsx:63
+#: src/components/plotNFT/PlotNFTAdd.tsx:62
 msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile. Assign plots to a plot NFT. You can easily switch pools without having to re-plot."
 msgstr "Gabung ke pool untuk mendapatkan hasil XCH parming yang konsisten. Rata rata penghasilan menyerupai, tapi lebih terduga. Tunjuk plot ke plot NFT. Anda dapat dengan mudah berpindah pool tanpa harus membuat ulang plot."
 
@@ -2536,12 +2564,13 @@ msgstr "Blok Challenge Terbaru"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:256
 #: src/components/plotNFT/PlotNFTCard.tsx:292
-#: src/constants/WalletConnectCommands.tsx:850
-#: src/constants/WalletConnectCommands.tsx:862
+#: src/constants/WalletConnectCommands.tsx:831
+#: src/constants/WalletConnectCommands.tsx:843
 msgid "Launcher Id"
 msgstr "Id Peluncur"
 
 #: src/components/nfts/NFTDetails.tsx:65
+#: src/components/vcs/VCCard.tsx:132
 msgid "Launcher ID"
 msgstr ""
 
@@ -2567,11 +2596,11 @@ msgid "Legacy keyrings are no longer supported. Your keys need to be migrated to
 msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:296
-#: src/constants/WalletConnectCommands.tsx:674
+#: src/constants/WalletConnectCommands.tsx:655
 msgid "License Hash"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:669
+#: src/constants/WalletConnectCommands.tsx:650
 msgid "License Uris"
 msgstr ""
 
@@ -2678,7 +2707,7 @@ msgid "Memberships"
 msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:138
-#: src/constants/WalletConnectCommands.tsx:550
+#: src/constants/WalletConnectCommands.tsx:531
 msgid "Memos"
 msgstr ""
 
@@ -2688,7 +2717,7 @@ msgstr ""
 #: src/constants/WalletConnectCommands.tsx:183
 #: src/constants/WalletConnectCommands.tsx:206
 #: src/constants/WalletConnectCommands.tsx:226
-#: src/constants/WalletConnectCommands.tsx:945
+#: src/constants/WalletConnectCommands.tsx:926
 msgid "Message"
 msgstr ""
 
@@ -2701,11 +2730,11 @@ msgstr ""
 msgid "Message not available"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:663
+#: src/constants/WalletConnectCommands.tsx:644
 msgid "Meta Hash"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:658
+#: src/constants/WalletConnectCommands.tsx:639
 msgid "Meta Uris"
 msgstr ""
 
@@ -2725,7 +2754,7 @@ msgstr ""
 msgid "MiB Up/Down"
 msgstr "MiB Naik/Turun"
 
-#: src/components/settings/SettingsPanel.tsx:138
+#: src/components/settings/SettingsPanel.tsx:135
 msgid "Migrate Keyring"
 msgstr "Migrasi Penyimpan kunci"
 
@@ -2737,7 +2766,7 @@ msgstr "Migrasi Penyimpan kunci"
 msgid "Migration required"
 msgstr "Migrasi di wajibkan"
 
-#: src/components/settings/SettingsPanel.tsx:94
+#: src/components/settings/SettingsPanel.tsx:89
 msgid "Migration required to support passphrase protection"
 msgstr "Migrasi di wajibkan untuk mendukung perlindungan kata kunci"
 
@@ -2745,7 +2774,7 @@ msgstr "Migrasi di wajibkan untuk mendukung perlindungan kata kunci"
 msgid "Minimum Difficulty"
 msgstr "Kesulitan Minimum"
 
-#: src/constants/WalletConnectCommands.tsx:620
+#: src/constants/WalletConnectCommands.tsx:601
 msgid "Mint NFT"
 msgstr ""
 
@@ -2827,7 +2856,7 @@ msgstr ""
 msgid "My Contact Info"
 msgstr ""
 
-#: src/components/settings/ProfileView.tsx:90
+#: src/components/settings/ProfileView.tsx:95
 msgid "My DID"
 msgstr ""
 
@@ -2844,8 +2873,8 @@ msgstr ""
 #: src/components/addressbook/ContactEdit.tsx:108
 #: src/components/addressbook/ContactEdit.tsx:166
 #: src/components/addressbook/ContactEdit.tsx:366
-#: src/constants/WalletConnectCommands.tsx:567
-#: src/constants/WalletConnectCommands.tsx:792
+#: src/constants/WalletConnectCommands.tsx:548
+#: src/constants/WalletConnectCommands.tsx:773
 msgid "Name"
 msgstr ""
 
@@ -2881,15 +2910,15 @@ msgstr ""
 msgid "New offer"
 msgstr ""
 
-#: src/components/settings/ChangePassphrasePrompt.tsx:211
+#: src/components/settings/ChangePassphrasePrompt.tsx:212
 msgid "New Passphrase"
 msgstr "Kata kunci Baru"
 
-#: src/constants/WalletConnectCommands.tsx:873
+#: src/constants/WalletConnectCommands.tsx:854
 msgid "New Proof Hash"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:867
+#: src/constants/WalletConnectCommands.tsx:848
 msgid "New Puzzle Hash"
 msgstr ""
 
@@ -2918,12 +2947,12 @@ msgstr ""
 msgid "NFT Coin ID"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:717
-#: src/constants/WalletConnectCommands.tsx:814
+#: src/constants/WalletConnectCommands.tsx:698
+#: src/constants/WalletConnectCommands.tsx:795
 msgid "NFT Coin Ids"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:618
+#: src/components/offers/NFTOfferEditor.tsx:619
 msgid "NFT details not available"
 msgstr ""
 
@@ -2949,7 +2978,7 @@ msgstr ""
 msgid "NFT identifier does not reference a valid NFT coin."
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:809
+#: src/constants/WalletConnectCommands.tsx:790
 msgid "NFT Launcher Id"
 msgstr ""
 
@@ -2995,7 +3024,7 @@ msgstr ""
 msgid "NFTs that have been categorized by the creator as objectionable content will be hidden by default."
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:83
+#: src/components/vcs/VCCard.tsx:89
 msgid "No"
 msgstr "Tidak"
 
@@ -3064,7 +3093,7 @@ msgstr ""
 msgid "Node ID"
 msgstr "Nod ID"
 
-#: src/constants/WalletConnectCommands.tsx:998
+#: src/constants/WalletConnectCommands.tsx:979
 msgid "Non Observer Derivation"
 msgstr ""
 
@@ -3089,6 +3118,10 @@ msgstr ""
 #: src/components/farm/FarmLastAttemptedProof.tsx:72
 msgid "None of your plots have passed the plot filter yet."
 msgstr "Anda tidak ada plot yang telah lulus plot filter."
+
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:84
+msgid "Normal (RAM required: 256G)"
+msgstr ""
 
 #: src/components/farm/FarmHealth.tsx:117
 #: src/components/farm/FarmHealth.tsx:164
@@ -3152,7 +3185,7 @@ msgstr ""
 msgid "Notify Current Owner"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:775
+#: src/constants/WalletConnectCommands.tsx:756
 msgid "Number of Backup Ids Needed"
 msgstr ""
 
@@ -3165,7 +3198,7 @@ msgstr "Bilangan bucket"
 msgid "Number of buckets for phase 3 & 4"
 msgstr "Jumblah buckets untuk kata 3 & 4"
 
-#: src/constants/WalletConnectCommands.tsx:592
+#: src/constants/WalletConnectCommands.tsx:573
 msgid "Number of NFTs"
 msgstr ""
 
@@ -3233,7 +3266,7 @@ msgstr ""
 #: src/components/offers/OfferDataDialog.tsx:37
 #: src/constants/WalletConnectCommands.tsx:404
 #: src/constants/WalletConnectCommands.tsx:439
-#: src/constants/WalletConnectCommands.tsx:957
+#: src/constants/WalletConnectCommands.tsx:938
 msgid "Offer Data"
 msgstr ""
 
@@ -3408,7 +3441,7 @@ msgstr ""
 msgid "Owner Public Key"
 msgstr ""
 
-#: src/components/plot/add/PlotAddForm.tsx:159
+#: src/components/plot/add/PlotAddForm.tsx:161
 msgid "p2SingletonPuzzleHash is not defined"
 msgstr "p2_singleton_puzzle_hash belum ter definisi"
 
@@ -3428,7 +3461,7 @@ msgstr ""
 msgid "Parallel Decompressor Count"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:927
+#: src/constants/WalletConnectCommands.tsx:908
 msgid "Parent Coin Info"
 msgstr ""
 
@@ -3450,38 +3483,38 @@ msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:147
 #: src/components/app/AppKeyringMigrator.tsx:148
-#: src/components/app/AppPassPrompt.tsx:137
-#: src/components/settings/RemovePassphrasePrompt.tsx:129
-#: src/components/settings/SetPassphrasePrompt.tsx:174
-#: src/components/settings/SettingsPanel.tsx:182
+#: src/components/app/AppPassPrompt.tsx:138
+#: src/components/settings/RemovePassphrasePrompt.tsx:130
+#: src/components/settings/SetPassphrasePrompt.tsx:175
+#: src/components/settings/SettingsPanel.tsx:183
 msgid "Passphrase"
 msgstr "Kata kunci"
 
 #: src/components/app/AppKeyringMigrator.tsx:209
-#: src/components/settings/ChangePassphrasePrompt.tsx:266
-#: src/components/settings/SetPassphrasePrompt.tsx:233
+#: src/components/settings/ChangePassphrasePrompt.tsx:267
+#: src/components/settings/SetPassphrasePrompt.tsx:234
 msgid "Passphrase Hint"
 msgstr "Pengingat kata kunci"
 
 #: src/components/app/AppKeyringMigrator.tsx:208
-#: src/components/settings/ChangePassphrasePrompt.tsx:265
-#: src/components/settings/SetPassphrasePrompt.tsx:232
+#: src/components/settings/ChangePassphrasePrompt.tsx:266
+#: src/components/settings/SetPassphrasePrompt.tsx:233
 msgid "Passphrase Hint (Optional)"
 msgstr "Petunjuk Kata Kunci (Opsional)"
 
-#: src/components/settings/SettingsPanel.tsx:66
+#: src/components/settings/SettingsPanel.tsx:60
 msgid "Passphrase protection has been disabled"
 msgstr "Perlindungan kata kunci sudah di matikan"
 
-#: src/components/settings/SettingsPanel.tsx:103
+#: src/components/settings/SettingsPanel.tsx:98
 msgid "Passphrase protection is disabled"
 msgstr "Perlindungan kata kunci sudah di matikan"
 
-#: src/components/settings/SettingsPanel.tsx:100
+#: src/components/settings/SettingsPanel.tsx:95
 msgid "Passphrase protection is enabled"
 msgstr "Perlindungan kata kunci sudah di matikan"
 
-#: src/components/settings/SettingsPanel.tsx:95
+#: src/components/settings/SettingsPanel.tsx:90
 msgid "Passphrase support requires migrating your keys to a new keyring"
 msgstr "Dukungan kata sandi mewajibkan anda untuk migrasi ke penyimpan kunci baru"
 
@@ -3522,7 +3555,7 @@ msgstr ""
 msgid "Pending Confirm"
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:170
+#: src/components/vcs/VCCard.tsx:191
 msgid "Pending removal"
 msgstr ""
 
@@ -3535,7 +3568,7 @@ msgstr ""
 msgid "Please Confirm"
 msgstr "Silahkan Konfirmasi"
 
-#: src/components/app/AppPassPrompt.tsx:49
+#: src/components/app/AppPassPrompt.tsx:45
 #: src/components/settings/SetPassphrasePrompt.tsx:73
 msgid "Please enter a passphrase"
 msgstr "Harap masukkan kata sandi"
@@ -3548,7 +3581,7 @@ msgstr ""
 msgid "Please enter a valid numeric fee"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:587
+#: src/components/offers/NFTOfferEditor.tsx:588
 msgid "Please enter an amount"
 msgstr ""
 
@@ -3564,7 +3597,7 @@ msgstr ""
 msgid "Please enter an amount for each row"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:579
+#: src/components/offers/NFTOfferEditor.tsx:580
 msgid "Please enter an NFT identifier"
 msgstr ""
 
@@ -3573,17 +3606,17 @@ msgstr ""
 msgid "Please enter an XCH amount"
 msgstr ""
 
-#: src/components/settings/ChangePassphrasePrompt.tsx:90
+#: src/components/settings/ChangePassphrasePrompt.tsx:86
 msgid "Please enter your current passphrase, and a new passphrase"
 msgstr "Masukan kakta kunci anda yang sekarang, dan masukan kata kunci baru"
 
-#: src/components/app/AppPassPrompt.tsx:89
-#: src/components/app/AppPassPrompt.tsx:110
-#: src/components/settings/RemovePassphrasePrompt.tsx:62
+#: src/components/app/AppPassPrompt.tsx:85
+#: src/components/app/AppPassPrompt.tsx:106
+#: src/components/settings/RemovePassphrasePrompt.tsx:58
 msgid "Please enter your passphrase"
 msgstr "Harap masukkan kata sandi"
 
-#: src/components/app/AppPassPrompt.tsx:103
+#: src/components/app/AppPassPrompt.tsx:99
 msgid "Please enter your passphrase to proceed"
 msgstr "Harap masukkan kata sandi Anda untuk melanjutkan"
 
@@ -3604,7 +3637,7 @@ msgstr ""
 msgid "Please select an asset for each token"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:585
+#: src/components/offers/NFTOfferEditor.tsx:586
 msgid "Please select an asset type"
 msgstr ""
 
@@ -3625,6 +3658,8 @@ msgstr ""
 msgid "Please specify final directory"
 msgstr "Silakan tentukan direktori akhir yang sah"
 
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:113
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:117
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:68
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:72
 msgid "Please specify temporary directory"
@@ -3806,7 +3841,7 @@ msgstr "Instruksi Pembayaran Pool"
 msgid "Pool Public Key"
 msgstr "Pool Kunci Publik"
 
-#: src/components/plot/add/PlotAddForm.tsx:203
+#: src/components/plot/add/PlotAddForm.tsx:211
 msgid "Pool public key is invalid"
 msgstr ""
 
@@ -3920,7 +3955,7 @@ msgstr ""
 msgid "Proof of Space Size"
 msgstr "Ukuran Bukti Dari Ruang"
 
-#: src/components/vcs/VCCard.tsx:158
+#: src/components/vcs/VCCard.tsx:179
 msgid "Proofs"
 msgstr ""
 
@@ -3928,11 +3963,11 @@ msgstr ""
 msgid "Proofs Found"
 msgstr "Bukti Ditemukan"
 
-#: src/constants/WalletConnectCommands.tsx:915
+#: src/constants/WalletConnectCommands.tsx:896
 msgid "Proofs Hash"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:902
+#: src/constants/WalletConnectCommands.tsx:883
 msgid "Proofs Object (Key Value Pairs)"
 msgstr ""
 
@@ -3948,7 +3983,7 @@ msgstr "Versi Protokol"
 msgid "Prove or verify possession of a wallet address, NFT, or DID using a digital signature."
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:878
+#: src/constants/WalletConnectCommands.tsx:859
 msgid "Provider Inner Puzzle Hash"
 msgstr ""
 
@@ -4044,14 +4079,14 @@ msgstr ""
 msgid "Remove keys from old keyring upon successful migration"
 msgstr "Lepaskan kunci dari penyimpan kunci yang lama sesudah sukses ber migrasi"
 
-#: src/components/settings/RemovePassphrasePrompt.tsx:116
-#: src/components/settings/RemovePassphrasePrompt.tsx:171
-#: src/components/settings/SettingsPanel.tsx:149
+#: src/components/settings/RemovePassphrasePrompt.tsx:112
+#: src/components/settings/RemovePassphrasePrompt.tsx:172
+#: src/components/settings/SettingsPanel.tsx:146
 msgid "Remove Passphrase"
 msgstr "Hapus Kata Sandi"
 
-#: src/components/vcs/VCCard.tsx:188
-#: src/components/vcs/VCCard.tsx:280
+#: src/components/vcs/VCCard.tsx:209
+#: src/components/vcs/VCCard.tsx:301
 msgid "Remove Verifiable Credential"
 msgstr ""
 
@@ -4081,15 +4116,19 @@ msgstr ""
 msgid "Requests a complete listing of the wallets associated with the current wallet key"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:578
+#: src/constants/WalletConnectCommands.tsx:559
 msgid "Requests a full or paginated listing of NFTs associated with one or more wallets associated with the current wallet key"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:988
+msgid "Requests a master public key from your wallet"
 msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:256
 msgid "Requests a new receive address associated with the current wallet key"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:607
+#: src/constants/WalletConnectCommands.tsx:588
 msgid "Requests details for a specific NFT"
 msgstr ""
 
@@ -4105,7 +4144,7 @@ msgstr ""
 msgid "Requests the asset balances for specific wallets associated with the current wallet key"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:509
+#: src/constants/WalletConnectCommands.tsx:490
 msgid "Requests the CAT asset ID for a specific CAT wallet"
 msgstr ""
 
@@ -4117,7 +4156,7 @@ msgstr ""
 msgid "Requests the details for a specific offer"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:737
+#: src/constants/WalletConnectCommands.tsx:718
 msgid "Requests the number of NFTs associated with one or more wallets associated with the current wallet key"
 msgstr ""
 
@@ -4191,7 +4230,7 @@ msgstr ""
 msgid "Resyncing forces reloading data from the blockchain about your transactions without losing other locally stored information like open, accepted, or cancelled offer files. Resyncing will require you to restart the app."
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:889
+#: src/constants/WalletConnectCommands.tsx:870
 msgid "Reuse Puzzle Hash"
 msgstr ""
 
@@ -4199,13 +4238,13 @@ msgstr ""
 msgid "Reverse"
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:188
-#: src/components/vcs/VCCard.tsx:290
-#: src/constants/WalletConnectCommands.tsx:921
+#: src/components/vcs/VCCard.tsx:209
+#: src/components/vcs/VCCard.tsx:311
+#: src/constants/WalletConnectCommands.tsx:902
 msgid "Revoke Verifiable Credential"
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:147
+#: src/components/vcs/VCCard.tsx:168
 msgid "Revoked"
 msgstr ""
 
@@ -4213,12 +4252,12 @@ msgstr ""
 msgid "Royalties are built into the NFT, so they will automatically be accounted for when the offer is created/accepted."
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:630
+#: src/constants/WalletConnectCommands.tsx:611
 msgid "Royalty Address"
 msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:160
-#: src/constants/WalletConnectCommands.tsx:636
+#: src/constants/WalletConnectCommands.tsx:617
 msgid "Royalty Percentage"
 msgstr ""
 
@@ -4242,8 +4281,8 @@ msgid "Save Offer File"
 msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:226
-#: src/components/settings/ChangePassphrasePrompt.tsx:274
-#: src/components/settings/SetPassphrasePrompt.tsx:242
+#: src/components/settings/ChangePassphrasePrompt.tsx:275
+#: src/components/settings/SetPassphrasePrompt.tsx:243
 msgid "Save passphrase"
 msgstr "Simpan Kata sandi"
 
@@ -4265,6 +4304,7 @@ msgstr ""
 msgid "Search..."
 msgstr ""
 
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:159
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:108
 msgid "Second temporary folder location"
 msgstr "Folder sementara dua"
@@ -4273,7 +4313,7 @@ msgstr "Folder sementara dua"
 msgid "Secure"
 msgstr ""
 
-#: src/components/settings/SettingsPanel.tsx:97
+#: src/components/settings/SettingsPanel.tsx:92
 msgid "Secure your keychain using a strong passphrase"
 msgstr "Amankan penyimpanan kunci anda dengan menggunakan kata sandi yang kuat"
 
@@ -4281,6 +4321,7 @@ msgstr "Amankan penyimpanan kunci anda dengan menggunakan kata sandi yang kuat"
 msgid "See All Activity"
 msgstr ""
 
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:153
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:102
 msgid "Select 2nd Temporary Directory"
 msgstr "Pilih Direktori Sementara kedua"
@@ -4300,6 +4341,10 @@ msgstr ""
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:40
 msgid "Select Final Directory"
 msgstr "Pilih Direktori Akhir"
+
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:73
+msgid "Select Hybrid disk mode"
+msgstr ""
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:154
 msgid "Select Keys"
@@ -4347,6 +4392,8 @@ msgstr "Pilih Plot NFT anda"
 #~ msgstr "PIlih Plot NFT dari menu atau buat yang baru."
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:80
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:129
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:174
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:78
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:123
 msgid "Selected"
@@ -4391,17 +4438,17 @@ msgstr ""
 msgid "Set a default time frame for all outbound XCH transactions."
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:782
+#: src/constants/WalletConnectCommands.tsx:763
 msgid "Set DID Name"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:799
+#: src/constants/WalletConnectCommands.tsx:780
 msgid "Set NFT DID"
 msgstr ""
 
-#: src/components/settings/SetPassphrasePrompt.tsx:160
-#: src/components/settings/SetPassphrasePrompt.tsx:270
-#: src/components/settings/SettingsPanel.tsx:155
+#: src/components/settings/SetPassphrasePrompt.tsx:156
+#: src/components/settings/SetPassphrasePrompt.tsx:271
+#: src/components/settings/SettingsPanel.tsx:152
 msgid "Set Passphrase"
 msgstr "Kata sandi baru"
 
@@ -4463,7 +4510,7 @@ msgstr ""
 msgid "Show Details"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:934
+#: src/constants/WalletConnectCommands.tsx:915
 msgid "Show notification with offer or general announcement"
 msgstr ""
 
@@ -4603,11 +4650,11 @@ msgstr ""
 #~ msgid "Speech"
 #~ msgstr "Pertuturan"
 
-#: src/constants/WalletConnectCommands.tsx:522
+#: src/constants/WalletConnectCommands.tsx:503
 msgid "Spend CAT"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:883
+#: src/constants/WalletConnectCommands.tsx:864
 msgid "Spend Fee"
 msgstr ""
 
@@ -4627,7 +4674,7 @@ msgstr ""
 msgid "Stale Partials"
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:155
+#: src/components/vcs/VCCard.tsx:176
 msgid "Standard Version Number"
 msgstr ""
 
@@ -4635,7 +4682,7 @@ msgstr ""
 msgid "Start"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:598
+#: src/constants/WalletConnectCommands.tsx:579
 msgid "Start Index"
 msgstr ""
 
@@ -4662,7 +4709,7 @@ msgstr "Keadaan"
 #: src/components/plot/PlotPlotting.tsx:26
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:102
 #: src/components/plotNFT/PlotNFTCard.tsx:130
-#: src/components/vcs/VCCard.tsx:143
+#: src/components/vcs/VCCard.tsx:164
 msgid "Status"
 msgstr "Status"
 
@@ -4670,12 +4717,12 @@ msgstr "Status"
 msgid "Store and Send XCH"
 msgstr "Simpan dan Kirim XCH"
 
-#: src/components/app/AppPassPrompt.tsx:111
+#: src/components/app/AppPassPrompt.tsx:107
 msgid "Submit"
 msgstr "Kirim"
 
 #: src/components/notification/NotificationSendDialog.tsx:143
-#: src/components/vcs/VCCard.tsx:257
+#: src/components/vcs/VCCard.tsx:278
 #: src/hooks/useAcceptOfferHook.tsx:98
 msgid "Success"
 msgstr ""
@@ -4715,8 +4762,8 @@ msgstr "Sinkronisasi <0/>/<1/>"
 msgid "Take Offer"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:642
-#: src/constants/WalletConnectCommands.tsx:722
+#: src/constants/WalletConnectCommands.tsx:623
+#: src/constants/WalletConnectCommands.tsx:703
 msgid "Target Address"
 msgstr ""
 
@@ -4724,6 +4771,11 @@ msgstr ""
 msgid "Target Puzzle Hash"
 msgstr "Teka-teki Hash Target"
 
+#: src/components/plot/add/PlotAddForm.tsx:174
+msgid "Temp folder location is required for hybrid disk plotting with 16/128G RAM"
+msgstr ""
+
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:104
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:59
 msgid "Temporary folder location"
 msgstr "Folder sementara untuk kompilasi"
@@ -4744,10 +4796,12 @@ msgstr ""
 msgid "The claw back time can be manually adjusted per transaction."
 msgstr ""
 
-#: src/components/settings/SettingsPanel.tsx:167
+#: src/components/settings/SettingsPanel.tsx:168
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
 msgstr ""
 
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:138
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:187
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:87
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:136
 msgid "The folder is on a RAM Disk"
@@ -4879,7 +4933,7 @@ msgstr "Plot - plot ini tidak valid, anda sebaiknya menghapus semuanya."
 msgid "They will receive"
 msgstr ""
 
-#: src/components/plot/PlotAddDirectoryDialog.tsx:87
+#: src/components/plot/PlotAddDirectoryDialog.tsx:83
 msgid "This allows you to add a directory that has plots in it. If you have not created any plots, go to the plotting screen."
 msgstr "Anda dapat menambah direktori yang berisikan plot. Apa bila belum membuat plot, silahkan ke halaman pembuatan plot."
 
@@ -4998,7 +5052,7 @@ msgstr ""
 msgid "To initiate a wallet resync, all Chia services must first be shut down. After shutting down, you will be required to restart Chia to begin the resyncing process. Are you sure you want to shut down and resync?"
 msgstr ""
 
-#: src/components/settings/ProfileView.tsx:127
+#: src/components/settings/ProfileView.tsx:132
 msgid "Token Standard"
 msgstr ""
 
@@ -5142,7 +5196,7 @@ msgstr ""
 msgid "Transaction protection"
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:245
+#: src/components/vcs/VCCard.tsx:266
 msgid "Transaction sent to blockchain successfully."
 msgstr ""
 
@@ -5165,7 +5219,7 @@ msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:197
 #: src/components/nfts/NFTTransferAction.tsx:217
-#: src/constants/WalletConnectCommands.tsx:707
+#: src/constants/WalletConnectCommands.tsx:688
 msgid "Transfer NFT"
 msgstr ""
 
@@ -5197,8 +5251,8 @@ msgstr ""
 msgid "Turn this off if you don't have any compressed plots to harvest"
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:142
-#: src/constants/WalletConnectCommands.tsx:940
+#: src/components/vcs/VCCard.tsx:163
+#: src/constants/WalletConnectCommands.tsx:921
 msgid "Type"
 msgstr ""
 
@@ -5210,11 +5264,11 @@ msgstr ""
 msgid "Types{0}"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:634
+#: src/components/offers/NFTOfferEditor.tsx:635
 msgid "Unable to create an offer for an NFT that you do not own."
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:643
+#: src/components/offers/NFTOfferEditor.tsx:644
 msgid "Unable to create an offer for an NFT with a creator royalty percentage greater than 100%"
 msgstr ""
 
@@ -5288,7 +5342,7 @@ msgstr ""
 msgid "Unknown Dapp"
 msgstr ""
 
-#: src/components/app/AppPassPrompt.tsx:93
+#: src/components/app/AppPassPrompt.tsx:89
 msgid "Unlock Keyring"
 msgstr "Buka Penyimpan kunci"
 
@@ -5312,12 +5366,12 @@ msgstr ""
 msgid "Update Pending"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:648
+#: src/constants/WalletConnectCommands.tsx:629
 msgid "Uris"
 msgstr ""
 
 #: src/components/notification/NotificationAnnouncementDialog.tsx:62
-#: src/constants/WalletConnectCommands.tsx:951
+#: src/constants/WalletConnectCommands.tsx:932
 #: src/hooks/useOpenUnsafeLink.tsx:43
 msgid "URL"
 msgstr ""
@@ -5339,7 +5393,7 @@ msgstr ""
 #~ msgstr "Biaya Transaksi Pengguna"
 
 #: src/components/signVerify/VerifyMessage.tsx:165
-#: src/components/vcs/VCCard.tsx:149
+#: src/components/vcs/VCCard.tsx:170
 msgid "Valid"
 msgstr ""
 
@@ -5363,7 +5417,7 @@ msgstr ""
 msgid "VDF Sub Slot Iterations"
 msgstr "Iterasi VDF Sub Slot"
 
-#: src/components/vcs/VCCard.tsx:50
+#: src/components/vcs/VCCard.tsx:56
 msgid "Verifiable Credential"
 msgstr ""
 
@@ -5371,15 +5425,15 @@ msgstr ""
 msgid "Verifiable Credential already exists."
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:244
+#: src/components/vcs/VCCard.tsx:265
 msgid "Verifiable Credential Removed"
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:259
+#: src/components/vcs/VCCard.tsx:280
 msgid "Verifiable Credential Removed."
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:261
+#: src/components/vcs/VCCard.tsx:282
 msgid "Verifiable Credential Revoked."
 msgstr ""
 
@@ -5430,7 +5484,7 @@ msgstr "Lihat"
 msgid "View an Offer"
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:177
+#: src/components/vcs/VCCard.tsx:198
 msgid "View Credential Data"
 msgstr ""
 
@@ -5530,12 +5584,12 @@ msgstr ""
 #: src/constants/WalletConnectCommands.tsx:64
 #: src/constants/WalletConnectCommands.tsx:98
 #: src/constants/WalletConnectCommands.tsx:262
-#: src/constants/WalletConnectCommands.tsx:515
-#: src/constants/WalletConnectCommands.tsx:528
-#: src/constants/WalletConnectCommands.tsx:625
-#: src/constants/WalletConnectCommands.tsx:712
-#: src/constants/WalletConnectCommands.tsx:788
-#: src/constants/WalletConnectCommands.tsx:805
+#: src/constants/WalletConnectCommands.tsx:496
+#: src/constants/WalletConnectCommands.tsx:509
+#: src/constants/WalletConnectCommands.tsx:606
+#: src/constants/WalletConnectCommands.tsx:693
+#: src/constants/WalletConnectCommands.tsx:769
+#: src/constants/WalletConnectCommands.tsx:786
 msgid "Wallet Id"
 msgstr ""
 
@@ -5544,8 +5598,8 @@ msgid "Wallet ID"
 msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:81
-#: src/constants/WalletConnectCommands.tsx:588
-#: src/constants/WalletConnectCommands.tsx:746
+#: src/constants/WalletConnectCommands.tsx:569
+#: src/constants/WalletConnectCommands.tsx:727
 msgid "Wallet Ids"
 msgstr ""
 
@@ -5581,7 +5635,7 @@ msgstr ""
 msgid "Want to have a delay before the next plot starts?"
 msgstr "Anda hendak lebih masa sebelum plot seterusnya mula?"
 
-#: src/components/plotNFT/PlotNFTAdd.tsx:61
+#: src/components/plotNFT/PlotNFTAdd.tsx:60
 msgid "Want to Join a Pool? Create a Plot NFT"
 msgstr "Mau bergabung ke Pool? Buat sebuah Plot NFT"
 
@@ -5627,7 +5681,7 @@ msgstr ""
 msgid "When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or cancelled, resulting in your spendable balance changing."
 msgstr ""
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:475
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:455
 msgid "Which CUDA device to use when plotting"
 msgstr ""
 
@@ -5661,7 +5715,7 @@ msgstr ""
 
 #: src/components/offers2/OfferIncomingTable.tsx:211
 #: src/components/plot/add/PlotAddChooseSize.tsx:58
-#: src/components/vcs/VCCard.tsx:83
+#: src/components/vcs/VCCard.tsx:89
 msgid "Yes"
 msgstr "Ya"
 
@@ -5784,7 +5838,7 @@ msgstr "Koneksi Full Node Anda"
 msgid "Your Harvester Network"
 msgstr "Jaringan Harvester Anda"
 
-#: src/components/app/AppPassPrompt.tsx:86
+#: src/components/app/AppPassPrompt.tsx:82
 msgid "Your keyring is locked"
 msgstr "Penyimpan kunci anda terkunci"
 
@@ -5793,16 +5847,16 @@ msgstr "Penyimpan kunci anda terkunci"
 #~ msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:230
-#: src/components/settings/ChangePassphrasePrompt.tsx:278
-#: src/components/settings/SetPassphrasePrompt.tsx:247
+#: src/components/settings/ChangePassphrasePrompt.tsx:279
+#: src/components/settings/SetPassphrasePrompt.tsx:248
 msgid "Your passphrase can be stored in your system's secure credential store. Chia will be able to access your keys without prompting for your passphrase."
 msgstr "Kata kunci anda disimpan di penyimpanan kredensial system anda yang aman. Chia akan bisa meng akses kunci anda tanpa meminta anda untuk memasukan kata kunci."
 
-#: src/components/settings/SettingsPanel.tsx:57
+#: src/components/settings/SettingsPanel.tsx:51
 msgid "Your passphrase has been set"
 msgstr "Kata kunci anda telah ditetapkan"
 
-#: src/components/settings/SettingsPanel.tsx:48
+#: src/components/settings/SettingsPanel.tsx:42
 msgid "Your passphrase has been updated"
 msgstr "Kata kunci anda telah diperbaharui"
 

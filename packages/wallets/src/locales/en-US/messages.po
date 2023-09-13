@@ -82,11 +82,11 @@ msgstr "Amount"
 msgid "Approve"
 msgstr "Approve"
 
-#: src/components/CrCatApprovePendingDialog.tsx:91
+#: src/components/crCat/CrCatApprovePendingDialog.tsx:91
 msgid "Approve pending CR-CAT transactions"
 msgstr "Approve pending CR-CAT transactions"
 
-#: src/components/CrCatApprovePendingDialog.tsx:147
+#: src/components/crCat/CrCatApprovePendingDialog.tsx:147
 msgid "Approve pending transactions"
 msgstr "Approve pending transactions"
 
@@ -112,7 +112,7 @@ msgstr "Atomic Swap Wallet"
 msgid "Authorized Payee Wallet"
 msgstr "Authorized Payee Wallet"
 
-#: src/components/card/WalletCardCRCatRestrictions.tsx:121
+#: src/components/card/WalletCardCRCatRestrictions.tsx:44
 msgid "Authorized providers"
 msgstr "Authorized providers"
 
@@ -138,7 +138,7 @@ msgstr "Cancel"
 msgid "Cannot send chia to coloured address. Please enter a chia address."
 msgstr "Cannot send chia to coloured address. Please enter a chia address."
 
-#: src/components/card/WalletCardCRCatRestrictions.tsx:92
+#: src/components/card/WalletCardCRCatRestrictions.tsx:40
 msgid "CAT credential restrictions"
 msgstr "CAT credential restrictions"
 
@@ -164,6 +164,10 @@ msgstr "Claim Transaction"
 #: src/components/WalletHistoryClawbackChip.tsx:83
 msgid "Claiming..."
 msgstr "Claiming..."
+
+#: src/components/WalletIcon.tsx:17
+msgid "Classic version of Stably USDS as held by Prime Trust"
+msgstr "Classic version of Stably USDS as held by Prime Trust"
 
 #: src/components/WalletHistory.tsx:433
 msgid "Claw back expiration"
@@ -207,7 +211,7 @@ msgstr "Clawing back..."
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:158
 #: src/components/ClawbackClaimTransactionDialog.tsx:249
-#: src/components/CrCatApprovePendingDialog.tsx:136
+#: src/components/crCat/CrCatApprovePendingDialog.tsx:136
 msgid "Close"
 msgstr "Close"
 
@@ -444,7 +448,7 @@ msgstr "Paste Mnemonic"
 msgid "Paste Mnemonic ({0} words)"
 msgstr ""
 
-#: src/components/CrCatApprovePendingDialog.tsx:82
+#: src/components/crCat/CrCatApprovePendingDialog.tsx:82
 msgid "Payments approved"
 msgstr "Payments approved"
 
@@ -472,11 +476,11 @@ msgstr "Pending claw back transactions"
 msgid "Pending Total Balance"
 msgstr "Pending Total Balance"
 
-#: src/components/CrCatApprovePendingDialog.tsx:83
+#: src/components/crCat/CrCatApprovePendingDialog.tsx:83
 msgid "Please allow some time for the payments to reflect in the blockchain."
 msgstr "Please allow some time for the payments to reflect in the blockchain."
 
-#: src/components/CrCatApprovePendingDialog.tsx:120
+#: src/components/crCat/CrCatApprovePendingDialog.tsx:120
 msgid "Please enter a transaction fee to approve the above amount:"
 msgstr "Please enter a transaction fee to approve the above amount:"
 
@@ -528,11 +532,11 @@ msgstr "Pooling Wallet"
 msgid "Port"
 msgstr "Port"
 
-#: src/components/card/WalletCardCRCatRestrictions.tsx:135
+#: src/components/crCat/CrCatAuthorizedProviders.tsx:37
 msgid "Provider's ID"
 msgstr "Provider's ID"
 
-#: src/components/card/WalletCardCRCatRestrictions.tsx:149
+#: src/components/crCat/CrCatAuthorizedProviders.tsx:51
 msgid "Provider's website"
 msgstr "Provider's website"
 
@@ -569,7 +573,7 @@ msgstr "Recovery Wallet"
 msgid "Rename Wallet"
 msgstr "Rename Wallet"
 
-#: src/components/WalletIcon.tsx:35
+#: src/components/WalletIcon.tsx:41
 msgid "Restricted CAT"
 msgstr "Restricted CAT"
 
@@ -734,7 +738,7 @@ msgstr "Wallet does not exist"
 msgid "Wallet Name"
 msgstr ""
 
-#: src/components/CrCatApprovePendingDialog.tsx:115
+#: src/components/crCat/CrCatApprovePendingDialog.tsx:115
 msgid "Wallet needs to be synced before approving transactions"
 msgstr "Wallet needs to be synced before approving transactions"
 
@@ -766,11 +770,11 @@ msgstr "Will be autoclaimed in "
 msgid "You can change the Clawback Auto Claim fee in Settings."
 msgstr "You can change the Clawback Auto Claim fee in Settings."
 
-#: src/components/card/WalletCardCRCatRestrictions.tsx:105
+#: src/components/crCat/CrCatFlags.tsx:71
 msgid "You do not have this verifiable credential or it is not from the correct authorized provided"
 msgstr "You do not have this verifiable credential or it is not from the correct authorized provided"
 
-#: src/components/card/WalletCardCRCatRestrictions.tsx:103
+#: src/components/crCat/CrCatFlags.tsx:69
 msgid "You have this verifiable credential from the correct authorized provider"
 msgstr "You have this verifiable credential from the correct authorized provider"
 

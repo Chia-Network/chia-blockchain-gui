@@ -54,13 +54,13 @@ msgstr "Beløb"
 msgid "Appearance"
 msgstr ""
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:144
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:158
 msgid "Are you sure you want to continue? Type in the fingerprint of this wallet key to confirm deletion."
 msgstr ""
 
 #: src/components/FormBackButton/FormBackButton.tsx:15
 #: src/screens/SelectKey/SelectKey.tsx:129
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:156
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:170
 msgid "Back"
 msgstr "Tilbage"
 
@@ -126,7 +126,7 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKey.tsx:128
 #: src/screens/SelectKey/SelectKeyItem.tsx:114
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:166
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:180
 msgid "Delete"
 msgstr "Slet"
 
@@ -138,7 +138,7 @@ msgstr "Slet alle nøgler"
 msgid "Delete All Keys"
 msgstr ""
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:96
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:110
 msgid "Delete key {fingerprint}"
 msgstr "Slet nøgle {fingerprint}"
 
@@ -202,7 +202,7 @@ msgstr "Farmer"
 msgid "Fee"
 msgstr "Gebyr"
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:80
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:95
 msgid "Fingerprint does not match"
 msgstr ""
 
@@ -468,19 +468,19 @@ msgstr ""
 msgid "The provided passphrase and confirmation do not match"
 msgstr ""
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:126
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:140
 msgid "This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
 msgstr ""
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:108
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:122
 msgid "This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
 msgstr ""
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:117
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:131
 msgid "This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
 msgstr ""
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:138
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:152
 msgid "This will permanently remove the key from your computer, make sure you have your mnemonic phrase backed up."
 msgstr ""
 
@@ -535,7 +535,7 @@ msgstr ""
 msgid "Wallet {0}"
 msgstr ""
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:149
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:163
 msgid "Wallet Fingerprint"
 msgstr ""
 
@@ -568,4 +568,3 @@ msgstr ""
 #: src/hooks/useKeyringMigrationPrompt.tsx:21
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr ""
-

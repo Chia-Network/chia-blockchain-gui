@@ -82,11 +82,11 @@ msgstr "Quantidade"
 msgid "Approve"
 msgstr ""
 
-#: src/components/CrCatApprovePendingDialog.tsx:91
+#: src/components/crCat/CrCatApprovePendingDialog.tsx:91
 msgid "Approve pending CR-CAT transactions"
 msgstr ""
 
-#: src/components/CrCatApprovePendingDialog.tsx:147
+#: src/components/crCat/CrCatApprovePendingDialog.tsx:147
 msgid "Approve pending transactions"
 msgstr ""
 
@@ -112,7 +112,7 @@ msgstr ""
 msgid "Authorized Payee Wallet"
 msgstr ""
 
-#: src/components/card/WalletCardCRCatRestrictions.tsx:121
+#: src/components/card/WalletCardCRCatRestrictions.tsx:44
 msgid "Authorized providers"
 msgstr ""
 
@@ -138,7 +138,7 @@ msgstr "Cancelar"
 msgid "Cannot send chia to coloured address. Please enter a chia address."
 msgstr ""
 
-#: src/components/card/WalletCardCRCatRestrictions.tsx:92
+#: src/components/card/WalletCardCRCatRestrictions.tsx:40
 msgid "CAT credential restrictions"
 msgstr ""
 
@@ -163,6 +163,10 @@ msgstr ""
 
 #: src/components/WalletHistoryClawbackChip.tsx:83
 msgid "Claiming..."
+msgstr ""
+
+#: src/components/WalletIcon.tsx:17
+msgid "Classic version of Stably USDS as held by Prime Trust"
 msgstr ""
 
 #: src/components/WalletHistory.tsx:433
@@ -207,7 +211,7 @@ msgstr ""
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:158
 #: src/components/ClawbackClaimTransactionDialog.tsx:249
-#: src/components/CrCatApprovePendingDialog.tsx:136
+#: src/components/crCat/CrCatApprovePendingDialog.tsx:136
 msgid "Close"
 msgstr ""
 
@@ -444,7 +448,7 @@ msgstr ""
 msgid "Paste Mnemonic ({0} words)"
 msgstr ""
 
-#: src/components/CrCatApprovePendingDialog.tsx:82
+#: src/components/crCat/CrCatApprovePendingDialog.tsx:82
 msgid "Payments approved"
 msgstr ""
 
@@ -472,11 +476,11 @@ msgstr ""
 msgid "Pending Total Balance"
 msgstr "Saldo Total Pendente"
 
-#: src/components/CrCatApprovePendingDialog.tsx:83
+#: src/components/crCat/CrCatApprovePendingDialog.tsx:83
 msgid "Please allow some time for the payments to reflect in the blockchain."
 msgstr ""
 
-#: src/components/CrCatApprovePendingDialog.tsx:120
+#: src/components/crCat/CrCatApprovePendingDialog.tsx:120
 msgid "Please enter a transaction fee to approve the above amount:"
 msgstr ""
 
@@ -528,11 +532,11 @@ msgstr ""
 msgid "Port"
 msgstr "Porta"
 
-#: src/components/card/WalletCardCRCatRestrictions.tsx:135
+#: src/components/crCat/CrCatAuthorizedProviders.tsx:37
 msgid "Provider's ID"
 msgstr ""
 
-#: src/components/card/WalletCardCRCatRestrictions.tsx:149
+#: src/components/crCat/CrCatAuthorizedProviders.tsx:51
 msgid "Provider's website"
 msgstr ""
 
@@ -569,7 +573,7 @@ msgstr ""
 msgid "Rename Wallet"
 msgstr ""
 
-#: src/components/WalletIcon.tsx:35
+#: src/components/WalletIcon.tsx:41
 msgid "Restricted CAT"
 msgstr ""
 
@@ -734,7 +738,7 @@ msgstr "Carteira não existe"
 msgid "Wallet Name"
 msgstr ""
 
-#: src/components/CrCatApprovePendingDialog.tsx:115
+#: src/components/crCat/CrCatApprovePendingDialog.tsx:115
 msgid "Wallet needs to be synced before approving transactions"
 msgstr ""
 
@@ -766,11 +770,11 @@ msgstr ""
 msgid "You can change the Clawback Auto Claim fee in Settings."
 msgstr ""
 
-#: src/components/card/WalletCardCRCatRestrictions.tsx:105
+#: src/components/crCat/CrCatFlags.tsx:71
 msgid "You do not have this verifiable credential or it is not from the correct authorized provided"
 msgstr ""
 
-#: src/components/card/WalletCardCRCatRestrictions.tsx:103
+#: src/components/crCat/CrCatFlags.tsx:69
 msgid "You have this verifiable credential from the correct authorized provider"
 msgstr ""
 

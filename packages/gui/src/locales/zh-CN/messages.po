@@ -362,23 +362,23 @@ msgstr ""
 msgid "Add {currencyCode} from the Faucet"
 msgstr "从水龙头获取 {currencyCode}"
 
-#: src/components/plot/PlotAddDirectoryDialog.tsx:83
+#: src/components/plot/PlotAddDirectoryDialog.tsx:79
 msgid "Add a plot"
 msgstr "开垦农田"
 
 #: src/components/farm/FarmHero.tsx:37
-#: src/components/plot/add/PlotAddForm.tsx:231
+#: src/components/plot/add/PlotAddForm.tsx:239
 #: src/components/plot/overview/PlotOverviewHero.tsx:43
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:200
 #: src/components/plotNFT/PlotNFTCard.tsx:233
 msgid "Add a Plot"
 msgstr "开垦农田"
 
-#: src/components/plotNFT/PlotNFTAdd.tsx:54
+#: src/components/plotNFT/PlotNFTAdd.tsx:50
 msgid "Add a Plot NFT"
 msgstr "开垦农田NTF"
 
-#: src/constants/WalletConnectCommands.tsx:557
+#: src/constants/WalletConnectCommands.tsx:538
 msgid "Add CAT Token"
 msgstr ""
 
@@ -406,11 +406,11 @@ msgstr "添加农田文件夹"
 msgid "Add Plot to Queue"
 msgstr "将农田开垦任务加入队列"
 
-#: src/constants/WalletConnectCommands.tsx:896
+#: src/constants/WalletConnectCommands.tsx:877
 msgid "Add Proofs"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:856
+#: src/constants/WalletConnectCommands.tsx:837
 msgid "Add Proofs To Verifiable Credential"
 msgstr ""
 
@@ -425,7 +425,7 @@ msgstr ""
 #: src/constants/WalletConnectCommands.tsx:126
 #: src/constants/WalletConnectCommands.tsx:201
 #: src/constants/WalletConnectCommands.tsx:241
-#: src/constants/WalletConnectCommands.tsx:533
+#: src/constants/WalletConnectCommands.tsx:514
 msgid "Address"
 msgstr ""
 
@@ -488,9 +488,8 @@ msgstr ""
 #: src/components/offers2/OfferBuilderNFTRoyalties.tsx:121
 #: src/components/offers2/OfferBuilderWalletAmount.tsx:36
 #: src/constants/WalletConnectCommands.tsx:114
-#: src/constants/WalletConnectCommands.tsx:481
-#: src/constants/WalletConnectCommands.tsx:538
-#: src/constants/WalletConnectCommands.tsx:759
+#: src/constants/WalletConnectCommands.tsx:519
+#: src/constants/WalletConnectCommands.tsx:740
 msgid "Amount"
 msgstr "数量"
 
@@ -498,7 +497,7 @@ msgstr "数量"
 msgid "Amount before adding royalties"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:592
+#: src/components/offers/NFTOfferEditor.tsx:593
 #: src/components/offers/OfferEditor.tsx:109
 msgid "Amount exceeds spendable balance"
 msgstr "金额超过可支出余额"
@@ -578,11 +577,11 @@ msgstr ""
 #~ msgid "Are you sure you want to quit?"
 #~ msgstr "您确定要退出吗？"
 
-#: src/components/vcs/VCCard.tsx:192
+#: src/components/vcs/VCCard.tsx:213
 msgid "Are you sure you want to remove"
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:194
+#: src/components/vcs/VCCard.tsx:215
 msgid "Are you sure you want to revoke"
 msgstr ""
 
@@ -598,14 +597,14 @@ msgstr ""
 msgid "Asset"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:501
-#: src/constants/WalletConnectCommands.tsx:562
+#: src/constants/WalletConnectCommands.tsx:482
+#: src/constants/WalletConnectCommands.tsx:543
 msgid "Asset Id"
 msgstr ""
 
 #: src/components/offers/NFTOfferTokenSelector.tsx:92
 #: src/components/offers/OfferAssetSelector.tsx:139
-#: src/components/offers2/OfferBuilderToken.tsx:52
+#: src/components/offers2/OfferBuilderToken.tsx:51
 #: src/components/offers2/OfferBuilderTokenSelector.tsx:74
 msgid "Asset Type"
 msgstr "资产类型"
@@ -638,6 +637,10 @@ msgstr ""
 msgid "Attempt {attempt}"
 msgstr "尝试 {attempt}"
 
+#: src/components/offers2/OfferBuilderToken.tsx:63
+msgid "Authorized providers"
+msgstr ""
+
 #: src/components/settings/SettingsCustody.tsx:61
 msgid "Auto claim incoming claw back transactions"
 msgstr ""
@@ -662,7 +665,7 @@ msgstr ""
 msgid "Back"
 msgstr "后退"
 
-#: src/constants/WalletConnectCommands.tsx:771
+#: src/constants/WalletConnectCommands.tsx:752
 msgid "Backup DIDs"
 msgstr ""
 
@@ -729,6 +732,8 @@ msgid "Blocks won"
 msgstr ""
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:80
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:129
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:174
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:78
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:123
 msgid "Browse"
@@ -767,7 +772,7 @@ msgstr ""
 #: src/components/addressbook/ContactAdd.tsx:286
 #: src/components/addressbook/ContactEdit.tsx:300
 #: src/components/addressbook/ContactSummary.tsx:43
-#: src/components/app/AppPassPrompt.tsx:183
+#: src/components/app/AppPassPrompt.tsx:184
 #: src/components/farm/FarmManageFarmingRewards.tsx:163
 #: src/components/fullNode/FullNodeAddConnection.tsx:100
 #: src/components/nfts/MultipleDownloadDialog.tsx:120
@@ -783,10 +788,10 @@ msgstr ""
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:110
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:78
 #: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:34
-#: src/components/settings/ChangePassphrasePrompt.tsx:286
-#: src/components/settings/RemovePassphrasePrompt.tsx:168
+#: src/components/settings/ChangePassphrasePrompt.tsx:287
+#: src/components/settings/RemovePassphrasePrompt.tsx:169
 #: src/components/settings/ResyncPrompt.tsx:49
-#: src/components/settings/SetPassphrasePrompt.tsx:261
+#: src/components/settings/SetPassphrasePrompt.tsx:262
 #: src/components/signVerify/SignMessage.tsx:205
 #: src/components/signVerify/VerifyMessage.tsx:271
 #: src/components/vcs/VCEditTitle.tsx:76
@@ -818,6 +823,10 @@ msgstr "已取消"
 msgid "Cannot offer and request the same asset"
 msgstr ""
 
+#: src/components/offers2/OfferBuilderToken.tsx:59
+msgid "CAT credential restrictions"
+msgstr ""
+
 #: src/components/farm/FarmLastAttemptedProof.tsx:15
 msgid "Challenge"
 msgstr "挑战"
@@ -831,8 +840,8 @@ msgstr "挑战哈希"
 msgid "Change"
 msgstr "变更"
 
-#: src/components/settings/ChangePassphrasePrompt.tsx:289
-#: src/components/settings/SettingsPanel.tsx:123
+#: src/components/settings/ChangePassphrasePrompt.tsx:290
+#: src/components/settings/SettingsPanel.tsx:119
 msgid "Change Passphrase"
 msgstr "修改私钥密码"
 
@@ -963,11 +972,11 @@ msgstr "关闭"
 msgid "Closing down services"
 msgstr "关闭服务"
 
-#: src/constants/WalletConnectCommands.tsx:613
+#: src/constants/WalletConnectCommands.tsx:594
 msgid "Coin Id"
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:126
+#: src/components/vcs/VCCard.tsx:147
 msgid "Coin ID"
 msgstr ""
 
@@ -1006,7 +1015,7 @@ msgstr "确认断开连接"
 msgid "Confirm Move"
 msgstr "确认移动"
 
-#: src/components/settings/ChangePassphrasePrompt.tsx:238
+#: src/components/settings/ChangePassphrasePrompt.tsx:239
 msgid "Confirm New Passphrase"
 msgstr "确认新私钥密码"
 
@@ -1016,7 +1025,7 @@ msgstr "确认 NFT 转让"
 
 #: src/components/app/AppKeyringMigrator.tsx:178
 #: src/components/app/AppKeyringMigrator.tsx:179
-#: src/components/settings/SetPassphrasePrompt.tsx:203
+#: src/components/settings/SetPassphrasePrompt.tsx:204
 msgid "Confirm Passphrase"
 msgstr "确认私钥密码"
 
@@ -1131,7 +1140,7 @@ msgstr ""
 msgid "Could not parse offer data"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:991
+#: src/constants/WalletConnectCommands.tsx:972
 msgid "Count"
 msgstr ""
 
@@ -1143,7 +1152,7 @@ msgstr ""
 msgid "Counter Offer"
 msgstr ""
 
-#: src/components/plot/add/PlotAddForm.tsx:241
+#: src/components/plot/add/PlotAddForm.tsx:250
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:81
 #: src/components/settings/ProfileAdd.tsx:159
 msgid "Create"
@@ -1165,7 +1174,7 @@ msgstr "创建新档案"
 msgid "Create a Plot NFT"
 msgstr "创建农田NFT"
 
-#: src/components/offers/NFTOfferEditor.tsx:724
+#: src/components/offers/NFTOfferEditor.tsx:725
 msgid "Create an NFT Offer"
 msgstr "创建一个 NFT 报价"
 
@@ -1183,10 +1192,10 @@ msgid "Create Counter Offer"
 msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:476
-msgid "Create new CAT Wallet"
-msgstr ""
+#~ msgid "Create new CAT Wallet"
+#~ msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:754
+#: src/constants/WalletConnectCommands.tsx:735
 msgid "Create new DID Wallet"
 msgstr ""
 
@@ -1203,7 +1212,7 @@ msgstr "创建报价"
 msgid "Create Offer for Ids"
 msgstr ""
 
-#: src/components/settings/IdentitiesPanel.tsx:98
+#: src/components/settings/IdentitiesPanel.tsx:61
 msgid "Create Profile"
 msgstr ""
 
@@ -1258,7 +1267,7 @@ msgstr "创建者版税比率似乎高"
 msgid "Credentials"
 msgstr ""
 
-#: src/components/plot/add/PlotAddForm.tsx:141
+#: src/components/plot/add/PlotAddForm.tsx:143
 msgid "Currency code is not defined"
 msgstr "货币代码未定义"
 
@@ -1267,7 +1276,7 @@ msgstr "货币代码未定义"
 msgid "Current Difficulty"
 msgstr "当前难度"
 
-#: src/components/settings/ChangePassphrasePrompt.tsx:184
+#: src/components/settings/ChangePassphrasePrompt.tsx:185
 msgid "Current Passphrase"
 msgstr "当前私钥密码"
 
@@ -1347,7 +1356,7 @@ msgstr ""
 msgid "Delete Contact"
 msgstr ""
 
-#: src/components/app/AppPassPrompt.tsx:107
+#: src/components/app/AppPassPrompt.tsx:103
 msgid "Delete Key"
 msgstr "删除密钥"
 
@@ -1360,11 +1369,11 @@ msgstr "删除农田"
 msgid "Delete Unconfirmed Transactions"
 msgstr "删除未确认的交易"
 
-#: src/components/vcs/VCCard.tsx:290
+#: src/components/vcs/VCCard.tsx:311
 msgid "Delete Verifiable Credential"
 msgstr ""
 
-#: src/components/app/AppPassPrompt.tsx:100
+#: src/components/app/AppPassPrompt.tsx:96
 msgid "Deleting key"
 msgstr "正在删除密钥"
 
@@ -1372,7 +1381,7 @@ msgstr "正在删除密钥"
 msgid "Depending on your system configuration, you may find that an alternative plotter produces plots faster than the default Chia Proof of Space plotter. If unsure, use the default Chia Proof of Space plotter."
 msgstr "根据您的系统配置，您可能会发现替代的绘图器产生的农田比默认的空间绘图器Chia Proof 更快。 如果不确定, 请使用默认的Chia Proof空间绘图器。"
 
-#: src/components/settings/SettingsPanel.tsx:165
+#: src/components/settings/SettingsPanel.tsx:166
 msgid "Derivation Index"
 msgstr "派生索引"
 
@@ -1416,11 +1425,11 @@ msgstr "Dexie 链接"
 #: src/components/addressbook/ContactEdit.tsx:119
 #: src/components/signVerify/SigningEntityDID.tsx:77
 #: src/components/signVerify/SignMessage.tsx:155
-#: src/constants/WalletConnectCommands.tsx:818
+#: src/constants/WalletConnectCommands.tsx:799
 msgid "DID"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:692
+#: src/constants/WalletConnectCommands.tsx:673
 msgid "DID Id"
 msgstr ""
 
@@ -1455,13 +1464,15 @@ msgid "Disable CPU Affinity"
 msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:453
-msgid "Disable direct download"
-msgstr ""
+#~ msgid "Disable direct download"
+#~ msgstr ""
 
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:140
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:89
 msgid "Disable direct I/O on the temp 1 directory in order to extract maximum performance with RAM disk"
 msgstr ""
 
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:189
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:138
 msgid "Disable direct I/O on the temp 2 directory in order to extract maximum performance with RAM disk"
 msgstr ""
@@ -1535,8 +1546,8 @@ msgid "Domain Names"
 msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:455
-msgid "Don't allocate host tables using pinned buffers, instead download to intermediate pinned buffers then copy to the final host buffer."
-msgstr ""
+#~ msgid "Don't allocate host tables using pinned buffers, instead download to intermediate pinned buffers then copy to the final host buffer."
+#~ msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:446
 msgid "Download"
@@ -1618,11 +1629,11 @@ msgid "Edition #"
 msgstr "版本 #"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:226
-#: src/constants/WalletConnectCommands.tsx:680
+#: src/constants/WalletConnectCommands.tsx:661
 msgid "Edition Number"
 msgstr "编辑号码"
 
-#: src/constants/WalletConnectCommands.tsx:686
+#: src/constants/WalletConnectCommands.tsx:667
 msgid "Edition Total"
 msgstr ""
 
@@ -1701,7 +1712,7 @@ msgstr ""
 msgid "Enter a strong passphrase and click Migrate Keys to secure your keys"
 msgstr "请输入较强的私钥密码，然后点击“迁移密钥”以保护您的密钥串"
 
-#: src/components/settings/SetPassphrasePrompt.tsx:165
+#: src/components/settings/SetPassphrasePrompt.tsx:166
 msgid "Enter a strong passphrase to secure your keys:"
 msgstr "输入复杂的密码来保护您的密钥串："
 
@@ -1713,7 +1724,7 @@ msgstr ""
 msgid "Enter an NFT or DID to sign with"
 msgstr ""
 
-#: src/components/settings/RemovePassphrasePrompt.tsx:121
+#: src/components/settings/RemovePassphrasePrompt.tsx:122
 msgid "Enter your passphrase:"
 msgstr "输入你的密码："
 
@@ -1722,7 +1733,7 @@ msgstr "输入你的密码："
 #: src/components/plot/PlotStatus.tsx:21
 #: src/components/plot/PlotStatus.tsx:22
 #: src/components/plot/queue/PlotQueueIndicator.tsx:23
-#: src/components/vcs/VCCard.tsx:251
+#: src/components/vcs/VCCard.tsx:272
 msgid "Error"
 msgstr "错误"
 
@@ -1790,11 +1801,11 @@ msgstr "不耕种最终输出文件夹"
 msgid "Expected Total plots passing filter"
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:140
+#: src/components/vcs/VCCard.tsx:161
 msgid "Expiration"
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:145
+#: src/components/vcs/VCCard.tsx:166
 msgid "Expired"
 msgstr ""
 
@@ -1811,7 +1822,7 @@ msgstr "失败"
 msgid "Failed downloads:"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:583
+#: src/components/offers/NFTOfferEditor.tsx:584
 msgid "Failed to decode NFT identifier"
 msgstr "无法解码 NFT 标识符"
 
@@ -1831,7 +1842,7 @@ msgstr "设置私钥密码失败: {0}"
 msgid "Failed to update Harvester config"
 msgstr ""
 
-#: src/components/settings/ChangePassphrasePrompt.tsx:127
+#: src/components/settings/ChangePassphrasePrompt.tsx:123
 msgid "Failed to update passphrase: {0}"
 msgstr "设置私钥密码失败: {0}"
 
@@ -1863,7 +1874,7 @@ msgstr "农民节点没有运行"
 msgid "Farmer Public Key"
 msgstr "农民公钥"
 
-#: src/components/plot/add/PlotAddForm.tsx:196
+#: src/components/plot/add/PlotAddForm.tsx:204
 msgid "Farmer public key is invalid"
 msgstr ""
 
@@ -1941,13 +1952,12 @@ msgstr ""
 #: src/constants/WalletConnectCommands.tsx:165
 #: src/constants/WalletConnectCommands.tsx:389
 #: src/constants/WalletConnectCommands.tsx:424
-#: src/constants/WalletConnectCommands.tsx:487
-#: src/constants/WalletConnectCommands.tsx:544
-#: src/constants/WalletConnectCommands.tsx:698
-#: src/constants/WalletConnectCommands.tsx:727
-#: src/constants/WalletConnectCommands.tsx:765
-#: src/constants/WalletConnectCommands.tsx:823
-#: src/constants/WalletConnectCommands.tsx:929
+#: src/constants/WalletConnectCommands.tsx:525
+#: src/constants/WalletConnectCommands.tsx:679
+#: src/constants/WalletConnectCommands.tsx:708
+#: src/constants/WalletConnectCommands.tsx:746
+#: src/constants/WalletConnectCommands.tsx:804
+#: src/constants/WalletConnectCommands.tsx:910
 msgid "Fee"
 msgstr "费用"
 
@@ -1998,10 +2008,11 @@ msgid "Final folder location"
 msgstr "最终输出文件夹位置"
 
 #: src/constants/WalletConnectCommands.tsx:22
+#: src/constants/WalletConnectCommands.tsx:994
 msgid "Fingerprint"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:977
+#: src/constants/WalletConnectCommands.tsx:958
 msgid "Fingerprints"
 msgstr ""
 
@@ -2048,15 +2059,15 @@ msgstr "完整节点连接"
 msgid "Get all Offers"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:837
+#: src/constants/WalletConnectCommands.tsx:818
 msgid "Get All Verifiable Credentials"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:508
+#: src/constants/WalletConnectCommands.tsx:489
 msgid "Get CAT Asset Id"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:495
+#: src/constants/WalletConnectCommands.tsx:476
 msgid "Get CAT Wallet Info"
 msgstr ""
 
@@ -2072,19 +2083,19 @@ msgstr ""
 msgid "Get Next Address"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:606
+#: src/constants/WalletConnectCommands.tsx:587
 msgid "Get NFT Info"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:831
+#: src/constants/WalletConnectCommands.tsx:812
 msgid "Get NFT Wallets with DIDs"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:576
+#: src/constants/WalletConnectCommands.tsx:557
 msgid "Get NFTs"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:735
+#: src/constants/WalletConnectCommands.tsx:716
 msgid "Get NFTs Count"
 msgstr ""
 
@@ -2104,19 +2115,23 @@ msgstr ""
 msgid "Get Offers Count"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:908
+#: src/constants/WalletConnectCommands.tsx:889
 msgid "Get Proofs For Root Hash"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:987
+msgid "Get public key"
 msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:42
 msgid "Get Transaction"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:843
+#: src/constants/WalletConnectCommands.tsx:824
 msgid "Get Verifiable Credential"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:970
+#: src/constants/WalletConnectCommands.tsx:951
 msgid "Get wallet addresses for one or more wallet keys"
 msgstr ""
 
@@ -2149,7 +2164,7 @@ msgstr "收集一些宝石吧"
 msgid "Government IDs"
 msgstr ""
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:474
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:454
 #: src/components/settings/SettingsHarvester.tsx:508
 msgid "GPU Device Index"
 msgstr ""
@@ -2183,7 +2198,7 @@ msgstr "收割机"
 msgid "Harvesting Effectiveness"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:653
+#: src/constants/WalletConnectCommands.tsx:634
 msgid "Hash"
 msgstr ""
 
@@ -2249,8 +2264,8 @@ msgstr "隐藏"
 msgid "Hide objectionable content"
 msgstr ""
 
-#: src/components/app/AppPassPrompt.tsx:161
-#: src/components/settings/RemovePassphrasePrompt.tsx:153
+#: src/components/app/AppPassPrompt.tsx:162
+#: src/components/settings/RemovePassphrasePrompt.tsx:154
 msgid "Hint"
 msgstr "提示"
 
@@ -2265,6 +2280,18 @@ msgstr "今后，这里没有文件！"
 msgid "Host Name"
 msgstr "主机名"
 
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:87
+msgid "Hybrid disk mode 1 (RAM required: 128G)"
+msgstr ""
+
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:92
+msgid "Hybrid disk mode 2 (RAM required: 16G)"
+msgstr ""
+
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:75
+msgid "Hybrid disk mode allows computers with lower amounts of RAM to plot by offloading intermediate data to disk. If you enable hybrid disk mode, you need to specify temp folder(s). We recommend using SSDs when supporting a hybrid disk mode."
+msgstr ""
+
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:16
 msgid "I Understand, Create Offer"
 msgstr "我理解，创建报价"
@@ -2273,6 +2300,7 @@ msgstr "我理解，创建报价"
 msgid "Id"
 msgstr ""
 
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:178
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:127
 msgid "If none selected, then it will default to the temporary directory."
 msgstr "如果未指定，将会使用上述临时目录。"
@@ -2337,7 +2365,7 @@ msgid "Incoming Offers"
 msgstr ""
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:17
-#: src/constants/WalletConnectCommands.tsx:984
+#: src/constants/WalletConnectCommands.tsx:965
 msgid "Index"
 msgstr "索引"
 
@@ -2375,7 +2403,7 @@ msgid "Interval (in seconds) in which directories are scanned to refresh the lis
 msgstr ""
 
 #: src/components/signVerify/VerifyMessage.tsx:169
-#: src/components/vcs/VCCard.tsx:151
+#: src/components/vcs/VCCard.tsx:172
 msgid "Invalid"
 msgstr ""
 
@@ -2387,7 +2415,7 @@ msgstr ""
 #~ msgid "Invalid metadata url"
 #~ msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:581
+#: src/components/offers/NFTOfferEditor.tsx:582
 msgid "Invalid NFT identifier"
 msgstr "无效的 NFT 标识符"
 
@@ -2407,15 +2435,15 @@ msgstr "IP地址"
 msgid "IP address / host"
 msgstr "IP地址 / 主机"
 
-#: src/constants/WalletConnectCommands.tsx:963
+#: src/constants/WalletConnectCommands.tsx:944
 msgid "Is notification visible to all paired fingerprints"
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:138
+#: src/components/vcs/VCCard.tsx:159
 msgid "Issued"
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:113
+#: src/components/vcs/VCCard.tsx:119
 msgid "Issuer DID"
 msgstr ""
 
@@ -2438,7 +2466,7 @@ msgstr "加入农业合作社"
 msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
 msgstr "加入农业合作社来获得持续的XCH耕种收益。平均回报是相同的，但是收益会更加稳定。"
 
-#: src/components/plotNFT/PlotNFTAdd.tsx:63
+#: src/components/plotNFT/PlotNFTAdd.tsx:62
 msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile. Assign plots to a plot NFT. You can easily switch pools without having to re-plot."
 msgstr "加入农业合作社来获得持续的XCH耕种收益。平均回报是相同的，但是收益会更加稳定。为已开垦的农田分配农田NFT。你可以轻松切换耕种池，而不比重新开垦现有农田。"
 
@@ -2540,12 +2568,13 @@ msgstr "最新的区块挑战"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:256
 #: src/components/plotNFT/PlotNFTCard.tsx:292
-#: src/constants/WalletConnectCommands.tsx:850
-#: src/constants/WalletConnectCommands.tsx:862
+#: src/constants/WalletConnectCommands.tsx:831
+#: src/constants/WalletConnectCommands.tsx:843
 msgid "Launcher Id"
 msgstr "启动器ID"
 
 #: src/components/nfts/NFTDetails.tsx:65
+#: src/components/vcs/VCCard.tsx:132
 msgid "Launcher ID"
 msgstr "启动器 ID"
 
@@ -2571,11 +2600,11 @@ msgid "Legacy keyrings are no longer supported. Your keys need to be migrated to
 msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:296
-#: src/constants/WalletConnectCommands.tsx:674
+#: src/constants/WalletConnectCommands.tsx:655
 msgid "License Hash"
 msgstr "许可证哈希"
 
-#: src/constants/WalletConnectCommands.tsx:669
+#: src/constants/WalletConnectCommands.tsx:650
 msgid "License Uris"
 msgstr ""
 
@@ -2682,7 +2711,7 @@ msgid "Memberships"
 msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:138
-#: src/constants/WalletConnectCommands.tsx:550
+#: src/constants/WalletConnectCommands.tsx:531
 msgid "Memos"
 msgstr ""
 
@@ -2692,7 +2721,7 @@ msgstr ""
 #: src/constants/WalletConnectCommands.tsx:183
 #: src/constants/WalletConnectCommands.tsx:206
 #: src/constants/WalletConnectCommands.tsx:226
-#: src/constants/WalletConnectCommands.tsx:945
+#: src/constants/WalletConnectCommands.tsx:926
 msgid "Message"
 msgstr ""
 
@@ -2705,11 +2734,11 @@ msgstr ""
 msgid "Message not available"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:663
+#: src/constants/WalletConnectCommands.tsx:644
 msgid "Meta Hash"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:658
+#: src/constants/WalletConnectCommands.tsx:639
 msgid "Meta Uris"
 msgstr ""
 
@@ -2729,7 +2758,7 @@ msgstr "元数据 URL {0}"
 msgid "MiB Up/Down"
 msgstr "MiB 上传/下载"
 
-#: src/components/settings/SettingsPanel.tsx:138
+#: src/components/settings/SettingsPanel.tsx:135
 msgid "Migrate Keyring"
 msgstr "迁移钥匙串"
 
@@ -2741,7 +2770,7 @@ msgstr "迁移钥匙串"
 msgid "Migration required"
 msgstr "需要迁移"
 
-#: src/components/settings/SettingsPanel.tsx:94
+#: src/components/settings/SettingsPanel.tsx:89
 msgid "Migration required to support passphrase protection"
 msgstr "迁移支持私钥密码保护"
 
@@ -2749,7 +2778,7 @@ msgstr "迁移支持私钥密码保护"
 msgid "Minimum Difficulty"
 msgstr "最小难度"
 
-#: src/constants/WalletConnectCommands.tsx:620
+#: src/constants/WalletConnectCommands.tsx:601
 msgid "Mint NFT"
 msgstr ""
 
@@ -2831,7 +2860,7 @@ msgstr ""
 msgid "My Contact Info"
 msgstr ""
 
-#: src/components/settings/ProfileView.tsx:90
+#: src/components/settings/ProfileView.tsx:95
 msgid "My DID"
 msgstr "我的 DID"
 
@@ -2848,8 +2877,8 @@ msgstr ""
 #: src/components/addressbook/ContactEdit.tsx:108
 #: src/components/addressbook/ContactEdit.tsx:166
 #: src/components/addressbook/ContactEdit.tsx:366
-#: src/constants/WalletConnectCommands.tsx:567
-#: src/constants/WalletConnectCommands.tsx:792
+#: src/constants/WalletConnectCommands.tsx:548
+#: src/constants/WalletConnectCommands.tsx:773
 msgid "Name"
 msgstr ""
 
@@ -2885,15 +2914,15 @@ msgstr ""
 msgid "New offer"
 msgstr ""
 
-#: src/components/settings/ChangePassphrasePrompt.tsx:211
+#: src/components/settings/ChangePassphrasePrompt.tsx:212
 msgid "New Passphrase"
 msgstr "新建私钥密码"
 
-#: src/constants/WalletConnectCommands.tsx:873
+#: src/constants/WalletConnectCommands.tsx:854
 msgid "New Proof Hash"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:867
+#: src/constants/WalletConnectCommands.tsx:848
 msgid "New Puzzle Hash"
 msgstr ""
 
@@ -2922,12 +2951,12 @@ msgstr ""
 msgid "NFT Coin ID"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:717
-#: src/constants/WalletConnectCommands.tsx:814
+#: src/constants/WalletConnectCommands.tsx:698
+#: src/constants/WalletConnectCommands.tsx:795
 msgid "NFT Coin Ids"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:618
+#: src/components/offers/NFTOfferEditor.tsx:619
 msgid "NFT details not available"
 msgstr "NFT 详细信息不可用"
 
@@ -2953,7 +2982,7 @@ msgstr "NFT 标识符"
 msgid "NFT identifier does not reference a valid NFT coin."
 msgstr "NFT 标识符没有引用一个有效的 NFT 硬币。"
 
-#: src/constants/WalletConnectCommands.tsx:809
+#: src/constants/WalletConnectCommands.tsx:790
 msgid "NFT Launcher Id"
 msgstr ""
 
@@ -2999,7 +3028,7 @@ msgstr "非同质化代币"
 msgid "NFTs that have been categorized by the creator as objectionable content will be hidden by default."
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:83
+#: src/components/vcs/VCCard.tsx:89
 msgid "No"
 msgstr "否"
 
@@ -3068,7 +3097,7 @@ msgstr ""
 msgid "Node ID"
 msgstr "节点ID"
 
-#: src/constants/WalletConnectCommands.tsx:998
+#: src/constants/WalletConnectCommands.tsx:979
 msgid "Non Observer Derivation"
 msgstr ""
 
@@ -3093,6 +3122,10 @@ msgstr ""
 #: src/components/farm/FarmLastAttemptedProof.tsx:72
 msgid "None of your plots have passed the plot filter yet."
 msgstr "你的农田还没有通过过滤器检查."
+
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:84
+msgid "Normal (RAM required: 256G)"
+msgstr ""
 
 #: src/components/farm/FarmHealth.tsx:117
 #: src/components/farm/FarmHealth.tsx:164
@@ -3156,7 +3189,7 @@ msgstr ""
 msgid "Notify Current Owner"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:775
+#: src/constants/WalletConnectCommands.tsx:756
 msgid "Number of Backup Ids Needed"
 msgstr ""
 
@@ -3169,7 +3202,7 @@ msgstr "桶数量"
 msgid "Number of buckets for phase 3 & 4"
 msgstr "第三和第四阶段的桶数"
 
-#: src/constants/WalletConnectCommands.tsx:592
+#: src/constants/WalletConnectCommands.tsx:573
 msgid "Number of NFTs"
 msgstr ""
 
@@ -3237,7 +3270,7 @@ msgstr "因为您没有被请求的资产，所以不能接受报价"
 #: src/components/offers/OfferDataDialog.tsx:37
 #: src/constants/WalletConnectCommands.tsx:404
 #: src/constants/WalletConnectCommands.tsx:439
-#: src/constants/WalletConnectCommands.tsx:957
+#: src/constants/WalletConnectCommands.tsx:938
 msgid "Offer Data"
 msgstr "报价资料"
 
@@ -3412,7 +3445,7 @@ msgstr "所有者DID"
 msgid "Owner Public Key"
 msgstr "所有者公钥"
 
-#: src/components/plot/add/PlotAddForm.tsx:159
+#: src/components/plot/add/PlotAddForm.tsx:161
 msgid "p2SingletonPuzzleHash is not defined"
 msgstr "p2SingletonPuzzleHash 未定义"
 
@@ -3432,7 +3465,7 @@ msgstr ""
 msgid "Parallel Decompressor Count"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:927
+#: src/constants/WalletConnectCommands.tsx:908
 msgid "Parent Coin Info"
 msgstr ""
 
@@ -3454,38 +3487,38 @@ msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:147
 #: src/components/app/AppKeyringMigrator.tsx:148
-#: src/components/app/AppPassPrompt.tsx:137
-#: src/components/settings/RemovePassphrasePrompt.tsx:129
-#: src/components/settings/SetPassphrasePrompt.tsx:174
-#: src/components/settings/SettingsPanel.tsx:182
+#: src/components/app/AppPassPrompt.tsx:138
+#: src/components/settings/RemovePassphrasePrompt.tsx:130
+#: src/components/settings/SetPassphrasePrompt.tsx:175
+#: src/components/settings/SettingsPanel.tsx:183
 msgid "Passphrase"
 msgstr "私钥密码"
 
 #: src/components/app/AppKeyringMigrator.tsx:209
-#: src/components/settings/ChangePassphrasePrompt.tsx:266
-#: src/components/settings/SetPassphrasePrompt.tsx:233
+#: src/components/settings/ChangePassphrasePrompt.tsx:267
+#: src/components/settings/SetPassphrasePrompt.tsx:234
 msgid "Passphrase Hint"
 msgstr "私钥密码提示"
 
 #: src/components/app/AppKeyringMigrator.tsx:208
-#: src/components/settings/ChangePassphrasePrompt.tsx:265
-#: src/components/settings/SetPassphrasePrompt.tsx:232
+#: src/components/settings/ChangePassphrasePrompt.tsx:266
+#: src/components/settings/SetPassphrasePrompt.tsx:233
 msgid "Passphrase Hint (Optional)"
 msgstr "私钥密码提示（可选）"
 
-#: src/components/settings/SettingsPanel.tsx:66
+#: src/components/settings/SettingsPanel.tsx:60
 msgid "Passphrase protection has been disabled"
 msgstr "私钥密码保护已禁用"
 
-#: src/components/settings/SettingsPanel.tsx:103
+#: src/components/settings/SettingsPanel.tsx:98
 msgid "Passphrase protection is disabled"
 msgstr "私钥密码保护已禁用"
 
-#: src/components/settings/SettingsPanel.tsx:100
+#: src/components/settings/SettingsPanel.tsx:95
 msgid "Passphrase protection is enabled"
 msgstr "私钥密码保护已启用"
 
-#: src/components/settings/SettingsPanel.tsx:95
+#: src/components/settings/SettingsPanel.tsx:90
 msgid "Passphrase support requires migrating your keys to a new keyring"
 msgstr "私钥密码要求将密钥迁移到新的密钥串中"
 
@@ -3526,7 +3559,7 @@ msgstr "待取消"
 msgid "Pending Confirm"
 msgstr "待确认"
 
-#: src/components/vcs/VCCard.tsx:170
+#: src/components/vcs/VCCard.tsx:191
 msgid "Pending removal"
 msgstr ""
 
@@ -3539,7 +3572,7 @@ msgstr "请检查以下链接以验证您要访问的站点。请自行承担操
 msgid "Please Confirm"
 msgstr "请确认"
 
-#: src/components/app/AppPassPrompt.tsx:49
+#: src/components/app/AppPassPrompt.tsx:45
 #: src/components/settings/SetPassphrasePrompt.tsx:73
 msgid "Please enter a passphrase"
 msgstr "请输入密钥密码"
@@ -3552,7 +3585,7 @@ msgstr ""
 msgid "Please enter a valid numeric fee"
 msgstr "请输入有效的费用"
 
-#: src/components/offers/NFTOfferEditor.tsx:587
+#: src/components/offers/NFTOfferEditor.tsx:588
 msgid "Please enter an amount"
 msgstr "请输入金额"
 
@@ -3568,7 +3601,7 @@ msgstr ""
 msgid "Please enter an amount for each row"
 msgstr "请为每行输入一个金额"
 
-#: src/components/offers/NFTOfferEditor.tsx:579
+#: src/components/offers/NFTOfferEditor.tsx:580
 msgid "Please enter an NFT identifier"
 msgstr "请输入一个NFT标识符。"
 
@@ -3577,17 +3610,17 @@ msgstr "请输入一个NFT标识符。"
 msgid "Please enter an XCH amount"
 msgstr ""
 
-#: src/components/settings/ChangePassphrasePrompt.tsx:90
+#: src/components/settings/ChangePassphrasePrompt.tsx:86
 msgid "Please enter your current passphrase, and a new passphrase"
 msgstr "请输入您的当前私钥密码和新建私钥密码"
 
-#: src/components/app/AppPassPrompt.tsx:89
-#: src/components/app/AppPassPrompt.tsx:110
-#: src/components/settings/RemovePassphrasePrompt.tsx:62
+#: src/components/app/AppPassPrompt.tsx:85
+#: src/components/app/AppPassPrompt.tsx:106
+#: src/components/settings/RemovePassphrasePrompt.tsx:58
 msgid "Please enter your passphrase"
 msgstr "请输入您的密钥密码"
 
-#: src/components/app/AppPassPrompt.tsx:103
+#: src/components/app/AppPassPrompt.tsx:99
 msgid "Please enter your passphrase to proceed"
 msgstr "请输入您的私钥密码"
 
@@ -3608,7 +3641,7 @@ msgstr "请为每行选择一个资产。"
 msgid "Please select an asset for each token"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:585
+#: src/components/offers/NFTOfferEditor.tsx:586
 msgid "Please select an asset type"
 msgstr "请选择资产类型"
 
@@ -3629,6 +3662,8 @@ msgstr ""
 msgid "Please specify final directory"
 msgstr "请指定最终输出文件夹"
 
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:113
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:117
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:68
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:72
 msgid "Please specify temporary directory"
@@ -3810,7 +3845,7 @@ msgstr "农业合作社支付说明"
 msgid "Pool Public Key"
 msgstr "池公钥"
 
-#: src/components/plot/add/PlotAddForm.tsx:203
+#: src/components/plot/add/PlotAddForm.tsx:211
 msgid "Pool public key is invalid"
 msgstr ""
 
@@ -3924,7 +3959,7 @@ msgstr ""
 msgid "Proof of Space Size"
 msgstr "空间证明的大小"
 
-#: src/components/vcs/VCCard.tsx:158
+#: src/components/vcs/VCCard.tsx:179
 msgid "Proofs"
 msgstr ""
 
@@ -3932,11 +3967,11 @@ msgstr ""
 msgid "Proofs Found"
 msgstr "已找到证明"
 
-#: src/constants/WalletConnectCommands.tsx:915
+#: src/constants/WalletConnectCommands.tsx:896
 msgid "Proofs Hash"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:902
+#: src/constants/WalletConnectCommands.tsx:883
 msgid "Proofs Object (Key Value Pairs)"
 msgstr ""
 
@@ -3952,7 +3987,7 @@ msgstr "协议版本"
 msgid "Prove or verify possession of a wallet address, NFT, or DID using a digital signature."
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:878
+#: src/constants/WalletConnectCommands.tsx:859
 msgid "Provider Inner Puzzle Hash"
 msgstr ""
 
@@ -4048,14 +4083,14 @@ msgstr ""
 msgid "Remove keys from old keyring upon successful migration"
 msgstr "成功迁移后从旧密钥串中删除密钥"
 
-#: src/components/settings/RemovePassphrasePrompt.tsx:116
-#: src/components/settings/RemovePassphrasePrompt.tsx:171
-#: src/components/settings/SettingsPanel.tsx:149
+#: src/components/settings/RemovePassphrasePrompt.tsx:112
+#: src/components/settings/RemovePassphrasePrompt.tsx:172
+#: src/components/settings/SettingsPanel.tsx:146
 msgid "Remove Passphrase"
 msgstr "删除密钥密码"
 
-#: src/components/vcs/VCCard.tsx:188
-#: src/components/vcs/VCCard.tsx:280
+#: src/components/vcs/VCCard.tsx:209
+#: src/components/vcs/VCCard.tsx:301
 msgid "Remove Verifiable Credential"
 msgstr ""
 
@@ -4085,15 +4120,19 @@ msgstr ""
 msgid "Requests a complete listing of the wallets associated with the current wallet key"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:578
+#: src/constants/WalletConnectCommands.tsx:559
 msgid "Requests a full or paginated listing of NFTs associated with one or more wallets associated with the current wallet key"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:988
+msgid "Requests a master public key from your wallet"
 msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:256
 msgid "Requests a new receive address associated with the current wallet key"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:607
+#: src/constants/WalletConnectCommands.tsx:588
 msgid "Requests details for a specific NFT"
 msgstr ""
 
@@ -4109,7 +4148,7 @@ msgstr ""
 msgid "Requests the asset balances for specific wallets associated with the current wallet key"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:509
+#: src/constants/WalletConnectCommands.tsx:490
 msgid "Requests the CAT asset ID for a specific CAT wallet"
 msgstr ""
 
@@ -4121,7 +4160,7 @@ msgstr ""
 msgid "Requests the details for a specific offer"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:737
+#: src/constants/WalletConnectCommands.tsx:718
 msgid "Requests the number of NFTs associated with one or more wallets associated with the current wallet key"
 msgstr ""
 
@@ -4195,7 +4234,7 @@ msgstr ""
 msgid "Resyncing forces reloading data from the blockchain about your transactions without losing other locally stored information like open, accepted, or cancelled offer files. Resyncing will require you to restart the app."
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:889
+#: src/constants/WalletConnectCommands.tsx:870
 msgid "Reuse Puzzle Hash"
 msgstr ""
 
@@ -4203,13 +4242,13 @@ msgstr ""
 msgid "Reverse"
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:188
-#: src/components/vcs/VCCard.tsx:290
-#: src/constants/WalletConnectCommands.tsx:921
+#: src/components/vcs/VCCard.tsx:209
+#: src/components/vcs/VCCard.tsx:311
+#: src/constants/WalletConnectCommands.tsx:902
 msgid "Revoke Verifiable Credential"
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:147
+#: src/components/vcs/VCCard.tsx:168
 msgid "Revoked"
 msgstr ""
 
@@ -4217,12 +4256,12 @@ msgstr ""
 msgid "Royalties are built into the NFT, so they will automatically be accounted for when the offer is created/accepted."
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:630
+#: src/constants/WalletConnectCommands.tsx:611
 msgid "Royalty Address"
 msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:160
-#: src/constants/WalletConnectCommands.tsx:636
+#: src/constants/WalletConnectCommands.tsx:617
 msgid "Royalty Percentage"
 msgstr "版税百分比"
 
@@ -4246,8 +4285,8 @@ msgid "Save Offer File"
 msgstr "保存报价文件"
 
 #: src/components/app/AppKeyringMigrator.tsx:226
-#: src/components/settings/ChangePassphrasePrompt.tsx:274
-#: src/components/settings/SetPassphrasePrompt.tsx:242
+#: src/components/settings/ChangePassphrasePrompt.tsx:275
+#: src/components/settings/SetPassphrasePrompt.tsx:243
 msgid "Save passphrase"
 msgstr "保存私钥密码"
 
@@ -4269,6 +4308,7 @@ msgstr "在 Tail 数据库中搜索"
 msgid "Search..."
 msgstr ""
 
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:159
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:108
 msgid "Second temporary folder location"
 msgstr "第二临时文件夹位置"
@@ -4277,7 +4317,7 @@ msgstr "第二临时文件夹位置"
 msgid "Secure"
 msgstr ""
 
-#: src/components/settings/SettingsPanel.tsx:97
+#: src/components/settings/SettingsPanel.tsx:92
 msgid "Secure your keychain using a strong passphrase"
 msgstr "使用加强私钥密码保护您的钥匙链"
 
@@ -4285,6 +4325,7 @@ msgstr "使用加强私钥密码保护您的钥匙链"
 msgid "See All Activity"
 msgstr ""
 
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:153
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:102
 msgid "Select 2nd Temporary Directory"
 msgstr "选择第二临时文件夹"
@@ -4304,6 +4345,10 @@ msgstr ""
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:40
 msgid "Select Final Directory"
 msgstr "选择最终输出文件夹"
+
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:73
+msgid "Select Hybrid disk mode"
+msgstr ""
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:154
 msgid "Select Keys"
@@ -4351,6 +4396,8 @@ msgstr "选择你的农田NFT"
 #~ msgstr "从下拉菜单中选择现有农田NFT，或者新建。"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:80
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:129
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:174
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:78
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:123
 msgid "Selected"
@@ -4395,17 +4442,17 @@ msgstr ""
 msgid "Set a default time frame for all outbound XCH transactions."
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:782
+#: src/constants/WalletConnectCommands.tsx:763
 msgid "Set DID Name"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:799
+#: src/constants/WalletConnectCommands.tsx:780
 msgid "Set NFT DID"
 msgstr ""
 
-#: src/components/settings/SetPassphrasePrompt.tsx:160
-#: src/components/settings/SetPassphrasePrompt.tsx:270
-#: src/components/settings/SettingsPanel.tsx:155
+#: src/components/settings/SetPassphrasePrompt.tsx:156
+#: src/components/settings/SetPassphrasePrompt.tsx:271
+#: src/components/settings/SettingsPanel.tsx:152
 msgid "Set Passphrase"
 msgstr "设置私钥密码"
 
@@ -4467,7 +4514,7 @@ msgstr "显示"
 msgid "Show Details"
 msgstr "显示详情"
 
-#: src/constants/WalletConnectCommands.tsx:934
+#: src/constants/WalletConnectCommands.tsx:915
 msgid "Show notification with offer or general announcement"
 msgstr ""
 
@@ -4607,11 +4654,11 @@ msgstr ""
 #~ msgid "Speech"
 #~ msgstr "演说"
 
-#: src/constants/WalletConnectCommands.tsx:522
+#: src/constants/WalletConnectCommands.tsx:503
 msgid "Spend CAT"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:883
+#: src/constants/WalletConnectCommands.tsx:864
 msgid "Spend Fee"
 msgstr ""
 
@@ -4631,7 +4678,7 @@ msgstr ""
 msgid "Stale Partials"
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:155
+#: src/components/vcs/VCCard.tsx:176
 msgid "Standard Version Number"
 msgstr ""
 
@@ -4639,7 +4686,7 @@ msgstr ""
 msgid "Start"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:598
+#: src/constants/WalletConnectCommands.tsx:579
 msgid "Start Index"
 msgstr ""
 
@@ -4666,7 +4713,7 @@ msgstr "状态"
 #: src/components/plot/PlotPlotting.tsx:26
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:102
 #: src/components/plotNFT/PlotNFTCard.tsx:130
-#: src/components/vcs/VCCard.tsx:143
+#: src/components/vcs/VCCard.tsx:164
 msgid "Status"
 msgstr "状态"
 
@@ -4674,12 +4721,12 @@ msgstr "状态"
 msgid "Store and Send XCH"
 msgstr "存储并发送 XCH"
 
-#: src/components/app/AppPassPrompt.tsx:111
+#: src/components/app/AppPassPrompt.tsx:107
 msgid "Submit"
 msgstr "提交"
 
 #: src/components/notification/NotificationSendDialog.tsx:143
-#: src/components/vcs/VCCard.tsx:257
+#: src/components/vcs/VCCard.tsx:278
 #: src/hooks/useAcceptOfferHook.tsx:98
 msgid "Success"
 msgstr "成功"
@@ -4719,8 +4766,8 @@ msgstr "正在同步 <0/> / <1/>"
 msgid "Take Offer"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:642
-#: src/constants/WalletConnectCommands.tsx:722
+#: src/constants/WalletConnectCommands.tsx:623
+#: src/constants/WalletConnectCommands.tsx:703
 msgid "Target Address"
 msgstr ""
 
@@ -4728,6 +4775,11 @@ msgstr ""
 msgid "Target Puzzle Hash"
 msgstr "目标迷题哈希"
 
+#: src/components/plot/add/PlotAddForm.tsx:174
+msgid "Temp folder location is required for hybrid disk plotting with 16/128G RAM"
+msgstr ""
+
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:104
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:59
 msgid "Temporary folder location"
 msgstr "临时文件夹位置"
@@ -4748,10 +4800,12 @@ msgstr ""
 msgid "The claw back time can be manually adjusted per transaction."
 msgstr ""
 
-#: src/components/settings/SettingsPanel.tsx:167
+#: src/components/settings/SettingsPanel.tsx:168
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
 msgstr "衍生指数设置钱包链扫描钱包地址的范围。 如果您有大量交易或取消了 XCH、CATs 或 NFT 的报价，这个数字通常更高。 如果你认为你的余额是不正确的，因为它缺少硬币， 增加衍生指数可以帮助钱包在余额总额中包括缺失的硬币。"
 
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:138
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:187
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:87
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:136
 msgid "The folder is on a RAM Disk"
@@ -4883,7 +4937,7 @@ msgstr "这些农田无效，你可能想要删除它们。"
 msgid "They will receive"
 msgstr "他们将收到:"
 
-#: src/components/plot/PlotAddDirectoryDialog.tsx:87
+#: src/components/plot/PlotAddDirectoryDialog.tsx:83
 msgid "This allows you to add a directory that has plots in it. If you have not created any plots, go to the plotting screen."
 msgstr "在这里可以把事先准备好的农田文件添加进来。如果还没有的话，就去开垦几块农田吧。"
 
@@ -5002,7 +5056,7 @@ msgstr "标题不可用"
 msgid "To initiate a wallet resync, all Chia services must first be shut down. After shutting down, you will be required to restart Chia to begin the resyncing process. Are you sure you want to shut down and resync?"
 msgstr ""
 
-#: src/components/settings/ProfileView.tsx:127
+#: src/components/settings/ProfileView.tsx:132
 msgid "Token Standard"
 msgstr "代币标准"
 
@@ -5146,7 +5200,7 @@ msgstr ""
 msgid "Transaction protection"
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:245
+#: src/components/vcs/VCCard.tsx:266
 msgid "Transaction sent to blockchain successfully."
 msgstr ""
 
@@ -5169,7 +5223,7 @@ msgstr "转帐"
 
 #: src/components/nfts/NFTContextualActions.tsx:197
 #: src/components/nfts/NFTTransferAction.tsx:217
-#: src/constants/WalletConnectCommands.tsx:707
+#: src/constants/WalletConnectCommands.tsx:688
 msgid "Transfer NFT"
 msgstr "转移 NFT"
 
@@ -5201,8 +5255,8 @@ msgstr ""
 msgid "Turn this off if you don't have any compressed plots to harvest"
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:142
-#: src/constants/WalletConnectCommands.tsx:940
+#: src/components/vcs/VCCard.tsx:163
+#: src/constants/WalletConnectCommands.tsx:921
 msgid "Type"
 msgstr ""
 
@@ -5214,11 +5268,11 @@ msgstr ""
 msgid "Types{0}"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:634
+#: src/components/offers/NFTOfferEditor.tsx:635
 msgid "Unable to create an offer for an NFT that you do not own."
 msgstr "无法为您不拥有的 NFT 创建报价。"
 
-#: src/components/offers/NFTOfferEditor.tsx:643
+#: src/components/offers/NFTOfferEditor.tsx:644
 msgid "Unable to create an offer for an NFT with a creator royalty percentage greater than 100%"
 msgstr "无法为创建者版税百分比大于100%的 NFT 创建报价"
 
@@ -5292,7 +5346,7 @@ msgstr "未知的 CAT"
 msgid "Unknown Dapp"
 msgstr ""
 
-#: src/components/app/AppPassPrompt.tsx:93
+#: src/components/app/AppPassPrompt.tsx:89
 msgid "Unlock Keyring"
 msgstr "解锁钥匙串"
 
@@ -5316,12 +5370,12 @@ msgstr ""
 msgid "Update Pending"
 msgstr "更新等待中"
 
-#: src/constants/WalletConnectCommands.tsx:648
+#: src/constants/WalletConnectCommands.tsx:629
 msgid "Uris"
 msgstr ""
 
 #: src/components/notification/NotificationAnnouncementDialog.tsx:62
-#: src/constants/WalletConnectCommands.tsx:951
+#: src/constants/WalletConnectCommands.tsx:932
 #: src/hooks/useOpenUnsafeLink.tsx:43
 msgid "URL"
 msgstr "URL"
@@ -5343,7 +5397,7 @@ msgstr ""
 #~ msgstr "交易费用"
 
 #: src/components/signVerify/VerifyMessage.tsx:165
-#: src/components/vcs/VCCard.tsx:149
+#: src/components/vcs/VCCard.tsx:170
 msgid "Valid"
 msgstr ""
 
@@ -5367,7 +5421,7 @@ msgstr ""
 msgid "VDF Sub Slot Iterations"
 msgstr "VDF子项迭代数"
 
-#: src/components/vcs/VCCard.tsx:50
+#: src/components/vcs/VCCard.tsx:56
 msgid "Verifiable Credential"
 msgstr ""
 
@@ -5375,15 +5429,15 @@ msgstr ""
 msgid "Verifiable Credential already exists."
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:244
+#: src/components/vcs/VCCard.tsx:265
 msgid "Verifiable Credential Removed"
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:259
+#: src/components/vcs/VCCard.tsx:280
 msgid "Verifiable Credential Removed."
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:261
+#: src/components/vcs/VCCard.tsx:282
 msgid "Verifiable Credential Revoked."
 msgstr ""
 
@@ -5434,7 +5488,7 @@ msgstr "查看"
 msgid "View an Offer"
 msgstr "查看报价"
 
-#: src/components/vcs/VCCard.tsx:177
+#: src/components/vcs/VCCard.tsx:198
 msgid "View Credential Data"
 msgstr ""
 
@@ -5534,12 +5588,12 @@ msgstr ""
 #: src/constants/WalletConnectCommands.tsx:64
 #: src/constants/WalletConnectCommands.tsx:98
 #: src/constants/WalletConnectCommands.tsx:262
-#: src/constants/WalletConnectCommands.tsx:515
-#: src/constants/WalletConnectCommands.tsx:528
-#: src/constants/WalletConnectCommands.tsx:625
-#: src/constants/WalletConnectCommands.tsx:712
-#: src/constants/WalletConnectCommands.tsx:788
-#: src/constants/WalletConnectCommands.tsx:805
+#: src/constants/WalletConnectCommands.tsx:496
+#: src/constants/WalletConnectCommands.tsx:509
+#: src/constants/WalletConnectCommands.tsx:606
+#: src/constants/WalletConnectCommands.tsx:693
+#: src/constants/WalletConnectCommands.tsx:769
+#: src/constants/WalletConnectCommands.tsx:786
 msgid "Wallet Id"
 msgstr ""
 
@@ -5548,8 +5602,8 @@ msgid "Wallet ID"
 msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:81
-#: src/constants/WalletConnectCommands.tsx:588
-#: src/constants/WalletConnectCommands.tsx:746
+#: src/constants/WalletConnectCommands.tsx:569
+#: src/constants/WalletConnectCommands.tsx:727
 msgid "Wallet Ids"
 msgstr ""
 
@@ -5585,7 +5639,7 @@ msgstr ""
 msgid "Want to have a delay before the next plot starts?"
 msgstr "想要在开垦下一块农田前等待一会？"
 
-#: src/components/plotNFT/PlotNFTAdd.tsx:61
+#: src/components/plotNFT/PlotNFTAdd.tsx:60
 msgid "Want to Join a Pool? Create a Plot NFT"
 msgstr "想要加入农业合作社？创建一个农田NFT"
 
@@ -5631,7 +5685,7 @@ msgstr "权重是施加给所有块包括目前这块的额外的困难度."
 msgid "When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or cancelled, resulting in your spendable balance changing."
 msgstr "在创建报价时，在接受或取消报价之前，任何正在提供的资产都将被锁定并不可用。 导致您的可动用余额变化。"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:475
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:455
 msgid "Which CUDA device to use when plotting"
 msgstr ""
 
@@ -5665,7 +5719,7 @@ msgstr ""
 
 #: src/components/offers2/OfferIncomingTable.tsx:211
 #: src/components/plot/add/PlotAddChooseSize.tsx:58
-#: src/components/vcs/VCCard.tsx:83
+#: src/components/vcs/VCCard.tsx:89
 msgid "Yes"
 msgstr "是"
 
@@ -5788,7 +5842,7 @@ msgstr "你的全节点连接"
 msgid "Your Harvester Network"
 msgstr "你的收割网络"
 
-#: src/components/app/AppPassPrompt.tsx:86
+#: src/components/app/AppPassPrompt.tsx:82
 msgid "Your keyring is locked"
 msgstr "您的钥匙串已锁定"
 
@@ -5797,16 +5851,16 @@ msgstr "您的钥匙串已锁定"
 #~ msgstr "您的报价已成功发布到Keybase"
 
 #: src/components/app/AppKeyringMigrator.tsx:230
-#: src/components/settings/ChangePassphrasePrompt.tsx:278
-#: src/components/settings/SetPassphrasePrompt.tsx:247
+#: src/components/settings/ChangePassphrasePrompt.tsx:279
+#: src/components/settings/SetPassphrasePrompt.tsx:248
 msgid "Your passphrase can be stored in your system's secure credential store. Chia will be able to access your keys without prompting for your passphrase."
 msgstr "您的私钥密码可以存储在系统的安全凭据中。Chia将能够访问您的密钥，而无需提示输入您的私钥密码。"
 
-#: src/components/settings/SettingsPanel.tsx:57
+#: src/components/settings/SettingsPanel.tsx:51
 msgid "Your passphrase has been set"
 msgstr "您的私钥密码已经设置"
 
-#: src/components/settings/SettingsPanel.tsx:48
+#: src/components/settings/SettingsPanel.tsx:42
 msgid "Your passphrase has been updated"
 msgstr "你的密码已被更新"
 
