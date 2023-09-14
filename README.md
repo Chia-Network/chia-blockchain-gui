@@ -154,6 +154,7 @@ export CHIA_KEYS_ROOT=~/.chia_keys_simulator
 5. `cd chia-blockchain-gui/packages/gui`
 6. `npm run dev:skipLocales`
 7. You should see your simulator wallets. You should not see your testNet / mainNet wallets.
+8. Run `chia dev sim farm` as many times you want to farm some coins.
 
 ## Chia FAQ/WIKI
 
