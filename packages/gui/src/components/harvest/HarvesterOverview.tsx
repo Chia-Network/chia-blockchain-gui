@@ -1,3 +1,4 @@
+import { NewFarmingInfo } from '@chia-network/api';
 import { useGetBlockchainStateQuery, useGetHarvestersQuery, useGetNewFarmingInfoQuery } from '@chia-network/api-react';
 import { Flex, FormatBytes, FormatLargeNumber, CardSimple, useCurrencyCode } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
@@ -65,23 +66,28 @@ export default function HarvesterOverview() {
     }
 
     const eligiblePlotsPerSp: Record<string, { totalPlots: number; passedFilter: number }> = {};
-    let latestTotalPlots = 0;
+    const latestTotalPlotsForNode: Record<string, number> = {};
     for (let i = 0; i < newFarmingInfo.length; i++) {
-      const nfi = newFarmingInfo[i];
+      const nfi: NewFarmingInfo = newFarmingInfo[i];
       eligiblePlotsPerSp[nfi.signagePoint] = eligiblePlotsPerSp[nfi.signagePoint] || {
         totalPlots: 0,
         passedFilter: 0,
       };
       eligiblePlotsPerSp[nfi.signagePoint].totalPlots += nfi.totalPlots;
       eligiblePlotsPerSp[nfi.signagePoint].passedFilter += nfi.passedFilter;
-      if (i === 0) {
-        latestTotalPlots = nfi.totalPlots;
+
+      // `newFarmingInfo` is already sorted by time(descend). So the latest farming info data comes first.
+      if (!latestTotalPlotsForNode[nfi.nodeId]) {
+        latestTotalPlotsForNode[nfi.nodeId] = nfi.totalPlots;
       }
+
       if (Object.keys(eligiblePlotsPerSp).length > 64) {
         // Only cares last 64 sps
         break;
       }
     }
+
+    const latestTotalPlots = Object.values(latestTotalPlotsForNode).reduce((acc, val) => acc + val, 0);
 
     let sumPassedFilter = 0;
     const sps = Object.keys(eligiblePlotsPerSp);
