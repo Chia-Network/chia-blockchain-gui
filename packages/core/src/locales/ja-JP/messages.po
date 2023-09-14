@@ -8,15 +8,15 @@ msgstr ""
 "Language: ja_JP\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-09-13 22:39\n"
+"PO-Revision-Date: 2023-09-14 02:38\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "X-Crowdin-Project-ID: 1\n"
 "X-Crowdin-Language: ja\n"
-"X-Crowdin-File: /packages/core/src/locales/en-US/messages.po\n"
-"X-Crowdin-File-ID: 3123\n"
+"X-Crowdin-File: /main/packages/core/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 15\n"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:62
 msgid "(>5 min)"
@@ -194,7 +194,7 @@ msgstr "農家公開鍵:"
 
 #: src/components/Settings/SettingsApp.tsx:79
 msgid "Farming"
-msgstr "耕作中"
+msgstr "耕作"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:334
 #: src/components/EstimatedFee/EstimatedFee.tsx:368

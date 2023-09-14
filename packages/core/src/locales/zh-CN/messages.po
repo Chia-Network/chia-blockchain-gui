@@ -8,15 +8,15 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-09-13 22:39\n"
+"PO-Revision-Date: 2023-09-14 02:38\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "X-Crowdin-Project-ID: 1\n"
 "X-Crowdin-Language: zh-CN\n"
-"X-Crowdin-File: /packages/core/src/locales/en-US/messages.po\n"
-"X-Crowdin-File-ID: 3123\n"
+"X-Crowdin-File: /main/packages/core/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 15\n"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:62
 msgid "(>5 min)"
@@ -28,7 +28,7 @@ msgstr "(~{selectedTime} 分钟)"
 
 #: src/components/Amount/Amount.tsx:87
 msgid "{0, plural, one {mojo} other {mojos}}"
-msgstr "{0, plural, one {mojo} other {mojos}}"
+msgstr "{0, plural, other {mojos}}"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:36
 msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
@@ -62,7 +62,7 @@ msgstr "确定要继续吗？输入钱包密钥的指纹以确认删除。"
 #: src/screens/SelectKey/SelectKey.tsx:129
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:170
 msgid "Back"
-msgstr "返回"
+msgstr "后退"
 
 #: src/components/ConfirmDialog/ConfirmDialog.tsx:29
 #: src/hooks/useKeyringMigrationPrompt.tsx:18

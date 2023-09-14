@@ -8,15 +8,15 @@ msgstr ""
 "Language: ru_RU\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-09-13 22:39\n"
+"PO-Revision-Date: 2023-09-14 02:38\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
 "X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "X-Crowdin-Project-ID: 1\n"
 "X-Crowdin-Language: ru\n"
-"X-Crowdin-File: /packages/core/src/locales/en-US/messages.po\n"
-"X-Crowdin-File-ID: 3123\n"
+"X-Crowdin-File: /main/packages/core/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 15\n"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:62
 msgid "(>5 min)"
@@ -494,7 +494,7 @@ msgstr "Транзакция отправлена на полный узел и 
 
 #: src/utils/getTransactionResult.ts:24
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
-msgstr "Транзакция была успешно отправлена на полный узел и включена в мемпул."
+msgstr "Транзакция успешно отправлена на полный узел и включена в мемпул."
 
 #: src/screens/SelectKey/SelectKey.tsx:243
 msgid "Try Again"
