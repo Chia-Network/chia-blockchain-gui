@@ -10,8 +10,12 @@ permissions:
   contents: write
   pull-requests: write
 
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}-${{ github.event_name }}--${{ (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/release/') || startsWith(github.ref, 'refs/heads/long_lived/')) && github.sha || '' }}
+  cancel-in-progress: true
+
 jobs:
-  synchronize-with-crowdin:
+  pull-from-crowdin:
     runs-on: [k8s-public]
     container: node:18
     env:
