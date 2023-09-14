@@ -1,4 +1,4 @@
-name: Crowdin Action
+name: Pull translations from Crowdin
 
 on:
   workflow_dispatch:
@@ -10,10 +10,16 @@ permissions:
   contents: write
   pull-requests: write
 
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}-${{ github.event_name }}--${{ (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/release/') || startsWith(github.ref, 'refs/heads/long_lived/')) && github.sha || '' }}
+  cancel-in-progress: true
+
 jobs:
-  synchronize-with-crowdin:
+  pull-from-crowdin:
     runs-on: [k8s-public]
-    container: python:3.9.7
+    container: node:18
+    env:
+      localization_branch_name: l10n_crowdin_translations
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -33,14 +39,20 @@ jobs:
             secret/data/crowdin token | CROWDIN_PERSONAL_TOKEN;
             secret/data/crowdin project-id-blockchain-gui | CROWDIN_PROJECT_ID;
 
+      # Setting this up globally so that we can also commit the compiled translations after crowdin runs
+      - uses: Chia-Network/actions/commit-sign/gpg@main
+        with:
+          gpg_private_key: ${{ secrets.gpg_private_key }}
+          passphrase: ${{ secrets.gpg_passphrase }}
+
       - name: crowdin action
         uses: crowdin/github-action@v1.11.0
         with:
-          upload_sources: true
-          upload_translations: true
+          upload_sources: false
+          upload_translations: false
           download_translations: true
           crowdin_branch_name: ${{ github.ref_name }} # The "branch" (folder) in crowdin to source from. Match the branch name in GH
-          localization_branch_name: l10n_crowdin_translations
+          localization_branch_name: ${{ env.localization_branch_name }}
           create_pull_request: true
           pull_request_title: 'New Crowdin Translations'
           pull_request_body: 'New Crowdin translations by [Crowdin GH Action](https://github.com/crowdin/github-action)'
@@ -51,4 +63,9 @@ jobs:
           gpg_passphrase: ${{ secrets.CHIA_AUTOMATION_PRIVATE_GPG_PASSPHRASE }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GIT_TRACE: 1
+
+      - name: Compile Updated translations
+        run: |
+          npm install
+          npm run locale
+          (git add . && git commit -m "Compiled Translations" && git push origin ${{ env.localization_branch_name }}) || true
