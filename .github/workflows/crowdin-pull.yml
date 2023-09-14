@@ -61,7 +61,7 @@ jobs:
           create_pull_request: true
           pull_request_title: 'New Crowdin Translations'
           pull_request_body: 'New Crowdin translations by [Crowdin GH Action](https://github.com/crowdin/github-action)'
-          pull_request_base_branch_name: '${{ inputs.pr_target || "main" }}'
+          pull_request_base_branch_name: "${{ inputs.pr_target || 'main' }}"
           github_user_name: 'Chia Automation'
           github_user_email: 'automation@chia.net'
           gpg_private_key: ${{ secrets.CHIA_AUTOMATION_PRIVATE_GPG_KEY_RSA }}
