@@ -42,8 +42,8 @@ jobs:
       # Setting this up globally so that we can also commit the compiled translations after crowdin runs
       - uses: Chia-Network/actions/commit-sign/gpg@main
         with:
-          gpg_private_key: ${{ secrets.gpg_private_key }}
-          passphrase: ${{ secrets.gpg_passphrase }}
+          gpg_private_key: ${{ secrets.CHIA_AUTOMATION_PRIVATE_GPG_KEY_RSA }}
+          passphrase: ${{ secrets.CHIA_AUTOMATION_PRIVATE_GPG_PASSPHRASE }}
 
       - name: crowdin action
         uses: crowdin/github-action@v1.11.0
