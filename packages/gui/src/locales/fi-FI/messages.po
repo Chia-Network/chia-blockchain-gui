@@ -170,6 +170,10 @@ msgstr "Puhe"
 msgid "Check for updates..."
 msgstr "Tarkista päivitykset..."
 
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:154
+msgid "- Set a time after which the offer expires.<0/>- An expiring offer can only be claimed prior to the expiration time."
+msgstr ""
+
 #: src/components/offers2/OfferBuilderImport.tsx:167
 msgid "(⌘V) a blob"
 msgstr "(⌘V) blobi"
@@ -328,7 +332,7 @@ msgstr "Arvoa {0} suositellaan"
 
 #: src/components/offers/NFTOfferViewer.tsx:642
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:21
-#: src/components/offers2/OfferBuilderViewer.tsx:215
+#: src/components/offers2/OfferBuilderViewer.tsx:249
 msgid "Accept Offer"
 msgstr "Hyväksy tarjous"
 
@@ -344,7 +348,7 @@ msgstr "Toiminto"
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:52
 #: src/components/fullNode/FullNodeConnections.tsx:65
 #: src/components/nfts/NFTContextualActions.tsx:590
-#: src/components/offers2/OfferIncomingTable.tsx:118
+#: src/components/offers2/OfferIncomingTable.tsx:122
 msgid "Actions"
 msgstr "Toiminnot"
 
@@ -393,6 +397,10 @@ msgstr "Lisää Yhteys"
 #: src/components/addressbook/AddressBookSideBar.tsx:128
 msgid "Add Contact"
 msgstr "Lisää Yhteystieto"
+
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:142
+msgid "Add option to set expiration time {0}"
+msgstr ""
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:114
 msgid "Add plot directory"
@@ -589,7 +597,7 @@ msgstr "Oletko varma että haluat kumota"
 msgid "Are you sure you want to use k={plotSize}?"
 msgstr "Haluatko käyttää arvoa k={plotSize}?"
 
-#: src/components/offers2/OfferIncomingTable.tsx:212
+#: src/components/offers2/OfferIncomingTable.tsx:216
 msgid "Are you sure you'd like to remove this offer? Please remember that this action is not reversible."
 msgstr "Oletko varma, että haluat poistaa tarjouksen? Muista, että tämä toiminto ei ole peruutettavissa."
 
@@ -617,19 +625,19 @@ msgstr "Assetit joita olen tarjoamassa:"
 msgid "Assets I will receive:"
 msgstr "Assetit jotka saan:"
 
-#: src/components/offers2/OfferBuilderTradeColumn.tsx:48
+#: src/components/offers2/OfferBuilderTradeColumn.tsx:49
 msgid "Assets I would like to receive"
 msgstr "Assetit jotka haluan vastaanottaa"
 
-#: src/components/offers2/OfferBuilderTradeColumn.tsx:41
+#: src/components/offers2/OfferBuilderTradeColumn.tsx:42
 msgid "Assets I would like to trade"
 msgstr "Assetit joilla haluan käydä kauppaa"
 
-#: src/components/offers2/OfferBuilderTradeColumn.tsx:38
+#: src/components/offers2/OfferBuilderTradeColumn.tsx:39
 msgid "Assets you will give"
 msgstr "Assetit jotka annat"
 
-#: src/components/offers2/OfferBuilderTradeColumn.tsx:45
+#: src/components/offers2/OfferBuilderTradeColumn.tsx:46
 msgid "Assets you will receive"
 msgstr "Assetit jotka saan"
 
@@ -802,7 +810,7 @@ msgstr "Peru"
 
 #: src/components/offers/ConfirmOfferCancellation.tsx:62
 #: src/components/offers/ConfirmOfferCancellation.tsx:129
-#: src/components/offers/OfferManager.tsx:247
+#: src/components/offers/OfferManager.tsx:322
 #: src/constants/WalletConnectCommands.tsx:374
 msgid "Cancel Offer"
 msgstr "Peruuta tarjous"
@@ -841,7 +849,7 @@ msgid "Change"
 msgstr "Vaihda"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:290
-#: src/components/settings/SettingsPanel.tsx:119
+#: src/components/settings/SettingsPanel.tsx:120
 msgid "Change Passphrase"
 msgstr "Vaihda salasana"
 
@@ -1029,7 +1037,7 @@ msgstr "Vahvista NFT:n siirto"
 msgid "Confirm Passphrase"
 msgstr "Vahvista Salasana"
 
-#: src/components/offers2/OfferIncomingTable.tsx:211
+#: src/components/offers2/OfferIncomingTable.tsx:215
 #: src/components/plotNFT/PlotNFTCard.tsx:105
 msgid "Confirmation"
 msgstr "Vahvista"
@@ -1144,11 +1152,11 @@ msgstr "Tarjoustietojen purkaminen ei onnistunut"
 msgid "Count"
 msgstr "Määrä"
 
-#: src/components/offers2/OfferIncomingTable.tsx:107
+#: src/components/offers2/OfferIncomingTable.tsx:111
 msgid "Counter"
 msgstr "Vastaus"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:203
+#: src/components/offers2/OfferBuilderViewer.tsx:237
 msgid "Counter Offer"
 msgstr "Vastatarjous"
 
@@ -1162,7 +1170,7 @@ msgstr "Luo"
 msgid "Create & Manage plots"
 msgstr "Plottaa & Hallitse plotteja"
 
-#: src/components/offers/OfferManager.tsx:329
+#: src/components/offers/OfferManager.tsx:415
 msgid "Create a file that you can use to trade XCH, Chia Asset Tokens, or NFTs with no counter-party risk."
 msgstr "Luo tiedosto, jota voit käyttää XCH, Chia Asset Tokenien, tai NFT:iden kaupankäyntiin ilman vastapuoliriskejä."
 
@@ -1179,7 +1187,7 @@ msgid "Create an NFT Offer"
 msgstr "Luo NFT-tarjous"
 
 #: src/components/offers/OfferEditor.tsx:193
-#: src/components/offers/OfferManager.tsx:338
+#: src/components/offers/OfferManager.tsx:424
 msgid "Create an Offer"
 msgstr "Luo Tarjous"
 
@@ -1187,7 +1195,7 @@ msgstr "Luo Tarjous"
 msgid "Create Contact"
 msgstr "Luo Yhteystieto"
 
-#: src/components/offers2/CreateOfferBuilder.tsx:151
+#: src/components/offers2/CreateOfferBuilder.tsx:200
 msgid "Create Counter Offer"
 msgstr "Luo Vastatarjous"
 
@@ -1203,8 +1211,8 @@ msgstr "Luo uusi DID-lompakko"
 #: src/components/offers/NFTOfferEditor.tsx:439
 #: src/components/offers/OfferEditor.tsx:175
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:15
-#: src/components/offers/OfferManager.tsx:320
-#: src/components/offers2/CreateOfferBuilder.tsx:151
+#: src/components/offers/OfferManager.tsx:406
+#: src/components/offers2/CreateOfferBuilder.tsx:200
 msgid "Create Offer"
 msgstr "Luo Tarjous"
 
@@ -1244,9 +1252,9 @@ msgstr "Luodaan NFT ja liitytään pooliin"
 msgid "Creating Plot NFT for Self Pooling"
 msgstr "Luodaan Plot-NFT omaa poolausta varten"
 
-#: src/components/offers/OfferManager.tsx:187
+#: src/components/offers/OfferManager.tsx:249
 #: src/components/offers2/CancelOfferList.tsx:127
-#: src/components/offers2/OfferIncomingTable.tsx:79
+#: src/components/offers2/OfferIncomingTable.tsx:83
 msgid "Creation Date"
 msgstr "Luontipäivämäärä"
 
@@ -1317,6 +1325,11 @@ msgstr "DataLayer-palvelut"
 msgid "Date"
 msgstr "Päiväys"
 
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:44
+#: src/components/settings/SettingsExpiringOffers.tsx:14
+msgid "Days"
+msgstr ""
+
 #: src/components/settings/SettingsHarvester.tsx:472
 msgid "Decompressor Thread Count"
 msgstr "Dekompressiosäikeiden Lukumäärä"
@@ -1333,12 +1346,20 @@ msgstr "Oletustakaisinvetoaika pois käytöstä."
 msgid "Default claw back time is enabled."
 msgstr "Oletustakaisinvetoaika kätössä."
 
+#: src/components/settings/SettingsExpiringOffers.tsx:125
+msgid "Default offer expiration time is disabled"
+msgstr ""
+
+#: src/components/settings/SettingsExpiringOffers.tsx:120
+msgid "Default offer expiration time is enabled"
+msgstr ""
+
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:89
 msgid "Delay"
 msgstr "Viive"
 
 #: src/components/addressbook/ContactSummary.tsx:42
-#: src/components/offers2/OfferIncomingTable.tsx:112
+#: src/components/offers2/OfferIncomingTable.tsx:116
 #: src/components/plot/PlotAction.tsx:25
 #: src/components/plot/PlotAction.tsx:41
 #: src/components/plot/queue/PlotQueueActions.tsx:34
@@ -1381,7 +1402,7 @@ msgstr "Poistetaan avainta"
 msgid "Depending on your system configuration, you may find that an alternative plotter produces plots faster than the default Chia Proof of Space plotter. If unsure, use the default Chia Proof of Space plotter."
 msgstr "Riippuen järjestelmän kokoonpanosta, saatat huomata, että vaihtoehtoinen plotteri tuottaa plottitiedostoja nopeammin kuin Chia Proof of Space -plotteri. Jos olet epävarma, käytä oletusarvoista Chia Proof Space -plotteria."
 
-#: src/components/settings/SettingsPanel.tsx:166
+#: src/components/settings/SettingsPanel.tsx:167
 msgid "Derivation Index"
 msgstr "Derivaatioindeksi"
 
@@ -1438,8 +1459,10 @@ msgstr "DID-tunniste"
 msgid "Difficulty"
 msgstr "Vaikeusaste"
 
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:189
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:91
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:77
+#: src/components/settings/SettingsExpiringOffers.tsx:88
 msgid "Disable"
 msgstr "Poista Käytöstä"
 
@@ -1493,7 +1516,7 @@ msgstr "Poista NUMA Käytöstä"
 msgid "Disconnect"
 msgstr "Katkaise Yhteys"
 
-#: src/components/offers/OfferManager.tsx:227
+#: src/components/offers/OfferManager.tsx:302
 msgid "Display Offer Data"
 msgstr "Näytä Tarjouksen Tiedot"
 
@@ -1597,7 +1620,7 @@ msgstr "Driver Dict"
 msgid "Duplicate"
 msgstr "Duplikaatti"
 
-#: src/components/harvest/HarvesterOverview.tsx:204
+#: src/components/harvest/HarvesterOverview.tsx:210
 msgid "Duplicate plots"
 msgstr "Duplikaattiplotit"
 
@@ -1641,7 +1664,7 @@ msgstr "Painos Yhteensä"
 msgid "Effective Space"
 msgstr "Tehollinen Plottitila"
 
-#: src/components/harvest/HarvesterOverview.tsx:195
+#: src/components/harvest/HarvesterOverview.tsx:201
 msgid "Eligible plots per signage point"
 msgstr "Hyväksyty plotit kirjauspistettä kohti"
 
@@ -1651,6 +1674,7 @@ msgstr "Emoji"
 
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:75
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:63
+#: src/components/settings/SettingsExpiringOffers.tsx:77
 msgid "Enable"
 msgstr "Käytä"
 
@@ -1805,6 +1829,11 @@ msgstr "Odotettavissa oleva filtterin läpäisevä plotittimäärä"
 msgid "Expiration"
 msgstr "Viimeinen voimassaolo"
 
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:196
+msgid "Expiration time will be {0}"
+msgstr ""
+
+#: src/components/offers/OfferManager.tsx:182
 #: src/components/vcs/VCCard.tsx:166
 msgid "Expired"
 msgstr "Vanhentunut"
@@ -2185,16 +2214,16 @@ msgstr "Harvesterin viive"
 msgid "Harvester Services"
 msgstr "Harvesteripalvelut"
 
-#: src/components/harvest/HarvesterOverview.tsx:147
+#: src/components/harvest/HarvesterOverview.tsx:153
 msgid "Harvester Summary"
 msgstr "Harvesterin Yhteenveto"
 
-#: src/components/harvest/HarvesterOverview.tsx:212
+#: src/components/harvest/HarvesterOverview.tsx:218
 #: src/components/plot/PlotHarvesters.tsx:38
 msgid "Harvesters"
 msgstr "Harvesterit"
 
-#: src/components/harvest/HarvesterOverview.tsx:188
+#: src/components/harvest/HarvesterOverview.tsx:194
 msgid "Harvesting Effectiveness"
 msgstr "Harvestointiteho"
 
@@ -2280,6 +2309,11 @@ msgstr "Hurraa, ei tiedostoja täällä!"
 msgid "Host Name"
 msgstr "Palvelimen nimi"
 
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:45
+#: src/components/settings/SettingsExpiringOffers.tsx:15
+msgid "Hours"
+msgstr ""
+
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:87
 msgid "Hybrid disk mode 1 (RAM required: 128G)"
 msgstr ""
@@ -2335,7 +2369,7 @@ msgstr "Tuo"
 
 #: src/components/offers/NFTOfferViewer.tsx:483
 #: src/components/offers/OfferEditorConditionsPanel.tsx:291
-#: src/components/offers2/OfferBuilderTradeColumn.tsx:27
+#: src/components/offers2/OfferBuilderTradeColumn.tsx:28
 msgid "In exchange for"
 msgstr "Vaihtaaksesi kohteeseen"
 
@@ -2360,7 +2394,7 @@ msgstr "Sisällytä Lompakon Metatiedot"
 msgid "Including a fee in the offer can help expedite the transaction when the offer is accepted. The recommended minimum fee is 0.000005 XCH (5,000,000 mojos)"
 msgstr "Maksun sisällyttäminen tarjoukseen voi auttaa nopeuttamaan kauppaa, kun tarjous on hyväksytty. Suositeltu vähimmäismaksu on 0.00005 XCH (5.000,000 mojos)"
 
-#: src/components/offers2/OfferIncomingTable.tsx:128
+#: src/components/offers2/OfferIncomingTable.tsx:132
 msgid "Incoming Offers"
 msgstr "Saapuvat Tarjoukset"
 
@@ -2378,16 +2412,20 @@ msgstr "Alustetaan..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid "Insufficient funds available to accept offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "Riittämätön määrä varoja tarjouksen hyväksymiseen. Varmista, että\n"
+msgstr ""
+"Riittämätön määrä varoja tarjouksen hyväksymiseen. Varmista, että\n"
 "käytettävissä oleva saldo riittää tarjouksen määrän kattamiseen."
 
 #: src/components/offers/OfferEditor.tsx:146
-#: src/components/offers2/CreateOfferBuilder.tsx:133
-msgid "Insufficient funds available to create offer. Ensure that your\n"
+#: src/components/offers2/CreateOfferBuilder.tsx:167
+msgid ""
+"Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "Riittämätön määrä varoja tarjouksen luomiseen. Varmista, että\n"
+msgstr ""
+"Riittämätön määrä varoja tarjouksen luomiseen. Varmista, että\n"
 "käytettävissä oleva saldo riittää tarjouksen määrän kattamiseen."
 
 #: src/components/settings/Settings.tsx:73
@@ -2620,6 +2658,11 @@ msgstr "Luettelo yhteyksistä on tyhjä"
 msgid "Loading configuration"
 msgstr "Ladataan konfiguraatiota"
 
+#: src/components/offers/OfferManager.tsx:235
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:99
+msgid "Loading expiration time..."
+msgstr ""
+
 #: src/components/farm/Farm.tsx:29
 msgid "Loading farming data"
 msgstr "Ladataan farmausdataa"
@@ -2648,6 +2691,7 @@ msgstr "Ladataan NFT-tietoja..."
 #: src/components/helpers/HeightToTimestamp.tsx:16
 #: src/components/nfts/NFTMetadata.tsx:21
 #: src/components/offers/NFTOfferTokenSelector.tsx:97
+#: src/components/offers/OfferManager.tsx:184
 #: src/components/offers2/OfferBuilderTokenSelector.tsx:79
 #: src/components/offers2/OfferDetails.tsx:38
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:27
@@ -2754,7 +2798,7 @@ msgstr "Metatietojen URL {0}"
 msgid "MiB Up/Down"
 msgstr "MiB Lähetys/Lataus"
 
-#: src/components/settings/SettingsPanel.tsx:135
+#: src/components/settings/SettingsPanel.tsx:136
 msgid "Migrate Keyring"
 msgstr "Siirrä Avainrengas"
 
@@ -2766,7 +2810,7 @@ msgstr "Siirrä Avaimet"
 msgid "Migration required"
 msgstr "Siirto vaaditaan"
 
-#: src/components/settings/SettingsPanel.tsx:89
+#: src/components/settings/SettingsPanel.tsx:90
 msgid "Migration required to support passphrase protection"
 msgstr "Siirto vaaditaan salasanasuojaukseen"
 
@@ -2798,7 +2842,9 @@ msgstr "Tekijä:"
 msgid "MintGarden URL"
 msgstr "MintGarden URL"
 
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:46
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
+#: src/components/settings/SettingsExpiringOffers.tsx:16
 msgid "Minutes"
 msgstr "Minuuttia"
 
@@ -3053,7 +3099,7 @@ msgstr "Ei Yhteystietoja"
 msgid "No CPU Affinity"
 msgstr "EI CPU:n affiniteettia"
 
-#: src/components/offers/OfferManager.tsx:283
+#: src/components/offers/OfferManager.tsx:369
 msgid "No current offers"
 msgstr "Ei tarjouksia"
 
@@ -3065,7 +3111,7 @@ msgstr "Ei Mukautettuja Oikeuksia"
 msgid "No file available"
 msgstr "Ei tiedostoa saatavilla"
 
-#: src/components/offers2/OfferIncomingTable.tsx:277
+#: src/components/offers2/OfferIncomingTable.tsx:281
 msgid "No incoming offers"
 msgstr "Ei saapuvia tarjouksia"
 
@@ -3202,7 +3248,7 @@ msgstr "Vaiheen 3 ja 4 muistilohkojen (bucket) määrä"
 msgid "Number of NFTs"
 msgstr "NFT:ien lukumäärä"
 
-#: src/components/harvest/HarvesterOverview.tsx:180
+#: src/components/harvest/HarvesterOverview.tsx:186
 msgid "Number of plots"
 msgstr "Tonttien lukumäärä"
 
@@ -3251,14 +3297,14 @@ msgstr "Varattu tila"
 msgid "Offer"
 msgstr "Tarjous"
 
-#: src/components/offers/OfferManager.tsx:326
+#: src/components/offers/OfferManager.tsx:412
 #: src/components/offers2/OfferNavigationHeader.tsx:16
 msgid "Offer Builder"
 msgstr "Tarjousten Rakentaja"
 
 #: src/components/offers/NFTOfferViewer.tsx:173
 #: src/components/offers2/OfferBuilderValue.tsx:196
-#: src/components/offers2/OfferBuilderViewer.tsx:246
+#: src/components/offers2/OfferBuilderViewer.tsx:280
 msgid "Offer cannot be accepted because you don't possess the requested assets"
 msgstr "Tarjousta ei voida hyväksyä, koska sinulla ei ole pyydettyä assettia."
 
@@ -3274,6 +3320,10 @@ msgstr "Tarjouksen Tiedot"
 msgid "Offer Details"
 msgstr "Tarjouksen Tiedot"
 
+#: src/components/settings/SettingsExpiringOffers.tsx:43
+msgid "Offer Expiration Time"
+msgstr ""
+
 #: src/components/offers2/OfferBuilderImport.tsx:77
 msgid "Offer file is too large (> 1MB)"
 msgstr "Tarjoustiedosto on liian suuri (> 1Mt)"
@@ -3282,12 +3332,20 @@ msgstr "Tarjoustiedosto on liian suuri (> 1Mt)"
 msgid "Offer has been accepted and is awaiting confirmation."
 msgstr "Tarjous on hyväksytty ja odottaa vahvistusta."
 
+#: src/components/offers2/OfferBuilderExpirationCountdown.tsx:31
+msgid "Offer has expired"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:103
+msgid "Offer has expired and cannot be accepted."
+msgstr ""
+
 #: src/constants/WalletConnectCommands.tsx:453
 #: src/constants/WalletConnectCommands.tsx:467
 msgid "Offer Id"
 msgstr "Tarjouksen Tunniste"
 
-#: src/components/offers/OfferManager.tsx:307
+#: src/components/offers/OfferManager.tsx:393
 msgid "Offer Management"
 msgstr "Tarjousten Hallinta"
 
@@ -3299,16 +3357,22 @@ msgstr "Tarjousten Hallinta"
 msgid "Offer Shared"
 msgstr "Tarjous Jaettu"
 
+#: src/components/offers2/OfferBuilderExpirationCountdown.tsx:16
+#: src/components/offers2/OfferBuilderExpirationCountdown.tsx:21
+#: src/components/offers2/OfferBuilderExpirationCountdown.tsx:26
+msgid "Offer will expire in {0} {1}"
+msgstr ""
+
 #: src/components/offers/OfferShareDialog.tsx:755
 #~ msgid "OfferBin URL"
 #~ msgstr "OfferBin URL"
 
-#: src/components/offers/OfferManager.tsx:160
+#: src/components/offers/OfferManager.tsx:214
 #: src/components/offers2/CancelOfferList.tsx:80
 msgid "Offered"
 msgstr "Tarjottu"
 
-#: src/components/offers2/OfferBuilderTradeColumn.tsx:23
+#: src/components/offers2/OfferBuilderTradeColumn.tsx:24
 #: src/components/offers2/OfferIncomingTable.tsx:75
 msgid "Offering"
 msgstr "Tarjotaan"
@@ -3330,15 +3394,15 @@ msgstr "Tarjoukset"
 msgid "Offers are a way to trade assets in a genuinely peer-to-peer way that eliminates counterparty risk."
 msgstr "Tarjoukset ovat tapa käydä suorakauppaa asseteilla, mikä poistaa vastapuoliriskin."
 
-#: src/components/offers/OfferManager.tsx:310
+#: src/components/offers/OfferManager.tsx:396
 msgid "Offers are a way to trade assets in a genuinely peer-to-peer way to eliminate counterparty risk."
 msgstr "Tarjoukset ovat tapa käydä suorakauppaa asseteilla, mikä poistaa vastapuoliriskin."
 
-#: src/components/offers/OfferManager.tsx:359
+#: src/components/offers/OfferManager.tsx:445
 msgid "Offers you accepted"
 msgstr "Hyväksymäsi tarjoukset"
 
-#: src/components/offers/OfferManager.tsx:358
+#: src/components/offers/OfferManager.tsx:444
 msgid "Offers you created"
 msgstr "Luomasi tarjoukset"
 
@@ -3360,7 +3424,7 @@ msgstr "Kun aloitat tämän siirron, et voi peruuttaa tapahtumaa. Oletko varma, 
 msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer the NFT?"
 msgstr "Kun aloitat siirron, et voi peruuttaa transaktiota. Oletko varma, että haluat siirtää NFT:n?"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:250
+#: src/components/offers2/OfferBuilderViewer.tsx:284
 msgid "One or more unknown tokens are being offered. Be sure to verify that the asset IDs of the offered tokens match the asset IDs of the tokens you are expecting."
 msgstr "Yhtä tai useampaa tuntematonta tokenia tarjotaan. Varmista, että tarjouttujen tokeneiden Asset ID:t (tunnisteet) täsmäävät tokeneihin, joita odotat vastaanottavasi."
 
@@ -3486,7 +3550,7 @@ msgstr ""
 #: src/components/app/AppPassPrompt.tsx:138
 #: src/components/settings/RemovePassphrasePrompt.tsx:130
 #: src/components/settings/SetPassphrasePrompt.tsx:175
-#: src/components/settings/SettingsPanel.tsx:183
+#: src/components/settings/SettingsPanel.tsx:184
 msgid "Passphrase"
 msgstr "Salasana"
 
@@ -3502,19 +3566,19 @@ msgstr "Salasanavihje"
 msgid "Passphrase Hint (Optional)"
 msgstr "Salasanavihje (vapaaehtoinen)"
 
-#: src/components/settings/SettingsPanel.tsx:60
+#: src/components/settings/SettingsPanel.tsx:61
 msgid "Passphrase protection has been disabled"
 msgstr "Salasanasuojaus on pois käytöstä"
 
-#: src/components/settings/SettingsPanel.tsx:98
+#: src/components/settings/SettingsPanel.tsx:99
 msgid "Passphrase protection is disabled"
 msgstr "Salasanasuojaus on pois käytöstä"
 
-#: src/components/settings/SettingsPanel.tsx:95
+#: src/components/settings/SettingsPanel.tsx:96
 msgid "Passphrase protection is enabled"
 msgstr "Salasanasuojaus on käytössä"
 
-#: src/components/settings/SettingsPanel.tsx:90
+#: src/components/settings/SettingsPanel.tsx:91
 msgid "Passphrase support requires migrating your keys to a new keyring"
 msgstr "Salasanatuki vaatii avainten siirtämistä uuteen avainrenkaaseen"
 
@@ -3665,7 +3729,7 @@ msgstr "Valitse kohdehakemisto"
 msgid "Please specify temporary directory"
 msgstr "Valitse väliaikaishakemisto"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:186
+#: src/components/offers2/OfferBuilderViewer.tsx:220
 msgid "Please wait for wallet synchronization"
 msgstr "Ole hyvä ja odota lompakon synkronointia"
 
@@ -4063,6 +4127,10 @@ msgstr "Suhteellisen Lukituksen Korkeus"
 #~ msgid "Release Notes"
 #~ msgstr "Release Notes"
 
+#: src/components/offers/OfferManager.tsx:291
+msgid "Relist Offer"
+msgstr ""
+
 #: src/components/plot/PlotHarvester.tsx:61
 msgid "Remote"
 msgstr "Etäkäyttö"
@@ -4081,7 +4149,7 @@ msgstr "Poista avaimet vanhasta avainrenkaasta onnistuneen siiron jälkeen"
 
 #: src/components/settings/RemovePassphrasePrompt.tsx:112
 #: src/components/settings/RemovePassphrasePrompt.tsx:172
-#: src/components/settings/SettingsPanel.tsx:146
+#: src/components/settings/SettingsPanel.tsx:147
 msgid "Remove Passphrase"
 msgstr "Poista Salasana"
 
@@ -4098,12 +4166,12 @@ msgstr "Poistetaan"
 #~ msgid "Report an Issue..."
 #~ msgstr "Report an Issue..."
 
-#: src/components/offers/OfferManager.tsx:170
+#: src/components/offers/OfferManager.tsx:224
 #: src/components/offers2/CancelOfferList.tsx:95
 msgid "Requested"
 msgstr "Pyydetty"
 
-#: src/components/offers2/OfferBuilderTradeColumn.tsx:30
+#: src/components/offers2/OfferBuilderTradeColumn.tsx:31
 #: src/components/offers2/OfferIncomingTable.tsx:55
 msgid "Requesting"
 msgstr "Pyydetään"
@@ -4272,11 +4340,12 @@ msgstr "Ajaa koko noodia"
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:75
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:63
 #: src/components/settings/SettingsDerivationIndex.tsx:85
+#: src/components/settings/SettingsExpiringOffers.tsx:77
 #: src/components/vcs/VCEditTitle.tsx:94
 msgid "Save"
 msgstr "Tallenna"
 
-#: src/components/offers/OfferManager.tsx:237
+#: src/components/offers/OfferManager.tsx:312
 msgid "Save Offer File"
 msgstr "Tallenna Tarjoustiedosto"
 
@@ -4313,7 +4382,7 @@ msgstr "Toinen väliaikaishakemistosijainti"
 msgid "Secure"
 msgstr "Suojattu"
 
-#: src/components/settings/SettingsPanel.tsx:92
+#: src/components/settings/SettingsPanel.tsx:93
 msgid "Secure your keychain using a strong passphrase"
 msgstr "Suojaa avainrengas vahvalla salasanalla"
 
@@ -4448,7 +4517,7 @@ msgstr "Aseta NFT DID"
 
 #: src/components/settings/SetPassphrasePrompt.tsx:156
 #: src/components/settings/SetPassphrasePrompt.tsx:271
-#: src/components/settings/SettingsPanel.tsx:152
+#: src/components/settings/SettingsPanel.tsx:153
 msgid "Set Passphrase"
 msgstr "Aseta Salasana"
 
@@ -4461,7 +4530,7 @@ msgstr "Määritä avaimet manuaalisesti"
 msgid "Settings"
 msgstr "Asetukset"
 
-#: src/components/offers/OfferManager.tsx:203
+#: src/components/offers/OfferManager.tsx:268
 #: src/components/offers/OfferShareDialog.tsx:923
 msgid "Share"
 msgstr "Jaa"
@@ -4506,7 +4575,7 @@ msgstr "Jaa Spacescan.io:ssa"
 msgid "Show"
 msgstr "Näytä"
 
-#: src/components/offers/OfferManager.tsx:217
+#: src/components/offers/OfferManager.tsx:282
 msgid "Show Details"
 msgstr "Näytä Tiedot"
 
@@ -4622,7 +4691,7 @@ msgid "Sorry, you can't switch to mainnet by clicking here..."
 msgstr "Pahoittelut, et voi vaihtaa mainnettiin klikkaamalla tästä..."
 
 #: src/components/harvest/HarvesterDetail.tsx:108
-#: src/components/harvest/HarvesterOverview.tsx:151
+#: src/components/harvest/HarvesterOverview.tsx:157
 msgid "Space"
 msgstr "Tila"
 
@@ -4704,7 +4773,7 @@ msgstr "Tila"
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:69
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:74
-#: src/components/offers/OfferManager.tsx:150
+#: src/components/offers/OfferManager.tsx:204
 #: src/components/plot/PlotHarvesterPlots.tsx:74
 #: src/components/plot/PlotPlotting.tsx:26
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:102
@@ -4780,11 +4849,11 @@ msgstr ""
 msgid "Temporary folder location"
 msgstr "Väliaikaishakemiston sijainti"
 
-#: src/components/harvest/HarvesterOverview.tsx:62
+#: src/components/harvest/HarvesterOverview.tsx:63
 msgid "The average number of plots which passed filter over last 64 signage points"
 msgstr "Keskimääräinen määrä plotteja, jotka ovat läpäisseet suodattimen viimeisten 64 kirjauspisteen aikana"
 
-#: src/components/harvest/HarvesterOverview.tsx:100
+#: src/components/harvest/HarvesterOverview.tsx:106
 msgid "The average number of plots which passed filter over the last 64 signage points. It is expected to be {expectedAvgPassedFilter} for total {latestTotalPlots} plots. (Current plot filter: 1 / {plotFilter})"
 msgstr "Keskimääräinen määrä plotteja, jotka ovat läpäisseet suodattimen viimeisten 64 kirjauspisteen aikana. Odotusarvo on {expectedAvgPassedFilter} yhteensä {latestTotalPlots} plotille. (Plottifiltteri: 1/{plotFilter})"
 
@@ -4796,7 +4865,7 @@ msgstr "Chia-sovellus ja sen palvelut käyttävät eri versioita. Jotkin toiminn
 msgid "The claw back time can be manually adjusted per transaction."
 msgstr "Takaisinvetoaika voidaan asettaa transaktiokohtaisesti"
 
-#: src/components/settings/SettingsPanel.tsx:168
+#: src/components/settings/SettingsPanel.tsx:169
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
 msgstr "Derivaatioindeksi asettaa lompakon osoitteiden määrän, jota lompakko skannaa lohkoketjusta. Tämä luku on yleensä suurempi, jos sinulla on paljon tapahtumia tai peruutettuja tarjouksia XCH-, CAT- tai NFT-kolikoille. Jos uskot, että saldo on väärä, nosta derivaatioindeksiä, mikä auttaa lompakkoa sisällyttämään puuttuvat kolikot saldoon."
 
@@ -4861,7 +4930,7 @@ msgstr "Noodi ei ole synkronoitu"
 msgid "The node is syncing, which means it is downloading blocks from other nodes, to reach the latest block in the chain"
 msgstr "Noodi synkronoi. Se lataa lohkoketjua muilta solmuilta"
 
-#: src/components/offers2/OfferIncomingTable.tsx:97
+#: src/components/offers2/OfferIncomingTable.tsx:101
 msgid "The offer creator has chosen not to allow counter offers"
 msgstr "Tarjouksen luoja on päättänyt olla sallimatta vastatarjouksia"
 
@@ -4950,7 +5019,7 @@ msgstr "Tämä ominaisuus käytettävissä ainoastaan graafisessa käyttöliitty
 msgid "This harvester does not have any plots to harvest"
 msgstr ""
 
-#: src/components/harvest/HarvesterOverview.tsx:169
+#: src/components/harvest/HarvesterOverview.tsx:175
 msgid "This is a sum of effective plot sizes currently farming. An effective plot size is a theoretical value which is derived only by kSize"
 msgstr ""
 
@@ -4999,18 +5068,22 @@ msgid "This offer has a fee included to help expedite the transaction when the o
 msgstr "Tarjoukseen sisällytetty maksu auttaa nopeuttamaan transktiota, kun tarjous on hyväksytty. Voit määrittää lisämaksun, jos sinusta tuntuu, että kyseinen maksu on liian pieni."
 
 #: src/components/offers/OfferHeader.tsx:63
-#: src/components/offers2/OfferBuilderViewer.tsx:238
+#: src/components/offers2/OfferBuilderViewer.tsx:272
 msgid "This offer has completed successfully"
 msgstr "Tarjous on suljettu onnistuneesti"
 
 #: src/components/offers/OfferHeader.tsx:46
-#: src/components/offers2/OfferBuilderViewer.tsx:225
+#: src/components/offers2/OfferBuilderViewer.tsx:259
 msgid "This offer is no longer valid. To understand why, click <0>here</0> to learn more."
 msgstr "Tarjous ei ole enää voimassa. Napsauta <0>tästä</0> katsoaksesi miksi."
 
-#: src/components/offers2/OfferBuilderViewer.tsx:242
+#: src/components/offers2/OfferBuilderViewer.tsx:276
 msgid "This offer was cancelled"
 msgstr "Tämä tarjous peruutettiin"
+
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:204
+msgid "This offer will never expire."
+msgstr ""
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:269
 msgid "This plot NFT is assigned to a different key. You can still create plots for this plot NFT, but you can not make changes."
@@ -5091,11 +5164,11 @@ msgstr "Yhteissumma rojaltien kanssa"
 #~ msgid "Total Chia Farmed"
 #~ msgstr "Total Chia Farmed"
 
-#: src/components/harvest/HarvesterOverview.tsx:166
+#: src/components/harvest/HarvesterOverview.tsx:172
 msgid "Total farm size effective"
 msgstr ""
 
-#: src/components/harvest/HarvesterOverview.tsx:158
+#: src/components/harvest/HarvesterOverview.tsx:164
 msgid "Total farm size raw"
 msgstr ""
 
@@ -5476,7 +5549,7 @@ msgstr "Varmenna Allekirjoitus"
 msgid "Verifying hash..."
 msgstr "Tarkistetaan tiivistettä..."
 
-#: src/components/offers2/OfferIncomingTable.tsx:102
+#: src/components/offers2/OfferIncomingTable.tsx:106
 msgid "View"
 msgstr "Näkymä"
 
@@ -5493,7 +5566,7 @@ msgstr "Näytä Käyttöoikeustiedot"
 msgid "View Log"
 msgstr "Katso Loki"
 
-#: src/components/offers/OfferManager.tsx:349
+#: src/components/offers/OfferManager.tsx:435
 msgid "View Offer"
 msgstr "Näytä Tarjous"
 
@@ -5616,6 +5689,10 @@ msgstr "Lompakkoa ei ole määritetty"
 msgid "Wallet Mode"
 msgstr "Lompakkotila"
 
+#: src/components/offers2/CreateOfferBuilder.tsx:103
+msgid "Wallet must be synced before creating an offer with an expiration time"
+msgstr ""
+
 #: src/components/settings/SettingsIntegration.tsx:139
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:218
 #: src/components/walletConnect/WalletConnectConnectedDialog.tsx:67
@@ -5713,7 +5790,7 @@ msgstr "Haluatko siirtää NFT:n profiilille?"
 msgid "Would you like to transfer the specified NFT to a new owner?"
 msgstr "Haluatko siirtää NFT:n uudelle omistajalle?"
 
-#: src/components/offers2/OfferIncomingTable.tsx:211
+#: src/components/offers2/OfferIncomingTable.tsx:215
 #: src/components/plot/add/PlotAddChooseSize.tsx:58
 #: src/components/vcs/VCCard.tsx:89
 msgid "Yes"
@@ -5756,7 +5833,7 @@ msgid "You can still create plots for this plot NFT, but you can not make change
 msgstr "Voit silti luoda plotteja tälle Plot-NFT:lle, mutta et voi tehdä muutoksia ennen kuin synkronointi on valmis."
 
 #: src/components/offers/OfferHeader.tsx:38
-#: src/components/offers2/OfferBuilderViewer.tsx:257
+#: src/components/offers2/OfferBuilderViewer.tsx:291
 msgid "You created this offer"
 msgstr "Loit tämän tarjouksen"
 
@@ -5805,7 +5882,7 @@ msgstr "Tarvitset {currencyCode} liittyäksesi pooliin."
 msgid "You need to claim your rewards first"
 msgstr "Sinun täytyy lunastaa ensin palkkiosi"
 
-#: src/components/offers2/OfferBuilderTradeColumn.tsx:20
+#: src/components/offers2/OfferBuilderTradeColumn.tsx:21
 msgid "You will give"
 msgstr "Olet antamassa"
 
@@ -5852,11 +5929,11 @@ msgstr "Avainrenkaasi on lukittu"
 msgid "Your passphrase can be stored in your system's secure credential store. Chia will be able to access your keys without prompting for your passphrase."
 msgstr "Salasana voidaan tallentaa järjestelmäsi turvalliseen käyttöoikeussäilöön. Sovellus voi käyttää avaimia ilman että pyytää salasanaasi."
 
-#: src/components/settings/SettingsPanel.tsx:51
+#: src/components/settings/SettingsPanel.tsx:52
 msgid "Your passphrase has been set"
 msgstr "Salasanasi on asetettu"
 
-#: src/components/settings/SettingsPanel.tsx:42
+#: src/components/settings/SettingsPanel.tsx:43
 msgid "Your passphrase has been updated"
 msgstr "Salasanasi on päivitetty"
 
@@ -5871,4 +5948,3 @@ msgstr "Käytettävissä olevan saldon on oltava suurempi kuin 1 mojo luodaksesi
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "Lompakkosi on oltava käynnissä, jotta automaattinen lunastaminen toimii."
-

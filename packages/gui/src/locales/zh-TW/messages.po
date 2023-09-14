@@ -170,6 +170,10 @@ msgstr "語音"
 msgid "Check for updates..."
 msgstr "檢查更新..."
 
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:154
+msgid "- Set a time after which the offer expires.<0/>- An expiring offer can only be claimed prior to the expiration time."
+msgstr ""
+
 #: src/components/offers2/OfferBuilderImport.tsx:167
 msgid "(⌘V) a blob"
 msgstr "(⌘V) 一個二進制資料塊"
@@ -328,7 +332,7 @@ msgstr "推薦數值為{0}"
 
 #: src/components/offers/NFTOfferViewer.tsx:642
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:21
-#: src/components/offers2/OfferBuilderViewer.tsx:215
+#: src/components/offers2/OfferBuilderViewer.tsx:249
 msgid "Accept Offer"
 msgstr "接受報價單"
 
@@ -344,7 +348,7 @@ msgstr "動作"
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:52
 #: src/components/fullNode/FullNodeConnections.tsx:65
 #: src/components/nfts/NFTContextualActions.tsx:590
-#: src/components/offers2/OfferIncomingTable.tsx:118
+#: src/components/offers2/OfferIncomingTable.tsx:122
 msgid "Actions"
 msgstr "動作"
 
@@ -392,6 +396,10 @@ msgstr "新增連線"
 
 #: src/components/addressbook/AddressBookSideBar.tsx:128
 msgid "Add Contact"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:142
+msgid "Add option to set expiration time {0}"
 msgstr ""
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:114
@@ -589,7 +597,7 @@ msgstr "您確定要撤銷嗎？"
 msgid "Are you sure you want to use k={plotSize}?"
 msgstr "您確定要使用 k={plotSize} 嗎？"
 
-#: src/components/offers2/OfferIncomingTable.tsx:212
+#: src/components/offers2/OfferIncomingTable.tsx:216
 msgid "Are you sure you'd like to remove this offer? Please remember that this action is not reversible."
 msgstr "您確定要移除這個報價單嗎？請記住這個動作是不可逆轉的。"
 
@@ -617,19 +625,19 @@ msgstr "我正在提供的資產："
 msgid "Assets I will receive:"
 msgstr "我將收到的資產："
 
-#: src/components/offers2/OfferBuilderTradeColumn.tsx:48
+#: src/components/offers2/OfferBuilderTradeColumn.tsx:49
 msgid "Assets I would like to receive"
 msgstr "我想要收到的資產"
 
-#: src/components/offers2/OfferBuilderTradeColumn.tsx:41
+#: src/components/offers2/OfferBuilderTradeColumn.tsx:42
 msgid "Assets I would like to trade"
 msgstr "我想要交換的資產"
 
-#: src/components/offers2/OfferBuilderTradeColumn.tsx:38
+#: src/components/offers2/OfferBuilderTradeColumn.tsx:39
 msgid "Assets you will give"
 msgstr "您將要給出的資產"
 
-#: src/components/offers2/OfferBuilderTradeColumn.tsx:45
+#: src/components/offers2/OfferBuilderTradeColumn.tsx:46
 msgid "Assets you will receive"
 msgstr "您將要收到的資產"
 
@@ -802,7 +810,7 @@ msgstr "取消"
 
 #: src/components/offers/ConfirmOfferCancellation.tsx:62
 #: src/components/offers/ConfirmOfferCancellation.tsx:129
-#: src/components/offers/OfferManager.tsx:247
+#: src/components/offers/OfferManager.tsx:322
 #: src/constants/WalletConnectCommands.tsx:374
 msgid "Cancel Offer"
 msgstr "取消報價單"
@@ -841,7 +849,7 @@ msgid "Change"
 msgstr "變更"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:290
-#: src/components/settings/SettingsPanel.tsx:119
+#: src/components/settings/SettingsPanel.tsx:120
 msgid "Change Passphrase"
 msgstr "變更私鑰密碼"
 
@@ -1029,7 +1037,7 @@ msgstr "確認NFT轉移"
 msgid "Confirm Passphrase"
 msgstr "確認私鑰密碼"
 
-#: src/components/offers2/OfferIncomingTable.tsx:211
+#: src/components/offers2/OfferIncomingTable.tsx:215
 #: src/components/plotNFT/PlotNFTCard.tsx:105
 msgid "Confirmation"
 msgstr "確認"
@@ -1144,11 +1152,11 @@ msgstr "無法解析報價數據"
 msgid "Count"
 msgstr ""
 
-#: src/components/offers2/OfferIncomingTable.tsx:107
+#: src/components/offers2/OfferIncomingTable.tsx:111
 msgid "Counter"
 msgstr "反饋"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:203
+#: src/components/offers2/OfferBuilderViewer.tsx:237
 msgid "Counter Offer"
 msgstr "還價"
 
@@ -1162,7 +1170,7 @@ msgstr "建立"
 msgid "Create & Manage plots"
 msgstr "建立與管理耕地"
 
-#: src/components/offers/OfferManager.tsx:329
+#: src/components/offers/OfferManager.tsx:415
 msgid "Create a file that you can use to trade XCH, Chia Asset Tokens, or NFTs with no counter-party risk."
 msgstr "創建一個文件，您可以使用它來進行XCH，Chia 資產代幣或NFT的交易，並且不會有交易對方的風險。"
 
@@ -1179,7 +1187,7 @@ msgid "Create an NFT Offer"
 msgstr "建立一個NFT報價單"
 
 #: src/components/offers/OfferEditor.tsx:193
-#: src/components/offers/OfferManager.tsx:338
+#: src/components/offers/OfferManager.tsx:424
 msgid "Create an Offer"
 msgstr "建立一個報價單"
 
@@ -1187,7 +1195,7 @@ msgstr "建立一個報價單"
 msgid "Create Contact"
 msgstr ""
 
-#: src/components/offers2/CreateOfferBuilder.tsx:151
+#: src/components/offers2/CreateOfferBuilder.tsx:200
 msgid "Create Counter Offer"
 msgstr "建立反報價"
 
@@ -1203,8 +1211,8 @@ msgstr "創建新的 DID 錢包"
 #: src/components/offers/NFTOfferEditor.tsx:439
 #: src/components/offers/OfferEditor.tsx:175
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:15
-#: src/components/offers/OfferManager.tsx:320
-#: src/components/offers2/CreateOfferBuilder.tsx:151
+#: src/components/offers/OfferManager.tsx:406
+#: src/components/offers2/CreateOfferBuilder.tsx:200
 msgid "Create Offer"
 msgstr "建立報價"
 
@@ -1244,9 +1252,9 @@ msgstr "建立一塊農場並加入農會"
 msgid "Creating Plot NFT for Self Pooling"
 msgstr "正在為自己的農會建立農場"
 
-#: src/components/offers/OfferManager.tsx:187
+#: src/components/offers/OfferManager.tsx:249
 #: src/components/offers2/CancelOfferList.tsx:127
-#: src/components/offers2/OfferIncomingTable.tsx:79
+#: src/components/offers2/OfferIncomingTable.tsx:83
 msgid "Creation Date"
 msgstr "創建日期"
 
@@ -1317,6 +1325,11 @@ msgstr "DataLayer 服務"
 msgid "Date"
 msgstr "日期"
 
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:44
+#: src/components/settings/SettingsExpiringOffers.tsx:14
+msgid "Days"
+msgstr ""
+
 #: src/components/settings/SettingsHarvester.tsx:472
 msgid "Decompressor Thread Count"
 msgstr ""
@@ -1333,12 +1346,20 @@ msgstr "默認撤銷時間已禁用。"
 msgid "Default claw back time is enabled."
 msgstr "默認撤銷時間已啟用。"
 
+#: src/components/settings/SettingsExpiringOffers.tsx:125
+msgid "Default offer expiration time is disabled"
+msgstr ""
+
+#: src/components/settings/SettingsExpiringOffers.tsx:120
+msgid "Default offer expiration time is enabled"
+msgstr ""
+
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:89
 msgid "Delay"
 msgstr "延遲"
 
 #: src/components/addressbook/ContactSummary.tsx:42
-#: src/components/offers2/OfferIncomingTable.tsx:112
+#: src/components/offers2/OfferIncomingTable.tsx:116
 #: src/components/plot/PlotAction.tsx:25
 #: src/components/plot/PlotAction.tsx:41
 #: src/components/plot/queue/PlotQueueActions.tsx:34
@@ -1381,7 +1402,7 @@ msgstr "正在刪除私鑰"
 msgid "Depending on your system configuration, you may find that an alternative plotter produces plots faster than the default Chia Proof of Space plotter. If unsure, use the default Chia Proof of Space plotter."
 msgstr "根據您系統的規格，您可能會發現替代耕地軟體產生耕地速度快於預設Chia空間證明耕地軟體。若不確定，請使用預設Chia空間證明耕地軟體。"
 
-#: src/components/settings/SettingsPanel.tsx:166
+#: src/components/settings/SettingsPanel.tsx:167
 msgid "Derivation Index"
 msgstr "派生索引"
 
@@ -1438,8 +1459,10 @@ msgstr "DID 識別碼"
 msgid "Difficulty"
 msgstr "難度"
 
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:189
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:91
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:77
+#: src/components/settings/SettingsExpiringOffers.tsx:88
 msgid "Disable"
 msgstr "停用"
 
@@ -1493,7 +1516,7 @@ msgstr "禁用 NUMA"
 msgid "Disconnect"
 msgstr "斷線"
 
-#: src/components/offers/OfferManager.tsx:227
+#: src/components/offers/OfferManager.tsx:302
 msgid "Display Offer Data"
 msgstr "顯示報價單資料"
 
@@ -1597,7 +1620,7 @@ msgstr "驅動程式字典"
 msgid "Duplicate"
 msgstr "複製"
 
-#: src/components/harvest/HarvesterOverview.tsx:204
+#: src/components/harvest/HarvesterOverview.tsx:210
 msgid "Duplicate plots"
 msgstr ""
 
@@ -1641,7 +1664,7 @@ msgstr "版本總數"
 msgid "Effective Space"
 msgstr ""
 
-#: src/components/harvest/HarvesterOverview.tsx:195
+#: src/components/harvest/HarvesterOverview.tsx:201
 msgid "Eligible plots per signage point"
 msgstr ""
 
@@ -1651,6 +1674,7 @@ msgstr ""
 
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:75
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:63
+#: src/components/settings/SettingsExpiringOffers.tsx:77
 msgid "Enable"
 msgstr "啟用"
 
@@ -1805,6 +1829,11 @@ msgstr ""
 msgid "Expiration"
 msgstr "到期"
 
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:196
+msgid "Expiration time will be {0}"
+msgstr ""
+
+#: src/components/offers/OfferManager.tsx:182
 #: src/components/vcs/VCCard.tsx:166
 msgid "Expired"
 msgstr "已過期"
@@ -2185,16 +2214,16 @@ msgstr ""
 msgid "Harvester Services"
 msgstr ""
 
-#: src/components/harvest/HarvesterOverview.tsx:147
+#: src/components/harvest/HarvesterOverview.tsx:153
 msgid "Harvester Summary"
 msgstr ""
 
-#: src/components/harvest/HarvesterOverview.tsx:212
+#: src/components/harvest/HarvesterOverview.tsx:218
 #: src/components/plot/PlotHarvesters.tsx:38
 msgid "Harvesters"
 msgstr "收割機"
 
-#: src/components/harvest/HarvesterOverview.tsx:188
+#: src/components/harvest/HarvesterOverview.tsx:194
 msgid "Harvesting Effectiveness"
 msgstr ""
 
@@ -2280,6 +2309,11 @@ msgstr "萬歲，這裡沒有文件!"
 msgid "Host Name"
 msgstr "主機名稱"
 
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:45
+#: src/components/settings/SettingsExpiringOffers.tsx:15
+msgid "Hours"
+msgstr ""
+
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:87
 msgid "Hybrid disk mode 1 (RAM required: 128G)"
 msgstr ""
@@ -2335,7 +2369,7 @@ msgstr "匯入"
 
 #: src/components/offers/NFTOfferViewer.tsx:483
 #: src/components/offers/OfferEditorConditionsPanel.tsx:291
-#: src/components/offers2/OfferBuilderTradeColumn.tsx:27
+#: src/components/offers2/OfferBuilderTradeColumn.tsx:28
 msgid "In exchange for"
 msgstr "以換取"
 
@@ -2360,7 +2394,7 @@ msgstr "包含錢包元數據"
 msgid "Including a fee in the offer can help expedite the transaction when the offer is accepted. The recommended minimum fee is 0.000005 XCH (5,000,000 mojos)"
 msgstr "在報價單中加入費用可以幫助在接受報價單時加速交易。建議最低的費用為0.000005 XCH(5,000,000 mojos)"
 
-#: src/components/offers2/OfferIncomingTable.tsx:128
+#: src/components/offers2/OfferIncomingTable.tsx:132
 msgid "Incoming Offers"
 msgstr "收到的報價"
 
@@ -2378,13 +2412,15 @@ msgstr "正在初始化..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid "Insufficient funds available to accept offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr "可用資金不足，無法接受報價單。請確保您的 可花用餘額 可以支付報價單金額。"
 
 #: src/components/offers/OfferEditor.tsx:146
-#: src/components/offers2/CreateOfferBuilder.tsx:133
-msgid "Insufficient funds available to create offer. Ensure that your\n"
+#: src/components/offers2/CreateOfferBuilder.tsx:167
+msgid ""
+"Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr "可用資金不足，無法建立報價單。請確保你的可支出餘額足以支付報價單金額。"
 
@@ -2618,6 +2654,11 @@ msgstr "連接列表是空的"
 msgid "Loading configuration"
 msgstr "正在加載設定"
 
+#: src/components/offers/OfferManager.tsx:235
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:99
+msgid "Loading expiration time..."
+msgstr ""
+
 #: src/components/farm/Farm.tsx:29
 msgid "Loading farming data"
 msgstr "正在加載耕種資料"
@@ -2646,6 +2687,7 @@ msgstr "正在加載 NFT 資訊"
 #: src/components/helpers/HeightToTimestamp.tsx:16
 #: src/components/nfts/NFTMetadata.tsx:21
 #: src/components/offers/NFTOfferTokenSelector.tsx:97
+#: src/components/offers/OfferManager.tsx:184
 #: src/components/offers2/OfferBuilderTokenSelector.tsx:79
 #: src/components/offers2/OfferDetails.tsx:38
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:27
@@ -2752,7 +2794,7 @@ msgstr "元數據 URL {0}"
 msgid "MiB Up/Down"
 msgstr "MiB 上傳/下傳"
 
-#: src/components/settings/SettingsPanel.tsx:135
+#: src/components/settings/SettingsPanel.tsx:136
 msgid "Migrate Keyring"
 msgstr "遷移鑰匙環"
 
@@ -2764,7 +2806,7 @@ msgstr "遷移鑰匙"
 msgid "Migration required"
 msgstr "需要遷移"
 
-#: src/components/settings/SettingsPanel.tsx:89
+#: src/components/settings/SettingsPanel.tsx:90
 msgid "Migration required to support passphrase protection"
 msgstr "遷移需要有密碼保護"
 
@@ -2796,7 +2838,9 @@ msgstr "鑄造者:"
 msgid "MintGarden URL"
 msgstr "MintGarden 網址"
 
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:46
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
+#: src/components/settings/SettingsExpiringOffers.tsx:16
 msgid "Minutes"
 msgstr "分鐘"
 
@@ -3051,7 +3095,7 @@ msgstr ""
 msgid "No CPU Affinity"
 msgstr "無 CPU 關聯性"
 
-#: src/components/offers/OfferManager.tsx:283
+#: src/components/offers/OfferManager.tsx:369
 msgid "No current offers"
 msgstr "目前無報價單"
 
@@ -3063,7 +3107,7 @@ msgstr "無自訂權限"
 msgid "No file available"
 msgstr "無可用檔案"
 
-#: src/components/offers2/OfferIncomingTable.tsx:277
+#: src/components/offers2/OfferIncomingTable.tsx:281
 msgid "No incoming offers"
 msgstr "無收到的報價單"
 
@@ -3200,7 +3244,7 @@ msgstr "第三與第四階段的桶數"
 msgid "Number of NFTs"
 msgstr "NFT 數量"
 
-#: src/components/harvest/HarvesterOverview.tsx:180
+#: src/components/harvest/HarvesterOverview.tsx:186
 msgid "Number of plots"
 msgstr ""
 
@@ -3249,14 +3293,14 @@ msgstr "佔用空間"
 msgid "Offer"
 msgstr "提案"
 
-#: src/components/offers/OfferManager.tsx:326
+#: src/components/offers/OfferManager.tsx:412
 #: src/components/offers2/OfferNavigationHeader.tsx:16
 msgid "Offer Builder"
 msgstr "報價單生成器"
 
 #: src/components/offers/NFTOfferViewer.tsx:173
 #: src/components/offers2/OfferBuilderValue.tsx:196
-#: src/components/offers2/OfferBuilderViewer.tsx:246
+#: src/components/offers2/OfferBuilderViewer.tsx:280
 msgid "Offer cannot be accepted because you don't possess the requested assets"
 msgstr "因為你沒有被請求的資產，所以不能接受報價單。"
 
@@ -3272,6 +3316,10 @@ msgstr "報價單資料"
 msgid "Offer Details"
 msgstr "報價單詳細資料"
 
+#: src/components/settings/SettingsExpiringOffers.tsx:43
+msgid "Offer Expiration Time"
+msgstr ""
+
 #: src/components/offers2/OfferBuilderImport.tsx:77
 msgid "Offer file is too large (> 1MB)"
 msgstr "報價單檔案太大 (> 1MB)"
@@ -3280,12 +3328,20 @@ msgstr "報價單檔案太大 (> 1MB)"
 msgid "Offer has been accepted and is awaiting confirmation."
 msgstr "報價單已接受，正在等待確認。"
 
+#: src/components/offers2/OfferBuilderExpirationCountdown.tsx:31
+msgid "Offer has expired"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:103
+msgid "Offer has expired and cannot be accepted."
+msgstr ""
+
 #: src/constants/WalletConnectCommands.tsx:453
 #: src/constants/WalletConnectCommands.tsx:467
 msgid "Offer Id"
 msgstr "報價單ID"
 
-#: src/components/offers/OfferManager.tsx:307
+#: src/components/offers/OfferManager.tsx:393
 msgid "Offer Management"
 msgstr "報價單管理"
 
@@ -3297,16 +3353,22 @@ msgstr "報價單管理"
 msgid "Offer Shared"
 msgstr "分享報價單"
 
+#: src/components/offers2/OfferBuilderExpirationCountdown.tsx:16
+#: src/components/offers2/OfferBuilderExpirationCountdown.tsx:21
+#: src/components/offers2/OfferBuilderExpirationCountdown.tsx:26
+msgid "Offer will expire in {0} {1}"
+msgstr ""
+
 #: src/components/offers/OfferShareDialog.tsx:755
 #~ msgid "OfferBin URL"
 #~ msgstr "OfferBin URL"
 
-#: src/components/offers/OfferManager.tsx:160
+#: src/components/offers/OfferManager.tsx:214
 #: src/components/offers2/CancelOfferList.tsx:80
 msgid "Offered"
 msgstr "已報價"
 
-#: src/components/offers2/OfferBuilderTradeColumn.tsx:23
+#: src/components/offers2/OfferBuilderTradeColumn.tsx:24
 #: src/components/offers2/OfferIncomingTable.tsx:75
 msgid "Offering"
 msgstr "報價中"
@@ -3328,15 +3390,15 @@ msgstr "報價單"
 msgid "Offers are a way to trade assets in a genuinely peer-to-peer way that eliminates counterparty risk."
 msgstr "報價單是以真正的點對點方式交易資產的一種方式，可以消除對手方風險。"
 
-#: src/components/offers/OfferManager.tsx:310
+#: src/components/offers/OfferManager.tsx:396
 msgid "Offers are a way to trade assets in a genuinely peer-to-peer way to eliminate counterparty risk."
 msgstr "報價單是一種以真正的點對點方式交易資產的方式，可以消除對手方風險。"
 
-#: src/components/offers/OfferManager.tsx:359
+#: src/components/offers/OfferManager.tsx:445
 msgid "Offers you accepted"
 msgstr "您已接受報價單"
 
-#: src/components/offers/OfferManager.tsx:358
+#: src/components/offers/OfferManager.tsx:444
 msgid "Offers you created"
 msgstr "已建立你的報價單"
 
@@ -3358,7 +3420,7 @@ msgstr "一旦您啟動此轉帳，您將無法取消交易。您確定要轉帳
 msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer the NFT?"
 msgstr "一旦啟動此轉帳，您將無法取消交易。您確定要轉帳這個 NFT 嗎？"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:250
+#: src/components/offers2/OfferBuilderViewer.tsx:284
 msgid "One or more unknown tokens are being offered. Be sure to verify that the asset IDs of the offered tokens match the asset IDs of the tokens you are expecting."
 msgstr "正在提供一個或多個未知代幣。請確保驗證所提供的代幣的資產ID是否與您預期接收的代幣的資產ID相匹配。"
 
@@ -3484,7 +3546,7 @@ msgstr ""
 #: src/components/app/AppPassPrompt.tsx:138
 #: src/components/settings/RemovePassphrasePrompt.tsx:130
 #: src/components/settings/SetPassphrasePrompt.tsx:175
-#: src/components/settings/SettingsPanel.tsx:183
+#: src/components/settings/SettingsPanel.tsx:184
 msgid "Passphrase"
 msgstr "私鑰密碼"
 
@@ -3500,19 +3562,19 @@ msgstr "私鑰密碼提示"
 msgid "Passphrase Hint (Optional)"
 msgstr "私鑰密碼提示(可選)"
 
-#: src/components/settings/SettingsPanel.tsx:60
+#: src/components/settings/SettingsPanel.tsx:61
 msgid "Passphrase protection has been disabled"
 msgstr "私鑰密碼保護已經禁用"
 
-#: src/components/settings/SettingsPanel.tsx:98
+#: src/components/settings/SettingsPanel.tsx:99
 msgid "Passphrase protection is disabled"
 msgstr "私鑰密碼保護已禁用"
 
-#: src/components/settings/SettingsPanel.tsx:95
+#: src/components/settings/SettingsPanel.tsx:96
 msgid "Passphrase protection is enabled"
 msgstr "私鑰密碼保護已開啟"
 
-#: src/components/settings/SettingsPanel.tsx:90
+#: src/components/settings/SettingsPanel.tsx:91
 msgid "Passphrase support requires migrating your keys to a new keyring"
 msgstr "啟用私鑰密碼保護需要將您的私鑰遷移到新的私鑰環。"
 
@@ -3663,7 +3725,7 @@ msgstr "請指定最終目錄"
 msgid "Please specify temporary directory"
 msgstr "請指定臨時目錄"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:186
+#: src/components/offers2/OfferBuilderViewer.tsx:220
 msgid "Please wait for wallet synchronization"
 msgstr "請等待錢包同步"
 
@@ -4061,6 +4123,10 @@ msgstr "相對鎖定高度"
 #~ msgid "Release Notes"
 #~ msgstr "Release Notes"
 
+#: src/components/offers/OfferManager.tsx:291
+msgid "Relist Offer"
+msgstr ""
+
 #: src/components/plot/PlotHarvester.tsx:61
 msgid "Remote"
 msgstr "遠端"
@@ -4079,7 +4145,7 @@ msgstr "成功遷移後從舊金鑰圈中移除金鑰"
 
 #: src/components/settings/RemovePassphrasePrompt.tsx:112
 #: src/components/settings/RemovePassphrasePrompt.tsx:172
-#: src/components/settings/SettingsPanel.tsx:146
+#: src/components/settings/SettingsPanel.tsx:147
 msgid "Remove Passphrase"
 msgstr "移除私鑰密碼"
 
@@ -4096,12 +4162,12 @@ msgstr "移除中"
 #~ msgid "Report an Issue..."
 #~ msgstr "Report an Issue..."
 
-#: src/components/offers/OfferManager.tsx:170
+#: src/components/offers/OfferManager.tsx:224
 #: src/components/offers2/CancelOfferList.tsx:95
 msgid "Requested"
 msgstr "已請求"
 
-#: src/components/offers2/OfferBuilderTradeColumn.tsx:30
+#: src/components/offers2/OfferBuilderTradeColumn.tsx:31
 #: src/components/offers2/OfferIncomingTable.tsx:55
 msgid "Requesting"
 msgstr "正在請求"
@@ -4270,11 +4336,12 @@ msgstr "運行全節點"
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:75
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:63
 #: src/components/settings/SettingsDerivationIndex.tsx:85
+#: src/components/settings/SettingsExpiringOffers.tsx:77
 #: src/components/vcs/VCEditTitle.tsx:94
 msgid "Save"
 msgstr "儲存"
 
-#: src/components/offers/OfferManager.tsx:237
+#: src/components/offers/OfferManager.tsx:312
 msgid "Save Offer File"
 msgstr "保存報價單檔案"
 
@@ -4311,7 +4378,7 @@ msgstr "第二暫存資料夾位置"
 msgid "Secure"
 msgstr "安全"
 
-#: src/components/settings/SettingsPanel.tsx:92
+#: src/components/settings/SettingsPanel.tsx:93
 msgid "Secure your keychain using a strong passphrase"
 msgstr "使用強大的私鑰密碼來保護您的密鑰鏈"
 
@@ -4446,7 +4513,7 @@ msgstr "設置NFT的DID"
 
 #: src/components/settings/SetPassphrasePrompt.tsx:156
 #: src/components/settings/SetPassphrasePrompt.tsx:271
-#: src/components/settings/SettingsPanel.tsx:152
+#: src/components/settings/SettingsPanel.tsx:153
 msgid "Set Passphrase"
 msgstr "設定密碼"
 
@@ -4459,7 +4526,7 @@ msgstr ""
 msgid "Settings"
 msgstr "設定"
 
-#: src/components/offers/OfferManager.tsx:203
+#: src/components/offers/OfferManager.tsx:268
 #: src/components/offers/OfferShareDialog.tsx:923
 msgid "Share"
 msgstr "分享"
@@ -4504,7 +4571,7 @@ msgstr "分享在Spacescan.io"
 msgid "Show"
 msgstr "顯示"
 
-#: src/components/offers/OfferManager.tsx:217
+#: src/components/offers/OfferManager.tsx:282
 msgid "Show Details"
 msgstr "顯示詳細資料"
 
@@ -4620,7 +4687,7 @@ msgid "Sorry, you can't switch to mainnet by clicking here..."
 msgstr "很抱歉，您不能通過在此處點擊切換到主網……"
 
 #: src/components/harvest/HarvesterDetail.tsx:108
-#: src/components/harvest/HarvesterOverview.tsx:151
+#: src/components/harvest/HarvesterOverview.tsx:157
 msgid "Space"
 msgstr ""
 
@@ -4702,7 +4769,7 @@ msgstr "狀態"
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:69
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:74
-#: src/components/offers/OfferManager.tsx:150
+#: src/components/offers/OfferManager.tsx:204
 #: src/components/plot/PlotHarvesterPlots.tsx:74
 #: src/components/plot/PlotPlotting.tsx:26
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:102
@@ -4778,11 +4845,11 @@ msgstr ""
 msgid "Temporary folder location"
 msgstr "臨時資料夾位置"
 
-#: src/components/harvest/HarvesterOverview.tsx:62
+#: src/components/harvest/HarvesterOverview.tsx:63
 msgid "The average number of plots which passed filter over last 64 signage points"
 msgstr ""
 
-#: src/components/harvest/HarvesterOverview.tsx:100
+#: src/components/harvest/HarvesterOverview.tsx:106
 msgid "The average number of plots which passed filter over the last 64 signage points. It is expected to be {expectedAvgPassedFilter} for total {latestTotalPlots} plots. (Current plot filter: 1 / {plotFilter})"
 msgstr ""
 
@@ -4794,7 +4861,7 @@ msgstr "Chia應用程序及其服務使用不同版本。由此可能導致某�
 msgid "The claw back time can be manually adjusted per transaction."
 msgstr "每筆交易的收回時間可以手動調整。"
 
-#: src/components/settings/SettingsPanel.tsx:168
+#: src/components/settings/SettingsPanel.tsx:169
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
 msgstr "派生索引設置錢包掃描區塊鏈的錢包地址範圍。如果您有大量交易或取消了 XCH、CAT 或 NFT 的報價，則該數字通常會更高。如果您認為您的餘額因缺少硬幣而不正確，那麼增加派生索引可以幫助錢包將缺少的硬幣納入餘額總額中。"
 
@@ -4859,7 +4926,7 @@ msgstr "節點尚未同步"
 msgid "The node is syncing, which means it is downloading blocks from other nodes, to reach the latest block in the chain"
 msgstr "節點同步中，這意味著正在從其他節點下載區塊，以達到鏈中的最新區塊"
 
-#: src/components/offers2/OfferIncomingTable.tsx:97
+#: src/components/offers2/OfferIncomingTable.tsx:101
 msgid "The offer creator has chosen not to allow counter offers"
 msgstr "發佈報價單的用戶選擇不允許對報價單進行還價"
 
@@ -4948,7 +5015,7 @@ msgstr "此功能僅在圖形使用者界面中可用。"
 msgid "This harvester does not have any plots to harvest"
 msgstr ""
 
-#: src/components/harvest/HarvesterOverview.tsx:169
+#: src/components/harvest/HarvesterOverview.tsx:175
 msgid "This is a sum of effective plot sizes currently farming. An effective plot size is a theoretical value which is derived only by kSize"
 msgstr ""
 
@@ -4997,18 +5064,22 @@ msgid "This offer has a fee included to help expedite the transaction when the o
 msgstr "此報價中包含有助於在接受報價時加快交易的費用。如果您覺得所包含的費用太小，您可以指定額外的費用。"
 
 #: src/components/offers/OfferHeader.tsx:63
-#: src/components/offers2/OfferBuilderViewer.tsx:238
+#: src/components/offers2/OfferBuilderViewer.tsx:272
 msgid "This offer has completed successfully"
 msgstr "此報價單已成功完成"
 
 #: src/components/offers/OfferHeader.tsx:46
-#: src/components/offers2/OfferBuilderViewer.tsx:225
+#: src/components/offers2/OfferBuilderViewer.tsx:259
 msgid "This offer is no longer valid. To understand why, click <0>here</0> to learn more."
 msgstr "此報價已不再有效。了解原因，請點擊<0>此處</0>進行了解。"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:242
+#: src/components/offers2/OfferBuilderViewer.tsx:276
 msgid "This offer was cancelled"
 msgstr "此報價已取消。"
+
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:204
+msgid "This offer will never expire."
+msgstr ""
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:269
 msgid "This plot NFT is assigned to a different key. You can still create plots for this plot NFT, but you can not make changes."
@@ -5089,11 +5160,11 @@ msgstr "總金額（包括版稅）"
 #~ msgid "Total Chia Farmed"
 #~ msgstr "Total Chia Farmed"
 
-#: src/components/harvest/HarvesterOverview.tsx:166
+#: src/components/harvest/HarvesterOverview.tsx:172
 msgid "Total farm size effective"
 msgstr ""
 
-#: src/components/harvest/HarvesterOverview.tsx:158
+#: src/components/harvest/HarvesterOverview.tsx:164
 msgid "Total farm size raw"
 msgstr ""
 
@@ -5474,7 +5545,7 @@ msgstr "驗證簽名"
 msgid "Verifying hash..."
 msgstr "正在驗證雜湊..."
 
-#: src/components/offers2/OfferIncomingTable.tsx:102
+#: src/components/offers2/OfferIncomingTable.tsx:106
 msgid "View"
 msgstr "檢視"
 
@@ -5491,7 +5562,7 @@ msgstr "檢視憑證數據"
 msgid "View Log"
 msgstr "檢視日誌"
 
-#: src/components/offers/OfferManager.tsx:349
+#: src/components/offers/OfferManager.tsx:435
 msgid "View Offer"
 msgstr "檢視提案"
 
@@ -5614,6 +5685,10 @@ msgstr "錢包未定義"
 msgid "Wallet Mode"
 msgstr "錢包模式"
 
+#: src/components/offers2/CreateOfferBuilder.tsx:103
+msgid "Wallet must be synced before creating an offer with an expiration time"
+msgstr ""
+
 #: src/components/settings/SettingsIntegration.tsx:139
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:218
 #: src/components/walletConnect/WalletConnectConnectedDialog.tsx:67
@@ -5711,7 +5786,7 @@ msgstr "您是否要將指定的 NFT 移至個人檔案？"
 msgid "Would you like to transfer the specified NFT to a new owner?"
 msgstr "您是否要將指定的 NFT 轉移給新擁有者？"
 
-#: src/components/offers2/OfferIncomingTable.tsx:211
+#: src/components/offers2/OfferIncomingTable.tsx:215
 #: src/components/plot/add/PlotAddChooseSize.tsx:58
 #: src/components/vcs/VCCard.tsx:89
 msgid "Yes"
@@ -5754,7 +5829,7 @@ msgid "You can still create plots for this plot NFT, but you can not make change
 msgstr "您仍然可以為此農場創建耕地，但在同步完成之前您不能進行更改。"
 
 #: src/components/offers/OfferHeader.tsx:38
-#: src/components/offers2/OfferBuilderViewer.tsx:257
+#: src/components/offers2/OfferBuilderViewer.tsx:291
 msgid "You created this offer"
 msgstr "您創建了這個報價"
 
@@ -5803,7 +5878,7 @@ msgstr "您需要 {currencyCode} 來加入農會。"
 msgid "You need to claim your rewards first"
 msgstr "您需要先領取您的獎勵"
 
-#: src/components/offers2/OfferBuilderTradeColumn.tsx:20
+#: src/components/offers2/OfferBuilderTradeColumn.tsx:21
 msgid "You will give"
 msgstr "您將提供"
 
@@ -5850,11 +5925,11 @@ msgstr "您的密鑰鏈已鎖定"
 msgid "Your passphrase can be stored in your system's secure credential store. Chia will be able to access your keys without prompting for your passphrase."
 msgstr "您的密語可以儲存在系統的安全憑證存儲區。Chia將能夠在不提示您輸入密語的情況下訪問您的密鑰。"
 
-#: src/components/settings/SettingsPanel.tsx:51
+#: src/components/settings/SettingsPanel.tsx:52
 msgid "Your passphrase has been set"
 msgstr "您的密語已設置"
 
-#: src/components/settings/SettingsPanel.tsx:42
+#: src/components/settings/SettingsPanel.tsx:43
 msgid "Your passphrase has been updated"
 msgstr "您的密語已更新"
 
@@ -5869,4 +5944,3 @@ msgstr "您的可支配餘額必須大於1 mojo，才能建立個人檔案"
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "您的錢包需要運行才能自動索取"
-

@@ -170,6 +170,10 @@ msgstr "سخن"
 msgid "Check for updates..."
 msgstr "بروز رسانی را بررسی کنید..."
 
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:154
+msgid "- Set a time after which the offer expires.<0/>- An expiring offer can only be claimed prior to the expiration time."
+msgstr ""
+
 #: src/components/offers2/OfferBuilderImport.tsx:167
 msgid "(⌘V) a blob"
 msgstr "داده های فایل نقل قول (⌘V)"
@@ -328,7 +332,7 @@ msgstr "مقدار {0} توصیه میشود"
 
 #: src/components/offers/NFTOfferViewer.tsx:642
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:21
-#: src/components/offers2/OfferBuilderViewer.tsx:215
+#: src/components/offers2/OfferBuilderViewer.tsx:249
 msgid "Accept Offer"
 msgstr "تایید پیشنهاد"
 
@@ -344,7 +348,7 @@ msgstr "اقدام"
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:52
 #: src/components/fullNode/FullNodeConnections.tsx:65
 #: src/components/nfts/NFTContextualActions.tsx:590
-#: src/components/offers2/OfferIncomingTable.tsx:118
+#: src/components/offers2/OfferIncomingTable.tsx:122
 msgid "Actions"
 msgstr "اقدامات"
 
@@ -393,6 +397,10 @@ msgstr "اضافه نمودن اتصال"
 #: src/components/addressbook/AddressBookSideBar.tsx:128
 msgid "Add Contact"
 msgstr "اضافه کردن اطلاعات تماس"
+
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:142
+msgid "Add option to set expiration time {0}"
+msgstr ""
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:114
 msgid "Add plot directory"
@@ -589,7 +597,7 @@ msgstr "آیا مطمئن هستید که میخواهید لغو کنید"
 msgid "Are you sure you want to use k={plotSize}?"
 msgstr "آیا مطمئنید که میخواهید از مقدار k= {plotSize} استفاده کنید؟"
 
-#: src/components/offers2/OfferIncomingTable.tsx:212
+#: src/components/offers2/OfferIncomingTable.tsx:216
 msgid "Are you sure you'd like to remove this offer? Please remember that this action is not reversible."
 msgstr "آیا مطمئن هستید که میخواهید این پیشنهاد را حذف کنید؟ لطفاً به یاد داشته باشید که این عمل قابل برگشت نیست."
 
@@ -617,19 +625,19 @@ msgstr "دارایی که پیشنهاد میدهم:"
 msgid "Assets I will receive:"
 msgstr "دارایی که دریاقت میکنم:"
 
-#: src/components/offers2/OfferBuilderTradeColumn.tsx:48
+#: src/components/offers2/OfferBuilderTradeColumn.tsx:49
 msgid "Assets I would like to receive"
 msgstr "دارایی هایی که میخواهم دریافت کنم"
 
-#: src/components/offers2/OfferBuilderTradeColumn.tsx:41
+#: src/components/offers2/OfferBuilderTradeColumn.tsx:42
 msgid "Assets I would like to trade"
 msgstr "دارایی هایی که میخواهم معامله کنم"
 
-#: src/components/offers2/OfferBuilderTradeColumn.tsx:38
+#: src/components/offers2/OfferBuilderTradeColumn.tsx:39
 msgid "Assets you will give"
 msgstr "دارایی هایی که شما پرداخت میکنید"
 
-#: src/components/offers2/OfferBuilderTradeColumn.tsx:45
+#: src/components/offers2/OfferBuilderTradeColumn.tsx:46
 msgid "Assets you will receive"
 msgstr "دارایی هایی که شما دریافت میکنید"
 
@@ -802,7 +810,7 @@ msgstr "لغو"
 
 #: src/components/offers/ConfirmOfferCancellation.tsx:62
 #: src/components/offers/ConfirmOfferCancellation.tsx:129
-#: src/components/offers/OfferManager.tsx:247
+#: src/components/offers/OfferManager.tsx:322
 #: src/constants/WalletConnectCommands.tsx:374
 msgid "Cancel Offer"
 msgstr "لغو پیشنهاد"
@@ -841,7 +849,7 @@ msgid "Change"
 msgstr "تغییر"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:290
-#: src/components/settings/SettingsPanel.tsx:119
+#: src/components/settings/SettingsPanel.tsx:120
 msgid "Change Passphrase"
 msgstr "تغییر رمز ورود"
 
@@ -1029,7 +1037,7 @@ msgstr "تایید انتقال ان اف تی"
 msgid "Confirm Passphrase"
 msgstr "تایید رمز ورود"
 
-#: src/components/offers2/OfferIncomingTable.tsx:211
+#: src/components/offers2/OfferIncomingTable.tsx:215
 #: src/components/plotNFT/PlotNFTCard.tsx:105
 msgid "Confirmation"
 msgstr "تائیدیه"
@@ -1144,11 +1152,11 @@ msgstr "تجزیه اطلاعات پیشنهاد ممکن نیست"
 msgid "Count"
 msgstr "شمردن"
 
-#: src/components/offers2/OfferIncomingTable.tsx:107
+#: src/components/offers2/OfferIncomingTable.tsx:111
 msgid "Counter"
 msgstr "شمارش معکوس"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:203
+#: src/components/offers2/OfferBuilderViewer.tsx:237
 msgid "Counter Offer"
 msgstr "شمارنده پیشنهاد"
 
@@ -1162,7 +1170,7 @@ msgstr "ایجاد"
 msgid "Create & Manage plots"
 msgstr "پلات ها را ایجاد و مدیریت کنید"
 
-#: src/components/offers/OfferManager.tsx:329
+#: src/components/offers/OfferManager.tsx:415
 msgid "Create a file that you can use to trade XCH, Chia Asset Tokens, or NFTs with no counter-party risk."
 msgstr "فایلی ایجاد کنید که بتوانید از آن برای معامله دارایی چیا XCH، یا ان اف تی بدون ریسک طرف مقابل استفاده کنید."
 
@@ -1179,7 +1187,7 @@ msgid "Create an NFT Offer"
 msgstr "ایجاد یشنهاد ان اف تی"
 
 #: src/components/offers/OfferEditor.tsx:193
-#: src/components/offers/OfferManager.tsx:338
+#: src/components/offers/OfferManager.tsx:424
 msgid "Create an Offer"
 msgstr "ایجاد پیشنهاد"
 
@@ -1187,7 +1195,7 @@ msgstr "ایجاد پیشنهاد"
 msgid "Create Contact"
 msgstr "ایجاد اطلاعات تماس"
 
-#: src/components/offers2/CreateOfferBuilder.tsx:151
+#: src/components/offers2/CreateOfferBuilder.tsx:200
 msgid "Create Counter Offer"
 msgstr "ایجاد پیشنهاد زمان‌بندی شده"
 
@@ -1203,8 +1211,8 @@ msgstr "ساخت کیف پول شناسه غیرمتمرکز جدید"
 #: src/components/offers/NFTOfferEditor.tsx:439
 #: src/components/offers/OfferEditor.tsx:175
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:15
-#: src/components/offers/OfferManager.tsx:320
-#: src/components/offers2/CreateOfferBuilder.tsx:151
+#: src/components/offers/OfferManager.tsx:406
+#: src/components/offers2/CreateOfferBuilder.tsx:200
 msgid "Create Offer"
 msgstr "ایجاد پیشنهاد"
 
@@ -1244,9 +1252,9 @@ msgstr "ایجاد پلات NFT و پیوستن به استخر"
 msgid "Creating Plot NFT for Self Pooling"
 msgstr "ایجاد پلاتNFT برای استخر شخصی"
 
-#: src/components/offers/OfferManager.tsx:187
+#: src/components/offers/OfferManager.tsx:249
 #: src/components/offers2/CancelOfferList.tsx:127
-#: src/components/offers2/OfferIncomingTable.tsx:79
+#: src/components/offers2/OfferIncomingTable.tsx:83
 msgid "Creation Date"
 msgstr "تاریخ ایجاد"
 
@@ -1317,6 +1325,11 @@ msgstr "خدمات لایه داده ها"
 msgid "Date"
 msgstr "تاریخ"
 
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:44
+#: src/components/settings/SettingsExpiringOffers.tsx:14
+msgid "Days"
+msgstr ""
+
 #: src/components/settings/SettingsHarvester.tsx:472
 msgid "Decompressor Thread Count"
 msgstr "شمارش رشته های غیر فشرده کردن"
@@ -1333,12 +1346,20 @@ msgstr "زمان پیش‌فرض ادعای بازگرداندن غیرفعال 
 msgid "Default claw back time is enabled."
 msgstr "زمان پیش‌فرض ادعای بازگرداندن فعال است."
 
+#: src/components/settings/SettingsExpiringOffers.tsx:125
+msgid "Default offer expiration time is disabled"
+msgstr ""
+
+#: src/components/settings/SettingsExpiringOffers.tsx:120
+msgid "Default offer expiration time is enabled"
+msgstr ""
+
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:89
 msgid "Delay"
 msgstr "تاخیر"
 
 #: src/components/addressbook/ContactSummary.tsx:42
-#: src/components/offers2/OfferIncomingTable.tsx:112
+#: src/components/offers2/OfferIncomingTable.tsx:116
 #: src/components/plot/PlotAction.tsx:25
 #: src/components/plot/PlotAction.tsx:41
 #: src/components/plot/queue/PlotQueueActions.tsx:34
@@ -1381,7 +1402,7 @@ msgstr "در حال حذف کلید"
 msgid "Depending on your system configuration, you may find that an alternative plotter produces plots faster than the default Chia Proof of Space plotter. If unsure, use the default Chia Proof of Space plotter."
 msgstr "بسته به تنظیمات سیستم شما، امکان دارد یک پلات ساز دیگر که پلات ها را سریعتر از پلات ساز پیش فرض Chia Proof of Space تولید میکند، پیدا کنید. اگر مطمئن نیستید، از پلات ساز پیش فرض Chia Proof of Space استفاده کنید."
 
-#: src/components/settings/SettingsPanel.tsx:166
+#: src/components/settings/SettingsPanel.tsx:167
 msgid "Derivation Index"
 msgstr "فهرست استخراج"
 
@@ -1438,8 +1459,10 @@ msgstr "شناسه، شناسه غیرمتمرکز"
 msgid "Difficulty"
 msgstr "سختی"
 
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:189
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:91
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:77
+#: src/components/settings/SettingsExpiringOffers.tsx:88
 msgid "Disable"
 msgstr "غیر فعال"
 
@@ -1493,7 +1516,7 @@ msgstr "NUMA را غیرفعال کنید"
 msgid "Disconnect"
 msgstr "قطع شده"
 
-#: src/components/offers/OfferManager.tsx:227
+#: src/components/offers/OfferManager.tsx:302
 msgid "Display Offer Data"
 msgstr "نمایش اطلاعات پیشنهاد"
 
@@ -1597,7 +1620,7 @@ msgstr "فرهنگ لغت راننده"
 msgid "Duplicate"
 msgstr "تکراری"
 
-#: src/components/harvest/HarvesterOverview.tsx:204
+#: src/components/harvest/HarvesterOverview.tsx:210
 msgid "Duplicate plots"
 msgstr "پلاتهای تکراری"
 
@@ -1641,7 +1664,7 @@ msgstr "کل ویرایش"
 msgid "Effective Space"
 msgstr "فضای موثر"
 
-#: src/components/harvest/HarvesterOverview.tsx:195
+#: src/components/harvest/HarvesterOverview.tsx:201
 msgid "Eligible plots per signage point"
 msgstr "پلاتهای واجد شرایط در هر نقطه علامت"
 
@@ -1651,6 +1674,7 @@ msgstr "شکلک ها"
 
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:75
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:63
+#: src/components/settings/SettingsExpiringOffers.tsx:77
 msgid "Enable"
 msgstr "فعال"
 
@@ -1805,6 +1829,11 @@ msgstr "تعداد مورد انتظار پلاتهایی که از فیلتر �
 msgid "Expiration"
 msgstr "انقضاء"
 
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:196
+msgid "Expiration time will be {0}"
+msgstr ""
+
+#: src/components/offers/OfferManager.tsx:182
 #: src/components/vcs/VCCard.tsx:166
 msgid "Expired"
 msgstr "منقضی شده"
@@ -2185,16 +2214,16 @@ msgstr "تاخیر برداشت کننده"
 msgid "Harvester Services"
 msgstr "خدمات برداشت کننده"
 
-#: src/components/harvest/HarvesterOverview.tsx:147
+#: src/components/harvest/HarvesterOverview.tsx:153
 msgid "Harvester Summary"
 msgstr "خلاصه برداشت کننده"
 
-#: src/components/harvest/HarvesterOverview.tsx:212
+#: src/components/harvest/HarvesterOverview.tsx:218
 #: src/components/plot/PlotHarvesters.tsx:38
 msgid "Harvesters"
 msgstr "برداشت کننده ها"
 
-#: src/components/harvest/HarvesterOverview.tsx:188
+#: src/components/harvest/HarvesterOverview.tsx:194
 msgid "Harvesting Effectiveness"
 msgstr "اثربخشی برداشت"
 
@@ -2280,6 +2309,11 @@ msgstr "اینجا فایلی وجود ندارد!"
 msgid "Host Name"
 msgstr "نام میزبان"
 
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:45
+#: src/components/settings/SettingsExpiringOffers.tsx:15
+msgid "Hours"
+msgstr ""
+
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:87
 msgid "Hybrid disk mode 1 (RAM required: 128G)"
 msgstr ""
@@ -2335,7 +2369,7 @@ msgstr "وارد كردن"
 
 #: src/components/offers/NFTOfferViewer.tsx:483
 #: src/components/offers/OfferEditorConditionsPanel.tsx:291
-#: src/components/offers2/OfferBuilderTradeColumn.tsx:27
+#: src/components/offers2/OfferBuilderTradeColumn.tsx:28
 msgid "In exchange for"
 msgstr "درقبال مبادله برای"
 
@@ -2360,7 +2394,7 @@ msgstr "شامل کیف پول Metadata"
 msgid "Including a fee in the offer can help expedite the transaction when the offer is accepted. The recommended minimum fee is 0.000005 XCH (5,000,000 mojos)"
 msgstr "درج کارمزد در پیشنهاد میتواند به سرعت معامله در هنگام پذیرش پیشنهاد کمک کند. حداقل هزینه توصیه شده 0.000005 XCH (5000000 موجو) است"
 
-#: src/components/offers2/OfferIncomingTable.tsx:128
+#: src/components/offers2/OfferIncomingTable.tsx:132
 msgid "Incoming Offers"
 msgstr "پیشنهادات دریافتی"
 
@@ -2378,16 +2412,20 @@ msgstr "در حال شروع..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid "Insufficient funds available to accept offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
+msgstr ""
+"مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
 "موجودی قابل مصرف شما برای پوشش مبلغ پیشنهاد کافی است."
 
 #: src/components/offers/OfferEditor.tsx:146
-#: src/components/offers2/CreateOfferBuilder.tsx:133
-msgid "Insufficient funds available to create offer. Ensure that your\n"
+#: src/components/offers2/CreateOfferBuilder.tsx:167
+msgid ""
+"Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
+msgstr ""
+"مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
 "موجودی قابل مصرف شما برای پوشش مبلغ پیشنهاد کافی است."
 
 #: src/components/settings/Settings.tsx:73
@@ -2620,6 +2658,11 @@ msgstr "لیست اتصالات خالی است"
 msgid "Loading configuration"
 msgstr "بارکذاری پیکربندی"
 
+#: src/components/offers/OfferManager.tsx:235
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:99
+msgid "Loading expiration time..."
+msgstr ""
+
 #: src/components/farm/Farm.tsx:29
 msgid "Loading farming data"
 msgstr "بارگداری اطلاعات فارم"
@@ -2648,6 +2691,7 @@ msgstr "اطلاعات بارکذاری ان اف تی..."
 #: src/components/helpers/HeightToTimestamp.tsx:16
 #: src/components/nfts/NFTMetadata.tsx:21
 #: src/components/offers/NFTOfferTokenSelector.tsx:97
+#: src/components/offers/OfferManager.tsx:184
 #: src/components/offers2/OfferBuilderTokenSelector.tsx:79
 #: src/components/offers2/OfferDetails.tsx:38
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:27
@@ -2754,7 +2798,7 @@ msgstr "Metadata آدرس {0}"
 msgid "MiB Up/Down"
 msgstr "MiB بالا/پایین"
 
-#: src/components/settings/SettingsPanel.tsx:135
+#: src/components/settings/SettingsPanel.tsx:136
 msgid "Migrate Keyring"
 msgstr "انتقال دسته کلید"
 
@@ -2766,7 +2810,7 @@ msgstr "انتقال کلیدها"
 msgid "Migration required"
 msgstr "نیاز به انتقال"
 
-#: src/components/settings/SettingsPanel.tsx:89
+#: src/components/settings/SettingsPanel.tsx:90
 msgid "Migration required to support passphrase protection"
 msgstr "انتقال برای پشتیبانی از حفاظت رمز ورودی لازم است"
 
@@ -2798,7 +2842,9 @@ msgstr "ثبت کننده:"
 msgid "MintGarden URL"
 msgstr "آدرس سایت MintGarden"
 
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:46
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
+#: src/components/settings/SettingsExpiringOffers.tsx:16
 msgid "Minutes"
 msgstr "دقایق"
 
@@ -3053,7 +3099,7 @@ msgstr "اطلاعات تماسی وجود ندارد"
 msgid "No CPU Affinity"
 msgstr "بدون وابستگی سی پی یو"
 
-#: src/components/offers/OfferManager.tsx:283
+#: src/components/offers/OfferManager.tsx:369
 msgid "No current offers"
 msgstr "پیشنهاد فعلی وجود ندارد"
 
@@ -3065,7 +3111,7 @@ msgstr "بدون مجوزهای سفارشی"
 msgid "No file available"
 msgstr "فایلی موجود نیست"
 
-#: src/components/offers2/OfferIncomingTable.tsx:277
+#: src/components/offers2/OfferIncomingTable.tsx:281
 msgid "No incoming offers"
 msgstr "بدون پیشنهادات دریافتی"
 
@@ -3202,7 +3248,7 @@ msgstr "تعداد باکت ها دز فاز های 3 و 4"
 msgid "Number of NFTs"
 msgstr "تعداد ان اف تی ها"
 
-#: src/components/harvest/HarvesterOverview.tsx:180
+#: src/components/harvest/HarvesterOverview.tsx:186
 msgid "Number of plots"
 msgstr "تعداد پلات ها"
 
@@ -3251,14 +3297,14 @@ msgstr "فضای اشغال شده"
 msgid "Offer"
 msgstr "پیشنهاد"
 
-#: src/components/offers/OfferManager.tsx:326
+#: src/components/offers/OfferManager.tsx:412
 #: src/components/offers2/OfferNavigationHeader.tsx:16
 msgid "Offer Builder"
 msgstr "سازنده پیشنهاد"
 
 #: src/components/offers/NFTOfferViewer.tsx:173
 #: src/components/offers2/OfferBuilderValue.tsx:196
-#: src/components/offers2/OfferBuilderViewer.tsx:246
+#: src/components/offers2/OfferBuilderViewer.tsx:280
 msgid "Offer cannot be accepted because you don't possess the requested assets"
 msgstr "پیشنهاد نمیتواند پذیرفته شود زیرا دارایی‌های درخواستی را ندارید"
 
@@ -3274,6 +3320,10 @@ msgstr "اطلاعات پیشنهاد"
 msgid "Offer Details"
 msgstr "جزئیات پیشنهاد"
 
+#: src/components/settings/SettingsExpiringOffers.tsx:43
+msgid "Offer Expiration Time"
+msgstr ""
+
 #: src/components/offers2/OfferBuilderImport.tsx:77
 msgid "Offer file is too large (> 1MB)"
 msgstr "فایل پیشنهاد خیلی بزرگ است (> 1 مگابایت)"
@@ -3282,12 +3332,20 @@ msgstr "فایل پیشنهاد خیلی بزرگ است (> 1 مگابایت)"
 msgid "Offer has been accepted and is awaiting confirmation."
 msgstr "پیشنهاد پذیرفته شده و در انتظار تایید است."
 
+#: src/components/offers2/OfferBuilderExpirationCountdown.tsx:31
+msgid "Offer has expired"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:103
+msgid "Offer has expired and cannot be accepted."
+msgstr ""
+
 #: src/constants/WalletConnectCommands.tsx:453
 #: src/constants/WalletConnectCommands.tsx:467
 msgid "Offer Id"
 msgstr "شناسه پیشنهاد"
 
-#: src/components/offers/OfferManager.tsx:307
+#: src/components/offers/OfferManager.tsx:393
 msgid "Offer Management"
 msgstr "مدیریت پیشنهاد"
 
@@ -3299,16 +3357,22 @@ msgstr "مدیریت پیشنهاد"
 msgid "Offer Shared"
 msgstr "اشتراک گذاری پیشنهاد"
 
+#: src/components/offers2/OfferBuilderExpirationCountdown.tsx:16
+#: src/components/offers2/OfferBuilderExpirationCountdown.tsx:21
+#: src/components/offers2/OfferBuilderExpirationCountdown.tsx:26
+msgid "Offer will expire in {0} {1}"
+msgstr ""
+
 #: src/components/offers/OfferShareDialog.tsx:755
 #~ msgid "OfferBin URL"
 #~ msgstr "OfferBin URL"
 
-#: src/components/offers/OfferManager.tsx:160
+#: src/components/offers/OfferManager.tsx:214
 #: src/components/offers2/CancelOfferList.tsx:80
 msgid "Offered"
 msgstr "پیشنهاد شده"
 
-#: src/components/offers2/OfferBuilderTradeColumn.tsx:23
+#: src/components/offers2/OfferBuilderTradeColumn.tsx:24
 #: src/components/offers2/OfferIncomingTable.tsx:75
 msgid "Offering"
 msgstr "پیشنهاد دادن"
@@ -3330,15 +3394,15 @@ msgstr "پیشنهادها"
 msgid "Offers are a way to trade assets in a genuinely peer-to-peer way that eliminates counterparty risk."
 msgstr "پیشنهادها راهی برای معامله دارایی ها به روش واقعی همتا به همتا است که ریسک طرف مقابل را حذف میکند."
 
-#: src/components/offers/OfferManager.tsx:310
+#: src/components/offers/OfferManager.tsx:396
 msgid "Offers are a way to trade assets in a genuinely peer-to-peer way to eliminate counterparty risk."
 msgstr "پیشنهادها راهی برای معامله دارایی ها بع روش واقعی همتا به همتا برای حذف ریسک طرف مقابل است."
 
-#: src/components/offers/OfferManager.tsx:359
+#: src/components/offers/OfferManager.tsx:445
 msgid "Offers you accepted"
 msgstr "پیشنهاداتی که پذیرفته اید"
 
-#: src/components/offers/OfferManager.tsx:358
+#: src/components/offers/OfferManager.tsx:444
 msgid "Offers you created"
 msgstr "پیشنهاداتی که ایجاد کردید"
 
@@ -3360,7 +3424,7 @@ msgstr "پس از شروع این انتقال، نمیتوانید تراکنش
 msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer the NFT?"
 msgstr "پس از شروع این انتقال، نمیتوانید تراکنش را لغو کنید. آیا مطمئن هستید که میخواهید ان اف تی را انتقال دهید?"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:250
+#: src/components/offers2/OfferBuilderViewer.tsx:284
 msgid "One or more unknown tokens are being offered. Be sure to verify that the asset IDs of the offered tokens match the asset IDs of the tokens you are expecting."
 msgstr "یک یا چند توکن ناشناخته در حال ارائه است. حتماً بررسی کنید که شناسه‌های دارایی توکن‌های ارائه‌شده با شناسه‌های دارایی توکن‌های مورد انتظار شما مطابقت دارند."
 
@@ -3486,7 +3550,7 @@ msgstr "مشازکت ها با موفقیت ارسال شد و توسط استخ
 #: src/components/app/AppPassPrompt.tsx:138
 #: src/components/settings/RemovePassphrasePrompt.tsx:130
 #: src/components/settings/SetPassphrasePrompt.tsx:175
-#: src/components/settings/SettingsPanel.tsx:183
+#: src/components/settings/SettingsPanel.tsx:184
 msgid "Passphrase"
 msgstr "رمز ورود"
 
@@ -3502,19 +3566,19 @@ msgstr "یاداوری رمز ورود"
 msgid "Passphrase Hint (Optional)"
 msgstr "یاداوری رمز ورود (اختیاری)"
 
-#: src/components/settings/SettingsPanel.tsx:60
+#: src/components/settings/SettingsPanel.tsx:61
 msgid "Passphrase protection has been disabled"
 msgstr "حفاظت از رمز ورود غیرفعال شده است"
 
-#: src/components/settings/SettingsPanel.tsx:98
+#: src/components/settings/SettingsPanel.tsx:99
 msgid "Passphrase protection is disabled"
 msgstr "حفاظت از رمز ورود غیرفعال است"
 
-#: src/components/settings/SettingsPanel.tsx:95
+#: src/components/settings/SettingsPanel.tsx:96
 msgid "Passphrase protection is enabled"
 msgstr "حفاظت از رمز ورود فعال است"
 
-#: src/components/settings/SettingsPanel.tsx:90
+#: src/components/settings/SettingsPanel.tsx:91
 msgid "Passphrase support requires migrating your keys to a new keyring"
 msgstr "پشتیبانی از رمز ورود نیاز به انتقال کلیدهای خود به یک کلید جدید است"
 
@@ -3665,7 +3729,7 @@ msgstr "لطفا پوشه نهایی را مشخص کنید"
 msgid "Please specify temporary directory"
 msgstr "لطفا پوشه موقت را مشخص کنید"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:186
+#: src/components/offers2/OfferBuilderViewer.tsx:220
 msgid "Please wait for wallet synchronization"
 msgstr "لطفا برای اتمام سیک کیف پول صبر کنید"
 
@@ -4063,6 +4127,10 @@ msgstr "ارتفاع قفل نسبی"
 #~ msgid "Release Notes"
 #~ msgstr "Release Notes"
 
+#: src/components/offers/OfferManager.tsx:291
+msgid "Relist Offer"
+msgstr ""
+
 #: src/components/plot/PlotHarvester.tsx:61
 msgid "Remote"
 msgstr "از راه دور"
@@ -4081,7 +4149,7 @@ msgstr "پس از انتقال موفقیت آمیز، کلیدها را از ج
 
 #: src/components/settings/RemovePassphrasePrompt.tsx:112
 #: src/components/settings/RemovePassphrasePrompt.tsx:172
-#: src/components/settings/SettingsPanel.tsx:146
+#: src/components/settings/SettingsPanel.tsx:147
 msgid "Remove Passphrase"
 msgstr "حذف رمز ورود"
 
@@ -4098,12 +4166,12 @@ msgstr "درحال حذف کردن"
 #~ msgid "Report an Issue..."
 #~ msgstr "Report an Issue..."
 
-#: src/components/offers/OfferManager.tsx:170
+#: src/components/offers/OfferManager.tsx:224
 #: src/components/offers2/CancelOfferList.tsx:95
 msgid "Requested"
 msgstr "درخواست شده"
 
-#: src/components/offers2/OfferBuilderTradeColumn.tsx:30
+#: src/components/offers2/OfferBuilderTradeColumn.tsx:31
 #: src/components/offers2/OfferIncomingTable.tsx:55
 msgid "Requesting"
 msgstr "در حال درخواست"
@@ -4272,11 +4340,12 @@ msgstr "اجرای نود کامل"
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:75
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:63
 #: src/components/settings/SettingsDerivationIndex.tsx:85
+#: src/components/settings/SettingsExpiringOffers.tsx:77
 #: src/components/vcs/VCEditTitle.tsx:94
 msgid "Save"
 msgstr "ذخیره"
 
-#: src/components/offers/OfferManager.tsx:237
+#: src/components/offers/OfferManager.tsx:312
 msgid "Save Offer File"
 msgstr "دخیره فایل پیشنهاد"
 
@@ -4313,7 +4382,7 @@ msgstr "مکان دوم پوشه موقت"
 msgid "Secure"
 msgstr "امن"
 
-#: src/components/settings/SettingsPanel.tsx:92
+#: src/components/settings/SettingsPanel.tsx:93
 msgid "Secure your keychain using a strong passphrase"
 msgstr "دسته کلید خود را با استفاده از یک رمز ورود قوی ایمن کنید"
 
@@ -4448,7 +4517,7 @@ msgstr "تنظیم شناسه غیرمتمرکز ان اف تی"
 
 #: src/components/settings/SetPassphrasePrompt.tsx:156
 #: src/components/settings/SetPassphrasePrompt.tsx:271
-#: src/components/settings/SettingsPanel.tsx:152
+#: src/components/settings/SettingsPanel.tsx:153
 msgid "Set Passphrase"
 msgstr "تنظیم رمز ورود جدید"
 
@@ -4461,7 +4530,7 @@ msgstr "کلیدها را به صورت دستی تنظیم کنید"
 msgid "Settings"
 msgstr "تنظیمات"
 
-#: src/components/offers/OfferManager.tsx:203
+#: src/components/offers/OfferManager.tsx:268
 #: src/components/offers/OfferShareDialog.tsx:923
 msgid "Share"
 msgstr "اشتراک گذاری"
@@ -4506,7 +4575,7 @@ msgstr "اشتراک در Spacescan.io"
 msgid "Show"
 msgstr "نمایش"
 
-#: src/components/offers/OfferManager.tsx:217
+#: src/components/offers/OfferManager.tsx:282
 msgid "Show Details"
 msgstr "نمایش جزئیات"
 
@@ -4622,7 +4691,7 @@ msgid "Sorry, you can't switch to mainnet by clicking here..."
 msgstr "با عرض پوزش، نمیتوانید با کلیک کردن در اینجا به شبکه اصلی تغییر دهید..."
 
 #: src/components/harvest/HarvesterDetail.tsx:108
-#: src/components/harvest/HarvesterOverview.tsx:151
+#: src/components/harvest/HarvesterOverview.tsx:157
 msgid "Space"
 msgstr "فضا"
 
@@ -4704,7 +4773,7 @@ msgstr "حالت"
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:69
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:74
-#: src/components/offers/OfferManager.tsx:150
+#: src/components/offers/OfferManager.tsx:204
 #: src/components/plot/PlotHarvesterPlots.tsx:74
 #: src/components/plot/PlotPlotting.tsx:26
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:102
@@ -4780,11 +4849,11 @@ msgstr ""
 msgid "Temporary folder location"
 msgstr "مکان پوشه موقت"
 
-#: src/components/harvest/HarvesterOverview.tsx:62
+#: src/components/harvest/HarvesterOverview.tsx:63
 msgid "The average number of plots which passed filter over last 64 signage points"
 msgstr "میانگین تعداد پلاتهایی که از 64 نقطه علامت گذاری گذشته فیلتر عبور کرده اند"
 
-#: src/components/harvest/HarvesterOverview.tsx:100
+#: src/components/harvest/HarvesterOverview.tsx:106
 msgid "The average number of plots which passed filter over the last 64 signage points. It is expected to be {expectedAvgPassedFilter} for total {latestTotalPlots} plots. (Current plot filter: 1 / {plotFilter})"
 msgstr "میانگین تعداد پلاتهایی که از 64 نقطه علامت گذاری گذشته فیلتر عبور کرده اند. انتظار میرود برای کل نمودارهای {latestTotalPlots} {expectedAvgPassedFilter} باشد. (فیلتر نمودار فعلی: 1 / {plotFilter})"
 
@@ -4796,7 +4865,7 @@ msgstr "برنامه چیا و سرویس های آن از نسخه های مخ�
 msgid "The claw back time can be manually adjusted per transaction."
 msgstr "زمان ادعای بازگرداندن را میتوان به صورت دستی در هر تراکنش تنظیم کرد."
 
-#: src/components/settings/SettingsPanel.tsx:168
+#: src/components/settings/SettingsPanel.tsx:169
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
 msgstr "شاخص مشتق که کیف پول بلاکچین را اسکن میکند محدوده آدرس های کیف پول را تعیین مینماید. اگر تراکنش‌های زیادی دارید یا پیشنهادات لغو شده برای XCH، CAT یا ان اف تی دارید، این عدد معمولاً بیشتر است. اگر فکر میکنید موجودی‌ شما نادرست است، ارزهای درون آن کمتر است، افزایش شاخص مشتق‌گیری میتواند به کیف پول کمک کندتا ارزهای گمشده را در کل موجودی قراردهد."
 
@@ -4861,7 +4930,7 @@ msgstr "نود سینک نشده"
 msgid "The node is syncing, which means it is downloading blocks from other nodes, to reach the latest block in the chain"
 msgstr "نود در حال سینک شدن است،به این معنی که در حال دانلود بلاک ها از نودهای دیگر است تا به آخرین بلاک در زنجیره برسد"
 
-#: src/components/offers2/OfferIncomingTable.tsx:97
+#: src/components/offers2/OfferIncomingTable.tsx:101
 msgid "The offer creator has chosen not to allow counter offers"
 msgstr "سازنده پیشنهاد انتخاب کرده که پیشنهادات متقابل را مجاز نکند"
 
@@ -4950,7 +5019,7 @@ msgstr "این ویژگی فقط در نسخه گرافیکی برنامه در 
 msgid "This harvester does not have any plots to harvest"
 msgstr "این برداشت کننده هیچ پلاتی برای برداشت ندارد"
 
-#: src/components/harvest/HarvesterOverview.tsx:169
+#: src/components/harvest/HarvesterOverview.tsx:175
 msgid "This is a sum of effective plot sizes currently farming. An effective plot size is a theoretical value which is derived only by kSize"
 msgstr "مجموع اندازه های مفید پلات که در حال فارم است. اندازه پلات مفید یک مقدار نظری است که فقط با اندازه k به دست می آید"
 
@@ -4999,18 +5068,22 @@ msgid "This offer has a fee included to help expedite the transaction when the o
 msgstr "این پیشنهاد برای سریعتر شدن ارسال تراکنش کارمزد دارد. اگر احساس میکنید که کارمزد اضافه شده بسیار کم است، میتوانید یک کارمزد بیشتر را مشخص کنید."
 
 #: src/components/offers/OfferHeader.tsx:63
-#: src/components/offers2/OfferBuilderViewer.tsx:238
+#: src/components/offers2/OfferBuilderViewer.tsx:272
 msgid "This offer has completed successfully"
 msgstr "این پیشنهاد با موفقیت به پایان رسید"
 
 #: src/components/offers/OfferHeader.tsx:46
-#: src/components/offers2/OfferBuilderViewer.tsx:225
+#: src/components/offers2/OfferBuilderViewer.tsx:259
 msgid "This offer is no longer valid. To understand why, click <0>here</0> to learn more."
 msgstr "این پیشنهاد دیگر معتبر نخواهد بود. برای درک دلیل، <0>اینجا</0> را کلیک کنید تا بیشتر بدانید."
 
-#: src/components/offers2/OfferBuilderViewer.tsx:242
+#: src/components/offers2/OfferBuilderViewer.tsx:276
 msgid "This offer was cancelled"
 msgstr "این پیشنهاد لغو شد"
+
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:204
+msgid "This offer will never expire."
+msgstr ""
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:269
 msgid "This plot NFT is assigned to a different key. You can still create plots for this plot NFT, but you can not make changes."
@@ -5091,11 +5164,11 @@ msgstr "کل مبلغ با حق امتیاز"
 #~ msgid "Total Chia Farmed"
 #~ msgstr "Total Chia Farmed"
 
-#: src/components/harvest/HarvesterOverview.tsx:166
+#: src/components/harvest/HarvesterOverview.tsx:172
 msgid "Total farm size effective"
 msgstr "مجموع اندازه مفید فارم"
 
-#: src/components/harvest/HarvesterOverview.tsx:158
+#: src/components/harvest/HarvesterOverview.tsx:164
 msgid "Total farm size raw"
 msgstr "مجموع اندازه خام فارم"
 
@@ -5476,7 +5549,7 @@ msgstr "بازبینی امضاء"
 msgid "Verifying hash..."
 msgstr "در حال تأیید هش..."
 
-#: src/components/offers2/OfferIncomingTable.tsx:102
+#: src/components/offers2/OfferIncomingTable.tsx:106
 msgid "View"
 msgstr "مشاهده"
 
@@ -5493,7 +5566,7 @@ msgstr "مشاهده اطلاعات اعتبار"
 msgid "View Log"
 msgstr "دیدن گزارش"
 
-#: src/components/offers/OfferManager.tsx:349
+#: src/components/offers/OfferManager.tsx:435
 msgid "View Offer"
 msgstr "دیدن پیشنهاد"
 
@@ -5616,6 +5689,10 @@ msgstr "کیف پول تعریف نشده"
 msgid "Wallet Mode"
 msgstr "حالت کیف پول"
 
+#: src/components/offers2/CreateOfferBuilder.tsx:103
+msgid "Wallet must be synced before creating an offer with an expiration time"
+msgstr ""
+
 #: src/components/settings/SettingsIntegration.tsx:139
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:218
 #: src/components/walletConnect/WalletConnectConnectedDialog.tsx:67
@@ -5713,7 +5790,7 @@ msgstr "آیا میخواهید ان اف تی مشخص شده را به یک ح
 msgid "Would you like to transfer the specified NFT to a new owner?"
 msgstr "آیا میخواهید ان اف تی مشخص شده را به مالک جدیدی منتقل کنید?"
 
-#: src/components/offers2/OfferIncomingTable.tsx:211
+#: src/components/offers2/OfferIncomingTable.tsx:215
 #: src/components/plot/add/PlotAddChooseSize.tsx:58
 #: src/components/vcs/VCCard.tsx:89
 msgid "Yes"
@@ -5756,7 +5833,7 @@ msgid "You can still create plots for this plot NFT, but you can not make change
 msgstr "میتوانید برای این پلاتNFT همچنان پلات بسازید، اما تا زمانیکه سینک کامل نشود، نمیتوانید تغییراتی ایجاد کنید."
 
 #: src/components/offers/OfferHeader.tsx:38
-#: src/components/offers2/OfferBuilderViewer.tsx:257
+#: src/components/offers2/OfferBuilderViewer.tsx:291
 msgid "You created this offer"
 msgstr "شما این پیشنهاد را ایجاد کردید"
 
@@ -5805,7 +5882,7 @@ msgstr "برای پیوستن به یک استخر به {currencyCode} نیاز 
 msgid "You need to claim your rewards first"
 msgstr "ابتدا باید پاداش خود را دریافت کنید"
 
-#: src/components/offers2/OfferBuilderTradeColumn.tsx:20
+#: src/components/offers2/OfferBuilderTradeColumn.tsx:21
 msgid "You will give"
 msgstr "خواهید داد"
 
@@ -5852,11 +5929,11 @@ msgstr "دسته کلید شما قفل است"
 msgid "Your passphrase can be stored in your system's secure credential store. Chia will be able to access your keys without prompting for your passphrase."
 msgstr "رمز ورود شما میتواند در بخش اطلاعات کاربری امن سیستم شما ذخیره شود. چیا میتواند به کلیدهای شما بدون درخواست رمز ورودتان دسترسی داشته باشد."
 
-#: src/components/settings/SettingsPanel.tsx:51
+#: src/components/settings/SettingsPanel.tsx:52
 msgid "Your passphrase has been set"
 msgstr "رمز ورود شما تنظیم شده"
 
-#: src/components/settings/SettingsPanel.tsx:42
+#: src/components/settings/SettingsPanel.tsx:43
 msgid "Your passphrase has been updated"
 msgstr "رمز عبور شما بروز شده"
 
@@ -5871,4 +5948,3 @@ msgstr "برای ایجاد حساب کاربری، موجودی قابل خرج
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "برای انجام مطالبه خودکار، باید کیف پول شما در حال اجرا باشد."
-
