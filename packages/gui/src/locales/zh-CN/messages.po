@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-09-14 03:19\n"
+"PO-Revision-Date: 2023-09-14 22:49\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -647,7 +647,7 @@ msgstr "尝试 {attempt}"
 
 #: src/components/offers2/OfferBuilderToken.tsx:63
 msgid "Authorized providers"
-msgstr ""
+msgstr "授权提供商"
 
 #: src/components/settings/SettingsCustody.tsx:61
 msgid "Auto claim incoming claw back transactions"
@@ -833,7 +833,7 @@ msgstr "无法提供和请求相同的资产"
 
 #: src/components/offers2/OfferBuilderToken.tsx:59
 msgid "CAT credential restrictions"
-msgstr ""
+msgstr "Chia资产代币凭证限制"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:15
 msgid "Challenge"
@@ -2150,7 +2150,7 @@ msgstr "获取根哈希的证明"
 
 #: src/constants/WalletConnectCommands.tsx:987
 msgid "Get public key"
-msgstr ""
+msgstr "获取公钥"
 
 #: src/constants/WalletConnectCommands.tsx:42
 msgid "Get Transaction"
@@ -2316,15 +2316,15 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:87
 msgid "Hybrid disk mode 1 (RAM required: 128G)"
-msgstr ""
+msgstr "混合磁盘模式1 (需要内存：128G)"
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:92
 msgid "Hybrid disk mode 2 (RAM required: 16G)"
-msgstr ""
+msgstr "混合磁盘模式1 (需要内存：16G)"
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:75
 msgid "Hybrid disk mode allows computers with lower amounts of RAM to plot by offloading intermediate data to disk. If you enable hybrid disk mode, you need to specify temp folder(s). We recommend using SSDs when supporting a hybrid disk mode."
-msgstr ""
+msgstr "混合磁盘模式允许具有较低内存的计算机通过将中间数据卸载到磁盘的方式来生成图块。如果启用混合磁盘模式，需要指定临时文件夹。建议在使用混合磁盘模式时使用固态硬盘。"
 
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:16
 msgid "I Understand, Create Offer"
@@ -2412,20 +2412,16 @@ msgstr "正在初始化..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"可用资金不足，无法接受报价。请确保您的\n"
+msgstr "可用资金不足，无法接受报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"可用的资金不足，无法创建报价。请确保您的\n"
+msgstr "可用的资金不足，无法创建报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
 #: src/components/settings/Settings.tsx:73
@@ -3167,7 +3163,7 @@ msgstr "你的图块还没有通过过滤器检查."
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:84
 msgid "Normal (RAM required: 256G)"
-msgstr ""
+msgstr "常规模式(需要内存：256G)"
 
 #: src/components/farm/FarmHealth.tsx:117
 #: src/components/farm/FarmHealth.tsx:164
@@ -3801,7 +3797,7 @@ msgstr "联合耕种农田正在过渡到（目标状态）。这可能需要一
 #: src/components/dashboard/DashboardSideBar.tsx:99
 #: src/components/plot/PlotHarvester.tsx:97
 msgid "Plots"
-msgstr "地块"
+msgstr "图块"
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:34
 msgid "Plots are allocated space on your hard drive used to farm and earn Chia.  <0>Learn more</0>"
@@ -4190,7 +4186,7 @@ msgstr "获取当前钱包密钥相关的一个或多个钱包关联的所有或
 
 #: src/constants/WalletConnectCommands.tsx:988
 msgid "Requests a master public key from your wallet"
-msgstr ""
+msgstr "请求从钱包获取主公钥"
 
 #: src/constants/WalletConnectCommands.tsx:256
 msgid "Requests a new receive address associated with the current wallet key"
@@ -4413,7 +4409,7 @@ msgstr "选择最终输出文件夹"
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:73
 msgid "Select Hybrid disk mode"
-msgstr ""
+msgstr "选择混合磁盘模式"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:154
 msgid "Select Keys"
@@ -4842,7 +4838,7 @@ msgstr "目标迷题哈希"
 
 #: src/components/plot/add/PlotAddForm.tsx:174
 msgid "Temp folder location is required for hybrid disk plotting with 16/128G RAM"
-msgstr ""
+msgstr "使用16/128GB内存的混合磁盘模式生成图块时，需要指定临时文件夹的位置"
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:104
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:59
@@ -5948,3 +5944,4 @@ msgstr "可用余额必须大于1 mojo才能创建个人资料"
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "需确保钱包正在运行才能完成自动确认。"
+
