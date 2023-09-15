@@ -25,13 +25,19 @@ function getServiceDisabled(service: ServiceNameValue, services: ServiceNameValu
   return disabled || !services.includes(service);
 }
 
+function getServiceNoWait(service: ServiceNameValue, _options: Options) {
+  return ([ServiceName.DATALAYER_SERVER] as ServiceNameValue[]).includes(service);
+}
+
 function getServiceOptions(service: ServiceNameValue, services: ServiceNameValue[], options: Options) {
   const keepState = getServiceKeepState(service, options);
   const disabled = getServiceDisabled(service, services, options);
+  const noWait = getServiceNoWait(service, options);
 
   return {
     keepState,
     disabled,
+    noWait,
   };
 }
 
