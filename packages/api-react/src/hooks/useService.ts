@@ -13,6 +13,7 @@ export enum ServiceState {
 type Options = {
   keepState?: ServiceState;
   disabled?: boolean;
+  noWait?: boolean;
 };
 
 export default function useService(
@@ -27,7 +28,7 @@ export default function useService(
   error: Error | undefined;
   service: ServiceNameValue;
 } {
-  const { keepState, disabled = false } = options;
+  const { keepState, disabled = false, noWait = false } = options;
 
   const [error, setError] = useState<Error | undefined>();
   const [state, setState] = useState<ServiceState>(ServiceState.STOPPED);
@@ -47,6 +48,7 @@ export default function useService(
 
       await startService({
         service,
+        noWait,
       }).unwrap();
 
       setState(ServiceState.RUNNING);
@@ -55,7 +57,7 @@ export default function useService(
       setError(e as Error);
       console.error(e);
     }
-  }, [isLoading, service, startService, disabled, state]);
+  }, [isLoading, service, startService, disabled, state, noWait]);
 
   const handleStop = useCallback(async () => {
     if (isLoading || disabled || state === ServiceState.STOPPED) {
