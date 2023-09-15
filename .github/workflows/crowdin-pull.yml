@@ -28,6 +28,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          ref: '${{ inputs.pr_target || github.ref_name }}'
 
       - name: Vault Login
         uses: Chia-Network/actions/vault/login@main
