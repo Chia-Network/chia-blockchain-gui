@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-09-14 03:19\n"
+"PO-Revision-Date: 2023-09-17 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -172,7 +172,7 @@ msgstr "بروز رسانی را بررسی کنید..."
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:154
 msgid "- Set a time after which the offer expires.<0/>- An expiring offer can only be claimed prior to the expiration time."
-msgstr ""
+msgstr "- زمانی را تعیین کنید که پس از آن پیشنهاد منقضی شود.<0/>- پیشنهاد منقضی فقط قبل از زمان انقضا قابل گرفتن است."
 
 #: src/components/offers2/OfferBuilderImport.tsx:167
 msgid "(⌘V) a blob"
@@ -400,7 +400,7 @@ msgstr "اضافه کردن اطلاعات تماس"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:142
 msgid "Add option to set expiration time {0}"
-msgstr ""
+msgstr "افزودن گزینه برای تنظیم زمان انقضا {0}"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:114
 msgid "Add plot directory"
@@ -647,7 +647,7 @@ msgstr "کوشش {attempt}"
 
 #: src/components/offers2/OfferBuilderToken.tsx:63
 msgid "Authorized providers"
-msgstr ""
+msgstr "ارائه دهندگان مجاز"
 
 #: src/components/settings/SettingsCustody.tsx:61
 msgid "Auto claim incoming claw back transactions"
@@ -833,7 +833,7 @@ msgstr "نمیتوان همان دارایی را ارائه داد و درخو�
 
 #: src/components/offers2/OfferBuilderToken.tsx:59
 msgid "CAT credential restrictions"
-msgstr ""
+msgstr "محدودیت های اعتبار CAT"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:15
 msgid "Challenge"
@@ -1328,7 +1328,7 @@ msgstr "تاریخ"
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:44
 #: src/components/settings/SettingsExpiringOffers.tsx:14
 msgid "Days"
-msgstr ""
+msgstr "روز"
 
 #: src/components/settings/SettingsHarvester.tsx:472
 msgid "Decompressor Thread Count"
@@ -1348,11 +1348,11 @@ msgstr "زمان پیش‌فرض ادعای بازگرداندن فعال است
 
 #: src/components/settings/SettingsExpiringOffers.tsx:125
 msgid "Default offer expiration time is disabled"
-msgstr ""
+msgstr "زمان انقضای پیشنهاد پیش‌فرض غیرفعال است"
 
 #: src/components/settings/SettingsExpiringOffers.tsx:120
 msgid "Default offer expiration time is enabled"
-msgstr ""
+msgstr "زمان انقضای پیشنهاد پیش‌فرض فعال است"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:89
 msgid "Delay"
@@ -1831,7 +1831,7 @@ msgstr "انقضاء"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:196
 msgid "Expiration time will be {0}"
-msgstr ""
+msgstr "زمان انقضا {0} خواهد بود"
 
 #: src/components/offers/OfferManager.tsx:182
 #: src/components/vcs/VCCard.tsx:166
@@ -2150,7 +2150,7 @@ msgstr "گرفتن شواهد برای روت هش"
 
 #: src/constants/WalletConnectCommands.tsx:987
 msgid "Get public key"
-msgstr ""
+msgstr "کلید عمومی را دریافت کنید"
 
 #: src/constants/WalletConnectCommands.tsx:42
 msgid "Get Transaction"
@@ -2312,19 +2312,19 @@ msgstr "نام میزبان"
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:45
 #: src/components/settings/SettingsExpiringOffers.tsx:15
 msgid "Hours"
-msgstr ""
+msgstr "ساعت"
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:87
 msgid "Hybrid disk mode 1 (RAM required: 128G)"
-msgstr ""
+msgstr "حالت دیسک هیبریدی 1 (حافظه مورد نیاز: 128گیگ)"
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:92
 msgid "Hybrid disk mode 2 (RAM required: 16G)"
-msgstr ""
+msgstr "حالت دیسک هیبریدی 2 (حافظه مورد نیاز: 16گیگ)"
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:75
 msgid "Hybrid disk mode allows computers with lower amounts of RAM to plot by offloading intermediate data to disk. If you enable hybrid disk mode, you need to specify temp folder(s). We recommend using SSDs when supporting a hybrid disk mode."
-msgstr ""
+msgstr "حالت دیسک هیبریدی به رایانه‌هایی که مقدار حافظه کمتری دارند اجازه میدهد تا با بارگذاری داده‌های میانی روی دیسک پلات بسازند. اگر حالت دیسک هیبریدی را فعال کنید، باید پوشه(های) موقت را مشخص کنید. توصیه میکنیم هنگام پشتیبانی از حالت دیسک هیبریدی از SSD استفاده کنید."
 
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:16
 msgid "I Understand, Create Offer"
@@ -2412,20 +2412,16 @@ msgstr "در حال شروع..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
+msgstr "مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
 "موجودی قابل مصرف شما برای پوشش مبلغ پیشنهاد کافی است."
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
+msgstr "مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
 "موجودی قابل مصرف شما برای پوشش مبلغ پیشنهاد کافی است."
 
 #: src/components/settings/Settings.tsx:73
@@ -2661,7 +2657,7 @@ msgstr "بارکذاری پیکربندی"
 #: src/components/offers/OfferManager.tsx:235
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:99
 msgid "Loading expiration time..."
-msgstr ""
+msgstr "در حال بارگیری زمان انقضا..."
 
 #: src/components/farm/Farm.tsx:29
 msgid "Loading farming data"
@@ -3167,7 +3163,7 @@ msgstr "هیچ کدام از پلات های شما هنوز از بررسی ف�
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:84
 msgid "Normal (RAM required: 256G)"
-msgstr ""
+msgstr "بطورمعمول (حافظه مورد نیاز: 256گیگ)"
 
 #: src/components/farm/FarmHealth.tsx:117
 #: src/components/farm/FarmHealth.tsx:164
@@ -3322,7 +3318,7 @@ msgstr "جزئیات پیشنهاد"
 
 #: src/components/settings/SettingsExpiringOffers.tsx:43
 msgid "Offer Expiration Time"
-msgstr ""
+msgstr "زمان انقضای پیشنهاد"
 
 #: src/components/offers2/OfferBuilderImport.tsx:77
 msgid "Offer file is too large (> 1MB)"
@@ -3334,11 +3330,11 @@ msgstr "پیشنهاد پذیرفته شده و در انتظار تایید ا�
 
 #: src/components/offers2/OfferBuilderExpirationCountdown.tsx:31
 msgid "Offer has expired"
-msgstr ""
+msgstr "پیشنهاد منقضی شده است"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:103
 msgid "Offer has expired and cannot be accepted."
-msgstr ""
+msgstr "پیشنهاد منقضی شده است و قابل قبول نیست."
 
 #: src/constants/WalletConnectCommands.tsx:453
 #: src/constants/WalletConnectCommands.tsx:467
@@ -3361,7 +3357,7 @@ msgstr "اشتراک گذاری پیشنهاد"
 #: src/components/offers2/OfferBuilderExpirationCountdown.tsx:21
 #: src/components/offers2/OfferBuilderExpirationCountdown.tsx:26
 msgid "Offer will expire in {0} {1}"
-msgstr ""
+msgstr "پیشنهاد در {0} {1} منقضی میشود"
 
 #: src/components/offers/OfferShareDialog.tsx:755
 #~ msgid "OfferBin URL"
@@ -4129,7 +4125,7 @@ msgstr "ارتفاع قفل نسبی"
 
 #: src/components/offers/OfferManager.tsx:291
 msgid "Relist Offer"
-msgstr ""
+msgstr "پیشنهاد مجدد"
 
 #: src/components/plot/PlotHarvester.tsx:61
 msgid "Remote"
@@ -4190,7 +4186,7 @@ msgstr "فهرست کامل یا صفحه بندی شده ان اف تی های 
 
 #: src/constants/WalletConnectCommands.tsx:988
 msgid "Requests a master public key from your wallet"
-msgstr ""
+msgstr "کلید عمومی اصلی را از کیف پول شما درخواست میکند"
 
 #: src/constants/WalletConnectCommands.tsx:256
 msgid "Requests a new receive address associated with the current wallet key"
@@ -4413,7 +4409,7 @@ msgstr "انتخاب پوشه نهایی"
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:73
 msgid "Select Hybrid disk mode"
-msgstr ""
+msgstr "حالت دیسک هیبریدی را انتخاب کنید"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:154
 msgid "Select Keys"
@@ -4842,7 +4838,7 @@ msgstr "هدف پازل هش"
 
 #: src/components/plot/add/PlotAddForm.tsx:174
 msgid "Temp folder location is required for hybrid disk plotting with 16/128G RAM"
-msgstr ""
+msgstr "مکان پوشه موقت برای پلات سازی دیسک هیبریدی با حافظه 16/128گیگ مورد نیاز است"
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:104
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:59
@@ -5083,7 +5079,7 @@ msgstr "این پیشنهاد لغو شد"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:204
 msgid "This offer will never expire."
-msgstr ""
+msgstr "این پیشنهاد هرگز منقضی نمیشود."
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:269
 msgid "This plot NFT is assigned to a different key. You can still create plots for this plot NFT, but you can not make changes."
@@ -5691,7 +5687,7 @@ msgstr "حالت کیف پول"
 
 #: src/components/offers2/CreateOfferBuilder.tsx:103
 msgid "Wallet must be synced before creating an offer with an expiration time"
-msgstr ""
+msgstr "قبل از ایجاد پیشنهاد با زمان انقضا، کیف پول باید سینک شود"
 
 #: src/components/settings/SettingsIntegration.tsx:139
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:218
@@ -5948,3 +5944,4 @@ msgstr "برای ایجاد حساب کاربری، موجودی قابل خرج
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "برای انجام مطالبه خودکار، باید کیف پول شما در حال اجرا باشد."
+

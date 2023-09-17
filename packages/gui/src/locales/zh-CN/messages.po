@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-09-14 03:19\n"
+"PO-Revision-Date: 2023-09-17 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -172,7 +172,7 @@ msgstr "检查更新..."
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:154
 msgid "- Set a time after which the offer expires.<0/>- An expiring offer can only be claimed prior to the expiration time."
-msgstr ""
+msgstr "- 设置一个报价过期的时间。<0/>- 定期报价只能在到期时间之前进行交易。"
 
 #: src/components/offers2/OfferBuilderImport.tsx:167
 msgid "(⌘V) a blob"
@@ -319,7 +319,7 @@ msgstr "个人资料是一种去中心化身份标识符（DID），可以证明
 
 #: src/components/settings/SettingsDataLayer.tsx:79
 msgid "A reference server that enables creating mirrored copies of DataLayer."
-msgstr "允许创建DataLayer镜像副本的参考服务。"
+msgstr "允许创建数据层镜像副本的参考服务。"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:152
 msgid "A value of {0} is recommended"
@@ -400,7 +400,7 @@ msgstr "添加联系人"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:142
 msgid "Add option to set expiration time {0}"
-msgstr ""
+msgstr "添加到期时间选项 {0}"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:114
 msgid "Add plot directory"
@@ -647,7 +647,7 @@ msgstr "尝试 {attempt}"
 
 #: src/components/offers2/OfferBuilderToken.tsx:63
 msgid "Authorized providers"
-msgstr ""
+msgstr "授权提供商"
 
 #: src/components/settings/SettingsCustody.tsx:61
 msgid "Auto claim incoming claw back transactions"
@@ -833,7 +833,7 @@ msgstr "无法提供和请求相同的资产"
 
 #: src/components/offers2/OfferBuilderToken.tsx:59
 msgid "CAT credential restrictions"
-msgstr ""
+msgstr "Chia资产代币凭证限制"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:15
 msgid "Challenge"
@@ -1176,7 +1176,7 @@ msgstr "创建一个没有交易对手风险的情况下交易XCH、Chia资产�
 
 #: src/components/settings/ProfileAdd.tsx:113
 msgid "Create a new profile"
-msgstr "创建新档案"
+msgstr "创建个人资料"
 
 #: src/components/plot/add/PlotAddNFT.tsx:46
 msgid "Create a Plot NFT"
@@ -1315,11 +1315,11 @@ msgstr "数据 URL {0}"
 
 #: src/components/settings/SettingsDataLayer.tsx:21
 msgid "DataLayer enables rich data to be stored on mirrored databases that can be verified using the Chia Blockchain."
-msgstr "DataLayer能够将丰富的数据存储在可使用 Chia 区块链验证的镜像数据库中。"
+msgstr "数据层（DataLayer）能够将丰富的数据存储在可使用 Chia 区块链验证的镜像数据库中。"
 
 #: src/components/settings/SettingsDataLayer.tsx:18
 msgid "DataLayer Services"
-msgstr "DataLayer服务"
+msgstr "数据层服务"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:31
 msgid "Date"
@@ -1328,7 +1328,7 @@ msgstr "日期"
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:44
 #: src/components/settings/SettingsExpiringOffers.tsx:14
 msgid "Days"
-msgstr ""
+msgstr "天"
 
 #: src/components/settings/SettingsHarvester.tsx:472
 msgid "Decompressor Thread Count"
@@ -1348,11 +1348,11 @@ msgstr "默认的可撤回时间已启用。"
 
 #: src/components/settings/SettingsExpiringOffers.tsx:125
 msgid "Default offer expiration time is disabled"
-msgstr ""
+msgstr "默认报价到期时间已禁用"
 
 #: src/components/settings/SettingsExpiringOffers.tsx:120
 msgid "Default offer expiration time is enabled"
-msgstr ""
+msgstr "默认报价到期时间已启用"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:89
 msgid "Delay"
@@ -1688,7 +1688,7 @@ msgstr "启用压缩图块支持"
 
 #: src/components/settings/SettingsDataLayer.tsx:36
 msgid "Enable DataLayer"
-msgstr "启用DataLayer"
+msgstr "启用数据层"
 
 #: src/components/settings/SettingsDataLayer.tsx:64
 msgid "Enable File Propagation Server"
@@ -1831,7 +1831,7 @@ msgstr "过期时间"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:196
 msgid "Expiration time will be {0}"
-msgstr ""
+msgstr "将在 {0} 后过期"
 
 #: src/components/offers/OfferManager.tsx:182
 #: src/components/vcs/VCCard.tsx:166
@@ -1840,7 +1840,7 @@ msgstr "已过期"
 
 #: src/components/nfts/gallery/NFTGalleryHero.tsx:18
 msgid "Explore the Chia ecosystem; discover and trade great NFTs"
-msgstr "探索Chia生态系统；发现并交易优秀NFTs"
+msgstr "探索Chia生态系统；发现并交易优秀NFT"
 
 #: src/components/offers/utils.ts:126
 #: src/components/plot/PlotHarvester.tsx:122
@@ -2150,7 +2150,7 @@ msgstr "获取根哈希的证明"
 
 #: src/constants/WalletConnectCommands.tsx:987
 msgid "Get public key"
-msgstr ""
+msgstr "获取公钥"
 
 #: src/constants/WalletConnectCommands.tsx:42
 msgid "Get Transaction"
@@ -2312,19 +2312,19 @@ msgstr "主机名"
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:45
 #: src/components/settings/SettingsExpiringOffers.tsx:15
 msgid "Hours"
-msgstr ""
+msgstr "小时"
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:87
 msgid "Hybrid disk mode 1 (RAM required: 128G)"
-msgstr ""
+msgstr "混合磁盘模式1 (需要内存：128G)"
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:92
 msgid "Hybrid disk mode 2 (RAM required: 16G)"
-msgstr ""
+msgstr "混合磁盘模式1 (需要内存：16G)"
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:75
 msgid "Hybrid disk mode allows computers with lower amounts of RAM to plot by offloading intermediate data to disk. If you enable hybrid disk mode, you need to specify temp folder(s). We recommend using SSDs when supporting a hybrid disk mode."
-msgstr ""
+msgstr "混合磁盘模式允许具有较低内存的计算机通过将中间数据卸载到磁盘的方式来生成图块。如果启用混合磁盘模式，需要指定临时文件夹。建议在使用混合磁盘模式时使用固态硬盘。"
 
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:16
 msgid "I Understand, Create Offer"
@@ -2412,20 +2412,16 @@ msgstr "正在初始化..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"可用资金不足，无法接受报价。请确保您的\n"
+msgstr "可用资金不足，无法接受报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"可用的资金不足，无法创建报价。请确保您的\n"
+msgstr "可用的资金不足，无法创建报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
 #: src/components/settings/Settings.tsx:73
@@ -2661,7 +2657,7 @@ msgstr "正在加载配置"
 #: src/components/offers/OfferManager.tsx:235
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:99
 msgid "Loading expiration time..."
-msgstr ""
+msgstr "正在加载到期时间..."
 
 #: src/components/farm/Farm.tsx:29
 msgid "Loading farming data"
@@ -2904,7 +2900,7 @@ msgstr "我的联系方式"
 
 #: src/components/settings/ProfileView.tsx:95
 msgid "My DID"
-msgstr "我的 DID"
+msgstr "我的DID"
 
 #: src/components/harvest/HarvesterLatency.tsx:27
 #: src/components/harvest/HarvesterLatency.tsx:27
@@ -3035,7 +3031,7 @@ msgstr "NFT 移动失败"
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:182
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:200
 msgid "NFT Move Pending"
-msgstr "NFT 待定移动"
+msgstr "NFT 等待移动"
 
 #: src/components/offers/NFTOfferPreview.tsx:105
 #: src/components/offers2/OfferBuilderNFT.tsx:97
@@ -3167,7 +3163,7 @@ msgstr "你的图块还没有通过过滤器检查."
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:84
 msgid "Normal (RAM required: 256G)"
-msgstr ""
+msgstr "常规模式(需要内存：256G)"
 
 #: src/components/farm/FarmHealth.tsx:117
 #: src/components/farm/FarmHealth.tsx:164
@@ -3322,7 +3318,7 @@ msgstr "报价详情"
 
 #: src/components/settings/SettingsExpiringOffers.tsx:43
 msgid "Offer Expiration Time"
-msgstr ""
+msgstr "报价到期时间"
 
 #: src/components/offers2/OfferBuilderImport.tsx:77
 msgid "Offer file is too large (> 1MB)"
@@ -3334,11 +3330,11 @@ msgstr "报价已被接受，正在等待确认。"
 
 #: src/components/offers2/OfferBuilderExpirationCountdown.tsx:31
 msgid "Offer has expired"
-msgstr ""
+msgstr "报价已过期"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:103
 msgid "Offer has expired and cannot be accepted."
-msgstr ""
+msgstr "报价已过期，不能交易。"
 
 #: src/constants/WalletConnectCommands.tsx:453
 #: src/constants/WalletConnectCommands.tsx:467
@@ -3361,7 +3357,7 @@ msgstr "已共享报价"
 #: src/components/offers2/OfferBuilderExpirationCountdown.tsx:21
 #: src/components/offers2/OfferBuilderExpirationCountdown.tsx:26
 msgid "Offer will expire in {0} {1}"
-msgstr ""
+msgstr "报价将在 {0} {1} 后过期"
 
 #: src/components/offers/OfferShareDialog.tsx:755
 #~ msgid "OfferBin URL"
@@ -3605,7 +3601,7 @@ msgstr "最高高度"
 
 #: src/components/plotNFT/PlotNFTState.tsx:41
 msgid "Pending"
-msgstr "待处理"
+msgstr "等待处理"
 
 #: src/components/offers/utils.ts:116
 msgid "Pending Accept"
@@ -3801,7 +3797,7 @@ msgstr "联合耕种农田正在过渡到（目标状态）。这可能需要一
 #: src/components/dashboard/DashboardSideBar.tsx:99
 #: src/components/plot/PlotHarvester.tsx:97
 msgid "Plots"
-msgstr "地块"
+msgstr "图块"
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:34
 msgid "Plots are allocated space on your hard drive used to farm and earn Chia.  <0>Learn more</0>"
@@ -4129,7 +4125,7 @@ msgstr "相对锁高度"
 
 #: src/components/offers/OfferManager.tsx:291
 msgid "Relist Offer"
-msgstr ""
+msgstr "重新列出报价"
 
 #: src/components/plot/PlotHarvester.tsx:61
 msgid "Remote"
@@ -4190,7 +4186,7 @@ msgstr "获取当前钱包密钥相关的一个或多个钱包关联的所有或
 
 #: src/constants/WalletConnectCommands.tsx:988
 msgid "Requests a master public key from your wallet"
-msgstr ""
+msgstr "请求从钱包获取主公钥"
 
 #: src/constants/WalletConnectCommands.tsx:256
 msgid "Requests a new receive address associated with the current wallet key"
@@ -4413,7 +4409,7 @@ msgstr "选择最终输出文件夹"
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:73
 msgid "Select Hybrid disk mode"
-msgstr ""
+msgstr "选择混合磁盘模式"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:154
 msgid "Select Keys"
@@ -4505,7 +4501,7 @@ msgstr "发起交易"
 
 #: src/components/settings/SettingsCustody.tsx:45
 msgid "Set a default time frame for all outbound XCH transactions."
-msgstr "为所有转出XCH的交易设置默认时间范围"
+msgstr "为所有转出XCH的交易设置默认时间范围。"
 
 #: src/constants/WalletConnectCommands.tsx:763
 msgid "Set DID Name"
@@ -4842,7 +4838,7 @@ msgstr "目标迷题哈希"
 
 #: src/components/plot/add/PlotAddForm.tsx:174
 msgid "Temp folder location is required for hybrid disk plotting with 16/128G RAM"
-msgstr ""
+msgstr "使用16/128GB内存的混合磁盘模式生成图块时，需要指定临时文件夹的位置"
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:104
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:59
@@ -5004,7 +5000,7 @@ msgstr "他们将收到:"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:83
 msgid "This allows you to add a directory that has plots in it. If you have not created any plots, go to the plotting screen."
-msgstr "在这里可以把事先准备好的图块文件添加进来。如果还没有的话，就去生成几块图块吧。"
+msgstr "添加一个包含图块的目录。如果还没有创建任何图块，请前往生成图块界面。"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:115
 #: src/components/plotNFT/PlotNFTCard.tsx:148
@@ -5083,7 +5079,7 @@ msgstr "此报价已取消"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:204
 msgid "This offer will never expire."
-msgstr ""
+msgstr "此报价永远不会过期。"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:269
 msgid "This plot NFT is assigned to a different key. You can still create plots for this plot NFT, but you can not make changes."
@@ -5127,7 +5123,7 @@ msgstr "要重新同步钱包，必须先关闭所有Chia服务。 关闭后，�
 
 #: src/components/settings/ProfileView.tsx:132
 msgid "Token Standard"
-msgstr "代币标准"
+msgstr "标准"
 
 #: src/components/dashboard/DashboardSideBar.tsx:47
 #: src/components/offers2/OfferBuilderTokensSection.tsx:114
@@ -5318,7 +5314,7 @@ msgstr "打开/关闭在创建新报价后自动显示分享选项面板的功�
 
 #: src/components/settings/SettingsDataLayer.tsx:51
 msgid "Turn on/off the DataLayer service."
-msgstr "打开/关闭DataLayer服务。"
+msgstr "打开/关闭数据层服务。"
 
 #: src/components/settings/SettingsHarvester.tsx:448
 msgid "Turn this off if you don't have any compressed plots to harvest"
@@ -5691,7 +5687,7 @@ msgstr "钱包模式"
 
 #: src/components/offers2/CreateOfferBuilder.tsx:103
 msgid "Wallet must be synced before creating an offer with an expiration time"
-msgstr ""
+msgstr "在创建定期报价之前，必须同步钱包。"
 
 #: src/components/settings/SettingsIntegration.tsx:139
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:218
@@ -5948,3 +5944,4 @@ msgstr "可用余额必须大于1 mojo才能创建个人资料"
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "需确保钱包正在运行才能完成自动确认。"
+
