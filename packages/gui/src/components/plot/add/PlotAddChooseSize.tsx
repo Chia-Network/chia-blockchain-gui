@@ -121,7 +121,10 @@ export default function PlotAddChooseSize(props: Props) {
                 <Trans>Compression level</Trans>
               </InputLabel>
               <Select name="bladebitCompressionLevel" defaultValue={plotter.defaults.bladebitCompressionLevel}>
-                <MenuItem value={0}>0 - No compression</MenuItem>
+                {
+                  /* Bladebit cuda currently doesn't support compression level 0 */
+                  plotterName !== PlotterName.BLADEBIT_CUDA && <MenuItem value={0}>0 - No compression</MenuItem>
+                }
                 <MenuItem value={1}>1</MenuItem>
                 <MenuItem value={2}>2</MenuItem>
                 <MenuItem value={3}>3</MenuItem>
