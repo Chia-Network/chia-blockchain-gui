@@ -29,6 +29,7 @@ export default function PlotAddChooseSize(props: Props) {
 
   const plotterName = watch('plotterName');
   const plotSize = watch('plotSize');
+  const hybridDiskMode = watch('bladebitEnableHybridDiskMode', false);
   const overrideK = watch('overrideK');
   const compressionLevelStr = watch('bladebitCompressionLevel');
   const compressionLevel = compressionLevelStr ? +compressionLevelStr : undefined;
@@ -78,6 +79,8 @@ export default function PlotAddChooseSize(props: Props) {
     }
   }, [plotSize, overrideK, setValue, openDialog]);
 
+  const showC0 = !hybridDiskMode || plotterName !== PlotterName.BLADEBIT_CUDA;
+
   return (
     <CardStep
       step={step}
@@ -122,8 +125,8 @@ export default function PlotAddChooseSize(props: Props) {
               </InputLabel>
               <Select name="bladebitCompressionLevel" defaultValue={plotter.defaults.bladebitCompressionLevel}>
                 {
-                  /* Bladebit cuda currently doesn't support compression level 0 */
-                  plotterName !== PlotterName.BLADEBIT_CUDA && <MenuItem value={0}>0 - No compression</MenuItem>
+                  /* Bladebit cuda_plot with hybridDiskMode option currently doesn't support compression level 0 */
+                  showC0 && <MenuItem value={0}>0 - No compression</MenuItem>
                 }
                 <MenuItem value={1}>1</MenuItem>
                 <MenuItem value={2}>2</MenuItem>
