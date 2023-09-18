@@ -124,7 +124,7 @@ export default function WalletHistoryClawbackChip(props: Props) {
     <Chip
       size="small"
       variant="outlined"
-      color={onClick ? 'primary' : 'default'}
+      color={onClick ? 'primary' : 'info'}
       onClick={onClick}
       icon={Icon}
       label={<>{text}</>}

@@ -20,7 +20,7 @@ export default function OfferBuilderHeader(props: OfferBuilderHeaderProps) {
         borderRadius: 2,
         backgroundColor: theme.palette.mode === 'light' ? Color.Neutral[200] : Color.Neutral[800],
         border: '1px solid',
-        borderColor: `${theme.palette.border.main}`,
+        borderColor: theme.palette.mode === 'light' ? Color.Neutral[300] : Color.Neutral[600],
         paddingY: 2,
         paddingX: 3,
       }}
