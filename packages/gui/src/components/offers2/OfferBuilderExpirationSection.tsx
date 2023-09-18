@@ -40,12 +40,6 @@ type SetExpirationData = {
   minutes: string | number;
 };
 
-const fields = [
-  { name: 'days', label: t`Days`, max: 365 },
-  { name: 'hours', label: t`Hours`, max: 24 },
-  { name: 'minutes', label: t`Minutes`, max: 60 },
-];
-
 export default function OfferBuilderExpirationSection(props: OfferExpirationProps) {
   const theme = useTheme();
   const {
@@ -85,6 +79,12 @@ export default function OfferBuilderExpirationSection(props: OfferExpirationProp
   const [isExpirationExpanded, setIsExpirationExpanded] = React.useState<boolean>(willExpirationBeEnabled);
 
   const isExpired = expirationTime < currentTime;
+
+  const fields = [
+    { name: 'days', label: t`Days`, max: 365 },
+    { name: 'hours', label: t`Hours`, max: 24 },
+    { name: 'minutes', label: t`Minutes`, max: 60 },
+  ];
 
   function setExpirationTime() {
     const formatTime = { days: expirationValues[0], hours: expirationValues[1], minutes: expirationValues[2] };
