@@ -164,7 +164,7 @@ export const bladebitCudaDefaults: PlotterDefaults = {
   bladebitWarmStart: false,
   bladebitDisableNUMA: false,
   bladebitNoCpuAffinity: false,
-  bladebitCompressionLevel: 0,
+  bladebitCompressionLevel: 1,
   bladebitDiskCache: undefined,
   bladebitDiskF1Threads: undefined,
   bladebitDiskFpThreads: undefined,
