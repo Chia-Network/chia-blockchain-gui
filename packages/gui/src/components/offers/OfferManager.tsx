@@ -155,6 +155,7 @@ function OfferList(props: OfferListProps) {
           offerSummary: row.summary,
           isMyOffer: row.isMyOffer,
           state: row.status,
+          validTimes: row.validTimes,
         },
       });
     }
@@ -259,7 +260,7 @@ function OfferList(props: OfferListProps) {
           const canCancelWithTransaction = canCancel && status === OfferState.PENDING_ACCEPT;
 
           const expirationTime = validTimes.maxTime ? validTimes.maxTime : null;
-          const isExpired = isWalletSynced && expirationTime < currentTime;
+          const isExpired = isWalletSynced && expirationTime && expirationTime < currentTime;
 
           return (
             <Flex flexDirection="row" justifyContent="center" gap={0}>
@@ -539,6 +540,7 @@ export function CreateOffer() {
               referrerPath={locationState?.referrerPath}
               canCounterOffer={locationState?.canCounterOffer}
               address={locationState?.address}
+              myOfferValidTimes={locationState?.validTimes}
             />
           }
         />
