@@ -53,6 +53,7 @@ export default function AppTestnetIndicator() {
         sx={{
           ...BorderStyle,
           backgroundColor: theme.palette.background.default,
+          minHeight: '42px',
           '&:hover': { backgroundColor: theme.palette.background.default, border: `1px solid ${borderColor}` },
         }}
         disableRipple
