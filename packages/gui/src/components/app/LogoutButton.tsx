@@ -10,8 +10,9 @@ export default function LogoutButton() {
   const { logOut } = useAuth();
   const ButtonStyle = {
     minWidth: 0,
-    height: '42px',
-    borderRadius: 2,
+    width: '40px',
+    minHeight: '40px',
+    borderRadius: '8px',
   };
 
   const handleLogout = useCallback(async () => {
@@ -30,7 +31,7 @@ export default function LogoutButton() {
         data-testid="AppStatusHeader-log-out"
         sx={ButtonStyle}
       >
-        <LogoutIcon />
+        <LogoutIcon color="info" />
       </Button>
     </Tooltip>
   );

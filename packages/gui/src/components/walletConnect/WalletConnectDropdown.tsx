@@ -13,8 +13,9 @@ export default function WalletConnectDropdown() {
 
   const ButtonStyle = {
     minWidth: 0,
-    height: '42px',
-    borderRadius: 2,
+    width: '40px',
+    minHeight: '40px',
+    borderRadius: '8px',
   };
 
   const color = enabled && !isLoading && pairs.get().length > 0 ? 'primary' : 'info';

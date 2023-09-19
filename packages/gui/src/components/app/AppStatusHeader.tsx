@@ -46,6 +46,9 @@ export default function AppStatusHeader() {
   const theme = useTheme();
   const { isDarkMode } = useDarkMode();
   const borderColor = (theme.palette as any).border[isDarkMode ? 'dark' : 'main'];
+  const ButtonGroupStyle = {
+    minHeight: '42px',
+  };
   const ButtonStyle = {
     paddingTop: '3px',
     paddingBottom: 0,
@@ -115,7 +118,7 @@ export default function AppStatusHeader() {
       <AppTestnetIndicator />
       <WalletReceiveAddressField variant="outlined" size="small" fullWidth isDarkMode={isDarkMode} />
       <Flex flexGrow={1} gap={2} alignItems="center" justifyContent="space-between">
-        <ButtonGroup variant="outlined" color="secondary" size="small">
+        <ButtonGroup variant="outlined" color="secondary" size="small" sx={ButtonGroupStyle}>
           {mode === Mode.FARMING && (
             <>
               <Button onClick={handleClickFN} aria-describedby="fullnode-connections" sx={ButtonStyle}>
