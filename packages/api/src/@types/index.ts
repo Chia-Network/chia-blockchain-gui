@@ -35,6 +35,7 @@ export type {
   OfferSummaryCATInfo,
   OfferSummaryInfos,
   OfferSummaryNFTInfo,
+  OfferSummaryValidTimes,
 } from './OfferSummaryRecord';
 export type { default as OfferTradeRecord } from './OfferTradeRecord';
 export type { default as Peak } from './Peak';

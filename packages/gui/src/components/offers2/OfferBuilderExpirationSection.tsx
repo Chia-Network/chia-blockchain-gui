@@ -100,7 +100,7 @@ export default function OfferBuilderExpirationSection(props: OfferExpirationProp
     return (
       <Grid xs={12} item>
         {isExpired ? (
-          <Alert severity="error">{t`Offer has expired and cannot be accepted.`}</Alert>
+          <Alert severity="error">{t`Offer has expired.`}</Alert>
         ) : (
           <Alert severity="warning">{countdownDisplay}</Alert>
         )}
@@ -111,7 +111,13 @@ export default function OfferBuilderExpirationSection(props: OfferExpirationProp
   function editSection() {
     return (
       <Form methods={methods} key={0} onSubmit={onSubmit}>
-        <Grid xs={12} item border={1} borderColor={theme.palette.border.main} borderRadius={1}>
+        <Grid
+          xs={12}
+          item
+          border={1}
+          borderColor={theme.palette.mode === 'light' ? Color.Neutral[300] : Color.Neutral[600]}
+          borderRadius={1}
+        >
           <Accordion
             expanded={isExpirationExpanded}
             onChange={(_event, isExpanded: boolean) => {

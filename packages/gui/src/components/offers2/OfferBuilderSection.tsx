@@ -1,4 +1,4 @@
-import { Flex } from '@chia-network/core';
+import { Color, Flex } from '@chia-network/core';
 import { Add } from '@mui/icons-material';
 import { Box, IconButton, Collapse, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
@@ -47,7 +47,7 @@ export default function OfferBuilderSectionCard(props: OfferBuilderSectionCardPr
         paddingY: isMuted ? 1.5 : 3,
         backgroundColor: isMuted ? 'transparent' : 'background.card',
         border: '1px solid',
-        borderColor: `${theme.palette.border.main}`,
+        borderColor: theme.palette.mode === 'light' ? Color.Neutral[300] : Color.Neutral[600],
         transition: '0.25s padding ease-out',
         '&:hover': {
           backgroundColor: 'background.card',
