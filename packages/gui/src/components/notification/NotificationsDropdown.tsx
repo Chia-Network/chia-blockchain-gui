@@ -10,9 +10,10 @@ import NotificationsMenu from './NotificationsMenu';
 
 const buttonStyle = (theme) => ({
   minWidth: 0,
-  borderRadius: 2,
+  borderRadius: '8px',
   borderColor: theme.palette.mode === 'dark' ? 'border.dark' : 'border.main',
-  height: '42px',
+  width: '40px',
+  minHeight: '40px',
   '&:hover': {
     borderColor: theme.palette.mode === 'dark' ? 'border.dark' : 'border.main',
   },
