@@ -1,11 +1,9 @@
-import { Color, Flex, useMode, Mode, useDarkMode, useAuth, Tooltip } from '@chia-network/core';
+import { Color, Flex, useMode, Mode, useDarkMode } from '@chia-network/core';
 import { WalletConnections, WalletStatus, WalletReceiveAddressField } from '@chia-network/wallets';
 import { Trans } from '@lingui/macro';
-import { Logout as LogoutIcon } from '@mui/icons-material';
-import { Box, ButtonGroup, Button, Popover, PopoverProps, IconButton } from '@mui/material';
+import { Box, ButtonGroup, Button, Popover, PopoverProps } from '@mui/material';
 import { useTheme, styled, alpha } from '@mui/material/styles';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import Connections from '../fullNode/FullNodeConnections';
 import FullNodeStateIndicator from '../fullNode/FullNodeStateIndicator';
@@ -13,6 +11,7 @@ import NotificationsDropdown from '../notification/NotificationsDropdown';
 import WalletConnectDropdown from '../walletConnect/WalletConnectDropdown';
 
 import AppTestnetIndicator from './AppTestnetIndicator';
+import LogoutButton from './LogoutButton';
 
 const StyledPopover = styled((props: PopoverProps) => <Popover {...props} />)(({ theme }) => ({
   '& .MuiPopover-paper': {
@@ -91,8 +90,6 @@ export default function AppStatusHeader() {
   };
 
   const [mode] = useMode();
-  const navigate = useNavigate();
-  const { logOut } = useAuth();
 
   const [anchorElFN, setAnchorElFN] = useState<HTMLButtonElement | null>(null);
   const [anchorElW, setAnchorElW] = useState<HTMLButtonElement | null>(null);
@@ -112,12 +109,6 @@ export default function AppStatusHeader() {
   const handleCloseW = () => {
     setAnchorElW(null);
   };
-
-  async function handleLogout() {
-    await logOut();
-
-    navigate('/');
-  }
 
   return (
     <Flex flexGrow={1} gap={2} flexWrap="wrap" alignItems="center">
@@ -179,11 +170,7 @@ export default function AppStatusHeader() {
         <Flex gap={0.5} alignItems="center">
           <WalletConnectDropdown />
           <NotificationsDropdown />
-          <Tooltip title={<Trans>Log Out</Trans>}>
-            <IconButton onClick={handleLogout} data-testid="AppStatusHeader-log-out">
-              <LogoutIcon />
-            </IconButton>
-          </Tooltip>
+          <LogoutButton />
         </Flex>
       </Flex>
     </Flex>
