@@ -1,12 +1,14 @@
 import type { Connection } from '@chia-network/api';
 import { ServiceName } from '@chia-network/api';
-import { useService, useGetHarvesterConnectionsQuery } from '@chia-network/api-react';
+import { useGetHarvesterConnectionsQuery } from '@chia-network/api-react';
 import { Table, FormatBytes, FormatConnectionStatus, Card } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Delete as DeleteIcon } from '@mui/icons-material';
 import { Typography, Tooltip, IconButton } from '@mui/material';
 import React from 'react';
 import styled from 'styled-components';
+
+import useIsServiceRunning from '../../hooks/useIsServiceRunning';
 
 import FarmCloseConnection from './FarmCloseConnection';
 
@@ -66,7 +68,7 @@ const cols = [
 
 export default function FarmYourHarvesterNetwork() {
   const { data: connections = [] } = useGetHarvesterConnectionsQuery();
-  const { isRunning, isLoading } = useService(ServiceName.HARVESTER);
+  const { isRunning, isLoading } = useIsServiceRunning(ServiceName.HARVESTER);
 
   return (
     <Card
