@@ -103,7 +103,7 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
         throw new Error(t`Wallet must be synced before creating an offer with an expiration time`);
       }
 
-      const expirationTimeForOffer = expirationTimeMax === 0 ? 0 : expirationTimeMax + currentTime;
+      const expirationTimeForOffer = expirationTimeMax === 0 ? null : expirationTimeMax + currentTime;
 
       const { assetsToUnlock, ...localOffer } = await offerBuilderDataToOffer({
         data: values,
