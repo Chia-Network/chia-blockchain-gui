@@ -34,7 +34,6 @@ const StyledCard = styled(Card)`
   flex-direction: column;
   height: 100%;
   overflow: visible;
-  filter: grayscale(100%);
 `;
 
 const StyledCardContent = styled(CardContent)`
