@@ -28,7 +28,7 @@ This monorepo consists of the following packages:
 **When developing, please:**
 
 - Only edit the code with the **Vscode editor**.
-- Always have **chia-blockchain-gui opened as a root folder in the Vscode** and not chia-blockchain, or chia-blockchain-gui/packages/... Failing to do so will result in incorrect auto linting and auto formatting which would not go trough the CI quality checks.
+- Always have **chia-blockchain-gui opened as a root folder in the Vscode** and not chia-blockchain, or chia-blockchain-gui/packages/... Failing to do so will result in incorrect auto linting and auto formatting which would not go through the CI quality checks.
 - When you open the repo in the vscode, click on "**Install recommended plugins**" pop-up.
 - To develop in testnet, please follow [these steps](https://github.com/Chia-Network/chia-blockchain/wiki/How-to-connect-to-the-Testnet).
 - Please write tests for your code
@@ -55,15 +55,15 @@ After adding a new NPM package, please **pin down the package version**. This is
   1.  the list and items are static / hardcoded.
   2.  the list is never reordered or filtered.
 
-  In all other cases, you have to figure out what unique string you will use as an `key`, or create a dedicated `ID`.
+  In all other cases, you have to figure out what unique string you will use as a `key`, or create a dedicated `ID`.
 
 - **import/no-extraneous-dependencies**
 
   Packages that are used only in development should not be present on the production build. You have 3 options:
 
-  1. If its a whole directory, add it to the `.eslintrc.json` file
-  2. If its a single file, rename it by adding `.dev.` in the extension. Example: `file.ts` -> `file.dev.ts`
-  3. If its a file that is run on the production, use this:
+  1. If it's a whole directory, add it to the `.eslintrc.json` file
+  2. If it's a single file, rename it by adding `.dev.` in the extension. Example: `file.ts` -> `file.dev.ts`
+  3. If it's a file that is run on the production, use this:
 
   ```
   if (process.env.NODE_ENV === 'development') {
@@ -121,7 +121,7 @@ Do not edit files directly in the repo, but instead please head over to our [Cro
   4. Run `npm run dev:gui` to start the app.
   5. If still does not work, please open you process manager and kill all Chia / Python related processes.
 
-- **Why is my component keeps rerendering?**
+- **Why does my component keep rerendering?**
 
   We have [why-did-you-render](https://github.com/welldone-software/why-did-you-render) installed.
 
@@ -141,7 +141,7 @@ Do not edit files directly in the repo, but instead please head over to our [Cro
 ## Simulator / SimNet
 
 1. Please follow the [Install and configure the simulator](https://docs.chia.net/guides/simulator-user-guide/). Do this step only once.
-2. In the chia-blockchain directory, run this to setup the ENV variables. Use these instead the ones mentioned in the above guide.
+2. In the chia-blockchain directory, run this to setup the ENV variables. Use these instead of the ones mentioned in the above guide.
 
 ```
 export CHIA_ROOT=~/.chia/simulator/main
