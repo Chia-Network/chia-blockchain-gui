@@ -71,6 +71,7 @@ jobs:
           github_user_email: 'automation@chia.net'
           gpg_private_key: ${{ secrets.CHIA_AUTOMATION_PRIVATE_GPG_KEY_RSA }}
           gpg_passphrase: ${{ secrets.CHIA_AUTOMATION_PRIVATE_GPG_PASSPHRASE }}
+          skip_ref_checkout: 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
