@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-09-14 22:49\n"
+"PO-Revision-Date: 2023-09-20 17:17\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -650,7 +650,7 @@ msgstr "Transaktionen kunde inte omedelbart läggas till i mempoolen eftersom de
 
 #: src/components/WalletBadge.tsx:26
 msgid "This access token is verified"
-msgstr ""
+msgstr "Denna åtkomsttoken är verifierad"
 
 #: src/components/WalletHistory.tsx:175
 msgid "This is not a valid address for sending funds to"
@@ -785,3 +785,4 @@ msgstr ""
 #: src/components/WalletImport.tsx:73
 msgid "Your pasted list does not include {mnemonicWordCount} valid mnemonic words."
 msgstr "Den lista du klistrat in är inte en giltig minnesfras med {mnemonicWordCount} ord."
+
