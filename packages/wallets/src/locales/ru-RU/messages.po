@@ -116,7 +116,7 @@ msgstr "Авторизованный Payee кошелек"
 msgid "Authorized providers"
 msgstr ""
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:227
+#: src/components/ClawbackClaimTransactionDialog.tsx:234
 msgid "Auto-claim transactions with this fee from now on."
 msgstr ""
 
@@ -156,8 +156,8 @@ msgstr "Токен активов Chia"
 msgid "Claim transaction"
 msgstr ""
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:137
-#: src/components/ClawbackClaimTransactionDialog.tsx:260
+#: src/components/ClawbackClaimTransactionDialog.tsx:138
+#: src/components/ClawbackClaimTransactionDialog.tsx:267
 msgid "Claim Transaction"
 msgstr ""
 
@@ -177,19 +177,19 @@ msgstr ""
 msgid "Claw back this transaction"
 msgstr ""
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:260
+#: src/components/ClawbackClaimTransactionDialog.tsx:267
 msgid "Claw back Transaction"
 msgstr ""
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:137
+#: src/components/ClawbackClaimTransactionDialog.tsx:138
 msgid "Claw Back Transaction"
 msgstr ""
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:129
+#: src/components/ClawbackClaimTransactionDialog.tsx:130
 msgid "Clawback payment claimed"
 msgstr ""
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:129
+#: src/components/ClawbackClaimTransactionDialog.tsx:130
 msgid "Clawback payment clawed back"
 msgstr ""
 
@@ -209,8 +209,8 @@ msgstr ""
 #~ msgid "Click here to download an older version of the wallet"
 #~ msgstr "Click here to download an older version of the wallet"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:158
-#: src/components/ClawbackClaimTransactionDialog.tsx:249
+#: src/components/ClawbackClaimTransactionDialog.tsx:159
+#: src/components/ClawbackClaimTransactionDialog.tsx:256
 #: src/components/crCat/CrCatApprovePendingDialog.tsx:136
 msgid "Close"
 msgstr "Закрыть"
@@ -316,7 +316,7 @@ msgstr "Ферма"
 msgid "Fee"
 msgstr "Комиссия"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:176
+#: src/components/ClawbackClaimTransactionDialog.tsx:183
 msgid "From:"
 msgstr ""
 
@@ -484,11 +484,11 @@ msgstr ""
 msgid "Please enter a transaction fee to approve the above amount:"
 msgstr ""
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:207
+#: src/components/ClawbackClaimTransactionDialog.tsx:214
 msgid "Please enter a transaction fee to claim the above amount:"
 msgstr ""
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:209
+#: src/components/ClawbackClaimTransactionDialog.tsx:216
 msgid "Please enter a transaction fee to claw back the above amount:"
 msgstr ""
 
@@ -676,7 +676,7 @@ msgstr "Это общее количество монет чиа в блокче
 msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
 msgstr "Это общий баланс + отложенный баланс: это то, каким будет ваш баланс после подтверждения всех ожидающих транзакций."
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:194
+#: src/components/ClawbackClaimTransactionDialog.tsx:201
 msgid "This transaction will be automatically claimed with a fee:"
 msgstr ""
 
@@ -684,7 +684,7 @@ msgstr ""
 #~ msgid "To"
 #~ msgstr "To"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:176
+#: src/components/ClawbackClaimTransactionDialog.tsx:183
 #: src/components/WalletHistory.tsx:168
 msgid "To:"
 msgstr ""
@@ -713,11 +713,11 @@ msgstr "Транзакция успешно отправлена на полны
 msgid "Transactions"
 msgstr "Транзакции"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:233
+#: src/components/ClawbackClaimTransactionDialog.tsx:240
 msgid "Transactions will be claimed automatically when the Clawback time expires."
 msgstr ""
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:236
+#: src/components/ClawbackClaimTransactionDialog.tsx:243
 msgid "Transactions with values smaller than the fee will not be auto claimed."
 msgstr ""
 
@@ -742,7 +742,7 @@ msgstr "Название кошелька"
 msgid "Wallet needs to be synced before approving transactions"
 msgstr ""
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:201
+#: src/components/ClawbackClaimTransactionDialog.tsx:208
 msgid "Wallet needs to be synced for claiming clawback transactions"
 msgstr ""
 
@@ -766,7 +766,7 @@ msgstr "Добро пожаловать! Перечисленные слова �
 msgid "Will be autoclaimed in "
 msgstr ""
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:239
+#: src/components/ClawbackClaimTransactionDialog.tsx:246
 msgid "You can change the Clawback Auto Claim fee in Settings."
 msgstr ""
 

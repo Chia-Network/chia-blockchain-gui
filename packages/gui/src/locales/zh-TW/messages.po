@@ -170,7 +170,7 @@ msgstr "語音"
 msgid "Check for updates..."
 msgstr "檢查更新..."
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:154
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:160
 msgid "- Set a time after which the offer expires.<0/>- An expiring offer can only be claimed prior to the expiration time."
 msgstr ""
 
@@ -273,11 +273,11 @@ msgstr "{value} of {max_value}"
 msgid "{warning}"
 msgstr "{warning}"
 
-#: src/components/settings/SettingsHarvester.tsx:534
+#: src/components/settings/SettingsHarvester.tsx:542
 msgid "* Disabled - use device at specified index if available; if not, attempt to use device at other indices; if no GPUs available, use CPU"
 msgstr ""
 
-#: src/components/settings/SettingsHarvester.tsx:532
+#: src/components/settings/SettingsHarvester.tsx:540
 msgid "* Enabled - use device at specified index if available; else error"
 msgstr ""
 
@@ -309,7 +309,7 @@ msgstr "<0>顯示</0> {0} <1>/</1> {1}  <2>項</2>"
 #~ msgid "<0>Use one (1) mojo to create a Profile.</0>"
 #~ msgstr "<0>Use one (1) mojo to create a Profile.</0>"
 
-#: src/components/farm/FarmYourHarvesterNetwork.tsx:77
+#: src/components/farm/FarmYourHarvesterNetwork.tsx:79
 msgid "A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk to a full node to see the state of the chain. View your network of connected harvesters below Learn more"
 msgstr "收割機是運行在實際存放耕地的機器上的服務。塊農和收割機通過與完整節點進行通信來查看區塊鏈的狀態。在下方查看您連接的收割機的網路。了解更多。"
 
@@ -332,7 +332,7 @@ msgstr "推薦數值為{0}"
 
 #: src/components/offers/NFTOfferViewer.tsx:642
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:21
-#: src/components/offers2/OfferBuilderViewer.tsx:249
+#: src/components/offers2/OfferBuilderViewer.tsx:256
 msgid "Accept Offer"
 msgstr "接受報價單"
 
@@ -344,8 +344,8 @@ msgstr "接受報價單"
 msgid "Action"
 msgstr "動作"
 
-#: src/components/farm/FarmFullNodeConnections.tsx:52
-#: src/components/farm/FarmYourHarvesterNetwork.tsx:52
+#: src/components/farm/FarmFullNodeConnections.tsx:54
+#: src/components/farm/FarmYourHarvesterNetwork.tsx:54
 #: src/components/fullNode/FullNodeConnections.tsx:65
 #: src/components/nfts/NFTContextualActions.tsx:590
 #: src/components/offers2/OfferIncomingTable.tsx:122
@@ -356,8 +356,8 @@ msgstr "動作"
 msgid "Active Sessions"
 msgstr "活躍連線"
 
-#: src/components/notification/NotificationsDropdown.tsx:39
-#: src/components/notification/NotificationsDropdown.tsx:46
+#: src/components/notification/NotificationsDropdown.tsx:40
+#: src/components/notification/NotificationsDropdown.tsx:47
 #: src/components/notification/NotificationsMenu.tsx:37
 msgid "Activity"
 msgstr "活動"
@@ -373,7 +373,7 @@ msgstr "新增耕地"
 #: src/components/farm/FarmHero.tsx:37
 #: src/components/plot/add/PlotAddForm.tsx:239
 #: src/components/plot/overview/PlotOverviewHero.tsx:43
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:200
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:199
 #: src/components/plotNFT/PlotNFTCard.tsx:233
 msgid "Add a Plot"
 msgstr "新增耕地"
@@ -398,7 +398,7 @@ msgstr "新增連線"
 msgid "Add Contact"
 msgstr ""
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:142
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:148
 msgid "Add option to set expiration time {0}"
 msgstr ""
 
@@ -593,7 +593,7 @@ msgstr "您確定要移除嗎？"
 msgid "Are you sure you want to revoke"
 msgstr "您確定要撤銷嗎？"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:61
+#: src/components/plot/add/PlotAddChooseSize.tsx:62
 msgid "Are you sure you want to use k={plotSize}?"
 msgstr "您確定要使用 k={plotSize} 嗎？"
 
@@ -810,7 +810,7 @@ msgstr "取消"
 
 #: src/components/offers/ConfirmOfferCancellation.tsx:62
 #: src/components/offers/ConfirmOfferCancellation.tsx:129
-#: src/components/offers/OfferManager.tsx:322
+#: src/components/offers/OfferManager.tsx:323
 #: src/constants/WalletConnectCommands.tsx:374
 msgid "Cancel Offer"
 msgstr "取消報價單"
@@ -904,11 +904,11 @@ msgstr "Chia 資產代幣 (CATs) 是建立在 XCH 之上的代幣"
 msgid "Choose Farming Mode"
 msgstr "選擇耕種模式"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:84
+#: src/components/plot/add/PlotAddChooseSize.tsx:87
 msgid "Choose K value"
 msgstr ""
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:84
+#: src/components/plot/add/PlotAddChooseSize.tsx:87
 msgid "Choose K value and compression level"
 msgstr ""
 
@@ -997,7 +997,7 @@ msgstr "硬幣編號"
 msgid "Collection"
 msgstr "收藏"
 
-#: src/components/settings/SettingsHarvester.tsx:433
+#: src/components/settings/SettingsHarvester.tsx:441
 msgid "Compressed plot support"
 msgstr ""
 
@@ -1005,7 +1005,7 @@ msgstr ""
 msgid "Compression"
 msgstr ""
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:121
+#: src/components/plot/add/PlotAddChooseSize.tsx:124
 msgid "Compression level"
 msgstr ""
 
@@ -1063,7 +1063,7 @@ msgstr "連接至其他節點"
 msgid "Connect to pool"
 msgstr "連線至農會"
 
-#: src/components/fullNode/card/FullNodeCardConnectionStatus.tsx:15
+#: src/components/fullNode/card/FullNodeCardConnectionStatus.tsx:16
 #: src/components/walletConnect/WalletConnectConnectedDialog.tsx:87
 msgid "Connected"
 msgstr "已連線"
@@ -1077,12 +1077,12 @@ msgstr "已連接的應用程式"
 msgid "Connecting to daemon"
 msgstr "連接到daemon"
 
-#: src/components/fullNode/card/FullNodeCardConnectionStatus.tsx:14
+#: src/components/fullNode/card/FullNodeCardConnectionStatus.tsx:15
 msgid "Connection Status"
 msgstr "連線狀態"
 
-#: src/components/farm/FarmFullNodeConnections.tsx:87
-#: src/components/farm/FarmYourHarvesterNetwork.tsx:85
+#: src/components/farm/FarmFullNodeConnections.tsx:89
+#: src/components/farm/FarmYourHarvesterNetwork.tsx:87
 msgid "Connection Status:"
 msgstr "連線狀態："
 
@@ -1156,7 +1156,7 @@ msgstr ""
 msgid "Counter"
 msgstr "反饋"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:237
+#: src/components/offers2/OfferBuilderViewer.tsx:244
 msgid "Counter Offer"
 msgstr "還價"
 
@@ -1170,7 +1170,7 @@ msgstr "建立"
 msgid "Create & Manage plots"
 msgstr "建立與管理耕地"
 
-#: src/components/offers/OfferManager.tsx:415
+#: src/components/offers/OfferManager.tsx:416
 msgid "Create a file that you can use to trade XCH, Chia Asset Tokens, or NFTs with no counter-party risk."
 msgstr "創建一個文件，您可以使用它來進行XCH，Chia 資產代幣或NFT的交易，並且不會有交易對方的風險。"
 
@@ -1187,7 +1187,7 @@ msgid "Create an NFT Offer"
 msgstr "建立一個NFT報價單"
 
 #: src/components/offers/OfferEditor.tsx:193
-#: src/components/offers/OfferManager.tsx:424
+#: src/components/offers/OfferManager.tsx:425
 msgid "Create an Offer"
 msgstr "建立一個報價單"
 
@@ -1211,7 +1211,7 @@ msgstr "創建新的 DID 錢包"
 #: src/components/offers/NFTOfferEditor.tsx:439
 #: src/components/offers/OfferEditor.tsx:175
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:15
-#: src/components/offers/OfferManager.tsx:406
+#: src/components/offers/OfferManager.tsx:407
 #: src/components/offers2/CreateOfferBuilder.tsx:200
 msgid "Create Offer"
 msgstr "建立報價"
@@ -1252,7 +1252,7 @@ msgstr "建立一塊農場並加入農會"
 msgid "Creating Plot NFT for Self Pooling"
 msgstr "正在為自己的農會建立農場"
 
-#: src/components/offers/OfferManager.tsx:249
+#: src/components/offers/OfferManager.tsx:250
 #: src/components/offers2/CancelOfferList.tsx:127
 #: src/components/offers2/OfferIncomingTable.tsx:83
 msgid "Creation Date"
@@ -1279,7 +1279,7 @@ msgstr "憑證"
 msgid "Currency code is not defined"
 msgstr "未定義貨幣代碼"
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:122
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:121
 #: src/components/plotNFT/PlotNFTCard.tsx:155
 msgid "Current Difficulty"
 msgstr "目前難度"
@@ -1288,7 +1288,7 @@ msgstr "目前難度"
 msgid "Current Passphrase"
 msgstr "當前密碼"
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:138
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:137
 #: src/components/plotNFT/PlotNFTCard.tsx:171
 msgid "Current Points Balance"
 msgstr "目前積分餘額"
@@ -1325,12 +1325,12 @@ msgstr "DataLayer 服務"
 msgid "Date"
 msgstr "日期"
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:44
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:84
 #: src/components/settings/SettingsExpiringOffers.tsx:14
 msgid "Days"
 msgstr ""
 
-#: src/components/settings/SettingsHarvester.tsx:472
+#: src/components/settings/SettingsHarvester.tsx:480
 msgid "Decompressor Thread Count"
 msgstr ""
 
@@ -1459,7 +1459,7 @@ msgstr "DID 識別碼"
 msgid "Difficulty"
 msgstr "難度"
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:189
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:195
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:91
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:77
 #: src/components/settings/SettingsExpiringOffers.tsx:88
@@ -1470,7 +1470,7 @@ msgstr "停用"
 msgid "Disable assigning automatic thread affinity. This is useful when running multiple simultaneous instances of Bladebit as you can manually assign thread affinity yourself when launching Bladebit."
 msgstr "停用自動分配執行緒關聯性。當您同時運行多個Bladebit實例時，這很有用，因為您可以在啟動Bladebit時手動分配執行緒關聯性。"
 
-#: src/components/settings/SettingsHarvester.tsx:553
+#: src/components/settings/SettingsHarvester.tsx:561
 msgid "Disable assigning automatic thread affinity. This is useful when you want to manually assign thread affinity."
 msgstr ""
 
@@ -1482,7 +1482,7 @@ msgstr "停用自動NUMA感知內存綁定。如果您在NUMA系統中設置此�
 msgid "Disable bitfield plotting"
 msgstr "禁用 bitfield 耕地"
 
-#: src/components/settings/SettingsHarvester.tsx:545
+#: src/components/settings/SettingsHarvester.tsx:553
 msgid "Disable CPU Affinity"
 msgstr ""
 
@@ -1516,7 +1516,7 @@ msgstr "禁用 NUMA"
 msgid "Disconnect"
 msgstr "斷線"
 
-#: src/components/offers/OfferManager.tsx:302
+#: src/components/offers/OfferManager.tsx:303
 msgid "Display Offer Data"
 msgstr "顯示報價單資料"
 
@@ -1641,7 +1641,7 @@ msgstr ""
 msgid "Edit Contact"
 msgstr ""
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:224
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:223
 #: src/components/plotNFT/PlotNFTCard.tsx:252
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:65
 msgid "Edit Payout Instructions"
@@ -1682,7 +1682,7 @@ msgstr "啟用"
 msgid "Enable Auto Login"
 msgstr "啟用自動登錄"
 
-#: src/components/settings/SettingsHarvester.tsx:440
+#: src/components/settings/SettingsHarvester.tsx:448
 msgid "Enable compressed plot support"
 msgstr ""
 
@@ -1694,7 +1694,7 @@ msgstr "啟用 DataLayer"
 msgid "Enable File Propagation Server"
 msgstr "啟用文件傳播伺服器"
 
-#: src/components/settings/SettingsHarvester.tsx:492
+#: src/components/settings/SettingsHarvester.tsx:500
 msgid "Enable GPU Harvesting"
 msgstr ""
 
@@ -1702,7 +1702,7 @@ msgstr ""
 msgid "Enable notifications"
 msgstr "啟用通知"
 
-#: src/components/settings/SettingsHarvester.tsx:500
+#: src/components/settings/SettingsHarvester.tsx:508
 msgid "Enable to use GPU for harvesting, disable to use CPU for harvesting."
 msgstr ""
 
@@ -1715,7 +1715,7 @@ msgstr "啟用可驗證憑證"
 msgid "Enable WalletConnect"
 msgstr "啟用 WalletConnect"
 
-#: src/components/settings/SettingsHarvester.tsx:408
+#: src/components/settings/SettingsHarvester.tsx:412
 msgid "Enable/Disable the ability to scan all subdirectories automatically for plots"
 msgstr ""
 
@@ -1723,7 +1723,7 @@ msgstr ""
 msgid "End"
 msgstr "結束"
 
-#: src/components/settings/SettingsHarvester.tsx:524
+#: src/components/settings/SettingsHarvester.tsx:532
 msgid "Enforce GPU Index"
 msgstr ""
 
@@ -1829,11 +1829,11 @@ msgstr ""
 msgid "Expiration"
 msgstr "到期"
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:196
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:202
 msgid "Expiration time will be {0}"
 msgstr ""
 
-#: src/components/offers/OfferManager.tsx:182
+#: src/components/offers/OfferManager.tsx:183
 #: src/components/vcs/VCCard.tsx:166
 msgid "Expired"
 msgstr "已過期"
@@ -2066,7 +2066,7 @@ msgstr "將圖片調整至卡片大小"
 msgid "From"
 msgstr "來自"
 
-#: src/components/app/AppStatusHeader.tsx:133
+#: src/components/app/AppStatusHeader.tsx:127
 #: src/components/dashboard/DashboardSideBar.tsx:86
 #: src/components/fullNode/FullNode.jsx:116
 msgid "Full Node"
@@ -2194,7 +2194,7 @@ msgid "Government IDs"
 msgstr "政府識別"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:454
-#: src/components/settings/SettingsHarvester.tsx:508
+#: src/components/settings/SettingsHarvester.tsx:516
 msgid "GPU Device Index"
 msgstr ""
 
@@ -2304,12 +2304,12 @@ msgstr "提示"
 msgid "Hooray, no files here!"
 msgstr "萬歲，這裡沒有文件!"
 
-#: src/components/farm/FarmFullNodeConnections.tsx:31
-#: src/components/farm/FarmYourHarvesterNetwork.tsx:31
+#: src/components/farm/FarmFullNodeConnections.tsx:33
+#: src/components/farm/FarmYourHarvesterNetwork.tsx:33
 msgid "Host Name"
 msgstr "主機名稱"
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:45
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:85
 #: src/components/settings/SettingsExpiringOffers.tsx:15
 msgid "Hours"
 msgstr ""
@@ -2428,7 +2428,7 @@ msgstr "可用資金不足，無法建立報價單。請確保你的可支出餘
 #~ msgid "Integration"
 #~ msgstr ""
 
-#: src/components/settings/SettingsHarvester.tsx:424
+#: src/components/settings/SettingsHarvester.tsx:428
 msgid "Interval (in seconds) in which directories are scanned to refresh the list of available plots"
 msgstr ""
 
@@ -2512,7 +2512,7 @@ msgstr "加入農會耕種"
 msgid "Join Pool"
 msgstr "加入礦池"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:101
+#: src/components/plot/add/PlotAddChooseSize.tsx:104
 msgid "K value"
 msgstr ""
 
@@ -2549,8 +2549,8 @@ msgstr "鑰匙串轉移失敗:{0}"
 msgid "Keys"
 msgstr ""
 
-#: src/components/farm/FarmFullNodeConnections.tsx:49
-#: src/components/farm/FarmYourHarvesterNetwork.tsx:49
+#: src/components/farm/FarmFullNodeConnections.tsx:51
+#: src/components/farm/FarmYourHarvesterNetwork.tsx:51
 msgid "KiB Up/Down"
 msgstr "KiB 上傳/下傳"
 
@@ -2596,7 +2596,7 @@ msgstr "上一次交易區塊時間"
 msgid "Latest Block Challenges"
 msgstr "最新區塊挑戰"
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:256
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:255
 #: src/components/plotNFT/PlotNFTCard.tsx:292
 #: src/constants/WalletConnectCommands.tsx:831
 #: src/constants/WalletConnectCommands.tsx:843
@@ -2654,7 +2654,7 @@ msgstr "連接列表是空的"
 msgid "Loading configuration"
 msgstr "正在加載設定"
 
-#: src/components/offers/OfferManager.tsx:235
+#: src/components/offers/OfferManager.tsx:236
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:99
 msgid "Loading expiration time..."
 msgstr ""
@@ -2687,7 +2687,7 @@ msgstr "正在加載 NFT 資訊"
 #: src/components/helpers/HeightToTimestamp.tsx:16
 #: src/components/nfts/NFTMetadata.tsx:21
 #: src/components/offers/NFTOfferTokenSelector.tsx:97
-#: src/components/offers/OfferManager.tsx:184
+#: src/components/offers/OfferManager.tsx:185
 #: src/components/offers2/OfferBuilderTokenSelector.tsx:79
 #: src/components/offers2/OfferDetails.tsx:38
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:27
@@ -2714,7 +2714,7 @@ msgstr "已鎖定"
 msgid "Log In"
 msgstr "登入"
 
-#: src/components/app/AppStatusHeader.tsx:182
+#: src/components/app/LogoutButton.tsx:25
 msgid "Log Out"
 msgstr ""
 
@@ -2838,7 +2838,7 @@ msgstr "鑄造者:"
 msgid "MintGarden URL"
 msgstr "MintGarden 網址"
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:46
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:86
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 #: src/components/settings/SettingsExpiringOffers.tsx:16
 msgid "Minutes"
@@ -3095,7 +3095,7 @@ msgstr ""
 msgid "No CPU Affinity"
 msgstr "無 CPU 關聯性"
 
-#: src/components/offers/OfferManager.tsx:369
+#: src/components/offers/OfferManager.tsx:370
 msgid "No current offers"
 msgstr "目前無報價單"
 
@@ -3129,8 +3129,8 @@ msgstr "一方或雙方地址缺少私鑰。只有在將獎勵發送到其他錢
 msgid "No standard wallet found"
 msgstr "找不到標準錢包"
 
-#: src/components/farm/FarmFullNodeConnections.tsx:27
-#: src/components/farm/FarmYourHarvesterNetwork.tsx:27
+#: src/components/farm/FarmFullNodeConnections.tsx:29
+#: src/components/farm/FarmYourHarvesterNetwork.tsx:29
 #: src/components/fullNode/FullNodeConnections.tsx:29
 msgid "Node ID"
 msgstr "節點 ID"
@@ -3183,7 +3183,7 @@ msgstr "尚無"
 
 #: src/components/farm/FarmHealth.tsx:125
 #: src/components/farm/FarmHealth.tsx:172
-#: src/components/fullNode/card/FullNodeCardConnectionStatus.tsx:15
+#: src/components/fullNode/card/FullNodeCardConnectionStatus.tsx:16
 msgid "Not connected"
 msgstr "未連線"
 
@@ -3248,7 +3248,7 @@ msgstr "NFT 數量"
 msgid "Number of plots"
 msgstr ""
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:107
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:106
 #: src/components/plotNFT/PlotNFTCard.tsx:140
 msgid "Number of Plots"
 msgstr "耕地數量"
@@ -3257,7 +3257,7 @@ msgstr "耕地數量"
 msgid "Number of threads"
 msgstr "執行緒數量"
 
-#: src/components/settings/SettingsHarvester.tsx:480
+#: src/components/settings/SettingsHarvester.tsx:488
 msgid "Number of threads for a decompressor context."
 msgstr ""
 
@@ -3293,14 +3293,14 @@ msgstr "佔用空間"
 msgid "Offer"
 msgstr "提案"
 
-#: src/components/offers/OfferManager.tsx:412
+#: src/components/offers/OfferManager.tsx:413
 #: src/components/offers2/OfferNavigationHeader.tsx:16
 msgid "Offer Builder"
 msgstr "報價單生成器"
 
 #: src/components/offers/NFTOfferViewer.tsx:173
 #: src/components/offers2/OfferBuilderValue.tsx:196
-#: src/components/offers2/OfferBuilderViewer.tsx:280
+#: src/components/offers2/OfferBuilderViewer.tsx:287
 msgid "Offer cannot be accepted because you don't possess the requested assets"
 msgstr "因為你沒有被請求的資產，所以不能接受報價單。"
 
@@ -3333,7 +3333,11 @@ msgid "Offer has expired"
 msgstr ""
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:103
-msgid "Offer has expired and cannot be accepted."
+#~ msgid "Offer has expired and cannot be accepted."
+#~ msgstr ""
+
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:103
+msgid "Offer has expired."
 msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:453
@@ -3341,7 +3345,7 @@ msgstr ""
 msgid "Offer Id"
 msgstr "報價單ID"
 
-#: src/components/offers/OfferManager.tsx:393
+#: src/components/offers/OfferManager.tsx:394
 msgid "Offer Management"
 msgstr "報價單管理"
 
@@ -3363,7 +3367,7 @@ msgstr ""
 #~ msgid "OfferBin URL"
 #~ msgstr "OfferBin URL"
 
-#: src/components/offers/OfferManager.tsx:214
+#: src/components/offers/OfferManager.tsx:215
 #: src/components/offers2/CancelOfferList.tsx:80
 msgid "Offered"
 msgstr "已報價"
@@ -3390,15 +3394,15 @@ msgstr "報價單"
 msgid "Offers are a way to trade assets in a genuinely peer-to-peer way that eliminates counterparty risk."
 msgstr "報價單是以真正的點對點方式交易資產的一種方式，可以消除對手方風險。"
 
-#: src/components/offers/OfferManager.tsx:396
+#: src/components/offers/OfferManager.tsx:397
 msgid "Offers are a way to trade assets in a genuinely peer-to-peer way to eliminate counterparty risk."
 msgstr "報價單是一種以真正的點對點方式交易資產的方式，可以消除對手方風險。"
 
-#: src/components/offers/OfferManager.tsx:445
+#: src/components/offers/OfferManager.tsx:446
 msgid "Offers you accepted"
 msgstr "您已接受報價單"
 
-#: src/components/offers/OfferManager.tsx:444
+#: src/components/offers/OfferManager.tsx:445
 msgid "Offers you created"
 msgstr "已建立你的報價單"
 
@@ -3420,7 +3424,7 @@ msgstr "一旦您啟動此轉帳，您將無法取消交易。您確定要轉帳
 msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer the NFT?"
 msgstr "一旦啟動此轉帳，您將無法取消交易。您確定要轉帳這個 NFT 嗎？"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:284
+#: src/components/offers2/OfferBuilderViewer.tsx:291
 msgid "One or more unknown tokens are being offered. Be sure to verify that the asset IDs of the offered tokens match the asset IDs of the tokens you are expecting."
 msgstr "正在提供一個或多個未知代幣。請確保驗證所提供的代幣的資產ID是否與您預期接收的代幣的資產ID相匹配。"
 
@@ -3517,7 +3521,7 @@ msgstr "配對信息"
 msgid "Paired Keys"
 msgstr "配對的密鑰"
 
-#: src/components/settings/SettingsHarvester.tsx:456
+#: src/components/settings/SettingsHarvester.tsx:464
 msgid "Parallel Decompressor Count"
 msgstr ""
 
@@ -3725,11 +3729,11 @@ msgstr "請指定最終目錄"
 msgid "Please specify temporary directory"
 msgstr "請指定臨時目錄"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:220
+#: src/components/offers2/OfferBuilderViewer.tsx:227
 msgid "Please wait for wallet synchronization"
 msgstr "請等待錢包同步"
 
-#: src/components/settings/SettingsHarvester.tsx:392
+#: src/components/settings/SettingsHarvester.tsx:396
 msgid "Plot"
 msgstr ""
 
@@ -3820,7 +3824,7 @@ msgstr "通過篩選的耕地"
 msgid "Plots passing filter"
 msgstr ""
 
-#: src/components/settings/SettingsHarvester.tsx:416
+#: src/components/settings/SettingsHarvester.tsx:420
 msgid "Plots Refresh Interval (seconds)"
 msgstr ""
 
@@ -3853,17 +3857,17 @@ msgstr "規劃耕地至耕地NFT可讓您靈活選擇加入農會或單獨耕作
 msgid "Plotting with bitfield enabled has about 30% less overall writes and is now almost always faster. You may see reduced memory requirements with bitfield plotting disabled. If your CPU design is from before 2010 you may have to disable bitfield plotting."
 msgstr "以 bitfield 規劃耕地可減少約 30％ 的總寫入量且如今也幾乎較快。 關閉 Bitfield 規劃耕地有可能降低記憶體需求。如果你的 CPU 是 2010 年以前的設計很有可能需要關閉 bitfield 規劃耕地。"
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:164
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:163
 #: src/components/plotNFT/PlotNFTCard.tsx:197
 msgid "Points Found in Last 24 Hours"
 msgstr "最近 24 小時內所發現的積分"
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:155
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:154
 #: src/components/plotNFT/PlotNFTCard.tsx:188
 msgid "Points Found Since Start"
 msgstr "自開始以來所發現的積分"
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:173
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:172
 #: src/components/plotNFT/PlotNFTCard.tsx:206
 msgid "Points Successful in Last 24 Hours"
 msgstr "過去24小時有效的積分"
@@ -3929,7 +3933,7 @@ msgstr "農會獎勵地址不能為空。"
 msgid "Pool Reward Amount"
 msgstr "礦池勵數量"
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:235
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:234
 #: src/components/plotNFT/PlotNFTCard.tsx:271
 #: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:69
 msgid "Pool:"
@@ -3946,8 +3950,8 @@ msgstr "正在為農會耕種中"
 msgid "Pooling Health"
 msgstr ""
 
-#: src/components/farm/FarmFullNodeConnections.tsx:37
-#: src/components/farm/FarmYourHarvesterNetwork.tsx:37
+#: src/components/farm/FarmFullNodeConnections.tsx:39
+#: src/components/farm/FarmYourHarvesterNetwork.tsx:39
 #: src/components/fullNode/FullNodeAddConnection.tsx:95
 #: src/components/fullNode/FullNodeConnections.tsx:39
 msgid "Port"
@@ -4097,7 +4101,7 @@ msgstr "建議"
 #~ msgid "Recommended: 0.000005 XCH"
 #~ msgstr "Recommended: 0.000005 XCH"
 
-#: src/components/settings/SettingsHarvester.tsx:400
+#: src/components/settings/SettingsHarvester.tsx:404
 msgid "Recursive Plot Scan"
 msgstr ""
 
@@ -4123,7 +4127,7 @@ msgstr "相對鎖定高度"
 #~ msgid "Release Notes"
 #~ msgstr "Release Notes"
 
-#: src/components/offers/OfferManager.tsx:291
+#: src/components/offers/OfferManager.tsx:292
 msgid "Relist Offer"
 msgstr ""
 
@@ -4162,7 +4166,7 @@ msgstr "移除中"
 #~ msgid "Report an Issue..."
 #~ msgstr "Report an Issue..."
 
-#: src/components/offers/OfferManager.tsx:224
+#: src/components/offers/OfferManager.tsx:225
 #: src/components/offers2/CancelOfferList.tsx:95
 msgid "Requested"
 msgstr "已請求"
@@ -4341,7 +4345,7 @@ msgstr "運行全節點"
 msgid "Save"
 msgstr "儲存"
 
-#: src/components/offers/OfferManager.tsx:312
+#: src/components/offers/OfferManager.tsx:313
 msgid "Save Offer File"
 msgstr "保存報價單檔案"
 
@@ -4526,7 +4530,7 @@ msgstr ""
 msgid "Settings"
 msgstr "設定"
 
-#: src/components/offers/OfferManager.tsx:268
+#: src/components/offers/OfferManager.tsx:269
 #: src/components/offers/OfferShareDialog.tsx:923
 msgid "Share"
 msgstr "分享"
@@ -4571,7 +4575,7 @@ msgstr "分享在Spacescan.io"
 msgid "Show"
 msgstr "顯示"
 
-#: src/components/offers/OfferManager.tsx:282
+#: src/components/offers/OfferManager.tsx:283
 msgid "Show Details"
 msgstr "顯示詳細資料"
 
@@ -4695,7 +4699,7 @@ msgstr ""
 msgid "Spacescan.io URL"
 msgstr "Spacescan.io 網址"
 
-#: src/components/settings/SettingsHarvester.tsx:464
+#: src/components/settings/SettingsHarvester.tsx:472
 msgid "Specify a value if using CPU as your harvester. Typical values will be 1 or 2."
 msgstr ""
 
@@ -4707,7 +4711,7 @@ msgstr "輸入0來使用所有可用的執行緒"
 msgid "Specify a wallet address, NFT, or DID to sign with"
 msgstr "請指定要簽名的錢包地址、NFT或DID"
 
-#: src/components/settings/SettingsHarvester.tsx:516
+#: src/components/settings/SettingsHarvester.tsx:524
 msgid "Specify GPU index (0, 1, 2, etc) for harvesting if more than one GPU is present)"
 msgstr ""
 
@@ -4769,10 +4773,10 @@ msgstr "狀態"
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:69
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:74
-#: src/components/offers/OfferManager.tsx:204
+#: src/components/offers/OfferManager.tsx:205
 #: src/components/plot/PlotHarvesterPlots.tsx:74
 #: src/components/plot/PlotPlotting.tsx:26
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:102
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:101
 #: src/components/plotNFT/PlotNFTCard.tsx:130
 #: src/components/vcs/VCCard.tsx:164
 msgid "Status"
@@ -4872,7 +4876,7 @@ msgstr "派生索引設置錢包掃描區塊鏈的錢包地址範圍。如果您
 msgid "The folder is on a RAM Disk"
 msgstr "該資料夾位於 RAM 磁碟"
 
-#: src/components/farm/FarmFullNodeConnections.tsx:77
+#: src/components/farm/FarmFullNodeConnections.tsx:79
 msgid "The full node that your farmer is connected to is below. <0>Learn more</0>"
 msgstr "您的塊農連接的完整節點如下。 <0>了解更多</0>"
 
@@ -4880,8 +4884,8 @@ msgstr "您的塊農連接的完整節點如下。 <0>了解更多</0>"
 msgid "The Harvester manages plots and fetches proofs of space corresponding to challenges sent by a farmer."
 msgstr ""
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:57
-#: src/components/plot/add/PlotAddChooseSize.tsx:112
+#: src/components/plot/add/PlotAddChooseSize.tsx:58
+#: src/components/plot/add/PlotAddChooseSize.tsx:115
 msgid "The minimum required size for mainnet is k=32"
 msgstr "主網所需的最小大小為 k=32"
 
@@ -5002,7 +5006,7 @@ msgstr "他們將收到"
 msgid "This allows you to add a directory that has plots in it. If you have not created any plots, go to the plotting screen."
 msgstr "這允許您添加一個包含耕地的目錄。如果您尚未創建任何耕地，請轉到耕作畫面。"
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:115
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:114
 #: src/components/plotNFT/PlotNFTCard.tsx:148
 msgid "This difficulty is an artifically lower difficulty than on the real network, and is used when farming, in order to find more proofs and send them to the pool. The more plots you have, the higher difficulty you will have. However, the difficulty does not affect rewards."
 msgstr "為了在耕種時找到更多證明以傳送至網路，此處難度與實際網路相比已人工降低過。你擁有的耕地越多，你的難度就越高。 但是，難度不影響獎勵。"
@@ -5039,12 +5043,12 @@ msgstr "這是塊農建立區塊的時間，這是在用時間證明最終確定
 msgid "This is the timestamp of the most recent transaction block."
 msgstr "這是最近交易區塊的時間戳。"
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:132
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:131
 #: src/components/plotNFT/PlotNFTCard.tsx:165
 msgid "This is the total number of points this plotNFT has with this pool, since the last payout. The pool will reset the points after making a payout."
 msgstr "自上次支付以來該農場在該池中的總積分。農會在支付過後將重置積分。"
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:148
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:147
 #: src/components/plotNFT/PlotNFTCard.tsx:181
 msgid "This is the total number of points your farmer has found for this plot NFT. Each k32 plot will get around 10 points per day, so if you have 10TiB, should should expect around 1000 points per day, or 41 points per hour."
 msgstr "這是您的農夫為此農場找到的總積分。 每個 K32 圖每天將獲得大約 10 點積分，所以如果您有 10TiB，則每天大約 1000 點積分，或每小時 41 點積分。"
@@ -5064,24 +5068,24 @@ msgid "This offer has a fee included to help expedite the transaction when the o
 msgstr "此報價中包含有助於在接受報價時加快交易的費用。如果您覺得所包含的費用太小，您可以指定額外的費用。"
 
 #: src/components/offers/OfferHeader.tsx:63
-#: src/components/offers2/OfferBuilderViewer.tsx:272
+#: src/components/offers2/OfferBuilderViewer.tsx:279
 msgid "This offer has completed successfully"
 msgstr "此報價單已成功完成"
 
 #: src/components/offers/OfferHeader.tsx:46
-#: src/components/offers2/OfferBuilderViewer.tsx:259
+#: src/components/offers2/OfferBuilderViewer.tsx:266
 msgid "This offer is no longer valid. To understand why, click <0>here</0> to learn more."
 msgstr "此報價已不再有效。了解原因，請點擊<0>此處</0>進行了解。"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:276
+#: src/components/offers2/OfferBuilderViewer.tsx:283
 msgid "This offer was cancelled"
 msgstr "此報價已取消。"
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:204
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:210
 msgid "This offer will never expire."
 msgstr ""
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:269
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:268
 msgid "This plot NFT is assigned to a different key. You can still create plots for this plot NFT, but you can not make changes."
 msgstr "此農場分配給其他的金鑰。你仍然可以為此農場建立耕地，但不能進行更改。"
 
@@ -5316,7 +5320,7 @@ msgstr "開啟/關閉在創建新報價後自動顯示分享選項面板的功�
 msgid "Turn on/off the DataLayer service."
 msgstr "開啟/關閉 DataLayer 服務。"
 
-#: src/components/settings/SettingsHarvester.tsx:448
+#: src/components/settings/SettingsHarvester.tsx:456
 msgid "Turn this off if you don't have any compressed plots to harvest"
 msgstr ""
 
@@ -5562,7 +5566,7 @@ msgstr "檢視憑證數據"
 msgid "View Log"
 msgstr "檢視日誌"
 
-#: src/components/offers/OfferManager.tsx:435
+#: src/components/offers/OfferManager.tsx:436
 msgid "View Offer"
 msgstr "檢視提案"
 
@@ -5635,7 +5639,7 @@ msgstr "等待同步中"
 msgid "Waiting for the transaction to be confirmed"
 msgstr "等待交易確認中"
 
-#: src/components/app/AppStatusHeader.tsx:158
+#: src/components/app/AppStatusHeader.tsx:152
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:187
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:191
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:109
@@ -5692,7 +5696,7 @@ msgstr ""
 #: src/components/settings/SettingsIntegration.tsx:139
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:218
 #: src/components/walletConnect/WalletConnectConnectedDialog.tsx:67
-#: src/components/walletConnect/WalletConnectDropdown.tsx:25
+#: src/components/walletConnect/WalletConnectDropdown.tsx:26
 msgid "WalletConnect"
 msgstr "錢包連接"
 
@@ -5787,7 +5791,7 @@ msgid "Would you like to transfer the specified NFT to a new owner?"
 msgstr "您是否要將指定的 NFT 轉移給新擁有者？"
 
 #: src/components/offers2/OfferIncomingTable.tsx:215
-#: src/components/plot/add/PlotAddChooseSize.tsx:58
+#: src/components/plot/add/PlotAddChooseSize.tsx:59
 #: src/components/vcs/VCCard.tsx:89
 msgid "Yes"
 msgstr "是"
@@ -5829,11 +5833,11 @@ msgid "You can still create plots for this plot NFT, but you can not make change
 msgstr "您仍然可以為此農場創建耕地，但在同步完成之前您不能進行更改。"
 
 #: src/components/offers/OfferHeader.tsx:38
-#: src/components/offers2/OfferBuilderViewer.tsx:291
+#: src/components/offers2/OfferBuilderViewer.tsx:298
 msgid "You created this offer"
 msgstr "您創建了這個報價"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:87
+#: src/components/plot/add/PlotAddChooseSize.tsx:90
 msgid "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 msgstr "你不需要同步或連線後才能規劃耕地。規劃耕地時所產生的暫存檔將大於最終的耕地大小。確保你有足夠的空間。<0>了解更多</0>"
 
@@ -5903,11 +5907,11 @@ msgstr "您目前使用的 Chia 應用程式版本可能不支持 dApp 要求的
 #~ msgid "Your Farm Overview"
 #~ msgstr "Your Farm Overview"
 
-#: src/components/farm/FarmFullNodeConnections.tsx:74
+#: src/components/farm/FarmFullNodeConnections.tsx:76
 msgid "Your Full Node Connection"
 msgstr "您的完整節點連線"
 
-#: src/components/farm/FarmYourHarvesterNetwork.tsx:74
+#: src/components/farm/FarmYourHarvesterNetwork.tsx:76
 msgid "Your Harvester Network"
 msgstr "您的收割機網路"
 
