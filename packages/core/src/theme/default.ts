@@ -61,6 +61,13 @@ export default {
     },
   },
   components: {
+    MuiTooltip: {
+      styleOverrides: {
+        tooltip: {
+          backgroundColor: Color.Neutral[500],
+        },
+      },
+    },
     MuiSvgIcon: {
       variants: [
         {
