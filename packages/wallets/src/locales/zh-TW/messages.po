@@ -116,7 +116,7 @@ msgstr "授權收款人錢包"
 msgid "Authorized providers"
 msgstr ""
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:227
+#: src/components/ClawbackClaimTransactionDialog.tsx:234
 msgid "Auto-claim transactions with this fee from now on."
 msgstr "從現在開始自動聲明具有此費用的交易。"
 
@@ -156,8 +156,8 @@ msgstr "奇亞資產代幣"
 msgid "Claim transaction"
 msgstr "聲明交易"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:137
-#: src/components/ClawbackClaimTransactionDialog.tsx:260
+#: src/components/ClawbackClaimTransactionDialog.tsx:138
+#: src/components/ClawbackClaimTransactionDialog.tsx:267
 msgid "Claim Transaction"
 msgstr "聲明交易"
 
@@ -177,19 +177,19 @@ msgstr ""
 msgid "Claw back this transaction"
 msgstr "收回此交易"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:260
+#: src/components/ClawbackClaimTransactionDialog.tsx:267
 msgid "Claw back Transaction"
 msgstr "收回交易"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:137
+#: src/components/ClawbackClaimTransactionDialog.tsx:138
 msgid "Claw Back Transaction"
 msgstr "收回交易"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:129
+#: src/components/ClawbackClaimTransactionDialog.tsx:130
 msgid "Clawback payment claimed"
 msgstr "收回款項已聲明"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:129
+#: src/components/ClawbackClaimTransactionDialog.tsx:130
 msgid "Clawback payment clawed back"
 msgstr "收回款項已收回"
 
@@ -209,8 +209,8 @@ msgstr "收回中..."
 #~ msgid "Click here to download an older version of the wallet"
 #~ msgstr "Click here to download an older version of the wallet"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:158
-#: src/components/ClawbackClaimTransactionDialog.tsx:249
+#: src/components/ClawbackClaimTransactionDialog.tsx:159
+#: src/components/ClawbackClaimTransactionDialog.tsx:256
 #: src/components/crCat/CrCatApprovePendingDialog.tsx:136
 msgid "Close"
 msgstr "關閉"
@@ -316,7 +316,7 @@ msgstr "耕種"
 msgid "Fee"
 msgstr "費用"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:176
+#: src/components/ClawbackClaimTransactionDialog.tsx:183
 msgid "From:"
 msgstr "來自："
 
@@ -486,11 +486,11 @@ msgstr ""
 msgid "Please enter a transaction fee to approve the above amount:"
 msgstr ""
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:207
+#: src/components/ClawbackClaimTransactionDialog.tsx:214
 msgid "Please enter a transaction fee to claim the above amount:"
 msgstr "請輸入用於聲明上述金額的交易費用："
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:209
+#: src/components/ClawbackClaimTransactionDialog.tsx:216
 msgid "Please enter a transaction fee to claw back the above amount:"
 msgstr "請輸入用於撤回上述金額的交易費用："
 
@@ -678,7 +678,7 @@ msgstr "這是由您的私鑰所控制的目前區塊鏈中的總 Chia 金額，
 msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
 msgstr "這是總餘額 + 未結餘額：這是在全部未結交易結清後你的餘額。"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:194
+#: src/components/ClawbackClaimTransactionDialog.tsx:201
 msgid "This transaction will be automatically claimed with a fee:"
 msgstr "此交易將自動以手續費聲明："
 
@@ -686,7 +686,7 @@ msgstr "此交易將自動以手續費聲明："
 #~ msgid "To"
 #~ msgstr "To"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:176
+#: src/components/ClawbackClaimTransactionDialog.tsx:183
 #: src/components/WalletHistory.tsx:168
 msgid "To:"
 msgstr "至："
@@ -715,11 +715,11 @@ msgstr "交易已成功發送到全節點並包含在記憶池中。"
 msgid "Transactions"
 msgstr "交易"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:233
+#: src/components/ClawbackClaimTransactionDialog.tsx:240
 msgid "Transactions will be claimed automatically when the Clawback time expires."
 msgstr "當 Clawback 時間到期時，交易將自動聲明。"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:236
+#: src/components/ClawbackClaimTransactionDialog.tsx:243
 msgid "Transactions with values smaller than the fee will not be auto claimed."
 msgstr "金額小於手續費的交易將不會自動聲明。"
 
@@ -744,7 +744,7 @@ msgstr "錢包名稱"
 msgid "Wallet needs to be synced before approving transactions"
 msgstr ""
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:201
+#: src/components/ClawbackClaimTransactionDialog.tsx:208
 msgid "Wallet needs to be synced for claiming clawback transactions"
 msgstr "錢包需要同步才能聲明撤回交易"
 
@@ -768,7 +768,7 @@ msgstr "歡迎！以下的字是用來為你的錢包備份。沒有這些你將
 msgid "Will be autoclaimed in "
 msgstr "將在自動聲明中 "
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:239
+#: src/components/ClawbackClaimTransactionDialog.tsx:246
 msgid "You can change the Clawback Auto Claim fee in Settings."
 msgstr "您可以在設定中更改 Clawback 自動聲明手續費。"
 
