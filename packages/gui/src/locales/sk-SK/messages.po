@@ -170,7 +170,7 @@ msgstr "Reč"
 msgid "Check for updates..."
 msgstr "Skontrolovať aktualizácie..."
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:154
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:160
 msgid "- Set a time after which the offer expires.<0/>- An expiring offer can only be claimed prior to the expiration time."
 msgstr ""
 
@@ -273,11 +273,11 @@ msgstr "{value} z {max_value}"
 msgid "{warning}"
 msgstr "{warning}"
 
-#: src/components/settings/SettingsHarvester.tsx:534
+#: src/components/settings/SettingsHarvester.tsx:542
 msgid "* Disabled - use device at specified index if available; if not, attempt to use device at other indices; if no GPUs available, use CPU"
 msgstr ""
 
-#: src/components/settings/SettingsHarvester.tsx:532
+#: src/components/settings/SettingsHarvester.tsx:540
 msgid "* Enabled - use device at specified index if available; else error"
 msgstr ""
 
@@ -309,7 +309,7 @@ msgstr ""
 #~ msgid "<0>Use one (1) mojo to create a Profile.</0>"
 #~ msgstr "<0>Use one (1) mojo to create a Profile.</0>"
 
-#: src/components/farm/FarmYourHarvesterNetwork.tsx:77
+#: src/components/farm/FarmYourHarvesterNetwork.tsx:79
 msgid "A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk to a full node to see the state of the chain. View your network of connected harvesters below Learn more"
 msgstr "Kombajn je služba bežiaca na stroji, kde sú uložené polia. Farmár a kombajn komunikujú s plným uzlom, aby zistili stav reťaze. Nižšie si pozrite svoju sieť prepojených kombajnov. Viac informácií"
 
@@ -332,7 +332,7 @@ msgstr "Odporúča sa hodnota {0}"
 
 #: src/components/offers/NFTOfferViewer.tsx:642
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:21
-#: src/components/offers2/OfferBuilderViewer.tsx:249
+#: src/components/offers2/OfferBuilderViewer.tsx:256
 msgid "Accept Offer"
 msgstr "Prijať ponuku"
 
@@ -344,8 +344,8 @@ msgstr "Prijať ponuku"
 msgid "Action"
 msgstr "Akcia"
 
-#: src/components/farm/FarmFullNodeConnections.tsx:52
-#: src/components/farm/FarmYourHarvesterNetwork.tsx:52
+#: src/components/farm/FarmFullNodeConnections.tsx:54
+#: src/components/farm/FarmYourHarvesterNetwork.tsx:54
 #: src/components/fullNode/FullNodeConnections.tsx:65
 #: src/components/nfts/NFTContextualActions.tsx:590
 #: src/components/offers2/OfferIncomingTable.tsx:122
@@ -356,8 +356,8 @@ msgstr "Akcie"
 msgid "Active Sessions"
 msgstr "Aktívne relácie"
 
-#: src/components/notification/NotificationsDropdown.tsx:39
-#: src/components/notification/NotificationsDropdown.tsx:46
+#: src/components/notification/NotificationsDropdown.tsx:40
+#: src/components/notification/NotificationsDropdown.tsx:47
 #: src/components/notification/NotificationsMenu.tsx:37
 msgid "Activity"
 msgstr "Aktivita"
@@ -373,7 +373,7 @@ msgstr "Pridať pole"
 #: src/components/farm/FarmHero.tsx:37
 #: src/components/plot/add/PlotAddForm.tsx:239
 #: src/components/plot/overview/PlotOverviewHero.tsx:43
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:200
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:199
 #: src/components/plotNFT/PlotNFTCard.tsx:233
 msgid "Add a Plot"
 msgstr "Pridať pole"
@@ -398,7 +398,7 @@ msgstr "Pridať pripojenie"
 msgid "Add Contact"
 msgstr ""
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:142
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:148
 msgid "Add option to set expiration time {0}"
 msgstr ""
 
@@ -593,7 +593,7 @@ msgstr ""
 msgid "Are you sure you want to revoke"
 msgstr ""
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:61
+#: src/components/plot/add/PlotAddChooseSize.tsx:62
 msgid "Are you sure you want to use k={plotSize}?"
 msgstr "Naozaj chcete použiť k={plotSize}?"
 
@@ -810,7 +810,7 @@ msgstr "Zrušiť"
 
 #: src/components/offers/ConfirmOfferCancellation.tsx:62
 #: src/components/offers/ConfirmOfferCancellation.tsx:129
-#: src/components/offers/OfferManager.tsx:322
+#: src/components/offers/OfferManager.tsx:323
 #: src/constants/WalletConnectCommands.tsx:374
 msgid "Cancel Offer"
 msgstr "Zrušiť ponuku"
@@ -904,11 +904,11 @@ msgstr ""
 msgid "Choose Farming Mode"
 msgstr "Vyberte farmársky režim"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:84
+#: src/components/plot/add/PlotAddChooseSize.tsx:87
 msgid "Choose K value"
 msgstr "Vyberte hodnotu K"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:84
+#: src/components/plot/add/PlotAddChooseSize.tsx:87
 msgid "Choose K value and compression level"
 msgstr "Vyberte hodnotu K a úroveň kompresie"
 
@@ -997,7 +997,7 @@ msgstr ""
 msgid "Collection"
 msgstr "Zbierka"
 
-#: src/components/settings/SettingsHarvester.tsx:433
+#: src/components/settings/SettingsHarvester.tsx:441
 msgid "Compressed plot support"
 msgstr ""
 
@@ -1005,7 +1005,7 @@ msgstr ""
 msgid "Compression"
 msgstr "Kompresia"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:121
+#: src/components/plot/add/PlotAddChooseSize.tsx:124
 msgid "Compression level"
 msgstr "Úroveň kompresie"
 
@@ -1063,7 +1063,7 @@ msgstr "Pripojiť k iným uzlom"
 msgid "Connect to pool"
 msgstr "Pripojiť k združeniu"
 
-#: src/components/fullNode/card/FullNodeCardConnectionStatus.tsx:15
+#: src/components/fullNode/card/FullNodeCardConnectionStatus.tsx:16
 #: src/components/walletConnect/WalletConnectConnectedDialog.tsx:87
 msgid "Connected"
 msgstr "Pripojené"
@@ -1077,12 +1077,12 @@ msgstr ""
 msgid "Connecting to daemon"
 msgstr "Pripájanie k démonovi"
 
-#: src/components/fullNode/card/FullNodeCardConnectionStatus.tsx:14
+#: src/components/fullNode/card/FullNodeCardConnectionStatus.tsx:15
 msgid "Connection Status"
 msgstr "Stav pripojenia"
 
-#: src/components/farm/FarmFullNodeConnections.tsx:87
-#: src/components/farm/FarmYourHarvesterNetwork.tsx:85
+#: src/components/farm/FarmFullNodeConnections.tsx:89
+#: src/components/farm/FarmYourHarvesterNetwork.tsx:87
 msgid "Connection Status:"
 msgstr "Stav pripojenia:"
 
@@ -1156,7 +1156,7 @@ msgstr ""
 msgid "Counter"
 msgstr ""
 
-#: src/components/offers2/OfferBuilderViewer.tsx:237
+#: src/components/offers2/OfferBuilderViewer.tsx:244
 msgid "Counter Offer"
 msgstr ""
 
@@ -1170,7 +1170,7 @@ msgstr "Vytvoriť"
 msgid "Create & Manage plots"
 msgstr "Vytváranie a správa polí"
 
-#: src/components/offers/OfferManager.tsx:415
+#: src/components/offers/OfferManager.tsx:416
 msgid "Create a file that you can use to trade XCH, Chia Asset Tokens, or NFTs with no counter-party risk."
 msgstr ""
 
@@ -1187,7 +1187,7 @@ msgid "Create an NFT Offer"
 msgstr "Vytvoriť NFT ponuku"
 
 #: src/components/offers/OfferEditor.tsx:193
-#: src/components/offers/OfferManager.tsx:424
+#: src/components/offers/OfferManager.tsx:425
 msgid "Create an Offer"
 msgstr "Vytvoriť ponuku"
 
@@ -1211,7 +1211,7 @@ msgstr ""
 #: src/components/offers/NFTOfferEditor.tsx:439
 #: src/components/offers/OfferEditor.tsx:175
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:15
-#: src/components/offers/OfferManager.tsx:406
+#: src/components/offers/OfferManager.tsx:407
 #: src/components/offers2/CreateOfferBuilder.tsx:200
 msgid "Create Offer"
 msgstr "Vytvoriť ponuku"
@@ -1252,7 +1252,7 @@ msgstr "Vytváranie NFT poľa a pripájanie k združeniu"
 msgid "Creating Plot NFT for Self Pooling"
 msgstr "Vytváranie NFT poľa osobného združenia"
 
-#: src/components/offers/OfferManager.tsx:249
+#: src/components/offers/OfferManager.tsx:250
 #: src/components/offers2/CancelOfferList.tsx:127
 #: src/components/offers2/OfferIncomingTable.tsx:83
 msgid "Creation Date"
@@ -1279,7 +1279,7 @@ msgstr ""
 msgid "Currency code is not defined"
 msgstr "Kód meny nie je definovaný"
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:122
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:121
 #: src/components/plotNFT/PlotNFTCard.tsx:155
 msgid "Current Difficulty"
 msgstr "Aktuálna zložitosť"
@@ -1288,7 +1288,7 @@ msgstr "Aktuálna zložitosť"
 msgid "Current Passphrase"
 msgstr "Aktuálna prístupová fráza"
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:138
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:137
 #: src/components/plotNFT/PlotNFTCard.tsx:171
 msgid "Current Points Balance"
 msgstr "Aktuálny počet bodov"
@@ -1325,12 +1325,12 @@ msgstr ""
 msgid "Date"
 msgstr "Dátum"
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:44
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:84
 #: src/components/settings/SettingsExpiringOffers.tsx:14
 msgid "Days"
 msgstr ""
 
-#: src/components/settings/SettingsHarvester.tsx:472
+#: src/components/settings/SettingsHarvester.tsx:480
 msgid "Decompressor Thread Count"
 msgstr ""
 
@@ -1459,7 +1459,7 @@ msgstr ""
 msgid "Difficulty"
 msgstr "Zložitosť"
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:189
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:195
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:91
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:77
 #: src/components/settings/SettingsExpiringOffers.tsx:88
@@ -1470,7 +1470,7 @@ msgstr ""
 msgid "Disable assigning automatic thread affinity. This is useful when running multiple simultaneous instances of Bladebit as you can manually assign thread affinity yourself when launching Bladebit."
 msgstr "Zakázať priraďovanie automatickej afinity vlákien. Je to užitočné pri spustení viacerých simultánnych inštancií Bladebit, pretože vám to pri spúšťaní Bladebit umožňuje priradiť afinitu vlákien ručne."
 
-#: src/components/settings/SettingsHarvester.tsx:553
+#: src/components/settings/SettingsHarvester.tsx:561
 msgid "Disable assigning automatic thread affinity. This is useful when you want to manually assign thread affinity."
 msgstr ""
 
@@ -1482,7 +1482,7 @@ msgstr "Zakázať automatické viazanie pamäte NUMA. Ak nastavíte tento parame
 msgid "Disable bitfield plotting"
 msgstr "Zakázať vykresľovanie s bitovým poľom"
 
-#: src/components/settings/SettingsHarvester.tsx:545
+#: src/components/settings/SettingsHarvester.tsx:553
 msgid "Disable CPU Affinity"
 msgstr ""
 
@@ -1516,7 +1516,7 @@ msgstr "Zakázať NUMA"
 msgid "Disconnect"
 msgstr "Odpojiť"
 
-#: src/components/offers/OfferManager.tsx:302
+#: src/components/offers/OfferManager.tsx:303
 msgid "Display Offer Data"
 msgstr "Zobraziť údaje o ponuke"
 
@@ -1641,7 +1641,7 @@ msgstr ""
 msgid "Edit Contact"
 msgstr ""
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:224
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:223
 #: src/components/plotNFT/PlotNFTCard.tsx:252
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:65
 msgid "Edit Payout Instructions"
@@ -1682,7 +1682,7 @@ msgstr ""
 msgid "Enable Auto Login"
 msgstr "Povoliť automatické prihlásenie"
 
-#: src/components/settings/SettingsHarvester.tsx:440
+#: src/components/settings/SettingsHarvester.tsx:448
 msgid "Enable compressed plot support"
 msgstr ""
 
@@ -1694,7 +1694,7 @@ msgstr "Povolit dátovú vrstvu"
 msgid "Enable File Propagation Server"
 msgstr "Povoliť server na šírenie súborov"
 
-#: src/components/settings/SettingsHarvester.tsx:492
+#: src/components/settings/SettingsHarvester.tsx:500
 msgid "Enable GPU Harvesting"
 msgstr ""
 
@@ -1702,7 +1702,7 @@ msgstr ""
 msgid "Enable notifications"
 msgstr ""
 
-#: src/components/settings/SettingsHarvester.tsx:500
+#: src/components/settings/SettingsHarvester.tsx:508
 msgid "Enable to use GPU for harvesting, disable to use CPU for harvesting."
 msgstr ""
 
@@ -1715,7 +1715,7 @@ msgstr ""
 msgid "Enable WalletConnect"
 msgstr ""
 
-#: src/components/settings/SettingsHarvester.tsx:408
+#: src/components/settings/SettingsHarvester.tsx:412
 msgid "Enable/Disable the ability to scan all subdirectories automatically for plots"
 msgstr ""
 
@@ -1723,7 +1723,7 @@ msgstr ""
 msgid "End"
 msgstr ""
 
-#: src/components/settings/SettingsHarvester.tsx:524
+#: src/components/settings/SettingsHarvester.tsx:532
 msgid "Enforce GPU Index"
 msgstr ""
 
@@ -1829,11 +1829,11 @@ msgstr ""
 msgid "Expiration"
 msgstr ""
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:196
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:202
 msgid "Expiration time will be {0}"
 msgstr ""
 
-#: src/components/offers/OfferManager.tsx:182
+#: src/components/offers/OfferManager.tsx:183
 #: src/components/vcs/VCCard.tsx:166
 msgid "Expired"
 msgstr ""
@@ -2066,7 +2066,7 @@ msgstr ""
 msgid "From"
 msgstr ""
 
-#: src/components/app/AppStatusHeader.tsx:133
+#: src/components/app/AppStatusHeader.tsx:127
 #: src/components/dashboard/DashboardSideBar.tsx:86
 #: src/components/fullNode/FullNode.jsx:116
 msgid "Full Node"
@@ -2194,7 +2194,7 @@ msgid "Government IDs"
 msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:454
-#: src/components/settings/SettingsHarvester.tsx:508
+#: src/components/settings/SettingsHarvester.tsx:516
 msgid "GPU Device Index"
 msgstr ""
 
@@ -2304,12 +2304,12 @@ msgstr "Nápoveda"
 msgid "Hooray, no files here!"
 msgstr "Hurá, nie sú tu žiadne súbory!"
 
-#: src/components/farm/FarmFullNodeConnections.tsx:31
-#: src/components/farm/FarmYourHarvesterNetwork.tsx:31
+#: src/components/farm/FarmFullNodeConnections.tsx:33
+#: src/components/farm/FarmYourHarvesterNetwork.tsx:33
 msgid "Host Name"
 msgstr "Meno hostiteľa"
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:45
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:85
 #: src/components/settings/SettingsExpiringOffers.tsx:15
 msgid "Hours"
 msgstr ""
@@ -2432,7 +2432,7 @@ msgstr ""
 #~ msgid "Integration"
 #~ msgstr ""
 
-#: src/components/settings/SettingsHarvester.tsx:424
+#: src/components/settings/SettingsHarvester.tsx:428
 msgid "Interval (in seconds) in which directories are scanned to refresh the list of available plots"
 msgstr ""
 
@@ -2516,7 +2516,7 @@ msgstr "Pripojte sa k farmárskym združeniam"
 msgid "Join Pool"
 msgstr "Pripojiť sa k združeniu"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:101
+#: src/components/plot/add/PlotAddChooseSize.tsx:104
 msgid "K value"
 msgstr "K hodnota"
 
@@ -2553,8 +2553,8 @@ msgstr "Migrácia zväzku kľúčov zlyhala: {0}"
 msgid "Keys"
 msgstr "Kľúče"
 
-#: src/components/farm/FarmFullNodeConnections.tsx:49
-#: src/components/farm/FarmYourHarvesterNetwork.tsx:49
+#: src/components/farm/FarmFullNodeConnections.tsx:51
+#: src/components/farm/FarmYourHarvesterNetwork.tsx:51
 msgid "KiB Up/Down"
 msgstr "KiB Odoslané/Stiahnuté"
 
@@ -2600,7 +2600,7 @@ msgstr "Čas posledného transakčného bloku"
 msgid "Latest Block Challenges"
 msgstr "Najnovšie blokové výzvy"
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:256
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:255
 #: src/components/plotNFT/PlotNFTCard.tsx:292
 #: src/constants/WalletConnectCommands.tsx:831
 #: src/constants/WalletConnectCommands.tsx:843
@@ -2658,7 +2658,7 @@ msgstr "Zoznam pripojení je prázdny"
 msgid "Loading configuration"
 msgstr "Načítavanie konfigurácie"
 
-#: src/components/offers/OfferManager.tsx:235
+#: src/components/offers/OfferManager.tsx:236
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:99
 msgid "Loading expiration time..."
 msgstr ""
@@ -2691,7 +2691,7 @@ msgstr "Načítavajú sa informácie o NFT..."
 #: src/components/helpers/HeightToTimestamp.tsx:16
 #: src/components/nfts/NFTMetadata.tsx:21
 #: src/components/offers/NFTOfferTokenSelector.tsx:97
-#: src/components/offers/OfferManager.tsx:184
+#: src/components/offers/OfferManager.tsx:185
 #: src/components/offers2/OfferBuilderTokenSelector.tsx:79
 #: src/components/offers2/OfferDetails.tsx:38
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:27
@@ -2718,7 +2718,7 @@ msgstr ""
 msgid "Log In"
 msgstr ""
 
-#: src/components/app/AppStatusHeader.tsx:182
+#: src/components/app/LogoutButton.tsx:25
 msgid "Log Out"
 msgstr "Odhlásiť sa"
 
@@ -2842,7 +2842,7 @@ msgstr "Mincovník:"
 msgid "MintGarden URL"
 msgstr "MintGarden URL"
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:46
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:86
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 #: src/components/settings/SettingsExpiringOffers.tsx:16
 msgid "Minutes"
@@ -3099,7 +3099,7 @@ msgstr ""
 msgid "No CPU Affinity"
 msgstr "Žiadna afinita CPU"
 
-#: src/components/offers/OfferManager.tsx:369
+#: src/components/offers/OfferManager.tsx:370
 msgid "No current offers"
 msgstr "Žiadne aktuálne ponuky"
 
@@ -3133,8 +3133,8 @@ msgstr "Žiadne súkromné kľúče pre jednu alebo obidve adresy. Bezpečné ib
 msgid "No standard wallet found"
 msgstr ""
 
-#: src/components/farm/FarmFullNodeConnections.tsx:27
-#: src/components/farm/FarmYourHarvesterNetwork.tsx:27
+#: src/components/farm/FarmFullNodeConnections.tsx:29
+#: src/components/farm/FarmYourHarvesterNetwork.tsx:29
 #: src/components/fullNode/FullNodeConnections.tsx:29
 msgid "Node ID"
 msgstr "ID uzla"
@@ -3187,7 +3187,7 @@ msgstr "Nie je k dispozícií"
 
 #: src/components/farm/FarmHealth.tsx:125
 #: src/components/farm/FarmHealth.tsx:172
-#: src/components/fullNode/card/FullNodeCardConnectionStatus.tsx:15
+#: src/components/fullNode/card/FullNodeCardConnectionStatus.tsx:16
 msgid "Not connected"
 msgstr "Nepripojené"
 
@@ -3252,7 +3252,7 @@ msgstr ""
 msgid "Number of plots"
 msgstr ""
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:107
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:106
 #: src/components/plotNFT/PlotNFTCard.tsx:140
 msgid "Number of Plots"
 msgstr "Počet polí"
@@ -3261,7 +3261,7 @@ msgstr "Počet polí"
 msgid "Number of threads"
 msgstr "Počet vlákien"
 
-#: src/components/settings/SettingsHarvester.tsx:480
+#: src/components/settings/SettingsHarvester.tsx:488
 msgid "Number of threads for a decompressor context."
 msgstr ""
 
@@ -3297,14 +3297,14 @@ msgstr ""
 msgid "Offer"
 msgstr ""
 
-#: src/components/offers/OfferManager.tsx:412
+#: src/components/offers/OfferManager.tsx:413
 #: src/components/offers2/OfferNavigationHeader.tsx:16
 msgid "Offer Builder"
 msgstr ""
 
 #: src/components/offers/NFTOfferViewer.tsx:173
 #: src/components/offers2/OfferBuilderValue.tsx:196
-#: src/components/offers2/OfferBuilderViewer.tsx:280
+#: src/components/offers2/OfferBuilderViewer.tsx:287
 msgid "Offer cannot be accepted because you don't possess the requested assets"
 msgstr "Ponuku nemožno prijať, pretože nevlastníte požadované aktíva"
 
@@ -3337,7 +3337,11 @@ msgid "Offer has expired"
 msgstr ""
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:103
-msgid "Offer has expired and cannot be accepted."
+#~ msgid "Offer has expired and cannot be accepted."
+#~ msgstr ""
+
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:103
+msgid "Offer has expired."
 msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:453
@@ -3345,7 +3349,7 @@ msgstr ""
 msgid "Offer Id"
 msgstr ""
 
-#: src/components/offers/OfferManager.tsx:393
+#: src/components/offers/OfferManager.tsx:394
 msgid "Offer Management"
 msgstr ""
 
@@ -3367,7 +3371,7 @@ msgstr ""
 #~ msgid "OfferBin URL"
 #~ msgstr "OfferBin URL"
 
-#: src/components/offers/OfferManager.tsx:214
+#: src/components/offers/OfferManager.tsx:215
 #: src/components/offers2/CancelOfferList.tsx:80
 msgid "Offered"
 msgstr "Ponúknuté"
@@ -3394,15 +3398,15 @@ msgstr "Ponuky"
 msgid "Offers are a way to trade assets in a genuinely peer-to-peer way that eliminates counterparty risk."
 msgstr ""
 
-#: src/components/offers/OfferManager.tsx:396
+#: src/components/offers/OfferManager.tsx:397
 msgid "Offers are a way to trade assets in a genuinely peer-to-peer way to eliminate counterparty risk."
 msgstr ""
 
-#: src/components/offers/OfferManager.tsx:445
+#: src/components/offers/OfferManager.tsx:446
 msgid "Offers you accepted"
 msgstr "Ponuky, ktoré ste prijali"
 
-#: src/components/offers/OfferManager.tsx:444
+#: src/components/offers/OfferManager.tsx:445
 msgid "Offers you created"
 msgstr "Ponuky, ktoré ste vytvorili"
 
@@ -3424,7 +3428,7 @@ msgstr ""
 msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer the NFT?"
 msgstr "Po spustení tohto prevodu už nebudete môcť transakciu zrušiť. Naozaj chcete previesť toto NFT?"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:284
+#: src/components/offers2/OfferBuilderViewer.tsx:291
 msgid "One or more unknown tokens are being offered. Be sure to verify that the asset IDs of the offered tokens match the asset IDs of the tokens you are expecting."
 msgstr ""
 
@@ -3521,7 +3525,7 @@ msgstr ""
 msgid "Paired Keys"
 msgstr ""
 
-#: src/components/settings/SettingsHarvester.tsx:456
+#: src/components/settings/SettingsHarvester.tsx:464
 msgid "Parallel Decompressor Count"
 msgstr ""
 
@@ -3729,11 +3733,11 @@ msgstr "Prosím, vyberte cieľový adresár"
 msgid "Please specify temporary directory"
 msgstr "Prosím, vyberte dočasný adresár"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:220
+#: src/components/offers2/OfferBuilderViewer.tsx:227
 msgid "Please wait for wallet synchronization"
 msgstr "Počkajte prosím na synchronizáciu peňaženky"
 
-#: src/components/settings/SettingsHarvester.tsx:392
+#: src/components/settings/SettingsHarvester.tsx:396
 msgid "Plot"
 msgstr "Pole"
 
@@ -3824,7 +3828,7 @@ msgstr "Polia, ktoré prešli filtrom"
 msgid "Plots passing filter"
 msgstr ""
 
-#: src/components/settings/SettingsHarvester.tsx:416
+#: src/components/settings/SettingsHarvester.tsx:420
 msgid "Plots Refresh Interval (seconds)"
 msgstr ""
 
@@ -3857,17 +3861,17 @@ msgstr ""
 msgid "Plotting with bitfield enabled has about 30% less overall writes and is now almost always faster. You may see reduced memory requirements with bitfield plotting disabled. If your CPU design is from before 2010 you may have to disable bitfield plotting."
 msgstr "Vykresľovanie s bitovým poľom umožňuje okolo 30% menej zápisov a je teraz takmer vždy rýchlejšie. Vypnutím bitového poľa môžete znížiť požiadavky na pamäť. Ak je vaše CPU z pred roku 2010, možno budete musieť vykresľovanie s bitovým poľom deaktivovať."
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:164
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:163
 #: src/components/plotNFT/PlotNFTCard.tsx:197
 msgid "Points Found in Last 24 Hours"
 msgstr "Body nájdené za posledných 24 hodín"
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:155
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:154
 #: src/components/plotNFT/PlotNFTCard.tsx:188
 msgid "Points Found Since Start"
 msgstr "Body nájdené od spustenia"
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:173
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:172
 #: src/components/plotNFT/PlotNFTCard.tsx:206
 msgid "Points Successful in Last 24 Hours"
 msgstr "Úspešné body za posledných 24 hodín"
@@ -3933,7 +3937,7 @@ msgstr "Adresa odmeny združenia nesmie byť prázdna."
 msgid "Pool Reward Amount"
 msgstr "Čiastka odmeny združenia"
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:235
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:234
 #: src/components/plotNFT/PlotNFTCard.tsx:271
 #: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:69
 msgid "Pool:"
@@ -3950,8 +3954,8 @@ msgstr "Združovanie"
 msgid "Pooling Health"
 msgstr ""
 
-#: src/components/farm/FarmFullNodeConnections.tsx:37
-#: src/components/farm/FarmYourHarvesterNetwork.tsx:37
+#: src/components/farm/FarmFullNodeConnections.tsx:39
+#: src/components/farm/FarmYourHarvesterNetwork.tsx:39
 #: src/components/fullNode/FullNodeAddConnection.tsx:95
 #: src/components/fullNode/FullNodeConnections.tsx:39
 msgid "Port"
@@ -4101,7 +4105,7 @@ msgstr "Odporúčané"
 #~ msgid "Recommended: 0.000005 XCH"
 #~ msgstr "Recommended: 0.000005 XCH"
 
-#: src/components/settings/SettingsHarvester.tsx:400
+#: src/components/settings/SettingsHarvester.tsx:404
 msgid "Recursive Plot Scan"
 msgstr ""
 
@@ -4127,7 +4131,7 @@ msgstr "Relatívna výška zámku"
 #~ msgid "Release Notes"
 #~ msgstr "Release Notes"
 
-#: src/components/offers/OfferManager.tsx:291
+#: src/components/offers/OfferManager.tsx:292
 msgid "Relist Offer"
 msgstr ""
 
@@ -4166,7 +4170,7 @@ msgstr "Odstraňujem"
 #~ msgid "Report an Issue..."
 #~ msgstr "Report an Issue..."
 
-#: src/components/offers/OfferManager.tsx:224
+#: src/components/offers/OfferManager.tsx:225
 #: src/components/offers2/CancelOfferList.tsx:95
 msgid "Requested"
 msgstr "Požadované"
@@ -4345,7 +4349,7 @@ msgstr "Spustí úplný uzol"
 msgid "Save"
 msgstr "Uložiť"
 
-#: src/components/offers/OfferManager.tsx:312
+#: src/components/offers/OfferManager.tsx:313
 msgid "Save Offer File"
 msgstr "Uložiť súbor ponuky"
 
@@ -4530,7 +4534,7 @@ msgstr ""
 msgid "Settings"
 msgstr "Nastavenia"
 
-#: src/components/offers/OfferManager.tsx:268
+#: src/components/offers/OfferManager.tsx:269
 #: src/components/offers/OfferShareDialog.tsx:923
 msgid "Share"
 msgstr "Zdieľať"
@@ -4575,7 +4579,7 @@ msgstr "Zdieľať na Spacescan.io"
 msgid "Show"
 msgstr "Zobraziť"
 
-#: src/components/offers/OfferManager.tsx:282
+#: src/components/offers/OfferManager.tsx:283
 msgid "Show Details"
 msgstr "Zobraziť podrobnosti"
 
@@ -4699,7 +4703,7 @@ msgstr ""
 msgid "Spacescan.io URL"
 msgstr ""
 
-#: src/components/settings/SettingsHarvester.tsx:464
+#: src/components/settings/SettingsHarvester.tsx:472
 msgid "Specify a value if using CPU as your harvester. Typical values will be 1 or 2."
 msgstr ""
 
@@ -4711,7 +4715,7 @@ msgstr "Zadajte hodnotu 0 pre použitie všetkých dostupných vlákien"
 msgid "Specify a wallet address, NFT, or DID to sign with"
 msgstr ""
 
-#: src/components/settings/SettingsHarvester.tsx:516
+#: src/components/settings/SettingsHarvester.tsx:524
 msgid "Specify GPU index (0, 1, 2, etc) for harvesting if more than one GPU is present)"
 msgstr ""
 
@@ -4773,10 +4777,10 @@ msgstr "Stav"
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:69
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:74
-#: src/components/offers/OfferManager.tsx:204
+#: src/components/offers/OfferManager.tsx:205
 #: src/components/plot/PlotHarvesterPlots.tsx:74
 #: src/components/plot/PlotPlotting.tsx:26
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:102
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:101
 #: src/components/plotNFT/PlotNFTCard.tsx:130
 #: src/components/vcs/VCCard.tsx:164
 msgid "Status"
@@ -4876,7 +4880,7 @@ msgstr "Derivačný index nastavuje rozsah adries peňaženky, ktoré peňaženk
 msgid "The folder is on a RAM Disk"
 msgstr "Priečinok je na RAM disku"
 
-#: src/components/farm/FarmFullNodeConnections.tsx:77
+#: src/components/farm/FarmFullNodeConnections.tsx:79
 msgid "The full node that your farmer is connected to is below. <0>Learn more</0>"
 msgstr "Celý uzol, ku ktorému je váš farmár pripojený, je uvedený nižšie. <0> Ďalšie informácie </0>"
 
@@ -4884,8 +4888,8 @@ msgstr "Celý uzol, ku ktorému je váš farmár pripojený, je uvedený nižši
 msgid "The Harvester manages plots and fetches proofs of space corresponding to challenges sent by a farmer."
 msgstr ""
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:57
-#: src/components/plot/add/PlotAddChooseSize.tsx:112
+#: src/components/plot/add/PlotAddChooseSize.tsx:58
+#: src/components/plot/add/PlotAddChooseSize.tsx:115
 msgid "The minimum required size for mainnet is k=32"
 msgstr "Minimálna požadovaná veľkosť pre sieť mainnet je k = 32"
 
@@ -5006,7 +5010,7 @@ msgstr "Dostanú"
 msgid "This allows you to add a directory that has plots in it. If you have not created any plots, go to the plotting screen."
 msgstr "Toto umožňuje pridať adresár, ktorý obsahuje už vykreslené polia. Ak ste ešte nevytvorili žiadne polia, prejdite na obrazovku vykresľovania polí."
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:115
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:114
 #: src/components/plotNFT/PlotNFTCard.tsx:148
 msgid "This difficulty is an artifically lower difficulty than on the real network, and is used when farming, in order to find more proofs and send them to the pool. The more plots you have, the higher difficulty you will have. However, the difficulty does not affect rewards."
 msgstr "Táto zložitosť je umelo nižšou zložitosťou ako v skutočnej sieti a používa sa pri farmárčení na vyhľadanie ďalších dôkazov a ich odoslanie do združenia. Čím viac polí máte, tým vyššia zložitosť. Zložitosť však nemá vplyv na odmeny."
@@ -5043,12 +5047,12 @@ msgstr "Toto je čas, kedy ťažiar vytvoril blok, a to ešte predtým, ako bol 
 msgid "This is the timestamp of the most recent transaction block."
 msgstr "Toto je časová pečiatka posledného transakčného bloku."
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:132
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:131
 #: src/components/plotNFT/PlotNFTCard.tsx:165
 msgid "This is the total number of points this plotNFT has with this pool, since the last payout. The pool will reset the points after making a payout."
 msgstr "Toto je celkový počet bodov, ktoré má tento NFT v tomto združení od poslednej výplaty. Združenie vynuluje body po vykonaní výplaty."
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:148
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:147
 #: src/components/plotNFT/PlotNFTCard.tsx:181
 msgid "This is the total number of points your farmer has found for this plot NFT. Each k32 plot will get around 10 points per day, so if you have 10TiB, should should expect around 1000 points per day, or 41 points per hour."
 msgstr "Toto je celkový počet bodov, ktoré váš farmár našiel pre tento NFT poľa. Každé k32 pole získa okolo 10 bodov za deň, takže ak máte 10TiB, mali by ste očakávať okolo 1000 bodov za deň, alebo 41 bodov za hodinu."
@@ -5068,24 +5072,24 @@ msgid "This offer has a fee included to help expedite the transaction when the o
 msgstr "Táto ponuka zahŕňa poplatok, ktorý pomáha urýchliť transakciu po prijatí ponuky. Ak máte pocit, že zahrnutý poplatok je príliš nízky, môžete zadať dodatočný poplatok."
 
 #: src/components/offers/OfferHeader.tsx:63
-#: src/components/offers2/OfferBuilderViewer.tsx:272
+#: src/components/offers2/OfferBuilderViewer.tsx:279
 msgid "This offer has completed successfully"
 msgstr "Táto ponuka bola úspešne dokončená"
 
 #: src/components/offers/OfferHeader.tsx:46
-#: src/components/offers2/OfferBuilderViewer.tsx:259
+#: src/components/offers2/OfferBuilderViewer.tsx:266
 msgid "This offer is no longer valid. To understand why, click <0>here</0> to learn more."
 msgstr "Táto ponuka už nie je platná. Ak chcete vedieť prečo, kliknite <0>sem</0> a dozviete sa viac."
 
-#: src/components/offers2/OfferBuilderViewer.tsx:276
+#: src/components/offers2/OfferBuilderViewer.tsx:283
 msgid "This offer was cancelled"
 msgstr ""
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:204
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:210
 msgid "This offer will never expire."
 msgstr ""
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:269
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:268
 msgid "This plot NFT is assigned to a different key. You can still create plots for this plot NFT, but you can not make changes."
 msgstr "Tento NFT poľa je priradený inému kľúču. Stále môžete vytvárať polia pre tento NFT, nemôžete však robiť zmeny."
 
@@ -5320,7 +5324,7 @@ msgstr ""
 msgid "Turn on/off the DataLayer service."
 msgstr ""
 
-#: src/components/settings/SettingsHarvester.tsx:448
+#: src/components/settings/SettingsHarvester.tsx:456
 msgid "Turn this off if you don't have any compressed plots to harvest"
 msgstr ""
 
@@ -5566,7 +5570,7 @@ msgstr ""
 msgid "View Log"
 msgstr "Zobraziť záznam"
 
-#: src/components/offers/OfferManager.tsx:435
+#: src/components/offers/OfferManager.tsx:436
 msgid "View Offer"
 msgstr ""
 
@@ -5639,7 +5643,7 @@ msgstr "Čakanie na synchronizáciu"
 msgid "Waiting for the transaction to be confirmed"
 msgstr "Čaká sa na potvrdenie transakcie"
 
-#: src/components/app/AppStatusHeader.tsx:158
+#: src/components/app/AppStatusHeader.tsx:152
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:187
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:191
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:109
@@ -5696,7 +5700,7 @@ msgstr ""
 #: src/components/settings/SettingsIntegration.tsx:139
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:218
 #: src/components/walletConnect/WalletConnectConnectedDialog.tsx:67
-#: src/components/walletConnect/WalletConnectDropdown.tsx:25
+#: src/components/walletConnect/WalletConnectDropdown.tsx:26
 msgid "WalletConnect"
 msgstr ""
 
@@ -5791,7 +5795,7 @@ msgid "Would you like to transfer the specified NFT to a new owner?"
 msgstr "Chcete previesť špecifikovaný NFT na nového vlastníka?"
 
 #: src/components/offers2/OfferIncomingTable.tsx:215
-#: src/components/plot/add/PlotAddChooseSize.tsx:58
+#: src/components/plot/add/PlotAddChooseSize.tsx:59
 #: src/components/vcs/VCCard.tsx:89
 msgid "Yes"
 msgstr "Áno"
@@ -5833,11 +5837,11 @@ msgid "You can still create plots for this plot NFT, but you can not make change
 msgstr "Stále môžete vytvárať polia pre tento NFT, ale nemôžete robiť zmeny, kým nie je dokončená synchronizácia."
 
 #: src/components/offers/OfferHeader.tsx:38
-#: src/components/offers2/OfferBuilderViewer.tsx:291
+#: src/components/offers2/OfferBuilderViewer.tsx:298
 msgid "You created this offer"
 msgstr "Túto ponuku ste vytvorili vy"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:87
+#: src/components/plot/add/PlotAddChooseSize.tsx:90
 msgid "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 msgstr "Na vykreslenie poľa nemusí byť počítač synchronizovaný ani pripojený. Počas procesu vykresľovania sa vytvárajú dočasné súbory, ktoré presahujú veľkosť konečných súborov poľa. Uistite sa, že máte dostatok miesta. <0> Ďalšie informácie </0>"
 
@@ -5907,11 +5911,11 @@ msgstr ""
 #~ msgid "Your Farm Overview"
 #~ msgstr "Your Farm Overview"
 
-#: src/components/farm/FarmFullNodeConnections.tsx:74
+#: src/components/farm/FarmFullNodeConnections.tsx:76
 msgid "Your Full Node Connection"
 msgstr "Vaše pripojenie k sieti"
 
-#: src/components/farm/FarmYourHarvesterNetwork.tsx:74
+#: src/components/farm/FarmYourHarvesterNetwork.tsx:76
 msgid "Your Harvester Network"
 msgstr "Sieť vašich zberačov"
 
