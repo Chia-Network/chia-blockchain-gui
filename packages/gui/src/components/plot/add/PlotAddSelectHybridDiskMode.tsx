@@ -87,11 +87,6 @@ export default function PlotAddSelectHybridDiskMode(props: Props) {
             label={<Trans>Hybrid disk mode 1 (RAM required: 128G)</Trans>}
             control={<Radio />}
           />
-          <FormControlLabel
-            value="16"
-            label={<Trans>Hybrid disk mode 2 (RAM required: 16G)</Trans>}
-            control={<Radio />}
-          />
         </RadioGroup>
       </Flex>
 
