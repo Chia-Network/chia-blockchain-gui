@@ -740,8 +740,8 @@ msgid "Blocks won"
 msgstr ""
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:80
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:129
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:174
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:124
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:169
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:78
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:123
 msgid "Browse"
@@ -1490,12 +1490,12 @@ msgstr ""
 #~ msgid "Disable direct download"
 #~ msgstr "Disable direct download"
 
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:140
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:135
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:89
 msgid "Disable direct I/O on the temp 1 directory in order to extract maximum performance with RAM disk"
 msgstr "禁用在臨時目錄1上的直接I/O，以便在使用RAM磁碟時提取最大性能"
 
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:189
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:184
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:138
 msgid "Disable direct I/O on the temp 2 directory in order to extract maximum performance with RAM disk"
 msgstr "禁用在臨時目錄2上的直接I/O，以便在使用RAM磁碟時提取最大性能"
@@ -2319,8 +2319,8 @@ msgid "Hybrid disk mode 1 (RAM required: 128G)"
 msgstr ""
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:92
-msgid "Hybrid disk mode 2 (RAM required: 16G)"
-msgstr ""
+#~ msgid "Hybrid disk mode 2 (RAM required: 16G)"
+#~ msgstr ""
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:75
 msgid "Hybrid disk mode allows computers with lower amounts of RAM to plot by offloading intermediate data to disk. If you enable hybrid disk mode, you need to specify temp folder(s). We recommend using SSDs when supporting a hybrid disk mode."
@@ -2334,7 +2334,7 @@ msgstr "我了解，建立報價單"
 msgid "Id"
 msgstr "Id"
 
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:178
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:173
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:127
 msgid "If none selected, then it will default to the temporary directory."
 msgstr "如無選擇，將會預設至臨時資料夾。"
@@ -3722,8 +3722,8 @@ msgstr "請至少指定一個報價的資產"
 msgid "Please specify final directory"
 msgstr "請指定最終目錄"
 
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:113
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:117
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:108
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:112
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:68
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:72
 msgid "Please specify temporary directory"
@@ -4373,7 +4373,7 @@ msgstr "在Tail數據庫中搜索"
 msgid "Search..."
 msgstr "搜索..."
 
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:159
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:154
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:108
 msgid "Second temporary folder location"
 msgstr "第二暫存資料夾位置"
@@ -4390,7 +4390,7 @@ msgstr "使用強大的私鑰密碼來保護您的密鑰鏈"
 msgid "See All Activity"
 msgstr "查看所有活動"
 
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:153
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:148
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:102
 msgid "Select 2nd Temporary Directory"
 msgstr "選擇第二個臨時目錄"
@@ -4461,8 +4461,8 @@ msgstr "選擇您的耕地NFT"
 #~ msgstr "Select your Plot NFT from the dropdown or create a new one."
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:80
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:129
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:174
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:124
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:169
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:78
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:123
 msgid "Selected"
@@ -4844,7 +4844,7 @@ msgstr "目標拼圖雜湊值"
 msgid "Temp folder location is required for hybrid disk plotting with 16/128G RAM"
 msgstr ""
 
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:104
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:99
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:59
 msgid "Temporary folder location"
 msgstr "臨時資料夾位置"
@@ -4869,8 +4869,8 @@ msgstr "每筆交易的收回時間可以手動調整。"
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
 msgstr "派生索引設置錢包掃描區塊鏈的錢包地址範圍。如果您有大量交易或取消了 XCH、CAT 或 NFT 的報價，則該數字通常會更高。如果您認為您的餘額因缺少硬幣而不正確，那麼增加派生索引可以幫助錢包將缺少的硬幣納入餘額總額中。"
 
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:138
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:187
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:133
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:182
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:87
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:136
 msgid "The folder is on a RAM Disk"

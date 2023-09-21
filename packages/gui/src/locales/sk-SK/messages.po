@@ -740,8 +740,8 @@ msgid "Blocks won"
 msgstr "Vyhraté bloky"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:80
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:129
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:174
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:124
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:169
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:78
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:123
 msgid "Browse"
@@ -1490,12 +1490,12 @@ msgstr ""
 #~ msgid "Disable direct download"
 #~ msgstr "Disable direct download"
 
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:140
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:135
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:89
 msgid "Disable direct I/O on the temp 1 directory in order to extract maximum performance with RAM disk"
 msgstr "Zakázať priame I/O v adresári temp 1, aby sa získal maximálny výkon z RAM disku"
 
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:189
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:184
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:138
 msgid "Disable direct I/O on the temp 2 directory in order to extract maximum performance with RAM disk"
 msgstr "Zakázať priame I/O v adresári temp 2, aby sa získal maximálny výkon z RAM disku"
@@ -2319,8 +2319,8 @@ msgid "Hybrid disk mode 1 (RAM required: 128G)"
 msgstr ""
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:92
-msgid "Hybrid disk mode 2 (RAM required: 16G)"
-msgstr ""
+#~ msgid "Hybrid disk mode 2 (RAM required: 16G)"
+#~ msgstr ""
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:75
 msgid "Hybrid disk mode allows computers with lower amounts of RAM to plot by offloading intermediate data to disk. If you enable hybrid disk mode, you need to specify temp folder(s). We recommend using SSDs when supporting a hybrid disk mode."
@@ -2334,7 +2334,7 @@ msgstr "Rozumiem, vytvoriť ponuku"
 msgid "Id"
 msgstr ""
 
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:178
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:173
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:127
 msgid "If none selected, then it will default to the temporary directory."
 msgstr "Ak nie je vybraný žiadny adresár, použije sa ako predvolený, dočasný adresár."
@@ -3726,8 +3726,8 @@ msgstr ""
 msgid "Please specify final directory"
 msgstr "Prosím, vyberte cieľový adresár"
 
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:113
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:117
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:108
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:112
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:68
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:72
 msgid "Please specify temporary directory"
@@ -4377,7 +4377,7 @@ msgstr "Hľadať v Tail databáze"
 msgid "Search..."
 msgstr "Vyhľadať..."
 
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:159
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:154
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:108
 msgid "Second temporary folder location"
 msgstr "Druhý dočasný adresár"
@@ -4394,7 +4394,7 @@ msgstr "Zabezpečte svoj zväzok kľúčov pomocou silnej prístupovej frázy"
 msgid "See All Activity"
 msgstr ""
 
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:153
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:148
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:102
 msgid "Select 2nd Temporary Directory"
 msgstr "Vyberte druhý dočasný adresár"
@@ -4465,8 +4465,8 @@ msgstr "Vyberte NFT vášho poľa"
 #~ msgstr "Select your Plot NFT from the dropdown or create a new one."
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:80
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:129
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:174
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:124
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:169
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:78
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:123
 msgid "Selected"
@@ -4848,7 +4848,7 @@ msgstr "Hash hádaniek cieľa"
 msgid "Temp folder location is required for hybrid disk plotting with 16/128G RAM"
 msgstr ""
 
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:104
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:99
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:59
 msgid "Temporary folder location"
 msgstr "Dočasný adresár"
@@ -4873,8 +4873,8 @@ msgstr ""
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
 msgstr "Derivačný index nastavuje rozsah adries peňaženky, ktoré peňaženka vyhľadáva v blockchaine. Toto číslo je vo všeobecnosti vyššie, ak máte veľa transakcií alebo zrušených ponúk pre XCH, CAT alebo NFT. Ak sa domnievate, že váš zostatok je nesprávny, pretože v ňom chýbajú mince, potom zvýšenie derivačného indexu môže pomôcť peňaženke zahrnúť chýbajúce mince do celkového zostatku."
 
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:138
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:187
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:133
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:182
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:87
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:136
 msgid "The folder is on a RAM Disk"
