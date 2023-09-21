@@ -740,8 +740,8 @@ msgid "Blocks won"
 msgstr "بلاک ها برنده شدند"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:80
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:129
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:174
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:124
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:169
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:78
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:123
 msgid "Browse"
@@ -1490,12 +1490,12 @@ msgstr "غیرفعال کردن پیوند سی پی یو"
 #~ msgid "Disable direct download"
 #~ msgstr "Disable direct download"
 
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:140
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:135
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:89
 msgid "Disable direct I/O on the temp 1 directory in order to extract maximum performance with RAM disk"
 msgstr "برای استخراج حداکثر کارایی با دیسک حافظه، I/O مستقیم را در دایرکتوری temp 1 غیرفعال کنید"
 
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:189
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:184
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:138
 msgid "Disable direct I/O on the temp 2 directory in order to extract maximum performance with RAM disk"
 msgstr "برای استخراج حداکثر کارایی با دیسک حافظه، I/O مستقیم را در دایرکتوری temp 2 غیرفعال کنید"
@@ -2319,8 +2319,8 @@ msgid "Hybrid disk mode 1 (RAM required: 128G)"
 msgstr "حالت دیسک هیبریدی 1 (حافظه مورد نیاز: 128گیگ)"
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:92
-msgid "Hybrid disk mode 2 (RAM required: 16G)"
-msgstr "حالت دیسک هیبریدی 2 (حافظه مورد نیاز: 16گیگ)"
+#~ msgid "Hybrid disk mode 2 (RAM required: 16G)"
+#~ msgstr "حالت دیسک هیبریدی 2 (حافظه مورد نیاز: 16گیگ)"
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:75
 msgid "Hybrid disk mode allows computers with lower amounts of RAM to plot by offloading intermediate data to disk. If you enable hybrid disk mode, you need to specify temp folder(s). We recommend using SSDs when supporting a hybrid disk mode."
@@ -2334,7 +2334,7 @@ msgstr "برای ایجاد پیشنهاد متوجه هستم"
 msgid "Id"
 msgstr "شناسه"
 
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:178
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:173
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:127
 msgid "If none selected, then it will default to the temporary directory."
 msgstr "اگر هیچکدام انتخاب نشد، به طور پیش فرض به دایرکتوری موقت تبدیل میشود."
@@ -3726,8 +3726,8 @@ msgstr "لطفاً حداقل یک دارایی پیشنهادی را مشخص �
 msgid "Please specify final directory"
 msgstr "لطفا پوشه نهایی را مشخص کنید"
 
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:113
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:117
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:108
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:112
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:68
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:72
 msgid "Please specify temporary directory"
@@ -4377,7 +4377,7 @@ msgstr "جستجو در دیتابیس تیل"
 msgid "Search..."
 msgstr "جستجو..."
 
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:159
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:154
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:108
 msgid "Second temporary folder location"
 msgstr "مکان دوم پوشه موقت"
@@ -4394,7 +4394,7 @@ msgstr "دسته کلید خود را با استفاده از یک رمز ور�
 msgid "See All Activity"
 msgstr "دیدن همه فعالیت ها"
 
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:153
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:148
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:102
 msgid "Select 2nd Temporary Directory"
 msgstr "انتخاب دومین پوشه موقت"
@@ -4465,8 +4465,8 @@ msgstr "انتخاب پلات NFT خود"
 #~ msgstr "Select your Plot NFT from the dropdown or create a new one."
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:80
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:129
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:174
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:124
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:169
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:78
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:123
 msgid "Selected"
@@ -4848,7 +4848,7 @@ msgstr "هدف پازل هش"
 msgid "Temp folder location is required for hybrid disk plotting with 16/128G RAM"
 msgstr "مکان پوشه موقت برای پلات سازی دیسک هیبریدی با حافظه 16/128گیگ مورد نیاز است"
 
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:104
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:99
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:59
 msgid "Temporary folder location"
 msgstr "مکان پوشه موقت"
@@ -4873,8 +4873,8 @@ msgstr "زمان ادعای بازگرداندن را میتوان به صورت
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
 msgstr "شاخص مشتق که کیف پول بلاکچین را اسکن میکند محدوده آدرس های کیف پول را تعیین مینماید. اگر تراکنش‌های زیادی دارید یا پیشنهادات لغو شده برای XCH، CAT یا ان اف تی دارید، این عدد معمولاً بیشتر است. اگر فکر میکنید موجودی‌ شما نادرست است، ارزهای درون آن کمتر است، افزایش شاخص مشتق‌گیری میتواند به کیف پول کمک کندتا ارزهای گمشده را در کل موجودی قراردهد."
 
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:138
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:187
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:133
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:182
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:87
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:136
 msgid "The folder is on a RAM Disk"
