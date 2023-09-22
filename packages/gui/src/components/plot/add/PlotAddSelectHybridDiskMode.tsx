@@ -1,6 +1,7 @@
 import { usePrefs } from '@chia-network/api-react';
 import {
   AdvancedOptions,
+  AlertDialog,
   ButtonSelected,
   CardStep,
   Flex,
@@ -8,6 +9,7 @@ import {
   Checkbox,
   TooltipIcon,
   RadioGroup,
+  useOpenDialog,
 } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { FormControl, FormControlLabel, Typography, Radio } from '@mui/material';
@@ -38,6 +40,7 @@ export default function PlotAddSelectHybridDiskMode(props: Props) {
   const hasWorkspaceLocation2 = !!workspaceLocation2;
 
   const hybridDiskMode = watch('bladebitEnableHybridDiskMode', false);
+  const openDialog = useOpenDialog();
 
   const handleSelect = React.useCallback(async () => {
     const location = await selectDirectory({ defaultPath: defaultTmpDirPath || undefined });
@@ -62,11 +65,23 @@ export default function PlotAddSelectHybridDiskMode(props: Props) {
         setValue('workspaceLocation', undefined);
         setValue('workspaceLocation2', undefined);
         setValue('bladebitEnableHybridDiskMode', false);
-      } else {
-        setValue('bladebitEnableHybridDiskMode', value);
+        return;
       }
+
+      if (value === '128') {
+        openDialog(
+          <AlertDialog title={<Trans>Warning</Trans>}>
+            <Trans>
+              Before beginning the plotting process, ensure that you have at least 128GB of RAM available. If you are
+              running low on additional memory space, we strongly advise closing all other applications to prevent
+              memory errors.
+            </Trans>
+          </AlertDialog>
+        );
+      }
+      setValue('bladebitEnableHybridDiskMode', value);
     },
-    [setValue]
+    [setValue, openDialog]
   );
 
   return (
