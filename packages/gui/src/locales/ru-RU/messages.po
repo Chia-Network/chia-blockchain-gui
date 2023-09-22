@@ -861,6 +861,10 @@ msgstr ""
 msgid "Base Farmer Reward Amount"
 msgstr "Базовая сумма вознаграждения фермера"
 
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:74
+msgid "Before beginning the plotting process, ensure that you have at least 128GB of RAM available. If you are running low on additional memory space, we strongly advise closing all other applications to prevent memory errors."
+msgstr ""
+
 #: src/components/offers/OfferShareDialog.tsx:1177
 #~ msgid "Before posting an offer in Keybase to the #{channelName} channel, you must first join the {teamName} team. Please note that it might take a few moments to join the channel."
 #~ msgstr "Before posting an offer in Keybase to the #{channelName} channel, you must first join the {teamName} team. Please note that it might take a few moments to join the channel."
@@ -912,8 +916,8 @@ msgid "Blocks won"
 msgstr ""
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:80
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:124
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:169
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:139
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:184
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:78
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:123
 msgid "Browse"
@@ -1662,12 +1666,12 @@ msgstr ""
 #~ msgid "Disable direct download"
 #~ msgstr "Disable direct download"
 
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:135
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:150
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:89
 msgid "Disable direct I/O on the temp 1 directory in order to extract maximum performance with RAM disk"
 msgstr "Отключите прямой ввод-вывод в каталоге temp 1, чтобы добиться максимальной производительности с помощью RAM-диска"
 
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:184
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:199
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:138
 msgid "Disable direct I/O on the temp 2 directory in order to extract maximum performance with RAM disk"
 msgstr "Отключите прямой ввод-вывод в каталоге temp 2, чтобы добиться максимальной производительности с помощью RAM-диска"
@@ -2486,7 +2490,7 @@ msgstr "Имя хоста"
 msgid "Hours"
 msgstr ""
 
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:87
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:102
 msgid "Hybrid disk mode 1 (RAM required: 128G)"
 msgstr ""
 
@@ -2494,7 +2498,7 @@ msgstr ""
 #~ msgid "Hybrid disk mode 2 (RAM required: 16G)"
 #~ msgstr ""
 
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:75
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:90
 msgid "Hybrid disk mode allows computers with lower amounts of RAM to plot by offloading intermediate data to disk. If you enable hybrid disk mode, you need to specify temp folder(s). We recommend using SSDs when supporting a hybrid disk mode."
 msgstr ""
 
@@ -2506,7 +2510,7 @@ msgstr "Я понимаю, создать предложение"
 msgid "Id"
 msgstr ""
 
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:173
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:188
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:127
 msgid "If none selected, then it will default to the temporary directory."
 msgstr "Если ничего не выбрано, по умолчанию используется временный каталог."
@@ -3333,7 +3337,7 @@ msgstr ""
 msgid "None of your plots have passed the plot filter yet."
 msgstr "Ни один из ваших участков пока не прошел через фильтр."
 
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:84
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:99
 msgid "Normal (RAM required: 256G)"
 msgstr ""
 
@@ -3894,8 +3898,8 @@ msgstr ""
 msgid "Please specify final directory"
 msgstr "Пожалуйста, укажите окончательный каталог хранения"
 
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:108
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:112
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:123
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:127
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:68
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:72
 msgid "Please specify temporary directory"
@@ -4545,7 +4549,7 @@ msgstr "Искать в Tail Database"
 msgid "Search..."
 msgstr ""
 
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:154
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:169
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:108
 msgid "Second temporary folder location"
 msgstr "Расположение второй временной папки"
@@ -4562,7 +4566,7 @@ msgstr "Защитите вашу связку ключей при помощи 
 msgid "See All Activity"
 msgstr ""
 
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:148
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:163
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:102
 msgid "Select 2nd Temporary Directory"
 msgstr "Выберите 2-й временный каталог"
@@ -4583,7 +4587,7 @@ msgstr ""
 msgid "Select Final Directory"
 msgstr "Выберите окончательный каталог"
 
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:73
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:88
 msgid "Select Hybrid disk mode"
 msgstr ""
 
@@ -4633,8 +4637,8 @@ msgstr "Выберите Ваш участок NFT"
 #~ msgstr "Select your Plot NFT from the dropdown or create a new one."
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:80
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:124
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:169
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:139
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:184
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:78
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:123
 msgid "Selected"
@@ -5016,7 +5020,7 @@ msgstr "Хеш-головоломка фермера"
 msgid "Temp folder location is required for hybrid disk plotting with 16/128G RAM"
 msgstr ""
 
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:99
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:114
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:59
 msgid "Temporary folder location"
 msgstr "Расположение временной папки"
@@ -5041,8 +5045,8 @@ msgstr ""
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
 msgstr ""
 
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:133
-#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:182
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:148
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:197
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:87
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:136
 msgid "The folder is on a RAM Disk"
@@ -5894,6 +5898,7 @@ msgstr "Горячий запуск"
 
 #: src/components/farm/FarmHealth.tsx:196
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:32
+#: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:73
 msgid "Warning"
 msgstr "Предупреждение"
 
