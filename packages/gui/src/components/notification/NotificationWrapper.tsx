@@ -15,7 +15,7 @@ export default function NotificationWrapper(props: NotificationWrapperProps) {
 
   return (
     <MenuItem onClick={onClick} disabled={isLoading}>
-      <Flex alignItems="flex-start" gap={2} whiteSpace="normal">
+      <Flex alignItems="flex-start" gap={1} whiteSpace="normal">
         <Box width={40}>{icon}</Box>
         {error ? (
           <Typography color="error">{error.message}</Typography>

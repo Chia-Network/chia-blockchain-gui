@@ -1,12 +1,18 @@
+import { TransactionType, TransactionTypeFilterMode } from '@chia-network/api';
 import {
+  useGetTransactionsQuery,
   useGetLoggedInFingerprintQuery,
   useCurrentFingerprintSettings,
   useLocalStorage,
+  useGetTimestampForHeightQuery,
+  useGetHeightInfoQuery,
 } from '@chia-network/api-react';
 import { orderBy } from 'lodash';
+import moment from 'moment';
 import React, { useMemo, useEffect, useCallback, createContext, type ReactNode } from 'react';
 
 import type Notification from '../../@types/Notification';
+import NotificationType from '../../constants/NotificationType';
 import useBlockchainNotifications from '../../hooks/useBlockchainNotifications';
 import useNotificationSettings from '../../hooks/useNotificationSettings';
 import useShowNotification from '../../hooks/useShowNotification';
@@ -41,6 +47,14 @@ export type NotificationsProviderProps = {
 
 export default function NotificationsProvider(props: NotificationsProviderProps) {
   const { children } = props;
+
+  const [forceRefreshClawbackNotifications, setForceRefreshClawbackNotifications] = React.useState(1);
+
+  useEffect(() => {
+    setInterval(() => {
+      setForceRefreshClawbackNotifications((bool) => bool + 1);
+    }, 3000);
+  }, []);
 
   const {
     data: currentFingerprint,
@@ -107,12 +121,87 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
     return list;
   }, [triggeredNotifications, currentFingerprint]);
 
+  const { data: clawbackTransactions } = useGetTransactionsQuery({
+    walletId: 1,
+    start: 0,
+    typeFilter: {
+      mode: TransactionTypeFilterMode.INCLUDE,
+      values: [TransactionType.INCOMING_CLAWBACK_RECEIVE],
+    },
+    confirmed: false,
+  });
+
+  const { data: height } = useGetHeightInfoQuery(undefined, {
+    pollingInterval: 3000,
+  });
+
+  const { data: lastBlockTimeStampData } = useGetTimestampForHeightQuery({
+    height: height || 0,
+  });
+
+  const lastBlockTimeStamp = lastBlockTimeStampData?.timestamp || 0;
+
+  const calculateTimestamp = useCallback(
+    (timestamp: number, timeLock: number) => {
+      if (moment(lastBlockTimeStamp * 1000).unix() < timestamp + timeLock + 20) {
+        return timestamp + timeLock + moment().unix() - moment(lastBlockTimeStamp * 1000).unix() + 20;
+      }
+      return timestamp + timeLock;
+    },
+    [lastBlockTimeStamp]
+  );
+
+  const transactionToNotification = React.useCallback(
+    (transaction: any) => {
+      const timestamp = transaction.metadata?.passedTimeLock
+        ? calculateTimestamp(transaction.createdAtTime, transaction.metadata?.timeLock || 0)
+        : transaction.createdAtTime;
+      return {
+        id: transaction.name,
+        timestamp,
+        amount: transaction.amount,
+        type: NotificationType.INCOMING_CLAWBACK_RECEIVE,
+        timeLock: transaction.metadata?.timeLock,
+        passedTimeLock: transaction.metadata?.passedTimeLock,
+        sent: transaction.sent,
+      };
+    },
+    [calculateTimestamp]
+  );
+
   const notifications = useMemo(() => {
-    // only show blockchain notifications when synced otherwise it will be not able to download notification state
-    const list: Notification[] = [...blockchainNotifications, ...triggeredNotificationsByCurrentFingerprint];
+    if (forceRefreshClawbackNotifications < 0) return [];
+    const overTimeLockTransactions: any = (clawbackTransactions || [])
+      .filter(
+        (transaction) =>
+          calculateTimestamp(transaction.createdAtTime, transaction.metadata?.timeLock || 0) < moment().unix()
+      )
+      .map((t) => ({ ...t, metadata: { ...t.metadata, passedTimeLock: true } }));
+
+    const clawbackNotifications = (clawbackTransactions || [])
+      .concat(overTimeLockTransactions)
+      .filter(
+        (transaction) =>
+          overTimeLockTransactions.map((t: any) => t.name).indexOf(transaction.name) === -1 ||
+          transaction.metadata?.passedTimeLock
+      )
+      .map((transaction) => transactionToNotification(transaction));
+
+    const list: Notification[] = [
+      ...blockchainNotifications,
+      ...triggeredNotificationsByCurrentFingerprint,
+      ...clawbackNotifications,
+    ];
 
     return orderBy(list, ['timestamp'], ['desc']);
-  }, [triggeredNotificationsByCurrentFingerprint, blockchainNotifications]);
+  }, [
+    triggeredNotificationsByCurrentFingerprint,
+    blockchainNotifications,
+    clawbackTransactions,
+    forceRefreshClawbackNotifications,
+    calculateTimestamp,
+    transactionToNotification,
+  ]);
 
   const showPushNotifications = useCallback(() => {
     // if fingerprint is not set then we can't show push notifications (user is not logged in)
@@ -150,8 +239,10 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
 
   const unseenCount = useMemo(
     () =>
-      seenAt ? notifications.filter((notification) => notification.timestamp > seenAt).length : notifications.length,
-    [seenAt, notifications]
+      seenAt && forceRefreshClawbackNotifications
+        ? notifications.filter((notification) => notification.timestamp > seenAt).length
+        : notifications.length,
+    [seenAt, notifications, forceRefreshClawbackNotifications]
   );
 
   const setAsSeen = useCallback(() => {
