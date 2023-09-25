@@ -218,7 +218,7 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
                               lineHeight: '67px',
                               textAlign: 'center',
                               borderRadius: '5px',
-                              ':hover': {
+                              '&:hover': {
                                 cursor: 'pointer',
                                 backgroundColor: theme.palette.colors[walletKeyTheme.color].main,
                               },
