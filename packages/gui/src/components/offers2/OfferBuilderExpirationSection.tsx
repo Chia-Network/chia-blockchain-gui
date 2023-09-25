@@ -1,22 +1,14 @@
 import { useLocalStorage } from '@chia-network/api-react';
-import { Button, Color, Flex, Form, TextField } from '@chia-network/core';
+import { Button, Color, Flex, Form, Link, TextField } from '@chia-network/core';
+import { Hourglass as HourglassIcon } from '@chia-network/icons';
 import { useIsWalletSynced } from '@chia-network/wallets';
-import { Trans, t } from '@lingui/macro';
+import { plural, Trans, t } from '@lingui/macro';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import ReportProblemOutlinedIcon from '@mui/icons-material/ReportProblemOutlined';
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Alert,
-  AlertTitle,
-  Badge,
-  Grid,
-  Typography,
-} from '@mui/material';
+import { Accordion, AccordionDetails, AccordionSummary, Alert, Badge, Grid, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import React from 'react';
 import { useForm, useWatch } from 'react-hook-form';
+import { useNavigate } from 'react-router';
 
 import useOfferExpirationDefaultTime, {
   getOfferExpirationTimeInSeconds,
@@ -40,8 +32,28 @@ type SetExpirationData = {
   minutes: string | number;
 };
 
+function ViewTitle({ expirationValues, willExpirationBeEnabled }: any) {
+  const displayDays = Number(expirationValues[0]) > 0 ? expirationValues[0] : null;
+  const displayDaysText = displayDays ? plural(displayDays, { one: 'day', other: 'days' }) : null;
+  const displayHours = Number(expirationValues[1]) > 0 ? expirationValues[1] : null;
+  const displayHoursText = displayHours ? plural(displayHours, { one: 'hour', other: 'hours' }) : null;
+  const displayMinutes = Number(expirationValues[2]) > 0 ? expirationValues[2] : null;
+  const displayMinutesText = displayMinutes ? plural(displayMinutes, { one: 'minute', other: 'minutes' }) : null;
+  const hoursComma = displayDays && (displayHours || displayMinutes) ? ', ' : null;
+  const minutesComma = displayHours && displayMinutes ? ', ' : null;
+  const displayText = willExpirationBeEnabled
+    ? t`This offer will expire in ${displayDays} ${displayDaysText}${hoursComma} ${displayHours} ${displayHoursText}${minutesComma} ${displayMinutes} ${displayMinutesText}`
+    : t`This offer will not expire`;
+  return (
+    <Flex>
+      <Typography variant="subtitle2">{displayText}</Typography>
+    </Flex>
+  );
+}
+
 export default function OfferBuilderExpirationSection(props: OfferExpirationProps) {
   const theme = useTheme();
+  const navigate = useNavigate();
   const {
     isViewing,
     canCounter,
@@ -76,7 +88,7 @@ export default function OfferBuilderExpirationSection(props: OfferExpirationProp
   });
 
   const willExpirationBeEnabled = expirationValues.map((value) => Number(value)).some((value) => value > 0);
-  const [isExpirationExpanded, setIsExpirationExpanded] = React.useState<boolean>(willExpirationBeEnabled);
+  const [isExpirationExpanded, setIsExpirationExpanded] = React.useState<boolean>(false);
 
   const isExpired = expirationTime < currentTime;
 
@@ -85,6 +97,10 @@ export default function OfferBuilderExpirationSection(props: OfferExpirationProp
     { name: 'hours', label: t`Hours`, max: 24 },
     { name: 'minutes', label: t`Minutes`, max: 60 },
   ];
+
+  async function handleNavToSettings() {
+    navigate('/dashboard/settings/general');
+  }
 
   function setExpirationTime() {
     const formatTime = { days: expirationValues[0], hours: expirationValues[1], minutes: expirationValues[2] };
@@ -116,7 +132,8 @@ export default function OfferBuilderExpirationSection(props: OfferExpirationProp
           item
           border={1}
           borderColor={theme.palette.mode === 'light' ? Color.Neutral[300] : Color.Neutral[600]}
-          borderRadius={1}
+          borderRadius={2}
+          overflow="hidden"
         >
           <Accordion
             expanded={isExpirationExpanded}
@@ -126,7 +143,7 @@ export default function OfferBuilderExpirationSection(props: OfferExpirationProp
               }
               setIsExpirationExpanded(isExpanded);
             }}
-            sx={{ boxShadow: 'none' }}
+            sx={{ boxShadow: 'none', bgcolor: 'transparent' }}
           >
             <AccordionSummary
               expandIcon={<ExpandMoreIcon color="info" />}
@@ -144,48 +161,69 @@ export default function OfferBuilderExpirationSection(props: OfferExpirationProp
                 }}
                 invisible={wasOfferExpirationVisited}
               >
-                <Typography variant="subtitle2">
-                  <Trans>Add option to set expiration time {canCounter ? ' to counteroffer' : null}</Trans>
-                </Typography>
+                <Flex flexDirection="row" alignItems="center" gap="0.5rem" paddingTop="0px" bgcolor="none">
+                  <Flex
+                    height="32px"
+                    width="32px"
+                    bgcolor={theme.palette.mode === 'light' ? Color.Neutral[200] : Color.Neutral[700]}
+                    borderRadius="10px"
+                    justifyContent="center"
+                    alignItems="center"
+                  >
+                    <Flex marginTop="12px">
+                      <HourglassIcon color="info" sx={{ fontSize: '32px' }} />
+                    </Flex>
+                  </Flex>
+                  <ViewTitle expirationValues={expirationValues} willExpirationBeEnabled={willExpirationBeEnabled} />
+                </Flex>
               </Badge>
             </AccordionSummary>
             <AccordionDetails>
-              <Alert
-                severity="info"
-                sx={{
-                  marginBottom: 3,
-                  backgroundColor: theme.palette.mode === 'light' ? Color.Neutral[200] : Color.Neutral[700],
-                }}
+              <Flex
+                flexDirection="row"
+                justifyContent="space-between"
+                width="100%"
+                bgcolor={theme.palette.mode === 'light' ? Color.Neutral[200] : Color.Neutral[700]}
+                borderRadius="10px"
+                padding="1rem"
               >
-                <Trans>
-                  - Set a time after which the offer expires.
-                  <br />- An expiring offer can only be claimed prior to the expiration time.
-                </Trans>
-              </Alert>
-              <Flex gap={2}>
-                {fields.map((field) => (
-                  <TextField
-                    name={field.name}
-                    key={field.name}
-                    label={field.label}
-                    type="number"
-                    size="small"
-                    InputProps={{
-                      inputProps: {
-                        min: 0,
-                        step: 1,
-                        max: field.max,
-                      },
-                    }}
-                    data-testid={`WalletSend-${field.name}`}
-                    sx={{ width: 100 }}
-                    onChange={setExpirationTime()}
-                  />
-                ))}
-                {willExpirationBeEnabled && (
+                <Flex flexDirection="column" gap={1}>
+                  <Typography variant="h6" fontWeight="500">
+                    <Trans>Offer Expiration</Trans>
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary">
+                    <Trans>Set a time after which this offer expires.</Trans>
+                    <br />
+                    <Link onClick={handleNavToSettings}>
+                      <Trans>Change default timing.</Trans>
+                    </Link>
+                  </Typography>
+                </Flex>
+                <Flex alignSelf="center" gap={2}>
+                  {fields.map((field) => (
+                    <TextField
+                      name={field.name}
+                      key={field.name}
+                      label={field.label}
+                      type="number"
+                      size="small"
+                      InputProps={{
+                        inputProps: {
+                          min: 0,
+                          step: 1,
+                          max: field.max,
+                        },
+                      }}
+                      data-testid={`WalletSend-${field.name}`}
+                      sx={{ width: 100 }}
+                      onChange={setExpirationTime()}
+                    />
+                  ))}
                   <Button
                     variant="outlined"
                     type="submit"
+                    disabled={!willExpirationBeEnabled}
+                    color="primary"
                     onClick={() => {
                       methods.setValue('days', 0);
                       methods.setValue('hours', 0);
@@ -194,22 +232,8 @@ export default function OfferBuilderExpirationSection(props: OfferExpirationProp
                   >
                     <Trans>Disable</Trans>
                   </Button>
-                )}
+                </Flex>
               </Flex>
-              {willExpirationBeEnabled && (
-                <Alert severity="info" sx={{ marginTop: 3 }} icon={<ReportProblemOutlinedIcon />}>
-                  <AlertTitle>
-                    <Trans>
-                      Expiration time will be {isViewing && canCounter ? 'applied to counteroffer.' : 'applied.'}
-                    </Trans>
-                  </AlertTitle>
-                </Alert>
-              )}
-              {!willExpirationBeEnabled && (
-                <Typography component="div" variant="subtitle2" sx={{ width: '100%', marginTop: 3 }}>
-                  <Trans>This offer will never expire. </Trans>{' '}
-                </Typography>
-              )}
             </AccordionDetails>
           </Accordion>
         </Grid>
