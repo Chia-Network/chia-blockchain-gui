@@ -8,6 +8,7 @@ export { default as Fees } from './Fees';
 export { default as FullNode } from './FullNode';
 export { default as Harvest } from './Harvest';
 export { default as Home } from './Home';
+export { default as Hourglass } from './Hourglass';
 export { default as Keys } from './Keys';
 export { default as LinkSmall } from './Link';
 export { default as MyContacts } from './MyContacts';
