@@ -879,7 +879,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
     params: [
       {
         name: WalletConnectCommandParamName.PROOFS,
-        type: 'string',
+        type: 'object',
         label: <Trans>Proofs Object (Key Value Pairs)</Trans>,
       },
     ],
