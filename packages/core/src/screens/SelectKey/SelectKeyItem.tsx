@@ -188,7 +188,7 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
               sx={{
                 zIndex: 9,
                 backgroundColor: walletKeyTheme.emoji === '' ? color.main : 'none',
-                ':hover': {
+                '&:hover': {
                   backgroundColor: color.main,
                 },
                 width: '48px',
