@@ -1,6 +1,7 @@
-import { IconButton, Flex } from '@chia-network/core';
+import { Color, IconButton, Flex } from '@chia-network/core';
 import { MoreVert } from '@mui/icons-material';
 import { Card, CardActionArea, CardContent, Checkbox, Typography } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import React, { useMemo, memo } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -38,6 +39,7 @@ function NFTCard(props: NFTCardProps) {
   const nftId = useMemo(() => getNFTId(id), [id]);
 
   const [isNFTHidden] = useHiddenNFTs();
+  const theme = useTheme();
   const navigate = useNavigate();
 
   const { nft, isLoading } = useNFT(nftId);
@@ -58,7 +60,14 @@ function NFTCard(props: NFTCardProps) {
 
   return (
     <Flex flexDirection="column" flexGrow={1} minWidth={0}>
-      <Card sx={{ borderRadius: '8px', opacity: isHidden ? 0.5 : 1 }} variant="outlined">
+      <Card
+        sx={{
+          borderRadius: '8px',
+          borderColor: theme.palette.mode === 'light' ? Color.Neutral[300] : Color.Neutral[700],
+          opacity: isHidden ? 0.5 : 1,
+        }}
+        variant="outlined"
+      >
         <CardActionArea onClick={handleClick}>
           {onSelect && (
             <Checkbox
