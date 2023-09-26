@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@babel/runtime": "7.22.10",
+    "angular-calendar": "0.31.0",
     "bech32": "2.0.0",
     "bignumber.js": "9.1.1",
     "core-js": "3.32.1",

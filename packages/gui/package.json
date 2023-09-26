@@ -165,6 +165,7 @@
     "axios": "1.4.0",
     "bech32": "2.0.0",
     "bignumber.js": "9.1.1",
+    "browserlist": "1.0.1",
     "byte-size": "8.1.1",
     "chart.js": "4.3.3",
     "chokidar": "3.5.3",

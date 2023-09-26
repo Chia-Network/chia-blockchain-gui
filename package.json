@@ -42,6 +42,7 @@
     "*": "prettier --check --ignore-unknown --ignore-path .gitignore"
   },
   "dependencies": {
+    "bufferutil": "4.0.7",
     "lerna": "7.1.5",
     "nx": "16.7.2"
   },
