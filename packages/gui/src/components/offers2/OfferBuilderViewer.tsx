@@ -182,10 +182,6 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
 
   const isLoading = isLoadingWallets || (!computedOfferBuilderData && !prepopulatedOfferBuilderData) || isOffersLoading;
 
-  const handleExpirationSubmit = (_data) => {
-    setExpirationTimeMax(data);
-  };
-
   async function handleSubmit(values: OfferBuilderData) {
     const { offered } = values;
     const { fee: offeredFee } = offered;
@@ -308,7 +304,7 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
                 canCounter={canCounterOffer}
                 currentTime={currentTime}
                 expirationTime={expirationTime}
-                onSubmit={handleExpirationSubmit}
+                onSubmit={() => {}}
                 isGetHeightInfoLoading={isGetHeightInfoLoading}
                 isGetTimestampForHeightLoading={isGetTimestampForHeightLoading}
               />
