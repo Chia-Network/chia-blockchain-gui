@@ -10,12 +10,6 @@ import useOfferExpirationDefaultTime, {
   offerExpirationDefaultTimeDefaults,
 } from '../../hooks/useOfferExpirationDefaultTime';
 
-const fields = [
-  { name: 'days', label: t`Days`, max: 365 },
-  { name: 'hours', label: t`Hours`, max: 24 },
-  { name: 'minutes', label: t`Minutes`, max: 60 },
-];
-
 export default function SettingsExpiringOffers(props) {
   const { offerExpirationDefaultTime, setOfferExpirationDefaultTime, isOfferExpirationDefaultTimeEnabled } =
     useOfferExpirationDefaultTime();
@@ -23,6 +17,12 @@ export default function SettingsExpiringOffers(props) {
   const methods = useForm<OfferExpirationDefaultTimeInput>({
     defaultValues: offerExpirationDefaultTime,
   });
+
+  const fields = [
+    { name: 'days', label: t`Days`, max: 365 },
+    { name: 'hours', label: t`Hours`, max: 24 },
+    { name: 'minutes', label: t`Minutes`, max: 60 },
+  ];
 
   async function handleSubmit(valuesLocal: OfferExpirationDefaultTimeInput) {
     const newValues = { ...valuesLocal, enabled: true };
