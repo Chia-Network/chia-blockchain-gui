@@ -301,7 +301,6 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
             {hasExpiration && (
               <OfferBuilderExpirationSection
                 isViewing
-                canCounter={canCounterOffer}
                 currentTime={currentTime}
                 expirationTime={expirationTime}
                 onSubmit={() => {}}
