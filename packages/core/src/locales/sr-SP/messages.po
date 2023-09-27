@@ -38,7 +38,7 @@ msgstr ""
 msgid "A new version of Chia is available!"
 msgstr ""
 
-#: src/screens/SelectKey/EmojiAndColorPicker.tsx:268
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:270
 msgid "Add Icon"
 msgstr ""
 
@@ -359,7 +359,7 @@ msgstr ""
 msgid "Public key:"
 msgstr "Јавни кључ:"
 
-#: src/screens/SelectKey/EmojiAndColorPicker.tsx:287
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:289
 msgid "Random"
 msgstr ""
 
@@ -375,7 +375,7 @@ msgstr ""
 msgid "Reload Application"
 msgstr ""
 
-#: src/screens/SelectKey/EmojiAndColorPicker.tsx:268
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:270
 msgid "Remove Icon"
 msgstr ""
 
@@ -396,7 +396,7 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: src/screens/SelectKey/EmojiAndColorPicker.tsx:180
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:182
 #: src/screens/SelectKey/Search.tsx:34
 msgid "Search"
 msgstr ""

@@ -38,7 +38,7 @@ msgstr "{minPassphraseLength, plural, other {密码长度必须至少为 # 个�
 msgid "A new version of Chia is available!"
 msgstr "新版Chia可用！"
 
-#: src/screens/SelectKey/EmojiAndColorPicker.tsx:268
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:270
 msgid "Add Icon"
 msgstr "添加图标"
 
@@ -359,7 +359,7 @@ msgstr "公钥："
 msgid "Public key:"
 msgstr "公钥："
 
-#: src/screens/SelectKey/EmojiAndColorPicker.tsx:287
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:289
 msgid "Random"
 msgstr "随机"
 
@@ -375,7 +375,7 @@ msgstr "更新日志"
 msgid "Reload Application"
 msgstr "重新加载程序"
 
-#: src/screens/SelectKey/EmojiAndColorPicker.tsx:268
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:270
 msgid "Remove Icon"
 msgstr "删除图标"
 
@@ -396,7 +396,7 @@ msgstr "显示"
 msgid "Save"
 msgstr "保存"
 
-#: src/screens/SelectKey/EmojiAndColorPicker.tsx:180
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:182
 #: src/screens/SelectKey/Search.tsx:34
 msgid "Search"
 msgstr "搜索"
