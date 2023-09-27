@@ -18,7 +18,6 @@ import OfferBuilderExpirationCountdown from './OfferBuilderExpirationCountdown';
 
 export type OfferExpirationSectionProps = {
   isViewing: boolean;
-  canCounter: boolean;
   currentTime: number;
   expirationTime: number;
   onSubmit: (values: SetExpirationData) => Promise<void>;
@@ -51,18 +50,11 @@ function ViewTitle({ expirationValues, willExpirationBeEnabled }: any) {
   );
 }
 
-export default function OfferBuilderExpirationSection(props: OfferExpirationProps) {
+export default function OfferBuilderExpirationSection(props: OfferExpirationSectionProps) {
   const theme = useTheme();
   const navigate = useNavigate();
-  const {
-    isViewing,
-    canCounter,
-    currentTime,
-    expirationTime,
-    onSubmit,
-    isGetHeightInfoLoading,
-    isGetTimestampForHeightLoading,
-  } = props;
+  const { isViewing, currentTime, expirationTime, onSubmit, isGetHeightInfoLoading, isGetTimestampForHeightLoading } =
+    props;
   const { offerExpirationDefaultTime, isOfferExpirationDefaultTimeEnabled } = useOfferExpirationDefaultTime();
   const isWalletSynced = useIsWalletSynced();
 
@@ -244,7 +236,6 @@ export default function OfferBuilderExpirationSection(props: OfferExpirationProp
   return (
     <Flex flexDirection="column" gap={3}>
       {isViewing && viewSection()}
-      {isViewing && canCounter && editSection()}
       {!isViewing && editSection()}
     </Flex>
   );
