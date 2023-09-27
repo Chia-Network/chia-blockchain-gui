@@ -1315,7 +1315,7 @@ msgstr "آدرس داده {0}"
 
 #: src/components/settings/Settings.tsx:70
 #~ msgid "DataLayer"
-#~ msgstr ""
+#~ msgstr "لایه داده ها"
 
 #: src/components/settings/SettingsDataLayer.tsx:21
 msgid "DataLayer enables rich data to be stored on mirrored databases that can be verified using the Chia Blockchain."
@@ -1332,7 +1332,7 @@ msgstr "تاریخ"
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:84
 #: src/components/settings/SettingsExpiringOffers.tsx:14
 msgid "Days"
-msgstr ""
+msgstr "زوز"
 
 #: src/components/settings/SettingsHarvester.tsx:480
 msgid "Decompressor Thread Count"
@@ -1352,11 +1352,11 @@ msgstr "زمان پیش‌فرض ادعای بازگرداندن فعال است
 
 #: src/components/settings/SettingsExpiringOffers.tsx:125
 msgid "Default offer expiration time is disabled"
-msgstr ""
+msgstr "زمان انقضای پیشنهاد پیش‌فرض غیرفعال است"
 
 #: src/components/settings/SettingsExpiringOffers.tsx:120
 msgid "Default offer expiration time is enabled"
-msgstr ""
+msgstr "زمان انقضای پیشنهاد پیش‌فرض فعال است"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:89
 msgid "Delay"
@@ -1412,7 +1412,7 @@ msgstr "فهرست استخراج"
 
 #: src/components/settings/SettingsDerivationIndex.tsx:45
 msgid "Derivation index must be greater than {index}"
-msgstr "فهرست استخراج باید بزرگتر از {index} باشد"
+msgstr "باشد {index} فهرست استخراج باید بزرگتر از"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:205
 msgid "Description"
@@ -1436,11 +1436,11 @@ msgstr "جزئیات"
 
 #: src/electron/main.tsx:991
 #~ msgid "Developer"
-#~ msgstr "Developer"
+#~ msgstr "توسعه دهنده"
 
 #: src/electron/main.tsx:994
 #~ msgid "Developer Tools"
-#~ msgstr "Developer Tools"
+#~ msgstr "ابزارهای توسعه دهنده"
 
 #: src/components/offers/OfferShareDialog.tsx:416
 msgid "Dexie URL"
@@ -1492,7 +1492,7 @@ msgstr "غیرفعال کردن پیوند سی پی یو"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:453
 #~ msgid "Disable direct download"
-#~ msgstr "Disable direct download"
+#~ msgstr "غیرفعال شدن دانلود مستقیم"
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:150
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:89
@@ -1506,7 +1506,7 @@ msgstr "برای استخراج حداکثر کارایی با دیسک حافظ
 
 #: src/constants/WalletConnectCommands.tsx:366
 msgid "Disable JSON Formatting"
-msgstr "حالت JSON را غیرفعال کنید"
+msgstr "را غیر فعال کنید JSON حالت"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:377
 msgid "Disable NUMA"
@@ -1704,7 +1704,7 @@ msgstr "برداشت کردن با کارت گرافیک را فعال کنید"
 
 #: src/components/settings/SettingsNotifications.tsx:45
 msgid "Enable notifications"
-msgstr "فعال کردن اغلان ها"
+msgstr "فعال کردن اعلان ها"
 
 #: src/components/settings/SettingsHarvester.tsx:508
 msgid "Enable to use GPU for harvesting, disable to use CPU for harvesting."
@@ -2082,11 +2082,11 @@ msgstr "ارتباطات نود کامل"
 
 #: src/electron/main.tsx:1022
 #~ msgid "Full Screen"
-#~ msgstr "Full Screen"
+#~ msgstr "تمام صفحه"
 
 #: src/components/settings/Settings.tsx:65
 #~ msgid "General"
-#~ msgstr "General"
+#~ msgstr "کلیات"
 
 #: src/constants/WalletConnectCommands.tsx:289
 msgid "Get all Offers"
@@ -2102,7 +2102,7 @@ msgstr "گرفتن شناسه دارایی توکن"
 
 #: src/constants/WalletConnectCommands.tsx:476
 msgid "Get CAT Wallet Info"
-msgstr "گرفتن اطلاعات کیف پولCAT"
+msgstr "CAT گرفتن اطلاعات کیف پول"
 
 #: src/constants/WalletConnectCommands.tsx:90
 msgid "Get Current Address"
@@ -2118,7 +2118,7 @@ msgstr "گرفتن ادرس بعدی"
 
 #: src/constants/WalletConnectCommands.tsx:587
 msgid "Get NFT Info"
-msgstr "درباقت اطلاعات ان اف تی"
+msgstr "دریاقت اطلاعات ان اف تی"
 
 #: src/constants/WalletConnectCommands.tsx:812
 msgid "Get NFT Wallets with DIDs"
@@ -2245,7 +2245,7 @@ msgstr "مسابقات هش"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:184
 #~ msgid "Hash mismatch."
-#~ msgstr ""
+#~ msgstr ".عدم تطابق هش"
 
 #: src/components/offers/OfferShareDialog.tsx:577
 msgid "Hashgreen DEX URL"
@@ -2267,7 +2267,7 @@ msgstr "ارتفاع"
 
 #: src/electron/main.tsx:1043
 #~ msgid "Help"
-#~ msgstr "Help"
+#~ msgstr "راهنما"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:51
 msgid "Here are the current block challenges. You may or may not have a proof of space for these challenges. These blocks do not currently contain a proof of time."
@@ -2275,7 +2275,7 @@ msgstr "در اینجا چالش های بلاک فعلی وجود دارد. م�
 
 #: src/components/plot/add/PlotAddChooseKeys.tsx:198
 msgid "Hex public key of pool"
-msgstr "کلید عمومی Hex استخر"
+msgstr "Hex کلید عمومی استخر"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:428
 msgid "Hidden"
@@ -2306,7 +2306,7 @@ msgstr "اشاره"
 #: src/components/plot/PlotHarvesterPlotsFailed.tsx:69
 #: src/components/plot/PlotHarvesterPlotsNotFound.tsx:69
 msgid "Hooray, no files here!"
-msgstr "اینجا فایلی وجود ندارد!"
+msgstr "!اینجا فایلی وجود ندارد"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:33
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:33
@@ -2316,7 +2316,7 @@ msgstr "نام میزبان"
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:85
 #: src/components/settings/SettingsExpiringOffers.tsx:15
 msgid "Hours"
-msgstr ""
+msgstr "ساعت"
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:102
 msgid "Hybrid disk mode 1 (RAM required: 128G)"
@@ -2413,7 +2413,7 @@ msgstr "در حال شروع..."
 
 #: src/components/offers/OfferShareDialog.tsx:1172
 #~ msgid "Install Keybase"
-#~ msgstr "Install Keybase"
+#~ msgstr "نصب شود Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
 msgid ""
@@ -2434,7 +2434,7 @@ msgstr ""
 
 #: src/components/settings/Settings.tsx:73
 #~ msgid "Integration"
-#~ msgstr ""
+#~ msgstr "ادغامات"
 
 #: src/components/settings/SettingsHarvester.tsx:428
 msgid "Interval (in seconds) in which directories are scanned to refresh the list of available plots"
@@ -2502,7 +2502,7 @@ msgstr "پیوسوتن به یک استخر"
 
 #: src/components/plot/add/PlotAddNFT.tsx:49
 msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
-msgstr "به یک استخر بپیوندید و پاداش فارم پایدار XCH دریافت کنید. میانگین بازدهی یکسان است، اما نوسان بسیار کمتری دارد."
+msgstr ".به یک استخر بپیوندید و پاداش فارم پایدارچیا دریافت کنید. میانگین بازدهی یکسان است، اما نوسان بسیار کمتری دارد"
 
 #: src/components/plotNFT/PlotNFTAdd.tsx:62
 msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile. Assign plots to a plot NFT. You can easily switch pools without having to re-plot."
@@ -2560,7 +2560,7 @@ msgstr "کلیدها"
 #: src/components/farm/FarmFullNodeConnections.tsx:51
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:51
 msgid "KiB Up/Down"
-msgstr "KiB بالا/پایین"
+msgstr "بالا/پایین کیلوبایت"
 
 #: src/components/vcs/VCList.tsx:304
 msgid "KYC status"
@@ -2792,7 +2792,7 @@ msgstr "Metadata هش"
 
 #: src/components/nfts/NFTPreview.tsx:649
 #~ msgid "Metadata hash mismatch"
-#~ msgstr ""
+#~ msgstr "Metadata عدم تطابق هش"
 
 #: src/components/nfts/NFTDetails.tsx:251
 msgid "Metadata URL {0}"
@@ -2800,7 +2800,7 @@ msgstr "Metadata آدرس {0}"
 
 #: src/components/fullNode/FullNodeConnections.tsx:51
 msgid "MiB Up/Down"
-msgstr "MiB بالا/پایین"
+msgstr "بالا/پایین مگابایت"
 
 #: src/components/settings/SettingsPanel.tsx:136
 msgid "Migrate Keyring"
@@ -2844,7 +2844,7 @@ msgstr "ثبت کننده:"
 
 #: src/components/offers/OfferShareDialog.tsx:504
 msgid "MintGarden URL"
-msgstr "آدرس سایت MintGarden"
+msgstr "MintGarden آدرس سایت"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:86
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
@@ -2862,11 +2862,11 @@ msgstr "مشازکت از دست رفته"
 
 #: src/components/nfts/NFTPreview.tsx:641
 #~ msgid "Missing preview_image_hash key"
-#~ msgstr ""
+#~ msgstr "وجود ندارد preview_image_hash کلید"
 
 #: src/components/nfts/NFTPreview.tsx:637
 #~ msgid "Missing preview_video_hash key"
-#~ msgstr ""
+#~ msgstr "وجود ندارد preview_video_hash کلید"
 
 #: src/components/farm/FarmHealth.tsx:316
 #: src/components/farm/FarmHealth.tsx:335
@@ -2930,7 +2930,7 @@ msgstr "نام"
 
 #: src/components/settings/ProfileAdd.tsx:121
 msgid "Need some {currencyCode}?"
-msgstr "به مقداری {currencyCode} نیاز دارید؟"
+msgstr "نیاز دارید؟ {currencyCode} به مقداری"
 
 #: src/components/offers/NFTOfferViewer.tsx:584
 msgid "Net Proceeds"
@@ -2991,7 +2991,7 @@ msgstr "ان اف تی {nftId} قبلاً در این پیشنهاد استفا�
 
 #: src/constants/WalletConnectCommands.tsx:473
 #~ msgid "NFT Coin Id"
-#~ msgstr ""
+#~ msgstr "شناسه ارز ان اف تی"
 
 #: src/components/nfts/NFTDetails.tsx:74
 msgid "NFT Coin ID"
@@ -3052,7 +3052,7 @@ msgstr "قیمت خرید ان اف تی"
 
 #: src/components/nfts/NFTContextualActions.tsx:264
 msgid "NFT Status Update Failed"
-msgstr "بروزرسانی ناموفق وضیعت ان اف تی"
+msgstr "بروز رسانی ناموفق وضیعت ان اف تی"
 
 #: src/components/nfts/NFTContextualActions.tsx:254
 msgid "NFT Status Updated"
@@ -3084,12 +3084,12 @@ msgstr "بدون هیچ فعالیتی"
 
 #: src/components/farm/card/FarmCardLastHeightFarmed.tsx:15
 #~ msgid "No blocks farmed yet"
-#~ msgstr "No blocks farmed yet"
+#~ msgstr "هنوزهیچ بلاکی فارم نشده است"
 
 #: src/util/offerBuilderDataToOffer.ts:223
 #: src/util/offerBuilderDataToOffer.ts:323
 msgid "No CAT wallet found for {assetId} token"
-msgstr "هیچ کیف پول CAT برای توکن {assetId} یافت نشد"
+msgstr "یافت نشد CAT هیچ کیف پول {assetId} برای توکن"
 
 #: src/components/settings/SettingsIntegration.tsx:258
 msgid "No connected applications"
@@ -3878,7 +3878,7 @@ msgstr "امتیازهای پیداشده از زمان شروع"
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:172
 #: src/components/plotNFT/PlotNFTCard.tsx:206
 msgid "Points Successful in Last 24 Hours"
-msgstr "امتیاهای موفقیت آمیز در 24 ساعت گذشته"
+msgstr "امتیازهای موفقیت آمیز در 24 ساعت گذشته"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:64
 msgid "Pool Contract Address"
