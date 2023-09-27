@@ -3715,7 +3715,7 @@ msgstr "لطفاً یک نوع دارایی را انتخاب کنید"
 
 #: src/components/settings/SettingsNFT.tsx:95
 #~ msgid "Please select an empty folder"
-#~ msgstr ""
+#~ msgstr "لطفا یک پوشه خالی انتخاب کنید"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:113
 msgid "Please select at least one key"
