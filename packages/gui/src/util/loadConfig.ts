@@ -20,10 +20,22 @@ export function readConfigFile(net?: string): string {
   return yaml.load(fs.readFileSync(path.resolve(configRootDir, 'config/config.yaml'), 'utf8'));
 }
 
+export function getLogPath(net?: string): string {
+  const config = readConfigFile(net);
+  return get(config, 'logging.log_filename', '/log');
+}
+
+export function getLogLevel(net?: string): string {
+  const config = readConfigFile(net);
+  return get(config, 'logging.log_level', 'DEBUG');
+}
+
 export default async function loadConfig(net?: string): Promise<{
   url: string;
   cert: string;
   key: string;
+  logPath?: string;
+  logLevel?: string;
 }> {
   try {
     const config = readConfigFile(net);
@@ -44,10 +56,15 @@ export default async function loadConfig(net?: string): Promise<{
       get(config, 'ui.daemon_ssl.private_key', 'config/ssl/daemon/private_daemon.key')
     );
 
+    const logPath = getLogPath(net);
+    const logLevel = getLogLevel(net);
+
     return {
       url,
       cert: fs.readFileSync(certPath).toString(),
       key: fs.readFileSync(keyPath).toString(),
+      logPath,
+      logLevel,
     };
   } catch (error: any) {
     if (error.code === 'ENOENT') {

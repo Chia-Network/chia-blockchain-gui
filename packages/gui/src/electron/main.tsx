@@ -93,6 +93,58 @@ function renderAbout(): string {
 
 const openedWindows = new Set<BrowserWindow>();
 
+let logWindow: BrowserWindow | null = null;
+
+function createLogsWindow() {
+  if (logWindow) {
+    logWindow.focus();
+    return;
+  }
+
+  logWindow = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
+      nodeIntegration: true,
+    },
+  });
+
+  // Directly set the HTML content of the window
+  logWindow.loadURL('data:text/html;charset=utf-8,' + encodeURIComponent(`
+    <html>
+      <head>
+        <title>Logs</title>
+      </head>
+      <body>
+        <div id="root"></div>
+        <script>
+          // Your bundled JavaScript here, or use IPC to receive log lines
+        </script>
+      </body>
+    </html>
+  `));
+
+  // Inside createLogsWindow()
+  const readline = require('readline');
+  const fs = require('fs');
+
+  // Your existing code for finding logPath
+  const logStream = fs.createReadStream(logPath, { start: fs.statSync(logPath).size });
+  const rl = readline.createInterface({ input: logStream });
+
+  rl.on('line', (line: string) => {
+    logWindow?.webContents.send('log-line', line);
+  });
+
+  logWindow.on('closed', () => {
+    logWindow = null;
+  });
+}
+
+
+
+
+
 function openAbout() {
   const about = renderAbout();
 
@@ -714,6 +766,15 @@ function getMenuTemplate() {
       label: i18n._(/* i18n */ { id: 'Help' }),
       role: 'help',
       submenu: [
+        {
+          label: i18n._(/* i18n */ { id: 'Logs' }),
+          click: () => {
+            createLogsWindow();
+          },
+        },
+        {
+          type: 'separator',
+        },
         {
           label: i18n._(/* i18n */ { id: 'Chia Blockchain Wiki' }),
           click: () => {
