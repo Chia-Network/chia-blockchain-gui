@@ -1,6 +1,7 @@
+import { ipcRenderer } from 'electron';
+
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { ipcRenderer } from 'electron';
 
 const LogContainer = styled.div`
   width: 100%;
@@ -11,7 +12,7 @@ const LogContainer = styled.div`
   font-family: monospace;
 `;
 
-const Logs: React.FC = () => {
+export default function Logs(): React.ReactElement {
   useEffect(() => {
     const handleNewLogLine = (_: any, logLine: string) => {
       const logContainer = document.getElementById('logContainer');
@@ -29,7 +30,5 @@ const Logs: React.FC = () => {
     };
   }, []);
 
-  return <LogContainer id="logContainer"></LogContainer>;
-};
-
-export default Logs;
+  return <LogContainer id="logContainer" />;
+}

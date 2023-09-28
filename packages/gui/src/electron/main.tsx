@@ -13,6 +13,7 @@ import {
 } from 'electron';
 import fs from 'fs';
 import path from 'path';
+import readline from 'readline';
 import url from 'url';
 
 import { NFTInfo } from '@chia-network/api';
@@ -110,7 +111,8 @@ function createLogsWindow() {
   });
 
   // Directly set the HTML content of the window
-  logWindow.loadURL('data:text/html;charset=utf-8,' + encodeURIComponent(`
+  logWindow.loadURL(
+    `data:text/html;charset=utf-8,${encodeURIComponent(`
     <html>
       <head>
         <title>Logs</title>
@@ -122,11 +124,12 @@ function createLogsWindow() {
         </script>
       </body>
     </html>
-  `));
+  `)}`
+  );
 
   // Inside createLogsWindow()
-  const readline = require('readline');
-  const fs = require('fs');
+  // const readline = require('readline');
+  // const fs = require('fs');
 
   // Your existing code for finding logPath
   const logStream = fs.createReadStream(logPath, { start: fs.statSync(logPath).size });
@@ -140,10 +143,6 @@ function createLogsWindow() {
     logWindow = null;
   });
 }
-
-
-
-
 
 function openAbout() {
   const about = renderAbout();
