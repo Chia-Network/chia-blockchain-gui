@@ -132,6 +132,8 @@ function createLogsWindow() {
   // const fs = require('fs');
 
   // Your existing code for finding logPath
+  ipcMain.handle('getConfig', () => loadConfig(NET));
+  const { logPath } = loadConfig(NET);
   const logStream = fs.createReadStream(logPath, { start: fs.statSync(logPath).size });
   const rl = readline.createInterface({ input: logStream });
 
