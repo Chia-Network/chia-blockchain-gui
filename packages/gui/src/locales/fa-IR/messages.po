@@ -171,8 +171,8 @@ msgid "Check for updates..."
 msgstr "بروز رسانی را بررسی کنید..."
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:160
-msgid "- Set a time after which the offer expires.<0/>- An expiring offer can only be claimed prior to the expiration time."
-msgstr "- زمانی را تعیین کنید که پس از آن پیشنهاد منقضی شود.<0/>- پیشنهاد منقضی فقط قبل از زمان انقضا قابل گرفتن است."
+#~ msgid "- Set a time after which the offer expires.<0/>- An expiring offer can only be claimed prior to the expiration time."
+#~ msgstr "- زمانی را تعیین کنید که پس از آن پیشنهاد منقضی شود.<0/>- پیشنهاد منقضی فقط قبل از زمان انقضا قابل گرفتن است."
 
 #: src/components/offers2/OfferBuilderImport.tsx:167
 msgid "(⌘V) a blob"
@@ -239,6 +239,18 @@ msgstr "{0} امتیاز {1} - {2} مدتی قبل"
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:187
 #~ msgid "{count} transactions have been successfully submitted to the blockchain."
 #~ msgstr ""
+
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:36
+msgid "{displayDays, plural, one {day} other {days}}"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:38
+msgid "{displayHours, plural, one {hour} other {hours}}"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:40
+msgid "{displayMinutes, plural, one {minute} other {minutes}}"
+msgstr ""
 
 #: src/components/notification/NotificationAnnouncement.tsx:52
 msgid "{from} <0>sending the message</0>"
@@ -332,7 +344,7 @@ msgstr "مقدار {0} توصیه میشود"
 
 #: src/components/offers/NFTOfferViewer.tsx:642
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:21
-#: src/components/offers2/OfferBuilderViewer.tsx:256
+#: src/components/offers2/OfferBuilderViewer.tsx:252
 msgid "Accept Offer"
 msgstr "تایید پیشنهاد"
 
@@ -399,8 +411,8 @@ msgid "Add Contact"
 msgstr "اضافه کردن اطلاعات تماس"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:148
-msgid "Add option to set expiration time {0}"
-msgstr "افزودن گزینه برای تنظیم زمان انقضا {0}"
+#~ msgid "Add option to set expiration time {0}"
+#~ msgstr "افزودن گزینه برای تنظیم زمان انقضا {0}"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:114
 msgid "Add plot directory"
@@ -852,6 +864,10 @@ msgstr "چالش هش"
 msgid "Change"
 msgstr "تغییر"
 
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:190
+msgid "Change default timing."
+msgstr ""
+
 #: src/components/settings/ChangePassphrasePrompt.tsx:290
 #: src/components/settings/SettingsPanel.tsx:120
 msgid "Change Passphrase"
@@ -1160,7 +1176,7 @@ msgstr "شمردن"
 msgid "Counter"
 msgstr "شمارش معکوس"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:244
+#: src/components/offers2/OfferBuilderViewer.tsx:240
 msgid "Counter Offer"
 msgstr "شمارنده پیشنهاد"
 
@@ -1329,8 +1345,8 @@ msgstr "خدمات لایه داده ها"
 msgid "Date"
 msgstr "تاریخ"
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:84
-#: src/components/settings/SettingsExpiringOffers.tsx:14
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:88
+#: src/components/settings/SettingsExpiringOffers.tsx:22
 msgid "Days"
 msgstr "روز"
 
@@ -1463,7 +1479,7 @@ msgstr "شناسه، شناسه غیرمتمرکز"
 msgid "Difficulty"
 msgstr "سختی"
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:195
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:225
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:91
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:77
 #: src/components/settings/SettingsExpiringOffers.tsx:88
@@ -1834,8 +1850,8 @@ msgid "Expiration"
 msgstr "انقضاء"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:202
-msgid "Expiration time will be {0}"
-msgstr "زمان انقضا {0} خواهد بود"
+#~ msgid "Expiration time will be {0}"
+#~ msgstr "زمان انقضا {0} خواهد بود"
 
 #: src/components/offers/OfferManager.tsx:183
 #: src/components/vcs/VCCard.tsx:166
@@ -2313,8 +2329,8 @@ msgstr "اینجا فایلی وجود ندارد!"
 msgid "Host Name"
 msgstr "نام میزبان"
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:85
-#: src/components/settings/SettingsExpiringOffers.tsx:15
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:89
+#: src/components/settings/SettingsExpiringOffers.tsx:23
 msgid "Hours"
 msgstr "ساعت"
 
@@ -2416,16 +2432,20 @@ msgstr "در حال شروع..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid "Insufficient funds available to accept offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
+msgstr ""
+"مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
 "موجودی قابل مصرف شما برای پوشش مبلغ پیشنهاد کافی است."
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid "Insufficient funds available to create offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
+msgstr ""
+"مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
 "موجودی قابل مصرف شما برای پوشش مبلغ پیشنهاد کافی است."
 
 #: src/components/settings/Settings.tsx:73
@@ -2659,7 +2679,7 @@ msgid "Loading configuration"
 msgstr "بارکذاری پیکربندی"
 
 #: src/components/offers/OfferManager.tsx:236
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:99
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:107
 msgid "Loading expiration time..."
 msgstr "در حال بارگیری زمان انقضا..."
 
@@ -2842,9 +2862,9 @@ msgstr "ثبت کننده:"
 msgid "MintGarden URL"
 msgstr "آدرس سایت MintGarden"
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:86
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:90
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
-#: src/components/settings/SettingsExpiringOffers.tsx:16
+#: src/components/settings/SettingsExpiringOffers.tsx:24
 msgid "Minutes"
 msgstr "دقایق"
 
@@ -3304,7 +3324,7 @@ msgstr "ساختن پیشنهاد"
 
 #: src/components/offers/NFTOfferViewer.tsx:173
 #: src/components/offers2/OfferBuilderValue.tsx:196
-#: src/components/offers2/OfferBuilderViewer.tsx:287
+#: src/components/offers2/OfferBuilderViewer.tsx:283
 msgid "Offer cannot be accepted because you don't possess the requested assets"
 msgstr "پیشنهاد نمیتواند پذیرفته شود زیرا دارایی‌های درخواستی را ندارید"
 
@@ -3319,6 +3339,10 @@ msgstr "اطلاعات پیشنهاد"
 #: src/components/offers2/OfferBuilderViewerDialog.tsx:54
 msgid "Offer Details"
 msgstr "جزئیات پیشنهاد"
+
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:184
+msgid "Offer Expiration"
+msgstr ""
 
 #: src/components/settings/SettingsExpiringOffers.tsx:43
 msgid "Offer Expiration Time"
@@ -3340,7 +3364,7 @@ msgstr "پیشنهاد منقضی شده است"
 #~ msgid "Offer has expired and cannot be accepted."
 #~ msgstr ""
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:103
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:111
 msgid "Offer has expired."
 msgstr "پیشنهاد منقضی شده است."
 
@@ -3428,7 +3452,7 @@ msgstr "پس از شروع این انتقال، نمیتوانید تراکنش
 msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer the NFT?"
 msgstr "پس از شروع این انتقال، نمیتوانید تراکنش را لغو کنید. آیا مطمئن هستید که میخواهید ان اف تی را انتقال دهید؟"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:291
+#: src/components/offers2/OfferBuilderViewer.tsx:287
 msgid "One or more unknown tokens are being offered. Be sure to verify that the asset IDs of the offered tokens match the asset IDs of the tokens you are expecting."
 msgstr "یک یا چند توکن ناشناخته در حال ارائه است. حتماً بررسی کنید که شناسه‌های دارایی توکن‌های ارائه‌شده با شناسه‌های دارایی توکن‌های مورد انتظار شما مطابقت دارند."
 
@@ -3733,7 +3757,7 @@ msgstr "لطفا پوشه نهایی را مشخص کنید"
 msgid "Please specify temporary directory"
 msgstr "لطفا پوشه موقت را مشخص کنید"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:227
+#: src/components/offers2/OfferBuilderViewer.tsx:223
 msgid "Please wait for wallet synchronization"
 msgstr "لطفا برای اتمام سیک کیف پول صبر کنید"
 
@@ -4511,6 +4535,10 @@ msgstr "ارسال تراکنش"
 msgid "Set a default time frame for all outbound XCH transactions."
 msgstr "یک چارچوب زمانی پیش‌فرض برای تمام تراکنش‌های چیا خروجی تنظیم کنید."
 
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:187
+msgid "Set a time after which this offer expires."
+msgstr ""
+
 #: src/constants/WalletConnectCommands.tsx:763
 msgid "Set DID Name"
 msgstr "تنظیم نام شناسه غیر متمرکز"
@@ -5072,22 +5100,30 @@ msgid "This offer has a fee included to help expedite the transaction when the o
 msgstr "این پیشنهاد برای سریعتر شدن ارسال تراکنش کارمزد دارد. اگر احساس میکنید که کارمزد اضافه شده بسیار کم است، میتوانید یک کارمزد بیشتر را مشخص کنید."
 
 #: src/components/offers/OfferHeader.tsx:63
-#: src/components/offers2/OfferBuilderViewer.tsx:279
+#: src/components/offers2/OfferBuilderViewer.tsx:275
 msgid "This offer has completed successfully"
 msgstr "این پیشنهاد با موفقیت به پایان رسید"
 
 #: src/components/offers/OfferHeader.tsx:46
-#: src/components/offers2/OfferBuilderViewer.tsx:266
+#: src/components/offers2/OfferBuilderViewer.tsx:262
 msgid "This offer is no longer valid. To understand why, click <0>here</0> to learn more."
 msgstr "این پیشنهاد دیگر معتبر نخواهد بود. برای درک دلیل، <0>اینجا</0> را کلیک کنید تا بیشتر بدانید."
 
-#: src/components/offers2/OfferBuilderViewer.tsx:283
+#: src/components/offers2/OfferBuilderViewer.tsx:279
 msgid "This offer was cancelled"
 msgstr "این پیشنهاد لغو شد"
 
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:44
+msgid "This offer will expire in {displayDays} {displayDaysText}{hoursComma} {displayHours} {displayHoursText}{minutesComma} {displayMinutes} {displayMinutesText}"
+msgstr ""
+
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:210
-msgid "This offer will never expire."
-msgstr "این پیشنهاد هرگز منقضی نمیشود."
+#~ msgid "This offer will never expire."
+#~ msgstr "این پیشنهاد هرگز منقضی نمیشود."
+
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:45
+msgid "This offer will not expire"
+msgstr ""
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:268
 msgid "This plot NFT is assigned to a different key. You can still create plots for this plot NFT, but you can not make changes."
@@ -5838,7 +5874,7 @@ msgid "You can still create plots for this plot NFT, but you can not make change
 msgstr "میتوانید برای این پلات ان اف تی همچنان پلات بسازید، اما تا زمانیکه سینک کامل نشود، نمیتوانید تغییراتی ایجاد کنید."
 
 #: src/components/offers/OfferHeader.tsx:38
-#: src/components/offers2/OfferBuilderViewer.tsx:298
+#: src/components/offers2/OfferBuilderViewer.tsx:294
 msgid "You created this offer"
 msgstr "شما این پیشنهاد را ایجاد کردید"
 
@@ -5953,4 +5989,3 @@ msgstr "برای ایجاد حساب کاربری، موجودی قابل خرج
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "برای انجام مطالبه خودکار، باید کیف پول شما در حال اجرا باشد."
-

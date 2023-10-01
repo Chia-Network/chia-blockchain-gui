@@ -499,7 +499,8 @@ msgstr ""
 #: src/components/cat/WalletCATSend.tsx:103
 #: src/components/WalletSend.tsx:143
 msgid "Please enter a valid numeric amount"
-msgstr "35 / 5000\n"
+msgstr ""
+"35 / 5000\n"
 "Моля, въведете валидна числова сума"
 
 #: src/components/cat/WalletCATSend.tsx:108
@@ -786,4 +787,3 @@ msgstr ""
 #: src/components/WalletImport.tsx:73
 msgid "Your pasted list does not include {mnemonicWordCount} valid mnemonic words."
 msgstr ""
-

@@ -38,7 +38,7 @@ msgstr "{minPassphraseLength, plural,one {طول کارکتر رمز ورود ب
 msgid "A new version of Chia is available!"
 msgstr "نسخه جدید چیا در دسترس است!"
 
-#: src/screens/SelectKey/EmojiAndColorPicker.tsx:268
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:270
 msgid "Add Icon"
 msgstr "اصافه نمودن نماد"
 
@@ -144,7 +144,8 @@ msgstr "حذف کلید {fingerprint}"
 
 #: src/screens/SelectKey/SelectKey.tsx:133
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
-msgstr "حذف همه کلیدها آنها را برای همیشه از روی رایانه شما حذف میکند، مطمئن شوید که نسخه پشتیبان دارید.\n"
+msgstr ""
+"حذف همه کلیدها آنها را برای همیشه از روی رایانه شما حذف میکند، مطمئن شوید که نسخه پشتیبان دارید.\n"
 " آیا مطمئنید که میخواهید ادامه دهید؟"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:106
@@ -360,7 +361,7 @@ msgstr "کلید عمومی"
 msgid "Public key:"
 msgstr "کلید عمومی:"
 
-#: src/screens/SelectKey/EmojiAndColorPicker.tsx:287
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:289
 msgid "Random"
 msgstr "تصادفی"
 
@@ -376,7 +377,7 @@ msgstr "یادداشت های انتشار"
 msgid "Reload Application"
 msgstr "بارگذاری مجدد برنامه"
 
-#: src/screens/SelectKey/EmojiAndColorPicker.tsx:268
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:270
 msgid "Remove Icon"
 msgstr "حذف نماد"
 
@@ -397,7 +398,7 @@ msgstr "نمایان"
 msgid "Save"
 msgstr "ذخیره"
 
-#: src/screens/SelectKey/EmojiAndColorPicker.tsx:180
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:182
 #: src/screens/SelectKey/Search.tsx:34
 msgid "Search"
 msgstr "جستجو"
@@ -569,4 +570,3 @@ msgstr "نسخه فعلی شما:"
 #: src/hooks/useKeyringMigrationPrompt.tsx:21
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr "کلیدهای شما به یک کلید جدید منتقل نشده. تا زمانی که انتقال کامل نشود، نمیتوانید کلیدهای جدید ایجاد کنید یا کلیدهای موجود را حذف کنید. آیا میخواهید کلیدهای خود را اکنون انتقال دهید؟"
-

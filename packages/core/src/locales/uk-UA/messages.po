@@ -38,7 +38,7 @@ msgstr "{minPassphraseLength, plural, one {Пароль повинен міст�
 msgid "A new version of Chia is available!"
 msgstr ""
 
-#: src/screens/SelectKey/EmojiAndColorPicker.tsx:268
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:270
 msgid "Add Icon"
 msgstr ""
 
@@ -359,7 +359,7 @@ msgstr "Публічний ключ"
 msgid "Public key:"
 msgstr "Публічний ключ:"
 
-#: src/screens/SelectKey/EmojiAndColorPicker.tsx:287
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:289
 msgid "Random"
 msgstr ""
 
@@ -375,7 +375,7 @@ msgstr ""
 msgid "Reload Application"
 msgstr "Перезавантажити додаток"
 
-#: src/screens/SelectKey/EmojiAndColorPicker.tsx:268
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:270
 msgid "Remove Icon"
 msgstr ""
 
@@ -396,7 +396,7 @@ msgstr "Показати"
 msgid "Save"
 msgstr "Зберегти"
 
-#: src/screens/SelectKey/EmojiAndColorPicker.tsx:180
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:182
 #: src/screens/SelectKey/Search.tsx:34
 msgid "Search"
 msgstr ""
@@ -568,4 +568,3 @@ msgstr ""
 #: src/hooks/useKeyringMigrationPrompt.tsx:21
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr "Ваші ключі не були перенесені до нової системи ключів. Ви не зможете створювати нові ключі або видаляти існуючі ключі, доки не завершиться міграція. Бажаєте перенести ваші ключі зараз?"
-

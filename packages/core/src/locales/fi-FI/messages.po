@@ -38,7 +38,7 @@ msgstr "{minPassphraseLength, plural, one {Salasanojen on oltava vähintään # 
 msgid "A new version of Chia is available!"
 msgstr "Uusi versio Chiasta on saatavilla!"
 
-#: src/screens/SelectKey/EmojiAndColorPicker.tsx:268
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:270
 msgid "Add Icon"
 msgstr "Lisää Ikoni"
 
@@ -359,7 +359,7 @@ msgstr "Julkinen avain"
 msgid "Public key:"
 msgstr "Julkinen avain:"
 
-#: src/screens/SelectKey/EmojiAndColorPicker.tsx:287
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:289
 msgid "Random"
 msgstr "Satunnainen"
 
@@ -375,7 +375,7 @@ msgstr "Version Muutokset"
 msgid "Reload Application"
 msgstr "Uudelleenkäynnistä Sovellus"
 
-#: src/screens/SelectKey/EmojiAndColorPicker.tsx:268
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:270
 msgid "Remove Icon"
 msgstr "Poista Kuvake"
 
@@ -396,7 +396,7 @@ msgstr "Näytä"
 msgid "Save"
 msgstr "Tallenna"
 
-#: src/screens/SelectKey/EmojiAndColorPicker.tsx:180
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:182
 #: src/screens/SelectKey/Search.tsx:34
 msgid "Search"
 msgstr "Etsi"
@@ -568,4 +568,3 @@ msgstr "Tämänhetkinen Versio:"
 #: src/hooks/useKeyringMigrationPrompt.tsx:21
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr "Avaimiasi ei ole siirretty uuteen avainrenkaaseen. Et voi luoda uusia avaimia tai poistaa olemassa olevia avaimia ennen kuin siirto on tehty. Haluatko siirtää avaimesi nyt?"
-

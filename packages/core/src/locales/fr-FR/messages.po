@@ -38,7 +38,7 @@ msgstr "{minPassphraseLength, plural, one {Les phrases secrètes doivent comport
 msgid "A new version of Chia is available!"
 msgstr "Une nouvelle version de Chia est disponible !"
 
-#: src/screens/SelectKey/EmojiAndColorPicker.tsx:268
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:270
 msgid "Add Icon"
 msgstr "Ajouter une icône"
 
@@ -359,7 +359,7 @@ msgstr "Clé publique"
 msgid "Public key:"
 msgstr "Clé publique :"
 
-#: src/screens/SelectKey/EmojiAndColorPicker.tsx:287
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:289
 msgid "Random"
 msgstr "Aléatoire"
 
@@ -375,7 +375,7 @@ msgstr "Notes de version"
 msgid "Reload Application"
 msgstr "Relancer l'application"
 
-#: src/screens/SelectKey/EmojiAndColorPicker.tsx:268
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:270
 msgid "Remove Icon"
 msgstr "Supprimer l'icône"
 
@@ -396,7 +396,7 @@ msgstr "Révéler"
 msgid "Save"
 msgstr "Définir"
 
-#: src/screens/SelectKey/EmojiAndColorPicker.tsx:180
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:182
 #: src/screens/SelectKey/Search.tsx:34
 msgid "Search"
 msgstr "Recherche"
@@ -568,4 +568,3 @@ msgstr "Votre version actuelle :"
 #: src/hooks/useKeyringMigrationPrompt.tsx:21
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr "Vos clés n'ont pas été migrées vers un nouveau trousseau de clés. Vous ne pourrez pas créer de nouvelles clés ou supprimer les clés existantes tant que la migration n'est pas terminée. Voulez-vous migrer vos clés maintenant ?"
-

@@ -171,8 +171,8 @@ msgid "Check for updates..."
 msgstr "检查更新..."
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:160
-msgid "- Set a time after which the offer expires.<0/>- An expiring offer can only be claimed prior to the expiration time."
-msgstr "- 设置一个报价过期的时间。<0/>- 定期报价只能在到期时间之前进行交易。"
+#~ msgid "- Set a time after which the offer expires.<0/>- An expiring offer can only be claimed prior to the expiration time."
+#~ msgstr "- 设置一个报价过期的时间。<0/>- 定期报价只能在到期时间之前进行交易。"
 
 #: src/components/offers2/OfferBuilderImport.tsx:167
 msgid "(⌘V) a blob"
@@ -239,6 +239,18 @@ msgstr "{0} 积分 {1} - {2} 小时前"
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:187
 #~ msgid "{count} transactions have been successfully submitted to the blockchain."
 #~ msgstr ""
+
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:36
+msgid "{displayDays, plural, one {day} other {days}}"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:38
+msgid "{displayHours, plural, one {hour} other {hours}}"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:40
+msgid "{displayMinutes, plural, one {minute} other {minutes}}"
+msgstr ""
 
 #: src/components/notification/NotificationAnnouncement.tsx:52
 msgid "{from} <0>sending the message</0>"
@@ -332,7 +344,7 @@ msgstr "建议值 {0}"
 
 #: src/components/offers/NFTOfferViewer.tsx:642
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:21
-#: src/components/offers2/OfferBuilderViewer.tsx:256
+#: src/components/offers2/OfferBuilderViewer.tsx:252
 msgid "Accept Offer"
 msgstr "接受报价"
 
@@ -399,8 +411,8 @@ msgid "Add Contact"
 msgstr "添加联系人"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:148
-msgid "Add option to set expiration time {0}"
-msgstr "添加到期时间选项 {0}"
+#~ msgid "Add option to set expiration time {0}"
+#~ msgstr "添加到期时间选项 {0}"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:114
 msgid "Add plot directory"
@@ -852,6 +864,10 @@ msgstr "挑战哈希"
 msgid "Change"
 msgstr "变更"
 
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:190
+msgid "Change default timing."
+msgstr ""
+
 #: src/components/settings/ChangePassphrasePrompt.tsx:290
 #: src/components/settings/SettingsPanel.tsx:120
 msgid "Change Passphrase"
@@ -1160,7 +1176,7 @@ msgstr "数量"
 msgid "Counter"
 msgstr "倒计时"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:244
+#: src/components/offers2/OfferBuilderViewer.tsx:240
 msgid "Counter Offer"
 msgstr "计数报价"
 
@@ -1329,8 +1345,8 @@ msgstr "数据层服务"
 msgid "Date"
 msgstr "日期"
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:84
-#: src/components/settings/SettingsExpiringOffers.tsx:14
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:88
+#: src/components/settings/SettingsExpiringOffers.tsx:22
 msgid "Days"
 msgstr "天"
 
@@ -1463,7 +1479,7 @@ msgstr "DID Id"
 msgid "Difficulty"
 msgstr "难度"
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:195
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:225
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:91
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:77
 #: src/components/settings/SettingsExpiringOffers.tsx:88
@@ -1834,8 +1850,8 @@ msgid "Expiration"
 msgstr "过期时间"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:202
-msgid "Expiration time will be {0}"
-msgstr "将在 {0} 后过期"
+#~ msgid "Expiration time will be {0}"
+#~ msgstr "将在 {0} 后过期"
 
 #: src/components/offers/OfferManager.tsx:183
 #: src/components/vcs/VCCard.tsx:166
@@ -2313,8 +2329,8 @@ msgstr "今后，这里没有文件！"
 msgid "Host Name"
 msgstr "主机名"
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:85
-#: src/components/settings/SettingsExpiringOffers.tsx:15
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:89
+#: src/components/settings/SettingsExpiringOffers.tsx:23
 msgid "Hours"
 msgstr "小时"
 
@@ -2416,16 +2432,20 @@ msgstr "正在初始化..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid "Insufficient funds available to accept offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "可用资金不足，无法接受报价。请确保您的\n"
+msgstr ""
+"可用资金不足，无法接受报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid "Insufficient funds available to create offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "可用的资金不足，无法创建报价。请确保您的\n"
+msgstr ""
+"可用的资金不足，无法创建报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
 #: src/components/settings/Settings.tsx:73
@@ -2659,7 +2679,7 @@ msgid "Loading configuration"
 msgstr "正在加载配置"
 
 #: src/components/offers/OfferManager.tsx:236
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:99
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:107
 msgid "Loading expiration time..."
 msgstr "正在加载到期时间..."
 
@@ -2842,9 +2862,9 @@ msgstr "铸造者:"
 msgid "MintGarden URL"
 msgstr "MintGarden 网址"
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:86
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:90
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
-#: src/components/settings/SettingsExpiringOffers.tsx:16
+#: src/components/settings/SettingsExpiringOffers.tsx:24
 msgid "Minutes"
 msgstr "分钟"
 
@@ -3304,7 +3324,7 @@ msgstr "报价生成器"
 
 #: src/components/offers/NFTOfferViewer.tsx:173
 #: src/components/offers2/OfferBuilderValue.tsx:196
-#: src/components/offers2/OfferBuilderViewer.tsx:287
+#: src/components/offers2/OfferBuilderViewer.tsx:283
 msgid "Offer cannot be accepted because you don't possess the requested assets"
 msgstr "因为你没有被请求的资产，所以不能接受报价"
 
@@ -3319,6 +3339,10 @@ msgstr "报价资料"
 #: src/components/offers2/OfferBuilderViewerDialog.tsx:54
 msgid "Offer Details"
 msgstr "报价详情"
+
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:184
+msgid "Offer Expiration"
+msgstr ""
 
 #: src/components/settings/SettingsExpiringOffers.tsx:43
 msgid "Offer Expiration Time"
@@ -3340,7 +3364,7 @@ msgstr "报价已过期"
 #~ msgid "Offer has expired and cannot be accepted."
 #~ msgstr ""
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:103
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:111
 msgid "Offer has expired."
 msgstr "报价已过期。"
 
@@ -3428,7 +3452,7 @@ msgstr "一旦启动此转移，将无法取消交易。确定要转移 {0} NFT�
 msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer the NFT?"
 msgstr "一旦您启动此传输，您将无法取消交易。您确定要传输此NFT吗？"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:291
+#: src/components/offers2/OfferBuilderViewer.tsx:287
 msgid "One or more unknown tokens are being offered. Be sure to verify that the asset IDs of the offered tokens match the asset IDs of the tokens you are expecting."
 msgstr "提供了一个或多个未知的代币。请确保验证提供的代币的ID与您预期的代币的ID相匹配。"
 
@@ -3733,7 +3757,7 @@ msgstr "请指定最终输出文件夹"
 msgid "Please specify temporary directory"
 msgstr "请指定临时目录"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:227
+#: src/components/offers2/OfferBuilderViewer.tsx:223
 msgid "Please wait for wallet synchronization"
 msgstr "请等待钱包同步"
 
@@ -4511,6 +4535,10 @@ msgstr "发起交易"
 msgid "Set a default time frame for all outbound XCH transactions."
 msgstr "为所有转出XCH的交易设置默认时间范围。"
 
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:187
+msgid "Set a time after which this offer expires."
+msgstr ""
+
 #: src/constants/WalletConnectCommands.tsx:763
 msgid "Set DID Name"
 msgstr "设置DID名称"
@@ -5072,22 +5100,30 @@ msgid "This offer has a fee included to help expedite the transaction when the o
 msgstr "该报价包含手续费，用以在接受报价时加快交易。如果认为包含的手续费太少，可以添加额外的手续费。"
 
 #: src/components/offers/OfferHeader.tsx:63
-#: src/components/offers2/OfferBuilderViewer.tsx:279
+#: src/components/offers2/OfferBuilderViewer.tsx:275
 msgid "This offer has completed successfully"
 msgstr "此报价已成功完成"
 
 #: src/components/offers/OfferHeader.tsx:46
-#: src/components/offers2/OfferBuilderViewer.tsx:266
+#: src/components/offers2/OfferBuilderViewer.tsx:262
 msgid "This offer is no longer valid. To understand why, click <0>here</0> to learn more."
 msgstr "此报价不再有效。要了解原因，请点击 <0>这里</0> 了解更多信息。"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:283
+#: src/components/offers2/OfferBuilderViewer.tsx:279
 msgid "This offer was cancelled"
 msgstr "此报价已取消"
 
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:44
+msgid "This offer will expire in {displayDays} {displayDaysText}{hoursComma} {displayHours} {displayHoursText}{minutesComma} {displayMinutes} {displayMinutesText}"
+msgstr ""
+
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:210
-msgid "This offer will never expire."
-msgstr "此报价永远不会过期。"
+#~ msgid "This offer will never expire."
+#~ msgstr "此报价永远不会过期。"
+
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:45
+msgid "This offer will not expire"
+msgstr ""
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:268
 msgid "This plot NFT is assigned to a different key. You can still create plots for this plot NFT, but you can not make changes."
@@ -5838,7 +5874,7 @@ msgid "You can still create plots for this plot NFT, but you can not make change
 msgstr "你现在可以为这个联合耕种农田生成新图块，但是在同步完成前，不能进行任何更改。"
 
 #: src/components/offers/OfferHeader.tsx:38
-#: src/components/offers2/OfferBuilderViewer.tsx:298
+#: src/components/offers2/OfferBuilderViewer.tsx:294
 msgid "You created this offer"
 msgstr "您创建了此报价"
 
@@ -5953,4 +5989,3 @@ msgstr "可用余额必须大于1 mojo才能创建个人资料"
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "需确保钱包正在运行才能完成自动确认。"
-

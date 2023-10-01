@@ -38,7 +38,7 @@ msgstr "{minPassphraseLength, plural, one {Lösenfraser måste vara minst # teck
 msgid "A new version of Chia is available!"
 msgstr "En ny version av Chia finns tillgänglig!"
 
-#: src/screens/SelectKey/EmojiAndColorPicker.tsx:268
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:270
 msgid "Add Icon"
 msgstr "Lägg till ikon"
 
@@ -359,7 +359,7 @@ msgstr "Publik nyckel"
 msgid "Public key:"
 msgstr "Publik nyckel:"
 
-#: src/screens/SelectKey/EmojiAndColorPicker.tsx:287
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:289
 msgid "Random"
 msgstr "Slumpmässig"
 
@@ -375,7 +375,7 @@ msgstr "Viktig information"
 msgid "Reload Application"
 msgstr "Läs in programmet på nytt"
 
-#: src/screens/SelectKey/EmojiAndColorPicker.tsx:268
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:270
 msgid "Remove Icon"
 msgstr "Ta bort ikon"
 
@@ -396,7 +396,7 @@ msgstr ""
 msgid "Save"
 msgstr "Spara"
 
-#: src/screens/SelectKey/EmojiAndColorPicker.tsx:180
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:182
 #: src/screens/SelectKey/Search.tsx:34
 msgid "Search"
 msgstr "Sök"
@@ -568,4 +568,3 @@ msgstr "Din nuvarande version:"
 #: src/hooks/useKeyringMigrationPrompt.tsx:21
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr "Dina nycklar har inte migrerats till en ny nyckelring. Du kommer inte att kunna skapa nya nycklar eller ta bort befintliga nycklar tills migreringen är klar. Vill du migrera nycklarna nu?"
-

@@ -171,8 +171,8 @@ msgid "Check for updates..."
 msgstr ""
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:160
-msgid "- Set a time after which the offer expires.<0/>- An expiring offer can only be claimed prior to the expiration time."
-msgstr ""
+#~ msgid "- Set a time after which the offer expires.<0/>- An expiring offer can only be claimed prior to the expiration time."
+#~ msgstr ""
 
 #: src/components/offers2/OfferBuilderImport.tsx:167
 msgid "(⌘V) a blob"
@@ -239,6 +239,18 @@ msgstr ""
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:187
 #~ msgid "{count} transactions have been successfully submitted to the blockchain."
 #~ msgstr ""
+
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:36
+msgid "{displayDays, plural, one {day} other {days}}"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:38
+msgid "{displayHours, plural, one {hour} other {hours}}"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:40
+msgid "{displayMinutes, plural, one {minute} other {minutes}}"
+msgstr ""
 
 #: src/components/notification/NotificationAnnouncement.tsx:52
 msgid "{from} <0>sending the message</0>"
@@ -332,7 +344,7 @@ msgstr ""
 
 #: src/components/offers/NFTOfferViewer.tsx:642
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:21
-#: src/components/offers2/OfferBuilderViewer.tsx:256
+#: src/components/offers2/OfferBuilderViewer.tsx:252
 msgid "Accept Offer"
 msgstr ""
 
@@ -399,8 +411,8 @@ msgid "Add Contact"
 msgstr ""
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:148
-msgid "Add option to set expiration time {0}"
-msgstr ""
+#~ msgid "Add option to set expiration time {0}"
+#~ msgstr ""
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:114
 msgid "Add plot directory"
@@ -852,6 +864,10 @@ msgstr "Хэш выпрабавання"
 msgid "Change"
 msgstr ""
 
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:190
+msgid "Change default timing."
+msgstr ""
+
 #: src/components/settings/ChangePassphrasePrompt.tsx:290
 #: src/components/settings/SettingsPanel.tsx:120
 msgid "Change Passphrase"
@@ -1160,7 +1176,7 @@ msgstr ""
 msgid "Counter"
 msgstr ""
 
-#: src/components/offers2/OfferBuilderViewer.tsx:244
+#: src/components/offers2/OfferBuilderViewer.tsx:240
 msgid "Counter Offer"
 msgstr ""
 
@@ -1329,8 +1345,8 @@ msgstr ""
 msgid "Date"
 msgstr "Дата"
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:84
-#: src/components/settings/SettingsExpiringOffers.tsx:14
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:88
+#: src/components/settings/SettingsExpiringOffers.tsx:22
 msgid "Days"
 msgstr ""
 
@@ -1463,7 +1479,7 @@ msgstr ""
 msgid "Difficulty"
 msgstr "Складанасць"
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:195
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:225
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:91
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:77
 #: src/components/settings/SettingsExpiringOffers.tsx:88
@@ -1834,8 +1850,8 @@ msgid "Expiration"
 msgstr ""
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:202
-msgid "Expiration time will be {0}"
-msgstr ""
+#~ msgid "Expiration time will be {0}"
+#~ msgstr ""
 
 #: src/components/offers/OfferManager.tsx:183
 #: src/components/vcs/VCCard.tsx:166
@@ -2313,8 +2329,8 @@ msgstr ""
 msgid "Host Name"
 msgstr "Імя хоста"
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:85
-#: src/components/settings/SettingsExpiringOffers.tsx:15
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:89
+#: src/components/settings/SettingsExpiringOffers.tsx:23
 msgid "Hours"
 msgstr ""
 
@@ -2416,13 +2432,15 @@ msgstr ""
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid "Insufficient funds available to accept offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid "Insufficient funds available to create offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
 
@@ -2657,7 +2675,7 @@ msgid "Loading configuration"
 msgstr ""
 
 #: src/components/offers/OfferManager.tsx:236
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:99
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:107
 msgid "Loading expiration time..."
 msgstr ""
 
@@ -2840,9 +2858,9 @@ msgstr ""
 msgid "MintGarden URL"
 msgstr ""
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:86
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:90
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
-#: src/components/settings/SettingsExpiringOffers.tsx:16
+#: src/components/settings/SettingsExpiringOffers.tsx:24
 msgid "Minutes"
 msgstr "хв"
 
@@ -3302,7 +3320,7 @@ msgstr ""
 
 #: src/components/offers/NFTOfferViewer.tsx:173
 #: src/components/offers2/OfferBuilderValue.tsx:196
-#: src/components/offers2/OfferBuilderViewer.tsx:287
+#: src/components/offers2/OfferBuilderViewer.tsx:283
 msgid "Offer cannot be accepted because you don't possess the requested assets"
 msgstr ""
 
@@ -3316,6 +3334,10 @@ msgstr ""
 
 #: src/components/offers2/OfferBuilderViewerDialog.tsx:54
 msgid "Offer Details"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:184
+msgid "Offer Expiration"
 msgstr ""
 
 #: src/components/settings/SettingsExpiringOffers.tsx:43
@@ -3338,7 +3360,7 @@ msgstr ""
 #~ msgid "Offer has expired and cannot be accepted."
 #~ msgstr ""
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:103
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:111
 msgid "Offer has expired."
 msgstr ""
 
@@ -3426,7 +3448,7 @@ msgstr ""
 msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer the NFT?"
 msgstr ""
 
-#: src/components/offers2/OfferBuilderViewer.tsx:291
+#: src/components/offers2/OfferBuilderViewer.tsx:287
 msgid "One or more unknown tokens are being offered. Be sure to verify that the asset IDs of the offered tokens match the asset IDs of the tokens you are expecting."
 msgstr ""
 
@@ -3731,7 +3753,7 @@ msgstr "Укажыце канцавы каталог"
 msgid "Please specify temporary directory"
 msgstr "Укажыце часовы каталог"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:227
+#: src/components/offers2/OfferBuilderViewer.tsx:223
 msgid "Please wait for wallet synchronization"
 msgstr ""
 
@@ -4509,6 +4531,10 @@ msgstr ""
 msgid "Set a default time frame for all outbound XCH transactions."
 msgstr ""
 
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:187
+msgid "Set a time after which this offer expires."
+msgstr ""
+
 #: src/constants/WalletConnectCommands.tsx:763
 msgid "Set DID Name"
 msgstr ""
@@ -5070,21 +5096,29 @@ msgid "This offer has a fee included to help expedite the transaction when the o
 msgstr ""
 
 #: src/components/offers/OfferHeader.tsx:63
-#: src/components/offers2/OfferBuilderViewer.tsx:279
+#: src/components/offers2/OfferBuilderViewer.tsx:275
 msgid "This offer has completed successfully"
 msgstr ""
 
 #: src/components/offers/OfferHeader.tsx:46
-#: src/components/offers2/OfferBuilderViewer.tsx:266
+#: src/components/offers2/OfferBuilderViewer.tsx:262
 msgid "This offer is no longer valid. To understand why, click <0>here</0> to learn more."
 msgstr ""
 
-#: src/components/offers2/OfferBuilderViewer.tsx:283
+#: src/components/offers2/OfferBuilderViewer.tsx:279
 msgid "This offer was cancelled"
 msgstr ""
 
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:44
+msgid "This offer will expire in {displayDays} {displayDaysText}{hoursComma} {displayHours} {displayHoursText}{minutesComma} {displayMinutes} {displayMinutesText}"
+msgstr ""
+
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:210
-msgid "This offer will never expire."
+#~ msgid "This offer will never expire."
+#~ msgstr ""
+
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:45
+msgid "This offer will not expire"
 msgstr ""
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:268
@@ -5836,7 +5870,7 @@ msgid "You can still create plots for this plot NFT, but you can not make change
 msgstr ""
 
 #: src/components/offers/OfferHeader.tsx:38
-#: src/components/offers2/OfferBuilderViewer.tsx:298
+#: src/components/offers2/OfferBuilderViewer.tsx:294
 msgid "You created this offer"
 msgstr ""
 
@@ -5951,4 +5985,3 @@ msgstr ""
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr ""
-
