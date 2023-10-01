@@ -568,3 +568,4 @@ msgstr ""
 #: src/hooks/useKeyringMigrationPrompt.tsx:21
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr "あなたの鍵は新しいキーリングに移行されていません。移行が完了するまで、鍵の新規作成、及び既存の鍵の削除が行えません。今すぐ鍵を移行しますか？"
+

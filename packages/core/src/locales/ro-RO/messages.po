@@ -8,7 +8,7 @@ msgstr ""
 "Language: ro_RO\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-09-14 22:49\n"
+"PO-Revision-Date: 2023-09-24 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100>0 && n%100<20)) ? 1 : 2);\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:62
 msgid "(>5 min)"
-msgstr ""
+msgstr "(>5 minute)"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:62
 msgid "(~{selectedTime} min)"
@@ -36,15 +36,15 @@ msgstr ""
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:95
 msgid "A new version of Chia is available!"
-msgstr ""
+msgstr "O nouă versiune Chia este disponibilă!"
 
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:268
 msgid "Add Icon"
-msgstr ""
+msgstr "Adăugare iconiță"
 
 #: src/screens/SelectKey/SelectKey.tsx:174
 msgid "Add wallet"
-msgstr ""
+msgstr "Adăugare portofel"
 
 #: src/components/Amount/Amount.tsx:37
 msgid "Amount"
@@ -72,25 +72,25 @@ msgstr "Anulare"
 
 #: src/components/Settings/SettingsApp.tsx:140
 msgid "Check for updates"
-msgstr ""
+msgstr "Verificare actualizări"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:93
 msgid "Checking for updates..."
-msgstr ""
+msgstr "Se caută actualizări..."
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:82
 msgid "Chia {latestVersion} is currently the latest version available."
-msgstr ""
+msgstr "Chia {latestVersion} este cea mai nouă versiune disponibilă."
 
 #: src/components/Settings/SettingsApp.tsx:126
 msgid "Chia Application Version:"
-msgstr ""
+msgstr "Versiunea aplicaţiei Chia:"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:110
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:47
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:70
 msgid "Close"
-msgstr ""
+msgstr "Închide"
 
 #: src/components/FormatConnectionStatus/FormatConnectionStatus.tsx:32
 msgid "Connected"
@@ -122,7 +122,7 @@ msgstr ""
 
 #: src/components/Settings/SettingsApp.tsx:111
 msgid "Dark"
-msgstr ""
+msgstr "Întunecat"
 
 #: src/screens/SelectKey/SelectKey.tsx:128
 #: src/screens/SelectKey/SelectKeyItem.tsx:114
@@ -249,11 +249,11 @@ msgstr ""
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:57
 msgid "Latest Version:"
-msgstr ""
+msgstr "Ultima versiune:"
 
 #: src/components/Settings/SettingsApp.tsx:103
 msgid "Light"
-msgstr ""
+msgstr "Luminos"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:223
 msgid "Likely in {0} seconds"
@@ -328,7 +328,7 @@ msgstr "Neconectat"
 #: src/components/AlertDialog/AlertDialog.tsx:23
 #: src/components/ConfirmDialog/ConfirmDialog.tsx:30
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: src/screens/SelectKey/SelectKey.tsx:258
 msgid "Open a world of possibilities."
@@ -394,12 +394,12 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKeyRenameForm.tsx:109
 msgid "Save"
-msgstr ""
+msgstr "Salvează"
 
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:180
 #: src/screens/SelectKey/Search.tsx:34
 msgid "Search"
-msgstr ""
+msgstr "Căutare"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:113
 msgid "Secret Key"
@@ -568,3 +568,4 @@ msgstr ""
 #: src/hooks/useKeyringMigrationPrompt.tsx:21
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr ""
+

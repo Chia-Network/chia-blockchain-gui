@@ -8,7 +8,7 @@ msgstr ""
 "Language: srp\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-09-14 22:49\n"
+"PO-Revision-Date: 2023-10-01 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Serbian\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
@@ -20,11 +20,11 @@ msgstr ""
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:62
 msgid "(>5 min)"
-msgstr ""
+msgstr "(>5 min)"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:62
 msgid "(~{selectedTime} min)"
-msgstr ""
+msgstr "(~{selectedTime} min)"
 
 #: src/components/Amount/Amount.tsx:87
 msgid "{0, plural, one {mojo} other {mojos}}"
@@ -36,15 +36,15 @@ msgstr ""
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:95
 msgid "A new version of Chia is available!"
-msgstr ""
+msgstr "Nova verzija Chia je dostupna!"
 
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:268
 msgid "Add Icon"
-msgstr ""
+msgstr "Dodaj ikonu"
 
 #: src/screens/SelectKey/SelectKey.tsx:174
 msgid "Add wallet"
-msgstr ""
+msgstr "Dodaj novčanik"
 
 #: src/components/Amount/Amount.tsx:37
 msgid "Amount"
@@ -52,7 +52,7 @@ msgstr "Количина"
 
 #: src/components/Settings/SettingsApp.tsx:94
 msgid "Appearance"
-msgstr ""
+msgstr "Izgled"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:158
 msgid "Are you sure you want to continue? Type in the fingerprint of this wallet key to confirm deletion."
@@ -72,7 +72,7 @@ msgstr "Откажи"
 
 #: src/components/Settings/SettingsApp.tsx:140
 msgid "Check for updates"
-msgstr ""
+msgstr "Proveri da li postoji ažuriranje"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:93
 msgid "Checking for updates..."
@@ -90,7 +90,7 @@ msgstr ""
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:47
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:70
 msgid "Close"
-msgstr ""
+msgstr "Zatvori"
 
 #: src/components/FormatConnectionStatus/FormatConnectionStatus.tsx:32
 msgid "Connected"
@@ -118,11 +118,11 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKey.tsx:177
 msgid "Create New"
-msgstr ""
+msgstr "Napravi Nov"
 
 #: src/components/Settings/SettingsApp.tsx:111
 msgid "Dark"
-msgstr ""
+msgstr "Tamni"
 
 #: src/screens/SelectKey/SelectKey.tsx:128
 #: src/screens/SelectKey/SelectKeyItem.tsx:114
@@ -136,11 +136,11 @@ msgstr "Обриши све кључеве"
 
 #: src/screens/SelectKey/SelectKey.tsx:202
 msgid "Delete All Keys"
-msgstr ""
+msgstr "Obriši sve ključeve"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:110
 msgid "Delete key {fingerprint}"
-msgstr ""
+msgstr "Obriši ključ {fingerprint}"
 
 #: src/screens/SelectKey/SelectKey.tsx:133
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
@@ -148,11 +148,11 @@ msgstr "Брисање свих кључева уклониће их трајн�
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:106
 msgid "Details"
-msgstr ""
+msgstr "Detalji"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:60
 msgid "Disable"
-msgstr ""
+msgstr "Onemogući"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:59
 msgid "Disable Passphrase Protection"
@@ -174,7 +174,7 @@ msgstr "Грешка"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:72
 msgid "Error:"
-msgstr ""
+msgstr "Greška:"
 
 #: src/screens/SelectKey/SelectKeyRenameForm.tsx:91
 msgid "Esc"
@@ -182,7 +182,7 @@ msgstr ""
 
 #: src/components/LayoutMain/LayoutFooter.tsx:49
 msgid "FAQ"
-msgstr ""
+msgstr "ČPP"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:90
 msgid "Farmer Public Key"
@@ -245,11 +245,11 @@ msgstr ""
 
 #: src/components/Settings/SettingsApp.tsx:118
 msgid "Language"
-msgstr ""
+msgstr "Jezik"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:57
 msgid "Latest Version:"
-msgstr ""
+msgstr "Poslednja verzija:"
 
 #: src/components/Settings/SettingsApp.tsx:103
 msgid "Light"
@@ -298,7 +298,7 @@ msgstr ""
 
 #: src/components/Settings/SettingsApp.tsx:70
 msgid "Mode"
-msgstr ""
+msgstr "Mod"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:107
 msgid "NEVER SHARE THESE WITH ANYONE"
