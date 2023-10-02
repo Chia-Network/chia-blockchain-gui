@@ -18,11 +18,11 @@ msgstr ""
 "X-Crowdin-File: /main/packages/core/src/locales/en-US/messages.po\n"
 "X-Crowdin-File-ID: 15\n"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:62
+#: src/components/EstimatedFee/EstimatedFee.tsx:64
 msgid "(>5 min)"
 msgstr "(>5分钟)"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:62
+#: src/components/EstimatedFee/EstimatedFee.tsx:64
 msgid "(~{selectedTime} min)"
 msgstr "(~{selectedTime} 分钟)"
 
@@ -196,8 +196,8 @@ msgstr "农民公钥："
 msgid "Farming"
 msgstr "正在耕种"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:334
-#: src/components/EstimatedFee/EstimatedFee.tsx:368
+#: src/components/EstimatedFee/EstimatedFee.tsx:338
+#: src/components/EstimatedFee/EstimatedFee.tsx:372
 #: src/components/Fee/Fee.tsx:44
 msgid "Fee"
 msgstr "手续费"
@@ -255,15 +255,15 @@ msgstr "最新版本："
 msgid "Light"
 msgstr "浅色"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:223
+#: src/components/EstimatedFee/EstimatedFee.tsx:227
 msgid "Likely in {0} seconds"
 msgstr "可能在 {0} 秒内"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:220
+#: src/components/EstimatedFee/EstimatedFee.tsx:224
 msgid "Likely in {minutes} minutes"
 msgstr "可能在 {minutes} 分钟内"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:222
+#: src/components/EstimatedFee/EstimatedFee.tsx:226
 msgid "Likely in >5 minutes"
 msgstr "可能大于5分钟"
 
