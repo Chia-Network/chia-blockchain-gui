@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-09-14 22:49\n"
+"PO-Revision-Date: 2023-10-01 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -171,8 +171,8 @@ msgid "Check for updates..."
 msgstr "Sök efter uppdateringar ..."
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:160
-msgid "- Set a time after which the offer expires.<0/>- An expiring offer can only be claimed prior to the expiration time."
-msgstr ""
+#~ msgid "- Set a time after which the offer expires.<0/>- An expiring offer can only be claimed prior to the expiration time."
+#~ msgstr ""
 
 #: src/components/offers2/OfferBuilderImport.tsx:167
 msgid "(⌘V) a blob"
@@ -239,6 +239,18 @@ msgstr "{0} poäng {1} - {2} timmar sedan"
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:187
 #~ msgid "{count} transactions have been successfully submitted to the blockchain."
 #~ msgstr ""
+
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:36
+msgid "{displayDays, plural, one {day} other {days}}"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:38
+msgid "{displayHours, plural, one {hour} other {hours}}"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:40
+msgid "{displayMinutes, plural, one {minute} other {minutes}}"
+msgstr ""
 
 #: src/components/notification/NotificationAnnouncement.tsx:52
 msgid "{from} <0>sending the message</0>"
@@ -332,7 +344,7 @@ msgstr "Ett värde på {0} rekommenderas"
 
 #: src/components/offers/NFTOfferViewer.tsx:642
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:21
-#: src/components/offers2/OfferBuilderViewer.tsx:256
+#: src/components/offers2/OfferBuilderViewer.tsx:252
 msgid "Accept Offer"
 msgstr "Acceptera erbjudandet"
 
@@ -399,8 +411,8 @@ msgid "Add Contact"
 msgstr "Lägg till kontakt"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:148
-msgid "Add option to set expiration time {0}"
-msgstr ""
+#~ msgid "Add option to set expiration time {0}"
+#~ msgstr ""
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:114
 msgid "Add plot directory"
@@ -420,11 +432,11 @@ msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:837
 msgid "Add Proofs To Verifiable Credential"
-msgstr ""
+msgstr "Lägg till bevis för verifierbar autentiseringsuppgift"
 
 #: src/components/vcs/VCList.tsx:230
 msgid "Add Verifiable Credential from file"
-msgstr ""
+msgstr "Lägg till verifierbar autentiseringsuppgift från fil"
 
 #: src/components/addressbook/ContactAdd.tsx:58
 #: src/components/addressbook/ContactEdit.tsx:61
@@ -647,7 +659,7 @@ msgstr "Försök {attempt}"
 
 #: src/components/offers2/OfferBuilderToken.tsx:63
 msgid "Authorized providers"
-msgstr ""
+msgstr "Auktoriserade leverantörer"
 
 #: src/components/settings/SettingsCustody.tsx:61
 msgid "Auto claim incoming claw back transactions"
@@ -691,7 +703,7 @@ msgstr "Grundbelopp för odlarbelöning"
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:74
 msgid "Before beginning the plotting process, ensure that you have at least 128GB of RAM available. If you are running low on additional memory space, we strongly advise closing all other applications to prevent memory errors."
-msgstr ""
+msgstr "Innan du börjar plottningsprocessen, se till att du har minst 128GB RAM tillgängligt. Om extra minnesutrymme börjar ta slut rekommenderar vi starkt att du stänger alla andra program för att förhindra minnesfel."
 
 #: src/components/offers/OfferShareDialog.tsx:1177
 #~ msgid "Before posting an offer in Keybase to the #{channelName} channel, you must first join the {teamName} team. Please note that it might take a few moments to join the channel."
@@ -837,7 +849,7 @@ msgstr "Det går inte erbjuda och begära samma tillgång"
 
 #: src/components/offers2/OfferBuilderToken.tsx:59
 msgid "CAT credential restrictions"
-msgstr ""
+msgstr "CAT-autentiseringsbegränsningar"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:15
 msgid "Challenge"
@@ -851,6 +863,10 @@ msgstr "Verifieringshash"
 #: src/components/settings/SettingsNFT.tsx:172
 msgid "Change"
 msgstr "Byt"
+
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:190
+msgid "Change default timing."
+msgstr ""
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:290
 #: src/components/settings/SettingsPanel.tsx:120
@@ -1150,7 +1166,7 @@ msgstr ""
 
 #: src/components/offers2/OfferBuilderImport.tsx:53
 msgid "Could not parse offer data"
-msgstr ""
+msgstr "Det gick inte att analysera erbjudandedata"
 
 #: src/constants/WalletConnectCommands.tsx:972
 msgid "Count"
@@ -1160,7 +1176,7 @@ msgstr ""
 msgid "Counter"
 msgstr "Räknare"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:244
+#: src/components/offers2/OfferBuilderViewer.tsx:240
 msgid "Counter Offer"
 msgstr "Moterbjudande"
 
@@ -1277,7 +1293,7 @@ msgstr "Skaparens royaltyprocent verkar hög"
 
 #: src/components/dashboard/DashboardSideBar.tsx:60
 msgid "Credentials"
-msgstr ""
+msgstr "Autentiseringsuppgifter"
 
 #: src/components/plot/add/PlotAddForm.tsx:143
 msgid "Currency code is not defined"
@@ -1329,10 +1345,10 @@ msgstr ""
 msgid "Date"
 msgstr "Datum"
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:84
-#: src/components/settings/SettingsExpiringOffers.tsx:14
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:88
+#: src/components/settings/SettingsExpiringOffers.tsx:22
 msgid "Days"
-msgstr ""
+msgstr "Dagar"
 
 #: src/components/settings/SettingsHarvester.tsx:480
 msgid "Decompressor Thread Count"
@@ -1396,7 +1412,7 @@ msgstr "Ta bort obekräftade transaktioner"
 
 #: src/components/vcs/VCCard.tsx:311
 msgid "Delete Verifiable Credential"
-msgstr ""
+msgstr "Ta bort verifierbar autentiseringsuppgift"
 
 #: src/components/app/AppPassPrompt.tsx:96
 msgid "Deleting key"
@@ -1463,7 +1479,7 @@ msgstr ""
 msgid "Difficulty"
 msgstr "Svårighetsgrad"
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:195
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:225
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:91
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:77
 #: src/components/settings/SettingsExpiringOffers.tsx:88
@@ -1834,8 +1850,8 @@ msgid "Expiration"
 msgstr ""
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:202
-msgid "Expiration time will be {0}"
-msgstr ""
+#~ msgid "Expiration time will be {0}"
+#~ msgstr ""
 
 #: src/components/offers/OfferManager.tsx:183
 #: src/components/vcs/VCCard.tsx:166
@@ -2094,7 +2110,7 @@ msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:818
 msgid "Get All Verifiable Credentials"
-msgstr ""
+msgstr "Hämta alla verifierbara autentiseringsuppgifter"
 
 #: src/constants/WalletConnectCommands.tsx:489
 msgid "Get CAT Asset Id"
@@ -2162,7 +2178,7 @@ msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:824
 msgid "Get Verifiable Credential"
-msgstr ""
+msgstr "Hämta verifierbar autentiseringsuppgift"
 
 #: src/constants/WalletConnectCommands.tsx:951
 msgid "Get wallet addresses for one or more wallet keys"
@@ -2313,10 +2329,10 @@ msgstr "Hurra, inga filer här!"
 msgid "Host Name"
 msgstr "Värdnamn"
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:85
-#: src/components/settings/SettingsExpiringOffers.tsx:15
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:89
+#: src/components/settings/SettingsExpiringOffers.tsx:23
 msgid "Hours"
-msgstr ""
+msgstr "Timmar"
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:102
 msgid "Hybrid disk mode 1 (RAM required: 128G)"
@@ -2659,7 +2675,7 @@ msgid "Loading configuration"
 msgstr "Läser in konfiguration"
 
 #: src/components/offers/OfferManager.tsx:236
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:99
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:107
 msgid "Loading expiration time..."
 msgstr ""
 
@@ -2842,9 +2858,9 @@ msgstr ""
 msgid "MintGarden URL"
 msgstr "URL till MintGarden"
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:86
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:90
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
-#: src/components/settings/SettingsExpiringOffers.tsx:16
+#: src/components/settings/SettingsExpiringOffers.tsx:24
 msgid "Minutes"
 msgstr "Minuter"
 
@@ -3304,7 +3320,7 @@ msgstr ""
 
 #: src/components/offers/NFTOfferViewer.tsx:173
 #: src/components/offers2/OfferBuilderValue.tsx:196
-#: src/components/offers2/OfferBuilderViewer.tsx:287
+#: src/components/offers2/OfferBuilderViewer.tsx:283
 msgid "Offer cannot be accepted because you don't possess the requested assets"
 msgstr "Erbjudandet kan inte accepteras eftersom du inte äger de begärda tillgångarna"
 
@@ -3318,6 +3334,10 @@ msgstr "Erbjudandedata"
 
 #: src/components/offers2/OfferBuilderViewerDialog.tsx:54
 msgid "Offer Details"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:184
+msgid "Offer Expiration"
 msgstr ""
 
 #: src/components/settings/SettingsExpiringOffers.tsx:43
@@ -3340,9 +3360,9 @@ msgstr ""
 #~ msgid "Offer has expired and cannot be accepted."
 #~ msgstr ""
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:103
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:111
 msgid "Offer has expired."
-msgstr ""
+msgstr "Erbjudandet har upphört."
 
 #: src/constants/WalletConnectCommands.tsx:453
 #: src/constants/WalletConnectCommands.tsx:467
@@ -3428,7 +3448,7 @@ msgstr "När du satt igång denna överföring kommer du inte att kunna avbryta 
 msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer the NFT?"
 msgstr "När du sätter igång denna överföring kommer du inte att kunna avbryta transaktionen. Är du säker på att du vill överföra denna NFT?"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:291
+#: src/components/offers2/OfferBuilderViewer.tsx:287
 msgid "One or more unknown tokens are being offered. Be sure to verify that the asset IDs of the offered tokens match the asset IDs of the tokens you are expecting."
 msgstr "Ett eller flera okända token erbjuds. Kontrollera att tillgångs-ID för de token som erbjuds matchar tillgångs-ID för de token du förväntar dig att ta emot."
 
@@ -3733,7 +3753,7 @@ msgstr "Ange slutlig mapp"
 msgid "Please specify temporary directory"
 msgstr "Ange tillfällig mapp"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:227
+#: src/components/offers2/OfferBuilderViewer.tsx:223
 msgid "Please wait for wallet synchronization"
 msgstr "Vänta på synkronisering av plånboken"
 
@@ -4053,7 +4073,7 @@ msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:859
 msgid "Provider Inner Puzzle Hash"
-msgstr ""
+msgstr "Leverantörens inre pusselhash"
 
 #: src/components/signVerify/VerifyMessage.tsx:219
 #: src/constants/WalletConnectCommands.tsx:231
@@ -4160,7 +4180,7 @@ msgstr "Ta bort lösenfras"
 #: src/components/vcs/VCCard.tsx:209
 #: src/components/vcs/VCCard.tsx:301
 msgid "Remove Verifiable Credential"
-msgstr ""
+msgstr "Ta bort verifierbar autentiseringsuppgift"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:37
 msgid "Removing"
@@ -4314,7 +4334,7 @@ msgstr ""
 #: src/components/vcs/VCCard.tsx:311
 #: src/constants/WalletConnectCommands.tsx:902
 msgid "Revoke Verifiable Credential"
-msgstr ""
+msgstr "Återkalla verifierbar autentiseringsuppgift"
 
 #: src/components/vcs/VCCard.tsx:168
 msgid "Revoked"
@@ -4509,6 +4529,10 @@ msgstr "Skicka transaktion"
 
 #: src/components/settings/SettingsCustody.tsx:45
 msgid "Set a default time frame for all outbound XCH transactions."
+msgstr ""
+
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:187
+msgid "Set a time after which this offer expires."
 msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:763
@@ -5072,21 +5096,29 @@ msgid "This offer has a fee included to help expedite the transaction when the o
 msgstr "Detta erbjudande innehåller en avgift för att skynda på transaktionen när erbjudandet accepteras. Du kan ange en extra avgift om du anser att den avgift som redan ingår är för liten."
 
 #: src/components/offers/OfferHeader.tsx:63
-#: src/components/offers2/OfferBuilderViewer.tsx:279
+#: src/components/offers2/OfferBuilderViewer.tsx:275
 msgid "This offer has completed successfully"
 msgstr "Erbjudandet har slutförts"
 
 #: src/components/offers/OfferHeader.tsx:46
-#: src/components/offers2/OfferBuilderViewer.tsx:266
+#: src/components/offers2/OfferBuilderViewer.tsx:262
 msgid "This offer is no longer valid. To understand why, click <0>here</0> to learn more."
 msgstr "Detta erbjudande är inte längre giltigt. För att förstå varför, klicka <0>här</0> för att läsa mer."
 
-#: src/components/offers2/OfferBuilderViewer.tsx:283
+#: src/components/offers2/OfferBuilderViewer.tsx:279
 msgid "This offer was cancelled"
 msgstr ""
 
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:44
+msgid "This offer will expire in {displayDays} {displayDaysText}{hoursComma} {displayHours} {displayHoursText}{minutesComma} {displayMinutes} {displayMinutesText}"
+msgstr ""
+
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:210
-msgid "This offer will never expire."
+#~ msgid "This offer will never expire."
+#~ msgstr ""
+
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:45
+msgid "This offer will not expire"
 msgstr ""
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:268
@@ -5496,37 +5528,37 @@ msgstr "VDF-underslot-iterationer"
 
 #: src/components/vcs/VCCard.tsx:56
 msgid "Verifiable Credential"
-msgstr ""
+msgstr "Verifierbar autentiseringsuppgift"
 
 #: src/components/vcs/VCList.tsx:208
 msgid "Verifiable Credential already exists."
-msgstr ""
+msgstr "Verifierbar autentiseringsuppgift finns redan."
 
 #: src/components/vcs/VCCard.tsx:265
 msgid "Verifiable Credential Removed"
-msgstr ""
+msgstr "Verifierbar autentiseringsuppgift togs bort"
 
 #: src/components/vcs/VCCard.tsx:280
 msgid "Verifiable Credential Removed."
-msgstr ""
+msgstr "Verifierbar autentiseringsuppgift togs bort."
 
 #: src/components/vcs/VCCard.tsx:282
 msgid "Verifiable Credential Revoked."
-msgstr ""
+msgstr "Verifierbar autentiseringsuppgift återkallades."
 
 #: src/components/vcs/VCList.tsx:216
 msgid "Verifiable Credential successfully added."
-msgstr ""
+msgstr "Verifierbar autentiseringsuppgift har lagts till."
 
 #: src/components/settings/SettingsVerifiableCredentials.tsx:17
 #: src/components/vcs/VCList.tsx:270
 #: src/components/vcs/VCList.tsx:331
 msgid "Verifiable Credentials"
-msgstr ""
+msgstr "Verifierbara autentiseringsuppgifter"
 
 #: src/components/vcs/VCList.tsx:273
 msgid "Verifiable Credentials are like digital ID cards that can prove certain information about you without giving away your private details."
-msgstr ""
+msgstr "Verifierbara autentiseringsuppgifter är som digitala ID-kort som kan ge viss information om dig utan att lämna ut privat information."
 
 #: src/components/signVerify/VerifyMessage.tsx:123
 msgid "Verification Failed"
@@ -5838,7 +5870,7 @@ msgid "You can still create plots for this plot NFT, but you can not make change
 msgstr "Du kan fortfarande skapa plottar för denna plot-NFT, men du kan inte göra ändringar förrän synkroniseringen är klar."
 
 #: src/components/offers/OfferHeader.tsx:38
-#: src/components/offers2/OfferBuilderViewer.tsx:298
+#: src/components/offers2/OfferBuilderViewer.tsx:294
 msgid "You created this offer"
 msgstr "Du skapade detta erbjudande"
 

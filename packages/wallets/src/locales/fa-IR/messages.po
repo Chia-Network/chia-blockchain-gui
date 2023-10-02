@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-09-14 22:49\n"
+"PO-Revision-Date: 2023-10-01 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: src/components/WalletHistory.tsx:118
 msgid "-"
-msgstr "کمتر"
+msgstr "-"
 
 #: src/components/WalletSend.tsx:367
 msgid "- Memo helps the receiver side to identify the payment.<0/>- Anything you enter will be publicly accessible on the blockchain."
@@ -32,7 +32,7 @@ msgstr "- یک بازه زمانی تعیین کنید که به شما امکا
 
 #: src/components/WalletHistory.tsx:118
 msgid "+"
-msgstr "بیشتر"
+msgstr "+"
 
 #: src/components/WalletHeader.tsx:62
 msgid "Actions"
@@ -167,7 +167,7 @@ msgstr "مطالبه..."
 
 #: src/components/WalletIcon.tsx:17
 msgid "Classic version of Stably USDS as held by Prime Trust"
-msgstr "نسخه کلاسیک توکن Stably USDS که توسط Prime Trust نگهداری میشود"
+msgstr "نسخه کلاسیک توکن استیبل یو اس دی اس که توسط پرایم تراست نگهداری میشود"
 
 #: src/components/WalletHistory.tsx:433
 msgid "Claw back expiration"
@@ -371,7 +371,7 @@ msgstr "حافظه استخر تراکنش پر است"
 
 #: src/components/WalletConnections.tsx:40
 msgid "MiB Up/Down"
-msgstr "MiB بالا/پایین"
+msgstr "مگابایت ذخیره/بارگذاری"
 
 #: src/constants/WalletName.ts:17
 msgid "Multi Sig Wallet"
@@ -446,7 +446,7 @@ msgstr "جایگزاری کد کلمات رمز"
 
 #: src/components/PasteMnemonic.tsx:53
 msgid "Paste Mnemonic ({0} words)"
-msgstr "قراردادن ({0} کد رمزها)"
+msgstr "قراردادن کد کلمات ({0}رمز)"
 
 #: src/components/crCat/CrCatApprovePendingDialog.tsx:82
 msgid "Payments approved"
@@ -575,7 +575,7 @@ msgstr "تغییر نام کیف پول"
 
 #: src/components/WalletIcon.tsx:41
 msgid "Restricted CAT"
-msgstr "CAT محدود"
+msgstr "توکن محدود"
 
 #: src/components/WalletHistory.tsx:208
 msgid "Retire"
@@ -638,7 +638,7 @@ msgstr "درحال سینک"
 
 #: src/components/card/WalletCardTotalBalance.tsx:70
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
-msgstr "شاخص مشتق که کیف پول بلاکچین را اسکن میکند محدوده آدرس های کیف پول را تعیین مینماید. اگر تراکنش‌های زیادی دارید یا پیشنهادات لغو شده برای XCH، CAT یا ان اف تی دارید، این عدد معمولاً بیشتر است. اگر فکر میکنید موجودی‌ شما نادرست است، ارزهای درون آن کمتر است، افزایش شاخص مشتق‌گیری میتواند به کیف پول کمک کندتا ارزهای گمشده را در کل موجودی قراردهد."
+msgstr "شاخص مشتق که کیف پول بلاکچین را اسکن میکند محدوده آدرس های کیف پول را تعیین مینماید. اگر تراکنش‌های زیادی دارید یا پیشنهادات لغو شده برای چیا ، توکن یا ان اف تی دارید، این عدد معمولاً بیشتر است. اگر فکر میکنید موجودی‌ شما نادرست است، ارزهای درون آن کمتر است، افزایش شاخص مشتق‌گیری میتواند به کیف پول کمک کندتا ارزهای گمشده را در کل موجودی قراردهد."
 
 #: src/components/cat/WalletCATSend.tsx:200
 msgid "The recipient of this transaction will need to have valid credentials in order to claim the sent assets. See the CR CAT restrictions above."

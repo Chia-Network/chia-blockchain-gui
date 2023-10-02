@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-09-14 22:49\n"
+"PO-Revision-Date: 2023-10-01 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -38,7 +38,7 @@ msgstr "{minPassphraseLength, plural,one {طول کارکتر رمز ورود ب
 msgid "A new version of Chia is available!"
 msgstr "نسخه جدید چیا در دسترس است!"
 
-#: src/screens/SelectKey/EmojiAndColorPicker.tsx:268
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:270
 msgid "Add Icon"
 msgstr "اصافه نمودن نماد"
 
@@ -361,7 +361,7 @@ msgstr "کلید عمومی"
 msgid "Public key:"
 msgstr "کلید عمومی:"
 
-#: src/screens/SelectKey/EmojiAndColorPicker.tsx:287
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:289
 msgid "Random"
 msgstr "تصادفی"
 
@@ -377,7 +377,7 @@ msgstr "یادداشت های انتشار"
 msgid "Reload Application"
 msgstr "بارگذاری مجدد برنامه"
 
-#: src/screens/SelectKey/EmojiAndColorPicker.tsx:268
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:270
 msgid "Remove Icon"
 msgstr "حذف نماد"
 
@@ -398,7 +398,7 @@ msgstr "نمایان"
 msgid "Save"
 msgstr "ذخیره"
 
-#: src/screens/SelectKey/EmojiAndColorPicker.tsx:180
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:182
 #: src/screens/SelectKey/Search.tsx:34
 msgid "Search"
 msgstr "جستجو"
