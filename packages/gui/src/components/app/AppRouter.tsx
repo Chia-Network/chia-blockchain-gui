@@ -10,6 +10,7 @@ import Farm from '../farm/Farm';
 import FullNode from '../fullNode/FullNode';
 import Harvest from '../harvest/Harvest';
 import NFTs from '../nfts/NFTs';
+import NotificationHistory from '../notification/NotificationHistory';
 import { CreateOffer } from '../offers/OfferManager';
 import Plot from '../plot/Plot';
 import Pool from '../pool/Pool';
@@ -45,6 +46,7 @@ export default function AppRouter() {
               <Route path="dashboard/*" element={<Navigate to="wallets" />} />
               <Route path="dashboard/settings/*" element={<Settings />} />
               <Route path="dashboard/addressbook/*" element={<AddressBook />} />
+              <Route path="dashboard/history/*" element={<NotificationHistory />} />
             </Route>
           ) : (
             <Route element={<LayoutDashboard sidebar={<DashboardSideBar />} actions={<AppStatusHeader />} outlet />}>
@@ -60,6 +62,7 @@ export default function AppRouter() {
               <Route path="dashboard/farm/*" element={<Farm />} />
               <Route path="dashboard/pool/*" element={<Pool />} />
               <Route path="dashboard/addressbook/*" element={<AddressBook />} />
+              <Route path="dashboard/history/*" element={<NotificationHistory />} />
             </Route>
           )}
         </Route>

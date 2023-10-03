@@ -20,6 +20,7 @@ import NotificationWrapper from './NotificationWrapper';
 export type NotificationOfferProps = {
   notification: NotificationCounterOffer | NotificationOfferType;
   onClick?: () => void;
+  renderType?: string;
 };
 
 export default function NotificationOffer(props: NotificationOfferProps) {
@@ -27,6 +28,7 @@ export default function NotificationOffer(props: NotificationOfferProps) {
     onClick,
     notification,
     notification: { type, timestamp },
+    renderType,
   } = props;
 
   const offerURLOrData =
@@ -72,6 +74,14 @@ export default function NotificationOffer(props: NotificationOfferProps) {
 
   if ((isLoading && !offer) || (offer && !offer.valid)) {
     return null;
+  }
+
+  if (renderType === 'asset') {
+    return <OfferDetails id={offerURLOrData} />;
+  }
+
+  if (renderType === 'requested') {
+    return <OfferDetails id={offerURLOrData} color="primary" requested />;
   }
 
   return (

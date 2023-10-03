@@ -114,6 +114,10 @@ export function pushNotificationStringsForNotificationType(notification: Notific
           ? notification.url
           : t`Message not available`;
       break;
+    case NotificationType.INCOMING_CLAWBACK_RECEIVE:
+      title = t`New claw back transaction`;
+      body = t`You have received a new claw back transaction`;
+      break;
     default:
       throw new Error(`Unknown notification type: ${type}`);
   }

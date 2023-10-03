@@ -20,7 +20,7 @@ export default function NotificationsMenu(props: NotificationsMenuProps) {
 
   function handleSeeAllActivity() {
     onClose?.();
-    navigate('/dashboard/offers');
+    navigate('/dashboard/history');
   }
 
   function handleClick() {
