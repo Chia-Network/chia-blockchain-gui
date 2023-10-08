@@ -2432,16 +2432,20 @@ msgstr "Initialisation..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid "Insufficient funds available to accept offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "Fonds insuffisants pour accepter l'offre. Assurez-vous que votre \n"
+msgstr ""
+"Fonds insuffisants pour accepter l'offre. Assurez-vous que votre \n"
 "solde disponible est suffisant pour couvrir le montant de l'offre."
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid "Insufficient funds available to create offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "Fonds insuffisants pour créer l'offre. Assurez-vous que votre \n"
+msgstr ""
+"Fonds insuffisants pour créer l'offre. Assurez-vous que votre \n"
 "solde disponible est suffisant pour couvrir le montant de l'offre."
 
 #: src/components/settings/Settings.tsx:73
@@ -5985,4 +5989,3 @@ msgstr "Votre solde dépensable doit être supérieur à 1 mojo pour créer un p
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "Votre portefeuille doit être synchronisé pour que la revendication automatique fonctionne."
-
