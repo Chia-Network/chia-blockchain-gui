@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-10-01 00:04\n"
+"PO-Revision-Date: 2023-10-08 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -21,27 +21,27 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/components/nfts/NFTBurnDialog.tsx:133
 msgid "Do you want to burn {count} NFTs?"
-msgstr "آیا میخواهید {count} ان اف تی را ثبت کنید؟"
+msgstr "ان اف تی را ثبت کنید؟ {count} آیا میخواهید"
 
 #. js-lingui-explicit-id
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:185
 msgid "{count} transactions have been successfully submitted to the blockchain."
-msgstr "{count} تراکنش با موفقیت به بلاکچین ارسال شد."
+msgstr ".تراکنش با موفقیت به بلاکچین ارسال شد {count}"
 
 #. js-lingui-explicit-id
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:192
 msgid "{count} NFTs failed to move."
-msgstr "{count} ان اف تی ها جابجا نشد."
+msgstr ".ان اف تی ها جابجا نشد {count}"
 
 #. js-lingui-explicit-id
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:383
 msgid "Would you like to move {count} NFTs to a profile?"
-msgstr "آیا میخواهید {count} ان اف تی را به حساب کاربری منتقل کنید؟"
+msgstr "از ان اف تی ها را به حساب کاربری منتقل کنید؟ {count} آیا میخواهید"
 
 #. js-lingui-explicit-id
 #: src/components/nfts/NFTTransferAction.tsx:225
 msgid "Would you like to transfer {count} NFTs to a new owner?"
-msgstr "آیا میخواهید {count} از ان اف تی ها را به مالک جدیدی منتقل کنید؟"
+msgstr "از ان اف تی ها را به مالک جدیدی انتقال دهید؟ {count} آیا میخواهید"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:492
@@ -172,15 +172,15 @@ msgstr "بروز رسانی را بررسی کنید..."
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:160
 #~ msgid "- Set a time after which the offer expires.<0/>- An expiring offer can only be claimed prior to the expiration time."
-#~ msgstr "- زمانی را تعیین کنید که پس از آن پیشنهاد منقضی شود.<0/>- پیشنهاد منقضی فقط قبل از زمان انقضا قابل گرفتن است."
+#~ msgstr ""
 
 #: src/components/offers2/OfferBuilderImport.tsx:167
 msgid "(⌘V) a blob"
-msgstr "(⌘V) داده های فایل باینری"
+msgstr "یک بلوب (⌘V)"
 
 #: src/components/offers2/OfferBuilderImport.tsx:167
 msgid "(Ctrl-V) a blob"
-msgstr "(Ctrl-V) داده های فایل باینری "
+msgstr "یک بلوب (Ctrl-V)"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:63
 msgid "(Not Installed)"
@@ -188,7 +188,7 @@ msgstr "(نصب نشده)"
 
 #: src/components/plot/add/PlotAddChooseKeys.tsx:64
 msgid "(Not recommended) Used to create an old style plot for solo farming."
-msgstr "(توصیه نمیشود) برای ایجاد یک پلات قدیمی برای فارم شخصی استفاده میشود."
+msgstr ".توصیه نمیشود که برای ایجاد یک پلات قدیمی برای فارم شخصی استفاده میشود"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:61
 msgid "(Not Supported)"
@@ -242,15 +242,15 @@ msgstr "{0} امتیاز {1} - {2} مدتی قبل"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:36
 msgid "{displayDays, plural, one {day} other {days}}"
-msgstr ""
+msgstr "{displayDays, plural, one {day} other {days}}"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:38
 msgid "{displayHours, plural, one {hour} other {hours}}"
-msgstr ""
+msgstr "{displayHours, plural, one {hour} other {hours}}"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:40
 msgid "{displayMinutes, plural, one {minute} other {minutes}}"
-msgstr ""
+msgstr "{displayMinutes, plural, one {minute} other {minutes}}"
 
 #: src/components/notification/NotificationAnnouncement.tsx:52
 msgid "{from} <0>sending the message</0>"
@@ -275,7 +275,7 @@ msgstr "{mojos,plural,one {موجو} other {موجوها}}"
 
 #: src/components/offers2/OfferBuilderValue.tsx:175
 msgid "{type} is not supported"
-msgstr "{type} پشتیبانی نمیشود"
+msgstr "پشتیبانی نمیشود {type}"
 
 #: src/components/nfts/NFTRankings.tsx:46
 msgid "{value} of {max_value}"
@@ -376,7 +376,7 @@ msgstr "وضعیت فعالیت"
 
 #: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:46
 msgid "Add {currencyCode} from the Faucet"
-msgstr "{currencyCode} را از توزیع کننده اضافه کنید"
+msgstr "را از توزیع کننده اضافه کنید {currencyCode}"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:79
 msgid "Add a plot"
@@ -412,7 +412,7 @@ msgstr "اضافه کردن اطلاعات تماس"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:148
 #~ msgid "Add option to set expiration time {0}"
-#~ msgstr "افزودن گزینه برای تنظیم زمان انقضا {0}"
+#~ msgstr ""
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:114
 msgid "Add plot directory"
@@ -493,7 +493,7 @@ msgstr "بنوبت نوشتن باکت"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:345
 msgid "Alternate tmpdir/tmpdir2"
-msgstr "جایگزین tmpdir/tmpdir2"
+msgstr "tmpdir/tmpdir2 جایگزین"
 
 #: src/components/settings/SettingsIntegration.tsx:308
 msgid "Always Allow"
@@ -528,7 +528,7 @@ msgstr "مبلغ از موجودی قابل خرج کردن بیشتر است"
 
 #: src/util/offerBuilderDataToOffer.ts:242
 msgid "Amount exceeds total balance for {catName} token"
-msgstr "مقدار از کل موجودی برای توکن {catName} بیشتر است"
+msgstr "بیشتر است {catName} مقدار از کل موجودی برای توکن"
 
 #: src/util/offerBuilderDataToOffer.ts:59
 #~ msgid "Amount exceeds XCH spendable balance"
@@ -607,7 +607,7 @@ msgstr "آیا مطمئن هستید که میخواهید لغو کنید"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:62
 msgid "Are you sure you want to use k={plotSize}?"
-msgstr "آیا مطمئنید که میخواهید از مقدار k= {plotSize} استفاده کنید؟"
+msgstr "استفاده کنید؟ k= {plotSize} آیا مطمئنید که میخواهید از مقدار"
 
 #: src/components/offers2/OfferIncomingTable.tsx:216
 msgid "Are you sure you'd like to remove this offer? Please remember that this action is not reversible."
@@ -736,15 +736,15 @@ msgstr "هزینه بلاک"
 
 #: src/components/block/Block.jsx:196
 msgid "Block VDF Iterations"
-msgstr "مسدو کردن تابع تاخیر قابل تاییدVDF"
+msgstr "VDF مسدو کردن تابع تاخیر قابل تایید"
 
 #: src/components/block/Block.jsx:121
 msgid "Block with hash {headerHash}"
-msgstr "مسدود کردن با هش {headerHash}"
+msgstr "{headerHash} مسدود کردن با هش"
 
 #: src/components/block/Block.jsx:140
 msgid "Block with hash {headerHash} does not exist."
-msgstr "بلاک با هش {headerHash} وجود ندارد."
+msgstr ".وجود ندارد {headerHash} بلاک با هش"
 
 #: src/components/fullNode/FullNode.jsx:105
 msgid "Blocks"
@@ -791,7 +791,7 @@ msgstr "حافظه پنهان"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:236
 msgid "Cache size (GB)"
-msgstr "مقدار حافظه پنهان (GB)"
+msgstr "(GB) مقدار حافظه پنهان"
 
 #: src/components/addressbook/ContactAdd.tsx:286
 #: src/components/addressbook/ContactEdit.tsx:300
@@ -849,7 +849,7 @@ msgstr "نمیتوان همان دارایی را ارائه داد و درخو�
 
 #: src/components/offers2/OfferBuilderToken.tsx:59
 msgid "CAT credential restrictions"
-msgstr "محدودیت های اعتبار CAT"
+msgstr "CAT محدودیت های اعتبار"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:15
 msgid "Challenge"
@@ -866,7 +866,7 @@ msgstr "تغییر"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:190
 msgid "Change default timing."
-msgstr ""
+msgstr "تغییر زمان سنجی پیش فرض."
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:290
 #: src/components/settings/SettingsPanel.tsx:120
@@ -897,12 +897,12 @@ msgstr "اعتبار پیشنهاد را بررسی کنید"
 #: src/components/offers/NFTOfferPreview.tsx:151
 #: src/components/offers2/OfferBuilderNFTProvenance.tsx:37
 msgid "Check Provenance on MintGarden"
-msgstr "منشأ را در MintGarden بررسی کنید"
+msgstr "بررسی کنید MintGarden منشأ را در"
 
 #: src/components/offers/NFTOfferPreview.tsx:161
 #: src/components/offers2/OfferBuilderNFTProvenance.tsx:47
 msgid "Check Provenance on Spacescan.io"
-msgstr "منشأ را در Spacescan.io بررسی کنید"
+msgstr "بررسی کنید Spacescan.io منشأ را در"
 
 #: src/electron/main.tsx:1098
 #~ msgid "Chia"
@@ -910,7 +910,7 @@ msgstr "منشأ را در Spacescan.io بررسی کنید"
 
 #: src/components/offers2/OfferBuilderXCHSection.tsx:77
 msgid "Chia ({currencyCode}) is a digital currency that is secure and sustainable"
-msgstr "چیا ({currencyCode}) یک ارز دیجیتال امن و پایدار است"
+msgstr "یک ارز دیجیتال امن و پایدار است ({currencyCode}) چیا"
 
 #: src/components/offers2/OfferBuilderTokensSection.tsx:115
 msgid "Chia Asset Tokens (CATs) are tokens built on top of XCH"
@@ -1130,7 +1130,7 @@ msgstr "محتوا با مقدار هش مورد انتظاری که در طول
 
 #: src/components/nfts/NFTHashStatus.tsx:102
 msgid "Content has not been validated against the hash that was specified during NFT minting. Error: {0}"
-msgstr "محتوا در برابر هش‌ای که در طول ثبت ان اف تی مشخص شده بود تأیید نشده است. خطا: {0}"
+msgstr "محتوا در برابر آن هش‌ که در طول ثبت ان اف تی مشخص شده بود تأیید نشده است. خطا: {0}"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:280
 msgid "Continue"
@@ -1162,7 +1162,7 @@ msgstr "هزینه ارسال اعلان به دارنده ان اف تی"
 
 #: src/components/fullNode/FullNodeAddConnection.tsx:55
 msgid "Could not connect to host {host} on port {port}"
-msgstr "اتصال به میزبان {host} در پورت {port} امکان‌پذیر نیست"
+msgstr "امکان‌پذیر نیست {host} در پورت {port} اتصال به میزبان"
 
 #: src/components/offers2/OfferBuilderImport.tsx:53
 msgid "Could not parse offer data"
@@ -1258,7 +1258,7 @@ msgstr "یک تراکنش در بلاکچین ایجاد و ارسال کنید 
 
 #: src/components/addressbook/ContactAdd.tsx:274
 msgid "Creating a contact enables you to keep track of people who you know and store information such as their DIDs, Profile NFT or Websites."
-msgstr "ایجاد یک اظلاع تماس به شما امکان میدهد افرادی را که می شناسید پیگیری کنید و اطلاعاتی مانند DID، حساب کاربری ان اف تی یا وب سایت های آنها را ذخیره کنید."
+msgstr "ایجاد یک اظلاع تماس به شما امکان میدهد افرادی را که می شناسید پیگیری کنید و اطلاعاتی مانند شناسه غیرمتمرکز، حساب کاربری ان اف تی یا وب سایت های آنها را ذخیره کنید."
 
 #: src/components/settings/ProfileAdd.tsx:130
 msgid "Creating a profile requires 1 mojo"
@@ -1284,7 +1284,7 @@ msgstr "کارمزد سازنده ({0}%)"
 
 #: src/components/offers/NFTOfferEditor.tsx:331
 msgid "Creator Fee ({royaltyPercentage}%)"
-msgstr "کارمزد سازنده ({royaltyPercentage}%)"
+msgstr "({royaltyPercentage}%) کارمزد سازنده"
 
 #: src/components/offers/NFTOfferEditor.tsx:334
 #: src/components/offers/NFTOfferViewer.tsx:521
@@ -1315,11 +1315,11 @@ msgstr "موجودی امتیازات فعلی"
 
 #: src/components/notification/utils.ts:109
 msgid "Dapp {from} sending the message"
-msgstr "Dapp {from} در حال ارسال پیام"
+msgstr "در حال ارسال پیام Dapp {from}"
 
 #: src/components/notification/utils.ts:109
 msgid "Dapp sending the message"
-msgstr "Dapp در حال ارسال پیام"
+msgstr "در حال ارسال پیام Dapp"
 
 #: src/components/nfts/NFTDetails.tsx:236
 msgid "Data Hash"
@@ -1428,7 +1428,7 @@ msgstr "فهرست استخراج"
 
 #: src/components/settings/SettingsDerivationIndex.tsx:45
 msgid "Derivation index must be greater than {index}"
-msgstr "فهرست استخراج باید بزرگتر از {index} باشد"
+msgstr "باشد {index} فهرست استخراج باید بزرگتر از"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:205
 msgid "Description"
@@ -1488,7 +1488,7 @@ msgstr "غیر فعال"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:399
 msgid "Disable assigning automatic thread affinity. This is useful when running multiple simultaneous instances of Bladebit as you can manually assign thread affinity yourself when launching Bladebit."
-msgstr "غیرفعال کردن اختصاص پیوند خودکار رشته. این در هنگام اجرای چندین نمونه به طور همزمان از Bladebit مفید است زیرا میتوانید خودتان هنگام راه‌اندازی Bladebit به صورت دستی thread affinity اختصاص دهید."
+msgstr "غیرفعال کردن اختصاص پیوند خودکار رشته. این در هنگام اجرای چندین نمونه به طور همزمان از بلیدبیت است زیرا میتوانید خودتان هنگام راه‌اندازی بلیدبیت به صورت دستی پیوند رشته اختصاص دهید."
 
 #: src/components/settings/SettingsHarvester.tsx:561
 msgid "Disable assigning automatic thread affinity. This is useful when you want to manually assign thread affinity."
@@ -1522,7 +1522,7 @@ msgstr "برای استخراج حداکثر کارایی با دیسک حافظ
 
 #: src/constants/WalletConnectCommands.tsx:366
 msgid "Disable JSON Formatting"
-msgstr "حالت JSON را غیرفعال کنید"
+msgstr "را غیرفعال کنید JSON حالت"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:377
 msgid "Disable NUMA"
@@ -1552,7 +1552,7 @@ msgstr "این مباحثه را دیگر نشان ندهید"
 #: src/components/farm/FarmHero.tsx:43
 #: src/components/plot/overview/PlotOverviewHero.tsx:53
 msgid "Do you have existing plots on this machine? <0>Add Plot Directory</0>"
-msgstr "آیا پلات هایی از قبل روی این سیستم دارید؟ <0>اضاقه کزدن پوشه پلات Plot</0>"
+msgstr "<0>اضاقه کزدن پوشه پلات Plot</0> آیا پلات هایی از قبل روی این سیستم دارید؟"
 
 #: src/components/nfts/NFTBurnDialog.tsx:132
 #~ msgid "Do you want to burn {count} NFTs?"
@@ -1564,11 +1564,11 @@ msgstr "آیا میخواهید این ان اف تی را ثبت کنید؟"
 
 #: src/hooks/useWalletConnectCommand.tsx:183
 msgid "Do you want to execute command {command}?"
-msgstr "آیا میخواهید دستور {command} را اجرا کنید؟"
+msgstr "را اجرا کنید؟ {command} آیا میخواهید دستور"
 
 #: src/hooks/useWalletConnectCommand.tsx:179
 msgid "Do you want to log in to {fingerprint} and execute command {command}?"
-msgstr "آیا میخواهید وارد {fingerprint} شوید و دستور {command} را اجرا کنید؟"
+msgstr "را اجرا کنید؟ {fingerprint} شوید و دستور {command} آیا میخواهید وارد"
 
 #: src/hooks/useBlockchainNotifications.tsx:167
 msgid "Do you want to remove this offer notification? This action cannot be undone."
@@ -1851,7 +1851,7 @@ msgstr "انقضاء"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:202
 #~ msgid "Expiration time will be {0}"
-#~ msgstr "زمان انقضا {0} خواهد بود"
+#~ msgstr ""
 
 #: src/components/offers/OfferManager.tsx:183
 #: src/components/vcs/VCCard.tsx:166
@@ -1881,7 +1881,7 @@ msgstr "رمزگشایی شناسه ان اف تی انجام نشد"
 
 #: src/components/notification/NotificationSendDialog.tsx:148
 msgid "Failed to send the notification: {error}"
-msgstr "ارسال اعلان ناموفق: {error}"
+msgstr "{error} :ارسال اعلان ناموفق"
 
 #: src/components/settings/SetPassphrasePrompt.tsx:103
 msgid "Failed to set passphrase: {0}"
@@ -2265,7 +2265,7 @@ msgstr "مسابقات هش"
 
 #: src/components/offers/OfferShareDialog.tsx:577
 msgid "Hashgreen DEX URL"
-msgstr "لینک آدرس سایت Hashgreen DEX"
+msgstr "Hashgreen DEX لینک آدرس سایت"
 
 #: src/components/block/Block.jsx:156
 msgid "Header hash"
@@ -2291,7 +2291,7 @@ msgstr "در اینجا چالش های بلاک فعلی وجود دارد. م�
 
 #: src/components/plot/add/PlotAddChooseKeys.tsx:198
 msgid "Hex public key of pool"
-msgstr "کلید عمومی Hex استخر"
+msgstr "استخر Hex کلید عمومی"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:428
 msgid "Hidden"
@@ -2299,7 +2299,7 @@ msgstr "پنهان شده"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:391
 msgid "Hidden  <0/>"
-msgstr "پنهان شده <0/>"
+msgstr "<0/> پنهان شده"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:573
 #~ msgid "Hidden ({0})"
@@ -2407,7 +2407,7 @@ msgstr "شامل پیشنهادات گرفته شده"
 
 #: src/constants/WalletConnectCommands.tsx:36
 msgid "Include Wallet Metadata"
-msgstr "شامل کیف پول Metadata"
+msgstr "Metadata شامل کیف پول"
 
 #: src/components/offers/NFTOfferEditor.tsx:88
 #: src/components/offers/OfferEditorConditionsPanel.tsx:393
@@ -2432,20 +2432,16 @@ msgstr "در حال شروع..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
+msgstr "مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
 "موجودی قابل مصرف شما برای پوشش مبلغ پیشنهاد کافی است."
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
+msgstr "مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
 "موجودی قابل مصرف شما برای پوشش مبلغ پیشنهاد کافی است."
 
 #: src/components/settings/Settings.tsx:73
@@ -2584,15 +2580,15 @@ msgstr " KYC وضعیت شناختن مشتری یا"
 
 #: src/components/harvest/HarvesterLatency.tsx:88
 msgid "LAST 1 HOUR"
-msgstr "ساعت گذشته 1"
+msgstr "مدت 1 ساعت گذشته"
 
 #: src/components/harvest/HarvesterLatency.tsx:93
 msgid "LAST 12 HOURS"
-msgstr "ساعت گذشته 12"
+msgstr "مدت 12 ساعت گذشته"
 
 #: src/components/harvest/HarvesterLatency.tsx:98
 msgid "LAST 24 HOURS"
-msgstr "ساعت گذشته 24"
+msgstr "مدت 24 ساعت گذشته"
 
 #: src/components/harvest/HarvesterLatency.tsx:83
 msgid "LAST 64 SPs"
@@ -2788,7 +2784,7 @@ msgstr "پیام"
 #: src/constants/WalletConnectCommands.tsx:188
 #: src/constants/WalletConnectCommands.tsx:211
 msgid "Message Is Hex Encoded String"
-msgstr "پیام رشته رمزگذاری شده Hex است"
+msgstr "است Hex پیام رشته رمزگذاری شده"
 
 #: src/components/notification/utils.ts:115
 msgid "Message not available"
@@ -2800,7 +2796,7 @@ msgstr "هش داده"
 
 #: src/constants/WalletConnectCommands.tsx:639
 msgid "Meta Uris"
-msgstr "داده Uris"
+msgstr "Uris داده"
 
 #: src/components/nfts/NFTDetails.tsx:266
 msgid "Metadata Hash"
@@ -2860,7 +2856,7 @@ msgstr "ثبت کننده:"
 
 #: src/components/offers/OfferShareDialog.tsx:504
 msgid "MintGarden URL"
-msgstr "آدرس سایت MintGarden"
+msgstr "MintGarden آدرس سایت"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:90
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
@@ -2946,7 +2942,7 @@ msgstr "نام"
 
 #: src/components/settings/ProfileAdd.tsx:121
 msgid "Need some {currencyCode}?"
-msgstr "به مقداری {currencyCode} نیاز دارید؟"
+msgstr "نیاز دارید؟ {currencyCode} به مقداری"
 
 #: src/components/offers/NFTOfferViewer.tsx:584
 msgid "Net Proceeds"
@@ -3003,7 +2999,7 @@ msgstr "ان اف تی"
 #: src/util/offerBuilderDataToOffer.ts:262
 #: src/util/offerBuilderDataToOffer.ts:336
 msgid "NFT {nftId} is already used in this offer"
-msgstr "ان اف تی {nftId} قبلاً در این پیشنهاد استفاده شده"
+msgstr "قبلاً در این پیشنهاد استفاده شده {nftId} ان اف تی"
 
 #: src/constants/WalletConnectCommands.tsx:473
 #~ msgid "NFT Coin Id"
@@ -3227,11 +3223,11 @@ msgstr "توجه داشته باشید که این کار آدرس‌های پر
 
 #: src/components/plot/add/PlotAddChooseKeys.tsx:99
 msgid "Note: the farmer public key corresponding to the current logged-in wallet is {farmerPublicKeyForFingerprint}"
-msgstr "توجه: کلید عمومی فارم مربوط به کیف پول وارد شده فعلی {farmerPublicKeyForFingerprint} است"
+msgstr "است {farmerPublicKeyForFingerprint} توجه: کلید عمومی فارم مربوط به کیف پول وارد شده فعلی"
 
 #: src/components/plot/add/PlotAddChooseKeys.tsx:66
 msgid "Note: the pool public key corresponding to the current logged-in wallet is {poolPublicKeyForFingerprint}"
-msgstr "توجه: کلید عمومی استخر مربوط به کیف پول وارد شده فعلی {poolPublicKeyForFingerprint} است"
+msgstr "است {poolPublicKeyForFingerprint} توجه: کلید عمومی استخر مربوط به کیف پول وارد شده فعلی"
 
 #: src/components/notification/NotificationSendDialog.tsx:146
 msgid "Notification has successfully been sent to a full node and included in the mempool."
@@ -3342,7 +3338,7 @@ msgstr "جزئیات پیشنهاد"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:184
 msgid "Offer Expiration"
-msgstr ""
+msgstr "انقضای پیشنهاد"
 
 #: src/components/settings/SettingsExpiringOffers.tsx:43
 msgid "Offer Expiration Time"
@@ -3503,11 +3499,11 @@ msgstr "یک پیشنهاد بلوب (Ctrl-V) یا جای‌گذاری"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:282
 msgid "Override the thread count for C table processing"
-msgstr "نادیده گرفتن تعداد رشته ها برای پردازش جدول C"
+msgstr "C نادیده گرفتن تعداد رشته ها برای پردازش جدول"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:254
 msgid "Override the thread count for F1 generation"
-msgstr "نادیده گرفتن تعداد رشته ها را برای ایجاد F1"
+msgstr "F1 نادیده گرفتن تعداد رشته ها را برای ایجاد"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:268
 msgid "Override the thread count for forward propagation"
@@ -3683,7 +3679,7 @@ msgstr "لطفاً مبلغی را برای توکن {0} وارد کنید"
 
 #: src/util/offerBuilderDataToOffer.ts:229
 msgid "Please enter an amount for {catName} token"
-msgstr "لطفاً مبلغی را برای توکن {catName} وارد کنید"
+msgstr "وارد کنید {catName} لطفاً مبلغی را برای توکن"
 
 #: src/components/offers/OfferEditor.tsx:107
 msgid "Please enter an amount for each row"
@@ -3906,11 +3902,11 @@ msgstr "آدرس قرارداد استخر"
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:34
 msgid "Pool does not provide relativeLockHeight."
-msgstr "استخر relativeLockHeight را ارائه نمیدهد."
+msgstr ".را ارائه نمیدهد relativeLockHeight استخر"
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:31
 msgid "Pool does not provide targetPuzzleHash."
-msgstr "را ارائه نمیدهد. targetPuzzleHash استخر"
+msgstr ".را ارائه نمیدهد targetPuzzleHash استخر"
 
 #: src/components/plot/add/PlotAddChooseKeys.tsx:186
 msgid "Pool Farming"
@@ -4449,7 +4445,7 @@ msgstr "کلیدها را انتخاب کنید"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:247
 msgid "Select keys which you want to share with WalletConnect"
-msgstr "کلیدهایی را که میخواهید با WalletConnect به اشتراک بگذارید انتخاب کنید"
+msgstr "به اشتراک بگذارید انتخاب کنید WalletConnect کلیدهایی را که میخواهید با"
 
 #: src/components/offers/OfferImport.tsx:160
 msgid "Select Offer File"
@@ -4537,7 +4533,7 @@ msgstr "یک چارچوب زمانی پیش‌فرض برای تمام تراک�
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:187
 msgid "Set a time after which this offer expires."
-msgstr ""
+msgstr "زمانی را تعیین کنید که پس از آن این پیشنهاد منقضی شود."
 
 #: src/constants/WalletConnectCommands.tsx:763
 msgid "Set DID Name"
@@ -4577,7 +4573,7 @@ msgstr "اشتراک در دکسی"
 
 #: src/components/offers/OfferShareDialog.tsx:611
 msgid "Share on Hashgreen DEX"
-msgstr "اشتراک در هش گرین DEX"
+msgstr "DEX اشتراک در هش گرین "
 
 #: src/components/offers/OfferShareDialog.tsx:1160
 #~ msgid "Share on Keybase"
@@ -4593,11 +4589,11 @@ msgstr "اشتراک در MintGarden"
 
 #: src/components/offers/OfferShareDialog.tsx:845
 msgid "Share on offerpool"
-msgstr "اشتراک در offerpool"
+msgstr "offerpool اشتراک در "
 
 #: src/components/offers/OfferShareDialog.tsx:723
 msgid "Share on Spacescan.io"
-msgstr "اشتراک در Spacescan.io"
+msgstr "Spacescan.io اشتراک در "
 
 #: src/components/offers/OfferShareDialog.tsx:804
 #~ msgid "Share Privately"
@@ -4720,7 +4716,7 @@ msgstr "فارم شخصی"
 
 #: src/components/app/AppTestnetIndicator.tsx:47
 msgid "Sorry, you can't switch to mainnet by clicking here..."
-msgstr "با عرض پوزش، نمیتوانید با کلیک کردن در اینجا به شبکه اصلی تغییر دهید..."
+msgstr "...با عرض پوزش، نمیتوانید با کلیک کردن در اینجا به شبکه اصلی تغییر دهید"
 
 #: src/components/harvest/HarvesterDetail.tsx:108
 #: src/components/harvest/HarvesterOverview.tsx:157
@@ -4729,7 +4725,7 @@ msgstr "فضا"
 
 #: src/components/offers/OfferShareDialog.tsx:674
 msgid "Spacescan.io URL"
-msgstr "آدرس سایت Spacescan.io"
+msgstr "Spacescan.io آدرس سایت"
 
 #: src/components/settings/SettingsHarvester.tsx:472
 msgid "Specify a value if using CPU as your harvester. Typical values will be 1 or 2."
@@ -4972,7 +4968,7 @@ msgstr "عملیات تعویض استخر لغو شد، لطفاً با تغی�
 
 #: src/hooks/usePoolInfo.ts:55
 msgid "The pool URL \"{normalizedUrl}\" is not working. Is it pool? Error: {0}"
-msgstr "آدرس سایت استخر \"{normalizedUrl}\" کار نمیکند. مطمئن هستید از آدرس؟ خطا: {0}"
+msgstr " کار نمیکند. مطمئن هستید از آدرس؟ خطا: {0}\"{normalizedUrl}\" آدرس سایت استخر"
 
 #: src/hooks/usePoolInfo.ts:44
 msgid "The pool URL is not valid. {normalizedUrl}"
@@ -5065,7 +5061,7 @@ msgstr "این کلید عمومی فارم مربوط به کیف پول وار
 
 #: src/components/plot/add/PlotAddChooseKeys.tsx:42
 msgid "This is the plot nft contract address of \"{plotNFTName}\". If you want to change this, select \"None\" at Plot to a Plot NFT form."
-msgstr "این آدرس قرارداد پلات ات اف تی است \"{plotNFTName}\". اگر می‌خواهید آنرا تغییر دهید، «هیچ‌کدام» در فرم یک پلات به پلات ان اف تی را انتخاب کنید."
+msgstr ".اگر می‌خواهید آنرا تغییر دهید، «هیچ‌کدام» در فرم یک پلات به پلات ان اف تی را انتخاب کنید \"{plotNFTName}\" این آدرس قرارداد پلات ات اف تی است."
 
 #: src/components/block/Block.jsx:163
 msgid "This is the time the block was created by the farmer, which is before it is finalized with a proof of time"
@@ -5115,15 +5111,15 @@ msgstr "این پیشنهاد لغو شد"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:44
 msgid "This offer will expire in {displayDays} {displayDaysText}{hoursComma} {displayHours} {displayHoursText}{minutesComma} {displayMinutes} {displayMinutesText}"
-msgstr ""
+msgstr "منقضی میشود {displayDays} {displayDaysText}{hoursComma} {displayHours} {displayHoursText}{minutesComma} {displayMinutes} {displayMinutesText} این پیشنهاد در"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:210
 #~ msgid "This offer will never expire."
-#~ msgstr "این پیشنهاد هرگز منقضی نمیشود."
+#~ msgstr ""
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:45
 msgid "This offer will not expire"
-msgstr ""
+msgstr "این پیشنهاد منقضی نمیشود"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:268
 msgid "This plot NFT is assigned to a different key. You can still create plots for this plot NFT, but you can not make changes."
@@ -5135,11 +5131,11 @@ msgstr "این جدول به شما نشان میدهد که آخرین بار �
 
 #: src/components/settings/SettingsIntegration.tsx:398
 msgid "This will reset all previously granted permissions across all Dapps that have been connected to. After resetting you will be asked to grant permission again."
-msgstr "با این کار همه مجوزهای قبلاً اعطا شده در همه Dappهایی که به آنها متصل شده اند بتنظیم مجدد میشود. پس از تنظیم مجدد، از شما خواسته میشود که دوباره مجوز بدهید."
+msgstr "هایی که به آنها متصل شده اند بتنظیم مجدد میشود. پس از تنظیم مجدد، از شما خواسته میشود که دوباره مجوز بدهید. Dapp با این کار همه مجوزهای قبلاً اعطا شده در همه"
 
 #: src/components/settings/SettingsIntegration.tsx:359
 msgid "This will restore the selected Dapp's permissions back to their default values. By default, every command issued by the Dapp will require confirmation in the Chia wallet."
-msgstr "با این کار مجوزهای Dapp انتخاب شده به مقادیر پیش‌فرض خود بازمیگردند. به طور پیش فرض، هر فرمان صادر شده توسط Dapp به تأیید در کیف پول چیا نیاز دارد."
+msgstr " .به تأیید در کیف پول چیا نیاز دارد Dapp انتخاب شده به مقادیر پیش‌فرض خود بازمیگردند. به طور پیش فرض، هر فرمان صادر شده توسط Dapp با این کار مجوزهای"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:151
 msgid "Thread Multiplier for Phase 2"
@@ -5342,11 +5338,11 @@ msgstr "قابلیت پردازش و نمایش اعلان ها را فعال ی
 
 #: src/components/settings/SettingsNotifications.tsx:140
 msgid "Turn on/off the ability to receive general announcements and updates from any Dapp connected to your wallet. This allows you to stay informed about new features and important updates directly from the Dapps you use."
-msgstr "قابلیت دریافت اعلان‌ها و بروزرسانی‌های عمومی را از هر Dapp متصل به کیف پول خود فعال یا غیرفعال کنید. این به شما امکان اطلاع از ویژگی های جدید و بروز رسانی های مهم Dappهایی که استفاده میکنید را میدهد."
+msgstr ".هایی که استفاده میکنید را میدهد Dapp متصل به کیف پول خود فعال یا غیرفعال کنید. این به شما امکان اطلاع از ویژگی های جدید و بروز رسانی های مهم Dapp قابلیت دریافت اعلان‌ها و بروزرسانی‌های عمومی را از هر"
 
 #: src/components/settings/SettingsNotifications.tsx:111
 msgid "Turn on/off the ability to receive notifications about new offers from Dapps connected to your wallet. By turning this on, you stay informed about the latest offers and opportunities brought forth by your trusted Dapps, ensuring you never miss out on a potential deal."
-msgstr "قابلیت دریافت اعلان‌های پیشنهادات جدید از Dapps متصل به کیف پول خود را فعال یا غیرفعال کنید. با روشن کردن این گزینه، از آخرین پیشنهادات و فرصت‌های ارائه شده توسط Dapps مورد اعتماد خود مطلع شده و مطمئن میشوید که هرگز یک معامله بالقوه را از دست نمیدهید."
+msgstr ".مورد اعتماد خود مطلع شده و مطمئن میشوید که هرگز یک معامله بالقوه را از دست نمیدهید Dapps متصل به کیف پول خود را فعال یا غیرفعال کنید. با روشن کردن این گزینه، از آخرین پیشنهادات و فرصت‌های ارائه شده توسط Dapps قابلیت دریافت اعلان‌های پیشنهادات جدید از "
 
 #: src/components/settings/SettingsNotifications.tsx:86
 msgid "Turn on/off the ability to show you notifications on the desktop."
@@ -5391,11 +5387,11 @@ msgstr "نمیتوان پیشنهادی ایجاد کرد که مبلغ خالص
 
 #: src/components/signVerify/SignMessage.tsx:110
 msgid "Unable to find DID {entityId}"
-msgstr "نمیتوان شناسه غیرمتمرکز را پیدا کرد {entityId}"
+msgstr "{entityId} نمیتوان شناسه غیرمتمرکز را پیدا کرد"
 
 #: src/components/signVerify/SignMessage.tsx:108
 msgid "Unable to find NFT {entityId}"
-msgstr "نمیتوان ان اف تی را پیدا کرد {entityId}"
+msgstr "{entityId} نمیتوان ان اف تی را پیدا کرد"
 
 #: src/components/offers/OfferShareDialog.tsx:1002
 #~ msgid "Unable to open browser. Install Keybase from https://keybase.io"
@@ -5453,7 +5449,7 @@ msgstr "توکن ناشناخته"
 
 #: src/hooks/useWalletConnectCommand.tsx:32
 msgid "Unknown Dapp"
-msgstr "Dapp ناشناس"
+msgstr "ناشناس Dapp"
 
 #: src/components/app/AppPassPrompt.tsx:89
 msgid "Unlock Keyring"
@@ -5650,7 +5646,7 @@ msgstr "قابل دیدن"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:386
 msgid "Visible  <0/>"
-msgstr "قابل دیدن <0/>"
+msgstr "<0/> قابل دیدن"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:572
 #~ msgid "Visible ({0})"
@@ -5658,7 +5654,7 @@ msgstr "قابل دیدن <0/>"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:381
 msgid "Visible and Hidden  <0/>"
-msgstr "قابل دیدن و پنهان <0/>"
+msgstr "<0/> قابل دیدن و پنهان"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:570
 #~ msgid "Visible and hidden ({0})"
@@ -5885,11 +5881,11 @@ msgstr "شما نیازی به سینک یا اتصال به پلات نداری
 #: src/components/farm/card/EstimatedEarning.tsx:68
 #: src/components/farm/card/ExpectedTimeToWin.tsx:63
 msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3 to 4 times longer than this estimate."
-msgstr "شما {0}٪ از فضای شبکه را در اختیار دارید، بنابراین برای فارم یک بلاک، انتظار میرود {expectedTimeToWin} طول بکشد. نتایج واقعی ممکن است 3 تا 4 برابر بیشتر از این تخمین طول بکشد."
+msgstr "طول بکشد. نتایج واقعی ممکن است 3 تا 4 برابر بیشتر از این تخمین طول بکشد. {expectedTimeToWin} شما {0}٪ از فضای شبکه را در اختیار دارید، بنابراین برای فارم یک بلاک، انتظار میرود"
 
 #: src/components/farm/card/FarmingRewardsCards.tsx:89
 msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWinHumanized} in expectation. Actual results may take 3 to 4 times longer than this estimate."
-msgstr "شما {0}٪ از فضای شبکه را در اختیار دارید، بنابراین برای فارم یک بلاک، انتظار میرود {expectedTimeToWinHumanized} طول بکشد. نتایج واقعی ممکن است 3 تا 4 برابر بیشتر از این تخمین طول بکشد."
+msgstr "طول بکشد. نتایج واقعی ممکن است 3 تا 4 برابر بیشتر از این تخمین طول بکشد. {expectedTimeToWinHumanized} شما {0}٪ از فضای شبکه را در اختیار دارید، بنابراین برای فارم یک بلاک، انتظار میرود"
 
 #: src/components/notification/NotificationOffer.tsx:92
 msgid "You have a new counter offer"
@@ -5942,7 +5938,7 @@ msgstr "<0/> به{address} شما دریافت خواهید کرد"
 
 #: src/components/walletConnect/WalletConnectActiveSessions.tsx:56
 msgid "Your current version of the Chia application may not support some commands requested by the dApp. For the best experience, consider updating to the latest version."
-msgstr "نسخه فعلی برنامه چیا شما ممکن است برخی از دستورات درخواست شده توسط dApp را پشتیبانی نکند. برای بهترین تجربه، بروزرسانی به آخرین نسخه را در نظر بگیرید."
+msgstr ".را پشتیبانی نکند. برای بهترین تجربه، بروزرسانی به آخرین نسخه را در نظر بگیرید dApp نسخه فعلی برنامه چیا شما ممکن است برخی از دستورات درخواست شده توسط"
 
 #: src/components/farm/FarmHeader.tsx:21
 #~ msgid "Your Farm Overview"
@@ -5989,3 +5985,4 @@ msgstr "برای ایجاد حساب کاربری، موجودی قابل خرج
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "برای انجام مطالبه خودکار، باید کیف پول شما در حال اجرا باشد."
+

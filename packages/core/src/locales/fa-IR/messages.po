@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-10-01 00:04\n"
+"PO-Revision-Date: 2023-10-08 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -24,11 +24,11 @@ msgstr "(> 5 دقیقه)"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:64
 msgid "(~{selectedTime} min)"
-msgstr "(~{selectedTime} دقیقه)"
+msgstr "(~{selectedTime} min)"
 
 #: src/components/Amount/Amount.tsx:87
 msgid "{0, plural, one {mojo} other {mojos}}"
-msgstr "{0, plural, one {موجو} other {موجوها}}"
+msgstr "{0, plural, one {mojo} other {mojos}}"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:36
 msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
@@ -80,7 +80,7 @@ msgstr "بروز رسانی را بررسی کنید..."
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:82
 msgid "Chia {latestVersion} is currently the latest version available."
-msgstr "چیا {latestVersion} در حال حاضر آخرین نسخه موجود است."
+msgstr ".در حال حاضر آخرین نسخه موجود است {latestVersion} چیا"
 
 #: src/components/Settings/SettingsApp.tsx:126
 msgid "Chia Application Version:"
@@ -140,12 +140,11 @@ msgstr "حذف تمامی کلید ها"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:110
 msgid "Delete key {fingerprint}"
-msgstr "حذف کلید {fingerprint}"
+msgstr "{fingerprint} حذف کلید"
 
 #: src/screens/SelectKey/SelectKey.tsx:133
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
-msgstr ""
-"حذف همه کلیدها آنها را برای همیشه از روی رایانه شما حذف میکند، مطمئن شوید که نسخه پشتیبان دارید.\n"
+msgstr "حذف همه کلیدها آنها را برای همیشه از روی رایانه شما حذف میکند، مطمئن شوید که نسخه پشتیبان دارید.\n"
 " آیا مطمئنید که میخواهید ادامه دهید؟"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:106
@@ -263,7 +262,7 @@ msgstr "احتمالاً در {0} ثانیه"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:224
 msgid "Likely in {minutes} minutes"
-msgstr "احتمالاً در {minutes}"
+msgstr "{minutes} احتمالاً در"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:226
 msgid "Likely in >5 minutes"
@@ -308,11 +307,11 @@ msgstr "هرگز این موارد را با کسی به اشتراک نگذار
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:42
 msgid "New passphrase is the same as your current passphrase"
-msgstr "رمز ورودی جدید با رمز ورودی فعلی شما یکسان است"
+msgstr "رمز ورودی جدید همانند رمز ورودی فعلی شما است"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:133
 msgid "New version {latestVersion} available"
-msgstr "نسخه جدید {latestVersion} موجود است"
+msgstr "موجود است {latestVersion} نسخه جدید"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:84
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:138
@@ -321,7 +320,7 @@ msgstr "از زمانیکه کلید را وارد کرده اید هیچ کلم
 
 #: src/components/FormatConnectionStatus/FormatConnectionStatus.tsx:33
 msgid "Not connected"
-msgstr "متصل نشده"
+msgstr "متضل نیست"
 
 #: src/screens/SelectKey/WalletStatus.tsx:61
 #~ msgid "Not Synced"
@@ -347,7 +346,7 @@ msgstr "کلید عمومی استخر:"
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:27
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:34
 msgid "Private key {fingerprint}"
-msgstr "کد شخصی {fingerprint}"
+msgstr "{fingerprint} کد شخصی"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:42
 msgid "Private key:"
@@ -521,7 +520,7 @@ msgstr "تغییرات ذخیره نشده"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:62
 msgid "Using a passphrase is strongly recommended to protect your keys. Are you sure you want to disable passphrase protection?"
-msgstr "یک رمز ورود برای محافظت از کلیدهای شما قویا توصیه میشود. آیا مطمئن هستید که میخواهید از رمز ورود صرفنظر کنید؟"
+msgstr "تنظیم یک رمز ورود برای محافظت از کلیدهای شما اکیداً توصیه میشود. آیا مطمئن هستید که میخواهید از تنظبم رمز عبور صرفنظر کنید؟"
 
 #: src/components/Fee/Fee.tsx:24
 msgid "Value seems high"
@@ -569,4 +568,5 @@ msgstr "نسخه فعلی شما:"
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:21
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
-msgstr "کلیدهای شما به یک کلید جدید منتقل نشده. تا زمانی که انتقال کامل نشود، نمیتوانید کلیدهای جدید ایجاد کنید یا کلیدهای موجود را حذف کنید. آیا میخواهید کلیدهای خود را اکنون انتقال دهید؟"
+msgstr "کلیدهای شما به یک کلید جدید تا زمانیکه انتقال کامل نشود، منتقل نشده است. نمیتوانید کلیدهای جدید ایجاد کنید یا کلیدهای موجود را حذف کنید. آیا میخواهید کلیدهای خود را اکنون انتقال دهید؟"
+

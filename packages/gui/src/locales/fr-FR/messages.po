@@ -8,7 +8,7 @@ msgstr ""
 "Language: fr_FR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-09-24 00:04\n"
+"PO-Revision-Date: 2023-10-08 00:04\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -188,7 +188,7 @@ msgstr "(Non installé)"
 
 #: src/components/plot/add/PlotAddChooseKeys.tsx:64
 msgid "(Not recommended) Used to create an old style plot for solo farming."
-msgstr ""
+msgstr "(Non recommandé) Utilisé pour créer une parcelle d'ancienne génération, cultivable en solo uniquement."
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:61
 msgid "(Not Supported)"
@@ -213,7 +213,7 @@ msgstr "{0}"
 
 #: src/components/addressbook/ContactSummary.tsx:155
 msgid "{0} {1}"
-msgstr ""
+msgstr "{0} {1}"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:169
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:201
@@ -242,15 +242,15 @@ msgstr "{0} points {1} - il y a {2} heures"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:36
 msgid "{displayDays, plural, one {day} other {days}}"
-msgstr ""
+msgstr "{displayDays, plural, one {jour} other {jours}}"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:38
 msgid "{displayHours, plural, one {hour} other {hours}}"
-msgstr ""
+msgstr "{displayHours, plural, one {heure} other {heures}}"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:40
 msgid "{displayMinutes, plural, one {minute} other {minutes}}"
-msgstr ""
+msgstr "{displayMinutes, plural, one {minute} other {minutes}}"
 
 #: src/components/notification/NotificationAnnouncement.tsx:52
 msgid "{from} <0>sending the message</0>"
@@ -287,15 +287,15 @@ msgstr "{warning}"
 
 #: src/components/settings/SettingsHarvester.tsx:542
 msgid "* Disabled - use device at specified index if available; if not, attempt to use device at other indices; if no GPUs available, use CPU"
-msgstr ""
+msgstr "* Désactivé - utiliser de préférence le périphérique à l'indice spécifié ; si indisponible, utiliser un autre périphérique ; si aucun GPU n'est disponible, utiliser le CPU"
 
 #: src/components/settings/SettingsHarvester.tsx:540
 msgid "* Enabled - use device at specified index if available; else error"
-msgstr ""
+msgstr "* Activé - utiliser le périphérique à l'index spécifié ; erreur si indisponible"
 
 #: src/components/settings/SettingsHarvester.tsx:344
 msgid "*Usually it takes seconds to complete restarting."
-msgstr ""
+msgstr "* Il faut généralement quelques secondes pour compléter le redémarrage."
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:41
 msgid "+ Add a Plot"
@@ -408,7 +408,7 @@ msgstr "Ajouter une Connexion"
 
 #: src/components/addressbook/AddressBookSideBar.tsx:128
 msgid "Add Contact"
-msgstr ""
+msgstr "Ajouter un contact"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:148
 #~ msgid "Add option to set expiration time {0}"
@@ -452,7 +452,7 @@ msgstr "Adresse"
 #: src/components/addressbook/ContactAdd.tsx:30
 #: src/components/addressbook/ContactEdit.tsx:33
 msgid "Addresses"
-msgstr ""
+msgstr "Adresses"
 
 #: src/components/settings/SettingsAdvanced.tsx:45
 msgid "Advanced"
@@ -591,7 +591,7 @@ msgstr "Êtes-vous sûr de vouloir transférer ce NFT vers ce profil ?"
 
 #: src/components/addressbook/ContactSummary.tsx:46
 msgid "Are you sure you want to permanently delete this contact? Once deleted, this contact cannot be recovered."
-msgstr ""
+msgstr "Êtes-vous sûr de vouloir supprimer définitivement ce contact ? Une fois supprimé, ce contact ne pourra pas être récupéré."
 
 #: src/electron/main.tsx:816
 #~ msgid "Are you sure you want to quit?"
@@ -659,7 +659,7 @@ msgstr "Tentative {attempt}"
 
 #: src/components/offers2/OfferBuilderToken.tsx:63
 msgid "Authorized providers"
-msgstr ""
+msgstr "Fournisseurs autorisés"
 
 #: src/components/settings/SettingsCustody.tsx:61
 msgid "Auto claim incoming claw back transactions"
@@ -679,7 +679,7 @@ msgstr "Nom généré automatiquement à partir de l'adresse du contrat de pool"
 
 #: src/components/harvest/HarvesterLatency.tsx:108
 msgid "Avg"
-msgstr ""
+msgstr "Moy"
 
 #: src/components/offers/NFTOfferViewer.tsx:633
 msgid "Back"
@@ -703,7 +703,7 @@ msgstr "Montant de récompense de base du fermier"
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:74
 msgid "Before beginning the plotting process, ensure that you have at least 128GB of RAM available. If you are running low on additional memory space, we strongly advise closing all other applications to prevent memory errors."
-msgstr ""
+msgstr "Avant de commencer le traçage, assurez-vous d'avoir au moins 128 Go de mémoire vive disponible. Si vous manquez de mémoire, nous vous recommandons de fermer les autres applications pour éviter les erreurs."
 
 #: src/components/offers/OfferShareDialog.tsx:1177
 #~ msgid "Before posting an offer in Keybase to the #{channelName} channel, you must first join the {teamName} team. Please note that it might take a few moments to join the channel."
@@ -728,7 +728,7 @@ msgstr "Bloc à la hauteur {0} dans la blockchain Chia"
 
 #: src/components/farm/card/FarmingRewardsHistoryCards.tsx:61
 msgid "Block Fee"
-msgstr ""
+msgstr "Frais de bloc"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:32
 #~ msgid "Block Rewards"
@@ -753,7 +753,7 @@ msgstr "Blocs"
 #: src/components/farm/card/FarmingRewardsHistoryCards.tsx:87
 #: src/components/farm/card/FarmingRewardsHistoryCards.tsx:90
 msgid "Blocks won"
-msgstr ""
+msgstr "Blocs créés"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:80
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:139
@@ -849,7 +849,7 @@ msgstr "Impossible d'offrir et de demander le même actif"
 
 #: src/components/offers2/OfferBuilderToken.tsx:59
 msgid "CAT credential restrictions"
-msgstr ""
+msgstr "Restrictions des identifiants CAT"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:15
 msgid "Challenge"
@@ -866,7 +866,7 @@ msgstr "Modifier"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:190
 msgid "Change default timing."
-msgstr ""
+msgstr "Changer le timing par défaut."
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:290
 #: src/components/settings/SettingsPanel.tsx:120
@@ -926,11 +926,11 @@ msgstr "Choisir le mode Culture"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:87
 msgid "Choose K value"
-msgstr ""
+msgstr "Choisissez la valeur K"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:87
 msgid "Choose K value and compression level"
-msgstr ""
+msgstr "Choisissez la valeur K et le niveau de compression"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:41
 #~ msgid "Choose Number of Plots"
@@ -1019,15 +1019,15 @@ msgstr "Collection"
 
 #: src/components/settings/SettingsHarvester.tsx:441
 msgid "Compressed plot support"
-msgstr ""
+msgstr "Support des parcelles compressées"
 
 #: src/components/harvest/HarvesterPlotDetails.tsx:132
 msgid "Compression"
-msgstr ""
+msgstr "Compression"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:124
 msgid "Compression level"
-msgstr ""
+msgstr "Niveau de compression"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:167
 #: src/components/vcs/VCRevokeDialog.tsx:27
@@ -1113,12 +1113,12 @@ msgstr "Type de connexion"
 #: src/components/addressbook/ContactAdd.tsx:343
 #: src/components/addressbook/ContactEdit.tsx:358
 msgid "Contact Name"
-msgstr ""
+msgstr "Nom du contact"
 
 #: src/components/addressbook/AddressBookSideBar.tsx:124
 #: src/components/dashboard/DashboardSideBar.tsx:73
 msgid "Contacts"
-msgstr ""
+msgstr "Contacts"
 
 #: src/components/nfts/NFTHashStatus.tsx:109
 msgid "Content does not match the expected hash value that was specified during NFT minting. The content may have been modified."
@@ -1170,7 +1170,7 @@ msgstr "Impossible de lire les données de l'offre"
 
 #: src/constants/WalletConnectCommands.tsx:972
 msgid "Count"
-msgstr ""
+msgstr "Compte"
 
 #: src/components/offers2/OfferIncomingTable.tsx:111
 msgid "Counter"
@@ -1213,7 +1213,7 @@ msgstr "Créer une offre"
 
 #: src/components/addressbook/ContactAdd.tsx:271
 msgid "Create Contact"
-msgstr ""
+msgstr "Créer un contact"
 
 #: src/components/offers2/CreateOfferBuilder.tsx:200
 msgid "Create Counter Offer"
@@ -1258,7 +1258,7 @@ msgstr "Crée et soumet une transaction d'annulation de l'offre sur la blockchai
 
 #: src/components/addressbook/ContactAdd.tsx:274
 msgid "Creating a contact enables you to keep track of people who you know and store information such as their DIDs, Profile NFT or Websites."
-msgstr ""
+msgstr "Créer un contact permet de garder une trace d'une personne que vous connaissez en stockant ses informations (image de profil, DID, sites web)."
 
 #: src/components/settings/ProfileAdd.tsx:130
 msgid "Creating a profile requires 1 mojo"
@@ -1348,11 +1348,11 @@ msgstr "Date"
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:88
 #: src/components/settings/SettingsExpiringOffers.tsx:22
 msgid "Days"
-msgstr ""
+msgstr "Jours"
 
 #: src/components/settings/SettingsHarvester.tsx:480
 msgid "Decompressor Thread Count"
-msgstr ""
+msgstr "Nombre de processus pour la décompression"
 
 #: src/components/settings/SettingsCustody.tsx:41
 msgid "Default claw back time for outgoing XCH transactions"
@@ -1368,11 +1368,11 @@ msgstr "Un temps de récupération par défaut est défini."
 
 #: src/components/settings/SettingsExpiringOffers.tsx:125
 msgid "Default offer expiration time is disabled"
-msgstr ""
+msgstr "L'expiration par défaut des offres est désactivée"
 
 #: src/components/settings/SettingsExpiringOffers.tsx:120
 msgid "Default offer expiration time is enabled"
-msgstr ""
+msgstr "Un délai d'expiration par défaut est défini pour les offres"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:89
 msgid "Delay"
@@ -1391,11 +1391,11 @@ msgstr "Supprimer"
 
 #: src/components/addressbook/ContactSummary.tsx:41
 msgid "Delete contact"
-msgstr ""
+msgstr "Supprimer le contact"
 
 #: src/components/addressbook/ContactSummary.tsx:175
 msgid "Delete Contact"
-msgstr ""
+msgstr "Supprimer le Contact"
 
 #: src/components/app/AppPassPrompt.tsx:103
 msgid "Delete Key"
@@ -2432,20 +2432,16 @@ msgstr "Initialisation..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"Fonds insuffisants pour accepter l'offre. Assurez-vous que votre \n"
+msgstr "Fonds insuffisants pour accepter l'offre. Assurez-vous que votre \n"
 "solde disponible est suffisant pour couvrir le montant de l'offre."
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"Fonds insuffisants pour créer l'offre. Assurez-vous que votre \n"
+msgstr "Fonds insuffisants pour créer l'offre. Assurez-vous que votre \n"
 "solde disponible est suffisant pour couvrir le montant de l'offre."
 
 #: src/components/settings/Settings.tsx:73
@@ -3092,7 +3088,7 @@ msgstr "Les NFT catégorisés comme contenu sensible par le créateur seront mas
 
 #: src/components/vcs/VCCard.tsx:89
 msgid "No"
-msgstr "Non"
+msgstr ""
 
 #: src/components/notification/NotificationsMenu.tsx:53
 msgid "No activities yet"
@@ -5123,7 +5119,7 @@ msgstr ""
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:45
 msgid "This offer will not expire"
-msgstr ""
+msgstr "Cette offre n'expirera pas"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:268
 msgid "This plot NFT is assigned to a different key. You can still create plots for this plot NFT, but you can not make changes."
@@ -5206,11 +5202,11 @@ msgstr "Montant Total avec Royalties"
 
 #: src/components/harvest/HarvesterOverview.tsx:172
 msgid "Total farm size effective"
-msgstr ""
+msgstr "Taille effective de la ferme"
 
 #: src/components/harvest/HarvesterOverview.tsx:164
 msgid "Total farm size raw"
-msgstr ""
+msgstr "Taille brute de la ferme"
 
 #: src/components/plot/card/PlotCardTotalHarvesters.tsx:11
 msgid "Total Harvesters"
@@ -5226,7 +5222,7 @@ msgstr "Total d'itérations depuis le début de la blockchain"
 
 #: src/components/farm/card/TotalNetworkSpace.tsx:13
 msgid "Total Netspace"
-msgstr ""
+msgstr "Espace total du réseau"
 
 #: src/components/farm/card/FarmCardTotalNetworkSpace.tsx:12
 #~ msgid "Total Network Space"
@@ -5234,7 +5230,7 @@ msgstr ""
 
 #: src/components/harvest/HarvesterPlotDetails.tsx:166
 msgid "Total OG"
-msgstr ""
+msgstr "OG Total"
 
 #: src/components/farm/FarmHealth.tsx:228
 msgid "Total plot filter challenges"
@@ -5242,11 +5238,11 @@ msgstr ""
 
 #: src/components/harvest/HarvesterPlotDetails.tsx:169
 msgid "Total plotNFT"
-msgstr ""
+msgstr "Total du plotNFT"
 
 #: src/components/harvest/HarvesterPlotDetails.tsx:163
 msgid "Total plots"
-msgstr ""
+msgstr "Nombre de parcelles"
 
 #: src/components/plot/card/PlotCardTotalPlots.tsx:11
 msgid "Total Plots"
@@ -5270,7 +5266,7 @@ msgstr "Taille totale des fichiers téléchargés :"
 
 #: src/components/harvest/HarvesterDetail.tsx:115
 msgid "Total Space"
-msgstr ""
+msgstr "Espace Total"
 
 #: src/components/block/Block.jsx:186
 msgid "Total VDF Iterations"
@@ -5279,7 +5275,7 @@ msgstr "Itérations VDF totales"
 #: src/components/farm/card/FarmingRewardsHistoryCards.tsx:31
 #: src/components/farm/card/FarmingRewardsHistoryCards.tsx:82
 msgid "Total XCH Farmed"
-msgstr ""
+msgstr "Total des XCH Cultivés"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:362
 msgid "Touch all pages of buffer allocations before starting to plot."
@@ -5989,3 +5985,4 @@ msgstr "Votre solde dépensable doit être supérieur à 1 mojo pour créer un p
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "Votre portefeuille doit être synchronisé pour que la revendication automatique fonctionne."
+
