@@ -85,6 +85,15 @@ export default function PlotAddForm(props: Props) {
       maxRam,
     };
 
+    if (
+      (plotterName === PlotterName.BLADEBIT_RAM ||
+        plotterName === PlotterName.BLADEBIT_DISK ||
+        plotterName === PlotterName.BLADEBIT_CUDA) &&
+      +plotters[plotterName].version.split('.')[0] < 3 // Bladebit < 3.0.0 does not support plot compression
+    ) {
+      defaults.bladebitCompressionLevel = undefined;
+    }
+
     return defaults;
   };
 
