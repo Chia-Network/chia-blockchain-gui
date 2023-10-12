@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-09-24 00:04\n"
+"PO-Revision-Date: 2023-10-08 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -172,7 +172,7 @@ msgstr "检查更新..."
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:160
 #~ msgid "- Set a time after which the offer expires.<0/>- An expiring offer can only be claimed prior to the expiration time."
-#~ msgstr "- 设置一个报价过期的时间。<0/>- 定期报价只能在到期时间之前进行交易。"
+#~ msgstr ""
 
 #: src/components/offers2/OfferBuilderImport.tsx:167
 msgid "(⌘V) a blob"
@@ -242,15 +242,15 @@ msgstr "{0} 积分 {1} - {2} 小时前"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:36
 msgid "{displayDays, plural, one {day} other {days}}"
-msgstr ""
+msgstr "{displayDays, plural, other {天}}"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:38
 msgid "{displayHours, plural, one {hour} other {hours}}"
-msgstr ""
+msgstr "{displayHours, plural, other {小时}}"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:40
 msgid "{displayMinutes, plural, one {minute} other {minutes}}"
-msgstr ""
+msgstr "{displayMinutes, plural, other {分钟}}"
 
 #: src/components/notification/NotificationAnnouncement.tsx:52
 msgid "{from} <0>sending the message</0>"
@@ -412,7 +412,7 @@ msgstr "添加联系人"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:148
 #~ msgid "Add option to set expiration time {0}"
-#~ msgstr "添加到期时间选项 {0}"
+#~ msgstr ""
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:114
 msgid "Add plot directory"
@@ -866,7 +866,7 @@ msgstr "变更"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:190
 msgid "Change default timing."
-msgstr ""
+msgstr "更改默认时间设置。"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:290
 #: src/components/settings/SettingsPanel.tsx:120
@@ -1033,7 +1033,7 @@ msgstr "压缩等级"
 #: src/components/vcs/VCRevokeDialog.tsx:27
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:71
 msgid "Confirm"
-msgstr "确定"
+msgstr "确认"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:19
 msgid "Confirm Disconnect"
@@ -1851,7 +1851,7 @@ msgstr "过期时间"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:202
 #~ msgid "Expiration time will be {0}"
-#~ msgstr "将在 {0} 后过期"
+#~ msgstr ""
 
 #: src/components/offers/OfferManager.tsx:183
 #: src/components/vcs/VCCard.tsx:166
@@ -3342,7 +3342,7 @@ msgstr "报价详情"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:184
 msgid "Offer Expiration"
-msgstr ""
+msgstr "报价有效期"
 
 #: src/components/settings/SettingsExpiringOffers.tsx:43
 msgid "Offer Expiration Time"
@@ -4537,7 +4537,7 @@ msgstr "为所有转出XCH的交易设置默认时间范围。"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:187
 msgid "Set a time after which this offer expires."
-msgstr ""
+msgstr "设置此报价的过期时间。"
 
 #: src/constants/WalletConnectCommands.tsx:763
 msgid "Set DID Name"
@@ -5115,15 +5115,15 @@ msgstr "此报价已取消"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:44
 msgid "This offer will expire in {displayDays} {displayDaysText}{hoursComma} {displayHours} {displayHoursText}{minutesComma} {displayMinutes} {displayMinutesText}"
-msgstr ""
+msgstr "此报价将在{displayDays} {displayDaysText}{hoursComma} {displayHours} {displayHoursText}{minutesComma} {displayMinutes} {displayMinutesText}后过期"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:210
 #~ msgid "This offer will never expire."
-#~ msgstr "此报价永远不会过期。"
+#~ msgstr ""
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:45
 msgid "This offer will not expire"
-msgstr ""
+msgstr "此报价不会过期"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:268
 msgid "This plot NFT is assigned to a different key. You can still create plots for this plot NFT, but you can not make changes."

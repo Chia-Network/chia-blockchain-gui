@@ -8,7 +8,7 @@ msgstr ""
 "Language: vi_VN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-09-14 22:49\n"
+"PO-Revision-Date: 2023-10-08 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -18,11 +18,11 @@ msgstr ""
 "X-Crowdin-File: /main/packages/core/src/locales/en-US/messages.po\n"
 "X-Crowdin-File-ID: 15\n"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:62
+#: src/components/EstimatedFee/EstimatedFee.tsx:64
 msgid "(>5 min)"
 msgstr ""
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:62
+#: src/components/EstimatedFee/EstimatedFee.tsx:64
 msgid "(~{selectedTime} min)"
 msgstr ""
 
@@ -38,7 +38,7 @@ msgstr ""
 msgid "A new version of Chia is available!"
 msgstr ""
 
-#: src/screens/SelectKey/EmojiAndColorPicker.tsx:268
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:270
 msgid "Add Icon"
 msgstr ""
 
@@ -196,8 +196,8 @@ msgstr "Khóa công khai của farmer:"
 msgid "Farming"
 msgstr "Farming"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:334
-#: src/components/EstimatedFee/EstimatedFee.tsx:368
+#: src/components/EstimatedFee/EstimatedFee.tsx:338
+#: src/components/EstimatedFee/EstimatedFee.tsx:372
 #: src/components/Fee/Fee.tsx:44
 msgid "Fee"
 msgstr "Phí"
@@ -255,15 +255,15 @@ msgstr ""
 msgid "Light"
 msgstr "Sáng"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:223
+#: src/components/EstimatedFee/EstimatedFee.tsx:227
 msgid "Likely in {0} seconds"
 msgstr ""
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:220
+#: src/components/EstimatedFee/EstimatedFee.tsx:224
 msgid "Likely in {minutes} minutes"
 msgstr ""
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:222
+#: src/components/EstimatedFee/EstimatedFee.tsx:226
 msgid "Likely in >5 minutes"
 msgstr ""
 
@@ -359,7 +359,7 @@ msgstr ""
 msgid "Public key:"
 msgstr " Khoá địa chỉ công khai :"
 
-#: src/screens/SelectKey/EmojiAndColorPicker.tsx:287
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:289
 msgid "Random"
 msgstr ""
 
@@ -375,7 +375,7 @@ msgstr ""
 msgid "Reload Application"
 msgstr "Tải lại ứng dụng"
 
-#: src/screens/SelectKey/EmojiAndColorPicker.tsx:268
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:270
 msgid "Remove Icon"
 msgstr ""
 
@@ -396,7 +396,7 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: src/screens/SelectKey/EmojiAndColorPicker.tsx:180
+#: src/screens/SelectKey/EmojiAndColorPicker.tsx:182
 #: src/screens/SelectKey/Search.tsx:34
 msgid "Search"
 msgstr ""

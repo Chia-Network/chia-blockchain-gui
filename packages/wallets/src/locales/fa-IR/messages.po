@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-10-01 00:04\n"
+"PO-Revision-Date: 2023-10-08 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -118,7 +118,7 @@ msgstr "ارائه دهندگان مجاز"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:234
 msgid "Auto-claim transactions with this fee from now on."
-msgstr "از این پس تراکنش ها را با این کارمزد مطالبه کنید."
+msgstr ".از این به بعد تراکنسهای بازگرداندن خودکار را با این کارمزد بگیرید"
 
 #: src/components/WalletSend.tsx:336
 msgid "Before sending this transaction, you should ensure that the recipient has a wallet that can claim it manually after the timer has expired."
@@ -126,7 +126,7 @@ msgstr "قبل از ارسال این تراکنش، باید اطمینان ح�
 
 #: src/components/WalletHistoryClawbackChip.tsx:61
 msgid "Can be claimed in "
-msgstr "قابل مطالبه در "
+msgstr "قابلیت گرفتن در "
 
 #: src/components/PasteMnemonic.tsx:76
 #: src/components/WalletRenameDialog.tsx:72
@@ -154,16 +154,16 @@ msgstr "توکن دارایی چیا"
 
 #: src/components/WalletHistoryClawbackChip.tsx:68
 msgid "Claim transaction"
-msgstr "مطالبه تراکنش"
+msgstr "تراکنش گرفتن"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:138
 #: src/components/ClawbackClaimTransactionDialog.tsx:267
 msgid "Claim Transaction"
-msgstr "مطالبه تراکنش"
+msgstr "تراکنش بازگرداندن"
 
 #: src/components/WalletHistoryClawbackChip.tsx:83
 msgid "Claiming..."
-msgstr "مطالبه..."
+msgstr "...در حال گرقتن"
 
 #: src/components/WalletIcon.tsx:17
 msgid "Classic version of Stably USDS as held by Prime Trust"
@@ -175,35 +175,35 @@ msgstr "انقضای پس گرفتن"
 
 #: src/components/WalletHistoryClawbackChip.tsx:94
 msgid "Claw back this transaction"
-msgstr "این نراکنش را بازگردانید"
+msgstr "بازکزداندن این تراکنش"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:267
 msgid "Claw back Transaction"
-msgstr "نراکنش را بازگردانید"
+msgstr "بازکزداندن این تراکنش"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:138
 msgid "Claw Back Transaction"
-msgstr "نراکنش را بازگردانید"
+msgstr "بازگرداندن تراکنش"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:130
 msgid "Clawback payment claimed"
-msgstr "پرداخت بازگزداندن درخواست شد"
+msgstr "پرداخت بازگرداندن گرفته شد"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:130
 msgid "Clawback payment clawed back"
-msgstr "پرداخت بازگزداندن برگشت خوزد"
+msgstr "پرداخت بازگرداندن بازکزدانده شد"
 
 #: src/components/WalletSend.tsx:334
 msgid "Clawback will be applied."
-msgstr "بازگرداندن اعمال خواهد شد."
+msgstr ".بازگرداندن اعمال خواهد شد"
 
 #: src/components/WalletSend.tsx:344
 msgid "Clawback will not be applied."
-msgstr "بازگرداندن اعمال نخواهد شد."
+msgstr ".بازگرداندن اعمال نخواهد شد"
 
 #: src/components/WalletHistoryClawbackChip.tsx:109
 msgid "Clawing back..."
-msgstr "بازگرداندن..."
+msgstr "...بازگرداندن"
 
 #: src/components/WalletsSidebar.tsx:141
 #~ msgid "Click here to download an older version of the wallet"
@@ -299,7 +299,7 @@ msgstr "هویت توزیع شده"
 
 #: src/components/WalletImport.tsx:157
 msgid "Enter the {mnemonicWordCount} word mnemonic that you have saved in order to restore your Chia wallet."
-msgstr "کد رمزها {mnemonicWordCount} را که ذخیره کرده اید وارد کنید تا کیف پول چیا شما بازیابی شود."
+msgstr ".را که ذخیره کرده اید وارد کنید تا کیف پول چیا شما بازیابی شود {mnemonicWordCount} کد رمزها"
 
 #: src/components/cat/WalletCATSend.tsx:127
 msgid "Error the entered address appears to be for a different colour."
@@ -318,7 +318,7 @@ msgstr "کارمزد"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:183
 msgid "From:"
-msgstr "از:"
+msgstr ":از"
 
 #: src/components/WalletReceiveAddress.tsx:32
 msgid "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefore wallet receive addresses) that will all ultimately come back to and be spendable by a single private key."
@@ -334,7 +334,7 @@ msgstr "وارد كردن"
 
 #: src/components/WalletImport.tsx:225
 msgid "Import from {alternativeWordCount} word mnemonic"
-msgstr "وارد کردن از {alternativeWordCount} کد رمزها"
+msgstr "کد رمزها {alternativeWordCount} وارد کردن از"
 
 #: src/components/WalletImport.tsx:140
 msgid "Import Wallet from Mnemonics"
@@ -387,7 +387,7 @@ msgstr "آدرس جدید"
 
 #: src/components/WalletReceiveAddressField.tsx:114
 msgid "New Receive Address"
-msgstr "آدرس دریافت جدید"
+msgstr "آدرس جدید گیرنده"
 
 #: src/components/WalletAdd.tsx:62
 msgid "New Wallet"
@@ -470,7 +470,7 @@ msgstr "تغییر در حالت انتظار"
 
 #: src/components/WalletHistoryPending.tsx:63
 msgid "Pending claw back transactions"
-msgstr "بازگرداندن تراکنش معلق"
+msgstr "بازگرداندن تراکنشهای در انتظاز"
 
 #: src/components/card/WalletCardPendingTotalBalance.tsx:41
 msgid "Pending Total Balance"
@@ -486,11 +486,11 @@ msgstr "لطفاً برای تأیید مبلغ فوق، کارمزد تراکن
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:214
 msgid "Please enter a transaction fee to claim the above amount:"
-msgstr "لطفاً یک کارمزد تراکنش برای مطالبه مبلغ فوق وارد کنید:"
+msgstr ":لطفاً یک کارمزد تراکنش برای گرفتن مبلغ بالا وارد کنید"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:216
 msgid "Please enter a transaction fee to claw back the above amount:"
-msgstr "لطفاً یک کارمزد تراکنش برای بازگرداندن مبلغ فوق وارد کنید:"
+msgstr ":لطفاً یک کارمزد تراکنش برای بازگرداندن مبلغ بالا وارد کنید"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:42
 msgid "Please enter a valid asset id"
@@ -678,7 +678,7 @@ msgstr "این کل موجودی + موجودی در انتظار است: نشا
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:201
 msgid "This transaction will be automatically claimed with a fee:"
-msgstr "این تراکنش به صورت خودکار با کارمزد مطالبه میشود:"
+msgstr ":این تراکنش به صورت خودکار با کارمزد گرفته میشود"
 
 #: src/components/WalletHistory.tsx:181
 #~ msgid "To"
@@ -687,7 +687,7 @@ msgstr "این تراکنش به صورت خودکار با کارمزد مطا�
 #: src/components/ClawbackClaimTransactionDialog.tsx:183
 #: src/components/WalletHistory.tsx:168
 msgid "To:"
-msgstr "به:"
+msgstr ":به"
 
 #: src/components/cat/WalletCATCreateSimple.tsx:46
 msgid "Token has empty asset id"
@@ -715,15 +715,15 @@ msgstr "تراکنش ها"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:240
 msgid "Transactions will be claimed automatically when the Clawback time expires."
-msgstr "با پایان یافتن زمان بازگرداندن، تراکنش‌ها به‌طور مطالبه ادعا میشوند."
+msgstr "پس از انقضای زمان بازگرداندن، تراکنش‌ها به‌طور خودکاربرگردانده میشوند."
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:243
 msgid "Transactions with values smaller than the fee will not be auto claimed."
-msgstr "تراکنش‌هایی که مقادیر کمتر از کارمزد دارند، به‌طور خودکار برداشته نمیشوند."
+msgstr "تراکنش‌هایی که مقادیر کارمزد کمتر دارند، به‌طور خودکار بازگردانده نمیشوند."
 
 #: src/components/Wallet.tsx:23
 msgid "Wallet {walletId} not found"
-msgstr "کیف پول {walletId} یافت نشد"
+msgstr "یافت نشد {walletId} کیف پول"
 
 #: src/components/WalletConnections.tsx:67
 msgid "Wallet Connections"
@@ -744,7 +744,7 @@ msgstr "قبل از تأیید تراکنش‌ها، کیف پول باید سی
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:208
 msgid "Wallet needs to be synced for claiming clawback transactions"
-msgstr "کیف پول برای برداشت تراکنش‌های مدعی بازگرداندن باید سینک شود"
+msgstr "کیف پول برای بازگزداندن تراکنش‌های مدعی پس گرفتن باید سینک شود"
 
 #: src/components/Wallet.tsx:38
 msgid "Wallet with type {0} not supported"
@@ -764,11 +764,11 @@ msgstr "خوش آمدید. کلمات زیر برای پشتیبان گیری ک
 
 #: src/components/WalletHistoryClawbackChip.tsx:56
 msgid "Will be autoclaimed in "
-msgstr "برداشت خودکار خواهد شد در "
+msgstr "خودکار بازگردانده خواهد شد در "
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:246
 msgid "You can change the Clawback Auto Claim fee in Settings."
-msgstr "میتوانید کارمزد برداشت خودکار ادعای بازگرداندن را در تنظیمات تغییر دهید."
+msgstr ".میتوانید کارمزد گرفتن خودکار ادعای بازگرداندن را در تنظیمات تغییر دهید"
 
 #: src/components/crCat/CrCatFlags.tsx:71
 msgid "You do not have this verifiable credential or it is not from the correct authorized provided"
@@ -784,4 +784,4 @@ msgstr "شما این اعتبار قابل تأیید را از ارائه ده
 
 #: src/components/WalletImport.tsx:73
 msgid "Your pasted list does not include {mnemonicWordCount} valid mnemonic words."
-msgstr "لیست فرارداده شما شامل {mnemonicWordCount} کد رمزهای معتبر نیست."
+msgstr ".کد رمزهای معتبر نیست {mnemonicWordCount} لیست فرارداده شما شامل"
