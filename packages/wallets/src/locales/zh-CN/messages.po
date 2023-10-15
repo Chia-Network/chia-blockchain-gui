@@ -785,3 +785,4 @@ msgstr "您拥有来自正确授权提供者的这个可验证证件"
 #: src/components/WalletImport.tsx:73
 msgid "Your pasted list does not include {mnemonicWordCount} valid mnemonic words."
 msgstr "粘贴列表中未包含 {mnemonicWordCount} 个有效助记词。"
+

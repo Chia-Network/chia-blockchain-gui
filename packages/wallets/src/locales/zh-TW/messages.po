@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_TW\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-09-20 17:17\n"
+"PO-Revision-Date: 2023-10-15 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -24,11 +24,11 @@ msgstr "－"
 
 #: src/components/WalletSend.tsx:367
 msgid "- Memo helps the receiver side to identify the payment.<0/>- Anything you enter will be publicly accessible on the blockchain."
-msgstr ""
+msgstr "-Memo可以幫助接收方辨識付款。<0/>-你輸入的內容將會公開在區塊鏈上。"
 
 #: src/components/WalletSend.tsx:294
 msgid "- Set a time frame which allows you claw back (revoke) the transaction.<0/>- Recipient of the transaction can only claim the funds once that time frame expires."
-msgstr ""
+msgstr "-設定一個可讓你撤回(撤銷) 交易的時間範圍<0/>-交易的接收者只能在該時間之後領取資金。"
 
 #: src/components/WalletHistory.tsx:118
 msgid "+"
@@ -44,7 +44,7 @@ msgstr "新增"
 
 #: src/components/WalletSend.tsx:288
 msgid "Add option to claw back transaction"
-msgstr ""
+msgstr "添加可撤回的的交易選項"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:61
 #: src/components/cat/WalletCATCreateSimple.tsx:68
@@ -54,7 +54,7 @@ msgstr "新增代幣"
 
 #: src/components/WalletSend.tsx:362
 msgid "Add transaction memo"
-msgstr ""
+msgstr "添加交易Memo"
 
 #: src/components/cat/WalletCATCreateSimple.tsx:92
 msgid "Adding {0} token"
@@ -71,7 +71,7 @@ msgstr "位址"
 
 #: src/components/AddressBookAutocomplete.tsx:65
 msgid "Address or Contact"
-msgstr ""
+msgstr "地址或聯絡簿"
 
 #: src/components/cat/WalletCATSend.tsx:214
 #: src/components/WalletSend.tsx:241
@@ -80,15 +80,15 @@ msgstr "數量"
 
 #: src/components/card/WalletCardCRCatApprove.tsx:71
 msgid "Approve"
-msgstr ""
+msgstr "簽屬"
 
 #: src/components/crCat/CrCatApprovePendingDialog.tsx:91
 msgid "Approve pending CR-CAT transactions"
-msgstr ""
+msgstr "簽屬代處理的CR-CAT交易"
 
 #: src/components/crCat/CrCatApprovePendingDialog.tsx:147
 msgid "Approve pending transactions"
-msgstr ""
+msgstr "簽屬代處理的交易"
 
 #: src/components/WalletHeader.tsx:30
 msgid "Are you sure you want to delete unconfirmed transactions?"
@@ -114,7 +114,7 @@ msgstr "授權收款人錢包"
 
 #: src/components/card/WalletCardCRCatRestrictions.tsx:44
 msgid "Authorized providers"
-msgstr ""
+msgstr "授權提供商"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:234
 msgid "Auto-claim transactions with this fee from now on."
@@ -122,7 +122,7 @@ msgstr "從現在開始自動聲明具有此費用的交易。"
 
 #: src/components/WalletSend.tsx:336
 msgid "Before sending this transaction, you should ensure that the recipient has a wallet that can claim it manually after the timer has expired."
-msgstr ""
+msgstr "再發起此交易之前，應確保接收方的錢包，在定時到期後可以手動確定這筆交易。"
 
 #: src/components/WalletHistoryClawbackChip.tsx:61
 msgid "Can be claimed in "
@@ -140,7 +140,7 @@ msgstr "不能寄送奇亞到有色地址。請輸入奇亞地址。"
 
 #: src/components/card/WalletCardCRCatRestrictions.tsx:40
 msgid "CAT credential restrictions"
-msgstr ""
+msgstr "CAT憑證限制"
 
 #: src/components/WalletsSidebar.tsx:130
 #~ msgid "Check my snapshot balance"
@@ -167,11 +167,11 @@ msgstr "聲明中..."
 
 #: src/components/WalletIcon.tsx:17
 msgid "Classic version of Stably USDS as held by Prime Trust"
-msgstr ""
+msgstr "由Prime Trust持有、Stably發行的舊版USDS"
 
 #: src/components/WalletHistory.tsx:433
 msgid "Claw back expiration"
-msgstr ""
+msgstr "撤回的有效期限"
 
 #: src/components/WalletHistoryClawbackChip.tsx:94
 msgid "Claw back this transaction"
@@ -291,7 +291,7 @@ msgstr "DID 錢包"
 
 #: src/components/WalletSend.tsx:327
 msgid "Disable"
-msgstr ""
+msgstr "禁用"
 
 #: src/components/create/WalletCreateList.tsx:39
 msgid "Distributed Identity"
@@ -322,8 +322,7 @@ msgstr "來自："
 
 #: src/components/WalletReceiveAddress.tsx:32
 msgid "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefore wallet receive addresses) that will all ultimately come back to and be spendable by a single private key."
-msgstr ""
-"HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefore wallet receive addresses) that will all ultimately come back to and be spendable by a single private key.\n"
+msgstr "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefore wallet receive addresses) that will all ultimately come back to and be spendable by a single private key.\n"
 "一個私鑰可以分成幾乎無限數量的不同公鑰(指錢包地址)，這些不同的公鑰(指錢包地址)都將回歸到同一個私鑰。"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:41
@@ -452,7 +451,7 @@ msgstr "貼上助記詞（{0} 個詞）"
 
 #: src/components/crCat/CrCatApprovePendingDialog.tsx:82
 msgid "Payments approved"
-msgstr ""
+msgstr "支付已批准"
 
 #: src/components/WalletHistory.tsx:202
 msgid "Pending"
@@ -464,7 +463,7 @@ msgstr "未結餘額"
 
 #: src/components/card/WalletCardCRCatApprove.tsx:47
 msgid "Pending Balance for Approval"
-msgstr ""
+msgstr "待批准的金額"
 
 #: src/components/card/WalletCardPendingChange.tsx:41
 msgid "Pending Change"
@@ -480,11 +479,11 @@ msgstr "未結總餘額"
 
 #: src/components/crCat/CrCatApprovePendingDialog.tsx:83
 msgid "Please allow some time for the payments to reflect in the blockchain."
-msgstr ""
+msgstr "請等待一些時間讓支付在區塊鏈上進行確認"
 
 #: src/components/crCat/CrCatApprovePendingDialog.tsx:120
 msgid "Please enter a transaction fee to approve the above amount:"
-msgstr ""
+msgstr "請輸入一個交易手續費來簽屬上述金額"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:214
 msgid "Please enter a transaction fee to claim the above amount:"
@@ -536,11 +535,11 @@ msgstr "通訊埠"
 
 #: src/components/crCat/CrCatAuthorizedProviders.tsx:37
 msgid "Provider's ID"
-msgstr ""
+msgstr "提供商ID"
 
 #: src/components/crCat/CrCatAuthorizedProviders.tsx:51
 msgid "Provider's website"
-msgstr ""
+msgstr "提供商網站"
 
 #: src/components/create/WalletCreateList.tsx:45
 msgid "Rate Limited"
@@ -577,7 +576,7 @@ msgstr "重新命名錢包"
 
 #: src/components/WalletIcon.tsx:41
 msgid "Restricted CAT"
-msgstr ""
+msgstr "受限資產CAT"
 
 #: src/components/WalletHistory.tsx:208
 msgid "Retire"
@@ -644,7 +643,7 @@ msgstr "衍生索引設置錢包掃描區塊鏈的地址範圍。如果您有大
 
 #: src/components/cat/WalletCATSend.tsx:200
 msgid "The recipient of this transaction will need to have valid credentials in order to claim the sent assets. See the CR CAT restrictions above."
-msgstr ""
+msgstr "交易的接收方將需要有效的憑證才能領取發送的資產。請參閱上面的CR CAT限制。"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:34
 msgid "The transaction could not be immediately included in the mempool because the specified fee is too low. The transaction will be retried periodically, and may be included in the mempool once fees are lower, or if space becomes available."
@@ -742,7 +741,7 @@ msgstr "錢包名稱"
 
 #: src/components/crCat/CrCatApprovePendingDialog.tsx:115
 msgid "Wallet needs to be synced before approving transactions"
-msgstr ""
+msgstr "在簽屬交易之前需要同步錢包"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:208
 msgid "Wallet needs to be synced for claiming clawback transactions"
@@ -774,11 +773,11 @@ msgstr "您可以在設定中更改 Clawback 自動聲明手續費。"
 
 #: src/components/crCat/CrCatFlags.tsx:71
 msgid "You do not have this verifiable credential or it is not from the correct authorized provided"
-msgstr ""
+msgstr "你沒有這個可驗證證件，或者他不是來自正確的授權提供者"
 
 #: src/components/crCat/CrCatFlags.tsx:69
 msgid "You have this verifiable credential from the correct authorized provider"
-msgstr ""
+msgstr "你擁有來自正確的授權提供者的這個可驗證證件"
 
 #: src/components/WalletsSidebar.tsx:106
 #~ msgid "Your CAT tokens have been upgraded!"
@@ -787,3 +786,4 @@ msgstr ""
 #: src/components/WalletImport.tsx:73
 msgid "Your pasted list does not include {mnemonicWordCount} valid mnemonic words."
 msgstr "您貼上的列表中不包含 {mnemonicWordCount} 個有效的助記詞詞語。"
+
