@@ -383,7 +383,7 @@ msgid "Add a plot"
 msgstr "Lägg till en plott"
 
 #: src/components/farm/FarmHero.tsx:37
-#: src/components/plot/add/PlotAddForm.tsx:239
+#: src/components/plot/add/PlotAddForm.tsx:248
 #: src/components/plot/overview/PlotOverviewHero.tsx:43
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:199
 #: src/components/plotNFT/PlotNFTCard.tsx:233
@@ -605,7 +605,7 @@ msgstr "Är du säker på att du vill ta bort"
 msgid "Are you sure you want to revoke"
 msgstr "Är du säker på att du vill återkalla"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:62
+#: src/components/plot/add/PlotAddChooseSize.tsx:64
 msgid "Are you sure you want to use k={plotSize}?"
 msgstr "Är du säker på att du vill använda k={plotSize}?"
 
@@ -924,11 +924,11 @@ msgstr ""
 msgid "Choose Farming Mode"
 msgstr "Välj odlingsläge"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:87
+#: src/components/plot/add/PlotAddChooseSize.tsx:89
 msgid "Choose K value"
 msgstr "Välj K-värde"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:87
+#: src/components/plot/add/PlotAddChooseSize.tsx:89
 msgid "Choose K value and compression level"
 msgstr "Välj K-värde och komprimeringsnivå"
 
@@ -1025,7 +1025,7 @@ msgstr "Stöd för komprimerade plottar"
 msgid "Compression"
 msgstr "Komprimering"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:124
+#: src/components/plot/add/PlotAddChooseSize.tsx:126
 msgid "Compression level"
 msgstr "Komprimeringsnivå"
 
@@ -1180,7 +1180,7 @@ msgstr "Räknare"
 msgid "Counter Offer"
 msgstr "Moterbjudande"
 
-#: src/components/plot/add/PlotAddForm.tsx:250
+#: src/components/plot/add/PlotAddForm.tsx:259
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:81
 #: src/components/settings/ProfileAdd.tsx:159
 msgid "Create"
@@ -1295,7 +1295,7 @@ msgstr "Skaparens royaltyprocent verkar hög"
 msgid "Credentials"
 msgstr "Autentiseringsuppgifter"
 
-#: src/components/plot/add/PlotAddForm.tsx:143
+#: src/components/plot/add/PlotAddForm.tsx:152
 msgid "Currency code is not defined"
 msgstr "Valutakoden är inte definierad"
 
@@ -1923,7 +1923,7 @@ msgstr "Odlaren körs inte"
 msgid "Farmer Public Key"
 msgstr "Publik nyckel för odlare"
 
-#: src/components/plot/add/PlotAddForm.tsx:204
+#: src/components/plot/add/PlotAddForm.tsx:213
 msgid "Farmer public key is invalid"
 msgstr ""
 
@@ -2432,13 +2432,15 @@ msgstr "Initierar..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid "Insufficient funds available to accept offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr "Det finns inte tillräckliga medel för att acceptera erbjudandet. Se till att ditt spenderbara saldo är tillräckligt högt för att täcka erbjudandets belopp."
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid "Insufficient funds available to create offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr "Det finns inte tillräckliga medel för att skapa erbjudandet. Se till att ditt spenderbara saldo är tillräckligt högt för att täcka erbjudandets belopp."
 
@@ -2530,7 +2532,7 @@ msgstr "Gå med i odlingspooler"
 msgid "Join Pool"
 msgstr "Gå med i en pool"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:104
+#: src/components/plot/add/PlotAddChooseSize.tsx:106
 msgid "K value"
 msgstr "K-värde"
 
@@ -3527,7 +3529,7 @@ msgstr "Ägare-DID"
 msgid "Owner Public Key"
 msgstr "Ägares publika nyckel"
 
-#: src/components/plot/add/PlotAddForm.tsx:161
+#: src/components/plot/add/PlotAddForm.tsx:170
 msgid "p2SingletonPuzzleHash is not defined"
 msgstr "p2SingletonPuzzleHash är inte definierad"
 
@@ -3927,7 +3929,7 @@ msgstr "Instruktioner för poolutbetalning"
 msgid "Pool Public Key"
 msgstr "Publik nyckel för pool"
 
-#: src/components/plot/add/PlotAddForm.tsx:211
+#: src/components/plot/add/PlotAddForm.tsx:220
 msgid "Pool public key is invalid"
 msgstr ""
 
@@ -4866,7 +4868,7 @@ msgstr ""
 msgid "Target Puzzle Hash"
 msgstr "Mål-pusselhash"
 
-#: src/components/plot/add/PlotAddForm.tsx:174
+#: src/components/plot/add/PlotAddForm.tsx:183
 msgid "Temp folder location is required for hybrid disk plotting with 16/128G RAM"
 msgstr ""
 
@@ -4910,8 +4912,8 @@ msgstr "Den fullständiga nod din odlare är ansluten till är nedan. <0>Läs me
 msgid "The Harvester manages plots and fetches proofs of space corresponding to challenges sent by a farmer."
 msgstr ""
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:58
-#: src/components/plot/add/PlotAddChooseSize.tsx:115
+#: src/components/plot/add/PlotAddChooseSize.tsx:60
+#: src/components/plot/add/PlotAddChooseSize.tsx:117
 msgid "The minimum required size for mainnet is k=32"
 msgstr "Den minsta storlek som krävs för mainnet är k=32"
 
@@ -5826,7 +5828,7 @@ msgid "Would you like to transfer the specified NFT to a new owner?"
 msgstr "Vill du överföra den angivna NFT:n till en ny ägare?"
 
 #: src/components/offers2/OfferIncomingTable.tsx:215
-#: src/components/plot/add/PlotAddChooseSize.tsx:59
+#: src/components/plot/add/PlotAddChooseSize.tsx:61
 #: src/components/vcs/VCCard.tsx:89
 msgid "Yes"
 msgstr "Ja"
@@ -5872,7 +5874,7 @@ msgstr "Du kan fortfarande skapa plottar för denna plot-NFT, men du kan inte g�
 msgid "You created this offer"
 msgstr "Du skapade detta erbjudande"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:90
+#: src/components/plot/add/PlotAddChooseSize.tsx:92
 msgid "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 msgstr "Du behöver inte ha synkat blockkedjan eller vara ansluten till nätverket för att plotta. Under plottningen skapas tillfälliga filer som är större än de färdiga plottfilerna. Se till att du har tillräckligt med utrymme. <0>Läs mer</0>"
 
@@ -5983,4 +5985,3 @@ msgstr "Ditt spenderbara saldo måste vara större än 1 mojo för att skapa en 
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr ""
-

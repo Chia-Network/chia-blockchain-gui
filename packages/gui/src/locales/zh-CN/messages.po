@@ -383,7 +383,7 @@ msgid "Add a plot"
 msgstr "添加图块"
 
 #: src/components/farm/FarmHero.tsx:37
-#: src/components/plot/add/PlotAddForm.tsx:239
+#: src/components/plot/add/PlotAddForm.tsx:248
 #: src/components/plot/overview/PlotOverviewHero.tsx:43
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:199
 #: src/components/plotNFT/PlotNFTCard.tsx:233
@@ -605,7 +605,7 @@ msgstr "确定要移除吗"
 msgid "Are you sure you want to revoke"
 msgstr "确定要撤销吗"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:62
+#: src/components/plot/add/PlotAddChooseSize.tsx:64
 msgid "Are you sure you want to use k={plotSize}?"
 msgstr "你确定要使用 k={plotSize}？"
 
@@ -924,11 +924,11 @@ msgstr "Chia资产代币 (Chia Asset Tokens，CAT) 是基于XCH构建的一种�
 msgid "Choose Farming Mode"
 msgstr "选择耕种模式"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:87
+#: src/components/plot/add/PlotAddChooseSize.tsx:89
 msgid "Choose K value"
 msgstr "选择K值"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:87
+#: src/components/plot/add/PlotAddChooseSize.tsx:89
 msgid "Choose K value and compression level"
 msgstr "选择K值和压缩等级"
 
@@ -1025,7 +1025,7 @@ msgstr "压缩图块支持"
 msgid "Compression"
 msgstr "压缩"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:124
+#: src/components/plot/add/PlotAddChooseSize.tsx:126
 msgid "Compression level"
 msgstr "压缩等级"
 
@@ -1180,7 +1180,7 @@ msgstr "倒计时"
 msgid "Counter Offer"
 msgstr "计数报价"
 
-#: src/components/plot/add/PlotAddForm.tsx:250
+#: src/components/plot/add/PlotAddForm.tsx:259
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:81
 #: src/components/settings/ProfileAdd.tsx:159
 msgid "Create"
@@ -1295,7 +1295,7 @@ msgstr "创建者版税比率似乎高"
 msgid "Credentials"
 msgstr "证件"
 
-#: src/components/plot/add/PlotAddForm.tsx:143
+#: src/components/plot/add/PlotAddForm.tsx:152
 msgid "Currency code is not defined"
 msgstr "货币代码未定义"
 
@@ -1923,7 +1923,7 @@ msgstr "农民节点没有运行"
 msgid "Farmer Public Key"
 msgstr "农民公钥"
 
-#: src/components/plot/add/PlotAddForm.tsx:204
+#: src/components/plot/add/PlotAddForm.tsx:213
 msgid "Farmer public key is invalid"
 msgstr "农民公钥无效"
 
@@ -2432,16 +2432,20 @@ msgstr "正在初始化..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid "Insufficient funds available to accept offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "可用资金不足，无法接受报价。请确保您的\n"
+msgstr ""
+"可用资金不足，无法接受报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid "Insufficient funds available to create offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "可用的资金不足，无法创建报价。请确保您的\n"
+msgstr ""
+"可用的资金不足，无法创建报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
 #: src/components/settings/Settings.tsx:73
@@ -2532,7 +2536,7 @@ msgstr "加入联合耕种"
 msgid "Join Pool"
 msgstr "加入联合耕种池"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:104
+#: src/components/plot/add/PlotAddChooseSize.tsx:106
 msgid "K value"
 msgstr "K值"
 
@@ -3529,7 +3533,7 @@ msgstr "所有者DID"
 msgid "Owner Public Key"
 msgstr "所有者公钥"
 
-#: src/components/plot/add/PlotAddForm.tsx:161
+#: src/components/plot/add/PlotAddForm.tsx:170
 msgid "p2SingletonPuzzleHash is not defined"
 msgstr "p2SingletonPuzzleHash 未定义"
 
@@ -3929,7 +3933,7 @@ msgstr "联合耕种池支付地址"
 msgid "Pool Public Key"
 msgstr "耕种池公钥"
 
-#: src/components/plot/add/PlotAddForm.tsx:211
+#: src/components/plot/add/PlotAddForm.tsx:220
 msgid "Pool public key is invalid"
 msgstr "耕种池密钥无效"
 
@@ -4868,7 +4872,7 @@ msgstr "目标地址"
 msgid "Target Puzzle Hash"
 msgstr "目标迷题哈希"
 
-#: src/components/plot/add/PlotAddForm.tsx:174
+#: src/components/plot/add/PlotAddForm.tsx:183
 msgid "Temp folder location is required for hybrid disk plotting with 16/128G RAM"
 msgstr "使用16/128GB内存的混合磁盘模式生成图块时，需要指定临时文件夹的位置"
 
@@ -4912,8 +4916,8 @@ msgstr "你的农场连接的全节点如下.<0>了解更多</0>"
 msgid "The Harvester manages plots and fetches proofs of space corresponding to challenges sent by a farmer."
 msgstr "收割机管理图块并获取与农民发送的挑战相对应的空间证明。"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:58
-#: src/components/plot/add/PlotAddChooseSize.tsx:115
+#: src/components/plot/add/PlotAddChooseSize.tsx:60
+#: src/components/plot/add/PlotAddChooseSize.tsx:117
 msgid "The minimum required size for mainnet is k=32"
 msgstr "主网要求的最小图块大小为k=32"
 
@@ -5828,7 +5832,7 @@ msgid "Would you like to transfer the specified NFT to a new owner?"
 msgstr "您想要将指定的 NFT 转移给一个新的所有者吗？"
 
 #: src/components/offers2/OfferIncomingTable.tsx:215
-#: src/components/plot/add/PlotAddChooseSize.tsx:59
+#: src/components/plot/add/PlotAddChooseSize.tsx:61
 #: src/components/vcs/VCCard.tsx:89
 msgid "Yes"
 msgstr "是"
@@ -5874,7 +5878,7 @@ msgstr "你现在可以为这个联合耕种农田生成新图块，但是在同
 msgid "You created this offer"
 msgstr "您创建了此报价"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:90
+#: src/components/plot/add/PlotAddChooseSize.tsx:92
 msgid "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 msgstr "不需要同步或者连接到网络节点就可以生成图块。在生成过程中产生的临时文件尺寸会大于最终的图块大小。请确认你有足够的存储空间。<0>了解更多</0>"
 
@@ -5985,4 +5989,3 @@ msgstr "可用余额必须大于1 mojo才能创建个人资料"
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "需确保钱包正在运行才能完成自动确认。"
-

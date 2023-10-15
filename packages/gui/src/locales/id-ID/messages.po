@@ -383,7 +383,7 @@ msgid "Add a plot"
 msgstr "Tambah sebuah plot"
 
 #: src/components/farm/FarmHero.tsx:37
-#: src/components/plot/add/PlotAddForm.tsx:239
+#: src/components/plot/add/PlotAddForm.tsx:248
 #: src/components/plot/overview/PlotOverviewHero.tsx:43
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:199
 #: src/components/plotNFT/PlotNFTCard.tsx:233
@@ -605,7 +605,7 @@ msgstr ""
 msgid "Are you sure you want to revoke"
 msgstr ""
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:62
+#: src/components/plot/add/PlotAddChooseSize.tsx:64
 msgid "Are you sure you want to use k={plotSize}?"
 msgstr "Anda yakin ingin menggunakan k={plotSize}?"
 
@@ -924,11 +924,11 @@ msgstr ""
 msgid "Choose Farming Mode"
 msgstr "Pilih metode farming"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:87
+#: src/components/plot/add/PlotAddChooseSize.tsx:89
 msgid "Choose K value"
 msgstr ""
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:87
+#: src/components/plot/add/PlotAddChooseSize.tsx:89
 msgid "Choose K value and compression level"
 msgstr ""
 
@@ -1025,7 +1025,7 @@ msgstr ""
 msgid "Compression"
 msgstr ""
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:124
+#: src/components/plot/add/PlotAddChooseSize.tsx:126
 msgid "Compression level"
 msgstr ""
 
@@ -1180,7 +1180,7 @@ msgstr ""
 msgid "Counter Offer"
 msgstr ""
 
-#: src/components/plot/add/PlotAddForm.tsx:250
+#: src/components/plot/add/PlotAddForm.tsx:259
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:81
 #: src/components/settings/ProfileAdd.tsx:159
 msgid "Create"
@@ -1295,7 +1295,7 @@ msgstr ""
 msgid "Credentials"
 msgstr ""
 
-#: src/components/plot/add/PlotAddForm.tsx:143
+#: src/components/plot/add/PlotAddForm.tsx:152
 msgid "Currency code is not defined"
 msgstr "Kode mata uang diperlukan"
 
@@ -1923,7 +1923,7 @@ msgstr "Farmer sedang tidak berjalan"
 msgid "Farmer Public Key"
 msgstr "Kunci Publik Farmer"
 
-#: src/components/plot/add/PlotAddForm.tsx:204
+#: src/components/plot/add/PlotAddForm.tsx:213
 msgid "Farmer public key is invalid"
 msgstr ""
 
@@ -2432,13 +2432,15 @@ msgstr "Menginialisasi..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid "Insufficient funds available to accept offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid "Insufficient funds available to create offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
 
@@ -2530,7 +2532,7 @@ msgstr "Gabung ke farming pool"
 msgid "Join Pool"
 msgstr "Gabung ke Pool"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:104
+#: src/components/plot/add/PlotAddChooseSize.tsx:106
 msgid "K value"
 msgstr ""
 
@@ -3527,7 +3529,7 @@ msgstr ""
 msgid "Owner Public Key"
 msgstr ""
 
-#: src/components/plot/add/PlotAddForm.tsx:161
+#: src/components/plot/add/PlotAddForm.tsx:170
 msgid "p2SingletonPuzzleHash is not defined"
 msgstr "p2_singleton_puzzle_hash belum ter definisi"
 
@@ -3927,7 +3929,7 @@ msgstr "Instruksi Pembayaran Pool"
 msgid "Pool Public Key"
 msgstr "Pool Kunci Publik"
 
-#: src/components/plot/add/PlotAddForm.tsx:211
+#: src/components/plot/add/PlotAddForm.tsx:220
 msgid "Pool public key is invalid"
 msgstr ""
 
@@ -4866,7 +4868,7 @@ msgstr ""
 msgid "Target Puzzle Hash"
 msgstr "Teka-teki Hash Target"
 
-#: src/components/plot/add/PlotAddForm.tsx:174
+#: src/components/plot/add/PlotAddForm.tsx:183
 msgid "Temp folder location is required for hybrid disk plotting with 16/128G RAM"
 msgstr ""
 
@@ -4910,8 +4912,8 @@ msgstr "Node penuh yang terhubung ke farmer anda di bawah. <0>Pelajari lebih lan
 msgid "The Harvester manages plots and fetches proofs of space corresponding to challenges sent by a farmer."
 msgstr ""
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:58
-#: src/components/plot/add/PlotAddChooseSize.tsx:115
+#: src/components/plot/add/PlotAddChooseSize.tsx:60
+#: src/components/plot/add/PlotAddChooseSize.tsx:117
 msgid "The minimum required size for mainnet is k=32"
 msgstr "Ukuran minimum yang di butuhkan untuk mainnet adalah k=32"
 
@@ -5826,7 +5828,7 @@ msgid "Would you like to transfer the specified NFT to a new owner?"
 msgstr ""
 
 #: src/components/offers2/OfferIncomingTable.tsx:215
-#: src/components/plot/add/PlotAddChooseSize.tsx:59
+#: src/components/plot/add/PlotAddChooseSize.tsx:61
 #: src/components/vcs/VCCard.tsx:89
 msgid "Yes"
 msgstr "Ya"
@@ -5872,7 +5874,7 @@ msgstr "Kamu masi bisa membuat plot untuk plot NFT ini, tetapi tidak bisa membua
 msgid "You created this offer"
 msgstr ""
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:90
+#: src/components/plot/add/PlotAddChooseSize.tsx:92
 msgid "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 msgstr "Anda tidak terlu tersinkronisasi atau terhubung ke plot. File sementara akan dibuat ketika membuat plot yang melebihi ukuran ahir plot. Pastikan anda mempunyai sisa penyimpanan yang cukup. <0>Pelajari lebih lanjut</0>"
 
@@ -5983,4 +5985,3 @@ msgstr ""
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr ""
-

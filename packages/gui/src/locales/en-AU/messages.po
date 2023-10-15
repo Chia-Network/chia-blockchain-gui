@@ -383,7 +383,7 @@ msgid "Add a plot"
 msgstr "Add a Plot to get more beer money"
 
 #: src/components/farm/FarmHero.tsx:37
-#: src/components/plot/add/PlotAddForm.tsx:239
+#: src/components/plot/add/PlotAddForm.tsx:248
 #: src/components/plot/overview/PlotOverviewHero.tsx:43
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:199
 #: src/components/plotNFT/PlotNFTCard.tsx:233
@@ -605,7 +605,7 @@ msgstr ""
 msgid "Are you sure you want to revoke"
 msgstr ""
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:62
+#: src/components/plot/add/PlotAddChooseSize.tsx:64
 msgid "Are you sure you want to use k={plotSize}?"
 msgstr "Are you sure you want to use k={plotSize}?"
 
@@ -924,11 +924,11 @@ msgstr ""
 msgid "Choose Farming Mode"
 msgstr "Choose Farming Mode"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:87
+#: src/components/plot/add/PlotAddChooseSize.tsx:89
 msgid "Choose K value"
 msgstr ""
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:87
+#: src/components/plot/add/PlotAddChooseSize.tsx:89
 msgid "Choose K value and compression level"
 msgstr ""
 
@@ -1025,7 +1025,7 @@ msgstr ""
 msgid "Compression"
 msgstr ""
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:124
+#: src/components/plot/add/PlotAddChooseSize.tsx:126
 msgid "Compression level"
 msgstr ""
 
@@ -1180,7 +1180,7 @@ msgstr ""
 msgid "Counter Offer"
 msgstr ""
 
-#: src/components/plot/add/PlotAddForm.tsx:250
+#: src/components/plot/add/PlotAddForm.tsx:259
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:81
 #: src/components/settings/ProfileAdd.tsx:159
 msgid "Create"
@@ -1295,7 +1295,7 @@ msgstr "Creator royalty percentage seems high"
 msgid "Credentials"
 msgstr ""
 
-#: src/components/plot/add/PlotAddForm.tsx:143
+#: src/components/plot/add/PlotAddForm.tsx:152
 msgid "Currency code is not defined"
 msgstr "Currency code is not defined"
 
@@ -1923,7 +1923,7 @@ msgstr "Farmer is not running you drongo"
 msgid "Farmer Public Key"
 msgstr "Farmer Public Key"
 
-#: src/components/plot/add/PlotAddForm.tsx:204
+#: src/components/plot/add/PlotAddForm.tsx:213
 msgid "Farmer public key is invalid"
 msgstr ""
 
@@ -2432,16 +2432,20 @@ msgstr "Initialising..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid "Insufficient funds available to accept offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "Insufficient funds available to accept offer. Ensure that your\n"
+msgstr ""
+"Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid "Insufficient funds available to create offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "Insufficient funds available to create offer. Ensure that your\n"
+msgstr ""
+"Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 
 #: src/components/settings/Settings.tsx:73
@@ -2532,7 +2536,7 @@ msgstr "Join farming pools"
 msgid "Join Pool"
 msgstr "Join Pool"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:104
+#: src/components/plot/add/PlotAddChooseSize.tsx:106
 msgid "K value"
 msgstr ""
 
@@ -3529,7 +3533,7 @@ msgstr "Owner DID"
 msgid "Owner Public Key"
 msgstr "Owner Public Key"
 
-#: src/components/plot/add/PlotAddForm.tsx:161
+#: src/components/plot/add/PlotAddForm.tsx:170
 msgid "p2SingletonPuzzleHash is not defined"
 msgstr "p2SingletonPuzzleHash is not defined"
 
@@ -3929,7 +3933,7 @@ msgstr "Edit Payout Instructions"
 msgid "Pool Public Key"
 msgstr "Pool Public Key"
 
-#: src/components/plot/add/PlotAddForm.tsx:211
+#: src/components/plot/add/PlotAddForm.tsx:220
 msgid "Pool public key is invalid"
 msgstr ""
 
@@ -4868,7 +4872,7 @@ msgstr ""
 msgid "Target Puzzle Hash"
 msgstr "Target Puzzle Hash"
 
-#: src/components/plot/add/PlotAddForm.tsx:174
+#: src/components/plot/add/PlotAddForm.tsx:183
 msgid "Temp folder location is required for hybrid disk plotting with 16/128G RAM"
 msgstr ""
 
@@ -4912,8 +4916,8 @@ msgstr "The full node that your farmer is connected to is below. <0>Learn more</
 msgid "The Harvester manages plots and fetches proofs of space corresponding to challenges sent by a farmer."
 msgstr ""
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:58
-#: src/components/plot/add/PlotAddChooseSize.tsx:115
+#: src/components/plot/add/PlotAddChooseSize.tsx:60
+#: src/components/plot/add/PlotAddChooseSize.tsx:117
 msgid "The minimum required size for mainnet is k=32"
 msgstr "The minimum required size for mainnet is k=32"
 
@@ -5828,7 +5832,7 @@ msgid "Would you like to transfer the specified NFT to a new owner?"
 msgstr "Would you like to transfer the specified NFT to a new owner?"
 
 #: src/components/offers2/OfferIncomingTable.tsx:215
-#: src/components/plot/add/PlotAddChooseSize.tsx:59
+#: src/components/plot/add/PlotAddChooseSize.tsx:61
 #: src/components/vcs/VCCard.tsx:89
 msgid "Yes"
 msgstr "You ripper"
@@ -5874,7 +5878,7 @@ msgstr "You can still create plots for this plot NFT, but you can not make chang
 msgid "You created this offer"
 msgstr "You created this offer"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:90
+#: src/components/plot/add/PlotAddChooseSize.tsx:92
 msgid "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 msgstr "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceeds the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 
@@ -5985,4 +5989,3 @@ msgstr ""
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr ""
-

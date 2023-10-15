@@ -383,7 +383,7 @@ msgid "Add a plot"
 msgstr "Plottaa tiedosto"
 
 #: src/components/farm/FarmHero.tsx:37
-#: src/components/plot/add/PlotAddForm.tsx:239
+#: src/components/plot/add/PlotAddForm.tsx:248
 #: src/components/plot/overview/PlotOverviewHero.tsx:43
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:199
 #: src/components/plotNFT/PlotNFTCard.tsx:233
@@ -605,7 +605,7 @@ msgstr "Oletko varma, että haluat poistaa"
 msgid "Are you sure you want to revoke"
 msgstr "Oletko varma että haluat kumota"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:62
+#: src/components/plot/add/PlotAddChooseSize.tsx:64
 msgid "Are you sure you want to use k={plotSize}?"
 msgstr "Haluatko käyttää arvoa k={plotSize}?"
 
@@ -924,11 +924,11 @@ msgstr "Chia Asset Tokenit (CAT) ovat XCH:n päälle rakennettuja tokeneja"
 msgid "Choose Farming Mode"
 msgstr "Valitse Farmaustila"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:87
+#: src/components/plot/add/PlotAddChooseSize.tsx:89
 msgid "Choose K value"
 msgstr "Valitse K-arvo"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:87
+#: src/components/plot/add/PlotAddChooseSize.tsx:89
 msgid "Choose K value and compression level"
 msgstr "Valitse K-arvo ja kompressiotaso"
 
@@ -1025,7 +1025,7 @@ msgstr "Kompressoitujen plottien tuki"
 msgid "Compression"
 msgstr "Kompressio"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:124
+#: src/components/plot/add/PlotAddChooseSize.tsx:126
 msgid "Compression level"
 msgstr "Kompressiotaso"
 
@@ -1180,7 +1180,7 @@ msgstr "Vastaus"
 msgid "Counter Offer"
 msgstr "Vastatarjous"
 
-#: src/components/plot/add/PlotAddForm.tsx:250
+#: src/components/plot/add/PlotAddForm.tsx:259
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:81
 #: src/components/settings/ProfileAdd.tsx:159
 msgid "Create"
@@ -1295,7 +1295,7 @@ msgstr "Tekijän rojaltiprosentti vaikuttaa korkealta"
 msgid "Credentials"
 msgstr "Käyttöoikeustiedot"
 
-#: src/components/plot/add/PlotAddForm.tsx:143
+#: src/components/plot/add/PlotAddForm.tsx:152
 msgid "Currency code is not defined"
 msgstr "Valuutan koodia ei ole määritetty"
 
@@ -1923,7 +1923,7 @@ msgstr "Farmari ei ole käynnissä"
 msgid "Farmer Public Key"
 msgstr "Farmerin Julkinen Avain"
 
-#: src/components/plot/add/PlotAddForm.tsx:204
+#: src/components/plot/add/PlotAddForm.tsx:213
 msgid "Farmer public key is invalid"
 msgstr "Farmerin julkinen avain ei kelpaa"
 
@@ -2432,16 +2432,20 @@ msgstr "Alustetaan..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid "Insufficient funds available to accept offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "Riittämätön määrä varoja tarjouksen hyväksymiseen. Varmista, että\n"
+msgstr ""
+"Riittämätön määrä varoja tarjouksen hyväksymiseen. Varmista, että\n"
 "käytettävissä oleva saldo riittää tarjouksen määrän kattamiseen."
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid "Insufficient funds available to create offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "Riittämätön määrä varoja tarjouksen luomiseen. Varmista, että\n"
+msgstr ""
+"Riittämätön määrä varoja tarjouksen luomiseen. Varmista, että\n"
 "käytettävissä oleva saldo riittää tarjouksen määrän kattamiseen."
 
 #: src/components/settings/Settings.tsx:73
@@ -2532,7 +2536,7 @@ msgstr "Liity farmeripooleihin"
 msgid "Join Pool"
 msgstr "Liity Pooliin"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:104
+#: src/components/plot/add/PlotAddChooseSize.tsx:106
 msgid "K value"
 msgstr "K-arvo"
 
@@ -3529,7 +3533,7 @@ msgstr "Omistajan DID"
 msgid "Owner Public Key"
 msgstr "Omistajan Julkinen Avain"
 
-#: src/components/plot/add/PlotAddForm.tsx:161
+#: src/components/plot/add/PlotAddForm.tsx:170
 msgid "p2SingletonPuzzleHash is not defined"
 msgstr "p2SingletonPuzzleHash ei ole määritetty"
 
@@ -3929,7 +3933,7 @@ msgstr "Poolin Maksuohjeet"
 msgid "Pool Public Key"
 msgstr "Poolin Julkinen Avain"
 
-#: src/components/plot/add/PlotAddForm.tsx:211
+#: src/components/plot/add/PlotAddForm.tsx:220
 msgid "Pool public key is invalid"
 msgstr "Farmerin julkinen avain ei kelpaa"
 
@@ -4868,7 +4872,7 @@ msgstr "Kohdeosoite"
 msgid "Target Puzzle Hash"
 msgstr "Palkkion Osoitetiiviste"
 
-#: src/components/plot/add/PlotAddForm.tsx:174
+#: src/components/plot/add/PlotAddForm.tsx:183
 msgid "Temp folder location is required for hybrid disk plotting with 16/128G RAM"
 msgstr ""
 
@@ -4912,8 +4916,8 @@ msgstr "Alla noodi, johon farmerisi on yhteydessä. <0>Katso lisää</0>"
 msgid "The Harvester manages plots and fetches proofs of space corresponding to challenges sent by a farmer."
 msgstr ""
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:58
-#: src/components/plot/add/PlotAddChooseSize.tsx:115
+#: src/components/plot/add/PlotAddChooseSize.tsx:60
+#: src/components/plot/add/PlotAddChooseSize.tsx:117
 msgid "The minimum required size for mainnet is k=32"
 msgstr "Lohkoketjun hyväksymä minimiarvo on k=32"
 
@@ -5828,7 +5832,7 @@ msgid "Would you like to transfer the specified NFT to a new owner?"
 msgstr "Haluatko siirtää NFT:n uudelle omistajalle?"
 
 #: src/components/offers2/OfferIncomingTable.tsx:215
-#: src/components/plot/add/PlotAddChooseSize.tsx:59
+#: src/components/plot/add/PlotAddChooseSize.tsx:61
 #: src/components/vcs/VCCard.tsx:89
 msgid "Yes"
 msgstr "Kyllä"
@@ -5874,7 +5878,7 @@ msgstr "Voit silti luoda plotteja tälle Plot-NFT:lle, mutta et voi tehdä muuto
 msgid "You created this offer"
 msgstr "Loit tämän tarjouksen"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:90
+#: src/components/plot/add/PlotAddChooseSize.tsx:92
 msgid "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 msgstr "Noodin ei tarvitse olla synkronissa tai yhteydessä plotataksesi. Plottausprosessin aikana luodaan väliaikaistiedostoja, joiden yhteiskoko ylittää lopullisen plottitiedoston koon. Varmista että levyllä on tarpeeksi tilaa. <0>Katso lisää</0>"
 
@@ -5985,4 +5989,3 @@ msgstr "Käytettävissä olevan saldon on oltava suurempi kuin 1 mojo luodaksesi
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "Lompakkosi on oltava käynnissä, jotta automaattinen lunastaminen toimii."
-

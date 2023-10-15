@@ -383,7 +383,7 @@ msgid "Add a plot"
 msgstr "افزودن یک پلات"
 
 #: src/components/farm/FarmHero.tsx:37
-#: src/components/plot/add/PlotAddForm.tsx:239
+#: src/components/plot/add/PlotAddForm.tsx:248
 #: src/components/plot/overview/PlotOverviewHero.tsx:43
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:199
 #: src/components/plotNFT/PlotNFTCard.tsx:233
@@ -605,7 +605,7 @@ msgstr "آیا مطمئن هستید که میخواهید حذف کنید"
 msgid "Are you sure you want to revoke"
 msgstr "آیا مطمئن هستید که میخواهید لغو کنید"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:62
+#: src/components/plot/add/PlotAddChooseSize.tsx:64
 msgid "Are you sure you want to use k={plotSize}?"
 msgstr "استفاده کنید؟ k= {plotSize} آیا مطمئنید که میخواهید از مقدار"
 
@@ -924,11 +924,11 @@ msgstr "توکن‌های دارایی چیا (کت) توکن‌هایی هست�
 msgid "Choose Farming Mode"
 msgstr "انتخاب حالات فارم کردن"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:87
+#: src/components/plot/add/PlotAddChooseSize.tsx:89
 msgid "Choose K value"
 msgstr "مقدار حجم یا مخفف کی را انتخاب کنید"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:87
+#: src/components/plot/add/PlotAddChooseSize.tsx:89
 msgid "Choose K value and compression level"
 msgstr "مقدار حجم یا مخفف کی و سطح فشرده سازی را انتخاب کنید"
 
@@ -1025,7 +1025,7 @@ msgstr "پشتیبانی از پلات فشرده"
 msgid "Compression"
 msgstr "فشرده سازی"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:124
+#: src/components/plot/add/PlotAddChooseSize.tsx:126
 msgid "Compression level"
 msgstr "سطح فشرده سازی"
 
@@ -1180,7 +1180,7 @@ msgstr "شمارش معکوس"
 msgid "Counter Offer"
 msgstr "شمارنده پیشنهاد"
 
-#: src/components/plot/add/PlotAddForm.tsx:250
+#: src/components/plot/add/PlotAddForm.tsx:259
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:81
 #: src/components/settings/ProfileAdd.tsx:159
 msgid "Create"
@@ -1295,7 +1295,7 @@ msgstr "درصد حق امتیاز سازنده بالا به نظر میرسد"
 msgid "Credentials"
 msgstr "اعتبارنامه"
 
-#: src/components/plot/add/PlotAddForm.tsx:143
+#: src/components/plot/add/PlotAddForm.tsx:152
 msgid "Currency code is not defined"
 msgstr "نوع ارز تعریف نشده است"
 
@@ -1923,7 +1923,7 @@ msgstr "فارم اجرا نمیشود"
 msgid "Farmer Public Key"
 msgstr "کلید عمومی فارمر"
 
-#: src/components/plot/add/PlotAddForm.tsx:204
+#: src/components/plot/add/PlotAddForm.tsx:213
 msgid "Farmer public key is invalid"
 msgstr "کلید عمومی فارم کننده نامعتبر است"
 
@@ -2432,16 +2432,20 @@ msgstr "در حال شروع..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid "Insufficient funds available to accept offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
+msgstr ""
+"مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
 "موجودی قابل مصرف شما برای پوشش مبلغ پیشنهاد کافی است."
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid "Insufficient funds available to create offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
+msgstr ""
+"مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
 "موجودی قابل مصرف شما برای پوشش مبلغ پیشنهاد کافی است."
 
 #: src/components/settings/Settings.tsx:73
@@ -2532,7 +2536,7 @@ msgstr "به استخرهای فارم بپیوندید"
 msgid "Join Pool"
 msgstr "پیوستن به استخر"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:104
+#: src/components/plot/add/PlotAddChooseSize.tsx:106
 msgid "K value"
 msgstr "مقدار حجم یا مخفف کی"
 
@@ -3529,7 +3533,7 @@ msgstr "صاحب شناسه غیر متمرکز"
 msgid "Owner Public Key"
 msgstr "صاحب کلید عمومی"
 
-#: src/components/plot/add/PlotAddForm.tsx:161
+#: src/components/plot/add/PlotAddForm.tsx:170
 msgid "p2SingletonPuzzleHash is not defined"
 msgstr "تعریف نشده p2SingletonPuzzleHash"
 
@@ -3929,7 +3933,7 @@ msgstr "دستورالعمل پرداخت استخر"
 msgid "Pool Public Key"
 msgstr "کلید عمومی استخر"
 
-#: src/components/plot/add/PlotAddForm.tsx:211
+#: src/components/plot/add/PlotAddForm.tsx:220
 msgid "Pool public key is invalid"
 msgstr "کلید عمومی استخر نامعتبر است"
 
@@ -4868,7 +4872,7 @@ msgstr "آدرس مقصد"
 msgid "Target Puzzle Hash"
 msgstr "هدف پازل هش"
 
-#: src/components/plot/add/PlotAddForm.tsx:174
+#: src/components/plot/add/PlotAddForm.tsx:183
 msgid "Temp folder location is required for hybrid disk plotting with 16/128G RAM"
 msgstr "مکان پوشه موقت برای پلات سازی دیسک هیبریدی با حافظه 16/128گیگ مورد نیاز است"
 
@@ -4912,8 +4916,8 @@ msgstr "نودکاملی که فارم شما که آن متصل شده در ز�
 msgid "The Harvester manages plots and fetches proofs of space corresponding to challenges sent by a farmer."
 msgstr "برداشت کننده پلاتها را مدیریت میکند و مدارکی از فضای مربوط به چالش‌های ارسال شده توسط یک فارم را می‌آورد."
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:58
-#: src/components/plot/add/PlotAddChooseSize.tsx:115
+#: src/components/plot/add/PlotAddChooseSize.tsx:60
+#: src/components/plot/add/PlotAddChooseSize.tsx:117
 msgid "The minimum required size for mainnet is k=32"
 msgstr "حداقل اندازه مورد نیاز برای شبکه اصلی k=32 است"
 
@@ -5828,7 +5832,7 @@ msgid "Would you like to transfer the specified NFT to a new owner?"
 msgstr "آیا میخواهید ان اف تی مشخص شده را به مالک جدیدی منتقل کنید؟"
 
 #: src/components/offers2/OfferIncomingTable.tsx:215
-#: src/components/plot/add/PlotAddChooseSize.tsx:59
+#: src/components/plot/add/PlotAddChooseSize.tsx:61
 #: src/components/vcs/VCCard.tsx:89
 msgid "Yes"
 msgstr "بله"
@@ -5874,7 +5878,7 @@ msgstr "میتوانید برای این پلات ان اف تی همچنان پ
 msgid "You created this offer"
 msgstr "شما این پیشنهاد را ایجاد کردید"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:90
+#: src/components/plot/add/PlotAddChooseSize.tsx:92
 msgid "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 msgstr "شما نیازی به سینک یا اتصال به پلات ندارید. فایل‌های موقتی در طول ساختن پلات ایجاد میشوند که از اندازه فایل‌های پلات نهایی بیشتر است. مطمئن شوید که فضای کافی دارید. <0>بیشتر بیاموزید</0>"
 
@@ -5985,4 +5989,3 @@ msgstr "برای ایجاد حساب کاربری، موجودی قابل خرج
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "برای انجام مطالبه خودکار، باید کیف پول شما در حال اجرا باشد."
-
