@@ -83,7 +83,7 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
 
   const showInvalid = !isValidating && isValid === false;
 
-  const validTimeList = isMyOffer ? myOfferValidTimes : offerSummary.validTimes;
+  const validTimeList = isMyOffer ? myOfferValidTimes : offerSummary?.validTimes;
 
   const hasExpiration =
     validTimeList?.maxTime !== null && validTimeList?.maxTime !== undefined && validTimeList?.maxTime !== 0;
