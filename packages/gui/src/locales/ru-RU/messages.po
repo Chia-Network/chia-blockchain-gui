@@ -469,7 +469,7 @@ msgstr ""
 msgid "*Usually it takes seconds to complete restarting."
 msgstr ""
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:41
+#: src/components/plot/overview/PlotOverviewPlots.tsx:42
 msgid "+ Add a Plot"
 msgstr "+ Добавить участок"
 
@@ -550,12 +550,12 @@ msgstr "Активность"
 msgid "Add {currencyCode} from the Faucet"
 msgstr "Добавить {currencyCode} из крана"
 
-#: src/components/plot/PlotAddDirectoryDialog.tsx:79
+#: src/components/plot/PlotAddDirectoryDialog.tsx:81
 msgid "Add a plot"
 msgstr "Добавить участок"
 
 #: src/components/farm/FarmHero.tsx:37
-#: src/components/plot/add/PlotAddForm.tsx:239
+#: src/components/plot/add/PlotAddForm.tsx:248
 #: src/components/plot/overview/PlotOverviewHero.tsx:43
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:199
 #: src/components/plotNFT/PlotNFTCard.tsx:233
@@ -586,11 +586,11 @@ msgstr ""
 #~ msgid "Add option to set expiration time {0}"
 #~ msgstr ""
 
-#: src/components/plot/PlotAddDirectoryDialog.tsx:114
+#: src/components/plot/PlotAddDirectoryDialog.tsx:125
 msgid "Add plot directory"
 msgstr "Добавить директорию с участками"
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:50
+#: src/components/plot/overview/PlotOverviewPlots.tsx:52
 msgid "Add Plot Directory"
 msgstr "Добавить директорию с участками"
 
@@ -777,7 +777,7 @@ msgstr "Вы уверены, что хотите удалить"
 msgid "Are you sure you want to revoke"
 msgstr "Вы действительно хотите отозвать"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:62
+#: src/components/plot/add/PlotAddChooseSize.tsx:64
 msgid "Are you sure you want to use k={plotSize}?"
 msgstr "Вы уверены, что хотите использовать k={plotSize}?"
 
@@ -1096,11 +1096,11 @@ msgstr ""
 msgid "Choose Farming Mode"
 msgstr "Выберите режим фарминга"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:87
+#: src/components/plot/add/PlotAddChooseSize.tsx:89
 msgid "Choose K value"
 msgstr ""
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:87
+#: src/components/plot/add/PlotAddChooseSize.tsx:89
 msgid "Choose K value and compression level"
 msgstr ""
 
@@ -1146,6 +1146,10 @@ msgstr ""
 msgid "Clear NFT cache"
 msgstr ""
 
+#: src/components/plot/PlotAddDirectoryDialog.tsx:92
+msgid "Clicking a delete icon only removes a directory from this list and never deletes the directory itself"
+msgstr ""
+
 #: src/components/app/AppVersionWarning.tsx:57
 #: src/components/nfts/MultipleDownloadDialog.tsx:116
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:328
@@ -1160,7 +1164,7 @@ msgstr ""
 #: src/components/offers/OfferShareDialog.tsx:831
 #: src/components/offers/OfferShareDialog.tsx:1107
 #: src/components/offers2/OfferBuilderViewerDialog.tsx:76
-#: src/components/plot/PlotAddDirectoryDialog.tsx:121
+#: src/components/plot/PlotAddDirectoryDialog.tsx:132
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:66
 #: src/components/signVerify/SignMessageResultDialog.tsx:66
 #: src/components/walletConnect/WalletConnectConnectedDialog.tsx:125
@@ -1197,7 +1201,7 @@ msgstr ""
 msgid "Compression"
 msgstr ""
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:124
+#: src/components/plot/add/PlotAddChooseSize.tsx:126
 msgid "Compression level"
 msgstr ""
 
@@ -1352,7 +1356,7 @@ msgstr ""
 msgid "Counter Offer"
 msgstr ""
 
-#: src/components/plot/add/PlotAddForm.tsx:250
+#: src/components/plot/add/PlotAddForm.tsx:259
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:81
 #: src/components/settings/ProfileAdd.tsx:159
 msgid "Create"
@@ -1467,7 +1471,7 @@ msgstr "Процент роялти создателей выглядит выс
 msgid "Credentials"
 msgstr ""
 
-#: src/components/plot/add/PlotAddForm.tsx:143
+#: src/components/plot/add/PlotAddForm.tsx:152
 msgid "Currency code is not defined"
 msgstr "Код валюты не определён"
 
@@ -2095,7 +2099,7 @@ msgstr "Фермер не запущен"
 msgid "Farmer Public Key"
 msgstr "Открытый ключ фермера"
 
-#: src/components/plot/add/PlotAddForm.tsx:204
+#: src/components/plot/add/PlotAddForm.tsx:213
 msgid "Farmer public key is invalid"
 msgstr ""
 
@@ -2704,7 +2708,7 @@ msgstr "Присоединиться к пулам"
 msgid "Join Pool"
 msgstr "Присоединиться к пулу"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:104
+#: src/components/plot/add/PlotAddChooseSize.tsx:106
 msgid "K value"
 msgstr ""
 
@@ -2924,6 +2928,10 @@ msgstr ""
 
 #: src/components/settings/SettingsIntegration.tsx:218
 msgid "Manage permissions for your WalletConnect apps."
+msgstr ""
+
+#: src/components/plot/overview/PlotOverviewPlots.tsx:54
+msgid "Manage Plot Directories"
 msgstr ""
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:94
@@ -3701,7 +3709,7 @@ msgstr "DID владельца"
 msgid "Owner Public Key"
 msgstr "Публичный ключ владельца"
 
-#: src/components/plot/add/PlotAddForm.tsx:161
+#: src/components/plot/add/PlotAddForm.tsx:170
 msgid "p2SingletonPuzzleHash is not defined"
 msgstr "p2SingletonPuzzleHash не определен"
 
@@ -4041,7 +4049,7 @@ msgstr "Засеивание"
 msgid "Plotting in parallel can save time. Otherwise, add plot(s) to the queue."
 msgstr "Параллельное засеивание позволяет сэкономить время. Также вы можете создать очередь засеивания участков."
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:37
+#: src/components/plot/overview/PlotOverviewPlots.tsx:38
 msgid "Plotting Manager"
 msgstr "Управление плоттерами"
 
@@ -4101,7 +4109,7 @@ msgstr "Инструкции по выплате пула"
 msgid "Pool Public Key"
 msgstr "Публичный ключ пула"
 
-#: src/components/plot/add/PlotAddForm.tsx:211
+#: src/components/plot/add/PlotAddForm.tsx:220
 msgid "Pool public key is invalid"
 msgstr ""
 
@@ -4306,7 +4314,7 @@ msgid "Refresh NFT data"
 msgstr ""
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:46
-#: src/components/plot/overview/PlotOverviewPlots.tsx:58
+#: src/components/plot/overview/PlotOverviewPlots.tsx:63
 msgid "Refresh Plots"
 msgstr "Обновить участки"
 
@@ -4337,6 +4345,10 @@ msgstr ""
 
 #: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:359
 msgid "Remove Conflicting Offer"
+msgstr ""
+
+#: src/components/plot/PlotAddDirectoryDialog.tsx:111
+msgid "Remove from the list"
 msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:247
@@ -5040,7 +5052,7 @@ msgstr ""
 msgid "Target Puzzle Hash"
 msgstr "Хеш-головоломка фермера"
 
-#: src/components/plot/add/PlotAddForm.tsx:174
+#: src/components/plot/add/PlotAddForm.tsx:183
 msgid "Temp folder location is required for hybrid disk plotting with 16/128G RAM"
 msgstr ""
 
@@ -5084,8 +5096,8 @@ msgstr "Полный узел, к которому подключен ваш ф�
 msgid "The Harvester manages plots and fetches proofs of space corresponding to challenges sent by a farmer."
 msgstr ""
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:58
-#: src/components/plot/add/PlotAddChooseSize.tsx:115
+#: src/components/plot/add/PlotAddChooseSize.tsx:60
+#: src/components/plot/add/PlotAddChooseSize.tsx:117
 msgid "The minimum required size for mainnet is k=32"
 msgstr "Минимальный требуемый размер участка для основной сети равен k=32"
 
@@ -5202,7 +5214,7 @@ msgstr "Эти участки невалидны, вы можете удалит
 msgid "They will receive"
 msgstr "Они получат"
 
-#: src/components/plot/PlotAddDirectoryDialog.tsx:83
+#: src/components/plot/PlotAddDirectoryDialog.tsx:85
 msgid "This allows you to add a directory that has plots in it. If you have not created any plots, go to the plotting screen."
 msgstr "Это позволяет вам добавить каталог, в котором уже есть участки. Если вы еще не создали никаких участков, перейдите к экрану создания участков."
 
@@ -6000,7 +6012,7 @@ msgid "Would you like to transfer the specified NFT to a new owner?"
 msgstr ""
 
 #: src/components/offers2/OfferIncomingTable.tsx:215
-#: src/components/plot/add/PlotAddChooseSize.tsx:59
+#: src/components/plot/add/PlotAddChooseSize.tsx:61
 #: src/components/vcs/VCCard.tsx:89
 msgid "Yes"
 msgstr ""
@@ -6046,7 +6058,7 @@ msgstr "Вы все еще можете создавать участки для
 msgid "You created this offer"
 msgstr "Вы создали это предложение"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:90
+#: src/components/plot/add/PlotAddChooseSize.tsx:92
 msgid "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 msgstr "Вам не нужно синхронизироваться или подключаться к участку. В процессе построения участка создаются временные файлы, превышающие размер конечных файлов участков. Убедитесь, что у вас имеется достаточно места. <0>Подробнее</0>"
 
