@@ -7,6 +7,7 @@ import { useShowError, Button, Loading } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Folder as FolderIcon, Delete as DeleteIcon } from '@mui/icons-material';
 import {
+  Alert,
   Avatar,
   Box,
   Dialog,
@@ -19,6 +20,7 @@ import {
   ListItemAvatar,
   ListItemSecondaryAction,
   ListItemText,
+  Tooltip,
   Typography,
 } from '@mui/material';
 import React from 'react';
@@ -85,6 +87,13 @@ export default function PlotAddDirectoryDialog(props: Props) {
             plotting screen.
           </Trans>
         </Typography>
+        {directories && directories.length > 0 && (
+          <Alert severity="info">
+            <Trans>
+              Clicking a delete icon only removes a directory from this list and never deletes the directory itself
+            </Trans>
+          </Alert>
+        )}
         <Box display="flex">
           {isLoading ? (
             <Loading center />
@@ -99,9 +108,11 @@ export default function PlotAddDirectoryDialog(props: Props) {
                   </ListItemAvatar>
                   <ListItemText primary={dir} />
                   <ListItemSecondaryAction>
-                    <IconButton edge="end" aria-label="delete" onClick={() => removePlotDir(dir)}>
-                      <DeleteIcon color="info" />
-                    </IconButton>
+                    <Tooltip title={<Trans>Remove from the list</Trans>}>
+                      <IconButton edge="end" aria-label="delete" onClick={() => removePlotDir(dir)}>
+                        <DeleteIcon color="info" />
+                      </IconButton>
+                    </Tooltip>
                   </ListItemSecondaryAction>
                 </ListItem>
               ))}
