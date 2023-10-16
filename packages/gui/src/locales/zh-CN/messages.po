@@ -297,7 +297,7 @@ msgstr "已启用 - 如果可用，使用指定索引的设备；否则报错。
 msgid "*Usually it takes seconds to complete restarting."
 msgstr "*通常情况下，完成重启需要几秒钟。"
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:41
+#: src/components/plot/overview/PlotOverviewPlots.tsx:42
 msgid "+ Add a Plot"
 msgstr "+ 生成图块"
 
@@ -378,12 +378,12 @@ msgstr "未读通知"
 msgid "Add {currencyCode} from the Faucet"
 msgstr "从水龙头获取 {currencyCode}"
 
-#: src/components/plot/PlotAddDirectoryDialog.tsx:79
+#: src/components/plot/PlotAddDirectoryDialog.tsx:81
 msgid "Add a plot"
 msgstr "添加图块"
 
 #: src/components/farm/FarmHero.tsx:37
-#: src/components/plot/add/PlotAddForm.tsx:239
+#: src/components/plot/add/PlotAddForm.tsx:248
 #: src/components/plot/overview/PlotOverviewHero.tsx:43
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:199
 #: src/components/plotNFT/PlotNFTCard.tsx:233
@@ -414,11 +414,11 @@ msgstr "添加联系人"
 #~ msgid "Add option to set expiration time {0}"
 #~ msgstr ""
 
-#: src/components/plot/PlotAddDirectoryDialog.tsx:114
+#: src/components/plot/PlotAddDirectoryDialog.tsx:125
 msgid "Add plot directory"
 msgstr "添加图块文件夹"
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:50
+#: src/components/plot/overview/PlotOverviewPlots.tsx:52
 msgid "Add Plot Directory"
 msgstr "添加图块文件夹"
 
@@ -605,7 +605,7 @@ msgstr "确定要移除吗"
 msgid "Are you sure you want to revoke"
 msgstr "确定要撤销吗"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:62
+#: src/components/plot/add/PlotAddChooseSize.tsx:64
 msgid "Are you sure you want to use k={plotSize}?"
 msgstr "你确定要使用 k={plotSize}？"
 
@@ -924,11 +924,11 @@ msgstr "Chia资产代币 (Chia Asset Tokens，CAT) 是基于XCH构建的一种�
 msgid "Choose Farming Mode"
 msgstr "选择耕种模式"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:87
+#: src/components/plot/add/PlotAddChooseSize.tsx:89
 msgid "Choose K value"
 msgstr "选择K值"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:87
+#: src/components/plot/add/PlotAddChooseSize.tsx:89
 msgid "Choose K value and compression level"
 msgstr "选择K值和压缩等级"
 
@@ -974,6 +974,10 @@ msgstr "取消或确认可撤回交易"
 msgid "Clear NFT cache"
 msgstr "清除NFT缓存"
 
+#: src/components/plot/PlotAddDirectoryDialog.tsx:92
+msgid "Clicking a delete icon only removes a directory from this list and never deletes the directory itself"
+msgstr ""
+
 #: src/components/app/AppVersionWarning.tsx:57
 #: src/components/nfts/MultipleDownloadDialog.tsx:116
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:328
@@ -988,7 +992,7 @@ msgstr "清除NFT缓存"
 #: src/components/offers/OfferShareDialog.tsx:831
 #: src/components/offers/OfferShareDialog.tsx:1107
 #: src/components/offers2/OfferBuilderViewerDialog.tsx:76
-#: src/components/plot/PlotAddDirectoryDialog.tsx:121
+#: src/components/plot/PlotAddDirectoryDialog.tsx:132
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:66
 #: src/components/signVerify/SignMessageResultDialog.tsx:66
 #: src/components/walletConnect/WalletConnectConnectedDialog.tsx:125
@@ -1025,7 +1029,7 @@ msgstr "压缩图块支持"
 msgid "Compression"
 msgstr "压缩"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:124
+#: src/components/plot/add/PlotAddChooseSize.tsx:126
 msgid "Compression level"
 msgstr "压缩等级"
 
@@ -1180,7 +1184,7 @@ msgstr "倒计时"
 msgid "Counter Offer"
 msgstr "计数报价"
 
-#: src/components/plot/add/PlotAddForm.tsx:250
+#: src/components/plot/add/PlotAddForm.tsx:259
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:81
 #: src/components/settings/ProfileAdd.tsx:159
 msgid "Create"
@@ -1295,7 +1299,7 @@ msgstr "创建者版税比率似乎高"
 msgid "Credentials"
 msgstr "证件"
 
-#: src/components/plot/add/PlotAddForm.tsx:143
+#: src/components/plot/add/PlotAddForm.tsx:152
 msgid "Currency code is not defined"
 msgstr "货币代码未定义"
 
@@ -1923,7 +1927,7 @@ msgstr "农民节点没有运行"
 msgid "Farmer Public Key"
 msgstr "农民公钥"
 
-#: src/components/plot/add/PlotAddForm.tsx:204
+#: src/components/plot/add/PlotAddForm.tsx:213
 msgid "Farmer public key is invalid"
 msgstr "农民公钥无效"
 
@@ -2536,7 +2540,7 @@ msgstr "加入联合耕种"
 msgid "Join Pool"
 msgstr "加入联合耕种池"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:104
+#: src/components/plot/add/PlotAddChooseSize.tsx:106
 msgid "K value"
 msgstr "K值"
 
@@ -2757,6 +2761,10 @@ msgstr "管理存储本地计算机上的文件。"
 #: src/components/settings/SettingsIntegration.tsx:218
 msgid "Manage permissions for your WalletConnect apps."
 msgstr "管理WalletConnect应用的权限。"
+
+#: src/components/plot/overview/PlotOverviewPlots.tsx:54
+msgid "Manage Plot Directories"
+msgstr ""
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:94
 msgid "Manage Your Farming Rewards Target Addresses"
@@ -3533,7 +3541,7 @@ msgstr "所有者DID"
 msgid "Owner Public Key"
 msgstr "所有者公钥"
 
-#: src/components/plot/add/PlotAddForm.tsx:161
+#: src/components/plot/add/PlotAddForm.tsx:170
 msgid "p2SingletonPuzzleHash is not defined"
 msgstr "p2SingletonPuzzleHash 未定义"
 
@@ -3873,7 +3881,7 @@ msgstr "正在生成"
 msgid "Plotting in parallel can save time. Otherwise, add plot(s) to the queue."
 msgstr "并发生成可以有效节省生成时间但对系统资源要求很高。系统硬件不够的话建议选择按队列顺序生成。"
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:37
+#: src/components/plot/overview/PlotOverviewPlots.tsx:38
 msgid "Plotting Manager"
 msgstr "图块概览"
 
@@ -3933,7 +3941,7 @@ msgstr "联合耕种池支付地址"
 msgid "Pool Public Key"
 msgstr "耕种池公钥"
 
-#: src/components/plot/add/PlotAddForm.tsx:211
+#: src/components/plot/add/PlotAddForm.tsx:220
 msgid "Pool public key is invalid"
 msgstr "耕种池密钥无效"
 
@@ -4138,7 +4146,7 @@ msgid "Refresh NFT data"
 msgstr "刷新 NFT 数据"
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:46
-#: src/components/plot/overview/PlotOverviewPlots.tsx:58
+#: src/components/plot/overview/PlotOverviewPlots.tsx:63
 msgid "Refresh Plots"
 msgstr "刷新图块列表"
 
@@ -4170,6 +4178,10 @@ msgstr "远程收割机"
 #: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:359
 msgid "Remove Conflicting Offer"
 msgstr "移除冲突的报价"
+
+#: src/components/plot/PlotAddDirectoryDialog.tsx:111
+msgid "Remove from the list"
+msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:247
 msgid "Remove keys from old keyring upon successful migration"
@@ -4872,7 +4884,7 @@ msgstr "目标地址"
 msgid "Target Puzzle Hash"
 msgstr "目标迷题哈希"
 
-#: src/components/plot/add/PlotAddForm.tsx:174
+#: src/components/plot/add/PlotAddForm.tsx:183
 msgid "Temp folder location is required for hybrid disk plotting with 16/128G RAM"
 msgstr "使用16/128GB内存的混合磁盘模式生成图块时，需要指定临时文件夹的位置"
 
@@ -4916,8 +4928,8 @@ msgstr "你的农场连接的全节点如下.<0>了解更多</0>"
 msgid "The Harvester manages plots and fetches proofs of space corresponding to challenges sent by a farmer."
 msgstr "收割机管理图块并获取与农民发送的挑战相对应的空间证明。"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:58
-#: src/components/plot/add/PlotAddChooseSize.tsx:115
+#: src/components/plot/add/PlotAddChooseSize.tsx:60
+#: src/components/plot/add/PlotAddChooseSize.tsx:117
 msgid "The minimum required size for mainnet is k=32"
 msgstr "主网要求的最小图块大小为k=32"
 
@@ -5034,7 +5046,7 @@ msgstr "这些图块无效，你可能想要删除它们。"
 msgid "They will receive"
 msgstr "他们将收到:"
 
-#: src/components/plot/PlotAddDirectoryDialog.tsx:83
+#: src/components/plot/PlotAddDirectoryDialog.tsx:85
 msgid "This allows you to add a directory that has plots in it. If you have not created any plots, go to the plotting screen."
 msgstr "添加一个包含图块的目录。如果还没有创建任何图块，请前往生成图块界面。"
 
@@ -5832,7 +5844,7 @@ msgid "Would you like to transfer the specified NFT to a new owner?"
 msgstr "您想要将指定的 NFT 转移给一个新的所有者吗？"
 
 #: src/components/offers2/OfferIncomingTable.tsx:215
-#: src/components/plot/add/PlotAddChooseSize.tsx:59
+#: src/components/plot/add/PlotAddChooseSize.tsx:61
 #: src/components/vcs/VCCard.tsx:89
 msgid "Yes"
 msgstr "是"
@@ -5878,7 +5890,7 @@ msgstr "你现在可以为这个联合耕种农田生成新图块，但是在同
 msgid "You created this offer"
 msgstr "您创建了此报价"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:90
+#: src/components/plot/add/PlotAddChooseSize.tsx:92
 msgid "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 msgstr "不需要同步或者连接到网络节点就可以生成图块。在生成过程中产生的临时文件尺寸会大于最终的图块大小。请确认你有足够的存储空间。<0>了解更多</0>"
 
