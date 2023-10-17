@@ -31,6 +31,7 @@ export type OfferBuilderValueProps = {
   caption?: ReactNode;
   type?: 'text' | 'amount' | 'fee' | 'token';
   isLoading?: boolean;
+  offering?: boolean;
   onRemove?: () => void;
   symbol?: string;
   showAmountInMojos?: boolean;
@@ -48,6 +49,7 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
     label,
     onRemove,
     isLoading = false,
+    offering = false,
     type = 'text',
     symbol,
     showAmountInMojos,
@@ -159,7 +161,15 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
                 <Fee variant="filled" color="secondary" label={label} name={name} fullWidth />
               )
             ) : type === 'text' ? (
-              <NFTAutocomplete variant="filled" color="secondary" label={label} name={name} required fullWidth />
+              <NFTAutocomplete
+                variant="filled"
+                color="secondary"
+                label={label}
+                name={name}
+                includeNFTCollection={offering}
+                required
+                fullWidth
+              />
             ) : type === 'token' ? (
               <OfferBuilderTokenSelector
                 variant="filled"
