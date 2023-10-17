@@ -47,7 +47,7 @@ const StyledItemsContainer = styled(ScrollbarFlex)`
 
 const StyledItemsContent = styled(Box)`
   padding-left: ${({ theme }: { theme: Theme }) => theme.spacing(3)};
-  padding-bottom: ${({ theme }: { theme: Theme }) => theme.spacing(1)};
+  padding-bottom: ${({ theme }: { theme: Theme }) => theme.spacing(7)};
   margin-right: ${({ theme }: { theme: Theme }) => theme.spacing(2)};
   min-height: ${({ theme }: { theme: Theme }) => theme.spacing(5)};
   overflow: hidden;
