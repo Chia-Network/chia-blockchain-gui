@@ -1,5 +1,3 @@
-import fs, { Stats } from 'fs';
-
 import { useGetOfferSummaryMutation } from '@chia-network/api-react';
 import { Color, Dropzone, Flex, useSerializedNavigationState, useShowError } from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
@@ -7,26 +5,12 @@ import { Box, Card, Typography } from '@mui/material';
 import React from 'react';
 import { useHotkeys } from 'react-hotkeys-hook';
 
-import ImportOfferBackground from './images/importOfferBackground.svg';
 import OfferFileIcon from './images/offerFileIcon.svg';
 
-function Background(props) {
+function Background(props: { children: React.ReactNode }) {
   const { children } = props;
   return (
     <Box position="relative" p={3}>
-      <Box
-        position="absolute"
-        left={0}
-        right={0}
-        top={0}
-        bottom={0}
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-        marginY={-2}
-      >
-        <ImportOfferBackground height="100%" />
-      </Box>
       {children}
     </Box>
   );
@@ -47,7 +31,7 @@ export default function OfferBuilderImport() {
     return [matches?.groups?.offer, matches?.groups?.leading, matches?.groups?.trailing];
   }
 
-  async function parseOfferSummary(rawOfferData: string, offerFilePath: string | undefined) {
+  async function parseOfferSummary(rawOfferData: string) {
     const [offerData] = parseOfferData(rawOfferData);
     if (!offerData) {
       throw new Error(t`Could not parse offer data`);
@@ -60,7 +44,6 @@ export default function OfferBuilderImport() {
         state: {
           offerData,
           offerSummary: summary,
-          offerFilePath,
           imported: true,
           referrerPath: '/dashboard/offers',
         },
@@ -70,63 +53,42 @@ export default function OfferBuilderImport() {
     }
   }
 
-  async function handleOpen(offerFilePath: string) {
-    async function continueOpen(stats: Stats) {
+  async function handleOpen(file: File) {
+    if (file.size > 1024 * 1024) {
+      showError(new Error(t`Offer file is too large (> 1MB)`));
+      return;
+    }
+
+    setIsParsing(true);
+
+    const reader = new FileReader();
+
+    reader.onload = async () => {
+      const offerData = reader.result as string;
+
       try {
-        if (stats.size > 1024 * 1024) {
-          throw new Error(t`Offer file is too large (> 1MB)`);
-        }
-
-        const offerData = fs.readFileSync(offerFilePath, 'utf8');
-
-        await parseOfferSummary(offerData, offerFilePath);
+        await parseOfferSummary(offerData);
       } catch (e) {
         showError(e);
       } finally {
         setIsParsing(false);
       }
-    }
+    };
 
-    setIsParsing(true);
-
-    fs.stat(offerFilePath, (err, stats) => {
-      if (err) {
-        showError(err);
-        setIsParsing(false);
-      } else {
-        continueOpen(stats);
-      }
-    });
+    reader.readAsText(file, 'utf8');
   }
 
   async function handleDrop(acceptedFiles: [File]) {
     if (acceptedFiles.length !== 1) {
       showError(new Error('Please drop one offer file at a time'));
     } else {
-      handleOpen(acceptedFiles[0].path);
+      handleOpen(acceptedFiles[0]);
     }
   }
-
-  /*
-
-  async function handleSelectOfferFile() {
-    const dialogOptions = {
-      filters: [{ name: 'Offer Files', extensions: ['offer'] }],
-    } as Electron.OpenDialogOptions;
-    const ipcRenderer: IpcRenderer = (window as any).ipcRenderer;
-    const { canceled, filePaths } = await ipcRenderer.invoke(
-      'showOpenDialog',
-      dialogOptions,
-    );
-    if (!canceled && filePaths?.length) {
-      handleOpen(filePaths[0]);
-    }
-  }
-  */
 
   async function pasteParse(text: string) {
     try {
-      await parseOfferSummary(text, undefined);
+      await parseOfferSummary(text);
     } catch (e) {
       showError(e);
     } finally {
