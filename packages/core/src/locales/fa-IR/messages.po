@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-10-22 00:04\n"
+"PO-Revision-Date: 2023-10-23 16:57\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -144,8 +144,7 @@ msgstr "{fingerprint} حذف کلید"
 
 #: src/screens/SelectKey/SelectKey.tsx:133
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
-msgstr ""
-"حذف همه کلیدها آنها را برای همیشه از روی رایانه شما حذف میکند، مطمئن شوید که نسخه پشتیبان دارید.\n"
+msgstr "حذف همه کلیدها آنها را برای همیشه از روی رایانه شما حذف میکند، مطمئن شوید که نسخه پشتیبان دارید.\n"
 " آیا مطمئنید که میخواهید ادامه دهید؟"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:106
@@ -570,3 +569,4 @@ msgstr "نسخه فعلی شما:"
 #: src/hooks/useKeyringMigrationPrompt.tsx:21
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr "کلیدهای شما به یک کلید جدید تا زمانیکه انتقال کامل نشود، منتقل نشده است. نمیتوانید کلیدهای جدید ایجاد کنید یا کلیدهای موجود را حذف کنید. آیا میخواهید کلیدهای خود را اکنون انتقال دهید؟"
+
