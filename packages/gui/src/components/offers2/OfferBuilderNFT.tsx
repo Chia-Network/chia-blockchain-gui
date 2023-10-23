@@ -48,7 +48,13 @@ export default function OfferBuilderNFT(props: OfferBuilderNFTProps) {
   return (
     <Flex flexDirection="column" gap={2}>
       <Flex flexDirection="column" gap={1}>
-        <OfferBuilderValue name={fieldName} type="text" label={<Trans>NFT ID</Trans>} onRemove={onRemove} />
+        <OfferBuilderValue
+          name={fieldName}
+          type="text"
+          label={<Trans>NFT ID</Trans>}
+          offering={offering}
+          onRemove={onRemove}
+        />
         {(minterDID || minterDIDName) && (
           <Flex flexDirection="column" gap={1}>
             <Typography variant="body1" color="textSecondary">

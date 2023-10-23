@@ -17,6 +17,7 @@ import NFTTitle from './NFTTitle';
 export type NFTAutocompleteProps = {
   name: string;
   defaultValue?: string;
+  includeNFTCollection?: boolean;
   label?: ReactNode;
   variant?: 'standard' | 'outlined' | 'filled';
   rules?: any;
@@ -27,7 +28,18 @@ export type NFTAutocompleteProps = {
 };
 
 export default function NFTAutocomplete(props: NFTAutocompleteProps) {
-  const { name, defaultValue, label, rules, variant, color, required, fullWidth, InputProps = {} } = props;
+  const {
+    name,
+    defaultValue,
+    includeNFTCollection = false,
+    label,
+    rules,
+    variant,
+    color,
+    required,
+    fullWidth,
+    InputProps = {},
+  } = props;
   const [inputValue, setInputValue] = useState('');
 
   const [searchText, setSearchText] = useState('');
@@ -128,14 +140,16 @@ export default function NFTAutocomplete(props: NFTAutocompleteProps) {
     [firstOption, selectedNFT]
   );
 
+  const options = includeNFTCollection ? nfts : [];
+
   return (
     <Autocomplete
       renderOption={renderOption}
-      options={nfts}
+      options={options}
       value={value}
       onChange={handleChange}
       onClose={handleClose}
-      filterOptions={(options) => options} // disable filtering we are using our own
+      filterOptions={(localOptions) => localOptions} // disable filtering we are using our own
       loading={isLoading}
       inputValue={inputValue}
       onInputChange={handleInputValueChange}

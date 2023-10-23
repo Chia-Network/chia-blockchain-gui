@@ -55,6 +55,7 @@ export default function OfferBuilderNFTSection(props: OfferBuilderNFTSectionProp
             provenance={showProvenance}
             showRoyalties={showRoyalties}
             onRemove={() => handleRemove(index)}
+            offering={offering}
           />
         ))}
       </Flex>
