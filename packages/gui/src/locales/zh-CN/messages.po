@@ -174,11 +174,11 @@ msgstr "检查更新..."
 #~ msgid "- Set a time after which the offer expires.<0/>- An expiring offer can only be claimed prior to the expiration time."
 #~ msgstr ""
 
-#: src/components/offers2/OfferBuilderImport.tsx:167
+#: src/components/offers2/OfferBuilderImport.tsx:129
 msgid "(⌘V) a blob"
 msgstr "报价文件数据(Ctrl/⌘+V)"
 
-#: src/components/offers2/OfferBuilderImport.tsx:167
+#: src/components/offers2/OfferBuilderImport.tsx:129
 msgid "(Ctrl-V) a blob"
 msgstr "报价文件数据(Ctrl/⌘+V)"
 
@@ -273,7 +273,7 @@ msgstr "{mojos, plural, one {mojo} other {mojos}}"
 #~ msgid "{title}"
 #~ msgstr ""
 
-#: src/components/offers2/OfferBuilderValue.tsx:175
+#: src/components/offers2/OfferBuilderValue.tsx:185
 msgid "{type} is not supported"
 msgstr "不支持 {type}"
 
@@ -1168,7 +1168,7 @@ msgstr "向 NFT 持有者发送通知的成本"
 msgid "Could not connect to host {host} on port {port}"
 msgstr "无法通过端口{host}连接到主机{port}"
 
-#: src/components/offers2/OfferBuilderImport.tsx:53
+#: src/components/offers2/OfferBuilderImport.tsx:37
 msgid "Could not parse offer data"
 msgstr "无法解析报价数据"
 
@@ -1632,7 +1632,7 @@ msgstr "拖放签名消息文件，<0/> 粘贴({0}V)"
 msgid "Drag & Drop an Offer File"
 msgstr "拖放报价文件"
 
-#: src/components/offers2/OfferBuilderImport.tsx:166
+#: src/components/offers2/OfferBuilderImport.tsx:128
 msgid "Drag & Drop an Offer File, Paste"
 msgstr "拖放报价文件，粘贴"
 
@@ -2854,7 +2854,7 @@ msgstr "铸造NFT"
 msgid "Minted at Block Height"
 msgstr "铸造在区块高度"
 
-#: src/components/offers2/OfferBuilderNFT.tsx:55
+#: src/components/offers2/OfferBuilderNFT.tsx:61
 msgid "Minter"
 msgstr "铸造者"
 
@@ -3039,7 +3039,7 @@ msgid "NFT holder address"
 msgstr "NFT持有者地址"
 
 #: src/components/nfts/NFTDetails.tsx:56
-#: src/components/offers2/OfferBuilderNFT.tsx:51
+#: src/components/offers2/OfferBuilderNFT.tsx:54
 #: src/components/signVerify/SigningEntityNFT.tsx:65
 msgid "NFT ID"
 msgstr "NFT ID"
@@ -3066,7 +3066,7 @@ msgid "NFT Move Pending"
 msgstr "NFT 等待移动"
 
 #: src/components/offers/NFTOfferPreview.tsx:105
-#: src/components/offers2/OfferBuilderNFT.tsx:97
+#: src/components/offers2/OfferBuilderNFT.tsx:103
 msgid "NFT not specified"
 msgstr "NFT 未指定"
 
@@ -3206,7 +3206,7 @@ msgstr "不可用"
 #: src/components/farm/card/FarmCardNotAvailable.tsx:19
 #: src/components/farm/card/FarmCardNotAvailable.tsx:22
 #: src/components/nfts/NFTMetadata.tsx:22
-#: src/components/offers2/OfferBuilderValue.tsx:71
+#: src/components/offers2/OfferBuilderValue.tsx:73
 #: src/components/plot/PlotStatus.tsx:20
 #: src/components/plotNFT/PlotNFTCard.tsx:307
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:94
@@ -3331,7 +3331,7 @@ msgid "Offer Builder"
 msgstr "报价生成器"
 
 #: src/components/offers/NFTOfferViewer.tsx:173
-#: src/components/offers2/OfferBuilderValue.tsx:196
+#: src/components/offers2/OfferBuilderValue.tsx:206
 #: src/components/offers2/OfferBuilderViewer.tsx:283
 msgid "Offer cannot be accepted because you don't possess the requested assets"
 msgstr "因为你没有被请求的资产，所以不能接受报价"
@@ -3356,7 +3356,7 @@ msgstr "报价有效期"
 msgid "Offer Expiration Time"
 msgstr "报价到期时间"
 
-#: src/components/offers2/OfferBuilderImport.tsx:77
+#: src/components/offers2/OfferBuilderImport.tsx:58
 msgid "Offer file is too large (> 1MB)"
 msgstr "报价文件过大 (> 1MB)"
 
@@ -3496,7 +3496,7 @@ msgstr "为加快报价成交，提供可选的手续费"
 msgid "Options"
 msgstr "选项"
 
-#: src/components/offers2/OfferBuilderImport.tsx:170
+#: src/components/offers2/OfferBuilderImport.tsx:132
 #: src/components/signVerify/VerifyMessageImport.tsx:154
 msgid "or <0>browse</0> on your computer"
 msgstr "或者在电脑中<0>浏览</0>"
@@ -4005,7 +4005,7 @@ msgstr "正在准备标准钱包"
 #: src/components/nfts/NFTPreview.tsx:242
 #: src/components/nfts/NFTPreview.tsx:244
 #: src/components/nfts/NFTPreview.tsx:247
-#: src/components/offers2/OfferBuilderNFT.tsx:69
+#: src/components/offers2/OfferBuilderNFT.tsx:75
 msgid "Preview"
 msgstr "预览"
 
@@ -4404,7 +4404,7 @@ msgid "Search block by header hash"
 msgstr "按头部哈希搜索区块"
 
 #: src/components/offers/OfferSummaryRow.tsx:180
-#: src/components/offers2/OfferBuilderValue.tsx:102
+#: src/components/offers2/OfferBuilderValue.tsx:104
 msgid "Search on Tail Database"
 msgstr "在Tail Database中搜索"
 
@@ -4443,7 +4443,7 @@ msgstr "选择所有"
 msgid "Select an application"
 msgstr "选择应用程序"
 
-#: src/components/nfts/NFTAutocomplete.tsx:57
+#: src/components/nfts/NFTAutocomplete.tsx:69
 msgid "Select an NFT"
 msgstr "选择 NFT"
 
@@ -5787,7 +5787,7 @@ msgid "Warning: Mismatched Versions"
 msgstr "警告：不匹配的版本"
 
 #: src/components/offers/OfferSummary.tsx:134
-#: src/components/offers2/OfferBuilderValue.tsx:200
+#: src/components/offers2/OfferBuilderValue.tsx:210
 msgid "Warning: Verify that the offered CAT asset IDs match the asset IDs of the tokens you expect to receive."
 msgstr "警告：验证提供的资产代币ID是否与您预期收到的资产代币ID相匹配。"
 

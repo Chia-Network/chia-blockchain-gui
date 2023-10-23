@@ -174,11 +174,11 @@ msgstr "Vérification des mises à jour..."
 #~ msgid "- Set a time after which the offer expires.<0/>- An expiring offer can only be claimed prior to the expiration time."
 #~ msgstr ""
 
-#: src/components/offers2/OfferBuilderImport.tsx:167
+#: src/components/offers2/OfferBuilderImport.tsx:129
 msgid "(⌘V) a blob"
 msgstr "(⌘V) un blob"
 
-#: src/components/offers2/OfferBuilderImport.tsx:167
+#: src/components/offers2/OfferBuilderImport.tsx:129
 msgid "(Ctrl-V) a blob"
 msgstr "(Ctrl-V) un blob"
 
@@ -273,7 +273,7 @@ msgstr "{mojos, plural, one {mojo} other {mojos}}"
 #~ msgid "{title}"
 #~ msgstr ""
 
-#: src/components/offers2/OfferBuilderValue.tsx:175
+#: src/components/offers2/OfferBuilderValue.tsx:185
 msgid "{type} is not supported"
 msgstr "{type} n'est pas supporté"
 
@@ -1168,7 +1168,7 @@ msgstr "Coût pour envoyer une notification au détenteur du NFT"
 msgid "Could not connect to host {host} on port {port}"
 msgstr "Impossible de se connecter à l'hôte {host} sur le port {port}"
 
-#: src/components/offers2/OfferBuilderImport.tsx:53
+#: src/components/offers2/OfferBuilderImport.tsx:37
 msgid "Could not parse offer data"
 msgstr "Impossible de lire les données de l'offre"
 
@@ -1632,7 +1632,7 @@ msgstr "Glisser-déposer un fichier de message signé,<0/> Coller ({0}V)"
 msgid "Drag & Drop an Offer File"
 msgstr "Glisser-déposer un Fichier d'Offre"
 
-#: src/components/offers2/OfferBuilderImport.tsx:166
+#: src/components/offers2/OfferBuilderImport.tsx:128
 msgid "Drag & Drop an Offer File, Paste"
 msgstr "Glisser-déposer un fichier d'offre, Coller"
 
@@ -2854,7 +2854,7 @@ msgstr "Frapper le NFT"
 msgid "Minted at Block Height"
 msgstr "Créé au bloc"
 
-#: src/components/offers2/OfferBuilderNFT.tsx:55
+#: src/components/offers2/OfferBuilderNFT.tsx:61
 msgid "Minter"
 msgstr "Créateur"
 
@@ -3039,7 +3039,7 @@ msgid "NFT holder address"
 msgstr "Adresse du détenteur du NFT"
 
 #: src/components/nfts/NFTDetails.tsx:56
-#: src/components/offers2/OfferBuilderNFT.tsx:51
+#: src/components/offers2/OfferBuilderNFT.tsx:54
 #: src/components/signVerify/SigningEntityNFT.tsx:65
 msgid "NFT ID"
 msgstr "ID du NFT"
@@ -3066,7 +3066,7 @@ msgid "NFT Move Pending"
 msgstr "Transfert du NFT en attente"
 
 #: src/components/offers/NFTOfferPreview.tsx:105
-#: src/components/offers2/OfferBuilderNFT.tsx:97
+#: src/components/offers2/OfferBuilderNFT.tsx:103
 msgid "NFT not specified"
 msgstr "NFT non spécifié"
 
@@ -3206,7 +3206,7 @@ msgstr ""
 #: src/components/farm/card/FarmCardNotAvailable.tsx:19
 #: src/components/farm/card/FarmCardNotAvailable.tsx:22
 #: src/components/nfts/NFTMetadata.tsx:22
-#: src/components/offers2/OfferBuilderValue.tsx:71
+#: src/components/offers2/OfferBuilderValue.tsx:73
 #: src/components/plot/PlotStatus.tsx:20
 #: src/components/plotNFT/PlotNFTCard.tsx:307
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:94
@@ -3331,7 +3331,7 @@ msgid "Offer Builder"
 msgstr "Constructeur d'offres"
 
 #: src/components/offers/NFTOfferViewer.tsx:173
-#: src/components/offers2/OfferBuilderValue.tsx:196
+#: src/components/offers2/OfferBuilderValue.tsx:206
 #: src/components/offers2/OfferBuilderViewer.tsx:283
 msgid "Offer cannot be accepted because you don't possess the requested assets"
 msgstr "L'offre ne peut pas être acceptée car vous ne possédez pas les actifs demandés"
@@ -3356,7 +3356,7 @@ msgstr ""
 msgid "Offer Expiration Time"
 msgstr ""
 
-#: src/components/offers2/OfferBuilderImport.tsx:77
+#: src/components/offers2/OfferBuilderImport.tsx:58
 msgid "Offer file is too large (> 1MB)"
 msgstr "Le fichier de l'offre est trop volumineux (> 1MB)"
 
@@ -3496,7 +3496,7 @@ msgstr "Frais de réseau optionnels pour accélérer l'acceptation de votre offr
 msgid "Options"
 msgstr ""
 
-#: src/components/offers2/OfferBuilderImport.tsx:170
+#: src/components/offers2/OfferBuilderImport.tsx:132
 #: src/components/signVerify/VerifyMessageImport.tsx:154
 msgid "or <0>browse</0> on your computer"
 msgstr "ou <0>parcourir</0> sur votre ordinateur"
@@ -4005,7 +4005,7 @@ msgstr "Préparation du portefeuille standard"
 #: src/components/nfts/NFTPreview.tsx:242
 #: src/components/nfts/NFTPreview.tsx:244
 #: src/components/nfts/NFTPreview.tsx:247
-#: src/components/offers2/OfferBuilderNFT.tsx:69
+#: src/components/offers2/OfferBuilderNFT.tsx:75
 msgid "Preview"
 msgstr "Aperçu"
 
@@ -4404,7 +4404,7 @@ msgid "Search block by header hash"
 msgstr "Rechercher un bloc par le hash de l'entête"
 
 #: src/components/offers/OfferSummaryRow.tsx:180
-#: src/components/offers2/OfferBuilderValue.tsx:102
+#: src/components/offers2/OfferBuilderValue.tsx:104
 msgid "Search on Tail Database"
 msgstr "Rechercher sur Tail Database"
 
@@ -4443,7 +4443,7 @@ msgstr "Tout sélectionner"
 msgid "Select an application"
 msgstr "Sélectionnez une application"
 
-#: src/components/nfts/NFTAutocomplete.tsx:57
+#: src/components/nfts/NFTAutocomplete.tsx:69
 msgid "Select an NFT"
 msgstr "Sélectionnez un NFT"
 
@@ -5787,7 +5787,7 @@ msgid "Warning: Mismatched Versions"
 msgstr "Avertissement : Versions incompatibles"
 
 #: src/components/offers/OfferSummary.tsx:134
-#: src/components/offers2/OfferBuilderValue.tsx:200
+#: src/components/offers2/OfferBuilderValue.tsx:210
 msgid "Warning: Verify that the offered CAT asset IDs match the asset IDs of the tokens you expect to receive."
 msgstr "Attention : Vérifiez que les CAT offerts correspondent aux CAT que vous souhaitez recevoir en vérifiant leurs identifiants (Asset ID)."
 

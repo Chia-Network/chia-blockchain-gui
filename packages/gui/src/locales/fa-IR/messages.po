@@ -174,11 +174,11 @@ msgstr "بروز رسانی را بررسی کنید..."
 #~ msgid "- Set a time after which the offer expires.<0/>- An expiring offer can only be claimed prior to the expiration time."
 #~ msgstr ""
 
-#: src/components/offers2/OfferBuilderImport.tsx:167
+#: src/components/offers2/OfferBuilderImport.tsx:129
 msgid "(⌘V) a blob"
 msgstr "یک بلوب (⌘V)"
 
-#: src/components/offers2/OfferBuilderImport.tsx:167
+#: src/components/offers2/OfferBuilderImport.tsx:129
 msgid "(Ctrl-V) a blob"
 msgstr "یک بلوب (Ctrl-V)"
 
@@ -273,7 +273,7 @@ msgstr "{mojos,plural,one {موجو} other {موجوها}}"
 #~ msgid "{title}"
 #~ msgstr ""
 
-#: src/components/offers2/OfferBuilderValue.tsx:175
+#: src/components/offers2/OfferBuilderValue.tsx:185
 msgid "{type} is not supported"
 msgstr "پشتیبانی نمیشود {type}"
 
@@ -1168,7 +1168,7 @@ msgstr "هزینه ارسال اعلان به دارنده ان اف تی"
 msgid "Could not connect to host {host} on port {port}"
 msgstr "امکان‌پذیر نیست {host} در پورت {port} اتصال به میزبان"
 
-#: src/components/offers2/OfferBuilderImport.tsx:53
+#: src/components/offers2/OfferBuilderImport.tsx:37
 msgid "Could not parse offer data"
 msgstr "تجزیه اطلاعات پیشنهاد ممکن نیست"
 
@@ -1632,7 +1632,7 @@ msgstr "یک فایل پیام امضا شده را انتخاب و در این�
 msgid "Drag & Drop an Offer File"
 msgstr "یک فایل پیشنهاد را انتخاب و در اینجا قرار دهید"
 
-#: src/components/offers2/OfferBuilderImport.tsx:166
+#: src/components/offers2/OfferBuilderImport.tsx:128
 msgid "Drag & Drop an Offer File, Paste"
 msgstr "یک فایل پیشنهاد را انتخاب و در اینجا قرار دهید، جای‌گذاری"
 
@@ -2854,7 +2854,7 @@ msgstr "ثبت ان اف تی"
 msgid "Minted at Block Height"
 msgstr "ثبت شده در ارتفاع بالا"
 
-#: src/components/offers2/OfferBuilderNFT.tsx:55
+#: src/components/offers2/OfferBuilderNFT.tsx:61
 msgid "Minter"
 msgstr "ثبت کننده"
 
@@ -3039,7 +3039,7 @@ msgid "NFT holder address"
 msgstr "آدرس دارنده ان اف تی"
 
 #: src/components/nfts/NFTDetails.tsx:56
-#: src/components/offers2/OfferBuilderNFT.tsx:51
+#: src/components/offers2/OfferBuilderNFT.tsx:54
 #: src/components/signVerify/SigningEntityNFT.tsx:65
 msgid "NFT ID"
 msgstr "شناسه ان اف تی"
@@ -3066,7 +3066,7 @@ msgid "NFT Move Pending"
 msgstr "درحال انتقال ان اف تی"
 
 #: src/components/offers/NFTOfferPreview.tsx:105
-#: src/components/offers2/OfferBuilderNFT.tsx:97
+#: src/components/offers2/OfferBuilderNFT.tsx:103
 msgid "NFT not specified"
 msgstr "ان اف تی مشخص نشده"
 
@@ -3206,7 +3206,7 @@ msgstr "در دسترس نیست"
 #: src/components/farm/card/FarmCardNotAvailable.tsx:19
 #: src/components/farm/card/FarmCardNotAvailable.tsx:22
 #: src/components/nfts/NFTMetadata.tsx:22
-#: src/components/offers2/OfferBuilderValue.tsx:71
+#: src/components/offers2/OfferBuilderValue.tsx:73
 #: src/components/plot/PlotStatus.tsx:20
 #: src/components/plotNFT/PlotNFTCard.tsx:307
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:94
@@ -3331,7 +3331,7 @@ msgid "Offer Builder"
 msgstr "ساختن پیشنهاد"
 
 #: src/components/offers/NFTOfferViewer.tsx:173
-#: src/components/offers2/OfferBuilderValue.tsx:196
+#: src/components/offers2/OfferBuilderValue.tsx:206
 #: src/components/offers2/OfferBuilderViewer.tsx:283
 msgid "Offer cannot be accepted because you don't possess the requested assets"
 msgstr "پیشنهاد نمیتواند پذیرفته شود زیرا دارایی‌های درخواستی را ندارید"
@@ -3356,7 +3356,7 @@ msgstr "انقضای پیشنهاد"
 msgid "Offer Expiration Time"
 msgstr "زمان انقضای پیشنهاد"
 
-#: src/components/offers2/OfferBuilderImport.tsx:77
+#: src/components/offers2/OfferBuilderImport.tsx:58
 msgid "Offer file is too large (> 1MB)"
 msgstr "فایل پیشنهاد خیلی بزرگ است (> 1 مگابایت)"
 
@@ -3496,7 +3496,7 @@ msgstr "کارمزد اختیاری شبکه برای تسریع پذیرش پی
 msgid "Options"
 msgstr "گزینه ها"
 
-#: src/components/offers2/OfferBuilderImport.tsx:170
+#: src/components/offers2/OfferBuilderImport.tsx:132
 #: src/components/signVerify/VerifyMessageImport.tsx:154
 msgid "or <0>browse</0> on your computer"
 msgstr "یا<0>مرورکنید</0> را در رایانه خود"
@@ -4005,7 +4005,7 @@ msgstr "آماده‌سازی کیف پول استاندارد"
 #: src/components/nfts/NFTPreview.tsx:242
 #: src/components/nfts/NFTPreview.tsx:244
 #: src/components/nfts/NFTPreview.tsx:247
-#: src/components/offers2/OfferBuilderNFT.tsx:69
+#: src/components/offers2/OfferBuilderNFT.tsx:75
 msgid "Preview"
 msgstr "پیش نمایش"
 
@@ -4404,7 +4404,7 @@ msgid "Search block by header hash"
 msgstr "جستجوی بلاک با عنوان هش"
 
 #: src/components/offers/OfferSummaryRow.tsx:180
-#: src/components/offers2/OfferBuilderValue.tsx:102
+#: src/components/offers2/OfferBuilderValue.tsx:104
 msgid "Search on Tail Database"
 msgstr "جستجو در دیتابیس تیل"
 
@@ -4443,7 +4443,7 @@ msgstr "انتخاب همه"
 msgid "Select an application"
 msgstr "انتخاب یک برنامه کاربردی"
 
-#: src/components/nfts/NFTAutocomplete.tsx:57
+#: src/components/nfts/NFTAutocomplete.tsx:69
 msgid "Select an NFT"
 msgstr "انتخاب یک ان اف تی"
 
@@ -5787,7 +5787,7 @@ msgid "Warning: Mismatched Versions"
 msgstr "هشدار: نسخه های نامتناسب"
 
 #: src/components/offers/OfferSummary.tsx:134
-#: src/components/offers2/OfferBuilderValue.tsx:200
+#: src/components/offers2/OfferBuilderValue.tsx:210
 msgid "Warning: Verify that the offered CAT asset IDs match the asset IDs of the tokens you expect to receive."
 msgstr "اخطار: بررسی کنید که شناسه‌های دارایی CAT ارائه شده با شناسه‌های دارایی توکن‌هایی که انتظار دریافت آنرا دارید، مطابقت داشته باشد."
 

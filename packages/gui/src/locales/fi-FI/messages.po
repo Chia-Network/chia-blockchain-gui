@@ -174,11 +174,11 @@ msgstr "Tarkista päivitykset..."
 #~ msgid "- Set a time after which the offer expires.<0/>- An expiring offer can only be claimed prior to the expiration time."
 #~ msgstr ""
 
-#: src/components/offers2/OfferBuilderImport.tsx:167
+#: src/components/offers2/OfferBuilderImport.tsx:129
 msgid "(⌘V) a blob"
 msgstr "(⌘V) blobi"
 
-#: src/components/offers2/OfferBuilderImport.tsx:167
+#: src/components/offers2/OfferBuilderImport.tsx:129
 msgid "(Ctrl-V) a blob"
 msgstr "(Ctrl-V) blobi"
 
@@ -273,7 +273,7 @@ msgstr "{mojos, plural, one {mojo} other {mojoa}}"
 #~ msgid "{title}"
 #~ msgstr ""
 
-#: src/components/offers2/OfferBuilderValue.tsx:175
+#: src/components/offers2/OfferBuilderValue.tsx:185
 msgid "{type} is not supported"
 msgstr "{type} ei ole tuettu"
 
@@ -1168,7 +1168,7 @@ msgstr "Kustannukset, jotka aiheutuvat ilmoituksen lähettämisestä NFT:n halti
 msgid "Could not connect to host {host} on port {port}"
 msgstr "Palvelimeen {host} ei saatu yhteyttä portissa {port}"
 
-#: src/components/offers2/OfferBuilderImport.tsx:53
+#: src/components/offers2/OfferBuilderImport.tsx:37
 msgid "Could not parse offer data"
 msgstr "Tarjoustietojen purkaminen ei onnistunut"
 
@@ -1632,7 +1632,7 @@ msgstr "Vedä ja pudota allekirjoitettu viestitiedosto, <0/> Liitä ({0}V)"
 msgid "Drag & Drop an Offer File"
 msgstr "Vedä ja pudota tarjoustiedosto"
 
-#: src/components/offers2/OfferBuilderImport.tsx:166
+#: src/components/offers2/OfferBuilderImport.tsx:128
 msgid "Drag & Drop an Offer File, Paste"
 msgstr "Vedä ja pudota tarjoustiedosto, Liitä"
 
@@ -2854,7 +2854,7 @@ msgstr "Luo NFT"
 msgid "Minted at Block Height"
 msgstr "Lyöty lohkokorkeudessa"
 
-#: src/components/offers2/OfferBuilderNFT.tsx:55
+#: src/components/offers2/OfferBuilderNFT.tsx:61
 msgid "Minter"
 msgstr "Tekijä"
 
@@ -3039,7 +3039,7 @@ msgid "NFT holder address"
 msgstr "NFT:n haltijan osoite"
 
 #: src/components/nfts/NFTDetails.tsx:56
-#: src/components/offers2/OfferBuilderNFT.tsx:51
+#: src/components/offers2/OfferBuilderNFT.tsx:54
 #: src/components/signVerify/SigningEntityNFT.tsx:65
 msgid "NFT ID"
 msgstr "NFT ID"
@@ -3066,7 +3066,7 @@ msgid "NFT Move Pending"
 msgstr "NFT-siirto odottaa"
 
 #: src/components/offers/NFTOfferPreview.tsx:105
-#: src/components/offers2/OfferBuilderNFT.tsx:97
+#: src/components/offers2/OfferBuilderNFT.tsx:103
 msgid "NFT not specified"
 msgstr "NFT:tä ei määritetty"
 
@@ -3206,7 +3206,7 @@ msgstr "Ei Saatavilla"
 #: src/components/farm/card/FarmCardNotAvailable.tsx:19
 #: src/components/farm/card/FarmCardNotAvailable.tsx:22
 #: src/components/nfts/NFTMetadata.tsx:22
-#: src/components/offers2/OfferBuilderValue.tsx:71
+#: src/components/offers2/OfferBuilderValue.tsx:73
 #: src/components/plot/PlotStatus.tsx:20
 #: src/components/plotNFT/PlotNFTCard.tsx:307
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:94
@@ -3331,7 +3331,7 @@ msgid "Offer Builder"
 msgstr "Tarjousten Rakentaja"
 
 #: src/components/offers/NFTOfferViewer.tsx:173
-#: src/components/offers2/OfferBuilderValue.tsx:196
+#: src/components/offers2/OfferBuilderValue.tsx:206
 #: src/components/offers2/OfferBuilderViewer.tsx:283
 msgid "Offer cannot be accepted because you don't possess the requested assets"
 msgstr "Tarjousta ei voida hyväksyä, koska sinulla ei ole pyydettyä assettia."
@@ -3356,7 +3356,7 @@ msgstr ""
 msgid "Offer Expiration Time"
 msgstr ""
 
-#: src/components/offers2/OfferBuilderImport.tsx:77
+#: src/components/offers2/OfferBuilderImport.tsx:58
 msgid "Offer file is too large (> 1MB)"
 msgstr "Tarjoustiedosto on liian suuri (> 1Mt)"
 
@@ -3496,7 +3496,7 @@ msgstr "Valinnainen lisämaksu, joka nopeuttaa tarjouksen hyväksymistä"
 msgid "Options"
 msgstr "Valinnat"
 
-#: src/components/offers2/OfferBuilderImport.tsx:170
+#: src/components/offers2/OfferBuilderImport.tsx:132
 #: src/components/signVerify/VerifyMessageImport.tsx:154
 msgid "or <0>browse</0> on your computer"
 msgstr "tai <0>selaa</0> tietokoneellasi"
@@ -4005,7 +4005,7 @@ msgstr "Valmistellaan normaalia lompakkoa"
 #: src/components/nfts/NFTPreview.tsx:242
 #: src/components/nfts/NFTPreview.tsx:244
 #: src/components/nfts/NFTPreview.tsx:247
-#: src/components/offers2/OfferBuilderNFT.tsx:69
+#: src/components/offers2/OfferBuilderNFT.tsx:75
 msgid "Preview"
 msgstr "Esikatselu"
 
@@ -4404,7 +4404,7 @@ msgid "Search block by header hash"
 msgstr "Etsi lohko otsikon tiivisteellä"
 
 #: src/components/offers/OfferSummaryRow.tsx:180
-#: src/components/offers2/OfferBuilderValue.tsx:102
+#: src/components/offers2/OfferBuilderValue.tsx:104
 msgid "Search on Tail Database"
 msgstr "Etsi Tail-tietokannasta"
 
@@ -4443,7 +4443,7 @@ msgstr "Valitse kaikki"
 msgid "Select an application"
 msgstr "Valitse sovellus"
 
-#: src/components/nfts/NFTAutocomplete.tsx:57
+#: src/components/nfts/NFTAutocomplete.tsx:69
 msgid "Select an NFT"
 msgstr "Valitse NFT"
 
@@ -5787,7 +5787,7 @@ msgid "Warning: Mismatched Versions"
 msgstr "Varoitus: Eri Versiot"
 
 #: src/components/offers/OfferSummary.tsx:134
-#: src/components/offers2/OfferBuilderValue.tsx:200
+#: src/components/offers2/OfferBuilderValue.tsx:210
 msgid "Warning: Verify that the offered CAT asset IDs match the asset IDs of the tokens you expect to receive."
 msgstr "Varoitus: Varmista, että tarjotut CAT asset ID:t vastaavat tokeneita, joita haluat vastaanottaa."
 
