@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-10-15 00:04\n"
+"PO-Revision-Date: 2023-10-22 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -976,7 +976,7 @@ msgstr "清除NFT缓存"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:92
 msgid "Clicking a delete icon only removes a directory from this list and never deletes the directory itself"
-msgstr ""
+msgstr "单击删除图标只会从列表中移除文件夹，而不会删除文件夹本身"
 
 #: src/components/app/AppVersionWarning.tsx:57
 #: src/components/nfts/MultipleDownloadDialog.tsx:116
@@ -1654,7 +1654,7 @@ msgstr "重复图块"
 
 #: src/components/harvest/HarvesterDetail.tsx:123
 msgid "Earned"
-msgstr "已赚取"
+msgstr "获得额外"
 
 #: src/electron/main.tsx:950
 #~ msgid "Edit"
@@ -2764,7 +2764,7 @@ msgstr "管理WalletConnect应用的权限。"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:54
 msgid "Manage Plot Directories"
-msgstr ""
+msgstr "管理图块目录"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:94
 msgid "Manage Your Farming Rewards Target Addresses"
@@ -2907,7 +2907,7 @@ msgstr "增加内存可以略微提高速度"
 
 #: src/components/harvest/HarvesterDetail.tsx:129
 msgid "more space"
-msgstr "更多空间"
+msgstr "的空间"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:331
 msgid "Move"
@@ -4181,7 +4181,7 @@ msgstr "移除冲突的报价"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:111
 msgid "Remove from the list"
-msgstr ""
+msgstr "从列表中移除"
 
 #: src/components/app/AppKeyringMigrator.tsx:247
 msgid "Remove keys from old keyring upon successful migration"
@@ -5246,7 +5246,7 @@ msgstr "全网空间"
 
 #: src/components/harvest/HarvesterPlotDetails.tsx:166
 msgid "Total OG"
-msgstr "老图块"
+msgstr "旧协议图块"
 
 #: src/components/farm/FarmHealth.tsx:228
 msgid "Total plot filter challenges"
@@ -5254,7 +5254,7 @@ msgstr "图块的挑战总数"
 
 #: src/components/harvest/HarvesterPlotDetails.tsx:169
 msgid "Total plotNFT"
-msgstr "联合耕种农田"
+msgstr "联合耕种协议图块"
 
 #: src/components/harvest/HarvesterPlotDetails.tsx:163
 msgid "Total plots"
