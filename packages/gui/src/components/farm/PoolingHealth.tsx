@@ -296,7 +296,7 @@ function PoolingHealth() {
               {stalePartials}
             </Box>
           </Tooltip>
-          <Tooltip title={<Trans>Partials not good enough for difficulty suggested by a pool</Trans>}>
+          <Tooltip title={<Trans>Partials not good enough for difficulties for corresponding pools</Trans>}>
             <Box>
               <Typography variant="body2">
                 <Trans>Insufficient partials</Trans>
@@ -304,10 +304,10 @@ function PoolingHealth() {
               {insufficientPartials}
             </Box>
           </Tooltip>
-          <Tooltip title={<Trans>Partials rejected by pools</Trans>}>
+          <Tooltip title={<Trans>Partials sent to pools but received error responses</Trans>}>
             <Box>
               <Typography variant="body2">
-                <Trans>Invalid partials</Trans>
+                <Trans>Failed partials</Trans>
               </Typography>
               {invalidPartials}
             </Box>
