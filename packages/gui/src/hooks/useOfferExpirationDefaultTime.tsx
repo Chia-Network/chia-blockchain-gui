@@ -47,15 +47,13 @@ function stringPropertiesToNumbers(objWithStrings: OfferExpirationDefaultTimeInp
 }
 
 export default function useOfferExpirationDefaultTime() {
+  const defaultsCopy = { ...offerExpirationDefaultTimeDefaults };
   const [offerExpirationDefaultTime, setOfferExpirationDefaultTimeLocal] = usePrefs<OfferExpirationDefaultTimeOutput>(
     'offerExpirationDefaultTime',
-    offerExpirationDefaultTimeDefaults
+    defaultsCopy // to avoid accidentally mutating the defaults object
   );
 
-  const isOfferExpirationDefaultTimeEnabled = useMemo(
-    () => offerExpirationDefaultTime.enabled === true,
-    [offerExpirationDefaultTime]
-  );
+  const isOfferExpirationDefaultTimeEnabled = offerExpirationDefaultTime.enabled === true;
 
   const setOfferExpirationDefaultTime = useCallback(
     (offerExpirationDefaultTimeInput: OfferExpirationDefaultTimeInput) => {
@@ -68,5 +66,6 @@ export default function useOfferExpirationDefaultTime() {
     () => ({ offerExpirationDefaultTime, setOfferExpirationDefaultTime, isOfferExpirationDefaultTimeEnabled }),
     [offerExpirationDefaultTime, setOfferExpirationDefaultTime, isOfferExpirationDefaultTimeEnabled]
   );
+
   return toReturn;
 }
