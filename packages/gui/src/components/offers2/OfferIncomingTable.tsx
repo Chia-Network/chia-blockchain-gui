@@ -1,16 +1,5 @@
 import { toBech32m } from '@chia-network/api';
-import {
-  Card,
-  Flex,
-  Table,
-  LoadingOverlay,
-  Button,
-  useShowError,
-  Tooltip,
-  useCurrencyCode,
-  useOpenDialog,
-  ConfirmDialog,
-} from '@chia-network/core';
+import { Card, Flex, Table, LoadingOverlay, Button, useShowError, Tooltip, useCurrencyCode } from '@chia-network/core';
 import { Offers as OffersIcon } from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
 import { Typography } from '@mui/material';
@@ -133,7 +122,6 @@ export default function OfferIncomingTable(props: OfferIncomingTableProps) {
   const { notifications = [], isLoading, deleteNotification } = useValidNotifications();
   const navigate = useNavigate();
   const location = useLocation();
-  const openDialog = useOpenDialog();
   const currencyCode = useCurrencyCode();
   const showError = useShowError();
   const { getOffer } = useOffers();
@@ -211,17 +199,7 @@ export default function OfferIncomingTable(props: OfferIncomingTableProps) {
 
   async function handleDeleteNotification(notification: Notification) {
     try {
-      const canProcess = await openDialog(
-        <ConfirmDialog title={<Trans>Confirmation</Trans>} confirmTitle={<Trans>Yes</Trans>} confirmColor="primary">
-          <Trans>
-            Are you sure you'd like to remove this offer? Please remember that this action is not reversible.
-          </Trans>
-        </ConfirmDialog>
-      );
-
-      if (canProcess) {
-        await deleteNotification(notification.id);
-      }
+      await deleteNotification(notification.id);
     } catch (e) {
       showError(e);
     }
