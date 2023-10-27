@@ -360,7 +360,7 @@ msgstr "Toiminto"
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:54
 #: src/components/fullNode/FullNodeConnections.tsx:65
 #: src/components/nfts/NFTContextualActions.tsx:590
-#: src/components/offers2/OfferIncomingTable.tsx:122
+#: src/components/offers2/OfferIncomingTable.tsx:111
 msgid "Actions"
 msgstr "Toiminnot"
 
@@ -610,8 +610,8 @@ msgid "Are you sure you want to use k={plotSize}?"
 msgstr "Haluatko käyttää arvoa k={plotSize}?"
 
 #: src/components/offers2/OfferIncomingTable.tsx:216
-msgid "Are you sure you'd like to remove this offer? Please remember that this action is not reversible."
-msgstr "Oletko varma, että haluat poistaa tarjouksen? Muista, että tämä toiminto ei ole peruutettavissa."
+#~ msgid "Are you sure you'd like to remove this offer? Please remember that this action is not reversible."
+#~ msgstr "Oletko varma, että haluat poistaa tarjouksen? Muista, että tämä toiminto ei ole peruutettavissa."
 
 #: src/components/offers2/OfferBuilderRoyaltyPayouts.tsx:48
 msgid "Asset"
@@ -1061,7 +1061,6 @@ msgstr "Vahvista NFT:n siirto"
 msgid "Confirm Passphrase"
 msgstr "Vahvista Salasana"
 
-#: src/components/offers2/OfferIncomingTable.tsx:215
 #: src/components/plotNFT/PlotNFTCard.tsx:105
 msgid "Confirmation"
 msgstr "Vahvista"
@@ -1176,7 +1175,7 @@ msgstr "Tarjoustietojen purkaminen ei onnistunut"
 msgid "Count"
 msgstr "Määrä"
 
-#: src/components/offers2/OfferIncomingTable.tsx:111
+#: src/components/offers2/OfferIncomingTable.tsx:100
 msgid "Counter"
 msgstr "Vastaus"
 
@@ -1278,7 +1277,7 @@ msgstr "Luodaan Plot-NFT omaa poolausta varten"
 
 #: src/components/offers/OfferManager.tsx:250
 #: src/components/offers2/CancelOfferList.tsx:127
-#: src/components/offers2/OfferIncomingTable.tsx:83
+#: src/components/offers2/OfferIncomingTable.tsx:72
 msgid "Creation Date"
 msgstr "Luontipäivämäärä"
 
@@ -1370,11 +1369,11 @@ msgstr "Oletustakaisinvetoaika pois käytöstä."
 msgid "Default claw back time is enabled."
 msgstr "Oletustakaisinvetoaika kätössä."
 
-#: src/components/settings/SettingsExpiringOffers.tsx:125
+#: src/components/settings/SettingsExpiringOffers.tsx:124
 msgid "Default offer expiration time is disabled"
 msgstr ""
 
-#: src/components/settings/SettingsExpiringOffers.tsx:120
+#: src/components/settings/SettingsExpiringOffers.tsx:119
 msgid "Default offer expiration time is enabled"
 msgstr ""
 
@@ -1383,7 +1382,7 @@ msgid "Delay"
 msgstr "Viive"
 
 #: src/components/addressbook/ContactSummary.tsx:42
-#: src/components/offers2/OfferIncomingTable.tsx:116
+#: src/components/offers2/OfferIncomingTable.tsx:105
 #: src/components/plot/PlotAction.tsx:25
 #: src/components/plot/PlotAction.tsx:41
 #: src/components/plot/queue/PlotQueueActions.tsx:34
@@ -1486,7 +1485,7 @@ msgstr "Vaikeusaste"
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:225
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:91
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:77
-#: src/components/settings/SettingsExpiringOffers.tsx:88
+#: src/components/settings/SettingsExpiringOffers.tsx:87
 msgid "Disable"
 msgstr "Poista Käytöstä"
 
@@ -2418,7 +2417,7 @@ msgstr "Sisällytä Lompakon Metatiedot"
 msgid "Including a fee in the offer can help expedite the transaction when the offer is accepted. The recommended minimum fee is 0.000005 XCH (5,000,000 mojos)"
 msgstr "Maksun sisällyttäminen tarjoukseen voi auttaa nopeuttamaan kauppaa, kun tarjous on hyväksytty. Suositeltu vähimmäismaksu on 0.00005 XCH (5.000,000 mojos)"
 
-#: src/components/offers2/OfferIncomingTable.tsx:132
+#: src/components/offers2/OfferIncomingTable.tsx:121
 msgid "Incoming Offers"
 msgstr "Saapuvat Tarjoukset"
 
@@ -3139,7 +3138,7 @@ msgstr "Ei Mukautettuja Oikeuksia"
 msgid "No file available"
 msgstr "Ei tiedostoa saatavilla"
 
-#: src/components/offers2/OfferIncomingTable.tsx:281
+#: src/components/offers2/OfferIncomingTable.tsx:259
 msgid "No incoming offers"
 msgstr "Ei saapuvia tarjouksia"
 
@@ -3409,7 +3408,7 @@ msgid "Offered"
 msgstr "Tarjottu"
 
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:24
-#: src/components/offers2/OfferIncomingTable.tsx:75
+#: src/components/offers2/OfferIncomingTable.tsx:64
 msgid "Offering"
 msgstr "Tarjotaan"
 
@@ -4212,7 +4211,7 @@ msgid "Requested"
 msgstr "Pyydetty"
 
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:31
-#: src/components/offers2/OfferIncomingTable.tsx:55
+#: src/components/offers2/OfferIncomingTable.tsx:44
 msgid "Requesting"
 msgstr "Pyydetään"
 
@@ -4974,7 +4973,7 @@ msgstr "Noodi ei ole synkronoitu"
 msgid "The node is syncing, which means it is downloading blocks from other nodes, to reach the latest block in the chain"
 msgstr "Noodi synkronoi. Se lataa lohkoketjua muilta solmuilta"
 
-#: src/components/offers2/OfferIncomingTable.tsx:101
+#: src/components/offers2/OfferIncomingTable.tsx:90
 msgid "The offer creator has chosen not to allow counter offers"
 msgstr "Tarjouksen luoja on päättänyt olla sallimatta vastatarjouksia"
 
@@ -5601,7 +5600,7 @@ msgstr "Varmenna Allekirjoitus"
 msgid "Verifying hash..."
 msgstr "Tarkistetaan tiivistettä..."
 
-#: src/components/offers2/OfferIncomingTable.tsx:106
+#: src/components/offers2/OfferIncomingTable.tsx:95
 msgid "View"
 msgstr "Näkymä"
 
@@ -5843,7 +5842,6 @@ msgstr "Haluatko siirtää NFT:n profiilille?"
 msgid "Would you like to transfer the specified NFT to a new owner?"
 msgstr "Haluatko siirtää NFT:n uudelle omistajalle?"
 
-#: src/components/offers2/OfferIncomingTable.tsx:215
 #: src/components/plot/add/PlotAddChooseSize.tsx:61
 #: src/components/vcs/VCCard.tsx:89
 msgid "Yes"

@@ -360,7 +360,7 @@ msgstr "اقدام"
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:54
 #: src/components/fullNode/FullNodeConnections.tsx:65
 #: src/components/nfts/NFTContextualActions.tsx:590
-#: src/components/offers2/OfferIncomingTable.tsx:122
+#: src/components/offers2/OfferIncomingTable.tsx:111
 msgid "Actions"
 msgstr "اقدامات"
 
@@ -610,8 +610,8 @@ msgid "Are you sure you want to use k={plotSize}?"
 msgstr "استفاده کنید؟ k= {plotSize} آیا مطمئنید که میخواهید از مقدار"
 
 #: src/components/offers2/OfferIncomingTable.tsx:216
-msgid "Are you sure you'd like to remove this offer? Please remember that this action is not reversible."
-msgstr "آیا مطمئن هستید که میخواهید این پیشنهاد را حذف کنید؟ لطفاً به یاد داشته باشید که این عمل قابل برگشت نیست."
+#~ msgid "Are you sure you'd like to remove this offer? Please remember that this action is not reversible."
+#~ msgstr "آیا مطمئن هستید که میخواهید این پیشنهاد را حذف کنید؟ لطفاً به یاد داشته باشید که این عمل قابل برگشت نیست."
 
 #: src/components/offers2/OfferBuilderRoyaltyPayouts.tsx:48
 msgid "Asset"
@@ -1061,7 +1061,6 @@ msgstr "تایید انتقال ان اف تی"
 msgid "Confirm Passphrase"
 msgstr "تایید رمز ورود"
 
-#: src/components/offers2/OfferIncomingTable.tsx:215
 #: src/components/plotNFT/PlotNFTCard.tsx:105
 msgid "Confirmation"
 msgstr "تائیدیه"
@@ -1176,7 +1175,7 @@ msgstr "تجزیه اطلاعات پیشنهاد ممکن نیست"
 msgid "Count"
 msgstr "شمردن"
 
-#: src/components/offers2/OfferIncomingTable.tsx:111
+#: src/components/offers2/OfferIncomingTable.tsx:100
 msgid "Counter"
 msgstr "شمارش معکوس"
 
@@ -1278,7 +1277,7 @@ msgstr "ایجاد پلات ان اف تی برای استخر شخصی"
 
 #: src/components/offers/OfferManager.tsx:250
 #: src/components/offers2/CancelOfferList.tsx:127
-#: src/components/offers2/OfferIncomingTable.tsx:83
+#: src/components/offers2/OfferIncomingTable.tsx:72
 msgid "Creation Date"
 msgstr "تاریخ ایجاد"
 
@@ -1370,11 +1369,11 @@ msgstr "زمان پیش‌فرض ادعای بازگرداندن غیرفعال 
 msgid "Default claw back time is enabled."
 msgstr "زمان پیش‌فرض ادعای بازگرداندن فعال است."
 
-#: src/components/settings/SettingsExpiringOffers.tsx:125
+#: src/components/settings/SettingsExpiringOffers.tsx:124
 msgid "Default offer expiration time is disabled"
 msgstr "زمان انقضای پیشنهاد پیش‌فرض غیرفعال است"
 
-#: src/components/settings/SettingsExpiringOffers.tsx:120
+#: src/components/settings/SettingsExpiringOffers.tsx:119
 msgid "Default offer expiration time is enabled"
 msgstr "زمان انقضای پیشنهاد پیش‌فرض فعال است"
 
@@ -1383,7 +1382,7 @@ msgid "Delay"
 msgstr "تاخیر"
 
 #: src/components/addressbook/ContactSummary.tsx:42
-#: src/components/offers2/OfferIncomingTable.tsx:116
+#: src/components/offers2/OfferIncomingTable.tsx:105
 #: src/components/plot/PlotAction.tsx:25
 #: src/components/plot/PlotAction.tsx:41
 #: src/components/plot/queue/PlotQueueActions.tsx:34
@@ -1486,7 +1485,7 @@ msgstr "سختی"
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:225
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:91
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:77
-#: src/components/settings/SettingsExpiringOffers.tsx:88
+#: src/components/settings/SettingsExpiringOffers.tsx:87
 msgid "Disable"
 msgstr "غیر فعال"
 
@@ -2418,7 +2417,7 @@ msgstr "Metadata شامل کیف پول"
 msgid "Including a fee in the offer can help expedite the transaction when the offer is accepted. The recommended minimum fee is 0.000005 XCH (5,000,000 mojos)"
 msgstr "درج کارمزد در پیشنهاد میتواند به سرعت معامله در هنگام پذیرش پیشنهاد کمک کند. حداقل هزینه توصیه شده 0.000005 چیا (5000000 موجو) است"
 
-#: src/components/offers2/OfferIncomingTable.tsx:132
+#: src/components/offers2/OfferIncomingTable.tsx:121
 msgid "Incoming Offers"
 msgstr "پیشنهادات دریافتی"
 
@@ -3139,7 +3138,7 @@ msgstr "بدون مجوزهای سفارشی"
 msgid "No file available"
 msgstr "فایلی موجود نیست"
 
-#: src/components/offers2/OfferIncomingTable.tsx:281
+#: src/components/offers2/OfferIncomingTable.tsx:259
 msgid "No incoming offers"
 msgstr "بدون پیشنهادات دریافتی"
 
@@ -3409,7 +3408,7 @@ msgid "Offered"
 msgstr "پیشنهاد شده"
 
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:24
-#: src/components/offers2/OfferIncomingTable.tsx:75
+#: src/components/offers2/OfferIncomingTable.tsx:64
 msgid "Offering"
 msgstr "پیشنهاد دادن"
 
@@ -4212,7 +4211,7 @@ msgid "Requested"
 msgstr "درخواست شده"
 
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:31
-#: src/components/offers2/OfferIncomingTable.tsx:55
+#: src/components/offers2/OfferIncomingTable.tsx:44
 msgid "Requesting"
 msgstr "در حال درخواست"
 
@@ -4974,7 +4973,7 @@ msgstr "نود سینک نشده"
 msgid "The node is syncing, which means it is downloading blocks from other nodes, to reach the latest block in the chain"
 msgstr "نود در حال سینک شدن است،به این معنی که در حال دانلود بلاک ها از نودهای دیگر است تا به آخرین بلاک در زنجیره برسد"
 
-#: src/components/offers2/OfferIncomingTable.tsx:101
+#: src/components/offers2/OfferIncomingTable.tsx:90
 msgid "The offer creator has chosen not to allow counter offers"
 msgstr "سازنده پیشنهاد انتخاب کرده که پیشنهادات متقابل را مجاز نکند"
 
@@ -5601,7 +5600,7 @@ msgstr "بازبینی امضاء"
 msgid "Verifying hash..."
 msgstr "در حال تأیید هش..."
 
-#: src/components/offers2/OfferIncomingTable.tsx:106
+#: src/components/offers2/OfferIncomingTable.tsx:95
 msgid "View"
 msgstr "مشاهده"
 
@@ -5843,7 +5842,6 @@ msgstr "آیا میخواهید ان اف تی مشخص شده را به یک ح
 msgid "Would you like to transfer the specified NFT to a new owner?"
 msgstr "آیا میخواهید ان اف تی مشخص شده را به مالک جدیدی منتقل کنید؟"
 
-#: src/components/offers2/OfferIncomingTable.tsx:215
 #: src/components/plot/add/PlotAddChooseSize.tsx:61
 #: src/components/vcs/VCCard.tsx:89
 msgid "Yes"

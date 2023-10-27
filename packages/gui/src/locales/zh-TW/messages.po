@@ -360,7 +360,7 @@ msgstr "動作"
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:54
 #: src/components/fullNode/FullNodeConnections.tsx:65
 #: src/components/nfts/NFTContextualActions.tsx:590
-#: src/components/offers2/OfferIncomingTable.tsx:122
+#: src/components/offers2/OfferIncomingTable.tsx:111
 msgid "Actions"
 msgstr "動作"
 
@@ -610,8 +610,8 @@ msgid "Are you sure you want to use k={plotSize}?"
 msgstr "您確定要使用 k={plotSize} 嗎？"
 
 #: src/components/offers2/OfferIncomingTable.tsx:216
-msgid "Are you sure you'd like to remove this offer? Please remember that this action is not reversible."
-msgstr "您確定要移除這個報價單嗎？請記住這個動作是不可逆轉的。"
+#~ msgid "Are you sure you'd like to remove this offer? Please remember that this action is not reversible."
+#~ msgstr "您確定要移除這個報價單嗎？請記住這個動作是不可逆轉的。"
 
 #: src/components/offers2/OfferBuilderRoyaltyPayouts.tsx:48
 msgid "Asset"
@@ -1061,7 +1061,6 @@ msgstr "確認NFT轉移"
 msgid "Confirm Passphrase"
 msgstr "確認私鑰密碼"
 
-#: src/components/offers2/OfferIncomingTable.tsx:215
 #: src/components/plotNFT/PlotNFTCard.tsx:105
 msgid "Confirmation"
 msgstr "確認"
@@ -1176,7 +1175,7 @@ msgstr "無法解析報價數據"
 msgid "Count"
 msgstr ""
 
-#: src/components/offers2/OfferIncomingTable.tsx:111
+#: src/components/offers2/OfferIncomingTable.tsx:100
 msgid "Counter"
 msgstr "反饋"
 
@@ -1278,7 +1277,7 @@ msgstr "正在為自己的農會建立農場"
 
 #: src/components/offers/OfferManager.tsx:250
 #: src/components/offers2/CancelOfferList.tsx:127
-#: src/components/offers2/OfferIncomingTable.tsx:83
+#: src/components/offers2/OfferIncomingTable.tsx:72
 msgid "Creation Date"
 msgstr "創建日期"
 
@@ -1370,11 +1369,11 @@ msgstr "默認撤銷時間已禁用。"
 msgid "Default claw back time is enabled."
 msgstr "默認撤銷時間已啟用。"
 
-#: src/components/settings/SettingsExpiringOffers.tsx:125
+#: src/components/settings/SettingsExpiringOffers.tsx:124
 msgid "Default offer expiration time is disabled"
 msgstr ""
 
-#: src/components/settings/SettingsExpiringOffers.tsx:120
+#: src/components/settings/SettingsExpiringOffers.tsx:119
 msgid "Default offer expiration time is enabled"
 msgstr ""
 
@@ -1383,7 +1382,7 @@ msgid "Delay"
 msgstr "延遲"
 
 #: src/components/addressbook/ContactSummary.tsx:42
-#: src/components/offers2/OfferIncomingTable.tsx:116
+#: src/components/offers2/OfferIncomingTable.tsx:105
 #: src/components/plot/PlotAction.tsx:25
 #: src/components/plot/PlotAction.tsx:41
 #: src/components/plot/queue/PlotQueueActions.tsx:34
@@ -1486,7 +1485,7 @@ msgstr "難度"
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:225
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:91
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:77
-#: src/components/settings/SettingsExpiringOffers.tsx:88
+#: src/components/settings/SettingsExpiringOffers.tsx:87
 msgid "Disable"
 msgstr "停用"
 
@@ -2418,7 +2417,7 @@ msgstr "包含錢包元數據"
 msgid "Including a fee in the offer can help expedite the transaction when the offer is accepted. The recommended minimum fee is 0.000005 XCH (5,000,000 mojos)"
 msgstr "在報價單中加入費用可以幫助在接受報價單時加速交易。建議最低的費用為0.000005 XCH(5,000,000 mojos)"
 
-#: src/components/offers2/OfferIncomingTable.tsx:132
+#: src/components/offers2/OfferIncomingTable.tsx:121
 msgid "Incoming Offers"
 msgstr "收到的報價"
 
@@ -3135,7 +3134,7 @@ msgstr "無自訂權限"
 msgid "No file available"
 msgstr "無可用檔案"
 
-#: src/components/offers2/OfferIncomingTable.tsx:281
+#: src/components/offers2/OfferIncomingTable.tsx:259
 msgid "No incoming offers"
 msgstr "無收到的報價單"
 
@@ -3405,7 +3404,7 @@ msgid "Offered"
 msgstr "已報價"
 
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:24
-#: src/components/offers2/OfferIncomingTable.tsx:75
+#: src/components/offers2/OfferIncomingTable.tsx:64
 msgid "Offering"
 msgstr "報價中"
 
@@ -4208,7 +4207,7 @@ msgid "Requested"
 msgstr "已請求"
 
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:31
-#: src/components/offers2/OfferIncomingTable.tsx:55
+#: src/components/offers2/OfferIncomingTable.tsx:44
 msgid "Requesting"
 msgstr "正在請求"
 
@@ -4970,7 +4969,7 @@ msgstr "節點尚未同步"
 msgid "The node is syncing, which means it is downloading blocks from other nodes, to reach the latest block in the chain"
 msgstr "節點同步中，這意味著正在從其他節點下載區塊，以達到鏈中的最新區塊"
 
-#: src/components/offers2/OfferIncomingTable.tsx:101
+#: src/components/offers2/OfferIncomingTable.tsx:90
 msgid "The offer creator has chosen not to allow counter offers"
 msgstr "發佈報價單的用戶選擇不允許對報價單進行還價"
 
@@ -5597,7 +5596,7 @@ msgstr "驗證簽名"
 msgid "Verifying hash..."
 msgstr "正在驗證雜湊..."
 
-#: src/components/offers2/OfferIncomingTable.tsx:106
+#: src/components/offers2/OfferIncomingTable.tsx:95
 msgid "View"
 msgstr "檢視"
 
@@ -5839,7 +5838,6 @@ msgstr "您是否要將指定的 NFT 移至個人檔案？"
 msgid "Would you like to transfer the specified NFT to a new owner?"
 msgstr "您是否要將指定的 NFT 轉移給新擁有者？"
 
-#: src/components/offers2/OfferIncomingTable.tsx:215
 #: src/components/plot/add/PlotAddChooseSize.tsx:61
 #: src/components/vcs/VCCard.tsx:89
 msgid "Yes"
