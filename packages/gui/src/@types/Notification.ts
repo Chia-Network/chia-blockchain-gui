@@ -35,6 +35,12 @@ export type NotificationAnnouncement = NotificationBase & {
   url?: string;
 };
 
-type Notification = NotificationOffer | NotificationCounterOffer | NotificationAnnouncement;
+export type NotificationClawback = NotificationBase & {
+  type: NotificationType.INCOMING_CLAWBACK_RECEIVE;
+  amount: number;
+  timeLock: number;
+  sent: number;
+};
 
+type Notification = NotificationOffer | NotificationCounterOffer | NotificationAnnouncement | NotificationClawback;
 export default Notification;

@@ -4,6 +4,7 @@ import type NotificationData from '../../@types/Notification';
 import NotificationType from '../../constants/NotificationType';
 
 import NotificationAnnouncement from './NotificationAnnouncement';
+import NotificationClawbackTransaction from './NotificationClawbackTransaction';
 import NotificationOffer from './NotificationOffer';
 
 export type NotificationProps = {
@@ -20,6 +21,10 @@ export default function Notification(props: NotificationProps) {
 
   if (notification.type === NotificationType.ANNOUNCEMENT) {
     return <NotificationAnnouncement notification={notification} onClick={onClick} />;
+  }
+
+  if (notification.type === NotificationType.INCOMING_CLAWBACK_RECEIVE) {
+    return <NotificationClawbackTransaction notification={notification} onClick={onClick} />;
   }
 
   return null;

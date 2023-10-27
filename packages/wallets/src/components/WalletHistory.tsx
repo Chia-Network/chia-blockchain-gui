@@ -282,7 +282,6 @@ export default function WalletHistory(props: Props) {
       values: [TransactionType.INCOMING_CLAWBACK_RECEIVE, TransactionType.INCOMING_CLAWBACK_SEND],
     },
   });
-  // console.log(transactions);
 
   const feeUnit = useCurrencyCode();
   const [getOfferRecord] = useGetOfferRecordMutation();

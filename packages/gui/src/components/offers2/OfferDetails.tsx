@@ -12,10 +12,11 @@ export type OfferDetailsProps = {
   requested?: boolean;
   titleColor?: TypographyProps['color'];
   color?: TypographyProps['color'];
+  forcePlainText?: boolean;
 };
 
 export default function OfferDetails(props: OfferDetailsProps) {
-  const { id, requested = false, titleColor, color } = props;
+  const { id, requested = false, titleColor, color, forcePlainText } = props;
 
   const { data, isLoading, error } = useOfferInfo(id);
 
@@ -31,6 +32,25 @@ export default function OfferDetails(props: OfferDetailsProps) {
     return data.offered;
   }, [data, requested]);
 
+  if (forcePlainText) {
+    return isLoading ? (
+      <Trans>Loading...</Trans>
+    ) : error ? (
+      <Trans>Error</Trans>
+    ) : infos ? (
+      infos.map((info) => (
+        <>
+          {info.assetType === OfferAsset.NFT ? (
+            <NFTTitle nftId={info.displayName} />
+          ) : (
+            <>
+              {(info.displayAmount as any).toString()} {info.displayName}
+            </>
+          )}
+        </>
+      ))
+    ) : null;
+  }
   return (
     <>
       {isLoading ? (
