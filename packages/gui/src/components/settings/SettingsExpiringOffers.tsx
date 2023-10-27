@@ -42,7 +42,7 @@ export default function SettingsExpiringOffers(props) {
       <SettingsLabel>
         <Trans>Offer Expiration Time</Trans>
       </SettingsLabel>
-      <Form methods={methods} onSubmit={methods.handleSubmit(handleSubmit)}>
+      <Form methods={methods} onSubmit={handleSubmit}>
         <Flex flexDirection="column" gap={1}>
           <Flex gap={2} sx={{ width: '100%', marginTop: 2 }}>
             {fields.map((field) => (
@@ -79,7 +79,6 @@ export default function SettingsExpiringOffers(props) {
           {isOfferExpirationDefaultTimeEnabled && (
             <ButtonLoading
               size="small"
-              type="submit"
               variant="outlined"
               color="secondary"
               onClick={handleDisable}
