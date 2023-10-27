@@ -360,7 +360,7 @@ msgstr "행동"
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:54
 #: src/components/fullNode/FullNodeConnections.tsx:65
 #: src/components/nfts/NFTContextualActions.tsx:590
-#: src/components/offers2/OfferIncomingTable.tsx:122
+#: src/components/offers2/OfferIncomingTable.tsx:111
 msgid "Actions"
 msgstr "행동들"
 
@@ -610,8 +610,8 @@ msgid "Are you sure you want to use k={plotSize}?"
 msgstr "다음 값으로 정하시겠습니까? k={plotSize}"
 
 #: src/components/offers2/OfferIncomingTable.tsx:216
-msgid "Are you sure you'd like to remove this offer? Please remember that this action is not reversible."
-msgstr ""
+#~ msgid "Are you sure you'd like to remove this offer? Please remember that this action is not reversible."
+#~ msgstr ""
 
 #: src/components/offers2/OfferBuilderRoyaltyPayouts.tsx:48
 msgid "Asset"
@@ -1061,7 +1061,6 @@ msgstr ""
 msgid "Confirm Passphrase"
 msgstr ""
 
-#: src/components/offers2/OfferIncomingTable.tsx:215
 #: src/components/plotNFT/PlotNFTCard.tsx:105
 msgid "Confirmation"
 msgstr ""
@@ -1176,7 +1175,7 @@ msgstr ""
 msgid "Count"
 msgstr ""
 
-#: src/components/offers2/OfferIncomingTable.tsx:111
+#: src/components/offers2/OfferIncomingTable.tsx:100
 msgid "Counter"
 msgstr ""
 
@@ -1278,7 +1277,7 @@ msgstr ""
 
 #: src/components/offers/OfferManager.tsx:250
 #: src/components/offers2/CancelOfferList.tsx:127
-#: src/components/offers2/OfferIncomingTable.tsx:83
+#: src/components/offers2/OfferIncomingTable.tsx:72
 msgid "Creation Date"
 msgstr ""
 
@@ -1370,11 +1369,11 @@ msgstr ""
 msgid "Default claw back time is enabled."
 msgstr ""
 
-#: src/components/settings/SettingsExpiringOffers.tsx:125
+#: src/components/settings/SettingsExpiringOffers.tsx:124
 msgid "Default offer expiration time is disabled"
 msgstr ""
 
-#: src/components/settings/SettingsExpiringOffers.tsx:120
+#: src/components/settings/SettingsExpiringOffers.tsx:119
 msgid "Default offer expiration time is enabled"
 msgstr ""
 
@@ -1383,7 +1382,7 @@ msgid "Delay"
 msgstr "지연"
 
 #: src/components/addressbook/ContactSummary.tsx:42
-#: src/components/offers2/OfferIncomingTable.tsx:116
+#: src/components/offers2/OfferIncomingTable.tsx:105
 #: src/components/plot/PlotAction.tsx:25
 #: src/components/plot/PlotAction.tsx:41
 #: src/components/plot/queue/PlotQueueActions.tsx:34
@@ -1486,7 +1485,7 @@ msgstr "난이도"
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:225
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:91
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:77
-#: src/components/settings/SettingsExpiringOffers.tsx:88
+#: src/components/settings/SettingsExpiringOffers.tsx:87
 msgid "Disable"
 msgstr ""
 
@@ -2418,7 +2417,7 @@ msgstr ""
 msgid "Including a fee in the offer can help expedite the transaction when the offer is accepted. The recommended minimum fee is 0.000005 XCH (5,000,000 mojos)"
 msgstr ""
 
-#: src/components/offers2/OfferIncomingTable.tsx:132
+#: src/components/offers2/OfferIncomingTable.tsx:121
 msgid "Incoming Offers"
 msgstr ""
 
@@ -3135,7 +3134,7 @@ msgstr ""
 msgid "No file available"
 msgstr ""
 
-#: src/components/offers2/OfferIncomingTable.tsx:281
+#: src/components/offers2/OfferIncomingTable.tsx:259
 msgid "No incoming offers"
 msgstr ""
 
@@ -3405,7 +3404,7 @@ msgid "Offered"
 msgstr ""
 
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:24
-#: src/components/offers2/OfferIncomingTable.tsx:75
+#: src/components/offers2/OfferIncomingTable.tsx:64
 msgid "Offering"
 msgstr ""
 
@@ -4208,7 +4207,7 @@ msgid "Requested"
 msgstr ""
 
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:31
-#: src/components/offers2/OfferIncomingTable.tsx:55
+#: src/components/offers2/OfferIncomingTable.tsx:44
 msgid "Requesting"
 msgstr ""
 
@@ -4970,7 +4969,7 @@ msgstr "노드가 동기화되지 않았습니다"
 msgid "The node is syncing, which means it is downloading blocks from other nodes, to reach the latest block in the chain"
 msgstr "노드가 동기화 중입니다. 즉, 체인의 최신 블록에 도달하기 위해 다른 노드에서 블록을 다운로드하고 있습니다."
 
-#: src/components/offers2/OfferIncomingTable.tsx:101
+#: src/components/offers2/OfferIncomingTable.tsx:90
 msgid "The offer creator has chosen not to allow counter offers"
 msgstr ""
 
@@ -5597,7 +5596,7 @@ msgstr ""
 msgid "Verifying hash..."
 msgstr ""
 
-#: src/components/offers2/OfferIncomingTable.tsx:106
+#: src/components/offers2/OfferIncomingTable.tsx:95
 msgid "View"
 msgstr "보기"
 
@@ -5839,7 +5838,6 @@ msgstr ""
 msgid "Would you like to transfer the specified NFT to a new owner?"
 msgstr ""
 
-#: src/components/offers2/OfferIncomingTable.tsx:215
 #: src/components/plot/add/PlotAddChooseSize.tsx:61
 #: src/components/vcs/VCCard.tsx:89
 msgid "Yes"

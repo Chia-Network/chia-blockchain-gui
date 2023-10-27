@@ -360,7 +360,7 @@ msgstr "Action"
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:54
 #: src/components/fullNode/FullNodeConnections.tsx:65
 #: src/components/nfts/NFTContextualActions.tsx:590
-#: src/components/offers2/OfferIncomingTable.tsx:122
+#: src/components/offers2/OfferIncomingTable.tsx:111
 msgid "Actions"
 msgstr "Actions"
 
@@ -610,8 +610,8 @@ msgid "Are you sure you want to use k={plotSize}?"
 msgstr "Êtes-vous sûr de vouloir utiliser k={plotSize} ?"
 
 #: src/components/offers2/OfferIncomingTable.tsx:216
-msgid "Are you sure you'd like to remove this offer? Please remember that this action is not reversible."
-msgstr "Êtes-vous sûr de vouloir supprimer cette offre ? Cette action n'est pas réversible."
+#~ msgid "Are you sure you'd like to remove this offer? Please remember that this action is not reversible."
+#~ msgstr "Êtes-vous sûr de vouloir supprimer cette offre ? Cette action n'est pas réversible."
 
 #: src/components/offers2/OfferBuilderRoyaltyPayouts.tsx:48
 msgid "Asset"
@@ -1061,7 +1061,6 @@ msgstr "Confirmer le transfert du NFT"
 msgid "Confirm Passphrase"
 msgstr "Confirmer la phrase secrète"
 
-#: src/components/offers2/OfferIncomingTable.tsx:215
 #: src/components/plotNFT/PlotNFTCard.tsx:105
 msgid "Confirmation"
 msgstr "Confirmation"
@@ -1176,7 +1175,7 @@ msgstr "Impossible de lire les données de l'offre"
 msgid "Count"
 msgstr "Compte"
 
-#: src/components/offers2/OfferIncomingTable.tsx:111
+#: src/components/offers2/OfferIncomingTable.tsx:100
 msgid "Counter"
 msgstr "Compteur"
 
@@ -1278,7 +1277,7 @@ msgstr "Créer un NFT de parcelles pour culture en solo"
 
 #: src/components/offers/OfferManager.tsx:250
 #: src/components/offers2/CancelOfferList.tsx:127
-#: src/components/offers2/OfferIncomingTable.tsx:83
+#: src/components/offers2/OfferIncomingTable.tsx:72
 msgid "Creation Date"
 msgstr "Date de création"
 
@@ -1370,11 +1369,11 @@ msgstr "Aucun temps de récupération par défaut n'est défini."
 msgid "Default claw back time is enabled."
 msgstr "Un temps de récupération par défaut est défini."
 
-#: src/components/settings/SettingsExpiringOffers.tsx:125
+#: src/components/settings/SettingsExpiringOffers.tsx:124
 msgid "Default offer expiration time is disabled"
 msgstr "L'expiration par défaut des offres est désactivée"
 
-#: src/components/settings/SettingsExpiringOffers.tsx:120
+#: src/components/settings/SettingsExpiringOffers.tsx:119
 msgid "Default offer expiration time is enabled"
 msgstr "Un délai d'expiration par défaut est défini pour les offres"
 
@@ -1383,7 +1382,7 @@ msgid "Delay"
 msgstr "Délai"
 
 #: src/components/addressbook/ContactSummary.tsx:42
-#: src/components/offers2/OfferIncomingTable.tsx:116
+#: src/components/offers2/OfferIncomingTable.tsx:105
 #: src/components/plot/PlotAction.tsx:25
 #: src/components/plot/PlotAction.tsx:41
 #: src/components/plot/queue/PlotQueueActions.tsx:34
@@ -1486,7 +1485,7 @@ msgstr "Difficulté"
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:225
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:91
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:77
-#: src/components/settings/SettingsExpiringOffers.tsx:88
+#: src/components/settings/SettingsExpiringOffers.tsx:87
 msgid "Disable"
 msgstr "Désactiver"
 
@@ -2418,7 +2417,7 @@ msgstr "Inclure les métadonnées du portefeuille"
 msgid "Including a fee in the offer can help expedite the transaction when the offer is accepted. The recommended minimum fee is 0.000005 XCH (5,000,000 mojos)"
 msgstr "Inclure des frais dans l'offre peut accélérer la transaction lorsque celle-ci est acceptée. Les frais minimums recommandés sont de 0.000005 XCH (5 000 000 mojos)"
 
-#: src/components/offers2/OfferIncomingTable.tsx:132
+#: src/components/offers2/OfferIncomingTable.tsx:121
 msgid "Incoming Offers"
 msgstr "Offres Entrantes"
 
@@ -3139,7 +3138,7 @@ msgstr "Aucune autorisation personnalisée"
 msgid "No file available"
 msgstr "Aucun fichier trouvé"
 
-#: src/components/offers2/OfferIncomingTable.tsx:281
+#: src/components/offers2/OfferIncomingTable.tsx:259
 msgid "No incoming offers"
 msgstr "Aucune offre entrante"
 
@@ -3409,7 +3408,7 @@ msgid "Offered"
 msgstr "Offert"
 
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:24
-#: src/components/offers2/OfferIncomingTable.tsx:75
+#: src/components/offers2/OfferIncomingTable.tsx:64
 msgid "Offering"
 msgstr "Proposition"
 
@@ -4212,7 +4211,7 @@ msgid "Requested"
 msgstr "Requis"
 
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:31
-#: src/components/offers2/OfferIncomingTable.tsx:55
+#: src/components/offers2/OfferIncomingTable.tsx:44
 msgid "Requesting"
 msgstr "Demandé"
 
@@ -4974,7 +4973,7 @@ msgstr "Le nœud n'est pas synchronisé"
 msgid "The node is syncing, which means it is downloading blocks from other nodes, to reach the latest block in the chain"
 msgstr "Votre nœud se synchronise, ce qui veut dire qu'il télécharge les blocs depuis les autres nœuds, pour atteindre le dernier bloc de la chaîne"
 
-#: src/components/offers2/OfferIncomingTable.tsx:101
+#: src/components/offers2/OfferIncomingTable.tsx:90
 msgid "The offer creator has chosen not to allow counter offers"
 msgstr "Le créateur de l'offre a choisi de ne pas autoriser les contre-offres"
 
@@ -5601,7 +5600,7 @@ msgstr "Vérifier la Signature"
 msgid "Verifying hash..."
 msgstr "Validation du hash..."
 
-#: src/components/offers2/OfferIncomingTable.tsx:106
+#: src/components/offers2/OfferIncomingTable.tsx:95
 msgid "View"
 msgstr "Voir"
 
@@ -5843,7 +5842,6 @@ msgstr "Voulez-vous transférer le NFT sélectionné vers un profil ?"
 msgid "Would you like to transfer the specified NFT to a new owner?"
 msgstr "Voulez-vous transférer le NFT spécifié à un nouveau propriétaire ?"
 
-#: src/components/offers2/OfferIncomingTable.tsx:215
 #: src/components/plot/add/PlotAddChooseSize.tsx:61
 #: src/components/vcs/VCCard.tsx:89
 msgid "Yes"
