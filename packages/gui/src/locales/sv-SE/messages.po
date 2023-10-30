@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-10-22 00:04\n"
+"PO-Revision-Date: 2023-10-29 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -611,7 +611,7 @@ msgstr "Är du säker på att du vill använda k={plotSize}?"
 
 #: src/components/offers2/OfferIncomingTable.tsx:216
 #~ msgid "Are you sure you'd like to remove this offer? Please remember that this action is not reversible."
-#~ msgstr "Är du säker på att du vill ta bort detta erbjudande? Tänk på att denna åtgärd inte kan ångras."
+#~ msgstr ""
 
 #: src/components/offers2/OfferBuilderRoyaltyPayouts.tsx:48
 msgid "Asset"

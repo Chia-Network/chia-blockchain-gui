@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_TW\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-10-22 00:04\n"
+"PO-Revision-Date: 2023-10-29 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -611,7 +611,7 @@ msgstr "您確定要使用 k={plotSize} 嗎？"
 
 #: src/components/offers2/OfferIncomingTable.tsx:216
 #~ msgid "Are you sure you'd like to remove this offer? Please remember that this action is not reversible."
-#~ msgstr "您確定要移除這個報價單嗎？請記住這個動作是不可逆轉的。"
+#~ msgstr ""
 
 #: src/components/offers2/OfferBuilderRoyaltyPayouts.tsx:48
 msgid "Asset"
@@ -1037,7 +1037,7 @@ msgstr ""
 #: src/components/vcs/VCRevokeDialog.tsx:27
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:71
 msgid "Confirm"
-msgstr "確認"
+msgstr ""
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:19
 msgid "Confirm Disconnect"
@@ -3095,7 +3095,7 @@ msgstr "由創作者歸類為不適當內容的 NFT 將默認隱藏。"
 
 #: src/components/vcs/VCCard.tsx:89
 msgid "No"
-msgstr "否"
+msgstr ""
 
 #: src/components/notification/NotificationsMenu.tsx:53
 msgid "No activities yet"
@@ -5598,7 +5598,7 @@ msgstr "正在驗證雜湊..."
 
 #: src/components/offers2/OfferIncomingTable.tsx:95
 msgid "View"
-msgstr "檢視"
+msgstr ""
 
 #: src/components/offers/OfferImport.tsx:184
 msgid "View an Offer"
@@ -5841,7 +5841,7 @@ msgstr "您是否要將指定的 NFT 轉移給新擁有者？"
 #: src/components/plot/add/PlotAddChooseSize.tsx:61
 #: src/components/vcs/VCCard.tsx:89
 msgid "Yes"
-msgstr "是"
+msgstr ""
 
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:22
 msgid "Yes, Accept Offer"
