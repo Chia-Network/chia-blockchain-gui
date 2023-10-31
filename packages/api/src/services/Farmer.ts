@@ -50,6 +50,7 @@ export default class Farmer extends Service {
     valid: 0,
     stale: 0,
     invalid: 0,
+    insufficient: 0,
     missing: 0,
   };
 
@@ -59,6 +60,7 @@ export default class Farmer extends Service {
     valid: 0,
     stale: 0,
     invalid: 0,
+    insufficient: 0,
     missing: 0,
   };
 
@@ -246,6 +248,7 @@ export default class Farmer extends Service {
       valid: res.poolState.reduce((acc, val) => acc + val.validPartialsSinceStart, 0),
       stale: res.poolState.reduce((acc, val) => acc + val.stalePartialsSinceStart, 0),
       invalid: res.poolState.reduce((acc, val) => acc + val.invalidPartialsSinceStart, 0),
+      insufficient: res.poolState.reduce((acc, val) => acc + val.insufficientPartialsSinceStart, 0),
       missing: res.poolState.reduce((acc, val) => acc + val.missingPartialsSinceStart, 0),
     };
     return res;
@@ -261,6 +264,7 @@ export default class Farmer extends Service {
       valid: this.latestPartialStats.valid,
       stale: this.latestPartialStats.stale,
       invalid: this.latestPartialStats.invalid,
+      insufficient: this.latestPartialStats.insufficient,
       missing: this.latestPartialStats.missing,
     };
   }

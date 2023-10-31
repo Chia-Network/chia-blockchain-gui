@@ -33,6 +33,8 @@ type PoolState = {
   validPartials24h: Array<[number, number]>;
   invalidPartialsSinceStart: number;
   invalidPartials24h: Array<[number, number]>;
+  insufficientPartialsSinceStart: number;
+  insufficientPartials24h: Array<[number, number]>;
   stalePartialsSinceStart: number;
   stalePartials24h: Array<[number, number]>;
   missingPartialsSinceStart: number;

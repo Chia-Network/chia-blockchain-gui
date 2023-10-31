@@ -62,12 +62,17 @@ function PoolingHealth() {
       value +=
         d.validPartialsSinceStart +
         d.invalidPartialsSinceStart +
+        d.insufficientPartialsSinceStart +
         d.missingPartialsSinceStart +
         d.stalePartialsSinceStart;
     }
     if (!isLoadingPartialStatsOffset && partialStatsOffset) {
       value -=
-        partialStatsOffset.valid + partialStatsOffset.stale + partialStatsOffset.invalid + partialStatsOffset.missing;
+        partialStatsOffset.valid +
+        partialStatsOffset.stale +
+        partialStatsOffset.invalid +
+        partialStatsOffset.insufficient +
+        partialStatsOffset.missing;
     }
     return value;
   }, [data, isLoadingPartialStatsOffset, partialStatsOffset]);
@@ -129,6 +134,43 @@ function PoolingHealth() {
     }
     if (!isLoadingPartialStatsOffset && partialStatsOffset) {
       value -= partialStatsOffset.invalid;
+    }
+
+    const rate = Math.floor((value / totalPartials) * 1000) / 10;
+    if (value === 0) {
+      return (
+        <StateIndicator state={State.SUCCESS} indicator reversed>
+          None {value} / {totalPartials}
+        </StateIndicator>
+      );
+    }
+
+    return (
+      <StateIndicator state={State.WARNING} indicator reversed>
+        {rate}% {value} / {totalPartials}
+      </StateIndicator>
+    );
+  }, [isLoading, data, totalPartials, isLoadingPartialStatsOffset, partialStatsOffset]);
+
+  const insufficientPartials = React.useMemo(() => {
+    if (isLoading || !data) {
+      return <CircularProgress color="secondary" size={14} />;
+    }
+    if (!data || data.length === 0) {
+      return (
+        <StateIndicator state={State.SUCCESS} indicator reversed>
+          <Trans>None</Trans>
+        </StateIndicator>
+      );
+    }
+
+    let value = 0;
+    for (let i = 0; i < data.length; i++) {
+      const d = data[i];
+      value += d.insufficientPartialsSinceStart;
+    }
+    if (!isLoadingPartialStatsOffset && partialStatsOffset) {
+      value -= partialStatsOffset.insufficient;
     }
 
     const rate = Math.floor((value / totalPartials) * 1000) / 10;
@@ -254,10 +296,18 @@ function PoolingHealth() {
               {stalePartials}
             </Box>
           </Tooltip>
-          <Tooltip title={<Trans>Partials not good enough or rejected by pools</Trans>}>
+          <Tooltip title={<Trans>Partials not good enough for difficulties for corresponding pools</Trans>}>
             <Box>
               <Typography variant="body2">
-                <Trans>Invalid partials</Trans>
+                <Trans>Insufficient partials</Trans>
+              </Typography>
+              {insufficientPartials}
+            </Box>
+          </Tooltip>
+          <Tooltip title={<Trans>Partials sent to pools but received error responses</Trans>}>
+            <Box>
+              <Typography variant="body2">
+                <Trans>Failed partials</Trans>
               </Typography>
               {invalidPartials}
             </Box>
