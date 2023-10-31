@@ -1874,6 +1874,10 @@ msgstr ""
 msgid "Failed downloads:"
 msgstr ""
 
+#: src/components/farm/PoolingHealth.tsx:310
+msgid "Failed partials"
+msgstr ""
+
 #: src/components/offers/NFTOfferEditor.tsx:584
 msgid "Failed to decode NFT identifier"
 msgstr ""
@@ -2447,6 +2451,10 @@ msgid ""
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
 
+#: src/components/farm/PoolingHealth.tsx:302
+msgid "Insufficient partials"
+msgstr ""
+
 #: src/components/settings/Settings.tsx:73
 #~ msgid "Integration"
 #~ msgstr ""
@@ -2473,8 +2481,8 @@ msgid "Invalid NFT identifier"
 msgstr ""
 
 #: src/components/farm/PoolingHealth.tsx:260
-msgid "Invalid partials"
-msgstr ""
+#~ msgid "Invalid partials"
+#~ msgstr ""
 
 #: src/components/plotNFT/PlotNFTState.tsx:27
 msgid "Invalid state"
@@ -2875,7 +2883,7 @@ msgstr "دقائق"
 msgid "Missing Keys"
 msgstr ""
 
-#: src/components/farm/PoolingHealth.tsx:275
+#: src/components/farm/PoolingHealth.tsx:325
 msgid "Missing partials"
 msgstr ""
 
@@ -3170,10 +3178,11 @@ msgstr ""
 #: src/components/farm/FarmHealth.tsx:319
 #: src/components/farm/FarmHealth.tsx:352
 #: src/components/farm/FarmHealth.tsx:370
-#: src/components/farm/PoolingHealth.tsx:82
-#: src/components/farm/PoolingHealth.tsx:120
-#: src/components/farm/PoolingHealth.tsx:157
-#: src/components/farm/PoolingHealth.tsx:194
+#: src/components/farm/PoolingHealth.tsx:87
+#: src/components/farm/PoolingHealth.tsx:125
+#: src/components/farm/PoolingHealth.tsx:162
+#: src/components/farm/PoolingHealth.tsx:199
+#: src/components/farm/PoolingHealth.tsx:236
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:131
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:273
 #: src/components/plot/add/PlotAddNFT.tsx:96
@@ -3560,19 +3569,27 @@ msgstr ""
 msgid "Parent Coin Info"
 msgstr ""
 
-#: src/components/farm/PoolingHealth.tsx:267
+#: src/components/farm/PoolingHealth.tsx:317
 msgid "Partials found but not sent to pools. This usually happens when a partial is found before connections to pools are established"
 msgstr ""
 
-#: src/components/farm/PoolingHealth.tsx:257
-msgid "Partials not good enough or rejected by pools"
+#: src/components/farm/PoolingHealth.tsx:299
+msgid "Partials not good enough for difficulties for corresponding pools"
 msgstr ""
 
-#: src/components/farm/PoolingHealth.tsx:249
+#: src/components/farm/PoolingHealth.tsx:257
+#~ msgid "Partials not good enough or rejected by pools"
+#~ msgstr ""
+
+#: src/components/farm/PoolingHealth.tsx:307
+msgid "Partials sent to pools but received error responses"
+msgstr ""
+
+#: src/components/farm/PoolingHealth.tsx:291
 msgid "Partials sent to pools but too late"
 msgstr ""
 
-#: src/components/farm/PoolingHealth.tsx:241
+#: src/components/farm/PoolingHealth.tsx:283
 msgid "Partials successfully sent and acknowledged by pools"
 msgstr ""
 
@@ -3971,13 +3988,13 @@ msgid "Pool:"
 msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:118
-#: src/components/farm/PoolingHealth.tsx:231
+#: src/components/farm/PoolingHealth.tsx:273
 #: src/components/plotNFT/PlotNFTExternalState.tsx:25
 #: src/components/plotNFT/PlotNFTState.tsx:57
 msgid "Pooling"
 msgstr ""
 
-#: src/components/farm/PoolingHealth.tsx:236
+#: src/components/farm/PoolingHealth.tsx:278
 msgid "Pooling Health"
 msgstr ""
 
@@ -4778,7 +4795,7 @@ msgstr ""
 msgid "Stale partials"
 msgstr ""
 
-#: src/components/farm/PoolingHealth.tsx:252
+#: src/components/farm/PoolingHealth.tsx:294
 msgid "Stale Partials"
 msgstr ""
 
@@ -5517,7 +5534,7 @@ msgstr ""
 msgid "Valid"
 msgstr ""
 
-#: src/components/farm/PoolingHealth.tsx:244
+#: src/components/farm/PoolingHealth.tsx:286
 msgid "Valid Partials"
 msgstr ""
 

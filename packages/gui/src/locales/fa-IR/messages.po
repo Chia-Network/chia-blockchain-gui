@@ -1874,6 +1874,10 @@ msgstr "ناموفق"
 msgid "Failed downloads:"
 msgstr "دانلودهای ناموفق:"
 
+#: src/components/farm/PoolingHealth.tsx:310
+msgid "Failed partials"
+msgstr ""
+
 #: src/components/offers/NFTOfferEditor.tsx:584
 msgid "Failed to decode NFT identifier"
 msgstr "رمزگشایی شناسه ان اف تی انجام نشد"
@@ -2451,6 +2455,10 @@ msgstr ""
 "مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
 "موجودی قابل مصرف شما برای پوشش مبلغ پیشنهاد کافی است."
 
+#: src/components/farm/PoolingHealth.tsx:302
+msgid "Insufficient partials"
+msgstr ""
+
 #: src/components/settings/Settings.tsx:73
 #~ msgid "Integration"
 #~ msgstr ""
@@ -2477,8 +2485,8 @@ msgid "Invalid NFT identifier"
 msgstr "شناسه ان اف تی نامعتبر"
 
 #: src/components/farm/PoolingHealth.tsx:260
-msgid "Invalid partials"
-msgstr "مشارکت نامعتبر"
+#~ msgid "Invalid partials"
+#~ msgstr "مشارکت نامعتبر"
 
 #: src/components/plotNFT/PlotNFTState.tsx:27
 msgid "Invalid state"
@@ -2879,7 +2887,7 @@ msgstr "دقایق"
 msgid "Missing Keys"
 msgstr "نبودن کلیدها"
 
-#: src/components/farm/PoolingHealth.tsx:275
+#: src/components/farm/PoolingHealth.tsx:325
 msgid "Missing partials"
 msgstr "مشازکت از دست رفته"
 
@@ -3174,10 +3182,11 @@ msgstr "استخراج غیر ناظر"
 #: src/components/farm/FarmHealth.tsx:319
 #: src/components/farm/FarmHealth.tsx:352
 #: src/components/farm/FarmHealth.tsx:370
-#: src/components/farm/PoolingHealth.tsx:82
-#: src/components/farm/PoolingHealth.tsx:120
-#: src/components/farm/PoolingHealth.tsx:157
-#: src/components/farm/PoolingHealth.tsx:194
+#: src/components/farm/PoolingHealth.tsx:87
+#: src/components/farm/PoolingHealth.tsx:125
+#: src/components/farm/PoolingHealth.tsx:162
+#: src/components/farm/PoolingHealth.tsx:199
+#: src/components/farm/PoolingHealth.tsx:236
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:131
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:273
 #: src/components/plot/add/PlotAddNFT.tsx:96
@@ -3564,19 +3573,27 @@ msgstr "شمارش غیرفشرده سازی موازی"
 msgid "Parent Coin Info"
 msgstr "اطلاعات ارز مادر"
 
-#: src/components/farm/PoolingHealth.tsx:267
+#: src/components/farm/PoolingHealth.tsx:317
 msgid "Partials found but not sent to pools. This usually happens when a partial is found before connections to pools are established"
 msgstr "مشازکت پیدا شد اما به استخرها ارسال نشد. این معمولاً زمانی اتفاق می‌افتد که قبل از برقراری ارتباط با استخرها، مشازکت پیدا شود"
 
-#: src/components/farm/PoolingHealth.tsx:257
-msgid "Partials not good enough or rejected by pools"
-msgstr "مشارکت ها به اندازه کافی خوب نیستند یا توسط استخرها رد میشوند"
+#: src/components/farm/PoolingHealth.tsx:299
+msgid "Partials not good enough for difficulties for corresponding pools"
+msgstr ""
 
-#: src/components/farm/PoolingHealth.tsx:249
+#: src/components/farm/PoolingHealth.tsx:257
+#~ msgid "Partials not good enough or rejected by pools"
+#~ msgstr "مشارکت ها به اندازه کافی خوب نیستند یا توسط استخرها رد میشوند"
+
+#: src/components/farm/PoolingHealth.tsx:307
+msgid "Partials sent to pools but received error responses"
+msgstr ""
+
+#: src/components/farm/PoolingHealth.tsx:291
 msgid "Partials sent to pools but too late"
 msgstr "مشارکت ها به استخرها ارسال شد اما خیلی دیر"
 
-#: src/components/farm/PoolingHealth.tsx:241
+#: src/components/farm/PoolingHealth.tsx:283
 msgid "Partials successfully sent and acknowledged by pools"
 msgstr "مشازکت ها با موفقیت ارسال شد و توسط استخرها تأیید شد"
 
@@ -3975,13 +3992,13 @@ msgid "Pool:"
 msgstr "استخر:"
 
 #: src/components/dashboard/DashboardSideBar.tsx:118
-#: src/components/farm/PoolingHealth.tsx:231
+#: src/components/farm/PoolingHealth.tsx:273
 #: src/components/plotNFT/PlotNFTExternalState.tsx:25
 #: src/components/plotNFT/PlotNFTState.tsx:57
 msgid "Pooling"
 msgstr "درحالت استخر"
 
-#: src/components/farm/PoolingHealth.tsx:236
+#: src/components/farm/PoolingHealth.tsx:278
 msgid "Pooling Health"
 msgstr "سلامت استخر"
 
@@ -4782,7 +4799,7 @@ msgstr "{spendableBalance} {currencyCode} :موجودی قابل خرج کزدن
 msgid "Stale partials"
 msgstr "مشازکت قدیمی"
 
-#: src/components/farm/PoolingHealth.tsx:252
+#: src/components/farm/PoolingHealth.tsx:294
 msgid "Stale Partials"
 msgstr "مشازکت قدیمی"
 
@@ -5521,7 +5538,7 @@ msgstr "برای ایجاد پلات استخر استفاده میشود."
 msgid "Valid"
 msgstr "معتبر"
 
-#: src/components/farm/PoolingHealth.tsx:244
+#: src/components/farm/PoolingHealth.tsx:286
 msgid "Valid Partials"
 msgstr "مشارکت معتبر"
 
