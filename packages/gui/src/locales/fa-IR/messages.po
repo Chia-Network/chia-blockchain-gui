@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-10-29 00:04\n"
+"PO-Revision-Date: 2023-11-05 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1876,7 +1876,7 @@ msgstr "دانلودهای ناموفق:"
 
 #: src/components/farm/PoolingHealth.tsx:310
 msgid "Failed partials"
-msgstr ""
+msgstr "بخشهایی ناموفق بوده"
 
 #: src/components/offers/NFTOfferEditor.tsx:584
 msgid "Failed to decode NFT identifier"
@@ -2457,7 +2457,7 @@ msgstr ""
 
 #: src/components/farm/PoolingHealth.tsx:302
 msgid "Insufficient partials"
-msgstr ""
+msgstr "بخش هایی ناموفق بوده"
 
 #: src/components/settings/Settings.tsx:73
 #~ msgid "Integration"
@@ -2486,7 +2486,7 @@ msgstr "شناسه ان اف تی نامعتبر"
 
 #: src/components/farm/PoolingHealth.tsx:260
 #~ msgid "Invalid partials"
-#~ msgstr "مشارکت نامعتبر"
+#~ msgstr ""
 
 #: src/components/plotNFT/PlotNFTState.tsx:27
 msgid "Invalid state"
@@ -3579,15 +3579,15 @@ msgstr "مشازکت پیدا شد اما به استخرها ارسال نشد.
 
 #: src/components/farm/PoolingHealth.tsx:299
 msgid "Partials not good enough for difficulties for corresponding pools"
-msgstr ""
+msgstr "بخش هایی برای مشکلات استخرهای مورد نظر به اندازه کافی خوب نیستند"
 
 #: src/components/farm/PoolingHealth.tsx:257
 #~ msgid "Partials not good enough or rejected by pools"
-#~ msgstr "مشارکت ها به اندازه کافی خوب نیستند یا توسط استخرها رد میشوند"
+#~ msgstr ""
 
 #: src/components/farm/PoolingHealth.tsx:307
 msgid "Partials sent to pools but received error responses"
-msgstr ""
+msgstr "بخش هایی به استخرها ارسال شد اما پاسخ های خطا دریافت کرد"
 
 #: src/components/farm/PoolingHealth.tsx:291
 msgid "Partials sent to pools but too late"
