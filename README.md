@@ -23,7 +23,8 @@ This monorepo consists of the following packages:
 
 1. This repo (chia-blockchain-gui) must be under chia-blockchain repo. Please follow the [installation steps for the chia-blockchain](https://github.com/Chia-Network/chia-blockchain/wiki/INSTALL#install-from-source). Make sure to install from source code (git clone...).
 2. Run the `sh install-gui.sh` as instructed in the previous step. This will clone the chia-blockchain-gui under chia-blockchain repo.
-3. Run `npm run dev:gui`
+3. Change directory into the chia-blockchain-gui subdirectory.
+4. Run `npm run dev:gui`
 
 **When developing, please:**
 
