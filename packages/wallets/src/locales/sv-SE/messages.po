@@ -785,3 +785,4 @@ msgstr "Du har denna verifierbara autentiseringsuppgift från rätt auktoriserad
 #: src/components/WalletImport.tsx:73
 msgid "Your pasted list does not include {mnemonicWordCount} valid mnemonic words."
 msgstr "Den lista du klistrat in är inte en giltig minnesfras med {mnemonicWordCount} ord."
+
