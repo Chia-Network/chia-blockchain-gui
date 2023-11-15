@@ -39,6 +39,12 @@ const StyledTable = styled.table`
   }
 `;
 
+const StyledTableForTooltip = styled.table`
+  td {
+    vertical-align: top;
+  }
+`;
+
 const StyledInput = styled.input`
   font-size: 0.6875rem;
   color: #fff;
@@ -315,9 +321,25 @@ function FarmHealth() {
         <Trans>
           The increasing number of missing signage points suggests that you were either disconnected from or
           significantly distant from a timelord in your fullNode network. The total number of missing SPs serves as an
-          indicator of potential rewards you could have claimed. A common reason for missing SPs is typically that the
-          fullNode is out of sync due to network issues
+          indicator of potential rewards you could have claimed.
         </Trans>
+        <p>
+          <Trans>A common reason for missing SPs are:</Trans>
+          <StyledTableForTooltip>
+            <tr>
+              <td>-</td>
+              <td>
+                <Trans>There were network issue and your fullNode/farmer could not receive sps.</Trans>
+              </td>
+            </tr>
+            <tr>
+              <td>-</td>
+              <td>
+                <Trans>fullNode was out of sync</Trans>
+              </td>
+            </tr>
+          </StyledTableForTooltip>
+        </p>
         {Boolean(missingSpsData?.totalMissingSps) && (
           <Button size="small" onClick={() => resetMissingSps()}>
             <Trans>Reset</Trans>
