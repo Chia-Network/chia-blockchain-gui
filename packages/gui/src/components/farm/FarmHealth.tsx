@@ -329,7 +329,7 @@ function FarmHealth() {
             <tr>
               <td>-</td>
               <td>
-                <Trans>There were network issue and your fullNode/farmer could not receive sps.</Trans>
+                <Trans>There was a network issue and your fullNode/farmer could not receive sps.</Trans>
               </td>
             </tr>
             <tr>
