@@ -6,7 +6,7 @@ import {
   useResetFilterChallengeStatMutation,
   useGetPartialStatsOffsetQuery,
 } from '@chia-network/api-react';
-import { Flex, StateIndicator, State, Tooltip, useCurrencyCode } from '@chia-network/core';
+import { Flex, Link, StateIndicator, State, Tooltip, useCurrencyCode } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Box, Button, Paper, Typography, CircularProgress } from '@mui/material';
 import React from 'react';
@@ -319,24 +319,27 @@ function FarmHealth() {
     const tooltipTitle = (
       <Box>
         <Trans>
-          The increasing number of missing signage points suggests that you were either disconnected from or
-          significantly distant from a timelord in your fullNode network. The total number of missing SPs serves as an
+          An increase in the number of missing signage points (SPs) suggests that you were either disconnected from or
+          significantly distant from a Timelord in your Full Node network. The total number of missing SPs serves as an
           indicator of potential rewards you could have claimed.
         </Trans>
         <p>
-          <Trans>A common reason for missing SPs are:</Trans>
+          <Trans>Common reasons for missing SPs include:</Trans>
           <StyledTableForTooltip>
             <tr>
-              <td>-</td>
               <td>
-                <Trans>There was a network issue and your fullNode/farmer could not receive sps.</Trans>
+                - <Trans>There was a network issue and your Full Node or Farmer could not receive SPs.</Trans>
               </td>
             </tr>
             <tr>
-              <td>-</td>
               <td>
-                <Trans>fullNode was out of sync</Trans>
+                - <Trans>Full Node was out of sync</Trans>
               </td>
+            </tr>
+            <tr>
+              <Link target="_blank" href="https://docs.chia.net/faq/#why-does-my-chia-farm-say-missing-signage-points">
+                <Trans>Learn more</Trans>
+              </Link>
             </tr>
           </StyledTableForTooltip>
         </p>
