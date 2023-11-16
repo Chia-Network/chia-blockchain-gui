@@ -6,7 +6,7 @@ import {
   useResetFilterChallengeStatMutation,
   useGetPartialStatsOffsetQuery,
 } from '@chia-network/api-react';
-import { Flex, StateIndicator, State, Tooltip, useCurrencyCode } from '@chia-network/core';
+import { Flex, Link, StateIndicator, State, Tooltip, useCurrencyCode } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Box, Button, Paper, Typography, CircularProgress } from '@mui/material';
 import React from 'react';
@@ -36,6 +36,12 @@ const StyledTable = styled.table`
       display: flex;
       justify-content: flex-end;
     }
+  }
+`;
+
+const StyledTableForTooltip = styled.table`
+  td {
+    vertical-align: top;
   }
 `;
 
@@ -309,24 +315,56 @@ function FarmHealth() {
     if (isLoadingMissingSps) {
       return <CircularProgress color="secondary" size={14} />;
     }
-    if (!missingSpsData?.totalMissingSps) {
-      return (
-        <Box>
-          <Typography variant="body2">
-            <Trans>Missing signage points</Trans>
-          </Typography>
-          <StateIndicator state={State.SUCCESS} indicator reversed>
-            <Trans>None</Trans>
-          </StateIndicator>
-        </Box>
-      );
-    }
 
     const tooltipTitle = (
-      <Button size="small" onClick={() => resetMissingSps()}>
-        <Trans>Reset</Trans>
-      </Button>
+      <Box>
+        <Trans>
+          An increase in the number of missing signage points (SPs) suggests that you were either disconnected from or
+          significantly distant from a Timelord in your Full Node network. The total number of missing SPs serves as an
+          indicator of potential rewards you could have claimed.
+        </Trans>
+        <p>
+          <Trans>Common reasons for missing SPs include:</Trans>
+          <StyledTableForTooltip>
+            <tr>
+              <td>
+                - <Trans>There was a network issue and your Full Node or Farmer could not receive SPs.</Trans>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                - <Trans>Full Node was out of sync</Trans>
+              </td>
+            </tr>
+            <tr>
+              <Link target="_blank" href="https://docs.chia.net/faq/#why-does-my-chia-farm-say-missing-signage-points">
+                <Trans>Learn more</Trans>
+              </Link>
+            </tr>
+          </StyledTableForTooltip>
+        </p>
+        {Boolean(missingSpsData?.totalMissingSps) && (
+          <Button size="small" onClick={() => resetMissingSps()}>
+            <Trans>Reset</Trans>
+          </Button>
+        )}
+      </Box>
     );
+
+    if (!missingSpsData?.totalMissingSps) {
+      return (
+        <Tooltip title={tooltipTitle}>
+          <Box>
+            <Typography variant="body2">
+              <Trans>Missing signage points</Trans>
+            </Typography>
+            <StateIndicator state={State.SUCCESS} indicator reversed>
+              <Trans>None</Trans>
+            </StateIndicator>
+          </Box>
+        </Tooltip>
+      );
+    }
 
     return (
       <Tooltip title={tooltipTitle}>
