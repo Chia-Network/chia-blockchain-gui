@@ -785,3 +785,4 @@ msgstr ""
 #: src/components/WalletImport.tsx:73
 msgid "Your pasted list does not include {mnemonicWordCount} valid mnemonic words."
 msgstr "Liitetty lista ei sisällä {mnemonicWordCount} kelvollista muistisanaa."
+
