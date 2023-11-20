@@ -8,7 +8,7 @@ msgstr ""
 "Language: pa_IN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-11-12 00:04\n"
+"PO-Revision-Date: 2023-11-19 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Punjabi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -538,6 +538,10 @@ msgstr ""
 msgid "Amount exceeds XCH total balance"
 msgstr ""
 
+#: src/components/farm/FarmHealth.tsx:321
+msgid "An increase in the number of missing signage points (SPs) suggests that you were either disconnected from or significantly distant from a Timelord in your Full Node network. The total number of missing SPs serves as an indicator of potential rewards you could have claimed."
+msgstr ""
+
 #: src/components/offers/NFTOfferPreview.tsx:137
 #: src/components/offers2/OfferBuilderNFTProvenance.tsx:23
 msgid "An NFT's provenance is a complete record of its ownership history. It provides a direct lineage that connects everyone who has owned the NFT, all the way back to the original artist. This helps to verify that the NFT is authentic."
@@ -1019,6 +1023,10 @@ msgstr ""
 #: src/components/nfts/detail/NFTDetailV2.tsx:215
 #: src/components/nfts/NFTSummary.tsx:50
 msgid "Collection"
+msgstr ""
+
+#: src/components/farm/FarmHealth.tsx:327
+msgid "Common reasons for missing SPs include:"
 msgstr ""
 
 #: src/components/settings/SettingsHarvester.tsx:441
@@ -1844,7 +1852,7 @@ msgstr ""
 msgid "Exclude final directory"
 msgstr ""
 
-#: src/components/farm/FarmHealth.tsx:246
+#: src/components/farm/FarmHealth.tsx:252
 msgid "Expected Total plots passing filter"
 msgstr ""
 
@@ -1910,7 +1918,7 @@ msgstr ""
 msgid "Farm"
 msgstr ""
 
-#: src/components/farm/FarmHealth.tsx:386
+#: src/components/farm/FarmHealth.tsx:424
 msgid "Farm Health"
 msgstr ""
 
@@ -2101,6 +2109,10 @@ msgstr ""
 
 #: src/components/fullNode/FullNodeConnections.tsx:90
 msgid "Full Node Connections"
+msgstr ""
+
+#: src/components/farm/FarmHealth.tsx:336
+msgid "Full Node was out of sync"
 msgstr ""
 
 #: src/electron/main.tsx:1022
@@ -2637,6 +2649,7 @@ msgstr ""
 msgid "Launcher ID"
 msgstr ""
 
+#: src/components/farm/FarmHealth.tsx:341
 #: src/components/plot/add/PlotAddNFT.tsx:84
 msgid "Learn more"
 msgstr ""
@@ -2893,8 +2906,8 @@ msgstr ""
 #~ msgid "Missing preview_video_hash key"
 #~ msgstr ""
 
-#: src/components/farm/FarmHealth.tsx:316
-#: src/components/farm/FarmHealth.tsx:335
+#: src/components/farm/FarmHealth.tsx:359
+#: src/components/farm/FarmHealth.tsx:373
 msgid "Missing signage points"
 msgstr ""
 
@@ -3173,9 +3186,9 @@ msgid "Non Observer Derivation"
 msgstr ""
 
 #: src/components/did/DIDProfileDropdown.tsx:88
-#: src/components/farm/FarmHealth.tsx:319
-#: src/components/farm/FarmHealth.tsx:352
-#: src/components/farm/FarmHealth.tsx:370
+#: src/components/farm/FarmHealth.tsx:362
+#: src/components/farm/FarmHealth.tsx:390
+#: src/components/farm/FarmHealth.tsx:408
 #: src/components/farm/PoolingHealth.tsx:87
 #: src/components/farm/PoolingHealth.tsx:125
 #: src/components/farm/PoolingHealth.tsx:162
@@ -3199,9 +3212,9 @@ msgstr ""
 msgid "Normal (RAM required: 256G)"
 msgstr ""
 
-#: src/components/farm/FarmHealth.tsx:117
-#: src/components/farm/FarmHealth.tsx:164
-#: src/components/farm/FarmHealth.tsx:188
+#: src/components/farm/FarmHealth.tsx:123
+#: src/components/farm/FarmHealth.tsx:170
+#: src/components/farm/FarmHealth.tsx:194
 msgid "Not available"
 msgstr ""
 
@@ -3215,14 +3228,14 @@ msgstr ""
 msgid "Not Available"
 msgstr ""
 
-#: src/components/farm/FarmHealth.tsx:125
-#: src/components/farm/FarmHealth.tsx:172
+#: src/components/farm/FarmHealth.tsx:131
+#: src/components/farm/FarmHealth.tsx:178
 #: src/components/fullNode/card/FullNodeCardConnectionStatus.tsx:16
 msgid "Not connected"
 msgstr ""
 
-#: src/components/farm/FarmHealth.tsx:133
-#: src/components/farm/FarmHealth.tsx:180
+#: src/components/farm/FarmHealth.tsx:139
+#: src/components/farm/FarmHealth.tsx:186
 msgid "Not running"
 msgstr ""
 
@@ -3444,7 +3457,7 @@ msgstr ""
 msgid "Offers you created"
 msgstr ""
 
-#: src/components/farm/FarmHealth.tsx:203
+#: src/components/farm/FarmHealth.tsx:209
 #: src/components/offers/OfferDataDialog.tsx:58
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:86
 msgid "OK"
@@ -3820,7 +3833,7 @@ msgstr ""
 msgid "Plot NFT with p2_singleton_puzzle_hash {plotNFTId} does not exists"
 msgstr ""
 
-#: src/components/farm/FarmHealth.tsx:240
+#: src/components/farm/FarmHealth.tsx:246
 msgid "Plot pass ratio"
 msgstr ""
 
@@ -3865,8 +3878,8 @@ msgstr ""
 msgid "Plots Passed Filter"
 msgstr ""
 
-#: src/components/farm/FarmHealth.tsx:213
-#: src/components/farm/FarmHealth.tsx:293
+#: src/components/farm/FarmHealth.tsx:219
+#: src/components/farm/FarmHealth.tsx:299
 msgid "Plots passing filter"
 msgstr ""
 
@@ -4306,8 +4319,8 @@ msgstr ""
 msgid "Require Confirmation"
 msgstr ""
 
-#: src/components/farm/FarmHealth.tsx:280
-#: src/components/farm/FarmHealth.tsx:327
+#: src/components/farm/FarmHealth.tsx:286
+#: src/components/farm/FarmHealth.tsx:348
 #: src/components/offers/NFTOfferEditor.tsx:436
 #: src/components/offers/OfferEditor.tsx:172
 #: src/components/settings/SettingsIntegration.tsx:391
@@ -4789,7 +4802,7 @@ msgstr ""
 msgid "Spendable Balance: {spendableBalance} {currencyCode}"
 msgstr ""
 
-#: src/components/farm/FarmHealth.tsx:400
+#: src/components/farm/FarmHealth.tsx:438
 msgid "Stale partials"
 msgstr ""
 
@@ -4862,17 +4875,17 @@ msgstr ""
 msgid "Successfully updated the derivation index. Your balances may take a while to update."
 msgstr ""
 
-#: src/components/farm/FarmHealth.tsx:392
+#: src/components/farm/FarmHealth.tsx:430
 msgid "Sync status"
 msgstr ""
 
-#: src/components/farm/FarmHealth.tsx:140
+#: src/components/farm/FarmHealth.tsx:146
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:50
 msgid "Synced"
 msgstr ""
 
-#: src/components/farm/FarmHealth.tsx:109
-#: src/components/farm/FarmHealth.tsx:156
+#: src/components/farm/FarmHealth.tsx:115
+#: src/components/farm/FarmHealth.tsx:162
 #: src/components/plot/PlotStatus.tsx:19
 msgid "Syncing"
 msgstr ""
@@ -5042,6 +5055,10 @@ msgstr ""
 
 #: src/components/addressbook/ContactEdit.tsx:308
 msgid "Theme"
+msgstr ""
+
+#: src/components/farm/FarmHealth.tsx:331
+msgid "There was a network issue and your Full Node or Farmer could not receive SPs."
 msgstr ""
 
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:91
@@ -5258,7 +5275,7 @@ msgstr ""
 msgid "Total OG"
 msgstr ""
 
-#: src/components/farm/FarmHealth.tsx:228
+#: src/components/farm/FarmHealth.tsx:234
 msgid "Total plot filter challenges"
 msgstr ""
 
@@ -5274,7 +5291,7 @@ msgstr ""
 msgid "Total Plots"
 msgstr ""
 
-#: src/components/farm/FarmHealth.tsx:234
+#: src/components/farm/FarmHealth.tsx:240
 msgid "Total plots passing filter"
 msgstr ""
 
@@ -5782,13 +5799,13 @@ msgstr ""
 msgid "Warm start"
 msgstr ""
 
-#: src/components/farm/FarmHealth.tsx:196
+#: src/components/farm/FarmHealth.tsx:202
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:32
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:73
 msgid "Warning"
 msgstr ""
 
-#: src/components/farm/FarmHealth.tsx:260
+#: src/components/farm/FarmHealth.tsx:266
 msgid "Warning Threshold"
 msgstr ""
 

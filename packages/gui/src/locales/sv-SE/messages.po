@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-11-12 00:04\n"
+"PO-Revision-Date: 2023-11-19 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -188,7 +188,7 @@ msgstr "(Inte installerad)"
 
 #: src/components/plot/add/PlotAddChooseKeys.tsx:64
 msgid "(Not recommended) Used to create an old style plot for solo farming."
-msgstr ""
+msgstr "(Rekommenderas inte) Används för att skapa en plott av äldre typ för solodling."
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:61
 msgid "(Not Supported)"
@@ -1916,7 +1916,7 @@ msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:93
 msgid "Farm"
-msgstr ""
+msgstr "Odling"
 
 #: src/components/farm/FarmHealth.tsx:424
 msgid "Farm Health"
@@ -1976,15 +1976,15 @@ msgstr "Odlingsläge"
 
 #: src/components/farm/card/FarmingRewardsCards.tsx:160
 msgid "Farming Rewards"
-msgstr ""
+msgstr "Odlingsbelöningar"
 
 #: src/components/farm/card/FarmingRewardsHistoryCards.tsx:113
 msgid "Farming Rewards History"
-msgstr ""
+msgstr "Historik över odlingsbelöningar"
 
 #: src/components/farm/card/TotalSizeOfPlots.tsx:12
 msgid "Farming Space"
-msgstr ""
+msgstr "Odlingsutrymme"
 
 #: src/components/farm/card/FarmCardStatus.tsx:15
 #: src/components/farm/card/FarmCardStatus.tsx:26
@@ -5929,7 +5929,7 @@ msgstr "Du har {0}% av utrymmet på nätverket, skapande av ett block förvänta
 
 #: src/components/farm/card/FarmingRewardsCards.tsx:89
 msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWinHumanized} in expectation. Actual results may take 3 to 4 times longer than this estimate."
-msgstr ""
+msgstr "Du har {0}% av utrymmet på nätverket och att odla ett block förväntas ta {expectedTimeToWinHumanized}. Den faktiska tiden kan vara 3 till 4 gånger längre än denna uppskattning."
 
 #: src/components/notification/NotificationOffer.tsx:92
 msgid "You have a new counter offer"

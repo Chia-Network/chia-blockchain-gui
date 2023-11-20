@@ -8,7 +8,7 @@ msgstr ""
 "Language: en_US\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-11-12 00:04\n"
+"PO-Revision-Date: 2023-11-19 00:05\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -540,7 +540,7 @@ msgstr ""
 
 #: src/components/farm/FarmHealth.tsx:321
 msgid "An increase in the number of missing signage points (SPs) suggests that you were either disconnected from or significantly distant from a Timelord in your Full Node network. The total number of missing SPs serves as an indicator of potential rewards you could have claimed."
-msgstr "An increase in the number of missing signage points (SPs) suggests that you were either disconnected from or significantly distant from a Timelord in your Full Node network. The total number of missing SPs serves as an indicator of potential rewards you could have claimed."
+msgstr ""
 
 #: src/components/offers/NFTOfferPreview.tsx:137
 #: src/components/offers2/OfferBuilderNFTProvenance.tsx:23
@@ -1027,7 +1027,7 @@ msgstr "Collection"
 
 #: src/components/farm/FarmHealth.tsx:327
 msgid "Common reasons for missing SPs include:"
-msgstr "Common reasons for missing SPs include:"
+msgstr ""
 
 #: src/components/settings/SettingsHarvester.tsx:441
 msgid "Compressed plot support"
@@ -2113,7 +2113,7 @@ msgstr "Full Node Connections"
 
 #: src/components/farm/FarmHealth.tsx:336
 msgid "Full Node was out of sync"
-msgstr "Full Node was out of sync"
+msgstr ""
 
 #: src/electron/main.tsx:1022
 #~ msgid "Full Screen"
@@ -5065,7 +5065,7 @@ msgstr ""
 
 #: src/components/farm/FarmHealth.tsx:331
 msgid "There was a network issue and your Full Node or Farmer could not receive SPs."
-msgstr "There was a network issue and your Full Node or Farmer could not receive SPs."
+msgstr ""
 
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:91
 msgid "These are the instructions for how the farmer wants to get paid. By default this will be an XCH address, but it can be set to any string with a size of less than 1024 characters, so it can represent another blockchain or payment system identifier."
