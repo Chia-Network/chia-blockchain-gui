@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-11-19 00:05\n"
+"PO-Revision-Date: 2023-11-26 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -1045,7 +1045,7 @@ msgstr "压缩等级"
 #: src/components/vcs/VCRevokeDialog.tsx:27
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:71
 msgid "Confirm"
-msgstr "确定"
+msgstr "确认"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:19
 msgid "Confirm Disconnect"
@@ -2392,7 +2392,7 @@ msgstr "如果销毁该NFT，任何人都将无法再次访问它。确定要继
 
 #: src/components/offers/ConfirmOfferCancellation.tsx:74
 msgid "If you have already shared your offer file, you may need to submit a transaction to cancel the pending offer. Click \"Cancel on blockchain\" to submit a cancellation transaction."
-msgstr "如果您已经共享了您的报价文件，您可能需要提交交易以取消待处理的报价。 单击\"在区块链上取消\"以提交取消交易的交易。"
+msgstr "如果已经分享了您的报价文件，可能需要提交一笔交易来取消待确认的报价。点击“在区块链上取消”以提交取消交易。"
 
 #: src/components/nfts/NFTPreview.tsx:633
 #~ msgid "Image Hash Mismatch"
@@ -2451,20 +2451,16 @@ msgstr "正在初始化..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"可用资金不足，无法接受报价。请确保您的\n"
+msgstr "可用资金不足，无法接受报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"可用的资金不足，无法创建报价。请确保您的\n"
+msgstr "可用的资金不足，无法创建报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
 #: src/components/farm/PoolingHealth.tsx:302
@@ -2637,7 +2633,7 @@ msgstr "上一个获胜的区块"
 
 #: src/components/fullNode/card/FullNodeCardPeakTime.tsx:16
 msgid "Last Transaction Block Time"
-msgstr "上一次交易块时间"
+msgstr "最近交易区块时间"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:31
 msgid "Latest Block Challenges"
@@ -3457,7 +3453,7 @@ msgstr "报价是以真正的点对点方式交易资产的一种方法，消除
 
 #: src/components/offers/OfferManager.tsx:446
 msgid "Offers you accepted"
-msgstr "已接受的报价"
+msgstr "已接受报价"
 
 #: src/components/offers/OfferManager.tsx:445
 msgid "Offers you created"
@@ -3670,7 +3666,7 @@ msgstr "最高高度"
 
 #: src/components/plotNFT/PlotNFTState.tsx:41
 msgid "Pending"
-msgstr "等待处理"
+msgstr "待确认"
 
 #: src/components/offers/utils.ts:116
 msgid "Pending Accept"
@@ -5263,7 +5259,7 @@ msgstr "总收获数"
 
 #: src/components/fullNode/card/FullNodeCardTotalIterations.tsx:14
 msgid "Total Iterations"
-msgstr "总迭代次数"
+msgstr "迭代总数"
 
 #: src/components/fullNode/card/FullNodeCardTotalIterations.tsx:15
 msgid "Total iterations since the start of the blockchain"
@@ -5573,7 +5569,7 @@ msgstr "仅验证"
 
 #: src/components/fullNode/card/FullNodeCardVDFSubSlotIterations.tsx:14
 msgid "VDF Sub Slot Iterations"
-msgstr "VDF子项迭代数"
+msgstr "VDF子项迭代"
 
 #: src/components/vcs/VCCard.tsx:56
 msgid "Verifiable Credential"
@@ -6033,3 +6029,4 @@ msgstr "可用余额必须大于1 mojo才能创建个人资料"
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "需确保钱包正在运行才能完成自动确认。"
+
