@@ -8,7 +8,7 @@ msgstr ""
 "Language: ro_RO\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-11-19 00:04\n"
+"PO-Revision-Date: 2023-11-26 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100>0 && n%100<20)) ? 1 : 2);\n"
@@ -1045,7 +1045,7 @@ msgstr ""
 #: src/components/vcs/VCRevokeDialog.tsx:27
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:71
 msgid "Confirm"
-msgstr "Confirmare"
+msgstr ""
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:19
 msgid "Confirm Disconnect"
@@ -3116,7 +3116,7 @@ msgstr ""
 
 #: src/components/vcs/VCCard.tsx:89
 msgid "No"
-msgstr "Nu"
+msgstr ""
 
 #: src/components/notification/NotificationsMenu.tsx:53
 msgid "No activities yet"
@@ -5632,7 +5632,7 @@ msgstr ""
 
 #: src/components/offers2/OfferIncomingTable.tsx:95
 msgid "View"
-msgstr "Afișare"
+msgstr ""
 
 #: src/components/offers/OfferImport.tsx:184
 msgid "View an Offer"
@@ -5875,7 +5875,7 @@ msgstr ""
 #: src/components/plot/add/PlotAddChooseSize.tsx:61
 #: src/components/vcs/VCCard.tsx:89
 msgid "Yes"
-msgstr "Da"
+msgstr ""
 
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:22
 msgid "Yes, Accept Offer"
