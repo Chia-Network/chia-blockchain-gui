@@ -114,7 +114,8 @@
         "--rpm-rpmbuild-define=debug_package %{nil}",
         "--rpm-rpmbuild-define=__os_install_post /usr/lib/rpm/brp-compress %{nil}",
         "--rpm-attr=4755,root,root:/opt/chia/chrome-sandbox",
-        "--rpm-tag=Recommends: libxcrypt-compat"
+        "--rpm-tag=Recommends: libxcrypt-compat",
+        "--directories=/opt/chia"
       ]
     }
   },
