@@ -106,6 +106,7 @@
       ]
     },
     "rpm": {
+      "beforeInstall": "../../../build_scripts/assets/rpm/before-install.sh",
       "afterInstall": "../../../build_scripts/assets/rpm/postinst.sh",
       "afterRemove": "../../../build_scripts/assets/rpm/prerm.sh",
       "fpm": [
