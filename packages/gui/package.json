@@ -106,7 +106,6 @@
       ]
     },
     "rpm": {
-      "beforeInstall": "../../../build_scripts/assets/rpm/before-install.sh",
       "afterInstall": "../../../build_scripts/assets/rpm/postinst.sh",
       "afterRemove": "../../../build_scripts/assets/rpm/prerm.sh",
       "fpm": [
@@ -117,7 +116,8 @@
         "--rpm-attr=4755,root,root:/opt/chia/chrome-sandbox",
         "--rpm-tag=Recommends: libxcrypt-compat",
         "--directories=/opt/chia",
-        "--rpm-tag=Requires(pre): findutils"
+        "--rpm-tag=Requires(pre): findutils",
+        "--before-install=../../../build_scripts/assets/rpm/before-install.sh"
       ]
     }
   },
