@@ -568,3 +568,4 @@ msgstr "Vaša aktuálna verzia:"
 #: src/hooks/useKeyringMigrationPrompt.tsx:21
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr "Vaše kľúče zatiaľ neboli migrované do nového zväzku kľúčov. Kým sa migrácia nedokončí, nebudete môcť vytvárať nové kľúče ani odstraňovať existujúce kľúče. Chcete teraz migrovať svoje kľúče?"
+

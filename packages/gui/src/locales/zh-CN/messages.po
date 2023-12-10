@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-11-26 00:04\n"
+"PO-Revision-Date: 2023-12-03 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -757,7 +757,7 @@ msgstr "区块"
 #: src/components/farm/card/FarmingRewardsHistoryCards.tsx:87
 #: src/components/farm/card/FarmingRewardsHistoryCards.tsx:90
 msgid "Blocks won"
-msgstr "获得的区块"
+msgstr "赢得区块"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:80
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:139
@@ -1045,7 +1045,7 @@ msgstr "压缩等级"
 #: src/components/vcs/VCRevokeDialog.tsx:27
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:71
 msgid "Confirm"
-msgstr "确认"
+msgstr "确定"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:19
 msgid "Confirm Disconnect"
@@ -1884,7 +1884,7 @@ msgstr "下载失败："
 
 #: src/components/farm/PoolingHealth.tsx:310
 msgid "Failed partials"
-msgstr "失败的贡献点"
+msgstr "失败贡献点"
 
 #: src/components/offers/NFTOfferEditor.tsx:584
 msgid "Failed to decode NFT identifier"
@@ -2255,7 +2255,7 @@ msgstr "收割机服务"
 
 #: src/components/harvest/HarvesterOverview.tsx:153
 msgid "Harvester Summary"
-msgstr "收割机概览"
+msgstr "收割概览"
 
 #: src/components/harvest/HarvesterOverview.tsx:218
 #: src/components/plot/PlotHarvesters.tsx:38
@@ -2451,25 +2451,21 @@ msgstr "正在初始化..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"可用资金不足，无法接受报价。请确保您的\n"
+msgstr "可用资金不足，无法接受报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"可用的资金不足，无法创建报价。请确保您的\n"
+msgstr "可用的资金不足，无法创建报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
 #: src/components/farm/PoolingHealth.tsx:302
 msgid "Insufficient partials"
-msgstr "难度不符的贡献点"
+msgstr "难度不符贡献点"
 
 #: src/components/settings/Settings.tsx:73
 #~ msgid "Integration"
@@ -2629,7 +2625,7 @@ msgstr "最近尝试过的证明"
 #: src/components/farm/card/FarmingRewardsHistoryCards.tsx:98
 #: src/components/farm/card/FarmingRewardsHistoryCards.tsx:107
 msgid "Last block won"
-msgstr "上一个获胜的区块"
+msgstr "最近赢得区块"
 
 #: src/components/farm/card/FarmCardLastHeightFarmed.tsx:13
 #~ msgid "Last Height Farmed"
@@ -4810,11 +4806,11 @@ msgstr "可用余额： {spendableBalance} {currencyCode}"
 
 #: src/components/farm/FarmHealth.tsx:438
 msgid "Stale partials"
-msgstr "过期的贡献点"
+msgstr "过期贡献点"
 
 #: src/components/farm/PoolingHealth.tsx:294
 msgid "Stale Partials"
-msgstr "过期的贡献点"
+msgstr "过期贡献点"
 
 #: src/components/vcs/VCCard.tsx:176
 msgid "Standard Version Number"
@@ -5729,7 +5725,7 @@ msgstr "正在等待交易确认"
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:191
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:109
 msgid "Wallet"
-msgstr "钱包"
+msgstr "轻钱包"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:174
 msgid "Wallet {0}"
@@ -6033,3 +6029,4 @@ msgstr "可用余额必须大于1 mojo才能创建个人资料"
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "需确保钱包正在运行才能完成自动确认。"
+
