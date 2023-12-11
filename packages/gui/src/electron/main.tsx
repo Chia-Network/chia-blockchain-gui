@@ -507,7 +507,7 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
               }
             ),
             checkboxChecked: keepBackgroundRunning ?? false,
-            checkboxLabel: i18n._(/* i18n */ { id: 'Keep service running background' }),
+            checkboxLabel: i18n._(/* i18n */ { id: 'Keep service running in the background' }),
           });
           if (keepBackgroundRunning !== choice.checkboxChecked) {
             savePrefs({ ...p, keepBackgroundRunning: choice.checkboxChecked });
