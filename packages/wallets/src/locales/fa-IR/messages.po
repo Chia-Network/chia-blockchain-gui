@@ -785,4 +785,3 @@ msgstr "شما این اعتبار قابل تأیید را از ارائه ده
 #: src/components/WalletImport.tsx:73
 msgid "Your pasted list does not include {mnemonicWordCount} valid mnemonic words."
 msgstr ".کد رمزهای معتبر نیست {mnemonicWordCount} لیست فرارداده شما شامل"
-
