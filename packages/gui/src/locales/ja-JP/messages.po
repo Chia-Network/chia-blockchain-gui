@@ -8,7 +8,7 @@ msgstr ""
 "Language: ja_JP\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-03 00:04\n"
+"PO-Revision-Date: 2023-12-17 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -176,11 +176,11 @@ msgstr ""
 
 #: src/components/offers2/OfferBuilderImport.tsx:129
 msgid "(⌘V) a blob"
-msgstr ""
+msgstr "(⌘V)"
 
 #: src/components/offers2/OfferBuilderImport.tsx:129
 msgid "(Ctrl-V) a blob"
-msgstr ""
+msgstr "(Ctrl-V)"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:63
 msgid "(Not Installed)"
@@ -436,7 +436,7 @@ msgstr ""
 
 #: src/components/vcs/VCList.tsx:230
 msgid "Add Verifiable Credential from file"
-msgstr ""
+msgstr "可検証認証情報をファイルから読み込む"
 
 #: src/components/addressbook/ContactAdd.tsx:58
 #: src/components/addressbook/ContactEdit.tsx:61
@@ -456,7 +456,7 @@ msgstr ""
 
 #: src/components/settings/SettingsAdvanced.tsx:45
 msgid "Advanced"
-msgstr ""
+msgstr "上級者向け"
 
 #: src/components/app/AppKeyringMigrator.tsx:251
 msgid "After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring."
@@ -695,7 +695,7 @@ msgstr ""
 
 #: src/components/vcs/VCList.tsx:282
 msgid "Badging"
-msgstr ""
+msgstr "各種身分証"
 
 #: src/components/settings/ProfileAdd.tsx:98
 #~ msgid "Balance: {standardBalance} XCH"
@@ -791,11 +791,11 @@ msgstr ""
 
 #: src/components/settings/SettingsNFT.tsx:134
 msgid "Cache"
-msgstr ""
+msgstr "キャッシュ"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:236
 msgid "Cache size (GB)"
-msgstr ""
+msgstr "キャッシュサイズ (GB)"
 
 #: src/components/addressbook/ContactAdd.tsx:286
 #: src/components/addressbook/ContactEdit.tsx:300
@@ -976,7 +976,7 @@ msgstr ""
 #: src/components/settings/SettingsNFT.tsx:53
 #: src/components/settings/SettingsNFT.tsx:154
 msgid "Clear NFT cache"
-msgstr ""
+msgstr "NFT キャッシュを消去"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:92
 msgid "Clicking a delete icon only removes a directory from this list and never deletes the directory itself"
@@ -1045,7 +1045,7 @@ msgstr ""
 #: src/components/vcs/VCRevokeDialog.tsx:27
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:71
 msgid "Confirm"
-msgstr "了承"
+msgstr ""
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:19
 msgid "Confirm Disconnect"
@@ -1220,7 +1220,7 @@ msgstr ""
 #: src/components/offers/OfferEditor.tsx:193
 #: src/components/offers/OfferManager.tsx:425
 msgid "Create an Offer"
-msgstr ""
+msgstr "取引を作る"
 
 #: src/components/addressbook/ContactAdd.tsx:271
 msgid "Create Contact"
@@ -1245,7 +1245,7 @@ msgstr ""
 #: src/components/offers/OfferManager.tsx:407
 #: src/components/offers2/CreateOfferBuilder.tsx:200
 msgid "Create Offer"
-msgstr ""
+msgstr "取引を作成"
 
 #: src/constants/WalletConnectCommands.tsx:341
 msgid "Create Offer for Ids"
@@ -1287,7 +1287,7 @@ msgstr "セルフプールのためのNFTプロットを作成"
 #: src/components/offers2/CancelOfferList.tsx:127
 #: src/components/offers2/OfferIncomingTable.tsx:72
 msgid "Creation Date"
-msgstr ""
+msgstr "作成日時"
 
 #: src/components/offers/NFTOfferViewer.tsx:518
 msgid "Creator Fee ({0}%)"
@@ -1304,7 +1304,7 @@ msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:60
 msgid "Credentials"
-msgstr ""
+msgstr "認証情報"
 
 #: src/components/plot/add/PlotAddForm.tsx:152
 msgid "Currency code is not defined"
@@ -1641,7 +1641,7 @@ msgstr "オファーファイルをドラッグ＆ドロップ"
 
 #: src/components/offers2/OfferBuilderImport.tsx:128
 msgid "Drag & Drop an Offer File, Paste"
-msgstr ""
+msgstr "取引ファイルをドラッグ＆ドロップするか、 blob を貼り付けてください"
 
 #: src/constants/WalletConnectCommands.tsx:354
 msgid "Driver Dict"
@@ -1996,7 +1996,7 @@ msgstr ""
 
 #: src/components/settings/SettingsAdvanced.tsx:48
 msgid "Features for advanced users."
-msgstr ""
+msgstr "上級者向けの機能です。"
 
 #: src/components/settings/SettingsCustody.tsx:30
 msgid "Features to give you more protection and control over your digital assets."
@@ -2230,7 +2230,7 @@ msgstr ""
 
 #: src/components/vcs/VCList.tsx:298
 msgid "Government IDs"
-msgstr ""
+msgstr "政府発行の身分証"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:454
 #: src/components/settings/SettingsHarvester.tsx:516
@@ -2435,7 +2435,7 @@ msgstr ""
 
 #: src/components/offers2/OfferIncomingTable.tsx:121
 msgid "Incoming Offers"
-msgstr ""
+msgstr "受信した取引"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:17
 #: src/constants/WalletConnectCommands.tsx:965
@@ -2451,15 +2451,13 @@ msgstr "初期化中..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
 
@@ -2537,8 +2535,7 @@ msgstr "プールに参加する"
 
 #: src/components/plot/add/PlotAddNFT.tsx:49
 msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
-msgstr ""
-"参加したプールが当選するとXCHを獲得できます。\n"
+msgstr "参加したプールが当選するとXCHを獲得できます。\n"
 "プールでは定期的にXCHを獲得できますが引き換えに毎度の払い出しは少なくなります。\n"
 "長期的のリターンはソロファーミングで得られる報酬と変わりません。"
 
@@ -2602,7 +2599,7 @@ msgstr "アップロード・ダウンロード [KiB]"
 
 #: src/components/vcs/VCList.tsx:304
 msgid "KYC status"
-msgstr ""
+msgstr "KYC 情報"
 
 #: src/components/harvest/HarvesterLatency.tsx:88
 msgid "LAST 1 HOUR"
@@ -2691,7 +2688,7 @@ msgstr ""
 
 #: src/components/settings/SettingsNFT.tsx:185
 msgid "Limit cache size"
-msgstr ""
+msgstr "キャッシュサイズの上限"
 
 #: src/components/fullNode/FullNodeConnections.tsx:100
 msgid "List of connections is empty"
@@ -2795,7 +2792,7 @@ msgstr ""
 
 #: src/components/vcs/VCList.tsx:308
 msgid "Memberships"
-msgstr ""
+msgstr "団体所属情報"
 
 #: src/constants/WalletConnectCommands.tsx:138
 #: src/constants/WalletConnectCommands.tsx:531
@@ -3025,7 +3022,7 @@ msgstr "次へ"
 #: src/components/settings/SettingsNFT.tsx:81
 #: src/components/signVerify/SignMessage.tsx:154
 msgid "NFT"
-msgstr ""
+msgstr "NFT"
 
 #: src/util/offerBuilderDataToOffer.ts:262
 #: src/util/offerBuilderDataToOffer.ts:336
@@ -3061,11 +3058,11 @@ msgstr ""
 #: src/components/offers2/OfferBuilderNFT.tsx:54
 #: src/components/signVerify/SigningEntityNFT.tsx:65
 msgid "NFT ID"
-msgstr ""
+msgstr "NFT ID"
 
 #: src/components/offers/NFTOfferEditor.tsx:215
 msgid "NFT Identifier"
-msgstr ""
+msgstr "NFT 識別子"
 
 #: src/components/offers/NFTOfferPreview.tsx:44
 msgid "NFT identifier does not reference a valid NFT coin."
@@ -3119,7 +3116,7 @@ msgstr ""
 
 #: src/components/vcs/VCCard.tsx:89
 msgid "No"
-msgstr "いいえ"
+msgstr ""
 
 #: src/components/notification/NotificationsMenu.tsx:53
 msgid "No activities yet"
@@ -3148,7 +3145,7 @@ msgstr ""
 
 #: src/components/offers/OfferManager.tsx:370
 msgid "No current offers"
-msgstr ""
+msgstr "現在取引はありません"
 
 #: src/components/settings/SettingsIntegration.tsx:331
 msgid "No Custom Permissions"
@@ -3160,7 +3157,7 @@ msgstr ""
 
 #: src/components/offers2/OfferIncomingTable.tsx:259
 msgid "No incoming offers"
-msgstr ""
+msgstr "受信した取引はありません"
 
 #: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:115
 msgid "No Paired Keys"
@@ -3271,7 +3268,7 @@ msgstr ""
 
 #: src/components/settings/SettingsNotifications.tsx:30
 msgid "Notifications"
-msgstr ""
+msgstr "通知"
 
 #: src/components/offers/OfferShareDialog.tsx:444
 #: src/components/offers/OfferShareDialog.tsx:702
@@ -3348,7 +3345,7 @@ msgstr ""
 #: src/components/offers/OfferManager.tsx:413
 #: src/components/offers2/OfferNavigationHeader.tsx:16
 msgid "Offer Builder"
-msgstr ""
+msgstr "取引ビルダー"
 
 #: src/components/offers/NFTOfferViewer.tsx:173
 #: src/components/offers2/OfferBuilderValue.tsx:206
@@ -3403,7 +3400,7 @@ msgstr ""
 
 #: src/components/offers/OfferManager.tsx:394
 msgid "Offer Management"
-msgstr ""
+msgstr "取引管理"
 
 #: src/components/offers/OfferShareDialog.tsx:411
 #: src/components/offers/OfferShareDialog.tsx:499
@@ -3426,12 +3423,12 @@ msgstr ""
 #: src/components/offers/OfferManager.tsx:215
 #: src/components/offers2/CancelOfferList.tsx:80
 msgid "Offered"
-msgstr ""
+msgstr "差し出し内容"
 
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:24
 #: src/components/offers2/OfferIncomingTable.tsx:64
 msgid "Offering"
-msgstr ""
+msgstr "提示内容"
 
 #: src/components/offers/utils.ts:145
 #~ msgid "Offering: [{makerString}], Requesting: [{takerString}]"
@@ -3444,23 +3441,23 @@ msgstr ""
 #: src/components/dashboard/DashboardSideBar.tsx:67
 #: src/components/nfts/detail/NFTDetailV2.tsx:245
 msgid "Offers"
-msgstr ""
+msgstr "取引"
 
 #: src/components/offers2/OfferNavigationHeader.tsx:19
 msgid "Offers are a way to trade assets in a genuinely peer-to-peer way that eliminates counterparty risk."
-msgstr ""
+msgstr "取引（オファー）を使えばカウンターパーティーリスクに晒されることなく、完全に個人間のみの資産売買を行うことができます。"
 
 #: src/components/offers/OfferManager.tsx:397
 msgid "Offers are a way to trade assets in a genuinely peer-to-peer way to eliminate counterparty risk."
-msgstr ""
+msgstr "取引（オファー）を使えばカウンターパーティーリスクに晒されることなく、完全に個人間のみの資産売買を行うことができます。"
 
 #: src/components/offers/OfferManager.tsx:446
 msgid "Offers you accepted"
-msgstr ""
+msgstr "あなたが受け入れた取引"
 
 #: src/components/offers/OfferManager.tsx:445
 msgid "Offers you created"
-msgstr ""
+msgstr "あなたが作成した取引"
 
 #: src/components/farm/FarmHealth.tsx:209
 #: src/components/offers/OfferDataDialog.tsx:58
@@ -3519,7 +3516,7 @@ msgstr ""
 #: src/components/offers2/OfferBuilderImport.tsx:132
 #: src/components/signVerify/VerifyMessageImport.tsx:154
 msgid "or <0>browse</0> on your computer"
-msgstr ""
+msgstr "またはお使いのコンピューター内より <0>選択</0>"
 
 #: src/components/offers/OfferImport.tsx:170
 msgid "or Paste (⌘V) an Offer blob"
@@ -4237,12 +4234,12 @@ msgstr "削除中"
 #: src/components/offers/OfferManager.tsx:225
 #: src/components/offers2/CancelOfferList.tsx:95
 msgid "Requested"
-msgstr ""
+msgstr "要求内容"
 
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:31
 #: src/components/offers2/OfferIncomingTable.tsx:44
 msgid "Requesting"
-msgstr ""
+msgstr "要求内容"
 
 #: src/constants/WalletConnectCommands.tsx:290
 msgid "Requests a complete listing of the offers associated with the current wallet key"
@@ -4600,7 +4597,7 @@ msgstr ""
 #: src/components/dashboard/DashboardSideBar.tsx:129
 #: src/components/settings/Settings.tsx:74
 msgid "Settings"
-msgstr ""
+msgstr "設定"
 
 #: src/components/offers/OfferManager.tsx:269
 #: src/components/offers/OfferShareDialog.tsx:923
@@ -4833,7 +4830,7 @@ msgstr ""
 
 #: src/components/app/AppState.tsx:265
 msgid "Starting services"
-msgstr ""
+msgstr "各種サービスを起動しています"
 
 #: src/components/settings/SettingsStartup.tsx:16
 msgid "Startup"
@@ -5216,7 +5213,7 @@ msgstr ""
 #: src/components/dashboard/DashboardSideBar.tsx:47
 #: src/components/offers2/OfferBuilderTokensSection.tsx:114
 msgid "Tokens"
-msgstr ""
+msgstr "トークン"
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:114
 msgid "Too Many Plot NFTs"
@@ -5602,11 +5599,11 @@ msgstr ""
 #: src/components/vcs/VCList.tsx:270
 #: src/components/vcs/VCList.tsx:331
 msgid "Verifiable Credentials"
-msgstr ""
+msgstr "可検証認証情報"
 
 #: src/components/vcs/VCList.tsx:273
 msgid "Verifiable Credentials are like digital ID cards that can prove certain information about you without giving away your private details."
-msgstr ""
+msgstr "可検証認証情報とは、知られてほしくない個人情報を渡さずに自身の情報を証明できる、デジタル身分証のようなものです。"
 
 #: src/components/signVerify/VerifyMessage.tsx:123
 msgid "Verification Failed"
@@ -5635,7 +5632,7 @@ msgstr ""
 
 #: src/components/offers2/OfferIncomingTable.tsx:95
 msgid "View"
-msgstr "表示"
+msgstr ""
 
 #: src/components/offers/OfferImport.tsx:184
 msgid "View an Offer"
@@ -5728,7 +5725,7 @@ msgstr ""
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:191
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:109
 msgid "Wallet"
-msgstr ""
+msgstr "ウォレット"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:174
 msgid "Wallet {0}"
@@ -5878,7 +5875,7 @@ msgstr ""
 #: src/components/plot/add/PlotAddChooseSize.tsx:61
 #: src/components/vcs/VCCard.tsx:89
 msgid "Yes"
-msgstr "はい"
+msgstr ""
 
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:22
 msgid "Yes, Accept Offer"
@@ -6032,3 +6029,4 @@ msgstr ""
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr ""
+
