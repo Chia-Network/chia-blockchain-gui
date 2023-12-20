@@ -484,13 +484,17 @@ msgstr "Цей ключ використовується для вашої ад�
 msgid "This will permanently remove the key from your computer, make sure you have your mnemonic phrase backed up."
 msgstr "Це назавжди видалить ключ із вашого комп’ютера, переконайтеся, що у вас є резервна копія мнемонічної фрази."
 
+#: src/utils/getTransactionResult.ts:40
+msgid "Transaction has been sent to a full node and is pending inclusion into the mempool. {0}"
+msgstr ""
+
 #: src/utils/getTransactionResult.ts:15
 msgid "Transaction has not been sent to node yet"
 msgstr "Транзакція ще не була відправлена до вузла"
 
 #: src/utils/getTransactionResult.ts:33
-msgid "Transaction has sent to a full node and is pending inclusion into the mempool. {0}"
-msgstr "Транзакція була відправлена на повний вузол і очікує включення до mempool. {0}"
+#~ msgid "Transaction has sent to a full node and is pending inclusion into the mempool. {0}"
+#~ msgstr "Транзакція була відправлена на повний вузол і очікує включення до mempool. {0}"
 
 #: src/utils/getTransactionResult.ts:24
 msgid "Transaction has successfully been sent to a full node and included in the mempool."

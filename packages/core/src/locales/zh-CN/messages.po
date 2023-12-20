@@ -484,13 +484,17 @@ msgstr "此密钥用作联合耕种奖励地址。删除此密钥可能导致无
 msgid "This will permanently remove the key from your computer, make sure you have your mnemonic phrase backed up."
 msgstr "这将永久从计算机中删除该密钥，请确保备份了助记词。"
 
+#: src/utils/getTransactionResult.ts:40
+msgid "Transaction has been sent to a full node and is pending inclusion into the mempool. {0}"
+msgstr ""
+
 #: src/utils/getTransactionResult.ts:15
 msgid "Transaction has not been sent to node yet"
 msgstr "交易尚未发送到节点"
 
 #: src/utils/getTransactionResult.ts:33
-msgid "Transaction has sent to a full node and is pending inclusion into the mempool. {0}"
-msgstr "交易已经发送到全节点，并等待添加到内存池中。{0}"
+#~ msgid "Transaction has sent to a full node and is pending inclusion into the mempool. {0}"
+#~ msgstr "交易已经发送到全节点，并等待添加到内存池中。{0}"
 
 #: src/utils/getTransactionResult.ts:24
 msgid "Transaction has successfully been sent to a full node and included in the mempool."

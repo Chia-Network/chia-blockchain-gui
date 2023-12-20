@@ -486,13 +486,17 @@ msgstr "این کلید برای دریافت پاداش استخر فارم ش�
 msgid "This will permanently remove the key from your computer, make sure you have your mnemonic phrase backed up."
 msgstr "با این کار کلید برای همیشه از رایانه شما حذف میشود، مطمئن شوید که از کلمات کد خود نسخه پشتیبان تهیه کرده اید."
 
+#: src/utils/getTransactionResult.ts:40
+msgid "Transaction has been sent to a full node and is pending inclusion into the mempool. {0}"
+msgstr ""
+
 #: src/utils/getTransactionResult.ts:15
 msgid "Transaction has not been sent to node yet"
 msgstr "تراکنش هنوز به نود ارسال نشده"
 
 #: src/utils/getTransactionResult.ts:33
-msgid "Transaction has sent to a full node and is pending inclusion into the mempool. {0}"
-msgstr "تراکنش به یک نودکامل ارسال شده و منتظر قرار گرفتن در حافظه استخر تراکنش است. {0}"
+#~ msgid "Transaction has sent to a full node and is pending inclusion into the mempool. {0}"
+#~ msgstr "تراکنش به یک نودکامل ارسال شده و منتظر قرار گرفتن در حافظه استخر تراکنش است. {0}"
 
 #: src/utils/getTransactionResult.ts:24
 msgid "Transaction has successfully been sent to a full node and included in the mempool."

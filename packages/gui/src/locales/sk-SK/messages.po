@@ -19,11 +19,6 @@ msgstr ""
 "X-Crowdin-File-ID: 35\n"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:510
-msgid "Keep service running in the background"
-msgstr ""
-
-#. js-lingui-explicit-id
 #: src/components/nfts/NFTBurnDialog.tsx:133
 msgid "Do you want to burn {count} NFTs?"
 msgstr "Chcete spáliť {count} NFT?"
@@ -67,6 +62,11 @@ msgstr "Potvrdiť"
 #: src/electron/main.tsx:505
 msgid "Are you sure you want to quit?"
 msgstr "Naozaj chcete skončiť?"
+
+#. js-lingui-explicit-id
+#: src/electron/main.tsx:510
+msgid "Keep service running in the background"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:628
@@ -388,7 +388,7 @@ msgid "Add a plot"
 msgstr "Pridať pole"
 
 #: src/components/farm/FarmHero.tsx:37
-#: src/components/plot/add/PlotAddForm.tsx:248
+#: src/components/plot/add/PlotAddForm.tsx:254
 #: src/components/plot/overview/PlotOverviewHero.tsx:43
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:199
 #: src/components/plotNFT/PlotNFTCard.tsx:233
@@ -1196,7 +1196,7 @@ msgstr ""
 msgid "Counter Offer"
 msgstr ""
 
-#: src/components/plot/add/PlotAddForm.tsx:259
+#: src/components/plot/add/PlotAddForm.tsx:265
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:81
 #: src/components/settings/ProfileAdd.tsx:159
 msgid "Create"
@@ -1311,7 +1311,7 @@ msgstr "Percento autorských honorárov sa zdá byť vysoké"
 msgid "Credentials"
 msgstr "Doklady"
 
-#: src/components/plot/add/PlotAddForm.tsx:152
+#: src/components/plot/add/PlotAddForm.tsx:158
 msgid "Currency code is not defined"
 msgstr "Kód meny nie je definovaný"
 
@@ -1943,7 +1943,7 @@ msgstr "Nebeží farmer"
 msgid "Farmer Public Key"
 msgstr "Verejný kľúč farmára"
 
-#: src/components/plot/add/PlotAddForm.tsx:213
+#: src/components/plot/add/PlotAddForm.tsx:219
 msgid "Farmer public key is invalid"
 msgstr ""
 
@@ -3567,7 +3567,7 @@ msgstr "DID majiteľa"
 msgid "Owner Public Key"
 msgstr "Verejný kľúč vlastníka"
 
-#: src/components/plot/add/PlotAddForm.tsx:170
+#: src/components/plot/add/PlotAddForm.tsx:176
 msgid "p2SingletonPuzzleHash is not defined"
 msgstr "p2SingletonPuzzleHash nie je definovaný"
 
@@ -3975,7 +3975,7 @@ msgstr "Pokyny združenia na výplatu"
 msgid "Pool Public Key"
 msgstr "Verejný kľúč združenia"
 
-#: src/components/plot/add/PlotAddForm.tsx:220
+#: src/components/plot/add/PlotAddForm.tsx:226
 msgid "Pool public key is invalid"
 msgstr ""
 
@@ -4918,7 +4918,7 @@ msgstr "Cieľová adresa"
 msgid "Target Puzzle Hash"
 msgstr "Hash hádaniek cieľa"
 
-#: src/components/plot/add/PlotAddForm.tsx:183
+#: src/components/plot/add/PlotAddForm.tsx:189
 msgid "Temp folder location is required for hybrid disk plotting with 16/128G RAM"
 msgstr ""
 
