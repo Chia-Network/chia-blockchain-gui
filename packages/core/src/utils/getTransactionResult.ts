@@ -28,9 +28,16 @@ export default function getTransactionResult(transaction): {
 
   // At least one node has accepted our transaction as pending
   const pendingNodeResponse = transaction.sentTo.find((item) => item[1] === mempoolInclusionStatus.PENDING);
-  if (pendingNodeResponse) {
+
+  // Note: A refactoring of this is probably warranted, especially if additional mempool statuses need special handling
+  //
+  // For now, MEMPOOL_CONFLICT will be treated as a failure, but we'll display an error explaining that the full node
+  // will retry to include the txn if the conflicts are resolved.
+  const ignoredMempoolStatuses = ['MEMPOOL_CONFLICT'];
+
+  if (pendingNodeResponse && !ignoredMempoolStatuses.includes(pendingNodeResponse[2])) {
     return {
-      message: t`Transaction has sent to a full node and is pending inclusion into the mempool. ${pendingNodeResponse[2]}`,
+      message: t`Transaction has been sent to a full node and is pending inclusion into the mempool. ${pendingNodeResponse[2]}`,
       success: true,
     };
   }
