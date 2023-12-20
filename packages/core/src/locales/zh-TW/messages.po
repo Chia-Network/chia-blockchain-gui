@@ -484,13 +484,17 @@ msgstr "該金鑰用於您的挖礦池獎勵地址。刪除該金鑰可能導致
 msgid "This will permanently remove the key from your computer, make sure you have your mnemonic phrase backed up."
 msgstr "此操作將永久從您的電腦中刪除該金鑰，請確保已備份您的助記詞。"
 
+#: src/utils/getTransactionResult.ts:40
+msgid "Transaction has been sent to a full node and is pending inclusion into the mempool. {0}"
+msgstr ""
+
 #: src/utils/getTransactionResult.ts:15
 msgid "Transaction has not been sent to node yet"
 msgstr "交易還沒發送至節點"
 
 #: src/utils/getTransactionResult.ts:33
-msgid "Transaction has sent to a full node and is pending inclusion into the mempool. {0}"
-msgstr "該筆交易已發送至一個完整節點並正在等待被加入記憶池。{0}"
+#~ msgid "Transaction has sent to a full node and is pending inclusion into the mempool. {0}"
+#~ msgstr "該筆交易已發送至一個完整節點並正在等待被加入記憶池。{0}"
 
 #: src/utils/getTransactionResult.ts:24
 msgid "Transaction has successfully been sent to a full node and included in the mempool."

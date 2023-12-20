@@ -324,9 +324,15 @@ msgstr ""
 msgid "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefore wallet receive addresses) that will all ultimately come back to and be spendable by a single private key."
 msgstr "階層的決定性鍵、または HD 鍵とは、一つの秘密鍵に無数の公開鍵 (= ウォレットの受け取りアドレス) を対応させられる公開・秘密鍵の生成方法です。どの公開鍵への入金も、最終的には同じ秘密鍵に着金し、同じ秘密鍵で支払うことができます。"
 
+#: src/components/WalletSendTransactionResultDialog.tsx:47
+msgid ""
+"If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a\n"
+"higher fee."
+msgstr ""
+
 #: src/components/WalletSendTransactionResultDialog.tsx:41
-msgid "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a higher fee."
-msgstr "取引をより速く完了させたい場合は、未承認の取引を削除し、手数料を上げて再試行してください。"
+#~ msgid "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a higher fee."
+#~ msgstr "取引をより速く完了させたい場合は、未承認の取引を削除し、手数料を上げて再試行してください。"
 
 #: src/components/PasteMnemonic.tsx:79
 msgid "Import"
@@ -366,6 +372,10 @@ msgid "Memos"
 msgstr "メモ"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:16
+msgid "Mempool Conflict"
+msgstr ""
+
+#: src/components/WalletSendTransactionResultDialog.tsx:20
 msgid "Mempool Full"
 msgstr "Mempool に空きがありません"
 
@@ -644,8 +654,22 @@ msgstr ""
 msgid "The recipient of this transaction will need to have valid credentials in order to claim the sent assets. See the CR CAT restrictions above."
 msgstr ""
 
+#: src/components/WalletSendTransactionResultDialog.tsx:44
+msgid ""
+"The transaction could not be immediately included in the mempool because the specified fee is too low. The\n"
+"transaction will be retried periodically, and may be included in the mempool once fees are lower, or if\n"
+"space becomes available."
+msgstr ""
+
 #: src/components/WalletSendTransactionResultDialog.tsx:34
-msgid "The transaction could not be immediately included in the mempool because the specified fee is too low. The transaction will be retried periodically, and may be included in the mempool once fees are lower, or if space becomes available."
+#~ msgid "The transaction could not be immediately included in the mempool because the specified fee is too low. The transaction will be retried periodically, and may be included in the mempool once fees are lower, or if space becomes available."
+#~ msgstr ""
+
+#: src/components/WalletSendTransactionResultDialog.tsx:38
+msgid ""
+"The transaction is pending inclusion in the mempool because it conflicts with one or more other transactions\n"
+"already in the mempool. The transaction will be retried periodically, and may be included in the mempool if\n"
+"the conflicting transactions are removed."
 msgstr ""
 
 #: src/components/WalletBadge.tsx:26
@@ -705,7 +729,7 @@ msgstr "トークン"
 msgid "Total Balance"
 msgstr "全残高"
 
-#: src/components/WalletSendTransactionResultDialog.tsx:27
+#: src/components/WalletSendTransactionResultDialog.tsx:31
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr ""
 

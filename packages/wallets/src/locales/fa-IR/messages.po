@@ -324,9 +324,15 @@ msgstr ":از"
 msgid "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefore wallet receive addresses) that will all ultimately come back to and be spendable by a single private key."
 msgstr "کلیدهای قطعی سلسله مراتب نوعی از طرح کلید عمومی یا کلید شخصی هستند که در آن یک کلید شخصی میتواند تقریباً بی نهایت کلید عمومی مختلف داشته باشد (همچنین آدرس های دریافت کیف پول) که در نهایت همه به یک کلید شحصی خاص باز میگردند و قابل خرج کردن هستند."
 
+#: src/components/WalletSendTransactionResultDialog.tsx:47
+msgid ""
+"If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a\n"
+"higher fee."
+msgstr ""
+
 #: src/components/WalletSendTransactionResultDialog.tsx:41
-msgid "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a higher fee."
-msgstr "اگر میخواهید سرعت تراکنش را افزایش دهید، لطفا تراکنش‌های تایید نشده را حذف کنید و با کارمزد بالاتر دوباره امتحان کنید."
+#~ msgid "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a higher fee."
+#~ msgstr "اگر میخواهید سرعت تراکنش را افزایش دهید، لطفا تراکنش‌های تایید نشده را حذف کنید و با کارمزد بالاتر دوباره امتحان کنید."
 
 #: src/components/PasteMnemonic.tsx:79
 msgid "Import"
@@ -366,6 +372,10 @@ msgid "Memos"
 msgstr "یادداشت ها"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:16
+msgid "Mempool Conflict"
+msgstr ""
+
+#: src/components/WalletSendTransactionResultDialog.tsx:20
 msgid "Mempool Full"
 msgstr "حافظه استخر تراکنش پر است"
 
@@ -644,9 +654,23 @@ msgstr "شاخص مشتق که کیف پول بلاکچین را اسکن میک
 msgid "The recipient of this transaction will need to have valid credentials in order to claim the sent assets. See the CR CAT restrictions above."
 msgstr "گیرنده این تراکنش برای مطالبه دارایی های ارسالی باید دارای اعتبارنامه معتبر باشد. محدودیت های CR CAT را در بالا ببینید."
 
+#: src/components/WalletSendTransactionResultDialog.tsx:44
+msgid ""
+"The transaction could not be immediately included in the mempool because the specified fee is too low. The\n"
+"transaction will be retried periodically, and may be included in the mempool once fees are lower, or if\n"
+"space becomes available."
+msgstr ""
+
 #: src/components/WalletSendTransactionResultDialog.tsx:34
-msgid "The transaction could not be immediately included in the mempool because the specified fee is too low. The transaction will be retried periodically, and may be included in the mempool once fees are lower, or if space becomes available."
-msgstr "تراکنش نمیتواند فوراً در حافظه استخر تراکنش گنجانده شود زیرا کارمزد تعیین‌شده بسیار کم است. این تراکنش به صورت دوره‌ای تکرار میشود و ممکن است پس از کاهش هزینه‌ها، یا در صورت فراهم شدن فضا، در مجموعه گنجانده شود."
+#~ msgid "The transaction could not be immediately included in the mempool because the specified fee is too low. The transaction will be retried periodically, and may be included in the mempool once fees are lower, or if space becomes available."
+#~ msgstr "تراکنش نمیتواند فوراً در حافظه استخر تراکنش گنجانده شود زیرا کارمزد تعیین‌شده بسیار کم است. این تراکنش به صورت دوره‌ای تکرار میشود و ممکن است پس از کاهش هزینه‌ها، یا در صورت فراهم شدن فضا، در مجموعه گنجانده شود."
+
+#: src/components/WalletSendTransactionResultDialog.tsx:38
+msgid ""
+"The transaction is pending inclusion in the mempool because it conflicts with one or more other transactions\n"
+"already in the mempool. The transaction will be retried periodically, and may be included in the mempool if\n"
+"the conflicting transactions are removed."
+msgstr ""
 
 #: src/components/WalletBadge.tsx:26
 msgid "This access token is verified"
@@ -705,7 +729,7 @@ msgstr "توکن ها"
 msgid "Total Balance"
 msgstr "موجودی کل"
 
-#: src/components/WalletSendTransactionResultDialog.tsx:27
+#: src/components/WalletSendTransactionResultDialog.tsx:31
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "تراکنش به نودکامل منتقل شد و در حافظه استخر تراکنش قرار گرفت."
 

@@ -484,13 +484,17 @@ msgstr "Attention : Cette clé est utilisée pour votre adresse de récompenses 
 msgid "This will permanently remove the key from your computer, make sure you have your mnemonic phrase backed up."
 msgstr "Cela supprimera définitivement la clé de votre ordinateur, assurez-vous d'avoir une copie de votre phrase mnémonique."
 
+#: src/utils/getTransactionResult.ts:40
+msgid "Transaction has been sent to a full node and is pending inclusion into the mempool. {0}"
+msgstr ""
+
 #: src/utils/getTransactionResult.ts:15
 msgid "Transaction has not been sent to node yet"
 msgstr "Transaction pas encore transmise au nœud"
 
 #: src/utils/getTransactionResult.ts:33
-msgid "Transaction has sent to a full node and is pending inclusion into the mempool. {0}"
-msgstr "Transaction transmise au nœud, en attente d'inclusion en mempool. {0}"
+#~ msgid "Transaction has sent to a full node and is pending inclusion into the mempool. {0}"
+#~ msgstr "Transaction transmise au nœud, en attente d'inclusion en mempool. {0}"
 
 #: src/utils/getTransactionResult.ts:24
 msgid "Transaction has successfully been sent to a full node and included in the mempool."

@@ -324,9 +324,15 @@ msgstr ""
 msgid "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefore wallet receive addresses) that will all ultimately come back to and be spendable by a single private key."
 msgstr "HD alebo Hierarchické Deterministické kľúče sú typ schémy verejného kľúča/súkromného kľúča, kde jeden súkromný kľúč môže mať takmer nekonečný počet rôznych verejných kľúčov (a tým pádom adries pre príjem do peňaženky), ktoré sa nakoniec vrátia k jedinému súkromnému kľúču a budú z neho utratiteľné."
 
+#: src/components/WalletSendTransactionResultDialog.tsx:47
+msgid ""
+"If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a\n"
+"higher fee."
+msgstr ""
+
 #: src/components/WalletSendTransactionResultDialog.tsx:41
-msgid "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a higher fee."
-msgstr "Ak chcete transakciu urýchliť, vymažte nepotvrdené transakcie a skúste to znova s vyšším poplatkom."
+#~ msgid "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a higher fee."
+#~ msgstr "Ak chcete transakciu urýchliť, vymažte nepotvrdené transakcie a skúste to znova s vyšším poplatkom."
 
 #: src/components/PasteMnemonic.tsx:79
 msgid "Import"
@@ -366,6 +372,10 @@ msgid "Memos"
 msgstr "Poznámky"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:16
+msgid "Mempool Conflict"
+msgstr ""
+
+#: src/components/WalletSendTransactionResultDialog.tsx:20
 msgid "Mempool Full"
 msgstr "Pamäťový fond je plný"
 
@@ -644,9 +654,23 @@ msgstr "Derivačný index nastavuje rozsah adries peňaženky, ktoré peňaženk
 msgid "The recipient of this transaction will need to have valid credentials in order to claim the sent assets. See the CR CAT restrictions above."
 msgstr ""
 
+#: src/components/WalletSendTransactionResultDialog.tsx:44
+msgid ""
+"The transaction could not be immediately included in the mempool because the specified fee is too low. The\n"
+"transaction will be retried periodically, and may be included in the mempool once fees are lower, or if\n"
+"space becomes available."
+msgstr ""
+
 #: src/components/WalletSendTransactionResultDialog.tsx:34
-msgid "The transaction could not be immediately included in the mempool because the specified fee is too low. The transaction will be retried periodically, and may be included in the mempool once fees are lower, or if space becomes available."
-msgstr "Transakcia nemohla byť okamžite zahrnutá do pamäťového fondu, pretože zadaný poplatok je príliš nízky. Transakcia sa zopakuje v pravidelných intervaloch, a môže byť zahrnutá do pamäťového fondu, keď budú poplatky nižšie, alebo ak sa uvoľní miesto."
+#~ msgid "The transaction could not be immediately included in the mempool because the specified fee is too low. The transaction will be retried periodically, and may be included in the mempool once fees are lower, or if space becomes available."
+#~ msgstr "Transakcia nemohla byť okamžite zahrnutá do pamäťového fondu, pretože zadaný poplatok je príliš nízky. Transakcia sa zopakuje v pravidelných intervaloch, a môže byť zahrnutá do pamäťového fondu, keď budú poplatky nižšie, alebo ak sa uvoľní miesto."
+
+#: src/components/WalletSendTransactionResultDialog.tsx:38
+msgid ""
+"The transaction is pending inclusion in the mempool because it conflicts with one or more other transactions\n"
+"already in the mempool. The transaction will be retried periodically, and may be included in the mempool if\n"
+"the conflicting transactions are removed."
+msgstr ""
 
 #: src/components/WalletBadge.tsx:26
 msgid "This access token is verified"
@@ -705,7 +729,7 @@ msgstr "Tokeny"
 msgid "Total Balance"
 msgstr "Celkový zostatok"
 
-#: src/components/WalletSendTransactionResultDialog.tsx:27
+#: src/components/WalletSendTransactionResultDialog.tsx:31
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "Transakcia bola úspešne odoslaná úplnému uzlu a zahrnutá do pamäťového fondu."
 

@@ -19,11 +19,6 @@ msgstr ""
 "X-Crowdin-File-ID: 35\n"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:510
-msgid "Keep service running in the background"
-msgstr ""
-
-#. js-lingui-explicit-id
 #: src/components/nfts/NFTBurnDialog.tsx:133
 msgid "Do you want to burn {count} NFTs?"
 msgstr "Haluatko polttaa {count} NFT:tä?"
@@ -67,6 +62,11 @@ msgstr "Vahvista"
 #: src/electron/main.tsx:505
 msgid "Are you sure you want to quit?"
 msgstr "Oletko varma että haluat lopettaa?"
+
+#. js-lingui-explicit-id
+#: src/electron/main.tsx:510
+msgid "Keep service running in the background"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:628

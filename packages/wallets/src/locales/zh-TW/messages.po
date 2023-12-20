@@ -326,9 +326,15 @@ msgstr ""
 "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefore wallet receive addresses) that will all ultimately come back to and be spendable by a single private key.\n"
 "一個私鑰可以分成幾乎無限數量的不同公鑰(指錢包地址)，這些不同的公鑰(指錢包地址)都將回歸到同一個私鑰。"
 
+#: src/components/WalletSendTransactionResultDialog.tsx:47
+msgid ""
+"If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a\n"
+"higher fee."
+msgstr ""
+
 #: src/components/WalletSendTransactionResultDialog.tsx:41
-msgid "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a higher fee."
-msgstr "如果您想加快交易速度，請刪除未確認的交易並以更高的手續費重試。"
+#~ msgid "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a higher fee."
+#~ msgstr "如果您想加快交易速度，請刪除未確認的交易並以更高的手續費重試。"
 
 #: src/components/PasteMnemonic.tsx:79
 msgid "Import"
@@ -368,6 +374,10 @@ msgid "Memos"
 msgstr "備註（Memos）"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:16
+msgid "Mempool Conflict"
+msgstr ""
+
+#: src/components/WalletSendTransactionResultDialog.tsx:20
 msgid "Mempool Full"
 msgstr "交易池已滿"
 
@@ -646,9 +656,23 @@ msgstr "衍生索引設置錢包掃描區塊鏈的地址範圍。如果您有大
 msgid "The recipient of this transaction will need to have valid credentials in order to claim the sent assets. See the CR CAT restrictions above."
 msgstr "交易的接收方將需要有效的憑證才能領取發送的資產。請參閱上面的CR CAT限制。"
 
+#: src/components/WalletSendTransactionResultDialog.tsx:44
+msgid ""
+"The transaction could not be immediately included in the mempool because the specified fee is too low. The\n"
+"transaction will be retried periodically, and may be included in the mempool once fees are lower, or if\n"
+"space becomes available."
+msgstr ""
+
 #: src/components/WalletSendTransactionResultDialog.tsx:34
-msgid "The transaction could not be immediately included in the mempool because the specified fee is too low. The transaction will be retried periodically, and may be included in the mempool once fees are lower, or if space becomes available."
-msgstr "交易無法立即包含在記憶池中，因為指定的手續費太低。交易將定期重試，一旦手續費降低或空間可用，可能會被包含在記憶池中。"
+#~ msgid "The transaction could not be immediately included in the mempool because the specified fee is too low. The transaction will be retried periodically, and may be included in the mempool once fees are lower, or if space becomes available."
+#~ msgstr "交易無法立即包含在記憶池中，因為指定的手續費太低。交易將定期重試，一旦手續費降低或空間可用，可能會被包含在記憶池中。"
+
+#: src/components/WalletSendTransactionResultDialog.tsx:38
+msgid ""
+"The transaction is pending inclusion in the mempool because it conflicts with one or more other transactions\n"
+"already in the mempool. The transaction will be retried periodically, and may be included in the mempool if\n"
+"the conflicting transactions are removed."
+msgstr ""
 
 #: src/components/WalletBadge.tsx:26
 msgid "This access token is verified"
@@ -707,7 +731,7 @@ msgstr "代幣"
 msgid "Total Balance"
 msgstr "總餘額"
 
-#: src/components/WalletSendTransactionResultDialog.tsx:27
+#: src/components/WalletSendTransactionResultDialog.tsx:31
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "交易已成功發送到全節點並包含在記憶池中。"
 
