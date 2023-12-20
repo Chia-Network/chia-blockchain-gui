@@ -77,8 +77,9 @@ export default function PlotAddForm(props: Props) {
 
   const defaultsForPlotter = (plotterName: PlotterName) => {
     const plotterDefaults = plotters[plotterName]?.defaults ?? defaultPlotter.defaults;
+    const selectedPlotterName = plotterDefaults.plotterName as PlotterName;
     const { plotSize } = plotterDefaults;
-    const maxRam = plottingInfo[plotterName].find((element) => element.value === plotSize)?.defaultRam;
+    const maxRam = plottingInfo[selectedPlotterName].find((element) => element.value === plotSize)?.defaultRam;
     const defaults = {
       ...plotterDefaults,
       ...otherDefaults,
@@ -86,12 +87,17 @@ export default function PlotAddForm(props: Props) {
     };
 
     if (
-      (plotterName === PlotterName.BLADEBIT_RAM ||
-        plotterName === PlotterName.BLADEBIT_DISK ||
-        plotterName === PlotterName.BLADEBIT_CUDA) &&
-      +plotters[plotterName].version.split('.')[0] < 3 // Bladebit < 3.0.0 does not support plot compression
+      selectedPlotterName === PlotterName.BLADEBIT_RAM ||
+      selectedPlotterName === PlotterName.BLADEBIT_DISK ||
+      selectedPlotterName === PlotterName.BLADEBIT_CUDA
     ) {
-      defaults.bladebitCompressionLevel = undefined;
+      const plotter = plotters[selectedPlotterName];
+      // Only Bladebit >= 3.0.0 does support plot compression
+      if (plotter && plotter.version && +plotter.version.split('.')[0] >= 3) {
+        defaults.bladebitCompressionLevel = plotterName === PlotterName.BLADEBIT_CUDA ? 1 : 0;
+      } else {
+        defaults.bladebitCompressionLevel = undefined;
+      }
     }
 
     return defaults;
