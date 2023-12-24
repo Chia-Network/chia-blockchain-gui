@@ -8,7 +8,8 @@ import { AssetIdMapEntry } from '../hooks/useAssetIdName';
 
 export default function createOfferForIdsToOfferBuilderData(
   walletIdsAndAmounts: Record<string, number>,
-  lookupByWalletId: (walletId: string) => AssetIdMapEntry | undefined
+  lookupByWalletId: (walletId: string) => AssetIdMapEntry | undefined,
+  fee?: string
 ): OfferBuilderData {
   const offerBuilderData: OfferBuilderData = createDefaultValues();
   Object.entries(walletIdsAndAmounts).forEach(([walletOrAssetId, amount]) => {
@@ -42,6 +43,10 @@ export default function createOfferForIdsToOfferBuilderData(
       console.error(e);
     }
   });
+
+  if (fee) {
+    offerBuilderData.offered.fee.push({ amount: mojoToChia(fee).toFixed() });
+  }
 
   return offerBuilderData;
 }
