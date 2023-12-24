@@ -1,11 +1,11 @@
 import { Button, Flex, Loading, useOpenDialog, chiaToMojo } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import BigNumber from 'bignumber.js';
 import React, { useMemo } from 'react';
 
 import OfferBuilderData from '../../@types/OfferBuilderData';
 import useAssetIdName from '../../hooks/useAssetIdName';
 import createOfferForIdsToOfferBuilderData from '../../util/createOfferForIdsToOfferBuilderData';
+import parseFee from '../../util/parseFee';
 import OfferBuilderViewerDialog from '../offers2/OfferBuilderViewerDialog';
 
 export type WalletConnectOfferPreviewProps = {
@@ -13,34 +13,6 @@ export type WalletConnectOfferPreviewProps = {
   values: Record<string, any>;
   onChange: (values: Record<string, any>) => void;
 };
-
-function parseFee(value: any) {
-  if (value === null || value === undefined) {
-    return '';
-  }
-
-  if (typeof value === 'string') {
-    return value;
-  }
-
-  if (typeof value === 'number') {
-    if (Number.isNaN(value)) {
-      return '';
-    }
-
-    return value.toString();
-  }
-
-  if (value instanceof BigNumber) {
-    if (value.isNaN()) {
-      return '';
-    }
-
-    return value.toFixed();
-  }
-
-  return value;
-}
 
 export default function WalletConnectCreateOfferPreview(props: WalletConnectOfferPreviewProps) {
   const { value, values, onChange } = props;
