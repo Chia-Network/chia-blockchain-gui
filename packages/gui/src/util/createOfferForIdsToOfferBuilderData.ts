@@ -45,7 +45,7 @@ export default function createOfferForIdsToOfferBuilderData(
   });
 
   if (fee) {
-    offerBuilderData.offered.fee.push({ amount: mojoToChia(fee).toFixed() });
+    offerBuilderData.offered.fee = [{ amount: mojoToChia(fee).toFixed() }];
   }
 
   return offerBuilderData;
