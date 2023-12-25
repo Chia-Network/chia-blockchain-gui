@@ -35,7 +35,6 @@ export default function createDefaultValues(params: CreateDefaultValuesParams | 
       nfts,
       xch: walletType === WalletType.STANDARD_WALLET ? [{ amount: '' }] : [],
       tokens: [WalletType.CAT, WalletType.CRCAT].includes(walletType) && assetId ? [{ assetId, amount: '' }] : [],
-      fee: [{ amount: '' }],
     },
     requested: {
       ...clonedEmptyDefaultValues.requested,
