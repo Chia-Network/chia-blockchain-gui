@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-17 00:04\n"
+"PO-Revision-Date: 2023-12-31 00:05\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -110,15 +110,15 @@ msgstr "Kopiera till Urklipp"
 
 #: src/screens/SelectKey/SelectKey.tsx:274
 msgid "Create a new wallet key"
-msgstr ""
+msgstr "Skapa en ny plånboksnyckel"
 
 #: src/screens/SelectKey/SelectKey.tsx:266
 msgid "Create a new wallet key to get started with Chia."
-msgstr ""
+msgstr "Skapa en ny plånboksnyckel för att komma igång med Chia."
 
 #: src/screens/SelectKey/SelectKey.tsx:177
 msgid "Create New"
-msgstr ""
+msgstr "Skapa ny"
 
 #: src/components/Settings/SettingsApp.tsx:111
 msgid "Dark"
@@ -233,7 +233,7 @@ msgstr "Dölj avancerade alternativ"
 
 #: src/screens/SelectKey/SelectKey.tsx:182
 msgid "Import Existing"
-msgstr ""
+msgstr "Importera befintlig"
 
 #: src/screens/SelectKey/SelectKey.tsx:181
 #~ msgid "Import from Mnemonics (12 or 24 words)"
@@ -332,7 +332,7 @@ msgstr "OK"
 
 #: src/screens/SelectKey/SelectKey.tsx:258
 msgid "Open a world of possibilities."
-msgstr ""
+msgstr "Öppna en värld av möjligheter."
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:98
 msgid "Pool Public Key"
@@ -486,7 +486,7 @@ msgstr "Detta kommer att permanent ta bort nyckeln från din dator. Se till att 
 
 #: src/utils/getTransactionResult.ts:40
 msgid "Transaction has been sent to a full node and is pending inclusion into the mempool. {0}"
-msgstr ""
+msgstr "Transaktionen har skickats till en fullständig nod och väntar på att inkluderas i mempoolen. {0}"
 
 #: src/utils/getTransactionResult.ts:15
 msgid "Transaction has not been sent to node yet"
@@ -494,7 +494,7 @@ msgstr "Transaktionen har inte skickats till noden ännu"
 
 #: src/utils/getTransactionResult.ts:33
 #~ msgid "Transaction has sent to a full node and is pending inclusion into the mempool. {0}"
-#~ msgstr "Transaktionen har skickats till en fullständig nod och väntar på att inkluderas i mempoolen. {0}"
+#~ msgstr "Transaction has been sent to a full node and is pending inclusion into the mempool. {0}"
 
 #: src/utils/getTransactionResult.ts:24
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
@@ -572,3 +572,4 @@ msgstr "Din nuvarande version:"
 #: src/hooks/useKeyringMigrationPrompt.tsx:21
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr "Dina nycklar har inte migrerats till en ny nyckelring. Du kommer inte att kunna skapa nya nycklar eller ta bort befintliga nycklar tills migreringen är klar. Vill du migrera nycklarna nu?"
+
