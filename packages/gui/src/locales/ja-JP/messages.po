@@ -388,7 +388,7 @@ msgid "Add a plot"
 msgstr "耕地を追加"
 
 #: src/components/farm/FarmHero.tsx:37
-#: src/components/plot/add/PlotAddForm.tsx:248
+#: src/components/plot/add/PlotAddForm.tsx:254
 #: src/components/plot/overview/PlotOverviewHero.tsx:43
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:199
 #: src/components/plotNFT/PlotNFTCard.tsx:233
@@ -1196,7 +1196,7 @@ msgstr ""
 msgid "Counter Offer"
 msgstr ""
 
-#: src/components/plot/add/PlotAddForm.tsx:259
+#: src/components/plot/add/PlotAddForm.tsx:265
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:81
 #: src/components/settings/ProfileAdd.tsx:159
 msgid "Create"
@@ -1311,7 +1311,7 @@ msgstr ""
 msgid "Credentials"
 msgstr "認証情報"
 
-#: src/components/plot/add/PlotAddForm.tsx:152
+#: src/components/plot/add/PlotAddForm.tsx:158
 msgid "Currency code is not defined"
 msgstr "通貨コードが定義されていません"
 
@@ -1943,7 +1943,7 @@ msgstr "農家が未実行"
 msgid "Farmer Public Key"
 msgstr "農家公開鍵"
 
-#: src/components/plot/add/PlotAddForm.tsx:213
+#: src/components/plot/add/PlotAddForm.tsx:219
 msgid "Farmer public key is invalid"
 msgstr ""
 
@@ -2456,13 +2456,15 @@ msgstr "初期化中..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid "Insufficient funds available to accept offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid "Insufficient funds available to create offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
 
@@ -2540,7 +2542,8 @@ msgstr "プールに参加する"
 
 #: src/components/plot/add/PlotAddNFT.tsx:49
 msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
-msgstr "参加したプールが当選するとXCHを獲得できます。\n"
+msgstr ""
+"参加したプールが当選するとXCHを獲得できます。\n"
 "プールでは定期的にXCHを獲得できますが引き換えに毎度の払い出しは少なくなります。\n"
 "長期的のリターンはソロファーミングで得られる報酬と変わりません。"
 
@@ -3563,7 +3566,7 @@ msgstr ""
 msgid "Owner Public Key"
 msgstr ""
 
-#: src/components/plot/add/PlotAddForm.tsx:170
+#: src/components/plot/add/PlotAddForm.tsx:176
 msgid "p2SingletonPuzzleHash is not defined"
 msgstr ""
 
@@ -3971,7 +3974,7 @@ msgstr "プールペイアウトの説明"
 msgid "Pool Public Key"
 msgstr "プール公開鍵"
 
-#: src/components/plot/add/PlotAddForm.tsx:220
+#: src/components/plot/add/PlotAddForm.tsx:226
 msgid "Pool public key is invalid"
 msgstr ""
 
@@ -4914,7 +4917,7 @@ msgstr ""
 msgid "Target Puzzle Hash"
 msgstr ""
 
-#: src/components/plot/add/PlotAddForm.tsx:183
+#: src/components/plot/add/PlotAddForm.tsx:189
 msgid "Temp folder location is required for hybrid disk plotting with 16/128G RAM"
 msgstr ""
 
@@ -6034,4 +6037,3 @@ msgstr ""
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr ""
-

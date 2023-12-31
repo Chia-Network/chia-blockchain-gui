@@ -388,7 +388,7 @@ msgid "Add a plot"
 msgstr "添加图块"
 
 #: src/components/farm/FarmHero.tsx:37
-#: src/components/plot/add/PlotAddForm.tsx:248
+#: src/components/plot/add/PlotAddForm.tsx:254
 #: src/components/plot/overview/PlotOverviewHero.tsx:43
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:199
 #: src/components/plotNFT/PlotNFTCard.tsx:233
@@ -1196,7 +1196,7 @@ msgstr "倒计时"
 msgid "Counter Offer"
 msgstr "计数报价"
 
-#: src/components/plot/add/PlotAddForm.tsx:259
+#: src/components/plot/add/PlotAddForm.tsx:265
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:81
 #: src/components/settings/ProfileAdd.tsx:159
 msgid "Create"
@@ -1311,7 +1311,7 @@ msgstr "创建者版税比率似乎高"
 msgid "Credentials"
 msgstr "证件"
 
-#: src/components/plot/add/PlotAddForm.tsx:152
+#: src/components/plot/add/PlotAddForm.tsx:158
 msgid "Currency code is not defined"
 msgstr "货币代码未定义"
 
@@ -1943,7 +1943,7 @@ msgstr "农民节点没有运行"
 msgid "Farmer Public Key"
 msgstr "农民公钥"
 
-#: src/components/plot/add/PlotAddForm.tsx:213
+#: src/components/plot/add/PlotAddForm.tsx:219
 msgid "Farmer public key is invalid"
 msgstr "农民公钥无效"
 
@@ -2456,16 +2456,20 @@ msgstr "正在初始化..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid "Insufficient funds available to accept offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "可用资金不足，无法接受报价。请确保您的\n"
+msgstr ""
+"可用资金不足，无法接受报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid "Insufficient funds available to create offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "可用的资金不足，无法创建报价。请确保您的\n"
+msgstr ""
+"可用的资金不足，无法创建报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
 #: src/components/farm/PoolingHealth.tsx:302
@@ -3563,7 +3567,7 @@ msgstr "所有者DID"
 msgid "Owner Public Key"
 msgstr "所有者公钥"
 
-#: src/components/plot/add/PlotAddForm.tsx:170
+#: src/components/plot/add/PlotAddForm.tsx:176
 msgid "p2SingletonPuzzleHash is not defined"
 msgstr "p2SingletonPuzzleHash 未定义"
 
@@ -3971,7 +3975,7 @@ msgstr "联合耕种池支付地址"
 msgid "Pool Public Key"
 msgstr "耕种池公钥"
 
-#: src/components/plot/add/PlotAddForm.tsx:220
+#: src/components/plot/add/PlotAddForm.tsx:226
 msgid "Pool public key is invalid"
 msgstr "耕种池密钥无效"
 
@@ -4914,7 +4918,7 @@ msgstr "目标地址"
 msgid "Target Puzzle Hash"
 msgstr "目标迷题哈希"
 
-#: src/components/plot/add/PlotAddForm.tsx:183
+#: src/components/plot/add/PlotAddForm.tsx:189
 msgid "Temp folder location is required for hybrid disk plotting with 16/128G RAM"
 msgstr "使用16/128GB内存的混合磁盘模式生成图块时，需要指定临时文件夹的位置"
 
@@ -6034,4 +6038,3 @@ msgstr "可用余额必须大于1 mojo才能创建个人资料"
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "需确保钱包正在运行才能完成自动确认。"
-

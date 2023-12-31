@@ -388,7 +388,7 @@ msgid "Add a plot"
 msgstr "Ajouter une parcelle"
 
 #: src/components/farm/FarmHero.tsx:37
-#: src/components/plot/add/PlotAddForm.tsx:248
+#: src/components/plot/add/PlotAddForm.tsx:254
 #: src/components/plot/overview/PlotOverviewHero.tsx:43
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:199
 #: src/components/plotNFT/PlotNFTCard.tsx:233
@@ -1196,7 +1196,7 @@ msgstr "Compteur"
 msgid "Counter Offer"
 msgstr "Contre-Offre"
 
-#: src/components/plot/add/PlotAddForm.tsx:259
+#: src/components/plot/add/PlotAddForm.tsx:265
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:81
 #: src/components/settings/ProfileAdd.tsx:159
 msgid "Create"
@@ -1311,7 +1311,7 @@ msgstr "Les royalties du créateur sont élevées"
 msgid "Credentials"
 msgstr "Certificat"
 
-#: src/components/plot/add/PlotAddForm.tsx:152
+#: src/components/plot/add/PlotAddForm.tsx:158
 msgid "Currency code is not defined"
 msgstr "Le code de la devise n'est pas défini"
 
@@ -1943,7 +1943,7 @@ msgstr "Le fermier n'est pas lancé"
 msgid "Farmer Public Key"
 msgstr "Clé publique du fermier"
 
-#: src/components/plot/add/PlotAddForm.tsx:213
+#: src/components/plot/add/PlotAddForm.tsx:219
 msgid "Farmer public key is invalid"
 msgstr ""
 
@@ -2456,16 +2456,20 @@ msgstr "Initialisation..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid "Insufficient funds available to accept offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "Fonds insuffisants pour accepter l'offre. Assurez-vous que votre \n"
+msgstr ""
+"Fonds insuffisants pour accepter l'offre. Assurez-vous que votre \n"
 "solde disponible est suffisant pour couvrir le montant de l'offre."
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid "Insufficient funds available to create offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "Fonds insuffisants pour créer l'offre. Assurez-vous que votre \n"
+msgstr ""
+"Fonds insuffisants pour créer l'offre. Assurez-vous que votre \n"
 "solde disponible est suffisant pour couvrir le montant de l'offre."
 
 #: src/components/farm/PoolingHealth.tsx:302
@@ -3563,7 +3567,7 @@ msgstr "DID propriétaire"
 msgid "Owner Public Key"
 msgstr "Clé publique du propriétaire"
 
-#: src/components/plot/add/PlotAddForm.tsx:170
+#: src/components/plot/add/PlotAddForm.tsx:176
 msgid "p2SingletonPuzzleHash is not defined"
 msgstr "p2SingletonPuzzleHash n'est pas défini"
 
@@ -3971,7 +3975,7 @@ msgstr "Modifier les instructions de paiement du pool"
 msgid "Pool Public Key"
 msgstr "Clé publique du pool"
 
-#: src/components/plot/add/PlotAddForm.tsx:220
+#: src/components/plot/add/PlotAddForm.tsx:226
 msgid "Pool public key is invalid"
 msgstr ""
 
@@ -4914,7 +4918,7 @@ msgstr "Adresse de destination"
 msgid "Target Puzzle Hash"
 msgstr "Hash du puzzle cible"
 
-#: src/components/plot/add/PlotAddForm.tsx:183
+#: src/components/plot/add/PlotAddForm.tsx:189
 msgid "Temp folder location is required for hybrid disk plotting with 16/128G RAM"
 msgstr ""
 
@@ -6034,4 +6038,3 @@ msgstr "Votre solde dépensable doit être supérieur à 1 mojo pour créer un p
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "Votre portefeuille doit être synchronisé pour que la revendication automatique fonctionne."
-
