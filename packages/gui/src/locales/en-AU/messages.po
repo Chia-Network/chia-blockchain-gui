@@ -388,7 +388,7 @@ msgid "Add a plot"
 msgstr "Add a Plot to get more beer money"
 
 #: src/components/farm/FarmHero.tsx:37
-#: src/components/plot/add/PlotAddForm.tsx:248
+#: src/components/plot/add/PlotAddForm.tsx:254
 #: src/components/plot/overview/PlotOverviewHero.tsx:43
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:199
 #: src/components/plotNFT/PlotNFTCard.tsx:233
@@ -1196,7 +1196,7 @@ msgstr ""
 msgid "Counter Offer"
 msgstr ""
 
-#: src/components/plot/add/PlotAddForm.tsx:259
+#: src/components/plot/add/PlotAddForm.tsx:265
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:81
 #: src/components/settings/ProfileAdd.tsx:159
 msgid "Create"
@@ -1311,7 +1311,7 @@ msgstr "Creator royalty percentage seems high"
 msgid "Credentials"
 msgstr ""
 
-#: src/components/plot/add/PlotAddForm.tsx:152
+#: src/components/plot/add/PlotAddForm.tsx:158
 msgid "Currency code is not defined"
 msgstr "Currency code is not defined"
 
@@ -1943,7 +1943,7 @@ msgstr "Farmer is not running you drongo"
 msgid "Farmer Public Key"
 msgstr "Farmer Public Key"
 
-#: src/components/plot/add/PlotAddForm.tsx:213
+#: src/components/plot/add/PlotAddForm.tsx:219
 msgid "Farmer public key is invalid"
 msgstr ""
 
@@ -3567,7 +3567,7 @@ msgstr "Owner DID"
 msgid "Owner Public Key"
 msgstr "Owner Public Key"
 
-#: src/components/plot/add/PlotAddForm.tsx:170
+#: src/components/plot/add/PlotAddForm.tsx:176
 msgid "p2SingletonPuzzleHash is not defined"
 msgstr "p2SingletonPuzzleHash is not defined"
 
@@ -3975,7 +3975,7 @@ msgstr "Edit Payout Instructions"
 msgid "Pool Public Key"
 msgstr "Pool Public Key"
 
-#: src/components/plot/add/PlotAddForm.tsx:220
+#: src/components/plot/add/PlotAddForm.tsx:226
 msgid "Pool public key is invalid"
 msgstr ""
 
@@ -4918,7 +4918,7 @@ msgstr ""
 msgid "Target Puzzle Hash"
 msgstr "Target Puzzle Hash"
 
-#: src/components/plot/add/PlotAddForm.tsx:183
+#: src/components/plot/add/PlotAddForm.tsx:189
 msgid "Temp folder location is required for hybrid disk plotting with 16/128G RAM"
 msgstr ""
 

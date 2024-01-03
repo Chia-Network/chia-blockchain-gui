@@ -388,7 +388,7 @@ msgid "Add a plot"
 msgstr "افزودن یک پلات"
 
 #: src/components/farm/FarmHero.tsx:37
-#: src/components/plot/add/PlotAddForm.tsx:248
+#: src/components/plot/add/PlotAddForm.tsx:254
 #: src/components/plot/overview/PlotOverviewHero.tsx:43
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:199
 #: src/components/plotNFT/PlotNFTCard.tsx:233
@@ -1196,7 +1196,7 @@ msgstr "شمارش معکوس"
 msgid "Counter Offer"
 msgstr "شمارنده پیشنهاد"
 
-#: src/components/plot/add/PlotAddForm.tsx:259
+#: src/components/plot/add/PlotAddForm.tsx:265
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:81
 #: src/components/settings/ProfileAdd.tsx:159
 msgid "Create"
@@ -1311,7 +1311,7 @@ msgstr "درصد حق امتیاز سازنده بالا به نظر میرسد"
 msgid "Credentials"
 msgstr "اعتبارنامه"
 
-#: src/components/plot/add/PlotAddForm.tsx:152
+#: src/components/plot/add/PlotAddForm.tsx:158
 msgid "Currency code is not defined"
 msgstr "نوع ارز تعریف نشده است"
 
@@ -1943,7 +1943,7 @@ msgstr "فارم اجرا نمیشود"
 msgid "Farmer Public Key"
 msgstr "کلید عمومی فارمر"
 
-#: src/components/plot/add/PlotAddForm.tsx:213
+#: src/components/plot/add/PlotAddForm.tsx:219
 msgid "Farmer public key is invalid"
 msgstr "کلید عمومی فارم کننده نامعتبر است"
 
@@ -3567,7 +3567,7 @@ msgstr "صاحب شناسه غیر متمرکز"
 msgid "Owner Public Key"
 msgstr "صاحب کلید عمومی"
 
-#: src/components/plot/add/PlotAddForm.tsx:170
+#: src/components/plot/add/PlotAddForm.tsx:176
 msgid "p2SingletonPuzzleHash is not defined"
 msgstr "تعریف نشده p2SingletonPuzzleHash"
 
@@ -3975,7 +3975,7 @@ msgstr "دستورالعمل پرداخت استخر"
 msgid "Pool Public Key"
 msgstr "کلید عمومی استخر"
 
-#: src/components/plot/add/PlotAddForm.tsx:220
+#: src/components/plot/add/PlotAddForm.tsx:226
 msgid "Pool public key is invalid"
 msgstr "کلید عمومی استخر نامعتبر است"
 
@@ -4918,7 +4918,7 @@ msgstr "آدرس مقصد"
 msgid "Target Puzzle Hash"
 msgstr "هدف پازل هش"
 
-#: src/components/plot/add/PlotAddForm.tsx:183
+#: src/components/plot/add/PlotAddForm.tsx:189
 msgid "Temp folder location is required for hybrid disk plotting with 16/128G RAM"
 msgstr "مکان پوشه موقت برای پلات سازی دیسک هیبریدی با حافظه 16/128گیگ مورد نیاز است"
 
