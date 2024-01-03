@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_TW\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-11-19 00:05\n"
+"PO-Revision-Date: 2023-12-24 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -334,7 +334,7 @@ msgstr ""
 
 #: src/components/WalletSendTransactionResultDialog.tsx:41
 #~ msgid "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a higher fee."
-#~ msgstr "如果您想加快交易速度，請刪除未確認的交易並以更高的手續費重試。"
+#~ msgstr "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a higher fee."
 
 #: src/components/PasteMnemonic.tsx:79
 msgid "Import"
@@ -665,7 +665,7 @@ msgstr ""
 
 #: src/components/WalletSendTransactionResultDialog.tsx:34
 #~ msgid "The transaction could not be immediately included in the mempool because the specified fee is too low. The transaction will be retried periodically, and may be included in the mempool once fees are lower, or if space becomes available."
-#~ msgstr "交易無法立即包含在記憶池中，因為指定的手續費太低。交易將定期重試，一旦手續費降低或空間可用，可能會被包含在記憶池中。"
+#~ msgstr "The transaction could not be immediately included in the mempool because the specified fee is too low. The transaction will be retried periodically, and may be included in the mempool once fees are lower, or if space becomes available."
 
 #: src/components/WalletSendTransactionResultDialog.tsx:38
 msgid ""

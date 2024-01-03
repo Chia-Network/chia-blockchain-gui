@@ -8,7 +8,7 @@ msgstr ""
 "Language: es_ES\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-10-08 00:04\n"
+"PO-Revision-Date: 2023-12-24 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -494,7 +494,7 @@ msgstr "La transacción aún no se ha enviado al nodo"
 
 #: src/utils/getTransactionResult.ts:33
 #~ msgid "Transaction has sent to a full node and is pending inclusion into the mempool. {0}"
-#~ msgstr "La transacción se ha enviado a un nodo completo y está pendiente de inclusión en el mempool. {0}"
+#~ msgstr "Transaction has been sent to a full node and is pending inclusion into the mempool. {0}"
 
 #: src/utils/getTransactionResult.ts:24
 msgid "Transaction has successfully been sent to a full node and included in the mempool."

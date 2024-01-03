@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-17 00:04\n"
+"PO-Revision-Date: 2023-12-24 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -488,7 +488,7 @@ msgstr "با این کار کلید برای همیشه از رایانه شما
 
 #: src/utils/getTransactionResult.ts:40
 msgid "Transaction has been sent to a full node and is pending inclusion into the mempool. {0}"
-msgstr ""
+msgstr "تراکنش به یک نودکامل ارسال شد و منتظر قرار گرفتن در حافظه استخر تراکنش است. {0}"
 
 #: src/utils/getTransactionResult.ts:15
 msgid "Transaction has not been sent to node yet"
@@ -496,7 +496,7 @@ msgstr "تراکنش هنوز به نود ارسال نشده"
 
 #: src/utils/getTransactionResult.ts:33
 #~ msgid "Transaction has sent to a full node and is pending inclusion into the mempool. {0}"
-#~ msgstr "تراکنش به یک نودکامل ارسال شده و منتظر قرار گرفتن در حافظه استخر تراکنش است. {0}"
+#~ msgstr "Transaction has been sent to a full node and is pending inclusion into the mempool. {0}"
 
 #: src/utils/getTransactionResult.ts:24
 msgid "Transaction has successfully been sent to a full node and included in the mempool."

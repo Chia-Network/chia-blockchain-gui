@@ -8,7 +8,7 @@ msgstr ""
 "Language: vi_VN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-17 00:04\n"
+"PO-Revision-Date: 2023-12-24 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -44,129 +44,134 @@ msgid "Would you like to transfer {count} NFTs to a new owner?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:492
+#: src/electron/main.tsx:502
 msgid "No"
 msgstr "Không"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:492
+#: src/electron/main.tsx:502
 msgid "Yes"
 msgstr "Đồng ý"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:493
+#: src/electron/main.tsx:503
 msgid "Confirm"
 msgstr "Xác Nhận"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:495
+#: src/electron/main.tsx:505
 msgid "Are you sure you want to quit?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:604
-#: src/electron/main.tsx:812
+#: src/electron/main.tsx:510
+msgid "Keep service running in the background"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/main.tsx:628
+#: src/electron/main.tsx:836
 msgid "File"
 msgstr "Tệp"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:612
+#: src/electron/main.tsx:636
 msgid "Edit"
 msgstr "Chỉnh sửa"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:644
+#: src/electron/main.tsx:668
 msgid "View"
 msgstr "Xem"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:653
+#: src/electron/main.tsx:677
 msgid "Developer"
 msgstr "Nhà phát triển"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:656
+#: src/electron/main.tsx:680
 msgid "Developer Tools"
 msgstr "Công cụ Nhà phát triển"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:664
+#: src/electron/main.tsx:688
 msgid "Trigger Desktop Notification"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:693
+#: src/electron/main.tsx:717
 msgid "Full Screen"
 msgstr "Toàn màn hình"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:700
+#: src/electron/main.tsx:724
 msgid "Window"
 msgstr "Cửa sổ"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:714
+#: src/electron/main.tsx:738
 msgid "Help"
 msgstr "Hỗ trợ"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:718
+#: src/electron/main.tsx:742
 msgid "Chia Blockchain Wiki"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:724
+#: src/electron/main.tsx:748
 msgid "Frequently Asked Questions"
 msgstr "Câu hỏi thường gặp"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:730
+#: src/electron/main.tsx:754
 msgid "Release Notes"
 msgstr "Ghi chú phát hành"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:736
+#: src/electron/main.tsx:760
 msgid "Contribute on GitHub"
 msgstr "Đóng góp trên GitHub"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:745
+#: src/electron/main.tsx:769
 msgid "Report an Issue..."
 msgstr "Báo cáo vấn đề..."
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:751
+#: src/electron/main.tsx:775
 msgid "Chat on Discord"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:757
+#: src/electron/main.tsx:781
 msgid "Follow on Twitter"
 msgstr "Theo dõi trên Twitter"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:769
+#: src/electron/main.tsx:793
 msgid "Chia"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:772
-#: src/electron/main.tsx:865
+#: src/electron/main.tsx:796
+#: src/electron/main.tsx:889
 msgid "About Chia Blockchain"
 msgstr "Về Chia Blockchain"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:778
+#: src/electron/main.tsx:802
 msgid "Check for Updates..."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:826
+#: src/electron/main.tsx:850
 msgid "Speech"
 msgstr "Phát biểu"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:871
+#: src/electron/main.tsx:895
 msgid "Check for updates..."
 msgstr ""
 

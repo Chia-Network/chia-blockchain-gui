@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-17 00:04\n"
+"PO-Revision-Date: 2023-12-24 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -486,7 +486,7 @@ msgstr "这将永久从计算机中删除该密钥，请确保备份了助记词
 
 #: src/utils/getTransactionResult.ts:40
 msgid "Transaction has been sent to a full node and is pending inclusion into the mempool. {0}"
-msgstr ""
+msgstr "交易已经发送到全节点，并等待添加到内存池中。{0}"
 
 #: src/utils/getTransactionResult.ts:15
 msgid "Transaction has not been sent to node yet"
@@ -494,7 +494,7 @@ msgstr "交易尚未发送到节点"
 
 #: src/utils/getTransactionResult.ts:33
 #~ msgid "Transaction has sent to a full node and is pending inclusion into the mempool. {0}"
-#~ msgstr "交易已经发送到全节点，并等待添加到内存池中。{0}"
+#~ msgstr "Transaction has been sent to a full node and is pending inclusion into the mempool. {0}"
 
 #: src/utils/getTransactionResult.ts:24
 msgid "Transaction has successfully been sent to a full node and included in the mempool."

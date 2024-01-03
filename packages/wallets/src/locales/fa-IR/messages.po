@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-17 00:04\n"
+"PO-Revision-Date: 2023-12-24 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -328,11 +328,11 @@ msgstr "کلیدهای قطعی سلسله مراتب نوعی از طرح کل�
 msgid ""
 "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a\n"
 "higher fee."
-msgstr ""
+msgstr "اگر میخواهید سرعت تراکنش را افزایش دهید، لطفا تراکنش‌های تایید نشده را حذف کنید و با کارمزد بالاتر دوباره امتحان کنید."
 
 #: src/components/WalletSendTransactionResultDialog.tsx:41
 #~ msgid "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a higher fee."
-#~ msgstr "اگر میخواهید سرعت تراکنش را افزایش دهید، لطفا تراکنش‌های تایید نشده را حذف کنید و با کارمزد بالاتر دوباره امتحان کنید."
+#~ msgstr "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a higher fee."
 
 #: src/components/PasteMnemonic.tsx:79
 msgid "Import"
@@ -373,7 +373,7 @@ msgstr "یادداشت ها"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:16
 msgid "Mempool Conflict"
-msgstr ""
+msgstr "تراکم متناقص در حافظه استخر تراکنش"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:20
 msgid "Mempool Full"
@@ -659,18 +659,18 @@ msgid ""
 "The transaction could not be immediately included in the mempool because the specified fee is too low. The\n"
 "transaction will be retried periodically, and may be included in the mempool once fees are lower, or if\n"
 "space becomes available."
-msgstr ""
+msgstr "تراکنش نمیتواند فوراً در حافظه استخر تراکنش گنجانده شود زیرا کارمزد تعیین‌شده بسیار کم است. این تراکنش به صورت دوره‌ای تکرار میشود و ممکن است پس از کاهش هزینه‌ها، یا در صورت فراهم شدن فضا، در مجموعه گنجانده شود."
 
 #: src/components/WalletSendTransactionResultDialog.tsx:34
 #~ msgid "The transaction could not be immediately included in the mempool because the specified fee is too low. The transaction will be retried periodically, and may be included in the mempool once fees are lower, or if space becomes available."
-#~ msgstr "تراکنش نمیتواند فوراً در حافظه استخر تراکنش گنجانده شود زیرا کارمزد تعیین‌شده بسیار کم است. این تراکنش به صورت دوره‌ای تکرار میشود و ممکن است پس از کاهش هزینه‌ها، یا در صورت فراهم شدن فضا، در مجموعه گنجانده شود."
+#~ msgstr "The transaction could not be immediately included in the mempool because the specified fee is too low. The transaction will be retried periodically, and may be included in the mempool once fees are lower, or if space becomes available."
 
 #: src/components/WalletSendTransactionResultDialog.tsx:38
 msgid ""
 "The transaction is pending inclusion in the mempool because it conflicts with one or more other transactions\n"
 "already in the mempool. The transaction will be retried periodically, and may be included in the mempool if\n"
 "the conflicting transactions are removed."
-msgstr ""
+msgstr "تراکنش در انتظار درج در حافظه استخر تراکنش است زیرا با یک یا چند تراکنش دیگر اکنون در حافظه استخر تراکنش متضاد است. این تراکنش به صورت دوره‌ای دوباره امتحان میشود و در صورت وجود امکان دارد در حافظه استخر تراکنش گنجانده شده و تراکنش های متناقض حذف میشوند."
 
 #: src/components/WalletBadge.tsx:26
 msgid "This access token is verified"

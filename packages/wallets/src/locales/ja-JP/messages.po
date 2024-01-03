@@ -8,7 +8,7 @@ msgstr ""
 "Language: ja_JP\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-17 00:04\n"
+"PO-Revision-Date: 2023-12-31 00:05\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -54,7 +54,7 @@ msgstr "トークンを追加"
 
 #: src/components/WalletSend.tsx:362
 msgid "Add transaction memo"
-msgstr ""
+msgstr "取引メモを追加"
 
 #: src/components/cat/WalletCATCreateSimple.tsx:92
 msgid "Adding {0} token"
@@ -71,7 +71,7 @@ msgstr "アドレス"
 
 #: src/components/AddressBookAutocomplete.tsx:65
 msgid "Address or Contact"
-msgstr ""
+msgstr "アドレスまたは連絡先"
 
 #: src/components/cat/WalletCATSend.tsx:214
 #: src/components/WalletSend.tsx:241
@@ -213,7 +213,7 @@ msgstr ""
 #: src/components/ClawbackClaimTransactionDialog.tsx:256
 #: src/components/crCat/CrCatApprovePendingDialog.tsx:136
 msgid "Close"
-msgstr ""
+msgstr "閉じる"
 
 #: src/components/WalletHeader.tsx:25
 msgid "Confirmation"
@@ -233,11 +233,11 @@ msgstr "接続の種類"
 
 #: src/components/WalletReceiveAddressField.tsx:71
 msgid "Copied"
-msgstr ""
+msgstr "コピーしました"
 
 #: src/components/WalletReceiveAddressField.tsx:75
 msgid "Copy wallet address"
-msgstr ""
+msgstr "ウォレットアドレスをコピー"
 
 #: src/components/cat/WalletCATSelect.tsx:32
 msgid "Create New Wallet"
@@ -246,7 +246,7 @@ msgstr "新しいウォレットを作成"
 #: src/components/cat/WalletCAT.tsx:106
 #: src/components/standard/WalletStandard.tsx:53
 msgid "Create Offer"
-msgstr "オファーを作成"
+msgstr "取引依頼を作成"
 
 #: src/components/cat/WalletCATSend.tsx:178
 #: src/components/WalletSend.tsx:213
@@ -283,7 +283,7 @@ msgstr "未承認の取引を削除する"
 
 #: src/components/card/WalletCardTotalBalance.tsx:68
 msgid "Derivation Index: {0}"
-msgstr ""
+msgstr "導出指数: {0}"
 
 #: src/constants/WalletName.ts:29
 msgid "DID Wallet"
@@ -291,7 +291,7 @@ msgstr "DID ウォレット"
 
 #: src/components/WalletSend.tsx:327
 msgid "Disable"
-msgstr ""
+msgstr "無効化"
 
 #: src/components/create/WalletCreateList.tsx:39
 msgid "Distributed Identity"
@@ -299,7 +299,7 @@ msgstr "分散型アイデンティティ"
 
 #: src/components/WalletImport.tsx:157
 msgid "Enter the {mnemonicWordCount} word mnemonic that you have saved in order to restore your Chia wallet."
-msgstr ""
+msgstr "チアウォレットを復元するには、 {mnemonicWordCount} 語の合言葉を入力してください。"
 
 #: src/components/cat/WalletCATSend.tsx:127
 msgid "Error the entered address appears to be for a different colour."
@@ -318,7 +318,7 @@ msgstr "手数料"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:183
 msgid "From:"
-msgstr ""
+msgstr "差出人:"
 
 #: src/components/WalletReceiveAddress.tsx:32
 msgid "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefore wallet receive addresses) that will all ultimately come back to and be spendable by a single private key."
@@ -328,11 +328,11 @@ msgstr "階層的決定性鍵、または HD 鍵とは、一つの秘密鍵に�
 msgid ""
 "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a\n"
 "higher fee."
-msgstr ""
+msgstr "取引をより速く完了させたい場合は、未承認の取引を削除し、手数料を上げて再試行してください。"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:41
 #~ msgid "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a higher fee."
-#~ msgstr "取引をより速く完了させたい場合は、未承認の取引を削除し、手数料を上げて再試行してください。"
+#~ msgstr "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a higher fee."
 
 #: src/components/PasteMnemonic.tsx:79
 msgid "Import"
@@ -397,7 +397,7 @@ msgstr "新規アドレス"
 
 #: src/components/WalletReceiveAddressField.tsx:114
 msgid "New Receive Address"
-msgstr ""
+msgstr "受取アドレスを新規作成"
 
 #: src/components/WalletAdd.tsx:62
 msgid "New Wallet"
@@ -435,7 +435,7 @@ msgstr "同期されていません"
 
 #: src/components/WalletHistory.tsx:209
 msgid "Offer Accepted"
-msgstr ""
+msgstr "取引依頼が受け入れられました"
 
 #: src/components/cat/WalletCATTAILDialog.tsx:66
 msgid "OK"
@@ -452,11 +452,11 @@ msgstr "取引ブロックは約1分間隔で作成されます。混雑時を�
 
 #: src/components/WalletImport.tsx:233
 msgid "Paste Mnemonic"
-msgstr ""
+msgstr "合言葉を貼り付ける"
 
 #: src/components/PasteMnemonic.tsx:53
 msgid "Paste Mnemonic ({0} words)"
-msgstr ""
+msgstr "合言葉 ({0} 語) を貼り付ける"
 
 #: src/components/crCat/CrCatApprovePendingDialog.tsx:82
 msgid "Payments approved"
@@ -560,7 +560,7 @@ msgstr "レート制限付き"
 
 #: src/components/WalletHeader.tsx:48
 msgid "Receive"
-msgstr ""
+msgstr "貰う"
 
 #: src/components/WalletReceiveAddress.tsx:29
 msgid "Receive Address"
@@ -593,7 +593,7 @@ msgstr ""
 
 #: src/constants/WalletName.ts:8
 msgid "RL Wallet"
-msgstr ""
+msgstr "RL ウォレット"
 
 #: src/components/WalletRenameDialog.tsx:75
 msgid "Save"
@@ -628,7 +628,7 @@ msgstr "標準ウォレット"
 
 #: src/components/WalletHistory.tsx:214
 msgid "Status"
-msgstr ""
+msgstr "状態"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:12
 msgid "Success"
@@ -648,7 +648,7 @@ msgstr "同期中"
 
 #: src/components/card/WalletCardTotalBalance.tsx:70
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
-msgstr ""
+msgstr "導出指数はウォレットがブロックチェーン上で検索するウォレットアドレスの範囲を定めます。XCH、 CAT、または NFT の取引や取り下げた取引依頼の総数が多い方では高めの値に設定されていることがあります。もしご自身の残高の値が誤っていて、全てのコインを反映できていないと考えられる場合、導出指数を上げることでウォレットが反映できていないコインを見つけられ、残高に反映できる場合があります。"
 
 #: src/components/cat/WalletCATSend.tsx:200
 msgid "The recipient of this transaction will need to have valid credentials in order to claim the sent assets. See the CR CAT restrictions above."
@@ -663,7 +663,7 @@ msgstr ""
 
 #: src/components/WalletSendTransactionResultDialog.tsx:34
 #~ msgid "The transaction could not be immediately included in the mempool because the specified fee is too low. The transaction will be retried periodically, and may be included in the mempool once fees are lower, or if space becomes available."
-#~ msgstr ""
+#~ msgstr "The transaction could not be immediately included in the mempool because the specified fee is too low. The transaction will be retried periodically, and may be included in the mempool once fees are lower, or if space becomes available."
 
 #: src/components/WalletSendTransactionResultDialog.tsx:38
 msgid ""
@@ -711,7 +711,7 @@ msgstr ""
 #: src/components/ClawbackClaimTransactionDialog.tsx:183
 #: src/components/WalletHistory.tsx:168
 msgid "To:"
-msgstr ""
+msgstr "宛先:"
 
 #: src/components/cat/WalletCATCreateSimple.tsx:46
 msgid "Token has empty asset id"
@@ -760,7 +760,7 @@ msgstr ""
 #: src/components/WalletAdd.tsx:99
 #: src/components/WalletImport.tsx:147
 msgid "Wallet Name"
-msgstr ""
+msgstr "ウォレット名"
 
 #: src/components/crCat/CrCatApprovePendingDialog.tsx:115
 msgid "Wallet needs to be synced before approving transactions"

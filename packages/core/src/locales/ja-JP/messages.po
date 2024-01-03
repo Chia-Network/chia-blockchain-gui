@@ -8,7 +8,7 @@ msgstr ""
 "Language: ja_JP\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-17 00:04\n"
+"PO-Revision-Date: 2023-12-31 00:05\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -20,11 +20,11 @@ msgstr ""
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:64
 msgid "(>5 min)"
-msgstr ""
+msgstr "(>5分)"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:64
 msgid "(~{selectedTime} min)"
-msgstr ""
+msgstr "(~{selectedTime}分)"
 
 #: src/components/Amount/Amount.tsx:87
 msgid "{0, plural, one {mojo} other {mojos}}"
@@ -36,15 +36,15 @@ msgstr "{minPassphraseLength, plural, other {パスフレーズの長さは少�
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:95
 msgid "A new version of Chia is available!"
-msgstr ""
+msgstr "チアの新しいバージョンが利用可能です！"
 
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:270
 msgid "Add Icon"
-msgstr ""
+msgstr "アイコンを追加"
 
 #: src/screens/SelectKey/SelectKey.tsx:174
 msgid "Add wallet"
-msgstr ""
+msgstr "ウォレットを追加"
 
 #: src/components/Amount/Amount.tsx:37
 msgid "Amount"
@@ -56,7 +56,7 @@ msgstr "外観の設定"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:158
 msgid "Are you sure you want to continue? Type in the fingerprint of this wallet key to confirm deletion."
-msgstr ""
+msgstr "本当に続行してもよろしいですか？本当に削除する場合、このウォレット鍵の指紋を入力してください。"
 
 #: src/components/FormBackButton/FormBackButton.tsx:15
 #: src/screens/SelectKey/SelectKey.tsx:129
@@ -72,25 +72,25 @@ msgstr "キャンセル"
 
 #: src/components/Settings/SettingsApp.tsx:140
 msgid "Check for updates"
-msgstr ""
+msgstr "更新の確認"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:93
 msgid "Checking for updates..."
-msgstr ""
+msgstr "更新を確認中…"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:82
 msgid "Chia {latestVersion} is currently the latest version available."
-msgstr ""
+msgstr "チア {latestVersion} は最新バージョンです。"
 
 #: src/components/Settings/SettingsApp.tsx:126
 msgid "Chia Application Version:"
-msgstr ""
+msgstr "このチアアプリケーションのバージョン:"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:110
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:47
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:70
 msgid "Close"
-msgstr ""
+msgstr "閉じる"
 
 #: src/components/FormatConnectionStatus/FormatConnectionStatus.tsx:32
 msgid "Connected"
@@ -110,15 +110,15 @@ msgstr "クリップボードにコピー"
 
 #: src/screens/SelectKey/SelectKey.tsx:274
 msgid "Create a new wallet key"
-msgstr ""
+msgstr "ウォレット鍵を新規作成"
 
 #: src/screens/SelectKey/SelectKey.tsx:266
 msgid "Create a new wallet key to get started with Chia."
-msgstr ""
+msgstr "チアを使い始めるには新しいウォレット鍵を作成してください。"
 
 #: src/screens/SelectKey/SelectKey.tsx:177
 msgid "Create New"
-msgstr ""
+msgstr "新規作成"
 
 #: src/components/Settings/SettingsApp.tsx:111
 msgid "Dark"
@@ -136,7 +136,7 @@ msgstr "全ての鍵を削除"
 
 #: src/screens/SelectKey/SelectKey.tsx:202
 msgid "Delete All Keys"
-msgstr ""
+msgstr "全ての鍵を削除"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:110
 msgid "Delete key {fingerprint}"
@@ -148,7 +148,7 @@ msgstr "全ての鍵を削除するとどれも復元することができなく
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:106
 msgid "Details"
-msgstr ""
+msgstr "詳細"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:60
 msgid "Disable"
@@ -165,7 +165,7 @@ msgstr "破棄する"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:148
 msgid "Download"
-msgstr ""
+msgstr "ダウンロードする"
 
 #: src/components/CardSimple/CardSimple.tsx:52
 #: src/hooks/useShowError.tsx:14
@@ -178,7 +178,7 @@ msgstr "エラー:"
 
 #: src/screens/SelectKey/SelectKeyRenameForm.tsx:91
 msgid "Esc"
-msgstr ""
+msgstr "Esc"
 
 #: src/components/LayoutMain/LayoutFooter.tsx:49
 msgid "FAQ"
@@ -186,7 +186,7 @@ msgstr "よくある質問"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:90
 msgid "Farmer Public Key"
-msgstr ""
+msgstr "農家公開鍵"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:58
 msgid "Farmer public key:"
@@ -204,7 +204,7 @@ msgstr "手数料"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:95
 msgid "Fingerprint does not match"
-msgstr ""
+msgstr "指紋が一致しません"
 
 #: src/components/Settings/SettingsApp.tsx:152
 msgid "Frequently Asked Questions"
@@ -212,7 +212,7 @@ msgstr "よくある質問"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:121
 msgid "Go To Download Page"
-msgstr ""
+msgstr "ダウンロードページに移動"
 
 #: src/components/Settings/SettingsApp.tsx:148
 msgid "Help"
@@ -225,7 +225,7 @@ msgstr "翻訳に協力"
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:124
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:146
 msgid "Hide"
-msgstr ""
+msgstr "非表示"
 
 #: src/components/AdvancedOptions/AdvancedOptions.tsx:27
 msgid "Hide Advanced Options"
@@ -233,7 +233,7 @@ msgstr "詳細設定を隠す"
 
 #: src/screens/SelectKey/SelectKey.tsx:182
 msgid "Import Existing"
-msgstr ""
+msgstr "既存のを読み込む"
 
 #: src/screens/SelectKey/SelectKey.tsx:181
 #~ msgid "Import from Mnemonics (12 or 24 words)"
@@ -249,7 +249,7 @@ msgstr "言語"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:57
 msgid "Latest Version:"
-msgstr ""
+msgstr "最新バージョン:"
 
 #: src/components/Settings/SettingsApp.tsx:103
 msgid "Light"
@@ -257,23 +257,23 @@ msgstr "明るめ"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:227
 msgid "Likely in {0} seconds"
-msgstr ""
+msgstr "高確率で {0} 秒"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:224
 msgid "Likely in {minutes} minutes"
-msgstr ""
+msgstr "高確率で {minutes} 分"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:226
 msgid "Likely in >5 minutes"
-msgstr ""
+msgstr "高確率で >5 分"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:46
 msgid "Loading details"
-msgstr ""
+msgstr "詳細を読み込み中"
 
 #: src/screens/SelectKey/SelectKey.tsx:236
 msgid "Loading keys"
-msgstr ""
+msgstr "鍵を読み込み中"
 
 #: src/screens/SelectKey/SelectKey.tsx:117
 #~ msgid "Loading list of the keys"
@@ -302,7 +302,7 @@ msgstr "モード"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:107
 msgid "NEVER SHARE THESE WITH ANYONE"
-msgstr ""
+msgstr "これらの値は絶対に誰とも共有しないでください！"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:42
 msgid "New passphrase is the same as your current passphrase"
@@ -310,7 +310,7 @@ msgstr "新しいパスフレーズが現在のパスフレーズと同じです
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:133
 msgid "New version {latestVersion} available"
-msgstr ""
+msgstr "新しいバージョン {latestVersion} が利用可能です"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:84
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:138
@@ -332,11 +332,11 @@ msgstr "OK"
 
 #: src/screens/SelectKey/SelectKey.tsx:258
 msgid "Open a world of possibilities."
-msgstr ""
+msgstr "可能性に満ちた世界へようこそ。"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:98
 msgid "Pool Public Key"
-msgstr ""
+msgstr "プール公開鍵"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:66
 msgid "Pool public key:"
@@ -353,7 +353,7 @@ msgstr "秘密鍵:"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:82
 msgid "Public Key"
-msgstr ""
+msgstr "公開鍵"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:50
 msgid "Public key:"
@@ -361,15 +361,15 @@ msgstr "公開鍵:"
 
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:289
 msgid "Random"
-msgstr ""
+msgstr "ランダム"
 
 #: src/components/Fee/Fee.tsx:18
 msgid "Recommended value: 0.000005"
-msgstr ""
+msgstr "推奨値: 0.000005"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:71
 msgid "Release Notes"
-msgstr ""
+msgstr "リリースノート"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:85
 msgid "Reload Application"
@@ -377,11 +377,11 @@ msgstr "アプリの再読み込み"
 
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:270
 msgid "Remove Icon"
-msgstr ""
+msgstr "アイコンを削除"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:98
 msgid "Rename"
-msgstr ""
+msgstr "名称変更"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:80
 msgid "Report an Issue"
@@ -390,24 +390,24 @@ msgstr "問題を報告する"
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:124
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:146
 msgid "Reveal"
-msgstr ""
+msgstr "表示"
 
 #: src/screens/SelectKey/SelectKeyRenameForm.tsx:109
 msgid "Save"
-msgstr ""
+msgstr "保存"
 
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:182
 #: src/screens/SelectKey/Search.tsx:34
 msgid "Search"
-msgstr ""
+msgstr "検索"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:113
 msgid "Secret Key"
-msgstr ""
+msgstr "秘密鍵"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:131
 msgid "Seed Phrase"
-msgstr ""
+msgstr "合言葉"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:76
 msgid "Seed:"
@@ -470,23 +470,23 @@ msgstr "入力されたパスフレーズと確認用の再入力が一致しま
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:140
 msgid "This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
-msgstr ""
+msgstr "この鍵を使用するウォレットは残高がゼロでない可能性があります。この鍵を削除すると残高へのアクセスを失くすかもしれません。"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:122
 msgid "This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
-msgstr ""
+msgstr "この鍵は耕作報酬アドレスに使われています。この鍵を削除すると、今後の耕作報酬へのアクセスを失くすかもしれません。"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:131
 msgid "This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
-msgstr ""
+msgstr "この鍵はプール報酬アドレスに使われています。この鍵を削除すると、今後のプール報酬を失くすかもしれません。"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:152
 msgid "This will permanently remove the key from your computer, make sure you have your mnemonic phrase backed up."
-msgstr ""
+msgstr "この操作はデバイスから鍵を完全に削除するため、予め合言葉を控えておくようお気を付けください。"
 
 #: src/utils/getTransactionResult.ts:40
 msgid "Transaction has been sent to a full node and is pending inclusion into the mempool. {0}"
-msgstr ""
+msgstr "取引内容はフルノードに送信され、 mempool への追加待ち中です。 {0}"
 
 #: src/utils/getTransactionResult.ts:15
 msgid "Transaction has not been sent to node yet"
@@ -494,7 +494,7 @@ msgstr "取引内容はまだノードに送られていません"
 
 #: src/utils/getTransactionResult.ts:33
 #~ msgid "Transaction has sent to a full node and is pending inclusion into the mempool. {0}"
-#~ msgstr "取引内容はフルノードに送信され、 mempool への追加待ち中です。 {0}"
+#~ msgstr "Transaction has been sent to a full node and is pending inclusion into the mempool. {0}"
 
 #: src/utils/getTransactionResult.ts:24
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
@@ -506,7 +506,7 @@ msgstr "やり直す"
 
 #: src/screens/SelectKey/SelectKey.tsx:247
 msgid "Unable to load keys"
-msgstr ""
+msgstr "鍵の読み込みに失敗しました"
 
 #: src/screens/SelectKey/SelectKey.tsx:128
 #~ msgid "Unable to load the list of the keys"
@@ -537,15 +537,15 @@ msgstr "ウォレット"
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:63
 #: src/screens/SelectKey/SelectKeyItem.tsx:234
 msgid "Wallet {0}"
-msgstr ""
+msgstr "ウォレット {0}"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:163
 msgid "Wallet Fingerprint"
-msgstr ""
+msgstr "ウォレットの指紋"
 
 #: src/screens/SelectKey/SelectKey.tsx:223
 msgid "Wallet Keys"
-msgstr ""
+msgstr "ウォレットの鍵一覧"
 
 #: src/screens/SelectKey/SelectKey.tsx:142
 #~ msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
@@ -554,7 +554,7 @@ msgstr ""
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:142
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:66
 msgid "What's New"
-msgstr ""
+msgstr "更新情報"
 
 #: src/components/Back/Back.tsx:40
 #: src/components/FormBackButton/FormBackButton.tsx:31
@@ -563,11 +563,11 @@ msgstr "未保存の変更があります。本当に破棄しますか？"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:97
 msgid "You're up to date"
-msgstr ""
+msgstr "最新バージョンです"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:49
 msgid "Your Current Version:"
-msgstr ""
+msgstr "現在のバージョン："
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:21
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
