@@ -399,7 +399,7 @@ msgstr "Pridať pole"
 msgid "Add a Plot NFT"
 msgstr "Pridať NFT poľa"
 
-#: src/constants/WalletConnectCommands.tsx:538
+#: src/constants/WalletConnectCommands.tsx:545
 msgid "Add CAT Token"
 msgstr "Pridať CAT token"
 
@@ -431,11 +431,11 @@ msgstr "Pridať adresár polí"
 msgid "Add Plot to Queue"
 msgstr "Pridať pole do fronty"
 
-#: src/constants/WalletConnectCommands.tsx:877
+#: src/constants/WalletConnectCommands.tsx:884
 msgid "Add Proofs"
 msgstr "Pridať dôkazy"
 
-#: src/constants/WalletConnectCommands.tsx:837
+#: src/constants/WalletConnectCommands.tsx:844
 msgid "Add Proofs To Verifiable Credential"
 msgstr ""
 
@@ -450,7 +450,7 @@ msgstr ""
 #: src/constants/WalletConnectCommands.tsx:126
 #: src/constants/WalletConnectCommands.tsx:201
 #: src/constants/WalletConnectCommands.tsx:241
-#: src/constants/WalletConnectCommands.tsx:514
+#: src/constants/WalletConnectCommands.tsx:521
 msgid "Address"
 msgstr "Adresa"
 
@@ -513,8 +513,8 @@ msgstr "Vždy odmietnuť"
 #: src/components/offers2/OfferBuilderNFTRoyalties.tsx:121
 #: src/components/offers2/OfferBuilderWalletAmount.tsx:36
 #: src/constants/WalletConnectCommands.tsx:114
-#: src/constants/WalletConnectCommands.tsx:519
-#: src/constants/WalletConnectCommands.tsx:740
+#: src/constants/WalletConnectCommands.tsx:526
+#: src/constants/WalletConnectCommands.tsx:747
 msgid "Amount"
 msgstr "Suma"
 
@@ -626,8 +626,8 @@ msgstr "Naozaj chcete použiť k={plotSize}?"
 msgid "Asset"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:482
-#: src/constants/WalletConnectCommands.tsx:543
+#: src/constants/WalletConnectCommands.tsx:489
+#: src/constants/WalletConnectCommands.tsx:550
 msgid "Asset Id"
 msgstr ""
 
@@ -694,7 +694,7 @@ msgstr "Priemer"
 msgid "Back"
 msgstr "Späť"
 
-#: src/constants/WalletConnectCommands.tsx:752
+#: src/constants/WalletConnectCommands.tsx:759
 msgid "Backup DIDs"
 msgstr "Záložné DIDy"
 
@@ -836,7 +836,7 @@ msgstr "Zrušiť"
 #: src/components/offers/ConfirmOfferCancellation.tsx:62
 #: src/components/offers/ConfirmOfferCancellation.tsx:129
 #: src/components/offers/OfferManager.tsx:323
-#: src/constants/WalletConnectCommands.tsx:374
+#: src/constants/WalletConnectCommands.tsx:381
 msgid "Cancel Offer"
 msgstr "Zrušiť ponuku"
 
@@ -899,7 +899,7 @@ msgstr ""
 #~ msgid "Chat on KeyBase"
 #~ msgstr "Chat on KeyBase"
 
-#: src/constants/WalletConnectCommands.tsx:397
+#: src/constants/WalletConnectCommands.tsx:404
 msgid "Check Offer Validity"
 msgstr "Skontrolovať platnosť ponuky"
 
@@ -1013,7 +1013,7 @@ msgstr "Zavrieť"
 msgid "Closing down services"
 msgstr "Prebieha zatváranie služieb"
 
-#: src/constants/WalletConnectCommands.tsx:594
+#: src/constants/WalletConnectCommands.tsx:601
 msgid "Coin Id"
 msgstr "ID mince"
 
@@ -1184,7 +1184,7 @@ msgstr ""
 msgid "Could not parse offer data"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:972
+#: src/constants/WalletConnectCommands.tsx:979
 msgid "Count"
 msgstr "Počet"
 
@@ -1239,7 +1239,7 @@ msgstr ""
 #~ msgid "Create new CAT Wallet"
 #~ msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:735
+#: src/constants/WalletConnectCommands.tsx:742
 msgid "Create new DID Wallet"
 msgstr "Vytvoriť novú DID peňaženku"
 
@@ -1482,11 +1482,11 @@ msgstr "Dexie URL"
 #: src/components/addressbook/ContactEdit.tsx:119
 #: src/components/signVerify/SigningEntityDID.tsx:77
 #: src/components/signVerify/SignMessage.tsx:155
-#: src/constants/WalletConnectCommands.tsx:799
+#: src/constants/WalletConnectCommands.tsx:806
 msgid "DID"
 msgstr "DID"
 
-#: src/constants/WalletConnectCommands.tsx:673
+#: src/constants/WalletConnectCommands.tsx:680
 msgid "DID Id"
 msgstr ""
 
@@ -1688,11 +1688,11 @@ msgid "Edition #"
 msgstr "Vydanie #"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:226
-#: src/constants/WalletConnectCommands.tsx:661
+#: src/constants/WalletConnectCommands.tsx:668
 msgid "Edition Number"
 msgstr "Číslo vydania"
 
-#: src/constants/WalletConnectCommands.tsx:667
+#: src/constants/WalletConnectCommands.tsx:674
 msgid "Edition Total"
 msgstr ""
 
@@ -2019,14 +2019,15 @@ msgstr ""
 #: src/components/vcs/VCRevokeDialog.tsx:80
 #: src/constants/WalletConnectCommands.tsx:120
 #: src/constants/WalletConnectCommands.tsx:165
-#: src/constants/WalletConnectCommands.tsx:389
-#: src/constants/WalletConnectCommands.tsx:424
-#: src/constants/WalletConnectCommands.tsx:525
-#: src/constants/WalletConnectCommands.tsx:679
-#: src/constants/WalletConnectCommands.tsx:708
-#: src/constants/WalletConnectCommands.tsx:746
-#: src/constants/WalletConnectCommands.tsx:804
-#: src/constants/WalletConnectCommands.tsx:910
+#: src/constants/WalletConnectCommands.tsx:372
+#: src/constants/WalletConnectCommands.tsx:396
+#: src/constants/WalletConnectCommands.tsx:431
+#: src/constants/WalletConnectCommands.tsx:532
+#: src/constants/WalletConnectCommands.tsx:686
+#: src/constants/WalletConnectCommands.tsx:715
+#: src/constants/WalletConnectCommands.tsx:753
+#: src/constants/WalletConnectCommands.tsx:811
+#: src/constants/WalletConnectCommands.tsx:917
 msgid "Fee"
 msgstr "Poplatok"
 
@@ -2077,11 +2078,11 @@ msgid "Final folder location"
 msgstr "Cieľový adresár"
 
 #: src/constants/WalletConnectCommands.tsx:22
-#: src/constants/WalletConnectCommands.tsx:994
+#: src/constants/WalletConnectCommands.tsx:1001
 msgid "Fingerprint"
 msgstr "Odtlačok"
 
-#: src/constants/WalletConnectCommands.tsx:958
+#: src/constants/WalletConnectCommands.tsx:965
 msgid "Fingerprints"
 msgstr "Odtlačky"
 
@@ -2132,15 +2133,15 @@ msgstr ""
 msgid "Get all Offers"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:818
+#: src/constants/WalletConnectCommands.tsx:825
 msgid "Get All Verifiable Credentials"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:489
+#: src/constants/WalletConnectCommands.tsx:496
 msgid "Get CAT Asset Id"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:476
+#: src/constants/WalletConnectCommands.tsx:483
 msgid "Get CAT Wallet Info"
 msgstr ""
 
@@ -2156,31 +2157,31 @@ msgstr ""
 msgid "Get Next Address"
 msgstr "Získať ďalšiu adresu"
 
-#: src/constants/WalletConnectCommands.tsx:587
+#: src/constants/WalletConnectCommands.tsx:594
 msgid "Get NFT Info"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:812
+#: src/constants/WalletConnectCommands.tsx:819
 msgid "Get NFT Wallets with DIDs"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:557
+#: src/constants/WalletConnectCommands.tsx:564
 msgid "Get NFTs"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:716
+#: src/constants/WalletConnectCommands.tsx:723
 msgid "Get NFTs Count"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:446
+#: src/constants/WalletConnectCommands.tsx:453
 msgid "Get Offer Data"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:460
+#: src/constants/WalletConnectCommands.tsx:467
 msgid "Get Offer Record"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:432
+#: src/constants/WalletConnectCommands.tsx:439
 msgid "Get Offer Summary"
 msgstr ""
 
@@ -2188,11 +2189,11 @@ msgstr ""
 msgid "Get Offers Count"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:889
+#: src/constants/WalletConnectCommands.tsx:896
 msgid "Get Proofs For Root Hash"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:987
+#: src/constants/WalletConnectCommands.tsx:994
 msgid "Get public key"
 msgstr ""
 
@@ -2200,11 +2201,11 @@ msgstr ""
 msgid "Get Transaction"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:824
+#: src/constants/WalletConnectCommands.tsx:831
 msgid "Get Verifiable Credential"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:951
+#: src/constants/WalletConnectCommands.tsx:958
 msgid "Get wallet addresses for one or more wallet keys"
 msgstr ""
 
@@ -2271,7 +2272,7 @@ msgstr "Zberače"
 msgid "Harvesting Effectiveness"
 msgstr "Účinnosť zberu"
 
-#: src/constants/WalletConnectCommands.tsx:634
+#: src/constants/WalletConnectCommands.tsx:641
 msgid "Hash"
 msgstr ""
 
@@ -2443,7 +2444,7 @@ msgid "Incoming Offers"
 msgstr ""
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:17
-#: src/constants/WalletConnectCommands.tsx:965
+#: src/constants/WalletConnectCommands.tsx:972
 msgid "Index"
 msgstr "Index"
 
@@ -2517,7 +2518,7 @@ msgstr "IP Adresa"
 msgid "IP address / host"
 msgstr "IP Adresa / host"
 
-#: src/constants/WalletConnectCommands.tsx:944
+#: src/constants/WalletConnectCommands.tsx:951
 msgid "Is notification visible to all paired fingerprints"
 msgstr ""
 
@@ -2650,8 +2651,8 @@ msgstr "Najnovšie blokové výzvy"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:255
 #: src/components/plotNFT/PlotNFTCard.tsx:292
-#: src/constants/WalletConnectCommands.tsx:831
-#: src/constants/WalletConnectCommands.tsx:843
+#: src/constants/WalletConnectCommands.tsx:838
+#: src/constants/WalletConnectCommands.tsx:850
 msgid "Launcher Id"
 msgstr "Id spúšťača"
 
@@ -2683,11 +2684,11 @@ msgid "Legacy keyrings are no longer supported. Your keys need to be migrated to
 msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:296
-#: src/constants/WalletConnectCommands.tsx:655
+#: src/constants/WalletConnectCommands.tsx:662
 msgid "License Hash"
 msgstr "Hash licencie"
 
-#: src/constants/WalletConnectCommands.tsx:650
+#: src/constants/WalletConnectCommands.tsx:657
 msgid "License Uris"
 msgstr ""
 
@@ -2804,7 +2805,7 @@ msgid "Memberships"
 msgstr "Členstvá"
 
 #: src/constants/WalletConnectCommands.tsx:138
-#: src/constants/WalletConnectCommands.tsx:531
+#: src/constants/WalletConnectCommands.tsx:538
 msgid "Memos"
 msgstr "Poznámky"
 
@@ -2814,7 +2815,7 @@ msgstr "Poznámky"
 #: src/constants/WalletConnectCommands.tsx:183
 #: src/constants/WalletConnectCommands.tsx:206
 #: src/constants/WalletConnectCommands.tsx:226
-#: src/constants/WalletConnectCommands.tsx:926
+#: src/constants/WalletConnectCommands.tsx:933
 msgid "Message"
 msgstr ""
 
@@ -2827,11 +2828,11 @@ msgstr ""
 msgid "Message not available"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:644
+#: src/constants/WalletConnectCommands.tsx:651
 msgid "Meta Hash"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:639
+#: src/constants/WalletConnectCommands.tsx:646
 msgid "Meta Uris"
 msgstr ""
 
@@ -2871,7 +2872,7 @@ msgstr "Ochrana prístupovou frázou vyžaduje migráciu"
 msgid "Minimum Difficulty"
 msgstr "Minimálna zložitosť"
 
-#: src/constants/WalletConnectCommands.tsx:601
+#: src/constants/WalletConnectCommands.tsx:608
 msgid "Mint NFT"
 msgstr ""
 
@@ -2972,8 +2973,8 @@ msgstr "N/A"
 #: src/components/addressbook/ContactEdit.tsx:108
 #: src/components/addressbook/ContactEdit.tsx:166
 #: src/components/addressbook/ContactEdit.tsx:366
-#: src/constants/WalletConnectCommands.tsx:548
-#: src/constants/WalletConnectCommands.tsx:773
+#: src/constants/WalletConnectCommands.tsx:555
+#: src/constants/WalletConnectCommands.tsx:780
 msgid "Name"
 msgstr ""
 
@@ -3013,11 +3014,11 @@ msgstr "Nová ponuka"
 msgid "New Passphrase"
 msgstr "Nová prístupová fráza"
 
-#: src/constants/WalletConnectCommands.tsx:854
+#: src/constants/WalletConnectCommands.tsx:861
 msgid "New Proof Hash"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:848
+#: src/constants/WalletConnectCommands.tsx:855
 msgid "New Puzzle Hash"
 msgstr ""
 
@@ -3046,8 +3047,8 @@ msgstr ""
 msgid "NFT Coin ID"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:698
-#: src/constants/WalletConnectCommands.tsx:795
+#: src/constants/WalletConnectCommands.tsx:705
+#: src/constants/WalletConnectCommands.tsx:802
 msgid "NFT Coin Ids"
 msgstr ""
 
@@ -3077,7 +3078,7 @@ msgstr "Identifikátor NFT"
 msgid "NFT identifier does not reference a valid NFT coin."
 msgstr "Identifikátor NFT neodkazuje na platnú NFT mincu."
 
-#: src/constants/WalletConnectCommands.tsx:790
+#: src/constants/WalletConnectCommands.tsx:797
 msgid "NFT Launcher Id"
 msgstr ""
 
@@ -3192,7 +3193,7 @@ msgstr ""
 msgid "Node ID"
 msgstr "ID uzla"
 
-#: src/constants/WalletConnectCommands.tsx:979
+#: src/constants/WalletConnectCommands.tsx:986
 msgid "Non Observer Derivation"
 msgstr ""
 
@@ -3285,7 +3286,7 @@ msgstr "Upozornenia"
 msgid "Notify Current Owner"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:756
+#: src/constants/WalletConnectCommands.tsx:763
 msgid "Number of Backup Ids Needed"
 msgstr ""
 
@@ -3298,7 +3299,7 @@ msgstr "Počet sektorov"
 msgid "Number of buckets for phase 3 & 4"
 msgstr "Počet sektorov pre fázu 3 a 4"
 
-#: src/constants/WalletConnectCommands.tsx:573
+#: src/constants/WalletConnectCommands.tsx:580
 msgid "Number of NFTs"
 msgstr ""
 
@@ -3347,7 +3348,7 @@ msgstr ""
 msgid "Occupied space"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:416
+#: src/constants/WalletConnectCommands.tsx:423
 msgid "Offer"
 msgstr ""
 
@@ -3364,9 +3365,9 @@ msgstr "Ponuku nemožno prijať, pretože nevlastníte požadované aktíva"
 
 #: src/components/offers/OfferDataDialog.tsx:29
 #: src/components/offers/OfferDataDialog.tsx:37
-#: src/constants/WalletConnectCommands.tsx:404
-#: src/constants/WalletConnectCommands.tsx:439
-#: src/constants/WalletConnectCommands.tsx:938
+#: src/constants/WalletConnectCommands.tsx:411
+#: src/constants/WalletConnectCommands.tsx:446
+#: src/constants/WalletConnectCommands.tsx:945
 msgid "Offer Data"
 msgstr "Údaje o ponuke"
 
@@ -3402,8 +3403,8 @@ msgstr ""
 msgid "Offer has expired."
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:453
-#: src/constants/WalletConnectCommands.tsx:467
+#: src/constants/WalletConnectCommands.tsx:460
+#: src/constants/WalletConnectCommands.tsx:474
 msgid "Offer Id"
 msgstr ""
 
@@ -3587,7 +3588,7 @@ msgstr ""
 msgid "Parallel Decompressor Count"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:908
+#: src/constants/WalletConnectCommands.tsx:915
 msgid "Parent Coin Info"
 msgstr ""
 
@@ -4097,11 +4098,11 @@ msgstr ""
 msgid "Proofs Found"
 msgstr "Nájdené dôkazy"
 
-#: src/constants/WalletConnectCommands.tsx:896
+#: src/constants/WalletConnectCommands.tsx:903
 msgid "Proofs Hash"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:883
+#: src/constants/WalletConnectCommands.tsx:890
 msgid "Proofs Object (Key Value Pairs)"
 msgstr ""
 
@@ -4117,7 +4118,7 @@ msgstr "Verzia protokolu"
 msgid "Prove or verify possession of a wallet address, NFT, or DID using a digital signature."
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:859
+#: src/constants/WalletConnectCommands.tsx:866
 msgid "Provider Inner Puzzle Hash"
 msgstr ""
 
@@ -4258,11 +4259,11 @@ msgstr ""
 msgid "Requests a complete listing of the wallets associated with the current wallet key"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:559
+#: src/constants/WalletConnectCommands.tsx:566
 msgid "Requests a full or paginated listing of NFTs associated with one or more wallets associated with the current wallet key"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:988
+#: src/constants/WalletConnectCommands.tsx:995
 msgid "Requests a master public key from your wallet"
 msgstr ""
 
@@ -4270,7 +4271,7 @@ msgstr ""
 msgid "Requests a new receive address associated with the current wallet key"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:588
+#: src/constants/WalletConnectCommands.tsx:595
 msgid "Requests details for a specific NFT"
 msgstr ""
 
@@ -4286,7 +4287,7 @@ msgstr ""
 msgid "Requests the asset balances for specific wallets associated with the current wallet key"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:490
+#: src/constants/WalletConnectCommands.tsx:497
 msgid "Requests the CAT asset ID for a specific CAT wallet"
 msgstr ""
 
@@ -4294,11 +4295,11 @@ msgstr ""
 msgid "Requests the current receive address associated with the current wallet key"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:462
+#: src/constants/WalletConnectCommands.tsx:469
 msgid "Requests the details for a specific offer"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:718
+#: src/constants/WalletConnectCommands.tsx:725
 msgid "Requests the number of NFTs associated with one or more wallets associated with the current wallet key"
 msgstr ""
 
@@ -4306,11 +4307,11 @@ msgstr ""
 msgid "Requests the number of offers associated with the current wallet key"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:447
+#: src/constants/WalletConnectCommands.tsx:454
 msgid "Requests the raw offer data for a specific offer"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:433
+#: src/constants/WalletConnectCommands.tsx:440
 msgid "Requests the summarized details of a specific offer"
 msgstr ""
 
@@ -4318,7 +4319,7 @@ msgstr ""
 msgid "Requests the syncing status of current wallet"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:398
+#: src/constants/WalletConnectCommands.tsx:405
 msgid "Requests the validity status of a specific offer"
 msgstr ""
 
@@ -4372,7 +4373,7 @@ msgstr ""
 msgid "Resyncing forces reloading data from the blockchain about your transactions without losing other locally stored information like open, accepted, or cancelled offer files. Resyncing will require you to restart the app."
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:870
+#: src/constants/WalletConnectCommands.tsx:877
 msgid "Reuse Puzzle Hash"
 msgstr ""
 
@@ -4382,7 +4383,7 @@ msgstr ""
 
 #: src/components/vcs/VCCard.tsx:209
 #: src/components/vcs/VCCard.tsx:311
-#: src/constants/WalletConnectCommands.tsx:902
+#: src/constants/WalletConnectCommands.tsx:909
 msgid "Revoke Verifiable Credential"
 msgstr ""
 
@@ -4394,12 +4395,12 @@ msgstr ""
 msgid "Royalties are built into the NFT, so they will automatically be accounted for when the offer is created/accepted."
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:611
+#: src/constants/WalletConnectCommands.tsx:618
 msgid "Royalty Address"
 msgstr "Adresa autorského honoráru"
 
 #: src/components/nfts/NFTDetails.tsx:160
-#: src/constants/WalletConnectCommands.tsx:617
+#: src/constants/WalletConnectCommands.tsx:624
 msgid "Royalty Percentage"
 msgstr "Percento autorského honoráru"
 
@@ -4452,7 +4453,7 @@ msgstr "Vyhľadať..."
 msgid "Second temporary folder location"
 msgstr "Druhý dočasný adresár"
 
-#: src/constants/WalletConnectCommands.tsx:384
+#: src/constants/WalletConnectCommands.tsx:391
 msgid "Secure"
 msgstr ""
 
@@ -4585,11 +4586,11 @@ msgstr ""
 msgid "Set a time after which this offer expires."
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:763
+#: src/constants/WalletConnectCommands.tsx:770
 msgid "Set DID Name"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:780
+#: src/constants/WalletConnectCommands.tsx:787
 msgid "Set NFT DID"
 msgstr ""
 
@@ -4657,12 +4658,12 @@ msgstr "Zobraziť"
 msgid "Show Details"
 msgstr "Zobraziť podrobnosti"
 
-#: src/constants/WalletConnectCommands.tsx:915
+#: src/constants/WalletConnectCommands.tsx:922
 msgid "Show notification with offer or general announcement"
 msgstr ""
 
-#: src/components/walletConnect/WalletConnectCreateOfferPreview.tsx:33
-#: src/components/walletConnect/WalletConnectOfferPreview.tsx:70
+#: src/components/walletConnect/WalletConnectCreateOfferPreview.tsx:54
+#: src/components/walletConnect/WalletConnectOfferPreview.tsx:42
 msgid "Show Offer Details"
 msgstr ""
 
@@ -4797,11 +4798,11 @@ msgstr ""
 #~ msgid "Speech"
 #~ msgstr "Speech"
 
-#: src/constants/WalletConnectCommands.tsx:503
+#: src/constants/WalletConnectCommands.tsx:510
 msgid "Spend CAT"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:864
+#: src/constants/WalletConnectCommands.tsx:871
 msgid "Spend Fee"
 msgstr ""
 
@@ -4829,7 +4830,7 @@ msgstr ""
 msgid "Start"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:579
+#: src/constants/WalletConnectCommands.tsx:586
 msgid "Start Index"
 msgstr ""
 
@@ -4905,12 +4906,12 @@ msgstr "Synchronizácia"
 msgid "Syncing <0/>/<1/>"
 msgstr "Synchronizácia <0/>/<1/>"
 
-#: src/constants/WalletConnectCommands.tsx:411
+#: src/constants/WalletConnectCommands.tsx:418
 msgid "Take Offer"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:623
-#: src/constants/WalletConnectCommands.tsx:703
+#: src/constants/WalletConnectCommands.tsx:630
+#: src/constants/WalletConnectCommands.tsx:710
 msgid "Target Address"
 msgstr "Cieľová adresa"
 
@@ -5335,7 +5336,7 @@ msgstr ""
 msgid "Touch all pages of buffer allocations before starting to plot."
 msgstr "Dotknúť sa všetkých stránok vyrovnávacej pamäte pred spustením vykresľovania."
 
-#: src/constants/WalletConnectCommands.tsx:379
+#: src/constants/WalletConnectCommands.tsx:386
 msgid "Trade Id"
 msgstr ""
 
@@ -5382,7 +5383,7 @@ msgstr "Prevod"
 
 #: src/components/nfts/NFTContextualActions.tsx:197
 #: src/components/nfts/NFTTransferAction.tsx:217
-#: src/constants/WalletConnectCommands.tsx:688
+#: src/constants/WalletConnectCommands.tsx:695
 msgid "Transfer NFT"
 msgstr "Previesť NFT"
 
@@ -5415,7 +5416,7 @@ msgid "Turn this off if you don't have any compressed plots to harvest"
 msgstr ""
 
 #: src/components/vcs/VCCard.tsx:163
-#: src/constants/WalletConnectCommands.tsx:921
+#: src/constants/WalletConnectCommands.tsx:928
 msgid "Type"
 msgstr ""
 
@@ -5529,12 +5530,12 @@ msgstr ""
 msgid "Update Pending"
 msgstr "Čakajúca aktualizácia"
 
-#: src/constants/WalletConnectCommands.tsx:629
+#: src/constants/WalletConnectCommands.tsx:636
 msgid "Uris"
 msgstr ""
 
 #: src/components/notification/NotificationAnnouncementDialog.tsx:62
-#: src/constants/WalletConnectCommands.tsx:932
+#: src/constants/WalletConnectCommands.tsx:939
 #: src/hooks/useOpenUnsafeLink.tsx:43
 msgid "URL"
 msgstr "URL"
@@ -5747,12 +5748,12 @@ msgstr "Adresa peňaženky"
 #: src/constants/WalletConnectCommands.tsx:64
 #: src/constants/WalletConnectCommands.tsx:98
 #: src/constants/WalletConnectCommands.tsx:262
-#: src/constants/WalletConnectCommands.tsx:496
-#: src/constants/WalletConnectCommands.tsx:509
-#: src/constants/WalletConnectCommands.tsx:606
-#: src/constants/WalletConnectCommands.tsx:693
-#: src/constants/WalletConnectCommands.tsx:769
-#: src/constants/WalletConnectCommands.tsx:786
+#: src/constants/WalletConnectCommands.tsx:503
+#: src/constants/WalletConnectCommands.tsx:516
+#: src/constants/WalletConnectCommands.tsx:613
+#: src/constants/WalletConnectCommands.tsx:700
+#: src/constants/WalletConnectCommands.tsx:776
+#: src/constants/WalletConnectCommands.tsx:793
 msgid "Wallet Id"
 msgstr ""
 
@@ -5761,8 +5762,8 @@ msgid "Wallet ID"
 msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:81
-#: src/constants/WalletConnectCommands.tsx:569
-#: src/constants/WalletConnectCommands.tsx:727
+#: src/constants/WalletConnectCommands.tsx:576
+#: src/constants/WalletConnectCommands.tsx:734
 msgid "Wallet Ids"
 msgstr ""
 
