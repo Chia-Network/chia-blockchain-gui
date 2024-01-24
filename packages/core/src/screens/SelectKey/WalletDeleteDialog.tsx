@@ -3,6 +3,7 @@ import {
   useDeleteKeyMutation,
   useGetKeyringStatusQuery,
   usePrefs,
+  type Serializable,
 } from '@chia-network/api-react';
 import { Trans, t } from '@lingui/macro';
 import { Button, Dialog, DialogTitle, DialogContent, Alert, Typography } from '@mui/material';
@@ -22,6 +23,8 @@ type FormData = {
   fingerprint: string;
 };
 
+type LocalStorageType = Record<string, Record<string, Serializable>>;
+
 export type WalletDeleteDialogProps = {
   fingerprint: number;
   open?: boolean;
@@ -32,7 +35,7 @@ export default function WalletDeleteDialog(props: WalletDeleteDialogProps) {
   const { fingerprint, onClose = () => ({}), open = false } = props;
 
   const [fingerprintPrefs, setFingerprintPrefs] = usePrefs<LocalStorageType>('fingerprintSettings', {});
-  const [sortedWalletsPrefs, setSortedWalletsPrefs] = usePrefs<LocalStorageType>('sortedWallets', {});
+  const [sortedWalletsPrefs, setSortedWalletsPrefs] = usePrefs<string[]>('sortedWallets', []);
 
   const { data: keyringState, isLoading: isLoadingKeyringStatus } = useGetKeyringStatusQuery();
 
