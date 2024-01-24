@@ -54,13 +54,13 @@ msgstr "數量"
 msgid "Appearance"
 msgstr "外觀"
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:158
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:161
 msgid "Are you sure you want to continue? Type in the fingerprint of this wallet key to confirm deletion."
 msgstr "你確定你要繼續嗎？輸入該錢包密鑰的指紋以確認刪除。"
 
 #: src/components/FormBackButton/FormBackButton.tsx:15
 #: src/screens/SelectKey/SelectKey.tsx:129
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:170
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:173
 msgid "Back"
 msgstr "返回"
 
@@ -126,7 +126,7 @@ msgstr "暗色主題"
 
 #: src/screens/SelectKey/SelectKey.tsx:128
 #: src/screens/SelectKey/SelectKeyItem.tsx:114
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:180
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:183
 msgid "Delete"
 msgstr "刪除"
 
@@ -138,7 +138,7 @@ msgstr "刪除所有金鑰"
 msgid "Delete All Keys"
 msgstr "刪除所有鑰匙"
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:110
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:113
 msgid "Delete key {fingerprint}"
 msgstr "刪除金鑰 {fingerprint}"
 
@@ -202,7 +202,7 @@ msgstr "耕種中"
 msgid "Fee"
 msgstr "手續費"
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:95
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:98
 msgid "Fingerprint does not match"
 msgstr "指紋不符合"
 
@@ -468,19 +468,19 @@ msgstr "發生錯誤"
 msgid "The provided passphrase and confirmation do not match"
 msgstr "提供的密碼和確認密碼不一致"
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:140
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:143
 msgid "This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
 msgstr "該金鑰用於可能有非零餘額的錢包。刪除該金鑰可能導致無法存取該錢包"
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:122
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:125
 msgid "This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
 msgstr "該金鑰用於您的挖礦獎勵地址。刪除該金鑰可能導致無法存取未來的挖礦獎勵"
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:131
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:134
 msgid "This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
 msgstr "該金鑰用於您的挖礦池獎勵地址。刪除該金鑰可能導致無法存取未來的挖礦池獎勵"
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:152
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:155
 msgid "This will permanently remove the key from your computer, make sure you have your mnemonic phrase backed up."
 msgstr "此操作將永久從您的電腦中刪除該金鑰，請確保已備份您的助記詞。"
 
@@ -539,7 +539,7 @@ msgstr "錢包"
 msgid "Wallet {0}"
 msgstr "錢包 {0}"
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:163
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:166
 msgid "Wallet Fingerprint"
 msgstr "錢包指紋"
 
