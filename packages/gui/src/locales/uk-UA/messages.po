@@ -8,7 +8,7 @@ msgstr ""
 "Language: uk_UA\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-24 00:04\n"
+"PO-Revision-Date: 2024-01-21 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Ukrainian\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
@@ -205,7 +205,7 @@ msgstr "(Не підтримується)"
 
 #: src/components/plot/add/PlotAddNFT.tsx:67
 msgid "(Recommended)"
-msgstr ""
+msgstr "(Рекомендовано)"
 
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:97
 msgid "{0, plural, one {mojo} other {mojos}}"
@@ -554,7 +554,7 @@ msgstr "Походження NFT – це повний запис історії
 
 #: src/components/notification/NotificationAnnouncementDialog.tsx:35
 msgid "Announcement"
-msgstr ""
+msgstr "Анонс"
 
 #: src/components/settings/SettingsIntegration.tsx:212
 msgid "App Permissions"
@@ -624,12 +624,12 @@ msgstr "Ви впевнені, що бажаєте використовуват�
 
 #: src/components/offers2/OfferBuilderRoyaltyPayouts.tsx:48
 msgid "Asset"
-msgstr ""
+msgstr "Актив"
 
 #: src/constants/WalletConnectCommands.tsx:489
 #: src/constants/WalletConnectCommands.tsx:550
 msgid "Asset Id"
-msgstr ""
+msgstr "Id Активу"
 
 #: src/components/offers/NFTOfferTokenSelector.tsx:92
 #: src/components/offers/OfferAssetSelector.tsx:139
@@ -640,11 +640,11 @@ msgstr "Тип Активу"
 
 #: src/components/offers/OfferShareDialog.tsx:903
 msgid "Assets I am offering:"
-msgstr ""
+msgstr "Активи, які я пропоную:"
 
 #: src/components/offers/OfferShareDialog.tsx:908
 msgid "Assets I will receive:"
-msgstr ""
+msgstr "Активи, які я отримаю:"
 
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:49
 msgid "Assets I would like to receive"
@@ -688,7 +688,7 @@ msgstr "Автоматично згенероване ім'я з контрак�
 
 #: src/components/harvest/HarvesterLatency.tsx:108
 msgid "Avg"
-msgstr ""
+msgstr "Середнє"
 
 #: src/components/offers/NFTOfferViewer.tsx:633
 msgid "Back"
@@ -696,7 +696,7 @@ msgstr "Назад"
 
 #: src/constants/WalletConnectCommands.tsx:759
 msgid "Backup DIDs"
-msgstr ""
+msgstr "Резервне копіювання DIDs"
 
 #: src/components/vcs/VCList.tsx:282
 msgid "Badging"
@@ -1015,11 +1015,11 @@ msgstr "Завершення роботи служб"
 
 #: src/constants/WalletConnectCommands.tsx:601
 msgid "Coin Id"
-msgstr ""
+msgstr "Id монети"
 
 #: src/components/vcs/VCCard.tsx:147
 msgid "Coin ID"
-msgstr ""
+msgstr "ID монети"
 
 #: src/constants/WalletConnectCommands.tsx:160
 msgid "Coin Ids"
@@ -1040,17 +1040,17 @@ msgstr ""
 
 #: src/components/harvest/HarvesterPlotDetails.tsx:132
 msgid "Compression"
-msgstr ""
+msgstr "Стиснення"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:126
 msgid "Compression level"
-msgstr ""
+msgstr "Рівень стиснення"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:167
 #: src/components/vcs/VCRevokeDialog.tsx:27
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:71
 msgid "Confirm"
-msgstr ""
+msgstr "Підтвердити"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:19
 msgid "Confirm Disconnect"
@@ -2457,15 +2457,13 @@ msgstr "Ініціалізація..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr "Недостатньо доступних коштів для прийняття пропозиції. Переконайтеся, що вашого балансу достатньо для покриття суми пропозиції."
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr "Недостатньо доступних коштів для створення пропозиції. Переконайтеся, що вашого балансу достатньо для покриття суми пропозиції."
 
@@ -3122,7 +3120,7 @@ msgstr ""
 
 #: src/components/vcs/VCCard.tsx:89
 msgid "No"
-msgstr ""
+msgstr "Ні"
 
 #: src/components/notification/NotificationsMenu.tsx:53
 msgid "No activities yet"
@@ -5638,7 +5636,7 @@ msgstr ""
 
 #: src/components/offers2/OfferIncomingTable.tsx:95
 msgid "View"
-msgstr ""
+msgstr "Вигляд"
 
 #: src/components/offers/OfferImport.tsx:184
 msgid "View an Offer"
@@ -5881,7 +5879,7 @@ msgstr "Бажаєте передати вказаний NFT новому вла
 #: src/components/plot/add/PlotAddChooseSize.tsx:61
 #: src/components/vcs/VCCard.tsx:89
 msgid "Yes"
-msgstr ""
+msgstr "Так"
 
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:22
 msgid "Yes, Accept Offer"
@@ -6035,3 +6033,4 @@ msgstr ""
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr ""
+
