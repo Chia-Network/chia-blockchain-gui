@@ -8,7 +8,7 @@ msgstr ""
 "Language: fr_FR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-24 00:04\n"
+"PO-Revision-Date: 2024-01-07 00:04\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -54,13 +54,13 @@ msgstr "Montant"
 msgid "Appearance"
 msgstr "Apparence"
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:158
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:161
 msgid "Are you sure you want to continue? Type in the fingerprint of this wallet key to confirm deletion."
 msgstr "Êtes-vous sûr de vouloir continuer ? Tapez l'empreinte de cette clé de porte-monnaie pour confirmer la suppression."
 
 #: src/components/FormBackButton/FormBackButton.tsx:15
 #: src/screens/SelectKey/SelectKey.tsx:129
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:170
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:173
 msgid "Back"
 msgstr "Retour"
 
@@ -126,7 +126,7 @@ msgstr "Sombre"
 
 #: src/screens/SelectKey/SelectKey.tsx:128
 #: src/screens/SelectKey/SelectKeyItem.tsx:114
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:180
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:183
 msgid "Delete"
 msgstr "Supprimer"
 
@@ -138,7 +138,7 @@ msgstr "Supprimer toutes les clés"
 msgid "Delete All Keys"
 msgstr "Supprimer toutes les clés"
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:110
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:113
 msgid "Delete key {fingerprint}"
 msgstr "Supprimer la clé {fingerprint}"
 
@@ -202,7 +202,7 @@ msgstr "Culture"
 msgid "Fee"
 msgstr "Frais"
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:95
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:98
 msgid "Fingerprint does not match"
 msgstr "L'empreinte ne correspond pas"
 
@@ -468,19 +468,19 @@ msgstr "Une erreur s'est produite"
 msgid "The provided passphrase and confirmation do not match"
 msgstr "La phrase secrète fournie et la confirmation ne correspondent pas"
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:140
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:143
 msgid "This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
 msgstr "Attention : Cette clé est utilisée pour un portefeuille qui pourrait avoir un solde non nul. En supprimant cette clé, vous risquez de perdre accès à ce portefeuille"
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:122
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:125
 msgid "This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
 msgstr "Attention : Cette clé est utilisée pour votre adresse de récompenses de culture. En supprimant cette clé, vous risquez de perdre accès à toute future récompense de culture"
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:131
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:134
 msgid "This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
 msgstr "Attention : Cette clé est utilisée pour votre adresse de récompenses de pool. En supprimant cette clé, vous risquez de perdre accès à toute future récompense de pool"
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:152
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:155
 msgid "This will permanently remove the key from your computer, make sure you have your mnemonic phrase backed up."
 msgstr "Cela supprimera définitivement la clé de votre ordinateur, assurez-vous d'avoir une copie de votre phrase mnémonique."
 
@@ -539,7 +539,7 @@ msgstr "Portefeuille"
 msgid "Wallet {0}"
 msgstr "Porte-monnaie {0}"
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:163
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:166
 msgid "Wallet Fingerprint"
 msgstr "Empreinte du porte-monnaie"
 
