@@ -54,13 +54,13 @@ msgstr "Summa"
 msgid "Appearance"
 msgstr "Ulkoasu"
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:158
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:161
 msgid "Are you sure you want to continue? Type in the fingerprint of this wallet key to confirm deletion."
 msgstr "Oletko varma, että haluat jatkaa? Kirjoita tämän lompakon sormenjälki vahvistaaksesi poistamisen."
 
 #: src/components/FormBackButton/FormBackButton.tsx:15
 #: src/screens/SelectKey/SelectKey.tsx:129
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:170
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:173
 msgid "Back"
 msgstr "Takaisin"
 
@@ -126,7 +126,7 @@ msgstr "Tumma"
 
 #: src/screens/SelectKey/SelectKey.tsx:128
 #: src/screens/SelectKey/SelectKeyItem.tsx:114
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:180
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:183
 msgid "Delete"
 msgstr "Poista"
 
@@ -138,7 +138,7 @@ msgstr "Poista kaikki avaimet"
 msgid "Delete All Keys"
 msgstr "Poista Kaikki Avaimet"
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:110
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:113
 msgid "Delete key {fingerprint}"
 msgstr "Poista avain {fingerprint}"
 
@@ -202,7 +202,7 @@ msgstr "Farmarointi"
 msgid "Fee"
 msgstr "Maksu"
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:95
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:98
 msgid "Fingerprint does not match"
 msgstr "Sormenjälki ei täsmää"
 
@@ -468,19 +468,19 @@ msgstr "Jokin meni pieleen"
 msgid "The provided passphrase and confirmation do not match"
 msgstr "Annettu salasana ja vahvistus eivät täsmää"
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:140
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:143
 msgid "This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
 msgstr "Varoitus: Tätä avainta käytetään lompakossa, jossa voi olla saldoa. Poistamalla tämän avaimen voit menettää pääsyn tähän lompakkoon"
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:122
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:125
 msgid "This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
 msgstr "Varoitus: tätä avainta käytetään farmarin palkinto-osoitteeseen. Poistamalla tämän avaimen voit menettää pääsyn tuleviin farmaripalkkioihin"
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:131
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:134
 msgid "This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
 msgstr "Varoitus: tätä avainta käytetään poolin palkinto-osoitteeseen. Poistamalla tämän avaimen voit menettää pääsyn tuleviin poolipalkkioihin"
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:152
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:155
 msgid "This will permanently remove the key from your computer, make sure you have your mnemonic phrase backed up."
 msgstr "Tämä poistaa avaimen pysyvästi tietokoneeltasi, varmista, että sinulla on mnemoninen lause varmuuskopioitu."
 
@@ -539,7 +539,7 @@ msgstr "Lompakot"
 msgid "Wallet {0}"
 msgstr "Lompakko {0}"
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:163
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:166
 msgid "Wallet Fingerprint"
 msgstr "Lompakon Sormenjälki"
 
@@ -572,4 +572,3 @@ msgstr "Tämänhetkinen Versio:"
 #: src/hooks/useKeyringMigrationPrompt.tsx:21
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr "Avaimiasi ei ole siirretty uuteen avainrenkaaseen. Et voi luoda uusia avaimia tai poistaa olemassa olevia avaimia ennen kuin siirto on tehty. Haluatko siirtää avaimesi nyt?"
-

@@ -54,13 +54,13 @@ msgstr "مبلغ"
 msgid "Appearance"
 msgstr "ظاهر برنامه"
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:158
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:161
 msgid "Are you sure you want to continue? Type in the fingerprint of this wallet key to confirm deletion."
 msgstr "آیا مطمئن هستید که میخواهید ادامه دهید؟ برای تایید حذف، کلمات کد این کلید کیف پول را تایپ کنید."
 
 #: src/components/FormBackButton/FormBackButton.tsx:15
 #: src/screens/SelectKey/SelectKey.tsx:129
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:170
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:173
 msgid "Back"
 msgstr "بازگشت"
 
@@ -126,7 +126,7 @@ msgstr "تاریک"
 
 #: src/screens/SelectKey/SelectKey.tsx:128
 #: src/screens/SelectKey/SelectKeyItem.tsx:114
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:180
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:183
 msgid "Delete"
 msgstr "حذف"
 
@@ -138,13 +138,14 @@ msgstr "حذف تمامی کلید ها"
 msgid "Delete All Keys"
 msgstr "حذف تمامی کلید ها"
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:110
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:113
 msgid "Delete key {fingerprint}"
 msgstr "{fingerprint} حذف کلید"
 
 #: src/screens/SelectKey/SelectKey.tsx:133
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
-msgstr "حذف همه کلیدها آنها را برای همیشه از روی رایانه شما حذف میکند، مطمئن شوید که نسخه پشتیبان دارید.\n"
+msgstr ""
+"حذف همه کلیدها آنها را برای همیشه از روی رایانه شما حذف میکند، مطمئن شوید که نسخه پشتیبان دارید.\n"
 " آیا مطمئنید که میخواهید ادامه دهید؟"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:106
@@ -203,7 +204,7 @@ msgstr "درحال فارم"
 msgid "Fee"
 msgstr "کارمزد"
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:95
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:98
 msgid "Fingerprint does not match"
 msgstr "کدها هماهنگی ندارند"
 
@@ -469,19 +470,19 @@ msgstr "مشکلی پیش آمد"
 msgid "The provided passphrase and confirmation do not match"
 msgstr "رمز ورود تأیید شده مطابقت ندارند"
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:140
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:143
 msgid "This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
 msgstr "این کلید برای کیف پول استفاده شده است و ممکن است خالی نباشد در صورت حذف دیگر به آن دسترسی نخواهید داشت"
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:122
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:125
 msgid "This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
 msgstr "این کلید برای دریافت پاداش استخر فارم شما استفاده شده است. با حذف کلید دسترسی به پاداشهای بعدی استخر را از دست میدهید"
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:131
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:134
 msgid "This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
 msgstr "این کلید برای دریافت پاداش استخر فارم شما استفاده شده است. با حذف کلید دسترسی به پاداشهای بعدی استخر را از دست میدهید"
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:152
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:155
 msgid "This will permanently remove the key from your computer, make sure you have your mnemonic phrase backed up."
 msgstr "با این کار کلید برای همیشه از رایانه شما حذف میشود، مطمئن شوید که از کلمات کد خود نسخه پشتیبان تهیه کرده اید."
 
@@ -540,7 +541,7 @@ msgstr "کیف پول"
 msgid "Wallet {0}"
 msgstr "کیف پول {0}"
 
-#: src/screens/SelectKey/WalletDeleteDialog.tsx:163
+#: src/screens/SelectKey/WalletDeleteDialog.tsx:166
 msgid "Wallet Fingerprint"
 msgstr "کلمات کد کیف پول"
 
@@ -573,4 +574,3 @@ msgstr "نسخه فعلی شما:"
 #: src/hooks/useKeyringMigrationPrompt.tsx:21
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr "کلیدهای شما به یک کلید جدید تا زمانیکه انتقال کامل نشود، منتقل نشده است. نمیتوانید کلیدهای جدید ایجاد کنید یا کلیدهای موجود را حذف کنید. آیا میخواهید کلیدهای خود را اکنون انتقال دهید؟"
-
