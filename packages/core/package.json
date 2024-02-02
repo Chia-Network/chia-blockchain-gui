@@ -40,7 +40,7 @@
     "moment": "2.29.4",
     "qs": "6.11.2",
     "overlayscrollbars": "1.13.3",
-    "overlayscrollbars-react": "0.3.0",
+    "overlayscrollbars-react": "0.5.1",
     "react-dropzone": "14.2.3",
     "react-number-format": "4.9.1",
     "react-redux": "8.1.2",
