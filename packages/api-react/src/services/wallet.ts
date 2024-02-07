@@ -1132,7 +1132,27 @@ export const walletApi = apiWithTag.injectEndpoints({
     }),
 
     getDIDInfo: query(build, DID, 'getDidInfo', {
-      providesTags: (result, _error, { coinOrDIDId }) => (result ? [{ type: 'DIDInfo', id: coinOrDIDId }] : []),
+      providesTags: (result, _error, { coinId }) => (result ? [{ type: 'DIDInfo', id: coinId }] : []),
+    }),
+
+    // findLostDID: mutation(build, DID, 'findLostDID', {
+    //   invalidatesTags: (_result, _error, { coinId }) => [
+    //     { type: 'DIDInfo', id: coinId },
+    //     { type: 'DIDCoinInfo', id: coinId },
+    //   ],
+    // }),
+
+    getDIDMetadata: query(build, DID, 'getDidMetadata', {
+      providesTags: (result, _error, { walletId }) => (result ? [{ type: 'DIDMetadata', id: walletId }] : []),
+    }),
+
+    updateDIDMetadata: mutation(build, DID, 'updateDidMetadata', {
+      invalidatesTags: (_result, _error, { walletId }) => [
+        { type: 'DIDInfo', id: walletId },
+        { type: 'DIDCoinInfo', id: walletId },
+        { type: 'Wallets', id: walletId },
+        { type: 'DIDWallet', id: walletId },
+      ],
     }),
 
     // createDIDBackup: did_create_backup_file needs an RPC change (remove filename param, return file contents)
@@ -1527,6 +1547,9 @@ export const {
   useGetDIDPubKeyQuery,
   useGetDIDQuery,
   useGetDIDsQuery,
+  useGetDIDMetadataQuery,
+  useUpdateDIDMetadataMutation,
+  // useFindLostDIDMutation,
   useGetDIDNameQuery,
   useSetDIDNameMutation,
   useGetDIDRecoveryListQuery,
