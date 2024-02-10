@@ -67,6 +67,26 @@ const getChiaVersion = () => {
   return version;
 };
 
+const spawnChildProcess = (command, args = [], options = undefined) => {
+  // As of Feb 11 2024, there is a bug in Electron that prevents electron from exiting when a child process is spawned and detached.
+  // This is a workaround for that bug.
+  if (process.platform === 'linux') {
+    // https://github.com/electron/electron/issues/34808#issuecomment-1275530924
+    return childProcess.spawn(
+      '/bin/bash',
+      [
+        '-c',
+        'for fd in $(ls /proc/$$/fd); do case "$fd" in 0|1|2|255) ;; *) eval "exec $fd<&-" ;; esac; done; exec "$@"',
+        '--',
+        command,
+        ...args,
+      ],
+      options
+    );
+  }
+  return childProcess.spawn(command, args, options);
+};
+
 const startChiaDaemon = () => {
   const script = getScriptPath(PY_DIST_FILE);
   const processOptions = {};
@@ -91,7 +111,7 @@ const startChiaDaemon = () => {
     try {
       console.info('Running python executable: ');
       if (processOptions.stdio === 'ignore') {
-        const subProcess = childProcess.spawn(script, ['--wait-for-unlock'], processOptions);
+        const subProcess = spawnChildProcess(script, ['--wait-for-unlock'], processOptions);
         subProcess.unref();
       } else {
         const Process = childProcess.spawn;
@@ -106,7 +126,7 @@ const startChiaDaemon = () => {
     console.info(`Script ${script}`);
 
     if (processOptions.stdio === 'ignore') {
-      const subProcess = childProcess.spawn('python', [script, '--wait-for-unlock'], processOptions);
+      const subProcess = spawnChildProcess('python', [script, '--wait-for-unlock'], processOptions);
       subProcess.unref();
     } else {
       const Process = childProcess.spawn;
