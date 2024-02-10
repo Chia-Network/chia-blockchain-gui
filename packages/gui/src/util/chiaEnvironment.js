@@ -70,16 +70,22 @@ const getChiaVersion = () => {
 const startChiaDaemon = () => {
   const script = getScriptPath(PY_DIST_FILE);
   const processOptions = {};
-  // We want to detach child daemon process from parent GUI process.
-  // You may think `detached: true` will do but it shows blank terminal on Windows.
-  // In order to hide the blank terminal while detaching child process,
-  // {detached: false, windowsHide: false, shell: true} works which is exact opposite of what we expect
-  // Please see the comment below for more details.
-  // https://github.com/nodejs/node/issues/21825#issuecomment-503766781
-  processOptions.detached = false;
-  processOptions.stdio = 'ignore';
-  processOptions.windowsHide = false;
-  processOptions.shell = true;
+  if (process.platform === 'win32') {
+    // We want to detach child daemon process from parent GUI process.
+    // You may think `detached: true` will do but it shows blank terminal on Windows.
+    // In order to hide the blank terminal while detaching child process,
+    // {detached: false, windowsHide: false, shell: true} works which is exact opposite of what we expect
+    // Please see the comment below for more details.
+    // https://github.com/nodejs/node/issues/21825#issuecomment-503766781
+    processOptions.detached = false;
+    processOptions.stdio = 'ignore';
+    processOptions.windowsHide = false;
+    processOptions.shell = true;
+  } else {
+    processOptions.detached = true;
+    processOptions.stdio = 'ignore';
+    processOptions.windowsHide = true;
+  }
   pyProc = null;
   if (guessPackaged()) {
     try {
