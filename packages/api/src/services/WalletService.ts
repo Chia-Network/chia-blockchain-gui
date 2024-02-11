@@ -301,6 +301,8 @@ export default class Wallet extends Service {
     return this.command<{
       pubkey: string;
       signature: string;
+      isHex: boolean;
+      safeMode: boolean;
     }>('sign_message_by_address', args);
   }
 
