@@ -212,6 +212,17 @@ const walletConnectCommands: WalletConnectCommand[] = [
         type: 'boolean',
         isOptional: true,
       },
+      {
+        name: WalletConnectCommandParamName.SAFE_MODE,
+        label: (
+          <Trans>
+            WARNING! When safeMode=false it means you could be signing a transaction, not just a message. Be sure you
+            trust the source that's requesting this.
+          </Trans>
+        ),
+        type: 'boolean',
+        isOptional: true,
+      },
     ],
   },
   {
@@ -914,7 +925,11 @@ const walletConnectCommands: WalletConnectCommand[] = [
         type: 'string',
         label: <Trans>Parent Coin Info</Trans>,
       },
-      { name: WalletConnectCommandParamName.FEE, type: 'number', label: <Trans>Fee</Trans> },
+      {
+        name: WalletConnectCommandParamName.FEE,
+        type: 'number',
+        label: <Trans>Fee</Trans>,
+      },
     ],
   },
   {
