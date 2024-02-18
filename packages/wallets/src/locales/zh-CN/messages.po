@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-01-07 00:04\n"
+"PO-Revision-Date: 2024-02-18 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -325,8 +325,7 @@ msgid "HD or Hierarchical Deterministic keys are a type of public key/private ke
 msgstr "HD（分层确定性）密钥是一种公钥/私钥方案，其中一个私钥可以有几乎无限数量的不同公钥（因此也有多个钱包接收地址），而所有这些地址最终都可以由单个私钥进行支出。"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:47
-msgid ""
-"If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a\n"
+msgid "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a\n"
 "higher fee."
 msgstr "如果希望加快交易速度，请删除未确认的交易，并使用更高的手续费重试。"
 
@@ -468,7 +467,7 @@ msgstr "待确认"
 
 #: src/components/card/WalletCardPendingBalance.tsx:40
 msgid "Pending Balance"
-msgstr "待确认金额"
+msgstr "交易中金额"
 
 #: src/components/card/WalletCardCRCatApprove.tsx:47
 msgid "Pending Balance for Approval"
@@ -476,7 +475,7 @@ msgstr "待批准的余额"
 
 #: src/components/card/WalletCardPendingChange.tsx:41
 msgid "Pending Change"
-msgstr "待确认找零"
+msgstr "找零中金额"
 
 #: src/components/WalletHistoryPending.tsx:63
 msgid "Pending claw back transactions"
@@ -484,7 +483,7 @@ msgstr "待确认的可撤回交易"
 
 #: src/components/card/WalletCardPendingTotalBalance.tsx:41
 msgid "Pending Total Balance"
-msgstr "待确认总金额"
+msgstr "交易完成后总余额"
 
 #: src/components/crCat/CrCatApprovePendingDialog.tsx:83
 msgid "Please allow some time for the payments to reflect in the blockchain."
@@ -655,8 +654,7 @@ msgid "The recipient of this transaction will need to have valid credentials in 
 msgstr "交易的接收方将需要有效的凭证才能领取发送的资产。请参阅上面的CR CAT限制。"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:44
-msgid ""
-"The transaction could not be immediately included in the mempool because the specified fee is too low. The\n"
+msgid "The transaction could not be immediately included in the mempool because the specified fee is too low. The\n"
 "transaction will be retried periodically, and may be included in the mempool once fees are lower, or if\n"
 "space becomes available."
 msgstr "由于指定的手续费过低，该交易无法立即添加到内存池中。该交易将定期重试，并在要求的手续费变低或内存池空间可用时被添加到内存池中。"
@@ -666,8 +664,7 @@ msgstr "由于指定的手续费过低，该交易无法立即添加到内存池
 #~ msgstr "The transaction could not be immediately included in the mempool because the specified fee is too low. The transaction will be retried periodically, and may be included in the mempool once fees are lower, or if space becomes available."
 
 #: src/components/WalletSendTransactionResultDialog.tsx:38
-msgid ""
-"The transaction is pending inclusion in the mempool because it conflicts with one or more other transactions\n"
+msgid "The transaction is pending inclusion in the mempool because it conflicts with one or more other transactions\n"
 "already in the mempool. The transaction will be retried periodically, and may be included in the mempool if\n"
 "the conflicting transactions are removed."
 msgstr "这笔交易暂未添加到内存池中，因为它与内存池中已有的一笔或多笔交易存在冲突。交易将会定期重试，如果冲突的交易被移除，则这笔交易可能会添加到内存池中。"
@@ -686,7 +683,7 @@ msgstr "这是当前可以用来进行交易的Chia金额。它不包括待确�
 
 #: src/components/standard/WalletStandardCards.tsx:42
 msgid "This is the pending change, which are change coins which you have sent to yourself, but have not been confirmed yet."
-msgstr "这是待确认的找零金额，是您发送给自己但尚待确认的找零硬币。"
+msgstr "这是待确认的找零金额，是交易中发送给自己但还没有确认的找零硬币。"
 
 #: src/components/standard/WalletStandardCards.tsx:36
 msgid "This is the sum of the incoming and outgoing pending transactions (not yet included into the blockchain). This does not include farming rewards."
@@ -698,7 +695,7 @@ msgstr "这是由您的私钥控制的当前最高区块上的区块链中的Chi
 
 #: src/components/standard/WalletStandardCards.tsx:30
 msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
-msgstr "这是总余额+待确认金额，即：待确认的交易完成后的总金额。"
+msgstr "这是总余额+交易中金额，即：待确认的交易完成后的总金额。"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:201
 msgid "This transaction will be automatically claimed with a fee:"
@@ -809,3 +806,4 @@ msgstr "您拥有来自正确授权提供者的这个可验证证件"
 #: src/components/WalletImport.tsx:73
 msgid "Your pasted list does not include {mnemonicWordCount} valid mnemonic words."
 msgstr "粘贴列表中未包含 {mnemonicWordCount} 个有效助记词。"
+

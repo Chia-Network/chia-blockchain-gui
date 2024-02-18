@@ -8,7 +8,7 @@ msgstr ""
 "Language: si_LK\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-01-07 00:04\n"
+"PO-Revision-Date: 2024-02-04 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Sinhala\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -3120,7 +3120,7 @@ msgstr ""
 
 #: src/components/vcs/VCCard.tsx:89
 msgid "No"
-msgstr "නැහැ"
+msgstr ""
 
 #: src/components/notification/NotificationsMenu.tsx:53
 msgid "No activities yet"
@@ -5879,7 +5879,7 @@ msgstr ""
 #: src/components/plot/add/PlotAddChooseSize.tsx:61
 #: src/components/vcs/VCCard.tsx:89
 msgid "Yes"
-msgstr "ඔව්"
+msgstr ""
 
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:22
 msgid "Yes, Accept Offer"
