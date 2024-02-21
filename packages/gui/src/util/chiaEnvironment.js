@@ -70,27 +70,14 @@ const getChiaVersion = () => {
 const startChiaDaemon = () => {
   const script = getScriptPath(PY_DIST_FILE);
   const processOptions = {};
-  // We want to detach child daemon process from parent GUI process.
-  // You may think `detached: true` will do but it shows blank terminal on Windows.
-  // In order to hide the blank terminal while detaching child process,
-  // {detached: false, windowsHide: false, shell: true} works which is exact opposite of what we expect
-  // Please see the comment below for more details.
-  // https://github.com/nodejs/node/issues/21825#issuecomment-503766781
-  processOptions.detached = false;
-  processOptions.stdio = 'ignore';
-  processOptions.windowsHide = false;
-  processOptions.shell = true;
+  // processOptions.detached = true;
+  // processOptions.stdio = "ignore";
   pyProc = null;
   if (guessPackaged()) {
     try {
       console.info('Running python executable: ');
-      if (processOptions.stdio === 'ignore') {
-        const subProcess = childProcess.spawn(script, ['--wait-for-unlock'], processOptions);
-        subProcess.unref();
-      } else {
-        const Process = childProcess.spawn;
-        pyProc = new Process(script, ['--wait-for-unlock'], processOptions);
-      }
+      const Process = childProcess.spawn;
+      pyProc = new Process(script, ['--wait-for-unlock'], processOptions);
     } catch (e) {
       console.info('Running python executable: Error: ');
       console.info(`Script ${script}`);
@@ -99,15 +86,10 @@ const startChiaDaemon = () => {
     console.info('Running python script');
     console.info(`Script ${script}`);
 
-    if (processOptions.stdio === 'ignore') {
-      const subProcess = childProcess.spawn('python', [script, '--wait-for-unlock'], processOptions);
-      subProcess.unref();
-    } else {
-      const Process = childProcess.spawn;
-      pyProc = new Process('python', [script, '--wait-for-unlock'], processOptions);
-    }
+    const Process = childProcess.spawn;
+    pyProc = new Process('python', [script, '--wait-for-unlock'], processOptions);
   }
-  if (pyProc != null && processOptions.stdio !== 'ignore') {
+  if (pyProc != null) {
     pyProc.stdout.setEncoding('utf8');
 
     pyProc.stdout.on('data', (data) => {
