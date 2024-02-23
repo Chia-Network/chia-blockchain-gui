@@ -16,7 +16,7 @@ jobs:
     container: node:18
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Vault Login
         uses: Chia-Network/actions/vault/login@main
