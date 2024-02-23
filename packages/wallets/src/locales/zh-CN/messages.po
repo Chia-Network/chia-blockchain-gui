@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-01-07 00:04\n"
+"PO-Revision-Date: 2024-02-18 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -468,7 +468,7 @@ msgstr "待确认"
 
 #: src/components/card/WalletCardPendingBalance.tsx:40
 msgid "Pending Balance"
-msgstr "待确认金额"
+msgstr "交易中金额"
 
 #: src/components/card/WalletCardCRCatApprove.tsx:47
 msgid "Pending Balance for Approval"
@@ -476,7 +476,7 @@ msgstr "待批准的余额"
 
 #: src/components/card/WalletCardPendingChange.tsx:41
 msgid "Pending Change"
-msgstr "待确认找零"
+msgstr "找零中金额"
 
 #: src/components/WalletHistoryPending.tsx:63
 msgid "Pending claw back transactions"
@@ -484,7 +484,7 @@ msgstr "待确认的可撤回交易"
 
 #: src/components/card/WalletCardPendingTotalBalance.tsx:41
 msgid "Pending Total Balance"
-msgstr "待确认总金额"
+msgstr "交易完成后总余额"
 
 #: src/components/crCat/CrCatApprovePendingDialog.tsx:83
 msgid "Please allow some time for the payments to reflect in the blockchain."
@@ -686,7 +686,7 @@ msgstr "这是当前可以用来进行交易的Chia金额。它不包括待确�
 
 #: src/components/standard/WalletStandardCards.tsx:42
 msgid "This is the pending change, which are change coins which you have sent to yourself, but have not been confirmed yet."
-msgstr "这是待确认的找零金额，是您发送给自己但尚待确认的找零硬币。"
+msgstr "这是待确认的找零金额，是交易中发送给自己但还没有确认的找零硬币。"
 
 #: src/components/standard/WalletStandardCards.tsx:36
 msgid "This is the sum of the incoming and outgoing pending transactions (not yet included into the blockchain). This does not include farming rewards."
@@ -698,7 +698,7 @@ msgstr "这是由您的私钥控制的当前最高区块上的区块链中的Chi
 
 #: src/components/standard/WalletStandardCards.tsx:30
 msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
-msgstr "这是总余额+待确认金额，即：待确认的交易完成后的总金额。"
+msgstr "这是总余额+交易中金额，即：待确认的交易完成后的总金额。"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:201
 msgid "This transaction will be automatically claimed with a fee:"
