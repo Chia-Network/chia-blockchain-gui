@@ -30,7 +30,7 @@ jobs:
         uses: Chia-Network/actions/git-mark-workspace-safe@main
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: '${{ inputs.pr_target || github.ref_name }}'
 

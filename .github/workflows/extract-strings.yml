@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -49,8 +49,8 @@ jobs:
           branch: string-updates
           commit-message: 'Extracted latest strings from source'
           delete-branch: true
-          reviewers: 'paninaro'
-          assignees: 'paninaro'
+          reviewers: 'emlowe'
+          assignees: 'emlowe'
           title: 'Latest Strings'
           token: '${{ secrets.GITHUB_TOKEN }}'
           committer: 'ChiaAutomation <automation@chia.net>'
