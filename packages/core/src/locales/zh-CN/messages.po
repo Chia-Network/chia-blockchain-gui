@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-02-18 00:04\n"
+"PO-Revision-Date: 2024-02-25 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -302,7 +302,7 @@ msgstr "工作模式"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:107
 msgid "NEVER SHARE THESE WITH ANYONE"
-msgstr "永远不要与任何人分享这些信息"
+msgstr "永远不要与任何人分享以下信息"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:42
 msgid "New passphrase is the same as your current passphrase"
@@ -403,11 +403,11 @@ msgstr "搜索"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:113
 msgid "Secret Key"
-msgstr "选择密钥"
+msgstr "私钥"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:131
 msgid "Seed Phrase"
-msgstr "种子密钥"
+msgstr "助记词"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:76
 msgid "Seed:"
@@ -572,3 +572,4 @@ msgstr "当前的版本："
 #: src/hooks/useKeyringMigrationPrompt.tsx:21
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr "密钥尚未迁移到新的密钥环。在迁移完成之前，将无法创建新的密钥或删除现有密钥。是否立即迁移密钥？"
+

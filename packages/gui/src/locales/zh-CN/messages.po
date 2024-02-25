@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-02-18 00:04\n"
+"PO-Revision-Date: 2024-02-25 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -1050,7 +1050,7 @@ msgstr "压缩等级"
 #: src/components/vcs/VCRevokeDialog.tsx:27
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:71
 msgid "Confirm"
-msgstr "确认"
+msgstr "确定"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:19
 msgid "Confirm Disconnect"
@@ -2457,20 +2457,16 @@ msgstr "正在初始化..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"可用资金不足，无法接受报价。请确保您的\n"
+msgstr "可用资金不足，无法接受报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"可用的资金不足，无法创建报价。请确保您的\n"
+msgstr "可用的资金不足，无法创建报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
 #: src/components/farm/PoolingHealth.tsx:302
@@ -5840,7 +5836,7 @@ msgstr "警告！选择多个密钥将启用\"密钥切换\"，请在\"设置/�
 
 #: src/constants/WalletConnectCommands.tsx:218
 msgid "WARNING! When safeMode=false it means you could be signing a transaction, not just a message. Be sure you trust the source that's requesting this."
-msgstr ""
+msgstr "警告！当safeMode=false时，这意味着你可能正在签署一笔交易，而不仅仅是一条消息。请确保你信任请求此操作的来源。"
 
 #: src/components/block/Block.jsx:173
 msgid "Weight"
@@ -6043,3 +6039,4 @@ msgstr "可用余额必须大于1 mojo才能创建个人资料"
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "需确保钱包正在运行才能完成自动确认。"
+
