@@ -67,25 +67,51 @@ const getChiaVersion = () => {
   return version;
 };
 
+const spawnChildProcess = (command, args = [], options = undefined) => {
+  // As of Feb 11 2024, there is a bug in Electron that prevents electron from exiting when a child process is spawned and detached.
+  // This is a workaround for that bug.
+  if (process.platform === 'linux') {
+    // https://github.com/electron/electron/issues/34808#issuecomment-1275530924
+    return childProcess.spawn(
+      '/bin/bash',
+      [
+        '-c',
+        'for fd in $(ls /proc/$$/fd); do case "$fd" in 0|1|2|255) ;; *) eval "exec $fd<&-" ;; esac; done; exec "$@"',
+        '--',
+        command,
+        ...args,
+      ],
+      options
+    );
+  }
+  return childProcess.spawn(command, args, options);
+};
+
 const startChiaDaemon = () => {
   const script = getScriptPath(PY_DIST_FILE);
   const processOptions = {};
-  // We want to detach child daemon process from parent GUI process.
-  // You may think `detached: true` will do but it shows blank terminal on Windows.
-  // In order to hide the blank terminal while detaching child process,
-  // {detached: false, windowsHide: false, shell: true} works which is exact opposite of what we expect
-  // Please see the comment below for more details.
-  // https://github.com/nodejs/node/issues/21825#issuecomment-503766781
-  processOptions.detached = false;
-  processOptions.stdio = 'ignore';
-  processOptions.windowsHide = false;
-  processOptions.shell = true;
+  if (process.platform === 'win32') {
+    // We want to detach child daemon process from parent GUI process.
+    // You may think `detached: true` will do but it shows blank terminal on Windows.
+    // In order to hide the blank terminal while detaching child process,
+    // {detached: false, windowsHide: false, shell: true} works which is exact opposite of what we expect
+    // Please see the comment below for more details.
+    // https://github.com/nodejs/node/issues/21825#issuecomment-503766781
+    processOptions.detached = false;
+    processOptions.stdio = 'ignore';
+    processOptions.windowsHide = false;
+    processOptions.shell = true;
+  } else {
+    processOptions.detached = true;
+    processOptions.stdio = 'ignore';
+    processOptions.windowsHide = true;
+  }
   pyProc = null;
   if (guessPackaged()) {
     try {
       console.info('Running python executable: ');
       if (processOptions.stdio === 'ignore') {
-        const subProcess = childProcess.spawn(script, ['--wait-for-unlock'], processOptions);
+        const subProcess = spawnChildProcess(script, ['--wait-for-unlock'], processOptions);
         subProcess.unref();
       } else {
         const Process = childProcess.spawn;
@@ -100,7 +126,7 @@ const startChiaDaemon = () => {
     console.info(`Script ${script}`);
 
     if (processOptions.stdio === 'ignore') {
-      const subProcess = childProcess.spawn('python', [script, '--wait-for-unlock'], processOptions);
+      const subProcess = spawnChildProcess('python', [script, '--wait-for-unlock'], processOptions);
       subProcess.unref();
     } else {
       const Process = childProcess.spawn;
