@@ -213,8 +213,8 @@ msgstr "{0, plural, one {mojo} other {mojos}}"
 
 #: src/components/nfts/NFTPreview.tsx:432
 #: src/components/settings/Settings.tsx:85
-msgid "{0}"
-msgstr "{0}"
+#~ msgid "{0}"
+#~ msgstr "{0}"
 
 #: src/components/addressbook/ContactSummary.tsx:155
 msgid "{0} {1}"
@@ -287,8 +287,8 @@ msgid "{value} of {max_value}"
 msgstr "{value} sur {max_value}"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:106
-msgid "{warning}"
-msgstr "{warning}"
+#~ msgid "{warning}"
+#~ msgstr "{warning}"
 
 #: src/components/settings/SettingsHarvester.tsx:542
 msgid "* Disabled - use device at specified index if available; if not, attempt to use device at other indices; if no GPUs available, use CPU"
@@ -459,6 +459,7 @@ msgstr "Adresse"
 msgid "Addresses"
 msgstr "Adresses"
 
+#: src/components/settings/Settings.tsx:43
 #: src/components/settings/SettingsAdvanced.tsx:45
 msgid "Advanced"
 msgstr "Avancé"
@@ -726,6 +727,10 @@ msgstr "Ci-dessous se trouvent les défis de bloc actuels. Il se peut que vous p
 msgid "Best estimate over last 24 hours"
 msgstr "Meilleure estimation sur les 24 dernières heures"
 
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:82
+msgid "BladeBit requires at least {0} GiB of RAM to operate"
+msgstr ""
+
 #: src/components/block/Block.jsx:135
 #: src/components/farm/card/FarmingRewardsHistoryCards.tsx:104
 msgid "Block"
@@ -949,7 +954,7 @@ msgstr "Choisissez la valeur K et le niveau de compression"
 #~ msgid "Choose Plot Size"
 #~ msgstr "Choose Plot Size"
 
-#: src/components/plot/add/PlotAddChoosePlotter.tsx:79
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:88
 msgid "Choose Plotter"
 msgstr "Choisissez le traceur"
 
@@ -1329,6 +1334,10 @@ msgstr "Phrase secrète actuelle"
 msgid "Current Points Balance"
 msgstr "Solde de points actuel"
 
+#: src/components/settings/Settings.tsx:32
+msgid "Custody"
+msgstr ""
+
 #: src/components/notification/utils.ts:109
 msgid "Dapp {from} sending the message"
 msgstr "Dapp {from} envoie le message"
@@ -1345,9 +1354,9 @@ msgstr "Hash des données"
 msgid "Data URL {0}"
 msgstr "URL des données {0}"
 
-#: src/components/settings/Settings.tsx:70
-#~ msgid "DataLayer"
-#~ msgstr ""
+#: src/components/settings/Settings.tsx:39
+msgid "DataLayer"
+msgstr ""
 
 #: src/components/settings/SettingsDataLayer.tsx:21
 msgid "DataLayer enables rich data to be stored on mirrored databases that can be verified using the Chia Blockchain."
@@ -1434,7 +1443,7 @@ msgstr "Supprimer le Certificat Vérifiable"
 msgid "Deleting key"
 msgstr "Suppression de la clé"
 
-#: src/components/plot/add/PlotAddChoosePlotter.tsx:81
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:90
 msgid "Depending on your system configuration, you may find that an alternative plotter produces plots faster than the default Chia Proof of Space plotter. If unsure, use the default Chia Proof of Space plotter."
 msgstr "Selon la configuration de votre système, il se peut qu'un autre traceur produise des parcelles plus rapidement que celui par défaut. En cas de doute, utilisez le traceur \"Chia Proof of Space\"."
 
@@ -2125,9 +2134,9 @@ msgstr ""
 #~ msgid "Full Screen"
 #~ msgstr "Full Screen"
 
-#: src/components/settings/Settings.tsx:65
-#~ msgid "General"
-#~ msgstr "General"
+#: src/components/settings/Settings.tsx:29
+msgid "General"
+msgstr "General"
 
 #: src/constants/WalletConnectCommands.tsx:300
 msgid "Get all Offers"
@@ -2249,6 +2258,10 @@ msgstr "Réduit de moitié la taille requise du cache temp2 en alternant les mé
 
 #: src/components/dashboard/DashboardSideBar.tsx:105
 msgid "Harvest"
+msgstr ""
+
+#: src/components/settings/Settings.tsx:40
+msgid "Harvester"
 msgstr ""
 
 #: src/components/harvest/HarvesterLatency.tsx:75
@@ -2477,9 +2490,13 @@ msgstr ""
 msgid "Insufficient partials"
 msgstr ""
 
-#: src/components/settings/Settings.tsx:73
-#~ msgid "Integration"
-#~ msgstr ""
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:80
+msgid "Insufficient RAM for BladeBit"
+msgstr ""
+
+#: src/components/settings/Settings.tsx:41
+msgid "Integration"
+msgstr ""
 
 #: src/components/settings/SettingsHarvester.tsx:428
 msgid "Interval (in seconds) in which directories are scanned to refresh the list of available plots"
@@ -2733,9 +2750,17 @@ msgstr "Chargement des NFT"
 msgid "Loading NFT Info..."
 msgstr "Chargement des informations du NFT..."
 
+#: src/components/nfts/NFTPreview.tsx:432
+msgid "Loading NFT..."
+msgstr ""
+
 #: src/components/offers2/OfferBuilderValueSearch.tsx:144
 #~ msgid "Loading NFTs..."
 #~ msgstr ""
+
+#: src/components/nfts/NFTPreview.tsx:432
+msgid "Loading preview..."
+msgstr ""
 
 #: src/components/did/DIDProfileDropdown.tsx:48
 #: src/components/helpers/HeightToTimestamp.tsx:16
@@ -3029,6 +3054,7 @@ msgstr "Suivant"
 
 #: src/components/offers/NFTOfferEditor.tsx:213
 #: src/components/offers2/OfferBuilderNFTSection.tsx:44
+#: src/components/settings/Settings.tsx:38
 #: src/components/settings/SettingsNFT.tsx:81
 #: src/components/signVerify/SignMessage.tsx:154
 msgid "NFT"
@@ -3276,6 +3302,7 @@ msgstr "La notification a été transmise au réseau et est maintenant incluse d
 msgid "Notification recipient's address"
 msgstr "Adresse du destinataire de la notification"
 
+#: src/components/settings/Settings.tsx:42
 #: src/components/settings/SettingsNotifications.tsx:30
 msgid "Notifications"
 msgstr "Notifications"
@@ -3903,7 +3930,7 @@ msgstr ""
 msgid "Plots With Missing Keys"
 msgstr "Parcelles sans clés correspondantes"
 
-#: src/components/plot/add/PlotAddChoosePlotter.tsx:91
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:100
 msgid "Plotter"
 msgstr "Traceur"
 
@@ -4082,6 +4109,7 @@ msgstr "Nom du profil (facultatif)"
 msgid "Profiles"
 msgstr ""
 
+#: src/components/settings/Settings.tsx:37
 #: src/components/settings/SettingsProfiles.tsx:50
 msgid "Profiles (DIDs)"
 msgstr "Profils (DID)"
