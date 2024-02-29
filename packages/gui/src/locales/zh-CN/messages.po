@@ -213,8 +213,8 @@ msgstr "{0, plural, one {mojo} other {mojos}}"
 
 #: src/components/nfts/NFTPreview.tsx:432
 #: src/components/settings/Settings.tsx:85
-msgid "{0}"
-msgstr "{0}"
+#~ msgid "{0}"
+#~ msgstr "{0}"
 
 #: src/components/addressbook/ContactSummary.tsx:155
 msgid "{0} {1}"
@@ -287,8 +287,8 @@ msgid "{value} of {max_value}"
 msgstr "{max_value}中的{value}"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:106
-msgid "{warning}"
-msgstr "{warning}"
+#~ msgid "{warning}"
+#~ msgstr "{warning}"
 
 #: src/components/settings/SettingsHarvester.tsx:542
 msgid "* Disabled - use device at specified index if available; if not, attempt to use device at other indices; if no GPUs available, use CPU"
@@ -459,6 +459,7 @@ msgstr "地址"
 msgid "Addresses"
 msgstr "地址"
 
+#: src/components/settings/Settings.tsx:43
 #: src/components/settings/SettingsAdvanced.tsx:45
 msgid "Advanced"
 msgstr "高级选项"
@@ -726,6 +727,10 @@ msgstr "下面是当前区块的挑战。 你的图块或许包含了对这些�
 msgid "Best estimate over last 24 hours"
 msgstr "最近24小时的最佳估值"
 
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:82
+msgid "BladeBit requires at least {0} GiB of RAM to operate"
+msgstr ""
+
 #: src/components/block/Block.jsx:135
 #: src/components/farm/card/FarmingRewardsHistoryCards.tsx:104
 msgid "Block"
@@ -949,7 +954,7 @@ msgstr "选择K值和压缩等级"
 #~ msgid "Choose Plot Size"
 #~ msgstr "Choose Plot Size"
 
-#: src/components/plot/add/PlotAddChoosePlotter.tsx:79
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:88
 msgid "Choose Plotter"
 msgstr "选择生成图块的引擎"
 
@@ -1329,6 +1334,10 @@ msgstr "当前私钥密码"
 msgid "Current Points Balance"
 msgstr "当前积分余额"
 
+#: src/components/settings/Settings.tsx:32
+msgid "Custody"
+msgstr ""
+
 #: src/components/notification/utils.ts:109
 msgid "Dapp {from} sending the message"
 msgstr "Dapp{from} 正在发送消息"
@@ -1345,9 +1354,9 @@ msgstr "数据哈希"
 msgid "Data URL {0}"
 msgstr "数据 URL {0}"
 
-#: src/components/settings/Settings.tsx:70
-#~ msgid "DataLayer"
-#~ msgstr ""
+#: src/components/settings/Settings.tsx:39
+msgid "DataLayer"
+msgstr ""
 
 #: src/components/settings/SettingsDataLayer.tsx:21
 msgid "DataLayer enables rich data to be stored on mirrored databases that can be verified using the Chia Blockchain."
@@ -1434,7 +1443,7 @@ msgstr "删除可验证证件"
 msgid "Deleting key"
 msgstr "正在删除密钥"
 
-#: src/components/plot/add/PlotAddChoosePlotter.tsx:81
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:90
 msgid "Depending on your system configuration, you may find that an alternative plotter produces plots faster than the default Chia Proof of Space plotter. If unsure, use the default Chia Proof of Space plotter."
 msgstr "根据您的系统配置，可能会发现其它的生成工具比默认的Chia空间证明（Chia Proof of Space）生成工具更快地生成图块。如果不确定，建议使用默认的Chia空间证明生成工具。"
 
@@ -2125,9 +2134,9 @@ msgstr "全节点未同步"
 #~ msgid "Full Screen"
 #~ msgstr "Full Screen"
 
-#: src/components/settings/Settings.tsx:65
-#~ msgid "General"
-#~ msgstr "General"
+#: src/components/settings/Settings.tsx:29
+msgid "General"
+msgstr "General"
 
 #: src/constants/WalletConnectCommands.tsx:300
 msgid "Get all Offers"
@@ -2250,6 +2259,10 @@ msgstr "通过在table之间交替写入bucket的方法将缓存大小要求减�
 #: src/components/dashboard/DashboardSideBar.tsx:105
 msgid "Harvest"
 msgstr "收割"
+
+#: src/components/settings/Settings.tsx:40
+msgid "Harvester"
+msgstr ""
 
 #: src/components/harvest/HarvesterLatency.tsx:75
 msgid "Harvester latency"
@@ -2477,9 +2490,13 @@ msgstr ""
 msgid "Insufficient partials"
 msgstr "难度不符贡献点"
 
-#: src/components/settings/Settings.tsx:73
-#~ msgid "Integration"
-#~ msgstr ""
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:80
+msgid "Insufficient RAM for BladeBit"
+msgstr ""
+
+#: src/components/settings/Settings.tsx:41
+msgid "Integration"
+msgstr ""
 
 #: src/components/settings/SettingsHarvester.tsx:428
 msgid "Interval (in seconds) in which directories are scanned to refresh the list of available plots"
@@ -2733,9 +2750,17 @@ msgstr "正在加载 NFT"
 msgid "Loading NFT Info..."
 msgstr "正在加载NFT信息..."
 
+#: src/components/nfts/NFTPreview.tsx:432
+msgid "Loading NFT..."
+msgstr ""
+
 #: src/components/offers2/OfferBuilderValueSearch.tsx:144
 #~ msgid "Loading NFTs..."
 #~ msgstr ""
+
+#: src/components/nfts/NFTPreview.tsx:432
+msgid "Loading preview..."
+msgstr ""
 
 #: src/components/did/DIDProfileDropdown.tsx:48
 #: src/components/helpers/HeightToTimestamp.tsx:16
@@ -3029,6 +3054,7 @@ msgstr "下一步"
 
 #: src/components/offers/NFTOfferEditor.tsx:213
 #: src/components/offers2/OfferBuilderNFTSection.tsx:44
+#: src/components/settings/Settings.tsx:38
 #: src/components/settings/SettingsNFT.tsx:81
 #: src/components/signVerify/SignMessage.tsx:154
 msgid "NFT"
@@ -3276,6 +3302,7 @@ msgstr "通知已成功发送到全节点并添加到内存池中。"
 msgid "Notification recipient's address"
 msgstr "通知接收者的地址"
 
+#: src/components/settings/Settings.tsx:42
 #: src/components/settings/SettingsNotifications.tsx:30
 msgid "Notifications"
 msgstr "通知"
@@ -3903,7 +3930,7 @@ msgstr "图块刷新间隔 (秒)"
 msgid "Plots With Missing Keys"
 msgstr "缺少密钥图块"
 
-#: src/components/plot/add/PlotAddChoosePlotter.tsx:91
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:100
 msgid "Plotter"
 msgstr "生成引擎"
 
@@ -4082,6 +4109,7 @@ msgstr "个人资料名称 (可选)"
 msgid "Profiles"
 msgstr "个人资料"
 
+#: src/components/settings/Settings.tsx:37
 #: src/components/settings/SettingsProfiles.tsx:50
 msgid "Profiles (DIDs)"
 msgstr "个人资料 (DID)"
