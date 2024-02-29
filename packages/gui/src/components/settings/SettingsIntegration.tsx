@@ -1,3 +1,4 @@
+import { useGetLoggedInFingerprintQuery } from '@chia-network/api-react';
 import { Flex, MenuItem, SettingsHR, SettingsSection, SettingsTitle, SettingsText } from '@chia-network/core';
 import { t, Trans } from '@lingui/macro';
 import {
@@ -33,8 +34,14 @@ export default function SettingsIntegration() {
     padding: 2,
   };
   const { disconnect } = useWalletConnectContext();
-  const { enabled, setEnabled, allowConfirmationFingerprintChange, setAllowConfirmationFingerprintChange } =
-    useWalletConnectPreferences();
+  const {
+    enabled,
+    setEnabled,
+    allowConfirmationFingerprintChange,
+    setAllowConfirmationFingerprintChange,
+    bypassReadonlyCommands,
+    setBypassReadonlyCommands,
+  } = useWalletConnectPreferences();
 
   const [topic, setTopic] = React.useState<string | null>(null);
   const [bypassCommands, setBypassCommands] = React.useState<Record<string, boolean> | undefined>();
@@ -45,6 +52,7 @@ export default function SettingsIntegration() {
     useWalletConnectPairs();
 
   const pairs = get();
+  const { data: fingerprint } = useGetLoggedInFingerprintQuery();
 
   const refreshBypassCommands = React.useCallback(() => {
     if (selectedPair.current) {
@@ -65,12 +73,15 @@ export default function SettingsIntegration() {
     if (!pair) {
       return;
     }
+    const tempObj = { ...bypassReadonlyCommands };
+    delete tempObj[pair.topic];
+    setBypassReadonlyCommands(tempObj);
     disconnect(pair.topic);
     setTopic(null);
     setBypassCommands(undefined);
     selectedPair.current = undefined;
     setAutocompleteKey((localKey) => localKey + 1); // hack to force autocomplete to re-render. without this, the selected value doesn't change
-  }, [disconnect, selectedPair, setTopic, setBypassCommands]);
+  }, [disconnect, selectedPair, setTopic, setBypassCommands, bypassReadonlyCommands, setBypassReadonlyCommands]);
 
   const handleBypassCommandChange = useCallback(
     (command: string, newState: boolean) => {
@@ -117,6 +128,8 @@ export default function SettingsIntegration() {
     return walletConnectCommands.filter((c) => commandKeys.includes(c.command));
   }, [bypassCommands]);
 
+  const readonlyCommands = walletConnectCommands.filter((c) => !!c.bypassConfirm).map((c) => c.command);
+
   useEffect(() => {
     if (topic && pairs.length > 0) {
       const pair = pairs.find((localPair) => localPair.topic === topic);
@@ -130,6 +143,11 @@ export default function SettingsIntegration() {
       setBypassCommands(undefined);
     }
   }, [topic, pairs, refreshBypassCommands]);
+
+  const skipConfirmation =
+    bypassReadonlyCommands && topic && fingerprint && bypassReadonlyCommands[topic]
+      ? bypassReadonlyCommands[topic].indexOf(fingerprint) > -1
+      : false;
 
   return (
     <Grid container style={{ maxWidth: '624px' }} gap={3}>
@@ -280,61 +298,90 @@ export default function SettingsIntegration() {
         <Grid container marginTop="8px">
           <Flex flexDirection="column" gap={2}>
             <Flex flexDirection="column" gap={1}>
-              {commands.length > 0 ? (
-                <Box {...borderStyle}>
-                  <Typography variant="h6">
-                    <Trans>Skip Confirmation for Commands</Trans>
-                  </Typography>
-                  <Grid spacing={2} container marginTop="4px" marginRight="-32px">
-                    {commands.map((commandInfo: WalletConnectCommand, idx: number) => (
-                      <Grid item key={`grid-command-${commandInfo.command}`} width="624px" marginLeft="8px">
-                        <Flex flexDirection="row" alignItems="center" justifyContent="spaceBetween" gap={1}>
-                          <Grid item style={{ width: '400px' }}>
-                            <SettingsTitle>{commandInfo.label ?? commandInfo.command}</SettingsTitle>
-                          </Grid>
-                          <Grid item container xs justifyContent="flex-end" marginTop="-6px" marginRight="8px">
-                            <FormControl size="small">
-                              <Select
-                                value={(bypassCommands ?? {})[commandInfo.command] ? 1 : 0}
-                                id={`${idx}`}
-                                onChange={() =>
-                                  handleBypassCommandChange(
-                                    commandInfo.command,
-                                    !(bypassCommands ?? {})[commandInfo.command]
-                                  )
-                                }
-                              >
-                                <MenuItem value={1}>
-                                  <Trans>Always Allow</Trans>
-                                </MenuItem>
-                                <MenuItem value={0} divider>
-                                  <Trans>Always Reject</Trans>
-                                </MenuItem>
-                                <MenuItem onClick={() => handleRemoveBypassCommand(commandInfo.command)}>
-                                  <Trans>Require Confirmation</Trans>
-                                </MenuItem>
-                              </Select>
-                            </FormControl>
-                          </Grid>
-                        </Flex>
+              <Box {...borderStyle}>
+                <Typography variant="h6">
+                  <Trans>Skip Confirmation for Commands</Trans>
+                </Typography>
+                <Grid spacing={2} container marginTop="4px" marginRight="-32px">
+                  {commands.map((commandInfo: WalletConnectCommand, idx: number) => (
+                    <Grid item key={`grid-command-${commandInfo.command}`} width="624px" marginLeft="8px">
+                      <Flex flexDirection="row" alignItems="center" justifyContent="spaceBetween" gap={1}>
                         <Grid item style={{ width: '400px' }}>
-                          <SettingsText>{commandInfo.description ?? ''}</SettingsText>
+                          <SettingsTitle>{commandInfo.label ?? commandInfo.command}</SettingsTitle>
                         </Grid>
+                        <Grid item container xs justifyContent="flex-end" marginTop="-6px" marginRight="8px">
+                          <FormControl size="small">
+                            <Select
+                              value={(bypassCommands ?? {})[commandInfo.command] ? 1 : 0}
+                              id={`${idx}`}
+                              onChange={(e) => {
+                                if (e.target.value === 'requireConfirmation') return;
+                                handleBypassCommandChange(
+                                  commandInfo.command,
+                                  !(bypassCommands ?? {})[commandInfo.command]
+                                );
+                              }}
+                            >
+                              <MenuItem value={1}>
+                                <Trans>Always Allow</Trans>
+                              </MenuItem>
+                              <MenuItem value={0} divider>
+                                <Trans>Always Reject</Trans>
+                              </MenuItem>
+                              <MenuItem
+                                value="requireConfirmation"
+                                onClick={() => handleRemoveBypassCommand(commandInfo.command)}
+                              >
+                                <Trans>Require Confirmation</Trans>
+                              </MenuItem>
+                            </Select>
+                          </FormControl>
+                        </Grid>
+                      </Flex>
+                      <Grid item style={{ width: '400px' }}>
+                        <SettingsText>{commandInfo.description ?? ''}</SettingsText>
                       </Grid>
-                    ))}
+                    </Grid>
+                  ))}
+                </Grid>
+                <Grid spacing={2} container marginTop="4px" marginRight="-32px">
+                  <Grid item width="624px" marginLeft="8px">
+                    <Flex flexDirection="row" alignItems="center" justifyContent="spaceBetween" gap={1}>
+                      <Grid item style={{ maxWidth: '400px' }}>
+                        <SettingsTitle>
+                          <Trans>All Read-Only Commands</Trans>
+                        </SettingsTitle>
+                      </Grid>
+                      <Grid item container xs justifyContent="flex-end" marginTop="-6px" marginRight="8px">
+                        <FormControl size="small">
+                          <Select
+                            value={skipConfirmation}
+                            onChange={(evt: PointerEvent) => {
+                              setBypassReadonlyCommands({
+                                ...bypassReadonlyCommands,
+                                [topic]: evt.target.value
+                                  ? (bypassReadonlyCommands?.[topic] || []).concat(fingerprint)
+                                  : (bypassReadonlyCommands?.[topic] || []).filter((f) => f !== fingerprint),
+                              });
+                            }}
+                          >
+                            <MenuItem value>
+                              <Trans>Always Allow</Trans>
+                            </MenuItem>
+                            <MenuItem value={false} onClick={() => {}}>
+                              <Trans>Require Confirmation</Trans>
+                            </MenuItem>
+                          </Select>
+                        </FormControl>
+                      </Grid>
+                    </Flex>
+                    <Grid item style={{ maxWidth: '400px' }}>
+                      <SettingsText>{readonlyCommands.join(', ')}</SettingsText>
+                    </Grid>
                   </Grid>
-                </Box>
-              ) : (
-                <Box {...borderStyle}>
-                  <Grid item width="590px">
-                    <Typography variant="subtitle1">
-                      <Trans>No Custom Permissions</Trans>
-                    </Typography>
-                  </Grid>
-                </Box>
-              )}
+                </Grid>
+              </Box>
             </Flex>
-
             {topic && commands.length > 0 && (
               <>
                 <Grid item style={{ width: '624px' }}>

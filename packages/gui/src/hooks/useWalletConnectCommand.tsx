@@ -76,7 +76,7 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
   const { data: currentFingerprint, isLoading: isLoadingLoggedInFingerprint } = useGetLoggedInFingerprintQuery();
   const { getPairBySession } = useWalletConnectPairs();
 
-  const { allowConfirmationFingerprintChange } = useWalletConnectPreferences();
+  const { allowConfirmationFingerprintChange, bypassReadonlyCommands } = useWalletConnectPreferences();
 
   const isLoading = isLoadingLoggedInFingerprint;
 
@@ -139,8 +139,9 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
 
     const { fingerprint } = requestedParams;
 
+    const pair = getPairBySession(topic);
+    const pairedTopic = pair?.topic!;
     if (command === 'showNotification') {
-      const pair = getPairBySession(topic);
       if (!pair) {
         throw new Error('Invalid session topic');
       }
@@ -172,24 +173,28 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
       values = newValues;
     }
 
-    const confirmed = await confirm({
-      topic,
-      message:
-        !allFingerprints && isDifferentFingerprint ? (
-          <Trans>
-            Do you want to log in to {fingerprint} and execute command {command}?
-          </Trans>
-        ) : (
-          <Trans>Do you want to execute command {command}?</Trans>
-        ),
-      params: definitionParams,
-      values,
-      fingerprint,
-      isDifferentFingerprint,
-      command,
-      bypassConfirm,
-      onChange: handleChangeParam,
-    });
+    const isReadOnlyEnabled = bypassReadonlyCommands?.[pairedTopic]?.indexOf(fingerprint) > -1;
+
+    const confirmed =
+      (isReadOnlyEnabled && definition.bypassConfirm) ||
+      (await confirm({
+        topic,
+        message:
+          !allFingerprints && isDifferentFingerprint ? (
+            <Trans>
+              Do you want to log in to {fingerprint} and execute command {command}?
+            </Trans>
+          ) : (
+            <Trans>Do you want to execute command {command}?</Trans>
+          ),
+        params: definitionParams,
+        values,
+        fingerprint,
+        isDifferentFingerprint,
+        command,
+        bypassConfirm,
+        onChange: handleChangeParam,
+      }));
 
     if (!confirmed) {
       throw new Error(`User cancelled command ${requestedCommand}`);

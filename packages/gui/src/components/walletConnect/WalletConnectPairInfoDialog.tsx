@@ -6,6 +6,7 @@ import { Divider, Dialog, DialogContent, DialogTitle, IconButton, Typography } f
 import React, { useMemo, useState } from 'react';
 
 import useWalletConnectContext from '../../hooks/useWalletConnectContext';
+import useWalletConnectPreferences from '../../hooks/useWalletConnectPreferences';
 
 import WalletConnectActiveSessions from './WalletConnectActiveSessions';
 import WalletConnectMetadata from './WalletConnectMetadata';
@@ -22,6 +23,8 @@ export default function WalletConnectPairInfoDialog(props: WalletConnectPairInfo
   const showError = useShowError();
   const { pairs, disconnect, isLoading: isLoadingWallet } = useWalletConnectContext();
   const { data: keys, isLoading: isLoadingPublicKeys } = useGetKeysQuery({});
+
+  const { bypassReadonlyCommands, setBypassReadonlyCommands } = useWalletConnectPreferences();
 
   const pair = useMemo(() => pairs.getPair(topic), [topic, pairs]);
 
@@ -51,6 +54,9 @@ export default function WalletConnectPairInfoDialog(props: WalletConnectPairInfo
     setIsProcessing(true);
 
     try {
+      const tempObj = { ...bypassReadonlyCommands };
+      delete tempObj[topic];
+      setBypassReadonlyCommands(tempObj);
       await disconnect(topic);
       onClose();
     } catch (e) {

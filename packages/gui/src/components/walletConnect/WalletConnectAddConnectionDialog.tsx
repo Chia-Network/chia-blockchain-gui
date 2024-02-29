@@ -8,6 +8,7 @@ import {
   Form,
   Loading,
   useCurrencyCode,
+  TooltipIcon,
 } from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
 import CloseIcon from '@mui/icons-material/Close';
@@ -51,6 +52,7 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
   const { onClose = () => {}, open = false } = props;
 
   const [step, setStep] = useState<Step>(Step.CONNECT);
+  const [bypassCheckbox, toggleBypassCheckbox] = useState(false);
   const { pair, isLoading: isLoadingWallet } = useWalletConnectContext();
   const { data: keys, isLoading: isLoadingPublicKeys } = useGetKeysQuery({});
   const [sortedWallets] = usePrefs('sortedWallets', []);
@@ -72,7 +74,12 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
     defaultValue: [],
   });
 
-  const { allowConfirmationFingerprintChange, setAllowConfirmationFingerprintChange } = useWalletConnectPreferences();
+  const {
+    allowConfirmationFingerprintChange,
+    setAllowConfirmationFingerprintChange,
+    bypassReadonlyCommands,
+    setBypassReadonlyCommands,
+  } = useWalletConnectPreferences();
 
   const sortedKeysMemo = React.useMemo(() => {
     const sortedKeys: any[] = sortedWallets
@@ -98,7 +105,7 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
     }
   }, [fingerprint, methods]);
 
-  async function handleSubmit(values: FormData) {
+  function handleSubmit(values: FormData) {
     const { uri, fingerprints } = values;
     if (!uri) {
       throw new Error(t`Please enter a URI`);
@@ -117,8 +124,20 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
       setAllowConfirmationFingerprintChange(true);
     }
 
-    const topic = await pair(uri, selectedFingerprints, mainnet);
-    onClose(topic);
+    /* for some bizarre reason, "pair" function below needs to be written as a Promise, otherwise
+       a caching mechanism (useState) in useLocalStorage will not work reliably */
+    pair(uri, selectedFingerprints, mainnet).then((topic: any) => {
+      if (bypassCheckbox) {
+        if (!bypassReadonlyCommands[topic.toString()]) {
+          bypassReadonlyCommands[topic.toString()] = [];
+        }
+        setBypassReadonlyCommands({
+          ...bypassReadonlyCommands,
+          [topic.toString()]: (bypassReadonlyCommands[topic.toString()] || []).concat(selectedFingerprints),
+        });
+      }
+      onClose(topic);
+    });
   }
 
   function handleToggleSelectFingerprint(fingerprintLocal: number) {
@@ -212,6 +231,33 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
     return null;
   }
 
+  function renderQuietModeOption() {
+    return (
+      <Flex
+        sx={{ cursor: 'pointer' }}
+        alignItems="center"
+        onClick={() => {
+          toggleBypassCheckbox(!bypassCheckbox);
+        }}
+      >
+        <Checkbox checked={bypassCheckbox} disableRipple sx={{ paddingLeft: 0 }} />
+        <Flex flexDirection="row" alignItems="center" gap={1}>
+          <Typography variant="body2">
+            <Trans>Skip confirmation for all read-only commands</Trans>
+          </Typography>
+          <TooltipIcon>
+            <Trans>
+              By default, a prompt will be presented each time a WalletConnect command is invoked. Select this option if
+              you would like to skip the prompt for all read-only WalletConnect commands.
+              <p />
+              Commands that create a transaction or otherwise modify your wallet will still require confirmation.
+            </Trans>
+          </TooltipIcon>
+        </Flex>
+      </Flex>
+    );
+  }
+
   return (
     <Dialog onClose={handleClose} maxWidth="xs" open={open} fullWidth>
       <DialogTitle>
@@ -259,6 +305,7 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
                     {renderSelectedAsPills()}
                   </Flex>
                   {renderKeysMultiSelect()}
+                  {renderQuietModeOption()}
                 </Flex>
               )}
             </Flex>
