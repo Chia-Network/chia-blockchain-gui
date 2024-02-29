@@ -77,7 +77,7 @@ export default function PlotAddChoosePlotter(props: Props) {
     const regex = /BladeBit requires at least (?<ram>\d*[.]?\d+) GiB of RAM to operate/;
     const m = regex.exec(msg);
     if (!m || !m.groups || !m.groups.ram) {
-      return undefined;
+      return t`Insufficient RAM for BladeBit`;
     }
     return t`BladeBit requires at least ${m.groups.ram} GiB of RAM to operate`;
   };
