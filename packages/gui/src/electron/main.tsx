@@ -478,26 +478,16 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
     // if (!guessPackaged()) {
     //   mainWindow.webContents.openDevTools();
     // }
-    mainWindow.on('close', async (e) => {
+    mainWindow.on('close', (e) => {
       // if the daemon isn't local we aren't going to try to start/stop it
       if (decidedToClose || !manageDaemonLifetime(NET)) {
         return;
       }
-      if (!mainWindow) {
-        throw new Error('`mainWindow` is empty');
-      }
       e.preventDefault();
-
       if (!isClosing) {
         isClosing = true;
-        let keepBackgroundRunning: boolean | undefined;
-        const p = readPrefs();
-        if (typeof p.keepBackgroundRunning === 'boolean') {
-          keepBackgroundRunning = p.keepBackgroundRunning;
-        }
-
         if (promptOnQuit) {
-          const choice = await dialog.showMessageBox({
+          const choice = dialog.showMessageBoxSync({
             type: 'question',
             buttons: [i18n._(/* i18n */ { id: 'No' }), i18n._(/* i18n */ { id: 'Yes' })],
             title: i18n._(/* i18n */ { id: 'Confirm' }),
@@ -506,36 +496,22 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
                 id: 'Are you sure you want to quit?',
               }
             ),
-            checkboxChecked: keepBackgroundRunning ?? false,
-            checkboxLabel: i18n._(/* i18n */ { id: 'Keep service running in the background' }),
           });
-          if (keepBackgroundRunning !== choice.checkboxChecked) {
-            savePrefs({ ...p, keepBackgroundRunning: choice.checkboxChecked });
-          }
-          if (choice.response === 0) {
+          if (choice === 0) {
             isClosing = false;
             return;
           }
-          keepBackgroundRunning = choice.checkboxChecked;
         }
         isClosing = false;
         decidedToClose = true;
-
+        mainWindow.webContents.send('exit-daemon');
         // save the window state and unmange so we don't restore the mini exiting state
         mainWindowState.saveState(mainWindow);
-        mainWindowState.unmanage();
-
-        if (keepBackgroundRunning) {
-          mainWindow.close();
-          openedWindows.forEach((win) => win.close());
-          return;
-        }
-
-        mainWindow.webContents.send('exit-daemon');
+        mainWindowState.unmanage(mainWindow);
         mainWindow.setBounds({ height: 500, width: 500 });
         mainWindow.center();
         ipcMain.on('daemon-exited', () => {
-          mainWindow?.close();
+          mainWindow.close();
 
           openedWindows.forEach((win) => win.close());
         });
