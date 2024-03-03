@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-02-25 00:04\n"
+"PO-Revision-Date: 2024-03-03 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -304,7 +304,7 @@ msgstr "*通常情况下，完成重启需要几秒钟。"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:42
 msgid "+ Add a Plot"
-msgstr "+ 生成图块"
+msgstr "+ 添加图块"
 
 #: src/components/plot/add/PlotAddNFT.tsx:127
 msgid "+ Add New Plot NFT"
@@ -328,7 +328,7 @@ msgstr "<0>显示</0> {0} <1>/</1> {1}  <2>项</2>"
 
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:79
 msgid "A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk to a full node to see the state of the chain. View your network of connected harvesters below Learn more"
-msgstr "收割机是一个在存有图块文件的机器上运行的服务。农民和收割机通过和全节点交互来得到链的状态。你可以在下面看到你网络所连接的收割机。了解更多"
+msgstr "收割机是一个在存有图块文件的机器上运行的服务。农民和收割机通过和全节点交互来得到链的状态。查看下面联网的收割机网络了解更多。"
 
 #: src/components/settings/SettingsProfiles.tsx:53
 msgid "A profile is a decentralized identifier (DID) that you can prove control and ownership of without having to rely on any centralized authority."
@@ -393,7 +393,7 @@ msgstr "添加图块"
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:199
 #: src/components/plotNFT/PlotNFTCard.tsx:233
 msgid "Add a Plot"
-msgstr "生成图块"
+msgstr "添加图块"
 
 #: src/components/plotNFT/PlotNFTAdd.tsx:50
 msgid "Add a Plot NFT"
@@ -429,7 +429,7 @@ msgstr "添加图块文件夹"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:71
 msgid "Add Plot to Queue"
-msgstr "将生成图块任务加入队列"
+msgstr "将绘图任务添加到队列"
 
 #: src/constants/WalletConnectCommands.tsx:895
 msgid "Add Proofs"
@@ -729,7 +729,7 @@ msgstr "最近24小时的最佳估值"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:82
 msgid "BladeBit requires at least {0} GiB of RAM to operate"
-msgstr ""
+msgstr "BladeBit需要至少{0} GiB的内存才能运行"
 
 #: src/components/block/Block.jsx:135
 #: src/components/farm/card/FarmingRewardsHistoryCards.tsx:104
@@ -956,7 +956,7 @@ msgstr "选择K值和压缩等级"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:88
 msgid "Choose Plotter"
-msgstr "选择生成图块的引擎"
+msgstr "选择绘图软件"
 
 #: src/components/app/AppSelectMode.tsx:96
 msgid "Choose Wallet Mode"
@@ -1336,7 +1336,7 @@ msgstr "当前积分余额"
 
 #: src/components/settings/Settings.tsx:32
 msgid "Custody"
-msgstr ""
+msgstr "交易保护"
 
 #: src/components/notification/utils.ts:109
 msgid "Dapp {from} sending the message"
@@ -1356,7 +1356,7 @@ msgstr "数据 URL {0}"
 
 #: src/components/settings/Settings.tsx:39
 msgid "DataLayer"
-msgstr ""
+msgstr "数据层"
 
 #: src/components/settings/SettingsDataLayer.tsx:21
 msgid "DataLayer enables rich data to be stored on mirrored databases that can be verified using the Chia Blockchain."
@@ -1445,7 +1445,7 @@ msgstr "正在删除密钥"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:90
 msgid "Depending on your system configuration, you may find that an alternative plotter produces plots faster than the default Chia Proof of Space plotter. If unsure, use the default Chia Proof of Space plotter."
-msgstr "根据您的系统配置，可能会发现其它的生成工具比默认的Chia空间证明（Chia Proof of Space）生成工具更快地生成图块。如果不确定，建议使用默认的Chia空间证明生成工具。"
+msgstr "根据你的系统配置，可能会发现其它的绘图软件比默认的Chia空间证明（Chia Proof of Space）更快。如果不确定，请使用默认的Chia空间证明绘图软件。"
 
 #: src/components/settings/SettingsPanel.tsx:167
 msgid "Derivation Index"
@@ -1577,7 +1577,7 @@ msgstr "不再显示此对话框"
 #: src/components/farm/FarmHero.tsx:43
 #: src/components/plot/overview/PlotOverviewHero.tsx:53
 msgid "Do you have existing plots on this machine? <0>Add Plot Directory</0>"
-msgstr "你的机器上有已经完成的图块文件吗？ <0>添加图块文件路径</0>"
+msgstr "当前设备上已有图块？<0>添加图块文件夹</0>"
 
 #: src/components/nfts/NFTBurnDialog.tsx:132
 #~ msgid "Do you want to burn {count} NFTs?"
@@ -1601,7 +1601,7 @@ msgstr "确定删除此报价通知吗？此操作无法撤消。"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:62
 msgid "Does your machine support parallel plotting?"
-msgstr "当前机器是否支持并行生成？"
+msgstr "当前机器是否支持并发绘图？"
 
 #: src/components/addressbook/ContactAdd.tsx:174
 #: src/components/addressbook/ContactEdit.tsx:177
@@ -1852,7 +1852,7 @@ msgstr "全网空间（估算）"
 
 #: src/components/fullNode/card/FullNodeEstimatedNetworkSpace.tsx:15
 msgid "Estimated sum of all the plotted disk space of all farmers in the network"
-msgstr "网络中所有农民生成的图块容量总和的估计值。"
+msgstr "网络中所有农民图块容量总和的估计值"
 
 #: src/components/farm/card/EstimatedEarning.tsx:60
 #: src/components/farm/card/ExpectedTimeToWin.tsx:55
@@ -1978,7 +1978,7 @@ msgstr "农民奖励地址不能为空。"
 
 #: src/components/farm/FarmHero.tsx:28
 msgid "Farmers earn block rewards and transaction fees by committing spare space to the network to help secure transactions. This is where your farm will be once you add a plot. <0>Learn more</0>"
-msgstr "农民们通过贡献自己的空余存储空间，可以帮助提高整个网络的安全性，进而获得区块奖励和交易手续费奖励。当你的第一块图块生成完成后，这里就是你的农场。<0>了解更多</0>"
+msgstr "农民们通过贡献自己的空余存储空间，可以帮助提高整个网络的安全性，进而获得区块奖励和交易手续费奖励。当你的第一个图块绘图完成后，这里就是你的农场。<0>了解更多</0>"
 
 #: src/components/plot/PlotStatus.tsx:18
 msgid "Farming"
@@ -2136,7 +2136,7 @@ msgstr "全节点未同步"
 
 #: src/components/settings/Settings.tsx:29
 msgid "General"
-msgstr "General"
+msgstr "常规"
 
 #: src/constants/WalletConnectCommands.tsx:300
 msgid "Get all Offers"
@@ -2262,7 +2262,7 @@ msgstr "收割"
 
 #: src/components/settings/Settings.tsx:40
 msgid "Harvester"
-msgstr ""
+msgstr "收割机"
 
 #: src/components/harvest/HarvesterLatency.tsx:75
 msgid "Harvester latency"
@@ -2382,7 +2382,7 @@ msgstr "混合磁盘模式1 (需要内存：128G)"
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:90
 msgid "Hybrid disk mode allows computers with lower amounts of RAM to plot by offloading intermediate data to disk. If you enable hybrid disk mode, you need to specify temp folder(s). We recommend using SSDs when supporting a hybrid disk mode."
-msgstr "混合磁盘模式允许具有较低内存的计算机通过将中间数据卸载到磁盘的方式来生成图块。如果启用混合磁盘模式，需要指定临时文件夹。建议在使用混合磁盘模式时使用固态硬盘。"
+msgstr "混合磁盘模式允许具有较低内存的计算机通过将中间数据卸载到磁盘的方式来绘图。如果启用混合磁盘模式，需要指定临时文件夹。建议在使用混合磁盘模式时使用固态硬盘。"
 
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:16
 msgid "I Understand, Create Offer"
@@ -2470,20 +2470,16 @@ msgstr "正在初始化..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"可用资金不足，无法接受报价。请确保您的\n"
+msgstr "可用资金不足，无法接受报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"可用的资金不足，无法创建报价。请确保您的\n"
+msgstr "可用的资金不足，无法创建报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
 #: src/components/farm/PoolingHealth.tsx:302
@@ -2492,11 +2488,11 @@ msgstr "难度不符贡献点"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:80
 msgid "Insufficient RAM for BladeBit"
-msgstr ""
+msgstr "BladeBit内存不足"
 
 #: src/components/settings/Settings.tsx:41
 msgid "Integration"
-msgstr ""
+msgstr "集成"
 
 #: src/components/settings/SettingsHarvester.tsx:428
 msgid "Interval (in seconds) in which directories are scanned to refresh the list of available plots"
@@ -2568,11 +2564,11 @@ msgstr "加入联合耕种池以获得持续性的收益。平均回报是相同
 
 #: src/components/plotNFT/PlotNFTAdd.tsx:62
 msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile. Assign plots to a plot NFT. You can easily switch pools without having to re-plot."
-msgstr "加入联合耕种池以获得持续性的收益。平均回报是相同的，但是收益会更加稳定。使用联合耕种图块可以自由的在不同联合耕种间任意切换，而不必重新生成图块。"
+msgstr "加入联合耕种池以获得持续性的收益。平均回报是相同的，但是收益会更加稳定。使用联合耕种图块可以自由的在不同联合耕种池间任意切换，而不必重新绘图。"
 
 #: src/components/plot/add/PlotAddNFT.tsx:137
 msgid "Join a pool and get more consistent XCH farming rewards. Create a plot NFT and assign your new plots to a group."
-msgstr "加入联合耕种池以获得持续性的收益。新建一个联合耕种农田，并将生成的图块分配到该农田。"
+msgstr "加入联合耕种池以获得持续性的收益。新建一个联合耕种农田，并将图块分配到该农田。"
 
 #: src/components/app/AppSelectMode.tsx:133
 msgid "Join farming pools"
@@ -2752,7 +2748,7 @@ msgstr "正在加载NFT信息..."
 
 #: src/components/nfts/NFTPreview.tsx:432
 msgid "Loading NFT..."
-msgstr ""
+msgstr "正在加载NFT..."
 
 #: src/components/offers2/OfferBuilderValueSearch.tsx:144
 #~ msgid "Loading NFTs..."
@@ -2760,7 +2756,7 @@ msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:432
 msgid "Loading preview..."
-msgstr ""
+msgstr "正在加载预览..."
 
 #: src/components/did/DIDProfileDropdown.tsx:48
 #: src/components/helpers/HeightToTimestamp.tsx:16
@@ -3244,7 +3240,7 @@ msgstr "无 (0)"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:72
 msgid "None of your plots have passed the plot filter yet."
-msgstr "你的图块还没有通过过滤器检查."
+msgstr "尚未有图块通过初筛。"
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:99
 msgid "Normal (RAM required: 256G)"
@@ -3540,7 +3536,7 @@ msgstr "需要取消已生成的报价才能补充可用金额"
 
 #: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:334
 msgid "Open offers which lock the same assets as the new offer"
-msgstr "已生成的报价与新建的报价锁定相同资产"
+msgstr "已生成的报价与新建的报价锁定了相同资产"
 
 #: src/components/offers2/OfferBuilderFeeSection.tsx:55
 msgid "Optional network fee to expedite acceptance of your offer"
@@ -3849,7 +3845,7 @@ msgstr "图块ID"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:72
 msgid "Plot in Parallel"
-msgstr "并发生成"
+msgstr "并发绘图"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:23
 msgid "Plot is duplicate of {0}"
@@ -3874,7 +3870,7 @@ msgstr "p2_singleton_puzzle_hash为 {plotNFTId} 的联合耕种农田不存在�
 
 #: src/components/farm/FarmHealth.tsx:246
 msgid "Plot pass ratio"
-msgstr "初筛率"
+msgstr "图块初筛值"
 
 #: src/components/block/Block.jsx:207
 msgid "Plot Public Key"
@@ -3890,7 +3886,7 @@ msgstr "图块大小"
 
 #: src/components/plot/add/PlotAddNFT.tsx:64
 msgid "Plot to a Plot NFT"
-msgstr "联合耕种图块"
+msgstr "绘图到联合耕种农田"
 
 #: src/components/plotNFT/PlotNFTState.tsx:44
 msgid "PlotNFT is transitioning to (target state). This can take a while. Please do not close the application until this is finalized."
@@ -3932,16 +3928,16 @@ msgstr "缺少密钥图块"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:100
 msgid "Plotter"
-msgstr "生成引擎"
+msgstr "绘图软件"
 
 #: src/components/plot/PlotPlotting.tsx:45
 #: src/components/plot/queue/PlotQueueIndicator.tsx:35
 msgid "Plotting"
-msgstr "正在生成"
+msgstr "绘图中"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:65
 msgid "Plotting in parallel can save time. Otherwise, add plot(s) to the queue."
-msgstr "并发生成可以有效节省生成时间但对系统资源要求很高。系统硬件不够的话建议选择按队列顺序生成。"
+msgstr "并行绘图可以节省时间。否则，请将绘图添加到队列。"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:38
 msgid "Plotting Manager"
@@ -3949,11 +3945,11 @@ msgstr "图块概览"
 
 #: src/components/plot/add/PlotAddNFT.tsx:77
 msgid "Plotting to a Plot NFT allows you the flexibility to join a pool or solo farm. You can easily switch between different pools or solo farming at any time. If you choose not to plot to a Plot NFT, you will need to replot in order to join any of the standard pools."
-msgstr "生成联合耕种图块，可以灵活选择加入联合耕种池或独自耕种。并可随时在不同的联合耕种池和独自耕种之间轻松切换。如果生成的不是联合耕种图块，则需要重新生成图块才能加入任何标准联合耕种池。"
+msgstr "绘图到联合耕种农田，可以灵活选择加入联合耕种池或独自耕种。并可随时在不同的联合耕种池和独自耕种之间轻松切换。如果生成的不是联合耕种图块，则需要重新绘图才能加入任何标准联合耕种池。"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:326
 msgid "Plotting with bitfield enabled has about 30% less overall writes and is now almost always faster. You may see reduced memory requirements with bitfield plotting disabled. If your CPU design is from before 2010 you may have to disable bitfield plotting."
-msgstr "在生成图块时启用位域会减少约30%的磁盘写入，而且大多数情况下会更快。但如果您在生成时禁用bitfield，占用的内存则可能会减少。如果您的CPU是2010年以前的型号，您可能必须禁用bitfield才能生成。"
+msgstr "绘图时启用bitfield会减少约30%的磁盘写入，而且大多数情况下会更快。但如果在绘图时禁用bitfield，占用的内存则可能会减少。如果你的CPU是2010年以前的型号，可能必须禁用bitfield才能绘图。"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:163
 #: src/components/plotNFT/PlotNFTCard.tsx:197
@@ -4949,7 +4945,7 @@ msgstr "目标迷题哈希"
 
 #: src/components/plot/add/PlotAddForm.tsx:189
 msgid "Temp folder location is required for hybrid disk plotting with 16/128G RAM"
-msgstr "使用16/128GB内存的混合磁盘模式生成图块时，需要指定临时文件夹的位置"
+msgstr "使用16/128GB内存的混合磁盘绘图需要指定临时文件夹位置"
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:114
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:59
@@ -4958,7 +4954,7 @@ msgstr "临时文件夹位置"
 
 #: src/components/harvest/HarvesterOverview.tsx:63
 msgid "The average number of plots which passed filter over last 64 signage points"
-msgstr "过去64次提交中通过筛选的平均图块数量"
+msgstr "过去64次提交中通过初筛的平均图块数量"
 
 #: src/components/harvest/HarvesterOverview.tsx:106
 msgid "The average number of plots which passed filter over the last 64 signage points. It is expected to be {expectedAvgPassedFilter} for total {latestTotalPlots} plots. (Current plot filter: 1 / {plotFilter})"
@@ -5115,7 +5111,7 @@ msgstr "他们将收到:"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:85
 msgid "This allows you to add a directory that has plots in it. If you have not created any plots, go to the plotting screen."
-msgstr "添加一个包含图块的目录。如果还没有创建任何图块，请前往生成图块界面。"
+msgstr "添加一个包含图块的目录。如果还没有创建任何图块，请前往绘图界面。"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:114
 #: src/components/plotNFT/PlotNFTCard.tsx:148
@@ -5128,7 +5124,7 @@ msgstr "此功能只在图形界面中提供。"
 
 #: src/components/harvest/HarvesterDetail.tsx:67
 msgid "This harvester does not have any plots to harvest"
-msgstr "这个收割机没有任何可供收割的图块"
+msgstr "收割机没有任何可供收割的图块"
 
 #: src/components/harvest/HarvesterOverview.tsx:175
 msgid "This is a sum of effective plot sizes currently farming. An effective plot size is a theoretical value which is derived only by kSize"
@@ -5144,7 +5140,7 @@ msgstr "这是与当前登录的钱包对应的农民公钥"
 
 #: src/components/plot/add/PlotAddChooseKeys.tsx:42
 msgid "This is the plot nft contract address of \"{plotNFTName}\". If you want to change this, select \"None\" at Plot to a Plot NFT form."
-msgstr "这是\"{plotNFTName}\"的联合耕种农田合约地址。如果想要更改这个，请在\"生成联合耕种农田图块\"中选择\"无\"。"
+msgstr "这是\"{plotNFTName}\"的联合耕种农田合约地址。如果想要更改这个，请在\"绘图到联合耕种农田\"中选择\"无\"。"
 
 #: src/components/block/Block.jsx:163
 msgid "This is the time the block was created by the farmer, which is before it is finalized with a proof of time"
@@ -5206,7 +5202,7 @@ msgstr "此报价不会过期"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:268
 msgid "This plot NFT is assigned to a different key. You can still create plots for this plot NFT, but you can not make changes."
-msgstr "此联合耕种农田绑定了其它密钥。你仍然可以为此联合耕种农田生成图块，但是你无法进行任何更改。"
+msgstr "此联合耕种农田绑定了其它密钥。你仍然可以为此联合耕种农田绘图，但是你无法进行任何更改。"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:53
 msgid "This table shows you the last time your farm attempted to win a block challenge. <0>Learn more</0>"
@@ -5255,7 +5251,7 @@ msgstr "代币"
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:114
 msgid "Too Many Plot NFTs"
-msgstr "过多联合耕种农田"
+msgstr "联合耕种农田过多"
 
 #: src/components/offers2/OfferBuilderWalletAmount.tsx:36
 msgid "Total Amount"
@@ -5362,7 +5358,7 @@ msgstr "总共获得的XCH"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:362
 msgid "Touch all pages of buffer allocations before starting to plot."
-msgstr "在开始生成之前，访问所有缓冲分配的页面。"
+msgstr "在开始绘图之前，访问所有缓冲分配的页面。"
 
 #: src/constants/WalletConnectCommands.tsx:397
 msgid "Trade Id"
@@ -5829,7 +5825,7 @@ msgstr "WalletConnect 集成"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:83
 msgid "Want to have a delay before the next plot starts?"
-msgstr "想要在生成下一块图块前等待一会？"
+msgstr "想在下一个绘图开始之前设置延迟？"
 
 #: src/components/plotNFT/PlotNFTAdd.tsx:60
 msgid "Want to Join a Pool? Create a Plot NFT"
@@ -5884,7 +5880,7 @@ msgstr "在创建一个报价时，任何正在被提供的资产都将被锁定
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:455
 msgid "Which CUDA device to use when plotting"
-msgstr "选择在生成图块时要使用的CUDA设备"
+msgstr "选择绘图时要使用的CUDA设备"
 
 #: src/electron/main.tsx:1029
 #~ msgid "Window"
@@ -5937,7 +5933,7 @@ msgstr "你已经有50或更多联合耕种农田"
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:115
 msgid "You already have more than 10 Plot NFTs. Click OK if you're sure you want to create a new one."
-msgstr "你已经拥有超过10个联合耕种农田，如果您确认要创建一个新的，请点击\"确定\"。"
+msgstr "你已经拥有超过10个联合耕种农田，如果确认要创建一个新的，请点击\"确定\"。"
 
 #: src/components/app/AppSelectMode.tsx:154
 msgid "You can always change your mode later in the settings"
@@ -5945,7 +5941,7 @@ msgstr "您可以随时在模式中更改您的设置。"
 
 #: src/components/plot/add/PlotAddChooseKeys.tsx:143
 msgid "You can customize farmer public key, pool public key / pool contract address here manually.<0/>Usually you don't need manual set up so please consider carefully whether you really need to edit these keys for a plot. One possible situation is to create a plot for someone who asks you to plot with your great hardware."
-msgstr "可以在此手动自定义农民公钥、耕种池公钥/耕种池合约地址。<0/>通常情况下，不需要手动设置，因此请仔细考虑是否真的需要修改图块的这些密钥。一种可能的使用场景是，他人借用你的强大硬件代为生成图块。"
+msgstr "可以在此手动自定义农民公钥、耕种池公钥/耕种池合约地址。<0/>通常情况下，不需要手动设置，因此请仔细考虑是否真的需要修改图块的这些密钥。一种可能的使用场景是，他人借用你的强大硬件代为绘图。"
 
 #: src/components/walletConnect/WalletConnectConnectedDialog.tsx:90
 msgid "You can now connect to {0} in your browser."
@@ -5953,7 +5949,7 @@ msgstr "可以在浏览器中连接到 {0} 了。"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:351
 msgid "You can still create plots for this plot NFT, but you can not make changes until sync is complete."
-msgstr "你现在可以为这个联合耕种农田生成新图块，但是在同步完成前，不能进行任何更改。"
+msgstr "你现在可以为这个联合耕种农田绘图，但是在同步完成前，不能进行任何更改。"
 
 #: src/components/offers/OfferHeader.tsx:38
 #: src/components/offers2/OfferBuilderViewer.tsx:294
@@ -5962,7 +5958,7 @@ msgstr "您创建了此报价"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:92
 msgid "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
-msgstr "不需要同步或者连接到网络节点就可以生成图块。在生成过程中产生的临时文件尺寸会大于最终的图块大小。请确认你有足够的存储空间。<0>了解更多</0>"
+msgstr "不需要同步或者连接到网络节点就可以绘图。在绘图过程中产生的临时文件会大于最终的图块大小。请确认你有足够的存储空间。<0>了解更多</0>"
 
 #: src/components/farm/card/EstimatedEarning.tsx:68
 #: src/components/farm/card/ExpectedTimeToWin.tsx:63
@@ -6071,3 +6067,4 @@ msgstr "可用余额必须大于1 mojo才能创建个人资料"
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "需确保钱包正在运行才能完成自动确认。"
+

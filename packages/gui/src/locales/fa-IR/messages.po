@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-02-25 00:04\n"
+"PO-Revision-Date: 2024-03-03 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -729,7 +729,7 @@ msgstr "بهترین تخمین در 24 ساعت گذشته"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:82
 msgid "BladeBit requires at least {0} GiB of RAM to operate"
-msgstr ""
+msgstr "بلید بیت برای کار به حداقل {0} گیگابایت رم نیاز دارد"
 
 #: src/components/block/Block.jsx:135
 #: src/components/farm/card/FarmingRewardsHistoryCards.tsx:104
@@ -1336,7 +1336,7 @@ msgstr "موجودی امتیازات فعلی"
 
 #: src/components/settings/Settings.tsx:32
 msgid "Custody"
-msgstr ""
+msgstr "اختیار تصرف"
 
 #: src/components/notification/utils.ts:109
 msgid "Dapp {from} sending the message"
@@ -1356,7 +1356,7 @@ msgstr "آدرس داده {0}"
 
 #: src/components/settings/Settings.tsx:39
 msgid "DataLayer"
-msgstr ""
+msgstr "لایه داده ها"
 
 #: src/components/settings/SettingsDataLayer.tsx:21
 msgid "DataLayer enables rich data to be stored on mirrored databases that can be verified using the Chia Blockchain."
@@ -2136,7 +2136,7 @@ msgstr "فول نود سینک نبود"
 
 #: src/components/settings/Settings.tsx:29
 msgid "General"
-msgstr "General"
+msgstr "نمای کلی"
 
 #: src/constants/WalletConnectCommands.tsx:300
 msgid "Get all Offers"
@@ -2262,7 +2262,7 @@ msgstr "برداشت کننده"
 
 #: src/components/settings/Settings.tsx:40
 msgid "Harvester"
-msgstr ""
+msgstr "برداشت کننده"
 
 #: src/components/harvest/HarvesterLatency.tsx:75
 msgid "Harvester latency"
@@ -2470,20 +2470,16 @@ msgstr "در حال شروع..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
+msgstr "مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
 "موجودی قابل مصرف شما برای پوشش مبلغ پیشنهاد کافی است."
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
+msgstr "مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
 "موجودی قابل مصرف شما برای پوشش مبلغ پیشنهاد کافی است."
 
 #: src/components/farm/PoolingHealth.tsx:302
@@ -2492,11 +2488,11 @@ msgstr "بخش هایی ناموفق بوده"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:80
 msgid "Insufficient RAM for BladeBit"
-msgstr ""
+msgstr "رم برای بلید بیت کافی نیست"
 
 #: src/components/settings/Settings.tsx:41
 msgid "Integration"
-msgstr ""
+msgstr "ادغام"
 
 #: src/components/settings/SettingsHarvester.tsx:428
 msgid "Interval (in seconds) in which directories are scanned to refresh the list of available plots"
@@ -2752,7 +2748,7 @@ msgstr "اطلاعات بارکذاری ان اف تی..."
 
 #: src/components/nfts/NFTPreview.tsx:432
 msgid "Loading NFT..."
-msgstr ""
+msgstr "در حال بارگیری ان اف تی..."
 
 #: src/components/offers2/OfferBuilderValueSearch.tsx:144
 #~ msgid "Loading NFTs..."
@@ -2760,7 +2756,7 @@ msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:432
 msgid "Loading preview..."
-msgstr ""
+msgstr "در حال بارگیری پیش نمایش..."
 
 #: src/components/did/DIDProfileDropdown.tsx:48
 #: src/components/helpers/HeightToTimestamp.tsx:16
@@ -6071,3 +6067,4 @@ msgstr "برای ایجاد حساب کاربری، موجودی قابل خرج
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "برای انجام مطالبه خودکار، باید کیف پول شما در حال اجرا باشد."
+
