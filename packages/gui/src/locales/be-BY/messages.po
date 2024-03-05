@@ -8,7 +8,7 @@ msgstr ""
 "Language: be_BY\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-02-25 00:04\n"
+"PO-Revision-Date: 2024-03-03 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || n%10>=5 && n%10<=9 || n%100>=11 && n%100<=14 ? 2 : 3);\n"
@@ -214,7 +214,7 @@ msgstr ""
 #: src/components/nfts/NFTPreview.tsx:432
 #: src/components/settings/Settings.tsx:85
 #~ msgid "{0}"
-#~ msgstr ""
+#~ msgstr "{0}"
 
 #: src/components/addressbook/ContactSummary.tsx:155
 msgid "{0} {1}"
@@ -288,7 +288,7 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:106
 #~ msgid "{warning}"
-#~ msgstr ""
+#~ msgstr "{warning}"
 
 #: src/components/settings/SettingsHarvester.tsx:542
 msgid "* Disabled - use device at specified index if available; if not, attempt to use device at other indices; if no GPUs available, use CPU"
@@ -2136,7 +2136,7 @@ msgstr ""
 
 #: src/components/settings/Settings.tsx:29
 msgid "General"
-msgstr "General"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:300
 msgid "Get all Offers"

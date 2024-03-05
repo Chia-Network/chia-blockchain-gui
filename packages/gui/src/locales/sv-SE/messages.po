@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-02-25 00:04\n"
+"PO-Revision-Date: 2024-03-03 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -2136,7 +2136,7 @@ msgstr "Fullständig nod var ur synk"
 
 #: src/components/settings/Settings.tsx:29
 msgid "General"
-msgstr "General"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:300
 msgid "Get all Offers"
@@ -5864,7 +5864,7 @@ msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:218
 msgid "WARNING! When safeMode=false it means you could be signing a transaction, not just a message. Be sure you trust the source that's requesting this."
-msgstr ""
+msgstr "VARNING! När safeMode=false kan det innebära att du signerar en transaktion, inte bara ett meddelande. Var säker på att du litar på källan som begär detta."
 
 #: src/components/block/Block.jsx:173
 msgid "Weight"
