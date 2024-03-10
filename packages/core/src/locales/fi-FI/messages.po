@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-02-04 00:04\n"
+"PO-Revision-Date: 2024-03-10 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -486,7 +486,7 @@ msgstr "Tämä poistaa avaimen pysyvästi tietokoneeltasi, varmista, että sinul
 
 #: src/utils/getTransactionResult.ts:40
 msgid "Transaction has been sent to a full node and is pending inclusion into the mempool. {0}"
-msgstr ""
+msgstr "Transaktio on lähetetty noodille ja odottaa sisällyttämistä mempooliin. {0}"
 
 #: src/utils/getTransactionResult.ts:15
 msgid "Transaction has not been sent to node yet"
@@ -572,3 +572,4 @@ msgstr "Tämänhetkinen Versio:"
 #: src/hooks/useKeyringMigrationPrompt.tsx:21
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr "Avaimiasi ei ole siirretty uuteen avainrenkaaseen. Et voi luoda uusia avaimia tai poistaa olemassa olevia avaimia ennen kuin siirto on tehty. Haluatko siirtää avaimesi nyt?"
+
