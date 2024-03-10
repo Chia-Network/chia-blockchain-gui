@@ -325,7 +325,8 @@ msgid "HD or Hierarchical Deterministic keys are a type of public key/private ke
 msgstr "HD- eli hierarkis-deterministiset avaimet ovat julkisen ja salaisen avaimen toteutus, jossa yhtä salaista avainta kohti voi olla lähes loputon määrä julkisia avaimia (ja lompakon osoitteita). Kaikki nämä osoitteet/avaimet osoittavat samaan salaiseen avaimeen."
 
 #: src/components/WalletSendTransactionResultDialog.tsx:47
-msgid "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a\n"
+msgid ""
+"If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a\n"
 "higher fee."
 msgstr "Jos haluat nopeuttaa transaktiota, poista vahvistamattomat transaktiot ja yritä uudelleen korkeammalla maksulla."
 
@@ -654,7 +655,8 @@ msgid "The recipient of this transaction will need to have valid credentials in 
 msgstr "Tämän tapahtuman vastaanottajalla on oltava voimassa olevat käyttöioikeustiedot lähetettyjen assettien lunastamiseksi. Katso CR CAT -rajoitukset yllä."
 
 #: src/components/WalletSendTransactionResultDialog.tsx:44
-msgid "The transaction could not be immediately included in the mempool because the specified fee is too low. The\n"
+msgid ""
+"The transaction could not be immediately included in the mempool because the specified fee is too low. The\n"
 "transaction will be retried periodically, and may be included in the mempool once fees are lower, or if\n"
 "space becomes available."
 msgstr "Tapahtumaa ei voitu välittömästi sisällyttää mempooliin, koska määritetty transaktiomaksu on liian alhainen. Transaktiota yritetään säännöllisesti uudelleen ja se voidaan sisällyttää mempooliin, kun tarvittavat maksutasot ovat pienentyneet tai kun tilaa tulee saataville."
@@ -664,7 +666,8 @@ msgstr "Tapahtumaa ei voitu välittömästi sisällyttää mempooliin, koska mä
 #~ msgstr "The transaction could not be immediately included in the mempool because the specified fee is too low. The transaction will be retried periodically, and may be included in the mempool once fees are lower, or if space becomes available."
 
 #: src/components/WalletSendTransactionResultDialog.tsx:38
-msgid "The transaction is pending inclusion in the mempool because it conflicts with one or more other transactions\n"
+msgid ""
+"The transaction is pending inclusion in the mempool because it conflicts with one or more other transactions\n"
 "already in the mempool. The transaction will be retried periodically, and may be included in the mempool if\n"
 "the conflicting transactions are removed."
 msgstr "Transaktio odottaa mempooliin sisällyttämistä, koska se on ristiriidassa yhden tai useamman muun mempoolin transaktion kanssa. Transaktiota yritetään säännöllisesti uudelleen ja se voidaan sisällyttää mempooliin jos ristiriitaiset tapahtumat poistetaan mempoolista."
@@ -806,4 +809,3 @@ msgstr "Sinulla on tämä todennettavissa oleva käyttöoikeustieto oikealta val
 #: src/components/WalletImport.tsx:73
 msgid "Your pasted list does not include {mnemonicWordCount} valid mnemonic words."
 msgstr "Liitetty lista ei sisällä {mnemonicWordCount} kelvollista muistisanaa."
-
