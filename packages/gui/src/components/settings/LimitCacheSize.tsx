@@ -52,7 +52,7 @@ export default function LimitCacheSize() {
     await openDialog(
       <AlertDialog>
         <Trans>Successfully updated cache size limit.</Trans>
-      </AlertDialog>
+      </AlertDialog>,
     );
   }
 

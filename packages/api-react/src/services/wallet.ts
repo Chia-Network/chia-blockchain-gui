@@ -124,7 +124,7 @@ export const walletApi = apiWithTag.injectEndpoints({
                   ...wallet,
                   meta,
                 };
-              })
+              }),
             ),
           };
         } catch (error) {
@@ -136,7 +136,7 @@ export const walletApi = apiWithTag.injectEndpoints({
       // transformResponse: (response) => response.wallets,
       providesTags(result) {
         return result
-          ? [...result.map(({ id }) => ({ type: 'Wallets', id } as const)), { type: 'Wallets', id: 'LIST' }]
+          ? [...result.map(({ id }) => ({ type: 'Wallets', id }) as const), { type: 'Wallets', id: 'LIST' }]
           : [{ type: 'Wallets', id: 'LIST' }];
       },
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
@@ -367,7 +367,7 @@ export const walletApi = apiWithTag.injectEndpoints({
                       },
                     ],
                   },
-                  queryApi
+                  queryApi,
                 );
               }
 
@@ -419,7 +419,7 @@ export const walletApi = apiWithTag.injectEndpoints({
       transformResponse: (response) => response.publicKeyFingerprints,
       providesTags: (keys) =>
         keys
-          ? [...keys.map((key) => ({ type: 'Keys', id: key } as const)), { type: 'Keys', id: 'LIST' }]
+          ? [...keys.map((key) => ({ type: 'Keys', id: key }) as const), { type: 'Keys', id: 'LIST' }]
           : [{ type: 'Keys', id: 'LIST' }],
     }),
 
@@ -456,7 +456,7 @@ export const walletApi = apiWithTag.injectEndpoints({
       providesTags(result) {
         return result
           ? [
-              ...result.map(({ name }) => ({ type: 'Transactions', id: name } as const)),
+              ...result.map(({ name }) => ({ type: 'Transactions', id: name }) as const),
               { type: 'Transactions', id: 'LIST' },
             ]
           : [{ type: 'Transactions', id: 'LIST' }];
@@ -581,7 +581,7 @@ export const walletApi = apiWithTag.injectEndpoints({
       providesTags: (connections) =>
         connections
           ? [
-              ...connections.map(({ nodeId }) => ({ type: 'WalletConnections', id: nodeId } as const)),
+              ...connections.map(({ nodeId }) => ({ type: 'WalletConnections', id: nodeId }) as const),
               { type: 'WalletConnections', id: 'LIST' },
             ]
           : [{ type: 'WalletConnections', id: 'LIST' }],
@@ -615,7 +615,7 @@ export const walletApi = apiWithTag.injectEndpoints({
       providesTags(result) {
         return result
           ? [
-              ...result.map(({ tradeId }) => ({ type: 'OfferTradeRecord', id: tradeId } as const)),
+              ...result.map(({ tradeId }) => ({ type: 'OfferTradeRecord', id: tradeId }) as const),
               { type: 'OfferTradeRecord', id: 'LIST' },
             ]
           : [{ type: 'OfferTradeRecord', id: 'LIST' }];
@@ -698,7 +698,7 @@ export const walletApi = apiWithTag.injectEndpoints({
       transformResponse: (response) => response.catList,
       providesTags(result) {
         return result
-          ? [...result.map(({ assetId }) => ({ type: 'CATs', id: assetId } as const)), { type: 'CATs', id: 'LIST' }]
+          ? [...result.map(({ assetId }) => ({ type: 'CATs', id: assetId }) as const), { type: 'CATs', id: 'LIST' }]
           : [{ type: 'CATs', id: 'LIST' }];
       },
     }),
@@ -756,7 +756,7 @@ export const walletApi = apiWithTag.injectEndpoints({
                 }
 
                 const transaction = updatedTransactions.find(
-                  (trx) => trx.name === transactionName && !!trx?.sentTo?.length
+                  (trx) => trx.name === transactionName && !!trx?.sentTo?.length,
                 );
 
                 if (transaction) {
@@ -785,7 +785,7 @@ export const walletApi = apiWithTag.injectEndpoints({
                       },
                     ],
                   },
-                  queryApi
+                  queryApi,
                 );
               }
 
@@ -947,7 +947,7 @@ export const walletApi = apiWithTag.injectEndpoints({
                   ...data?.state,
                   walletId: wallet.id,
                 };
-              })
+              }),
             ),
             await Promise.all<WalletBalance>(
               poolWallets.map(async (wallet: any) => {
@@ -962,7 +962,7 @@ export const walletApi = apiWithTag.injectEndpoints({
                 }
 
                 return data?.walletBalance;
-              })
+              }),
             ),
           ]);
 
@@ -976,7 +976,7 @@ export const walletApi = apiWithTag.injectEndpoints({
 
           poolStates.forEach((poolStateItem: any) => {
             const poolWalletStatus = poolWalletStates.find(
-              (item) => item.launcherId === poolStateItem.poolConfig.launcherId
+              (item) => item.launcherId === poolStateItem.poolConfig.launcherId,
             );
             if (!poolWalletStatus) {
               external.push({
@@ -1092,7 +1092,7 @@ export const walletApi = apiWithTag.injectEndpoints({
                   ...wallet,
                   myDid,
                 };
-              })
+              }),
             ),
           };
         } catch (error) {
@@ -1103,7 +1103,7 @@ export const walletApi = apiWithTag.injectEndpoints({
       },
       providesTags(result) {
         return result
-          ? [...result.map(({ id }) => ({ type: 'DIDWallet', id } as const)), { type: 'DIDWallet', id: 'LIST' }]
+          ? [...result.map(({ id }) => ({ type: 'DIDWallet', id }) as const), { type: 'DIDWallet', id: 'LIST' }]
           : [{ type: 'DIDWallet', id: 'LIST' }];
       },
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
@@ -1171,7 +1171,7 @@ export const walletApi = apiWithTag.injectEndpoints({
               };
 
               return updatedNFT;
-            })
+            }),
           );
 
           return {
@@ -1202,7 +1202,7 @@ export const walletApi = apiWithTag.injectEndpoints({
               }
 
               countByWalletId[walletId] = nftCountData.count;
-            })
+            }),
           );
 
           const total = Object.values(countByWalletId).reduce((a, b) => a + b, 0);
@@ -1221,7 +1221,7 @@ export const walletApi = apiWithTag.injectEndpoints({
       },
       providesTags: (countByWalletId) =>
         countByWalletId
-          ? [...Object.entries(countByWalletId).map(([walletId]) => ({ type: 'NFTCount', id: walletId } as const))]
+          ? [...Object.entries(countByWalletId).map(([walletId]) => ({ type: 'NFTCount', id: walletId }) as const)]
           : [],
     }),
 
@@ -1250,7 +1250,7 @@ export const walletApi = apiWithTag.injectEndpoints({
               return {
                 [walletId]: updatedNFTs,
               };
-            })
+            }),
           );
           const nftsByWalletId: { [walletId: string]: NFTInfo[] } = {};
           nftData.forEach((entry) => {
@@ -1271,7 +1271,7 @@ export const walletApi = apiWithTag.injectEndpoints({
         nftsByWalletId
           ? [
               ...Object.entries(nftsByWalletId).flatMap(([_walletId, nfts]) =>
-                nfts.map((nft) => ({ type: 'NFTInfo', id: nft.launcherId } as const))
+                nfts.map((nft) => ({ type: 'NFTInfo', id: nft.launcherId }) as const),
               ),
               { type: 'NFTInfo', id: 'LIST' },
             ]

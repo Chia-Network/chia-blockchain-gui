@@ -71,7 +71,7 @@ export default function NFTProvider(props: NFTProviderProps) {
       // must be last because it will try to load data from backend
       return getNFTOnDemand(id);
     },
-    [getNFTOnDemand /* immutable */, getNFTNacho /* immutable */, getNFTData /* immutable */]
+    [getNFTOnDemand /* immutable */, getNFTNacho /* immutable */, getNFTData /* immutable */],
   );
 
   // immutable function
@@ -90,7 +90,7 @@ export default function NFTProvider(props: NFTProviderProps) {
       // must be last because it will try to load data from backend
       return fetchNFTOnDemand(id);
     },
-    [fetchNFTOnDemand /* immutable */, getNFTNacho /* immutable */, getNFTData /* immutable */]
+    [fetchNFTOnDemand /* immutable */, getNFTNacho /* immutable */, getNFTData /* immutable */],
   );
 
   const {
@@ -114,7 +114,7 @@ export default function NFTProvider(props: NFTProviderProps) {
         unsubscribeDemand();
       };
     },
-    [subscribeToNFTOnDemandChanges, subscribeToNFTNachosChanges, subscribeToNFTDataChanges]
+    [subscribeToNFTOnDemandChanges, subscribeToNFTNachosChanges, subscribeToNFTDataChanges],
   );
 
   const subscribeToChanges = useCallback(
@@ -127,7 +127,7 @@ export default function NFTProvider(props: NFTProviderProps) {
         unsubscribeNachos();
       };
     },
-    [subscribeToDataChanges, subscribeToNachosChanges]
+    [subscribeToDataChanges, subscribeToNachosChanges],
   );
 
   const invalidateNFT = useCallback(
@@ -176,7 +176,7 @@ export default function NFTProvider(props: NFTProviderProps) {
 
       await Promise.all([invalidateNachos(), invalidateMetadata(id), invalidateNFTOnDemand(id)]);
     },
-    [fetchNFT, fetchMetadata, invalidate, invalidateNachos, invalidateMetadata, invalidateNFTOnDemand]
+    [fetchNFT, fetchMetadata, invalidate, invalidateNachos, invalidateMetadata, invalidateNFTOnDemand],
   );
 
   const context = useMemo(
@@ -217,7 +217,7 @@ export default function NFTProvider(props: NFTProviderProps) {
       progress,
       subscribeToChanges,
       invalidateNFT,
-    ]
+    ],
   );
 
   return (

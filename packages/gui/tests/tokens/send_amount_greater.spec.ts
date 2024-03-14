@@ -59,7 +59,7 @@ test('Confirm that User cannot send a TXCH amount greater then in Wallet', async
   console.log(haveBalanceString);
   await expect(page.locator('div[role="dialog"]')).toHaveText(
     //`ErrorCan\'t send more than ${haveBalanceString} in a single transactionOK`
-    `ErrorCan't send more than ${haveBalanceString} mojos in a single transaction, got 200000000000000OK`
+    `ErrorCan't send more than ${haveBalanceString} mojos in a single transaction, got 200000000000000OK`,
   );
   await page.locator('div[role="dialog"] >> text=OK').click();
 

@@ -48,7 +48,7 @@ export default function NFTFilterProvider(props: NFTFilterProviderProps) {
       setVisibility,
       setSearch,
     }),
-    [walletIds, types, visibility, search, setWalletIds, setTypes, setVisibility, setSearch]
+    [walletIds, types, visibility, search, setWalletIds, setTypes, setVisibility, setSearch],
   );
 
   return <NFTFilterContext.Provider value={value}>{children}</NFTFilterContext.Provider>;

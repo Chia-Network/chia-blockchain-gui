@@ -18,7 +18,7 @@ export default function WalletCardCRCatRestrictions(props: Props) {
     { includeData: true },
     {
       pollingInterval: 10_000,
-    }
+    },
   );
 
   const restrictions = useMemo(() => {

@@ -112,7 +112,7 @@ function NFTOfferSummaryRow(props: NFTOfferSummaryRowProps) {
 
         return { [key]: assetType };
       }),
-    [summaryData, summaryInfo]
+    [summaryData, summaryInfo],
   );
 
   const rows: (React.ReactElement | null)[] = assetIdsToTypes.map((entry) => {
@@ -262,7 +262,7 @@ export function NFTOfferSummary(props: NFTOfferSummaryProps) {
     const takerUnknownAssetsLocal = makerEntries
       .filter(
         ([assetId]) =>
-          offerAssetTypeForAssetId(assetId, summary) !== OfferAsset.NFT && lookupByAssetId(assetId) === undefined
+          offerAssetTypeForAssetId(assetId, summary) !== OfferAsset.NFT && lookupByAssetId(assetId) === undefined,
       )
       .map(([assetId]) => assetId);
 
@@ -360,7 +360,7 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
   const [checkOfferValidity, { isLoading: isCheckOfferValidityLoading }] = useCheckOfferValidityMutation();
   const driverDict: { [key: string]: any } = summary?.infos ?? {};
   const launcherId: string | undefined = Object.keys(driverDict).find(
-    (id: string) => driverDict[id].launcherId?.length > 0
+    (id: string) => driverDict[id].launcherId?.length > 0,
   );
   const nftId: string | undefined = launcherId ? launcherIdToNFTId(launcherId) : undefined;
   const { nft } = useNFT(launcherId);
@@ -387,7 +387,7 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
         amount,
         parseFloat(xchMakerFee),
         convertRoyaltyToPercentage(nft.royaltyPercentage),
-        exchangeType
+        exchangeType,
       ),
       royaltyPercentage,
     };
@@ -434,7 +434,7 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
       wallets,
       offers,
       (accepting: boolean) => setIsAccepting(accepting),
-      () => navigate('/dashboard/offers')
+      () => navigate('/dashboard/offers'),
     );
   }
 
@@ -457,7 +457,7 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
             bgcolor: 'background.paper',
             boxShadow: `0px 2px 1px -1px ${alpha(Color.Neutral[900], 0.2)}, 0px 1px 1px 0px ${alpha(
               Color.Neutral[900],
-              0.14
+              0.14,
             )}, 0px 1px 3px 0px ${alpha(Color.Neutral[900], 0.12)}`,
             overflow: 'hidden',
           }}
@@ -504,7 +504,7 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
                               new BigNumber(
                                 exchangeType === NFTOfferExchangeType.NFTForToken
                                   ? nftSaleInfo?.nftSellerNetAmount ?? 0
-                                  : amount ?? 0
+                                  : amount ?? 0,
                               )
                             }
                           />{' '}

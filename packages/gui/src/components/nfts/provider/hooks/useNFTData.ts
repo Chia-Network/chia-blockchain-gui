@@ -105,7 +105,7 @@ export default function useNFTData(props: UseNFTDataProps) {
       setLoaded /* immutable */,
       nfts /* immutable */,
       events /* immutable */,
-    ]
+    ],
   );
 
   // immutable function
@@ -183,7 +183,7 @@ export default function useNFTData(props: UseNFTDataProps) {
       fetchNFTsPage,
       setErrorProcessing,
       setIsLoadingProcessing,
-    ]
+    ],
   );
 
   useEffect(() => {
@@ -246,7 +246,7 @@ export default function useNFTData(props: UseNFTDataProps) {
         isLoading: false,
       };
     },
-    [nfts /* immutable */]
+    [nfts /* immutable */],
   );
 
   // immutable function
@@ -264,7 +264,7 @@ export default function useNFTData(props: UseNFTDataProps) {
         events.off(eventName, callback);
       };
     },
-    [events /* immutable */]
+    [events /* immutable */],
   );
 
   const subscribeToChanges = useCallback(
@@ -275,7 +275,7 @@ export default function useNFTData(props: UseNFTDataProps) {
         events.off('changed', callback);
       };
     },
-    [events]
+    [events],
   );
 
   return {

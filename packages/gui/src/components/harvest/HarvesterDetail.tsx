@@ -93,7 +93,7 @@ function HarvesterLatencyGraph(props: HarvesterLatencyGraphProps) {
       earnedSpacePercentage = (
         <Tooltip title={<FormatBytes value={effectiveSpace.minus(harvesterTotalPlotSize)} precision={3} />}>
           {Math.round(
-            effectiveSpace.minus(harvesterTotalPlotSize).div(harvesterTotalPlotSize).multipliedBy(1000).toNumber()
+            effectiveSpace.minus(harvesterTotalPlotSize).div(harvesterTotalPlotSize).multipliedBy(1000).toNumber(),
           ) / 10}{' '}
           %
         </Tooltip>

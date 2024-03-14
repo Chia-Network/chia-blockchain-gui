@@ -151,7 +151,7 @@ export default class Daemon extends Service {
             origin: client.origin,
             destination: service,
           }),
-          1000
+          1000,
         );
 
         if (data.success) {
@@ -370,7 +370,7 @@ export default class Daemon extends Service {
         }
 
         return undefined;
-      })
+      }),
     );
   }
 
@@ -427,7 +427,7 @@ export default class Daemon extends Service {
   getKeysForPlotting(args?: { fingerprints?: number[] }) {
     return this.command<{ keys: { [fingerprint: number]: { farmerPublicKey: string; poolPublicKey: string } } }>(
       'get_keys_for_plotting',
-      args
+      args,
     );
   }
 

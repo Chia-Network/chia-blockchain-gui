@@ -42,14 +42,14 @@ export default function PlotAddChooseSize(props: Props) {
     +plotter.version.split('.')[0] >= 3;
 
   const [allowedPlotSizes, setAllowedPlotSizes] = useState(
-    getPlotSizeOptions(plotterName, compressionLevel).filter((option) => plotter.options.kSizes.includes(option.value))
+    getPlotSizeOptions(plotterName, compressionLevel).filter((option) => plotter.options.kSizes.includes(option.value)),
   );
 
   useEffect(() => {
     setAllowedPlotSizes(
       getPlotSizeOptions(plotterName, compressionLevel).filter((option) =>
-        plotter.options.kSizes.includes(option.value)
-      )
+        plotter.options.kSizes.includes(option.value),
+      ),
     );
   }, [plotter.options.kSizes, plotterName, compressionLevel]);
 
@@ -62,7 +62,7 @@ export default function PlotAddChooseSize(props: Props) {
           confirmColor="danger"
         >
           <Trans>Are you sure you want to use k={plotSize}?</Trans>
-        </ConfirmDialog>
+        </ConfirmDialog>,
       );
 
       if (canUse) {

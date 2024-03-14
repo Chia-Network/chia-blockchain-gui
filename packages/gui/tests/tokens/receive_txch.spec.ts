@@ -40,7 +40,7 @@ test('Verify that a recipient wallet receives funds from sending wallet!', async
 
   //Then I receive a success message
   await expect(page.locator('div[role="dialog"]')).toHaveText(
-    'SuccessTransaction has successfully been sent to a full node and included in the mempool.OK'
+    'SuccessTransaction has successfully been sent to a full node and included in the mempool.OK',
   );
   await page.locator('div[role="dialog"] >> text=OK').click();
 

@@ -22,7 +22,7 @@ export default function useNFT(id?: string) {
       subscribeToNFTChanges(id, (newNFTState) => {
         setNFTState(newNFTState);
       }),
-    [id, subscribeToNFTChanges]
+    [id, subscribeToNFTChanges],
   );
 
   return {

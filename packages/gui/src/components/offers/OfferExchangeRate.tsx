@@ -67,7 +67,7 @@ export default function OfferExchangeRate(props: Props) {
         }
         return `${displayRate}`;
       }),
-    [makerAssetInfo, takerAssetInfo, makerExchangeRate, takerExchangeRate]
+    [makerAssetInfo, takerAssetInfo, makerExchangeRate, takerExchangeRate],
   );
 
   const makerValueProps = editingMakerExchangeRate === false ? { value: makerDisplayRate } : {};

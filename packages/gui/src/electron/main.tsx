@@ -80,7 +80,7 @@ function renderAbout(): string {
   const about = ReactDOMServer.renderToStaticMarkup(
     <StyleSheetManager sheet={sheet.instance}>
       <About packageJson={packageJson} versions={process.versions} version={app.getVersion()} />
-    </StyleSheetManager>
+    </StyleSheetManager>,
   );
 
   const tags = sheet.getStyleTags();
@@ -194,10 +194,10 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
         options: {
           title: string;
           body: string;
-        }
+        },
       ) => {
         new Notification(options).show();
-      }
+      },
     );
 
     ipcMain.handle('fetchTextResponse', async (_event, requestOptions, requestHeaders, requestData) => {
@@ -292,7 +292,7 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
       dialog.showOpenDialog({
         properties: ['openDirectory'],
         defaultPath: app.getPath('downloads'),
-      })
+      }),
     );
 
     type ResponseObjType = { data?: string; error?: string };
@@ -504,7 +504,7 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
             message: i18n._(
               /* i18n */ {
                 id: 'Are you sure you want to quit?',
-              }
+              },
             ),
             checkboxChecked: keepBackgroundRunning ?? false,
             checkboxLabel: i18n._(/* i18n */ { id: 'Keep service running in the background' }),
@@ -606,7 +606,7 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
         pathname: path.join(__dirname, arg.file),
         protocol: 'file:',
         slashes: true,
-      }) + arg.query
+      }) + arg.query,
     );
   });
 
@@ -856,7 +856,7 @@ function getMenuTemplate() {
             role: 'stopspeaking',
           },
         ],
-      }
+      },
     );
 
     // Window menu (MacOS)
@@ -896,7 +896,7 @@ function getMenuTemplate() {
         click: () => {
           mainWindow?.webContents.send('checkForUpdates');
         },
-      }
+      },
     );
   }
 

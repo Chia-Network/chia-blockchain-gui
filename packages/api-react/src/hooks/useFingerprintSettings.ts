@@ -5,7 +5,7 @@ import usePrefs, { type Serializable } from './usePrefs';
 export default function useFingerprintSettings<Type extends Serializable>(
   fingerprint: number | undefined,
   key: string,
-  defaultValue?: Type
+  defaultValue?: Type,
 ): [Type | undefined, (value: Type | ((preValue: Type) => Type)) => void] {
   type LocalStorageType = Record<string, Record<string, Serializable>>;
   const [settings, setSettings] = usePrefs<LocalStorageType>('fingerprintSettings', {});
@@ -40,7 +40,7 @@ export default function useFingerprintSettings<Type extends Serializable>(
         };
       });
     },
-    [key, setSettings, fingerprint]
+    [key, setSettings, fingerprint],
   );
 
   if (!fingerprint) {

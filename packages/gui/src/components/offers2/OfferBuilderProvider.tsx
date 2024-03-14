@@ -59,11 +59,11 @@ export default function OfferBuilderProvider(props: OfferBuilderProviderProps) {
 
     const offeredUnknownCATsLocal = getUnknownCATs(
       wallets,
-      offeredTokens.map(({ assetId }) => assetId)
+      offeredTokens.map(({ assetId }) => assetId),
     );
     const requestedUnknownCATsLocal = getUnknownCATs(
       wallets,
-      requestedTokens.map(({ assetId }) => assetId)
+      requestedTokens.map(({ assetId }) => assetId),
     );
 
     return [offeredUnknownCATsLocal, requestedUnknownCATsLocal];
@@ -71,14 +71,14 @@ export default function OfferBuilderProvider(props: OfferBuilderProviderProps) {
 
   const { data: loadedRequestedNFTs, isLoading: isLoadingRequestedNFTs } = useGetNFTsByNFTIDsQuery(
     { nftIds: requestedNFTIds },
-    { skip: requestedNFTIds.length === 0 }
+    { skip: requestedNFTIds.length === 0 },
   );
 
   const requestedNFTs = !isLoadingRequestedNFTs && requestedNFTIds.length > 0 ? loadedRequestedNFTs : [];
 
   const { data: offeredNFTs } = useGetNFTsByNFTIDsQuery(
     { nftIds: offeredNFTIds },
-    { skip: offeredNFTIds.length === 0 }
+    { skip: offeredNFTIds.length === 0 },
   );
 
   const requestedRoyaltyAssets = (requestedNFTs || [])
@@ -132,7 +132,7 @@ export default function OfferBuilderProvider(props: OfferBuilderProviderProps) {
     offeredRoyaltiesRequest,
     {
       skip: skipOfferedRoyalitiesCalculation,
-    }
+    },
   );
 
   const requestedRoyalties = skipRequestedRoyalitiesCalculation ? undefined : requestedRoyaltiesData?.royalties;
@@ -181,7 +181,7 @@ export default function OfferBuilderProvider(props: OfferBuilderProviderProps) {
       offeredRoyalties,
       isCalculatingRequestedRoyalties,
       isCalculatingOfferedRoyalties,
-    ]
+    ],
   );
 
   return <OfferBuilderContext.Provider value={context}>{children}</OfferBuilderContext.Provider>;

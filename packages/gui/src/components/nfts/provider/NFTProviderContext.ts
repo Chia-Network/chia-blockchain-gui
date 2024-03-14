@@ -26,7 +26,7 @@ const NFTProviderContext = createContext<
       getMetadata: (id: string | undefined) => MetadataState;
       subscribeToMetadataChanges: (
         id: string | undefined,
-        callback: (metadataState: MetadataState) => void
+        callback: (metadataState: MetadataState) => void,
       ) => () => void;
     }
   | undefined

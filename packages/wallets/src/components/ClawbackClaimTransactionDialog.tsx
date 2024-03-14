@@ -128,7 +128,7 @@ export default function ClawbackClaimTransactionDialog(props: Props) {
     openDialog(
       <AlertDialog title="">
         {fromOrTo === 'from' ? <Trans>Clawback payment claimed</Trans> : <Trans>Clawback payment clawed back</Trans>}
-      </AlertDialog>
+      </AlertDialog>,
     );
   }
 

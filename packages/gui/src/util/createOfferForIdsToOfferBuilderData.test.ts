@@ -207,7 +207,7 @@ describe('createOfferForIdsToOfferBuilderData', () => {
 
       // call to createOfferForIdsToOfferBuilderData should throw an error
       expect(() => createOfferForIdsToOfferBuilderData(walletIdsAndAmounts as any, (() => {}) as any)).toThrow(
-        /Invalid value for/
+        /Invalid value for/,
       );
     });
   });

@@ -150,7 +150,7 @@ export default class NFTWallet extends Wallet {
   async calculateRoyalties(args: CalculateRoyaltiesRequest) {
     return this.command<Record<string, Array<{ asset: string; address: string; amount: BigNumber | number }>>>(
       'nft_calculate_royalties',
-      args
+      args,
     );
   }
 }

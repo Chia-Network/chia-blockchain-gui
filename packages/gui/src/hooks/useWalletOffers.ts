@@ -23,7 +23,7 @@ export default function useWalletOffers(
   includeMyOffers = true,
   includeTakenOffers = true,
   sortKey?: 'CONFIRMED_AT_HEIGHT' | 'RELEVANCE',
-  reverse?: boolean
+  reverse?: boolean,
 ): {
   isLoading: boolean;
   offers?: OfferTradeRecordFormatted[];
@@ -75,7 +75,7 @@ export default function useWalletOffers(
       setRowsPerPage(rowsPerPageLocal);
       setPage(pageLocal);
     },
-    [setRowsPerPage, setPage]
+    [setRowsPerPage, setPage],
   );
 
   return {

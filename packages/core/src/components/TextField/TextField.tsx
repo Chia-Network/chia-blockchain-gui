@@ -132,7 +132,7 @@ export default function TextField(props: TextFieldProps): JSX.Element {
         />
       );
     },
-    [baseOnChange, name, dataTestid, inputProps, rest, rules, errors, helperText]
+    [baseOnChange, name, dataTestid, inputProps, rest, rules, errors, helperText],
   );
 
   return <Controller name={name} control={control} rules={normalizedRules} render={render} />;

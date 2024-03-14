@@ -7,7 +7,7 @@ import { useMemo } from 'react';
 export default function useWalletHumanValue(
   wallet: Wallet,
   value?: string | number | BigNumber,
-  unit?: string
+  unit?: string,
 ): string {
   const [locale] = useLocale();
 

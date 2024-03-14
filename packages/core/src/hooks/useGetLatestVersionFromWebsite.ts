@@ -26,7 +26,7 @@ export default function useGetLatestVersionFromWebsite(): UseGetLatestVersionFro
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [latestVersionURL] = useLocalStorage<string>(
     'latestVersionURL',
-    'https://download.chia.net/latest/latest.json'
+    'https://download.chia.net/latest/latest.json',
   );
   const [skipVersions, setSkipVersions] = useLocalStorage<string[]>('skipVersions', []);
   const { version: appVersion } = useAppVersion();
@@ -38,7 +38,7 @@ export default function useGetLatestVersionFromWebsite(): UseGetLatestVersionFro
     (version: string) => {
       setSkipVersions((prev) => [...(prev ?? []), version]);
     },
-    [setSkipVersions]
+    [setSkipVersions],
   );
 
   useEffect(() => {
