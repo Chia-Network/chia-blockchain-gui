@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-03-03 00:04\n"
+"PO-Revision-Date: 2024-03-10 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -66,7 +66,7 @@ msgstr "Oletko varma että haluat lopettaa?"
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:510
 msgid "Keep service running in the background"
-msgstr ""
+msgstr "Pidä palvelu käynnissä taustalla"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:628
@@ -247,15 +247,15 @@ msgstr "{0} pistettä {1} - {2} tuntia sitten"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:36
 msgid "{displayDays, plural, one {day} other {days}}"
-msgstr ""
+msgstr "{displayDays, plural, one {päivä} other {päivää}}"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:38
 msgid "{displayHours, plural, one {hour} other {hours}}"
-msgstr ""
+msgstr "{displayHours, plural, one {tunti} other {tuntia}}"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:40
 msgid "{displayMinutes, plural, one {minute} other {minutes}}"
-msgstr ""
+msgstr "{displayMinutes, plural, one {minuutti} other {minuuttia}}"
 
 #: src/components/notification/NotificationAnnouncement.tsx:52
 msgid "{from} <0>sending the message</0>"
@@ -546,7 +546,7 @@ msgstr "Määrä ylittää käytettävissä olevan XCH-saldon"
 
 #: src/components/farm/FarmHealth.tsx:321
 msgid "An increase in the number of missing signage points (SPs) suggests that you were either disconnected from or significantly distant from a Timelord in your Full Node network. The total number of missing SPs serves as an indicator of potential rewards you could have claimed."
-msgstr ""
+msgstr "Puuttuvien signage-pisteiden (SP) määrän kasvu viittaa siihen, että olet joko irrallaan tai merkittävästi etäällä Timelordista Full Node -verkossasi. Kadonneiden SP:n kokonaismäärä on indikaattori mahdollisista farmauspalkkioista, joita menetät."
 
 #: src/components/offers/NFTOfferPreview.tsx:137
 #: src/components/offers2/OfferBuilderNFTProvenance.tsx:23
@@ -669,7 +669,7 @@ msgstr "Yritys {attempt}"
 
 #: src/components/offers2/OfferBuilderToken.tsx:63
 msgid "Authorized providers"
-msgstr ""
+msgstr "Valtuutetut palveluntarjoajat"
 
 #: src/components/settings/SettingsCustody.tsx:61
 msgid "Auto claim incoming claw back transactions"
@@ -713,7 +713,7 @@ msgstr "Farmerin Peruspalkkio"
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:74
 msgid "Before beginning the plotting process, ensure that you have at least 128GB of RAM available. If you are running low on additional memory space, we strongly advise closing all other applications to prevent memory errors."
-msgstr ""
+msgstr "Ennen kuin aloitat plottauksen, varmista, että sinulla on vähintään 128Gt RAM saatavilla. Jos RAM käy vähiin, suosittelemme vahvasti sulkemaan kaikki muut sovellukset estääkseen muistivirheet."
 
 #: src/components/offers/OfferShareDialog.tsx:1177
 #~ msgid "Before posting an offer in Keybase to the #{channelName} channel, you must first join the {teamName} team. Please note that it might take a few moments to join the channel."
@@ -729,7 +729,7 @@ msgstr "Paras arvio viimeisten 24 tunnin ajalta"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:82
 msgid "BladeBit requires at least {0} GiB of RAM to operate"
-msgstr ""
+msgstr "BladeBit vaatii vähintään {0} GiB RAM-muistista"
 
 #: src/components/block/Block.jsx:135
 #: src/components/farm/card/FarmingRewardsHistoryCards.tsx:104
@@ -863,7 +863,7 @@ msgstr "Samaa assettia ei voi tarjota ja pyytää"
 
 #: src/components/offers2/OfferBuilderToken.tsx:59
 msgid "CAT credential restrictions"
-msgstr ""
+msgstr "CAT käyttöoikeusrajoitukset"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:15
 msgid "Challenge"
@@ -880,7 +880,7 @@ msgstr "Vaihda"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:190
 msgid "Change default timing."
-msgstr ""
+msgstr "Muuta oletusajastusta."
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:290
 #: src/components/settings/SettingsPanel.tsx:120
@@ -990,7 +990,7 @@ msgstr "Tyhjennä NFT-välimuisti"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:92
 msgid "Clicking a delete icon only removes a directory from this list and never deletes the directory itself"
-msgstr ""
+msgstr "Poistokuvakkeen napsauttaminen poistaa vain hakemiston tästä listasta eikä koskaan poista itse hakemistoa"
 
 #: src/components/app/AppVersionWarning.tsx:57
 #: src/components/nfts/MultipleDownloadDialog.tsx:116
@@ -1037,7 +1037,7 @@ msgstr "Kokoelma"
 
 #: src/components/farm/FarmHealth.tsx:327
 msgid "Common reasons for missing SPs include:"
-msgstr ""
+msgstr "Yleisiä syitä puuttuviin SP:hin ovat:"
 
 #: src/components/settings/SettingsHarvester.tsx:441
 msgid "Compressed plot support"
@@ -1336,7 +1336,7 @@ msgstr "Tämänhetkinen Pistesaldo"
 
 #: src/components/settings/Settings.tsx:32
 msgid "Custody"
-msgstr ""
+msgstr "Hallussapito"
 
 #: src/components/notification/utils.ts:109
 msgid "Dapp {from} sending the message"
@@ -1356,7 +1356,7 @@ msgstr "Datan URL {0}"
 
 #: src/components/settings/Settings.tsx:39
 msgid "DataLayer"
-msgstr ""
+msgstr "DataLayer"
 
 #: src/components/settings/SettingsDataLayer.tsx:21
 msgid "DataLayer enables rich data to be stored on mirrored databases that can be verified using the Chia Blockchain."
@@ -1373,7 +1373,7 @@ msgstr "Päiväys"
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:88
 #: src/components/settings/SettingsExpiringOffers.tsx:22
 msgid "Days"
-msgstr ""
+msgstr "Päivää"
 
 #: src/components/settings/SettingsHarvester.tsx:480
 msgid "Decompressor Thread Count"
@@ -1393,11 +1393,11 @@ msgstr "Oletustakaisinvetoaika kätössä."
 
 #: src/components/settings/SettingsExpiringOffers.tsx:124
 msgid "Default offer expiration time is disabled"
-msgstr ""
+msgstr "Tarjouksen oletusvanhentumisaika on pois käytöstä"
 
 #: src/components/settings/SettingsExpiringOffers.tsx:119
 msgid "Default offer expiration time is enabled"
-msgstr ""
+msgstr "Tarjouksen oletusvanhentumisaika on käytössä"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:89
 msgid "Delay"
@@ -1898,7 +1898,7 @@ msgstr "Epäonnistuneet lataukset:"
 
 #: src/components/farm/PoolingHealth.tsx:310
 msgid "Failed partials"
-msgstr ""
+msgstr "Epäonnistuneet partiaalit"
 
 #: src/components/offers/NFTOfferEditor.tsx:584
 msgid "Failed to decode NFT identifier"
@@ -2128,7 +2128,7 @@ msgstr "Noodin Yhteydet"
 
 #: src/components/farm/FarmHealth.tsx:336
 msgid "Full Node was out of sync"
-msgstr ""
+msgstr "Noodi ei ollut synkronoitu"
 
 #: src/electron/main.tsx:1022
 #~ msgid "Full Screen"
@@ -2136,7 +2136,7 @@ msgstr ""
 
 #: src/components/settings/Settings.tsx:29
 msgid "General"
-msgstr ""
+msgstr "Yleisasetukset"
 
 #: src/constants/WalletConnectCommands.tsx:300
 msgid "Get all Offers"
@@ -2204,7 +2204,7 @@ msgstr "Hae todisteet juuritiivisteelle"
 
 #: src/constants/WalletConnectCommands.tsx:1009
 msgid "Get public key"
-msgstr ""
+msgstr "Hae julkinen avain"
 
 #: src/constants/WalletConnectCommands.tsx:42
 msgid "Get Transaction"
@@ -2262,7 +2262,7 @@ msgstr "Harvestoi"
 
 #: src/components/settings/Settings.tsx:40
 msgid "Harvester"
-msgstr ""
+msgstr "Harvesteri"
 
 #: src/components/harvest/HarvesterLatency.tsx:75
 msgid "Harvester latency"
@@ -2370,11 +2370,11 @@ msgstr "Palvelimen nimi"
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:89
 #: src/components/settings/SettingsExpiringOffers.tsx:23
 msgid "Hours"
-msgstr ""
+msgstr "Tuntia"
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:102
 msgid "Hybrid disk mode 1 (RAM required: 128G)"
-msgstr ""
+msgstr "Hybriditila 1 (tarvitaan RAM: 128G)"
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:92
 #~ msgid "Hybrid disk mode 2 (RAM required: 16G)"
@@ -2382,7 +2382,7 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:90
 msgid "Hybrid disk mode allows computers with lower amounts of RAM to plot by offloading intermediate data to disk. If you enable hybrid disk mode, you need to specify temp folder(s). We recommend using SSDs when supporting a hybrid disk mode."
-msgstr ""
+msgstr "Hybriditila mahdollistaa, että tietokoneet, joissa ei ole riitävästi RAM-muistia, voivat siirtää väliaikaisia tiedostoja levylle. Jos otat käyttöön hybriditilan, sinun täytyy määrittää väliäaikaistiedostoille kansio(t). Suosittelemme käyttämään SSD-levyjä."
 
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:16
 msgid "I Understand, Create Offer"
@@ -2488,15 +2488,15 @@ msgstr ""
 
 #: src/components/farm/PoolingHealth.tsx:302
 msgid "Insufficient partials"
-msgstr ""
+msgstr "Riittämättömästi partiaaleja"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:80
 msgid "Insufficient RAM for BladeBit"
-msgstr ""
+msgstr "RAM ei riitä BladeBitiä varten"
 
 #: src/components/settings/Settings.tsx:41
 msgid "Integration"
-msgstr ""
+msgstr "Integraatio"
 
 #: src/components/settings/SettingsHarvester.tsx:428
 msgid "Interval (in seconds) in which directories are scanned to refresh the list of available plots"
@@ -2728,7 +2728,7 @@ msgstr "Ladataan konfiguraatiota"
 #: src/components/offers/OfferManager.tsx:236
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:107
 msgid "Loading expiration time..."
-msgstr ""
+msgstr "Ladataan vanhentumisaikaa..."
 
 #: src/components/farm/Farm.tsx:29
 msgid "Loading farming data"
@@ -2752,7 +2752,7 @@ msgstr "Ladataan NFT-tietoja..."
 
 #: src/components/nfts/NFTPreview.tsx:432
 msgid "Loading NFT..."
-msgstr ""
+msgstr "Ladataan NFT..."
 
 #: src/components/offers2/OfferBuilderValueSearch.tsx:144
 #~ msgid "Loading NFTs..."
@@ -2760,7 +2760,7 @@ msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:432
 msgid "Loading preview..."
-msgstr ""
+msgstr "Ladataan esikatselua..."
 
 #: src/components/did/DIDProfileDropdown.tsx:48
 #: src/components/helpers/HeightToTimestamp.tsx:16
@@ -2815,7 +2815,7 @@ msgstr "Hallitse WalletConnect -sovellusten käyttöoikeuksia."
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:54
 msgid "Manage Plot Directories"
-msgstr ""
+msgstr "Hallitse Plottihakemistoja"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:94
 msgid "Manage Your Farming Rewards Target Addresses"
@@ -3248,7 +3248,7 @@ msgstr "Yksikään ploteistasi ei ole vielä päässyt suodatuksesta läpi."
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:99
 msgid "Normal (RAM required: 256G)"
-msgstr ""
+msgstr "Normaali (RAM-muistia tarvitaan: 256G)"
 
 #: src/components/farm/FarmHealth.tsx:123
 #: src/components/farm/FarmHealth.tsx:170
@@ -3404,11 +3404,11 @@ msgstr "Tarjouksen Tiedot"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:184
 msgid "Offer Expiration"
-msgstr ""
+msgstr "Tarjouksen Vanheneminen"
 
 #: src/components/settings/SettingsExpiringOffers.tsx:43
 msgid "Offer Expiration Time"
-msgstr ""
+msgstr "Tarjouksen Päättymisaika"
 
 #: src/components/offers2/OfferBuilderImport.tsx:58
 msgid "Offer file is too large (> 1MB)"
@@ -3420,7 +3420,7 @@ msgstr "Tarjous on hyväksytty ja odottaa vahvistusta."
 
 #: src/components/offers2/OfferBuilderExpirationCountdown.tsx:31
 msgid "Offer has expired"
-msgstr ""
+msgstr "Tarjous on vanhentunut"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:103
 #~ msgid "Offer has expired and cannot be accepted."
@@ -3428,7 +3428,7 @@ msgstr ""
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:111
 msgid "Offer has expired."
-msgstr ""
+msgstr "Tarjous on vanhentunut."
 
 #: src/constants/WalletConnectCommands.tsx:471
 #: src/constants/WalletConnectCommands.tsx:485
@@ -3451,7 +3451,7 @@ msgstr "Tarjous Jaettu"
 #: src/components/offers2/OfferBuilderExpirationCountdown.tsx:21
 #: src/components/offers2/OfferBuilderExpirationCountdown.tsx:26
 msgid "Offer will expire in {0} {1}"
-msgstr ""
+msgstr "Tarjous vanhenee {0} {1} kuluttua"
 
 #: src/components/offers/OfferShareDialog.tsx:755
 #~ msgid "OfferBin URL"
@@ -3621,11 +3621,11 @@ msgstr "Edeltävän Kolikon Tiedot"
 
 #: src/components/farm/PoolingHealth.tsx:317
 msgid "Partials found but not sent to pools. This usually happens when a partial is found before connections to pools are established"
-msgstr ""
+msgstr "Partiaaleja löytynyt, mutta ei lähetetty pooliin. Tämä tapahtuu yleensä kun partiaali löytyy ennen kuin yhteys pooliin on luotu"
 
 #: src/components/farm/PoolingHealth.tsx:299
 msgid "Partials not good enough for difficulties for corresponding pools"
-msgstr ""
+msgstr "Riittämättömät  partiaalit poolien vaikeuskertoimille"
 
 #: src/components/farm/PoolingHealth.tsx:257
 #~ msgid "Partials not good enough or rejected by pools"
@@ -3633,15 +3633,15 @@ msgstr ""
 
 #: src/components/farm/PoolingHealth.tsx:307
 msgid "Partials sent to pools but received error responses"
-msgstr ""
+msgstr "Partiaalit lähetetty pooleihin, mutta vastaanotettu virhevastauksia"
 
 #: src/components/farm/PoolingHealth.tsx:291
 msgid "Partials sent to pools but too late"
-msgstr ""
+msgstr "Partiaalit lähetetty pooleihin, mutta myöhässä"
 
 #: src/components/farm/PoolingHealth.tsx:283
 msgid "Partials successfully sent and acknowledged by pools"
-msgstr ""
+msgstr "Onnistuneesti lähetetyt ja hyväksytyt partiaalit poolissa"
 
 #: src/components/app/AppKeyringMigrator.tsx:147
 #: src/components/app/AppKeyringMigrator.tsx:148
@@ -3784,7 +3784,7 @@ msgstr "Ole hyvä ja syötä salasanasi jatkaaksesi"
 
 #: src/components/settings/SettingsHarvester.tsx:385
 msgid "Please restart your harvester in order for any changes to take effect."
-msgstr ""
+msgstr "Käynnistä harvesteri uudelleen, jotta kaikki muutokset tulevat voimaan."
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:155
 msgid "Please select a profile to move the NFT to."
@@ -4228,7 +4228,7 @@ msgstr "Suhteellisen Lukituksen Korkeus"
 
 #: src/components/offers/OfferManager.tsx:292
 msgid "Relist Offer"
-msgstr ""
+msgstr "Uudelleenlistaa Tarjous"
 
 #: src/components/plot/PlotHarvester.tsx:61
 msgid "Remote"
@@ -4244,7 +4244,7 @@ msgstr "Poista Ristiriitainen Tarjous"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:111
 msgid "Remove from the list"
-msgstr ""
+msgstr "Poista listalta"
 
 #: src/components/app/AppKeyringMigrator.tsx:247
 msgid "Remove keys from old keyring upon successful migration"
@@ -4293,7 +4293,7 @@ msgstr "Pyytää täydellistä tai sivutettua luetteloa NFT:istä, jotka liittyv
 
 #: src/constants/WalletConnectCommands.tsx:1010
 msgid "Requests a master public key from your wallet"
-msgstr ""
+msgstr "Pyytää julkisen pääavaimen lompakostasi"
 
 #: src/constants/WalletConnectCommands.tsx:267
 msgid "Requests a new receive address associated with the current wallet key"
@@ -4516,7 +4516,7 @@ msgstr "Valitse Kohdehakemisto"
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:88
 msgid "Select Hybrid disk mode"
-msgstr ""
+msgstr "Valitse Hybriditila"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:154
 msgid "Select Keys"
@@ -4612,7 +4612,7 @@ msgstr "Aseta oletusaikaraja kaikille lähteville XCH-tapahtumille."
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:187
 msgid "Set a time after which this offer expires."
-msgstr ""
+msgstr "Aseta aika, jonka jälkeen tarjous vanhenee."
 
 #: src/constants/WalletConnectCommands.tsx:781
 msgid "Set DID Name"
@@ -4808,7 +4808,7 @@ msgstr "Spacescan.io URL"
 
 #: src/components/settings/SettingsHarvester.tsx:472
 msgid "Specify a value if using CPU as your harvester. Typical values will be 1 or 2."
-msgstr ""
+msgstr "Määritä arvo, jos käytät suoritinta harvesterina. Tyypilliset arvot ovat 1 tai 2."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:134
 msgid "Specify a value of 0 to use all available threads"
@@ -4820,7 +4820,7 @@ msgstr "Määritä lompakon osoite, NFT tai DID allekirjoittaaksesi"
 
 #: src/components/settings/SettingsHarvester.tsx:524
 msgid "Specify GPU index (0, 1, 2, etc) for harvesting if more than one GPU is present)"
-msgstr ""
+msgstr "Määritä GPU-indeksi (0, 1, 2, jne.) harvesteria varten, jos on olemassa useampi kuin yksi GPU"
 
 #: src/electron/main.tsx:1149
 #~ msgid "Speech"
@@ -4844,11 +4844,11 @@ msgstr "Käytettävissä oleva saldo: {spendableBalance} {currencyCode}"
 
 #: src/components/farm/FarmHealth.tsx:438
 msgid "Stale partials"
-msgstr ""
+msgstr "Vanhentuneet partiaalit"
 
 #: src/components/farm/PoolingHealth.tsx:294
 msgid "Stale Partials"
-msgstr ""
+msgstr "Vanhentuneet partiaalit"
 
 #: src/components/vcs/VCCard.tsx:176
 msgid "Standard Version Number"
@@ -4905,7 +4905,7 @@ msgstr "Onnistui"
 
 #: src/components/settings/SettingsHarvester.tsx:197
 msgid "Successfully restarted Harvester"
-msgstr ""
+msgstr "Harvesterin uudelleenkäynnistys onnistui"
 
 #: src/components/settings/LimitCacheSize.tsx:54
 msgid "Successfully updated cache size limit."
@@ -4917,7 +4917,7 @@ msgstr "Onnistuneesti päivitetty derivaatioindeksi. Saldojen päivitys voivat k
 
 #: src/components/farm/FarmHealth.tsx:430
 msgid "Sync status"
-msgstr ""
+msgstr "Synkronoinnin tila"
 
 #: src/components/farm/FarmHealth.tsx:146
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:50
@@ -4949,7 +4949,7 @@ msgstr "Palkkion Osoitetiiviste"
 
 #: src/components/plot/add/PlotAddForm.tsx:189
 msgid "Temp folder location is required for hybrid disk plotting with 16/128G RAM"
-msgstr ""
+msgstr "Temp-kansion sijainti vaaditaan 16/128G RAM hybridiplottauksen kanssa"
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:114
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:59
@@ -4989,7 +4989,7 @@ msgstr "Alla noodi, johon farmerisi on yhteydessä. <0>Katso lisää</0>"
 
 #: src/components/settings/SettingsHarvester.tsx:375
 msgid "The Harvester manages plots and fetches proofs of space corresponding to challenges sent by a farmer."
-msgstr ""
+msgstr "Harvesteri hallinnoi plotteja ja hakee farmerisovelluisen haasteita vastaavia tilavaraustodisteita."
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:60
 #: src/components/plot/add/PlotAddChooseSize.tsx:117
@@ -5095,11 +5095,11 @@ msgstr "Kokonaistransaktioveloitukset tässä lohkossa. Suoritetaan farmarille."
 
 #: src/components/addressbook/ContactEdit.tsx:308
 msgid "Theme"
-msgstr ""
+msgstr "Teema"
 
 #: src/components/farm/FarmHealth.tsx:331
 msgid "There was a network issue and your Full Node or Farmer could not receive SPs."
-msgstr ""
+msgstr "Verkko-ongelma - Noodi tai Farmeri ei voinut vastaanottaa SP:itä."
 
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:91
 msgid "These are the instructions for how the farmer wants to get paid. By default this will be an XCH address, but it can be set to any string with a size of less than 1024 characters, so it can represent another blockchain or payment system identifier."
@@ -5128,23 +5128,23 @@ msgstr "Tämä ominaisuus käytettävissä ainoastaan graafisessa käyttöliitty
 
 #: src/components/harvest/HarvesterDetail.tsx:67
 msgid "This harvester does not have any plots to harvest"
-msgstr ""
+msgstr "Tällä harvesterilla ei ole plotteja"
 
 #: src/components/harvest/HarvesterOverview.tsx:175
 msgid "This is a sum of effective plot sizes currently farming. An effective plot size is a theoretical value which is derived only by kSize"
-msgstr ""
+msgstr "Tämä on effektiivinen plottitiedostojen yhteiskoko. Effektiivinen koko on laskennallinen arvo perustuen plottitiedostojen määrään ja k-arvoon"
 
 #: src/components/harvest/HarvesterDetail.tsx:161
 msgid "This is a sum of effective plot sizes currently harvesting. An effective plot size is a theoretical value which is derived only by kSize."
-msgstr ""
+msgstr "Tämä on effektiivinen harvestoitujen plottitiedostojen yhteiskoko. Effektiivinen koko on laskennallinen arvo perustuen plottitiedostojen määrään ja k-arvoon."
 
 #: src/components/plot/add/PlotAddChooseKeys.tsx:97
 msgid "This is the farmer public key corresponding to the current logged-in wallet"
-msgstr ""
+msgstr "Tämä on sisäänkirjautuneena olevaa lompakkoa vastaava farmerin julkinen avain"
 
 #: src/components/plot/add/PlotAddChooseKeys.tsx:42
 msgid "This is the plot nft contract address of \"{plotNFTName}\". If you want to change this, select \"None\" at Plot to a Plot NFT form."
-msgstr ""
+msgstr "Tämä on plotin NFT-sopimusosoite \"{plotNFTName}\". Jos haluat muuttaa tätä, valitse \"Ei mitään\" Plot NFT -lomakkeessa."
 
 #: src/components/block/Block.jsx:163
 msgid "This is the time the block was created by the farmer, which is before it is finalized with a proof of time"
@@ -5194,7 +5194,7 @@ msgstr "Tämä tarjous peruutettiin"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:44
 msgid "This offer will expire in {displayDays} {displayDaysText}{hoursComma} {displayHours} {displayHoursText}{minutesComma} {displayMinutes} {displayMinutesText}"
-msgstr ""
+msgstr "Tarjous vanhenee {displayDays} {displayDaysText}{hoursComma} {displayHours} {displayHoursText}{minutesComma} {displayMinutes} {displayMinutesText} kuluttua"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:210
 #~ msgid "This offer will never expire."
@@ -5202,7 +5202,7 @@ msgstr ""
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:45
 msgid "This offer will not expire"
-msgstr ""
+msgstr "Tämä tarjous ei vanhene"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:268
 msgid "This plot NFT is assigned to a different key. You can still create plots for this plot NFT, but you can not make changes."
@@ -5285,11 +5285,11 @@ msgstr "Yhteissumma rojaltien kanssa"
 
 #: src/components/harvest/HarvesterOverview.tsx:172
 msgid "Total farm size effective"
-msgstr ""
+msgstr "Farmin efektiivinen koko"
 
 #: src/components/harvest/HarvesterOverview.tsx:164
 msgid "Total farm size raw"
-msgstr ""
+msgstr "Farmin raakalevytila"
 
 #: src/components/plot/card/PlotCardTotalHarvesters.tsx:11
 msgid "Total Harvesters"
@@ -5305,7 +5305,7 @@ msgstr "Iteraatioiden määrä lohkoketjun alusta asti"
 
 #: src/components/farm/card/TotalNetworkSpace.tsx:13
 msgid "Total Netspace"
-msgstr ""
+msgstr "Netspace Yhteensä"
 
 #: src/components/farm/card/FarmCardTotalNetworkSpace.tsx:12
 #~ msgid "Total Network Space"
@@ -5313,19 +5313,19 @@ msgstr ""
 
 #: src/components/harvest/HarvesterPlotDetails.tsx:166
 msgid "Total OG"
-msgstr ""
+msgstr "OG Plotit Yhteensä"
 
 #: src/components/farm/FarmHealth.tsx:234
 msgid "Total plot filter challenges"
-msgstr ""
+msgstr "Plottifiltterihaasteita yhteensä"
 
 #: src/components/harvest/HarvesterPlotDetails.tsx:169
 msgid "Total plotNFT"
-msgstr ""
+msgstr "PlotNFT:t yhteensä"
 
 #: src/components/harvest/HarvesterPlotDetails.tsx:163
 msgid "Total plots"
-msgstr ""
+msgstr "Plottitiedostoja yhteensä"
 
 #: src/components/plot/card/PlotCardTotalPlots.tsx:11
 msgid "Total Plots"
@@ -5333,7 +5333,7 @@ msgstr "Plottitiedostoja yhteensä"
 
 #: src/components/farm/FarmHealth.tsx:240
 msgid "Total plots passing filter"
-msgstr ""
+msgstr "Filtterin läpäisseitä plotteja"
 
 #: src/components/plot/card/PlotCardTotalPlotsSize.tsx:11
 msgid "Total Plots Size"
@@ -5349,7 +5349,7 @@ msgstr "Ladattujen tiedostojen koko yhteensä:"
 
 #: src/components/harvest/HarvesterDetail.tsx:115
 msgid "Total Space"
-msgstr ""
+msgstr "Tila Yhteensä"
 
 #: src/components/block/Block.jsx:186
 msgid "Total VDF Iterations"
@@ -5358,7 +5358,7 @@ msgstr "VDF-iteraatioiden Määrä"
 #: src/components/farm/card/FarmingRewardsHistoryCards.tsx:31
 #: src/components/farm/card/FarmingRewardsHistoryCards.tsx:82
 msgid "Total XCH Farmed"
-msgstr ""
+msgstr "Farmatut XCH:t Yhteensä"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:362
 msgid "Touch all pages of buffer allocations before starting to plot."
@@ -5540,7 +5540,7 @@ msgstr "Avaa Avainrengas"
 
 #: src/components/addressbook/AddressBookMenuItem.tsx:50
 msgid "Unnamed Contact"
-msgstr ""
+msgstr "Nimetön Kontakti"
 
 #: src/components/offers/NFTOfferViewer.tsx:142
 msgid "Unrecognized asset"
@@ -5578,7 +5578,7 @@ msgstr "Navigoi vasemmalla ja oikealla nuolinäppäimillä"
 
 #: src/components/plot/add/PlotAddChooseKeys.tsx:38
 msgid "Used to create a pool plot."
-msgstr ""
+msgstr "Käytetään poolinplotin luomiseen."
 
 #: src/components/farm/card/FarmCardUserFees.tsx:28
 #~ msgid "User Transaction Fees"
@@ -5591,7 +5591,7 @@ msgstr "Validi"
 
 #: src/components/farm/PoolingHealth.tsx:286
 msgid "Valid Partials"
-msgstr ""
+msgstr "Kelvolliset partiaalit"
 
 #: src/constants/WalletConnectCommands.tsx:371
 msgid "Validate only"
@@ -5670,7 +5670,7 @@ msgstr "Tarkistetaan tiivistettä..."
 
 #: src/components/offers2/OfferIncomingTable.tsx:95
 msgid "View"
-msgstr "Näkymä"
+msgstr "Näytä"
 
 #: src/components/offers/OfferImport.tsx:184
 msgid "View an Offer"
@@ -5810,7 +5810,7 @@ msgstr "Lompakkotila"
 
 #: src/components/offers2/CreateOfferBuilder.tsx:103
 msgid "Wallet must be synced before creating an offer with an expiration time"
-msgstr ""
+msgstr "Lompakko on oltava synkronoitu ennen vanhenevan tarjouksen tekemistä"
 
 #: src/components/settings/SettingsIntegration.tsx:139
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:218
@@ -5847,7 +5847,7 @@ msgstr "Varoitus"
 
 #: src/components/farm/FarmHealth.tsx:266
 msgid "Warning Threshold"
-msgstr ""
+msgstr "Varoituskynnys"
 
 #: src/components/app/AppVersionWarning.tsx:30
 msgid "Warning: Mismatched Versions"
@@ -5864,11 +5864,11 @@ msgstr "Varoitus: Olet siirtymässä verkkosivulle"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:208
 msgid "Warning! Selecting multiple keys will enable \"Key Switching\" inside Settings / Integration tab."
-msgstr ""
+msgstr "Varoitus! Usean avaimen valitseminen ottaa käyttöön \"Avaimen vaihtaminen\" Asetukset / Integraatio -välilehdellä."
 
 #: src/constants/WalletConnectCommands.tsx:218
 msgid "WARNING! When safeMode=false it means you could be signing a transaction, not just a message. Be sure you trust the source that's requesting this."
-msgstr ""
+msgstr "VAROITUS! Kun safeMode=false se tarkoittaa, että voit allekirjoittaa transaktion, ei pelkästään viestin. Varmista, että luotat lähteeseen, joka pyytää tätä."
 
 #: src/components/block/Block.jsx:173
 msgid "Weight"
@@ -5884,7 +5884,7 @@ msgstr "Kun luot tarjouksen, assetti jota tarjoat lukitaan kunnes tarjous hyväk
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:455
 msgid "Which CUDA device to use when plotting"
-msgstr ""
+msgstr "Mitä CUDA-laitetta käytetään plottaamisessa"
 
 #: src/electron/main.tsx:1029
 #~ msgid "Window"
@@ -5945,7 +5945,7 @@ msgstr "Voit aina vaihtaa tilaa asetuksissa"
 
 #: src/components/plot/add/PlotAddChooseKeys.tsx:143
 msgid "You can customize farmer public key, pool public key / pool contract address here manually.<0/>Usually you don't need manual set up so please consider carefully whether you really need to edit these keys for a plot. One possible situation is to create a plot for someone who asks you to plot with your great hardware."
-msgstr ""
+msgstr "Voit muokata farmerin julkista avainta, poolin avainta tai poolisopimuksen osoitetetta manuaalisesti. <0/>Yleensä et tarvitse manuaalista asetusta, joten harkitse huolellisesti, pitääkö sinun todella muokata näitä avaimia ploteille. Yksi mahdollinen tilanne on plotata plotteja jollekin, joka pyytää sinua plottaamaan laitteellasi hänelle."
 
 #: src/components/walletConnect/WalletConnectConnectedDialog.tsx:90
 msgid "You can now connect to {0} in your browser."
@@ -5971,7 +5971,7 @@ msgstr "Sinulla on {0}% verkossa olevasta tilasta, joten lohkon farmarointi vie 
 
 #: src/components/farm/card/FarmingRewardsCards.tsx:89
 msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWinHumanized} in expectation. Actual results may take 3 to 4 times longer than this estimate."
-msgstr ""
+msgstr "Sinulla on {0}% verkkoavaruudesta, joten lohkon farmarointi vie keskimäärin {expectedTimeToWinHumanized}. Todellinen aika voi olla 3–4 kertaa pidempi kuin tämä arvio."
 
 #: src/components/notification/NotificationOffer.tsx:92
 msgid "You have a new counter offer"
