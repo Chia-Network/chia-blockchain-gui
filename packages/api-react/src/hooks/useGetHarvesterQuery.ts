@@ -7,7 +7,7 @@ export default function useGetHarvesterQuery({ nodeId }: { nodeId: string }) {
 
   const harvester = useMemo(
     () => data?.find((harvesterItem) => harvesterItem.connection.nodeId === nodeId),
-    [data, nodeId]
+    [data, nodeId],
   );
 
   const isLoading = isLoadingHarvesterSummary;

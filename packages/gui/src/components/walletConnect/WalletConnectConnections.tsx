@@ -53,7 +53,7 @@ export default function WalletConnectConnections(props: WalletConnectConnections
       onClose?.();
       openDialog(<WalletConnectPairInfoDialog topic={topic} />);
     },
-    [onClose, openDialog]
+    [onClose, openDialog],
   );
 
   const pairsList = pairs.get();

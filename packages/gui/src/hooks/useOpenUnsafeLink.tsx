@@ -18,7 +18,7 @@ function OpenUnsafeLinkConfirmationDialog(props: OpenUnsafeLinkConfirmationDialo
   const { url, ...rest } = props;
   const [suppressUnsafeLinkWarning, setSuppressUnsafeLinkWarning] = usePrefs<boolean>(
     SuppressUnsafeLinkWarningLocalStorageKey,
-    false
+    false,
   );
 
   function toggleSuppression(value: boolean) {

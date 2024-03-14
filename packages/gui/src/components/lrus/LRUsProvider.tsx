@@ -25,7 +25,7 @@ export default function LRUsProvider(props: LRUsProviderProps) {
       }
       return lru;
     },
-    [LRUs]
+    [LRUs],
   );
   const value = useMemo(() => ({ getLRU }), [getLRU]);
 

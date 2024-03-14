@@ -11,7 +11,7 @@ function subscribe(event: string, service: ServiceConstructor, cb: Function) {
         service,
         args: [cb],
       },
-      api
+      api,
     );
 
     return unsubscribe;

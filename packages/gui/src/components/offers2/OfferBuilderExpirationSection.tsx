@@ -71,7 +71,7 @@ export default function OfferBuilderExpirationSection(props: OfferExpirationSect
 
   const [wasOfferExpirationVisited, setWasOfferExpirationVisited] = useLocalStorage<boolean>(
     'newFlag--wasOfferExpirationVisited',
-    false
+    false,
   );
 
   const expirationValues = useWatch({

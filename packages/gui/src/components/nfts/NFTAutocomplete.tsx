@@ -85,7 +85,7 @@ export default function NFTAutocomplete(props: NFTAutocompleteProps) {
         </Box>
       );
     },
-    [inputValue]
+    [inputValue],
   );
 
   const handleChange = useCallback(
@@ -99,7 +99,7 @@ export default function NFTAutocomplete(props: NFTAutocompleteProps) {
         onChange(getNFTId(newValue.launcherId));
       }
     },
-    [onChange]
+    [onChange],
   );
 
   const handleInputValueChange = useCallback(
@@ -108,7 +108,7 @@ export default function NFTAutocomplete(props: NFTAutocompleteProps) {
       setSearchText(newInputValue);
       onChange(newInputValue || '');
     },
-    [onChange]
+    [onChange],
   );
 
   const handleClose = useCallback(() => {
@@ -137,7 +137,7 @@ export default function NFTAutocomplete(props: NFTAutocompleteProps) {
 
       return option.launcherId === selectedNFT.launcherId;
     },
-    [firstOption, selectedNFT]
+    [firstOption, selectedNFT],
   );
 
   const options = includeNFTCollection ? nfts : [];

@@ -27,7 +27,7 @@ export default function PlotAction(props: PlotActionProps) {
         onConfirm={() => deletePlot({ filename }).unwrap()}
       >
         <Trans>Are you sure you want to delete the plot? The plot cannot be recovered.</Trans>
-      </ConfirmDialog>
+      </ConfirmDialog>,
     );
   }
 

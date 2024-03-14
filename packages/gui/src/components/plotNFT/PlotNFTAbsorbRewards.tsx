@@ -51,7 +51,7 @@ export default function PlotNFTAbsorbRewards(props: Props) {
   const navigate = useNavigate();
   const nft = useMemo(
     () => data?.nfts?.find((nftItem) => nftItem.poolState.p2SingletonPuzzleHash === plotNFTId),
-    [data?.nfts, plotNFTId]
+    [data?.nfts, plotNFTId],
   );
 
   const methods = useForm<FormData>({

@@ -16,7 +16,7 @@ export default function VCDetail({ coinId }: { coinId: string }) {
   const { isLoading, data } = useGetVCQuery({ vcId: vcId as string });
   const { data: proofsData } = useGetProofsForRootQuery(
     { root: (data as any)?.vc?.proofHash },
-    { skip: isLoading || !data }
+    { skip: isLoading || !data },
   );
   const [VCsLocalStorage] = useLocalStorage<any>('verifiable-credentials-local', {});
 

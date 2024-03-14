@@ -24,7 +24,7 @@ function getValueFromLocalStorage<T>(key: string): T | undefined {
 
 export default function useLocalStorage<T extends keyof (string | undefined)>(
   key: string,
-  defaultValue?: T
+  defaultValue?: T,
 ): [T | undefined, (value: T | ((value: T | undefined) => T)) => void] {
   const [storedValue, setStoredValue] = useState<T | undefined>(getValueFromLocalStorage(key));
   const defaultValueRef = useRef(defaultValue);
@@ -57,7 +57,7 @@ export default function useLocalStorage<T extends keyof (string | undefined)>(
         return newValue;
       });
     },
-    [key]
+    [key],
   );
 
   const changeHandler = useCallback(
@@ -67,7 +67,7 @@ export default function useLocalStorage<T extends keyof (string | undefined)>(
         setStoredValue(newValue);
       }
     },
-    [key]
+    [key],
   );
 
   // Listen changes

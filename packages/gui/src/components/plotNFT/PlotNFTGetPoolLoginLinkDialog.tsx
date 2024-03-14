@@ -34,7 +34,7 @@ export default function PlotNFTGetPoolLoginLinkDialog(props: Props) {
     },
     {
       skip: !poolUrl,
-    }
+    },
   );
 
   function handleClose() {

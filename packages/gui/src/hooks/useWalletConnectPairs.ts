@@ -57,7 +57,7 @@ export default function useWalletConnectPairs(): Pairs {
   const removePairBySession = useCallback((sessionTopic: string) => {
     const [, setPairs] = pairsRef.current;
     setPairs((pairs: Pair[]) =>
-      pairs.filter((item) => !item.sessions.find((session) => session.topic === sessionTopic))
+      pairs.filter((item) => !item.sessions.find((session) => session.topic === sessionTopic)),
     );
   }, []);
 
@@ -94,7 +94,7 @@ export default function useWalletConnectPairs(): Pairs {
       pairs.map((pair) => ({
         ...pair,
         sessions: pair.sessions.filter((item) => item.topic !== sessionTopic),
-      }))
+      })),
     );
   }, []);
 
@@ -152,7 +152,7 @@ export default function useWalletConnectPairs(): Pairs {
       pairs.map((item) => ({
         ...item,
         bypassCommands: {},
-      }))
+      })),
     );
   }, []);
 
@@ -166,7 +166,7 @@ export default function useWalletConnectPairs(): Pairs {
           item.topic === pairTopic
             ? {} // reset bypass commands
             : item.bypassCommands,
-      }))
+      })),
     );
   }, []);
 
@@ -205,7 +205,7 @@ export default function useWalletConnectPairs(): Pairs {
       resetBypassForAllPairs,
       resetBypassForPair,
       currentPairs,
-    ]
+    ],
   );
 
   return pairs;

@@ -34,7 +34,7 @@ export default function useGetLatestPeakTimestampQuery() {
 
   const newPeakTimestamp = useMemo(
     () => getLatestTimestamp(blocks, latestPeakTimestamp.current),
-    [blocks, latestPeakTimestamp]
+    [blocks, latestPeakTimestamp],
   );
 
   latestPeakTimestamp.current = newPeakTimestamp;

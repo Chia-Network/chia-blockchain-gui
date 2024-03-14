@@ -30,7 +30,7 @@ export const clientApi = apiWithTag.injectEndpoints({
                 },
               ],
             },
-            apiLocal
+            apiLocal,
           );
 
           unsubscribe = response.data;

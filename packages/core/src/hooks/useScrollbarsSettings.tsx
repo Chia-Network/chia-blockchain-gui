@@ -19,7 +19,7 @@ export default function useScrollbarsSettings(): ScrollbarsSettings & {
         autoHide,
       }));
     },
-    [setSettings]
+    [setSettings],
   );
 
   return {

@@ -62,7 +62,7 @@ export default function FullNodeCardStatus() {
     {},
     {
       pollingInterval: 10_000,
-    }
+    },
   );
 
   if (isLoading) {

@@ -110,7 +110,7 @@ function OfferList(props: OfferListProps) {
   });
   const { data: lastBlockTimeStampData, isLoading: isGetTimestampForHeightLoading } = useGetTimestampForHeightQuery(
     { height: height || 0 },
-    { skip: !height }
+    { skip: !height },
   );
   const currentTime = getCurrentTime(lastBlockTimeStampData);
 
@@ -138,7 +138,7 @@ function OfferList(props: OfferListProps) {
 
     async function handleCancelOffer(tradeId: string, canCancelWithTransaction: boolean) {
       const [cancelConfirmed, cancellationOptions] = await openDialog(
-        <ConfirmOfferCancellation canCancelWithTransaction={canCancelWithTransaction} />
+        <ConfirmOfferCancellation canCancelWithTransaction={canCancelWithTransaction} />,
       );
 
       if (cancelConfirmed === true) {
@@ -168,7 +168,7 @@ function OfferList(props: OfferListProps) {
           offerData={row._offerData}
           exportOffer={() => saveOffer(row.tradeId)}
           testnet={testnet}
-        />
+        />,
       );
     }
     return [
@@ -468,7 +468,7 @@ export function CreateOffer() {
         exportOffer={() => saveOffer(offerRecord.tradeId)}
         testnet={testnet}
         address={address}
-      />
+      />,
     );
   }
 

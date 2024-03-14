@@ -16,7 +16,7 @@ export async function prepareNFTOfferFromNFTId(nftId: string, offeredNFT: boolea
   const resultPromise = store.dispatch(
     walletApi.endpoints.getNFTInfo.initiate({
       coinId: launcherId,
-    })
+    }),
   );
 
   const result = await resultPromise;

@@ -44,7 +44,7 @@ export default function useNFTVerifyHash(nftId?: string, options: UseNFTVerifyHa
     async (
       uris: string[] | undefined,
       hash: string | undefined,
-      onlyFirst: boolean = false
+      onlyFirst: boolean = false,
     ): Promise<PreviewState | undefined> => {
       if (!uris || !uris.length || !hash) {
         return undefined;
@@ -84,7 +84,7 @@ export default function useNFTVerifyHash(nftId?: string, options: UseNFTVerifyHa
 
       return first;
     },
-    [getChecksum, ignoreSizeLimit]
+    [getChecksum, ignoreSizeLimit],
   );
 
   const verifyNFT = useCallback(
@@ -127,7 +127,7 @@ export default function useNFTVerifyHash(nftId?: string, options: UseNFTVerifyHa
         setIsVerifying(false);
       }
     },
-    [preview, findValidUri]
+    [preview, findValidUri],
   );
 
   useEffect(() => {

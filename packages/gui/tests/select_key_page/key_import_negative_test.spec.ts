@@ -47,7 +47,7 @@ test('Read data from Json file', async () => {
   await expect(
     page.getByRole('heading', {
       name: 'Enter the 12 word mnemonic that you have saved in order to restore your Chia wallet.',
-    })
+    }),
   ).toBeVisible();
 
   //When I enter the first 12 words of the mnemonic

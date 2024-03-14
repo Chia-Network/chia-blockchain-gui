@@ -112,7 +112,7 @@ export default function PlotNFTCard(props: Props) {
         }
       >
         <Trans>Are you sure you want to delete unconfirmed transactions?</Trans>
-      </ConfirmDialog>
+      </ConfirmDialog>,
     );
   }
 

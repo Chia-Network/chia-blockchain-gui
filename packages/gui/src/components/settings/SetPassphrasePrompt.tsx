@@ -71,7 +71,7 @@ export default function SetPassphrasePrompt(props: Props) {
       await openDialog(
         <AlertDialog>
           <Trans>Please enter a passphrase</Trans>
-        </AlertDialog>
+        </AlertDialog>,
       );
     } else {
       isValid = await validateChangePassphraseParams(null, passphrase, confirmation);
@@ -101,7 +101,7 @@ export default function SetPassphrasePrompt(props: Props) {
         await openDialog(
           <AlertDialog>
             <Trans>Failed to set passphrase: {error.message}</Trans>
-          </AlertDialog>
+          </AlertDialog>,
         );
         formMethods.setFocus('passphrase', { shouldSelect: true });
       }

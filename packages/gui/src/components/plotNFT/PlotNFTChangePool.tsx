@@ -27,7 +27,7 @@ export default function PlotNFTChangePool(props: Props) {
   const navigate = useNavigate();
   const nft = useMemo(
     () => data?.nfts?.find((nftItem) => nftItem.poolState.p2SingletonPuzzleHash === plotNFTId),
-    [data?.nfts, plotNFTId]
+    [data?.nfts, plotNFTId],
   );
 
   const state = nft?.poolWalletStatus?.current?.state;

@@ -49,7 +49,7 @@ export default function FormatBytes(props: Props) {
     // convert value to nearest bytes representation
     const unitIndex = Math.min(
       CovertReversed.length - 1,
-      CovertReversed.findIndex((item) => absValue.isGreaterThanOrEqualTo(item[0]))
+      CovertReversed.findIndex((item) => absValue.isGreaterThanOrEqualTo(item[0])),
     );
     const [unitValue, unitName] = CovertReversed[unitIndex];
 
