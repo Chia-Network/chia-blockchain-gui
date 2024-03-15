@@ -3,10 +3,10 @@ name: Check npm audit and locales
 on:
   push:
     branches-ignore:
-      - 'main'
+      - "main"
   pull_request:
     branches-ignore:
-      - 'main'
+      - "main"
 
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}-${{ github.event_name }}--${{ (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/release/') || startsWith(github.ref, 'refs/heads/long_lived/')) && github.sha || '' }}
@@ -46,7 +46,7 @@ jobs:
       - name: Setup Node 18.x
         uses: actions/setup-node@v3
         with:
-          node-version: '18.x'
+          node-version: "18.x"
 
       - name: Check npm audit on ${{ matrix.os }}
         shell: bash
