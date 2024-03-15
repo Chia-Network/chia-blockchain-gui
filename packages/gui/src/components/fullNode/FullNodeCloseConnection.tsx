@@ -26,7 +26,7 @@ export default function FullNodeCloseConnection(props: Props): JSX.Element {
         }
       >
         <Trans>Are you sure you want to disconnect?</Trans>
-      </ConfirmDialog>
+      </ConfirmDialog>,
     );
   }
 

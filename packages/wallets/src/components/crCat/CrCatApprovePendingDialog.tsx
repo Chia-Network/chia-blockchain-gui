@@ -81,7 +81,7 @@ export default function CrCatApprovePendingDialog(props: Props) {
     openDialog(
       <AlertDialog title={<Trans>Payments approved</Trans>}>
         <Trans>Please allow some time for the payments to reflect in the blockchain.</Trans>
-      </AlertDialog>
+      </AlertDialog>,
     );
   }
 

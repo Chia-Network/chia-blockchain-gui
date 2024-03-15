@@ -81,7 +81,7 @@ const spawnChildProcess = (command, args = [], options = undefined) => {
         command,
         ...args,
       ],
-      options
+      options,
     );
   }
   return childProcess.spawn(command, args, options);

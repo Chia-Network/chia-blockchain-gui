@@ -20,7 +20,7 @@ export async function getBalance(walletId: number) {
   const resultPromise = store.dispatch(
     walletApi.endpoints.getWalletBalance.initiate({
       walletId,
-    })
+    }),
   );
 
   const result = await resultPromise;

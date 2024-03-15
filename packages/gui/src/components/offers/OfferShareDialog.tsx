@@ -76,7 +76,7 @@ type CommonShareServiceDialogProps = CommonDialogProps & {
     show: boolean,
     offerURL: string,
     notificationDestination: string,
-    notificationDestinationType: 'address' | 'nft'
+    notificationDestinationType: 'address' | 'nft',
   ) => void;
 };
 
@@ -134,12 +134,12 @@ async function postToDexie(offerData: string, testnet: boolean): Promise<{ viewL
     'fetchTextResponse',
     requestOptions,
     requestHeaders,
-    requestData
+    requestData,
   );
 
   if (err || (statusCode !== 200 && statusCode !== 400)) {
     const error = new Error(
-      `Dexie upload failed: ${err}, statusCode=${statusCode}, statusMessage=${statusMessage}, response=${responseBody}`
+      `Dexie upload failed: ${err}, statusCode=${statusCode}, statusMessage=${statusMessage}, response=${responseBody}`,
     );
     throw error;
   }
@@ -174,12 +174,12 @@ async function postToMintGarden(offerData: string, testnet: boolean): Promise<st
     'fetchTextResponse',
     requestOptions,
     requestHeaders,
-    requestData
+    requestData,
   );
 
   if (err || (statusCode !== 200 && statusCode !== 400)) {
     const error = new Error(
-      `MintGarden upload failed: ${err}, statusCode=${statusCode}, statusMessage=${statusMessage}, response=${responseBody}`
+      `MintGarden upload failed: ${err}, statusCode=${statusCode}, statusMessage=${statusMessage}, response=${responseBody}`,
     );
     throw error;
   }
@@ -218,12 +218,12 @@ async function postToHashgreen(offerData: string, testnet: boolean): Promise<str
     'fetchTextResponse',
     requestOptions,
     requestHeaders,
-    requestData
+    requestData,
   );
 
   if (err) {
     const error = new Error(
-      `Failed to post offer to hash.green: ${err}, statusCode=${statusCode}, statusMessage=${statusMessage}`
+      `Failed to post offer to hash.green: ${err}, statusCode=${statusCode}, statusMessage=${statusMessage}`,
     );
     throw error;
   }
@@ -293,12 +293,12 @@ async function postToSpacescan(offerData: string, testnet: boolean): Promise<{ v
     'fetchTextResponse',
     requestOptions,
     requestHeaders,
-    requestData
+    requestData,
   );
 
   if (err || statusCode !== 200) {
     const error = new Error(
-      `Spacescan.io upload failed: ${err}, statusCode=${statusCode}, statusMessage=${statusMessage}, response=${responseBody}`
+      `Spacescan.io upload failed: ${err}, statusCode=${statusCode}, statusMessage=${statusMessage}, response=${responseBody}`,
     );
     throw error;
   }
@@ -335,12 +335,12 @@ async function postToOfferpool(offerData: string, testnet: boolean): Promise<Pos
     'fetchTextResponse',
     requestOptions,
     requestHeaders,
-    requestData
+    requestData,
   );
 
   if (err || (statusCode !== 200 && statusCode !== 400)) {
     const error = new Error(
-      `offerpool upload failed: ${err}, statusCode=${statusCode}, statusMessage=${statusMessage}, response=${responseBody}`
+      `offerpool upload failed: ${err}, statusCode=${statusCode}, statusMessage=${statusMessage}, response=${responseBody}`,
     );
     throw error;
   }
@@ -766,7 +766,7 @@ function OfferShareOfferpoolDialog(props: OfferShareServiceDialogProps) {
         true,
         offerResponse.offerLink,
         notificationDestination,
-        notificationDestinationType
+        notificationDestinationType,
       );
     }
   }
@@ -967,14 +967,14 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
       localOpen: boolean,
       localOfferURL: string,
       localNotificationDestination: string,
-      localNotificationDestinationType: 'address' | 'nft'
+      localNotificationDestinationType: 'address' | 'nft',
     ) => {
       setOfferURL(localOfferURL);
       setNotificationDestination(localNotificationDestination);
       setNotificationDestinationType(localNotificationDestinationType);
       setSendOfferNotificationOpen(localOpen);
     },
-    [setOfferURL, setSendOfferNotificationOpen, setNotificationDestination, setNotificationDestinationType]
+    [setOfferURL, setSendOfferNotificationOpen, setNotificationDestination, setNotificationDestinationType],
   );
 
   const shareOptions: OfferShareDialogProvider[] = useMemo(() => {
@@ -1015,7 +1015,7 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
     const options = Object.keys(OfferSharingService)
       .filter((key) => Object.keys(dialogComponents).includes(key))
       .filter((key) =>
-        OfferSharingProviders[key as OfferSharingService].capabilities.some((cap) => capabilities.includes(cap))
+        OfferSharingProviders[key as OfferSharingService].capabilities.some((cap) => capabilities.includes(cap)),
       )
       .map((key) => {
         const { component, props: dialogProps } = dialogComponents[key as OfferSharingService]!;
@@ -1036,7 +1036,7 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
           offerURL={offerURL}
           destination={notificationDestination}
           destinationType={notificationDestinationType}
-        />
+        />,
       );
       setSendOfferNotificationOpen(false);
     }
@@ -1051,7 +1051,7 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
     const { dialogProps } = dialogProvider;
 
     await openDialog(
-      <DialogComponent offerRecord={offerRecord} offerData={offerData} testnet={testnet} {...dialogProps} />
+      <DialogComponent offerRecord={offerRecord} offerData={offerData} testnet={testnet} {...dialogProps} />,
     );
   }
 

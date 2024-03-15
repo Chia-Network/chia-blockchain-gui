@@ -38,7 +38,7 @@ export default function AuthProvider(props: AuthProviderProps) {
         }
       }
     },
-    [clearCache]
+    [clearCache],
   );
 
   // automatically log in if we have a fingerprint already and logIn is not in progress
@@ -79,7 +79,7 @@ export default function AuthProvider(props: AuthProviderProps) {
         setIsLoading(false);
       }
     },
-    [handleLogOut, logIn, clearCache]
+    [handleLogOut, logIn, clearCache],
   );
 
   const context = useMemo(
@@ -89,7 +89,7 @@ export default function AuthProvider(props: AuthProviderProps) {
       fingerprint,
       isLoading,
     }),
-    [handleLogIn, handleLogOut, fingerprint, isLoading]
+    [handleLogIn, handleLogOut, fingerprint, isLoading],
   );
 
   return <AuthContext.Provider value={context}>{children}</AuthContext.Provider>;

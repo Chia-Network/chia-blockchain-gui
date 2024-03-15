@@ -52,7 +52,7 @@ export default function SettingsDerivationIndex() {
     await openDialog(
       <AlertDialog>
         <Trans>Successfully updated the derivation index. Your balances may take a while to update.</Trans>
-      </AlertDialog>
+      </AlertDialog>,
     );
   }
 

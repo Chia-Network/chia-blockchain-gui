@@ -42,7 +42,7 @@ export function resolvePendingAssets(offer: OfferTradeRecordFormatted): PendingA
 export default function resolveOfferInfo(
   summary: OfferSummaryRecord,
   summaryKey: 'offered' | 'requested',
-  lookupByAssetId: (assetId: string) => AssetIdMapEntry | undefined
+  lookupByAssetId: (assetId: string) => AssetIdMapEntry | undefined,
 ) {
   return Object.entries(summary[summaryKey]).map(([assetId, amount]) => {
     const assetType = offerAssetTypeForAssetId(assetId, summary);
@@ -79,7 +79,7 @@ export default function resolveOfferInfo(
 export function resolveOfferInfoWithPendingAmounts(
   offer: OfferTradeRecordFormatted,
   summaryKey: 'offered' | 'requested',
-  lookupByAssetId: (assetId: string) => AssetIdMapEntry | undefined
+  lookupByAssetId: (assetId: string) => AssetIdMapEntry | undefined,
 ) {
   const { summary } = offer;
   const pendingAssets = resolvePendingAssets(offer);

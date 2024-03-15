@@ -34,7 +34,7 @@ test('Verify that renaming a wallet to an existing wallet name should throw an e
   //Assert that error message is displayed
   await expect(page.locator('div[role="dialog"]')).toHaveText(
     //"Errormalformed request: label 'Jahi 1st Wallet' already exists for fingerprint '1922132445'OK"
-    "Errormalformed request: label 'playwright' already exists for fingerprint '314593068'OK"
+    "Errormalformed request: label 'playwright' already exists for fingerprint '314593068'OK",
   );
   await page.getByRole('button', { name: 'OK' }).click();
 

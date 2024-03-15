@@ -44,7 +44,7 @@ export default function LocaleProvider(props: LocaleProviderProps) {
       }
       setLocale(localeLocal);
     },
-    [locales, setLocale]
+    [locales, setLocale],
   );
 
   const context = useMemo(
@@ -54,7 +54,7 @@ export default function LocaleProvider(props: LocaleProviderProps) {
       locale,
       setLocale: handleSetLocale,
     }),
-    [locales, defaultLocale, locale, handleSetLocale]
+    [locales, defaultLocale, locale, handleSetLocale],
   );
 
   // prepare default locale

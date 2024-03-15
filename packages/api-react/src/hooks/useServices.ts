@@ -43,7 +43,7 @@ function getServiceOptions(service: ServiceNameValue, services: ServiceNameValue
 
 export default function useMonitorServices(
   services: ServiceNameValue[],
-  options: Options = {}
+  options: Options = {},
 ): {
   isLoading: boolean;
   error?: Error | unknown;
@@ -67,7 +67,7 @@ export default function useMonitorServices(
 
   const introducerState = useService(
     ServiceName.INTRODUCER,
-    getServiceOptions(ServiceName.INTRODUCER, services, options)
+    getServiceOptions(ServiceName.INTRODUCER, services, options),
   );
 
   const datalayerState = useService(ServiceName.DATALAYER, getServiceOptions(ServiceName.DATALAYER, services, options));

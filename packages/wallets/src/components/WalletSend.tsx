@@ -87,7 +87,7 @@ export default function WalletSend(props: SendCardProps) {
 
   const [wasClawbackSendTransactionVisited, setWasClawbackSendTransactionVisited] = useLocalStorage<boolean>(
     'newFlag--wasClawbackSendTransactionVisited',
-    false
+    false,
   );
 
   const {
@@ -110,7 +110,7 @@ export default function WalletSend(props: SendCardProps) {
     {},
     {
       pollingInterval: 10_000,
-    }
+    },
   );
 
   const { wallet } = useWallet(walletId);

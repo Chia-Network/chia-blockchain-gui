@@ -72,7 +72,7 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
 
       return topic;
     },
-    [client, pairs]
+    [client, pairs],
   );
 
   const handleDisconnect = useCallback(
@@ -83,7 +83,7 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
 
       return disconnectPair(client, pairs, topic);
     },
-    [client, pairs]
+    [client, pairs],
   );
 
   return {

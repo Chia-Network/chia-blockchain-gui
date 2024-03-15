@@ -113,7 +113,7 @@ const PlotNFTSelectPool = forwardRef((props: Props, ref) => {
       createNFT = await openDialog(
         <ConfirmDialog title={<Trans>Too Many Plot NFTs</Trans>} confirmColor="danger">
           <Trans>You already have more than 10 Plot NFTs. Click OK if you're sure you want to create a new one.</Trans>
-        </ConfirmDialog>
+        </ConfirmDialog>,
       );
     }
     if (createNFT && !exceededNFTLimit) {

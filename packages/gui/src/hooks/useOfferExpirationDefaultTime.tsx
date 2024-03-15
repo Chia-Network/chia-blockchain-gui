@@ -50,7 +50,7 @@ export default function useOfferExpirationDefaultTime() {
   const defaultsCopy = { ...offerExpirationDefaultTimeDefaults };
   const [offerExpirationDefaultTime, setOfferExpirationDefaultTimeLocal] = usePrefs<OfferExpirationDefaultTimeOutput>(
     'offerExpirationDefaultTime',
-    defaultsCopy // to avoid accidentally mutating the defaults object
+    defaultsCopy, // to avoid accidentally mutating the defaults object
   );
 
   const isOfferExpirationDefaultTimeEnabled = offerExpirationDefaultTime.enabled === true;
@@ -59,12 +59,12 @@ export default function useOfferExpirationDefaultTime() {
     (offerExpirationDefaultTimeInput: OfferExpirationDefaultTimeInput) => {
       setOfferExpirationDefaultTimeLocal(stringPropertiesToNumbers(offerExpirationDefaultTimeInput));
     },
-    [setOfferExpirationDefaultTimeLocal]
+    [setOfferExpirationDefaultTimeLocal],
   );
 
   const toReturn = useMemo(
     () => ({ offerExpirationDefaultTime, setOfferExpirationDefaultTime, isOfferExpirationDefaultTimeEnabled }),
-    [offerExpirationDefaultTime, setOfferExpirationDefaultTime, isOfferExpirationDefaultTimeEnabled]
+    [offerExpirationDefaultTime, setOfferExpirationDefaultTime, isOfferExpirationDefaultTimeEnabled],
   );
 
   return toReturn;

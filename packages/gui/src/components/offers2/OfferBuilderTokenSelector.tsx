@@ -35,7 +35,7 @@ export default function OfferBuilderTokenSelector(props: OfferBuilderTokenSelect
         const assetId = wallet.meta?.assetId ? wallet.meta.assetId.toLowerCase() : '';
 
         const cat: CATToken | undefined = catList.find(
-          (catItem: CATToken) => catItem.assetId.toLowerCase() === assetId
+          (catItem: CATToken) => catItem.assetId.toLowerCase() === assetId,
         );
 
         if (assetId && assetId !== currentValue && usedAssetIds.includes(assetId)) {

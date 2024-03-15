@@ -46,7 +46,7 @@ function getTypeOrder(item: ListItem) {
 
 export default function useWalletsList(
   search: string,
-  walletTypes: WalletType[]
+  walletTypes: WalletType[],
 ): {
   list?: ListItem[];
   isLoading: boolean;

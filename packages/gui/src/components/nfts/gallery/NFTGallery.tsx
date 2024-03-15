@@ -133,7 +133,7 @@ export default function NFTGallery() {
   const [showFilters, setShowFilters] = usePersistState(false, 'nft-gallery-show-filters');
   const [inMultipleSelectionMode, setInMultipleSelectionMode] = usePersistState(
     false,
-    'nft-gallery-multiple-selection'
+    'nft-gallery-multiple-selection',
   );
 
   function toggleMultipleSelection() {
@@ -152,7 +152,7 @@ export default function NFTGallery() {
 
   const selectedVisibleNFTs = useMemo(
     () => nfts.filter((nft: NFTInfo) => selectedNFTIds.includes(nft.$nftId)),
-    [nfts, selectedNFTIds]
+    [nfts, selectedNFTIds],
   );
 
   const selectedAll = useMemo(() => selectedVisibleNFTs.length === nfts.length, [nfts, selectedVisibleNFTs]);
@@ -162,7 +162,7 @@ export default function NFTGallery() {
       setSelectedNFTIds((prevSelectedNFTIds) => xor(prevSelectedNFTIds, [nftId]));
       return false;
     },
-    [setSelectedNFTIds]
+    [setSelectedNFTIds],
   );
 
   function toggleType(type: FileType) {
@@ -187,7 +187,7 @@ export default function NFTGallery() {
     (ref: HTMLElement | null) => {
       scrollerRef.current = ref;
     },
-    [scrollerRef]
+    [scrollerRef],
   );
 
   function handleToggleSelectAll() {

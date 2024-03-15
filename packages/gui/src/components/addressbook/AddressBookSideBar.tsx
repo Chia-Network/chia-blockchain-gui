@@ -33,7 +33,7 @@ export default function AddressBookSideBar() {
         const filteredAddressesByName = addresses.filter(
           (addr: any) =>
             (addr.name && addr.name.toLowerCase().includes(searchTerm)) ||
-            (addr.address && addr.address.toLowerCase().includes(searchTerm))
+            (addr.address && addr.address.toLowerCase().includes(searchTerm)),
         );
         if (filteredAddressesByName && filteredAddressesByName.length > 0) {
           return true;
@@ -45,7 +45,7 @@ export default function AddressBookSideBar() {
         const filteredDids = dids.filter(
           (did: any) =>
             (did.name && did.name.toLowerCase().includes(searchTerm)) ||
-            (did.did && did.did.toLowerCase().includes(searchTerm))
+            (did.did && did.did.toLowerCase().includes(searchTerm)),
         );
         if (filteredDids && filteredDids.length > 0) {
           return true;
@@ -56,7 +56,7 @@ export default function AddressBookSideBar() {
         const filteredDomains = domainNames.filter(
           (domain: any) =>
             (domain.name && domain.name.toLowerCase().includes(searchTerm)) ||
-            (domain.domain && domain.domain.toLowerCase().includes(searchTerm))
+            (domain.domain && domain.domain.toLowerCase().includes(searchTerm)),
         );
         if (filteredDomains && filteredDomains.length > 0) {
           return true;

@@ -16,7 +16,7 @@ let filenameCounter = 0;
 export function summaryStringsForOffer(
   summary: OfferSummaryRecord,
   lookupByAssetId: (assetId: string) => AssetIdMapEntry | undefined,
-  builder: (filename: string, args: [assetInfo: AssetIdMapEntry | undefined, amount: string]) => string
+  builder: (filename: string, args: [assetInfo: AssetIdMapEntry | undefined, amount: string]) => string,
 ): [makerString: string, takerString: string] {
   const makerEntries: [string, string][] = Object.entries(summary.offered);
   const takerEntries: [string, string][] = Object.entries(summary.requested);
@@ -38,7 +38,7 @@ export function summaryStringsForOffer(
 export function summaryStringsForNFTOffer(
   summary: OfferSummaryRecord,
   lookupByAssetId: (assetId: string) => AssetIdMapEntry | undefined,
-  builder: (filename: string, args: [assetInfo: AssetIdMapEntry | undefined, amount: string]) => string
+  builder: (filename: string, args: [assetInfo: AssetIdMapEntry | undefined, amount: string]) => string,
 ): [makerString: string, takerString: string] {
   // const makerAssetType = offerAssetTypeForAssetId
   // TODO: Remove 1:1 NFT <--> XCH assumption
@@ -64,7 +64,7 @@ export function summaryStringsForNFTOffer(
       takerString = `${takerEntry[1]}_${launcherIdToNFTId(takerEntry[0])}`;
     } else {
       const takerAssetInfoAndAmounts: [AssetIdMapEntry | undefined, string][] = [takerEntry].map(
-        ([assetId, amount]) => [lookupByAssetId(assetId), amount]
+        ([assetId, amount]) => [lookupByAssetId(assetId), amount],
       );
       takerString = takerAssetInfoAndAmounts.reduce(builder, '');
     }
@@ -75,7 +75,7 @@ export function summaryStringsForNFTOffer(
 
 export function suggestedFilenameForOffer(
   summary: OfferSummaryRecord,
-  lookupByAssetId: (assetId: string) => AssetIdMapEntry | undefined
+  lookupByAssetId: (assetId: string) => AssetIdMapEntry | undefined,
 ): string {
   if (!summary) {
     const filename = filenameCounter === 0 ? 'Untitled Offer.offer' : `Untitled Offer ${filenameCounter}.offer`;
@@ -85,7 +85,7 @@ export function suggestedFilenameForOffer(
 
   function filenameBuilder(
     filenameParam: string,
-    args: [assetInfo: AssetIdMapEntry | undefined, amount: string]
+    args: [assetInfo: AssetIdMapEntry | undefined, amount: string],
   ): string {
     let filename = filenameParam;
     const [assetInfo, amount] = args;
@@ -162,7 +162,7 @@ export function formatAmountForWalletType(amount: string | number, walletType: W
 export function offerContainsAssetOfType(
   offerSummary: OfferSummaryRecord,
   assetType: string,
-  side?: 'offered' | 'requested'
+  side?: 'offered' | 'requested',
 ): boolean {
   const { infos } = offerSummary;
   const matchingAssetIds: string[] = Object.keys(infos).filter((assetId) => {
@@ -214,7 +214,7 @@ export function offerAssetTypeForAssetId(assetId: string, offerSummary: OfferSum
 export function offerAssetIdForAssetType(
   assetType: OfferAsset,
   offerSummary: OfferSummaryRecord,
-  side?: 'offered' | 'requested'
+  side?: 'offered' | 'requested',
 ): string | undefined {
   let keys: string[] = [];
   if (side) {
@@ -228,7 +228,7 @@ export function offerAssetIdForAssetType(
   }
 
   const assetId = Object.keys(offerSummary.infos).find(
-    (item) => offerAssetTypeForAssetId(item, offerSummary) === assetType && keys.includes(item)
+    (item) => offerAssetTypeForAssetId(item, offerSummary) === assetType && keys.includes(item),
   );
 
   return assetId;
@@ -247,10 +247,10 @@ export function offerAssetAmountForAssetId(assetId: string, offerSummary: OfferS
 
 export function determineNFTOfferExchangeType(summary: OfferSummaryRecord): NFTOfferExchangeType | undefined {
   const nftOffered = Object.keys(summary.offered).find(
-    (assetId) => offerAssetTypeForAssetId(assetId, summary) === OfferAsset.NFT
+    (assetId) => offerAssetTypeForAssetId(assetId, summary) === OfferAsset.NFT,
   );
   const nftRequested = Object.keys(summary.requested).find(
-    (assetId) => offerAssetTypeForAssetId(assetId, summary) === OfferAsset.NFT
+    (assetId) => offerAssetTypeForAssetId(assetId, summary) === OfferAsset.NFT,
   );
 
   if (nftOffered === nftRequested) {
@@ -270,7 +270,7 @@ export type GetNFTPriceWithoutRoyaltiesResult = {
 };
 
 export function getNFTPriceWithoutRoyalties(
-  summary: OfferSummaryRecord
+  summary: OfferSummaryRecord,
 ): GetNFTPriceWithoutRoyaltiesResult | undefined {
   for (const assetType of [OfferAsset.TOKEN, OfferAsset.CHIA]) {
     const assetId = offerAssetIdForAssetType(assetType, summary);
@@ -300,7 +300,7 @@ export function calculateNFTRoyalties(
   amount: number,
   makerFee: number,
   royaltyPercentage: number,
-  exchangeType: NFTOfferExchangeType
+  exchangeType: NFTOfferExchangeType,
 ): CalculateNFTRoyaltiesResult {
   const royaltyAmount: number = royaltyPercentage ? (royaltyPercentage / 100) * amount : 0;
   const royaltyAmountString: string = formatAmount(royaltyAmount);

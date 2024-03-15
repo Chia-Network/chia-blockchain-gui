@@ -37,11 +37,11 @@ export default async function loadConfig(net?: string): Promise<{
 
     const certPath = path.resolve(
       configRootDir,
-      get(config, 'ui.daemon_ssl.private_crt', 'config/ssl/daemon/private_daemon.crt')
+      get(config, 'ui.daemon_ssl.private_crt', 'config/ssl/daemon/private_daemon.crt'),
     );
     const keyPath = path.resolve(
       configRootDir,
-      get(config, 'ui.daemon_ssl.private_key', 'config/ssl/daemon/private_daemon.key')
+      get(config, 'ui.daemon_ssl.private_key', 'config/ssl/daemon/private_daemon.key'),
     );
 
     return {

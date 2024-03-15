@@ -18,7 +18,7 @@ type Options = {
 
 export default function useService(
   service: ServiceNameValue,
-  options: Options = {}
+  options: Options = {},
 ): {
   isLoading: boolean;
   isRunning: boolean;

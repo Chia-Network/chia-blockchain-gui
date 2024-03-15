@@ -10,7 +10,7 @@ import { launcherIdToNFTId } from './nfts';
 export default function offerToOfferBuilderData(
   offerSummary: OfferSummary | OfferSummaryRecord,
   setDefaultOfferedFee?: boolean,
-  defaultFee?: string // in mojos
+  defaultFee?: string, // in mojos
 ): OfferBuilderData {
   const { fees, offered, requested, infos } = offerSummary;
 

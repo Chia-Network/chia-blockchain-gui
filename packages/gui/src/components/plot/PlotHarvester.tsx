@@ -26,7 +26,7 @@ export default function PlotHarvester(props: PlotHarvesterProps) {
   const { plots, noKeyFilenames, failedToOpenFilenames, duplicates, totalPlotSize, initialized } = useGetHarvesterQuery(
     {
       nodeId,
-    }
+    },
   );
 
   const [activeTab, setActiveTab] = useState<'PLOTS' | 'NOT_FOUND' | 'FAILED' | 'DUPLICATE'>('PLOTS');

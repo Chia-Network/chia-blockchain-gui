@@ -125,7 +125,7 @@ function NFTOfferConditionalsPanel(props: NFTOfferConditionalsPanelProps) {
     },
     {
       skip: tab !== NFTOfferExchangeType.TokenForNFT,
-    }
+    },
   );
 
   const spendableBalanceString: string | undefined = useMemo(() => {
@@ -193,7 +193,7 @@ function NFTOfferConditionalsPanel(props: NFTOfferConditionalsPanelProps) {
         parseFloat(amount || '0'),
         parseFloat(includedMakerFee || '0'),
         convertRoyaltyToPercentage(nft.royaltyPercentage),
-        tab
+        tab,
       ),
       royaltyPercentage,
     };
@@ -641,7 +641,7 @@ export default function NFTOfferEditor(props: NFTOfferEditorProps) {
 
     if (royaltyPercentage > 100) {
       errorDialog(
-        new Error(t`Unable to create an offer for an NFT with a creator royalty percentage greater than 100%`)
+        new Error(t`Unable to create an offer for an NFT with a creator royalty percentage greater than 100%`),
       );
       return;
     }
@@ -694,7 +694,7 @@ export default function NFTOfferEditor(props: NFTOfferEditorProps) {
           bgcolor: 'background.paper',
           boxShadow: `0px 2px 1px -1px ${alpha(Color.Neutral[900], 0.2)}, 0px 1px 1px 0px ${alpha(
             Color.Neutral[900],
-            0.14
+            0.14,
           )}, 0px 1px 3px 0px ${alpha(Color.Neutral[900], 0.12)}`,
           overflow: 'hidden',
         }}

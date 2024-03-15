@@ -62,6 +62,6 @@ test('Create a new Wallet , logout and Delete new Wallet', async () => {
   await page.locator('button:has-text("Jahi 1st Wallet1922132445")').click();
   await page.locator('[data-testid="LayoutDashboard-log-out"]').click();
   expect(
-    await page.locator(`[data-testid="SelectKeyItem-fingerprint-${newlyDeleteWallet}"] [aria-label="more"]`).count()
+    await page.locator(`[data-testid="SelectKeyItem-fingerprint-${newlyDeleteWallet}"] [aria-label="more"]`).count(),
   ).toEqual(0);
 });

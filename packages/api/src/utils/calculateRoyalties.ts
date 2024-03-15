@@ -12,7 +12,7 @@ type NFTInfoWithFrontEndData = NFTInfo & {
 
 export default function royaltyAssetFromNFTInfo(
   nftInfo: NFTInfoWithFrontEndData,
-  testnet = false
+  testnet = false,
 ): RoyaltyCalculationRoyaltyAsset {
   return {
     asset: nftInfo.$nftId,
@@ -23,7 +23,7 @@ export default function royaltyAssetFromNFTInfo(
 
 export function fungibleAssetFromWalletIdAndAmount(
   walletId: number | string,
-  amount: BigNumber
+  amount: BigNumber,
 ): RoyaltyCalculationFungibleAsset {
   return {
     asset: walletId.toString(),

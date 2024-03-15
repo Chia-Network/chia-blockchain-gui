@@ -71,7 +71,7 @@ export default function WalletImport() {
       openDialog(
         <AlertDialog>
           <Trans>Your pasted list does not include {mnemonicWordCount} valid mnemonic words.</Trans>
-        </AlertDialog>
+        </AlertDialog>,
       );
       return;
     }
