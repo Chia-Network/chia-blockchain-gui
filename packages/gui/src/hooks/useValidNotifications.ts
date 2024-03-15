@@ -12,8 +12,8 @@ function getOfferId(notification: Notification) {
     return 'offerURL' in notification
       ? notification.offerURL
       : 'offerData' in notification
-      ? notification.offerData
-      : undefined;
+        ? notification.offerData
+        : undefined;
   }
 
   throw new Error('Notification is not an offer');
@@ -44,13 +44,13 @@ export default function useValidNotifications() {
   // subscribe to offer state changes
   useEffect(() => {
     const offerNotifications = notifications.filter((notification) =>
-      [NotificationType.OFFER, NotificationType.COUNTER_OFFER].includes(notification.type)
+      [NotificationType.OFFER, NotificationType.COUNTER_OFFER].includes(notification.type),
     );
 
     const unsubsribers = offerNotifications.map((notification) =>
       subscribeToChanges(getOfferId(notification), () => {
         setValidNotifications(filterNotifications(notifications, getOffer));
-      })
+      }),
     );
 
     return () => {

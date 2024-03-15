@@ -14,7 +14,7 @@ export default function AddressBookProvider({ children }) {
 
   const value = useMemo(
     () => [addressBook, addContact, removeContact, getContactByContactId, editContact, getContactByAddress],
-    [addressBook, addContact, removeContact, getContactByContactId, editContact, getContactByAddress]
+    [addressBook, addContact, removeContact, getContactByContactId, editContact, getContactByAddress],
   );
 
   return <AddressBookContext.Provider value={value}>{children}</AddressBookContext.Provider>;

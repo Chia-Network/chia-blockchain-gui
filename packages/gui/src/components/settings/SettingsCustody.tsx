@@ -10,7 +10,7 @@ import SettingsCustodyClawbackOutgoing from './SettingsCustodyClawbackOutgoing';
 export default function SettingsCustody() {
   const [wasSettingsCustodyVisited, setWasSettingsCustodyVisited] = useLocalStorage<boolean>(
     'newFlag--wasSettingsCustodyVisited',
-    false
+    false,
   );
 
   React.useEffect(() => {

@@ -52,7 +52,7 @@ export default function onCacheEntryAddedInvalidate(rtkQuery: BaseQuery, api: an
                           api.endpoints[endpoint].initiate(args, {
                             subscribe: false,
                             forceRefetch: true,
-                          })
+                          }),
                         );
                       } else {
                         const currentEndpoint = endpoint();
@@ -61,7 +61,7 @@ export default function onCacheEntryAddedInvalidate(rtkQuery: BaseQuery, api: an
                           currentEndpoint.initiate(args, {
                             subscribe: false,
                             forceRefetch: true,
-                          })
+                          }),
                         );
                       }
                     }
@@ -69,13 +69,13 @@ export default function onCacheEntryAddedInvalidate(rtkQuery: BaseQuery, api: an
                 },
               ],
             },
-            mutationApi
+            mutationApi,
           );
 
           if (response.data) {
             unsubscribes.push(response.data);
           }
-        })
+        }),
       );
     } finally {
       await cacheEntryRemoved;

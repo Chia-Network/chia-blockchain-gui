@@ -87,7 +87,7 @@ export const farmerApi = apiWithTag.injectEndpoints({
       providesTags: (plots) =>
         plots
           ? [
-              ...plots.map(({ plotId }) => ({ type: 'HarvesterPlots', plotId } as const)),
+              ...plots.map(({ plotId }) => ({ type: 'HarvesterPlots', plotId }) as const),
               { type: 'HarvesterPlots', id: 'LIST' },
             ]
           : [{ type: 'HarvesterPlots', id: 'LIST' }],
@@ -106,7 +106,7 @@ export const farmerApi = apiWithTag.injectEndpoints({
       providesTags: (plots) =>
         plots
           ? [
-              ...plots.map((filename) => ({ type: 'HarvesterPlotsInvalid', filename } as const)),
+              ...plots.map((filename) => ({ type: 'HarvesterPlotsInvalid', filename }) as const),
               { type: 'HarvesterPlotsInvalid', id: 'LIST' },
             ]
           : [{ type: 'HarvesterPlotsInvalid', id: 'LIST' }],
@@ -125,7 +125,7 @@ export const farmerApi = apiWithTag.injectEndpoints({
       providesTags: (plots) =>
         plots
           ? [
-              ...plots.map((filename) => ({ type: 'HarvesterPlotsKeysMissing', filename } as const)),
+              ...plots.map((filename) => ({ type: 'HarvesterPlotsKeysMissing', filename }) as const),
               { type: 'HarvesterPlotsKeysMissing', id: 'LIST' },
             ]
           : [{ type: 'HarvesterPlotsKeysMissing', id: 'LIST' }],
@@ -144,7 +144,7 @@ export const farmerApi = apiWithTag.injectEndpoints({
       providesTags: (plots) =>
         plots
           ? [
-              ...plots.map((filename) => ({ type: 'HarvesterPlotsDuplicates', filename } as const)),
+              ...plots.map((filename) => ({ type: 'HarvesterPlotsDuplicates', filename }) as const),
               { type: 'HarvesterPlotsDuplicates', id: 'LIST' },
             ]
           : [{ type: 'HarvesterPlotsDuplicates', id: 'LIST' }],
@@ -171,7 +171,7 @@ export const farmerApi = apiWithTag.injectEndpoints({
       providesTags: (connections) =>
         connections
           ? [
-              ...connections.map(({ nodeId }) => ({ type: 'FarmerConnections', id: nodeId } as const)),
+              ...connections.map(({ nodeId }) => ({ type: 'FarmerConnections', id: nodeId }) as const),
               { type: 'FarmerConnections', id: 'LIST' },
             ]
           : [{ type: 'FarmerConnections', id: 'LIST' }],
@@ -212,7 +212,7 @@ export const farmerApi = apiWithTag.injectEndpoints({
       providesTags: (signagePoints) =>
         signagePoints
           ? [
-              ...signagePoints.map(({ challengeHash }) => ({ type: 'SignagePoints', id: challengeHash } as const)),
+              ...signagePoints.map(({ challengeHash }) => ({ type: 'SignagePoints', id: challengeHash }) as const),
               { type: 'SignagePoints', id: 'LIST' },
             ]
           : [{ type: 'SignagePoints', id: 'LIST' }],
@@ -235,7 +235,7 @@ export const farmerApi = apiWithTag.injectEndpoints({
       providesTags: (poolsList) =>
         poolsList
           ? [
-              ...poolsList.map(({ p2SingletonPuzzleHash }) => ({ type: 'Pools', id: p2SingletonPuzzleHash } as const)),
+              ...poolsList.map(({ p2SingletonPuzzleHash }) => ({ type: 'Pools', id: p2SingletonPuzzleHash }) as const),
               { type: 'Pools', id: 'LIST' },
             ]
           : [{ type: 'Pools', id: 'LIST' }],

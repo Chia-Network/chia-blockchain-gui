@@ -25,7 +25,7 @@ function WalletSendTransactionResultDialogTitle(success: boolean, message: strin
 
 function WalletSendTransactionResultDialogContent(
   success: boolean,
-  message: string
+  message: string,
 ): React.ReactElement | string | undefined {
   if (success) {
     return message ?? <Trans>Transaction has successfully been sent to a full node and included in the mempool.</Trans>;
@@ -61,7 +61,7 @@ function WalletSendTransactionResultDialogContent(
 }
 
 export default function CreateWalletSendTransactionResultDialog(
-  props: WalletSendTransactionResultDialogProps
+  props: WalletSendTransactionResultDialogProps,
 ): React.ReactElement | undefined {
   const { success, message, ...rest } = props;
   const title = WalletSendTransactionResultDialogTitle(success, message);

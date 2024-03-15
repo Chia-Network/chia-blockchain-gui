@@ -19,7 +19,7 @@ export default function useOpenDialog() {
       });
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps -- Used only for unmounting
-    []
+    [],
   );
 
   const handleOpen = useCallback(
@@ -32,7 +32,7 @@ export default function useOpenDialog() {
 
       return result;
     },
-    [show]
+    [show],
   );
 
   return handleOpen;

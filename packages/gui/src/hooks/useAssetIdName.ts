@@ -118,12 +118,12 @@ export default function useAssetIdName() {
 
   const lookupByAssetId = useCallback(
     (assetId: string) => ref.current.assetIdNameMapping.get(assetId.toLowerCase()),
-    [ref]
+    [ref],
   );
 
   const lookupByWalletId = useCallback(
     (walletId: number | string) => ref.current.walletIdNameMapping.get(Number(walletId)),
-    [ref]
+    [ref],
   );
 
   return { lookupByAssetId, lookupByWalletId, isLoading, error };

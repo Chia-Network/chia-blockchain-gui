@@ -22,7 +22,7 @@ export default function useNFTMetadata(id?: string) {
       subscribeToMetadataChanges(id, (newMetadataState) => {
         setMetadataState(newMetadataState);
       }),
-    [id, subscribeToMetadataChanges]
+    [id, subscribeToMetadataChanges],
   );
 
   return {

@@ -61,7 +61,7 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
         navigate(`/dashboard/nfts/${nextNFTId}`);
       }
     },
-    [nfts, navigate, position]
+    [nfts, navigate, position],
   );
 
   useEffect(() => {

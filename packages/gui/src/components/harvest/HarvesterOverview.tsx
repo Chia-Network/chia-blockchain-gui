@@ -141,7 +141,7 @@ export default function HarvesterOverview() {
             totalFarmSizeRaw={totalFarmSizeRaw}
             totalFarmSizeEffective={totalFarmSizeEffective}
           />
-        </Grid>
+        </Grid>,
       );
     }
     return elements;

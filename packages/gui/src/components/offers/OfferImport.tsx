@@ -27,7 +27,7 @@ function SelectOfferFile() {
   const [isParsing, setIsParsing] = React.useState<boolean>(false);
 
   function parseOfferData(
-    data: string
+    data: string,
   ): [offerData: string | undefined, leadingText: string | undefined, trailingText: string | undefined] {
     // Parse raw offer data looking for the bech32-encoded offer data and any surrounding text.
     const matches = data.match(/(?<leading>.*)(?<offer>offer1[qpzry9x8gf2tvdw0s3jn54khce6mua7l]+)(?<trailing>.*)/s);

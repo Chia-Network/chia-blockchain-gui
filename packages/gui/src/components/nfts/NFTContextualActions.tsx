@@ -172,13 +172,13 @@ function NFTTransferContextualAction(props: NFTTransferContextualActionProps) {
         openDialog(
           <AlertDialog title={<Trans>NFT Transfer Pending</Trans>}>
             <Trans>The NFT transfer transaction has been successfully submitted to the blockchain.</Trans>
-          </AlertDialog>
+          </AlertDialog>,
         );
       } else {
         openDialog(
           <AlertDialog title={<Trans>NFT Transfer Failed</Trans>}>
             <Trans>The NFT transfer failed: {result.error}</Trans>
-          </AlertDialog>
+          </AlertDialog>,
         );
       }
     }
@@ -256,14 +256,14 @@ function NFTCancelUnconfirmedTransactionContextualAction(props: NFTCancelUnconfi
             The NFT status has been updated. If the transaction was successfully sent to the mempool, it may still
             complete.
           </Trans>
-        </AlertDialog>
+        </AlertDialog>,
       );
     } catch (error) {
       const err = error?.message || 'Unknown error';
       openDialog(
         <AlertDialog title={<Trans>NFT Status Update Failed</Trans>}>
           <Trans>The NFT status update failed: {err}</Trans>
-        </AlertDialog>
+        </AlertDialog>,
       );
     }
   }
@@ -475,10 +475,7 @@ function NFTHideContextualAction(props: NFTHideContextualActionProps) {
     }
 
     if (isMultiSelect) {
-      setHiddenMultiple(
-        selection?.items.map((nft: NFTInfo) => nft.$nftId),
-        !isHidden
-      );
+      setHiddenMultiple(selection?.items.map((nft: NFTInfo) => nft.$nftId), !isHidden);
       setSelectedNFTIds([]);
     } else {
       setIsNFTHidden(selectedNft.$nftId, !isHidden);

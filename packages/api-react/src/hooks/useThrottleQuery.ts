@@ -13,7 +13,7 @@ export default function useThrottleQuery(
     wait?: number;
     leading?: boolean;
     trailing?: boolean;
-  } = {}
+  } = {},
 ) {
   const { leading = true, trailing = true, wait = 0 } = throttleOptions;
 
@@ -30,7 +30,7 @@ export default function useThrottleQuery(
         leading,
         trailing,
       }),
-    [wait, leading, trailing, forceUpdate]
+    [wait, leading, trailing, forceUpdate],
   );
 
   queryHook(variables, {

@@ -51,7 +51,7 @@ function Persist(props: PersistProps, ref: any) {
 
       return state[currentNamespace] ?? defaultValueLocal;
     },
-    [state, persistNamespace, parentPersistContext]
+    [state, persistNamespace, parentPersistContext],
   );
 
   const setValue = useCallback(
@@ -68,7 +68,7 @@ function Persist(props: PersistProps, ref: any) {
         onChange(value);
       }
     },
-    [state, persistNamespace, parentPersistContext, onChange]
+    [state, persistNamespace, parentPersistContext, onChange],
   );
 
   const context = useMemo(
@@ -76,7 +76,7 @@ function Persist(props: PersistProps, ref: any) {
       getValue,
       setValue,
     }),
-    [getValue, setValue]
+    [getValue, setValue],
   );
 
   return (

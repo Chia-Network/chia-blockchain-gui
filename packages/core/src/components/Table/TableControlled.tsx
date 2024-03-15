@@ -182,7 +182,7 @@ export default function TableControlled(props: TableControlledProps) {
         key: index,
         ...col,
       })),
-    [cols]
+    [cols],
   );
 
   const preparedRows = useMemo<InternalTableRow[]>(
@@ -191,7 +191,7 @@ export default function TableControlled(props: TableControlledProps) {
         $uniqueId: uniqueField ? get(row, uniqueField) : rowIndex,
         ...row,
       })),
-    [rows, uniqueField]
+    [rows, uniqueField],
   );
 
   function handleRowClick(e: SyntheticEvent, row: Row) {
@@ -270,7 +270,7 @@ export function TableControlledRow({
 
   for (let i = 0; i < expandedCellShift; i += 1) {
     expandableCells.push(
-      <StyledExpandedTableCell key={i} style={{ paddingBottom: 0, paddingTop: 0 }} isExpanded={isExpanded} />
+      <StyledExpandedTableCell key={i} style={{ paddingBottom: 0, paddingTop: 0 }} isExpanded={isExpanded} />,
     );
   }
   return (

@@ -20,7 +20,7 @@ export default function PlotAddChooseKeys(props: Props) {
   const { isLoading, data } = useGetKeysForPlottingQuery({ fingerprints: [fingerprint] });
   const [manualSetup, setManualSetup] = React.useState(false);
   const [poolKeyType, setPoolKeyType] = React.useState<'p2SingletonPuzzleHash' | 'poolPublicKey'>(
-    'p2SingletonPuzzleHash'
+    'p2SingletonPuzzleHash',
   );
   const p2SingletonPuzzleHash = watch('p2SingletonPuzzleHash');
   const farmerPKInput = watch('farmerPublicKey');
@@ -48,12 +48,12 @@ export default function PlotAddChooseKeys(props: Props) {
 
   const farmerPublicKeyForFingerprint = React.useMemo(
     () => (isLoading || !data || !data.keys[fingerprint] ? undefined : data.keys[fingerprint].farmerPublicKey),
-    [isLoading, data, fingerprint]
+    [isLoading, data, fingerprint],
   );
 
   const poolPublicKeyForFingerprint = React.useMemo(
     () => (isLoading || !data || !data.keys[fingerprint] ? undefined : data.keys[fingerprint].poolPublicKey),
-    [isLoading, data, fingerprint]
+    [isLoading, data, fingerprint],
   );
 
   const poolPKOrP2SingletonPuzzleHashHelperText = React.useMemo(() => {
@@ -78,7 +78,7 @@ export default function PlotAddChooseKeys(props: Props) {
       }
       setManualSetup(isManual);
     },
-    [setManualSetup, farmerPublicKeyForFingerprint, poolPublicKeyForFingerprint, setValue]
+    [setManualSetup, farmerPublicKeyForFingerprint, poolPublicKeyForFingerprint, setValue],
   );
 
   const handleSetPoolPublicKey = React.useCallback(() => {
@@ -100,7 +100,7 @@ export default function PlotAddChooseKeys(props: Props) {
           Note: the farmer public key corresponding to the current logged-in wallet is {farmerPublicKeyForFingerprint}
         </Trans>
       ),
-    [farmerPKInput, farmerPublicKeyForFingerprint]
+    [farmerPKInput, farmerPublicKeyForFingerprint],
   );
 
   React.useEffect(() => {

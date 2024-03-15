@@ -46,13 +46,13 @@ import WalletHistoryPending from './WalletHistoryPending';
 
 function getIsIncomingClawbackTransaction(transactionRow: Transaction) {
   return [TransactionType.INCOMING_CLAWBACK_RECEIVE, TransactionType.INCOMING_CLAWBACK_SEND].includes(
-    transactionRow.type
+    transactionRow.type,
   );
 }
 
 function getIsOutgoingTransaction(transactionRow: Transaction) {
   return [TransactionType.OUTGOING, TransactionType.OUTGOING_TRADE, TransactionType.INCOMING_CLAWBACK_SEND].includes(
-    transactionRow.type
+    transactionRow.type,
   );
 }
 
@@ -77,7 +77,7 @@ async function handleRowClick(
   row: Row,
   getOfferRecord,
   navigate,
-  location
+  location,
 ) {
   if (row.tradeId) {
     try {
@@ -460,7 +460,7 @@ export default function WalletHistory(props: Props) {
         </TableBase>
       );
     },
-    [transactionResolvedMemos]
+    [transactionResolvedMemos],
   );
 
   const ExtraRowsAfterHeader = useMemo(
@@ -474,7 +474,7 @@ export default function WalletHistory(props: Props) {
           expandedCellShift={1}
         />
       ),
-    [cols, expandedField, metadata, walletId, isSynced]
+    [cols, expandedField, metadata, walletId, isSynced],
   );
 
   return (

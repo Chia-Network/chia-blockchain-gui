@@ -29,7 +29,7 @@ export const daemonApi = apiWithTag.injectEndpoints({
       providesTags: (keys) =>
         keys
           ? [
-              ...keys.map((key) => ({ type: 'DaemonKey', id: key.fingerprint } as const)),
+              ...keys.map((key) => ({ type: 'DaemonKey', id: key.fingerprint }) as const),
               { type: 'DaemonKey', id: 'LIST' },
             ]
           : [{ type: 'DaemonKey', id: 'LIST' }],
@@ -44,7 +44,7 @@ export const daemonApi = apiWithTag.injectEndpoints({
                 walletAddresses[fingerprint].map((address) => ({
                   type: 'WalletAddress',
                   id: `${fingerprint}:${address.hdPath}`,
-                }))
+                })),
               ),
               { type: 'WalletAddress', id: 'LIST' },
             ]

@@ -70,7 +70,7 @@ function PlotDetailsChart(props: PlotDetailsProps) {
         },
       ],
     }),
-    [kSizeData, compressionData]
+    [kSizeData, compressionData],
   );
   return <Doughnut data={data} options={donutOptions} />;
 }

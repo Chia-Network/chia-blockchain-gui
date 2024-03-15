@@ -20,7 +20,7 @@ export default function useNFTCoinEvents() {
     (eventType: Event['type'], walletId: string) => {
       events.emit('change', { type: eventType, walletId });
     },
-    [events /* immutable */]
+    [events /* immutable */],
   );
 
   // Subscribe to all events related to NFTs
@@ -36,7 +36,7 @@ export default function useNFTCoinEvents() {
         events.off('change', callback);
       };
     },
-    [events]
+    [events],
   );
 
   return subscribe;

@@ -17,7 +17,7 @@ export default function usePersistState<T>(defaultValue: T, namespace?: string):
 
       update();
     },
-    [namespace, persistContext, update]
+    [namespace, persistContext, update],
   );
 
   return [value, setValue];

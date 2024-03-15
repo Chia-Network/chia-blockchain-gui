@@ -193,20 +193,20 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
                   ) : null}
                 </div>
               </ErrorTextWrapper>
-            </AlertDialog>
+            </AlertDialog>,
           );
         } else if (!error) {
           openDialog(
             <AlertDialog title={<Trans>NFT Move Pending</Trans>}>
               <Trans>The NFT move transaction has been successfully submitted to the blockchain.</Trans>
-            </AlertDialog>
+            </AlertDialog>,
           );
         } else {
           const err = error?.message || 'Unknown error';
           openDialog(
             <AlertDialog title={<Trans>NFT Move Failed</Trans>}>
               <Trans>The NFT move failed: {err}</Trans>
-            </AlertDialog>
+            </AlertDialog>,
           );
         }
       } finally {

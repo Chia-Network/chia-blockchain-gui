@@ -40,7 +40,7 @@ export default function PlotQueueAction(props: PlotQueueActionProps) {
         }
       >
         <Trans>Are you sure you want to delete the plot? The plot cannot be recovered.</Trans>
-      </ConfirmDialog>
+      </ConfirmDialog>,
     );
   }
 

@@ -65,7 +65,7 @@ export default function OffersProvider(props: OffersProviderProps) {
 
       events.emit('changed');
     },
-    [events /* immutable */, offersOnDemand /* immutable */]
+    [events /* immutable */, offersOnDemand /* immutable */],
   );
 
   // immutable function
@@ -92,7 +92,7 @@ export default function OffersProvider(props: OffersProviderProps) {
       const offerData = parseFileContent(content, headers);
       return offerData;
     },
-    [getHeaders /* immutable */, getContent /* immutable */]
+    [getHeaders /* immutable */, getContent /* immutable */],
   );
 
   // immutable function
@@ -164,7 +164,7 @@ export default function OffersProvider(props: OffersProviderProps) {
       getOfferSummary /* immutable */,
       checkOfferValidity /* immutable */,
       waitForWalletSync /* immutable */,
-    ]
+    ],
   );
 
   // immutable function
@@ -197,7 +197,7 @@ export default function OffersProvider(props: OffersProviderProps) {
         error: undefined,
       };
     },
-    [fetchOffer /* immutable */, offersOnDemand /* immutable */]
+    [fetchOffer /* immutable */, offersOnDemand /* immutable */],
   );
 
   // immutable function
@@ -214,7 +214,7 @@ export default function OffersProvider(props: OffersProviderProps) {
         events.off(eventName, callback);
       };
     },
-    [events /* immutable */]
+    [events /* immutable */],
   );
 
   // immutable function
@@ -237,7 +237,7 @@ export default function OffersProvider(props: OffersProviderProps) {
         getOffer(id);
       }
     },
-    [getOffer /* immutable */, offersOnDemand /* immutable */]
+    [getOffer /* immutable */, offersOnDemand /* immutable */],
   );
 
   const context = useMemo(
@@ -246,7 +246,7 @@ export default function OffersProvider(props: OffersProviderProps) {
       invalidate,
       subscribeToChanges,
     }),
-    [getOffer, subscribeToChanges, invalidate]
+    [getOffer, subscribeToChanges, invalidate],
   );
 
   return <OffersContext.Provider value={context}>{children}</OffersContext.Provider>;

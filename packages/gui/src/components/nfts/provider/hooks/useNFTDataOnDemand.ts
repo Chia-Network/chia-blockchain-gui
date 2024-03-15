@@ -49,7 +49,7 @@ export default function useNFTDataOnDemand(props: UseNFTDataOnDemandProps) {
 
       events.emit('changed');
     },
-    [events /* immutable */, nftsOnDemand /* immutable */]
+    [events /* immutable */, nftsOnDemand /* immutable */],
   );
 
   // immutable function
@@ -106,7 +106,7 @@ export default function useNFTDataOnDemand(props: UseNFTDataOnDemandProps) {
 
       return promise;
     },
-    [getNFTInfo /* immutable */, add /* immutable */, nftsOnDemand /* immutable */, setNFT /* immutable */]
+    [getNFTInfo /* immutable */, add /* immutable */, nftsOnDemand /* immutable */, setNFT /* immutable */],
   );
 
   const getNFT = useCallback(
@@ -140,7 +140,7 @@ export default function useNFTDataOnDemand(props: UseNFTDataOnDemandProps) {
         error: undefined,
       };
     },
-    [fetchNFT /* immutable */, nftsOnDemand /* immutable */]
+    [fetchNFT /* immutable */, nftsOnDemand /* immutable */],
   );
 
   // immutable function
@@ -161,7 +161,7 @@ export default function useNFTDataOnDemand(props: UseNFTDataOnDemandProps) {
         getNFT(id);
       }
     },
-    [getNFT /* immutable */, nftsOnDemand /* immutable */]
+    [getNFT /* immutable */, nftsOnDemand /* immutable */],
   );
 
   // immutable function
@@ -179,7 +179,7 @@ export default function useNFTDataOnDemand(props: UseNFTDataOnDemandProps) {
         events.off(eventName, callback);
       };
     },
-    [events /* immutable */]
+    [events /* immutable */],
   );
 
   return {

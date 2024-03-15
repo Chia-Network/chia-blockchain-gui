@@ -53,13 +53,13 @@ export default function NFTOfferTokenSelector(props: Props) {
         displayName: `Chia (${currencyCode})`,
         disabled: false,
         tail: '',
-      })
+      }),
     );
     const catOptions = wallets
       .filter((wallet: Wallet) => [WalletType.CAT, WalletType.CRCAT].includes(wallet.type))
       .map((wallet: Wallet) => {
         const cat: CATToken | undefined = catList.find(
-          (catItem: CATToken) => catItem.assetId.toLowerCase() === wallet.tail?.toLowerCase()
+          (catItem: CATToken) => catItem.assetId.toLowerCase() === wallet.tail?.toLowerCase(),
         );
         return {
           walletId: wallet.id,

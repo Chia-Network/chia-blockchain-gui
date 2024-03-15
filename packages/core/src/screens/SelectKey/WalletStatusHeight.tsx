@@ -8,7 +8,7 @@ export default function WalletStatusHeight() {
     {},
     {
       pollingInterval: 10_000,
-    }
+    },
   );
 
   if (isLoading) {

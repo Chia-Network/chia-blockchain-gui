@@ -59,7 +59,7 @@ describe('Message', () => {
       const message = new Message(options);
       const json = message.toJSON(false);
       expect(json).toEqual(
-        '{"command":"test","data":{"testKey":"test","test_key":"test","TestKey":"test"},"origin":"test","destination":"test","ack":true,"request_id":"test"}'
+        '{"command":"test","data":{"testKey":"test","test_key":"test","TestKey":"test"},"origin":"test","destination":"test","ack":true,"request_id":"test"}',
       );
     });
 
@@ -75,7 +75,7 @@ describe('Message', () => {
       const message = new Message(options);
       const json = message.toJSON(true);
       expect(json).toEqual(
-        '{"command":"test","data":{"test_key":"test","test_key_1":"test","test_key_2":"test"},"origin":"test","destination":"test","ack":true,"request_id":"test"}'
+        '{"command":"test","data":{"test_key":"test","test_key_1":"test","test_key_2":"test"},"origin":"test","destination":"test","ack":true,"request_id":"test"}',
       );
     });
 
@@ -90,7 +90,7 @@ describe('Message', () => {
       const message = new Message(options);
       const json = message.toJSON(true);
       expect(json).toEqual(
-        '{"command":"test","data":{},"origin":"test","destination":"test","ack":true,"request_id":"test"}'
+        '{"command":"test","data":{},"origin":"test","destination":"test","ack":true,"request_id":"test"}',
       );
     });
 
@@ -105,7 +105,7 @@ describe('Message', () => {
       const message = new Message(options);
       const json = message.toJSON(true);
       expect(json).toEqual(
-        '{"command":"test","data":{"test_key":"test"},"origin":"test","destination":"test","ack":false,"request_id":"test"}'
+        '{"command":"test","data":{"test_key":"test"},"origin":"test","destination":"test","ack":false,"request_id":"test"}',
       );
     });
   });

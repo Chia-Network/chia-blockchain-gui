@@ -22,7 +22,7 @@ export default function useKeyringMigrationPrompt() {
           Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing
           keys until migration completes. Would you like to migrate your keys now?
         </Trans>
-      </ConfirmDialog>
+      </ConfirmDialog>,
     );
 
     if (beginMigration) {

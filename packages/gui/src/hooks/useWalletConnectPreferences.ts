@@ -24,7 +24,7 @@ export default function useWalletConnectPreferences(): {
         enabled: value,
       }));
     },
-    [setPreferences]
+    [setPreferences],
   );
 
   const setAllowConfirmationFingerprintChange = useCallback(
@@ -34,7 +34,7 @@ export default function useWalletConnectPreferences(): {
         allowConfirmationFingerprintChange: value,
       }));
     },
-    [setPreferences]
+    [setPreferences],
   );
 
   return {

@@ -14,7 +14,7 @@ type WalletConnectCommandParam = {
     value: any,
     params: WalletConnectCommandParam[],
     values: Record<string, any>,
-    onChange: (values: Record<string, any>) => void
+    onChange: (values: Record<string, any>) => void,
   ) => ReactNode;
   hide?: boolean;
 };

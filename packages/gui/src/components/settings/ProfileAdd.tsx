@@ -31,7 +31,7 @@ const StyledCard = styled(Card)(
   padding: ${theme.spacing(3)};
   border-radius: ${theme.spacing(1)};
   background-color: ${theme.palette.background.paper};
-`
+`,
 );
 
 type CreateProfileData = {

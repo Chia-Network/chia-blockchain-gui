@@ -34,7 +34,7 @@ export function isEqual(a: Serializable, b: Serializable) {
 
 export default function usePrefs<T extends Serializable>(
   key: string,
-  defaultValue: T
+  defaultValue: T,
 ): [T, (value: T | ((value: T) => T)) => void] {
   const [value, setValue] = useState<T>(getPreferences(key));
   const valueRef = useRef(value);
@@ -65,7 +65,7 @@ export default function usePrefs<T extends Serializable>(
       // notify other hooks
       eventEmitter.emit('prefs', { key, newValue });
     },
-    [key]
+    [key],
   );
 
   const handleOnChange = useCallback(
@@ -74,7 +74,7 @@ export default function usePrefs<T extends Serializable>(
         setValue(e.newValue);
       }
     },
-    [key]
+    [key],
   );
 
   // The reason to use EventEmitter for updating prefs state:

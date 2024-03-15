@@ -17,7 +17,7 @@ const StyledPre = styled(Typography)(() => ({
 function formatStackTrace(stack: []) {
   const stackTrace = stack.map(
     ({ fileName, columnNumber, lineNumber, functionName }) =>
-      `at ${fileName}:${lineNumber}:${columnNumber} ${functionName}`
+      `at ${fileName}:${lineNumber}:${columnNumber} ${functionName}`,
   );
   return stackTrace.join('\n');
 }

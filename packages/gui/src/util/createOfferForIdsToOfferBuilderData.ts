@@ -9,7 +9,7 @@ import { AssetIdMapEntry } from '../hooks/useAssetIdName';
 export default function createOfferForIdsToOfferBuilderData(
   walletIdsAndAmounts: Record<string, number>,
   lookupByWalletId: (walletId: string) => AssetIdMapEntry | undefined,
-  fee?: string
+  fee?: string,
 ): OfferBuilderData {
   const offerBuilderData: OfferBuilderData = createDefaultValues();
   Object.entries(walletIdsAndAmounts).forEach(([walletOrAssetId, amount]) => {

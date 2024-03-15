@@ -7,7 +7,7 @@ const instances = new Map<ServiceConstructor, InstanceType<ServiceConstructor>>(
 
 async function getInstance<TService extends ServiceConstructor>(
   service: TService,
-  api: any
+  api: any,
 ): Promise<InstanceType<TService>> {
   if (!instances.has(service)) {
     if (service.isClient) {
@@ -40,7 +40,7 @@ const chiaLazyBaseQuery = async <
   TService extends ServiceConstructor,
   TMethod extends keyof InstanceType<TService> & string,
   // TParameter extends Parameters<InstanceType<TService>[TMethod]>[0],
-  TResult extends ReturnType<InstanceType<TService>[TMethod]>
+  TResult extends ReturnType<InstanceType<TService>[TMethod]>,
 >(
   options: {
     service: TService;
@@ -49,7 +49,7 @@ const chiaLazyBaseQuery = async <
     args?: any;
     mockResponse?: any;
   },
-  api: any
+  api: any,
 ) => {
   const { service, command, args = [], mockResponse } = options;
 
