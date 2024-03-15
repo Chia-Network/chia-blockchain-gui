@@ -229,7 +229,7 @@ msgstr ""
 msgid "{0} of {1}"
 msgstr ""
 
-#: src/components/nfts/gallery/SelectedActionsDialog.tsx:65
+#: src/components/nfts/gallery/SelectedActionsDialog.tsx:67
 msgid "{0} of {allCount} items selected:"
 msgstr ""
 
@@ -364,7 +364,7 @@ msgstr "Order"
 #: src/components/farm/FarmFullNodeConnections.tsx:54
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:54
 #: src/components/fullNode/FullNodeConnections.tsx:65
-#: src/components/nfts/NFTContextualActions.tsx:590
+#: src/components/nfts/NFTContextualActions.tsx:587
 #: src/components/offers2/OfferIncomingTable.tsx:111
 msgid "Actions"
 msgstr "Orders"
@@ -779,7 +779,7 @@ msgstr "Look up"
 
 #: src/components/nfts/NFTBurnDialog.tsx:90
 #: src/components/nfts/NFTBurnDialog.tsx:185
-#: src/components/nfts/NFTContextualActions.tsx:528
+#: src/components/nfts/NFTContextualActions.tsx:525
 msgid "Burn"
 msgstr ""
 
@@ -2343,7 +2343,7 @@ msgstr ""
 #~ msgid "Hidden ({0})"
 #~ msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:496
+#: src/components/nfts/NFTContextualActions.tsx:493
 msgid "Hide"
 msgstr ""
 
@@ -2746,7 +2746,7 @@ msgstr ""
 msgid "Loading NFT Info..."
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:432
+#: src/components/nfts/NFTPreview.tsx:434
 msgid "Loading NFT..."
 msgstr ""
 
@@ -2754,7 +2754,7 @@ msgstr ""
 #~ msgid "Loading NFTs..."
 #~ msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:432
+#: src/components/nfts/NFTPreview.tsx:434
 msgid "Loading preview..."
 msgstr ""
 
@@ -3183,7 +3183,7 @@ msgstr ""
 msgid "No Custom Permissions"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:437
+#: src/components/nfts/NFTPreview.tsx:439
 msgid "No file available"
 msgstr ""
 
@@ -4060,9 +4060,9 @@ msgstr ""
 msgid "Preparing standard wallet"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:242
 #: src/components/nfts/NFTPreview.tsx:244
-#: src/components/nfts/NFTPreview.tsx:247
+#: src/components/nfts/NFTPreview.tsx:246
+#: src/components/nfts/NFTPreview.tsx:249
 #: src/components/offers2/OfferBuilderNFT.tsx:75
 msgid "Preview"
 msgstr ""
@@ -4200,7 +4200,7 @@ msgstr ""
 msgid "Recursive Plot Scan"
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:569
+#: src/components/nfts/NFTContextualActions.tsx:566
 msgid "Refresh NFT data"
 msgstr ""
 
@@ -4674,7 +4674,7 @@ msgstr ""
 #~ msgid "Share Privately"
 #~ msgstr "Share Privately"
 
-#: src/components/nfts/NFTContextualActions.tsx:496
+#: src/components/nfts/NFTContextualActions.tsx:493
 msgid "Show"
 msgstr ""
 
@@ -5693,7 +5693,7 @@ msgstr ""
 msgid "View on Hashgreen DEX"
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:646
+#: src/components/nfts/NFTContextualActions.tsx:643
 #: src/components/offers/OfferShareDialog.tsx:519
 msgid "View on MintGarden"
 msgstr ""
@@ -5706,7 +5706,7 @@ msgstr ""
 msgid "View on Offerpool"
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:654
+#: src/components/nfts/NFTContextualActions.tsx:651
 #: src/components/offers/OfferShareDialog.tsx:689
 msgid "View on Spacescan.io"
 msgstr ""
