@@ -3,10 +3,10 @@ on:
   # We never push directly to 'main', so do not run on it
   push:
     branches-ignore:
-      - 'main'
+      - "main"
   pull_request:
     branches-ignore:
-      - 'main'
+      - "main"
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 jobs:
@@ -17,7 +17,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           # Use node version from '.nvmrc' instead of hardcoding here
-          node-version-file: '.nvmrc'
+          node-version-file: ".nvmrc"
       - name: npm ci
         run: npm ci
       - name: npm run build:ci
