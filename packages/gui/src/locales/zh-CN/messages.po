@@ -229,7 +229,7 @@ msgstr "推荐{0} 个bucket"
 msgid "{0} of {1}"
 msgstr "{0} / {1}"
 
-#: src/components/nfts/gallery/SelectedActionsDialog.tsx:65
+#: src/components/nfts/gallery/SelectedActionsDialog.tsx:67
 msgid "{0} of {allCount} items selected:"
 msgstr "选择了 {allCount} 项中的 {0} 项："
 
@@ -364,7 +364,7 @@ msgstr "操作"
 #: src/components/farm/FarmFullNodeConnections.tsx:54
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:54
 #: src/components/fullNode/FullNodeConnections.tsx:65
-#: src/components/nfts/NFTContextualActions.tsx:590
+#: src/components/nfts/NFTContextualActions.tsx:587
 #: src/components/offers2/OfferIncomingTable.tsx:111
 msgid "Actions"
 msgstr "操作"
@@ -779,7 +779,7 @@ msgstr "浏览"
 
 #: src/components/nfts/NFTBurnDialog.tsx:90
 #: src/components/nfts/NFTBurnDialog.tsx:185
-#: src/components/nfts/NFTContextualActions.tsx:528
+#: src/components/nfts/NFTContextualActions.tsx:525
 msgid "Burn"
 msgstr "销毁"
 
@@ -2343,7 +2343,7 @@ msgstr "隐藏  <0/>"
 #~ msgid "Hidden ({0})"
 #~ msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:496
+#: src/components/nfts/NFTContextualActions.tsx:493
 msgid "Hide"
 msgstr "隐藏"
 
@@ -2750,7 +2750,7 @@ msgstr "正在加载 NFT"
 msgid "Loading NFT Info..."
 msgstr "正在加载NFT信息..."
 
-#: src/components/nfts/NFTPreview.tsx:432
+#: src/components/nfts/NFTPreview.tsx:434
 msgid "Loading NFT..."
 msgstr "正在加载NFT..."
 
@@ -2758,7 +2758,7 @@ msgstr "正在加载NFT..."
 #~ msgid "Loading NFTs..."
 #~ msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:432
+#: src/components/nfts/NFTPreview.tsx:434
 msgid "Loading preview..."
 msgstr "正在加载预览..."
 
@@ -3187,7 +3187,7 @@ msgstr "当前没有报价"
 msgid "No Custom Permissions"
 msgstr "没有自定义权限"
 
-#: src/components/nfts/NFTPreview.tsx:437
+#: src/components/nfts/NFTPreview.tsx:439
 msgid "No file available"
 msgstr "没有可用文件"
 
@@ -4064,9 +4064,9 @@ msgstr "正在准备联合耕种农田"
 msgid "Preparing standard wallet"
 msgstr "正在准备标准钱包"
 
-#: src/components/nfts/NFTPreview.tsx:242
 #: src/components/nfts/NFTPreview.tsx:244
-#: src/components/nfts/NFTPreview.tsx:247
+#: src/components/nfts/NFTPreview.tsx:246
+#: src/components/nfts/NFTPreview.tsx:249
 #: src/components/offers2/OfferBuilderNFT.tsx:75
 msgid "Preview"
 msgstr "预览"
@@ -4204,7 +4204,7 @@ msgstr "推荐"
 msgid "Recursive Plot Scan"
 msgstr "递归图块扫描"
 
-#: src/components/nfts/NFTContextualActions.tsx:569
+#: src/components/nfts/NFTContextualActions.tsx:566
 msgid "Refresh NFT data"
 msgstr "刷新 NFT 数据"
 
@@ -4678,7 +4678,7 @@ msgstr "分享到Spacescan.io"
 #~ msgid "Share Privately"
 #~ msgstr "Share Privately"
 
-#: src/components/nfts/NFTContextualActions.tsx:496
+#: src/components/nfts/NFTContextualActions.tsx:493
 msgid "Show"
 msgstr "显示"
 
@@ -5697,7 +5697,7 @@ msgstr "在 Dexie 上查看"
 msgid "View on Hashgreen DEX"
 msgstr "在 Hashgreen DEX 上查看"
 
-#: src/components/nfts/NFTContextualActions.tsx:646
+#: src/components/nfts/NFTContextualActions.tsx:643
 #: src/components/offers/OfferShareDialog.tsx:519
 msgid "View on MintGarden"
 msgstr "在 MintGarden 上查看"
@@ -5710,7 +5710,7 @@ msgstr "在 MintGarden 上查看"
 msgid "View on Offerpool"
 msgstr "在Offerpool上查看"
 
-#: src/components/nfts/NFTContextualActions.tsx:654
+#: src/components/nfts/NFTContextualActions.tsx:651
 #: src/components/offers/OfferShareDialog.tsx:689
 msgid "View on Spacescan.io"
 msgstr "在 Spacescan.io 上查看"
