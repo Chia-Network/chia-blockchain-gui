@@ -88,7 +88,7 @@ const spawnChildProcess = (command, args = [], options = undefined) => {
 };
 
 const startChiaDaemon = () => {
-  const script = getScriptPath(PY_DIST_FILE);
+  let script = getScriptPath(PY_DIST_FILE);
   const processOptions = {};
   if (process.platform === 'win32') {
     // We want to detach child daemon process from parent GUI process.
@@ -108,6 +108,11 @@ const startChiaDaemon = () => {
   }
   pyProc = null;
   if (guessPackaged()) {
+    // On Windows, we need to double-quote the script path to handle paths with spaces
+    if (process.platform === 'win32') {
+      script = `"${script}"`;
+    }
+
     try {
       console.info('Running python executable: ');
       if (processOptions.stdio === 'ignore') {
