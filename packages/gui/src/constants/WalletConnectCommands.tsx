@@ -303,6 +303,19 @@ const walletConnectCommands: WalletConnectCommand[] = [
     service: ServiceName.WALLET,
     bypassConfirm: true,
   },
+  {
+    command: 'pushTx',
+    label: <Trans>Push Transaction</Trans>,
+    description: <Trans>Push a spend bundle (transaction) to the blockchain</Trans>,
+    service: ServiceName.FULL_NODE,
+    params: [
+      {
+        name: WalletConnectCommandParamName.SPEND_BUNDLE,
+        label: <Trans>Spend Bundle</Trans>,
+        type: 'object',
+      },
+    ],
+  },
 
   // offers
   {
@@ -621,6 +634,109 @@ const walletConnectCommands: WalletConnectCommand[] = [
         name: WalletConnectCommandParamName.COIN_ID,
         label: <Trans>Coin Id</Trans>,
         type: 'string',
+      },
+    ],
+  },
+  {
+    command: 'mintBulk',
+    label: <Trans>Mint Bulk</Trans>,
+    description: <Trans>Create a spend bundle to mint multiple NFTs</Trans>,
+    service: ServiceName.WALLET,
+    params: [
+      {
+        name: WalletConnectCommandParamName.WALLET_ID,
+        label: <Trans>Wallet Id</Trans>,
+        type: 'number',
+      },
+      {
+        name: WalletConnectCommandParamName.METADATA_LIST,
+        label: <Trans>Metadata List</Trans>,
+        type: 'object',
+      },
+      {
+        name: WalletConnectCommandParamName.ROYALTY_PERCENTAGE,
+        label: <Trans>Royalty Percentage</Trans>,
+        type: 'BigNumber',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.ROYALTY_ADDRESS,
+        label: <Trans>Royalty Address</Trans>,
+        type: 'string',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.TARGET_LIST,
+        label: <Trans>Target List</Trans>,
+        type: 'object',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.MINT_NUMBER_START,
+        label: <Trans>Mint Start Number</Trans>,
+        type: 'number',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.MINT_TOTAL,
+        label: <Trans>Mint Total</Trans>,
+        type: 'number',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.XCH_COIN_LIST,
+        label: <Trans>XCH Coin List</Trans>,
+        type: 'object',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.XCH_CHANGE_TARGET,
+        label: <Trans>XCH Change Target</Trans>,
+        type: 'string',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.NEW_INNERPUZHASH,
+        label: <Trans>New Inner Puzzle Hash</Trans>,
+        type: 'object',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.NEW_P2_PUZHASH,
+        label: <Trans>New P2 Puzzle Hash</Trans>,
+        type: 'string',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.DID_COIN_DICT,
+        label: <Trans>DID Coin Dictionary</Trans>,
+        type: 'object',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.DID_LINEAGE_PARENT_HEX,
+        label: <Trans>DID Lineage Parent Hex</Trans>,
+        type: 'string',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.MINT_FROM_DID,
+        label: <Trans>Mint From DID</Trans>,
+        type: 'boolean',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.FEE,
+        label: <Trans>Fee</Trans>,
+        type: 'BigNumber',
+        displayComponent: (value) => <MojoToChia value={value} />,
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.REUSE_PUZHASH,
+        label: <Trans>Reuse Puzzle Hash</Trans>,
+        type: 'boolean',
+        isOptional: true,
       },
     ],
   },
@@ -1480,7 +1596,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
   //   ],
   // },
   {
-    command: 'transferDid',
+    command: 'transferDID',
     label: <Trans>Transfer DID</Trans>,
     service: ServiceName.WALLET,
     params: [

@@ -1374,6 +1374,10 @@ export const walletApi = apiWithTag.injectEndpoints({
       providesTags: (result, _error) => (result ? [{ type: 'NFTInfo', id: result.launcherId }] : []),
     }),
 
+    mintBulk: mutation(build, NFT, 'mintBulk', {
+      invalidatesTags: (result, _error) => (result ? [{ type: 'NFTInfo', id: 'LIST' }] : []),
+    }),
+
     mintNFT: mutation(build, NFT, 'mintNFT', {
       invalidatesTags: (result, _error) => (result ? [{ type: 'NFTInfo', id: 'LIST' }] : []),
     }),
@@ -1567,6 +1571,7 @@ export const {
   useGetNFTWalletsWithDIDsQuery,
   useGetNFTInfoQuery,
   useLazyGetNFTInfoQuery,
+  useMintBulkMutation,
   useMintNFTMutation,
   useTransferNFTMutation,
   useSetNFTDIDMutation,
