@@ -46,7 +46,7 @@ export default function useMetadataData(props: UseMetadataDataProps) {
         isLoading: !!metadataOnDemand.promise,
       });
     },
-    [events /* immutable */, metadatasOnDemand /* immutable */]
+    [events /* immutable */, metadatasOnDemand /* immutable */],
   );
 
   // immutable function
@@ -100,7 +100,7 @@ export default function useMetadataData(props: UseMetadataDataProps) {
       fetchNFT /* immutable */,
       metadatasOnDemand /* immutable */,
       setMetadataOnDemand /* immutable */,
-    ]
+    ],
   );
 
   // immutable function
@@ -135,7 +135,7 @@ export default function useMetadataData(props: UseMetadataDataProps) {
         error: undefined,
       };
     },
-    [fetchMetadata /* immutable */, metadatasOnDemand /* immutable */]
+    [fetchMetadata /* immutable */, metadatasOnDemand /* immutable */],
   );
 
   // immutable function
@@ -156,7 +156,7 @@ export default function useMetadataData(props: UseMetadataDataProps) {
         getMetadata(id);
       }
     },
-    [getMetadata /* immutable */, metadatasOnDemand /* immutable */]
+    [getMetadata /* immutable */, metadatasOnDemand /* immutable */],
   );
 
   // immutable function
@@ -174,7 +174,7 @@ export default function useMetadataData(props: UseMetadataDataProps) {
         events.off(eventName, callback);
       };
     },
-    [events /* immutable */]
+    [events /* immutable */],
   );
 
   return {

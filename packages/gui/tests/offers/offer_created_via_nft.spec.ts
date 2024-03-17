@@ -43,7 +43,7 @@ test('Verify that an Offer can created via the NFT page', async () => {
   await expect(
     page
       .getByRole('row', { name: `Pending Accept ChiREX #996 ${date.format(now, 'MMMM D, YYYY h:mm A')}` })
-      .getByRole('button', { name: 'more' })
+      .getByRole('button', { name: 'more' }),
   ).toBeVisible();
   await page
     .getByRole('row', { name: `Pending Accept ChiREX #996 ${date.format(now, 'MMMM D, YYYY h:mm A')}` })

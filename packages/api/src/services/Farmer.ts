@@ -131,7 +131,7 @@ export default class Farmer extends Service {
               newFarmingInfo: this.newFarmingInfo,
               latencyData: this.latencyData,
             },
-            null
+            null,
           );
         }
       });

@@ -35,12 +35,12 @@ export default function useResolveNFTOffer({ offerSummary }: UseResolveNFTOfferP
       const { data: result } = await signMessageById({ id: nftId, message: 'x' });
       return result?.success ?? false;
     },
-    [signMessageById]
+    [signMessageById],
   );
 
   const nftsBySide: NFTsByOfferSide = useMemo(
     () => allNFTsByOfferSide(offerSummary, ['requested', 'offered']),
-    [offerSummary]
+    [offerSummary],
   );
 
   useMemo(async () => {

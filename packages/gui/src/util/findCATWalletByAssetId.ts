@@ -5,6 +5,6 @@ export default function findCATWalletByAssetId(wallets: Wallet[], assetId: strin
   return wallets.find(
     (wallet) =>
       [WalletType.CAT, WalletType.CRCAT].includes(wallet.type) &&
-      wallet.meta?.assetId?.toLowerCase() === assetId.toLowerCase()
+      wallet.meta?.assetId?.toLowerCase() === assetId.toLowerCase(),
   );
 }

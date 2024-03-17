@@ -41,7 +41,7 @@ export default function SettingsPanel() {
     await openDialog(
       <AlertDialog>
         <Trans>Your passphrase has been updated</Trans>
-      </AlertDialog>
+      </AlertDialog>,
     );
   }
 
@@ -50,7 +50,7 @@ export default function SettingsPanel() {
     await openDialog(
       <AlertDialog>
         <Trans>Your passphrase has been set</Trans>
-      </AlertDialog>
+      </AlertDialog>,
     );
   }
 
@@ -59,7 +59,7 @@ export default function SettingsPanel() {
     await openDialog(
       <AlertDialog>
         <Trans>Passphrase protection has been disabled</Trans>
-      </AlertDialog>
+      </AlertDialog>,
     );
   }
 

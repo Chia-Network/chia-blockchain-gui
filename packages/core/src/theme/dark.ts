@@ -157,5 +157,5 @@ export default createTheme(
         },
       },
     },
-  }
+  },
 );

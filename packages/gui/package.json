@@ -53,7 +53,7 @@
     "@rehooks/local-storage": "2.4.4",
     "@walletconnect/sign-client": "2.10.0",
     "@walletconnect/utils": "2.10.0",
-    "axios": "1.6.0",
+    "axios": "1.6.4",
     "bech32": "2.0.0",
     "bignumber.js": "9.1.1",
     "byte-size": "8.1.1",

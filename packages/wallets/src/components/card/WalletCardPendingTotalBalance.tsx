@@ -24,7 +24,7 @@ export default function WalletCardPendingTotalBalance(props: Props) {
     },
     {
       pollingInterval: 10_000,
-    }
+    },
   );
 
   const { wallet, unit = '', loading } = useWallet(walletId);

@@ -51,7 +51,7 @@ export async function processSessionProposal(
         };
       };
     };
-  }
+  },
 ) {
   try {
     if (!client) {
@@ -189,7 +189,7 @@ export async function processSessionRequest(
       request: { method: string; params: any };
       chainId: string;
     };
-  }
+  },
 ) {
   try {
     const {
@@ -284,7 +284,7 @@ export async function disconnectPair(client: Client, pairs: Pairs, topic: string
 
             throw e;
           }
-        })
+        }),
       );
 
       // then disconnect pairing
@@ -331,7 +331,7 @@ export async function cleanupPairings(client: Client, pairs: Pairs) {
             processError(error as Error);
           }
         }
-      })
+      }),
     );
 
     // remove pairs which are not in pairing list
@@ -344,7 +344,7 @@ export async function cleanupPairings(client: Client, pairs: Pairs) {
           log('Disconnecting pairing because WalletConnect pair is not registered in the pairing list', topic);
           await disconnectPair(client, pairs, topic);
         }
-      })
+      }),
     );
   } catch (e) {
     log('Cleanup pairings error', e);
@@ -354,7 +354,7 @@ export async function cleanupPairings(client: Client, pairs: Pairs) {
 export function bindEvents(
   client: Client,
   pairs: Pairs,
-  onProcess: () => (topic: string, command: string, params: any) => Promise<any>
+  onProcess: () => (topic: string, command: string, params: any) => Promise<any>,
 ) {
   if (!client) {
     throw new Error('Client not initialized');

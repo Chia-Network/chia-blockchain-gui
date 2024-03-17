@@ -97,7 +97,7 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
   });
   const { data: lastBlockTimeStampData, isLoading: isGetTimestampForHeightLoading } = useGetTimestampForHeightQuery(
     { height: height || 0 },
-    { skip: !height }
+    { skip: !height },
   );
 
   if (hasExpiration && !isExpired) {
@@ -164,11 +164,11 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
 
     const offeredUnknownCATsLocal = getUnknownCATs(
       wallets,
-      computedOfferBuilderData.offered.tokens.map(({ assetId }) => assetId)
+      computedOfferBuilderData.offered.tokens.map(({ assetId }) => assetId),
     );
     const requestedUnknownCATsLocal = getUnknownCATs(
       wallets,
-      computedOfferBuilderData.requested.tokens.map(({ assetId }) => assetId)
+      computedOfferBuilderData.requested.tokens.map(({ assetId }) => assetId),
     );
 
     return [offeredUnknownCATsLocal, requestedUnknownCATsLocal];
@@ -199,7 +199,7 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
       wallets,
       offers,
       (accepting: boolean) => setIsAccepting(accepting),
-      () => navigate('/dashboard/offers')
+      () => navigate('/dashboard/offers'),
     );
   }
 
@@ -221,7 +221,7 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
       await openDialog(
         <AlertDialog>
           <Trans>Please wait for wallet synchronization</Trans>
-        </AlertDialog>
+        </AlertDialog>,
       );
     } else {
       offerBuilderRef.current?.submit();
@@ -263,7 +263,7 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
               {'This offer is no longer valid. To understand why, click '}
               <Link
                 target="_blank"
-                href="https://chialisp.com/docs/tutorials/offers_gui_tutorial/#taker-attempts-to-accept-an-invalid-offer"
+                href="https://docs.chia.net/getting-started/wallet-guide/#taker-attempts-to-accept-an-invalid-offer"
               >
                 here
               </Link>{' '}

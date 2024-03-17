@@ -70,7 +70,7 @@ export default function App(props: AppProps) {
         cert,
         key,
         webSocket: WebSocket,
-      })
+      }),
     );
 
     setIsReady(true);

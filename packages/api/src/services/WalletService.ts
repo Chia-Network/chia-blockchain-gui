@@ -252,7 +252,7 @@ export default class Wallet extends Service {
       { driver_dict: driverDict, ...restArgs },
       false,
       undefined,
-      disableJSONFormatting
+      disableJSONFormatting,
     );
   }
 
@@ -301,6 +301,8 @@ export default class Wallet extends Service {
     return this.command<{
       pubkey: string;
       signature: string;
+      isHex: boolean;
+      safeMode: boolean;
     }>('sign_message_by_address', args);
   }
 
@@ -382,8 +384,8 @@ export default class Wallet extends Service {
         state: 'coin_added';
         walletId: number;
       },
-      message: Message
-    ) => void
+      message: Message,
+    ) => void,
   ) {
     return this.onStateChanged('coin_added', callback);
   }
@@ -395,8 +397,8 @@ export default class Wallet extends Service {
         state: 'coin_removed';
         walletId: number;
       },
-      message: Message
-    ) => void
+      message: Message,
+    ) => void,
   ) {
     return this.onStateChanged('coin_removed', callback);
   }
@@ -436,8 +438,8 @@ export default class Wallet extends Service {
         state: 'nft_coin_added';
         walletId: number;
       },
-      message: Message
-    ) => void
+      message: Message,
+    ) => void,
   ) {
     return this.onStateChanged('nft_coin_added', callback);
   }
@@ -449,8 +451,8 @@ export default class Wallet extends Service {
         state: 'nft_coin_removed';
         walletId: number;
       },
-      message: Message
-    ) => void
+      message: Message,
+    ) => void,
   ) {
     return this.onStateChanged('nft_coin_removed', callback);
   }
@@ -462,8 +464,8 @@ export default class Wallet extends Service {
         state: 'nft_coin_updated';
         walletId: number;
       },
-      message: Message
-    ) => void
+      message: Message,
+    ) => void,
   ) {
     return this.onStateChanged('nft_coin_updated', callback);
   }
@@ -475,8 +477,8 @@ export default class Wallet extends Service {
         state: 'vc_coin_added';
         walletId: number;
       },
-      message: Message
-    ) => void
+      message: Message,
+    ) => void,
   ) {
     return this.onStateChanged('vc_coin_added', callback);
   }
@@ -488,8 +490,8 @@ export default class Wallet extends Service {
         state: 'vc_coin_removed';
         walletId: number;
       },
-      message: Message
-    ) => void
+      message: Message,
+    ) => void,
   ) {
     return this.onStateChanged('vc_coin_removed', callback);
   }
@@ -501,9 +503,9 @@ export default class Wallet extends Service {
           index: number;
         };
       },
-      message: Message
+      message: Message,
     ) => void,
-    processData?: (data: any) => any
+    processData?: (data: any) => any,
   ) {
     return this.onStateChanged('new_derivation_index', callback, processData);
   }
@@ -515,9 +517,9 @@ export default class Wallet extends Service {
           index: number;
         };
       },
-      message: Message
+      message: Message,
     ) => void,
-    processData?: (data: any) => any
+    processData?: (data: any) => any,
   ) {
     return this.onStateChanged('nft_coin_did_set', callback, processData);
   }

@@ -64,7 +64,9 @@ const ModelExtension = styled.div<{ isDarkMode: boolean }>`
   align-items: center;
   padding: 8px 16px;
   background: ${(props) => (props.isDarkMode ? Color.Neutral[800] : Color.Neutral[50])};
-  box-shadow: 0px 0px 24px ${alpha(Color.Green[500], 0.5)}, 0px 4px 8px ${alpha(Color.Green[700], 0.32)};
+  box-shadow:
+    0px 0px 24px ${alpha(Color.Green[500], 0.5)},
+    0px 4px 8px ${alpha(Color.Green[700], 0.32)};
   border-radius: 32px;
   color: ${(props) => (props.isDarkMode ? Color.Neutral[50] : Color.Neutral[800])};
 `;
@@ -146,7 +148,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
   const [hideObjectionableContent] = useHideObjectionableContent();
   const [ignoreSizeLimit /* , setIgnoreSizeLimit */] = usePersistState<boolean>(
     false,
-    `nft-preview-ignore-size-limit-${nftId}`
+    `nft-preview-ignore-size-limit-${nftId}`,
   );
 
   const { preview, isLoading: isLoadingVerifyHash } = useNFTVerifyHash(nftId, {
@@ -254,7 +256,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
               <style dangerouslySetInnerHTML={{ __html: style }} />
             </head>
             <body>{mediaElement}</body>
-          </html>
+          </html>,
         );
 
         setSrcDoc(iframeContent, signal);
@@ -273,7 +275,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
       getContent,
       setSrcDoc,
       setError,
-    ]
+    ],
   );
 
   useEffect(() => {
@@ -429,7 +431,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
     <StyledCardPreview width={width} height={height} sx={{ aspectRatio: ratio.toString() }}>
       {isLoading ? (
         <Flex position="absolute" left="0" top="0" bottom="0" right="0" justifyContent="center" alignItems="center">
-          <Loading center>{!isCompact && <Trans>{isPreview ? 'Loading preview...' : 'Loading NFT...'}</Trans>}</Loading>
+          <Loading center>{!isCompact && (isPreview ? t`Loading preview...` : t`Loading NFT...`)}</Loading>
         </Flex>
       ) : !hasFile ? (
         <Background>

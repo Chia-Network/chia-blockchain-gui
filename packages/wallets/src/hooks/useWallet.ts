@@ -15,7 +15,7 @@ export default function useWallet(walletId?: number | string): {
 
   const wallet = useMemo(
     () => wallets?.find((item) => item.id.toString() === walletId?.toString()),
-    [wallets, walletId]
+    [wallets, walletId],
   );
 
   const unit = useMemo(() => {

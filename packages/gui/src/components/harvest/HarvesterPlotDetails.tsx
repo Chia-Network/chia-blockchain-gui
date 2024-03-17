@@ -97,7 +97,7 @@ function HarvesterPlotDetails(props: HarvesterPlotDetailsProps) {
               }}
             />
             C{cl} {countCompression} {percentageCompression}%
-          </Typography>
+          </Typography>,
         );
       }
 
@@ -133,7 +133,7 @@ function HarvesterPlotDetails(props: HarvesterPlotDetailsProps) {
             </Typography>
             {kSizeAndCompressionBreakDown}
           </Box>
-        </Box>
+        </Box>,
       );
     }
 

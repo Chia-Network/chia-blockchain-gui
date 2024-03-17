@@ -78,7 +78,7 @@ function LatencyBarChart(props: BarChartProps) {
         },
       },
     }),
-    [unit]
+    [unit],
   );
 
   const data = React.useMemo(() => {

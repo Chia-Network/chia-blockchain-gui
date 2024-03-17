@@ -39,7 +39,7 @@ export default function WalletRenameDialog(props: Props) {
       openDialog(
         <AlertDialog>
           <Trans>Please enter valid wallet name</Trans>
-        </AlertDialog>
+        </AlertDialog>,
       );
       return;
     }

@@ -175,7 +175,7 @@ export default function VerifyMessage(props: VerifyMessageProps) {
             </Flex>
           </CardContent>
         </Card>
-      </AlertDialog>
+      </AlertDialog>,
     );
   }
 

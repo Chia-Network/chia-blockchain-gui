@@ -14,7 +14,7 @@ export default function useValidateChangePassphraseParams() {
   async function validateChangePassphraseParams(
     currentPassphrase: string | null,
     newPassphrase: string,
-    confirmationPassphrase: string
+    confirmationPassphrase: string,
   ): Promise<boolean> {
     try {
       if (isLoading) {
@@ -36,7 +36,7 @@ export default function useValidateChangePassphraseParams() {
           plural(minPassphraseLength, {
             one: 'Passphrases must be at least # character in length',
             other: 'Passphrases must be at least # characters in length',
-          })
+          }),
         );
       } else if (currentPassphrase !== null && currentPassphrase === newPassphrase) {
         throw new Error(t`New passphrase is the same as your current passphrase`);
@@ -75,7 +75,7 @@ export default function useValidateChangePassphraseParams() {
             maxWidth="xs"
           >
             {message}
-          </ConfirmDialog>
+          </ConfirmDialog>,
         );
 
         // @ts-ignore

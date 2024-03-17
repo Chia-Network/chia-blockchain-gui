@@ -32,7 +32,7 @@ export function fromBech32m(value: string): string {
 
 export function decodeBech32m(
   value: string,
-  outputEncoding: BufferEncoding = 'utf8'
+  outputEncoding: BufferEncoding = 'utf8',
 ): { prefix: string; data: string } {
   const { words, prefix } = bech32m.decode(value);
   const data = Buffer.from(bech32m.fromWords(words)).toString(outputEncoding);

@@ -69,7 +69,7 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
     },
     {
       skip: !fingerprint,
-    }
+    },
   );
   type WalletKeyTheme = {
     emoji: string | null;

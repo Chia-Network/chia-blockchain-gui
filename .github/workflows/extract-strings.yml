@@ -3,7 +3,7 @@ name: Extract Strings for Translation
 on:
   push:
     branches:
-      - 'main'
+      - "main"
   workflow_dispatch:
 
 permissions:
@@ -21,14 +21,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Setup Node 18.x
         uses: actions/setup-node@v3
         with:
-          node-version: '18.x'
+          node-version: "18.x"
 
       - name: Set up commit signing
         uses: Chia-Network/actions/commit-sign/gpg@main
@@ -45,13 +45,13 @@ jobs:
         uses: peter-evans/create-pull-request@v5
         with:
           base: main
-          body: 'Extracted latest strings from source'
+          body: "Extracted latest strings from source"
           branch: string-updates
-          commit-message: 'Extracted latest strings from source'
+          commit-message: "Extracted latest strings from source"
           delete-branch: true
-          reviewers: 'paninaro'
-          assignees: 'paninaro'
-          title: 'Latest Strings'
-          token: '${{ secrets.GITHUB_TOKEN }}'
-          committer: 'ChiaAutomation <automation@chia.net>'
-          author: 'ChiaAutomation <automation@chia.net>'
+          reviewers: "emlowe"
+          assignees: "emlowe"
+          title: "Latest Strings"
+          token: "${{ secrets.GITHUB_TOKEN }}"
+          committer: "ChiaAutomation <automation@chia.net>"
+          author: "ChiaAutomation <automation@chia.net>"

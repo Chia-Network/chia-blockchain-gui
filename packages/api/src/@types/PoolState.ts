@@ -26,7 +26,7 @@ type PoolState = {
       {
         errorCode: number;
         errorMessage: string;
-      }
+      },
     ]
   >;
   validPartialsSinceStart: number;

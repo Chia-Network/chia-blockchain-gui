@@ -38,7 +38,7 @@ export default function PlotNFTUnconfirmedCard(props: Props) {
     },
     {
       pollingInterval: 5000,
-    }
+    },
   );
 
   useEffect(() => {

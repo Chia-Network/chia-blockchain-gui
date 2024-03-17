@@ -16,7 +16,7 @@ function ScrollbarVirtuoso(props: ScrollbarProps, ref: any) {
         ref.current = scrollbarsRef.osInstance().getElements().viewport;
       }
     },
-    [ref]
+    [ref],
   );
 
   return (

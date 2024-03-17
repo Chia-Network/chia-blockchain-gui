@@ -67,17 +67,56 @@ const getChiaVersion = () => {
   return version;
 };
 
+const spawnChildProcess = (command, args = [], options = undefined) => {
+  // As of Feb 11 2024, there is a bug in Electron that prevents electron from exiting when a child process is spawned and detached.
+  // This is a workaround for that bug.
+  if (process.platform === 'linux') {
+    // https://github.com/electron/electron/issues/34808#issuecomment-1275530924
+    return childProcess.spawn(
+      '/bin/bash',
+      [
+        '-c',
+        'for fd in $(ls /proc/$$/fd); do case "$fd" in 0|1|2|255) ;; *) eval "exec $fd<&-" ;; esac; done; exec "$@"',
+        '--',
+        command,
+        ...args,
+      ],
+      options,
+    );
+  }
+  return childProcess.spawn(command, args, options);
+};
+
 const startChiaDaemon = () => {
   const script = getScriptPath(PY_DIST_FILE);
   const processOptions = {};
-  // processOptions.detached = true;
-  // processOptions.stdio = "ignore";
+  if (process.platform === 'win32') {
+    // We want to detach child daemon process from parent GUI process.
+    // You may think `detached: true` will do but it shows blank terminal on Windows.
+    // In order to hide the blank terminal while detaching child process,
+    // {detached: false, windowsHide: false, shell: true} works which is exact opposite of what we expect
+    // Please see the comment below for more details.
+    // https://github.com/nodejs/node/issues/21825#issuecomment-503766781
+    processOptions.detached = false;
+    processOptions.stdio = 'ignore';
+    processOptions.windowsHide = false;
+    processOptions.shell = true;
+  } else {
+    processOptions.detached = true;
+    processOptions.stdio = 'ignore';
+    processOptions.windowsHide = true;
+  }
   pyProc = null;
   if (guessPackaged()) {
     try {
       console.info('Running python executable: ');
-      const Process = childProcess.spawn;
-      pyProc = new Process(script, ['--wait-for-unlock'], processOptions);
+      if (processOptions.stdio === 'ignore') {
+        const subProcess = spawnChildProcess(script, ['--wait-for-unlock'], processOptions);
+        subProcess.unref();
+      } else {
+        const Process = childProcess.spawn;
+        pyProc = new Process(script, ['--wait-for-unlock'], processOptions);
+      }
     } catch (e) {
       console.info('Running python executable: Error: ');
       console.info(`Script ${script}`);
@@ -86,10 +125,15 @@ const startChiaDaemon = () => {
     console.info('Running python script');
     console.info(`Script ${script}`);
 
-    const Process = childProcess.spawn;
-    pyProc = new Process('python', [script, '--wait-for-unlock'], processOptions);
+    if (processOptions.stdio === 'ignore') {
+      const subProcess = spawnChildProcess('python', [script, '--wait-for-unlock'], processOptions);
+      subProcess.unref();
+    } else {
+      const Process = childProcess.spawn;
+      pyProc = new Process('python', [script, '--wait-for-unlock'], processOptions);
+    }
   }
-  if (pyProc != null) {
+  if (pyProc != null && processOptions.stdio !== 'ignore') {
     pyProc.stdout.setEncoding('utf8');
 
     pyProc.stdout.on('data', (data) => {

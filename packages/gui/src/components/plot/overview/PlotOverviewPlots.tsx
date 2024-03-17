@@ -48,7 +48,7 @@ export default function PlotOverviewPlots() {
                   <Folder fontSize="small" color="info" />
                 </ListItemIcon>
                 <Typography variant="inherit" noWrap>
-                  {isLoading || directories.length === 0 ? (
+                  {isLoading || !directories || directories.length === 0 ? (
                     <Trans>Add Plot Directory</Trans>
                   ) : (
                     <Trans>Manage Plot Directories</Trans>

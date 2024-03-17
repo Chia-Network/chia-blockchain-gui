@@ -108,7 +108,7 @@ export default function AppState(props: Props) {
     }
 
     const specificRunningServiceStates = servicesState.running.filter((serviceName) =>
-      runServices.includes(serviceName)
+      runServices.includes(serviceName),
     );
 
     return specificRunningServiceStates.length === runServices.length;

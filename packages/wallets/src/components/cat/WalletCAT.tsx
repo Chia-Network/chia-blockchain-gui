@@ -40,7 +40,7 @@ export default function WalletCAT(props: Props) {
     const { name } = wallet;
 
     openDialog(
-      <WalletRenameDialog name={name} onSave={(newName) => setCATName({ walletId, name: newName }).unwrap()} />
+      <WalletRenameDialog name={name} onSave={(newName) => setCATName({ walletId, name: newName }).unwrap()} />,
     );
   }
 

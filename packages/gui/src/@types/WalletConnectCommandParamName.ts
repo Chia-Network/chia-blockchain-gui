@@ -106,6 +106,7 @@ enum WalletConnectCommandParamName {
   WITH_RECOVERY_INFO = 'withRecoveryInfo',
   XCH_COIN_LIST = 'xchCoinList',
   XCH_CHANGE_TARGET = 'xchChangeTarget',
+  SAFE_MODE = 'safeMode',
 }
 
 export default WalletConnectCommandParamName;

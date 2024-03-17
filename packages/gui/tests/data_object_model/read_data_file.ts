@@ -42,7 +42,7 @@ export class ReadData {
     await this.page
       .locator('#mui-52')
       .fill(
-        'abandon ability able about above absent baby bachelor bacon badge bag balance cabbage cabin cable cactus cage cake dad damage damp dance danger daring'
+        'abandon ability able about above absent baby bachelor bacon badge bag balance cabbage cabin cable cactus cage cake dad damage damp dance danger daring',
       );
   }
 }

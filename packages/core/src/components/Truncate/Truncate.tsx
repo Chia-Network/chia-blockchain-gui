@@ -57,7 +57,7 @@ export function truncateValue(children: string, opts: TruncateValueOptions): str
   }
 
   const truncatedSubValue = `${subValue.substring(0, leftLength)}${separator}${subValue.substring(
-    subValue.length - rightLength
+    subValue.length - rightLength,
   )}`;
 
   return rest

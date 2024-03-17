@@ -101,7 +101,7 @@ export const fullNodeApi = apiWithTag.injectEndpoints({
       providesTags: (connections) =>
         connections
           ? [
-              ...connections.map(({ nodeId }) => ({ type: 'FullNodeConnections', id: nodeId } as const)),
+              ...connections.map(({ nodeId }) => ({ type: 'FullNodeConnections', id: nodeId }) as const),
               { type: 'FullNodeConnections', id: 'LIST' },
             ]
           : [{ type: 'FullNodeConnections', id: 'LIST' }],

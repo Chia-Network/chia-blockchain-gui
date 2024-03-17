@@ -76,12 +76,12 @@ export default function PlotAddSelectHybridDiskMode(props: Props) {
               running low on additional memory space, we strongly advise closing all other applications to prevent
               memory errors.
             </Trans>
-          </AlertDialog>
+          </AlertDialog>,
         );
       }
       setValue('bladebitEnableHybridDiskMode', value);
     },
-    [setValue, openDialog]
+    [setValue, openDialog],
   );
 
   return (

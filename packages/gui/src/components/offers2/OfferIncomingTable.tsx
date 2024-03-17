@@ -24,8 +24,8 @@ const cols = [
         'offerURL' in notification
           ? notification.offerURL
           : 'offerData' in notification
-          ? notification.offerData
-          : undefined;
+            ? notification.offerData
+            : undefined;
 
       return (
         <Flex gap={1} alignItems="center">
@@ -49,8 +49,8 @@ const cols = [
         'offerURL' in notification
           ? notification.offerURL
           : 'offerData' in notification
-          ? notification.offerData
-          : undefined;
+            ? notification.offerData
+            : undefined;
 
       return (
         <Flex gap={1} alignItems="center">
@@ -141,8 +141,8 @@ export default function OfferIncomingTable(props: OfferIncomingTableProps) {
           'offerURL' in notification
             ? notification.offerURL
             : 'offerData' in notification
-            ? notification.offerData
-            : undefined;
+              ? notification.offerData
+              : undefined;
         const offerState = getOffer(offerId);
         if (!offerState) {
           return false;
@@ -161,7 +161,7 @@ export default function OfferIncomingTable(props: OfferIncomingTableProps) {
 
         return false;
       }),
-    [notifications, nftId, getOffer]
+    [notifications, nftId, getOffer],
   );
 
   async function handleCounterOffer(notification: Notification) {
@@ -171,8 +171,8 @@ export default function OfferIncomingTable(props: OfferIncomingTableProps) {
         'offerURL' in notification
           ? notification.offerURL
           : 'offerData' in notification
-          ? notification.offerData
-          : undefined;
+            ? notification.offerData
+            : undefined;
       const offerState = getOffer(offerId);
 
       if (!offerState || !puzzleHash || !currencyCode) {
@@ -211,8 +211,8 @@ export default function OfferIncomingTable(props: OfferIncomingTableProps) {
       'offerURL' in notification
         ? notification.offerURL
         : 'offerData' in notification
-        ? notification.offerData
-        : undefined;
+          ? notification.offerData
+          : undefined;
     const offerState = getOffer(offerId);
 
     if (!offerState) {

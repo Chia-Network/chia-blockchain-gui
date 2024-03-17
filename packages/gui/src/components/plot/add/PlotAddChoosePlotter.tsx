@@ -67,10 +67,19 @@ export default function PlotAddChoosePlotter(props: Props) {
   }
 
   const plotterWarningString = (name: PlotterName | undefined): string | undefined => {
-    if (name === PlotterName.BLADEBIT_RAM) {
-      return plotters[PlotterName.BLADEBIT_RAM]?.installInfo?.bladebitMemoryWarning;
+    if (name !== PlotterName.BLADEBIT_RAM) {
+      return undefined;
     }
-    return undefined;
+    const msg = plotters[PlotterName.BLADEBIT_RAM]?.installInfo?.bladebitMemoryWarning;
+    if (!msg) {
+      return undefined;
+    }
+    const regex = /BladeBit requires at least (?<ram>\d*[.]?\d+) GiB of RAM to operate/;
+    const m = regex.exec(msg);
+    if (!m || !m.groups || !m.groups.ram) {
+      return t`Insufficient RAM for BladeBit`;
+    }
+    return t`BladeBit requires at least ${m.groups.ram} GiB of RAM to operate`;
   };
 
   const warning = plotterWarningString(plotterName);
@@ -101,11 +110,7 @@ export default function PlotAddChoosePlotter(props: Props) {
                 </MenuItem>
               ))}
             </Select>
-            {warning && (
-              <StyledFormHelperText>
-                <Trans>{warning}</Trans>
-              </StyledFormHelperText>
-            )}
+            {warning && <StyledFormHelperText>{warning}</StyledFormHelperText>}
           </FormControl>
         </Grid>
       </Grid>

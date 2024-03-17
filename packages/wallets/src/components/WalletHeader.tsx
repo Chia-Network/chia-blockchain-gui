@@ -28,7 +28,7 @@ export default function WalletHeader(props: StandardWalletProps) {
         onConfirm={() => deleteUnconfirmedTransactions({ walletId }).unwrap()}
       >
         <Trans>Are you sure you want to delete unconfirmed transactions?</Trans>
-      </ConfirmDialog>
+      </ConfirmDialog>,
     );
   }
 

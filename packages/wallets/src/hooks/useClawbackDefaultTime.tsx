@@ -38,24 +38,24 @@ function stringPropertiesToNumbers(objWithStrings: ClawbackDefaultTimeInput) {
 export default function useClawbackDefaultTime() {
   const [clawbackDefaultTime, setClawbackDefaultTimeLocal] = usePrefs<ClawbackDefaultTimeOutput>(
     'clawbackDefaultTime',
-    clawbackDefaultTimeDefaults
+    clawbackDefaultTimeDefaults,
   );
 
   const isClawbackDefaultTimeEnabled = useMemo(
     () => clawbackDefaultTime.days > 0 || clawbackDefaultTime.hours > 0 || clawbackDefaultTime.minutes > 0,
-    [clawbackDefaultTime]
+    [clawbackDefaultTime],
   );
 
   const setClawbackDefaultTime = useCallback(
     (clawbackDefaultTimeInput: ClawbackDefaultTimeInput) => {
       setClawbackDefaultTimeLocal(stringPropertiesToNumbers(clawbackDefaultTimeInput));
     },
-    [setClawbackDefaultTimeLocal]
+    [setClawbackDefaultTimeLocal],
   );
 
   const toReturn = useMemo(
     () => ({ clawbackDefaultTime, setClawbackDefaultTime, isClawbackDefaultTimeEnabled }),
-    [clawbackDefaultTime, setClawbackDefaultTime, isClawbackDefaultTimeEnabled]
+    [clawbackDefaultTime, setClawbackDefaultTime, isClawbackDefaultTimeEnabled],
   );
   return toReturn;
 }

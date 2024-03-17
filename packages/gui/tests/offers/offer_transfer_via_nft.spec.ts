@@ -41,7 +41,7 @@ test('Verify that an NFT can be Transfer to another account', async () => {
 
   //And I should see a confirmation dialog
   await expect(
-    page.getByText('The NFT transfer transaction has been successfully submitted to the blockchain.')
+    page.getByText('The NFT transfer transaction has been successfully submitted to the blockchain.'),
   ).toBeVisible();
   await page.getByRole('button', { name: 'OK' }).click();
   await expect(page.getByRole('button', { name: 'Update Pending' })).toBeVisible();
@@ -60,7 +60,7 @@ test('Verify that an NFT can be Transfer to another account', async () => {
   await page.getByRole('button', { name: 'Transfer' }).click();
   await page.getByRole('button', { name: 'Transfer' }).click();
   await expect(
-    page.getByText('The NFT transfer transaction has been successfully submitted to the blockchain.')
+    page.getByText('The NFT transfer transaction has been successfully submitted to the blockchain.'),
   ).toBeVisible();
   await page.getByRole('button', { name: 'OK' }).click();
   await expect(page.getByRole('button', { name: 'Update Pending' })).toBeVisible();

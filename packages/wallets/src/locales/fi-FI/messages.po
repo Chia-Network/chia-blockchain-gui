@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-24 00:04\n"
+"PO-Revision-Date: 2024-03-10 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -24,11 +24,11 @@ msgstr "-"
 
 #: src/components/WalletSend.tsx:367
 msgid "- Memo helps the receiver side to identify the payment.<0/>- Anything you enter will be publicly accessible on the blockchain."
-msgstr ""
+msgstr "- Memo auttaa vastaanottajan puolta tunnistamaan maksun.<0/>- Kaikki memoon kirjoittamasi on julkisesti saatavilla lohkoketjussa."
 
 #: src/components/WalletSend.tsx:294
 msgid "- Set a time frame which allows you claw back (revoke) the transaction.<0/>- Recipient of the transaction can only claim the funds once that time frame expires."
-msgstr ""
+msgstr "- Aseta aikaikuna, jonka aikana voit peruuttaa transaktion. 0/>- Transaktion vastaanottaja voi kuitata varat vasta kun aikaikkuna on umpeutunut."
 
 #: src/components/WalletHistory.tsx:118
 msgid "+"
@@ -44,7 +44,7 @@ msgstr "Lisää"
 
 #: src/components/WalletSend.tsx:288
 msgid "Add option to claw back transaction"
-msgstr ""
+msgstr "Lisää peruttavissa oleva transaktio-optio"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:61
 #: src/components/cat/WalletCATCreateSimple.tsx:68
@@ -54,7 +54,7 @@ msgstr "Lisää Token"
 
 #: src/components/WalletSend.tsx:362
 msgid "Add transaction memo"
-msgstr ""
+msgstr "Lisää transaktiomemo"
 
 #: src/components/cat/WalletCATCreateSimple.tsx:92
 msgid "Adding {0} token"
@@ -71,7 +71,7 @@ msgstr "Osoite"
 
 #: src/components/AddressBookAutocomplete.tsx:65
 msgid "Address or Contact"
-msgstr ""
+msgstr "Osoite tai kontakti"
 
 #: src/components/cat/WalletCATSend.tsx:214
 #: src/components/WalletSend.tsx:241
@@ -80,15 +80,15 @@ msgstr "Määrä"
 
 #: src/components/card/WalletCardCRCatApprove.tsx:71
 msgid "Approve"
-msgstr ""
+msgstr "Hyväksy"
 
 #: src/components/crCat/CrCatApprovePendingDialog.tsx:91
 msgid "Approve pending CR-CAT transactions"
-msgstr ""
+msgstr "Hyväksy vireillä olevat CR-CAT-tapahtumat"
 
 #: src/components/crCat/CrCatApprovePendingDialog.tsx:147
 msgid "Approve pending transactions"
-msgstr ""
+msgstr "Hyväksy vireillä olevat tapahtumat"
 
 #: src/components/WalletHeader.tsx:30
 msgid "Are you sure you want to delete unconfirmed transactions?"
@@ -114,7 +114,7 @@ msgstr "Valtuutettu Lompakko"
 
 #: src/components/card/WalletCardCRCatRestrictions.tsx:44
 msgid "Authorized providers"
-msgstr ""
+msgstr "Valtuutetut palveluntarjoajat"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:234
 msgid "Auto-claim transactions with this fee from now on."
@@ -122,7 +122,7 @@ msgstr "Lunasta transaktiot automaattisesti tällä maksusummalla tästä lähti
 
 #: src/components/WalletSend.tsx:336
 msgid "Before sending this transaction, you should ensure that the recipient has a wallet that can claim it manually after the timer has expired."
-msgstr ""
+msgstr "Ennen tämän transaktion lähettämistä sinun tulee varmistaa, että vastaanottajalla on lompakko, joka voi lunastaa transaktion ajastimen päättymisen jälkeen."
 
 #: src/components/WalletHistoryClawbackChip.tsx:61
 msgid "Can be claimed in "
@@ -140,7 +140,7 @@ msgstr "Chiaa (XCH) ei voi lähettää CAT-osoitteeseen. Anna chia-osoite."
 
 #: src/components/card/WalletCardCRCatRestrictions.tsx:40
 msgid "CAT credential restrictions"
-msgstr ""
+msgstr "CAT käyttöoikeusrajoitukset"
 
 #: src/components/WalletsSidebar.tsx:130
 #~ msgid "Check my snapshot balance"
@@ -167,11 +167,11 @@ msgstr "Lunastetaan..."
 
 #: src/components/WalletIcon.tsx:17
 msgid "Classic version of Stably USDS as held by Prime Trust"
-msgstr ""
+msgstr "Classic USDS Prime Trustin hallinnassa"
 
 #: src/components/WalletHistory.tsx:433
 msgid "Claw back expiration"
-msgstr ""
+msgstr "Takaisinvedon vanhentuminen"
 
 #: src/components/WalletHistoryClawbackChip.tsx:94
 msgid "Claw back this transaction"
@@ -291,7 +291,7 @@ msgstr "DID-lompakko"
 
 #: src/components/WalletSend.tsx:327
 msgid "Disable"
-msgstr ""
+msgstr "Poista Käytöstä"
 
 #: src/components/create/WalletCreateList.tsx:39
 msgid "Distributed Identity"
@@ -328,7 +328,7 @@ msgstr "HD- eli hierarkis-deterministiset avaimet ovat julkisen ja salaisen avai
 msgid ""
 "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a\n"
 "higher fee."
-msgstr ""
+msgstr "Jos haluat nopeuttaa transaktiota, poista vahvistamattomat transaktiot ja yritä uudelleen korkeammalla maksulla."
 
 #: src/components/WalletSendTransactionResultDialog.tsx:41
 #~ msgid "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a higher fee."
@@ -373,7 +373,7 @@ msgstr "Muistiot"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:16
 msgid "Mempool Conflict"
-msgstr ""
+msgstr "Mempoolin Konflikti"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:20
 msgid "Mempool Full"
@@ -460,7 +460,7 @@ msgstr "Liitä muistisanat ({0} sanaa)"
 
 #: src/components/crCat/CrCatApprovePendingDialog.tsx:82
 msgid "Payments approved"
-msgstr ""
+msgstr "Hyväksytyt maksut"
 
 #: src/components/WalletHistory.tsx:202
 msgid "Pending"
@@ -472,7 +472,7 @@ msgstr "Avoin Saldo"
 
 #: src/components/card/WalletCardCRCatApprove.tsx:47
 msgid "Pending Balance for Approval"
-msgstr ""
+msgstr "Hyväksyntää odottava saldo"
 
 #: src/components/card/WalletCardPendingChange.tsx:41
 msgid "Pending Change"
@@ -488,11 +488,11 @@ msgstr "Avoin Kokonaissumma"
 
 #: src/components/crCat/CrCatApprovePendingDialog.tsx:83
 msgid "Please allow some time for the payments to reflect in the blockchain."
-msgstr ""
+msgstr "Anna jonkin verran aikaa maksujen näkymiseen lohkoketjussa."
 
 #: src/components/crCat/CrCatApprovePendingDialog.tsx:120
 msgid "Please enter a transaction fee to approve the above amount:"
-msgstr ""
+msgstr "Ole hyvä ja syötä siirtomaksu hyväksyäksesi yllä olevan summan:"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:214
 msgid "Please enter a transaction fee to claim the above amount:"
@@ -544,11 +544,11 @@ msgstr "Portti"
 
 #: src/components/crCat/CrCatAuthorizedProviders.tsx:37
 msgid "Provider's ID"
-msgstr ""
+msgstr "Toimittajan Tunniste"
 
 #: src/components/crCat/CrCatAuthorizedProviders.tsx:51
 msgid "Provider's website"
-msgstr ""
+msgstr "Toimitajan sivusto"
 
 #: src/components/create/WalletCreateList.tsx:45
 msgid "Rate Limited"
@@ -585,7 +585,7 @@ msgstr "Uudelleennimeä Lompakko"
 
 #: src/components/WalletIcon.tsx:41
 msgid "Restricted CAT"
-msgstr ""
+msgstr "Rajoitettu CAT"
 
 #: src/components/WalletHistory.tsx:208
 msgid "Retire"
@@ -652,14 +652,14 @@ msgstr "Derivaatioindeksi asettaa lompakon osoitteiden määrän, jota lompakko 
 
 #: src/components/cat/WalletCATSend.tsx:200
 msgid "The recipient of this transaction will need to have valid credentials in order to claim the sent assets. See the CR CAT restrictions above."
-msgstr ""
+msgstr "Tämän tapahtuman vastaanottajalla on oltava voimassa olevat käyttöioikeustiedot lähetettyjen assettien lunastamiseksi. Katso CR CAT -rajoitukset yllä."
 
 #: src/components/WalletSendTransactionResultDialog.tsx:44
 msgid ""
 "The transaction could not be immediately included in the mempool because the specified fee is too low. The\n"
 "transaction will be retried periodically, and may be included in the mempool once fees are lower, or if\n"
 "space becomes available."
-msgstr ""
+msgstr "Tapahtumaa ei voitu välittömästi sisällyttää mempooliin, koska määritetty transaktiomaksu on liian alhainen. Transaktiota yritetään säännöllisesti uudelleen ja se voidaan sisällyttää mempooliin, kun tarvittavat maksutasot ovat pienentyneet tai kun tilaa tulee saataville."
 
 #: src/components/WalletSendTransactionResultDialog.tsx:34
 #~ msgid "The transaction could not be immediately included in the mempool because the specified fee is too low. The transaction will be retried periodically, and may be included in the mempool once fees are lower, or if space becomes available."
@@ -670,7 +670,7 @@ msgid ""
 "The transaction is pending inclusion in the mempool because it conflicts with one or more other transactions\n"
 "already in the mempool. The transaction will be retried periodically, and may be included in the mempool if\n"
 "the conflicting transactions are removed."
-msgstr ""
+msgstr "Transaktio odottaa mempooliin sisällyttämistä, koska se on ristiriidassa yhden tai useamman muun mempoolin transaktion kanssa. Transaktiota yritetään säännöllisesti uudelleen ja se voidaan sisällyttää mempooliin jos ristiriitaiset tapahtumat poistetaan mempoolista."
 
 #: src/components/WalletBadge.tsx:26
 msgid "This access token is verified"
@@ -764,7 +764,7 @@ msgstr "Lompakon Nimi"
 
 #: src/components/crCat/CrCatApprovePendingDialog.tsx:115
 msgid "Wallet needs to be synced before approving transactions"
-msgstr ""
+msgstr "Lompakko on synkronissa ennen transaktioiden hyväksymistä"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:208
 msgid "Wallet needs to be synced for claiming clawback transactions"
@@ -796,11 +796,11 @@ msgstr "Voit muuttaa automaattista lunastusmaksua Asetuksista."
 
 #: src/components/crCat/CrCatFlags.tsx:71
 msgid "You do not have this verifiable credential or it is not from the correct authorized provided"
-msgstr ""
+msgstr "Sinulla ei ole tätä todennettavissa olevaa käyttöoikeustietoa tai se ei ole oikealta valtuuttajalta"
 
 #: src/components/crCat/CrCatFlags.tsx:69
 msgid "You have this verifiable credential from the correct authorized provider"
-msgstr ""
+msgstr "Sinulla on tämä todennettavissa oleva käyttöoikeustieto oikealta valtuuttajalta"
 
 #: src/components/WalletsSidebar.tsx:106
 #~ msgid "Your CAT tokens have been upgraded!"

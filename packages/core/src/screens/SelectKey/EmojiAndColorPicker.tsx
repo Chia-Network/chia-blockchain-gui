@@ -75,7 +75,7 @@ export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
         onClickOutside();
       }
     },
-    [onClickOutside]
+    [onClickOutside],
   );
 
   React.useEffect(() => {

@@ -11,7 +11,9 @@ import NFTContextualActions, { NFTContextualActionTypes } from '../NFTContextual
 const SelectedItemsContainer = styled.div`
   color: ${Color.Neutral[50]};
   background: ${alpha(Color.Neutral[900], 0.87)};
-  box-shadow: 0px 11px 14px -7px ${alpha(Color.Neutral[900], 0.2)}, 0px 23px 36px 3px ${alpha(Color.Neutral[900], 0.14)},
+  box-shadow:
+    0px 11px 14px -7px ${alpha(Color.Neutral[900], 0.2)},
+    0px 23px 36px 3px ${alpha(Color.Neutral[900], 0.14)},
     0px 9px 44px 8px ${alpha(Color.Neutral[900], 0.12)};
   border-radius: 16px;
   padding: 12px 32px;

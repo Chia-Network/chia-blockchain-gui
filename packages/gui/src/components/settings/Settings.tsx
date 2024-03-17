@@ -1,6 +1,6 @@
 import { useLocalStorage } from '@chia-network/api-react';
 import { Flex, LayoutDashboardSub, Mode, useMode } from '@chia-network/core';
-import { Trans } from '@lingui/macro';
+import { Trans, t } from '@lingui/macro';
 import { Typography, Tab, Tabs } from '@mui/material';
 import Badge from '@mui/material/Badge';
 import React, { useMemo } from 'react';
@@ -26,24 +26,24 @@ export default function Settings() {
 
   const settingsTabs = useMemo(() => {
     let tabs = [
-      { id: 'general', label: 'General', Component: SettingsGeneral, path: 'general' },
+      { id: 'general', label: t`General`, Component: SettingsGeneral, path: 'general' },
       {
         id: 'custody',
-        label: 'Custody',
+        label: t`Custody`,
         Component: SettingsCustody,
         path: 'custody',
         badge: wasSettingsCustodyVisited ? undefined : 'NEW',
       },
-      { id: 'profiles', label: 'Profiles (DIDs)', Component: SettingsProfiles, path: 'profiles/*' },
-      { id: 'nft', label: 'NFT', Component: SettingsNFT, path: 'nft' },
-      { id: 'datalayer', label: 'DataLayer', Component: SettingsDataLayer, path: 'datalayer' },
-      { id: 'harvester', label: 'Harvester', Component: SettingsHarvester, path: 'harvester' },
-      { id: 'integration', label: 'Integration', Component: SettingsIntegration, path: 'integration' },
-      { id: 'notifications', label: 'Notifications', Component: SettingsNotifications, path: 'notifications' },
-      { id: 'advanced', label: 'Advanced', Component: SettingsAdvanced, path: 'advanced' },
+      { id: 'profiles', label: t`Profiles (DIDs)`, Component: SettingsProfiles, path: 'profiles/*' },
+      { id: 'nft', label: t`NFT`, Component: SettingsNFT, path: 'nft' },
+      { id: 'datalayer', label: t`DataLayer`, Component: SettingsDataLayer, path: 'datalayer' },
+      { id: 'harvester', label: t`Harvester`, Component: SettingsHarvester, path: 'harvester' },
+      { id: 'integration', label: t`Integration`, Component: SettingsIntegration, path: 'integration' },
+      { id: 'notifications', label: t`Notifications`, Component: SettingsNotifications, path: 'notifications' },
+      { id: 'advanced', label: t`Advanced`, Component: SettingsAdvanced, path: 'advanced' },
     ];
     if (mode === Mode.WALLET) {
-      tabs = tabs.filter((t) => t.id !== 'harvester');
+      tabs = tabs.filter((tab) => tab.id !== 'harvester');
     }
     return tabs;
   }, [wasSettingsCustodyVisited, mode]);
@@ -82,7 +82,7 @@ export default function Settings() {
             sx={{ '& .MuiTabs-flexContainer': { paddingTop: '10px' } }}
           >
             {settingsTabs.map((tab) => {
-              let TabLabel = <Trans>{tab.label}</Trans>;
+              let TabLabel: React.ReactNode = tab.label;
               if (tab.badge) {
                 TabLabel = (
                   <Badge

@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-31 00:05\n"
+"PO-Revision-Date: 2024-03-10 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -175,15 +175,15 @@ msgstr ""
 
 #: src/components/WalletHistoryClawbackChip.tsx:94
 msgid "Claw back this transaction"
-msgstr ""
+msgstr "Gör clawback för denna transaktion"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:267
 msgid "Claw back Transaction"
-msgstr ""
+msgstr "Clawback på transaktion"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:138
 msgid "Claw Back Transaction"
-msgstr ""
+msgstr "Clawback på transaktion"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:130
 msgid "Clawback payment claimed"
@@ -213,7 +213,7 @@ msgstr ""
 #: src/components/ClawbackClaimTransactionDialog.tsx:256
 #: src/components/crCat/CrCatApprovePendingDialog.tsx:136
 msgid "Close"
-msgstr ""
+msgstr "Stäng"
 
 #: src/components/WalletHeader.tsx:25
 msgid "Confirmation"
@@ -568,7 +568,7 @@ msgstr "Mottagaradress"
 
 #: src/components/cat/WalletCATSend.tsx:121
 msgid "Recipient address is not a coloured wallet address. Please enter a coloured wallet address"
-msgstr ""
+msgstr "Mottagaradressen är inte en färgad plånboksadress. Ange en färgad plånboksadress"
 
 #: src/constants/WalletName.ts:26
 msgid "Recoverable Wallet"
