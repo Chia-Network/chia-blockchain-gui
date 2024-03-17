@@ -4,6 +4,7 @@ import type BlockRecord from '../@types/BlockRecord';
 import type BlockchainState from '../@types/BlockchainState';
 import type Connection from '../@types/Connection';
 import type FeeEstimate from '../@types/FeeEstimate';
+import SpendBundle from '../@types/SpendBundle';
 import Client from '../Client';
 import type Message from '../Message';
 import ServiceName from '../constants/ServiceName';
@@ -50,6 +51,10 @@ export default class FullNode extends Service {
 
   async getFeeEstimate(args: { targetTimes: number[]; spendType: string }) {
     return this.command<FeeEstimate>('get_fee_estimate', args);
+  }
+
+  async pushTx(args: { spendBundle: SpendBundle }) {
+    return this.command<void>('push_tx', args);
   }
 
   onBlockchainState(callback: (data: any, message: Message) => void, processData?: (data: any) => any) {

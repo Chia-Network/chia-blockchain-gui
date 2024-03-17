@@ -142,6 +142,10 @@ export const fullNodeApi = apiWithTag.injectEndpoints({
     getFeeEstimate: query(build, FullNode, 'getFeeEstimate', {
       providesTags: [{ type: 'FeeEstimate' }],
     }),
+
+    pushTx: mutation(build, FullNode, 'pushTx', {
+      invalidatesTags: [{ type: 'Transactions', id: 'LIST' }],
+    }),
   }),
 });
 
@@ -156,4 +160,5 @@ export const {
   useGetBlockQuery,
   useGetBlockRecordQuery,
   useGetFeeEstimateQuery,
+  usePushTxMutation,
 } = fullNodeApi;
