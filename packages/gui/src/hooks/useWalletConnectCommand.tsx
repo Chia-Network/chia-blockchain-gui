@@ -8,6 +8,7 @@ import type Notification from '../@types/Notification';
 import type Pair from '../@types/Pair';
 import type WalletConnectCommandParam from '../@types/WalletConnectCommandParam';
 import WalletConnectConfirmDialog from '../components/walletConnect/WalletConnectConfirmDialog';
+import WalletConnectRequestPermissionsConfirmDialog from '../components/walletConnect/WalletConnectRequestPermissionsConfirmDialog';
 import NotificationType from '../constants/NotificationType';
 import walletConnectCommands from '../constants/WalletConnectCommands';
 import prepareWalletConnectCommand from '../util/prepareWalletConnectCommand';
@@ -25,7 +26,7 @@ type UseWalletConnectCommandOptions = {
 function parseNotification(
   fingerprint: number,
   values: Record<string, string | number | boolean>,
-  pair: Pair,
+  pair: Pair
 ): Notification {
   const { type, allFingerprints, offerData } = values;
 
@@ -113,6 +114,21 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
       return pair.bypassCommands[command];
     }
 
+    if (command === 'request_permissions') {
+      const isConfirmed = await openDialog(
+        <WalletConnectRequestPermissionsConfirmDialog
+          topic={topic}
+          message={message}
+          fingerprint={fingerprint}
+          isDifferentFingerprint={isDifferentFingerprint}
+          params={params}
+          values={values}
+          onChange={onChange}
+        />
+      );
+      return isConfirmed;
+    }
+
     const isConfirmed = await openDialog(
       <WalletConnectConfirmDialog
         topic={topic}
@@ -124,7 +140,7 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
         params={params}
         values={values}
         onChange={onChange}
-      />,
+      />
     );
 
     return isConfirmed;

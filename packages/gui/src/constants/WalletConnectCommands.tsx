@@ -12,6 +12,20 @@ import WalletConnectOfferPreview from '../components/walletConnect/WalletConnect
 
 const walletConnectCommands: WalletConnectCommand[] = [
   {
+    command: 'requestPermissions',
+    label: <Trans>Request Permissions</Trans>,
+    description: <Trans>App is requesting permission to execute these commands</Trans>,
+    service: ServiceName.WALLET,
+    params: [
+      {
+        name: WalletConnectCommandParamName.COMMANDS,
+        type: 'object',
+        label: <Trans>Commands</Trans>,
+        displayComponent: (value) => <>{JSON.stringify(value, null, 2)}</>,
+      },
+    ],
+  },
+  {
     command: 'logIn',
     label: <Trans>Log In</Trans>,
     service: ServiceName.WALLET,

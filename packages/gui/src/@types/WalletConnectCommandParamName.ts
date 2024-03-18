@@ -10,6 +10,7 @@ enum WalletConnectCommandParamName {
   COIN_ID = 'coinId',
   COIN_IDS = 'coinIds',
   COIN_NAME = 'coinName',
+  COMMANDS = 'commands',
   COUNT = 'count',
   DID = 'did',
   DID_COIN_DICT = 'didCoinDict',
