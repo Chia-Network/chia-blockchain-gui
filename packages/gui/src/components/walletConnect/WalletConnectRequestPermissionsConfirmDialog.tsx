@@ -2,7 +2,7 @@ import { useGetKeysQuery } from '@chia-network/api-react';
 import { ConfirmDialog, Flex, LoadingOverlay } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Typography, Divider } from '@mui/material';
-import React, { type ReactNode, useState, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 
 import type WalletConnectCommandParam from '../../@types/WalletConnectCommandParam';
 import useWalletConnectPairs from '../../hooks/useWalletConnectPairs';
@@ -11,7 +11,6 @@ import WalletConnectMetadata from './WalletConnectMetadata';
 
 export type WalletConnectRequestPermissionsConfirmDialogProps = {
   topic: string;
-  message: ReactNode;
   fingerprint: number;
   isDifferentFingerprint: boolean;
   params: WalletConnectCommandParam[];
@@ -26,7 +25,6 @@ export default function WalletConnectRequestPermissionsConfirmDialog(
 ) {
   const {
     topic,
-    message,
     fingerprint,
     isDifferentFingerprint,
     onClose = () => {},
@@ -37,13 +35,21 @@ export default function WalletConnectRequestPermissionsConfirmDialog(
   } = props;
 
   const [values, setValues] = useState(defaultValues);
-  const { getPairBySession } = useWalletConnectPairs();
+  const { getPairBySession, bypassCommands } = useWalletConnectPairs();
   const { data: keys, isLoading: isLoadingPublicKeys } = useGetKeysQuery();
   const key = keys?.find((item) => item.fingerprint === fingerprint);
 
   const pair = useMemo(() => getPairBySession(topic), [topic, getPairBySession]);
 
   function handleClose(confirmed: boolean) {
+    if (confirmed) {
+      params.forEach((element) => {
+        if (element.name === 'commands') {
+          bypassCommands(topic, values[element.name], true);
+        }
+      });
+    }
+
     onClose?.(confirmed);
   }
 
@@ -63,7 +69,7 @@ export default function WalletConnectRequestPermissionsConfirmDialog(
     >
       <LoadingOverlay isLoading={isLoadingPublicKeys}>
         <Flex flexDirection="column" gap={2}>
-          <Typography variant="body1">{message}</Typography>
+          <Typography variant="body1">An app has requested permission to execute the following commands.</Typography>
 
           {params.length > 0 && (
             <Flex flexDirection="column" gap={2}>

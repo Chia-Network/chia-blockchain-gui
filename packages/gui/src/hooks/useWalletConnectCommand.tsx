@@ -113,12 +113,21 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
       log(`bypassing command ${command} with value ${pair.bypassCommands[command]}`);
       return pair.bypassCommands[command];
     }
-
-    if (command === 'request_permissions') {
+    if (command === 'requestPermissions') {
+      let hasPermissions = true;
+      if (values.commands) {
+        values.commands.forEach((cmd: string) => {
+          if (!pair.bypassCommands || !pair.bypassCommands[cmd]) {
+            hasPermissions = false;
+          }
+        });
+      }
+      if (hasPermissions) {
+        return true;
+      }
       const isConfirmed = await openDialog(
         <WalletConnectRequestPermissionsConfirmDialog
           topic={topic}
-          message={message}
           fingerprint={fingerprint}
           isDifferentFingerprint={isDifferentFingerprint}
           params={params}
@@ -142,7 +151,6 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
         onChange={onChange}
       />
     );
-
     return isConfirmed;
   }
 
