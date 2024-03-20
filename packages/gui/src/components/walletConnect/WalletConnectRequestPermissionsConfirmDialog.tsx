@@ -5,6 +5,7 @@ import { Typography, Divider } from '@mui/material';
 import React, { useState, useMemo } from 'react';
 
 import type WalletConnectCommandParam from '../../@types/WalletConnectCommandParam';
+import walletConnectCommands from '../../constants/WalletConnectCommands';
 import useWalletConnectPairs from '../../hooks/useWalletConnectPairs';
 
 import WalletConnectMetadata from './WalletConnectMetadata';
@@ -45,7 +46,12 @@ export default function WalletConnectRequestPermissionsConfirmDialog(
     if (confirmed) {
       params.forEach((element) => {
         if (element.name === 'commands') {
-          bypassCommands(topic, values[element.name], true);
+          // filter out commands that don't allow bypassing confirmation
+          const cmds = values[element.name].filter((cmd: string) => {
+            const cmdDescription = walletConnectCommands.find((item) => item.command === cmd);
+            return cmdDescription?.bypassConfirm;
+          });
+          bypassCommands(topic, cmds, true);
         }
       });
     }
