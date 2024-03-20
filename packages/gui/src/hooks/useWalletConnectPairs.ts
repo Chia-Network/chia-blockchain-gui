@@ -20,6 +20,7 @@ export type Pairs = {
   removeSessionFromPair: (sessionTopic: string) => void;
 
   bypassCommand: (sessionTopic: string, command: string, confirm: boolean) => void;
+  bypassCommands: (sessionTopic: string, commands: string[], confirm: boolean) => void;
   removeBypassCommand: (sessionTopic: string, command: string) => void;
   resetBypassForAllPairs: () => void;
   resetBypassForPair: (pairTopic: string) => void;
