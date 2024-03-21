@@ -1,6 +1,7 @@
 import { ServiceName } from '@chia-network/api';
 import { MojoToChia } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
+import { Typography } from '@mui/material';
 import React from 'react';
 
 import type WalletConnectCommand from '../@types/WalletConnectCommand';
@@ -214,14 +215,23 @@ const walletConnectCommands: WalletConnectCommand[] = [
       },
       {
         name: WalletConnectCommandParamName.SAFE_MODE,
-        label: (
-          <Trans>
-            WARNING! When safeMode=false it means you could be signing a transaction, not just a message. Be sure you
-            trust the source that's requesting this.
-          </Trans>
-        ),
+        label: '',
         type: 'boolean',
         isOptional: true,
+        displayComponent: (value) =>
+          value ? (
+            ''
+          ) : (
+            <>
+              <Typography variant="h5" color="red">
+                WARNING!
+              </Typography>
+              <Typography variant="subtitle1" color="red">
+                App is requesting to sign a transaction with your private key. Please be sure you trust the app before
+                proceeding.
+              </Typography>
+            </>
+          ),
       },
     ],
   },
