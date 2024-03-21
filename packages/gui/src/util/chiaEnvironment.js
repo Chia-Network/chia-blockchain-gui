@@ -8,9 +8,9 @@ const path = require('path');
 
 const PY_MAC_DIST_FOLDER = '../../../app.asar.unpacked/daemon';
 const PY_WIN_DIST_FOLDER = '../../../app.asar.unpacked/daemon';
-const PY_DIST_FILE = 'daemon';
-const PY_FOLDER = '../../../chia/daemon';
-const PY_MODULE = 'server'; // without .py suffix
+const PY_DIST_FILE = 'chia';
+const PY_FOLDER = '../../../chia/cmds';
+const PY_MODULE = 'chia'; // without .py suffix
 
 let pyProc = null;
 let haveCert = null;
@@ -67,26 +67,6 @@ const getChiaVersion = () => {
   return version;
 };
 
-const spawnChildProcess = (command, args = [], options = undefined) => {
-  // As of Feb 11 2024, there is a bug in Electron that prevents electron from exiting when a child process is spawned and detached.
-  // This is a workaround for that bug.
-  if (process.platform === 'linux') {
-    // https://github.com/electron/electron/issues/34808#issuecomment-1275530924
-    return childProcess.spawn(
-      '/bin/bash',
-      [
-        '-c',
-        'for fd in $(ls /proc/$$/fd); do case "$fd" in 0|1|2|255) ;; *) eval "exec $fd<&-" ;; esac; done; exec "$@"',
-        '--',
-        command,
-        ...args,
-      ],
-      options,
-    );
-  }
-  return childProcess.spawn(command, args, options);
-};
-
 const startChiaDaemon = () => {
   const script = getScriptPath(PY_DIST_FILE);
   const processOptions = {};
@@ -103,7 +83,7 @@ const startChiaDaemon = () => {
     processOptions.shell = true;
   } else {
     processOptions.detached = true;
-    processOptions.stdio = 'ignore';
+    // processOptions.stdio = 'ignore';
     processOptions.windowsHide = true;
   }
   pyProc = null;
@@ -111,26 +91,26 @@ const startChiaDaemon = () => {
     try {
       console.info('Running python executable: ');
       if (processOptions.stdio === 'ignore') {
-        const subProcess = spawnChildProcess(script, ['--wait-for-unlock'], processOptions);
+        const subProcess = childProcess.spawn(script, ['start', 'daemon'], processOptions);
         subProcess.unref();
       } else {
         const Process = childProcess.spawn;
-        pyProc = new Process(script, ['--wait-for-unlock'], processOptions);
+        pyProc = new Process(script, ['start', 'daemon'], processOptions);
       }
     } catch (e) {
       console.info('Running python executable: Error: ');
-      console.info(`Script ${script}`);
+      console.info(`Script: ${script} start daemon`);
     }
   } else {
     console.info('Running python script');
-    console.info(`Script ${script}`);
+    console.info(`Script: python ${script} start daemon`);
 
     if (processOptions.stdio === 'ignore') {
-      const subProcess = spawnChildProcess('python', [script, '--wait-for-unlock'], processOptions);
+      const subProcess = childProcess.spawn('python', [script, 'start', 'daemon'], processOptions);
       subProcess.unref();
     } else {
       const Process = childProcess.spawn;
-      pyProc = new Process('python', [script, '--wait-for-unlock'], processOptions);
+      pyProc = new Process('python', [script, 'start', 'daemon'], processOptions);
     }
   }
   if (pyProc != null && processOptions.stdio !== 'ignore') {
