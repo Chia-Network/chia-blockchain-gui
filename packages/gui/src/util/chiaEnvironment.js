@@ -63,24 +63,6 @@ const getChiaVersion = () => {
 };
 
 const startChiaDaemon = () => {
-  const processOptions = {};
-  if (process.platform === 'win32') {
-    // We want to detach child daemon process from parent GUI process.
-    // You may think `detached: true` will do but it shows blank terminal on Windows.
-    // In order to hide the blank terminal while detaching child process,
-    // {detached: false, windowsHide: false, shell: true} works which is exact opposite of what we expect
-    // Please see the comment below for more details.
-    // https://github.com/nodejs/node/issues/21825#issuecomment-503766781
-    processOptions.detached = false;
-    processOptions.stdio = 'ignore';
-    processOptions.windowsHide = false;
-    processOptions.shell = true;
-  } else {
-    processOptions.detached = true;
-    // processOptions.stdio = 'ignore';
-    processOptions.windowsHide = true;
-  }
-
   pyProc = null;
 
   if (guessPackaged()) {
@@ -88,13 +70,8 @@ const startChiaDaemon = () => {
     console.info('Running python executable: ');
 
     try {
-      if (processOptions.stdio === 'ignore') {
-        const subProcess = childProcess.spawn(executablePath, PY_DIST_EXEC_ARGS, processOptions);
-        subProcess.unref();
-      } else {
-        const Process = childProcess.spawn;
-        pyProc = new Process(executablePath, PY_DIST_EXEC_ARGS, processOptions);
-      }
+      const Process = childProcess.spawn;
+      pyProc = new Process(executablePath, PY_DIST_EXEC_ARGS);
     } catch (e) {
       console.info('Running python executable: Error: ');
       console.info(`Script: ${executablePath} ${PY_DIST_EXEC_ARGS.join(' ')}`);
@@ -103,21 +80,12 @@ const startChiaDaemon = () => {
     console.info('Running python script');
     console.info(`Script: python ${PY_DEV_EXEC_ARGS.join(' ')}`);
 
-    if (processOptions.stdio === 'ignore') {
-      const subProcess = childProcess.spawn('python', PY_DEV_EXEC_ARGS, processOptions);
-      subProcess.unref();
-    } else {
-      const Process = childProcess.spawn;
-      pyProc = new Process('python', PY_DEV_EXEC_ARGS, processOptions);
-    }
+    const Process = childProcess.spawn;
+    pyProc = new Process('python', PY_DEV_EXEC_ARGS);
   }
 
   if (!pyProc) {
     throw new Error('Failed to start chia daemon');
-  }
-
-  if (processOptions.stdio === 'ignore') {
-    return;
   }
 
   pyProc.stdout.setEncoding('utf8');
