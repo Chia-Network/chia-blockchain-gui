@@ -11,7 +11,7 @@ const PY_WIN_DIST_FOLDER = '../../../app.asar.unpacked/daemon';
 const PY_DIST_EXECUTABLE = 'chia';
 const PY_DIST_EXEC_ARGS = Object.freeze(['start', 'daemon']);
 
-const PY_DEV_EXECUTABLE = '../../../chia/cmds/main.py';
+const PY_DEV_EXECUTABLE = `../../../venv/${process.platform === 'win32' ? 'Scripts/chia.exe' : 'bin/chia'}`;
 const PY_DEV_EXEC_ARGS = Object.freeze([PY_DEV_EXECUTABLE, 'start', 'daemon']);
 
 let pyProc = null;
