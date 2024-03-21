@@ -8,9 +8,11 @@ const path = require('path');
 
 const PY_MAC_DIST_FOLDER = '../../../app.asar.unpacked/daemon';
 const PY_WIN_DIST_FOLDER = '../../../app.asar.unpacked/daemon';
-const PY_DIST_FILE = 'chia';
-const PY_FOLDER = '../../../chia/cmds';
-const PY_MODULE = 'chia'; // without .py suffix
+const PY_DIST_EXECUTABLE = 'chia';
+const PY_DIST_EXEC_ARGS = Object.freeze(['start', 'daemon']);
+
+const PY_DEV_EXECUTABLE = '../../../chia/cmds/main.py';
+const PY_DEV_EXEC_ARGS = Object.freeze([PY_DEV_EXECUTABLE, 'start', 'daemon']);
 
 let pyProc = null;
 let haveCert = null;
@@ -32,13 +34,6 @@ const getExecutablePath = (dist_file) => {
     return path.join(__dirname, PY_WIN_DIST_FOLDER, `${dist_file}.exe`);
   }
   return path.join(__dirname, PY_MAC_DIST_FOLDER, dist_file);
-};
-
-const getScriptPath = (dist_file) => {
-  if (!guessPackaged()) {
-    return path.join(PY_FOLDER, `${PY_MODULE}.py`);
-  }
-  return getExecutablePath(dist_file);
 };
 
 const getChiaVersion = () => {
@@ -68,7 +63,6 @@ const getChiaVersion = () => {
 };
 
 const startChiaDaemon = () => {
-  const script = getScriptPath(PY_DIST_FILE);
   const processOptions = {};
   if (process.platform === 'win32') {
     // We want to detach child daemon process from parent GUI process.
@@ -86,81 +80,91 @@ const startChiaDaemon = () => {
     // processOptions.stdio = 'ignore';
     processOptions.windowsHide = true;
   }
+
   pyProc = null;
+
   if (guessPackaged()) {
+    const executablePath = getExecutablePath(PY_DIST_EXECUTABLE);
+    console.info('Running python executable: ');
+
     try {
-      console.info('Running python executable: ');
       if (processOptions.stdio === 'ignore') {
-        const subProcess = childProcess.spawn(script, ['start', 'daemon'], processOptions);
+        const subProcess = childProcess.spawn(executablePath, PY_DIST_EXEC_ARGS, processOptions);
         subProcess.unref();
       } else {
         const Process = childProcess.spawn;
-        pyProc = new Process(script, ['start', 'daemon'], processOptions);
+        pyProc = new Process(executablePath, PY_DIST_EXEC_ARGS, processOptions);
       }
     } catch (e) {
       console.info('Running python executable: Error: ');
-      console.info(`Script: ${script} start daemon`);
+      console.info(`Script: ${executablePath} ${PY_DIST_EXEC_ARGS.join(' ')}`);
     }
   } else {
     console.info('Running python script');
-    console.info(`Script: python ${script} start daemon`);
+    console.info(`Script: python ${PY_DEV_EXEC_ARGS.join(' ')}`);
 
     if (processOptions.stdio === 'ignore') {
-      const subProcess = childProcess.spawn('python', [script, 'start', 'daemon'], processOptions);
+      const subProcess = childProcess.spawn('python', PY_DEV_EXEC_ARGS, processOptions);
       subProcess.unref();
     } else {
       const Process = childProcess.spawn;
-      pyProc = new Process('python', [script, 'start', 'daemon'], processOptions);
+      pyProc = new Process('python', PY_DEV_EXEC_ARGS, processOptions);
     }
   }
-  if (pyProc != null && processOptions.stdio !== 'ignore') {
-    pyProc.stdout.setEncoding('utf8');
 
-    pyProc.stdout.on('data', (data) => {
-      if (!haveCert) {
-        process.stdout.write('No cert\n');
-        // listen for ssl path message
-        try {
-          const strArr = data.toString().split('\n');
-          for (let i = 0; i < strArr.length; i++) {
-            const str = strArr[i];
-            try {
-              const json = JSON.parse(str);
-              global.cert_path = json.cert;
-              global.key_path = json.key;
-              // TODO Zlatko: cert_path and key_path were undefined. Prefixed them with global, which changes functionality.
-              // Do they even need to be globals?
-              if (global.cert_path && global.key_path) {
-                haveCert = true;
-                process.stdout.write('Have cert\n');
-                return;
-              }
-            } catch (e) {
-              // Do nothing
-            }
-          }
-        } catch (e) {
-          // Do nothing
-        }
-      }
-
-      process.stdout.write(data.toString());
-    });
-
-    pyProc.stderr.setEncoding('utf8');
-    pyProc.stderr.on('data', (data) => {
-      // Here is where the error output goes
-      process.stdout.write(`stderr: ${data.toString()}`);
-    });
-
-    pyProc.on('close', (code) => {
-      // Here you can get the exit code of the script
-      console.info(`closing code: ${code}`);
-    });
-
-    console.info('child process success');
+  if (!pyProc) {
+    throw new Error('Failed to start chia daemon');
   }
-  // pyProc.unref();
+
+  if (processOptions.stdio === 'ignore') {
+    return;
+  }
+
+  pyProc.stdout.setEncoding('utf8');
+
+  pyProc.stdout.on('data', (data) => {
+    if (!haveCert) {
+      process.stdout.write('No cert\n');
+      // listen for ssl path message
+      try {
+        const strArr = data.toString().split('\n');
+        for (let i = 0; i < strArr.length; i++) {
+          const str = strArr[i];
+          try {
+            const json = JSON.parse(str);
+            global.cert_path = json.cert;
+            global.key_path = json.key;
+            // TODO Zlatko: cert_path and key_path were undefined. Prefixed them with global, which changes functionality.
+            // Do they even need to be globals?
+            if (global.cert_path && global.key_path) {
+              haveCert = true;
+              process.stdout.write('Have cert\n');
+              return;
+            }
+          } catch (e) {
+            // Do nothing
+          }
+        }
+      } catch (e) {
+        // Do nothing
+      }
+    }
+
+    process.stdout.write(data.toString());
+  });
+
+  pyProc.stderr.setEncoding('utf8');
+  pyProc.stderr.on('data', (data) => {
+    // Here is where the error output goes
+    process.stdout.write(`stderr: ${data.toString()}`);
+  });
+
+  pyProc.on('close', (code) => {
+    // Here you can get the exit code of the script
+    console.info(`closing code: ${code}`);
+  });
+
+  console.info('child process success');
 };
 
 module.exports = {
