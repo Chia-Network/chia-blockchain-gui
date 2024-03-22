@@ -12,7 +12,7 @@ const PY_DIST_EXECUTABLE = 'chia';
 const PY_DIST_EXEC_ARGS = Object.freeze(['start', 'daemon']);
 
 const PY_DEV_EXECUTABLE = `../../../venv/${process.platform === 'win32' ? 'Scripts/chia.exe' : 'bin/chia'}`;
-const PY_DEV_EXEC_ARGS = Object.freeze([PY_DEV_EXECUTABLE, 'start', 'daemon']);
+const PY_DEV_EXEC_ARGS = Object.freeze(['start', 'daemon']);
 
 let pyProc = null;
 let haveCert = null;
@@ -68,20 +68,26 @@ const startChiaDaemon = () => {
   if (guessPackaged()) {
     const executablePath = getExecutablePath(PY_DIST_EXECUTABLE);
     console.info('Running python executable: ');
+    console.info(`Script: ${executablePath} ${PY_DIST_EXEC_ARGS.join(' ')}`);
 
     try {
       const Process = childProcess.spawn;
       pyProc = new Process(executablePath, PY_DIST_EXEC_ARGS);
     } catch (e) {
-      console.info('Running python executable: Error: ');
-      console.info(`Script: ${executablePath} ${PY_DIST_EXEC_ARGS.join(' ')}`);
+      console.error('Running python executable: Error: ');
+      console.error(e);
     }
   } else {
     console.info('Running python script');
-    console.info(`Script: python ${PY_DEV_EXEC_ARGS.join(' ')}`);
+    console.info(`Script: ${PY_DEV_EXECUTABLE} ${PY_DEV_EXEC_ARGS.join(' ')}`);
 
-    const Process = childProcess.spawn;
-    pyProc = new Process('python', PY_DEV_EXEC_ARGS);
+    try {
+      const Process = childProcess.spawn;
+      pyProc = new Process(PY_DEV_EXECUTABLE, PY_DEV_EXEC_ARGS);
+    } catch (e) {
+      console.error('Running python script: Error: ');
+      console.error(e);
+    }
   }
 
   if (!pyProc) {
