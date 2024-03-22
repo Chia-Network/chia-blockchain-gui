@@ -399,7 +399,7 @@ msgstr "Lägg till en plott"
 msgid "Add a Plot NFT"
 msgstr "Lägg till en plott-NFT"
 
-#: src/constants/WalletConnectCommands.tsx:556
+#: src/constants/WalletConnectCommands.tsx:566
 msgid "Add CAT Token"
 msgstr "Lägg till CAT-token"
 
@@ -431,11 +431,11 @@ msgstr "Lägg till mapp med plottar"
 msgid "Add Plot to Queue"
 msgstr "Lägg till plott i kön"
 
-#: src/constants/WalletConnectCommands.tsx:895
+#: src/constants/WalletConnectCommands.tsx:905
 msgid "Add Proofs"
 msgstr "Lägg till bevis"
 
-#: src/constants/WalletConnectCommands.tsx:855
+#: src/constants/WalletConnectCommands.tsx:865
 msgid "Add Proofs To Verifiable Credential"
 msgstr "Lägg till bevis för verifierbar autentiseringsuppgift"
 
@@ -447,10 +447,10 @@ msgstr "Lägg till verifierbar autentiseringsuppgift från fil"
 #: src/components/addressbook/ContactEdit.tsx:61
 #: src/components/notification/NotificationSendDialog.tsx:220
 #: src/components/signVerify/SigningEntityWalletAddress.tsx:45
-#: src/constants/WalletConnectCommands.tsx:126
-#: src/constants/WalletConnectCommands.tsx:201
-#: src/constants/WalletConnectCommands.tsx:252
-#: src/constants/WalletConnectCommands.tsx:532
+#: src/constants/WalletConnectCommands.tsx:127
+#: src/constants/WalletConnectCommands.tsx:202
+#: src/constants/WalletConnectCommands.tsx:262
+#: src/constants/WalletConnectCommands.tsx:542
 msgid "Address"
 msgstr "Adress"
 
@@ -513,9 +513,9 @@ msgstr "Avvisa alltid"
 #: src/components/offers/OfferEditorConditionsPanel.tsx:129
 #: src/components/offers2/OfferBuilderNFTRoyalties.tsx:121
 #: src/components/offers2/OfferBuilderWalletAmount.tsx:36
-#: src/constants/WalletConnectCommands.tsx:114
-#: src/constants/WalletConnectCommands.tsx:537
-#: src/constants/WalletConnectCommands.tsx:758
+#: src/constants/WalletConnectCommands.tsx:115
+#: src/constants/WalletConnectCommands.tsx:547
+#: src/constants/WalletConnectCommands.tsx:768
 msgid "Amount"
 msgstr "Belopp"
 
@@ -627,8 +627,8 @@ msgstr "Är du säker på att du vill använda k={plotSize}?"
 msgid "Asset"
 msgstr "Tillgång"
 
-#: src/constants/WalletConnectCommands.tsx:500
-#: src/constants/WalletConnectCommands.tsx:561
+#: src/constants/WalletConnectCommands.tsx:510
+#: src/constants/WalletConnectCommands.tsx:571
 msgid "Asset Id"
 msgstr "Tillgångs-ID"
 
@@ -695,7 +695,7 @@ msgstr "Genomsnittlig"
 msgid "Back"
 msgstr "Tillbaka"
 
-#: src/constants/WalletConnectCommands.tsx:770
+#: src/constants/WalletConnectCommands.tsx:780
 msgid "Backup DIDs"
 msgstr "Säkerhetskopiera DID:er"
 
@@ -841,7 +841,7 @@ msgstr "Avbryt"
 #: src/components/offers/ConfirmOfferCancellation.tsx:62
 #: src/components/offers/ConfirmOfferCancellation.tsx:129
 #: src/components/offers/OfferManager.tsx:323
-#: src/constants/WalletConnectCommands.tsx:392
+#: src/constants/WalletConnectCommands.tsx:402
 msgid "Cancel Offer"
 msgstr "Avbryt erbjudande"
 
@@ -904,7 +904,7 @@ msgstr "Ändringarna börjar gälla nästa gång Chia startas."
 #~ msgid "Chat on KeyBase"
 #~ msgstr "Chat on KeyBase"
 
-#: src/constants/WalletConnectCommands.tsx:415
+#: src/constants/WalletConnectCommands.tsx:425
 msgid "Check Offer Validity"
 msgstr "Kontrollera giltighet för erbjudandet"
 
@@ -979,7 +979,7 @@ msgstr ""
 msgid "Claim Rewards"
 msgstr "Begär in belöningar"
 
-#: src/constants/WalletConnectCommands.tsx:154
+#: src/constants/WalletConnectCommands.tsx:155
 msgid "Claw back or claim claw back transaction"
 msgstr ""
 
@@ -1018,7 +1018,7 @@ msgstr "Stäng"
 msgid "Closing down services"
 msgstr "Stänger ner tjänster"
 
-#: src/constants/WalletConnectCommands.tsx:612
+#: src/constants/WalletConnectCommands.tsx:622
 msgid "Coin Id"
 msgstr "Mynt-ID"
 
@@ -1026,7 +1026,7 @@ msgstr "Mynt-ID"
 msgid "Coin ID"
 msgstr "Mynt-ID"
 
-#: src/constants/WalletConnectCommands.tsx:160
+#: src/constants/WalletConnectCommands.tsx:161
 msgid "Coin Ids"
 msgstr "Mynt-ID:n"
 
@@ -1189,7 +1189,7 @@ msgstr "Kunde inte ansluta till värd {host} på port {port}"
 msgid "Could not parse offer data"
 msgstr "Det gick inte att analysera erbjudandedata"
 
-#: src/constants/WalletConnectCommands.tsx:994
+#: src/constants/WalletConnectCommands.tsx:1004
 msgid "Count"
 msgstr "Antal"
 
@@ -1244,7 +1244,7 @@ msgstr "Skapa ett moterbjudande"
 #~ msgid "Create new CAT Wallet"
 #~ msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:753
+#: src/constants/WalletConnectCommands.tsx:763
 msgid "Create new DID Wallet"
 msgstr "Skapa ny DID-plånbok"
 
@@ -1257,7 +1257,7 @@ msgstr "Skapa ny DID-plånbok"
 msgid "Create Offer"
 msgstr "Skapa erbjudande"
 
-#: src/constants/WalletConnectCommands.tsx:352
+#: src/constants/WalletConnectCommands.tsx:362
 msgid "Create Offer for Ids"
 msgstr "Skapa erbjudande för ID:n"
 
@@ -1491,11 +1491,11 @@ msgstr "URL till Dexie"
 #: src/components/addressbook/ContactEdit.tsx:119
 #: src/components/signVerify/SigningEntityDID.tsx:77
 #: src/components/signVerify/SignMessage.tsx:155
-#: src/constants/WalletConnectCommands.tsx:817
+#: src/constants/WalletConnectCommands.tsx:827
 msgid "DID"
 msgstr "DID"
 
-#: src/constants/WalletConnectCommands.tsx:691
+#: src/constants/WalletConnectCommands.tsx:701
 msgid "DID Id"
 msgstr "DID-Id"
 
@@ -1545,7 +1545,7 @@ msgstr "Inaktivera direkt I/O på temp 1-katalogen för att få ut maximal prest
 msgid "Disable direct I/O on the temp 2 directory in order to extract maximum performance with RAM disk"
 msgstr "Inaktivera direkt I/O på temp 2-katalogen för att få ut maximal prestanda med RAM-disk"
 
-#: src/constants/WalletConnectCommands.tsx:377
+#: src/constants/WalletConnectCommands.tsx:387
 msgid "Disable JSON Formatting"
 msgstr "Inaktivera JSON-formatering"
 
@@ -1657,7 +1657,7 @@ msgstr "Dra och släpp en erbjudandefil"
 msgid "Drag & Drop an Offer File, Paste"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:365
+#: src/constants/WalletConnectCommands.tsx:375
 msgid "Driver Dict"
 msgstr ""
 
@@ -1697,11 +1697,11 @@ msgid "Edition #"
 msgstr ""
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:226
-#: src/constants/WalletConnectCommands.tsx:679
+#: src/constants/WalletConnectCommands.tsx:689
 msgid "Edition Number"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:685
+#: src/constants/WalletConnectCommands.tsx:695
 msgid "Edition Total"
 msgstr ""
 
@@ -1764,7 +1764,7 @@ msgstr "Aktivera WalletConnect"
 msgid "Enable/Disable the ability to scan all subdirectories automatically for plots"
 msgstr "Aktivera/inaktivera möjligheten att skanna alla underkataloger automatiskt efter plottar"
 
-#: src/constants/WalletConnectCommands.tsx:313
+#: src/constants/WalletConnectCommands.tsx:323
 msgid "End"
 msgstr ""
 
@@ -2026,17 +2026,17 @@ msgstr ""
 #: src/components/pool/PoolInfo.tsx:18
 #: src/components/settings/ProfileAdd.tsx:152
 #: src/components/vcs/VCRevokeDialog.tsx:80
-#: src/constants/WalletConnectCommands.tsx:120
-#: src/constants/WalletConnectCommands.tsx:165
-#: src/constants/WalletConnectCommands.tsx:383
-#: src/constants/WalletConnectCommands.tsx:407
-#: src/constants/WalletConnectCommands.tsx:442
-#: src/constants/WalletConnectCommands.tsx:543
-#: src/constants/WalletConnectCommands.tsx:697
-#: src/constants/WalletConnectCommands.tsx:726
-#: src/constants/WalletConnectCommands.tsx:764
-#: src/constants/WalletConnectCommands.tsx:822
-#: src/constants/WalletConnectCommands.tsx:931
+#: src/constants/WalletConnectCommands.tsx:121
+#: src/constants/WalletConnectCommands.tsx:166
+#: src/constants/WalletConnectCommands.tsx:393
+#: src/constants/WalletConnectCommands.tsx:417
+#: src/constants/WalletConnectCommands.tsx:452
+#: src/constants/WalletConnectCommands.tsx:553
+#: src/constants/WalletConnectCommands.tsx:707
+#: src/constants/WalletConnectCommands.tsx:736
+#: src/constants/WalletConnectCommands.tsx:774
+#: src/constants/WalletConnectCommands.tsx:832
+#: src/constants/WalletConnectCommands.tsx:941
 msgid "Fee"
 msgstr "Avgift"
 
@@ -2086,12 +2086,12 @@ msgstr "Filter"
 msgid "Final folder location"
 msgstr "Sökväg till slutlig mapp"
 
-#: src/constants/WalletConnectCommands.tsx:22
-#: src/constants/WalletConnectCommands.tsx:1016
+#: src/constants/WalletConnectCommands.tsx:23
+#: src/constants/WalletConnectCommands.tsx:1026
 msgid "Fingerprint"
 msgstr "Fingeravtryck"
 
-#: src/constants/WalletConnectCommands.tsx:980
+#: src/constants/WalletConnectCommands.tsx:990
 msgid "Fingerprints"
 msgstr "Fingeravtryck"
 
@@ -2138,23 +2138,23 @@ msgstr "Fullständig nod var ur synk"
 msgid "General"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:300
+#: src/constants/WalletConnectCommands.tsx:310
 msgid "Get all Offers"
 msgstr "Hämta alla erbjudanden"
 
-#: src/constants/WalletConnectCommands.tsx:836
+#: src/constants/WalletConnectCommands.tsx:846
 msgid "Get All Verifiable Credentials"
 msgstr "Hämta alla verifierbara autentiseringsuppgifter"
 
-#: src/constants/WalletConnectCommands.tsx:507
+#: src/constants/WalletConnectCommands.tsx:517
 msgid "Get CAT Asset Id"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:494
+#: src/constants/WalletConnectCommands.tsx:504
 msgid "Get CAT Wallet Info"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:90
+#: src/constants/WalletConnectCommands.tsx:91
 msgid "Get Current Address"
 msgstr "Hämta aktuell adress"
 
@@ -2162,75 +2162,75 @@ msgstr "Hämta aktuell adress"
 msgid "Get Mojos from the Chia Faucet"
 msgstr "Få Mojos från Chia Faucet"
 
-#: src/constants/WalletConnectCommands.tsx:266
+#: src/constants/WalletConnectCommands.tsx:276
 msgid "Get Next Address"
 msgstr "Hämta nästa adress"
 
-#: src/constants/WalletConnectCommands.tsx:605
+#: src/constants/WalletConnectCommands.tsx:615
 msgid "Get NFT Info"
 msgstr "Hämta NFT-info"
 
-#: src/constants/WalletConnectCommands.tsx:830
+#: src/constants/WalletConnectCommands.tsx:840
 msgid "Get NFT Wallets with DIDs"
 msgstr "Hämta NFT-plånböcker med DID:er"
 
-#: src/constants/WalletConnectCommands.tsx:575
+#: src/constants/WalletConnectCommands.tsx:585
 msgid "Get NFTs"
 msgstr "Hämta NFT:er"
 
-#: src/constants/WalletConnectCommands.tsx:734
+#: src/constants/WalletConnectCommands.tsx:744
 msgid "Get NFTs Count"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:464
+#: src/constants/WalletConnectCommands.tsx:474
 msgid "Get Offer Data"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:478
+#: src/constants/WalletConnectCommands.tsx:488
 msgid "Get Offer Record"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:450
+#: src/constants/WalletConnectCommands.tsx:460
 msgid "Get Offer Summary"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:345
+#: src/constants/WalletConnectCommands.tsx:355
 msgid "Get Offers Count"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:907
+#: src/constants/WalletConnectCommands.tsx:917
 msgid "Get Proofs For Root Hash"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1009
+#: src/constants/WalletConnectCommands.tsx:1019
 msgid "Get public key"
 msgstr "Hämta publik nyckel"
 
-#: src/constants/WalletConnectCommands.tsx:42
+#: src/constants/WalletConnectCommands.tsx:43
 msgid "Get Transaction"
 msgstr "Hämta transaktion"
 
-#: src/constants/WalletConnectCommands.tsx:842
+#: src/constants/WalletConnectCommands.tsx:852
 msgid "Get Verifiable Credential"
 msgstr "Hämta verifierbar autentiseringsuppgift"
 
-#: src/constants/WalletConnectCommands.tsx:973
+#: src/constants/WalletConnectCommands.tsx:983
 msgid "Get wallet addresses for one or more wallet keys"
 msgstr "Hämta plånboksadresser för en eller flera plånboksnycklar"
 
-#: src/constants/WalletConnectCommands.tsx:56
+#: src/constants/WalletConnectCommands.tsx:57
 msgid "Get Wallet Balance"
 msgstr "Hämta plånboksaldo"
 
-#: src/constants/WalletConnectCommands.tsx:73
+#: src/constants/WalletConnectCommands.tsx:74
 msgid "Get Wallet Balances"
 msgstr "Hämta plånboksaldon"
 
-#: src/constants/WalletConnectCommands.tsx:291
+#: src/constants/WalletConnectCommands.tsx:301
 msgid "Get Wallet Sync Status"
 msgstr "Hämta synkningsstatus för plånbok"
 
-#: src/constants/WalletConnectCommands.tsx:28
+#: src/constants/WalletConnectCommands.tsx:29
 msgid "Get Wallets"
 msgstr "Hämta plånböcker"
 
@@ -2285,7 +2285,7 @@ msgstr "Skördare"
 msgid "Harvesting Effectiveness"
 msgstr "Skördareffektivitet"
 
-#: src/constants/WalletConnectCommands.tsx:652
+#: src/constants/WalletConnectCommands.tsx:662
 msgid "Hash"
 msgstr "Hash"
 
@@ -2388,7 +2388,7 @@ msgstr ""
 msgid "I Understand, Create Offer"
 msgstr "Jag förstår, skapa erbjudandet"
 
-#: src/constants/WalletConnectCommands.tsx:178
+#: src/constants/WalletConnectCommands.tsx:179
 msgid "Id"
 msgstr "Id"
 
@@ -2435,15 +2435,15 @@ msgstr "I utbyte mot"
 msgid "In Progress"
 msgstr "Pågår"
 
-#: src/constants/WalletConnectCommands.tsx:331
+#: src/constants/WalletConnectCommands.tsx:341
 msgid "Include My Offers"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:337
+#: src/constants/WalletConnectCommands.tsx:347
 msgid "Include Taken Offers"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:36
+#: src/constants/WalletConnectCommands.tsx:37
 msgid "Include Wallet Metadata"
 msgstr ""
 
@@ -2457,7 +2457,7 @@ msgid "Incoming Offers"
 msgstr "Inkommande erbjudanden"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:17
-#: src/constants/WalletConnectCommands.tsx:987
+#: src/constants/WalletConnectCommands.tsx:997
 msgid "Index"
 msgstr "Index"
 
@@ -2531,7 +2531,7 @@ msgstr "IP-adress"
 msgid "IP address / host"
 msgstr "IP-adress/värd"
 
-#: src/constants/WalletConnectCommands.tsx:966
+#: src/constants/WalletConnectCommands.tsx:976
 msgid "Is notification visible to all paired fingerprints"
 msgstr ""
 
@@ -2664,8 +2664,8 @@ msgstr "Senaste blockverifieringar"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:255
 #: src/components/plotNFT/PlotNFTCard.tsx:292
-#: src/constants/WalletConnectCommands.tsx:849
-#: src/constants/WalletConnectCommands.tsx:861
+#: src/constants/WalletConnectCommands.tsx:859
+#: src/constants/WalletConnectCommands.tsx:871
 msgid "Launcher Id"
 msgstr "Launcher-ID"
 
@@ -2697,11 +2697,11 @@ msgid "Legacy keyrings are no longer supported. Your keys need to be migrated to
 msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:296
-#: src/constants/WalletConnectCommands.tsx:673
+#: src/constants/WalletConnectCommands.tsx:683
 msgid "License Hash"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:668
+#: src/constants/WalletConnectCommands.tsx:678
 msgid "License Uris"
 msgstr ""
 
@@ -2785,7 +2785,7 @@ msgstr "Lokal skördare"
 msgid "Locked"
 msgstr "Låst"
 
-#: src/constants/WalletConnectCommands.tsx:15
+#: src/constants/WalletConnectCommands.tsx:16
 msgid "Log In"
 msgstr "Logga in"
 
@@ -2825,23 +2825,23 @@ msgstr ""
 msgid "Memberships"
 msgstr "Medlemskap"
 
-#: src/constants/WalletConnectCommands.tsx:138
-#: src/constants/WalletConnectCommands.tsx:549
+#: src/constants/WalletConnectCommands.tsx:139
+#: src/constants/WalletConnectCommands.tsx:559
 msgid "Memos"
 msgstr "Meddelanden"
 
 #: src/components/notification/NotificationAnnouncementDialog.tsx:53
 #: src/components/signVerify/SignMessage.tsx:194
 #: src/components/signVerify/VerifyMessage.tsx:207
-#: src/constants/WalletConnectCommands.tsx:183
-#: src/constants/WalletConnectCommands.tsx:206
-#: src/constants/WalletConnectCommands.tsx:237
-#: src/constants/WalletConnectCommands.tsx:948
+#: src/constants/WalletConnectCommands.tsx:184
+#: src/constants/WalletConnectCommands.tsx:207
+#: src/constants/WalletConnectCommands.tsx:247
+#: src/constants/WalletConnectCommands.tsx:958
 msgid "Message"
 msgstr "Meddelande"
 
-#: src/constants/WalletConnectCommands.tsx:188
-#: src/constants/WalletConnectCommands.tsx:211
+#: src/constants/WalletConnectCommands.tsx:189
+#: src/constants/WalletConnectCommands.tsx:212
 msgid "Message Is Hex Encoded String"
 msgstr ""
 
@@ -2849,11 +2849,11 @@ msgstr ""
 msgid "Message not available"
 msgstr "Meddelandet är inte tillgängligt"
 
-#: src/constants/WalletConnectCommands.tsx:662
+#: src/constants/WalletConnectCommands.tsx:672
 msgid "Meta Hash"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:657
+#: src/constants/WalletConnectCommands.tsx:667
 msgid "Meta Uris"
 msgstr ""
 
@@ -2893,7 +2893,7 @@ msgstr "Migrering krävs för att stödja lösenfrasskydd"
 msgid "Minimum Difficulty"
 msgstr "Minsta svårighetsgrad"
 
-#: src/constants/WalletConnectCommands.tsx:619
+#: src/constants/WalletConnectCommands.tsx:629
 msgid "Mint NFT"
 msgstr ""
 
@@ -2994,8 +2994,8 @@ msgstr "N/A"
 #: src/components/addressbook/ContactEdit.tsx:108
 #: src/components/addressbook/ContactEdit.tsx:166
 #: src/components/addressbook/ContactEdit.tsx:366
-#: src/constants/WalletConnectCommands.tsx:566
-#: src/constants/WalletConnectCommands.tsx:791
+#: src/constants/WalletConnectCommands.tsx:576
+#: src/constants/WalletConnectCommands.tsx:801
 msgid "Name"
 msgstr "Namn"
 
@@ -3019,7 +3019,7 @@ msgstr "Nätverksavgift (valfritt)"
 msgid "Network Name"
 msgstr "Nätverksnamn"
 
-#: src/constants/WalletConnectCommands.tsx:281
+#: src/constants/WalletConnectCommands.tsx:291
 msgid "New Address"
 msgstr "Ny adress"
 
@@ -3035,11 +3035,11 @@ msgstr "Nytt erbjudande"
 msgid "New Passphrase"
 msgstr "Ny lösenfras"
 
-#: src/constants/WalletConnectCommands.tsx:872
+#: src/constants/WalletConnectCommands.tsx:882
 msgid "New Proof Hash"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:866
+#: src/constants/WalletConnectCommands.tsx:876
 msgid "New Puzzle Hash"
 msgstr "Ny pusselhash"
 
@@ -3069,8 +3069,8 @@ msgstr ""
 msgid "NFT Coin ID"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:716
-#: src/constants/WalletConnectCommands.tsx:813
+#: src/constants/WalletConnectCommands.tsx:726
+#: src/constants/WalletConnectCommands.tsx:823
 msgid "NFT Coin Ids"
 msgstr ""
 
@@ -3100,7 +3100,7 @@ msgstr "NFT-identifierare"
 msgid "NFT identifier does not reference a valid NFT coin."
 msgstr "NFT-identifieraren refererar inte till ett giltigt NFT-mynt."
 
-#: src/constants/WalletConnectCommands.tsx:808
+#: src/constants/WalletConnectCommands.tsx:818
 msgid "NFT Launcher Id"
 msgstr ""
 
@@ -3215,7 +3215,7 @@ msgstr "Ingen standardplånbok hittades"
 msgid "Node ID"
 msgstr "Node-ID"
 
-#: src/constants/WalletConnectCommands.tsx:1001
+#: src/constants/WalletConnectCommands.tsx:1011
 msgid "Non Observer Derivation"
 msgstr ""
 
@@ -3309,7 +3309,7 @@ msgstr "Aviseringar"
 msgid "Notify Current Owner"
 msgstr "Meddela nuvarande ägare"
 
-#: src/constants/WalletConnectCommands.tsx:774
+#: src/constants/WalletConnectCommands.tsx:784
 msgid "Number of Backup Ids Needed"
 msgstr ""
 
@@ -3322,7 +3322,7 @@ msgstr "Antal buckets"
 msgid "Number of buckets for phase 3 & 4"
 msgstr "Antal buckets för fas 3 & 4"
 
-#: src/constants/WalletConnectCommands.tsx:591
+#: src/constants/WalletConnectCommands.tsx:601
 msgid "Number of NFTs"
 msgstr "Antal NFT:er"
 
@@ -3371,7 +3371,7 @@ msgstr ""
 msgid "Occupied space"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:434
+#: src/constants/WalletConnectCommands.tsx:444
 msgid "Offer"
 msgstr "Erbjudande"
 
@@ -3388,9 +3388,9 @@ msgstr "Erbjudandet kan inte accepteras eftersom du inte äger de begärda tillg
 
 #: src/components/offers/OfferDataDialog.tsx:29
 #: src/components/offers/OfferDataDialog.tsx:37
-#: src/constants/WalletConnectCommands.tsx:422
-#: src/constants/WalletConnectCommands.tsx:457
-#: src/constants/WalletConnectCommands.tsx:960
+#: src/constants/WalletConnectCommands.tsx:432
+#: src/constants/WalletConnectCommands.tsx:467
+#: src/constants/WalletConnectCommands.tsx:970
 msgid "Offer Data"
 msgstr "Erbjudandedata"
 
@@ -3426,8 +3426,8 @@ msgstr ""
 msgid "Offer has expired."
 msgstr "Erbjudandet har upphört."
 
-#: src/constants/WalletConnectCommands.tsx:471
-#: src/constants/WalletConnectCommands.tsx:485
+#: src/constants/WalletConnectCommands.tsx:481
+#: src/constants/WalletConnectCommands.tsx:495
 msgid "Offer Id"
 msgstr "Erbjudande-ID"
 
@@ -3611,7 +3611,7 @@ msgstr ""
 msgid "Parallel Decompressor Count"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:926
+#: src/constants/WalletConnectCommands.tsx:936
 msgid "Parent Coin Info"
 msgstr ""
 
@@ -4122,11 +4122,11 @@ msgstr ""
 msgid "Proofs Found"
 msgstr "Hittade bevis"
 
-#: src/constants/WalletConnectCommands.tsx:914
+#: src/constants/WalletConnectCommands.tsx:924
 msgid "Proofs Hash"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:901
+#: src/constants/WalletConnectCommands.tsx:911
 msgid "Proofs Object (Key Value Pairs)"
 msgstr ""
 
@@ -4142,12 +4142,12 @@ msgstr "Protokollversion"
 msgid "Prove or verify possession of a wallet address, NFT, or DID using a digital signature."
 msgstr "Bevisa eller verifiera innehav av en plånboksadress, NFT, eller DID med hjälp av en digital signatur."
 
-#: src/constants/WalletConnectCommands.tsx:877
+#: src/constants/WalletConnectCommands.tsx:887
 msgid "Provider Inner Puzzle Hash"
 msgstr "Leverantörens inre pusselhash"
 
 #: src/components/signVerify/VerifyMessage.tsx:219
-#: src/constants/WalletConnectCommands.tsx:242
+#: src/constants/WalletConnectCommands.tsx:252
 msgid "Public Key"
 msgstr "Publik nyckel"
 
@@ -4155,7 +4155,7 @@ msgstr "Publik nyckel"
 msgid "Purchase Summary"
 msgstr "Sammanfattning av köp"
 
-#: src/constants/WalletConnectCommands.tsx:145
+#: src/constants/WalletConnectCommands.tsx:146
 msgid "Puzzle Decorator"
 msgstr ""
 
@@ -4275,79 +4275,79 @@ msgstr ""
 msgid "Requesting"
 msgstr "Begär"
 
-#: src/constants/WalletConnectCommands.tsx:301
+#: src/constants/WalletConnectCommands.tsx:311
 msgid "Requests a complete listing of the offers associated with the current wallet key"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:29
+#: src/constants/WalletConnectCommands.tsx:30
 msgid "Requests a complete listing of the wallets associated with the current wallet key"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:577
+#: src/constants/WalletConnectCommands.tsx:587
 msgid "Requests a full or paginated listing of NFTs associated with one or more wallets associated with the current wallet key"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1010
+#: src/constants/WalletConnectCommands.tsx:1020
 msgid "Requests a master public key from your wallet"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:267
+#: src/constants/WalletConnectCommands.tsx:277
 msgid "Requests a new receive address associated with the current wallet key"
 msgstr "Begär en ny mottagaradress som är kopplad till den aktuella plånboksnyckeln"
 
-#: src/constants/WalletConnectCommands.tsx:606
+#: src/constants/WalletConnectCommands.tsx:616
 msgid "Requests details for a specific NFT"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:43
+#: src/constants/WalletConnectCommands.tsx:44
 msgid "Requests details for a specific transaction"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:57
+#: src/constants/WalletConnectCommands.tsx:58
 msgid "Requests the asset balance for a specific wallet associated with the current wallet key"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:74
+#: src/constants/WalletConnectCommands.tsx:75
 msgid "Requests the asset balances for specific wallets associated with the current wallet key"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:508
+#: src/constants/WalletConnectCommands.tsx:518
 msgid "Requests the CAT asset ID for a specific CAT wallet"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:91
+#: src/constants/WalletConnectCommands.tsx:92
 msgid "Requests the current receive address associated with the current wallet key"
 msgstr "Begär den aktuella mottagaradressen som är kopplad till den aktuella plånboksnyckeln"
 
-#: src/constants/WalletConnectCommands.tsx:480
+#: src/constants/WalletConnectCommands.tsx:490
 msgid "Requests the details for a specific offer"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:736
+#: src/constants/WalletConnectCommands.tsx:746
 msgid "Requests the number of NFTs associated with one or more wallets associated with the current wallet key"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:346
+#: src/constants/WalletConnectCommands.tsx:356
 msgid "Requests the number of offers associated with the current wallet key"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:465
+#: src/constants/WalletConnectCommands.tsx:475
 msgid "Requests the raw offer data for a specific offer"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:451
+#: src/constants/WalletConnectCommands.tsx:461
 msgid "Requests the summarized details of a specific offer"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:292
+#: src/constants/WalletConnectCommands.tsx:302
 msgid "Requests the syncing status of current wallet"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:416
+#: src/constants/WalletConnectCommands.tsx:426
 msgid "Requests the validity status of a specific offer"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:231
+#: src/constants/WalletConnectCommands.tsx:241
 msgid "Requests the verification status for a digital signature"
 msgstr "Begär verifieringsstatus för en digital signatur"
 
@@ -4397,17 +4397,17 @@ msgstr ""
 msgid "Resyncing forces reloading data from the blockchain about your transactions without losing other locally stored information like open, accepted, or cancelled offer files. Resyncing will require you to restart the app."
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:888
+#: src/constants/WalletConnectCommands.tsx:898
 msgid "Reuse Puzzle Hash"
 msgstr "Återanvänd pusselhash"
 
-#: src/constants/WalletConnectCommands.tsx:325
+#: src/constants/WalletConnectCommands.tsx:335
 msgid "Reverse"
 msgstr ""
 
 #: src/components/vcs/VCCard.tsx:209
 #: src/components/vcs/VCCard.tsx:311
-#: src/constants/WalletConnectCommands.tsx:920
+#: src/constants/WalletConnectCommands.tsx:930
 msgid "Revoke Verifiable Credential"
 msgstr "Återkalla verifierbar autentiseringsuppgift"
 
@@ -4419,12 +4419,12 @@ msgstr ""
 msgid "Royalties are built into the NFT, so they will automatically be accounted for when the offer is created/accepted."
 msgstr "Royaltyer är inbyggda i NFT:n, så de kommer automatiskt att tas med när erbjudandet skapas/accepteras."
 
-#: src/constants/WalletConnectCommands.tsx:629
+#: src/constants/WalletConnectCommands.tsx:639
 msgid "Royalty Address"
 msgstr "Royalty-adress"
 
 #: src/components/nfts/NFTDetails.tsx:160
-#: src/constants/WalletConnectCommands.tsx:635
+#: src/constants/WalletConnectCommands.tsx:645
 msgid "Royalty Percentage"
 msgstr "Royalty-procent"
 
@@ -4477,7 +4477,7 @@ msgstr "Sök ..."
 msgid "Second temporary folder location"
 msgstr "Andra tillfällig mapp"
 
-#: src/constants/WalletConnectCommands.tsx:402
+#: src/constants/WalletConnectCommands.tsx:412
 msgid "Secure"
 msgstr ""
 
@@ -4598,7 +4598,7 @@ msgstr "Skicka erbjudandeavisering"
 msgid "Send to Address"
 msgstr "Skicka till adress"
 
-#: src/constants/WalletConnectCommands.tsx:108
+#: src/constants/WalletConnectCommands.tsx:109
 msgid "Send Transaction"
 msgstr "Skicka transaktion"
 
@@ -4610,11 +4610,11 @@ msgstr ""
 msgid "Set a time after which this offer expires."
 msgstr "Ange en tidsrymd efter vilken detta erbjudande löper ut."
 
-#: src/constants/WalletConnectCommands.tsx:781
+#: src/constants/WalletConnectCommands.tsx:791
 msgid "Set DID Name"
 msgstr "Ställ in DID-namn"
 
-#: src/constants/WalletConnectCommands.tsx:798
+#: src/constants/WalletConnectCommands.tsx:808
 msgid "Set NFT DID"
 msgstr "Ställ in NFT-DID"
 
@@ -4682,7 +4682,7 @@ msgstr "Visa"
 msgid "Show Details"
 msgstr "Visa detaljer"
 
-#: src/constants/WalletConnectCommands.tsx:937
+#: src/constants/WalletConnectCommands.tsx:947
 msgid "Show notification with offer or general announcement"
 msgstr "Visa avisering med erbjudande eller allmänt meddelande"
 
@@ -4711,16 +4711,16 @@ msgstr ""
 msgid "Sign Message"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:196
+#: src/constants/WalletConnectCommands.tsx:197
 msgid "Sign Message by Address"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:173
+#: src/constants/WalletConnectCommands.tsx:174
 msgid "Sign Message by Id"
 msgstr ""
 
 #: src/components/signVerify/VerifyMessage.tsx:228
-#: src/constants/WalletConnectCommands.tsx:247
+#: src/constants/WalletConnectCommands.tsx:257
 msgid "Signature"
 msgstr "Signatur"
 
@@ -4761,7 +4761,7 @@ msgid "Signing Entity"
 msgstr ""
 
 #: src/components/signVerify/VerifyMessage.tsx:237
-#: src/constants/WalletConnectCommands.tsx:258
+#: src/constants/WalletConnectCommands.tsx:268
 msgid "Signing Mode"
 msgstr ""
 
@@ -4822,11 +4822,11 @@ msgstr "Ange GPU-index (0, 1, 2 etc) för skörd om det finns fler än en GPU"
 #~ msgid "Speech"
 #~ msgstr "Speech"
 
-#: src/constants/WalletConnectCommands.tsx:521
+#: src/constants/WalletConnectCommands.tsx:531
 msgid "Spend CAT"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:882
+#: src/constants/WalletConnectCommands.tsx:892
 msgid "Spend Fee"
 msgstr ""
 
@@ -4850,15 +4850,15 @@ msgstr ""
 msgid "Standard Version Number"
 msgstr "Standardversionsnummer"
 
-#: src/constants/WalletConnectCommands.tsx:307
+#: src/constants/WalletConnectCommands.tsx:317
 msgid "Start"
 msgstr "Start"
 
-#: src/constants/WalletConnectCommands.tsx:597
+#: src/constants/WalletConnectCommands.tsx:607
 msgid "Start Index"
 msgstr "Startindex"
 
-#: src/constants/WalletConnectCommands.tsx:319
+#: src/constants/WalletConnectCommands.tsx:329
 msgid "Start Key"
 msgstr ""
 
@@ -4930,12 +4930,12 @@ msgstr "Synkar"
 msgid "Syncing <0/>/<1/>"
 msgstr "Synkar <0/>/<1/>"
 
-#: src/constants/WalletConnectCommands.tsx:429
+#: src/constants/WalletConnectCommands.tsx:439
 msgid "Take Offer"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:641
-#: src/constants/WalletConnectCommands.tsx:721
+#: src/constants/WalletConnectCommands.tsx:651
+#: src/constants/WalletConnectCommands.tsx:731
 msgid "Target Address"
 msgstr ""
 
@@ -5360,7 +5360,7 @@ msgstr "Totalt antal Chia som odlats"
 msgid "Touch all pages of buffer allocations before starting to plot."
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:397
+#: src/constants/WalletConnectCommands.tsx:407
 msgid "Trade Id"
 msgstr "Affärs-ID"
 
@@ -5376,7 +5376,7 @@ msgstr ""
 msgid "Transaction Fee"
 msgstr "Transaktionsavgift"
 
-#: src/constants/WalletConnectCommands.tsx:50
+#: src/constants/WalletConnectCommands.tsx:51
 msgid "Transaction Id"
 msgstr ""
 
@@ -5407,7 +5407,7 @@ msgstr "Överför"
 
 #: src/components/nfts/NFTContextualActions.tsx:197
 #: src/components/nfts/NFTTransferAction.tsx:217
-#: src/constants/WalletConnectCommands.tsx:706
+#: src/constants/WalletConnectCommands.tsx:716
 msgid "Transfer NFT"
 msgstr "Överför NFT"
 
@@ -5440,7 +5440,7 @@ msgid "Turn this off if you don't have any compressed plots to harvest"
 msgstr "Stäng av detta om du inte har några komprimerade plottar att skörda"
 
 #: src/components/vcs/VCCard.tsx:163
-#: src/constants/WalletConnectCommands.tsx:943
+#: src/constants/WalletConnectCommands.tsx:953
 msgid "Type"
 msgstr ""
 
@@ -5554,12 +5554,12 @@ msgstr "Uppdatera"
 msgid "Update Pending"
 msgstr "Uppdatering väntar"
 
-#: src/constants/WalletConnectCommands.tsx:647
+#: src/constants/WalletConnectCommands.tsx:657
 msgid "Uris"
 msgstr ""
 
 #: src/components/notification/NotificationAnnouncementDialog.tsx:62
-#: src/constants/WalletConnectCommands.tsx:954
+#: src/constants/WalletConnectCommands.tsx:964
 #: src/hooks/useOpenUnsafeLink.tsx:43
 msgid "URL"
 msgstr "URL"
@@ -5589,7 +5589,7 @@ msgstr ""
 msgid "Valid Partials"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:371
+#: src/constants/WalletConnectCommands.tsx:381
 msgid "Validate only"
 msgstr ""
 
@@ -5656,7 +5656,7 @@ msgid "Verify Pool Details"
 msgstr "Verifiera poolinformation"
 
 #: src/components/settings/SettingsAdvanced.tsx:78
-#: src/constants/WalletConnectCommands.tsx:230
+#: src/constants/WalletConnectCommands.tsx:240
 msgid "Verify Signature"
 msgstr ""
 
@@ -5769,29 +5769,29 @@ msgstr ""
 msgid "Wallet Address"
 msgstr "Plånboksadress"
 
-#: src/constants/WalletConnectCommands.tsx:64
-#: src/constants/WalletConnectCommands.tsx:98
-#: src/constants/WalletConnectCommands.tsx:273
-#: src/constants/WalletConnectCommands.tsx:514
-#: src/constants/WalletConnectCommands.tsx:527
-#: src/constants/WalletConnectCommands.tsx:624
-#: src/constants/WalletConnectCommands.tsx:711
-#: src/constants/WalletConnectCommands.tsx:787
-#: src/constants/WalletConnectCommands.tsx:804
+#: src/constants/WalletConnectCommands.tsx:65
+#: src/constants/WalletConnectCommands.tsx:99
+#: src/constants/WalletConnectCommands.tsx:283
+#: src/constants/WalletConnectCommands.tsx:524
+#: src/constants/WalletConnectCommands.tsx:537
+#: src/constants/WalletConnectCommands.tsx:634
+#: src/constants/WalletConnectCommands.tsx:721
+#: src/constants/WalletConnectCommands.tsx:797
+#: src/constants/WalletConnectCommands.tsx:814
 msgid "Wallet Id"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:131
+#: src/constants/WalletConnectCommands.tsx:132
 msgid "Wallet ID"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:81
-#: src/constants/WalletConnectCommands.tsx:587
-#: src/constants/WalletConnectCommands.tsx:745
+#: src/constants/WalletConnectCommands.tsx:82
+#: src/constants/WalletConnectCommands.tsx:597
+#: src/constants/WalletConnectCommands.tsx:755
 msgid "Wallet Ids"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:357
+#: src/constants/WalletConnectCommands.tsx:367
 msgid "Wallet Ids and Amounts"
 msgstr "Plånboks-ID:n och belopp"
 
@@ -5863,8 +5863,8 @@ msgid "Warning! Selecting multiple keys will enable \"Key Switching\" inside Set
 msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:218
-msgid "WARNING! When safeMode=false it means you could be signing a transaction, not just a message. Be sure you trust the source that's requesting this."
-msgstr "VARNING! När safeMode=false kan det innebära att du signerar en transaktion, inte bara ett meddelande. Var säker på att du litar på källan som begär detta."
+#~ msgid "WARNING! When safeMode=false it means you could be signing a transaction, not just a message. Be sure you trust the source that's requesting this."
+#~ msgstr "VARNING! När safeMode=false kan det innebära att du signerar en transaktion, inte bara ett meddelande. Var säker på att du litar på källan som begär detta."
 
 #: src/components/block/Block.jsx:173
 msgid "Weight"
