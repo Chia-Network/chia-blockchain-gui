@@ -1,3 +1,4 @@
+import os from 'os';
 import path from 'path';
 import CopyPlugin from 'copy-webpack-plugin';
 
@@ -14,9 +15,17 @@ export default {
       {
         test: /\.(js|ts|tsx)$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
+        use: [
+          {
+            loader: 'thread-loader',
+            options: {
+              workers: os.cpus().length - 1,
+            },
+          },
+          {
+            loader: 'babel-loader',
+          },
+        ],
       },
       {
         test: /\.svg$/i,

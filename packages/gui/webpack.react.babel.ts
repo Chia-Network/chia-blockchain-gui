@@ -1,5 +1,6 @@
 import webpack from 'webpack';
 import path from 'path';
+import os from 'os';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import LoadablePlugin from '@loadable/webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
@@ -38,12 +39,10 @@ const babelQuery = {
       'babel-plugin-transform-imports',
       {
         '@material-ui/core': {
-          // Use "transform: '@material-ui/core/${member}'," if your bundler does not support ES modules
           transform: '@material-ui/core/${member}',
           preventFullImport: true,
         },
         '@material-ui/icons': {
-          // Use "transform: '@material-ui/icons/${member}'," if your bundler does not support ES modules
           transform: '@material-ui/icons/${member}',
           preventFullImport: true,
         },
@@ -114,10 +113,7 @@ export default {
           ecma: undefined,
           warnings: false,
           parse: {},
-          compress: {
-            // collapse_vars: false,
-            // drop_console: true,
-          },
+          compress: {},
           mangle: true, // Note `mangle.properties` is `false` by default.
           module: false,
           output: null,
@@ -174,6 +170,12 @@ export default {
         test: /\.[jt]sx?$/,
         exclude: DEV ? /node_modules/ : undefined,
         use: [
+          {
+            loader: 'thread-loader',
+            options: {
+              workers: os.cpus().length - 1,
+            },
+          },
           {
             loader: 'babel-loader',
             options: babelQuery,
