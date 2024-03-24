@@ -20,6 +20,7 @@
     "autofix": "pnpm run autofix:lint && pnpm run autofix:prettier",
     "autofix:lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "autofix:prettier": "prettier --write --ignore-path .gitignore .",
+    "build:local": "pnpm -r run build:local",
     "build": "pnpm -r run build",
     "build:skipLocales": "pnpm -r run build:js",
     "build:ci": "pnpm -r run build:ci",

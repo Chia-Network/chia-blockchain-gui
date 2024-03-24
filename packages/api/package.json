@@ -12,6 +12,7 @@
   "types": "./dist/types",
   "scripts": {
     "build": "pnpm run build:js",
+    "build:local": "pnpm run build:js",
     "build:js": "concurrently \"rollup -c\" \"tsc --emitDeclarationOnly\"",
     "build:ci": "pnpm run build:js",
     "build:watch": "concurrently \"tsc --emitDeclarationOnly --watch\" \"rollup -c -w\"",

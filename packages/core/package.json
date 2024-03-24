@@ -11,6 +11,7 @@
   "module": "dist/esm.js",
   "scripts": {
     "build": "pnpm run locale && pnpm run build:js",
+    "build:local": "pnpm run locale:local && pnpm run build:js",
     "build:js": "rollup -c",
     "build:watch": "rollup -c -w",
     "build:ci": "pnpm run locale:compile && pnpm run build:js",
@@ -18,6 +19,7 @@
     "locale:clean": "lingui extract --clean",
     "locale:compile": "lingui compile",
     "locale": "pnpm run locale:extract && pnpm run locale:compile",
+    "locale:local": "../../compile_sys-locale.sh",
     "check:types": "tsc --noEmit --emitDeclarationOnly false",
     "test": "jest"
   },
