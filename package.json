@@ -12,6 +12,7 @@
     "version:patch": "pnpm version patch",
     "publish": "pnpm publish -r",
     "postinstall": "pnpm run prettier:postinstall",
+    "preinstall": "node ./set-version.js",
     "prettier:postinstall": "prettier --write '**/package.json' '**/pnpm-lock.yaml'",
     "check": "pnpm run check:lint && pnpm run check:prettier && pnpm run check:types",
     "check:lint": "eslint . --ext .ts,.tsx,.js,.jsx",
@@ -73,5 +74,5 @@
     "prettier": "3.1.0",
     "typescript": "5.1.6"
   },
-  "version": "1.2.10-dev132"
+  "version": "2.1.2-rc4-55e819d26"
 }
