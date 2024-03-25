@@ -36,6 +36,29 @@ export default class NFTWallet extends Wallet {
     }>('nft_get_wallet_did', args);
   }
 
+  async mintBulk(args: {
+    walletId: number;
+    metadataList: any[];
+    royaltyPercentage: number;
+    royaltyAddress: string;
+    targetList: string[];
+    mintNumberStart: number;
+    mintTotal: number;
+    xchCoinList: string[];
+    xchChangeTarget: string;
+    newInnerpuzhash: string;
+    newP2Puzhash: string;
+    didCoinDict: any;
+    didLineageParentHex: string;
+    mintFromDid: boolean;
+    fee: number;
+    reusePuzhash: boolean;
+  }) {
+    return this.command<{
+      spendBundle: SpendBundle;
+    }>('nft_mint_bulk', args);
+  }
+
   async mintNFT(args: {
     walletId: number;
     royaltyAddress: string;
