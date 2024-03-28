@@ -43,6 +43,7 @@ jobs:
           npm run locale:extract
 
       - name: Commit changes back to the repo
+        continue-on-error: true
         run: |
           git add '**/messages.po'
           git commit -m "Extract latest strings for translation"
