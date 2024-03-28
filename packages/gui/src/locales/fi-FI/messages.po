@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-03-17 00:04\n"
+"PO-Revision-Date: 2024-03-28 16:26\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1055,7 +1055,7 @@ msgstr "Kompressiotaso"
 #: src/components/vcs/VCRevokeDialog.tsx:27
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:71
 msgid "Confirm"
-msgstr ""
+msgstr "Vahvista"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:19
 msgid "Confirm Disconnect"
@@ -3152,7 +3152,7 @@ msgstr "NFT:t, jotka niiden tekijä on luokitellut ristiriitaista sisältöä si
 
 #: src/components/vcs/VCCard.tsx:89
 msgid "No"
-msgstr ""
+msgstr "Ei"
 
 #: src/components/notification/NotificationsMenu.tsx:53
 msgid "No activities yet"
@@ -5670,7 +5670,7 @@ msgstr "Tarkistetaan tiivistettä..."
 
 #: src/components/offers2/OfferIncomingTable.tsx:95
 msgid "View"
-msgstr ""
+msgstr "Näkymä"
 
 #: src/components/offers/OfferImport.tsx:184
 msgid "View an Offer"
@@ -5868,7 +5868,7 @@ msgstr "Varoitus! Usean avaimen valitseminen ottaa käyttöön \"Avaimen vaihtam
 
 #: src/constants/WalletConnectCommands.tsx:218
 #~ msgid "WARNING! When safeMode=false it means you could be signing a transaction, not just a message. Be sure you trust the source that's requesting this."
-#~ msgstr "VAROITUS! Kun safeMode=false se tarkoittaa, että voit allekirjoittaa transaktion, ei pelkästään viestin. Varmista, että luotat lähteeseen, joka pyytää tätä."
+#~ msgstr ""
 
 #: src/components/block/Block.jsx:173
 msgid "Weight"
@@ -5917,7 +5917,7 @@ msgstr "Haluatko siirtää NFT:n uudelle omistajalle?"
 #: src/components/plot/add/PlotAddChooseSize.tsx:61
 #: src/components/vcs/VCCard.tsx:89
 msgid "Yes"
-msgstr ""
+msgstr "Kyllä"
 
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:22
 msgid "Yes, Accept Offer"

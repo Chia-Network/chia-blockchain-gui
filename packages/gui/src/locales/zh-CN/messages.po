@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-03-24 00:05\n"
+"PO-Revision-Date: 2024-03-28 16:26\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -1055,7 +1055,7 @@ msgstr "压缩等级"
 #: src/components/vcs/VCRevokeDialog.tsx:27
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:71
 msgid "Confirm"
-msgstr "确认"
+msgstr "确定"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:19
 msgid "Confirm Disconnect"
@@ -5868,7 +5868,7 @@ msgstr "警告！选择多个密钥将启用\"密钥切换\"，请在\"设置/�
 
 #: src/constants/WalletConnectCommands.tsx:218
 #~ msgid "WARNING! When safeMode=false it means you could be signing a transaction, not just a message. Be sure you trust the source that's requesting this."
-#~ msgstr "警告！当safeMode=false时，这意味着你可能正在签署一笔交易，而不仅仅是一条消息。请确保你信任请求此操作的来源。"
+#~ msgstr ""
 
 #: src/components/block/Block.jsx:173
 msgid "Weight"
