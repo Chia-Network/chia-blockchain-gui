@@ -24,6 +24,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ secrets.REPO_COMMIT }}
 
       - name: Setup Node 18.x
         uses: actions/setup-node@v3
@@ -41,17 +42,8 @@ jobs:
           npm install
           npm run locale:extract
 
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v5
-        with:
-          base: main
-          body: "Extracted latest strings from source"
-          branch: string-updates
-          commit-message: "Extracted latest strings from source"
-          delete-branch: true
-          reviewers: "emlowe"
-          assignees: "emlowe"
-          title: "Latest Strings"
-          token: "${{ secrets.GITHUB_TOKEN }}"
-          committer: "ChiaAutomation <automation@chia.net>"
-          author: "ChiaAutomation <automation@chia.net>"
+      - name: Commit changes back to the repo
+        run: |
+          git add '**/messages.po'
+          git commit -m "Extract latest strings for translation"
+          git push origin main
