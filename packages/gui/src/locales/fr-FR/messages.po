@@ -8,7 +8,7 @@ msgstr ""
 "Language: fr_FR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-03-28 16:25\n"
+"PO-Revision-Date: 2024-03-31 00:04\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -1055,7 +1055,7 @@ msgstr "Niveau de compression"
 #: src/components/vcs/VCRevokeDialog.tsx:27
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:71
 msgid "Confirm"
-msgstr "Confirmer"
+msgstr ""
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:19
 msgid "Confirm Disconnect"
@@ -2470,20 +2470,16 @@ msgstr "Initialisation..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"Fonds insuffisants pour accepter l'offre. Assurez-vous que votre \n"
+msgstr "Fonds insuffisants pour accepter l'offre. Assurez-vous que votre \n"
 "solde disponible est suffisant pour couvrir le montant de l'offre."
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"Fonds insuffisants pour créer l'offre. Assurez-vous que votre \n"
+msgstr "Fonds insuffisants pour créer l'offre. Assurez-vous que votre \n"
 "solde disponible est suffisant pour couvrir le montant de l'offre."
 
 #: src/components/farm/PoolingHealth.tsx:302
@@ -3152,7 +3148,7 @@ msgstr "Les NFT catégorisés comme contenu sensible par le créateur seront mas
 
 #: src/components/vcs/VCCard.tsx:89
 msgid "No"
-msgstr "Non"
+msgstr ""
 
 #: src/components/notification/NotificationsMenu.tsx:53
 msgid "No activities yet"
@@ -5670,7 +5666,7 @@ msgstr "Validation du hash..."
 
 #: src/components/offers2/OfferIncomingTable.tsx:95
 msgid "View"
-msgstr "Voir"
+msgstr ""
 
 #: src/components/offers/OfferImport.tsx:184
 msgid "View an Offer"
@@ -5917,7 +5913,7 @@ msgstr "Voulez-vous transférer le NFT spécifié à un nouveau propriétaire ?"
 #: src/components/plot/add/PlotAddChooseSize.tsx:61
 #: src/components/vcs/VCCard.tsx:89
 msgid "Yes"
-msgstr "Oui"
+msgstr ""
 
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:22
 msgid "Yes, Accept Offer"
@@ -6071,3 +6067,4 @@ msgstr "Votre solde dépensable doit être supérieur à 1 mojo pour créer un p
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "Votre portefeuille doit être synchronisé pour que la revendication automatique fonctionne."
+
