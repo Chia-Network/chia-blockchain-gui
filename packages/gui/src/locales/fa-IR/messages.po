@@ -3283,7 +3283,7 @@ msgid "Not Synced"
 msgstr "سینک نشده"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:152
-msgid "Note that this does not change your pooling payout addresses. This only affects old format plots, and the 0.25XCH reward for pooling plots."
+msgid "Note that this does not change your pooling payout addresses. This only affects old format plots, and the 0.125XCH reward for pooling plots."
 msgstr "توجه داشته باشید که این کار آدرس‌های پرداخت استخر شما را تغییر نمیدهد. این فقط بر پلات های طرح قدیمی و پاداش 0.25 چیا برای استخر پلات ها تأثیر میگذارد."
 
 #: src/components/plot/add/PlotAddChooseKeys.tsx:99

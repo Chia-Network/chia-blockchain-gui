@@ -3283,8 +3283,8 @@ msgid "Not Synced"
 msgstr "未同步"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:152
-msgid "Note that this does not change your pooling payout addresses. This only affects old format plots, and the 0.25XCH reward for pooling plots."
-msgstr "请注意，这不会改变联合耕种支付地址。只会影响旧的图块文件格式，以及0.25XCH这部分的联合耕种奖励。"
+msgid "Note that this does not change your pooling payout addresses. This only affects old format plots, and the 0.125XCH reward for pooling plots."
+msgstr "请注意，这不会改变联合耕种支付地址。只会影响旧的图块文件格式，以及0.125XCH这部分的联合耕种奖励。"
 
 #: src/components/plot/add/PlotAddChooseKeys.tsx:99
 msgid "Note: the farmer public key corresponding to the current logged-in wallet is {farmerPublicKeyForFingerprint}"

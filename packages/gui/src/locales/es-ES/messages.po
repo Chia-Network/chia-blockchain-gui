@@ -3279,8 +3279,8 @@ msgid "Not Synced"
 msgstr "No sincronizado"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:152
-msgid "Note that this does not change your pooling payout addresses. This only affects old format plots, and the 0.25XCH reward for pooling plots."
-msgstr "Tenga en cuenta que esto no cambia sus direcciones de pago de fondo. Esto sólo afecta a las antiguas parcelas de formato, y la recompensa de 0.25XCH por agrupar parcelas."
+msgid "Note that this does not change your pooling payout addresses. This only affects old format plots, and the 0.125XCH reward for pooling plots."
+msgstr "Tenga en cuenta que esto no cambia sus direcciones de pago de fondo. Esto sólo afecta a las antiguas parcelas de formato, y la recompensa de 0.125XCH por agrupar parcelas."
 
 #: src/components/plot/add/PlotAddChooseKeys.tsx:99
 msgid "Note: the farmer public key corresponding to the current logged-in wallet is {farmerPublicKeyForFingerprint}"
