@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-03-10 00:04\n"
+"PO-Revision-Date: 2024-04-07 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -796,11 +796,11 @@ msgstr "Voit muuttaa automaattista lunastusmaksua Asetuksista."
 
 #: src/components/crCat/CrCatFlags.tsx:71
 msgid "You do not have this verifiable credential or it is not from the correct authorized provided"
-msgstr "Sinulla ei ole tätä todennettavissa olevaa käyttöoikeustietoa tai se ei ole oikealta valtuuttajalta"
+msgstr "Sinulla ei ole tätä todennettavaa käyttöoikeustietoa tai se ei ole oikealta valtuuttajalta"
 
 #: src/components/crCat/CrCatFlags.tsx:69
 msgid "You have this verifiable credential from the correct authorized provider"
-msgstr "Sinulla on tämä todennettavissa oleva käyttöoikeustieto oikealta valtuuttajalta"
+msgstr "Sinulla on tämä todennettava käyttöoikeustieto oikealta valtuuttajalta"
 
 #: src/components/WalletsSidebar.tsx:106
 #~ msgid "Your CAT tokens have been upgraded!"

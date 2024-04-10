@@ -8,7 +8,7 @@ msgstr ""
 "Language: th_TH\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-03-28 16:26\n"
+"PO-Revision-Date: 2024-04-07 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Thai\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -3278,7 +3278,7 @@ msgstr "ไม่ได้ซิงค์"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:152
 msgid "Note that this does not change your pooling payout addresses. This only affects old format plots, and the 0.125XCH reward for pooling plots."
-msgstr "โปรดทราบว่าการดำเนินการนี้จะไม่เปลี่ยนที่อยู่การรับเงินแบบ pooling ของคุณ สิ่งนี้มีผลเฉพาะกับพล๊อตรูปแบบเก่าและรางวัล 0.125XCH สำหรับ pooling พล๊อต"
+msgstr ""
 
 #: src/components/plot/add/PlotAddChooseKeys.tsx:99
 msgid "Note: the farmer public key corresponding to the current logged-in wallet is {farmerPublicKeyForFingerprint}"
