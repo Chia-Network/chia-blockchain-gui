@@ -162,3 +162,4 @@ export CHIA_KEYS_ROOT=~/.chia_keys_simulator
 Please check out the [wiki](https://github.com/Chia-Network/chia-blockchain/wiki)
 and [FAQ](https://github.com/Chia-Network/chia-blockchain/wiki/FAQ) for
 information on this project.
+
