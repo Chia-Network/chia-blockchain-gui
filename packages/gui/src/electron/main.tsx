@@ -435,6 +435,8 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
 
     await cacheManager.init();
 
+    const initialBgColor = prefs.darkMode ? '#0F252A' : '#ffffff';
+
     mainWindow = new BrowserWindow({
       x: mainWindowState.x,
       y: mainWindowState.y,
@@ -442,7 +444,7 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
       height: mainWindowState.height,
       minWidth: 500,
       minHeight: 500,
-      backgroundColor: '#ffffff',
+      backgroundColor: initialBgColor,
       show: isPlaywrightTesting,
       webPreferences: {
         preload: `${__dirname}/preload.js`,
