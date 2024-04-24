@@ -14,6 +14,11 @@ export function getConfigRootDir(net = 'mainnet'): string {
   return 'CHIA_ROOT' in process.env ? untildify(process.env.CHIA_ROOT) : path.join(homedir, '.chia', net);
 }
 
+export function checkConfigFileExists(net?: string): boolean {
+  const configRootDir = getConfigRootDir(net);
+  return fs.existsSync(path.resolve(configRootDir, 'config/config.yaml'));
+}
+
 export function readConfigFile(net?: string): string {
   const configRootDir = getConfigRootDir(net);
 

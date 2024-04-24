@@ -30,8 +30,8 @@ import packageJson from '../../package.json';
 import AppIcon from '../assets/img/chia64x64.png';
 import About from '../components/about/About';
 import { i18n } from '../config/locales';
-import chiaEnvironment from '../util/chiaEnvironment';
-import loadConfig from '../util/loadConfig';
+import chiaEnvironment, { chiaInit } from '../util/chiaEnvironment';
+import loadConfig, { checkConfigFileExists } from '../util/loadConfig';
 import manageDaemonLifetime from '../util/manageDaemonLifetime';
 import { setUserDataDir } from '../util/userData';
 
@@ -71,6 +71,12 @@ let mainWindow: BrowserWindow | null = null;
 
 let currentDownloadRequest: any;
 let abortDownloadingFiles: boolean = false;
+
+// When there is no config file, it is assumed to be the first run.
+// At that time, the config file is created here by `chia init`.
+if (!checkConfigFileExists()) {
+  chiaInit();
+}
 
 // Set the userData directory to its location within CHIA_ROOT/gui
 setUserDataDir();
