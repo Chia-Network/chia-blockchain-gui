@@ -38,7 +38,6 @@ const log = debug('chia-gui:offers');
 
 enum OfferSharingService {
   Dexie = 'Dexie',
-  Hashgreen = 'Hashgreen',
   MintGarden = 'MintGarden',
   Offerpool = 'Offerpool',
   Spacescan = 'Spacescan',
@@ -91,11 +90,6 @@ const OfferSharingProviders: {
     service: OfferSharingService.Dexie,
     name: 'Dexie',
     capabilities: [OfferSharingCapability.Token, OfferSharingCapability.NFT],
-  },
-  [OfferSharingService.Hashgreen]: {
-    service: OfferSharingService.Hashgreen,
-    name: 'Hashgreen DEX',
-    capabilities: [OfferSharingCapability.Token],
   },
   [OfferSharingService.MintGarden]: {
     service: OfferSharingService.MintGarden,
@@ -191,78 +185,6 @@ async function postToMintGarden(offerData: string, testnet: boolean): Promise<st
   } = JSON.parse(responseBody);
 
   return `https://${testnet ? 'testnet.' : ''}mintgarden.io/offers/${id}`;
-}
-
-enum HashgreenErrorCodes {
-  OFFERED_AMOUNT_TOO_SMALL = 40_020, // The offered amount is too small
-  MARKET_NOT_FOUND = 50_029, // Pairing doesn't exist e.g. XCH/RandoCoin
-  OFFER_FILE_EXISTS = 50_037, // Offer already shared
-  COINS_ALREADY_COMMITTED = 50_041, // Coins in the offer are already committed in another offer
-}
-
-async function postToHashgreen(offerData: string, testnet: boolean): Promise<string> {
-  const { ipcRenderer } = window as any;
-  const requestOptions = {
-    method: 'POST',
-    protocol: 'https:',
-    hostname: testnet ? testnetDummyHost : 'hash.green',
-    port: 443,
-    path: testnet ? '/hashgreen' : '/api/v1/orders',
-  };
-  const requestHeaders = {
-    accept: 'application/json',
-    'Content-Type': 'application/x-www-form-urlencoded',
-  };
-  const requestData = `offer=${offerData}`;
-  const { err, statusCode, statusMessage, responseBody } = await ipcRenderer.invoke(
-    'fetchTextResponse',
-    requestOptions,
-    requestHeaders,
-    requestData,
-  );
-
-  if (err) {
-    const error = new Error(
-      `Failed to post offer to hash.green: ${err}, statusCode=${statusCode}, statusMessage=${statusMessage}`,
-    );
-    throw error;
-  }
-
-  if (statusCode === 200) {
-    log('Hashgreen upload completed');
-
-    if (testnet) {
-      return 'https://www.chia.net/offers';
-    }
-
-    const jsonObj = JSON.parse(responseBody);
-    const { data } = jsonObj;
-    const id = data?.id;
-
-    if (id) {
-      return `https://hash.green/dex?order=${id}`;
-    }
-    const error = new Error(`Hashgreen response missing data.id: ${responseBody}`);
-    throw error;
-  } else {
-    const jsonObj = JSON.parse(responseBody);
-    const { code, msg, data } = jsonObj;
-
-    if (code === HashgreenErrorCodes.OFFER_FILE_EXISTS && data) {
-      return `https://hash.green/dex?order=${data}`;
-    }
-    log(`Upload failure response: ${responseBody}`);
-    switch (code) {
-      case HashgreenErrorCodes.MARKET_NOT_FOUND:
-        throw new Error(`Hashgreen upload rejected. Pairing is not supported: ${msg}`);
-      case HashgreenErrorCodes.COINS_ALREADY_COMMITTED:
-        throw new Error(`Hashgreen upload rejected. Offer contains coins that are in use by another offer: ${msg}`);
-      case HashgreenErrorCodes.OFFERED_AMOUNT_TOO_SMALL:
-        throw new Error(`Hashgreen upload rejected. Offer amount is too small: ${msg}`);
-      default:
-        throw new Error(`Hashgreen upload rejected: code=${code} msg=${msg} data=${data}`);
-    }
-  }
 }
 
 type PostToSpacescanResponse = {
@@ -536,79 +458,6 @@ function OfferShareMintGardenDialog(props: OfferShareServiceDialogProps) {
       offerData={offerData}
       testnet={testnet}
       title={<Trans>Share on MintGarden</Trans>}
-      onConfirm={handleConfirm}
-      open={open}
-      onClose={onClose}
-    />
-  );
-}
-
-function OfferShareHashgreenDialog(props: OfferShareServiceDialogProps) {
-  const { offerRecord, offerData, testnet = false, onClose = () => {}, open = false } = props;
-  const openExternal = useOpenExternal();
-  const [sharedURL, setSharedURL] = React.useState('');
-
-  function handleClose() {
-    onClose(false);
-  }
-
-  async function handleConfirm() {
-    const url = await postToHashgreen(offerData, testnet);
-    log(`Hashgreen URL: ${url}`);
-    setSharedURL(url);
-  }
-
-  if (sharedURL) {
-    return (
-      <Dialog
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-        maxWidth="xs"
-        open={open}
-        onClose={handleClose}
-        fullWidth
-      >
-        <DialogTitle>
-          <Trans>Offer Shared</Trans>
-        </DialogTitle>
-        <DialogContent dividers>
-          <Flex flexDirection="column" gap={3} sx={{ paddingTop: '1em' }}>
-            <TextField
-              label={<Trans>Hashgreen DEX URL</Trans>}
-              value={sharedURL}
-              variant="filled"
-              InputProps={{
-                readOnly: true,
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <CopyToClipboard value={sharedURL} />
-                  </InputAdornment>
-                ),
-              }}
-              fullWidth
-            />
-            <Flex>
-              <Button variant="outlined" onClick={() => openExternal(sharedURL)}>
-                <Trans>View on Hashgreen DEX</Trans>
-              </Button>
-            </Flex>
-          </Flex>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary" variant="contained">
-            <Trans>Close</Trans>
-          </Button>
-        </DialogActions>
-      </Dialog>
-    );
-  }
-
-  return (
-    <OfferShareConfirmationDialog
-      offerRecord={offerRecord}
-      offerData={offerData}
-      testnet={testnet}
-      title={<Trans>Share on Hashgreen DEX</Trans>}
       onConfirm={handleConfirm}
       open={open}
       onClose={onClose}
@@ -992,10 +841,6 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
     } = {
       [OfferSharingService.Dexie]: {
         component: OfferShareDexieDialog,
-        props: commonDialogProps,
-      },
-      [OfferSharingService.Hashgreen]: {
-        component: OfferShareHashgreenDialog,
         props: commonDialogProps,
       },
       [OfferSharingService.MintGarden]: {
