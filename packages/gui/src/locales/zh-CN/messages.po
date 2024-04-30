@@ -639,11 +639,11 @@ msgstr "资产代币ID"
 msgid "Asset Type"
 msgstr "资产类型"
 
-#: src/components/offers/OfferShareDialog.tsx:903
+#: src/components/offers/OfferShareDialog.tsx:752
 msgid "Assets I am offering:"
 msgstr "提供的资产："
 
-#: src/components/offers/OfferShareDialog.tsx:908
+#: src/components/offers/OfferShareDialog.tsx:757
 msgid "Assets I will receive:"
 msgstr "将会收到的资产："
 
@@ -820,7 +820,7 @@ msgstr "缓存大小(GB)"
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:24
 #: src/components/offers/OfferDataEntryDialog.tsx:58
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:18
-#: src/components/offers/OfferShareDialog.tsx:920
+#: src/components/offers/OfferShareDialog.tsx:769
 #: src/components/offers2/CancelOfferList.tsx:146
 #: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:362
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:110
@@ -999,12 +999,11 @@ msgstr "单击删除图标只会从列表中移除文件夹，而不会删除文
 #: src/components/notification/NotificationAnnouncementDialog.tsx:75
 #: src/components/notification/NotificationSendDialog.tsx:308
 #: src/components/offers/ConfirmOfferCancellation.tsx:126
-#: src/components/offers/OfferShareDialog.tsx:451
-#: src/components/offers/OfferShareDialog.tsx:526
-#: src/components/offers/OfferShareDialog.tsx:599
-#: src/components/offers/OfferShareDialog.tsx:709
-#: src/components/offers/OfferShareDialog.tsx:831
-#: src/components/offers/OfferShareDialog.tsx:1107
+#: src/components/offers/OfferShareDialog.tsx:373
+#: src/components/offers/OfferShareDialog.tsx:448
+#: src/components/offers/OfferShareDialog.tsx:558
+#: src/components/offers/OfferShareDialog.tsx:680
+#: src/components/offers/OfferShareDialog.tsx:952
 #: src/components/offers2/OfferBuilderViewerDialog.tsx:76
 #: src/components/plot/PlotAddDirectoryDialog.tsx:132
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:66
@@ -1483,7 +1482,7 @@ msgstr "详细信息"
 #~ msgid "Developer Tools"
 #~ msgstr "Developer Tools"
 
-#: src/components/offers/OfferShareDialog.tsx:416
+#: src/components/offers/OfferShareDialog.tsx:338
 msgid "Dexie URL"
 msgstr "Dexie 链接"
 
@@ -1569,7 +1568,7 @@ msgstr "显示报价数据"
 msgid "Display sharing options after creating a new offer"
 msgstr "在创建新报价后显示分享选项"
 
-#: src/components/offers/OfferShareDialog.tsx:1100
+#: src/components/offers/OfferShareDialog.tsx:945
 #: src/hooks/useOpenUnsafeLink.tsx:64
 msgid "Do not show this dialog again"
 msgstr "不再显示此对话框"
@@ -1818,7 +1817,7 @@ msgstr "解析文件出错"
 #~ msgid "Error parsing json"
 #~ msgstr ""
 
-#: src/components/offers/OfferShareDialog.tsx:812
+#: src/components/offers/OfferShareDialog.tsx:661
 msgid "Error posting offer: {0}"
 msgstr "发布报价时出错： {0}"
 
@@ -2302,8 +2301,8 @@ msgstr "哈希匹配"
 #~ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:577
-msgid "Hashgreen DEX URL"
-msgstr "HashGreen 去中心化交易所网址"
+#~ msgid "Hashgreen DEX URL"
+#~ msgstr "HashGreen 去中心化交易所网址"
 
 #: src/components/block/Block.jsx:156
 msgid "Header hash"
@@ -2917,7 +2916,7 @@ msgstr "铸造者DID"
 msgid "Minter:"
 msgstr "铸造者:"
 
-#: src/components/offers/OfferShareDialog.tsx:504
+#: src/components/offers/OfferShareDialog.tsx:426
 msgid "MintGarden URL"
 msgstr "MintGarden 网址"
 
@@ -3307,9 +3306,9 @@ msgstr "通知接收者的地址"
 msgid "Notifications"
 msgstr "通知"
 
-#: src/components/offers/OfferShareDialog.tsx:444
-#: src/components/offers/OfferShareDialog.tsx:702
-#: src/components/offers/OfferShareDialog.tsx:824
+#: src/components/offers/OfferShareDialog.tsx:366
+#: src/components/offers/OfferShareDialog.tsx:551
+#: src/components/offers/OfferShareDialog.tsx:673
 msgid "Notify Current Owner"
 msgstr "通知当前拥有者"
 
@@ -3439,11 +3438,10 @@ msgstr "报价ID"
 msgid "Offer Management"
 msgstr "报价管理"
 
-#: src/components/offers/OfferShareDialog.tsx:411
-#: src/components/offers/OfferShareDialog.tsx:499
-#: src/components/offers/OfferShareDialog.tsx:572
-#: src/components/offers/OfferShareDialog.tsx:669
-#: src/components/offers/OfferShareDialog.tsx:785
+#: src/components/offers/OfferShareDialog.tsx:333
+#: src/components/offers/OfferShareDialog.tsx:421
+#: src/components/offers/OfferShareDialog.tsx:518
+#: src/components/offers/OfferShareDialog.tsx:634
 msgid "Offer Shared"
 msgstr "已共享报价"
 
@@ -3471,7 +3469,7 @@ msgstr "提供"
 #~ msgid "Offering: [{makerString}], Requesting: [{takerString}]"
 #~ msgstr "Offering: [{makerString}], Requesting: [{takerString}]"
 
-#: src/components/offers/OfferShareDialog.tsx:792
+#: src/components/offers/OfferShareDialog.tsx:641
 msgid "Offerpool URL"
 msgstr "Offerpool网址"
 
@@ -4588,9 +4586,9 @@ msgstr "卖出一个 NFT"
 msgid "Send Message"
 msgstr "发送消息"
 
-#: src/components/offers/OfferShareDialog.tsx:446
-#: src/components/offers/OfferShareDialog.tsx:704
-#: src/components/offers/OfferShareDialog.tsx:826
+#: src/components/offers/OfferShareDialog.tsx:368
+#: src/components/offers/OfferShareDialog.tsx:553
+#: src/components/offers/OfferShareDialog.tsx:675
 msgid "Send Notification"
 msgstr "发送通知"
 
@@ -4638,27 +4636,27 @@ msgid "Settings"
 msgstr "设置"
 
 #: src/components/offers/OfferManager.tsx:269
-#: src/components/offers/OfferShareDialog.tsx:923
+#: src/components/offers/OfferShareDialog.tsx:772
 msgid "Share"
 msgstr "分享"
 
-#: src/components/offers/OfferShareDialog.tsx:1071
+#: src/components/offers/OfferShareDialog.tsx:916
 msgid "Share Offer"
 msgstr "分享报价"
 
-#: src/components/offers/OfferShareDialog.tsx:465
+#: src/components/offers/OfferShareDialog.tsx:387
 msgid "Share on Dexie"
 msgstr "分享到 Dexie"
 
 #: src/components/offers/OfferShareDialog.tsx:611
-msgid "Share on Hashgreen DEX"
-msgstr "分享到Hashgreen DEX"
+#~ msgid "Share on Hashgreen DEX"
+#~ msgstr "分享到Hashgreen DEX"
 
 #: src/components/offers/OfferShareDialog.tsx:1160
 #~ msgid "Share on Keybase"
 #~ msgstr "Share on Keybase"
 
-#: src/components/offers/OfferShareDialog.tsx:538
+#: src/components/offers/OfferShareDialog.tsx:460
 msgid "Share on MintGarden"
 msgstr "分享到MintGarden"
 
@@ -4666,11 +4664,11 @@ msgstr "分享到MintGarden"
 #~ msgid "Share on OfferBin"
 #~ msgstr "Share on OfferBin"
 
-#: src/components/offers/OfferShareDialog.tsx:845
+#: src/components/offers/OfferShareDialog.tsx:694
 msgid "Share on offerpool"
 msgstr "分享到Offerpool"
 
-#: src/components/offers/OfferShareDialog.tsx:723
+#: src/components/offers/OfferShareDialog.tsx:572
 msgid "Share on Spacescan.io"
 msgstr "分享到Spacescan.io"
 
@@ -4802,7 +4800,7 @@ msgstr "不能通过点击这里切换到主网..."
 msgid "Space"
 msgstr "空间"
 
-#: src/components/offers/OfferShareDialog.tsx:674
+#: src/components/offers/OfferShareDialog.tsx:523
 msgid "Spacescan.io URL"
 msgstr "Spacescan.io网址"
 
@@ -5689,16 +5687,16 @@ msgstr "查看日志"
 msgid "View Offer"
 msgstr "查看报价"
 
-#: src/components/offers/OfferShareDialog.tsx:431
+#: src/components/offers/OfferShareDialog.tsx:353
 msgid "View on Dexie"
 msgstr "在 Dexie 上查看"
 
 #: src/components/offers/OfferShareDialog.tsx:592
-msgid "View on Hashgreen DEX"
-msgstr "在 Hashgreen DEX 上查看"
+#~ msgid "View on Hashgreen DEX"
+#~ msgstr "在 Hashgreen DEX 上查看"
 
 #: src/components/nfts/NFTContextualActions.tsx:643
-#: src/components/offers/OfferShareDialog.tsx:519
+#: src/components/offers/OfferShareDialog.tsx:441
 msgid "View on MintGarden"
 msgstr "在 MintGarden 上查看"
 
@@ -5706,12 +5704,12 @@ msgstr "在 MintGarden 上查看"
 #~ msgid "View on OfferBin"
 #~ msgstr "View on OfferBin"
 
-#: src/components/offers/OfferShareDialog.tsx:807
+#: src/components/offers/OfferShareDialog.tsx:656
 msgid "View on Offerpool"
 msgstr "在Offerpool上查看"
 
 #: src/components/nfts/NFTContextualActions.tsx:651
-#: src/components/offers/OfferShareDialog.tsx:689
+#: src/components/offers/OfferShareDialog.tsx:538
 msgid "View on Spacescan.io"
 msgstr "在 Spacescan.io 上查看"
 

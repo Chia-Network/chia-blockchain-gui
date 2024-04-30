@@ -639,11 +639,11 @@ msgstr "Tillgångs-ID"
 msgid "Asset Type"
 msgstr "Tillgångsslag"
 
-#: src/components/offers/OfferShareDialog.tsx:903
+#: src/components/offers/OfferShareDialog.tsx:752
 msgid "Assets I am offering:"
 msgstr "Tillgångar jag erbjuder:"
 
-#: src/components/offers/OfferShareDialog.tsx:908
+#: src/components/offers/OfferShareDialog.tsx:757
 msgid "Assets I will receive:"
 msgstr "Tillgångar jag kommer att ta emot:"
 
@@ -820,7 +820,7 @@ msgstr "Cachestorlek (GB)"
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:24
 #: src/components/offers/OfferDataEntryDialog.tsx:58
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:18
-#: src/components/offers/OfferShareDialog.tsx:920
+#: src/components/offers/OfferShareDialog.tsx:769
 #: src/components/offers2/CancelOfferList.tsx:146
 #: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:362
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:110
@@ -999,12 +999,11 @@ msgstr ""
 #: src/components/notification/NotificationAnnouncementDialog.tsx:75
 #: src/components/notification/NotificationSendDialog.tsx:308
 #: src/components/offers/ConfirmOfferCancellation.tsx:126
-#: src/components/offers/OfferShareDialog.tsx:451
-#: src/components/offers/OfferShareDialog.tsx:526
-#: src/components/offers/OfferShareDialog.tsx:599
-#: src/components/offers/OfferShareDialog.tsx:709
-#: src/components/offers/OfferShareDialog.tsx:831
-#: src/components/offers/OfferShareDialog.tsx:1107
+#: src/components/offers/OfferShareDialog.tsx:373
+#: src/components/offers/OfferShareDialog.tsx:448
+#: src/components/offers/OfferShareDialog.tsx:558
+#: src/components/offers/OfferShareDialog.tsx:680
+#: src/components/offers/OfferShareDialog.tsx:952
 #: src/components/offers2/OfferBuilderViewerDialog.tsx:76
 #: src/components/plot/PlotAddDirectoryDialog.tsx:132
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:66
@@ -1483,7 +1482,7 @@ msgstr "Detaljer"
 #~ msgid "Developer Tools"
 #~ msgstr "Developer Tools"
 
-#: src/components/offers/OfferShareDialog.tsx:416
+#: src/components/offers/OfferShareDialog.tsx:338
 msgid "Dexie URL"
 msgstr "URL till Dexie"
 
@@ -1569,7 +1568,7 @@ msgstr "Visa erbjudandedata"
 msgid "Display sharing options after creating a new offer"
 msgstr "Visa delningsalternativ efter att ett nytt erbjudande skapats"
 
-#: src/components/offers/OfferShareDialog.tsx:1100
+#: src/components/offers/OfferShareDialog.tsx:945
 #: src/hooks/useOpenUnsafeLink.tsx:64
 msgid "Do not show this dialog again"
 msgstr "Visa inte denna dialog igen"
@@ -1818,7 +1817,7 @@ msgstr "Fel vid parsning av fil"
 #~ msgid "Error parsing json"
 #~ msgstr ""
 
-#: src/components/offers/OfferShareDialog.tsx:812
+#: src/components/offers/OfferShareDialog.tsx:661
 msgid "Error posting offer: {0}"
 msgstr ""
 
@@ -2302,8 +2301,8 @@ msgstr ""
 #~ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:577
-msgid "Hashgreen DEX URL"
-msgstr "URL till Hashgreen DEX"
+#~ msgid "Hashgreen DEX URL"
+#~ msgstr "URL till Hashgreen DEX"
 
 #: src/components/block/Block.jsx:156
 msgid "Header hash"
@@ -2913,7 +2912,7 @@ msgstr ""
 msgid "Minter:"
 msgstr ""
 
-#: src/components/offers/OfferShareDialog.tsx:504
+#: src/components/offers/OfferShareDialog.tsx:426
 msgid "MintGarden URL"
 msgstr "URL till MintGarden"
 
@@ -3303,9 +3302,9 @@ msgstr ""
 msgid "Notifications"
 msgstr "Aviseringar"
 
-#: src/components/offers/OfferShareDialog.tsx:444
-#: src/components/offers/OfferShareDialog.tsx:702
-#: src/components/offers/OfferShareDialog.tsx:824
+#: src/components/offers/OfferShareDialog.tsx:366
+#: src/components/offers/OfferShareDialog.tsx:551
+#: src/components/offers/OfferShareDialog.tsx:673
 msgid "Notify Current Owner"
 msgstr "Meddela nuvarande ägare"
 
@@ -3435,11 +3434,10 @@ msgstr "Erbjudande-ID"
 msgid "Offer Management"
 msgstr ""
 
-#: src/components/offers/OfferShareDialog.tsx:411
-#: src/components/offers/OfferShareDialog.tsx:499
-#: src/components/offers/OfferShareDialog.tsx:572
-#: src/components/offers/OfferShareDialog.tsx:669
-#: src/components/offers/OfferShareDialog.tsx:785
+#: src/components/offers/OfferShareDialog.tsx:333
+#: src/components/offers/OfferShareDialog.tsx:421
+#: src/components/offers/OfferShareDialog.tsx:518
+#: src/components/offers/OfferShareDialog.tsx:634
 msgid "Offer Shared"
 msgstr "Erbjudandet delades"
 
@@ -3467,7 +3465,7 @@ msgstr "Erbjuder"
 #~ msgid "Offering: [{makerString}], Requesting: [{takerString}]"
 #~ msgstr "Offering: [{makerString}], Requesting: [{takerString}]"
 
-#: src/components/offers/OfferShareDialog.tsx:792
+#: src/components/offers/OfferShareDialog.tsx:641
 msgid "Offerpool URL"
 msgstr ""
 
@@ -4584,9 +4582,9 @@ msgstr "Sälj en NFT"
 msgid "Send Message"
 msgstr "Skicka meddelande"
 
-#: src/components/offers/OfferShareDialog.tsx:446
-#: src/components/offers/OfferShareDialog.tsx:704
-#: src/components/offers/OfferShareDialog.tsx:826
+#: src/components/offers/OfferShareDialog.tsx:368
+#: src/components/offers/OfferShareDialog.tsx:553
+#: src/components/offers/OfferShareDialog.tsx:675
 msgid "Send Notification"
 msgstr "Skicka avisering"
 
@@ -4634,27 +4632,27 @@ msgid "Settings"
 msgstr "Inställningar"
 
 #: src/components/offers/OfferManager.tsx:269
-#: src/components/offers/OfferShareDialog.tsx:923
+#: src/components/offers/OfferShareDialog.tsx:772
 msgid "Share"
 msgstr "Dela"
 
-#: src/components/offers/OfferShareDialog.tsx:1071
+#: src/components/offers/OfferShareDialog.tsx:916
 msgid "Share Offer"
 msgstr "Dela erbjudandet"
 
-#: src/components/offers/OfferShareDialog.tsx:465
+#: src/components/offers/OfferShareDialog.tsx:387
 msgid "Share on Dexie"
 msgstr "Dela på Dexie"
 
 #: src/components/offers/OfferShareDialog.tsx:611
-msgid "Share on Hashgreen DEX"
-msgstr "Dela på Hashgreen DEX"
+#~ msgid "Share on Hashgreen DEX"
+#~ msgstr "Dela på Hashgreen DEX"
 
 #: src/components/offers/OfferShareDialog.tsx:1160
 #~ msgid "Share on Keybase"
 #~ msgstr "Share on Keybase"
 
-#: src/components/offers/OfferShareDialog.tsx:538
+#: src/components/offers/OfferShareDialog.tsx:460
 msgid "Share on MintGarden"
 msgstr "Dela på MintGarden"
 
@@ -4662,11 +4660,11 @@ msgstr "Dela på MintGarden"
 #~ msgid "Share on OfferBin"
 #~ msgstr "Share on OfferBin"
 
-#: src/components/offers/OfferShareDialog.tsx:845
+#: src/components/offers/OfferShareDialog.tsx:694
 msgid "Share on offerpool"
 msgstr "Dela på offerpool"
 
-#: src/components/offers/OfferShareDialog.tsx:723
+#: src/components/offers/OfferShareDialog.tsx:572
 msgid "Share on Spacescan.io"
 msgstr "Dela på Spacescan.io"
 
@@ -4798,7 +4796,7 @@ msgstr "Du kan tyvärr inte byta till mainnet genom att klicka här..."
 msgid "Space"
 msgstr "Utrymme"
 
-#: src/components/offers/OfferShareDialog.tsx:674
+#: src/components/offers/OfferShareDialog.tsx:523
 msgid "Spacescan.io URL"
 msgstr "URL för Spacescan.io"
 
@@ -5685,16 +5683,16 @@ msgstr "Visa logg"
 msgid "View Offer"
 msgstr "Visa erbjudandet"
 
-#: src/components/offers/OfferShareDialog.tsx:431
+#: src/components/offers/OfferShareDialog.tsx:353
 msgid "View on Dexie"
 msgstr "Visa på Dexie"
 
 #: src/components/offers/OfferShareDialog.tsx:592
-msgid "View on Hashgreen DEX"
-msgstr "Visa på Hashgreen DEX"
+#~ msgid "View on Hashgreen DEX"
+#~ msgstr "Visa på Hashgreen DEX"
 
 #: src/components/nfts/NFTContextualActions.tsx:643
-#: src/components/offers/OfferShareDialog.tsx:519
+#: src/components/offers/OfferShareDialog.tsx:441
 msgid "View on MintGarden"
 msgstr "Visa på MintGarden"
 
@@ -5702,12 +5700,12 @@ msgstr "Visa på MintGarden"
 #~ msgid "View on OfferBin"
 #~ msgstr "View on OfferBin"
 
-#: src/components/offers/OfferShareDialog.tsx:807
+#: src/components/offers/OfferShareDialog.tsx:656
 msgid "View on Offerpool"
 msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:651
-#: src/components/offers/OfferShareDialog.tsx:689
+#: src/components/offers/OfferShareDialog.tsx:538
 msgid "View on Spacescan.io"
 msgstr "Visa på Spacescan.io"
 
