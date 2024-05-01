@@ -1345,11 +1345,11 @@ msgstr "Dapp {from} lähettää viestin"
 msgid "Dapp sending the message"
 msgstr "Dapp lähettää viestin"
 
-#: src/components/nfts/NFTDetails.tsx:236
+#: src/components/nfts/NFTDetails.tsx:235
 msgid "Data Hash"
 msgstr "Datan tiiviste"
 
-#: src/components/nfts/NFTDetails.tsx:223
+#: src/components/nfts/NFTDetails.tsx:222
 msgid "Data URL {0}"
 msgstr "Datan URL {0}"
 
@@ -1470,7 +1470,7 @@ msgstr "Kohde"
 msgid "Destination:"
 msgstr "Kohde:"
 
-#: src/components/nfts/NFTDetails.tsx:352
+#: src/components/nfts/NFTDetails.tsx:353
 msgid "Details"
 msgstr "Lisätiedot"
 
@@ -2672,7 +2672,7 @@ msgstr "Viimeisimmät Lohkohaasteet"
 msgid "Launcher Id"
 msgstr "Käynnistimen Tunnus"
 
-#: src/components/nfts/NFTDetails.tsx:65
+#: src/components/nfts/NFTDetails.tsx:64
 #: src/components/vcs/VCCard.tsx:132
 msgid "Launcher ID"
 msgstr "Käynnistimen Tunnus"
@@ -2699,7 +2699,7 @@ msgstr "Vanhoja avainlenkkejä ei enää tueta. Avaimesi on siirrettävä uuteen
 msgid "Legacy keyrings are no longer supported. Your keys need to be migrated to a new keyring that is secured by a master passphrase."
 msgstr "Vanhoja avainlenkkejä ei enää tueta. Avaimesi on siirrettävä uuteen avainlenkkiin, joka on suojattu pääsalasanalla."
 
-#: src/components/nfts/NFTDetails.tsx:296
+#: src/components/nfts/NFTDetails.tsx:295
 #: src/constants/WalletConnectCommands.tsx:683
 msgid "License Hash"
 msgstr "Lisenssin Tiiviste"
@@ -2708,7 +2708,7 @@ msgstr "Lisenssin Tiiviste"
 msgid "License Uris"
 msgstr "Lisenssi-URIt"
 
-#: src/components/nfts/NFTDetails.tsx:281
+#: src/components/nfts/NFTDetails.tsx:280
 msgid "License URL {0}"
 msgstr "Lisenssin URL {0}"
 
@@ -2860,7 +2860,7 @@ msgstr "Metatiiviste"
 msgid "Meta Uris"
 msgstr "Meta-URIt"
 
-#: src/components/nfts/NFTDetails.tsx:266
+#: src/components/nfts/NFTDetails.tsx:265
 msgid "Metadata Hash"
 msgstr "Matatietojen tiiviste"
 
@@ -2868,7 +2868,7 @@ msgstr "Matatietojen tiiviste"
 #~ msgid "Metadata hash mismatch"
 #~ msgstr ""
 
-#: src/components/nfts/NFTDetails.tsx:251
+#: src/components/nfts/NFTDetails.tsx:250
 msgid "Metadata URL {0}"
 msgstr "Metatietojen URL {0}"
 
@@ -2900,7 +2900,7 @@ msgstr "Pienin Vaikeustaso"
 msgid "Mint NFT"
 msgstr "Luo NFT"
 
-#: src/components/nfts/NFTDetails.tsx:214
+#: src/components/nfts/NFTDetails.tsx:213
 msgid "Minted at Block Height"
 msgstr "Lyöty lohkokorkeudessa"
 
@@ -2908,7 +2908,7 @@ msgstr "Lyöty lohkokorkeudessa"
 msgid "Minter"
 msgstr "Tekijä"
 
-#: src/components/nfts/NFTDetails.tsx:173
+#: src/components/nfts/NFTDetails.tsx:172
 msgid "Minter DID"
 msgstr "Tekijän DID"
 
@@ -3068,7 +3068,7 @@ msgstr "NFT {nftId} on jo käytetty tarjoukseen"
 #~ msgid "NFT Coin Id"
 #~ msgstr ""
 
-#: src/components/nfts/NFTDetails.tsx:74
+#: src/components/nfts/NFTDetails.tsx:73
 msgid "NFT Coin ID"
 msgstr "NFT-kolikon Tunniste"
 
@@ -3089,7 +3089,7 @@ msgstr "NFT:llä ei ole rojalteja"
 msgid "NFT holder address"
 msgstr "NFT:n haltijan osoite"
 
-#: src/components/nfts/NFTDetails.tsx:56
+#: src/components/nfts/NFTDetails.tsx:55
 #: src/components/offers2/OfferBuilderNFT.tsx:54
 #: src/components/signVerify/SigningEntityNFT.tsx:65
 msgid "NFT ID"
@@ -3581,15 +3581,15 @@ msgstr "Ohita säikeiden määrä vaiheessa 2"
 msgid "Override the thread count for Phase 3"
 msgstr "Ohita säikeiden määrä vaiheessa 3"
 
-#: src/components/nfts/NFTDetails.tsx:88
+#: src/components/nfts/NFTDetails.tsx:87
 msgid "Owner Address"
 msgstr "Omistajan Osoite"
 
-#: src/components/nfts/NFTDetails.tsx:109
+#: src/components/nfts/NFTDetails.tsx:108
 msgid "Owner DID"
 msgstr "Omistajan DID"
 
-#: src/components/nfts/NFTDetails.tsx:149
+#: src/components/nfts/NFTDetails.tsx:148
 msgid "Owner Public Key"
 msgstr "Omistajan Julkinen Avain"
 
@@ -4070,16 +4070,24 @@ msgid "Preview"
 msgstr "Esikatselu"
 
 #: src/components/nfts/NFTDetails.tsx:316
-msgid "Preview image uris"
-msgstr "Esikatsele kuvan URIt"
+#~ msgid "Preview image uris"
+#~ msgstr "Esikatsele kuvan URIt"
+
+#: src/components/nfts/NFTDetails.tsx:310
+msgid "Preview image URL {index}"
+msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:621
 #~ msgid "Preview URL is not valid"
 #~ msgstr "Preview URL is not valid"
 
 #: src/components/nfts/NFTDetails.tsx:332
-msgid "Preview video uris"
-msgstr "Esikatsele videon URIt"
+#~ msgid "Preview video uris"
+#~ msgstr "Esikatsele videon URIt"
+
+#: src/components/nfts/NFTDetails.tsx:327
+msgid "Preview video URL {index}"
+msgstr ""
 
 #: src/components/block/Block.jsx:257
 #: src/components/nfts/detail/NFTDetailV2.tsx:133
@@ -4132,7 +4140,7 @@ msgstr "Todisteiden Tiivisteet"
 msgid "Proofs Object (Key Value Pairs)"
 msgstr "Todisteiden Objekti (Avainarvoparit)"
 
-#: src/components/nfts/NFTProperties.tsx:121
+#: src/components/nfts/NFTProperties.tsx:101
 msgid "Properties"
 msgstr "Ominaisuudet"
 
@@ -4425,7 +4433,7 @@ msgstr "Rojaltit on sisäänrakennettu NFT:ään, joten ne kirjataan automaattis
 msgid "Royalty Address"
 msgstr "Rojaltin Osoite"
 
-#: src/components/nfts/NFTDetails.tsx:160
+#: src/components/nfts/NFTDetails.tsx:159
 #: src/constants/WalletConnectCommands.tsx:645
 msgid "Royalty Percentage"
 msgstr "Rojaltiprosentti"
@@ -5482,9 +5490,9 @@ msgstr "NFT:tä {entityId} ei löydy"
 #~ msgid "Unable to open Keybase. Install Keybase from https://keybase.io"
 #~ msgstr "Unable to open Keybase. Install Keybase from https://keybase.io"
 
-#: src/components/nfts/NFTDetails.tsx:142
-#: src/components/nfts/NFTDetails.tsx:163
-#: src/components/nfts/NFTDetails.tsx:206
+#: src/components/nfts/NFTDetails.tsx:141
+#: src/components/nfts/NFTDetails.tsx:162
+#: src/components/nfts/NFTDetails.tsx:205
 msgid "Unassigned"
 msgstr "Määrittelemätön"
 

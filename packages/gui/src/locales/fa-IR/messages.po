@@ -1345,11 +1345,11 @@ msgstr "در حال ارسال پیام Dapp {from}"
 msgid "Dapp sending the message"
 msgstr "در حال ارسال پیام Dapp"
 
-#: src/components/nfts/NFTDetails.tsx:236
+#: src/components/nfts/NFTDetails.tsx:235
 msgid "Data Hash"
 msgstr "هش داده"
 
-#: src/components/nfts/NFTDetails.tsx:223
+#: src/components/nfts/NFTDetails.tsx:222
 msgid "Data URL {0}"
 msgstr "آدرس داده {0}"
 
@@ -1470,7 +1470,7 @@ msgstr "مقصد"
 msgid "Destination:"
 msgstr "مقصد:"
 
-#: src/components/nfts/NFTDetails.tsx:352
+#: src/components/nfts/NFTDetails.tsx:353
 msgid "Details"
 msgstr "جزئیات"
 
@@ -2672,7 +2672,7 @@ msgstr "آخرین چالش های بلاک"
 msgid "Launcher Id"
 msgstr "شناسه لانچر"
 
-#: src/components/nfts/NFTDetails.tsx:65
+#: src/components/nfts/NFTDetails.tsx:64
 #: src/components/vcs/VCCard.tsx:132
 msgid "Launcher ID"
 msgstr "شناسه لانچر"
@@ -2699,7 +2699,7 @@ msgstr "دسنه کلیدهای قدیمی دیگر پشتیبانی نمیشو�
 msgid "Legacy keyrings are no longer supported. Your keys need to be migrated to a new keyring that is secured by a master passphrase."
 msgstr "دسنه کلیدهای قدیمی دیگر پشتیبانی نمیشوند. کلیدهای شما باید به یک کلید جدید منتقل شوند که به صورت اختیاری با یک عبارت رمز ورودی اصلی ایمن شده است."
 
-#: src/components/nfts/NFTDetails.tsx:296
+#: src/components/nfts/NFTDetails.tsx:295
 #: src/constants/WalletConnectCommands.tsx:683
 msgid "License Hash"
 msgstr "مجوز هش"
@@ -2708,7 +2708,7 @@ msgstr "مجوز هش"
 msgid "License Uris"
 msgstr "مجوز Uris"
 
-#: src/components/nfts/NFTDetails.tsx:281
+#: src/components/nfts/NFTDetails.tsx:280
 msgid "License URL {0}"
 msgstr "لیست آدرس سایت مجوز {0}"
 
@@ -2860,7 +2860,7 @@ msgstr "هش داده"
 msgid "Meta Uris"
 msgstr "Uris داده"
 
-#: src/components/nfts/NFTDetails.tsx:266
+#: src/components/nfts/NFTDetails.tsx:265
 msgid "Metadata Hash"
 msgstr "Metadata هش"
 
@@ -2868,7 +2868,7 @@ msgstr "Metadata هش"
 #~ msgid "Metadata hash mismatch"
 #~ msgstr ""
 
-#: src/components/nfts/NFTDetails.tsx:251
+#: src/components/nfts/NFTDetails.tsx:250
 msgid "Metadata URL {0}"
 msgstr "Metadata آدرس {0}"
 
@@ -2900,7 +2900,7 @@ msgstr "حداقل سختی"
 msgid "Mint NFT"
 msgstr "ثبت ان اف تی"
 
-#: src/components/nfts/NFTDetails.tsx:214
+#: src/components/nfts/NFTDetails.tsx:213
 msgid "Minted at Block Height"
 msgstr "ثبت شده در ارتفاع بالا"
 
@@ -2908,7 +2908,7 @@ msgstr "ثبت شده در ارتفاع بالا"
 msgid "Minter"
 msgstr "ثبت کننده"
 
-#: src/components/nfts/NFTDetails.tsx:173
+#: src/components/nfts/NFTDetails.tsx:172
 msgid "Minter DID"
 msgstr "شناسه غیر متمرکز ثبت کننده"
 
@@ -3068,7 +3068,7 @@ msgstr "قبلاً در این پیشنهاد استفاده شده {nftId} ان
 #~ msgid "NFT Coin Id"
 #~ msgstr ""
 
-#: src/components/nfts/NFTDetails.tsx:74
+#: src/components/nfts/NFTDetails.tsx:73
 msgid "NFT Coin ID"
 msgstr "شناسه ارز ان اف تی"
 
@@ -3089,7 +3089,7 @@ msgstr "ان اف تی هیچ حق امتیازی ندارد"
 msgid "NFT holder address"
 msgstr "آدرس دارنده ان اف تی"
 
-#: src/components/nfts/NFTDetails.tsx:56
+#: src/components/nfts/NFTDetails.tsx:55
 #: src/components/offers2/OfferBuilderNFT.tsx:54
 #: src/components/signVerify/SigningEntityNFT.tsx:65
 msgid "NFT ID"
@@ -3581,15 +3581,15 @@ msgstr "نادیده گرفتن تعداد رشته ها را برای فاز 2"
 msgid "Override the thread count for Phase 3"
 msgstr "نادیده گرفتن تعداد رشته ها را برای فاز 3"
 
-#: src/components/nfts/NFTDetails.tsx:88
+#: src/components/nfts/NFTDetails.tsx:87
 msgid "Owner Address"
 msgstr "آدرس مالک"
 
-#: src/components/nfts/NFTDetails.tsx:109
+#: src/components/nfts/NFTDetails.tsx:108
 msgid "Owner DID"
 msgstr "صاحب شناسه غیر متمرکز"
 
-#: src/components/nfts/NFTDetails.tsx:149
+#: src/components/nfts/NFTDetails.tsx:148
 msgid "Owner Public Key"
 msgstr "صاحب کلید عمومی"
 
@@ -4070,16 +4070,24 @@ msgid "Preview"
 msgstr "پیش نمایش"
 
 #: src/components/nfts/NFTDetails.tsx:316
-msgid "Preview image uris"
-msgstr "پیش نمایش تصویر uris"
+#~ msgid "Preview image uris"
+#~ msgstr "پیش نمایش تصویر uris"
+
+#: src/components/nfts/NFTDetails.tsx:310
+msgid "Preview image URL {index}"
+msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:621
 #~ msgid "Preview URL is not valid"
 #~ msgstr "Preview URL is not valid"
 
 #: src/components/nfts/NFTDetails.tsx:332
-msgid "Preview video uris"
-msgstr "پیش نمایش ویدئو uris"
+#~ msgid "Preview video uris"
+#~ msgstr "پیش نمایش ویدئو uris"
+
+#: src/components/nfts/NFTDetails.tsx:327
+msgid "Preview video URL {index}"
+msgstr ""
 
 #: src/components/block/Block.jsx:257
 #: src/components/nfts/detail/NFTDetailV2.tsx:133
@@ -4132,7 +4140,7 @@ msgstr "هش شواهد"
 msgid "Proofs Object (Key Value Pairs)"
 msgstr "شواهد اثبات (جفت مقادیر کلیدی)"
 
-#: src/components/nfts/NFTProperties.tsx:121
+#: src/components/nfts/NFTProperties.tsx:101
 msgid "Properties"
 msgstr "ویژگی ها"
 
@@ -4425,7 +4433,7 @@ msgstr "حق امتیازها در ان اف تی تعبیه شده‌اند، �
 msgid "Royalty Address"
 msgstr "آدرس حق امتیاز"
 
-#: src/components/nfts/NFTDetails.tsx:160
+#: src/components/nfts/NFTDetails.tsx:159
 #: src/constants/WalletConnectCommands.tsx:645
 msgid "Royalty Percentage"
 msgstr "درصد حق امتیاز"
@@ -5482,9 +5490,9 @@ msgstr "{entityId} نمیتوان ان اف تی را پیدا کرد"
 #~ msgid "Unable to open Keybase. Install Keybase from https://keybase.io"
 #~ msgstr "Unable to open Keybase. Install Keybase from https://keybase.io"
 
-#: src/components/nfts/NFTDetails.tsx:142
-#: src/components/nfts/NFTDetails.tsx:163
-#: src/components/nfts/NFTDetails.tsx:206
+#: src/components/nfts/NFTDetails.tsx:141
+#: src/components/nfts/NFTDetails.tsx:162
+#: src/components/nfts/NFTDetails.tsx:205
 msgid "Unassigned"
 msgstr "اختصاص داده نشده"
 

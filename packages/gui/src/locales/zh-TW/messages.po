@@ -1345,11 +1345,11 @@ msgstr "Dapp {from} 正在傳送訊息"
 msgid "Dapp sending the message"
 msgstr "Dapp正在傳送訊息"
 
-#: src/components/nfts/NFTDetails.tsx:236
+#: src/components/nfts/NFTDetails.tsx:235
 msgid "Data Hash"
 msgstr "資料雜湊值"
 
-#: src/components/nfts/NFTDetails.tsx:223
+#: src/components/nfts/NFTDetails.tsx:222
 msgid "Data URL {0}"
 msgstr "資料 URL {0}"
 
@@ -1470,7 +1470,7 @@ msgstr "目标路徑"
 msgid "Destination:"
 msgstr "目标路徑:"
 
-#: src/components/nfts/NFTDetails.tsx:352
+#: src/components/nfts/NFTDetails.tsx:353
 msgid "Details"
 msgstr "詳細資料"
 
@@ -2668,7 +2668,7 @@ msgstr "最新區塊挑戰"
 msgid "Launcher Id"
 msgstr "啟動器 ID"
 
-#: src/components/nfts/NFTDetails.tsx:65
+#: src/components/nfts/NFTDetails.tsx:64
 #: src/components/vcs/VCCard.tsx:132
 msgid "Launcher ID"
 msgstr "啟動器 ID"
@@ -2695,7 +2695,7 @@ msgstr "舊密鑰不再支持。你的密鑰需要遷移到一個新的密鑰環
 msgid "Legacy keyrings are no longer supported. Your keys need to be migrated to a new keyring that is secured by a master passphrase."
 msgstr "舊密鑰不再支持。你的密鑰需要遷移到一個新的密鑰環，這個密鑰環由主密碼保護。"
 
-#: src/components/nfts/NFTDetails.tsx:296
+#: src/components/nfts/NFTDetails.tsx:295
 #: src/constants/WalletConnectCommands.tsx:683
 msgid "License Hash"
 msgstr "牌照哈希值"
@@ -2704,7 +2704,7 @@ msgstr "牌照哈希值"
 msgid "License Uris"
 msgstr "牌照Uris"
 
-#: src/components/nfts/NFTDetails.tsx:281
+#: src/components/nfts/NFTDetails.tsx:280
 msgid "License URL {0}"
 msgstr "牌照URL {0}"
 
@@ -2856,7 +2856,7 @@ msgstr "元哈希值"
 msgid "Meta Uris"
 msgstr "元Uris"
 
-#: src/components/nfts/NFTDetails.tsx:266
+#: src/components/nfts/NFTDetails.tsx:265
 msgid "Metadata Hash"
 msgstr "元資料雜湊值"
 
@@ -2864,7 +2864,7 @@ msgstr "元資料雜湊值"
 #~ msgid "Metadata hash mismatch"
 #~ msgstr ""
 
-#: src/components/nfts/NFTDetails.tsx:251
+#: src/components/nfts/NFTDetails.tsx:250
 msgid "Metadata URL {0}"
 msgstr "元數據 URL {0}"
 
@@ -2896,7 +2896,7 @@ msgstr "最小難度"
 msgid "Mint NFT"
 msgstr "鑄造NFT"
 
-#: src/components/nfts/NFTDetails.tsx:214
+#: src/components/nfts/NFTDetails.tsx:213
 msgid "Minted at Block Height"
 msgstr "鑄造於區塊高度"
 
@@ -2904,7 +2904,7 @@ msgstr "鑄造於區塊高度"
 msgid "Minter"
 msgstr "鑄造者"
 
-#: src/components/nfts/NFTDetails.tsx:173
+#: src/components/nfts/NFTDetails.tsx:172
 msgid "Minter DID"
 msgstr "鑄造者DID"
 
@@ -3064,7 +3064,7 @@ msgstr "NFT {nftId} 已在此報價單中使用"
 #~ msgid "NFT Coin Id"
 #~ msgstr ""
 
-#: src/components/nfts/NFTDetails.tsx:74
+#: src/components/nfts/NFTDetails.tsx:73
 msgid "NFT Coin ID"
 msgstr "NFT 代幣 ID"
 
@@ -3085,7 +3085,7 @@ msgstr "NFT 沒有版稅"
 msgid "NFT holder address"
 msgstr "NFT 持有者地址"
 
-#: src/components/nfts/NFTDetails.tsx:56
+#: src/components/nfts/NFTDetails.tsx:55
 #: src/components/offers2/OfferBuilderNFT.tsx:54
 #: src/components/signVerify/SigningEntityNFT.tsx:65
 msgid "NFT ID"
@@ -3577,15 +3577,15 @@ msgstr "覆蓋 Phase 2 的線程數"
 msgid "Override the thread count for Phase 3"
 msgstr "覆蓋 Phase 3 的線程數"
 
-#: src/components/nfts/NFTDetails.tsx:88
+#: src/components/nfts/NFTDetails.tsx:87
 msgid "Owner Address"
 msgstr "擁有者地址"
 
-#: src/components/nfts/NFTDetails.tsx:109
+#: src/components/nfts/NFTDetails.tsx:108
 msgid "Owner DID"
 msgstr "擁有者的去中心化個人檔案"
 
-#: src/components/nfts/NFTDetails.tsx:149
+#: src/components/nfts/NFTDetails.tsx:148
 msgid "Owner Public Key"
 msgstr "擁有者公鑰"
 
@@ -4066,16 +4066,24 @@ msgid "Preview"
 msgstr "預覽"
 
 #: src/components/nfts/NFTDetails.tsx:316
-msgid "Preview image uris"
-msgstr "預覽圖片連結"
+#~ msgid "Preview image uris"
+#~ msgstr "預覽圖片連結"
+
+#: src/components/nfts/NFTDetails.tsx:310
+msgid "Preview image URL {index}"
+msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:621
 #~ msgid "Preview URL is not valid"
 #~ msgstr "Preview URL is not valid"
 
 #: src/components/nfts/NFTDetails.tsx:332
-msgid "Preview video uris"
-msgstr "預覽影片連結"
+#~ msgid "Preview video uris"
+#~ msgstr "預覽影片連結"
+
+#: src/components/nfts/NFTDetails.tsx:327
+msgid "Preview video URL {index}"
+msgstr ""
 
 #: src/components/block/Block.jsx:257
 #: src/components/nfts/detail/NFTDetailV2.tsx:133
@@ -4128,7 +4136,7 @@ msgstr "證明哈希"
 msgid "Proofs Object (Key Value Pairs)"
 msgstr "證明物件 (鍵值對)"
 
-#: src/components/nfts/NFTProperties.tsx:121
+#: src/components/nfts/NFTProperties.tsx:101
 msgid "Properties"
 msgstr "屬性"
 
@@ -4421,7 +4429,7 @@ msgstr "版稅內置於 NFT 中，因此在創建/接受報價單時將自動計
 msgid "Royalty Address"
 msgstr "版稅地址"
 
-#: src/components/nfts/NFTDetails.tsx:160
+#: src/components/nfts/NFTDetails.tsx:159
 #: src/constants/WalletConnectCommands.tsx:645
 msgid "Royalty Percentage"
 msgstr "版稅百分比"
@@ -5478,9 +5486,9 @@ msgstr "無法找到 NFT {entityId}"
 #~ msgid "Unable to open Keybase. Install Keybase from https://keybase.io"
 #~ msgstr "Unable to open Keybase. Install Keybase from https://keybase.io"
 
-#: src/components/nfts/NFTDetails.tsx:142
-#: src/components/nfts/NFTDetails.tsx:163
-#: src/components/nfts/NFTDetails.tsx:206
+#: src/components/nfts/NFTDetails.tsx:141
+#: src/components/nfts/NFTDetails.tsx:162
+#: src/components/nfts/NFTDetails.tsx:205
 msgid "Unassigned"
 msgstr "未分配"
 
