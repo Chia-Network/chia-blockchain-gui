@@ -44,134 +44,134 @@ msgid "Would you like to transfer {count} NFTs to a new owner?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:502
+#: src/electron/main.tsx:508
 msgid "No"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:502
+#: src/electron/main.tsx:508
 msgid "Yes"
 msgstr "Sí"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:503
+#: src/electron/main.tsx:509
 msgid "Confirm"
 msgstr "Confirmar"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:505
+#: src/electron/main.tsx:511
 msgid "Are you sure you want to quit?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:510
+#: src/electron/main.tsx:516
 msgid "Keep service running in the background"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:628
-#: src/electron/main.tsx:836
+#: src/electron/main.tsx:634
+#: src/electron/main.tsx:842
 msgid "File"
 msgstr "Archivo"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:636
+#: src/electron/main.tsx:642
 msgid "Edit"
 msgstr "Editar"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:668
+#: src/electron/main.tsx:674
 msgid "View"
 msgstr "Vista"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:677
+#: src/electron/main.tsx:683
 msgid "Developer"
 msgstr "Desarrollador"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:680
+#: src/electron/main.tsx:686
 msgid "Developer Tools"
 msgstr "Herramientas de Desarrollador"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:688
+#: src/electron/main.tsx:694
 msgid "Trigger Desktop Notification"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:717
+#: src/electron/main.tsx:723
 msgid "Full Screen"
 msgstr "Pantalla Completa"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:724
+#: src/electron/main.tsx:730
 msgid "Window"
 msgstr "Ventana"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:738
+#: src/electron/main.tsx:744
 msgid "Help"
 msgstr "Ayuda"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:742
+#: src/electron/main.tsx:748
 msgid "Chia Blockchain Wiki"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:748
+#: src/electron/main.tsx:754
 msgid "Frequently Asked Questions"
 msgstr "Preguntas Frecuentes"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:754
+#: src/electron/main.tsx:760
 msgid "Release Notes"
 msgstr "Notas de Versión"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:760
+#: src/electron/main.tsx:766
 msgid "Contribute on GitHub"
 msgstr "Contribuir en GitHub"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:769
+#: src/electron/main.tsx:775
 msgid "Report an Issue..."
 msgstr "Reportar un problema..."
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:775
+#: src/electron/main.tsx:781
 msgid "Chat on Discord"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:781
+#: src/electron/main.tsx:787
 msgid "Follow on Twitter"
 msgstr "Seguir en Twitter"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:793
+#: src/electron/main.tsx:799
 msgid "Chia"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:796
-#: src/electron/main.tsx:889
+#: src/electron/main.tsx:802
+#: src/electron/main.tsx:895
 msgid "About Chia Blockchain"
 msgstr "Acerca de Chia Blockchain"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:802
+#: src/electron/main.tsx:808
 msgid "Check for Updates..."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:850
+#: src/electron/main.tsx:856
 msgid "Speech"
 msgstr "Habla"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:895
+#: src/electron/main.tsx:901
 msgid "Check for updates..."
 msgstr ""
 
