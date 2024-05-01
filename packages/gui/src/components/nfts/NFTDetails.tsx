@@ -7,7 +7,6 @@ import {
   Tooltip,
   Truncate,
   truncateValue,
-  Link,
   useCurrencyCode,
 } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
@@ -302,35 +301,37 @@ export default function NFTDetails(props: NFTDetailsProps) {
       });
     }
 
-    if (metadata?.preview_image_uris) {
-      const value = metadata?.preview_image_uris.map((uri: string) => (
-        <span>
-          &nbsp;
-          <Link href={uri} target="_blank">
-            {uri}
-          </Link>
-        </span>
-      ));
-      rows.push({
-        key: 'preview_image_uris',
-        label: <Trans>Preview image uris</Trans>,
-        value,
+    if (Array.isArray(metadata?.preview_image_uris)) {
+      metadata.preview_image_uris.forEach((uri: string, i: number) => {
+        if (uri) {
+          const index = i + 1;
+          rows.push({
+            key: `preview-image-uris-${i}`,
+            label: <Trans>Preview image URL {index}</Trans>,
+            value: (
+              <Tooltip title={uri} copyToClipboard>
+                <Typography variant="body2">{uri}</Typography>
+              </Tooltip>
+            ),
+          });
+        }
       });
     }
 
     if (Array.isArray(metadata?.preview_video_uris)) {
-      const value = metadata?.preview_video_uris.map((uri: string) => (
-        <span>
-          &nbsp;
-          <Link target="_blank" href={uri}>
-            {uri}
-          </Link>
-        </span>
-      ));
-      rows.push({
-        key: 'preview_video_uris',
-        label: <Trans>Preview video uris</Trans>,
-        value,
+      metadata.preview_video_uris.forEach((uri: string, i: number) => {
+        if (uri) {
+          const index = i + 1;
+          rows.push({
+            key: `preview-video-uris-${i}`,
+            label: <Trans>Preview video URL {index}</Trans>,
+            value: (
+              <Tooltip title={uri} copyToClipboard>
+                <Typography variant="body2">{uri}</Typography>
+              </Tooltip>
+            ),
+          });
+        }
       });
     }
 
