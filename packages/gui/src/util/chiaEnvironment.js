@@ -62,6 +62,31 @@ const getChiaVersion = () => {
   return version;
 };
 
+const chiaInit = () => {
+  if (guessPackaged()) {
+    const executablePath = getExecutablePath(PY_DIST_EXECUTABLE);
+    console.info(`Executing: ${executablePath} init`);
+
+    try {
+      const output = childProcess.execFileSync(executablePath, ['init']);
+      console.info(output.toString());
+    } catch (e) {
+      console.error('Error: ');
+      console.error(e);
+    }
+  } else {
+    console.info(`Executing: ${PY_DEV_EXECUTABLE} init`);
+
+    try {
+      const output = childProcess.execFileSync(PY_DEV_EXECUTABLE, ['init']);
+      console.info(output.toString());
+    } catch (e) {
+      console.error('Error: ');
+      console.error(e);
+    }
+  }
+};
+
 const startChiaDaemon = () => {
   pyProc = null;
 
@@ -142,6 +167,7 @@ const startChiaDaemon = () => {
 };
 
 module.exports = {
+  chiaInit,
   startChiaDaemon,
   getChiaVersion,
   guessPackaged,
