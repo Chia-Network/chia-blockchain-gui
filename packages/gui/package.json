@@ -7,7 +7,7 @@
   "homepage": "./",
   "main": "build/electron/main.js",
   "engines": {
-    "node": ">=16.15.0"
+    "node": ">=18.18.2"
   },
   "jest": {
     "testPathIgnorePatterns": [
@@ -41,7 +41,7 @@
     "@chia-network/core": "1.0.0",
     "@chia-network/icons": "1.0.0",
     "@chia-network/wallets": "1.0.0",
-    "@electron/remote": "2.0.10",
+    "@electron/remote": "2.1.2",
     "@lingui/core": "4.4.0",
     "@lingui/macro": "4.4.0",
     "@lingui/react": "4.4.0",
@@ -136,10 +136,10 @@
     "cross-env": "7.0.3",
     "date-and-time": "2.4.3",
     "css-loader": "6.8.1",
-    "electron": "27.0.0",
+    "electron": "30.0.1",
     "electron-devtools-assembler": "1.2.0",
     "electron-playwright-helpers": "^1.6.0",
-    "electron-winstaller": "5.1.0",
+    "electron-winstaller": "5.3.1",
     "html-webpack-plugin": "5.5.3",
     "jest": "29.6.3",
     "lodash-webpack-plugin": "0.11.6",
