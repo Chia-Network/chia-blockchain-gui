@@ -44,134 +44,134 @@ msgid "Would you like to transfer {count} NFTs to a new owner?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:508
+#: src/electron/main.tsx:510
 msgid "No"
 msgstr "아니오"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:508
+#: src/electron/main.tsx:510
 msgid "Yes"
 msgstr "예"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:509
+#: src/electron/main.tsx:511
 msgid "Confirm"
 msgstr "확인"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:511
+#: src/electron/main.tsx:513
 msgid "Are you sure you want to quit?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:516
+#: src/electron/main.tsx:518
 msgid "Keep service running in the background"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:634
-#: src/electron/main.tsx:842
+#: src/electron/main.tsx:636
+#: src/electron/main.tsx:844
 msgid "File"
 msgstr "파일"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:642
+#: src/electron/main.tsx:644
 msgid "Edit"
 msgstr "편집"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:674
+#: src/electron/main.tsx:676
 msgid "View"
 msgstr "보기"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:683
+#: src/electron/main.tsx:685
 msgid "Developer"
 msgstr "개발자"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:686
+#: src/electron/main.tsx:688
 msgid "Developer Tools"
 msgstr "개발자 도구"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:694
+#: src/electron/main.tsx:696
 msgid "Trigger Desktop Notification"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:723
+#: src/electron/main.tsx:725
 msgid "Full Screen"
 msgstr "전체 화면"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:730
+#: src/electron/main.tsx:732
 msgid "Window"
 msgstr "창"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:744
+#: src/electron/main.tsx:746
 msgid "Help"
 msgstr "도움말"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:748
+#: src/electron/main.tsx:750
 msgid "Chia Blockchain Wiki"
 msgstr "치아 블록체인 위키"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:754
+#: src/electron/main.tsx:756
 msgid "Frequently Asked Questions"
 msgstr "자주 묻는 질문"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:760
+#: src/electron/main.tsx:762
 msgid "Release Notes"
 msgstr "릴리스 노트"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:766
+#: src/electron/main.tsx:768
 msgid "Contribute on GitHub"
 msgstr "GitHub에서 기여"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:775
+#: src/electron/main.tsx:777
 msgid "Report an Issue..."
 msgstr "문제 보고하기..."
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:781
+#: src/electron/main.tsx:783
 msgid "Chat on Discord"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:787
+#: src/electron/main.tsx:789
 msgid "Follow on Twitter"
 msgstr "트위터 팔로우하기"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:799
+#: src/electron/main.tsx:801
 msgid "Chia"
 msgstr "치아"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:802
-#: src/electron/main.tsx:895
+#: src/electron/main.tsx:804
+#: src/electron/main.tsx:897
 msgid "About Chia Blockchain"
 msgstr "치아 블록체인에 대하여"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:808
+#: src/electron/main.tsx:810
 msgid "Check for Updates..."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:856
+#: src/electron/main.tsx:858
 msgid "Speech"
 msgstr "말하다"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:901
+#: src/electron/main.tsx:903
 msgid "Check for updates..."
 msgstr ""
 
