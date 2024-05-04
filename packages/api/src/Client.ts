@@ -170,7 +170,7 @@ export default class Client extends EventEmitter {
   private handleOpen = async () => {
     this.connected = true;
 
-    // todo clear deamon running services because it has old state
+    // todo clear daemon running services because it has old state
     this.emit('state', this.getState());
 
     this.changeState(ConnectionState.CONNECTED);
