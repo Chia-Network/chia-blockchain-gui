@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-04-07 00:04\n"
+"PO-Revision-Date: 2024-05-05 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -2302,7 +2302,7 @@ msgstr "مسابقات هش"
 
 #: src/components/offers/OfferShareDialog.tsx:577
 #~ msgid "Hashgreen DEX URL"
-#~ msgstr "Hashgreen DEX لینک آدرس سایت"
+#~ msgstr "Hashgreen DEX URL"
 
 #: src/components/block/Block.jsx:156
 msgid "Header hash"
@@ -2469,20 +2469,16 @@ msgstr "در حال شروع..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
+msgstr "مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
 "موجودی قابل مصرف شما برای پوشش مبلغ پیشنهاد کافی است."
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
+msgstr "مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
 "موجودی قابل مصرف شما برای پوشش مبلغ پیشنهاد کافی است."
 
 #: src/components/farm/PoolingHealth.tsx:302
@@ -4071,11 +4067,11 @@ msgstr "پیش نمایش"
 
 #: src/components/nfts/NFTDetails.tsx:316
 #~ msgid "Preview image uris"
-#~ msgstr "پیش نمایش تصویر uris"
+#~ msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:310
 msgid "Preview image URL {index}"
-msgstr ""
+msgstr "پیش نمایش آدرس تصویر {index}"
 
 #: src/components/nfts/NFTPreview.tsx:621
 #~ msgid "Preview URL is not valid"
@@ -4083,11 +4079,11 @@ msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:332
 #~ msgid "Preview video uris"
-#~ msgstr "پیش نمایش ویدئو uris"
+#~ msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:327
 msgid "Preview video URL {index}"
-msgstr ""
+msgstr "پیش نمایش آدرس ویدیو {index}"
 
 #: src/components/block/Block.jsx:257
 #: src/components/nfts/detail/NFTDetailV2.tsx:133
@@ -4658,7 +4654,7 @@ msgstr "اشتراک در دکسی"
 
 #: src/components/offers/OfferShareDialog.tsx:611
 #~ msgid "Share on Hashgreen DEX"
-#~ msgstr "DEX اشتراک در هش گرین "
+#~ msgstr "Share on Hashgreen DEX"
 
 #: src/components/offers/OfferShareDialog.tsx:1160
 #~ msgid "Share on Keybase"
@@ -5701,7 +5697,7 @@ msgstr "دیدن در دکسی"
 
 #: src/components/offers/OfferShareDialog.tsx:592
 #~ msgid "View on Hashgreen DEX"
-#~ msgstr "Hashgreen DEX دیدن در"
+#~ msgstr "View on Hashgreen DEX"
 
 #: src/components/nfts/NFTContextualActions.tsx:643
 #: src/components/offers/OfferShareDialog.tsx:441
@@ -6077,3 +6073,4 @@ msgstr "برای ایجاد حساب کاربری، موجودی قابل خرج
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "برای انجام مطالبه خودکار، باید کیف پول شما در حال اجرا باشد."
+
