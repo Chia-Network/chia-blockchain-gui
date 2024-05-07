@@ -8,7 +8,7 @@ msgstr ""
 "Language: en_NZ\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-04-07 00:04\n"
+"PO-Revision-Date: 2024-05-05 00:04\n"
 "Last-Translator: \n"
 "Language-Team: English, New Zealand\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -21,27 +21,27 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/components/nfts/NFTBurnDialog.tsx:133
 msgid "Do you want to burn {count} NFTs?"
-msgstr ""
+msgstr "Do you want to burn {count} NFTs?"
 
 #. js-lingui-explicit-id
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:185
 msgid "{count} transactions have been successfully submitted to the blockchain."
-msgstr ""
+msgstr "{count} transactions have been successfully submitted to the blockchain."
 
 #. js-lingui-explicit-id
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:192
 msgid "{count} NFTs failed to move."
-msgstr ""
+msgstr "{count} NFTs failed to move."
 
 #. js-lingui-explicit-id
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:383
 msgid "Would you like to move {count} NFTs to a profile?"
-msgstr ""
+msgstr "Would you like to move {count} NFTs to a profile?"
 
 #. js-lingui-explicit-id
 #: src/components/nfts/NFTTransferAction.tsx:225
 msgid "Would you like to transfer {count} NFTs to a new owner?"
-msgstr ""
+msgstr "Would you like to transfer {count} NFTs to a new owner?"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:510
@@ -66,7 +66,7 @@ msgstr "Are you sure you want to quit?"
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:518
 msgid "Keep service running in the background"
-msgstr ""
+msgstr "Keep service running in the background"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:636
@@ -97,7 +97,7 @@ msgstr "Developer Tools"
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:696
 msgid "Trigger Desktop Notification"
-msgstr ""
+msgstr "Trigger Desktop Notification"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:725
@@ -142,7 +142,7 @@ msgstr "Report an Issue..."
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:783
 msgid "Chat on Discord"
-msgstr ""
+msgstr "Chat on Discord"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:789
@@ -163,7 +163,7 @@ msgstr "About Chia Blockchain"
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:810
 msgid "Check for Updates..."
-msgstr ""
+msgstr "Check for Updates..."
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:858
@@ -173,7 +173,7 @@ msgstr "Speech"
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:903
 msgid "Check for updates..."
-msgstr ""
+msgstr "Check for updates..."
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:160
 #~ msgid "- Set a time after which the offer expires.<0/>- An expiring offer can only be claimed prior to the expiration time."
@@ -181,11 +181,11 @@ msgstr ""
 
 #: src/components/offers2/OfferBuilderImport.tsx:129
 msgid "(⌘V) a blob"
-msgstr ""
+msgstr "(⌘V) a blob"
 
 #: src/components/offers2/OfferBuilderImport.tsx:129
 msgid "(Ctrl-V) a blob"
-msgstr ""
+msgstr "(Ctrl-V) a blob"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:63
 msgid "(Not Installed)"
@@ -193,7 +193,7 @@ msgstr "(Not Installed)"
 
 #: src/components/plot/add/PlotAddChooseKeys.tsx:64
 msgid "(Not recommended) Used to create an old style plot for solo farming."
-msgstr ""
+msgstr "(Not recommended) Used to create an old style plot for solo farming."
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:61
 msgid "(Not Supported)"
@@ -205,7 +205,7 @@ msgstr "(Not Supported)"
 
 #: src/components/plot/add/PlotAddNFT.tsx:67
 msgid "(Recommended)"
-msgstr ""
+msgstr "(Recommended)"
 
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:97
 msgid "{0, plural, one {mojo} other {mojos}}"
@@ -218,7 +218,7 @@ msgstr "{0, plural, one {mojo} other {mojos}}"
 
 #: src/components/addressbook/ContactSummary.tsx:155
 msgid "{0} {1}"
-msgstr ""
+msgstr "{0} {1}"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:169
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:201
@@ -231,7 +231,7 @@ msgstr "{0} of {1}"
 
 #: src/components/nfts/gallery/SelectedActionsDialog.tsx:67
 msgid "{0} of {allCount} items selected:"
-msgstr ""
+msgstr "{0} of {allCount} items selected:"
 
 #: src/components/plotNFT/PlotNFTGraph.tsx:63
 msgid "{0} points {1} - {2} hours ago"
@@ -247,19 +247,19 @@ msgstr "{0} points {1} - {2} hours ago"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:36
 msgid "{displayDays, plural, one {day} other {days}}"
-msgstr ""
+msgstr "{displayDays, plural, one {day} other {days}}"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:38
 msgid "{displayHours, plural, one {hour} other {hours}}"
-msgstr ""
+msgstr "{displayHours, plural, one {hour} other {hours}}"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:40
 msgid "{displayMinutes, plural, one {minute} other {minutes}}"
-msgstr ""
+msgstr "{displayMinutes, plural, one {minute} other {minutes}}"
 
 #: src/components/notification/NotificationAnnouncement.tsx:52
 msgid "{from} <0>sending the message</0>"
-msgstr ""
+msgstr "{from} <0>sending the message</0>"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:432
 #~ msgid "{key} ({0})"
@@ -280,7 +280,7 @@ msgstr "{mojos, plural, one {mojo} other {mojos}}"
 
 #: src/components/offers2/OfferBuilderValue.tsx:185
 msgid "{type} is not supported"
-msgstr ""
+msgstr "{type} is not supported"
 
 #: src/components/nfts/NFTRankings.tsx:46
 msgid "{value} of {max_value}"
@@ -292,15 +292,15 @@ msgstr "{value} of {max_value}"
 
 #: src/components/settings/SettingsHarvester.tsx:542
 msgid "* Disabled - use device at specified index if available; if not, attempt to use device at other indices; if no GPUs available, use CPU"
-msgstr ""
+msgstr "* Disabled - use device at specified index if available; if not, attempt to use device at other indices; if no GPUs available, use CPU"
 
 #: src/components/settings/SettingsHarvester.tsx:540
 msgid "* Enabled - use device at specified index if available; else error"
-msgstr ""
+msgstr "* Enabled - use device at specified index if available; else error"
 
 #: src/components/settings/SettingsHarvester.tsx:344
 msgid "*Usually it takes seconds to complete restarting."
-msgstr ""
+msgstr "*Usually it takes seconds to complete restarting."
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:42
 msgid "+ Add a Plot"
@@ -312,7 +312,7 @@ msgstr "+ Add New Plot NFT"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:306
 msgid "<0>Loading...</0> {0}%"
-msgstr ""
+msgstr "<0>Loading...</0> {0}%"
 
 #: src/components/settings/ProfileAdd.tsx:80
 #~ msgid "<0>Need some XCH?</0>"
@@ -1054,7 +1054,7 @@ msgstr ""
 #: src/components/vcs/VCRevokeDialog.tsx:27
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:71
 msgid "Confirm"
-msgstr "Confirm"
+msgstr ""
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:19
 msgid "Confirm Disconnect"
@@ -3151,7 +3151,7 @@ msgstr ""
 
 #: src/components/vcs/VCCard.tsx:89
 msgid "No"
-msgstr "No"
+msgstr ""
 
 #: src/components/notification/NotificationsMenu.tsx:53
 msgid "No activities yet"
@@ -5676,7 +5676,7 @@ msgstr ""
 
 #: src/components/offers2/OfferIncomingTable.tsx:95
 msgid "View"
-msgstr "View"
+msgstr ""
 
 #: src/components/offers/OfferImport.tsx:184
 msgid "View an Offer"
@@ -5923,7 +5923,7 @@ msgstr "Would you like to transfer the specified NFT to a new owner?"
 #: src/components/plot/add/PlotAddChooseSize.tsx:61
 #: src/components/vcs/VCCard.tsx:89
 msgid "Yes"
-msgstr "Yes"
+msgstr ""
 
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:22
 msgid "Yes, Accept Offer"

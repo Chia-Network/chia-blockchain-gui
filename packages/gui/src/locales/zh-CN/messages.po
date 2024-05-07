@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-04-07 00:04\n"
+"PO-Revision-Date: 2024-05-05 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -1054,7 +1054,7 @@ msgstr "压缩等级"
 #: src/components/vcs/VCRevokeDialog.tsx:27
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:71
 msgid "Confirm"
-msgstr "确定"
+msgstr "确认"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:19
 msgid "Confirm Disconnect"
@@ -2302,7 +2302,7 @@ msgstr "哈希匹配"
 
 #: src/components/offers/OfferShareDialog.tsx:577
 #~ msgid "Hashgreen DEX URL"
-#~ msgstr "HashGreen 去中心化交易所网址"
+#~ msgstr "Hashgreen DEX URL"
 
 #: src/components/block/Block.jsx:156
 msgid "Header hash"
@@ -4071,11 +4071,11 @@ msgstr "预览"
 
 #: src/components/nfts/NFTDetails.tsx:316
 #~ msgid "Preview image uris"
-#~ msgstr "预览图片的网址"
+#~ msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:310
 msgid "Preview image URL {index}"
-msgstr ""
+msgstr "图片预览网址{index}"
 
 #: src/components/nfts/NFTPreview.tsx:621
 #~ msgid "Preview URL is not valid"
@@ -4083,11 +4083,11 @@ msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:332
 #~ msgid "Preview video uris"
-#~ msgstr "预览视频网址"
+#~ msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:327
 msgid "Preview video URL {index}"
-msgstr ""
+msgstr "视频预览网址{index}"
 
 #: src/components/block/Block.jsx:257
 #: src/components/nfts/detail/NFTDetailV2.tsx:133
@@ -4658,7 +4658,7 @@ msgstr "分享到 Dexie"
 
 #: src/components/offers/OfferShareDialog.tsx:611
 #~ msgid "Share on Hashgreen DEX"
-#~ msgstr "分享到Hashgreen DEX"
+#~ msgstr "Share on Hashgreen DEX"
 
 #: src/components/offers/OfferShareDialog.tsx:1160
 #~ msgid "Share on Keybase"
@@ -5701,7 +5701,7 @@ msgstr "在 Dexie 上查看"
 
 #: src/components/offers/OfferShareDialog.tsx:592
 #~ msgid "View on Hashgreen DEX"
-#~ msgstr "在 Hashgreen DEX 上查看"
+#~ msgstr "View on Hashgreen DEX"
 
 #: src/components/nfts/NFTContextualActions.tsx:643
 #: src/components/offers/OfferShareDialog.tsx:441
