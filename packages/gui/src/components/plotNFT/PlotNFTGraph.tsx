@@ -79,7 +79,6 @@ export default function PlotNFTGraph(props: PlotNFTGraphProps) {
         )}
         <Box height={100} position="relative" ref={ref}>
           <VictoryChart
-            animate={{ duration: 300, onLoad: { duration: 0 } }}
             width={containerSize.width || 1}
             height={containerSize.height || 1}
             domain={{ x: [maxX, minX], y: [0, maxY] }}
