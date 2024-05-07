@@ -45,6 +45,7 @@ export { default as LayoutDashboard, LayoutDashboardSub } from './LayoutDashboar
 export { default as LayoutHero } from './LayoutHero';
 export { default as LayoutLoading } from './LayoutLoading';
 export { default as LayoutMain } from './LayoutMain';
+export { default as LineChart } from './LineChart';
 export { default as Link } from './Link';
 export { default as Loading } from './Loading';
 export { default as LoadingOverlay } from './LoadingOverlay';
