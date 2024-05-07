@@ -41,8 +41,7 @@
     "react-use": "17.4.0",
     "react-use-timeout": "1.0.0",
     "use-dark-mode": "2.3.1",
-    "validator": "13.11.0",
-    "victory": "36.6.11"
+    "validator": "13.11.0"
   },
   "devDependencies": {
     "@babel/core": "7.22.10",
