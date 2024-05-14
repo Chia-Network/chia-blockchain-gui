@@ -8,7 +8,7 @@ msgstr ""
 "Language: ru_RU\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-05-05 00:04\n"
+"PO-Revision-Date: 2024-05-12 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
@@ -21,27 +21,27 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/components/nfts/NFTBurnDialog.tsx:133
 msgid "Do you want to burn {count} NFTs?"
-msgstr ""
+msgstr "Вы хотите сжечь {count} NFTs?"
 
 #. js-lingui-explicit-id
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:185
 msgid "{count} transactions have been successfully submitted to the blockchain."
-msgstr ""
+msgstr "{count} транзакции были успешно отправлены в блокчейн."
 
 #. js-lingui-explicit-id
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:192
 msgid "{count} NFTs failed to move."
-msgstr ""
+msgstr "Не удалось переместить {count} NFT."
 
 #. js-lingui-explicit-id
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:383
 msgid "Would you like to move {count} NFTs to a profile?"
-msgstr ""
+msgstr "Вы хотите переместить {count} NFT в профиль?"
 
 #. js-lingui-explicit-id
 #: src/components/nfts/NFTTransferAction.tsx:225
 msgid "Would you like to transfer {count} NFTs to a new owner?"
-msgstr ""
+msgstr "Вы хотите передать {count} NFT новому владельцу?"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:510
@@ -66,7 +66,7 @@ msgstr "Вы уверены, что хотите выйти?"
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:518
 msgid "Keep service running in the background"
-msgstr ""
+msgstr "Продолжать работу службы в фоновом режиме"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:636
@@ -97,7 +97,7 @@ msgstr "Инструменты разработчика"
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:696
 msgid "Trigger Desktop Notification"
-msgstr ""
+msgstr "Запуск уведомления на рабочем столе"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:725
@@ -314,7 +314,7 @@ msgstr "Сообщить о проблеме..."
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:783
 msgid "Chat on Discord"
-msgstr ""
+msgstr "Чат в Discord"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:789
@@ -335,7 +335,7 @@ msgstr "О программе Chia Blockchain"
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:810
 msgid "Check for Updates..."
-msgstr ""
+msgstr "Проверить наличие обновлений..."
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:858
@@ -345,7 +345,7 @@ msgstr "Речь"
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:903
 msgid "Check for updates..."
-msgstr ""
+msgstr "Проверить наличие обновлений..."
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:160
 #~ msgid "- Set a time after which the offer expires.<0/>- An expiring offer can only be claimed prior to the expiration time."
@@ -353,11 +353,11 @@ msgstr ""
 
 #: src/components/offers2/OfferBuilderImport.tsx:129
 msgid "(⌘V) a blob"
-msgstr ""
+msgstr "(⌘V) блок"
 
 #: src/components/offers2/OfferBuilderImport.tsx:129
 msgid "(Ctrl-V) a blob"
-msgstr ""
+msgstr "(Ctrl-V) вставить блок"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:63
 msgid "(Not Installed)"
@@ -365,7 +365,7 @@ msgstr "(Не установлен)"
 
 #: src/components/plot/add/PlotAddChooseKeys.tsx:64
 msgid "(Not recommended) Used to create an old style plot for solo farming."
-msgstr ""
+msgstr "(Не рекомендуется) Используется для построения участка старого типа, предназначенного  для ведения одиночного фермерства."
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:61
 msgid "(Not Supported)"
@@ -377,7 +377,7 @@ msgstr "(Не поддерживается)"
 
 #: src/components/plot/add/PlotAddNFT.tsx:67
 msgid "(Recommended)"
-msgstr ""
+msgstr "(Рекомендуется)"
 
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:97
 msgid "{0, plural, one {mojo} other {mojos}}"
@@ -403,7 +403,7 @@ msgstr "{0} из {1}"
 
 #: src/components/nfts/gallery/SelectedActionsDialog.tsx:67
 msgid "{0} of {allCount} items selected:"
-msgstr ""
+msgstr "{0} из {allCount} выбранных элементов:"
 
 #: src/components/plotNFT/PlotNFTGraph.tsx:63
 msgid "{0} points {1} - {2} hours ago"
@@ -813,7 +813,7 @@ msgstr "Тип актива"
 
 #: src/components/offers/OfferShareDialog.tsx:752
 msgid "Assets I am offering:"
-msgstr ""
+msgstr "Предложенные мною активы:"
 
 #: src/components/offers/OfferShareDialog.tsx:757
 msgid "Assets I will receive:"
@@ -1226,7 +1226,7 @@ msgstr ""
 #: src/components/vcs/VCRevokeDialog.tsx:27
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:71
 msgid "Confirm"
-msgstr ""
+msgstr "Подтвердить"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:19
 msgid "Confirm Disconnect"
@@ -3319,7 +3319,7 @@ msgstr ""
 
 #: src/components/vcs/VCCard.tsx:89
 msgid "No"
-msgstr ""
+msgstr "Нет"
 
 #: src/components/notification/NotificationsMenu.tsx:53
 msgid "No activities yet"
@@ -5844,7 +5844,7 @@ msgstr ""
 
 #: src/components/offers2/OfferIncomingTable.tsx:95
 msgid "View"
-msgstr ""
+msgstr "Вид"
 
 #: src/components/offers/OfferImport.tsx:184
 msgid "View an Offer"
@@ -6091,7 +6091,7 @@ msgstr ""
 #: src/components/plot/add/PlotAddChooseSize.tsx:61
 #: src/components/vcs/VCCard.tsx:89
 msgid "Yes"
-msgstr ""
+msgstr "Да"
 
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:22
 msgid "Yes, Accept Offer"
