@@ -16,19 +16,19 @@ function Menu(props: MenuProps, ref: any) {
   const handleClose = useCallback(
     (
       event: SyntheticEvent<HTMLElement>,
-      reason: 'escapeKeyDown' | 'backdropClick' | 'tabKeyDown' | 'menuItemClick'
+      reason: 'escapeKeyDown' | 'backdropClick' | 'tabKeyDown' | 'menuItemClick',
     ) => {
       event.stopPropagation();
       onClose?.(event, reason as any);
     },
-    [onClose]
+    [onClose],
   );
 
   const context = useMemo(
     () => ({
       close: handleClose,
     }),
-    [handleClose]
+    [handleClose],
   );
 
   return (

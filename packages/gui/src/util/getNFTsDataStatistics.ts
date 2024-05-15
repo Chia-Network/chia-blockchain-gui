@@ -6,7 +6,7 @@ import hasSensitiveContent from './hasSensitiveContent';
 
 export default function getNFTsDataStatistics(
   data: NFTData[],
-  isHidden: (nftId: string) => boolean
+  isHidden: (nftId: string) => boolean,
 ): NFTsDataStatistics {
   const stats: NFTsDataStatistics = {
     [FileType.IMAGE]: 0,

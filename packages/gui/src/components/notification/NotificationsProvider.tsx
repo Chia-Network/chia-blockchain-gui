@@ -74,7 +74,7 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
   // state for visible badge
   const [seenAt, setSeenAt, { isLoading: isLoadingSeenHeight }] = useCurrentFingerprintSettings<number>(
     'notificationsSeenAt',
-    0
+    0,
   );
 
   const isLoadingServices = isLoadingLoggedInFingerprint || isLoadingPushNotificationsTimestamp || isLoadingSeenHeight;
@@ -89,7 +89,7 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
     (notification: Notification) => {
       setTriggeredNotifications((prev = []) => [...prev, notification].slice(-MAX_NOTIFICATIONS));
     },
-    [setTriggeredNotifications /* immutable */]
+    [setTriggeredNotifications /* immutable */],
   );
 
   const triggeredNotificationsByCurrentFingerprint = useMemo(() => {
@@ -122,7 +122,7 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
 
     setLastPushNotificationTimestamp((prevLastPushNotificationTimestamp = 0) => {
       const firstUnseenNotification = notifications.find(
-        (notification) => notification.timestamp > prevLastPushNotificationTimestamp
+        (notification) => notification.timestamp > prevLastPushNotificationTimestamp,
       );
 
       if (!firstUnseenNotification) {
@@ -151,7 +151,7 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
   const unseenCount = useMemo(
     () =>
       seenAt ? notifications.filter((notification) => notification.timestamp > seenAt).length : notifications.length,
-    [seenAt, notifications]
+    [seenAt, notifications],
   );
 
   const setAsSeen = useCallback(() => {
@@ -180,7 +180,7 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
         await deleteNotification(notificationId);
       }
     },
-    [setTriggeredNotifications, deleteNotification]
+    [setTriggeredNotifications, deleteNotification],
   );
 
   useEffect(() => {
@@ -220,7 +220,7 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
 
       showNotification,
       handleDeleteNotification,
-    ]
+    ],
   );
 
   return <NotificationsContext.Provider value={contextValue}>{children}</NotificationsContext.Provider>;

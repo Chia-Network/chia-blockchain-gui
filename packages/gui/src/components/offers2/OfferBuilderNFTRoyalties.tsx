@@ -82,7 +82,7 @@ export default function OfferBuilderNFTRoyalties(props: OfferBuilderNFTRoyalties
           displaySymbol: <Truncate>{assetLowerCase}</Truncate>,
         };
       }),
-    [royalties, catList, currencyCode]
+    [royalties, catList, currencyCode],
   );
 
   return (

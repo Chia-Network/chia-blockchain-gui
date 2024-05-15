@@ -28,8 +28,8 @@ export default function NotificationPreviewOffer(props: NotificationPreviewOffer
     'offerURL' in notification
       ? notification.offerURL
       : 'offerData' in notification
-      ? notification.offerData
-      : undefined;
+        ? notification.offerData
+        : undefined;
 
   const { offer, isLoading } = useOffer(offerURLOrData);
 

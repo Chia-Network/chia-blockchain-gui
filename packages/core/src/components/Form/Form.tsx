@@ -12,7 +12,7 @@ function Form<T>(
     onSubmit: SubmitHandler<T>;
     children: ReactNode;
   },
-  ref: any
+  ref: any,
 ) {
   const { methods, onSubmit, ...rest } = props;
   const { handleSubmit } = methods;

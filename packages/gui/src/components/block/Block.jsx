@@ -69,7 +69,7 @@ export default function Block() {
     },
     {
       skip: !blockRecord?.prevHash || !blockRecord?.height,
-    }
+    },
   );
 
   async function updateNewPlotId(blockLocal) {

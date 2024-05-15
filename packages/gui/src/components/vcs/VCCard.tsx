@@ -54,7 +54,7 @@ export default function VCCard(props: {
   const [vcTitlesObject, setVcTitlesObject] = usePrefs<any>('verifiable-credentials-titles', {});
   const vcTitle = React.useMemo(
     () => vcTitlesObject[vcRecord?.vc?.launcherId] || vcTitlesObject[vcRecord?.sha256] || t`Verifiable Credential`,
-    [vcRecord?.vc?.launcherId, vcRecord?.sha256, vcTitlesObject]
+    [vcRecord?.vc?.launcherId, vcRecord?.sha256, vcTitlesObject],
   );
 
   const [isEditingTitle, setIsEditingTitle] = React.useState(false);
@@ -103,8 +103,8 @@ export default function VCCard(props: {
       vcRecord.confirmedAtHeight && !isLoadingMintHeight && mintedTimestamp
         ? moment(mintedTimestamp.timestamp * 1000).format('LLL')
         : vcRecord.issuanceDate
-        ? moment(vcRecord.issuanceDate).format('LLL')
-        : '/';
+          ? moment(vcRecord.issuanceDate).format('LLL')
+          : '/';
 
     const expirationDate = vcRecord.expirationDate ? moment(vcRecord.expirationDate).format('LLL') : null;
     const vcType = Array.isArray(vcRecord.type) && vcRecord.type.indexOf('KYCCredential') > -1 ? 'KYCCredential' : null;
@@ -215,7 +215,7 @@ export default function VCCard(props: {
             <Trans>Are you sure you want to revoke</Trans>
           )
         }
-      />
+      />,
     );
     let revokedResponse;
     let vcsLocalStorage;
@@ -226,7 +226,7 @@ export default function VCCard(props: {
           vcsLocalStorage = { ...VCsLocalStorage };
           if (vcsLocalStorage[fingerprint]) {
             vcsLocalStorage[fingerprint] = vcsLocalStorage[fingerprint].filter(
-              (x: any) => x.sha256 !== vcRecord.sha256
+              (x: any) => x.sha256 !== vcRecord.sha256,
             );
           }
           if (vcsLocalStorage[fingerprint].length === 0) {
@@ -243,7 +243,7 @@ export default function VCCard(props: {
           vcsLocalStorage = { ...VCsLocalStorage };
           if (vcsLocalStorage[fingerprint]) {
             vcsLocalStorage[fingerprint] = vcsLocalStorage[fingerprint].map((x: any) =>
-              x.sha256 === vcRecord.sha256 ? { ...x, revoked: true } : x
+              x.sha256 === vcRecord.sha256 ? { ...x, revoked: true } : x,
             );
           }
           setVCsLocalStorage(vcsLocalStorage);
@@ -264,14 +264,14 @@ export default function VCCard(props: {
       await openDialog(
         <AlertDialog title={<Trans>Verifiable Credential Removed</Trans>}>
           <Trans>Transaction sent to blockchain successfully.</Trans>
-        </AlertDialog>
+        </AlertDialog>,
       );
       navigate('/dashboard/vc');
     } else if (revokedResponse && (revokedResponse as any).error) {
       openDialog(
         <AlertDialog title={<Trans>Error</Trans>}>
           {(revokedResponse as any).error ? <Box>{(revokedResponse as any).error?.data?.error}</Box> : null}
-        </AlertDialog>
+        </AlertDialog>,
       );
     } else if (confirmedWithFee === -1) {
       await openDialog(
@@ -281,7 +281,7 @@ export default function VCCard(props: {
           ) : (
             <Trans>Verifiable Credential Revoked.</Trans>
           )}
-        </AlertDialog>
+        </AlertDialog>,
       );
       navigate('/dashboard/vc');
     }

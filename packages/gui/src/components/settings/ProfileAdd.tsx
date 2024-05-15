@@ -31,7 +31,7 @@ const StyledCard = styled(Card)(
   padding: ${theme.spacing(3)};
   border-radius: ${theme.spacing(1)};
   background-color: ${theme.palette.background.paper};
-`
+`,
 );
 
 type CreateProfileData = {
@@ -68,7 +68,7 @@ export default function ProfileAdd() {
   const canCreateProfile = (balance?.spendableBalance ?? 0) > 0;
 
   function handleClick() {
-    const url = `https://${isTestnet ? 'testnet10-faucet.chia.net' : 'faucet.chia.net'}/?address=${currentAddress}`;
+    const url = `https://${isTestnet ? 'testnet11-faucet.chia.net' : 'faucet.chia.net'}/?address=${currentAddress}`;
     openExternal(url);
   }
 

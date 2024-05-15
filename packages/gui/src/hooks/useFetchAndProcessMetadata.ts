@@ -31,7 +31,7 @@ export default function useFetchAndProcessMetadata() {
 
       return JSON.parse(metadataString) as Metadata;
     },
-    [getChecksum /* immutable */, getHeaders /* immutable */, getContent /* immutable */]
+    [getChecksum /* immutable */, getHeaders /* immutable */, getContent /* immutable */],
   );
 
   return fetchAndProcessMetadata;

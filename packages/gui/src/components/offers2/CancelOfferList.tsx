@@ -39,7 +39,7 @@ export default function CancelOfferList(props: CancelOfferListProps) {
         setPage(_page);
       }
     },
-    [rowsPerPage, page]
+    [rowsPerPage, page],
   );
 
   const rows = useMemo(() => {
@@ -52,7 +52,7 @@ export default function CancelOfferList(props: CancelOfferListProps) {
   const cols = useMemo(() => {
     async function handleCancelOffer(tradeId: string, canCancelWithTransaction: boolean) {
       const [cancelConfirmed, cancellationOptions] = await openDialog(
-        <ConfirmOfferCancellation canCancelWithTransaction={canCancelWithTransaction} />
+        <ConfirmOfferCancellation canCancelWithTransaction={canCancelWithTransaction} />,
       );
 
       if (cancelConfirmed === true) {

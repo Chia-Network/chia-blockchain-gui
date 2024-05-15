@@ -303,7 +303,7 @@ export default class Client extends EventEmitter {
             this.requests.delete(requestId);
 
             reject(
-              new ErrorData(`The request ${requestId} has timed out ${currentTimeout / 1000} seconds.`, undefined)
+              new ErrorData(`The request ${requestId} has timed out ${currentTimeout / 1000} seconds.`, undefined),
             );
           }
         }, currentTimeout);

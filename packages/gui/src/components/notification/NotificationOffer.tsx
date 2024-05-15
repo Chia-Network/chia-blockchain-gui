@@ -33,8 +33,8 @@ export default function NotificationOffer(props: NotificationOfferProps) {
     'offerURL' in notification
       ? notification.offerURL
       : 'offerData' in notification
-      ? notification.offerData
-      : undefined;
+        ? notification.offerData
+        : undefined;
 
   if (!offerURLOrData) {
     throw new Error('NotificationOffer can only be used with OFFER notifications');

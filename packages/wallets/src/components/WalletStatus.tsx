@@ -35,7 +35,7 @@ export default function WalletStatus(props: WalletStatusProps) {
     {},
     {
       pollingInterval: 10_000,
-    }
+    },
   );
 
   if (isLoading || !walletState) {

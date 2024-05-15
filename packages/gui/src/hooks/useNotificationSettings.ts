@@ -6,7 +6,7 @@ export default function useNotificationSettings() {
   const [dappOfferNotifications, setDappOfferNotifications] = usePrefs<boolean>('dappOffersNotifications', true);
   const [dappAnnouncementNotifications, setDappAnnouncementNotifications] = usePrefs<boolean>(
     'dappAnnouncementNotifications',
-    true
+    true,
   );
 
   return {

@@ -5,7 +5,7 @@ import { type Serializable } from './usePrefs';
 
 export default function useCurrentFingerprintSettings<Type extends Serializable>(
   key: string,
-  defaultValue?: Type
+  defaultValue?: Type,
 ): [
   Type | undefined,
   (value: Type | ((prevValue: Type) => Type)) => void,
@@ -13,7 +13,7 @@ export default function useCurrentFingerprintSettings<Type extends Serializable>
     fingerprint: number | undefined;
     isLoading: boolean;
     error?: Error;
-  }
+  },
 ] {
   const { data: fingerprint, isLoading, error } = useGetLoggedInFingerprintQuery();
   const [data, setData] = useFingerprintSettings<Type>(fingerprint, key, defaultValue);

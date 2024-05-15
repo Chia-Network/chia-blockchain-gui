@@ -52,7 +52,7 @@ export default async function fetchOffer({ offerUrl, getContent, getHeaders }: F
 
   // check offer validity
   const resultOfferValidityPromise = store.dispatch(
-    walletApi.endpoints.checkOfferValidity.initiate({ offer: offerData })
+    walletApi.endpoints.checkOfferValidity.initiate({ offer: offerData }),
   );
   const { data: dataOfferValidity, error: errorOfferValidity } = await resultOfferValidityPromise;
   if (errorOfferValidity) {

@@ -7,8 +7,8 @@ export default function validAddress(address: string, allowedPrefixes?: string[]
   if (allowedPrefixes && !allowedPrefixes.includes(prefix)) {
     throw new Error(
       `Invalid address: ${address}. Valid addresses must contain one of the following prefixes: ${allowedPrefixes.join(
-        ', '
-      )}`
+        ', ',
+      )}`,
     );
   }
 }

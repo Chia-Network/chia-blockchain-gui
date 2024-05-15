@@ -61,7 +61,7 @@ export default function useWalletTransactions(args: UseWalletTransactionsArgs): 
     },
     {
       skipToken: count === undefined,
-    }
+    },
   );
 
   const isLoading = isTransactionsLoading || isTransactionsCountLoading;

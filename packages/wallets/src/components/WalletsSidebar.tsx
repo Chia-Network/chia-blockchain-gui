@@ -71,7 +71,7 @@ export default function WalletsSidebar() {
     return orderedWallets
       .filter(
         (wallet) =>
-          [WalletType.STANDARD_WALLET, WalletType.CAT, WalletType.CRCAT].includes(wallet.type) && !isHidden(wallet.id)
+          [WalletType.STANDARD_WALLET, WalletType.CAT, WalletType.CRCAT].includes(wallet.type) && !isHidden(wallet.id),
       )
       .map((wallet) => {
         const primaryTitle = getWalletPrimaryTitle(wallet);

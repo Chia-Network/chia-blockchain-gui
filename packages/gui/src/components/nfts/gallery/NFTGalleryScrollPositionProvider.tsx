@@ -6,7 +6,7 @@ export interface NFTGalleryScrollPositionContextData {
 }
 
 export const NFTGalleryScrollPositionContext = createContext<NFTGalleryScrollPositionContextData | undefined>(
-  undefined
+  undefined,
 );
 
 export type NFTGalleryScrollPositionProviderProps = {
@@ -23,7 +23,7 @@ export default function NFTGalleryScrollPositionProvider(props: NFTGalleryScroll
       scrollPosition,
       setScrollPosition,
     }),
-    [scrollPosition, setScrollPosition]
+    [scrollPosition, setScrollPosition],
   );
 
   return (

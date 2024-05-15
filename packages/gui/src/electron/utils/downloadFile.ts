@@ -66,7 +66,7 @@ export default async function downloadFile(
     signal?: AbortSignal;
     maxSize?: number;
     onProgress?: (progress: number, size: number, downloadedSize: number) => void;
-  }
+  },
 ): Promise<Headers> {
   const tempFilePath = `${localPath}.tmp`;
   const request = net.request(url);

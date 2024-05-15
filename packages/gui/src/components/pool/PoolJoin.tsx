@@ -32,7 +32,7 @@ export default function PoolJoin(props: Props) {
       await openDialog(
         <AlertDialog>
           <Trans>You need to claim your rewards first</Trans>
-        </AlertDialog>
+        </AlertDialog>,
       );
       return;
     }

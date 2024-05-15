@@ -31,7 +31,9 @@ const StyledListItemIcon = styled(ListItemIcon)`
     left: 0;
     width: 100%;
     height: 100%;
-    box-shadow: 0px -2px 4px ${alpha(Color.Green[300], 0.41)}, 0px 1px 8px ${alpha(Color.Lime[400], 0.45)};
+    box-shadow:
+      0px -2px 4px ${alpha(Color.Green[300], 0.41)},
+      0px 1px 8px ${alpha(Color.Lime[400], 0.45)};
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
   }

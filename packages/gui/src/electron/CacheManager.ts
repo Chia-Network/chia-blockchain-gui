@@ -80,7 +80,7 @@ export default class CacheManager extends EventEmitter {
       maxCacheSize?: number | string;
       protocolScheme?: string;
       concurrency?: number;
-    } = {}
+    } = {},
   ) {
     super();
 
@@ -138,23 +138,23 @@ export default class CacheManager extends EventEmitter {
     handleWithCustomErrors('cache:getCacheSize', () => this.getCacheSize());
     handleWithCustomErrors('cache:clearCache', () => this.clearCache());
     handleWithCustomErrors('cache:setCacheDirectory', (_event, newDirectory: string) =>
-      this.setCacheDirectory(newDirectory)
+      this.setCacheDirectory(newDirectory),
     );
     handleWithCustomErrors('cache:setMaxCacheSize', (_event, newSize: number) => this.setMaxCacheSize(newSize));
     handleWithCustomErrors(
       'cache:getContent',
-      (_event, url: string, options?: { maxSize?: number; timeout?: number }) => this.getContent(url, options)
+      (_event, url: string, options?: { maxSize?: number; timeout?: number }) => this.getContent(url, options),
     );
     handleWithCustomErrors(
       'cache:getHeaders',
-      (_event, url: string, options?: { maxSize?: number; timeout?: number }) => this.getHeaders(url, options)
+      (_event, url: string, options?: { maxSize?: number; timeout?: number }) => this.getHeaders(url, options),
     );
     handleWithCustomErrors(
       'cache:getChecksum',
-      (_event, url: string, options?: { maxSize?: number; timeout?: number }) => this.getChecksum(url, options)
+      (_event, url: string, options?: { maxSize?: number; timeout?: number }) => this.getChecksum(url, options),
     );
     handleWithCustomErrors('cache:getURI', (_event, url: string, options?: { maxSize?: number; timeout?: number }) =>
-      this.getURI(url, options)
+      this.getURI(url, options),
     );
     handleWithCustomErrors('cache:invalidate', (_event, url: string) => this.invalidate(url));
 
@@ -292,7 +292,7 @@ export default class CacheManager extends EventEmitter {
     options: {
       maxSize?: number;
       timeout?: number;
-    } = {}
+    } = {},
   ): Promise<CacheInfo> {
     const { maxSize = MAX_FILE_SIZE, timeout = 30_000 } = options;
 
@@ -398,7 +398,7 @@ export default class CacheManager extends EventEmitter {
     options?: {
       maxSize?: number;
       timeout?: number;
-    }
+    },
   ): Promise<Headers> {
     const cacheInfo = await this.fetchRemoteContent(url, options);
 
@@ -422,7 +422,7 @@ export default class CacheManager extends EventEmitter {
     options?: {
       maxSize?: number;
       timeout?: number;
-    }
+    },
   ): Promise<Buffer> {
     const cacheInfo = await this.fetchRemoteContent(url, options);
 
@@ -447,7 +447,7 @@ export default class CacheManager extends EventEmitter {
     options?: {
       maxSize?: number;
       timeout?: number;
-    }
+    },
   ): Promise<string> {
     const cacheInfo = await this.fetchRemoteContent(url, options);
 
@@ -471,7 +471,7 @@ export default class CacheManager extends EventEmitter {
     options?: {
       maxSize?: number;
       timeout?: number;
-    }
+    },
   ) {
     const cacheInfo = await this.fetchRemoteContent(url, options);
 
@@ -552,7 +552,7 @@ export default class CacheManager extends EventEmitter {
           size: stats.size,
           mtime: stats.mtime,
         };
-      })
+      }),
     );
 
     // sort the file paths based on their last modified time (oldest first)
@@ -572,7 +572,7 @@ export default class CacheManager extends EventEmitter {
       filesToRemove.map(async ({ filePath }) => {
         await safeUnlink(filePath);
         await safeUnlink(getInfoFilePath(filePath));
-      })
+      }),
     );
 
     this.emit('sizeChanged');

@@ -58,7 +58,7 @@ export default function SettingsGeneral() {
         }}
       >
         <Trans>Are you sure you want to delete the NFT cache?</Trans>
-      </ConfirmDialog>
+      </ConfirmDialog>,
     );
   }
 

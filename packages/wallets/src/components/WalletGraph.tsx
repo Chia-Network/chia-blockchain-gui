@@ -80,7 +80,7 @@ function prepareGraphPoints(
   balance: number,
   transactions: Transaction[],
   walletType: WalletType,
-  _aggregate?: Aggregate
+  _aggregate?: Aggregate,
 ): {
   x: number;
   y: number;
@@ -107,7 +107,7 @@ function prepareGraphPoints(
       x: blockHeightToTimestamp(peakTransaction.confirmedAtHeight, peakTransaction),
       y: BigNumber.max(
         0,
-        ([WalletType.CAT, WalletType.CRCAT].includes(walletType) ? mojoToCAT(start) : mojoToChia(start)).toNumber()
+        ([WalletType.CAT, WalletType.CRCAT].includes(walletType) ? mojoToCAT(start) : mojoToChia(start)).toNumber(),
       ), // max 21,000,000 safe to number
       tooltip: ([WalletType.CAT, WalletType.CRCAT].includes(walletType)
         ? mojoToCAT(balance)
@@ -130,7 +130,7 @@ function prepareGraphPoints(
       x: timestamp,
       y: BigNumber.max(
         0,
-        ([WalletType.CAT, WalletType.CRCAT].includes(walletType) ? mojoToCAT(start) : mojoToChia(start)).toNumber()
+        ([WalletType.CAT, WalletType.CRCAT].includes(walletType) ? mojoToCAT(start) : mojoToChia(start)).toNumber(),
       ), // max 21,000,000 safe to number
       tooltip: [WalletType.CAT, WalletType.CRCAT].includes(walletType)
         ? mojoToCAT(start)

@@ -6,12 +6,12 @@ type List<Type> = {
 };
 
 export default function useHiddenList<Type>(
-  listName: string
+  listName: string,
 ): [
   isHidden: (key: Type) => boolean,
   setIsHidden: (key: Type, newValue: (isHidden: boolean) => boolean | boolean) => void,
   hidden: Type[],
-  setIsNFTMultipleHide: (nftIds: string[], hide: boolean) => void
+  setIsNFTMultipleHide: (nftIds: string[], hide: boolean) => void,
 ] {
   const [hiddenLists, setHiddenLists] = usePrefs<List<Type>>('isHidden', {});
 
@@ -35,7 +35,7 @@ export default function useHiddenList<Type>(
         });
       }
     },
-    [list, hiddenLists, setHiddenLists, listName]
+    [list, hiddenLists, setHiddenLists, listName],
   );
 
   const setIsNFTMultipleHide = (nftIds: string[], hide: boolean) => {

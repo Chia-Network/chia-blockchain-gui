@@ -36,8 +36,8 @@ export default function CardListItem(props: CardListItemProps) {
             selected
               ? theme.palette.highlight.main
               : borderTransparency
-              ? theme.palette.background.default
-              : getColorModeValue(theme, 'border')
+                ? theme.palette.background.default
+                : getColorModeValue(theme, 'border')
           }`,
         backgroundColor: (theme) =>
           `${selected ? getColorModeValue(theme, 'sidebarBackground') : theme.palette.background.paper}`,

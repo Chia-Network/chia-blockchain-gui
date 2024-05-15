@@ -77,7 +77,7 @@ export default abstract class Service extends EventEmitter {
     data: Object = {},
     ack = false,
     timeout?: number,
-    disableFormat?: boolean
+    disableFormat?: boolean,
   ): Promise<Data> {
     const { client, origin, name } = this;
 
@@ -97,7 +97,7 @@ export default abstract class Service extends EventEmitter {
         ack,
       }),
       timeout,
-      disableFormat
+      disableFormat,
     );
 
     return response?.data as Data;
@@ -110,7 +110,7 @@ export default abstract class Service extends EventEmitter {
   onCommand(
     command: string,
     callback: (data: any, message: Message) => void,
-    processData?: (data: any, message: Message) => any
+    processData?: (data: any, message: Message) => any,
   ): () => void {
     function handleCommand(data: any, message: Message) {
       const updatedData = processData ? processData(data, message) : data;
@@ -132,7 +132,7 @@ export default abstract class Service extends EventEmitter {
           callback(data, message);
         }
       },
-      processData
+      processData,
     );
   }
 }

@@ -134,7 +134,7 @@ export default function SelectKey() {
           Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you
           sure you want to continue?
         </Trans>
-      </ConfirmDialog>
+      </ConfirmDialog>,
     );
   }
 

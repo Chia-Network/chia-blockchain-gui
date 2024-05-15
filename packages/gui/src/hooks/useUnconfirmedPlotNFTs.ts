@@ -17,7 +17,7 @@ export default function useUnconfirmedPlotNFTs(): {
 
   const currentUnconfirmed = useMemo(
     () => unconfirmed.filter((item) => item.fingerprint === fingerprint),
-    [fingerprint, unconfirmed]
+    [fingerprint, unconfirmed],
   );
 
   function handleAdd(item: Omit<UnconfirmedPlotNFT, 'fingerprint'>) {

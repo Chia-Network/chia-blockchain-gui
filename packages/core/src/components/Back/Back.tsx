@@ -38,7 +38,7 @@ export default function Back(props: BackProps) {
             confirmColor="danger"
           >
             <Trans>You have made changes. Do you want to discard them?</Trans>
-          </ConfirmDialog>
+          </ConfirmDialog>,
         ));
 
       if (!canGoBack) {

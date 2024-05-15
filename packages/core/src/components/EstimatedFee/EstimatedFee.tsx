@@ -81,7 +81,7 @@ function Select(props: SelectProps) {
               onTypeChange('dropdown');
               onTimeChange(
                 formattedEstimates.find((estimate) => estimate.formattedEstimate === (event.target.value as string))
-                  ?.minutes ?? 0
+                  ?.minutes ?? 0,
               );
               onValueChange(event.target.value as string);
             }
@@ -186,7 +186,7 @@ export default function EstimatedFee(props: FeeProps) {
     {
       pollingInterval: REFRESH_SECONDS * 1000, // in milliseconds
       skip: mode === Mode.WALLET,
-    }
+    },
   );
   const { data: ests, isLoading, isSuccess, requestId: feeEstimateRequestId, startedTimeStamp } = result;
 
@@ -210,8 +210,8 @@ export default function EstimatedFee(props: FeeProps) {
         ? defaultValues
         : defaultValues.concat([0])
       : estimateList.some((val) => val === 0)
-      ? estimateList
-      : estimateList.concat([0]);
+        ? estimateList
+        : estimateList.concat([0]);
 
     return estList.map((estimate: number, i: number) => {
       const formattedEstimate = mojoToChiaLocaleString(estimate, locale);
@@ -223,8 +223,8 @@ export default function EstimatedFee(props: FeeProps) {
           minutes > 1
             ? t`Likely in ${minutes} minutes`
             : minutes === -1
-            ? t`Likely in >5 minutes`
-            : t`Likely in ${TARGET_TIMES[i]} seconds`,
+              ? t`Likely in >5 minutes`
+              : t`Likely in ${TARGET_TIMES[i]} seconds`,
         estimate,
         formattedEstimate,
       };

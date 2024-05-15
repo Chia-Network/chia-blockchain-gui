@@ -32,7 +32,7 @@ export default function useSaveFile() {
       }
       return saveFile();
     },
-    [showSaveDialog]
+    [showSaveDialog],
   );
 
   return saveOfferFile;

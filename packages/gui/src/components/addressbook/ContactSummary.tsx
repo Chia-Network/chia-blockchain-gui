@@ -46,7 +46,7 @@ export default function ContactSummary() {
         <Trans>
           Are you sure you want to permanently delete this contact? Once deleted, this contact cannot be recovered.
         </Trans>
-      </ConfirmDialog>
+      </ConfirmDialog>,
     );
 
     if (deleteContact) {

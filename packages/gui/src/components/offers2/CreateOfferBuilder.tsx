@@ -82,7 +82,7 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
   });
   const { data: lastBlockTimeStampData, isLoading: isGetTimestampForHeightLoading } = useGetTimestampForHeightQuery(
     { height: height || 0 },
-    { skip: !height }
+    { skip: !height },
   );
   const currentTime = getCurrentTime(lastBlockTimeStampData);
 
@@ -188,7 +188,7 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
       isGetHeightInfoLoading,
       isGetTimestampForHeightLoading,
       isWalletSynced,
-    ]
+    ],
   );
 
   return (

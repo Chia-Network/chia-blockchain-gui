@@ -84,7 +84,7 @@ export default function ChangePassphrasePrompt(props: Props) {
       await openDialog(
         <AlertDialog>
           <Trans>Please enter your current passphrase, and a new passphrase</Trans>
-        </AlertDialog>
+        </AlertDialog>,
       );
     } else {
       isValid = await validateChangePassphraseParams(currentPassphrase, newPassphrase, confirmation);
@@ -121,7 +121,7 @@ export default function ChangePassphrasePrompt(props: Props) {
         await openDialog(
           <AlertDialog>
             <Trans>Failed to update passphrase: {error.message}</Trans>
-          </AlertDialog>
+          </AlertDialog>,
         );
       }
     }

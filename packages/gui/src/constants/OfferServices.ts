@@ -4,10 +4,6 @@ export default [
     domains: ['dexie.space'],
   },
   {
-    label: 'Hashgreen',
-    domains: ['hash.green'],
-  },
-  {
     label: 'Mint Garden',
     domains: ['mintgarden.io'],
   },
