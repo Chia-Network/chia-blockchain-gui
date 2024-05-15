@@ -13,7 +13,7 @@
     "prettier:postinstall": "prettier --write **/package.json **/package-lock.json",
     "check": "npm run check:lint ; npm run check:prettier ; npm run check:types",
     "check:lint": "eslint . --ext .ts,.tsx,.js,.jsx",
-    "check:prettier": "prettier --check --ignore-path .gitignore .",
+    "check:prettier": "prettier --check --ignore-path .gitignore . || git diff --exit-code",
     "check:types": "npm run check:types --workspace=packages/api --workspace=packages/api-react --workspace=packages/icons",
     "check:typesEverywhere": "lerna exec -- npm run check:types",
     "autofix": "npm run autofix:lint ; npm run autofix:prettier",
