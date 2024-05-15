@@ -1,31 +1,56 @@
-# Basic dependabot.yml file with
-# minimum configuration for two package managers
+# This file is managed by the repo-content-updater project. Manual changes here will result in a PR to bring back
+# inline with the upstream template, unless you remove the dependabot managed file property from the repo
 
 version: 2
 updates:
-  # Enable version updates for npm
-  - package-ecosystem: "npm"
-    # Look for `package.json` and `lock` files in the `root` directory
-    directory: "electron-react "
-    # Check the npm registry for updates every day (weekdays)
+  - package-ecosystem: "gomod"
+    directory: /
     schedule:
       interval: "weekly"
-      day: "monday"
-    target-branch: "dev"
-    pull-request-branch-name:
-      # Separate sections of the branch name with a hyphen
-      # for example, `dependabot-npm_and_yarn-next_js-acorn-6.4.1`
-      separator: "-"
+      day: "tuesday"
+    open-pull-requests-limit: 10
+    labels:
+      - dependencies
+      - go
+      - "Changed"
+    reviewers: ["cmmarslender", "starttoaster"]
+    groups:
+      global:
+        patterns:
+          - "*"
 
-  # Maintain dependencies for GitHub Actions
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    # Check for updates once a week
+  - package-ecosystem: "pip"
+    directory: /
     schedule:
       interval: "weekly"
-      day: "monday"
-    target-branch: "dev"
-    pull-request-branch-name:
-      # Separate sections of the branch name with a hyphen
-      # for example, `dependabot-npm_and_yarn-next_js-acorn-6.4.1`
-      separator: "-"
+      day: "tuesday"
+    open-pull-requests-limit: 10
+    labels:
+      - dependencies
+      - python
+      - "Changed"
+    reviewers: ["emlowe", "altendky"]
+
+  - package-ecosystem: "github-actions"
+    directory: /
+    schedule:
+      interval: "weekly"
+      day: "tuesday"
+    open-pull-requests-limit: 10
+    labels:
+      - dependencies
+      - github_actions
+      - "Changed"
+    reviewers: ["cmmarslender", "altendky"]
+
+  - package-ecosystem: "npm"
+    directory: /
+    schedule:
+      interval: "weekly"
+      day: "tuesday"
+    open-pull-requests-limit: 10
+    labels:
+      - dependencies
+      - javascript
+      - "Changed"
+    reviewers: ["cmmarslender", "emlowe"]
