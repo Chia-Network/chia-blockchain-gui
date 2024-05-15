@@ -3,7 +3,14 @@ name: Extract Strings for Translation
 on:
   push:
     branches:
-      - "main"
+      - long_lived/**
+      - main
+      - release/**
+    tags:
+      - "**"
+  pull_request:
+    branches:
+      - "**"
   workflow_dispatch:
 
 permissions:

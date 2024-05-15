@@ -1,12 +1,15 @@
 name: code-check
 on:
-  # We never push directly to 'main', so do not run on it
   push:
-    branches-ignore:
-      - "main"
+    branches:
+      - long_lived/**
+      - main
+      - release/**
+    tags:
+      - "**"
   pull_request:
-    branches-ignore:
-      - "main"
+    branches:
+      - "**"
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 jobs:
