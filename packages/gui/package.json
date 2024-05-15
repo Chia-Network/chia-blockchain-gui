@@ -101,7 +101,7 @@
   "devDependencies": {
     "@babel/core": "7.22.10",
     "@babel/helper-get-function-arity": "^7.16.7",
-    "@babel/preset-env": "7.22.10",
+    "@babel/preset-env": "7.24.5",
     "@babel/preset-react": "7.22.5",
     "@babel/preset-typescript": "7.22.5",
     "@babel/register": "7.22.5",
