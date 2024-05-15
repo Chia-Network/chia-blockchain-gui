@@ -51,7 +51,7 @@ function mergeQueue(
   // partialQueue does not contain `log` property. currentQueue and the result contains it
   currentQueue: PlotQueueItem[],
   partialQueue: PlotQueueItem[],
-  isLogChange: boolean
+  isLogChange: boolean,
 ): PlotQueueItem[] {
   let result = [...currentQueue];
 

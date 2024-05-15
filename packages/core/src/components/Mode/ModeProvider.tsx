@@ -32,7 +32,7 @@ export default function ModeProvider(props: ModeProviderProps) {
         setModeState(newMode);
       }
     },
-    [persist, setModePref, setModeState]
+    [persist, setModePref, setModeState],
   );
 
   const mode = persist ? modePref : modeState;
@@ -42,7 +42,7 @@ export default function ModeProvider(props: ModeProviderProps) {
       mode,
       setMode: handleSetMode,
     }),
-    [mode, handleSetMode]
+    [mode, handleSetMode],
   );
 
   return <ModeContext.Provider value={context}>{children}</ModeContext.Provider>;

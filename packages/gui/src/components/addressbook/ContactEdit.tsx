@@ -242,7 +242,7 @@ export default function ContactEdit() {
           abContact.addresses.forEach((contactAddress) => {
             if (contactAddress.address === entry.address) {
               throw new Error(
-                `The address ${entry.address} is already assigned to an existing contact: ${abContact.name}`
+                `The address ${entry.address} is already assigned to an existing contact: ${abContact.name}`,
               );
             }
           });
@@ -277,7 +277,7 @@ export default function ContactEdit() {
       data.notes,
       data.nftId,
       filteredDomains,
-      chosenEmoji
+      chosenEmoji,
     );
     navigate(`/dashboard/addressbook/${Number(contact.contactId)}`);
   }

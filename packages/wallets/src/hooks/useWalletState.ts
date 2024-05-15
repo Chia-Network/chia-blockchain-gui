@@ -11,7 +11,7 @@ export default function useWalletState(): {
     {},
     {
       pollingInterval: 10_000,
-    }
+    },
   );
 
   return {

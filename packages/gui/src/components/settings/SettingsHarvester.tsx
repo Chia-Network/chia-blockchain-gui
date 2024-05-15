@@ -44,7 +44,7 @@ export default function SettingsHarvester() {
         parallelDecompressorCount: e.target.checked ? 1 : 0,
       }));
     },
-    [data, setConfigUpdateRequests, isProcessing]
+    [data, setConfigUpdateRequests, isProcessing],
   );
 
   const onChangeHarvestingMode = React.useCallback(
@@ -57,7 +57,7 @@ export default function SettingsHarvester() {
         useGpuHarvesting: e.target.checked,
       }));
     },
-    [data, setConfigUpdateRequests, isProcessing]
+    [data, setConfigUpdateRequests, isProcessing],
   );
 
   const onChangeGPUIndex = React.useCallback(
@@ -71,7 +71,7 @@ export default function SettingsHarvester() {
         gpuIndex: value,
       }));
     },
-    [data, setConfigUpdateRequests, isProcessing]
+    [data, setConfigUpdateRequests, isProcessing],
   );
 
   const onChangeEnforceGPUIndex = React.useCallback(
@@ -84,7 +84,7 @@ export default function SettingsHarvester() {
         enforceGpuIndex: e.target.checked,
       }));
     },
-    [data, setConfigUpdateRequests, isProcessing]
+    [data, setConfigUpdateRequests, isProcessing],
   );
 
   const onChangeDisableCpuAffinity = React.useCallback(
@@ -97,7 +97,7 @@ export default function SettingsHarvester() {
         disableCpuAffinity: e.target.checked,
       }));
     },
-    [data, setConfigUpdateRequests, isProcessing]
+    [data, setConfigUpdateRequests, isProcessing],
   );
 
   const onChangeParallelDecompressorCount = React.useCallback(
@@ -114,7 +114,7 @@ export default function SettingsHarvester() {
         parallelDecompressorCount: value,
       }));
     },
-    [data, setConfigUpdateRequests, isProcessing]
+    [data, setConfigUpdateRequests, isProcessing],
   );
 
   const onChangeDecompressorThreadCount = React.useCallback(
@@ -128,7 +128,7 @@ export default function SettingsHarvester() {
         decompressorThreadCount: value,
       }));
     },
-    [data, setConfigUpdateRequests, isProcessing]
+    [data, setConfigUpdateRequests, isProcessing],
   );
 
   const onChangeRecursivePlotScan = React.useCallback(
@@ -141,7 +141,7 @@ export default function SettingsHarvester() {
         recursivePlotScan: e.target.checked,
       }));
     },
-    [data, setConfigUpdateRequests, isProcessing]
+    [data, setConfigUpdateRequests, isProcessing],
   );
 
   const onChangeRefreshParameterIntervalSeconds = React.useCallback(
@@ -155,7 +155,7 @@ export default function SettingsHarvester() {
         refreshParameterIntervalSeconds: value,
       }));
     },
-    [data, setConfigUpdateRequests, isProcessing]
+    [data, setConfigUpdateRequests, isProcessing],
   );
 
   const onClickRestartHarvester = React.useCallback(async () => {
@@ -350,7 +350,7 @@ export default function SettingsHarvester() {
 
   const compressionOptionStyle = React.useMemo(
     () => (configUpdateRequests.parallelDecompressorCount === 0 ? { display: 'none' } : undefined),
-    [configUpdateRequests]
+    [configUpdateRequests],
   );
 
   const gpuOptionStyle = React.useMemo(
@@ -361,7 +361,7 @@ export default function SettingsHarvester() {
       configUpdateRequests.parallelDecompressorCount === 0
         ? { display: 'none' }
         : undefined,
-    [configUpdateRequests, plotters]
+    [configUpdateRequests, plotters],
   );
 
   return (

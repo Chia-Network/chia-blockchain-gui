@@ -56,7 +56,7 @@ export default function SettingsIntegration() {
     (pair: Pair) => {
       setTopic(pair.topic);
     },
-    [setTopic]
+    [setTopic],
   );
 
   const handleDisconnectApp = useCallback(() => {
@@ -90,7 +90,7 @@ export default function SettingsIntegration() {
         };
       });
     },
-    [bypassCommand, setBypassCommands]
+    [bypassCommand, setBypassCommands],
   );
 
   const handleResetForPair = useCallback(() => {
@@ -109,7 +109,7 @@ export default function SettingsIntegration() {
       }
       removeBypassCommand(pair.sessions[0].topic, command);
     },
-    [removeBypassCommand, selectedPair]
+    [removeBypassCommand, selectedPair],
   );
 
   const commands = useMemo(() => {
@@ -300,7 +300,7 @@ export default function SettingsIntegration() {
                                 onChange={() =>
                                   handleBypassCommandChange(
                                     commandInfo.command,
-                                    !(bypassCommands ?? {})[commandInfo.command]
+                                    !(bypassCommands ?? {})[commandInfo.command],
                                   )
                                 }
                               >

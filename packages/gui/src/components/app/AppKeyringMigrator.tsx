@@ -82,7 +82,7 @@ export default function AppKeyringMigrator() {
         await openDialog(
           <AlertDialog>
             <Trans>Keyring migration failed: {error.message}</Trans>
-          </AlertDialog>
+          </AlertDialog>,
         );
       }
     }

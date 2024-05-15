@@ -55,7 +55,7 @@ export const harvesterApi = apiWithTag2.injectEndpoints({
       providesTags: (directories) =>
         directories
           ? [
-              ...directories.map((directory) => ({ type: 'PlotDirectories', id: directory } as const)),
+              ...directories.map((directory) => ({ type: 'PlotDirectories', id: directory }) as const),
               { type: 'PlotDirectories', id: 'LIST' },
             ]
           : [{ type: 'PlotDirectories', id: 'LIST' }],

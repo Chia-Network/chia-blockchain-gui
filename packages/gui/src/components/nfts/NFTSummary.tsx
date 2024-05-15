@@ -76,15 +76,15 @@ export default function NFTSummary(props: NFTSummaryProps) {
     metadata?.attributes
       ?.filter((attribute: NFTAttribute) => !isRankingAttribute(attribute))
       .forEach((attribute: NFTAttribute) =>
-        propertiesLocal.push(<NFTProperty attribute={attribute} size="small" color="secondary" />)
+        propertiesLocal.push(<NFTProperty attribute={attribute} size="small" color="secondary" />),
       );
 
     metadata?.attributes
       ?.filter((attribute: NFTAttribute) => isRankingAttribute(attribute))
       .forEach((attribute: NFTAttribute) =>
         rankingsLocal.push(
-          <NFTRanking attribute={attribute} size="small" color="secondary" progressColor="secondary" />
-        )
+          <NFTRanking attribute={attribute} size="small" color="secondary" progressColor="secondary" />,
+        ),
       );
 
     return [propertiesLocal, rankingsLocal];

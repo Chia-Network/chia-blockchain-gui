@@ -22,7 +22,7 @@ export type AcceptOfferHook = (
   wallets: Wallet[],
   offers: OfferTradeRecordFormatted[],
   onUpdate: (accepting: boolean) => void,
-  onSuccess: () => void
+  onSuccess: () => void,
 ) => Promise<void>;
 
 export default function useAcceptOfferHook(): [AcceptOfferHook] {
@@ -38,7 +38,7 @@ export default function useAcceptOfferHook(): [AcceptOfferHook] {
     wallets: Wallet[],
     offers: OfferTradeRecordFormatted[],
     onUpdate?: (accepting: boolean) => void,
-    onSuccess?: () => void
+    onSuccess?: () => void,
   ): Promise<void> {
     const offerBuilderData = offerToOfferBuilderData(offerSummary, true);
     const { assetsToUnlock } = await offerBuilderDataToOffer({
@@ -80,7 +80,7 @@ export default function useAcceptOfferHook(): [AcceptOfferHook] {
     const offeredUnknownCATs: string[] = Object.entries(offerSummary.offered)
       .filter(
         ([assetId]) =>
-          offerAssetTypeForAssetId(assetId, offerSummary) !== OfferAsset.NFT && lookupByAssetId(assetId) === undefined
+          offerAssetTypeForAssetId(assetId, offerSummary) !== OfferAsset.NFT && lookupByAssetId(assetId) === undefined,
       )
       .map(([assetId]) => assetId);
 
@@ -97,7 +97,7 @@ export default function useAcceptOfferHook(): [AcceptOfferHook] {
       await openDialog(
         <AlertDialog title={<Trans>Success</Trans>}>
           {response.message ?? <Trans>Offer has been accepted and is awaiting confirmation.</Trans>}
-        </AlertDialog>
+        </AlertDialog>,
       );
 
       onSuccess?.();

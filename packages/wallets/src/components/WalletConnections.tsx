@@ -60,7 +60,7 @@ export default function WalletConnections(props: WalletConnectionsProps) {
     },
     {
       pollingInterval: 10_000,
-    }
+    },
   );
 
   return (

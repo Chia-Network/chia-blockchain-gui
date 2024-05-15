@@ -21,7 +21,7 @@ export default function ResyncPrompt(props: Props) {
       await openDialog(
         <AlertDialog>
           <Trans>Error: {error.message}</Trans>
-        </AlertDialog>
+        </AlertDialog>,
       );
     }
     onSuccess();

@@ -9,7 +9,7 @@ export default function useAddressBook(): [
     notes: string,
     nftId: string,
     domainNames: ContactDomainName[],
-    emoji: string
+    emoji: string,
   ) => void, // addContact
   (contactId: number) => void, // removeContact
   (contactId: number) => AddressContact | undefined, // getContactContactId
@@ -21,9 +21,9 @@ export default function useAddressBook(): [
     notes: string,
     nftId: string,
     domainNames: ContactDomainName[],
-    emoji: string
+    emoji: string,
   ) => void, // editContact
-  (address: string) => AddressContact | undefined // getContactByAddress
+  (address: string) => AddressContact | undefined, // getContactByAddress
 ] {
   // editContact
   const [addressBook, setAddressBook] = useState<AddressContact[]>([]);
@@ -54,7 +54,7 @@ export default function useAddressBook(): [
     notes: string,
     nftId: string,
     domainNames: ContactDomainName[],
-    emoji: string
+    emoji: string,
   ) {
     const contactId = getNewContactId();
     const newAddress: AddressContact = {
@@ -89,7 +89,7 @@ export default function useAddressBook(): [
     notes: string,
     nftId: string,
     domainNames: ContactDomainName[],
-    emoji: string
+    emoji: string,
   ) {
     const filteredContacts = addressBook.filter((contact) => contact.contactId !== contactId);
 
@@ -109,7 +109,7 @@ export default function useAddressBook(): [
 
   function getContactByAddress(address: string) {
     const result = addressBook.find(
-      (ab) => ab.addresses !== undefined && ab.addresses.some((c) => c.address === address)
+      (ab) => ab.addresses !== undefined && ab.addresses.some((c) => c.address === address),
     );
     return result;
   }

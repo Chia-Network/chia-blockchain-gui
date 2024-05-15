@@ -82,7 +82,7 @@ export default function VCList() {
     (ref: HTMLElement | null) => {
       scrollerRef.current = ref;
     },
-    [scrollerRef]
+    [scrollerRef],
   );
 
   const { data: fingerprint } = useGetLoggedInFingerprintQuery();
@@ -192,7 +192,7 @@ export default function VCList() {
       await openDialog(
         <AlertDialog title="Error">
           <Trans>Error parsing file</Trans>
-        </AlertDialog>
+        </AlertDialog>,
       );
     } else {
       const sha256VC = await sha256(JSON.stringify(json));
@@ -206,7 +206,7 @@ export default function VCList() {
           await openDialog(
             <AlertDialog title="Error">
               <Trans>Verifiable Credential already exists.</Trans>
-            </AlertDialog>
+            </AlertDialog>,
           );
         } else {
           localVCs[fingerprint].push({ ...json, sha256: sha256VCString });
@@ -214,7 +214,7 @@ export default function VCList() {
           await openDialog(
             <AlertDialog title="Success">
               <Trans>Verifiable Credential successfully added.</Trans>
-            </AlertDialog>
+            </AlertDialog>,
           );
         }
       }

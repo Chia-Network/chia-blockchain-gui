@@ -17,7 +17,7 @@ export default function useOffer(offerURLOrData: string | undefined) {
       subscribeToChanges(offerURLOrData, (newOfferState) => {
         setOfferState(newOfferState);
       }),
-    [offerURLOrData, subscribeToChanges]
+    [offerURLOrData, subscribeToChanges],
   );
 
   return {

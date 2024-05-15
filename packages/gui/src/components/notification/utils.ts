@@ -111,8 +111,8 @@ export function pushNotificationStringsForNotificationType(notification: Notific
         'message' in notification
           ? notification.message
           : 'url' in notification
-          ? notification.url
-          : t`Message not available`;
+            ? notification.url
+            : t`Message not available`;
       break;
     default:
       throw new Error(`Unknown notification type: ${type}`);

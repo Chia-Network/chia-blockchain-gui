@@ -39,7 +39,7 @@ test('Read data from Json file and Paste in Mnemonic', async () => {
   await page
     .locator('#mui-51')
     .fill(
-      ' "abandon" "ability" "able" "about" "above" "absent" "baby" "bachelor" "bacon" "badge" "bag" "balance" "cabbage" "cabin" "cable" "cactus" "cage" "cake" "dad" "damage" "damp" "dance" "danger" "daring"'
+      ' "abandon" "ability" "able" "about" "above" "absent" "baby" "bachelor" "bacon" "badge" "bag" "balance" "cabbage" "cabin" "cable" "cactus" "cage" "cake" "dad" "damage" "damp" "dance" "danger" "daring"',
     );
 
   //And I click the Cancel on Import

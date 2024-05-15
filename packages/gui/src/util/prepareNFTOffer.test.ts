@@ -124,7 +124,7 @@ describe('prepareNFTOffer', () => {
     expect(result.driver!.also.also!.transfer_program.launcher_id).toBe(nftWithDidSupport.launcherId);
     expect(result.driver!.also.also!.transfer_program.royalty_address).toBe(nftWithDidSupport.royaltyPuzzleHash);
     expect(result.driver!.also.also!.transfer_program.royalty_percentage).toBe(
-      `${nftWithDidSupport.royaltyPercentage}`
+      `${nftWithDidSupport.royaltyPercentage}`,
     );
   });
 

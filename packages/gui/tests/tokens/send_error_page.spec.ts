@@ -53,7 +53,7 @@ test('Confirm Error Dialog when wrong data is entered on Send Page for 192213244
 
   //Then I receive an informative error message
   await expect(page.locator('div[role="dialog"]')).toHaveText(
-    'ErrorUnexpected Address PrefixOK' || 'ErrorPlease finish syncing before making a transactionOK'
+    'ErrorUnexpected Address PrefixOK' || 'ErrorPlease finish syncing before making a transactionOK',
   );
   await page.locator('div[role="dialog"] >> text=OK').click();
 });

@@ -296,7 +296,7 @@ function OfferEditorConditionsPanel(props: OfferEditorConditionsPanelProps) {
     const haveAmount: boolean = amount > 0 && Number.isFinite(amount);
     const assetInfo: AssetIdMapEntry | undefined = side === 'maker' ? makerAssetInfo : takerAssetInfo;
     const newAmount = Number(haveAmount ? rate * amount : updatedExchangeRate).toFixed(
-      assetInfo?.walletType === WalletType.STANDARD_WALLET ? 9 : 12
+      assetInfo?.walletType === WalletType.STANDARD_WALLET ? 9 : 12,
     );
     if (side === 'taker') {
       takerUpdate(0, { ...takerRows[0], amount: newAmount });

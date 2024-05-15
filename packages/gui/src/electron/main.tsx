@@ -30,8 +30,8 @@ import packageJson from '../../package.json';
 import AppIcon from '../assets/img/chia64x64.png';
 import About from '../components/about/About';
 import { i18n } from '../config/locales';
-import chiaEnvironment from '../util/chiaEnvironment';
-import loadConfig from '../util/loadConfig';
+import chiaEnvironment, { chiaInit } from '../util/chiaEnvironment';
+import loadConfig, { checkConfigFileExists } from '../util/loadConfig';
 import manageDaemonLifetime from '../util/manageDaemonLifetime';
 import { setUserDataDir } from '../util/userData';
 
@@ -72,6 +72,12 @@ let mainWindow: BrowserWindow | null = null;
 let currentDownloadRequest: any;
 let abortDownloadingFiles: boolean = false;
 
+// When there is no config file, it is assumed to be the first run.
+// At that time, the config file is created here by `chia init`.
+if (!checkConfigFileExists()) {
+  chiaInit();
+}
+
 // Set the userData directory to its location within CHIA_ROOT/gui
 setUserDataDir();
 
@@ -80,7 +86,7 @@ function renderAbout(): string {
   const about = ReactDOMServer.renderToStaticMarkup(
     <StyleSheetManager sheet={sheet.instance}>
       <About packageJson={packageJson} versions={process.versions} version={app.getVersion()} />
-    </StyleSheetManager>
+    </StyleSheetManager>,
   );
 
   const tags = sheet.getStyleTags();
@@ -194,10 +200,10 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
         options: {
           title: string;
           body: string;
-        }
+        },
       ) => {
         new Notification(options).show();
-      }
+      },
     );
 
     ipcMain.handle('fetchTextResponse', async (_event, requestOptions, requestHeaders, requestData) => {
@@ -292,7 +298,7 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
       dialog.showOpenDialog({
         properties: ['openDirectory'],
         defaultPath: app.getPath('downloads'),
-      })
+      }),
     );
 
     type ResponseObjType = { data?: string; error?: string };
@@ -435,6 +441,8 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
 
     await cacheManager.init();
 
+    const initialBgColor = prefs.darkMode ? '#0F252A' : '#ffffff';
+
     mainWindow = new BrowserWindow({
       x: mainWindowState.x,
       y: mainWindowState.y,
@@ -442,7 +450,7 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
       height: mainWindowState.height,
       minWidth: 500,
       minHeight: 500,
-      backgroundColor: '#ffffff',
+      backgroundColor: initialBgColor,
       show: isPlaywrightTesting,
       webPreferences: {
         preload: `${__dirname}/preload.js`,
@@ -504,7 +512,7 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
             message: i18n._(
               /* i18n */ {
                 id: 'Are you sure you want to quit?',
-              }
+              },
             ),
             checkboxChecked: keepBackgroundRunning ?? false,
             checkboxLabel: i18n._(/* i18n */ { id: 'Keep service running in the background' }),
@@ -606,7 +614,7 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
         pathname: path.join(__dirname, arg.file),
         protocol: 'file:',
         slashes: true,
-      }) + arg.query
+      }) + arg.query,
     );
   });
 
@@ -856,7 +864,7 @@ function getMenuTemplate() {
             role: 'stopspeaking',
           },
         ],
-      }
+      },
     );
 
     // Window menu (MacOS)
@@ -896,7 +904,7 @@ function getMenuTemplate() {
         click: () => {
           mainWindow?.webContents.send('checkForUpdates');
         },
-      }
+      },
     );
   }
 

@@ -14,7 +14,7 @@ export default function useGetLatestBlocksQuery(count = 10) {
     },
     {
       skip: !peakHeight,
-    }
+    },
   );
 
   const isLoading = isLoadingBlockchainState || isLoadingBlocks;

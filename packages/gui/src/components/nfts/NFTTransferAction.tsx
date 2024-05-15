@@ -97,7 +97,7 @@ export default function NFTTransferAction(props: NFTTransferActionProps) {
     );
 
     const confirmation = await openDialog(
-      <NFTTransferConfirmationDialog destination={destinationLocal} fee={fee} description={description} />
+      <NFTTransferConfirmationDialog destination={destinationLocal} fee={fee} description={description} />,
     );
 
     if (confirmation) {

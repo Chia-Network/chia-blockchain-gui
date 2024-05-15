@@ -68,7 +68,7 @@ export default function NFTProfileDropdown(props: NFTGallerySidebarProps) {
     const nftWalletsWithoutDIDs = nftWallets.filter(
       (nftWallet: Wallet) =>
         nftWallet.id !== inbox.id &&
-        profiles.find((profile: Profile) => profile.nftWalletId === nftWallet.id) === undefined
+        profiles.find((profile: Profile) => profile.nftWalletId === nftWallet.id) === undefined,
     );
 
     return nftWalletsWithoutDIDs;

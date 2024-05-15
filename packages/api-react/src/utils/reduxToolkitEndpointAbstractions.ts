@@ -14,8 +14,8 @@ export function query<
   TClass extends ServiceConstructor,
   Method extends keyof InstanceType<TClass> & string,
   Transform extends (response: MethodReturnType<TClass, Method>) => any = (
-    response: MethodReturnType<TClass, Method>
-  ) => MethodReturnType<TClass, Method>
+    response: MethodReturnType<TClass, Method>,
+  ) => MethodReturnType<TClass, Method>,
 >(
   build: Builder,
   service: TClass,
@@ -31,7 +31,7 @@ export function query<
     invalidatesTags?: Parameters<
       typeof build.query<ReturnType<Transform>, MethodFirstParameter<TClass, Method>>
     >[0]['invalidatesTags'];
-  } = {}
+  } = {},
 ) {
   const { transformResponse = (data) => data, ...rest } = options;
 
@@ -56,8 +56,8 @@ export function mutation<
   TClass extends ServiceConstructor,
   Method extends keyof InstanceType<TClass> & string,
   Transform extends (response: MethodReturnType<TClass, Method>) => any = (
-    response: MethodReturnType<TClass, Method>
-  ) => MethodReturnType<TClass, Method>
+    response: MethodReturnType<TClass, Method>,
+  ) => MethodReturnType<TClass, Method>,
 >(
   build: Builder,
   service: TClass,
@@ -73,7 +73,7 @@ export function mutation<
     invalidatesTags?: Parameters<
       typeof build.mutation<ReturnType<Transform>, MethodFirstParameter<TClass, Method>>
     >[0]['invalidatesTags'];
-  } = {} // Omit<Parameters<typeof build.mutation<MethodReturnType<TClass, Method>, MethodFirstParameter<TClass, Method>>>[0], 'query'> = {}
+  } = {}, // Omit<Parameters<typeof build.mutation<MethodReturnType<TClass, Method>, MethodFirstParameter<TClass, Method>>>[0], 'query'> = {}
 ) {
   const { transformResponse = (data) => data, ...rest } = options;
 

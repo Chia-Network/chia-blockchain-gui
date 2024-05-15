@@ -61,7 +61,7 @@ export default function useNFTDataNachos() {
         isLoading: false,
       };
     },
-    [nachos /* immutable */]
+    [nachos /* immutable */],
   );
 
   // immutable function
@@ -85,7 +85,7 @@ export default function useNFTDataNachos() {
         events.off(eventName, callback);
       };
     },
-    [events /* immutable */]
+    [events /* immutable */],
   );
 
   // immutable function
@@ -97,7 +97,7 @@ export default function useNFTDataNachos() {
         events.off('changed', callback);
       };
     },
-    [events /* immutable */]
+    [events /* immutable */],
   );
 
   return {

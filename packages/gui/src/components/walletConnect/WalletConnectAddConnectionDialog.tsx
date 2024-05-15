@@ -131,7 +131,7 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
     } else {
       setValue(
         'fingerprints',
-        fingerprints.filter((f) => f !== fingerprintLocal)
+        fingerprints.filter((f) => f !== fingerprintLocal),
       );
     }
   }
@@ -192,7 +192,7 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
             onDelete={() => {
               methods.setValue(
                 'fingerprints',
-                selectedFingerprints.filter((f) => f !== key.fingerprint)
+                selectedFingerprints.filter((f) => f !== key.fingerprint),
               );
             }}
           />

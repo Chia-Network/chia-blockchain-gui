@@ -55,19 +55,19 @@ export default function WalletHistoryClawbackChip(props: Props) {
         ? t(
             defineMessage({
               message: 'Will be autoclaimed in ',
-            })
+            }),
           )
         : t(
             defineMessage({
               message: 'Can be claimed in ',
-            })
+            }),
           );
       text += canBeClaimedAt.from(currentTime, true); // ... 3 days
     } else if (transactionRow.sent === 0) {
       text = t(
         defineMessage({
           message: 'Claim transaction',
-        })
+        }),
       );
 
       onClick = () =>
@@ -82,7 +82,7 @@ export default function WalletHistoryClawbackChip(props: Props) {
       text = t(
         defineMessage({
           message: 'Claiming...',
-        })
+        }),
       );
     }
   }
@@ -93,7 +93,7 @@ export default function WalletHistoryClawbackChip(props: Props) {
       text = t(
         defineMessage({
           message: 'Claw back this transaction',
-        })
+        }),
       );
 
       onClick = () =>
@@ -108,7 +108,7 @@ export default function WalletHistoryClawbackChip(props: Props) {
       text = t(
         defineMessage({
           message: 'Clawing back...',
-        })
+        }),
       );
     }
   }

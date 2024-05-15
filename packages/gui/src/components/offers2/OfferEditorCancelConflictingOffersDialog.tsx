@@ -198,7 +198,7 @@ export default function OfferEditorCancelConflictingOffersDialog(props: OfferEdi
         }
       }
     },
-    [assetsToUnlock, setAssetsToUnlock, assetsBetterUnlocked, setAssetsBetterUnlocked]
+    [assetsToUnlock, setAssetsToUnlock, assetsBetterUnlocked, setAssetsBetterUnlocked],
   );
 
   const onCancelOffer2 = useCallback(
@@ -292,7 +292,7 @@ export default function OfferEditorCancelConflictingOffersDialog(props: OfferEdi
         setAssetsToUnlock(newAssetsToUnlock);
       }
     },
-    [assetsBetterUnlocked, setAssetsBetterUnlocked, assetsToUnlock, setAssetsToUnlock]
+    [assetsBetterUnlocked, setAssetsBetterUnlocked, assetsToUnlock, setAssetsToUnlock],
   );
 
   const CancelList1 = useMemo(() => {

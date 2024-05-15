@@ -41,7 +41,7 @@ export default function ModalDialogsProvider(props: Props) {
         ]);
       });
     },
-    [hide]
+    [hide],
   );
 
   const modalDialogsContextValue = useMemo(
@@ -50,7 +50,7 @@ export default function ModalDialogsProvider(props: Props) {
       hide,
       dialogs,
     }),
-    [dialogs, hide, show]
+    [dialogs, hide, show],
   );
 
   return <ModalDialogsContext.Provider value={modalDialogsContextValue}>{children}</ModalDialogsContext.Provider>;

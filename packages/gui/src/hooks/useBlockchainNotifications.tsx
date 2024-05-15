@@ -59,7 +59,7 @@ export default function useBlockchainNotifications() {
       blockchainNotificationsList: BlockchainNotification[],
       isWalletSynced: boolean,
       loggingIn: boolean,
-      abortSignal: AbortSignal
+      abortSignal: AbortSignal,
     ) => {
       try {
         setPreparingError(undefined, abortSignal);
@@ -121,7 +121,7 @@ export default function useBlockchainNotifications() {
               log('Failed to prepare notification', e);
               return null;
             }
-          })
+          }),
         );
 
         const definedNotifications = items.filter(Boolean) as Notification[];
@@ -139,7 +139,7 @@ export default function useBlockchainNotifications() {
       setIsPreparingNotifications /* immutable */,
       setNotifications /* immutable */,
       getTimestampForHeight /* immutable */,
-    ]
+    ],
   );
 
   useEffect(() => {
@@ -165,10 +165,10 @@ export default function useBlockchainNotifications() {
           }
         >
           <Trans>Do you want to remove this offer notification? This action cannot be undone.</Trans>
-        </ConfirmDialog>
+        </ConfirmDialog>,
       );
     },
-    [deleteNotifications, openDialog]
+    [deleteNotifications, openDialog],
   );
 
   return {

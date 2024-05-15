@@ -29,7 +29,7 @@ const prepareNFTs = throttle(
     visibility: NFTVisibility,
     types: FileType[],
     search: string,
-    onReponse: (filtered: NFTInfo[], statistics: NFTsDataStatistics) => void
+    onReponse: (filtered: NFTInfo[], statistics: NFTsDataStatistics) => void,
   ) => {
     const stats: NFTsDataStatistics = {
       [FileType.IMAGE]: 0,
@@ -127,7 +127,7 @@ const prepareNFTs = throttle(
     // https://llu.is/throttle-and-debounce-visualized/
     leading: true, // call on first call
     trailing: true, // wait for last call
-  }
+  },
 );
 
 export type UseNFTsProps = {
@@ -184,7 +184,7 @@ export default function useNFTs(props: UseNFTsProps = {}) {
       (newFiltered, newStatistics) => {
         setStatistics(newStatistics);
         setFiltered(newFiltered);
-      }
+      },
     );
   }, [
     nfts, // immutable
@@ -209,7 +209,7 @@ export default function useNFTs(props: UseNFTsProps = {}) {
         // todo performance improvement => invalidate only visibly changed NFTs
         updateFiltered();
       }),
-    [subscribeToChanges, updateFiltered]
+    [subscribeToChanges, updateFiltered],
   );
 
   return {
