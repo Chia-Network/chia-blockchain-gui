@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-05-05 00:04\n"
+"PO-Revision-Date: 2024-05-19 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -167,7 +167,7 @@ msgstr ""
 
 #: src/components/WalletIcon.tsx:17
 msgid "Classic version of Stably USDS as held by Prime Trust"
-msgstr ""
+msgstr "Klassisk version av Stably USDS som förvaltas av Prime Trust"
 
 #: src/components/WalletHistory.tsx:433
 msgid "Claw back expiration"
@@ -255,7 +255,7 @@ msgstr "Skapa transaktion"
 
 #: src/components/WalletHistory.tsx:223
 msgid "Creation Date"
-msgstr ""
+msgstr "Skapat (datum)"
 
 #: src/constants/WalletName.ts:20
 msgid "Custody Wallet"
@@ -299,7 +299,7 @@ msgstr "Distribuerad identitet"
 
 #: src/components/WalletImport.tsx:157
 msgid "Enter the {mnemonicWordCount} word mnemonic that you have saved in order to restore your Chia wallet."
-msgstr ""
+msgstr "Skriv in din sparade minnesfras på {mnemonicWordCount} ord för att återställa din Chia-plånbok."
 
 #: src/components/cat/WalletCATSend.tsx:127
 msgid "Error the entered address appears to be for a different colour."
@@ -340,7 +340,7 @@ msgstr "Importera"
 
 #: src/components/WalletImport.tsx:225
 msgid "Import from {alternativeWordCount} word mnemonic"
-msgstr ""
+msgstr "Importera från minnesfras med {alternativeWordCount} ord"
 
 #: src/components/WalletImport.tsx:140
 msgid "Import Wallet from Mnemonics"
@@ -536,7 +536,7 @@ msgstr "Vänta på synkronisering av plånboken"
 
 #: src/constants/WalletName.ts:32
 msgid "Pooling Wallet"
-msgstr ""
+msgstr "Plånbok för poolning"
 
 #: src/components/WalletConnections.tsx:28
 msgid "Port"
@@ -572,7 +572,7 @@ msgstr "Mottagaradressen är inte en färgad plånboksadress. Ange en färgad pl
 
 #: src/constants/WalletName.ts:26
 msgid "Recoverable Wallet"
-msgstr ""
+msgstr "Återställbar plånbok"
 
 #: src/components/cat/WalletCATSelect.tsx:39
 msgid "Recovery Wallet"

@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-05-12 00:04\n"
+"PO-Revision-Date: 2024-05-19 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -268,11 +268,11 @@ msgstr "{from} <0>skickar meddelandet</0>"
 #: src/components/offers/NFTOfferViewer.tsx:206
 #: src/components/offers/OfferSummary.tsx:174
 msgid "{makerFee, plural, one {mojo} other {mojos}}"
-msgstr ""
+msgstr "{makerFee, plural, one {mojo} other {mojo}}"
 
 #: src/components/offers/OfferSummaryRow.tsx:48
 msgid "{mojos, plural, one {mojo} other {mojos}}"
-msgstr ""
+msgstr "{mojos, plural, one {mojo} other {mojo}}"
 
 #: src/components/nfts/gallery/FilterPill.tsx:50
 #~ msgid "{title}"
@@ -657,7 +657,7 @@ msgstr "Tillgångar jag skulle vilja handla med"
 
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:39
 msgid "Assets you will give"
-msgstr ""
+msgstr "Tillgångar du kommer att ge"
 
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:46
 msgid "Assets you will receive"
@@ -924,7 +924,7 @@ msgstr "Kontrollera proveniens på Spacescan.io"
 
 #: src/components/offers2/OfferBuilderXCHSection.tsx:77
 msgid "Chia ({currencyCode}) is a digital currency that is secure and sustainable"
-msgstr ""
+msgstr "Chia ({currencyCode}) är en digital valuta som är säker och hållbar"
 
 #: src/components/offers2/OfferBuilderTokensSection.tsx:115
 msgid "Chia Asset Tokens (CATs) are tokens built on top of XCH"
@@ -990,7 +990,7 @@ msgstr "Töm NFT-cachen"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:92
 msgid "Clicking a delete icon only removes a directory from this list and never deletes the directory itself"
-msgstr ""
+msgstr "Att klicka på en raderingsikon tar bara bort en katalog från denna lista men tar aldrig bort själva katalogen"
 
 #: src/components/app/AppVersionWarning.tsx:57
 #: src/components/nfts/MultipleDownloadDialog.tsx:116
@@ -1142,7 +1142,7 @@ msgstr "Kontakter"
 
 #: src/components/nfts/NFTHashStatus.tsx:109
 msgid "Content does not match the expected hash value that was specified during NFT minting. The content may have been modified."
-msgstr ""
+msgstr "Innehållet matchar inte det förväntade hashvärdet som angavs under NFT-myntningen. Innehållet kan ha ändrats."
 
 #: src/components/nfts/NFTPreview.tsx:591
 #~ msgid "Content has not been validated against the hash that was specified during NFT minting."
@@ -1150,7 +1150,7 @@ msgstr ""
 
 #: src/components/nfts/NFTHashStatus.tsx:102
 msgid "Content has not been validated against the hash that was specified during NFT minting. Error: {0}"
-msgstr ""
+msgstr "Innehållet har inte validerats mot den hash som angavs under NFT-myntningen. Fel: {0}"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:280
 msgid "Continue"
@@ -1355,7 +1355,7 @@ msgstr "Data-URL {0}"
 
 #: src/components/settings/Settings.tsx:39
 msgid "DataLayer"
-msgstr ""
+msgstr "DataLayer"
 
 #: src/components/settings/SettingsDataLayer.tsx:21
 msgid "DataLayer enables rich data to be stored on mirrored databases that can be verified using the Chia Blockchain."
@@ -1363,7 +1363,7 @@ msgstr "DataLayer gör det möjligt att lagra rika data på speglade databaser s
 
 #: src/components/settings/SettingsDataLayer.tsx:18
 msgid "DataLayer Services"
-msgstr ""
+msgstr "DataLayer-tjänster"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:31
 msgid "Date"
@@ -1710,7 +1710,7 @@ msgstr ""
 
 #: src/components/harvest/HarvesterOverview.tsx:201
 msgid "Eligible plots per signage point"
-msgstr ""
+msgstr "Valbara plottar per signeringspunkt"
 
 #: src/components/addressbook/ContactAdd.tsx:293
 msgid "Emoji"
@@ -1765,7 +1765,7 @@ msgstr "Aktivera/inaktivera möjligheten att skanna alla underkataloger automati
 
 #: src/constants/WalletConnectCommands.tsx:323
 msgid "End"
-msgstr ""
+msgstr "Slut"
 
 #: src/components/settings/SettingsHarvester.tsx:532
 msgid "Enforce GPU Index"
@@ -1897,7 +1897,7 @@ msgstr "Misslyckade nedladdningar:"
 
 #: src/components/farm/PoolingHealth.tsx:310
 msgid "Failed partials"
-msgstr ""
+msgstr "Misslyckade partialer"
 
 #: src/components/offers/NFTOfferEditor.tsx:584
 msgid "Failed to decode NFT identifier"
@@ -2101,7 +2101,7 @@ msgstr "Färdigt"
 
 #: src/components/settings/SettingsNFT.tsx:116
 msgid "Fit images to cards"
-msgstr ""
+msgstr "Anpassa bilder till kort"
 
 #: src/electron/main.tsx:1086
 #~ msgid "Follow on Twitter"
@@ -2183,7 +2183,7 @@ msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:474
 msgid "Get Offer Data"
-msgstr ""
+msgstr "Hämta erbjudandedata"
 
 #: src/constants/WalletConnectCommands.tsx:488
 msgid "Get Offer Record"
@@ -2418,7 +2418,7 @@ msgstr "Om du redan har delat din erbjudandefil kan du behöva skicka en transak
 
 #: src/components/settings/SettingsNFT.tsx:126
 msgid "Images will be scaled to fill the NFT card and ignore their original proportions."
-msgstr ""
+msgstr "Bilder kommer att skalas för att fylla NFT-kortet och ignorera deras ursprungliga proportioner."
 
 #: src/components/offers/OfferDataEntryDialog.tsx:61
 msgid "Import"
@@ -2483,7 +2483,7 @@ msgstr "Det finns inte tillräckliga medel för att skapa erbjudandet. Se till a
 
 #: src/components/farm/PoolingHealth.tsx:302
 msgid "Insufficient partials"
-msgstr ""
+msgstr "Otillräckliga partialer"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:80
 msgid "Insufficient RAM for BladeBit"
@@ -2894,23 +2894,23 @@ msgstr "Minsta svårighetsgrad"
 
 #: src/constants/WalletConnectCommands.tsx:629
 msgid "Mint NFT"
-msgstr ""
+msgstr "Mynta NFT"
 
 #: src/components/nfts/NFTDetails.tsx:213
 msgid "Minted at Block Height"
-msgstr ""
+msgstr "Myntad på blockhöjd"
 
 #: src/components/offers2/OfferBuilderNFT.tsx:61
 msgid "Minter"
-msgstr ""
+msgstr "Myntare"
 
 #: src/components/nfts/NFTDetails.tsx:172
 msgid "Minter DID"
-msgstr ""
+msgstr "Myntar-DID"
 
 #: src/components/offers/OfferSummaryRow.tsx:124
 msgid "Minter:"
-msgstr ""
+msgstr "Myntare:"
 
 #: src/components/offers/OfferShareDialog.tsx:426
 msgid "MintGarden URL"
@@ -3058,7 +3058,7 @@ msgstr "NFT"
 #: src/util/offerBuilderDataToOffer.ts:262
 #: src/util/offerBuilderDataToOffer.ts:336
 msgid "NFT {nftId} is already used in this offer"
-msgstr ""
+msgstr "NFT {nftId} används redan i detta erbjudande"
 
 #: src/constants/WalletConnectCommands.tsx:473
 #~ msgid "NFT Coin Id"
@@ -3075,7 +3075,7 @@ msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:619
 msgid "NFT details not available"
-msgstr ""
+msgstr "NFT-detaljer är inte tillgängliga"
 
 #: src/components/offers2/OfferBuilderNFTRoyalties.tsx:172
 msgid "NFT has no royalties"
@@ -3101,7 +3101,7 @@ msgstr "NFT-identifieraren refererar inte till ett giltigt NFT-mynt."
 
 #: src/constants/WalletConnectCommands.tsx:818
 msgid "NFT Launcher Id"
-msgstr ""
+msgstr "NFT-launcher-ID"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:207
 msgid "NFT Move Failed"
@@ -3131,7 +3131,7 @@ msgstr "NFT-status uppdaterad"
 
 #: src/components/nfts/NFTContextualActions.tsx:179
 msgid "NFT Transfer Failed"
-msgstr ""
+msgstr "NFT-överföringen misslyckades"
 
 #: src/components/nfts/NFTContextualActions.tsx:173
 msgid "NFT Transfer Pending"
@@ -3160,7 +3160,7 @@ msgstr "Inga aktiviteter ännu"
 #: src/util/offerBuilderDataToOffer.ts:223
 #: src/util/offerBuilderDataToOffer.ts:323
 msgid "No CAT wallet found for {assetId} token"
-msgstr ""
+msgstr "Ingen CAT-plånbok hittades för token {assetId}"
 
 #: src/components/settings/SettingsIntegration.tsx:258
 msgid "No connected applications"
@@ -3172,7 +3172,7 @@ msgstr "Inga kontakter"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:397
 msgid "No CPU Affinity"
-msgstr ""
+msgstr "Ingen CPU-affinitet"
 
 #: src/components/offers/OfferManager.tsx:370
 msgid "No current offers"
@@ -3364,7 +3364,7 @@ msgstr "Antal trådar för fas 3"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:366
 msgid "Objectionable Content"
-msgstr ""
+msgstr "Stötande innehåll"
 
 #: src/components/settings/SettingsNFT.tsx:149
 msgid "Occupied space"
@@ -3377,7 +3377,7 @@ msgstr "Erbjudande"
 #: src/components/offers/OfferManager.tsx:413
 #: src/components/offers2/OfferNavigationHeader.tsx:16
 msgid "Offer Builder"
-msgstr ""
+msgstr "Erbjudandebyggare"
 
 #: src/components/offers/NFTOfferViewer.tsx:173
 #: src/components/offers2/OfferBuilderValue.tsx:206
@@ -3395,7 +3395,7 @@ msgstr "Erbjudandedata"
 
 #: src/components/offers2/OfferBuilderViewerDialog.tsx:54
 msgid "Offer Details"
-msgstr ""
+msgstr "Erbjudandedetaljer"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:184
 msgid "Offer Expiration"
@@ -3454,7 +3454,7 @@ msgstr "Erbjudandet förfaller om {0} {1}"
 #: src/components/offers/OfferManager.tsx:215
 #: src/components/offers2/CancelOfferList.tsx:80
 msgid "Offered"
-msgstr ""
+msgstr "Erbjudna"
 
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:24
 #: src/components/offers2/OfferIncomingTable.tsx:64
@@ -3467,7 +3467,7 @@ msgstr "Erbjuder"
 
 #: src/components/offers/OfferShareDialog.tsx:641
 msgid "Offerpool URL"
-msgstr ""
+msgstr "URL för Offerpool"
 
 #: src/components/dashboard/DashboardSideBar.tsx:67
 #: src/components/nfts/detail/NFTDetailV2.tsx:245
@@ -3905,7 +3905,7 @@ msgstr "Plottar som inte kunde öppnas"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:217
 msgid "Plots in the same queue will run in serial"
-msgstr ""
+msgstr "Plottar i samma kö kommer att köras i serie"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:21
 msgid "Plots Passed Filter"
@@ -4071,7 +4071,7 @@ msgstr "Förhandsgranska"
 
 #: src/components/nfts/NFTDetails.tsx:310
 msgid "Preview image URL {index}"
-msgstr ""
+msgstr "URL för förhandsgranskning av bild {index}"
 
 #: src/components/nfts/NFTPreview.tsx:621
 #~ msgid "Preview URL is not valid"
@@ -4083,7 +4083,7 @@ msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:327
 msgid "Preview video URL {index}"
-msgstr ""
+msgstr "URL för förhandsgranskning av video {index}"
 
 #: src/components/block/Block.jsx:257
 #: src/components/nfts/detail/NFTDetailV2.tsx:133
@@ -4208,7 +4208,7 @@ msgstr "Rekursiv plottskanning"
 
 #: src/components/nfts/NFTContextualActions.tsx:566
 msgid "Refresh NFT data"
-msgstr ""
+msgstr "Uppdatera NFT-data"
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:46
 #: src/components/plot/overview/PlotOverviewPlots.tsx:63
@@ -4274,7 +4274,7 @@ msgstr "Tar bort"
 #: src/components/offers/OfferManager.tsx:225
 #: src/components/offers2/CancelOfferList.tsx:95
 msgid "Requested"
-msgstr ""
+msgstr "Begärda"
 
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:31
 #: src/components/offers2/OfferIncomingTable.tsx:44
@@ -4303,7 +4303,7 @@ msgstr "Begär en ny mottagaradress som är kopplad till den aktuella plånboksn
 
 #: src/constants/WalletConnectCommands.tsx:616
 msgid "Requests details for a specific NFT"
-msgstr ""
+msgstr "Begär detaljer om en specifik NFT"
 
 #: src/constants/WalletConnectCommands.tsx:44
 msgid "Requests details for a specific transaction"
@@ -4938,7 +4938,7 @@ msgstr "Synkar <0/>/<1/>"
 
 #: src/constants/WalletConnectCommands.tsx:439
 msgid "Take Offer"
-msgstr ""
+msgstr "Anta erbjudandet"
 
 #: src/constants/WalletConnectCommands.tsx:651
 #: src/constants/WalletConnectCommands.tsx:731
@@ -5004,11 +5004,11 @@ msgstr "Nettointäkterna inkluderar det begärda priset, minus eventuella associ
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:208
 msgid "The NFT move failed: {err}"
-msgstr ""
+msgstr "NFT-flytten misslyckades: {err}"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:201
 msgid "The NFT move transaction has been successfully submitted to the blockchain."
-msgstr ""
+msgstr "NFT-flyttningstransaktionen har skickats till blockkedjan."
 
 #: src/components/nfts/NFTContextualActions.tsx:255
 msgid "The NFT status has been updated. If the transaction was successfully sent to the mempool, it may still complete."
@@ -5016,11 +5016,11 @@ msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:265
 msgid "The NFT status update failed: {err}"
-msgstr ""
+msgstr "Uppdatering av NFT-status misslyckades: {err}"
 
 #: src/components/nfts/NFTContextualActions.tsx:180
 msgid "The NFT transfer failed: {0}"
-msgstr ""
+msgstr "NFT-överföringen misslyckades: {0}"
 
 #: src/components/nfts/NFTContextualActions.tsx:183
 #~ msgid "The NFT transfer failed: {error}"
@@ -5028,7 +5028,7 @@ msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:174
 msgid "The NFT transfer transaction has been successfully submitted to the blockchain."
-msgstr ""
+msgstr "NFT-överföringstransaktionen har skickats till blockkedjan."
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:16
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:46
@@ -5275,7 +5275,7 @@ msgstr "Totalt belopp som erbjuds"
 #: src/components/offers/NFTOfferEditor.tsx:380
 #: src/components/offers/NFTOfferViewer.tsx:541
 msgid "Total Amount Requested"
-msgstr ""
+msgstr "Totalt belopp som begärs"
 
 #: src/components/offers2/OfferBuilderAmountWithRoyalties.tsx:31
 msgid "Total Amount with Royalties"
@@ -5710,7 +5710,7 @@ msgstr "Visa på MintGarden"
 
 #: src/components/offers/OfferShareDialog.tsx:656
 msgid "View on Offerpool"
-msgstr ""
+msgstr "Visa på Offerpool"
 
 #: src/components/nfts/NFTContextualActions.tsx:651
 #: src/components/offers/OfferShareDialog.tsx:538

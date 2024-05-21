@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-05-05 00:04\n"
+"PO-Revision-Date: 2024-05-19 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -478,7 +478,7 @@ msgstr "Denna nyckel används för adressen för dina odlingsbelöningar. Om du 
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:134
 msgid "This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
-msgstr ""
+msgstr "Denna nyckel används för adressen till dina poolbelöningar. Genom att ta bort nyckeln kan du förlora åtkomst till framtida belöningar från poolen"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:155
 msgid "This will permanently remove the key from your computer, make sure you have your mnemonic phrase backed up."
