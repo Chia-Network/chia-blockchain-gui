@@ -39,7 +39,7 @@
     "@rollup/plugin-commonjs": "25.0.4",
     "@rollup/plugin-node-resolve": "15.2.1",
     "@types/core-js": "2.5.5",
-    "@types/debug": "4.1.8",
+    "@types/debug": "4.1.12",
     "@types/jest": "29.5.3",
     "@types/json-bigint": "1.0.1",
     "@types/lodash": "4.14.197",
