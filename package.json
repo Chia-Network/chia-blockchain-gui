@@ -42,8 +42,8 @@
     "*": "prettier --check --ignore-unknown --ignore-path .gitignore"
   },
   "dependencies": {
-    "lerna": "7.1.5",
-    "nx": "16.7.2"
+    "lerna": "8.1.3",
+    "nx": "19.0.1"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "6.4.1",
@@ -66,6 +66,10 @@
     "nyc": "15.1.0",
     "prettier": "3.1.0",
     "typescript": "^5.1.6"
+  },
+  "overrides": {
+    "@walletconnect/keyvaluestorage": "1.0.2",
+    "tslib": "2.6.2"
   },
   "version": "1.2.10-dev132"
 }
