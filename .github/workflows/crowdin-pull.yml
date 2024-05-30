@@ -56,7 +56,7 @@ jobs:
           passphrase: ${{ secrets.CHIA_AUTOMATION_PRIVATE_GPG_PASSPHRASE }}
 
       - name: crowdin action
-        uses: crowdin/github-action@v1.20.4
+        uses: crowdin/github-action@v2.0.0
         with:
           upload_sources: false
           upload_translations: false
