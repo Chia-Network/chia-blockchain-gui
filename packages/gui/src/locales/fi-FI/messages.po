@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-05-15 21:19\n"
+"PO-Revision-Date: 2024-05-26 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1054,7 +1054,7 @@ msgstr "Kompressiotaso"
 #: src/components/vcs/VCRevokeDialog.tsx:27
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:71
 msgid "Confirm"
-msgstr ""
+msgstr "Vahvista"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:19
 msgid "Confirm Disconnect"
@@ -2469,20 +2469,16 @@ msgstr "Alustetaan..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"Riittämätön määrä varoja tarjouksen hyväksymiseen. Varmista, että\n"
+msgstr "Riittämätön määrä varoja tarjouksen hyväksymiseen. Varmista, että\n"
 "käytettävissä oleva saldo riittää tarjouksen määrän kattamiseen."
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"Riittämätön määrä varoja tarjouksen luomiseen. Varmista, että\n"
+msgstr "Riittämätön määrä varoja tarjouksen luomiseen. Varmista, että\n"
 "käytettävissä oleva saldo riittää tarjouksen määrän kattamiseen."
 
 #: src/components/farm/PoolingHealth.tsx:302
@@ -3151,7 +3147,7 @@ msgstr "NFT:t, jotka niiden tekijä on luokitellut ristiriitaista sisältöä si
 
 #: src/components/vcs/VCCard.tsx:89
 msgid "No"
-msgstr ""
+msgstr "Ei"
 
 #: src/components/notification/NotificationsMenu.tsx:53
 msgid "No activities yet"
@@ -5676,7 +5672,7 @@ msgstr "Tarkistetaan tiivistettä..."
 
 #: src/components/offers2/OfferIncomingTable.tsx:95
 msgid "View"
-msgstr ""
+msgstr "Näkymä"
 
 #: src/components/offers/OfferImport.tsx:184
 msgid "View an Offer"
@@ -5923,7 +5919,7 @@ msgstr "Haluatko siirtää NFT:n uudelle omistajalle?"
 #: src/components/plot/add/PlotAddChooseSize.tsx:61
 #: src/components/vcs/VCCard.tsx:89
 msgid "Yes"
-msgstr ""
+msgstr "Kyllä"
 
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:22
 msgid "Yes, Accept Offer"
@@ -6077,3 +6073,4 @@ msgstr "Käytettävissä olevan saldon on oltava suurempi kuin 1 mojo luodaksesi
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "Lompakkosi on oltava käynnissä, jotta automaattinen lunastaminen toimii."
+
