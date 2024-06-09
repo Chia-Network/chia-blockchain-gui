@@ -97,7 +97,7 @@ export default function OfferBuilderImport() {
   }
 
   const isMac = /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform);
-  const hotKey = isMac ? 'cmd+v' : 'ctrl+v';
+  const hotKey = isMac ? 'meta+v' : 'ctrl+v';
 
   useHotkeys(hotKey, () => {
     navigator.clipboard
