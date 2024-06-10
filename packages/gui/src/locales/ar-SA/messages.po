@@ -8,7 +8,7 @@ msgstr ""
 "Language: ar_SA\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-05-26 00:04\n"
+"PO-Revision-Date: 2024-06-09 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Arabic\n"
 "Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
@@ -1054,7 +1054,7 @@ msgstr ""
 #: src/components/vcs/VCRevokeDialog.tsx:27
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:71
 msgid "Confirm"
-msgstr "تأكيد"
+msgstr ""
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:19
 msgid "Confirm Disconnect"
@@ -3147,7 +3147,7 @@ msgstr ""
 
 #: src/components/vcs/VCCard.tsx:89
 msgid "No"
-msgstr "لايوجد"
+msgstr ""
 
 #: src/components/notification/NotificationsMenu.tsx:53
 msgid "No activities yet"
@@ -5672,7 +5672,7 @@ msgstr ""
 
 #: src/components/offers2/OfferIncomingTable.tsx:95
 msgid "View"
-msgstr "عرض"
+msgstr ""
 
 #: src/components/offers/OfferImport.tsx:184
 msgid "View an Offer"
@@ -5919,7 +5919,7 @@ msgstr ""
 #: src/components/plot/add/PlotAddChooseSize.tsx:61
 #: src/components/vcs/VCCard.tsx:89
 msgid "Yes"
-msgstr "نعم"
+msgstr ""
 
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:22
 msgid "Yes, Accept Offer"
