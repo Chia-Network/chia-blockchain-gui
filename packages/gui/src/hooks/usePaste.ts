@@ -8,7 +8,7 @@ export type PasteParams = {
 
 export default function usePaste(params: PasteParams) {
   const { callback } = params;
-  const hotKey = isMac() ? 'cmd+v' : 'ctrl+v';
+  const hotKey = isMac() ? 'meta+v' : 'ctrl+v';
 
   useHotkeys(hotKey, () => {
     navigator.clipboard
