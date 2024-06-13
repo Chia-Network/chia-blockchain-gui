@@ -5191,8 +5191,13 @@ msgstr "Táto ponuka bola úspešne dokončená"
 
 #: src/components/offers/OfferHeader.tsx:46
 #: src/components/offers2/OfferBuilderViewer.tsx:262
-msgid "This offer is no longer valid. To understand why, click <0>here</0> to learn more."
-msgstr "Táto ponuka už nie je platná. Ak chcete vedieť prečo, kliknite <0>sem</0> a dozviete sa viac."
+msgid "This offer is no longer valid because it was accepted or cancelled. Click <0>here</0> to learn more."
+msgstr ""
+
+#: src/components/offers/OfferHeader.tsx:46
+#: src/components/offers2/OfferBuilderViewer.tsx:262
+#~ msgid "This offer is no longer valid. To understand why, click <0>here</0> to learn more."
+#~ msgstr "Táto ponuka už nie je platná. Ak chcete vedieť prečo, kliknite <0>sem</0> a dozviete sa viac."
 
 #: src/components/offers2/OfferBuilderViewer.tsx:279
 msgid "This offer was cancelled"

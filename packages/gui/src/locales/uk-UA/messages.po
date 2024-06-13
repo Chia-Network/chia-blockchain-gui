@@ -5187,8 +5187,13 @@ msgstr "Дана пропозиція успішно завершена"
 
 #: src/components/offers/OfferHeader.tsx:46
 #: src/components/offers2/OfferBuilderViewer.tsx:262
-msgid "This offer is no longer valid. To understand why, click <0>here</0> to learn more."
-msgstr "Ця пропозиція більше не є дійсною. Щоб зрозуміти, чому, натисніть <0>тут</0> щоб дізнатися більше."
+msgid "This offer is no longer valid because it was accepted or cancelled. Click <0>here</0> to learn more."
+msgstr ""
+
+#: src/components/offers/OfferHeader.tsx:46
+#: src/components/offers2/OfferBuilderViewer.tsx:262
+#~ msgid "This offer is no longer valid. To understand why, click <0>here</0> to learn more."
+#~ msgstr "Ця пропозиція більше не є дійсною. Щоб зрозуміти, чому, натисніть <0>тут</0> щоб дізнатися більше."
 
 #: src/components/offers2/OfferBuilderViewer.tsx:279
 msgid "This offer was cancelled"

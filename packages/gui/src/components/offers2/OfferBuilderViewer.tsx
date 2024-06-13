@@ -260,7 +260,7 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
         ) : showInvalid ? (
           <Alert severity="error">
             <Trans>
-              {'This offer is no longer valid. To understand why, click '}
+              {'This offer is no longer valid because it was accepted or cancelled. Click '}
               <Link
                 target="_blank"
                 href="https://docs.chia.net/getting-started/wallet-guide/#taker-attempts-to-accept-an-invalid-offer"
@@ -298,7 +298,7 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
           <Loading center />
         ) : (
           <Flex flexDirection="column" gap={3}>
-            {hasExpiration && (
+            {hasExpiration && !showInvalid && (
               <OfferBuilderExpirationSection
                 isViewing
                 currentTime={currentTime}

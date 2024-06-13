@@ -5191,8 +5191,13 @@ msgstr "Cette offre s'est terminée avec succès"
 
 #: src/components/offers/OfferHeader.tsx:46
 #: src/components/offers2/OfferBuilderViewer.tsx:262
-msgid "This offer is no longer valid. To understand why, click <0>here</0> to learn more."
-msgstr "Cette offre n'est plus valide. Pour en savoir plus, cliquez <0>ici</0>."
+msgid "This offer is no longer valid because it was accepted or cancelled. Click <0>here</0> to learn more."
+msgstr ""
+
+#: src/components/offers/OfferHeader.tsx:46
+#: src/components/offers2/OfferBuilderViewer.tsx:262
+#~ msgid "This offer is no longer valid. To understand why, click <0>here</0> to learn more."
+#~ msgstr "Cette offre n'est plus valide. Pour en savoir plus, cliquez <0>ici</0>."
 
 #: src/components/offers2/OfferBuilderViewer.tsx:279
 msgid "This offer was cancelled"
