@@ -44,7 +44,7 @@ export default function OfferHeader(props: OfferHeaderProps) {
     headerElement = (
       <Typography variant="subtitle1" color="error">
         <Trans>
-          {'This offer is no longer valid. To understand why, click '}
+          {'This offer is no longer valid because it was accepted or cancelled. Click '}
           <Link
             target="_blank"
             href="https://docs.chia.net/getting-started/wallet-guide/#taker-attempts-to-accept-an-invalid-offer"

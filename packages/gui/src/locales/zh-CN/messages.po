@@ -5191,8 +5191,13 @@ msgstr "此报价已成功完成"
 
 #: src/components/offers/OfferHeader.tsx:46
 #: src/components/offers2/OfferBuilderViewer.tsx:262
-msgid "This offer is no longer valid. To understand why, click <0>here</0> to learn more."
-msgstr "此报价不再有效。要了解原因，请点击 <0>这里</0> 了解更多信息。"
+msgid "This offer is no longer valid because it was accepted or cancelled. Click <0>here</0> to learn more."
+msgstr ""
+
+#: src/components/offers/OfferHeader.tsx:46
+#: src/components/offers2/OfferBuilderViewer.tsx:262
+#~ msgid "This offer is no longer valid. To understand why, click <0>here</0> to learn more."
+#~ msgstr "此报价不再有效。要了解原因，请点击 <0>这里</0> 了解更多信息。"
 
 #: src/components/offers2/OfferBuilderViewer.tsx:279
 msgid "This offer was cancelled"
