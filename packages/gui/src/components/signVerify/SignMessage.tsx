@@ -115,7 +115,6 @@ export default function SignMessage(props: SignMessageProps) {
     } else {
       const content = toSnakeCase({ ...result, message: messageToSign, address });
       delete content.success;
-      delete content.latest_coin_id;
 
       const jsonContent = JSON.stringify(content, null, 2);
 
