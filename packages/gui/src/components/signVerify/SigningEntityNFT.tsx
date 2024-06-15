@@ -65,6 +65,7 @@ export default function SigningEntityNFT(props: SigningEntityNFTProps) {
         label={<Trans>NFT ID</Trans>}
         variant="filled"
         name={entityFormName}
+        includeNFTCollection
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
