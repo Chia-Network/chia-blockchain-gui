@@ -190,7 +190,7 @@ export default class Farmer extends Service {
     const n = this.totalPlotFilterChallenge;
     const x = this.totalPlotsPassingFilter;
 
-    const constants = args.isTestnet ? PLOT_FILTER_CONSTANTS.testnet10 : PLOT_FILTER_CONSTANTS.mainnet;
+    const constants = args.isTestnet ? PLOT_FILTER_CONSTANTS.testnet11 : PLOT_FILTER_CONSTANTS.mainnet;
     let fb = 9;
 
     if (args.height >= constants.PLOT_FILTER_32_HEIGHT) {
