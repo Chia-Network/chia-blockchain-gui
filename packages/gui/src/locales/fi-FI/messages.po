@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-06-09 00:04\n"
+"PO-Revision-Date: 2024-06-16 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -2469,20 +2469,16 @@ msgstr "Alustetaan..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"Riittämätön määrä varoja tarjouksen hyväksymiseen. Varmista, että\n"
+msgstr "Riittämätön määrä varoja tarjouksen hyväksymiseen. Varmista, että\n"
 "käytettävissä oleva saldo riittää tarjouksen määrän kattamiseen."
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"Riittämätön määrä varoja tarjouksen luomiseen. Varmista, että\n"
+msgstr "Riittämätön määrä varoja tarjouksen luomiseen. Varmista, että\n"
 "käytettävissä oleva saldo riittää tarjouksen määrän kattamiseen."
 
 #: src/components/farm/PoolingHealth.tsx:302
@@ -5197,7 +5193,7 @@ msgstr ""
 #: src/components/offers/OfferHeader.tsx:46
 #: src/components/offers2/OfferBuilderViewer.tsx:262
 #~ msgid "This offer is no longer valid. To understand why, click <0>here</0> to learn more."
-#~ msgstr "Tarjous ei ole enää voimassa. Napsauta <0>tästä</0> katsoaksesi miksi."
+#~ msgstr "This offer is no longer valid. To understand why, click <0>here</0> to learn more."
 
 #: src/components/offers2/OfferBuilderViewer.tsx:279
 msgid "This offer was cancelled"
@@ -6082,3 +6078,4 @@ msgstr "Käytettävissä olevan saldon on oltava suurempi kuin 1 mojo luodaksesi
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "Lompakkosi on oltava käynnissä, jotta automaattinen lunastaminen toimii."
+
