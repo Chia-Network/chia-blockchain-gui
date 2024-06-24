@@ -100,6 +100,10 @@ export default {
       '@mui/styled-engine': '@mui/styled-engine-sc',
       crypto: 'crypto-browserify',
       stream: 'stream-browserify',
+      // Use `ws` package for nodejs instead of `ws` package for browsers
+      // Without this alias, webpack will bundle `ws` package for browsers
+      // See https://github.com/Chia-Network/chia-blockchain-gui/pull/2413#issuecomment-2181012908
+      ws: require.resolve('ws'),
     },
   },
   optimization: {

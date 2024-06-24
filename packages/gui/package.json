@@ -96,7 +96,7 @@
     "unique-names-generator": "4.6.0",
     "validator": "13.11.0",
     "victory": "^36.6.11",
-    "ws": "8.4.2"
+    "ws": "8.17.1"
   },
   "devDependencies": {
     "@babel/core": "7.22.10",
