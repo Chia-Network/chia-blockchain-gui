@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-06-09 00:04\n"
+"PO-Revision-Date: 2024-06-16 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -5197,7 +5197,7 @@ msgstr ""
 #: src/components/offers/OfferHeader.tsx:46
 #: src/components/offers2/OfferBuilderViewer.tsx:262
 #~ msgid "This offer is no longer valid. To understand why, click <0>here</0> to learn more."
-#~ msgstr "Tarjous ei ole enää voimassa. Napsauta <0>tästä</0> katsoaksesi miksi."
+#~ msgstr "This offer is no longer valid. To understand why, click <0>here</0> to learn more."
 
 #: src/components/offers2/OfferBuilderViewer.tsx:279
 msgid "This offer was cancelled"
