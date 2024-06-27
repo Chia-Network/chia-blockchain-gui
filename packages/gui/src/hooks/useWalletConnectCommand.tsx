@@ -8,6 +8,7 @@ import type Notification from '../@types/Notification';
 import type Pair from '../@types/Pair';
 import type WalletConnectCommandParam from '../@types/WalletConnectCommandParam';
 import WalletConnectConfirmDialog from '../components/walletConnect/WalletConnectConfirmDialog';
+import WalletConnectRequestPermissionsConfirmDialog from '../components/walletConnect/WalletConnectRequestPermissionsConfirmDialog';
 import NotificationType from '../constants/NotificationType';
 import walletConnectCommands from '../constants/WalletConnectCommands';
 import prepareWalletConnectCommand from '../util/prepareWalletConnectCommand';
@@ -25,7 +26,7 @@ type UseWalletConnectCommandOptions = {
 function parseNotification(
   fingerprint: number,
   values: Record<string, string | number | boolean>,
-  pair: Pair,
+  pair: Pair
 ): Notification {
   const { type, allFingerprints, offerData } = values;
 
@@ -112,6 +113,30 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
       log(`bypassing command ${command} with value ${pair.bypassCommands[command]}`);
       return pair.bypassCommands[command];
     }
+    if (command === 'requestPermissions') {
+      let hasPermissions = true;
+      if (values.commands) {
+        values.commands.forEach((cmd: string) => {
+          if (!pair.bypassCommands || !pair.bypassCommands[cmd]) {
+            hasPermissions = false;
+          }
+        });
+      }
+      if (hasPermissions) {
+        return true;
+      }
+      const isConfirmed = await openDialog(
+        <WalletConnectRequestPermissionsConfirmDialog
+          topic={topic}
+          fingerprint={fingerprint}
+          isDifferentFingerprint={isDifferentFingerprint}
+          params={params}
+          values={values}
+          onChange={onChange}
+        />
+      );
+      return isConfirmed;
+    }
 
     const isConfirmed = await openDialog(
       <WalletConnectConfirmDialog
@@ -124,9 +149,8 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
         params={params}
         values={values}
         onChange={onChange}
-      />,
+      />
     );
-
     return isConfirmed;
   }
 

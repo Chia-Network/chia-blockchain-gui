@@ -106,21 +106,27 @@ export default class DIDWallet extends Wallet {
     }>('did_get_current_coin_info', args);
   }
 
-  async getDidInfo(args: { coinOrDIDId: string }) {
+  async getDidInfo(args: { coinId: string }) {
+    const resp = this.command<any>('did_get_info', args);
+    return resp;
+  }
+
+  async getDidMetadata(args: { walletId: number }) {
     return this.command<{
-      latestCoin: string;
-      p2Address: string;
-      publicKey: string;
-      recoveryListHash: string;
-      numVerification: number;
-      metadata: Record<string, string>;
-      launcherId: string;
-      fullPuzzle: string; // hex bytes of serialized CLVM program
-      solution: any;
-      hints: string[];
-    }>('did_get_info', {
-      coinId: args.coinOrDIDId,
-    });
+      metadata: any;
+    }>('did_get_metadata', args);
+  }
+
+  async updateDidMetadata(args: { walletId: number; metadata: any; fee: number; reusePuzHash: boolean }) {
+    return this.command<{
+      walletId: number;
+    }>('did_update_metadata', args);
+  }
+
+  async findLostDid(args: { coinId: string; recoveryListHash: string; numVerification: number; metadata: string }) {
+    return this.command<{
+      latestCoinId: number;
+    }>('did_find_lost', args);
   }
 
   onDIDCoinAdded(callback: (data: any, message: Message) => void) {

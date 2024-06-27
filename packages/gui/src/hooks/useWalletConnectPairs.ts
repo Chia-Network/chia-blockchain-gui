@@ -20,6 +20,7 @@ export type Pairs = {
   removeSessionFromPair: (sessionTopic: string) => void;
 
   bypassCommand: (sessionTopic: string, command: string, confirm: boolean) => void;
+  bypassCommands: (sessionTopic: string, commands: string[], confirm: boolean) => void;
   removeBypassCommand: (sessionTopic: string, command: string) => void;
   resetBypassForAllPairs: () => void;
   resetBypassForPair: (pairTopic: string) => void;
@@ -57,7 +58,7 @@ export default function useWalletConnectPairs(): Pairs {
   const removePairBySession = useCallback((sessionTopic: string) => {
     const [, setPairs] = pairsRef.current;
     setPairs((pairs: Pair[]) =>
-      pairs.filter((item) => !item.sessions.find((session) => session.topic === sessionTopic)),
+      pairs.filter((item) => !item.sessions.find((session) => session.topic === sessionTopic))
     );
   }, []);
 
@@ -94,7 +95,7 @@ export default function useWalletConnectPairs(): Pairs {
       pairs.map((pair) => ({
         ...pair,
         sessions: pair.sessions.filter((item) => item.topic !== sessionTopic),
-      })),
+      }))
     );
   }, []);
 
@@ -115,6 +116,27 @@ export default function useWalletConnectPairs(): Pairs {
             ? {
                 ...item.bypassCommands,
                 [command]: confirm,
+              }
+            : item.bypassCommands,
+      }));
+    });
+  }, []);
+
+  const bypassCommands = useCallback((sessionTopic: string, commands: string[], confirm: boolean) => {
+    const [, setPairs] = pairsRef.current;
+    setPairs((pairs: Pair[]) => {
+      const pair = pairs.find((item) => item.sessions?.find((session) => session.topic === sessionTopic));
+      if (!pair) {
+        throw new Error('Pair not found');
+      }
+
+      return pairs.map((item) => ({
+        ...item,
+        bypassCommands:
+          item.topic === pair.topic
+            ? {
+                ...item.bypassCommands,
+                ...commands.reduce((acc, command) => ({ ...acc, [command]: confirm }), {}),
               }
             : item.bypassCommands,
       }));
@@ -152,7 +174,7 @@ export default function useWalletConnectPairs(): Pairs {
       pairs.map((item) => ({
         ...item,
         bypassCommands: {},
-      })),
+      }))
     );
   }, []);
 
@@ -166,7 +188,7 @@ export default function useWalletConnectPairs(): Pairs {
           item.topic === pairTopic
             ? {} // reset bypass commands
             : item.bypassCommands,
-      })),
+      }))
     );
   }, []);
 
@@ -185,6 +207,7 @@ export default function useWalletConnectPairs(): Pairs {
 
       removeSessionFromPair,
       bypassCommand,
+      bypassCommands,
       removeBypassCommand,
       resetBypassForAllPairs,
       resetBypassForPair,
@@ -201,11 +224,12 @@ export default function useWalletConnectPairs(): Pairs {
       removePairBySession,
       removeSessionFromPair,
       bypassCommand,
+      bypassCommands,
       removeBypassCommand,
       resetBypassForAllPairs,
       resetBypassForPair,
       currentPairs,
-    ],
+    ]
   );
 
   return pairs;

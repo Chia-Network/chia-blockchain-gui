@@ -1,5 +1,6 @@
 import * as client from './client';
 import * as daemon from './daemon';
+import * as dataLayer from './dataLayer';
 import * as farmer from './farmer';
 import * as fullNode from './fullNode';
 import * as harvester from './harvester';
@@ -42,6 +43,39 @@ export const {
   useDeleteLabelMutation,
   useGetPublicKeyQuery,
 } = daemon;
+
+export const {
+  dataLayerApi,
+
+  useAddMirrorMutation,
+  useAddMissingFilesMutation,
+  useBatchUpdateMutation,
+  useCheckPluginsQuery,
+  useClearPendingRootsMutation,
+  useCreateDataStoreMutation,
+  useDeleteKeyMutation: useDeleteDataLayerKeyMutation,
+  useDeleteMirrorMutation,
+  useGetAncestorsQuery,
+  useGetKeysQuery: useGetDataLayerKeysQuery,
+  useGetKeysValuesQuery,
+  useGetKvDiffQuery,
+  useGetLocalRootQuery,
+  useGetMirrorsQuery,
+  useGetOwnedStoresQuery,
+  useGetRootQuery,
+  useGetRootsQuery,
+  useGetRootHistoryQuery,
+  useGetSyncStatusQuery: useGetDataLayerSyncStatusQuery,
+  useGetValueQuery,
+  useInsertMutation,
+  useMakeOfferMutation,
+  useRemoveSubscriptionsMutation,
+  useSubscribeMutation,
+  useSubscriptionsQuery,
+  useTakeOfferMutation: useTakeDataLayerOfferMutation,
+  useUnsubscribeMutation,
+  useVerifyOfferQuery,
+} = dataLayer;
 
 // farmer hooks
 export const {
@@ -167,6 +201,7 @@ export const {
   useGetDIDNameQuery,
   useSetDIDNameMutation,
   useGetDIDRecoveryListQuery,
+  useUpdateDIDMetadataMutation,
   useGetDIDInformationNeededForRecoveryQuery,
   useGetDIDCurrentCoinInfoQuery,
   useGetDIDInfoQuery,
