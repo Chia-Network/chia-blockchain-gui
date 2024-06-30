@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-06-16 00:04\n"
+"PO-Revision-Date: 2024-06-30 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1054,7 +1054,7 @@ msgstr "Komprimeringsnivå"
 #: src/components/vcs/VCRevokeDialog.tsx:27
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:71
 msgid "Confirm"
-msgstr ""
+msgstr "Bekräfta"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:19
 msgid "Confirm Disconnect"
@@ -1448,11 +1448,11 @@ msgstr "Beroende på din systemkonfiguration, kan det visa sig att en alternativ
 
 #: src/components/settings/SettingsPanel.tsx:167
 msgid "Derivation Index"
-msgstr "Deriveringsindex"
+msgstr "Härledningsindex"
 
 #: src/components/settings/SettingsDerivationIndex.tsx:45
 msgid "Derivation index must be greater than {index}"
-msgstr ""
+msgstr "Härledningsindex måste vara större än {index}"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:205
 msgid "Description"
@@ -2469,15 +2469,13 @@ msgstr "Initierar..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr "Det finns inte tillräckliga medel för att acceptera erbjudandet. Se till att ditt spenderbara saldo är tillräckligt högt för att täcka erbjudandets belopp."
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr "Det finns inte tillräckliga medel för att skapa erbjudandet. Se till att ditt spenderbara saldo är tillräckligt högt för att täcka erbjudandets belopp."
 
@@ -3147,7 +3145,7 @@ msgstr "NFT:er som har kategoriserats av skaparen som stötande innehåll kommer
 
 #: src/components/vcs/VCCard.tsx:89
 msgid "No"
-msgstr ""
+msgstr "Nej"
 
 #: src/components/notification/NotificationsMenu.tsx:53
 msgid "No activities yet"
@@ -3534,7 +3532,7 @@ msgstr ""
 
 #: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:334
 msgid "Open offers which lock the same assets as the new offer"
-msgstr ""
+msgstr "Öppna erbjudanden som låser samma tillgångar som det nya erbjudandet"
 
 #: src/components/offers2/OfferBuilderFeeSection.tsx:55
 msgid "Optional network fee to expedite acceptance of your offer"
@@ -4096,7 +4094,7 @@ msgstr "Föregående huvudhash"
 
 #: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:360
 msgid "Proceed"
-msgstr ""
+msgstr "Fortsätt"
 
 #: src/components/settings/ProfileView.tsx:57
 msgid "Profile Name"
@@ -4915,7 +4913,7 @@ msgstr "Uppdaterade cachens storleksgräns."
 
 #: src/components/settings/SettingsDerivationIndex.tsx:54
 msgid "Successfully updated the derivation index. Your balances may take a while to update."
-msgstr ""
+msgstr "Härledningsindex uppdaterades. Det kan ta ett tag innan dina saldon uppdateras."
 
 #: src/components/farm/FarmHealth.tsx:430
 msgid "Sync status"
@@ -5188,7 +5186,7 @@ msgstr "Erbjudandet har slutförts"
 #: src/components/offers/OfferHeader.tsx:46
 #: src/components/offers2/OfferBuilderViewer.tsx:262
 msgid "This offer is no longer valid because it was accepted or cancelled. Click <0>here</0> to learn more."
-msgstr ""
+msgstr "Detta erbjudande är inte längre giltigt eftersom det accepterades eller drogs tillbaka. Klicka <0>här</0> för att läsa mer."
 
 #: src/components/offers/OfferHeader.tsx:46
 #: src/components/offers2/OfferBuilderViewer.tsx:262
@@ -5677,7 +5675,7 @@ msgstr "Verifierar hash..."
 
 #: src/components/offers2/OfferIncomingTable.tsx:95
 msgid "View"
-msgstr ""
+msgstr "Visa"
 
 #: src/components/offers/OfferImport.tsx:184
 msgid "View an Offer"
@@ -5924,7 +5922,7 @@ msgstr "Vill du överföra den angivna NFT:n till en ny ägare?"
 #: src/components/plot/add/PlotAddChooseSize.tsx:61
 #: src/components/vcs/VCCard.tsx:89
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:22
 msgid "Yes, Accept Offer"
@@ -6078,3 +6076,4 @@ msgstr "Ditt spenderbara saldo måste vara större än 1 mojo för att skapa en 
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr ""
+
