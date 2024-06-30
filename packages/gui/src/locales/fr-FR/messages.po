@@ -830,7 +830,7 @@ msgstr "Taille du cache (Go)"
 #: src/components/settings/RemovePassphrasePrompt.tsx:169
 #: src/components/settings/ResyncPrompt.tsx:49
 #: src/components/settings/SetPassphrasePrompt.tsx:262
-#: src/components/signVerify/SignMessage.tsx:205
+#: src/components/signVerify/SignMessage.tsx:211
 #: src/components/signVerify/VerifyMessage.tsx:271
 #: src/components/vcs/VCEditTitle.tsx:76
 #: src/components/vcs/VCRevokeDialog.tsx:28
@@ -1489,7 +1489,7 @@ msgstr "URL de Dexie"
 #: src/components/addressbook/ContactAdd.tsx:116
 #: src/components/addressbook/ContactEdit.tsx:119
 #: src/components/signVerify/SigningEntityDID.tsx:77
-#: src/components/signVerify/SignMessage.tsx:155
+#: src/components/signVerify/SignMessage.tsx:161
 #: src/constants/WalletConnectCommands.tsx:827
 msgid "DID"
 msgstr "DID"
@@ -2469,16 +2469,20 @@ msgstr "Initialisation..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid "Insufficient funds available to accept offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "Fonds insuffisants pour accepter l'offre. Assurez-vous que votre \n"
+msgstr ""
+"Fonds insuffisants pour accepter l'offre. Assurez-vous que votre \n"
 "solde disponible est suffisant pour couvrir le montant de l'offre."
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid "Insufficient funds available to create offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "Fonds insuffisants pour créer l'offre. Assurez-vous que votre \n"
+msgstr ""
+"Fonds insuffisants pour créer l'offre. Assurez-vous que votre \n"
 "solde disponible est suffisant pour couvrir le montant de l'offre."
 
 #: src/components/farm/PoolingHealth.tsx:302
@@ -2830,7 +2834,7 @@ msgid "Memos"
 msgstr "Mémos"
 
 #: src/components/notification/NotificationAnnouncementDialog.tsx:53
-#: src/components/signVerify/SignMessage.tsx:194
+#: src/components/signVerify/SignMessage.tsx:200
 #: src/components/signVerify/VerifyMessage.tsx:207
 #: src/constants/WalletConnectCommands.tsx:184
 #: src/constants/WalletConnectCommands.tsx:207
@@ -3051,7 +3055,7 @@ msgstr "Suivant"
 #: src/components/offers2/OfferBuilderNFTSection.tsx:44
 #: src/components/settings/Settings.tsx:38
 #: src/components/settings/SettingsNFT.tsx:81
-#: src/components/signVerify/SignMessage.tsx:154
+#: src/components/signVerify/SignMessage.tsx:160
 msgid "NFT"
 msgstr "NFT"
 
@@ -4709,7 +4713,7 @@ msgstr "Voir les détails de l'offre"
 msgid "Shut down"
 msgstr "Fermer"
 
-#: src/components/signVerify/SignMessage.tsx:208
+#: src/components/signVerify/SignMessage.tsx:214
 msgid "Sign"
 msgstr "Signer"
 
@@ -4762,7 +4766,7 @@ msgstr "Le fichier du message signé est trop grand (> 10MB)"
 msgid "Signing Address (Optional)"
 msgstr "Adresse de signature (facultatif)"
 
-#: src/components/signVerify/SignMessage.tsx:164
+#: src/components/signVerify/SignMessage.tsx:170
 msgid "Signing Entity"
 msgstr "Entité signataire"
 
@@ -5163,8 +5167,13 @@ msgstr "Ceci représente le total des points accumulés par le NFT de parcelles 
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:147
 #: src/components/plotNFT/PlotNFTCard.tsx:181
-msgid "This is the total number of points your farmer has found for this plot NFT. Each k32 plot will get around 10 points per day, so if you have 10TiB, should should expect around 1000 points per day, or 41 points per hour."
-msgstr "Ceci représente le total des points trouvés par votre fermier avec ce NFT de parcelles. Chaque parcelle k32 trouvera environ 10 points par jour, de telle sorte que si vous avez 10Tio, vous devriez recevoir environ 1000 points par jour, soit 41 points par heure."
+#~ msgid "This is the total number of points your farmer has found for this plot NFT. Each k32 plot will get around 10 points per day, so if you have 10TiB, should should expect around 1000 points per day, or 41 points per hour."
+#~ msgstr "Ceci représente le total des points trouvés par votre fermier avec ce NFT de parcelles. Chaque parcelle k32 trouvera environ 10 points par jour, de telle sorte que si vous avez 10Tio, vous devriez recevoir environ 1000 points par jour, soit 41 points par heure."
+
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:147
+#: src/components/plotNFT/PlotNFTCard.tsx:181
+msgid "This is the total number of points your farmer has found for this plot NFT. Each k32 plot will get around 20 points per day, so if you have 10TiB, should should expect around 2000 points per day, or 82 points per hour."
+msgstr ""
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:52
 msgid "This node is fully caught up and validating the network"
@@ -5776,7 +5785,7 @@ msgstr "Portefeuille"
 msgid "Wallet {0}"
 msgstr "Portefeuille {0}"
 
-#: src/components/signVerify/SignMessage.tsx:153
+#: src/components/signVerify/SignMessage.tsx:159
 msgid "Wallet Address"
 msgstr "Adresse du Portefeuille"
 
@@ -6078,4 +6087,3 @@ msgstr "Votre solde dépensable doit être supérieur à 1 mojo pour créer un p
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "Votre portefeuille doit être synchronisé pour que la revendication automatique fonctionne."
-

@@ -830,7 +830,7 @@ msgstr "Розмір кешу (GB)"
 #: src/components/settings/RemovePassphrasePrompt.tsx:169
 #: src/components/settings/ResyncPrompt.tsx:49
 #: src/components/settings/SetPassphrasePrompt.tsx:262
-#: src/components/signVerify/SignMessage.tsx:205
+#: src/components/signVerify/SignMessage.tsx:211
 #: src/components/signVerify/VerifyMessage.tsx:271
 #: src/components/vcs/VCEditTitle.tsx:76
 #: src/components/vcs/VCRevokeDialog.tsx:28
@@ -1489,7 +1489,7 @@ msgstr "Dexie URL"
 #: src/components/addressbook/ContactAdd.tsx:116
 #: src/components/addressbook/ContactEdit.tsx:119
 #: src/components/signVerify/SigningEntityDID.tsx:77
-#: src/components/signVerify/SignMessage.tsx:155
+#: src/components/signVerify/SignMessage.tsx:161
 #: src/constants/WalletConnectCommands.tsx:827
 msgid "DID"
 msgstr ""
@@ -2469,13 +2469,15 @@ msgstr "Ініціалізація..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid "Insufficient funds available to accept offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr "Недостатньо доступних коштів для прийняття пропозиції. Переконайтеся, що вашого балансу достатньо для покриття суми пропозиції."
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid "Insufficient funds available to create offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr "Недостатньо доступних коштів для створення пропозиції. Переконайтеся, що вашого балансу достатньо для покриття суми пропозиції."
 
@@ -2828,7 +2830,7 @@ msgid "Memos"
 msgstr ""
 
 #: src/components/notification/NotificationAnnouncementDialog.tsx:53
-#: src/components/signVerify/SignMessage.tsx:194
+#: src/components/signVerify/SignMessage.tsx:200
 #: src/components/signVerify/VerifyMessage.tsx:207
 #: src/constants/WalletConnectCommands.tsx:184
 #: src/constants/WalletConnectCommands.tsx:207
@@ -3049,7 +3051,7 @@ msgstr "Далі"
 #: src/components/offers2/OfferBuilderNFTSection.tsx:44
 #: src/components/settings/Settings.tsx:38
 #: src/components/settings/SettingsNFT.tsx:81
-#: src/components/signVerify/SignMessage.tsx:154
+#: src/components/signVerify/SignMessage.tsx:160
 msgid "NFT"
 msgstr "NFT"
 
@@ -4707,7 +4709,7 @@ msgstr ""
 msgid "Shut down"
 msgstr ""
 
-#: src/components/signVerify/SignMessage.tsx:208
+#: src/components/signVerify/SignMessage.tsx:214
 msgid "Sign"
 msgstr ""
 
@@ -4760,7 +4762,7 @@ msgstr ""
 msgid "Signing Address (Optional)"
 msgstr ""
 
-#: src/components/signVerify/SignMessage.tsx:164
+#: src/components/signVerify/SignMessage.tsx:170
 msgid "Signing Entity"
 msgstr ""
 
@@ -5161,8 +5163,13 @@ msgstr "Це загальна кількість балів, яка має NFT �
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:147
 #: src/components/plotNFT/PlotNFTCard.tsx:181
-msgid "This is the total number of points your farmer has found for this plot NFT. Each k32 plot will get around 10 points per day, so if you have 10TiB, should should expect around 1000 points per day, or 41 points per hour."
-msgstr "Це загальна кількість балів, які ваш фермер набрав для цієї NFT ділянки. Кожна ділянка k32 отримуватиме близько 10 очок на день, тому якщо у вас є 10TiB, слід очікувати близько 1000 балів на день, або 41 бал на годину."
+#~ msgid "This is the total number of points your farmer has found for this plot NFT. Each k32 plot will get around 10 points per day, so if you have 10TiB, should should expect around 1000 points per day, or 41 points per hour."
+#~ msgstr "Це загальна кількість балів, які ваш фермер набрав для цієї NFT ділянки. Кожна ділянка k32 отримуватиме близько 10 очок на день, тому якщо у вас є 10TiB, слід очікувати близько 1000 балів на день, або 41 бал на годину."
+
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:147
+#: src/components/plotNFT/PlotNFTCard.tsx:181
+msgid "This is the total number of points your farmer has found for this plot NFT. Each k32 plot will get around 20 points per day, so if you have 10TiB, should should expect around 2000 points per day, or 82 points per hour."
+msgstr ""
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:52
 msgid "This node is fully caught up and validating the network"
@@ -5774,7 +5781,7 @@ msgstr "Гаманець"
 msgid "Wallet {0}"
 msgstr ""
 
-#: src/components/signVerify/SignMessage.tsx:153
+#: src/components/signVerify/SignMessage.tsx:159
 msgid "Wallet Address"
 msgstr ""
 
@@ -6076,4 +6083,3 @@ msgstr ""
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr ""
-
