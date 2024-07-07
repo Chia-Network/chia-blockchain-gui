@@ -9,7 +9,6 @@ import {
   Link,
   Loading,
   StateColor,
-  Tooltip,
   TooltipIcon,
 } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
@@ -67,15 +66,49 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
   });
 
   const readOnly = disableReadOnly ? false : builderReadOnly;
-  const displayValue =
-    amountWithRoyalties ||
-    (!value ? (
-      <Trans>Not Available</Trans>
-    ) : ['amount', 'fee', 'token'].includes(type) && Number.isFinite(value) ? (
-      <FormatLargeNumber value={value} />
-    ) : (
-      value
-    ));
+  const displayValue = React.useMemo(
+    () =>
+      amountWithRoyalties ||
+      (!value ? (
+        <Trans>Not Available</Trans>
+      ) : ['amount', 'fee', 'token'].includes(type) && Number.isFinite(value) ? (
+        <FormatLargeNumber value={value} />
+      ) : (
+        value
+      )),
+    [amountWithRoyalties, type, value],
+  );
+
+  const tooltip = React.useMemo(() => {
+    if (isLoading || !readOnly) {
+      return null;
+    }
+    return (
+      <TooltipIcon>
+        {royaltyPayments && amountWithRoyalties ? (
+          <OfferBuilderRoyaltyPayouts
+            totalAmount={amountWithRoyalties}
+            originalAmount={value}
+            royaltyPayments={royaltyPayments}
+          />
+        ) : (
+          <Flex flexDirection="column" gap={1}>
+            <Flex flexDirection="row" alignItems="center" gap={1}>
+              <Flex flexDirection="column" gap={1} maxWidth={200}>
+                {displayValue}
+                {type === 'token' ? (
+                  <Link href={`https://www.taildatabase.com/tail/${value.toLowerCase()}`} target="_blank">
+                    <Trans>Search on Tail Database</Trans>
+                  </Link>
+                ) : null}
+              </Flex>
+              <CopyToClipboard value={displayValue} fontSize="small" invertColor />
+            </Flex>
+          </Flex>
+        )}
+      </TooltipIcon>
+    );
+  }, [amountWithRoyalties, displayValue, isLoading, royaltyPayments, type, value, readOnly]);
 
   return (
     <Flex flexDirection="column" minWidth={0} gap={1}>
@@ -86,32 +119,8 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
           <Typography variant="body2" color="textSecondary">
             {label}
           </Typography>
-          <Tooltip
-            title={
-              royaltyPayments && amountWithRoyalties ? (
-                <OfferBuilderRoyaltyPayouts
-                  totalAmount={amountWithRoyalties}
-                  originalAmount={value}
-                  royaltyPayments={royaltyPayments}
-                />
-              ) : (
-                <Flex flexDirection="column" gap={1}>
-                  <Flex flexDirection="row" alignItems="center" gap={1}>
-                    <Flex flexDirection="column" gap={1} maxWidth={200}>
-                      {displayValue}
-                      {type === 'token' ? (
-                        <Link href={`https://www.taildatabase.com/tail/${value.toLowerCase()}`} target="_blank">
-                          <Trans>Search on Tail Database</Trans>
-                        </Link>
-                      ) : null}
-                    </Flex>
-                    <CopyToClipboard value={displayValue} fontSize="small" invertColor />
-                  </Flex>
-                </Flex>
-              )
-            }
-          >
-            <Typography variant="h6" noWrap>
+          <Typography variant="h6" noWrap>
+            <Flex gap={0.5} alignItems="center">
               {type === 'token' ? (
                 <OfferBuilderTokenSelector
                   variant="filled"
@@ -124,14 +133,15 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
                   readOnly
                 />
               ) : (
-                <>
+                <div>
                   {displayValue}
                   &nbsp;
                   {symbol}
-                </>
+                </div>
               )}
-            </Typography>
-          </Tooltip>
+              {tooltip}
+            </Flex>
+          </Typography>
         </>
       ) : (
         <Flex gap={2} alignItems="center">
