@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-06-30 00:04\n"
+"PO-Revision-Date: 2024-07-07 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -2469,20 +2469,16 @@ msgstr "Alustetaan..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"Riittämätön määrä varoja tarjouksen hyväksymiseen. Varmista, että\n"
+msgstr "Riittämätön määrä varoja tarjouksen hyväksymiseen. Varmista, että\n"
 "käytettävissä oleva saldo riittää tarjouksen määrän kattamiseen."
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"Riittämätön määrä varoja tarjouksen luomiseen. Varmista, että\n"
+msgstr "Riittämätön määrä varoja tarjouksen luomiseen. Varmista, että\n"
 "käytettävissä oleva saldo riittää tarjouksen määrän kattamiseen."
 
 #: src/components/farm/PoolingHealth.tsx:302
@@ -5168,7 +5164,7 @@ msgstr "Tämä on Plot-NFT:n yhteispistemäärä edellisen maksun jälkeen. Pool
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:147
 #: src/components/plotNFT/PlotNFTCard.tsx:181
 #~ msgid "This is the total number of points your farmer has found for this plot NFT. Each k32 plot will get around 10 points per day, so if you have 10TiB, should should expect around 1000 points per day, or 41 points per hour."
-#~ msgstr "Tämä on kokonaispistemäärä jotka olet tuottanut tälle Plot-NFT:lle. Jokainen k32-plotti tuottaa noin 10 pistettä päivässä, joten jos sinulla on 10TiB, pitäisi plottien tuottaa noin 1000 pistettä päivässä tai 41 pistettä tunnissa."
+#~ msgstr "This is the total number of points your farmer has found for this plot NFT. Each k32 plot will get around 10 points per day, so if you have 10TiB, you should expect around 1000 points per day, or 41 points per hour."
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:147
 #: src/components/plotNFT/PlotNFTCard.tsx:181
@@ -6087,3 +6083,4 @@ msgstr "Käytettävissä olevan saldon on oltava suurempi kuin 1 mojo luodaksesi
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "Lompakkosi on oltava käynnissä, jotta automaattinen lunastaminen toimii."
+

@@ -8,7 +8,7 @@ msgstr ""
 "Language: de_DE\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-06-30 00:04\n"
+"PO-Revision-Date: 2024-07-07 00:04\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -2469,15 +2469,13 @@ msgstr ""
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
 
@@ -3947,8 +3945,7 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:326
 msgid "Plotting with bitfield enabled has about 30% less overall writes and is now almost always faster. You may see reduced memory requirements with bitfield plotting disabled. If your CPU design is from before 2010 you may have to disable bitfield plotting."
-msgstr ""
-"Das Plotten mit aktiviertem Bitfeld benötigt etwa 30 % weniger Schreibvorgänge und ist jetzt fast immer schneller. Möglicherweise ist der Speicherbedarf reduziert, wenn das Bitfeld-Plotten deaktiviert ist. Es wird empfohlen das Bitfeld-Plotten zu deaktivieren, wenn ihre CPU-Architektur\n"
+msgstr "Das Plotten mit aktiviertem Bitfeld benötigt etwa 30 % weniger Schreibvorgänge und ist jetzt fast immer schneller. Möglicherweise ist der Speicherbedarf reduziert, wenn das Bitfeld-Plotten deaktiviert ist. Es wird empfohlen das Bitfeld-Plotten zu deaktivieren, wenn ihre CPU-Architektur\n"
 "vor 2010 entwickelt wurde."
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:163
@@ -5166,7 +5163,7 @@ msgstr "Dies ist die Gesamtzahl der Punkte, die dieses Plot-NFT mit diesem Pool 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:147
 #: src/components/plotNFT/PlotNFTCard.tsx:181
 #~ msgid "This is the total number of points your farmer has found for this plot NFT. Each k32 plot will get around 10 points per day, so if you have 10TiB, should should expect around 1000 points per day, or 41 points per hour."
-#~ msgstr "Dies ist die Gesamtzahl der Punkte, die dein Farmer für dieses Plot-NFT gefunden hat. Jeder k32 Plot erhält ca. 10 Punkte am Tag, also wenn du 10TiB hast solltest du etwa 1000 Punkte pro Tag oder 41 Punkte pro Stunde bekommen."
+#~ msgstr "This is the total number of points your farmer has found for this plot NFT. Each k32 plot will get around 10 points per day, so if you have 10TiB, you should expect around 1000 points per day, or 41 points per hour."
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:147
 #: src/components/plotNFT/PlotNFTCard.tsx:181
@@ -6085,3 +6082,4 @@ msgstr ""
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr ""
+

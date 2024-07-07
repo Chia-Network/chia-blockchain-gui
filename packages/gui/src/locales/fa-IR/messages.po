@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-06-30 00:04\n"
+"PO-Revision-Date: 2024-07-07 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -2469,20 +2469,16 @@ msgstr "در حال شروع..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
+msgstr "مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
 "موجودی قابل مصرف شما برای پوشش مبلغ پیشنهاد کافی است."
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
+msgstr "مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
 "موجودی قابل مصرف شما برای پوشش مبلغ پیشنهاد کافی است."
 
 #: src/components/farm/PoolingHealth.tsx:302
@@ -5168,12 +5164,12 @@ msgstr "تعداد کل امتیازهایی که این پلات ان اف تی
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:147
 #: src/components/plotNFT/PlotNFTCard.tsx:181
 #~ msgid "This is the total number of points your farmer has found for this plot NFT. Each k32 plot will get around 10 points per day, so if you have 10TiB, should should expect around 1000 points per day, or 41 points per hour."
-#~ msgstr "این تعداد کل امتیازهایی است که فارم شما برای این پلات ان اف تی پیدا کرده است. هر پلات کی32 حدود 10 امتیاز در روز دریافت میکند، بنابراین اگر 10 ترابایت دارید، باید حدود 1000 امتیاز در روز یا 41 امتیاز در ساعت انتظار داشته باشید."
+#~ msgstr "This is the total number of points your farmer has found for this plot NFT. Each k32 plot will get around 10 points per day, so if you have 10TiB, you should expect around 1000 points per day, or 41 points per hour."
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:147
 #: src/components/plotNFT/PlotNFTCard.tsx:181
 msgid "This is the total number of points your farmer has found for this plot NFT. Each k32 plot will get around 20 points per day, so if you have 10TiB, should should expect around 2000 points per day, or 82 points per hour."
-msgstr ""
+msgstr "این تعداد کل امتیازهایی است که فارم شما برای این پلات ان اف تی پیدا کرده است. هر پلات کی ۳۲ حدود بیست امتیاز در روز دریافت میکند، بنابراین اگر ۱۰ ترابایت دارید، باید حدود ۲۰۰۰ امتیاز در روز یا ۸۲ امتیاز در ساعت انتظار داشته باشید."
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:52
 msgid "This node is fully caught up and validating the network"
@@ -6087,3 +6083,4 @@ msgstr "برای ایجاد حساب کاربری، موجودی قابل خرج
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "برای انجام مطالبه خودکار، باید کیف پول شما در حال اجرا باشد."
+
