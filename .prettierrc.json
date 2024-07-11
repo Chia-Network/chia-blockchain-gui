@@ -10,6 +10,12 @@
       }
     },
     {
+      "files": ["*.md"],
+      "options": {
+        "singleQuote": false
+      }
+    },
+    {
       "files": ["*.js", "*.jsx", "*.ts", "*.tsx", "*.cjs", "*.mjs"],
       "options": {
         "printWidth": 120,

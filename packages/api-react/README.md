@@ -20,10 +20,10 @@ It is designed to simplify common cases for loading data in a web application, e
 ### **`PublicKeys.tsx`**
 
 ```tsx
-import React from 'react';
-import { useGetPublicKeysQuery } from '@chia-network/api-react';
-import { Loading } from '@chia-network/core';
-import Suspender from 'react-suspender';
+import React from "react";
+import { useGetPublicKeysQuery } from "@chia-network/api-react";
+import { Loading } from "@chia-network/core";
+import Suspender from "react-suspender";
 
 export default function PublicKeys() {
   const { data: publicKeys, isLoading, error } = useGetPublicKeysQuery();
@@ -49,14 +49,14 @@ export default function PublicKeys() {
 ### **`Application.tsx`**
 
 ```tsx
-import React, { Suspense } from 'react';
-import Websocket from 'ws'; // or read this value from electron main application
-import { store, api } from '@chia-network/api-react';
-import PublicKeys from './PublicKeys';
+import React, { Suspense } from "react";
+import Websocket from "ws"; // or read this value from electron main application
+import { store, api } from "@chia-network/api-react";
+import PublicKeys from "./PublicKeys";
 
 // prepare api
 api.initializeConfig({
-  url: 'wss://127.0.0.1:54000',
+  url: "wss://127.0.0.1:54000",
   cert: fs.readFileSync(certPath).toString(), // or read this value from electron main application
   key: fs.readFileSync(keyPath).toString(), // or read this value from electron main application
   webSocket: Websocket,
