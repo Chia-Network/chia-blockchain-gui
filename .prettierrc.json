@@ -1,6 +1,4 @@
 {
-  "printWidth": 120,
-  "singleQuote": true,
   "overrides": [
     {
       "files": ["*.yaml", "*.yml", "*.toml", "*.json", "*.ini"],
@@ -9,6 +7,13 @@
         "singleQuote": false,
         "experimentalTernaries": true,
         "useTabs": false
+      }
+    },
+    {
+      "file": ["*.js", "*.ts"],
+      "options": {
+        "printWidth": 120,
+        "singleQuote": true,
       }
     }
   ]
