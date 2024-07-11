@@ -10,7 +10,7 @@
       }
     },
     {
-      "files": ["*.js", "*.ts"],
+      "files": ["*.js", "*.ts", "*.tsx"],
       "options": {
         "printWidth": 120,
         "singleQuote": true
