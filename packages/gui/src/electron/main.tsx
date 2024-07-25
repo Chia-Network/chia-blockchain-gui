@@ -473,7 +473,7 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
       mainWindow.show();
     });
 
-    // don't show remote daeomn detials in the title bar
+    // don't show remote daemon details in the title bar
     if (!manageDaemonLifetime(NET)) {
       mainWindow.webContents.on('did-finish-load', async () => {
         const { url: urlLocal } = await loadConfig(NET);
