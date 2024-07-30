@@ -103,7 +103,7 @@
     "@babel/helper-get-function-arity": "^7.16.7",
     "@babel/preset-env": "7.24.5",
     "@babel/preset-react": "7.22.5",
-    "@babel/preset-typescript": "7.22.5",
+    "@babel/preset-typescript": "7.24.7",
     "@babel/register": "7.22.5",
     "@lingui/cli": "4.4.0",
     "@loadable/babel-plugin": "5.16.1",
