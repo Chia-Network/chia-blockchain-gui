@@ -89,7 +89,7 @@
     "react-use": "17.4.0",
     "react-virtuoso": "4.5.0",
     "redux": "4.2.1",
-    "regenerator-runtime": "0.14.0",
+    "regenerator-runtime": "0.14.1",
     "seedrandom": "3.0.5",
     "stream-browserify": "3.0.0",
     "styled-components": "6.0.7",
