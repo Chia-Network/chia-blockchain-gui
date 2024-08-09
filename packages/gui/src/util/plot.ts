@@ -1,7 +1,7 @@
 import { PLOT_FILTER_CONSTANTS } from '@chia-network/api';
 
 export function getPlotFilter(height: number = 0, isTestnet: boolean = false) {
-  const constants = isTestnet ? PLOT_FILTER_CONSTANTS.testnet10 : PLOT_FILTER_CONSTANTS.mainnet;
+  const constants = isTestnet ? PLOT_FILTER_CONSTANTS.testnet11 : PLOT_FILTER_CONSTANTS.mainnet;
   let prefixBits = 9;
 
   if (height >= constants.PLOT_FILTER_32_HEIGHT) {
