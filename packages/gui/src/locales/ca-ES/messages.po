@@ -823,7 +823,7 @@ msgstr ""
 #: src/components/offers/OfferShareDialog.tsx:769
 #: src/components/offers2/CancelOfferList.tsx:146
 #: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:362
-#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:110
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:111
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:78
 #: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:34
 #: src/components/settings/ChangePassphrasePrompt.tsx:287
@@ -1687,7 +1687,7 @@ msgstr ""
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:223
 #: src/components/plotNFT/PlotNFTCard.tsx:252
-#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:65
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:66
 msgid "Edit Payout Instructions"
 msgstr ""
 
@@ -2469,13 +2469,15 @@ msgstr ""
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid "Insufficient funds available to accept offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid "Insufficient funds available to create offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
 
@@ -2677,7 +2679,7 @@ msgid "Learn more"
 msgstr ""
 
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:75
-#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:101
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:102
 msgid "Learn More"
 msgstr ""
 
@@ -3986,7 +3988,7 @@ msgstr "Clau d'agrupació de pagesos"
 msgid "Pool Login Link"
 msgstr ""
 
-#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:76
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:77
 msgid "Pool Payout Instructions"
 msgstr ""
 
@@ -4439,7 +4441,7 @@ msgstr ""
 #: src/components/addressbook/ContactAdd.tsx:283
 #: src/components/addressbook/ContactEdit.tsx:297
 #: src/components/farm/FarmManageFarmingRewards.tsx:166
-#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:113
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:114
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:75
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:63
 #: src/components/settings/SettingsDerivationIndex.tsx:85
@@ -5101,7 +5103,7 @@ msgstr ""
 msgid "There was a network issue and your Full Node or Farmer could not receive SPs."
 msgstr ""
 
-#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:91
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:92
 msgid "These are the instructions for how the farmer wants to get paid. By default this will be an XCH address, but it can be set to any string with a size of less than 1024 characters, so it can represent another blockchain or payment system identifier."
 msgstr ""
 
@@ -6081,4 +6083,3 @@ msgstr ""
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr ""
-

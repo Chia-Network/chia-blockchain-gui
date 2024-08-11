@@ -823,7 +823,7 @@ msgstr "缓存大小(GB)"
 #: src/components/offers/OfferShareDialog.tsx:769
 #: src/components/offers2/CancelOfferList.tsx:146
 #: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:362
-#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:110
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:111
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:78
 #: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:34
 #: src/components/settings/ChangePassphrasePrompt.tsx:287
@@ -1687,7 +1687,7 @@ msgstr "编辑联系人"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:223
 #: src/components/plotNFT/PlotNFTCard.tsx:252
-#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:65
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:66
 msgid "Edit Payout Instructions"
 msgstr "编辑支付地址"
 
@@ -2469,16 +2469,20 @@ msgstr "正在初始化..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid "Insufficient funds available to accept offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "可用资金不足，无法接受报价。请确保您的\n"
+msgstr ""
+"可用资金不足，无法接受报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid "Insufficient funds available to create offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "可用的资金不足，无法创建报价。请确保您的\n"
+msgstr ""
+"可用的资金不足，无法创建报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
 #: src/components/farm/PoolingHealth.tsx:302
@@ -2679,7 +2683,7 @@ msgid "Learn more"
 msgstr "了解更多"
 
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:75
-#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:101
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:102
 msgid "Learn More"
 msgstr "了解更多"
 
@@ -3988,7 +3992,7 @@ msgstr "联合耕种密钥"
 msgid "Pool Login Link"
 msgstr "联合耕种池登录链接"
 
-#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:76
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:77
 msgid "Pool Payout Instructions"
 msgstr "联合耕种池支付地址"
 
@@ -4441,7 +4445,7 @@ msgstr "运行全节点"
 #: src/components/addressbook/ContactAdd.tsx:283
 #: src/components/addressbook/ContactEdit.tsx:297
 #: src/components/farm/FarmManageFarmingRewards.tsx:166
-#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:113
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:114
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:75
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:63
 #: src/components/settings/SettingsDerivationIndex.tsx:85
@@ -5103,7 +5107,7 @@ msgstr "主题"
 msgid "There was a network issue and your Full Node or Farmer could not receive SPs."
 msgstr "存在网络问题，导致全节点或耕种程序无法收到提交请求。"
 
-#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:91
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:92
 msgid "These are the instructions for how the farmer wants to get paid. By default this will be an XCH address, but it can be set to any string with a size of less than 1024 characters, so it can represent another blockchain or payment system identifier."
 msgstr "这是农民耕种奖励的支付方式。默认情况下，这将是一个XCH钱包地址，但是你可以设置任意长度小于1024的字符串，也就是说，你可以指定其它区块链或者支付系统标识。"
 
@@ -6083,4 +6087,3 @@ msgstr "可用余额必须大于1 mojo才能创建个人资料"
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "需确保钱包正在运行才能完成自动确认。"
-
