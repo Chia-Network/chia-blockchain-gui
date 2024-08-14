@@ -10,6 +10,11 @@ import DIDProfileDropdown from '../did/DIDProfileDropdown';
 
 import { SignMessageEntityType, SignMessageDIDEntity } from './SignMessageEntities';
 
+const TRUNCATE_OPTIONS = {
+  leftLength: 12,
+  rightLength: 12,
+};
+
 export type SigningEntityDIDProps = {
   entityName: string;
   entityValueName: string;
@@ -72,6 +77,7 @@ export default function SigningEntityDID(props: SigningEntityDIDProps) {
         color="primary"
         disabled={isLoading}
         fullWidth
+        truncate={TRUNCATE_OPTIONS}
       />
       <TextField
         label={<Trans>DID</Trans>}
