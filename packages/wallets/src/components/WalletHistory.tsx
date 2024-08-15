@@ -8,7 +8,6 @@ import {
 import {
   AddressBookContext,
   Card,
-  CopyToClipboard,
   Flex,
   StateColor,
   TableControlled,
@@ -153,6 +152,24 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate, location
         });
       }
 
+      const addressEl = shouldObscureAddress ? (
+        <Tooltip
+          title={
+            <StyledWarning>
+              <Trans>This is not a valid address for sending funds to</Trans>
+            </StyledWarning>
+          }
+        >
+          <span>
+            {displayEmoji} {displayAddress}
+          </span>
+        </Tooltip>
+      ) : (
+        <span>
+          {displayEmoji} {displayAddress}
+        </span>
+      );
+
       return (
         <Flex
           flexDirection="column"
@@ -167,25 +184,7 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate, location
             <Typography variant="caption" component="span">
               <Trans>To: </Trans>
             </Typography>
-            <Tooltip
-              title={
-                <Flex flexDirection="column" gap={1}>
-                  {shouldObscureAddress && (
-                    <StyledWarning>
-                      <Trans>This is not a valid address for sending funds to</Trans>
-                    </StyledWarning>
-                  )}
-                  <Flex flexDirection="row" alignItems="center" gap={1}>
-                    <Box maxWidth={200}>{row.toAddress}</Box>
-                    {!shouldObscureAddress && <CopyToClipboard value={row.toAddress} fontSize="small" />}
-                  </Flex>
-                </Flex>
-              }
-            >
-              <span>
-                {displayEmoji} {displayAddress}
-              </span>
-            </Tooltip>
+            {addressEl}
           </div>
           <Flex gap={0.5}>
             {isIncomingClawback && (
