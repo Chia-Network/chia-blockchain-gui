@@ -76,9 +76,6 @@ export default function LineChart(props: LineChartProps) {
     [yData],
   );
 
-  // const min = data.length ? Math.min(...yDataNumber) : defaultMin;
-  // const max = Math.max(min, ...yDataNumber);
-
   const xAxis = useMemo(
     () => ({
       data: xData,
@@ -86,16 +83,6 @@ export default function LineChart(props: LineChartProps) {
     }),
     [xData, xValueFormatter],
   );
-
-  /*
-  const yAxis = useMemo(
-    () => ({
-      min,
-      max,
-    }),
-    [min, max],
-  );
-  */
 
   return (
     <StyledGraphContainer height={height}>
