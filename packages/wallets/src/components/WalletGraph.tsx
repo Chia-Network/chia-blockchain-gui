@@ -145,9 +145,9 @@ export default function WalletGraph(props: WalletGraphProps) {
 
   const yValueFormatter = useCallback(
     (value) => {
-      const formatedValue = isCAT ? mojoToCAT(value) : mojoToChia(value);
+      const formattedValue = isCAT ? mojoToCAT(value) : mojoToChia(value);
 
-      return `${bigNumberToLocaleString(formatedValue, locale)} ${unit}`;
+      return `${bigNumberToLocaleString(formattedValue, locale)} ${unit}`;
     },
     [isCAT, unit, locale],
   );
