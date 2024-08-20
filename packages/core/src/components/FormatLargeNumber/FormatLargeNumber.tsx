@@ -25,7 +25,7 @@ export default function FormatLargeNumber(props: FormatLargeNumberProps) {
   const [locale] = useLocale();
 
   const numberFormat = useMemo(() => new Intl.NumberFormat(locale), [locale]);
-  const formatedValue = useMemo(() => {
+  const formattedValue = useMemo(() => {
     if (typeof value === 'undefined' || value === null) {
       return value;
     }
@@ -42,5 +42,5 @@ export default function FormatLargeNumber(props: FormatLargeNumberProps) {
     return numberFormat.format(value);
   }, [value, numberFormat, locale]);
 
-  return <span>{formatedValue}</span>;
+  return <span>{formattedValue}</span>;
 }
