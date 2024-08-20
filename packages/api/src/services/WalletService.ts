@@ -245,6 +245,11 @@ export default class Wallet extends Service {
     validateOnly?: boolean;
     disableJSONFormatting?: boolean;
     maxTime?: number;
+    minTime?: number;
+    maxHeight?: number;
+    minHeight?: number;
+    minCoinAmount?: number;
+    maxCoinAmount?: number;
   }) {
     const { disableJSONFormatting, driverDict, ...restArgs } = args;
     return this.command<{ offer: string; tradeRecord: TradeRecord }>(
