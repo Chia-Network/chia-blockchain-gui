@@ -1,8 +1,8 @@
 import React, { forwardRef } from 'react';
-import NumberFormat from 'react-number-format';
+import { NumericFormat, type OnValueChange } from 'react-number-format';
 
 interface NumberFormatCustomProps {
-  inputRef: (instance: NumberFormat | null) => void;
+  inputRef: (instance: typeof NumericFormat | null) => void;
   onChange: (event: { target: { name: string; value: string } }) => void;
   name: string;
 }
@@ -10,18 +10,21 @@ interface NumberFormatCustomProps {
 function NumberFormatCustom(props: NumberFormatCustomProps) {
   const { inputRef, onChange, ...other } = props;
 
-  function handleChange(values: Object) {
-    onChange(values.value);
-  }
+  const handleChange: OnValueChange = React.useCallback(
+    (values) => {
+      onChange(values.value);
+    },
+    [onChange],
+  );
 
   return (
-    <NumberFormat
+    <NumericFormat
       {...other}
       getInputRef={inputRef}
       onValueChange={handleChange}
       thousandSeparator
       allowNegative={false}
-      isNumericString
+      valueIsNumericString
     />
   );
 }
