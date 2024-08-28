@@ -3,19 +3,19 @@ import { Flex } from '@chia-network/core';
 import { ImportExport } from '@mui/icons-material';
 import { InputAdornment, TextField, Typography } from '@mui/material';
 import React, { useMemo, useState } from 'react';
-import NumberFormat from 'react-number-format';
+import { NumericFormat } from 'react-number-format';
 
 import { AssetIdMapEntry } from '../../hooks/useAssetIdName';
 
 interface OfferExchangeRateNumberFormatProps {
-  inputRef: (instance: NumberFormat | null) => void;
+  inputRef: (instance: typeof NumericFormat | null) => void;
   name: string;
 }
 
 function OfferExchangeRateNumberFormat(props: OfferExchangeRateNumberFormatProps) {
   const { inputRef, ...other } = props;
 
-  return <NumberFormat {...other} getInputRef={inputRef} allowNegative={false} isNumericString />;
+  return <NumericFormat {...other} getInputRef={inputRef} allowNegative={false} valueIsNumericString />;
 }
 
 type Props = {
