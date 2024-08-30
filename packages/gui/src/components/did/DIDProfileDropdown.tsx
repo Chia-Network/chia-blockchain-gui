@@ -1,6 +1,7 @@
 import type { Wallet } from '@chia-network/api';
 import { useGetDIDsQuery } from '@chia-network/api-react';
-import { DropdownActions, DropdownActionsProps, MenuItem } from '@chia-network/core';
+import { DropdownActions, DropdownActionsProps, MenuItem, truncateValue } from '@chia-network/core';
+import type { TruncateValueOptions } from '@chia-network/core/src/components/Truncate/Truncate';
 import { Trans, t } from '@lingui/macro';
 import { PermIdentity as PermIdentityIcon } from '@mui/icons-material';
 import { ListItemIcon } from '@mui/material';
@@ -14,6 +15,7 @@ type DIDProfileDropdownProps = DropdownActionsProps & {
   defaultTitle?: string | React.ReactElement;
   currentDID?: string;
   includeNoneOption?: boolean;
+  truncate?: TruncateValueOptions | boolean;
 };
 
 export default function DIDProfileDropdown(props: DIDProfileDropdownProps) {
@@ -23,6 +25,7 @@ export default function DIDProfileDropdown(props: DIDProfileDropdownProps) {
     defaultTitle = t`All Profiles`,
     currentDID = '',
     includeNoneOption = false,
+    truncate,
     ...rest
   } = props;
   const { data: allDIDWallets, isLoading } = useGetDIDsQuery();
@@ -50,8 +53,15 @@ export default function DIDProfileDropdown(props: DIDProfileDropdownProps) {
 
     const wallet = didWallets?.find((walletItem: Wallet) => walletItem.id === walletId);
 
-    return wallet?.name || defaultTitle;
-  }, [defaultTitle, didWallets, isLoading, walletId]);
+    const retVal = wallet?.name || defaultTitle;
+    if (!truncate) {
+      return retVal;
+    }
+
+    const truncateOptions = truncate === true ? {} : truncate;
+
+    return truncateValue(retVal, truncateOptions);
+  }, [defaultTitle, didWallets, isLoading, walletId, truncate]);
 
   function handleWalletChange(newWalletId?: number) {
     onChange?.(newWalletId);
