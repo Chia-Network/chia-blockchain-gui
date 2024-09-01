@@ -473,7 +473,7 @@ msgstr "Kun avaimet ovat onnistuneesti siirretty uuteen avainlenkkiin, voit halu
 msgid "All NFTs"
 msgstr "Kaikki NFT:t"
 
-#: src/components/did/DIDProfileDropdown.tsx:23
+#: src/components/did/DIDProfileDropdown.tsx:25
 msgid "All Profiles"
 msgstr "Kaikki Profiilit"
 
@@ -1488,7 +1488,7 @@ msgstr "Dexie URL"
 
 #: src/components/addressbook/ContactAdd.tsx:116
 #: src/components/addressbook/ContactEdit.tsx:119
-#: src/components/signVerify/SigningEntityDID.tsx:77
+#: src/components/signVerify/SigningEntityDID.tsx:83
 #: src/components/signVerify/SignMessage.tsx:161
 #: src/constants/WalletConnectCommands.tsx:827
 msgid "DID"
@@ -2469,16 +2469,20 @@ msgstr "Alustetaan..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid "Insufficient funds available to accept offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "Riittämätön määrä varoja tarjouksen hyväksymiseen. Varmista, että\n"
+msgstr ""
+"Riittämätön määrä varoja tarjouksen hyväksymiseen. Varmista, että\n"
 "käytettävissä oleva saldo riittää tarjouksen määrän kattamiseen."
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid "Insufficient funds available to create offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "Riittämätön määrä varoja tarjouksen luomiseen. Varmista, että\n"
+msgstr ""
+"Riittämätön määrä varoja tarjouksen luomiseen. Varmista, että\n"
 "käytettävissä oleva saldo riittää tarjouksen määrän kattamiseen."
 
 #: src/components/farm/PoolingHealth.tsx:302
@@ -2757,7 +2761,7 @@ msgstr "Ladataan NFT..."
 msgid "Loading preview..."
 msgstr "Ladataan esikatselua..."
 
-#: src/components/did/DIDProfileDropdown.tsx:48
+#: src/components/did/DIDProfileDropdown.tsx:51
 #: src/components/helpers/HeightToTimestamp.tsx:16
 #: src/components/nfts/NFTMetadata.tsx:21
 #: src/components/offers/NFTOfferTokenSelector.tsx:97
@@ -3218,7 +3222,7 @@ msgstr "Noodin tunnus"
 msgid "Non Observer Derivation"
 msgstr "Ei-lukuderivaatio"
 
-#: src/components/did/DIDProfileDropdown.tsx:88
+#: src/components/did/DIDProfileDropdown.tsx:98
 #: src/components/farm/FarmHealth.tsx:362
 #: src/components/farm/FarmHealth.tsx:390
 #: src/components/farm/FarmHealth.tsx:408
@@ -4533,7 +4537,7 @@ msgid "Select Offer File"
 msgstr "Valitse Tarjoustiedosto"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:245
-#: src/components/signVerify/SigningEntityDID.tsx:70
+#: src/components/signVerify/SigningEntityDID.tsx:75
 msgid "Select Profile"
 msgstr "Valitse profiili"
 
@@ -6083,4 +6087,3 @@ msgstr "Käytettävissä olevan saldon on oltava suurempi kuin 1 mojo luodaksesi
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "Lompakkosi on oltava käynnissä, jotta automaattinen lunastaminen toimii."
-

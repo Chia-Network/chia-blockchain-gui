@@ -473,7 +473,7 @@ msgstr "当您的密钥成功迁移到新密钥串后，您可以选择从旧密
 msgid "All NFTs"
 msgstr "所有 NFT"
 
-#: src/components/did/DIDProfileDropdown.tsx:23
+#: src/components/did/DIDProfileDropdown.tsx:25
 msgid "All Profiles"
 msgstr "所有配置"
 
@@ -1488,7 +1488,7 @@ msgstr "Dexie 链接"
 
 #: src/components/addressbook/ContactAdd.tsx:116
 #: src/components/addressbook/ContactEdit.tsx:119
-#: src/components/signVerify/SigningEntityDID.tsx:77
+#: src/components/signVerify/SigningEntityDID.tsx:83
 #: src/components/signVerify/SignMessage.tsx:161
 #: src/constants/WalletConnectCommands.tsx:827
 msgid "DID"
@@ -2469,16 +2469,20 @@ msgstr "正在初始化..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid "Insufficient funds available to accept offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "可用资金不足，无法接受报价。请确保您的\n"
+msgstr ""
+"可用资金不足，无法接受报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid "Insufficient funds available to create offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "可用的资金不足，无法创建报价。请确保您的\n"
+msgstr ""
+"可用的资金不足，无法创建报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
 #: src/components/farm/PoolingHealth.tsx:302
@@ -2757,7 +2761,7 @@ msgstr "正在加载NFT..."
 msgid "Loading preview..."
 msgstr "正在加载预览..."
 
-#: src/components/did/DIDProfileDropdown.tsx:48
+#: src/components/did/DIDProfileDropdown.tsx:51
 #: src/components/helpers/HeightToTimestamp.tsx:16
 #: src/components/nfts/NFTMetadata.tsx:21
 #: src/components/offers/NFTOfferTokenSelector.tsx:97
@@ -3218,7 +3222,7 @@ msgstr "节点ID"
 msgid "Non Observer Derivation"
 msgstr "非观察派生"
 
-#: src/components/did/DIDProfileDropdown.tsx:88
+#: src/components/did/DIDProfileDropdown.tsx:98
 #: src/components/farm/FarmHealth.tsx:362
 #: src/components/farm/FarmHealth.tsx:390
 #: src/components/farm/FarmHealth.tsx:408
@@ -4533,7 +4537,7 @@ msgid "Select Offer File"
 msgstr "选择报价文件"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:245
-#: src/components/signVerify/SigningEntityDID.tsx:70
+#: src/components/signVerify/SigningEntityDID.tsx:75
 msgid "Select Profile"
 msgstr "选择档案"
 
@@ -6083,4 +6087,3 @@ msgstr "可用余额必须大于1 mojo才能创建个人资料"
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "需确保钱包正在运行才能完成自动确认。"
-

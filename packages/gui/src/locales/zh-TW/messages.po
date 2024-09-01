@@ -473,7 +473,7 @@ msgstr "在您的金鑰成功遷移至新的金鑰圈之後，您可以選擇從
 msgid "All NFTs"
 msgstr "所有的NFTs"
 
-#: src/components/did/DIDProfileDropdown.tsx:23
+#: src/components/did/DIDProfileDropdown.tsx:25
 msgid "All Profiles"
 msgstr "所有個人檔案"
 
@@ -1488,7 +1488,7 @@ msgstr "Dexie URL"
 
 #: src/components/addressbook/ContactAdd.tsx:116
 #: src/components/addressbook/ContactEdit.tsx:119
-#: src/components/signVerify/SigningEntityDID.tsx:77
+#: src/components/signVerify/SigningEntityDID.tsx:83
 #: src/components/signVerify/SignMessage.tsx:161
 #: src/constants/WalletConnectCommands.tsx:827
 msgid "DID"
@@ -2469,13 +2469,15 @@ msgstr "正在初始化..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid "Insufficient funds available to accept offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr "可用資金不足，無法接受報價單。請確保您的 可花用餘額 可以支付報價單金額。"
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid "Insufficient funds available to create offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr "可用資金不足，無法建立報價單。請確保你的可支出餘額足以支付報價單金額。"
 
@@ -2755,7 +2757,7 @@ msgstr ""
 msgid "Loading preview..."
 msgstr ""
 
-#: src/components/did/DIDProfileDropdown.tsx:48
+#: src/components/did/DIDProfileDropdown.tsx:51
 #: src/components/helpers/HeightToTimestamp.tsx:16
 #: src/components/nfts/NFTMetadata.tsx:21
 #: src/components/offers/NFTOfferTokenSelector.tsx:97
@@ -3216,7 +3218,7 @@ msgstr "節點 ID"
 msgid "Non Observer Derivation"
 msgstr ""
 
-#: src/components/did/DIDProfileDropdown.tsx:88
+#: src/components/did/DIDProfileDropdown.tsx:98
 #: src/components/farm/FarmHealth.tsx:362
 #: src/components/farm/FarmHealth.tsx:390
 #: src/components/farm/FarmHealth.tsx:408
@@ -4531,7 +4533,7 @@ msgid "Select Offer File"
 msgstr "選擇報價單檔案"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:245
-#: src/components/signVerify/SigningEntityDID.tsx:70
+#: src/components/signVerify/SigningEntityDID.tsx:75
 msgid "Select Profile"
 msgstr "選擇個人檔案"
 
@@ -6081,4 +6083,3 @@ msgstr "您的可支配餘額必須大於1 mojo，才能建立個人檔案"
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "您的錢包需要運行才能自動索取"
-
