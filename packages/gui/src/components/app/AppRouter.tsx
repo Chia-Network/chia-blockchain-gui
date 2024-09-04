@@ -29,7 +29,7 @@ export default function AppRouter() {
           <Route element={<LayoutHero outlet />}>
             <Route index element={<SelectKey />} />
           </Route>
-          <Route element={<LayoutHero back outlet />}>
+          <Route element={<LayoutHero back="/" outlet />}>
             <Route path="wallet/add" element={<WalletAdd />} />
             <Route path="wallet/import" element={<WalletImport />} />
           </Route>

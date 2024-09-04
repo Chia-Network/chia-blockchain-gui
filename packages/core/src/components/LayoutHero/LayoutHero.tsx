@@ -29,7 +29,7 @@ const StyledBody = styled(Scrollbar)`
 
 export type LayoutHeroProps = {
   children?: ReactNode;
-  back?: boolean;
+  back?: boolean | string;
   outlet?: boolean;
 };
 
@@ -43,7 +43,7 @@ export default function LayoutHero(props: LayoutHeroProps) {
           {back && (
             <Box sx={{ position: 'fixed', top: 0 }}>
               <Toolbar>
-                <Link to="-1">
+                <Link to={back === true ? '-1' : back}>
                   <ArrowBackIosIcon fontSize="large" color="secondary" />
                 </Link>
               </Toolbar>
