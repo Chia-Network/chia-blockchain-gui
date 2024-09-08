@@ -18,7 +18,7 @@ msgstr ""
 "X-Crowdin-File: /main/packages/wallets/src/locales/en-US/messages.po\n"
 "X-Crowdin-File-ID: 25\n"
 
-#: src/components/WalletHistory.tsx:118
+#: src/components/WalletHistory.tsx:117
 msgid "-"
 msgstr "-"
 
@@ -30,7 +30,7 @@ msgstr ""
 msgid "- Set a time frame which allows you claw back (revoke) the transaction.<0/>- Recipient of the transaction can only claim the funds once that time frame expires."
 msgstr ""
 
-#: src/components/WalletHistory.tsx:118
+#: src/components/WalletHistory.tsx:117
 msgid "+"
 msgstr "+"
 
@@ -94,7 +94,7 @@ msgstr ""
 msgid "Are you sure you want to delete unconfirmed transactions?"
 msgstr "Sei sicuro di voler eliminare queste transazioni non confermate?"
 
-#: src/components/WalletHistory.tsx:131
+#: src/components/WalletHistory.tsx:130
 msgid "Asset"
 msgstr ""
 
@@ -169,7 +169,7 @@ msgstr ""
 msgid "Classic version of Stably USDS as held by Prime Trust"
 msgstr ""
 
-#: src/components/WalletHistory.tsx:433
+#: src/components/WalletHistory.tsx:432
 msgid "Claw back expiration"
 msgstr ""
 
@@ -219,11 +219,11 @@ msgstr ""
 msgid "Confirmation"
 msgstr "Conferma"
 
-#: src/components/WalletHistory.tsx:200
+#: src/components/WalletHistory.tsx:199
 msgid "Confirmed"
 msgstr "Confermato"
 
-#: src/components/WalletHistory.tsx:422
+#: src/components/WalletHistory.tsx:421
 msgid "Confirmed at Height"
 msgstr "Confermato all'altezza"
 
@@ -253,7 +253,7 @@ msgstr ""
 msgid "Create Transaction"
 msgstr "Crea una transazione"
 
-#: src/components/WalletHistory.tsx:223
+#: src/components/WalletHistory.tsx:222
 msgid "Creation Date"
 msgstr ""
 
@@ -311,7 +311,7 @@ msgid "Farm"
 msgstr "Coltiva"
 
 #: src/components/cat/WalletCATSend.tsx:228
-#: src/components/WalletHistory.tsx:237
+#: src/components/WalletHistory.tsx:236
 #: src/components/WalletSend.tsx:254
 msgid "Fee"
 msgstr "Costo della commissione"
@@ -325,7 +325,8 @@ msgid "HD or Hierarchical Deterministic keys are a type of public key/private ke
 msgstr "Le chiavi HD (Hierarchical Deterministic) sono un tipo di schema a chiave pubblica/privata dove una chiave privata può avere un numero quasi infinito di chiavi pubbliche diverse (e quindi indirizzi di ricezione del wallet) che sono utilizzabili da una singola chiave privata."
 
 #: src/components/WalletSendTransactionResultDialog.tsx:47
-msgid "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a\n"
+msgid ""
+"If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a\n"
 "higher fee."
 msgstr ""
 
@@ -366,7 +367,7 @@ msgstr "Gestisci l'elenco dei token"
 msgid "Memo"
 msgstr "Memo"
 
-#: src/components/WalletHistory.tsx:427
+#: src/components/WalletHistory.tsx:426
 msgid "Memos"
 msgstr "Memo"
 
@@ -415,7 +416,7 @@ msgstr ""
 msgid "Nickname"
 msgstr "Nickname"
 
-#: src/components/WalletHistory.tsx:504
+#: src/components/WalletHistory.tsx:503
 msgid "No previous transactions"
 msgstr "Nessuna transazione precedente"
 
@@ -423,8 +424,8 @@ msgstr "Nessuna transazione precedente"
 msgid "Node ID"
 msgstr "ID nodo"
 
-#: src/components/WalletHistory.tsx:416
-#: src/components/WalletHistory.tsx:423
+#: src/components/WalletHistory.tsx:415
+#: src/components/WalletHistory.tsx:422
 msgid "Not Available"
 msgstr "Non Disponibile"
 
@@ -432,7 +433,7 @@ msgstr "Non Disponibile"
 msgid "Not Synced"
 msgstr "Non Sincronizzato"
 
-#: src/components/WalletHistory.tsx:209
+#: src/components/WalletHistory.tsx:208
 msgid "Offer Accepted"
 msgstr "Offerta accettata"
 
@@ -461,7 +462,7 @@ msgstr ""
 msgid "Payments approved"
 msgstr ""
 
-#: src/components/WalletHistory.tsx:202
+#: src/components/WalletHistory.tsx:201
 msgid "Pending"
 msgstr "In attesa"
 
@@ -586,7 +587,7 @@ msgstr "Rinomina Portafoglio"
 msgid "Restricted CAT"
 msgstr ""
 
-#: src/components/WalletHistory.tsx:208
+#: src/components/WalletHistory.tsx:207
 msgid "Retire"
 msgstr "Ritira"
 
@@ -625,7 +626,7 @@ msgstr "Bilancio Spendibile"
 msgid "Standard Wallet"
 msgstr "Portafoglio Standard"
 
-#: src/components/WalletHistory.tsx:214
+#: src/components/WalletHistory.tsx:213
 msgid "Status"
 msgstr ""
 
@@ -654,7 +655,8 @@ msgid "The recipient of this transaction will need to have valid credentials in 
 msgstr ""
 
 #: src/components/WalletSendTransactionResultDialog.tsx:44
-msgid "The transaction could not be immediately included in the mempool because the specified fee is too low. The\n"
+msgid ""
+"The transaction could not be immediately included in the mempool because the specified fee is too low. The\n"
 "transaction will be retried periodically, and may be included in the mempool once fees are lower, or if\n"
 "space becomes available."
 msgstr ""
@@ -664,7 +666,8 @@ msgstr ""
 #~ msgstr "The transaction could not be immediately included in the mempool because the specified fee is too low. The transaction will be retried periodically, and may be included in the mempool once fees are lower, or if space becomes available."
 
 #: src/components/WalletSendTransactionResultDialog.tsx:38
-msgid "The transaction is pending inclusion in the mempool because it conflicts with one or more other transactions\n"
+msgid ""
+"The transaction is pending inclusion in the mempool because it conflicts with one or more other transactions\n"
 "already in the mempool. The transaction will be retried periodically, and may be included in the mempool if\n"
 "the conflicting transactions are removed."
 msgstr ""
@@ -673,7 +676,7 @@ msgstr ""
 msgid "This access token is verified"
 msgstr "Questo token di accesso è stato verificato"
 
-#: src/components/WalletHistory.tsx:175
+#: src/components/WalletHistory.tsx:159
 msgid "This is not a valid address for sending funds to"
 msgstr "Questo indirizzo non è valido per l'invio di fondi"
 
@@ -706,7 +709,7 @@ msgstr ""
 #~ msgstr "To"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:183
-#: src/components/WalletHistory.tsx:168
+#: src/components/WalletHistory.tsx:185
 msgid "To:"
 msgstr ""
 
@@ -730,7 +733,7 @@ msgstr "Bilancio Totale"
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "La transazione é stata inviata con successo ad un nodo completo ed inclusa nella mempol."
 
-#: src/components/WalletHistory.tsx:481
+#: src/components/WalletHistory.tsx:480
 msgid "Transactions"
 msgstr "Transazioni"
 
@@ -806,4 +809,3 @@ msgstr ""
 #: src/components/WalletImport.tsx:73
 msgid "Your pasted list does not include {mnemonicWordCount} valid mnemonic words."
 msgstr ""
-

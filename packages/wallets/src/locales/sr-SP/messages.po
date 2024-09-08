@@ -18,7 +18,7 @@ msgstr ""
 "X-Crowdin-File: /main/packages/wallets/src/locales/en-US/messages.po\n"
 "X-Crowdin-File-ID: 1890\n"
 
-#: src/components/WalletHistory.tsx:118
+#: src/components/WalletHistory.tsx:117
 msgid "-"
 msgstr ""
 
@@ -30,7 +30,7 @@ msgstr ""
 msgid "- Set a time frame which allows you claw back (revoke) the transaction.<0/>- Recipient of the transaction can only claim the funds once that time frame expires."
 msgstr ""
 
-#: src/components/WalletHistory.tsx:118
+#: src/components/WalletHistory.tsx:117
 msgid "+"
 msgstr ""
 
@@ -94,7 +94,7 @@ msgstr ""
 msgid "Are you sure you want to delete unconfirmed transactions?"
 msgstr ""
 
-#: src/components/WalletHistory.tsx:131
+#: src/components/WalletHistory.tsx:130
 msgid "Asset"
 msgstr ""
 
@@ -169,7 +169,7 @@ msgstr ""
 msgid "Classic version of Stably USDS as held by Prime Trust"
 msgstr ""
 
-#: src/components/WalletHistory.tsx:433
+#: src/components/WalletHistory.tsx:432
 msgid "Claw back expiration"
 msgstr ""
 
@@ -219,11 +219,11 @@ msgstr ""
 msgid "Confirmation"
 msgstr ""
 
-#: src/components/WalletHistory.tsx:200
+#: src/components/WalletHistory.tsx:199
 msgid "Confirmed"
 msgstr ""
 
-#: src/components/WalletHistory.tsx:422
+#: src/components/WalletHistory.tsx:421
 msgid "Confirmed at Height"
 msgstr ""
 
@@ -253,7 +253,7 @@ msgstr ""
 msgid "Create Transaction"
 msgstr "Креирај трансакцију"
 
-#: src/components/WalletHistory.tsx:223
+#: src/components/WalletHistory.tsx:222
 msgid "Creation Date"
 msgstr ""
 
@@ -311,7 +311,7 @@ msgid "Farm"
 msgstr "Фарма"
 
 #: src/components/cat/WalletCATSend.tsx:228
-#: src/components/WalletHistory.tsx:237
+#: src/components/WalletHistory.tsx:236
 #: src/components/WalletSend.tsx:254
 msgid "Fee"
 msgstr "Накнада"
@@ -367,7 +367,7 @@ msgstr ""
 msgid "Memo"
 msgstr ""
 
-#: src/components/WalletHistory.tsx:427
+#: src/components/WalletHistory.tsx:426
 msgid "Memos"
 msgstr ""
 
@@ -416,7 +416,7 @@ msgstr ""
 msgid "Nickname"
 msgstr "Надимак"
 
-#: src/components/WalletHistory.tsx:504
+#: src/components/WalletHistory.tsx:503
 msgid "No previous transactions"
 msgstr "Нема претходних трансакција"
 
@@ -424,8 +424,8 @@ msgstr "Нема претходних трансакција"
 msgid "Node ID"
 msgstr "ID чвора"
 
-#: src/components/WalletHistory.tsx:416
-#: src/components/WalletHistory.tsx:423
+#: src/components/WalletHistory.tsx:415
+#: src/components/WalletHistory.tsx:422
 msgid "Not Available"
 msgstr "Недоступно"
 
@@ -433,7 +433,7 @@ msgstr "Недоступно"
 msgid "Not Synced"
 msgstr "Није синхронизовано"
 
-#: src/components/WalletHistory.tsx:209
+#: src/components/WalletHistory.tsx:208
 msgid "Offer Accepted"
 msgstr ""
 
@@ -462,7 +462,7 @@ msgstr ""
 msgid "Payments approved"
 msgstr ""
 
-#: src/components/WalletHistory.tsx:202
+#: src/components/WalletHistory.tsx:201
 msgid "Pending"
 msgstr "На чекању"
 
@@ -587,7 +587,7 @@ msgstr ""
 msgid "Restricted CAT"
 msgstr ""
 
-#: src/components/WalletHistory.tsx:208
+#: src/components/WalletHistory.tsx:207
 msgid "Retire"
 msgstr ""
 
@@ -626,7 +626,7 @@ msgstr "Стање које је могуће трошити"
 msgid "Standard Wallet"
 msgstr ""
 
-#: src/components/WalletHistory.tsx:214
+#: src/components/WalletHistory.tsx:213
 msgid "Status"
 msgstr ""
 
@@ -676,7 +676,7 @@ msgstr ""
 msgid "This access token is verified"
 msgstr ""
 
-#: src/components/WalletHistory.tsx:175
+#: src/components/WalletHistory.tsx:159
 msgid "This is not a valid address for sending funds to"
 msgstr ""
 
@@ -709,7 +709,7 @@ msgstr ""
 #~ msgstr "За"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:183
-#: src/components/WalletHistory.tsx:168
+#: src/components/WalletHistory.tsx:185
 msgid "To:"
 msgstr ""
 
@@ -733,7 +733,7 @@ msgstr "Укупно стање"
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr ""
 
-#: src/components/WalletHistory.tsx:481
+#: src/components/WalletHistory.tsx:480
 msgid "Transactions"
 msgstr ""
 

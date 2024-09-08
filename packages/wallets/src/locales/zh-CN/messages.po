@@ -18,7 +18,7 @@ msgstr ""
 "X-Crowdin-File: /main/packages/wallets/src/locales/en-US/messages.po\n"
 "X-Crowdin-File-ID: 25\n"
 
-#: src/components/WalletHistory.tsx:118
+#: src/components/WalletHistory.tsx:117
 msgid "-"
 msgstr "-"
 
@@ -30,7 +30,7 @@ msgstr "- 备注帮助接收方识别付款。<0/>- 输入的任何内容将公�
 msgid "- Set a time frame which allows you claw back (revoke) the transaction.<0/>- Recipient of the transaction can only claim the funds once that time frame expires."
 msgstr "- 设置一个时间框架，允许撤回(撤销)交易。<0/>- 交易的接收者只能在该时间到期后才能确认资金。"
 
-#: src/components/WalletHistory.tsx:118
+#: src/components/WalletHistory.tsx:117
 msgid "+"
 msgstr "+"
 
@@ -94,7 +94,7 @@ msgstr "批准待确认的交易"
 msgid "Are you sure you want to delete unconfirmed transactions?"
 msgstr "确定要删除未确认的交易吗？"
 
-#: src/components/WalletHistory.tsx:131
+#: src/components/WalletHistory.tsx:130
 msgid "Asset"
 msgstr "资产"
 
@@ -169,7 +169,7 @@ msgstr "确认中..."
 msgid "Classic version of Stably USDS as held by Prime Trust"
 msgstr "由Prime Trust持有、Stably发行的旧版USDS"
 
-#: src/components/WalletHistory.tsx:433
+#: src/components/WalletHistory.tsx:432
 msgid "Claw back expiration"
 msgstr "可撤回有效期"
 
@@ -219,11 +219,11 @@ msgstr "关闭"
 msgid "Confirmation"
 msgstr "确认"
 
-#: src/components/WalletHistory.tsx:200
+#: src/components/WalletHistory.tsx:199
 msgid "Confirmed"
 msgstr "已确认"
 
-#: src/components/WalletHistory.tsx:422
+#: src/components/WalletHistory.tsx:421
 msgid "Confirmed at Height"
 msgstr "确认于区块高度"
 
@@ -253,7 +253,7 @@ msgstr "创建报价"
 msgid "Create Transaction"
 msgstr "发起交易"
 
-#: src/components/WalletHistory.tsx:223
+#: src/components/WalletHistory.tsx:222
 msgid "Creation Date"
 msgstr "创建日期"
 
@@ -311,7 +311,7 @@ msgid "Farm"
 msgstr "农场"
 
 #: src/components/cat/WalletCATSend.tsx:228
-#: src/components/WalletHistory.tsx:237
+#: src/components/WalletHistory.tsx:236
 #: src/components/WalletSend.tsx:254
 msgid "Fee"
 msgstr "手续费"
@@ -325,7 +325,8 @@ msgid "HD or Hierarchical Deterministic keys are a type of public key/private ke
 msgstr "HD（分层确定性）密钥是一种公钥/私钥方案，其中一个私钥可以有几乎无限数量的不同公钥（因此也有多个钱包接收地址），而所有这些地址最终都可以由单个私钥进行支出。"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:47
-msgid "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a\n"
+msgid ""
+"If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a\n"
 "higher fee."
 msgstr "如果希望加快交易速度，请删除未确认的交易，并使用更高的手续费重试。"
 
@@ -366,7 +367,7 @@ msgstr "管理代币列表"
 msgid "Memo"
 msgstr "备注"
 
-#: src/components/WalletHistory.tsx:427
+#: src/components/WalletHistory.tsx:426
 msgid "Memos"
 msgstr "备注"
 
@@ -415,7 +416,7 @@ msgstr "NFT 钱包"
 msgid "Nickname"
 msgstr "昵称"
 
-#: src/components/WalletHistory.tsx:504
+#: src/components/WalletHistory.tsx:503
 msgid "No previous transactions"
 msgstr "无过往交易"
 
@@ -423,8 +424,8 @@ msgstr "无过往交易"
 msgid "Node ID"
 msgstr "节点ID"
 
-#: src/components/WalletHistory.tsx:416
-#: src/components/WalletHistory.tsx:423
+#: src/components/WalletHistory.tsx:415
+#: src/components/WalletHistory.tsx:422
 msgid "Not Available"
 msgstr "不可用"
 
@@ -432,7 +433,7 @@ msgstr "不可用"
 msgid "Not Synced"
 msgstr "未同步"
 
-#: src/components/WalletHistory.tsx:209
+#: src/components/WalletHistory.tsx:208
 msgid "Offer Accepted"
 msgstr "已接受报价"
 
@@ -461,7 +462,7 @@ msgstr "粘贴助记词({0} 位)"
 msgid "Payments approved"
 msgstr "支付已批准"
 
-#: src/components/WalletHistory.tsx:202
+#: src/components/WalletHistory.tsx:201
 msgid "Pending"
 msgstr "待确认"
 
@@ -586,7 +587,7 @@ msgstr "重命名钱包"
 msgid "Restricted CAT"
 msgstr "受限资产代币"
 
-#: src/components/WalletHistory.tsx:208
+#: src/components/WalletHistory.tsx:207
 msgid "Retire"
 msgstr "废弃"
 
@@ -625,7 +626,7 @@ msgstr "可用余额"
 msgid "Standard Wallet"
 msgstr "标准钱包"
 
-#: src/components/WalletHistory.tsx:214
+#: src/components/WalletHistory.tsx:213
 msgid "Status"
 msgstr "状态"
 
@@ -654,7 +655,8 @@ msgid "The recipient of this transaction will need to have valid credentials in 
 msgstr "交易的接收方将需要有效的凭证才能领取发送的资产。请参阅上面的CR CAT限制。"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:44
-msgid "The transaction could not be immediately included in the mempool because the specified fee is too low. The\n"
+msgid ""
+"The transaction could not be immediately included in the mempool because the specified fee is too low. The\n"
 "transaction will be retried periodically, and may be included in the mempool once fees are lower, or if\n"
 "space becomes available."
 msgstr "由于指定的手续费过低，该交易无法立即添加到内存池中。该交易将定期重试，并在要求的手续费变低或内存池空间可用时被添加到内存池中。"
@@ -664,7 +666,8 @@ msgstr "由于指定的手续费过低，该交易无法立即添加到内存池
 #~ msgstr "The transaction could not be immediately included in the mempool because the specified fee is too low. The transaction will be retried periodically, and may be included in the mempool once fees are lower, or if space becomes available."
 
 #: src/components/WalletSendTransactionResultDialog.tsx:38
-msgid "The transaction is pending inclusion in the mempool because it conflicts with one or more other transactions\n"
+msgid ""
+"The transaction is pending inclusion in the mempool because it conflicts with one or more other transactions\n"
 "already in the mempool. The transaction will be retried periodically, and may be included in the mempool if\n"
 "the conflicting transactions are removed."
 msgstr "这笔交易暂未添加到内存池中，因为它与内存池中已有的一笔或多笔交易存在冲突。交易将会定期重试，如果冲突的交易被移除，则这笔交易可能会添加到内存池中。"
@@ -673,7 +676,7 @@ msgstr "这笔交易暂未添加到内存池中，因为它与内存池中已有
 msgid "This access token is verified"
 msgstr "此资产代币已经过验证"
 
-#: src/components/WalletHistory.tsx:175
+#: src/components/WalletHistory.tsx:159
 msgid "This is not a valid address for sending funds to"
 msgstr "这不是一个可用于发送资金的有效地址"
 
@@ -706,7 +709,7 @@ msgstr "此交易将自动用以下手续费进行确认："
 #~ msgstr "To"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:183
-#: src/components/WalletHistory.tsx:168
+#: src/components/WalletHistory.tsx:185
 msgid "To:"
 msgstr "发送到："
 
@@ -730,7 +733,7 @@ msgstr "总余额"
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "交易已成功发送到全节点，且已添加到内存池中。"
 
-#: src/components/WalletHistory.tsx:481
+#: src/components/WalletHistory.tsx:480
 msgid "Transactions"
 msgstr "交易"
 
@@ -806,4 +809,3 @@ msgstr "您拥有来自正确授权提供者的这个可验证证件"
 #: src/components/WalletImport.tsx:73
 msgid "Your pasted list does not include {mnemonicWordCount} valid mnemonic words."
 msgstr "粘贴列表中未包含 {mnemonicWordCount} 个有效助记词。"
-
