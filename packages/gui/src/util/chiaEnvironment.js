@@ -94,7 +94,33 @@ const startChiaDaemon = () => {
   console.info('Running python executable: ');
   console.info(`Script: ${chiaExec} ${CHIA_START_ARGS.join(' ')}`);
 
+  const processOptions = {};
+  if (process.platform === 'win32') {
+    // We want to detach child daemon process from parent GUI process.
+    // You may think `detached: true` will do but it shows blank terminal on Windows.
+    // In order to hide the blank terminal while detaching child process,
+    // {detached: false, windowsHide: false, shell: true} works which is exact opposite of what we expect
+    // Please see the comment below for more details.
+    // https://github.com/nodejs/node/issues/21825#issuecomment-503766781
+    processOptions.detached = false;
+    processOptions.stdio = 'ignore';
+    processOptions.windowsHide = false;
+    processOptions.shell = true;
+  } else {
+    processOptions.detached = true;
+    // processOptions.stdio = 'ignore';
+    processOptions.windowsHide = true;
+  }
+
   try {
+    if (processOptions.stdio === 'ignore') {
+      const subProcess = childProcess.spawn(chiaExec, CHIA_START_ARGS, processOptions);
+      subProcess.unref();
+    } else {
+      const Process = childProcess.spawn;
+      pyProc = new Process(chiaExec, CHIA_START_ARGS, processOptions);
+    }
+
     const Process = childProcess.spawn;
     pyProc = new Process(chiaExec, CHIA_START_ARGS);
   } catch (e) {
@@ -104,6 +130,10 @@ const startChiaDaemon = () => {
 
   if (!pyProc) {
     throw new Error('Failed to start chia daemon');
+  }
+
+  if (processOptions.stdio === 'ignore') {
+    return;
   }
 
   pyProc.stdout.setEncoding('utf8');
