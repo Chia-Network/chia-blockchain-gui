@@ -207,7 +207,20 @@ describe('createOfferForIdsToOfferBuilderData', () => {
 
       // call to createOfferForIdsToOfferBuilderData should throw an error
       expect(() => createOfferForIdsToOfferBuilderData(walletIdsAndAmounts as any, (() => {}) as any)).toThrow(
-        /Invalid value for/,
+        /^Invalid amount /,
+      );
+    });
+  });
+  describe('when the amount is null', () => {
+    it('should throw an error', () => {
+      const walletIdsAndAmounts = {
+        1: null,
+        2: -1234,
+      };
+
+      // call to createOfferForIdsToOfferBuilderData should throw an error
+      expect(() => createOfferForIdsToOfferBuilderData(walletIdsAndAmounts as any, (() => {}) as any)).toThrow(
+        /^Amount is not set for /,
       );
     });
   });

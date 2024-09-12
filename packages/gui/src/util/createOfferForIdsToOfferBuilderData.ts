@@ -16,7 +16,10 @@ export default function createOfferForIdsToOfferBuilderData(
     const numericValue = new BigNumber(amount);
 
     if (numericValue.isNaN()) {
-      throw new Error(`Invalid value for ${walletOrAssetId}: ${amount}`);
+      if (amount === null) {
+        throw new Error(`Amount is not set for walletId(assetId):${walletOrAssetId}`);
+      }
+      throw new Error(`Invalid amount '${amount}' for walletId(assetId):${walletOrAssetId}`);
     }
 
     const section = numericValue.isPositive() ? offerBuilderData.requested : offerBuilderData.offered;
