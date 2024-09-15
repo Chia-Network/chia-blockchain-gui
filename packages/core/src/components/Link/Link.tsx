@@ -29,19 +29,27 @@ export default function Link(props: Props) {
   };
 
   function handleClick(event: SyntheticEvent) {
+    event.preventDefault();
+
     if (onClick) {
-      event.preventDefault();
       event.stopPropagation();
       onClick(event);
       return;
     }
 
     if (href && target === '_blank') {
-      event.preventDefault();
       event.stopPropagation();
       openExternal(href);
     }
   }
 
-  return <StyledBaseLink component={to ? RouterLink : BaseLink} {...newProps} onClick={handleClick} />;
+  // `onAuxClick` is used to handle middle mouse click as well as other mouse buttons.
+  return (
+    <StyledBaseLink
+      component={to ? RouterLink : BaseLink}
+      {...newProps}
+      onClick={handleClick}
+      onAuxClick={handleClick}
+    />
+  );
 }

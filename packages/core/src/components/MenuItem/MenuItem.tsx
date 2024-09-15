@@ -16,21 +16,34 @@ function MenuItem(props: MenuItemProps, ref: any) {
 
   const menuContext: MenuContextInterface | undefined = useContext(MenuContext);
 
-  async function handleClick(event: React.MouseEvent<HTMLLIElement>) {
-    event.stopPropagation();
+  const handleClick = React.useCallback(
+    async (event: React.MouseEvent<HTMLLIElement>) => {
+      event.stopPropagation();
 
-    if (close === true) {
-      menuContext?.close(event, 'menuItemClick');
+      if (close === true) {
+        menuContext?.close(event, 'menuItemClick');
+      }
+
+      await onClick?.(event);
+
+      if (close === 'after') {
+        menuContext?.close(event, 'menuItemClick');
+      }
+    },
+    [close, menuContext, onClick],
+  );
+
+  const onAuxClick = React.useMemo(() => {
+    if (!rest.href) {
+      return undefined;
     }
+    return (event: React.MouseEvent<HTMLLIElement>) => {
+      event.preventDefault();
+      return handleClick(event);
+    };
+  }, [rest.href, handleClick]);
 
-    await onClick?.(event);
-
-    if (close === 'after') {
-      menuContext?.close(event, 'menuItemClick');
-    }
-  }
-
-  const item = <BaseMenuItem {...rest} onClick={handleClick} ref={ref} />;
+  const item = <BaseMenuItem {...rest} onClick={handleClick} onAuxClick={onAuxClick} ref={ref} />;
 
   if (tooltip) {
     return <Tooltip title={tooltip}>{item}</Tooltip>;
