@@ -90,13 +90,20 @@ const chiaInit = () => {
 const startChiaDaemon = () => {
   pyProc = null;
 
+  let procOption;
+  if (process.platform !== 'win32') {
+    procOption = {
+      detached: true,
+      windowsHide: true,
+    };
+  }
+
   const chiaExec = getExecutablePath(PY_CHIA_EXEC);
   console.info('Running python executable: ');
   console.info(`Script: ${chiaExec} ${CHIA_START_ARGS.join(' ')}`);
 
   try {
-    const Process = childProcess.spawn;
-    pyProc = new Process(chiaExec, CHIA_START_ARGS);
+    pyProc = childProcess.spawn(chiaExec, CHIA_START_ARGS, procOption);
   } catch (e) {
     console.error('Running python executable: Error: ');
     console.error(e);
