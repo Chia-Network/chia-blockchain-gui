@@ -561,7 +561,7 @@ msgstr "公告"
 msgid "App Permissions"
 msgstr "應用程式權限"
 
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:122
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:203
 #: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:92
 msgid "Application"
 msgstr "應用程式"
@@ -1052,7 +1052,7 @@ msgstr ""
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:167
 #: src/components/vcs/VCRevokeDialog.tsx:27
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:71
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:172
 msgid "Confirm"
 msgstr ""
 
@@ -1082,7 +1082,7 @@ msgstr "確認私鑰密碼"
 msgid "Confirmation"
 msgstr "確認"
 
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:69
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:170
 msgid "Confirmation Request"
 msgstr "確認請求"
 
@@ -1822,6 +1822,7 @@ msgid "Error posting offer: {0}"
 msgstr "發布報價單時出錯: {0}"
 
 #: src/components/signVerify/VerifyMessage.tsx:146
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:159
 msgid "Error:"
 msgstr "錯誤:"
 
@@ -2469,13 +2470,15 @@ msgstr "正在初始化..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid "Insufficient funds available to accept offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr "可用資金不足，無法接受報價單。請確保您的 可花用餘額 可以支付報價單金額。"
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid "Insufficient funds available to create offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr "可用資金不足，無法建立報價單。請確保你的可支出餘額足以支付報價單金額。"
 
@@ -2519,6 +2522,10 @@ msgstr "無效的 NFT 標示符"
 #: src/components/plotNFT/PlotNFTState.tsx:27
 msgid "Invalid state"
 msgstr "無效狀態"
+
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:155
+msgid "Invalid WalletConnect data"
+msgstr ""
 
 #: src/components/fullNode/FullNodeConnections.tsx:33
 msgid "IP address"
@@ -2584,7 +2591,7 @@ msgstr ""
 msgid "K-Size"
 msgstr "K-大小"
 
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:105
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:186
 msgid "Key"
 msgstr "金鑰"
 
@@ -3255,7 +3262,7 @@ msgstr ""
 #: src/components/offers2/OfferBuilderValue.tsx:73
 #: src/components/plot/PlotStatus.tsx:20
 #: src/components/plotNFT/PlotNFTCard.tsx:307
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:94
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:143
 msgid "Not Available"
 msgstr "尚無"
 
@@ -4214,7 +4221,7 @@ msgid "Refresh Plots"
 msgstr "刷新耕地"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:270
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:72
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:173
 msgid "Reject"
 msgstr "拒絕"
 
@@ -5771,7 +5778,7 @@ msgstr "等待交易確認中"
 #: src/components/app/AppStatusHeader.tsx:152
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:187
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:191
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:109
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:190
 msgid "Wallet"
 msgstr "錢包"
 
@@ -6081,4 +6088,3 @@ msgstr "您的可支配餘額必須大於1 mojo，才能建立個人檔案"
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "您的錢包需要運行才能自動索取"
-

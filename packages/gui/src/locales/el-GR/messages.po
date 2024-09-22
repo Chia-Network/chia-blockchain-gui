@@ -561,7 +561,7 @@ msgstr ""
 msgid "App Permissions"
 msgstr ""
 
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:122
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:203
 #: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:92
 msgid "Application"
 msgstr ""
@@ -1052,7 +1052,7 @@ msgstr ""
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:167
 #: src/components/vcs/VCRevokeDialog.tsx:27
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:71
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:172
 msgid "Confirm"
 msgstr ""
 
@@ -1082,7 +1082,7 @@ msgstr ""
 msgid "Confirmation"
 msgstr ""
 
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:69
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:170
 msgid "Confirmation Request"
 msgstr ""
 
@@ -1822,6 +1822,7 @@ msgid "Error posting offer: {0}"
 msgstr ""
 
 #: src/components/signVerify/VerifyMessage.tsx:146
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:159
 msgid "Error:"
 msgstr ""
 
@@ -2469,13 +2470,15 @@ msgstr ""
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid "Insufficient funds available to accept offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid "Insufficient funds available to create offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
 
@@ -2518,6 +2521,10 @@ msgstr ""
 
 #: src/components/plotNFT/PlotNFTState.tsx:27
 msgid "Invalid state"
+msgstr ""
+
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:155
+msgid "Invalid WalletConnect data"
 msgstr ""
 
 #: src/components/fullNode/FullNodeConnections.tsx:33
@@ -2584,7 +2591,7 @@ msgstr ""
 msgid "K-Size"
 msgstr ""
 
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:105
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:186
 msgid "Key"
 msgstr ""
 
@@ -3255,7 +3262,7 @@ msgstr ""
 #: src/components/offers2/OfferBuilderValue.tsx:73
 #: src/components/plot/PlotStatus.tsx:20
 #: src/components/plotNFT/PlotNFTCard.tsx:307
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:94
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:143
 msgid "Not Available"
 msgstr "Δεν είναι διαθέσιμο"
 
@@ -4214,7 +4221,7 @@ msgid "Refresh Plots"
 msgstr "Ανανέωση Plots"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:270
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:72
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:173
 msgid "Reject"
 msgstr ""
 
@@ -5771,7 +5778,7 @@ msgstr ""
 #: src/components/app/AppStatusHeader.tsx:152
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:187
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:191
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:109
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:190
 msgid "Wallet"
 msgstr ""
 
@@ -6081,4 +6088,3 @@ msgstr ""
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr ""
-

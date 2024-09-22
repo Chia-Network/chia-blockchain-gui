@@ -561,7 +561,7 @@ msgstr ""
 msgid "App Permissions"
 msgstr ""
 
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:122
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:203
 #: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:92
 msgid "Application"
 msgstr ""
@@ -1052,7 +1052,7 @@ msgstr ""
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:167
 #: src/components/vcs/VCRevokeDialog.tsx:27
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:71
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:172
 msgid "Confirm"
 msgstr ""
 
@@ -1082,7 +1082,7 @@ msgstr "パスフレーズを確認"
 msgid "Confirmation"
 msgstr "確認"
 
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:69
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:170
 msgid "Confirmation Request"
 msgstr ""
 
@@ -1822,6 +1822,7 @@ msgid "Error posting offer: {0}"
 msgstr ""
 
 #: src/components/signVerify/VerifyMessage.tsx:146
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:159
 msgid "Error:"
 msgstr ""
 
@@ -2469,13 +2470,15 @@ msgstr "初期化中..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid "Insufficient funds available to accept offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid "Insufficient funds available to create offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
 
@@ -2520,6 +2523,10 @@ msgstr ""
 msgid "Invalid state"
 msgstr "無効な状態"
 
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:155
+msgid "Invalid WalletConnect data"
+msgstr ""
+
 #: src/components/fullNode/FullNodeConnections.tsx:33
 msgid "IP address"
 msgstr "IP アドレス"
@@ -2557,7 +2564,8 @@ msgstr "プールに参加する"
 
 #: src/components/plot/add/PlotAddNFT.tsx:49
 msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
-msgstr "参加したプールが当選するとXCHを獲得できます。\n"
+msgstr ""
+"参加したプールが当選するとXCHを獲得できます。\n"
 "プールでは定期的にXCHを獲得できますが引き換えに毎度の払い出しは少なくなります。\n"
 "長期的のリターンはソロファーミングで得られる報酬と変わりません。"
 
@@ -2586,7 +2594,7 @@ msgstr ""
 msgid "K-Size"
 msgstr "K 値"
 
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:105
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:186
 msgid "Key"
 msgstr "鍵"
 
@@ -3257,7 +3265,7 @@ msgstr ""
 #: src/components/offers2/OfferBuilderValue.tsx:73
 #: src/components/plot/PlotStatus.tsx:20
 #: src/components/plotNFT/PlotNFTCard.tsx:307
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:94
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:143
 msgid "Not Available"
 msgstr "該当なし"
 
@@ -4216,7 +4224,7 @@ msgid "Refresh Plots"
 msgstr "耕地一覧を更新"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:270
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:72
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:173
 msgid "Reject"
 msgstr ""
 
@@ -5773,7 +5781,7 @@ msgstr ""
 #: src/components/app/AppStatusHeader.tsx:152
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:187
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:191
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:109
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:190
 msgid "Wallet"
 msgstr "ウォレット"
 
@@ -6083,4 +6091,3 @@ msgstr ""
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr ""
-
