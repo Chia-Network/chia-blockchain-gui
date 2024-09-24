@@ -19,22 +19,22 @@
     "test": "jest"
   },
   "dependencies": {
-    "@babel/runtime": "7.22.10",
+    "@babel/runtime": "7.25.6",
     "bignumber.js": "9.1.1",
     "core-js": "3.32.1",
     "debug": "4.3.4",
     "lodash": "4.17.21",
-    "regenerator-runtime": "0.14.0"
+    "regenerator-runtime": "0.14.1"
   },
   "devDependencies": {
-    "@babel/core": "7.22.10",
+    "@babel/core": "7.25.2",
     "@babel/helper-get-function-arity": "7.16.7",
-    "@babel/plugin-transform-runtime": "7.22.10",
-    "@babel/preset-env": "7.24.5",
-    "@babel/preset-typescript": "7.22.5",
+    "@babel/plugin-transform-runtime": "7.25.4",
+    "@babel/preset-env": "7.25.4",
+    "@babel/preset-typescript": "7.24.7",
     "@chia-network/api": "1.0.0",
     "@reduxjs/toolkit": "1.9.5",
-    "@rollup/plugin-babel": "6.0.3",
+    "@rollup/plugin-babel": "6.0.4",
     "@rollup/plugin-commonjs": "25.0.4",
     "@rollup/plugin-node-resolve": "15.2.1",
     "@types/core-js": "2.5.5",
@@ -47,7 +47,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-redux": "8.1.2",
-    "rollup": "3.28.1",
+    "rollup": "3.29.5",
     "rollup-plugin-node-externals": "7.1.2",
     "typescript": "5.1.6"
   },

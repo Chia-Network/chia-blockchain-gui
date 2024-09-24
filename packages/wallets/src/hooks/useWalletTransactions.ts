@@ -43,7 +43,7 @@ export default function useWalletTransactions(args: UseWalletTransactionsArgs): 
 
   const start = all ? 0 : page * rowsPerPage;
 
-  const end = all ? count ?? 0 : start + rowsPerPage;
+  const end = all ? (count ?? 0) : start + rowsPerPage;
 
   const {
     data: transactions,

@@ -63,7 +63,7 @@ export default function OfferBuilderTokenSelector(props: OfferBuilderTokenSelect
   if (readOnly) {
     return (
       <Typography variant="h6" noWrap>
-        {warnUnknownCAT ? t`Unknown` : selectedOption?.displayName ?? currentValue}
+        {warnUnknownCAT ? t`Unknown` : (selectedOption?.displayName ?? currentValue)}
       </Typography>
     );
   }

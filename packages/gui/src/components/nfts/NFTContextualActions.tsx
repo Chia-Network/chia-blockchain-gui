@@ -475,7 +475,10 @@ function NFTHideContextualAction(props: NFTHideContextualActionProps) {
     }
 
     if (isMultiSelect) {
-      setHiddenMultiple(selection?.items.map((nft: NFTInfo) => nft.$nftId), !isHidden);
+      setHiddenMultiple(
+        selection?.items.map((nft: NFTInfo) => nft.$nftId),
+        !isHidden,
+      );
       setSelectedNFTIds([]);
     } else {
       setIsNFTHidden(selectedNft.$nftId, !isHidden);

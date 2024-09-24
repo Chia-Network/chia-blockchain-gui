@@ -21,7 +21,7 @@ export default function useGetLocalCatName(assetId?: string, defaultName?: strin
     }
   }
 
-  const name = assetId ? names?.[assetId] ?? defaultName : undefined;
+  const name = assetId ? (names?.[assetId] ?? defaultName) : undefined;
 
   return [name, setName];
 }

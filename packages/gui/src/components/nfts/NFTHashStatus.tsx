@@ -30,7 +30,7 @@ export default function NFTHashStatus(props: NFTHashStatusProps) {
 
   const isLoading = isLoadingNFTVerifyHash || isLoadingNFT;
   const isVerified = preview ? nftPreview?.isVerified : data?.isVerified;
-  const error = errorNFT ?? preview ? nftPreview?.error : data?.error;
+  const error = (errorNFT ?? preview) ? nftPreview?.error : data?.error;
 
   const isValidURI = useMemo(() => {
     if (!nftPreview || !('originalUri' in nftPreview)) {
