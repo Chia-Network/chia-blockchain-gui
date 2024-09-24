@@ -140,7 +140,7 @@ export default function WalletConnectConfirmDialog(props: WalletConnectConfirmDi
                 <Typography color="textSecondary">
                   {displayComponent
                     ? displayComponent(value, params, values, handleChangeValues)
-                    : value?.toString() ?? <Trans>Not Available</Trans>}
+                    : (value?.toString() ?? <Trans>Not Available</Trans>)}
                 </Typography>
               </Flex>
             </LocalErrorBoundary>

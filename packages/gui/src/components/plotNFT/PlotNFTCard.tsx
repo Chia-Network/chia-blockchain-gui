@@ -304,7 +304,7 @@ export default function PlotNFTCard(props: Props) {
             </Typography>
             <Tooltip title={payoutAddress} copyToClipboard>
               <Typography variant="body2" noWrap>
-                {loading ? <Loading size="1rem" /> : payoutAddress ?? <Trans>Not Available</Trans>}
+                {loading ? <Loading size="1rem" /> : (payoutAddress ?? <Trans>Not Available</Trans>)}
               </Typography>
             </Tooltip>
           </Flex>

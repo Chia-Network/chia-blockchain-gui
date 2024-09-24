@@ -142,7 +142,7 @@ export default function useWalletsList(
         hidden: isHidden(wallet.id),
         walletId: wallet.id,
         assetId: wallet.meta?.assetId,
-        name: wallet.type === WalletType.STANDARD_WALLET ? 'Chia' : wallet.meta?.name ?? wallet.name,
+        name: wallet.type === WalletType.STANDARD_WALLET ? 'Chia' : (wallet.meta?.name ?? wallet.name),
       })),
       ...catBaseWallets.map((wallet: Wallet) => ({
         id: wallet.id,

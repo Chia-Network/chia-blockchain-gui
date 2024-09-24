@@ -144,7 +144,7 @@ export default function Block() {
   }
 
   const difficulty =
-    prevBlockRecord && blockRecord ? blockRecord.weight - prevBlockRecord.weight : blockRecord?.weight ?? 0;
+    prevBlockRecord && blockRecord ? blockRecord.weight - prevBlockRecord.weight : (blockRecord?.weight ?? 0);
 
   const poolReward = mojoToChia(calculatePoolReward(blockRecord.height));
   const baseFarmerReward = mojoToChia(calculateBaseFarmerReward(blockRecord.height));

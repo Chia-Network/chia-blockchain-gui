@@ -306,7 +306,7 @@ export function NFTOfferSummary(props: NFTOfferSummaryProps) {
   const summaries: React.ReactElement[] = [makerSummary, takerSummary];
 
   if (setIsMissingRequestedAsset) {
-    const isMissingRequestedAsset = isMyOffer ? false : makerUnknownAssets?.length !== 0 ?? false;
+    const isMissingRequestedAsset = isMyOffer ? false : (makerUnknownAssets?.length !== 0 ?? false);
 
     setIsMissingRequestedAsset(isMissingRequestedAsset);
   }
@@ -503,8 +503,8 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
                             value={
                               new BigNumber(
                                 exchangeType === NFTOfferExchangeType.NFTForToken
-                                  ? nftSaleInfo?.nftSellerNetAmount ?? 0
-                                  : amount ?? 0,
+                                  ? (nftSaleInfo?.nftSellerNetAmount ?? 0)
+                                  : (amount ?? 0),
                               )
                             }
                           />{' '}

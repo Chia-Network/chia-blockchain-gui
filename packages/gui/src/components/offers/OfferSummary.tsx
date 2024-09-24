@@ -96,7 +96,7 @@ export default function OfferSummary(props: Props) {
   ];
 
   if (setIsMissingRequestedAsset) {
-    const isMissingRequestedAsset = isMyOffer ? false : makerUnknownCATs?.length !== 0 ?? false;
+    const isMissingRequestedAsset = isMyOffer ? false : (makerUnknownCATs?.length !== 0 ?? false);
 
     setIsMissingRequestedAsset(isMissingRequestedAsset);
   }
