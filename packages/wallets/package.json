@@ -21,7 +21,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@babel/runtime": "7.22.10",
+    "@babel/runtime": "7.25.6",
     "@chia-network/icons": "1.0.0",
     "@lingui/macro": "4.11.4",
     "@rehooks/local-storage": "2.4.4",
@@ -44,12 +44,12 @@
     "validator": "13.11.0"
   },
   "devDependencies": {
-    "@babel/core": "7.22.10",
-    "@babel/helper-get-function-arity": "^7.16.7",
-    "@babel/plugin-transform-runtime": "7.22.10",
-    "@babel/preset-env": "7.24.5",
-    "@babel/preset-react": "7.22.5",
-    "@babel/preset-typescript": "7.22.5",
+    "@babel/core": "7.25.2",
+    "@babel/helper-get-function-arity": "7.16.7",
+    "@babel/plugin-transform-runtime": "7.25.4",
+    "@babel/preset-env": "7.25.4",
+    "@babel/preset-react": "7.24.7",
+    "@babel/preset-typescript": "7.24.7",
     "@chia-network/api": "1.0.0",
     "@chia-network/api-react": "1.0.0",
     "@chia-network/core": "1.0.0",
