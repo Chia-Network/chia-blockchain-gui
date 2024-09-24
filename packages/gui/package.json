@@ -111,7 +111,7 @@
     "@loadable/babel-plugin": "5.16.1",
     "@loadable/webpack-plugin": "5.15.2",
     "@playwright/test": "1.37.1",
-    "@pmmmwh/react-refresh-webpack-plugin": "0.5.11",
+    "@pmmmwh/react-refresh-webpack-plugin": "0.5.15",
     "@svgr/webpack": "8.1.0",
     "@types/big.js": "6.2.0",
     "@types/jest": "29.5.3",
