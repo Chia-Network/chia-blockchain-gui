@@ -561,7 +561,7 @@ msgstr "اعلان"
 msgid "App Permissions"
 msgstr "مجوزهای برنامه"
 
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:122
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:203
 #: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:92
 msgid "Application"
 msgstr "برنامه کاربردی"
@@ -1052,7 +1052,7 @@ msgstr "سطح فشرده سازی"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:167
 #: src/components/vcs/VCRevokeDialog.tsx:27
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:71
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:172
 msgid "Confirm"
 msgstr "تایید"
 
@@ -1082,7 +1082,7 @@ msgstr "تایید رمز ورود"
 msgid "Confirmation"
 msgstr "تائیدیه"
 
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:69
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:170
 msgid "Confirmation Request"
 msgstr "تقاضای تایید"
 
@@ -1822,6 +1822,7 @@ msgid "Error posting offer: {0}"
 msgstr "خطا در ارسال پیشنهاد: {0}"
 
 #: src/components/signVerify/VerifyMessage.tsx:146
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:159
 msgid "Error:"
 msgstr "خطا:"
 
@@ -2526,6 +2527,10 @@ msgstr "شناسه ان اف تی نامعتبر"
 msgid "Invalid state"
 msgstr "حالت نامعتبر"
 
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:155
+msgid "Invalid WalletConnect data"
+msgstr ""
+
 #: src/components/fullNode/FullNodeConnections.tsx:33
 msgid "IP address"
 msgstr "آی پی آدرس"
@@ -2590,7 +2595,7 @@ msgstr "مقدار حجم یا مخفف کی"
 msgid "K-Size"
 msgstr "اندازه حجم یا مخفف کی"
 
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:105
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:186
 msgid "Key"
 msgstr "کلید"
 
@@ -3261,7 +3266,7 @@ msgstr "در دسترس نیست"
 #: src/components/offers2/OfferBuilderValue.tsx:73
 #: src/components/plot/PlotStatus.tsx:20
 #: src/components/plotNFT/PlotNFTCard.tsx:307
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:94
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:143
 msgid "Not Available"
 msgstr "غیرقابل دسترسی"
 
@@ -4220,7 +4225,7 @@ msgid "Refresh Plots"
 msgstr "بروز رسانی پلات ها"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:270
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:72
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:173
 msgid "Reject"
 msgstr "رد کردن"
 
@@ -5777,7 +5782,7 @@ msgstr "منتظر تایید تراکنش هستیم"
 #: src/components/app/AppStatusHeader.tsx:152
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:187
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:191
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:109
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:190
 msgid "Wallet"
 msgstr "کیف پول"
 
