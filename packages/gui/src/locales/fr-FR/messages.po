@@ -364,7 +364,7 @@ msgstr "Action"
 #: src/components/farm/FarmFullNodeConnections.tsx:54
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:54
 #: src/components/fullNode/FullNodeConnections.tsx:65
-#: src/components/nfts/NFTContextualActions.tsx:587
+#: src/components/nfts/NFTContextualActions.tsx:590
 #: src/components/offers2/OfferIncomingTable.tsx:111
 msgid "Actions"
 msgstr "Actions"
@@ -779,7 +779,7 @@ msgstr "Parcourir"
 
 #: src/components/nfts/NFTBurnDialog.tsx:90
 #: src/components/nfts/NFTBurnDialog.tsx:185
-#: src/components/nfts/NFTContextualActions.tsx:525
+#: src/components/nfts/NFTContextualActions.tsx:528
 msgid "Burn"
 msgstr "Brûler"
 
@@ -2343,7 +2343,7 @@ msgstr "Cachés  <0/>"
 #~ msgid "Hidden ({0})"
 #~ msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:493
+#: src/components/nfts/NFTContextualActions.tsx:496
 msgid "Hide"
 msgstr "Masquer"
 
@@ -2470,16 +2470,20 @@ msgstr "Initialisation..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid "Insufficient funds available to accept offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "Fonds insuffisants pour accepter l'offre. Assurez-vous que votre \n"
+msgstr ""
+"Fonds insuffisants pour accepter l'offre. Assurez-vous que votre \n"
 "solde disponible est suffisant pour couvrir le montant de l'offre."
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid "Insufficient funds available to create offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "Fonds insuffisants pour créer l'offre. Assurez-vous que votre \n"
+msgstr ""
+"Fonds insuffisants pour créer l'offre. Assurez-vous que votre \n"
 "solde disponible est suffisant pour couvrir le montant de l'offre."
 
 #: src/components/farm/PoolingHealth.tsx:302
@@ -4211,7 +4215,7 @@ msgstr "Recommandé"
 msgid "Recursive Plot Scan"
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:566
+#: src/components/nfts/NFTContextualActions.tsx:569
 msgid "Refresh NFT data"
 msgstr "Rafraîchir les données NFT"
 
@@ -4685,7 +4689,7 @@ msgstr "Partager sur Spacescan.io"
 #~ msgid "Share Privately"
 #~ msgstr "Share Privately"
 
-#: src/components/nfts/NFTContextualActions.tsx:493
+#: src/components/nfts/NFTContextualActions.tsx:496
 msgid "Show"
 msgstr "Afficher"
 
@@ -5714,7 +5718,7 @@ msgstr "Voir sur Dexie"
 #~ msgid "View on Hashgreen DEX"
 #~ msgstr "View on Hashgreen DEX"
 
-#: src/components/nfts/NFTContextualActions.tsx:643
+#: src/components/nfts/NFTContextualActions.tsx:646
 #: src/components/offers/OfferShareDialog.tsx:441
 msgid "View on MintGarden"
 msgstr "Voir sur MintGarden"
@@ -5727,7 +5731,7 @@ msgstr "Voir sur MintGarden"
 msgid "View on Offerpool"
 msgstr "Voir sur Offerpool"
 
-#: src/components/nfts/NFTContextualActions.tsx:651
+#: src/components/nfts/NFTContextualActions.tsx:654
 #: src/components/offers/OfferShareDialog.tsx:538
 msgid "View on Spacescan.io"
 msgstr "Voir sur Spacescan.io"
@@ -6088,4 +6092,3 @@ msgstr "Votre solde dépensable doit être supérieur à 1 mojo pour créer un p
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "Votre portefeuille doit être synchronisé pour que la revendication automatique fonctionne."
-
