@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-09-08 00:04\n"
+"PO-Revision-Date: 2024-09-29 00:05\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -364,7 +364,7 @@ msgstr "Toiminto"
 #: src/components/farm/FarmFullNodeConnections.tsx:54
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:54
 #: src/components/fullNode/FullNodeConnections.tsx:65
-#: src/components/nfts/NFTContextualActions.tsx:587
+#: src/components/nfts/NFTContextualActions.tsx:590
 #: src/components/offers2/OfferIncomingTable.tsx:111
 msgid "Actions"
 msgstr "Toiminnot"
@@ -779,7 +779,7 @@ msgstr "Selaa"
 
 #: src/components/nfts/NFTBurnDialog.tsx:90
 #: src/components/nfts/NFTBurnDialog.tsx:185
-#: src/components/nfts/NFTContextualActions.tsx:525
+#: src/components/nfts/NFTContextualActions.tsx:528
 msgid "Burn"
 msgstr "Polta"
 
@@ -2343,7 +2343,7 @@ msgstr "Piilotettu <0/>"
 #~ msgid "Hidden ({0})"
 #~ msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:493
+#: src/components/nfts/NFTContextualActions.tsx:496
 msgid "Hide"
 msgstr "Piilota"
 
@@ -4215,7 +4215,7 @@ msgstr "Suositus"
 msgid "Recursive Plot Scan"
 msgstr "Rekursiivinen Plottiskannaus"
 
-#: src/components/nfts/NFTContextualActions.tsx:566
+#: src/components/nfts/NFTContextualActions.tsx:569
 msgid "Refresh NFT data"
 msgstr "Päivitä NFT-data"
 
@@ -4689,7 +4689,7 @@ msgstr "Jaa Spacescan.io:ssa"
 #~ msgid "Share Privately"
 #~ msgstr "Share Privately"
 
-#: src/components/nfts/NFTContextualActions.tsx:493
+#: src/components/nfts/NFTContextualActions.tsx:496
 msgid "Show"
 msgstr "Näytä"
 
@@ -5718,7 +5718,7 @@ msgstr "Näytä Dexiessä"
 #~ msgid "View on Hashgreen DEX"
 #~ msgstr "View on Hashgreen DEX"
 
-#: src/components/nfts/NFTContextualActions.tsx:643
+#: src/components/nfts/NFTContextualActions.tsx:646
 #: src/components/offers/OfferShareDialog.tsx:441
 msgid "View on MintGarden"
 msgstr "Näytä MintGardenissa"
@@ -5731,7 +5731,7 @@ msgstr "Näytä MintGardenissa"
 msgid "View on Offerpool"
 msgstr "Näytä Offerpoolissa"
 
-#: src/components/nfts/NFTContextualActions.tsx:651
+#: src/components/nfts/NFTContextualActions.tsx:654
 #: src/components/offers/OfferShareDialog.tsx:538
 msgid "View on Spacescan.io"
 msgstr "Näytä Spacescan.io:ssa"

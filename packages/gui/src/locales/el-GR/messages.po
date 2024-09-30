@@ -8,7 +8,7 @@ msgstr ""
 "Language: el_GR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-09-08 00:04\n"
+"PO-Revision-Date: 2024-09-29 00:05\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -364,7 +364,7 @@ msgstr "Ενέργεια"
 #: src/components/farm/FarmFullNodeConnections.tsx:54
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:54
 #: src/components/fullNode/FullNodeConnections.tsx:65
-#: src/components/nfts/NFTContextualActions.tsx:587
+#: src/components/nfts/NFTContextualActions.tsx:590
 #: src/components/offers2/OfferIncomingTable.tsx:111
 msgid "Actions"
 msgstr "Ενέργειες"
@@ -779,7 +779,7 @@ msgstr "Εξερεύνηση"
 
 #: src/components/nfts/NFTBurnDialog.tsx:90
 #: src/components/nfts/NFTBurnDialog.tsx:185
-#: src/components/nfts/NFTContextualActions.tsx:525
+#: src/components/nfts/NFTContextualActions.tsx:528
 msgid "Burn"
 msgstr ""
 
@@ -2343,7 +2343,7 @@ msgstr ""
 #~ msgid "Hidden ({0})"
 #~ msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:493
+#: src/components/nfts/NFTContextualActions.tsx:496
 msgid "Hide"
 msgstr ""
 
@@ -4211,7 +4211,7 @@ msgstr ""
 msgid "Recursive Plot Scan"
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:566
+#: src/components/nfts/NFTContextualActions.tsx:569
 msgid "Refresh NFT data"
 msgstr ""
 
@@ -4685,7 +4685,7 @@ msgstr ""
 #~ msgid "Share Privately"
 #~ msgstr "Share Privately"
 
-#: src/components/nfts/NFTContextualActions.tsx:493
+#: src/components/nfts/NFTContextualActions.tsx:496
 msgid "Show"
 msgstr ""
 
@@ -5714,7 +5714,7 @@ msgstr ""
 #~ msgid "View on Hashgreen DEX"
 #~ msgstr "View on Hashgreen DEX"
 
-#: src/components/nfts/NFTContextualActions.tsx:643
+#: src/components/nfts/NFTContextualActions.tsx:646
 #: src/components/offers/OfferShareDialog.tsx:441
 msgid "View on MintGarden"
 msgstr ""
@@ -5727,7 +5727,7 @@ msgstr ""
 msgid "View on Offerpool"
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:651
+#: src/components/nfts/NFTContextualActions.tsx:654
 #: src/components/offers/OfferShareDialog.tsx:538
 msgid "View on Spacescan.io"
 msgstr ""
