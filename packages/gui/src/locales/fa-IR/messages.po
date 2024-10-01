@@ -44,134 +44,134 @@ msgid "Would you like to transfer {count} NFTs to a new owner?"
 msgstr "از ان اف تی ها را به مالک جدیدی انتقال دهید؟ {count} آیا میخواهید"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:510
+#: src/electron/main.tsx:521
 msgid "No"
 msgstr "خیر"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:510
+#: src/electron/main.tsx:521
 msgid "Yes"
 msgstr "بله"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:511
+#: src/electron/main.tsx:522
 msgid "Confirm"
 msgstr "تایید"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:513
+#: src/electron/main.tsx:524
 msgid "Are you sure you want to quit?"
 msgstr "آیا مطمئن هستید که میخواهید خارج شوید؟"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:518
+#: src/electron/main.tsx:529
 msgid "Keep service running in the background"
 msgstr "بگدارید سرویس در پس‌زمینه اجرا شود"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:636
-#: src/electron/main.tsx:844
+#: src/electron/main.tsx:647
+#: src/electron/main.tsx:855
 msgid "File"
 msgstr "فایل"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:644
+#: src/electron/main.tsx:655
 msgid "Edit"
 msgstr "ويرايش"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:676
+#: src/electron/main.tsx:687
 msgid "View"
 msgstr "مشاهده"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:685
+#: src/electron/main.tsx:696
 msgid "Developer"
 msgstr "توسعه دهنده"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:688
+#: src/electron/main.tsx:699
 msgid "Developer Tools"
 msgstr "ابزارهای توسعه دهنده"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:696
+#: src/electron/main.tsx:707
 msgid "Trigger Desktop Notification"
 msgstr "راه‌اندازی اعلان دسکتاپ"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:725
+#: src/electron/main.tsx:736
 msgid "Full Screen"
 msgstr "نمایش تمام صفحه"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:732
+#: src/electron/main.tsx:743
 msgid "Window"
 msgstr "پنجره"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:746
+#: src/electron/main.tsx:757
 msgid "Help"
 msgstr "راهنما"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:750
+#: src/electron/main.tsx:761
 msgid "Chia Blockchain Wiki"
 msgstr "بلاکچین چیا در ویکیپدیا"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:756
+#: src/electron/main.tsx:767
 msgid "Frequently Asked Questions"
 msgstr "پرسش ها و پاسخ های متداول"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:762
+#: src/electron/main.tsx:773
 msgid "Release Notes"
 msgstr "یادداشت‌های انتشار"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:768
+#: src/electron/main.tsx:779
 msgid "Contribute on GitHub"
 msgstr "مشارکت در GitHub"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:777
+#: src/electron/main.tsx:788
 msgid "Report an Issue..."
 msgstr "گزارش یک خطا..."
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:783
+#: src/electron/main.tsx:794
 msgid "Chat on Discord"
 msgstr "اشتراک گداری در Discord"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:789
+#: src/electron/main.tsx:800
 msgid "Follow on Twitter"
 msgstr "در ایکس دنبال کنید"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:801
+#: src/electron/main.tsx:812
 msgid "Chia"
 msgstr "چیا"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:804
-#: src/electron/main.tsx:897
+#: src/electron/main.tsx:815
+#: src/electron/main.tsx:908
 msgid "About Chia Blockchain"
 msgstr "درباره بلاکچین چیا"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:810
+#: src/electron/main.tsx:821
 msgid "Check for Updates..."
 msgstr "بروز رسانی را بررسی کنید..."
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:858
+#: src/electron/main.tsx:869
 msgid "Speech"
 msgstr "سخن"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:903
+#: src/electron/main.tsx:914
 msgid "Check for updates..."
 msgstr "بروز رسانی را بررسی کنید..."
 
@@ -301,6 +301,10 @@ msgstr "* فعال - در صورت موجود بودن از دستگاه در ف
 #: src/components/settings/SettingsHarvester.tsx:344
 msgid "*Usually it takes seconds to complete restarting."
 msgstr "*معمولاً چند ثانیه طول میکشد تا راه اندازی مجدد کامل شود."
+
+#: src/components/notification/NotificationAnnouncementDialog.tsx:39
+msgid "##### Redacted for security reason #####"
+msgstr ""
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:42
 msgid "+ Add a Plot"
@@ -553,7 +557,7 @@ msgstr "افزایش تعداد نقاط علامت گمشده (اس پی) نش�
 msgid "An NFT's provenance is a complete record of its ownership history. It provides a direct lineage that connects everyone who has owned the NFT, all the way back to the original artist. This helps to verify that the NFT is authentic."
 msgstr "منشأ یک ان اف تی رکورد کامل از تاریخچه مالکیت آن است. این یک اصل و نسب مستقیم را فراهم میکند تا همه کسانی که ان اف تی دارند، را به هنرمند اصلی متصل کند. این به تأیید اعتبار ان اف تی کمک میکند."
 
-#: src/components/notification/NotificationAnnouncementDialog.tsx:35
+#: src/components/notification/NotificationAnnouncementDialog.tsx:49
 msgid "Announcement"
 msgstr "اعلان"
 
@@ -834,7 +838,7 @@ msgstr "(GB) مقدار حافظه پنهان"
 #: src/components/signVerify/VerifyMessage.tsx:271
 #: src/components/vcs/VCEditTitle.tsx:76
 #: src/components/vcs/VCRevokeDialog.tsx:28
-#: src/hooks/useOpenUnsafeLink.tsx:33
+#: src/hooks/useOpenUnsafeLink.tsx:62
 msgid "Cancel"
 msgstr "لغو"
 
@@ -996,7 +1000,7 @@ msgstr "با کلیک بر روی نماد حذف فقط یک پوشه از ای
 #: src/components/nfts/MultipleDownloadDialog.tsx:116
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:328
 #: src/components/nfts/NFTTransferAction.tsx:166
-#: src/components/notification/NotificationAnnouncementDialog.tsx:75
+#: src/components/notification/NotificationAnnouncementDialog.tsx:87
 #: src/components/notification/NotificationSendDialog.tsx:308
 #: src/components/offers/ConfirmOfferCancellation.tsx:126
 #: src/components/offers/OfferShareDialog.tsx:373
@@ -1569,7 +1573,7 @@ msgid "Display sharing options after creating a new offer"
 msgstr "نمایش گزینه های اشتراک گذاری پس از ایجاد یک پیشنهاد جدید"
 
 #: src/components/offers/OfferShareDialog.tsx:945
-#: src/hooks/useOpenUnsafeLink.tsx:64
+#: src/hooks/useOpenUnsafeLink.tsx:93
 msgid "Do not show this dialog again"
 msgstr "این مباحثه را دیگر نشان ندهید"
 
@@ -2112,7 +2116,7 @@ msgstr "قراردادن تصاویر روی کارتها"
 #~ msgid "Frequently Asked Questions"
 #~ msgstr "Frequently Asked Questions"
 
-#: src/components/notification/NotificationAnnouncementDialog.tsx:44
+#: src/components/notification/NotificationAnnouncementDialog.tsx:58
 msgid "From"
 msgstr "از"
 
@@ -2838,7 +2842,7 @@ msgstr "عضویت ها"
 msgid "Memos"
 msgstr "یادداشت ها"
 
-#: src/components/notification/NotificationAnnouncementDialog.tsx:53
+#: src/components/notification/NotificationAnnouncementDialog.tsx:67
 #: src/components/signVerify/SignMessage.tsx:200
 #: src/components/signVerify/VerifyMessage.tsx:207
 #: src/constants/WalletConnectCommands.tsx:184
@@ -3533,7 +3537,7 @@ msgstr "دارایی های کلکسیونی منحصر به فرد"
 msgid "Open in Browser"
 msgstr "بازکردن در مرورگر"
 
-#: src/hooks/useOpenUnsafeLink.tsx:31
+#: src/hooks/useOpenUnsafeLink.tsx:60
 msgid "Open Link"
 msgstr "بازکردن لینک"
 
@@ -3724,7 +3728,7 @@ msgstr "در انتظار تایید"
 msgid "Pending removal"
 msgstr "در انتظار حذف"
 
-#: src/hooks/useOpenUnsafeLink.tsx:38
+#: src/hooks/useOpenUnsafeLink.tsx:67
 msgid "Please check the following link to verify the site you are going to visit. Proceed at your own risk."
 msgstr "لطفا لینک زیر را بررسی کنید تا از سایتی که میخواهید ببینید مطمن شوید. با مسئولیت خود ادامه دهید."
 
@@ -5233,6 +5237,10 @@ msgstr "این پلات ان اف تی به کلید دیگری اختصاص د�
 msgid "This table shows you the last time your farm attempted to win a block challenge. <0>Learn more</0>"
 msgstr "این جدول به شما نشان میدهد که آخرین بار چه زمانی فارم شما در چالش فارم یک بلاک برنده شد. <0>بیشتر بدانید</0>"
 
+#: src/hooks/useOpenUnsafeLink.tsx:24
+msgid "This type of the URL is not allowed to open for security reasons."
+msgstr ""
+
 #: src/components/settings/SettingsIntegration.tsx:398
 msgid "This will reset all previously granted permissions across all Dapps that have been connected to. After resetting you will be asked to grant permission again."
 msgstr "هایی که به آنها متصل شده اند بتنظیم مجدد میشود. پس از تنظیم مجدد، از شما خواسته میشود که دوباره مجوز بدهید. Dapp با این کار همه مجوزهای قبلاً اعطا شده در همه"
@@ -5583,9 +5591,10 @@ msgstr "منتظر بروزرسانی"
 msgid "Uris"
 msgstr "Uris"
 
-#: src/components/notification/NotificationAnnouncementDialog.tsx:62
+#: src/components/notification/NotificationAnnouncementDialog.tsx:76
 #: src/constants/WalletConnectCommands.tsx:964
-#: src/hooks/useOpenUnsafeLink.tsx:43
+#: src/hooks/useOpenUnsafeLink.tsx:27
+#: src/hooks/useOpenUnsafeLink.tsx:72
 msgid "URL"
 msgstr "آدرس سایت"
 
@@ -5870,6 +5879,10 @@ msgstr "اخطار"
 msgid "Warning Threshold"
 msgstr "آستانه هشدار"
 
+#: src/hooks/useOpenUnsafeLink.tsx:21
+msgid "Warning: Invalid URL"
+msgstr ""
+
 #: src/components/app/AppVersionWarning.tsx:30
 msgid "Warning: Mismatched Versions"
 msgstr "هشدار: نسخه های نامتناسب"
@@ -5879,7 +5892,7 @@ msgstr "هشدار: نسخه های نامتناسب"
 msgid "Warning: Verify that the offered CAT asset IDs match the asset IDs of the tokens you expect to receive."
 msgstr "اخطار: بررسی کنید که شناسه‌های دارایی CAT ارائه شده با شناسه‌های دارایی توکن‌هایی که انتظار دریافت آنرا دارید، مطابقت داشته باشد."
 
-#: src/hooks/useOpenUnsafeLink.tsx:30
+#: src/hooks/useOpenUnsafeLink.tsx:59
 msgid "Warning: You're about to visit a website"
 msgstr "اخطار: شما در شرف بازدید از یک وب سایت هستید"
 

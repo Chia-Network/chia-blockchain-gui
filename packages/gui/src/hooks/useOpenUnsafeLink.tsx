@@ -1,12 +1,41 @@
 import { usePrefs } from '@chia-network/api-react';
-import { ConfirmDialog, CopyToClipboard, Flex, useOpenDialog, useOpenExternal } from '@chia-network/core';
+import { AlertDialog, ConfirmDialog, CopyToClipboard, Flex, useOpenDialog, useOpenExternal } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Checkbox, FormControlLabel, InputAdornment, TextField, Typography } from '@mui/material';
 import React from 'react';
+import isURL from 'validator/es/lib/isURL';
 
 /* ========================================================================== */
 
 const SuppressUnsafeLinkWarningLocalStorageKey = 'suppressUnsafeLinkWarning';
+
+/* ========================================================================== */
+type InvalidURLWarningDialogProps = {
+  url: string;
+};
+
+function InvalidURLWarningDialog(props: InvalidURLWarningDialogProps) {
+  const { url, ...rest } = props;
+
+  return (
+    <AlertDialog {...rest} title={<Trans>Warning: Invalid URL</Trans>}>
+      <Flex flexDirection="column" gap={2}>
+        <Typography>
+          <Trans>This type of the URL is not allowed to open for security reasons.</Trans>
+        </Typography>
+        <TextField
+          label={<Trans>URL</Trans>}
+          value={url}
+          variant="filled"
+          InputProps={{
+            readOnly: true,
+          }}
+          fullWidth
+        />
+      </Flex>
+    </AlertDialog>
+  );
+}
 
 /* ========================================================================== */
 
@@ -77,6 +106,15 @@ export default function useOpenUnsafeLink() {
 
   async function openUnsafeLink(url: string) {
     let openUrl = false;
+
+    if (!url) {
+      return;
+    }
+
+    if (!isURL(url)) {
+      await openDialog(<InvalidURLWarningDialog url={url} />);
+      return;
+    }
 
     if (suppressUnsafeLinkWarning) {
       openUrl = true;

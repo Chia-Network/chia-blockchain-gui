@@ -1,5 +1,5 @@
 import { alpha, Button as BaseButton, ButtonProps as BaseButtonProps } from '@mui/material';
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -53,24 +53,57 @@ export default function Button(props: ButtonProps) {
 
   const navigate = useNavigate();
 
-  function handleClick(...args) {
-    if (to) {
-      navigate(to);
-    }
+  const handleClick = React.useCallback(
+    (...args: any[]) => {
+      if (to) {
+        navigate(to);
+      }
 
-    if (onClick) {
-      onClick(...args);
+      if (onClick) {
+        onClick(...args);
+      }
+    },
+    [to, navigate, onClick],
+  );
+
+  const onAuxClick = React.useMemo(() => {
+    if (!rest.href) {
+      return undefined;
     }
-  }
+    return (event: SyntheticEvent, ...restArgs: any[]) => {
+      event.preventDefault();
+      handleClick(...restArgs);
+    };
+  }, [rest.href, handleClick]);
 
   switch (color) {
     case 'danger':
-      return <DangerButton onClick={handleClick} disableElevation={disableElevation} {...rest} />;
+      return (
+        <DangerButton {...rest} onClick={handleClick} onAuxClick={onAuxClick} disableElevation={disableElevation} />
+      );
     case 'primary':
-      return <StyledBaseButton onClick={handleClick} disableElevation={disableElevation} color="primary" {...rest} />;
+      return (
+        <StyledBaseButton
+          {...rest}
+          onClick={handleClick}
+          onAuxClick={onAuxClick}
+          disableElevation={disableElevation}
+          color="primary"
+        />
+      );
     case 'secondary':
-      return <StyledBaseButton onClick={handleClick} disableElevation={disableElevation} color="secondary" {...rest} />;
+      return (
+        <StyledBaseButton
+          {...rest}
+          onClick={handleClick}
+          onAuxClick={onAuxClick}
+          disableElevation={disableElevation}
+          color="secondary"
+        />
+      );
     default:
-      return <StyledBaseButton onClick={handleClick} disableElevation={disableElevation} {...rest} />;
+      return (
+        <StyledBaseButton {...rest} onClick={handleClick} onAuxClick={onAuxClick} disableElevation={disableElevation} />
+      );
   }
 }

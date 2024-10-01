@@ -23,6 +23,7 @@ import React from 'react';
 // import os from 'os';
 import ReactDOMServer from 'react-dom/server';
 import { ServerStyleSheet, StyleSheetManager } from 'styled-components';
+import isURL from 'validator/es/lib/isURL';
 
 // handle setupevents as quickly as possible
 import '../config/env';
@@ -39,6 +40,16 @@ import CacheManager from './CacheManager';
 import { readAddressBook, saveAddressBook } from './addressBook';
 import installDevTools from './installDevTools.dev';
 import { readPrefs, savePrefs, migratePrefs } from './prefs';
+
+/**
+ * Open the given external protocol URL in the desktop’s default manner.
+ */
+function openExternal(urlLocal: string) {
+  if (!isURL(urlLocal, { protocols: ['http', 'https', 'ipfs'], require_protocol: true })) {
+    return;
+  }
+  shell.openExternal(urlLocal);
+}
 
 const isPlaywrightTesting = process.env.PLAYWRIGHT_TESTS === 'true';
 const NET = 'mainnet';
@@ -111,7 +122,7 @@ function openAbout() {
   aboutWindow.loadURL(`data:text/html;charset=utf-8,${about}`);
 
   aboutWindow.webContents.setWindowOpenHandler((details) => {
-    shell.openExternal(details.url);
+    openExternal(details.url);
     return { action: 'deny' };
   });
 
@@ -909,11 +920,4 @@ function getMenuTemplate() {
   }
 
   return template;
-}
-
-/**
- * Open the given external protocol URL in the desktop’s default manner.
- */
-function openExternal(urlLocal) {
-  shell.openExternal(urlLocal);
 }
