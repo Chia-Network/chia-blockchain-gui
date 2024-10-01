@@ -44,134 +44,134 @@ msgid "Would you like to transfer {count} NFTs to a new owner?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:510
+#: src/electron/main.tsx:521
 msgid "No"
 msgstr "Nej"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:510
+#: src/electron/main.tsx:521
 msgid "Yes"
 msgstr "Ja"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:511
+#: src/electron/main.tsx:522
 msgid "Confirm"
 msgstr "Bekræft"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:513
+#: src/electron/main.tsx:524
 msgid "Are you sure you want to quit?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:518
+#: src/electron/main.tsx:529
 msgid "Keep service running in the background"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:636
-#: src/electron/main.tsx:844
+#: src/electron/main.tsx:647
+#: src/electron/main.tsx:855
 msgid "File"
 msgstr "Fil"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:644
+#: src/electron/main.tsx:655
 msgid "Edit"
 msgstr "Rediger"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:676
+#: src/electron/main.tsx:687
 msgid "View"
 msgstr "Se"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:685
+#: src/electron/main.tsx:696
 msgid "Developer"
 msgstr "Udvikler"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:688
+#: src/electron/main.tsx:699
 msgid "Developer Tools"
 msgstr "Udvikler Værktøjer"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:696
+#: src/electron/main.tsx:707
 msgid "Trigger Desktop Notification"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:725
+#: src/electron/main.tsx:736
 msgid "Full Screen"
 msgstr "Fuld Skærm"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:732
+#: src/electron/main.tsx:743
 msgid "Window"
 msgstr "Vindue"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:746
+#: src/electron/main.tsx:757
 msgid "Help"
 msgstr "Hjælp"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:750
+#: src/electron/main.tsx:761
 msgid "Chia Blockchain Wiki"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:756
+#: src/electron/main.tsx:767
 msgid "Frequently Asked Questions"
 msgstr "Ofte Stillet Spørgsmål"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:762
+#: src/electron/main.tsx:773
 msgid "Release Notes"
 msgstr "Udgivelses Noter"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:768
+#: src/electron/main.tsx:779
 msgid "Contribute on GitHub"
 msgstr "Bidrag på GitHub"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:777
+#: src/electron/main.tsx:788
 msgid "Report an Issue..."
 msgstr "Raportér et Problem..."
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:783
+#: src/electron/main.tsx:794
 msgid "Chat on Discord"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:789
+#: src/electron/main.tsx:800
 msgid "Follow on Twitter"
 msgstr "Følg på Twitter"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:801
+#: src/electron/main.tsx:812
 msgid "Chia"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:804
-#: src/electron/main.tsx:897
+#: src/electron/main.tsx:815
+#: src/electron/main.tsx:908
 msgid "About Chia Blockchain"
 msgstr "Om Chia Blockchain"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:810
+#: src/electron/main.tsx:821
 msgid "Check for Updates..."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:858
+#: src/electron/main.tsx:869
 msgid "Speech"
 msgstr "Tale"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:903
+#: src/electron/main.tsx:914
 msgid "Check for updates..."
 msgstr ""
 
@@ -302,6 +302,10 @@ msgstr ""
 msgid "*Usually it takes seconds to complete restarting."
 msgstr ""
 
+#: src/components/notification/NotificationAnnouncementDialog.tsx:39
+msgid "##### Redacted for security reason #####"
+msgstr ""
+
 #: src/components/plot/overview/PlotOverviewPlots.tsx:42
 msgid "+ Add a Plot"
 msgstr ""
@@ -364,7 +368,7 @@ msgstr "Aktion"
 #: src/components/farm/FarmFullNodeConnections.tsx:54
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:54
 #: src/components/fullNode/FullNodeConnections.tsx:65
-#: src/components/nfts/NFTContextualActions.tsx:587
+#: src/components/nfts/NFTContextualActions.tsx:590
 #: src/components/offers2/OfferIncomingTable.tsx:111
 msgid "Actions"
 msgstr "Fjern"
@@ -553,7 +557,7 @@ msgstr ""
 msgid "An NFT's provenance is a complete record of its ownership history. It provides a direct lineage that connects everyone who has owned the NFT, all the way back to the original artist. This helps to verify that the NFT is authentic."
 msgstr ""
 
-#: src/components/notification/NotificationAnnouncementDialog.tsx:35
+#: src/components/notification/NotificationAnnouncementDialog.tsx:49
 msgid "Announcement"
 msgstr ""
 
@@ -779,7 +783,7 @@ msgstr "Gennemse"
 
 #: src/components/nfts/NFTBurnDialog.tsx:90
 #: src/components/nfts/NFTBurnDialog.tsx:185
-#: src/components/nfts/NFTContextualActions.tsx:525
+#: src/components/nfts/NFTContextualActions.tsx:528
 msgid "Burn"
 msgstr ""
 
@@ -834,7 +838,7 @@ msgstr ""
 #: src/components/signVerify/VerifyMessage.tsx:271
 #: src/components/vcs/VCEditTitle.tsx:76
 #: src/components/vcs/VCRevokeDialog.tsx:28
-#: src/hooks/useOpenUnsafeLink.tsx:33
+#: src/hooks/useOpenUnsafeLink.tsx:62
 msgid "Cancel"
 msgstr "Annuller"
 
@@ -996,7 +1000,7 @@ msgstr ""
 #: src/components/nfts/MultipleDownloadDialog.tsx:116
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:328
 #: src/components/nfts/NFTTransferAction.tsx:166
-#: src/components/notification/NotificationAnnouncementDialog.tsx:75
+#: src/components/notification/NotificationAnnouncementDialog.tsx:87
 #: src/components/notification/NotificationSendDialog.tsx:308
 #: src/components/offers/ConfirmOfferCancellation.tsx:126
 #: src/components/offers/OfferShareDialog.tsx:373
@@ -1569,7 +1573,7 @@ msgid "Display sharing options after creating a new offer"
 msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:945
-#: src/hooks/useOpenUnsafeLink.tsx:64
+#: src/hooks/useOpenUnsafeLink.tsx:93
 msgid "Do not show this dialog again"
 msgstr ""
 
@@ -2112,7 +2116,7 @@ msgstr ""
 #~ msgid "Frequently Asked Questions"
 #~ msgstr "Frequently Asked Questions"
 
-#: src/components/notification/NotificationAnnouncementDialog.tsx:44
+#: src/components/notification/NotificationAnnouncementDialog.tsx:58
 msgid "From"
 msgstr ""
 
@@ -2343,7 +2347,7 @@ msgstr ""
 #~ msgid "Hidden ({0})"
 #~ msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:493
+#: src/components/nfts/NFTContextualActions.tsx:496
 msgid "Hide"
 msgstr ""
 
@@ -2834,7 +2838,7 @@ msgstr ""
 msgid "Memos"
 msgstr ""
 
-#: src/components/notification/NotificationAnnouncementDialog.tsx:53
+#: src/components/notification/NotificationAnnouncementDialog.tsx:67
 #: src/components/signVerify/SignMessage.tsx:200
 #: src/components/signVerify/VerifyMessage.tsx:207
 #: src/constants/WalletConnectCommands.tsx:184
@@ -3529,7 +3533,7 @@ msgstr ""
 msgid "Open in Browser"
 msgstr ""
 
-#: src/hooks/useOpenUnsafeLink.tsx:31
+#: src/hooks/useOpenUnsafeLink.tsx:60
 msgid "Open Link"
 msgstr ""
 
@@ -3720,7 +3724,7 @@ msgstr ""
 msgid "Pending removal"
 msgstr ""
 
-#: src/hooks/useOpenUnsafeLink.tsx:38
+#: src/hooks/useOpenUnsafeLink.tsx:67
 msgid "Please check the following link to verify the site you are going to visit. Proceed at your own risk."
 msgstr ""
 
@@ -4211,7 +4215,7 @@ msgstr ""
 msgid "Recursive Plot Scan"
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:566
+#: src/components/nfts/NFTContextualActions.tsx:569
 msgid "Refresh NFT data"
 msgstr ""
 
@@ -4685,7 +4689,7 @@ msgstr ""
 #~ msgid "Share Privately"
 #~ msgstr "Share Privately"
 
-#: src/components/nfts/NFTContextualActions.tsx:493
+#: src/components/nfts/NFTContextualActions.tsx:496
 msgid "Show"
 msgstr ""
 
@@ -5229,6 +5233,10 @@ msgstr "Denne plot NFT er tildelt en anden nøgle. Du kan stadig oprette plot fi
 msgid "This table shows you the last time your farm attempted to win a block challenge. <0>Learn more</0>"
 msgstr "Denne tabel viser hvornår din farmer sidst prøvede at vinde en blok udfordring. <0>Lær mere</0>"
 
+#: src/hooks/useOpenUnsafeLink.tsx:24
+msgid "This type of the URL is not allowed to open for security reasons."
+msgstr ""
+
 #: src/components/settings/SettingsIntegration.tsx:398
 msgid "This will reset all previously granted permissions across all Dapps that have been connected to. After resetting you will be asked to grant permission again."
 msgstr ""
@@ -5579,9 +5587,10 @@ msgstr ""
 msgid "Uris"
 msgstr ""
 
-#: src/components/notification/NotificationAnnouncementDialog.tsx:62
+#: src/components/notification/NotificationAnnouncementDialog.tsx:76
 #: src/constants/WalletConnectCommands.tsx:964
-#: src/hooks/useOpenUnsafeLink.tsx:43
+#: src/hooks/useOpenUnsafeLink.tsx:27
+#: src/hooks/useOpenUnsafeLink.tsx:72
 msgid "URL"
 msgstr ""
 
@@ -5714,7 +5723,7 @@ msgstr ""
 #~ msgid "View on Hashgreen DEX"
 #~ msgstr "View on Hashgreen DEX"
 
-#: src/components/nfts/NFTContextualActions.tsx:643
+#: src/components/nfts/NFTContextualActions.tsx:646
 #: src/components/offers/OfferShareDialog.tsx:441
 msgid "View on MintGarden"
 msgstr ""
@@ -5727,7 +5736,7 @@ msgstr ""
 msgid "View on Offerpool"
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:651
+#: src/components/nfts/NFTContextualActions.tsx:654
 #: src/components/offers/OfferShareDialog.tsx:538
 msgid "View on Spacescan.io"
 msgstr ""
@@ -5866,6 +5875,10 @@ msgstr ""
 msgid "Warning Threshold"
 msgstr ""
 
+#: src/hooks/useOpenUnsafeLink.tsx:21
+msgid "Warning: Invalid URL"
+msgstr ""
+
 #: src/components/app/AppVersionWarning.tsx:30
 msgid "Warning: Mismatched Versions"
 msgstr ""
@@ -5875,7 +5888,7 @@ msgstr ""
 msgid "Warning: Verify that the offered CAT asset IDs match the asset IDs of the tokens you expect to receive."
 msgstr ""
 
-#: src/hooks/useOpenUnsafeLink.tsx:30
+#: src/hooks/useOpenUnsafeLink.tsx:59
 msgid "Warning: You're about to visit a website"
 msgstr ""
 
