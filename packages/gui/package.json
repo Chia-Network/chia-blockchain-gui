@@ -53,7 +53,7 @@
     "@mui/x-charts": "7.3.2",
     "@rehooks/local-storage": "2.4.4",
     "@walletconnect/sign-client": "2.10.0",
-    "@walletconnect/utils": "2.10.0",
+    "@walletconnect/utils": "2.16.3",
     "axios": "^1.7.4",
     "bech32": "2.0.0",
     "bignumber.js": "9.1.1",
