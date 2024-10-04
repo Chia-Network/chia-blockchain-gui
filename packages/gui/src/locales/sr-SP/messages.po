@@ -5234,7 +5234,11 @@ msgid "This table shows you the last time your farm attempted to win a block cha
 msgstr "Ова табела ти показује када је твоја фарма последњи пут покушала да победи у блок изазову. <0> Сазнај више </0>"
 
 #: src/hooks/useOpenUnsafeLink.tsx:24
-msgid "This type of the URL is not allowed to open for security reasons."
+#~ msgid "This type of the URL is not allowed to open for security reasons."
+#~ msgstr ""
+
+#: src/hooks/useOpenUnsafeLink.tsx:24
+msgid "This URL is not allowed for security reasons."
 msgstr ""
 
 #: src/components/settings/SettingsIntegration.tsx:398
@@ -5876,11 +5880,15 @@ msgid "Warning Threshold"
 msgstr ""
 
 #: src/hooks/useOpenUnsafeLink.tsx:21
-msgid "Warning: Invalid URL"
-msgstr ""
+#~ msgid "Warning: Invalid URL"
+#~ msgstr ""
 
 #: src/components/app/AppVersionWarning.tsx:30
 msgid "Warning: Mismatched Versions"
+msgstr ""
+
+#: src/hooks/useOpenUnsafeLink.tsx:21
+msgid "Warning: Unsupported URL"
 msgstr ""
 
 #: src/components/offers/OfferSummary.tsx:134

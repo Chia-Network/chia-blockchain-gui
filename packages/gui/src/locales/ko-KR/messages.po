@@ -5234,7 +5234,11 @@ msgid "This table shows you the last time your farm attempted to win a block cha
 msgstr "이 표는 농장에서 마지막으로 블록 챌린지에서 승리를 시도한 시간을 보여줍니다. <0> 자세히 알아보기 </ 0>"
 
 #: src/hooks/useOpenUnsafeLink.tsx:24
-msgid "This type of the URL is not allowed to open for security reasons."
+#~ msgid "This type of the URL is not allowed to open for security reasons."
+#~ msgstr ""
+
+#: src/hooks/useOpenUnsafeLink.tsx:24
+msgid "This URL is not allowed for security reasons."
 msgstr ""
 
 #: src/components/settings/SettingsIntegration.tsx:398
@@ -5876,11 +5880,15 @@ msgid "Warning Threshold"
 msgstr ""
 
 #: src/hooks/useOpenUnsafeLink.tsx:21
-msgid "Warning: Invalid URL"
-msgstr ""
+#~ msgid "Warning: Invalid URL"
+#~ msgstr ""
 
 #: src/components/app/AppVersionWarning.tsx:30
 msgid "Warning: Mismatched Versions"
+msgstr ""
+
+#: src/hooks/useOpenUnsafeLink.tsx:21
+msgid "Warning: Unsupported URL"
 msgstr ""
 
 #: src/components/offers/OfferSummary.tsx:134
