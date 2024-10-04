@@ -5238,8 +5238,12 @@ msgid "This table shows you the last time your farm attempted to win a block cha
 msgstr "This table shows you the last time your farm attempted to win a block challenge. <0>Learn more</0>"
 
 #: src/hooks/useOpenUnsafeLink.tsx:24
-msgid "This type of the URL is not allowed to open for security reasons."
-msgstr "This type of the URL is not allowed to open for security reasons."
+#~ msgid "This type of the URL is not allowed to open for security reasons."
+#~ msgstr "This type of the URL is not allowed to open for security reasons."
+
+#: src/hooks/useOpenUnsafeLink.tsx:24
+msgid "This URL is not allowed for security reasons."
+msgstr "This URL is not allowed for security reasons."
 
 #: src/components/settings/SettingsIntegration.tsx:398
 msgid "This will reset all previously granted permissions across all Dapps that have been connected to. After resetting you will be asked to grant permission again."
@@ -5880,12 +5884,16 @@ msgid "Warning Threshold"
 msgstr ""
 
 #: src/hooks/useOpenUnsafeLink.tsx:21
-msgid "Warning: Invalid URL"
-msgstr "Warning: Invalid URL"
+#~ msgid "Warning: Invalid URL"
+#~ msgstr "Warning: Invalid URL"
 
 #: src/components/app/AppVersionWarning.tsx:30
 msgid "Warning: Mismatched Versions"
 msgstr ""
+
+#: src/hooks/useOpenUnsafeLink.tsx:21
+msgid "Warning: Unsupported URL"
+msgstr "Warning: Unsupported URL"
 
 #: src/components/offers/OfferSummary.tsx:134
 #: src/components/offers2/OfferBuilderValue.tsx:220
