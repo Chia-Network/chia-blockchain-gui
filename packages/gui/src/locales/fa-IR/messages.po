@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-09-29 00:05\n"
+"PO-Revision-Date: 2024-10-06 00:05\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -304,7 +304,7 @@ msgstr "*معمولاً چند ثانیه طول میکشد تا راه اندا
 
 #: src/components/notification/NotificationAnnouncementDialog.tsx:39
 msgid "##### Redacted for security reason #####"
-msgstr ""
+msgstr "##### به دلایل امنیتی ویرایش شد #####"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:42
 msgid "+ Add a Plot"
@@ -2474,20 +2474,16 @@ msgstr "در حال شروع..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
+msgstr "مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
 "موجودی قابل مصرف شما برای پوشش مبلغ پیشنهاد کافی است."
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
+msgstr "مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
 "موجودی قابل مصرف شما برای پوشش مبلغ پیشنهاد کافی است."
 
 #: src/components/farm/PoolingHealth.tsx:302
@@ -5239,11 +5235,11 @@ msgstr "این جدول به شما نشان میدهد که آخرین بار �
 
 #: src/hooks/useOpenUnsafeLink.tsx:24
 #~ msgid "This type of the URL is not allowed to open for security reasons."
-#~ msgstr ""
+#~ msgstr "This type of the URL is not allowed to open for security reasons."
 
 #: src/hooks/useOpenUnsafeLink.tsx:24
 msgid "This URL is not allowed for security reasons."
-msgstr ""
+msgstr "این آدرس به دلایل امنیتی مجاز نیست."
 
 #: src/components/settings/SettingsIntegration.tsx:398
 msgid "This will reset all previously granted permissions across all Dapps that have been connected to. After resetting you will be asked to grant permission again."
@@ -5885,7 +5881,7 @@ msgstr "آستانه هشدار"
 
 #: src/hooks/useOpenUnsafeLink.tsx:21
 #~ msgid "Warning: Invalid URL"
-#~ msgstr ""
+#~ msgstr "Warning: Invalid URL"
 
 #: src/components/app/AppVersionWarning.tsx:30
 msgid "Warning: Mismatched Versions"
@@ -5893,7 +5889,7 @@ msgstr "هشدار: نسخه های نامتناسب"
 
 #: src/hooks/useOpenUnsafeLink.tsx:21
 msgid "Warning: Unsupported URL"
-msgstr ""
+msgstr "هشدار: آدرس پشتیبانی نشده است"
 
 #: src/components/offers/OfferSummary.tsx:134
 #: src/components/offers2/OfferBuilderValue.tsx:220
@@ -6113,3 +6109,4 @@ msgstr "برای ایجاد حساب کاربری، موجودی قابل خرج
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "برای انجام مطالبه خودکار، باید کیف پول شما در حال اجرا باشد."
+

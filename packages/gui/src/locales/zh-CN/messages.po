@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-09-29 00:05\n"
+"PO-Revision-Date: 2024-10-06 00:05\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -304,7 +304,7 @@ msgstr "*通常情况下，完成重启需要几秒钟。"
 
 #: src/components/notification/NotificationAnnouncementDialog.tsx:39
 msgid "##### Redacted for security reason #####"
-msgstr ""
+msgstr "##### 因安全原因而修改###"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:42
 msgid "+ Add a Plot"
@@ -2474,20 +2474,16 @@ msgstr "正在初始化..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"可用资金不足，无法接受报价。请确保您的\n"
+msgstr "可用资金不足，无法接受报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"可用的资金不足，无法创建报价。请确保您的\n"
+msgstr "可用的资金不足，无法创建报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
 #: src/components/farm/PoolingHealth.tsx:302
@@ -5239,11 +5235,11 @@ msgstr "这个表格里面显示的是你的农场尝试过的区块挑战. <0>�
 
 #: src/hooks/useOpenUnsafeLink.tsx:24
 #~ msgid "This type of the URL is not allowed to open for security reasons."
-#~ msgstr ""
+#~ msgstr "This type of the URL is not allowed to open for security reasons."
 
 #: src/hooks/useOpenUnsafeLink.tsx:24
 msgid "This URL is not allowed for security reasons."
-msgstr ""
+msgstr "此网址由于安全原因不允许使用。"
 
 #: src/components/settings/SettingsIntegration.tsx:398
 msgid "This will reset all previously granted permissions across all Dapps that have been connected to. After resetting you will be asked to grant permission again."
@@ -5885,7 +5881,7 @@ msgstr "警告阈值"
 
 #: src/hooks/useOpenUnsafeLink.tsx:21
 #~ msgid "Warning: Invalid URL"
-#~ msgstr ""
+#~ msgstr "Warning: Invalid URL"
 
 #: src/components/app/AppVersionWarning.tsx:30
 msgid "Warning: Mismatched Versions"
@@ -5893,7 +5889,7 @@ msgstr "警告：不匹配的版本"
 
 #: src/hooks/useOpenUnsafeLink.tsx:21
 msgid "Warning: Unsupported URL"
-msgstr ""
+msgstr "警告：不支持的网址"
 
 #: src/components/offers/OfferSummary.tsx:134
 #: src/components/offers2/OfferBuilderValue.tsx:220
@@ -6113,3 +6109,4 @@ msgstr "可用余额必须大于1 mojo才能创建个人资料"
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "需确保钱包正在运行才能完成自动确认。"
+
