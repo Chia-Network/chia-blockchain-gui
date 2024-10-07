@@ -76,6 +76,7 @@ enum WalletConnectCommandParamName {
   OFFER = 'offer',
   OFFER_DATA = 'offerData',
   OFFER_ID = 'offerId',
+  OFFER_ONLY = 'offerOnly',
   OVERWRITE = 'overwrite',
   PAGE = 'page',
   MAX_PAGE_SIZE = 'maxPageSize',

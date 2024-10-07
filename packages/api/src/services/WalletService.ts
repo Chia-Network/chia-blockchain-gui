@@ -320,6 +320,7 @@ export default class Wallet extends Service {
       validateOnly?: boolean;
       disableJSONFormatting?: boolean;
       maxTime?: number;
+      offerOnly?: boolean;
       extraConditions?: any[];
       coinIds?: string[];
     } & AllowUnsyncedArg,
