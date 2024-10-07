@@ -43,6 +43,7 @@ enum WalletConnectCommandParamName {
   OFFER = 'offer',
   OFFER_DATA = 'offerData',
   OFFER_ID = 'offerId',
+  OFFER_ONLY = 'offerOnly',
   PROOFS = 'proofs',
   PROVIDER_INNER_PUZHASH = 'providerInnerPuzhash',
   PUBKEY = 'pubkey',
