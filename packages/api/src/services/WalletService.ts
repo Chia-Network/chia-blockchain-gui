@@ -245,6 +245,7 @@ export default class Wallet extends Service {
     validateOnly?: boolean;
     disableJSONFormatting?: boolean;
     maxTime?: number;
+    offerOnly?: boolean;
   }) {
     const { disableJSONFormatting, driverDict, ...restArgs } = args;
     return this.command<{ offer: string; tradeRecord: TradeRecord }>(

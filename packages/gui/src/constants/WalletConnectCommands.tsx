@@ -395,6 +395,12 @@ const walletConnectCommands: WalletConnectCommand[] = [
         type: 'BigNumber',
         displayComponent: (value) => <MojoToChia value={value} />,
       },
+      {
+        name: WalletConnectCommandParamName.OFFER_ONLY,
+        label: <Trans>Omit transactions data</Trans>,
+        isOptional: true,
+        type: 'boolean',
+      },
     ],
   },
   {
