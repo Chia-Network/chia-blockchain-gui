@@ -22,7 +22,7 @@ export type WalletConnectRequestPermissionsConfirmDialogProps = {
 };
 
 export default function WalletConnectRequestPermissionsConfirmDialog(
-  props: WalletConnectRequestPermissionsConfirmDialogProps
+  props: WalletConnectRequestPermissionsConfirmDialogProps,
 ) {
   const {
     topic,
@@ -91,7 +91,7 @@ export default function WalletConnectRequestPermissionsConfirmDialog(
                     <Typography color="textSecondary">
                       {displayComponent
                         ? displayComponent(value, params, values, handleChangeValues)
-                        : value?.toString() ?? <Trans>Not Available</Trans>}
+                        : (value?.toString() ?? <Trans>Not Available</Trans>)}
                     </Typography>
                   </Flex>
                 );

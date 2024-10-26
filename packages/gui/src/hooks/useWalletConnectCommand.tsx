@@ -26,7 +26,7 @@ type UseWalletConnectCommandOptions = {
 function parseNotification(
   fingerprint: number,
   values: Record<string, string | number | boolean>,
-  pair: Pair
+  pair: Pair,
 ): Notification {
   const { type, allFingerprints, offerData } = values;
 
@@ -133,7 +133,7 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
           params={params}
           values={values}
           onChange={onChange}
-        />
+        />,
       );
       return isConfirmed;
     }
@@ -149,7 +149,7 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
         params={params}
         values={values}
         onChange={onChange}
-      />
+      />,
     );
     return isConfirmed;
   }
