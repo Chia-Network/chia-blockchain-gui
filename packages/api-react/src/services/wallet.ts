@@ -14,6 +14,7 @@ const tagTypes = [
   'DID',
   'DIDCoinInfo',
   'DIDInfo',
+  'DIDMetadata',
   'DIDName',
   'DIDPubKey',
   'DIDRecoveryInfo',
@@ -1148,10 +1149,11 @@ export const walletApi = apiWithTag.injectEndpoints({
 
     updateDIDMetadata: mutation(build, DID, 'updateDidMetadata', {
       invalidatesTags: (_result, _error, { walletId }) => [
-        { type: 'DIDInfo', id: walletId },
+        { type: 'DIDInfo' },
         { type: 'DIDCoinInfo', id: walletId },
         { type: 'Wallets', id: walletId },
         { type: 'DIDWallet', id: walletId },
+        { type: 'DIDMetadata', id: walletId },
       ],
     }),
 

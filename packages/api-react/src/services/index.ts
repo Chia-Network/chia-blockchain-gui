@@ -120,6 +120,7 @@ export const {
   useGetBlockQuery,
   useGetBlockRecordQuery,
   useGetFeeEstimateQuery,
+  usePushTxMutation,
 } = fullNode;
 
 // wallet hooks
@@ -201,6 +202,7 @@ export const {
   useGetDIDNameQuery,
   useSetDIDNameMutation,
   useGetDIDRecoveryListQuery,
+  useGetDIDMetadataQuery,
   useUpdateDIDMetadataMutation,
   useGetDIDInformationNeededForRecoveryQuery,
   useGetDIDCurrentCoinInfoQuery,
@@ -216,6 +218,7 @@ export const {
   useGetNFTWalletsWithDIDsQuery,
   useGetNFTInfoQuery,
   useLazyGetNFTInfoQuery,
+  useMintBulkMutation,
   useMintNFTMutation,
   useTransferNFTMutation,
   useSetNFTDIDMutation,

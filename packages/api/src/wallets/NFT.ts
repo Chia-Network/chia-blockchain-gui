@@ -1,6 +1,7 @@
 import type BigNumber from 'bignumber.js';
 
 import type CalculateRoyaltiesRequest from '../@types/CalculateRoyaltiesRequest';
+import type Coin from '../@types/Coin';
 import type NFTInfo from '../@types/NFTInfo';
 import type SpendBundle from '../@types/SpendBundle';
 import Wallet from '../services/WalletService';
@@ -39,20 +40,20 @@ export default class NFTWallet extends Wallet {
   async mintBulk(args: {
     walletId: number;
     metadataList: any[];
-    royaltyPercentage: number;
-    royaltyAddress: string;
-    targetList: string[];
-    mintNumberStart: number;
-    mintTotal: number;
-    xchCoinList: string[];
-    xchChangeTarget: string;
-    newInnerpuzhash: string;
-    newP2Puzhash: string;
-    didCoinDict: any;
-    didLineageParentHex: string;
-    mintFromDid: boolean;
-    fee: number;
-    reusePuzhash: boolean;
+    royaltyPercentage?: number;
+    royaltyAddress?: string;
+    targetList?: string[];
+    mintNumberStart?: number;
+    mintTotal?: number;
+    xchCoins?: string[];
+    xchChangeTarget?: string;
+    newInnerpuzhash?: string;
+    newP2Puzhash?: string;
+    didCoin?: Coin;
+    didLineageParent?: string;
+    mintFromDid?: boolean;
+    fee?: number;
+    reusePuzhash?: boolean;
   }) {
     return this.command<{
       spendBundle: SpendBundle;

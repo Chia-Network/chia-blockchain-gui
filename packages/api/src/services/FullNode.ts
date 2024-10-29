@@ -54,7 +54,7 @@ export default class FullNode extends Service {
   }
 
   async pushTx(args: { spendBundle: SpendBundle }) {
-    return this.command<void>('push_tx', args);
+    return this.command<{ status: string }>('push_tx', args);
   }
 
   onBlockchainState(callback: (data: any, message: Message) => void, processData?: (data: any) => any) {

@@ -7,7 +7,9 @@ import api, { baseQuery } from '../api';
 import onCacheEntryAddedInvalidate from '../utils/onCacheEntryAddedInvalidate';
 import { query, mutation } from '../utils/reduxToolkitEndpointAbstractions';
 
-const apiWithTag = api.enhanceEndpoints({ addTagTypes: ['BlockchainState', 'FeeEstimate', 'FullNodeConnections'] });
+const apiWithTag = api.enhanceEndpoints({
+  addTagTypes: ['BlockchainState', 'FeeEstimate', 'FullNodeConnections', 'Transactions'],
+});
 
 // // Examples with levels of abstraction
 // export const myTestApi = apiWithTag.injectEndpoints({

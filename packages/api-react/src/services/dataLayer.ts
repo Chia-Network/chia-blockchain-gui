@@ -21,6 +21,7 @@ export const apiWithTag = api.enhanceEndpoints({
     'StoreMirrors',
     'PendingRoots',
     'Plugins',
+    'Files',
   ],
 });
 export const dataLayerApi = apiWithTag.injectEndpoints({
@@ -33,7 +34,7 @@ export const dataLayerApi = apiWithTag.injectEndpoints({
     }),
 
     addMissingFiles: mutation(build, DataLayer, 'addMissingFiles', {
-      invalidatesTags: (_result, _error, { ids }) => [{ type: 'Files', ids }],
+      invalidatesTags: (_result, _error, { ids }) => ids.map((id: string) => ({ type: 'Files', id })),
     }),
 
     batchUpdate: mutation(build, DataLayer, 'batchUpdate', {
@@ -44,7 +45,7 @@ export const dataLayerApi = apiWithTag.injectEndpoints({
     }),
 
     cancelOffer: mutation(build, DataLayer, 'cancelOffer', {
-      invalidatesTags: (_result, _error, { tradeId }) => [{ type: 'Offers', tradeId }],
+      invalidatesTags: (_result, _error, { tradeId }) => [{ type: 'Offers', id: tradeId }],
     }),
 
     checkPlugins: query(build, DataLayer, 'checkPlugins', {
@@ -52,7 +53,7 @@ export const dataLayerApi = apiWithTag.injectEndpoints({
     }),
 
     clearPendingRoots: mutation(build, DataLayer, 'clearPendingRoots', {
-      invalidatesTags: (_result, _error, { storeId }) => [{ type: 'PendingRoots', storeId }],
+      invalidatesTags: (_result, _error, { storeId }) => [{ type: 'PendingRoots', id: storeId }],
     }),
 
     createDataStore: mutation(build, DataLayer, 'createDataStore', {
