@@ -222,8 +222,8 @@ export default class DataLayer extends Service {
     return this.command<{}>('subscribe', args);
   }
 
-  async subscriptions(args: { id: string; urls: string[] }) {
-    return this.command<{}>('subscriptions', args);
+  async subscriptions(args: {}) {
+    return this.command<{ storeIds: string[] }>('subscriptions', args);
   }
 
   async takeOffer(args: {

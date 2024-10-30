@@ -4,6 +4,7 @@ import type CalculateRoyaltiesRequest from '../@types/CalculateRoyaltiesRequest'
 import type Coin from '../@types/Coin';
 import type NFTInfo from '../@types/NFTInfo';
 import type SpendBundle from '../@types/SpendBundle';
+import type Transaction from '../@types/Transaction';
 import Wallet from '../services/WalletService';
 
 export default class NFTWallet extends Wallet {
@@ -39,13 +40,22 @@ export default class NFTWallet extends Wallet {
 
   async mintBulk(args: {
     walletId: number;
-    metadataList: any[];
+    metadataList: Array<{
+      uris: string[];
+      metaUris: string[];
+      licenseUris: string[];
+      hash: string;
+      editionNumber?: number;
+      editionTotal?: number;
+      metaHash?: string;
+      licenseHash?: string;
+    }>;
     royaltyPercentage?: number;
     royaltyAddress?: string;
     targetList?: string[];
     mintNumberStart?: number;
     mintTotal?: number;
-    xchCoins?: string[];
+    xchCoins?: Coin[];
     xchChangeTarget?: string;
     newInnerpuzhash?: string;
     newP2Puzhash?: string;
@@ -55,9 +65,19 @@ export default class NFTWallet extends Wallet {
     fee?: number;
     reusePuzhash?: boolean;
   }) {
-    return this.command<{
-      spendBundle: SpendBundle;
-    }>('nft_mint_bulk', args);
+    return this.command<
+      | {
+          success: true;
+          spendBundle: SpendBundle;
+          nftIdList: string[];
+          transactions: Transaction[];
+          signingResponse?: string;
+        }
+      | {
+          success: false;
+          error: string;
+        }
+    >('nft_mint_bulk', args);
   }
 
   async mintNFT(args: {
