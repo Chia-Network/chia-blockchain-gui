@@ -34,7 +34,7 @@ export const dataLayerApi = apiWithTag.injectEndpoints({
     }),
 
     addMissingFiles: mutation(build, DataLayer, 'addMissingFiles', {
-      invalidatesTags: (_result, _error, { ids }) => ids.map((id: string) => ({ type: 'Files', id })),
+      invalidatesTags: (_result, _error, { ids }) => (ids ? ids.map((id: string) => ({ type: 'Files', id })) : []),
     }),
 
     batchUpdate: mutation(build, DataLayer, 'batchUpdate', {
@@ -68,7 +68,7 @@ export const dataLayerApi = apiWithTag.injectEndpoints({
     }),
 
     deleteMirror: mutation(build, DataLayer, 'deleteMirror', {
-      invalidatesTags: (_result, _error, { id }) => [{ type: 'Mirrors', id }],
+      invalidatesTags: (_result, _error, { coinId: id }) => [{ type: 'Mirrors', id }],
     }),
 
     getAncestors: query(build, DataLayer, 'getAncestors', {
