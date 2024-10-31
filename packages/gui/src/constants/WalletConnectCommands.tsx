@@ -16,7 +16,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
     label: <Trans>Request Permissions</Trans>,
     description: <Trans>App is requesting permission to execute these commands</Trans>,
     service: 'EXECUTE',
-    execute: {},
+    execute: (values) => ({ values }),
     params: [
       {
         name: WalletConnectCommandParamName.COMMANDS,

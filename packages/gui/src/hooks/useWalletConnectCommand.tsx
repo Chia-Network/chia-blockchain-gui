@@ -114,14 +114,11 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
       return pair.bypassCommands[command];
     }
     if (command === 'requestPermissions') {
-      let hasPermissions = true;
-      if (values.commands) {
-        values.commands.forEach((cmd: string) => {
-          if (!pair.bypassCommands || !pair.bypassCommands[cmd]) {
-            hasPermissions = false;
-          }
-        });
+      if (!values.commands || values.commands.some((cmd: string) => cmd === 'requestPermissions')) {
+        return false;
       }
+      const { bypassCommands } = pair;
+      const hasPermissions = !!bypassCommands && values.commands.every((cmd: string) => bypassCommands[cmd]);
       if (hasPermissions) {
         return true;
       }
@@ -243,9 +240,9 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
     }
 
     // validate current fingerprint again
-    const currentLoggedInFingerptintPromise = store.dispatch(api.endpoints.getLoggedInFingerprint.initiate());
-    const { data: currentFingerprintAfterWait } = await currentLoggedInFingerptintPromise;
-    currentLoggedInFingerptintPromise.unsubscribe();
+    const currentLoggedInFingerprintPromise = store.dispatch(api.endpoints.getLoggedInFingerprint.initiate());
+    const { data: currentFingerprintAfterWait } = await currentLoggedInFingerprintPromise;
+    currentLoggedInFingerprintPromise.unsubscribe();
 
     if (currentFingerprintAfterWait !== fingerprint) {
       throw new Error(`Fingerprint changed during execution`);

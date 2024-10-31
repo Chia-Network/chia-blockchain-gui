@@ -1,8 +1,8 @@
 import { useGetKeysQuery } from '@chia-network/api-react';
 import { ConfirmDialog, Flex, LoadingOverlay } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import { Typography, Divider } from '@mui/material';
-import React, { useState, useMemo } from 'react';
+import { Alert, Typography, Divider } from '@mui/material';
+import React from 'react';
 
 import type WalletConnectCommandParam from '../../@types/WalletConnectCommandParam';
 import walletConnectCommands from '../../constants/WalletConnectCommands';
@@ -35,47 +35,84 @@ export default function WalletConnectRequestPermissionsConfirmDialog(
     onChange,
   } = props;
 
-  const [values, setValues] = useState(defaultValues);
+  const [values, setValues] = React.useState(defaultValues);
   const { getPairBySession, bypassCommands } = useWalletConnectPairs();
-  const { data: keys, isLoading: isLoadingPublicKeys } = useGetKeysQuery();
+  const { data: keys, isLoading: isLoadingPublicKeys } = useGetKeysQuery({});
   const key = keys?.find((item) => item.fingerprint === fingerprint);
 
-  const pair = useMemo(() => getPairBySession(topic), [topic, getPairBySession]);
+  const pair = React.useMemo(() => getPairBySession(topic), [topic, getPairBySession]);
 
-  function handleClose(confirmed: boolean) {
-    if (confirmed) {
-      params.forEach((element) => {
-        if (element.name === 'commands') {
-          // filter out commands that don't allow bypassing confirmation
-          const cmds = values[element.name].filter((cmd: string) => {
-            const cmdDescription = walletConnectCommands.find((item) => item.command === cmd);
-            return cmdDescription?.bypassConfirm;
-          });
-          bypassCommands(topic, cmds, true);
-        }
-      });
+  const targetCommands = React.useMemo(() => {
+    for (let i = 0; i < params.length; i++) {
+      const p = params[i];
+      if (p.name === 'commands') {
+        return (values.commands as string[]).map((cmd) => {
+          const cmdDescription = walletConnectCommands.find((item) => `chia_${item.command}` === cmd);
+          return {
+            command: cmdDescription?.command ?? cmd.replace('chia_', ''),
+            bypassConfirm: Boolean(cmdDescription?.bypassConfirm),
+          };
+        });
+      }
     }
+    return [];
+  }, [params, values]);
 
-    onClose?.(confirmed);
-  }
+  const disableApprove = React.useMemo(() => targetCommands.some((cmd) => !cmd.bypassConfirm), [targetCommands]);
 
-  function handleChangeValues(newValues: Record<string, any>) {
-    setValues(newValues);
-    onChange?.(newValues);
-  }
+  const handleClose = React.useCallback(
+    (confirmed: boolean) => {
+      if (confirmed) {
+        // filter out commands that don't allow bypassing confirmation
+        const bypassingCommands = targetCommands.filter((cmd) => cmd.bypassConfirm).map((cmd) => cmd.command);
+        bypassCommands(topic, bypassingCommands, true);
+      }
+
+      onClose?.(confirmed);
+    },
+    [onClose, topic, bypassCommands, targetCommands],
+  );
+
+  const handleChangeValues = React.useCallback(
+    (newValues: Record<string, any>) => {
+      setValues(newValues);
+      onChange?.(newValues);
+    },
+    [setValues, onChange],
+  );
 
   return (
     <ConfirmDialog
       title={<Trans>Requesting Permissions</Trans>}
       confirmColor="primary"
-      confirmTitle={<Trans>Confirm</Trans>}
+      confirmTitle={<Trans>Approve</Trans>}
       cancelTitle={<Trans>Reject</Trans>}
       onClose={handleClose}
       open={open}
+      disableConfirmButton={disableApprove}
     >
       <LoadingOverlay isLoading={isLoadingPublicKeys}>
         <Flex flexDirection="column" gap={2}>
-          <Typography variant="body1">An app has requested permission to execute the following commands.</Typography>
+          <Typography variant="body1">
+            <Trans>An app has requested permission to execute the following commands.</Trans>
+          </Typography>
+          <Typography variant="body1">
+            <Trans>
+              After you approve, the connected app can execute these commands on your behalf without confirmation.
+            </Trans>
+          </Typography>
+
+          {disableApprove && (
+            <Alert severity="warning">
+              <Trans>The following commands are not allowed to bypass confirmation.</Trans>
+              <Typography color="textSecondary">
+                {targetCommands
+                  .filter((cmd) => !cmd.bypassConfirm)
+                  .map((cmd) => cmd.command)
+                  .join(', ')}
+              </Typography>
+            </Alert>
+          )}
 
           {params.length > 0 && (
             <Flex flexDirection="column" gap={2}>
