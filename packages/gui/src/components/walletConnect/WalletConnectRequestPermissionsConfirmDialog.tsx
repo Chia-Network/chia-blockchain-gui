@@ -47,9 +47,10 @@ export default function WalletConnectRequestPermissionsConfirmDialog(
       const p = params[i];
       if (p.name === 'commands') {
         return (values.commands as string[]).map((cmd) => {
-          const cmdDescription = walletConnectCommands.find((item) => `chia_${item.command}` === cmd);
+          const cmdWithoutPrefix = cmd.replace('chia_', '');
+          const cmdDescription = walletConnectCommands.find((item) => item.command === cmdWithoutPrefix);
           return {
-            command: cmdDescription?.command ?? cmd.replace('chia_', ''),
+            command: cmdDescription?.command ?? cmdWithoutPrefix,
             bypassConfirm: Boolean(cmdDescription?.bypassConfirm),
           };
         });
