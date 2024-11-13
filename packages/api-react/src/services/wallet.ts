@@ -14,6 +14,7 @@ const tagTypes = [
   'DID',
   'DIDCoinInfo',
   'DIDInfo',
+  'DIDMetadata',
   'DIDName',
   'DIDPubKey',
   'DIDRecoveryInfo',
@@ -1132,7 +1133,28 @@ export const walletApi = apiWithTag.injectEndpoints({
     }),
 
     getDIDInfo: query(build, DID, 'getDidInfo', {
-      providesTags: (result, _error, { coinOrDIDId }) => (result ? [{ type: 'DIDInfo', id: coinOrDIDId }] : []),
+      providesTags: (result, _error, { coinId }) => (result ? [{ type: 'DIDInfo', id: coinId }] : []),
+    }),
+
+    // findLostDID: mutation(build, DID, 'findLostDID', {
+    //   invalidatesTags: (_result, _error, { coinId }) => [
+    //     { type: 'DIDInfo', id: coinId },
+    //     { type: 'DIDCoinInfo', id: coinId },
+    //   ],
+    // }),
+
+    getDIDMetadata: query(build, DID, 'getDidMetadata', {
+      providesTags: (result, _error, { walletId }) => (result ? [{ type: 'DIDMetadata', id: walletId }] : []),
+    }),
+
+    updateDIDMetadata: mutation(build, DID, 'updateDidMetadata', {
+      invalidatesTags: (_result, _error, { walletId }) => [
+        { type: 'DIDInfo' },
+        { type: 'DIDCoinInfo', id: walletId },
+        { type: 'Wallets', id: walletId },
+        { type: 'DIDWallet', id: walletId },
+        { type: 'DIDMetadata', id: walletId },
+      ],
     }),
 
     // createDIDBackup: did_create_backup_file needs an RPC change (remove filename param, return file contents)
@@ -1354,6 +1376,10 @@ export const walletApi = apiWithTag.injectEndpoints({
       providesTags: (result, _error) => (result ? [{ type: 'NFTInfo', id: result.launcherId }] : []),
     }),
 
+    mintBulk: mutation(build, NFT, 'mintBulk', {
+      invalidatesTags: (result, _error) => (result ? [{ type: 'NFTInfo', id: 'LIST' }] : []),
+    }),
+
     mintNFT: mutation(build, NFT, 'mintNFT', {
       invalidatesTags: (result, _error) => (result ? [{ type: 'NFTInfo', id: 'LIST' }] : []),
     }),
@@ -1527,6 +1553,9 @@ export const {
   useGetDIDPubKeyQuery,
   useGetDIDQuery,
   useGetDIDsQuery,
+  useGetDIDMetadataQuery,
+  useUpdateDIDMetadataMutation,
+  // useFindLostDIDMutation,
   useGetDIDNameQuery,
   useSetDIDNameMutation,
   useGetDIDRecoveryListQuery,
@@ -1544,6 +1573,7 @@ export const {
   useGetNFTWalletsWithDIDsQuery,
   useGetNFTInfoQuery,
   useLazyGetNFTInfoQuery,
+  useMintBulkMutation,
   useMintNFTMutation,
   useTransferNFTMutation,
   useSetNFTDIDMutation,

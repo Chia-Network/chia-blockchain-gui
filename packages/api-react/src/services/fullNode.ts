@@ -7,7 +7,9 @@ import api, { baseQuery } from '../api';
 import onCacheEntryAddedInvalidate from '../utils/onCacheEntryAddedInvalidate';
 import { query, mutation } from '../utils/reduxToolkitEndpointAbstractions';
 
-const apiWithTag = api.enhanceEndpoints({ addTagTypes: ['BlockchainState', 'FeeEstimate', 'FullNodeConnections'] });
+const apiWithTag = api.enhanceEndpoints({
+  addTagTypes: ['BlockchainState', 'FeeEstimate', 'FullNodeConnections', 'Transactions'],
+});
 
 // // Examples with levels of abstraction
 // export const myTestApi = apiWithTag.injectEndpoints({
@@ -142,6 +144,10 @@ export const fullNodeApi = apiWithTag.injectEndpoints({
     getFeeEstimate: query(build, FullNode, 'getFeeEstimate', {
       providesTags: [{ type: 'FeeEstimate' }],
     }),
+
+    pushTx: mutation(build, FullNode, 'pushTx', {
+      invalidatesTags: [{ type: 'Transactions', id: 'LIST' }],
+    }),
   }),
 });
 
@@ -156,4 +162,5 @@ export const {
   useGetBlockQuery,
   useGetBlockRecordQuery,
   useGetFeeEstimateQuery,
+  usePushTxMutation,
 } = fullNodeApi;

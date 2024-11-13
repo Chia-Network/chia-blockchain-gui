@@ -12,6 +12,21 @@ import WalletConnectOfferPreview from '../components/walletConnect/WalletConnect
 
 const walletConnectCommands: WalletConnectCommand[] = [
   {
+    command: 'requestPermissions',
+    label: <Trans>Request Permissions</Trans>,
+    description: <Trans>App is requesting permission to execute these commands</Trans>,
+    service: 'EXECUTE',
+    execute: (values) => ({ values }),
+    params: [
+      {
+        name: WalletConnectCommandParamName.COMMANDS,
+        type: 'object',
+        label: <Trans>Commands</Trans>,
+        displayComponent: (value) => <>{JSON.stringify(value, null, 2)}</>,
+      },
+    ],
+  },
+  {
     command: 'logIn',
     label: <Trans>Log In</Trans>,
     service: ServiceName.WALLET,
@@ -302,6 +317,19 @@ const walletConnectCommands: WalletConnectCommand[] = [
     description: <Trans>Requests the syncing status of current wallet</Trans>,
     service: ServiceName.WALLET,
     bypassConfirm: true,
+  },
+  {
+    command: 'pushTx',
+    label: <Trans>Push Transaction</Trans>,
+    description: <Trans>Push a spend bundle (transaction) to the blockchain</Trans>,
+    service: ServiceName.FULL_NODE,
+    params: [
+      {
+        name: WalletConnectCommandParamName.SPEND_BUNDLE,
+        label: <Trans>Spend Bundle</Trans>,
+        type: 'object',
+      },
+    ],
   },
 
   // offers
@@ -625,6 +653,109 @@ const walletConnectCommands: WalletConnectCommand[] = [
     ],
   },
   {
+    command: 'mintBulk',
+    label: <Trans>Mint Bulk</Trans>,
+    description: <Trans>Create a spend bundle to mint multiple NFTs</Trans>,
+    service: ServiceName.WALLET,
+    params: [
+      {
+        name: WalletConnectCommandParamName.WALLET_ID,
+        label: <Trans>Wallet Id</Trans>,
+        type: 'number',
+      },
+      {
+        name: WalletConnectCommandParamName.METADATA_LIST,
+        label: <Trans>Metadata List</Trans>,
+        type: 'object',
+      },
+      {
+        name: WalletConnectCommandParamName.ROYALTY_PERCENTAGE,
+        label: <Trans>Royalty Percentage</Trans>,
+        type: 'BigNumber',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.ROYALTY_ADDRESS,
+        label: <Trans>Royalty Address</Trans>,
+        type: 'string',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.TARGET_LIST,
+        label: <Trans>Target List</Trans>,
+        type: 'object',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.MINT_NUMBER_START,
+        label: <Trans>Mint Start Number</Trans>,
+        type: 'number',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.MINT_TOTAL,
+        label: <Trans>Mint Total</Trans>,
+        type: 'number',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.XCH_COINS,
+        label: <Trans>XCH Coins</Trans>,
+        type: 'object',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.XCH_CHANGE_TARGET,
+        label: <Trans>XCH Change Target</Trans>,
+        type: 'string',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.NEW_INNERPUZHASH,
+        label: <Trans>New Inner Puzzle Hash</Trans>,
+        type: 'object',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.NEW_P2_PUZHASH,
+        label: <Trans>New P2 Puzzle Hash</Trans>,
+        type: 'string',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.DID_COIN,
+        label: <Trans>DID Coin Dictionary</Trans>,
+        type: 'object',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.DID_LINEAGE_PARENT,
+        label: <Trans>DID Lineage Parent</Trans>,
+        type: 'string',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.MINT_FROM_DID,
+        label: <Trans>Mint From DID</Trans>,
+        type: 'boolean',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.FEE,
+        label: <Trans>Fee</Trans>,
+        type: 'BigNumber',
+        displayComponent: (value) => <MojoToChia value={value} />,
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.REUSE_PUZHASH,
+        label: <Trans>Reuse Puzzle Hash</Trans>,
+        type: 'boolean',
+        isOptional: true,
+      },
+    ],
+  },
+  {
     command: 'mintNFT',
     label: <Trans>Mint NFT</Trans>,
     service: ServiceName.WALLET,
@@ -757,6 +888,569 @@ const walletConnectCommands: WalletConnectCommand[] = [
     ],
   },
 
+  // DataLayer
+  {
+    command: 'addMirror',
+    label: <Trans>Add Mirror</Trans>,
+    service: ServiceName.DATALAYER,
+    params: [
+      {
+        name: WalletConnectCommandParamName.ID,
+        label: <Trans>Store Id</Trans>,
+        type: 'string',
+      },
+      {
+        name: WalletConnectCommandParamName.URLS,
+        label: <Trans>URLs</Trans>,
+        type: 'object',
+      },
+      {
+        name: WalletConnectCommandParamName.AMOUNT,
+        label: <Trans>Amount</Trans>,
+        type: 'number',
+      },
+      {
+        name: WalletConnectCommandParamName.FEE,
+        type: 'BigNumber',
+        label: <Trans>Fee</Trans>,
+        displayComponent: (value) => <MojoToChia value={value} />,
+        isOptional: true,
+      },
+    ],
+  },
+  {
+    command: 'addMissingFiles',
+    label: <Trans>Add Missing Files</Trans>,
+    service: ServiceName.DATALAYER,
+    params: [
+      {
+        name: WalletConnectCommandParamName.IDS,
+        label: <Trans>Store Ids</Trans>,
+        type: 'object',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.OVERWRITE,
+        label: <Trans>Overwrite</Trans>,
+        type: 'boolean',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.FOLDER_NAME,
+        label: <Trans>Folder Name</Trans>,
+        type: 'string',
+        isOptional: true,
+      },
+    ],
+  },
+  {
+    command: 'batchUpdate',
+    label: <Trans>Batch Update</Trans>,
+    service: ServiceName.DATALAYER,
+    params: [
+      {
+        name: WalletConnectCommandParamName.ID,
+        label: <Trans>Store Id</Trans>,
+        type: 'string',
+      },
+      {
+        name: WalletConnectCommandParamName.CHANGELIST,
+        label: <Trans>Changelist</Trans>,
+        type: 'object',
+      },
+      {
+        name: WalletConnectCommandParamName.FEE,
+        type: 'BigNumber',
+        label: <Trans>Fee</Trans>,
+        displayComponent: (value) => <MojoToChia value={value} />,
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.SUBMIT_ON_CHAIN,
+        type: 'boolean',
+        label: <Trans>Submit on chain</Trans>,
+        isOptional: true,
+      },
+    ],
+  },
+  {
+    command: 'cancelDataLayerOffer',
+    label: <Trans>Cancel DataLayer Offer</Trans>,
+    service: ServiceName.DATALAYER,
+    params: [
+      {
+        name: WalletConnectCommandParamName.TRADE_ID,
+        label: <Trans>Store Id</Trans>,
+        type: 'string',
+      },
+      {
+        name: WalletConnectCommandParamName.SECURE,
+        label: <Trans>Secure</Trans>,
+        type: 'boolean',
+      },
+      {
+        name: WalletConnectCommandParamName.FEE,
+        type: 'BigNumber',
+        label: <Trans>Fee</Trans>,
+        displayComponent: (value) => <MojoToChia value={value} />,
+        isOptional: true,
+      },
+    ],
+  },
+  {
+    command: 'checkPlugins',
+    label: <Trans>Check Plugins</Trans>,
+    service: ServiceName.DATALAYER,
+    params: [],
+  },
+  {
+    command: 'clearPendingRoots',
+    label: <Trans>Clear Pending Roots</Trans>,
+    service: ServiceName.DATALAYER,
+    params: [
+      {
+        name: WalletConnectCommandParamName.STORE_ID,
+        label: <Trans>Store Id</Trans>,
+        type: 'string',
+      },
+    ],
+  },
+  {
+    command: 'createDataStore',
+    label: <Trans>Create DataStore</Trans>,
+    service: ServiceName.DATALAYER,
+    params: [
+      {
+        name: WalletConnectCommandParamName.FEE,
+        type: 'BigNumber',
+        label: <Trans>Fee</Trans>,
+        displayComponent: (value) => <MojoToChia value={value} />,
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.VERBOSE,
+        type: 'boolean',
+        label: <Trans>Verbose</Trans>,
+        isOptional: true,
+      },
+    ],
+  },
+  {
+    command: 'deleteKey',
+    label: <Trans>Delete Key</Trans>,
+    service: ServiceName.DATALAYER,
+    params: [
+      {
+        name: WalletConnectCommandParamName.ID,
+        label: <Trans>Store Id</Trans>,
+        type: 'string',
+      },
+      {
+        name: WalletConnectCommandParamName.KEY,
+        label: <Trans>Key</Trans>,
+        type: 'string',
+      },
+      {
+        name: WalletConnectCommandParamName.FEE,
+        type: 'BigNumber',
+        label: <Trans>Fee</Trans>,
+        displayComponent: (value) => <MojoToChia value={value} />,
+        isOptional: true,
+      },
+    ],
+  },
+  {
+    command: 'deleteMirror',
+    label: <Trans>Delete Mirror</Trans>,
+    service: ServiceName.DATALAYER,
+    params: [
+      {
+        name: WalletConnectCommandParamName.COIN_ID,
+        label: <Trans>Coin Id</Trans>,
+        type: 'string',
+      },
+      {
+        name: WalletConnectCommandParamName.FEE,
+        type: 'BigNumber',
+        label: <Trans>Fee</Trans>,
+        displayComponent: (value) => <MojoToChia value={value} />,
+        isOptional: true,
+      },
+    ],
+  },
+  {
+    command: 'getAncestors',
+    label: <Trans>Get Ancestors</Trans>,
+    service: ServiceName.DATALAYER,
+    params: [
+      {
+        name: WalletConnectCommandParamName.ID,
+        label: <Trans>Store Id</Trans>,
+        type: 'string',
+      },
+      {
+        name: WalletConnectCommandParamName.HASH,
+        label: <Trans>Hash</Trans>,
+        type: 'string',
+      },
+    ],
+  },
+  {
+    command: 'getKeys',
+    label: <Trans>Get Keys</Trans>,
+    service: ServiceName.DATALAYER,
+    bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.ID,
+        label: <Trans>Store Id</Trans>,
+        type: 'string',
+      },
+      {
+        name: WalletConnectCommandParamName.ROOT_HASH,
+        label: <Trans>Root Hash</Trans>,
+        type: 'string',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.PAGE,
+        label: <Trans>Page</Trans>,
+        type: 'number',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.MAX_PAGE_SIZE,
+        label: <Trans>Max page size</Trans>,
+        type: 'number',
+        isOptional: true,
+      },
+    ],
+  },
+  {
+    command: 'getKeysValues',
+    label: <Trans>Get Keys Values</Trans>,
+    service: ServiceName.DATALAYER,
+    bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.ID,
+        label: <Trans>Store Id</Trans>,
+        type: 'string',
+      },
+      {
+        name: WalletConnectCommandParamName.ROOT_HASH,
+        label: <Trans>Root Hash</Trans>,
+        type: 'string',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.PAGE,
+        label: <Trans>Page</Trans>,
+        type: 'number',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.MAX_PAGE_SIZE,
+        label: <Trans>Max page size</Trans>,
+        type: 'number',
+        isOptional: true,
+      },
+    ],
+  },
+  {
+    command: 'getKvDiff',
+    label: <Trans>Get Kv Diff</Trans>,
+    service: ServiceName.DATALAYER,
+    bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.ID,
+        label: <Trans>Store Id</Trans>,
+        type: 'string',
+      },
+      {
+        name: WalletConnectCommandParamName.HASH1,
+        label: <Trans>Hash 1</Trans>,
+        type: 'string',
+      },
+      {
+        name: WalletConnectCommandParamName.HASH2,
+        label: <Trans>Hash 2</Trans>,
+        type: 'string',
+      },
+      {
+        name: WalletConnectCommandParamName.PAGE,
+        label: <Trans>Page</Trans>,
+        type: 'number',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.MAX_PAGE_SIZE,
+        label: <Trans>Max page size</Trans>,
+        type: 'number',
+        isOptional: true,
+      },
+    ],
+  },
+  {
+    command: 'getLocalRoot',
+    label: <Trans>Get Local Root</Trans>,
+    service: ServiceName.DATALAYER,
+    bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.ID,
+        label: <Trans>Store Id</Trans>,
+        type: 'string',
+      },
+    ],
+  },
+  {
+    command: 'getMirrors',
+    label: <Trans>Get Mirrors</Trans>,
+    service: ServiceName.DATALAYER,
+    bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.ID,
+        label: <Trans>Store Id</Trans>,
+        type: 'string',
+      },
+    ],
+  },
+  {
+    command: 'getOwnedStores',
+    label: <Trans>Get Owned Stores</Trans>,
+    service: ServiceName.DATALAYER,
+    bypassConfirm: true,
+    params: [],
+  },
+  {
+    command: 'getRoot',
+    label: <Trans>Get Root</Trans>,
+    service: ServiceName.DATALAYER,
+    bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.ID,
+        label: <Trans>Store Id</Trans>,
+        type: 'string',
+      },
+    ],
+  },
+  {
+    command: 'getRoots',
+    label: <Trans>Get Roots</Trans>,
+    service: ServiceName.DATALAYER,
+    bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.IDS,
+        label: <Trans>Store Ids</Trans>,
+        type: 'object',
+      },
+    ],
+  },
+  {
+    command: 'getRootHistory',
+    label: <Trans>Get Root History</Trans>,
+    service: ServiceName.DATALAYER,
+    bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.ID,
+        label: <Trans>Store Id</Trans>,
+        type: 'string',
+      },
+    ],
+  },
+  {
+    command: 'getDataLayerSyncStatus',
+    label: <Trans>Get DataLayer Sync Status</Trans>,
+    service: ServiceName.DATALAYER,
+    bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.ID,
+        label: <Trans>Store Id</Trans>,
+        type: 'string',
+      },
+    ],
+  },
+  {
+    command: 'getValue',
+    label: <Trans>Get Value</Trans>,
+    service: ServiceName.DATALAYER,
+    bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.ID,
+        label: <Trans>Store Id</Trans>,
+        type: 'string',
+      },
+      {
+        name: WalletConnectCommandParamName.KEY,
+        label: <Trans>Key</Trans>,
+        type: 'string',
+      },
+      {
+        name: WalletConnectCommandParamName.ROOT_HASH,
+        label: <Trans>Root Hash</Trans>,
+        type: 'string',
+        isOptional: true,
+      },
+    ],
+  },
+  {
+    command: 'insert',
+    label: <Trans>Insert</Trans>,
+    service: ServiceName.DATALAYER,
+    params: [
+      {
+        name: WalletConnectCommandParamName.ID,
+        label: <Trans>Store Id</Trans>,
+        type: 'string',
+      },
+      {
+        name: WalletConnectCommandParamName.KEY,
+        label: <Trans>Key</Trans>,
+        type: 'string',
+      },
+      {
+        name: WalletConnectCommandParamName.VALUE,
+        label: <Trans>Value</Trans>,
+        type: 'string',
+      },
+      {
+        name: WalletConnectCommandParamName.FEE,
+        type: 'BigNumber',
+        label: <Trans>Fee</Trans>,
+        displayComponent: (value) => <MojoToChia value={value} />,
+        isOptional: true,
+      },
+    ],
+  },
+  {
+    command: 'makeDataLayerOffer',
+    label: <Trans>Make DataLayer Offer</Trans>,
+    service: ServiceName.DATALAYER,
+    params: [
+      {
+        name: WalletConnectCommandParamName.MAKER,
+        label: <Trans>Maker</Trans>,
+        type: 'object',
+      },
+      {
+        name: WalletConnectCommandParamName.TAKER,
+        label: <Trans>Taker</Trans>,
+        type: 'object',
+      },
+      {
+        name: WalletConnectCommandParamName.FEE,
+        type: 'BigNumber',
+        label: <Trans>Fee</Trans>,
+        displayComponent: (value) => <MojoToChia value={value} />,
+        isOptional: true,
+      },
+    ],
+  },
+  {
+    command: 'removeSubscriptions',
+    label: <Trans>Remove Subscriptions</Trans>,
+    service: ServiceName.DATALAYER,
+    params: [
+      {
+        name: WalletConnectCommandParamName.ID,
+        label: <Trans>Store Id</Trans>,
+        type: 'string',
+      },
+      {
+        name: WalletConnectCommandParamName.URLS,
+        label: <Trans>URLs</Trans>,
+        type: 'object',
+      },
+    ],
+  },
+  {
+    command: 'subscribe',
+    label: <Trans>Subscribe</Trans>,
+    service: ServiceName.DATALAYER,
+    params: [
+      {
+        name: WalletConnectCommandParamName.ID,
+        label: <Trans>Store Id</Trans>,
+        type: 'string',
+      },
+      {
+        name: WalletConnectCommandParamName.URLS,
+        label: <Trans>URLs</Trans>,
+        type: 'object',
+      },
+    ],
+  },
+  {
+    command: 'subscriptions',
+    label: <Trans>Subscriptions</Trans>,
+    service: ServiceName.DATALAYER,
+    params: [],
+  },
+  {
+    command: 'takeDataLayerOffer',
+    label: <Trans>Take DataLayer Offer</Trans>,
+    service: ServiceName.DATALAYER,
+    params: [
+      {
+        name: WalletConnectCommandParamName.OFFER,
+        label: <Trans>Offer</Trans>,
+        type: 'object',
+      },
+      {
+        name: WalletConnectCommandParamName.FEE,
+        type: 'BigNumber',
+        label: <Trans>Fee</Trans>,
+        displayComponent: (value) => <MojoToChia value={value} />,
+        isOptional: true,
+      },
+    ],
+  },
+  {
+    command: 'unsubscribe',
+    label: <Trans>Unsubscribe</Trans>,
+    service: ServiceName.DATALAYER,
+    params: [
+      {
+        name: WalletConnectCommandParamName.ID,
+        label: <Trans>Store Id</Trans>,
+        type: 'string',
+      },
+      {
+        name: WalletConnectCommandParamName.RETAIN,
+        label: <Trans>retain</Trans>,
+        type: 'boolean',
+        isOptional: true,
+      },
+    ],
+  },
+  {
+    command: 'verifyOffer',
+    label: <Trans>Verify Offer</Trans>,
+    service: ServiceName.DATALAYER,
+    params: [
+      {
+        name: WalletConnectCommandParamName.OFFER,
+        label: <Trans>Offer</Trans>,
+        type: 'object',
+      },
+      {
+        name: WalletConnectCommandParamName.FEE,
+        type: 'BigNumber',
+        label: <Trans>Fee</Trans>,
+        displayComponent: (value) => <MojoToChia value={value} />,
+        isOptional: true,
+      },
+    ],
+  },
+
   // DIDs
   {
     command: 'createNewDIDWallet',
@@ -783,6 +1477,342 @@ const walletConnectCommands: WalletConnectCommand[] = [
         name: WalletConnectCommandParamName.NUM_OF_BACKUP_IDS_NEEDED,
         label: <Trans>Number of Backup Ids Needed</Trans>,
         type: 'number',
+      },
+    ],
+  },
+  // {
+  //   command: 'didCreateAttest',
+  //   label: <Trans>Create DID Attest</Trans>,
+  //   service: ServiceName.WALLET,
+  //   params: [
+  //     {
+  //       name: WalletConnectCommandParamName.WALLET_ID,
+  //       type: 'number',
+  //       label: <Trans>Wallet Id</Trans>,
+  //     },
+  //     {
+  //       name: WalletConnectCommandParamName.COIN_NAME,
+  //       type: 'string',
+  //       label: <Trans>Coin Name</Trans>,
+  //     },
+  //     {
+  //       name: WalletConnectCommandParamName.PUBKEY,
+  //       type: 'string',
+  //       label: <Trans>Public Key</Trans>,
+  //     },
+  //     {
+  //       name: WalletConnectCommandParamName.PUZHASH,
+  //       type: 'string',
+  //       label: <Trans>Puzzle Hash</Trans>,
+  //     },
+  //   ],
+  // },
+  // {
+  //   command: 'didCreateBackupFile',
+  //   label: <Trans>Create DID Backup File</Trans>,
+  //   service: ServiceName.WALLET,
+  //   params: [
+  //     {
+  //       name: WalletConnectCommandParamName.WALLET_ID,
+  //       type: 'number',
+  //       label: <Trans>Wallet Id</Trans>,
+  //     },
+  //   ],
+  // },
+  {
+    command: 'findLostDID',
+    label: <Trans>Find Lost DID</Trans>,
+    service: ServiceName.WALLET,
+    bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.COIN_ID,
+        type: 'string',
+        label: <Trans>Coin Id</Trans>,
+      },
+      {
+        name: WalletConnectCommandParamName.RECOVERY_LIST_HASH,
+        type: 'string',
+        label: <Trans>Recovery List Hash</Trans>,
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.NUM_VERIFICATION,
+        type: 'number',
+        label: <Trans>Required Number of DIDs for Verification</Trans>,
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.METADATA,
+        type: 'string',
+        label: <Trans>DID Metadata</Trans>,
+        isOptional: true,
+      },
+    ],
+  },
+  {
+    command: 'getDIDCurrentCoinInfo',
+    label: <Trans>Get DID Current Coin Info</Trans>,
+    service: ServiceName.WALLET,
+    bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.WALLET_ID,
+        type: 'number',
+        label: <Trans>Wallet Id</Trans>,
+      },
+    ],
+  },
+  {
+    command: 'getDID',
+    label: <Trans>Get DID</Trans>,
+    service: ServiceName.WALLET,
+    bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.WALLET_ID,
+        type: 'number',
+        label: <Trans>Wallet Id</Trans>,
+      },
+    ],
+  },
+  {
+    command: 'getDIDInfo',
+    label: <Trans>Get DID Info</Trans>,
+    service: ServiceName.WALLET,
+    bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.COIN_ID,
+        type: 'string',
+        label: <Trans>Coin Id</Trans>,
+      },
+    ],
+  },
+  {
+    command: 'getDIDInformationNeededForRecovery',
+    label: <Trans>Get Information Needed For DID Recovery</Trans>,
+    service: ServiceName.WALLET,
+    params: [
+      {
+        name: WalletConnectCommandParamName.WALLET_ID,
+        type: 'number',
+        label: <Trans>Wallet Id</Trans>,
+      },
+    ],
+  },
+  {
+    command: 'getDIDMetadata',
+    label: <Trans>Get DID Metadata</Trans>,
+    service: ServiceName.WALLET,
+    bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.WALLET_ID,
+        type: 'number',
+        label: <Trans>Wallet Id</Trans>,
+      },
+    ],
+  },
+  {
+    command: 'getDIDPubkey',
+    label: <Trans>Get DID Public Key</Trans>,
+    service: ServiceName.WALLET,
+    bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.WALLET_ID,
+        type: 'number',
+        label: <Trans>Wallet Id</Trans>,
+      },
+    ],
+  },
+  {
+    command: 'getDIDRecoveryList',
+    label: <Trans>Get DID Recovery List</Trans>,
+    service: ServiceName.WALLET,
+    bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.WALLET_ID,
+        type: 'number',
+        label: <Trans>Wallet Id</Trans>,
+      },
+    ],
+  },
+  // {
+  //   command: 'didMessageSpend',
+  //   label: <Trans>DID Message Spend</Trans>,
+  //   service: ServiceName.WALLET,
+  //   params: [
+  //     {
+  //       name: WalletConnectCommandParamName.WALLET_ID,
+  //       type: 'number',
+  //       label: <Trans>Wallet Id</Trans>,
+  //     },
+  //     {
+  //       name: WalletConnectCommandParamName.COIN_ANNOUNCEMENTS,
+  //       type: 'object',
+  //       label: <Trans>Coin Announcements</Trans>,
+  //       isOptional: true,
+  //     },
+  //     {
+  //       name: WalletConnectCommandParamName.PUZZLE_ANNOUNCEMENTS,
+  //       type: 'object',
+  //       label: <Trans>Puzzle Announcements</Trans>,
+  //       isOptional: true,
+  //     },
+  //   ],
+  // },
+  // {
+  //   command: 'didRecoverySpend',
+  //   label: <Trans>DID Recovery Spend</Trans>,
+  //   service: ServiceName.WALLET,
+  //   params: [
+  //     {
+  //       name: WalletConnectCommandParamName.WALLET_ID,
+  //       type: 'number',
+  //       label: <Trans>Wallet Id</Trans>,
+  //     },
+  //     {
+  //       name: WalletConnectCommandParamName.ATTEST_DATA,
+  //       type: 'object',
+  //       label: <Trans>Attest Data</Trans>,
+  //     },
+  //     {
+  //       name: WalletConnectCommandParamName.PUBKEY,
+  //       type: 'string',
+  //       label: <Trans>DID Public Key</Trans>,
+  //       isOptional: true,
+  //     },
+  //     {
+  //       name: WalletConnectCommandParamName.PUZHASH,
+  //       type: 'string',
+  //       label: <Trans>Puzzle Hash</Trans>,
+  //       isOptional: true,
+  //     },
+  //     {
+  //       name: WalletConnectCommandParamName.FEE,
+  //       type: 'BigNumber',
+  //       label: <Trans>Fee</Trans>,
+  //       displayComponent: (value) => <MojoToChia value={value} />,
+  //       isOptional: true,
+  //     },
+  //   ],
+  // },
+  {
+    command: 'transferDID',
+    label: <Trans>Transfer DID</Trans>,
+    service: ServiceName.WALLET,
+    params: [
+      {
+        name: WalletConnectCommandParamName.WALLET_ID,
+        type: 'number',
+        label: <Trans>Wallet Id</Trans>,
+      },
+      {
+        name: WalletConnectCommandParamName.INNER_ADDRESS,
+        type: 'string',
+        label: <Trans>Inner Address</Trans>,
+      },
+      {
+        name: WalletConnectCommandParamName.FEE,
+        type: 'BigNumber',
+        label: <Trans>Fee</Trans>,
+        displayComponent: (value) => <MojoToChia value={value} />,
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.WITH_RECOVERY_INFO,
+        type: 'boolean',
+        label: <Trans>With Recovery Info</Trans>,
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.REUSE_PUZHASH,
+        type: 'boolean',
+        label: <Trans>Reuse Puzzle Hash</Trans>,
+        isOptional: true,
+      },
+    ],
+  },
+  {
+    command: 'updateDIDMetadata',
+    label: <Trans>Update DID Metadata</Trans>,
+    service: ServiceName.WALLET,
+    params: [
+      {
+        name: WalletConnectCommandParamName.WALLET_ID,
+        type: 'number',
+        label: <Trans>Wallet Id</Trans>,
+      },
+      {
+        name: WalletConnectCommandParamName.METADATA,
+        type: 'object',
+        label: <Trans>DID Metadata</Trans>,
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.FEE,
+        type: 'BigNumber',
+        label: <Trans>Fee</Trans>,
+        displayComponent: (value) => <MojoToChia value={value} />,
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.REUSE_PUZHASH,
+        type: 'boolean',
+        label: <Trans>Reuse Puzzle Hash</Trans>,
+        isOptional: true,
+      },
+    ],
+  },
+  {
+    command: 'updateDIDRecoveryIds',
+    label: <Trans>Update DID Recovery Ids</Trans>,
+    service: ServiceName.WALLET,
+    params: [
+      {
+        name: WalletConnectCommandParamName.WALLET_ID,
+        type: 'number',
+        label: <Trans>Wallet Id</Trans>,
+      },
+      {
+        name: WalletConnectCommandParamName.NEW_LIST,
+        type: 'object',
+        label: <Trans>New Recovery DID List</Trans>,
+      },
+      {
+        name: WalletConnectCommandParamName.NUM_VERIFICATIONS_REQUIRED,
+        type: 'number',
+        label: <Trans>Number Of DIDs Required For Recovery</Trans>,
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.FEE,
+        type: 'BigNumber',
+        label: <Trans>Fee</Trans>,
+        displayComponent: (value) => <MojoToChia value={value} />,
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.REUSE_PUZHASH,
+        type: 'boolean',
+        label: <Trans>Reuse Puzzle Hash</Trans>,
+        isOptional: true,
+      },
+    ],
+  },
+  {
+    command: 'getDIDName',
+    label: <Trans>Get DID Name</Trans>,
+    service: ServiceName.WALLET,
+    bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.WALLET_ID,
+        type: 'number',
+        label: <Trans>Wallet Id</Trans>,
       },
     ],
   },

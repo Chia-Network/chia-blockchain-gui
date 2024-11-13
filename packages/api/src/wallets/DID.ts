@@ -1,5 +1,6 @@
 import type BigNumber from 'bignumber.js';
 
+import type { Transaction } from '../@types';
 import type SpendBundle from '../@types/SpendBundle';
 import type Message from '../Message';
 import Wallet from '../services/WalletService';
@@ -106,21 +107,63 @@ export default class DIDWallet extends Wallet {
     }>('did_get_current_coin_info', args);
   }
 
-  async getDidInfo(args: { coinOrDIDId: string }) {
+  async getDidInfo(args: { coinId: string; latest?: boolean }) {
+    return this.command<
+      | { success: false; error: string }
+      | {
+          success: true;
+          didId: string;
+          latestCoin: string;
+          p2Address: string;
+          publicKey: string;
+          recoveryListHash: string;
+          numVerification: number;
+          metadata: Record<string, string>;
+          launcherId: string;
+          fullPuzzle: string;
+          solution: any;
+          hints: string[];
+        }
+    >('did_get_info', args);
+  }
+
+  async getDidMetadata(args: { walletId: number }) {
     return this.command<{
-      latestCoin: string;
-      p2Address: string;
-      publicKey: string;
-      recoveryListHash: string;
-      numVerification: number;
-      metadata: Record<string, string>;
-      launcherId: string;
-      fullPuzzle: string; // hex bytes of serialized CLVM program
-      solution: any;
-      hints: string[];
-    }>('did_get_info', {
-      coinId: args.coinOrDIDId,
-    });
+      metadata: any;
+    }>('did_get_metadata', args);
+  }
+
+  async updateDidMetadata(args: {
+    walletId: number;
+    metadata: Record<string, string>;
+    fee?: number;
+    reusePuzhash?: boolean;
+  }) {
+    return this.command<
+      | {
+          success: true;
+          walletId: number;
+          spendBundle: SpendBundle;
+          transactions: Transaction[];
+          signingResponses?: string[];
+        }
+      | { success: false; error: string }
+    >('did_update_metadata', args);
+  }
+
+  async findLostDid(args: {
+    coinId: string;
+    recoveryListHash?: string;
+    numVerification?: number;
+    metadata?: Record<string, any>;
+  }) {
+    return this.command<
+      | {
+          success: true;
+          latestCoinId: number;
+        }
+      | { success: false; error: false }
+    >('did_find_lost', args);
   }
 
   onDIDCoinAdded(callback: (data: any, message: Message) => void) {

@@ -8,6 +8,7 @@ import type Notification from '../@types/Notification';
 import type Pair from '../@types/Pair';
 import type WalletConnectCommandParam from '../@types/WalletConnectCommandParam';
 import WalletConnectConfirmDialog from '../components/walletConnect/WalletConnectConfirmDialog';
+import WalletConnectRequestPermissionsConfirmDialog from '../components/walletConnect/WalletConnectRequestPermissionsConfirmDialog';
 import NotificationType from '../constants/NotificationType';
 import walletConnectCommands from '../constants/WalletConnectCommands';
 import prepareWalletConnectCommand from '../util/prepareWalletConnectCommand';
@@ -112,6 +113,27 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
       log(`bypassing command ${command} with value ${pair.bypassCommands[command]}`);
       return pair.bypassCommands[command];
     }
+    if (command === 'requestPermissions') {
+      if (!values.commands || values.commands.some((cmd: string) => cmd === 'requestPermissions')) {
+        return false;
+      }
+      const { bypassCommands } = pair;
+      const hasPermissions = !!bypassCommands && values.commands.every((cmd: string) => bypassCommands[cmd]);
+      if (hasPermissions) {
+        return true;
+      }
+      const isConfirmed = await openDialog(
+        <WalletConnectRequestPermissionsConfirmDialog
+          topic={topic}
+          fingerprint={fingerprint}
+          isDifferentFingerprint={isDifferentFingerprint}
+          params={params}
+          values={values}
+          onChange={onChange}
+        />,
+      );
+      return isConfirmed;
+    }
 
     const isConfirmed = await openDialog(
       <WalletConnectConfirmDialog
@@ -126,7 +148,6 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
         onChange={onChange}
       />,
     );
-
     return isConfirmed;
   }
 
@@ -219,9 +240,9 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
     }
 
     // validate current fingerprint again
-    const currentLoggedInFingerptintPromise = store.dispatch(api.endpoints.getLoggedInFingerprint.initiate());
-    const { data: currentFingerprintAfterWait } = await currentLoggedInFingerptintPromise;
-    currentLoggedInFingerptintPromise.unsubscribe();
+    const currentLoggedInFingerprintPromise = store.dispatch(api.endpoints.getLoggedInFingerprint.initiate());
+    const { data: currentFingerprintAfterWait } = await currentLoggedInFingerprintPromise;
+    currentLoggedInFingerprintPromise.unsubscribe();
 
     if (currentFingerprintAfterWait !== fingerprint) {
       throw new Error(`Fingerprint changed during execution`);

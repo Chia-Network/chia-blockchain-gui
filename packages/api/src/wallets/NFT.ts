@@ -1,8 +1,10 @@
 import type BigNumber from 'bignumber.js';
 
 import type CalculateRoyaltiesRequest from '../@types/CalculateRoyaltiesRequest';
+import type Coin from '../@types/Coin';
 import type NFTInfo from '../@types/NFTInfo';
 import type SpendBundle from '../@types/SpendBundle';
+import type Transaction from '../@types/Transaction';
 import Wallet from '../services/WalletService';
 
 export default class NFTWallet extends Wallet {
@@ -34,6 +36,48 @@ export default class NFTWallet extends Wallet {
     return this.command<{
       didId: string;
     }>('nft_get_wallet_did', args);
+  }
+
+  async mintBulk(args: {
+    walletId: number;
+    metadataList: Array<{
+      uris: string[];
+      metaUris: string[];
+      licenseUris: string[];
+      hash: string;
+      editionNumber?: number;
+      editionTotal?: number;
+      metaHash?: string;
+      licenseHash?: string;
+    }>;
+    royaltyPercentage?: number;
+    royaltyAddress?: string;
+    targetList?: string[];
+    mintNumberStart?: number;
+    mintTotal?: number;
+    xchCoins?: Coin[];
+    xchChangeTarget?: string;
+    newInnerpuzhash?: string;
+    newP2Puzhash?: string;
+    didCoin?: Coin;
+    didLineageParent?: string;
+    mintFromDid?: boolean;
+    fee?: number;
+    reusePuzhash?: boolean;
+  }) {
+    return this.command<
+      | {
+          success: true;
+          spendBundle: SpendBundle;
+          nftIdList: string[];
+          transactions: Transaction[];
+          signingResponse?: string;
+        }
+      | {
+          success: false;
+          error: string;
+        }
+    >('nft_mint_bulk', args);
   }
 
   async mintNFT(args: {
