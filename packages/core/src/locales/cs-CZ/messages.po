@@ -8,7 +8,7 @@ msgstr ""
 "Language: cs_CZ\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-02-04 00:04\n"
+"PO-Revision-Date: 2024-11-10 00:05\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 3;\n"
@@ -20,15 +20,15 @@ msgstr ""
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:64
 msgid "(>5 min)"
-msgstr ""
+msgstr "(>5 min)"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:64
 msgid "(~{selectedTime} min)"
-msgstr ""
+msgstr "(~{selectedTime} min)"
 
 #: src/components/Amount/Amount.tsx:87
 msgid "{0, plural, one {mojo} other {mojos}}"
-msgstr ""
+msgstr "{0, plural, one {mojo} few {mojo} many {mojo} other {mojo}}"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:36
 msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
@@ -36,15 +36,15 @@ msgstr "{minPassphraseLength, plural, one {Heslo musí mít minimálně # znak} 
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:95
 msgid "A new version of Chia is available!"
-msgstr ""
+msgstr "Nová verze Chia je k dispozici!"
 
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:270
 msgid "Add Icon"
-msgstr ""
+msgstr "Přidat ikonu"
 
 #: src/screens/SelectKey/SelectKey.tsx:174
 msgid "Add wallet"
-msgstr ""
+msgstr "Přidat peněženku"
 
 #: src/components/Amount/Amount.tsx:37
 msgid "Amount"
@@ -72,19 +72,19 @@ msgstr "Zrušit"
 
 #: src/components/Settings/SettingsApp.tsx:140
 msgid "Check for updates"
-msgstr ""
+msgstr "Kontrola aktualizací"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:93
 msgid "Checking for updates..."
-msgstr ""
+msgstr "Kontrola aktualizací..."
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:82
 msgid "Chia {latestVersion} is currently the latest version available."
-msgstr ""
+msgstr "Chia {latestVersion} je nejnovější dostupná verze."
 
 #: src/components/Settings/SettingsApp.tsx:126
 msgid "Chia Application Version:"
-msgstr ""
+msgstr "Verze aplikace Chia:"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:110
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:47
@@ -110,15 +110,15 @@ msgstr "Zkopírovat do schránky"
 
 #: src/screens/SelectKey/SelectKey.tsx:274
 msgid "Create a new wallet key"
-msgstr ""
+msgstr "Vytvořit nový klíč peněženky"
 
 #: src/screens/SelectKey/SelectKey.tsx:266
 msgid "Create a new wallet key to get started with Chia."
-msgstr ""
+msgstr "Vytvořte nový klíč peněženky, abyste mohli začít s Chia."
 
 #: src/screens/SelectKey/SelectKey.tsx:177
 msgid "Create New"
-msgstr ""
+msgstr "Založit nový"
 
 #: src/components/Settings/SettingsApp.tsx:111
 msgid "Dark"
@@ -136,7 +136,7 @@ msgstr "Smazat všechny klíče"
 
 #: src/screens/SelectKey/SelectKey.tsx:202
 msgid "Delete All Keys"
-msgstr ""
+msgstr "Smazat všechny klíče"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:113
 msgid "Delete key {fingerprint}"
@@ -165,7 +165,7 @@ msgstr "Zahodit"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:148
 msgid "Download"
-msgstr ""
+msgstr "Stáhnout"
 
 #: src/components/CardSimple/CardSimple.tsx:52
 #: src/hooks/useShowError.tsx:14
@@ -178,7 +178,7 @@ msgstr "Chyba:"
 
 #: src/screens/SelectKey/SelectKeyRenameForm.tsx:91
 msgid "Esc"
-msgstr ""
+msgstr "Esc"
 
 #: src/components/LayoutMain/LayoutFooter.tsx:49
 msgid "FAQ"
@@ -212,7 +212,7 @@ msgstr "Často kladené otázky"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:121
 msgid "Go To Download Page"
-msgstr ""
+msgstr "Přejít na stránku stahování"
 
 #: src/components/Settings/SettingsApp.tsx:148
 msgid "Help"
@@ -233,7 +233,7 @@ msgstr "Skrýt Rozšířené Možnosti"
 
 #: src/screens/SelectKey/SelectKey.tsx:182
 msgid "Import Existing"
-msgstr ""
+msgstr "Import existující"
 
 #: src/screens/SelectKey/SelectKey.tsx:181
 #~ msgid "Import from Mnemonics (12 or 24 words)"
@@ -249,7 +249,7 @@ msgstr "Jazyk"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:57
 msgid "Latest Version:"
-msgstr ""
+msgstr "Nejnovější verze:"
 
 #: src/components/Settings/SettingsApp.tsx:103
 msgid "Light"
@@ -257,15 +257,15 @@ msgstr "Světlý"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:227
 msgid "Likely in {0} seconds"
-msgstr ""
+msgstr "Pravděpodobně za {0} sekund"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:224
 msgid "Likely in {minutes} minutes"
-msgstr ""
+msgstr "Pravděpodobně {minutes} minut"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:226
 msgid "Likely in >5 minutes"
-msgstr ""
+msgstr "Pravděpodobné za > 5 minut"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:46
 msgid "Loading details"
@@ -273,7 +273,7 @@ msgstr "Načítám podrobnosti"
 
 #: src/screens/SelectKey/SelectKey.tsx:236
 msgid "Loading keys"
-msgstr ""
+msgstr "Načítání klíčů"
 
 #: src/screens/SelectKey/SelectKey.tsx:117
 #~ msgid "Loading list of the keys"
@@ -310,7 +310,7 @@ msgstr "Nové heslo je stejné jako vaše aktuální heslo"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:133
 msgid "New version {latestVersion} available"
-msgstr ""
+msgstr "Nová verze {latestVersion} je k dispozici"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:84
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:138
@@ -332,7 +332,7 @@ msgstr "OK"
 
 #: src/screens/SelectKey/SelectKey.tsx:258
 msgid "Open a world of possibilities."
-msgstr ""
+msgstr "Otevřít svět možností."
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:98
 msgid "Pool Public Key"
@@ -361,15 +361,15 @@ msgstr "Veřejný klíč:"
 
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:289
 msgid "Random"
-msgstr ""
+msgstr "Náhodně"
 
 #: src/components/Fee/Fee.tsx:18
 msgid "Recommended value: 0.000005"
-msgstr ""
+msgstr "Doporučená hodnota: 0.000005"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:71
 msgid "Release Notes"
-msgstr ""
+msgstr "Poznámky k verzi"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:85
 msgid "Reload Application"
@@ -377,7 +377,7 @@ msgstr "Znovu spustit aplikaci"
 
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:270
 msgid "Remove Icon"
-msgstr ""
+msgstr "Odstranit ikonu"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:98
 msgid "Rename"
@@ -399,7 +399,7 @@ msgstr "Uložit"
 #: src/screens/SelectKey/EmojiAndColorPicker.tsx:182
 #: src/screens/SelectKey/Search.tsx:34
 msgid "Search"
-msgstr ""
+msgstr "Hledat"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:113
 msgid "Secret Key"
@@ -486,7 +486,7 @@ msgstr "Toto trvale odstraní klíč z vašeho počítače, ujistěte se, že m�
 
 #: src/utils/getTransactionResult.ts:40
 msgid "Transaction has been sent to a full node and is pending inclusion into the mempool. {0}"
-msgstr ""
+msgstr "Transakce byla odeslána do plného uzlu a čeká na zahrnutí do mempoolu. {0}"
 
 #: src/utils/getTransactionResult.ts:15
 msgid "Transaction has not been sent to node yet"
@@ -506,7 +506,7 @@ msgstr "Zkusit znovu"
 
 #: src/screens/SelectKey/SelectKey.tsx:247
 msgid "Unable to load keys"
-msgstr ""
+msgstr "Nemohu nahrát klíče"
 
 #: src/screens/SelectKey/SelectKey.tsx:128
 #~ msgid "Unable to load the list of the keys"
@@ -545,7 +545,7 @@ msgstr "Otisk peněženky"
 
 #: src/screens/SelectKey/SelectKey.tsx:223
 msgid "Wallet Keys"
-msgstr ""
+msgstr "Klíče peněženky"
 
 #: src/screens/SelectKey/SelectKey.tsx:142
 #~ msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
@@ -554,7 +554,7 @@ msgstr ""
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:142
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:66
 msgid "What's New"
-msgstr ""
+msgstr "Co nového"
 
 #: src/components/Back/Back.tsx:40
 #: src/components/FormBackButton/FormBackButton.tsx:31
@@ -563,11 +563,11 @@ msgstr "Provedli jste změny. Chcete je zahodit?"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:97
 msgid "You're up to date"
-msgstr ""
+msgstr "Jste aktuální"
 
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:49
 msgid "Your Current Version:"
-msgstr ""
+msgstr "Vaše aktuální verze:"
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:21
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"

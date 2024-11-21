@@ -403,7 +403,7 @@ msgstr "Plottaa tiedosto"
 msgid "Add a Plot NFT"
 msgstr "Lisää Plot NFT"
 
-#: src/constants/WalletConnectCommands.tsx:566
+#: src/constants/WalletConnectCommands.tsx:594
 msgid "Add CAT Token"
 msgstr "Lisää CAT-tokeni"
 
@@ -418,6 +418,14 @@ msgstr "Lisää Yhteys"
 #: src/components/addressbook/AddressBookSideBar.tsx:128
 msgid "Add Contact"
 msgstr "Lisää Yhteystieto"
+
+#: src/constants/WalletConnectCommands.tsx:894
+msgid "Add Mirror"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:923
+msgid "Add Missing Files"
+msgstr ""
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:148
 #~ msgid "Add option to set expiration time {0}"
@@ -435,11 +443,11 @@ msgstr "Lisää Plot-hakemisto"
 msgid "Add Plot to Queue"
 msgstr "Lisää Plottausprosessi Jonoon"
 
-#: src/constants/WalletConnectCommands.tsx:905
+#: src/constants/WalletConnectCommands.tsx:1935
 msgid "Add Proofs"
 msgstr "Lisää Todisteita"
 
-#: src/constants/WalletConnectCommands.tsx:865
+#: src/constants/WalletConnectCommands.tsx:1895
 msgid "Add Proofs To Verifiable Credential"
 msgstr "Lisää Todisteet Todennettavaan Käyttöoikeustietoon"
 
@@ -451,10 +459,10 @@ msgstr "Lisää todennettava käyttöoikeustieto tiedostosta"
 #: src/components/addressbook/ContactEdit.tsx:61
 #: src/components/notification/NotificationSendDialog.tsx:220
 #: src/components/signVerify/SigningEntityWalletAddress.tsx:45
-#: src/constants/WalletConnectCommands.tsx:127
-#: src/constants/WalletConnectCommands.tsx:202
-#: src/constants/WalletConnectCommands.tsx:262
-#: src/constants/WalletConnectCommands.tsx:542
+#: src/constants/WalletConnectCommands.tsx:142
+#: src/constants/WalletConnectCommands.tsx:217
+#: src/constants/WalletConnectCommands.tsx:277
+#: src/constants/WalletConnectCommands.tsx:570
 msgid "Address"
 msgstr "Osoite"
 
@@ -467,6 +475,10 @@ msgstr "Osoite"
 #: src/components/settings/SettingsAdvanced.tsx:45
 msgid "Advanced"
 msgstr "Lisäasetukset"
+
+#: src/components/walletConnect/WalletConnectRequestPermissionsConfirmDialog.tsx:101
+msgid "After you approve, the connected app can execute these commands on your behalf without confirmation."
+msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:251
 msgid "After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring."
@@ -517,9 +529,10 @@ msgstr "Hylkää Aina"
 #: src/components/offers/OfferEditorConditionsPanel.tsx:129
 #: src/components/offers2/OfferBuilderNFTRoyalties.tsx:121
 #: src/components/offers2/OfferBuilderWalletAmount.tsx:36
-#: src/constants/WalletConnectCommands.tsx:115
-#: src/constants/WalletConnectCommands.tsx:547
-#: src/constants/WalletConnectCommands.tsx:768
+#: src/constants/WalletConnectCommands.tsx:130
+#: src/constants/WalletConnectCommands.tsx:575
+#: src/constants/WalletConnectCommands.tsx:909
+#: src/constants/WalletConnectCommands.tsx:1462
 msgid "Amount"
 msgstr "Summa"
 
@@ -548,6 +561,10 @@ msgstr "Summa ylittää käytettävissä olevan saldon {catName} tokenille"
 msgid "Amount exceeds XCH total balance"
 msgstr "Määrä ylittää käytettävissä olevan XCH-saldon"
 
+#: src/components/walletConnect/WalletConnectRequestPermissionsConfirmDialog.tsx:98
+msgid "An app has requested permission to execute the following commands."
+msgstr ""
+
 #: src/components/farm/FarmHealth.tsx:321
 msgid "An increase in the number of missing signage points (SPs) suggests that you were either disconnected from or significantly distant from a Timelord in your Full Node network. The total number of missing SPs serves as an indicator of potential rewards you could have claimed."
 msgstr "Puuttuvien signage-pisteiden (SP) määrän kasvu viittaa siihen, että olet joko irrallaan tai merkittävästi etäällä Timelordista Full Node -verkossasi. Kadonneiden SP:n kokonaismäärä on indikaattori mahdollisista farmauspalkkioista, joita menetät."
@@ -561,12 +578,17 @@ msgstr "NFT:n alkuperä on täydellinen historia sen omistusoikeudesta. Se yhdis
 msgid "Announcement"
 msgstr "Tiedotus"
 
+#: src/constants/WalletConnectCommands.tsx:17
+msgid "App is requesting permission to execute these commands"
+msgstr ""
+
 #: src/components/settings/SettingsIntegration.tsx:212
 msgid "App Permissions"
 msgstr "Sovelluksen Oikeudet"
 
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:203
 #: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:92
+#: src/components/walletConnect/WalletConnectRequestPermissionsConfirmDialog.tsx:160
 msgid "Application"
 msgstr "Sovellus"
 
@@ -577,6 +599,10 @@ msgstr "Sovelluksella ei ole aktiivista paria."
 #: src/components/walletConnect/WalletConnectActiveSessions.tsx:35
 msgid "Application has no active sessions"
 msgstr "Sovelluksella ei ole aktiivisia istuntoja"
+
+#: src/components/walletConnect/WalletConnectRequestPermissionsConfirmDialog.tsx:89
+msgid "Approve"
+msgstr ""
 
 #: src/components/offers/ConfirmOfferCancellation.tsx:69
 msgid "Are you sure you want to cancel your offer?"
@@ -631,8 +657,8 @@ msgstr "Haluatko käyttää arvoa k={plotSize}?"
 msgid "Asset"
 msgstr "Assetti"
 
-#: src/constants/WalletConnectCommands.tsx:510
-#: src/constants/WalletConnectCommands.tsx:571
+#: src/constants/WalletConnectCommands.tsx:538
+#: src/constants/WalletConnectCommands.tsx:599
 msgid "Asset Id"
 msgstr "Assetin Tunniste"
 
@@ -699,7 +725,7 @@ msgstr "Keskim."
 msgid "Back"
 msgstr "Takaisin"
 
-#: src/constants/WalletConnectCommands.tsx:780
+#: src/constants/WalletConnectCommands.tsx:1474
 msgid "Backup DIDs"
 msgstr "Varmuuskopioi DID:t"
 
@@ -714,6 +740,10 @@ msgstr "Merkintä"
 #: src/components/block/Block.jsx:236
 msgid "Base Farmer Reward Amount"
 msgstr "Farmerin Peruspalkkio"
+
+#: src/constants/WalletConnectCommands.tsx:948
+msgid "Batch Update"
+msgstr ""
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:74
 msgid "Before beginning the plotting process, ensure that you have at least 128GB of RAM available. If you are running low on additional memory space, we strongly advise closing all other applications to prevent memory errors."
@@ -842,10 +872,14 @@ msgstr "Välimuistin koko (GB)"
 msgid "Cancel"
 msgstr "Peru"
 
+#: src/constants/WalletConnectCommands.tsx:978
+msgid "Cancel DataLayer Offer"
+msgstr ""
+
 #: src/components/offers/ConfirmOfferCancellation.tsx:62
 #: src/components/offers/ConfirmOfferCancellation.tsx:129
 #: src/components/offers/OfferManager.tsx:323
-#: src/constants/WalletConnectCommands.tsx:402
+#: src/constants/WalletConnectCommands.tsx:430
 msgid "Cancel Offer"
 msgstr "Peruuta tarjous"
 
@@ -896,6 +930,10 @@ msgstr "Vaihda salasana"
 msgid "Change Pool"
 msgstr "Vaihda Poolia"
 
+#: src/constants/WalletConnectCommands.tsx:958
+msgid "Changelist"
+msgstr ""
+
 #: src/components/settings/SettingsStartup.tsx:32
 msgid "Changes will take effect the next time Chia is started"
 msgstr "Muutokset tulevat voimaan kun Chia-sovellus käynnistetään seuraavan kerran"
@@ -908,9 +946,13 @@ msgstr "Muutokset tulevat voimaan kun Chia-sovellus käynnistetään seuraavan k
 #~ msgid "Chat on KeyBase"
 #~ msgstr "Chat on KeyBase"
 
-#: src/constants/WalletConnectCommands.tsx:425
+#: src/constants/WalletConnectCommands.tsx:453
 msgid "Check Offer Validity"
 msgstr "Tarkista Tarjous"
+
+#: src/constants/WalletConnectCommands.tsx:1002
+msgid "Check Plugins"
+msgstr ""
 
 #: src/components/offers/NFTOfferPreview.tsx:151
 #: src/components/offers2/OfferBuilderNFTProvenance.tsx:37
@@ -983,7 +1025,7 @@ msgstr "Lunasta vastaanottamasi assetit automaattisesti kun takaisinvetoaika ump
 msgid "Claim Rewards"
 msgstr "Lunasta Palkkiot"
 
-#: src/constants/WalletConnectCommands.tsx:155
+#: src/constants/WalletConnectCommands.tsx:170
 msgid "Claw back or claim claw back transaction"
 msgstr "Takaisinvedä tai lunasta transaktio"
 
@@ -991,6 +1033,10 @@ msgstr "Takaisinvedä tai lunasta transaktio"
 #: src/components/settings/SettingsNFT.tsx:154
 msgid "Clear NFT cache"
 msgstr "Tyhjennä NFT-välimuisti"
+
+#: src/constants/WalletConnectCommands.tsx:1008
+msgid "Clear Pending Roots"
+msgstr ""
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:92
 msgid "Clicking a delete icon only removes a directory from this list and never deletes the directory itself"
@@ -1021,7 +1067,10 @@ msgstr "Sulje"
 msgid "Closing down services"
 msgstr "Suljetaan palveluja"
 
-#: src/constants/WalletConnectCommands.tsx:622
+#: src/constants/WalletConnectCommands.tsx:650
+#: src/constants/WalletConnectCommands.tsx:1069
+#: src/constants/WalletConnectCommands.tsx:1531
+#: src/constants/WalletConnectCommands.tsx:1588
 msgid "Coin Id"
 msgstr "Kolikon Tunnuste"
 
@@ -1029,7 +1078,7 @@ msgstr "Kolikon Tunnuste"
 msgid "Coin ID"
 msgstr "Kolikon Tunniste"
 
-#: src/constants/WalletConnectCommands.tsx:161
+#: src/constants/WalletConnectCommands.tsx:176
 msgid "Coin Ids"
 msgstr "Kolikon Tunnisteet"
 
@@ -1037,6 +1086,10 @@ msgstr "Kolikon Tunnisteet"
 #: src/components/nfts/NFTSummary.tsx:50
 msgid "Collection"
 msgstr "Kokoelma"
+
+#: src/constants/WalletConnectCommands.tsx:24
+msgid "Commands"
+msgstr ""
 
 #: src/components/farm/FarmHealth.tsx:327
 msgid "Common reasons for missing SPs include:"
@@ -1192,7 +1245,7 @@ msgstr "Palvelimeen {host} ei saatu yhteyttä portissa {port}"
 msgid "Could not parse offer data"
 msgstr "Tarjoustietojen purkaminen ei onnistunut"
 
-#: src/constants/WalletConnectCommands.tsx:1004
+#: src/constants/WalletConnectCommands.tsx:2034
 msgid "Count"
 msgstr "Määrä"
 
@@ -1226,6 +1279,10 @@ msgstr "Luo uusi profiili"
 msgid "Create a Plot NFT"
 msgstr "Luo Plot NFT"
 
+#: src/constants/WalletConnectCommands.tsx:658
+msgid "Create a spend bundle to mint multiple NFTs"
+msgstr ""
+
 #: src/components/offers/NFTOfferEditor.tsx:725
 msgid "Create an NFT Offer"
 msgstr "Luo NFT-tarjous"
@@ -1243,11 +1300,15 @@ msgstr "Luo Yhteystieto"
 msgid "Create Counter Offer"
 msgstr "Luo Vastatarjous"
 
+#: src/constants/WalletConnectCommands.tsx:1020
+msgid "Create DataStore"
+msgstr ""
+
 #: src/constants/WalletConnectCommands.tsx:476
 #~ msgid "Create new CAT Wallet"
 #~ msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:763
+#: src/constants/WalletConnectCommands.tsx:1457
 msgid "Create new DID Wallet"
 msgstr "Luo uusi DID-lompakko"
 
@@ -1260,7 +1321,7 @@ msgstr "Luo uusi DID-lompakko"
 msgid "Create Offer"
 msgstr "Luo Tarjous"
 
-#: src/constants/WalletConnectCommands.tsx:362
+#: src/constants/WalletConnectCommands.tsx:390
 msgid "Create Offer for Ids"
 msgstr "Luo tarjous tunnisteille"
 
@@ -1426,8 +1487,13 @@ msgid "Delete Contact"
 msgstr "Poista Yhteystieto"
 
 #: src/components/app/AppPassPrompt.tsx:103
+#: src/constants/WalletConnectCommands.tsx:1040
 msgid "Delete Key"
 msgstr "Poista Avain"
+
+#: src/constants/WalletConnectCommands.tsx:1064
+msgid "Delete Mirror"
+msgstr ""
 
 #: src/components/plot/PlotAction.tsx:24
 #: src/components/plot/queue/PlotQueueActions.tsx:33
@@ -1494,13 +1560,26 @@ msgstr "Dexie URL"
 #: src/components/addressbook/ContactEdit.tsx:119
 #: src/components/signVerify/SigningEntityDID.tsx:83
 #: src/components/signVerify/SignMessage.tsx:161
-#: src/constants/WalletConnectCommands.tsx:827
+#: src/constants/WalletConnectCommands.tsx:1857
 msgid "DID"
 msgstr "DID"
 
-#: src/constants/WalletConnectCommands.tsx:701
+#: src/constants/WalletConnectCommands.tsx:727
+msgid "DID Coin Dictionary"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:832
 msgid "DID Id"
 msgstr "DID-tunniste"
+
+#: src/constants/WalletConnectCommands.tsx:733
+msgid "DID Lineage Parent"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:1548
+#: src/constants/WalletConnectCommands.tsx:1752
+msgid "DID Metadata"
+msgstr ""
 
 #: src/components/block/Block.jsx:182
 #: src/components/fullNode/card/FullNodeCardDifficulty.tsx:14
@@ -1548,7 +1627,7 @@ msgstr "Poista suora I/O temp 1 -hakemistosta saadaksesi maksimaalisen suoritusk
 msgid "Disable direct I/O on the temp 2 directory in order to extract maximum performance with RAM disk"
 msgstr "Poista suora I/O temp 2 -hakemistosta saadaksesi maksimaalisen suorituskyvyn RAM-levylle"
 
-#: src/constants/WalletConnectCommands.tsx:387
+#: src/constants/WalletConnectCommands.tsx:415
 msgid "Disable JSON Formatting"
 msgstr "Poista JSON-muotoilu Käytöstä"
 
@@ -1590,11 +1669,11 @@ msgstr "Onko sinulla plot-tiedostoja koneella? <0>Lisää Hakemisto</0>"
 msgid "Do you want to burn this NFT?"
 msgstr "Haluatko polttaa tämän NFT:n?"
 
-#: src/hooks/useWalletConnectCommand.tsx:183
+#: src/hooks/useWalletConnectCommand.tsx:204
 msgid "Do you want to execute command {command}?"
 msgstr "Haluatko suorittaa komennon {command}?"
 
-#: src/hooks/useWalletConnectCommand.tsx:179
+#: src/hooks/useWalletConnectCommand.tsx:200
 msgid "Do you want to log in to {fingerprint} and execute command {command}?"
 msgstr "Haluatko kirjautua sisään kohteeseen {fingerprint} ja suorittaa komennon {command}?"
 
@@ -1660,7 +1739,7 @@ msgstr "Vedä ja pudota tarjoustiedosto"
 msgid "Drag & Drop an Offer File, Paste"
 msgstr "Vedä ja pudota tarjoustiedosto, Liitä"
 
-#: src/constants/WalletConnectCommands.tsx:375
+#: src/constants/WalletConnectCommands.tsx:403
 msgid "Driver Dict"
 msgstr "Driver Dict"
 
@@ -1700,11 +1779,11 @@ msgid "Edition #"
 msgstr "Painos #"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:226
-#: src/constants/WalletConnectCommands.tsx:689
+#: src/constants/WalletConnectCommands.tsx:820
 msgid "Edition Number"
 msgstr "Painoksen Nro"
 
-#: src/constants/WalletConnectCommands.tsx:695
+#: src/constants/WalletConnectCommands.tsx:826
 msgid "Edition Total"
 msgstr "Painos Yhteensä"
 
@@ -1767,7 +1846,7 @@ msgstr "Ota WalletConnect Käyttöön"
 msgid "Enable/Disable the ability to scan all subdirectories automatically for plots"
 msgstr "Ota käyttöön/Poista käytöstä kaikkien alihakemistojen skannaus"
 
-#: src/constants/WalletConnectCommands.tsx:323
+#: src/constants/WalletConnectCommands.tsx:351
 msgid "End"
 msgstr "Lopeta"
 
@@ -2030,17 +2109,31 @@ msgstr "Ominaisuudet jotka antavat digitaalisille asseteillesi enemmän suojaa j
 #: src/components/pool/PoolInfo.tsx:18
 #: src/components/settings/ProfileAdd.tsx:152
 #: src/components/vcs/VCRevokeDialog.tsx:80
-#: src/constants/WalletConnectCommands.tsx:121
-#: src/constants/WalletConnectCommands.tsx:166
-#: src/constants/WalletConnectCommands.tsx:393
-#: src/constants/WalletConnectCommands.tsx:417
-#: src/constants/WalletConnectCommands.tsx:452
-#: src/constants/WalletConnectCommands.tsx:553
-#: src/constants/WalletConnectCommands.tsx:707
-#: src/constants/WalletConnectCommands.tsx:736
-#: src/constants/WalletConnectCommands.tsx:774
-#: src/constants/WalletConnectCommands.tsx:832
-#: src/constants/WalletConnectCommands.tsx:941
+#: src/constants/WalletConnectCommands.tsx:136
+#: src/constants/WalletConnectCommands.tsx:181
+#: src/constants/WalletConnectCommands.tsx:421
+#: src/constants/WalletConnectCommands.tsx:445
+#: src/constants/WalletConnectCommands.tsx:480
+#: src/constants/WalletConnectCommands.tsx:581
+#: src/constants/WalletConnectCommands.tsx:745
+#: src/constants/WalletConnectCommands.tsx:838
+#: src/constants/WalletConnectCommands.tsx:867
+#: src/constants/WalletConnectCommands.tsx:915
+#: src/constants/WalletConnectCommands.tsx:964
+#: src/constants/WalletConnectCommands.tsx:994
+#: src/constants/WalletConnectCommands.tsx:1026
+#: src/constants/WalletConnectCommands.tsx:1056
+#: src/constants/WalletConnectCommands.tsx:1075
+#: src/constants/WalletConnectCommands.tsx:1327
+#: src/constants/WalletConnectCommands.tsx:1351
+#: src/constants/WalletConnectCommands.tsx:1410
+#: src/constants/WalletConnectCommands.tsx:1447
+#: src/constants/WalletConnectCommands.tsx:1468
+#: src/constants/WalletConnectCommands.tsx:1721
+#: src/constants/WalletConnectCommands.tsx:1758
+#: src/constants/WalletConnectCommands.tsx:1794
+#: src/constants/WalletConnectCommands.tsx:1862
+#: src/constants/WalletConnectCommands.tsx:1971
 msgid "Fee"
 msgstr "Veloitus"
 
@@ -2090,12 +2183,16 @@ msgstr "Suodatus"
 msgid "Final folder location"
 msgstr "Lopullinen hakemisto"
 
-#: src/constants/WalletConnectCommands.tsx:23
-#: src/constants/WalletConnectCommands.tsx:1026
+#: src/constants/WalletConnectCommands.tsx:1524
+msgid "Find Lost DID"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:38
+#: src/constants/WalletConnectCommands.tsx:2056
 msgid "Fingerprint"
 msgstr "Sormenjälki"
 
-#: src/constants/WalletConnectCommands.tsx:990
+#: src/constants/WalletConnectCommands.tsx:2020
 msgid "Fingerprints"
 msgstr "Sormenjäljet"
 
@@ -2107,6 +2204,10 @@ msgstr "Valmis"
 #: src/components/settings/SettingsNFT.tsx:116
 msgid "Fit images to cards"
 msgstr "Sovita kuvat kortteihin"
+
+#: src/constants/WalletConnectCommands.tsx:940
+msgid "Folder Name"
+msgstr ""
 
 #: src/electron/main.tsx:1086
 #~ msgid "Follow on Twitter"
@@ -2142,99 +2243,179 @@ msgstr "Noodi ei ollut synkronoitu"
 msgid "General"
 msgstr "Yleisasetukset"
 
-#: src/constants/WalletConnectCommands.tsx:310
+#: src/constants/WalletConnectCommands.tsx:338
 msgid "Get all Offers"
 msgstr "Hae kaikki tarjoukset"
 
-#: src/constants/WalletConnectCommands.tsx:846
+#: src/constants/WalletConnectCommands.tsx:1876
 msgid "Get All Verifiable Credentials"
 msgstr "Hanki Kaikki Todennettavat käyttöoikeustiedot"
 
-#: src/constants/WalletConnectCommands.tsx:517
+#: src/constants/WalletConnectCommands.tsx:1083
+msgid "Get Ancestors"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:545
 msgid "Get CAT Asset Id"
 msgstr "Hae CAT assetin tunniste"
 
-#: src/constants/WalletConnectCommands.tsx:504
+#: src/constants/WalletConnectCommands.tsx:532
 msgid "Get CAT Wallet Info"
 msgstr "Hae CAT-lompakon Tiedot"
 
-#: src/constants/WalletConnectCommands.tsx:91
+#: src/constants/WalletConnectCommands.tsx:106
 msgid "Get Current Address"
 msgstr "Hae Nykyinen Osoite"
+
+#: src/constants/WalletConnectCommands.tsx:1269
+msgid "Get DataLayer Sync Status"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:1568
+msgid "Get DID"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:1555
+msgid "Get DID Current Coin Info"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:1581
+msgid "Get DID Info"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:1606
+msgid "Get DID Metadata"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:1808
+msgid "Get DID Name"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:1619
+msgid "Get DID Public Key"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:1632
+msgid "Get DID Recovery List"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:1594
+msgid "Get Information Needed For DID Recovery"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:1100
+msgid "Get Keys"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:1131
+msgid "Get Keys Values"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:1162
+msgid "Get Kv Diff"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:1197
+msgid "Get Local Root"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:1210
+msgid "Get Mirrors"
+msgstr ""
 
 #: src/components/settings/ProfileAdd.tsx:124
 msgid "Get Mojos from the Chia Faucet"
 msgstr "Hanki Mojoja Chia-hanasta"
 
-#: src/constants/WalletConnectCommands.tsx:276
+#: src/constants/WalletConnectCommands.tsx:291
 msgid "Get Next Address"
 msgstr "Hae Seuraava Osoite"
 
-#: src/constants/WalletConnectCommands.tsx:615
+#: src/constants/WalletConnectCommands.tsx:643
 msgid "Get NFT Info"
 msgstr "Hae NFT-tiedot"
 
-#: src/constants/WalletConnectCommands.tsx:840
+#: src/constants/WalletConnectCommands.tsx:1870
 msgid "Get NFT Wallets with DIDs"
 msgstr "Hae NFT-lompakot DID-tunnuksilla"
 
-#: src/constants/WalletConnectCommands.tsx:585
+#: src/constants/WalletConnectCommands.tsx:613
 msgid "Get NFTs"
 msgstr "Hae NFT:t"
 
-#: src/constants/WalletConnectCommands.tsx:744
+#: src/constants/WalletConnectCommands.tsx:875
 msgid "Get NFTs Count"
 msgstr "Hae NFT-määrä"
 
-#: src/constants/WalletConnectCommands.tsx:474
+#: src/constants/WalletConnectCommands.tsx:502
 msgid "Get Offer Data"
 msgstr "Hae Tarjoustiedot"
 
-#: src/constants/WalletConnectCommands.tsx:488
+#: src/constants/WalletConnectCommands.tsx:516
 msgid "Get Offer Record"
 msgstr "Hae Tarjouksen Tietue"
 
-#: src/constants/WalletConnectCommands.tsx:460
+#: src/constants/WalletConnectCommands.tsx:488
 msgid "Get Offer Summary"
 msgstr "Hae Tarjouksen Yhteenveto"
 
-#: src/constants/WalletConnectCommands.tsx:355
+#: src/constants/WalletConnectCommands.tsx:383
 msgid "Get Offers Count"
 msgstr "Hae Tarjousten Lukumäärä"
 
-#: src/constants/WalletConnectCommands.tsx:917
+#: src/constants/WalletConnectCommands.tsx:1223
+msgid "Get Owned Stores"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:1947
 msgid "Get Proofs For Root Hash"
 msgstr "Hae todisteet juuritiivisteelle"
 
-#: src/constants/WalletConnectCommands.tsx:1019
+#: src/constants/WalletConnectCommands.tsx:2049
 msgid "Get public key"
 msgstr "Hae julkinen avain"
 
-#: src/constants/WalletConnectCommands.tsx:43
+#: src/constants/WalletConnectCommands.tsx:1230
+msgid "Get Root"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:1256
+msgid "Get Root History"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:1243
+msgid "Get Roots"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:58
 msgid "Get Transaction"
 msgstr "Hae Transaktio"
 
-#: src/constants/WalletConnectCommands.tsx:852
+#: src/constants/WalletConnectCommands.tsx:1282
+msgid "Get Value"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:1882
 msgid "Get Verifiable Credential"
 msgstr "Hae Todennettava käyttöoikeustieto"
 
-#: src/constants/WalletConnectCommands.tsx:983
+#: src/constants/WalletConnectCommands.tsx:2013
 msgid "Get wallet addresses for one or more wallet keys"
 msgstr "Hae lompakko-osoitteet yhdelle tai useammalle lompakon avaimelle"
 
-#: src/constants/WalletConnectCommands.tsx:57
+#: src/constants/WalletConnectCommands.tsx:72
 msgid "Get Wallet Balance"
 msgstr "Hae Lompakon Saldo"
 
-#: src/constants/WalletConnectCommands.tsx:74
+#: src/constants/WalletConnectCommands.tsx:89
 msgid "Get Wallet Balances"
 msgstr "Hae Lompakoiden Saldot"
 
-#: src/constants/WalletConnectCommands.tsx:301
+#: src/constants/WalletConnectCommands.tsx:316
 msgid "Get Wallet Sync Status"
 msgstr "Hae Lompakon Synkronoinnin Tila"
 
-#: src/constants/WalletConnectCommands.tsx:29
+#: src/constants/WalletConnectCommands.tsx:44
 msgid "Get Wallets"
 msgstr "Hae Lompakot"
 
@@ -2289,9 +2470,18 @@ msgstr "Harvesterit"
 msgid "Harvesting Effectiveness"
 msgstr "Harvestointiteho"
 
-#: src/constants/WalletConnectCommands.tsx:662
+#: src/constants/WalletConnectCommands.tsx:793
+#: src/constants/WalletConnectCommands.tsx:1093
 msgid "Hash"
 msgstr "Tiiviste"
+
+#: src/constants/WalletConnectCommands.tsx:1173
+msgid "Hash 1"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:1178
+msgid "Hash 2"
+msgstr ""
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:179
 #~ msgid "Hash is validated."
@@ -2392,7 +2582,7 @@ msgstr "Hybriditila mahdollistaa, että tietokoneet, joissa ei ole riitävästi 
 msgid "I Understand, Create Offer"
 msgstr "Ymmärrän, Luo Tarjous"
 
-#: src/constants/WalletConnectCommands.tsx:179
+#: src/constants/WalletConnectCommands.tsx:194
 msgid "Id"
 msgstr "Tunniste"
 
@@ -2439,15 +2629,15 @@ msgstr "Vaihtaaksesi kohteeseen"
 msgid "In Progress"
 msgstr "Käynnissä"
 
-#: src/constants/WalletConnectCommands.tsx:341
+#: src/constants/WalletConnectCommands.tsx:369
 msgid "Include My Offers"
 msgstr "Sisällytä Omat Tarjoukseni"
 
-#: src/constants/WalletConnectCommands.tsx:347
+#: src/constants/WalletConnectCommands.tsx:375
 msgid "Include Taken Offers"
 msgstr "Sisällytä Otetut Tarjoukset"
 
-#: src/constants/WalletConnectCommands.tsx:37
+#: src/constants/WalletConnectCommands.tsx:52
 msgid "Include Wallet Metadata"
 msgstr "Sisällytä Lompakon Metatiedot"
 
@@ -2461,13 +2651,21 @@ msgid "Incoming Offers"
 msgstr "Saapuvat Tarjoukset"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:17
-#: src/constants/WalletConnectCommands.tsx:997
+#: src/constants/WalletConnectCommands.tsx:2027
 msgid "Index"
 msgstr "Indeksi"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:126
 msgid "Initializing..."
 msgstr "Alustetaan..."
+
+#: src/constants/WalletConnectCommands.tsx:1716
+msgid "Inner Address"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:1306
+msgid "Insert"
+msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:1172
 #~ msgid "Install Keybase"
@@ -2543,7 +2741,7 @@ msgstr "IP-osoite"
 msgid "IP address / host"
 msgstr "IP-osoite / nimi"
 
-#: src/constants/WalletConnectCommands.tsx:976
+#: src/constants/WalletConnectCommands.tsx:2006
 msgid "Is notification visible to all paired fingerprints"
 msgstr "Ilmoitus näkyy kaikille paritetuille sormenjäljille"
 
@@ -2600,6 +2798,10 @@ msgid "K-Size"
 msgstr "K-Arvo"
 
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:186
+#: src/components/walletConnect/WalletConnectRequestPermissionsConfirmDialog.tsx:143
+#: src/constants/WalletConnectCommands.tsx:1050
+#: src/constants/WalletConnectCommands.tsx:1293
+#: src/constants/WalletConnectCommands.tsx:1316
 msgid "Key"
 msgstr "Avain"
 
@@ -2676,8 +2878,8 @@ msgstr "Viimeisimmät Lohkohaasteet"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:255
 #: src/components/plotNFT/PlotNFTCard.tsx:292
-#: src/constants/WalletConnectCommands.tsx:859
-#: src/constants/WalletConnectCommands.tsx:871
+#: src/constants/WalletConnectCommands.tsx:1889
+#: src/constants/WalletConnectCommands.tsx:1901
 msgid "Launcher Id"
 msgstr "Käynnistimen Tunnus"
 
@@ -2709,11 +2911,11 @@ msgid "Legacy keyrings are no longer supported. Your keys need to be migrated to
 msgstr "Vanhoja avainlenkkejä ei enää tueta. Avaimesi on siirrettävä uuteen avainlenkkiin, joka on suojattu pääsalasanalla."
 
 #: src/components/nfts/NFTDetails.tsx:295
-#: src/constants/WalletConnectCommands.tsx:683
+#: src/constants/WalletConnectCommands.tsx:814
 msgid "License Hash"
 msgstr "Lisenssin Tiiviste"
 
-#: src/constants/WalletConnectCommands.tsx:678
+#: src/constants/WalletConnectCommands.tsx:809
 msgid "License Uris"
 msgstr "Lisenssi-URIt"
 
@@ -2797,13 +2999,21 @@ msgstr "Paikallinen Harvesteri"
 msgid "Locked"
 msgstr "Lukittu"
 
-#: src/constants/WalletConnectCommands.tsx:16
+#: src/constants/WalletConnectCommands.tsx:31
 msgid "Log In"
 msgstr "Sisäänkirjautuminen"
 
 #: src/components/app/LogoutButton.tsx:25
 msgid "Log Out"
 msgstr "Kirjaudu Ulos"
+
+#: src/constants/WalletConnectCommands.tsx:1335
+msgid "Make DataLayer Offer"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:1340
+msgid "Maker"
+msgstr ""
 
 #: src/components/app/AppSelectMode.tsx:84
 msgid "Manage CAT tokens"
@@ -2833,27 +3043,33 @@ msgstr "Hallitse Farmeripalkkioiden Kohdeosoitteita"
 msgid "Max"
 msgstr "Maks."
 
+#: src/constants/WalletConnectCommands.tsx:1123
+#: src/constants/WalletConnectCommands.tsx:1154
+#: src/constants/WalletConnectCommands.tsx:1189
+msgid "Max page size"
+msgstr ""
+
 #: src/components/vcs/VCList.tsx:308
 msgid "Memberships"
 msgstr "Jäsenyydet"
 
-#: src/constants/WalletConnectCommands.tsx:139
-#: src/constants/WalletConnectCommands.tsx:559
+#: src/constants/WalletConnectCommands.tsx:154
+#: src/constants/WalletConnectCommands.tsx:587
 msgid "Memos"
 msgstr "Muistiot"
 
 #: src/components/notification/NotificationAnnouncementDialog.tsx:67
 #: src/components/signVerify/SignMessage.tsx:200
 #: src/components/signVerify/VerifyMessage.tsx:207
-#: src/constants/WalletConnectCommands.tsx:184
-#: src/constants/WalletConnectCommands.tsx:207
-#: src/constants/WalletConnectCommands.tsx:247
-#: src/constants/WalletConnectCommands.tsx:958
+#: src/constants/WalletConnectCommands.tsx:199
+#: src/constants/WalletConnectCommands.tsx:222
+#: src/constants/WalletConnectCommands.tsx:262
+#: src/constants/WalletConnectCommands.tsx:1988
 msgid "Message"
 msgstr "Viesti"
 
-#: src/constants/WalletConnectCommands.tsx:189
-#: src/constants/WalletConnectCommands.tsx:212
+#: src/constants/WalletConnectCommands.tsx:204
+#: src/constants/WalletConnectCommands.tsx:227
 msgid "Message Is Hex Encoded String"
 msgstr "Viesti on Heksadesimaalikoodattu Merkkijono"
 
@@ -2861,11 +3077,11 @@ msgstr "Viesti on Heksadesimaalikoodattu Merkkijono"
 msgid "Message not available"
 msgstr "Viesti ei saatavilla"
 
-#: src/constants/WalletConnectCommands.tsx:672
+#: src/constants/WalletConnectCommands.tsx:803
 msgid "Meta Hash"
 msgstr "Metatiiviste"
 
-#: src/constants/WalletConnectCommands.tsx:667
+#: src/constants/WalletConnectCommands.tsx:798
 msgid "Meta Uris"
 msgstr "Meta-URIt"
 
@@ -2876,6 +3092,10 @@ msgstr "Matatietojen tiiviste"
 #: src/components/nfts/NFTPreview.tsx:649
 #~ msgid "Metadata hash mismatch"
 #~ msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:668
+msgid "Metadata List"
+msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:250
 msgid "Metadata URL {0}"
@@ -2905,9 +3125,25 @@ msgstr "Siirto vaaditaan salasanasuojaukseen"
 msgid "Minimum Difficulty"
 msgstr "Pienin Vaikeustaso"
 
-#: src/constants/WalletConnectCommands.tsx:629
+#: src/constants/WalletConnectCommands.tsx:657
+msgid "Mint Bulk"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:739
+msgid "Mint From DID"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:760
 msgid "Mint NFT"
 msgstr "Luo NFT"
+
+#: src/constants/WalletConnectCommands.tsx:691
+msgid "Mint Start Number"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:697
+msgid "Mint Total"
+msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:213
 msgid "Minted at Block Height"
@@ -3006,8 +3242,8 @@ msgstr "N/A"
 #: src/components/addressbook/ContactEdit.tsx:108
 #: src/components/addressbook/ContactEdit.tsx:166
 #: src/components/addressbook/ContactEdit.tsx:366
-#: src/constants/WalletConnectCommands.tsx:576
-#: src/constants/WalletConnectCommands.tsx:801
+#: src/constants/WalletConnectCommands.tsx:604
+#: src/constants/WalletConnectCommands.tsx:1831
 msgid "Name"
 msgstr "Nimi"
 
@@ -3031,7 +3267,7 @@ msgstr "Transaktiomaksu (valinnainen)"
 msgid "Network Name"
 msgstr "Verkon Nimi"
 
-#: src/constants/WalletConnectCommands.tsx:291
+#: src/constants/WalletConnectCommands.tsx:306
 msgid "New Address"
 msgstr "Uusi Osoite"
 
@@ -3039,21 +3275,33 @@ msgstr "Uusi Osoite"
 msgid "New counter offer"
 msgstr "Uusi vastatarjous"
 
+#: src/constants/WalletConnectCommands.tsx:715
+msgid "New Inner Puzzle Hash"
+msgstr ""
+
 #: src/components/notification/utils.ts:101
 msgid "New offer"
 msgstr "Uusi tarjous"
+
+#: src/constants/WalletConnectCommands.tsx:721
+msgid "New P2 Puzzle Hash"
+msgstr ""
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:212
 msgid "New Passphrase"
 msgstr "Uusi Salasana"
 
-#: src/constants/WalletConnectCommands.tsx:882
+#: src/constants/WalletConnectCommands.tsx:1912
 msgid "New Proof Hash"
 msgstr "Uusi Todisteen Tiiviste"
 
-#: src/constants/WalletConnectCommands.tsx:876
+#: src/constants/WalletConnectCommands.tsx:1906
 msgid "New Puzzle Hash"
 msgstr "Uusi Osoitetiiviste"
+
+#: src/constants/WalletConnectCommands.tsx:1783
+msgid "New Recovery DID List"
+msgstr ""
 
 #: src/components/block/Block.jsx:260
 #: src/components/nfts/detail/NFTDetailV2.tsx:143
@@ -3081,8 +3329,8 @@ msgstr "NFT {nftId} on jo käytetty tarjoukseen"
 msgid "NFT Coin ID"
 msgstr "NFT-kolikon Tunniste"
 
-#: src/constants/WalletConnectCommands.tsx:726
-#: src/constants/WalletConnectCommands.tsx:823
+#: src/constants/WalletConnectCommands.tsx:857
+#: src/constants/WalletConnectCommands.tsx:1853
 msgid "NFT Coin Ids"
 msgstr "NFT-tunnisteet"
 
@@ -3112,7 +3360,7 @@ msgstr "NFT-tunniste (ID)"
 msgid "NFT identifier does not reference a valid NFT coin."
 msgstr "NFT:n tunnuste ei viittaa käypään NFT:hen"
 
-#: src/constants/WalletConnectCommands.tsx:818
+#: src/constants/WalletConnectCommands.tsx:1848
 msgid "NFT Launcher Id"
 msgstr "NFT Launcherin Tunnus"
 
@@ -3227,7 +3475,7 @@ msgstr "Standardilompakkoa ei löytynyt"
 msgid "Node ID"
 msgstr "Noodin tunnus"
 
-#: src/constants/WalletConnectCommands.tsx:1011
+#: src/constants/WalletConnectCommands.tsx:2041
 msgid "Non Observer Derivation"
 msgstr "Ei-lukuderivaatio"
 
@@ -3271,6 +3519,7 @@ msgstr "Ei Saatavilla"
 #: src/components/plot/PlotStatus.tsx:20
 #: src/components/plotNFT/PlotNFTCard.tsx:307
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:143
+#: src/components/walletConnect/WalletConnectRequestPermissionsConfirmDialog.tsx:132
 msgid "Not Available"
 msgstr "Ei Saatavilla"
 
@@ -3321,7 +3570,7 @@ msgstr "Ilmoitukset"
 msgid "Notify Current Owner"
 msgstr "Ilmoita Nykyiselle Omistajalle"
 
-#: src/constants/WalletConnectCommands.tsx:784
+#: src/constants/WalletConnectCommands.tsx:1478
 msgid "Number of Backup Ids Needed"
 msgstr "Tarvittavien varmuuskopiointitunnusten määrä"
 
@@ -3334,7 +3583,11 @@ msgstr "Muistilohkojen määrä"
 msgid "Number of buckets for phase 3 & 4"
 msgstr "Vaiheen 3 ja 4 muistilohkojen (bucket) määrä"
 
-#: src/constants/WalletConnectCommands.tsx:601
+#: src/constants/WalletConnectCommands.tsx:1788
+msgid "Number Of DIDs Required For Recovery"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:629
 msgid "Number of NFTs"
 msgstr "NFT:ien lukumäärä"
 
@@ -3383,7 +3636,9 @@ msgstr "Kyseenalainen sisältö"
 msgid "Occupied space"
 msgstr "Varattu tila"
 
-#: src/constants/WalletConnectCommands.tsx:444
+#: src/constants/WalletConnectCommands.tsx:472
+#: src/constants/WalletConnectCommands.tsx:1404
+#: src/constants/WalletConnectCommands.tsx:1441
 msgid "Offer"
 msgstr "Tarjous"
 
@@ -3400,9 +3655,9 @@ msgstr "Tarjousta ei voida hyväksyä, koska sinulla ei ole pyydettyä assettia.
 
 #: src/components/offers/OfferDataDialog.tsx:29
 #: src/components/offers/OfferDataDialog.tsx:37
-#: src/constants/WalletConnectCommands.tsx:432
-#: src/constants/WalletConnectCommands.tsx:467
-#: src/constants/WalletConnectCommands.tsx:970
+#: src/constants/WalletConnectCommands.tsx:460
+#: src/constants/WalletConnectCommands.tsx:495
+#: src/constants/WalletConnectCommands.tsx:2000
 msgid "Offer Data"
 msgstr "Tarjouksen Tiedot"
 
@@ -3438,8 +3693,8 @@ msgstr "Tarjous on vanhentunut"
 msgid "Offer has expired."
 msgstr "Tarjous on vanhentunut."
 
-#: src/constants/WalletConnectCommands.tsx:481
-#: src/constants/WalletConnectCommands.tsx:495
+#: src/constants/WalletConnectCommands.tsx:509
+#: src/constants/WalletConnectCommands.tsx:523
 msgid "Offer Id"
 msgstr "Tarjouksen Tunniste"
 
@@ -3590,6 +3845,10 @@ msgstr "Ohita säikeiden määrä vaiheessa 2"
 msgid "Override the thread count for Phase 3"
 msgstr "Ohita säikeiden määrä vaiheessa 3"
 
+#: src/constants/WalletConnectCommands.tsx:934
+msgid "Overwrite"
+msgstr ""
+
 #: src/components/nfts/NFTDetails.tsx:87
 msgid "Owner Address"
 msgstr "Omistajan Osoite"
@@ -3605,6 +3864,12 @@ msgstr "Omistajan Julkinen Avain"
 #: src/components/plot/add/PlotAddForm.tsx:176
 msgid "p2SingletonPuzzleHash is not defined"
 msgstr "p2SingletonPuzzleHash ei ole määritetty"
+
+#: src/constants/WalletConnectCommands.tsx:1117
+#: src/constants/WalletConnectCommands.tsx:1148
+#: src/constants/WalletConnectCommands.tsx:1183
+msgid "Page"
+msgstr ""
 
 #: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:86
 msgid "Pair does not exists"
@@ -3622,7 +3887,7 @@ msgstr "Ei Avainpareja"
 msgid "Parallel Decompressor Count"
 msgstr "Rinnakkaisten dekompressorien lukumäärä"
 
-#: src/constants/WalletConnectCommands.tsx:936
+#: src/constants/WalletConnectCommands.tsx:1966
 msgid "Parent Coin Info"
 msgstr "Edeltävän Kolikon Tiedot"
 
@@ -4141,11 +4406,11 @@ msgstr "Todisteet"
 msgid "Proofs Found"
 msgstr "Todisteita Löytynyt"
 
-#: src/constants/WalletConnectCommands.tsx:924
+#: src/constants/WalletConnectCommands.tsx:1954
 msgid "Proofs Hash"
 msgstr "Todisteiden Tiivisteet"
 
-#: src/constants/WalletConnectCommands.tsx:911
+#: src/constants/WalletConnectCommands.tsx:1941
 msgid "Proofs Object (Key Value Pairs)"
 msgstr "Todisteiden Objekti (Avainarvoparit)"
 
@@ -4161,12 +4426,12 @@ msgstr "Protokollaversio"
 msgid "Prove or verify possession of a wallet address, NFT, or DID using a digital signature."
 msgstr "Todista tai vahvista lompakon osoitteen, NFT:n tai DID:n hallinta digitaalisella allekirjoituksella."
 
-#: src/constants/WalletConnectCommands.tsx:887
+#: src/constants/WalletConnectCommands.tsx:1917
 msgid "Provider Inner Puzzle Hash"
 msgstr "Tuottajan Sisäinen Puzzletiiviste"
 
 #: src/components/signVerify/VerifyMessage.tsx:219
-#: src/constants/WalletConnectCommands.tsx:252
+#: src/constants/WalletConnectCommands.tsx:267
 msgid "Public Key"
 msgstr "Julkinen avain"
 
@@ -4174,7 +4439,15 @@ msgstr "Julkinen avain"
 msgid "Purchase Summary"
 msgstr "Ostoksen Yhteenveto"
 
-#: src/constants/WalletConnectCommands.tsx:146
+#: src/constants/WalletConnectCommands.tsx:324
+msgid "Push a spend bundle (transaction) to the blockchain"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:323
+msgid "Push Transaction"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:161
 msgid "Puzzle Decorator"
 msgstr "Puzzle Dekoraattori"
 
@@ -4215,6 +4488,10 @@ msgstr "Suositus"
 #~ msgid "Recommended: 0.000005 XCH"
 #~ msgstr "Recommended: 0.000005 XCH"
 
+#: src/constants/WalletConnectCommands.tsx:1536
+msgid "Recovery List Hash"
+msgstr ""
+
 #: src/components/settings/SettingsHarvester.tsx:404
 msgid "Recursive Plot Scan"
 msgstr "Rekursiivinen Plottiskannaus"
@@ -4230,6 +4507,7 @@ msgstr "Päivitä Plot-tiedostot"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:270
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:173
+#: src/components/walletConnect/WalletConnectRequestPermissionsConfirmDialog.tsx:90
 msgid "Reject"
 msgstr "Hylkää"
 
@@ -4271,6 +4549,10 @@ msgstr "Poista avaimet vanhasta avainrenkaasta onnistuneen siiron jälkeen"
 msgid "Remove Passphrase"
 msgstr "Poista Salasana"
 
+#: src/constants/WalletConnectCommands.tsx:1359
+msgid "Remove Subscriptions"
+msgstr ""
+
 #: src/components/vcs/VCCard.tsx:209
 #: src/components/vcs/VCCard.tsx:301
 msgid "Remove Verifiable Credential"
@@ -4284,6 +4566,10 @@ msgstr "Poistetaan"
 #~ msgid "Report an Issue..."
 #~ msgstr "Report an Issue..."
 
+#: src/constants/WalletConnectCommands.tsx:16
+msgid "Request Permissions"
+msgstr ""
+
 #: src/components/offers/OfferManager.tsx:225
 #: src/components/offers2/CancelOfferList.tsx:95
 msgid "Requested"
@@ -4294,85 +4580,93 @@ msgstr "Pyydetty"
 msgid "Requesting"
 msgstr "Pyydetään"
 
-#: src/constants/WalletConnectCommands.tsx:311
+#: src/components/walletConnect/WalletConnectRequestPermissionsConfirmDialog.tsx:87
+msgid "Requesting Permissions"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:339
 msgid "Requests a complete listing of the offers associated with the current wallet key"
 msgstr "Pyytää täydellistä listaa tarjouksista, jotka liittyvät nykyiseen lompakko-avaimeen"
 
-#: src/constants/WalletConnectCommands.tsx:30
+#: src/constants/WalletConnectCommands.tsx:45
 msgid "Requests a complete listing of the wallets associated with the current wallet key"
 msgstr "Pyytää täydellistä luetteloa lompakoista, jotka liittyvät nykyiseen lompakkoavaimeen"
 
-#: src/constants/WalletConnectCommands.tsx:587
+#: src/constants/WalletConnectCommands.tsx:615
 msgid "Requests a full or paginated listing of NFTs associated with one or more wallets associated with the current wallet key"
 msgstr "Pyytää täydellistä tai sivutettua luetteloa NFT:istä, jotka liittyvät yhteen tai useampaan lompakkoon jotka liityvät nykyiseen lompakkoavaimeen"
 
-#: src/constants/WalletConnectCommands.tsx:1020
+#: src/constants/WalletConnectCommands.tsx:2050
 msgid "Requests a master public key from your wallet"
 msgstr "Pyytää julkisen pääavaimen lompakostasi"
 
-#: src/constants/WalletConnectCommands.tsx:277
+#: src/constants/WalletConnectCommands.tsx:292
 msgid "Requests a new receive address associated with the current wallet key"
 msgstr "Pyytää uuden vastaanotto-osoitteen, joka liittyy nykyiseen lompakkoavaimeen"
 
-#: src/constants/WalletConnectCommands.tsx:616
+#: src/constants/WalletConnectCommands.tsx:644
 msgid "Requests details for a specific NFT"
 msgstr "Pyytää tietyn NFT:n tiedot"
 
-#: src/constants/WalletConnectCommands.tsx:44
+#: src/constants/WalletConnectCommands.tsx:59
 msgid "Requests details for a specific transaction"
 msgstr "Pyytää tietyn transaktion tiedot"
 
-#: src/constants/WalletConnectCommands.tsx:58
+#: src/constants/WalletConnectCommands.tsx:73
 msgid "Requests the asset balance for a specific wallet associated with the current wallet key"
 msgstr "Pyytää assettisaldoa tietylle lompakolle, joka liittyy nykyiseen lompakkoavaimeen"
 
-#: src/constants/WalletConnectCommands.tsx:75
+#: src/constants/WalletConnectCommands.tsx:90
 msgid "Requests the asset balances for specific wallets associated with the current wallet key"
 msgstr "Pyytää assettisaldoa tietyille lompakoille, jotka liittyvät nykyiseen lompakkoavaimeen"
 
-#: src/constants/WalletConnectCommands.tsx:518
+#: src/constants/WalletConnectCommands.tsx:546
 msgid "Requests the CAT asset ID for a specific CAT wallet"
 msgstr "Pyytää CAT:n assettittunnusta tietylle CAT:n lompakolle"
 
-#: src/constants/WalletConnectCommands.tsx:92
+#: src/constants/WalletConnectCommands.tsx:107
 msgid "Requests the current receive address associated with the current wallet key"
 msgstr "Pyytää nykyisen vastaanottavan osoitteen, joka liittyy nykyiseen lompakkoavaimeen"
 
-#: src/constants/WalletConnectCommands.tsx:490
+#: src/constants/WalletConnectCommands.tsx:518
 msgid "Requests the details for a specific offer"
 msgstr "Pyytää tietyn tarjouksen tietoja"
 
-#: src/constants/WalletConnectCommands.tsx:746
+#: src/constants/WalletConnectCommands.tsx:877
 msgid "Requests the number of NFTs associated with one or more wallets associated with the current wallet key"
 msgstr "Pyytää NFT:ien lukumäärää, joka liittyy yhteen tai useampaan lompakkoon, joka liittyy nykyiseen lompakko-avaimeen"
 
-#: src/constants/WalletConnectCommands.tsx:356
+#: src/constants/WalletConnectCommands.tsx:384
 msgid "Requests the number of offers associated with the current wallet key"
 msgstr "Pyytää nykyisen lompakon avaimeen liittyvien tarjousten lukumäärää"
 
-#: src/constants/WalletConnectCommands.tsx:475
+#: src/constants/WalletConnectCommands.tsx:503
 msgid "Requests the raw offer data for a specific offer"
 msgstr "Pyytää tietyn tarjouksen raakatietoja"
 
-#: src/constants/WalletConnectCommands.tsx:461
+#: src/constants/WalletConnectCommands.tsx:489
 msgid "Requests the summarized details of a specific offer"
 msgstr "Pyytää tietyn tarjouksen tiivistettyjä yksityiskohtia"
 
-#: src/constants/WalletConnectCommands.tsx:302
+#: src/constants/WalletConnectCommands.tsx:317
 msgid "Requests the syncing status of current wallet"
 msgstr "Pyytää nykyisen lompakon synkronoinnin tilaa"
 
-#: src/constants/WalletConnectCommands.tsx:426
+#: src/constants/WalletConnectCommands.tsx:454
 msgid "Requests the validity status of a specific offer"
 msgstr "Pyytää tietyn tarjouksen voimassaolon tilaa"
 
-#: src/constants/WalletConnectCommands.tsx:241
+#: src/constants/WalletConnectCommands.tsx:256
 msgid "Requests the verification status for a digital signature"
 msgstr "Pyytää digitaalisen allekirjoituksen varmentamisen tilaa"
 
 #: src/components/settings/SettingsIntegration.tsx:314
 msgid "Require Confirmation"
 msgstr "Vaadi Vahvistus"
+
+#: src/constants/WalletConnectCommands.tsx:1542
+msgid "Required Number of DIDs for Verification"
+msgstr ""
 
 #: src/components/farm/FarmHealth.tsx:286
 #: src/components/farm/FarmHealth.tsx:348
@@ -4416,17 +4710,25 @@ msgstr "Uudelleensynkronoi Lompakko"
 msgid "Resyncing forces reloading data from the blockchain about your transactions without losing other locally stored information like open, accepted, or cancelled offer files. Resyncing will require you to restart the app."
 msgstr "Uudelleensynkronointi pakottaa lataamaan transaktiotiedot lohkoketjusta menettämättä muita paikallisesti tallennettuja tietoja, kuten avoimia, hyväksyttyjä tai peruutettuja tarjoustiedostoja. Uudelleensynkronointi vaatii sovelluksen uudelleenkäynnistyksen"
 
-#: src/constants/WalletConnectCommands.tsx:898
+#: src/constants/WalletConnectCommands.tsx:1428
+msgid "retain"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:752
+#: src/constants/WalletConnectCommands.tsx:1734
+#: src/constants/WalletConnectCommands.tsx:1765
+#: src/constants/WalletConnectCommands.tsx:1801
+#: src/constants/WalletConnectCommands.tsx:1928
 msgid "Reuse Puzzle Hash"
 msgstr "Uudelleenkäytä Puzzle-tiiviste"
 
-#: src/constants/WalletConnectCommands.tsx:335
+#: src/constants/WalletConnectCommands.tsx:363
 msgid "Reverse"
 msgstr "Peruuta"
 
 #: src/components/vcs/VCCard.tsx:209
 #: src/components/vcs/VCCard.tsx:311
-#: src/constants/WalletConnectCommands.tsx:930
+#: src/constants/WalletConnectCommands.tsx:1960
 msgid "Revoke Verifiable Credential"
 msgstr "Peruuta Todennettava Käyttöoikeustieto"
 
@@ -4434,16 +4736,24 @@ msgstr "Peruuta Todennettava Käyttöoikeustieto"
 msgid "Revoked"
 msgstr "Peruttu"
 
+#: src/constants/WalletConnectCommands.tsx:1111
+#: src/constants/WalletConnectCommands.tsx:1142
+#: src/constants/WalletConnectCommands.tsx:1298
+msgid "Root Hash"
+msgstr ""
+
 #: src/components/offers2/OfferBuilderNFTRoyalties.tsx:94
 msgid "Royalties are built into the NFT, so they will automatically be accounted for when the offer is created/accepted."
 msgstr "Rojaltit on sisäänrakennettu NFT:ään, joten ne kirjataan automaattisesti kun tarjous on luotu/hyväksytty."
 
-#: src/constants/WalletConnectCommands.tsx:639
+#: src/constants/WalletConnectCommands.tsx:679
+#: src/constants/WalletConnectCommands.tsx:770
 msgid "Royalty Address"
 msgstr "Rojaltin Osoite"
 
 #: src/components/nfts/NFTDetails.tsx:159
-#: src/constants/WalletConnectCommands.tsx:645
+#: src/constants/WalletConnectCommands.tsx:673
+#: src/constants/WalletConnectCommands.tsx:776
 msgid "Royalty Percentage"
 msgstr "Rojaltiprosentti"
 
@@ -4496,7 +4806,8 @@ msgstr "Etsi..."
 msgid "Second temporary folder location"
 msgstr "Toinen väliaikaishakemistosijainti"
 
-#: src/constants/WalletConnectCommands.tsx:412
+#: src/constants/WalletConnectCommands.tsx:440
+#: src/constants/WalletConnectCommands.tsx:988
 msgid "Secure"
 msgstr "Suojattu"
 
@@ -4617,7 +4928,7 @@ msgstr "Lähetä ilmoitus tarjouksesta"
 msgid "Send to Address"
 msgstr "Lähetä osoitteeseen"
 
-#: src/constants/WalletConnectCommands.tsx:109
+#: src/constants/WalletConnectCommands.tsx:124
 msgid "Send Transaction"
 msgstr "Lähetä Tapahtuma"
 
@@ -4629,11 +4940,11 @@ msgstr "Aseta oletusaikaraja kaikille lähteville XCH-tapahtumille."
 msgid "Set a time after which this offer expires."
 msgstr "Aseta aika, jonka jälkeen tarjous vanhenee."
 
-#: src/constants/WalletConnectCommands.tsx:791
+#: src/constants/WalletConnectCommands.tsx:1821
 msgid "Set DID Name"
 msgstr "Aseta DID-nimi"
 
-#: src/constants/WalletConnectCommands.tsx:808
+#: src/constants/WalletConnectCommands.tsx:1838
 msgid "Set NFT DID"
 msgstr "Aseta NFT DID"
 
@@ -4701,7 +5012,7 @@ msgstr "Näytä"
 msgid "Show Details"
 msgstr "Näytä Tiedot"
 
-#: src/constants/WalletConnectCommands.tsx:947
+#: src/constants/WalletConnectCommands.tsx:1977
 msgid "Show notification with offer or general announcement"
 msgstr "Näytä ilmoitus tarjouksen tai yleisen ilmoituksen kanssa"
 
@@ -4730,16 +5041,16 @@ msgstr "Allekirjoita"
 msgid "Sign Message"
 msgstr "Allekirjoita Viesti"
 
-#: src/constants/WalletConnectCommands.tsx:197
+#: src/constants/WalletConnectCommands.tsx:212
 msgid "Sign Message by Address"
 msgstr "Allekirjoita viesti osoitteella"
 
-#: src/constants/WalletConnectCommands.tsx:174
+#: src/constants/WalletConnectCommands.tsx:189
 msgid "Sign Message by Id"
 msgstr "Allekirjoita viesti tunnisteella"
 
 #: src/components/signVerify/VerifyMessage.tsx:228
-#: src/constants/WalletConnectCommands.tsx:257
+#: src/constants/WalletConnectCommands.tsx:272
 msgid "Signature"
 msgstr "Allekirjoitus"
 
@@ -4780,7 +5091,7 @@ msgid "Signing Entity"
 msgstr "Allekirjoitusentiteetti"
 
 #: src/components/signVerify/VerifyMessage.tsx:237
-#: src/constants/WalletConnectCommands.tsx:268
+#: src/constants/WalletConnectCommands.tsx:283
 msgid "Signing Mode"
 msgstr "Allekirjoitustila"
 
@@ -4841,11 +5152,15 @@ msgstr "Määritä GPU-indeksi (0, 1, 2, jne.) harvesteria varten, jos on olemas
 #~ msgid "Speech"
 #~ msgstr "Speech"
 
-#: src/constants/WalletConnectCommands.tsx:531
+#: src/constants/WalletConnectCommands.tsx:329
+msgid "Spend Bundle"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:559
 msgid "Spend CAT"
 msgstr "Käytä CAT-tokeneja"
 
-#: src/constants/WalletConnectCommands.tsx:892
+#: src/constants/WalletConnectCommands.tsx:1922
 msgid "Spend Fee"
 msgstr "Maksu"
 
@@ -4869,15 +5184,15 @@ msgstr "Vanhentuneet partiaalit"
 msgid "Standard Version Number"
 msgstr "Vakioversionumero"
 
-#: src/constants/WalletConnectCommands.tsx:317
+#: src/constants/WalletConnectCommands.tsx:345
 msgid "Start"
 msgstr "Aloita"
 
-#: src/constants/WalletConnectCommands.tsx:607
+#: src/constants/WalletConnectCommands.tsx:635
 msgid "Start Index"
 msgstr "Aloitusindeksi"
 
-#: src/constants/WalletConnectCommands.tsx:329
+#: src/constants/WalletConnectCommands.tsx:357
 msgid "Start Key"
 msgstr "Aloitusavain"
 
@@ -4908,9 +5223,48 @@ msgstr "Tila"
 msgid "Store and Send XCH"
 msgstr "Säilytä ja lähetä XCH:itä"
 
+#: src/constants/WalletConnectCommands.tsx:899
+#: src/constants/WalletConnectCommands.tsx:953
+#: src/constants/WalletConnectCommands.tsx:983
+#: src/constants/WalletConnectCommands.tsx:1013
+#: src/constants/WalletConnectCommands.tsx:1045
+#: src/constants/WalletConnectCommands.tsx:1088
+#: src/constants/WalletConnectCommands.tsx:1106
+#: src/constants/WalletConnectCommands.tsx:1137
+#: src/constants/WalletConnectCommands.tsx:1168
+#: src/constants/WalletConnectCommands.tsx:1203
+#: src/constants/WalletConnectCommands.tsx:1216
+#: src/constants/WalletConnectCommands.tsx:1236
+#: src/constants/WalletConnectCommands.tsx:1262
+#: src/constants/WalletConnectCommands.tsx:1275
+#: src/constants/WalletConnectCommands.tsx:1288
+#: src/constants/WalletConnectCommands.tsx:1311
+#: src/constants/WalletConnectCommands.tsx:1364
+#: src/constants/WalletConnectCommands.tsx:1381
+#: src/constants/WalletConnectCommands.tsx:1423
+msgid "Store Id"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:928
+#: src/constants/WalletConnectCommands.tsx:1249
+msgid "Store Ids"
+msgstr ""
+
 #: src/components/app/AppPassPrompt.tsx:107
 msgid "Submit"
 msgstr "Lähetä"
+
+#: src/constants/WalletConnectCommands.tsx:971
+msgid "Submit on chain"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:1376
+msgid "Subscribe"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:1393
+msgid "Subscriptions"
+msgstr ""
 
 #: src/components/notification/NotificationSendDialog.tsx:143
 #: src/components/vcs/VCCard.tsx:278
@@ -4949,14 +5303,26 @@ msgstr "Synkronoi"
 msgid "Syncing <0/>/<1/>"
 msgstr "Synkronoi <0/>/<1/>"
 
-#: src/constants/WalletConnectCommands.tsx:439
+#: src/constants/WalletConnectCommands.tsx:1399
+msgid "Take DataLayer Offer"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:467
 msgid "Take Offer"
 msgstr "Hyväksy Tarjous"
 
-#: src/constants/WalletConnectCommands.tsx:651
-#: src/constants/WalletConnectCommands.tsx:731
+#: src/constants/WalletConnectCommands.tsx:1345
+msgid "Taker"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:782
+#: src/constants/WalletConnectCommands.tsx:862
 msgid "Target Address"
 msgstr "Kohdeosoite"
+
+#: src/constants/WalletConnectCommands.tsx:685
+msgid "Target List"
+msgstr ""
 
 #: src/components/pool/PoolInfo.tsx:38
 msgid "Target Puzzle Hash"
@@ -4997,6 +5363,10 @@ msgstr "Derivaatioindeksi asettaa lompakon osoitteiden määrän, jota lompakko 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:136
 msgid "The folder is on a RAM Disk"
 msgstr "Kansio on RAM levyllä"
+
+#: src/components/walletConnect/WalletConnectRequestPermissionsConfirmDialog.tsx:108
+msgid "The following commands are not allowed to bypass confirmation."
+msgstr ""
 
 #: src/components/farm/FarmFullNodeConnections.tsx:79
 msgid "The full node that your farmer is connected to is below. <0>Learn more</0>"
@@ -5397,7 +5767,7 @@ msgstr "Farmatut XCH:t Yhteensä"
 msgid "Touch all pages of buffer allocations before starting to plot."
 msgstr "Kosketa puskurien allokoinnin kaikkia sivuja ennen kuin plottaus aloitetaan."
 
-#: src/constants/WalletConnectCommands.tsx:407
+#: src/constants/WalletConnectCommands.tsx:435
 msgid "Trade Id"
 msgstr "Kaupan tunniste"
 
@@ -5413,7 +5783,7 @@ msgstr "Transaktion automaattilunastuksen maksu"
 msgid "Transaction Fee"
 msgstr "Transaktiomaksut"
 
-#: src/constants/WalletConnectCommands.tsx:51
+#: src/constants/WalletConnectCommands.tsx:66
 msgid "Transaction Id"
 msgstr "Tapahtuman Tunniste"
 
@@ -5442,9 +5812,13 @@ msgstr "Transaktioita, joiden arvo on pienempi kuin maksu, ei lunasteta automaat
 msgid "Transfer"
 msgstr "Siirrä"
 
+#: src/constants/WalletConnectCommands.tsx:1705
+msgid "Transfer DID"
+msgstr ""
+
 #: src/components/nfts/NFTContextualActions.tsx:197
 #: src/components/nfts/NFTTransferAction.tsx:217
-#: src/constants/WalletConnectCommands.tsx:716
+#: src/constants/WalletConnectCommands.tsx:847
 msgid "Transfer NFT"
 msgstr "Siirrä NFT"
 
@@ -5477,7 +5851,7 @@ msgid "Turn this off if you don't have any compressed plots to harvest"
 msgstr "Poista tämä käytöstä, jos sinulla ei ole puristettuja plotteja"
 
 #: src/components/vcs/VCCard.tsx:163
-#: src/constants/WalletConnectCommands.tsx:953
+#: src/constants/WalletConnectCommands.tsx:1983
 msgid "Type"
 msgstr "Tyyppi"
 
@@ -5563,7 +5937,7 @@ msgstr "Tuntematon Assetti"
 msgid "Unknown CAT"
 msgstr "Tuntematon CAT"
 
-#: src/hooks/useWalletConnectCommand.tsx:32
+#: src/hooks/useWalletConnectCommand.tsx:33
 msgid "Unknown Dapp"
 msgstr "Tuntematon Dapp"
 
@@ -5579,6 +5953,10 @@ msgstr "Nimetön Kontakti"
 msgid "Unrecognized asset"
 msgstr "Tunnistamaton assetti"
 
+#: src/constants/WalletConnectCommands.tsx:1418
+msgid "Unsubscribe"
+msgstr ""
+
 #: src/components/walletConnect/WalletConnectActiveSessions.tsx:54
 msgid "Unsupported commands"
 msgstr "Komennot, joita ei tueta"
@@ -5587,16 +5965,24 @@ msgstr "Komennot, joita ei tueta"
 msgid "Update"
 msgstr "Päivitä"
 
+#: src/constants/WalletConnectCommands.tsx:1741
+msgid "Update DID Metadata"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:1772
+msgid "Update DID Recovery Ids"
+msgstr ""
+
 #: src/components/nfts/NFTHashStatus.tsx:69
 msgid "Update Pending"
 msgstr "Odottaa Päivitystä"
 
-#: src/constants/WalletConnectCommands.tsx:657
+#: src/constants/WalletConnectCommands.tsx:788
 msgid "Uris"
 msgstr "URIt"
 
 #: src/components/notification/NotificationAnnouncementDialog.tsx:76
-#: src/constants/WalletConnectCommands.tsx:964
+#: src/constants/WalletConnectCommands.tsx:1994
 #: src/hooks/useOpenUnsafeLink.tsx:27
 #: src/hooks/useOpenUnsafeLink.tsx:72
 msgid "URL"
@@ -5605,6 +5991,12 @@ msgstr "URL"
 #: src/components/nfts/NFTHashStatus.tsx:77
 msgid "URL is not valid"
 msgstr "URL ei ole kelvollinen"
+
+#: src/constants/WalletConnectCommands.tsx:904
+#: src/constants/WalletConnectCommands.tsx:1369
+#: src/constants/WalletConnectCommands.tsx:1386
+msgid "URLs"
+msgstr ""
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:138
 msgid "Use left and right arrow keys to navigate"
@@ -5627,7 +6019,7 @@ msgstr "Validi"
 msgid "Valid Partials"
 msgstr "Kelvolliset partiaalit"
 
-#: src/constants/WalletConnectCommands.tsx:381
+#: src/constants/WalletConnectCommands.tsx:409
 msgid "Validate only"
 msgstr "Vain validoi"
 
@@ -5639,9 +6031,17 @@ msgstr "Vain validoi"
 #~ msgid "Validating hash..."
 #~ msgstr ""
 
+#: src/constants/WalletConnectCommands.tsx:1321
+msgid "Value"
+msgstr ""
+
 #: src/components/fullNode/card/FullNodeCardVDFSubSlotIterations.tsx:14
 msgid "VDF Sub Slot Iterations"
 msgstr "VDF -alaiteraatioita"
+
+#: src/constants/WalletConnectCommands.tsx:1033
+msgid "Verbose"
+msgstr ""
 
 #: src/components/vcs/VCCard.tsx:56
 msgid "Verifiable Credential"
@@ -5689,12 +6089,16 @@ msgstr "Varmenna"
 msgid "Verify Message"
 msgstr "Varmenna Viesti"
 
+#: src/constants/WalletConnectCommands.tsx:1436
+msgid "Verify Offer"
+msgstr ""
+
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:133
 msgid "Verify Pool Details"
 msgstr "Tarkista Poolin Tiedot"
 
 #: src/components/settings/SettingsAdvanced.tsx:78
-#: src/constants/WalletConnectCommands.tsx:240
+#: src/constants/WalletConnectCommands.tsx:255
 msgid "Verify Signature"
 msgstr "Varmenna Allekirjoitus"
 
@@ -5796,6 +6200,7 @@ msgstr "Odotetaan, että tapahtuma on vahvistettu"
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:187
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:191
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:190
+#: src/components/walletConnect/WalletConnectRequestPermissionsConfirmDialog.tsx:147
 msgid "Wallet"
 msgstr "Lompakot"
 
@@ -5807,29 +6212,40 @@ msgstr "Lompakko {0}"
 msgid "Wallet Address"
 msgstr "Lompakon Osoite"
 
-#: src/constants/WalletConnectCommands.tsx:65
-#: src/constants/WalletConnectCommands.tsx:99
-#: src/constants/WalletConnectCommands.tsx:283
-#: src/constants/WalletConnectCommands.tsx:524
-#: src/constants/WalletConnectCommands.tsx:537
-#: src/constants/WalletConnectCommands.tsx:634
-#: src/constants/WalletConnectCommands.tsx:721
-#: src/constants/WalletConnectCommands.tsx:797
-#: src/constants/WalletConnectCommands.tsx:814
+#: src/constants/WalletConnectCommands.tsx:80
+#: src/constants/WalletConnectCommands.tsx:114
+#: src/constants/WalletConnectCommands.tsx:298
+#: src/constants/WalletConnectCommands.tsx:552
+#: src/constants/WalletConnectCommands.tsx:565
+#: src/constants/WalletConnectCommands.tsx:663
+#: src/constants/WalletConnectCommands.tsx:765
+#: src/constants/WalletConnectCommands.tsx:852
+#: src/constants/WalletConnectCommands.tsx:1562
+#: src/constants/WalletConnectCommands.tsx:1575
+#: src/constants/WalletConnectCommands.tsx:1600
+#: src/constants/WalletConnectCommands.tsx:1613
+#: src/constants/WalletConnectCommands.tsx:1626
+#: src/constants/WalletConnectCommands.tsx:1639
+#: src/constants/WalletConnectCommands.tsx:1711
+#: src/constants/WalletConnectCommands.tsx:1747
+#: src/constants/WalletConnectCommands.tsx:1778
+#: src/constants/WalletConnectCommands.tsx:1815
+#: src/constants/WalletConnectCommands.tsx:1827
+#: src/constants/WalletConnectCommands.tsx:1844
 msgid "Wallet Id"
 msgstr "Lompakon Tunniste"
 
-#: src/constants/WalletConnectCommands.tsx:132
+#: src/constants/WalletConnectCommands.tsx:147
 msgid "Wallet ID"
 msgstr "Lompakon Tunniste"
 
-#: src/constants/WalletConnectCommands.tsx:82
-#: src/constants/WalletConnectCommands.tsx:597
-#: src/constants/WalletConnectCommands.tsx:755
+#: src/constants/WalletConnectCommands.tsx:97
+#: src/constants/WalletConnectCommands.tsx:625
+#: src/constants/WalletConnectCommands.tsx:886
 msgid "Wallet Ids"
 msgstr "Lompakon Tunnisteet"
 
-#: src/constants/WalletConnectCommands.tsx:367
+#: src/constants/WalletConnectCommands.tsx:395
 msgid "Wallet Ids and Amounts"
 msgstr "Lompakon tunnisteet ja summat"
 
@@ -5932,6 +6348,10 @@ msgstr "Mitä CUDA-laitetta käytetään plottaamisessa"
 #~ msgid "Window"
 #~ msgstr "Window"
 
+#: src/constants/WalletConnectCommands.tsx:1728
+msgid "With Recovery Info"
+msgstr ""
+
 #: src/components/farm/card/FarmCardBlockRewards.tsx:33
 #~ msgid "Without fees"
 #~ msgstr "Without fees"
@@ -5955,6 +6375,14 @@ msgstr "Haluatko siirtää NFT:n profiilille?"
 #: src/components/nfts/NFTTransferAction.tsx:227
 msgid "Would you like to transfer the specified NFT to a new owner?"
 msgstr "Haluatko siirtää NFT:n uudelle omistajalle?"
+
+#: src/constants/WalletConnectCommands.tsx:709
+msgid "XCH Change Target"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:703
+msgid "XCH Coins"
+msgstr ""
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:61
 #: src/components/vcs/VCCard.tsx:89
