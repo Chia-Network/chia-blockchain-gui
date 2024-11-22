@@ -107,7 +107,7 @@ export default class DIDWallet extends Wallet {
     }>('did_get_current_coin_info', args);
   }
 
-  async getDidInfo(args: { coinId: string; latest?: boolean }) {
+  async getDIDInfo(args: { coinId: string; latest?: boolean }) {
     return this.command<
       | { success: false; error: string }
       | {
@@ -127,13 +127,13 @@ export default class DIDWallet extends Wallet {
     >('did_get_info', args);
   }
 
-  async getDidMetadata(args: { walletId: number }) {
+  async getDIDMetadata(args: { walletId: number }) {
     return this.command<{
       metadata: any;
     }>('did_get_metadata', args);
   }
 
-  async updateDidMetadata(args: {
+  async updateDIDMetadata(args: {
     walletId: number;
     metadata: Record<string, string>;
     fee?: number;
@@ -151,7 +151,7 @@ export default class DIDWallet extends Wallet {
     >('did_update_metadata', args);
   }
 
-  async findLostDid(args: {
+  async findLostDID(args: {
     coinId: string;
     recoveryListHash?: string;
     numVerification?: number;

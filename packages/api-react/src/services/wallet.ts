@@ -1132,7 +1132,7 @@ export const walletApi = apiWithTag.injectEndpoints({
       providesTags: (result, _error, { walletId }) => (result ? [{ type: 'DIDCoinInfo', id: walletId }] : []),
     }),
 
-    getDIDInfo: query(build, DID, 'getDidInfo', {
+    getDIDInfo: query(build, DID, 'getDIDInfo', {
       providesTags: (result, _error, { coinId }) => (result ? [{ type: 'DIDInfo', id: coinId }] : []),
     }),
 
@@ -1143,11 +1143,11 @@ export const walletApi = apiWithTag.injectEndpoints({
     //   ],
     // }),
 
-    getDIDMetadata: query(build, DID, 'getDidMetadata', {
+    getDIDMetadata: query(build, DID, 'getDIDMetadata', {
       providesTags: (result, _error, { walletId }) => (result ? [{ type: 'DIDMetadata', id: walletId }] : []),
     }),
 
-    updateDIDMetadata: mutation(build, DID, 'updateDidMetadata', {
+    updateDIDMetadata: mutation(build, DID, 'updateDIDMetadata', {
       invalidatesTags: (_result, _error, { walletId }) => [
         { type: 'DIDInfo' },
         { type: 'DIDCoinInfo', id: walletId },
