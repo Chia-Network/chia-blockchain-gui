@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_TW\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-11-24 00:05\n"
+"PO-Revision-Date: 2024-12-01 00:06\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -2672,15 +2672,13 @@ msgstr ""
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr "可用資金不足，無法接受報價單。請確保您的 可花用餘額 可以支付報價單金額。"
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr "可用資金不足，無法建立報價單。請確保你的可支出餘額足以支付報價單金額。"
 
@@ -6537,3 +6535,4 @@ msgstr "您的可支配餘額必須大於1 mojo，才能建立個人檔案"
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "您的錢包需要運行才能自動索取"
+

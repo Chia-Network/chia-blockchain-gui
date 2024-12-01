@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-11-24 00:05\n"
+"PO-Revision-Date: 2024-12-01 00:06\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1036,7 +1036,7 @@ msgstr "حافظه پنهان ان اف تی را پاک کنید"
 
 #: src/constants/WalletConnectCommands.tsx:1008
 msgid "Clear Pending Roots"
-msgstr ""
+msgstr "ریشه های معلق را پاک کنید"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:92
 msgid "Clicking a delete icon only removes a directory from this list and never deletes the directory itself"
@@ -1089,7 +1089,7 @@ msgstr "مجموعه"
 
 #: src/constants/WalletConnectCommands.tsx:24
 msgid "Commands"
-msgstr ""
+msgstr "دستورات"
 
 #: src/components/farm/FarmHealth.tsx:327
 msgid "Common reasons for missing SPs include:"
@@ -2185,7 +2185,7 @@ msgstr "محل نهایی پوشه"
 
 #: src/constants/WalletConnectCommands.tsx:1524
 msgid "Find Lost DID"
-msgstr ""
+msgstr "یافتن شناسه غیر متمرکز گمشده"
 
 #: src/constants/WalletConnectCommands.tsx:38
 #: src/constants/WalletConnectCommands.tsx:2056
@@ -2277,7 +2277,7 @@ msgstr "دریافت شناسه غیرمتمرکز"
 
 #: src/constants/WalletConnectCommands.tsx:1555
 msgid "Get DID Current Coin Info"
-msgstr ""
+msgstr "دریافت اطلاعات شناسه غیرمتمرکز برای سکه فعلی"
 
 #: src/constants/WalletConnectCommands.tsx:1581
 msgid "Get DID Info"
@@ -2293,15 +2293,15 @@ msgstr "دریافت نام شناسه غیرمتمرکز"
 
 #: src/constants/WalletConnectCommands.tsx:1619
 msgid "Get DID Public Key"
-msgstr ""
+msgstr "دریافت کلید عمومی شناسه غیرمتمرکز"
 
 #: src/constants/WalletConnectCommands.tsx:1632
 msgid "Get DID Recovery List"
-msgstr ""
+msgstr "دریافت لیست بازیابی شناسه غیرمتمرکز"
 
 #: src/constants/WalletConnectCommands.tsx:1594
 msgid "Get Information Needed For DID Recovery"
-msgstr ""
+msgstr "دریافت اطلاعات مورد نیاز برای بازیابی شناسه غیرمتمرکز"
 
 #: src/constants/WalletConnectCommands.tsx:1100
 msgid "Get Keys"
@@ -2672,20 +2672,16 @@ msgstr "درج کنید"
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
+msgstr "مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
 "موجودی قابل مصرف شما برای پوشش مبلغ پیشنهاد کافی است."
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
+msgstr "مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
 "موجودی قابل مصرف شما برای پوشش مبلغ پیشنهاد کافی است."
 
 #: src/components/farm/PoolingHealth.tsx:302
@@ -6350,7 +6346,7 @@ msgstr "در هنگام پلات ساری از کدام دستگاه CUDA که �
 
 #: src/constants/WalletConnectCommands.tsx:1728
 msgid "With Recovery Info"
-msgstr ""
+msgstr "با اطلاعات بازیابی"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:33
 #~ msgid "Without fees"
@@ -6541,3 +6537,4 @@ msgstr "برای ایجاد حساب کاربری، موجودی قابل خرج
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "برای انجام مطالبه خودکار، باید کیف پول شما در حال اجرا باشد."
+
