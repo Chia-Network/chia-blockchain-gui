@@ -123,13 +123,15 @@
     // These issues should be decided and reported in typescript config
     "@typescript-eslint/no-explicit-any": "off",
     // Adding _ will bypass no-used issues
+    "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": [
       "error",
       {
         "vars": "all",
         "args": "after-used",
         "ignoreRestSiblings": true,
-        "argsIgnorePattern": "^_"
+        "argsIgnorePattern": "^_",
+        "caughtErrorsIgnorePattern": ".*"
       }
     ],
     // required for TS where string does not satisfy the expected return type of JSX.Element
@@ -156,6 +158,8 @@
         "enforceForJSX": false
       }
     ],
+    "@typescript-eslint/lines-between-class-members": "off",
+    "@typescript-eslint/no-throw-literal": "off",
     // We do not see the value of this turned on
     "class-methods-use-this": "off",
     // allow for-of loops
