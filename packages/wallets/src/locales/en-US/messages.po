@@ -8,7 +8,7 @@ msgstr ""
 "Language: en_US\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-09-15 00:05\n"
+"PO-Revision-Date: 2024-12-08 00:05\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -492,15 +492,15 @@ msgstr ""
 
 #: src/components/crCat/CrCatApprovePendingDialog.tsx:120
 msgid "Please enter a transaction fee to approve the above amount:"
-msgstr ""
+msgstr "Please enter a transaction fee to approve the above amount:"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:214
 msgid "Please enter a transaction fee to claim the above amount:"
-msgstr ""
+msgstr "Please enter a transaction fee to claim the above amount:"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:216
 msgid "Please enter a transaction fee to claw back the above amount:"
-msgstr ""
+msgstr "Please enter a transaction fee to claw back the above amount:"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:42
 msgid "Please enter a valid asset id"
@@ -544,11 +544,11 @@ msgstr "Port"
 
 #: src/components/crCat/CrCatAuthorizedProviders.tsx:37
 msgid "Provider's ID"
-msgstr ""
+msgstr "Provider's ID"
 
 #: src/components/crCat/CrCatAuthorizedProviders.tsx:51
 msgid "Provider's website"
-msgstr ""
+msgstr "Provider's website"
 
 #: src/components/create/WalletCreateList.tsx:45
 msgid "Rate Limited"
@@ -585,7 +585,7 @@ msgstr "Rename Wallet"
 
 #: src/components/WalletIcon.tsx:41
 msgid "Restricted CAT"
-msgstr ""
+msgstr "Restricted CAT"
 
 #: src/components/WalletHistory.tsx:207
 msgid "Retire"
@@ -628,7 +628,7 @@ msgstr "Standard Wallet"
 
 #: src/components/WalletHistory.tsx:213
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:12
 msgid "Success"
@@ -652,7 +652,7 @@ msgstr "The derivation index sets the range of wallet addresses that the wallet 
 
 #: src/components/cat/WalletCATSend.tsx:200
 msgid "The recipient of this transaction will need to have valid credentials in order to claim the sent assets. See the CR CAT restrictions above."
-msgstr ""
+msgstr "The recipient of this transaction will need to have valid credentials in order to claim the sent assets. See the CR CAT restrictions above."
 
 #: src/components/WalletSendTransactionResultDialog.tsx:44
 msgid ""
@@ -660,6 +660,9 @@ msgid ""
 "transaction will be retried periodically, and may be included in the mempool once fees are lower, or if\n"
 "space becomes available."
 msgstr ""
+"The transaction could not be immediately included in the mempool because the specified fee is too low. The\n"
+"transaction will be retried periodically, and may be included in the mempool once fees are lower, or if\n"
+"space becomes available."
 
 #: src/components/WalletSendTransactionResultDialog.tsx:34
 #~ msgid "The transaction could not be immediately included in the mempool because the specified fee is too low. The transaction will be retried periodically, and may be included in the mempool once fees are lower, or if space becomes available."
@@ -671,6 +674,9 @@ msgid ""
 "already in the mempool. The transaction will be retried periodically, and may be included in the mempool if\n"
 "the conflicting transactions are removed."
 msgstr ""
+"The transaction is pending inclusion in the mempool because it conflicts with one or more other transactions\n"
+"already in the mempool. The transaction will be retried periodically, and may be included in the mempool if\n"
+"the conflicting transactions are removed."
 
 #: src/components/WalletBadge.tsx:26
 msgid "This access token is verified"
@@ -702,7 +708,7 @@ msgstr "This is the total balance + pending balance: it is what your balance wil
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:201
 msgid "This transaction will be automatically claimed with a fee:"
-msgstr ""
+msgstr "This transaction will be automatically claimed with a fee:"
 
 #: src/components/WalletHistory.tsx:181
 #~ msgid "To"
@@ -711,7 +717,7 @@ msgstr ""
 #: src/components/ClawbackClaimTransactionDialog.tsx:183
 #: src/components/WalletHistory.tsx:185
 msgid "To:"
-msgstr ""
+msgstr "To:"
 
 #: src/components/cat/WalletCATCreateSimple.tsx:46
 msgid "Token has empty asset id"
@@ -739,11 +745,11 @@ msgstr "Transactions"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:240
 msgid "Transactions will be claimed automatically when the Clawback time expires."
-msgstr ""
+msgstr "Transactions will be claimed automatically when the Clawback time expires."
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:243
 msgid "Transactions with values smaller than the fee will not be auto claimed."
-msgstr ""
+msgstr "Transactions with values smaller than the fee will not be auto claimed."
 
 #: src/components/Wallet.tsx:23
 msgid "Wallet {walletId} not found"
@@ -760,15 +766,15 @@ msgstr "Wallet does not exist"
 #: src/components/WalletAdd.tsx:99
 #: src/components/WalletImport.tsx:147
 msgid "Wallet Name"
-msgstr ""
+msgstr "Wallet Name"
 
 #: src/components/crCat/CrCatApprovePendingDialog.tsx:115
 msgid "Wallet needs to be synced before approving transactions"
-msgstr ""
+msgstr "Wallet needs to be synced before approving transactions"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:208
 msgid "Wallet needs to be synced for claiming clawback transactions"
-msgstr ""
+msgstr "Wallet needs to be synced for claiming clawback transactions"
 
 #: src/components/Wallet.tsx:38
 msgid "Wallet with type {0} not supported"
@@ -788,19 +794,19 @@ msgstr "Welcome! The following words are used for your wallet backup. Without th
 
 #: src/components/WalletHistoryClawbackChip.tsx:56
 msgid "Will be autoclaimed in "
-msgstr ""
+msgstr "Will be autoclaimed in "
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:246
 msgid "You can change the Clawback Auto Claim fee in Settings."
-msgstr ""
+msgstr "You can change the Clawback Auto Claim fee in Settings."
 
 #: src/components/crCat/CrCatFlags.tsx:71
 msgid "You do not have this verifiable credential or it is not from the correct authorized provided"
-msgstr ""
+msgstr "You do not have this verifiable credential or it is not from the correct authorized provider"
 
 #: src/components/crCat/CrCatFlags.tsx:69
 msgid "You have this verifiable credential from the correct authorized provider"
-msgstr ""
+msgstr "You have this verifiable credential from the correct authorized provider"
 
 #: src/components/WalletsSidebar.tsx:106
 #~ msgid "Your CAT tokens have been upgraded!"
@@ -808,4 +814,4 @@ msgstr ""
 
 #: src/components/WalletImport.tsx:73
 msgid "Your pasted list does not include {mnemonicWordCount} valid mnemonic words."
-msgstr ""
+msgstr "Your pasted list does not include {mnemonicWordCount} valid mnemonic words."
