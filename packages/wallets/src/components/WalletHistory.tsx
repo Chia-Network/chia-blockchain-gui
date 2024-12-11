@@ -99,6 +99,14 @@ async function handleRowClick(
 
 const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate, location) => [
   {
+    width: '70px',
+    field: (row: Row, metadata, isExpanded, toggleExpand) => (
+      <IconButton aria-label="expand row" size="small" onClick={() => toggleExpand(row)}>
+        {isExpanded ? <ExpandLessIcon color="info" /> : <ExpandMoreIcon color="info" />}
+      </IconButton>
+    ),
+  },
+  {
     field: (row: Row, metadata) => {
       const isOutgoing = getIsOutgoingTransaction(row);
 
@@ -234,15 +242,6 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate, location
       </>
     ),
     title: <Trans>Fee</Trans>,
-  },
-
-  {
-    width: '70px',
-    field: (row: Row, metadata, isExpanded, toggleExpand) => (
-      <IconButton aria-label="expand row" size="small" onClick={() => toggleExpand(row)}>
-        {isExpanded ? <ExpandLessIcon color="info" /> : <ExpandMoreIcon color="info" />}
-      </IconButton>
-    ),
   },
 ];
 
