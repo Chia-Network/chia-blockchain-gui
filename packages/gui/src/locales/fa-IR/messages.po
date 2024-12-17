@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-12-08 00:05\n"
+"PO-Revision-Date: 2024-12-15 00:05\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -421,7 +421,7 @@ msgstr "اضافه کردن اطلاعات تماس"
 
 #: src/constants/WalletConnectCommands.tsx:894
 msgid "Add Mirror"
-msgstr ""
+msgstr "اضافه کردن تصویر"
 
 #: src/constants/WalletConnectCommands.tsx:923
 msgid "Add Missing Files"
@@ -1302,7 +1302,7 @@ msgstr "ایجاد پیشنهاد زمان‌بندی شده"
 
 #: src/constants/WalletConnectCommands.tsx:1020
 msgid "Create DataStore"
-msgstr ""
+msgstr "ایحاد ذخیره های داده"
 
 #: src/constants/WalletConnectCommands.tsx:476
 #~ msgid "Create new CAT Wallet"
@@ -1493,7 +1493,7 @@ msgstr "حذف کلید"
 
 #: src/constants/WalletConnectCommands.tsx:1064
 msgid "Delete Mirror"
-msgstr ""
+msgstr "حذف تصویر"
 
 #: src/components/plot/PlotAction.tsx:24
 #: src/components/plot/queue/PlotQueueActions.tsx:33
@@ -1574,7 +1574,7 @@ msgstr "شناسه، شناسه غیرمتمرکز"
 
 #: src/constants/WalletConnectCommands.tsx:733
 msgid "DID Lineage Parent"
-msgstr ""
+msgstr "شناسه غیرمتمرکز Lineage Parent"
 
 #: src/constants/WalletConnectCommands.tsx:1548
 #: src/constants/WalletConnectCommands.tsx:1752
@@ -2253,7 +2253,7 @@ msgstr "گرفتن تمام اعتبارنامه های قابل تأیید"
 
 #: src/constants/WalletConnectCommands.tsx:1083
 msgid "Get Ancestors"
-msgstr ""
+msgstr "دریافت Ancestors"
 
 #: src/constants/WalletConnectCommands.tsx:545
 msgid "Get CAT Asset Id"
@@ -2313,15 +2313,15 @@ msgstr "دریافت مقادیر کلید ها"
 
 #: src/constants/WalletConnectCommands.tsx:1162
 msgid "Get Kv Diff"
-msgstr ""
+msgstr "KvDiff را دریافت کنید"
 
 #: src/constants/WalletConnectCommands.tsx:1197
 msgid "Get Local Root"
-msgstr ""
+msgstr "دریافت ریشه داخلی"
 
 #: src/constants/WalletConnectCommands.tsx:1210
 msgid "Get Mirrors"
-msgstr ""
+msgstr "دریافت تصاویر"
 
 #: src/components/settings/ProfileAdd.tsx:124
 msgid "Get Mojos from the Chia Faucet"
@@ -2365,7 +2365,7 @@ msgstr "گرفتن تعداد پیشنهاد"
 
 #: src/constants/WalletConnectCommands.tsx:1223
 msgid "Get Owned Stores"
-msgstr ""
+msgstr "دریافت ذخیره های شخضی"
 
 #: src/constants/WalletConnectCommands.tsx:1947
 msgid "Get Proofs For Root Hash"
@@ -3013,7 +3013,7 @@ msgstr "ارائه پیشنهاد لایه داده ها"
 
 #: src/constants/WalletConnectCommands.tsx:1340
 msgid "Maker"
-msgstr ""
+msgstr "ارائه دهنده"
 
 #: src/components/app/AppSelectMode.tsx:84
 msgid "Manage CAT tokens"
@@ -3277,7 +3277,7 @@ msgstr "پیشنهاد شمارنده جدید"
 
 #: src/constants/WalletConnectCommands.tsx:715
 msgid "New Inner Puzzle Hash"
-msgstr ""
+msgstr "هش های پازل داخلی جدید"
 
 #: src/components/notification/utils.ts:101
 msgid "New offer"
@@ -3285,7 +3285,7 @@ msgstr "پیشنهاد جدید"
 
 #: src/constants/WalletConnectCommands.tsx:721
 msgid "New P2 Puzzle Hash"
-msgstr ""
+msgstr "هش پازل جدید P2"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:212
 msgid "New Passphrase"
@@ -4490,7 +4490,7 @@ msgstr "توصیه شده"
 
 #: src/constants/WalletConnectCommands.tsx:1536
 msgid "Recovery List Hash"
-msgstr ""
+msgstr "بازیابی هش لیست"
 
 #: src/components/settings/SettingsHarvester.tsx:404
 msgid "Recursive Plot Scan"
@@ -4712,7 +4712,7 @@ msgstr "سینک مجدد، بارگذاری مجدد داده ها از بلا�
 
 #: src/constants/WalletConnectCommands.tsx:1428
 msgid "retain"
-msgstr ""
+msgstr "رزرو"
 
 #: src/constants/WalletConnectCommands.tsx:752
 #: src/constants/WalletConnectCommands.tsx:1734
@@ -4740,7 +4740,7 @@ msgstr "لغو شد"
 #: src/constants/WalletConnectCommands.tsx:1142
 #: src/constants/WalletConnectCommands.tsx:1298
 msgid "Root Hash"
-msgstr ""
+msgstr "هش ریشه"
 
 #: src/components/offers2/OfferBuilderNFTRoyalties.tsx:94
 msgid "Royalties are built into the NFT, so they will automatically be accounted for when the offer is created/accepted."
@@ -5154,7 +5154,7 @@ msgstr "اگر بیش از یک کارت گراقیک وجود دارد، شاخ
 
 #: src/constants/WalletConnectCommands.tsx:329
 msgid "Spend Bundle"
-msgstr ""
+msgstr "بسته هزینه"
 
 #: src/constants/WalletConnectCommands.tsx:559
 msgid "Spend CAT"
@@ -5243,12 +5243,12 @@ msgstr "ذخیره و ارسال چیا"
 #: src/constants/WalletConnectCommands.tsx:1381
 #: src/constants/WalletConnectCommands.tsx:1423
 msgid "Store Id"
-msgstr ""
+msgstr "ذخیره کارت شناسایی"
 
 #: src/constants/WalletConnectCommands.tsx:928
 #: src/constants/WalletConnectCommands.tsx:1249
 msgid "Store Ids"
-msgstr ""
+msgstr "ذخیره کارت های شناسایی"
 
 #: src/components/app/AppPassPrompt.tsx:107
 msgid "Submit"
@@ -5971,7 +5971,7 @@ msgstr "بروز رسانی شناسه غیر متمرکز Metadata"
 
 #: src/constants/WalletConnectCommands.tsx:1772
 msgid "Update DID Recovery Ids"
-msgstr ""
+msgstr "بروز رسانی شناسه غیر متمرکز کارت های شناسایی بازیابی"
 
 #: src/components/nfts/NFTHashStatus.tsx:69
 msgid "Update Pending"
@@ -5996,7 +5996,7 @@ msgstr "آدرس سایت معتبر نیست"
 #: src/constants/WalletConnectCommands.tsx:1369
 #: src/constants/WalletConnectCommands.tsx:1386
 msgid "URLs"
-msgstr ""
+msgstr "ادرس سایت ها"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:138
 msgid "Use left and right arrow keys to navigate"
