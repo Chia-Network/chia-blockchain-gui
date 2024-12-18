@@ -11,7 +11,6 @@ const PY_CHIA_EXEC = 'chia';
 const CHIA_START_ARGS = Object.freeze(['start', 'daemon', '--skip-keyring']);
 
 let pyProc = null;
-let haveCert = null;
 
 let IS_PACKAGED = null;
 const EXEC_PATH_CACHE = {}; // {[execName]: execPath}
@@ -114,35 +113,7 @@ const startChiaDaemon = () => {
   }
 
   pyProc.stdout.setEncoding('utf8');
-
   pyProc.stdout.on('data', (data) => {
-    if (!haveCert) {
-      process.stdout.write('No cert\n');
-      // listen for ssl path message
-      try {
-        const strArr = data.toString().split('\n');
-        for (let i = 0; i < strArr.length; i++) {
-          const str = strArr[i];
-          try {
-            const json = JSON.parse(str);
-            global.cert_path = json.cert;
-            global.key_path = json.key;
-            // TODO Zlatko: cert_path and key_path were undefined. Prefixed them with global, which changes functionality.
-            // Do they even need to be globals?
-            if (global.cert_path && global.key_path) {
-              haveCert = true;
-              process.stdout.write('Have cert\n');
-              return;
-            }
-          } catch (e) {
-            // Do nothing
-          }
-        }
-      } catch (e) {
-        // Do nothing
-      }
-    }
-
     process.stdout.write(data.toString());
   });
 
