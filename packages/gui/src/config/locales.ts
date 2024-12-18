@@ -95,7 +95,7 @@ export const locales = [
   },
   {
     locale: 'fa-IR',
-    label: 'Persian',
+    label: 'فارسی',
   },
   {
     locale: 'pl-PL',
