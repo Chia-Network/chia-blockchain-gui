@@ -14,6 +14,7 @@ import {
   VC as VCIcon,
 } from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
+import BuildOutlinedIcon from '@mui/icons-material/BuildOutlined';
 import { Box } from '@mui/material';
 import React from 'react';
 import styled from 'styled-components';
@@ -123,6 +124,13 @@ export default function DashboardSideBar(props: DashboardSideBarProps) {
         </Flex>
       </StyledItemsContainer>
       <Box>
+        <SideBarItem
+          to="/dashboard/chiatools"
+          icon={BuildOutlinedIcon}
+          title={<Trans>Tools</Trans>}
+          data-testid="DashboardSideBar-chiatools"
+          end
+        />
         <SideBarItem
           to="/dashboard/settings/general"
           icon={SettingsIcon}

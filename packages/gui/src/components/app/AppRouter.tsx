@@ -5,6 +5,7 @@ import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import AddressBook from '../addressbook/AddressBook';
 import Block from '../block/Block';
+import ChiaToolsPage from '../chiatools/ChiaToolsPage';
 import DashboardSideBar from '../dashboard/DashboardSideBar';
 import Farm from '../farm/Farm';
 import FullNode from '../fullNode/FullNode';
@@ -45,6 +46,7 @@ export default function AppRouter() {
               <Route path="dashboard/*" element={<Navigate to="wallets" />} />
               <Route path="dashboard/settings/*" element={<Settings />} />
               <Route path="dashboard/addressbook/*" element={<AddressBook />} />
+              <Route path="dashboard/chiatools/*" element={<ChiaToolsPage />} />
             </Route>
           ) : (
             <Route element={<LayoutDashboard sidebar={<DashboardSideBar />} actions={<AppStatusHeader />} outlet />}>
@@ -60,6 +62,7 @@ export default function AppRouter() {
               <Route path="dashboard/farm/*" element={<Farm />} />
               <Route path="dashboard/pool/*" element={<Pool />} />
               <Route path="dashboard/addressbook/*" element={<AddressBook />} />
+              <Route path="dashboard/chiatools/*" element={<ChiaToolsPage />} />
             </Route>
           )}
         </Route>
