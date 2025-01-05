@@ -8,7 +8,7 @@ msgstr ""
 "Language: sq_AL\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-12-15 00:05\n"
+"PO-Revision-Date: 2024-12-22 00:05\n"
 "Last-Translator: \n"
 "Language-Team: Albanian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -325,8 +325,7 @@ msgid "HD or Hierarchical Deterministic keys are a type of public key/private ke
 msgstr ""
 
 #: src/components/WalletSendTransactionResultDialog.tsx:47
-msgid ""
-"If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a\n"
+msgid "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a\n"
 "higher fee."
 msgstr ""
 
@@ -655,8 +654,7 @@ msgid "The recipient of this transaction will need to have valid credentials in 
 msgstr ""
 
 #: src/components/WalletSendTransactionResultDialog.tsx:44
-msgid ""
-"The transaction could not be immediately included in the mempool because the specified fee is too low. The\n"
+msgid "The transaction could not be immediately included in the mempool because the specified fee is too low. The\n"
 "transaction will be retried periodically, and may be included in the mempool once fees are lower, or if\n"
 "space becomes available."
 msgstr ""
@@ -666,8 +664,7 @@ msgstr ""
 #~ msgstr "The transaction could not be immediately included in the mempool because the specified fee is too low. The transaction will be retried periodically, and may be included in the mempool once fees are lower, or if space becomes available."
 
 #: src/components/WalletSendTransactionResultDialog.tsx:38
-msgid ""
-"The transaction is pending inclusion in the mempool because it conflicts with one or more other transactions\n"
+msgid "The transaction is pending inclusion in the mempool because it conflicts with one or more other transactions\n"
 "already in the mempool. The transaction will be retried periodically, and may be included in the mempool if\n"
 "the conflicting transactions are removed."
 msgstr ""
@@ -809,3 +806,4 @@ msgstr ""
 #: src/components/WalletImport.tsx:73
 msgid "Your pasted list does not include {mnemonicWordCount} valid mnemonic words."
 msgstr ""
+
