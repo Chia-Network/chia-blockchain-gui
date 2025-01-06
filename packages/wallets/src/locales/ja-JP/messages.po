@@ -8,7 +8,7 @@ msgstr ""
 "Language: ja_JP\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-12-15 00:05\n"
+"PO-Revision-Date: 2024-12-22 00:05\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Crowdin-File: /main/packages/wallets/src/locales/en-US/messages.po\n"
 "X-Crowdin-File-ID: 25\n"
 
-#: src/components/WalletHistory.tsx:117
+#: src/components/WalletHistory.tsx:125
 msgid "-"
 msgstr "-"
 
@@ -30,7 +30,7 @@ msgstr ""
 msgid "- Set a time frame which allows you claw back (revoke) the transaction.<0/>- Recipient of the transaction can only claim the funds once that time frame expires."
 msgstr ""
 
-#: src/components/WalletHistory.tsx:117
+#: src/components/WalletHistory.tsx:125
 msgid "+"
 msgstr "+"
 
@@ -94,7 +94,7 @@ msgstr ""
 msgid "Are you sure you want to delete unconfirmed transactions?"
 msgstr "未確認の取引を削除してもよろしいですか?"
 
-#: src/components/WalletHistory.tsx:130
+#: src/components/WalletHistory.tsx:138
 msgid "Asset"
 msgstr ""
 
@@ -169,7 +169,7 @@ msgstr ""
 msgid "Classic version of Stably USDS as held by Prime Trust"
 msgstr ""
 
-#: src/components/WalletHistory.tsx:432
+#: src/components/WalletHistory.tsx:431
 msgid "Claw back expiration"
 msgstr ""
 
@@ -219,11 +219,11 @@ msgstr "閉じる"
 msgid "Confirmation"
 msgstr "承認状況"
 
-#: src/components/WalletHistory.tsx:199
+#: src/components/WalletHistory.tsx:207
 msgid "Confirmed"
 msgstr "承認済み"
 
-#: src/components/WalletHistory.tsx:421
+#: src/components/WalletHistory.tsx:420
 msgid "Confirmed at Height"
 msgstr "承認完了、高さ"
 
@@ -253,7 +253,7 @@ msgstr "取引依頼を作成"
 msgid "Create Transaction"
 msgstr "取引を作成"
 
-#: src/components/WalletHistory.tsx:222
+#: src/components/WalletHistory.tsx:230
 msgid "Creation Date"
 msgstr ""
 
@@ -311,7 +311,7 @@ msgid "Farm"
 msgstr "農家"
 
 #: src/components/cat/WalletCATSend.tsx:228
-#: src/components/WalletHistory.tsx:236
+#: src/components/WalletHistory.tsx:244
 #: src/components/WalletSend.tsx:254
 msgid "Fee"
 msgstr "手数料"
@@ -367,7 +367,7 @@ msgstr "トークンリストの管理"
 msgid "Memo"
 msgstr "メモ"
 
-#: src/components/WalletHistory.tsx:426
+#: src/components/WalletHistory.tsx:425
 msgid "Memos"
 msgstr "メモ"
 
@@ -416,7 +416,7 @@ msgstr "NFT ウォレット"
 msgid "Nickname"
 msgstr "ニックネーム"
 
-#: src/components/WalletHistory.tsx:503
+#: src/components/WalletHistory.tsx:502
 msgid "No previous transactions"
 msgstr "履歴無し"
 
@@ -424,8 +424,8 @@ msgstr "履歴無し"
 msgid "Node ID"
 msgstr "ノード ID"
 
-#: src/components/WalletHistory.tsx:415
-#: src/components/WalletHistory.tsx:422
+#: src/components/WalletHistory.tsx:414
+#: src/components/WalletHistory.tsx:421
 msgid "Not Available"
 msgstr "該当なし"
 
@@ -433,7 +433,7 @@ msgstr "該当なし"
 msgid "Not Synced"
 msgstr "同期されていません"
 
-#: src/components/WalletHistory.tsx:208
+#: src/components/WalletHistory.tsx:216
 msgid "Offer Accepted"
 msgstr "取引依頼が受け入れられました"
 
@@ -462,7 +462,7 @@ msgstr "合言葉 ({0} 語) を貼り付ける"
 msgid "Payments approved"
 msgstr ""
 
-#: src/components/WalletHistory.tsx:201
+#: src/components/WalletHistory.tsx:209
 msgid "Pending"
 msgstr "保留中"
 
@@ -587,7 +587,7 @@ msgstr ""
 msgid "Restricted CAT"
 msgstr ""
 
-#: src/components/WalletHistory.tsx:207
+#: src/components/WalletHistory.tsx:215
 msgid "Retire"
 msgstr ""
 
@@ -626,7 +626,7 @@ msgstr "支払い可能額"
 msgid "Standard Wallet"
 msgstr "標準ウォレット"
 
-#: src/components/WalletHistory.tsx:213
+#: src/components/WalletHistory.tsx:221
 msgid "Status"
 msgstr "状態"
 
@@ -676,7 +676,7 @@ msgstr ""
 msgid "This access token is verified"
 msgstr ""
 
-#: src/components/WalletHistory.tsx:159
+#: src/components/WalletHistory.tsx:167
 msgid "This is not a valid address for sending funds to"
 msgstr ""
 
@@ -709,7 +709,7 @@ msgstr ""
 #~ msgstr "To"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:183
-#: src/components/WalletHistory.tsx:185
+#: src/components/WalletHistory.tsx:193
 msgid "To:"
 msgstr "宛先:"
 
@@ -733,7 +733,7 @@ msgstr "全残高"
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr ""
 
-#: src/components/WalletHistory.tsx:480
+#: src/components/WalletHistory.tsx:479
 msgid "Transactions"
 msgstr "取引"
 
