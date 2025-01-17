@@ -156,6 +156,7 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
                 showAmountInMojos={showAmountInMojos}
                 required
                 fullWidth
+                autoFocus
               />
             ) : type === 'fee' ? (
               builderReadOnly ? (
