@@ -251,7 +251,7 @@ export default function LogViewer({ pageSize = 1000 }: LogViewerProps) {
           throw new Error(result.error);
         }
 
-        const content = result.content;
+        const { content } = result;
         if (!content) {
           throw new Error('No content returned from log file');
         }
@@ -491,13 +491,11 @@ export default function LogViewer({ pageSize = 1000 }: LogViewerProps) {
 
               if (line.trim()) {
                 if (line.match(/^\d{4}-\d{2}-\d{2}T/)) {
-                  const level = Object.values(LogLevel).find((logLevel) => {
-                    const matches = line.includes(`: ${logLevel} `);
-                    return matches;
-                  });
+                  const matchingLevels = Object.values(LogLevel).filter((logLevel) => line.includes(`: ${logLevel} `));
+                  const level = matchingLevels[0];
 
                   if (level) {
-                    const [prefix, message] = line.split(`: ${level} `);
+                    const { 0: prefix, 1: message } = line.split(`: ${level} `);
                     return (
                       <Box component="div" key={uniqueId} sx={{ whiteSpace: 'pre-wrap' }}>
                         <span style={{ color: theme.palette.text.secondary }}>
