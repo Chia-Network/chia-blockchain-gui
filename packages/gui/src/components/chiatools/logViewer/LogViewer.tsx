@@ -185,20 +185,19 @@ export default function LogViewer({ pageSize = 1000 }: LogViewerProps) {
       const pageFilteredGroups = filterLogContent(fullContent, filter);
 
       pageFilteredGroups.sort((a, b) => {
-        const aTime = a.match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/)?.[0] || '';
-        const bTime = b.match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/)?.[0] || '';
+        const aMatch = a.match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}/);
+        const bMatch = b.match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}/);
+        const aTime = aMatch ? aMatch[0] : '';
+        const bTime = bMatch ? bMatch[0] : '';
         return bTime.localeCompare(aTime);
       });
 
       const totalPages = Math.max(1, Math.ceil(pageFilteredGroups.length / pageSize));
-      setPagination((prev) => {
-        const newState = {
-          ...prev,
-          totalPages,
-          currentPage: Math.min(page, totalPages),
-        };
-        return newState;
-      });
+      setPagination((prev) => ({
+        ...prev,
+        totalPages,
+        currentPage: Math.min(page, totalPages),
+      }));
 
       const startIndex = (page - 1) * pageSize;
       const endIndex = Math.min(startIndex + pageSize, pageFilteredGroups.length);
@@ -259,12 +258,14 @@ export default function LogViewer({ pageSize = 1000 }: LogViewerProps) {
 
         const logGroups = filterLogContent(content, {
           ...DEFAULT_FILTER,
-          levels: Object.values(LogLevel), 
+          levels: Object.values(LogLevel),
         });
 
         logGroups.sort((a, b) => {
-          const aTime = a.match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/)?.[0] || '';
-          const bTime = b.match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/)?.[0] || '';
+          const aMatch = a.match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}/);
+          const bMatch = b.match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}/);
+          const aTime = aMatch ? aMatch[0] : '';
+          const bTime = bMatch ? bMatch[0] : '';
           return bTime.localeCompare(aTime);
         });
 
