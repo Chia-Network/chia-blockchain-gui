@@ -639,6 +639,83 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
       mainWindow.setTitle(title);
     }
   });
+
+  // IPC handlers for log file operations
+  ipcMain.handle('getChiaLogContent', async (_event) => {
+    try {
+      const chiaRoot = process.env.CHIA_ROOT || path.join(app.getPath('home'), '.chia', 'mainnet');
+      const logPath = path.join(chiaRoot, 'log', 'debug.log');
+
+      // Check if file exists and is readable
+      try {
+        await fs.promises.access(logPath, fs.constants.R_OK);
+      } catch (e) {
+        return { error: 'Log file not accessible' };
+      }
+
+      const content = await fs.promises.readFile(logPath, 'utf8');
+      const stats = await fs.promises.stat(logPath);
+
+      return {
+        content,
+        path: logPath,
+        size: stats.size,
+      };
+    } catch (error: any) {
+      return { error: error.message };
+    }
+  });
+
+  ipcMain.handle('getChiaLogInfo', async (_event) => {
+    try {
+      const chiaRoot = process.env.CHIA_ROOT || path.join(app.getPath('home'), '.chia', 'mainnet');
+      const logDir = path.join(chiaRoot, 'log');
+      const logPath = path.join(logDir, 'debug.log');
+
+      const info = {
+        path: logPath,
+        exists: false,
+        size: 0,
+        readable: false,
+        debugInfo: {
+          chiaRoot,
+          logDir,
+          rootExists: false,
+          logDirExists: false,
+          fileReadable: false,
+        },
+      };
+
+      try {
+        const stats = await fs.promises.stat(logPath);
+        info.exists = true;
+        info.size = stats.size;
+        await fs.promises.access(logPath, fs.constants.R_OK);
+        info.readable = true;
+        info.debugInfo.fileReadable = true;
+      } catch (e) {
+        // File doesn't exist or isn't readable
+      }
+
+      try {
+        await fs.promises.access(chiaRoot);
+        info.debugInfo.rootExists = true;
+      } catch (e) {
+        // Root directory doesn't exist
+      }
+
+      try {
+        await fs.promises.access(logDir);
+        info.debugInfo.logDirExists = true;
+      } catch (e) {
+        // Log directory doesn't exist
+      }
+
+      return info;
+    } catch (error: any) {
+      return { error: error.message };
+    }
+  });
 }
 
 function getMenuTemplate() {

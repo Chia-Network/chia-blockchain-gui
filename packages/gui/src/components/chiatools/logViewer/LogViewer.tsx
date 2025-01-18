@@ -1,15 +1,9 @@
-import fs from 'fs';
-import os from 'os';
-import path from 'path';
-
 import { Flex, useShowError } from '@chia-network/core';
 import { Box, CircularProgress, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import React, { useEffect, useState, useCallback } from 'react';
 
-import canReadFile from '../../../electron/utils/canReadFile';
 import decodeError from '../../../electron/utils/decodeError';
-import directoryExists from '../../../electron/utils/directoryExists';
 
 import LogViewerToolbar from './LogViewerToolbar';
 import { LogLevel, LogViewerFilter, LogViewerProps } from './LogViewerTypes';
@@ -49,7 +43,6 @@ const DEFAULT_FILTER: LogViewerFilter = {
   version: undefined,
 };
 
-// Fix the LogColors interface and LOG_COLORS constant
 type LogColors = Record<LogLevel, string>;
 
 const LOG_COLORS: LogColors = {
@@ -61,7 +54,6 @@ const LOG_COLORS: LogColors = {
   [LogLevel.NOTSET]: '#757575',
 };
 
-// Fix the highlightSearchText function to handle undefined searchText
 const highlightSearchText = (text: string, searchTerm: string | undefined) => {
   if (!searchTerm) return text;
 
@@ -83,10 +75,8 @@ const highlightSearchText = (text: string, searchTerm: string | undefined) => {
   );
 };
 
-// Add cache timeout constant
 const CACHE_TIMEOUT = 5 * 60 * 1000; // 5 minutes
 
-// Update filterLogContent to support chunked processing
 function filterLogContent(content: string, filter: LogViewerFilter): string[] {
   if (!content) return [];
 
@@ -94,7 +84,6 @@ function filterLogContent(content: string, filter: LogViewerFilter): string[] {
   const lines = content.split('\n');
   let currentGroup: string[] = [];
 
-  // Process lines without loop function
   const processLine = (line: string) => {
     if (line.match(/^\d{4}-\d{2}-\d{2}T/)) {
       if (currentGroup.length > 0) {
@@ -114,7 +103,6 @@ function filterLogContent(content: string, filter: LogViewerFilter): string[] {
 
   lines.forEach(processLine);
 
-  // Process final group
   if (currentGroup.length > 0) {
     const groupText = currentGroup.join('\n');
     const hasSelectedLevel = filter.levels.some((filterLevel) => groupText.includes(`: ${filterLevel} `));
@@ -128,11 +116,37 @@ function filterLogContent(content: string, filter: LogViewerFilter): string[] {
   return groups;
 }
 
+declare global {
+  interface Window {
+    chiaLogs: {
+      getContent: () => Promise<{
+        content?: string;
+        path?: string;
+        size?: number;
+        error?: string;
+      }>;
+      getInfo: () => Promise<{
+        path: string;
+        exists: boolean;
+        size: number;
+        readable: boolean;
+        error?: string;
+        debugInfo?: {
+          chiaRoot: string;
+          logDir: string;
+          rootExists: boolean;
+          logDirExists: boolean;
+          fileReadable: boolean;
+        };
+      }>;
+    };
+  }
+}
+
 export default function LogViewer({ pageSize = 1000 }: LogViewerProps) {
   const theme = useTheme();
   const showError = useShowError();
 
-  // Group all state declarations together at the top
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
   const [filter, setFilter] = useState<LogViewerFilter>(DEFAULT_FILTER);
@@ -150,7 +164,50 @@ export default function LogViewer({ pageSize = 1000 }: LogViewerProps) {
   const [filterProgress, setFilterProgress] = useState<number>(0);
   const [filteredGroups, setFilteredGroups] = useState<string[]>([]);
 
-  // Define handlers after all state declarations
+  const checkLogFile = useCallback(async (): Promise<LogFileInfo> => {
+    try {
+      const info = await window.chiaLogs.getInfo();
+      if (info.error) {
+        throw new Error(info.error);
+      }
+      return info as LogFileInfo;
+    } catch (e: any) {
+      return {
+        path: '',
+        exists: false,
+        fileError: e.message,
+      };
+    }
+  }, []);
+
+  const getPageContent = useCallback(
+    (fullContent: string, page: number) => {
+      const pageFilteredGroups = filterLogContent(fullContent, filter);
+
+      pageFilteredGroups.sort((a, b) => {
+        const aTime = a.match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/)?.[0] || '';
+        const bTime = b.match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/)?.[0] || '';
+        return bTime.localeCompare(aTime);
+      });
+
+      const totalPages = Math.max(1, Math.ceil(pageFilteredGroups.length / pageSize));
+      setPagination((prev) => {
+        const newState = {
+          ...prev,
+          totalPages,
+          currentPage: Math.min(page, totalPages),
+        };
+        return newState;
+      });
+
+      const startIndex = (page - 1) * pageSize;
+      const endIndex = Math.min(startIndex + pageSize, pageFilteredGroups.length);
+
+      return pageFilteredGroups.slice(startIndex, endIndex).join('\n\n');
+    },
+    [pageSize, filter],
+  );
+
   const handlePageChange = useCallback(
     (newPage: number) => {
       if (filteredGroups.length > 0) {
@@ -171,87 +228,10 @@ export default function LogViewer({ pageSize = 1000 }: LogViewerProps) {
     [filteredGroups, pageSize],
   );
 
-  // Define getPageContent first, before it's used in other hooks
-  const getPageContent = useCallback(
-    (fullContent: string, page: number) => {
-      // Get filtered groups
-      const pageFilteredGroups = filterLogContent(fullContent, filter);
-
-      // Sort by timestamp (newest first)
-      pageFilteredGroups.sort((a, b) => {
-        const aTime = a.match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/)?.[0] || '';
-        const bTime = b.match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/)?.[0] || '';
-        return bTime.localeCompare(aTime);
-      });
-
-      // Update pagination info
-      const totalPages = Math.max(1, Math.ceil(pageFilteredGroups.length / pageSize));
-      setPagination((prev) => {
-        const newState = {
-          ...prev,
-          totalPages,
-          currentPage: Math.min(page, totalPages),
-        };
-        return newState;
-      });
-
-      // Get current page content
-      const startIndex = (page - 1) * pageSize;
-      const endIndex = Math.min(startIndex + pageSize, pageFilteredGroups.length);
-
-      return pageFilteredGroups.slice(startIndex, endIndex).join('\n\n');
-    },
-    [pageSize, filter],
-  );
-
-  // Fix the directoryExists and canReadFile calls to properly handle promises
-  const checkLogFile = useCallback(async (filePath: string): Promise<LogFileInfo> => {
-    try {
-      const info: LogFileInfo = { path: filePath, exists: false };
-
-      try {
-        const stats = fs.statSync(filePath);
-        info.exists = true;
-        info.size = stats.size;
-
-        const readable = await canReadFile(filePath);
-        info.readable = readable;
-        if (!readable) {
-          info.fileError = 'File exists but is not readable';
-        }
-      } catch (e) {
-        info.fileError = 'File does not exist';
-      }
-
-      if (info.exists) {
-        const chiaRoot = process.env.CHIA_ROOT || path.join(os.homedir(), '.chia', 'mainnet');
-        const logDir = path.join(chiaRoot, 'log');
-
-        info.debugInfo = {
-          chiaRoot,
-          logDir,
-          rootExists: await directoryExists(chiaRoot),
-          logDirExists: await directoryExists(logDir),
-          fileReadable: await canReadFile(filePath),
-        };
-      }
-
-      return info;
-    } catch (e: any) {
-      return {
-        path: filePath,
-        exists: false,
-        fileError: e.message,
-      };
-    }
-  }, []);
-
   const loadLogsData = useCallback(
     async (forceReload = false) => {
-      // Check if we should use cached content
       const now = Date.now();
       if (!forceReload && cachedContent && now - lastLoadTime < CACHE_TIMEOUT) {
-        // Use cached content
         const pageContent = getPageContent(cachedContent.content, pagination.currentPage);
         setRawContent(pageContent);
         return;
@@ -260,48 +240,45 @@ export default function LogViewer({ pageSize = 1000 }: LogViewerProps) {
       setLoading(true);
       setError(null);
       try {
-        const chiaRoot = process.env.CHIA_ROOT || path.join(os.homedir(), '.chia', 'mainnet');
-        const logDir = path.join(chiaRoot, 'log');
-        const currentLogPath = path.join(logDir, 'debug.log');
-
-        const info = await checkLogFile(currentLogPath);
+        const info = await checkLogFile();
         setFileInfo(info);
 
         if (!info.exists || !info.readable) {
           throw new Error(`Unable to read log file: ${info.fileError || 'unknown error'}`);
         }
 
-        // Read and process the content
-        const content = await fs.promises.readFile(currentLogPath, 'utf8');
+        const result = await window.chiaLogs.getContent();
+        if (result.error) {
+          throw new Error(result.error);
+        }
 
-        // Use filterLogContent to get properly grouped entries
+        const content = result.content;
+        if (!content) {
+          throw new Error('No content returned from log file');
+        }
+
         const logGroups = filterLogContent(content, {
           ...DEFAULT_FILTER,
-          levels: Object.values(LogLevel), // Include all log levels initially
+          levels: Object.values(LogLevel), 
         });
 
-        // Sort by timestamp (newest first)
         logGroups.sort((a, b) => {
           const aTime = a.match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/)?.[0] || '';
           const bTime = b.match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/)?.[0] || '';
           return bTime.localeCompare(aTime);
         });
 
-        // Join the sorted groups
         const sortedContent = logGroups.join('\n\n');
 
-        // Cache the sorted content
         setCachedContent({
           content: sortedContent,
           timestamp: Date.now(),
           fileSize: sortedContent.length,
         });
 
-        // Get the first page
         const pageContent = getPageContent(sortedContent, 1);
         setRawContent(pageContent);
 
-        // Update last load time
         setLastLoadTime(now);
       } catch (loadError: any) {
         const decodedError = decodeError(loadError);
@@ -314,17 +291,15 @@ export default function LogViewer({ pageSize = 1000 }: LogViewerProps) {
     [getPageContent, checkLogFile, showError, cachedContent, lastLoadTime, pagination.currentPage],
   );
 
-  // Only load on mount
   useEffect(() => {
     loadLogsData(false);
-  }, [loadLogsData]); // Add loadLogsData to dependencies
+  }, [loadLogsData]); 
 
   const handleRefresh = () => {
     loadLogsData(true);
     return undefined;
   };
 
-  // Separate effect for handling pagination changes
   useEffect(() => {
     if (cachedContent) {
       const pageContent = getPageContent(cachedContent.content, pagination.currentPage);
@@ -333,7 +308,6 @@ export default function LogViewer({ pageSize = 1000 }: LogViewerProps) {
     return undefined;
   }, [pagination.currentPage, getPageContent, cachedContent]);
 
-  // Simplify handleFilterChange to just update the filter
   const handleFilterChange = useCallback((newFilter: LogViewerFilter) => {
     setFilter(newFilter);
     return undefined;
@@ -363,7 +337,6 @@ export default function LogViewer({ pageSize = 1000 }: LogViewerProps) {
     }
   };
 
-  // Fix the filter effect to handle async operations properly
   useEffect(() => {
     if (cachedContent) {
       setFilterLoading(true);
@@ -454,7 +427,6 @@ export default function LogViewer({ pageSize = 1000 }: LogViewerProps) {
 
           if (now - lastUpdateTime > UPDATE_INTERVAL) {
             lastUpdateTime = now;
-            // Use setTimeout to break up processing
             setTimeout(processNextChunk, 0);
             return undefined;
           }
@@ -517,7 +489,6 @@ export default function LogViewer({ pageSize = 1000 }: LogViewerProps) {
               const uniqueId = `${line.substring(0, 19)}-${index}`;
 
               if (line.trim()) {
-                // Check if this is a log line with timestamp and level
                 if (line.match(/^\d{4}-\d{2}-\d{2}T/)) {
                   const level = Object.values(LogLevel).find((logLevel) => {
                     const matches = line.includes(`: ${logLevel} `);
@@ -525,7 +496,6 @@ export default function LogViewer({ pageSize = 1000 }: LogViewerProps) {
                   });
 
                   if (level) {
-                    // Split the line at the log level
                     const [prefix, message] = line.split(`: ${level} `);
                     return (
                       <Box component="div" key={uniqueId} sx={{ whiteSpace: 'pre-wrap' }}>
@@ -547,7 +517,6 @@ export default function LogViewer({ pageSize = 1000 }: LogViewerProps) {
                     );
                   }
                 }
-                // Handle traceback and other lines
                 return (
                   <Box
                     component="div"
