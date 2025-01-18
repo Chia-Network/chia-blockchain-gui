@@ -294,7 +294,7 @@ export default function LogViewer({ pageSize = 1000 }: LogViewerProps) {
 
   useEffect(() => {
     loadLogsData(false);
-  }, [loadLogsData]); 
+  }, [loadLogsData]);
 
   const handleRefresh = () => {
     loadLogsData(true);
