@@ -33,3 +33,27 @@ export interface PaginationInfo {
   totalPages: number;
   pageSize: number;
 }
+
+export interface LogFileInfo {
+  path: string;
+  exists: boolean;
+  size?: number;
+  readable?: boolean;
+  fileError?: string;
+  debugInfo?: {
+    chiaRoot: string;
+    logDir: string;
+    rootExists: boolean;
+    logDirExists: boolean;
+    fileReadable: boolean;
+  };
+}
+
+export interface CachedContent {
+  content: string;
+  timestamp: number;
+  fileSize: number;
+  isPartial?: boolean;
+}
+
+export type LogColors = Record<LogLevel, string>;

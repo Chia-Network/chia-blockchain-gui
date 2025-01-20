@@ -6,53 +6,15 @@ import React, { useEffect, useState, useCallback } from 'react';
 import decodeError from '../../../electron/utils/decodeError';
 
 import LogViewerToolbar from './LogViewerToolbar';
-import { LogLevel, LogViewerFilter, LogViewerProps } from './LogViewerTypes';
-
-interface LogFileInfo {
-  path: string;
-  exists: boolean;
-  size?: number;
-  readable?: boolean;
-  fileError?: string;
-  debugInfo?: {
-    chiaRoot: string;
-    logDir: string;
-    rootExists: boolean;
-    logDirExists: boolean;
-    fileReadable: boolean;
-  };
-}
-
-interface CachedContent {
-  content: string;
-  timestamp: number;
-  fileSize: number;
-  isPartial?: boolean;
-}
-
-interface PaginationInfo {
-  currentPage: number;
-  totalPages: number;
-  pageSize: number;
-}
-
-const DEFAULT_FILTER: LogViewerFilter = {
-  levels: [LogLevel.CRITICAL, LogLevel.ERROR, LogLevel.WARNING],
-  timeRange: 'all',
-  searchText: '',
-  version: undefined,
-};
-
-type LogColors = Record<LogLevel, string>;
-
-const LOG_COLORS: LogColors = {
-  [LogLevel.CRITICAL]: '#FF0000',
-  [LogLevel.ERROR]: '#FF4444',
-  [LogLevel.WARNING]: '#FFA500',
-  [LogLevel.INFO]: '#4CAF50',
-  [LogLevel.DEBUG]: '#2196F3',
-  [LogLevel.NOTSET]: '#757575',
-};
+import {
+  LogLevel,
+  LogViewerFilter,
+  LogViewerProps,
+  LogFileInfo,
+  CachedContent,
+  PaginationInfo,
+} from './LogViewerTypes';
+import { LOG_COLORS, CACHE_TIMEOUT, DEFAULT_FILTER, filterLogContent } from './LogViewerUtils';
 
 const highlightSearchText = (text: string, searchTerm: string | undefined) => {
   if (!searchTerm) return text;
@@ -74,47 +36,6 @@ const highlightSearchText = (text: string, searchTerm: string | undefined) => {
     ),
   );
 };
-
-const CACHE_TIMEOUT = 5 * 60 * 1000; // 5 minutes
-
-function filterLogContent(content: string, filter: LogViewerFilter): string[] {
-  if (!content) return [];
-
-  const groups: string[] = [];
-  const lines = content.split('\n');
-  let currentGroup: string[] = [];
-
-  const processLine = (line: string) => {
-    if (line.match(/^\d{4}-\d{2}-\d{2}T/)) {
-      if (currentGroup.length > 0) {
-        const groupText = currentGroup.join('\n');
-        const hasSelectedLevel = filter.levels.some((filterLevel) => groupText.includes(`: ${filterLevel} `));
-        const matchesSearch = !filter.searchText || groupText.toLowerCase().includes(filter.searchText.toLowerCase());
-
-        if (hasSelectedLevel && matchesSearch) {
-          groups.push(groupText);
-        }
-      }
-      currentGroup = [line];
-    } else if (line.trim()) {
-      currentGroup.push(line);
-    }
-  };
-
-  lines.forEach(processLine);
-
-  if (currentGroup.length > 0) {
-    const groupText = currentGroup.join('\n');
-    const hasSelectedLevel = filter.levels.some((filterLevel) => groupText.includes(`: ${filterLevel} `));
-    const matchesSearch = !filter.searchText || groupText.toLowerCase().includes(filter.searchText.toLowerCase());
-
-    if (hasSelectedLevel && matchesSearch) {
-      groups.push(groupText);
-    }
-  }
-
-  return groups;
-}
 
 declare global {
   interface Window {
@@ -183,6 +104,15 @@ export default function LogViewer({ pageSize = 1000 }: LogViewerProps) {
   const getPageContent = useCallback(
     (fullContent: string, page: number) => {
       const pageFilteredGroups = filterLogContent(fullContent, filter);
+
+      if (!pageFilteredGroups || pageFilteredGroups.length === 0) {
+        setPagination((prev) => ({
+          ...prev,
+          totalPages: 1,
+          currentPage: 1,
+        }));
+        return '';
+      }
 
       pageFilteredGroups.sort((a, b) => {
         const aMatch = a.match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}/);

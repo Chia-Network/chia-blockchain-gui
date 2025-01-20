@@ -1,4 +1,4 @@
-import { LogLevel, LogViewerFilter } from './LogViewerTypes';
+import { LogLevel, LogViewerFilter, LogColors } from './LogViewerTypes';
 
 // Update LogEntry interface in LogViewerTypes.ts
 interface ExtendedLogEntry {
@@ -164,4 +164,61 @@ export function filterLogs(
 
     return true;
   });
+}
+
+export const LOG_COLORS: LogColors = {
+  [LogLevel.CRITICAL]: '#FF0000',
+  [LogLevel.ERROR]: '#FF4444',
+  [LogLevel.WARNING]: '#FFA500',
+  [LogLevel.INFO]: '#4CAF50',
+  [LogLevel.DEBUG]: '#2196F3',
+  [LogLevel.NOTSET]: '#757575',
+};
+
+export const CACHE_TIMEOUT = 5 * 60 * 1000; // 5 minutes
+
+export const DEFAULT_FILTER: LogViewerFilter = {
+  levels: [LogLevel.CRITICAL, LogLevel.ERROR, LogLevel.WARNING],
+  timeRange: 'all',
+  searchText: '',
+  version: undefined,
+};
+
+export function filterLogContent(content: string, filter: LogViewerFilter): string[] {
+  if (!content) return [];
+
+  const groups: string[] = [];
+  const lines = content.split('\n');
+  let currentGroup: string[] = [];
+
+  const processLine = (line: string) => {
+    if (line.match(/^\d{4}-\d{2}-\d{2}T/)) {
+      if (currentGroup.length > 0) {
+        const groupText = currentGroup.join('\n');
+        const hasSelectedLevel = filter.levels.some((filterLevel) => groupText.includes(`: ${filterLevel} `));
+        const matchesSearch = !filter.searchText || groupText.toLowerCase().includes(filter.searchText.toLowerCase());
+
+        if (hasSelectedLevel && matchesSearch) {
+          groups.push(groupText);
+        }
+      }
+      currentGroup = [line];
+    } else if (line.trim()) {
+      currentGroup.push(line);
+    }
+  };
+
+  lines.forEach(processLine);
+
+  if (currentGroup.length > 0) {
+    const groupText = currentGroup.join('\n');
+    const hasSelectedLevel = filter.levels.some((filterLevel) => groupText.includes(`: ${filterLevel} `));
+    const matchesSearch = !filter.searchText || groupText.toLowerCase().includes(filter.searchText.toLowerCase());
+
+    if (hasSelectedLevel && matchesSearch) {
+      groups.push(groupText);
+    }
+  }
+
+  return groups;
 }
