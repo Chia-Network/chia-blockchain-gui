@@ -17,7 +17,7 @@ import {
   Paper,
 } from '@mui/material';
 import debounce from 'lodash/debounce';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 
 import { LogLevel, LogViewerFilter, PaginationInfo } from './LogViewerTypes';
 
@@ -44,44 +44,26 @@ export default function LogViewerToolbar({
 }: LogViewerToolbarProps) {
   const [searchText, setSearchText] = useState('');
 
-  // Create a ref to store the debounced function
-  const debouncedRef = React.useRef<any>();
-
-  // Create debounced filter update
-  const debouncedFilterUpdate = useCallback(
-    (inputText: string) => {
-      if (debouncedRef.current) {
-        debouncedRef.current.cancel();
-      }
-
-      debouncedRef.current = debounce((filterText: string) => {
+  // Create a memoized debounced filter function
+  const debouncedFilterFunc = useMemo(
+    () =>
+      debounce((filterText: string) => {
         onFilterChange({
           ...filter,
           searchText: filterText,
         });
-      }, 300);
-
-      debouncedRef.current(inputText);
-    },
+      }, 300),
     [filter, onFilterChange],
   );
 
-  // Update local state immediately but debounce the filter update
-  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newText = event.target.value;
-    setSearchText(newText);
-    debouncedFilterUpdate(newText);
-  };
-
-  // Clean up debounce on unmount
   useEffect(
     () => () => {
-      if (debouncedRef.current) {
-        debouncedRef.current.cancel();
-      }
+      debouncedFilterFunc.cancel();
     },
-    [],
+    [debouncedFilterFunc],
   );
+
+  const handleFilterChange = (inputText: string) => debouncedFilterFunc(inputText);
 
   const handleLevelChange = (event: any) => {
     const {
@@ -120,7 +102,11 @@ export default function LogViewerToolbar({
               size="small"
               label={<Trans>Search</Trans>}
               value={searchText}
-              onChange={handleSearchChange}
+              onChange={(event) => {
+                const newText = event.target.value;
+                setSearchText(newText);
+                handleFilterChange(newText);
+              }}
               sx={{ minWidth: 200 }}
             />
           </FormControl>
