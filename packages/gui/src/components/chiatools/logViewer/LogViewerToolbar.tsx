@@ -2,6 +2,7 @@ import { Flex } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
+import FolderOpenIcon from '@mui/icons-material/FolderOpen';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import {
   Box,
@@ -30,6 +31,8 @@ type LogViewerToolbarProps = {
   loading?: boolean;
   pagination: PaginationInfo;
   onPageChange: (page: number) => void;
+  onCustomPathClick: () => void;
+  hasCustomPath: boolean;
 };
 
 export default function LogViewerToolbar({
@@ -41,6 +44,8 @@ export default function LogViewerToolbar({
   loading,
   pagination,
   onPageChange,
+  onCustomPathClick,
+  hasCustomPath,
 }: LogViewerToolbarProps) {
   const [searchText, setSearchText] = useState('');
 
@@ -125,6 +130,14 @@ export default function LogViewerToolbar({
           />
 
           <Box>
+            <Tooltip title={<Trans>Change Log File Location</Trans>}>
+              <span>
+                <IconButton onClick={onCustomPathClick} disabled={loading}>
+                  <FolderOpenIcon color={hasCustomPath ? 'primary' : undefined} />
+                </IconButton>
+              </span>
+            </Tooltip>
+
             <Tooltip title={<Trans>Copy to Clipboard</Trans>}>
               <span>
                 <IconButton onClick={onCopy} disabled={loading}>

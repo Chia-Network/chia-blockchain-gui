@@ -1,5 +1,6 @@
 import { Flex, useShowError } from '@chia-network/core';
-import { Box, CircularProgress, Typography } from '@mui/material';
+import { Trans } from '@lingui/macro';
+import { Box, CircularProgress, Typography, TextField, Button } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import React, { useEffect, useState, useCallback } from 'react';
 
@@ -61,6 +62,7 @@ declare global {
           fileReadable: boolean;
         };
       }>;
+      setCustomPath: (path: string) => Promise<{ success: boolean }>;
     };
   }
 }
@@ -83,14 +85,20 @@ export default function LogViewer({ pageSize = 1000 }: LogViewerProps) {
   const [loadingProgress] = useState<number>(0);
   const [filterLoading, setFilterLoading] = useState(false);
   const [lastLoadTime, setLastLoadTime] = useState<number>(0);
-  const [filterProgress, setFilterProgress] = useState<number>(0);
   const [filteredGroups, setFilteredGroups] = useState<string[]>([]);
+  const [showCustomPathInput, setShowCustomPathInput] = useState<boolean>(false);
+  const [customPath, setCustomPath] = useState<string>('');
+  const [defaultLogPath, setDefaultLogPath] = useState<string>('');
+  const [isInitialized, setIsInitialized] = useState(false);
 
   const checkLogFile = useCallback(async (): Promise<LogFileInfo> => {
     try {
       const info = await window.chiaLogs.getInfo();
       if (info.error) {
         throw new Error(info.error);
+      }
+      if (info.defaultPath) {
+        setDefaultLogPath(info.defaultPath);
       }
       return info as LogFileInfo;
     } catch (e: any) {
@@ -168,6 +176,7 @@ export default function LogViewer({ pageSize = 1000 }: LogViewerProps) {
       }
 
       setLoading(true);
+      setFilterLoading(false);
       setError(null);
       try {
         const info = await checkLogFile();
@@ -218,14 +227,72 @@ export default function LogViewer({ pageSize = 1000 }: LogViewerProps) {
         showError(decodedError);
       } finally {
         setLoading(false);
+        setFilterLoading(false);
       }
     },
     [getPageContent, checkLogFile, showError, cachedContent, lastLoadTime, pagination.currentPage],
   );
 
   useEffect(() => {
-    loadLogsData(false);
-  }, [loadLogsData]);
+    const initializeViewer = async () => {
+      if (isInitialized) {
+        return;
+      }
+
+      try {
+        const info = await checkLogFile();
+        setFileInfo(info);
+
+        if (!info.exists || !info.readable) {
+          setShowCustomPathInput(true);
+        } else {
+          setLoading(true);
+          await loadLogsData(true);
+        }
+      } catch (e) {
+        setShowCustomPathInput(true);
+        showError(e);
+      } finally {
+        setLoading(false);
+        setIsInitialized(true);
+      }
+    };
+
+    initializeViewer();
+  }, [checkLogFile, loadLogsData, showError, isInitialized]);
+
+  const handleCustomPathSubmit = async (path: string) => {
+    try {
+      await window.chiaLogs.setCustomPath(path);
+      const info = await checkLogFile();
+      setFileInfo(info);
+
+      if (info.exists && info.readable) {
+        setShowCustomPathInput(false);
+        await loadLogsData(true);
+      }
+    } catch (e: any) {
+      let errorMessage = '';
+
+      if (e.message.includes('ENOENT')) {
+        errorMessage = ['⚠️  Log file not found', 'Please verify the path and try again.', '', `Path: ${path}`].join(
+          '\n',
+        );
+      } else if (e.message.includes('EACCES')) {
+        errorMessage = [
+          '⚠️  Permission denied',
+          'Please check file permissions and try again.',
+          '',
+          `Path: ${path}`,
+        ].join('\n');
+      } else {
+        errorMessage = ['⚠️  Error accessing log file', e.message, '', `Path: ${path}`].join('\n');
+      }
+
+      showError(new Error(errorMessage));
+      setCustomPath('');
+    }
+  };
 
   const handleRefresh = () => {
     loadLogsData(true);
@@ -270,18 +337,18 @@ export default function LogViewer({ pageSize = 1000 }: LogViewerProps) {
   };
 
   useEffect(() => {
-    if (cachedContent) {
-      setFilterLoading(true);
-      setFilterProgress(0);
+    if (!cachedContent || !isInitialized || loading) {
+      return undefined;
+    }
 
-      let isCancelled = false;
-      const accumulatedGroups: string[] = [];
-      let lastUpdateTime = Date.now();
-      const UPDATE_INTERVAL = 100;
+    setFilterLoading(true);
 
+    try {
+      const lines = cachedContent.content.split('\n');
+      const groups: string[] = [];
       let currentGroup: string[] = [];
 
-      const processLine = (line: string) => {
+      lines.forEach((line) => {
         if (line.match(/^\d{4}-\d{2}-\d{2}T/)) {
           if (currentGroup.length > 0) {
             const groupText = currentGroup.join('\n');
@@ -290,94 +357,72 @@ export default function LogViewer({ pageSize = 1000 }: LogViewerProps) {
               !filter.searchText || groupText.toLowerCase().includes(filter.searchText.toLowerCase());
 
             if (hasSelectedLevel && matchesSearch) {
-              accumulatedGroups.push(groupText);
+              groups.push(groupText);
             }
           }
           currentGroup = [line];
         } else if (line.trim()) {
           currentGroup.push(line);
         }
-        return undefined;
-      };
+      });
 
-      const processChunk = (chunk: string[]) => {
-        chunk.forEach(processLine);
-        return undefined;
-      };
+      // Process final group
+      if (currentGroup.length > 0) {
+        const groupText = currentGroup.join('\n');
+        const hasSelectedLevel = filter.levels.some((filterLevel) => groupText.includes(`: ${filterLevel} `));
+        const matchesSearch = !filter.searchText || groupText.toLowerCase().includes(filter.searchText.toLowerCase());
 
-      const updateUI = () => {
-        if (!isCancelled) {
-          setFilteredGroups(accumulatedGroups);
-
-          const totalPages = Math.max(1, Math.ceil(accumulatedGroups.length / pageSize));
-          setPagination((prev) => {
-            const newState = {
-              ...prev,
-              totalPages,
-              currentPage: 1,
-            };
-            return newState;
-          });
-
-          const pageContent = accumulatedGroups.slice(0, pageSize).join('\n\n');
-          setRawContent(pageContent);
+        if (hasSelectedLevel && matchesSearch) {
+          groups.push(groupText);
         }
-        return undefined;
-      };
+      }
 
-      const processContent = () => {
-        const lines = cachedContent.content.split('\n');
-        const totalLines = lines.length;
-        const chunkSize = 500;
-        let currentIndex = 0;
+      setFilteredGroups(groups);
+      const totalPages = Math.max(1, Math.ceil(groups.length / pageSize));
+      setPagination((prev) => ({
+        ...prev,
+        totalPages,
+        currentPage: 1,
+      }));
 
-        const processNextChunk = () => {
-          if (isCancelled || currentIndex >= totalLines) {
-            if (!isCancelled) {
-              // Process final group if needed
-              if (currentGroup.length > 0) {
-                processLine(''); // Empty line triggers final group processing
-              }
-              updateUI();
-              setFilterLoading(false);
-              setFilterProgress(0);
-            }
-            return undefined;
-          }
-
-          const chunk = lines.slice(currentIndex, currentIndex + chunkSize);
-          processChunk(chunk);
-
-          // Update progress
-          const progress = Math.round((currentIndex / totalLines) * 100);
-          if (!isCancelled) {
-            setFilterProgress(progress);
-          }
-
-          currentIndex += chunkSize;
-          const now = Date.now();
-
-          if (now - lastUpdateTime > UPDATE_INTERVAL) {
-            lastUpdateTime = now;
-            setTimeout(processNextChunk, 0);
-            return undefined;
-          }
-
-          return processNextChunk();
-        };
-
-        processNextChunk();
-        return undefined;
-      };
-
-      processContent();
-
-      return () => {
-        isCancelled = true;
-      };
+      const pageContent = groups.slice(0, pageSize).join('\n\n');
+      setRawContent(pageContent);
+    } finally {
+      setFilterLoading(false);
     }
-    return undefined;
-  }, [filter, cachedContent, pageSize]);
+
+    return () => {
+      setFilterLoading(false);
+    };
+  }, [filter, cachedContent, pageSize, isInitialized, loading]);
+
+  const handleCustomPathClick = useCallback(() => {
+    setShowCustomPathInput(true);
+  }, []);
+
+  if (showCustomPathInput) {
+    return (
+      <Flex flexDirection="column" gap={2}>
+        <Typography variant="body1">
+          <Trans>Enter the path to your log file:</Trans>
+        </Typography>
+        <TextField
+          fullWidth
+          value={customPath}
+          onChange={(e) => setCustomPath(e.target.value)}
+          placeholder="/path/to/your/log/file/debug.log"
+        />
+        <Flex gap={2}>
+          <Button onClick={() => handleCustomPathSubmit(customPath)} variant="contained" disabled={!customPath}>
+            <Trans>Load Logs</Trans>
+          </Button>
+          <Button onClick={() => setShowCustomPathInput(false)} variant="outlined">
+            <Trans>Cancel</Trans>
+          </Button>
+        </Flex>
+      </Flex>
+    );
+  }
 
   return (
     <Flex flexDirection="column" gap={2} sx={{ height: '100%', minHeight: '500px' }}>
@@ -390,6 +435,8 @@ export default function LogViewer({ pageSize = 1000 }: LogViewerProps) {
         loading={loading || filterLoading}
         pagination={pagination}
         onPageChange={handlePageChange}
+        onCustomPathClick={handleCustomPathClick}
+        hasCustomPath={Boolean(fileInfo.path && fileInfo.path !== defaultLogPath)}
       />
       <Box
         sx={{
@@ -405,15 +452,7 @@ export default function LogViewer({ pageSize = 1000 }: LogViewerProps) {
       >
         {loading || filterLoading ? (
           <Flex alignItems="center" justifyContent="center" minHeight={200} flexDirection="column" gap={2}>
-            <CircularProgress
-              variant={loadingProgress > 0 || filterProgress > 0 ? 'determinate' : 'indeterminate'}
-              value={filterLoading ? filterProgress : loadingProgress}
-            />
-            {(loadingProgress > 0 || filterProgress > 0) && (
-              <Typography variant="body2" color="textSecondary">
-                {filterLoading ? `Filtering: ${filterProgress}%` : `Loading: ${loadingProgress}%`}
-              </Typography>
-            )}
+            <CircularProgress variant={loadingProgress > 0 ? 'determinate' : 'indeterminate'} value={loadingProgress} />
           </Flex>
         ) : rawContent ? (
           <Box sx={{ margin: 0, fontFamily: 'monospace' }}>

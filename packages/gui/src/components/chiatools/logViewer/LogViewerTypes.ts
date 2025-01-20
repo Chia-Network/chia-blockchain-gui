@@ -34,12 +34,18 @@ export interface PaginationInfo {
   pageSize: number;
 }
 
+export interface LogFileError {
+  type: 'NOT_FOUND' | 'NOT_READABLE' | 'CUSTOM';
+  message: string;
+}
+
 export interface LogFileInfo {
   path: string;
   exists: boolean;
   size?: number;
   readable?: boolean;
   fileError?: string;
+  defaultPath?: string;
   debugInfo?: {
     chiaRoot: string;
     logDir: string;
