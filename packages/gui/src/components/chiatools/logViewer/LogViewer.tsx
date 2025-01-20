@@ -20,10 +20,11 @@ const highlightSearchText = (text: string, searchTerm: string | undefined) => {
   if (!searchTerm) return text;
 
   const parts = text.split(new RegExp(`(${searchTerm})`, 'gi'));
-  return parts.map((part) =>
+  return parts.map((part, index) =>
     part.toLowerCase() === searchTerm.toLowerCase() ? (
       <span
-        key={`highlight-${part}-${Math.random().toString(36).substr(2, 9)}`}
+        // eslint-disable-next-line react/no-array-index-key -- Using index is safe here as the array is stable and order won't change (requested by ChiaMineJP)
+        key={`highlight-${part}-${index}`}
         style={{
           backgroundColor: 'rgba(255, 255, 0, 0.3)',
           fontWeight: 'bold',
