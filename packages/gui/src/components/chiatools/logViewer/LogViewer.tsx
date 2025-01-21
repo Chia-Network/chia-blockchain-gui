@@ -52,8 +52,9 @@ declare global {
         path: string;
         exists: boolean;
         size: number;
-        readable: boolean;
-        error?: string;
+        readable?: boolean;
+        fileError?: string;
+        defaultPath?: string;
         debugInfo?: {
           chiaRoot: string;
           logDir: string;
@@ -402,7 +403,7 @@ export default function LogViewer({ pageSize = 1000 }: LogViewerProps) {
 
   if (showCustomPathInput) {
     return (
-      <Flex flexDirection="column" gap={2}>
+      <Flex flexDirection="column" gap={2} padding={2}>
         <Typography variant="body1">
           <Trans>Enter the path to your log file:</Trans>
         </Typography>
