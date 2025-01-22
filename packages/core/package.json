@@ -70,7 +70,7 @@
     "@lingui/react": "4.11.4",
     "@loadable/babel-plugin": "5.16.1",
     "@loadable/component": "5.15.3",
-    "@mui/icons-material": "5.14.3",
+    "@mui/icons-material": "6.4.1",
     "@mui/lab": "5.0.0-alpha.140",
     "@mui/material": "5.14.5",
     "@mui/styled-engine-sc": "5.12.0",
