@@ -48,7 +48,7 @@
     "react-redux": "8.1.2",
     "rollup": "4.28.1",
     "rollup-plugin-node-externals": "7.1.2",
-    "typescript": "5.7.2"
+    "typescript": "5.7.3"
   },
   "peerDependencies": {
     "@chia-network/api": "^1.0.0",
