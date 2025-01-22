@@ -63,3 +63,32 @@ export interface CachedContent {
 }
 
 export type LogColors = Record<LogLevel, string>;
+
+declare global {
+  interface Window {
+    chiaLogs: {
+      getContent: () => Promise<{
+        content?: string;
+        path?: string;
+        size?: number;
+        error?: string;
+      }>;
+      getInfo: () => Promise<{
+        path: string;
+        exists: boolean;
+        size: number;
+        readable?: boolean;
+        fileError?: string;
+        defaultPath?: string;
+        debugInfo?: {
+          chiaRoot: string;
+          logDir: string;
+          rootExists: boolean;
+          logDirExists: boolean;
+          fileReadable: boolean;
+        };
+      }>;
+      setCustomPath: (path: string) => Promise<{ success: boolean }>;
+    };
+  }
+}

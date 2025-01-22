@@ -1,11 +1,12 @@
 import { Flex, useShowError } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Box, CircularProgress, Typography, TextField, Button } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useMemo } from 'react';
+import styled from 'styled-components';
 
 import decodeError from '../../../electron/utils/decodeError';
 
+import LogRecord from './LogRecord';
 import LogViewerToolbar from './LogViewerToolbar';
 import {
   LogLevel,
@@ -15,61 +16,25 @@ import {
   CachedContent,
   PaginationInfo,
 } from './LogViewerTypes';
-import { LOG_COLORS, CACHE_TIMEOUT, DEFAULT_FILTER, filterLogContent } from './LogViewerUtils';
+import { CACHE_TIMEOUT, DEFAULT_FILTER, filterLogContent } from './LogViewerUtils';
 
-const highlightSearchText = (text: string, searchTerm: string | undefined) => {
-  if (!searchTerm) return text;
+const LogViewerContainer = styled(Box)(({ theme }) => ({
+  flex: 1,
+  overflowY: 'auto',
+  backgroundColor: theme.palette.background.default,
+  fontFamily: 'monospace',
+  fontSize: '0.875rem',
+  padding: 1,
+  whiteSpace: 'pre-wrap',
+  borderRadius: 1,
+}));
 
-  const parts = text.split(new RegExp(`(${searchTerm})`, 'gi'));
-  return parts.map((part, index) =>
-    part.toLowerCase() === searchTerm.toLowerCase() ? (
-      <span
-        // eslint-disable-next-line react/no-array-index-key -- Using index is safe here as the array is stable and order won't change (requested by ChiaMineJP)
-        key={`highlight-${part}-${index}`}
-        style={{
-          backgroundColor: 'rgba(255, 255, 0, 0.3)',
-          fontWeight: 'bold',
-        }}
-      >
-        {part}
-      </span>
-    ) : (
-      part
-    ),
-  );
-};
-
-declare global {
-  interface Window {
-    chiaLogs: {
-      getContent: () => Promise<{
-        content?: string;
-        path?: string;
-        size?: number;
-        error?: string;
-      }>;
-      getInfo: () => Promise<{
-        path: string;
-        exists: boolean;
-        size: number;
-        readable?: boolean;
-        fileError?: string;
-        defaultPath?: string;
-        debugInfo?: {
-          chiaRoot: string;
-          logDir: string;
-          rootExists: boolean;
-          logDirExists: boolean;
-          fileReadable: boolean;
-        };
-      }>;
-      setCustomPath: (path: string) => Promise<{ success: boolean }>;
-    };
-  }
-}
+const MonospaceBox = styled(Box)`
+  margin: 0;
+  font-family: monospace;
+`;
 
 export default function LogViewer({ pageSize = 1000 }: LogViewerProps) {
-  const theme = useTheme();
   const showError = useShowError();
 
   const [loading, setLoading] = useState(false);
@@ -95,8 +60,8 @@ export default function LogViewer({ pageSize = 1000 }: LogViewerProps) {
   const checkLogFile = useCallback(async (): Promise<LogFileInfo> => {
     try {
       const info = await window.chiaLogs.getInfo();
-      if (info.error) {
-        throw new Error(info.error);
+      if (info.fileError) {
+        throw new Error(info.fileError);
       }
       if (info.defaultPath) {
         setDefaultLogPath(info.defaultPath);
@@ -169,6 +134,10 @@ export default function LogViewer({ pageSize = 1000 }: LogViewerProps) {
 
   const loadLogsData = useCallback(
     async (forceReload = false) => {
+      if (loading) {
+        return;
+      }
+
       const now = Date.now();
       if (!forceReload && cachedContent && now - lastLoadTime < CACHE_TIMEOUT) {
         const pageContent = getPageContent(cachedContent.content, pagination.currentPage);
@@ -231,12 +200,12 @@ export default function LogViewer({ pageSize = 1000 }: LogViewerProps) {
         setFilterLoading(false);
       }
     },
-    [getPageContent, checkLogFile, showError, cachedContent, lastLoadTime, pagination.currentPage],
+    [getPageContent, checkLogFile, showError, cachedContent, loading, lastLoadTime, pagination.currentPage],
   );
 
   useEffect(() => {
     const initializeViewer = async () => {
-      if (isInitialized) {
+      if (isInitialized || loading) {
         return;
       }
 
@@ -260,45 +229,48 @@ export default function LogViewer({ pageSize = 1000 }: LogViewerProps) {
     };
 
     initializeViewer();
-  }, [checkLogFile, loadLogsData, showError, isInitialized]);
+  }, [checkLogFile, loadLogsData, showError, isInitialized, loading]);
 
-  const handleCustomPathSubmit = async (path: string) => {
-    try {
-      await window.chiaLogs.setCustomPath(path);
-      const info = await checkLogFile();
-      setFileInfo(info);
+  const handleCustomPathSubmit = useCallback(
+    async (path: string) => {
+      try {
+        await window.chiaLogs.setCustomPath(path);
+        const info = await checkLogFile();
+        setFileInfo(info);
 
-      if (info.exists && info.readable) {
-        setShowCustomPathInput(false);
-        await loadLogsData(true);
+        if (info.exists && info.readable) {
+          setShowCustomPathInput(false);
+          await loadLogsData(true);
+        }
+      } catch (e: any) {
+        let errorMessage = '';
+
+        if (e.message.includes('ENOENT')) {
+          errorMessage = ['⚠️  Log file not found', 'Please verify the path and try again.', '', `Path: ${path}`].join(
+            '\n',
+          );
+        } else if (e.message.includes('EACCES')) {
+          errorMessage = [
+            '⚠️  Permission denied',
+            'Please check file permissions and try again.',
+            '',
+            `Path: ${path}`,
+          ].join('\n');
+        } else {
+          errorMessage = ['⚠️  Error accessing log file', e.message, '', `Path: ${path}`].join('\n');
+        }
+
+        showError(new Error(errorMessage));
+        setCustomPath('');
       }
-    } catch (e: any) {
-      let errorMessage = '';
+    },
+    [checkLogFile, loadLogsData, showError],
+  );
 
-      if (e.message.includes('ENOENT')) {
-        errorMessage = ['⚠️  Log file not found', 'Please verify the path and try again.', '', `Path: ${path}`].join(
-          '\n',
-        );
-      } else if (e.message.includes('EACCES')) {
-        errorMessage = [
-          '⚠️  Permission denied',
-          'Please check file permissions and try again.',
-          '',
-          `Path: ${path}`,
-        ].join('\n');
-      } else {
-        errorMessage = ['⚠️  Error accessing log file', e.message, '', `Path: ${path}`].join('\n');
-      }
-
-      showError(new Error(errorMessage));
-      setCustomPath('');
-    }
-  };
-
-  const handleRefresh = () => {
+  const handleRefresh = useCallback(() => {
     loadLogsData(true);
     return undefined;
-  };
+  }, [loadLogsData]);
 
   useEffect(() => {
     if (cachedContent) {
@@ -313,7 +285,7 @@ export default function LogViewer({ pageSize = 1000 }: LogViewerProps) {
     return undefined;
   }, []);
 
-  const handleExport = async () => {
+  const handleExport = useCallback(async () => {
     try {
       const blob = new Blob([rawContent], { type: 'text/plain' });
       const url = window.URL.createObjectURL(blob);
@@ -327,15 +299,15 @@ export default function LogViewer({ pageSize = 1000 }: LogViewerProps) {
     } catch (exportErr) {
       showError(exportErr);
     }
-  };
+  }, [rawContent, showError]);
 
-  const handleCopy = async () => {
+  const handleCopy = useCallback(async () => {
     try {
       await navigator.clipboard.writeText(rawContent);
     } catch (err) {
       showError(err);
     }
-  };
+  }, [rawContent, showError]);
 
   useEffect(() => {
     if (!cachedContent || !isInitialized || loading) {
@@ -401,6 +373,80 @@ export default function LogViewer({ pageSize = 1000 }: LogViewerProps) {
     setShowCustomPathInput(true);
   }, []);
 
+  const content = useMemo(() => {
+    if (loading || filterLoading) {
+      return (
+        <Flex alignItems="center" justifyContent="center" minHeight={200} flexDirection="column" gap={2}>
+          <CircularProgress variant={loadingProgress > 0 ? 'determinate' : 'indeterminate'} value={loadingProgress} />
+        </Flex>
+      );
+    }
+    if (rawContent) {
+      return (
+        <MonospaceBox>
+          {rawContent.split('\n').map((line, index) => (
+            // eslint-disable-next-line react/no-array-index-key -- Using index is safe here as the array is stable and order won't change (requested by ChiaMineJP)
+            <LogRecord line={line} filter={filter} key={`${line.substring(0, 19)}-${index}`} />
+          ))}
+        </MonospaceBox>
+      );
+    }
+
+    return (
+      <Flex alignItems="center" justifyContent="center" minHeight={200} flexDirection="column" gap={2}>
+        <Typography color="textSecondary">
+          No logs found. Logs should appear here.
+          <br />
+          Current Page: {pagination.currentPage}
+          <br />
+          Total Pages: {pagination.totalPages}
+          <br />
+          Log File Path: {fileInfo.path}
+          <br />
+          File Exists: {fileInfo.exists ? 'Yes' : 'No'}
+          {fileInfo.exists && (
+            <>
+              <br />
+              File Size: {fileInfo.size ? `${(fileInfo.size / 1024 / 1024).toFixed(2)} MB` : 'Unknown'}
+              <br />
+              Readable: {fileInfo.readable ? 'Yes' : 'No'}
+            </>
+          )}
+          {fileInfo.debugInfo && (
+            <>
+              <br />
+              <br />
+              Debug Information:
+              <br />
+              Chia Root: {fileInfo.debugInfo.chiaRoot}
+              <br />
+              Log Directory: {fileInfo.debugInfo.logDir}
+              <br />
+              Root Exists: {fileInfo.debugInfo.rootExists ? 'Yes' : 'No'}
+              <br />
+              Log Dir Exists: {fileInfo.debugInfo.logDirExists ? 'Yes' : 'No'}
+              <br />
+              File Readable: {fileInfo.debugInfo.fileReadable ? 'Yes' : 'No'}
+            </>
+          )}
+          {fileInfo.fileError && (
+            <>
+              <br />
+              File Error: {fileInfo.fileError}
+            </>
+          )}
+        </Typography>
+        {error && (
+          <Typography color="error" align="center">
+            Error reading logs: {error.message}
+            <br />
+            {error.stack && <pre style={{ fontSize: '0.8em' }}>{error.stack}</pre>}
+          </Typography>
+        )}
+      </Flex>
+    );
+  }, [loading, filterLoading, loadingProgress, rawContent, filter, pagination, fileInfo, error]);
+
   if (showCustomPathInput) {
     return (
       <Flex flexDirection="column" gap={2} padding={2}>
@@ -439,125 +485,7 @@ export default function LogViewer({ pageSize = 1000 }: LogViewerProps) {
         onCustomPathClick={handleCustomPathClick}
         hasCustomPath={Boolean(fileInfo.path && fileInfo.path !== defaultLogPath)}
       />
-      <Box
-        sx={{
-          flex: 1,
-          overflowY: 'auto',
-          backgroundColor: theme.palette.background.default,
-          fontFamily: 'monospace',
-          fontSize: '0.875rem',
-          padding: 1,
-          whiteSpace: 'pre-wrap',
-          borderRadius: 1,
-        }}
-      >
-        {loading || filterLoading ? (
-          <Flex alignItems="center" justifyContent="center" minHeight={200} flexDirection="column" gap={2}>
-            <CircularProgress variant={loadingProgress > 0 ? 'determinate' : 'indeterminate'} value={loadingProgress} />
-          </Flex>
-        ) : rawContent ? (
-          <Box sx={{ margin: 0, fontFamily: 'monospace' }}>
-            {rawContent.split('\n').map((line, index) => {
-              const uniqueId = `${line.substring(0, 19)}-${index}`;
-
-              if (line.trim()) {
-                if (line.match(/^\d{4}-\d{2}-\d{2}T/)) {
-                  const matchingLevels = Object.values(LogLevel).filter((logLevel) => line.includes(`: ${logLevel} `));
-                  const level = matchingLevels[0];
-
-                  if (level) {
-                    const { 0: prefix, 1: message } = line.split(`: ${level} `);
-                    return (
-                      <Box component="div" key={uniqueId} sx={{ whiteSpace: 'pre-wrap' }}>
-                        <span style={{ color: theme.palette.text.secondary }}>
-                          {highlightSearchText(prefix, filter.searchText)}:
-                        </span>
-                        <span
-                          style={{
-                            color: LOG_COLORS[level],
-                            fontWeight: level === 'CRITICAL' || level === 'ERROR' ? 'bold' : 'normal',
-                          }}
-                        >
-                          {` ${level} `}
-                        </span>
-                        <span style={{ color: theme.palette.text.primary }}>
-                          {highlightSearchText(message, filter.searchText)}
-                        </span>
-                      </Box>
-                    );
-                  }
-                }
-                return (
-                  <Box
-                    component="div"
-                    key={uniqueId}
-                    sx={{
-                      whiteSpace: 'pre-wrap',
-                      color: line.startsWith(' ') ? LOG_COLORS.ERROR : theme.palette.text.primary,
-                      paddingLeft: line.startsWith(' ') ? 2 : 0,
-                    }}
-                  >
-                    {highlightSearchText(line, filter.searchText)}
-                  </Box>
-                );
-              }
-              return null;
-            })}
-          </Box>
-        ) : (
-          <Flex alignItems="center" justifyContent="center" minHeight={200} flexDirection="column" gap={2}>
-            <Typography color="textSecondary">
-              No logs found. Logs should appear here.
-              <br />
-              Current Page: {pagination.currentPage}
-              <br />
-              Total Pages: {pagination.totalPages}
-              <br />
-              Log File Path: {fileInfo.path}
-              <br />
-              File Exists: {fileInfo.exists ? 'Yes' : 'No'}
-              {fileInfo.exists && (
-                <>
-                  <br />
-                  File Size: {fileInfo.size ? `${(fileInfo.size / 1024 / 1024).toFixed(2)} MB` : 'Unknown'}
-                  <br />
-                  Readable: {fileInfo.readable ? 'Yes' : 'No'}
-                </>
-              )}
-              {fileInfo.debugInfo && (
-                <>
-                  <br />
-                  <br />
-                  Debug Information:
-                  <br />
-                  Chia Root: {fileInfo.debugInfo.chiaRoot}
-                  <br />
-                  Log Directory: {fileInfo.debugInfo.logDir}
-                  <br />
-                  Root Exists: {fileInfo.debugInfo.rootExists ? 'Yes' : 'No'}
-                  <br />
-                  Log Dir Exists: {fileInfo.debugInfo.logDirExists ? 'Yes' : 'No'}
-                  <br />
-                  File Readable: {fileInfo.debugInfo.fileReadable ? 'Yes' : 'No'}
-                </>
-              )}
-              {fileInfo.fileError && (
-                <>
-                  <br />
-                  File Error: {fileInfo.fileError}
-                </>
-              )}
-            </Typography>
-            {error && (
-              <Typography color="error" align="center">
-                Error reading logs: {error.message}
-                <br />
-                {error.stack && <pre style={{ fontSize: '0.8em' }}>{error.stack}</pre>}
-              </Typography>
-            )}
-          </Flex>
-        )}
-      </Box>
+      <LogViewerContainer>{content}</LogViewerContainer>
     </Flex>
   );
 }

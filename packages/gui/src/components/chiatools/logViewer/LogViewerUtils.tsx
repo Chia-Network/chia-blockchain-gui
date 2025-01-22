@@ -1,3 +1,6 @@
+import React, { memo } from 'react';
+import styled from 'styled-components';
+
 import { LogLevel, LogViewerFilter, LogColors } from './LogViewerTypes';
 
 // Update LogEntry interface in LogViewerTypes.ts
@@ -222,3 +225,38 @@ export function filterLogContent(content: string, filter: LogViewerFilter): stri
 
   return groups;
 }
+
+const HighlightedText = styled.span`
+  backgroundColor: 'rgba(255, 255, 0, 0.3)',
+  fontWeight: 'bold',
+`;
+
+type HighlightSearchTextProps = {
+  text: string;
+  searchTerm: string | undefined;
+};
+
+export const HighlightSearchText = memo((props: HighlightSearchTextProps) => {
+  const { text, searchTerm } = props;
+
+  if (!searchTerm) return text;
+
+  const parts = text.split(new RegExp(`(${searchTerm})`, 'gi'));
+  return parts.map((part, index) =>
+    part.toLowerCase() === searchTerm.toLowerCase() ? (
+      <HighlightedText
+        // eslint-disable-next-line react/no-array-index-key -- Using index is safe here as the array is stable and order won't change (requested by ChiaMineJP)
+        key={`highlight-${part}-${index}`}
+      >
+        {part}
+      </HighlightedText>
+    ) : (
+      <React.Fragment
+        // eslint-disable-next-line react/no-array-index-key -- Using index is safe here as the array is stable and order won't change (requested by ChiaMineJP)
+        key={`highlight-${part}-${index}`}
+      >
+        {part}
+      </React.Fragment>
+    ),
+  );
+});
