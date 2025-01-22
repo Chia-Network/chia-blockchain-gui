@@ -14,8 +14,8 @@ import {
 import fs from 'fs';
 import path from 'path';
 import url from 'url';
+import sanitizeFilename from 'sanitize-filename';
 
-import { NFTInfo } from '@chia-network/api';
 import { initialize, enable } from '@electron/remote/main';
 import axios from 'axios';
 import windowStateKeeper from 'electron-window-state';
@@ -32,6 +32,7 @@ import AppIcon from '../assets/img/chia64x64.png';
 import About from '../components/about/About';
 import { i18n } from '../config/locales';
 import chiaEnvironment, { chiaInit } from '../util/chiaEnvironment';
+import downloadFile from './utils/downloadFile';
 import loadConfig, { checkConfigFileExists } from '../util/loadConfig';
 import manageDaemonLifetime from '../util/manageDaemonLifetime';
 import { setUserDataDir } from '../util/userData';
@@ -261,20 +262,7 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
       return { err, statusCode, statusMessage, responseBody };
     });
 
-    function getRemoteFileSize(urlLocal: string): Promise<number> {
-      return new Promise((resolve, reject) => {
-        axios({
-          method: 'HEAD',
-          url: urlLocal,
-        })
-          .then((response) => {
-            resolve(Number(response.headers['content-length'] || -1));
-          })
-          .catch((e) => {
-            reject(e.message);
-          });
-      });
-    }
+
 
     ipcMain.handle('showMessageBox', async (_event, options) => dialog.showMessageBox(mainWindow, options));
 
@@ -334,93 +322,41 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
       return responseObj;
     });
 
-    type DownloadFileWithProgressProps = {
-      folder: string;
-      nft: NFTInfo;
-      current: number;
-      total: number;
-    };
 
-    function downloadFileWithProgress(props: DownloadFileWithProgressProps): Promise<number> {
-      const { folder, nft, current, total } = props;
-      const uri = nft.dataUris[0];
-      return new Promise((resolve, reject) => {
-        getRemoteFileSize(uri)
-          .then((fileSize: number) => {
-            let totalLength = 0;
-            currentDownloadRequest = net.request(uri);
-            currentDownloadRequest.on('response', (response: IncomingMessage) => {
-              let fileName: string = '';
-              /* first try to get file name from server headers */
-              const disposition = response.headers['content-disposition'];
-              if (disposition && typeof disposition === 'string') {
-                const filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
-                const matches = filenameRegex.exec(disposition);
-                if (matches != null && matches[1]) {
-                  fileName = matches[1].replace(/['"]/g, '');
-                }
-              }
-              /* if we didn't get file name from server headers, then parse it from uri */
-              fileName = fileName || uri.replace(/\/$/, '').split('/').splice(-1, 1)[0];
-              currentDownloadRequest.on('abort', () => {
-                reject(new Error('download aborted'));
-              });
-
-              /* if there is already a file with that name in this folder, add nftId to the file name */
-              if (fs.existsSync(path.join(folder, fileName))) {
-                fileName = `${fileName}-${nft.$nftId}`;
-              }
-
-              const fileStream = fs.createWriteStream(path.join(folder, fileName));
-              response.on('data', (chunk) => {
-                fileStream.write(chunk);
-                totalLength += chunk.byteLength;
-                if (fileSize > 0) {
-                  mainWindow?.webContents.send('downloadProgress', {
-                    url: nft.dataUris[0],
-                    nftId: nft.$nftId,
-                    progress: totalLength / fileSize,
-                    i: current,
-                    total,
-                  });
-                }
-              });
-              response.on('end', () => {
-                if (fileStream) {
-                  fileStream.end();
-                }
-                resolve(totalLength);
-              });
-            });
-            currentDownloadRequest.end();
-          })
-          .catch((error) => {
-            reject(error);
-          });
-      });
-    }
-
-    ipcMain.handle('startMultipleDownload', async (_event: any, options: any) => {
+    ipcMain.handle('startMultipleDownload', async (_event: any, options: { folder: string, tasks: { url: string; filename: string }[] }) => {
       /* eslint no-await-in-loop: off -- we want to handle each file separately! */
       let totalDownloadedSize = 0;
       let successFileCount = 0;
       let errorFileCount = 0;
-      for (let i = 0; i < options.nfts.length; i++) {
-        let fileSize;
+
+      const { folder, tasks } = options;
+
+      for (let i = 0; i < tasks.length; i++) {
+        const { url, filename } = tasks[i];
+
         try {
-          fileSize = await downloadFileWithProgress({
-            folder: options.folder,
-            nft: options.nfts[i],
-            current: i,
-            total: options.nfts.length,
+          const filePath = path.join(folder, sanitizeFilename(filename));
+
+          await downloadFile(url, filePath, {
+            onProgress: (progress) => {
+              mainWindow?.webContents.send('multipleDownloadProgress', {
+                progress,
+                url,
+                index: i,
+                total: tasks.length,
+              });
+            },
           });
-          totalDownloadedSize += fileSize;
+
+          const fileStats = await fs.promises.stat(filePath);
+
+          totalDownloadedSize += fileStats.size;
           successFileCount++;
         } catch (e: any) {
           if (e.message === 'download aborted' && abortDownloadingFiles) {
             break;
           }
-          mainWindow?.webContents.send('errorDownloadingUrl', options.nfts[i]);
+          mainWindow?.webContents.send('errorDownloadingUrl', url);
           errorFileCount++;
         }
       }

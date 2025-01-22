@@ -405,31 +405,66 @@ function NFTDownloadContextualAction(props: NFTDownloadContextualActionProps) {
       return;
     }
 
-    if (selectedNfts.length > 1) {
-      const folder = await ipcRenderer.invoke('selectMultipleDownloadFolder');
-      if (folder?.canceled !== true) {
-        const nfts = selectedNfts.map((nft: NFTInfo) => {
-          let hash;
-          try {
-            const item = localStorage.getItem(`content-cache-${nft.$nftId}`) || '';
-            const obj = JSON.parse(item);
-            if (obj.valid && obj.binary) {
-              hash = obj.binary;
-            }
-          } catch (e) {
-            return nft;
-          }
-          return { ...nft, hash };
-        });
-        setSelectedNFTIds([]);
-        ipcRenderer.invoke('startMultipleDownload', { folder: folder.filePaths[0], nfts });
-        await openDialog(<MultipleDownloadDialog folder={folder.filePaths[0]} />);
-      }
-    } else {
+    if (selectedNfts.length === 1) {
       const dataUrlLocal = selectedNft?.dataUris?.[0];
       if (dataUrlLocal) {
         download(dataUrlLocal);
       }
+      return;
+    }
+
+    const folder = await ipcRenderer.invoke('selectMultipleDownloadFolder');
+    if (folder?.canceled) {
+      return;
+    }
+
+    const nfts = selectedNfts.map((nft: NFTInfo) => {
+      let hash;
+      try {
+        const item = localStorage.getItem(`content-cache-${nft.$nftId}`) || '';
+        const obj = JSON.parse(item);
+        if (obj.valid && obj.binary) {
+          hash = obj.binary;
+        }
+      } catch (e) {
+        return nft;
+      }
+      return { ...nft, hash };
+    });
+
+    setSelectedNFTIds([]);
+
+    try {
+      const selectedFolder = folder.filePaths[0];
+      if (!selectedFolder) {
+        throw new Error('No folder selected');
+      }
+
+      const tasks: { url: string; filename: string }[] = nfts.map((nft) => {
+        const url = nft.dataUris[0];
+        if (!url) {
+          throw new Error('No data URI found for NFT');
+        }
+
+        const filename = nft.$nftId;
+        if (!filename) {
+          throw new Error('No NFT ID found');
+        }
+
+        return {
+          url,
+          filename,
+        };
+      });
+
+      ipcRenderer.invoke('startMultipleDownload', { folder: selectedFolder, tasks });
+      await openDialog(<MultipleDownloadDialog folder={selectedFolder} />);
+    } catch (error) {
+      openDialog(
+        <AlertDialog title={<Trans>Download Failed</Trans>}>
+          <Trans>The download failed: {error?.message || 'Unknown error'}</Trans>
+        </AlertDialog>,
+      );
     }
   }
 

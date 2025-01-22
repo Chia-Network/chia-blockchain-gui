@@ -4,6 +4,7 @@ import { promises as fs, createWriteStream, type WriteStream } from 'fs';
 import debug from 'debug';
 
 import type Headers from '../../@types/Headers';
+import fileExists from './fileExists';
 
 const log = debug('chia-gui:downloadFile');
 
@@ -35,7 +36,11 @@ class WriteStreamPromise {
   }
 
   async close() {
-    await Promise.all(this.writePromises);
+    try {
+      await Promise.all(this.writePromises);
+    } catch (error) {
+      log('Error while writing to stream', error);
+    }
 
     return new Promise<void>((resolve, reject) => {
       this.stream.close((error) => {
@@ -53,6 +58,14 @@ class WriteStreamPromise {
   }
 }
 
+type DownloadFileOptions = {
+  timeout?: number;
+  signal?: AbortSignal;
+  maxSize?: number;
+  onProgress?: (progress: number, size: number, downloadedSize: number) => void;
+  overrideFile?: boolean;
+};
+
 export default async function downloadFile(
   url: string,
   localPath: string,
@@ -61,13 +74,16 @@ export default async function downloadFile(
     signal,
     maxSize = 100 * 1024 * 1024,
     onProgress,
-  }: {
-    timeout?: number;
-    signal?: AbortSignal;
-    maxSize?: number;
-    onProgress?: (progress: number, size: number, downloadedSize: number) => void;
-  },
+    overrideFile = false,
+  }: DownloadFileOptions = {},
 ): Promise<Headers> {
+  if (!overrideFile) {
+    const isFileExists = await fileExists(localPath);
+    if (isFileExists) {
+      throw new Error('File already exists');
+    }
+  }
+
   const tempFilePath = `${localPath}.tmp`;
   const request = net.request(url);
   const outputStream = new WriteStreamPromise(tempFilePath);
@@ -131,10 +147,21 @@ export default async function downloadFile(
       }
 
       headers = response.headers;
-      const size = headers['content-length'] ? parseInt(headers['content-length'], 10) || 0 : 0;
-      if (size > maxSize) {
-        request.abort();
-        return;
+
+      // try to cancel request if file size is too large and content-length header is available, otherwise abort request during download
+      const contentLengthHeader = response.headers['content-length'];
+      const contentLength = Array.isArray(contentLengthHeader) ? contentLengthHeader[0] : contentLengthHeader;
+
+      let fileSize: number | undefined;
+      if (contentLength) {
+        const size = Number.parseInt(contentLength, 10);
+        if (!isNaN(size)) {
+          fileSize = size;
+          if (size > maxSize) {
+            request.abort();
+            return;
+          }
+        }
       }
 
       response.on('data', (chunk) => {
@@ -149,8 +176,11 @@ export default async function downloadFile(
           resolvePromise(false, error);
         });
 
-        const progress = size ? (downloadedSize / size) * 100 : 0;
-        onProgress?.(progress, size, downloadedSize);
+        // send progress event only when we know the file size
+        if (onProgress && fileSize !== undefined && fileSize > 0) {
+          const progress = Math.max((downloadedSize / fileSize) * 100, 100);
+          onProgress?.(progress, fileSize, downloadedSize);
+        }
       });
 
       response.on('error', (error = new Error('Unknown response error')) => {
