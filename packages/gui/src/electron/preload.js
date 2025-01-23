@@ -47,3 +47,9 @@ window.cacheApi = {
   getURI: (...args) => invokeWithCustomErrors('cache:getURI', ...args),
   invalidate: (...args) => invokeWithCustomErrors('cache:invalidate', ...args),
 };
+
+window.chiaLogs = {
+  getContent: () => ipcRenderer.invoke('getChiaLogContent'),
+  getInfo: () => ipcRenderer.invoke('getChiaLogInfo'),
+  setCustomPath: (path) => ipcRenderer.invoke('setChiaLogPath', path),
+};

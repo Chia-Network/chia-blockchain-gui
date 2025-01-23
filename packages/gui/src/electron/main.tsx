@@ -42,7 +42,7 @@ import installDevTools from './installDevTools.dev';
 import { readPrefs, savePrefs, migratePrefs } from './prefs';
 
 /**
- * Open the given external protocol URL in the desktop’s default manner.
+ * Open the given external protocol URL in the desktop's default manner.
  */
 function openExternal(urlLocal: string) {
   if (!isURL(urlLocal, { protocols: ['http', 'https', 'ipfs'], require_protocol: true })) {
@@ -637,6 +637,114 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
   ipcMain.handle('setWindowTitle', (_event, title: string) => {
     if (mainWindow.title !== title) {
       mainWindow.setTitle(title);
+    }
+  });
+
+  // IPC handlers for log file operations
+  let customLogPath: string | null = prefs.customLogPath || null;
+
+  ipcMain.handle('setChiaLogPath', async (_event, logPath: string) => {
+    try {
+      try {
+        // Check file exists
+        await fs.promises.access(logPath, fs.constants.F_OK);
+        // Check file is readable
+        await fs.promises.access(logPath, fs.constants.R_OK);
+      } catch (error: any) {
+        if (error.code === 'ENOENT') {
+          throw new Error(`Log file not found at: ${logPath}\nPlease verify the path and try again.`);
+        }
+        if (error.code === 'EACCES') {
+          throw new Error(`Cannot read log file at: ${logPath}\nPlease check file permissions and try again.`);
+        }
+        throw new Error(`Cannot access log file: ${error.message}`);
+      }
+
+      customLogPath = logPath;
+      await savePrefs({
+        ...prefs,
+        customLogPath: logPath,
+      });
+      return { success: true };
+    } catch (error: any) {
+      throw new Error(error.message);
+    }
+  });
+
+  ipcMain.handle('getChiaLogContent', async (_event) => {
+    try {
+      const logPath =
+        customLogPath ||
+        path.join(process.env.CHIA_ROOT || path.join(app.getPath('home'), '.chia', 'mainnet'), 'log', 'debug.log');
+      // Check if file exists and is readable
+      try {
+        await fs.promises.access(logPath, fs.constants.R_OK);
+      } catch (e) {
+        return { error: 'Log file not accessible' };
+      }
+
+      const content = await fs.promises.readFile(logPath, 'utf8');
+      const stats = await fs.promises.stat(logPath);
+
+      return {
+        content,
+        path: logPath,
+        size: stats.size,
+      };
+    } catch (error: any) {
+      return { error: error.message };
+    }
+  });
+
+  ipcMain.handle('getChiaLogInfo', async (_event) => {
+    try {
+      const chiaRoot = process.env.CHIA_ROOT || path.join(app.getPath('home'), '.chia', 'mainnet');
+      const defaultLogPath = path.join(chiaRoot, 'log', 'debug.log');
+      const logPath = customLogPath || defaultLogPath;
+
+      const info = {
+        path: logPath,
+        exists: false,
+        size: 0,
+        readable: false,
+        defaultPath: defaultLogPath,
+        debugInfo: {
+          chiaRoot,
+          logDir: path.join(chiaRoot, 'log'),
+          rootExists: false,
+          logDirExists: false,
+          fileReadable: false,
+        },
+      };
+
+      try {
+        const stats = await fs.promises.stat(logPath);
+        info.exists = true;
+        info.size = stats.size;
+        await fs.promises.access(logPath, fs.constants.R_OK);
+        info.readable = true;
+        info.debugInfo.fileReadable = true;
+      } catch (e) {
+        // File doesn't exist or isn't readable
+      }
+
+      try {
+        await fs.promises.access(chiaRoot);
+        info.debugInfo.rootExists = true;
+      } catch (e) {
+        // Root directory doesn't exist
+      }
+
+      try {
+        await fs.promises.access(info.debugInfo.logDir);
+        info.debugInfo.logDirExists = true;
+      } catch (e) {
+        // Log directory doesn't exist
+      }
+
+      return info;
+    } catch (error: any) {
+      return { error: error.message };
     }
   });
 }
