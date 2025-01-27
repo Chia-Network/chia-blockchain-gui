@@ -13,9 +13,9 @@ class WriteStreamPromise {
 
   private writePromises: Promise<void>[] = [];
 
-  constructor(private path: string) {
+  constructor(private path: string, overrideFile = false) {
     this.stream = createWriteStream(path, {
-      flags: 'w', // override if exists
+      flags: overrideFile ? 'w' : 'wx', // w - override if exists, wx - fail if exists
     });
   }
 
@@ -77,16 +77,9 @@ export default async function downloadFile(
     overrideFile = false,
   }: DownloadFileOptions = {},
 ): Promise<Headers> {
-  if (!overrideFile) {
-    const isFileExists = await fileExists(localPath);
-    if (isFileExists) {
-      throw new Error('File already exists');
-    }
-  }
-
   const tempFilePath = `${localPath}.tmp`;
   const request = net.request(url);
-  const outputStream = new WriteStreamPromise(tempFilePath);
+  const outputStream = new WriteStreamPromise(tempFilePath, overrideFile);
 
   function abortRequest() {
     request.abort();
@@ -124,7 +117,15 @@ export default async function downloadFile(
         // resolve promise
         if (succeeded) {
           log('Download succeeded', url);
+
           // rename temp file to local path
+          if (!overrideFile) {
+            const isFileExists = await fileExists(localPath);
+            if (isFileExists) {
+              throw new Error('File already exists');
+            }
+          }
+
           await fs.rename(tempFilePath, localPath);
           resolve(headers);
           return;
