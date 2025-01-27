@@ -155,7 +155,7 @@ export default async function downloadFile(
       let fileSize: number | undefined;
       if (contentLength) {
         const size = Number.parseInt(contentLength, 10);
-        if (!isNaN(size)) {
+        if (!Number.isNaN(size)) {
           fileSize = size;
           if (size > maxSize) {
             request.abort();
