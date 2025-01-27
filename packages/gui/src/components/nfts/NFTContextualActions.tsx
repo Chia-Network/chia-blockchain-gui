@@ -32,6 +32,7 @@ import useOpenUnsafeLink from '../../hooks/useOpenUnsafeLink';
 import useViewNFTOnExplorer, { NFTExplorer } from '../../hooks/useViewNFTOnExplorer';
 import NFTSelection from '../../types/NFTSelection';
 import download from '../../util/download';
+import getFileExtension from '../../util/getFileExtension';
 import removeHexPrefix from '../../util/removeHexPrefix';
 
 import MultipleDownloadDialog from './MultipleDownloadDialog';
@@ -446,7 +447,9 @@ function NFTDownloadContextualAction(props: NFTDownloadContextualActionProps) {
           throw new Error('No data URI found for NFT');
         }
 
-        const filename = nft.$nftId;
+        const ext = getFileExtension(url);
+
+        const filename = ext ? `${nft.$nftId}.${ext}` : nft.$nftId;
         if (!filename) {
           throw new Error('No NFT ID found');
         }
