@@ -179,7 +179,7 @@ export default async function downloadFile(
         // send progress event only when we know the file size
         if (onProgress && fileSize !== undefined && fileSize > 0) {
           const progress = Math.max((downloadedSize / fileSize) * 100, 100);
-          onProgress?.(progress, fileSize, downloadedSize);
+          onProgress(progress, fileSize, downloadedSize);
         }
       });
 
