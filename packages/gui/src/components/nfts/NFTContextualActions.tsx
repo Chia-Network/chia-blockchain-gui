@@ -393,21 +393,23 @@ type NFTDownloadContextualActionProps = NFTContextualActionProps;
 
 function NFTDownloadContextualAction(props: NFTDownloadContextualActionProps) {
   const { selection } = props;
-  const selectedNft: NFTInfo | undefined = selection?.items[0];
-  const selectedNfts: NFTInfo | undefined = selection?.items;
-  const disabled = !selectedNft;
-  const dataUrl = selectedNft?.dataUris?.[0];
+
+  const selectedNfts: (NFTInfo & { $nftId: string})[] = selection?.items || [];
+
   const openDialog = useOpenDialog();
   const [, setSelectedNFTIds] = useLocalStorage('gallery-selected-nfts', []);
 
+  const downloadable = selectedNfts.filter((nft) => !!nft.dataUris?.length);
+
   async function handleDownload() {
     const { ipcRenderer } = window as any;
-    if (!selectedNft) {
+    if (!downloadable.length) {
       return;
     }
 
-    if (selectedNfts.length === 1) {
-      const dataUrlLocal = selectedNft?.dataUris?.[0];
+    if (downloadable.length === 1) {
+      const [first] = downloadable;
+      const dataUrlLocal = first.dataUris?.[0];
       if (dataUrlLocal) {
         download(dataUrlLocal);
       }
@@ -419,20 +421,6 @@ function NFTDownloadContextualAction(props: NFTDownloadContextualActionProps) {
       return;
     }
 
-    const nfts = selectedNfts.map((nft: NFTInfo) => {
-      let hash;
-      try {
-        const item = localStorage.getItem(`content-cache-${nft.$nftId}`) || '';
-        const obj = JSON.parse(item);
-        if (obj.valid && obj.binary) {
-          hash = obj.binary;
-        }
-      } catch (e) {
-        return nft;
-      }
-      return { ...nft, hash };
-    });
-
     setSelectedNFTIds([]);
 
     try {
@@ -441,7 +429,7 @@ function NFTDownloadContextualAction(props: NFTDownloadContextualActionProps) {
         throw new Error('No folder selected');
       }
 
-      const tasks: { url: string; filename: string }[] = nfts.map((nft) => {
+      const tasks: { url: string; filename: string }[] = selectedNfts.map((nft) => {
         const url = nft.dataUris[0];
         if (!url) {
           throw new Error('No data URI found for NFT');
@@ -471,12 +459,12 @@ function NFTDownloadContextualAction(props: NFTDownloadContextualActionProps) {
     }
   }
 
-  if (!dataUrl) {
+  if (!downloadable.length) {
     return null;
   }
 
   return (
-    <MenuItem onClick={handleDownload} disabled={disabled} close>
+    <MenuItem onClick={handleDownload} disabled={!downloadable.length} close>
       <ListItemIcon>
         <DownloadIcon />
       </ListItemIcon>
