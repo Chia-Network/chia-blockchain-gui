@@ -332,16 +332,16 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
       const { folder, tasks } = options;
 
       for (let i = 0; i < tasks.length; i++) {
-        const { url, filename } = tasks[i];
+        const { url: downloadUrl, filename } = tasks[i];
 
         try {
           const filePath = path.join(folder, sanitizeFilename(filename));
 
-          await downloadFile(url, filePath, {
+          await downloadFile(downloadUrl, filePath, {
             onProgress: (progress) => {
               mainWindow?.webContents.send('multipleDownloadProgress', {
                 progress,
-                url,
+                url: downloadUrl,
                 index: i,
                 total: tasks.length,
               });
@@ -356,7 +356,7 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
           if (e.message === 'download aborted' && abortDownloadingFiles) {
             break;
           }
-          mainWindow?.webContents.send('errorDownloadingUrl', url);
+          mainWindow?.webContents.send('errorDownloadingUrl', downloadUrl);
           errorFileCount++;
         }
       }
