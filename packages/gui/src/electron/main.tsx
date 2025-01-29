@@ -335,7 +335,12 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
         const { url: downloadUrl, filename } = tasks[i];
 
         try {
-          const filePath = path.join(folder, sanitizeFilename(filename));
+          const sanitizedFilename = sanitizeFilename(filename);
+          if (sanitizedFilename !== filename) {
+            throw new Error(`Filename ${filename} contains invalid characters. Filename sanitized to ${sanitizedFilename}`);
+          }
+          
+          const filePath = path.join(folder, sanitizedFilename);
 
           await downloadFile(downloadUrl, filePath, {
             onProgress: (progress) => {
