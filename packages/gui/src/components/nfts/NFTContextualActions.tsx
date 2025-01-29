@@ -435,12 +435,12 @@ function NFTDownloadContextualAction(props: NFTDownloadContextualActionProps) {
           throw new Error('No data URI found for NFT');
         }
 
-        const ext = getFileExtension(url);
-
-        const filename = ext ? `${nft.$nftId}.${ext}` : nft.$nftId;
-        if (!filename) {
+        if (!nft.$nftId) {
           throw new Error('No NFT ID found');
         }
+
+        const ext = getFileExtension(url);
+        const filename = ext ? `${nft.$nftId}.${ext}` : nft.$nftId;
 
         return {
           url,
