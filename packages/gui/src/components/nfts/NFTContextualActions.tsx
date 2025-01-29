@@ -1,6 +1,6 @@
 /* eslint-disable no-bitwise -- enable bitwise operators for this file */
 
-import type { NFTInfo } from '@chia-network/api';
+import { toBech32m, type NFTInfo } from '@chia-network/api';
 import { useSetNFTStatusMutation, useLocalStorage } from '@chia-network/api-react';
 import { AlertDialog, DropdownActions, MenuItem, useOpenDialog, isValidURL } from '@chia-network/core';
 import {
@@ -435,12 +435,10 @@ function NFTDownloadContextualAction(props: NFTDownloadContextualActionProps) {
           throw new Error('No data URI found for NFT');
         }
 
-        if (!nft.$nftId) {
-          throw new Error('No NFT ID found');
-        }
+        const nftId = nft.$nftId || toBech32m(nft.launcherId, 'nft')
 
         const ext = getFileExtension(url);
-        const filename = ext ? `${nft.$nftId}.${ext}` : nft.$nftId;
+        const filename = ext ? `${nftId}.${ext}` : nftId;
 
         return {
           url,
