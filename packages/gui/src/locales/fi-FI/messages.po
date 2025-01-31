@@ -69,109 +69,109 @@ msgid "Keep service running in the background"
 msgstr "Pidä palvelu käynnissä taustalla"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:647
-#: src/electron/main.tsx:855
+#: src/electron/main.tsx:755
+#: src/electron/main.tsx:963
 msgid "File"
 msgstr "Tiedosto"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:655
+#: src/electron/main.tsx:763
 msgid "Edit"
 msgstr "Muokkaa"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:687
+#: src/electron/main.tsx:795
 msgid "View"
 msgstr "Näkymä"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:696
+#: src/electron/main.tsx:804
 msgid "Developer"
 msgstr "Kehittäjä"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:699
+#: src/electron/main.tsx:807
 msgid "Developer Tools"
 msgstr "Kehitystyökalut"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:707
+#: src/electron/main.tsx:815
 msgid "Trigger Desktop Notification"
 msgstr "Käynnistä Työpöytä-ilmoitus"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:736
+#: src/electron/main.tsx:844
 msgid "Full Screen"
 msgstr "Kokoruutu"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:743
+#: src/electron/main.tsx:851
 msgid "Window"
 msgstr "Ikkuna"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:757
+#: src/electron/main.tsx:865
 msgid "Help"
 msgstr "Apuja"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:761
+#: src/electron/main.tsx:869
 msgid "Chia Blockchain Wiki"
 msgstr "Chia Wiki"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:767
+#: src/electron/main.tsx:875
 msgid "Frequently Asked Questions"
 msgstr "Usein Kysytyt Kysymykset"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:773
+#: src/electron/main.tsx:881
 msgid "Release Notes"
 msgstr "Version Muutokset"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:779
+#: src/electron/main.tsx:887
 msgid "Contribute on GitHub"
 msgstr "Anna panoksesi GitHubissa"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:788
+#: src/electron/main.tsx:896
 msgid "Report an Issue..."
 msgstr "Raportoi Ongelma..."
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:794
+#: src/electron/main.tsx:902
 msgid "Chat on Discord"
 msgstr "Chattaa Discordissa"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:800
+#: src/electron/main.tsx:908
 msgid "Follow on Twitter"
 msgstr "Seuraa Twitterissä"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:812
+#: src/electron/main.tsx:920
 msgid "Chia"
 msgstr "Chia"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:815
-#: src/electron/main.tsx:908
+#: src/electron/main.tsx:923
+#: src/electron/main.tsx:1016
 msgid "About Chia Blockchain"
 msgstr "Chia Lohkoketjusta"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:821
+#: src/electron/main.tsx:929
 msgid "Check for Updates..."
 msgstr "Tarkista päivitykset..."
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:869
+#: src/electron/main.tsx:977
 msgid "Speech"
 msgstr "Puhe"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:914
+#: src/electron/main.tsx:1022
 msgid "Check for updates..."
 msgstr "Tarkista päivitykset..."
 
@@ -211,10 +211,9 @@ msgstr "(Suositus)"
 msgid "{0, plural, one {mojo} other {mojos}}"
 msgstr "{0, plural, one {mojo} other {mojoa}}"
 
-#: src/components/nfts/NFTPreview.tsx:432
-#: src/components/settings/Settings.tsx:85
-#~ msgid "{0}"
-#~ msgstr "{0}"
+#: src/components/chiatools/ChiaToolsPage.tsx:56
+msgid "{0}"
+msgstr "{0}"
 
 #: src/components/addressbook/ContactSummary.tsx:155
 msgid "{0} {1}"
@@ -278,7 +277,7 @@ msgstr "{mojos, plural, one {mojo} other {mojoa}}"
 #~ msgid "{title}"
 #~ msgstr ""
 
-#: src/components/offers2/OfferBuilderValue.tsx:195
+#: src/components/offers2/OfferBuilderValue.tsx:196
 msgid "{type} is not supported"
 msgstr "{type} ei ole tuettu"
 
@@ -845,6 +844,7 @@ msgstr "Välimuistin koko (GB)"
 #: src/components/addressbook/ContactEdit.tsx:300
 #: src/components/addressbook/ContactSummary.tsx:43
 #: src/components/app/AppPassPrompt.tsx:184
+#: src/components/chiatools/logViewer/LogViewer.tsx:467
 #: src/components/farm/FarmManageFarmingRewards.tsx:163
 #: src/components/fullNode/FullNodeAddConnection.tsx:100
 #: src/components/nfts/MultipleDownloadDialog.tsx:120
@@ -919,6 +919,10 @@ msgstr "Vaihda"
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:190
 msgid "Change default timing."
 msgstr "Muuta oletusajastusta."
+
+#: src/components/chiatools/logViewer/LogViewerToolbar.tsx:134
+msgid "Change Log File Location"
+msgstr ""
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:290
 #: src/components/settings/SettingsPanel.tsx:120
@@ -1193,7 +1197,7 @@ msgid "Contact Name"
 msgstr "Yhteystiedon Nimi"
 
 #: src/components/addressbook/AddressBookSideBar.tsx:124
-#: src/components/dashboard/DashboardSideBar.tsx:73
+#: src/components/dashboard/DashboardSideBar.tsx:74
 msgid "Contacts"
 msgstr "Yhteystiedot"
 
@@ -1224,6 +1228,10 @@ msgstr "Kopioi Median URL"
 #: src/components/nfts/NFTContextualActions.tsx:105
 msgid "Copy NFT ID"
 msgstr "Kopioi NFT ID"
+
+#: src/components/chiatools/logViewer/LogViewerToolbar.tsx:142
+msgid "Copy to Clipboard"
+msgstr ""
 
 #: src/components/signVerify/SignMessageResultDialog.tsx:58
 msgid "Copy To Clipboard"
@@ -1376,7 +1384,7 @@ msgstr "Tekijän rojaltimaksu ({royaltyPercentage}%)"
 msgid "Creator royalty percentage seems high"
 msgstr "Tekijän rojaltiprosentti vaikuttaa korkealta"
 
-#: src/components/dashboard/DashboardSideBar.tsx:60
+#: src/components/dashboard/DashboardSideBar.tsx:61
 msgid "Credentials"
 msgstr "Käyttöoikeustiedot"
 
@@ -1875,6 +1883,10 @@ msgstr "Syötä lompakon osoite kirjautuaksesi"
 msgid "Enter an NFT or DID to sign with"
 msgstr "Anna NFT tai DID allekirjoittaaksesi"
 
+#: src/components/chiatools/logViewer/LogViewer.tsx:454
+msgid "Enter the path to your log file:"
+msgstr ""
+
 #: src/components/settings/RemovePassphrasePrompt.tsx:122
 msgid "Enter your passphrase:"
 msgstr "Syötä salasana:"
@@ -1970,6 +1982,10 @@ msgstr "Vanhentunut"
 msgid "Explore the Chia ecosystem; discover and trade great NFTs"
 msgstr "Tarkastele Chian ekosysteemiä; löydä ja käy kauppaa NFT:illä"
 
+#: src/components/chiatools/logViewer/LogViewerToolbar.tsx:150
+msgid "Export Logs"
+msgstr ""
+
 #: src/components/offers/utils.ts:126
 #: src/components/plot/PlotHarvester.tsx:122
 msgid "Failed"
@@ -2011,7 +2027,7 @@ msgstr "Salasanan päivittäminen epäonnistui: {0}"
 msgid "Failure"
 msgstr "Epäonnistuminen"
 
-#: src/components/dashboard/DashboardSideBar.tsx:93
+#: src/components/dashboard/DashboardSideBar.tsx:94
 msgid "Farm"
 msgstr "Farmi"
 
@@ -2222,7 +2238,7 @@ msgid "From"
 msgstr "Lähettäjä"
 
 #: src/components/app/AppStatusHeader.tsx:127
-#: src/components/dashboard/DashboardSideBar.tsx:86
+#: src/components/dashboard/DashboardSideBar.tsx:87
 #: src/components/fullNode/FullNode.jsx:116
 msgid "Full Node"
 msgstr "Verkkonoodi"
@@ -2441,7 +2457,7 @@ msgstr "GPU-laiteindeksi"
 msgid "Halves the temp2 cache size requirements by alternating bucket writing methods between tables."
 msgstr "Puolittaa temp2 -välimuistin tarpeen vaihtelemalla bukettien kirjoitusmetodia taulujen välillä"
 
-#: src/components/dashboard/DashboardSideBar.tsx:105
+#: src/components/dashboard/DashboardSideBar.tsx:106
 msgid "Harvest"
 msgstr "Harvestoi"
 
@@ -2931,6 +2947,10 @@ msgstr "Rajoita välimuistin kokoa"
 msgid "List of connections is empty"
 msgstr "Luettelo yhteyksistä on tyhjä"
 
+#: src/components/chiatools/logViewer/LogViewer.tsx:464
+msgid "Load Logs"
+msgstr ""
+
 #: src/components/app/AppProviders.tsx:90
 msgid "Loading configuration"
 msgstr "Ladataan konfiguraatiota"
@@ -3006,6 +3026,10 @@ msgstr "Sisäänkirjautuminen"
 #: src/components/app/LogoutButton.tsx:25
 msgid "Log Out"
 msgstr "Kirjaudu Ulos"
+
+#: src/components/chiatools/ChiaToolsPage.tsx:23
+msgid "Log Viewer"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:1335
 msgid "Make DataLayer Offer"
@@ -3398,7 +3422,7 @@ msgstr "NFT:n siirto epäonnistui"
 msgid "NFT Transfer Pending"
 msgstr "NFT:n siirto kesken"
 
-#: src/components/dashboard/DashboardSideBar.tsx:53
+#: src/components/dashboard/DashboardSideBar.tsx:54
 msgid "NFTs"
 msgstr "NFT:t"
 
@@ -3648,7 +3672,7 @@ msgid "Offer Builder"
 msgstr "Tarjousten Rakentaja"
 
 #: src/components/offers/NFTOfferViewer.tsx:173
-#: src/components/offers2/OfferBuilderValue.tsx:216
+#: src/components/offers2/OfferBuilderValue.tsx:217
 #: src/components/offers2/OfferBuilderViewer.tsx:283
 msgid "Offer cannot be accepted because you don't possess the requested assets"
 msgstr "Tarjousta ei voida hyväksyä, koska sinulla ei ole pyydettyä assettia."
@@ -3737,7 +3761,7 @@ msgstr "Tarjotaan"
 msgid "Offerpool URL"
 msgstr "Tarjouspoolin URL"
 
-#: src/components/dashboard/DashboardSideBar.tsx:67
+#: src/components/dashboard/DashboardSideBar.tsx:68
 #: src/components/nfts/detail/NFTDetailV2.tsx:245
 msgid "Offers"
 msgstr "Tarjoukset"
@@ -4168,7 +4192,7 @@ msgstr "Plottaa NFT-plotti"
 msgid "PlotNFT is transitioning to (target state). This can take a while. Please do not close the application until this is finalized."
 msgstr "Plot-NFT on siirtymässä (kohdetilaan). Tämä voi kestää jonkin aikaa. Älä sulje sovellusta ennen kuin tämä on valmis."
 
-#: src/components/dashboard/DashboardSideBar.tsx:99
+#: src/components/dashboard/DashboardSideBar.tsx:100
 #: src/components/plot/PlotHarvester.tsx:97
 msgid "Plots"
 msgstr "Plotit"
@@ -4309,7 +4333,7 @@ msgstr "Poolin Palkkiosumma"
 msgid "Pool:"
 msgstr "Pooli:"
 
-#: src/components/dashboard/DashboardSideBar.tsx:118
+#: src/components/dashboard/DashboardSideBar.tsx:119
 #: src/components/farm/PoolingHealth.tsx:273
 #: src/components/plotNFT/PlotNFTExternalState.tsx:25
 #: src/components/plotNFT/PlotNFTState.tsx:57
@@ -4495,6 +4519,10 @@ msgstr "Palautuslistan Hash-tiiviste"
 #: src/components/settings/SettingsHarvester.tsx:404
 msgid "Recursive Plot Scan"
 msgstr "Rekursiivinen Plottiskannaus"
+
+#: src/components/chiatools/logViewer/LogViewerToolbar.tsx:158
+msgid "Refresh"
+msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:569
 msgid "Refresh NFT data"
@@ -4787,6 +4815,10 @@ msgstr "Tallenna salasana"
 msgid "Save To File"
 msgstr "Tallenna Tiedostoon"
 
+#: src/components/chiatools/logViewer/LogViewerToolbar.tsx:109
+msgid "Search"
+msgstr ""
+
 #: src/components/fullNode/FullNodeBlockSearch.tsx:38
 msgid "Search block by header hash"
 msgstr "Etsi lohko otsikon tiivisteellä"
@@ -4958,7 +4990,7 @@ msgstr "Aseta Salasana"
 msgid "Set up keys manually"
 msgstr "Määritä avaimet manuaalisesti"
 
-#: src/components/dashboard/DashboardSideBar.tsx:129
+#: src/components/dashboard/DashboardSideBar.tsx:137
 #: src/components/settings/Settings.tsx:74
 msgid "Settings"
 msgstr "Asetukset"
@@ -5651,7 +5683,7 @@ msgstr "Jotta lompakko voidaan käynnistää uudelleen, kaikki Chia-palvelut on 
 msgid "Token Standard"
 msgstr "Token-Standardi"
 
-#: src/components/dashboard/DashboardSideBar.tsx:47
+#: src/components/dashboard/DashboardSideBar.tsx:48
 #: src/components/offers2/OfferBuilderTokensSection.tsx:114
 msgid "Tokens"
 msgstr "Tokenit"
@@ -5659,6 +5691,10 @@ msgstr "Tokenit"
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:114
 msgid "Too Many Plot NFTs"
 msgstr "Liian monta Plot-NFT:tä"
+
+#: src/components/dashboard/DashboardSideBar.tsx:130
+msgid "Tools"
+msgstr ""
 
 #: src/components/offers2/OfferBuilderWalletAmount.tsx:36
 msgid "Total Amount"
@@ -6114,6 +6150,10 @@ msgstr "Näkymä"
 msgid "View an Offer"
 msgstr "Näytä Tarjous"
 
+#: src/components/chiatools/ChiaToolsPage.tsx:26
+msgid "View and analyze Chia log files"
+msgstr ""
+
 #: src/components/vcs/VCCard.tsx:198
 msgid "View Credential Data"
 msgstr "Näytä Käyttöoikeustiedot"
@@ -6312,7 +6352,7 @@ msgid "Warning: Unsupported URL"
 msgstr "Varoitus: Ei-tuettu URL"
 
 #: src/components/offers/OfferSummary.tsx:134
-#: src/components/offers2/OfferBuilderValue.tsx:220
+#: src/components/offers2/OfferBuilderValue.tsx:221
 msgid "Warning: Verify that the offered CAT asset IDs match the asset IDs of the tokens you expect to receive."
 msgstr "Varoitus: Varmista, että tarjotut CAT asset ID:t vastaavat tokeneita, joita haluat vastaanottaa."
 

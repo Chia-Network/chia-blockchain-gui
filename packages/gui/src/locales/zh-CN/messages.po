@@ -69,109 +69,109 @@ msgid "Keep service running in the background"
 msgstr "保持服务在后台运行"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:647
-#: src/electron/main.tsx:855
+#: src/electron/main.tsx:755
+#: src/electron/main.tsx:963
 msgid "File"
 msgstr "文件"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:655
+#: src/electron/main.tsx:763
 msgid "Edit"
 msgstr "编辑"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:687
+#: src/electron/main.tsx:795
 msgid "View"
 msgstr "查看"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:696
+#: src/electron/main.tsx:804
 msgid "Developer"
 msgstr "开发者"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:699
+#: src/electron/main.tsx:807
 msgid "Developer Tools"
 msgstr "开发者工具"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:707
+#: src/electron/main.tsx:815
 msgid "Trigger Desktop Notification"
 msgstr "触发桌面通知"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:736
+#: src/electron/main.tsx:844
 msgid "Full Screen"
 msgstr "全屏"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:743
+#: src/electron/main.tsx:851
 msgid "Window"
 msgstr "窗口"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:757
+#: src/electron/main.tsx:865
 msgid "Help"
 msgstr "帮助"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:761
+#: src/electron/main.tsx:869
 msgid "Chia Blockchain Wiki"
 msgstr "Chia区块链百科"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:767
+#: src/electron/main.tsx:875
 msgid "Frequently Asked Questions"
 msgstr "常见问题解答"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:773
+#: src/electron/main.tsx:881
 msgid "Release Notes"
 msgstr "版本发布说明"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:779
+#: src/electron/main.tsx:887
 msgid "Contribute on GitHub"
 msgstr "在 GitHub 上贡献"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:788
+#: src/electron/main.tsx:896
 msgid "Report an Issue..."
 msgstr "报告问题"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:794
+#: src/electron/main.tsx:902
 msgid "Chat on Discord"
 msgstr "在Discord上讨论"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:800
+#: src/electron/main.tsx:908
 msgid "Follow on Twitter"
 msgstr "关注我们的Twitter"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:812
+#: src/electron/main.tsx:920
 msgid "Chia"
 msgstr "Chia"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:815
-#: src/electron/main.tsx:908
+#: src/electron/main.tsx:923
+#: src/electron/main.tsx:1016
 msgid "About Chia Blockchain"
 msgstr "关于Chia区块链项目"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:821
+#: src/electron/main.tsx:929
 msgid "Check for Updates..."
 msgstr "检查更新..."
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:869
+#: src/electron/main.tsx:977
 msgid "Speech"
 msgstr "演说"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:914
+#: src/electron/main.tsx:1022
 msgid "Check for updates..."
 msgstr "检查更新..."
 
@@ -211,10 +211,9 @@ msgstr "(推荐)"
 msgid "{0, plural, one {mojo} other {mojos}}"
 msgstr "{0, plural, one {mojo} other {mojos}}"
 
-#: src/components/nfts/NFTPreview.tsx:432
-#: src/components/settings/Settings.tsx:85
-#~ msgid "{0}"
-#~ msgstr "{0}"
+#: src/components/chiatools/ChiaToolsPage.tsx:56
+msgid "{0}"
+msgstr "{0}"
 
 #: src/components/addressbook/ContactSummary.tsx:155
 msgid "{0} {1}"
@@ -278,7 +277,7 @@ msgstr "{mojos, plural, one {mojo} other {mojos}}"
 #~ msgid "{title}"
 #~ msgstr ""
 
-#: src/components/offers2/OfferBuilderValue.tsx:195
+#: src/components/offers2/OfferBuilderValue.tsx:196
 msgid "{type} is not supported"
 msgstr "不支持 {type}"
 
@@ -845,6 +844,7 @@ msgstr "缓存大小(GB)"
 #: src/components/addressbook/ContactEdit.tsx:300
 #: src/components/addressbook/ContactSummary.tsx:43
 #: src/components/app/AppPassPrompt.tsx:184
+#: src/components/chiatools/logViewer/LogViewer.tsx:467
 #: src/components/farm/FarmManageFarmingRewards.tsx:163
 #: src/components/fullNode/FullNodeAddConnection.tsx:100
 #: src/components/nfts/MultipleDownloadDialog.tsx:120
@@ -919,6 +919,10 @@ msgstr "变更"
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:190
 msgid "Change default timing."
 msgstr "更改默认时间设置。"
+
+#: src/components/chiatools/logViewer/LogViewerToolbar.tsx:134
+msgid "Change Log File Location"
+msgstr ""
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:290
 #: src/components/settings/SettingsPanel.tsx:120
@@ -1193,7 +1197,7 @@ msgid "Contact Name"
 msgstr "联系人名称"
 
 #: src/components/addressbook/AddressBookSideBar.tsx:124
-#: src/components/dashboard/DashboardSideBar.tsx:73
+#: src/components/dashboard/DashboardSideBar.tsx:74
 msgid "Contacts"
 msgstr "联系人"
 
@@ -1224,6 +1228,10 @@ msgstr "复制媒体URL"
 #: src/components/nfts/NFTContextualActions.tsx:105
 msgid "Copy NFT ID"
 msgstr "复制 NFT ID"
+
+#: src/components/chiatools/logViewer/LogViewerToolbar.tsx:142
+msgid "Copy to Clipboard"
+msgstr ""
 
 #: src/components/signVerify/SignMessageResultDialog.tsx:58
 msgid "Copy To Clipboard"
@@ -1376,7 +1384,7 @@ msgstr "创建者手续费({royaltyPercentage}%)"
 msgid "Creator royalty percentage seems high"
 msgstr "创建者版税比率似乎高"
 
-#: src/components/dashboard/DashboardSideBar.tsx:60
+#: src/components/dashboard/DashboardSideBar.tsx:61
 msgid "Credentials"
 msgstr "证件"
 
@@ -1875,6 +1883,10 @@ msgstr "输入要进行签名的钱包地址"
 msgid "Enter an NFT or DID to sign with"
 msgstr "输入要进行签名的NFT或DID"
 
+#: src/components/chiatools/logViewer/LogViewer.tsx:454
+msgid "Enter the path to your log file:"
+msgstr ""
+
 #: src/components/settings/RemovePassphrasePrompt.tsx:122
 msgid "Enter your passphrase:"
 msgstr "输入你的密码："
@@ -1970,6 +1982,10 @@ msgstr "已过期"
 msgid "Explore the Chia ecosystem; discover and trade great NFTs"
 msgstr "探索Chia生态系统；发现并交易优秀NFT"
 
+#: src/components/chiatools/logViewer/LogViewerToolbar.tsx:150
+msgid "Export Logs"
+msgstr ""
+
 #: src/components/offers/utils.ts:126
 #: src/components/plot/PlotHarvester.tsx:122
 msgid "Failed"
@@ -2011,7 +2027,7 @@ msgstr "设置私钥密码失败: {0}"
 msgid "Failure"
 msgstr "失败"
 
-#: src/components/dashboard/DashboardSideBar.tsx:93
+#: src/components/dashboard/DashboardSideBar.tsx:94
 msgid "Farm"
 msgstr "耕种"
 
@@ -2222,7 +2238,7 @@ msgid "From"
 msgstr "来自"
 
 #: src/components/app/AppStatusHeader.tsx:127
-#: src/components/dashboard/DashboardSideBar.tsx:86
+#: src/components/dashboard/DashboardSideBar.tsx:87
 #: src/components/fullNode/FullNode.jsx:116
 msgid "Full Node"
 msgstr "全节点"
@@ -2441,7 +2457,7 @@ msgstr "GPU设备索引"
 msgid "Halves the temp2 cache size requirements by alternating bucket writing methods between tables."
 msgstr "通过在table之间交替写入bucket的方法将缓存大小要求减半。"
 
-#: src/components/dashboard/DashboardSideBar.tsx:105
+#: src/components/dashboard/DashboardSideBar.tsx:106
 msgid "Harvest"
 msgstr "收割"
 
@@ -2931,6 +2947,10 @@ msgstr "限制缓存大小"
 msgid "List of connections is empty"
 msgstr "连接列表为空"
 
+#: src/components/chiatools/logViewer/LogViewer.tsx:464
+msgid "Load Logs"
+msgstr ""
+
 #: src/components/app/AppProviders.tsx:90
 msgid "Loading configuration"
 msgstr "正在加载配置"
@@ -3006,6 +3026,10 @@ msgstr "登录"
 #: src/components/app/LogoutButton.tsx:25
 msgid "Log Out"
 msgstr "注销"
+
+#: src/components/chiatools/ChiaToolsPage.tsx:23
+msgid "Log Viewer"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:1335
 msgid "Make DataLayer Offer"
@@ -3398,7 +3422,7 @@ msgstr "NFT 传输失败"
 msgid "NFT Transfer Pending"
 msgstr "NFT 等待传输"
 
-#: src/components/dashboard/DashboardSideBar.tsx:53
+#: src/components/dashboard/DashboardSideBar.tsx:54
 msgid "NFTs"
 msgstr "NFT"
 
@@ -3648,7 +3672,7 @@ msgid "Offer Builder"
 msgstr "报价生成器"
 
 #: src/components/offers/NFTOfferViewer.tsx:173
-#: src/components/offers2/OfferBuilderValue.tsx:216
+#: src/components/offers2/OfferBuilderValue.tsx:217
 #: src/components/offers2/OfferBuilderViewer.tsx:283
 msgid "Offer cannot be accepted because you don't possess the requested assets"
 msgstr "因为你没有被请求的资产，所以不能接受报价"
@@ -3737,7 +3761,7 @@ msgstr "提供"
 msgid "Offerpool URL"
 msgstr "Offerpool网址"
 
-#: src/components/dashboard/DashboardSideBar.tsx:67
+#: src/components/dashboard/DashboardSideBar.tsx:68
 #: src/components/nfts/detail/NFTDetailV2.tsx:245
 msgid "Offers"
 msgstr "报价"
@@ -4168,7 +4192,7 @@ msgstr "绘图到联合耕种农田"
 msgid "PlotNFT is transitioning to (target state). This can take a while. Please do not close the application until this is finalized."
 msgstr "联合耕种农田正在过渡到（目标状态）。这可能需要一段时间。请在完成之前不要关闭应用程序。"
 
-#: src/components/dashboard/DashboardSideBar.tsx:99
+#: src/components/dashboard/DashboardSideBar.tsx:100
 #: src/components/plot/PlotHarvester.tsx:97
 msgid "Plots"
 msgstr "图块"
@@ -4309,7 +4333,7 @@ msgstr "联合耕种奖励金额"
 msgid "Pool:"
 msgstr "联合耕种池"
 
-#: src/components/dashboard/DashboardSideBar.tsx:118
+#: src/components/dashboard/DashboardSideBar.tsx:119
 #: src/components/farm/PoolingHealth.tsx:273
 #: src/components/plotNFT/PlotNFTExternalState.tsx:25
 #: src/components/plotNFT/PlotNFTState.tsx:57
@@ -4495,6 +4519,10 @@ msgstr "恢复列表的哈希值"
 #: src/components/settings/SettingsHarvester.tsx:404
 msgid "Recursive Plot Scan"
 msgstr "递归图块扫描"
+
+#: src/components/chiatools/logViewer/LogViewerToolbar.tsx:158
+msgid "Refresh"
+msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:569
 msgid "Refresh NFT data"
@@ -4787,6 +4815,10 @@ msgstr "保存私钥密码"
 msgid "Save To File"
 msgstr "保存到文件"
 
+#: src/components/chiatools/logViewer/LogViewerToolbar.tsx:109
+msgid "Search"
+msgstr ""
+
 #: src/components/fullNode/FullNodeBlockSearch.tsx:38
 msgid "Search block by header hash"
 msgstr "按头部哈希搜索区块"
@@ -4958,7 +4990,7 @@ msgstr "设置私钥密码"
 msgid "Set up keys manually"
 msgstr "手动设置密钥"
 
-#: src/components/dashboard/DashboardSideBar.tsx:129
+#: src/components/dashboard/DashboardSideBar.tsx:137
 #: src/components/settings/Settings.tsx:74
 msgid "Settings"
 msgstr "设置"
@@ -5651,7 +5683,7 @@ msgstr "要重新同步钱包，必须先关闭所有Chia服务。 关闭后，�
 msgid "Token Standard"
 msgstr "标准"
 
-#: src/components/dashboard/DashboardSideBar.tsx:47
+#: src/components/dashboard/DashboardSideBar.tsx:48
 #: src/components/offers2/OfferBuilderTokensSection.tsx:114
 msgid "Tokens"
 msgstr "代币"
@@ -5659,6 +5691,10 @@ msgstr "代币"
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:114
 msgid "Too Many Plot NFTs"
 msgstr "联合耕种农田过多"
+
+#: src/components/dashboard/DashboardSideBar.tsx:130
+msgid "Tools"
+msgstr ""
 
 #: src/components/offers2/OfferBuilderWalletAmount.tsx:36
 msgid "Total Amount"
@@ -6114,6 +6150,10 @@ msgstr "查看"
 msgid "View an Offer"
 msgstr "查看报价"
 
+#: src/components/chiatools/ChiaToolsPage.tsx:26
+msgid "View and analyze Chia log files"
+msgstr ""
+
 #: src/components/vcs/VCCard.tsx:198
 msgid "View Credential Data"
 msgstr "查看证件数据"
@@ -6312,7 +6352,7 @@ msgid "Warning: Unsupported URL"
 msgstr "警告：不支持的网址"
 
 #: src/components/offers/OfferSummary.tsx:134
-#: src/components/offers2/OfferBuilderValue.tsx:220
+#: src/components/offers2/OfferBuilderValue.tsx:221
 msgid "Warning: Verify that the offered CAT asset IDs match the asset IDs of the tokens you expect to receive."
 msgstr "警告：验证提供的资产代币ID是否与您预期收到的资产代币ID相匹配。"
 
