@@ -23,10 +23,10 @@ export default function useFullNodeState(): {
   const blockchainSynching = blockchainState?.sync?.syncMode;
 
   let state: FullNodeState;
-  if (blockchainSynching) {
-    state = FullNodeState.SYNCHING;
-  } else if (blockchainSynced) {
+  if (blockchainSynced) {
     state = FullNodeState.SYNCED;
+  } else if (blockchainSynching) {
+    state = FullNodeState.SYNCHING;
   } else {
     state = FullNodeState.ERROR;
   }
