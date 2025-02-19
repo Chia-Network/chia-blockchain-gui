@@ -340,6 +340,7 @@ export default class CacheManager extends EventEmitter {
             timeout,
             maxSize,
             signal: abortController.signal,
+            overrideFile: true,
           });
 
           log('Download finished', url);
