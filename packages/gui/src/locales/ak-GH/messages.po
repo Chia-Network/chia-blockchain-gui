@@ -8,7 +8,7 @@ msgstr ""
 "Language: ak_GH\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-12-22 00:05\n"
+"PO-Revision-Date: 2025-02-02 00:05\n"
 "Last-Translator: \n"
 "Language-Team: Akan\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -69,109 +69,109 @@ msgid "Keep service running in the background"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:647
-#: src/electron/main.tsx:855
+#: src/electron/main.tsx:755
+#: src/electron/main.tsx:963
 msgid "File"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:655
+#: src/electron/main.tsx:763
 msgid "Edit"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:687
+#: src/electron/main.tsx:795
 msgid "View"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:696
+#: src/electron/main.tsx:804
 msgid "Developer"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:699
+#: src/electron/main.tsx:807
 msgid "Developer Tools"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:707
+#: src/electron/main.tsx:815
 msgid "Trigger Desktop Notification"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:736
+#: src/electron/main.tsx:844
 msgid "Full Screen"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:743
+#: src/electron/main.tsx:851
 msgid "Window"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:757
+#: src/electron/main.tsx:865
 msgid "Help"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:761
+#: src/electron/main.tsx:869
 msgid "Chia Blockchain Wiki"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:767
+#: src/electron/main.tsx:875
 msgid "Frequently Asked Questions"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:773
+#: src/electron/main.tsx:881
 msgid "Release Notes"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:779
+#: src/electron/main.tsx:887
 msgid "Contribute on GitHub"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:788
+#: src/electron/main.tsx:896
 msgid "Report an Issue..."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:794
+#: src/electron/main.tsx:902
 msgid "Chat on Discord"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:800
+#: src/electron/main.tsx:908
 msgid "Follow on Twitter"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:812
+#: src/electron/main.tsx:920
 msgid "Chia"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:815
-#: src/electron/main.tsx:908
+#: src/electron/main.tsx:923
+#: src/electron/main.tsx:1016
 msgid "About Chia Blockchain"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:821
+#: src/electron/main.tsx:929
 msgid "Check for Updates..."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:869
+#: src/electron/main.tsx:977
 msgid "Speech"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:914
+#: src/electron/main.tsx:1022
 msgid "Check for updates..."
 msgstr ""
 
@@ -211,10 +211,9 @@ msgstr ""
 msgid "{0, plural, one {mojo} other {mojos}}"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:432
-#: src/components/settings/Settings.tsx:85
-#~ msgid "{0}"
-#~ msgstr "{0}"
+#: src/components/chiatools/ChiaToolsPage.tsx:56
+msgid "{0}"
+msgstr ""
 
 #: src/components/addressbook/ContactSummary.tsx:155
 msgid "{0} {1}"
@@ -278,7 +277,7 @@ msgstr ""
 #~ msgid "{title}"
 #~ msgstr ""
 
-#: src/components/offers2/OfferBuilderValue.tsx:195
+#: src/components/offers2/OfferBuilderValue.tsx:196
 msgid "{type} is not supported"
 msgstr ""
 
@@ -845,6 +844,7 @@ msgstr ""
 #: src/components/addressbook/ContactEdit.tsx:300
 #: src/components/addressbook/ContactSummary.tsx:43
 #: src/components/app/AppPassPrompt.tsx:184
+#: src/components/chiatools/logViewer/LogViewer.tsx:467
 #: src/components/farm/FarmManageFarmingRewards.tsx:163
 #: src/components/fullNode/FullNodeAddConnection.tsx:100
 #: src/components/nfts/MultipleDownloadDialog.tsx:120
@@ -918,6 +918,10 @@ msgstr ""
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:190
 msgid "Change default timing."
+msgstr ""
+
+#: src/components/chiatools/logViewer/LogViewerToolbar.tsx:134
+msgid "Change Log File Location"
 msgstr ""
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:290
@@ -1193,7 +1197,7 @@ msgid "Contact Name"
 msgstr ""
 
 #: src/components/addressbook/AddressBookSideBar.tsx:124
-#: src/components/dashboard/DashboardSideBar.tsx:73
+#: src/components/dashboard/DashboardSideBar.tsx:74
 msgid "Contacts"
 msgstr ""
 
@@ -1223,6 +1227,10 @@ msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:105
 msgid "Copy NFT ID"
+msgstr ""
+
+#: src/components/chiatools/logViewer/LogViewerToolbar.tsx:142
+msgid "Copy to Clipboard"
 msgstr ""
 
 #: src/components/signVerify/SignMessageResultDialog.tsx:58
@@ -1376,7 +1384,7 @@ msgstr ""
 msgid "Creator royalty percentage seems high"
 msgstr ""
 
-#: src/components/dashboard/DashboardSideBar.tsx:60
+#: src/components/dashboard/DashboardSideBar.tsx:61
 msgid "Credentials"
 msgstr ""
 
@@ -1875,6 +1883,10 @@ msgstr ""
 msgid "Enter an NFT or DID to sign with"
 msgstr ""
 
+#: src/components/chiatools/logViewer/LogViewer.tsx:454
+msgid "Enter the path to your log file:"
+msgstr ""
+
 #: src/components/settings/RemovePassphrasePrompt.tsx:122
 msgid "Enter your passphrase:"
 msgstr ""
@@ -1970,6 +1982,10 @@ msgstr ""
 msgid "Explore the Chia ecosystem; discover and trade great NFTs"
 msgstr ""
 
+#: src/components/chiatools/logViewer/LogViewerToolbar.tsx:150
+msgid "Export Logs"
+msgstr ""
+
 #: src/components/offers/utils.ts:126
 #: src/components/plot/PlotHarvester.tsx:122
 msgid "Failed"
@@ -2011,7 +2027,7 @@ msgstr ""
 msgid "Failure"
 msgstr ""
 
-#: src/components/dashboard/DashboardSideBar.tsx:93
+#: src/components/dashboard/DashboardSideBar.tsx:94
 msgid "Farm"
 msgstr ""
 
@@ -2222,7 +2238,7 @@ msgid "From"
 msgstr ""
 
 #: src/components/app/AppStatusHeader.tsx:127
-#: src/components/dashboard/DashboardSideBar.tsx:86
+#: src/components/dashboard/DashboardSideBar.tsx:87
 #: src/components/fullNode/FullNode.jsx:116
 msgid "Full Node"
 msgstr ""
@@ -2441,7 +2457,7 @@ msgstr ""
 msgid "Halves the temp2 cache size requirements by alternating bucket writing methods between tables."
 msgstr ""
 
-#: src/components/dashboard/DashboardSideBar.tsx:105
+#: src/components/dashboard/DashboardSideBar.tsx:106
 msgid "Harvest"
 msgstr ""
 
@@ -2925,6 +2941,10 @@ msgstr ""
 msgid "List of connections is empty"
 msgstr ""
 
+#: src/components/chiatools/logViewer/LogViewer.tsx:464
+msgid "Load Logs"
+msgstr ""
+
 #: src/components/app/AppProviders.tsx:90
 msgid "Loading configuration"
 msgstr ""
@@ -2999,6 +3019,10 @@ msgstr ""
 
 #: src/components/app/LogoutButton.tsx:25
 msgid "Log Out"
+msgstr ""
+
+#: src/components/chiatools/ChiaToolsPage.tsx:23
+msgid "Log Viewer"
 msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:1335
@@ -3392,7 +3416,7 @@ msgstr ""
 msgid "NFT Transfer Pending"
 msgstr ""
 
-#: src/components/dashboard/DashboardSideBar.tsx:53
+#: src/components/dashboard/DashboardSideBar.tsx:54
 msgid "NFTs"
 msgstr ""
 
@@ -3642,7 +3666,7 @@ msgid "Offer Builder"
 msgstr ""
 
 #: src/components/offers/NFTOfferViewer.tsx:173
-#: src/components/offers2/OfferBuilderValue.tsx:216
+#: src/components/offers2/OfferBuilderValue.tsx:217
 #: src/components/offers2/OfferBuilderViewer.tsx:283
 msgid "Offer cannot be accepted because you don't possess the requested assets"
 msgstr ""
@@ -3731,7 +3755,7 @@ msgstr ""
 msgid "Offerpool URL"
 msgstr ""
 
-#: src/components/dashboard/DashboardSideBar.tsx:67
+#: src/components/dashboard/DashboardSideBar.tsx:68
 #: src/components/nfts/detail/NFTDetailV2.tsx:245
 msgid "Offers"
 msgstr ""
@@ -4162,7 +4186,7 @@ msgstr ""
 msgid "PlotNFT is transitioning to (target state). This can take a while. Please do not close the application until this is finalized."
 msgstr ""
 
-#: src/components/dashboard/DashboardSideBar.tsx:99
+#: src/components/dashboard/DashboardSideBar.tsx:100
 #: src/components/plot/PlotHarvester.tsx:97
 msgid "Plots"
 msgstr ""
@@ -4303,7 +4327,7 @@ msgstr ""
 msgid "Pool:"
 msgstr ""
 
-#: src/components/dashboard/DashboardSideBar.tsx:118
+#: src/components/dashboard/DashboardSideBar.tsx:119
 #: src/components/farm/PoolingHealth.tsx:273
 #: src/components/plotNFT/PlotNFTExternalState.tsx:25
 #: src/components/plotNFT/PlotNFTState.tsx:57
@@ -4488,6 +4512,10 @@ msgstr ""
 
 #: src/components/settings/SettingsHarvester.tsx:404
 msgid "Recursive Plot Scan"
+msgstr ""
+
+#: src/components/chiatools/logViewer/LogViewerToolbar.tsx:158
+msgid "Refresh"
 msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:569
@@ -4781,6 +4809,10 @@ msgstr ""
 msgid "Save To File"
 msgstr ""
 
+#: src/components/chiatools/logViewer/LogViewerToolbar.tsx:109
+msgid "Search"
+msgstr ""
+
 #: src/components/fullNode/FullNodeBlockSearch.tsx:38
 msgid "Search block by header hash"
 msgstr ""
@@ -4952,7 +4984,7 @@ msgstr ""
 msgid "Set up keys manually"
 msgstr ""
 
-#: src/components/dashboard/DashboardSideBar.tsx:129
+#: src/components/dashboard/DashboardSideBar.tsx:137
 #: src/components/settings/Settings.tsx:74
 msgid "Settings"
 msgstr ""
@@ -5645,13 +5677,17 @@ msgstr ""
 msgid "Token Standard"
 msgstr ""
 
-#: src/components/dashboard/DashboardSideBar.tsx:47
+#: src/components/dashboard/DashboardSideBar.tsx:48
 #: src/components/offers2/OfferBuilderTokensSection.tsx:114
 msgid "Tokens"
 msgstr ""
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:114
 msgid "Too Many Plot NFTs"
+msgstr ""
+
+#: src/components/dashboard/DashboardSideBar.tsx:130
+msgid "Tools"
 msgstr ""
 
 #: src/components/offers2/OfferBuilderWalletAmount.tsx:36
@@ -6108,6 +6144,10 @@ msgstr ""
 msgid "View an Offer"
 msgstr ""
 
+#: src/components/chiatools/ChiaToolsPage.tsx:26
+msgid "View and analyze Chia log files"
+msgstr ""
+
 #: src/components/vcs/VCCard.tsx:198
 msgid "View Credential Data"
 msgstr ""
@@ -6306,7 +6346,7 @@ msgid "Warning: Unsupported URL"
 msgstr ""
 
 #: src/components/offers/OfferSummary.tsx:134
-#: src/components/offers2/OfferBuilderValue.tsx:220
+#: src/components/offers2/OfferBuilderValue.tsx:221
 msgid "Warning: Verify that the offered CAT asset IDs match the asset IDs of the tokens you expect to receive."
 msgstr ""
 
