@@ -17,7 +17,7 @@ export default function MultipleDownloadDialog(props: MultipleDownloadDialogProp
   const [progressObject, setProgressObject] = useState<any>({
     progress: 0,
     url: '',
-    i: 1,
+    index: 0,
     total: 1,
   });
   const [responseObject, setResponseObject] = useState<any>({});
@@ -31,11 +31,11 @@ export default function MultipleDownloadDialog(props: MultipleDownloadDialogProp
       setResponseObject(obj);
       setDownloadDone(true);
     };
-    ipcRenderer.on('downloadProgress', downloadProgressFn);
+    ipcRenderer.on('multipleDownloadProgress', downloadProgressFn);
     ipcRenderer.on('multipleDownloadDone', downloadDoneFn);
 
     return () => {
-      ipcRenderer.off('downloadProgress', downloadProgressFn);
+      ipcRenderer.off('multipleDownloadProgress', downloadProgressFn);
       ipcRenderer.off('multipleDownloadDone', downloadDoneFn);
     };
   }, []);
@@ -75,7 +75,7 @@ export default function MultipleDownloadDialog(props: MultipleDownloadDialogProp
     }
     return (
       <Trans>
-        Downloading files {progressObject.i + 1}/{progressObject.total}
+        Downloading files {progressObject.index + 1}/{progressObject.total}
       </Trans>
     );
   }
@@ -102,7 +102,7 @@ export default function MultipleDownloadDialog(props: MultipleDownloadDialogProp
           <Box>{progressObject.url}</Box>
           <Box
             sx={{
-              width: `${progressObject.progress * 100}%`,
+              width: `${progressObject.progress}%`,
               height: '12px',
               background: `${theme.palette.primary.main}`,
               borderRadius: '3px',
