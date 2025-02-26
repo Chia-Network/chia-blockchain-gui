@@ -16,7 +16,7 @@ export default function getFileExtension(url?: string, allowedExtensions?: strin
     if (dotIndex === -1 || dotIndex === lastSegment.length - 1) {
       return undefined;
     }
-    
+
     const extension = lastSegment.substring(dotIndex + 1).toLowerCase();
     if (allowedExtensions && !allowedExtensions.includes(extension)) {
       return undefined;
