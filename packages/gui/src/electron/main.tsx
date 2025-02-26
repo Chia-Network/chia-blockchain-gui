@@ -262,8 +262,6 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
       return { err, statusCode, statusMessage, responseBody };
     });
 
-
-
     ipcMain.handle('showMessageBox', async (_event, options) => dialog.showMessageBox(mainWindow, options));
 
     ipcMain.handle('showOpenDialog', async (_event, options) => dialog.showOpenDialog(options));
@@ -322,53 +320,57 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
       return responseObj;
     });
 
+    ipcMain.handle(
+      'startMultipleDownload',
+      async (_event: any, options: { folder: string; tasks: { url: string; filename: string }[] }) => {
+        /* eslint no-await-in-loop: off -- we want to handle each file separately! */
+        let totalDownloadedSize = 0;
+        let successFileCount = 0;
+        let errorFileCount = 0;
 
-    ipcMain.handle('startMultipleDownload', async (_event: any, options: { folder: string, tasks: { url: string; filename: string }[] }) => {
-      /* eslint no-await-in-loop: off -- we want to handle each file separately! */
-      let totalDownloadedSize = 0;
-      let successFileCount = 0;
-      let errorFileCount = 0;
+        const { folder, tasks } = options;
 
-      const { folder, tasks } = options;
+        for (let i = 0; i < tasks.length; i++) {
+          const { url: downloadUrl, filename } = tasks[i];
 
-      for (let i = 0; i < tasks.length; i++) {
-        const { url: downloadUrl, filename } = tasks[i];
+          try {
+            const sanitizedFilename = sanitizeFilename(filename);
+            if (sanitizedFilename !== filename) {
+              throw new Error(
+                `Filename ${filename} contains invalid characters. Filename sanitized to ${sanitizedFilename}`,
+              );
+            }
 
-        try {
-          const sanitizedFilename = sanitizeFilename(filename);
-          if (sanitizedFilename !== filename) {
-            throw new Error(`Filename ${filename} contains invalid characters. Filename sanitized to ${sanitizedFilename}`);
+            const filePath = path.join(folder, sanitizedFilename);
+
+            await downloadFile(downloadUrl, filePath, {
+              onProgress: (progress) => {
+                mainWindow?.webContents.send('multipleDownloadProgress', {
+                  progress,
+                  url: downloadUrl,
+                  index: i,
+                  total: tasks.length,
+                });
+              },
+            });
+
+            const fileStats = await fs.promises.stat(filePath);
+
+            totalDownloadedSize += fileStats.size;
+            successFileCount++;
+          } catch (e: any) {
+            if (e.message === 'download aborted' && abortDownloadingFiles) {
+              break;
+            }
+            mainWindow?.webContents.send('errorDownloadingUrl', downloadUrl);
+            errorFileCount++;
           }
-          
-          const filePath = path.join(folder, sanitizedFilename);
-
-          await downloadFile(downloadUrl, filePath, {
-            onProgress: (progress) => {
-              mainWindow?.webContents.send('multipleDownloadProgress', {
-                progress,
-                url: downloadUrl,
-                index: i,
-                total: tasks.length,
-              });
-            },
-          });
-
-          const fileStats = await fs.promises.stat(filePath);
-
-          totalDownloadedSize += fileStats.size;
-          successFileCount++;
-        } catch (e: any) {
-          if (e.message === 'download aborted' && abortDownloadingFiles) {
-            break;
-          }
-          mainWindow?.webContents.send('errorDownloadingUrl', downloadUrl);
-          errorFileCount++;
         }
-      }
-      abortDownloadingFiles = false;
-      mainWindow?.webContents.send('multipleDownloadDone', { totalDownloadedSize, successFileCount, errorFileCount });
-      return true;
-    });
+        abortDownloadingFiles = false;
+        mainWindow?.webContents.send('multipleDownloadDone', { totalDownloadedSize, successFileCount, errorFileCount });
+        return true;
+      },
+    );
 
     ipcMain.handle('abortDownloadingFiles', async (_event: any) => {
       abortDownloadingFiles = true;
