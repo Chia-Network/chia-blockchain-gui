@@ -1,6 +1,6 @@
 /* eslint-disable no-bitwise -- enable bitwise operators for this file */
 
-import type { NFTInfo } from '@chia-network/api';
+import { toBech32m, type NFTInfo } from '@chia-network/api';
 import { useSetNFTStatusMutation, useLocalStorage } from '@chia-network/api-react';
 import { AlertDialog, DropdownActions, MenuItem, useOpenDialog, isValidURL } from '@chia-network/core';
 import {
@@ -32,6 +32,7 @@ import useOpenUnsafeLink from '../../hooks/useOpenUnsafeLink';
 import useViewNFTOnExplorer, { NFTExplorer } from '../../hooks/useViewNFTOnExplorer';
 import NFTSelection from '../../types/NFTSelection';
 import download from '../../util/download';
+import getFileExtension from '../../util/getFileExtension';
 import removeHexPrefix from '../../util/removeHexPrefix';
 
 import MultipleDownloadDialog from './MultipleDownloadDialog';
@@ -392,53 +393,76 @@ type NFTDownloadContextualActionProps = NFTContextualActionProps;
 
 function NFTDownloadContextualAction(props: NFTDownloadContextualActionProps) {
   const { selection } = props;
-  const selectedNft: NFTInfo | undefined = selection?.items[0];
-  const selectedNfts: NFTInfo | undefined = selection?.items;
-  const disabled = !selectedNft;
-  const dataUrl = selectedNft?.dataUris?.[0];
+
+  const selectedNfts: (NFTInfo & { $nftId: string})[] = selection?.items || [];
+
   const openDialog = useOpenDialog();
   const [, setSelectedNFTIds] = useLocalStorage('gallery-selected-nfts', []);
 
+  const downloadable = selectedNfts.filter((nft) => !!nft.dataUris?.length);
+
   async function handleDownload() {
     const { ipcRenderer } = window as any;
-    if (!selectedNft) {
+    if (!downloadable.length) {
       return;
     }
 
-    if (selectedNfts.length > 1) {
-      const folder = await ipcRenderer.invoke('selectMultipleDownloadFolder');
-      if (folder?.canceled !== true) {
-        const nfts = selectedNfts.map((nft: NFTInfo) => {
-          let hash;
-          try {
-            const item = localStorage.getItem(`content-cache-${nft.$nftId}`) || '';
-            const obj = JSON.parse(item);
-            if (obj.valid && obj.binary) {
-              hash = obj.binary;
-            }
-          } catch (e) {
-            return nft;
-          }
-          return { ...nft, hash };
-        });
-        setSelectedNFTIds([]);
-        ipcRenderer.invoke('startMultipleDownload', { folder: folder.filePaths[0], nfts });
-        await openDialog(<MultipleDownloadDialog folder={folder.filePaths[0]} />);
-      }
-    } else {
-      const dataUrlLocal = selectedNft?.dataUris?.[0];
+    if (downloadable.length === 1) {
+      const [first] = downloadable;
+      const dataUrlLocal = first.dataUris?.[0];
       if (dataUrlLocal) {
         download(dataUrlLocal);
       }
+      return;
+    }
+
+    const folder = await ipcRenderer.invoke('selectMultipleDownloadFolder');
+    if (folder?.canceled) {
+      return;
+    }
+
+    setSelectedNFTIds([]);
+
+    try {
+      const selectedFolder = folder.filePaths[0];
+      if (!selectedFolder) {
+        throw new Error('No folder selected');
+      }
+
+      const tasks: { url: string; filename: string }[] = selectedNfts.map((nft) => {
+        const url = nft.dataUris[0];
+        if (!url) {
+          throw new Error('No data URI found for NFT');
+        }
+
+        const nftId = nft.$nftId || toBech32m(nft.launcherId, 'nft')
+
+        const ext = getFileExtension(url);
+        const filename = ext ? `${nftId}.${ext}` : nftId;
+
+        return {
+          url,
+          filename,
+        };
+      });
+
+      ipcRenderer.invoke('startMultipleDownload', { folder: selectedFolder, tasks });
+      await openDialog(<MultipleDownloadDialog folder={selectedFolder} />);
+    } catch (error) {
+      openDialog(
+        <AlertDialog title={<Trans>Download Failed</Trans>}>
+          <Trans>The download failed: {error?.message || 'Unknown error'}</Trans>
+        </AlertDialog>,
+      );
     }
   }
 
-  if (!dataUrl) {
+  if (!downloadable.length) {
     return null;
   }
 
   return (
-    <MenuItem onClick={handleDownload} disabled={disabled} close>
+    <MenuItem onClick={handleDownload} disabled={!downloadable.length} close>
       <ListItemIcon>
         <DownloadIcon />
       </ListItemIcon>
