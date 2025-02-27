@@ -47,8 +47,8 @@ describe('getFileExtension', () => {
     expect(getFileExtension('https://example.com/../secret.txt')).toBe('txt');
     expect(getFileExtension('https://example.com/folder/../file.pdf')).toBe('pdf');
     expect(getFileExtension('https://example.com/./file.jpg')).toBe('jpg');
-    expect(getFileExtension('https://example.com/test\secret.txt')).toBe('txt');
-    expect(getFileExtension('https://example.com/test\..\secret.txt')).toBe('txt');
+    expect(getFileExtension('https://example.com/test\\secret.txt')).toBe('txt');
+    expect(getFileExtension('https://example.com/test\\..\\secret.txt')).toBe('txt');
     expect(getFileExtension('https://example.com/test/secret.t.xt')).toBe('xt');
     expect(getFileExtension('https://example.com/test/secret.t./xt')).toBeUndefined();
     expect(getFileExtension('https://example.com/test/secret.t/./xt')).toBeUndefined();
