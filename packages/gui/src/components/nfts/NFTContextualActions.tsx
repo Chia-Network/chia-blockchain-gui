@@ -394,7 +394,7 @@ type NFTDownloadContextualActionProps = NFTContextualActionProps;
 function NFTDownloadContextualAction(props: NFTDownloadContextualActionProps) {
   const { selection } = props;
 
-  const selectedNfts: (NFTInfo & { $nftId: string})[] = selection?.items || [];
+  const selectedNfts: (NFTInfo & { $nftId: string })[] = selection?.items || [];
 
   const openDialog = useOpenDialog();
   const [, setSelectedNFTIds] = useLocalStorage('gallery-selected-nfts', []);
@@ -435,7 +435,7 @@ function NFTDownloadContextualAction(props: NFTDownloadContextualActionProps) {
           throw new Error('No data URI found for NFT');
         }
 
-        const nftId = nft.$nftId || toBech32m(nft.launcherId, 'nft')
+        const nftId = nft.$nftId || toBech32m(nft.launcherId, 'nft');
 
         const ext = getFileExtension(url);
         const filename = ext ? `${nftId}.${ext}` : nftId;

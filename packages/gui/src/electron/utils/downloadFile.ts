@@ -13,7 +13,10 @@ class WriteStreamPromise {
 
   private writePromises: Promise<void>[] = [];
 
-  constructor(private path: string, overrideFile = false) {
+  constructor(
+    private path: string,
+    overrideFile = false,
+  ) {
     this.stream = createWriteStream(path, {
       flags: overrideFile ? 'w' : 'wx', // w - override if exists, wx - fail if exists
     });
@@ -69,13 +72,7 @@ type DownloadFileOptions = {
 export default async function downloadFile(
   url: string,
   localPath: string,
-  {
-    timeout = 30_000,
-    signal,
-    maxSize = 100 * 1024 * 1024,
-    onProgress,
-    overrideFile = false,
-  }: DownloadFileOptions = {},
+  { timeout = 30_000, signal, maxSize = 100 * 1024 * 1024, onProgress, overrideFile = false }: DownloadFileOptions = {},
 ): Promise<Headers> {
   const tempFilePath = `${localPath}.tmp`;
   const request = net.request(url);
