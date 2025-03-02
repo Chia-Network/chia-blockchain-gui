@@ -44,134 +44,134 @@ msgid "Would you like to transfer {count} NFTs to a new owner?"
 msgstr "你要將 {count} 張 NFT 轉移給新擁有者嗎？"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:521
+#: src/electron/main.tsx:464
 msgid "No"
 msgstr "否"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:521
+#: src/electron/main.tsx:464
 msgid "Yes"
 msgstr "是"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:522
+#: src/electron/main.tsx:465
 msgid "Confirm"
 msgstr "確認"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:524
+#: src/electron/main.tsx:467
 msgid "Are you sure you want to quit?"
 msgstr "您確定要離開嗎？"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:529
+#: src/electron/main.tsx:472
 msgid "Keep service running in the background"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:755
-#: src/electron/main.tsx:963
+#: src/electron/main.tsx:698
+#: src/electron/main.tsx:906
 msgid "File"
 msgstr "檔案"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:763
+#: src/electron/main.tsx:706
 msgid "Edit"
 msgstr "編輯"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:795
+#: src/electron/main.tsx:738
 msgid "View"
 msgstr "檢視"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:804
+#: src/electron/main.tsx:747
 msgid "Developer"
 msgstr "開發者"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:807
+#: src/electron/main.tsx:750
 msgid "Developer Tools"
 msgstr "開發者工具"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:815
+#: src/electron/main.tsx:758
 msgid "Trigger Desktop Notification"
 msgstr "觸發桌面通知"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:844
+#: src/electron/main.tsx:787
 msgid "Full Screen"
 msgstr "全畫面"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:851
+#: src/electron/main.tsx:794
 msgid "Window"
 msgstr "視窗"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:865
+#: src/electron/main.tsx:808
 msgid "Help"
 msgstr "幫助"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:869
+#: src/electron/main.tsx:812
 msgid "Chia Blockchain Wiki"
 msgstr "Chia 區塊鏈維基"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:875
+#: src/electron/main.tsx:818
 msgid "Frequently Asked Questions"
 msgstr "常見問題"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:881
+#: src/electron/main.tsx:824
 msgid "Release Notes"
 msgstr "發行說明"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:887
+#: src/electron/main.tsx:830
 msgid "Contribute on GitHub"
 msgstr "在 GitHub 上貢獻"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:896
+#: src/electron/main.tsx:839
 msgid "Report an Issue..."
 msgstr "回報問題..."
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:902
+#: src/electron/main.tsx:845
 msgid "Chat on Discord"
 msgstr "在 Discord 上聊天"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:908
+#: src/electron/main.tsx:851
 msgid "Follow on Twitter"
 msgstr "Twitter 上追隨"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:920
+#: src/electron/main.tsx:863
 msgid "Chia"
 msgstr "奇亞"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:923
-#: src/electron/main.tsx:1016
+#: src/electron/main.tsx:866
+#: src/electron/main.tsx:959
 msgid "About Chia Blockchain"
 msgstr "關於 Chia 區塊鏈"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:929
+#: src/electron/main.tsx:872
 msgid "Check for Updates..."
 msgstr "檢查更新..."
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:977
+#: src/electron/main.tsx:920
 msgid "Speech"
 msgstr "語音"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1022
+#: src/electron/main.tsx:965
 msgid "Check for updates..."
 msgstr "檢查更新..."
 
@@ -367,7 +367,7 @@ msgstr "動作"
 #: src/components/farm/FarmFullNodeConnections.tsx:54
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:54
 #: src/components/fullNode/FullNodeConnections.tsx:65
-#: src/components/nfts/NFTContextualActions.tsx:590
+#: src/components/nfts/NFTContextualActions.tsx:614
 #: src/components/offers2/OfferIncomingTable.tsx:111
 msgid "Actions"
 msgstr "動作"
@@ -812,7 +812,7 @@ msgstr "瀏覽"
 
 #: src/components/nfts/NFTBurnDialog.tsx:90
 #: src/components/nfts/NFTBurnDialog.tsx:185
-#: src/components/nfts/NFTContextualActions.tsx:528
+#: src/components/nfts/NFTContextualActions.tsx:552
 msgid "Burn"
 msgstr "燒毀"
 
@@ -887,7 +887,7 @@ msgstr "取消報價單"
 msgid "Cancel on blockchain"
 msgstr "在區塊鏈上取消"
 
-#: src/components/nfts/NFTContextualActions.tsx:277
+#: src/components/nfts/NFTContextualActions.tsx:278
 msgid "Cancel Unconfirmed Transaction"
 msgstr "取消未確認的交易"
 
@@ -1221,11 +1221,11 @@ msgstr "繼續"
 #~ msgid "Contribute on GitHub"
 #~ msgstr "Contribute on GitHub"
 
-#: src/components/nfts/NFTContextualActions.tsx:348
+#: src/components/nfts/NFTContextualActions.tsx:349
 msgid "Copy Media URL"
 msgstr "複製多媒體URL"
 
-#: src/components/nfts/NFTContextualActions.tsx:105
+#: src/components/nfts/NFTContextualActions.tsx:106
 msgid "Copy NFT ID"
 msgstr "複製NFT ID"
 
@@ -1320,7 +1320,7 @@ msgstr ""
 msgid "Create new DID Wallet"
 msgstr "創建新的 DID 錢包"
 
-#: src/components/nfts/NFTContextualActions.tsx:149
+#: src/components/nfts/NFTContextualActions.tsx:150
 #: src/components/offers/NFTOfferEditor.tsx:439
 #: src/components/offers/OfferEditor.tsx:175
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:15
@@ -1707,9 +1707,13 @@ msgstr ""
 #~ msgid "Don't allocate host tables using pinned buffers, instead download to intermediate pinned buffers then copy to the final host buffer."
 #~ msgstr "Don't allocate host tables using pinned buffers, instead download to intermediate pinned buffers then copy to the final host buffer."
 
-#: src/components/nfts/NFTContextualActions.tsx:446
+#: src/components/nfts/NFTContextualActions.tsx:470
 msgid "Download"
 msgstr "下載"
+
+#: src/components/nfts/NFTContextualActions.tsx:453
+msgid "Download Failed"
+msgstr ""
 
 #: src/components/nfts/MultipleDownloadDialog.tsx:91
 msgid "Download failed."
@@ -2553,7 +2557,7 @@ msgstr "隱藏  <0/>"
 #~ msgid "Hidden ({0})"
 #~ msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:496
+#: src/components/nfts/NFTContextualActions.tsx:520
 msgid "Hide"
 msgstr "隱藏"
 
@@ -2688,13 +2692,15 @@ msgstr ""
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid "Insufficient funds available to accept offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr "可用資金不足，無法接受報價單。請確保您的 可花用餘額 可以支付報價單金額。"
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid "Insufficient funds available to create offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr "可用資金不足，無法建立報價單。請確保你的可支出餘額足以支付報價單金額。"
 
@@ -3230,7 +3236,7 @@ msgstr "移動"
 msgid "Move NFT to Profile"
 msgstr "移動 NFT 到個人檔案"
 
-#: src/components/nfts/NFTContextualActions.tsx:225
+#: src/components/nfts/NFTContextualActions.tsx:226
 msgid "Move to Profile"
 msgstr "移動到個人檔案"
 
@@ -3400,19 +3406,19 @@ msgstr "NFT未指定"
 msgid "NFT Purchase Price"
 msgstr "NFT購買價格"
 
-#: src/components/nfts/NFTContextualActions.tsx:264
+#: src/components/nfts/NFTContextualActions.tsx:265
 msgid "NFT Status Update Failed"
 msgstr "NFT狀態更新失敗"
 
-#: src/components/nfts/NFTContextualActions.tsx:254
+#: src/components/nfts/NFTContextualActions.tsx:255
 msgid "NFT Status Updated"
 msgstr "NFT狀態已更新"
 
-#: src/components/nfts/NFTContextualActions.tsx:179
+#: src/components/nfts/NFTContextualActions.tsx:180
 msgid "NFT Transfer Failed"
 msgstr "NFT轉移失敗"
 
-#: src/components/nfts/NFTContextualActions.tsx:173
+#: src/components/nfts/NFTContextualActions.tsx:174
 msgid "NFT Transfer Pending"
 msgstr "NFT轉移待處理"
 
@@ -3806,7 +3812,7 @@ msgstr "正在提供一個或多個未知代幣。請驗證以下列出的代幣
 msgid "One-of-a-kind Collectible assets"
 msgstr "獨一無二的收藏品資產"
 
-#: src/components/nfts/NFTContextualActions.tsx:316
+#: src/components/nfts/NFTContextualActions.tsx:317
 msgid "Open in Browser"
 msgstr "在瀏覽器中打開"
 
@@ -4518,7 +4524,7 @@ msgstr ""
 msgid "Refresh"
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:569
+#: src/components/nfts/NFTContextualActions.tsx:593
 msgid "Refresh NFT data"
 msgstr "刷新NFT資料"
 
@@ -5030,7 +5036,7 @@ msgstr "分享在Spacescan.io"
 #~ msgid "Share Privately"
 #~ msgstr "Share Privately"
 
-#: src/components/nfts/NFTContextualActions.tsx:496
+#: src/components/nfts/NFTContextualActions.tsx:520
 msgid "Show"
 msgstr "顯示"
 
@@ -5383,6 +5389,10 @@ msgstr "每筆交易的收回時間可以手動調整。"
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
 msgstr "派生索引設置錢包掃描區塊鏈的錢包地址範圍。如果您有大量交易或取消了 XCH、CAT 或 NFT 的報價，則該數字通常會更高。如果您認為您的餘額因缺少硬幣而不正確，那麼增加派生索引可以幫助錢包將缺少的硬幣納入餘額總額中。"
 
+#: src/components/nfts/NFTContextualActions.tsx:454
+msgid "The download failed: {0}"
+msgstr ""
+
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:148
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:197
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:87
@@ -5419,15 +5429,15 @@ msgstr "NFT 移動失敗：{err}"
 msgid "The NFT move transaction has been successfully submitted to the blockchain."
 msgstr "NFT 移動交易已成功提交到區塊鏈。"
 
-#: src/components/nfts/NFTContextualActions.tsx:255
+#: src/components/nfts/NFTContextualActions.tsx:256
 msgid "The NFT status has been updated. If the transaction was successfully sent to the mempool, it may still complete."
 msgstr "NFT 狀態已更新。如果交易成功發送到內存池，它可能仍會完成。"
 
-#: src/components/nfts/NFTContextualActions.tsx:265
+#: src/components/nfts/NFTContextualActions.tsx:266
 msgid "The NFT status update failed: {err}"
 msgstr "NFT 狀態更新失敗：{err}"
 
-#: src/components/nfts/NFTContextualActions.tsx:180
+#: src/components/nfts/NFTContextualActions.tsx:181
 msgid "The NFT transfer failed: {0}"
 msgstr "NFT 轉移失敗：{0}"
 
@@ -5435,7 +5445,7 @@ msgstr "NFT 轉移失敗：{0}"
 #~ msgid "The NFT transfer failed: {error}"
 #~ msgstr "The NFT transfer failed: {error}"
 
-#: src/components/nfts/NFTContextualActions.tsx:174
+#: src/components/nfts/NFTContextualActions.tsx:175
 msgid "The NFT transfer transaction has been successfully submitted to the blockchain."
 msgstr "NFT 轉移交易已成功提交至區塊鏈。"
 
@@ -5846,7 +5856,7 @@ msgstr "轉移"
 msgid "Transfer DID"
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:197
+#: src/components/nfts/NFTContextualActions.tsx:198
 #: src/components/nfts/NFTTransferAction.tsx:217
 #: src/constants/WalletConnectCommands.tsx:847
 msgid "Transfer NFT"
@@ -6169,7 +6179,7 @@ msgstr "在 Dexie 上檢視"
 #~ msgid "View on Hashgreen DEX"
 #~ msgstr "View on Hashgreen DEX"
 
-#: src/components/nfts/NFTContextualActions.tsx:646
+#: src/components/nfts/NFTContextualActions.tsx:670
 #: src/components/offers/OfferShareDialog.tsx:441
 msgid "View on MintGarden"
 msgstr "在 MintGarden 上檢視"
@@ -6182,7 +6192,7 @@ msgstr "在 MintGarden 上檢視"
 msgid "View on Offerpool"
 msgstr "在 Offerpool 上檢視"
 
-#: src/components/nfts/NFTContextualActions.tsx:654
+#: src/components/nfts/NFTContextualActions.tsx:678
 #: src/components/offers/OfferShareDialog.tsx:538
 msgid "View on Spacescan.io"
 msgstr "在 Spacescan.io 上檢視"
@@ -6575,4 +6585,3 @@ msgstr "您的可支配餘額必須大於1 mojo，才能建立個人檔案"
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "您的錢包需要運行才能自動索取"
-
