@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-12-22 00:05\n"
+"PO-Revision-Date: 2025-02-16 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -922,7 +922,7 @@ msgstr "تغییر زمان سنجی پیش فرض."
 
 #: src/components/chiatools/logViewer/LogViewerToolbar.tsx:134
 msgid "Change Log File Location"
-msgstr ""
+msgstr "تغییر مکان فایل گزارش"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:290
 #: src/components/settings/SettingsPanel.tsx:120
@@ -1231,7 +1231,7 @@ msgstr "کپی شناسه ان اف تی"
 
 #: src/components/chiatools/logViewer/LogViewerToolbar.tsx:142
 msgid "Copy to Clipboard"
-msgstr ""
+msgstr "کپی در حافظه"
 
 #: src/components/signVerify/SignMessageResultDialog.tsx:58
 msgid "Copy To Clipboard"
@@ -1885,7 +1885,7 @@ msgstr "یک ان اف تی یا شناسه غیر متمرکز برای امض�
 
 #: src/components/chiatools/logViewer/LogViewer.tsx:454
 msgid "Enter the path to your log file:"
-msgstr ""
+msgstr "مسیر فایل گزارش خود را وارد کنید:"
 
 #: src/components/settings/RemovePassphrasePrompt.tsx:122
 msgid "Enter your passphrase:"
@@ -1984,7 +1984,7 @@ msgstr "اکوسیستم چیا را جستجو کنید. ان اف تی های 
 
 #: src/components/chiatools/logViewer/LogViewerToolbar.tsx:150
 msgid "Export Logs"
-msgstr ""
+msgstr "صدور فایل گزارش"
 
 #: src/components/offers/utils.ts:126
 #: src/components/plot/PlotHarvester.tsx:122
@@ -2688,20 +2688,16 @@ msgstr "درج کنید"
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
+msgstr "مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
 "موجودی قابل مصرف شما برای پوشش مبلغ پیشنهاد کافی است."
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
+msgstr "مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
 "موجودی قابل مصرف شما برای پوشش مبلغ پیشنهاد کافی است."
 
 #: src/components/farm/PoolingHealth.tsx:302
@@ -2949,7 +2945,7 @@ msgstr "لیست اتصالات خالی است"
 
 #: src/components/chiatools/logViewer/LogViewer.tsx:464
 msgid "Load Logs"
-msgstr ""
+msgstr "بارگذاری فایل گزارش"
 
 #: src/components/app/AppProviders.tsx:90
 msgid "Loading configuration"
@@ -3029,7 +3025,7 @@ msgstr "خروج"
 
 #: src/components/chiatools/ChiaToolsPage.tsx:23
 msgid "Log Viewer"
-msgstr ""
+msgstr "بازنگری گزارش"
 
 #: src/constants/WalletConnectCommands.tsx:1335
 msgid "Make DataLayer Offer"
@@ -4522,7 +4518,7 @@ msgstr "بازنگری پلات برگشتی"
 
 #: src/components/chiatools/logViewer/LogViewerToolbar.tsx:158
 msgid "Refresh"
-msgstr ""
+msgstr "تازه کنید"
 
 #: src/components/nfts/NFTContextualActions.tsx:569
 msgid "Refresh NFT data"
@@ -4817,7 +4813,7 @@ msgstr "ذخیره در فایل"
 
 #: src/components/chiatools/logViewer/LogViewerToolbar.tsx:109
 msgid "Search"
-msgstr ""
+msgstr "جستجو"
 
 #: src/components/fullNode/FullNodeBlockSearch.tsx:38
 msgid "Search block by header hash"
@@ -5694,7 +5690,7 @@ msgstr "تعداد زیاد پلات ان اف تی"
 
 #: src/components/dashboard/DashboardSideBar.tsx:130
 msgid "Tools"
-msgstr ""
+msgstr "ابزارها"
 
 #: src/components/offers2/OfferBuilderWalletAmount.tsx:36
 msgid "Total Amount"
@@ -6152,7 +6148,7 @@ msgstr "دیدن یک پیشنهاد"
 
 #: src/components/chiatools/ChiaToolsPage.tsx:26
 msgid "View and analyze Chia log files"
-msgstr ""
+msgstr "مشاهده و تجزیه و تحلیل فایل های گزارش چیا"
 
 #: src/components/vcs/VCCard.tsx:198
 msgid "View Credential Data"
@@ -6581,3 +6577,4 @@ msgstr "برای ایجاد حساب کاربری، موجودی قابل خرج
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "برای انجام مطالبه خودکار، باید کیف پول شما در حال اجرا باشد."
+
