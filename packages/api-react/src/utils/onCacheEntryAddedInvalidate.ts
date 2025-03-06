@@ -31,6 +31,10 @@ export default function onCacheEntryAddedInvalidate(rtkQuery: BaseQuery, api: an
           // https://github.com/microsoft/TypeScript/issues/46318
           const { command, service, endpoint, onUpdate, skip } = invalidate;
 
+          if (endpoint === 'getNotifications') {
+            window.$debugLog = (window.$debugLog || []).concat(['onCacheEntryAddedInvalidate', args]);
+          }
+
           const response = await rtkQuery(
             {
               command: command as any,

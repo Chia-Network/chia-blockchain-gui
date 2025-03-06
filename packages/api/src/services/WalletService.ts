@@ -428,7 +428,14 @@ export default class Wallet extends Service {
   }
 
   onNewOnChainNotification(callback: (data: any, message: Message) => void) {
-    return this.onStateChanged('new_on_chain_notification', callback);
+    return this.onStateChanged('new_on_chain_notification', (data: any, message: Message) => {
+      window.$debugLog = (window.$debugLog || []).concat([
+        'api/WalletService: new_on_chain_notification',
+        data,
+        message,
+      ]);
+      callback(data, message);
+    });
   }
 
   onNFTCoinAdded(

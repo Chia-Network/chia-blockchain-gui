@@ -32,6 +32,13 @@ export default function useBlockchainNotifications() {
     error: getNotificationsError,
   } = useGetNotificationsQuery({});
 
+  window.$debugLog = (window.$debugLog || []).concat([
+    'gui/useBlockchainNotifications',
+    blockchainNotifications,
+    isLoadingNotifications,
+    getNotificationsError,
+  ]);
+
   const [getTimestampForHeight] = useLazyGetTimestampForHeightQuery();
 
   const { isLoading: isLoggingIn } = useAuth();
@@ -78,6 +85,10 @@ export default function useBlockchainNotifications() {
               const { id, message: hexMessage, height } = notification;
               const message = hexMessage ? Buffer.from(hexMessage, 'hex').toString() : '';
               if (!message) {
+                window.$debugLog = (window.$debugLog || []).concat([
+                  'gui/useBlockchainNotifications/items',
+                  'Notification has not message',
+                ]);
                 throw new Error('Notification has not message');
               }
 
@@ -87,6 +98,14 @@ export default function useBlockchainNotifications() {
               const timestampData = await getTimestampForHeight({
                 height,
               }).unwrap();
+
+              window.$debugLog = (window.$debugLog || []).concat([
+                'gui/useBlockchainNotifications/items',
+                id,
+                timestampData,
+                type,
+                data,
+              ]);
 
               if (!('timestamp' in timestampData)) {
                 throw new Error('No timestamp in response');
@@ -127,6 +146,10 @@ export default function useBlockchainNotifications() {
         const definedNotifications = items.filter(Boolean) as Notification[];
         const sortedNotifications = orderBy(definedNotifications, ['timestamp'], ['desc']);
 
+        window.$debugLog = (window.$debugLog || []).concat([
+          'gui/useBlockchainNotifications/prepareNotifications',
+          sortedNotifications,
+        ]);
         setNotifications(sortedNotifications, abortSignal);
       } catch (e) {
         setPreparingError(e as Error, abortSignal);

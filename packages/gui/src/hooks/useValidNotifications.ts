@@ -37,6 +37,8 @@ export default function useValidNotifications() {
 
   const [validNotifications, setValidNotifications] = useState(() => filterNotifications(notifications, getOffer));
 
+  window.$debugLog = (window.$debugLog || []).concat(['gui/useValidNotifications', validNotifications]);
+
   useEffect(() => {
     setValidNotifications(filterNotifications(notifications, getOffer));
   }, [notifications, getOffer]);
