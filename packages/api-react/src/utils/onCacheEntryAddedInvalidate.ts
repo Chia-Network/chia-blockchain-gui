@@ -32,6 +32,7 @@ export default function onCacheEntryAddedInvalidate(rtkQuery: BaseQuery, api: an
           const { command, service, endpoint, onUpdate, skip } = invalidate;
 
           if (endpoint === 'getNotifications') {
+            // @ts-expect-error
             window.$debugLog = (window.$debugLog || []).concat(['onCacheEntryAddedInvalidate', args]);
           }
 

@@ -37,6 +37,7 @@ export default function useValidNotifications() {
 
   const [validNotifications, setValidNotifications] = useState(() => filterNotifications(notifications, getOffer));
 
+  // @ts-expect-error
   window.$debugLog = (window.$debugLog || []).concat(['gui/useValidNotifications', validNotifications]);
 
   useEffect(() => {

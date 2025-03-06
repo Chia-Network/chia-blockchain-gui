@@ -32,6 +32,7 @@ export default function useBlockchainNotifications() {
     error: getNotificationsError,
   } = useGetNotificationsQuery({});
 
+  // @ts-expect-error
   window.$debugLog = (window.$debugLog || []).concat([
     'gui/useBlockchainNotifications',
     blockchainNotifications,
@@ -85,6 +86,7 @@ export default function useBlockchainNotifications() {
               const { id, message: hexMessage, height } = notification;
               const message = hexMessage ? Buffer.from(hexMessage, 'hex').toString() : '';
               if (!message) {
+                // @ts-expect-error
                 window.$debugLog = (window.$debugLog || []).concat([
                   'gui/useBlockchainNotifications/items',
                   'Notification has not message',
@@ -99,6 +101,7 @@ export default function useBlockchainNotifications() {
                 height,
               }).unwrap();
 
+              // @ts-expect-error
               window.$debugLog = (window.$debugLog || []).concat([
                 'gui/useBlockchainNotifications/items',
                 id,
@@ -146,6 +149,7 @@ export default function useBlockchainNotifications() {
         const definedNotifications = items.filter(Boolean) as Notification[];
         const sortedNotifications = orderBy(definedNotifications, ['timestamp'], ['desc']);
 
+        // @ts-expect-error
         window.$debugLog = (window.$debugLog || []).concat([
           'gui/useBlockchainNotifications/prepareNotifications',
           sortedNotifications,
