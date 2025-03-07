@@ -171,6 +171,9 @@ export default function useBlockchainNotifications() {
     [deleteNotifications, openDialog],
   );
 
+  // @ts-expect-error
+  window.$debugLog = [...(window.$debugLog || []), ['useBlockchainNotifications', { notifications, isLoading, error }]];
+
   return {
     notifications,
     isLoading,

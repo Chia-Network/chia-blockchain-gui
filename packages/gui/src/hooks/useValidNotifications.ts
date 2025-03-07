@@ -24,6 +24,14 @@ function filterNotifications(notifications: Notification[], getOffer: (offerId: 
     if ([NotificationType.OFFER, NotificationType.COUNTER_OFFER].includes(notification.type)) {
       const offerId = getOfferId(notification);
       const offerState = getOffer(offerId);
+
+      // @ts-expect-error
+      window.$debugLog = [
+        // @ts-expect-error
+        ...(window.$debugLog || []),
+        ['filterNotifications', { isValid: offerState.offer?.valid, notification, offerId, offerState }],
+      ];
+
       return !!offerState.offer?.valid;
     }
 

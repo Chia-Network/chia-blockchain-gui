@@ -154,6 +154,9 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
     [seenAt, notifications],
   );
 
+  // @ts-expect-error
+  window.$debugLog = [...(window.$debugLog || []), ['NotificationsProvider', { notifications, seenAt, unseenCount }]];
+
   const setAsSeen = useCallback(() => {
     const [firstNotification] = notifications;
     if (firstNotification) {
