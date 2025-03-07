@@ -4,6 +4,7 @@ import { promises as fs, createWriteStream, type WriteStream } from 'fs';
 import debug from 'debug';
 
 import type Headers from '../../@types/Headers';
+
 import fileExists from './fileExists';
 
 const log = debug('chia-gui:downloadFile');

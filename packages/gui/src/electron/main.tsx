@@ -14,7 +14,6 @@ import {
 import fs from 'fs';
 import path from 'path';
 import url from 'url';
-import sanitizeFilename from 'sanitize-filename';
 
 import { initialize, enable } from '@electron/remote/main';
 import axios from 'axios';
@@ -22,6 +21,7 @@ import windowStateKeeper from 'electron-window-state';
 import React from 'react';
 // import os from 'os';
 import ReactDOMServer from 'react-dom/server';
+import sanitizeFilename from 'sanitize-filename';
 import { ServerStyleSheet, StyleSheetManager } from 'styled-components';
 import isURL from 'validator/es/lib/isURL';
 
@@ -32,7 +32,6 @@ import AppIcon from '../assets/img/chia64x64.png';
 import About from '../components/about/About';
 import { i18n } from '../config/locales';
 import chiaEnvironment, { chiaInit } from '../util/chiaEnvironment';
-import downloadFile from './utils/downloadFile';
 import loadConfig, { checkConfigFileExists } from '../util/loadConfig';
 import manageDaemonLifetime from '../util/manageDaemonLifetime';
 import { setUserDataDir } from '../util/userData';
@@ -41,6 +40,7 @@ import CacheManager from './CacheManager';
 import { readAddressBook, saveAddressBook } from './addressBook';
 import installDevTools from './installDevTools.dev';
 import { readPrefs, savePrefs, migratePrefs } from './prefs';
+import downloadFile from './utils/downloadFile';
 
 /**
  * Open the given external protocol URL in the desktop's default manner.
@@ -330,6 +330,15 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
 
         const { folder, tasks } = options;
 
+        const handleDownloadProgress = (progress: any, downloadUrl: string, index: number, total: number) => {
+          mainWindow?.webContents.send('multipleDownloadProgress', {
+            progress,
+            url: downloadUrl,
+            index,
+            total,
+          });
+        };
+
         for (let i = 0; i < tasks.length; i++) {
           const { url: downloadUrl, filename } = tasks[i];
 
@@ -344,14 +353,7 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
             const filePath = path.join(folder, sanitizedFilename);
 
             await downloadFile(downloadUrl, filePath, {
-              onProgress: (progress) => {
-                mainWindow?.webContents.send('multipleDownloadProgress', {
-                  progress,
-                  url: downloadUrl,
-                  index: i,
-                  total: tasks.length,
-                });
-              },
+              onProgress: (progress) => handleDownloadProgress(progress, downloadUrl, i, tasks.length),
             });
 
             const fileStats = await fs.promises.stat(filePath);
