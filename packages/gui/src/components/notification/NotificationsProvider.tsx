@@ -21,7 +21,7 @@ export const NotificationsContext = createContext<
       isLoading: boolean;
       error?: Error;
 
-      unseenCount: number;
+      seenAt: number | undefined;
       setAsSeen: () => void;
 
       areNotificationsEnabled: boolean;
@@ -148,12 +148,6 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
     fingerprint,
   ]);
 
-  const unseenCount = useMemo(
-    () =>
-      seenAt ? notifications.filter((notification) => notification.timestamp > seenAt).length : notifications.length,
-    [seenAt, notifications],
-  );
-
   const setAsSeen = useCallback(() => {
     const [firstNotification] = notifications;
     if (firstNotification) {
@@ -194,8 +188,8 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
       isLoading,
       error,
       // seen
-      unseenCount,
       setAsSeen,
+      seenAt,
       // settings
       areNotificationsEnabled: globalNotifications,
       setNotificationsEnabled: setGlobalNotifications,
@@ -210,8 +204,8 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
       isLoading,
       error,
 
-      unseenCount,
       setAsSeen,
+      seenAt,
 
       globalNotifications,
       setGlobalNotifications,

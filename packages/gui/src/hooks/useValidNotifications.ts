@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 
 import type Notification from '../@types/Notification';
 import type OfferState from '../@types/OfferState';
@@ -32,10 +32,15 @@ function filterNotifications(notifications: Notification[], getOffer: (offerId: 
 }
 
 export default function useValidNotifications() {
-  const { notifications, ...rest } = useNotifications();
+  const { notifications, seenAt, ...rest } = useNotifications();
   const { getOffer, subscribeToChanges } = useOffers();
 
   const [validNotifications, setValidNotifications] = useState(() => filterNotifications(notifications, getOffer));
+
+  const unseenCount = useMemo(
+    () => (seenAt ? validNotifications.filter((n) => n.timestamp > seenAt).length : validNotifications.length),
+    [seenAt, validNotifications],
+  );
 
   useEffect(() => {
     setValidNotifications(filterNotifications(notifications, getOffer));
@@ -60,6 +65,7 @@ export default function useValidNotifications() {
 
   return {
     notifications: validNotifications,
+    unseenCount,
     ...rest,
   };
 }

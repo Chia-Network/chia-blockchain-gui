@@ -4,7 +4,7 @@ import { Trans } from '@lingui/macro';
 import { Badge, Box, Button } from '@mui/material';
 import React from 'react';
 
-import useNotifications from '../../hooks/useNotifications';
+import useValidNotifications from '../../hooks/useValidNotifications';
 
 import NotificationsMenu from './NotificationsMenu';
 
@@ -21,7 +21,7 @@ const buttonStyle = (theme) => ({
 });
 
 export default function NotificationsDropdown() {
-  const { unseenCount, setAsSeen } = useNotifications();
+  const { unseenCount, setAsSeen } = useValidNotifications();
 
   return (
     <DropdownBase>
