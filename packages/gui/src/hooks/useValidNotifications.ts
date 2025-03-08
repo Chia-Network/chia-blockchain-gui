@@ -32,7 +32,7 @@ function filterNotifications(notifications: Notification[], getOffer: (offerId: 
 }
 
 export default function useValidNotifications() {
-  const { notifications, seenAt, ...rest } = useNotifications();
+  const { notifications, seenAt, showPushNotifications, ...rest } = useNotifications();
   const { getOffer, subscribeToChanges } = useOffers();
 
   const [validNotifications, setValidNotifications] = useState(() => filterNotifications(notifications, getOffer));
@@ -62,6 +62,10 @@ export default function useValidNotifications() {
       unsubsribers.forEach((unsubsriber) => unsubsriber());
     };
   }, [getOffer, notifications, subscribeToChanges]);
+
+  useEffect(() => {
+    showPushNotifications(validNotifications);
+  }, [showPushNotifications, validNotifications]);
 
   return {
     notifications: validNotifications,
