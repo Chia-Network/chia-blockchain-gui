@@ -76,7 +76,7 @@ export default function useBlockchainNotifications() {
           blockchainNotificationsList.map(async (notification): Promise<Notification | null> => {
             try {
               const { id, message: hexMessage, height } = notification;
-              const message = hexMessage ? Buffer.from(hexMessage, 'hex').toString() : '';
+              const message = hexMessage ? Buffer.from(hexMessage.replace(/^0x/, ''), 'hex').toString() : '';
               if (!message) {
                 throw new Error('Notification has not message');
               }

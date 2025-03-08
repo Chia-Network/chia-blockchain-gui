@@ -385,8 +385,9 @@ export default function WalletHistory(props: Props) {
 
       const memoValues = memos ? Object.values(memos) : [];
 
-      const memoValuesDecoded = memoValues.map((memoHex) => {
+      const memoValuesDecoded = memoValues.map((mv) => {
         try {
+          const memoHex = (mv as string).replace(/^0x/, '');
           const buf = Buffer.from(memoHex, 'hex');
           const decodedValue = buf.toString('utf8');
           const bufCheck = Buffer.from(decodedValue, 'utf8');
@@ -396,7 +397,7 @@ export default function WalletHistory(props: Props) {
 
           return decodedValue;
         } catch (error: any) {
-          return memoHex;
+          return mv;
         }
       });
 
