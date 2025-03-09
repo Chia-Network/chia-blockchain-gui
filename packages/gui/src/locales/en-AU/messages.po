@@ -8,7 +8,7 @@ msgstr ""
 "Language: en_AU\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-12-22 00:05\n"
+"PO-Revision-Date: 2025-02-23 00:05\n"
 "Last-Translator: \n"
 "Language-Team: English, Australia\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -922,7 +922,7 @@ msgstr "Change default timing."
 
 #: src/components/chiatools/logViewer/LogViewerToolbar.tsx:134
 msgid "Change Log File Location"
-msgstr ""
+msgstr "Change Log File Location"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:290
 #: src/components/settings/SettingsPanel.tsx:120
@@ -1231,7 +1231,7 @@ msgstr "Copy NFT ID"
 
 #: src/components/chiatools/logViewer/LogViewerToolbar.tsx:142
 msgid "Copy to Clipboard"
-msgstr ""
+msgstr "Copy to Clipboard"
 
 #: src/components/signVerify/SignMessageResultDialog.tsx:58
 msgid "Copy To Clipboard"
@@ -1885,7 +1885,7 @@ msgstr "Enter an NFT or DID to sign with"
 
 #: src/components/chiatools/logViewer/LogViewer.tsx:454
 msgid "Enter the path to your log file:"
-msgstr ""
+msgstr "Enter the path to your log file:"
 
 #: src/components/settings/RemovePassphrasePrompt.tsx:122
 msgid "Enter your passphrase:"
@@ -1984,7 +1984,7 @@ msgstr "Explore the Chia ecosystem; discover and trade great NFTs"
 
 #: src/components/chiatools/logViewer/LogViewerToolbar.tsx:150
 msgid "Export Logs"
-msgstr ""
+msgstr "Export Logs"
 
 #: src/components/offers/utils.ts:126
 #: src/components/plot/PlotHarvester.tsx:122
@@ -2688,20 +2688,16 @@ msgstr "Insert"
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgstr "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgstr "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 
 #: src/components/farm/PoolingHealth.tsx:302
@@ -2949,7 +2945,7 @@ msgstr "List of connections is empty"
 
 #: src/components/chiatools/logViewer/LogViewer.tsx:464
 msgid "Load Logs"
-msgstr ""
+msgstr "Load Logs"
 
 #: src/components/app/AppProviders.tsx:90
 msgid "Loading configuration"
@@ -3029,7 +3025,7 @@ msgstr "Log Out"
 
 #: src/components/chiatools/ChiaToolsPage.tsx:23
 msgid "Log Viewer"
-msgstr ""
+msgstr "Log Viewer"
 
 #: src/constants/WalletConnectCommands.tsx:1335
 msgid "Make DataLayer Offer"
@@ -4522,7 +4518,7 @@ msgstr "Recursive Plot Scan"
 
 #: src/components/chiatools/logViewer/LogViewerToolbar.tsx:158
 msgid "Refresh"
-msgstr ""
+msgstr "Refresh"
 
 #: src/components/nfts/NFTContextualActions.tsx:569
 msgid "Refresh NFT data"
@@ -4817,7 +4813,7 @@ msgstr "Save To File"
 
 #: src/components/chiatools/logViewer/LogViewerToolbar.tsx:109
 msgid "Search"
-msgstr ""
+msgstr "Search"
 
 #: src/components/fullNode/FullNodeBlockSearch.tsx:38
 msgid "Search block by header hash"
@@ -5694,7 +5690,7 @@ msgstr "Too Many Plot NFTs"
 
 #: src/components/dashboard/DashboardSideBar.tsx:130
 msgid "Tools"
-msgstr ""
+msgstr "Tools"
 
 #: src/components/offers2/OfferBuilderWalletAmount.tsx:36
 msgid "Total Amount"
@@ -6152,7 +6148,7 @@ msgstr "View an Offer"
 
 #: src/components/chiatools/ChiaToolsPage.tsx:26
 msgid "View and analyze Chia log files"
-msgstr ""
+msgstr "View and analyse Chia log files"
 
 #: src/components/vcs/VCCard.tsx:198
 msgid "View Credential Data"
@@ -6581,3 +6577,4 @@ msgstr "Your spendable balance must be greater than 1 mojo to create a profile"
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "Your wallet is required to be running for auto claim to work."
+
