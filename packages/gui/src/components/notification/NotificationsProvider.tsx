@@ -4,7 +4,7 @@ import {
   useLocalStorage,
 } from '@chia-network/api-react';
 import { orderBy } from 'lodash';
-import React, { useMemo, useEffect, useCallback, createContext, type ReactNode } from 'react';
+import React, { useMemo, useCallback, createContext, type ReactNode } from 'react';
 
 import type Notification from '../../@types/Notification';
 import useBlockchainNotifications from '../../hooks/useBlockchainNotifications';
@@ -21,7 +21,7 @@ export const NotificationsContext = createContext<
       isLoading: boolean;
       error?: Error;
 
-      unseenCount: number;
+      seenAt: number | undefined;
       setAsSeen: () => void;
 
       areNotificationsEnabled: boolean;
@@ -31,6 +31,8 @@ export const NotificationsContext = createContext<
 
       showNotification: (notification: Notification) => void;
       deleteNotification: (notificationId: string) => void;
+
+      showPushNotifications: (targetNotifications: Notification[]) => void;
     }
   | undefined
 >(undefined);
@@ -114,44 +116,40 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
     return orderBy(list, ['timestamp'], ['desc']);
   }, [triggeredNotificationsByCurrentFingerprint, blockchainNotifications]);
 
-  const showPushNotifications = useCallback(() => {
-    // if fingerprint is not set then we can't show push notifications (user is not logged in)
-    if (!globalNotifications || !pushNotifications || isLoadingServices || !fingerprint) {
-      return;
-    }
-
-    setLastPushNotificationTimestamp((prevLastPushNotificationTimestamp = 0) => {
-      const firstUnseenNotification = notifications.find(
-        (notification) => notification.timestamp > prevLastPushNotificationTimestamp,
-      );
-
-      if (!firstUnseenNotification) {
-        return prevLastPushNotificationTimestamp;
+  const showPushNotifications = useCallback(
+    (targetNotifications: Notification[]) => {
+      // if fingerprint is not set then we can't show push notifications (user is not logged in)
+      if (!globalNotifications || !pushNotifications || isLoadingServices || !fingerprint) {
+        return;
       }
 
-      const { title, body } = pushNotificationStringsForNotificationType(firstUnseenNotification);
+      setLastPushNotificationTimestamp((prevLastPushNotificationTimestamp = 0) => {
+        const firstUnseenNotification = targetNotifications.find(
+          (notification) => notification.timestamp > prevLastPushNotificationTimestamp,
+        );
 
-      showPushNotification({
-        title,
-        body,
+        if (!firstUnseenNotification) {
+          return prevLastPushNotificationTimestamp;
+        }
+
+        const { title, body } = pushNotificationStringsForNotificationType(firstUnseenNotification);
+
+        showPushNotification({
+          title,
+          body,
+        });
+
+        return firstUnseenNotification.timestamp;
       });
-
-      return firstUnseenNotification.timestamp;
-    });
-  }, [
-    globalNotifications,
-    pushNotifications,
-    isLoadingServices,
-    setLastPushNotificationTimestamp,
-    notifications,
-    showPushNotification,
-    fingerprint,
-  ]);
-
-  const unseenCount = useMemo(
-    () =>
-      seenAt ? notifications.filter((notification) => notification.timestamp > seenAt).length : notifications.length,
-    [seenAt, notifications],
+    },
+    [
+      globalNotifications,
+      pushNotifications,
+      isLoadingServices,
+      setLastPushNotificationTimestamp,
+      showPushNotification,
+      fingerprint,
+    ],
   );
 
   const setAsSeen = useCallback(() => {
@@ -183,10 +181,6 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
     [setTriggeredNotifications, deleteNotification],
   );
 
-  useEffect(() => {
-    showPushNotifications();
-  }, [showPushNotifications]);
-
   const contextValue = useMemo(
     () => ({
       // base state
@@ -194,8 +188,8 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
       isLoading,
       error,
       // seen
-      unseenCount,
       setAsSeen,
+      seenAt,
       // settings
       areNotificationsEnabled: globalNotifications,
       setNotificationsEnabled: setGlobalNotifications,
@@ -204,14 +198,16 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
 
       showNotification,
       deleteNotification: handleDeleteNotification,
+
+      showPushNotifications,
     }),
     [
       notifications,
       isLoading,
       error,
 
-      unseenCount,
       setAsSeen,
+      seenAt,
 
       globalNotifications,
       setGlobalNotifications,
@@ -220,6 +216,8 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
 
       showNotification,
       handleDeleteNotification,
+
+      showPushNotifications,
     ],
   );
 
