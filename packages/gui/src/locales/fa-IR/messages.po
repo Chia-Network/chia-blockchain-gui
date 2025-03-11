@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-12-22 00:05\n"
+"PO-Revision-Date: 2025-02-16 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -44,134 +44,134 @@ msgid "Would you like to transfer {count} NFTs to a new owner?"
 msgstr "از ان اف تی ها را به مالک جدیدی انتقال دهید؟ {count} آیا میخواهید"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:521
+#: src/electron/main.tsx:464
 msgid "No"
 msgstr "خیر"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:521
+#: src/electron/main.tsx:464
 msgid "Yes"
 msgstr "بله"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:522
+#: src/electron/main.tsx:465
 msgid "Confirm"
 msgstr "تایید"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:524
+#: src/electron/main.tsx:467
 msgid "Are you sure you want to quit?"
 msgstr "آیا مطمئن هستید که میخواهید خارج شوید؟"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:529
+#: src/electron/main.tsx:472
 msgid "Keep service running in the background"
 msgstr "بگدارید سرویس در پس‌زمینه اجرا شود"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:755
-#: src/electron/main.tsx:963
+#: src/electron/main.tsx:698
+#: src/electron/main.tsx:906
 msgid "File"
 msgstr "فایل"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:763
+#: src/electron/main.tsx:706
 msgid "Edit"
 msgstr "ويرايش"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:795
+#: src/electron/main.tsx:738
 msgid "View"
 msgstr "مشاهده"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:804
+#: src/electron/main.tsx:747
 msgid "Developer"
 msgstr "توسعه دهنده"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:807
+#: src/electron/main.tsx:750
 msgid "Developer Tools"
 msgstr "ابزارهای توسعه دهنده"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:815
+#: src/electron/main.tsx:758
 msgid "Trigger Desktop Notification"
 msgstr "راه‌اندازی اعلان دسکتاپ"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:844
+#: src/electron/main.tsx:787
 msgid "Full Screen"
 msgstr "نمایش تمام صفحه"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:851
+#: src/electron/main.tsx:794
 msgid "Window"
 msgstr "پنجره"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:865
+#: src/electron/main.tsx:808
 msgid "Help"
 msgstr "راهنما"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:869
+#: src/electron/main.tsx:812
 msgid "Chia Blockchain Wiki"
 msgstr "بلاکچین چیا در ویکیپدیا"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:875
+#: src/electron/main.tsx:818
 msgid "Frequently Asked Questions"
 msgstr "پرسش ها و پاسخ های متداول"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:881
+#: src/electron/main.tsx:824
 msgid "Release Notes"
 msgstr "یادداشت‌های انتشار"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:887
+#: src/electron/main.tsx:830
 msgid "Contribute on GitHub"
 msgstr "مشارکت در GitHub"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:896
+#: src/electron/main.tsx:839
 msgid "Report an Issue..."
 msgstr "گزارش یک خطا..."
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:902
+#: src/electron/main.tsx:845
 msgid "Chat on Discord"
 msgstr "اشتراک گداری در Discord"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:908
+#: src/electron/main.tsx:851
 msgid "Follow on Twitter"
 msgstr "در ایکس دنبال کنید"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:920
+#: src/electron/main.tsx:863
 msgid "Chia"
 msgstr "چیا"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:923
-#: src/electron/main.tsx:1016
+#: src/electron/main.tsx:866
+#: src/electron/main.tsx:959
 msgid "About Chia Blockchain"
 msgstr "درباره بلاکچین چیا"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:929
+#: src/electron/main.tsx:872
 msgid "Check for Updates..."
 msgstr "بروز رسانی را بررسی کنید..."
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:977
+#: src/electron/main.tsx:920
 msgid "Speech"
 msgstr "سخن"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1022
+#: src/electron/main.tsx:965
 msgid "Check for updates..."
 msgstr "بروز رسانی را بررسی کنید..."
 
@@ -367,7 +367,7 @@ msgstr "اقدام"
 #: src/components/farm/FarmFullNodeConnections.tsx:54
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:54
 #: src/components/fullNode/FullNodeConnections.tsx:65
-#: src/components/nfts/NFTContextualActions.tsx:590
+#: src/components/nfts/NFTContextualActions.tsx:614
 #: src/components/offers2/OfferIncomingTable.tsx:111
 msgid "Actions"
 msgstr "اقدامات"
@@ -812,7 +812,7 @@ msgstr "دیدن در سایت"
 
 #: src/components/nfts/NFTBurnDialog.tsx:90
 #: src/components/nfts/NFTBurnDialog.tsx:185
-#: src/components/nfts/NFTContextualActions.tsx:528
+#: src/components/nfts/NFTContextualActions.tsx:552
 msgid "Burn"
 msgstr "سوزاندن"
 
@@ -887,7 +887,7 @@ msgstr "لغو پیشنهاد"
 msgid "Cancel on blockchain"
 msgstr "لغو در بلاکچین"
 
-#: src/components/nfts/NFTContextualActions.tsx:277
+#: src/components/nfts/NFTContextualActions.tsx:278
 msgid "Cancel Unconfirmed Transaction"
 msgstr "لغو معامله تایید نشده"
 
@@ -922,7 +922,7 @@ msgstr "تغییر زمان سنجی پیش فرض."
 
 #: src/components/chiatools/logViewer/LogViewerToolbar.tsx:134
 msgid "Change Log File Location"
-msgstr ""
+msgstr "تغییر مکان فایل گزارش"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:290
 #: src/components/settings/SettingsPanel.tsx:120
@@ -1221,17 +1221,17 @@ msgstr "ادامه هید"
 #~ msgid "Contribute on GitHub"
 #~ msgstr "Contribute on GitHub"
 
-#: src/components/nfts/NFTContextualActions.tsx:348
+#: src/components/nfts/NFTContextualActions.tsx:349
 msgid "Copy Media URL"
 msgstr "لینک آدرس سایت را کپی کنید"
 
-#: src/components/nfts/NFTContextualActions.tsx:105
+#: src/components/nfts/NFTContextualActions.tsx:106
 msgid "Copy NFT ID"
 msgstr "کپی شناسه ان اف تی"
 
 #: src/components/chiatools/logViewer/LogViewerToolbar.tsx:142
 msgid "Copy to Clipboard"
-msgstr ""
+msgstr "کپی در حافظه"
 
 #: src/components/signVerify/SignMessageResultDialog.tsx:58
 msgid "Copy To Clipboard"
@@ -1320,7 +1320,7 @@ msgstr "ایحاد ذخیره های داده"
 msgid "Create new DID Wallet"
 msgstr "ساخت کیف پول شناسه غیرمتمرکز جدید"
 
-#: src/components/nfts/NFTContextualActions.tsx:149
+#: src/components/nfts/NFTContextualActions.tsx:150
 #: src/components/offers/NFTOfferEditor.tsx:439
 #: src/components/offers/OfferEditor.tsx:175
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:15
@@ -1707,9 +1707,13 @@ msgstr "نام های دامنه"
 #~ msgid "Don't allocate host tables using pinned buffers, instead download to intermediate pinned buffers then copy to the final host buffer."
 #~ msgstr "Don't allocate host tables using pinned buffers, instead download to intermediate pinned buffers then copy to the final host buffer."
 
-#: src/components/nfts/NFTContextualActions.tsx:446
+#: src/components/nfts/NFTContextualActions.tsx:470
 msgid "Download"
 msgstr "دخیره"
+
+#: src/components/nfts/NFTContextualActions.tsx:453
+msgid "Download Failed"
+msgstr ""
 
 #: src/components/nfts/MultipleDownloadDialog.tsx:91
 msgid "Download failed."
@@ -1885,7 +1889,7 @@ msgstr "یک ان اف تی یا شناسه غیر متمرکز برای امض�
 
 #: src/components/chiatools/logViewer/LogViewer.tsx:454
 msgid "Enter the path to your log file:"
-msgstr ""
+msgstr "مسیر فایل گزارش خود را وارد کنید:"
 
 #: src/components/settings/RemovePassphrasePrompt.tsx:122
 msgid "Enter your passphrase:"
@@ -1984,7 +1988,7 @@ msgstr "اکوسیستم چیا را جستجو کنید. ان اف تی های 
 
 #: src/components/chiatools/logViewer/LogViewerToolbar.tsx:150
 msgid "Export Logs"
-msgstr ""
+msgstr "صدور فایل گزارش"
 
 #: src/components/offers/utils.ts:126
 #: src/components/plot/PlotHarvester.tsx:122
@@ -2553,7 +2557,7 @@ msgstr "<0/> پنهان شده"
 #~ msgid "Hidden ({0})"
 #~ msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:496
+#: src/components/nfts/NFTContextualActions.tsx:520
 msgid "Hide"
 msgstr "مخفی"
 
@@ -2949,7 +2953,7 @@ msgstr "لیست اتصالات خالی است"
 
 #: src/components/chiatools/logViewer/LogViewer.tsx:464
 msgid "Load Logs"
-msgstr ""
+msgstr "بارگذاری فایل گزارش"
 
 #: src/components/app/AppProviders.tsx:90
 msgid "Loading configuration"
@@ -3029,7 +3033,7 @@ msgstr "خروج"
 
 #: src/components/chiatools/ChiaToolsPage.tsx:23
 msgid "Log Viewer"
-msgstr ""
+msgstr "بازنگری گزارش"
 
 #: src/constants/WalletConnectCommands.tsx:1335
 msgid "Make DataLayer Offer"
@@ -3236,7 +3240,7 @@ msgstr "انتقال"
 msgid "Move NFT to Profile"
 msgstr "انتقال ان اف تی به حساب کاربری"
 
-#: src/components/nfts/NFTContextualActions.tsx:225
+#: src/components/nfts/NFTContextualActions.tsx:226
 msgid "Move to Profile"
 msgstr "انتقال به حساب کاربری"
 
@@ -3406,19 +3410,19 @@ msgstr "ان اف تی مشخص نشده"
 msgid "NFT Purchase Price"
 msgstr "قیمت خرید ان اف تی"
 
-#: src/components/nfts/NFTContextualActions.tsx:264
+#: src/components/nfts/NFTContextualActions.tsx:265
 msgid "NFT Status Update Failed"
 msgstr "بروزرسانی ناموفق وضیعت ان اف تی"
 
-#: src/components/nfts/NFTContextualActions.tsx:254
+#: src/components/nfts/NFTContextualActions.tsx:255
 msgid "NFT Status Updated"
 msgstr "وضعیت ان اف تی بروز شد"
 
-#: src/components/nfts/NFTContextualActions.tsx:179
+#: src/components/nfts/NFTContextualActions.tsx:180
 msgid "NFT Transfer Failed"
 msgstr "انتقال ان اف تی ناموفق بود"
 
-#: src/components/nfts/NFTContextualActions.tsx:173
+#: src/components/nfts/NFTContextualActions.tsx:174
 msgid "NFT Transfer Pending"
 msgstr "انتقال ان اف تی در انتظار است"
 
@@ -3812,7 +3816,7 @@ msgstr "یک یا چند توکن ناشناخته در حال ارائه است
 msgid "One-of-a-kind Collectible assets"
 msgstr "دارایی های کلکسیونی منحصر به فرد"
 
-#: src/components/nfts/NFTContextualActions.tsx:316
+#: src/components/nfts/NFTContextualActions.tsx:317
 msgid "Open in Browser"
 msgstr "بازکردن در مرورگر"
 
@@ -4522,9 +4526,9 @@ msgstr "بازنگری پلات برگشتی"
 
 #: src/components/chiatools/logViewer/LogViewerToolbar.tsx:158
 msgid "Refresh"
-msgstr ""
+msgstr "تازه کنید"
 
-#: src/components/nfts/NFTContextualActions.tsx:569
+#: src/components/nfts/NFTContextualActions.tsx:593
 msgid "Refresh NFT data"
 msgstr "اطلاعات ان اف تی را تازه کنید"
 
@@ -4817,7 +4821,7 @@ msgstr "ذخیره در فایل"
 
 #: src/components/chiatools/logViewer/LogViewerToolbar.tsx:109
 msgid "Search"
-msgstr ""
+msgstr "جستجو"
 
 #: src/components/fullNode/FullNodeBlockSearch.tsx:38
 msgid "Search block by header hash"
@@ -5036,7 +5040,7 @@ msgstr "Spacescan.io اشتراک در "
 #~ msgid "Share Privately"
 #~ msgstr "Share Privately"
 
-#: src/components/nfts/NFTContextualActions.tsx:496
+#: src/components/nfts/NFTContextualActions.tsx:520
 msgid "Show"
 msgstr "نمایش"
 
@@ -5389,6 +5393,10 @@ msgstr "زمان ادعای بازگرداندن را میتوان به صورت
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
 msgstr "شاخص مشتق که کیف پول بلاکچین را اسکن میکند محدوده آدرس های کیف پول را تعیین مینماید. اگر تراکنش‌های زیادی دارید یا پیشنهادات لغو شده برای چیا، نوکن یا ان اف تی دارید، این عدد معمولاً بیشتر است. اگر فکر میکنید موجودی‌ شما نادرست است، ارزهای درون آن کمتر است، افزایش شاخص مشتق‌گیری میتواند به کیف پول کمک کندتا ارزهای گمشده را در کل موجودی قراردهد."
 
+#: src/components/nfts/NFTContextualActions.tsx:454
+msgid "The download failed: {0}"
+msgstr ""
+
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:148
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:197
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:87
@@ -5425,15 +5433,15 @@ msgstr "{err} :حرکت ان اف تی ناموفق بود"
 msgid "The NFT move transaction has been successfully submitted to the blockchain."
 msgstr "تراکنش جابجایی ان اف تی با موفقیت به بلاکچین ارسال شد."
 
-#: src/components/nfts/NFTContextualActions.tsx:255
+#: src/components/nfts/NFTContextualActions.tsx:256
 msgid "The NFT status has been updated. If the transaction was successfully sent to the mempool, it may still complete."
 msgstr "وضعیت ان اف تی بروز شده است. اگر تراکنش با موفقیت به حافظه استخر تراکنش ارسال شود، ممکن است همچنان تکمیل شود."
 
-#: src/components/nfts/NFTContextualActions.tsx:265
+#: src/components/nfts/NFTContextualActions.tsx:266
 msgid "The NFT status update failed: {err}"
 msgstr "{err} :بروزرسانی وضعیت ان اف تی انجام نشد"
 
-#: src/components/nfts/NFTContextualActions.tsx:180
+#: src/components/nfts/NFTContextualActions.tsx:181
 msgid "The NFT transfer failed: {0}"
 msgstr "انتقال ان اف تی انجام نشد: {0}"
 
@@ -5441,7 +5449,7 @@ msgstr "انتقال ان اف تی انجام نشد: {0}"
 #~ msgid "The NFT transfer failed: {error}"
 #~ msgstr "The NFT transfer failed: {error}"
 
-#: src/components/nfts/NFTContextualActions.tsx:174
+#: src/components/nfts/NFTContextualActions.tsx:175
 msgid "The NFT transfer transaction has been successfully submitted to the blockchain."
 msgstr "تراکنش انتقال ان اف تی با موفقیت به بلاکچین ارسال شد."
 
@@ -5694,7 +5702,7 @@ msgstr "تعداد زیاد پلات ان اف تی"
 
 #: src/components/dashboard/DashboardSideBar.tsx:130
 msgid "Tools"
-msgstr ""
+msgstr "ابزارها"
 
 #: src/components/offers2/OfferBuilderWalletAmount.tsx:36
 msgid "Total Amount"
@@ -5852,7 +5860,7 @@ msgstr "انتقال"
 msgid "Transfer DID"
 msgstr "انتقال شناسه غیر متمرکز"
 
-#: src/components/nfts/NFTContextualActions.tsx:197
+#: src/components/nfts/NFTContextualActions.tsx:198
 #: src/components/nfts/NFTTransferAction.tsx:217
 #: src/constants/WalletConnectCommands.tsx:847
 msgid "Transfer NFT"
@@ -6152,7 +6160,7 @@ msgstr "دیدن یک پیشنهاد"
 
 #: src/components/chiatools/ChiaToolsPage.tsx:26
 msgid "View and analyze Chia log files"
-msgstr ""
+msgstr "مشاهده و تجزیه و تحلیل فایل های گزارش چیا"
 
 #: src/components/vcs/VCCard.tsx:198
 msgid "View Credential Data"
@@ -6175,7 +6183,7 @@ msgstr "دیدن در دکسی"
 #~ msgid "View on Hashgreen DEX"
 #~ msgstr "View on Hashgreen DEX"
 
-#: src/components/nfts/NFTContextualActions.tsx:646
+#: src/components/nfts/NFTContextualActions.tsx:670
 #: src/components/offers/OfferShareDialog.tsx:441
 msgid "View on MintGarden"
 msgstr "MintGarden دیدن در"
@@ -6188,7 +6196,7 @@ msgstr "MintGarden دیدن در"
 msgid "View on Offerpool"
 msgstr "Offerpool دیدن در"
 
-#: src/components/nfts/NFTContextualActions.tsx:654
+#: src/components/nfts/NFTContextualActions.tsx:678
 #: src/components/offers/OfferShareDialog.tsx:538
 msgid "View on Spacescan.io"
 msgstr "Spacescan.io دیدن در"
