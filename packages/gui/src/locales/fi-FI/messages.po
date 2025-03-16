@@ -44,134 +44,134 @@ msgid "Would you like to transfer {count} NFTs to a new owner?"
 msgstr "Haluatko siirtää {count} NFT:tä uudelle omistajalle?"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:464
+#: src/electron/main.tsx:466
 msgid "No"
 msgstr "Ei"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:464
+#: src/electron/main.tsx:466
 msgid "Yes"
 msgstr "Kyllä"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:465
+#: src/electron/main.tsx:467
 msgid "Confirm"
 msgstr "Vahvista"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:467
+#: src/electron/main.tsx:469
 msgid "Are you sure you want to quit?"
 msgstr "Oletko varma että haluat lopettaa?"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:472
+#: src/electron/main.tsx:474
 msgid "Keep service running in the background"
 msgstr "Pidä palvelu käynnissä taustalla"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:698
-#: src/electron/main.tsx:906
+#: src/electron/main.tsx:700
+#: src/electron/main.tsx:908
 msgid "File"
 msgstr "Tiedosto"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:706
+#: src/electron/main.tsx:708
 msgid "Edit"
 msgstr "Muokkaa"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:738
+#: src/electron/main.tsx:740
 msgid "View"
 msgstr "Näkymä"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:747
+#: src/electron/main.tsx:749
 msgid "Developer"
 msgstr "Kehittäjä"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:750
+#: src/electron/main.tsx:752
 msgid "Developer Tools"
 msgstr "Kehitystyökalut"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:758
+#: src/electron/main.tsx:760
 msgid "Trigger Desktop Notification"
 msgstr "Käynnistä Työpöytä-ilmoitus"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:787
+#: src/electron/main.tsx:789
 msgid "Full Screen"
 msgstr "Kokoruutu"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:794
+#: src/electron/main.tsx:796
 msgid "Window"
 msgstr "Ikkuna"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:808
+#: src/electron/main.tsx:810
 msgid "Help"
 msgstr "Apuja"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:812
+#: src/electron/main.tsx:814
 msgid "Chia Blockchain Wiki"
 msgstr "Chia Wiki"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:818
+#: src/electron/main.tsx:820
 msgid "Frequently Asked Questions"
 msgstr "Usein Kysytyt Kysymykset"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:824
+#: src/electron/main.tsx:826
 msgid "Release Notes"
 msgstr "Version Muutokset"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:830
+#: src/electron/main.tsx:832
 msgid "Contribute on GitHub"
 msgstr "Anna panoksesi GitHubissa"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:839
+#: src/electron/main.tsx:841
 msgid "Report an Issue..."
 msgstr "Raportoi Ongelma..."
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:845
+#: src/electron/main.tsx:847
 msgid "Chat on Discord"
 msgstr "Chattaa Discordissa"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:851
+#: src/electron/main.tsx:853
 msgid "Follow on Twitter"
 msgstr "Seuraa Twitterissä"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:863
+#: src/electron/main.tsx:865
 msgid "Chia"
 msgstr "Chia"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:866
-#: src/electron/main.tsx:959
+#: src/electron/main.tsx:868
+#: src/electron/main.tsx:961
 msgid "About Chia Blockchain"
 msgstr "Chia Lohkoketjusta"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:872
+#: src/electron/main.tsx:874
 msgid "Check for Updates..."
 msgstr "Tarkista päivitykset..."
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:920
+#: src/electron/main.tsx:922
 msgid "Speech"
 msgstr "Puhe"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:965
+#: src/electron/main.tsx:967
 msgid "Check for updates..."
 msgstr "Tarkista päivitykset..."
 
@@ -2692,16 +2692,20 @@ msgstr "Lisää"
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid "Insufficient funds available to accept offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "Riittämätön määrä varoja tarjouksen hyväksymiseen. Varmista, että\n"
+msgstr ""
+"Riittämätön määrä varoja tarjouksen hyväksymiseen. Varmista, että\n"
 "käytettävissä oleva saldo riittää tarjouksen määrän kattamiseen."
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid "Insufficient funds available to create offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "Riittämätön määrä varoja tarjouksen luomiseen. Varmista, että\n"
+msgstr ""
+"Riittämätön määrä varoja tarjouksen luomiseen. Varmista, että\n"
 "käytettävissä oleva saldo riittää tarjouksen määrän kattamiseen."
 
 #: src/components/farm/PoolingHealth.tsx:302
@@ -6585,4 +6589,3 @@ msgstr "Käytettävissä olevan saldon on oltava suurempi kuin 1 mojo luodaksesi
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "Lompakkosi on oltava käynnissä, jotta automaattinen lunastaminen toimii."
-

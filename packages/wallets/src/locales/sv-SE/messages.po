@@ -169,7 +169,7 @@ msgstr ""
 msgid "Classic version of Stably USDS as held by Prime Trust"
 msgstr "Klassisk version av Stably USDS som förvaltas av Prime Trust"
 
-#: src/components/WalletHistory.tsx:431
+#: src/components/WalletHistory.tsx:432
 msgid "Claw back expiration"
 msgstr ""
 
@@ -223,7 +223,7 @@ msgstr "Bekräfta"
 msgid "Confirmed"
 msgstr "Bekräftad"
 
-#: src/components/WalletHistory.tsx:420
+#: src/components/WalletHistory.tsx:421
 msgid "Confirmed at Height"
 msgstr "Bekräftad vid höjd"
 
@@ -325,7 +325,8 @@ msgid "HD or Hierarchical Deterministic keys are a type of public key/private ke
 msgstr "\"HD\" eller Hierarkiska Deterministiska nycklar är en typ av schema med publik nyckel/privat nyckel där en privat nyckel kan ha ett nästan oändligt antal olika publika nycklar (och därigenom mottagaradresser i plånboken) som alla i slutänden kan härledas tillbaka till och är spenderbara med en och samma privata nyckel."
 
 #: src/components/WalletSendTransactionResultDialog.tsx:47
-msgid "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a\n"
+msgid ""
+"If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a\n"
 "higher fee."
 msgstr "Om du vill påskynda transaktionen, ta bort obekräftade transaktioner och försök igen med en högre avgift."
 
@@ -366,7 +367,7 @@ msgstr "Hantera tokenlista"
 msgid "Memo"
 msgstr "Meddelande"
 
-#: src/components/WalletHistory.tsx:425
+#: src/components/WalletHistory.tsx:426
 msgid "Memos"
 msgstr "Meddelanden"
 
@@ -415,7 +416,7 @@ msgstr "NFT-plånbok"
 msgid "Nickname"
 msgstr "Smeknamn"
 
-#: src/components/WalletHistory.tsx:502
+#: src/components/WalletHistory.tsx:503
 msgid "No previous transactions"
 msgstr "Inga tidigare transaktioner"
 
@@ -423,8 +424,8 @@ msgstr "Inga tidigare transaktioner"
 msgid "Node ID"
 msgstr "Node-ID"
 
-#: src/components/WalletHistory.tsx:414
-#: src/components/WalletHistory.tsx:421
+#: src/components/WalletHistory.tsx:415
+#: src/components/WalletHistory.tsx:422
 msgid "Not Available"
 msgstr "Inte tillgänglig"
 
@@ -654,7 +655,8 @@ msgid "The recipient of this transaction will need to have valid credentials in 
 msgstr "Mottagaren av denna transaktion måste ha giltiga autentiseringsuppgifter för att kunna göra anspråk på de skickade tillgångarna. Se CR CAT-begränsningarna ovan."
 
 #: src/components/WalletSendTransactionResultDialog.tsx:44
-msgid "The transaction could not be immediately included in the mempool because the specified fee is too low. The\n"
+msgid ""
+"The transaction could not be immediately included in the mempool because the specified fee is too low. The\n"
 "transaction will be retried periodically, and may be included in the mempool once fees are lower, or if\n"
 "space becomes available."
 msgstr "Transaktionen kunde inte omedelbart läggas till i mempoolen eftersom den angivna avgiften är för låg. Transaktionen kommer att återställas med jämna mellanrum, och kan komma att inkluderas i mempoolen när avgifterna är lägre, eller om utrymme blir tillgängligt."
@@ -664,7 +666,8 @@ msgstr "Transaktionen kunde inte omedelbart läggas till i mempoolen eftersom de
 #~ msgstr "The transaction could not be immediately included in the mempool because the specified fee is too low. The transaction will be retried periodically, and may be included in the mempool once fees are lower, or if space becomes available."
 
 #: src/components/WalletSendTransactionResultDialog.tsx:38
-msgid "The transaction is pending inclusion in the mempool because it conflicts with one or more other transactions\n"
+msgid ""
+"The transaction is pending inclusion in the mempool because it conflicts with one or more other transactions\n"
 "already in the mempool. The transaction will be retried periodically, and may be included in the mempool if\n"
 "the conflicting transactions are removed."
 msgstr ""
@@ -730,7 +733,7 @@ msgstr "Totalt saldo"
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "Transaktionen har skickats till en fullständig nod och inkluderats i mempoolen."
 
-#: src/components/WalletHistory.tsx:479
+#: src/components/WalletHistory.tsx:480
 msgid "Transactions"
 msgstr "Transaktioner"
 
@@ -806,4 +809,3 @@ msgstr "Du har denna verifierbara autentiseringsuppgift från rätt auktoriserad
 #: src/components/WalletImport.tsx:73
 msgid "Your pasted list does not include {mnemonicWordCount} valid mnemonic words."
 msgstr "Den lista du klistrat in är inte en giltig minnesfras med {mnemonicWordCount} ord."
-
