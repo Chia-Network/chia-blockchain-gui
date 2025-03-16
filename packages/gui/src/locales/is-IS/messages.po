@@ -8,7 +8,7 @@ msgstr ""
 "Language: is_IS\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-02-02 00:04\n"
+"PO-Revision-Date: 2025-03-16 00:05\n"
 "Last-Translator: \n"
 "Language-Team: Icelandic\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -44,134 +44,134 @@ msgid "Would you like to transfer {count} NFTs to a new owner?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:521
+#: src/electron/main.tsx:464
 msgid "No"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:521
+#: src/electron/main.tsx:464
 msgid "Yes"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:522
+#: src/electron/main.tsx:465
 msgid "Confirm"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:524
+#: src/electron/main.tsx:467
 msgid "Are you sure you want to quit?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:529
+#: src/electron/main.tsx:472
 msgid "Keep service running in the background"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:755
-#: src/electron/main.tsx:963
+#: src/electron/main.tsx:698
+#: src/electron/main.tsx:906
 msgid "File"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:763
+#: src/electron/main.tsx:706
 msgid "Edit"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:795
+#: src/electron/main.tsx:738
 msgid "View"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:804
+#: src/electron/main.tsx:747
 msgid "Developer"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:807
+#: src/electron/main.tsx:750
 msgid "Developer Tools"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:815
+#: src/electron/main.tsx:758
 msgid "Trigger Desktop Notification"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:844
+#: src/electron/main.tsx:787
 msgid "Full Screen"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:851
+#: src/electron/main.tsx:794
 msgid "Window"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:865
+#: src/electron/main.tsx:808
 msgid "Help"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:869
+#: src/electron/main.tsx:812
 msgid "Chia Blockchain Wiki"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:875
+#: src/electron/main.tsx:818
 msgid "Frequently Asked Questions"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:881
+#: src/electron/main.tsx:824
 msgid "Release Notes"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:887
+#: src/electron/main.tsx:830
 msgid "Contribute on GitHub"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:896
+#: src/electron/main.tsx:839
 msgid "Report an Issue..."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:902
+#: src/electron/main.tsx:845
 msgid "Chat on Discord"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:908
+#: src/electron/main.tsx:851
 msgid "Follow on Twitter"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:920
+#: src/electron/main.tsx:863
 msgid "Chia"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:923
-#: src/electron/main.tsx:1016
+#: src/electron/main.tsx:866
+#: src/electron/main.tsx:959
 msgid "About Chia Blockchain"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:929
+#: src/electron/main.tsx:872
 msgid "Check for Updates..."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:977
+#: src/electron/main.tsx:920
 msgid "Speech"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1022
+#: src/electron/main.tsx:965
 msgid "Check for updates..."
 msgstr ""
 
@@ -367,7 +367,7 @@ msgstr ""
 #: src/components/farm/FarmFullNodeConnections.tsx:54
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:54
 #: src/components/fullNode/FullNodeConnections.tsx:65
-#: src/components/nfts/NFTContextualActions.tsx:590
+#: src/components/nfts/NFTContextualActions.tsx:614
 #: src/components/offers2/OfferIncomingTable.tsx:111
 msgid "Actions"
 msgstr ""
@@ -812,7 +812,7 @@ msgstr ""
 
 #: src/components/nfts/NFTBurnDialog.tsx:90
 #: src/components/nfts/NFTBurnDialog.tsx:185
-#: src/components/nfts/NFTContextualActions.tsx:528
+#: src/components/nfts/NFTContextualActions.tsx:552
 msgid "Burn"
 msgstr ""
 
@@ -887,7 +887,7 @@ msgstr ""
 msgid "Cancel on blockchain"
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:277
+#: src/components/nfts/NFTContextualActions.tsx:278
 msgid "Cancel Unconfirmed Transaction"
 msgstr ""
 
@@ -1221,11 +1221,11 @@ msgstr ""
 #~ msgid "Contribute on GitHub"
 #~ msgstr "Contribute on GitHub"
 
-#: src/components/nfts/NFTContextualActions.tsx:348
+#: src/components/nfts/NFTContextualActions.tsx:349
 msgid "Copy Media URL"
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:105
+#: src/components/nfts/NFTContextualActions.tsx:106
 msgid "Copy NFT ID"
 msgstr ""
 
@@ -1320,7 +1320,7 @@ msgstr ""
 msgid "Create new DID Wallet"
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:149
+#: src/components/nfts/NFTContextualActions.tsx:150
 #: src/components/offers/NFTOfferEditor.tsx:439
 #: src/components/offers/OfferEditor.tsx:175
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:15
@@ -1707,8 +1707,12 @@ msgstr ""
 #~ msgid "Don't allocate host tables using pinned buffers, instead download to intermediate pinned buffers then copy to the final host buffer."
 #~ msgstr "Don't allocate host tables using pinned buffers, instead download to intermediate pinned buffers then copy to the final host buffer."
 
-#: src/components/nfts/NFTContextualActions.tsx:446
+#: src/components/nfts/NFTContextualActions.tsx:470
 msgid "Download"
+msgstr ""
+
+#: src/components/nfts/NFTContextualActions.tsx:453
+msgid "Download Failed"
 msgstr ""
 
 #: src/components/nfts/MultipleDownloadDialog.tsx:91
@@ -2553,7 +2557,7 @@ msgstr ""
 #~ msgid "Hidden ({0})"
 #~ msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:496
+#: src/components/nfts/NFTContextualActions.tsx:520
 msgid "Hide"
 msgstr ""
 
@@ -3230,7 +3234,7 @@ msgstr ""
 msgid "Move NFT to Profile"
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:225
+#: src/components/nfts/NFTContextualActions.tsx:226
 msgid "Move to Profile"
 msgstr ""
 
@@ -3400,19 +3404,19 @@ msgstr ""
 msgid "NFT Purchase Price"
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:264
+#: src/components/nfts/NFTContextualActions.tsx:265
 msgid "NFT Status Update Failed"
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:254
+#: src/components/nfts/NFTContextualActions.tsx:255
 msgid "NFT Status Updated"
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:179
+#: src/components/nfts/NFTContextualActions.tsx:180
 msgid "NFT Transfer Failed"
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:173
+#: src/components/nfts/NFTContextualActions.tsx:174
 msgid "NFT Transfer Pending"
 msgstr ""
 
@@ -3806,7 +3810,7 @@ msgstr ""
 msgid "One-of-a-kind Collectible assets"
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:316
+#: src/components/nfts/NFTContextualActions.tsx:317
 msgid "Open in Browser"
 msgstr ""
 
@@ -4518,7 +4522,7 @@ msgstr ""
 msgid "Refresh"
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:569
+#: src/components/nfts/NFTContextualActions.tsx:593
 msgid "Refresh NFT data"
 msgstr ""
 
@@ -5030,7 +5034,7 @@ msgstr ""
 #~ msgid "Share Privately"
 #~ msgstr "Share Privately"
 
-#: src/components/nfts/NFTContextualActions.tsx:496
+#: src/components/nfts/NFTContextualActions.tsx:520
 msgid "Show"
 msgstr ""
 
@@ -5383,6 +5387,10 @@ msgstr ""
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
 msgstr ""
 
+#: src/components/nfts/NFTContextualActions.tsx:454
+msgid "The download failed: {0}"
+msgstr ""
+
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:148
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:197
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:87
@@ -5419,15 +5427,15 @@ msgstr ""
 msgid "The NFT move transaction has been successfully submitted to the blockchain."
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:255
+#: src/components/nfts/NFTContextualActions.tsx:256
 msgid "The NFT status has been updated. If the transaction was successfully sent to the mempool, it may still complete."
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:265
+#: src/components/nfts/NFTContextualActions.tsx:266
 msgid "The NFT status update failed: {err}"
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:180
+#: src/components/nfts/NFTContextualActions.tsx:181
 msgid "The NFT transfer failed: {0}"
 msgstr ""
 
@@ -5435,7 +5443,7 @@ msgstr ""
 #~ msgid "The NFT transfer failed: {error}"
 #~ msgstr "The NFT transfer failed: {error}"
 
-#: src/components/nfts/NFTContextualActions.tsx:174
+#: src/components/nfts/NFTContextualActions.tsx:175
 msgid "The NFT transfer transaction has been successfully submitted to the blockchain."
 msgstr ""
 
@@ -5846,7 +5854,7 @@ msgstr ""
 msgid "Transfer DID"
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:197
+#: src/components/nfts/NFTContextualActions.tsx:198
 #: src/components/nfts/NFTTransferAction.tsx:217
 #: src/constants/WalletConnectCommands.tsx:847
 msgid "Transfer NFT"
@@ -6169,7 +6177,7 @@ msgstr ""
 #~ msgid "View on Hashgreen DEX"
 #~ msgstr "View on Hashgreen DEX"
 
-#: src/components/nfts/NFTContextualActions.tsx:646
+#: src/components/nfts/NFTContextualActions.tsx:670
 #: src/components/offers/OfferShareDialog.tsx:441
 msgid "View on MintGarden"
 msgstr ""
@@ -6182,7 +6190,7 @@ msgstr ""
 msgid "View on Offerpool"
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:654
+#: src/components/nfts/NFTContextualActions.tsx:678
 #: src/components/offers/OfferShareDialog.tsx:538
 msgid "View on Spacescan.io"
 msgstr ""

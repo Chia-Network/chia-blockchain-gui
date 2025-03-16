@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-02-02 00:04\n"
+"PO-Revision-Date: 2025-03-16 00:05\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -213,7 +213,7 @@ msgstr "{0, plural, one {mojo} other {mojos}}"
 
 #: src/components/chiatools/ChiaToolsPage.tsx:56
 msgid "{0}"
-msgstr ""
+msgstr "{0}"
 
 #: src/components/addressbook/ContactSummary.tsx:155
 msgid "{0} {1}"
@@ -922,7 +922,7 @@ msgstr "更改默认时间设置。"
 
 #: src/components/chiatools/logViewer/LogViewerToolbar.tsx:134
 msgid "Change Log File Location"
-msgstr ""
+msgstr "更改日志文件位置"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:290
 #: src/components/settings/SettingsPanel.tsx:120
@@ -1231,7 +1231,7 @@ msgstr "复制 NFT ID"
 
 #: src/components/chiatools/logViewer/LogViewerToolbar.tsx:142
 msgid "Copy to Clipboard"
-msgstr ""
+msgstr "复制到剪贴板"
 
 #: src/components/signVerify/SignMessageResultDialog.tsx:58
 msgid "Copy To Clipboard"
@@ -1713,7 +1713,7 @@ msgstr "下载"
 
 #: src/components/nfts/NFTContextualActions.tsx:453
 msgid "Download Failed"
-msgstr ""
+msgstr "下载失败"
 
 #: src/components/nfts/MultipleDownloadDialog.tsx:91
 msgid "Download failed."
@@ -1889,7 +1889,7 @@ msgstr "输入要进行签名的NFT或DID"
 
 #: src/components/chiatools/logViewer/LogViewer.tsx:454
 msgid "Enter the path to your log file:"
-msgstr ""
+msgstr "输入日志文件的路径："
 
 #: src/components/settings/RemovePassphrasePrompt.tsx:122
 msgid "Enter your passphrase:"
@@ -1988,7 +1988,7 @@ msgstr "探索Chia生态系统；发现并交易优秀NFT"
 
 #: src/components/chiatools/logViewer/LogViewerToolbar.tsx:150
 msgid "Export Logs"
-msgstr ""
+msgstr "导出日志"
 
 #: src/components/offers/utils.ts:126
 #: src/components/plot/PlotHarvester.tsx:122
@@ -2692,20 +2692,16 @@ msgstr "插入"
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"可用资金不足，无法接受报价。请确保您的\n"
+msgstr "可用资金不足，无法接受报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
 #: src/components/offers/OfferEditor.tsx:146
 #: src/components/offers2/CreateOfferBuilder.tsx:167
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"可用的资金不足，无法创建报价。请确保您的\n"
+msgstr "可用的资金不足，无法创建报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
 #: src/components/farm/PoolingHealth.tsx:302
@@ -2953,7 +2949,7 @@ msgstr "连接列表为空"
 
 #: src/components/chiatools/logViewer/LogViewer.tsx:464
 msgid "Load Logs"
-msgstr ""
+msgstr "载入日志"
 
 #: src/components/app/AppProviders.tsx:90
 msgid "Loading configuration"
@@ -3033,7 +3029,7 @@ msgstr "注销"
 
 #: src/components/chiatools/ChiaToolsPage.tsx:23
 msgid "Log Viewer"
-msgstr ""
+msgstr "日志查看器"
 
 #: src/constants/WalletConnectCommands.tsx:1335
 msgid "Make DataLayer Offer"
@@ -4526,7 +4522,7 @@ msgstr "递归图块扫描"
 
 #: src/components/chiatools/logViewer/LogViewerToolbar.tsx:158
 msgid "Refresh"
-msgstr ""
+msgstr "刷新"
 
 #: src/components/nfts/NFTContextualActions.tsx:593
 msgid "Refresh NFT data"
@@ -4821,7 +4817,7 @@ msgstr "保存到文件"
 
 #: src/components/chiatools/logViewer/LogViewerToolbar.tsx:109
 msgid "Search"
-msgstr ""
+msgstr "搜索"
 
 #: src/components/fullNode/FullNodeBlockSearch.tsx:38
 msgid "Search block by header hash"
@@ -5395,7 +5391,7 @@ msgstr "派生索引设置了钱包在区块链上扫描钱包地址的范围。
 
 #: src/components/nfts/NFTContextualActions.tsx:454
 msgid "The download failed: {0}"
-msgstr ""
+msgstr "下载失败: {0}"
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:148
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:197
@@ -5702,7 +5698,7 @@ msgstr "联合耕种农田过多"
 
 #: src/components/dashboard/DashboardSideBar.tsx:130
 msgid "Tools"
-msgstr ""
+msgstr "工具"
 
 #: src/components/offers2/OfferBuilderWalletAmount.tsx:36
 msgid "Total Amount"
@@ -6160,7 +6156,7 @@ msgstr "查看报价"
 
 #: src/components/chiatools/ChiaToolsPage.tsx:26
 msgid "View and analyze Chia log files"
-msgstr ""
+msgstr "查看并分析Chia日志文件"
 
 #: src/components/vcs/VCCard.tsx:198
 msgid "View Credential Data"
@@ -6589,3 +6585,4 @@ msgstr "可用余额必须大于1 mojo才能创建个人资料"
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "需确保钱包正在运行才能完成自动确认。"
+
