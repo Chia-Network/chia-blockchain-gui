@@ -169,7 +169,7 @@ msgstr "聲明中..."
 msgid "Classic version of Stably USDS as held by Prime Trust"
 msgstr "由Prime Trust持有、Stably發行的舊版USDS"
 
-#: src/components/WalletHistory.tsx:431
+#: src/components/WalletHistory.tsx:432
 msgid "Claw back expiration"
 msgstr "撤回的有效期限"
 
@@ -223,7 +223,7 @@ msgstr "確認"
 msgid "Confirmed"
 msgstr "確認"
 
-#: src/components/WalletHistory.tsx:420
+#: src/components/WalletHistory.tsx:421
 msgid "Confirmed at Height"
 msgstr "已確認於高度"
 
@@ -369,7 +369,7 @@ msgstr "管理代幣列表"
 msgid "Memo"
 msgstr "備註（Memo）"
 
-#: src/components/WalletHistory.tsx:425
+#: src/components/WalletHistory.tsx:426
 msgid "Memos"
 msgstr "備註（Memos）"
 
@@ -418,7 +418,7 @@ msgstr "NFT 錢包"
 msgid "Nickname"
 msgstr "暱稱"
 
-#: src/components/WalletHistory.tsx:502
+#: src/components/WalletHistory.tsx:503
 msgid "No previous transactions"
 msgstr "沒有上一個交易"
 
@@ -426,8 +426,8 @@ msgstr "沒有上一個交易"
 msgid "Node ID"
 msgstr "節點 ID"
 
-#: src/components/WalletHistory.tsx:414
-#: src/components/WalletHistory.tsx:421
+#: src/components/WalletHistory.tsx:415
+#: src/components/WalletHistory.tsx:422
 msgid "Not Available"
 msgstr "尚無"
 
@@ -735,7 +735,7 @@ msgstr "總餘額"
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "交易已成功發送到全節點並包含在記憶池中。"
 
-#: src/components/WalletHistory.tsx:479
+#: src/components/WalletHistory.tsx:480
 msgid "Transactions"
 msgstr "交易"
 

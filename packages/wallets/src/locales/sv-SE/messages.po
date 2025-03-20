@@ -169,7 +169,7 @@ msgstr ""
 msgid "Classic version of Stably USDS as held by Prime Trust"
 msgstr "Klassisk version av Stably USDS som förvaltas av Prime Trust"
 
-#: src/components/WalletHistory.tsx:431
+#: src/components/WalletHistory.tsx:432
 msgid "Claw back expiration"
 msgstr ""
 
@@ -223,7 +223,7 @@ msgstr "Bekräfta"
 msgid "Confirmed"
 msgstr "Bekräftad"
 
-#: src/components/WalletHistory.tsx:420
+#: src/components/WalletHistory.tsx:421
 msgid "Confirmed at Height"
 msgstr "Bekräftad vid höjd"
 
@@ -367,7 +367,7 @@ msgstr "Hantera tokenlista"
 msgid "Memo"
 msgstr "Meddelande"
 
-#: src/components/WalletHistory.tsx:425
+#: src/components/WalletHistory.tsx:426
 msgid "Memos"
 msgstr "Meddelanden"
 
@@ -416,7 +416,7 @@ msgstr "NFT-plånbok"
 msgid "Nickname"
 msgstr "Smeknamn"
 
-#: src/components/WalletHistory.tsx:502
+#: src/components/WalletHistory.tsx:503
 msgid "No previous transactions"
 msgstr "Inga tidigare transaktioner"
 
@@ -424,8 +424,8 @@ msgstr "Inga tidigare transaktioner"
 msgid "Node ID"
 msgstr "Node-ID"
 
-#: src/components/WalletHistory.tsx:414
-#: src/components/WalletHistory.tsx:421
+#: src/components/WalletHistory.tsx:415
+#: src/components/WalletHistory.tsx:422
 msgid "Not Available"
 msgstr "Inte tillgänglig"
 
@@ -733,7 +733,7 @@ msgstr "Totalt saldo"
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "Transaktionen har skickats till en fullständig nod och inkluderats i mempoolen."
 
-#: src/components/WalletHistory.tsx:479
+#: src/components/WalletHistory.tsx:480
 msgid "Transactions"
 msgstr "Transaktioner"
 

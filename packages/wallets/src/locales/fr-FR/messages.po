@@ -169,7 +169,7 @@ msgstr "Réclamation..."
 msgid "Classic version of Stably USDS as held by Prime Trust"
 msgstr ""
 
-#: src/components/WalletHistory.tsx:431
+#: src/components/WalletHistory.tsx:432
 msgid "Claw back expiration"
 msgstr ""
 
@@ -223,7 +223,7 @@ msgstr "Confirmation"
 msgid "Confirmed"
 msgstr "Confirmé"
 
-#: src/components/WalletHistory.tsx:420
+#: src/components/WalletHistory.tsx:421
 msgid "Confirmed at Height"
 msgstr "Confirmé à la Hauteur"
 
@@ -367,7 +367,7 @@ msgstr "Gérer les types de jetons"
 msgid "Memo"
 msgstr "Note"
 
-#: src/components/WalletHistory.tsx:425
+#: src/components/WalletHistory.tsx:426
 msgid "Memos"
 msgstr "Notes"
 
@@ -416,7 +416,7 @@ msgstr "Portefeuille NFT"
 msgid "Nickname"
 msgstr "Surnom"
 
-#: src/components/WalletHistory.tsx:502
+#: src/components/WalletHistory.tsx:503
 msgid "No previous transactions"
 msgstr "Aucune transaction précédente"
 
@@ -424,8 +424,8 @@ msgstr "Aucune transaction précédente"
 msgid "Node ID"
 msgstr "ID du nœud"
 
-#: src/components/WalletHistory.tsx:414
-#: src/components/WalletHistory.tsx:421
+#: src/components/WalletHistory.tsx:415
+#: src/components/WalletHistory.tsx:422
 msgid "Not Available"
 msgstr "Non Disponible"
 
@@ -733,7 +733,7 @@ msgstr "Solde total"
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "La transaction a été transmise au réseau et est maintenant incluse dans la mempool."
 
-#: src/components/WalletHistory.tsx:479
+#: src/components/WalletHistory.tsx:480
 msgid "Transactions"
 msgstr "Transactions"
 

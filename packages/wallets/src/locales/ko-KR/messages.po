@@ -169,7 +169,7 @@ msgstr ""
 msgid "Classic version of Stably USDS as held by Prime Trust"
 msgstr ""
 
-#: src/components/WalletHistory.tsx:431
+#: src/components/WalletHistory.tsx:432
 msgid "Claw back expiration"
 msgstr ""
 
@@ -223,7 +223,7 @@ msgstr "승인"
 msgid "Confirmed"
 msgstr "승인됨"
 
-#: src/components/WalletHistory.tsx:420
+#: src/components/WalletHistory.tsx:421
 msgid "Confirmed at Height"
 msgstr "높이에서 승인"
 
@@ -367,7 +367,7 @@ msgstr ""
 msgid "Memo"
 msgstr ""
 
-#: src/components/WalletHistory.tsx:425
+#: src/components/WalletHistory.tsx:426
 msgid "Memos"
 msgstr ""
 
@@ -416,7 +416,7 @@ msgstr ""
 msgid "Nickname"
 msgstr "닉네임"
 
-#: src/components/WalletHistory.tsx:502
+#: src/components/WalletHistory.tsx:503
 msgid "No previous transactions"
 msgstr "거래 내역이 없습니다"
 
@@ -424,8 +424,8 @@ msgstr "거래 내역이 없습니다"
 msgid "Node ID"
 msgstr "노드 ID"
 
-#: src/components/WalletHistory.tsx:414
-#: src/components/WalletHistory.tsx:421
+#: src/components/WalletHistory.tsx:415
+#: src/components/WalletHistory.tsx:422
 msgid "Not Available"
 msgstr "사용할 수 없음"
 
@@ -733,7 +733,7 @@ msgstr "총 잔고"
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr ""
 
-#: src/components/WalletHistory.tsx:479
+#: src/components/WalletHistory.tsx:480
 msgid "Transactions"
 msgstr ""
 

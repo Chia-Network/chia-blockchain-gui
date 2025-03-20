@@ -169,7 +169,7 @@ msgstr "Lunastetaan..."
 msgid "Classic version of Stably USDS as held by Prime Trust"
 msgstr "Classic USDS Prime Trustin hallinnassa"
 
-#: src/components/WalletHistory.tsx:431
+#: src/components/WalletHistory.tsx:432
 msgid "Claw back expiration"
 msgstr "Takaisinvedon vanhentuminen"
 
@@ -223,7 +223,7 @@ msgstr "Vahvista"
 msgid "Confirmed"
 msgstr "Vahvistettu"
 
-#: src/components/WalletHistory.tsx:420
+#: src/components/WalletHistory.tsx:421
 msgid "Confirmed at Height"
 msgstr "Vahvistettu korkeudessa"
 
@@ -367,7 +367,7 @@ msgstr "Hallitse tokenilistaa"
 msgid "Memo"
 msgstr "Muistio"
 
-#: src/components/WalletHistory.tsx:425
+#: src/components/WalletHistory.tsx:426
 msgid "Memos"
 msgstr "Muistiot"
 
@@ -416,7 +416,7 @@ msgstr "NFT-Lompakko"
 msgid "Nickname"
 msgstr "Alias"
 
-#: src/components/WalletHistory.tsx:502
+#: src/components/WalletHistory.tsx:503
 msgid "No previous transactions"
 msgstr "Ei aiempia transaktioita"
 
@@ -424,8 +424,8 @@ msgstr "Ei aiempia transaktioita"
 msgid "Node ID"
 msgstr "Noodin tunnus"
 
-#: src/components/WalletHistory.tsx:414
-#: src/components/WalletHistory.tsx:421
+#: src/components/WalletHistory.tsx:415
+#: src/components/WalletHistory.tsx:422
 msgid "Not Available"
 msgstr "Ei Saatavilla"
 
@@ -733,7 +733,7 @@ msgstr "Kokonaissaldo"
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "Transaktio on onnistuneesti lähetetty noodille ja sisällytetty mempooliin."
 
-#: src/components/WalletHistory.tsx:479
+#: src/components/WalletHistory.tsx:480
 msgid "Transactions"
 msgstr "Transaktiot"
 
