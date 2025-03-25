@@ -21,7 +21,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@babel/runtime": "7.25.6",
+    "@babel/runtime": "7.27.0",
     "@chia-network/icons": "1.0.0",
     "@lingui/macro": "4.11.4",
     "@rehooks/local-storage": "2.4.4",
