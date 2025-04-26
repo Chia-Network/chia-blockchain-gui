@@ -605,8 +605,8 @@ const walletConnectCommands: WalletConnectCommand[] = [
         name: WalletConnectCommandParamName.OFFER,
         label: <Trans>Wallet Ids and Amounts</Trans>,
         type: 'object',
-        displayComponent: (value, params, values, onChange) => (
-          <WalletConnectCreateOfferPreview value={value} params={params} values={values} onChange={onChange} />
+        displayComponent: (value, _params, values, onChange) => (
+          <WalletConnectCreateOfferPreview value={value} values={values} onChange={onChange} />
         ),
       },
       {
@@ -614,6 +614,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
         label: <Trans>Driver Dict</Trans>,
         type: 'object',
         displayComponent: (value) => <>{JSON.stringify(value)}</>,
+        isOptional: true,
       },
       {
         name: WalletConnectCommandParamName.VALIDATE_ONLY,
