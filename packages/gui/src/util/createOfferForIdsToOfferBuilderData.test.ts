@@ -144,7 +144,8 @@ describe('createOfferForIdsToOfferBuilderData', () => {
       });
     });
   });
-  describe('when offering XCH for an NFT', () => {
+
+  describe('when requesting an unknown CAT for XCH', () => {
     it('should return a valid offer builder data object', () => {
       const calledLookupByWalletIdWithIds: string[] = [];
       const assetIdMapEntriesByWalletId: Record<string, AssetIdMapEntry> = {
@@ -165,22 +166,87 @@ describe('createOfferForIdsToOfferBuilderData', () => {
       };
 
       const walletIdsAndAmounts = {
-        1: -3_000_000_000_000,
-        '8d3ed4c44a1ad053907044f12c8ba0f6a4fdad4eeff585ec76580b50a8de3d2d': 1,
+        1: -2_000_000_000_000,
+        f17f88130c63522821f1a75466849354eee69c414c774bd9f3873ab643e9574d: 1234,
       };
 
-      chiaCore.mojoToChia.mockReturnValue(new BigNumber(3));
+      chiaCore.mojoToChia.mockReturnValue(new BigNumber(2));
+      chiaCore.mojoToCAT.mockReturnValue(new BigNumber(1.234));
 
       const result = createOfferForIdsToOfferBuilderData(walletIdsAndAmounts, lookupByWalletId);
 
-      expect(calledLookupByWalletIdWithIds).toEqual([
-        '1',
-        '8d3ed4c44a1ad053907044f12c8ba0f6a4fdad4eeff585ec76580b50a8de3d2d',
-      ]);
+      expect(calledLookupByWalletIdWithIds).toEqual(['1', '2']);
 
       expect(result).toEqual({
         offered: {
-          xch: [{ amount: '3' }],
+          xch: [
+            {
+              amount: '2',
+            },
+          ],
+          tokens: [],
+          nfts: [],
+          fee: [],
+        },
+        requested: {
+          xch: [],
+          tokens: [
+            {
+              amount: '1.234',
+              assetId: 'f17f88130c63522821f1a75466849354eee69c414c774bd9f3873ab643e9574d',
+            },
+          ],
+          nfts: [],
+          fee: [],
+        },
+      });
+    });
+  });
+
+  describe('when requesting an unknown NFT for XCH with a DriverDict', () => {
+    it('should return a valid offer builder data object', () => {
+      const calledLookupByWalletIdWithIds: string[] = [];
+      const assetIdMapEntriesByWalletId: Record<string, AssetIdMapEntry> = {
+        1: {
+          walletId: 1,
+          walletType: 0, // STANDARD_WALLET
+          isVerified: true,
+          name: 'Chia',
+          symbol: 'XCH',
+          displayName: 'XCH',
+          assetId: 'xch',
+        },
+      };
+
+      const lookupByWalletId = (walletId: string) => {
+        calledLookupByWalletIdWithIds.push(walletId);
+        return assetIdMapEntriesByWalletId[walletId];
+      };
+
+      const walletIdsAndAmounts = {
+        1: -2_000_000_000_000,
+        f17f88130c63522821f1a75466849354eee69c414c774bd9f3873ab643e9574d: 1,
+      };
+      const driverDict = {
+        f17f88130c63522821f1a75466849354eee69c414c774bd9f3873ab643e9574d: {
+          type: 'singleton' as const,
+          launcherId: '8d3ed4c44a1ad053907044f12c8ba0f6a4fdad4eeff585ec76580b50a8de3d2d',
+        },
+      };
+
+      chiaCore.mojoToChia.mockReturnValue(new BigNumber(2));
+
+      const result = createOfferForIdsToOfferBuilderData(walletIdsAndAmounts, lookupByWalletId, undefined, driverDict);
+
+      expect(calledLookupByWalletIdWithIds).toEqual(['1', '2']);
+
+      expect(result).toEqual({
+        offered: {
+          xch: [
+            {
+              amount: '2',
+            },
+          ],
           tokens: [],
           nfts: [],
           fee: [],
@@ -198,6 +264,7 @@ describe('createOfferForIdsToOfferBuilderData', () => {
       });
     });
   });
+
   describe('when the amount is NaN', () => {
     it('should throw an error', () => {
       const walletIdsAndAmounts = {
