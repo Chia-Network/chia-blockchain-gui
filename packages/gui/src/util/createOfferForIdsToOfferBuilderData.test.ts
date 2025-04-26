@@ -175,7 +175,10 @@ describe('createOfferForIdsToOfferBuilderData', () => {
 
       const result = createOfferForIdsToOfferBuilderData(walletIdsAndAmounts, lookupByWalletId);
 
-      expect(calledLookupByWalletIdWithIds).toEqual(['1', '2']);
+      expect(calledLookupByWalletIdWithIds).toEqual([
+        '1',
+        'f17f88130c63522821f1a75466849354eee69c414c774bd9f3873ab643e9574d',
+      ]);
 
       expect(result).toEqual({
         offered: {
@@ -238,7 +241,10 @@ describe('createOfferForIdsToOfferBuilderData', () => {
 
       const result = createOfferForIdsToOfferBuilderData(walletIdsAndAmounts, lookupByWalletId, undefined, driverDict);
 
-      expect(calledLookupByWalletIdWithIds).toEqual(['1', '2']);
+      expect(calledLookupByWalletIdWithIds).toEqual([
+        '1',
+        'f17f88130c63522821f1a75466849354eee69c414c774bd9f3873ab643e9574d',
+      ]);
 
       expect(result).toEqual({
         offered: {
