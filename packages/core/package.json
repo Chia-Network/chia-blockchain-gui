@@ -99,7 +99,7 @@
     "react-hook-form": "7.45.4",
     "react-router": "6.15.0",
     "react-router-dom": "6.15.0",
-    "rollup": "4.28.1",
+    "rollup": "4.40.1",
     "rollup-plugin-node-externals": "7.1.2",
     "styled-components": "6.0.7",
     "typescript": "5.7.3"
