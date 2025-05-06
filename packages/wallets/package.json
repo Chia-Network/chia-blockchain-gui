@@ -27,7 +27,7 @@
     "@rehooks/local-storage": "2.4.4",
     "bignumber.js": "9.1.1",
     "bytes-iec": "3.1.1",
-    "core-js": "3.32.1",
+    "core-js": "3.42.0",
     "is-electron": "2.2.2",
     "isomorphic-fetch": "3.0.0",
     "lodash": "4.17.21",
