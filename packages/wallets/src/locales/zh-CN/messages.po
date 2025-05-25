@@ -325,7 +325,8 @@ msgid "HD or Hierarchical Deterministic keys are a type of public key/private ke
 msgstr "HD（分层确定性）密钥是一种公钥/私钥方案，其中一个私钥可以有几乎无限数量的不同公钥（因此也有多个钱包接收地址），而所有这些地址最终都可以由单个私钥进行支出。"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:47
-msgid "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a\n"
+msgid ""
+"If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a\n"
 "higher fee."
 msgstr "如果希望加快交易速度，请删除未确认的交易，并使用更高的手续费重试。"
 
@@ -654,7 +655,8 @@ msgid "The recipient of this transaction will need to have valid credentials in 
 msgstr "交易的接收方将需要有效的凭证才能领取发送的资产。请参阅上面的CR CAT限制。"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:44
-msgid "The transaction could not be immediately included in the mempool because the specified fee is too low. The\n"
+msgid ""
+"The transaction could not be immediately included in the mempool because the specified fee is too low. The\n"
 "transaction will be retried periodically, and may be included in the mempool once fees are lower, or if\n"
 "space becomes available."
 msgstr "由于指定的手续费过低，该交易无法立即添加到内存池中。该交易将定期重试，并在要求的手续费变低或内存池空间可用时被添加到内存池中。"
@@ -664,7 +666,8 @@ msgstr "由于指定的手续费过低，该交易无法立即添加到内存池
 #~ msgstr "The transaction could not be immediately included in the mempool because the specified fee is too low. The transaction will be retried periodically, and may be included in the mempool once fees are lower, or if space becomes available."
 
 #: src/components/WalletSendTransactionResultDialog.tsx:38
-msgid "The transaction is pending inclusion in the mempool because it conflicts with one or more other transactions\n"
+msgid ""
+"The transaction is pending inclusion in the mempool because it conflicts with one or more other transactions\n"
 "already in the mempool. The transaction will be retried periodically, and may be included in the mempool if\n"
 "the conflicting transactions are removed."
 msgstr "这笔交易暂未添加到内存池中，因为它与内存池中已有的一笔或多笔交易存在冲突。交易将会定期重试，如果冲突的交易被移除，则这笔交易可能会添加到内存池中。"
@@ -806,4 +809,3 @@ msgstr "您拥有来自正确授权提供者的这个可验证证件"
 #: src/components/WalletImport.tsx:73
 msgid "Your pasted list does not include {mnemonicWordCount} valid mnemonic words."
 msgstr "粘贴列表中未包含 {mnemonicWordCount} 个有效助记词。"
-
