@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { i18n } from '../../../config/locales';
+
 export type KeyDetailData = {
   index: number;
   label?: string;
@@ -27,28 +29,30 @@ export default function KeyDetail(props: KeyDetailProps) {
 
       <div className="grid gap-4 mb-4">
         <div className="flex flex-col gap-1">
-          <span className="text-gray-500 dark:text-gray-400">Public Key</span>
+          <span className="text-gray-500 dark:text-gray-400">{i18n._(/* i18n */ { id: 'Public Key' })}</span>
           <span className="break-all">{data.publicKey}</span>
         </div>
 
         <div className="flex flex-col gap-1">
-          <span className="text-gray-500 dark:text-gray-400">Farmer Public Key</span>
+          <span className="text-gray-500 dark:text-gray-400">{i18n._(/* i18n */ { id: 'Farmer Public Key' })}</span>
           <span className="break-all">{data.farmerPublicKey}</span>
         </div>
 
         <div className="flex flex-col gap-1">
-          <span className="text-gray-500 dark:text-gray-400">Pool Public Key</span>
+          <span className="text-gray-500 dark:text-gray-400">{i18n._(/* i18n */ { id: 'Pool Public Key' })}</span>
           <span className="break-all">{data.poolPublicKey}</span>
         </div>
       </div>
 
-      <p className="text-red-500 dark:text-red-400 font-bold text-center my-4">NEVER SHARE THESE WITH ANYONE</p>
+      <p className="text-red-500 dark:text-red-400 font-bold text-center my-4">
+        {i18n._(/* i18n */ { id: 'NEVER SHARE THESE WITH ANYONE' })}
+      </p>
 
       <div className="grid gap-4">
         <div className="border border-gray-200 dark:border-gray-700 rounded-lg">
           <details className="group">
             <summary className="flex items-center justify-between p-4 cursor-pointer list-none">
-              <span className="text-gray-500 dark:text-gray-400">Secret Key</span>
+              <span className="text-gray-500 dark:text-gray-400">{i18n._(/* i18n */ { id: 'Secret Key' })}</span>
               <svg
                 className="w-4 h-4 transition-transform group-open:rotate-180"
                 fill="none"
@@ -67,7 +71,7 @@ export default function KeyDetail(props: KeyDetailProps) {
         <div className="border border-gray-200 dark:border-gray-700 rounded-lg">
           <details className="group">
             <summary className="flex items-center justify-between p-4 cursor-pointer list-none">
-              <span className="text-gray-500 dark:text-gray-400">Seed Phrase</span>
+              <span className="text-gray-500 dark:text-gray-400">{i18n._(/* i18n */ { id: 'Seed Phrase' })}</span>
               <svg
                 className="w-4 h-4 transition-transform group-open:rotate-180"
                 fill="none"

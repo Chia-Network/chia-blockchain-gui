@@ -44,6 +44,393 @@ msgid "Would you like to transfer {count} NFTs to a new owner?"
 msgstr "Would you like to transfer {count} NFTs to a new owner?"
 
 #. js-lingui-explicit-id
+#: src/electron/dialogs/About/About.tsx:72
+msgid "Report an issue"
+msgstr "Report an issue"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:34
+msgid "Confirm Remove Plot Directory"
+msgstr "Confirm Remove Plot Directory"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:36
+msgid "Confirm Send Transaction"
+msgstr "Confirm Send Transaction"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:38
+msgid "Confirm Delete Plot"
+msgstr "Confirm Delete Plot"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:40
+msgid "Confirm Add Plot Directory"
+msgstr "Confirm Add Plot Directory"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:43
+msgid "Confirm NFT Transfer"
+msgstr "Confirm NFT Transfer"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:46
+msgid "Confirm Disconnect"
+msgstr "Confirm Disconnect"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:48
+msgid "Confirm Sign Message"
+msgstr "Confirm Sign Message"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:50
+msgid "Confirm Create New Wallet"
+msgstr "Confirm Create New Wallet"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:52
+msgid "Confirm Set Auto Claim"
+msgstr "Confirm Set Auto Claim"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:54
+#: src/electron/dialogs/Confirm/Confirm.tsx:64
+msgid "Confirm Set Payout Instructions"
+msgstr "Confirm Set Payout Instructions"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:56
+msgid "Confirm Move NFT to DID"
+msgstr "Confirm Move NFT to DID"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:58
+msgid "Confirm Move NFTs to DID"
+msgstr "Confirm Move NFTs to DID"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:60
+msgid "Confirm Create Offer"
+msgstr "Confirm Create Offer"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:62
+msgid "Confirm Open Connection"
+msgstr "Confirm Open Connection"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:66
+msgid "Confirm Delete Wallet"
+msgstr "Confirm Delete Wallet"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:68
+#: src/electron/main.tsx:595
+msgid "Confirm"
+msgstr "Confirm"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:75
+msgid "Please carefully review and confirm this blockchain transaction."
+msgstr "Please carefully review and confirm this blockchain transaction."
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:77
+msgid "Please carefully review and confirm this CAT spend."
+msgstr "Please carefully review and confirm this CAT spend."
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:80
+msgid "Please carefully review and confirm this NFT transfer."
+msgstr "Please carefully review and confirm this NFT transfer."
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:83
+msgid "Please carefully review and confirm this offer creation. When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or cancelled, resulting in your spendable balance changing."
+msgstr "Please carefully review and confirm this offer creation. When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or cancelled, resulting in your spendable balance changing."
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:88
+msgid "Please carefully review and confirm this offer acceptance."
+msgstr "Please carefully review and confirm this offer acceptance."
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:90
+msgid "Please carefully review and confirm this offer cancellation."
+msgstr "Please carefully review and confirm this offer cancellation."
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:93
+msgid "Are you sure you want to disconnect?"
+msgstr "Are you sure you want to disconnect?"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:95
+msgid "Are you sure you want to stop plotting? The plot cannot be recovered."
+msgstr "Are you sure you want to stop plotting? The plot cannot be recovered."
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:97
+msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
+msgstr "Are you sure you want to delete the plot? The plot cannot be recovered."
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:99
+msgid "Are you sure you want to remove the plot directory?"
+msgstr "Are you sure you want to remove the plot directory?"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:102
+msgid "Are you sure you want to sign this message?"
+msgstr "Are you sure you want to sign this message?"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:104
+msgid "Are you sure you want to create a new wallet?"
+msgstr "Are you sure you want to create a new wallet?"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:106
+msgid "Are you sure you want to set auto claim?"
+msgstr "Are you sure you want to set auto claim?"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:108
+#: src/electron/dialogs/Confirm/Confirm.tsx:116
+msgid "Are you sure you want to set payout instructions?"
+msgstr "Are you sure you want to set payout instructions?"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:110
+msgid "Are you sure you want to move this NFT to the specified profile?"
+msgstr "Are you sure you want to move this NFT to the specified profile?"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:112
+msgid "Are you sure you want to move these NFTs to the specified profile?"
+msgstr "Are you sure you want to move these NFTs to the specified profile?"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:114
+msgid "Are you sure you want to open a connection to the specified node?"
+msgstr "Are you sure you want to open a connection to the specified node?"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:118
+msgid "Are you sure you want to delete this wallet?"
+msgstr "Are you sure you want to delete this wallet?"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:120
+msgid "Please review and confirm this action."
+msgstr "Please review and confirm this action."
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:128
+msgid "Send"
+msgstr "Send"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:130
+msgid "Stop"
+msgstr "Stop"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:133
+msgid "Delete"
+msgstr "Delete"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:135
+msgid "Add"
+msgstr "Add"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:138
+msgid "Transfer"
+msgstr "Transfer"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:141
+msgid "Disconnect"
+msgstr "Disconnect"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:143
+msgid "Connect"
+msgstr "Connect"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:146
+msgid "Sign"
+msgstr "Sign"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:148
+#: src/electron/dialogs/Confirm/Confirm.tsx:156
+msgid "Create"
+msgstr "Create"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:151
+msgid "Set"
+msgstr "Set"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:154
+msgid "Move"
+msgstr "Move"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:158
+msgid "Proceed"
+msgstr "Proceed"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:174
+#: src/electron/dialogs/Confirm/Confirm.tsx:188
+#: src/electron/dialogs/Confirm/Confirm.tsx:258
+msgid "Address"
+msgstr "Address"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:177
+#: src/electron/dialogs/Confirm/Confirm.tsx:189
+msgid "Amount"
+msgstr "Amount"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:182
+#: src/electron/dialogs/Confirm/Confirm.tsx:192
+#: src/electron/dialogs/Confirm/Confirm.tsx:206
+#: src/electron/dialogs/Confirm/Confirm.tsx:214
+#: src/electron/dialogs/Confirm/Confirm.tsx:252
+#: src/electron/dialogs/Confirm/Confirm.tsx:271
+#: src/electron/dialogs/Confirm/Confirm.tsx:280
+#: src/electron/dialogs/Confirm/Confirm.tsx:288
+msgid "Fee"
+msgstr "Fee"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:201
+msgid "Target Address"
+msgstr "Target Address"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:219
+msgid "Filename"
+msgstr "Filename"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:222
+msgid "Directory"
+msgstr "Directory"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:227
+msgid "Payout Instructions"
+msgstr "Payout Instructions"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:233
+msgid "Enabled"
+msgstr "Enabled"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:236
+msgid "Transaction Fee"
+msgstr "Transaction Fee"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:241
+msgid "Min Amount"
+msgstr "Min Amount"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:247
+msgid "Name"
+msgstr "Name"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:248
+msgid "Type"
+msgstr "Type"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:249
+msgid "Asset ID"
+msgstr "Asset ID"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:259
+#: src/electron/dialogs/Confirm/Confirm.tsx:264
+msgid "Message"
+msgstr "Message"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:263
+msgid "Id"
+msgstr "Id"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:268
+#: src/electron/dialogs/Confirm/Confirm.tsx:277
+msgid "DID"
+msgstr "DID"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:294
+msgid "Host"
+msgstr "Host"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:295
+msgid "Port"
+msgstr "Port"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:299
+msgid "Fingerprint"
+msgstr "Fingerprint"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:373
+#: src/electron/main.tsx:761
+msgid "Cancel"
+msgstr "Cancel"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/KeyDetail/KeyDetail.tsx:32
+msgid "Public Key"
+msgstr "Public Key"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/KeyDetail/KeyDetail.tsx:37
+msgid "Farmer Public Key"
+msgstr "Farmer Public Key"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/KeyDetail/KeyDetail.tsx:42
+msgid "Pool Public Key"
+msgstr "Pool Public Key"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/KeyDetail/KeyDetail.tsx:48
+msgid "NEVER SHARE THESE WITH ANYONE"
+msgstr "NEVER SHARE THESE WITH ANYONE"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/KeyDetail/KeyDetail.tsx:55
+msgid "Secret Key"
+msgstr "Secret Key"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/KeyDetail/KeyDetail.tsx:74
+msgid "Seed Phrase"
+msgstr "Seed Phrase"
+
+#. js-lingui-explicit-id
 #: src/electron/main.tsx:405
 #: src/electron/main.tsx:594
 msgid "No"
@@ -77,11 +464,6 @@ msgstr ""
 " {commands}"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:595
-msgid "Confirm"
-msgstr "Confirm"
-
-#. js-lingui-explicit-id
 #: src/electron/main.tsx:597
 msgid "Are you sure you want to quit?"
 msgstr "Are you sure you want to quit?"
@@ -90,11 +472,6 @@ msgstr "Are you sure you want to quit?"
 #: src/electron/main.tsx:602
 msgid "Keep service running in the background"
 msgstr "Keep service running in the background"
-
-#. js-lingui-explicit-id
-#: src/electron/main.tsx:761
-msgid "Cancel"
-msgstr "Cancel"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:761
@@ -275,11 +652,6 @@ msgstr "Check for updates..."
 #: src/electron/main.tsx:458
 #~ msgid "Details"
 #~ msgstr "Details"
-
-#. js-lingui-explicit-id
-#: src/electron/main.tsx:465
-#~ msgid "Proceed"
-#~ msgstr "Proceed"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:540

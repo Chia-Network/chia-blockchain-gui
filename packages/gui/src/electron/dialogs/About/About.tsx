@@ -1,8 +1,7 @@
 import React from 'react';
 
 import icon from '../../../assets/img/chia_circle.svg';
-
-const chiaUrl = 'https://chia.net';
+import { i18n } from '../../../config/locales';
 
 export type AboutProps = {
   version: string;
@@ -26,7 +25,7 @@ export default function About(props: AboutProps) {
 
   return (
     <div className="p-4 flex flex-col justify-center items-center text-gray-900 dark:text-gray-100">
-      <a href={chiaUrl} className="no-underline text-inherit hover:no-underline">
+      <a href="https://chia.net" className="no-underline text-inherit hover:no-underline">
         <div className="w-[200px] mx-auto">
           <img src={icon as unknown as string} alt="Chia Logo" className="h-[200px] mb-8" />
         </div>
@@ -70,7 +69,7 @@ export default function About(props: AboutProps) {
         href="https://github.com/Chia-Network/chia-blockchain/issues"
         className="absolute right-2 bottom-2 text-blue-500 dark:text-blue-400"
       >
-        Report an issue
+        {i18n._(/* i18n */ { id: 'Report an issue' })}
       </a>
     </div>
   );
