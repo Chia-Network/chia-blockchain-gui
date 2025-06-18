@@ -125,7 +125,7 @@ msgid "Dark"
 msgstr "暗め"
 
 #: src/screens/SelectKey/SelectKey.tsx:128
-#: src/screens/SelectKey/SelectKeyItem.tsx:114
+#: src/screens/SelectKey/SelectKeyItem.tsx:113
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:183
 msgid "Delete"
 msgstr "削除"
@@ -146,7 +146,7 @@ msgstr "鍵 {fingerprint} を削除"
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
 msgstr "全ての鍵を削除するとどれも復元することができなくなりますので、必ずバックアップを取ってください。本当に続行しますか？"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:106
+#: src/screens/SelectKey/SelectKeyItem.tsx:105
 msgid "Details"
 msgstr "詳細"
 
@@ -379,7 +379,7 @@ msgstr "アプリの再読み込み"
 msgid "Remove Icon"
 msgstr "アイコンを削除"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:98
+#: src/screens/SelectKey/SelectKeyItem.tsx:97
 msgid "Rename"
 msgstr "名称変更"
 
@@ -535,7 +535,7 @@ msgid "Wallet"
 msgstr "ウォレット"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:63
-#: src/screens/SelectKey/SelectKeyItem.tsx:234
+#: src/screens/SelectKey/SelectKeyItem.tsx:233
 msgid "Wallet {0}"
 msgstr "ウォレット {0}"
 

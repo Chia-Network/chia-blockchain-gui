@@ -30,7 +30,7 @@ export function getTitle(command: string) {
     case 'chia_wallet.send_transaction':
       return 'Confirm Send Transaction';
     case 'chia_harvester.delete_plot':
-      return 'ConfirmDelete Plot';
+      return 'Confirm Delete Plot';
     case 'chia_harvester.add_plot_directory':
       return 'Confirm Add Plot Directory';
     case 'chia_wallet.nft_transfer_nft':
@@ -67,18 +67,18 @@ export function getTitle(command: string) {
 function getMessage(command: string) {
   switch (command) {
     case 'chia_wallet.send_transaction':
-      return 'Please carefully review and confirm this blockchain transaction. This action cannot be undone.';
+      return 'Please carefully review and confirm this blockchain transaction.';
     case 'chia_wallet.cat_spend':
-      return 'Please carefully review and confirm this CAT spend. This action cannot be undone.';
+      return 'Please carefully review and confirm this CAT spend.';
     case 'chia_wallet.nft_transfer_nft':
     case 'chia_wallet.nft_transfer_bulk':
-      return 'Please carefully review and confirm this NFT transfer. This action cannot be undone.';
+      return 'Please carefully review and confirm this NFT transfer.';
     case 'chia_wallet.create_offer_for_ids':
       return 'Please carefully review and confirm this offer creation. When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or cancelled, resulting in your spendable balance changing.';
     case 'chia_wallet.take_offer':
-      return 'Please carefully review and confirm this offer acceptance. This action cannot be undone.';
+      return 'Please carefully review and confirm this offer acceptance.';
     case 'chia_wallet.cancel_offer':
-      return 'Please carefully review and confirm this offer cancellation. This action cannot be undone.';
+      return 'Please carefully review and confirm this offer cancellation.';
     case 'chia_full_node.close_connection':
     case 'chia_farmer.close_connection':
       return 'Are you sure you want to disconnect?';

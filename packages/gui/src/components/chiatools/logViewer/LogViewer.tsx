@@ -1,6 +1,6 @@
 import { Flex, useShowError } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import { Box, CircularProgress, Typography, TextField, Button } from '@mui/material';
+import { Box, CircularProgress, Typography, Button } from '@mui/material';
 import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import styled from 'styled-components';
 

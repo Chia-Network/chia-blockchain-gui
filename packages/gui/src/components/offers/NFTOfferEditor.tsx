@@ -25,7 +25,6 @@ import {
   useColorModeValue,
   useCurrencyCode,
   useLocale,
-  useOpenDialog,
   useShowError,
 } from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
@@ -539,7 +538,6 @@ export default function NFTOfferEditor(props: NFTOfferEditorProps) {
 
   const { nfts } = useNFTs();
   const currencyCode = useCurrencyCode();
-  const openDialog = useOpenDialog();
   const errorDialog = useShowError();
   const navigate = useNavigate();
   const theme = useTheme();

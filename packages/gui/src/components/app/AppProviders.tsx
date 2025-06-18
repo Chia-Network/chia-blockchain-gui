@@ -15,7 +15,6 @@ import {
 } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Typography } from '@mui/material';
-import isElectron from 'is-electron';
 import React, { ReactNode, useEffect, useState, Suspense } from 'react';
 import { Provider } from 'react-redux';
 import { Outlet } from 'react-router-dom';

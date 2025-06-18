@@ -125,7 +125,7 @@ msgid "Dark"
 msgstr "Тёмный"
 
 #: src/screens/SelectKey/SelectKey.tsx:128
-#: src/screens/SelectKey/SelectKeyItem.tsx:114
+#: src/screens/SelectKey/SelectKeyItem.tsx:113
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:183
 msgid "Delete"
 msgstr "Удалить"
@@ -146,7 +146,7 @@ msgstr "Удалить ключ {fingerprint}"
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
 msgstr "Удаление всех ключей приведет к безвозвратному удалению ключей с вашего компьютера, убедитесь, что у вас есть резервные копии. Вы уверены что хотите продолжить?"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:106
+#: src/screens/SelectKey/SelectKeyItem.tsx:105
 msgid "Details"
 msgstr "Детали"
 
@@ -379,7 +379,7 @@ msgstr "Перезагрузить приложение"
 msgid "Remove Icon"
 msgstr ""
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:98
+#: src/screens/SelectKey/SelectKeyItem.tsx:97
 msgid "Rename"
 msgstr "Переименовать"
 
@@ -535,7 +535,7 @@ msgid "Wallet"
 msgstr "Кошелёк"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:63
-#: src/screens/SelectKey/SelectKeyItem.tsx:234
+#: src/screens/SelectKey/SelectKeyItem.tsx:233
 msgid "Wallet {0}"
 msgstr "Кошелёк {0}"
 

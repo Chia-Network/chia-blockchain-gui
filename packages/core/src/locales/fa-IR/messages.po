@@ -125,7 +125,7 @@ msgid "Dark"
 msgstr "تاریک"
 
 #: src/screens/SelectKey/SelectKey.tsx:128
-#: src/screens/SelectKey/SelectKeyItem.tsx:114
+#: src/screens/SelectKey/SelectKeyItem.tsx:113
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:183
 msgid "Delete"
 msgstr "حذف"
@@ -148,7 +148,7 @@ msgstr ""
 "حذف همه کلیدها آنها را برای همیشه از روی رایانه شما حذف میکند، مطمئن شوید که نسخه پشتیبان دارید.\n"
 " آیا مطمئنید که میخواهید ادامه دهید؟"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:106
+#: src/screens/SelectKey/SelectKeyItem.tsx:105
 msgid "Details"
 msgstr "جزئیات"
 
@@ -381,7 +381,7 @@ msgstr "بارگذاری مجدد برنامه"
 msgid "Remove Icon"
 msgstr "حذف نماد"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:98
+#: src/screens/SelectKey/SelectKeyItem.tsx:97
 msgid "Rename"
 msgstr "تغییر نام"
 
@@ -537,7 +537,7 @@ msgid "Wallet"
 msgstr "کیف پول"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:63
-#: src/screens/SelectKey/SelectKeyItem.tsx:234
+#: src/screens/SelectKey/SelectKeyItem.tsx:233
 msgid "Wallet {0}"
 msgstr "کیف پول {0}"
 

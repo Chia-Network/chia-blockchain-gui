@@ -5,7 +5,6 @@ import {
   AlertDialog,
   Button,
   ButtonLoading,
-  ConfirmDialog,
   CopyToClipboard,
   EstimatedFee,
   FeeTxType,
@@ -41,32 +40,6 @@ const ErrorTextWrapper = styled.div`
     margin-top: 15px;
   }
 `;
-
-/* ========================================================================== */
-/*                     Move to Profile Confirmation Dialog                    */
-/* ========================================================================== */
-
-type NFTMoveToProfileConfirmationDialogProps = {};
-
-function NFTMoveToProfileConfirmationDialog(props: NFTMoveToProfileConfirmationDialogProps) {
-  const { ...rest } = props;
-
-  return (
-    <ConfirmDialog
-      title={<Trans>Confirm Move</Trans>}
-      confirmTitle={<Trans>Yes, move</Trans>}
-      confirmColor="secondary"
-      cancelTitle={<Trans>Cancel</Trans>}
-      {...rest}
-    >
-      <Flex flexDirection="column" gap={3}>
-        <Typography variant="body1">
-          <Trans>Are you sure you want to move this NFT to the specified profile?</Trans>
-        </Typography>
-      </Flex>
-    </ConfirmDialog>
-  );
-}
 
 /* ========================================================================== */
 /*                         NFT Move to Profile Action                         */

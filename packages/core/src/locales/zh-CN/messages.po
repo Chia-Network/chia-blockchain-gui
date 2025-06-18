@@ -125,7 +125,7 @@ msgid "Dark"
 msgstr "深色"
 
 #: src/screens/SelectKey/SelectKey.tsx:128
-#: src/screens/SelectKey/SelectKeyItem.tsx:114
+#: src/screens/SelectKey/SelectKeyItem.tsx:113
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:183
 msgid "Delete"
 msgstr "删除"
@@ -146,7 +146,7 @@ msgstr "删除密钥 {fingerprint}"
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
 msgstr "删除所有密钥将会把密钥从计算机中永久移除，请确保已经将其备份。确定继续？"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:106
+#: src/screens/SelectKey/SelectKeyItem.tsx:105
 msgid "Details"
 msgstr "详情"
 
@@ -379,7 +379,7 @@ msgstr "重新加载程序"
 msgid "Remove Icon"
 msgstr "删除图标"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:98
+#: src/screens/SelectKey/SelectKeyItem.tsx:97
 msgid "Rename"
 msgstr "重命名"
 
@@ -535,7 +535,7 @@ msgid "Wallet"
 msgstr "轻钱包"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:63
-#: src/screens/SelectKey/SelectKeyItem.tsx:234
+#: src/screens/SelectKey/SelectKeyItem.tsx:233
 msgid "Wallet {0}"
 msgstr "钱包 {0}"
 

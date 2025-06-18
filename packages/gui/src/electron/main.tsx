@@ -714,7 +714,9 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
         return { success: false };
       }
 
-      logPath = result.filePaths[0];
+      const filePath = result.filePaths[0];
+
+      logPath = filePath;
 
       // Check file exists
       await fs.promises.access(logPath, fs.constants.F_OK);

@@ -125,7 +125,7 @@ msgid "Dark"
 msgstr "Sombre"
 
 #: src/screens/SelectKey/SelectKey.tsx:128
-#: src/screens/SelectKey/SelectKeyItem.tsx:114
+#: src/screens/SelectKey/SelectKeyItem.tsx:113
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:183
 msgid "Delete"
 msgstr "Supprimer"
@@ -146,7 +146,7 @@ msgstr "Supprimer la clé {fingerprint}"
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
 msgstr "Supprimer toutes les clés va définitivement les enlever de votre ordinateur, assurez-vous d'avoir une sauvegarde. Êtes-vous sûr de vouloir continuer ?"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:106
+#: src/screens/SelectKey/SelectKeyItem.tsx:105
 msgid "Details"
 msgstr "Détails"
 
@@ -379,7 +379,7 @@ msgstr "Relancer l'application"
 msgid "Remove Icon"
 msgstr "Supprimer l'icône"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:98
+#: src/screens/SelectKey/SelectKeyItem.tsx:97
 msgid "Rename"
 msgstr "Renommer"
 
@@ -535,7 +535,7 @@ msgid "Wallet"
 msgstr "Portefeuille"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:63
-#: src/screens/SelectKey/SelectKeyItem.tsx:234
+#: src/screens/SelectKey/SelectKeyItem.tsx:233
 msgid "Wallet {0}"
 msgstr "Porte-monnaie {0}"
 

@@ -24,17 +24,17 @@ msgid "Do you want to burn {count} NFTs?"
 msgstr "NFT を {count} 個焼却しますか？"
 
 #. js-lingui-explicit-id
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:182
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:155
 msgid "{count} transactions have been successfully submitted to the blockchain."
 msgstr "{count} 個の取引をブロックチェーンに送信できました。"
 
 #. js-lingui-explicit-id
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:189
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:162
 msgid "{count} NFTs failed to move."
 msgstr "{count} 個の NFT の移動に失敗しました。"
 
 #. js-lingui-explicit-id
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:381
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:354
 msgid "Would you like to move {count} NFTs to a profile?"
 msgstr ""
 
@@ -89,134 +89,134 @@ msgid "Keep service running in the background"
 msgstr "バックグラウンドでサービスを実行し続ける"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:759
+#: src/electron/main.tsx:761
 msgid "Cancel"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:759
+#: src/electron/main.tsx:761
 msgid "Continue"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:761
+#: src/electron/main.tsx:763
 msgid "Warning"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:762
+#: src/electron/main.tsx:764
 msgid "Log files may contain sensitive information"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:763
+#: src/electron/main.tsx:765
 msgid "Are you sure you want to view the log contents?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:882
-#: src/electron/main.tsx:1090
+#: src/electron/main.tsx:884
+#: src/electron/main.tsx:1092
 msgid "File"
 msgstr "ファイル"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:890
+#: src/electron/main.tsx:892
 msgid "Edit"
 msgstr "編集"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:922
+#: src/electron/main.tsx:924
 msgid "View"
 msgstr "表示"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:931
+#: src/electron/main.tsx:933
 msgid "Developer"
 msgstr "開発者"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:934
+#: src/electron/main.tsx:936
 msgid "Developer Tools"
 msgstr "開発者向けツール"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:942
+#: src/electron/main.tsx:944
 msgid "Trigger Desktop Notification"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:971
+#: src/electron/main.tsx:973
 msgid "Full Screen"
 msgstr "全画面表示"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:978
+#: src/electron/main.tsx:980
 msgid "Window"
 msgstr "ウィンドウ"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:992
+#: src/electron/main.tsx:994
 msgid "Help"
 msgstr "ヘルプ"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:996
+#: src/electron/main.tsx:998
 msgid "Chia Blockchain Wiki"
 msgstr "チアブロックチェーンの Wiki"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1002
+#: src/electron/main.tsx:1004
 msgid "Frequently Asked Questions"
 msgstr "よくある質問"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1008
+#: src/electron/main.tsx:1010
 msgid "Release Notes"
 msgstr "リリースノート"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1014
+#: src/electron/main.tsx:1016
 msgid "Contribute on GitHub"
 msgstr "GitHub で開発協力"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1023
+#: src/electron/main.tsx:1025
 msgid "Report an Issue..."
 msgstr "問題を報告"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1029
+#: src/electron/main.tsx:1031
 msgid "Chat on Discord"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1035
+#: src/electron/main.tsx:1037
 msgid "Follow on Twitter"
 msgstr "Twitter でフォロー"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1047
+#: src/electron/main.tsx:1049
 msgid "Chia"
 msgstr "チア"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1050
-#: src/electron/main.tsx:1146
+#: src/electron/main.tsx:1052
+#: src/electron/main.tsx:1148
 msgid "About Chia Blockchain"
 msgstr "チアブロックチェーンについて"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1056
+#: src/electron/main.tsx:1058
 msgid "Check for Updates..."
 msgstr "更新を確認…"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1105
+#: src/electron/main.tsx:1107
 msgid "Speech"
 msgstr "スピーチ"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1152
+#: src/electron/main.tsx:1154
 msgid "Check for updates..."
 msgstr "更新を確認…"
 
@@ -632,7 +632,7 @@ msgstr "常に許可"
 msgid "Always Reject"
 msgstr "常に拒否"
 
-#: src/components/offers/NFTOfferEditor.tsx:232
+#: src/components/offers/NFTOfferEditor.tsx:231
 #: src/components/offers/OfferEditorConditionsPanel.tsx:129
 #: src/components/offers2/OfferBuilderNFTRoyalties.tsx:121
 #: src/components/offers2/OfferBuilderWalletAmount.tsx:36
@@ -647,8 +647,8 @@ msgstr "金額"
 msgid "Amount before adding royalties"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:592
-#: src/components/offers/OfferEditor.tsx:108
+#: src/components/offers/NFTOfferEditor.tsx:590
+#: src/components/offers/OfferEditor.tsx:96
 msgid "Amount exceeds spendable balance"
 msgstr ""
 
@@ -733,8 +733,8 @@ msgstr "未確認の取引を削除してもよろしいですか?"
 #~ msgstr "本当に接続を解除しますか？"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:64
-msgid "Are you sure you want to move this NFT to the specified profile?"
-msgstr ""
+#~ msgid "Are you sure you want to move this NFT to the specified profile?"
+#~ msgstr ""
 
 #: src/components/addressbook/ContactSummary.tsx:46
 msgid "Are you sure you want to permanently delete this contact? Once deleted, this contact cannot be recovered."
@@ -932,7 +932,7 @@ msgstr "焼却するNFTの確認"
 msgid "Burning a non-fungible token means removing it from circulation by sending it to a verifiably un-spendable address. However, transactions leading up to the burn will remain on the blockchain ledger."
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:308
+#: src/components/offers/NFTOfferEditor.tsx:307
 msgid "Buy an NFT"
 msgstr "NFTを購入する"
 
@@ -961,7 +961,6 @@ msgstr "キャッシュサイズ (GB)"
 #: src/components/fullNode/FullNodeAddConnection.tsx:100
 #: src/components/nfts/MultipleDownloadDialog.tsx:119
 #: src/components/nfts/NFTBurnDialog.tsx:175
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:59
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:57
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:24
 #: src/components/offers/OfferDataEntryDialog.tsx:58
@@ -1159,7 +1158,7 @@ msgstr ""
 
 #: src/components/app/AppVersionWarning.tsx:57
 #: src/components/nfts/MultipleDownloadDialog.tsx:115
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:326
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:299
 #: src/components/nfts/NFTTransferAction.tsx:150
 #: src/components/notification/NotificationAnnouncementDialog.tsx:87
 #: src/components/notification/NotificationSendDialog.tsx:308
@@ -1237,8 +1236,8 @@ msgstr ""
 #~ msgstr "接続解除の確認"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:56
-msgid "Confirm Move"
-msgstr ""
+#~ msgid "Confirm Move"
+#~ msgstr ""
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:239
 msgid "Confirm New Passphrase"
@@ -1406,11 +1405,11 @@ msgstr "NFTプロットを作成"
 msgid "Create a spend bundle to mint multiple NFTs"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:718
+#: src/components/offers/NFTOfferEditor.tsx:716
 msgid "Create an NFT Offer"
 msgstr ""
 
-#: src/components/offers/OfferEditor.tsx:186
+#: src/components/offers/OfferEditor.tsx:174
 #: src/components/offers/OfferManager.tsx:425
 msgid "Create an Offer"
 msgstr "取引依頼を作成"
@@ -1436,8 +1435,8 @@ msgid "Create new DID Wallet"
 msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:150
-#: src/components/offers/NFTOfferEditor.tsx:438
-#: src/components/offers/OfferEditor.tsx:168
+#: src/components/offers/NFTOfferEditor.tsx:437
+#: src/components/offers/OfferEditor.tsx:156
 #: src/components/offers/OfferManager.tsx:407
 #: src/components/offers2/CreateOfferBuilder.tsx:194
 msgid "Create Offer"
@@ -1489,11 +1488,11 @@ msgstr "作成日時"
 msgid "Creator Fee ({0}%)"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:330
+#: src/components/offers/NFTOfferEditor.tsx:329
 msgid "Creator Fee ({royaltyPercentage}%)"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:333
+#: src/components/offers/NFTOfferEditor.tsx:332
 #: src/components/offers/NFTOfferViewer.tsx:521
 msgid "Creator royalty percentage seems high"
 msgstr ""
@@ -2114,7 +2113,7 @@ msgstr ""
 msgid "Failed partials"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:583
+#: src/components/offers/NFTOfferEditor.tsx:581
 msgid "Failed to decode NFT identifier"
 msgstr ""
 
@@ -2231,7 +2230,7 @@ msgid "Features to give you more protection and control over your digital assets
 msgstr ""
 
 #: src/components/nfts/NFTBurnDialog.tsx:167
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:318
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:291
 #: src/components/nfts/NFTTransferAction.tsx:142
 #: src/components/offers/ConfirmOfferCancellation.tsx:109
 #: src/components/offers/NFTOfferViewer.tsx:615
@@ -2268,7 +2267,7 @@ msgstr ""
 msgid "Fee"
 msgstr "手数料"
 
-#: src/components/offers/NFTOfferEditor.tsx:82
+#: src/components/offers/NFTOfferEditor.tsx:81
 #: src/components/offers/OfferEditorConditionsPanel.tsx:387
 msgid "Fee (Optional)"
 msgstr ""
@@ -2772,7 +2771,7 @@ msgstr ""
 msgid "Include Wallet Metadata"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:87
+#: src/components/offers/NFTOfferEditor.tsx:86
 #: src/components/offers/OfferEditorConditionsPanel.tsx:393
 msgid "Including a fee in the offer can help expedite the transaction when the offer is accepted. The recommended minimum fee is 0.000005 XCH (5,000,000 mojos)"
 msgstr ""
@@ -2808,7 +2807,7 @@ msgid ""
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
 
-#: src/components/offers/OfferEditor.tsx:139
+#: src/components/offers/OfferEditor.tsx:127
 #: src/components/offers2/CreateOfferBuilder.tsx:161
 msgid ""
 "Insufficient funds available to create offer. Ensure that your\n"
@@ -2844,7 +2843,7 @@ msgstr ""
 #~ msgid "Invalid metadata url"
 #~ msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:581
+#: src/components/offers/NFTOfferEditor.tsx:579
 msgid "Invalid NFT identifier"
 msgstr ""
 
@@ -3065,7 +3064,7 @@ msgstr ""
 msgid "Load Logs"
 msgstr ""
 
-#: src/components/app/AppProviders.tsx:84
+#: src/components/app/AppProviders.tsx:83
 msgid "Loading configuration"
 msgstr ""
 
@@ -3342,11 +3341,11 @@ msgstr "メモリ使用量を増やすと速度が微上昇します"
 msgid "more space"
 msgstr ""
 
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:329
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:302
 msgid "Move"
 msgstr ""
 
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:373
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:346
 msgid "Move NFT to Profile"
 msgstr ""
 
@@ -3446,7 +3445,7 @@ msgstr ""
 msgid "Next"
 msgstr "次へ"
 
-#: src/components/offers/NFTOfferEditor.tsx:212
+#: src/components/offers/NFTOfferEditor.tsx:211
 #: src/components/offers2/OfferBuilderNFTSection.tsx:44
 #: src/components/settings/Settings.tsx:38
 #: src/components/settings/SettingsNFT.tsx:72
@@ -3472,7 +3471,7 @@ msgstr ""
 msgid "NFT Coin Ids"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:618
+#: src/components/offers/NFTOfferEditor.tsx:616
 msgid "NFT details not available"
 msgstr ""
 
@@ -3490,7 +3489,7 @@ msgstr ""
 msgid "NFT ID"
 msgstr "NFT ID"
 
-#: src/components/offers/NFTOfferEditor.tsx:214
+#: src/components/offers/NFTOfferEditor.tsx:213
 msgid "NFT Identifier"
 msgstr "NFT 識別子"
 
@@ -3502,12 +3501,12 @@ msgstr ""
 msgid "NFT Launcher Id"
 msgstr ""
 
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:204
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:177
 msgid "NFT Move Failed"
 msgstr ""
 
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:179
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:197
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:152
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:170
 msgid "NFT Move Pending"
 msgstr ""
 
@@ -3626,8 +3625,8 @@ msgstr ""
 #: src/components/farm/PoolingHealth.tsx:162
 #: src/components/farm/PoolingHealth.tsx:199
 #: src/components/farm/PoolingHealth.tsx:236
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:131
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:271
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:104
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:244
 #: src/components/plot/add/PlotAddNFT.tsx:96
 msgid "None"
 msgstr "無し"
@@ -4153,7 +4152,7 @@ msgstr ""
 msgid "Please enter a valid numeric fee"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:587
+#: src/components/offers/NFTOfferEditor.tsx:585
 msgid "Please enter an amount"
 msgstr ""
 
@@ -4165,11 +4164,11 @@ msgstr ""
 msgid "Please enter an amount for {catName} token"
 msgstr ""
 
-#: src/components/offers/OfferEditor.tsx:106
+#: src/components/offers/OfferEditor.tsx:94
 msgid "Please enter an amount for each row"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:579
+#: src/components/offers/NFTOfferEditor.tsx:577
 msgid "Please enter an NFT identifier"
 msgstr ""
 
@@ -4196,11 +4195,11 @@ msgstr ""
 msgid "Please restart your harvester in order for any changes to take effect."
 msgstr ""
 
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:155
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:128
 msgid "Please select a profile to move the NFT to."
 msgstr ""
 
-#: src/components/offers/OfferEditor.tsx:104
+#: src/components/offers/OfferEditor.tsx:92
 msgid "Please select an asset for each row"
 msgstr ""
 
@@ -4209,7 +4208,7 @@ msgstr ""
 msgid "Please select an asset for each token"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:585
+#: src/components/offers/NFTOfferEditor.tsx:583
 msgid "Please select an asset type"
 msgstr ""
 
@@ -4814,8 +4813,8 @@ msgstr ""
 
 #: src/components/farm/FarmHealth.tsx:286
 #: src/components/farm/FarmHealth.tsx:348
-#: src/components/offers/NFTOfferEditor.tsx:435
-#: src/components/offers/OfferEditor.tsx:165
+#: src/components/offers/NFTOfferEditor.tsx:434
+#: src/components/offers/OfferEditor.tsx:153
 #: src/components/settings/SettingsIntegration.tsx:391
 #: src/components/signVerify/VerifyMessage.tsx:266
 msgid "Reset"
@@ -5009,7 +5008,7 @@ msgstr ""
 msgid "Select Offer File"
 msgstr ""
 
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:243
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:216
 #: src/components/signVerify/SigningEntityDID.tsx:75
 msgid "Select Profile"
 msgstr ""
@@ -5059,7 +5058,7 @@ msgstr ""
 msgid "Self Pooling"
 msgstr "セルフプーリング"
 
-#: src/components/offers/NFTOfferEditor.tsx:309
+#: src/components/offers/NFTOfferEditor.tsx:308
 msgid "Sell an NFT"
 msgstr ""
 
@@ -5542,11 +5541,11 @@ msgstr "メインネットで必要な最小サイズは k=32 です"
 msgid "The net proceeds include the asking price, minus any associated creator fees (if the NFT has royalty payments enabled)."
 msgstr ""
 
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:205
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:178
 msgid "The NFT move failed: {err}"
 msgstr ""
 
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:198
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:171
 msgid "The NFT move transaction has been successfully submitted to the blockchain."
 msgstr ""
 
@@ -5611,11 +5610,11 @@ msgstr ""
 msgid "The total amount offered includes the offered purchase price, plus the optional offer creation fee.<0/>If the NFT has royalty payments enabled, those creator fees will be paid from the offered purchase price."
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:396
+#: src/components/offers/NFTOfferEditor.tsx:395
 msgid "The total amount offered includes the price you're willing to pay for the NFT, plus the optional offer creation fee. One or more coins totalling at least the amount shown below will be deducted from your spendable balance upon offer creation.<0/>If the NFT has royalty payments enabled, those creator fees will be paid by the party that accepts the offer."
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:387
+#: src/components/offers/NFTOfferEditor.tsx:386
 msgid "The total amount requested includes the asking price, plus the associated creator fees (if the NFT has royalty payments enabled). Creator fees will be paid by the party that accepts the offer.<0/>The optional offer creation fee is not included in this total, and will be deducted from your spendable balance upon offer creation."
 msgstr ""
 
@@ -5651,7 +5650,7 @@ msgstr ""
 msgid "These plots are invalid, you might want to delete them."
 msgstr "これらの耕地には問題があるため、削除をご検討ください。"
 
-#: src/components/offers/NFTOfferEditor.tsx:361
+#: src/components/offers/NFTOfferEditor.tsx:360
 msgid "They will receive"
 msgstr ""
 
@@ -5829,12 +5828,12 @@ msgstr ""
 msgid "Total amount including royalties"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:381
+#: src/components/offers/NFTOfferEditor.tsx:380
 #: src/components/offers/NFTOfferViewer.tsx:545
 msgid "Total Amount Offered"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:379
+#: src/components/offers/NFTOfferEditor.tsx:378
 #: src/components/offers/NFTOfferViewer.tsx:541
 msgid "Total Amount Requested"
 msgstr ""
@@ -6024,15 +6023,15 @@ msgstr ""
 msgid "Types{0}"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:634
+#: src/components/offers/NFTOfferEditor.tsx:632
 msgid "Unable to create an offer for an NFT that you do not own."
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:643
+#: src/components/offers/NFTOfferEditor.tsx:641
 msgid "Unable to create an offer for an NFT with a creator royalty percentage greater than 100%"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:370
+#: src/components/offers/NFTOfferEditor.tsx:369
 msgid "Unable to create an offer where the net amount is negative"
 msgstr ""
 
@@ -6525,7 +6524,7 @@ msgstr ""
 #~ msgid "Would you like to move {count} NFTs to a profile?"
 #~ msgstr ""
 
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:383
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:356
 msgid "Would you like to move the specified NFT to a profile?"
 msgstr ""
 
@@ -6563,8 +6562,8 @@ msgid "Yes, delete"
 msgstr ""
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:57
-msgid "Yes, move"
-msgstr ""
+#~ msgid "Yes, move"
+#~ msgstr ""
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:171
 msgid "You already have 50 or more Plot NFTs."
@@ -6648,7 +6647,7 @@ msgstr ""
 msgid "You will offer"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:359
+#: src/components/offers/NFTOfferEditor.tsx:358
 #: src/components/offers/NFTOfferViewer.tsx:478
 msgid "You will receive"
 msgstr ""

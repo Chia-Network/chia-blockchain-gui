@@ -53,15 +53,6 @@ function getInfoFilePath(filePath: string) {
   return `${filePath}${INFO_SUFFIX}`;
 }
 
-function removePrefix(str: string, variable: string): string {
-  const prefix = `${variable}://`;
-  if (str.startsWith(prefix)) {
-    return str.replace(prefix, '');
-  }
-
-  return str;
-}
-
 export function registerCacheSchemaAsPrivileged() {
   protocol.registerSchemesAsPrivileged([
     {

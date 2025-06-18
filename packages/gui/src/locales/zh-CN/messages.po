@@ -24,17 +24,17 @@ msgid "Do you want to burn {count} NFTs?"
 msgstr "确定销毁{count} 个NFT吗？"
 
 #. js-lingui-explicit-id
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:182
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:155
 msgid "{count} transactions have been successfully submitted to the blockchain."
 msgstr "{count} 笔交易已成功提交到区块链。"
 
 #. js-lingui-explicit-id
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:189
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:162
 msgid "{count} NFTs failed to move."
 msgstr "{count} 个NFT移动失败。"
 
 #. js-lingui-explicit-id
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:381
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:354
 msgid "Would you like to move {count} NFTs to a profile?"
 msgstr "确定将NFT {count} 移动到配置文件吗？"
 
@@ -89,134 +89,134 @@ msgid "Keep service running in the background"
 msgstr "保持服务在后台运行"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:759
+#: src/electron/main.tsx:761
 msgid "Cancel"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:759
+#: src/electron/main.tsx:761
 msgid "Continue"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:761
+#: src/electron/main.tsx:763
 msgid "Warning"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:762
+#: src/electron/main.tsx:764
 msgid "Log files may contain sensitive information"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:763
+#: src/electron/main.tsx:765
 msgid "Are you sure you want to view the log contents?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:882
-#: src/electron/main.tsx:1090
+#: src/electron/main.tsx:884
+#: src/electron/main.tsx:1092
 msgid "File"
 msgstr "文件"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:890
+#: src/electron/main.tsx:892
 msgid "Edit"
 msgstr "编辑"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:922
+#: src/electron/main.tsx:924
 msgid "View"
 msgstr "查看"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:931
+#: src/electron/main.tsx:933
 msgid "Developer"
 msgstr "开发者"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:934
+#: src/electron/main.tsx:936
 msgid "Developer Tools"
 msgstr "开发者工具"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:942
+#: src/electron/main.tsx:944
 msgid "Trigger Desktop Notification"
 msgstr "触发桌面通知"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:971
+#: src/electron/main.tsx:973
 msgid "Full Screen"
 msgstr "全屏"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:978
+#: src/electron/main.tsx:980
 msgid "Window"
 msgstr "窗口"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:992
+#: src/electron/main.tsx:994
 msgid "Help"
 msgstr "帮助"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:996
+#: src/electron/main.tsx:998
 msgid "Chia Blockchain Wiki"
 msgstr "Chia区块链百科"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1002
+#: src/electron/main.tsx:1004
 msgid "Frequently Asked Questions"
 msgstr "常见问题解答"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1008
+#: src/electron/main.tsx:1010
 msgid "Release Notes"
 msgstr "版本发布说明"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1014
+#: src/electron/main.tsx:1016
 msgid "Contribute on GitHub"
 msgstr "在 GitHub 上贡献"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1023
+#: src/electron/main.tsx:1025
 msgid "Report an Issue..."
 msgstr "报告问题"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1029
+#: src/electron/main.tsx:1031
 msgid "Chat on Discord"
 msgstr "在Discord上讨论"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1035
+#: src/electron/main.tsx:1037
 msgid "Follow on Twitter"
 msgstr "关注我们的Twitter"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1047
+#: src/electron/main.tsx:1049
 msgid "Chia"
 msgstr "Chia"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1050
-#: src/electron/main.tsx:1146
+#: src/electron/main.tsx:1052
+#: src/electron/main.tsx:1148
 msgid "About Chia Blockchain"
 msgstr "关于Chia区块链项目"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1056
+#: src/electron/main.tsx:1058
 msgid "Check for Updates..."
 msgstr "检查更新..."
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1105
+#: src/electron/main.tsx:1107
 msgid "Speech"
 msgstr "演说"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1152
+#: src/electron/main.tsx:1154
 msgid "Check for updates..."
 msgstr "检查更新..."
 
@@ -632,7 +632,7 @@ msgstr "始终允许"
 msgid "Always Reject"
 msgstr "始终拒绝"
 
-#: src/components/offers/NFTOfferEditor.tsx:232
+#: src/components/offers/NFTOfferEditor.tsx:231
 #: src/components/offers/OfferEditorConditionsPanel.tsx:129
 #: src/components/offers2/OfferBuilderNFTRoyalties.tsx:121
 #: src/components/offers2/OfferBuilderWalletAmount.tsx:36
@@ -647,8 +647,8 @@ msgstr "数量"
 msgid "Amount before adding royalties"
 msgstr "不包含版税的金额"
 
-#: src/components/offers/NFTOfferEditor.tsx:592
-#: src/components/offers/OfferEditor.tsx:108
+#: src/components/offers/NFTOfferEditor.tsx:590
+#: src/components/offers/OfferEditor.tsx:96
 msgid "Amount exceeds spendable balance"
 msgstr "金额超过可支出余额"
 
@@ -733,8 +733,8 @@ msgstr "确定要删除未确认的交易吗？"
 #~ msgstr "是否要断开连接？"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:64
-msgid "Are you sure you want to move this NFT to the specified profile?"
-msgstr "您确定要移动此 NFT 到指定的配置吗？"
+#~ msgid "Are you sure you want to move this NFT to the specified profile?"
+#~ msgstr "您确定要移动此 NFT 到指定的配置吗？"
 
 #: src/components/addressbook/ContactSummary.tsx:46
 msgid "Are you sure you want to permanently delete this contact? Once deleted, this contact cannot be recovered."
@@ -932,7 +932,7 @@ msgstr "燃烧 NFT 确认"
 msgid "Burning a non-fungible token means removing it from circulation by sending it to a verifiably un-spendable address. However, transactions leading up to the burn will remain on the blockchain ledger."
 msgstr "销毁不可互换代币意味着将其从流通中移除，将其发送到可核查的不可用地址。 然而，该笔交易仍然可用从链上查询到。"
 
-#: src/components/offers/NFTOfferEditor.tsx:308
+#: src/components/offers/NFTOfferEditor.tsx:307
 msgid "Buy an NFT"
 msgstr "购买一个 NFT"
 
@@ -961,7 +961,6 @@ msgstr "缓存大小(GB)"
 #: src/components/fullNode/FullNodeAddConnection.tsx:100
 #: src/components/nfts/MultipleDownloadDialog.tsx:119
 #: src/components/nfts/NFTBurnDialog.tsx:175
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:59
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:57
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:24
 #: src/components/offers/OfferDataEntryDialog.tsx:58
@@ -1159,7 +1158,7 @@ msgstr "单击删除图标只会从列表中移除文件夹，而不会删除文
 
 #: src/components/app/AppVersionWarning.tsx:57
 #: src/components/nfts/MultipleDownloadDialog.tsx:115
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:326
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:299
 #: src/components/nfts/NFTTransferAction.tsx:150
 #: src/components/notification/NotificationAnnouncementDialog.tsx:87
 #: src/components/notification/NotificationSendDialog.tsx:308
@@ -1237,8 +1236,8 @@ msgstr "确认"
 #~ msgstr "确认断开连接"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:56
-msgid "Confirm Move"
-msgstr "确认移动"
+#~ msgid "Confirm Move"
+#~ msgstr "确认移动"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:239
 msgid "Confirm New Passphrase"
@@ -1406,11 +1405,11 @@ msgstr "新建联合耕种农田"
 msgid "Create a spend bundle to mint multiple NFTs"
 msgstr "创建一个支出包以铸造多个NFT"
 
-#: src/components/offers/NFTOfferEditor.tsx:718
+#: src/components/offers/NFTOfferEditor.tsx:716
 msgid "Create an NFT Offer"
 msgstr "创建一个 NFT 报价"
 
-#: src/components/offers/OfferEditor.tsx:186
+#: src/components/offers/OfferEditor.tsx:174
 #: src/components/offers/OfferManager.tsx:425
 msgid "Create an Offer"
 msgstr "创建报价"
@@ -1436,8 +1435,8 @@ msgid "Create new DID Wallet"
 msgstr "新建DID钱包"
 
 #: src/components/nfts/NFTContextualActions.tsx:150
-#: src/components/offers/NFTOfferEditor.tsx:438
-#: src/components/offers/OfferEditor.tsx:168
+#: src/components/offers/NFTOfferEditor.tsx:437
+#: src/components/offers/OfferEditor.tsx:156
 #: src/components/offers/OfferManager.tsx:407
 #: src/components/offers2/CreateOfferBuilder.tsx:194
 msgid "Create Offer"
@@ -1489,11 +1488,11 @@ msgstr "创建日期"
 msgid "Creator Fee ({0}%)"
 msgstr "创建者手续费({0}%)"
 
-#: src/components/offers/NFTOfferEditor.tsx:330
+#: src/components/offers/NFTOfferEditor.tsx:329
 msgid "Creator Fee ({royaltyPercentage}%)"
 msgstr "创建者手续费({royaltyPercentage}%)"
 
-#: src/components/offers/NFTOfferEditor.tsx:333
+#: src/components/offers/NFTOfferEditor.tsx:332
 #: src/components/offers/NFTOfferViewer.tsx:521
 msgid "Creator royalty percentage seems high"
 msgstr "创建者版税比率似乎高"
@@ -2114,7 +2113,7 @@ msgstr "下载失败："
 msgid "Failed partials"
 msgstr "失败贡献点"
 
-#: src/components/offers/NFTOfferEditor.tsx:583
+#: src/components/offers/NFTOfferEditor.tsx:581
 msgid "Failed to decode NFT identifier"
 msgstr "无法解码 NFT 标识符"
 
@@ -2231,7 +2230,7 @@ msgid "Features to give you more protection and control over your digital assets
 msgstr "提供更多保护和控制数字资产的功能。"
 
 #: src/components/nfts/NFTBurnDialog.tsx:167
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:318
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:291
 #: src/components/nfts/NFTTransferAction.tsx:142
 #: src/components/offers/ConfirmOfferCancellation.tsx:109
 #: src/components/offers/NFTOfferViewer.tsx:615
@@ -2268,7 +2267,7 @@ msgstr "提供更多保护和控制数字资产的功能。"
 msgid "Fee"
 msgstr "手续费"
 
-#: src/components/offers/NFTOfferEditor.tsx:82
+#: src/components/offers/NFTOfferEditor.tsx:81
 #: src/components/offers/OfferEditorConditionsPanel.tsx:387
 msgid "Fee (Optional)"
 msgstr "手续费(可选)"
@@ -2772,7 +2771,7 @@ msgstr "包括已成交的报价"
 msgid "Include Wallet Metadata"
 msgstr "包含钱包元数据"
 
-#: src/components/offers/NFTOfferEditor.tsx:87
+#: src/components/offers/NFTOfferEditor.tsx:86
 #: src/components/offers/OfferEditorConditionsPanel.tsx:393
 msgid "Including a fee in the offer can help expedite the transaction when the offer is accepted. The recommended minimum fee is 0.000005 XCH (5,000,000 mojos)"
 msgstr "在报价中加入手续费可以帮助在接受报价时加速交易。建议的最低手续费为0.000005 XCH (5,000,000 mojos)"
@@ -2810,7 +2809,7 @@ msgstr ""
 "可用资金不足，无法接受报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
-#: src/components/offers/OfferEditor.tsx:139
+#: src/components/offers/OfferEditor.tsx:127
 #: src/components/offers2/CreateOfferBuilder.tsx:161
 msgid ""
 "Insufficient funds available to create offer. Ensure that your\n"
@@ -2848,7 +2847,7 @@ msgstr "无效哈希"
 #~ msgid "Invalid metadata url"
 #~ msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:581
+#: src/components/offers/NFTOfferEditor.tsx:579
 msgid "Invalid NFT identifier"
 msgstr "无效的 NFT 标识符"
 
@@ -3066,7 +3065,7 @@ msgstr "连接列表为空"
 msgid "Load Logs"
 msgstr "载入日志"
 
-#: src/components/app/AppProviders.tsx:84
+#: src/components/app/AppProviders.tsx:83
 msgid "Loading configuration"
 msgstr "正在加载配置"
 
@@ -3343,11 +3342,11 @@ msgstr "增加内存可以略微提高速度"
 msgid "more space"
 msgstr "的空间"
 
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:329
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:302
 msgid "Move"
 msgstr "移动"
 
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:373
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:346
 msgid "Move NFT to Profile"
 msgstr "将 NFT 移动到资料"
 
@@ -3447,7 +3446,7 @@ msgstr "新的恢复DID列表"
 msgid "Next"
 msgstr "下一步"
 
-#: src/components/offers/NFTOfferEditor.tsx:212
+#: src/components/offers/NFTOfferEditor.tsx:211
 #: src/components/offers2/OfferBuilderNFTSection.tsx:44
 #: src/components/settings/Settings.tsx:38
 #: src/components/settings/SettingsNFT.tsx:72
@@ -3473,7 +3472,7 @@ msgstr "NFT硬币ID"
 msgid "NFT Coin Ids"
 msgstr "NFT硬币ID"
 
-#: src/components/offers/NFTOfferEditor.tsx:618
+#: src/components/offers/NFTOfferEditor.tsx:616
 msgid "NFT details not available"
 msgstr "NFT 详细信息不可用"
 
@@ -3491,7 +3490,7 @@ msgstr "NFT持有者地址"
 msgid "NFT ID"
 msgstr "NFT ID"
 
-#: src/components/offers/NFTOfferEditor.tsx:214
+#: src/components/offers/NFTOfferEditor.tsx:213
 msgid "NFT Identifier"
 msgstr "NFT 标识符"
 
@@ -3503,12 +3502,12 @@ msgstr "NFT 标识符没有引用一个有效的 NFT 硬币。"
 msgid "NFT Launcher Id"
 msgstr "NFT启动器ID"
 
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:204
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:177
 msgid "NFT Move Failed"
 msgstr "NFT 移动失败"
 
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:179
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:197
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:152
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:170
 msgid "NFT Move Pending"
 msgstr "NFT 等待移动"
 
@@ -3627,8 +3626,8 @@ msgstr "非观察派生"
 #: src/components/farm/PoolingHealth.tsx:162
 #: src/components/farm/PoolingHealth.tsx:199
 #: src/components/farm/PoolingHealth.tsx:236
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:131
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:271
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:104
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:244
 #: src/components/plot/add/PlotAddNFT.tsx:96
 msgid "None"
 msgstr "无"
@@ -4154,7 +4153,7 @@ msgstr "请输入网址"
 msgid "Please enter a valid numeric fee"
 msgstr "请输入有效的手续费"
 
-#: src/components/offers/NFTOfferEditor.tsx:587
+#: src/components/offers/NFTOfferEditor.tsx:585
 msgid "Please enter an amount"
 msgstr "请输入金额"
 
@@ -4166,11 +4165,11 @@ msgstr "请输入代币 {0} 金额"
 msgid "Please enter an amount for {catName} token"
 msgstr "请输入代币 {catName} 金额"
 
-#: src/components/offers/OfferEditor.tsx:106
+#: src/components/offers/OfferEditor.tsx:94
 msgid "Please enter an amount for each row"
 msgstr "请为每行输入一个金额"
 
-#: src/components/offers/NFTOfferEditor.tsx:579
+#: src/components/offers/NFTOfferEditor.tsx:577
 msgid "Please enter an NFT identifier"
 msgstr "请输入一个NFT标识符。"
 
@@ -4197,11 +4196,11 @@ msgstr "请输入您的私钥密码"
 msgid "Please restart your harvester in order for any changes to take effect."
 msgstr "为了使任何更改生效，请重新启动收割机。"
 
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:155
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:128
 msgid "Please select a profile to move the NFT to."
 msgstr "请选择一个要移动NFT的个人资料为目的地。"
 
-#: src/components/offers/OfferEditor.tsx:104
+#: src/components/offers/OfferEditor.tsx:92
 msgid "Please select an asset for each row"
 msgstr "请为每行选择一个资产。"
 
@@ -4210,7 +4209,7 @@ msgstr "请为每行选择一个资产。"
 msgid "Please select an asset for each token"
 msgstr "请为每个代币选择一个资产"
 
-#: src/components/offers/NFTOfferEditor.tsx:585
+#: src/components/offers/NFTOfferEditor.tsx:583
 msgid "Please select an asset type"
 msgstr "请选择资产类型"
 
@@ -4815,8 +4814,8 @@ msgstr "验证所需的DID数量"
 
 #: src/components/farm/FarmHealth.tsx:286
 #: src/components/farm/FarmHealth.tsx:348
-#: src/components/offers/NFTOfferEditor.tsx:435
-#: src/components/offers/OfferEditor.tsx:165
+#: src/components/offers/NFTOfferEditor.tsx:434
+#: src/components/offers/OfferEditor.tsx:153
 #: src/components/settings/SettingsIntegration.tsx:391
 #: src/components/signVerify/VerifyMessage.tsx:266
 msgid "Reset"
@@ -5010,7 +5009,7 @@ msgstr "选择将要与 WalletConnect 交互的密钥"
 msgid "Select Offer File"
 msgstr "选择报价文件"
 
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:243
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:216
 #: src/components/signVerify/SigningEntityDID.tsx:75
 msgid "Select Profile"
 msgstr "选择档案"
@@ -5060,7 +5059,7 @@ msgstr "独自耕种。一旦发现新区块，你将得到全部XCH区块奖励
 msgid "Self Pooling"
 msgstr "独自耕种"
 
-#: src/components/offers/NFTOfferEditor.tsx:309
+#: src/components/offers/NFTOfferEditor.tsx:308
 msgid "Sell an NFT"
 msgstr "卖出一个 NFT"
 
@@ -5543,11 +5542,11 @@ msgstr "主网要求的最小图块大小为k=32"
 msgid "The net proceeds include the asking price, minus any associated creator fees (if the NFT has royalty payments enabled)."
 msgstr "净收益包括收取价格，减去任何相关创作者收费(如果已经启用了版税付款)。"
 
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:205
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:178
 msgid "The NFT move failed: {err}"
 msgstr "NFT 移动失败: {err}"
 
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:198
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:171
 msgid "The NFT move transaction has been successfully submitted to the blockchain."
 msgstr "移动NFT的交易已成功提交到区块链。"
 
@@ -5612,11 +5611,11 @@ msgstr "该签名是由与钱包地址关联的私钥生成的。可以认为签
 msgid "The total amount offered includes the offered purchase price, plus the optional offer creation fee.<0/>If the NFT has royalty payments enabled, those creator fees will be paid from the offered purchase price."
 msgstr "所提供的总金额包括报价的购买价格，以及可选的报价创建手续费。<0/>如果NFT启用了版税支付，那么创作者费用将从报价的购买价格中支付。"
 
-#: src/components/offers/NFTOfferEditor.tsx:396
+#: src/components/offers/NFTOfferEditor.tsx:395
 msgid "The total amount offered includes the price you're willing to pay for the NFT, plus the optional offer creation fee. One or more coins totalling at least the amount shown below will be deducted from your spendable balance upon offer creation.<0/>If the NFT has royalty payments enabled, those creator fees will be paid by the party that accepts the offer."
 msgstr "所提供的总金额包括您愿意为NFT支付的价格，以及可选的报价创建手续费。在报价创建时，将从您的可用余额中扣除总金额所示的一个或多个币。<0/>如果NFT启用了版税支付，那么创作者费用将由接受报价的一方支付。"
 
-#: src/components/offers/NFTOfferEditor.tsx:387
+#: src/components/offers/NFTOfferEditor.tsx:386
 msgid "The total amount requested includes the asking price, plus the associated creator fees (if the NFT has royalty payments enabled). Creator fees will be paid by the party that accepts the offer.<0/>The optional offer creation fee is not included in this total, and will be deducted from your spendable balance upon offer creation."
 msgstr "请求的总金额包括要价以及相关的创作者费用（如果NFT启用了版税支付）。创作者费用将由接受报价的一方支付。<0/>这个总金额不包括可选的报价创建手续费，在报价创建时将从您的可支配余额中扣除。"
 
@@ -5652,7 +5651,7 @@ msgstr "这是农民耕种奖励的支付方式。默认情况下，这将是一
 msgid "These plots are invalid, you might want to delete them."
 msgstr "这些图块无效，你可能想要删除它们。"
 
-#: src/components/offers/NFTOfferEditor.tsx:361
+#: src/components/offers/NFTOfferEditor.tsx:360
 msgid "They will receive"
 msgstr "他们将收到:"
 
@@ -5830,12 +5829,12 @@ msgstr "总金额"
 msgid "Total amount including royalties"
 msgstr "包含版税的总金额"
 
-#: src/components/offers/NFTOfferEditor.tsx:381
+#: src/components/offers/NFTOfferEditor.tsx:380
 #: src/components/offers/NFTOfferViewer.tsx:545
 msgid "Total Amount Offered"
 msgstr "提供的总报价金额"
 
-#: src/components/offers/NFTOfferEditor.tsx:379
+#: src/components/offers/NFTOfferEditor.tsx:378
 #: src/components/offers/NFTOfferViewer.tsx:541
 msgid "Total Amount Requested"
 msgstr "要求的金额"
@@ -6025,15 +6024,15 @@ msgstr "类型"
 msgid "Types{0}"
 msgstr "类型{0}"
 
-#: src/components/offers/NFTOfferEditor.tsx:634
+#: src/components/offers/NFTOfferEditor.tsx:632
 msgid "Unable to create an offer for an NFT that you do not own."
 msgstr "无法为您不拥有的 NFT 创建报价。"
 
-#: src/components/offers/NFTOfferEditor.tsx:643
+#: src/components/offers/NFTOfferEditor.tsx:641
 msgid "Unable to create an offer for an NFT with a creator royalty percentage greater than 100%"
 msgstr "无法为创建者版税百分比大于100%的 NFT 创建报价"
 
-#: src/components/offers/NFTOfferEditor.tsx:370
+#: src/components/offers/NFTOfferEditor.tsx:369
 msgid "Unable to create an offer where the net amount is negative"
 msgstr "无法创建净额为负数的报价单"
 
@@ -6526,7 +6525,7 @@ msgstr "包含恢复信息"
 #~ msgid "Would you like to move {count} NFTs to a profile?"
 #~ msgstr ""
 
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:383
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:356
 msgid "Would you like to move the specified NFT to a profile?"
 msgstr "您想要将指定的 NFT 移动到一个资料之下吗？"
 
@@ -6564,8 +6563,8 @@ msgid "Yes, delete"
 msgstr "确定删除"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:57
-msgid "Yes, move"
-msgstr "是的，移动"
+#~ msgid "Yes, move"
+#~ msgstr "是的，移动"
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:171
 msgid "You already have 50 or more Plot NFTs."
@@ -6649,7 +6648,7 @@ msgstr "提供"
 msgid "You will offer"
 msgstr "你将提供"
 
-#: src/components/offers/NFTOfferEditor.tsx:359
+#: src/components/offers/NFTOfferEditor.tsx:358
 #: src/components/offers/NFTOfferViewer.tsx:478
 msgid "You will receive"
 msgstr "您将收到"

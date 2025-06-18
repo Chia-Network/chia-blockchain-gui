@@ -1,6 +1,5 @@
 import { useCloseFullNodeConnectionMutation } from '@chia-network/api-react';
 import { useShowError } from '@chia-network/core';
-import React from 'react';
 
 type Props = {
   nodeId: string;

@@ -1,17 +1,6 @@
 import { WalletType } from '@chia-network/api';
 import { useCreateOfferForIdsMutation } from '@chia-network/api-react';
-import {
-  Back,
-  Button,
-  Card,
-  ButtonLoading,
-  Flex,
-  Form,
-  useOpenDialog,
-  useShowError,
-  chiaToMojo,
-  catToMojo,
-} from '@chia-network/core';
+import { Back, Button, Card, ButtonLoading, Flex, Form, useShowError, chiaToMojo, catToMojo } from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
 import { Grid } from '@mui/material';
 import BigNumber from 'bignumber.js';
@@ -69,7 +58,6 @@ function OfferEditor(props: OfferEditorProps) {
   const methods = useForm<FormData>({
     defaultValues,
   });
-  const openDialog = useOpenDialog();
   const errorDialog = useShowError();
   const [suppressShareOnCreate] = useSuppressShareOnCreate();
   const [createOfferForIds] = useCreateOfferForIdsMutation();
