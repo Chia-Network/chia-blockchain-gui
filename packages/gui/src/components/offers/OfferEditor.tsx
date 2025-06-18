@@ -22,7 +22,6 @@ import { useNavigate } from 'react-router-dom';
 import useSuppressShareOnCreate from '../../hooks/useSuppressShareOnCreate';
 
 import OfferEditorConditionsPanel from './OfferEditorConditionsPanel';
-import OfferEditorConfirmationDialog from './OfferEditorConfirmationDialog';
 import type OfferEditorRowData from './OfferEditorRowData';
 
 /* ========================================================================== */
@@ -109,12 +108,6 @@ function OfferEditor(props: OfferEditorProps) {
         errorDialog(new Error(t`Amount exceeds spendable balance`));
       }
 
-      return;
-    }
-
-    const confirmedCreation = await openDialog(<OfferEditorConfirmationDialog />);
-
-    if (!confirmedCreation) {
       return;
     }
 

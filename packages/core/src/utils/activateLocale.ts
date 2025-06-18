@@ -6,7 +6,7 @@ export default function activateLocale(i18n: I18n, locale: string) {
   moment.locale([locale, 'en']);
 
   // @ts-ignore
-  if (typeof window !== 'undefined' && window.ipcRenderer) {
-    window.ipcRenderer.invoke('setLocale', locale);
+  if (typeof window !== 'undefined') {
+    window.appAPI.setLocale(locale);
   }
 }

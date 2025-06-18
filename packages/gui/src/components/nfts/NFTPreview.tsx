@@ -1,9 +1,8 @@
 import { Color, IconMessage, Loading, Flex, SandboxedIframe, usePersistState, useDarkMode } from '@chia-network/core';
 import { t, Trans } from '@lingui/macro';
-import { NotInterested /* , Error as ErrorIcon */ } from '@mui/icons-material';
+import { NotInterested } from '@mui/icons-material';
 import { alpha, Box } from '@mui/material';
-import React, { useMemo, useRef, Fragment, useCallback, useEffect } from 'react';
-import { renderToString } from 'react-dom/server';
+import React, { useMemo, useRef, Fragment, useCallback, useEffect, type ReactNode } from 'react';
 import styled from 'styled-components';
 
 import AudioSmallIcon from '../../assets/img/audio-small.svg';
@@ -35,7 +34,6 @@ import useStateAbort from '../../hooks/useStateAbort';
 import getFileExtension from '../../util/getFileExtension';
 import getNFTId from '../../util/getNFTId';
 import hasSensitiveContent from '../../util/hasSensitiveContent';
-import parseFileContent from '../../util/parseFileContent';
 
 import NFTHashStatus from './NFTHashStatus';
 
@@ -138,12 +136,12 @@ export default function NFTPreview(props: NFTPreviewProps) {
     hideStatus = false,
   } = props;
 
-  const { getContent, getURI, getHeaders } = useCache();
+  const { getURI } = useCache();
   const nftId = useMemo(() => getNFTId(id), [id]);
   const iframeRef = useRef<any>(null);
   const { isDarkMode } = useDarkMode();
   const [, setError] = useStateAbort<Error | undefined>(undefined);
-  const [srcDoc, setSrcDoc] = useStateAbort<string | undefined>(undefined);
+  const [previewContent, setPreviewContent] = useStateAbort<ReactNode | undefined>(undefined);
   const abortControllerRef = useRef(new AbortController());
   const [hideObjectionableContent] = useHideObjectionableContent();
   const [ignoreSizeLimit /* , setIgnoreSizeLimit */] = usePersistState<boolean>(
@@ -190,7 +188,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
         setError(undefined, signal);
 
         if (!preview?.uri) {
-          setSrcDoc(undefined, signal);
+          setPreviewContent(undefined, signal);
           return;
         }
 
@@ -204,78 +202,42 @@ export default function NFTPreview(props: NFTPreviewProps) {
             display: flex;
             align-items: center;
             justify-content: center;
-          }
-
-          body {
             overflow: hidden;
           }
 
           img {
             object-fit: ${fit};
           }
-      `;
-
-        let mediaElement = null;
+        `;
 
         const cachedURI = await getURI(preview.uri);
-
-        if (previewFileType === FileType.VIDEO) {
-          mediaElement = (
-            <video width="100%" height="100%" controls={!disableInteractions}>
-              <source src={cachedURI} />
-            </video>
-          );
-        } else if (previewFileType === FileType.AUDIO) {
-          mediaElement = (
-            <audio className={isDarkMode ? 'dark' : ''} controls={!disableInteractions}>
-              <source src={cachedURI} />
-            </audio>
-          );
-        } else {
-          try {
-            const headers = await getHeaders(preview.uri);
-            const isSVG = 'content-type' in headers && headers['content-type'].startsWith('image/svg+xml');
-            if (isSVG) {
-              const content = await getContent(preview.uri);
-
-              const svgImage = parseFileContent(content, headers);
-              const encodedSvg = encodeURIComponent(svgImage);
-              const dataUri = `data:image/svg+xml;charset=utf-8,${encodedSvg}`;
-              mediaElement = <img src={dataUri} alt={t`Preview`} width="100%" height="100%" />;
-            } else {
-              mediaElement = <img src={cachedURI} alt={t`Preview`} width="100%" height="100%" />;
-            }
-          } catch (e) {
-            mediaElement = <img src={cachedURI} alt={t`Preview`} width="100%" height="100%" />;
-          }
+        if (!cachedURI || !cachedURI.startsWith('cache://')) {
+          setPreviewContent(undefined, signal);
+          return;
         }
 
-        const iframeContent = renderToString(
-          <html>
-            <head>
-              <style dangerouslySetInnerHTML={{ __html: style }} />
-            </head>
-            <body>{mediaElement}</body>
-          </html>,
+        setPreviewContent(
+          <>
+            <style>{style}</style>
+            {previewFileType === FileType.VIDEO ? (
+              <video width="100%" height="100%" controls={!disableInteractions}>
+                <source src={cachedURI} />
+              </video>
+            ) : previewFileType === FileType.AUDIO ? (
+              <audio className={isDarkMode ? 'dark' : ''} controls={!disableInteractions}>
+                <source src={cachedURI} />
+              </audio>
+            ) : (
+              <img src={cachedURI} alt={t`Preview`} width="100%" height="100%" />
+            )}
+          </>,
+          signal,
         );
-
-        setSrcDoc(iframeContent, signal);
       } catch (e) {
         setError(e as Error, signal);
       }
     },
-    [
-      preview,
-      fit,
-      getURI,
-      previewFileType,
-      disableInteractions,
-      isDarkMode,
-      getHeaders,
-      getContent,
-      setSrcDoc,
-      setError,
-    ],
+    [preview, fit, getURI, previewFileType, disableInteractions, isDarkMode, setPreviewContent, setError],
   );
 
   useEffect(() => {
@@ -286,10 +248,6 @@ export default function NFTPreview(props: NFTPreviewProps) {
 
   const previewCompactIcon = useMemo(() => {
     switch (previewFileType) {
-      /*
-      case FileType.IMAGE:
-        return <CompactImageIcon />;
-        */
       case FileType.VIDEO:
         return <CompactVideoIcon width="100%" />;
       case FileType.AUDIO:
@@ -307,14 +265,6 @@ export default function NFTPreview(props: NFTPreviewProps) {
       }
     }
   }, [previewFileType, previewExtension]);
-
-  /*
-  function handleIgnoreError(event: any) {
-    event.stopPropagation();
-
-    setIgnoreSizeLimit(true);
-  }
-  */
 
   const previewIcon = useMemo(() => {
     switch (previewFileType) {
@@ -393,7 +343,9 @@ export default function NFTPreview(props: NFTPreviewProps) {
         }}
       >
         {!canInteract && <IframePreventEvents />}
-        <SandboxedIframe srcDoc={srcDoc} hideUntilLoaded allowPointerEvents />
+        <SandboxedIframe hideUntilLoaded allowPointerEvents={!canInteract}>
+          {previewContent}
+        </SandboxedIframe>
         {blurPreview && (
           <Box
             sx={{
@@ -418,7 +370,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
     previewIcon,
     icon,
     previewExtension,
-    srcDoc,
+    previewContent,
     iframeRef,
     isDarkMode,
     blurPreview,
@@ -461,66 +413,3 @@ export default function NFTPreview(props: NFTPreviewProps) {
     </StyledCardPreview>
   );
 }
-
-/*
-{isCompact ? null : !hasFile ? (
-        <Background>
-          <IconMessage icon={<NotInterested fontSize="large" />}>
-            <Trans>No file available</Trans>
-          </IconMessage>
-        </Background>
-      ) : !isUrlValid ? (
-        <IconMessage icon={<ErrorIcon fontSize="large" />}>
-          <Trans>Preview URL is not valid</Trans>
-        </IconMessage>
-      ) : nft.pendingTransaction ? (
-        <ThumbnailError>
-          <Trans>Update Pending</Trans>
-        </ThumbnailError>
-      ) : error === 'thumbnail hash mismatch' ? (
-        <ThumbnailError>
-          <Trans>Thumbnail hash mismatch</Trans>
-        </ThumbnailError>
-      ) : error === 'Hash mismatch' && isPreview ? (
-        <ThumbnailError>
-          <Trans>Image Hash Mismatch</Trans>
-        </ThumbnailError>
-      ) : error === 'missing preview_video_hash' ? (
-        <ThumbnailError>
-          <Trans>Missing preview_video_hash key</Trans>
-        </ThumbnailError>
-      ) : error === 'missing preview_image_hash' ? (
-        <ThumbnailError>
-          <Trans>Missing preview_image_hash key</Trans>
-        </ThumbnailError>
-      ) : error === 'failed fetch content' ? (
-        <ThumbnailError>
-          <Trans>Error fetching video preview</Trans>
-        </ThumbnailError>
-      ) : metadataError === 'Metadata hash mismatch' ? (
-        <ThumbnailError>
-          <Trans>Metadata hash mismatch</Trans>
-        </ThumbnailError>
-      ) : metadataError === 'Invalid URI' || (metadataError && metadataError.indexOf('getaddrinfo ENOTFOUND') > -1) ? (
-        <ThumbnailError>
-          <Trans>Invalid metadata url</Trans>
-        </ThumbnailError>
-      ) : error === 'Error parsing json' ? (
-        <ThumbnailError>
-          <Trans>Error parsing json</Trans>
-        </ThumbnailError>
-      ) : responseTooLarge(error) && !ignoreError ? (
-        <Background>
-          <Flex direction="column" gap={2}>
-            <IconMessage icon={<ErrorIcon fontSize="large" />}>
-              <Trans>Response too large</Trans>
-            </IconMessage>
-            {error !== 'url is not defined' && (
-              <Button onClick={handleIgnoreError} variant="outlined" size="small" color="secondary">
-                <Trans>Show Preview</Trans>
-              </Button>
-            )}
-          </Flex>
-        </Background>
-      ) : null}
-      */

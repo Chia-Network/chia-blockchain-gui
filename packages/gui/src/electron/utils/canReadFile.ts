@@ -1,5 +1,5 @@
-import fsBase from 'fs';
-import fs from 'fs/promises';
+import fsBase from 'node:fs';
+import fs from 'node:fs/promises';
 
 export default async function canReadFile(filePath: string) {
   try {

@@ -50,7 +50,7 @@ msgstr ""
 msgid "Amount"
 msgstr "Totale"
 
-#: src/components/Settings/SettingsApp.tsx:94
+#: src/components/Settings/SettingsApp.tsx:90
 msgid "Appearance"
 msgstr "Interfaccia"
 
@@ -70,7 +70,7 @@ msgstr "Indietro"
 msgid "Cancel"
 msgstr "Annulla"
 
-#: src/components/Settings/SettingsApp.tsx:140
+#: src/components/Settings/SettingsApp.tsx:136
 msgid "Check for updates"
 msgstr ""
 
@@ -82,7 +82,7 @@ msgstr ""
 msgid "Chia {latestVersion} is currently the latest version available."
 msgstr ""
 
-#: src/components/Settings/SettingsApp.tsx:126
+#: src/components/Settings/SettingsApp.tsx:122
 msgid "Chia Application Version:"
 msgstr ""
 
@@ -120,7 +120,7 @@ msgstr ""
 msgid "Create New"
 msgstr ""
 
-#: src/components/Settings/SettingsApp.tsx:111
+#: src/components/Settings/SettingsApp.tsx:107
 msgid "Dark"
 msgstr "Scuro"
 
@@ -180,7 +180,7 @@ msgstr "Errore:"
 msgid "Esc"
 msgstr ""
 
-#: src/components/LayoutMain/LayoutFooter.tsx:49
+#: src/components/LayoutMain/LayoutFooter.tsx:47
 msgid "FAQ"
 msgstr "FAQ"
 
@@ -192,7 +192,7 @@ msgstr ""
 msgid "Farmer public key:"
 msgstr "Chiave pubblica del farmer:"
 
-#: src/components/Settings/SettingsApp.tsx:79
+#: src/components/Settings/SettingsApp.tsx:75
 msgid "Farming"
 msgstr "Coltivando"
 
@@ -206,7 +206,7 @@ msgstr "Costo della commissione"
 msgid "Fingerprint does not match"
 msgstr ""
 
-#: src/components/Settings/SettingsApp.tsx:152
+#: src/components/Settings/SettingsApp.tsx:148
 msgid "Frequently Asked Questions"
 msgstr "Domande Frequenti"
 
@@ -214,7 +214,7 @@ msgstr "Domande Frequenti"
 msgid "Go To Download Page"
 msgstr ""
 
-#: src/components/Settings/SettingsApp.tsx:148
+#: src/components/Settings/SettingsApp.tsx:144
 msgid "Help"
 msgstr "Aiuto"
 
@@ -243,7 +243,7 @@ msgstr ""
 msgid "Incorrect value"
 msgstr "Valore errato"
 
-#: src/components/Settings/SettingsApp.tsx:118
+#: src/components/Settings/SettingsApp.tsx:114
 msgid "Language"
 msgstr "Lingua"
 
@@ -251,7 +251,7 @@ msgstr "Lingua"
 msgid "Latest Version:"
 msgstr ""
 
-#: src/components/Settings/SettingsApp.tsx:103
+#: src/components/Settings/SettingsApp.tsx:99
 msgid "Light"
 msgstr "Chiaro"
 
@@ -296,7 +296,7 @@ msgstr "Migra"
 msgid "Migration required"
 msgstr "Migrazione richiesta"
 
-#: src/components/Settings/SettingsApp.tsx:70
+#: src/components/Settings/SettingsApp.tsx:66
 msgid "Mode"
 msgstr "Modalità"
 
@@ -421,8 +421,8 @@ msgstr "Seed:"
 msgid "Select..."
 msgstr "Seleziona..."
 
-#: src/components/LayoutMain/LayoutFooter.tsx:52
-#: src/components/Settings/SettingsApp.tsx:155
+#: src/components/LayoutMain/LayoutFooter.tsx:50
+#: src/components/Settings/SettingsApp.tsx:151
 msgid "Send Feedback"
 msgstr "Invia Feedback"
 
@@ -530,7 +530,7 @@ msgid "Value seems high"
 msgstr "Il valore sembra alto"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:233
-#: src/components/Settings/SettingsApp.tsx:87
+#: src/components/Settings/SettingsApp.tsx:83
 msgid "Wallet"
 msgstr "Wallet"
 

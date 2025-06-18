@@ -45,7 +45,6 @@ import { convertRoyaltyToPercentage, isValidNFTId, launcherIdFromNFTId } from '.
 import NFTOfferExchangeType from './NFTOfferExchangeType';
 import NFTOfferPreview from './NFTOfferPreview';
 import NFTOfferTokenSelector from './NFTOfferTokenSelector';
-import OfferEditorConfirmationDialog from './OfferEditorConfirmationDialog';
 import { calculateNFTRoyalties } from './utils';
 
 /* ========================================================================== */
@@ -654,12 +653,6 @@ export default function NFTOfferEditor(props: NFTOfferEditorProps) {
       tokenAmount,
       fee,
     });
-
-    const confirmedCreation = await openDialog(<OfferEditorConfirmationDialog />);
-
-    if (!confirmedCreation) {
-      return;
-    }
 
     try {
       const response = await createOfferForIds({

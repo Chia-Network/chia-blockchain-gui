@@ -50,7 +50,7 @@ msgstr "Add wallet"
 msgid "Amount"
 msgstr "How much beer money"
 
-#: src/components/Settings/SettingsApp.tsx:94
+#: src/components/Settings/SettingsApp.tsx:90
 msgid "Appearance"
 msgstr "Appearance"
 
@@ -70,7 +70,7 @@ msgstr "Back 'er up"
 msgid "Cancel"
 msgstr "Yeh Nah"
 
-#: src/components/Settings/SettingsApp.tsx:140
+#: src/components/Settings/SettingsApp.tsx:136
 msgid "Check for updates"
 msgstr "Check for updates"
 
@@ -82,7 +82,7 @@ msgstr "Checking for updates..."
 msgid "Chia {latestVersion} is currently the latest version available."
 msgstr "Chia {latestVersion} is currently the latest version available."
 
-#: src/components/Settings/SettingsApp.tsx:126
+#: src/components/Settings/SettingsApp.tsx:122
 msgid "Chia Application Version:"
 msgstr "Chia Application Version:"
 
@@ -120,7 +120,7 @@ msgstr "Create a new wallet key to get started with Chia."
 msgid "Create New"
 msgstr "Create New"
 
-#: src/components/Settings/SettingsApp.tsx:111
+#: src/components/Settings/SettingsApp.tsx:107
 msgid "Dark"
 msgstr "Night time"
 
@@ -180,7 +180,7 @@ msgstr "Error, she's knackered:"
 msgid "Esc"
 msgstr "Esc"
 
-#: src/components/LayoutMain/LayoutFooter.tsx:49
+#: src/components/LayoutMain/LayoutFooter.tsx:47
 msgid "FAQ"
 msgstr "FAQ"
 
@@ -192,7 +192,7 @@ msgstr "Farmer Public Key"
 msgid "Farmer public key:"
 msgstr "Farmer public key:"
 
-#: src/components/Settings/SettingsApp.tsx:79
+#: src/components/Settings/SettingsApp.tsx:75
 msgid "Farming"
 msgstr "Earning beer money"
 
@@ -206,7 +206,7 @@ msgstr "Fee"
 msgid "Fingerprint does not match"
 msgstr "Fingerprint does not match"
 
-#: src/components/Settings/SettingsApp.tsx:152
+#: src/components/Settings/SettingsApp.tsx:148
 msgid "Frequently Asked Questions"
 msgstr "Frequently Asked Questions because people can't read"
 
@@ -214,7 +214,7 @@ msgstr "Frequently Asked Questions because people can't read"
 msgid "Go To Download Page"
 msgstr "Go To Download Page"
 
-#: src/components/Settings/SettingsApp.tsx:148
+#: src/components/Settings/SettingsApp.tsx:144
 msgid "Help"
 msgstr "Help me Jebus"
 
@@ -243,7 +243,7 @@ msgstr "Import Existing"
 msgid "Incorrect value"
 msgstr "Incorrect value you drongo"
 
-#: src/components/Settings/SettingsApp.tsx:118
+#: src/components/Settings/SettingsApp.tsx:114
 msgid "Language"
 msgstr "Language"
 
@@ -251,7 +251,7 @@ msgstr "Language"
 msgid "Latest Version:"
 msgstr "Latest Version:"
 
-#: src/components/Settings/SettingsApp.tsx:103
+#: src/components/Settings/SettingsApp.tsx:99
 msgid "Light"
 msgstr "Daytime"
 
@@ -296,7 +296,7 @@ msgstr "Migrate"
 msgid "Migration required"
 msgstr "Migration required"
 
-#: src/components/Settings/SettingsApp.tsx:70
+#: src/components/Settings/SettingsApp.tsx:66
 msgid "Mode"
 msgstr "Mode"
 
@@ -421,8 +421,8 @@ msgstr "Seed:"
 msgid "Select..."
 msgstr "Select..."
 
-#: src/components/LayoutMain/LayoutFooter.tsx:52
-#: src/components/Settings/SettingsApp.tsx:155
+#: src/components/LayoutMain/LayoutFooter.tsx:50
+#: src/components/Settings/SettingsApp.tsx:151
 msgid "Send Feedback"
 msgstr "Send Feedback"
 
@@ -530,7 +530,7 @@ msgid "Value seems high"
 msgstr "Value seems high"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:233
-#: src/components/Settings/SettingsApp.tsx:87
+#: src/components/Settings/SettingsApp.tsx:83
 msgid "Wallet"
 msgstr "Wallet"
 

@@ -1,11 +1,12 @@
 import { net } from 'electron';
-import { promises as fs, createWriteStream, type WriteStream } from 'fs';
+import { promises as fs, createWriteStream, type WriteStream } from 'node:fs';
 
 import debug from 'debug';
 
 import type Headers from '../../@types/Headers';
 
 import fileExists from './fileExists';
+import isValidURL from './isValidURL';
 
 const log = debug('chia-gui:downloadFile');
 
@@ -75,6 +76,10 @@ export default async function downloadFile(
   localPath: string,
   { timeout = 30_000, signal, maxSize = 100 * 1024 * 1024, onProgress, overrideFile = false }: DownloadFileOptions = {},
 ): Promise<Headers> {
+  if (!isValidURL(url)) {
+    throw new Error('Invalid URL');
+  }
+
   const tempFilePath = `${localPath}.tmp`;
   const request = net.request(url);
   const outputStream = new WriteStreamPromise(tempFilePath, overrideFile);

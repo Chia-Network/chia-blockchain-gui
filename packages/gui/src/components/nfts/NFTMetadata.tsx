@@ -38,5 +38,5 @@ export default function NFTMetadata(props: NFTMetadataProps) {
     return <Highlight value={value} search={highlight} />;
   }
 
-  return value ?? children;
+  return <>{value ?? children}</>;
 }

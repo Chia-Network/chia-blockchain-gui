@@ -1,5 +1,3 @@
-import fs, { Stats } from 'fs';
-
 import { type OfferSummaryRecord } from '@chia-network/api';
 import { useGetOfferSummaryMutation } from '@chia-network/api-react';
 import {
@@ -62,39 +60,28 @@ function SelectOfferFile() {
     }
   }
 
-  async function handleOpen(offerFilePath: string) {
-    async function continueOpen(stats: Stats) {
-      try {
-        if (stats.size > 1024 * 1024) {
-          errorDialog(new Error('Offer file is too large (> 1MB)'));
-        } else {
-          const offerData = fs.readFileSync(offerFilePath, 'utf8');
-
-          await parseOfferSummary(offerData, offerFilePath);
-        }
-      } catch (e) {
-        errorDialog(e);
-      } finally {
-        setIsParsing(false);
+  async function handleOpen(file: File) {
+    try {
+      if (file.size > 1024 * 1024) {
+        errorDialog(new Error('Offer file is too large (> 1MB)'));
+        return;
       }
+
+      setIsParsing(true);
+      const offerData = await file.text();
+      await parseOfferSummary(offerData, file.name);
+    } catch (e) {
+      errorDialog(e);
+    } finally {
+      setIsParsing(false);
     }
-
-    setIsParsing(true);
-
-    fs.stat(offerFilePath, (err, stats) => {
-      if (err) {
-        errorDialog(err);
-      } else {
-        continueOpen(stats);
-      }
-    });
   }
 
-  async function handleDrop(acceptedFiles: [File]) {
+  async function handleDrop(acceptedFiles: File[]) {
     if (acceptedFiles.length !== 1) {
       errorDialog(new Error('Please drop one offer file at a time'));
     } else {
-      handleOpen(acceptedFiles[0].path);
+      handleOpen(acceptedFiles[0]);
     }
   }
 
@@ -115,14 +102,19 @@ function SelectOfferFile() {
   }
 
   async function handleSelectOfferFile() {
-    const dialogOptions = {
-      filters: [{ name: 'Offer Files', extensions: ['offer'] }],
-    } as Electron.OpenDialogOptions;
-    const { ipcRenderer } = window as any;
-    const { canceled, filePaths } = await ipcRenderer.invoke('showOpenDialog', dialogOptions);
-    if (!canceled && filePaths?.length) {
-      handleOpen(filePaths[0]);
+    const result = await window.appAPI.showOpenFileDialogAndRead({
+      extensions: ['offer'],
+    });
+
+    if (!result) {
+      return;
     }
+
+    const { content, filename } = result;
+
+    // convert string content to file
+    const file = new File([content], filename, { type: 'application/offer' });
+    handleOpen(file);
   }
 
   async function pasteParse(text: string) {

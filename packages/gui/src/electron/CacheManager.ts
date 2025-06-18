@@ -1,8 +1,8 @@
-import crypto from 'crypto';
-import { protocol, BrowserWindow } from 'electron';
+import { protocol, BrowserWindow, net, dialog } from 'electron';
 import { EventEmitter } from 'events';
-import fs from 'fs/promises';
-import path from 'path';
+import crypto from 'node:crypto';
+import fs from 'node:fs/promises';
+import path from 'node:path';
 
 import debug from 'debug';
 import isURL from 'validator/lib/isURL';
@@ -13,13 +13,18 @@ import type Headers from '../@types/Headers';
 import CacheState from '../constants/CacheState';
 import limit from '../util/limit';
 
+import CacheAPI from './constants/CacheAPI';
 import downloadFile from './utils/downloadFile';
 import ensureDirectoryExists from './utils/ensureDirectoryExists';
 import getChecksum from './utils/getChecksum';
-import handleWithCustomErrors from './utils/handleWithCustomErrors';
+import ipcMainHandle from './utils/ipcMainHandle';
+import isValidURL from './utils/isValidURL';
+import sanitizeFilename from './utils/sanitizeFilename';
 import sanitizeNumber from './utils/sanitizeNumber';
 
 const log = debug('chia-gui:CacheManager');
+
+const CACHE_PROTOCOL = 'cache';
 
 async function safeUnlink(filePath: string) {
   try {
@@ -57,12 +62,23 @@ function removePrefix(str: string, variable: string): string {
   return str;
 }
 
+export function registerCacheSchemaAsPrivileged() {
+  protocol.registerSchemesAsPrivileged([
+    {
+      scheme: CACHE_PROTOCOL,
+      privileges: {
+        standard: true, // behaves like http/https
+        // secure: true, // treated as a secure origin
+        supportFetchAPI: true, // lets fetch/XHR reach your handler
+      },
+    },
+  ]);
+}
+
 export default class CacheManager extends EventEmitter {
   #cacheDirectory: string = './cache';
 
   #maxCacheSize: number = 0;
-
-  #protocolScheme: string = 'cache';
 
   #downloadLimit;
 
@@ -78,22 +94,15 @@ export default class CacheManager extends EventEmitter {
     options: {
       cacheDirectory?: string;
       maxCacheSize?: number | string;
-      protocolScheme?: string;
       concurrency?: number;
     } = {},
   ) {
     super();
 
-    const {
-      cacheDirectory = './cache',
-      maxCacheSize = MAX_TOTAL_SIZE,
-      protocolScheme = 'cache',
-      concurrency = 10,
-    } = options;
+    const { cacheDirectory = './cache', maxCacheSize = MAX_TOTAL_SIZE, concurrency = 10 } = options;
 
     this.cacheDirectory = cacheDirectory;
     this.maxCacheSize = maxCacheSize;
-    this.#protocolScheme = protocolScheme;
     this.#downloadLimit = limit(concurrency);
 
     this.setMaxListeners(50);
@@ -106,73 +115,85 @@ export default class CacheManager extends EventEmitter {
   }
 
   private prepareProtocol() {
-    protocol.registerFileProtocol(this.protocolScheme, async (request: any, callback: (obj: any) => void) => {
-      const fileName = removePrefix(request.url, this.protocolScheme);
+    protocol.handle(CACHE_PROTOCOL, async (request: Request) => {
+      const requestUrl = request.url;
+      const url = new URL(requestUrl);
+
+      const fileName = sanitizeFilename(url.hostname);
       const filePath = path.join(this.cacheDirectory, fileName);
 
-      try {
-        const infoFilePath = getInfoFilePath(filePath);
-        const cacheInfo = await this.getCacheInfo(infoFilePath, request.url);
+      const infoFilePath = getInfoFilePath(filePath);
+      const cacheInfo = await this.getCacheInfo(infoFilePath, requestUrl);
 
-        if (cacheInfo.state === CacheState.CACHED) {
-          const { headers } = cacheInfo;
-
-          callback({
-            path: filePath,
-            mimeType: headers['content-type'] ?? 'text/html',
-          });
-
-          return;
-        }
-
-        throw new Error('Not cached');
-      } catch (error) {
-        callback({
-          path: filePath,
+      if (cacheInfo.state !== CacheState.CACHED) {
+        return new Response('Not found', {
+          status: 404,
+          headers: {
+            'content-type': 'text/plain',
+          },
         });
       }
+
+      const response = await net.fetch(`file://${filePath}`);
+      if (!response.ok) {
+        return new Response('Not found', {
+          status: 404,
+          headers: {
+            'content-type': 'text/plain',
+          },
+        });
+      }
+
+      const { headers } = cacheInfo;
+      const updatedHeaders = new Headers(response.headers);
+
+      if (headers['content-type']) {
+        const contentType = Array.isArray(headers['content-type'])
+          ? headers['content-type'][0]
+          : headers['content-type'];
+        updatedHeaders.set('content-type', contentType);
+      }
+
+      return new Response(response.body, {
+        headers: updatedHeaders,
+      });
     });
   }
 
   private prepareIPC() {
-    handleWithCustomErrors('cache:getCacheSize', () => this.getCacheSize());
-    handleWithCustomErrors('cache:clearCache', () => this.clearCache());
-    handleWithCustomErrors('cache:setCacheDirectory', (_event, newDirectory: string) =>
-      this.setCacheDirectory(newDirectory),
+    ipcMainHandle(CacheAPI.GET_CACHE_SIZE, () => this.getCacheSize());
+    ipcMainHandle(CacheAPI.CLEAR_CACHE, () => this.clearCache());
+    ipcMainHandle(CacheAPI.SET_CACHE_DIRECTORY, () => this.setCacheDirectory());
+    ipcMainHandle(CacheAPI.SET_MAX_CACHE_SIZE, (newSize: number) => this.setMaxCacheSize(newSize));
+    ipcMainHandle(CacheAPI.GET_CONTENT, (url: string, options?: { maxSize?: number; timeout?: number }) =>
+      this.getContent(url, options),
     );
-    handleWithCustomErrors('cache:setMaxCacheSize', (_event, newSize: number) => this.setMaxCacheSize(newSize));
-    handleWithCustomErrors(
-      'cache:getContent',
-      (_event, url: string, options?: { maxSize?: number; timeout?: number }) => this.getContent(url, options),
+    ipcMainHandle(CacheAPI.GET_HEADERS, (url: string, options?: { maxSize?: number; timeout?: number }) =>
+      this.getHeaders(url, options),
     );
-    handleWithCustomErrors(
-      'cache:getHeaders',
-      (_event, url: string, options?: { maxSize?: number; timeout?: number }) => this.getHeaders(url, options),
+    ipcMainHandle(CacheAPI.GET_CHECKSUM, (url: string, options?: { maxSize?: number; timeout?: number }) =>
+      this.getChecksum(url, options),
     );
-    handleWithCustomErrors(
-      'cache:getChecksum',
-      (_event, url: string, options?: { maxSize?: number; timeout?: number }) => this.getChecksum(url, options),
-    );
-    handleWithCustomErrors('cache:getURI', (_event, url: string, options?: { maxSize?: number; timeout?: number }) =>
+    ipcMainHandle(CacheAPI.GET_URI, (url: string, options?: { maxSize?: number; timeout?: number }) =>
       this.getURI(url, options),
     );
-    handleWithCustomErrors('cache:invalidate', (_event, url: string) => this.invalidate(url));
+    ipcMainHandle(CacheAPI.INVALIDATE, (url: string) => this.invalidate(url));
 
-    handleWithCustomErrors('cache:getCacheDirectory', () => this.cacheDirectory);
-    handleWithCustomErrors('cache:getMaxCacheSize', () => this.maxCacheSize);
+    ipcMainHandle(CacheAPI.GET_CACHE_DIRECTORY, () => this.cacheDirectory);
+    ipcMainHandle(CacheAPI.GET_MAX_CACHE_SIZE, () => this.maxCacheSize);
   }
 
   public bindEvents(window: BrowserWindow) {
     function onCacheDirectoryChanged(newDirectory: string) {
-      window.webContents.send('cache:cacheDirectoryChanged', newDirectory);
+      window.webContents.send(CacheAPI.ON_CACHE_DIRECTORY_CHANGED, newDirectory);
     }
 
     function onMaxCacheSizeChanged(newSize: number) {
-      window.webContents.send('cache:maxCacheSizeChanged', newSize);
+      window.webContents.send(CacheAPI.ON_MAX_CACHE_SIZE_CHANGED, newSize);
     }
 
     const onSizeChanged = async () => {
-      window.webContents.send('cache:sizeChanged', await this.getCacheSize());
+      window.webContents.send(CacheAPI.ON_SIZE_CHANGED, await this.getCacheSize());
     };
 
     this.on('cacheDirectoryChanged', onCacheDirectoryChanged);
@@ -195,10 +216,6 @@ export default class CacheManager extends EventEmitter {
   async init() {
     this.prepareProtocol();
     await ensureDirectoryExists(this.cacheDirectory);
-  }
-
-  public get protocolScheme(): string {
-    return this.#protocolScheme;
   }
 
   public get maxCacheSize(): number {
@@ -227,6 +244,10 @@ export default class CacheManager extends EventEmitter {
   }
 
   private getCacheFilePath(url: string) {
+    if (!isValidURL(url)) {
+      throw new Error(`Invalid URL: ${url}`);
+    }
+
     const urlHash = crypto.createHash('md5').update(url).digest('hex');
     const fileName = `${urlHash}${FILE_SUFFIX}`;
     return path.join(this.cacheDirectory, fileName);
@@ -237,6 +258,7 @@ export default class CacheManager extends EventEmitter {
     return getInfoFilePath(filePath);
   }
 
+  // url is here cache://filename
   private async getCacheInfo(filePath: string, url: string): Promise<CacheInfo> {
     try {
       const infoString = await fs.readFile(filePath, 'utf-8');
@@ -281,6 +303,10 @@ export default class CacheManager extends EventEmitter {
   }
 
   abort(url: string) {
+    if (!isValidURL(url)) {
+      throw new Error(`Invalid URL: ${url}`);
+    }
+
     const ongoingRequest = this.ongoingRequests.get(url);
     if (ongoingRequest) {
       ongoingRequest.abort();
@@ -295,6 +321,10 @@ export default class CacheManager extends EventEmitter {
     } = {},
   ): Promise<CacheInfo> {
     const { maxSize = MAX_FILE_SIZE, timeout = 30_000 } = options;
+
+    if (!isValidURL(url)) {
+      throw new Error(`Invalid URL: ${url}`);
+    }
 
     const ongoingRequest = this.ongoingRequests.get(url);
     if (ongoingRequest) {
@@ -401,6 +431,10 @@ export default class CacheManager extends EventEmitter {
       timeout?: number;
     },
   ): Promise<Headers> {
+    if (!isValidURL(url)) {
+      throw new Error(`Invalid URL: ${url}`);
+    }
+
     const cacheInfo = await this.fetchRemoteContent(url, options);
 
     if (cacheInfo.state === CacheState.ERROR) {
@@ -425,6 +459,10 @@ export default class CacheManager extends EventEmitter {
       timeout?: number;
     },
   ): Promise<Buffer> {
+    if (!isValidURL(url)) {
+      throw new Error(`Invalid URL: ${url}`);
+    }
+
     const cacheInfo = await this.fetchRemoteContent(url, options);
 
     if (cacheInfo.state === CacheState.ERROR) {
@@ -450,6 +488,10 @@ export default class CacheManager extends EventEmitter {
       timeout?: number;
     },
   ): Promise<string> {
+    if (!isValidURL(url)) {
+      throw new Error(`Invalid URL: ${url}`);
+    }
+
     const cacheInfo = await this.fetchRemoteContent(url, options);
 
     if (cacheInfo.state === CacheState.ERROR) {
@@ -474,6 +516,10 @@ export default class CacheManager extends EventEmitter {
       timeout?: number;
     },
   ) {
+    if (!isValidURL(url)) {
+      throw new Error(`Invalid URL: ${url}`);
+    }
+
     const cacheInfo = await this.fetchRemoteContent(url, options);
 
     if (cacheInfo.state === CacheState.ERROR) {
@@ -486,7 +532,7 @@ export default class CacheManager extends EventEmitter {
 
     if (cacheInfo.state === CacheState.CACHED) {
       const filePath = this.getCacheFilePath(url);
-      return `${this.protocolScheme}://${path.basename(filePath)}`;
+      return `${CACHE_PROTOCOL}://${path.basename(filePath)}`;
     }
 
     throw new Error('Unknown cache state');
@@ -513,7 +559,20 @@ export default class CacheManager extends EventEmitter {
     this.emit('sizeChanged');
   }
 
-  async setCacheDirectory(newDirectory: string) {
+  async setCacheDirectory() {
+    const { cacheDirectory } = this;
+
+    const result = await dialog.showOpenDialog({
+      properties: ['openDirectory'],
+      defaultPath: cacheDirectory,
+    });
+
+    if (result.canceled || !result.filePaths[0]) {
+      return;
+    }
+
+    const newDirectory = result.filePaths[0];
+
     await ensureDirectoryExists(newDirectory);
 
     // move the files from the current cache directory to the new directory
@@ -580,6 +639,9 @@ export default class CacheManager extends EventEmitter {
   }
 
   async invalidate(url: string) {
+    if (!isValidURL(url)) {
+      throw new Error(`Invalid URL: ${url}`);
+    }
     // cancel the ongoing request
     const ongoingRequest = this.ongoingRequests.get(url);
     if (ongoingRequest) {

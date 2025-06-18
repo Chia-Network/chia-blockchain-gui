@@ -1,4 +1,4 @@
-import fs from 'fs/promises';
+import fs from 'node:fs/promises';
 
 export default async function directoryExists(dirPath: string) {
   try {

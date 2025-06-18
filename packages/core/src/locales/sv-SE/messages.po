@@ -50,7 +50,7 @@ msgstr "Lägg till plånbok"
 msgid "Amount"
 msgstr "Belopp"
 
-#: src/components/Settings/SettingsApp.tsx:94
+#: src/components/Settings/SettingsApp.tsx:90
 msgid "Appearance"
 msgstr "Utseende"
 
@@ -70,7 +70,7 @@ msgstr "Tillbaka"
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: src/components/Settings/SettingsApp.tsx:140
+#: src/components/Settings/SettingsApp.tsx:136
 msgid "Check for updates"
 msgstr "Sök efter uppdateringar"
 
@@ -82,7 +82,7 @@ msgstr "Söker efter uppdateringar ..."
 msgid "Chia {latestVersion} is currently the latest version available."
 msgstr "Chia {latestVersion} är för närvarande den senaste tillgängliga versionen."
 
-#: src/components/Settings/SettingsApp.tsx:126
+#: src/components/Settings/SettingsApp.tsx:122
 msgid "Chia Application Version:"
 msgstr "Chia programversion:"
 
@@ -120,7 +120,7 @@ msgstr "Skapa en ny plånboksnyckel för att komma igång med Chia."
 msgid "Create New"
 msgstr "Skapa ny"
 
-#: src/components/Settings/SettingsApp.tsx:111
+#: src/components/Settings/SettingsApp.tsx:107
 msgid "Dark"
 msgstr "Mörkt"
 
@@ -180,7 +180,7 @@ msgstr "Fel:"
 msgid "Esc"
 msgstr "Esc"
 
-#: src/components/LayoutMain/LayoutFooter.tsx:49
+#: src/components/LayoutMain/LayoutFooter.tsx:47
 msgid "FAQ"
 msgstr "FAQ"
 
@@ -192,7 +192,7 @@ msgstr "Publik nyckel för odlare"
 msgid "Farmer public key:"
 msgstr "Publik nyckel för odlare:"
 
-#: src/components/Settings/SettingsApp.tsx:79
+#: src/components/Settings/SettingsApp.tsx:75
 msgid "Farming"
 msgstr "Odlar"
 
@@ -206,7 +206,7 @@ msgstr "Avgift"
 msgid "Fingerprint does not match"
 msgstr "Fingeravtrycket matchar inte"
 
-#: src/components/Settings/SettingsApp.tsx:152
+#: src/components/Settings/SettingsApp.tsx:148
 msgid "Frequently Asked Questions"
 msgstr "Vanliga frågor"
 
@@ -214,7 +214,7 @@ msgstr "Vanliga frågor"
 msgid "Go To Download Page"
 msgstr "Gå till nedladdningssidan"
 
-#: src/components/Settings/SettingsApp.tsx:148
+#: src/components/Settings/SettingsApp.tsx:144
 msgid "Help"
 msgstr "Hjälp"
 
@@ -243,7 +243,7 @@ msgstr "Importera befintlig"
 msgid "Incorrect value"
 msgstr "Felaktigt värde"
 
-#: src/components/Settings/SettingsApp.tsx:118
+#: src/components/Settings/SettingsApp.tsx:114
 msgid "Language"
 msgstr "Språk"
 
@@ -251,7 +251,7 @@ msgstr "Språk"
 msgid "Latest Version:"
 msgstr "Senaste version:"
 
-#: src/components/Settings/SettingsApp.tsx:103
+#: src/components/Settings/SettingsApp.tsx:99
 msgid "Light"
 msgstr "Ljust"
 
@@ -296,7 +296,7 @@ msgstr "Migrera"
 msgid "Migration required"
 msgstr "Migrering krävs"
 
-#: src/components/Settings/SettingsApp.tsx:70
+#: src/components/Settings/SettingsApp.tsx:66
 msgid "Mode"
 msgstr "Läge"
 
@@ -421,8 +421,8 @@ msgstr "Minnesfras:"
 msgid "Select..."
 msgstr "Välj..."
 
-#: src/components/LayoutMain/LayoutFooter.tsx:52
-#: src/components/Settings/SettingsApp.tsx:155
+#: src/components/LayoutMain/LayoutFooter.tsx:50
+#: src/components/Settings/SettingsApp.tsx:151
 msgid "Send Feedback"
 msgstr "Skicka feedback"
 
@@ -530,7 +530,7 @@ msgid "Value seems high"
 msgstr "Värdet verkar högt"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:233
-#: src/components/Settings/SettingsApp.tsx:87
+#: src/components/Settings/SettingsApp.tsx:83
 msgid "Wallet"
 msgstr "Plånbok"
 

@@ -1,5 +1,3 @@
-import fs, { Stats } from 'fs';
-
 import { Color, Dropzone, Flex, useShowError } from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
 import { Box, Card, Typography } from '@mui/material';
@@ -80,43 +78,27 @@ export default function VerifyMessageImport(props: VerifyMessageImportProps) {
     </Trans>
   );
 
-  async function handleOpen(path: string) {
-    async function continueOpen(stats: Stats) {
-      try {
-        if (stats.size > 10 * 1024 * 1024) {
-          throw new Error(t`Signed message file is too large (> 10MB)`);
-        }
-
-        const data = fs.readFileSync(path, 'utf8');
-
-        const parsed = parseSignedMessageData(data);
-        onImport(parsed);
-      } catch (e) {
-        showError(e);
-      } finally {
-        setIsParsing(false);
+  async function handleOpen(file: File) {
+    try {
+      if (file.size > 10 * 1024 * 1024) {
+        throw new Error(t`Signed message file is too large (> 10MB)`);
       }
+
+      const text = await file.text();
+      const parsed = parseSignedMessageData(text);
+      onImport(parsed);
+    } catch (e) {
+      showError(e);
+    } finally {
+      setIsParsing(false);
     }
-
-    setIsParsing(true);
-
-    fs.stat(path, (err, stats) => {
-      if (err) {
-        showError(err);
-        setIsParsing(false);
-      } else {
-        continueOpen(stats);
-      }
-    });
   }
 
-  async function handleDrop(acceptedFiles: [FileWithPath]) {
+  async function handleDrop(acceptedFiles: FileWithPath[]) {
     if (acceptedFiles.length !== 1) {
       showError(new Error('Please drop one offer file at a time'));
-    } else if (acceptedFiles[0].path === undefined) {
-      showError(new Error('Unable to resolve file path'));
     } else {
-      handleOpen(acceptedFiles[0].path);
+      handleOpen(acceptedFiles[0] as File);
     }
   }
 

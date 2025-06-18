@@ -90,16 +90,16 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
   const isLoading = isLoadingFingerprint || isLoadingKeyData;
 
   React.useEffect(() => {
-    function checkForUpdates(ver: string) {
-      if (ver) {
-        openDialog(<NewerAppVersionAvailable currentVersion={ver} />);
+    function checkForUpdates() {
+      if (appVersion) {
+        openDialog(<NewerAppVersionAvailable currentVersion={appVersion} />);
       }
     }
-    (window as any).ipcRenderer.on('checkForUpdates', () => checkForUpdates(appVersion));
 
-    // unregister event listener on unmount
+    const unsubscribe = window.appAPI.subscribeToCheckForUpdates(checkForUpdates);
+
     return () => {
-      (window as any).ipcRenderer.removeAllListeners('checkForUpdates');
+      unsubscribe();
     };
   }, [openDialog, appVersion]);
 

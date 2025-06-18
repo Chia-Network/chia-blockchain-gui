@@ -1,6 +1,6 @@
 import type { Plot } from '@chia-network/api';
 import { useDeletePlotMutation } from '@chia-network/api-react';
-import { ConfirmDialog, More, MenuItem, useOpenDialog } from '@chia-network/core';
+import { More, MenuItem, useShowError } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { DeleteForever as DeleteForeverIcon } from '@mui/icons-material';
 import { ListItemIcon, Typography } from '@mui/material';
@@ -15,20 +15,15 @@ export default function PlotAction(props: PlotActionProps) {
     plot: { filename },
   } = props;
 
-  const openDialog = useOpenDialog();
+  const showError = useShowError();
   const [deletePlot] = useDeletePlotMutation();
 
   async function handleDeletePlot() {
-    await openDialog(
-      <ConfirmDialog
-        title={<Trans>Delete Plot</Trans>}
-        confirmTitle={<Trans>Delete</Trans>}
-        confirmColor="danger"
-        onConfirm={() => deletePlot({ filename }).unwrap()}
-      >
-        <Trans>Are you sure you want to delete the plot? The plot cannot be recovered.</Trans>
-      </ConfirmDialog>,
-    );
+    try {
+      await deletePlot({ filename }).unwrap();
+    } catch (error) {
+      showError(error);
+    }
   }
 
   return (

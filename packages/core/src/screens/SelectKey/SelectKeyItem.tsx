@@ -59,8 +59,8 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
     onSelect(fingerprint);
   }
 
-  function handleShowKey() {
-    openDialog(<SelectKeyDetailDialog fingerprint={fingerprint} index={index} />);
+  async function handleShowKey() {
+    await window.appAPI.openKeyDetail(fingerprint);
   }
 
   function handleRename() {

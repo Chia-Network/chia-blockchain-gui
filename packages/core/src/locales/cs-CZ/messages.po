@@ -50,7 +50,7 @@ msgstr "Přidat peněženku"
 msgid "Amount"
 msgstr "Částka"
 
-#: src/components/Settings/SettingsApp.tsx:94
+#: src/components/Settings/SettingsApp.tsx:90
 msgid "Appearance"
 msgstr "Vzhled"
 
@@ -70,7 +70,7 @@ msgstr "Zpět"
 msgid "Cancel"
 msgstr "Zrušit"
 
-#: src/components/Settings/SettingsApp.tsx:140
+#: src/components/Settings/SettingsApp.tsx:136
 msgid "Check for updates"
 msgstr "Kontrola aktualizací"
 
@@ -82,7 +82,7 @@ msgstr "Kontrola aktualizací..."
 msgid "Chia {latestVersion} is currently the latest version available."
 msgstr "Chia {latestVersion} je nejnovější dostupná verze."
 
-#: src/components/Settings/SettingsApp.tsx:126
+#: src/components/Settings/SettingsApp.tsx:122
 msgid "Chia Application Version:"
 msgstr "Verze aplikace Chia:"
 
@@ -120,7 +120,7 @@ msgstr "Vytvořte nový klíč peněženky, abyste mohli začít s Chia."
 msgid "Create New"
 msgstr "Založit nový"
 
-#: src/components/Settings/SettingsApp.tsx:111
+#: src/components/Settings/SettingsApp.tsx:107
 msgid "Dark"
 msgstr "Tmavý"
 
@@ -180,7 +180,7 @@ msgstr "Chyba:"
 msgid "Esc"
 msgstr "Esc"
 
-#: src/components/LayoutMain/LayoutFooter.tsx:49
+#: src/components/LayoutMain/LayoutFooter.tsx:47
 msgid "FAQ"
 msgstr "Často kladené dotazy"
 
@@ -192,7 +192,7 @@ msgstr "Farmářuv veřejný klíč"
 msgid "Farmer public key:"
 msgstr "Farmářuv veřejný klíč:"
 
-#: src/components/Settings/SettingsApp.tsx:79
+#: src/components/Settings/SettingsApp.tsx:75
 msgid "Farming"
 msgstr "Farmaření"
 
@@ -206,7 +206,7 @@ msgstr "Poplatek"
 msgid "Fingerprint does not match"
 msgstr "Otisk se neshoduje"
 
-#: src/components/Settings/SettingsApp.tsx:152
+#: src/components/Settings/SettingsApp.tsx:148
 msgid "Frequently Asked Questions"
 msgstr "Často kladené otázky"
 
@@ -214,7 +214,7 @@ msgstr "Často kladené otázky"
 msgid "Go To Download Page"
 msgstr "Přejít na stránku stahování"
 
-#: src/components/Settings/SettingsApp.tsx:148
+#: src/components/Settings/SettingsApp.tsx:144
 msgid "Help"
 msgstr "Nápověda"
 
@@ -243,7 +243,7 @@ msgstr "Import existující"
 msgid "Incorrect value"
 msgstr "Nesprávná hodnota"
 
-#: src/components/Settings/SettingsApp.tsx:118
+#: src/components/Settings/SettingsApp.tsx:114
 msgid "Language"
 msgstr "Jazyk"
 
@@ -251,7 +251,7 @@ msgstr "Jazyk"
 msgid "Latest Version:"
 msgstr "Nejnovější verze:"
 
-#: src/components/Settings/SettingsApp.tsx:103
+#: src/components/Settings/SettingsApp.tsx:99
 msgid "Light"
 msgstr "Světlý"
 
@@ -296,7 +296,7 @@ msgstr "Migrovat"
 msgid "Migration required"
 msgstr "Vyžadována migrace"
 
-#: src/components/Settings/SettingsApp.tsx:70
+#: src/components/Settings/SettingsApp.tsx:66
 msgid "Mode"
 msgstr "Režim"
 
@@ -421,8 +421,8 @@ msgstr "Slova pro zálohu:"
 msgid "Select..."
 msgstr "Zvolit..."
 
-#: src/components/LayoutMain/LayoutFooter.tsx:52
-#: src/components/Settings/SettingsApp.tsx:155
+#: src/components/LayoutMain/LayoutFooter.tsx:50
+#: src/components/Settings/SettingsApp.tsx:151
 msgid "Send Feedback"
 msgstr "Odeslat zpětnou vazbu"
 
@@ -530,7 +530,7 @@ msgid "Value seems high"
 msgstr "Hodnota se zdá vysoká"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:233
-#: src/components/Settings/SettingsApp.tsx:87
+#: src/components/Settings/SettingsApp.tsx:83
 msgid "Wallet"
 msgstr "Peněženka"
 

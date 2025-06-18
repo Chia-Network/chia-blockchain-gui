@@ -19,7 +19,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@babel/runtime": "7.27.0",
+    "@babel/runtime": "7.27.6",
     "bignumber.js": "9.1.1",
     "core-js": "3.32.1",
     "debug": "4.3.4",
@@ -27,11 +27,11 @@
     "regenerator-runtime": "0.14.1"
   },
   "devDependencies": {
-    "@babel/core": "7.26.10",
+    "@babel/core": "7.27.4",
     "@babel/helper-get-function-arity": "7.16.7",
-    "@babel/plugin-transform-runtime": "7.26.10",
-    "@babel/preset-env": "7.26.9",
-    "@babel/preset-typescript": "7.27.0",
+    "@babel/plugin-transform-runtime": "7.27.4",
+    "@babel/preset-env": "7.27.2",
+    "@babel/preset-typescript": "7.27.1",
     "@chia-network/api": "1.0.0",
     "@reduxjs/toolkit": "1.9.5",
     "@rollup/plugin-babel": "6.0.4",

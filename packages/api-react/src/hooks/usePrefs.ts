@@ -20,7 +20,7 @@ function getPreferences(key: string) {
 
 function setPreferences(key: string, value: Serializable) {
   const { preferences } = window as any;
-  (window as any).ipcRenderer.invoke('savePrefs', {
+  window.preferencesAPI.save({
     ...preferences,
     [key]: value,
   });

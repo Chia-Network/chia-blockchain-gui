@@ -14,8 +14,8 @@ const log = debug('chia-api:client');
 
 type Options = {
   url: string;
-  cert: string;
-  key: string;
+  cert?: string;
+  key?: string;
   webSocket: any;
   services?: ServiceNameValue[];
   timeout?: number;
@@ -26,7 +26,7 @@ type Options = {
 export default class Client extends EventEmitter {
   static isClient = true;
 
-  private options: Required<Options>;
+  private options: Omit<Required<Options>, 'cert' | 'key'> & { cert?: string; key?: string };
 
   private ws: any;
 
@@ -130,10 +130,6 @@ export default class Client extends EventEmitter {
 
     if (!url) {
       throw new Error('Url is not defined');
-    } else if (!key) {
-      throw new Error('Key is not defined');
-    } else if (!cert) {
-      throw new Error('Cert is not defined');
     } else if (!WebSocket) {
       throw new Error('WebSocket is not defined');
     }

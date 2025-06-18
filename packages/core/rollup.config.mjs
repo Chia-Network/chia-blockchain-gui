@@ -24,6 +24,7 @@ export default {
 
     externals({
       deps: true,
+      builtinsPrefix: 'ignore',
     }),
 
     // Allows node_modules resolution

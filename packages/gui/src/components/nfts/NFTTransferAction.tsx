@@ -9,7 +9,6 @@ import {
   Flex,
   chiaToMojo,
   useCurrencyCode,
-  useOpenDialog,
   validAddress,
   useShowError,
 } from '@chia-network/core';
@@ -20,7 +19,6 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 
 import NFTSummary from './NFTSummary';
-import NFTTransferConfirmationDialog from './NFTTransferConfirmationDialog';
 
 /* ========================================================================== */
 /*                              NFTTransferResult                             */
@@ -58,7 +56,6 @@ export default function NFTTransferAction(props: NFTTransferActionProps) {
   const { nfts, destination = '', onComplete } = props;
 
   const [transferNFT, { isLoading: isTransferNFTLoading }] = useTransferNFTMutation();
-  const openDialog = useOpenDialog();
   const showError = useShowError();
   const currencyCode = useCurrencyCode();
   const methods = useForm<NFTTransferFormData>({
@@ -89,41 +86,28 @@ export default function NFTTransferAction(props: NFTTransferActionProps) {
       return;
     }
 
-    const description = nfts.length > 1 && (
-      <Trans>
-        Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to
-        transfer {nfts.length} NFTs?
-      </Trans>
-    );
+    let success;
+    let errorMessage;
 
-    const confirmation = await openDialog(
-      <NFTTransferConfirmationDialog destination={destinationLocal} fee={fee} description={description} />,
-    );
+    try {
+      await transferNFT({
+        walletId: nfts[0].walletId,
+        nftCoinIds: nfts.map((nft: NFTInfo) => nft.nftCoinId),
+        targetAddress: destinationLocal,
+        fee: feeInMojos,
+      }).unwrap();
+      success = true;
+      errorMessage = undefined;
+    } catch (err: any) {
+      success = false;
+      errorMessage = err.message;
+    }
 
-    if (confirmation) {
-      let success;
-      let errorMessage;
-
-      try {
-        await transferNFT({
-          walletId: nfts[0].walletId,
-          nftCoinIds: nfts.map((nft: NFTInfo) => nft.nftCoinId),
-          targetAddress: destinationLocal,
-          fee: feeInMojos,
-        }).unwrap();
-        success = true;
-        errorMessage = undefined;
-      } catch (err: any) {
-        success = false;
-        errorMessage = err.message;
-      }
-
-      if (onComplete) {
-        onComplete({
-          success,
-          error: errorMessage,
-        });
-      }
+    if (onComplete) {
+      onComplete({
+        success,
+        error: errorMessage,
+      });
     }
   }
 

@@ -1,14 +1,20 @@
 import path from 'path';
-import CopyPlugin from 'copy-webpack-plugin';
+
+const CONTEXT = __dirname;
 
 export default {
-  resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
+  entry: {
+    main: './src/electron/main.tsx',
+    preload: './src/electron/preload.ts',
+    preloadDialog: './src/electron/preloadDialog.ts',
   },
   devtool: 'source-map',
-  entry: './src/electron/main.tsx',
   target: 'electron-main',
   stats: 'errors-only',
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
+    modules: [path.resolve(CONTEXT, 'node_modules'), path.resolve(CONTEXT, '../../node_modules'), 'node_modules'],
+  },
   module: {
     rules: [
       {
@@ -33,16 +39,6 @@ export default {
     filename: '[name].js',
     hashFunction: 'sha256',
   },
-  plugins: [
-    new CopyPlugin({
-      patterns: [
-        {
-          from: path.resolve(__dirname, './src/electron/preload.js'),
-          to: path.resolve(__dirname, './build/electron'),
-        },
-      ],
-    }),
-  ],
   externals: {
     fsevents: "require('fsevents')",
   },

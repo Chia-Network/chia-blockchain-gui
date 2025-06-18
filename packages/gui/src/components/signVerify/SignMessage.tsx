@@ -67,17 +67,21 @@ export default function SignMessage(props: SignMessageProps) {
       return;
     }
 
-    const { data: result } = await signMessageByAddress({
-      message: messageToSign,
-      address,
-    });
+    try {
+      const result = await signMessageByAddress({
+        message: messageToSign,
+        address,
+      }).unwrap();
 
-    const content = toSnakeCase({ ...result, message: messageToSign, address });
-    delete content.success;
+      const content = toSnakeCase({ ...result, message: messageToSign, address });
+      delete content.success;
 
-    const jsonContent = JSON.stringify(content, null, 2);
+      const jsonContent = JSON.stringify(content, null, 2);
 
-    openDialog(<SignMessageResultDialog content={jsonContent} />);
+      openDialog(<SignMessageResultDialog content={jsonContent} />);
+    } catch (error) {
+      showError(error);
+    }
   }
 
   async function handleSignById(messageToSign: string, id: string, address: string) {

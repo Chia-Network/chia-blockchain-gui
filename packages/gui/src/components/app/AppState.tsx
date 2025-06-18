@@ -1,5 +1,3 @@
-import { IpcRenderer } from 'electron';
-
 import {
   ConnectionState,
   ServiceHumanName,
@@ -68,7 +66,6 @@ export default function AppState(props: Props) {
   const [isDataLayerEnabled] = useState(enableDataLayerService);
   const [isFilePropagationServerEnabled] = useState(enableFilePropagationServer);
   const [versionDialog, setVersionDialog] = useState<boolean>(true);
-  const [updatedWindowTitle, setUpdatedWindowTitle] = useState<boolean>(false);
   const { data: backendVersion } = useGetVersionQuery();
   const { version } = useAppVersion();
   const lru = useNFTMetadataLRU();
@@ -121,14 +118,14 @@ export default function AppState(props: Props) {
     const nonWalletServiceRunning = allRunningServices.some((service) => service !== ServiceName.WALLET);
 
     if (mode === Mode.WALLET && !nonWalletServiceRunning) {
-      window.ipcRenderer.invoke('setPromptOnQuit', false);
+      window.appAPI.setPromptOnQuit(false);
     } else {
-      window.ipcRenderer.invoke('setPromptOnQuit', true);
+      window.appAPI.setPromptOnQuit(true);
     }
   }, [mode, servicesState]);
 
   useEffect(() => {
-    async function handleClose(event) {
+    async function handleClose() {
       if (closing) {
         return;
       }
@@ -139,29 +136,21 @@ export default function AppState(props: Props) {
         force: true,
       }).unwrap();
 
-      event.sender.send('daemon-exited');
+      window.appAPI.daemonExited();
     }
 
     if (isElectron()) {
-      const { ipcRenderer } = window as unknown as { ipcRenderer: IpcRenderer };
-
-      ipcRenderer.on('exit-daemon', handleClose);
+      const unsubscribe = window.appAPI.subscribeToExitDaemon(handleClose);
 
       // Handle files/URLs opened at launch now that the app is ready
-      ipcRenderer.invoke('processLaunchTasks');
-
-      if (isTestnet && !updatedWindowTitle) {
-        ipcRenderer.invoke('setWindowTitle', 'Chia Blockchain (Testnet)');
-        setUpdatedWindowTitle(true);
-      }
+      window.appAPI.processLaunchTasks();
 
       return () => {
-        // @ts-ignore
-        ipcRenderer.off('exit-daemon', handleClose);
+        unsubscribe();
       };
     }
     return undefined;
-  }, [close, closing, lru, isTestnet, updatedWindowTitle]);
+  }, [close, closing, lru, isTestnet]);
 
   if (closing) {
     return (

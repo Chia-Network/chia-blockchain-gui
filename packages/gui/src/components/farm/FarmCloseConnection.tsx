@@ -1,4 +1,5 @@
 import { useCloseFarmerConnectionMutation } from '@chia-network/api-react';
+import { useShowError } from '@chia-network/core';
 
 type Props = {
   nodeId: string;
@@ -7,10 +8,15 @@ type Props = {
 
 export default function FarmCloseConnection(props: Props): JSX.Element {
   const { nodeId, children } = props;
+  const showError = useShowError();
   const [closeFarmerConnection] = useCloseFarmerConnectionMutation();
 
   async function handleClose() {
-    await closeFarmerConnection({ nodeId }).unwrap();
+    try {
+      await closeFarmerConnection({ nodeId }).unwrap();
+    } catch (error) {
+      showError(error);
+    }
   }
 
   return children({

@@ -13,16 +13,15 @@ import {
   ErrorBoundary,
   AuthProvider,
 } from '@chia-network/core';
-import { nativeTheme } from '@electron/remote';
 import { Trans } from '@lingui/macro';
 import { Typography } from '@mui/material';
 import isElectron from 'is-electron';
 import React, { ReactNode, useEffect, useState, Suspense } from 'react';
 import { Provider } from 'react-redux';
 import { Outlet } from 'react-router-dom';
-import WebSocket from 'ws';
 
 import { i18n, defaultLocale, locales } from '../../config/locales';
+import WebSocketBridge from '../../util/WebSocketBridge';
 import CacheProvider from '../cache/CacheProvider';
 import LRUsProvider from '../lrus/LRUsProvider';
 import NFTProvider from '../nfts/provider/NFTProvider';
@@ -36,7 +35,7 @@ async function waitForConfig() {
   // eslint-disable-next-line no-constant-condition -- We want this
   while (true) {
     // eslint-disable-next-line no-await-in-loop -- We want to run promises in series
-    const config = await window.ipcRenderer.invoke('getConfig');
+    const config = await window.appAPI.getConfig();
     if (config) {
       return config;
     }
@@ -56,20 +55,15 @@ export default function App(props: AppProps) {
   const { isDarkMode } = useDarkMode();
 
   const theme = isDarkMode ? dark : light;
-  if (isElectron()) {
-    nativeTheme.themeSource = isDarkMode ? 'dark' : 'light';
-  }
 
   async function init() {
     const config = await waitForConfig();
-    const { cert, key, url } = config;
+    const { url } = config;
 
     store.dispatch(
       api.initializeConfig({
         url,
-        cert,
-        key,
-        webSocket: WebSocket,
+        webSocket: WebSocketBridge,
       }),
     );
 

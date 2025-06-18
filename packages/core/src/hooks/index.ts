@@ -12,7 +12,6 @@ export { default as usePersist } from './usePersist';
 export { default as usePersistState } from './usePersistState';
 export { default as useScrollbarsSettings } from './useScrollbarsSettings';
 export { default as useSerializedNavigationState } from './useSerializedNavigationState';
-export { default as useShowSaveDialog } from './useShowSaveDialog';
 export { default as useShowDebugInformation } from './useShowDebugInformation';
 export { default as useShowError } from './useShowError';
 export { default as useSkipMigration } from './useSkipMigration';

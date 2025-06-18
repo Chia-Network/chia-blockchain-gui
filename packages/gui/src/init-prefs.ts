@@ -1,12 +1,4 @@
-import type { IpcRenderer } from 'electron';
-
-type WindowExt = typeof window & {
-  preferences: Record<string, any>;
-  ipcRenderer: IpcRenderer;
-};
-
 async function migrateGUIPrefsFromLocalStorage() {
-  const w = window as WindowExt;
   const prefs: Record<string, any> = {};
   const targets: string[] = [
     'cacheFolder',
@@ -51,7 +43,7 @@ async function migrateGUIPrefsFromLocalStorage() {
     return;
   }
 
-  await w.ipcRenderer.invoke('migratePrefs', prefs);
+  await window.preferencesAPI.migrate(prefs);
 
   Object.keys(prefs).forEach((key) => {
     window.localStorage.removeItem(key);
@@ -59,8 +51,7 @@ async function migrateGUIPrefsFromLocalStorage() {
 }
 
 export default async function initPrefs(onInitCallback: Function) {
-  const w = window as WindowExt;
   await migrateGUIPrefsFromLocalStorage();
-  w.preferences = await w.ipcRenderer.invoke('readPrefs');
+  window.preferences = await window.preferencesAPI.read();
   onInitCallback();
 }

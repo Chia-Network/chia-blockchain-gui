@@ -28,14 +28,14 @@ export default function useAddressBook(): [
   // editContact
   const [addressBook, setAddressBook] = useState<AddressContact[]>([]);
 
-  const updateAddressBook = useCallback((contacts) => {
-    (window as any).ipcRenderer.invoke('saveAddressBook', contacts);
+  const updateAddressBook = useCallback(async (contacts: AddressContact[]) => {
+    await window.addressBookAPI.save(contacts);
     setAddressBook(contacts);
   }, []);
 
   useEffect(() => {
     async function getAddressBook() {
-      const contacts = await (window as any).ipcRenderer.invoke('readAddressBook');
+      const contacts = await window.addressBookAPI.read();
       setAddressBook(contacts);
     }
 

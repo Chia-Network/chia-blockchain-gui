@@ -11,6 +11,7 @@ export default {
   plugins: [
     externals({
       deps: true,
+      builtinsPrefix: 'ignore',
     }),
 
     // Allows node_modules resolution

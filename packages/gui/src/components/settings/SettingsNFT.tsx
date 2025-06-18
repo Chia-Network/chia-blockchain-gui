@@ -17,7 +17,6 @@ import React from 'react';
 import useCache from '../../hooks/useCache';
 import useHideObjectionableContent from '../../hooks/useHideObjectionableContent';
 import useNFTImageFittingMode from '../../hooks/useNFTImageFittingMode';
-import useSelectDirectory from '../../hooks/useSelectDirectory';
 
 import LimitCacheSize from './LimitCacheSize';
 
@@ -41,7 +40,6 @@ export default function SettingsGeneral() {
   const [nftImageFittingMode, setNFTImageFittingMode] = useNFTImageFittingMode();
   // const [, setCacheFolder] = usePrefs('cacheFolder', '');
   const openDialog = useOpenDialog();
-  const selectDirectory = useSelectDirectory();
 
   function handleScalePreviewImages(event: React.ChangeEvent<HTMLInputElement>) {
     setNFTImageFittingMode(event.target.checked ? 'contain' : 'cover');
@@ -63,14 +61,7 @@ export default function SettingsGeneral() {
   }
 
   async function chooseAnotherFolder() {
-    const newFolder = await selectDirectory({
-      properties: ['openDirectory'],
-      defaultPath: cacheDirectory,
-    });
-
-    if (newFolder) {
-      setCacheDirectory(newFolder);
-    }
+    setCacheDirectory();
   }
 
   return (

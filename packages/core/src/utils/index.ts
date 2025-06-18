@@ -8,7 +8,6 @@ export { default as chiaToMojo } from './chiaToMojo';
 export { default as getPercentPointsSuccessfull } from './getPercentPointsSuccessfull';
 export { default as getPoolInfo } from './getPoolInfo';
 export { default as getTransactionResult } from './getTransactionResult';
-export { default as isWindows } from './isWindows';
 export { default as mojoToCAT } from './mojoToCAT';
 export { default as mojoToCATLocaleString } from './mojoToCATLocaleString';
 export { default as mojoToChia } from './mojoToChia';

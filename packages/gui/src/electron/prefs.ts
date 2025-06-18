@@ -1,7 +1,6 @@
-import path from 'path';
+import path from 'node:path';
 
-import { getUserDataDir } from '../util/userData';
-
+import { getUserDataDir } from './utils/userData';
 import { readData, writeData } from './utils/yamlUtils';
 
 function getPrefsPath() {

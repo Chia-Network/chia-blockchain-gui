@@ -16,7 +16,6 @@ const ProgressBar = styled.div`
     border-radius: 2px;
   }
 `;
-const { ipcRenderer } = window as any;
 
 type ProgressBarType = {
   nftIdUrl: string;
@@ -29,7 +28,7 @@ export default function NFTProgressBar({ nftIdUrl, setValidateNFT, fetchBinaryCo
 
   React.useEffect(() => {
     let oldProgress = 0;
-    ipcRenderer.on('fetchBinaryContentProgress', (_: any, obj: any) => {
+    const unsubscribeDownloadProgress = window.appAPI.subscribeToMultipleDownloadProgress((obj: any) => {
       if (obj.nftIdUrl === nftIdUrl) {
         const newProgress = Math.round(obj.progress * 100);
         if (newProgress !== oldProgress) {
@@ -38,7 +37,7 @@ export default function NFTProgressBar({ nftIdUrl, setValidateNFT, fetchBinaryCo
         }
       }
     });
-    ipcRenderer.on('fetchBinaryContentDone', (_: any, obj: any) => {
+    const unsubscribeDownloadDone = window.appAPI.subscribeToMultipleDownloadDone((obj: any) => {
       if (obj.nftIdUrl === nftIdUrl) {
         fetchBinaryContentDone(obj.valid);
 
@@ -46,6 +45,11 @@ export default function NFTProgressBar({ nftIdUrl, setValidateNFT, fetchBinaryCo
         setValidateNFT(false);
       }
     });
+
+    return () => {
+      unsubscribeDownloadProgress();
+      unsubscribeDownloadDone();
+    };
   }, [fetchBinaryContentDone, nftIdUrl, setValidateNFT]);
 
   if (progressBarWidth === -1) {

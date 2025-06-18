@@ -6,7 +6,7 @@ export default function useAppVersion() {
   const [appVersionOverride] = useLocalStorage<string>('appVersionOverride', '');
 
   async function getVersion() {
-    const currentVersion = await window.ipcRenderer.invoke('getVersion');
+    const currentVersion = await window.appAPI.getVersion();
     setVersion(currentVersion);
   }
 
