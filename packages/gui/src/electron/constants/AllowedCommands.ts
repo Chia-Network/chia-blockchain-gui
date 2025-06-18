@@ -87,6 +87,7 @@ export default [
   'chia_farmer.get_harvester_plots_invalid',
   'chia_farmer.get_harvester_plots_keys_missing',
   'chia_farmer.get_harvester_plots_valid',
+  'chia_farmer.get_reward_targets',
 
   'chia_harvester.get_harvester_config',
   'chia_harvester.get_plot_directories',
