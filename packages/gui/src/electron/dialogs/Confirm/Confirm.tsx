@@ -2,7 +2,7 @@ import React, { type ReactNode } from 'react';
 
 import Collapsible from '../../components/Collapsible';
 import SandboxedIframe from '../../components/SandboxedIframe';
-import mojoToCatLocaleString from '../../utils/mojoToCatLocaleString';
+import mojoToCatLocaleString from '../../utils/mojoToCATLocaleString';
 import mojoToChiaLocaleString from '../../utils/mojoToChiaLocaleString';
 
 function humanizeChia(amount: string | number | undefined, networkPrefix: string) {
