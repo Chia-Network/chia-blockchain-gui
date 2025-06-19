@@ -107,7 +107,24 @@ export default function openReactDialog<TResponse, TProps extends object>(
 
     const assets = [dialogURL, scriptAssetURL, styleAssetURL];
 
+    let settled = false;
+
     return new Promise<TResponse | undefined>((resolve, reject) => {
+      function safeResolve(value: TResponse | undefined) {
+        if (settled) {
+          return;
+        }
+        settled = true;
+        resolve(value);
+      }
+      function safeReject(error: Error) {
+        if (settled) {
+          return;
+        }
+        settled = true;
+        reject(error);
+      }
+
       const dialog = new BrowserWindow({
         modal,
         parent,
@@ -147,45 +164,29 @@ export default function openReactDialog<TResponse, TProps extends object>(
         dialog.setMenu(null);
       }
 
-      function cleanup() {
+      ipcMain.handleOnce(resolveChannelId, (_event, response: TResponse | undefined) => {
+        safeResolve(response);
+        setImmediate(() => dialog.close());
+      });
+
+      ipcMain.handleOnce(rejectChannelId, (_event: IpcMainInvokeEvent, error: { message?: string }) => {
+        safeReject(new Error(error?.message ?? 'Unknown error'));
+        setImmediate(() => dialog.close());
+      });
+
+      dialog.once('closed', () => {
+        safeResolve(undefined);
+
         ipcMain.removeHandler(resolveChannelId);
         ipcMain.removeHandler(rejectChannelId);
 
         removeAsset(assets);
-
-        if (!dialog.isDestroyed()) {
-          dialog.destroy();
-        }
-      }
-
-      function processResponse(response: TResponse | undefined) {
-        try {
-          resolve(response);
-        } finally {
-          cleanup();
-        }
-      }
-
-      function processError(error: Error) {
-        try {
-          reject(error);
-        } finally {
-          cleanup();
-        }
-      }
-
-      ipcMain.handleOnce(resolveChannelId, (_event, response: TResponse | undefined) => processResponse(response));
-      ipcMain.handleOnce(rejectChannelId, (_event: IpcMainInvokeEvent, error: { message?: string }) =>
-        processError(new Error(error?.message ?? 'Unknown error')),
-      );
-
-      dialog.once('closed', () => {
-        processResponse(undefined);
       });
 
       if (hideOnBlur) {
         dialog.on('blur', () => {
-          processResponse(undefined);
+          safeResolve(undefined);
+          dialog.close();
         });
       }
 
