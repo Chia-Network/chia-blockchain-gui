@@ -59,7 +59,7 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
   }
 
   async function handleShowKey() {
-    await window.appAPI.openKeyDetail(fingerprint);
+    await window.appAPI.openKeyDetail(fingerprint.toString());
   }
 
   function handleRename() {

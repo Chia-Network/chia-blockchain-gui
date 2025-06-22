@@ -696,9 +696,6 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
     app.applicationMenu = createMenu();
   });
 
-  // IPC handlers for log file operations
-  const customLogPath: string | null = prefs.customLogPath || null;
-
   ipcMainHandle(ChiaLogsAPI.SET_PATH, async () => {
     let logPath: string | undefined;
 
@@ -741,8 +738,10 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
 
   ipcMainHandle(ChiaLogsAPI.GET_CONTENT, async () => {
     try {
+      const currentPrefs = readPrefs();
+
       const logPath =
-        customLogPath ||
+        currentPrefs.customLogPath ||
         path.join(process.env.CHIA_ROOT || path.join(app.getPath('home'), '.chia', 'mainnet'), 'log', 'debug.log');
 
       // Check if file exists and is readable
@@ -783,7 +782,8 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
     try {
       const chiaRoot = process.env.CHIA_ROOT || path.join(app.getPath('home'), '.chia', 'mainnet');
       const defaultLogPath = path.join(chiaRoot, 'log', 'debug.log');
-      const logPath = customLogPath || defaultLogPath;
+      const currentPrefs = readPrefs();
+      const logPath = currentPrefs.customLogPath || defaultLogPath;
 
       const info = {
         path: logPath,
@@ -1031,9 +1031,9 @@ function getMenuTemplate() {
           },
         },
         {
-          label: i18n._(/* i18n */ { id: 'Follow on Twitter' }),
+          label: i18n._(/* i18n */ { id: 'Follow on X' }),
           click: () => {
-            openExternal('https://twitter.com/chia_project');
+            openExternal('https://x.com/chia_project');
           },
         },
       ],

@@ -52,7 +52,7 @@ export type DialogOptions = {
 export default function openReactDialog<TResponse, TProps extends object>(
   parent: BrowserWindow,
   Component: React.ComponentType<TProps>,
-  props: TProps,
+  props: Omit<TProps, 'confirmId'>,
   options: DialogOptions,
 ): Promise<TResponse | undefined> {
   const { title, width, height, hideMenu = false, modal = false, hideOnBlur = false, titleBarStyle } = options;

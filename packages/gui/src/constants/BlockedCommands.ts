@@ -82,5 +82,4 @@ export default [
   'daemon.migrate_keyring',
   */
   'daemon.stop_plotting',
-  'daemon.start_plotting',
 ];

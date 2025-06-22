@@ -64,11 +64,12 @@ export default [
   'chia_wallet.did_get_did',
   'chia_wallet.did_get_wallet_name',
   'chia_wallet.did_set_wallet_name',
-  'chia_wallet.get_offer', // ?
+  'chia_wallet.get_offer',
   'chia_wallet.nft_calculate_royalties',
   'chia_wallet.check_offer_validity',
   'chia_wallet.get_transaction_memo',
   'chia_wallet.did_get_info',
+  'chia_wallet.pw_status',
 
   'chia_full_node.get_unfinished_block_headers',
   'chia_full_node.get_connections',
