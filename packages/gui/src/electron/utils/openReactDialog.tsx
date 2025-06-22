@@ -1,4 +1,4 @@
-import { BrowserWindow, ipcMain, type IpcMainInvokeEvent, nativeTheme } from 'electron';
+import { BrowserWindow, ipcMain, type IpcMainInvokeEvent, nativeTheme, session } from 'electron';
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -8,7 +8,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 
 import * as preferences from '../prefs';
 
-import { addAsset, removeAsset } from './assets';
+import { addAsset, registerAssetProtocol, removeAsset } from './assets';
 import openExternal from './openExternal';
 
 function generateScriptContent(confirmId: string) {
@@ -24,6 +24,20 @@ function generateScriptContent(confirmId: string) {
     });
   `;
 }
+
+
+const dialogData = new Map<number, { resolveChannelId: string, rejectChannelId: string }>();
+
+ipcMain.handle('dialog:init', (event) => {
+  const meta = dialogData.get(event.sender.id);
+  if (!meta) {
+    throw new Error('Dialog data not found');
+  }
+
+  dialogData.delete(event.sender.id);
+
+  return meta;
+});
 
 export type DialogOptions = {
   title?: string;
@@ -45,11 +59,8 @@ export default function openReactDialog<TResponse, TProps extends object>(
 
   const prefs = preferences.readPrefs();
 
-  const dialogId = crypto.randomUUID();
-  const channelId = `dialog-${dialogId}`;
-  const resolveChannelId = `${channelId}-resolve`;
-  const rejectChannelId = `${channelId}-reject`;
-
+  const resolveChannelId = crypto.randomUUID();
+  const rejectChannelId = crypto.randomUUID();
   const confirmId = crypto.randomUUID();
 
   const isDarkMode = prefs.darkMode ?? nativeTheme.shouldUseDarkColors;
@@ -137,13 +148,26 @@ export default function openReactDialog<TResponse, TProps extends object>(
         titleBarStyle,
         backgroundColor: initialBgColor,
         webPreferences: {
+          partition: `dialog-${crypto.randomUUID()}`,
           preload: path.join(__dirname, 'preloadDialog.js'),
+          nodeIntegration: false,
+          nodeIntegrationInWorker: false,
+          nodeIntegrationInSubFrames: false,
           contextIsolation: true,
           sandbox: true,
-          nodeIntegration: false,
-          additionalArguments: [`--resolveChannelId=${resolveChannelId}`, `--rejectChannelId=${rejectChannelId}`],
+          webSecurity: true,
+          experimentalFeatures: false,
+          plugins: false,
+          spellcheck: false,
+          webviewTag: false,
         },
       });
+
+      registerAssetProtocol(dialog.webContents.session.protocol);
+
+      const winId = dialog.webContents.id;
+
+      dialogData.set(winId, { resolveChannelId, rejectChannelId });
 
       dialog.webContents.on('will-navigate', (event, url) => {
         event.preventDefault();
@@ -164,23 +188,34 @@ export default function openReactDialog<TResponse, TProps extends object>(
         dialog.setMenu(null);
       }
 
-      ipcMain.handleOnce(resolveChannelId, (_event, response: TResponse | undefined) => {
+
+      ipcMain.handleOnce(resolveChannelId, (event, response: TResponse | undefined) => {
+        if (event.sender.id !== winId) {
+          return;  
+        }
+
         safeResolve(response);
         setImmediate(() => dialog.close());
       });
 
-      ipcMain.handleOnce(rejectChannelId, (_event: IpcMainInvokeEvent, error: { message?: string }) => {
+      ipcMain.handleOnce(rejectChannelId, (event: IpcMainInvokeEvent, error: { message?: string }) => {
+        if (event.sender.id !== winId) {
+          return;  
+        }
+
         safeReject(new Error(error?.message ?? 'Unknown error'));
         setImmediate(() => dialog.close());
       });
 
       dialog.once('closed', () => {
-        safeResolve(undefined);
+        dialogData.delete(winId);
 
         ipcMain.removeHandler(resolveChannelId);
         ipcMain.removeHandler(rejectChannelId);
 
         removeAsset(assets);
+
+        safeResolve(undefined);
       });
 
       if (hideOnBlur) {

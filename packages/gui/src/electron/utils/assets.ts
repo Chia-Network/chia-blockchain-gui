@@ -1,21 +1,10 @@
-import { protocol } from 'electron';
+import { Protocol } from 'electron';
 import crypto from 'node:crypto';
 
 const ASSET_PROTOCOL = 'asset';
 const assets = new Map<string, { content: string; type: string }>();
 
-export function registerAssetSchemaAsPrivileged() {
-  protocol.registerSchemesAsPrivileged([
-    {
-      scheme: ASSET_PROTOCOL,
-      privileges: {
-        standard: true,
-      },
-    },
-  ]);
-}
-
-export function registerAssetProtocol() {
+export function registerAssetProtocol(protocol: Protocol) {
   protocol.handle(ASSET_PROTOCOL, async (request: Request) => {
     const requestUrl = request.url;
     const url = new URL(requestUrl);

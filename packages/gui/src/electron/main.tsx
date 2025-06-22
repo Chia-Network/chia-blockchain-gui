@@ -38,7 +38,6 @@ import Confirm, { getTitle as getConfirmTitle } from './dialogs/Confirm/Confirm'
 import KeyDetail from './dialogs/KeyDetail/KeyDetail';
 import { readPrefs, savePrefs, migratePrefs } from './prefs';
 import { readAddressBook, saveAddressBook } from './utils/addressBook';
-import { registerAssetProtocol, registerAssetSchemaAsPrivileged } from './utils/assets';
 import chiaEnvironment, { chiaInit } from './utils/chiaEnvironment';
 import downloadFile from './utils/downloadFile';
 import getKeyDetails from './utils/getKeyDetails';
@@ -65,9 +64,6 @@ const prefs = readPrefs();
 
 const defaultCacheFolder = path.join(app.getPath('cache'), app.getName());
 const cacheDirectory: string = prefs.cacheFolder || defaultCacheFolder;
-
-registerAssetSchemaAsPrivileged();
-registerCacheSchemaAsPrivileged();
 
 const cacheManager = new CacheManager({
   cacheDirectory,
@@ -463,6 +459,9 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
       },
     });
 
+    // allow the cache manager to handle the cache protocol
+    cacheManager.prepareProtocol(mainWindow.webContents.session.protocol);
+
     function setNetworkPrefix(newNetworkPrefix: string) {
       networkPrefix = newNetworkPrefix;
 
@@ -648,8 +647,6 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
   };
 
   const appReady = async () => {
-    registerAssetProtocol();
-
     createWindow();
     app.applicationMenu = createMenu();
   };

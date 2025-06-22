@@ -1,4 +1,4 @@
-import { protocol, BrowserWindow, net, dialog } from 'electron';
+import { BrowserWindow, net, dialog, type Protocol } from 'electron';
 import { EventEmitter } from 'events';
 import crypto from 'node:crypto';
 import fs from 'node:fs/promises';
@@ -53,19 +53,6 @@ function getInfoFilePath(filePath: string) {
   return `${filePath}${INFO_SUFFIX}`;
 }
 
-export function registerCacheSchemaAsPrivileged() {
-  protocol.registerSchemesAsPrivileged([
-    {
-      scheme: CACHE_PROTOCOL,
-      privileges: {
-        standard: true, // behaves like http/https
-        // secure: true, // treated as a secure origin
-        supportFetchAPI: true, // lets fetch/XHR reach your handler
-      },
-    },
-  ]);
-}
-
 export default class CacheManager extends EventEmitter {
   #cacheDirectory: string = './cache';
 
@@ -105,7 +92,7 @@ export default class CacheManager extends EventEmitter {
     this.prepareIPC();
   }
 
-  private prepareProtocol() {
+  prepareProtocol(protocol: Protocol) {
     protocol.handle(CACHE_PROTOCOL, async (request: Request) => {
       const requestUrl = request.url;
       const url = new URL(requestUrl);
@@ -205,7 +192,6 @@ export default class CacheManager extends EventEmitter {
   }
 
   async init() {
-    this.prepareProtocol();
     await ensureDirectoryExists(this.cacheDirectory);
   }
 
