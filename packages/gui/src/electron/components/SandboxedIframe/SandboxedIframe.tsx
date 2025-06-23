@@ -38,5 +38,13 @@ export default function SandboxedIframe(props: SandboxIframeProps) {
 
   const srcDocHTML = `<!DOCTYPE html>${iframeContent}`;
 
-  return <iframe sandbox="" title="Sandboxed Iframe" srcDoc={srcDocHTML} className={className} referrerPolicy="no-referrer" />;
+  return (
+    <iframe
+      sandbox=""
+      title="Sandboxed Iframe"
+      srcDoc={srcDocHTML}
+      className={className}
+      referrerPolicy="no-referrer"
+    />
+  );
 }

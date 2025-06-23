@@ -25,8 +25,7 @@ function generateScriptContent(confirmId: string) {
   `;
 }
 
-
-const dialogData = new Map<number, { resolveChannelId: string, rejectChannelId: string }>();
+const dialogData = new Map<number, { resolveChannelId: string; rejectChannelId: string }>();
 
 ipcMain.handle('dialog:init', (event) => {
   const meta = dialogData.get(event.sender.id);
@@ -188,10 +187,9 @@ export default function openReactDialog<TResponse, TProps extends object>(
         dialog.setMenu(null);
       }
 
-
       ipcMain.handleOnce(resolveChannelId, (event, response: TResponse | undefined) => {
         if (event.sender.id !== winId) {
-          return;  
+          return;
         }
 
         safeResolve(response);
@@ -200,7 +198,7 @@ export default function openReactDialog<TResponse, TProps extends object>(
 
       ipcMain.handleOnce(rejectChannelId, (event: IpcMainInvokeEvent, error: { message?: string }) => {
         if (event.sender.id !== winId) {
-          return;  
+          return;
         }
 
         safeReject(new Error(error?.message ?? 'Unknown error'));

@@ -43,7 +43,7 @@ export default function bindEvents(
     if (webContents.isDestroyed()) {
       return;
     }
-  
+
     webContents.send(events, ...args);
   }
 
