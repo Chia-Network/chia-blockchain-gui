@@ -39,6 +39,14 @@ export default function bindEvents(
 ) {
   const { net, onSend, onReceive } = options;
 
+  function notifyWebContents(events: string, ...args: any[]) {
+    if (webContents.isDestroyed()) {
+      return;
+    }
+  
+    webContents.send(events, ...args);
+  }
+
   // Add event listener for when web contents are being destroyed
   webContents.on('destroyed', () => {
     cleanupConnections();
@@ -56,25 +64,25 @@ export default function bindEvents(
     });
 
     socket.on('open', () => {
-      webContents.send(WebSocketAPI.ON_OPEN, id);
+      notifyWebContents(WebSocketAPI.ON_OPEN, id);
     });
 
     socket.on('message', async (data, isBinary) => {
       if (!onReceive) {
-        webContents.send(WebSocketAPI.ON_MESSAGE, id, data, isBinary);
+        notifyWebContents(WebSocketAPI.ON_MESSAGE, id, data, isBinary);
         return;
       }
 
       try {
         await onReceive(id, data);
-        webContents.send(WebSocketAPI.ON_MESSAGE, id, data, isBinary);
+        notifyWebContents(WebSocketAPI.ON_MESSAGE, id, data, isBinary);
       } catch (err) {
         console.error(err);
 
         const parsedMessage = JSON.parse(data.toString());
 
         if (parsedMessage.request_id) {
-          webContents.send(
+          notifyWebContents(
             WebSocketAPI.ON_MESSAGE,
             id,
             JSON.stringify({
@@ -89,13 +97,13 @@ export default function bindEvents(
     });
 
     socket.on('error', (err) => {
-      webContents.send(WebSocketAPI.ON_ERROR, id, err.message);
+      notifyWebContents(WebSocketAPI.ON_ERROR, id, err.message);
     });
 
     socket.on('close', (code) => {
       socket.removeAllListeners();
 
-      webContents.send(WebSocketAPI.ON_CLOSE, id, code);
+      notifyWebContents(WebSocketAPI.ON_CLOSE, id, code);
       delete connections[id];
     });
 
@@ -121,7 +129,7 @@ export default function bindEvents(
       const parsedMessage = JSON.parse(data);
 
       if (parsedMessage.request_id) {
-        webContents.send(
+        notifyWebContents(
           WebSocketAPI.ON_MESSAGE,
           id,
           JSON.stringify({

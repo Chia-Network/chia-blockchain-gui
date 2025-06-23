@@ -3,7 +3,7 @@ import sendCommand from './sendCommand';
 export default async function getKeyDetails(fingerprint: string) {
   const { keys } = await sendCommand('get_keys', 'daemon', { fingerprint });
 
-  const findIndex = keys.findIndex((key: any) => key.fingerprint === fingerprint);
+  const findIndex = keys.findIndex((key: any) => key.fingerprint.toString() === fingerprint);
   if (findIndex === -1) {
     throw new Error('Key not found');
   }
