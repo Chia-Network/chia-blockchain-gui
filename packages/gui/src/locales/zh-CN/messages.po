@@ -19,11 +19,6 @@ msgstr ""
 "X-Crowdin-File-ID: 35\n"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1034
-msgid "Follow on X"
-msgstr ""
-
-#. js-lingui-explicit-id
 #: src/components/nfts/NFTBurnDialog.tsx:133
 msgid "Do you want to burn {count} NFTs?"
 msgstr "确定销毁{count} 个NFT吗？"
@@ -570,6 +565,11 @@ msgstr "报告问题"
 #: src/electron/main.tsx:1028
 msgid "Chat on Discord"
 msgstr "在Discord上讨论"
+
+#. js-lingui-explicit-id
+#: src/electron/main.tsx:1034
+msgid "Follow on X"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:1046
