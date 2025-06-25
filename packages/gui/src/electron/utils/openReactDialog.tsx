@@ -1,4 +1,4 @@
-import { BrowserWindow, ipcMain, type IpcMainInvokeEvent, nativeTheme, session } from 'electron';
+import { BrowserWindow, ipcMain, type IpcMainInvokeEvent, nativeTheme } from 'electron';
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';

@@ -26,7 +26,7 @@ import packageJson from '../../package.json';
 import AppIcon from '../assets/img/chia64x64.png';
 import { i18n } from '../config/locales';
 
-import CacheManager, { registerCacheSchemaAsPrivileged } from './CacheManager';
+import CacheManager from './CacheManager';
 import AddressBookAPI from './constants/AddressBookAPI';
 import AllowedCommands from './constants/AllowedCommands';
 import AppAPI from './constants/AppAPI';
