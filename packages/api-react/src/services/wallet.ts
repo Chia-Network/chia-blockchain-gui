@@ -75,58 +75,60 @@ export const walletApi = apiWithTag.injectEndpoints({
             throw new Error('List of the wallets is not defined');
           }
 
-          return {
-            data: await Promise.all(
-              wallets.map(async (wallet: Wallet) => {
-                const { type } = wallet;
-                const meta: any = {};
-                if ([WalletType.CAT, WalletType.CRCAT].includes(type)) {
-                  // get CAT asset
-                  const { data: assetData, error: assetError } = await fetchWithBQ({
-                    command: 'getAssetId',
-                    service: CAT,
-                    args: { walletId: wallet.id },
-                  });
+          const allWallets = await Promise.all(
+            wallets.map(async (wallet: Wallet) => {
+              const { type } = wallet;
+              const meta: any = {};
+              if ([WalletType.CAT, WalletType.RCAT, WalletType.CRCAT].includes(type)) {
+                // get CAT asset
+                const { data: assetData, error: assetError } = await fetchWithBQ({
+                  command: 'getAssetId',
+                  service: CAT,
+                  args: { walletId: wallet.id },
+                });
 
-                  if (assetError) {
-                    throw assetError as Error;
-                  }
-
-                  meta.assetId = assetData.assetId;
-
-                  // get CAT name
-                  const { data: nameData, error: nameError } = await fetchWithBQ({
-                    command: 'getName',
-                    service: CAT,
-                    args: { walletId: wallet.id },
-                  });
-
-                  if (nameError) {
-                    throw nameError as Error;
-                  }
-
-                  meta.name = nameData.name;
-                } else if (type === WalletType.NFT) {
-                  // get DID assigned to the NFT Wallet (if any)
-                  const { data: didData, error: didError } = await fetchWithBQ({
-                    command: 'getNftWalletDid',
-                    service: NFT,
-                    args: { walletId: wallet.id },
-                  });
-
-                  if (didError) {
-                    throw didError as Error;
-                  }
-
-                  meta.did = didData.didId;
+                if (assetError) {
+                  throw assetError as Error;
                 }
 
-                return {
-                  ...wallet,
-                  meta,
-                };
-              }),
-            ),
+                meta.assetId = assetData.assetId;
+
+                // get CAT name
+                const { data: nameData, error: nameError } = await fetchWithBQ({
+                  command: 'getName',
+                  service: CAT,
+                  args: { walletId: wallet.id },
+                });
+
+                if (nameError) {
+                  throw nameError as Error;
+                }
+
+                meta.name = nameData.name;
+              } else if (type === WalletType.NFT) {
+                // get DID assigned to the NFT Wallet (if any)
+                const { data: didData, error: didError } = await fetchWithBQ({
+                  command: 'getNftWalletDid',
+                  service: NFT,
+                  args: { walletId: wallet.id },
+                });
+
+                if (didError) {
+                  throw didError as Error;
+                }
+
+                meta.did = didData.didId;
+              }
+
+              return {
+                ...wallet,
+                meta,
+              };
+            }),
+          );
+
+          return {
+            data: allWallets,
           };
         } catch (error) {
           return {

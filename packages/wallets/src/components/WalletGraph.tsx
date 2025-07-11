@@ -132,7 +132,7 @@ export default function WalletGraph(props: WalletGraphProps) {
     walletId,
   });
 
-  const isCAT = [WalletType.CAT, WalletType.CRCAT].includes(walletType);
+  const isCAT = [WalletType.CAT, WalletType.RCAT, WalletType.CRCAT].includes(walletType);
   const isLoading = isWalletTransactionsLoading || isWalletBalanceLoading || !transactions;
 
   const confirmedTransactions = transactions ? transactions.filter((transaction) => transaction.confirmed) : [];

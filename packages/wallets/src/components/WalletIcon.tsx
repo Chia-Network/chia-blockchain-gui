@@ -43,7 +43,7 @@ export default function WalletIcon(props: WalletIconProps) {
     );
   }
 
-  if (!isLoading && [WalletType.CAT, WalletType.CRCAT].includes(wallet.type)) {
+  if (!isLoading && [WalletType.CAT, WalletType.RCAT, WalletType.CRCAT].includes(wallet.type)) {
     const token = catList.find((tokenItem) => tokenItem.assetId === wallet.meta?.assetId);
     if (token) {
       const tooltipText = AssetIdTooltipMapping[token.assetId];

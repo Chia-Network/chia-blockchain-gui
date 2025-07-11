@@ -1,8 +1,8 @@
 import { WalletType } from '@chia-network/api';
 import { useGetWalletsQuery } from '@chia-network/api-react';
-import { Flex, CardListItem, ScrollbarFlex } from '@chia-network/core';
+import { Flex, CardListItem, ScrollbarFlex, TooltipIcon } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import { Box, Typography, Theme } from '@mui/material';
+import { Box, Typography, Theme, Chip } from '@mui/material';
 import { orderBy } from 'lodash';
 import React, { useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router';
@@ -71,10 +71,12 @@ export default function WalletsSidebar() {
     return orderedWallets
       .filter(
         (wallet) =>
-          [WalletType.STANDARD_WALLET, WalletType.CAT, WalletType.CRCAT].includes(wallet.type) && !isHidden(wallet.id),
+          [WalletType.STANDARD_WALLET, WalletType.CAT, WalletType.RCAT, WalletType.CRCAT].includes(wallet.type) &&
+          !isHidden(wallet.id),
       )
       .map((wallet) => {
         const primaryTitle = getWalletPrimaryTitle(wallet);
+        const isRCAT = wallet.type === WalletType.RCAT;
 
         function handleSelect() {
           handleSelectWallet(wallet.id);
@@ -88,7 +90,23 @@ export default function WalletsSidebar() {
             data-testid={`WalletsSidebar-wallet-${wallet.id}`}
           >
             <Flex flexDirection="column">
-              <Typography>{primaryTitle}</Typography>
+              <Flex alignItems="center" gap={1} justifyContent="space-between">
+                <Typography>{primaryTitle}</Typography>
+                {isRCAT && (
+                  <Chip
+                    label={
+                      <Flex alignItems="center" gap={1}>
+                        <Trans>Revocable</Trans>
+                        <TooltipIcon>
+                          <Trans>This token can be revoked by the issuer</Trans>
+                        </TooltipIcon>
+                      </Flex>
+                    }
+                    variant="outlined"
+                    size="small"
+                  />
+                )}
+              </Flex>
               <WalletIcon wallet={wallet} color="textSecondary" variant="caption" />
             </Flex>
           </CardListItem>

@@ -29,7 +29,7 @@ export default function Wallet() {
     return <WalletStandard walletId={Number(walletId)} />;
   }
 
-  if ([WalletType.CAT, WalletType.CRCAT].includes(wallet.type)) {
+  if ([WalletType.CAT, WalletType.RCAT, WalletType.CRCAT].includes(wallet.type)) {
     return <WalletCAT walletId={Number(walletId)} />;
   }
 

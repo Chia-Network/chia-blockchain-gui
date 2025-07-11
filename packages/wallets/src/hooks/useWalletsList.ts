@@ -74,7 +74,7 @@ export default function useWalletsList(
     const ids = new Map<string, number>();
     if (wallets) {
       wallets.forEach((wallet) => {
-        if ([WalletType.CAT, WalletType.CRCAT].includes(wallet.type)) {
+        if ([WalletType.CAT, WalletType.RCAT, WalletType.CRCAT].includes(wallet.type)) {
           ids.set(wallet.meta?.assetId, wallet.id);
         }
       });
@@ -124,9 +124,12 @@ export default function useWalletsList(
     }
 
     const baseWallets =
-      wallets?.filter((wallet: Wallet) => ![WalletType.CAT, WalletType.POOLING_WALLET].includes(wallet.type)) ?? [];
+      wallets?.filter(
+        (wallet: Wallet) => ![WalletType.CAT, WalletType.RCAT, WalletType.POOLING_WALLET].includes(wallet.type),
+      ) ?? [];
     const catBaseWallets =
-      wallets?.filter((wallet: Wallet) => [WalletType.CAT, WalletType.CRCAT].includes(wallet.type)) ?? [];
+      wallets?.filter((wallet: Wallet) => [WalletType.CAT, WalletType.RCAT, WalletType.CRCAT].includes(wallet.type)) ??
+      [];
 
     // hidden by default because they are not known
     const nonAddedKnownCats = catList?.filter((cat) => !hasCatAssignedWallet(cat.assetId)) ?? [];

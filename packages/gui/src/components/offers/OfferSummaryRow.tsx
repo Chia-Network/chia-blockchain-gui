@@ -175,7 +175,8 @@ export function OfferSummaryTokenRow(props: OfferSummaryTokenRowProps): React.Re
               <Box flexGrow={1}>
                 <StyledTitle>Name</StyledTitle>
               </Box>
-              {(!assetIdInfo || [WalletType.CAT, WalletType.CRCAT].includes(assetIdInfo?.walletType)) && (
+              {(!assetIdInfo ||
+                [WalletType.CAT, WalletType.RCAT, WalletType.CRCAT].includes(assetIdInfo?.walletType)) && (
                 <Link href={`https://www.taildatabase.com/tail/${assetId.toLowerCase()}`} target="_blank">
                   <Trans>Search on Tail Database</Trans>
                 </Link>
@@ -184,7 +185,7 @@ export function OfferSummaryTokenRow(props: OfferSummaryTokenRowProps): React.Re
 
             <StyledValue>{tooltipDisplayName}</StyledValue>
           </Flex>
-          {(!assetIdInfo || [WalletType.CAT, WalletType.CRCAT].includes(assetIdInfo?.walletType)) && (
+          {(!assetIdInfo || [WalletType.CAT, WalletType.RCAT, WalletType.CRCAT].includes(assetIdInfo?.walletType)) && (
             <Flex flexDirection="column" gap={0}>
               <StyledTitle>Asset ID</StyledTitle>
               <Flex alignItems="center" gap={1}>

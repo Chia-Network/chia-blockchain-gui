@@ -1,8 +1,9 @@
 import { WalletType } from '@chia-network/api';
 import type { CATToken, Wallet } from '@chia-network/api';
 import { useGetCatListQuery, useGetWalletsQuery } from '@chia-network/api-react';
+import { Flex, TooltipIcon } from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
-import { FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
+import { Chip, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
 import { orderBy } from 'lodash';
 import React, { useMemo } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
@@ -30,7 +31,7 @@ export default function OfferBuilderTokenSelector(props: OfferBuilderTokenSelect
     }
 
     const allOptions = wallets
-      .filter((wallet: Wallet) => [WalletType.CAT, WalletType.CRCAT].includes(wallet.type))
+      .filter((wallet: Wallet) => [WalletType.CAT, WalletType.RCAT, WalletType.CRCAT].includes(wallet.type))
       .map((wallet: Wallet) => {
         const assetId = wallet.meta?.assetId ? wallet.meta.assetId.toLowerCase() : '';
 
@@ -45,6 +46,7 @@ export default function OfferBuilderTokenSelector(props: OfferBuilderTokenSelect
         return {
           assetId,
           displayName: wallet.name + (cat?.symbol ? ` (${cat.symbol})` : ''),
+          walletType: wallet.type,
         };
       })
       .filter(Boolean);
@@ -64,6 +66,23 @@ export default function OfferBuilderTokenSelector(props: OfferBuilderTokenSelect
     return (
       <Typography variant="h6" noWrap>
         {warnUnknownCAT ? t`Unknown` : (selectedOption?.displayName ?? currentValue)}
+        {selectedOption?.walletType === WalletType.RCAT && (
+          <>
+            &nbsp;
+            <Chip
+              label={
+                <Flex alignItems="center" gap={1}>
+                  <Trans>Revocable</Trans>
+                  <TooltipIcon>
+                    <Trans>This token can be revoked by the issuer</Trans>
+                  </TooltipIcon>
+                </Flex>
+              }
+              variant="outlined"
+              size="small"
+            />
+          </>
+        )}
       </Typography>
     );
   }
@@ -82,6 +101,23 @@ export default function OfferBuilderTokenSelector(props: OfferBuilderTokenSelect
           options.map((option) => (
             <MenuItem value={option.assetId} key={option.assetId} onClick={() => handleSelection(option)}>
               {option.displayName}
+              {option.walletType === WalletType.RCAT && (
+                <>
+                  &nbsp;
+                  <Chip
+                    label={
+                      <Flex alignItems="center" gap={1}>
+                        <Trans>Revocable</Trans>
+                        <TooltipIcon>
+                          <Trans>This token can be revoked by the issuer</Trans>
+                        </TooltipIcon>
+                      </Flex>
+                    }
+                    variant="outlined"
+                    size="small"
+                  />
+                </>
+              )}
             </MenuItem>
           ))
         )}
