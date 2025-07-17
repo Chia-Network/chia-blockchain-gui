@@ -22,7 +22,7 @@ concurrency:
 jobs:
   pull-from-crowdin:
     runs-on: [k8s-public]
-    container: node:18
+    container: node:20
     env:
       localization_branch_name: l10n_crowdin_translations
     steps:

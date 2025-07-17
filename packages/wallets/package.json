@@ -4,7 +4,7 @@
   "description": "Chia wallets Library",
   "version": "1.0.0",
   "engines": {
-    "node": ">=18.18.2"
+    "node": ">=20.11"
   },
   "main": "dist/index.js",
   "module": "dist/esm.js",
