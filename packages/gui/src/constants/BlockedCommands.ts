@@ -14,6 +14,9 @@ export default [
   'chia_wallet.cancel_offer',
   'chia_wallet.cancel_offers',
 
+  'chia_wallet.sign_message_by_id',
+  'chia_wallet.sign_message_by_address',
+
   'chia_data_layer.take_offer',
   'chia_data_layer.cancel_offer',
 
@@ -23,6 +26,16 @@ export default [
   'chia_wallet.did_recovery_spend',
   'chia_wallet.did_create_attest',
   'chia_wallet.did_transfer_did',
+  'chia_wallet.did_find_lost', // verify
+  'chia_wallet.did_get_current_coin_info', // verify
+  'chia_wallet.did_get_information_needed_for_recovery', // verify
+  'chia_wallet.did_get_metadata', // verify
+  'chia_wallet.did_get_pubkey', // verify
+  'chia_wallet.did_get_recovery_list', // verify
+  'chia_wallet.vc_spend', // verify
+  'chia_wallet.vc_add_proofs', // verify
+  'chia_wallet.vc_get_proofs_for_root', // verify
+  'chia_wallet.vc_revoke', // verify
 
   /*
   'dao_add_funds_to_treasury',
@@ -50,19 +63,35 @@ export default [
   'chia_wallet.delete_key',
   'chia_wallet.delete_all_keys',
 
-  /*
-  // DataLayer commands
-  'add_mirror',
-  'batch_update',
-  'cancel_offer',
-  'create_data_store',
-  'delete_key',
-  'delete_mirror',
-  'insert',
-  'make_offer',
-  'take_offer',
-  'verify_offer',
-  */
+  'chia_data_layer.add_mirror',
+  'chia_data_layer.batch_update',
+  'chia_data_layer.add_missing_files',
+  'chia_data_layer.cancel_offer',
+  'chia_data_layer.check_plugins',
+  'chia_data_layer.clear_pending_roots',
+  'chia_data_layer.create_data_store',
+  'chia_data_layer.delete_key',
+  'chia_data_layer.delete_mirror',
+  'chia_data_layer.get_ancestors',
+  'chia_data_layer.get_keys',
+  'chia_data_layer.get_keys_values',
+  'chia_data_layer.get_kv_diff',
+  'chia_data_layer.get_local_root',
+  'chia_data_layer.get_mirrors',
+  'chia_data_layer.get_owned_stores',
+  'chia_data_layer.get_root',
+  'chia_data_layer.get_roots',
+  'chia_data_layer.get_root_history',
+  'chia_data_layer.get_sync_status',
+  'chia_data_layer.get_value',
+  'chia_data_layer.insert',
+  'chia_data_layer.make_offer',
+  'chia_data_layer.take_offer',
+  'chia_data_layer.verify_offer',
+  'chia_data_layer.remove_subscriptions',
+  'chia_data_layer.subscribe',
+  'chia_data_layer.subscriptions',
+  'chia_data_layer.unsubscribe',
 
   // NFT commands
   'chia_wallet.nft_mint_nft',
