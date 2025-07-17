@@ -46,10 +46,10 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
-      - name: Setup Node 18.x
+      - name: Setup Node 20.x
         uses: actions/setup-node@v4
         with:
-          node-version: "18.x"
+          node-version: "20.x"
 
       - name: Check npm audit on ${{ matrix.os }}
         shell: bash
