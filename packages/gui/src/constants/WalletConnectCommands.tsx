@@ -1039,6 +1039,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
     command: 'deleteKey',
     label: <Trans>Delete Key</Trans>,
     service: ServiceName.DATALAYER,
+    serviceCommand: 'deleteDataLayerKey',
     params: [
       {
         name: WalletConnectCommandParamName.ID,
@@ -1099,6 +1100,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
     command: 'getKeys',
     label: <Trans>Get Keys</Trans>,
     service: ServiceName.DATALAYER,
+    serviceCommand: 'getDataLayerKeys',
     bypassConfirm: true,
     params: [
       {

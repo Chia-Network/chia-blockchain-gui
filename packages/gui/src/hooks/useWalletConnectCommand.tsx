@@ -183,7 +183,7 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
       }
     }
 
-    const { service, params: definitionParams = [], bypassConfirm } = definition;
+    const { service, params: definitionParams = [], bypassConfirm, serviceCommand } = definition;
 
     log('Confirm arguments', definitionParams);
 
@@ -250,7 +250,8 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
 
     // execute command
     log('Executing', command, values);
-    const resultPromise = store.dispatch(api.endpoints[command].initiate(values));
+    const endpoint = serviceCommand ?? command;
+    const resultPromise = store.dispatch(api.endpoints[endpoint].initiate(values));
     const result = await resultPromise;
     log('Result', result);
 
