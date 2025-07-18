@@ -8,6 +8,7 @@ type WalletConnectCommandBase = {
   label: ReactNode;
   description?: ReactNode;
   service: ServiceNameValue;
+  serviceCommand?: string;
   allFingerprints?: boolean;
   waitForSync?: boolean;
   params?: WalletConnectCommandParam[];

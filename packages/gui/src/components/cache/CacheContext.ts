@@ -1,9 +1,9 @@
 import { createContext } from 'react';
 
-import type CacheAPI from '../../@types/CacheAPI';
+import type CacheService from '../../@types/CacheService';
 
 const CacheContext = createContext<
-  | (Omit<CacheAPI, 'getCacheDirectory' | 'getCacheSize' | 'getMaxCacheSize'> & {
+  | (Omit<CacheService, 'getCacheDirectory' | 'getCacheSize' | 'getMaxCacheSize'> & {
       cacheDirectory: string | undefined;
       cacheSize: number | undefined;
       maxCacheSize: number | undefined;

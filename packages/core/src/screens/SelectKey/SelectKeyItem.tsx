@@ -13,7 +13,6 @@ import More from '../../components/More';
 import useOpenDialog from '../../hooks/useOpenDialog';
 
 import EmojiAndColorPicker from './EmojiAndColorPicker';
-import SelectKeyDetailDialog from './SelectKeyDetailDialog';
 import SelectKeyRenameForm from './SelectKeyRenameForm';
 import WalletDeleteDialog from './WalletDeleteDialog';
 import WalletStatus from './WalletStatus';
@@ -59,8 +58,8 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
     onSelect(fingerprint);
   }
 
-  function handleShowKey() {
-    openDialog(<SelectKeyDetailDialog fingerprint={fingerprint} index={index} />);
+  async function handleShowKey() {
+    await window.appAPI.openKeyDetail(fingerprint.toString());
   }
 
   function handleRename() {

@@ -111,29 +111,14 @@ const OfferSharingProviders: {
 /* ========================================================================== */
 
 async function postToDexie(offerData: string, testnet: boolean): Promise<{ viewLink: string; offerLink: string }> {
-  const { ipcRenderer } = window as any;
-  const requestOptions = {
-    method: 'POST',
-    protocol: 'https:',
-    hostname: testnet ? 'testnet.dexie.space' : 'dexie.space',
-    port: 443,
-    path: '/v1/offers',
-  };
+  const url = `https://${testnet ? 'testnet.' : ''}dexie.space/v1/offers`;
 
-  const requestHeaders = {
-    'Content-Type': 'application/json',
-  };
   const requestData = JSON.stringify({ offer: offerData });
-  const { err, statusCode, statusMessage, responseBody } = await ipcRenderer.invoke(
-    'fetchTextResponse',
-    requestOptions,
-    requestHeaders,
-    requestData,
-  );
+  const { statusCode, statusMessage, responseBody } = await window.appAPI.fetchTextResponse(url, requestData);
 
-  if (err || (statusCode !== 200 && statusCode !== 400)) {
+  if (statusCode !== 200) {
     const error = new Error(
-      `Dexie upload failed: ${err}, statusCode=${statusCode}, statusMessage=${statusMessage}, response=${responseBody}`,
+      `Dexie upload failed, statusCode=${statusCode}, statusMessage=${statusMessage}, response=${responseBody}`,
     );
     throw error;
   }
@@ -152,28 +137,14 @@ async function postToDexie(offerData: string, testnet: boolean): Promise<{ viewL
 }
 
 async function postToMintGarden(offerData: string, testnet: boolean): Promise<string> {
-  const { ipcRenderer } = window as any;
-  const requestOptions = {
-    method: 'POST',
-    protocol: 'https:',
-    hostname: testnet ? 'api.testnet.mintgarden.io' : 'api.mintgarden.io',
-    port: 443,
-    path: '/offer',
-  };
-  const requestHeaders = {
-    'Content-Type': 'application/json',
-  };
-  const requestData = JSON.stringify({ offer: offerData });
-  const { err, statusCode, statusMessage, responseBody } = await ipcRenderer.invoke(
-    'fetchTextResponse',
-    requestOptions,
-    requestHeaders,
-    requestData,
-  );
+  const url = `https://${testnet ? 'api.testnet.mintgarden.io' : 'api.mintgarden.io'}/offer`;
 
-  if (err || (statusCode !== 200 && statusCode !== 400)) {
+  const requestData = JSON.stringify({ offer: offerData });
+  const { statusCode, statusMessage, responseBody } = await window.appAPI.fetchTextResponse(url, requestData);
+
+  if (statusCode !== 200) {
     const error = new Error(
-      `MintGarden upload failed: ${err}, statusCode=${statusCode}, statusMessage=${statusMessage}, response=${responseBody}`,
+      `MintGarden upload failed, statusCode=${statusCode}, statusMessage=${statusMessage}, response=${responseBody}`,
     );
     throw error;
   }
@@ -199,28 +170,14 @@ type PostToSpacescanResponse = {
 
 // Posts the offer data to SpaceScan and returns a URL to the offer.
 async function postToSpacescan(offerData: string, testnet: boolean): Promise<{ viewLink: string; offerLink: string }> {
-  const { ipcRenderer } = window as any;
-  const requestOptions = {
-    method: 'POST',
-    protocol: 'https:',
-    hostname: 'api2.spacescan.io',
-    port: 443,
-    path: `/api/offer/upload?coin=${testnet ? 'txch' : 'xch'}&version=1`,
-  };
-  const requestHeaders = {
-    'Content-Type': 'application/json',
-  };
-  const requestData = JSON.stringify({ offer: offerData });
-  const { err, statusCode, statusMessage, responseBody } = await ipcRenderer.invoke(
-    'fetchTextResponse',
-    requestOptions,
-    requestHeaders,
-    requestData,
-  );
+  const url = `https://api2.spacescan.io/api/offer/upload?coin=${testnet ? 'txch' : 'xch'}&version=1`;
 
-  if (err || statusCode !== 200) {
+  const requestData = JSON.stringify({ offer: offerData });
+  const { statusCode, statusMessage, responseBody } = await window.appAPI.fetchTextResponse(url, requestData);
+
+  if (statusCode !== 200) {
     const error = new Error(
-      `Spacescan.io upload failed: ${err}, statusCode=${statusCode}, statusMessage=${statusMessage}, response=${responseBody}`,
+      `Spacescan.io upload failed, statusCode=${statusCode}, statusMessage=${statusMessage}, response=${responseBody}`,
     );
     throw error;
   }
@@ -241,28 +198,14 @@ type PostToOfferpoolResponse = {
 
 // Posts the offer data to offerpool.io and returns the view and offer links.
 async function postToOfferpool(offerData: string, testnet: boolean): Promise<PostToOfferpoolResponse> {
-  const { ipcRenderer } = window as any;
-  const requestOptions = {
-    method: 'POST',
-    protocol: 'https:',
-    hostname: testnet ? testnetDummyHost : 'offerpool.io',
-    port: 443,
-    path: testnet ? '/offerpool' : '/api/v1/offers',
-  };
-  const requestHeaders = {
-    'Content-Type': 'application/json',
-  };
-  const requestData = JSON.stringify({ offer: offerData });
-  const { err, statusCode, statusMessage, responseBody } = await ipcRenderer.invoke(
-    'fetchTextResponse',
-    requestOptions,
-    requestHeaders,
-    requestData,
-  );
+  const url = `https://${testnet ? testnetDummyHost : 'offerpool.io'}${testnet ? '/offerpool' : '/api/v1/offers'}`;
 
-  if (err || (statusCode !== 200 && statusCode !== 400)) {
+  const requestData = JSON.stringify({ offer: offerData });
+  const { statusCode, statusMessage, responseBody } = await window.appAPI.fetchTextResponse(url, requestData);
+
+  if (statusCode !== 200) {
     const error = new Error(
-      `offerpool upload failed: ${err}, statusCode=${statusCode}, statusMessage=${statusMessage}, response=${responseBody}`,
+      `offerpool upload failed, statusCode=${statusCode}, statusMessage=${statusMessage}, response=${responseBody}`,
     );
     throw error;
   }

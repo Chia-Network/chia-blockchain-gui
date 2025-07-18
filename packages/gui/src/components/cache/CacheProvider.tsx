@@ -1,8 +1,6 @@
-import { type IpcRenderer } from 'electron';
-
 import React, { useMemo, useState, useEffect, useCallback, type ReactNode } from 'react';
 
-import type CacheAPI from '../../@types/CacheAPI';
+const { cacheAPI } = window;
 
 import CacheContext from './CacheContext';
 
@@ -12,48 +10,44 @@ export type CacheProviderProps = {
 
 export default function CacheProvider(props: CacheProviderProps) {
   const { children } = props;
-  const { cacheApi, ipcRenderer } = window as unknown as {
-    ipcRenderer: IpcRenderer;
-    cacheApi: CacheAPI;
-  };
 
   const [maxCacheSize, setMaxCacheSize] = useState<number | undefined>(undefined);
   const [cacheDirectory, setCacheDirectory] = useState<string | undefined>(undefined);
   const [cacheSize, setCacheSize] = useState<number | undefined>(undefined);
 
   const updateCacheSize = useCallback(async () => {
-    const size = await cacheApi.getCacheSize();
+    const size = await cacheAPI.getCacheSize();
     setCacheSize(size);
-  }, [cacheApi]);
+  }, []);
 
   const updateCacheDirectory = useCallback(async () => {
-    const directory = await cacheApi.getCacheDirectory();
+    const directory = await cacheAPI.getCacheDirectory();
     setCacheDirectory(directory);
-  }, [cacheApi]);
+  }, []);
 
   const updateMaxCacheSize = useCallback(async () => {
-    const size = await cacheApi.getMaxCacheSize();
+    const size = await cacheAPI.getMaxCacheSize();
     setMaxCacheSize(size);
-  }, [cacheApi]);
+  }, []);
 
   useEffect(() => {
-    ipcRenderer.on('cache:cacheDirectoryChanged', updateCacheDirectory);
-    ipcRenderer.on('cache:maxCacheSizeChanged', updateMaxCacheSize);
-    ipcRenderer.on('cache:sizeChanged', updateCacheSize);
+    const unbindCacheDirectoryChanged = cacheAPI.subscribeToDirectoryChange(updateCacheDirectory);
+    const unbindMaxCacheSizeChanged = cacheAPI.subscribeToMaxSizeChange(updateMaxCacheSize);
+    const unbindSizeChanged = cacheAPI.subscribeToSizeChange(updateCacheSize);
 
     updateCacheSize();
     updateCacheDirectory();
     updateMaxCacheSize();
 
     return () => {
-      ipcRenderer.off('cache:cacheDirectoryChanged', updateCacheDirectory);
-      ipcRenderer.off('cache:maxCacheSizeChanged', updateMaxCacheSize);
-      ipcRenderer.off('cache:sizeChanged', updateCacheSize);
+      unbindCacheDirectoryChanged();
+      unbindMaxCacheSizeChanged();
+      unbindSizeChanged();
     };
-  }, [ipcRenderer, updateCacheSize, updateCacheDirectory, updateMaxCacheSize]);
+  }, [updateCacheSize, updateCacheDirectory, updateMaxCacheSize]);
 
   const context = useMemo(() => {
-    const { getCacheDirectory, getCacheSize, getMaxCacheSize, ...rest } = cacheApi;
+    const { getCacheDirectory, getCacheSize, getMaxCacheSize, ...rest } = cacheAPI;
 
     return {
       ...rest,
@@ -61,7 +55,7 @@ export default function CacheProvider(props: CacheProviderProps) {
       cacheSize,
       maxCacheSize,
     };
-  }, [cacheApi, cacheSize, cacheDirectory, maxCacheSize]);
+  }, [cacheSize, cacheDirectory, maxCacheSize]);
 
   return <CacheContext.Provider value={context}>{children}</CacheContext.Provider>;
 }

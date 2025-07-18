@@ -178,23 +178,15 @@ export default function VCList() {
     : allVCs;
 
   async function getVCFromLocalFile() {
-    const fileContent = await (window as any).ipcRenderer.invoke('showOpenFileDialog');
-    if (!fileContent) {
-      return;
-    }
-    let json;
     try {
-      json = JSON.parse(fileContent);
-    } catch (e) {
-      /* error parsing json */
-    }
-    if (!json) {
-      await openDialog(
-        <AlertDialog title="Error">
-          <Trans>Error parsing file</Trans>
-        </AlertDialog>,
-      );
-    } else {
+      const result = await window.appAPI.showOpenFileDialogAndRead();
+      if (!result) {
+        return;
+      }
+
+      const buffer = Buffer.from(result.content);
+      const json = JSON.parse(buffer.toString());
+
       const sha256VC = await sha256(JSON.stringify(json));
       const sha256VCString = arrToHex(sha256VC);
       const localVCs = { ...VCsLocalStorage };
@@ -218,6 +210,12 @@ export default function VCList() {
           );
         }
       }
+    } catch (e) {
+      await openDialog(
+        <AlertDialog title="Error">
+          <Trans>Error parsing file</Trans>
+        </AlertDialog>,
+      );
     }
   }
 

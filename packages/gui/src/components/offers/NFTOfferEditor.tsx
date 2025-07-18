@@ -25,7 +25,6 @@ import {
   useColorModeValue,
   useCurrencyCode,
   useLocale,
-  useOpenDialog,
   useShowError,
 } from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
@@ -45,7 +44,6 @@ import { convertRoyaltyToPercentage, isValidNFTId, launcherIdFromNFTId } from '.
 import NFTOfferExchangeType from './NFTOfferExchangeType';
 import NFTOfferPreview from './NFTOfferPreview';
 import NFTOfferTokenSelector from './NFTOfferTokenSelector';
-import OfferEditorConfirmationDialog from './OfferEditorConfirmationDialog';
 import { calculateNFTRoyalties } from './utils';
 
 /* ========================================================================== */
@@ -540,7 +538,6 @@ export default function NFTOfferEditor(props: NFTOfferEditorProps) {
 
   const { nfts } = useNFTs();
   const currencyCode = useCurrencyCode();
-  const openDialog = useOpenDialog();
   const errorDialog = useShowError();
   const navigate = useNavigate();
   const theme = useTheme();
@@ -654,12 +651,6 @@ export default function NFTOfferEditor(props: NFTOfferEditorProps) {
       tokenAmount,
       fee,
     });
-
-    const confirmedCreation = await openDialog(<OfferEditorConfirmationDialog />);
-
-    if (!confirmedCreation) {
-      return;
-    }
 
     try {
       const response = await createOfferForIds({

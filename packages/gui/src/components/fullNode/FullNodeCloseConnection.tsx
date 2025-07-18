@@ -1,33 +1,24 @@
 import { useCloseFullNodeConnectionMutation } from '@chia-network/api-react';
-import { ConfirmDialog, useOpenDialog } from '@chia-network/core';
-import { Trans } from '@lingui/macro';
-import React from 'react';
+import { useShowError } from '@chia-network/core';
 
 type Props = {
   nodeId: string;
   children: (props: { onClose: () => void }) => JSX.Element;
 };
 
-export default function FullNodeCloseConnection(props: Props): JSX.Element {
+export default function FullNodeCloseConnection(props: Props) {
   const { nodeId, children } = props;
-  const openDialog = useOpenDialog();
+  const showError = useShowError();
   const [closeConnection] = useCloseFullNodeConnectionMutation();
 
   async function handleClose() {
-    await openDialog(
-      <ConfirmDialog
-        title={<Trans>Confirm Disconnect</Trans>}
-        confirmTitle={<Trans>Disconnect</Trans>}
-        confirmColor="danger"
-        onConfirm={() =>
-          closeConnection({
-            nodeId,
-          }).unwrap()
-        }
-      >
-        <Trans>Are you sure you want to disconnect?</Trans>
-      </ConfirmDialog>,
-    );
+    try {
+      await closeConnection({
+        nodeId,
+      }).unwrap();
+    } catch (error) {
+      showError(error);
+    }
   }
 
   return children({

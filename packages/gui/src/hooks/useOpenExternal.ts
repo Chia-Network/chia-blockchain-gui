@@ -9,8 +9,7 @@ export default function useOpenExternal(): (url: string) => void {
     }
 
     if (isElectron()) {
-      // @ts-ignore
-      window.shell.openExternal(url);
+      window.linkAPI.openExternal(url);
       return;
     }
 

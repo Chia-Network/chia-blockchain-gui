@@ -44,7 +44,7 @@ export const dataLayerApi = apiWithTag.injectEndpoints({
       ],
     }),
 
-    cancelOffer: mutation(build, DataLayer, 'cancelOffer', {
+    cancelDataLayerOffer: mutation(build, DataLayer, 'cancelOffer', {
       invalidatesTags: (_result, _error, { tradeId }) => [{ type: 'Offers', id: tradeId }],
     }),
 
@@ -60,7 +60,7 @@ export const dataLayerApi = apiWithTag.injectEndpoints({
       invalidatesTags: [{ type: 'OwnedDataStores' }],
     }),
 
-    deleteKey: mutation(build, DataLayer, 'deleteKey', {
+    deleteDataLayerKey: mutation(build, DataLayer, 'deleteKey', {
       invalidatesTags: (_result, _error, { id }) => [
         { type: 'Keys', id },
         { type: 'KeysValues', id },
@@ -75,7 +75,7 @@ export const dataLayerApi = apiWithTag.injectEndpoints({
       providesTags: (_result, _error, { id }) => [{ type: 'Ancestors', id }],
     }),
 
-    getKeys: query(build, DataLayer, 'getKeys', {
+    getDataLayerKeys: query(build, DataLayer, 'getKeys', {
       providesTags: (_result, _error, { id }) => [{ type: 'Keys', id }],
     }),
 
@@ -111,7 +111,7 @@ export const dataLayerApi = apiWithTag.injectEndpoints({
       providesTags: (_result, _error, { id }) => [{ type: 'RootHistories', id }],
     }),
 
-    getSyncStatus: query(build, DataLayer, 'getSyncStatus', {
+    getDataLayerSyncStatus: query(build, DataLayer, 'getSyncStatus', {
       providesTags: (_result, _error, { id }) => [{ type: 'SyncStatus', id }],
     }),
 
@@ -148,7 +148,7 @@ export const dataLayerApi = apiWithTag.injectEndpoints({
       providesTags: [{ type: 'Subscriptions' }],
     }),
 
-    takeOffer: mutation(build, DataLayer, 'takeOffer', {
+    takeDataLayerOffer: mutation(build, DataLayer, 'takeOffer', {
       invalidatesTags: [{ type: 'Offers', id: 'LIST' }],
     }),
 
@@ -169,14 +169,14 @@ export const {
   useAddMirrorMutation,
   useAddMissingFilesMutation,
   useBatchUpdateMutation,
-  useCancelOfferMutation,
+  useCancelDataLayerOfferMutation,
   useCheckPluginsQuery,
   useClearPendingRootsMutation,
   useCreateDataStoreMutation,
-  useDeleteKeyMutation,
+  useDeleteDataLayerKeyMutation,
   useDeleteMirrorMutation,
   useGetAncestorsQuery,
-  useGetKeysQuery,
+  useGetDataLayerKeysQuery,
   useGetKeysValuesQuery,
   useGetKvDiffQuery,
   useGetLocalRootQuery,
@@ -185,14 +185,14 @@ export const {
   useGetRootQuery,
   useGetRootsQuery,
   useGetRootHistoryQuery,
-  useGetSyncStatusQuery,
+  useGetDataLayerSyncStatusQuery,
   useGetValueQuery,
   useInsertMutation,
   useMakeOfferMutation,
   useRemoveSubscriptionsMutation,
   useSubscribeMutation,
   useSubscriptionsQuery,
-  useTakeOfferMutation,
+  useTakeDataLayerOfferMutation,
   useUnsubscribeMutation,
   useVerifyOfferQuery,
 } = dataLayerApi;

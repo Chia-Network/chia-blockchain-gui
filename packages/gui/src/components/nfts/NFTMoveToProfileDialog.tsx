@@ -5,7 +5,6 @@ import {
   AlertDialog,
   Button,
   ButtonLoading,
-  ConfirmDialog,
   CopyToClipboard,
   EstimatedFee,
   FeeTxType,
@@ -41,32 +40,6 @@ const ErrorTextWrapper = styled.div`
     margin-top: 15px;
   }
 `;
-
-/* ========================================================================== */
-/*                     Move to Profile Confirmation Dialog                    */
-/* ========================================================================== */
-
-type NFTMoveToProfileConfirmationDialogProps = {};
-
-function NFTMoveToProfileConfirmationDialog(props: NFTMoveToProfileConfirmationDialogProps) {
-  const { ...rest } = props;
-
-  return (
-    <ConfirmDialog
-      title={<Trans>Confirm Move</Trans>}
-      confirmTitle={<Trans>Yes, move</Trans>}
-      confirmColor="secondary"
-      cancelTitle={<Trans>Cancel</Trans>}
-      {...rest}
-    >
-      <Flex flexDirection="column" gap={3}>
-        <Typography variant="body1">
-          <Trans>Are you sure you want to move this NFT to the specified profile?</Trans>
-        </Typography>
-      </Flex>
-    </ConfirmDialog>
-  );
-}
 
 /* ========================================================================== */
 /*                         NFT Move to Profile Action                         */
@@ -162,57 +135,55 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
 
     const destinationDID = destinationLocal === '<none>' ? undefined : destinationLocal;
 
-    const confirmation = await openDialog(<NFTMoveToProfileConfirmationDialog />);
+    try {
+      const { error, data: response } = await setNFTDID({
+        walletId: nfts[0].walletId,
+        nftCoinIds: nfts.map((nft) => removeHexPrefix(nft.nftCoinId)),
+        did: destinationDID,
+        fee: feeInMojos,
+      });
 
-    if (confirmation) {
-      try {
-        const { error, data: response } = await setNFTDID({
-          walletId: nfts[0].walletId,
-          nftCoinIds: nfts.map((nft) => removeHexPrefix(nft.nftCoinId)),
-          did: destinationDID,
-          fee: feeInMojos,
-        });
-
-        // TODO: this condition is never triggered, since the mutation never returns array
-        if (Array.isArray(response)) {
-          const successTransfers = response.filter((r: any) => r?.success === true);
-          const failedTransfers = response.filter((r: any) => r?.success !== true);
-          setSelectedNFTIds([]);
-          openDialog(
-            <AlertDialog title={<Trans>NFT Move Pending</Trans>}>
-              <ErrorTextWrapper>
-                <div>
-                  <Trans
-                    id="{count} transactions have been successfully submitted to the blockchain."
-                    values={{ count: successTransfers.length }}
-                  />
-                </div>
-                <div>
-                  {failedTransfers.length ? (
-                    <Trans id="{count} NFTs failed to move." values={{ count: failedTransfers.length }} />
-                  ) : null}
-                </div>
-              </ErrorTextWrapper>
-            </AlertDialog>,
-          );
-        } else if (!error) {
-          openDialog(
-            <AlertDialog title={<Trans>NFT Move Pending</Trans>}>
-              <Trans>The NFT move transaction has been successfully submitted to the blockchain.</Trans>
-            </AlertDialog>,
-          );
-        } else {
-          const err = error?.message || 'Unknown error';
-          openDialog(
-            <AlertDialog title={<Trans>NFT Move Failed</Trans>}>
-              <Trans>The NFT move failed: {err}</Trans>
-            </AlertDialog>,
-          );
-        }
-      } finally {
-        if (onComplete) {
-          onComplete();
-        }
+      // TODO: this condition is never triggered, since the mutation never returns array
+      if (Array.isArray(response)) {
+        const successTransfers = response.filter((r: any) => r?.success === true);
+        const failedTransfers = response.filter((r: any) => r?.success !== true);
+        setSelectedNFTIds([]);
+        openDialog(
+          <AlertDialog title={<Trans>NFT Move Pending</Trans>}>
+            <ErrorTextWrapper>
+              <div>
+                <Trans
+                  id="{count} transactions have been successfully submitted to the blockchain."
+                  values={{ count: successTransfers.length }}
+                />
+              </div>
+              <div>
+                {failedTransfers.length ? (
+                  <Trans id="{count} NFTs failed to move." values={{ count: failedTransfers.length }} />
+                ) : null}
+              </div>
+            </ErrorTextWrapper>
+          </AlertDialog>,
+        );
+      } else if (!error) {
+        openDialog(
+          <AlertDialog title={<Trans>NFT Move Pending</Trans>}>
+            <Trans>The NFT move transaction has been successfully submitted to the blockchain.</Trans>
+          </AlertDialog>,
+        );
+      } else {
+        const err = error?.message || 'Unknown error';
+        openDialog(
+          <AlertDialog title={<Trans>NFT Move Failed</Trans>}>
+            <Trans>The NFT move failed: {err}</Trans>
+          </AlertDialog>,
+        );
+      }
+    } catch (error) {
+      errorDialog(error);
+    } finally {
+      if (onComplete) {
+        onComplete();
       }
     }
   }

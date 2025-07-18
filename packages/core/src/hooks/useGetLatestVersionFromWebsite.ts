@@ -42,10 +42,23 @@ export default function useGetLatestVersionFromWebsite(): UseGetLatestVersionFro
   );
 
   useEffect(() => {
-    const { ipcRenderer } = window as any;
-    ipcRenderer.invoke('fetchHtmlContent', latestVersionURL).then((obj: any) => {
+    if (!latestVersionURL) {
+      return;
+    }
+
+    async function fetchLatestVersion() {
       try {
-        const { version, downloadPageUrl, releaseNotesUrl, blogUrl } = obj.data;
+        const response = await fetch(latestVersionURL as string, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept-Encoding': 'identity',
+          },
+        });
+
+        const data = await response.json();
+        const { version, downloadPageUrl, releaseNotesUrl, blogUrl } = data;
+
         setTimeout(() => {
           setLatestVersion(version);
           setDownloadPath(downloadPageUrl);
@@ -57,7 +70,9 @@ export default function useGetLatestVersionFromWebsite(): UseGetLatestVersionFro
         /* we don't need to handle error here, if we are unable to fetch version number
            from chia.net, we just ignore showing reminder dialog */
       }
-    });
+    }
+
+    fetchLatestVersion();
   }, [latestVersionURL]);
 
   const downloadUrl = downloadPath ? new URL(downloadPath, 'https://www.chia.net/').toString() : undefined;

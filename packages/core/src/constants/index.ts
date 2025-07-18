@@ -1,3 +1,4 @@
+export { default as API } from './API';
 export { default as Color } from './Color';
 export { default as Mode } from './Mode';
 export { default as State } from './State';

@@ -5,7 +5,7 @@
   "productName": "Chia Blockchain",
   "version": "1.0.0",
   "engines": {
-    "node": ">=18.18.2"
+    "node": ">=20.0.0"
   },
   "main": "dist/index.js",
   "module": "dist/esm.js",
@@ -19,7 +19,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@babel/runtime": "7.27.0",
+    "@babel/runtime": "7.27.6",
     "bech32": "2.0.0",
     "bignumber.js": "9.1.1",
     "core-js": "3.32.1",
@@ -31,10 +31,10 @@
     "regenerator-runtime": "0.14.1"
   },
   "devDependencies": {
-    "@babel/core": "7.26.10",
-    "@babel/plugin-transform-runtime": "7.26.10",
-    "@babel/preset-env": "7.26.9",
-    "@babel/preset-typescript": "7.27.0",
+    "@babel/core": "7.27.4",
+    "@babel/plugin-transform-runtime": "7.27.4",
+    "@babel/preset-env": "7.27.2",
+    "@babel/preset-typescript": "7.27.1",
     "@rollup/plugin-babel": "6.0.4",
     "@rollup/plugin-commonjs": "25.0.4",
     "@rollup/plugin-node-resolve": "15.2.1",

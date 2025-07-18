@@ -3,8 +3,8 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 type Config = {
   url: string;
-  cert: string;
-  key: string;
+  cert?: string;
+  key?: string;
   webSocket: any;
 };
 

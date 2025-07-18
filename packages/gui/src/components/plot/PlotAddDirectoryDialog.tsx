@@ -38,9 +38,7 @@ export default function PlotAddDirectoryDialog(props: Props) {
   const [removePlotDirectory] = useRemovePlotDirectoryMutation();
   const { data: directories, isLoading } = useGetPlotDirectoriesQuery();
   const showError = useShowError();
-  const selectDirectory = useSelectDirectory({
-    buttonLabel: 'Select Plot Directory',
-  });
+  const selectDirectory = useSelectDirectory();
 
   function handleClose() {
     onClose();

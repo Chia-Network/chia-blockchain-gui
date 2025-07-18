@@ -50,7 +50,7 @@ msgstr "اضافه نمودن کیف پول"
 msgid "Amount"
 msgstr "مبلغ"
 
-#: src/components/Settings/SettingsApp.tsx:94
+#: src/components/Settings/SettingsApp.tsx:90
 msgid "Appearance"
 msgstr "ظاهر برنامه"
 
@@ -70,7 +70,7 @@ msgstr "بازگشت"
 msgid "Cancel"
 msgstr "لغو"
 
-#: src/components/Settings/SettingsApp.tsx:140
+#: src/components/Settings/SettingsApp.tsx:136
 msgid "Check for updates"
 msgstr "بروز رسانی را بررسی کنید"
 
@@ -82,7 +82,7 @@ msgstr "بروز رسانی را بررسی کنید..."
 msgid "Chia {latestVersion} is currently the latest version available."
 msgstr ".در حال حاضر آخرین نسخه موجود است {latestVersion} چیا"
 
-#: src/components/Settings/SettingsApp.tsx:126
+#: src/components/Settings/SettingsApp.tsx:122
 msgid "Chia Application Version:"
 msgstr "نسخه برنامه چیا:"
 
@@ -120,12 +120,12 @@ msgstr "برای شروع کار با چیا یک کلید کیف پول جدی�
 msgid "Create New"
 msgstr "ایجاد جدید"
 
-#: src/components/Settings/SettingsApp.tsx:111
+#: src/components/Settings/SettingsApp.tsx:107
 msgid "Dark"
 msgstr "تاریک"
 
 #: src/screens/SelectKey/SelectKey.tsx:128
-#: src/screens/SelectKey/SelectKeyItem.tsx:114
+#: src/screens/SelectKey/SelectKeyItem.tsx:113
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:183
 msgid "Delete"
 msgstr "حذف"
@@ -148,7 +148,7 @@ msgstr ""
 "حذف همه کلیدها آنها را برای همیشه از روی رایانه شما حذف میکند، مطمئن شوید که نسخه پشتیبان دارید.\n"
 " آیا مطمئنید که میخواهید ادامه دهید؟"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:106
+#: src/screens/SelectKey/SelectKeyItem.tsx:105
 msgid "Details"
 msgstr "جزئیات"
 
@@ -182,7 +182,7 @@ msgstr "خطا:"
 msgid "Esc"
 msgstr "خروج"
 
-#: src/components/LayoutMain/LayoutFooter.tsx:49
+#: src/components/LayoutMain/LayoutFooter.tsx:47
 msgid "FAQ"
 msgstr "پاسخ به سوالات"
 
@@ -194,7 +194,7 @@ msgstr "کلید عمومی فارمر"
 msgid "Farmer public key:"
 msgstr "کلید عمومی فارم کننده:"
 
-#: src/components/Settings/SettingsApp.tsx:79
+#: src/components/Settings/SettingsApp.tsx:75
 msgid "Farming"
 msgstr "درحال فارم"
 
@@ -208,7 +208,7 @@ msgstr "کارمزد"
 msgid "Fingerprint does not match"
 msgstr "کدها هماهنگی ندارند"
 
-#: src/components/Settings/SettingsApp.tsx:152
+#: src/components/Settings/SettingsApp.tsx:148
 msgid "Frequently Asked Questions"
 msgstr "پرسش ها و پاسخ های متداول"
 
@@ -216,7 +216,7 @@ msgstr "پرسش ها و پاسخ های متداول"
 msgid "Go To Download Page"
 msgstr "به صفحه ذخیره بروید"
 
-#: src/components/Settings/SettingsApp.tsx:148
+#: src/components/Settings/SettingsApp.tsx:144
 msgid "Help"
 msgstr "راهنما"
 
@@ -245,7 +245,7 @@ msgstr "وارد کردن انچه موجود است"
 msgid "Incorrect value"
 msgstr "اطلاعات نادرست"
 
-#: src/components/Settings/SettingsApp.tsx:118
+#: src/components/Settings/SettingsApp.tsx:114
 msgid "Language"
 msgstr "زبان"
 
@@ -253,7 +253,7 @@ msgstr "زبان"
 msgid "Latest Version:"
 msgstr "آخرین نسخه:"
 
-#: src/components/Settings/SettingsApp.tsx:103
+#: src/components/Settings/SettingsApp.tsx:99
 msgid "Light"
 msgstr "روشن"
 
@@ -298,7 +298,7 @@ msgstr "انتقال"
 msgid "Migration required"
 msgstr "نیاز به انتقال"
 
-#: src/components/Settings/SettingsApp.tsx:70
+#: src/components/Settings/SettingsApp.tsx:66
 msgid "Mode"
 msgstr "حالت"
 
@@ -381,7 +381,7 @@ msgstr "بارگذاری مجدد برنامه"
 msgid "Remove Icon"
 msgstr "حذف نماد"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:98
+#: src/screens/SelectKey/SelectKeyItem.tsx:97
 msgid "Rename"
 msgstr "تغییر نام"
 
@@ -423,8 +423,8 @@ msgstr "کلمات زمز:"
 msgid "Select..."
 msgstr "انتخاب..."
 
-#: src/components/LayoutMain/LayoutFooter.tsx:52
-#: src/components/Settings/SettingsApp.tsx:155
+#: src/components/LayoutMain/LayoutFooter.tsx:50
+#: src/components/Settings/SettingsApp.tsx:151
 msgid "Send Feedback"
 msgstr "ارسال پیشنهاد"
 
@@ -532,12 +532,12 @@ msgid "Value seems high"
 msgstr "ارزش بالا به نظر میرسد"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:233
-#: src/components/Settings/SettingsApp.tsx:87
+#: src/components/Settings/SettingsApp.tsx:83
 msgid "Wallet"
 msgstr "کیف پول"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:63
-#: src/screens/SelectKey/SelectKeyItem.tsx:234
+#: src/screens/SelectKey/SelectKeyItem.tsx:233
 msgid "Wallet {0}"
 msgstr "کیف پول {0}"
 

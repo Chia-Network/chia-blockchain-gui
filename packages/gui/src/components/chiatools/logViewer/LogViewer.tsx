@@ -1,10 +1,8 @@
 import { Flex, useShowError } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import { Box, CircularProgress, Typography, TextField, Button } from '@mui/material';
+import { Box, CircularProgress, Typography, Button } from '@mui/material';
 import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import styled from 'styled-components';
-
-import decodeError from '../../../electron/utils/decodeError';
 
 import LogRecord from './LogRecord';
 import LogViewerToolbar from './LogViewerToolbar';
@@ -17,6 +15,14 @@ import {
   PaginationInfo,
 } from './LogViewerTypes';
 import { CACHE_TIMEOUT, DEFAULT_FILTER, filterLogContent } from './LogViewerUtils';
+
+function decodeError({ name, message, extra }: { name: string; message: string; extra: Record<string, unknown> }) {
+  const error = new Error(message);
+  error.name = name;
+  Object.assign(error, extra);
+
+  return error;
+}
 
 const LogViewerContainer = styled(Box)(({ theme }) => ({
   flex: 1,
@@ -53,15 +59,14 @@ export default function LogViewer({ pageSize = 1000 }: LogViewerProps) {
   const [lastLoadTime, setLastLoadTime] = useState<number>(0);
   const [filteredGroups, setFilteredGroups] = useState<string[]>([]);
   const [showCustomPathInput, setShowCustomPathInput] = useState<boolean>(false);
-  const [customPath, setCustomPath] = useState<string>('');
   const [defaultLogPath, setDefaultLogPath] = useState<string>('');
   const [isInitialized, setIsInitialized] = useState(false);
 
   const checkLogFile = useCallback(async (): Promise<LogFileInfo> => {
     try {
-      const info = await window.chiaLogs.getInfo();
-      if (info.fileError) {
-        throw new Error(info.fileError);
+      const info = await window.chiaLogsAPI.getInfo();
+      if ('error' in info) {
+        throw new Error(info.error);
       }
       if (info.defaultPath) {
         setDefaultLogPath(info.defaultPath);
@@ -156,8 +161,8 @@ export default function LogViewer({ pageSize = 1000 }: LogViewerProps) {
           throw new Error(`Unable to read log file: ${info.fileError || 'unknown error'}`);
         }
 
-        const result = await window.chiaLogs.getContent();
-        if (result.error) {
+        const result = await window.chiaLogsAPI.getContent();
+        if ('error' in result) {
           throw new Error(result.error);
         }
 
@@ -231,41 +236,30 @@ export default function LogViewer({ pageSize = 1000 }: LogViewerProps) {
     initializeViewer();
   }, [checkLogFile, loadLogsData, showError, isInitialized, loading]);
 
-  const handleCustomPathSubmit = useCallback(
-    async (path: string) => {
-      try {
-        await window.chiaLogs.setCustomPath(path);
-        const info = await checkLogFile();
-        setFileInfo(info);
+  const handleCustomPathSubmit = useCallback(async () => {
+    try {
+      await window.chiaLogsAPI.setPath();
+      const info = await checkLogFile();
+      setFileInfo(info);
 
-        if (info.exists && info.readable) {
-          setShowCustomPathInput(false);
-          await loadLogsData(true);
-        }
-      } catch (e: any) {
-        let errorMessage = '';
-
-        if (e.message.includes('ENOENT')) {
-          errorMessage = ['⚠️  Log file not found', 'Please verify the path and try again.', '', `Path: ${path}`].join(
-            '\n',
-          );
-        } else if (e.message.includes('EACCES')) {
-          errorMessage = [
-            '⚠️  Permission denied',
-            'Please check file permissions and try again.',
-            '',
-            `Path: ${path}`,
-          ].join('\n');
-        } else {
-          errorMessage = ['⚠️  Error accessing log file', e.message, '', `Path: ${path}`].join('\n');
-        }
-
-        showError(new Error(errorMessage));
-        setCustomPath('');
+      if (info.exists && info.readable) {
+        setShowCustomPathInput(false);
+        await loadLogsData(true);
       }
-    },
-    [checkLogFile, loadLogsData, showError],
-  );
+    } catch (e: any) {
+      let errorMessage = '';
+
+      if (e.message.includes('ENOENT')) {
+        errorMessage = ['⚠️  Log file not found', 'Please verify the path and try again.'].join('\n');
+      } else if (e.message.includes('EACCES')) {
+        errorMessage = ['⚠️  Permission denied', 'Please check file permissions and try again.'].join('\n');
+      } else {
+        errorMessage = ['⚠️  Error accessing log file', e.message].join('\n');
+      }
+
+      showError(new Error(errorMessage));
+    }
+  }, [checkLogFile, loadLogsData, showError]);
 
   const handleRefresh = useCallback(() => {
     loadLogsData(true);
@@ -450,17 +444,8 @@ export default function LogViewer({ pageSize = 1000 }: LogViewerProps) {
   if (showCustomPathInput) {
     return (
       <Flex flexDirection="column" gap={2} padding={2}>
-        <Typography variant="body1">
-          <Trans>Enter the path to your log file:</Trans>
-        </Typography>
-        <TextField
-          fullWidth
-          value={customPath}
-          onChange={(e) => setCustomPath(e.target.value)}
-          placeholder="/path/to/your/log/file/debug.log"
-        />
         <Flex gap={2}>
-          <Button onClick={() => handleCustomPathSubmit(customPath)} variant="contained" disabled={!customPath}>
+          <Button onClick={() => handleCustomPathSubmit()} variant="contained">
             <Trans>Load Logs</Trans>
           </Button>
           <Button onClick={() => setShowCustomPathInput(false)} variant="outlined">

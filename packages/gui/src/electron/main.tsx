@@ -2,63 +2,61 @@ import {
   app,
   dialog,
   net,
-  shell,
   ipcMain,
   BrowserWindow,
   IncomingMessage,
   Menu,
   nativeImage,
   Notification,
-  protocol,
+  type MenuItemConstructorOptions,
+  nativeTheme,
 } from 'electron';
-import fs from 'fs';
-import path from 'path';
-import url from 'url';
+import fs from 'node:fs';
+import path from 'node:path';
+import url from 'node:url';
 
-import { initialize, enable } from '@electron/remote/main';
-import axios from 'axios';
 import windowStateKeeper from 'electron-window-state';
-import React from 'react';
-// import os from 'os';
-import ReactDOMServer from 'react-dom/server';
+import { uniq } from 'lodash';
 import sanitizeFilename from 'sanitize-filename';
-import { ServerStyleSheet, StyleSheetManager } from 'styled-components';
-import isURL from 'validator/es/lib/isURL';
 
 // handle setupevents as quickly as possible
 import '../config/env';
+
 import packageJson from '../../package.json';
 import AppIcon from '../assets/img/chia64x64.png';
-import About from '../components/about/About';
 import { i18n } from '../config/locales';
-import chiaEnvironment, { chiaInit } from '../util/chiaEnvironment';
-import loadConfig, { checkConfigFileExists } from '../util/loadConfig';
-import manageDaemonLifetime from '../util/manageDaemonLifetime';
-import { setUserDataDir } from '../util/userData';
 
 import CacheManager from './CacheManager';
-import { readAddressBook, saveAddressBook } from './addressBook';
-import installDevTools from './installDevTools.dev';
+import AddressBookAPI from './constants/AddressBookAPI';
+import AllowedCommands from './constants/AllowedCommands';
+import AppAPI from './constants/AppAPI';
+import ChiaLogsAPI from './constants/ChiaLogsAPI';
+import LinkAPI from './constants/LinkAPI';
+import PreferencesAPI from './constants/PreferencesAPI';
+import About from './dialogs/About/About';
+import Confirm, { getTitle as getConfirmTitle } from './dialogs/Confirm/Confirm';
+import KeyDetail from './dialogs/KeyDetail/KeyDetail';
 import { readPrefs, savePrefs, migratePrefs } from './prefs';
+import { readAddressBook, saveAddressBook } from './utils/addressBook';
+import chiaEnvironment, { chiaInit } from './utils/chiaEnvironment';
 import downloadFile from './utils/downloadFile';
-
-/**
- * Open the given external protocol URL in the desktop's default manner.
- */
-function openExternal(urlLocal: string) {
-  if (!isURL(urlLocal, { protocols: ['http', 'https', 'ipfs'], require_protocol: true })) {
-    return;
-  }
-  shell.openExternal(urlLocal);
-}
+import getKeyDetails from './utils/getKeyDetails';
+import getNetworkInfo from './utils/getNetworkInfo';
+import ipcMainHandle from './utils/ipcMainHandle';
+import isValidURL from './utils/isValidURL';
+import loadConfig, { checkConfigFileExists } from './utils/loadConfig';
+import manageDaemonLifetime from './utils/manageDaemonLifetime';
+import openExternal from './utils/openExternal';
+import openReactDialog from './utils/openReactDialog';
+import * as privatePreferences from './utils/privatePreferences';
+import { setUserDataDir } from './utils/userData';
+import webSocketBridgeBindEvents from './utils/webSocketBridge';
 
 const isPlaywrightTesting = process.env.PLAYWRIGHT_TESTS === 'true';
 const NET = 'mainnet';
 
 app.disableHardwareAcceleration();
 app.commandLine.appendSwitch('disable-http-cache');
-
-initialize();
 
 const appIcon = nativeImage.createFromPath(path.join(__dirname, AppIcon));
 
@@ -72,13 +70,41 @@ const cacheManager = new CacheManager({
   maxCacheSize: prefs.maxCacheSize,
 });
 
-// IPC prefs listeners
-ipcMain.handle('readPrefs', (_event) => readPrefs());
-ipcMain.handle('savePrefs', (_event, prefsObj) => savePrefs(prefsObj));
-ipcMain.handle('migratePrefs', (_event, prefsObj) => migratePrefs(prefsObj));
-ipcMain.handle('saveAddressBook', (_event, addressBook) => saveAddressBook(addressBook));
-ipcMain.handle('readAddressBook', (_event) => readAddressBook());
+// IPC listeners
+ipcMainHandle(PreferencesAPI.READ, () => readPrefs());
+ipcMainHandle(PreferencesAPI.SAVE, (prefsObj) => savePrefs(prefsObj));
+ipcMainHandle(PreferencesAPI.MIGRATE, (prefsObj) => migratePrefs(prefsObj));
 
+ipcMainHandle(AddressBookAPI.SAVE, (addressBook) => saveAddressBook(addressBook));
+ipcMainHandle(AddressBookAPI.READ, () => readAddressBook());
+
+ipcMainHandle(LinkAPI.OPEN_EXTERNAL, (openUrl: string) => openExternal(openUrl));
+
+ipcMainHandle(AppAPI.OPEN_KEY_DETAIL, async (fingerprint: string) => {
+  await openKeyDetail(fingerprint);
+});
+
+ipcMainHandle(AppAPI.GET_CONFIG, async () => {
+  const config = await loadConfig();
+  if (!config) {
+    return config;
+  }
+
+  return {
+    url: config.url,
+  };
+});
+
+ipcMainHandle(AppAPI.SHOW_NOTIFICATION, async (options: { title: string; body: string }) => {
+  const { title, body } = options;
+
+  new Notification({
+    title,
+    body,
+  }).show();
+});
+
+// main window
 let mainWindow: BrowserWindow | null = null;
 
 let currentDownloadRequest: any;
@@ -93,50 +119,7 @@ if (!checkConfigFileExists()) {
 // Set the userData directory to its location within CHIA_ROOT/gui
 setUserDataDir();
 
-function renderAbout(): string {
-  const sheet = new ServerStyleSheet();
-  const about = ReactDOMServer.renderToStaticMarkup(
-    <StyleSheetManager sheet={sheet.instance}>
-      <About packageJson={packageJson} versions={process.versions} version={app.getVersion()} />
-    </StyleSheetManager>,
-  );
-
-  const tags = sheet.getStyleTags();
-  const result = about.replace('{{CSS}}', tags); // .replaceAll('/*!sc*/', ' ');
-
-  sheet.seal();
-
-  return result;
-}
-
 const openedWindows = new Set<BrowserWindow>();
-
-function openAbout() {
-  const about = renderAbout();
-
-  const aboutWindow = new BrowserWindow({
-    width: 400,
-    height: 460,
-    useContentSize: true,
-    titleBarStyle: 'hiddenInset',
-  });
-  aboutWindow.loadURL(`data:text/html;charset=utf-8,${about}`);
-
-  aboutWindow.webContents.setWindowOpenHandler((details) => {
-    openExternal(details.url);
-    return { action: 'deny' };
-  });
-
-  aboutWindow.once('closed', () => {
-    openedWindows.delete(aboutWindow);
-  });
-
-  aboutWindow.setMenu(null);
-
-  openedWindows.add(aboutWindow);
-
-  // aboutWindow.webContents.openDevTools({ mode: 'detach' });
-}
 
 // squirrel event handled and app will exit in 1000ms, so don't do anything else
 const ensureSingleInstance = () => {
@@ -184,204 +167,255 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
   let isClosing = false;
   let promptOnQuit = true;
   let mainWindowLaunchTasks: ((window: BrowserWindow) => void)[] = [];
+  let networkPrefix: string | undefined;
 
   const createWindow = async () => {
     if (manageDaemonLifetime(NET)) {
       chiaEnvironment.startChiaDaemon();
     }
 
-    ipcMain.handle('getConfig', () => loadConfig(NET));
+    ipcMainHandle(AppAPI.GET_TEMP_DIR, () => app.getPath('temp'));
 
-    ipcMain.handle('getTempDir', () => app.getPath('temp'));
+    ipcMainHandle(AppAPI.GET_VERSION, () => app.getVersion());
 
-    ipcMain.handle('getVersion', () => app.getVersion());
-
-    ipcMain.handle('setPromptOnQuit', (_event, modeBool: boolean) => {
-      promptOnQuit = modeBool;
+    ipcMainHandle(AppAPI.SET_PROMPT_ON_QUIT, (modeBool: boolean) => {
+      promptOnQuit = !!modeBool;
     });
 
-    ipcMain.handle('quitGUI', () => {
+    ipcMainHandle(AppAPI.QUIT_GUI, () => {
       promptOnQuit = false;
       app.quit();
     });
 
-    ipcMain.handle(
-      'showNotification',
-      async (
-        _event,
-        options: {
-          title: string;
-          body: string;
-        },
-      ) => {
-        new Notification(options).show();
-      },
-    );
+    ipcMainHandle(AppAPI.FETCH_TEXT_RESPONSE, async (urlLocal: string, data: string) => {
+      if (!isValidURL(urlLocal)) {
+        throw new Error('Invalid URL');
+      }
 
-    ipcMain.handle('fetchTextResponse', async (_event, requestOptions, requestHeaders, requestData) => {
-      const request = net.request(requestOptions as any);
-
-      Object.entries(requestHeaders || {}).forEach(([header, value]) => {
-        request.setHeader(header, value as any);
+      const request = net.request({
+        method: 'POST',
+        url: urlLocal,
+        headers: { 'Content-Type': 'application/json' },
       });
 
-      let err: any | undefined;
       let statusCode: number | undefined;
       let statusMessage: string | undefined;
-      let responseBody: string | undefined;
 
-      try {
-        responseBody = await new Promise((resolve, reject) => {
-          request.on('response', (response: IncomingMessage) => {
-            statusCode = response.statusCode;
-            statusMessage = response.statusMessage;
+      const responseBody = await new Promise((resolve, reject) => {
+        request.on('response', (response: IncomingMessage) => {
+          statusCode = response.statusCode;
+          statusMessage = response.statusMessage;
 
-            response.on('data', (chunk) => {
-              const body = chunk.toString('utf8');
+          response.on('data', (chunk) => {
+            const body = chunk.toString('utf8');
 
-              resolve(body);
-            });
-
-            response.on('error', (e: string) => {
-              reject(new Error(e));
-            });
+            resolve(body);
           });
 
-          request.on('error', (error: any) => {
-            reject(error);
+          response.on('error', (e: string) => {
+            reject(new Error(e));
           });
-
-          request.write(requestData);
-          request.end();
         });
-      } catch (e) {
-        console.error(e);
-        err = e;
-      }
 
-      return { err, statusCode, statusMessage, responseBody };
-    });
+        request.on('error', (error: any) => {
+          reject(error);
+        });
 
-    ipcMain.handle('showMessageBox', async (_event, options) => dialog.showMessageBox(mainWindow, options));
-
-    ipcMain.handle('showOpenDialog', async (_event, options) => dialog.showOpenDialog(options));
-
-    ipcMain.handle('showOpenFileDialog', async (_event, options) => {
-      const result = await dialog.showOpenDialog({
-        ...(options || {}),
-        properties: ['openFile'],
-        multiSelections: false,
+        request.write(data);
+        request.end();
       });
 
-      if (result.filePaths.length > 0) {
-        const filePath = result.filePaths[0];
-        const fileContent = await fs.promises.readFile(filePath, { encoding: 'utf-8' });
-        return fileContent;
-      }
-      return undefined;
+      return { statusCode, statusMessage, responseBody };
     });
 
-    ipcMain.handle('showSaveDialog', async (_event, options) => dialog.showSaveDialog(options));
+    ipcMainHandle(AppAPI.SHOW_OPEN_DIRECTORY_DIALOG, async (options: { defaultPath?: string } = {}) => {
+      const { defaultPath } = options;
 
-    ipcMain.handle('download', async (_event, options) => {
-      if (mainWindow) {
-        return mainWindow.webContents.downloadURL(options.url);
+      const result = await dialog.showOpenDialog({
+        properties: ['openDirectory', 'showHiddenFiles'],
+        defaultPath,
+      });
+
+      if (result.canceled || !result.filePaths[0]) {
+        return undefined;
       }
-      console.error('mainWindow was not initialized');
-      return undefined;
+
+      return result.filePaths[0];
     });
 
-    ipcMain.handle('selectMultipleDownloadFolder', async (_event: any) =>
-      dialog.showOpenDialog({
+    ipcMainHandle(AppAPI.SHOW_OPEN_FILE_DIALOG_AND_READ, async (options: { extensions?: string[] } = {}) => {
+      const { extensions } = options;
+
+      const result = await dialog.showOpenDialog({
+        properties: ['openFile'],
+        filters: extensions ? [{ name: 'Files', extensions }] : undefined,
+      });
+
+      if (result.canceled || !result.filePaths[0]) {
+        return undefined;
+      }
+
+      const filePath = result.filePaths[0];
+      const fileContent = await fs.promises.readFile(filePath);
+
+      return {
+        content: fileContent,
+        filename: path.basename(filePath),
+      };
+    });
+
+    ipcMainHandle(AppAPI.SHOW_SAVE_DIALOG_AND_SAVE, async (options: { content: string; defaultPath?: string }) => {
+      const { content, defaultPath } = options;
+
+      const result = await dialog.showSaveDialog({
+        defaultPath,
+      });
+
+      if (!result.canceled && result.filePath) {
+        await fs.promises.writeFile(result.filePath, content);
+      }
+
+      return { success: true };
+    });
+
+    ipcMainHandle(AppAPI.DOWNLOAD, async (urlLocal: string) => {
+      if (!isValidURL(urlLocal)) {
+        return;
+      }
+
+      if (!mainWindow) {
+        console.error('mainWindow was not initialized');
+        return;
+      }
+
+      mainWindow.webContents.downloadURL(urlLocal);
+    });
+
+    ipcMainHandle(AppAPI.START_MULTIPLE_DOWNLOAD, async (tasks: { url: string; filename: string }[]) => {
+      const result = await dialog.showOpenDialog({
         properties: ['openDirectory'],
         defaultPath: app.getPath('downloads'),
-      }),
-    );
-
-    type ResponseObjType = { data?: string; error?: string };
-
-    ipcMain.handle('fetchHtmlContent', async (_event, axiosUrl: string) => {
-      const responseObj: ResponseObjType = await new Promise((resolve) => {
-        axios({
-          method: 'GET',
-          url: axiosUrl,
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept-Encoding': 'identity',
-          },
-        })
-          .then((response) => {
-            resolve({ data: response.data });
-          })
-          .catch((e: Error) => {
-            resolve({ error: e.message });
-          });
       });
-      return responseObj;
+
+      if (result.canceled || !result.filePaths[0]) {
+        return undefined;
+      }
+
+      const folder = result.filePaths[0];
+
+      /* eslint no-await-in-loop: off -- we want to handle each file separately! */
+      let totalDownloadedSize = 0;
+      let successFileCount = 0;
+      let errorFileCount = 0;
+
+      const handleDownloadProgress = (progress: any, downloadUrl: string, index: number, total: number) => {
+        mainWindow?.webContents.send(AppAPI.ON_MULTIPLE_DOWNLOAD_PROGRESS, {
+          progress,
+          url: downloadUrl,
+          index,
+          total,
+        });
+      };
+
+      for (let i = 0; i < tasks.length; i++) {
+        const { url: downloadUrl, filename } = tasks[i];
+
+        try {
+          if (!isValidURL(downloadUrl)) {
+            throw new Error('Invalid URL');
+          }
+
+          const sanitizedFilename = sanitizeFilename(filename);
+          if (sanitizedFilename !== filename) {
+            throw new Error(
+              `Filename ${filename} contains invalid characters. Filename sanitized to ${sanitizedFilename}`,
+            );
+          }
+
+          const filePath = path.join(folder, sanitizedFilename);
+
+          await downloadFile(downloadUrl, filePath, {
+            onProgress: (progress) => handleDownloadProgress(progress, downloadUrl, i, tasks.length),
+          });
+
+          const fileStats = await fs.promises.stat(filePath);
+
+          totalDownloadedSize += fileStats.size;
+          successFileCount++;
+        } catch (e: any) {
+          if (e.message === 'download aborted' && abortDownloadingFiles) {
+            break;
+          }
+          mainWindow?.webContents.send(AppAPI.ON_ERROR_DOWNLOADING_URL, downloadUrl);
+          errorFileCount++;
+        }
+      }
+      abortDownloadingFiles = false;
+      mainWindow?.webContents.send(AppAPI.ON_MULTIPLE_DOWNLOAD_DONE, {
+        totalDownloadedSize,
+        successFileCount,
+        errorFileCount,
+      });
+      return folder;
     });
 
-    ipcMain.handle(
-      'startMultipleDownload',
-      async (_event: any, options: { folder: string; tasks: { url: string; filename: string }[] }) => {
-        /* eslint no-await-in-loop: off -- we want to handle each file separately! */
-        let totalDownloadedSize = 0;
-        let successFileCount = 0;
-        let errorFileCount = 0;
-
-        const { folder, tasks } = options;
-
-        const handleDownloadProgress = (progress: any, downloadUrl: string, index: number, total: number) => {
-          mainWindow?.webContents.send('multipleDownloadProgress', {
-            progress,
-            url: downloadUrl,
-            index,
-            total,
-          });
-        };
-
-        for (let i = 0; i < tasks.length; i++) {
-          const { url: downloadUrl, filename } = tasks[i];
-
-          try {
-            const sanitizedFilename = sanitizeFilename(filename);
-            if (sanitizedFilename !== filename) {
-              throw new Error(
-                `Filename ${filename} contains invalid characters. Filename sanitized to ${sanitizedFilename}`,
-              );
-            }
-
-            const filePath = path.join(folder, sanitizedFilename);
-
-            await downloadFile(downloadUrl, filePath, {
-              onProgress: (progress) => handleDownloadProgress(progress, downloadUrl, i, tasks.length),
-            });
-
-            const fileStats = await fs.promises.stat(filePath);
-
-            totalDownloadedSize += fileStats.size;
-            successFileCount++;
-          } catch (e: any) {
-            if (e.message === 'download aborted' && abortDownloadingFiles) {
-              break;
-            }
-            mainWindow?.webContents.send('errorDownloadingUrl', downloadUrl);
-            errorFileCount++;
-          }
-        }
-        abortDownloadingFiles = false;
-        mainWindow?.webContents.send('multipleDownloadDone', { totalDownloadedSize, successFileCount, errorFileCount });
-        return true;
-      },
-    );
-
-    ipcMain.handle('abortDownloadingFiles', async (_event: any) => {
+    ipcMainHandle(AppAPI.ABORT_DOWNLOADING_FILES, async () => {
       abortDownloadingFiles = true;
       if (currentDownloadRequest) {
         currentDownloadRequest.abort();
       }
     });
 
-    ipcMain.handle('processLaunchTasks', async (_event) => {
+    ipcMainHandle(AppAPI.GET_BYPASS_COMMANDS, async () => privatePreferences.get('bypassCommands', [] as string[]));
+
+    ipcMainHandle(AppAPI.SET_BYPASS_COMMANDS, async (commands: string[]) => {
+      const allowedDestinations = ['chia_wallet', 'chia_full_node', 'chia_farmer', 'chia_harvester', 'daemon'];
+
+      // validate all commands
+      const validCommands = commands.map((nsCommand) => {
+        const parts = nsCommand.split('.');
+        if (parts.length !== 2) {
+          throw new Error(`Invalid command: ${nsCommand}`);
+        }
+
+        const [destination, command] = parts;
+        if (!allowedDestinations.includes(destination)) {
+          throw new Error(`Invalid destination: ${destination}`);
+        }
+
+        if (command === 'get_private_key') {
+          throw new Error('Private key is not allowed to be sent to the renderer process');
+        }
+
+        if (!command.length) {
+          throw new Error(`Invalid command: ${nsCommand}`);
+        }
+
+        return `${destination.trim()}.${command.trim()}`.toLowerCase();
+      });
+
+      const formattedCommands = validCommands.map((command) => `• ${command}`).join('\n');
+
+      const savePreference = await dialog.showMessageBox({
+        type: 'question',
+        buttons: [i18n._(/* i18n */ { id: 'No' }), i18n._(/* i18n */ { id: 'Yes' })],
+        title: i18n._(/* i18n */ { id: 'Save Command Preferences' }),
+        message: i18n._(
+          /* i18n */ {
+            id: 'Would you like to save preferences for the following commands?',
+          },
+        ),
+        detail: i18n._('These commands will be executed without confirmation in the future:\n\n {commands}', {
+          commands: formattedCommands,
+        }),
+      });
+
+      if (savePreference.response === 1) {
+        privatePreferences.set('bypassCommands', uniq(validCommands));
+      }
+    });
+
+    ipcMainHandle(AppAPI.PROCESS_LAUNCH_TASKS, async () => {
       const tasks = [...mainWindowLaunchTasks];
 
       mainWindowLaunchTasks = [];
@@ -397,7 +431,9 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
 
     await cacheManager.init();
 
-    const initialBgColor = prefs.darkMode ? '#0F252A' : '#ffffff';
+    const isDarkMode = prefs.darkMode ?? nativeTheme.shouldUseDarkColors;
+
+    const initialBgColor = isDarkMode ? '#0f252a' : '#ffffff';
 
     mainWindow = new BrowserWindow({
       x: mainWindowState.x,
@@ -409,11 +445,98 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
       backgroundColor: initialBgColor,
       show: isPlaywrightTesting,
       webPreferences: {
-        preload: `${__dirname}/preload.js`,
-        nodeIntegration: true,
-        contextIsolation: false,
-        nativeWindowOpen: true,
+        preload: path.join(__dirname, 'preload.js'),
+        nodeIntegration: false,
+        nodeIntegrationInWorker: false,
+        nodeIntegrationInSubFrames: false,
+        contextIsolation: true,
+        sandbox: true,
         webSecurity: true,
+        experimentalFeatures: false,
+        plugins: false,
+        spellcheck: false,
+        webviewTag: false,
+      },
+    });
+
+    // allow the cache manager to handle the cache protocol
+    cacheManager.prepareProtocol(mainWindow.webContents.session.protocol);
+
+    function setNetworkPrefix(newNetworkPrefix: string) {
+      networkPrefix = newNetworkPrefix;
+
+      const isTestnet = networkPrefix === 'txch';
+      const title = isTestnet ? 'Chia Blockchain (Testnet)' : 'Chia Blockchain';
+
+      if (mainWindow && mainWindow.title !== title) {
+        mainWindow.setTitle(title);
+      }
+    }
+
+    webSocketBridgeBindEvents(mainWindow.webContents, {
+      onReceive: async (_id: string, data: any) => {
+        try {
+          if (networkPrefix) {
+            return;
+          }
+
+          const parsedData = JSON.parse(data.toString());
+
+          if (
+            parsedData.command === 'ping' &&
+            parsedData.origin === 'chia_wallet' &&
+            parsedData.destination === 'wallet_ui' &&
+            parsedData.data?.success === true
+          ) {
+            const networkInfo = await getNetworkInfo();
+            if (networkInfo.networkPrefix) {
+              setNetworkPrefix(networkInfo.networkPrefix);
+            }
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      },
+      onSend: async (_id: string, data: string) => {
+        if (!mainWindow) {
+          throw new Error('`mainWindow` is empty');
+        }
+
+        const parsedData = JSON.parse(data);
+        const command = parsedData.command.trim().toLowerCase();
+        const destination = parsedData.destination.trim().toLowerCase();
+
+        const nsCommand = `${destination}.${command}`;
+
+        if (['chia_wallet.get_private_key'].includes(nsCommand)) {
+          throw new Error('Private key is not allowed to be sent to the renderer process');
+        }
+
+        if (!AllowedCommands.includes(nsCommand)) {
+          const bypassCommands = privatePreferences.get('bypassCommands', [] as string[]);
+          if (bypassCommands.includes(nsCommand)) {
+            return;
+          }
+
+          const result = await openReactDialog(
+            mainWindow,
+            Confirm,
+            {
+              networkPrefix,
+              command: nsCommand,
+              data: parsedData.data,
+            },
+            {
+              title: getConfirmTitle(nsCommand),
+              width: 600,
+              height: 500,
+            },
+          );
+
+          if (result !== true) {
+            throw new Error('Operation cancelled by user');
+          }
+        }
       },
     });
 
@@ -426,13 +549,17 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
     }
 
     mainWindow.once('ready-to-show', () => {
+      if (!mainWindow) {
+        throw new Error('`mainWindow` is empty');
+      }
+
       mainWindow.show();
     });
 
     // don't show remote daeomn detials in the title bar
     if (!manageDaemonLifetime(NET)) {
       mainWindow.webContents.on('did-finish-load', async () => {
-        const { url: urlLocal } = await loadConfig(NET);
+        const { url: urlLocal } = await loadConfig();
         if (mainWindow) {
           mainWindow.setTitle(`${app.getName()} [${urlLocal}]`);
         }
@@ -495,10 +622,11 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
           return;
         }
 
-        mainWindow.webContents.send('exit-daemon');
+        mainWindow.webContents.send(AppAPI.ON_EXIT_DAEMON);
         mainWindow.setBounds({ height: 500, width: 500 });
         mainWindow.center();
-        ipcMain.on('daemon-exited', () => {
+
+        ipcMain.handle(AppAPI.DAEMON_EXITED, async () => {
           mainWindow?.close();
 
           openedWindows.forEach((win) => win.close());
@@ -516,18 +644,11 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
           });
 
     mainWindow.loadURL(startUrl);
-    enable(mainWindow.webContents);
   };
 
   const appReady = async () => {
-    await installDevTools();
-
     createWindow();
     app.applicationMenu = createMenu();
-    protocol.registerFileProtocol('cached', (request: any, callback: (obj: any) => void) => {
-      const filePath: string = path.join(thumbCacheFolder, request.url.replace(/^cached:\/\//, ''));
-      callback({ path: filePath });
-    });
   };
 
   app.on('ready', appReady);
@@ -545,9 +666,10 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
       mainWindowLaunchTasks.push((window: BrowserWindow) => {
         window.webContents.send('open-file', pathLocal);
       });
-    } else {
-      mainWindow?.webContents.send('open-file', pathLocal);
+      return;
     }
+
+    mainWindow?.webContents.send('open-file', pathLocal);
   });
 
   app.on('open-url', (event, urlLocal) => {
@@ -559,73 +681,88 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
       mainWindowLaunchTasks.push((window: BrowserWindow) => {
         window.webContents.send('open-url', urlLocal);
       });
-    } else {
-      mainWindow?.webContents.send('open-url', urlLocal);
+      return;
     }
+
+    mainWindow?.webContents.send('open-url', urlLocal);
   });
 
-  ipcMain.on('load-page', (_, arg: { file: string; query: string }) => {
-    mainWindow.loadURL(
-      url.format({
-        pathname: path.join(__dirname, arg.file),
-        protocol: 'file:',
-        slashes: true,
-      }) + arg.query,
-    );
-  });
+  ipcMainHandle(AppAPI.SET_LOCALE, (locale: string) => {
+    if (locale.length > 5) {
+      throw new Error('Locale is not valid');
+    }
 
-  ipcMain.handle('setLocale', (_event, locale: string) => {
     i18n.activate(locale);
     app.applicationMenu = createMenu();
   });
 
-  ipcMain.handle('setWindowTitle', (_event, title: string) => {
-    if (mainWindow.title !== title) {
-      mainWindow.setTitle(title);
-    }
-  });
+  ipcMainHandle(ChiaLogsAPI.SET_PATH, async () => {
+    let logPath: string | undefined;
 
-  // IPC handlers for log file operations
-  let customLogPath: string | null = prefs.customLogPath || null;
-
-  ipcMain.handle('setChiaLogPath', async (_event, logPath: string) => {
     try {
-      try {
-        // Check file exists
-        await fs.promises.access(logPath, fs.constants.F_OK);
-        // Check file is readable
-        await fs.promises.access(logPath, fs.constants.R_OK);
-      } catch (error: any) {
-        if (error.code === 'ENOENT') {
-          throw new Error(`Log file not found at: ${logPath}\nPlease verify the path and try again.`);
-        }
-        if (error.code === 'EACCES') {
-          throw new Error(`Cannot read log file at: ${logPath}\nPlease check file permissions and try again.`);
-        }
-        throw new Error(`Cannot access log file: ${error.message}`);
+      const result = await dialog.showOpenDialog({
+        properties: ['openFile'],
+      });
+
+      if (result.canceled || !result.filePaths[0]) {
+        return { success: false };
       }
 
-      customLogPath = logPath;
+      const filePath = result.filePaths[0];
+
+      logPath = filePath;
+
+      // Check file exists
+      await fs.promises.access(logPath, fs.constants.F_OK);
+      // Check file is readable
+      await fs.promises.access(logPath, fs.constants.R_OK);
+
+      const currentPrefs = readPrefs();
+
       await savePrefs({
-        ...prefs,
+        ...currentPrefs,
         customLogPath: logPath,
       });
+
       return { success: true };
     } catch (error: any) {
-      throw new Error(error.message);
+      if (error.code === 'ENOENT') {
+        throw new Error(`Log file not found at: ${logPath}\nPlease verify the path and try again.`);
+      }
+      if (error.code === 'EACCES') {
+        throw new Error(`Cannot read log file at: ${logPath}\nPlease check file permissions and try again.`);
+      }
+      throw new Error(`Cannot access log file: ${error.message}`);
     }
   });
 
-  ipcMain.handle('getChiaLogContent', async (_event) => {
+  ipcMainHandle(ChiaLogsAPI.GET_CONTENT, async () => {
     try {
+      const currentPrefs = readPrefs();
+
       const logPath =
-        customLogPath ||
+        currentPrefs.customLogPath ||
         path.join(process.env.CHIA_ROOT || path.join(app.getPath('home'), '.chia', 'mainnet'), 'log', 'debug.log');
+
       // Check if file exists and is readable
       try {
         await fs.promises.access(logPath, fs.constants.R_OK);
       } catch (e) {
         return { error: 'Log file not accessible' };
+      }
+
+      // Show confirmation dialog before reading logs
+      const { response } = await dialog.showMessageBox({
+        type: 'warning',
+        buttons: [i18n._(/* i18n */ { id: 'Cancel' }), i18n._(/* i18n */ { id: 'Continue' })],
+        defaultId: 0,
+        title: i18n._(/* i18n */ { id: 'Warning' }),
+        message: i18n._(/* i18n */ { id: 'Log files may contain sensitive information' }),
+        detail: i18n._(/* i18n */ { id: 'Are you sure you want to view the log contents?' }),
+      });
+
+      if (response === 0) {
+        return { error: 'Operation cancelled by user' };
       }
 
       const content = await fs.promises.readFile(logPath, 'utf8');
@@ -641,11 +778,12 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
     }
   });
 
-  ipcMain.handle('getChiaLogInfo', async (_event) => {
+  ipcMainHandle(ChiaLogsAPI.GET_INFO, async () => {
     try {
       const chiaRoot = process.env.CHIA_ROOT || path.join(app.getPath('home'), '.chia', 'mainnet');
       const defaultLogPath = path.join(chiaRoot, 'log', 'debug.log');
-      const logPath = customLogPath || defaultLogPath;
+      const currentPrefs = readPrefs();
+      const logPath = currentPrefs.customLogPath || defaultLogPath;
 
       const info = {
         path: logPath,
@@ -694,8 +832,51 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
   });
 }
 
+async function openKeyDetail(fingerprint: string) {
+  if (!mainWindow) {
+    throw new Error('`mainWindow` is empty');
+  }
+
+  const keyData = await getKeyDetails(fingerprint);
+
+  await openReactDialog(
+    mainWindow,
+    KeyDetail,
+    { data: keyData },
+    {
+      title: 'Key Details',
+      width: 500,
+      height: 590,
+    },
+  );
+}
+
+async function openAbout() {
+  if (!mainWindow) {
+    throw new Error('`mainWindow` is empty');
+  }
+
+  await openReactDialog(
+    mainWindow,
+    About,
+    {
+      packageJson,
+      versions: process.versions as Record<string, string>,
+      version: app.getVersion(),
+    },
+    {
+      title: 'About',
+      width: 400,
+      height: 460,
+      hideOnBlur: true,
+      hideMenu: true,
+      titleBarStyle: 'hiddenInset',
+    },
+  );
+}
+
 function getMenuTemplate() {
-  const template = [
+  const template: MenuItemConstructorOptions[] = [
     {
       label: i18n._(/* i18n */ { id: 'File' }),
       submenu: [
@@ -732,7 +913,7 @@ function getMenuTemplate() {
           type: 'separator',
         },
         {
-          role: 'selectall',
+          role: 'selectAll',
         },
       ],
     },
@@ -743,7 +924,7 @@ function getMenuTemplate() {
           role: 'reload',
         },
         {
-          role: 'forcereload',
+          role: 'forceReload',
         },
         {
           label: i18n._(/* i18n */ { id: 'Developer' }),
@@ -751,7 +932,7 @@ function getMenuTemplate() {
             {
               label: i18n._(/* i18n */ { id: 'Developer Tools' }),
               accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
-              click: () => mainWindow.toggleDevTools(),
+              click: () => mainWindow?.webContents.toggleDevTools(),
             },
             {
               type: 'separator',
@@ -774,13 +955,13 @@ function getMenuTemplate() {
           type: 'separator',
         },
         {
-          role: 'resetzoom',
+          role: 'resetZoom',
         },
         {
-          role: 'zoomin',
+          role: 'zoomIn',
         },
         {
-          role: 'zoomout',
+          role: 'zoomOut',
         },
         {
           type: 'separator',
@@ -788,7 +969,7 @@ function getMenuTemplate() {
         {
           label: i18n._(/* i18n */ { id: 'Full Screen' }),
           accelerator: process.platform === 'darwin' ? 'Ctrl+Command+F' : 'F11',
-          click: () => mainWindow.setFullScreen(!mainWindow.isFullScreen()),
+          click: () => mainWindow?.setFullScreen(!mainWindow.isFullScreen()),
         },
       ],
     },
@@ -850,9 +1031,9 @@ function getMenuTemplate() {
           },
         },
         {
-          label: i18n._(/* i18n */ { id: 'Follow on Twitter' }),
+          label: i18n._(/* i18n */ { id: 'Follow on X' }),
           click: () => {
-            openExternal('https://twitter.com/chia_project');
+            openExternal('https://x.com/chia_project');
           },
         },
       ],
@@ -873,7 +1054,7 @@ function getMenuTemplate() {
         {
           label: i18n._(/* i18n */ { id: 'Check for Updates...' }),
           click: () => {
-            mainWindow?.webContents.send('checkForUpdates');
+            mainWindow?.webContents.send(AppAPI.ON_CHECK_FOR_UPDATES);
           },
         },
         {
@@ -889,7 +1070,7 @@ function getMenuTemplate() {
           role: 'hide',
         },
         {
-          role: 'hideothers',
+          role: 'hideOthers',
         },
         {
           role: 'unhide',
@@ -914,22 +1095,24 @@ function getMenuTemplate() {
     });
 
     // Edit menu (MacOS)
-    template[2].submenu.push(
-      {
-        type: 'separator',
-      },
-      {
-        label: i18n._(/* i18n */ { id: 'Speech' }),
-        submenu: [
-          {
-            role: 'startspeaking',
-          },
-          {
-            role: 'stopspeaking',
-          },
-        ],
-      },
-    );
+    if (template[2].submenu && Array.isArray(template[2].submenu)) {
+      (template[2].submenu as MenuItemConstructorOptions[]).push(
+        {
+          type: 'separator',
+        },
+        {
+          label: i18n._(/* i18n */ { id: 'Speech' }),
+          submenu: [
+            {
+              role: 'startSpeaking',
+            },
+            {
+              role: 'stopSpeaking',
+            },
+          ],
+        },
+      );
+    }
 
     // Window menu (MacOS)
     template.splice(4, 1, {
@@ -953,23 +1136,25 @@ function getMenuTemplate() {
 
   if (process.platform === 'linux' || process.platform === 'win32') {
     // Help menu (Windows, Linux)
-    template[4].submenu.push(
-      {
-        type: 'separator',
-      },
-      {
-        label: i18n._(/* i18n */ { id: 'About Chia Blockchain' }),
-        click() {
-          openAbout();
+    if (template[4].submenu && Array.isArray(template[4].submenu)) {
+      (template[4].submenu as MenuItemConstructorOptions[]).push(
+        {
+          type: 'separator',
         },
-      },
-      {
-        label: i18n._(/* i18n */ { id: 'Check for updates...' }),
-        click: () => {
-          mainWindow?.webContents.send('checkForUpdates');
+        {
+          label: i18n._(/* i18n */ { id: 'About Chia Blockchain' }),
+          click() {
+            openAbout();
+          },
         },
-      },
-    );
+        {
+          label: i18n._(/* i18n */ { id: 'Check for updates...' }),
+          click: () => {
+            mainWindow?.webContents.send(AppAPI.ON_CHECK_FOR_UPDATES);
+          },
+        },
+      );
+    }
   }
 
   return template;

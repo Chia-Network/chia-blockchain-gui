@@ -17,7 +17,6 @@ import useSuppressShareOnCreate from '../../hooks/useSuppressShareOnCreate';
 import useWalletOffers from '../../hooks/useWalletOffers';
 import getCurrentTime from '../../util/getCurrentTime';
 import offerBuilderDataToOffer from '../../util/offerBuilderDataToOffer';
-import OfferEditorConfirmationDialog from '../offers/OfferEditorConfirmationDialog';
 
 import OfferBuilder from './OfferBuilder';
 import OfferBuilderExpirationSection from './OfferBuilderExpirationSection';
@@ -138,11 +137,6 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
         if (!confirmedToProceed) {
           return;
         }
-      }
-
-      const confirmedCreation = await openDialog(<OfferEditorConfirmationDialog />);
-      if (!confirmedCreation) {
-        return;
       }
 
       try {

@@ -402,7 +402,6 @@ function NFTDownloadContextualAction(props: NFTDownloadContextualActionProps) {
   const downloadable = selectedNfts.filter((nft) => !!nft.dataUris?.length);
 
   async function handleDownload() {
-    const { ipcRenderer } = window as any;
     if (!downloadable.length) {
       return;
     }
@@ -416,19 +415,9 @@ function NFTDownloadContextualAction(props: NFTDownloadContextualActionProps) {
       return;
     }
 
-    const folder = await ipcRenderer.invoke('selectMultipleDownloadFolder');
-    if (folder?.canceled) {
-      return;
-    }
-
     setSelectedNFTIds([]);
 
     try {
-      const selectedFolder = folder.filePaths[0];
-      if (!selectedFolder) {
-        throw new Error('No folder selected');
-      }
-
       const tasks: { url: string; filename: string }[] = selectedNfts.map((nft) => {
         const url = nft.dataUris[0];
         if (!url) {
@@ -446,8 +435,10 @@ function NFTDownloadContextualAction(props: NFTDownloadContextualActionProps) {
         };
       });
 
-      ipcRenderer.invoke('startMultipleDownload', { folder: selectedFolder, tasks });
-      await openDialog(<MultipleDownloadDialog folder={selectedFolder} />);
+      const selectedFolder = await window.appAPI.startMultipleDownload(tasks);
+      if (selectedFolder) {
+        await openDialog(<MultipleDownloadDialog folder={selectedFolder} />);
+      }
     } catch (error) {
       openDialog(
         <AlertDialog title={<Trans>Download Failed</Trans>}>

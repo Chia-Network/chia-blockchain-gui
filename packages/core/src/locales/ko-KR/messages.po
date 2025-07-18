@@ -50,7 +50,7 @@ msgstr ""
 msgid "Amount"
 msgstr "총합계"
 
-#: src/components/Settings/SettingsApp.tsx:94
+#: src/components/Settings/SettingsApp.tsx:90
 msgid "Appearance"
 msgstr "외관"
 
@@ -70,7 +70,7 @@ msgstr "뒤로"
 msgid "Cancel"
 msgstr "취소"
 
-#: src/components/Settings/SettingsApp.tsx:140
+#: src/components/Settings/SettingsApp.tsx:136
 msgid "Check for updates"
 msgstr ""
 
@@ -82,7 +82,7 @@ msgstr ""
 msgid "Chia {latestVersion} is currently the latest version available."
 msgstr ""
 
-#: src/components/Settings/SettingsApp.tsx:126
+#: src/components/Settings/SettingsApp.tsx:122
 msgid "Chia Application Version:"
 msgstr ""
 
@@ -120,12 +120,12 @@ msgstr ""
 msgid "Create New"
 msgstr ""
 
-#: src/components/Settings/SettingsApp.tsx:111
+#: src/components/Settings/SettingsApp.tsx:107
 msgid "Dark"
 msgstr "어두운 테마"
 
 #: src/screens/SelectKey/SelectKey.tsx:128
-#: src/screens/SelectKey/SelectKeyItem.tsx:114
+#: src/screens/SelectKey/SelectKeyItem.tsx:113
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:183
 msgid "Delete"
 msgstr "삭제"
@@ -146,7 +146,7 @@ msgstr "보호키 삭제 {fingerprint}"
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
 msgstr "모든 키를 컴퓨터에서 영구적으로 제거합니다. 만일을 대비하여 백업이 준비되었는지 확인하십시오. 계속하시겠습니까?"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:106
+#: src/screens/SelectKey/SelectKeyItem.tsx:105
 msgid "Details"
 msgstr ""
 
@@ -180,7 +180,7 @@ msgstr "오류:"
 msgid "Esc"
 msgstr ""
 
-#: src/components/LayoutMain/LayoutFooter.tsx:49
+#: src/components/LayoutMain/LayoutFooter.tsx:47
 msgid "FAQ"
 msgstr "자주하는 질문"
 
@@ -192,7 +192,7 @@ msgstr ""
 msgid "Farmer public key:"
 msgstr "농부 퍼블릭 키"
 
-#: src/components/Settings/SettingsApp.tsx:79
+#: src/components/Settings/SettingsApp.tsx:75
 msgid "Farming"
 msgstr "재배 중"
 
@@ -206,7 +206,7 @@ msgstr "수수료"
 msgid "Fingerprint does not match"
 msgstr ""
 
-#: src/components/Settings/SettingsApp.tsx:152
+#: src/components/Settings/SettingsApp.tsx:148
 msgid "Frequently Asked Questions"
 msgstr "자주 묻는 질문"
 
@@ -214,7 +214,7 @@ msgstr "자주 묻는 질문"
 msgid "Go To Download Page"
 msgstr ""
 
-#: src/components/Settings/SettingsApp.tsx:148
+#: src/components/Settings/SettingsApp.tsx:144
 msgid "Help"
 msgstr "도움말"
 
@@ -243,7 +243,7 @@ msgstr ""
 msgid "Incorrect value"
 msgstr "올바르지 않은 값"
 
-#: src/components/Settings/SettingsApp.tsx:118
+#: src/components/Settings/SettingsApp.tsx:114
 msgid "Language"
 msgstr "언어설정"
 
@@ -251,7 +251,7 @@ msgstr "언어설정"
 msgid "Latest Version:"
 msgstr ""
 
-#: src/components/Settings/SettingsApp.tsx:103
+#: src/components/Settings/SettingsApp.tsx:99
 msgid "Light"
 msgstr "밝은 테마"
 
@@ -296,7 +296,7 @@ msgstr "마이그레이션"
 msgid "Migration required"
 msgstr "마이그레이션 필요함"
 
-#: src/components/Settings/SettingsApp.tsx:70
+#: src/components/Settings/SettingsApp.tsx:66
 msgid "Mode"
 msgstr "모드"
 
@@ -379,7 +379,7 @@ msgstr "애플리케이션 새로고침"
 msgid "Remove Icon"
 msgstr ""
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:98
+#: src/screens/SelectKey/SelectKeyItem.tsx:97
 msgid "Rename"
 msgstr ""
 
@@ -421,8 +421,8 @@ msgstr "시드:"
 msgid "Select..."
 msgstr "선택..."
 
-#: src/components/LayoutMain/LayoutFooter.tsx:52
-#: src/components/Settings/SettingsApp.tsx:155
+#: src/components/LayoutMain/LayoutFooter.tsx:50
+#: src/components/Settings/SettingsApp.tsx:151
 msgid "Send Feedback"
 msgstr "피드백 전송"
 
@@ -530,12 +530,12 @@ msgid "Value seems high"
 msgstr "값이 높음"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:233
-#: src/components/Settings/SettingsApp.tsx:87
+#: src/components/Settings/SettingsApp.tsx:83
 msgid "Wallet"
 msgstr "내 지갑"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:63
-#: src/screens/SelectKey/SelectKeyItem.tsx:234
+#: src/screens/SelectKey/SelectKeyItem.tsx:233
 msgid "Wallet {0}"
 msgstr ""
 

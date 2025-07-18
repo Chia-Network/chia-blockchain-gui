@@ -1,5 +1,5 @@
 import { useStopPlottingMutation } from '@chia-network/api-react';
-import { ConfirmDialog, More, MenuItem, useOpenDialog } from '@chia-network/core';
+import { More, MenuItem, useOpenDialog, useShowError } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { DeleteForever as DeleteForeverIcon, Info as InfoIcon } from '@mui/icons-material';
 import { Divider, ListItemIcon, Typography } from '@mui/material';
@@ -20,7 +20,9 @@ export default function PlotQueueAction(props: PlotQueueActionProps) {
   } = props;
 
   const [stopPlotting] = useStopPlottingMutation();
+  const showError = useShowError();
   const openDialog = useOpenDialog();
+
   const canDelete = state !== PlotStatus.REMOVING;
 
   async function handleDeletePlot() {
@@ -28,20 +30,13 @@ export default function PlotQueueAction(props: PlotQueueActionProps) {
       return;
     }
 
-    await openDialog(
-      <ConfirmDialog
-        title={<Trans>Delete Plot</Trans>}
-        confirmTitle={<Trans>Delete</Trans>}
-        confirmColor="danger"
-        onConfirm={() =>
-          stopPlotting({
-            id,
-          }).unwrap()
-        }
-      >
-        <Trans>Are you sure you want to delete the plot? The plot cannot be recovered.</Trans>
-      </ConfirmDialog>,
-    );
+    try {
+      await stopPlotting({
+        id,
+      }).unwrap();
+    } catch (error) {
+      showError(error);
+    }
   }
 
   function handleViewLog() {
