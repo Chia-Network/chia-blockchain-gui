@@ -23,6 +23,7 @@ export default [
   'chia_full_node.ping',
   'chia_farmer.ping',
   'chia_harvester.ping',
+  'chia_data_layer.ping',
 
   'chia_wallet.get_offer_summary',
   'chia_wallet.get_network_info',
