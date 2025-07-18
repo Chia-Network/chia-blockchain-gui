@@ -29,7 +29,7 @@ export default function OfferBuilderWalletBalance(props: OfferBuilderWalletBalan
       return mojoToChiaLocaleString(walletBalance.spendableBalance, locale);
     }
 
-    if ([WalletType.CAT, WalletType.CRCAT].includes(wallet.type)) {
+    if ([WalletType.CAT, WalletType.RCAT, WalletType.CRCAT].includes(wallet.type)) {
       return mojoToCATLocaleString(walletBalance.spendableBalance, locale);
     }
 

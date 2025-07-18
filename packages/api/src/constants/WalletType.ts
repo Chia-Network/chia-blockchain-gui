@@ -12,6 +12,7 @@ enum WalletType {
   NFT = 10,
   DATA_LAYER = 11,
   CRCAT = 57,
+  RCAT = 132,
 }
 
 export default WalletType;

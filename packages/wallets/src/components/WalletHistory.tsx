@@ -127,7 +127,11 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate, location
           &nbsp;
           <strong>
             <FormatLargeNumber
-              value={[WalletType.CAT, WalletType.CRCAT].includes(type) ? mojoToCAT(row.amount) : mojoToChia(row.amount)}
+              value={
+                [WalletType.CAT, WalletType.RCAT, WalletType.CRCAT].includes(type)
+                  ? mojoToCAT(row.amount)
+                  : mojoToChia(row.amount)
+              }
             />
           </strong>
           &nbsp;

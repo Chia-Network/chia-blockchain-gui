@@ -1,4 +1,7 @@
-import { Typography, type TypographyProps } from '@mui/material';
+import { WalletType } from '@chia-network/api';
+import { Flex, TooltipIcon } from '@chia-network/core';
+import { Trans } from '@lingui/macro';
+import { Chip, Typography, type TypographyProps } from '@mui/material';
 import React from 'react';
 
 import useWallet from '../hooks/useWallet';
@@ -16,7 +19,30 @@ export default function WalletName(props: WalletNameProps) {
     return null;
   }
 
+  const isRCAT = wallet.type === WalletType.RCAT;
+
   const primaryTitle = getWalletPrimaryTitle(wallet);
 
-  return <Typography {...rest}>{primaryTitle}</Typography>;
+  return (
+    <Typography {...rest} alignItems="center">
+      {primaryTitle}
+      {isRCAT && (
+        <>
+          &nbsp; &nbsp;
+          <Chip
+            label={
+              <Flex alignItems="center" gap={1}>
+                <Trans>Revocable</Trans>
+                <TooltipIcon>
+                  <Trans>This token can be revoked by the issuer</Trans>
+                </TooltipIcon>
+              </Flex>
+            }
+            variant="outlined"
+            size="small"
+          />
+        </>
+      )}
+    </Typography>
+  );
 }

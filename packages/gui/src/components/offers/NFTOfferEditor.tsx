@@ -142,6 +142,7 @@ function NFTOfferConditionalsPanel(props: NFTOfferConditionalsPanelProps) {
           balance = mojoToChia(walletBalance.spendableBalance);
           break;
         case WalletType.CAT:
+        case WalletType.RCAT:
           balanceString = mojoToCATLocaleString(walletBalance.spendableBalance, locale);
           balance = mojoToCAT(walletBalance.spendableBalance);
           break;

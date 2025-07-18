@@ -1,9 +1,12 @@
 import { AssetStatusForOffer } from 'util/offerBuilderDataToOffer';
 
 import { OfferSummaryRecord, WalletType } from '@chia-network/api';
-import { t } from '@lingui/macro';
+import { Flex, TooltipIcon } from '@chia-network/core';
+import { t, Trans } from '@lingui/macro';
+import { Chip } from '@mui/material';
 import BigNumber from 'bignumber.js';
 import { OfferTradeRecordFormatted } from 'hooks/useWalletOffers';
+import React from 'react';
 
 import OfferAsset from '../components/offers/OfferAsset';
 import { offerAssetTypeForAssetId, formatAmountForWalletType } from '../components/offers/utils';
@@ -47,6 +50,35 @@ export default function resolveOfferInfo(
   return Object.entries(summary[summaryKey]).map(([assetId, amount]) => {
     const assetType = offerAssetTypeForAssetId(assetId, summary);
 
+    function getTokenDisplayName(tokenAssetId: string) {
+      const info = lookupByAssetId(tokenAssetId);
+
+      const displayName = info?.displayName ?? t`Unknown CAT`;
+
+      if (info?.walletType === WalletType.RCAT) {
+        return (
+          <>
+            {displayName}
+            &nbsp;
+            <Chip
+              label={
+                <Flex alignItems="center" gap={1}>
+                  <Trans>Revocable</Trans>
+                  <TooltipIcon>
+                    <Trans>This token can be revoked by the issuer</Trans>
+                  </TooltipIcon>
+                </Flex>
+              }
+              variant="outlined"
+              size="small"
+            />
+          </>
+        );
+      }
+
+      return displayName;
+    }
+
     switch (assetType) {
       case OfferAsset.CHIA:
         return {
@@ -57,7 +89,7 @@ export default function resolveOfferInfo(
       case OfferAsset.TOKEN:
         return {
           displayAmount: formatAmountForWalletType(amount, WalletType.CAT),
-          displayName: lookupByAssetId(assetId)?.displayName ?? t`Unknown CAT`,
+          displayName: getTokenDisplayName(assetId),
           assetType,
         };
       case OfferAsset.NFT:

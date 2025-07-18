@@ -152,7 +152,7 @@ export function formatAmountForWalletType(amount: string | number, walletType: W
   if (walletType === WalletType.STANDARD_WALLET) {
     return mojoToChiaLocaleString(amount, locale);
   }
-  if ([WalletType.CAT, WalletType.CRCAT].includes(walletType)) {
+  if ([WalletType.CAT, WalletType.RCAT, WalletType.CRCAT].includes(walletType)) {
     return mojoToCATLocaleString(amount, locale);
   }
 

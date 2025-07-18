@@ -13,7 +13,7 @@ export default function useWalletHumanValue(
 
   return useMemo(() => {
     if (wallet && value !== undefined) {
-      const localisedValue = [WalletType.CAT, WalletType.CRCAT].includes(wallet.type)
+      const localisedValue = [WalletType.CAT, WalletType.RCAT, WalletType.CRCAT].includes(wallet.type)
         ? mojoToCATLocaleString(value, locale)
         : mojoToChiaLocaleString(value, locale);
 

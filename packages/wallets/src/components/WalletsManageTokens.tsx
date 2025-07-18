@@ -113,6 +113,7 @@ export default function WalletsManageTokens() {
   const { list, hide, show, isLoading } = useWalletsList(search, [
     WalletType.STANDARD_WALLET,
     WalletType.CAT,
+    WalletType.RCAT,
     WalletType.CRCAT,
   ]);
 

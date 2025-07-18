@@ -197,7 +197,7 @@ function getUpdatedOffer(offerParam: { [key: string]: BigNumber }, row: OfferEdi
     let mojoAmount = new BigNumber(0);
     if (walletTypeLocal === WalletType.STANDARD_WALLET) {
       mojoAmount = chiaToMojo(amount);
-    } else if ([WalletType.CAT, WalletType.CRCAT].includes(walletTypeLocal)) {
+    } else if ([WalletType.CAT, WalletType.RCAT, WalletType.CRCAT].includes(walletTypeLocal)) {
       mojoAmount = catToMojo(amount);
     }
 

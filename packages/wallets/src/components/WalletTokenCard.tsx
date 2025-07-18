@@ -134,7 +134,7 @@ export default function WalletTokenCard(props: WalletTokenCardProps) {
 
   const subTitle = useMemo(() => {
     if (type === 'WALLET') {
-      if ([WalletType.CAT, WalletType.CRCAT].includes(walletType)) {
+      if ([WalletType.CAT, WalletType.RCAT, WalletType.CRCAT].includes(walletType)) {
         return assetId;
       }
 
