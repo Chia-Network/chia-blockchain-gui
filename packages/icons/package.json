@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@babel/runtime": "7.27.6",
-    "core-js": "3.32.1",
+    "core-js": "3.44.0",
     "match-sorter": "6.3.4",
     "use-dark-mode": "2.3.1"
   },
