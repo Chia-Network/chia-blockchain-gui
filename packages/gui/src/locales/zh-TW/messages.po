@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_TW\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-03-16 00:05\n"
+"PO-Revision-Date: 2025-07-20 00:06\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -71,12 +71,12 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:43
 msgid "Confirm NFT Transfer"
-msgstr ""
+msgstr "確認NFT轉移"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:46
 msgid "Confirm Disconnect"
-msgstr ""
+msgstr "確認斷線"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:48
@@ -163,7 +163,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:93
 msgid "Are you sure you want to disconnect?"
-msgstr ""
+msgstr "您確定要斷開連接嗎？"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:95
@@ -173,7 +173,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:97
 msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
-msgstr ""
+msgstr "您確定要刪除該耕地嗎？該耕地將無法恢復。"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:99
@@ -204,7 +204,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:110
 msgid "Are you sure you want to move this NFT to the specified profile?"
-msgstr ""
+msgstr "您確定要將此 NFT 移動到指定的個人檔案嗎？"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:112
@@ -239,7 +239,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:133
 msgid "Delete"
-msgstr ""
+msgstr "刪除"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:135
@@ -249,28 +249,28 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:138
 msgid "Transfer"
-msgstr ""
+msgstr "轉移"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:141
 msgid "Disconnect"
-msgstr ""
+msgstr "斷線"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:143
 msgid "Connect"
-msgstr ""
+msgstr "連線"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:146
 msgid "Sign"
-msgstr ""
+msgstr "簽名"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:148
 #: src/electron/dialogs/Confirm/Confirm.tsx:156
 msgid "Create"
-msgstr ""
+msgstr "建立"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:151
@@ -280,25 +280,25 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:154
 msgid "Move"
-msgstr ""
+msgstr "移動"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:158
 msgid "Proceed"
-msgstr ""
+msgstr "繼續"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:174
 #: src/electron/dialogs/Confirm/Confirm.tsx:188
 #: src/electron/dialogs/Confirm/Confirm.tsx:258
 msgid "Address"
-msgstr ""
+msgstr "位址"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:177
 #: src/electron/dialogs/Confirm/Confirm.tsx:189
 msgid "Amount"
-msgstr ""
+msgstr "金額"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:182
@@ -310,17 +310,17 @@ msgstr ""
 #: src/electron/dialogs/Confirm/Confirm.tsx:280
 #: src/electron/dialogs/Confirm/Confirm.tsx:288
 msgid "Fee"
-msgstr ""
+msgstr "手續費"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:201
 msgid "Target Address"
-msgstr ""
+msgstr "目標地址"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:219
 msgid "Filename"
-msgstr ""
+msgstr "檔案名稱"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:222
@@ -340,7 +340,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:236
 msgid "Transaction Fee"
-msgstr ""
+msgstr "交易費用"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:241
@@ -350,12 +350,12 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:247
 msgid "Name"
-msgstr ""
+msgstr "名稱"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:248
 msgid "Type"
-msgstr ""
+msgstr "類型"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:249
@@ -366,18 +366,18 @@ msgstr ""
 #: src/electron/dialogs/Confirm/Confirm.tsx:259
 #: src/electron/dialogs/Confirm/Confirm.tsx:264
 msgid "Message"
-msgstr ""
+msgstr "訊息"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:263
 msgid "Id"
-msgstr ""
+msgstr "Id"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:268
 #: src/electron/dialogs/Confirm/Confirm.tsx:277
 msgid "DID"
-msgstr ""
+msgstr "去中心化身分識別（DID）"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:294
@@ -387,33 +387,33 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:295
 msgid "Port"
-msgstr ""
+msgstr "通訊埠"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:299
 msgid "Fingerprint"
-msgstr ""
+msgstr "指紋"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:373
 #: src/electron/main.tsx:757
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/KeyDetail/KeyDetail.tsx:32
 msgid "Public Key"
-msgstr ""
+msgstr "公鑰"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/KeyDetail/KeyDetail.tsx:37
 msgid "Farmer Public Key"
-msgstr ""
+msgstr "農夫公鑰"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/KeyDetail/KeyDetail.tsx:42
 msgid "Pool Public Key"
-msgstr ""
+msgstr "礦池公鑰"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/KeyDetail/KeyDetail.tsx:48
@@ -454,9 +454,7 @@ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:408
-msgid ""
-"These commands will be executed without confirmation in the future:\n"
-"\n"
+msgid "These commands will be executed without confirmation in the future:\n\n"
 " {commands}"
 msgstr ""
 
@@ -473,12 +471,12 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:757
 msgid "Continue"
-msgstr ""
+msgstr "繼續"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:759
 msgid "Warning"
-msgstr ""
+msgstr "警告"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:760
@@ -600,12 +598,12 @@ msgstr "檢查更新..."
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:1037
 #~ msgid "Follow on Twitter"
-#~ msgstr "Twitter 上追隨"
+#~ msgstr "Follow on Twitter"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:495
 #~ msgid "This command will affect your funds. Please review the details below:"
-#~ msgstr ""
+#~ msgstr "This command will affect your funds. Please review the details below:"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:387
@@ -614,6 +612,9 @@ msgstr "檢查更新..."
 #~ "\n"
 #~ " {commands}\" />"
 #~ msgstr ""
+#~ "These commands will be executed without confirmation in the future:\n"
+#~ "\n"
+#~ " {commands}\" />"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:387
@@ -622,6 +623,9 @@ msgstr "檢查更新..."
 #~ "\n"
 #~ " {commands}<b>Test</b><img src=r onerror=\"alert(1)\" />"
 #~ msgstr ""
+#~ "These commands will be executed without confirmation in the future:\n"
+#~ "\n"
+#~ " {commands}<b>Test</b><img src=r onerror=\"alert(1)\" />"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:386
@@ -630,31 +634,34 @@ msgstr "檢查更新..."
 #~ "\n"
 #~ "• {commands}"
 #~ msgstr ""
+#~ "These commands will be executed without confirmation in the future:\n"
+#~ "\n"
+#~ "• {commands}"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:451
 #~ msgid "Confirm Transaction"
-#~ msgstr ""
+#~ msgstr "Confirm Transaction"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:458
 #~ msgid "Command"
-#~ msgstr ""
+#~ msgstr "Command"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:458
 #~ msgid "Details"
-#~ msgstr ""
+#~ msgstr "Details"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:540
 #~ msgid "I understand the risks and want to proceed"
-#~ msgstr ""
+#~ msgstr "I understand the risks and want to proceed"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:486
 #~ msgid "Do you want to process this?"
-#~ msgstr ""
+#~ msgstr "Do you want to process this?"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:160
 #~ msgid "- Set a time after which the offer expires.<0/>- An expiring offer can only be claimed prior to the expiration time."
@@ -948,7 +955,7 @@ msgstr "從檔案中新增可驗證憑證"
 #: src/constants/WalletConnectCommands.tsx:277
 #: src/constants/WalletConnectCommands.tsx:570
 msgid "Address"
-msgstr "位址"
+msgstr ""
 
 #: src/components/addressbook/ContactAdd.tsx:30
 #: src/components/addressbook/ContactEdit.tsx:33
@@ -1018,7 +1025,7 @@ msgstr "始終拒絕"
 #: src/constants/WalletConnectCommands.tsx:909
 #: src/constants/WalletConnectCommands.tsx:1462
 msgid "Amount"
-msgstr "金額"
+msgstr ""
 
 #: src/components/offers2/OfferBuilderRoyaltyPayouts.tsx:38
 msgid "Amount before adding royalties"
@@ -1099,7 +1106,7 @@ msgstr "您確定要刪除 NFT 快取嗎？"
 #: src/components/plot/PlotAction.tsx:29
 #: src/components/plot/queue/PlotQueueActions.tsx:42
 #~ msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
-#~ msgstr "您確定要刪除該耕地嗎？該耕地將無法恢復。"
+#~ msgstr "Are you sure you want to delete the plot? The plot cannot be recovered."
 
 #: src/components/plotNFT/PlotNFTCard.tsx:114
 msgid "Are you sure you want to delete unconfirmed transactions?"
@@ -1107,11 +1114,11 @@ msgstr "您確定要刪除未確認的交易嗎？"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:28
 #~ msgid "Are you sure you want to disconnect?"
-#~ msgstr "您確定要斷開連接嗎？"
+#~ msgstr "Are you sure you want to disconnect?"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:64
 #~ msgid "Are you sure you want to move this NFT to the specified profile?"
-#~ msgstr "您確定要將此 NFT 移動到指定的個人檔案嗎？"
+#~ msgstr "Are you sure you want to move this NFT to the specified profile?"
 
 #: src/components/addressbook/ContactSummary.tsx:46
 msgid "Are you sure you want to permanently delete this contact? Once deleted, this contact cannot be recovered."
@@ -1357,7 +1364,7 @@ msgstr "快取大小（GB）"
 #: src/components/vcs/VCRevokeDialog.tsx:28
 #: src/hooks/useOpenUnsafeLink.tsx:62
 msgid "Cancel"
-msgstr "取消"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:978
 msgid "Cancel DataLayer Offer"
@@ -1610,11 +1617,11 @@ msgstr ""
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:19
 #~ msgid "Confirm Disconnect"
-#~ msgstr "確認斷線"
+#~ msgstr "Confirm Disconnect"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:56
 #~ msgid "Confirm Move"
-#~ msgstr "確認移動"
+#~ msgstr "Confirm Move"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:239
 msgid "Confirm New Passphrase"
@@ -1622,7 +1629,7 @@ msgstr "確認新的私鑰密碼"
 
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:38
 msgid "Confirm NFT Transfer"
-msgstr "確認NFT轉移"
+msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:178
 #: src/components/app/AppKeyringMigrator.tsx:179
@@ -1644,7 +1651,7 @@ msgstr "確認"
 
 #: src/components/fullNode/FullNodeAddConnection.tsx:103
 msgid "Connect"
-msgstr "連線"
+msgstr ""
 
 #: src/components/fullNode/FullNodeAddConnection.tsx:82
 #: src/components/fullNode/FullNodeConnections.tsx:93
@@ -1706,7 +1713,7 @@ msgstr "內容尚未根據在 NFT 鑄造期間指定的雜湊值進行驗證。�
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:280
 msgid "Continue"
-msgstr "繼續"
+msgstr ""
 
 #: src/electron/main.tsx:1065
 #~ msgid "Contribute on GitHub"
@@ -1760,7 +1767,7 @@ msgstr "還價"
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:81
 #: src/components/settings/ProfileAdd.tsx:159
 msgid "Create"
-msgstr "建立"
+msgstr ""
 
 #: src/components/app/AppSelectMode.tsx:127
 msgid "Create & Manage plots"
@@ -1972,7 +1979,7 @@ msgstr "延遲"
 #: src/components/plotNFT/PlotNFTCard.tsx:106
 #: src/hooks/useBlockchainNotifications.tsx:159
 msgid "Delete"
-msgstr "刪除"
+msgstr ""
 
 #: src/components/addressbook/ContactSummary.tsx:41
 msgid "Delete contact"
@@ -1994,7 +2001,7 @@ msgstr ""
 #: src/components/plot/PlotAction.tsx:24
 #: src/components/plot/queue/PlotQueueActions.tsx:33
 #~ msgid "Delete Plot"
-#~ msgstr "刪除耕地"
+#~ msgstr "Delete Plot"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:261
 msgid "Delete Unconfirmed Transactions"
@@ -2058,7 +2065,7 @@ msgstr "Dexie URL"
 #: src/components/signVerify/SignMessage.tsx:165
 #: src/constants/WalletConnectCommands.tsx:1857
 msgid "DID"
-msgstr "去中心化身分識別（DID）"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:727
 msgid "DID Coin Dictionary"
@@ -2136,7 +2143,7 @@ msgstr "禁用 NUMA"
 #: src/components/walletConnect/WalletConnectConnections.tsx:91
 #: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:135
 msgid "Disconnect"
-msgstr "斷線"
+msgstr ""
 
 #: src/components/offers/OfferManager.tsx:303
 msgid "Display Offer Data"
@@ -2376,7 +2383,7 @@ msgstr "輸入要使用的NFT或DID進行簽名"
 
 #: src/components/chiatools/logViewer/LogViewer.tsx:442
 #~ msgid "Enter the path to your log file:"
-#~ msgstr ""
+#~ msgstr "Enter the path to your log file:"
 
 #: src/components/settings/RemovePassphrasePrompt.tsx:122
 msgid "Enter your passphrase:"
@@ -2540,7 +2547,7 @@ msgstr "塊農未運作"
 
 #: src/components/plot/add/PlotAddChooseKeys.tsx:165
 msgid "Farmer Public Key"
-msgstr "農夫公鑰"
+msgstr ""
 
 #: src/components/plot/add/PlotAddForm.tsx:219
 msgid "Farmer public key is invalid"
@@ -2642,7 +2649,7 @@ msgstr "功能以提供更多保護和控制您的數位資產。"
 #: src/constants/WalletConnectCommands.tsx:1862
 #: src/constants/WalletConnectCommands.tsx:1971
 msgid "Fee"
-msgstr "手續費"
+msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:81
 #: src/components/offers/OfferEditorConditionsPanel.tsx:387
@@ -2680,7 +2687,7 @@ msgstr "報價中包含的費用："
 #: src/components/plot/PlotHarvesterPlotsFailed.tsx:14
 #: src/components/plot/PlotHarvesterPlotsNotFound.tsx:14
 msgid "Filename"
-msgstr "檔案名稱"
+msgstr ""
 
 #: src/components/nfts/gallery/NFTGallery.tsx:283
 msgid "Filter"
@@ -2697,7 +2704,7 @@ msgstr ""
 #: src/constants/WalletConnectCommands.tsx:38
 #: src/constants/WalletConnectCommands.tsx:2056
 msgid "Fingerprint"
-msgstr "指紋"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:2020
 msgid "Fingerprints"
@@ -3087,11 +3094,11 @@ msgstr ""
 
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:16
 #~ msgid "I Understand, Create Offer"
-#~ msgstr "我了解，建立報價單"
+#~ msgstr "I Understand, Create Offer"
 
 #: src/constants/WalletConnectCommands.tsx:194
 msgid "Id"
-msgstr "Id"
+msgstr ""
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:188
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:127
@@ -3179,15 +3186,13 @@ msgstr ""
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr "可用資金不足，無法接受報價單。請確保您的 可花用餘額 可以支付報價單金額。"
 
 #: src/components/offers/OfferEditor.tsx:127
 #: src/components/offers2/CreateOfferBuilder.tsx:161
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr "可用資金不足，無法建立報價單。請確保你的可支出餘額足以支付報價單金額。"
 
@@ -3577,7 +3582,7 @@ msgstr "備註"
 #: src/constants/WalletConnectCommands.tsx:262
 #: src/constants/WalletConnectCommands.tsx:1988
 msgid "Message"
-msgstr "訊息"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:204
 #: src/constants/WalletConnectCommands.tsx:227
@@ -3717,7 +3722,7 @@ msgstr ""
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:302
 msgid "Move"
-msgstr "移動"
+msgstr ""
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:346
 msgid "Move NFT to Profile"
@@ -3756,7 +3761,7 @@ msgstr ""
 #: src/constants/WalletConnectCommands.tsx:604
 #: src/constants/WalletConnectCommands.tsx:1831
 msgid "Name"
-msgstr "名稱"
+msgstr ""
 
 #: src/components/settings/ProfileAdd.tsx:121
 msgid "Need some {currencyCode}?"
@@ -4281,7 +4286,7 @@ msgstr "一旦你接受此報價單，您將無法取消交易。您確定要接
 
 #: src/components/nfts/NFTTransferAction.tsx:93
 #~ msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer {0} NFTs?"
-#~ msgstr "一旦您啟動此轉帳，您將無法取消交易。您確定要轉帳 {0} 個 NFT 嗎？"
+#~ msgstr "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer {0} NFTs?"
 
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:40
 msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer the NFT?"
@@ -4784,7 +4789,7 @@ msgstr "查看農會支付說明"
 #: src/components/block/Block.jsx:211
 #: src/components/plot/add/PlotAddChooseKeys.tsx:204
 msgid "Pool Public Key"
-msgstr "礦池公鑰"
+msgstr ""
 
 #: src/components/plot/add/PlotAddForm.tsx:226
 msgid "Pool public key is invalid"
@@ -4836,7 +4841,7 @@ msgstr ""
 #: src/components/fullNode/FullNodeAddConnection.tsx:95
 #: src/components/fullNode/FullNodeConnections.tsx:39
 msgid "Port"
-msgstr "通訊埠"
+msgstr ""
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:95
 #: src/components/plotNFT/PlotNFTChangePool.tsx:76
@@ -4883,7 +4888,7 @@ msgstr "上一個區塊鏈頭哈希"
 
 #: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:360
 msgid "Proceed"
-msgstr "繼續"
+msgstr ""
 
 #: src/components/settings/ProfileView.tsx:57
 msgid "Profile Name"
@@ -4942,7 +4947,7 @@ msgstr "提供者內部拼圖哈希"
 #: src/components/signVerify/VerifyMessage.tsx:219
 #: src/constants/WalletConnectCommands.tsx:267
 msgid "Public Key"
-msgstr "公鑰"
+msgstr ""
 
 #: src/components/offers/NFTOfferViewer.tsx:473
 msgid "Purchase Summary"
@@ -5561,7 +5566,7 @@ msgstr "關機"
 
 #: src/components/signVerify/SignMessage.tsx:218
 msgid "Sign"
-msgstr "簽名"
+msgstr ""
 
 #: src/components/signVerify/SignVerifyDialog.tsx:23
 msgid "Sign Message"
@@ -5844,7 +5849,7 @@ msgstr ""
 #: src/constants/WalletConnectCommands.tsx:782
 #: src/constants/WalletConnectCommands.tsx:862
 msgid "Target Address"
-msgstr "目標地址"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:685
 msgid "Target List"
@@ -6315,7 +6320,7 @@ msgstr "交易自動索取費用"
 
 #: src/components/notification/NotificationSendDialog.tsx:261
 msgid "Transaction Fee"
-msgstr "交易費用"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:66
 msgid "Transaction Id"
@@ -6344,7 +6349,7 @@ msgstr "低於費用的交易將不會自動索取。"
 #: src/components/nfts/NFTTransferAction.tsx:153
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:45
 msgid "Transfer"
-msgstr "轉移"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:1705
 msgid "Transfer DID"
@@ -6387,7 +6392,7 @@ msgstr ""
 #: src/components/vcs/VCCard.tsx:163
 #: src/constants/WalletConnectCommands.tsx:1983
 msgid "Type"
-msgstr "類型"
+msgstr ""
 
 #: src/components/nfts/gallery/NFTGallery.tsx:550
 #~ msgid "Types ({0}/{1})"
@@ -6831,7 +6836,7 @@ msgstr "暖啟動"
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:32
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:73
 msgid "Warning"
-msgstr "警告"
+msgstr ""
 
 #: src/components/farm/FarmHealth.tsx:266
 msgid "Warning Threshold"
@@ -6876,7 +6881,7 @@ msgstr "權重是包含本區塊在內的所有區塊的總加權難度"
 
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:22
 #~ msgid "When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or cancelled, resulting in your spendable balance changing."
-#~ msgstr "當創建報價時，任何提供的資產將被鎖定且無法使用，直到報價被接受或取消，這會導致您的可支配餘額發生變化。"
+#~ msgstr "When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or canceled, resulting in your spendable balance changing."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:455
 msgid "Which CUDA device to use when plotting"
@@ -6937,7 +6942,7 @@ msgstr "是，刪除"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:57
 #~ msgid "Yes, move"
-#~ msgstr "是，移動"
+#~ msgstr "Yes, move"
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:171
 msgid "You already have 50 or more Plot NFTs."
@@ -7079,3 +7084,4 @@ msgstr "您的可支配餘額必須大於1 mojo，才能建立個人檔案"
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "您的錢包需要運行才能自動索取"
+

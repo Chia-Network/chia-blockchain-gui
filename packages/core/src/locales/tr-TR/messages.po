@@ -8,7 +8,7 @@ msgstr ""
 "Language: tr_TR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-12-22 00:05\n"
+"PO-Revision-Date: 2025-07-20 00:06\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -572,3 +572,4 @@ msgstr ""
 #: src/hooks/useKeyringMigrationPrompt.tsx:21
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr "Anahtarlarınız yeni anahtarlığa henüz taşınmadı. Taşınma işlemi bitmeden yeni bir anahtar veya var olan anahtarlarınız silme işlemini yapamazsınız. Anahtarlarınızı şimdi taşımak istiyor musunuz?"
+

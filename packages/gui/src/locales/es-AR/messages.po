@@ -8,7 +8,7 @@ msgstr ""
 "Language: es_AR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-03-16 00:05\n"
+"PO-Revision-Date: 2025-07-20 00:06\n"
 "Last-Translator: \n"
 "Language-Team: Spanish, Argentina\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -76,7 +76,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:46
 msgid "Confirm Disconnect"
-msgstr ""
+msgstr "Confirmar Desconexión"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:48
@@ -163,7 +163,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:93
 msgid "Are you sure you want to disconnect?"
-msgstr ""
+msgstr "¿Estás seguro que quieres desconectarte?"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:95
@@ -173,7 +173,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:97
 msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
-msgstr ""
+msgstr "¿Está seguro de que desea eliminar la parcela? La parcela no se puede recuperar."
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:99
@@ -239,7 +239,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:133
 msgid "Delete"
-msgstr ""
+msgstr "Eliminar"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:135
@@ -254,12 +254,12 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:141
 msgid "Disconnect"
-msgstr ""
+msgstr "Desconectar"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:143
 msgid "Connect"
-msgstr ""
+msgstr "Conectar"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:146
@@ -270,7 +270,7 @@ msgstr ""
 #: src/electron/dialogs/Confirm/Confirm.tsx:148
 #: src/electron/dialogs/Confirm/Confirm.tsx:156
 msgid "Create"
-msgstr ""
+msgstr "Crear"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:151
@@ -310,7 +310,7 @@ msgstr ""
 #: src/electron/dialogs/Confirm/Confirm.tsx:280
 #: src/electron/dialogs/Confirm/Confirm.tsx:288
 msgid "Fee"
-msgstr ""
+msgstr "Comisión"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:201
@@ -320,7 +320,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:219
 msgid "Filename"
-msgstr ""
+msgstr "Nombre del Archivo"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:222
@@ -387,7 +387,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:295
 msgid "Port"
-msgstr ""
+msgstr "Puerto"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:299
@@ -398,7 +398,7 @@ msgstr ""
 #: src/electron/dialogs/Confirm/Confirm.tsx:373
 #: src/electron/main.tsx:757
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/KeyDetail/KeyDetail.tsx:32
@@ -408,12 +408,12 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/dialogs/KeyDetail/KeyDetail.tsx:37
 msgid "Farmer Public Key"
-msgstr ""
+msgstr "Clave Pública del Granjero"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/KeyDetail/KeyDetail.tsx:42
 msgid "Pool Public Key"
-msgstr ""
+msgstr "Clave pública de Pool"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/KeyDetail/KeyDetail.tsx:48
@@ -454,9 +454,7 @@ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:408
-msgid ""
-"These commands will be executed without confirmation in the future:\n"
-"\n"
+msgid "These commands will be executed without confirmation in the future:\n\n"
 " {commands}"
 msgstr ""
 
@@ -600,12 +598,12 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:1037
 #~ msgid "Follow on Twitter"
-#~ msgstr "Seguinos en Twitter"
+#~ msgstr "Follow on Twitter"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:495
 #~ msgid "This command will affect your funds. Please review the details below:"
-#~ msgstr ""
+#~ msgstr "This command will affect your funds. Please review the details below:"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:387
@@ -614,6 +612,9 @@ msgstr ""
 #~ "\n"
 #~ " {commands}\" />"
 #~ msgstr ""
+#~ "These commands will be executed without confirmation in the future:\n"
+#~ "\n"
+#~ " {commands}\" />"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:387
@@ -622,6 +623,9 @@ msgstr ""
 #~ "\n"
 #~ " {commands}<b>Test</b><img src=r onerror=\"alert(1)\" />"
 #~ msgstr ""
+#~ "These commands will be executed without confirmation in the future:\n"
+#~ "\n"
+#~ " {commands}<b>Test</b><img src=r onerror=\"alert(1)\" />"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:386
@@ -630,31 +634,34 @@ msgstr ""
 #~ "\n"
 #~ "• {commands}"
 #~ msgstr ""
+#~ "These commands will be executed without confirmation in the future:\n"
+#~ "\n"
+#~ "• {commands}"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:451
 #~ msgid "Confirm Transaction"
-#~ msgstr ""
+#~ msgstr "Confirm Transaction"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:458
 #~ msgid "Command"
-#~ msgstr ""
+#~ msgstr "Command"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:458
 #~ msgid "Details"
-#~ msgstr ""
+#~ msgstr "Details"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:540
 #~ msgid "I understand the risks and want to proceed"
-#~ msgstr ""
+#~ msgstr "I understand the risks and want to proceed"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:486
 #~ msgid "Do you want to process this?"
-#~ msgstr ""
+#~ msgstr "Do you want to process this?"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:160
 #~ msgid "- Set a time after which the offer expires.<0/>- An expiring offer can only be claimed prior to the expiration time."
@@ -1099,7 +1106,7 @@ msgstr ""
 #: src/components/plot/PlotAction.tsx:29
 #: src/components/plot/queue/PlotQueueActions.tsx:42
 #~ msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
-#~ msgstr "¿Está seguro de que desea eliminar la parcela? La parcela no se puede recuperar."
+#~ msgstr "Are you sure you want to delete the plot? The plot cannot be recovered."
 
 #: src/components/plotNFT/PlotNFTCard.tsx:114
 msgid "Are you sure you want to delete unconfirmed transactions?"
@@ -1107,11 +1114,11 @@ msgstr ""
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:28
 #~ msgid "Are you sure you want to disconnect?"
-#~ msgstr "¿Estás seguro que quieres desconectarte?"
+#~ msgstr "Are you sure you want to disconnect?"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:64
 #~ msgid "Are you sure you want to move this NFT to the specified profile?"
-#~ msgstr ""
+#~ msgstr "Are you sure you want to move this NFT to the specified profile?"
 
 #: src/components/addressbook/ContactSummary.tsx:46
 msgid "Are you sure you want to permanently delete this contact? Once deleted, this contact cannot be recovered."
@@ -1357,7 +1364,7 @@ msgstr ""
 #: src/components/vcs/VCRevokeDialog.tsx:28
 #: src/hooks/useOpenUnsafeLink.tsx:62
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:978
 msgid "Cancel DataLayer Offer"
@@ -1610,11 +1617,11 @@ msgstr ""
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:19
 #~ msgid "Confirm Disconnect"
-#~ msgstr "Confirmar Desconexión"
+#~ msgstr "Confirm Disconnect"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:56
 #~ msgid "Confirm Move"
-#~ msgstr ""
+#~ msgstr "Confirm Move"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:239
 msgid "Confirm New Passphrase"
@@ -1644,7 +1651,7 @@ msgstr ""
 
 #: src/components/fullNode/FullNodeAddConnection.tsx:103
 msgid "Connect"
-msgstr "Conectar"
+msgstr ""
 
 #: src/components/fullNode/FullNodeAddConnection.tsx:82
 #: src/components/fullNode/FullNodeConnections.tsx:93
@@ -1760,7 +1767,7 @@ msgstr ""
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:81
 #: src/components/settings/ProfileAdd.tsx:159
 msgid "Create"
-msgstr "Crear"
+msgstr ""
 
 #: src/components/app/AppSelectMode.tsx:127
 msgid "Create & Manage plots"
@@ -1972,7 +1979,7 @@ msgstr "Retraso"
 #: src/components/plotNFT/PlotNFTCard.tsx:106
 #: src/hooks/useBlockchainNotifications.tsx:159
 msgid "Delete"
-msgstr "Eliminar"
+msgstr ""
 
 #: src/components/addressbook/ContactSummary.tsx:41
 msgid "Delete contact"
@@ -1994,7 +2001,7 @@ msgstr ""
 #: src/components/plot/PlotAction.tsx:24
 #: src/components/plot/queue/PlotQueueActions.tsx:33
 #~ msgid "Delete Plot"
-#~ msgstr "Eliminar plot"
+#~ msgstr "Delete Plot"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:261
 msgid "Delete Unconfirmed Transactions"
@@ -2136,7 +2143,7 @@ msgstr ""
 #: src/components/walletConnect/WalletConnectConnections.tsx:91
 #: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:135
 msgid "Disconnect"
-msgstr "Desconectar"
+msgstr ""
 
 #: src/components/offers/OfferManager.tsx:303
 msgid "Display Offer Data"
@@ -2376,7 +2383,7 @@ msgstr ""
 
 #: src/components/chiatools/logViewer/LogViewer.tsx:442
 #~ msgid "Enter the path to your log file:"
-#~ msgstr ""
+#~ msgstr "Enter the path to your log file:"
 
 #: src/components/settings/RemovePassphrasePrompt.tsx:122
 msgid "Enter your passphrase:"
@@ -2540,7 +2547,7 @@ msgstr "No se está ejecutando el trabajador"
 
 #: src/components/plot/add/PlotAddChooseKeys.tsx:165
 msgid "Farmer Public Key"
-msgstr "Clave Pública del Granjero"
+msgstr ""
 
 #: src/components/plot/add/PlotAddForm.tsx:219
 msgid "Farmer public key is invalid"
@@ -2642,7 +2649,7 @@ msgstr ""
 #: src/constants/WalletConnectCommands.tsx:1862
 #: src/constants/WalletConnectCommands.tsx:1971
 msgid "Fee"
-msgstr "Comisión"
+msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:81
 #: src/components/offers/OfferEditorConditionsPanel.tsx:387
@@ -2680,7 +2687,7 @@ msgstr ""
 #: src/components/plot/PlotHarvesterPlotsFailed.tsx:14
 #: src/components/plot/PlotHarvesterPlotsNotFound.tsx:14
 msgid "Filename"
-msgstr "Nombre del Archivo"
+msgstr ""
 
 #: src/components/nfts/gallery/NFTGallery.tsx:283
 msgid "Filter"
@@ -3087,7 +3094,7 @@ msgstr ""
 
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:16
 #~ msgid "I Understand, Create Offer"
-#~ msgstr ""
+#~ msgstr "I Understand, Create Offer"
 
 #: src/constants/WalletConnectCommands.tsx:194
 msgid "Id"
@@ -3179,15 +3186,13 @@ msgstr ""
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
 
 #: src/components/offers/OfferEditor.tsx:127
 #: src/components/offers2/CreateOfferBuilder.tsx:161
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
 
@@ -4281,7 +4286,7 @@ msgstr ""
 
 #: src/components/nfts/NFTTransferAction.tsx:93
 #~ msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer {0} NFTs?"
-#~ msgstr ""
+#~ msgstr "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer {0} NFTs?"
 
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:40
 msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer the NFT?"
@@ -4784,7 +4789,7 @@ msgstr ""
 #: src/components/block/Block.jsx:211
 #: src/components/plot/add/PlotAddChooseKeys.tsx:204
 msgid "Pool Public Key"
-msgstr "Clave pública de Pool"
+msgstr ""
 
 #: src/components/plot/add/PlotAddForm.tsx:226
 msgid "Pool public key is invalid"
@@ -4836,7 +4841,7 @@ msgstr ""
 #: src/components/fullNode/FullNodeAddConnection.tsx:95
 #: src/components/fullNode/FullNodeConnections.tsx:39
 msgid "Port"
-msgstr "Puerto"
+msgstr ""
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:95
 #: src/components/plotNFT/PlotNFTChangePool.tsx:76
@@ -6876,7 +6881,7 @@ msgstr "El peso es la dificultad total añadida de todos los bloques hasta este 
 
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:22
 #~ msgid "When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or cancelled, resulting in your spendable balance changing."
-#~ msgstr ""
+#~ msgstr "When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or canceled, resulting in your spendable balance changing."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:455
 msgid "Which CUDA device to use when plotting"
@@ -6937,7 +6942,7 @@ msgstr ""
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:57
 #~ msgid "Yes, move"
-#~ msgstr ""
+#~ msgstr "Yes, move"
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:171
 msgid "You already have 50 or more Plot NFTs."
@@ -7079,3 +7084,4 @@ msgstr ""
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr ""
+

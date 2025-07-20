@@ -8,7 +8,7 @@ msgstr ""
 "Language: en_US\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-03-16 00:05\n"
+"PO-Revision-Date: 2025-07-20 00:06\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -46,27 +46,27 @@ msgstr "Would you like to transfer {count} NFTs to a new owner?"
 #. js-lingui-explicit-id
 #: src/electron/dialogs/About/About.tsx:72
 msgid "Report an issue"
-msgstr "Report an issue"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:34
 msgid "Confirm Remove Plot Directory"
-msgstr "Confirm Remove Plot Directory"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:36
 msgid "Confirm Send Transaction"
-msgstr "Confirm Send Transaction"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:38
 msgid "Confirm Delete Plot"
-msgstr "Confirm Delete Plot"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:40
 msgid "Confirm Add Plot Directory"
-msgstr "Confirm Add Plot Directory"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:43
@@ -81,48 +81,48 @@ msgstr "Confirm Disconnect"
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:48
 msgid "Confirm Sign Message"
-msgstr "Confirm Sign Message"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:50
 msgid "Confirm Create New Wallet"
-msgstr "Confirm Create New Wallet"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:52
 msgid "Confirm Set Auto Claim"
-msgstr "Confirm Set Auto Claim"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:54
 #: src/electron/dialogs/Confirm/Confirm.tsx:64
 msgid "Confirm Set Payout Instructions"
-msgstr "Confirm Set Payout Instructions"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:56
 msgid "Confirm Move NFT to DID"
-msgstr "Confirm Move NFT to DID"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:58
 msgid "Confirm Move NFTs to DID"
-msgstr "Confirm Move NFTs to DID"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:60
 msgid "Confirm Create Offer"
-msgstr "Confirm Create Offer"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:62
 msgid "Confirm Open Connection"
-msgstr "Confirm Open Connection"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:66
 msgid "Confirm Delete Wallet"
-msgstr "Confirm Delete Wallet"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:68
@@ -133,32 +133,32 @@ msgstr "Confirm"
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:75
 msgid "Please carefully review and confirm this blockchain transaction."
-msgstr "Please carefully review and confirm this blockchain transaction."
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:77
 msgid "Please carefully review and confirm this CAT spend."
-msgstr "Please carefully review and confirm this CAT spend."
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:80
 msgid "Please carefully review and confirm this NFT transfer."
-msgstr "Please carefully review and confirm this NFT transfer."
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:83
 msgid "Please carefully review and confirm this offer creation. When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or cancelled, resulting in your spendable balance changing."
-msgstr "Please carefully review and confirm this offer creation. When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or cancelled, resulting in your spendable balance changing."
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:88
 msgid "Please carefully review and confirm this offer acceptance."
-msgstr "Please carefully review and confirm this offer acceptance."
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:90
 msgid "Please carefully review and confirm this offer cancellation."
-msgstr "Please carefully review and confirm this offer cancellation."
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:93
@@ -168,7 +168,7 @@ msgstr "Are you sure you want to disconnect?"
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:95
 msgid "Are you sure you want to stop plotting? The plot cannot be recovered."
-msgstr "Are you sure you want to stop plotting? The plot cannot be recovered."
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:97
@@ -178,28 +178,28 @@ msgstr "Are you sure you want to delete the plot? The plot cannot be recovered."
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:99
 msgid "Are you sure you want to remove the plot directory?"
-msgstr "Are you sure you want to remove the plot directory?"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:102
 msgid "Are you sure you want to sign this message?"
-msgstr "Are you sure you want to sign this message?"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:104
 msgid "Are you sure you want to create a new wallet?"
-msgstr "Are you sure you want to create a new wallet?"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:106
 msgid "Are you sure you want to set auto claim?"
-msgstr "Are you sure you want to set auto claim?"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:108
 #: src/electron/dialogs/Confirm/Confirm.tsx:116
 msgid "Are you sure you want to set payout instructions?"
-msgstr "Are you sure you want to set payout instructions?"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:110
@@ -209,32 +209,32 @@ msgstr "Are you sure you want to move this NFT to the specified profile?"
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:112
 msgid "Are you sure you want to move these NFTs to the specified profile?"
-msgstr "Are you sure you want to move these NFTs to the specified profile?"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:114
 msgid "Are you sure you want to open a connection to the specified node?"
-msgstr "Are you sure you want to open a connection to the specified node?"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:118
 msgid "Are you sure you want to delete this wallet?"
-msgstr "Are you sure you want to delete this wallet?"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:120
 msgid "Please review and confirm this action."
-msgstr "Please review and confirm this action."
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:128
 msgid "Send"
-msgstr "Send"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:130
 msgid "Stop"
-msgstr "Stop"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:133
@@ -244,7 +244,7 @@ msgstr "Delete"
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:135
 msgid "Add"
-msgstr "Add"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:138
@@ -275,7 +275,7 @@ msgstr "Create"
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:151
 msgid "Set"
-msgstr "Set"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:154
@@ -325,17 +325,17 @@ msgstr "Filename"
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:222
 msgid "Directory"
-msgstr "Directory"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:227
 msgid "Payout Instructions"
-msgstr "Payout Instructions"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:233
 msgid "Enabled"
-msgstr "Enabled"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:236
@@ -345,7 +345,7 @@ msgstr "Transaction Fee"
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:241
 msgid "Min Amount"
-msgstr "Min Amount"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:247
@@ -360,7 +360,7 @@ msgstr "Type"
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:249
 msgid "Asset ID"
-msgstr "Asset ID"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:259
@@ -382,7 +382,7 @@ msgstr "DID"
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:294
 msgid "Host"
-msgstr "Host"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:295
@@ -418,17 +418,17 @@ msgstr "Pool Public Key"
 #. js-lingui-explicit-id
 #: src/electron/dialogs/KeyDetail/KeyDetail.tsx:48
 msgid "NEVER SHARE THESE WITH ANYONE"
-msgstr "NEVER SHARE THESE WITH ANYONE"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/KeyDetail/KeyDetail.tsx:55
 msgid "Secret Key"
-msgstr "Secret Key"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/KeyDetail/KeyDetail.tsx:74
 msgid "Seed Phrase"
-msgstr "Seed Phrase"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:401
@@ -445,23 +445,18 @@ msgstr "Yes"
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:402
 msgid "Save Command Preferences"
-msgstr "Save Command Preferences"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:404
 msgid "Would you like to save preferences for the following commands?"
-msgstr "Would you like to save preferences for the following commands?"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:408
-msgid ""
-"These commands will be executed without confirmation in the future:\n"
-"\n"
+msgid "These commands will be executed without confirmation in the future:\n\n"
 " {commands}"
 msgstr ""
-"These commands will be executed without confirmation in the future:\n"
-"\n"
-" {commands}"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:596
@@ -486,12 +481,12 @@ msgstr "Warning"
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:760
 msgid "Log files may contain sensitive information"
-msgstr "Log files may contain sensitive information"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:761
 msgid "Are you sure you want to view the log contents?"
-msgstr "Are you sure you want to view the log contents?"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:881
@@ -572,7 +567,7 @@ msgstr "Chat on Discord"
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:1034
 msgid "Follow on X"
-msgstr "Follow on X"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:1046
@@ -877,7 +872,7 @@ msgstr "Activity"
 
 #: src/components/settings/SettingsAdvanced.tsx:169
 msgid "Add"
-msgstr "Add"
+msgstr ""
 
 #: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:46
 msgid "Add {currencyCode} from the Faucet"
@@ -960,7 +955,7 @@ msgstr "Add Verifiable Credential from file"
 #: src/constants/WalletConnectCommands.tsx:277
 #: src/constants/WalletConnectCommands.tsx:570
 msgid "Address"
-msgstr "Address"
+msgstr ""
 
 #: src/components/addressbook/ContactAdd.tsx:30
 #: src/components/addressbook/ContactEdit.tsx:33
@@ -1030,7 +1025,7 @@ msgstr "Always Reject"
 #: src/constants/WalletConnectCommands.tsx:909
 #: src/constants/WalletConnectCommands.tsx:1462
 msgid "Amount"
-msgstr "Amount"
+msgstr ""
 
 #: src/components/offers2/OfferBuilderRoyaltyPayouts.tsx:38
 msgid "Amount before adding royalties"
@@ -1331,7 +1326,7 @@ msgstr "By providing a signing address, the public key can be validated as being
 
 #: src/components/settings/SettingsAdvanced.tsx:142
 msgid "Bypassed Commands"
-msgstr "Bypassed Commands"
+msgstr ""
 
 #: src/components/settings/SettingsNFT.tsx:125
 msgid "Cache"
@@ -1369,7 +1364,7 @@ msgstr "Cache size (GB)"
 #: src/components/vcs/VCRevokeDialog.tsx:28
 #: src/hooks/useOpenUnsafeLink.tsx:62
 msgid "Cancel"
-msgstr "Cancel"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:978
 msgid "Cancel DataLayer Offer"
@@ -1596,7 +1591,7 @@ msgstr "Commands"
 
 #: src/components/settings/SettingsAdvanced.tsx:176
 msgid "Commands listed here will be executed without confirmation. Use with caution as this can affect your funds."
-msgstr "Commands listed here will be executed without confirmation. Use with caution as this can affect your funds."
+msgstr ""
 
 #: src/components/farm/FarmHealth.tsx:327
 msgid "Common reasons for missing SPs include:"
@@ -1634,7 +1629,7 @@ msgstr "Confirm New Passphrase"
 
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:38
 msgid "Confirm NFT Transfer"
-msgstr "Confirm NFT Transfer"
+msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:178
 #: src/components/app/AppKeyringMigrator.tsx:179
@@ -1656,7 +1651,7 @@ msgstr "Confirmed"
 
 #: src/components/fullNode/FullNodeAddConnection.tsx:103
 msgid "Connect"
-msgstr "Connect"
+msgstr ""
 
 #: src/components/fullNode/FullNodeAddConnection.tsx:82
 #: src/components/fullNode/FullNodeConnections.tsx:93
@@ -1718,7 +1713,7 @@ msgstr "Content has not been validated against the hash that was specified durin
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:280
 msgid "Continue"
-msgstr "Continue"
+msgstr ""
 
 #: src/electron/main.tsx:1065
 #~ msgid "Contribute on GitHub"
@@ -1772,7 +1767,7 @@ msgstr "Counter Offer"
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:81
 #: src/components/settings/ProfileAdd.tsx:159
 msgid "Create"
-msgstr "Create"
+msgstr ""
 
 #: src/components/app/AppSelectMode.tsx:127
 msgid "Create & Manage plots"
@@ -1984,7 +1979,7 @@ msgstr "Delay"
 #: src/components/plotNFT/PlotNFTCard.tsx:106
 #: src/hooks/useBlockchainNotifications.tsx:159
 msgid "Delete"
-msgstr "Delete"
+msgstr ""
 
 #: src/components/addressbook/ContactSummary.tsx:41
 msgid "Delete contact"
@@ -2070,7 +2065,7 @@ msgstr "Dexie URL"
 #: src/components/signVerify/SignMessage.tsx:165
 #: src/constants/WalletConnectCommands.tsx:1857
 msgid "DID"
-msgstr "DID"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:727
 msgid "DID Coin Dictionary"
@@ -2148,7 +2143,7 @@ msgstr "Disable NUMA"
 #: src/components/walletConnect/WalletConnectConnections.tsx:91
 #: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:135
 msgid "Disconnect"
-msgstr "Disconnect"
+msgstr ""
 
 #: src/components/offers/OfferManager.tsx:303
 msgid "Display Offer Data"
@@ -2552,7 +2547,7 @@ msgstr "Farmer is not running"
 
 #: src/components/plot/add/PlotAddChooseKeys.tsx:165
 msgid "Farmer Public Key"
-msgstr "Farmer Public Key"
+msgstr ""
 
 #: src/components/plot/add/PlotAddForm.tsx:219
 msgid "Farmer public key is invalid"
@@ -2654,7 +2649,7 @@ msgstr "Features to give you more protection and control over your digital asset
 #: src/constants/WalletConnectCommands.tsx:1862
 #: src/constants/WalletConnectCommands.tsx:1971
 msgid "Fee"
-msgstr "Fee"
+msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:81
 #: src/components/offers/OfferEditorConditionsPanel.tsx:387
@@ -2692,7 +2687,7 @@ msgstr "Fees included in offer:"
 #: src/components/plot/PlotHarvesterPlotsFailed.tsx:14
 #: src/components/plot/PlotHarvesterPlotsNotFound.tsx:14
 msgid "Filename"
-msgstr "Filename"
+msgstr ""
 
 #: src/components/nfts/gallery/NFTGallery.tsx:283
 msgid "Filter"
@@ -2709,7 +2704,7 @@ msgstr "Find Lost DID"
 #: src/constants/WalletConnectCommands.tsx:38
 #: src/constants/WalletConnectCommands.tsx:2056
 msgid "Fingerprint"
-msgstr "Fingerprint"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:2020
 msgid "Fingerprints"
@@ -3103,7 +3098,7 @@ msgstr "Hybrid disk mode allows computers with lower amounts of RAM to plot by o
 
 #: src/constants/WalletConnectCommands.tsx:194
 msgid "Id"
-msgstr "Id"
+msgstr ""
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:188
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:127
@@ -3191,20 +3186,16 @@ msgstr "Insert"
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgstr "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 
 #: src/components/offers/OfferEditor.tsx:127
 #: src/components/offers2/CreateOfferBuilder.tsx:161
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgstr "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 
 #: src/components/farm/PoolingHealth.tsx:302
@@ -3593,7 +3584,7 @@ msgstr "Memos"
 #: src/constants/WalletConnectCommands.tsx:262
 #: src/constants/WalletConnectCommands.tsx:1988
 msgid "Message"
-msgstr "Message"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:204
 #: src/constants/WalletConnectCommands.tsx:227
@@ -3733,7 +3724,7 @@ msgstr "more space"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:302
 msgid "Move"
-msgstr "Move"
+msgstr ""
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:346
 msgid "Move NFT to Profile"
@@ -3772,7 +3763,7 @@ msgstr "N/A"
 #: src/constants/WalletConnectCommands.tsx:604
 #: src/constants/WalletConnectCommands.tsx:1831
 msgid "Name"
-msgstr "Name"
+msgstr ""
 
 #: src/components/settings/ProfileAdd.tsx:121
 msgid "Need some {currencyCode}?"
@@ -4800,7 +4791,7 @@ msgstr "Pool Payout Instructions"
 #: src/components/block/Block.jsx:211
 #: src/components/plot/add/PlotAddChooseKeys.tsx:204
 msgid "Pool Public Key"
-msgstr "Pool Public Key"
+msgstr ""
 
 #: src/components/plot/add/PlotAddForm.tsx:226
 msgid "Pool public key is invalid"
@@ -4852,7 +4843,7 @@ msgstr "Pooling Health"
 #: src/components/fullNode/FullNodeAddConnection.tsx:95
 #: src/components/fullNode/FullNodeConnections.tsx:39
 msgid "Port"
-msgstr "Port"
+msgstr ""
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:95
 #: src/components/plotNFT/PlotNFTChangePool.tsx:76
@@ -4899,7 +4890,7 @@ msgstr "Previous Header Hash"
 
 #: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:360
 msgid "Proceed"
-msgstr "Proceed"
+msgstr ""
 
 #: src/components/settings/ProfileView.tsx:57
 msgid "Profile Name"
@@ -4958,7 +4949,7 @@ msgstr "Provider Inner Puzzle Hash"
 #: src/components/signVerify/VerifyMessage.tsx:219
 #: src/constants/WalletConnectCommands.tsx:267
 msgid "Public Key"
-msgstr "Public Key"
+msgstr ""
 
 #: src/components/offers/NFTOfferViewer.tsx:473
 msgid "Purchase Summary"
@@ -5062,7 +5053,7 @@ msgstr "Remote Harvester"
 
 #: src/components/settings/SettingsAdvanced.tsx:195
 msgid "Remove"
-msgstr "Remove"
+msgstr ""
 
 #: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:359
 msgid "Remove Conflicting Offer"
@@ -5376,7 +5367,7 @@ msgstr "Select an NFT"
 #: src/components/settings/SettingsAdvanced.tsx:147
 #: src/components/settings/SettingsAdvanced.tsx:152
 msgid "Select Command"
-msgstr "Select Command"
+msgstr ""
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:40
 msgid "Select Final Directory"
@@ -5577,7 +5568,7 @@ msgstr "Shut down"
 
 #: src/components/signVerify/SignMessage.tsx:218
 msgid "Sign"
-msgstr "Sign"
+msgstr ""
 
 #: src/components/signVerify/SignVerifyDialog.tsx:23
 msgid "Sign Message"
@@ -5860,7 +5851,7 @@ msgstr "Taker"
 #: src/constants/WalletConnectCommands.tsx:782
 #: src/constants/WalletConnectCommands.tsx:862
 msgid "Target Address"
-msgstr "Target Address"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:685
 msgid "Target List"
@@ -6331,7 +6322,7 @@ msgstr "Transaction auto claim fee"
 
 #: src/components/notification/NotificationSendDialog.tsx:261
 msgid "Transaction Fee"
-msgstr "Transaction Fee"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:66
 msgid "Transaction Id"
@@ -6360,7 +6351,7 @@ msgstr "Transactions less than the fee will not be auto claimed."
 #: src/components/nfts/NFTTransferAction.tsx:153
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:45
 msgid "Transfer"
-msgstr "Transfer"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:1705
 msgid "Transfer DID"
@@ -6403,7 +6394,7 @@ msgstr "Turn this off if you don't have any compressed plots to harvest"
 #: src/components/vcs/VCCard.tsx:163
 #: src/constants/WalletConnectCommands.tsx:1983
 msgid "Type"
-msgstr "Type"
+msgstr ""
 
 #: src/components/nfts/gallery/NFTGallery.tsx:550
 #~ msgid "Types ({0}/{1})"
@@ -6847,7 +6838,7 @@ msgstr "Warm start"
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:32
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:73
 msgid "Warning"
-msgstr "Warning"
+msgstr ""
 
 #: src/components/farm/FarmHealth.tsx:266
 msgid "Warning Threshold"
@@ -7095,3 +7086,4 @@ msgstr "Your spendable balance must be greater than 1 mojo to create a profile"
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "Your wallet is required to be running for auto claim to work."
+

@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-03-16 00:05\n"
+"PO-Revision-Date: 2025-07-20 00:06\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -46,83 +46,83 @@ msgstr "Haluatko siirtää {count} NFT:tä uudelle omistajalle?"
 #. js-lingui-explicit-id
 #: src/electron/dialogs/About/About.tsx:72
 msgid "Report an issue"
-msgstr ""
+msgstr "Raportoi Ongelma"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:34
 msgid "Confirm Remove Plot Directory"
-msgstr ""
+msgstr "Vahvista plottikansion poisto"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:36
 msgid "Confirm Send Transaction"
-msgstr ""
+msgstr "Vahvista Siirto"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:38
 msgid "Confirm Delete Plot"
-msgstr ""
+msgstr "Vahvista Poisto"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:40
 msgid "Confirm Add Plot Directory"
-msgstr ""
+msgstr "Vahvista Plottikansion Poisto"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:43
 msgid "Confirm NFT Transfer"
-msgstr ""
+msgstr "Vahvista NFT:n siirto"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:46
 msgid "Confirm Disconnect"
-msgstr ""
+msgstr "Varmista Yhteyden Katkaisu"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:48
 msgid "Confirm Sign Message"
-msgstr ""
+msgstr "Vahvista Allekirjoitusviesti"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:50
 msgid "Confirm Create New Wallet"
-msgstr ""
+msgstr "Vahvista Uuden Lompakon Luonti"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:52
 msgid "Confirm Set Auto Claim"
-msgstr ""
+msgstr "Vahvista Automaattinen Lunastus"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:54
 #: src/electron/dialogs/Confirm/Confirm.tsx:64
 msgid "Confirm Set Payout Instructions"
-msgstr ""
+msgstr "Vahvista Maksuohjeet"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:56
 msgid "Confirm Move NFT to DID"
-msgstr ""
+msgstr "Vahvista NFT:n siirto DID:ään"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:58
 msgid "Confirm Move NFTs to DID"
-msgstr ""
+msgstr "Vahvista NFT:ien siirtäminen DID:hin"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:60
 msgid "Confirm Create Offer"
-msgstr ""
+msgstr "Vahvista Tarjouksen Tekeminen"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:62
 msgid "Confirm Open Connection"
-msgstr ""
+msgstr "Vahvista Yhteyden Avaus"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:66
 msgid "Confirm Delete Wallet"
-msgstr ""
+msgstr "Vahvista Lompakon poistaminen"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:68
@@ -133,172 +133,172 @@ msgstr "Vahvista"
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:75
 msgid "Please carefully review and confirm this blockchain transaction."
-msgstr ""
+msgstr "Tarkista huolellisesti ja vahvista tämä lohkoketjutapahtuma."
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:77
 msgid "Please carefully review and confirm this CAT spend."
-msgstr ""
+msgstr "Tarkista huolellisesti ja vahvista tämä CAT-käyttö."
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:80
 msgid "Please carefully review and confirm this NFT transfer."
-msgstr ""
+msgstr "Tarkista huolellisesti ja vahvista tämä NFT-siirto."
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:83
 msgid "Please carefully review and confirm this offer creation. When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or cancelled, resulting in your spendable balance changing."
-msgstr ""
+msgstr "Tarkista huolellisesti ja vahvista tämä tarjouksen teko. Kaikki tarjottavat assetit lukitaan eivätkä ne ole käytettävissä, kunnes tarjous on hyväksytty tai peruutettu. Käytettävissä oleva saldo muuttuu lukituksen takia."
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:88
 msgid "Please carefully review and confirm this offer acceptance."
-msgstr ""
+msgstr "Tarkista huolellisesti tarjous ja vahvista hyväksyntä."
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:90
 msgid "Please carefully review and confirm this offer cancellation."
-msgstr ""
+msgstr "Tarkista huolellisesti ja vahvista tämän tarjouksen peruuttaminen."
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:93
 msgid "Are you sure you want to disconnect?"
-msgstr ""
+msgstr "Katkaise yhteys?"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:95
 msgid "Are you sure you want to stop plotting? The plot cannot be recovered."
-msgstr ""
+msgstr "Haluatko tuhota plotin? Plottia ei voi palauttaa."
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:97
 msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
-msgstr ""
+msgstr "Haluatko tuhota plotin? Plottia ei voi palauttaa."
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:99
 msgid "Are you sure you want to remove the plot directory?"
-msgstr ""
+msgstr "Oletko varma, että haluat poistaa plottikansion?"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:102
 msgid "Are you sure you want to sign this message?"
-msgstr ""
+msgstr "Oletko varma, että haluat allekirjoittaa tämän viestin?"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:104
 msgid "Are you sure you want to create a new wallet?"
-msgstr ""
+msgstr "Oletko varma, että haluat luoda uuden lompakon?"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:106
 msgid "Are you sure you want to set auto claim?"
-msgstr ""
+msgstr "Oletko varma, että haluat asettaa automaattisen lunastuksen?"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:108
 #: src/electron/dialogs/Confirm/Confirm.tsx:116
 msgid "Are you sure you want to set payout instructions?"
-msgstr ""
+msgstr "Oletko varma, että haluat asettaa maksuohjeet?"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:110
 msgid "Are you sure you want to move this NFT to the specified profile?"
-msgstr ""
+msgstr "Oletko varma, että haluat siirtää tämän NFT:n määriteltyyn profiiliin?"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:112
 msgid "Are you sure you want to move these NFTs to the specified profile?"
-msgstr ""
+msgstr "Oletko varma, että haluat siirtää nämä NFT:t määriteltyyn profiiliin?"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:114
 msgid "Are you sure you want to open a connection to the specified node?"
-msgstr ""
+msgstr "Oletko varma, että haluat avata yhteyden tähän verkkonoodiin?"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:118
 msgid "Are you sure you want to delete this wallet?"
-msgstr ""
+msgstr "Oletko varma, että haluat poistaa tämän lompakon?"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:120
 msgid "Please review and confirm this action."
-msgstr ""
+msgstr "Tarkista ja vahvista tämä toiminto."
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:128
 msgid "Send"
-msgstr ""
+msgstr "Lähetä"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:130
 msgid "Stop"
-msgstr ""
+msgstr "Pysäytä"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:133
 msgid "Delete"
-msgstr ""
+msgstr "Poista"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:135
 msgid "Add"
-msgstr ""
+msgstr "Lisää"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:138
 msgid "Transfer"
-msgstr ""
+msgstr "Siirrä"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:141
 msgid "Disconnect"
-msgstr ""
+msgstr "Katkaise Yhteys"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:143
 msgid "Connect"
-msgstr ""
+msgstr "Yhdistä"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:146
 msgid "Sign"
-msgstr ""
+msgstr "Allekirjoita"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:148
 #: src/electron/dialogs/Confirm/Confirm.tsx:156
 msgid "Create"
-msgstr ""
+msgstr "Luo"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:151
 msgid "Set"
-msgstr ""
+msgstr "Aseta"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:154
 msgid "Move"
-msgstr ""
+msgstr "Siirrä"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:158
 msgid "Proceed"
-msgstr ""
+msgstr "Jatka"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:174
 #: src/electron/dialogs/Confirm/Confirm.tsx:188
 #: src/electron/dialogs/Confirm/Confirm.tsx:258
 msgid "Address"
-msgstr ""
+msgstr "Osoite"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:177
 #: src/electron/dialogs/Confirm/Confirm.tsx:189
 msgid "Amount"
-msgstr ""
+msgstr "Summa"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:182
@@ -310,125 +310,125 @@ msgstr ""
 #: src/electron/dialogs/Confirm/Confirm.tsx:280
 #: src/electron/dialogs/Confirm/Confirm.tsx:288
 msgid "Fee"
-msgstr ""
+msgstr "Veloitus"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:201
 msgid "Target Address"
-msgstr ""
+msgstr "Kohdeosoite"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:219
 msgid "Filename"
-msgstr ""
+msgstr "Tiedoston nimi"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:222
 msgid "Directory"
-msgstr ""
+msgstr "Kansio"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:227
 msgid "Payout Instructions"
-msgstr ""
+msgstr "Maksuohjeet"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:233
 msgid "Enabled"
-msgstr ""
+msgstr "Käytössä"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:236
 msgid "Transaction Fee"
-msgstr ""
+msgstr "Transaktiomaksut"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:241
 msgid "Min Amount"
-msgstr ""
+msgstr "Minimimäärä"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:247
 msgid "Name"
-msgstr ""
+msgstr "Nimi"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:248
 msgid "Type"
-msgstr ""
+msgstr "Tyyppi"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:249
 msgid "Asset ID"
-msgstr ""
+msgstr "Assetin Tunniste"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:259
 #: src/electron/dialogs/Confirm/Confirm.tsx:264
 msgid "Message"
-msgstr ""
+msgstr "Viesti"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:263
 msgid "Id"
-msgstr ""
+msgstr "Tunniste"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:268
 #: src/electron/dialogs/Confirm/Confirm.tsx:277
 msgid "DID"
-msgstr ""
+msgstr "DID"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:294
 msgid "Host"
-msgstr ""
+msgstr "Palvelin"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:295
 msgid "Port"
-msgstr ""
+msgstr "Portti"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:299
 msgid "Fingerprint"
-msgstr ""
+msgstr "Sormenjälki"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:373
 #: src/electron/main.tsx:757
 msgid "Cancel"
-msgstr ""
+msgstr "Peru"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/KeyDetail/KeyDetail.tsx:32
 msgid "Public Key"
-msgstr ""
+msgstr "Julkinen avain"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/KeyDetail/KeyDetail.tsx:37
 msgid "Farmer Public Key"
-msgstr ""
+msgstr "Farmerin Julkinen Avain"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/KeyDetail/KeyDetail.tsx:42
 msgid "Pool Public Key"
-msgstr ""
+msgstr "Poolin Julkinen Avain"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/KeyDetail/KeyDetail.tsx:48
 msgid "NEVER SHARE THESE WITH ANYONE"
-msgstr ""
+msgstr "ÄLÄ KOSKAAN JAA NÄITÄ KENELLEKÄÄN"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/KeyDetail/KeyDetail.tsx:55
 msgid "Secret Key"
-msgstr ""
+msgstr "Salausavain"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/KeyDetail/KeyDetail.tsx:74
 msgid "Seed Phrase"
-msgstr ""
+msgstr "Avainsanat"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:401
@@ -445,20 +445,19 @@ msgstr "Kyllä"
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:402
 msgid "Save Command Preferences"
-msgstr ""
+msgstr "Tallenna Komentoasetukset"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:404
 msgid "Would you like to save preferences for the following commands?"
-msgstr ""
+msgstr "Haluatko tallentaa asetukset seuraaville komennoille?"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:408
-msgid ""
-"These commands will be executed without confirmation in the future:\n"
-"\n"
+msgid "These commands will be executed without confirmation in the future:\n\n"
 " {commands}"
-msgstr ""
+msgstr "Nämä komennot suoritetaan ilman vahvistusta tulevaisuudessa:\n\n"
+" {commands}"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:596
@@ -473,22 +472,22 @@ msgstr "Pidä palvelu käynnissä taustalla"
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:757
 msgid "Continue"
-msgstr ""
+msgstr "Jatka"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:759
 msgid "Warning"
-msgstr ""
+msgstr "Varoitus"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:760
 msgid "Log files may contain sensitive information"
-msgstr ""
+msgstr "Lokitiedostot saattavat sisältää arkaluontoisia tietoja"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:761
 msgid "Are you sure you want to view the log contents?"
-msgstr ""
+msgstr "Oletko varma, että haluat tarkastella lokin sisältöä?"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:881
@@ -569,7 +568,7 @@ msgstr "Chattaa Discordissa"
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:1034
 msgid "Follow on X"
-msgstr ""
+msgstr "Seuraa X:ssä"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:1046
@@ -600,12 +599,12 @@ msgstr "Tarkista päivitykset..."
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:1037
 #~ msgid "Follow on Twitter"
-#~ msgstr "Seuraa Twitterissä"
+#~ msgstr "Follow on Twitter"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:495
 #~ msgid "This command will affect your funds. Please review the details below:"
-#~ msgstr ""
+#~ msgstr "This command will affect your funds. Please review the details below:"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:387
@@ -614,6 +613,9 @@ msgstr "Tarkista päivitykset..."
 #~ "\n"
 #~ " {commands}\" />"
 #~ msgstr ""
+#~ "These commands will be executed without confirmation in the future:\n"
+#~ "\n"
+#~ " {commands}\" />"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:387
@@ -622,6 +624,9 @@ msgstr "Tarkista päivitykset..."
 #~ "\n"
 #~ " {commands}<b>Test</b><img src=r onerror=\"alert(1)\" />"
 #~ msgstr ""
+#~ "These commands will be executed without confirmation in the future:\n"
+#~ "\n"
+#~ " {commands}<b>Test</b><img src=r onerror=\"alert(1)\" />"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:386
@@ -630,31 +635,34 @@ msgstr "Tarkista päivitykset..."
 #~ "\n"
 #~ "• {commands}"
 #~ msgstr ""
+#~ "These commands will be executed without confirmation in the future:\n"
+#~ "\n"
+#~ "• {commands}"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:451
 #~ msgid "Confirm Transaction"
-#~ msgstr ""
+#~ msgstr "Confirm Transaction"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:458
 #~ msgid "Command"
-#~ msgstr ""
+#~ msgstr "Command"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:458
 #~ msgid "Details"
-#~ msgstr ""
+#~ msgstr "Details"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:540
 #~ msgid "I understand the risks and want to proceed"
-#~ msgstr ""
+#~ msgstr "I understand the risks and want to proceed"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:486
 #~ msgid "Do you want to process this?"
-#~ msgstr ""
+#~ msgstr "Do you want to process this?"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:160
 #~ msgid "- Set a time after which the offer expires.<0/>- An expiring offer can only be claimed prior to the expiration time."
@@ -694,7 +702,7 @@ msgstr "{0, plural, one {mojo} other {mojoa}}"
 
 #: src/components/chiatools/ChiaToolsPage.tsx:56
 msgid "{0}"
-msgstr ""
+msgstr "{0}"
 
 #: src/components/addressbook/ContactSummary.tsx:155
 msgid "{0} {1}"
@@ -865,7 +873,7 @@ msgstr "Aktiviteetti"
 
 #: src/components/settings/SettingsAdvanced.tsx:169
 msgid "Add"
-msgstr ""
+msgstr "Lisää"
 
 #: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:46
 msgid "Add {currencyCode} from the Faucet"
@@ -933,11 +941,11 @@ msgstr "Lisää Todisteita"
 
 #: src/constants/WalletConnectCommands.tsx:1895
 msgid "Add Proofs To Verifiable Credential"
-msgstr "Lisää Todisteet Todennettavaan Käyttöoikeustietoon"
+msgstr "Lisää Todisteet Todennettavaan Kredentiaaliin"
 
 #: src/components/vcs/VCList.tsx:228
 msgid "Add Verifiable Credential from file"
-msgstr "Lisää todennettava käyttöoikeustieto tiedostosta"
+msgstr "Lisää todennettava kredentiaali tiedostosta"
 
 #: src/components/addressbook/ContactAdd.tsx:58
 #: src/components/addressbook/ContactEdit.tsx:61
@@ -1099,7 +1107,7 @@ msgstr "Oletko varma, että haluat tyhjentää NFT-välimuistin?"
 #: src/components/plot/PlotAction.tsx:29
 #: src/components/plot/queue/PlotQueueActions.tsx:42
 #~ msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
-#~ msgstr "Haluatko tuhota plotin? Plottia ei voi palauttaa."
+#~ msgstr "Are you sure you want to delete the plot? The plot cannot be recovered."
 
 #: src/components/plotNFT/PlotNFTCard.tsx:114
 msgid "Are you sure you want to delete unconfirmed transactions?"
@@ -1107,11 +1115,11 @@ msgstr "Haluatko varmasti poistaa nämä vahvistamattomat transaktiot?"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:28
 #~ msgid "Are you sure you want to disconnect?"
-#~ msgstr "Katkaise yhteys?"
+#~ msgstr "Are you sure you want to disconnect?"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:64
 #~ msgid "Are you sure you want to move this NFT to the specified profile?"
-#~ msgstr "Oletko varma, että haluat siirtää tämän NFT:n määriteltyyn profiiliin?"
+#~ msgstr "Are you sure you want to move this NFT to the specified profile?"
 
 #: src/components/addressbook/ContactSummary.tsx:46
 msgid "Are you sure you want to permanently delete this contact? Once deleted, this contact cannot be recovered."
@@ -1319,7 +1327,7 @@ msgstr "Antamalla allekirjoitusosoitteen, julkinen avain voidaan validoida yhdis
 
 #: src/components/settings/SettingsAdvanced.tsx:142
 msgid "Bypassed Commands"
-msgstr ""
+msgstr "Ohitetut Komennot"
 
 #: src/components/settings/SettingsNFT.tsx:125
 msgid "Cache"
@@ -1388,7 +1396,7 @@ msgstr "Samaa assettia ei voi tarjota ja pyytää"
 
 #: src/components/offers2/OfferBuilderToken.tsx:59
 msgid "CAT credential restrictions"
-msgstr "CAT käyttöoikeusrajoitukset"
+msgstr "CAT-kredentiaalirajoitukset"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:15
 msgid "Challenge"
@@ -1409,7 +1417,7 @@ msgstr "Muuta oletusajastusta."
 
 #: src/components/chiatools/logViewer/LogViewerToolbar.tsx:134
 msgid "Change Log File Location"
-msgstr ""
+msgstr "Muuta Lokitiedoston Sijaintia"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:290
 #: src/components/settings/SettingsPanel.tsx:120
@@ -1584,7 +1592,7 @@ msgstr "Komennot"
 
 #: src/components/settings/SettingsAdvanced.tsx:176
 msgid "Commands listed here will be executed without confirmation. Use with caution as this can affect your funds."
-msgstr ""
+msgstr "Tässä luetellut komennot suoritetaan ilman vahvistusta. Käytä varoen."
 
 #: src/components/farm/FarmHealth.tsx:327
 msgid "Common reasons for missing SPs include:"
@@ -1610,11 +1618,11 @@ msgstr "Vahvista"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:19
 #~ msgid "Confirm Disconnect"
-#~ msgstr "Varmista Yhteyden Katkaisu"
+#~ msgstr "Confirm Disconnect"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:56
 #~ msgid "Confirm Move"
-#~ msgstr "Vahvista siirto"
+#~ msgstr "Confirm Move"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:239
 msgid "Confirm New Passphrase"
@@ -1690,7 +1698,7 @@ msgstr "Yhteystiedon Nimi"
 #: src/components/addressbook/AddressBookSideBar.tsx:124
 #: src/components/dashboard/DashboardSideBar.tsx:74
 msgid "Contacts"
-msgstr "Yhteystiedot"
+msgstr "Kontaktit"
 
 #: src/components/nfts/NFTHashStatus.tsx:109
 msgid "Content does not match the expected hash value that was specified during NFT minting. The content may have been modified."
@@ -1722,7 +1730,7 @@ msgstr "Kopioi NFT ID"
 
 #: src/components/chiatools/logViewer/LogViewerToolbar.tsx:142
 msgid "Copy to Clipboard"
-msgstr ""
+msgstr "Kopioi Leikepöydälle"
 
 #: src/components/signVerify/SignMessageResultDialog.tsx:58
 msgid "Copy To Clipboard"
@@ -1876,7 +1884,7 @@ msgstr "Tekijän rojaltiprosentti vaikuttaa korkealta"
 
 #: src/components/dashboard/DashboardSideBar.tsx:61
 msgid "Credentials"
-msgstr "Käyttöoikeustiedot"
+msgstr "Kredentiaalit"
 
 #: src/components/plot/add/PlotAddForm.tsx:158
 msgid "Currency code is not defined"
@@ -1994,7 +2002,7 @@ msgstr "Poista Peilaus"
 #: src/components/plot/PlotAction.tsx:24
 #: src/components/plot/queue/PlotQueueActions.tsx:33
 #~ msgid "Delete Plot"
-#~ msgstr "Poista Plot-tiedosto"
+#~ msgstr "Delete Plot"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:261
 msgid "Delete Unconfirmed Transactions"
@@ -2002,7 +2010,7 @@ msgstr "Poista Vahvistamattomat Transaktiot"
 
 #: src/components/vcs/VCCard.tsx:311
 msgid "Delete Verifiable Credential"
-msgstr "Poista Todennettavat Käyttöoikeustiedot"
+msgstr "Poista Todennettavat Kredentiaalit"
 
 #: src/components/app/AppPassPrompt.tsx:96
 msgid "Deleting key"
@@ -2091,7 +2099,7 @@ msgstr "Poista Käytöstä"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:399
 msgid "Disable assigning automatic thread affinity. This is useful when running multiple simultaneous instances of Bladebit as you can manually assign thread affinity yourself when launching Bladebit."
-msgstr "Poista auotmaattinen säikeiden affiniteetin määrittäminen. Tämä on hyödyllistä, kun ajetaan useita samanaikaisia Bladebit-instansseja, koska voit manuaalisesti määrittää affiniteetin Bladebitin käynnistämisessä."
+msgstr "Poista automaattinen säikeiden affiniteetin määrittäminen. Tämä on hyödyllistä, kun ajetaan useita samanaikaisia Bladebit-instansseja, koska voit manuaalisesti määrittää affiniteetin Bladebitin käynnistämisessä."
 
 #: src/components/settings/SettingsHarvester.tsx:561
 msgid "Disable assigning automatic thread affinity. This is useful when you want to manually assign thread affinity."
@@ -2200,7 +2208,7 @@ msgstr "Lataa"
 
 #: src/components/nfts/NFTContextualActions.tsx:444
 msgid "Download Failed"
-msgstr ""
+msgstr "Lataus Epäonnistui"
 
 #: src/components/nfts/MultipleDownloadDialog.tsx:90
 msgid "Download failed."
@@ -2334,7 +2342,7 @@ msgstr "Ota käyttöön - GPU-harvesteri, poista käytöstä - CPU-harvesteri."
 
 #: src/components/settings/SettingsVerifiableCredentials.tsx:28
 msgid "Enable Verifiable Credentials"
-msgstr "Ota Käyttöön Todennettavat Käyttöoikeustiedot"
+msgstr "Ota Käyttöön Todennettavat Kredntiaalit"
 
 #: src/components/settings/SettingsIntegration.tsx:157
 #: src/components/walletConnect/WalletConnectConnections.tsx:110
@@ -2376,7 +2384,7 @@ msgstr "Anna NFT tai DID allekirjoittaaksesi"
 
 #: src/components/chiatools/logViewer/LogViewer.tsx:442
 #~ msgid "Enter the path to your log file:"
-#~ msgstr ""
+#~ msgstr "Enter the path to your log file:"
 
 #: src/components/settings/RemovePassphrasePrompt.tsx:122
 msgid "Enter your passphrase:"
@@ -2475,7 +2483,7 @@ msgstr "Tarkastele Chian ekosysteemiä; löydä ja käy kauppaa NFT:illä"
 
 #: src/components/chiatools/logViewer/LogViewerToolbar.tsx:150
 msgid "Export Logs"
-msgstr ""
+msgstr "Vie Lokeja"
 
 #: src/components/offers/utils.ts:126
 #: src/components/plot/PlotHarvester.tsx:122
@@ -2680,7 +2688,7 @@ msgstr "Tarjouksen sisältämät transaktiomaksut:"
 #: src/components/plot/PlotHarvesterPlotsFailed.tsx:14
 #: src/components/plot/PlotHarvesterPlotsNotFound.tsx:14
 msgid "Filename"
-msgstr "Tiedoston nimi"
+msgstr "Tiedosto"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:283
 msgid "Filter"
@@ -2732,7 +2740,7 @@ msgstr "Lähettäjä"
 #: src/components/dashboard/DashboardSideBar.tsx:87
 #: src/components/fullNode/FullNode.jsx:116
 msgid "Full Node"
-msgstr "Verkkonoodi"
+msgstr "Noodi"
 
 #: src/components/fullNode/FullNodeConnections.tsx:90
 msgid "Full Node Connections"
@@ -2756,7 +2764,7 @@ msgstr "Hae kaikki tarjoukset"
 
 #: src/constants/WalletConnectCommands.tsx:1876
 msgid "Get All Verifiable Credentials"
-msgstr "Hanki Kaikki Todennettavat käyttöoikeustiedot"
+msgstr "Hae Kaikki Todennettavat Kredentiaalit"
 
 #: src/constants/WalletConnectCommands.tsx:1083
 msgid "Get Ancestors"
@@ -2904,7 +2912,7 @@ msgstr "Hae Arvo"
 
 #: src/constants/WalletConnectCommands.tsx:1882
 msgid "Get Verifiable Credential"
-msgstr "Hae Todennettava käyttöoikeustieto"
+msgstr "Hae Todennettava Kredentiaali"
 
 #: src/constants/WalletConnectCommands.tsx:2013
 msgid "Get wallet addresses for one or more wallet keys"
@@ -2950,7 +2958,7 @@ msgstr "Puolittaa temp2 -välimuistin tarpeen vaihtelemalla bukettien kirjoitusm
 
 #: src/components/dashboard/DashboardSideBar.tsx:106
 msgid "Harvest"
-msgstr "Harvestoi"
+msgstr "Harvesteri"
 
 #: src/components/settings/Settings.tsx:40
 msgid "Harvester"
@@ -2975,7 +2983,7 @@ msgstr "Harvesterit"
 
 #: src/components/harvest/HarvesterOverview.tsx:194
 msgid "Harvesting Effectiveness"
-msgstr "Harvestointiteho"
+msgstr "Harvesteriteho"
 
 #: src/constants/WalletConnectCommands.tsx:793
 #: src/constants/WalletConnectCommands.tsx:1093
@@ -3087,7 +3095,7 @@ msgstr "Hybriditila mahdollistaa, että tietokoneet, joissa ei ole riitävästi 
 
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:16
 #~ msgid "I Understand, Create Offer"
-#~ msgstr "Ymmärrän, Luo Tarjous"
+#~ msgstr "I Understand, Create Offer"
 
 #: src/constants/WalletConnectCommands.tsx:194
 msgid "Id"
@@ -3179,20 +3187,16 @@ msgstr "Lisää"
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"Riittämätön määrä varoja tarjouksen hyväksymiseen. Varmista, että\n"
+msgstr "Riittämätön määrä varoja tarjouksen hyväksymiseen. Varmista, että\n"
 "käytettävissä oleva saldo riittää tarjouksen määrän kattamiseen."
 
 #: src/components/offers/OfferEditor.tsx:127
 #: src/components/offers2/CreateOfferBuilder.tsx:161
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"Riittämätön määrä varoja tarjouksen luomiseen. Varmista, että\n"
+msgstr "Riittämätön määrä varoja tarjouksen luomiseen. Varmista, että\n"
 "käytettävissä oleva saldo riittää tarjouksen määrän kattamiseen."
 
 #: src/components/farm/PoolingHealth.tsx:302
@@ -3440,7 +3444,7 @@ msgstr "Luettelo yhteyksistä on tyhjä"
 
 #: src/components/chiatools/logViewer/LogViewer.tsx:449
 msgid "Load Logs"
-msgstr ""
+msgstr "Lataa Lokeja"
 
 #: src/components/app/AppProviders.tsx:83
 msgid "Loading configuration"
@@ -3520,7 +3524,7 @@ msgstr "Kirjaudu Ulos"
 
 #: src/components/chiatools/ChiaToolsPage.tsx:23
 msgid "Log Viewer"
-msgstr ""
+msgstr "Lokien Näyttö"
 
 #: src/constants/WalletConnectCommands.tsx:1335
 msgid "Make DataLayer Offer"
@@ -3738,7 +3742,7 @@ msgstr "Monivalinta"
 #: src/components/addressbook/AddressBookSideBar.tsx:160
 #: src/components/addressbook/MyContact.tsx:112
 msgid "My Contact Info"
-msgstr "Omat Yhteystiedot"
+msgstr "Omat Kontaktit"
 
 #: src/components/settings/ProfileView.tsx:95
 msgid "My DID"
@@ -4285,7 +4289,7 @@ msgstr "Kun hyväksyt tämän tarjouksen, et voi peruuttaa transaktiota. Oletko 
 
 #: src/components/nfts/NFTTransferAction.tsx:93
 #~ msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer {0} NFTs?"
-#~ msgstr "Kun aloitat tämän siirron, et voi peruuttaa tapahtumaa. Oletko varma, että haluat siirtää {0} NFT:tä?"
+#~ msgstr "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer {0} NFTs?"
 
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:40
 msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer the NFT?"
@@ -4829,7 +4833,7 @@ msgstr "Pooli:"
 #: src/components/plotNFT/PlotNFTExternalState.tsx:25
 #: src/components/plotNFT/PlotNFTState.tsx:57
 msgid "Pooling"
-msgstr "Poolataan"
+msgstr "Poolaus"
 
 #: src/components/farm/PoolingHealth.tsx:278
 msgid "Pooling Health"
@@ -5011,7 +5015,7 @@ msgstr "Rekursiivinen Plottiskannaus"
 
 #: src/components/chiatools/logViewer/LogViewerToolbar.tsx:158
 msgid "Refresh"
-msgstr ""
+msgstr "Päivitä"
 
 #: src/components/nfts/NFTContextualActions.tsx:584
 msgid "Refresh NFT data"
@@ -5050,7 +5054,7 @@ msgstr "Etäharvesteri"
 
 #: src/components/settings/SettingsAdvanced.tsx:195
 msgid "Remove"
-msgstr ""
+msgstr "Poista"
 
 #: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:359
 msgid "Remove Conflicting Offer"
@@ -5077,7 +5081,7 @@ msgstr "Poista Tilauksia"
 #: src/components/vcs/VCCard.tsx:209
 #: src/components/vcs/VCCard.tsx:301
 msgid "Remove Verifiable Credential"
-msgstr "Hae Todennettava Käyttöoikeustieto"
+msgstr "Poista Todennettava Käyttöoikeustieto"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:37
 msgid "Removing"
@@ -5251,7 +5255,7 @@ msgstr "Peruuta"
 #: src/components/vcs/VCCard.tsx:311
 #: src/constants/WalletConnectCommands.tsx:1960
 msgid "Revoke Verifiable Credential"
-msgstr "Peruuta Todennettava Käyttöoikeustieto"
+msgstr "Peruuta Todennettava Kredentiaali"
 
 #: src/components/vcs/VCCard.tsx:168
 msgid "Revoked"
@@ -5310,7 +5314,7 @@ msgstr "Tallenna Tiedostoon"
 
 #: src/components/chiatools/logViewer/LogViewerToolbar.tsx:109
 msgid "Search"
-msgstr ""
+msgstr "Hae"
 
 #: src/components/fullNode/FullNodeBlockSearch.tsx:38
 msgid "Search block by header hash"
@@ -5364,7 +5368,7 @@ msgstr "Valitse NFT"
 #: src/components/settings/SettingsAdvanced.tsx:147
 #: src/components/settings/SettingsAdvanced.tsx:152
 msgid "Select Command"
-msgstr ""
+msgstr "Valitse Komento"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:40
 msgid "Select Final Directory"
@@ -5889,7 +5893,7 @@ msgstr "Derivaatioindeksi asettaa lompakon osoitteiden määrän, jota lompakko 
 
 #: src/components/nfts/NFTContextualActions.tsx:445
 msgid "The download failed: {0}"
-msgstr ""
+msgstr "Lataus epäonnistui: {0}"
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:148
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:197
@@ -6196,7 +6200,7 @@ msgstr "Liian monta Plot-NFT:tä"
 
 #: src/components/dashboard/DashboardSideBar.tsx:130
 msgid "Tools"
-msgstr ""
+msgstr "Työkalut"
 
 #: src/components/offers2/OfferBuilderWalletAmount.tsx:36
 msgid "Total Amount"
@@ -6319,7 +6323,7 @@ msgstr "Transaktion automaattilunastuksen maksu"
 
 #: src/components/notification/NotificationSendDialog.tsx:261
 msgid "Transaction Fee"
-msgstr "Transaktiomaksut"
+msgstr "Transaktiomaksu"
 
 #: src/constants/WalletConnectCommands.tsx:66
 msgid "Transaction Id"
@@ -6583,27 +6587,27 @@ msgstr "Yksityiskohtainen"
 
 #: src/components/vcs/VCCard.tsx:56
 msgid "Verifiable Credential"
-msgstr "Todennettava Käyttöoikeustieto"
+msgstr "Todennettava Kredentiaali"
 
 #: src/components/vcs/VCList.tsx:200
 msgid "Verifiable Credential already exists."
-msgstr "Todennettava käyttöoikeus on jo olemassa."
+msgstr "Todennettava kredentiaali on jo olemassa."
 
 #: src/components/vcs/VCCard.tsx:265
 msgid "Verifiable Credential Removed"
-msgstr "Todennettava Käyttöoikeustieto Poistettu"
+msgstr "Todennettava Kredentiaali Poistettu"
 
 #: src/components/vcs/VCCard.tsx:280
 msgid "Verifiable Credential Removed."
-msgstr "Todennettava Käyttöoikeustieto Poistettu."
+msgstr "Todennettava Kredentiaali Poistettu."
 
 #: src/components/vcs/VCCard.tsx:282
 msgid "Verifiable Credential Revoked."
-msgstr "Todennettava Käyttöoikeustieto Poistettu."
+msgstr "Todennettava Kredentiaali Peruttu."
 
 #: src/components/vcs/VCList.tsx:208
 msgid "Verifiable Credential successfully added."
-msgstr "Todennettava käyttöoikeustieto lisätty onnistuneesti."
+msgstr "Todennettava kredentiaali lisätty onnistuneesti."
 
 #: src/components/settings/SettingsVerifiableCredentials.tsx:17
 #: src/components/vcs/VCList.tsx:268
@@ -6613,7 +6617,7 @@ msgstr "Todennettavat Käyttöoikeustiedot"
 
 #: src/components/vcs/VCList.tsx:271
 msgid "Verifiable Credentials are like digital ID cards that can prove certain information about you without giving away your private details."
-msgstr "Todennettavat käyttöoikeustiedot ovat kuin digitaalinen henkilöllisyystodistus, joka voi todentaa tietoja sinusta paljastamatta yksityisiä tietojasi."
+msgstr "Todennettavat kredentiaalit ovat kuin digitaalinen henkilöllisyystodistus, joka voi todentaa tietoja sinusta paljastamatta yksityisiä tietojasi."
 
 #: src/components/signVerify/VerifyMessage.tsx:123
 msgid "Verification Failed"
@@ -6654,11 +6658,11 @@ msgstr "Näytä Tarjous"
 
 #: src/components/chiatools/ChiaToolsPage.tsx:26
 msgid "View and analyze Chia log files"
-msgstr ""
+msgstr "Tarkastele ja analysoi Chia-lokitiedostoja"
 
 #: src/components/vcs/VCCard.tsx:198
 msgid "View Credential Data"
-msgstr "Näytä Käyttöoikeustiedot"
+msgstr "Näytä Kredentiaalitiedot"
 
 #: src/components/plot/queue/PlotQueueActions.tsx:54
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:44
@@ -6880,7 +6884,7 @@ msgstr "Paino on kaikkien tähänastisten lohkojen vaikeuskertoimien summa"
 
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:22
 #~ msgid "When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or cancelled, resulting in your spendable balance changing."
-#~ msgstr "Kun luot tarjouksen, assetti jota tarjoat lukitaan kunnes tarjous hyväksytään tai perut sen. Käytettävissä oleva saldo pienenee ja palautetaan, jos perut tarjouksen."
+#~ msgstr "When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or canceled, resulting in your spendable balance changing."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:455
 msgid "Which CUDA device to use when plotting"
@@ -6941,7 +6945,7 @@ msgstr "Kyllä, poista"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:57
 #~ msgid "Yes, move"
-#~ msgstr "Kyllä, siirrä"
+#~ msgstr "Yes, move"
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:171
 msgid "You already have 50 or more Plot NFTs."
@@ -7083,3 +7087,4 @@ msgstr "Käytettävissä olevan saldon on oltava suurempi kuin 1 mojo luodaksesi
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "Lompakkosi on oltava käynnissä, jotta automaattinen lunastaminen toimii."
+
