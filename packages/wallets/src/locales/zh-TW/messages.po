@@ -48,7 +48,7 @@ msgstr "添加可撤回的的交易選項"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:61
 #: src/components/cat/WalletCATCreateSimple.tsx:68
-#: src/components/WalletsManageTokens.tsx:154
+#: src/components/WalletsManageTokens.tsx:155
 msgid "Add Token"
 msgstr "新增代幣"
 
@@ -94,7 +94,7 @@ msgstr "簽屬代處理的交易"
 msgid "Are you sure you want to delete unconfirmed transactions?"
 msgstr "你確認要刪除未確認的交易?"
 
-#: src/components/WalletHistory.tsx:138
+#: src/components/WalletHistory.tsx:142
 msgid "Asset"
 msgstr "資產"
 
@@ -169,7 +169,7 @@ msgstr "聲明中..."
 msgid "Classic version of Stably USDS as held by Prime Trust"
 msgstr "由Prime Trust持有、Stably發行的舊版USDS"
 
-#: src/components/WalletHistory.tsx:432
+#: src/components/WalletHistory.tsx:436
 msgid "Claw back expiration"
 msgstr "撤回的有效期限"
 
@@ -219,11 +219,11 @@ msgstr "關閉"
 msgid "Confirmation"
 msgstr "確認"
 
-#: src/components/WalletHistory.tsx:207
+#: src/components/WalletHistory.tsx:211
 msgid "Confirmed"
 msgstr "確認"
 
-#: src/components/WalletHistory.tsx:421
+#: src/components/WalletHistory.tsx:425
 msgid "Confirmed at Height"
 msgstr "已確認於高度"
 
@@ -253,7 +253,7 @@ msgstr "建立報價單"
 msgid "Create Transaction"
 msgstr "建立交易"
 
-#: src/components/WalletHistory.tsx:230
+#: src/components/WalletHistory.tsx:234
 msgid "Creation Date"
 msgstr "建立日期"
 
@@ -311,7 +311,7 @@ msgid "Farm"
 msgstr "耕種"
 
 #: src/components/cat/WalletCATSend.tsx:228
-#: src/components/WalletHistory.tsx:244
+#: src/components/WalletHistory.tsx:248
 #: src/components/WalletSend.tsx:254
 msgid "Fee"
 msgstr "費用"
@@ -322,11 +322,13 @@ msgstr "來自："
 
 #: src/components/WalletReceiveAddress.tsx:32
 msgid "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefore wallet receive addresses) that will all ultimately come back to and be spendable by a single private key."
-msgstr "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefore wallet receive addresses) that will all ultimately come back to and be spendable by a single private key.\n"
+msgstr ""
+"HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefore wallet receive addresses) that will all ultimately come back to and be spendable by a single private key.\n"
 "一個私鑰可以分成幾乎無限數量的不同公鑰(指錢包地址)，這些不同的公鑰(指錢包地址)都將回歸到同一個私鑰。"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:47
-msgid "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a\n"
+msgid ""
+"If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a\n"
 "higher fee."
 msgstr ""
 
@@ -358,7 +360,7 @@ msgstr "IP位址"
 msgid "List of connections is empty"
 msgstr "連接列表是空的"
 
-#: src/components/WalletsManageTokens.tsx:131
+#: src/components/WalletsManageTokens.tsx:132
 msgid "Manage token list"
 msgstr "管理代幣列表"
 
@@ -367,7 +369,7 @@ msgstr "管理代幣列表"
 msgid "Memo"
 msgstr "備註（Memo）"
 
-#: src/components/WalletHistory.tsx:426
+#: src/components/WalletHistory.tsx:430
 msgid "Memos"
 msgstr "備註（Memos）"
 
@@ -416,7 +418,7 @@ msgstr "NFT 錢包"
 msgid "Nickname"
 msgstr "暱稱"
 
-#: src/components/WalletHistory.tsx:503
+#: src/components/WalletHistory.tsx:507
 msgid "No previous transactions"
 msgstr "沒有上一個交易"
 
@@ -424,8 +426,8 @@ msgstr "沒有上一個交易"
 msgid "Node ID"
 msgstr "節點 ID"
 
-#: src/components/WalletHistory.tsx:415
-#: src/components/WalletHistory.tsx:422
+#: src/components/WalletHistory.tsx:419
+#: src/components/WalletHistory.tsx:426
 msgid "Not Available"
 msgstr "尚無"
 
@@ -433,7 +435,7 @@ msgstr "尚無"
 msgid "Not Synced"
 msgstr "未同步"
 
-#: src/components/WalletHistory.tsx:216
+#: src/components/WalletHistory.tsx:220
 msgid "Offer Accepted"
 msgstr "接受報價"
 
@@ -462,7 +464,7 @@ msgstr "貼上助記詞（{0} 個詞）"
 msgid "Payments approved"
 msgstr "支付已批准"
 
-#: src/components/WalletHistory.tsx:209
+#: src/components/WalletHistory.tsx:213
 msgid "Pending"
 msgstr "待確認中"
 
@@ -587,9 +589,14 @@ msgstr "重新命名錢包"
 msgid "Restricted CAT"
 msgstr "受限資產CAT"
 
-#: src/components/WalletHistory.tsx:215
+#: src/components/WalletHistory.tsx:219
 msgid "Retire"
 msgstr "退出"
+
+#: src/components/WalletName.tsx:35
+#: src/components/WalletsSidebar.tsx:99
+msgid "Revocable"
+msgstr ""
 
 #: src/constants/WalletName.ts:8
 msgid "RL Wallet"
@@ -626,7 +633,7 @@ msgstr "可花用餘額"
 msgid "Standard Wallet"
 msgstr "標準錢包"
 
-#: src/components/WalletHistory.tsx:221
+#: src/components/WalletHistory.tsx:225
 msgid "Status"
 msgstr "狀態"
 
@@ -655,7 +662,8 @@ msgid "The recipient of this transaction will need to have valid credentials in 
 msgstr "交易的接收方將需要有效的憑證才能領取發送的資產。請參閱上面的CR CAT限制。"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:44
-msgid "The transaction could not be immediately included in the mempool because the specified fee is too low. The\n"
+msgid ""
+"The transaction could not be immediately included in the mempool because the specified fee is too low. The\n"
 "transaction will be retried periodically, and may be included in the mempool once fees are lower, or if\n"
 "space becomes available."
 msgstr ""
@@ -665,7 +673,8 @@ msgstr ""
 #~ msgstr "The transaction could not be immediately included in the mempool because the specified fee is too low. The transaction will be retried periodically, and may be included in the mempool once fees are lower, or if space becomes available."
 
 #: src/components/WalletSendTransactionResultDialog.tsx:38
-msgid "The transaction is pending inclusion in the mempool because it conflicts with one or more other transactions\n"
+msgid ""
+"The transaction is pending inclusion in the mempool because it conflicts with one or more other transactions\n"
 "already in the mempool. The transaction will be retried periodically, and may be included in the mempool if\n"
 "the conflicting transactions are removed."
 msgstr ""
@@ -674,7 +683,7 @@ msgstr ""
 msgid "This access token is verified"
 msgstr "此訪問令牌已驗證"
 
-#: src/components/WalletHistory.tsx:167
+#: src/components/WalletHistory.tsx:171
 msgid "This is not a valid address for sending funds to"
 msgstr "這不是一個有效的地址用於匯款"
 
@@ -698,6 +707,11 @@ msgstr "這是由您的私鑰所控制的目前區塊鏈中的總 Chia 金額，
 msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
 msgstr "這是總餘額 + 未結餘額：這是在全部未結交易結清後你的餘額。"
 
+#: src/components/WalletName.tsx:37
+#: src/components/WalletsSidebar.tsx:101
+msgid "This token can be revoked by the issuer"
+msgstr ""
+
 #: src/components/ClawbackClaimTransactionDialog.tsx:201
 msgid "This transaction will be automatically claimed with a fee:"
 msgstr "此交易將自動以手續費聲明："
@@ -707,7 +721,7 @@ msgstr "此交易將自動以手續費聲明："
 #~ msgstr "To"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:183
-#: src/components/WalletHistory.tsx:193
+#: src/components/WalletHistory.tsx:197
 msgid "To:"
 msgstr "至："
 
@@ -719,7 +733,7 @@ msgstr "代幣的資產ID是空的"
 msgid "Token has empty name"
 msgstr "代幣的名稱是空的"
 
-#: src/components/WalletsSidebar.tsx:104
+#: src/components/WalletsSidebar.tsx:122
 msgid "Tokens"
 msgstr "代幣"
 
@@ -731,7 +745,7 @@ msgstr "總餘額"
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "交易已成功發送到全節點並包含在記憶池中。"
 
-#: src/components/WalletHistory.tsx:480
+#: src/components/WalletHistory.tsx:484
 msgid "Transactions"
 msgstr "交易"
 
@@ -807,4 +821,3 @@ msgstr "你擁有來自正確的授權提供者的這個可驗證證件"
 #: src/components/WalletImport.tsx:73
 msgid "Your pasted list does not include {mnemonicWordCount} valid mnemonic words."
 msgstr "您貼上的列表中不包含 {mnemonicWordCount} 個有效的助記詞詞語。"
-
