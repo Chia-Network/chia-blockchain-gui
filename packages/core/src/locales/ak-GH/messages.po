@@ -8,7 +8,7 @@ msgstr ""
 "Language: ak_GH\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-12-22 00:05\n"
+"PO-Revision-Date: 2025-07-20 00:06\n"
 "Last-Translator: \n"
 "Language-Team: Akan\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -50,7 +50,7 @@ msgstr ""
 msgid "Amount"
 msgstr ""
 
-#: src/components/Settings/SettingsApp.tsx:94
+#: src/components/Settings/SettingsApp.tsx:90
 msgid "Appearance"
 msgstr ""
 
@@ -70,7 +70,7 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: src/components/Settings/SettingsApp.tsx:140
+#: src/components/Settings/SettingsApp.tsx:136
 msgid "Check for updates"
 msgstr ""
 
@@ -82,7 +82,7 @@ msgstr ""
 msgid "Chia {latestVersion} is currently the latest version available."
 msgstr ""
 
-#: src/components/Settings/SettingsApp.tsx:126
+#: src/components/Settings/SettingsApp.tsx:122
 msgid "Chia Application Version:"
 msgstr ""
 
@@ -120,12 +120,12 @@ msgstr ""
 msgid "Create New"
 msgstr ""
 
-#: src/components/Settings/SettingsApp.tsx:111
+#: src/components/Settings/SettingsApp.tsx:107
 msgid "Dark"
 msgstr ""
 
 #: src/screens/SelectKey/SelectKey.tsx:128
-#: src/screens/SelectKey/SelectKeyItem.tsx:114
+#: src/screens/SelectKey/SelectKeyItem.tsx:113
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:183
 msgid "Delete"
 msgstr ""
@@ -146,7 +146,7 @@ msgstr ""
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
 msgstr ""
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:106
+#: src/screens/SelectKey/SelectKeyItem.tsx:105
 msgid "Details"
 msgstr ""
 
@@ -180,7 +180,7 @@ msgstr ""
 msgid "Esc"
 msgstr ""
 
-#: src/components/LayoutMain/LayoutFooter.tsx:49
+#: src/components/LayoutMain/LayoutFooter.tsx:47
 msgid "FAQ"
 msgstr ""
 
@@ -192,7 +192,7 @@ msgstr ""
 msgid "Farmer public key:"
 msgstr ""
 
-#: src/components/Settings/SettingsApp.tsx:79
+#: src/components/Settings/SettingsApp.tsx:75
 msgid "Farming"
 msgstr ""
 
@@ -206,7 +206,7 @@ msgstr ""
 msgid "Fingerprint does not match"
 msgstr ""
 
-#: src/components/Settings/SettingsApp.tsx:152
+#: src/components/Settings/SettingsApp.tsx:148
 msgid "Frequently Asked Questions"
 msgstr ""
 
@@ -214,7 +214,7 @@ msgstr ""
 msgid "Go To Download Page"
 msgstr ""
 
-#: src/components/Settings/SettingsApp.tsx:148
+#: src/components/Settings/SettingsApp.tsx:144
 msgid "Help"
 msgstr ""
 
@@ -243,7 +243,7 @@ msgstr ""
 msgid "Incorrect value"
 msgstr ""
 
-#: src/components/Settings/SettingsApp.tsx:118
+#: src/components/Settings/SettingsApp.tsx:114
 msgid "Language"
 msgstr ""
 
@@ -251,7 +251,7 @@ msgstr ""
 msgid "Latest Version:"
 msgstr ""
 
-#: src/components/Settings/SettingsApp.tsx:103
+#: src/components/Settings/SettingsApp.tsx:99
 msgid "Light"
 msgstr ""
 
@@ -296,7 +296,7 @@ msgstr ""
 msgid "Migration required"
 msgstr ""
 
-#: src/components/Settings/SettingsApp.tsx:70
+#: src/components/Settings/SettingsApp.tsx:66
 msgid "Mode"
 msgstr ""
 
@@ -379,7 +379,7 @@ msgstr ""
 msgid "Remove Icon"
 msgstr ""
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:98
+#: src/screens/SelectKey/SelectKeyItem.tsx:97
 msgid "Rename"
 msgstr ""
 
@@ -421,8 +421,8 @@ msgstr ""
 msgid "Select..."
 msgstr ""
 
-#: src/components/LayoutMain/LayoutFooter.tsx:52
-#: src/components/Settings/SettingsApp.tsx:155
+#: src/components/LayoutMain/LayoutFooter.tsx:50
+#: src/components/Settings/SettingsApp.tsx:151
 msgid "Send Feedback"
 msgstr ""
 
@@ -530,12 +530,12 @@ msgid "Value seems high"
 msgstr ""
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:233
-#: src/components/Settings/SettingsApp.tsx:87
+#: src/components/Settings/SettingsApp.tsx:83
 msgid "Wallet"
 msgstr ""
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:63
-#: src/screens/SelectKey/SelectKeyItem.tsx:234
+#: src/screens/SelectKey/SelectKeyItem.tsx:233
 msgid "Wallet {0}"
 msgstr ""
 
