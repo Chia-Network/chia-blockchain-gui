@@ -50,8 +50,7 @@ function SandboxedIframe(props: SandboxIframeProps) {
               base-uri   'none';
               connect-src 'none';
               font-src   'none';
-              frame-src  'none';   
-              frame-ancestors 'none';
+              frame-src  'none';
               img-src cache:;
               media-src cache:;
               object-src 'none';
@@ -69,12 +68,17 @@ function SandboxedIframe(props: SandboxIframeProps) {
     return iframeContent;
   }, [children]);
 
+  // generate a unique key when content changes - electron do not rerender iframe when srcDocHTML changes
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- We want to regenerate key when srcDocHTML changes
+  const uniqueKey = useMemo(() => crypto.randomUUID(), [srcDocHTML]);
+
   const isVisible = hideUntilLoaded ? loaded : true;
 
   return (
     <StyledIframe
       sandbox=""
       srcDoc={srcDocHTML}
+      key={uniqueKey}
       height={height}
       width={width}
       frameBorder="0"
