@@ -1,4 +1,4 @@
-import { toBech32m, WalletType } from '@chia-network/api';
+import { WalletType, removePrefix } from '@chia-network/api';
 import { mojoToChia, mojoToCAT } from '@chia-network/core';
 import BigNumber from 'bignumber.js';
 
@@ -6,10 +6,13 @@ import OfferBuilderData from '../@types/OfferBuilderData';
 import createDefaultValues from '../components/offers2/utils/createDefaultValues';
 import { AssetIdMapEntry } from '../hooks/useAssetIdName';
 
+import { launcherIdToNFTId } from './nfts';
+
 export default function createOfferForIdsToOfferBuilderData(
   walletIdsAndAmounts: Record<string, number>,
   lookupByWalletId: (walletId: string) => AssetIdMapEntry | undefined,
   fee?: string,
+  driverDict?: Record<string, { type: 'CAT'; tail: string } | { type: 'singleton'; launcherId: string }>,
 ): OfferBuilderData {
   const offerBuilderData: OfferBuilderData = createDefaultValues();
   Object.entries(walletIdsAndAmounts).forEach(([walletOrAssetId, amount]) => {
@@ -40,8 +43,35 @@ export default function createOfferForIdsToOfferBuilderData(
             break;
         }
       } else {
+        if (driverDict) {
+          const driver = driverDict[walletOrAssetId];
+          if (driver) {
+            switch (driver.type) {
+              case 'CAT':
+                section.tokens.push({
+                  amount: mojoToCAT(numericValue.abs()).toFixed(),
+                  assetId: removePrefix(driver.tail, '0x'),
+                });
+                return;
+              case 'singleton': {
+                const nftId = launcherIdToNFTId(driver.launcherId);
+                section.nfts.push({ nftId });
+                return;
+              }
+              default:
+                break;
+            }
+          }
+        }
+        // If the asset is still unknown, treat it as a CAT
+        section.tokens.push({
+          amount: mojoToCAT(numericValue.abs()).toFixed(),
+          assetId: removePrefix(walletOrAssetId, '0x'),
+        });
+        /*
         const nftId = toBech32m(walletOrAssetId, 'nft');
         section.nfts.push({ nftId });
+        */
       }
     } catch (e) {
       console.error(e);
