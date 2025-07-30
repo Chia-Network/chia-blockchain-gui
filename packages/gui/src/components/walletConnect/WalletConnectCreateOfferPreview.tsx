@@ -20,14 +20,15 @@ export default function WalletConnectCreateOfferPreview(props: WalletConnectOffe
   const openDialog = useOpenDialog();
 
   const fee = parseFee(values.fee);
+  const driverDict = values.driverDict as Record<string, any> | undefined;
 
   const offerBuilderData: OfferBuilderData | undefined = useMemo(() => {
     if (isLoadingAssetIdNames) {
       return undefined;
     }
 
-    return createOfferForIdsToOfferBuilderData(value, lookupByWalletId, fee);
-  }, [value, lookupByWalletId, isLoadingAssetIdNames, fee]);
+    return createOfferForIdsToOfferBuilderData(value, lookupByWalletId, fee, driverDict);
+  }, [value, lookupByWalletId, isLoadingAssetIdNames, fee, driverDict]);
 
   async function handleShowPreview() {
     const offerBuilderDataResult = await openDialog(<OfferBuilderViewerDialog offerBuilderData={offerBuilderData} />);
