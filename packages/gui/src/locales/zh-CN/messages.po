@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-07-20 00:06\n"
+"PO-Revision-Date: 2025-08-03 00:06\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -454,12 +454,9 @@ msgstr "为以下命令保存偏好吗？"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:408
-msgid ""
-"These commands will be executed without confirmation in the future:\n"
-"\n"
+msgid "These commands will be executed without confirmation in the future:\n\n"
 " {commands}"
-msgstr ""
-"这些命令将无需确认即可执行：\n"
+msgstr "这些命令将无需确认即可执行：\n"
 "{commands}"
 
 #. js-lingui-explicit-id
@@ -3190,20 +3187,16 @@ msgstr "插入"
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"可用资金不足，无法接受报价。请确保您的\n"
+msgstr "可用资金不足，无法接受报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
 #: src/components/offers/OfferEditor.tsx:127
 #: src/components/offers2/CreateOfferBuilder.tsx:161
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"可用的资金不足，无法创建报价。请确保您的\n"
+msgstr "可用的资金不足，无法创建报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
 #: src/components/farm/PoolingHealth.tsx:302
@@ -5263,7 +5256,7 @@ msgstr "反转"
 #: src/components/walletConnect/WalletConnectCATAmount.tsx:30
 #: src/util/resolveOfferInfo.tsx:66
 msgid "Revocable"
-msgstr ""
+msgstr "可销毁"
 
 #: src/components/vcs/VCCard.tsx:209
 #: src/components/vcs/VCCard.tsx:311
@@ -6164,7 +6157,7 @@ msgstr "这个表格里面显示的是你的农场尝试过的区块挑战. <0>�
 #: src/components/walletConnect/WalletConnectCATAmount.tsx:32
 #: src/util/resolveOfferInfo.tsx:68
 msgid "This token can be revoked by the issuer"
-msgstr ""
+msgstr "此代币可由发行方销毁"
 
 #: src/hooks/useOpenUnsafeLink.tsx:24
 #~ msgid "This type of the URL is not allowed to open for security reasons."
@@ -7108,3 +7101,4 @@ msgstr "可用余额必须大于1 mojo才能创建个人资料"
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "需确保钱包正在运行才能完成自动确认。"
+

@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-07-20 00:06\n"
+"PO-Revision-Date: 2025-08-10 00:05\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -454,13 +454,9 @@ msgstr "Haluatko tallentaa asetukset seuraaville komennoille?"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:408
-msgid ""
-"These commands will be executed without confirmation in the future:\n"
-"\n"
+msgid "These commands will be executed without confirmation in the future:\n\n"
 " {commands}"
-msgstr ""
-"Nämä komennot suoritetaan ilman vahvistusta tulevaisuudessa:\n"
-"\n"
+msgstr "Nämä komennot suoritetaan ilman vahvistusta tulevaisuudessa:\n\n"
 " {commands}"
 
 #. js-lingui-explicit-id
@@ -3191,20 +3187,16 @@ msgstr "Lisää"
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"Riittämätön määrä varoja tarjouksen hyväksymiseen. Varmista, että\n"
+msgstr "Riittämätön määrä varoja tarjouksen hyväksymiseen. Varmista, että\n"
 "käytettävissä oleva saldo riittää tarjouksen määrän kattamiseen."
 
 #: src/components/offers/OfferEditor.tsx:127
 #: src/components/offers2/CreateOfferBuilder.tsx:161
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"Riittämätön määrä varoja tarjouksen luomiseen. Varmista, että\n"
+msgstr "Riittämätön määrä varoja tarjouksen luomiseen. Varmista, että\n"
 "käytettävissä oleva saldo riittää tarjouksen määrän kattamiseen."
 
 #: src/components/farm/PoolingHealth.tsx:302
@@ -5264,7 +5256,7 @@ msgstr "Peruuta"
 #: src/components/walletConnect/WalletConnectCATAmount.tsx:30
 #: src/util/resolveOfferInfo.tsx:66
 msgid "Revocable"
-msgstr ""
+msgstr "Peruutettava"
 
 #: src/components/vcs/VCCard.tsx:209
 #: src/components/vcs/VCCard.tsx:311
@@ -6165,7 +6157,7 @@ msgstr "Taulukko näyttää farmisi viimeksi yrittämän lohkohaasteen ajankohda
 #: src/components/walletConnect/WalletConnectCATAmount.tsx:32
 #: src/util/resolveOfferInfo.tsx:68
 msgid "This token can be revoked by the issuer"
-msgstr ""
+msgstr "Liikkeeseenlaskija voi peruuttaa tämän tokenin"
 
 #: src/hooks/useOpenUnsafeLink.tsx:24
 #~ msgid "This type of the URL is not allowed to open for security reasons."
@@ -7109,3 +7101,4 @@ msgstr "Käytettävissä olevan saldon on oltava suurempi kuin 1 mojo luodaksesi
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "Lompakkosi on oltava käynnissä, jotta automaattinen lunastaminen toimii."
+
