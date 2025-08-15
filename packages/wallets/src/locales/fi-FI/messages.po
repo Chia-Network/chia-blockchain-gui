@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-01-12 00:05\n"
+"PO-Revision-Date: 2025-08-10 00:05\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -28,7 +28,7 @@ msgstr "- Memo auttaa vastaanottajan puolta tunnistamaan maksun.<0/>- Kaikki mem
 
 #: src/components/WalletSend.tsx:294
 msgid "- Set a time frame which allows you claw back (revoke) the transaction.<0/>- Recipient of the transaction can only claim the funds once that time frame expires."
-msgstr "- Aseta aikaikuna, jonka aikana voit peruuttaa transaktion. 0/>- Transaktion vastaanottaja voi kuitata varat vasta kun aikaikkuna on umpeutunut."
+msgstr "- Aseta aikaikkuna, jonka aikana voit takaisinvetää (peruuttaa) transaktion. <0/>- Transaktion vastaanottaja voi kuitata varat vasta kun aikaikkuna on umpeutunut."
 
 #: src/components/WalletHistory.tsx:125
 msgid "+"
@@ -48,7 +48,7 @@ msgstr "Lisää peruttavissa oleva transaktio-optio"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:61
 #: src/components/cat/WalletCATCreateSimple.tsx:68
-#: src/components/WalletsManageTokens.tsx:154
+#: src/components/WalletsManageTokens.tsx:155
 msgid "Add Token"
 msgstr "Lisää Token"
 
@@ -94,7 +94,7 @@ msgstr "Hyväksy vireillä olevat tapahtumat"
 msgid "Are you sure you want to delete unconfirmed transactions?"
 msgstr "Haluatko varmasti poistaa nämä vahvistamattomat tapahtumat?"
 
-#: src/components/WalletHistory.tsx:138
+#: src/components/WalletHistory.tsx:142
 msgid "Asset"
 msgstr "Assetti"
 
@@ -169,7 +169,7 @@ msgstr "Lunastetaan..."
 msgid "Classic version of Stably USDS as held by Prime Trust"
 msgstr "Classic USDS Prime Trustin hallinnassa"
 
-#: src/components/WalletHistory.tsx:432
+#: src/components/WalletHistory.tsx:436
 msgid "Claw back expiration"
 msgstr "Takaisinvedon vanhentuminen"
 
@@ -219,11 +219,11 @@ msgstr "Sulje"
 msgid "Confirmation"
 msgstr "Vahvista"
 
-#: src/components/WalletHistory.tsx:207
+#: src/components/WalletHistory.tsx:211
 msgid "Confirmed"
 msgstr "Vahvistettu"
 
-#: src/components/WalletHistory.tsx:421
+#: src/components/WalletHistory.tsx:425
 msgid "Confirmed at Height"
 msgstr "Vahvistettu korkeudessa"
 
@@ -253,7 +253,7 @@ msgstr "Luo Tarjous"
 msgid "Create Transaction"
 msgstr "Luo Transaktio"
 
-#: src/components/WalletHistory.tsx:230
+#: src/components/WalletHistory.tsx:234
 msgid "Creation Date"
 msgstr "Luontipäivämäärä"
 
@@ -311,7 +311,7 @@ msgid "Farm"
 msgstr "Farmi"
 
 #: src/components/cat/WalletCATSend.tsx:228
-#: src/components/WalletHistory.tsx:244
+#: src/components/WalletHistory.tsx:248
 #: src/components/WalletSend.tsx:254
 msgid "Fee"
 msgstr "Veloitus"
@@ -358,7 +358,7 @@ msgstr "IP-osoite"
 msgid "List of connections is empty"
 msgstr "Yhteyksien luettelo on tyhjä"
 
-#: src/components/WalletsManageTokens.tsx:131
+#: src/components/WalletsManageTokens.tsx:132
 msgid "Manage token list"
 msgstr "Hallitse tokenilistaa"
 
@@ -367,7 +367,7 @@ msgstr "Hallitse tokenilistaa"
 msgid "Memo"
 msgstr "Muistio"
 
-#: src/components/WalletHistory.tsx:426
+#: src/components/WalletHistory.tsx:430
 msgid "Memos"
 msgstr "Muistiot"
 
@@ -416,7 +416,7 @@ msgstr "NFT-Lompakko"
 msgid "Nickname"
 msgstr "Alias"
 
-#: src/components/WalletHistory.tsx:503
+#: src/components/WalletHistory.tsx:507
 msgid "No previous transactions"
 msgstr "Ei aiempia transaktioita"
 
@@ -424,8 +424,8 @@ msgstr "Ei aiempia transaktioita"
 msgid "Node ID"
 msgstr "Noodin tunnus"
 
-#: src/components/WalletHistory.tsx:415
-#: src/components/WalletHistory.tsx:422
+#: src/components/WalletHistory.tsx:419
+#: src/components/WalletHistory.tsx:426
 msgid "Not Available"
 msgstr "Ei Saatavilla"
 
@@ -433,7 +433,7 @@ msgstr "Ei Saatavilla"
 msgid "Not Synced"
 msgstr "Ei Synkronoitu"
 
-#: src/components/WalletHistory.tsx:216
+#: src/components/WalletHistory.tsx:220
 msgid "Offer Accepted"
 msgstr "Tarjous Hyväksytty"
 
@@ -462,7 +462,7 @@ msgstr "Liitä muistisanat ({0} sanaa)"
 msgid "Payments approved"
 msgstr "Hyväksytyt maksut"
 
-#: src/components/WalletHistory.tsx:209
+#: src/components/WalletHistory.tsx:213
 msgid "Pending"
 msgstr "Odottaa"
 
@@ -587,9 +587,14 @@ msgstr "Uudelleennimeä Lompakko"
 msgid "Restricted CAT"
 msgstr "Rajoitettu CAT"
 
-#: src/components/WalletHistory.tsx:215
+#: src/components/WalletHistory.tsx:219
 msgid "Retire"
 msgstr "Poista vanhentunut"
+
+#: src/components/WalletName.tsx:35
+#: src/components/WalletsSidebar.tsx:99
+msgid "Revocable"
+msgstr "Peruutettava"
 
 #: src/constants/WalletName.ts:8
 msgid "RL Wallet"
@@ -626,7 +631,7 @@ msgstr "Saldo Käytettävissä"
 msgid "Standard Wallet"
 msgstr "Vakiolompakko"
 
-#: src/components/WalletHistory.tsx:221
+#: src/components/WalletHistory.tsx:225
 msgid "Status"
 msgstr "Tila"
 
@@ -676,7 +681,7 @@ msgstr "Transaktio odottaa mempooliin sisällyttämistä, koska se on ristiriida
 msgid "This access token is verified"
 msgstr "Tämä käyttöoikeustoken on vahvistettu"
 
-#: src/components/WalletHistory.tsx:167
+#: src/components/WalletHistory.tsx:171
 msgid "This is not a valid address for sending funds to"
 msgstr "Tämä ei ole kelvollinen osoite varojen lähettämiseen"
 
@@ -700,6 +705,11 @@ msgstr "Yksityisten avaimiesi hallinoimien Chiojen kokonaissumma lohkoketjussa. 
 msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
 msgstr "Nykyinen saldo + avoin saldo, eli tuleva saldo avointen transaktioiden jälkeen."
 
+#: src/components/WalletName.tsx:37
+#: src/components/WalletsSidebar.tsx:101
+msgid "This token can be revoked by the issuer"
+msgstr "Liikkeeseenlaskija voi peruuttaa tämän tokenin"
+
 #: src/components/ClawbackClaimTransactionDialog.tsx:201
 msgid "This transaction will be automatically claimed with a fee:"
 msgstr "Tämä tapahtuma lunastetaan automaattisesti maksulla:"
@@ -709,7 +719,7 @@ msgstr "Tämä tapahtuma lunastetaan automaattisesti maksulla:"
 #~ msgstr "To"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:183
-#: src/components/WalletHistory.tsx:193
+#: src/components/WalletHistory.tsx:197
 msgid "To:"
 msgstr "Vastaanottaja:"
 
@@ -721,7 +731,7 @@ msgstr "Tokenilla on tyhjä assettitunnus"
 msgid "Token has empty name"
 msgstr "Tokenilla on tyhjä nimi"
 
-#: src/components/WalletsSidebar.tsx:104
+#: src/components/WalletsSidebar.tsx:122
 msgid "Tokens"
 msgstr "Tokenit"
 
@@ -733,7 +743,7 @@ msgstr "Kokonaissaldo"
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "Transaktio on onnistuneesti lähetetty noodille ja sisällytetty mempooliin."
 
-#: src/components/WalletHistory.tsx:480
+#: src/components/WalletHistory.tsx:484
 msgid "Transactions"
 msgstr "Transaktiot"
 

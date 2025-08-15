@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-01-12 00:05\n"
+"PO-Revision-Date: 2025-07-27 00:05\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -48,7 +48,7 @@ msgstr ""
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:61
 #: src/components/cat/WalletCATCreateSimple.tsx:68
-#: src/components/WalletsManageTokens.tsx:154
+#: src/components/WalletsManageTokens.tsx:155
 msgid "Add Token"
 msgstr "Lägg till token"
 
@@ -94,7 +94,7 @@ msgstr "Godkänn väntande transaktioner"
 msgid "Are you sure you want to delete unconfirmed transactions?"
 msgstr "Är du säker på att du vill ta bort obekräftade transaktioner?"
 
-#: src/components/WalletHistory.tsx:138
+#: src/components/WalletHistory.tsx:142
 msgid "Asset"
 msgstr "Tillgång"
 
@@ -169,7 +169,7 @@ msgstr ""
 msgid "Classic version of Stably USDS as held by Prime Trust"
 msgstr "Klassisk version av Stably USDS som förvaltas av Prime Trust"
 
-#: src/components/WalletHistory.tsx:432
+#: src/components/WalletHistory.tsx:436
 msgid "Claw back expiration"
 msgstr ""
 
@@ -219,11 +219,11 @@ msgstr "Stäng"
 msgid "Confirmation"
 msgstr "Bekräfta"
 
-#: src/components/WalletHistory.tsx:207
+#: src/components/WalletHistory.tsx:211
 msgid "Confirmed"
 msgstr "Bekräftad"
 
-#: src/components/WalletHistory.tsx:421
+#: src/components/WalletHistory.tsx:425
 msgid "Confirmed at Height"
 msgstr "Bekräftad vid höjd"
 
@@ -253,7 +253,7 @@ msgstr "Skapa ett erbjudande"
 msgid "Create Transaction"
 msgstr "Skapa transaktion"
 
-#: src/components/WalletHistory.tsx:230
+#: src/components/WalletHistory.tsx:234
 msgid "Creation Date"
 msgstr "Skapat (datum)"
 
@@ -311,7 +311,7 @@ msgid "Farm"
 msgstr "Odling"
 
 #: src/components/cat/WalletCATSend.tsx:228
-#: src/components/WalletHistory.tsx:244
+#: src/components/WalletHistory.tsx:248
 #: src/components/WalletSend.tsx:254
 msgid "Fee"
 msgstr "Avgift"
@@ -358,7 +358,7 @@ msgstr "IP-adress"
 msgid "List of connections is empty"
 msgstr "Lista över anslutningar är tom"
 
-#: src/components/WalletsManageTokens.tsx:131
+#: src/components/WalletsManageTokens.tsx:132
 msgid "Manage token list"
 msgstr "Hantera tokenlista"
 
@@ -367,7 +367,7 @@ msgstr "Hantera tokenlista"
 msgid "Memo"
 msgstr "Meddelande"
 
-#: src/components/WalletHistory.tsx:426
+#: src/components/WalletHistory.tsx:430
 msgid "Memos"
 msgstr "Meddelanden"
 
@@ -416,7 +416,7 @@ msgstr "NFT-plånbok"
 msgid "Nickname"
 msgstr "Smeknamn"
 
-#: src/components/WalletHistory.tsx:503
+#: src/components/WalletHistory.tsx:507
 msgid "No previous transactions"
 msgstr "Inga tidigare transaktioner"
 
@@ -424,8 +424,8 @@ msgstr "Inga tidigare transaktioner"
 msgid "Node ID"
 msgstr "Node-ID"
 
-#: src/components/WalletHistory.tsx:415
-#: src/components/WalletHistory.tsx:422
+#: src/components/WalletHistory.tsx:419
+#: src/components/WalletHistory.tsx:426
 msgid "Not Available"
 msgstr "Inte tillgänglig"
 
@@ -433,7 +433,7 @@ msgstr "Inte tillgänglig"
 msgid "Not Synced"
 msgstr "Ej synkad"
 
-#: src/components/WalletHistory.tsx:216
+#: src/components/WalletHistory.tsx:220
 msgid "Offer Accepted"
 msgstr "Erbjudandet accepterat"
 
@@ -462,7 +462,7 @@ msgstr "Klistra in minnesfras ({0} ord)"
 msgid "Payments approved"
 msgstr "Betalningar godkända"
 
-#: src/components/WalletHistory.tsx:209
+#: src/components/WalletHistory.tsx:213
 msgid "Pending"
 msgstr "Väntande"
 
@@ -587,9 +587,14 @@ msgstr "Byt namn på plånboken"
 msgid "Restricted CAT"
 msgstr "Begränsad CAT"
 
-#: src/components/WalletHistory.tsx:215
+#: src/components/WalletHistory.tsx:219
 msgid "Retire"
 msgstr "Dra tillbaka"
+
+#: src/components/WalletName.tsx:35
+#: src/components/WalletsSidebar.tsx:99
+msgid "Revocable"
+msgstr ""
 
 #: src/constants/WalletName.ts:8
 msgid "RL Wallet"
@@ -626,7 +631,7 @@ msgstr "Spenderbart saldo"
 msgid "Standard Wallet"
 msgstr "Standardplånbok"
 
-#: src/components/WalletHistory.tsx:221
+#: src/components/WalletHistory.tsx:225
 msgid "Status"
 msgstr "Status"
 
@@ -676,7 +681,7 @@ msgstr ""
 msgid "This access token is verified"
 msgstr "Denna åtkomsttoken är verifierad"
 
-#: src/components/WalletHistory.tsx:167
+#: src/components/WalletHistory.tsx:171
 msgid "This is not a valid address for sending funds to"
 msgstr "Detta är inte en giltig adress för att skicka betalning till"
 
@@ -700,6 +705,11 @@ msgstr "Detta är den sammanlagda mängden chia i blockkedjan vid det aktuella t
 msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
 msgstr "Detta är totalt saldo + väntande saldo: det är vad ditt saldo kommer att vara när alla väntande transaktioner har bekräftats."
 
+#: src/components/WalletName.tsx:37
+#: src/components/WalletsSidebar.tsx:101
+msgid "This token can be revoked by the issuer"
+msgstr ""
+
 #: src/components/ClawbackClaimTransactionDialog.tsx:201
 msgid "This transaction will be automatically claimed with a fee:"
 msgstr ""
@@ -709,7 +719,7 @@ msgstr ""
 #~ msgstr "To"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:183
-#: src/components/WalletHistory.tsx:193
+#: src/components/WalletHistory.tsx:197
 msgid "To:"
 msgstr "Till:"
 
@@ -721,7 +731,7 @@ msgstr "Token har ett tomt tillgångs-id"
 msgid "Token has empty name"
 msgstr "Token har ett tomt namn"
 
-#: src/components/WalletsSidebar.tsx:104
+#: src/components/WalletsSidebar.tsx:122
 msgid "Tokens"
 msgstr "Token"
 
@@ -733,7 +743,7 @@ msgstr "Totalt saldo"
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "Transaktionen har skickats till en fullständig nod och inkluderats i mempoolen."
 
-#: src/components/WalletHistory.tsx:480
+#: src/components/WalletHistory.tsx:484
 msgid "Transactions"
 msgstr "Transaktioner"
 

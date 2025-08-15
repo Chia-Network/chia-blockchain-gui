@@ -8,7 +8,7 @@ msgstr ""
 "Language: en_US\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-03-16 00:05\n"
+"PO-Revision-Date: 2025-07-27 00:05\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -48,7 +48,7 @@ msgstr "Add option to claw back transaction"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:61
 #: src/components/cat/WalletCATCreateSimple.tsx:68
-#: src/components/WalletsManageTokens.tsx:154
+#: src/components/WalletsManageTokens.tsx:155
 msgid "Add Token"
 msgstr "Add Token"
 
@@ -94,7 +94,7 @@ msgstr "Approve pending transactions"
 msgid "Are you sure you want to delete unconfirmed transactions?"
 msgstr "Are you sure you want to delete unconfirmed transactions?"
 
-#: src/components/WalletHistory.tsx:138
+#: src/components/WalletHistory.tsx:142
 msgid "Asset"
 msgstr "Asset"
 
@@ -169,7 +169,7 @@ msgstr "Claiming..."
 msgid "Classic version of Stably USDS as held by Prime Trust"
 msgstr "Classic version of Stably USDS as held by Prime Trust"
 
-#: src/components/WalletHistory.tsx:432
+#: src/components/WalletHistory.tsx:436
 msgid "Claw back expiration"
 msgstr "Claw back expiration"
 
@@ -219,11 +219,11 @@ msgstr "Close"
 msgid "Confirmation"
 msgstr "Confirmation"
 
-#: src/components/WalletHistory.tsx:207
+#: src/components/WalletHistory.tsx:211
 msgid "Confirmed"
 msgstr "Confirmed"
 
-#: src/components/WalletHistory.tsx:421
+#: src/components/WalletHistory.tsx:425
 msgid "Confirmed at Height"
 msgstr "Confirmed at Height"
 
@@ -253,7 +253,7 @@ msgstr "Create Offer"
 msgid "Create Transaction"
 msgstr "Create Transaction"
 
-#: src/components/WalletHistory.tsx:230
+#: src/components/WalletHistory.tsx:234
 msgid "Creation Date"
 msgstr "Creation Date"
 
@@ -311,7 +311,7 @@ msgid "Farm"
 msgstr "Farm"
 
 #: src/components/cat/WalletCATSend.tsx:228
-#: src/components/WalletHistory.tsx:244
+#: src/components/WalletHistory.tsx:248
 #: src/components/WalletSend.tsx:254
 msgid "Fee"
 msgstr "Fee"
@@ -360,7 +360,7 @@ msgstr "IP address"
 msgid "List of connections is empty"
 msgstr "List of connections is empty"
 
-#: src/components/WalletsManageTokens.tsx:131
+#: src/components/WalletsManageTokens.tsx:132
 msgid "Manage token list"
 msgstr "Manage token list"
 
@@ -369,7 +369,7 @@ msgstr "Manage token list"
 msgid "Memo"
 msgstr "Memo"
 
-#: src/components/WalletHistory.tsx:426
+#: src/components/WalletHistory.tsx:430
 msgid "Memos"
 msgstr "Memos"
 
@@ -418,7 +418,7 @@ msgstr "NFT Wallet"
 msgid "Nickname"
 msgstr "Nickname"
 
-#: src/components/WalletHistory.tsx:503
+#: src/components/WalletHistory.tsx:507
 msgid "No previous transactions"
 msgstr "No previous transactions"
 
@@ -426,8 +426,8 @@ msgstr "No previous transactions"
 msgid "Node ID"
 msgstr "Node ID"
 
-#: src/components/WalletHistory.tsx:415
-#: src/components/WalletHistory.tsx:422
+#: src/components/WalletHistory.tsx:419
+#: src/components/WalletHistory.tsx:426
 msgid "Not Available"
 msgstr "Not Available"
 
@@ -435,7 +435,7 @@ msgstr "Not Available"
 msgid "Not Synced"
 msgstr "Not Synced"
 
-#: src/components/WalletHistory.tsx:216
+#: src/components/WalletHistory.tsx:220
 msgid "Offer Accepted"
 msgstr "Offer Accepted"
 
@@ -464,7 +464,7 @@ msgstr "Paste Mnemonic ({0} words)"
 msgid "Payments approved"
 msgstr "Payments approved"
 
-#: src/components/WalletHistory.tsx:209
+#: src/components/WalletHistory.tsx:213
 msgid "Pending"
 msgstr "Pending"
 
@@ -589,9 +589,14 @@ msgstr "Rename Wallet"
 msgid "Restricted CAT"
 msgstr "Restricted CAT"
 
-#: src/components/WalletHistory.tsx:215
+#: src/components/WalletHistory.tsx:219
 msgid "Retire"
 msgstr "Retire"
+
+#: src/components/WalletName.tsx:35
+#: src/components/WalletsSidebar.tsx:99
+msgid "Revocable"
+msgstr ""
 
 #: src/constants/WalletName.ts:8
 msgid "RL Wallet"
@@ -628,7 +633,7 @@ msgstr "Spendable Balance"
 msgid "Standard Wallet"
 msgstr "Standard Wallet"
 
-#: src/components/WalletHistory.tsx:221
+#: src/components/WalletHistory.tsx:225
 msgid "Status"
 msgstr "Status"
 
@@ -684,7 +689,7 @@ msgstr ""
 msgid "This access token is verified"
 msgstr "This access token is verified"
 
-#: src/components/WalletHistory.tsx:167
+#: src/components/WalletHistory.tsx:171
 msgid "This is not a valid address for sending funds to"
 msgstr "This is not a valid address for sending funds to"
 
@@ -708,6 +713,11 @@ msgstr "This is the total amount of chia in the blockchain at the current peak b
 msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
 msgstr "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
 
+#: src/components/WalletName.tsx:37
+#: src/components/WalletsSidebar.tsx:101
+msgid "This token can be revoked by the issuer"
+msgstr ""
+
 #: src/components/ClawbackClaimTransactionDialog.tsx:201
 msgid "This transaction will be automatically claimed with a fee:"
 msgstr "This transaction will be automatically claimed with a fee:"
@@ -717,7 +727,7 @@ msgstr "This transaction will be automatically claimed with a fee:"
 #~ msgstr "To"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:183
-#: src/components/WalletHistory.tsx:193
+#: src/components/WalletHistory.tsx:197
 msgid "To:"
 msgstr "To:"
 
@@ -729,7 +739,7 @@ msgstr "Token has empty asset id"
 msgid "Token has empty name"
 msgstr "Token has empty name"
 
-#: src/components/WalletsSidebar.tsx:104
+#: src/components/WalletsSidebar.tsx:122
 msgid "Tokens"
 msgstr "Tokens"
 
@@ -741,7 +751,7 @@ msgstr "Total Balance"
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "Transaction has successfully been sent to a full node and included in the mempool."
 
-#: src/components/WalletHistory.tsx:480
+#: src/components/WalletHistory.tsx:484
 msgid "Transactions"
 msgstr "Transactions"
 
