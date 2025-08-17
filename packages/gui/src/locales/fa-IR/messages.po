@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-07-20 00:06\n"
+"PO-Revision-Date: 2025-08-10 00:05\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -46,27 +46,27 @@ msgstr "از ان اف تی ها را به مالک جدیدی انتقال ده
 #. js-lingui-explicit-id
 #: src/electron/dialogs/About/About.tsx:72
 msgid "Report an issue"
-msgstr ""
+msgstr "گزارش یک خطا"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:34
 msgid "Confirm Remove Plot Directory"
-msgstr ""
+msgstr "تایید برداشتن پوشه پلات"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:36
 msgid "Confirm Send Transaction"
-msgstr ""
+msgstr "تایید ارسال تراکنش"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:38
 msgid "Confirm Delete Plot"
-msgstr ""
+msgstr "تایید حذف پلات"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:40
 msgid "Confirm Add Plot Directory"
-msgstr ""
+msgstr "تایید اضافه کردن پوشه پلات"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:43
@@ -81,48 +81,48 @@ msgstr "تایید قطع ارتباط"
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:48
 msgid "Confirm Sign Message"
-msgstr ""
+msgstr "تایید امضای پیام"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:50
 msgid "Confirm Create New Wallet"
-msgstr ""
+msgstr "تایید ایجاد کیف پول جدید"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:52
 msgid "Confirm Set Auto Claim"
-msgstr ""
+msgstr "تأیید تنظیم درخواست خودکار"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:54
 #: src/electron/dialogs/Confirm/Confirm.tsx:64
 msgid "Confirm Set Payout Instructions"
-msgstr ""
+msgstr "تأیید دستورالعمل‌های پرداخت"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:56
 msgid "Confirm Move NFT to DID"
-msgstr ""
+msgstr "تایید انتقال ان اف تی به شناسه غیرمتمرکز"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:58
 msgid "Confirm Move NFTs to DID"
-msgstr ""
+msgstr "تایید انتقال ان اف تی ها به شناسه غیرمتمرکز"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:60
 msgid "Confirm Create Offer"
-msgstr ""
+msgstr "تایید ایجاد پیشنهاد"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:62
 msgid "Confirm Open Connection"
-msgstr ""
+msgstr "تأیید اتصال باز"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:66
 msgid "Confirm Delete Wallet"
-msgstr ""
+msgstr "تایید حذف کیف پول"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:68
@@ -133,32 +133,32 @@ msgstr "تایید"
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:75
 msgid "Please carefully review and confirm this blockchain transaction."
-msgstr ""
+msgstr "لطفاً تراکنش این بلاکچین را با دقت بررسی و تأیید کنید."
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:77
 msgid "Please carefully review and confirm this CAT spend."
-msgstr ""
+msgstr "لطفاً انتقال این توکن را با دقت بررسی و تأیید کنید."
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:80
 msgid "Please carefully review and confirm this NFT transfer."
-msgstr ""
+msgstr "لطفاً انتقال این ان اف تی را با دقت بررسی و تأیید کنید."
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:83
 msgid "Please carefully review and confirm this offer creation. When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or cancelled, resulting in your spendable balance changing."
-msgstr ""
+msgstr "لطفاً ایجاد این پیشنهاد را با دقت بررسی و تأیید کنید. هنگام ایجاد پیشنهاد، هرگونه دارایی که ارائه می‌شود قفل شده و تا زمان پذیرش یا لغو پیشنهاد، غیرقابل دسترس خواهد بود و در نتیجه موجودی قابل خرج شما تغییر خواهد کرد."
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:88
 msgid "Please carefully review and confirm this offer acceptance."
-msgstr ""
+msgstr "لطفا این پیشنهاد را با دقت بررسی و پذیرش آن را تأیید کنید."
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:90
 msgid "Please carefully review and confirm this offer cancellation."
-msgstr ""
+msgstr "لطفاً این لغو پیشنهاد را با دقت بررسی و تأیید کنید."
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:93
@@ -168,7 +168,7 @@ msgstr "آیا مطمئن هستید که میخواهید خارج شوید؟"
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:95
 msgid "Are you sure you want to stop plotting? The plot cannot be recovered."
-msgstr ""
+msgstr "آیا مطمئن هستید که میخواهید ساخت پلات را متوقف کنید؟ پلات قابل بازیابی نیست."
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:97
@@ -178,28 +178,28 @@ msgstr "آیا مطمئنید میخواهید این پلات را حذف کن�
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:99
 msgid "Are you sure you want to remove the plot directory?"
-msgstr ""
+msgstr "آیا مطمئن هستید که میخواهیدپوشه پلات را حذف کنید؟"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:102
 msgid "Are you sure you want to sign this message?"
-msgstr ""
+msgstr "آیا مطمئن هستید که میخواهید این پیام را امضا کنید؟"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:104
 msgid "Are you sure you want to create a new wallet?"
-msgstr ""
+msgstr "آیا مطمئن هستید که میخواهید یک کیف پول جدید ایجاد کنید؟"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:106
 msgid "Are you sure you want to set auto claim?"
-msgstr ""
+msgstr "آیا مطمئن هستید که میخواهید مطالبه خودکار را تنظیم کنید؟"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:108
 #: src/electron/dialogs/Confirm/Confirm.tsx:116
 msgid "Are you sure you want to set payout instructions?"
-msgstr ""
+msgstr "آیا مطمئن هستید که میخواهید دستورالعمل‌های پرداخت را تنظیم کنید؟"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:110
@@ -209,32 +209,32 @@ msgstr "آیا مطمئن هستید که میخواهید این ان اف تی
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:112
 msgid "Are you sure you want to move these NFTs to the specified profile?"
-msgstr ""
+msgstr "آیا مطمئن هستید که میخواهید این ان اف تی ها را به مشخصات انتخاب شده منتقل کنید؟"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:114
 msgid "Are you sure you want to open a connection to the specified node?"
-msgstr ""
+msgstr "آیا مطمئن هستید که میخواهید اتصالی به نود مشخص‌شده برقرار کنید؟"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:118
 msgid "Are you sure you want to delete this wallet?"
-msgstr ""
+msgstr "آیا مطمئن هستید که میخواهید این کیف پول را حذف کنید؟"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:120
 msgid "Please review and confirm this action."
-msgstr ""
+msgstr "لطفا این اقدام را بررسی و تایید کنید."
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:128
 msgid "Send"
-msgstr ""
+msgstr "ارسال"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:130
 msgid "Stop"
-msgstr ""
+msgstr "توقف"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:133
@@ -244,7 +244,7 @@ msgstr "حذف"
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:135
 msgid "Add"
-msgstr ""
+msgstr "اضافه کنید"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:138
@@ -275,7 +275,7 @@ msgstr "ایجاد"
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:151
 msgid "Set"
-msgstr ""
+msgstr "تنظیم"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:154
@@ -325,17 +325,17 @@ msgstr "نام فايل"
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:222
 msgid "Directory"
-msgstr ""
+msgstr "پوشه"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:227
 msgid "Payout Instructions"
-msgstr ""
+msgstr "دستورالعمل‌های پرداخت"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:233
 msgid "Enabled"
-msgstr ""
+msgstr "فعال شده"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:236
@@ -345,7 +345,7 @@ msgstr "کارمز تراکنش"
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:241
 msgid "Min Amount"
-msgstr ""
+msgstr "حداقل مبلغ"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:247
@@ -360,7 +360,7 @@ msgstr "نوع"
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:249
 msgid "Asset ID"
-msgstr ""
+msgstr "شناسه دارایی"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:259
@@ -382,7 +382,7 @@ msgstr "شناسه غیرمتمرکز"
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:294
 msgid "Host"
-msgstr ""
+msgstr "میزبان"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:295
@@ -418,17 +418,17 @@ msgstr "کلید عمومی استخر"
 #. js-lingui-explicit-id
 #: src/electron/dialogs/KeyDetail/KeyDetail.tsx:48
 msgid "NEVER SHARE THESE WITH ANYONE"
-msgstr ""
+msgstr "هرگز این موارد را با کسی به اشتراک نگذارید"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/KeyDetail/KeyDetail.tsx:55
 msgid "Secret Key"
-msgstr ""
+msgstr "کلید مخفی"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/KeyDetail/KeyDetail.tsx:74
 msgid "Seed Phrase"
-msgstr ""
+msgstr "کلمات رمز"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:401
@@ -445,20 +445,18 @@ msgstr "بله"
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:402
 msgid "Save Command Preferences"
-msgstr ""
+msgstr "ذخیره تنظیمات فرمان"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:404
 msgid "Would you like to save preferences for the following commands?"
-msgstr ""
+msgstr "آیا میخواهید تنظیمات برگزیده برای دستورات زیر ذخیره شود؟"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:408
-msgid ""
-"These commands will be executed without confirmation in the future:\n"
-"\n"
+msgid "These commands will be executed without confirmation in the future:\n\n"
 " {commands}"
-msgstr ""
+msgstr ": این دستورات در آینده بدون تأیید اجرا خواهند شد"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:596
@@ -483,12 +481,12 @@ msgstr "اخطار"
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:760
 msgid "Log files may contain sensitive information"
-msgstr ""
+msgstr "فایل‌های گزارش ممکن است حاوی اطلاعات حساس باشند"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:761
 msgid "Are you sure you want to view the log contents?"
-msgstr ""
+msgstr "آیا مطمئن هستید که میخواهید محتوای گزارش را مشاهده کنید؟"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:881
@@ -569,7 +567,7 @@ msgstr "اشتراک گداری در Discord"
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:1034
 msgid "Follow on X"
-msgstr ""
+msgstr "در ایکس دنبال کنید"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:1046
@@ -874,7 +872,7 @@ msgstr "وضعیت فعالیت"
 
 #: src/components/settings/SettingsAdvanced.tsx:169
 msgid "Add"
-msgstr ""
+msgstr "اضافه کنید"
 
 #: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:46
 msgid "Add {currencyCode} from the Faucet"
@@ -957,7 +955,7 @@ msgstr "اضافه نمودن اعتبار قابل تأیید را از فای�
 #: src/constants/WalletConnectCommands.tsx:277
 #: src/constants/WalletConnectCommands.tsx:570
 msgid "Address"
-msgstr ""
+msgstr "آدرس ها"
 
 #: src/components/addressbook/ContactAdd.tsx:30
 #: src/components/addressbook/ContactEdit.tsx:33
@@ -1027,7 +1025,7 @@ msgstr "همیشه رد کنید"
 #: src/constants/WalletConnectCommands.tsx:909
 #: src/constants/WalletConnectCommands.tsx:1464
 msgid "Amount"
-msgstr ""
+msgstr "مبلغ"
 
 #: src/components/offers2/OfferBuilderRoyaltyPayouts.tsx:38
 msgid "Amount before adding royalties"
@@ -1328,7 +1326,7 @@ msgstr "با ارائه یک آدرس امضا، میتوان کلید عموم�
 
 #: src/components/settings/SettingsAdvanced.tsx:142
 msgid "Bypassed Commands"
-msgstr ""
+msgstr "دستورات نادیده گرفته شده"
 
 #: src/components/settings/SettingsNFT.tsx:125
 msgid "Cache"
@@ -1366,7 +1364,7 @@ msgstr "(GB) مقدار حافظه پنهان"
 #: src/components/vcs/VCRevokeDialog.tsx:28
 #: src/hooks/useOpenUnsafeLink.tsx:62
 msgid "Cancel"
-msgstr ""
+msgstr "لغو"
 
 #: src/constants/WalletConnectCommands.tsx:978
 msgid "Cancel DataLayer Offer"
@@ -1593,7 +1591,7 @@ msgstr "دستورات"
 
 #: src/components/settings/SettingsAdvanced.tsx:176
 msgid "Commands listed here will be executed without confirmation. Use with caution as this can affect your funds."
-msgstr ""
+msgstr "دستورات ذکر شده در اینجا بدون تأیید اجرا می‌شوند. با احتیاط استفاده کنید زیرا این می‌تواند روی موجودی شما تأثیر بگذارد."
 
 #: src/components/farm/FarmHealth.tsx:327
 msgid "Common reasons for missing SPs include:"
@@ -1631,7 +1629,7 @@ msgstr "تایید رمز ورود جدید"
 
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:38
 msgid "Confirm NFT Transfer"
-msgstr ""
+msgstr "تأیید انتقال ان اف تی"
 
 #: src/components/app/AppKeyringMigrator.tsx:178
 #: src/components/app/AppKeyringMigrator.tsx:179
@@ -1653,7 +1651,7 @@ msgstr "تایید شده"
 
 #: src/components/fullNode/FullNodeAddConnection.tsx:103
 msgid "Connect"
-msgstr ""
+msgstr "اتصال"
 
 #: src/components/fullNode/FullNodeAddConnection.tsx:82
 #: src/components/fullNode/FullNodeConnections.tsx:93
@@ -1715,7 +1713,7 @@ msgstr "محتوا در برابر آن هش‌ که در طول ثبت ان ا�
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:280
 msgid "Continue"
-msgstr ""
+msgstr "ادامه"
 
 #: src/electron/main.tsx:1065
 #~ msgid "Contribute on GitHub"
@@ -1769,7 +1767,7 @@ msgstr "شمارنده پیشنهاد"
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:81
 #: src/components/settings/ProfileAdd.tsx:159
 msgid "Create"
-msgstr ""
+msgstr "ایجاد"
 
 #: src/components/app/AppSelectMode.tsx:127
 msgid "Create & Manage plots"
@@ -1981,7 +1979,7 @@ msgstr "تاخیر"
 #: src/components/plotNFT/PlotNFTCard.tsx:106
 #: src/hooks/useBlockchainNotifications.tsx:159
 msgid "Delete"
-msgstr ""
+msgstr "حذف"
 
 #: src/components/addressbook/ContactSummary.tsx:41
 msgid "Delete contact"
@@ -2067,7 +2065,7 @@ msgstr "آدرس سایت دکسی"
 #: src/components/signVerify/SignMessage.tsx:165
 #: src/constants/WalletConnectCommands.tsx:1859
 msgid "DID"
-msgstr ""
+msgstr "شناسه غیرمتمرکز"
 
 #: src/constants/WalletConnectCommands.tsx:727
 msgid "DID Coin Dictionary"
@@ -2145,7 +2143,7 @@ msgstr "را غیرفعال کنید NUMA"
 #: src/components/walletConnect/WalletConnectConnections.tsx:91
 #: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:135
 msgid "Disconnect"
-msgstr ""
+msgstr "قطع ارتباط"
 
 #: src/components/offers/OfferManager.tsx:303
 msgid "Display Offer Data"
@@ -2549,7 +2547,7 @@ msgstr "فارم اجرا نمیشود"
 
 #: src/components/plot/add/PlotAddChooseKeys.tsx:165
 msgid "Farmer Public Key"
-msgstr ""
+msgstr "کلید شخصی فارم کننده"
 
 #: src/components/plot/add/PlotAddForm.tsx:219
 msgid "Farmer public key is invalid"
@@ -2651,7 +2649,7 @@ msgstr "ویژگی هایی برای محافظت و کنترل بیشتر بر 
 #: src/constants/WalletConnectCommands.tsx:1864
 #: src/constants/WalletConnectCommands.tsx:1973
 msgid "Fee"
-msgstr ""
+msgstr "کارمزد"
 
 #: src/components/offers/NFTOfferEditor.tsx:81
 #: src/components/offers/OfferEditorConditionsPanel.tsx:388
@@ -2689,7 +2687,7 @@ msgstr "کارمزد ها در پیشنهاد موجود است:"
 #: src/components/plot/PlotHarvesterPlotsFailed.tsx:14
 #: src/components/plot/PlotHarvesterPlotsNotFound.tsx:14
 msgid "Filename"
-msgstr ""
+msgstr "نام فايل"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:283
 msgid "Filter"
@@ -2706,7 +2704,7 @@ msgstr "یافتن شناسه غیر متمرکز گمشده"
 #: src/constants/WalletConnectCommands.tsx:38
 #: src/constants/WalletConnectCommands.tsx:2058
 msgid "Fingerprint"
-msgstr ""
+msgstr "کدهای شخصی"
 
 #: src/constants/WalletConnectCommands.tsx:2022
 msgid "Fingerprints"
@@ -3100,7 +3098,7 @@ msgstr "حالت دیسک هیبریدی به رایانه‌هایی که مق�
 
 #: src/constants/WalletConnectCommands.tsx:194
 msgid "Id"
-msgstr ""
+msgstr "شناسه"
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:188
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:127
@@ -3188,20 +3186,16 @@ msgstr "درج کنید"
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
+msgstr "مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
 "موجودی قابل مصرف شما برای پوشش مبلغ پیشنهاد کافی است."
 
 #: src/components/offers/OfferEditor.tsx:127
 #: src/components/offers2/CreateOfferBuilder.tsx:161
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
+msgstr "مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
 "موجودی قابل مصرف شما برای پوشش مبلغ پیشنهاد کافی است."
 
 #: src/components/farm/PoolingHealth.tsx:302
@@ -3590,7 +3584,7 @@ msgstr "یادداشت ها"
 #: src/constants/WalletConnectCommands.tsx:262
 #: src/constants/WalletConnectCommands.tsx:1990
 msgid "Message"
-msgstr ""
+msgstr "پیام"
 
 #: src/constants/WalletConnectCommands.tsx:204
 #: src/constants/WalletConnectCommands.tsx:227
@@ -3730,7 +3724,7 @@ msgstr "فضای بیشتر"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:302
 msgid "Move"
-msgstr ""
+msgstr "انتقال"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:346
 msgid "Move NFT to Profile"
@@ -3769,7 +3763,7 @@ msgstr "در دسترس نیست"
 #: src/constants/WalletConnectCommands.tsx:604
 #: src/constants/WalletConnectCommands.tsx:1833
 msgid "Name"
-msgstr ""
+msgstr "نام"
 
 #: src/components/settings/ProfileAdd.tsx:121
 msgid "Need some {currencyCode}?"
@@ -4797,7 +4791,7 @@ msgstr "دستورالعمل پرداخت استخر"
 #: src/components/block/Block.jsx:211
 #: src/components/plot/add/PlotAddChooseKeys.tsx:204
 msgid "Pool Public Key"
-msgstr ""
+msgstr "کلید عمومی استخر"
 
 #: src/components/plot/add/PlotAddForm.tsx:226
 msgid "Pool public key is invalid"
@@ -4849,7 +4843,7 @@ msgstr "سلامت استخر"
 #: src/components/fullNode/FullNodeAddConnection.tsx:95
 #: src/components/fullNode/FullNodeConnections.tsx:39
 msgid "Port"
-msgstr ""
+msgstr "پورت"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:95
 #: src/components/plotNFT/PlotNFTChangePool.tsx:76
@@ -4896,7 +4890,7 @@ msgstr "عنوان هش قبلی"
 
 #: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:360
 msgid "Proceed"
-msgstr ""
+msgstr "ادامه دهید"
 
 #: src/components/settings/ProfileView.tsx:57
 msgid "Profile Name"
@@ -4955,7 +4949,7 @@ msgstr "Inner ارائه دهنده پازل هش"
 #: src/components/signVerify/VerifyMessage.tsx:219
 #: src/constants/WalletConnectCommands.tsx:267
 msgid "Public Key"
-msgstr ""
+msgstr "کلید عمومی"
 
 #: src/components/offers/NFTOfferViewer.tsx:473
 msgid "Purchase Summary"
@@ -5059,7 +5053,7 @@ msgstr "برداشت کننده از راه دور"
 
 #: src/components/settings/SettingsAdvanced.tsx:195
 msgid "Remove"
-msgstr ""
+msgstr "خارج کنید"
 
 #: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:359
 msgid "Remove Conflicting Offer"
@@ -5261,7 +5255,7 @@ msgstr "برعکس"
 #: src/components/walletConnect/WalletConnectCATAmount.tsx:30
 #: src/util/resolveOfferInfo.tsx:66
 msgid "Revocable"
-msgstr ""
+msgstr "قابل فسخ"
 
 #: src/components/vcs/VCCard.tsx:209
 #: src/components/vcs/VCCard.tsx:311
@@ -5380,7 +5374,7 @@ msgstr "انتخاب یک ان اف تی"
 #: src/components/settings/SettingsAdvanced.tsx:147
 #: src/components/settings/SettingsAdvanced.tsx:152
 msgid "Select Command"
-msgstr ""
+msgstr "انتخاب دستور"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:40
 msgid "Select Final Directory"
@@ -5581,7 +5575,7 @@ msgstr "بستن"
 
 #: src/components/signVerify/SignMessage.tsx:218
 msgid "Sign"
-msgstr ""
+msgstr "امضا کنید"
 
 #: src/components/signVerify/SignVerifyDialog.tsx:23
 msgid "Sign Message"
@@ -5864,7 +5858,7 @@ msgstr "دریافت کننده"
 #: src/constants/WalletConnectCommands.tsx:782
 #: src/constants/WalletConnectCommands.tsx:862
 msgid "Target Address"
-msgstr ""
+msgstr "آدرس مقصد"
 
 #: src/constants/WalletConnectCommands.tsx:685
 msgid "Target List"
@@ -6162,7 +6156,7 @@ msgstr "این جدول به شما نشان میدهد که آخرین بار �
 #: src/components/walletConnect/WalletConnectCATAmount.tsx:32
 #: src/util/resolveOfferInfo.tsx:68
 msgid "This token can be revoked by the issuer"
-msgstr ""
+msgstr "این توکن میتواند توسط صادرکننده لغو شود"
 
 #: src/hooks/useOpenUnsafeLink.tsx:24
 #~ msgid "This type of the URL is not allowed to open for security reasons."
@@ -6342,7 +6336,7 @@ msgstr "کارمزد برداشت خودکار تراکنش"
 
 #: src/components/notification/NotificationSendDialog.tsx:261
 msgid "Transaction Fee"
-msgstr ""
+msgstr "کارمزد تراکنش"
 
 #: src/constants/WalletConnectCommands.tsx:66
 msgid "Transaction Id"
@@ -6371,7 +6365,7 @@ msgstr "تراکنش های کمتر از کارمزد به صورت خودکا�
 #: src/components/nfts/NFTTransferAction.tsx:153
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:45
 msgid "Transfer"
-msgstr ""
+msgstr "انتقال"
 
 #: src/constants/WalletConnectCommands.tsx:1707
 msgid "Transfer DID"
@@ -6414,7 +6408,7 @@ msgstr "اگر هیچ پلات فشرده ای برای برداشت نداری�
 #: src/components/vcs/VCCard.tsx:163
 #: src/constants/WalletConnectCommands.tsx:1985
 msgid "Type"
-msgstr ""
+msgstr "نوع"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:550
 #~ msgid "Types ({0}/{1})"
@@ -6858,7 +6852,7 @@ msgstr "شروع گرم"
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:32
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:73
 msgid "Warning"
-msgstr ""
+msgstr "اخطار"
 
 #: src/components/farm/FarmHealth.tsx:266
 msgid "Warning Threshold"
@@ -7106,3 +7100,4 @@ msgstr "برای ایجاد حساب کاربری، موجودی قابل خرج
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "برای انجام مطالبه خودکار، باید کیف پول شما در حال اجرا باشد."
+
