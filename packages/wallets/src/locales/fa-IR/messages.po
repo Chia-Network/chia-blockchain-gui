@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-03-23 00:05\n"
+"PO-Revision-Date: 2025-08-10 00:05\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -594,7 +594,7 @@ msgstr "کنارگذاشته شده"
 #: src/components/WalletName.tsx:35
 #: src/components/WalletsSidebar.tsx:99
 msgid "Revocable"
-msgstr ""
+msgstr "قابل فسخ"
 
 #: src/constants/WalletName.ts:8
 msgid "RL Wallet"
@@ -708,7 +708,7 @@ msgstr "این کل موجودی + موجودی در انتظار است: نشا
 #: src/components/WalletName.tsx:37
 #: src/components/WalletsSidebar.tsx:101
 msgid "This token can be revoked by the issuer"
-msgstr ""
+msgstr "این توکن میتواند توسط صادرکننده لغو شود"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:201
 msgid "This transaction will be automatically claimed with a fee:"

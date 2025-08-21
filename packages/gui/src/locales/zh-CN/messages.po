@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-07-20 00:06\n"
+"PO-Revision-Date: 2025-08-03 00:06\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -5263,7 +5263,7 @@ msgstr "反转"
 #: src/components/walletConnect/WalletConnectCATAmount.tsx:30
 #: src/util/resolveOfferInfo.tsx:66
 msgid "Revocable"
-msgstr ""
+msgstr "可销毁"
 
 #: src/components/vcs/VCCard.tsx:209
 #: src/components/vcs/VCCard.tsx:311
@@ -6164,7 +6164,7 @@ msgstr "这个表格里面显示的是你的农场尝试过的区块挑战. <0>�
 #: src/components/walletConnect/WalletConnectCATAmount.tsx:32
 #: src/util/resolveOfferInfo.tsx:68
 msgid "This token can be revoked by the issuer"
-msgstr ""
+msgstr "此代币可由发行方销毁"
 
 #: src/hooks/useOpenUnsafeLink.tsx:24
 #~ msgid "This type of the URL is not allowed to open for security reasons."
