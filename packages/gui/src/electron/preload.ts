@@ -33,6 +33,7 @@ contextBridge.exposeInMainWorld(API.APP, {
   showNotification: (options: { title: string; body: string }) =>
     invokeWithCustomErrors(AppAPI.SHOW_NOTIFICATION, options),
   fetchTextResponse: (url: string, data: string) => invokeWithCustomErrors(AppAPI.FETCH_TEXT_RESPONSE, url, data),
+  fetchPoolInfo: (poolUrl: string) => invokeWithCustomErrors(AppAPI.FETCH_POOL_INFO, poolUrl),
   openKeyDetail: (fingerprint: string) => invokeWithCustomErrors(AppAPI.OPEN_KEY_DETAIL, fingerprint),
 
   download: (url: string) => invokeWithCustomErrors(AppAPI.DOWNLOAD, url),

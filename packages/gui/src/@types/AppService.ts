@@ -35,6 +35,7 @@ type AppService = {
     statusMessage?: string;
     responseBody?: string;
   }>;
+  fetchPoolInfo: (poolUrl: string) => Promise<any>;
   startMultipleDownload: (tasks: { url: string; filename: string }[]) => Promise<string | undefined>;
 
   // Event handlers

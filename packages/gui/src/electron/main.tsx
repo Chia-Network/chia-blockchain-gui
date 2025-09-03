@@ -40,6 +40,7 @@ import { readPrefs, savePrefs, migratePrefs } from './prefs';
 import { readAddressBook, saveAddressBook } from './utils/addressBook';
 import chiaEnvironment, { chiaInit } from './utils/chiaEnvironment';
 import downloadFile from './utils/downloadFile';
+import fetchJSON from './utils/fetchJSON';
 import getKeyDetails from './utils/getKeyDetails';
 import getNetworkInfo from './utils/getNetworkInfo';
 import ipcMainHandle from './utils/ipcMainHandle';
@@ -226,6 +227,11 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
       });
 
       return { statusCode, statusMessage, responseBody };
+    });
+
+    ipcMainHandle(AppAPI.FETCH_POOL_INFO, async (poolUrl: string) => {
+      const poolInfoUrl = `${poolUrl}/pool_info`;
+      return fetchJSON(poolInfoUrl);
     });
 
     ipcMainHandle(AppAPI.SHOW_OPEN_DIRECTORY_DIALOG, async (options: { defaultPath?: string } = {}) => {
