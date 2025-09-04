@@ -19,6 +19,9 @@ type AppService = {
   setBypassCommands: (commands: string[]) => Promise<void>;
   getBypassCommands: () => Promise<string[]>;
 
+  // NFT operations
+  checkNFTOwnership: (nftId: string) => Promise<boolean>;
+
   // Dialog operations
   showOpenFileDialogAndRead: (options?: {
     extensions?: string[];
