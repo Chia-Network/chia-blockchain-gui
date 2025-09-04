@@ -139,7 +139,7 @@
     "copy-webpack-plugin": "11.0.0",
     "cross-env": "7.0.3",
     "css-loader": "6.11.0",
-    "date-and-time": "2.4.3",
+    "date-and-time": "4.0.4",
     "electron": "37.3.1",
     "electron-devtools-assembler": "1.2.0",
     "electron-playwright-helpers": "^1.6.0",
