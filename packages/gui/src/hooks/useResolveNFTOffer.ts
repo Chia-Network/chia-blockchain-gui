@@ -1,5 +1,4 @@
 import { toBech32m, OfferSummaryRecord } from '@chia-network/api';
-import { useSignMessageByIdMutation } from '@chia-network/api-react';
 import { useCallback, useMemo, useState } from 'react';
 
 type NFTsByOfferSide = {
@@ -23,20 +22,19 @@ export type UseResolveNFTOfferParams = {
 };
 
 export default function useResolveNFTOffer({ offerSummary }: UseResolveNFTOfferParams) {
-  const [signMessageById] = useSignMessageByIdMutation();
   const [resolved, setResolved] = useState(false);
   const [ownedNFTIds, setOwnedNFTIds] = useState<string[]>([]);
   const [unownedNFTIds, setUnownedNFTIds] = useState<string[]>([]);
   const [ownedNFTOfferSides, setOwnedNFTOfferSides] = useState<('requested' | 'offered')[]>([]);
 
-  // Hacky test to determine if a given NFT is owned by the user
-  const signWithNFT = useCallback(
-    async (nftId: string) => {
-      const { data: result } = await signMessageById({ id: nftId, message: 'x' });
-      return result?.success ?? false;
-    },
-    [signMessageById],
-  );
+  // Check if a given NFT is owned by the user
+  const checkNFTOwnership = useCallback(async (nftId: string) => {
+    try {
+      return await window.appAPI.checkNFTOwnership(nftId);
+    } catch (error) {
+      return false;
+    }
+  }, []);
 
   const nftsBySide: NFTsByOfferSide = useMemo(
     () => allNFTsByOfferSide(offerSummary, ['requested', 'offered']),
@@ -52,7 +50,7 @@ export default function useResolveNFTOffer({ offerSummary }: UseResolveNFTOfferP
           return;
         }
 
-        const owned = await signWithNFT(nftId);
+        const owned = await checkNFTOwnership(nftId);
 
         if (owned) {
           setOwnedNFTIds([...ownedNFTIds, nftId]);
@@ -66,7 +64,7 @@ export default function useResolveNFTOffer({ offerSummary }: UseResolveNFTOfferP
     setResolved(true);
   }, [
     nftsBySide,
-    signWithNFT,
+    checkNFTOwnership,
     setOwnedNFTIds,
     setUnownedNFTIds,
     setOwnedNFTOfferSides,

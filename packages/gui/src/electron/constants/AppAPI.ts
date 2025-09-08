@@ -26,6 +26,8 @@ enum AppAPI {
   FETCH_TEXT_RESPONSE = `${API.APP}:fetchTextResponse`,
   START_MULTIPLE_DOWNLOAD = `${API.APP}:startMultipleDownload`,
 
+  CHECK_NFT_OWNERSHIP = `${API.APP}:checkNFTOwnership`,
+
   DAEMON_EXITED = `${API.APP}:daemonExited`,
 
   ON_CHECK_FOR_UPDATES = `${API.APP}:onCheckForUpdates`,
