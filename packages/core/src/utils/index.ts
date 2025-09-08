@@ -6,7 +6,6 @@ export { default as catToMojo } from './catToMojo';
 export { default as chiaFormatter } from './chiaFormatter';
 export { default as chiaToMojo } from './chiaToMojo';
 export { default as getPercentPointsSuccessfull } from './getPercentPointsSuccessfull';
-export { default as getPoolInfo } from './getPoolInfo';
 export { default as getTransactionResult } from './getTransactionResult';
 export { default as mojoToCAT } from './mojoToCAT';
 export { default as mojoToCATLocaleString } from './mojoToCATLocaleString';
