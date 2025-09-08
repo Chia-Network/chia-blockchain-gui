@@ -44,6 +44,8 @@ contextBridge.exposeInMainWorld(API.APP, {
   setBypassCommands: (commands: string[]) => invokeWithCustomErrors(AppAPI.SET_BYPASS_COMMANDS, commands),
   getBypassCommands: () => invokeWithCustomErrors(AppAPI.GET_BYPASS_COMMANDS),
 
+  checkNFTOwnership: (nftId: string) => invokeWithCustomErrors(AppAPI.CHECK_NFT_OWNERSHIP, nftId),
+
   showOpenDirectoryDialog: (options?: { defaultPath?: string }) =>
     invokeWithCustomErrors(AppAPI.SHOW_OPEN_DIRECTORY_DIALOG, options),
   showOpenFileDialogAndRead: (options?: { extensions?: string[] }) =>
