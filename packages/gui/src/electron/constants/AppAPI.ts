@@ -24,6 +24,7 @@ enum AppAPI {
   SHOW_SAVE_DIALOG_AND_SAVE = `${API.APP}:showSaveDialogAndSave`,
 
   FETCH_TEXT_RESPONSE = `${API.APP}:fetchTextResponse`,
+  FETCH_POOL_INFO = `${API.APP}:fetchPoolInfo`,
   START_MULTIPLE_DOWNLOAD = `${API.APP}:startMultipleDownload`,
 
   CHECK_NFT_OWNERSHIP = `${API.APP}:checkNFTOwnership`,
