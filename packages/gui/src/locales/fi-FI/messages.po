@@ -126,7 +126,7 @@ msgstr "Vahvista Lompakon poistaminen"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:68
-#: src/electron/main.tsx:594
+#: src/electron/main.tsx:603
 msgid "Confirm"
 msgstr "Vahvista"
 
@@ -396,7 +396,7 @@ msgstr "Sormenjälki"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:373
-#: src/electron/main.tsx:757
+#: src/electron/main.tsx:766
 msgid "Cancel"
 msgstr "Peru"
 
@@ -431,168 +431,172 @@ msgid "Seed Phrase"
 msgstr "Avainsanat"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:401
-#: src/electron/main.tsx:593
+#: src/electron/main.tsx:410
+#: src/electron/main.tsx:602
 msgid "No"
 msgstr "Ei"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:401
-#: src/electron/main.tsx:593
+#: src/electron/main.tsx:410
+#: src/electron/main.tsx:602
 msgid "Yes"
 msgstr "Kyllä"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:402
+#: src/electron/main.tsx:411
 msgid "Save Command Preferences"
 msgstr "Tallenna Komentoasetukset"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:404
+#: src/electron/main.tsx:413
 msgid "Would you like to save preferences for the following commands?"
 msgstr "Haluatko tallentaa asetukset seuraaville komennoille?"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:408
-msgid "These commands will be executed without confirmation in the future:\n\n"
+#: src/electron/main.tsx:417
+msgid ""
+"These commands will be executed without confirmation in the future:\n"
+"\n"
 " {commands}"
-msgstr "Nämä komennot suoritetaan ilman vahvistusta tulevaisuudessa:\n\n"
+msgstr ""
+"Nämä komennot suoritetaan ilman vahvistusta tulevaisuudessa:\n"
+"\n"
 " {commands}"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:596
+#: src/electron/main.tsx:605
 msgid "Are you sure you want to quit?"
 msgstr "Oletko varma että haluat lopettaa?"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:601
+#: src/electron/main.tsx:610
 msgid "Keep service running in the background"
 msgstr "Pidä palvelu käynnissä taustalla"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:757
+#: src/electron/main.tsx:766
 msgid "Continue"
 msgstr "Jatka"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:759
+#: src/electron/main.tsx:768
 msgid "Warning"
 msgstr "Varoitus"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:760
+#: src/electron/main.tsx:769
 msgid "Log files may contain sensitive information"
 msgstr "Lokitiedostot saattavat sisältää arkaluontoisia tietoja"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:761
+#: src/electron/main.tsx:770
 msgid "Are you sure you want to view the log contents?"
 msgstr "Oletko varma, että haluat tarkastella lokin sisältöä?"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:881
-#: src/electron/main.tsx:1089
+#: src/electron/main.tsx:890
+#: src/electron/main.tsx:1098
 msgid "File"
 msgstr "Tiedosto"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:889
+#: src/electron/main.tsx:898
 msgid "Edit"
 msgstr "Muokkaa"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:921
+#: src/electron/main.tsx:930
 msgid "View"
 msgstr "Näkymä"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:930
+#: src/electron/main.tsx:939
 msgid "Developer"
 msgstr "Kehittäjä"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:933
+#: src/electron/main.tsx:942
 msgid "Developer Tools"
 msgstr "Kehitystyökalut"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:941
+#: src/electron/main.tsx:950
 msgid "Trigger Desktop Notification"
 msgstr "Käynnistä Työpöytä-ilmoitus"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:970
+#: src/electron/main.tsx:979
 msgid "Full Screen"
 msgstr "Kokoruutu"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:977
+#: src/electron/main.tsx:986
 msgid "Window"
 msgstr "Ikkuna"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:991
+#: src/electron/main.tsx:1000
 msgid "Help"
 msgstr "Apuja"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:995
+#: src/electron/main.tsx:1004
 msgid "Chia Blockchain Wiki"
 msgstr "Chia Wiki"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1001
+#: src/electron/main.tsx:1010
 msgid "Frequently Asked Questions"
 msgstr "Usein Kysytyt Kysymykset"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1007
+#: src/electron/main.tsx:1016
 msgid "Release Notes"
 msgstr "Version Muutokset"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1013
+#: src/electron/main.tsx:1022
 msgid "Contribute on GitHub"
 msgstr "Anna panoksesi GitHubissa"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1022
+#: src/electron/main.tsx:1031
 msgid "Report an Issue..."
 msgstr "Raportoi Ongelma..."
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1028
+#: src/electron/main.tsx:1037
 msgid "Chat on Discord"
 msgstr "Chattaa Discordissa"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1034
+#: src/electron/main.tsx:1043
 msgid "Follow on X"
 msgstr "Seuraa X:ssä"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1046
+#: src/electron/main.tsx:1055
 msgid "Chia"
 msgstr "Chia"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1049
-#: src/electron/main.tsx:1145
+#: src/electron/main.tsx:1058
+#: src/electron/main.tsx:1154
 msgid "About Chia Blockchain"
 msgstr "Chia Lohkoketjusta"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1055
+#: src/electron/main.tsx:1064
 msgid "Check for Updates..."
 msgstr "Tarkista päivitykset..."
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1104
+#: src/electron/main.tsx:1113
 msgid "Speech"
 msgstr "Puhe"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1151
+#: src/electron/main.tsx:1160
 msgid "Check for updates..."
 msgstr "Tarkista päivitykset..."
 
@@ -3187,16 +3191,20 @@ msgstr "Lisää"
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid "Insufficient funds available to accept offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "Riittämätön määrä varoja tarjouksen hyväksymiseen. Varmista, että\n"
+msgstr ""
+"Riittämätön määrä varoja tarjouksen hyväksymiseen. Varmista, että\n"
 "käytettävissä oleva saldo riittää tarjouksen määrän kattamiseen."
 
 #: src/components/offers/OfferEditor.tsx:127
 #: src/components/offers2/CreateOfferBuilder.tsx:161
-msgid "Insufficient funds available to create offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "Riittämätön määrä varoja tarjouksen luomiseen. Varmista, että\n"
+msgstr ""
+"Riittämätön määrä varoja tarjouksen luomiseen. Varmista, että\n"
 "käytettävissä oleva saldo riittää tarjouksen määrän kattamiseen."
 
 #: src/components/farm/PoolingHealth.tsx:302
@@ -7101,4 +7109,3 @@ msgstr "Käytettävissä olevan saldon on oltava suurempi kuin 1 mojo luodaksesi
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "Lompakkosi on oltava käynnissä, jotta automaattinen lunastaminen toimii."
-

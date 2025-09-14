@@ -126,7 +126,7 @@ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:68
-#: src/electron/main.tsx:594
+#: src/electron/main.tsx:603
 msgid "Confirm"
 msgstr "Επιβεβαίωση"
 
@@ -396,7 +396,7 @@ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:373
-#: src/electron/main.tsx:757
+#: src/electron/main.tsx:766
 msgid "Cancel"
 msgstr "Ακύρωση"
 
@@ -431,167 +431,169 @@ msgid "Seed Phrase"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:401
-#: src/electron/main.tsx:593
+#: src/electron/main.tsx:410
+#: src/electron/main.tsx:602
 msgid "No"
 msgstr "Όχι"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:401
-#: src/electron/main.tsx:593
+#: src/electron/main.tsx:410
+#: src/electron/main.tsx:602
 msgid "Yes"
 msgstr "Ναι"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:402
+#: src/electron/main.tsx:411
 msgid "Save Command Preferences"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:404
+#: src/electron/main.tsx:413
 msgid "Would you like to save preferences for the following commands?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:408
-msgid "These commands will be executed without confirmation in the future:\n\n"
+#: src/electron/main.tsx:417
+msgid ""
+"These commands will be executed without confirmation in the future:\n"
+"\n"
 " {commands}"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:596
+#: src/electron/main.tsx:605
 msgid "Are you sure you want to quit?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:601
+#: src/electron/main.tsx:610
 msgid "Keep service running in the background"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:757
+#: src/electron/main.tsx:766
 msgid "Continue"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:759
+#: src/electron/main.tsx:768
 msgid "Warning"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:760
+#: src/electron/main.tsx:769
 msgid "Log files may contain sensitive information"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:761
+#: src/electron/main.tsx:770
 msgid "Are you sure you want to view the log contents?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:881
-#: src/electron/main.tsx:1089
+#: src/electron/main.tsx:890
+#: src/electron/main.tsx:1098
 msgid "File"
 msgstr "Αρχείο"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:889
+#: src/electron/main.tsx:898
 msgid "Edit"
 msgstr "Επεξεργασία"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:921
+#: src/electron/main.tsx:930
 msgid "View"
 msgstr "Εμφάνιση"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:930
+#: src/electron/main.tsx:939
 msgid "Developer"
 msgstr "Προγραμματιστής"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:933
+#: src/electron/main.tsx:942
 msgid "Developer Tools"
 msgstr "Εργαλεία Προγραμματιστή"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:941
+#: src/electron/main.tsx:950
 msgid "Trigger Desktop Notification"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:970
+#: src/electron/main.tsx:979
 msgid "Full Screen"
 msgstr "Πλήρης Οθόνη"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:977
+#: src/electron/main.tsx:986
 msgid "Window"
 msgstr "Παράθυρο"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:991
+#: src/electron/main.tsx:1000
 msgid "Help"
 msgstr "Βοήθεια"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:995
+#: src/electron/main.tsx:1004
 msgid "Chia Blockchain Wiki"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1001
+#: src/electron/main.tsx:1010
 msgid "Frequently Asked Questions"
 msgstr "Συχνές ερωτήσεις"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1007
+#: src/electron/main.tsx:1016
 msgid "Release Notes"
 msgstr "Τι νέο υπάρχει"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1013
+#: src/electron/main.tsx:1022
 msgid "Contribute on GitHub"
 msgstr "Συμβάλετε στο GitHub"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1022
+#: src/electron/main.tsx:1031
 msgid "Report an Issue..."
 msgstr "Αναφορά προβλήματος..."
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1028
+#: src/electron/main.tsx:1037
 msgid "Chat on Discord"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1034
+#: src/electron/main.tsx:1043
 msgid "Follow on X"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1046
+#: src/electron/main.tsx:1055
 msgid "Chia"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1049
-#: src/electron/main.tsx:1145
+#: src/electron/main.tsx:1058
+#: src/electron/main.tsx:1154
 msgid "About Chia Blockchain"
 msgstr "Περί Chia Blockchain"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1055
+#: src/electron/main.tsx:1064
 msgid "Check for Updates..."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1104
+#: src/electron/main.tsx:1113
 msgid "Speech"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1151
+#: src/electron/main.tsx:1160
 msgid "Check for updates..."
 msgstr ""
 
@@ -3186,13 +3188,15 @@ msgstr ""
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid "Insufficient funds available to accept offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
 
 #: src/components/offers/OfferEditor.tsx:127
 #: src/components/offers2/CreateOfferBuilder.tsx:161
-msgid "Insufficient funds available to create offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
 
@@ -7098,4 +7102,3 @@ msgstr ""
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr ""
-
