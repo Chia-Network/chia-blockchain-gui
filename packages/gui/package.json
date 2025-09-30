@@ -140,7 +140,7 @@
     "cross-env": "7.0.3",
     "css-loader": "6.11.0",
     "date-and-time": "2.4.3",
-    "electron": "37.3.1",
+    "electron": "38.2.0",
     "electron-devtools-assembler": "1.2.0",
     "electron-playwright-helpers": "^1.6.0",
     "electron-winstaller": "5.4.0",
