@@ -225,7 +225,7 @@ export default class CacheManager extends EventEmitter {
       throw new Error(`Invalid URL: ${url}`);
     }
 
-    const urlHash = crypto.createHash('md5').update(url).digest('hex');
+    const urlHash = crypto.createHash('sha256').update(url).digest('hex');
     const fileName = `${urlHash}${FILE_SUFFIX}`;
     return path.join(this.cacheDirectory, fileName);
   }
