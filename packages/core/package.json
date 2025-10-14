@@ -30,7 +30,7 @@
     "@mui/utils": "5.14.5",
     "@rehooks/local-storage": "2.4.4",
     "bignumber.js": "9.1.1",
-    "core-js": "3.32.1",
+    "core-js": "3.46.0",
     "emoji-mart": "5.5.2",
     "is-electron": "2.2.2",
     "isomorphic-fetch": "3.0.0",
