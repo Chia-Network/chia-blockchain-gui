@@ -96,7 +96,7 @@
     "stacktrace-js": "2.0.2",
     "styled-components": "6.0.7",
     "unique-names-generator": "4.6.0",
-    "validator": "13.11.0",
+    "validator": "13.15.20",
     "victory": "^36.6.11",
     "ws": "8.17.1"
   },
