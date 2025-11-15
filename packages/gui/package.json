@@ -69,7 +69,7 @@
     "is-electron": "2.2.2",
     "is-plain-object": "5.0.0",
     "isomorphic-fetch": "3.0.0",
-    "js-yaml": "4.1.0",
+    "js-yaml": "4.1.1",
     "lodash": "4.17.21",
     "match-sorter": "6.3.4",
     "mime-types": "2.1.35",
