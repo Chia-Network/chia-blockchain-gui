@@ -21,7 +21,7 @@
   "dependencies": {
     "@babel/runtime": "7.27.6",
     "bignumber.js": "9.1.1",
-    "core-js": "3.32.1",
+    "core-js": "3.46.0",
     "debug": "4.3.4",
     "lodash": "4.17.21",
     "regenerator-runtime": "0.14.1"
