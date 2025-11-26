@@ -54,7 +54,7 @@
     "@rehooks/local-storage": "2.4.4",
     "@walletconnect/sign-client": "2.10.0",
     "@walletconnect/utils": "2.10.0",
-    "axios": "1.11.0",
+    "axios": "1.13.2",
     "bech32": "2.0.0",
     "bignumber.js": "9.1.1",
     "byte-size": "8.1.1",
@@ -69,7 +69,7 @@
     "is-electron": "2.2.2",
     "is-plain-object": "5.0.0",
     "isomorphic-fetch": "3.0.0",
-    "js-yaml": "4.1.0",
+    "js-yaml": "4.1.1",
     "lodash": "4.17.21",
     "match-sorter": "6.3.4",
     "mime-types": "2.1.35",
@@ -96,7 +96,7 @@
     "stacktrace-js": "2.0.2",
     "styled-components": "6.0.7",
     "unique-names-generator": "4.6.0",
-    "validator": "13.11.0",
+    "validator": "13.15.23",
     "victory": "^36.6.11",
     "ws": "8.17.1"
   },
@@ -110,7 +110,7 @@
     "@lingui/cli": "4.11.4",
     "@loadable/babel-plugin": "5.16.1",
     "@loadable/webpack-plugin": "5.15.2",
-    "@playwright/test": "1.37.1",
+    "@playwright/test": "1.57.0",
     "@pmmmwh/react-refresh-webpack-plugin": "0.6.0",
     "@svgr/webpack": "8.1.0",
     "@tailwindcss/cli": "^4.1.10",
@@ -162,7 +162,7 @@
     "webpack-dev-server": "5.2.2"
   },
   "optionalDependencies": {
-    "playwright": "1.37.1"
+    "playwright": "1.57.0"
   },
   "browserslist": {
     "production": [

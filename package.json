@@ -71,7 +71,10 @@
   "overrides": {
     "@walletconnect/keyvaluestorage": "1.0.2",
     "tslib": "2.6.2",
-    "cross-spawn": "7.0.6"
+    "cross-spawn": "7.0.6",
+    "js-yaml": "4.1.1",
+    "esbuild": "0.25.5",
+    "tmp": "0.2.5"
   },
   "version": "1.2.10-dev132"
 }
