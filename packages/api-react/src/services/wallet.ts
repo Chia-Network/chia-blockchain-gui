@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign -- This file use Immer */
-import { CAT, DID, Farmer, NFT, Pool, WalletService, WalletType, toBech32m, VC } from '@chia-network/api';
+import { CAT, DID, Farmer, NFT, Pool, WalletService, WalletType, toBech32m, VC, normalizeHex } from '@chia-network/api';
 import type { NFTInfo, Transaction, Wallet, WalletBalance } from '@chia-network/api';
 import BigNumber from 'bignumber.js';
 
@@ -91,7 +91,7 @@ export const walletApi = apiWithTag.injectEndpoints({
                   throw assetError as Error;
                 }
 
-                meta.assetId = assetData.assetId;
+                meta.assetId = normalizeHex(assetData.assetId);
 
                 // get CAT name
                 const { data: nameData, error: nameError } = await fetchWithBQ({
@@ -120,8 +120,12 @@ export const walletApi = apiWithTag.injectEndpoints({
                 meta.did = didData.didId;
               }
 
+              // Normalize authorizedProviders for CRCAT wallets (bytes32 now has 0x prefix in 2.5.7+)
+              const normalizedAuthorizedProviders = wallet.authorizedProviders?.map(normalizeHex);
+
               return {
                 ...wallet,
+                ...(normalizedAuthorizedProviders && { authorizedProviders: normalizedAuthorizedProviders }),
                 meta,
               };
             }),
@@ -228,7 +232,7 @@ export const walletApi = apiWithTag.injectEndpoints({
       transformResponse: (response) => {
         const {
           walletBalance,
-          walletBalance: { confirmedWalletBalance, unconfirmedWalletBalance },
+          walletBalance: { confirmedWalletBalance, unconfirmedWalletBalance, assetId },
         } = response;
 
         const pendingBalance = new BigNumber(unconfirmedWalletBalance).minus(confirmedWalletBalance);
@@ -236,6 +240,7 @@ export const walletApi = apiWithTag.injectEndpoints({
 
         return {
           ...walletBalance,
+          ...(assetId && { assetId: normalizeHex(assetId) }),
           pendingBalance,
           pendingTotalBalance,
         };
@@ -269,7 +274,21 @@ export const walletApi = apiWithTag.injectEndpoints({
       ]),
     }),
 
-    getWalletBalances: query(build, WalletService, 'getWalletBalances', {}),
+    getWalletBalances: query(build, WalletService, 'getWalletBalances', {
+      transformResponse: (response) => {
+        const { walletBalances } = response;
+        // Normalize assetId in each wallet balance
+        const normalizedBalances: Record<string, WalletBalance> = {};
+        Object.entries(walletBalances).forEach(([walletId, balance]) => {
+          const walletBalance = balance as WalletBalance;
+          normalizedBalances[walletId] = {
+            ...walletBalance,
+            ...(walletBalance.assetId && { assetId: normalizeHex(walletBalance.assetId) }),
+          };
+        });
+        return normalizedBalances;
+      },
+    }),
 
     getFarmedAmount: query(build, WalletService, 'getFarmedAmount', {
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
@@ -654,7 +673,12 @@ export const walletApi = apiWithTag.injectEndpoints({
       invalidatesTags: (_result, _error, { tradeId }) => [{ type: 'OfferTradeRecord', id: tradeId }],
     }),
 
-    checkOfferValidity: mutation(build, WalletService, 'checkOfferValidity'),
+    checkOfferValidity: mutation(build, WalletService, 'checkOfferValidity', {
+      transformResponse: (response) => ({
+        ...response,
+        id: normalizeHex(response.id),
+      }),
+    }),
 
     takeOffer: mutation(build, WalletService, 'takeOffer', {
       invalidatesTags: [{ type: 'OfferTradeRecord', id: 'LIST' }, 'OfferCounts'],
@@ -694,11 +718,15 @@ export const walletApi = apiWithTag.injectEndpoints({
     }),
 
     getCATAssetId: query(build, CAT, 'getAssetId', {
-      transformResponse: (response) => response.assetId,
+      transformResponse: (response) => normalizeHex(response.assetId),
     }),
 
     getCatList: query(build, CAT, 'getCatList', {
-      transformResponse: (response) => response.catList,
+      transformResponse: (response) =>
+        response.catList.map((cat: { assetId: string; name: string; symbol: string }) => ({
+          ...cat,
+          assetId: normalizeHex(cat.assetId),
+        })),
       providesTags(result) {
         return result
           ? [...result.map(({ assetId }) => ({ type: 'CATs', id: assetId }) as const), { type: 'CATs', id: 'LIST' }]
@@ -718,7 +746,14 @@ export const walletApi = apiWithTag.injectEndpoints({
     }),
 
     getStrayCats: query(build, CAT, 'getStrayCats', {
-      transformResponse: (response) => response.strayCats,
+      transformResponse: (response) =>
+        response.strayCats.map(
+          (cat: { assetId: string; name: string; firstSeenHeight: number; senderPuzzleHash: string }) => ({
+            ...cat,
+            assetId: normalizeHex(cat.assetId),
+            senderPuzzleHash: normalizeHex(cat.senderPuzzleHash),
+          }),
+        ),
     }),
 
     // TODO refactor

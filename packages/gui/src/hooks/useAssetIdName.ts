@@ -1,14 +1,8 @@
-import { WalletType } from '@chia-network/api';
+import { WalletType, normalizeHex } from '@chia-network/api';
 import { useGetCatListQuery, useGetWalletsQuery } from '@chia-network/api-react';
 import type { CATToken, Wallet } from '@chia-network/core';
 import { useCurrencyCode } from '@chia-network/core';
 import { useMemo, useRef, useCallback } from 'react';
-
-// Normalize asset ID by removing 0x prefix and converting to lowercase
-// This is needed because the backend may return asset IDs with or without 0x prefix
-function normalizeAssetId(assetId: string): string {
-  return assetId.toLowerCase().replace(/^0x/, '');
-}
 
 export type AssetIdMapEntry = {
   walletId: number;
@@ -50,8 +44,8 @@ export default function useAssetIdName() {
         symbol = currencyCode;
         isVerified = true;
       } else if ([WalletType.CAT, WalletType.RCAT, WalletType.CRCAT].includes(walletType)) {
-        const normalizedTail = normalizeAssetId(wallet.meta.assetId);
-        const cat = catList.find((catItem: CATToken) => normalizeAssetId(catItem.assetId) === normalizedTail);
+        const normalizedTail = normalizeHex(wallet.meta.assetId);
+        const cat = catList.find((catItem: CATToken) => normalizeHex(catItem.assetId) === normalizedTail);
 
         assetId = normalizedTail;
         name = wallet.name;
@@ -79,7 +73,7 @@ export default function useAssetIdName() {
     });
 
     catList.forEach((cat: CATToken) => {
-      const normalizedCatAssetId = normalizeAssetId(cat.assetId);
+      const normalizedCatAssetId = normalizeHex(cat.assetId);
       if (assetIdNameMapping.has(normalizedCatAssetId)) {
         return;
       }
@@ -123,7 +117,7 @@ export default function useAssetIdName() {
   ref.current = memoized;
 
   const lookupByAssetId = useCallback(
-    (assetId: string) => ref.current.assetIdNameMapping.get(normalizeAssetId(assetId)),
+    (assetId: string) => ref.current.assetIdNameMapping.get(normalizeHex(assetId)),
     [ref],
   );
 
