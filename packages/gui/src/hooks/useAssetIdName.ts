@@ -1,4 +1,4 @@
-import { WalletType } from '@chia-network/api';
+import { WalletType, normalizeHex } from '@chia-network/api';
 import { useGetCatListQuery, useGetWalletsQuery } from '@chia-network/api-react';
 import type { CATToken, Wallet } from '@chia-network/core';
 import { useCurrencyCode } from '@chia-network/core';
@@ -44,10 +44,10 @@ export default function useAssetIdName() {
         symbol = currencyCode;
         isVerified = true;
       } else if ([WalletType.CAT, WalletType.RCAT, WalletType.CRCAT].includes(walletType)) {
-        const lowercaseTail = wallet.meta.assetId.toLowerCase();
-        const cat = catList.find((catItem: CATToken) => catItem.assetId.toLowerCase() === lowercaseTail);
+        const normalizedTail = normalizeHex(wallet.meta.assetId);
+        const cat = catList.find((catItem: CATToken) => normalizeHex(catItem.assetId) === normalizedTail);
 
-        assetId = lowercaseTail;
+        assetId = normalizedTail;
         name = wallet.name;
 
         if (cat) {
@@ -73,11 +73,11 @@ export default function useAssetIdName() {
     });
 
     catList.forEach((cat: CATToken) => {
-      if (assetIdNameMapping.has(cat.assetId)) {
+      const normalizedCatAssetId = normalizeHex(cat.assetId);
+      if (assetIdNameMapping.has(normalizedCatAssetId)) {
         return;
       }
 
-      const { assetId } = cat;
       const { name } = cat;
       const { symbol } = cat;
       const displayName = symbol || name;
@@ -88,9 +88,9 @@ export default function useAssetIdName() {
         symbol,
         displayName,
         isVerified: true,
-        assetId,
+        assetId: normalizedCatAssetId,
       };
-      assetIdNameMapping.set(assetId, entry);
+      assetIdNameMapping.set(normalizedCatAssetId, entry);
     });
 
     // If using testnet, add a TXCH assetId entry
@@ -117,7 +117,7 @@ export default function useAssetIdName() {
   ref.current = memoized;
 
   const lookupByAssetId = useCallback(
-    (assetId: string) => ref.current.assetIdNameMapping.get(assetId.toLowerCase()),
+    (assetId: string) => ref.current.assetIdNameMapping.get(normalizeHex(assetId)),
     [ref],
   );
 
