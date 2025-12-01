@@ -1,4 +1,5 @@
 type WalletBalance = {
+  assetId?: string;
   confirmedWalletBalance: number;
   fingerprint: number;
   maxSendAmount: number;
