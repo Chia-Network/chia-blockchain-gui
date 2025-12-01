@@ -44,7 +44,13 @@ export async function processSessionProposal(
           icons?: string[];
         };
       };
-      requiredNamespaces: {
+      requiredNamespaces?: {
+        chia: {
+          chains: string[];
+          methods: string[];
+        };
+      };
+      optionalNamespaces?: {
         chia: {
           chains: string[];
           methods: string[];
@@ -64,6 +70,7 @@ export async function processSessionProposal(
         pairingTopic,
         proposer: { metadata: proposerMetadata },
         requiredNamespaces,
+        optionalNamespaces,
       },
     } = event;
 
@@ -71,12 +78,14 @@ export async function processSessionProposal(
       throw new Error('Pairing topic not found');
     }
 
-    const requiredNamespace = requiredNamespaces.chia;
-    if (!requiredNamespace) {
-      throw new Error('Missing required chia namespace');
+    const requiredNamespace = requiredNamespaces?.chia;
+    const optionalNamespace = optionalNamespaces?.chia;
+    const chiaNamespace = requiredNamespace || optionalNamespace; // Use optionalNamespaces if requiredNamespaces is not present
+    if (!chiaNamespace) {
+      throw new Error('Missing both required/optional chia namespace');
     }
 
-    const { chains, methods } = requiredNamespace;
+    const { chains, methods } = chiaNamespace;
     const chain = chains.find((item) => ['chia:testnet', 'chia:mainnet'].includes(item));
     if (!chain) {
       throw new Error('Chain not supported');
