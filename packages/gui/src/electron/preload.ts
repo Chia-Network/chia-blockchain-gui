@@ -66,6 +66,8 @@ contextBridge.exposeInMainWorld(API.APP, {
     onIpcEvent(AppAPI.ON_ERROR_DOWNLOADING_URL, callback),
   subscribeToMultipleDownloadDone: (callback: (...args: unknown[]) => void) =>
     onIpcEvent(AppAPI.ON_MULTIPLE_DOWNLOAD_DONE, callback),
+
+  focusWindow: () => invokeWithCustomErrors(AppAPI.FOCUS_WINDOW),
 });
 
 contextBridge.exposeInMainWorld(API.PREFERENCES, {

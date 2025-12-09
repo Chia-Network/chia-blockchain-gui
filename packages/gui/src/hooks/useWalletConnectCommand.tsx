@@ -122,6 +122,8 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
       if (hasPermissions) {
         return true;
       }
+      // Bring the window to foreground when showing approval dialog
+      await window.appAPI.focusWindow();
       const isConfirmed = await openDialog(
         <WalletConnectRequestPermissionsConfirmDialog
           topic={topic}
@@ -135,6 +137,8 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
       return isConfirmed;
     }
 
+    // Bring the window to foreground when showing approval dialog
+    await window.appAPI.focusWindow();
     const isConfirmed = await openDialog(
       <WalletConnectConfirmDialog
         topic={topic}

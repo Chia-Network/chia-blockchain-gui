@@ -432,6 +432,15 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
       tasks.forEach((task) => task(mainWindow!));
     });
 
+    ipcMainHandle(AppAPI.FOCUS_WINDOW, () => {
+      if (mainWindow) {
+        if (mainWindow.isMinimized()) {
+          mainWindow.restore();
+        }
+        mainWindow.focus();
+      }
+    });
+
     decidedToClose = false;
     const mainWindowState = windowStateKeeper({
       defaultWidth: 1200,
