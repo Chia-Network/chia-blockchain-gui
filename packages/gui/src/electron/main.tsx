@@ -437,7 +437,14 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
         if (mainWindow.isMinimized()) {
           mainWindow.restore();
         }
+        mainWindow.show();
         mainWindow.focus();
+        // On Windows, focus() alone may not bring window to foreground due to OS restrictions.
+        // Using setAlwaysOnTop temporarily ensures the window comes to front.
+        if (process.platform === 'win32') {
+          mainWindow.setAlwaysOnTop(true);
+          mainWindow.setAlwaysOnTop(false);
+        }
       }
     });
 
