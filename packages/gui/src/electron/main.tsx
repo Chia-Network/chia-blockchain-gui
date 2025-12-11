@@ -438,6 +438,10 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
           mainWindow.restore();
         }
         mainWindow.show();
+        // On macOS, app.focus() brings the entire application to the foreground
+        if (process.platform === 'darwin') {
+          app.focus({ steal: true });
+        }
         mainWindow.focus();
         // On Windows, focus() alone may not bring window to foreground due to OS restrictions.
         // Using setAlwaysOnTop temporarily ensures the window comes to front.
