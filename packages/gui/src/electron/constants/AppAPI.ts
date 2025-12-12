@@ -37,6 +37,8 @@ enum AppAPI {
   ON_MULTIPLE_DOWNLOAD_PROGRESS = `${API.APP}:onMultipleDownloadProgress`,
   ON_ERROR_DOWNLOADING_URL = `${API.APP}:onErrorDownloadingUrl`,
   ON_MULTIPLE_DOWNLOAD_DONE = `${API.APP}:onMultipleDownloadDone`,
+
+  FOCUS_WINDOW = `${API.APP}:focusWindow`,
 }
 
 export default AppAPI;

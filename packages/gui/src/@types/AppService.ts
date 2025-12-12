@@ -49,6 +49,9 @@ type AppService = {
   subscribeToMultipleDownloadProgress: (callback: (...args: unknown[]) => void) => () => void;
   subscribeToErrorDownloadingUrl: (callback: (...args: unknown[]) => void) => () => void;
   subscribeToMultipleDownloadDone: (callback: (...args: unknown[]) => void) => () => void;
+
+  // Window operations
+  focusWindow: () => Promise<void>;
 };
 
 export default AppService;

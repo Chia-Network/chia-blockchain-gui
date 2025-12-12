@@ -432,6 +432,26 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
       tasks.forEach((task) => task(mainWindow!));
     });
 
+    ipcMainHandle(AppAPI.FOCUS_WINDOW, () => {
+      if (mainWindow) {
+        if (mainWindow.isMinimized()) {
+          mainWindow.restore();
+        }
+        mainWindow.show();
+        // On macOS, app.focus() brings the entire application to the foreground
+        if (process.platform === 'darwin') {
+          app.focus({ steal: true });
+        }
+        mainWindow.focus();
+        // On Windows, focus() alone may not bring window to foreground due to OS restrictions.
+        // Using setAlwaysOnTop temporarily ensures the window comes to front.
+        if (process.platform === 'win32') {
+          mainWindow.setAlwaysOnTop(true);
+          mainWindow.setAlwaysOnTop(false);
+        }
+      }
+    });
+
     decidedToClose = false;
     const mainWindowState = windowStateKeeper({
       defaultWidth: 1200,
