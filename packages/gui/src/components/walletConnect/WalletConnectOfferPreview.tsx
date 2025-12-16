@@ -23,13 +23,11 @@ export default function WalletConnectOfferPreview(props: WalletConnectOfferPrevi
     if (offerBuilderData) {
       // use new fee value
       const feeChia = offerBuilderData.offered.fee?.[0]?.amount;
-      if (feeChia) {
-        const feeMojos = feeChia ? chiaToMojo(feeChia).toFixed() : '0';
-        onChange({
-          ...values,
-          fee: feeMojos,
-        });
-      }
+      const feeMojos = feeChia ? chiaToMojo(feeChia).toFixed() : undefined;
+      onChange({
+        ...values,
+        fee: feeMojos,
+      });
     }
   }
 
