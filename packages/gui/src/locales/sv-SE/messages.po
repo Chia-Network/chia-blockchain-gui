@@ -126,7 +126,7 @@ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:68
-#: src/electron/main.tsx:603
+#: src/electron/main.tsx:623
 msgid "Confirm"
 msgstr "Bekräfta"
 
@@ -396,7 +396,7 @@ msgstr "Fingeravtryck"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:373
-#: src/electron/main.tsx:766
+#: src/electron/main.tsx:786
 msgid "Cancel"
 msgstr "Avbryt"
 
@@ -432,13 +432,13 @@ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:410
-#: src/electron/main.tsx:602
+#: src/electron/main.tsx:622
 msgid "No"
 msgstr "Nej"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:410
-#: src/electron/main.tsx:602
+#: src/electron/main.tsx:622
 msgid "Yes"
 msgstr "Ja"
 
@@ -461,139 +461,139 @@ msgid ""
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:605
+#: src/electron/main.tsx:625
 msgid "Are you sure you want to quit?"
 msgstr "Är du säker på att du vill avsluta?"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:610
+#: src/electron/main.tsx:630
 msgid "Keep service running in the background"
 msgstr "Håll tjänsten igång i bakgrunden"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:766
+#: src/electron/main.tsx:786
 msgid "Continue"
 msgstr "Fortsätt"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:768
+#: src/electron/main.tsx:788
 msgid "Warning"
 msgstr "Varning"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:769
+#: src/electron/main.tsx:789
 msgid "Log files may contain sensitive information"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:770
+#: src/electron/main.tsx:790
 msgid "Are you sure you want to view the log contents?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:890
-#: src/electron/main.tsx:1098
+#: src/electron/main.tsx:910
+#: src/electron/main.tsx:1118
 msgid "File"
 msgstr "Fil"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:898
+#: src/electron/main.tsx:918
 msgid "Edit"
 msgstr "Redigera"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:930
+#: src/electron/main.tsx:950
 msgid "View"
 msgstr "Visa"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:939
+#: src/electron/main.tsx:959
 msgid "Developer"
 msgstr "Utvecklare"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:942
+#: src/electron/main.tsx:962
 msgid "Developer Tools"
 msgstr "Utvecklarverktyg"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:950
+#: src/electron/main.tsx:970
 msgid "Trigger Desktop Notification"
 msgstr "Utlös skrivbordsavisering"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:979
+#: src/electron/main.tsx:999
 msgid "Full Screen"
 msgstr "Helskärm"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:986
+#: src/electron/main.tsx:1006
 msgid "Window"
 msgstr "Fönster"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1000
+#: src/electron/main.tsx:1020
 msgid "Help"
 msgstr "Hjälp"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1004
+#: src/electron/main.tsx:1024
 msgid "Chia Blockchain Wiki"
 msgstr "Chia Blockchains wiki"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1010
+#: src/electron/main.tsx:1030
 msgid "Frequently Asked Questions"
 msgstr "Vanliga frågor"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1016
+#: src/electron/main.tsx:1036
 msgid "Release Notes"
 msgstr "Viktig information"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1022
+#: src/electron/main.tsx:1042
 msgid "Contribute on GitHub"
 msgstr "Delta på GitHub"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1031
+#: src/electron/main.tsx:1051
 msgid "Report an Issue..."
 msgstr "Rapportera ett problem ..."
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1037
+#: src/electron/main.tsx:1057
 msgid "Chat on Discord"
 msgstr "Chatta på Discord"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1043
+#: src/electron/main.tsx:1063
 msgid "Follow on X"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1055
+#: src/electron/main.tsx:1075
 msgid "Chia"
 msgstr "Chia"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1058
-#: src/electron/main.tsx:1154
+#: src/electron/main.tsx:1078
+#: src/electron/main.tsx:1174
 msgid "About Chia Blockchain"
 msgstr "Om Chia Blockchain"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1064
+#: src/electron/main.tsx:1084
 msgid "Check for Updates..."
 msgstr "Sök efter uppdateringar ..."
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1113
+#: src/electron/main.tsx:1133
 msgid "Speech"
 msgstr "Tal"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1160
+#: src/electron/main.tsx:1180
 msgid "Check for updates..."
 msgstr "Sök efter uppdateringar ..."
 
@@ -2173,11 +2173,11 @@ msgstr "Har du redan några plottar på denna maskin? <0>Lägg till plottmapp</0
 msgid "Do you want to burn this NFT?"
 msgstr "Vill du bränna denna NFT?"
 
-#: src/hooks/useWalletConnectCommand.tsx:204
+#: src/hooks/useWalletConnectCommand.tsx:208
 msgid "Do you want to execute command {command}?"
 msgstr "Vill du köra kommandot {command}?"
 
-#: src/hooks/useWalletConnectCommand.tsx:200
+#: src/hooks/useWalletConnectCommand.tsx:204
 msgid "Do you want to log in to {fingerprint} and execute command {command}?"
 msgstr "Vill du logga in på {fingerprint} och köra kommandot {command}?"
 
