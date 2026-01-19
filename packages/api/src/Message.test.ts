@@ -1,16 +1,20 @@
-import { randomBytes } from 'crypto';
-
 import type MessageInterface from './@types/MessageInterface';
 import Message from './Message';
 import { ServiceNameValue } from './constants';
 
-jest.mock('crypto', () => ({
-  randomBytes: jest.fn(),
-}));
+const originalCrypto = globalThis.crypto;
 
 describe('Message', () => {
   beforeEach(() => {
-    (randomBytes as any).mockReset();
+    globalThis.crypto = {
+      getRandomValues: jest.fn(),
+      randomUUID: jest.fn(),
+      subtle: {} as SubtleCrypto,
+    } as unknown as Crypto;
+  });
+
+  afterEach(() => {
+    globalThis.crypto = originalCrypto;
   });
 
   describe('constructor', () => {
@@ -40,9 +44,12 @@ describe('Message', () => {
         data: { test: 'test' },
         ack: true,
       };
-      (randomBytes as any).mockReturnValueOnce(Buffer.from('test'));
+      (globalThis.crypto.getRandomValues as jest.Mock).mockImplementationOnce((data: Uint8Array) => {
+        data.set([0x74, 0x65, 0x73, 0x74]);
+        return data;
+      });
       const message = new Message(options);
-      expect(message.requestId).toEqual('74657374');
+      expect(message.requestId).toEqual(`74657374${'00'.repeat(28)}`);
     });
   });
 
@@ -114,14 +121,17 @@ describe('Message', () => {
     it('should return a new Message instance from a JSON string with camelCase keys if useCamelCase is true', () => {
       const json =
         '{"command":"test","data":{"test_key":"test"},"origin":"test","destination":"test","ack":true,"requestId":"test"}';
-      (randomBytes as any).mockReturnValueOnce(Buffer.from('test'));
+      (globalThis.crypto.getRandomValues as jest.Mock).mockImplementationOnce((data: Uint8Array) => {
+        data.set([0x74, 0x65, 0x73, 0x74]);
+        return data;
+      });
       const message = Message.fromJSON(json, true);
       expect(message.command).toEqual('test');
       expect(message.origin).toEqual('test');
       expect(message.destination).toEqual('test');
       expect(message.data).toEqual({ testKey: 'test' });
       expect(message.ack).toEqual(true);
-      expect(message.requestId).toEqual('74657374'); // 'test' in hex
+      expect(message.requestId).toEqual(`74657374${'00'.repeat(28)}`);
     });
 
     it('should return a new Message instance from a JSON string with original keys if useCamelCase is false', () => {

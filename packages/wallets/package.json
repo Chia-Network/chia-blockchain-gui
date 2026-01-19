@@ -77,8 +77,8 @@
     "babel-plugin-transform-imports": "2.0.0",
     "jest": "29.6.3",
     "react": "18.2.0",
-    "react-router": "6.15.0",
-    "react-router-dom": "6.15.0",
+    "react-router": "6.30.3",
+    "react-router-dom": "6.30.3",
     "rollup": "4.53.3",
     "rollup-plugin-node-externals": "7.1.2",
     "styled-components": "6.0.7",
@@ -95,8 +95,8 @@
     "@mui/styled-engine-sc": "^5.12.0",
     "@mui/styles": "^5.14.5",
     "react": "^18.2.0",
-    "react-router": "^6.15.0",
-    "react-router-dom": "^6.15.0",
+    "react-router": "^6.30.3",
+    "react-router-dom": "^6.30.3",
     "styled-components": "^6.0.7"
   }
 }
