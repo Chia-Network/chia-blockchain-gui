@@ -35,6 +35,7 @@ import { useForm } from 'react-hook-form';
 
 import useNFT from '../../hooks/useNFT';
 import { launcherIdFromNFTId } from '../../util/nfts';
+import { arrToHex } from '../../util/utils';
 import NFTPreview from '../nfts/NFTPreview';
 
 import { createOfferNotificationPayload } from './utils';
@@ -123,7 +124,7 @@ export default function NotificationSendDialog(props: NotificationSendDialogProp
     let success = false;
     let error = '';
 
-    const hexMessage = Buffer.from(payload).toString('hex');
+    const hexMessage = arrToHex(new TextEncoder().encode(payload));
 
     try {
       await sendNotification({

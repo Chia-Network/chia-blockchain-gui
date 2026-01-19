@@ -22,7 +22,10 @@ export default class WebSocketBridge extends EventEmitter {
 
       const unsubscribeMessage = window.webSocketAPI.subscribeToMessage((id, data) => {
         if (id === this.id) {
-          const message = Buffer.from(data);
+          const message =
+            typeof data === 'string'
+              ? data
+              : new TextDecoder().decode(data instanceof ArrayBuffer ? new Uint8Array(data) : data);
           this.emit('message', message);
         }
       });

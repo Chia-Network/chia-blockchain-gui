@@ -5,7 +5,6 @@ import LoadablePlugin from '@loadable/webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import LodashModuleReplacementPlugin from 'lodash-webpack-plugin';
-import NodePolyfillPlugin from 'node-polyfill-webpack-plugin';
 
 const PORT = 3000;
 const CONTEXT = __dirname;
@@ -128,9 +127,6 @@ export default {
     ],
   },
   plugins: [
-    new NodePolyfillPlugin({
-      additionalAliases: ['process'],
-    }),
     new LoadablePlugin(),
     new LodashModuleReplacementPlugin({
       paths: true,
