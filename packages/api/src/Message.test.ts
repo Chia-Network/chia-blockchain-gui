@@ -49,6 +49,7 @@ describe('Message', () => {
         return data;
       });
       const message = new Message(options);
+      // Only first 4 bytes are set by the mock; the remaining 28 bytes stay zero-filled.
       expect(message.requestId).toEqual(`74657374${'00'.repeat(28)}`);
     });
   });
@@ -131,6 +132,7 @@ describe('Message', () => {
       expect(message.destination).toEqual('test');
       expect(message.data).toEqual({ testKey: 'test' });
       expect(message.ack).toEqual(true);
+      // Only first 4 bytes are set by the mock; the remaining 28 bytes stay zero-filled.
       expect(message.requestId).toEqual(`74657374${'00'.repeat(28)}`);
     });
 

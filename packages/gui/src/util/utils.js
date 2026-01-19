@@ -56,7 +56,7 @@ export function mimeTypeRegex(uri, regexp) {
 }
 
 export function isImage(uri) {
-  return !!(mimeTypeRegex(uri || '', /^image/) || mimeTypeRegex(uri || '', /^$/));
+  return !!mimeTypeRegex(uri || '', /^image/);
 }
 
 export function isDocument(extension) {
