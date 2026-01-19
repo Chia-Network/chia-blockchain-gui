@@ -96,6 +96,9 @@ export default {
     alias: {
       '@mui/styled-engine': '@mui/styled-engine-sc',
     },
+    fallback: {
+      punycode: require.resolve('punycode/'),
+    },
   },
   optimization: {
     splitChunks: {
