@@ -180,7 +180,7 @@ export default function AppState(props: Props) {
     const backendVersionClean = backendVersion.replace(/[-+.]/g, '');
     const guiVersionClean = version.replace(/[-+.]/g, '');
 
-    const isDev = typeof process !== 'undefined' && process.env?.NODE_ENV === 'development';
+    const isDev = process.env.NODE_ENV === 'development';
     if (backendVersionClean !== guiVersionClean && !isDev) {
       return (
         <LayoutHero>

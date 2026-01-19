@@ -143,6 +143,8 @@ export default {
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(DEV ? 'development' : 'production'),
+      'process.env.MULTIPLE_WALLETS': JSON.stringify(process.env.MULTIPLE_WALLETS),
+      'process.env.LOCAL_TEST': JSON.stringify(process.env.LOCAL_TEST),
       'process.env.BROWSER': true,
       IS_BROWSER: true,
     }),
