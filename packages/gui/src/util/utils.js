@@ -1,4 +1,28 @@
-import mime from 'mime-types';
+const IMAGE_EXTENSIONS = new Set(['apng', 'avif', 'bmp', 'gif', 'jpeg', 'jpg', 'png', 'svg', 'tif', 'tiff', 'webp']);
+
+function getExtension(uri) {
+  if (!uri) {
+    return undefined;
+  }
+
+  try {
+    const url = new URL(uri);
+    const pathname = decodeURIComponent(url.pathname);
+    const lastSegment = pathname.substring(pathname.lastIndexOf('/') + 1);
+    const dotIndex = lastSegment.lastIndexOf('.');
+    if (dotIndex === -1 || dotIndex === lastSegment.length - 1) {
+      return undefined;
+    }
+
+    return lastSegment.substring(dotIndex + 1).toLowerCase();
+  } catch (e) {
+    const dotIndex = uri.lastIndexOf('.');
+    if (dotIndex === -1 || dotIndex === uri.length - 1) {
+      return undefined;
+    }
+    return uri.substring(dotIndex + 1).toLowerCase();
+  }
+}
 
 export function hexToArray(hexStringParam) {
   let hexString = hexStringParam;
@@ -22,14 +46,13 @@ export async function sha256(buf) {
 }
 
 export function mimeTypeRegex(uri, regexp) {
-  let urlOnly = '';
-  try {
-    urlOnly = new URL(uri).origin + new URL(uri).pathname;
-  } catch (e) {
-    console.error(`Error parsing URL ${uri}: ${e}`);
+  const extension = getExtension(uri);
+  if (!extension) {
+    return ''.match(regexp);
   }
-  const temp = mime.lookup(urlOnly);
-  return (temp || '').match(regexp);
+
+  const mimeType = IMAGE_EXTENSIONS.has(extension) ? 'image' : '';
+  return mimeType.match(regexp);
 }
 
 export function isImage(uri) {

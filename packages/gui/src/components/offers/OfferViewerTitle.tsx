@@ -1,5 +1,3 @@
-import path from 'path';
-
 import { OfferTradeRecord } from '@chia-network/api';
 import { Flex, useColorModeValue } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
@@ -25,7 +23,7 @@ type OfferViewerTitleProps = {
 
 export default function OfferViewerTitle(props: OfferViewerTitleProps): React.ReactElement {
   const { offerFilePath, tradeRecord } = props;
-  const offerFileName = offerFilePath ? path.basename(offerFilePath) : undefined;
+  const offerFileName = offerFilePath ? offerFilePath.split(/[\\/]/).pop() : undefined;
 
   // eslint-disable-next-line react/no-unstable-nested-components -- Not a perf issue
   function OfferTitleValue() {

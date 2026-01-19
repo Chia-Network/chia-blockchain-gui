@@ -1,9 +1,12 @@
-import mime from 'mime-types';
-
 import FileType from '../constants/FileType';
 
 import getFileExtension from './getFileExtension';
 import { isDocument } from './utils';
+
+const IMAGE_EXTENSIONS = new Set(['apng', 'avif', 'bmp', 'gif', 'jpeg', 'jpg', 'png', 'svg', 'tif', 'tiff', 'webp']);
+const VIDEO_EXTENSIONS = new Set(['avi', 'mkv', 'mov', 'mp4', 'm4v', 'mpeg', 'mpg', 'webm', 'wmv']);
+const AUDIO_EXTENSIONS = new Set(['aac', 'flac', 'm4a', 'mp3', 'ogg', 'opus', 'wav', 'wma']);
+const MODEL_EXTENSIONS = new Set(['gltf', 'glb', 'obj', 'stl']);
 
 export default function getFileType(uri: string): FileType {
   if (!uri) {
@@ -19,24 +22,19 @@ export default function getFileType(uri: string): FileType {
     return FileType.DOCUMENT;
   }
 
-  const mimeType = mime.lookup(extension);
-  if (!mimeType) {
-    return FileType.UNKNOWN;
-  }
-
-  if (mimeType.startsWith('image/')) {
+  if (IMAGE_EXTENSIONS.has(extension)) {
     return FileType.IMAGE;
   }
 
-  if (mimeType.startsWith('video/')) {
+  if (VIDEO_EXTENSIONS.has(extension)) {
     return FileType.VIDEO;
   }
 
-  if (mimeType.startsWith('audio/')) {
+  if (AUDIO_EXTENSIONS.has(extension)) {
     return FileType.AUDIO;
   }
 
-  if (mimeType.startsWith('model/')) {
+  if (MODEL_EXTENSIONS.has(extension)) {
     return FileType.MODEL;
   }
 
