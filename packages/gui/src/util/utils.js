@@ -42,7 +42,8 @@ export function arrToHex(buffer) {
 }
 
 export async function sha256(buf) {
-  return window.crypto.subtle.digest('SHA-256', new Uint8Array(buf));
+  const data = typeof buf === 'string' ? new TextEncoder().encode(buf) : new Uint8Array(buf || []);
+  return window.crypto.subtle.digest('SHA-256', data);
 }
 
 export function mimeTypeRegex(uri, regexp) {
