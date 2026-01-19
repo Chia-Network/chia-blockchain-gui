@@ -97,6 +97,7 @@ export default {
       '@mui/styled-engine': '@mui/styled-engine-sc',
     },
     fallback: {
+      buffer: require.resolve('buffer/'),
       punycode: require.resolve('punycode/'),
     },
   },
@@ -136,6 +137,9 @@ export default {
       flattening: true,
       shorthands: true,
       collections: true,
+    }),
+    new webpack.ProvidePlugin({
+      Buffer: ['buffer', 'Buffer'],
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(DEV ? 'development' : 'production'),
