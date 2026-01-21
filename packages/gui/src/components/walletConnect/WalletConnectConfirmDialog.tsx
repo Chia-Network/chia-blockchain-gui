@@ -15,6 +15,28 @@ const StyledPre = styled(Typography)(() => ({
   whiteSpace: 'pre-wrap',
 }));
 
+function formatValue(value: unknown): ReactNode {
+  if (value === null || value === undefined) {
+    return <Trans>Not Available</Trans>;
+  }
+
+  const valueType = typeof value;
+  if (valueType === 'string' || valueType === 'number' || valueType === 'boolean' || valueType === 'bigint') {
+    return value.toString();
+  }
+
+  if (valueType === 'object') {
+    try {
+      const formatted = JSON.stringify(value, null, 2);
+      return <StyledPre variant="body2">{formatted}</StyledPre>;
+    } catch (error) {
+      return value.toString();
+    }
+  }
+
+  return value.toString();
+}
+
 function formatStackTrace(stack: StackFrame[]) {
   const stackTrace = stack.map(
     ({ fileName, columnNumber, lineNumber, functionName }) =>
@@ -133,15 +155,20 @@ export default function WalletConnectConfirmDialog(props: WalletConnectConfirmDi
           }
 
           const value = values[name];
+          const valueNode = displayComponent
+            ? displayComponent(value, params, values, handleChangeValues)
+            : formatValue(value);
           return (
             <LocalErrorBoundary onError={onError}>
               <Flex flexDirection="column" key={name}>
                 <Typography color="textPrimary">{label ?? name}</Typography>
-                <Typography color="textSecondary">
-                  {displayComponent
-                    ? displayComponent(value, params, values, handleChangeValues)
-                    : (value?.toString() ?? <Trans>Not Available</Trans>)}
-                </Typography>
+                {typeof valueNode === 'string' ? (
+                  <Typography color="textSecondary">{valueNode}</Typography>
+                ) : (
+                  <Typography color="textSecondary" component="div">
+                    {valueNode}
+                  </Typography>
+                )}
               </Flex>
             </LocalErrorBoundary>
           );
