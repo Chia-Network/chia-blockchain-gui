@@ -184,8 +184,7 @@ export default function VCList() {
         return;
       }
 
-      const buffer = Buffer.from(result.content);
-      const json = JSON.parse(buffer.toString());
+      const json = JSON.parse(new TextDecoder().decode(result.content));
 
       const sha256VC = await sha256(JSON.stringify(json));
       const sha256VCString = arrToHex(sha256VC);

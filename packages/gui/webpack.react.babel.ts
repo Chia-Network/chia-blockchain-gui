@@ -5,7 +5,6 @@ import LoadablePlugin from '@loadable/webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import LodashModuleReplacementPlugin from 'lodash-webpack-plugin';
-import NodePolyfillPlugin from 'node-polyfill-webpack-plugin';
 
 const PORT = 3000;
 const CONTEXT = __dirname;
@@ -97,6 +96,10 @@ export default {
     alias: {
       '@mui/styled-engine': '@mui/styled-engine-sc',
     },
+    fallback: {
+      buffer: require.resolve('buffer/'),
+      punycode: require.resolve('punycode/'),
+    },
   },
   optimization: {
     splitChunks: {
@@ -128,9 +131,6 @@ export default {
     ],
   },
   plugins: [
-    new NodePolyfillPlugin({
-      additionalAliases: ['process'],
-    }),
     new LoadablePlugin(),
     new LodashModuleReplacementPlugin({
       paths: true,
@@ -138,8 +138,13 @@ export default {
       shorthands: true,
       collections: true,
     }),
+    new webpack.ProvidePlugin({
+      Buffer: ['buffer', 'Buffer'],
+    }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(DEV ? 'development' : 'production'),
+      'process.env.MULTIPLE_WALLETS': JSON.stringify(process.env.MULTIPLE_WALLETS),
+      'process.env.LOCAL_TEST': JSON.stringify(process.env.LOCAL_TEST),
       'process.env.BROWSER': true,
       IS_BROWSER: true,
     }),

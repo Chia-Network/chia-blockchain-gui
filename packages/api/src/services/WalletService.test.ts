@@ -1,14 +1,14 @@
-import { randomBytes } from 'crypto';
-
 import BigNumber from 'bignumber.js';
 
 import Message from '../Message';
 import { ServiceNameValue } from '../constants/ServiceName';
+import randomHex from '../utils/randomHex';
 
 import Wallet from './WalletService';
 
-jest.mock('crypto', () => ({
-  randomBytes: jest.fn(),
+jest.mock('../utils/randomHex', () => ({
+  __esModule: true,
+  default: jest.fn(),
 }));
 
 describe('WalletService', () => {
@@ -16,8 +16,8 @@ describe('WalletService', () => {
   let client: any;
 
   beforeEach(() => {
-    (randomBytes as any).mockReset();
-    (randomBytes as any).mockReturnValue(Buffer.from('test'));
+    (randomHex as jest.Mock).mockReset();
+    (randomHex as jest.Mock).mockReturnValue('test_request_id');
 
     client = {
       origin: 'test_origin',

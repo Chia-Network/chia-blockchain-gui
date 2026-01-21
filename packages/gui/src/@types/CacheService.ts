@@ -17,7 +17,7 @@ type CacheService = {
   setMaxCacheSize: (sizeInBytes: number) => Promise<void>;
 
   // Content operations
-  getContent: (url: string, options?: CacheRequestOptions) => Promise<Buffer>;
+  getContent: (url: string, options?: CacheRequestOptions) => Promise<Uint8Array>;
   getHeaders: (url: string, options?: CacheRequestOptions) => Promise<Record<string, string>>;
   getChecksum: (url: string, options?: CacheRequestOptions) => Promise<string>;
   getURI: (url: string, options?: CacheRequestOptions) => Promise<string>;

@@ -8,7 +8,7 @@ import parseFileContent from './parseFileContent';
 
 type FetchOfferParams = {
   offerUrl: string;
-  getContent: (url: string, options?: { maxSize?: number; timeout?: number }) => Promise<Buffer>;
+  getContent: (url: string, options?: { maxSize?: number; timeout?: number }) => Promise<Uint8Array>;
   getHeaders: (url: string, options?: { maxSize?: number; timeout?: number }) => Promise<Object>;
 };
 
