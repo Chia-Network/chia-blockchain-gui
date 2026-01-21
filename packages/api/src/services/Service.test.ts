@@ -1,12 +1,12 @@
-import { randomBytes } from 'crypto';
-
 import Message from '../Message';
 import { ServiceNameValue } from '../constants/ServiceName';
+import randomHex from '../utils/randomHex';
 
 import Service from './Service';
 
-jest.mock('crypto', () => ({
-  randomBytes: jest.fn(),
+jest.mock('../utils/randomHex', () => ({
+  __esModule: true,
+  default: jest.fn(),
 }));
 
 class TestService extends Service {
@@ -20,7 +20,8 @@ describe('Service', () => {
   let client: any;
 
   beforeEach(() => {
-    (randomBytes as any).mockReset();
+    (randomHex as jest.Mock).mockReset();
+    (randomHex as jest.Mock).mockReturnValue('test_request_id');
 
     client = {
       origin: 'test_origin',
@@ -50,8 +51,6 @@ describe('Service', () => {
   });
 
   it('sends command to client', async () => {
-    (randomBytes as any).mockReturnValue(Buffer.from('test'));
-
     const command = 'test_command';
     const data = { test: 'test', testKey1: 'test', testKey2: 'test' };
     const expected = [

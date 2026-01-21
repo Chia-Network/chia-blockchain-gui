@@ -13,6 +13,7 @@ import React, { useEffect, useCallback, useRef } from 'react';
 
 import type Notification from '../@types/Notification';
 import NotificationType from '../constants/NotificationType';
+import { hexToArray } from '../util/utils';
 
 import useStateAbort from './useStateAbort';
 
@@ -76,7 +77,9 @@ export default function useBlockchainNotifications() {
           blockchainNotificationsList.map(async (notification): Promise<Notification | null> => {
             try {
               const { id, message: hexMessage, height } = notification;
-              const message = hexMessage ? Buffer.from(hexMessage.replace(/^0x/, ''), 'hex').toString() : '';
+              const message = hexMessage
+                ? new TextDecoder().decode(new Uint8Array(hexToArray(hexMessage.replace(/^0x/, ''))))
+                : '';
               if (!message) {
                 throw new Error('Notification has not message');
               }
