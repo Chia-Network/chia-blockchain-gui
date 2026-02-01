@@ -454,9 +454,12 @@ msgstr "为以下命令保存偏好吗？"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:417
-msgid "These commands will be executed without confirmation in the future:\n\n"
+msgid ""
+"These commands will be executed without confirmation in the future:\n"
+"\n"
 " {commands}"
-msgstr "这些命令将无需确认即可执行：\n"
+msgstr ""
+"这些命令将无需确认即可执行：\n"
 "{commands}"
 
 #. js-lingui-explicit-id
@@ -943,13 +946,13 @@ msgstr "添加证明"
 msgid "Add Proofs To Verifiable Credential"
 msgstr "向可验证证件添加证明信息"
 
-#: src/components/vcs/VCList.tsx:228
+#: src/components/vcs/VCList.tsx:227
 msgid "Add Verifiable Credential from file"
 msgstr "从文件中添加可验证证件"
 
 #: src/components/addressbook/ContactAdd.tsx:58
 #: src/components/addressbook/ContactEdit.tsx:61
-#: src/components/notification/NotificationSendDialog.tsx:220
+#: src/components/notification/NotificationSendDialog.tsx:221
 #: src/components/signVerify/SigningEntityWalletAddress.tsx:45
 #: src/constants/WalletConnectCommands.tsx:142
 #: src/constants/WalletConnectCommands.tsx:217
@@ -993,11 +996,11 @@ msgstr "允许外部应用程序和网站通过WalletConnect连接到你的钱�
 msgid "Allow requests that require switching to a different wallet key."
 msgstr "允许在不同钱包之间进行切换。"
 
-#: src/components/notification/NotificationSendDialog.tsx:285
+#: src/components/notification/NotificationSendDialog.tsx:286
 msgid "Allow the NFT holder to send a counter offer"
 msgstr "允许NFT持有者发送还价"
 
-#: src/components/notification/NotificationSendDialog.tsx:287
+#: src/components/notification/NotificationSendDialog.tsx:288
 msgid "Allow the recipient to send a counter offer"
 msgstr "允许接收方发送还价"
 
@@ -1078,7 +1081,7 @@ msgstr "应用正在请求权限以执行这些命令"
 msgid "App Permissions"
 msgstr "应用权限"
 
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:203
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:230
 #: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:92
 #: src/components/walletConnect/WalletConnectRequestPermissionsConfirmDialog.tsx:160
 msgid "Application"
@@ -1185,7 +1188,7 @@ msgstr "提供的资产"
 msgid "Assets you will receive"
 msgstr "将会收到的资产："
 
-#: src/components/app/AppState.tsx:233
+#: src/components/app/AppState.tsx:234
 msgid "Attempt {attempt}"
 msgstr "尝试 {attempt}"
 
@@ -1221,7 +1224,7 @@ msgstr "后退"
 msgid "Backup DIDs"
 msgstr "备份DID"
 
-#: src/components/vcs/VCList.tsx:280
+#: src/components/vcs/VCList.tsx:279
 msgid "Badging"
 msgstr "徽标"
 
@@ -1546,7 +1549,7 @@ msgstr "单击删除图标只会从列表中移除文件夹，而不会删除文
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:299
 #: src/components/nfts/NFTTransferAction.tsx:150
 #: src/components/notification/NotificationAnnouncementDialog.tsx:87
-#: src/components/notification/NotificationSendDialog.tsx:308
+#: src/components/notification/NotificationSendDialog.tsx:309
 #: src/components/offers/ConfirmOfferCancellation.tsx:126
 #: src/components/offers/OfferShareDialog.tsx:316
 #: src/components/offers/OfferShareDialog.tsx:391
@@ -1612,7 +1615,7 @@ msgstr "压缩等级"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:167
 #: src/components/vcs/VCRevokeDialog.tsx:27
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:172
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:199
 msgid "Confirm"
 msgstr "确认"
 
@@ -1642,7 +1645,7 @@ msgstr "确认私钥密码"
 msgid "Confirmation"
 msgstr "确认"
 
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:170
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:197
 msgid "Confirmation Request"
 msgstr "确认请求"
 
@@ -1672,8 +1675,8 @@ msgstr "已连接"
 msgid "Connected Applications"
 msgstr "已连接的应用程序"
 
-#: src/components/app/AppState.tsx:225
-#: src/components/app/AppState.tsx:230
+#: src/components/app/AppState.tsx:226
+#: src/components/app/AppState.tsx:231
 msgid "Connecting to daemon"
 msgstr "正在连接到进程"
 
@@ -1736,11 +1739,11 @@ msgstr "复制到剪贴板"
 msgid "Copy To Clipboard"
 msgstr "复制到剪贴板"
 
-#: src/components/notification/NotificationSendDialog.tsx:240
+#: src/components/notification/NotificationSendDialog.tsx:241
 msgid "Cost to send notification"
 msgstr "发送通知的费用"
 
-#: src/components/notification/NotificationSendDialog.tsx:238
+#: src/components/notification/NotificationSendDialog.tsx:239
 msgid "Cost to send notification to the NFT holder"
 msgstr "向 NFT 持有者发送通知的成本"
 
@@ -1839,7 +1842,7 @@ msgstr "创建个人资料"
 msgid "Create Signature"
 msgstr "新建签名"
 
-#: src/components/offers/OfferViewerTitle.tsx:36
+#: src/components/offers/OfferViewerTitle.tsx:34
 msgid "created {0}"
 msgstr "已创建 {0}"
 
@@ -1978,7 +1981,7 @@ msgstr "延迟"
 #: src/components/plot/PlotAction.tsx:36
 #: src/components/plot/queue/PlotQueueActions.tsx:65
 #: src/components/plotNFT/PlotNFTCard.tsx:106
-#: src/hooks/useBlockchainNotifications.tsx:159
+#: src/hooks/useBlockchainNotifications.tsx:162
 msgid "Delete"
 msgstr "删除"
 
@@ -2180,7 +2183,7 @@ msgstr "确定执行命令 {command} 吗？"
 msgid "Do you want to log in to {fingerprint} and execute command {command}?"
 msgstr "确定登录到 {fingerprint} 并执行命令 {command} 吗？"
 
-#: src/hooks/useBlockchainNotifications.tsx:167
+#: src/hooks/useBlockchainNotifications.tsx:170
 msgid "Do you want to remove this offer notification? This action cannot be undone."
 msgstr "确定删除此报价通知吗？此操作无法撤消。"
 
@@ -2403,7 +2406,7 @@ msgstr "错误"
 #~ msgid "Error fetching video preview"
 #~ msgstr ""
 
-#: src/components/vcs/VCList.tsx:216
+#: src/components/vcs/VCList.tsx:215
 msgid "Error parsing file"
 msgstr "解析文件出错"
 
@@ -2416,7 +2419,7 @@ msgid "Error posting offer: {0}"
 msgstr "发布报价时出错： {0}"
 
 #: src/components/signVerify/VerifyMessage.tsx:146
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:159
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:186
 msgid "Error:"
 msgstr "错误:"
 
@@ -2506,7 +2509,7 @@ msgstr "无法解码 NFT 标识符"
 #~ msgid "Failed to execute Keybase command: {stderr}"
 #~ msgstr "Failed to execute Keybase command: {stderr}"
 
-#: src/components/notification/NotificationSendDialog.tsx:148
+#: src/components/notification/NotificationSendDialog.tsx:149
 msgid "Failed to send the notification: {error}"
 msgstr "发送通知失败: {error}"
 
@@ -2522,7 +2525,7 @@ msgstr "更新收割机配置失败"
 msgid "Failed to update passphrase: {0}"
 msgstr "设置私钥密码失败: {0}"
 
-#: src/components/notification/NotificationSendDialog.tsx:143
+#: src/components/notification/NotificationSendDialog.tsx:144
 msgid "Failure"
 msgstr "失败"
 
@@ -2943,7 +2946,7 @@ msgstr "收集一些宝石吧"
 #~ msgid "Go to #{channelName}"
 #~ msgstr "Go to #{channelName}"
 
-#: src/components/vcs/VCList.tsx:296
+#: src/components/vcs/VCList.tsx:295
 msgid "Government IDs"
 msgstr "身份证"
 
@@ -3187,16 +3190,20 @@ msgstr "插入"
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid "Insufficient funds available to accept offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "可用资金不足，无法接受报价。请确保您的\n"
+msgstr ""
+"可用资金不足，无法接受报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
 #: src/components/offers/OfferEditor.tsx:127
 #: src/components/offers2/CreateOfferBuilder.tsx:161
-msgid "Insufficient funds available to create offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "可用的资金不足，无法创建报价。请确保您的\n"
+msgstr ""
+"可用的资金不足，无法创建报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
 #: src/components/farm/PoolingHealth.tsx:302
@@ -3240,7 +3247,7 @@ msgstr "无效的 NFT 标识符"
 msgid "Invalid state"
 msgstr "无效状态"
 
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:155
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:182
 msgid "Invalid WalletConnect data"
 msgstr "无效的WalletConnect数据"
 
@@ -3308,7 +3315,7 @@ msgstr "K值"
 msgid "K-Size"
 msgstr "K值大小"
 
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:186
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:213
 #: src/components/walletConnect/WalletConnectRequestPermissionsConfirmDialog.tsx:143
 #: src/constants/WalletConnectCommands.tsx:1051
 #: src/constants/WalletConnectCommands.tsx:1295
@@ -3345,7 +3352,7 @@ msgstr "密钥"
 msgid "KiB Up/Down"
 msgstr "KiB 上传/下载"
 
-#: src/components/vcs/VCList.tsx:302
+#: src/components/vcs/VCList.tsx:301
 msgid "KYC status"
 msgstr "KYC状态"
 
@@ -3463,7 +3470,7 @@ msgstr "正在加载耕种数据"
 msgid "Loading fingerprint"
 msgstr "加载指纹中"
 
-#: src/components/app/AppState.tsx:196
+#: src/components/app/AppState.tsx:197
 msgid "Loading keyring status"
 msgstr "正在载入密钥串状态"
 
@@ -3568,7 +3575,7 @@ msgstr "最大值"
 msgid "Max page size"
 msgstr "Max page size"
 
-#: src/components/vcs/VCList.tsx:306
+#: src/components/vcs/VCList.tsx:305
 msgid "Memberships"
 msgstr "成员资格"
 
@@ -3861,7 +3868,7 @@ msgstr "NFT 详细信息不可用"
 msgid "NFT has no royalties"
 msgstr "该NFT无版税"
 
-#: src/components/notification/NotificationSendDialog.tsx:212
+#: src/components/notification/NotificationSendDialog.tsx:213
 msgid "NFT holder address"
 msgstr "NFT持有者地址"
 
@@ -4037,7 +4044,7 @@ msgstr "不可用"
 #: src/components/offers2/OfferBuilderValue.tsx:73
 #: src/components/plot/PlotStatus.tsx:20
 #: src/components/plotNFT/PlotNFTCard.tsx:307
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:143
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:20
 #: src/components/walletConnect/WalletConnectRequestPermissionsConfirmDialog.tsx:132
 msgid "Not Available"
 msgstr "不可用"
@@ -4070,11 +4077,11 @@ msgstr "注意：与当前登录的钱包对应的农民公钥是 {farmerPublicK
 msgid "Note: the pool public key corresponding to the current logged-in wallet is {poolPublicKeyForFingerprint}"
 msgstr "注意：与当前登录的钱包对应的耕种池公钥是 {poolPublicKeyForFingerprint}。"
 
-#: src/components/notification/NotificationSendDialog.tsx:146
+#: src/components/notification/NotificationSendDialog.tsx:147
 msgid "Notification has successfully been sent to a full node and included in the mempool."
 msgstr "通知已成功发送到全节点并添加到内存池中。"
 
-#: src/components/notification/NotificationSendDialog.tsx:214
+#: src/components/notification/NotificationSendDialog.tsx:215
 msgid "Notification recipient's address"
 msgstr "通知接收者的地址"
 
@@ -4517,7 +4524,7 @@ msgid "Please check the following link to verify the site you are going to visit
 msgstr "请检查以下链接以验证您要访问的站点。请自行承担操作风险。"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:139
-#: src/hooks/useBlockchainNotifications.tsx:158
+#: src/hooks/useBlockchainNotifications.tsx:161
 msgid "Please Confirm"
 msgstr "请确认"
 
@@ -5027,7 +5034,7 @@ msgid "Refresh Plots"
 msgstr "刷新图块列表"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:270
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:173
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:200
 #: src/components/walletConnect/WalletConnectRequestPermissionsConfirmDialog.tsx:90
 msgid "Reject"
 msgstr "拒绝"
@@ -5451,7 +5458,7 @@ msgstr "独自耕种"
 msgid "Sell an NFT"
 msgstr "卖出一个 NFT"
 
-#: src/components/notification/NotificationSendDialog.tsx:311
+#: src/components/notification/NotificationSendDialog.tsx:312
 msgid "Send Message"
 msgstr "发送消息"
 
@@ -5461,7 +5468,7 @@ msgstr "发送消息"
 msgid "Send Notification"
 msgstr "发送通知"
 
-#: src/components/notification/NotificationSendDialog.tsx:179
+#: src/components/notification/NotificationSendDialog.tsx:180
 msgid "Send offer notification"
 msgstr "发送报价通知"
 
@@ -5737,7 +5744,7 @@ msgstr "起始索引"
 msgid "Start Key"
 msgstr "选择密钥"
 
-#: src/components/app/AppState.tsx:254
+#: src/components/app/AppState.tsx:255
 msgid "Starting services"
 msgstr "正在启动服务..."
 
@@ -5807,7 +5814,7 @@ msgstr "订阅"
 msgid "Subscriptions"
 msgstr "订阅"
 
-#: src/components/notification/NotificationSendDialog.tsx:143
+#: src/components/notification/NotificationSendDialog.tsx:144
 #: src/components/vcs/VCCard.tsx:278
 #: src/hooks/useAcceptOfferHook.tsx:98
 msgid "Success"
@@ -6335,7 +6342,7 @@ msgstr "交易代币"
 msgid "Transaction auto claim fee"
 msgstr "自动确认时的手续费"
 
-#: src/components/notification/NotificationSendDialog.tsx:261
+#: src/components/notification/NotificationSendDialog.tsx:262
 msgid "Transaction Fee"
 msgstr "交易手续费"
 
@@ -6603,7 +6610,7 @@ msgstr "详细模式"
 msgid "Verifiable Credential"
 msgstr "可验证证件"
 
-#: src/components/vcs/VCList.tsx:200
+#: src/components/vcs/VCList.tsx:199
 msgid "Verifiable Credential already exists."
 msgstr "可验证证件已存在。"
 
@@ -6619,17 +6626,17 @@ msgstr "可验证证件已移除。"
 msgid "Verifiable Credential Revoked."
 msgstr "可验证证件已撤销。"
 
-#: src/components/vcs/VCList.tsx:208
+#: src/components/vcs/VCList.tsx:207
 msgid "Verifiable Credential successfully added."
 msgstr "成功添加了可验证证件。"
 
 #: src/components/settings/SettingsVerifiableCredentials.tsx:17
-#: src/components/vcs/VCList.tsx:268
-#: src/components/vcs/VCList.tsx:329
+#: src/components/vcs/VCList.tsx:267
+#: src/components/vcs/VCList.tsx:328
 msgid "Verifiable Credentials"
 msgstr "可验证证件"
 
-#: src/components/vcs/VCList.tsx:271
+#: src/components/vcs/VCList.tsx:270
 msgid "Verifiable Credentials are like digital ID cards that can prove certain information about you without giving away your private details."
 msgstr "可验证证件就像是数字身份证，可以证明关于你的某些信息，而不泄露你的私人信息。"
 
@@ -6717,7 +6724,7 @@ msgstr "在 Spacescan.io 上查看"
 msgid "View Pool Login Link"
 msgstr "查看联合耕种池登录地址"
 
-#: src/components/offers/OfferViewerTitle.tsx:49
+#: src/components/offers/OfferViewerTitle.tsx:47
 msgid "Viewing offer"
 msgstr "查看报价"
 
@@ -6759,7 +6766,7 @@ msgstr "正在等待交易确认"
 #: src/components/app/AppStatusHeader.tsx:152
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:187
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:191
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:190
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:217
 #: src/components/walletConnect/WalletConnectRequestPermissionsConfirmDialog.tsx:147
 msgid "Wallet"
 msgstr "轻钱包"
@@ -7101,4 +7108,3 @@ msgstr "可用余额必须大于1 mojo才能创建个人资料"
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "需确保钱包正在运行才能完成自动确认。"
-
