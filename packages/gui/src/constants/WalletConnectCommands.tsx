@@ -312,6 +312,14 @@ const walletConnectCommands: WalletConnectCommand[] = [
     ],
   },
   {
+    command: 'getFeeEstimate',
+    label: <Trans>Get Fee Estimate</Trans>,
+    description: <Trans>Requests an estimate of the transaction fee</Trans>,
+    service: ServiceName.WALLET,
+    serviceCommand: 'getWalletFeeEstimate',
+    bypassConfirm: true,
+  },
+  {
     command: 'getSyncStatus',
     label: <Trans>Get Wallet Sync Status</Trans>,
     description: <Trans>Requests the syncing status of current wallet</Trans>,
