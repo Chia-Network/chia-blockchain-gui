@@ -8,7 +8,7 @@ msgstr ""
 "Language: uk_UA\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-11-16 00:05\n"
+"PO-Revision-Date: 2026-01-11 00:06\n"
 "Last-Translator: \n"
 "Language-Team: Ukrainian\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
@@ -944,13 +944,13 @@ msgstr ""
 msgid "Add Proofs To Verifiable Credential"
 msgstr ""
 
-#: src/components/vcs/VCList.tsx:228
+#: src/components/vcs/VCList.tsx:227
 msgid "Add Verifiable Credential from file"
 msgstr ""
 
 #: src/components/addressbook/ContactAdd.tsx:58
 #: src/components/addressbook/ContactEdit.tsx:61
-#: src/components/notification/NotificationSendDialog.tsx:220
+#: src/components/notification/NotificationSendDialog.tsx:221
 #: src/components/signVerify/SigningEntityWalletAddress.tsx:45
 #: src/constants/WalletConnectCommands.tsx:142
 #: src/constants/WalletConnectCommands.tsx:217
@@ -994,11 +994,11 @@ msgstr ""
 msgid "Allow requests that require switching to a different wallet key."
 msgstr ""
 
-#: src/components/notification/NotificationSendDialog.tsx:285
+#: src/components/notification/NotificationSendDialog.tsx:286
 msgid "Allow the NFT holder to send a counter offer"
 msgstr ""
 
-#: src/components/notification/NotificationSendDialog.tsx:287
+#: src/components/notification/NotificationSendDialog.tsx:288
 msgid "Allow the recipient to send a counter offer"
 msgstr ""
 
@@ -1079,7 +1079,7 @@ msgstr ""
 msgid "App Permissions"
 msgstr ""
 
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:203
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:230
 #: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:92
 #: src/components/walletConnect/WalletConnectRequestPermissionsConfirmDialog.tsx:160
 msgid "Application"
@@ -1186,7 +1186,7 @@ msgstr ""
 msgid "Assets you will receive"
 msgstr ""
 
-#: src/components/app/AppState.tsx:233
+#: src/components/app/AppState.tsx:234
 msgid "Attempt {attempt}"
 msgstr "Спроба {attempt}"
 
@@ -1222,7 +1222,7 @@ msgstr "Назад"
 msgid "Backup DIDs"
 msgstr "Резервне копіювання DIDs"
 
-#: src/components/vcs/VCList.tsx:280
+#: src/components/vcs/VCList.tsx:279
 msgid "Badging"
 msgstr ""
 
@@ -1547,7 +1547,7 @@ msgstr ""
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:299
 #: src/components/nfts/NFTTransferAction.tsx:150
 #: src/components/notification/NotificationAnnouncementDialog.tsx:87
-#: src/components/notification/NotificationSendDialog.tsx:308
+#: src/components/notification/NotificationSendDialog.tsx:309
 #: src/components/offers/ConfirmOfferCancellation.tsx:126
 #: src/components/offers/OfferShareDialog.tsx:316
 #: src/components/offers/OfferShareDialog.tsx:391
@@ -1613,7 +1613,7 @@ msgstr "Рівень стиснення"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:167
 #: src/components/vcs/VCRevokeDialog.tsx:27
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:172
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:199
 msgid "Confirm"
 msgstr ""
 
@@ -1643,7 +1643,7 @@ msgstr "Підтвердження пароля"
 msgid "Confirmation"
 msgstr "Підтвердження"
 
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:170
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:197
 msgid "Confirmation Request"
 msgstr ""
 
@@ -1673,8 +1673,8 @@ msgstr "Підключено"
 msgid "Connected Applications"
 msgstr ""
 
-#: src/components/app/AppState.tsx:225
-#: src/components/app/AppState.tsx:230
+#: src/components/app/AppState.tsx:226
+#: src/components/app/AppState.tsx:231
 msgid "Connecting to daemon"
 msgstr "Підключення до служби"
 
@@ -1737,11 +1737,11 @@ msgstr ""
 msgid "Copy To Clipboard"
 msgstr ""
 
-#: src/components/notification/NotificationSendDialog.tsx:240
+#: src/components/notification/NotificationSendDialog.tsx:241
 msgid "Cost to send notification"
 msgstr ""
 
-#: src/components/notification/NotificationSendDialog.tsx:238
+#: src/components/notification/NotificationSendDialog.tsx:239
 msgid "Cost to send notification to the NFT holder"
 msgstr ""
 
@@ -1840,7 +1840,7 @@ msgstr ""
 msgid "Create Signature"
 msgstr ""
 
-#: src/components/offers/OfferViewerTitle.tsx:36
+#: src/components/offers/OfferViewerTitle.tsx:34
 msgid "created {0}"
 msgstr "створено {0}"
 
@@ -1979,7 +1979,7 @@ msgstr "Затримка"
 #: src/components/plot/PlotAction.tsx:36
 #: src/components/plot/queue/PlotQueueActions.tsx:65
 #: src/components/plotNFT/PlotNFTCard.tsx:106
-#: src/hooks/useBlockchainNotifications.tsx:159
+#: src/hooks/useBlockchainNotifications.tsx:162
 msgid "Delete"
 msgstr ""
 
@@ -2181,7 +2181,7 @@ msgstr ""
 msgid "Do you want to log in to {fingerprint} and execute command {command}?"
 msgstr ""
 
-#: src/hooks/useBlockchainNotifications.tsx:167
+#: src/hooks/useBlockchainNotifications.tsx:170
 msgid "Do you want to remove this offer notification? This action cannot be undone."
 msgstr ""
 
@@ -2404,7 +2404,7 @@ msgstr "Помилка"
 #~ msgid "Error fetching video preview"
 #~ msgstr ""
 
-#: src/components/vcs/VCList.tsx:216
+#: src/components/vcs/VCList.tsx:215
 msgid "Error parsing file"
 msgstr ""
 
@@ -2417,7 +2417,7 @@ msgid "Error posting offer: {0}"
 msgstr ""
 
 #: src/components/signVerify/VerifyMessage.tsx:146
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:159
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:186
 msgid "Error:"
 msgstr ""
 
@@ -2507,7 +2507,7 @@ msgstr "Не вдалося розшифрувати NFT ідентифікат�
 #~ msgid "Failed to execute Keybase command: {stderr}"
 #~ msgstr "Failed to execute Keybase command: {stderr}"
 
-#: src/components/notification/NotificationSendDialog.tsx:148
+#: src/components/notification/NotificationSendDialog.tsx:149
 msgid "Failed to send the notification: {error}"
 msgstr ""
 
@@ -2523,7 +2523,7 @@ msgstr ""
 msgid "Failed to update passphrase: {0}"
 msgstr "Не вдалося оновити пароль: {0}"
 
-#: src/components/notification/NotificationSendDialog.tsx:143
+#: src/components/notification/NotificationSendDialog.tsx:144
 msgid "Failure"
 msgstr ""
 
@@ -2944,7 +2944,7 @@ msgstr "Йди збери кілька самоцвітів"
 #~ msgid "Go to #{channelName}"
 #~ msgstr "Go to #{channelName}"
 
-#: src/components/vcs/VCList.tsx:296
+#: src/components/vcs/VCList.tsx:295
 msgid "Government IDs"
 msgstr ""
 
@@ -3241,7 +3241,7 @@ msgstr "Неправильний NFT ідентифікатор"
 msgid "Invalid state"
 msgstr "Некоректний стан"
 
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:155
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:182
 msgid "Invalid WalletConnect data"
 msgstr ""
 
@@ -3309,7 +3309,7 @@ msgstr ""
 msgid "K-Size"
 msgstr "K-розмір"
 
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:186
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:213
 #: src/components/walletConnect/WalletConnectRequestPermissionsConfirmDialog.tsx:143
 #: src/constants/WalletConnectCommands.tsx:1051
 #: src/constants/WalletConnectCommands.tsx:1295
@@ -3346,7 +3346,7 @@ msgstr ""
 msgid "KiB Up/Down"
 msgstr "KiB Вивантаження/Завантаження"
 
-#: src/components/vcs/VCList.tsx:302
+#: src/components/vcs/VCList.tsx:301
 msgid "KYC status"
 msgstr ""
 
@@ -3464,7 +3464,7 @@ msgstr "Завантаження даних про фармінг"
 msgid "Loading fingerprint"
 msgstr "Завантаження fingerprint"
 
-#: src/components/app/AppState.tsx:196
+#: src/components/app/AppState.tsx:197
 msgid "Loading keyring status"
 msgstr "Завантаження статусу системи ключів"
 
@@ -3569,7 +3569,7 @@ msgstr ""
 msgid "Max page size"
 msgstr ""
 
-#: src/components/vcs/VCList.tsx:306
+#: src/components/vcs/VCList.tsx:305
 msgid "Memberships"
 msgstr ""
 
@@ -3862,7 +3862,7 @@ msgstr "Деталі NFT недоступні"
 msgid "NFT has no royalties"
 msgstr ""
 
-#: src/components/notification/NotificationSendDialog.tsx:212
+#: src/components/notification/NotificationSendDialog.tsx:213
 msgid "NFT holder address"
 msgstr ""
 
@@ -4038,7 +4038,7 @@ msgstr ""
 #: src/components/offers2/OfferBuilderValue.tsx:73
 #: src/components/plot/PlotStatus.tsx:20
 #: src/components/plotNFT/PlotNFTCard.tsx:307
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:143
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:20
 #: src/components/walletConnect/WalletConnectRequestPermissionsConfirmDialog.tsx:132
 msgid "Not Available"
 msgstr "Не доступно"
@@ -4071,11 +4071,11 @@ msgstr ""
 msgid "Note: the pool public key corresponding to the current logged-in wallet is {poolPublicKeyForFingerprint}"
 msgstr ""
 
-#: src/components/notification/NotificationSendDialog.tsx:146
+#: src/components/notification/NotificationSendDialog.tsx:147
 msgid "Notification has successfully been sent to a full node and included in the mempool."
 msgstr ""
 
-#: src/components/notification/NotificationSendDialog.tsx:214
+#: src/components/notification/NotificationSendDialog.tsx:215
 msgid "Notification recipient's address"
 msgstr ""
 
@@ -4518,7 +4518,7 @@ msgid "Please check the following link to verify the site you are going to visit
 msgstr "Перейдіть за наведеним нижче посиланням, щоб підтвердити сайт, який ви збираєтеся відвідати. Продовжуйте на свій страх і ризик."
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:139
-#: src/hooks/useBlockchainNotifications.tsx:158
+#: src/hooks/useBlockchainNotifications.tsx:161
 msgid "Please Confirm"
 msgstr "Підтвердіть, будь ласка"
 
@@ -5028,7 +5028,7 @@ msgid "Refresh Plots"
 msgstr "Оновити ділянки"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:270
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:173
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:200
 #: src/components/walletConnect/WalletConnectRequestPermissionsConfirmDialog.tsx:90
 msgid "Reject"
 msgstr ""
@@ -5452,7 +5452,7 @@ msgstr "Самостійне виставлення рахунків"
 msgid "Sell an NFT"
 msgstr "Продати NFT"
 
-#: src/components/notification/NotificationSendDialog.tsx:311
+#: src/components/notification/NotificationSendDialog.tsx:312
 msgid "Send Message"
 msgstr ""
 
@@ -5462,7 +5462,7 @@ msgstr ""
 msgid "Send Notification"
 msgstr ""
 
-#: src/components/notification/NotificationSendDialog.tsx:179
+#: src/components/notification/NotificationSendDialog.tsx:180
 msgid "Send offer notification"
 msgstr ""
 
@@ -5738,7 +5738,7 @@ msgstr ""
 msgid "Start Key"
 msgstr ""
 
-#: src/components/app/AppState.tsx:254
+#: src/components/app/AppState.tsx:255
 msgid "Starting services"
 msgstr "Запуск сервісів"
 
@@ -5808,7 +5808,7 @@ msgstr ""
 msgid "Subscriptions"
 msgstr ""
 
-#: src/components/notification/NotificationSendDialog.tsx:143
+#: src/components/notification/NotificationSendDialog.tsx:144
 #: src/components/vcs/VCCard.tsx:278
 #: src/hooks/useAcceptOfferHook.tsx:98
 msgid "Success"
@@ -6336,7 +6336,7 @@ msgstr "Торгівля токенами"
 msgid "Transaction auto claim fee"
 msgstr ""
 
-#: src/components/notification/NotificationSendDialog.tsx:261
+#: src/components/notification/NotificationSendDialog.tsx:262
 msgid "Transaction Fee"
 msgstr ""
 
@@ -6604,7 +6604,7 @@ msgstr ""
 msgid "Verifiable Credential"
 msgstr ""
 
-#: src/components/vcs/VCList.tsx:200
+#: src/components/vcs/VCList.tsx:199
 msgid "Verifiable Credential already exists."
 msgstr ""
 
@@ -6620,17 +6620,17 @@ msgstr ""
 msgid "Verifiable Credential Revoked."
 msgstr ""
 
-#: src/components/vcs/VCList.tsx:208
+#: src/components/vcs/VCList.tsx:207
 msgid "Verifiable Credential successfully added."
 msgstr ""
 
 #: src/components/settings/SettingsVerifiableCredentials.tsx:17
-#: src/components/vcs/VCList.tsx:268
-#: src/components/vcs/VCList.tsx:329
+#: src/components/vcs/VCList.tsx:267
+#: src/components/vcs/VCList.tsx:328
 msgid "Verifiable Credentials"
 msgstr ""
 
-#: src/components/vcs/VCList.tsx:271
+#: src/components/vcs/VCList.tsx:270
 msgid "Verifiable Credentials are like digital ID cards that can prove certain information about you without giving away your private details."
 msgstr ""
 
@@ -6718,7 +6718,7 @@ msgstr "Переглянути на Spacescan.io"
 msgid "View Pool Login Link"
 msgstr "Посилання для входу на пул"
 
-#: src/components/offers/OfferViewerTitle.tsx:49
+#: src/components/offers/OfferViewerTitle.tsx:47
 msgid "Viewing offer"
 msgstr "Переглянути пропозицію"
 
@@ -6760,7 +6760,7 @@ msgstr "Очікування підтвердження транзакції"
 #: src/components/app/AppStatusHeader.tsx:152
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:187
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:191
-#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:190
+#: src/components/walletConnect/WalletConnectConfirmDialog.tsx:217
 #: src/components/walletConnect/WalletConnectRequestPermissionsConfirmDialog.tsx:147
 msgid "Wallet"
 msgstr "Гаманець"
