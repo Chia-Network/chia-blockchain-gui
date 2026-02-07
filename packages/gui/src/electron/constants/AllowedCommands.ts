@@ -65,6 +65,7 @@ export default [
   'chia_wallet.extend_derivation_index',
   'chia_wallet.nft_get_info',
   'chia_wallet.get_farmed_amount',
+  'chia_wallet.get_fee_estimate',
 
   'chia_wallet.get_offer',
   'chia_wallet.nft_calculate_royalties',
