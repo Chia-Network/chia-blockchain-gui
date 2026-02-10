@@ -544,7 +544,7 @@ export const walletApi = apiWithTag.injectEndpoints({
       invalidatesTags: (result, _error, { walletId }) => (result ? [{ type: 'Address', id: walletId }] : []),
     }),
 
-    getCoinRecords: query(build, WalletService, 'getCoinRecords', {}),
+    getCoinRecordsByName: query(build, WalletService, 'getCoinRecordsByName'),
 
     farmBlock: mutation(build, WalletService, 'farmBlock'),
 
