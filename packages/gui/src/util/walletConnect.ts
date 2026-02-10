@@ -44,8 +44,14 @@ export async function processSessionProposal(
           icons?: string[];
         };
       };
-      requiredNamespaces: {
-        chia: {
+      requiredNamespaces?: {
+        chia?: {
+          chains: string[];
+          methods: string[];
+        };
+      };
+      optionalNamespaces?: {
+        chia?: {
           chains: string[];
           methods: string[];
         };
@@ -64,6 +70,7 @@ export async function processSessionProposal(
         pairingTopic,
         proposer: { metadata: proposerMetadata },
         requiredNamespaces,
+        optionalNamespaces,
       },
     } = event;
 
@@ -71,12 +78,14 @@ export async function processSessionProposal(
       throw new Error('Pairing topic not found');
     }
 
-    const requiredNamespace = requiredNamespaces.chia;
-    if (!requiredNamespace) {
+    // WalletConnect SDK v2.17+ deprecated requiredNamespaces and moves them
+    // to optionalNamespaces, so check both.
+    const chiaNamespace = requiredNamespaces?.chia ?? optionalNamespaces?.chia;
+    if (!chiaNamespace) {
       throw new Error('Missing required chia namespace');
     }
 
-    const { chains, methods } = requiredNamespace;
+    const { chains, methods } = chiaNamespace;
     const chain = chains.find((item) => ['chia:testnet', 'chia:mainnet'].includes(item));
     if (!chain) {
       throw new Error('Chain not supported');
