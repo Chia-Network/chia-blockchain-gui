@@ -79,13 +79,17 @@ export async function processSessionProposal(
     }
 
     // WalletConnect SDK v2.17+ deprecated requiredNamespaces and moves them
-    // to optionalNamespaces, so check both.
-    const chiaNamespace = requiredNamespaces?.chia ?? optionalNamespaces?.chia;
-    if (!chiaNamespace) {
+    // to optionalNamespaces, so check both. When a dApp provides chia in both,
+    // merge them so the approved session advertises all supported capabilities.
+    const requiredChia = requiredNamespaces?.chia;
+    const optionalChia = optionalNamespaces?.chia;
+
+    if (!requiredChia && !optionalChia) {
       throw new Error('Missing required chia namespace');
     }
 
-    const { chains, methods } = chiaNamespace;
+    const chains = [...new Set([...(requiredChia?.chains ?? []), ...(optionalChia?.chains ?? [])])];
+    const methods = [...new Set([...(requiredChia?.methods ?? []), ...(optionalChia?.methods ?? [])])];
     const chain = chains.find((item) => ['chia:testnet', 'chia:mainnet'].includes(item));
     if (!chain) {
       throw new Error('Chain not supported');
