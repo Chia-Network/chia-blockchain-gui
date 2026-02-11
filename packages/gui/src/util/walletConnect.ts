@@ -181,7 +181,7 @@ export async function processSessionDelete(client: Client, pairs: Pairs, event: 
   } catch (error) {
     // session was deleted we are not sending any response
     log('Session delete error', error);
-    processError(e as Error);
+    processError(error as Error);
   }
 }
 
