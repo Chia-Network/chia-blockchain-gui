@@ -47,7 +47,7 @@ export default class Wallet extends Service {
     }>('get_transaction_memo', args);
   }
 
-  async getCoinRecordsByName(args: {
+  async getCoinRecordsByNames(args: {
     names: string[];
     startHeight?: number;
     endHeight?: number;
