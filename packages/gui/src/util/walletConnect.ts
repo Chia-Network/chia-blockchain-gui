@@ -44,8 +44,14 @@ export async function processSessionProposal(
           icons?: string[];
         };
       };
-      requiredNamespaces: {
-        chia: {
+      requiredNamespaces?: {
+        chia?: {
+          chains: string[];
+          methods: string[];
+        };
+      };
+      optionalNamespaces?: {
+        chia?: {
           chains: string[];
           methods: string[];
         };
@@ -64,6 +70,7 @@ export async function processSessionProposal(
         pairingTopic,
         proposer: { metadata: proposerMetadata },
         requiredNamespaces,
+        optionalNamespaces,
       },
     } = event;
 
@@ -71,12 +78,18 @@ export async function processSessionProposal(
       throw new Error('Pairing topic not found');
     }
 
-    const requiredNamespace = requiredNamespaces.chia;
-    if (!requiredNamespace) {
+    // WalletConnect SDK v2.17+ deprecated requiredNamespaces and moves them
+    // to optionalNamespaces, so check both. When a dApp provides chia in both,
+    // merge them so the approved session advertises all supported capabilities.
+    const requiredChia = requiredNamespaces?.chia;
+    const optionalChia = optionalNamespaces?.chia;
+
+    if (!requiredChia && !optionalChia) {
       throw new Error('Missing required chia namespace');
     }
 
-    const { chains, methods } = requiredNamespace;
+    const chains = [...new Set([...(requiredChia?.chains ?? []), ...(optionalChia?.chains ?? [])])];
+    const methods = [...new Set([...(requiredChia?.methods ?? []), ...(optionalChia?.methods ?? [])])];
     const chain = chains.find((item) => ['chia:testnet', 'chia:mainnet'].includes(item));
     if (!chain) {
       throw new Error('Chain not supported');
@@ -168,7 +181,7 @@ export async function processSessionDelete(client: Client, pairs: Pairs, event: 
   } catch (error) {
     // session was deleted we are not sending any response
     log('Session delete error', error);
-    processError(e as Error);
+    processError(error as Error);
   }
 }
 
