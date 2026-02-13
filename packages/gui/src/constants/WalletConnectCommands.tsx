@@ -118,7 +118,41 @@ const walletConnectCommands: WalletConnectCommand[] = [
       },
     ],
   },
-
+  {
+    command: 'getCoinRecordsByNames',
+    label: <Trans>Get Coin Records by Name</Trans>,
+    description: <Trans>Requests the status of a list of coin records from the Wallet's coin store.</Trans>,
+    service: ServiceName.WALLET,
+    bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.NAMES,
+        type: 'object', // bytes32[]
+        label: <Trans>Names (coin ids)</Trans>,
+      },
+      {
+        name: WalletConnectCommandParamName.START_HEIGHT,
+        type: 'number',
+        label: <Trans>Start Height</Trans>,
+        isOptional: true,
+        defaultValue: undefined,
+      },
+      {
+        name: WalletConnectCommandParamName.END_HEIGHT,
+        type: 'number',
+        label: <Trans>End Height</Trans>,
+        isOptional: true,
+        defaultValue: undefined,
+      },
+      {
+        name: WalletConnectCommandParamName.INCLUDE_SPENT_COINS,
+        type: 'boolean',
+        label: <Trans>Include Spent Coins</Trans>,
+        isOptional: true,
+        defaultValue: true,
+      },
+    ],
+  },
   {
     command: 'sendTransaction',
     label: <Trans>Send Transaction</Trans>,

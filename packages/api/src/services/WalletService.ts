@@ -47,6 +47,17 @@ export default class Wallet extends Service {
     }>('get_transaction_memo', args);
   }
 
+  async getCoinRecordsByNames(args: {
+    names: string[];
+    startHeight?: number;
+    endHeight?: number;
+    includeSpentCoins?: boolean;
+  }) {
+    return this.command<{
+      coinRecords: any[];
+    }>('get_coin_records_by_names', args);
+  }
+
   async getPwStatus(args: { walletId: number }) {
     return this.command<{ state: PoolWalletStatus; unconfirmedTransactions: Transaction[] }>('pw_status', args);
   }

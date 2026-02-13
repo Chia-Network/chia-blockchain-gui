@@ -31,6 +31,8 @@ export default [
   'chia_wallet.get_notifications',
   'chia_wallet.get_sync_status',
   'chia_wallet.get_wallets',
+  'chia_wallet.get_coin_status',
+  'chia_wallet.get_coin_records_by_names',
   'chia_wallet.nft_get_wallet_did',
   'chia_wallet.cat_get_asset_id',
   'chia_wallet.cat_get_name',
