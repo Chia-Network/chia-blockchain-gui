@@ -202,6 +202,10 @@ export default class Wallet extends Service {
     return this.command<{ networkName: string; networkPrefix: string }>('get_network_info');
   }
 
+  async getFeeEstimate() {
+    return this.command<{ feeEstimate: number }>('get_fee_estimate');
+  }
+
   async getSyncStatus() {
     return this.command<{
       genesisInitialized: boolean;
