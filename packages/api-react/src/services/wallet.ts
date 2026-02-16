@@ -1547,6 +1547,8 @@ export const {
   useGetTransactionsCountQuery,
   useGetCurrentAddressQuery,
   useGetNextAddressMutation,
+  useGetCoinRecordsByNamesQuery,
+  useLazyGetCoinRecordsByNamesQuery,
   useFarmBlockMutation,
   useGetTimestampForHeightQuery,
   useLazyGetTimestampForHeightQuery,
