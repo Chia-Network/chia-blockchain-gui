@@ -154,6 +154,24 @@ const walletConnectCommands: WalletConnectCommand[] = [
     ],
   },
   {
+    command: 'registerRemoteCoins',
+    label: <Trans>Register Remote Coins</Trans>,
+    description: <Trans>Registers a list of remote coin IDs with a remote wallet.</Trans>,
+    service: ServiceName.WALLET,
+    params: [
+      {
+        name: WalletConnectCommandParamName.WALLET_ID,
+        type: 'number',
+        label: <Trans>Wallet Id</Trans>,
+      },
+      {
+        name: WalletConnectCommandParamName.COIN_IDS,
+        type: 'object', // bytes32[]
+        label: <Trans>Coin Ids</Trans>,
+      },
+    ],
+  },
+  {
     command: 'sendTransaction',
     label: <Trans>Send Transaction</Trans>,
     service: ServiceName.WALLET,
