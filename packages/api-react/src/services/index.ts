@@ -196,6 +196,7 @@ export const {
 
   // DID
   useCreateNewDIDWalletMutation,
+  useCreateNewRemoteWalletMutation,
   useUpdateDIDRecoveryIdsMutation,
   useGetDIDPubKeyQuery,
   useGetDIDQuery,

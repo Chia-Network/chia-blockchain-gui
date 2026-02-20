@@ -1507,6 +1507,11 @@ const walletConnectCommands: WalletConnectCommand[] = [
 
   // DIDs
   {
+    command: 'createNewRemoteWallet',
+    label: <Trans>Create new Remote Wallet</Trans>,
+    service: ServiceName.WALLET,
+  },
+  {
     command: 'createNewDIDWallet',
     label: <Trans>Create new DID Wallet</Trans>,
     service: ServiceName.WALLET,

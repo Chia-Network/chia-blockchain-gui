@@ -1068,6 +1068,18 @@ export const walletApi = apiWithTag.injectEndpoints({
       ],
     }),
 
+    createNewRemoteWallet: build.mutation({
+      query: () => ({
+        service: WalletService,
+        command: 'createNewWallet',
+        args: {
+          walletType: 'remote_wallet',
+          options: {},
+        },
+      }),
+      invalidatesTags: [{ type: 'Wallets', id: 'LIST' }],
+    }),
+
     getDIDName: query(build, DID, 'getDidName', {
       providesTags: (result, _error, { walletId }) => (result ? [{ type: 'DIDName', id: walletId }] : []),
     }),
@@ -1593,6 +1605,7 @@ export const {
 
   // DID
   useCreateNewDIDWalletMutation,
+  useCreateNewRemoteWalletMutation,
   useUpdateDIDRecoveryIdsMutation,
   useGetDIDPubKeyQuery,
   useGetDIDQuery,
