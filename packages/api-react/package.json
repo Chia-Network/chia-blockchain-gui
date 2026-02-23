@@ -35,7 +35,7 @@
     "@chia-network/api": "1.0.0",
     "@reduxjs/toolkit": "1.9.5",
     "@rollup/plugin-babel": "6.0.4",
-    "@rollup/plugin-commonjs": "25.0.4",
+    "@rollup/plugin-commonjs": "^29.0.0",
     "@rollup/plugin-node-resolve": "15.2.1",
     "@types/core-js": "2.5.5",
     "@types/jest": "29.5.3",
