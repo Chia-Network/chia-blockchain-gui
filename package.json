@@ -9,7 +9,7 @@
     "version:minor": "lerna version minor",
     "version:patch": "lerna version patch",
     "publish": "lerna publish",
-    "postinstall": "npm run prettier:postinstall",
+    "postinstall": "patch-package && npm run prettier:postinstall",
     "prettier:postinstall": "prettier --write **/package.json **/package-lock.json",
     "check": "npm run check:lint ; npm run check:prettier ; npm run check:types",
     "check:lint": "eslint . --ext .ts,.tsx,.js,.jsx",
@@ -48,7 +48,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "8.20.0",
     "@typescript-eslint/parser": "8.20.0",
-    "ajv": "8.17.1",
+    "ajv": "8.18.0",
     "date-and-time": "2.4.3",
     "eslint": "8.57.1",
     "eslint-config-airbnb": "19.0.4",
@@ -65,6 +65,7 @@
     "lerna-audit": "^1.3.3",
     "lint-staged": "15.2.10",
     "nyc": "17.1.0",
+    "patch-package": "^8.0.1",
     "pbkdf2": "3.1.3",
     "prettier": "3.3.3",
     "typescript": "5.7.3"
@@ -76,9 +77,11 @@
     "js-yaml": "4.1.1",
     "esbuild": "0.25.5",
     "tmp": "0.2.5",
-    "qs": "6.14.1",
+    "qs": "6.15.0",
     "schema-utils": "4.3.3",
-    "tar": "7.5.7"
+    "tar": "7.5.9",
+    "ajv": "8.18.0",
+    "minimatch": "10.2.2"
   },
   "version": "1.2.10-dev132"
 }

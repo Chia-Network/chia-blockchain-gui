@@ -1,0 +1,11 @@
+diff --git a/node_modules/minimatch/dist/commonjs/index.js b/node_modules/minimatch/dist/commonjs/index.js
+index 5a0ba2a..d305d5b 100644
+--- a/node_modules/minimatch/dist/commonjs/index.js
++++ b/node_modules/minimatch/dist/commonjs/index.js
+@@ -1032,4 +1032,5 @@ exports.minimatch.AST = ast_js_1.AST;
+ exports.minimatch.Minimatch = Minimatch;
+ exports.minimatch.escape = escape_js_1.escape;
+ exports.minimatch.unescape = unescape_js_1.unescape;
++exports.default = exports.minimatch;
+ //# sourceMappingURL=index.js.map
+\ No newline at end of file
