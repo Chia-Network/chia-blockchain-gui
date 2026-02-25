@@ -79,18 +79,8 @@
     "qs": "6.15.0",
     "schema-utils": "4.3.3",
     "tar": "7.5.9",
-    "lerna": {
-      "minimatch": "3.1.4"
-    },
-    "@lerna/create": {
-      "minimatch": "3.1.4"
-    },
-    "nx": {
-      "minimatch": "9.0.6"
-    },
-    "@nx/devkit": {
-      "minimatch": "9.0.6"
-    }
+    "minimatch@3.0.5": "3.1.4",
+    "minimatch@9.0.3": "9.0.6"
   },
   "version": "1.2.10-dev132"
 }
