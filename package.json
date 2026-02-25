@@ -9,7 +9,7 @@
     "version:minor": "lerna version minor",
     "version:patch": "lerna version patch",
     "publish": "lerna publish",
-    "postinstall": "patch-package && npm run prettier:postinstall",
+    "postinstall": "npm run prettier:postinstall",
     "prettier:postinstall": "prettier --write **/package.json **/package-lock.json",
     "check": "npm run check:lint ; npm run check:prettier ; npm run check:types",
     "check:lint": "eslint . --ext .ts,.tsx,.js,.jsx",
@@ -65,7 +65,6 @@
     "lerna-audit": "^1.3.3",
     "lint-staged": "15.2.10",
     "nyc": "17.1.0",
-    "patch-package": "^8.0.1",
     "pbkdf2": "3.1.3",
     "prettier": "3.3.3",
     "typescript": "5.7.3"
@@ -80,7 +79,18 @@
     "qs": "6.15.0",
     "schema-utils": "4.3.3",
     "tar": "7.5.9",
-    "minimatch": "10.2.2"
+    "lerna": {
+      "minimatch": "3.1.4"
+    },
+    "@lerna/create": {
+      "minimatch": "3.1.4"
+    },
+    "nx": {
+      "minimatch": "9.0.6"
+    },
+    "@nx/devkit": {
+      "minimatch": "9.0.6"
+    }
   },
   "version": "1.2.10-dev132"
 }
