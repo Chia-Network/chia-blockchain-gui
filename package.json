@@ -80,7 +80,9 @@
     "schema-utils": "4.3.3",
     "tar": "7.5.9",
     "minimatch@3.0.5": "3.1.4",
-    "minimatch@9.0.3": "9.0.6"
+    "minimatch@9.0.3": "9.0.9",
+    "rollup": "4.59.0",
+    "serialize-javascript": "7.0.4"
   },
   "version": "1.2.10-dev132"
 }
