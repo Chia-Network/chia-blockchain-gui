@@ -154,24 +154,6 @@ const walletConnectCommands: WalletConnectCommand[] = [
     ],
   },
   {
-    command: 'registerRemoteCoins',
-    label: <Trans>Register Remote Coins</Trans>,
-    description: <Trans>Registers a list of remote coin IDs with a remote wallet.</Trans>,
-    service: ServiceName.WALLET,
-    params: [
-      {
-        name: WalletConnectCommandParamName.WALLET_ID,
-        type: 'number',
-        label: <Trans>Wallet Id</Trans>,
-      },
-      {
-        name: WalletConnectCommandParamName.COIN_IDS,
-        type: 'object', // bytes32[]
-        label: <Trans>Coin Ids</Trans>,
-      },
-    ],
-  },
-  {
     command: 'sendTransaction',
     label: <Trans>Send Transaction</Trans>,
     service: ServiceName.WALLET,
@@ -367,6 +349,13 @@ const walletConnectCommands: WalletConnectCommand[] = [
     command: 'getSyncStatus',
     label: <Trans>Get Wallet Sync Status</Trans>,
     description: <Trans>Requests the syncing status of current wallet</Trans>,
+    service: ServiceName.WALLET,
+    bypassConfirm: true,
+  },
+  {
+    command: 'getHeightInfo',
+    label: <Trans>Get Height Info</Trans>,
+    description: <Trans>Requests the current wallet sync height information</Trans>,
     service: ServiceName.WALLET,
     bypassConfirm: true,
   },
@@ -1505,12 +1494,32 @@ const walletConnectCommands: WalletConnectCommand[] = [
     ],
   },
 
-  // DIDs
+  // Remote Wallets
   {
     command: 'createNewRemoteWallet',
     label: <Trans>Create new Remote Wallet</Trans>,
     service: ServiceName.WALLET,
   },
+  {
+    command: 'registerRemoteCoins',
+    label: <Trans>Register Remote Coins</Trans>,
+    description: <Trans>Registers a list of remote coin IDs with a remote wallet.</Trans>,
+    service: ServiceName.WALLET,
+    params: [
+      {
+        name: WalletConnectCommandParamName.WALLET_ID,
+        type: 'number',
+        label: <Trans>Wallet Id</Trans>,
+      },
+      {
+        name: WalletConnectCommandParamName.COIN_IDS,
+        type: 'object', // bytes32[]
+        label: <Trans>Coin Ids</Trans>,
+      },
+    ],
+  },
+
+  // DIDs
   {
     command: 'createNewDIDWallet',
     label: <Trans>Create new DID Wallet</Trans>,
