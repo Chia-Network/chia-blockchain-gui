@@ -314,7 +314,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
   {
     command: 'getFeeEstimate',
     label: <Trans>Get Fee Estimate</Trans>,
-    description: <Trans>Requests an estimate of the transaction fee</Trans>,
+    description: <Trans>Requests an estimate of the current fee per Cost</Trans>,
     service: ServiceName.WALLET,
     serviceCommand: 'getWalletFeeEstimate',
     bypassConfirm: true,

@@ -203,7 +203,7 @@ export default class Wallet extends Service {
   }
 
   async getFeeEstimate() {
-    return this.command<{ feeEstimate: number }>('get_fee_estimate');
+    return this.command<{ feePerCost: number }>('get_fee_estimate');
   }
 
   async getSyncStatus() {
