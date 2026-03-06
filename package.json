@@ -43,7 +43,7 @@
   },
   "dependencies": {
     "lerna": "8.2.1",
-    "nx": "^22.5.4",
+    "nx": "22.5.4",
     "rollup": "4.59.0"
   },
   "devDependencies": {
