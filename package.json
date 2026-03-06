@@ -81,10 +81,6 @@
     "schema-utils": "4.3.3",
     "tar": "7.5.10",
     "svgo": "3.3.3",
-    "lerna": {
-      "minimatch": "3.1.5"
-    },
-    "minimatch@3.0.5": "3.1.5",
     "minimatch@9.0.3": "9.0.9",
     "rollup": "4.59.0",
     "serialize-javascript": "7.0.4"
