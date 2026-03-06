@@ -42,7 +42,7 @@
     "*": "prettier --check --ignore-unknown --ignore-path .gitignore"
   },
   "dependencies": {
-    "lerna": "8.2.1",
+    "lerna": "9.0.5",
     "nx": "22.5.4",
     "rollup": "4.59.0"
   },
