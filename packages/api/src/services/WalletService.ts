@@ -47,6 +47,21 @@ export default class Wallet extends Service {
     }>('get_transaction_memo', args);
   }
 
+  async getCoinRecordsByNames(args: {
+    names: string[];
+    startHeight?: number;
+    endHeight?: number;
+    includeSpentCoins?: boolean;
+  }) {
+    return this.command<{
+      coinRecords: any[];
+    }>('get_coin_records_by_names', args);
+  }
+
+  async registerRemoteCoins(args: { walletId: number; coinIds: string[] }) {
+    return this.command<void>('register_remote_coins', args);
+  }
+
   async getPwStatus(args: { walletId: number }) {
     return this.command<{ state: PoolWalletStatus; unconfirmedTransactions: Transaction[] }>('pw_status', args);
   }
@@ -70,7 +85,7 @@ export default class Wallet extends Service {
   }
 
   async createNewWallet(args: {
-    walletType: 'pool_wallet' | 'rl_wallet' | 'did_wallet' | 'cat_wallet';
+    walletType: 'pool_wallet' | 'rl_wallet' | 'did_wallet' | 'cat_wallet' | 'remote_wallet';
     options: Object;
   }) {
     return this.command<WalletCreate>('create_new_wallet', {

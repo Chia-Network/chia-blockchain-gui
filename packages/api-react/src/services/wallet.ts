@@ -544,6 +544,10 @@ export const walletApi = apiWithTag.injectEndpoints({
       invalidatesTags: (result, _error, { walletId }) => (result ? [{ type: 'Address', id: walletId }] : []),
     }),
 
+    getCoinRecordsByNames: query(build, WalletService, 'getCoinRecordsByNames'),
+
+    registerRemoteCoins: mutation(build, WalletService, 'registerRemoteCoins'),
+
     farmBlock: mutation(build, WalletService, 'farmBlock'),
 
     getTimestampForHeight: query(build, WalletService, 'getTimestampForHeight'),
@@ -1064,6 +1068,18 @@ export const walletApi = apiWithTag.injectEndpoints({
       ],
     }),
 
+    createNewRemoteWallet: build.mutation({
+      query: () => ({
+        service: WalletService,
+        command: 'createNewWallet',
+        args: {
+          walletType: 'remote_wallet',
+          options: {},
+        },
+      }),
+      invalidatesTags: [{ type: 'Wallets', id: 'LIST' }],
+    }),
+
     getDIDName: query(build, DID, 'getDidName', {
       providesTags: (result, _error, { walletId }) => (result ? [{ type: 'DIDName', id: walletId }] : []),
     }),
@@ -1545,6 +1561,9 @@ export const {
   useGetTransactionsCountQuery,
   useGetCurrentAddressQuery,
   useGetNextAddressMutation,
+  useGetCoinRecordsByNamesQuery,
+  useLazyGetCoinRecordsByNamesQuery,
+  useRegisterRemoteCoinsMutation,
   useFarmBlockMutation,
   useGetTimestampForHeightQuery,
   useLazyGetTimestampForHeightQuery,
@@ -1586,6 +1605,7 @@ export const {
 
   // DID
   useCreateNewDIDWalletMutation,
+  useCreateNewRemoteWalletMutation,
   useUpdateDIDRecoveryIdsMutation,
   useGetDIDPubKeyQuery,
   useGetDIDQuery,

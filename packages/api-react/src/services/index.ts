@@ -155,6 +155,9 @@ export const {
   useGetTransactionsCountQuery,
   useGetCurrentAddressQuery,
   useGetNextAddressMutation,
+  useGetCoinRecordsByNamesQuery,
+  useLazyGetCoinRecordsByNamesQuery,
+  useRegisterRemoteCoinsMutation,
   useFarmBlockMutation,
   useGetTimestampForHeightQuery,
   useLazyGetTimestampForHeightQuery,
@@ -196,6 +199,7 @@ export const {
 
   // DID
   useCreateNewDIDWalletMutation,
+  useCreateNewRemoteWalletMutation,
   useUpdateDIDRecoveryIdsMutation,
   useGetDIDPubKeyQuery,
   useGetDIDQuery,

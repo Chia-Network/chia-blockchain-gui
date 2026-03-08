@@ -118,7 +118,41 @@ const walletConnectCommands: WalletConnectCommand[] = [
       },
     ],
   },
-
+  {
+    command: 'getCoinRecordsByNames',
+    label: <Trans>Get Coin Records by Name</Trans>,
+    description: <Trans>Requests the status of a list of coin records from the Wallet's coin store.</Trans>,
+    service: ServiceName.WALLET,
+    bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.NAMES,
+        type: 'object', // bytes32[]
+        label: <Trans>Names (coin ids)</Trans>,
+      },
+      {
+        name: WalletConnectCommandParamName.START_HEIGHT,
+        type: 'number',
+        label: <Trans>Start Height</Trans>,
+        isOptional: true,
+        defaultValue: undefined,
+      },
+      {
+        name: WalletConnectCommandParamName.END_HEIGHT,
+        type: 'number',
+        label: <Trans>End Height</Trans>,
+        isOptional: true,
+        defaultValue: undefined,
+      },
+      {
+        name: WalletConnectCommandParamName.INCLUDE_SPENT_COINS,
+        type: 'boolean',
+        label: <Trans>Include Spent Coins</Trans>,
+        isOptional: true,
+        defaultValue: true,
+      },
+    ],
+  },
   {
     command: 'sendTransaction',
     label: <Trans>Send Transaction</Trans>,
@@ -315,6 +349,13 @@ const walletConnectCommands: WalletConnectCommand[] = [
     command: 'getSyncStatus',
     label: <Trans>Get Wallet Sync Status</Trans>,
     description: <Trans>Requests the syncing status of current wallet</Trans>,
+    service: ServiceName.WALLET,
+    bypassConfirm: true,
+  },
+  {
+    command: 'getHeightInfo',
+    label: <Trans>Get Height Info</Trans>,
+    description: <Trans>Requests the current wallet sync height information</Trans>,
     service: ServiceName.WALLET,
     bypassConfirm: true,
   },
@@ -1449,6 +1490,31 @@ const walletConnectCommands: WalletConnectCommand[] = [
         label: <Trans>Fee</Trans>,
         displayComponent: (value) => <MojoToChia value={value} />,
         isOptional: true,
+      },
+    ],
+  },
+
+  // Remote Wallets
+  {
+    command: 'createNewRemoteWallet',
+    label: <Trans>Create new Remote Wallet</Trans>,
+    service: ServiceName.WALLET,
+  },
+  {
+    command: 'registerRemoteCoins',
+    label: <Trans>Register Remote Coins</Trans>,
+    description: <Trans>Registers a list of remote coin IDs with a remote wallet.</Trans>,
+    service: ServiceName.WALLET,
+    params: [
+      {
+        name: WalletConnectCommandParamName.WALLET_ID,
+        type: 'number',
+        label: <Trans>Wallet Id</Trans>,
+      },
+      {
+        name: WalletConnectCommandParamName.COIN_IDS,
+        type: 'object', // bytes32[]
+        label: <Trans>Coin Ids</Trans>,
       },
     ],
   },
