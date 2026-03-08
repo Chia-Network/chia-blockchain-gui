@@ -159,7 +159,7 @@
     "webpack": "5.105.1",
     "webpack-bundle-analyzer": "4.10.2",
     "webpack-cli": "6.0.1",
-    "webpack-dev-server": "5.2.2"
+    "webpack-dev-server": "5.2.3"
   },
   "optionalDependencies": {
     "playwright": "1.57.0"
