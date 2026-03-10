@@ -62,6 +62,10 @@ export default function useWalletConnectPairs(): Pairs {
 
   const removePair = useCallback((topic: string) => {
     const [latestPairs, setPairs] = pairsRef.current;
+    if (!latestPairs.some((item) => item.topic === topic)) {
+      return;
+    }
+
     pairsRef.current = [latestPairs.filter((item) => item.topic !== topic), setPairs];
 
     setPairs((pairs: Pair[]) => pairs.filter((item) => item.topic !== topic));
