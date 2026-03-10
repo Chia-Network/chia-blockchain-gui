@@ -151,6 +151,7 @@ export async function processSessionProposal(
   } catch (error) {
     try {
       log('Session proposal error', error);
+      console.error('WC session proposal REJECTED due to error:', error);
 
       const { id } = event;
 
