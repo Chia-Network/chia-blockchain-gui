@@ -68,7 +68,12 @@ export default function useWalletConnectPairs(): Pairs {
   }, []);
 
   const removePairBySession = useCallback((sessionTopic: string) => {
-    const [, setPairs] = pairsRef.current;
+    const [latestPairs, setPairs] = pairsRef.current;
+    pairsRef.current = [
+      latestPairs.filter((item) => !item.sessions.find((session) => session.topic === sessionTopic)),
+      setPairs,
+    ];
+
     setPairs((pairs: Pair[]) =>
       pairs.filter((item) => !item.sessions.find((session) => session.topic === sessionTopic)),
     );
@@ -101,7 +106,15 @@ export default function useWalletConnectPairs(): Pairs {
   }, []);
 
   const removeSessionFromPair = useCallback((sessionTopic: string) => {
-    const [, setPairs] = pairsRef.current;
+    const [latestPairs, setPairs] = pairsRef.current;
+    pairsRef.current = [
+      latestPairs.map((pair) => ({
+        ...pair,
+        sessions: pair.sessions.filter((item) => item.topic !== sessionTopic),
+      })),
+      setPairs,
+    ];
+
     setPairs((pairs: Pair[]) =>
       pairs.map((pair) => ({
         ...pair,
