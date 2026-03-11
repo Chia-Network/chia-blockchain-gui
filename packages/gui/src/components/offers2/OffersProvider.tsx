@@ -76,7 +76,9 @@ export default function OffersProvider(props: OffersProviderProps) {
       }
 
       const domain = new URL(urlOrOfferData).hostname;
-      const service = OfferServices.find(({ domains }) => domains.find((localDomain) => domain.endsWith(localDomain)));
+      const service = OfferServices.find(({ domains }) =>
+        domains.find((localDomain) => domain === localDomain || domain.endsWith(`.${localDomain}`)),
+      );
       if (!service) {
         throw new Error('Service not found');
       }
