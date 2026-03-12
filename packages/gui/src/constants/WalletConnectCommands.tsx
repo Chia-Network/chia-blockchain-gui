@@ -529,6 +529,13 @@ const walletConnectCommands: WalletConnectCommand[] = [
         type: 'BigNumber',
         displayComponent: (value) => <MojoToChia value={value} />,
       },
+      {
+        name: WalletConnectCommandParamName.EXTRA_CONDITIONS,
+        label: <Trans>Extra Conditions</Trans>,
+        isOptional: true,
+        type: 'object',
+        displayComponent: (value) => <>{JSON.stringify(value)}</>,
+      },
     ],
   },
   {

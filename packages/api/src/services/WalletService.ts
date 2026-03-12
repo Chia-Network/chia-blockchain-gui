@@ -280,7 +280,7 @@ export default class Wallet extends Service {
     return this.command<{ id: string; valid: boolean }>('check_offer_validity', args);
   }
 
-  async takeOffer(args: { offer: string; fee: number | string }) {
+  async takeOffer(args: { offer: string; fee: number | string; extraConditions?: any[] }) {
     return this.command<{ tradeRecord: TradeRecord }>('take_offer', args);
   }
 
