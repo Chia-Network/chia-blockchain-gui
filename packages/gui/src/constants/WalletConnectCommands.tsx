@@ -565,6 +565,13 @@ const walletConnectCommands: WalletConnectCommand[] = [
         type: 'object',
         displayComponent: (value) => <>{JSON.stringify(value)}</>,
       },
+      {
+        name: WalletConnectCommandParamName.COIN_IDS,
+        label: <Trans>Coin IDs</Trans>,
+        isOptional: true,
+        type: 'object',
+        displayComponent: (value) => <>{JSON.stringify(value)}</>,
+      },
     ],
   },
   {
