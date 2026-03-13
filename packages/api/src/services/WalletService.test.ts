@@ -686,7 +686,7 @@ describe('WalletService', () => {
     const expected = [
       new Message({
         command: 'create_offer_for_ids',
-        data: { driver_dict: driverDict, ...restArgs },
+        data: { driver_dict: driverDict, extra_conditions: undefined, coin_ids: undefined, ...restArgs },
         destination: 'chia_wallet',
         origin: 'test_origin' as ServiceNameValue,
       }),

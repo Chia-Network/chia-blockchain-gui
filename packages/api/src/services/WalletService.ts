@@ -288,10 +288,10 @@ export default class Wallet extends Service {
     extraConditions?: any[];
     coinIds?: string[];
   }) {
-    const { disableJSONFormatting, driverDict, ...restArgs } = args;
+    const { disableJSONFormatting, driverDict, extraConditions, coinIds, ...restArgs } = args;
     return this.command<{ offer: string; tradeRecord: TradeRecord }>(
       'create_offer_for_ids',
-      { driver_dict: driverDict, ...restArgs },
+      { driver_dict: driverDict, extra_conditions: extraConditions, coin_ids: coinIds, ...restArgs },
       false,
       undefined,
       disableJSONFormatting,
