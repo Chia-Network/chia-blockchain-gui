@@ -262,6 +262,7 @@ export default class Wallet extends Service {
     disableJSONFormatting?: boolean;
     maxTime?: number;
     extraConditions?: any[];
+    coinIds?: string[];
   }) {
     const { disableJSONFormatting, driverDict, ...restArgs } = args;
     return this.command<{ offer: string; tradeRecord: TradeRecord }>(
