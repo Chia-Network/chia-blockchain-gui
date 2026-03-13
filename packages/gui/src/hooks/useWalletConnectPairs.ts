@@ -34,29 +34,50 @@ export default function useWalletConnectPairs(): Pairs {
   pairsRef.current = localStorageData;
 
   const updatePair = useCallback((topic: string, data: Partial<Omit<Pair, 'topic'>> | ((pair: Pair) => Pair)) => {
-    const [, setPairs] = pairsRef.current;
+    const [latestPairs, setPairs] = pairsRef.current;
+
+    const index = latestPairs.findIndex((item) => item.topic === topic);
+    if (index !== -1) {
+      const oldPair = latestPairs[index];
+      const newPairing = typeof data === 'function' ? data(oldPair) : { ...oldPair, ...data };
+      const newPairings = [...latestPairs];
+      newPairings[index] = newPairing;
+      pairsRef.current = [newPairings, setPairs];
+    }
+
     setPairs((pairs: Pair[]) => {
-      const index = pairs.findIndex((item) => item.topic === topic);
-      if (index === -1) {
+      const idx = pairs.findIndex((item) => item.topic === topic);
+      if (idx === -1) {
         return pairs;
       }
 
-      const oldPair = pairs[index];
+      const oldPair = pairs[idx];
       const newPairing = typeof data === 'function' ? data(oldPair) : { ...oldPair, ...data };
       const newPairings = [...pairs];
-      newPairings[index] = newPairing;
+      newPairings[idx] = newPairing;
 
       return newPairings;
     });
   }, []);
 
   const removePair = useCallback((topic: string) => {
-    const [, setPairs] = pairsRef.current;
+    const [latestPairs, setPairs] = pairsRef.current;
+    if (!latestPairs.some((item) => item.topic === topic)) {
+      return;
+    }
+
+    pairsRef.current = [latestPairs.filter((item) => item.topic !== topic), setPairs];
+
     setPairs((pairs: Pair[]) => pairs.filter((item) => item.topic !== topic));
   }, []);
 
   const removePairBySession = useCallback((sessionTopic: string) => {
-    const [, setPairs] = pairsRef.current;
+    const [latestPairs, setPairs] = pairsRef.current;
+    pairsRef.current = [
+      latestPairs.filter((item) => !item.sessions.find((session) => session.topic === sessionTopic)),
+      setPairs,
+    ];
+
     setPairs((pairs: Pair[]) =>
       pairs.filter((item) => !item.sessions.find((session) => session.topic === sessionTopic)),
     );
@@ -78,19 +99,31 @@ export default function useWalletConnectPairs(): Pairs {
   }, []);
 
   const addPair = useCallback((pair: Pair) => {
-    const [, setPairs] = pairsRef.current;
-    setPairs((pairs: Pair[]) => {
-      const index = pairs.findIndex((item) => item.topic === pair.topic);
-      if (index !== -1) {
-        throw new Error('Pair already exists');
-      }
+    const [latestPairs, setPairs] = pairsRef.current;
+    if (latestPairs.findIndex((item) => item.topic === pair.topic) !== -1) {
+      throw new Error('Pair already exists');
+    }
 
+    pairsRef.current = [[...latestPairs, pair], setPairs];
+
+    setPairs((pairs: Pair[]) => {
+      if (pairs.some((item) => item.topic === pair.topic)) {
+        return pairs;
+      }
       return [...pairs, pair];
     });
   }, []);
 
   const removeSessionFromPair = useCallback((sessionTopic: string) => {
-    const [, setPairs] = pairsRef.current;
+    const [latestPairs, setPairs] = pairsRef.current;
+    pairsRef.current = [
+      latestPairs.map((pair) => ({
+        ...pair,
+        sessions: pair.sessions.filter((item) => item.topic !== sessionTopic),
+      })),
+      setPairs,
+    ];
+
     setPairs((pairs: Pair[]) =>
       pairs.map((pair) => ({
         ...pair,

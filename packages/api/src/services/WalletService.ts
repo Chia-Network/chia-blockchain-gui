@@ -58,6 +58,31 @@ export default class Wallet extends Service {
     }>('get_coin_records_by_names', args);
   }
 
+  async selectCoins(args: {
+    walletId: number;
+    amount: string | number;
+    minCoinAmount?: string | number;
+    maxCoinAmount?: string | number;
+    excludedCoinAmounts?: (string | number)[];
+    excludedCoinIds?: string[];
+  }) {
+    return this.command<{ coins: any[] }>('select_coins', args);
+  }
+
+  async getSpendableCoins(args: {
+    walletId: number;
+    minCoinAmount?: string | number;
+    maxCoinAmount?: string | number;
+    excludedCoinAmounts?: (string | number)[];
+    excludedCoinIds?: string[];
+  }) {
+    return this.command<{
+      confirmedRecords: any[];
+      unconfirmedRemovals: any[];
+      unconfirmedAdditions: any[];
+    }>('get_spendable_coins', args);
+  }
+
   async registerRemoteCoins(args: { walletId: number; coinIds: string[] }) {
     return this.command<void>('register_remote_coins', args);
   }
@@ -260,11 +285,13 @@ export default class Wallet extends Service {
     validateOnly?: boolean;
     disableJSONFormatting?: boolean;
     maxTime?: number;
+    extraConditions?: any[];
+    coinIds?: string[];
   }) {
-    const { disableJSONFormatting, driverDict, ...restArgs } = args;
+    const { disableJSONFormatting, driverDict, extraConditions, coinIds, ...restArgs } = args;
     return this.command<{ offer: string; tradeRecord: TradeRecord }>(
       'create_offer_for_ids',
-      { driver_dict: driverDict, ...restArgs },
+      { driver_dict: driverDict, extra_conditions: extraConditions, coin_ids: coinIds, ...restArgs },
       false,
       undefined,
       disableJSONFormatting,
@@ -279,7 +306,7 @@ export default class Wallet extends Service {
     return this.command<{ id: string; valid: boolean }>('check_offer_validity', args);
   }
 
-  async takeOffer(args: { offer: string; fee: number | string }) {
+  async takeOffer(args: { offer: string; fee: number | string; extraConditions?: any[] }) {
     return this.command<{ tradeRecord: TradeRecord }>('take_offer', args);
   }
 

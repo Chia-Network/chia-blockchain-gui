@@ -48,12 +48,14 @@ export async function processSessionProposal(
         chia?: {
           chains: string[];
           methods: string[];
+          events?: string[];
         };
       };
       optionalNamespaces?: {
         chia?: {
           chains: string[];
           methods: string[];
+          events?: string[];
         };
       };
     };
@@ -90,6 +92,7 @@ export async function processSessionProposal(
 
     const chains = [...new Set([...(requiredChia?.chains ?? []), ...(optionalChia?.chains ?? [])])];
     const methods = [...new Set([...(requiredChia?.methods ?? []), ...(optionalChia?.methods ?? [])])];
+    const events = [...new Set([...(requiredChia?.events ?? []), ...(optionalChia?.events ?? [])])];
     const chain = chains.find((item) => ['chia:testnet', 'chia:mainnet'].includes(item));
     if (!chain) {
       throw new Error('Chain not supported');
@@ -119,7 +122,7 @@ export async function processSessionProposal(
       chia: {
         accounts,
         methods,
-        events: [],
+        events,
       },
     };
 
@@ -148,22 +151,13 @@ export async function processSessionProposal(
   } catch (error) {
     try {
       log('Session proposal error', error);
+      console.error('WC session proposal REJECTED due to error:', error);
 
-      const {
+      const { id } = event;
+
+      await client?.reject({
         id,
-        params: { pairingTopic },
-      } = event;
-
-      await client?.respond({
-        topic: pairingTopic,
-        response: {
-          id,
-          jsonrpc: '2.0',
-          error: {
-            code: -32_600,
-            message: (error as Error).message ?? 'Invalid Session Proposal',
-          },
-        },
+        reason: getSdkError('USER_REJECTED'),
       });
     } catch (e) {
       processError(e as Error);

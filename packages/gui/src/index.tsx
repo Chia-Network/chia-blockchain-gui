@@ -6,6 +6,13 @@ import { createRoot } from 'react-dom/client';
 import App from './components/app/App';
 import initPrefs from './init-prefs';
 
+window.addEventListener('unhandledrejection', (event) => {
+  const message = event.reason?.message ?? String(event.reason);
+  if (message.includes('No matching key')) {
+    event.preventDefault();
+  }
+});
+
 // we need to use additional root for hot reloading
 function Root() {
   return <App />;

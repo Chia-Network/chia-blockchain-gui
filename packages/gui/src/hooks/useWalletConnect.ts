@@ -40,6 +40,9 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
   const processRef = useRef(process);
   processRef.current = process;
 
+  const pairsRef = useRef(pairs);
+  pairsRef.current = pairs;
+
   const isLoadingData = isLoading || isLoadingWalletConnectCommand;
 
   useEffect(() => {
@@ -47,10 +50,11 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
       return undefined;
     }
 
-    cleanupPairings(client, pairs);
+    const currentPairs = pairsRef.current;
+    cleanupPairings(client, currentPairs);
 
-    return bindEvents(client, pairs, () => processRef.current);
-  }, [client, pairs]);
+    return bindEvents(client, currentPairs, () => processRef.current);
+  }, [client]);
 
   const handlePair = useCallback(
     async (uri: string, fingerprints: number[], mainnet = false) => {
@@ -63,7 +67,7 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
         throw new Error('Pairing failed');
       }
 
-      pairs.addPair({
+      pairsRef.current.addPair({
         topic,
         fingerprints,
         mainnet,
@@ -72,7 +76,7 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
 
       return topic;
     },
-    [client, pairs],
+    [client],
   );
 
   const handleDisconnect = useCallback(
@@ -81,9 +85,9 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
         throw new Error('Client is not defined');
       }
 
-      return disconnectPair(client, pairs, topic);
+      return disconnectPair(client, pairsRef.current, topic);
     },
-    [client, pairs],
+    [client],
   );
 
   return {
