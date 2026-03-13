@@ -106,7 +106,12 @@ export default function useWalletConnectPairs(): Pairs {
 
     pairsRef.current = [[...latestPairs, pair], setPairs];
 
-    setPairs((pairs: Pair[]) => [...pairs, pair]);
+    setPairs((pairs: Pair[]) => {
+      if (pairs.some((item) => item.topic === pair.topic)) {
+        return pairs;
+      }
+      return [...pairs, pair];
+    });
   }, []);
 
   const removeSessionFromPair = useCallback((sessionTopic: string) => {
