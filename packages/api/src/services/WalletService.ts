@@ -8,6 +8,7 @@ import type OfferSummaryRecord from '../@types/OfferSummaryRecord';
 import type PoolWalletStatus from '../@types/PoolWalletStatus';
 import type PrivateKey from '../@types/PrivateKey';
 import type PuzzleDecorator from '../@types/PuzzleDecorator';
+import type SpendBundle from '../@types/SpendBundle';
 import type TradeRecord from '../@types/TradeRecord';
 import type Transaction from '../@types/Transaction';
 import type { WalletListItem } from '../@types/Wallet';
@@ -61,6 +62,10 @@ export default class Wallet extends Service {
 
   async registerRemoteCoins(args: { walletId: number; coinIds: string[] }) {
     return this.command<void>('register_remote_coins', args);
+  }
+
+  async pushTx(args: { spendBundle: SpendBundle }) {
+    return this.command<{ status: string }>('push_tx', args);
   }
 
   async getPwStatus(args: { walletId: number }) {

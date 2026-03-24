@@ -1,5 +1,6 @@
 export default [
   'chia_full_node.push_tx',
+  'chia_wallet.push_tx',
 
   'chia_wallet.create_new_wallet',
   'chia_wallet.send_transaction',

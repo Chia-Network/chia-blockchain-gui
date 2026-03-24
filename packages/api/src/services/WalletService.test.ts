@@ -523,6 +523,34 @@ describe('WalletService', () => {
     expect(client.send).toHaveBeenCalledWith(...expected);
   });
 
+  it('calls push_tx with the correct parameters', async () => {
+    const args = {
+      spendBundle: {
+        coinSpends: [
+          {
+            coin: { amount: 100, parentCoinInfo: '0xparent', puzzleHash: '0xpuzzle' },
+            puzzleReveal: '0xreveal',
+            solution: '0xsolution',
+          },
+        ],
+        aggregatedSignature: '0xsig',
+      },
+    };
+    const expected = [
+      new Message({
+        command: 'push_tx',
+        data: args,
+        destination: 'chia_wallet',
+        origin: 'test_origin' as ServiceNameValue,
+      }),
+      undefined,
+      undefined,
+    ];
+
+    await service.pushTx(args);
+    expect(client.send).toHaveBeenCalledWith(...expected);
+  });
+
   it('calls get_timestamp_for_height with the correct parameters', async () => {
     const args = {
       height: 123,
