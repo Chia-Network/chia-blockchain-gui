@@ -466,6 +466,20 @@ const walletConnectCommands: WalletConnectCommand[] = [
       },
     ],
   },
+  {
+    command: 'walletPushTx',
+    label: <Trans>Push Transaction (Wallet)</Trans>,
+    description: <Trans>Push a spend bundle (transaction) to the blockchain via the wallet</Trans>,
+    service: ServiceName.WALLET,
+    serviceCommand: 'walletPushTx',
+    params: [
+      {
+        name: WalletConnectCommandParamName.SPEND_BUNDLE,
+        label: <Trans>Spend Bundle</Trans>,
+        type: 'object',
+      },
+    ],
+  },
 
   // offers
   {
