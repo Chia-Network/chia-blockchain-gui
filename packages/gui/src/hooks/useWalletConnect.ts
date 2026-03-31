@@ -1,7 +1,7 @@
 import { useEffect, useCallback, useRef } from 'react';
 
 import type Notification from '../@types/Notification';
-import { disconnectPair, bindEvents, cleanupPairings } from '../util/walletConnect';
+import { disconnectPair, bindEvents } from '../util/walletConnect';
 
 import useWalletConnectClient from './useWalletConnectClient';
 import useWalletConnectCommand from './useWalletConnectCommand';
@@ -46,8 +46,6 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
     if (!client) {
       return undefined;
     }
-
-    cleanupPairings(client, pairs);
 
     return bindEvents(client, pairs, () => processRef.current);
   }, [client, pairs]);
