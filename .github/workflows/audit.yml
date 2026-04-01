@@ -29,7 +29,7 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
@@ -47,7 +47,7 @@ jobs:
             ${{ runner.os }}-
 
       - name: Setup Node 24.x
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: "24.x"
 
