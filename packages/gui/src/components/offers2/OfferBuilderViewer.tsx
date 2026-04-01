@@ -9,6 +9,7 @@ import {
 } from '@chia-network/api-react';
 import {
   AlertDialog,
+  ConfirmDialog,
   Fee,
   Flex,
   Button,
@@ -263,13 +264,14 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
     }
     const feeInMojos = formData.fee ? chiaToMojo(formData.fee).toFixed() : '0';
     const confirmed = await openDialog(
-      <AlertDialog
+      <ConfirmDialog
         title={<Trans>Accept Data Layer Offer</Trans>}
         confirmTitle={<Trans>Accept</Trans>}
         cancelTitle={<Trans>Cancel</Trans>}
+        confirmColor="primary"
       >
         <Trans>Are you sure you want to accept this Data Layer offer?</Trans>
-      </AlertDialog>,
+      </ConfirmDialog>,
     );
     if (!confirmed) {
       return;
