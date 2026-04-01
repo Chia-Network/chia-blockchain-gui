@@ -190,7 +190,7 @@ export default function OfferIncomingTable(props: OfferIncomingTableProps) {
       const address = currencyCode && puzzleHash ? toBech32m(puzzleHash, currencyCode.toLowerCase()) : '';
       const offerSummary = offerState.offer?.summary;
 
-      if (isDataLayerOfferSummary(offerSummary)) {
+      if (!offerSummary || isDataLayerOfferSummary(offerSummary)) {
         return;
       }
 
