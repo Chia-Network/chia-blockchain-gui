@@ -21,6 +21,8 @@ jobs:
     name: Check npm audit
     runs-on: ${{ matrix.os }}
     timeout-minutes: 30
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
     strategy:
       fail-fast: false
       max-parallel: 4
@@ -29,7 +31,7 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
@@ -47,7 +49,7 @@ jobs:
             ${{ runner.os }}-
 
       - name: Setup Node 24.x
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: "24.x"
 
