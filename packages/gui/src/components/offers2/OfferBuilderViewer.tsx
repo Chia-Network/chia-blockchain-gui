@@ -9,11 +9,15 @@ import {
 } from '@chia-network/api-react';
 import {
   AlertDialog,
+  Fee,
   Flex,
   Button,
   ButtonLoading,
+  Form,
   Link,
   Loading,
+  chiaToMojo,
+  mojoToChia,
   useShowError,
   useOpenDialog,
 } from '@chia-network/core';
@@ -21,6 +25,7 @@ import { useIsWalletSynced } from '@chia-network/wallets';
 import { Trans } from '@lingui/macro';
 import { Alert, Grid } from '@mui/material';
 import React, { useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState, forwardRef } from 'react';
+import { useForm } from 'react-hook-form';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import type OfferBuilderData from '../../@types/OfferBuilderData';
@@ -51,6 +56,10 @@ export type OfferBuilderViewerProps = {
   address?: string; // where to send a counter offer
   fee?: string; // in mojos
   myOfferValidTimes?: OfferSummaryValidTimes;
+};
+
+type DataLayerOfferFeeFormData = {
+  fee: string;
 };
 
 function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
@@ -87,6 +96,11 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
   const [isValid, setIsValid] = useState<boolean | undefined>();
   const isWalletSynced = useIsWalletSynced();
   const openDialog = useOpenDialog();
+  const dataLayerOfferMethods = useForm<DataLayerOfferFeeFormData>({
+    defaultValues: {
+      fee: fee ? mojoToChia(fee).toFixed() : '',
+    },
+  });
 
   const showInvalid = !isValidating && isValid === false;
 
@@ -235,7 +249,7 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
     }
   }
 
-  async function handleAcceptDataLayerOffer() {
+  async function handleAcceptDataLayerOffer(formData: DataLayerOfferFeeFormData) {
     if (!isWalletSynced) {
       await openDialog(
         <AlertDialog>
@@ -247,6 +261,7 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
     if (!offerData || isAccepting) {
       return;
     }
+    const feeInMojos = formData.fee ? chiaToMojo(formData.fee).toFixed() : '0';
     const confirmed = await openDialog(
       <AlertDialog
         title={<Trans>Accept Data Layer Offer</Trans>}
@@ -261,7 +276,7 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
     }
     try {
       setIsAccepting(true);
-      const response = await takeOffer({ offer: offerData, fee: 0 }).unwrap();
+      const response = await takeOffer({ offer: offerData, fee: feeInMojos }).unwrap();
       await openDialog(
         <AlertDialog title={<Trans>Success</Trans>}>
           {response.message ?? <Trans>Offer has been accepted and is awaiting confirmation.</Trans>}
@@ -279,42 +294,57 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
     const canAcceptDl = !!offerData;
 
     return (
-      <Grid container>
-        <Flex flexDirection="column" flexGrow={1} gap={4}>
-          {!hideHeader && (
-            <Flex alignItems="center" justifyContent="space-between" gap={2}>
-              <OfferNavigationHeader referrerPath={referrerPath} />
-              {canAcceptDl && (
-                <ButtonLoading
-                  variant="contained"
-                  color="primary"
-                  onClick={handleAcceptDataLayerOffer}
-                  isLoading={isAccepting}
-                  disableElevation
-                  disabled={showInvalid || isExpired}
-                >
-                  <Trans>Accept Offer</Trans>
-                </ButtonLoading>
-              )}
-            </Flex>
-          )}
-          {showInvalid && (
-            <Alert severity="error">
-              <Trans>
-                {'This offer is no longer valid because it was accepted or cancelled. Click '}
-                <Link
-                  target="_blank"
-                  href="https://docs.chia.net/getting-started/wallet-guide/#taker-attempts-to-accept-an-invalid-offer"
-                >
-                  here
-                </Link>{' '}
-                to learn more.
-              </Trans>
-            </Alert>
-          )}
-          <DataLayerOfferViewer summary={offerSummary as DataLayerOfferSummary} />
-        </Flex>
-      </Grid>
+      <Form methods={dataLayerOfferMethods} onSubmit={handleAcceptDataLayerOffer}>
+        <Grid container>
+          <Flex flexDirection="column" flexGrow={1} gap={4}>
+            {!hideHeader && (
+              <Flex alignItems="center" justifyContent="space-between" gap={2}>
+                <OfferNavigationHeader referrerPath={referrerPath} />
+                {canAcceptDl && (
+                  <ButtonLoading
+                    variant="contained"
+                    color="primary"
+                    onClick={dataLayerOfferMethods.handleSubmit(handleAcceptDataLayerOffer)}
+                    isLoading={isAccepting}
+                    disableElevation
+                    disabled={showInvalid || isExpired}
+                  >
+                    <Trans>Accept Offer</Trans>
+                  </ButtonLoading>
+                )}
+              </Flex>
+            )}
+            {showInvalid && (
+              <Alert severity="error">
+                <Trans>
+                  {'This offer is no longer valid because it was accepted or cancelled. Click '}
+                  <Link
+                    target="_blank"
+                    href="https://docs.chia.net/getting-started/wallet-guide/#taker-attempts-to-accept-an-invalid-offer"
+                  >
+                    here
+                  </Link>{' '}
+                  to learn more.
+                </Trans>
+              </Alert>
+            )}
+            {canAcceptDl && (
+              <Flex sx={{ maxWidth: 360 }}>
+                <Fee
+                  id="data-layer-offer-fee"
+                  variant="filled"
+                  name="fee"
+                  color="secondary"
+                  label={<Trans>Network Fee (Optional)</Trans>}
+                  disabled={isAccepting || showInvalid || isExpired}
+                  fullWidth
+                />
+              </Flex>
+            )}
+            <DataLayerOfferViewer summary={offerSummary as DataLayerOfferSummary} />
+          </Flex>
+        </Grid>
+      </Form>
     );
   }
 
