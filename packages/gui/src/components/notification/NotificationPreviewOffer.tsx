@@ -4,6 +4,7 @@ import React, { useMemo } from 'react';
 import Notification from '../../@types/Notification';
 import NotificationType from '../../constants/NotificationType';
 import useOffer from '../../hooks/useOffer';
+import isDataLayerOfferSummary from '../../util/isDataLayerOfferSummary';
 import offerToOfferBuilderData from '../../util/offerToOfferBuilderData';
 
 import NotificationPreviewNFT from './NotificationPreviewNFT';
@@ -34,11 +35,11 @@ export default function NotificationPreviewOffer(props: NotificationPreviewOffer
   const { offer, isLoading } = useOffer(offerURLOrData);
 
   const nft = useMemo(() => {
-    if (!offer || !offer.summary) {
+    if (!offer || !offer.summary || isDataLayerOfferSummary(offer.summary)) {
       return null;
     }
 
-    const offerBuilderData = offerToOfferBuilderData(offer?.summary);
+    const offerBuilderData = offerToOfferBuilderData(offer.summary);
     const side = requested ? offerBuilderData.offered : offerBuilderData.requested;
 
     const [firstNFT] = side.nfts ?? [];

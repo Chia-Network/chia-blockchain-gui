@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 
+import isDataLayerOfferSummary from '../util/isDataLayerOfferSummary';
 import resolveOfferInfo from '../util/resolveOfferInfo';
 
 import useAssetIdName from './useAssetIdName';
@@ -13,7 +14,7 @@ export default function useOfferInfo(offerURLOrData: string) {
   const error = errorOffer || errorAssetId;
 
   const data = useMemo(() => {
-    if (!offer || !offer.summary) {
+    if (!offer || !offer.summary || isDataLayerOfferSummary(offer.summary)) {
       return null;
     }
 

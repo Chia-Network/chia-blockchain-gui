@@ -1,4 +1,4 @@
-import { type OfferSummaryRecord } from '@chia-network/api';
+import { type DataLayerOfferSummary, type OfferSummaryRecord } from '@chia-network/api';
 import { useGetOfferSummaryMutation } from '@chia-network/api-react';
 import {
   Back,
@@ -13,6 +13,8 @@ import { Trans } from '@lingui/macro';
 import { Button, Grid, Typography } from '@mui/material';
 import React from 'react';
 import { useHotkeys } from 'react-hotkeys-hook';
+
+import isDataLayerOfferSummary from '../../util/isDataLayerOfferSummary';
 
 import OfferDataEntryDialog from './OfferDataEntryDialog';
 import { offerContainsAssetOfType } from './utils';
@@ -34,7 +36,7 @@ function SelectOfferFile() {
 
   async function parseOfferSummary(rawOfferData: string, offerFilePath: string | undefined) {
     const [offerData /* , leadingText, trailingText */] = parseOfferData(rawOfferData);
-    let offerSummary: OfferSummaryRecord | undefined;
+    let offerSummary: OfferSummaryRecord | DataLayerOfferSummary | undefined;
 
     if (offerData) {
       const { data: response } = await getOfferSummary({ offerData });
@@ -48,9 +50,14 @@ function SelectOfferFile() {
     }
 
     if (offerSummary) {
-      const navigationPath = offerContainsAssetOfType(offerSummary, 'singleton')
-        ? '/dashboard/offers/view-nft'
-        : '/dashboard/offers/view';
+      let navigationPath: string;
+      if (isDataLayerOfferSummary(offerSummary)) {
+        navigationPath = '/dashboard/offers/view';
+      } else {
+        navigationPath = offerContainsAssetOfType(offerSummary, 'singleton')
+          ? '/dashboard/offers/view-nft'
+          : '/dashboard/offers/view';
+      }
 
       navigate(navigationPath, {
         state: { offerData, offerSummary, offerFilePath, imported: true },
