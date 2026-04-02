@@ -26,6 +26,8 @@ export type PendingAsset = {
 export function resolvePendingAssets(offer: OfferTradeRecordFormatted): PendingAsset[] {
   const pendingAssets: PendingAsset[] = [];
   const { infos } = offer.summary;
+  // DataLayerOfferSummary has no infos field; bail out so the rest of
+  // this function doesn't try to look up asset types via infos[assetId].
   if (!infos) {
     return pendingAssets;
   }
