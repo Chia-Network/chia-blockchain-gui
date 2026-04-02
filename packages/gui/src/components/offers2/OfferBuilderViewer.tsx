@@ -293,7 +293,9 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
   }
 
   if (isDataLayer) {
-    const canAcceptDl = !!offerData;
+    const dlSummary = offerSummary as DataLayerOfferSummary;
+    const emptyDlOffer = dlSummary.offered.length === 0;
+    const canAcceptDl = !!offerData && !emptyDlOffer;
 
     return (
       <Form methods={dataLayerOfferMethods} onSubmit={handleAcceptDataLayerOffer}>
@@ -315,6 +317,11 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
                   </ButtonLoading>
                 )}
               </Flex>
+            )}
+            {emptyDlOffer && (
+              <Alert severity="warning">
+                <Trans>This Data Layer offer contains no store updates and cannot be accepted.</Trans>
+              </Alert>
             )}
             {showInvalid && (
               <Alert severity="error">
@@ -343,7 +350,7 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
                 />
               </Flex>
             )}
-            <DataLayerOfferViewer summary={offerSummary as DataLayerOfferSummary} />
+            <DataLayerOfferViewer summary={dlSummary} />
           </Flex>
         </Grid>
       </Form>
