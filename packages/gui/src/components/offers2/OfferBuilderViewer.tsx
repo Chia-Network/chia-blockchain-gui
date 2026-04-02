@@ -278,10 +278,10 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
     }
     try {
       setIsAccepting(true);
-      const response = await takeOffer({ offer: offerData, fee: feeInMojos }).unwrap();
+      await takeOffer({ offer: offerData, fee: feeInMojos }).unwrap();
       await openDialog(
         <AlertDialog title={<Trans>Success</Trans>}>
-          {response.message ?? <Trans>Offer has been accepted and is awaiting confirmation.</Trans>}
+          <Trans>Offer has been accepted and is awaiting confirmation.</Trans>
         </AlertDialog>,
       );
       navigate('/dashboard/offers');
@@ -304,9 +304,9 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
                 <OfferNavigationHeader referrerPath={referrerPath} />
                 {canAcceptDl && (
                   <ButtonLoading
+                    type="submit"
                     variant="contained"
                     color="primary"
-                    onClick={dataLayerOfferMethods.handleSubmit(handleAcceptDataLayerOffer)}
                     isLoading={isAccepting}
                     disableElevation
                     disabled={showInvalid || isExpired}
