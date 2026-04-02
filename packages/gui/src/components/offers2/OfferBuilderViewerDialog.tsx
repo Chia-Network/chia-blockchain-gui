@@ -1,3 +1,4 @@
+import type { DataLayerOfferSummary } from '@chia-network/api';
 import { useGetOfferSummaryMutation } from '@chia-network/api-react';
 import { DialogActions, Loading, Button } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
@@ -6,7 +7,9 @@ import { Alert, Divider, Dialog, DialogContent, DialogTitle, IconButton } from '
 import React, { useEffect, useRef } from 'react';
 
 import type OfferBuilderData from '../../@types/OfferBuilderData';
+import isDataLayerOfferSummary from '../../util/isDataLayerOfferSummary';
 
+import DataLayerOfferViewer from './DataLayerOfferViewer';
 import OfferBuilderViewer from './OfferBuilderViewer';
 
 export type OfferBuilderViewerDialogProps = {
@@ -58,6 +61,8 @@ export default function OfferBuilderViewerDialog(props: OfferBuilderViewerDialog
           <Alert severity="error">{error.message}</Alert>
         ) : isLoading ? (
           <Loading center />
+        ) : data && isDataLayerOfferSummary(data.summary) ? (
+          <DataLayerOfferViewer summary={data.summary as DataLayerOfferSummary} />
         ) : (
           <OfferBuilderViewer
             ref={offerBuilderViewerRef}

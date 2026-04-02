@@ -25,6 +25,12 @@ export type PendingAsset = {
  */
 export function resolvePendingAssets(offer: OfferTradeRecordFormatted): PendingAsset[] {
   const pendingAssets: PendingAsset[] = [];
+  const { infos } = offer.summary;
+  // DataLayerOfferSummary has no infos field; bail out so the rest of
+  // this function doesn't try to look up asset types via infos[assetId].
+  if (!infos) {
+    return pendingAssets;
+  }
   const pendingAssetIds = Object.keys(offer.pending) as string[];
   for (let m = 0; m < pendingAssetIds.length; m++) {
     const assetId = pendingAssetIds[m];
@@ -33,10 +39,14 @@ export function resolvePendingAssets(offer: OfferTradeRecordFormatted): PendingA
     if (assetId.toUpperCase() === 'XCH' || assetId.toUpperCase() === 'UNKNOWN') {
       type = 'XCH';
     } else {
-      const info = offer.summary.infos[assetId];
-      type = info.type.toUpperCase() as 'CAT' | 'SINGLETON';
+      const info = infos[assetId];
+      if (info) {
+        type = info.type.toUpperCase() as 'CAT' | 'SINGLETON';
+      }
     }
-    pendingAssets.push({ type, assetId, amount });
+    if (type) {
+      pendingAssets.push({ type, assetId, amount });
+    }
   }
 
   return pendingAssets;

@@ -12,6 +12,11 @@ export type { default as Coin } from './Coin';
 export type { default as Coin2 } from './Coin2';
 export type { default as CoinSolution } from './CoinSolution';
 export type { default as Connection } from './Connection';
+export type {
+  default as DataLayerOfferSummary,
+  SingletonSummaryRecord,
+  SingletonDependency,
+} from './DataLayerOfferSummary';
 export type { default as FarmingInfo } from './FarmingInfo';
 export type { default as NewFarmingInfo } from './NewFarmingInfo';
 export type { default as Fingerprint } from './Fingerprint';

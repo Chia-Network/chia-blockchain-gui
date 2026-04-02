@@ -2,6 +2,7 @@ import BigNumber from 'bignumber.js';
 
 import type AutoClaim from '../@types/AutoClaim';
 import type Connection from '../@types/Connection';
+import type DataLayerOfferSummary from '../@types/DataLayerOfferSummary';
 import type FarmedAmount from '../@types/FarmedAmount';
 import type OfferSummaryRecord from '../@types/OfferSummaryRecord';
 import type PoolWalletStatus from '../@types/PoolWalletStatus';
@@ -284,7 +285,7 @@ export default class Wallet extends Service {
   }
 
   async getOfferSummary({ offerData }: { offerData: string }) {
-    return this.command<{ id: string; summary: OfferSummaryRecord }>('get_offer_summary', {
+    return this.command<{ id: string; summary: OfferSummaryRecord | DataLayerOfferSummary }>('get_offer_summary', {
       offer: offerData,
     });
   }

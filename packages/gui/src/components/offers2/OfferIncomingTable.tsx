@@ -10,6 +10,7 @@ import type Notification from '../../@types/Notification';
 import NotificationType from '../../constants/NotificationType';
 import useOffers from '../../hooks/useOffers';
 import useValidNotifications from '../../hooks/useValidNotifications';
+import isDataLayerOfferSummary from '../../util/isDataLayerOfferSummary';
 import { launcherIdFromNFTId } from '../../util/nfts';
 import offerToOfferBuilderData from '../../util/offerToOfferBuilderData';
 import HumanTimestamp from '../helpers/HumanTimestamp';
@@ -72,8 +73,10 @@ const cols = [
     title: <Trans>Creation Date</Trans>,
   },
   {
-    field: (notification: Notification, { deleteNotification, showOffer, counterOffer }) => {
+    field: (notification: Notification, { deleteNotification, showOffer, counterOffer, isDataLayerNotification }) => {
       const puzzleHash = 'puzzleHash' in notification ? notification.puzzleHash : undefined;
+      const isDl = isDataLayerNotification(notification);
+      const counterDisabled = !puzzleHash || isDl;
 
       async function handleDelete() {
         await deleteNotification(notification);
@@ -87,7 +90,12 @@ const cols = [
         await counterOffer(notification);
       }
 
-      const tooltipTitle = puzzleHash ? '' : <Trans>The offer creator has chosen not to allow counter offers</Trans>;
+      let tooltipTitle: React.ReactElement | string = '';
+      if (isDl) {
+        tooltipTitle = <Trans>Counter offers are not supported for Data Layer offers</Trans>;
+      } else if (!puzzleHash) {
+        tooltipTitle = <Trans>The offer creator has chosen not to allow counter offers</Trans>;
+      }
 
       return (
         <Flex gap={1}>
@@ -96,7 +104,7 @@ const cols = [
           </Button>
           <Tooltip title={tooltipTitle}>
             <span>
-              <Button variant="outlined" color="primary" onClick={handleCounter} disabled={!puzzleHash}>
+              <Button variant="outlined" color="primary" onClick={handleCounter} disabled={counterDisabled}>
                 <Trans>Counter</Trans>
               </Button>
             </span>
@@ -182,6 +190,10 @@ export default function OfferIncomingTable(props: OfferIncomingTableProps) {
       const address = currencyCode && puzzleHash ? toBech32m(puzzleHash, currencyCode.toLowerCase()) : '';
       const offerSummary = offerState.offer?.summary;
 
+      if (!offerSummary || isDataLayerOfferSummary(offerSummary)) {
+        return;
+      }
+
       const offer = offerToOfferBuilderData(offerSummary);
 
       navigate('/dashboard/offers/builder', {
@@ -219,9 +231,9 @@ export default function OfferIncomingTable(props: OfferIncomingTableProps) {
       return;
     }
 
-    const canCounterOffer = puzzleHash && puzzleHash.length > 0;
     const offerData = offerState.offer?.data;
     const offerSummary = offerState.offer?.summary;
+    const canCounterOffer = !isDataLayerOfferSummary(offerSummary) && puzzleHash && puzzleHash.length > 0;
 
     navigate('/dashboard/offers/view', {
       state: {
@@ -233,6 +245,17 @@ export default function OfferIncomingTable(props: OfferIncomingTableProps) {
         address: puzzleHash,
       },
     });
+  }
+
+  function isDataLayerNotification(notification: Notification): boolean {
+    const offerId =
+      'offerURL' in notification
+        ? notification.offerURL
+        : 'offerData' in notification
+          ? notification.offerData
+          : undefined;
+    const offerState = getOffer(offerId);
+    return isDataLayerOfferSummary(offerState?.offer?.summary);
   }
 
   const hasNotifications = !!filteredNotifications?.length;
@@ -251,6 +274,7 @@ export default function OfferIncomingTable(props: OfferIncomingTableProps) {
             deleteNotification: handleDeleteNotification,
             showOffer: handleShowOffer,
             counterOffer: handleCounterOffer,
+            isDataLayerNotification,
           }}
           caption={
             !hasNotifications &&

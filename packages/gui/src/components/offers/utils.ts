@@ -165,6 +165,9 @@ export function offerContainsAssetOfType(
   side?: 'offered' | 'requested',
 ): boolean {
   const { infos } = offerSummary;
+  if (!infos) {
+    return false;
+  }
   const matchingAssetIds: string[] = Object.keys(infos).filter((assetId) => {
     const info: OfferSummaryAssetInfo = infos[assetId];
     return info.type === assetType;
@@ -192,6 +195,10 @@ export function offerAssetTypeForAssetId(assetId: string, offerSummary: OfferSum
     assetType = OfferAsset.CHIA;
   } else {
     const { infos } = offerSummary;
+    // DataLayerOfferSummary has no infos field
+    if (!infos) {
+      return undefined;
+    }
     const info: OfferSummaryAssetInfo = infos[assetId];
 
     if (info) {
