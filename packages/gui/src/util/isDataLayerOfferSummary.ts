@@ -8,10 +8,6 @@ export default function isDataLayerOfferSummary(summary: unknown): summary is Da
   if (!Array.isArray(offered)) {
     return false;
   }
-  if (offered.length === 0) {
-    const keys = Object.keys(summary as object);
-    return keys.length === 1 && keys[0] === 'offered';
-  }
   return offered.every(
     (entry) =>
       entry != null &&
