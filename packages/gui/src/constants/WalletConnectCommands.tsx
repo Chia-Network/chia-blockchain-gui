@@ -478,6 +478,13 @@ const walletConnectCommands: WalletConnectCommand[] = [
         label: <Trans>Spend Bundle</Trans>,
         type: 'object',
       },
+      {
+        name: WalletConnectCommandParamName.FEE,
+        label: <Trans>Fee</Trans>,
+        type: 'BigNumber',
+        isOptional: true,
+        displayComponent: (value) => <MojoToChia value={value} />,
+      },
     ],
   },
 
