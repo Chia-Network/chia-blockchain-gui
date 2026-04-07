@@ -243,7 +243,7 @@ export default class Wallet extends Service {
     return this.command<{
       height: number;
       isTransactionBlock: boolean | null;
-      latestTransactionBlockHeight: number | null;
+      prevTransactionBlockHeight: number | null;
     }>('get_height_info');
   }
 
