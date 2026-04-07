@@ -19,9 +19,10 @@ export default function WalletHistoryClawbackChip(props: Props) {
   const { data: autoClaimData, isLoading: isGetAutoClaimLoading } = useGetAutoClaimQuery();
   const isAutoClaimEnabled = !isGetAutoClaimLoading && autoClaimData?.enabled;
 
-  const { data: height, isLoading: isGetHeightInfoLoading } = useGetHeightInfoQuery(undefined, {
+  const { data: heightData, isLoading: isGetHeightInfoLoading } = useGetHeightInfoQuery(undefined, {
     pollingInterval: 3000,
   });
+  const height = heightData?.height;
 
   const { data: lastBlockTimeStampData, isLoading: isGetTimestampForHeightLoading } = useGetTimestampForHeightQuery({
     height: height || 0,

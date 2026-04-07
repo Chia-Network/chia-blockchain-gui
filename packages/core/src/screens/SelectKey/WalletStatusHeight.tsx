@@ -4,12 +4,13 @@ import React from 'react';
 import FormatLargeNumber from '../../components/FormatLargeNumber';
 
 export default function WalletStatusHeight() {
-  const { data: height, isLoading } = useGetHeightInfoQuery(
+  const { data: heightData, isLoading } = useGetHeightInfoQuery(
     {},
     {
       pollingInterval: 10_000,
     },
   );
+  const height = heightData?.height;
 
   if (isLoading) {
     return null;
