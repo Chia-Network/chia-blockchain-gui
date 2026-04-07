@@ -561,7 +561,6 @@ export const walletApi = apiWithTag.injectEndpoints({
     getTimestampForHeight: query(build, WalletService, 'getTimestampForHeight'),
 
     getHeightInfo: query(build, WalletService, 'getHeightInfo', {
-      transformResponse: (response) => response.height,
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onSyncChanged',

@@ -76,9 +76,10 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
 
   const [suppressShareOnCreate] = useSuppressShareOnCreate();
 
-  const { data: height, isLoading: isGetHeightInfoLoading } = useGetHeightInfoQuery(undefined, {
+  const { data: heightData, isLoading: isGetHeightInfoLoading } = useGetHeightInfoQuery(undefined, {
     pollingInterval: 3000,
   });
+  const height = heightData?.height;
   const { data: lastBlockTimeStampData, isLoading: isGetTimestampForHeightLoading } = useGetTimestampForHeightQuery(
     { height: height || 0 },
     { skip: !height },

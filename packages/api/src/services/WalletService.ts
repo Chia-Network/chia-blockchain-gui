@@ -240,7 +240,11 @@ export default class Wallet extends Service {
   }
 
   async getHeightInfo() {
-    return this.command<{ height: number }>('get_height_info');
+    return this.command<{
+      height: number;
+      isTransactionBlock: boolean | null;
+      latestTransactionBlockHeight: number | null;
+    }>('get_height_info');
   }
 
   async getNetworkInfo() {
