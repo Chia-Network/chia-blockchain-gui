@@ -38,24 +38,6 @@ function getSingleton(): WalletConnectSingleton {
   return globalStore.chiaWalletConnectSingleton;
 }
 
-function installWalletConnectErrorSummary(client: Client) {
-  const { logger } = client as unknown as { logger?: { error?: (...args: unknown[]) => void } };
-  if (!logger?.error) return;
-  const original = logger.error.bind(logger);
-  logger.error = (...args: unknown[]) => {
-    const raw = args.map(String).join(' ');
-    const marker = 'failed to process an inbound message:';
-    const idx = raw.indexOf(marker);
-    if (idx >= 0) {
-      const payload = raw.slice(idx + marker.length).trim();
-      const short = payload.length > 24 ? `${payload.slice(0, 12)}...${payload.slice(-12)}` : payload;
-      console.warn(`[WC inbound decode failed] b64_len=${payload.length} b64_short=${short}`);
-      return;
-    }
-    original(...args);
-  };
-}
-
 let clientRequestId = 1;
 
 export default function useWalletConnectClient(config: UseWalletConnectConfig) {
@@ -107,7 +89,6 @@ export default function useWalletConnectClient(config: UseWalletConnectConfig) {
           metadata: memoizedMetadata,
         })
           .then((createdClient) => {
-            installWalletConnectErrorSummary(createdClient);
             singleton.client = createdClient;
             return createdClient;
           })
