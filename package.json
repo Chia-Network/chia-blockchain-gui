@@ -71,7 +71,8 @@
   },
   "overrides": {
     "axios": "1.15.0",
-    "@walletconnect/keyvaluestorage": "1.0.2",
+    "@noble/hashes": "1.8.0",
+    "@walletconnect/keyvaluestorage": "1.1.1",
     "tslib": "2.6.2",
     "cross-spawn": "7.0.6",
     "js-yaml": "4.1.1",
@@ -85,5 +86,5 @@
     "rollup": "4.59.0",
     "serialize-javascript": "7.0.4"
   },
-  "version": "1.2.10-dev132"
+  "version": "2.6.1-rc2.dev60"
 }

@@ -133,34 +133,6 @@ export async function processSessionProposal(
     if (!('topic' in result) || !result.topic) {
       return;
     }
-    // Flush stale pending requests that may have been loaded by the
-    // SDK's delayed init setTimeout. This runs after approval so the
-    // new session is already in the store; we only remove items for
-    // sessions that DON'T exist.
-    try {
-      const engine = (client as any).engine ?? (client as any).signClient?.engine;
-      if (engine?.sessionRequestQueue?.queue) {
-        const validKeys = new Set(client.session.keys);
-        const q: any[] = engine.sessionRequestQueue.queue;
-        const before = q.length;
-        engine.sessionRequestQueue.queue = q.filter((item: any) => validKeys.has(item?.topic));
-        const removed = before - engine.sessionRequestQueue.queue.length;
-        if (removed > 0) log(`post-approve queue flush removed ${removed} stale item(s)`);
-        // Also clean persistent store
-        try {
-          const pending = engine.getPendingSessionRequests?.() ?? [];
-          for (const req of pending) {
-            if (!validKeys.has(req?.topic)) {
-              engine.deletePendingSessionRequest?.(req.id, { message: 'stale', code: 0 });
-            }
-          }
-        } catch {
-          /* best effort */
-        }
-      }
-    } catch {
-      /* best effort */
-    }
 
     // new session created
     pairs.updatePair(pairingTopic, (p) => ({
@@ -399,55 +371,6 @@ export function bindEvents(
 ) {
   if (!client) {
     throw new Error('Client not initialized');
-  }
-
-  // Check internal session request queue state and flush stale items
-  try {
-    const engine = (client as any).engine ?? (client as any).signClient?.engine;
-    if (engine) {
-      const q: any[] = engine.sessionRequestQueue?.queue ?? [];
-
-      // Flush ALL pending requests from previous sessions.
-      // The SDK reloads these from IndexedDB via a setTimeout at init, and
-      // if any are for dead sessions, processSessionRequestQueue blocks
-      // forever because it only looks at queue[0] and the catch block
-      // doesn't remove the failed item.
-      //
-      // Two layers of defense:
-      // 1. Clear stale in-memory queue items now
-      // 2. Clear stale persistent pending requests
-
-      const validSessionKeys = new Set(client.session.keys);
-
-      // Layer 1: flush stale in-memory queue items
-      const staleItems = q.filter((item: any) => !validSessionKeys.has(item?.topic));
-      if (staleItems.length > 0) {
-        log(`queue flush removing ${staleItems.length} stale item(s)`);
-        engine.sessionRequestQueue.queue = q.filter((item: any) => validSessionKeys.has(item?.topic));
-      }
-
-      // Layer 2: clear persistent pending requests for dead sessions
-      try {
-        const pendingRequests = engine.getPendingSessionRequests?.() ?? [];
-        for (const req of pendingRequests) {
-          if (!validSessionKeys.has(req?.topic)) {
-            try {
-              engine.deletePendingSessionRequest?.(req.id, { message: 'stale', code: 0 });
-            } catch {
-              /* best effort */
-            }
-          }
-        }
-      } catch {
-        /* best effort */
-      }
-
-      if (staleItems.length > 0) {
-        log(`queue flush post-length=${engine.sessionRequestQueue.queue.length}`);
-      }
-    }
-  } catch {
-    // best effort
   }
 
   async function handleSessionProposal(event: any) {
