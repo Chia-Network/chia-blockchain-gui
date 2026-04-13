@@ -59,6 +59,13 @@ export default class Wallet extends Service {
     }>('get_coin_records_by_names', args);
   }
 
+  async getPuzzleAndSolution(args: { coinName: string }) {
+    return this.command<{
+      puzzleReveal: string;
+      solution: string;
+    }>('get_puzzle_and_solution', args);
+  }
+  
   async registerRemoteCoins(args: { walletId: number; coinIds: string[] }) {
     return this.command<void>('register_remote_coins', args);
   }

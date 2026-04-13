@@ -154,6 +154,20 @@ const walletConnectCommands: WalletConnectCommand[] = [
     ],
   },
   {
+    command: 'getPuzzleAndSolution',
+    label: <Trans>Get Puzzle and Solution</Trans>,
+    description: <Trans>Retrieves the puzzle reveal and solution for a spent coin.</Trans>,
+    service: ServiceName.WALLET,
+    bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.COIN_NAME,
+        type: 'string',
+        label: <Trans>Coin Name</Trans>,
+      },
+    ],
+  },
+  {
     command: 'sendTransaction',
     label: <Trans>Send Transaction</Trans>,
     service: ServiceName.WALLET,
