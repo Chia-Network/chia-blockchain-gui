@@ -107,6 +107,7 @@ enum WalletConnectCommandParamName {
   TARGET_LIST = 'targetList',
   TRADE_ID = 'tradeId',
   TRANSACTION_ID = 'transactionId',
+  TRANSACTIONS = 'transactions',
   TYPE = 'type',
   URIS = 'uris',
   URL = 'url',
