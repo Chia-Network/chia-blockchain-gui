@@ -70,6 +70,7 @@
     "typescript": "5.7.3"
   },
   "overrides": {
+    "axios": "1.15.0",
     "@walletconnect/keyvaluestorage": "1.0.2",
     "tslib": "2.6.2",
     "cross-spawn": "7.0.6",
