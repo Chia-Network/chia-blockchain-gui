@@ -68,6 +68,10 @@ export default class Wallet extends Service {
     return this.command<{ status: string }>('push_tx', args);
   }
 
+  async pushTransactions(args: { transactions: Transaction[]; fee?: BigNumber }) {
+    return this.command<{ success: boolean }>('push_transactions', args);
+  }
+
   async getPwStatus(args: { walletId: number }) {
     return this.command<{ state: PoolWalletStatus; unconfirmedTransactions: Transaction[] }>('pw_status', args);
   }
