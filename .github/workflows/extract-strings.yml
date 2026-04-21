@@ -27,7 +27,7 @@ jobs:
           token: ${{ secrets.REPO_COMMIT }}
 
       - name: Setup Node 24.x
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6.3.0
         with:
           node-version: "24.x"
 
