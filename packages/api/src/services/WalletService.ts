@@ -99,7 +99,7 @@ export default class Wallet extends Service {
     return this.command<{ status: string }>('push_tx', args);
   }
 
-  async pushTransactions(args: { transactions: Transaction[]; fee?: string | number }) {
+  async pushTransactions(args: { transactions: Transaction[]; fee?: string | number; push?: boolean; sign?: boolean }) {
     return this.command<{ transactions: Transaction[] }>('push_transactions', args);
   }
 
