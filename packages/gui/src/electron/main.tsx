@@ -672,62 +672,7 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
             slashes: true,
           });
 
-    if (process.env.NODE_ENV === 'development' && startUrl === 'http://localhost:3000') {
-      // webpack-dev-server can take a while to come up on cold starts; retry
-      // loadURL until it responds so the renderer isn't committed against a
-      // dead frame. Cap at ~30s to avoid spinning forever if something else is
-      // actually broken.
-      const RETRY_DELAY_MS = 500;
-      const MAX_RETRIES = 60;
-      const RETRYABLE_ERROR_CODES = new Set([
-        -2, // ERR_FAILED
-        -7, // ERR_TIMED_OUT
-        -102, // ERR_CONNECTION_REFUSED
-        -105, // ERR_NAME_NOT_RESOLVED
-        -324, // ERR_EMPTY_RESPONSE
-      ]);
-
-      let retryCount = 0;
-
-      const handleDidFailLoad = (
-        _event: Electron.Event,
-        errorCode: number,
-        errorDescription: string,
-        validatedURL: string,
-        isMainFrame: boolean,
-      ) => {
-        if (!isMainFrame || validatedURL !== startUrl) {
-          return;
-        }
-        if (!RETRYABLE_ERROR_CODES.has(errorCode)) {
-          return;
-        }
-        if (retryCount >= MAX_RETRIES) {
-          console.error(
-            `Giving up waiting for dev server at ${startUrl} after ${MAX_RETRIES} retries (last error ${errorCode} ${errorDescription})`,
-          );
-          return;
-        }
-        retryCount += 1;
-        setTimeout(() => {
-          if (!mainWindow || mainWindow.isDestroyed()) {
-            return;
-          }
-          mainWindow.loadURL(startUrl).catch(() => {
-            // errors here are surfaced via did-fail-load; ignore the promise rejection
-          });
-        }, RETRY_DELAY_MS);
-      };
-
-      mainWindow.webContents.on('did-fail-load', handleDidFailLoad);
-      mainWindow.webContents.once('did-finish-load', () => {
-        mainWindow?.webContents.removeListener('did-fail-load', handleDidFailLoad);
-      });
-    }
-
-    mainWindow.loadURL(startUrl).catch(() => {
-      // in dev mode did-fail-load handles retries; in production we still log via Electron's own error reporting
-    });
+    mainWindow.loadURL(startUrl);
   };
 
   const appReady = async () => {
