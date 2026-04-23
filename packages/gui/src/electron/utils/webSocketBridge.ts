@@ -44,7 +44,26 @@ export default function bindEvents(
       return;
     }
 
-    webContents.send(events, ...args);
+    // During dev-server cold starts and HMR the renderer's main frame can be
+    // disposed while this bridge is still forwarding WebSocket messages.
+    // webContents.send() throws synchronously in that window ("Render frame
+    // was disposed before WebFrameMain could be accessed"). Skip the send
+    // when the main frame is missing / uninitialised, and swallow the
+    // specific disposal error if it still races past the check.
+    const { mainFrame } = webContents;
+    if (!mainFrame || !mainFrame.url) {
+      return;
+    }
+
+    try {
+      webContents.send(events, ...args);
+    } catch (err) {
+      const message = err instanceof Error ? err.message : String(err);
+      if (message.includes('Render frame was disposed') || message.includes('WebFrameMain could be accessed')) {
+        return;
+      }
+      console.error('Error sending from webFrameMain: ', err);
+    }
   }
 
   // Add event listener for when web contents are being destroyed
