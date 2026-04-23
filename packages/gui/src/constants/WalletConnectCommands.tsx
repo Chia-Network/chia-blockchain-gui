@@ -519,6 +519,18 @@ const walletConnectCommands: WalletConnectCommand[] = [
         isOptional: true,
         displayComponent: (value) => <MojoToChia value={value} />,
       },
+      {
+        name: WalletConnectCommandParamName.PUSH,
+        label: <Trans>Push</Trans>,
+        type: 'boolean',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.SIGN,
+        label: <Trans>Sign</Trans>,
+        type: 'boolean',
+        isOptional: true,
+      },
     ],
   },
 
