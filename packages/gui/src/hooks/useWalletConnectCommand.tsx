@@ -1,14 +1,11 @@
 import api, { store, useGetLoggedInFingerprintQuery } from '@chia-network/api-react';
-import { useOpenDialog, useAuth } from '@chia-network/core';
+import { useAuth } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import debug from 'debug';
-import React, { type ReactNode } from 'react';
+import React from 'react';
 
 import type Notification from '../@types/Notification';
 import type Pair from '../@types/Pair';
-import type WalletConnectCommandParam from '../@types/WalletConnectCommandParam';
-import WalletConnectConfirmDialog from '../components/walletConnect/WalletConnectConfirmDialog';
-import WalletConnectRequestPermissionsConfirmDialog from '../components/walletConnect/WalletConnectRequestPermissionsConfirmDialog';
 import NotificationType from '../constants/NotificationType';
 import walletConnectCommands from '../constants/WalletConnectCommands';
 import prepareWalletConnectCommand from '../util/prepareWalletConnectCommand';
@@ -72,7 +69,6 @@ function parseNotification(
 
 export default function useWalletConnectCommand(options: UseWalletConnectCommandOptions) {
   const { onNotification } = options;
-  const openDialog = useOpenDialog();
   const { logIn } = useAuth();
   const { data: currentFingerprint, isLoading: isLoadingLoggedInFingerprint } = useGetLoggedInFingerprintQuery();
   const { getPairBySession } = useWalletConnectPairs();
@@ -81,88 +77,37 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
 
   const isLoading = isLoadingLoggedInFingerprint;
 
-  async function confirm(props: {
-    topic: string;
-    message: ReactNode;
-    params: WalletConnectCommandParam[];
-    values: Record<string, any>;
-    fingerprint: number;
-    isDifferentFingerprint: boolean;
-    command: string;
-    bypassConfirm?: boolean;
-    onChange: (values: Record<string, any>) => void;
-  }) {
-    const {
-      topic,
-      message,
-      params = [],
-      values,
-      fingerprint,
-      isDifferentFingerprint,
-      command,
-      bypassConfirm = false,
-      onChange,
-    } = props;
-
+  async function requestPermissions(topic: string, command: string, values: Record<string, unknown>) {
     const pair = getPairBySession(topic);
     if (!pair) {
       throw new Error('Invalid session topic');
     }
 
-    if (pair.bypassCommands && command in pair.bypassCommands) {
-      log(`bypassing command ${command} with value ${pair.bypassCommands[command]}`);
-      return pair.bypassCommands[command];
-    }
     if (command === 'requestPermissions') {
-      if (!values.commands || values.commands.some((cmd: string) => cmd === 'requestPermissions')) {
+      const commands = Array.isArray(values.commands) ? values.commands.filter((cmd) => typeof cmd === 'string') : [];
+      if (commands.length === 0 || commands.some((cmd) => cmd === 'requestPermissions')) {
         return false;
       }
-      const { bypassCommands } = pair;
-      const hasPermissions = !!bypassCommands && values.commands.every((cmd: string) => bypassCommands[cmd]);
-      if (hasPermissions) {
-        return true;
-      }
-      // Bring the window to foreground when showing approval dialog
       await window.appAPI.focusWindow();
-      const isConfirmed = await openDialog(
-        <WalletConnectRequestPermissionsConfirmDialog
-          topic={topic}
-          fingerprint={fingerprint}
-          isDifferentFingerprint={isDifferentFingerprint}
-          params={params}
-          values={values}
-          onChange={onChange}
-        />,
-      );
-      return isConfirmed;
+      const result = await window.walletConnectAPI.promptPermissions({
+        topic,
+        requestedCommands: commands,
+        metadata: pair.metadata ?? pair.sessions.find((session) => session.topic === topic)?.metadata ?? {},
+      });
+      return result.approved;
     }
 
-    // Bring the window to foreground when showing approval dialog
-    await window.appAPI.focusWindow();
-    const isConfirmed = await openDialog(
-      <WalletConnectConfirmDialog
-        topic={topic}
-        command={command}
-        message={message}
-        fingerprint={fingerprint}
-        isDifferentFingerprint={isDifferentFingerprint}
-        bypassConfirm={bypassConfirm}
-        params={params}
-        values={values}
-        onChange={onChange}
-      />,
-    );
-    return isConfirmed;
+    return true;
   }
 
-  async function handleProcess(topic: string, requestedCommand: string, requestedParams: any) {
+  async function handleProcess(topic: string, requestedCommand: string, requestedParams: Record<string, unknown>) {
     const {
       command,
       values: defaultValues,
       definition,
     } = prepareWalletConnectCommand(walletConnectCommands, requestedCommand, requestedParams);
 
-    const { fingerprint } = requestedParams;
+    const fingerprint = Number.parseInt(String(requestedParams.fingerprint), 10);
 
     if (command === 'showNotification') {
       const pair = getPairBySession(topic);
@@ -188,34 +133,11 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
       }
     }
 
-    const { service, params: definitionParams = [], bypassConfirm, serviceCommand } = definition;
+    const { service, serviceCommand } = definition;
 
-    log('Confirm arguments', definitionParams);
+    const values = defaultValues;
 
-    let values = defaultValues;
-
-    function handleChangeParam(newValues: Record<string, any>) {
-      values = newValues;
-    }
-
-    const confirmed = await confirm({
-      topic,
-      message:
-        !allFingerprints && isDifferentFingerprint ? (
-          <Trans>
-            Do you want to log in to {fingerprint} and execute command {command}?
-          </Trans>
-        ) : (
-          <Trans>Do you want to execute command {command}?</Trans>
-        ),
-      params: definitionParams,
-      values,
-      fingerprint,
-      isDifferentFingerprint,
-      command,
-      bypassConfirm,
-      onChange: handleChangeParam,
-    });
+    const confirmed = await requestPermissions(topic, command, values);
 
     if (!confirmed) {
       throw new Error(`User cancelled command ${requestedCommand}`);
@@ -250,26 +172,33 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
     }
 
     if (service === 'EXECUTE') {
-      const { execute } = definition;
-      const result = typeof execute === 'function' ? await execute(values) : execute;
+      const execute = 'execute' in definition ? definition.execute : undefined;
+      const result =
+        typeof execute === 'function' ? await (execute as (localValues: typeof values) => unknown)(values) : execute;
 
       return {
         success: true,
-        ...result,
+        ...(result && typeof result === 'object' ? result : {}),
       };
     }
 
     // execute command
     log('Executing', command, values);
     const endpoint = serviceCommand ?? command;
+    window.walletConnectRequestMeta = {
+      topic,
+      wcCommand: command,
+      destination: service,
+    };
     const resultPromise = store.dispatch(api.endpoints[endpoint].initiate(values));
-    const result = await resultPromise;
-    log('Result', result);
-
-    // Removing the corresponding cache subscription
-    resultPromise.unsubscribe();
-
-    return result;
+    try {
+      const result = await resultPromise;
+      log('Result', result);
+      return result;
+    } finally {
+      delete window.walletConnectRequestMeta;
+      resultPromise.unsubscribe();
+    }
   }
 
   return {

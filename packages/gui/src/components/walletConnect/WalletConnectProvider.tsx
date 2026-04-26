@@ -3,6 +3,7 @@ import React, { ReactNode, createContext } from 'react';
 import type Pair from '../../@types/Pair';
 import useNotifications from '../../hooks/useNotifications';
 import useWalletConnect from '../../hooks/useWalletConnect';
+import useWalletConnectMigration from '../../hooks/useWalletConnectMigration';
 
 export const WalletConnectChiaProjectId = 'f3f661fcfc24e2e6e6c6f926f02c9c6e';
 
@@ -30,6 +31,7 @@ export default function WalletConnectProvider(props: WalletConnectProviderProps)
   const { children, projectId } = props;
 
   const { showNotification } = useNotifications();
+  useWalletConnectMigration();
 
   const walletConnect = useWalletConnect({
     projectId,

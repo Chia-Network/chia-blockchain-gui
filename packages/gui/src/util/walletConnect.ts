@@ -155,6 +155,18 @@ export async function processSessionProposal(
       return;
     }
 
+    await window.appAPI.focusWindow();
+    const approval = await window.walletConnectAPI.promptPermissions({
+      topic: result.topic,
+      requestedCommands: methods.map((method) => (method.startsWith('chia_') ? method.slice(5) : method)),
+      metadata: proposerMetadata ?? {},
+    });
+
+    if (!approval.approved) {
+      await client.disconnect({ topic: result.topic, reason: getSdkError('USER_DISCONNECTED') });
+      return;
+    }
+
     // new session created
     pairs.updatePair(pairingTopic, (p) => ({
       ...p,

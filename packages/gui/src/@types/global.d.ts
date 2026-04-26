@@ -6,6 +6,7 @@ import type CacheService from './CacheService';
 import type ChiaLogsService from './ChiaLogsService';
 import type LinkService from './LinkService';
 import type PreferencesService from './PreferencesService';
+import type WalletConnectService from './WalletConnectService';
 import type WebSocketService from './WebSocketService';
 
 declare global {
@@ -17,6 +18,12 @@ declare global {
     [API.PREFERENCES]: PreferencesService;
     [API.WEBSOCKET]: WebSocketService;
     [API.ADDRESS_BOOK]: AddressBookService;
+    [API.WALLET_CONNECT]: WalletConnectService;
+    walletConnectRequestMeta?: {
+      topic: string;
+      wcCommand: string;
+      destination: string;
+    };
   }
 }
 

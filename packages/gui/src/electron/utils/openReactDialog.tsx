@@ -25,6 +25,8 @@ function generateScriptContent(confirmId: string) {
   `;
 }
 
+type DialogScriptContent = string | ((confirmId: string) => string);
+
 const dialogData = new Map<number, { resolveChannelId: string; rejectChannelId: string }>();
 
 ipcMain.handle('dialog:init', (event) => {
@@ -46,6 +48,7 @@ export type DialogOptions = {
   modal?: boolean;
   hideOnBlur?: boolean;
   titleBarStyle?: 'default' | 'hiddenInset' | 'hidden';
+  scriptContent?: DialogScriptContent;
 };
 
 export default function openReactDialog<TResponse, TProps extends object>(
@@ -54,7 +57,8 @@ export default function openReactDialog<TResponse, TProps extends object>(
   props: Omit<TProps, 'confirmId'>,
   options: DialogOptions,
 ): Promise<TResponse | undefined> {
-  const { title, width, height, hideMenu = false, modal = false, hideOnBlur = false, titleBarStyle } = options;
+  const { title, width, height, hideMenu = false, modal = false, hideOnBlur = false, titleBarStyle, scriptContent } =
+    options;
 
   const prefs = preferences.readPrefs();
 
@@ -66,8 +70,15 @@ export default function openReactDialog<TResponse, TProps extends object>(
   const initialBgColor = isDarkMode ? '#0f252a' : '#ffffff';
 
   try {
+    let scriptContentResolved = generateScriptContent(confirmId);
+    if (typeof scriptContent === 'function') {
+      scriptContentResolved = scriptContent(confirmId);
+    } else if (scriptContent) {
+      scriptContentResolved = scriptContent;
+    }
+
     const scriptAssetURL = addAsset({
-      content: generateScriptContent(confirmId),
+      content: scriptContentResolved,
       type: 'text/javascript',
     });
 

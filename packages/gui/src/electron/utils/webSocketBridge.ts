@@ -33,7 +33,7 @@ export default function bindEvents(
   webContents: WebContents,
   options: {
     net?: string;
-    onSend?: (id: string, data: string) => Promise<void>;
+    onSend?: (id: string, data: string) => Promise<string | void>;
     onReceive?: (id: string, data: RawData) => Promise<void>;
   },
 ) {
@@ -121,8 +121,8 @@ export default function bindEvents(
     }
 
     try {
-      await onSend(id, data);
-      connection.send(data);
+      const updatedData = await onSend(id, data);
+      connection.send(updatedData ?? data);
     } catch (err) {
       console.error(err);
 

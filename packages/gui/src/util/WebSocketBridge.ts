@@ -55,7 +55,33 @@ export default class WebSocketBridge extends EventEmitter {
     if (!this.id) {
       throw new Error('WebSocketBridge: wait for connection to be established');
     }
-    window.webSocketAPI.send(this.id, data);
+
+    const meta = window.walletConnectRequestMeta;
+    if (!meta) {
+      window.webSocketAPI.send(this.id, data);
+      return;
+    }
+
+    try {
+      const parsed = JSON.parse(data);
+      if (parsed.destination !== meta.destination) {
+        window.webSocketAPI.send(this.id, data);
+        return;
+      }
+
+      window.webSocketAPI.send(
+        this.id,
+        JSON.stringify({
+          ...parsed,
+          wallet_connect: {
+            topic: meta.topic,
+            wcCommand: meta.wcCommand,
+          },
+        }),
+      );
+    } catch {
+      window.webSocketAPI.send(this.id, data);
+    }
   }
 
   close() {

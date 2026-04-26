@@ -7,6 +7,7 @@ import CacheAPI from './constants/CacheAPI';
 import ChiaLogsAPI from './constants/ChiaLogsAPI';
 import LinkAPI from './constants/LinkAPI';
 import PreferencesAPI from './constants/PreferencesAPI';
+import WalletConnectAPI from './constants/WalletConnectAPI';
 import WebSocketAPI from './constants/WebSocketAPI';
 
 async function invokeWithCustomErrors(channel: string, ...args: unknown[]) {
@@ -122,4 +123,19 @@ contextBridge.exposeInMainWorld(API.WEBSOCKET, {
   subscribeToMessage: (callback: (...args: unknown[]) => void) => onIpcEvent(WebSocketAPI.ON_MESSAGE, callback),
   subscribeToError: (callback: (...args: unknown[]) => void) => onIpcEvent(WebSocketAPI.ON_ERROR, callback),
   subscribeToClose: (callback: (...args: unknown[]) => void) => onIpcEvent(WebSocketAPI.ON_CLOSE, callback),
+});
+
+contextBridge.exposeInMainWorld(API.WALLET_CONNECT, {
+  listSessions: () => invokeWithCustomErrors(WalletConnectAPI.LIST_SESSIONS),
+  getSession: (topic: string) => invokeWithCustomErrors(WalletConnectAPI.GET_SESSION, topic),
+  putSession: (input: unknown) => invokeWithCustomErrors(WalletConnectAPI.PUT_SESSION, input),
+  revokeSession: (topic: string) => invokeWithCustomErrors(WalletConnectAPI.REVOKE_SESSION, topic),
+  setScopes: (topic: string, scopes: unknown) => invokeWithCustomErrors(WalletConnectAPI.SET_SCOPES, topic, scopes),
+  getLedger: (topic: string, scope: string, sinceTs?: number) =>
+    invokeWithCustomErrors(WalletConnectAPI.GET_LEDGER, topic, scope, sinceTs),
+  resetLedger: (topic: string, scope?: string) => invokeWithCustomErrors(WalletConnectAPI.RESET_LEDGER, topic, scope),
+  promptPermissions: (input: unknown) => invokeWithCustomErrors(WalletConnectAPI.PROMPT_PERMISSIONS, input),
+  isMigrated: () => invokeWithCustomErrors(WalletConnectAPI.IS_MIGRATED),
+  markMigrated: () => invokeWithCustomErrors(WalletConnectAPI.MARK_MIGRATED),
+  getUsdRate: () => invokeWithCustomErrors(WalletConnectAPI.GET_USD_RATE),
 });

@@ -21,6 +21,7 @@ import walletConnectCommands from '../../constants/WalletConnectCommands';
 import useWalletConnectContext from '../../hooks/useWalletConnectContext';
 import useWalletConnectPairs from '../../hooks/useWalletConnectPairs';
 import useWalletConnectPreferences from '../../hooks/useWalletConnectPreferences';
+import WalletConnectSessionsPanel from '../walletConnect/WalletConnectSessionsPanel';
 
 export default function SettingsIntegration() {
   const theme = useTheme();
@@ -199,6 +200,30 @@ export default function SettingsIntegration() {
             <Trans>Allow requests that require switching to a different wallet key.</Trans>
           </SettingsText>
         </Grid>
+      </Grid>
+
+      <Grid item xs={12} sm={12} lg={12}>
+        <SettingsHR />
+      </Grid>
+
+      <Grid container>
+        <Flex flexDirection="column" gap={2}>
+          <Grid item style={{ width: '400px' }}>
+            <SettingsTitle>
+              <Trans>WalletConnect Session Permissions</Trans>
+            </SettingsTitle>
+          </Grid>
+
+          <Grid item style={{ width: '400px' }}>
+            <SettingsText>
+              <Trans>Review connected apps, spending policies, and usage budgets.</Trans>
+            </SettingsText>
+          </Grid>
+
+          <Grid item width="624px" marginTop="15px" marginLeft="11px">
+            <WalletConnectSessionsPanel />
+          </Grid>
+        </Flex>
       </Grid>
 
       <Grid item xs={12} sm={12} lg={12}>
