@@ -454,13 +454,9 @@ msgstr "您是否要儲存以下指令的偏好設定？"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:417
-msgid ""
-"These commands will be executed without confirmation in the future:\n"
-"\n"
+msgid "These commands will be executed without confirmation in the future:\n\n"
 " {commands}"
-msgstr ""
-"這些指令將在未來直接執行，不再尋求確認：\n"
-"\n"
+msgstr "這些指令將在未來直接執行，不再尋求確認：\n\n"
 " {commands}"
 
 #. js-lingui-explicit-id
@@ -3191,20 +3187,16 @@ msgstr "插入"
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"可用資金不足，無法接受報價。請確保您的\n"
+msgstr "可用資金不足，無法接受報價。請確保您的\n"
 "可支出餘額足以支付報價金額。"
 
 #: src/components/offers/OfferEditor.tsx:127
 #: src/components/offers2/CreateOfferBuilder.tsx:161
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"可用資金不足，無法建立報價。請確保您的\n"
+msgstr "可用資金不足，無法建立報價。請確保您的\n"
 "可支出餘額足以支付報價金額。"
 
 #: src/components/farm/PoolingHealth.tsx:302
@@ -7109,3 +7101,4 @@ msgstr "您的可支配餘額必須大於1 mojo，才能建立個人檔案"
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "您的錢包需要運行才能自動索取"
+
