@@ -454,7 +454,9 @@ msgstr "آیا میخواهید تنظیمات برگزیده برای دستو�
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:417
-msgid "These commands will be executed without confirmation in the future:\n\n"
+msgid ""
+"These commands will be executed without confirmation in the future:\n"
+"\n"
 " {commands}"
 msgstr ": این دستورات در آینده بدون تأیید اجرا خواهند شد"
 
@@ -838,9 +840,18 @@ msgstr "مقدار {0} توصیه میشود"
 #~ msgid "About Chia Blockchain"
 #~ msgstr "About Chia Blockchain"
 
+#: src/components/offers2/OfferBuilderViewer.tsx:269
+msgid "Accept"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderViewer.tsx:268
+msgid "Accept Data Layer Offer"
+msgstr ""
+
 #: src/components/offers/NFTOfferViewer.tsx:642
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:21
-#: src/components/offers2/OfferBuilderViewer.tsx:252
+#: src/components/offers2/OfferBuilderViewer.tsx:316
+#: src/components/offers2/OfferBuilderViewer.tsx:381
 msgid "Accept Offer"
 msgstr "تایید پیشنهاد"
 
@@ -856,7 +867,7 @@ msgstr "اقدام"
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:54
 #: src/components/fullNode/FullNodeConnections.tsx:65
 #: src/components/nfts/NFTContextualActions.tsx:605
-#: src/components/offers2/OfferIncomingTable.tsx:111
+#: src/components/offers2/OfferIncomingTable.tsx:119
 msgid "Actions"
 msgstr "اقدامات"
 
@@ -894,7 +905,7 @@ msgstr "افزودن یک پلات"
 msgid "Add a Plot NFT"
 msgstr "افزودن یک پلات ان اف تی"
 
-#: src/constants/WalletConnectCommands.tsx:594
+#: src/constants/WalletConnectCommands.tsx:635
 msgid "Add CAT Token"
 msgstr "اضافه نمودن توکن"
 
@@ -910,11 +921,11 @@ msgstr "اضافه نمودن اتصال"
 msgid "Add Contact"
 msgstr "اضافه کردن اطلاعات تماس"
 
-#: src/constants/WalletConnectCommands.tsx:894
+#: src/constants/WalletConnectCommands.tsx:935
 msgid "Add Mirror"
 msgstr "اضافه کردن تصویر"
 
-#: src/constants/WalletConnectCommands.tsx:923
+#: src/constants/WalletConnectCommands.tsx:964
 msgid "Add Missing Files"
 msgstr "فایل های گم شده را اضافه کنید"
 
@@ -934,11 +945,11 @@ msgstr "اضافه کردن پوشه پلات"
 msgid "Add Plot to Queue"
 msgstr "اضافه کردن پلات به صف"
 
-#: src/constants/WalletConnectCommands.tsx:1937
+#: src/constants/WalletConnectCommands.tsx:2003
 msgid "Add Proofs"
 msgstr "اضافه نمودن شواهد"
 
-#: src/constants/WalletConnectCommands.tsx:1897
+#: src/constants/WalletConnectCommands.tsx:1963
 msgid "Add Proofs To Verifiable Credential"
 msgstr "اضافه نمودن شواهد به اعتبارنامه قابل تأیید"
 
@@ -950,10 +961,10 @@ msgstr "اضافه نمودن اعتبار قابل تأیید را از فای�
 #: src/components/addressbook/ContactEdit.tsx:61
 #: src/components/notification/NotificationSendDialog.tsx:221
 #: src/components/signVerify/SigningEntityWalletAddress.tsx:45
-#: src/constants/WalletConnectCommands.tsx:142
-#: src/constants/WalletConnectCommands.tsx:217
-#: src/constants/WalletConnectCommands.tsx:277
-#: src/constants/WalletConnectCommands.tsx:570
+#: src/constants/WalletConnectCommands.tsx:176
+#: src/constants/WalletConnectCommands.tsx:251
+#: src/constants/WalletConnectCommands.tsx:311
+#: src/constants/WalletConnectCommands.tsx:611
 msgid "Address"
 msgstr "آدرس ها"
 
@@ -1020,10 +1031,10 @@ msgstr "همیشه رد کنید"
 #: src/components/offers/OfferEditorConditionsPanel.tsx:130
 #: src/components/offers2/OfferBuilderNFTRoyalties.tsx:121
 #: src/components/offers2/OfferBuilderWalletAmount.tsx:36
-#: src/constants/WalletConnectCommands.tsx:130
-#: src/constants/WalletConnectCommands.tsx:575
-#: src/constants/WalletConnectCommands.tsx:909
-#: src/constants/WalletConnectCommands.tsx:1464
+#: src/constants/WalletConnectCommands.tsx:164
+#: src/constants/WalletConnectCommands.tsx:616
+#: src/constants/WalletConnectCommands.tsx:950
+#: src/constants/WalletConnectCommands.tsx:1530
 msgid "Amount"
 msgstr "مبلغ"
 
@@ -1095,6 +1106,10 @@ msgstr "برنامه هیچ بخش فعالی ندارد"
 msgid "Approve"
 msgstr "تایید"
 
+#: src/components/offers2/OfferBuilderViewer.tsx:273
+msgid "Are you sure you want to accept this Data Layer offer?"
+msgstr ""
+
 #: src/components/offers/ConfirmOfferCancellation.tsx:69
 msgid "Are you sure you want to cancel your offer?"
 msgstr "آیا مطمئن هستید که میخواهید پیشنهاد خود را لغو کنید؟"
@@ -1148,8 +1163,8 @@ msgstr "استفاده کنید؟ k= {plotSize} آیا مطمئنید که می�
 msgid "Asset"
 msgstr "دارایی"
 
-#: src/constants/WalletConnectCommands.tsx:538
-#: src/constants/WalletConnectCommands.tsx:599
+#: src/constants/WalletConnectCommands.tsx:579
+#: src/constants/WalletConnectCommands.tsx:640
 msgid "Asset Id"
 msgstr "شناسه دارایی"
 
@@ -1216,7 +1231,7 @@ msgstr "میانگین"
 msgid "Back"
 msgstr "بازگشت"
 
-#: src/constants/WalletConnectCommands.tsx:1476
+#: src/constants/WalletConnectCommands.tsx:1542
 msgid "Backup DIDs"
 msgstr "پشتیبان گیری از شناسه غیرمتمرکز ها"
 
@@ -1232,7 +1247,7 @@ msgstr "نمایش"
 msgid "Base Farmer Reward Amount"
 msgstr "مبلغ پایه پاداش فارمر"
 
-#: src/constants/WalletConnectCommands.tsx:948
+#: src/constants/WalletConnectCommands.tsx:989
 msgid "Batch Update"
 msgstr "به روز رسانی دسته ای"
 
@@ -1350,6 +1365,7 @@ msgstr "(GB) مقدار حافظه پنهان"
 #: src/components/offers/OfferDataEntryDialog.tsx:58
 #: src/components/offers/OfferShareDialog.tsx:712
 #: src/components/offers2/CancelOfferList.tsx:146
+#: src/components/offers2/OfferBuilderViewer.tsx:270
 #: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:362
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:111
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:78
@@ -1366,14 +1382,14 @@ msgstr "(GB) مقدار حافظه پنهان"
 msgid "Cancel"
 msgstr "لغو"
 
-#: src/constants/WalletConnectCommands.tsx:978
+#: src/constants/WalletConnectCommands.tsx:1019
 msgid "Cancel DataLayer Offer"
 msgstr "لغو پیشنهاد لایه داده ها"
 
 #: src/components/offers/ConfirmOfferCancellation.tsx:62
 #: src/components/offers/ConfirmOfferCancellation.tsx:129
 #: src/components/offers/OfferManager.tsx:323
-#: src/constants/WalletConnectCommands.tsx:430
+#: src/constants/WalletConnectCommands.tsx:471
 msgid "Cancel Offer"
 msgstr "لغو پیشنهاد"
 
@@ -1428,7 +1444,7 @@ msgstr "تغییر رمز ورود"
 msgid "Change Pool"
 msgstr "تغییر استخر"
 
-#: src/constants/WalletConnectCommands.tsx:958
+#: src/constants/WalletConnectCommands.tsx:999
 msgid "Changelist"
 msgstr "تغییر دهنده"
 
@@ -1444,11 +1460,11 @@ msgstr "تغییرات بعد از اجرای مجدد برنامه چیا اع�
 #~ msgid "Chat on KeyBase"
 #~ msgstr "Chat on KeyBase"
 
-#: src/constants/WalletConnectCommands.tsx:453
+#: src/constants/WalletConnectCommands.tsx:494
 msgid "Check Offer Validity"
 msgstr "اعتبار پیشنهاد را بررسی کنید"
 
-#: src/constants/WalletConnectCommands.tsx:1002
+#: src/constants/WalletConnectCommands.tsx:1043
 msgid "Check Plugins"
 msgstr "بررسی پلاگین ها"
 
@@ -1523,7 +1539,7 @@ msgstr "پس از انقضای دوره بازگرداندن مطالبات، د
 msgid "Claim Rewards"
 msgstr "برداشت پاداشها"
 
-#: src/constants/WalletConnectCommands.tsx:170
+#: src/constants/WalletConnectCommands.tsx:204
 msgid "Claw back or claim claw back transaction"
 msgstr "بازگرداندن یا ادعای بازگرداندن تراکنش"
 
@@ -1532,7 +1548,7 @@ msgstr "بازگرداندن یا ادعای بازگرداندن تراکنش"
 msgid "Clear NFT cache"
 msgstr "حافظه پنهان ان اف تی را پاک کنید"
 
-#: src/constants/WalletConnectCommands.tsx:1008
+#: src/constants/WalletConnectCommands.tsx:1049
 msgid "Clear Pending Roots"
 msgstr "ریشه های معلق را پاک کنید"
 
@@ -1552,7 +1568,7 @@ msgstr "با کلیک بر روی نماد حذف فقط یک پوشه از ای
 #: src/components/offers/OfferShareDialog.tsx:501
 #: src/components/offers/OfferShareDialog.tsx:623
 #: src/components/offers/OfferShareDialog.tsx:895
-#: src/components/offers2/OfferBuilderViewerDialog.tsx:76
+#: src/components/offers2/OfferBuilderViewerDialog.tsx:81
 #: src/components/plot/PlotAddDirectoryDialog.tsx:130
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:66
 #: src/components/signVerify/SignMessageResultDialog.tsx:66
@@ -1565,10 +1581,10 @@ msgstr "ببندید"
 msgid "Closing down services"
 msgstr "بسته شدن خدمات"
 
-#: src/constants/WalletConnectCommands.tsx:650
-#: src/constants/WalletConnectCommands.tsx:1070
-#: src/constants/WalletConnectCommands.tsx:1533
-#: src/constants/WalletConnectCommands.tsx:1590
+#: src/constants/WalletConnectCommands.tsx:691
+#: src/constants/WalletConnectCommands.tsx:1111
+#: src/constants/WalletConnectCommands.tsx:1599
+#: src/constants/WalletConnectCommands.tsx:1656
 msgid "Coin Id"
 msgstr "شناسه ارز"
 
@@ -1576,7 +1592,8 @@ msgstr "شناسه ارز"
 msgid "Coin ID"
 msgstr "شناسه ارز"
 
-#: src/constants/WalletConnectCommands.tsx:176
+#: src/constants/WalletConnectCommands.tsx:210
+#: src/constants/WalletConnectCommands.tsx:1517
 msgid "Coin Ids"
 msgstr "شناسه ارز"
 
@@ -1751,17 +1768,21 @@ msgstr "امکان‌پذیر نیست {host} در پورت {port} اتصال ب
 msgid "Could not parse offer data"
 msgstr "تجزیه اطلاعات پیشنهاد ممکن نیست"
 
-#: src/constants/WalletConnectCommands.tsx:2036
+#: src/constants/WalletConnectCommands.tsx:2102
 msgid "Count"
 msgstr "شمردن"
 
-#: src/components/offers2/OfferIncomingTable.tsx:100
+#: src/components/offers2/OfferIncomingTable.tsx:108
 msgid "Counter"
 msgstr "شمارش معکوس"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:240
+#: src/components/offers2/OfferBuilderViewer.tsx:369
 msgid "Counter Offer"
 msgstr "شمارنده پیشنهاد"
+
+#: src/components/offers2/OfferIncomingTable.tsx:95
+msgid "Counter offers are not supported for Data Layer offers"
+msgstr ""
 
 #: src/components/plot/add/PlotAddForm.tsx:265
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:81
@@ -1785,7 +1806,7 @@ msgstr "مشخصات جدید ایجاد کنید"
 msgid "Create a Plot NFT"
 msgstr "ایجاد یک پلات ان اف تی"
 
-#: src/constants/WalletConnectCommands.tsx:658
+#: src/constants/WalletConnectCommands.tsx:699
 msgid "Create a spend bundle to mint multiple NFTs"
 msgstr "یک بسته خرج کزدن برای ثبت چندین ان اف تی ایجاد کنید"
 
@@ -1806,7 +1827,7 @@ msgstr "ایجاد اطلاعات تماس"
 msgid "Create Counter Offer"
 msgstr "ایجاد پیشنهاد زمان‌بندی شده"
 
-#: src/constants/WalletConnectCommands.tsx:1020
+#: src/constants/WalletConnectCommands.tsx:1061
 msgid "Create DataStore"
 msgstr "ایحاد ذخیره های داده"
 
@@ -1814,9 +1835,13 @@ msgstr "ایحاد ذخیره های داده"
 #~ msgid "Create new CAT Wallet"
 #~ msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1459
+#: src/constants/WalletConnectCommands.tsx:1525
 msgid "Create new DID Wallet"
 msgstr "ساخت کیف پول شناسه غیرمتمرکز جدید"
+
+#: src/constants/WalletConnectCommands.tsx:1500
+msgid "Create new Remote Wallet"
+msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:150
 #: src/components/offers/NFTOfferEditor.tsx:438
@@ -1826,7 +1851,7 @@ msgstr "ساخت کیف پول شناسه غیرمتمرکز جدید"
 msgid "Create Offer"
 msgstr "ایجاد پیشنهاد"
 
-#: src/constants/WalletConnectCommands.tsx:390
+#: src/constants/WalletConnectCommands.tsx:431
 msgid "Create Offer for Ids"
 msgstr "ایجاد پیشنهاد با شناسه مشخص شده"
 
@@ -1864,7 +1889,7 @@ msgstr "ایجاد پلات ان اف تی برای استخر شخصی"
 
 #: src/components/offers/OfferManager.tsx:250
 #: src/components/offers2/CancelOfferList.tsx:127
-#: src/components/offers2/OfferIncomingTable.tsx:72
+#: src/components/offers2/OfferIncomingTable.tsx:73
 msgid "Creation Date"
 msgstr "تاریخ ایجاد"
 
@@ -1918,6 +1943,10 @@ msgstr "در حال ارسال پیام Dapp"
 #: src/components/nfts/NFTDetails.tsx:235
 msgid "Data Hash"
 msgstr "هش داده"
+
+#: src/components/offers2/DataLayerOfferViewer.tsx:149
+msgid "Data Layer Offer"
+msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:222
 msgid "Data URL {0}"
@@ -1973,7 +2002,7 @@ msgid "Delay"
 msgstr "تاخیر"
 
 #: src/components/addressbook/ContactSummary.tsx:42
-#: src/components/offers2/OfferIncomingTable.tsx:105
+#: src/components/offers2/OfferIncomingTable.tsx:113
 #: src/components/plot/PlotAction.tsx:36
 #: src/components/plot/queue/PlotQueueActions.tsx:65
 #: src/components/plotNFT/PlotNFTCard.tsx:106
@@ -1990,11 +2019,11 @@ msgid "Delete Contact"
 msgstr "حدف اطلاعات تماس"
 
 #: src/components/app/AppPassPrompt.tsx:103
-#: src/constants/WalletConnectCommands.tsx:1040
+#: src/constants/WalletConnectCommands.tsx:1081
 msgid "Delete Key"
 msgstr "حذف کلید"
 
-#: src/constants/WalletConnectCommands.tsx:1065
+#: src/constants/WalletConnectCommands.tsx:1106
 msgid "Delete Mirror"
 msgstr "حذف تصویر"
 
@@ -2063,24 +2092,24 @@ msgstr "آدرس سایت دکسی"
 #: src/components/addressbook/ContactEdit.tsx:119
 #: src/components/signVerify/SigningEntityDID.tsx:83
 #: src/components/signVerify/SignMessage.tsx:165
-#: src/constants/WalletConnectCommands.tsx:1859
+#: src/constants/WalletConnectCommands.tsx:1925
 msgid "DID"
 msgstr "شناسه غیرمتمرکز"
 
-#: src/constants/WalletConnectCommands.tsx:727
+#: src/constants/WalletConnectCommands.tsx:768
 msgid "DID Coin Dictionary"
 msgstr "فهرست سکه های شناسه غیرمتمرکز"
 
-#: src/constants/WalletConnectCommands.tsx:832
+#: src/constants/WalletConnectCommands.tsx:873
 msgid "DID Id"
 msgstr "شناسه، شناسه غیرمتمرکز"
 
-#: src/constants/WalletConnectCommands.tsx:733
+#: src/constants/WalletConnectCommands.tsx:774
 msgid "DID Lineage Parent"
 msgstr "شناسه غیرمتمرکز Lineage Parent"
 
-#: src/constants/WalletConnectCommands.tsx:1550
-#: src/constants/WalletConnectCommands.tsx:1754
+#: src/constants/WalletConnectCommands.tsx:1616
+#: src/constants/WalletConnectCommands.tsx:1820
 msgid "DID Metadata"
 msgstr "شتاسه غیر متمرکز Metadata"
 
@@ -2130,7 +2159,7 @@ msgstr "برای استخراج حداکثر کارایی با دیسک حافظ
 msgid "Disable direct I/O on the temp 2 directory in order to extract maximum performance with RAM disk"
 msgstr "برای استخراج حداکثر کارایی با دیسک حافظه، ورودی خروجی مستقیم را در دایرکتوری موقت 2 غیرفعال کنید"
 
-#: src/constants/WalletConnectCommands.tsx:415
+#: src/constants/WalletConnectCommands.tsx:456
 msgid "Disable JSON Formatting"
 msgstr "را غیرفعال کنید JSON حالت"
 
@@ -2237,7 +2266,7 @@ msgstr "در حال ذخیره ان اف تی های انتخاب شده"
 msgid "Drag & Drop a Signed Message File,<0/> Paste ({0}V)"
 msgstr "یک فایل پیام امضا شده را انتخاب و در اینجا قرار دهید،<0/> جای‌گذاری ({0}V)"
 
-#: src/components/offers/OfferImport.tsx:159
+#: src/components/offers/OfferImport.tsx:166
 msgid "Drag & Drop an Offer File"
 msgstr "یک فایل پیشنهاد را انتخاب و در اینجا قرار دهید"
 
@@ -2245,7 +2274,7 @@ msgstr "یک فایل پیشنهاد را انتخاب و در اینجا قرا
 msgid "Drag & Drop an Offer File, Paste"
 msgstr "یک فایل پیشنهاد را انتخاب و در اینجا قرار دهید، جای‌گذاری"
 
-#: src/constants/WalletConnectCommands.tsx:403
+#: src/constants/WalletConnectCommands.tsx:444
 msgid "Driver Dict"
 msgstr "فرهنگ لغت راننده"
 
@@ -2285,11 +2314,11 @@ msgid "Edition #"
 msgstr "نسخه #"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:226
-#: src/constants/WalletConnectCommands.tsx:820
+#: src/constants/WalletConnectCommands.tsx:861
 msgid "Edition Number"
 msgstr "شماره نسخه"
 
-#: src/constants/WalletConnectCommands.tsx:826
+#: src/constants/WalletConnectCommands.tsx:867
 msgid "Edition Total"
 msgstr "کل ویرایش"
 
@@ -2352,9 +2381,13 @@ msgstr "فعال شدن اتصال کیف پول"
 msgid "Enable/Disable the ability to scan all subdirectories automatically for plots"
 msgstr "فعال/غیرفعال کردن قابلیت بررسی خودکار همه زیرشاخه ها برای پلاتها"
 
-#: src/constants/WalletConnectCommands.tsx:351
+#: src/constants/WalletConnectCommands.tsx:392
 msgid "End"
 msgstr "خاتمه"
+
+#: src/constants/WalletConnectCommands.tsx:143
+msgid "End Height"
+msgstr ""
 
 #: src/components/settings/SettingsHarvester.tsx:532
 msgid "Enforce GPU Index"
@@ -2623,31 +2656,31 @@ msgstr "ویژگی هایی برای محافظت و کنترل بیشتر بر 
 #: src/components/pool/PoolInfo.tsx:18
 #: src/components/settings/ProfileAdd.tsx:152
 #: src/components/vcs/VCRevokeDialog.tsx:80
-#: src/constants/WalletConnectCommands.tsx:136
-#: src/constants/WalletConnectCommands.tsx:181
-#: src/constants/WalletConnectCommands.tsx:421
-#: src/constants/WalletConnectCommands.tsx:445
-#: src/constants/WalletConnectCommands.tsx:480
-#: src/constants/WalletConnectCommands.tsx:581
-#: src/constants/WalletConnectCommands.tsx:745
-#: src/constants/WalletConnectCommands.tsx:838
-#: src/constants/WalletConnectCommands.tsx:867
-#: src/constants/WalletConnectCommands.tsx:915
-#: src/constants/WalletConnectCommands.tsx:964
-#: src/constants/WalletConnectCommands.tsx:994
-#: src/constants/WalletConnectCommands.tsx:1026
-#: src/constants/WalletConnectCommands.tsx:1057
-#: src/constants/WalletConnectCommands.tsx:1076
-#: src/constants/WalletConnectCommands.tsx:1329
-#: src/constants/WalletConnectCommands.tsx:1353
-#: src/constants/WalletConnectCommands.tsx:1412
-#: src/constants/WalletConnectCommands.tsx:1449
-#: src/constants/WalletConnectCommands.tsx:1470
-#: src/constants/WalletConnectCommands.tsx:1723
-#: src/constants/WalletConnectCommands.tsx:1760
-#: src/constants/WalletConnectCommands.tsx:1796
-#: src/constants/WalletConnectCommands.tsx:1864
-#: src/constants/WalletConnectCommands.tsx:1973
+#: src/constants/WalletConnectCommands.tsx:170
+#: src/constants/WalletConnectCommands.tsx:215
+#: src/constants/WalletConnectCommands.tsx:462
+#: src/constants/WalletConnectCommands.tsx:486
+#: src/constants/WalletConnectCommands.tsx:521
+#: src/constants/WalletConnectCommands.tsx:622
+#: src/constants/WalletConnectCommands.tsx:786
+#: src/constants/WalletConnectCommands.tsx:879
+#: src/constants/WalletConnectCommands.tsx:908
+#: src/constants/WalletConnectCommands.tsx:956
+#: src/constants/WalletConnectCommands.tsx:1005
+#: src/constants/WalletConnectCommands.tsx:1035
+#: src/constants/WalletConnectCommands.tsx:1067
+#: src/constants/WalletConnectCommands.tsx:1098
+#: src/constants/WalletConnectCommands.tsx:1117
+#: src/constants/WalletConnectCommands.tsx:1370
+#: src/constants/WalletConnectCommands.tsx:1394
+#: src/constants/WalletConnectCommands.tsx:1453
+#: src/constants/WalletConnectCommands.tsx:1490
+#: src/constants/WalletConnectCommands.tsx:1536
+#: src/constants/WalletConnectCommands.tsx:1789
+#: src/constants/WalletConnectCommands.tsx:1826
+#: src/constants/WalletConnectCommands.tsx:1862
+#: src/constants/WalletConnectCommands.tsx:1930
+#: src/constants/WalletConnectCommands.tsx:2039
 msgid "Fee"
 msgstr "کارمزد"
 
@@ -2697,16 +2730,16 @@ msgstr "فیلتر"
 msgid "Final folder location"
 msgstr "محل نهایی پوشه"
 
-#: src/constants/WalletConnectCommands.tsx:1526
+#: src/constants/WalletConnectCommands.tsx:1592
 msgid "Find Lost DID"
 msgstr "یافتن شناسه غیر متمرکز گمشده"
 
 #: src/constants/WalletConnectCommands.tsx:38
-#: src/constants/WalletConnectCommands.tsx:2058
+#: src/constants/WalletConnectCommands.tsx:2124
 msgid "Fingerprint"
 msgstr "کدهای شخصی"
 
-#: src/constants/WalletConnectCommands.tsx:2022
+#: src/constants/WalletConnectCommands.tsx:2088
 msgid "Fingerprints"
 msgstr "کدهای شخصی"
 
@@ -2719,13 +2752,17 @@ msgstr "تمام شد"
 msgid "Fit images to cards"
 msgstr "قراردادن تصاویر روی کارتها"
 
-#: src/constants/WalletConnectCommands.tsx:940
+#: src/constants/WalletConnectCommands.tsx:981
 msgid "Folder Name"
 msgstr "نام پوشه"
 
 #: src/electron/main.tsx:1086
 #~ msgid "Follow on Twitter"
 #~ msgstr "Follow on Twitter"
+
+#: src/components/offers2/DataLayerOfferViewer.tsx:99
+msgid "For Store Update"
+msgstr ""
 
 #: src/electron/main.tsx:1053
 #~ msgid "Frequently Asked Questions"
@@ -2757,83 +2794,91 @@ msgstr "فول نود سینک نبود"
 msgid "General"
 msgstr "نمای کلی"
 
-#: src/constants/WalletConnectCommands.tsx:338
+#: src/constants/WalletConnectCommands.tsx:379
 msgid "Get all Offers"
 msgstr "گرفتن همه پیشنهادات"
 
-#: src/constants/WalletConnectCommands.tsx:1878
+#: src/constants/WalletConnectCommands.tsx:1944
 msgid "Get All Verifiable Credentials"
 msgstr "گرفتن تمام اعتبارنامه های قابل تأیید"
 
-#: src/constants/WalletConnectCommands.tsx:1084
+#: src/constants/WalletConnectCommands.tsx:1125
 msgid "Get Ancestors"
 msgstr "دریافت Ancestors"
 
-#: src/constants/WalletConnectCommands.tsx:545
+#: src/constants/WalletConnectCommands.tsx:586
 msgid "Get CAT Asset Id"
 msgstr "گرفتن شناسه دارایی توکن"
 
-#: src/constants/WalletConnectCommands.tsx:532
+#: src/constants/WalletConnectCommands.tsx:573
 msgid "Get CAT Wallet Info"
 msgstr "گرفتن اطلاعات کیف پولCAT"
+
+#: src/constants/WalletConnectCommands.tsx:123
+msgid "Get Coin Records by Name"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:106
 msgid "Get Current Address"
 msgstr "گرفتن آدرس فعلی"
 
-#: src/constants/WalletConnectCommands.tsx:1271
+#: src/constants/WalletConnectCommands.tsx:1312
 msgid "Get DataLayer Sync Status"
 msgstr "دریافت وضعیت سینک لایه داده ها"
 
-#: src/constants/WalletConnectCommands.tsx:1570
+#: src/constants/WalletConnectCommands.tsx:1636
 msgid "Get DID"
 msgstr "دریافت شناسه غیرمتمرکز"
 
-#: src/constants/WalletConnectCommands.tsx:1557
+#: src/constants/WalletConnectCommands.tsx:1623
 msgid "Get DID Current Coin Info"
 msgstr "دریافت اطلاعات شناسه غیرمتمرکز برای سکه فعلی"
 
-#: src/constants/WalletConnectCommands.tsx:1583
+#: src/constants/WalletConnectCommands.tsx:1649
 msgid "Get DID Info"
 msgstr "دریافت اطلاعات شناسه غیرمتمرکز"
 
-#: src/constants/WalletConnectCommands.tsx:1608
+#: src/constants/WalletConnectCommands.tsx:1674
 msgid "Get DID Metadata"
 msgstr "شناسه غیر متمرکز Metadata دریافت کنید"
 
-#: src/constants/WalletConnectCommands.tsx:1810
+#: src/constants/WalletConnectCommands.tsx:1876
 msgid "Get DID Name"
 msgstr "دریافت نام شناسه غیرمتمرکز"
 
-#: src/constants/WalletConnectCommands.tsx:1621
+#: src/constants/WalletConnectCommands.tsx:1687
 msgid "Get DID Public Key"
 msgstr "دریافت کلید عمومی شناسه غیرمتمرکز"
 
-#: src/constants/WalletConnectCommands.tsx:1634
+#: src/constants/WalletConnectCommands.tsx:1700
 msgid "Get DID Recovery List"
 msgstr "دریافت لیست بازیابی شناسه غیرمتمرکز"
 
-#: src/constants/WalletConnectCommands.tsx:1596
+#: src/constants/WalletConnectCommands.tsx:357
+msgid "Get Height Info"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:1662
 msgid "Get Information Needed For DID Recovery"
 msgstr "دریافت اطلاعات مورد نیاز برای بازیابی شناسه غیرمتمرکز"
 
-#: src/constants/WalletConnectCommands.tsx:1101
+#: src/constants/WalletConnectCommands.tsx:1142
 msgid "Get Keys"
 msgstr "دریافت کلید ها"
 
-#: src/constants/WalletConnectCommands.tsx:1133
+#: src/constants/WalletConnectCommands.tsx:1174
 msgid "Get Keys Values"
 msgstr "دریافت مقادیر کلید ها"
 
-#: src/constants/WalletConnectCommands.tsx:1164
+#: src/constants/WalletConnectCommands.tsx:1205
 msgid "Get Kv Diff"
 msgstr "KvDiff را دریافت کنید"
 
-#: src/constants/WalletConnectCommands.tsx:1199
+#: src/constants/WalletConnectCommands.tsx:1240
 msgid "Get Local Root"
 msgstr "دریافت ریشه داخلی"
 
-#: src/constants/WalletConnectCommands.tsx:1212
+#: src/constants/WalletConnectCommands.tsx:1253
 msgid "Get Mirrors"
 msgstr "دریافت تصاویر"
 
@@ -2841,63 +2886,63 @@ msgstr "دریافت تصاویر"
 msgid "Get Mojos from the Chia Faucet"
 msgstr "گرفتن موجوها از توزیع کننده چیا"
 
-#: src/constants/WalletConnectCommands.tsx:291
+#: src/constants/WalletConnectCommands.tsx:325
 msgid "Get Next Address"
 msgstr "گرفتن ادرس بعدی"
 
-#: src/constants/WalletConnectCommands.tsx:643
+#: src/constants/WalletConnectCommands.tsx:684
 msgid "Get NFT Info"
 msgstr "درباقت اطلاعات ان اف تی"
 
-#: src/constants/WalletConnectCommands.tsx:1872
+#: src/constants/WalletConnectCommands.tsx:1938
 msgid "Get NFT Wallets with DIDs"
 msgstr "گرفتن کیف پول ان اف تی با شناسه غیرمتمرکز"
 
-#: src/constants/WalletConnectCommands.tsx:613
+#: src/constants/WalletConnectCommands.tsx:654
 msgid "Get NFTs"
 msgstr "گرفتن ان اف تی ها"
 
-#: src/constants/WalletConnectCommands.tsx:875
+#: src/constants/WalletConnectCommands.tsx:916
 msgid "Get NFTs Count"
 msgstr "گرفتن تعداد ان اف تی ها"
 
-#: src/constants/WalletConnectCommands.tsx:502
+#: src/constants/WalletConnectCommands.tsx:543
 msgid "Get Offer Data"
 msgstr "گرفتن اطلاعات پیشنهاد"
 
-#: src/constants/WalletConnectCommands.tsx:516
+#: src/constants/WalletConnectCommands.tsx:557
 msgid "Get Offer Record"
 msgstr "گرفتن سوابق پیشنهاد"
 
-#: src/constants/WalletConnectCommands.tsx:488
+#: src/constants/WalletConnectCommands.tsx:529
 msgid "Get Offer Summary"
 msgstr "گرفتن گزارش پیشنهاد"
 
-#: src/constants/WalletConnectCommands.tsx:383
+#: src/constants/WalletConnectCommands.tsx:424
 msgid "Get Offers Count"
 msgstr "گرفتن تعداد پیشنهاد"
 
-#: src/constants/WalletConnectCommands.tsx:1225
+#: src/constants/WalletConnectCommands.tsx:1266
 msgid "Get Owned Stores"
 msgstr "دریافت ذخیره های شخضی"
 
-#: src/constants/WalletConnectCommands.tsx:1949
+#: src/constants/WalletConnectCommands.tsx:2015
 msgid "Get Proofs For Root Hash"
 msgstr "گرفتن شواهد برای روت هش"
 
-#: src/constants/WalletConnectCommands.tsx:2051
+#: src/constants/WalletConnectCommands.tsx:2117
 msgid "Get public key"
 msgstr "کلید عمومی را دریافت کنید"
 
-#: src/constants/WalletConnectCommands.tsx:1232
+#: src/constants/WalletConnectCommands.tsx:1273
 msgid "Get Root"
 msgstr "دریافت ریشه"
 
-#: src/constants/WalletConnectCommands.tsx:1258
+#: src/constants/WalletConnectCommands.tsx:1299
 msgid "Get Root History"
 msgstr "دریافت تاریخچه ریشه"
 
-#: src/constants/WalletConnectCommands.tsx:1245
+#: src/constants/WalletConnectCommands.tsx:1286
 msgid "Get Roots"
 msgstr "دریافت ریشه ها"
 
@@ -2905,15 +2950,15 @@ msgstr "دریافت ریشه ها"
 msgid "Get Transaction"
 msgstr "گرفتن تراکنش"
 
-#: src/constants/WalletConnectCommands.tsx:1284
+#: src/constants/WalletConnectCommands.tsx:1325
 msgid "Get Value"
 msgstr "دریافت ارزش"
 
-#: src/constants/WalletConnectCommands.tsx:1884
+#: src/constants/WalletConnectCommands.tsx:1950
 msgid "Get Verifiable Credential"
 msgstr "گرفتن اعتبار قابل تایید"
 
-#: src/constants/WalletConnectCommands.tsx:2015
+#: src/constants/WalletConnectCommands.tsx:2081
 msgid "Get wallet addresses for one or more wallet keys"
 msgstr "آدرس کیف پول یک یا چند کلید کیف پول را دریافت کنید"
 
@@ -2925,7 +2970,7 @@ msgstr "گرفتن موجودی کیف پول"
 msgid "Get Wallet Balances"
 msgstr "گرفتن موجودی کیف پول"
 
-#: src/constants/WalletConnectCommands.tsx:316
+#: src/constants/WalletConnectCommands.tsx:350
 msgid "Get Wallet Sync Status"
 msgstr "گرفتن وضعیت سینک کیف پول"
 
@@ -2984,16 +3029,16 @@ msgstr "برداشت کننده ها"
 msgid "Harvesting Effectiveness"
 msgstr "اثربخشی برداشت"
 
-#: src/constants/WalletConnectCommands.tsx:793
-#: src/constants/WalletConnectCommands.tsx:1094
+#: src/constants/WalletConnectCommands.tsx:834
+#: src/constants/WalletConnectCommands.tsx:1135
 msgid "Hash"
 msgstr "هش"
 
-#: src/constants/WalletConnectCommands.tsx:1175
+#: src/constants/WalletConnectCommands.tsx:1216
 msgid "Hash 1"
 msgstr "هش 1"
 
-#: src/constants/WalletConnectCommands.tsx:1180
+#: src/constants/WalletConnectCommands.tsx:1221
 msgid "Hash 2"
 msgstr "هش 2"
 
@@ -3096,7 +3141,7 @@ msgstr "حالت دیسک هیبریدی به رایانه‌هایی که مق�
 #~ msgid "I Understand, Create Offer"
 #~ msgstr "I Understand, Create Offer"
 
-#: src/constants/WalletConnectCommands.tsx:194
+#: src/constants/WalletConnectCommands.tsx:228
 msgid "Id"
 msgstr "شناسه"
 
@@ -3143,11 +3188,15 @@ msgstr "درقبال مبادله برای"
 msgid "In Progress"
 msgstr "در حال پیشرفت"
 
-#: src/constants/WalletConnectCommands.tsx:369
+#: src/constants/WalletConnectCommands.tsx:410
 msgid "Include My Offers"
 msgstr "شامل پیشنهادات من"
 
-#: src/constants/WalletConnectCommands.tsx:375
+#: src/constants/WalletConnectCommands.tsx:150
+msgid "Include Spent Coins"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:416
 msgid "Include Taken Offers"
 msgstr "شامل پیشنهادات گرفته شده"
 
@@ -3160,12 +3209,12 @@ msgstr "Metadata شامل کیف پول"
 msgid "Including a fee in the offer can help expedite the transaction when the offer is accepted. The recommended minimum fee is 0.000005 XCH (5,000,000 mojos)"
 msgstr "درج کارمزد در پیشنهاد میتواند به سرعت معامله در هنگام پذیرش پیشنهاد کمک کند. حداقل هزینه توصیه شده 0.000005 چیا (5000000 موجو) است"
 
-#: src/components/offers2/OfferIncomingTable.tsx:121
+#: src/components/offers2/OfferIncomingTable.tsx:129
 msgid "Incoming Offers"
 msgstr "پیشنهادات دریافتی"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:17
-#: src/constants/WalletConnectCommands.tsx:2029
+#: src/constants/WalletConnectCommands.tsx:2095
 msgid "Index"
 msgstr "فهرست"
 
@@ -3173,11 +3222,11 @@ msgstr "فهرست"
 msgid "Initializing..."
 msgstr "در حال شروع..."
 
-#: src/constants/WalletConnectCommands.tsx:1718
+#: src/constants/WalletConnectCommands.tsx:1784
 msgid "Inner Address"
 msgstr "آدرس داخلی"
 
-#: src/constants/WalletConnectCommands.tsx:1308
+#: src/constants/WalletConnectCommands.tsx:1349
 msgid "Insert"
 msgstr "درج کنید"
 
@@ -3186,16 +3235,20 @@ msgstr "درج کنید"
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid "Insufficient funds available to accept offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
+msgstr ""
+"مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
 "موجودی قابل مصرف شما برای پوشش مبلغ پیشنهاد کافی است."
 
 #: src/components/offers/OfferEditor.tsx:127
 #: src/components/offers2/CreateOfferBuilder.tsx:161
-msgid "Insufficient funds available to create offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
+msgstr ""
+"مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
 "موجودی قابل مصرف شما برای پوشش مبلغ پیشنهاد کافی است."
 
 #: src/components/farm/PoolingHealth.tsx:302
@@ -3251,7 +3304,7 @@ msgstr "آی پی آدرس"
 msgid "IP address / host"
 msgstr "آی پی آدرس / میزبان"
 
-#: src/constants/WalletConnectCommands.tsx:2008
+#: src/constants/WalletConnectCommands.tsx:2074
 msgid "Is notification visible to all paired fingerprints"
 msgstr "آیا اعلان برای همه کدهای شخصی جفتی قابل مشاهده است"
 
@@ -3309,9 +3362,9 @@ msgstr "اندازه حجم یا مخفف کی"
 
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:213
 #: src/components/walletConnect/WalletConnectRequestPermissionsConfirmDialog.tsx:143
-#: src/constants/WalletConnectCommands.tsx:1051
-#: src/constants/WalletConnectCommands.tsx:1295
-#: src/constants/WalletConnectCommands.tsx:1318
+#: src/constants/WalletConnectCommands.tsx:1092
+#: src/constants/WalletConnectCommands.tsx:1336
+#: src/constants/WalletConnectCommands.tsx:1359
 msgid "Key"
 msgstr "کلید"
 
@@ -3388,8 +3441,8 @@ msgstr "آخرین چالش های بلاک"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:255
 #: src/components/plotNFT/PlotNFTCard.tsx:292
-#: src/constants/WalletConnectCommands.tsx:1891
-#: src/constants/WalletConnectCommands.tsx:1903
+#: src/constants/WalletConnectCommands.tsx:1957
+#: src/constants/WalletConnectCommands.tsx:1969
 msgid "Launcher Id"
 msgstr "شناسه لانچر"
 
@@ -3421,11 +3474,11 @@ msgid "Legacy keyrings are no longer supported. Your keys need to be migrated to
 msgstr "دسنه کلیدهای قدیمی دیگر پشتیبانی نمیشوند. کلیدهای شما باید به یک کلید جدید منتقل شوند که به صورت اختیاری با یک عبارت رمز ورودی اصلی ایمن شده است."
 
 #: src/components/nfts/NFTDetails.tsx:295
-#: src/constants/WalletConnectCommands.tsx:814
+#: src/constants/WalletConnectCommands.tsx:855
 msgid "License Hash"
 msgstr "مجوز هش"
 
-#: src/constants/WalletConnectCommands.tsx:809
+#: src/constants/WalletConnectCommands.tsx:850
 msgid "License Uris"
 msgstr "مجوز Uris"
 
@@ -3525,11 +3578,11 @@ msgstr "خروج"
 msgid "Log Viewer"
 msgstr "بازنگری گزارش"
 
-#: src/constants/WalletConnectCommands.tsx:1337
+#: src/constants/WalletConnectCommands.tsx:1378
 msgid "Make DataLayer Offer"
 msgstr "ارائه پیشنهاد لایه داده ها"
 
-#: src/constants/WalletConnectCommands.tsx:1342
+#: src/constants/WalletConnectCommands.tsx:1383
 msgid "Maker"
 msgstr "ارائه دهنده"
 
@@ -3561,9 +3614,9 @@ msgstr "آدرس های مقصد پاداش فارم خود را مدیریت ک
 msgid "Max"
 msgstr "حداکثر"
 
-#: src/constants/WalletConnectCommands.tsx:1125
-#: src/constants/WalletConnectCommands.tsx:1156
-#: src/constants/WalletConnectCommands.tsx:1191
+#: src/constants/WalletConnectCommands.tsx:1166
+#: src/constants/WalletConnectCommands.tsx:1197
+#: src/constants/WalletConnectCommands.tsx:1232
 msgid "Max page size"
 msgstr "حداکثر اندازه صفحه"
 
@@ -3571,23 +3624,23 @@ msgstr "حداکثر اندازه صفحه"
 msgid "Memberships"
 msgstr "عضویت ها"
 
-#: src/constants/WalletConnectCommands.tsx:154
-#: src/constants/WalletConnectCommands.tsx:587
+#: src/constants/WalletConnectCommands.tsx:188
+#: src/constants/WalletConnectCommands.tsx:628
 msgid "Memos"
 msgstr "یادداشت ها"
 
 #: src/components/notification/NotificationAnnouncementDialog.tsx:67
 #: src/components/signVerify/SignMessage.tsx:204
 #: src/components/signVerify/VerifyMessage.tsx:207
-#: src/constants/WalletConnectCommands.tsx:199
-#: src/constants/WalletConnectCommands.tsx:222
-#: src/constants/WalletConnectCommands.tsx:262
-#: src/constants/WalletConnectCommands.tsx:1990
+#: src/constants/WalletConnectCommands.tsx:233
+#: src/constants/WalletConnectCommands.tsx:256
+#: src/constants/WalletConnectCommands.tsx:296
+#: src/constants/WalletConnectCommands.tsx:2056
 msgid "Message"
 msgstr "پیام"
 
-#: src/constants/WalletConnectCommands.tsx:204
-#: src/constants/WalletConnectCommands.tsx:227
+#: src/constants/WalletConnectCommands.tsx:238
+#: src/constants/WalletConnectCommands.tsx:261
 msgid "Message Is Hex Encoded String"
 msgstr "است Hex پیام رشته رمزگذاری شده"
 
@@ -3595,11 +3648,11 @@ msgstr "است Hex پیام رشته رمزگذاری شده"
 msgid "Message not available"
 msgstr "پیام موجود نیست"
 
-#: src/constants/WalletConnectCommands.tsx:803
+#: src/constants/WalletConnectCommands.tsx:844
 msgid "Meta Hash"
 msgstr "هش داده"
 
-#: src/constants/WalletConnectCommands.tsx:798
+#: src/constants/WalletConnectCommands.tsx:839
 msgid "Meta Uris"
 msgstr "Uris داده"
 
@@ -3611,7 +3664,7 @@ msgstr "Metadata هش"
 #~ msgid "Metadata hash mismatch"
 #~ msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:668
+#: src/constants/WalletConnectCommands.tsx:709
 msgid "Metadata List"
 msgstr "فهرست Metadata"
 
@@ -3643,23 +3696,23 @@ msgstr "انتقال برای پشتیبانی از حفاظت رمز ورودی
 msgid "Minimum Difficulty"
 msgstr "حداقل سختی"
 
-#: src/constants/WalletConnectCommands.tsx:657
+#: src/constants/WalletConnectCommands.tsx:698
 msgid "Mint Bulk"
 msgstr "ثبت گروهی"
 
-#: src/constants/WalletConnectCommands.tsx:739
+#: src/constants/WalletConnectCommands.tsx:780
 msgid "Mint From DID"
 msgstr "ثبت از شناسه غیرمتمرکز"
 
-#: src/constants/WalletConnectCommands.tsx:760
+#: src/constants/WalletConnectCommands.tsx:801
 msgid "Mint NFT"
 msgstr "ثبت ان اف تی"
 
-#: src/constants/WalletConnectCommands.tsx:691
+#: src/constants/WalletConnectCommands.tsx:732
 msgid "Mint Start Number"
 msgstr "شماره شروغ ثبت"
 
-#: src/constants/WalletConnectCommands.tsx:697
+#: src/constants/WalletConnectCommands.tsx:738
 msgid "Mint Total"
 msgstr "ثبت مجموع"
 
@@ -3760,10 +3813,14 @@ msgstr "در دسترس نیست"
 #: src/components/addressbook/ContactEdit.tsx:108
 #: src/components/addressbook/ContactEdit.tsx:166
 #: src/components/addressbook/ContactEdit.tsx:366
-#: src/constants/WalletConnectCommands.tsx:604
-#: src/constants/WalletConnectCommands.tsx:1833
+#: src/constants/WalletConnectCommands.tsx:645
+#: src/constants/WalletConnectCommands.tsx:1899
 msgid "Name"
 msgstr "نام"
+
+#: src/constants/WalletConnectCommands.tsx:131
+msgid "Names (coin ids)"
+msgstr ""
 
 #: src/components/settings/ProfileAdd.tsx:121
 msgid "Need some {currencyCode}?"
@@ -3778,6 +3835,7 @@ msgid "Netspace"
 msgstr "فضای شبکه"
 
 #: src/components/offers/NFTOfferViewer.tsx:607
+#: src/components/offers2/OfferBuilderViewer.tsx:347
 msgid "Network Fee (Optional)"
 msgstr "کارمزد شبکه (اختیاری)"
 
@@ -3785,7 +3843,7 @@ msgstr "کارمزد شبکه (اختیاری)"
 msgid "Network Name"
 msgstr "نام شبکه"
 
-#: src/constants/WalletConnectCommands.tsx:306
+#: src/constants/WalletConnectCommands.tsx:340
 msgid "New Address"
 msgstr "آدرس جدید"
 
@@ -3793,7 +3851,7 @@ msgstr "آدرس جدید"
 msgid "New counter offer"
 msgstr "پیشنهاد شمارنده جدید"
 
-#: src/constants/WalletConnectCommands.tsx:715
+#: src/constants/WalletConnectCommands.tsx:756
 msgid "New Inner Puzzle Hash"
 msgstr "هش های پازل داخلی جدید"
 
@@ -3801,7 +3859,7 @@ msgstr "هش های پازل داخلی جدید"
 msgid "New offer"
 msgstr "پیشنهاد جدید"
 
-#: src/constants/WalletConnectCommands.tsx:721
+#: src/constants/WalletConnectCommands.tsx:762
 msgid "New P2 Puzzle Hash"
 msgstr "هش پازل جدید P2"
 
@@ -3809,17 +3867,21 @@ msgstr "هش پازل جدید P2"
 msgid "New Passphrase"
 msgstr "رمز ورود جدید"
 
-#: src/constants/WalletConnectCommands.tsx:1914
+#: src/constants/WalletConnectCommands.tsx:1980
 msgid "New Proof Hash"
 msgstr "هش اثبات جدید"
 
-#: src/constants/WalletConnectCommands.tsx:1908
+#: src/constants/WalletConnectCommands.tsx:1974
 msgid "New Puzzle Hash"
 msgstr "هش پازل جدید"
 
-#: src/constants/WalletConnectCommands.tsx:1785
+#: src/constants/WalletConnectCommands.tsx:1851
 msgid "New Recovery DID List"
 msgstr "لیست بازیابی جدید شناسه غیر متمرکز"
+
+#: src/components/offers2/DataLayerOfferViewer.tsx:57
+msgid "New Root"
+msgstr ""
 
 #: src/components/block/Block.jsx:260
 #: src/components/nfts/detail/NFTDetailV2.tsx:143
@@ -3847,8 +3909,8 @@ msgstr "قبلاً در این پیشنهاد استفاده شده {nftId} ان
 msgid "NFT Coin ID"
 msgstr "شناسه ارز ان اف تی"
 
-#: src/constants/WalletConnectCommands.tsx:857
-#: src/constants/WalletConnectCommands.tsx:1855
+#: src/constants/WalletConnectCommands.tsx:898
+#: src/constants/WalletConnectCommands.tsx:1921
 msgid "NFT Coin Ids"
 msgstr "شناسه ارز ان اف تی"
 
@@ -3878,7 +3940,7 @@ msgstr "تصمیم گیرنده ان اف تی"
 msgid "NFT identifier does not reference a valid NFT coin."
 msgstr "شناسه ان اف تی به یک ارز ان اف تی معتبر اشاره نمیکند."
 
-#: src/constants/WalletConnectCommands.tsx:1850
+#: src/constants/WalletConnectCommands.tsx:1916
 msgid "NFT Launcher Id"
 msgstr "شناسه لانچر ان اف تی"
 
@@ -3965,7 +4027,7 @@ msgstr "بدون مجوزهای سفارشی"
 msgid "No file available"
 msgstr "فایلی موجود نیست"
 
-#: src/components/offers2/OfferIncomingTable.tsx:259
+#: src/components/offers2/OfferIncomingTable.tsx:283
 msgid "No incoming offers"
 msgstr "بدون پیشنهادات دریافتی"
 
@@ -3993,7 +4055,7 @@ msgstr "کیف پول استانداردی پیدا نشد"
 msgid "Node ID"
 msgstr "شناسه نود"
 
-#: src/constants/WalletConnectCommands.tsx:2043
+#: src/constants/WalletConnectCommands.tsx:2109
 msgid "Non Observer Derivation"
 msgstr "استخراج غیر ناظر"
 
@@ -4088,7 +4150,7 @@ msgstr "اعلان"
 msgid "Notify Current Owner"
 msgstr "اطلاع به مالک فعلی"
 
-#: src/constants/WalletConnectCommands.tsx:1480
+#: src/constants/WalletConnectCommands.tsx:1546
 msgid "Number of Backup Ids Needed"
 msgstr "تعداد شناسه های پشتیبان مورد نیاز"
 
@@ -4101,11 +4163,11 @@ msgstr "تعداد باکت ها"
 msgid "Number of buckets for phase 3 & 4"
 msgstr "تعداد باکت ها دز فاز های 3 و 4"
 
-#: src/constants/WalletConnectCommands.tsx:1790
+#: src/constants/WalletConnectCommands.tsx:1856
 msgid "Number Of DIDs Required For Recovery"
 msgstr "تعداد شناسه های غیر متمرکز مورد نیاز برای بازیابی"
 
-#: src/constants/WalletConnectCommands.tsx:629
+#: src/constants/WalletConnectCommands.tsx:670
 msgid "Number of NFTs"
 msgstr "تعداد ان اف تی ها"
 
@@ -4154,9 +4216,9 @@ msgstr "موارد قابل اعتراض"
 msgid "Occupied space"
 msgstr "فضای اشغال شده"
 
-#: src/constants/WalletConnectCommands.tsx:472
-#: src/constants/WalletConnectCommands.tsx:1406
-#: src/constants/WalletConnectCommands.tsx:1443
+#: src/constants/WalletConnectCommands.tsx:513
+#: src/constants/WalletConnectCommands.tsx:1447
+#: src/constants/WalletConnectCommands.tsx:1484
 msgid "Offer"
 msgstr "پیشنهاد"
 
@@ -4167,19 +4229,19 @@ msgstr "ساختن پیشنهاد"
 
 #: src/components/offers/NFTOfferViewer.tsx:173
 #: src/components/offers2/OfferBuilderValue.tsx:217
-#: src/components/offers2/OfferBuilderViewer.tsx:283
+#: src/components/offers2/OfferBuilderViewer.tsx:412
 msgid "Offer cannot be accepted because you don't possess the requested assets"
 msgstr "پیشنهاد نمیتواند پذیرفته شود زیرا دارایی‌های درخواستی را ندارید"
 
 #: src/components/offers/OfferDataDialog.tsx:29
 #: src/components/offers/OfferDataDialog.tsx:37
-#: src/constants/WalletConnectCommands.tsx:460
-#: src/constants/WalletConnectCommands.tsx:495
-#: src/constants/WalletConnectCommands.tsx:2002
+#: src/constants/WalletConnectCommands.tsx:501
+#: src/constants/WalletConnectCommands.tsx:536
+#: src/constants/WalletConnectCommands.tsx:2068
 msgid "Offer Data"
 msgstr "اطلاعات پیشنهاد"
 
-#: src/components/offers2/OfferBuilderViewerDialog.tsx:54
+#: src/components/offers2/OfferBuilderViewerDialog.tsx:57
 msgid "Offer Details"
 msgstr "جزئیات پیشنهاد"
 
@@ -4195,6 +4257,7 @@ msgstr "زمان انقضای پیشنهاد"
 msgid "Offer file is too large (> 1MB)"
 msgstr "فایل پیشنهاد خیلی بزرگ است (> 1 مگابایت)"
 
+#: src/components/offers2/OfferBuilderViewer.tsx:284
 #: src/hooks/useAcceptOfferHook.tsx:99
 msgid "Offer has been accepted and is awaiting confirmation."
 msgstr "پیشنهاد پذیرفته شده و در انتظار تایید است."
@@ -4211,8 +4274,8 @@ msgstr "پیشنهاد منقضی شده است"
 msgid "Offer has expired."
 msgstr "پیشنهاد منقضی شده است."
 
-#: src/constants/WalletConnectCommands.tsx:509
-#: src/constants/WalletConnectCommands.tsx:523
+#: src/constants/WalletConnectCommands.tsx:550
+#: src/constants/WalletConnectCommands.tsx:564
 msgid "Offer Id"
 msgstr "شناسه پیشنهاد"
 
@@ -4242,8 +4305,12 @@ msgstr "پیشنهاد در {0} {1} منقضی میشود"
 msgid "Offered"
 msgstr "پیشنهاد شده"
 
+#: src/components/offers2/DataLayerOfferViewer.tsx:164
+msgid "Offered Store Updates ({0})"
+msgstr ""
+
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:24
-#: src/components/offers2/OfferIncomingTable.tsx:64
+#: src/components/offers2/OfferIncomingTable.tsx:65
 msgid "Offering"
 msgstr "پیشنهاد دادن"
 
@@ -4294,7 +4361,7 @@ msgstr "پس از پذیرش این پیشنهاد، نمیتوانید معام
 msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer the NFT?"
 msgstr "پس از شروع این انتقال، نمیتوانید تراکنش را لغو کنید. آیا مطمئن هستید که میخواهید ان اف تی را انتقال دهید؟"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:287
+#: src/components/offers2/OfferBuilderViewer.tsx:416
 msgid "One or more unknown tokens are being offered. Be sure to verify that the asset IDs of the offered tokens match the asset IDs of the tokens you are expecting."
 msgstr "یک یا چند توکن ناشناخته در حال ارائه است. حتماً بررسی کنید که شناسه‌های دارایی توکن‌های ارائه‌شده با شناسه‌های دارایی توکن‌های مورد انتظار شما مطابقت دارند."
 
@@ -4335,11 +4402,11 @@ msgstr "گزینه ها"
 msgid "or <0>browse</0> on your computer"
 msgstr "یا<0>مرورکنید</0> را در رایانه خود"
 
-#: src/components/offers/OfferImport.tsx:162
+#: src/components/offers/OfferImport.tsx:169
 msgid "or Paste (⌘V) an Offer blob"
 msgstr "یک پیشنهاد بلوب (⌘V) یا جای‌گذاری"
 
-#: src/components/offers/OfferImport.tsx:162
+#: src/components/offers/OfferImport.tsx:169
 msgid "or Paste (Ctrl-V) an Offer blob"
 msgstr "یک پیشنهاد بلوب (Ctrl-V) یا جای‌گذاری"
 
@@ -4363,7 +4430,7 @@ msgstr "نادیده گرفتن تعداد رشته ها را برای فاز 2"
 msgid "Override the thread count for Phase 3"
 msgstr "نادیده گرفتن تعداد رشته ها را برای فاز 3"
 
-#: src/constants/WalletConnectCommands.tsx:934
+#: src/constants/WalletConnectCommands.tsx:975
 msgid "Overwrite"
 msgstr "بازنویسی"
 
@@ -4383,9 +4450,9 @@ msgstr "صاحب کلید عمومی"
 msgid "p2SingletonPuzzleHash is not defined"
 msgstr "تعریف نشده p2SingletonPuzzleHash"
 
-#: src/constants/WalletConnectCommands.tsx:1119
-#: src/constants/WalletConnectCommands.tsx:1150
-#: src/constants/WalletConnectCommands.tsx:1185
+#: src/constants/WalletConnectCommands.tsx:1160
+#: src/constants/WalletConnectCommands.tsx:1191
+#: src/constants/WalletConnectCommands.tsx:1226
 msgid "Page"
 msgstr "صفحه"
 
@@ -4405,7 +4472,7 @@ msgstr "کلید جفت شده"
 msgid "Parallel Decompressor Count"
 msgstr "شمارش غیرفشرده سازی موازی"
 
-#: src/constants/WalletConnectCommands.tsx:1968
+#: src/constants/WalletConnectCommands.tsx:2034
 msgid "Parent Coin Info"
 msgstr "اطلاعات ارز مادر"
 
@@ -4475,7 +4542,7 @@ msgid "Paste link"
 msgstr "جای گزاری لینک"
 
 #: src/components/offers/OfferDataEntryDialog.tsx:33
-#: src/components/offers/OfferImport.tsx:149
+#: src/components/offers/OfferImport.tsx:156
 msgid "Paste Offer Data"
 msgstr "چسباندن اطلاعات پیشنهاد"
 
@@ -4617,7 +4684,8 @@ msgstr "لطفا پوشه نهایی را مشخص کنید"
 msgid "Please specify temporary directory"
 msgstr "لطفا پوشه موقت را مشخص کنید"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:223
+#: src/components/offers2/OfferBuilderViewer.tsx:245
+#: src/components/offers2/OfferBuilderViewer.tsx:257
 msgid "Please wait for wallet synchronization"
 msgstr "لطفا برای اتمام سیک کیف پول صبر کنید"
 
@@ -4922,11 +4990,11 @@ msgstr "شواهد"
 msgid "Proofs Found"
 msgstr "شواهد پیدا شد"
 
-#: src/constants/WalletConnectCommands.tsx:1956
+#: src/constants/WalletConnectCommands.tsx:2022
 msgid "Proofs Hash"
 msgstr "هش شواهد"
 
-#: src/constants/WalletConnectCommands.tsx:1943
+#: src/constants/WalletConnectCommands.tsx:2009
 msgid "Proofs Object (Key Value Pairs)"
 msgstr "شواهد اثبات (جفت مقادیر کلیدی)"
 
@@ -4942,12 +5010,12 @@ msgstr "نسخه پروتکل"
 msgid "Prove or verify possession of a wallet address, NFT, or DID using a digital signature."
 msgstr "با استفاده از امضاء دیجیتال، داشتن آدرس کیف پول، ان اف تی یا شناسه غیرمتمرکز را اثبات یا تأیید کنید."
 
-#: src/constants/WalletConnectCommands.tsx:1919
+#: src/constants/WalletConnectCommands.tsx:1985
 msgid "Provider Inner Puzzle Hash"
 msgstr "Inner ارائه دهنده پازل هش"
 
 #: src/components/signVerify/VerifyMessage.tsx:219
-#: src/constants/WalletConnectCommands.tsx:267
+#: src/constants/WalletConnectCommands.tsx:301
 msgid "Public Key"
 msgstr "کلید عمومی"
 
@@ -4955,15 +5023,15 @@ msgstr "کلید عمومی"
 msgid "Purchase Summary"
 msgstr "خلاصه خرید"
 
-#: src/constants/WalletConnectCommands.tsx:324
+#: src/constants/WalletConnectCommands.tsx:365
 msgid "Push a spend bundle (transaction) to the blockchain"
 msgstr "به جلو راندن یک بسته هزینه شده(تراکنش) به درون بلاک چین"
 
-#: src/constants/WalletConnectCommands.tsx:323
+#: src/constants/WalletConnectCommands.tsx:364
 msgid "Push Transaction"
 msgstr "به جلو راندن تراکنش"
 
-#: src/constants/WalletConnectCommands.tsx:161
+#: src/constants/WalletConnectCommands.tsx:195
 msgid "Puzzle Decorator"
 msgstr "دکوراتور پازل"
 
@@ -5004,7 +5072,7 @@ msgstr "توصیه شده"
 #~ msgid "Recommended: 0.000005 XCH"
 #~ msgstr "Recommended: 0.000005 XCH"
 
-#: src/constants/WalletConnectCommands.tsx:1538
+#: src/constants/WalletConnectCommands.tsx:1604
 msgid "Recovery List Hash"
 msgstr "بازیابی هش لیست"
 
@@ -5024,6 +5092,14 @@ msgstr "اطلاعات ان اف تی را تازه کنید"
 #: src/components/plot/overview/PlotOverviewPlots.tsx:63
 msgid "Refresh Plots"
 msgstr "بروز رسانی پلات ها"
+
+#: src/constants/WalletConnectCommands.tsx:1505
+msgid "Register Remote Coins"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:1506
+msgid "Registers a list of remote coin IDs with a remote wallet."
+msgstr ""
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:270
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:200
@@ -5073,7 +5149,7 @@ msgstr "پس از انتقال موفقیت آمیز، کلیدها را از ج
 msgid "Remove Passphrase"
 msgstr "حذف رمز ورود"
 
-#: src/constants/WalletConnectCommands.tsx:1361
+#: src/constants/WalletConnectCommands.tsx:1402
 msgid "Remove Subscriptions"
 msgstr "حذف اشتراک ها"
 
@@ -5100,7 +5176,7 @@ msgid "Requested"
 msgstr "درخواست شده"
 
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:31
-#: src/components/offers2/OfferIncomingTable.tsx:44
+#: src/components/offers2/OfferIncomingTable.tsx:45
 msgid "Requesting"
 msgstr "در حال درخواست"
 
@@ -5108,7 +5184,7 @@ msgstr "در حال درخواست"
 msgid "Requesting Permissions"
 msgstr "در حال درخواست مجوزها"
 
-#: src/constants/WalletConnectCommands.tsx:339
+#: src/constants/WalletConnectCommands.tsx:380
 msgid "Requests a complete listing of the offers associated with the current wallet key"
 msgstr "فهرست کاملی از پیشنهادات مرتبط با کلید کیف پول فعلی را درخواست میکند"
 
@@ -5116,19 +5192,19 @@ msgstr "فهرست کاملی از پیشنهادات مرتبط با کلید �
 msgid "Requests a complete listing of the wallets associated with the current wallet key"
 msgstr "فهرست کامل کیف پول های مرتبط با کلید کیف پول فعلی را درخواست میکند"
 
-#: src/constants/WalletConnectCommands.tsx:615
+#: src/constants/WalletConnectCommands.tsx:656
 msgid "Requests a full or paginated listing of NFTs associated with one or more wallets associated with the current wallet key"
 msgstr "فهرست کامل یا صفحه بندی شده ان اف تی های مرتبط با یک یا چند کیف پول مرتبط با کلید کیف پول فعلی را درخواست میکند"
 
-#: src/constants/WalletConnectCommands.tsx:2052
+#: src/constants/WalletConnectCommands.tsx:2118
 msgid "Requests a master public key from your wallet"
 msgstr "کلید عمومی اصلی را از کیف پول شما درخواست میکند"
 
-#: src/constants/WalletConnectCommands.tsx:292
+#: src/constants/WalletConnectCommands.tsx:326
 msgid "Requests a new receive address associated with the current wallet key"
 msgstr "یک آدرس دریافت جدید مرتبط با کلید کیف پول فعلی را درخواست میکند"
 
-#: src/constants/WalletConnectCommands.tsx:644
+#: src/constants/WalletConnectCommands.tsx:685
 msgid "Requests details for a specific NFT"
 msgstr "جزئیات یک ان اف تی خاص را درخواست میکند"
 
@@ -5144,7 +5220,7 @@ msgstr "موجودی دارایی برای یک کیف پول خاص مرتبط 
 msgid "Requests the asset balances for specific wallets associated with the current wallet key"
 msgstr "موجودی دارایی برای کیف پول های خاص مرتبط با کلید کیف پول فعلی را درخواست میکند"
 
-#: src/constants/WalletConnectCommands.tsx:546
+#: src/constants/WalletConnectCommands.tsx:587
 msgid "Requests the CAT asset ID for a specific CAT wallet"
 msgstr "شناسه دارایی CAT را برای یک کیف پول CAT خاص درخواست میکند"
 
@@ -5152,35 +5228,43 @@ msgstr "شناسه دارایی CAT را برای یک کیف پول CAT خاص 
 msgid "Requests the current receive address associated with the current wallet key"
 msgstr "آدرس دریافت فعلی مرتبط با کلید کیف پول فعلی را درخواست میکند"
 
-#: src/constants/WalletConnectCommands.tsx:518
+#: src/constants/WalletConnectCommands.tsx:358
+msgid "Requests the current wallet sync height information"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:559
 msgid "Requests the details for a specific offer"
 msgstr "جزئیات را برای یک پیشنهاد خاص درخواست میکند"
 
-#: src/constants/WalletConnectCommands.tsx:877
+#: src/constants/WalletConnectCommands.tsx:918
 msgid "Requests the number of NFTs associated with one or more wallets associated with the current wallet key"
 msgstr "تعداد ان اف تی های مرتبط با یک یا چند کیف پول مرتبط با کلید کیف پول فعلی را درخواست میکند"
 
-#: src/constants/WalletConnectCommands.tsx:384
+#: src/constants/WalletConnectCommands.tsx:425
 msgid "Requests the number of offers associated with the current wallet key"
 msgstr "تعداد پیشنهادهای مرتبط با کلید کیف پول فعلی را درخواست میکند"
 
-#: src/constants/WalletConnectCommands.tsx:503
+#: src/constants/WalletConnectCommands.tsx:544
 msgid "Requests the raw offer data for a specific offer"
 msgstr "داده های پیشنهاد خام برای یک پیشنهاد خاص را درخواست میکند"
 
-#: src/constants/WalletConnectCommands.tsx:489
+#: src/constants/WalletConnectCommands.tsx:124
+msgid "Requests the status of a list of coin records from the Wallet's coin store."
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:530
 msgid "Requests the summarized details of a specific offer"
 msgstr "جزئیات خلاصه شده یک پیشنهاد خاص را درخواست میکند"
 
-#: src/constants/WalletConnectCommands.tsx:317
+#: src/constants/WalletConnectCommands.tsx:351
 msgid "Requests the syncing status of current wallet"
 msgstr "وضعیت سینک کیف پول فعلی را درخواست میکند"
 
-#: src/constants/WalletConnectCommands.tsx:454
+#: src/constants/WalletConnectCommands.tsx:495
 msgid "Requests the validity status of a specific offer"
 msgstr "وضعیت اعتبار یک پیشنهاد خاص را درخواست میکند"
 
-#: src/constants/WalletConnectCommands.tsx:256
+#: src/constants/WalletConnectCommands.tsx:290
 msgid "Requests the verification status for a digital signature"
 msgstr "وضعیت تأیید برای امضای دیجیتال را درخواست میکند"
 
@@ -5188,9 +5272,17 @@ msgstr "وضعیت تأیید برای امضای دیجیتال را درخوا
 msgid "Require Confirmation"
 msgstr "نیاز به تایید"
 
-#: src/constants/WalletConnectCommands.tsx:1544
+#: src/constants/WalletConnectCommands.tsx:1610
 msgid "Required Number of DIDs for Verification"
 msgstr "تعداد شناسه های غیرمتمرکز برای تایید مورد نیاز است"
+
+#: src/components/offers2/DataLayerOfferViewer.tsx:86
+msgid "Required Proofs"
+msgstr ""
+
+#: src/components/offers2/DataLayerOfferViewer.tsx:102
+msgid "Requires Proof From Store"
+msgstr ""
 
 #: src/components/farm/FarmHealth.tsx:286
 #: src/components/farm/FarmHealth.tsx:348
@@ -5234,32 +5326,32 @@ msgstr "سینک مجدد کیف پول"
 msgid "Resyncing forces reloading data from the blockchain about your transactions without losing other locally stored information like open, accepted, or cancelled offer files. Resyncing will require you to restart the app."
 msgstr "سینک مجدد، بارگذاری مجدد داده ها از بلاکچین در مورد تراکنش های شما بدون از دست دادن سایر اطلاعات ذخیره شده داخلی مانند فایل های پیشنهادی باز، پذیرفته شده یا لغو شده انجام میدهد. برای همگام سازی مجدد، باید برنامه را مجدداً اجرا کنید."
 
-#: src/constants/WalletConnectCommands.tsx:1430
+#: src/constants/WalletConnectCommands.tsx:1471
 msgid "retain"
 msgstr "رزرو"
 
-#: src/constants/WalletConnectCommands.tsx:752
-#: src/constants/WalletConnectCommands.tsx:1736
-#: src/constants/WalletConnectCommands.tsx:1767
-#: src/constants/WalletConnectCommands.tsx:1803
-#: src/constants/WalletConnectCommands.tsx:1930
+#: src/constants/WalletConnectCommands.tsx:793
+#: src/constants/WalletConnectCommands.tsx:1802
+#: src/constants/WalletConnectCommands.tsx:1833
+#: src/constants/WalletConnectCommands.tsx:1869
+#: src/constants/WalletConnectCommands.tsx:1996
 msgid "Reuse Puzzle Hash"
 msgstr "استفاده مجدد از پازل هش"
 
-#: src/constants/WalletConnectCommands.tsx:363
+#: src/constants/WalletConnectCommands.tsx:404
 msgid "Reverse"
 msgstr "برعکس"
 
 #: src/components/offers2/OfferBuilderTokenSelector.tsx:75
 #: src/components/offers2/OfferBuilderTokenSelector.tsx:110
 #: src/components/walletConnect/WalletConnectCATAmount.tsx:30
-#: src/util/resolveOfferInfo.tsx:66
+#: src/util/resolveOfferInfo.tsx:76
 msgid "Revocable"
 msgstr "قابل فسخ"
 
 #: src/components/vcs/VCCard.tsx:209
 #: src/components/vcs/VCCard.tsx:311
-#: src/constants/WalletConnectCommands.tsx:1962
+#: src/constants/WalletConnectCommands.tsx:2028
 msgid "Revoke Verifiable Credential"
 msgstr "لغو اعتبار قابل تأیید"
 
@@ -5267,9 +5359,9 @@ msgstr "لغو اعتبار قابل تأیید"
 msgid "Revoked"
 msgstr "لغو شد"
 
-#: src/constants/WalletConnectCommands.tsx:1113
-#: src/constants/WalletConnectCommands.tsx:1144
-#: src/constants/WalletConnectCommands.tsx:1300
+#: src/constants/WalletConnectCommands.tsx:1154
+#: src/constants/WalletConnectCommands.tsx:1185
+#: src/constants/WalletConnectCommands.tsx:1341
 msgid "Root Hash"
 msgstr "هش ریشه"
 
@@ -5277,14 +5369,14 @@ msgstr "هش ریشه"
 msgid "Royalties are built into the NFT, so they will automatically be accounted for when the offer is created/accepted."
 msgstr "حق امتیازها در ان اف تی تعبیه شده‌اند، بنابراین به‌طور خودکار هنگام ایجاد/پذیرش پیشنهاد به حساب می‌آیند."
 
-#: src/constants/WalletConnectCommands.tsx:679
-#: src/constants/WalletConnectCommands.tsx:770
+#: src/constants/WalletConnectCommands.tsx:720
+#: src/constants/WalletConnectCommands.tsx:811
 msgid "Royalty Address"
 msgstr "آدرس حق امتیاز"
 
 #: src/components/nfts/NFTDetails.tsx:159
-#: src/constants/WalletConnectCommands.tsx:673
-#: src/constants/WalletConnectCommands.tsx:776
+#: src/constants/WalletConnectCommands.tsx:714
+#: src/constants/WalletConnectCommands.tsx:817
 msgid "Royalty Percentage"
 msgstr "درصد حق امتیاز"
 
@@ -5341,8 +5433,8 @@ msgstr "جستجو..."
 msgid "Second temporary folder location"
 msgstr "مکان دوم پوشه موقت"
 
-#: src/constants/WalletConnectCommands.tsx:440
-#: src/constants/WalletConnectCommands.tsx:988
+#: src/constants/WalletConnectCommands.tsx:481
+#: src/constants/WalletConnectCommands.tsx:1029
 msgid "Secure"
 msgstr "امن"
 
@@ -5392,7 +5484,7 @@ msgstr "کلیدها را انتخاب کنید"
 msgid "Select keys which you want to share with WalletConnect"
 msgstr "به اشتراک بگذارید انتخاب کنید WalletConnect کلیدهایی را که میخواهید با"
 
-#: src/components/offers/OfferImport.tsx:152
+#: src/components/offers/OfferImport.tsx:159
 msgid "Select Offer File"
 msgstr "انتخاب قایل پیشنهاد"
 
@@ -5468,7 +5560,7 @@ msgstr "ارسال اعلان پیشنهاد"
 msgid "Send to Address"
 msgstr "ارسال به آدرس"
 
-#: src/constants/WalletConnectCommands.tsx:124
+#: src/constants/WalletConnectCommands.tsx:158
 msgid "Send Transaction"
 msgstr "ارسال تراکنش"
 
@@ -5480,11 +5572,11 @@ msgstr "یک چارچوب زمانی پیش‌فرض برای تمام تراک�
 msgid "Set a time after which this offer expires."
 msgstr "زمانی را تعیین کنید که پس از آن این پیشنهاد منقضی شود."
 
-#: src/constants/WalletConnectCommands.tsx:1823
+#: src/constants/WalletConnectCommands.tsx:1889
 msgid "Set DID Name"
 msgstr "تنظیم نام شناسه غیر متمرکز"
 
-#: src/constants/WalletConnectCommands.tsx:1840
+#: src/constants/WalletConnectCommands.tsx:1906
 msgid "Set NFT DID"
 msgstr "تنظیم شناسه غیرمتمرکز ان اف تی"
 
@@ -5552,7 +5644,7 @@ msgstr "نمایش"
 msgid "Show Details"
 msgstr "نمایش جزئیات"
 
-#: src/constants/WalletConnectCommands.tsx:1979
+#: src/constants/WalletConnectCommands.tsx:2045
 msgid "Show notification with offer or general announcement"
 msgstr "نمایش اعلان با پیشنهاد یا اعلان عمومی"
 
@@ -5581,16 +5673,16 @@ msgstr "امضا کنید"
 msgid "Sign Message"
 msgstr "امضاء پیام"
 
-#: src/constants/WalletConnectCommands.tsx:212
+#: src/constants/WalletConnectCommands.tsx:246
 msgid "Sign Message by Address"
 msgstr "امضاء پیام با آدرس"
 
-#: src/constants/WalletConnectCommands.tsx:189
+#: src/constants/WalletConnectCommands.tsx:223
 msgid "Sign Message by Id"
 msgstr "امضاء پیام با شناسه"
 
 #: src/components/signVerify/VerifyMessage.tsx:228
-#: src/constants/WalletConnectCommands.tsx:272
+#: src/constants/WalletConnectCommands.tsx:306
 msgid "Signature"
 msgstr "امضاء"
 
@@ -5631,7 +5723,7 @@ msgid "Signing Entity"
 msgstr "نهاد امضاکننده"
 
 #: src/components/signVerify/VerifyMessage.tsx:237
-#: src/constants/WalletConnectCommands.tsx:283
+#: src/constants/WalletConnectCommands.tsx:317
 msgid "Signing Mode"
 msgstr "حالت امضاء"
 
@@ -5692,15 +5784,15 @@ msgstr "اگر بیش از یک کارت گراقیک وجود دارد، شاخ
 #~ msgid "Speech"
 #~ msgstr "Speech"
 
-#: src/constants/WalletConnectCommands.tsx:329
+#: src/constants/WalletConnectCommands.tsx:370
 msgid "Spend Bundle"
 msgstr "بسته هزینه"
 
-#: src/constants/WalletConnectCommands.tsx:559
+#: src/constants/WalletConnectCommands.tsx:600
 msgid "Spend CAT"
 msgstr "توکن خرج کنید"
 
-#: src/constants/WalletConnectCommands.tsx:1924
+#: src/constants/WalletConnectCommands.tsx:1990
 msgid "Spend Fee"
 msgstr "کارمزد خرج کتید"
 
@@ -5724,15 +5816,19 @@ msgstr "مشازکت قدیمی"
 msgid "Standard Version Number"
 msgstr "شماره نسخه استاندارد"
 
-#: src/constants/WalletConnectCommands.tsx:345
+#: src/constants/WalletConnectCommands.tsx:386
 msgid "Start"
 msgstr "شروع"
 
-#: src/constants/WalletConnectCommands.tsx:635
+#: src/constants/WalletConnectCommands.tsx:136
+msgid "Start Height"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:676
 msgid "Start Index"
 msgstr "فهرست شروع"
 
-#: src/constants/WalletConnectCommands.tsx:357
+#: src/constants/WalletConnectCommands.tsx:398
 msgid "Start Key"
 msgstr "کلید شروع"
 
@@ -5759,34 +5855,42 @@ msgstr "حالت"
 msgid "Status"
 msgstr "وضعیت"
 
+#: src/components/offers2/DataLayerOfferViewer.tsx:43
+msgid "Store {0}"
+msgstr ""
+
 #: src/components/app/AppSelectMode.tsx:78
 msgid "Store and Send XCH"
 msgstr "ذخیره و ارسال چیا"
 
-#: src/constants/WalletConnectCommands.tsx:899
-#: src/constants/WalletConnectCommands.tsx:953
-#: src/constants/WalletConnectCommands.tsx:983
-#: src/constants/WalletConnectCommands.tsx:1013
-#: src/constants/WalletConnectCommands.tsx:1046
-#: src/constants/WalletConnectCommands.tsx:1089
-#: src/constants/WalletConnectCommands.tsx:1108
-#: src/constants/WalletConnectCommands.tsx:1139
-#: src/constants/WalletConnectCommands.tsx:1170
-#: src/constants/WalletConnectCommands.tsx:1205
-#: src/constants/WalletConnectCommands.tsx:1218
-#: src/constants/WalletConnectCommands.tsx:1238
-#: src/constants/WalletConnectCommands.tsx:1264
-#: src/constants/WalletConnectCommands.tsx:1277
-#: src/constants/WalletConnectCommands.tsx:1290
-#: src/constants/WalletConnectCommands.tsx:1313
-#: src/constants/WalletConnectCommands.tsx:1366
-#: src/constants/WalletConnectCommands.tsx:1383
-#: src/constants/WalletConnectCommands.tsx:1425
+#: src/constants/WalletConnectCommands.tsx:940
+#: src/constants/WalletConnectCommands.tsx:994
+#: src/constants/WalletConnectCommands.tsx:1024
+#: src/constants/WalletConnectCommands.tsx:1054
+#: src/constants/WalletConnectCommands.tsx:1087
+#: src/constants/WalletConnectCommands.tsx:1130
+#: src/constants/WalletConnectCommands.tsx:1149
+#: src/constants/WalletConnectCommands.tsx:1180
+#: src/constants/WalletConnectCommands.tsx:1211
+#: src/constants/WalletConnectCommands.tsx:1246
+#: src/constants/WalletConnectCommands.tsx:1259
+#: src/constants/WalletConnectCommands.tsx:1279
+#: src/constants/WalletConnectCommands.tsx:1305
+#: src/constants/WalletConnectCommands.tsx:1318
+#: src/constants/WalletConnectCommands.tsx:1331
+#: src/constants/WalletConnectCommands.tsx:1354
+#: src/constants/WalletConnectCommands.tsx:1407
+#: src/constants/WalletConnectCommands.tsx:1424
+#: src/constants/WalletConnectCommands.tsx:1466
 msgid "Store Id"
 msgstr "ذخیره کارت شناسایی"
 
-#: src/constants/WalletConnectCommands.tsx:928
-#: src/constants/WalletConnectCommands.tsx:1251
+#: src/components/offers2/DataLayerOfferViewer.tsx:49
+msgid "Store ID"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:969
+#: src/constants/WalletConnectCommands.tsx:1292
 msgid "Store Ids"
 msgstr "ذخیره کارت های شناسایی"
 
@@ -5794,19 +5898,20 @@ msgstr "ذخیره کارت های شناسایی"
 msgid "Submit"
 msgstr "ارسال"
 
-#: src/constants/WalletConnectCommands.tsx:971
+#: src/constants/WalletConnectCommands.tsx:1012
 msgid "Submit on chain"
 msgstr "ارسال به زنجیره"
 
-#: src/constants/WalletConnectCommands.tsx:1378
+#: src/constants/WalletConnectCommands.tsx:1419
 msgid "Subscribe"
 msgstr "اشتراک"
 
-#: src/constants/WalletConnectCommands.tsx:1395
+#: src/constants/WalletConnectCommands.tsx:1436
 msgid "Subscriptions"
 msgstr "اشتراک ها"
 
 #: src/components/notification/NotificationSendDialog.tsx:144
+#: src/components/offers2/OfferBuilderViewer.tsx:283
 #: src/components/vcs/VCCard.tsx:278
 #: src/hooks/useAcceptOfferHook.tsx:98
 msgid "Success"
@@ -5843,24 +5948,24 @@ msgstr "درحال سینک"
 msgid "Syncing <0/>/<1/>"
 msgstr "در حال سینک <0/>/<1/>"
 
-#: src/constants/WalletConnectCommands.tsx:1401
+#: src/constants/WalletConnectCommands.tsx:1442
 msgid "Take DataLayer Offer"
 msgstr "قبول پیشنهاد لایه داده ها"
 
-#: src/constants/WalletConnectCommands.tsx:467
+#: src/constants/WalletConnectCommands.tsx:508
 msgid "Take Offer"
 msgstr "دریافت پیشنهاد"
 
-#: src/constants/WalletConnectCommands.tsx:1347
+#: src/constants/WalletConnectCommands.tsx:1388
 msgid "Taker"
 msgstr "دریافت کننده"
 
-#: src/constants/WalletConnectCommands.tsx:782
-#: src/constants/WalletConnectCommands.tsx:862
+#: src/constants/WalletConnectCommands.tsx:823
+#: src/constants/WalletConnectCommands.tsx:903
 msgid "Target Address"
 msgstr "آدرس مقصد"
 
-#: src/constants/WalletConnectCommands.tsx:685
+#: src/constants/WalletConnectCommands.tsx:726
 msgid "Target List"
 msgstr "لیست نهایی"
 
@@ -5911,6 +6016,10 @@ msgstr "پوشه در دیسک حافظه"
 #: src/components/walletConnect/WalletConnectRequestPermissionsConfirmDialog.tsx:108
 msgid "The following commands are not allowed to bypass confirmation."
 msgstr "دستورات زیر مجاز به دور زدن تایید نیستند."
+
+#: src/components/offers2/DataLayerOfferViewer.tsx:90
+msgid "The following values must be proven to exist in the specified stores before this offer can be accepted."
+msgstr ""
 
 #: src/components/farm/FarmFullNodeConnections.tsx:79
 msgid "The full node that your farmer is connected to is below. <0>Learn more</0>"
@@ -5966,7 +6075,7 @@ msgstr "نود سینک نشده"
 msgid "The node is syncing, which means it is downloading blocks from other nodes, to reach the latest block in the chain"
 msgstr "نود در حال سینک شدن است،به این معنی که در حال دانلود بلاک ها از نودهای دیگر است تا به آخرین بلاک در زنجیره برسد"
 
-#: src/components/offers2/OfferIncomingTable.tsx:90
+#: src/components/offers2/OfferIncomingTable.tsx:97
 msgid "The offer creator has chosen not to allow counter offers"
 msgstr "سازنده پیشنهاد انتخاب کرده که پیشنهادات متقابل را مجاز نکند"
 
@@ -6038,6 +6147,10 @@ msgstr "این دستورالعمل‌هایی است که نشان میدهد �
 msgid "These plots are invalid, you might want to delete them."
 msgstr "این پلاتها نامعتبر هستند، ممکن است بخواهید آنها را حذف کنید."
 
+#: src/components/offers2/DataLayerOfferViewer.tsx:168
+msgid "These stores will have their roots updated to the specified values."
+msgstr ""
+
 #: src/components/offers/NFTOfferEditor.tsx:361
 msgid "They will receive"
 msgstr "دریافت خواهند کرد"
@@ -6045,6 +6158,10 @@ msgstr "دریافت خواهند کرد"
 #: src/components/plot/PlotAddDirectoryDialog.tsx:83
 msgid "This allows you to add a directory that has plots in it. If you have not created any plots, go to the plotting screen."
 msgstr "این به شما اجازه میدهد تا مسیر پوشه ای که پلاتهایی در آن است را اضافه کنید. اگر هیچ پلاتی ایجاد نکرده اید، به صفحه ساختن پلات بروید."
+
+#: src/components/offers2/OfferBuilderViewer.tsx:323
+msgid "This Data Layer offer contains no store updates and cannot be accepted."
+msgstr ""
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:114
 #: src/components/plotNFT/PlotNFTCard.tsx:148
@@ -6113,12 +6230,13 @@ msgid "This offer has a fee included to help expedite the transaction when the o
 msgstr "این پیشنهاد برای سریعتر شدن ارسال تراکنش کارمزد دارد. اگر احساس میکنید که کارمزد اضافه شده بسیار کم است، میتوانید یک کارمزد بیشتر را مشخص کنید."
 
 #: src/components/offers/OfferHeader.tsx:63
-#: src/components/offers2/OfferBuilderViewer.tsx:275
+#: src/components/offers2/OfferBuilderViewer.tsx:404
 msgid "This offer has completed successfully"
 msgstr "این پیشنهاد با موفقیت به پایان رسید"
 
 #: src/components/offers/OfferHeader.tsx:46
-#: src/components/offers2/OfferBuilderViewer.tsx:262
+#: src/components/offers2/OfferBuilderViewer.tsx:328
+#: src/components/offers2/OfferBuilderViewer.tsx:391
 msgid "This offer is no longer valid because it was accepted or cancelled. Click <0>here</0> to learn more."
 msgstr "این پیشنهاد دیگر معتبر نیست زیرا پذیرفته یا لغو شده است. برای اطلاعات بیشترکلیک کنید. <0>اینجا</0> "
 
@@ -6127,7 +6245,11 @@ msgstr "این پیشنهاد دیگر معتبر نیست زیرا پذیرفت
 #~ msgid "This offer is no longer valid. To understand why, click <0>here</0> to learn more."
 #~ msgstr "This offer is no longer valid. To understand why, click <0>here</0> to learn more."
 
-#: src/components/offers2/OfferBuilderViewer.tsx:279
+#: src/components/offers2/DataLayerOfferViewer.tsx:152
+msgid "This offer proposes updates to Data Layer store roots. Accepting it will transition the listed stores to new roots. Dependencies specify values that must be proven to exist in other stores before acceptance."
+msgstr ""
+
+#: src/components/offers2/OfferBuilderViewer.tsx:408
 msgid "This offer was cancelled"
 msgstr "این پیشنهاد لغو شد"
 
@@ -6154,7 +6276,7 @@ msgstr "این جدول به شما نشان میدهد که آخرین بار �
 #: src/components/offers2/OfferBuilderTokenSelector.tsx:77
 #: src/components/offers2/OfferBuilderTokenSelector.tsx:112
 #: src/components/walletConnect/WalletConnectCATAmount.tsx:32
-#: src/util/resolveOfferInfo.tsx:68
+#: src/util/resolveOfferInfo.tsx:78
 msgid "This token can be revoked by the issuer"
 msgstr "این توکن میتواند توسط صادرکننده لغو شود"
 
@@ -6322,7 +6444,7 @@ msgstr "مجموع فارم شده چیا"
 msgid "Touch all pages of buffer allocations before starting to plot."
 msgstr "قبل از شروع پلات،تمام صفحات اختصاص داده شده با بافر را بکار ببرید."
 
-#: src/constants/WalletConnectCommands.tsx:435
+#: src/constants/WalletConnectCommands.tsx:476
 msgid "Trade Id"
 msgstr "شناسه معامله"
 
@@ -6367,13 +6489,13 @@ msgstr "تراکنش های کمتر از کارمزد به صورت خودکا�
 msgid "Transfer"
 msgstr "انتقال"
 
-#: src/constants/WalletConnectCommands.tsx:1707
+#: src/constants/WalletConnectCommands.tsx:1773
 msgid "Transfer DID"
 msgstr "انتقال شناسه غیر متمرکز"
 
 #: src/components/nfts/NFTContextualActions.tsx:198
 #: src/components/nfts/NFTTransferAction.tsx:201
-#: src/constants/WalletConnectCommands.tsx:847
+#: src/constants/WalletConnectCommands.tsx:888
 msgid "Transfer NFT"
 msgstr "انتقال ان اف تی"
 
@@ -6406,7 +6528,7 @@ msgid "Turn this off if you don't have any compressed plots to harvest"
 msgstr "اگر هیچ پلات فشرده ای برای برداشت ندارید، این را خاموش کنید"
 
 #: src/components/vcs/VCCard.tsx:163
-#: src/constants/WalletConnectCommands.tsx:1985
+#: src/constants/WalletConnectCommands.tsx:2051
 msgid "Type"
 msgstr "نوع"
 
@@ -6479,7 +6601,7 @@ msgstr "برنامه ناشناس - {0}"
 msgid "Unknown Application"
 msgstr "برنامه ناشناخته"
 
-#: src/util/resolveOfferInfo.tsx:104
+#: src/util/resolveOfferInfo.tsx:114
 msgid "Unknown Asset"
 msgstr "دارایی ناشناخته"
 
@@ -6487,8 +6609,8 @@ msgstr "دارایی ناشناخته"
 #: src/components/offers/OfferSummaryRow.tsx:150
 #: src/components/offers/OfferSummaryRow.tsx:151
 #: src/components/walletConnect/WalletConnectCATAmount.tsx:43
-#: src/util/resolveOfferInfo.tsx:56
-#: src/util/resolveOfferInfo.tsx:141
+#: src/util/resolveOfferInfo.tsx:66
+#: src/util/resolveOfferInfo.tsx:151
 msgid "Unknown CAT"
 msgstr "توکن ناشناخته"
 
@@ -6508,7 +6630,7 @@ msgstr "اطلاعات تماس بی نام"
 msgid "Unrecognized asset"
 msgstr "دارایی شناسایی نشده"
 
-#: src/constants/WalletConnectCommands.tsx:1420
+#: src/constants/WalletConnectCommands.tsx:1461
 msgid "Unsubscribe"
 msgstr "لغو اشتراک"
 
@@ -6520,11 +6642,11 @@ msgstr "دستورات پشتیبانی نشده"
 msgid "Update"
 msgstr "بروز رسانی"
 
-#: src/constants/WalletConnectCommands.tsx:1743
+#: src/constants/WalletConnectCommands.tsx:1809
 msgid "Update DID Metadata"
 msgstr "بروز رسانی شناسه غیر متمرکز Metadata"
 
-#: src/constants/WalletConnectCommands.tsx:1774
+#: src/constants/WalletConnectCommands.tsx:1840
 msgid "Update DID Recovery Ids"
 msgstr "بروز رسانی شناسه غیر متمرکز کارت های شناسایی بازیابی"
 
@@ -6532,12 +6654,12 @@ msgstr "بروز رسانی شناسه غیر متمرکز کارت های شن�
 msgid "Update Pending"
 msgstr "منتظر بروزرسانی"
 
-#: src/constants/WalletConnectCommands.tsx:788
+#: src/constants/WalletConnectCommands.tsx:829
 msgid "Uris"
 msgstr "Uris"
 
 #: src/components/notification/NotificationAnnouncementDialog.tsx:76
-#: src/constants/WalletConnectCommands.tsx:1996
+#: src/constants/WalletConnectCommands.tsx:2062
 #: src/hooks/useOpenUnsafeLink.tsx:27
 #: src/hooks/useOpenUnsafeLink.tsx:72
 msgid "URL"
@@ -6547,9 +6669,9 @@ msgstr "آدرس سایت"
 msgid "URL is not valid"
 msgstr "آدرس سایت معتبر نیست"
 
-#: src/constants/WalletConnectCommands.tsx:904
-#: src/constants/WalletConnectCommands.tsx:1371
-#: src/constants/WalletConnectCommands.tsx:1388
+#: src/constants/WalletConnectCommands.tsx:945
+#: src/constants/WalletConnectCommands.tsx:1412
+#: src/constants/WalletConnectCommands.tsx:1429
 msgid "URLs"
 msgstr "ادرس سایت ها"
 
@@ -6574,7 +6696,7 @@ msgstr "معتبر"
 msgid "Valid Partials"
 msgstr "مشارکت معتبر"
 
-#: src/constants/WalletConnectCommands.tsx:409
+#: src/constants/WalletConnectCommands.tsx:450
 msgid "Validate only"
 msgstr "فقط تایید کنید"
 
@@ -6586,15 +6708,19 @@ msgstr "فقط تایید کنید"
 #~ msgid "Validating hash..."
 #~ msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1323
+#: src/constants/WalletConnectCommands.tsx:1364
 msgid "Value"
 msgstr "ارزش"
+
+#: src/components/offers2/DataLayerOfferViewer.tsx:105
+msgid "Values to Prove"
+msgstr ""
 
 #: src/components/fullNode/card/FullNodeCardVDFSubSlotIterations.tsx:14
 msgid "VDF Sub Slot Iterations"
 msgstr "تعداد تکرار زیرمجموعه تابع تاخیر قابل تایید"
 
-#: src/constants/WalletConnectCommands.tsx:1033
+#: src/constants/WalletConnectCommands.tsx:1074
 msgid "Verbose"
 msgstr "پرمخاطب"
 
@@ -6644,7 +6770,7 @@ msgstr "بازبینی"
 msgid "Verify Message"
 msgstr "بازبینی پیام"
 
-#: src/constants/WalletConnectCommands.tsx:1438
+#: src/constants/WalletConnectCommands.tsx:1479
 msgid "Verify Offer"
 msgstr "بررسی پیشنهاد"
 
@@ -6653,7 +6779,7 @@ msgid "Verify Pool Details"
 msgstr "بررسی جزئیات استخر"
 
 #: src/components/settings/SettingsAdvanced.tsx:92
-#: src/constants/WalletConnectCommands.tsx:255
+#: src/constants/WalletConnectCommands.tsx:289
 msgid "Verify Signature"
 msgstr "بازبینی امضاء"
 
@@ -6661,11 +6787,11 @@ msgstr "بازبینی امضاء"
 msgid "Verifying hash..."
 msgstr "در حال تأیید هش..."
 
-#: src/components/offers2/OfferIncomingTable.tsx:95
+#: src/components/offers2/OfferIncomingTable.tsx:103
 msgid "View"
 msgstr "مشاهده"
 
-#: src/components/offers/OfferImport.tsx:176
+#: src/components/offers/OfferImport.tsx:183
 msgid "View an Offer"
 msgstr "دیدن یک پیشنهاد"
 
@@ -6773,38 +6899,39 @@ msgstr "آدرس کیف پول"
 
 #: src/constants/WalletConnectCommands.tsx:80
 #: src/constants/WalletConnectCommands.tsx:114
-#: src/constants/WalletConnectCommands.tsx:298
-#: src/constants/WalletConnectCommands.tsx:552
-#: src/constants/WalletConnectCommands.tsx:565
-#: src/constants/WalletConnectCommands.tsx:663
-#: src/constants/WalletConnectCommands.tsx:765
-#: src/constants/WalletConnectCommands.tsx:852
-#: src/constants/WalletConnectCommands.tsx:1564
-#: src/constants/WalletConnectCommands.tsx:1577
-#: src/constants/WalletConnectCommands.tsx:1602
-#: src/constants/WalletConnectCommands.tsx:1615
-#: src/constants/WalletConnectCommands.tsx:1628
-#: src/constants/WalletConnectCommands.tsx:1641
-#: src/constants/WalletConnectCommands.tsx:1713
-#: src/constants/WalletConnectCommands.tsx:1749
-#: src/constants/WalletConnectCommands.tsx:1780
-#: src/constants/WalletConnectCommands.tsx:1817
-#: src/constants/WalletConnectCommands.tsx:1829
+#: src/constants/WalletConnectCommands.tsx:332
+#: src/constants/WalletConnectCommands.tsx:593
+#: src/constants/WalletConnectCommands.tsx:606
+#: src/constants/WalletConnectCommands.tsx:704
+#: src/constants/WalletConnectCommands.tsx:806
+#: src/constants/WalletConnectCommands.tsx:893
+#: src/constants/WalletConnectCommands.tsx:1512
+#: src/constants/WalletConnectCommands.tsx:1630
+#: src/constants/WalletConnectCommands.tsx:1643
+#: src/constants/WalletConnectCommands.tsx:1668
+#: src/constants/WalletConnectCommands.tsx:1681
+#: src/constants/WalletConnectCommands.tsx:1694
+#: src/constants/WalletConnectCommands.tsx:1707
+#: src/constants/WalletConnectCommands.tsx:1779
+#: src/constants/WalletConnectCommands.tsx:1815
 #: src/constants/WalletConnectCommands.tsx:1846
+#: src/constants/WalletConnectCommands.tsx:1883
+#: src/constants/WalletConnectCommands.tsx:1895
+#: src/constants/WalletConnectCommands.tsx:1912
 msgid "Wallet Id"
 msgstr "شناسه کیف پول"
 
-#: src/constants/WalletConnectCommands.tsx:147
+#: src/constants/WalletConnectCommands.tsx:181
 msgid "Wallet ID"
 msgstr "شناسه کیف پول"
 
 #: src/constants/WalletConnectCommands.tsx:97
-#: src/constants/WalletConnectCommands.tsx:625
-#: src/constants/WalletConnectCommands.tsx:886
+#: src/constants/WalletConnectCommands.tsx:666
+#: src/constants/WalletConnectCommands.tsx:927
 msgid "Wallet Ids"
 msgstr "شناسه کیف پول"
 
-#: src/constants/WalletConnectCommands.tsx:395
+#: src/constants/WalletConnectCommands.tsx:436
 msgid "Wallet Ids and Amounts"
 msgstr "شناسه کیف پول و مبالغ"
 
@@ -6907,7 +7034,7 @@ msgstr "در هنگام پلات ساری از کدام دستگاه CUDA که �
 #~ msgid "Window"
 #~ msgstr "Window"
 
-#: src/constants/WalletConnectCommands.tsx:1730
+#: src/constants/WalletConnectCommands.tsx:1796
 msgid "With Recovery Info"
 msgstr "با اطلاعات بازیابی"
 
@@ -6935,11 +7062,11 @@ msgstr "آیا میخواهید ان اف تی مشخص شده را به یک ح
 msgid "Would you like to transfer the specified NFT to a new owner?"
 msgstr "آیا میخواهید ان اف تی مشخص شده را به مالک جدیدی منتقل کنید؟"
 
-#: src/constants/WalletConnectCommands.tsx:709
+#: src/constants/WalletConnectCommands.tsx:750
 msgid "XCH Change Target"
 msgstr "تغییر مقصد چیا"
 
-#: src/constants/WalletConnectCommands.tsx:703
+#: src/constants/WalletConnectCommands.tsx:744
 msgid "XCH Coins"
 msgstr "سکه های چیا"
 
@@ -6985,7 +7112,7 @@ msgid "You can still create plots for this plot NFT, but you can not make change
 msgstr "میتوانید برای این پلات ان اف تی همچنان پلات بسازید، اما تا زمانیکه سینک کامل نشود، نمیتوانید تغییراتی ایجاد کنید."
 
 #: src/components/offers/OfferHeader.tsx:38
-#: src/components/offers2/OfferBuilderViewer.tsx:294
+#: src/components/offers2/OfferBuilderViewer.tsx:423
 msgid "You created this offer"
 msgstr "شما این پیشنهاد را ایجاد کردید"
 
@@ -7100,4 +7227,3 @@ msgstr "برای ایجاد حساب کاربری، موجودی قابل خرج
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "برای انجام مطالبه خودکار، باید کیف پول شما در حال اجرا باشد."
-
