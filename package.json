@@ -24,7 +24,7 @@
     "build:ci": "lerna run build:ci",
     "build:watch": "lerna run build:watch --parallel",
     "start:gui": "npm run start --workspace packages/gui",
-    "dev:gui": "lerna run build --scope @chia-network/api --scope @chia-network/api-react --scope @chia-network/core --scope @chia-network/icons --scope @chia-network/wallets && npm run dev --workspace @chia-network/gui",
+    "dev:gui": "npm run dev --workspace @chia-network/gui",
     "electron": "npm run start:gui",
     "locale:extract": "lerna run locale:extract",
     "locale:clean": "lerna run locale:clean",
