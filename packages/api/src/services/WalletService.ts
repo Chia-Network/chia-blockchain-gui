@@ -61,8 +61,15 @@ export default class Wallet extends Service {
 
   async getPuzzleAndSolution(args: { coinName: string; height: number }) {
     return this.command<{
-      puzzleReveal: string;
-      solution: string;
+      coinSolution: {
+        coin: {
+          amount: number;
+          parentCoinInfo: string;
+          puzzleHash: string;
+        };
+        puzzleReveal: string;
+        solution: string;
+      };
     }>('get_puzzle_and_solution', args);
   }
 

@@ -169,6 +169,10 @@ const walletConnectCommands: WalletConnectCommand[] = [
         name: WalletConnectCommandParamName.HEIGHT,
         type: 'number',
         label: <Trans>Spent Block Height</Trans>,
+      },
+    ],
+  },
+  {
     command: 'selectCoins',
     label: <Trans>Select Coins</Trans>,
     description: <Trans>Selects coins to be spent from a specific wallet</Trans>,
