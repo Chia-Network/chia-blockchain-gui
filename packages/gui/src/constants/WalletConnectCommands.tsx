@@ -165,6 +165,11 @@ const walletConnectCommands: WalletConnectCommand[] = [
         type: 'string',
         label: <Trans>Coin Name</Trans>,
       },
+      {
+        name: WalletConnectCommandParamName.HEIGHT,
+        type: 'number',
+        label: <Trans>Spent Block Height</Trans>,
+      },
     ],
   },
   {

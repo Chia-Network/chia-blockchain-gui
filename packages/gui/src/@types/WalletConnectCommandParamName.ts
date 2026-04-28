@@ -28,6 +28,7 @@ enum WalletConnectCommandParamName {
   FINGERPRINTS = 'fingerprints',
   FOLDER_NAME = 'foldername',
   HASH = 'hash',
+  HEIGHT = 'height',
   HASH1 = 'hash1',
   HASH2 = 'hash2',
   ID = 'id',
