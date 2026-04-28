@@ -24,6 +24,7 @@ enum WalletConnectCommandParamName {
   END_HEIGHT = 'endHeight',
   EXCLUDED_COIN_AMOUNTS = 'excludedCoinAmounts',
   EXCLUDED_COIN_IDS = 'excludedCoinIds',
+  EXTRA_CONDITIONS = 'extraConditions',
   FEE = 'fee',
   FINGERPRINT = 'fingerprint',
   FINGERPRINTS = 'fingerprints',
