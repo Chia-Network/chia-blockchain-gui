@@ -1563,6 +1563,7 @@ export const {
   useGetCurrentAddressQuery,
   useGetNextAddressMutation,
   useGetCoinRecordsByNamesMutation,
+  useGetPuzzleAndSolutionMutation,
   useRegisterRemoteCoinsMutation,
   useFarmBlockMutation,
   useGetTimestampForHeightQuery,
