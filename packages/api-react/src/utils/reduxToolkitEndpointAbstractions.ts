@@ -6,7 +6,12 @@ import type MethodReturnType from '../@types/MethodReturnType';
 import type ServiceConstructor from '../@types/ServiceConstructor';
 import withAllowUnsynced from './withAllowUnsynced';
 
-// after merge https://github.com/reduxjs/redux-toolkit/pull/2953 use this instead
+// RTK v1.9.5 `query` receives only `(arg)` — the `api` object (with getState)
+// is NOT passed. PR #2953 adds it but is not merged in v1.9.5.
+// When we need store access (mergeAllowUnsynced), we use `queryFn` instead.
+
+type QueryArgs<TClass extends ServiceConstructor, Method extends keyof InstanceType<TClass> & string> =
+  MethodFirstParameter<TClass, Method> extends undefined ? void : MethodFirstParameter<TClass, Method>;
 
 export function query<
   TagTypes extends string,
@@ -37,16 +42,30 @@ export function query<
 ) {
   const { mergeAllowUnsynced, transformResponse = (data) => data, ...rest } = options;
 
-  return build.query<
-    ReturnType<Transform>,
-    MethodFirstParameter<TClass, Method> extends undefined ? void : MethodFirstParameter<TClass, Method>
-  >({
+  if (mergeAllowUnsynced) {
+    const { onCacheEntryAdded, providesTags, invalidatesTags } = rest;
+    return build.query<ReturnType<Transform>, QueryArgs<TClass, Method>>({
+      onCacheEntryAdded,
+      providesTags,
+      invalidatesTags,
+      async queryFn(args, api, _extraOptions, baseQuery) {
+        const mergedArgs = args && typeof args === 'object' ? withAllowUnsynced(api.getState(), args) : args;
+        const result = await baseQuery({ service, command, args: mergedArgs });
+        if (result.error) {
+          return { error: result.error as any };
+        }
+        return { data: transformResponse(result.data as any) };
+      },
+    });
+  }
+
+  return build.query<ReturnType<Transform>, QueryArgs<TClass, Method>>({
     transformResponse,
     ...rest,
-    query: (args, api) => ({
+    query: (args) => ({
       service,
       command,
-      args: mergeAllowUnsynced && args && typeof args === 'object' ? withAllowUnsynced(api.getState(), args) : args,
+      args,
     }),
   });
 }
@@ -80,16 +99,30 @@ export function mutation<
 ) {
   const { mergeAllowUnsynced, transformResponse = (data) => data, ...rest } = options;
 
-  return build.mutation<
-    ReturnType<Transform>,
-    MethodFirstParameter<TClass, Method> extends undefined ? void : MethodFirstParameter<TClass, Method>
-  >({
+  if (mergeAllowUnsynced) {
+    const { onCacheEntryAdded, providesTags, invalidatesTags } = rest;
+    return build.mutation<ReturnType<Transform>, QueryArgs<TClass, Method>>({
+      onCacheEntryAdded,
+      providesTags,
+      invalidatesTags,
+      async queryFn(args, api, _extraOptions, baseQuery) {
+        const mergedArgs = args && typeof args === 'object' ? withAllowUnsynced(api.getState(), args) : args;
+        const result = await baseQuery({ service, command, args: mergedArgs });
+        if (result.error) {
+          return { error: result.error as any };
+        }
+        return { data: transformResponse(result.data as any) };
+      },
+    });
+  }
+
+  return build.mutation<ReturnType<Transform>, QueryArgs<TClass, Method>>({
     transformResponse,
     ...rest,
-    query: (args, api) => ({
+    query: (args) => ({
       service,
       command,
-      args: mergeAllowUnsynced && args && typeof args === 'object' ? withAllowUnsynced(api.getState(), args) : args,
+      args,
     }),
   });
 }

@@ -1103,14 +1103,17 @@ export const walletApi = apiWithTag.injectEndpoints({
     }),
 
     createNewRemoteWallet: build.mutation({
-      query: (_arg, api) => ({
-        service: WalletService,
-        command: 'createNewWallet',
-        args: withAllowUnsynced(api.getState(), {
+      async queryFn(_arg, api, _extraOptions, baseQuery) {
+        const args = withAllowUnsynced(api.getState(), {
           walletType: 'remote_wallet' as const,
           options: {},
-        }),
-      }),
+        });
+        const result = await baseQuery({ service: WalletService, command: 'createNewWallet', args });
+        if (result.error) {
+          return { error: result.error as any };
+        }
+        return { data: result.data };
+      },
       invalidatesTags: [{ type: 'Wallets', id: 'LIST' }],
     }),
 
