@@ -157,7 +157,6 @@ export const {
   useGetNextAddressMutation,
   useGetCoinRecordsByNamesMutation,
   useGetPuzzleAndSolutionMutation,
-  useLazyGetCoinRecordsByNamesQuery,
   useSelectCoinsQuery,
   useLazySelectCoinsQuery,
   useGetSpendableCoinsQuery,
