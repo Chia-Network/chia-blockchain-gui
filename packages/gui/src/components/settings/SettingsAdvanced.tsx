@@ -16,12 +16,12 @@ import {
 } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { RateReview as SignIcon, Verified as VerifyIcon } from '@mui/icons-material';
+import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Grid from '@mui/material/Grid';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-import FormControl from '@mui/material/FormControl';
 import Switch from '@mui/material/Switch';
 import React, { useState } from 'react';
 

@@ -4,6 +4,7 @@ import type { BaseQueryFn } from '@reduxjs/toolkit/query/react';
 import type MethodFirstParameter from '../@types/MethodFirstParameter';
 import type MethodReturnType from '../@types/MethodReturnType';
 import type ServiceConstructor from '../@types/ServiceConstructor';
+
 import withAllowUnsynced from './withAllowUnsynced';
 
 // RTK v1.9.5 `query` receives only `(arg)` — the `api` object (with getState)

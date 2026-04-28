@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign -- This file uses Immer via createSlice */
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
 const STORAGE_KEY = 'chia-gui-walletRpcPreferences';
@@ -40,13 +41,13 @@ const walletRpcPreferencesSlice = createSlice({
   name: 'walletRpcPreferences',
   initialState: loadFromStorage(),
   reducers: {
-    setAllowUnsynced(state, action: PayloadAction<boolean>) {
-      state.allowUnsynced = action.payload;
-      persist(state);
+    setAllowUnsynced(draft, action: PayloadAction<boolean>) {
+      draft.allowUnsynced = action.payload;
+      persist(draft);
     },
-    setUsePeakHeightForHeightInfo(state, action: PayloadAction<boolean>) {
-      state.usePeakHeightForHeightInfo = action.payload;
-      persist(state);
+    setUsePeakHeightForHeightInfo(draft, action: PayloadAction<boolean>) {
+      draft.usePeakHeightForHeightInfo = action.payload;
+      persist(draft);
     },
   },
 });

@@ -576,7 +576,7 @@ describe('WalletService', () => {
   });
 
   it('calls get_puzzle_and_solution', async () => {
-    const args = { coinName: '0x' + 'ab'.repeat(32) };
+    const args = { coinName: `0x${'ab'.repeat(32)}` };
     const expected = [
       new Message({
         command: 'get_puzzle_and_solution',

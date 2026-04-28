@@ -11,8 +11,11 @@ import {
   VC,
   normalizeHex,
   type HeightInfo,
+  type NFTInfo,
+  type Transaction,
+  type Wallet,
+  type WalletBalance,
 } from '@chia-network/api';
-import type { NFTInfo, Transaction, Wallet, WalletBalance } from '@chia-network/api';
 import BigNumber from 'bignumber.js';
 
 import api, { baseQuery } from '../api';
@@ -1110,12 +1113,12 @@ export const walletApi = apiWithTag.injectEndpoints({
     }),
 
     createNewRemoteWallet: build.mutation({
-      async queryFn(_arg, api, _extraOptions, baseQuery) {
-        const args = withAllowUnsynced(api.getState(), {
+      async queryFn(_arg, queryApi, _extraOptions, fetchWithBQ) {
+        const args = withAllowUnsynced(queryApi.getState(), {
           walletType: 'remote_wallet' as const,
           options: {},
         });
-        const result = await baseQuery({ service: WalletService, command: 'createNewWallet', args });
+        const result = await fetchWithBQ({ service: WalletService, command: 'createNewWallet', args });
         if (result.error) {
           return { error: result.error as any };
         }
