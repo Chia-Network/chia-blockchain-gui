@@ -88,6 +88,10 @@ export default class Wallet extends Service {
     return this.command<void>('register_remote_coins', args);
   }
 
+  async pushTransactions(args: { transactions: Transaction[]; fee?: string | number; push?: boolean; sign?: boolean }) {
+    return this.command<{ transactions: Transaction[] }>('push_transactions', args);
+  }
+
   async getPwStatus(args: { walletId: number }) {
     return this.command<{ state: PoolWalletStatus; unconfirmedTransactions: Transaction[] }>('pw_status', args);
   }

@@ -6,6 +6,7 @@ export default [
   'chia_wallet.create_signed_transaction',
 
   'chia_wallet.send_transaction_multi',
+  'chia_wallet.push_transactions',
   'chia_wallet.spend_clawback_coins',
   'chia_wallet.send_notification',
   'chia_wallet.cat_spend',
