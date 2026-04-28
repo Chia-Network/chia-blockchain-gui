@@ -548,6 +548,10 @@ export const walletApi = apiWithTag.injectEndpoints({
 
     getPuzzleAndSolution: mutation(build, WalletService, 'getPuzzleAndSolution'),
 
+    selectCoins: query(build, WalletService, 'selectCoins'),
+
+    getSpendableCoins: query(build, WalletService, 'getSpendableCoins'),
+
     registerRemoteCoins: mutation(build, WalletService, 'registerRemoteCoins'),
 
     farmBlock: mutation(build, WalletService, 'farmBlock'),
@@ -1564,6 +1568,11 @@ export const {
   useGetNextAddressMutation,
   useGetCoinRecordsByNamesMutation,
   useGetPuzzleAndSolutionMutation,
+  useLazyGetCoinRecordsByNamesQuery,
+  useSelectCoinsQuery,
+  useLazySelectCoinsQuery,
+  useGetSpendableCoinsQuery,
+  useLazyGetSpendableCoinsQuery,
   useRegisterRemoteCoinsMutation,
   useFarmBlockMutation,
   useGetTimestampForHeightQuery,

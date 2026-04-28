@@ -64,6 +64,29 @@ export default class Wallet extends Service {
       puzzleReveal: string;
       solution: string;
     }>('get_puzzle_and_solution', args);
+  async selectCoins(args: {
+    walletId: number;
+    amount: string | number;
+    minCoinAmount?: string | number;
+    maxCoinAmount?: string | number;
+    excludedCoinAmounts?: (string | number)[];
+    excludedCoinIds?: string[];
+  }) {
+    return this.command<{ coins: any[] }>('select_coins', args);
+  }
+
+  async getSpendableCoins(args: {
+    walletId: number;
+    minCoinAmount?: string | number;
+    maxCoinAmount?: string | number;
+    excludedCoinAmounts?: (string | number)[];
+    excludedCoinIds?: string[];
+  }) {
+    return this.command<{
+      confirmedRecords: any[];
+      unconfirmedRemovals: any[];
+      unconfirmedAdditions: any[];
+    }>('get_spendable_coins', args);
   }
 
   async registerRemoteCoins(args: { walletId: number; coinIds: string[] }) {
