@@ -52,6 +52,7 @@ After adding a new NPM package, please **pin down the package version**. This is
 - **react/no-array-index-key**
 
   Only use `index` as a `key` when all of the following conditions are met:
+
   1.  the list and items are static / hardcoded.
   2.  the list is never reordered or filtered.
 
@@ -60,6 +61,7 @@ After adding a new NPM package, please **pin down the package version**. This is
 - **import/no-extraneous-dependencies**
 
   Packages that are used only in development should not be present on the production build. You have 3 options:
+
   1. If it's a whole directory, add it to the `.eslintrc.json` file
   2. If it's a single file, rename it by adding `.dev.` in the extension. Example: `file.ts` -> `file.dev.ts`
   3. If it's a file that is run on the production, use this:
@@ -113,6 +115,7 @@ Do not edit files directly in the repo, but instead please head over to our [Cro
   Please run `npx lerna clean -y && rm -rf node_modules && npm install && npx lerna bootstrap`
 
 - **`npm run dev:gui` fails to start the app without providing a reason**
+
   1. In your command line, please go to the `chia-blockchain` directory (one level up)
   2. Run `. ./activate`
   3. Run `cd chia-blockchain-gui`
