@@ -64,6 +64,8 @@ export default class Wallet extends Service {
       puzzleReveal: string;
       solution: string;
     }>('get_puzzle_and_solution', args);
+  }
+
   async selectCoins(args: {
     walletId: number;
     amount: string | number;
