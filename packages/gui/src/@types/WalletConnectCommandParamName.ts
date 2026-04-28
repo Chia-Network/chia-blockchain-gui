@@ -22,6 +22,7 @@ enum WalletConnectCommandParamName {
   EDITION_TOTAL = 'editionTotal',
   END = 'end',
   END_HEIGHT = 'endHeight',
+  EXTRA_CONDITIONS = 'extraConditions',
   FEE = 'fee',
   FINGERPRINT = 'fingerprint',
   FINGERPRINTS = 'fingerprints',
