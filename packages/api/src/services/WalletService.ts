@@ -115,13 +115,15 @@ export default class Wallet extends Service {
     return this.command<{ state: PoolWalletStatus; transaction: Transaction }>('pw_absorb_rewards', args);
   }
 
-  async pwJoinPool(args: {
-    walletId: number;
-    poolUrl: string;
-    relativeLockHeight: number;
-    targetPuzzlehash?: string;
-    fee?: string;
-  } & AllowUnsyncedArg) {
+  async pwJoinPool(
+    args: {
+      walletId: number;
+      poolUrl: string;
+      relativeLockHeight: number;
+      targetPuzzlehash?: string;
+      fee?: string;
+    } & AllowUnsyncedArg,
+  ) {
     return this.command<{ totalFee: number; transaction: Transaction }>('pw_join_pool', args);
   }
 
@@ -310,16 +312,18 @@ export default class Wallet extends Service {
     return this.command<{ myOffersCount: number; takenOffersCount: number; total: number }>('get_offers_count');
   }
 
-  async createOfferForIds(args: {
-    offer: { [key: string]: number | BigNumber };
-    fee: number | BigNumber;
-    driverDict: any;
-    validateOnly?: boolean;
-    disableJSONFormatting?: boolean;
-    maxTime?: number;
-    extraConditions?: any[];
-    coinIds?: string[];
-  } & AllowUnsyncedArg) {
+  async createOfferForIds(
+    args: {
+      offer: { [key: string]: number | BigNumber };
+      fee: number | BigNumber;
+      driverDict: any;
+      validateOnly?: boolean;
+      disableJSONFormatting?: boolean;
+      maxTime?: number;
+      extraConditions?: any[];
+      coinIds?: string[];
+    } & AllowUnsyncedArg,
+  ) {
     const { disableJSONFormatting, driverDict, extraConditions, coinIds, ...restArgs } = args;
     return this.command<{ offer: string; tradeRecord: TradeRecord }>(
       'create_offer_for_ids',

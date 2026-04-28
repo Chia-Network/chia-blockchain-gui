@@ -56,7 +56,9 @@ export default class CATWallet extends Wallet {
     }>('cat_set_name', args);
   }
 
-  async spend(args: { walletId: number; address: string; amount: string; fee: string; memos?: string[] } & AllowUnsyncedArg) {
+  async spend(
+    args: { walletId: number; address: string; amount: string; fee: string; memos?: string[] } & AllowUnsyncedArg,
+  ) {
     const { address, ...updatedArgs } = args;
     // cat_spend expects 'inner_address' instead of 'address'
     if (!(updatedArgs as any).innerAddress) {

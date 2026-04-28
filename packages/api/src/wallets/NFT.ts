@@ -141,7 +141,9 @@ export default class NFTWallet extends Wallet {
     });
   }
 
-  async transferNft(args: { walletId: number; nftCoinIds: string[]; targetAddress: string; fee: string } & AllowUnsyncedArg) {
+  async transferNft(
+    args: { walletId: number; nftCoinIds: string[]; targetAddress: string; fee: string } & AllowUnsyncedArg,
+  ) {
     const { walletId, nftCoinIds, targetAddress, fee, allowUnsynced } = args;
     const extra = allowUnsynced != null ? { allowUnsynced } : {};
     if (nftCoinIds.length === 1) {
