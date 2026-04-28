@@ -1,10 +1,6 @@
 import { TransactionType } from '@chia-network/api';
 import type { Transaction } from '@chia-network/api';
-import {
-  useGetAutoClaimQuery,
-  useGetTimestampForHeightQuery,
-  useGetWalletHeightInfoQuery,
-} from '@chia-network/api-react';
+import { useGetAutoClaimQuery, useCurrentBlockchainTime } from '@chia-network/api-react';
 import { useTrans, Button } from '@chia-network/core';
 import { defineMessage } from '@lingui/macro';
 import { AccessTime as AccessTimeIcon } from '@mui/icons-material';
@@ -23,25 +19,11 @@ export default function WalletHistoryClawbackChip(props: Props) {
   const { data: autoClaimData, isLoading: isGetAutoClaimLoading } = useGetAutoClaimQuery();
   const isAutoClaimEnabled = !isGetAutoClaimLoading && autoClaimData?.enabled;
 
-  const { data: heightInfo, isLoading: isGetHeightInfoLoading } = useGetWalletHeightInfoQuery({
-    pollingInterval: 3000,
-  });
-  const syncHeight = heightInfo?.height ?? 0;
-  const preferLatestTs =
-    heightInfo?.latestTimestamp != null && heightInfo.latestTimestamp > 0;
-
-  const { data: lastBlockTimeStampData, isLoading: isGetTimestampForHeightLoading } = useGetTimestampForHeightQuery(
-    { height: syncHeight },
-    { skip: !syncHeight || preferLatestTs },
-  );
-
-  const lastBlockTimeStamp = preferLatestTs
-    ? heightInfo!.latestTimestamp
-    : lastBlockTimeStampData?.timestamp || 0;
+  const { timestamp: lastBlockTimeStamp, isLoading: isBlockchainTimeLoading } = useCurrentBlockchainTime();
 
   const t = useTrans();
 
-  if (isGetHeightInfoLoading || isGetTimestampForHeightLoading || !lastBlockTimeStamp) return null;
+  if (isBlockchainTimeLoading || !lastBlockTimeStamp) return null;
 
   let text = '';
   let Icon;

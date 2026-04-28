@@ -1,5 +1,6 @@
 export { default as useFingerprintSettings } from './useFingerprintSettings';
 export { default as useCurrentFingerprintSettings } from './useCurrentFingerprintSettings';
+export { default as useCurrentBlockchainTime } from './useCurrentBlockchainTime';
 export { default as useGetWalletHeightInfoQuery } from './useGetWalletHeightInfoQuery';
 export { default as useGetLatestBlocksQuery } from './useGetLatestBlocksQuery';
 export { default as useGetLocalCatName } from './useGetLocalCatName';
