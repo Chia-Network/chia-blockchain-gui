@@ -20,6 +20,19 @@ import ServiceName from '../constants/ServiceName';
 import Service from './Service';
 import type { Options } from './Service';
 
+/** Response from `get_height_info` (chia-blockchain PR #20805+). */
+export type HeightInfo = {
+  height: number;
+  latestTimestamp: number;
+  isTransactionBlock: boolean | null;
+  prevTransactionBlockHeight: number | null;
+};
+
+/** Optional on transaction-style RPCs when wallet is not fully synced (PR #20805). */
+export type AllowUnsyncedArg = {
+  allowUnsynced?: boolean;
+};
+
 export default class Wallet extends Service {
   constructor(client: Client, options?: Options) {
     super(ServiceName.WALLET, client, options);
@@ -48,12 +61,14 @@ export default class Wallet extends Service {
     }>('get_transaction_memo', args);
   }
 
-  async getCoinRecordsByNames(args: {
-    names: string[];
-    startHeight?: number;
-    endHeight?: number;
-    includeSpentCoins?: boolean;
-  }) {
+  async getCoinRecordsByNames(
+    args: {
+      names: string[];
+      startHeight?: number;
+      endHeight?: number;
+      includeSpentCoins?: boolean;
+    } & AllowUnsyncedArg,
+  ) {
     return this.command<{
       coinRecords: any[];
     }>('get_coin_records_by_names', args);
@@ -67,7 +82,7 @@ export default class Wallet extends Service {
     return this.command<{ state: PoolWalletStatus; unconfirmedTransactions: Transaction[] }>('pw_status', args);
   }
 
-  async pwAbsorbRewards(args: { walletId: number; fee?: string }) {
+  async pwAbsorbRewards(args: { walletId: number; fee?: string } & AllowUnsyncedArg) {
     return this.command<{ state: PoolWalletStatus; transaction: Transaction }>('pw_absorb_rewards', args);
   }
 
@@ -77,21 +92,24 @@ export default class Wallet extends Service {
     relativeLockHeight: number;
     targetPuzzlehash?: string;
     fee?: string;
-  }) {
+  } & AllowUnsyncedArg) {
     return this.command<{ totalFee: number; transaction: Transaction }>('pw_join_pool', args);
   }
 
-  async pwSelfPool(args: { walletId: number; fee?: string }) {
+  async pwSelfPool(args: { walletId: number; fee?: string } & AllowUnsyncedArg) {
     return this.command<{ totalFee: number; transaction: Transaction }>('pw_self_pool', args);
   }
 
-  async createNewWallet(args: {
-    walletType: 'pool_wallet' | 'rl_wallet' | 'did_wallet' | 'cat_wallet' | 'remote_wallet';
-    options: Object;
-  }) {
+  async createNewWallet(
+    args: {
+      walletType: 'pool_wallet' | 'rl_wallet' | 'did_wallet' | 'cat_wallet' | 'remote_wallet';
+      options: Object;
+    } & AllowUnsyncedArg,
+  ) {
     return this.command<WalletCreate>('create_new_wallet', {
       walletType: args.walletType,
-      ...args.options,
+      ...(args.options as Record<string, unknown>),
+      ...(args.allowUnsynced != null ? { allowUnsynced: args.allowUnsynced } : {}),
     });
   }
 
@@ -111,15 +129,20 @@ export default class Wallet extends Service {
     return this.command<FarmedAmount>('get_farmed_amount');
   }
 
-  async sendTransaction(args: {
-    walletId: number;
-    amount: BigNumber;
-    fee: BigNumber;
-    address: string;
-    memos?: string[];
-    puzzleDecorator?: PuzzleDecorator[];
-  }) {
-    return this.command<{ transaction: Transaction; transactionId: string }>('send_transaction', args);
+  async sendTransaction(
+    args: {
+      walletId: number;
+      amount: BigNumber;
+      fee: BigNumber;
+      address: string;
+      memos?: string[];
+      puzzleDecorator?: PuzzleDecorator[];
+    } & AllowUnsyncedArg,
+  ) {
+    return this.command<{ transaction: Transaction; transactionId: string; syncStatus?: number }>(
+      'send_transaction',
+      args,
+    );
   }
 
   async generateMnemonic() {
@@ -210,8 +233,12 @@ export default class Wallet extends Service {
     }>('get_timestamp_for_height', args);
   }
 
-  async getHeightInfo() {
-    return this.command<{ height: number }>('get_height_info');
+  async getHeightInfo(args?: { usePeakHeight?: boolean }) {
+    return this.command<HeightInfo>('get_height_info', args ?? {});
+  }
+
+  async getPuzzleAndSolution(args: { coinName: string }) {
+    return this.command<{ puzzleReveal: string; solution: string }>('get_puzzle_and_solution', args);
   }
 
   async getNetworkInfo() {
@@ -261,7 +288,7 @@ export default class Wallet extends Service {
     validateOnly?: boolean;
     disableJSONFormatting?: boolean;
     maxTime?: number;
-  }) {
+  } & AllowUnsyncedArg) {
     const { disableJSONFormatting, driverDict, ...restArgs } = args;
     return this.command<{ offer: string; tradeRecord: TradeRecord }>(
       'create_offer_for_ids',
@@ -272,7 +299,7 @@ export default class Wallet extends Service {
     );
   }
 
-  async cancelOffer(args: { tradeId: string; secure: boolean; fee: number | string }) {
+  async cancelOffer(args: { tradeId: string; secure: boolean; fee: number | string } & AllowUnsyncedArg) {
     return this.command<void>('cancel_offer', args);
   }
 
@@ -280,7 +307,7 @@ export default class Wallet extends Service {
     return this.command<{ id: string; valid: boolean }>('check_offer_validity', args);
   }
 
-  async takeOffer(args: { offer: string; fee: number | string }) {
+  async takeOffer(args: { offer: string; fee: number | string } & AllowUnsyncedArg) {
     return this.command<{ tradeRecord: TradeRecord }>('take_offer', args);
   }
 
@@ -346,7 +373,9 @@ export default class Wallet extends Service {
     return this.command<void>('delete_notifications', args);
   }
 
-  async sendNotification(args: { target: string; message: string; amount: string | number; fee: string | number }) {
+  async sendNotification(
+    args: { target: string; message: string; amount: string | number; fee: string | number } & AllowUnsyncedArg,
+  ) {
     return this.command<{
       tx: Transaction;
     }>('send_notification', args);
@@ -375,7 +404,7 @@ export default class Wallet extends Service {
     return this.command<AutoClaim>('get_auto_claim');
   }
 
-  async spendClawbackCoins(args: { coinIds: string[]; fee: number | BigNumber }) {
+  async spendClawbackCoins(args: { coinIds: string[]; fee: number | BigNumber } & AllowUnsyncedArg) {
     return this.command<{
       transactionIds: string[];
     }>('spend_clawback_coins', args);

@@ -1,5 +1,6 @@
 export { default as useFingerprintSettings } from './useFingerprintSettings';
 export { default as useCurrentFingerprintSettings } from './useCurrentFingerprintSettings';
+export { default as useGetWalletHeightInfoQuery } from './useGetWalletHeightInfoQuery';
 export { default as useGetLatestBlocksQuery } from './useGetLatestBlocksQuery';
 export { default as useGetLocalCatName } from './useGetLocalCatName';
 export { default as useGetLatestPeakTimestampQuery } from './useGetLatestPeakTimestampQuery';

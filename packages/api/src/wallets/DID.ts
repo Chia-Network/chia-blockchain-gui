@@ -3,30 +3,38 @@ import type BigNumber from 'bignumber.js';
 import type { Transaction } from '../@types';
 import type SpendBundle from '../@types/SpendBundle';
 import type Message from '../Message';
-import Wallet from '../services/WalletService';
+import Wallet, { type AllowUnsyncedArg } from '../services/WalletService';
 
 export default class DIDWallet extends Wallet {
-  async createNewDIDWallet(args: { amount: string; fee: string; backupDids: string; numOfBackupIdsNeeded: number }) {
+  async createNewDIDWallet(
+    args: { amount: string; fee: string; backupDids: string; numOfBackupIdsNeeded: number } & AllowUnsyncedArg,
+  ) {
+    const { allowUnsynced, ...opts } = args;
     return this.createNewWallet({
       walletType: 'did_wallet',
       options: {
         did_type: 'new',
-        ...args,
+        ...opts,
       },
+      ...(allowUnsynced != null ? { allowUnsynced } : {}),
     });
   }
 
-  async createNewRecoveryWallet(args: { filename: string }) {
+  async createNewRecoveryWallet(args: { filename: string } & AllowUnsyncedArg) {
+    const { allowUnsynced, ...opts } = args;
     return this.createNewWallet({
       walletType: 'did_wallet',
       options: {
         did_type: 'recovery',
-        ...args,
+        ...opts,
       },
+      ...(allowUnsynced != null ? { allowUnsynced } : {}),
     });
   }
 
-  async updateRecoveryIds(args: { walletId: number; newList: string[]; numVerificationsRequired: boolean }) {
+  async updateRecoveryIds(
+    args: { walletId: number; newList: string[]; numVerificationsRequired: boolean } & AllowUnsyncedArg,
+  ) {
     return this.command<void>('did_update_recovery_ids', args);
   }
 
@@ -51,7 +59,7 @@ export default class DIDWallet extends Wallet {
     }>('did_get_wallet_name', args);
   }
 
-  async setDIDName(args: { walletId: number; name: string }) {
+  async setDIDName(args: { walletId: number; name: string } & AllowUnsyncedArg) {
     return this.command<{
       walletId: number;
     }>('did_set_wallet_name', args);
@@ -133,12 +141,14 @@ export default class DIDWallet extends Wallet {
     }>('did_get_metadata', args);
   }
 
-  async updateDIDMetadata(args: {
-    walletId: number;
-    metadata: Record<string, string>;
-    fee?: number;
-    reusePuzhash?: boolean;
-  }) {
+  async updateDIDMetadata(
+    args: {
+      walletId: number;
+      metadata: Record<string, string>;
+      fee?: number;
+      reusePuzhash?: boolean;
+    } & AllowUnsyncedArg,
+  ) {
     return this.command<
       | {
           success: true;

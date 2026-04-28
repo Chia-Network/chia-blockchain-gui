@@ -1,4 +1,4 @@
-import Wallet from '../services/WalletService';
+import Wallet, { type AllowUnsyncedArg } from '../services/WalletService';
 
 type VCType = {
   coin: {
@@ -90,21 +90,23 @@ export default class VCWallet extends Wallet {
     }>('vc_get_list', args);
   }
 
-  async spendVC(args: {
-    vcId: string;
-    newPuzhash?: string;
-    newProofHash?: string;
-    providerInnerPuzhash?: string;
-    fee?: number;
-    reusePuzhash?: boolean;
-  }) {
+  async spendVC(
+    args: {
+      vcId: string;
+      newPuzhash?: string;
+      newProofHash?: string;
+      providerInnerPuzhash?: string;
+      fee?: number;
+      reusePuzhash?: boolean;
+    } & AllowUnsyncedArg,
+  ) {
     return this.command<{
       success: boolean;
       transactions: TransactionType[];
     }>('vc_spend', args);
   }
 
-  async addVCProofs(args: { proofs: string }) {
+  async addVCProofs(args: { proofs: string } & AllowUnsyncedArg) {
     return this.command<{
       proofs: any;
     }>('vc_add_proofs', args);
@@ -114,7 +116,7 @@ export default class VCWallet extends Wallet {
     return this.command<{ proofs: any }>('vc_get_proofs_for_root', args);
   }
 
-  async revokeVC(args: { vcParentId: string; fee?: number; reusePuzhash?: boolean }) {
+  async revokeVC(args: { vcParentId: string; fee?: number; reusePuzhash?: boolean } & AllowUnsyncedArg) {
     return this.command<{
       transactions: TransactionType[];
     }>('vc_revoke', args);

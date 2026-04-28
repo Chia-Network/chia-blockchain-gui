@@ -3,7 +3,7 @@ import {
   useGetWalletsQuery,
   useCreateOfferForIdsMutation,
   useGetTimestampForHeightQuery,
-  useGetHeightInfoQuery,
+  useGetWalletHeightInfoQuery,
 } from '@chia-network/api-react';
 import { Flex, ButtonLoading, useOpenDialog, Loading } from '@chia-network/core';
 import { useIsWalletSynced } from '@chia-network/wallets';
@@ -76,14 +76,19 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
 
   const [suppressShareOnCreate] = useSuppressShareOnCreate();
 
-  const { data: height, isLoading: isGetHeightInfoLoading } = useGetHeightInfoQuery(undefined, {
+  const { data: heightInfo, isLoading: isGetHeightInfoLoading } = useGetWalletHeightInfoQuery({
     pollingInterval: 3000,
   });
+  const syncHeight = heightInfo?.height ?? 0;
+  const preferLatestTs =
+    heightInfo?.latestTimestamp != null && heightInfo.latestTimestamp > 0;
   const { data: lastBlockTimeStampData, isLoading: isGetTimestampForHeightLoading } = useGetTimestampForHeightQuery(
-    { height: height || 0 },
-    { skip: !height },
+    { height: syncHeight },
+    { skip: !syncHeight || preferLatestTs },
   );
-  const currentTime = getCurrentTime(lastBlockTimeStampData);
+  const currentTime = preferLatestTs
+    ? getCurrentTime({ timestamp: heightInfo!.latestTimestamp })
+    : getCurrentTime(lastBlockTimeStampData);
 
   const handleCreateOffer = useCallback(() => {
     offerBuilderRef.current?.submit();

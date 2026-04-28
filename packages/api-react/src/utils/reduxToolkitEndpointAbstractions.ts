@@ -4,6 +4,7 @@ import type { BaseQueryFn } from '@reduxjs/toolkit/query/react';
 import type MethodFirstParameter from '../@types/MethodFirstParameter';
 import type MethodReturnType from '../@types/MethodReturnType';
 import type ServiceConstructor from '../@types/ServiceConstructor';
+import withAllowUnsynced from './withAllowUnsynced';
 
 // after merge https://github.com/reduxjs/redux-toolkit/pull/2953 use this instead
 
@@ -21,6 +22,7 @@ export function query<
   service: TClass,
   command: Method,
   options: {
+    mergeAllowUnsynced?: boolean;
     transformResponse?: Transform;
     onCacheEntryAdded?: Parameters<
       typeof build.query<ReturnType<Transform>, MethodFirstParameter<TClass, Method>>
@@ -33,7 +35,7 @@ export function query<
     >[0]['invalidatesTags'];
   } = {},
 ) {
-  const { transformResponse = (data) => data, ...rest } = options;
+  const { mergeAllowUnsynced, transformResponse = (data) => data, ...rest } = options;
 
   return build.query<
     ReturnType<Transform>,
@@ -41,10 +43,10 @@ export function query<
   >({
     transformResponse,
     ...rest,
-    query: (args) => ({
+    query: (args, api) => ({
       service,
       command,
-      args,
+      args: mergeAllowUnsynced && args && typeof args === 'object' ? withAllowUnsynced(api.getState(), args) : args,
     }),
   });
 }
@@ -63,6 +65,7 @@ export function mutation<
   service: TClass,
   command: Method,
   options: {
+    mergeAllowUnsynced?: boolean;
     transformResponse?: Transform;
     onCacheEntryAdded?: Parameters<
       typeof build.mutation<ReturnType<Transform>, MethodFirstParameter<TClass, Method>>
@@ -75,7 +78,7 @@ export function mutation<
     >[0]['invalidatesTags'];
   } = {}, // Omit<Parameters<typeof build.mutation<MethodReturnType<TClass, Method>, MethodFirstParameter<TClass, Method>>>[0], 'query'> = {}
 ) {
-  const { transformResponse = (data) => data, ...rest } = options;
+  const { mergeAllowUnsynced, transformResponse = (data) => data, ...rest } = options;
 
   return build.mutation<
     ReturnType<Transform>,
@@ -83,10 +86,10 @@ export function mutation<
   >({
     transformResponse,
     ...rest,
-    query: (args) => ({
+    query: (args, api) => ({
       service,
       command,
-      args,
+      args: mergeAllowUnsynced && args && typeof args === 'object' ? withAllowUnsynced(api.getState(), args) : args,
     }),
   });
 }

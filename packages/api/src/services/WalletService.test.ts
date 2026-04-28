@@ -558,6 +558,40 @@ describe('WalletService', () => {
     expect(client.send).toHaveBeenCalledWith(...expected);
   });
 
+  it('calls get_height_info with use_peak_height', async () => {
+    const args = { usePeakHeight: true };
+    const expected = [
+      new Message({
+        command: 'get_height_info',
+        data: args,
+        destination: 'chia_wallet',
+        origin: 'test_origin' as ServiceNameValue,
+      }),
+      undefined,
+      undefined,
+    ];
+
+    await service.getHeightInfo(args);
+    expect(client.send).toHaveBeenCalledWith(...expected);
+  });
+
+  it('calls get_puzzle_and_solution', async () => {
+    const args = { coinName: '0x' + 'ab'.repeat(32) };
+    const expected = [
+      new Message({
+        command: 'get_puzzle_and_solution',
+        data: args,
+        destination: 'chia_wallet',
+        origin: 'test_origin' as ServiceNameValue,
+      }),
+      undefined,
+      undefined,
+    ];
+
+    await service.getPuzzleAndSolution(args);
+    expect(client.send).toHaveBeenCalledWith(...expected);
+  });
+
   it('calls get_network_info', async () => {
     const expected = [
       new Message({

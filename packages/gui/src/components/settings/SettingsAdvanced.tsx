@@ -1,15 +1,28 @@
 import {
+  setAllowUnsynced,
+  setUsePeakHeightForHeightInfo,
+  useAppDispatch,
+  useTypedSelector,
+} from '@chia-network/api-react';
+import {
   Button,
   Flex,
   SettingsHR,
   SettingsSection,
   SettingsTitle,
   SettingsText,
+  TooltipIcon,
   useOpenDialog,
 } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { RateReview as SignIcon, Verified as VerifyIcon } from '@mui/icons-material';
-import { Grid, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Grid from '@mui/material/Grid';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import FormControl from '@mui/material/FormControl';
+import Switch from '@mui/material/Switch';
 import React, { useState } from 'react';
 
 import blockedCommands from '../../constants/BlockedCommands';
@@ -19,6 +32,8 @@ import SignVerifyDialog, { SignVerifyDialogMode } from '../signVerify/SignVerify
 import ResyncPrompt from './ResyncPrompt';
 
 export default function SettingsAdvanced() {
+  const dispatch = useAppDispatch();
+  const { allowUnsynced, usePeakHeightForHeightInfo } = useTypedSelector((state) => state.walletRpcPreferences);
   const openDialog = useOpenDialog();
   const [resyncWalletOpen, setResyncWalletOpen] = useState(false);
   const [selectedCommand, setSelectedCommand] = useState('');
@@ -62,6 +77,75 @@ export default function SettingsAdvanced() {
             <Trans>Features for advanced users.</Trans>
           </SettingsText>
         </Flex>
+      </Grid>
+
+      <Grid item xs={12} sm={12} lg={12}>
+        <SettingsHR />
+      </Grid>
+
+      <Grid container gap={2}>
+        <Grid item style={{ width: '624px' }}>
+          <SettingsTitle>
+            <Flex gap={1} alignItems="center">
+              <Trans>Wallet sync RPC</Trans>
+              <TooltipIcon>
+                <Trans>
+                  Settings for newer wallet RPC behavior. Misuse can submit spends based on incomplete chain state.
+                </Trans>
+              </TooltipIcon>
+            </Flex>
+          </SettingsTitle>
+        </Grid>
+        <Grid item container style={{ width: '624px' }} gap={2} flexDirection="column">
+          <Flex flexDirection="column" gap={1}>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={allowUnsynced}
+                  onChange={(_, checked) => dispatch(setAllowUnsynced(checked))}
+                  data-testid="SettingsAdvanced-allow-unsynced"
+                />
+              }
+              label={
+                <Flex gap={1} alignItems="center">
+                  <Trans>Allow transactions while wallet is not fully synced</Trans>
+                  <TooltipIcon>
+                    <Trans>
+                      When enabled, transaction-style wallet RPC calls include allow_unsynced so they can run while the
+                      wallet is slightly behind or in a long sync, as long as it still has full-node peers. Fully
+                      disconnected wallets are still rejected.
+                    </Trans>
+                  </TooltipIcon>
+                </Flex>
+              }
+            />
+            <SettingsText>
+              <Trans>When disabled, the wallet uses the default strict sync checks before spends (recommended).</Trans>
+            </SettingsText>
+          </Flex>
+          <Flex flexDirection="column" gap={1}>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={usePeakHeightForHeightInfo}
+                  onChange={(_, checked) => dispatch(setUsePeakHeightForHeightInfo(checked))}
+                  data-testid="SettingsAdvanced-use-peak-height"
+                />
+              }
+              label={
+                <Flex gap={1} alignItems="center">
+                  <Trans>Use blockchain peak height for height info</Trans>
+                  <TooltipIcon>
+                    <Trans>
+                      When enabled, height info uses the chain tip even during sync. When disabled, height reflects the
+                      last block the wallet has finished syncing to.
+                    </Trans>
+                  </TooltipIcon>
+                </Flex>
+              }
+            />
+          </Flex>
+        </Grid>
       </Grid>
 
       <Grid item xs={12} sm={12} lg={12}>

@@ -3,12 +3,14 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
 import api from './api';
 import apiReducer from './slices/api';
+import walletRpcPreferencesReducer from './slices/walletRpcPreferences';
 
 export function createStore(options?: ConfigureStoreOptions['preloadedState']) {
   return configureStore({
     reducer: {
       [api.reducerPath]: api.reducer,
       api: apiReducer,
+      walletRpcPreferences: walletRpcPreferencesReducer,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({

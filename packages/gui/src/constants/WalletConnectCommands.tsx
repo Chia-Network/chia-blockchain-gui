@@ -355,9 +355,37 @@ const walletConnectCommands: WalletConnectCommand[] = [
   {
     command: 'getHeightInfo',
     label: <Trans>Get Height Info</Trans>,
-    description: <Trans>Requests the current wallet sync height information</Trans>,
+    description: (
+      <Trans>
+        Returns wallet height, latest block timestamp, and related fields. Optional usePeakHeight uses the chain tip
+        while syncing.
+      </Trans>
+    ),
     service: ServiceName.WALLET,
     bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.USE_PEAK_HEIGHT,
+        label: <Trans>Use peak height</Trans>,
+        isOptional: true,
+        defaultValue: false,
+        type: 'boolean',
+      },
+    ],
+  },
+  {
+    command: 'getPuzzleAndSolution',
+    label: <Trans>Get puzzle and solution</Trans>,
+    description: <Trans>Fetches the puzzle reveal and solution for a spent coin (hex strings).</Trans>,
+    service: ServiceName.WALLET,
+    bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.COIN_NAME,
+        label: <Trans>Coin name</Trans>,
+        type: 'string',
+      },
+    ],
   },
   {
     command: 'pushTx',

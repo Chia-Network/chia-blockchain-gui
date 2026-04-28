@@ -55,6 +55,7 @@ export default [
   'chia_wallet.get_offers_count',
   'chia_wallet.get_all_offers',
   'chia_wallet.get_height_info',
+  'chia_wallet.get_puzzle_and_solution',
   'chia_wallet.get_connections',
   'chia_wallet.log_in',
   'chia_wallet.generate_mnemonic',

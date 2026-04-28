@@ -1,6 +1,10 @@
 import { TransactionType } from '@chia-network/api';
 import type { Transaction } from '@chia-network/api';
-import { useGetAutoClaimQuery, useGetTimestampForHeightQuery, useGetHeightInfoQuery } from '@chia-network/api-react';
+import {
+  useGetAutoClaimQuery,
+  useGetTimestampForHeightQuery,
+  useGetWalletHeightInfoQuery,
+} from '@chia-network/api-react';
 import { useTrans, Button } from '@chia-network/core';
 import { defineMessage } from '@lingui/macro';
 import { AccessTime as AccessTimeIcon } from '@mui/icons-material';
@@ -19,15 +23,21 @@ export default function WalletHistoryClawbackChip(props: Props) {
   const { data: autoClaimData, isLoading: isGetAutoClaimLoading } = useGetAutoClaimQuery();
   const isAutoClaimEnabled = !isGetAutoClaimLoading && autoClaimData?.enabled;
 
-  const { data: height, isLoading: isGetHeightInfoLoading } = useGetHeightInfoQuery(undefined, {
+  const { data: heightInfo, isLoading: isGetHeightInfoLoading } = useGetWalletHeightInfoQuery({
     pollingInterval: 3000,
   });
+  const syncHeight = heightInfo?.height ?? 0;
+  const preferLatestTs =
+    heightInfo?.latestTimestamp != null && heightInfo.latestTimestamp > 0;
 
-  const { data: lastBlockTimeStampData, isLoading: isGetTimestampForHeightLoading } = useGetTimestampForHeightQuery({
-    height: height || 0,
-  });
+  const { data: lastBlockTimeStampData, isLoading: isGetTimestampForHeightLoading } = useGetTimestampForHeightQuery(
+    { height: syncHeight },
+    { skip: !syncHeight || preferLatestTs },
+  );
 
-  const lastBlockTimeStamp = lastBlockTimeStampData?.timestamp || 0;
+  const lastBlockTimeStamp = preferLatestTs
+    ? heightInfo!.latestTimestamp
+    : lastBlockTimeStampData?.timestamp || 0;
 
   const t = useTrans();
 

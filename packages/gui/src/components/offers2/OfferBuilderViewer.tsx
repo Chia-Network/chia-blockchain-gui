@@ -4,7 +4,7 @@ import {
   useGetWalletsQuery,
   useCheckOfferValidityMutation,
   useGetTimestampForHeightQuery,
-  useGetHeightInfoQuery,
+  useGetWalletHeightInfoQuery,
   useTakeOfferMutation,
 } from '@chia-network/api-react';
 import {
@@ -114,16 +114,21 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
   let expirationTime = null;
   let isExpired = false;
 
-  const { data: height, isLoading: isGetHeightInfoLoading } = useGetHeightInfoQuery(undefined, {
+  const { data: heightInfo, isLoading: isGetHeightInfoLoading } = useGetWalletHeightInfoQuery({
     pollingInterval: 3000,
   });
+  const syncHeight = heightInfo?.height ?? 0;
+  const preferLatestTs =
+    heightInfo?.latestTimestamp != null && heightInfo.latestTimestamp > 0;
   const { data: lastBlockTimeStampData, isLoading: isGetTimestampForHeightLoading } = useGetTimestampForHeightQuery(
-    { height: height || 0 },
-    { skip: !height },
+    { height: syncHeight },
+    { skip: !syncHeight || preferLatestTs },
   );
 
   if (hasExpiration && !isExpired) {
-    currentTime = getCurrentTime(lastBlockTimeStampData);
+    currentTime = preferLatestTs
+      ? getCurrentTime({ timestamp: heightInfo!.latestTimestamp })
+      : getCurrentTime(lastBlockTimeStampData);
 
     expirationTime = validTimeList?.maxTime;
 

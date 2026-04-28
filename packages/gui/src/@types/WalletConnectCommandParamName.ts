@@ -107,6 +107,7 @@ enum WalletConnectCommandParamName {
   URL = 'url',
   URLS = 'urls',
   VALIDATE_ONLY = 'validateOnly',
+  USE_PEAK_HEIGHT = 'usePeakHeight',
   VALUE = 'value',
   VC_ID = 'vcId',
   VC_PARENT_ID = 'vcParentId',
