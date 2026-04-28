@@ -840,9 +840,18 @@ msgstr ""
 #~ msgid "About Chia Blockchain"
 #~ msgstr "About Chia Blockchain"
 
+#: src/components/offers2/OfferBuilderViewer.tsx:274
+msgid "Accept"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderViewer.tsx:273
+msgid "Accept Data Layer Offer"
+msgstr ""
+
 #: src/components/offers/NFTOfferViewer.tsx:642
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:21
-#: src/components/offers2/OfferBuilderViewer.tsx:252
+#: src/components/offers2/OfferBuilderViewer.tsx:321
+#: src/components/offers2/OfferBuilderViewer.tsx:386
 msgid "Accept Offer"
 msgstr ""
 
@@ -858,7 +867,7 @@ msgstr "Actie"
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:54
 #: src/components/fullNode/FullNodeConnections.tsx:65
 #: src/components/nfts/NFTContextualActions.tsx:605
-#: src/components/offers2/OfferIncomingTable.tsx:111
+#: src/components/offers2/OfferIncomingTable.tsx:119
 msgid "Actions"
 msgstr "Acties"
 
@@ -872,7 +881,7 @@ msgstr ""
 msgid "Activity"
 msgstr ""
 
-#: src/components/settings/SettingsAdvanced.tsx:169
+#: src/components/settings/SettingsAdvanced.tsx:253
 msgid "Add"
 msgstr ""
 
@@ -896,7 +905,7 @@ msgstr "Creëer een plot"
 msgid "Add a Plot NFT"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:594
+#: src/constants/WalletConnectCommands.tsx:811
 msgid "Add CAT Token"
 msgstr ""
 
@@ -912,11 +921,11 @@ msgstr ""
 msgid "Add Contact"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:894
+#: src/constants/WalletConnectCommands.tsx:1111
 msgid "Add Mirror"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:923
+#: src/constants/WalletConnectCommands.tsx:1140
 msgid "Add Missing Files"
 msgstr ""
 
@@ -936,11 +945,11 @@ msgstr "Voeg een plot-map toe"
 msgid "Add Plot to Queue"
 msgstr "Voeg Plot toe aan de Wachtrij"
 
-#: src/constants/WalletConnectCommands.tsx:1937
+#: src/constants/WalletConnectCommands.tsx:2179
 msgid "Add Proofs"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1897
+#: src/constants/WalletConnectCommands.tsx:2139
 msgid "Add Proofs To Verifiable Credential"
 msgstr ""
 
@@ -952,10 +961,10 @@ msgstr ""
 #: src/components/addressbook/ContactEdit.tsx:61
 #: src/components/notification/NotificationSendDialog.tsx:221
 #: src/components/signVerify/SigningEntityWalletAddress.tsx:45
-#: src/constants/WalletConnectCommands.tsx:142
-#: src/constants/WalletConnectCommands.tsx:217
-#: src/constants/WalletConnectCommands.tsx:277
-#: src/constants/WalletConnectCommands.tsx:570
+#: src/constants/WalletConnectCommands.tsx:270
+#: src/constants/WalletConnectCommands.tsx:345
+#: src/constants/WalletConnectCommands.tsx:405
+#: src/constants/WalletConnectCommands.tsx:787
 msgid "Address"
 msgstr ""
 
@@ -965,7 +974,7 @@ msgid "Addresses"
 msgstr ""
 
 #: src/components/settings/Settings.tsx:43
-#: src/components/settings/SettingsAdvanced.tsx:59
+#: src/components/settings/SettingsAdvanced.tsx:74
 msgid "Advanced"
 msgstr ""
 
@@ -1002,6 +1011,10 @@ msgstr ""
 msgid "Allow the recipient to send a counter offer"
 msgstr ""
 
+#: src/components/settings/SettingsAdvanced.tsx:111
+msgid "Allow transactions while wallet is not fully synced"
+msgstr ""
+
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:418
 msgid "Alternate bucket writing"
 msgstr ""
@@ -1022,10 +1035,11 @@ msgstr ""
 #: src/components/offers/OfferEditorConditionsPanel.tsx:130
 #: src/components/offers2/OfferBuilderNFTRoyalties.tsx:121
 #: src/components/offers2/OfferBuilderWalletAmount.tsx:36
-#: src/constants/WalletConnectCommands.tsx:130
-#: src/constants/WalletConnectCommands.tsx:575
-#: src/constants/WalletConnectCommands.tsx:909
-#: src/constants/WalletConnectCommands.tsx:1464
+#: src/constants/WalletConnectCommands.tsx:173
+#: src/constants/WalletConnectCommands.tsx:258
+#: src/constants/WalletConnectCommands.tsx:792
+#: src/constants/WalletConnectCommands.tsx:1126
+#: src/constants/WalletConnectCommands.tsx:1706
 msgid "Amount"
 msgstr ""
 
@@ -1097,6 +1111,10 @@ msgstr ""
 msgid "Approve"
 msgstr ""
 
+#: src/components/offers2/OfferBuilderViewer.tsx:278
+msgid "Are you sure you want to accept this Data Layer offer?"
+msgstr ""
+
 #: src/components/offers/ConfirmOfferCancellation.tsx:69
 msgid "Are you sure you want to cancel your offer?"
 msgstr ""
@@ -1150,8 +1168,8 @@ msgstr "Ben je zeker dat je k={plotSize} wil gebruiken?"
 msgid "Asset"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:538
-#: src/constants/WalletConnectCommands.tsx:599
+#: src/constants/WalletConnectCommands.tsx:755
+#: src/constants/WalletConnectCommands.tsx:816
 msgid "Asset Id"
 msgstr ""
 
@@ -1218,7 +1236,7 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1476
+#: src/constants/WalletConnectCommands.tsx:1718
 msgid "Backup DIDs"
 msgstr ""
 
@@ -1234,7 +1252,7 @@ msgstr ""
 msgid "Base Farmer Reward Amount"
 msgstr "Basis Farmer Bonus Bedrag"
 
-#: src/constants/WalletConnectCommands.tsx:948
+#: src/constants/WalletConnectCommands.tsx:1165
 msgid "Batch Update"
 msgstr ""
 
@@ -1326,7 +1344,7 @@ msgstr ""
 msgid "By providing a signing address, the public key can be validated as being associated with the address used for signing."
 msgstr ""
 
-#: src/components/settings/SettingsAdvanced.tsx:142
+#: src/components/settings/SettingsAdvanced.tsx:226
 msgid "Bypassed Commands"
 msgstr ""
 
@@ -1352,6 +1370,7 @@ msgstr ""
 #: src/components/offers/OfferDataEntryDialog.tsx:58
 #: src/components/offers/OfferShareDialog.tsx:712
 #: src/components/offers2/CancelOfferList.tsx:146
+#: src/components/offers2/OfferBuilderViewer.tsx:275
 #: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:362
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:111
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:78
@@ -1368,14 +1387,14 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:978
+#: src/constants/WalletConnectCommands.tsx:1195
 msgid "Cancel DataLayer Offer"
 msgstr ""
 
 #: src/components/offers/ConfirmOfferCancellation.tsx:62
 #: src/components/offers/ConfirmOfferCancellation.tsx:129
-#: src/components/offers/OfferManager.tsx:323
-#: src/constants/WalletConnectCommands.tsx:430
+#: src/components/offers/OfferManager.tsx:328
+#: src/constants/WalletConnectCommands.tsx:640
 msgid "Cancel Offer"
 msgstr ""
 
@@ -1430,7 +1449,7 @@ msgstr ""
 msgid "Change Pool"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:958
+#: src/constants/WalletConnectCommands.tsx:1175
 msgid "Changelist"
 msgstr ""
 
@@ -1446,11 +1465,11 @@ msgstr ""
 #~ msgid "Chat on KeyBase"
 #~ msgstr "Chat on KeyBase"
 
-#: src/constants/WalletConnectCommands.tsx:453
+#: src/constants/WalletConnectCommands.tsx:663
 msgid "Check Offer Validity"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1002
+#: src/constants/WalletConnectCommands.tsx:1219
 msgid "Check Plugins"
 msgstr ""
 
@@ -1525,7 +1544,7 @@ msgstr ""
 msgid "Claim Rewards"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:170
+#: src/constants/WalletConnectCommands.tsx:298
 msgid "Claw back or claim claw back transaction"
 msgstr ""
 
@@ -1534,7 +1553,7 @@ msgstr ""
 msgid "Clear NFT cache"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1008
+#: src/constants/WalletConnectCommands.tsx:1225
 msgid "Clear Pending Roots"
 msgstr ""
 
@@ -1554,7 +1573,7 @@ msgstr ""
 #: src/components/offers/OfferShareDialog.tsx:501
 #: src/components/offers/OfferShareDialog.tsx:623
 #: src/components/offers/OfferShareDialog.tsx:895
-#: src/components/offers2/OfferBuilderViewerDialog.tsx:76
+#: src/components/offers2/OfferBuilderViewerDialog.tsx:81
 #: src/components/plot/PlotAddDirectoryDialog.tsx:130
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:66
 #: src/components/signVerify/SignMessageResultDialog.tsx:66
@@ -1567,10 +1586,10 @@ msgstr "Sluit"
 msgid "Closing down services"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:650
-#: src/constants/WalletConnectCommands.tsx:1070
-#: src/constants/WalletConnectCommands.tsx:1533
-#: src/constants/WalletConnectCommands.tsx:1590
+#: src/constants/WalletConnectCommands.tsx:867
+#: src/constants/WalletConnectCommands.tsx:1287
+#: src/constants/WalletConnectCommands.tsx:1775
+#: src/constants/WalletConnectCommands.tsx:1832
 msgid "Coin Id"
 msgstr ""
 
@@ -1578,8 +1597,17 @@ msgstr ""
 msgid "Coin ID"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:176
+#: src/constants/WalletConnectCommands.tsx:304
+#: src/constants/WalletConnectCommands.tsx:1693
 msgid "Coin Ids"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:631
+msgid "Coin IDs"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:479
+msgid "Coin name"
 msgstr ""
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:215
@@ -1591,7 +1619,7 @@ msgstr ""
 msgid "Commands"
 msgstr ""
 
-#: src/components/settings/SettingsAdvanced.tsx:176
+#: src/components/settings/SettingsAdvanced.tsx:260
 msgid "Commands listed here will be executed without confirmation. Use with caution as this can affect your funds."
 msgstr ""
 
@@ -1753,16 +1781,20 @@ msgstr ""
 msgid "Could not parse offer data"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:2036
+#: src/constants/WalletConnectCommands.tsx:2278
 msgid "Count"
 msgstr ""
 
-#: src/components/offers2/OfferIncomingTable.tsx:100
+#: src/components/offers2/OfferIncomingTable.tsx:108
 msgid "Counter"
 msgstr ""
 
-#: src/components/offers2/OfferBuilderViewer.tsx:240
+#: src/components/offers2/OfferBuilderViewer.tsx:374
 msgid "Counter Offer"
+msgstr ""
+
+#: src/components/offers2/OfferIncomingTable.tsx:95
+msgid "Counter offers are not supported for Data Layer offers"
 msgstr ""
 
 #: src/components/plot/add/PlotAddForm.tsx:265
@@ -1775,7 +1807,7 @@ msgstr ""
 msgid "Create & Manage plots"
 msgstr ""
 
-#: src/components/offers/OfferManager.tsx:416
+#: src/components/offers/OfferManager.tsx:421
 msgid "Create a file that you can use to trade XCH, Chia Asset Tokens, or NFTs with no counter-party risk."
 msgstr ""
 
@@ -1787,7 +1819,7 @@ msgstr ""
 msgid "Create a Plot NFT"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:658
+#: src/constants/WalletConnectCommands.tsx:875
 msgid "Create a spend bundle to mint multiple NFTs"
 msgstr ""
 
@@ -1796,7 +1828,7 @@ msgid "Create an NFT Offer"
 msgstr ""
 
 #: src/components/offers/OfferEditor.tsx:174
-#: src/components/offers/OfferManager.tsx:425
+#: src/components/offers/OfferManager.tsx:430
 msgid "Create an Offer"
 msgstr ""
 
@@ -1804,11 +1836,11 @@ msgstr ""
 msgid "Create Contact"
 msgstr ""
 
-#: src/components/offers2/CreateOfferBuilder.tsx:194
+#: src/components/offers2/CreateOfferBuilder.tsx:199
 msgid "Create Counter Offer"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1020
+#: src/constants/WalletConnectCommands.tsx:1237
 msgid "Create DataStore"
 msgstr ""
 
@@ -1816,19 +1848,23 @@ msgstr ""
 #~ msgid "Create new CAT Wallet"
 #~ msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1459
+#: src/constants/WalletConnectCommands.tsx:1701
 msgid "Create new DID Wallet"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:1676
+msgid "Create new Remote Wallet"
 msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:150
 #: src/components/offers/NFTOfferEditor.tsx:438
 #: src/components/offers/OfferEditor.tsx:156
-#: src/components/offers/OfferManager.tsx:407
-#: src/components/offers2/CreateOfferBuilder.tsx:194
+#: src/components/offers/OfferManager.tsx:412
+#: src/components/offers2/CreateOfferBuilder.tsx:199
 msgid "Create Offer"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:390
+#: src/constants/WalletConnectCommands.tsx:586
 msgid "Create Offer for Ids"
 msgstr ""
 
@@ -1836,7 +1872,7 @@ msgstr ""
 msgid "Create Profile"
 msgstr ""
 
-#: src/components/settings/SettingsAdvanced.tsx:84
+#: src/components/settings/SettingsAdvanced.tsx:168
 msgid "Create Signature"
 msgstr ""
 
@@ -1864,9 +1900,9 @@ msgstr ""
 msgid "Creating Plot NFT for Self Pooling"
 msgstr ""
 
-#: src/components/offers/OfferManager.tsx:250
+#: src/components/offers/OfferManager.tsx:255
 #: src/components/offers2/CancelOfferList.tsx:127
-#: src/components/offers2/OfferIncomingTable.tsx:72
+#: src/components/offers2/OfferIncomingTable.tsx:73
 msgid "Creation Date"
 msgstr ""
 
@@ -1919,6 +1955,10 @@ msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:235
 msgid "Data Hash"
+msgstr ""
+
+#: src/components/offers2/DataLayerOfferViewer.tsx:149
+msgid "Data Layer Offer"
 msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:222
@@ -1975,7 +2015,7 @@ msgid "Delay"
 msgstr "Vertraging"
 
 #: src/components/addressbook/ContactSummary.tsx:42
-#: src/components/offers2/OfferIncomingTable.tsx:105
+#: src/components/offers2/OfferIncomingTable.tsx:113
 #: src/components/plot/PlotAction.tsx:36
 #: src/components/plot/queue/PlotQueueActions.tsx:65
 #: src/components/plotNFT/PlotNFTCard.tsx:106
@@ -1992,11 +2032,11 @@ msgid "Delete Contact"
 msgstr ""
 
 #: src/components/app/AppPassPrompt.tsx:103
-#: src/constants/WalletConnectCommands.tsx:1040
+#: src/constants/WalletConnectCommands.tsx:1257
 msgid "Delete Key"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1065
+#: src/constants/WalletConnectCommands.tsx:1282
 msgid "Delete Mirror"
 msgstr ""
 
@@ -2065,24 +2105,24 @@ msgstr ""
 #: src/components/addressbook/ContactEdit.tsx:119
 #: src/components/signVerify/SigningEntityDID.tsx:83
 #: src/components/signVerify/SignMessage.tsx:165
-#: src/constants/WalletConnectCommands.tsx:1859
+#: src/constants/WalletConnectCommands.tsx:2101
 msgid "DID"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:727
+#: src/constants/WalletConnectCommands.tsx:944
 msgid "DID Coin Dictionary"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:832
+#: src/constants/WalletConnectCommands.tsx:1049
 msgid "DID Id"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:733
+#: src/constants/WalletConnectCommands.tsx:950
 msgid "DID Lineage Parent"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1550
-#: src/constants/WalletConnectCommands.tsx:1754
+#: src/constants/WalletConnectCommands.tsx:1792
+#: src/constants/WalletConnectCommands.tsx:1996
 msgid "DID Metadata"
 msgstr ""
 
@@ -2132,7 +2172,7 @@ msgstr ""
 msgid "Disable direct I/O on the temp 2 directory in order to extract maximum performance with RAM disk"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:415
+#: src/constants/WalletConnectCommands.tsx:611
 msgid "Disable JSON Formatting"
 msgstr ""
 
@@ -2147,7 +2187,7 @@ msgstr ""
 msgid "Disconnect"
 msgstr ""
 
-#: src/components/offers/OfferManager.tsx:303
+#: src/components/offers/OfferManager.tsx:308
 msgid "Display Offer Data"
 msgstr ""
 
@@ -2239,7 +2279,7 @@ msgstr ""
 msgid "Drag & Drop a Signed Message File,<0/> Paste ({0}V)"
 msgstr ""
 
-#: src/components/offers/OfferImport.tsx:159
+#: src/components/offers/OfferImport.tsx:166
 msgid "Drag & Drop an Offer File"
 msgstr ""
 
@@ -2247,7 +2287,7 @@ msgstr ""
 msgid "Drag & Drop an Offer File, Paste"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:403
+#: src/constants/WalletConnectCommands.tsx:599
 msgid "Driver Dict"
 msgstr ""
 
@@ -2287,11 +2327,11 @@ msgid "Edition #"
 msgstr ""
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:226
-#: src/constants/WalletConnectCommands.tsx:820
+#: src/constants/WalletConnectCommands.tsx:1037
 msgid "Edition Number"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:826
+#: src/constants/WalletConnectCommands.tsx:1043
 msgid "Edition Total"
 msgstr ""
 
@@ -2354,8 +2394,12 @@ msgstr ""
 msgid "Enable/Disable the ability to scan all subdirectories automatically for plots"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:351
+#: src/constants/WalletConnectCommands.tsx:547
 msgid "End"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:143
+msgid "End Height"
 msgstr ""
 
 #: src/components/settings/SettingsHarvester.tsx:532
@@ -2461,6 +2505,16 @@ msgstr "Verwachte tijd om te winnen"
 msgid "Exclude final directory"
 msgstr "Definitieve map uitsluiten"
 
+#: src/constants/WalletConnectCommands.tsx:193
+#: src/constants/WalletConnectCommands.tsx:237
+msgid "Excluded Coin Amounts"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:200
+#: src/constants/WalletConnectCommands.tsx:244
+msgid "Excluded Coin IDs"
+msgstr ""
+
 #: src/components/farm/FarmHealth.tsx:252
 msgid "Expected Total plots passing filter"
 msgstr ""
@@ -2473,7 +2527,7 @@ msgstr ""
 #~ msgid "Expiration time will be {0}"
 #~ msgstr ""
 
-#: src/components/offers/OfferManager.tsx:183
+#: src/components/offers/OfferManager.tsx:188
 #: src/components/vcs/VCCard.tsx:166
 msgid "Expired"
 msgstr ""
@@ -2484,6 +2538,11 @@ msgstr ""
 
 #: src/components/chiatools/logViewer/LogViewerToolbar.tsx:150
 msgid "Export Logs"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:624
+#: src/constants/WalletConnectCommands.tsx:696
+msgid "Extra Conditions"
 msgstr ""
 
 #: src/components/offers/utils.ts:126
@@ -2607,7 +2666,7 @@ msgstr ""
 #~ msgid "Farming Status"
 #~ msgstr "Farming Status"
 
-#: src/components/settings/SettingsAdvanced.tsx:62
+#: src/components/settings/SettingsAdvanced.tsx:77
 msgid "Features for advanced users."
 msgstr ""
 
@@ -2625,31 +2684,32 @@ msgstr ""
 #: src/components/pool/PoolInfo.tsx:18
 #: src/components/settings/ProfileAdd.tsx:152
 #: src/components/vcs/VCRevokeDialog.tsx:80
-#: src/constants/WalletConnectCommands.tsx:136
-#: src/constants/WalletConnectCommands.tsx:181
-#: src/constants/WalletConnectCommands.tsx:421
-#: src/constants/WalletConnectCommands.tsx:445
-#: src/constants/WalletConnectCommands.tsx:480
-#: src/constants/WalletConnectCommands.tsx:581
-#: src/constants/WalletConnectCommands.tsx:745
-#: src/constants/WalletConnectCommands.tsx:838
-#: src/constants/WalletConnectCommands.tsx:867
-#: src/constants/WalletConnectCommands.tsx:915
-#: src/constants/WalletConnectCommands.tsx:964
-#: src/constants/WalletConnectCommands.tsx:994
-#: src/constants/WalletConnectCommands.tsx:1026
-#: src/constants/WalletConnectCommands.tsx:1057
-#: src/constants/WalletConnectCommands.tsx:1076
-#: src/constants/WalletConnectCommands.tsx:1329
-#: src/constants/WalletConnectCommands.tsx:1353
-#: src/constants/WalletConnectCommands.tsx:1412
-#: src/constants/WalletConnectCommands.tsx:1449
-#: src/constants/WalletConnectCommands.tsx:1470
-#: src/constants/WalletConnectCommands.tsx:1723
-#: src/constants/WalletConnectCommands.tsx:1760
-#: src/constants/WalletConnectCommands.tsx:1796
-#: src/constants/WalletConnectCommands.tsx:1864
-#: src/constants/WalletConnectCommands.tsx:1973
+#: src/constants/WalletConnectCommands.tsx:264
+#: src/constants/WalletConnectCommands.tsx:309
+#: src/constants/WalletConnectCommands.tsx:511
+#: src/constants/WalletConnectCommands.tsx:617
+#: src/constants/WalletConnectCommands.tsx:655
+#: src/constants/WalletConnectCommands.tsx:690
+#: src/constants/WalletConnectCommands.tsx:798
+#: src/constants/WalletConnectCommands.tsx:962
+#: src/constants/WalletConnectCommands.tsx:1055
+#: src/constants/WalletConnectCommands.tsx:1084
+#: src/constants/WalletConnectCommands.tsx:1132
+#: src/constants/WalletConnectCommands.tsx:1181
+#: src/constants/WalletConnectCommands.tsx:1211
+#: src/constants/WalletConnectCommands.tsx:1243
+#: src/constants/WalletConnectCommands.tsx:1274
+#: src/constants/WalletConnectCommands.tsx:1293
+#: src/constants/WalletConnectCommands.tsx:1546
+#: src/constants/WalletConnectCommands.tsx:1570
+#: src/constants/WalletConnectCommands.tsx:1629
+#: src/constants/WalletConnectCommands.tsx:1666
+#: src/constants/WalletConnectCommands.tsx:1712
+#: src/constants/WalletConnectCommands.tsx:1965
+#: src/constants/WalletConnectCommands.tsx:2002
+#: src/constants/WalletConnectCommands.tsx:2038
+#: src/constants/WalletConnectCommands.tsx:2106
+#: src/constants/WalletConnectCommands.tsx:2215
 msgid "Fee"
 msgstr ""
 
@@ -2679,6 +2739,10 @@ msgstr "Bedrag vergoeding"
 msgid "Fees included in offer:"
 msgstr ""
 
+#: src/constants/WalletConnectCommands.tsx:473
+msgid "Fetches the puzzle reveal and solution for a spent coin (hex strings)."
+msgstr ""
+
 #: src/electron/main.tsx:942
 #: src/electron/main.tsx:1135
 #~ msgid "File"
@@ -2699,16 +2763,16 @@ msgstr ""
 msgid "Final folder location"
 msgstr "Finale locatie map"
 
-#: src/constants/WalletConnectCommands.tsx:1526
+#: src/constants/WalletConnectCommands.tsx:1768
 msgid "Find Lost DID"
 msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:38
-#: src/constants/WalletConnectCommands.tsx:2058
+#: src/constants/WalletConnectCommands.tsx:2300
 msgid "Fingerprint"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:2022
+#: src/constants/WalletConnectCommands.tsx:2264
 msgid "Fingerprints"
 msgstr ""
 
@@ -2721,13 +2785,17 @@ msgstr "Beëindigd"
 msgid "Fit images to cards"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:940
+#: src/constants/WalletConnectCommands.tsx:1157
 msgid "Folder Name"
 msgstr ""
 
 #: src/electron/main.tsx:1086
 #~ msgid "Follow on Twitter"
 #~ msgstr "Follow on Twitter"
+
+#: src/components/offers2/DataLayerOfferViewer.tsx:99
+msgid "For Store Update"
+msgstr ""
 
 #: src/electron/main.tsx:1053
 #~ msgid "Frequently Asked Questions"
@@ -2759,83 +2827,91 @@ msgstr ""
 msgid "General"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:338
+#: src/constants/WalletConnectCommands.tsx:534
 msgid "Get all Offers"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1878
+#: src/constants/WalletConnectCommands.tsx:2120
 msgid "Get All Verifiable Credentials"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1084
+#: src/constants/WalletConnectCommands.tsx:1301
 msgid "Get Ancestors"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:545
+#: src/constants/WalletConnectCommands.tsx:762
 msgid "Get CAT Asset Id"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:532
+#: src/constants/WalletConnectCommands.tsx:749
 msgid "Get CAT Wallet Info"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:123
+msgid "Get Coin Records by Name"
 msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:106
 msgid "Get Current Address"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1271
+#: src/constants/WalletConnectCommands.tsx:1488
 msgid "Get DataLayer Sync Status"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1570
+#: src/constants/WalletConnectCommands.tsx:1812
 msgid "Get DID"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1557
+#: src/constants/WalletConnectCommands.tsx:1799
 msgid "Get DID Current Coin Info"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1583
+#: src/constants/WalletConnectCommands.tsx:1825
 msgid "Get DID Info"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1608
+#: src/constants/WalletConnectCommands.tsx:1850
 msgid "Get DID Metadata"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1810
+#: src/constants/WalletConnectCommands.tsx:2052
 msgid "Get DID Name"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1621
+#: src/constants/WalletConnectCommands.tsx:1863
 msgid "Get DID Public Key"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1634
+#: src/constants/WalletConnectCommands.tsx:1876
 msgid "Get DID Recovery List"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1596
+#: src/constants/WalletConnectCommands.tsx:451
+msgid "Get Height Info"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:1838
 msgid "Get Information Needed For DID Recovery"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1101
+#: src/constants/WalletConnectCommands.tsx:1318
 msgid "Get Keys"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1133
+#: src/constants/WalletConnectCommands.tsx:1350
 msgid "Get Keys Values"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1164
+#: src/constants/WalletConnectCommands.tsx:1381
 msgid "Get Kv Diff"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1199
+#: src/constants/WalletConnectCommands.tsx:1416
 msgid "Get Local Root"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1212
+#: src/constants/WalletConnectCommands.tsx:1429
 msgid "Get Mirrors"
 msgstr ""
 
@@ -2843,79 +2919,87 @@ msgstr ""
 msgid "Get Mojos from the Chia Faucet"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:291
+#: src/constants/WalletConnectCommands.tsx:419
 msgid "Get Next Address"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:643
+#: src/constants/WalletConnectCommands.tsx:860
 msgid "Get NFT Info"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1872
+#: src/constants/WalletConnectCommands.tsx:2114
 msgid "Get NFT Wallets with DIDs"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:613
+#: src/constants/WalletConnectCommands.tsx:830
 msgid "Get NFTs"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:875
+#: src/constants/WalletConnectCommands.tsx:1092
 msgid "Get NFTs Count"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:502
+#: src/constants/WalletConnectCommands.tsx:719
 msgid "Get Offer Data"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:516
+#: src/constants/WalletConnectCommands.tsx:733
 msgid "Get Offer Record"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:488
+#: src/constants/WalletConnectCommands.tsx:705
 msgid "Get Offer Summary"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:383
+#: src/constants/WalletConnectCommands.tsx:579
 msgid "Get Offers Count"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1225
+#: src/constants/WalletConnectCommands.tsx:1442
 msgid "Get Owned Stores"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1949
+#: src/constants/WalletConnectCommands.tsx:2191
 msgid "Get Proofs For Root Hash"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:2051
+#: src/constants/WalletConnectCommands.tsx:2293
 msgid "Get public key"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1232
+#: src/constants/WalletConnectCommands.tsx:472
+msgid "Get puzzle and solution"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:1449
 msgid "Get Root"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1258
+#: src/constants/WalletConnectCommands.tsx:1475
 msgid "Get Root History"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1245
+#: src/constants/WalletConnectCommands.tsx:1462
 msgid "Get Roots"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:208
+msgid "Get Spendable Coins"
 msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:58
 msgid "Get Transaction"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1284
+#: src/constants/WalletConnectCommands.tsx:1501
 msgid "Get Value"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1884
+#: src/constants/WalletConnectCommands.tsx:2126
 msgid "Get Verifiable Credential"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:2015
+#: src/constants/WalletConnectCommands.tsx:2257
 msgid "Get wallet addresses for one or more wallet keys"
 msgstr ""
 
@@ -2927,7 +3011,7 @@ msgstr ""
 msgid "Get Wallet Balances"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:316
+#: src/constants/WalletConnectCommands.tsx:444
 msgid "Get Wallet Sync Status"
 msgstr ""
 
@@ -2986,16 +3070,16 @@ msgstr ""
 msgid "Harvesting Effectiveness"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:793
-#: src/constants/WalletConnectCommands.tsx:1094
+#: src/constants/WalletConnectCommands.tsx:1010
+#: src/constants/WalletConnectCommands.tsx:1311
 msgid "Hash"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1175
+#: src/constants/WalletConnectCommands.tsx:1392
 msgid "Hash 1"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1180
+#: src/constants/WalletConnectCommands.tsx:1397
 msgid "Hash 2"
 msgstr ""
 
@@ -3098,7 +3182,7 @@ msgstr ""
 #~ msgid "I Understand, Create Offer"
 #~ msgstr "I Understand, Create Offer"
 
-#: src/constants/WalletConnectCommands.tsx:194
+#: src/constants/WalletConnectCommands.tsx:322
 msgid "Id"
 msgstr ""
 
@@ -3145,11 +3229,15 @@ msgstr ""
 msgid "In Progress"
 msgstr "Bezig"
 
-#: src/constants/WalletConnectCommands.tsx:369
+#: src/constants/WalletConnectCommands.tsx:565
 msgid "Include My Offers"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:375
+#: src/constants/WalletConnectCommands.tsx:150
+msgid "Include Spent Coins"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:571
 msgid "Include Taken Offers"
 msgstr ""
 
@@ -3162,12 +3250,12 @@ msgstr ""
 msgid "Including a fee in the offer can help expedite the transaction when the offer is accepted. The recommended minimum fee is 0.000005 XCH (5,000,000 mojos)"
 msgstr ""
 
-#: src/components/offers2/OfferIncomingTable.tsx:121
+#: src/components/offers2/OfferIncomingTable.tsx:129
 msgid "Incoming Offers"
 msgstr ""
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:17
-#: src/constants/WalletConnectCommands.tsx:2029
+#: src/constants/WalletConnectCommands.tsx:2271
 msgid "Index"
 msgstr ""
 
@@ -3175,11 +3263,11 @@ msgstr ""
 msgid "Initializing..."
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1718
+#: src/constants/WalletConnectCommands.tsx:1960
 msgid "Inner Address"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1308
+#: src/constants/WalletConnectCommands.tsx:1525
 msgid "Insert"
 msgstr ""
 
@@ -3194,7 +3282,7 @@ msgid ""
 msgstr ""
 
 #: src/components/offers/OfferEditor.tsx:127
-#: src/components/offers2/CreateOfferBuilder.tsx:161
+#: src/components/offers2/CreateOfferBuilder.tsx:166
 msgid ""
 "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
@@ -3253,7 +3341,7 @@ msgstr "IP adres"
 msgid "IP address / host"
 msgstr "IP adres / host"
 
-#: src/constants/WalletConnectCommands.tsx:2008
+#: src/constants/WalletConnectCommands.tsx:2250
 msgid "Is notification visible to all paired fingerprints"
 msgstr ""
 
@@ -3311,9 +3399,9 @@ msgstr "K-grootte"
 
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:213
 #: src/components/walletConnect/WalletConnectRequestPermissionsConfirmDialog.tsx:143
-#: src/constants/WalletConnectCommands.tsx:1051
-#: src/constants/WalletConnectCommands.tsx:1295
-#: src/constants/WalletConnectCommands.tsx:1318
+#: src/constants/WalletConnectCommands.tsx:1268
+#: src/constants/WalletConnectCommands.tsx:1512
+#: src/constants/WalletConnectCommands.tsx:1535
 msgid "Key"
 msgstr ""
 
@@ -3390,8 +3478,8 @@ msgstr "Nieuwste Block uitdagingen"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:255
 #: src/components/plotNFT/PlotNFTCard.tsx:292
-#: src/constants/WalletConnectCommands.tsx:1891
-#: src/constants/WalletConnectCommands.tsx:1903
+#: src/constants/WalletConnectCommands.tsx:2133
+#: src/constants/WalletConnectCommands.tsx:2145
 msgid "Launcher Id"
 msgstr ""
 
@@ -3423,11 +3511,11 @@ msgid "Legacy keyrings are no longer supported. Your keys need to be migrated to
 msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:295
-#: src/constants/WalletConnectCommands.tsx:814
+#: src/constants/WalletConnectCommands.tsx:1031
 msgid "License Hash"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:809
+#: src/constants/WalletConnectCommands.tsx:1026
 msgid "License Uris"
 msgstr ""
 
@@ -3451,7 +3539,7 @@ msgstr ""
 msgid "Loading configuration"
 msgstr ""
 
-#: src/components/offers/OfferManager.tsx:236
+#: src/components/offers/OfferManager.tsx:241
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:107
 msgid "Loading expiration time..."
 msgstr ""
@@ -3492,7 +3580,7 @@ msgstr ""
 #: src/components/helpers/HeightToTimestamp.tsx:16
 #: src/components/nfts/NFTMetadata.tsx:21
 #: src/components/offers/NFTOfferTokenSelector.tsx:97
-#: src/components/offers/OfferManager.tsx:185
+#: src/components/offers/OfferManager.tsx:190
 #: src/components/offers2/OfferBuilderTokenSelector.tsx:98
 #: src/components/offers2/OfferDetails.tsx:38
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:27
@@ -3527,11 +3615,11 @@ msgstr ""
 msgid "Log Viewer"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1337
+#: src/constants/WalletConnectCommands.tsx:1554
 msgid "Make DataLayer Offer"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1342
+#: src/constants/WalletConnectCommands.tsx:1559
 msgid "Maker"
 msgstr ""
 
@@ -3563,9 +3651,14 @@ msgstr "Beheer jouw address waar je Farming vergoeding naartoe gestuurd moet wor
 msgid "Max"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1125
-#: src/constants/WalletConnectCommands.tsx:1156
-#: src/constants/WalletConnectCommands.tsx:1191
+#: src/constants/WalletConnectCommands.tsx:186
+#: src/constants/WalletConnectCommands.tsx:230
+msgid "Max Coin Amount"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:1342
+#: src/constants/WalletConnectCommands.tsx:1373
+#: src/constants/WalletConnectCommands.tsx:1408
 msgid "Max page size"
 msgstr ""
 
@@ -3573,23 +3666,23 @@ msgstr ""
 msgid "Memberships"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:154
-#: src/constants/WalletConnectCommands.tsx:587
+#: src/constants/WalletConnectCommands.tsx:282
+#: src/constants/WalletConnectCommands.tsx:804
 msgid "Memos"
 msgstr ""
 
 #: src/components/notification/NotificationAnnouncementDialog.tsx:67
 #: src/components/signVerify/SignMessage.tsx:204
 #: src/components/signVerify/VerifyMessage.tsx:207
-#: src/constants/WalletConnectCommands.tsx:199
-#: src/constants/WalletConnectCommands.tsx:222
-#: src/constants/WalletConnectCommands.tsx:262
-#: src/constants/WalletConnectCommands.tsx:1990
+#: src/constants/WalletConnectCommands.tsx:327
+#: src/constants/WalletConnectCommands.tsx:350
+#: src/constants/WalletConnectCommands.tsx:390
+#: src/constants/WalletConnectCommands.tsx:2232
 msgid "Message"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:204
-#: src/constants/WalletConnectCommands.tsx:227
+#: src/constants/WalletConnectCommands.tsx:332
+#: src/constants/WalletConnectCommands.tsx:355
 msgid "Message Is Hex Encoded String"
 msgstr ""
 
@@ -3597,11 +3690,11 @@ msgstr ""
 msgid "Message not available"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:803
+#: src/constants/WalletConnectCommands.tsx:1020
 msgid "Meta Hash"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:798
+#: src/constants/WalletConnectCommands.tsx:1015
 msgid "Meta Uris"
 msgstr ""
 
@@ -3613,7 +3706,7 @@ msgstr ""
 #~ msgid "Metadata hash mismatch"
 #~ msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:668
+#: src/constants/WalletConnectCommands.tsx:885
 msgid "Metadata List"
 msgstr ""
 
@@ -3641,27 +3734,32 @@ msgstr ""
 msgid "Migration required to support passphrase protection"
 msgstr ""
 
+#: src/constants/WalletConnectCommands.tsx:179
+#: src/constants/WalletConnectCommands.tsx:223
+msgid "Min Coin Amount"
+msgstr ""
+
 #: src/components/pool/PoolInfo.tsx:28
 msgid "Minimum Difficulty"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:657
+#: src/constants/WalletConnectCommands.tsx:874
 msgid "Mint Bulk"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:739
+#: src/constants/WalletConnectCommands.tsx:956
 msgid "Mint From DID"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:760
+#: src/constants/WalletConnectCommands.tsx:977
 msgid "Mint NFT"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:691
+#: src/constants/WalletConnectCommands.tsx:908
 msgid "Mint Start Number"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:697
+#: src/constants/WalletConnectCommands.tsx:914
 msgid "Mint Total"
 msgstr ""
 
@@ -3762,9 +3860,13 @@ msgstr ""
 #: src/components/addressbook/ContactEdit.tsx:108
 #: src/components/addressbook/ContactEdit.tsx:166
 #: src/components/addressbook/ContactEdit.tsx:366
-#: src/constants/WalletConnectCommands.tsx:604
-#: src/constants/WalletConnectCommands.tsx:1833
+#: src/constants/WalletConnectCommands.tsx:821
+#: src/constants/WalletConnectCommands.tsx:2075
 msgid "Name"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:131
+msgid "Names (coin ids)"
 msgstr ""
 
 #: src/components/settings/ProfileAdd.tsx:121
@@ -3780,6 +3882,7 @@ msgid "Netspace"
 msgstr ""
 
 #: src/components/offers/NFTOfferViewer.tsx:607
+#: src/components/offers2/OfferBuilderViewer.tsx:352
 msgid "Network Fee (Optional)"
 msgstr ""
 
@@ -3787,7 +3890,7 @@ msgstr ""
 msgid "Network Name"
 msgstr "Netwerk naam"
 
-#: src/constants/WalletConnectCommands.tsx:306
+#: src/constants/WalletConnectCommands.tsx:434
 msgid "New Address"
 msgstr ""
 
@@ -3795,7 +3898,7 @@ msgstr ""
 msgid "New counter offer"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:715
+#: src/constants/WalletConnectCommands.tsx:932
 msgid "New Inner Puzzle Hash"
 msgstr ""
 
@@ -3803,7 +3906,7 @@ msgstr ""
 msgid "New offer"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:721
+#: src/constants/WalletConnectCommands.tsx:938
 msgid "New P2 Puzzle Hash"
 msgstr ""
 
@@ -3811,16 +3914,20 @@ msgstr ""
 msgid "New Passphrase"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1914
+#: src/constants/WalletConnectCommands.tsx:2156
 msgid "New Proof Hash"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1908
+#: src/constants/WalletConnectCommands.tsx:2150
 msgid "New Puzzle Hash"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1785
+#: src/constants/WalletConnectCommands.tsx:2027
 msgid "New Recovery DID List"
+msgstr ""
+
+#: src/components/offers2/DataLayerOfferViewer.tsx:57
+msgid "New Root"
 msgstr ""
 
 #: src/components/block/Block.jsx:260
@@ -3849,8 +3956,8 @@ msgstr ""
 msgid "NFT Coin ID"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:857
-#: src/constants/WalletConnectCommands.tsx:1855
+#: src/constants/WalletConnectCommands.tsx:1074
+#: src/constants/WalletConnectCommands.tsx:2097
 msgid "NFT Coin Ids"
 msgstr ""
 
@@ -3880,7 +3987,7 @@ msgstr ""
 msgid "NFT identifier does not reference a valid NFT coin."
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1850
+#: src/constants/WalletConnectCommands.tsx:2092
 msgid "NFT Launcher Id"
 msgstr ""
 
@@ -3955,7 +4062,7 @@ msgstr ""
 msgid "No CPU Affinity"
 msgstr ""
 
-#: src/components/offers/OfferManager.tsx:370
+#: src/components/offers/OfferManager.tsx:375
 msgid "No current offers"
 msgstr ""
 
@@ -3967,7 +4074,7 @@ msgstr ""
 msgid "No file available"
 msgstr ""
 
-#: src/components/offers2/OfferIncomingTable.tsx:259
+#: src/components/offers2/OfferIncomingTable.tsx:283
 msgid "No incoming offers"
 msgstr ""
 
@@ -3995,7 +4102,7 @@ msgstr ""
 msgid "Node ID"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:2043
+#: src/constants/WalletConnectCommands.tsx:2285
 msgid "Non Observer Derivation"
 msgstr ""
 
@@ -4090,7 +4197,7 @@ msgstr ""
 msgid "Notify Current Owner"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1480
+#: src/constants/WalletConnectCommands.tsx:1722
 msgid "Number of Backup Ids Needed"
 msgstr ""
 
@@ -4103,11 +4210,11 @@ msgstr "Aantal buckets"
 msgid "Number of buckets for phase 3 & 4"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1790
+#: src/constants/WalletConnectCommands.tsx:2032
 msgid "Number Of DIDs Required For Recovery"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:629
+#: src/constants/WalletConnectCommands.tsx:846
 msgid "Number of NFTs"
 msgstr ""
 
@@ -4156,32 +4263,32 @@ msgstr ""
 msgid "Occupied space"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:472
-#: src/constants/WalletConnectCommands.tsx:1406
-#: src/constants/WalletConnectCommands.tsx:1443
+#: src/constants/WalletConnectCommands.tsx:682
+#: src/constants/WalletConnectCommands.tsx:1623
+#: src/constants/WalletConnectCommands.tsx:1660
 msgid "Offer"
 msgstr ""
 
-#: src/components/offers/OfferManager.tsx:413
+#: src/components/offers/OfferManager.tsx:418
 #: src/components/offers2/OfferNavigationHeader.tsx:16
 msgid "Offer Builder"
 msgstr ""
 
 #: src/components/offers/NFTOfferViewer.tsx:173
 #: src/components/offers2/OfferBuilderValue.tsx:217
-#: src/components/offers2/OfferBuilderViewer.tsx:283
+#: src/components/offers2/OfferBuilderViewer.tsx:417
 msgid "Offer cannot be accepted because you don't possess the requested assets"
 msgstr ""
 
 #: src/components/offers/OfferDataDialog.tsx:29
 #: src/components/offers/OfferDataDialog.tsx:37
-#: src/constants/WalletConnectCommands.tsx:460
-#: src/constants/WalletConnectCommands.tsx:495
-#: src/constants/WalletConnectCommands.tsx:2002
+#: src/constants/WalletConnectCommands.tsx:670
+#: src/constants/WalletConnectCommands.tsx:712
+#: src/constants/WalletConnectCommands.tsx:2244
 msgid "Offer Data"
 msgstr ""
 
-#: src/components/offers2/OfferBuilderViewerDialog.tsx:54
+#: src/components/offers2/OfferBuilderViewerDialog.tsx:57
 msgid "Offer Details"
 msgstr ""
 
@@ -4197,6 +4304,7 @@ msgstr ""
 msgid "Offer file is too large (> 1MB)"
 msgstr ""
 
+#: src/components/offers2/OfferBuilderViewer.tsx:289
 #: src/hooks/useAcceptOfferHook.tsx:99
 msgid "Offer has been accepted and is awaiting confirmation."
 msgstr ""
@@ -4213,12 +4321,12 @@ msgstr ""
 msgid "Offer has expired."
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:509
-#: src/constants/WalletConnectCommands.tsx:523
+#: src/constants/WalletConnectCommands.tsx:726
+#: src/constants/WalletConnectCommands.tsx:740
 msgid "Offer Id"
 msgstr ""
 
-#: src/components/offers/OfferManager.tsx:394
+#: src/components/offers/OfferManager.tsx:399
 msgid "Offer Management"
 msgstr ""
 
@@ -4239,13 +4347,17 @@ msgstr ""
 #~ msgid "OfferBin URL"
 #~ msgstr "OfferBin URL"
 
-#: src/components/offers/OfferManager.tsx:215
+#: src/components/offers/OfferManager.tsx:220
 #: src/components/offers2/CancelOfferList.tsx:80
 msgid "Offered"
 msgstr ""
 
+#: src/components/offers2/DataLayerOfferViewer.tsx:164
+msgid "Offered Store Updates ({0})"
+msgstr ""
+
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:24
-#: src/components/offers2/OfferIncomingTable.tsx:64
+#: src/components/offers2/OfferIncomingTable.tsx:65
 msgid "Offering"
 msgstr ""
 
@@ -4266,15 +4378,15 @@ msgstr ""
 msgid "Offers are a way to trade assets in a genuinely peer-to-peer way that eliminates counterparty risk."
 msgstr ""
 
-#: src/components/offers/OfferManager.tsx:397
+#: src/components/offers/OfferManager.tsx:402
 msgid "Offers are a way to trade assets in a genuinely peer-to-peer way to eliminate counterparty risk."
 msgstr ""
 
-#: src/components/offers/OfferManager.tsx:446
+#: src/components/offers/OfferManager.tsx:451
 msgid "Offers you accepted"
 msgstr ""
 
-#: src/components/offers/OfferManager.tsx:445
+#: src/components/offers/OfferManager.tsx:450
 msgid "Offers you created"
 msgstr ""
 
@@ -4296,7 +4408,7 @@ msgstr ""
 msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer the NFT?"
 msgstr ""
 
-#: src/components/offers2/OfferBuilderViewer.tsx:287
+#: src/components/offers2/OfferBuilderViewer.tsx:421
 msgid "One or more unknown tokens are being offered. Be sure to verify that the asset IDs of the offered tokens match the asset IDs of the tokens you are expecting."
 msgstr ""
 
@@ -4337,11 +4449,11 @@ msgstr ""
 msgid "or <0>browse</0> on your computer"
 msgstr ""
 
-#: src/components/offers/OfferImport.tsx:162
+#: src/components/offers/OfferImport.tsx:169
 msgid "or Paste (⌘V) an Offer blob"
 msgstr ""
 
-#: src/components/offers/OfferImport.tsx:162
+#: src/components/offers/OfferImport.tsx:169
 msgid "or Paste (Ctrl-V) an Offer blob"
 msgstr ""
 
@@ -4365,7 +4477,7 @@ msgstr ""
 msgid "Override the thread count for Phase 3"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:934
+#: src/constants/WalletConnectCommands.tsx:1151
 msgid "Overwrite"
 msgstr ""
 
@@ -4385,9 +4497,9 @@ msgstr ""
 msgid "p2SingletonPuzzleHash is not defined"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1119
-#: src/constants/WalletConnectCommands.tsx:1150
-#: src/constants/WalletConnectCommands.tsx:1185
+#: src/constants/WalletConnectCommands.tsx:1336
+#: src/constants/WalletConnectCommands.tsx:1367
+#: src/constants/WalletConnectCommands.tsx:1402
 msgid "Page"
 msgstr ""
 
@@ -4407,7 +4519,7 @@ msgstr ""
 msgid "Parallel Decompressor Count"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1968
+#: src/constants/WalletConnectCommands.tsx:2210
 msgid "Parent Coin Info"
 msgstr ""
 
@@ -4477,7 +4589,7 @@ msgid "Paste link"
 msgstr ""
 
 #: src/components/offers/OfferDataEntryDialog.tsx:33
-#: src/components/offers/OfferImport.tsx:149
+#: src/components/offers/OfferImport.tsx:156
 msgid "Paste Offer Data"
 msgstr ""
 
@@ -4619,7 +4731,8 @@ msgstr "Selecteer finale folder"
 msgid "Please specify temporary directory"
 msgstr "Selecteer tijdelijke folder"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:223
+#: src/components/offers2/OfferBuilderViewer.tsx:250
+#: src/components/offers2/OfferBuilderViewer.tsx:262
 msgid "Please wait for wallet synchronization"
 msgstr ""
 
@@ -4924,11 +5037,11 @@ msgstr ""
 msgid "Proofs Found"
 msgstr "Bewijs gevonden"
 
-#: src/constants/WalletConnectCommands.tsx:1956
+#: src/constants/WalletConnectCommands.tsx:2198
 msgid "Proofs Hash"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1943
+#: src/constants/WalletConnectCommands.tsx:2185
 msgid "Proofs Object (Key Value Pairs)"
 msgstr ""
 
@@ -4940,16 +5053,16 @@ msgstr ""
 msgid "Protocol Version"
 msgstr ""
 
-#: src/components/settings/SettingsAdvanced.tsx:100
+#: src/components/settings/SettingsAdvanced.tsx:184
 msgid "Prove or verify possession of a wallet address, NFT, or DID using a digital signature."
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1919
+#: src/constants/WalletConnectCommands.tsx:2161
 msgid "Provider Inner Puzzle Hash"
 msgstr ""
 
 #: src/components/signVerify/VerifyMessage.tsx:219
-#: src/constants/WalletConnectCommands.tsx:267
+#: src/constants/WalletConnectCommands.tsx:395
 msgid "Public Key"
 msgstr ""
 
@@ -4957,15 +5070,27 @@ msgstr ""
 msgid "Purchase Summary"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:324
+#: src/constants/WalletConnectCommands.tsx:518
+msgid "Push"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:500
+msgid "Push a list of transactions to the blockchain via the wallet"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:487
 msgid "Push a spend bundle (transaction) to the blockchain"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:323
+#: src/constants/WalletConnectCommands.tsx:486
 msgid "Push Transaction"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:161
+#: src/constants/WalletConnectCommands.tsx:499
+msgid "Push Transactions"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:289
 msgid "Puzzle Decorator"
 msgstr ""
 
@@ -5006,7 +5131,7 @@ msgstr ""
 #~ msgid "Recommended: 0.000005 XCH"
 #~ msgstr "Recommended: 0.000005 XCH"
 
-#: src/constants/WalletConnectCommands.tsx:1538
+#: src/constants/WalletConnectCommands.tsx:1780
 msgid "Recovery List Hash"
 msgstr ""
 
@@ -5027,6 +5152,14 @@ msgstr ""
 msgid "Refresh Plots"
 msgstr "Vernieuw plots"
 
+#: src/constants/WalletConnectCommands.tsx:1681
+msgid "Register Remote Coins"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:1682
+msgid "Registers a list of remote coin IDs with a remote wallet."
+msgstr ""
+
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:270
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:200
 #: src/components/walletConnect/WalletConnectRequestPermissionsConfirmDialog.tsx:90
@@ -5041,7 +5174,7 @@ msgstr ""
 #~ msgid "Release Notes"
 #~ msgstr "Release Notes"
 
-#: src/components/offers/OfferManager.tsx:292
+#: src/components/offers/OfferManager.tsx:297
 msgid "Relist Offer"
 msgstr ""
 
@@ -5053,7 +5186,7 @@ msgstr ""
 msgid "Remote Harvester"
 msgstr ""
 
-#: src/components/settings/SettingsAdvanced.tsx:195
+#: src/components/settings/SettingsAdvanced.tsx:279
 msgid "Remove"
 msgstr ""
 
@@ -5075,7 +5208,7 @@ msgstr ""
 msgid "Remove Passphrase"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1361
+#: src/constants/WalletConnectCommands.tsx:1578
 msgid "Remove Subscriptions"
 msgstr ""
 
@@ -5096,13 +5229,13 @@ msgstr "Aan het verwijderen"
 msgid "Request Permissions"
 msgstr ""
 
-#: src/components/offers/OfferManager.tsx:225
+#: src/components/offers/OfferManager.tsx:230
 #: src/components/offers2/CancelOfferList.tsx:95
 msgid "Requested"
 msgstr ""
 
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:31
-#: src/components/offers2/OfferIncomingTable.tsx:44
+#: src/components/offers2/OfferIncomingTable.tsx:45
 msgid "Requesting"
 msgstr ""
 
@@ -5110,7 +5243,7 @@ msgstr ""
 msgid "Requesting Permissions"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:339
+#: src/constants/WalletConnectCommands.tsx:535
 msgid "Requests a complete listing of the offers associated with the current wallet key"
 msgstr ""
 
@@ -5118,24 +5251,28 @@ msgstr ""
 msgid "Requests a complete listing of the wallets associated with the current wallet key"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:615
+#: src/constants/WalletConnectCommands.tsx:832
 msgid "Requests a full or paginated listing of NFTs associated with one or more wallets associated with the current wallet key"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:2052
+#: src/constants/WalletConnectCommands.tsx:2294
 msgid "Requests a master public key from your wallet"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:292
+#: src/constants/WalletConnectCommands.tsx:420
 msgid "Requests a new receive address associated with the current wallet key"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:644
+#: src/constants/WalletConnectCommands.tsx:861
 msgid "Requests details for a specific NFT"
 msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:59
 msgid "Requests details for a specific transaction"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:209
+msgid "Requests spendable coins for a specific wallet"
 msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:73
@@ -5146,7 +5283,7 @@ msgstr ""
 msgid "Requests the asset balances for specific wallets associated with the current wallet key"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:546
+#: src/constants/WalletConnectCommands.tsx:763
 msgid "Requests the CAT asset ID for a specific CAT wallet"
 msgstr ""
 
@@ -5154,35 +5291,39 @@ msgstr ""
 msgid "Requests the current receive address associated with the current wallet key"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:518
+#: src/constants/WalletConnectCommands.tsx:735
 msgid "Requests the details for a specific offer"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:877
+#: src/constants/WalletConnectCommands.tsx:1094
 msgid "Requests the number of NFTs associated with one or more wallets associated with the current wallet key"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:384
+#: src/constants/WalletConnectCommands.tsx:580
 msgid "Requests the number of offers associated with the current wallet key"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:503
+#: src/constants/WalletConnectCommands.tsx:720
 msgid "Requests the raw offer data for a specific offer"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:489
+#: src/constants/WalletConnectCommands.tsx:124
+msgid "Requests the status of a list of coin records from the Wallet's coin store."
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:706
 msgid "Requests the summarized details of a specific offer"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:317
+#: src/constants/WalletConnectCommands.tsx:445
 msgid "Requests the syncing status of current wallet"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:454
+#: src/constants/WalletConnectCommands.tsx:664
 msgid "Requests the validity status of a specific offer"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:256
+#: src/constants/WalletConnectCommands.tsx:384
 msgid "Requests the verification status for a digital signature"
 msgstr ""
 
@@ -5190,8 +5331,16 @@ msgstr ""
 msgid "Require Confirmation"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1544
+#: src/constants/WalletConnectCommands.tsx:1786
 msgid "Required Number of DIDs for Verification"
+msgstr ""
+
+#: src/components/offers2/DataLayerOfferViewer.tsx:86
+msgid "Required Proofs"
+msgstr ""
+
+#: src/components/offers2/DataLayerOfferViewer.tsx:102
+msgid "Requires Proof From Store"
 msgstr ""
 
 #: src/components/farm/FarmHealth.tsx:286
@@ -5223,45 +5372,49 @@ msgstr ""
 msgid "Restore Default Dapp Permissions"
 msgstr ""
 
-#: src/components/settings/SettingsAdvanced.tsx:117
+#: src/components/settings/SettingsAdvanced.tsx:201
 msgid "Resync"
 msgstr ""
 
 #: src/components/settings/ResyncPrompt.tsx:37
-#: src/components/settings/SettingsAdvanced.tsx:109
+#: src/components/settings/SettingsAdvanced.tsx:193
 msgid "Resync Wallet"
 msgstr ""
 
-#: src/components/settings/SettingsAdvanced.tsx:125
+#: src/components/settings/SettingsAdvanced.tsx:209
 msgid "Resyncing forces reloading data from the blockchain about your transactions without losing other locally stored information like open, accepted, or cancelled offer files. Resyncing will require you to restart the app."
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1430
+#: src/constants/WalletConnectCommands.tsx:1647
 msgid "retain"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:752
-#: src/constants/WalletConnectCommands.tsx:1736
-#: src/constants/WalletConnectCommands.tsx:1767
-#: src/constants/WalletConnectCommands.tsx:1803
-#: src/constants/WalletConnectCommands.tsx:1930
+#: src/constants/WalletConnectCommands.tsx:453
+msgid "Returns wallet height, latest block timestamp, and related fields. Optional usePeakHeight uses the chain tip while syncing."
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:969
+#: src/constants/WalletConnectCommands.tsx:1978
+#: src/constants/WalletConnectCommands.tsx:2009
+#: src/constants/WalletConnectCommands.tsx:2045
+#: src/constants/WalletConnectCommands.tsx:2172
 msgid "Reuse Puzzle Hash"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:363
+#: src/constants/WalletConnectCommands.tsx:559
 msgid "Reverse"
 msgstr ""
 
 #: src/components/offers2/OfferBuilderTokenSelector.tsx:75
 #: src/components/offers2/OfferBuilderTokenSelector.tsx:110
 #: src/components/walletConnect/WalletConnectCATAmount.tsx:30
-#: src/util/resolveOfferInfo.tsx:66
+#: src/util/resolveOfferInfo.tsx:76
 msgid "Revocable"
 msgstr ""
 
 #: src/components/vcs/VCCard.tsx:209
 #: src/components/vcs/VCCard.tsx:311
-#: src/constants/WalletConnectCommands.tsx:1962
+#: src/constants/WalletConnectCommands.tsx:2204
 msgid "Revoke Verifiable Credential"
 msgstr ""
 
@@ -5269,9 +5422,9 @@ msgstr ""
 msgid "Revoked"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1113
-#: src/constants/WalletConnectCommands.tsx:1144
-#: src/constants/WalletConnectCommands.tsx:1300
+#: src/constants/WalletConnectCommands.tsx:1330
+#: src/constants/WalletConnectCommands.tsx:1361
+#: src/constants/WalletConnectCommands.tsx:1517
 msgid "Root Hash"
 msgstr ""
 
@@ -5279,14 +5432,14 @@ msgstr ""
 msgid "Royalties are built into the NFT, so they will automatically be accounted for when the offer is created/accepted."
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:679
-#: src/constants/WalletConnectCommands.tsx:770
+#: src/constants/WalletConnectCommands.tsx:896
+#: src/constants/WalletConnectCommands.tsx:987
 msgid "Royalty Address"
 msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:159
-#: src/constants/WalletConnectCommands.tsx:673
-#: src/constants/WalletConnectCommands.tsx:776
+#: src/constants/WalletConnectCommands.tsx:890
+#: src/constants/WalletConnectCommands.tsx:993
 msgid "Royalty Percentage"
 msgstr ""
 
@@ -5306,7 +5459,7 @@ msgstr ""
 msgid "Save"
 msgstr "Bewaar"
 
-#: src/components/offers/OfferManager.tsx:313
+#: src/components/offers/OfferManager.tsx:318
 msgid "Save Offer File"
 msgstr ""
 
@@ -5343,8 +5496,8 @@ msgstr ""
 msgid "Second temporary folder location"
 msgstr "Locatie tweede tijdelijke map"
 
-#: src/constants/WalletConnectCommands.tsx:440
-#: src/constants/WalletConnectCommands.tsx:988
+#: src/constants/WalletConnectCommands.tsx:650
+#: src/constants/WalletConnectCommands.tsx:1205
 msgid "Secure"
 msgstr ""
 
@@ -5373,8 +5526,12 @@ msgstr ""
 msgid "Select an NFT"
 msgstr ""
 
-#: src/components/settings/SettingsAdvanced.tsx:147
-#: src/components/settings/SettingsAdvanced.tsx:152
+#: src/constants/WalletConnectCommands.tsx:158
+msgid "Select Coins"
+msgstr ""
+
+#: src/components/settings/SettingsAdvanced.tsx:231
+#: src/components/settings/SettingsAdvanced.tsx:236
 msgid "Select Command"
 msgstr ""
 
@@ -5394,7 +5551,7 @@ msgstr ""
 msgid "Select keys which you want to share with WalletConnect"
 msgstr ""
 
-#: src/components/offers/OfferImport.tsx:152
+#: src/components/offers/OfferImport.tsx:159
 msgid "Select Offer File"
 msgstr ""
 
@@ -5439,6 +5596,10 @@ msgstr ""
 msgid "Selected"
 msgstr "Geselecteerd"
 
+#: src/constants/WalletConnectCommands.tsx:159
+msgid "Selects coins to be spent from a specific wallet"
+msgstr ""
+
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:93
 msgid "Self pool. When you win a block you will earn XCH rewards."
 msgstr ""
@@ -5470,7 +5631,7 @@ msgstr ""
 msgid "Send to Address"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:124
+#: src/constants/WalletConnectCommands.tsx:252
 msgid "Send Transaction"
 msgstr ""
 
@@ -5482,11 +5643,11 @@ msgstr ""
 msgid "Set a time after which this offer expires."
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1823
+#: src/constants/WalletConnectCommands.tsx:2065
 msgid "Set DID Name"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1840
+#: src/constants/WalletConnectCommands.tsx:2082
 msgid "Set NFT DID"
 msgstr ""
 
@@ -5505,7 +5666,11 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: src/components/offers/OfferManager.tsx:269
+#: src/components/settings/SettingsAdvanced.tsx:92
+msgid "Settings for newer wallet RPC behavior. Misuse can submit spends based on incomplete chain state."
+msgstr ""
+
+#: src/components/offers/OfferManager.tsx:274
 #: src/components/offers/OfferShareDialog.tsx:715
 msgid "Share"
 msgstr ""
@@ -5550,11 +5715,11 @@ msgstr ""
 msgid "Show"
 msgstr ""
 
-#: src/components/offers/OfferManager.tsx:283
+#: src/components/offers/OfferManager.tsx:288
 msgid "Show Details"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1979
+#: src/constants/WalletConnectCommands.tsx:2221
 msgid "Show notification with offer or general announcement"
 msgstr ""
 
@@ -5576,6 +5741,7 @@ msgid "Shut down"
 msgstr ""
 
 #: src/components/signVerify/SignMessage.tsx:218
+#: src/constants/WalletConnectCommands.tsx:524
 msgid "Sign"
 msgstr ""
 
@@ -5583,16 +5749,16 @@ msgstr ""
 msgid "Sign Message"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:212
+#: src/constants/WalletConnectCommands.tsx:340
 msgid "Sign Message by Address"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:189
+#: src/constants/WalletConnectCommands.tsx:317
 msgid "Sign Message by Id"
 msgstr ""
 
 #: src/components/signVerify/VerifyMessage.tsx:228
-#: src/constants/WalletConnectCommands.tsx:272
+#: src/constants/WalletConnectCommands.tsx:400
 msgid "Signature"
 msgstr ""
 
@@ -5608,7 +5774,7 @@ msgstr ""
 msgid "Signature Verified"
 msgstr ""
 
-#: src/components/settings/SettingsAdvanced.tsx:75
+#: src/components/settings/SettingsAdvanced.tsx:159
 msgid "Signatures"
 msgstr ""
 
@@ -5633,7 +5799,7 @@ msgid "Signing Entity"
 msgstr ""
 
 #: src/components/signVerify/VerifyMessage.tsx:237
-#: src/constants/WalletConnectCommands.tsx:283
+#: src/constants/WalletConnectCommands.tsx:411
 msgid "Signing Mode"
 msgstr ""
 
@@ -5694,15 +5860,15 @@ msgstr ""
 #~ msgid "Speech"
 #~ msgstr "Speech"
 
-#: src/constants/WalletConnectCommands.tsx:329
+#: src/constants/WalletConnectCommands.tsx:492
 msgid "Spend Bundle"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:559
+#: src/constants/WalletConnectCommands.tsx:776
 msgid "Spend CAT"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1924
+#: src/constants/WalletConnectCommands.tsx:2166
 msgid "Spend Fee"
 msgstr ""
 
@@ -5726,15 +5892,19 @@ msgstr ""
 msgid "Standard Version Number"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:345
+#: src/constants/WalletConnectCommands.tsx:541
 msgid "Start"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:635
+#: src/constants/WalletConnectCommands.tsx:136
+msgid "Start Height"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:852
 msgid "Start Index"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:357
+#: src/constants/WalletConnectCommands.tsx:553
 msgid "Start Key"
 msgstr ""
 
@@ -5752,7 +5922,7 @@ msgstr "Toestand"
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:69
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:74
-#: src/components/offers/OfferManager.tsx:205
+#: src/components/offers/OfferManager.tsx:210
 #: src/components/plot/PlotHarvesterPlots.tsx:74
 #: src/components/plot/PlotPlotting.tsx:26
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:101
@@ -5761,34 +5931,42 @@ msgstr "Toestand"
 msgid "Status"
 msgstr ""
 
+#: src/components/offers2/DataLayerOfferViewer.tsx:43
+msgid "Store {0}"
+msgstr ""
+
 #: src/components/app/AppSelectMode.tsx:78
 msgid "Store and Send XCH"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:899
-#: src/constants/WalletConnectCommands.tsx:953
-#: src/constants/WalletConnectCommands.tsx:983
-#: src/constants/WalletConnectCommands.tsx:1013
-#: src/constants/WalletConnectCommands.tsx:1046
-#: src/constants/WalletConnectCommands.tsx:1089
-#: src/constants/WalletConnectCommands.tsx:1108
-#: src/constants/WalletConnectCommands.tsx:1139
+#: src/constants/WalletConnectCommands.tsx:1116
 #: src/constants/WalletConnectCommands.tsx:1170
-#: src/constants/WalletConnectCommands.tsx:1205
-#: src/constants/WalletConnectCommands.tsx:1218
-#: src/constants/WalletConnectCommands.tsx:1238
-#: src/constants/WalletConnectCommands.tsx:1264
-#: src/constants/WalletConnectCommands.tsx:1277
-#: src/constants/WalletConnectCommands.tsx:1290
-#: src/constants/WalletConnectCommands.tsx:1313
-#: src/constants/WalletConnectCommands.tsx:1366
-#: src/constants/WalletConnectCommands.tsx:1383
-#: src/constants/WalletConnectCommands.tsx:1425
+#: src/constants/WalletConnectCommands.tsx:1200
+#: src/constants/WalletConnectCommands.tsx:1230
+#: src/constants/WalletConnectCommands.tsx:1263
+#: src/constants/WalletConnectCommands.tsx:1306
+#: src/constants/WalletConnectCommands.tsx:1325
+#: src/constants/WalletConnectCommands.tsx:1356
+#: src/constants/WalletConnectCommands.tsx:1387
+#: src/constants/WalletConnectCommands.tsx:1422
+#: src/constants/WalletConnectCommands.tsx:1435
+#: src/constants/WalletConnectCommands.tsx:1455
+#: src/constants/WalletConnectCommands.tsx:1481
+#: src/constants/WalletConnectCommands.tsx:1494
+#: src/constants/WalletConnectCommands.tsx:1507
+#: src/constants/WalletConnectCommands.tsx:1530
+#: src/constants/WalletConnectCommands.tsx:1583
+#: src/constants/WalletConnectCommands.tsx:1600
+#: src/constants/WalletConnectCommands.tsx:1642
 msgid "Store Id"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:928
-#: src/constants/WalletConnectCommands.tsx:1251
+#: src/components/offers2/DataLayerOfferViewer.tsx:49
+msgid "Store ID"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:1145
+#: src/constants/WalletConnectCommands.tsx:1468
 msgid "Store Ids"
 msgstr ""
 
@@ -5796,19 +5974,20 @@ msgstr ""
 msgid "Submit"
 msgstr "Verzend"
 
-#: src/constants/WalletConnectCommands.tsx:971
+#: src/constants/WalletConnectCommands.tsx:1188
 msgid "Submit on chain"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1378
+#: src/constants/WalletConnectCommands.tsx:1595
 msgid "Subscribe"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1395
+#: src/constants/WalletConnectCommands.tsx:1612
 msgid "Subscriptions"
 msgstr ""
 
 #: src/components/notification/NotificationSendDialog.tsx:144
+#: src/components/offers2/OfferBuilderViewer.tsx:288
 #: src/components/vcs/VCCard.tsx:278
 #: src/hooks/useAcceptOfferHook.tsx:98
 msgid "Success"
@@ -5845,24 +6024,24 @@ msgstr "Aan het synchroniseren"
 msgid "Syncing <0/>/<1/>"
 msgstr "Synchroniseren <0/>/<1/>"
 
-#: src/constants/WalletConnectCommands.tsx:1401
+#: src/constants/WalletConnectCommands.tsx:1618
 msgid "Take DataLayer Offer"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:467
+#: src/constants/WalletConnectCommands.tsx:677
 msgid "Take Offer"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1347
+#: src/constants/WalletConnectCommands.tsx:1564
 msgid "Taker"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:782
-#: src/constants/WalletConnectCommands.tsx:862
+#: src/constants/WalletConnectCommands.tsx:999
+#: src/constants/WalletConnectCommands.tsx:1079
 msgid "Target Address"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:685
+#: src/constants/WalletConnectCommands.tsx:902
 msgid "Target List"
 msgstr ""
 
@@ -5912,6 +6091,10 @@ msgstr ""
 
 #: src/components/walletConnect/WalletConnectRequestPermissionsConfirmDialog.tsx:108
 msgid "The following commands are not allowed to bypass confirmation."
+msgstr ""
+
+#: src/components/offers2/DataLayerOfferViewer.tsx:90
+msgid "The following values must be proven to exist in the specified stores before this offer can be accepted."
 msgstr ""
 
 #: src/components/farm/FarmFullNodeConnections.tsx:79
@@ -5968,7 +6151,7 @@ msgstr "De node is niet gesynchroniseerd"
 msgid "The node is syncing, which means it is downloading blocks from other nodes, to reach the latest block in the chain"
 msgstr "De node is aan het synchroniseren, wat betekent dat hij blokken van andere nodes downloadt, om het laatste blok in de keten te bereiken"
 
-#: src/components/offers2/OfferIncomingTable.tsx:90
+#: src/components/offers2/OfferIncomingTable.tsx:97
 msgid "The offer creator has chosen not to allow counter offers"
 msgstr ""
 
@@ -6040,12 +6223,20 @@ msgstr ""
 msgid "These plots are invalid, you might want to delete them."
 msgstr "Deze plots zijn ongeldig en mogen verwijderd worden."
 
+#: src/components/offers2/DataLayerOfferViewer.tsx:168
+msgid "These stores will have their roots updated to the specified values."
+msgstr ""
+
 #: src/components/offers/NFTOfferEditor.tsx:361
 msgid "They will receive"
 msgstr ""
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:83
 msgid "This allows you to add a directory that has plots in it. If you have not created any plots, go to the plotting screen."
+msgstr ""
+
+#: src/components/offers2/OfferBuilderViewer.tsx:328
+msgid "This Data Layer offer contains no store updates and cannot be accepted."
 msgstr ""
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:114
@@ -6115,12 +6306,13 @@ msgid "This offer has a fee included to help expedite the transaction when the o
 msgstr ""
 
 #: src/components/offers/OfferHeader.tsx:63
-#: src/components/offers2/OfferBuilderViewer.tsx:275
+#: src/components/offers2/OfferBuilderViewer.tsx:409
 msgid "This offer has completed successfully"
 msgstr ""
 
 #: src/components/offers/OfferHeader.tsx:46
-#: src/components/offers2/OfferBuilderViewer.tsx:262
+#: src/components/offers2/OfferBuilderViewer.tsx:333
+#: src/components/offers2/OfferBuilderViewer.tsx:396
 msgid "This offer is no longer valid because it was accepted or cancelled. Click <0>here</0> to learn more."
 msgstr ""
 
@@ -6129,7 +6321,11 @@ msgstr ""
 #~ msgid "This offer is no longer valid. To understand why, click <0>here</0> to learn more."
 #~ msgstr "This offer is no longer valid. To understand why, click <0>here</0> to learn more."
 
-#: src/components/offers2/OfferBuilderViewer.tsx:279
+#: src/components/offers2/DataLayerOfferViewer.tsx:152
+msgid "This offer proposes updates to Data Layer store roots. Accepting it will transition the listed stores to new roots. Dependencies specify values that must be proven to exist in other stores before acceptance."
+msgstr ""
+
+#: src/components/offers2/OfferBuilderViewer.tsx:413
 msgid "This offer was cancelled"
 msgstr ""
 
@@ -6156,7 +6352,7 @@ msgstr ""
 #: src/components/offers2/OfferBuilderTokenSelector.tsx:77
 #: src/components/offers2/OfferBuilderTokenSelector.tsx:112
 #: src/components/walletConnect/WalletConnectCATAmount.tsx:32
-#: src/util/resolveOfferInfo.tsx:68
+#: src/util/resolveOfferInfo.tsx:78
 msgid "This token can be revoked by the issuer"
 msgstr ""
 
@@ -6324,7 +6520,7 @@ msgstr ""
 msgid "Touch all pages of buffer allocations before starting to plot."
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:435
+#: src/constants/WalletConnectCommands.tsx:645
 msgid "Trade Id"
 msgstr ""
 
@@ -6356,6 +6552,10 @@ msgstr ""
 msgid "Transaction Speed"
 msgstr ""
 
+#: src/constants/WalletConnectCommands.tsx:506
+msgid "Transactions"
+msgstr ""
+
 #: src/components/block/Block.jsx:228
 msgid "Transactions Filter Hash"
 msgstr "Transacties filter hash"
@@ -6369,13 +6569,13 @@ msgstr ""
 msgid "Transfer"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1707
+#: src/constants/WalletConnectCommands.tsx:1949
 msgid "Transfer DID"
 msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:198
 #: src/components/nfts/NFTTransferAction.tsx:201
-#: src/constants/WalletConnectCommands.tsx:847
+#: src/constants/WalletConnectCommands.tsx:1064
 msgid "Transfer NFT"
 msgstr ""
 
@@ -6408,7 +6608,7 @@ msgid "Turn this off if you don't have any compressed plots to harvest"
 msgstr ""
 
 #: src/components/vcs/VCCard.tsx:163
-#: src/constants/WalletConnectCommands.tsx:1985
+#: src/constants/WalletConnectCommands.tsx:2227
 msgid "Type"
 msgstr ""
 
@@ -6481,7 +6681,7 @@ msgstr ""
 msgid "Unknown Application"
 msgstr ""
 
-#: src/util/resolveOfferInfo.tsx:104
+#: src/util/resolveOfferInfo.tsx:114
 msgid "Unknown Asset"
 msgstr ""
 
@@ -6489,8 +6689,8 @@ msgstr ""
 #: src/components/offers/OfferSummaryRow.tsx:150
 #: src/components/offers/OfferSummaryRow.tsx:151
 #: src/components/walletConnect/WalletConnectCATAmount.tsx:43
-#: src/util/resolveOfferInfo.tsx:56
-#: src/util/resolveOfferInfo.tsx:141
+#: src/util/resolveOfferInfo.tsx:66
+#: src/util/resolveOfferInfo.tsx:151
 msgid "Unknown CAT"
 msgstr ""
 
@@ -6510,7 +6710,7 @@ msgstr ""
 msgid "Unrecognized asset"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1420
+#: src/constants/WalletConnectCommands.tsx:1637
 msgid "Unsubscribe"
 msgstr ""
 
@@ -6522,11 +6722,11 @@ msgstr ""
 msgid "Update"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1743
+#: src/constants/WalletConnectCommands.tsx:1985
 msgid "Update DID Metadata"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1774
+#: src/constants/WalletConnectCommands.tsx:2016
 msgid "Update DID Recovery Ids"
 msgstr ""
 
@@ -6534,12 +6734,12 @@ msgstr ""
 msgid "Update Pending"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:788
+#: src/constants/WalletConnectCommands.tsx:1005
 msgid "Uris"
 msgstr ""
 
 #: src/components/notification/NotificationAnnouncementDialog.tsx:76
-#: src/constants/WalletConnectCommands.tsx:1996
+#: src/constants/WalletConnectCommands.tsx:2238
 #: src/hooks/useOpenUnsafeLink.tsx:27
 #: src/hooks/useOpenUnsafeLink.tsx:72
 msgid "URL"
@@ -6549,14 +6749,22 @@ msgstr ""
 msgid "URL is not valid"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:904
-#: src/constants/WalletConnectCommands.tsx:1371
-#: src/constants/WalletConnectCommands.tsx:1388
+#: src/constants/WalletConnectCommands.tsx:1121
+#: src/constants/WalletConnectCommands.tsx:1588
+#: src/constants/WalletConnectCommands.tsx:1605
 msgid "URLs"
+msgstr ""
+
+#: src/components/settings/SettingsAdvanced.tsx:137
+msgid "Use blockchain peak height for height info"
 msgstr ""
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:138
 msgid "Use left and right arrow keys to navigate"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:463
+msgid "Use peak height"
 msgstr ""
 
 #: src/components/plot/add/PlotAddChooseKeys.tsx:38
@@ -6576,7 +6784,7 @@ msgstr ""
 msgid "Valid Partials"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:409
+#: src/constants/WalletConnectCommands.tsx:605
 msgid "Validate only"
 msgstr ""
 
@@ -6588,15 +6796,19 @@ msgstr ""
 #~ msgid "Validating hash..."
 #~ msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1323
+#: src/constants/WalletConnectCommands.tsx:1540
 msgid "Value"
+msgstr ""
+
+#: src/components/offers2/DataLayerOfferViewer.tsx:105
+msgid "Values to Prove"
 msgstr ""
 
 #: src/components/fullNode/card/FullNodeCardVDFSubSlotIterations.tsx:14
 msgid "VDF Sub Slot Iterations"
 msgstr "VDF Sub-slot herhalingen"
 
-#: src/constants/WalletConnectCommands.tsx:1033
+#: src/constants/WalletConnectCommands.tsx:1250
 msgid "Verbose"
 msgstr ""
 
@@ -6646,7 +6858,7 @@ msgstr ""
 msgid "Verify Message"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1438
+#: src/constants/WalletConnectCommands.tsx:1655
 msgid "Verify Offer"
 msgstr ""
 
@@ -6654,8 +6866,8 @@ msgstr ""
 msgid "Verify Pool Details"
 msgstr ""
 
-#: src/components/settings/SettingsAdvanced.tsx:92
-#: src/constants/WalletConnectCommands.tsx:255
+#: src/components/settings/SettingsAdvanced.tsx:176
+#: src/constants/WalletConnectCommands.tsx:383
 msgid "Verify Signature"
 msgstr ""
 
@@ -6663,11 +6875,11 @@ msgstr ""
 msgid "Verifying hash..."
 msgstr ""
 
-#: src/components/offers2/OfferIncomingTable.tsx:95
+#: src/components/offers2/OfferIncomingTable.tsx:103
 msgid "View"
 msgstr ""
 
-#: src/components/offers/OfferImport.tsx:176
+#: src/components/offers/OfferImport.tsx:183
 msgid "View an Offer"
 msgstr ""
 
@@ -6684,7 +6896,7 @@ msgstr ""
 msgid "View Log"
 msgstr "Bekijk log"
 
-#: src/components/offers/OfferManager.tsx:436
+#: src/components/offers/OfferManager.tsx:441
 msgid "View Offer"
 msgstr ""
 
@@ -6775,38 +6987,41 @@ msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:80
 #: src/constants/WalletConnectCommands.tsx:114
-#: src/constants/WalletConnectCommands.tsx:298
-#: src/constants/WalletConnectCommands.tsx:552
-#: src/constants/WalletConnectCommands.tsx:565
-#: src/constants/WalletConnectCommands.tsx:663
-#: src/constants/WalletConnectCommands.tsx:765
-#: src/constants/WalletConnectCommands.tsx:852
-#: src/constants/WalletConnectCommands.tsx:1564
-#: src/constants/WalletConnectCommands.tsx:1577
-#: src/constants/WalletConnectCommands.tsx:1602
-#: src/constants/WalletConnectCommands.tsx:1615
-#: src/constants/WalletConnectCommands.tsx:1628
-#: src/constants/WalletConnectCommands.tsx:1641
-#: src/constants/WalletConnectCommands.tsx:1713
-#: src/constants/WalletConnectCommands.tsx:1749
-#: src/constants/WalletConnectCommands.tsx:1780
-#: src/constants/WalletConnectCommands.tsx:1817
-#: src/constants/WalletConnectCommands.tsx:1829
-#: src/constants/WalletConnectCommands.tsx:1846
+#: src/constants/WalletConnectCommands.tsx:167
+#: src/constants/WalletConnectCommands.tsx:217
+#: src/constants/WalletConnectCommands.tsx:426
+#: src/constants/WalletConnectCommands.tsx:769
+#: src/constants/WalletConnectCommands.tsx:782
+#: src/constants/WalletConnectCommands.tsx:880
+#: src/constants/WalletConnectCommands.tsx:982
+#: src/constants/WalletConnectCommands.tsx:1069
+#: src/constants/WalletConnectCommands.tsx:1688
+#: src/constants/WalletConnectCommands.tsx:1806
+#: src/constants/WalletConnectCommands.tsx:1819
+#: src/constants/WalletConnectCommands.tsx:1844
+#: src/constants/WalletConnectCommands.tsx:1857
+#: src/constants/WalletConnectCommands.tsx:1870
+#: src/constants/WalletConnectCommands.tsx:1883
+#: src/constants/WalletConnectCommands.tsx:1955
+#: src/constants/WalletConnectCommands.tsx:1991
+#: src/constants/WalletConnectCommands.tsx:2022
+#: src/constants/WalletConnectCommands.tsx:2059
+#: src/constants/WalletConnectCommands.tsx:2071
+#: src/constants/WalletConnectCommands.tsx:2088
 msgid "Wallet Id"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:147
+#: src/constants/WalletConnectCommands.tsx:275
 msgid "Wallet ID"
 msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:97
-#: src/constants/WalletConnectCommands.tsx:625
-#: src/constants/WalletConnectCommands.tsx:886
+#: src/constants/WalletConnectCommands.tsx:842
+#: src/constants/WalletConnectCommands.tsx:1103
 msgid "Wallet Ids"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:395
+#: src/constants/WalletConnectCommands.tsx:591
 msgid "Wallet Ids and Amounts"
 msgstr ""
 
@@ -6819,8 +7034,12 @@ msgstr ""
 msgid "Wallet Mode"
 msgstr ""
 
-#: src/components/offers2/CreateOfferBuilder.tsx:102
+#: src/components/offers2/CreateOfferBuilder.tsx:107
 msgid "Wallet must be synced before creating an offer with an expiration time"
+msgstr ""
+
+#: src/components/settings/SettingsAdvanced.tsx:90
+msgid "Wallet sync RPC"
 msgstr ""
 
 #: src/components/settings/SettingsIntegration.tsx:139
@@ -6901,6 +7120,18 @@ msgstr ""
 #~ msgid "When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or cancelled, resulting in your spendable balance changing."
 #~ msgstr "When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or canceled, resulting in your spendable balance changing."
 
+#: src/components/settings/SettingsAdvanced.tsx:123
+msgid "When disabled, the wallet uses the default strict sync checks before spends (recommended)."
+msgstr ""
+
+#: src/components/settings/SettingsAdvanced.tsx:139
+msgid "When enabled, height info uses the chain tip even during sync. When disabled, height reflects the last block the wallet has finished syncing to."
+msgstr ""
+
+#: src/components/settings/SettingsAdvanced.tsx:113
+msgid "When enabled, transaction-style wallet RPC calls include allow_unsynced so they can run while the wallet is slightly behind or in a long sync, as long as it still has full-node peers. Fully disconnected wallets are still rejected."
+msgstr ""
+
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:455
 msgid "Which CUDA device to use when plotting"
 msgstr ""
@@ -6909,7 +7140,7 @@ msgstr ""
 #~ msgid "Window"
 #~ msgstr "Window"
 
-#: src/constants/WalletConnectCommands.tsx:1730
+#: src/constants/WalletConnectCommands.tsx:1972
 msgid "With Recovery Info"
 msgstr ""
 
@@ -6937,11 +7168,11 @@ msgstr ""
 msgid "Would you like to transfer the specified NFT to a new owner?"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:709
+#: src/constants/WalletConnectCommands.tsx:926
 msgid "XCH Change Target"
 msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:703
+#: src/constants/WalletConnectCommands.tsx:920
 msgid "XCH Coins"
 msgstr ""
 
@@ -6987,7 +7218,7 @@ msgid "You can still create plots for this plot NFT, but you can not make change
 msgstr ""
 
 #: src/components/offers/OfferHeader.tsx:38
-#: src/components/offers2/OfferBuilderViewer.tsx:294
+#: src/components/offers2/OfferBuilderViewer.tsx:428
 msgid "You created this offer"
 msgstr ""
 

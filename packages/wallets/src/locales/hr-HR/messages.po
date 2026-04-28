@@ -124,7 +124,7 @@ msgstr ""
 msgid "Before sending this transaction, you should ensure that the recipient has a wallet that can claim it manually after the timer has expired."
 msgstr ""
 
-#: src/components/WalletHistoryClawbackChip.tsx:61
+#: src/components/WalletHistoryClawbackChip.tsx:71
 msgid "Can be claimed in "
 msgstr ""
 
@@ -152,7 +152,7 @@ msgstr ""
 msgid "Chia Asset Token"
 msgstr ""
 
-#: src/components/WalletHistoryClawbackChip.tsx:68
+#: src/components/WalletHistoryClawbackChip.tsx:78
 msgid "Claim transaction"
 msgstr ""
 
@@ -161,7 +161,7 @@ msgstr ""
 msgid "Claim Transaction"
 msgstr ""
 
-#: src/components/WalletHistoryClawbackChip.tsx:83
+#: src/components/WalletHistoryClawbackChip.tsx:93
 msgid "Claiming..."
 msgstr ""
 
@@ -173,7 +173,7 @@ msgstr ""
 msgid "Claw back expiration"
 msgstr ""
 
-#: src/components/WalletHistoryClawbackChip.tsx:94
+#: src/components/WalletHistoryClawbackChip.tsx:104
 msgid "Claw back this transaction"
 msgstr ""
 
@@ -201,7 +201,7 @@ msgstr ""
 msgid "Clawback will not be applied."
 msgstr ""
 
-#: src/components/WalletHistoryClawbackChip.tsx:109
+#: src/components/WalletHistoryClawbackChip.tsx:119
 msgid "Clawing back..."
 msgstr ""
 
@@ -796,7 +796,7 @@ msgstr ""
 msgid "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
 msgstr "Dobrodošao! Navedene riječi se koriste kao sigurnosna kopija tvog Novćanika. Bez njih, nemas pristup svome novčaniku, drži ih sigurno! Zapiši svaku riječ točnim redoslijedom. (Redoslijed je bitan)"
 
-#: src/components/WalletHistoryClawbackChip.tsx:56
+#: src/components/WalletHistoryClawbackChip.tsx:66
 msgid "Will be autoclaimed in "
 msgstr ""
 

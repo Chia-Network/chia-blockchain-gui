@@ -124,7 +124,7 @@ msgstr "從現在起，以此手續費自動領取交易。"
 msgid "Before sending this transaction, you should ensure that the recipient has a wallet that can claim it manually after the timer has expired."
 msgstr "在發送此交易之前，您應確保接收方擁有一個能在定時過期後手動領取資金的錢包。"
 
-#: src/components/WalletHistoryClawbackChip.tsx:61
+#: src/components/WalletHistoryClawbackChip.tsx:71
 msgid "Can be claimed in "
 msgstr "可在之後領取："
 
@@ -152,7 +152,7 @@ msgstr "CAT 憑證限制"
 msgid "Chia Asset Token"
 msgstr "Chia 資產代幣 (CAT)"
 
-#: src/components/WalletHistoryClawbackChip.tsx:68
+#: src/components/WalletHistoryClawbackChip.tsx:78
 msgid "Claim transaction"
 msgstr "領取交易"
 
@@ -161,7 +161,7 @@ msgstr "領取交易"
 msgid "Claim Transaction"
 msgstr "領取交易"
 
-#: src/components/WalletHistoryClawbackChip.tsx:83
+#: src/components/WalletHistoryClawbackChip.tsx:93
 msgid "Claiming..."
 msgstr "領取中..."
 
@@ -173,7 +173,7 @@ msgstr "由 Prime Trust 持有的舊版 Stably USDS"
 msgid "Claw back expiration"
 msgstr "撤回有效期限"
 
-#: src/components/WalletHistoryClawbackChip.tsx:94
+#: src/components/WalletHistoryClawbackChip.tsx:104
 msgid "Claw back this transaction"
 msgstr "撤回此筆交易"
 
@@ -201,7 +201,7 @@ msgstr "將套用撤回功能。"
 msgid "Clawback will not be applied."
 msgstr "將不套用撤回功能。"
 
-#: src/components/WalletHistoryClawbackChip.tsx:109
+#: src/components/WalletHistoryClawbackChip.tsx:119
 msgid "Clawing back..."
 msgstr "收回中..."
 
@@ -796,7 +796,7 @@ msgstr "不支援類型為 {0} 的錢包"
 msgid "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
 msgstr "歡迎！以下單字用於您的錢包備份。若沒有這些單字，您將失去錢包的存取權，請務必妥善保管！請記下每個單字及其旁邊的順序編號。（順序非常重要）"
 
-#: src/components/WalletHistoryClawbackChip.tsx:56
+#: src/components/WalletHistoryClawbackChip.tsx:66
 msgid "Will be autoclaimed in "
 msgstr "將自動領取於："
 
