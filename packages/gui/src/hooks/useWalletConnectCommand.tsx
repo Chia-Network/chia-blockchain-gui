@@ -180,7 +180,8 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
 
     // validate fingerprint for current command
     const { allFingerprints, waitForSync } = definition;
-    const isDifferentFingerprint = fingerprint !== currentFingerprint;
+    const hasCurrentFingerprint = currentFingerprint !== undefined && currentFingerprint !== null;
+    const isDifferentFingerprint = hasCurrentFingerprint && fingerprint !== currentFingerprint;
     if (!allFingerprints) {
       if (isDifferentFingerprint && !allowConfirmationFingerprintChange) {
         throw new Error(`Invalid fingerprint ${fingerprint}`);
