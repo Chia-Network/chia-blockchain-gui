@@ -3,6 +3,15 @@ import { useState, useEffect, useCallback, useMemo } from 'react';
 
 import useWalletConnectPreferences from './useWalletConnectPreferences';
 
+function clearWalletConnectStorage(): void {
+  if (typeof indexedDB === 'undefined') return;
+  try {
+    indexedDB.deleteDatabase('WALLET_CONNECT_V2_INDEXED_DB');
+  } catch {
+    /* best-effort */
+  }
+}
+
 const defaultMetadata = {
   name: 'Chia Blockchain',
   description: 'GUI for Chia Blockchain',
@@ -93,7 +102,10 @@ export default function useWalletConnectClient(config: UseWalletConnectConfig) {
             return createdClient;
           })
           .catch((initError) => {
+            console.error('[WC] Client.init() failed, clearing storage', initError);
+            clearWalletConnectStorage();
             singleton.initPromise = undefined;
+            singleton.configKey = undefined;
             throw initError;
           });
       }

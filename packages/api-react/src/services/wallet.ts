@@ -544,7 +544,7 @@ export const walletApi = apiWithTag.injectEndpoints({
       invalidatesTags: (result, _error, { walletId }) => (result ? [{ type: 'Address', id: walletId }] : []),
     }),
 
-    getCoinRecordsByNames: query(build, WalletService, 'getCoinRecordsByNames'),
+    getCoinRecordsByNames: mutation(build, WalletService, 'getCoinRecordsByNames'),
 
     pushTransactions: mutation(build, WalletService, 'pushTransactions', {
       invalidatesTags: [{ type: 'Transactions', id: 'LIST' }],
@@ -1567,8 +1567,7 @@ export const {
   useGetTransactionsCountQuery,
   useGetCurrentAddressQuery,
   useGetNextAddressMutation,
-  useGetCoinRecordsByNamesQuery,
-  useLazyGetCoinRecordsByNamesQuery,
+  useGetCoinRecordsByNamesMutation,
   usePushTransactionsMutation,
   useSelectCoinsQuery,
   useLazySelectCoinsQuery,
