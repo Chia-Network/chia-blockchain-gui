@@ -22,7 +22,23 @@ export type UseWalletConnectConfig = {
   debug?: boolean;
 };
 
-let clientId = 1;
+type WalletConnectSingleton = {
+  client?: Client;
+  initPromise?: Promise<Client>;
+  configKey?: string;
+};
+
+function getSingleton(): WalletConnectSingleton {
+  const globalStore = globalThis as typeof globalThis & {
+    chiaWalletConnectSingleton?: WalletConnectSingleton;
+  };
+  if (!globalStore.chiaWalletConnectSingleton) {
+    globalStore.chiaWalletConnectSingleton = {};
+  }
+  return globalStore.chiaWalletConnectSingleton;
+}
+
+let clientRequestId = 1;
 
 export default function useWalletConnectClient(config: UseWalletConnectConfig) {
   const { projectId, relayUrl = 'wss://relay.walletconnect.com', metadata = defaultMetadata, debug = false } = config;
@@ -35,39 +51,67 @@ export default function useWalletConnectClient(config: UseWalletConnectConfig) {
 
   const metadataString = JSON.stringify(metadata);
   const memoizedMetadata = useMemo(() => JSON.parse(metadataString), [metadataString]);
+  const configKey = useMemo(
+    () => JSON.stringify({ projectId, relayUrl, metadata: memoizedMetadata, debug }),
+    [projectId, relayUrl, memoizedMetadata, debug],
+  );
 
   const prepareClient = useCallback(async () => {
-    const currentClientId = ++clientId;
+    const currentRequestId = ++clientRequestId;
+    const singleton = getSingleton();
 
     try {
-      setClient(undefined);
       setError(undefined);
       setIsLoading(true);
 
       if (!enabled) {
+        setClient(undefined);
         return;
       }
 
-      const newClient = await Client.init({
-        logger: debug ? 'debug' : undefined,
-        projectId,
-        relayUrl,
-        metadata: memoizedMetadata,
-      });
+      if (singleton.client) {
+        if (singleton.configKey && singleton.configKey !== configKey) {
+          console.warn('[WC singleton] Reusing existing client with different config');
+        }
+        if (currentRequestId === clientRequestId) {
+          setClient(singleton.client);
+        }
+        return;
+      }
 
-      if (currentClientId === clientId) {
+      if (!singleton.initPromise) {
+        singleton.configKey = configKey;
+        singleton.initPromise = Client.init({
+          // Keep internal WC protocol errors visible even in non-debug mode.
+          logger: debug ? 'debug' : 'error',
+          projectId,
+          relayUrl,
+          metadata: memoizedMetadata,
+        })
+          .then((createdClient) => {
+            singleton.client = createdClient;
+            return createdClient;
+          })
+          .catch((initError) => {
+            singleton.initPromise = undefined;
+            throw initError;
+          });
+      }
+
+      const newClient = await singleton.initPromise;
+      if (currentRequestId === clientRequestId) {
         setClient(newClient);
       }
     } catch (e) {
-      if (currentClientId === clientId) {
+      if (currentRequestId === clientRequestId) {
         setError(e as Error);
       }
     } finally {
-      if (currentClientId === clientId) {
+      if (currentRequestId === clientRequestId) {
         setIsLoading(false);
       }
     }
-  }, [projectId, relayUrl, memoizedMetadata, debug, enabled]);
+  }, [projectId, relayUrl, memoizedMetadata, debug, enabled, configKey]);
 
   useEffect(() => {
     prepareClient();
