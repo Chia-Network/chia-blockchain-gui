@@ -276,40 +276,27 @@ export async function disconnectPair(client: Client, pairs: Pairs, topic: string
     const pairings = await client.core.pairing.getPairings();
     const pairing = pairings.find((p) => p.topic === topic);
     if (pairing) {
-      // disconnect all sessions
       const sessions = pairs.getPair(topic)?.sessions ?? [];
       await Promise.all(
         sessions.map(async (session) => {
           try {
             await client.disconnect({ topic: session.topic, reason: getSdkError('USER_DISCONNECTED') });
           } catch (e) {
-            if (e instanceof Error && e.message.includes('No matching key')) {
-              log(`Session was already disconnected ${session.topic}`);
-              // we can ignore this error because it means that session was already disconnected
-              return;
-            }
-
-            throw e;
+            log(`Failed to disconnect session ${session.topic}:`, e);
           }
         }),
       );
 
-      // then disconnect pairing
       try {
         await client.core.pairing.disconnect({ topic });
       } catch (e) {
-        if (e instanceof Error && e.message.includes('No matching key')) {
-          log(`Pairing was already disconnected ${topic}`);
-          // we can ignore this error because it means that session was already disconnected
-          return;
-        }
-        throw e;
+        log(`Failed to disconnect pairing ${topic}:`, e);
       }
     }
-
-    pairs.removePair(topic);
   } catch (e) {
-    processError(e as Error);
+    log('Error during pair disconnect, removing pair anyway:', e);
+  } finally {
+    pairs.removePair(topic);
   }
 }
 
