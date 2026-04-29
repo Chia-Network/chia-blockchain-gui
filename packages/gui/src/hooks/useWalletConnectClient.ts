@@ -34,7 +34,6 @@ export type UseWalletConnectConfig = {
 let clientId = 1;
 
 type WalletConnectSingleton = {
-  client?: Client;
   initPromise?: Promise<Client>;
   configKey?: string;
 };
@@ -68,7 +67,6 @@ export default function useWalletConnectClient(config: UseWalletConnectConfig) {
       const configKey = JSON.stringify({ projectId, relayUrl, metadata: memoizedMetadata, debug });
 
       if (singleton.configKey !== undefined && singleton.configKey !== configKey) {
-        singleton.client = undefined;
         singleton.initPromise = undefined;
       }
 
@@ -79,18 +77,13 @@ export default function useWalletConnectClient(config: UseWalletConnectConfig) {
           projectId,
           relayUrl,
           metadata: memoizedMetadata,
-        })
-          .then((createdClient) => {
-            singleton.client = createdClient;
-            return createdClient;
-          })
-          .catch((initError) => {
-            console.error('[WC] Client.init() failed, clearing storage', initError);
-            clearWalletConnectStorage();
-            singleton.initPromise = undefined;
-            singleton.configKey = undefined;
-            throw initError;
-          });
+        }).catch((initError) => {
+          console.error('[WC] Client.init() failed, clearing storage', initError);
+          clearWalletConnectStorage();
+          singleton.initPromise = undefined;
+          singleton.configKey = undefined;
+          throw initError;
+        });
       }
 
       const newClient = await singleton.initPromise;
