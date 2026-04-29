@@ -114,8 +114,9 @@ export async function processSessionProposal(
       throw new Error('Pair not found');
     }
 
-    const { fingerprints, mainnet } = pair;
-    const instance = mainnet ? 'mainnet' : 'testnet';
+    const { fingerprints } = pair;
+    const [, requestedInstance] = chain.split(':');
+    const instance = requestedInstance === 'mainnet' ? 'mainnet' : 'testnet';
     const accounts = fingerprints.map((fingerprint) => `chia:${instance}:${fingerprint}`);
 
     const namespaces = {
@@ -207,7 +208,6 @@ export async function processSessionRequest(
         chainId,
       },
     } = event;
-
     if (!client) {
       throw new Error('Client not initialized');
     }
