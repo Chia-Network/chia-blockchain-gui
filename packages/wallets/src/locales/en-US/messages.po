@@ -124,7 +124,7 @@ msgstr "Auto-claim transactions with this fee from now on."
 msgid "Before sending this transaction, you should ensure that the recipient has a wallet that can claim it manually after the timer has expired."
 msgstr "Before sending this transaction, you should ensure that the recipient has a wallet that can claim it manually after the timer has expired."
 
-#: src/components/WalletHistoryClawbackChip.tsx:71
+#: src/components/WalletHistoryClawbackChip.tsx:61
 msgid "Can be claimed in "
 msgstr "Can be claimed in "
 
@@ -152,7 +152,7 @@ msgstr "CAT credential restrictions"
 msgid "Chia Asset Token"
 msgstr "Chia Asset Token"
 
-#: src/components/WalletHistoryClawbackChip.tsx:78
+#: src/components/WalletHistoryClawbackChip.tsx:68
 msgid "Claim transaction"
 msgstr "Claim transaction"
 
@@ -161,7 +161,7 @@ msgstr "Claim transaction"
 msgid "Claim Transaction"
 msgstr "Claim Transaction"
 
-#: src/components/WalletHistoryClawbackChip.tsx:93
+#: src/components/WalletHistoryClawbackChip.tsx:83
 msgid "Claiming..."
 msgstr "Claiming..."
 
@@ -173,7 +173,7 @@ msgstr "Classic version of Stably USDS as held by Prime Trust"
 msgid "Claw back expiration"
 msgstr "Claw back expiration"
 
-#: src/components/WalletHistoryClawbackChip.tsx:104
+#: src/components/WalletHistoryClawbackChip.tsx:94
 msgid "Claw back this transaction"
 msgstr "Claw back this transaction"
 
@@ -201,7 +201,7 @@ msgstr "Clawback will be applied."
 msgid "Clawback will not be applied."
 msgstr "Clawback will not be applied."
 
-#: src/components/WalletHistoryClawbackChip.tsx:119
+#: src/components/WalletHistoryClawbackChip.tsx:109
 msgid "Clawing back..."
 msgstr "Clawing back..."
 
@@ -804,7 +804,7 @@ msgstr "Wallet with type {0} not supported"
 msgid "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
 msgstr "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
 
-#: src/components/WalletHistoryClawbackChip.tsx:66
+#: src/components/WalletHistoryClawbackChip.tsx:56
 msgid "Will be autoclaimed in "
 msgstr "Will be autoclaimed in "
 

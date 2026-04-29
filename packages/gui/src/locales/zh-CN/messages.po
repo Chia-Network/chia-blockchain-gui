@@ -842,18 +842,9 @@ msgstr "建议值 {0}"
 #~ msgid "About Chia Blockchain"
 #~ msgstr "About Chia Blockchain"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:274
-msgid "Accept"
-msgstr ""
-
-#: src/components/offers2/OfferBuilderViewer.tsx:273
-msgid "Accept Data Layer Offer"
-msgstr ""
-
 #: src/components/offers/NFTOfferViewer.tsx:642
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:21
-#: src/components/offers2/OfferBuilderViewer.tsx:321
-#: src/components/offers2/OfferBuilderViewer.tsx:386
+#: src/components/offers2/OfferBuilderViewer.tsx:252
 msgid "Accept Offer"
 msgstr "接受报价"
 
@@ -869,7 +860,7 @@ msgstr "操作"
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:54
 #: src/components/fullNode/FullNodeConnections.tsx:65
 #: src/components/nfts/NFTContextualActions.tsx:605
-#: src/components/offers2/OfferIncomingTable.tsx:119
+#: src/components/offers2/OfferIncomingTable.tsx:111
 msgid "Actions"
 msgstr "操作"
 
@@ -883,7 +874,7 @@ msgstr "活动的会话"
 msgid "Activity"
 msgstr "未读通知"
 
-#: src/components/settings/SettingsAdvanced.tsx:253
+#: src/components/settings/SettingsAdvanced.tsx:169
 msgid "Add"
 msgstr "添加"
 
@@ -907,7 +898,7 @@ msgstr "添加图块"
 msgid "Add a Plot NFT"
 msgstr "新建联合耕种农田"
 
-#: src/constants/WalletConnectCommands.tsx:811
+#: src/constants/WalletConnectCommands.tsx:594
 msgid "Add CAT Token"
 msgstr "添加资产代币"
 
@@ -923,11 +914,11 @@ msgstr "添加连接"
 msgid "Add Contact"
 msgstr "添加联系人"
 
-#: src/constants/WalletConnectCommands.tsx:1111
+#: src/constants/WalletConnectCommands.tsx:894
 msgid "Add Mirror"
 msgstr "添加镜像"
 
-#: src/constants/WalletConnectCommands.tsx:1140
+#: src/constants/WalletConnectCommands.tsx:923
 msgid "Add Missing Files"
 msgstr "添加缺少的文件"
 
@@ -947,11 +938,11 @@ msgstr "添加图块文件夹"
 msgid "Add Plot to Queue"
 msgstr "将绘图任务添加到队列"
 
-#: src/constants/WalletConnectCommands.tsx:2179
+#: src/constants/WalletConnectCommands.tsx:1937
 msgid "Add Proofs"
 msgstr "添加证明"
 
-#: src/constants/WalletConnectCommands.tsx:2139
+#: src/constants/WalletConnectCommands.tsx:1897
 msgid "Add Proofs To Verifiable Credential"
 msgstr "向可验证证件添加证明信息"
 
@@ -963,10 +954,10 @@ msgstr "从文件中添加可验证证件"
 #: src/components/addressbook/ContactEdit.tsx:61
 #: src/components/notification/NotificationSendDialog.tsx:221
 #: src/components/signVerify/SigningEntityWalletAddress.tsx:45
-#: src/constants/WalletConnectCommands.tsx:270
-#: src/constants/WalletConnectCommands.tsx:345
-#: src/constants/WalletConnectCommands.tsx:405
-#: src/constants/WalletConnectCommands.tsx:787
+#: src/constants/WalletConnectCommands.tsx:142
+#: src/constants/WalletConnectCommands.tsx:217
+#: src/constants/WalletConnectCommands.tsx:277
+#: src/constants/WalletConnectCommands.tsx:570
 msgid "Address"
 msgstr "地址"
 
@@ -976,7 +967,7 @@ msgid "Addresses"
 msgstr "地址"
 
 #: src/components/settings/Settings.tsx:43
-#: src/components/settings/SettingsAdvanced.tsx:74
+#: src/components/settings/SettingsAdvanced.tsx:59
 msgid "Advanced"
 msgstr "高级选项"
 
@@ -1013,10 +1004,6 @@ msgstr "允许NFT持有者发送还价"
 msgid "Allow the recipient to send a counter offer"
 msgstr "允许接收方发送还价"
 
-#: src/components/settings/SettingsAdvanced.tsx:111
-msgid "Allow transactions while wallet is not fully synced"
-msgstr ""
-
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:418
 msgid "Alternate bucket writing"
 msgstr "轮流写入bucket"
@@ -1037,11 +1024,10 @@ msgstr "始终拒绝"
 #: src/components/offers/OfferEditorConditionsPanel.tsx:130
 #: src/components/offers2/OfferBuilderNFTRoyalties.tsx:121
 #: src/components/offers2/OfferBuilderWalletAmount.tsx:36
-#: src/constants/WalletConnectCommands.tsx:173
-#: src/constants/WalletConnectCommands.tsx:258
-#: src/constants/WalletConnectCommands.tsx:792
-#: src/constants/WalletConnectCommands.tsx:1126
-#: src/constants/WalletConnectCommands.tsx:1706
+#: src/constants/WalletConnectCommands.tsx:130
+#: src/constants/WalletConnectCommands.tsx:575
+#: src/constants/WalletConnectCommands.tsx:909
+#: src/constants/WalletConnectCommands.tsx:1464
 msgid "Amount"
 msgstr "金额"
 
@@ -1113,10 +1099,6 @@ msgstr "应用程序没有活动会话"
 msgid "Approve"
 msgstr "批准"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:278
-msgid "Are you sure you want to accept this Data Layer offer?"
-msgstr ""
-
 #: src/components/offers/ConfirmOfferCancellation.tsx:69
 msgid "Are you sure you want to cancel your offer?"
 msgstr "你确定要取消你的报价吗？"
@@ -1170,8 +1152,8 @@ msgstr "你确定要使用 k={plotSize}？"
 msgid "Asset"
 msgstr "资产代币"
 
-#: src/constants/WalletConnectCommands.tsx:755
-#: src/constants/WalletConnectCommands.tsx:816
+#: src/constants/WalletConnectCommands.tsx:538
+#: src/constants/WalletConnectCommands.tsx:599
 msgid "Asset Id"
 msgstr "资产代币ID"
 
@@ -1238,7 +1220,7 @@ msgstr "平均"
 msgid "Back"
 msgstr "后退"
 
-#: src/constants/WalletConnectCommands.tsx:1718
+#: src/constants/WalletConnectCommands.tsx:1476
 msgid "Backup DIDs"
 msgstr "备份DID"
 
@@ -1254,7 +1236,7 @@ msgstr "徽标"
 msgid "Base Farmer Reward Amount"
 msgstr "基础耕种奖励数量"
 
-#: src/constants/WalletConnectCommands.tsx:1165
+#: src/constants/WalletConnectCommands.tsx:948
 msgid "Batch Update"
 msgstr "批量更新"
 
@@ -1346,7 +1328,7 @@ msgstr "购买一个 NFT"
 msgid "By providing a signing address, the public key can be validated as being associated with the address used for signing."
 msgstr "通过提供签名地址，可以使用公钥来验证该地址的有效性。"
 
-#: src/components/settings/SettingsAdvanced.tsx:226
+#: src/components/settings/SettingsAdvanced.tsx:142
 msgid "Bypassed Commands"
 msgstr "绕过命令"
 
@@ -1372,7 +1354,6 @@ msgstr "缓存大小(GB)"
 #: src/components/offers/OfferDataEntryDialog.tsx:58
 #: src/components/offers/OfferShareDialog.tsx:712
 #: src/components/offers2/CancelOfferList.tsx:146
-#: src/components/offers2/OfferBuilderViewer.tsx:275
 #: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:362
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:111
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:78
@@ -1389,14 +1370,14 @@ msgstr "缓存大小(GB)"
 msgid "Cancel"
 msgstr "取消"
 
-#: src/constants/WalletConnectCommands.tsx:1195
+#: src/constants/WalletConnectCommands.tsx:978
 msgid "Cancel DataLayer Offer"
 msgstr "取消数据层报价"
 
 #: src/components/offers/ConfirmOfferCancellation.tsx:62
 #: src/components/offers/ConfirmOfferCancellation.tsx:129
-#: src/components/offers/OfferManager.tsx:328
-#: src/constants/WalletConnectCommands.tsx:640
+#: src/components/offers/OfferManager.tsx:323
+#: src/constants/WalletConnectCommands.tsx:430
 msgid "Cancel Offer"
 msgstr "取消报价"
 
@@ -1451,7 +1432,7 @@ msgstr "修改私钥密码"
 msgid "Change Pool"
 msgstr "更换联合耕种池"
 
-#: src/constants/WalletConnectCommands.tsx:1175
+#: src/constants/WalletConnectCommands.tsx:958
 msgid "Changelist"
 msgstr "变更列表"
 
@@ -1467,11 +1448,11 @@ msgstr "修改将在Chia下次启动时生效."
 #~ msgid "Chat on KeyBase"
 #~ msgstr "Chat on KeyBase"
 
-#: src/constants/WalletConnectCommands.tsx:663
+#: src/constants/WalletConnectCommands.tsx:453
 msgid "Check Offer Validity"
 msgstr "检查报价的有效性"
 
-#: src/constants/WalletConnectCommands.tsx:1219
+#: src/constants/WalletConnectCommands.tsx:1002
 msgid "Check Plugins"
 msgstr "检查插件"
 
@@ -1546,7 +1527,7 @@ msgstr "当可撤回时限到期时，自动确认发送给你的资产。"
 msgid "Claim Rewards"
 msgstr "申领奖励"
 
-#: src/constants/WalletConnectCommands.tsx:298
+#: src/constants/WalletConnectCommands.tsx:170
 msgid "Claw back or claim claw back transaction"
 msgstr "取消或确认可撤回交易"
 
@@ -1555,7 +1536,7 @@ msgstr "取消或确认可撤回交易"
 msgid "Clear NFT cache"
 msgstr "清除NFT缓存"
 
-#: src/constants/WalletConnectCommands.tsx:1225
+#: src/constants/WalletConnectCommands.tsx:1008
 msgid "Clear Pending Roots"
 msgstr "清除Pending Roots"
 
@@ -1575,7 +1556,7 @@ msgstr "单击删除图标只会从列表中移除文件夹，而不会删除文
 #: src/components/offers/OfferShareDialog.tsx:501
 #: src/components/offers/OfferShareDialog.tsx:623
 #: src/components/offers/OfferShareDialog.tsx:895
-#: src/components/offers2/OfferBuilderViewerDialog.tsx:81
+#: src/components/offers2/OfferBuilderViewerDialog.tsx:76
 #: src/components/plot/PlotAddDirectoryDialog.tsx:130
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:66
 #: src/components/signVerify/SignMessageResultDialog.tsx:66
@@ -1588,10 +1569,10 @@ msgstr "关闭"
 msgid "Closing down services"
 msgstr "关闭服务"
 
-#: src/constants/WalletConnectCommands.tsx:867
-#: src/constants/WalletConnectCommands.tsx:1287
-#: src/constants/WalletConnectCommands.tsx:1775
-#: src/constants/WalletConnectCommands.tsx:1832
+#: src/constants/WalletConnectCommands.tsx:650
+#: src/constants/WalletConnectCommands.tsx:1070
+#: src/constants/WalletConnectCommands.tsx:1533
+#: src/constants/WalletConnectCommands.tsx:1590
 msgid "Coin Id"
 msgstr "硬币ID"
 
@@ -1599,18 +1580,9 @@ msgstr "硬币ID"
 msgid "Coin ID"
 msgstr "硬币ID"
 
-#: src/constants/WalletConnectCommands.tsx:304
-#: src/constants/WalletConnectCommands.tsx:1693
+#: src/constants/WalletConnectCommands.tsx:176
 msgid "Coin Ids"
 msgstr "硬币ID"
-
-#: src/constants/WalletConnectCommands.tsx:631
-msgid "Coin IDs"
-msgstr ""
-
-#: src/constants/WalletConnectCommands.tsx:479
-msgid "Coin name"
-msgstr ""
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:215
 #: src/components/nfts/NFTSummary.tsx:50
@@ -1621,7 +1593,7 @@ msgstr "集合"
 msgid "Commands"
 msgstr "命令"
 
-#: src/components/settings/SettingsAdvanced.tsx:260
+#: src/components/settings/SettingsAdvanced.tsx:176
 msgid "Commands listed here will be executed without confirmation. Use with caution as this can affect your funds."
 msgstr "此处列出的命令将不经确认即可执行。请谨慎使用，因为这可能会影响你的资金。"
 
@@ -1783,21 +1755,17 @@ msgstr "无法通过端口{host}连接到主机{port}"
 msgid "Could not parse offer data"
 msgstr "无法解析报价数据"
 
-#: src/constants/WalletConnectCommands.tsx:2278
+#: src/constants/WalletConnectCommands.tsx:2036
 msgid "Count"
 msgstr "数量"
 
-#: src/components/offers2/OfferIncomingTable.tsx:108
+#: src/components/offers2/OfferIncomingTable.tsx:100
 msgid "Counter"
 msgstr "倒计时"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:374
+#: src/components/offers2/OfferBuilderViewer.tsx:240
 msgid "Counter Offer"
 msgstr "计数报价"
-
-#: src/components/offers2/OfferIncomingTable.tsx:95
-msgid "Counter offers are not supported for Data Layer offers"
-msgstr ""
 
 #: src/components/plot/add/PlotAddForm.tsx:265
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:81
@@ -1809,7 +1777,7 @@ msgstr "创建"
 msgid "Create & Manage plots"
 msgstr "创建和管理图块"
 
-#: src/components/offers/OfferManager.tsx:421
+#: src/components/offers/OfferManager.tsx:416
 msgid "Create a file that you can use to trade XCH, Chia Asset Tokens, or NFTs with no counter-party risk."
 msgstr "创建一个没有交易对手风险的情况下交易XCH、Chia资产代币或NFT的文件。"
 
@@ -1821,7 +1789,7 @@ msgstr "创建个人资料"
 msgid "Create a Plot NFT"
 msgstr "新建联合耕种农田"
 
-#: src/constants/WalletConnectCommands.tsx:875
+#: src/constants/WalletConnectCommands.tsx:658
 msgid "Create a spend bundle to mint multiple NFTs"
 msgstr "创建一个支出包以铸造多个NFT"
 
@@ -1830,7 +1798,7 @@ msgid "Create an NFT Offer"
 msgstr "创建一个 NFT 报价"
 
 #: src/components/offers/OfferEditor.tsx:174
-#: src/components/offers/OfferManager.tsx:430
+#: src/components/offers/OfferManager.tsx:425
 msgid "Create an Offer"
 msgstr "创建报价"
 
@@ -1838,11 +1806,11 @@ msgstr "创建报价"
 msgid "Create Contact"
 msgstr "新建联系人"
 
-#: src/components/offers2/CreateOfferBuilder.tsx:199
+#: src/components/offers2/CreateOfferBuilder.tsx:194
 msgid "Create Counter Offer"
 msgstr "创建定时报价"
 
-#: src/constants/WalletConnectCommands.tsx:1237
+#: src/constants/WalletConnectCommands.tsx:1020
 msgid "Create DataStore"
 msgstr "创建DataStore"
 
@@ -1850,23 +1818,19 @@ msgstr "创建DataStore"
 #~ msgid "Create new CAT Wallet"
 #~ msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1701
+#: src/constants/WalletConnectCommands.tsx:1459
 msgid "Create new DID Wallet"
 msgstr "新建DID钱包"
-
-#: src/constants/WalletConnectCommands.tsx:1676
-msgid "Create new Remote Wallet"
-msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:150
 #: src/components/offers/NFTOfferEditor.tsx:438
 #: src/components/offers/OfferEditor.tsx:156
-#: src/components/offers/OfferManager.tsx:412
-#: src/components/offers2/CreateOfferBuilder.tsx:199
+#: src/components/offers/OfferManager.tsx:407
+#: src/components/offers2/CreateOfferBuilder.tsx:194
 msgid "Create Offer"
 msgstr "创建报价"
 
-#: src/constants/WalletConnectCommands.tsx:586
+#: src/constants/WalletConnectCommands.tsx:390
 msgid "Create Offer for Ids"
 msgstr "创建指定ID的报价"
 
@@ -1874,7 +1838,7 @@ msgstr "创建指定ID的报价"
 msgid "Create Profile"
 msgstr "创建个人资料"
 
-#: src/components/settings/SettingsAdvanced.tsx:168
+#: src/components/settings/SettingsAdvanced.tsx:84
 msgid "Create Signature"
 msgstr "新建签名"
 
@@ -1902,9 +1866,9 @@ msgstr "新建联合耕种农田并加入联合耕种池"
 msgid "Creating Plot NFT for Self Pooling"
 msgstr "为独自耕种新建联合耕种农田"
 
-#: src/components/offers/OfferManager.tsx:255
+#: src/components/offers/OfferManager.tsx:250
 #: src/components/offers2/CancelOfferList.tsx:127
-#: src/components/offers2/OfferIncomingTable.tsx:73
+#: src/components/offers2/OfferIncomingTable.tsx:72
 msgid "Creation Date"
 msgstr "创建日期"
 
@@ -1958,10 +1922,6 @@ msgstr "Dapp 正在发送消息"
 #: src/components/nfts/NFTDetails.tsx:235
 msgid "Data Hash"
 msgstr "数据哈希"
-
-#: src/components/offers2/DataLayerOfferViewer.tsx:149
-msgid "Data Layer Offer"
-msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:222
 msgid "Data URL {0}"
@@ -2017,7 +1977,7 @@ msgid "Delay"
 msgstr "延迟"
 
 #: src/components/addressbook/ContactSummary.tsx:42
-#: src/components/offers2/OfferIncomingTable.tsx:113
+#: src/components/offers2/OfferIncomingTable.tsx:105
 #: src/components/plot/PlotAction.tsx:36
 #: src/components/plot/queue/PlotQueueActions.tsx:65
 #: src/components/plotNFT/PlotNFTCard.tsx:106
@@ -2034,11 +1994,11 @@ msgid "Delete Contact"
 msgstr "删除联系人"
 
 #: src/components/app/AppPassPrompt.tsx:103
-#: src/constants/WalletConnectCommands.tsx:1257
+#: src/constants/WalletConnectCommands.tsx:1040
 msgid "Delete Key"
 msgstr "删除密钥"
 
-#: src/constants/WalletConnectCommands.tsx:1282
+#: src/constants/WalletConnectCommands.tsx:1065
 msgid "Delete Mirror"
 msgstr "删除镜像"
 
@@ -2107,24 +2067,24 @@ msgstr "Dexie 链接"
 #: src/components/addressbook/ContactEdit.tsx:119
 #: src/components/signVerify/SigningEntityDID.tsx:83
 #: src/components/signVerify/SignMessage.tsx:165
-#: src/constants/WalletConnectCommands.tsx:2101
+#: src/constants/WalletConnectCommands.tsx:1859
 msgid "DID"
 msgstr "DID"
 
-#: src/constants/WalletConnectCommands.tsx:944
+#: src/constants/WalletConnectCommands.tsx:727
 msgid "DID Coin Dictionary"
 msgstr "DID Coin Dictionary"
 
-#: src/constants/WalletConnectCommands.tsx:1049
+#: src/constants/WalletConnectCommands.tsx:832
 msgid "DID Id"
 msgstr "DID Id"
 
-#: src/constants/WalletConnectCommands.tsx:950
+#: src/constants/WalletConnectCommands.tsx:733
 msgid "DID Lineage Parent"
 msgstr "DID Lineage Parent"
 
-#: src/constants/WalletConnectCommands.tsx:1792
-#: src/constants/WalletConnectCommands.tsx:1996
+#: src/constants/WalletConnectCommands.tsx:1550
+#: src/constants/WalletConnectCommands.tsx:1754
 msgid "DID Metadata"
 msgstr "DID Metadata"
 
@@ -2174,7 +2134,7 @@ msgstr "禁用临时目录1上的直接I/O，以获取RAM磁盘的最大性能�
 msgid "Disable direct I/O on the temp 2 directory in order to extract maximum performance with RAM disk"
 msgstr "禁用临时目录2上的直接I/O，以获取RAM磁盘的最大性能。"
 
-#: src/constants/WalletConnectCommands.tsx:611
+#: src/constants/WalletConnectCommands.tsx:415
 msgid "Disable JSON Formatting"
 msgstr "禁用 JSON 格式化"
 
@@ -2189,7 +2149,7 @@ msgstr "禁用 NUMA"
 msgid "Disconnect"
 msgstr "断开连接"
 
-#: src/components/offers/OfferManager.tsx:308
+#: src/components/offers/OfferManager.tsx:303
 msgid "Display Offer Data"
 msgstr "显示报价数据"
 
@@ -2281,7 +2241,7 @@ msgstr "正在下载选中的 NFT"
 msgid "Drag & Drop a Signed Message File,<0/> Paste ({0}V)"
 msgstr "拖放签名消息文件，<0/> 粘贴({0}V)"
 
-#: src/components/offers/OfferImport.tsx:166
+#: src/components/offers/OfferImport.tsx:159
 msgid "Drag & Drop an Offer File"
 msgstr "拖放报价文件"
 
@@ -2289,7 +2249,7 @@ msgstr "拖放报价文件"
 msgid "Drag & Drop an Offer File, Paste"
 msgstr "拖放报价文件，粘贴"
 
-#: src/constants/WalletConnectCommands.tsx:599
+#: src/constants/WalletConnectCommands.tsx:403
 msgid "Driver Dict"
 msgstr "驱动字典"
 
@@ -2329,11 +2289,11 @@ msgid "Edition #"
 msgstr "版本 #"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:226
-#: src/constants/WalletConnectCommands.tsx:1037
+#: src/constants/WalletConnectCommands.tsx:820
 msgid "Edition Number"
 msgstr "编辑号码"
 
-#: src/constants/WalletConnectCommands.tsx:1043
+#: src/constants/WalletConnectCommands.tsx:826
 msgid "Edition Total"
 msgstr "总版数"
 
@@ -2396,13 +2356,9 @@ msgstr "启用WalletConnect"
 msgid "Enable/Disable the ability to scan all subdirectories automatically for plots"
 msgstr "启用/禁用自动扫描所有子目录以查找图块的功能。"
 
-#: src/constants/WalletConnectCommands.tsx:547
+#: src/constants/WalletConnectCommands.tsx:351
 msgid "End"
 msgstr "结尾"
-
-#: src/constants/WalletConnectCommands.tsx:143
-msgid "End Height"
-msgstr ""
 
 #: src/components/settings/SettingsHarvester.tsx:532
 msgid "Enforce GPU Index"
@@ -2507,16 +2463,6 @@ msgstr "预计区块发现时间"
 msgid "Exclude final directory"
 msgstr "不耕种最终输出文件夹"
 
-#: src/constants/WalletConnectCommands.tsx:193
-#: src/constants/WalletConnectCommands.tsx:237
-msgid "Excluded Coin Amounts"
-msgstr ""
-
-#: src/constants/WalletConnectCommands.tsx:200
-#: src/constants/WalletConnectCommands.tsx:244
-msgid "Excluded Coin IDs"
-msgstr ""
-
 #: src/components/farm/FarmHealth.tsx:252
 msgid "Expected Total plots passing filter"
 msgstr "预计通过初筛的图块总数量"
@@ -2529,7 +2475,7 @@ msgstr "过期时间"
 #~ msgid "Expiration time will be {0}"
 #~ msgstr ""
 
-#: src/components/offers/OfferManager.tsx:188
+#: src/components/offers/OfferManager.tsx:183
 #: src/components/vcs/VCCard.tsx:166
 msgid "Expired"
 msgstr "已过期"
@@ -2541,11 +2487,6 @@ msgstr "探索Chia生态系统；发现并交易优秀NFT"
 #: src/components/chiatools/logViewer/LogViewerToolbar.tsx:150
 msgid "Export Logs"
 msgstr "导出日志"
-
-#: src/constants/WalletConnectCommands.tsx:624
-#: src/constants/WalletConnectCommands.tsx:696
-msgid "Extra Conditions"
-msgstr ""
 
 #: src/components/offers/utils.ts:126
 #: src/components/plot/PlotHarvester.tsx:122
@@ -2668,7 +2609,7 @@ msgstr "耕种空间"
 #~ msgid "Farming Status"
 #~ msgstr "Farming Status"
 
-#: src/components/settings/SettingsAdvanced.tsx:77
+#: src/components/settings/SettingsAdvanced.tsx:62
 msgid "Features for advanced users."
 msgstr "高级用户的特性。"
 
@@ -2686,32 +2627,31 @@ msgstr "提供更多保护和控制数字资产的功能。"
 #: src/components/pool/PoolInfo.tsx:18
 #: src/components/settings/ProfileAdd.tsx:152
 #: src/components/vcs/VCRevokeDialog.tsx:80
-#: src/constants/WalletConnectCommands.tsx:264
-#: src/constants/WalletConnectCommands.tsx:309
-#: src/constants/WalletConnectCommands.tsx:511
-#: src/constants/WalletConnectCommands.tsx:617
-#: src/constants/WalletConnectCommands.tsx:655
-#: src/constants/WalletConnectCommands.tsx:690
-#: src/constants/WalletConnectCommands.tsx:798
-#: src/constants/WalletConnectCommands.tsx:962
-#: src/constants/WalletConnectCommands.tsx:1055
-#: src/constants/WalletConnectCommands.tsx:1084
-#: src/constants/WalletConnectCommands.tsx:1132
-#: src/constants/WalletConnectCommands.tsx:1181
-#: src/constants/WalletConnectCommands.tsx:1211
-#: src/constants/WalletConnectCommands.tsx:1243
-#: src/constants/WalletConnectCommands.tsx:1274
-#: src/constants/WalletConnectCommands.tsx:1293
-#: src/constants/WalletConnectCommands.tsx:1546
-#: src/constants/WalletConnectCommands.tsx:1570
-#: src/constants/WalletConnectCommands.tsx:1629
-#: src/constants/WalletConnectCommands.tsx:1666
-#: src/constants/WalletConnectCommands.tsx:1712
-#: src/constants/WalletConnectCommands.tsx:1965
-#: src/constants/WalletConnectCommands.tsx:2002
-#: src/constants/WalletConnectCommands.tsx:2038
-#: src/constants/WalletConnectCommands.tsx:2106
-#: src/constants/WalletConnectCommands.tsx:2215
+#: src/constants/WalletConnectCommands.tsx:136
+#: src/constants/WalletConnectCommands.tsx:181
+#: src/constants/WalletConnectCommands.tsx:421
+#: src/constants/WalletConnectCommands.tsx:445
+#: src/constants/WalletConnectCommands.tsx:480
+#: src/constants/WalletConnectCommands.tsx:581
+#: src/constants/WalletConnectCommands.tsx:745
+#: src/constants/WalletConnectCommands.tsx:838
+#: src/constants/WalletConnectCommands.tsx:867
+#: src/constants/WalletConnectCommands.tsx:915
+#: src/constants/WalletConnectCommands.tsx:964
+#: src/constants/WalletConnectCommands.tsx:994
+#: src/constants/WalletConnectCommands.tsx:1026
+#: src/constants/WalletConnectCommands.tsx:1057
+#: src/constants/WalletConnectCommands.tsx:1076
+#: src/constants/WalletConnectCommands.tsx:1329
+#: src/constants/WalletConnectCommands.tsx:1353
+#: src/constants/WalletConnectCommands.tsx:1412
+#: src/constants/WalletConnectCommands.tsx:1449
+#: src/constants/WalletConnectCommands.tsx:1470
+#: src/constants/WalletConnectCommands.tsx:1723
+#: src/constants/WalletConnectCommands.tsx:1760
+#: src/constants/WalletConnectCommands.tsx:1796
+#: src/constants/WalletConnectCommands.tsx:1864
+#: src/constants/WalletConnectCommands.tsx:1973
 msgid "Fee"
 msgstr "手续费"
 
@@ -2741,10 +2681,6 @@ msgstr "手续费金额"
 msgid "Fees included in offer:"
 msgstr "报价中包含的手续费:"
 
-#: src/constants/WalletConnectCommands.tsx:473
-msgid "Fetches the puzzle reveal and solution for a spent coin (hex strings)."
-msgstr ""
-
 #: src/electron/main.tsx:942
 #: src/electron/main.tsx:1135
 #~ msgid "File"
@@ -2765,16 +2701,16 @@ msgstr "筛选"
 msgid "Final folder location"
 msgstr "最终输出文件夹位置"
 
-#: src/constants/WalletConnectCommands.tsx:1768
+#: src/constants/WalletConnectCommands.tsx:1526
 msgid "Find Lost DID"
 msgstr "查找丢失的DID"
 
 #: src/constants/WalletConnectCommands.tsx:38
-#: src/constants/WalletConnectCommands.tsx:2300
+#: src/constants/WalletConnectCommands.tsx:2058
 msgid "Fingerprint"
 msgstr "指纹"
 
-#: src/constants/WalletConnectCommands.tsx:2264
+#: src/constants/WalletConnectCommands.tsx:2022
 msgid "Fingerprints"
 msgstr "指纹"
 
@@ -2787,17 +2723,13 @@ msgstr "已完成"
 msgid "Fit images to cards"
 msgstr "使图像适应卡片"
 
-#: src/constants/WalletConnectCommands.tsx:1157
+#: src/constants/WalletConnectCommands.tsx:940
 msgid "Folder Name"
 msgstr "目录名称"
 
 #: src/electron/main.tsx:1086
 #~ msgid "Follow on Twitter"
 #~ msgstr "Follow on Twitter"
-
-#: src/components/offers2/DataLayerOfferViewer.tsx:99
-msgid "For Store Update"
-msgstr ""
 
 #: src/electron/main.tsx:1053
 #~ msgid "Frequently Asked Questions"
@@ -2829,91 +2761,83 @@ msgstr "全节点未同步"
 msgid "General"
 msgstr "常规"
 
-#: src/constants/WalletConnectCommands.tsx:534
+#: src/constants/WalletConnectCommands.tsx:338
 msgid "Get all Offers"
 msgstr "获取所有报价"
 
-#: src/constants/WalletConnectCommands.tsx:2120
+#: src/constants/WalletConnectCommands.tsx:1878
 msgid "Get All Verifiable Credentials"
 msgstr "获取所有可验证证件"
 
-#: src/constants/WalletConnectCommands.tsx:1301
+#: src/constants/WalletConnectCommands.tsx:1084
 msgid "Get Ancestors"
 msgstr "获取Ancestors"
 
-#: src/constants/WalletConnectCommands.tsx:762
+#: src/constants/WalletConnectCommands.tsx:545
 msgid "Get CAT Asset Id"
 msgstr "获取资产代币ID"
 
-#: src/constants/WalletConnectCommands.tsx:749
+#: src/constants/WalletConnectCommands.tsx:532
 msgid "Get CAT Wallet Info"
 msgstr "获取资产代币钱包信息"
-
-#: src/constants/WalletConnectCommands.tsx:123
-msgid "Get Coin Records by Name"
-msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:106
 msgid "Get Current Address"
 msgstr "获取当前地址"
 
-#: src/constants/WalletConnectCommands.tsx:1488
+#: src/constants/WalletConnectCommands.tsx:1271
 msgid "Get DataLayer Sync Status"
 msgstr "获取数据层同步状态"
 
-#: src/constants/WalletConnectCommands.tsx:1812
+#: src/constants/WalletConnectCommands.tsx:1570
 msgid "Get DID"
 msgstr "获取DID"
 
-#: src/constants/WalletConnectCommands.tsx:1799
+#: src/constants/WalletConnectCommands.tsx:1557
 msgid "Get DID Current Coin Info"
 msgstr "获取DID当前硬币信息"
 
-#: src/constants/WalletConnectCommands.tsx:1825
+#: src/constants/WalletConnectCommands.tsx:1583
 msgid "Get DID Info"
 msgstr "获取DID信息"
 
-#: src/constants/WalletConnectCommands.tsx:1850
+#: src/constants/WalletConnectCommands.tsx:1608
 msgid "Get DID Metadata"
 msgstr "获取DID Metadata"
 
-#: src/constants/WalletConnectCommands.tsx:2052
+#: src/constants/WalletConnectCommands.tsx:1810
 msgid "Get DID Name"
 msgstr "获取DID名称"
 
-#: src/constants/WalletConnectCommands.tsx:1863
+#: src/constants/WalletConnectCommands.tsx:1621
 msgid "Get DID Public Key"
 msgstr "获取DID公钥"
 
-#: src/constants/WalletConnectCommands.tsx:1876
+#: src/constants/WalletConnectCommands.tsx:1634
 msgid "Get DID Recovery List"
 msgstr "获取DID恢复列表"
 
-#: src/constants/WalletConnectCommands.tsx:451
-msgid "Get Height Info"
-msgstr ""
-
-#: src/constants/WalletConnectCommands.tsx:1838
+#: src/constants/WalletConnectCommands.tsx:1596
 msgid "Get Information Needed For DID Recovery"
 msgstr "获取DID恢复所需的信息"
 
-#: src/constants/WalletConnectCommands.tsx:1318
+#: src/constants/WalletConnectCommands.tsx:1101
 msgid "Get Keys"
 msgstr "获取Keys"
 
-#: src/constants/WalletConnectCommands.tsx:1350
+#: src/constants/WalletConnectCommands.tsx:1133
 msgid "Get Keys Values"
 msgstr "获取Keys Values"
 
-#: src/constants/WalletConnectCommands.tsx:1381
+#: src/constants/WalletConnectCommands.tsx:1164
 msgid "Get Kv Diff"
 msgstr "获取Kv Diff"
 
-#: src/constants/WalletConnectCommands.tsx:1416
+#: src/constants/WalletConnectCommands.tsx:1199
 msgid "Get Local Root"
 msgstr "获取Local Root"
 
-#: src/constants/WalletConnectCommands.tsx:1429
+#: src/constants/WalletConnectCommands.tsx:1212
 msgid "Get Mirrors"
 msgstr "获取镜像"
 
@@ -2921,87 +2845,79 @@ msgstr "获取镜像"
 msgid "Get Mojos from the Chia Faucet"
 msgstr "从Chia水龙头获取mojo"
 
-#: src/constants/WalletConnectCommands.tsx:419
+#: src/constants/WalletConnectCommands.tsx:291
 msgid "Get Next Address"
 msgstr "获取新地址"
 
-#: src/constants/WalletConnectCommands.tsx:860
+#: src/constants/WalletConnectCommands.tsx:643
 msgid "Get NFT Info"
 msgstr "获取NFT信息"
 
-#: src/constants/WalletConnectCommands.tsx:2114
+#: src/constants/WalletConnectCommands.tsx:1872
 msgid "Get NFT Wallets with DIDs"
 msgstr "获取包含DID的NFT钱包"
 
-#: src/constants/WalletConnectCommands.tsx:830
+#: src/constants/WalletConnectCommands.tsx:613
 msgid "Get NFTs"
 msgstr "获取NFT"
 
-#: src/constants/WalletConnectCommands.tsx:1092
+#: src/constants/WalletConnectCommands.tsx:875
 msgid "Get NFTs Count"
 msgstr "获取NFT数量"
 
-#: src/constants/WalletConnectCommands.tsx:719
+#: src/constants/WalletConnectCommands.tsx:502
 msgid "Get Offer Data"
 msgstr "获取报价数据"
 
-#: src/constants/WalletConnectCommands.tsx:733
+#: src/constants/WalletConnectCommands.tsx:516
 msgid "Get Offer Record"
 msgstr "获取报价记录"
 
-#: src/constants/WalletConnectCommands.tsx:705
+#: src/constants/WalletConnectCommands.tsx:488
 msgid "Get Offer Summary"
 msgstr "获取报价摘要"
 
-#: src/constants/WalletConnectCommands.tsx:579
+#: src/constants/WalletConnectCommands.tsx:383
 msgid "Get Offers Count"
 msgstr "获取报价数量"
 
-#: src/constants/WalletConnectCommands.tsx:1442
+#: src/constants/WalletConnectCommands.tsx:1225
 msgid "Get Owned Stores"
 msgstr "获取拥有的Stores"
 
-#: src/constants/WalletConnectCommands.tsx:2191
+#: src/constants/WalletConnectCommands.tsx:1949
 msgid "Get Proofs For Root Hash"
 msgstr "获取根哈希的证明"
 
-#: src/constants/WalletConnectCommands.tsx:2293
+#: src/constants/WalletConnectCommands.tsx:2051
 msgid "Get public key"
 msgstr "获取公钥"
 
-#: src/constants/WalletConnectCommands.tsx:472
-msgid "Get puzzle and solution"
-msgstr ""
-
-#: src/constants/WalletConnectCommands.tsx:1449
+#: src/constants/WalletConnectCommands.tsx:1232
 msgid "Get Root"
 msgstr "获取Root"
 
-#: src/constants/WalletConnectCommands.tsx:1475
+#: src/constants/WalletConnectCommands.tsx:1258
 msgid "Get Root History"
 msgstr "获取Root History"
 
-#: src/constants/WalletConnectCommands.tsx:1462
+#: src/constants/WalletConnectCommands.tsx:1245
 msgid "Get Roots"
 msgstr "获取Root"
-
-#: src/constants/WalletConnectCommands.tsx:208
-msgid "Get Spendable Coins"
-msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:58
 msgid "Get Transaction"
 msgstr "获取交易"
 
-#: src/constants/WalletConnectCommands.tsx:1501
+#: src/constants/WalletConnectCommands.tsx:1284
 msgid "Get Value"
 msgstr "获取Value"
 
-#: src/constants/WalletConnectCommands.tsx:2126
+#: src/constants/WalletConnectCommands.tsx:1884
 msgid "Get Verifiable Credential"
 msgstr "获取可验证证件"
 
-#: src/constants/WalletConnectCommands.tsx:2257
+#: src/constants/WalletConnectCommands.tsx:2015
 msgid "Get wallet addresses for one or more wallet keys"
 msgstr "获取一个或多个钱包密钥的钱包地址"
 
@@ -3013,7 +2929,7 @@ msgstr "获取钱包余额"
 msgid "Get Wallet Balances"
 msgstr "获取钱包余额"
 
-#: src/constants/WalletConnectCommands.tsx:444
+#: src/constants/WalletConnectCommands.tsx:316
 msgid "Get Wallet Sync Status"
 msgstr "获取钱包同步状态"
 
@@ -3072,16 +2988,16 @@ msgstr "收割机"
 msgid "Harvesting Effectiveness"
 msgstr "收割效率"
 
-#: src/constants/WalletConnectCommands.tsx:1010
-#: src/constants/WalletConnectCommands.tsx:1311
+#: src/constants/WalletConnectCommands.tsx:793
+#: src/constants/WalletConnectCommands.tsx:1094
 msgid "Hash"
 msgstr "哈希"
 
-#: src/constants/WalletConnectCommands.tsx:1392
+#: src/constants/WalletConnectCommands.tsx:1175
 msgid "Hash 1"
 msgstr "哈希 1"
 
-#: src/constants/WalletConnectCommands.tsx:1397
+#: src/constants/WalletConnectCommands.tsx:1180
 msgid "Hash 2"
 msgstr "哈希 2"
 
@@ -3184,7 +3100,7 @@ msgstr "混合磁盘模式允许具有较低内存的计算机通过将中间数
 #~ msgid "I Understand, Create Offer"
 #~ msgstr "I Understand, Create Offer"
 
-#: src/constants/WalletConnectCommands.tsx:322
+#: src/constants/WalletConnectCommands.tsx:194
 msgid "Id"
 msgstr "Id"
 
@@ -3231,15 +3147,11 @@ msgstr "请求"
 msgid "In Progress"
 msgstr "处理中"
 
-#: src/constants/WalletConnectCommands.tsx:565
+#: src/constants/WalletConnectCommands.tsx:369
 msgid "Include My Offers"
 msgstr "包含我的报价"
 
-#: src/constants/WalletConnectCommands.tsx:150
-msgid "Include Spent Coins"
-msgstr ""
-
-#: src/constants/WalletConnectCommands.tsx:571
+#: src/constants/WalletConnectCommands.tsx:375
 msgid "Include Taken Offers"
 msgstr "包括已成交的报价"
 
@@ -3252,12 +3164,12 @@ msgstr "包含钱包元数据"
 msgid "Including a fee in the offer can help expedite the transaction when the offer is accepted. The recommended minimum fee is 0.000005 XCH (5,000,000 mojos)"
 msgstr "在报价中加入手续费可以帮助在接受报价时加速交易。建议的最低手续费为0.000005 XCH (5,000,000 mojos)"
 
-#: src/components/offers2/OfferIncomingTable.tsx:129
+#: src/components/offers2/OfferIncomingTable.tsx:121
 msgid "Incoming Offers"
 msgstr "收到的报价"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:17
-#: src/constants/WalletConnectCommands.tsx:2271
+#: src/constants/WalletConnectCommands.tsx:2029
 msgid "Index"
 msgstr "索引"
 
@@ -3265,11 +3177,11 @@ msgstr "索引"
 msgid "Initializing..."
 msgstr "正在初始化..."
 
-#: src/constants/WalletConnectCommands.tsx:1960
+#: src/constants/WalletConnectCommands.tsx:1718
 msgid "Inner Address"
 msgstr "Inner Address"
 
-#: src/constants/WalletConnectCommands.tsx:1525
+#: src/constants/WalletConnectCommands.tsx:1308
 msgid "Insert"
 msgstr "插入"
 
@@ -3286,7 +3198,7 @@ msgstr ""
 "可支出余额足以支付报价金额。"
 
 #: src/components/offers/OfferEditor.tsx:127
-#: src/components/offers2/CreateOfferBuilder.tsx:166
+#: src/components/offers2/CreateOfferBuilder.tsx:161
 msgid ""
 "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
@@ -3347,7 +3259,7 @@ msgstr "IP地址"
 msgid "IP address / host"
 msgstr "IP地址 / 主机"
 
-#: src/constants/WalletConnectCommands.tsx:2250
+#: src/constants/WalletConnectCommands.tsx:2008
 msgid "Is notification visible to all paired fingerprints"
 msgstr "通知是否对所有配对的指纹可见"
 
@@ -3405,9 +3317,9 @@ msgstr "K值大小"
 
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:213
 #: src/components/walletConnect/WalletConnectRequestPermissionsConfirmDialog.tsx:143
-#: src/constants/WalletConnectCommands.tsx:1268
-#: src/constants/WalletConnectCommands.tsx:1512
-#: src/constants/WalletConnectCommands.tsx:1535
+#: src/constants/WalletConnectCommands.tsx:1051
+#: src/constants/WalletConnectCommands.tsx:1295
+#: src/constants/WalletConnectCommands.tsx:1318
 msgid "Key"
 msgstr "密钥"
 
@@ -3484,8 +3396,8 @@ msgstr "最新的区块挑战"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:255
 #: src/components/plotNFT/PlotNFTCard.tsx:292
-#: src/constants/WalletConnectCommands.tsx:2133
-#: src/constants/WalletConnectCommands.tsx:2145
+#: src/constants/WalletConnectCommands.tsx:1891
+#: src/constants/WalletConnectCommands.tsx:1903
 msgid "Launcher Id"
 msgstr "启动器ID"
 
@@ -3517,11 +3429,11 @@ msgid "Legacy keyrings are no longer supported. Your keys need to be migrated to
 msgstr "旧密钥不再支持。您的密钥需要迁移到一个新的密钥环，这个密钥环可以通过主密码保护了。"
 
 #: src/components/nfts/NFTDetails.tsx:295
-#: src/constants/WalletConnectCommands.tsx:1031
+#: src/constants/WalletConnectCommands.tsx:814
 msgid "License Hash"
 msgstr "许可证哈希"
 
-#: src/constants/WalletConnectCommands.tsx:1026
+#: src/constants/WalletConnectCommands.tsx:809
 msgid "License Uris"
 msgstr "许可证网址"
 
@@ -3545,7 +3457,7 @@ msgstr "载入日志"
 msgid "Loading configuration"
 msgstr "正在加载配置"
 
-#: src/components/offers/OfferManager.tsx:241
+#: src/components/offers/OfferManager.tsx:236
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:107
 msgid "Loading expiration time..."
 msgstr "正在加载到期时间..."
@@ -3586,7 +3498,7 @@ msgstr "正在加载预览..."
 #: src/components/helpers/HeightToTimestamp.tsx:16
 #: src/components/nfts/NFTMetadata.tsx:21
 #: src/components/offers/NFTOfferTokenSelector.tsx:97
-#: src/components/offers/OfferManager.tsx:190
+#: src/components/offers/OfferManager.tsx:185
 #: src/components/offers2/OfferBuilderTokenSelector.tsx:98
 #: src/components/offers2/OfferDetails.tsx:38
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:27
@@ -3621,11 +3533,11 @@ msgstr "注销"
 msgid "Log Viewer"
 msgstr "日志查看器"
 
-#: src/constants/WalletConnectCommands.tsx:1554
+#: src/constants/WalletConnectCommands.tsx:1337
 msgid "Make DataLayer Offer"
 msgstr "生成数据层报价"
 
-#: src/constants/WalletConnectCommands.tsx:1559
+#: src/constants/WalletConnectCommands.tsx:1342
 msgid "Maker"
 msgstr "提供者"
 
@@ -3657,14 +3569,9 @@ msgstr "管理耕种奖励发放地址"
 msgid "Max"
 msgstr "最大值"
 
-#: src/constants/WalletConnectCommands.tsx:186
-#: src/constants/WalletConnectCommands.tsx:230
-msgid "Max Coin Amount"
-msgstr ""
-
-#: src/constants/WalletConnectCommands.tsx:1342
-#: src/constants/WalletConnectCommands.tsx:1373
-#: src/constants/WalletConnectCommands.tsx:1408
+#: src/constants/WalletConnectCommands.tsx:1125
+#: src/constants/WalletConnectCommands.tsx:1156
+#: src/constants/WalletConnectCommands.tsx:1191
 msgid "Max page size"
 msgstr "Max page size"
 
@@ -3672,23 +3579,23 @@ msgstr "Max page size"
 msgid "Memberships"
 msgstr "成员资格"
 
-#: src/constants/WalletConnectCommands.tsx:282
-#: src/constants/WalletConnectCommands.tsx:804
+#: src/constants/WalletConnectCommands.tsx:154
+#: src/constants/WalletConnectCommands.tsx:587
 msgid "Memos"
 msgstr "备注"
 
 #: src/components/notification/NotificationAnnouncementDialog.tsx:67
 #: src/components/signVerify/SignMessage.tsx:204
 #: src/components/signVerify/VerifyMessage.tsx:207
-#: src/constants/WalletConnectCommands.tsx:327
-#: src/constants/WalletConnectCommands.tsx:350
-#: src/constants/WalletConnectCommands.tsx:390
-#: src/constants/WalletConnectCommands.tsx:2232
+#: src/constants/WalletConnectCommands.tsx:199
+#: src/constants/WalletConnectCommands.tsx:222
+#: src/constants/WalletConnectCommands.tsx:262
+#: src/constants/WalletConnectCommands.tsx:1990
 msgid "Message"
 msgstr "消息"
 
-#: src/constants/WalletConnectCommands.tsx:332
-#: src/constants/WalletConnectCommands.tsx:355
+#: src/constants/WalletConnectCommands.tsx:204
+#: src/constants/WalletConnectCommands.tsx:227
 msgid "Message Is Hex Encoded String"
 msgstr "消息是十六进制编码的字符串"
 
@@ -3696,11 +3603,11 @@ msgstr "消息是十六进制编码的字符串"
 msgid "Message not available"
 msgstr "消息不可用"
 
-#: src/constants/WalletConnectCommands.tsx:1020
+#: src/constants/WalletConnectCommands.tsx:803
 msgid "Meta Hash"
 msgstr "元数据哈希"
 
-#: src/constants/WalletConnectCommands.tsx:1015
+#: src/constants/WalletConnectCommands.tsx:798
 msgid "Meta Uris"
 msgstr "元数据网址"
 
@@ -3712,7 +3619,7 @@ msgstr "元数据哈希"
 #~ msgid "Metadata hash mismatch"
 #~ msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:885
+#: src/constants/WalletConnectCommands.tsx:668
 msgid "Metadata List"
 msgstr "Metadata列表"
 
@@ -3740,32 +3647,27 @@ msgstr "需要迁移"
 msgid "Migration required to support passphrase protection"
 msgstr "迁移支持私钥密码保护"
 
-#: src/constants/WalletConnectCommands.tsx:179
-#: src/constants/WalletConnectCommands.tsx:223
-msgid "Min Coin Amount"
-msgstr ""
-
 #: src/components/pool/PoolInfo.tsx:28
 msgid "Minimum Difficulty"
 msgstr "最小难度"
 
-#: src/constants/WalletConnectCommands.tsx:874
+#: src/constants/WalletConnectCommands.tsx:657
 msgid "Mint Bulk"
 msgstr "批量铸造"
 
-#: src/constants/WalletConnectCommands.tsx:956
+#: src/constants/WalletConnectCommands.tsx:739
 msgid "Mint From DID"
 msgstr "通过DID铸造"
 
-#: src/constants/WalletConnectCommands.tsx:977
+#: src/constants/WalletConnectCommands.tsx:760
 msgid "Mint NFT"
 msgstr "铸造NFT"
 
-#: src/constants/WalletConnectCommands.tsx:908
+#: src/constants/WalletConnectCommands.tsx:691
 msgid "Mint Start Number"
 msgstr "铸造起始编号"
 
-#: src/constants/WalletConnectCommands.tsx:914
+#: src/constants/WalletConnectCommands.tsx:697
 msgid "Mint Total"
 msgstr "铸造总数"
 
@@ -3866,14 +3768,10 @@ msgstr "N/A"
 #: src/components/addressbook/ContactEdit.tsx:108
 #: src/components/addressbook/ContactEdit.tsx:166
 #: src/components/addressbook/ContactEdit.tsx:366
-#: src/constants/WalletConnectCommands.tsx:821
-#: src/constants/WalletConnectCommands.tsx:2075
+#: src/constants/WalletConnectCommands.tsx:604
+#: src/constants/WalletConnectCommands.tsx:1833
 msgid "Name"
 msgstr "名称"
-
-#: src/constants/WalletConnectCommands.tsx:131
-msgid "Names (coin ids)"
-msgstr ""
 
 #: src/components/settings/ProfileAdd.tsx:121
 msgid "Need some {currencyCode}?"
@@ -3888,7 +3786,6 @@ msgid "Netspace"
 msgstr "网络空间"
 
 #: src/components/offers/NFTOfferViewer.tsx:607
-#: src/components/offers2/OfferBuilderViewer.tsx:352
 msgid "Network Fee (Optional)"
 msgstr "手续费(可选)"
 
@@ -3896,7 +3793,7 @@ msgstr "手续费(可选)"
 msgid "Network Name"
 msgstr "网络名称"
 
-#: src/constants/WalletConnectCommands.tsx:434
+#: src/constants/WalletConnectCommands.tsx:306
 msgid "New Address"
 msgstr "新地址"
 
@@ -3904,7 +3801,7 @@ msgstr "新地址"
 msgid "New counter offer"
 msgstr "新建还价"
 
-#: src/constants/WalletConnectCommands.tsx:932
+#: src/constants/WalletConnectCommands.tsx:715
 msgid "New Inner Puzzle Hash"
 msgstr "新的内置谜题哈希"
 
@@ -3912,7 +3809,7 @@ msgstr "新的内置谜题哈希"
 msgid "New offer"
 msgstr "新建报价"
 
-#: src/constants/WalletConnectCommands.tsx:938
+#: src/constants/WalletConnectCommands.tsx:721
 msgid "New P2 Puzzle Hash"
 msgstr "新的P2谜题哈希"
 
@@ -3920,21 +3817,17 @@ msgstr "新的P2谜题哈希"
 msgid "New Passphrase"
 msgstr "新建私钥密码"
 
-#: src/constants/WalletConnectCommands.tsx:2156
+#: src/constants/WalletConnectCommands.tsx:1914
 msgid "New Proof Hash"
 msgstr "新建证明哈希"
 
-#: src/constants/WalletConnectCommands.tsx:2150
+#: src/constants/WalletConnectCommands.tsx:1908
 msgid "New Puzzle Hash"
 msgstr "新建难题哈希"
 
-#: src/constants/WalletConnectCommands.tsx:2027
+#: src/constants/WalletConnectCommands.tsx:1785
 msgid "New Recovery DID List"
 msgstr "新的恢复DID列表"
-
-#: src/components/offers2/DataLayerOfferViewer.tsx:57
-msgid "New Root"
-msgstr ""
 
 #: src/components/block/Block.jsx:260
 #: src/components/nfts/detail/NFTDetailV2.tsx:143
@@ -3962,8 +3855,8 @@ msgstr "NFT {nftId} 已经在报价中使用"
 msgid "NFT Coin ID"
 msgstr "NFT硬币ID"
 
-#: src/constants/WalletConnectCommands.tsx:1074
-#: src/constants/WalletConnectCommands.tsx:2097
+#: src/constants/WalletConnectCommands.tsx:857
+#: src/constants/WalletConnectCommands.tsx:1855
 msgid "NFT Coin Ids"
 msgstr "NFT硬币ID"
 
@@ -3993,7 +3886,7 @@ msgstr "NFT 标识符"
 msgid "NFT identifier does not reference a valid NFT coin."
 msgstr "NFT 标识符没有引用一个有效的 NFT 硬币。"
 
-#: src/constants/WalletConnectCommands.tsx:2092
+#: src/constants/WalletConnectCommands.tsx:1850
 msgid "NFT Launcher Id"
 msgstr "NFT启动器ID"
 
@@ -4068,7 +3961,7 @@ msgstr "没有联系人"
 msgid "No CPU Affinity"
 msgstr "没有CPU关联"
 
-#: src/components/offers/OfferManager.tsx:375
+#: src/components/offers/OfferManager.tsx:370
 msgid "No current offers"
 msgstr "当前没有报价"
 
@@ -4080,7 +3973,7 @@ msgstr "没有自定义权限"
 msgid "No file available"
 msgstr "没有可用文件"
 
-#: src/components/offers2/OfferIncomingTable.tsx:283
+#: src/components/offers2/OfferIncomingTable.tsx:259
 msgid "No incoming offers"
 msgstr "没有收到的报价"
 
@@ -4108,7 +4001,7 @@ msgstr "未找到标准钱包"
 msgid "Node ID"
 msgstr "节点ID"
 
-#: src/constants/WalletConnectCommands.tsx:2285
+#: src/constants/WalletConnectCommands.tsx:2043
 msgid "Non Observer Derivation"
 msgstr "非观察派生"
 
@@ -4203,7 +4096,7 @@ msgstr "通知"
 msgid "Notify Current Owner"
 msgstr "通知当前拥有者"
 
-#: src/constants/WalletConnectCommands.tsx:1722
+#: src/constants/WalletConnectCommands.tsx:1480
 msgid "Number of Backup Ids Needed"
 msgstr "需要备份ID的数量"
 
@@ -4216,11 +4109,11 @@ msgstr "桶数量"
 msgid "Number of buckets for phase 3 & 4"
 msgstr "第三和第四阶段的桶数"
 
-#: src/constants/WalletConnectCommands.tsx:2032
+#: src/constants/WalletConnectCommands.tsx:1790
 msgid "Number Of DIDs Required For Recovery"
 msgstr "恢复所需的DID数量"
 
-#: src/constants/WalletConnectCommands.tsx:846
+#: src/constants/WalletConnectCommands.tsx:629
 msgid "Number of NFTs"
 msgstr "NFT数量"
 
@@ -4269,32 +4162,32 @@ msgstr "令人反感的内容"
 msgid "Occupied space"
 msgstr "已占用空间"
 
-#: src/constants/WalletConnectCommands.tsx:682
-#: src/constants/WalletConnectCommands.tsx:1623
-#: src/constants/WalletConnectCommands.tsx:1660
+#: src/constants/WalletConnectCommands.tsx:472
+#: src/constants/WalletConnectCommands.tsx:1406
+#: src/constants/WalletConnectCommands.tsx:1443
 msgid "Offer"
 msgstr "报价"
 
-#: src/components/offers/OfferManager.tsx:418
+#: src/components/offers/OfferManager.tsx:413
 #: src/components/offers2/OfferNavigationHeader.tsx:16
 msgid "Offer Builder"
 msgstr "报价生成器"
 
 #: src/components/offers/NFTOfferViewer.tsx:173
 #: src/components/offers2/OfferBuilderValue.tsx:217
-#: src/components/offers2/OfferBuilderViewer.tsx:417
+#: src/components/offers2/OfferBuilderViewer.tsx:283
 msgid "Offer cannot be accepted because you don't possess the requested assets"
 msgstr "因为你没有被请求的资产，所以不能接受报价"
 
 #: src/components/offers/OfferDataDialog.tsx:29
 #: src/components/offers/OfferDataDialog.tsx:37
-#: src/constants/WalletConnectCommands.tsx:670
-#: src/constants/WalletConnectCommands.tsx:712
-#: src/constants/WalletConnectCommands.tsx:2244
+#: src/constants/WalletConnectCommands.tsx:460
+#: src/constants/WalletConnectCommands.tsx:495
+#: src/constants/WalletConnectCommands.tsx:2002
 msgid "Offer Data"
 msgstr "报价资料"
 
-#: src/components/offers2/OfferBuilderViewerDialog.tsx:57
+#: src/components/offers2/OfferBuilderViewerDialog.tsx:54
 msgid "Offer Details"
 msgstr "报价详情"
 
@@ -4310,7 +4203,6 @@ msgstr "报价到期时间"
 msgid "Offer file is too large (> 1MB)"
 msgstr "报价文件过大 (> 1MB)"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:289
 #: src/hooks/useAcceptOfferHook.tsx:99
 msgid "Offer has been accepted and is awaiting confirmation."
 msgstr "报价已被接受，正在等待确认。"
@@ -4327,12 +4219,12 @@ msgstr "报价已过期"
 msgid "Offer has expired."
 msgstr "报价已过期。"
 
-#: src/constants/WalletConnectCommands.tsx:726
-#: src/constants/WalletConnectCommands.tsx:740
+#: src/constants/WalletConnectCommands.tsx:509
+#: src/constants/WalletConnectCommands.tsx:523
 msgid "Offer Id"
 msgstr "报价ID"
 
-#: src/components/offers/OfferManager.tsx:399
+#: src/components/offers/OfferManager.tsx:394
 msgid "Offer Management"
 msgstr "报价管理"
 
@@ -4353,17 +4245,13 @@ msgstr "报价将在 {0} {1} 后过期"
 #~ msgid "OfferBin URL"
 #~ msgstr "OfferBin URL"
 
-#: src/components/offers/OfferManager.tsx:220
+#: src/components/offers/OfferManager.tsx:215
 #: src/components/offers2/CancelOfferList.tsx:80
 msgid "Offered"
 msgstr "提供"
 
-#: src/components/offers2/DataLayerOfferViewer.tsx:164
-msgid "Offered Store Updates ({0})"
-msgstr ""
-
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:24
-#: src/components/offers2/OfferIncomingTable.tsx:65
+#: src/components/offers2/OfferIncomingTable.tsx:64
 msgid "Offering"
 msgstr "提供"
 
@@ -4384,15 +4272,15 @@ msgstr "报价"
 msgid "Offers are a way to trade assets in a genuinely peer-to-peer way that eliminates counterparty risk."
 msgstr "报价是以真正的点对点方式交易资产的一种方法，消除了交易对手方风险。"
 
-#: src/components/offers/OfferManager.tsx:402
+#: src/components/offers/OfferManager.tsx:397
 msgid "Offers are a way to trade assets in a genuinely peer-to-peer way to eliminate counterparty risk."
 msgstr "报价是以真正的点对点方式交易资产的一种方法，消除了交易对手方风险。"
 
-#: src/components/offers/OfferManager.tsx:451
+#: src/components/offers/OfferManager.tsx:446
 msgid "Offers you accepted"
 msgstr "已接受报价"
 
-#: src/components/offers/OfferManager.tsx:450
+#: src/components/offers/OfferManager.tsx:445
 msgid "Offers you created"
 msgstr "创建的报价"
 
@@ -4414,7 +4302,7 @@ msgstr "一旦您接受此报价，您将无法取消交易。您确定要接受
 msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer the NFT?"
 msgstr "一旦您启动此传输，您将无法取消交易。您确定要传输此NFT吗？"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:421
+#: src/components/offers2/OfferBuilderViewer.tsx:287
 msgid "One or more unknown tokens are being offered. Be sure to verify that the asset IDs of the offered tokens match the asset IDs of the tokens you are expecting."
 msgstr "提供了一个或多个未知的代币。请确保验证提供的代币的ID与您预期的代币的ID相匹配。"
 
@@ -4455,11 +4343,11 @@ msgstr "选项"
 msgid "or <0>browse</0> on your computer"
 msgstr "或者在电脑中<0>浏览</0>"
 
-#: src/components/offers/OfferImport.tsx:169
+#: src/components/offers/OfferImport.tsx:162
 msgid "or Paste (⌘V) an Offer blob"
 msgstr "或 粘贴（Ctrl-V）一个Offer"
 
-#: src/components/offers/OfferImport.tsx:169
+#: src/components/offers/OfferImport.tsx:162
 msgid "or Paste (Ctrl-V) an Offer blob"
 msgstr "或 粘贴（Ctrl-V）一个Offer"
 
@@ -4483,7 +4371,7 @@ msgstr "覆盖第2阶段的线程计数"
 msgid "Override the thread count for Phase 3"
 msgstr "覆盖第3阶段的线程计数"
 
-#: src/constants/WalletConnectCommands.tsx:1151
+#: src/constants/WalletConnectCommands.tsx:934
 msgid "Overwrite"
 msgstr "覆写"
 
@@ -4503,9 +4391,9 @@ msgstr "所有者公钥"
 msgid "p2SingletonPuzzleHash is not defined"
 msgstr "p2SingletonPuzzleHash 未定义"
 
-#: src/constants/WalletConnectCommands.tsx:1336
-#: src/constants/WalletConnectCommands.tsx:1367
-#: src/constants/WalletConnectCommands.tsx:1402
+#: src/constants/WalletConnectCommands.tsx:1119
+#: src/constants/WalletConnectCommands.tsx:1150
+#: src/constants/WalletConnectCommands.tsx:1185
 msgid "Page"
 msgstr "Page"
 
@@ -4525,7 +4413,7 @@ msgstr "已配对密钥"
 msgid "Parallel Decompressor Count"
 msgstr "并行解压数量"
 
-#: src/constants/WalletConnectCommands.tsx:2210
+#: src/constants/WalletConnectCommands.tsx:1968
 msgid "Parent Coin Info"
 msgstr "父硬币信息"
 
@@ -4595,7 +4483,7 @@ msgid "Paste link"
 msgstr "粘贴链接"
 
 #: src/components/offers/OfferDataEntryDialog.tsx:33
-#: src/components/offers/OfferImport.tsx:156
+#: src/components/offers/OfferImport.tsx:149
 msgid "Paste Offer Data"
 msgstr "粘贴报价数据"
 
@@ -4737,8 +4625,7 @@ msgstr "请指定最终输出文件夹"
 msgid "Please specify temporary directory"
 msgstr "请指定临时目录"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:250
-#: src/components/offers2/OfferBuilderViewer.tsx:262
+#: src/components/offers2/OfferBuilderViewer.tsx:223
 msgid "Please wait for wallet synchronization"
 msgstr "请等待钱包同步"
 
@@ -5043,11 +4930,11 @@ msgstr "证明"
 msgid "Proofs Found"
 msgstr "已找到证明"
 
-#: src/constants/WalletConnectCommands.tsx:2198
+#: src/constants/WalletConnectCommands.tsx:1956
 msgid "Proofs Hash"
 msgstr "证明哈希值"
 
-#: src/constants/WalletConnectCommands.tsx:2185
+#: src/constants/WalletConnectCommands.tsx:1943
 msgid "Proofs Object (Key Value Pairs)"
 msgstr "证明对象（键值对）"
 
@@ -5059,16 +4946,16 @@ msgstr "属性"
 msgid "Protocol Version"
 msgstr "协议版本"
 
-#: src/components/settings/SettingsAdvanced.tsx:184
+#: src/components/settings/SettingsAdvanced.tsx:100
 msgid "Prove or verify possession of a wallet address, NFT, or DID using a digital signature."
 msgstr "使用数字签名来证明或验证对钱包地址、NFT或DID的所有权。"
 
-#: src/constants/WalletConnectCommands.tsx:2161
+#: src/constants/WalletConnectCommands.tsx:1919
 msgid "Provider Inner Puzzle Hash"
 msgstr "提供者内部难题哈希"
 
 #: src/components/signVerify/VerifyMessage.tsx:219
-#: src/constants/WalletConnectCommands.tsx:395
+#: src/constants/WalletConnectCommands.tsx:267
 msgid "Public Key"
 msgstr "公钥"
 
@@ -5076,27 +4963,15 @@ msgstr "公钥"
 msgid "Purchase Summary"
 msgstr "购买概要"
 
-#: src/constants/WalletConnectCommands.tsx:518
-msgid "Push"
-msgstr ""
-
-#: src/constants/WalletConnectCommands.tsx:500
-msgid "Push a list of transactions to the blockchain via the wallet"
-msgstr ""
-
-#: src/constants/WalletConnectCommands.tsx:487
+#: src/constants/WalletConnectCommands.tsx:324
 msgid "Push a spend bundle (transaction) to the blockchain"
 msgstr "将支出捆绑包(交易) 推送到区块链"
 
-#: src/constants/WalletConnectCommands.tsx:486
+#: src/constants/WalletConnectCommands.tsx:323
 msgid "Push Transaction"
 msgstr "推送交易"
 
-#: src/constants/WalletConnectCommands.tsx:499
-msgid "Push Transactions"
-msgstr ""
-
-#: src/constants/WalletConnectCommands.tsx:289
+#: src/constants/WalletConnectCommands.tsx:161
 msgid "Puzzle Decorator"
 msgstr "难题装饰器"
 
@@ -5137,7 +5012,7 @@ msgstr "推荐"
 #~ msgid "Recommended: 0.000005 XCH"
 #~ msgstr "Recommended: 0.000005 XCH"
 
-#: src/constants/WalletConnectCommands.tsx:1780
+#: src/constants/WalletConnectCommands.tsx:1538
 msgid "Recovery List Hash"
 msgstr "恢复列表的哈希值"
 
@@ -5158,14 +5033,6 @@ msgstr "刷新 NFT 数据"
 msgid "Refresh Plots"
 msgstr "刷新图块列表"
 
-#: src/constants/WalletConnectCommands.tsx:1681
-msgid "Register Remote Coins"
-msgstr ""
-
-#: src/constants/WalletConnectCommands.tsx:1682
-msgid "Registers a list of remote coin IDs with a remote wallet."
-msgstr ""
-
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:270
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:200
 #: src/components/walletConnect/WalletConnectRequestPermissionsConfirmDialog.tsx:90
@@ -5180,7 +5047,7 @@ msgstr "相对锁高度"
 #~ msgid "Release Notes"
 #~ msgstr "Release Notes"
 
-#: src/components/offers/OfferManager.tsx:297
+#: src/components/offers/OfferManager.tsx:292
 msgid "Relist Offer"
 msgstr "重新列出报价"
 
@@ -5192,7 +5059,7 @@ msgstr "远端"
 msgid "Remote Harvester"
 msgstr "远程收割机"
 
-#: src/components/settings/SettingsAdvanced.tsx:279
+#: src/components/settings/SettingsAdvanced.tsx:195
 msgid "Remove"
 msgstr "移除"
 
@@ -5214,7 +5081,7 @@ msgstr "成功迁移后从旧密钥串中删除密钥"
 msgid "Remove Passphrase"
 msgstr "删除密钥密码"
 
-#: src/constants/WalletConnectCommands.tsx:1578
+#: src/constants/WalletConnectCommands.tsx:1361
 msgid "Remove Subscriptions"
 msgstr "移除订阅"
 
@@ -5235,13 +5102,13 @@ msgstr "删除中"
 msgid "Request Permissions"
 msgstr "请求权限"
 
-#: src/components/offers/OfferManager.tsx:230
+#: src/components/offers/OfferManager.tsx:225
 #: src/components/offers2/CancelOfferList.tsx:95
 msgid "Requested"
 msgstr "请求"
 
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:31
-#: src/components/offers2/OfferIncomingTable.tsx:45
+#: src/components/offers2/OfferIncomingTable.tsx:44
 msgid "Requesting"
 msgstr "请求"
 
@@ -5249,7 +5116,7 @@ msgstr "请求"
 msgid "Requesting Permissions"
 msgstr "正在请求权限"
 
-#: src/constants/WalletConnectCommands.tsx:535
+#: src/constants/WalletConnectCommands.tsx:339
 msgid "Requests a complete listing of the offers associated with the current wallet key"
 msgstr "获取与当前钱包密钥相关的所有报价"
 
@@ -5257,29 +5124,25 @@ msgstr "获取与当前钱包密钥相关的所有报价"
 msgid "Requests a complete listing of the wallets associated with the current wallet key"
 msgstr "获取与当前钱包密钥相关的所有钱包"
 
-#: src/constants/WalletConnectCommands.tsx:832
+#: src/constants/WalletConnectCommands.tsx:615
 msgid "Requests a full or paginated listing of NFTs associated with one or more wallets associated with the current wallet key"
 msgstr "获取当前钱包密钥相关的一个或多个钱包关联的所有或者部分NFT"
 
-#: src/constants/WalletConnectCommands.tsx:2294
+#: src/constants/WalletConnectCommands.tsx:2052
 msgid "Requests a master public key from your wallet"
 msgstr "请求从钱包获取主公钥"
 
-#: src/constants/WalletConnectCommands.tsx:420
+#: src/constants/WalletConnectCommands.tsx:292
 msgid "Requests a new receive address associated with the current wallet key"
 msgstr "获取与当前钱包密钥相关的新接收地址"
 
-#: src/constants/WalletConnectCommands.tsx:861
+#: src/constants/WalletConnectCommands.tsx:644
 msgid "Requests details for a specific NFT"
 msgstr "获取指定NFT的详细信息"
 
 #: src/constants/WalletConnectCommands.tsx:59
 msgid "Requests details for a specific transaction"
 msgstr "获取指定交易的详细信息"
-
-#: src/constants/WalletConnectCommands.tsx:209
-msgid "Requests spendable coins for a specific wallet"
-msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:73
 msgid "Requests the asset balance for a specific wallet associated with the current wallet key"
@@ -5289,7 +5152,7 @@ msgstr "获取与当前钱包密钥相关的指定钱包的资产余额"
 msgid "Requests the asset balances for specific wallets associated with the current wallet key"
 msgstr "获取与当前钱包密钥相关的指定钱包的资产余额"
 
-#: src/constants/WalletConnectCommands.tsx:763
+#: src/constants/WalletConnectCommands.tsx:546
 msgid "Requests the CAT asset ID for a specific CAT wallet"
 msgstr "获取指定资产代币钱包的代币ID"
 
@@ -5297,39 +5160,35 @@ msgstr "获取指定资产代币钱包的代币ID"
 msgid "Requests the current receive address associated with the current wallet key"
 msgstr "获取与当前钱包密钥相关的当前接收地址"
 
-#: src/constants/WalletConnectCommands.tsx:735
+#: src/constants/WalletConnectCommands.tsx:518
 msgid "Requests the details for a specific offer"
 msgstr "获取指定报价的详细信息"
 
-#: src/constants/WalletConnectCommands.tsx:1094
+#: src/constants/WalletConnectCommands.tsx:877
 msgid "Requests the number of NFTs associated with one or more wallets associated with the current wallet key"
 msgstr "获取与当前钱包密钥相关的一个或多个钱包关联的NFT数量。"
 
-#: src/constants/WalletConnectCommands.tsx:580
+#: src/constants/WalletConnectCommands.tsx:384
 msgid "Requests the number of offers associated with the current wallet key"
 msgstr "获取与当前钱包密钥相关的报价数量"
 
-#: src/constants/WalletConnectCommands.tsx:720
+#: src/constants/WalletConnectCommands.tsx:503
 msgid "Requests the raw offer data for a specific offer"
 msgstr "获取指定报价的原始数据"
 
-#: src/constants/WalletConnectCommands.tsx:124
-msgid "Requests the status of a list of coin records from the Wallet's coin store."
-msgstr ""
-
-#: src/constants/WalletConnectCommands.tsx:706
+#: src/constants/WalletConnectCommands.tsx:489
 msgid "Requests the summarized details of a specific offer"
 msgstr "获取指定报价的摘要信息"
 
-#: src/constants/WalletConnectCommands.tsx:445
+#: src/constants/WalletConnectCommands.tsx:317
 msgid "Requests the syncing status of current wallet"
 msgstr "获取当前钱包的同步状态"
 
-#: src/constants/WalletConnectCommands.tsx:664
+#: src/constants/WalletConnectCommands.tsx:454
 msgid "Requests the validity status of a specific offer"
 msgstr "获取特定报价的有效性状态"
 
-#: src/constants/WalletConnectCommands.tsx:384
+#: src/constants/WalletConnectCommands.tsx:256
 msgid "Requests the verification status for a digital signature"
 msgstr "获取数字签名的验证状态"
 
@@ -5337,17 +5196,9 @@ msgstr "获取数字签名的验证状态"
 msgid "Require Confirmation"
 msgstr "需要确认"
 
-#: src/constants/WalletConnectCommands.tsx:1786
+#: src/constants/WalletConnectCommands.tsx:1544
 msgid "Required Number of DIDs for Verification"
 msgstr "验证所需的DID数量"
-
-#: src/components/offers2/DataLayerOfferViewer.tsx:86
-msgid "Required Proofs"
-msgstr ""
-
-#: src/components/offers2/DataLayerOfferViewer.tsx:102
-msgid "Requires Proof From Store"
-msgstr ""
 
 #: src/components/farm/FarmHealth.tsx:286
 #: src/components/farm/FarmHealth.tsx:348
@@ -5378,49 +5229,45 @@ msgstr "重置"
 msgid "Restore Default Dapp Permissions"
 msgstr "恢复默认的 Dapp 权限"
 
-#: src/components/settings/SettingsAdvanced.tsx:201
+#: src/components/settings/SettingsAdvanced.tsx:117
 msgid "Resync"
 msgstr "重新同步"
 
 #: src/components/settings/ResyncPrompt.tsx:37
-#: src/components/settings/SettingsAdvanced.tsx:193
+#: src/components/settings/SettingsAdvanced.tsx:109
 msgid "Resync Wallet"
 msgstr "重新同步钱包"
 
-#: src/components/settings/SettingsAdvanced.tsx:209
+#: src/components/settings/SettingsAdvanced.tsx:125
 msgid "Resyncing forces reloading data from the blockchain about your transactions without losing other locally stored information like open, accepted, or cancelled offer files. Resyncing will require you to restart the app."
 msgstr "重新同步会强制从区块链重新加载有关交易数据，而不会丢失其他本地存储的信息，如打开、接受或取消的报价文件。重新同步将在重启应用后生效。"
 
-#: src/constants/WalletConnectCommands.tsx:1647
+#: src/constants/WalletConnectCommands.tsx:1430
 msgid "retain"
 msgstr "保留"
 
-#: src/constants/WalletConnectCommands.tsx:453
-msgid "Returns wallet height, latest block timestamp, and related fields. Optional usePeakHeight uses the chain tip while syncing."
-msgstr ""
-
-#: src/constants/WalletConnectCommands.tsx:969
-#: src/constants/WalletConnectCommands.tsx:1978
-#: src/constants/WalletConnectCommands.tsx:2009
-#: src/constants/WalletConnectCommands.tsx:2045
-#: src/constants/WalletConnectCommands.tsx:2172
+#: src/constants/WalletConnectCommands.tsx:752
+#: src/constants/WalletConnectCommands.tsx:1736
+#: src/constants/WalletConnectCommands.tsx:1767
+#: src/constants/WalletConnectCommands.tsx:1803
+#: src/constants/WalletConnectCommands.tsx:1930
 msgid "Reuse Puzzle Hash"
 msgstr "重复使用难题哈希"
 
-#: src/constants/WalletConnectCommands.tsx:559
+#: src/constants/WalletConnectCommands.tsx:363
 msgid "Reverse"
 msgstr "反转"
 
 #: src/components/offers2/OfferBuilderTokenSelector.tsx:75
 #: src/components/offers2/OfferBuilderTokenSelector.tsx:110
 #: src/components/walletConnect/WalletConnectCATAmount.tsx:30
-#: src/util/resolveOfferInfo.tsx:76
+#: src/util/resolveOfferInfo.tsx:66
 msgid "Revocable"
 msgstr "可销毁"
 
 #: src/components/vcs/VCCard.tsx:209
 #: src/components/vcs/VCCard.tsx:311
-#: src/constants/WalletConnectCommands.tsx:2204
+#: src/constants/WalletConnectCommands.tsx:1962
 msgid "Revoke Verifiable Credential"
 msgstr "撤销可验证证件"
 
@@ -5428,9 +5275,9 @@ msgstr "撤销可验证证件"
 msgid "Revoked"
 msgstr "撤销"
 
-#: src/constants/WalletConnectCommands.tsx:1330
-#: src/constants/WalletConnectCommands.tsx:1361
-#: src/constants/WalletConnectCommands.tsx:1517
+#: src/constants/WalletConnectCommands.tsx:1113
+#: src/constants/WalletConnectCommands.tsx:1144
+#: src/constants/WalletConnectCommands.tsx:1300
 msgid "Root Hash"
 msgstr "Root哈希"
 
@@ -5438,14 +5285,14 @@ msgstr "Root哈希"
 msgid "Royalties are built into the NFT, so they will automatically be accounted for when the offer is created/accepted."
 msgstr "版税已内置在NFT中，因此在创建/接受报价时将自动计算在内。"
 
-#: src/constants/WalletConnectCommands.tsx:896
-#: src/constants/WalletConnectCommands.tsx:987
+#: src/constants/WalletConnectCommands.tsx:679
+#: src/constants/WalletConnectCommands.tsx:770
 msgid "Royalty Address"
 msgstr "版税地址"
 
 #: src/components/nfts/NFTDetails.tsx:159
-#: src/constants/WalletConnectCommands.tsx:890
-#: src/constants/WalletConnectCommands.tsx:993
+#: src/constants/WalletConnectCommands.tsx:673
+#: src/constants/WalletConnectCommands.tsx:776
 msgid "Royalty Percentage"
 msgstr "版税百分比"
 
@@ -5465,7 +5312,7 @@ msgstr "运行全节点"
 msgid "Save"
 msgstr "保存"
 
-#: src/components/offers/OfferManager.tsx:318
+#: src/components/offers/OfferManager.tsx:313
 msgid "Save Offer File"
 msgstr "保存报价文件"
 
@@ -5502,8 +5349,8 @@ msgstr "搜索..."
 msgid "Second temporary folder location"
 msgstr "第二临时文件夹位置"
 
-#: src/constants/WalletConnectCommands.tsx:650
-#: src/constants/WalletConnectCommands.tsx:1205
+#: src/constants/WalletConnectCommands.tsx:440
+#: src/constants/WalletConnectCommands.tsx:988
 msgid "Secure"
 msgstr "安全"
 
@@ -5532,12 +5379,8 @@ msgstr "选择应用程序"
 msgid "Select an NFT"
 msgstr "选择 NFT"
 
-#: src/constants/WalletConnectCommands.tsx:158
-msgid "Select Coins"
-msgstr ""
-
-#: src/components/settings/SettingsAdvanced.tsx:231
-#: src/components/settings/SettingsAdvanced.tsx:236
+#: src/components/settings/SettingsAdvanced.tsx:147
+#: src/components/settings/SettingsAdvanced.tsx:152
 msgid "Select Command"
 msgstr "选择命令"
 
@@ -5557,7 +5400,7 @@ msgstr "选择密钥"
 msgid "Select keys which you want to share with WalletConnect"
 msgstr "选择将要与 WalletConnect 交互的密钥"
 
-#: src/components/offers/OfferImport.tsx:159
+#: src/components/offers/OfferImport.tsx:152
 msgid "Select Offer File"
 msgstr "选择报价文件"
 
@@ -5602,10 +5445,6 @@ msgstr "选择联合耕种农田"
 msgid "Selected"
 msgstr "已选择"
 
-#: src/constants/WalletConnectCommands.tsx:159
-msgid "Selects coins to be spent from a specific wallet"
-msgstr ""
-
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:93
 msgid "Self pool. When you win a block you will earn XCH rewards."
 msgstr "独自耕种。一旦发现新区块，你将得到全部XCH区块奖励。"
@@ -5637,7 +5476,7 @@ msgstr "发送报价通知"
 msgid "Send to Address"
 msgstr "发送至地址"
 
-#: src/constants/WalletConnectCommands.tsx:252
+#: src/constants/WalletConnectCommands.tsx:124
 msgid "Send Transaction"
 msgstr "发起交易"
 
@@ -5649,11 +5488,11 @@ msgstr "为所有转出XCH的交易设置默认时间范围。"
 msgid "Set a time after which this offer expires."
 msgstr "设置此报价的过期时间。"
 
-#: src/constants/WalletConnectCommands.tsx:2065
+#: src/constants/WalletConnectCommands.tsx:1823
 msgid "Set DID Name"
 msgstr "设置DID名称"
 
-#: src/constants/WalletConnectCommands.tsx:2082
+#: src/constants/WalletConnectCommands.tsx:1840
 msgid "Set NFT DID"
 msgstr "设置NFT DID"
 
@@ -5672,11 +5511,7 @@ msgstr "手动设置密钥"
 msgid "Settings"
 msgstr "设置"
 
-#: src/components/settings/SettingsAdvanced.tsx:92
-msgid "Settings for newer wallet RPC behavior. Misuse can submit spends based on incomplete chain state."
-msgstr ""
-
-#: src/components/offers/OfferManager.tsx:274
+#: src/components/offers/OfferManager.tsx:269
 #: src/components/offers/OfferShareDialog.tsx:715
 msgid "Share"
 msgstr "分享"
@@ -5721,11 +5556,11 @@ msgstr "分享到Spacescan.io"
 msgid "Show"
 msgstr "显示"
 
-#: src/components/offers/OfferManager.tsx:288
+#: src/components/offers/OfferManager.tsx:283
 msgid "Show Details"
 msgstr "显示详情"
 
-#: src/constants/WalletConnectCommands.tsx:2221
+#: src/constants/WalletConnectCommands.tsx:1979
 msgid "Show notification with offer or general announcement"
 msgstr "显示报价通知或其它通知"
 
@@ -5747,7 +5582,6 @@ msgid "Shut down"
 msgstr "关闭"
 
 #: src/components/signVerify/SignMessage.tsx:218
-#: src/constants/WalletConnectCommands.tsx:524
 msgid "Sign"
 msgstr "签名"
 
@@ -5755,16 +5589,16 @@ msgstr "签名"
 msgid "Sign Message"
 msgstr "消息签名"
 
-#: src/constants/WalletConnectCommands.tsx:340
+#: src/constants/WalletConnectCommands.tsx:212
 msgid "Sign Message by Address"
 msgstr "通过地址对消息进行签名"
 
-#: src/constants/WalletConnectCommands.tsx:317
+#: src/constants/WalletConnectCommands.tsx:189
 msgid "Sign Message by Id"
 msgstr "通过ID对消息进行签名"
 
 #: src/components/signVerify/VerifyMessage.tsx:228
-#: src/constants/WalletConnectCommands.tsx:400
+#: src/constants/WalletConnectCommands.tsx:272
 msgid "Signature"
 msgstr "签名"
 
@@ -5780,7 +5614,7 @@ msgstr "签名状态："
 msgid "Signature Verified"
 msgstr "已验证签名"
 
-#: src/components/settings/SettingsAdvanced.tsx:159
+#: src/components/settings/SettingsAdvanced.tsx:75
 msgid "Signatures"
 msgstr "签名"
 
@@ -5805,7 +5639,7 @@ msgid "Signing Entity"
 msgstr "签名实体"
 
 #: src/components/signVerify/VerifyMessage.tsx:237
-#: src/constants/WalletConnectCommands.tsx:411
+#: src/constants/WalletConnectCommands.tsx:283
 msgid "Signing Mode"
 msgstr "签名模式"
 
@@ -5866,15 +5700,15 @@ msgstr "如果存在多个GPU，请指定GPU索引(0、1、2等) 以进行收割
 #~ msgid "Speech"
 #~ msgstr "Speech"
 
-#: src/constants/WalletConnectCommands.tsx:492
+#: src/constants/WalletConnectCommands.tsx:329
 msgid "Spend Bundle"
 msgstr "支出捆绑包"
 
-#: src/constants/WalletConnectCommands.tsx:776
+#: src/constants/WalletConnectCommands.tsx:559
 msgid "Spend CAT"
 msgstr "花费CAT"
 
-#: src/constants/WalletConnectCommands.tsx:2166
+#: src/constants/WalletConnectCommands.tsx:1924
 msgid "Spend Fee"
 msgstr "交易手续费"
 
@@ -5898,19 +5732,15 @@ msgstr "过期贡献点"
 msgid "Standard Version Number"
 msgstr "标准版本号"
 
-#: src/constants/WalletConnectCommands.tsx:541
+#: src/constants/WalletConnectCommands.tsx:345
 msgid "Start"
 msgstr "开始"
 
-#: src/constants/WalletConnectCommands.tsx:136
-msgid "Start Height"
-msgstr ""
-
-#: src/constants/WalletConnectCommands.tsx:852
+#: src/constants/WalletConnectCommands.tsx:635
 msgid "Start Index"
 msgstr "起始索引"
 
-#: src/constants/WalletConnectCommands.tsx:553
+#: src/constants/WalletConnectCommands.tsx:357
 msgid "Start Key"
 msgstr "选择密钥"
 
@@ -5928,7 +5758,7 @@ msgstr "状态"
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:69
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:74
-#: src/components/offers/OfferManager.tsx:210
+#: src/components/offers/OfferManager.tsx:205
 #: src/components/plot/PlotHarvesterPlots.tsx:74
 #: src/components/plot/PlotPlotting.tsx:26
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:101
@@ -5937,42 +5767,34 @@ msgstr "状态"
 msgid "Status"
 msgstr "状态"
 
-#: src/components/offers2/DataLayerOfferViewer.tsx:43
-msgid "Store {0}"
-msgstr ""
-
 #: src/components/app/AppSelectMode.tsx:78
 msgid "Store and Send XCH"
 msgstr "存储并发送 XCH"
 
-#: src/constants/WalletConnectCommands.tsx:1116
+#: src/constants/WalletConnectCommands.tsx:899
+#: src/constants/WalletConnectCommands.tsx:953
+#: src/constants/WalletConnectCommands.tsx:983
+#: src/constants/WalletConnectCommands.tsx:1013
+#: src/constants/WalletConnectCommands.tsx:1046
+#: src/constants/WalletConnectCommands.tsx:1089
+#: src/constants/WalletConnectCommands.tsx:1108
+#: src/constants/WalletConnectCommands.tsx:1139
 #: src/constants/WalletConnectCommands.tsx:1170
-#: src/constants/WalletConnectCommands.tsx:1200
-#: src/constants/WalletConnectCommands.tsx:1230
-#: src/constants/WalletConnectCommands.tsx:1263
-#: src/constants/WalletConnectCommands.tsx:1306
-#: src/constants/WalletConnectCommands.tsx:1325
-#: src/constants/WalletConnectCommands.tsx:1356
-#: src/constants/WalletConnectCommands.tsx:1387
-#: src/constants/WalletConnectCommands.tsx:1422
-#: src/constants/WalletConnectCommands.tsx:1435
-#: src/constants/WalletConnectCommands.tsx:1455
-#: src/constants/WalletConnectCommands.tsx:1481
-#: src/constants/WalletConnectCommands.tsx:1494
-#: src/constants/WalletConnectCommands.tsx:1507
-#: src/constants/WalletConnectCommands.tsx:1530
-#: src/constants/WalletConnectCommands.tsx:1583
-#: src/constants/WalletConnectCommands.tsx:1600
-#: src/constants/WalletConnectCommands.tsx:1642
+#: src/constants/WalletConnectCommands.tsx:1205
+#: src/constants/WalletConnectCommands.tsx:1218
+#: src/constants/WalletConnectCommands.tsx:1238
+#: src/constants/WalletConnectCommands.tsx:1264
+#: src/constants/WalletConnectCommands.tsx:1277
+#: src/constants/WalletConnectCommands.tsx:1290
+#: src/constants/WalletConnectCommands.tsx:1313
+#: src/constants/WalletConnectCommands.tsx:1366
+#: src/constants/WalletConnectCommands.tsx:1383
+#: src/constants/WalletConnectCommands.tsx:1425
 msgid "Store Id"
 msgstr "Store Id"
 
-#: src/components/offers2/DataLayerOfferViewer.tsx:49
-msgid "Store ID"
-msgstr ""
-
-#: src/constants/WalletConnectCommands.tsx:1145
-#: src/constants/WalletConnectCommands.tsx:1468
+#: src/constants/WalletConnectCommands.tsx:928
+#: src/constants/WalletConnectCommands.tsx:1251
 msgid "Store Ids"
 msgstr "Store Ids"
 
@@ -5980,20 +5802,19 @@ msgstr "Store Ids"
 msgid "Submit"
 msgstr "提交"
 
-#: src/constants/WalletConnectCommands.tsx:1188
+#: src/constants/WalletConnectCommands.tsx:971
 msgid "Submit on chain"
 msgstr "提交到区块链"
 
-#: src/constants/WalletConnectCommands.tsx:1595
+#: src/constants/WalletConnectCommands.tsx:1378
 msgid "Subscribe"
 msgstr "订阅"
 
-#: src/constants/WalletConnectCommands.tsx:1612
+#: src/constants/WalletConnectCommands.tsx:1395
 msgid "Subscriptions"
 msgstr "订阅"
 
 #: src/components/notification/NotificationSendDialog.tsx:144
-#: src/components/offers2/OfferBuilderViewer.tsx:288
 #: src/components/vcs/VCCard.tsx:278
 #: src/hooks/useAcceptOfferHook.tsx:98
 msgid "Success"
@@ -6030,24 +5851,24 @@ msgstr "正在同步"
 msgid "Syncing <0/>/<1/>"
 msgstr "正在同步 <0/> / <1/>"
 
-#: src/constants/WalletConnectCommands.tsx:1618
+#: src/constants/WalletConnectCommands.tsx:1401
 msgid "Take DataLayer Offer"
 msgstr "接受数据层报价接受者"
 
-#: src/constants/WalletConnectCommands.tsx:677
+#: src/constants/WalletConnectCommands.tsx:467
 msgid "Take Offer"
 msgstr "接受报价"
 
-#: src/constants/WalletConnectCommands.tsx:1564
+#: src/constants/WalletConnectCommands.tsx:1347
 msgid "Taker"
 msgstr "接受者"
 
-#: src/constants/WalletConnectCommands.tsx:999
-#: src/constants/WalletConnectCommands.tsx:1079
+#: src/constants/WalletConnectCommands.tsx:782
+#: src/constants/WalletConnectCommands.tsx:862
 msgid "Target Address"
 msgstr "目标地址"
 
-#: src/constants/WalletConnectCommands.tsx:902
+#: src/constants/WalletConnectCommands.tsx:685
 msgid "Target List"
 msgstr "目标列表"
 
@@ -6098,10 +5919,6 @@ msgstr "文件夹在内存盘上"
 #: src/components/walletConnect/WalletConnectRequestPermissionsConfirmDialog.tsx:108
 msgid "The following commands are not allowed to bypass confirmation."
 msgstr "以下命令不允许绕过确认。"
-
-#: src/components/offers2/DataLayerOfferViewer.tsx:90
-msgid "The following values must be proven to exist in the specified stores before this offer can be accepted."
-msgstr ""
 
 #: src/components/farm/FarmFullNodeConnections.tsx:79
 msgid "The full node that your farmer is connected to is below. <0>Learn more</0>"
@@ -6157,7 +5974,7 @@ msgstr "节点没有同步"
 msgid "The node is syncing, which means it is downloading blocks from other nodes, to reach the latest block in the chain"
 msgstr "节点正在同步中, 也就是说它正在从其他节点下载区块, 以便达到最新的区块高度"
 
-#: src/components/offers2/OfferIncomingTable.tsx:97
+#: src/components/offers2/OfferIncomingTable.tsx:90
 msgid "The offer creator has chosen not to allow counter offers"
 msgstr "报价创建者不允许还价"
 
@@ -6229,10 +6046,6 @@ msgstr "这是农民耕种奖励的支付方式。默认情况下，这将是一
 msgid "These plots are invalid, you might want to delete them."
 msgstr "这些图块无效，你可能想要删除它们。"
 
-#: src/components/offers2/DataLayerOfferViewer.tsx:168
-msgid "These stores will have their roots updated to the specified values."
-msgstr ""
-
 #: src/components/offers/NFTOfferEditor.tsx:361
 msgid "They will receive"
 msgstr "他们将收到:"
@@ -6240,10 +6053,6 @@ msgstr "他们将收到:"
 #: src/components/plot/PlotAddDirectoryDialog.tsx:83
 msgid "This allows you to add a directory that has plots in it. If you have not created any plots, go to the plotting screen."
 msgstr "添加一个包含图块的目录。如果还没有创建任何图块，请前往绘图界面。"
-
-#: src/components/offers2/OfferBuilderViewer.tsx:328
-msgid "This Data Layer offer contains no store updates and cannot be accepted."
-msgstr ""
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:114
 #: src/components/plotNFT/PlotNFTCard.tsx:148
@@ -6312,13 +6121,12 @@ msgid "This offer has a fee included to help expedite the transaction when the o
 msgstr "该报价包含手续费，用以在接受报价时加快交易。如果认为包含的手续费太少，可以添加额外的手续费。"
 
 #: src/components/offers/OfferHeader.tsx:63
-#: src/components/offers2/OfferBuilderViewer.tsx:409
+#: src/components/offers2/OfferBuilderViewer.tsx:275
 msgid "This offer has completed successfully"
 msgstr "此报价已成功完成"
 
 #: src/components/offers/OfferHeader.tsx:46
-#: src/components/offers2/OfferBuilderViewer.tsx:333
-#: src/components/offers2/OfferBuilderViewer.tsx:396
+#: src/components/offers2/OfferBuilderViewer.tsx:262
 msgid "This offer is no longer valid because it was accepted or cancelled. Click <0>here</0> to learn more."
 msgstr "该报价已不再有效，因为它已被接受或取消。点击<0>此处</0>了解更多信息。"
 
@@ -6327,11 +6135,7 @@ msgstr "该报价已不再有效，因为它已被接受或取消。点击<0>此
 #~ msgid "This offer is no longer valid. To understand why, click <0>here</0> to learn more."
 #~ msgstr "This offer is no longer valid. To understand why, click <0>here</0> to learn more."
 
-#: src/components/offers2/DataLayerOfferViewer.tsx:152
-msgid "This offer proposes updates to Data Layer store roots. Accepting it will transition the listed stores to new roots. Dependencies specify values that must be proven to exist in other stores before acceptance."
-msgstr ""
-
-#: src/components/offers2/OfferBuilderViewer.tsx:413
+#: src/components/offers2/OfferBuilderViewer.tsx:279
 msgid "This offer was cancelled"
 msgstr "此报价已取消"
 
@@ -6358,7 +6162,7 @@ msgstr "这个表格里面显示的是你的农场尝试过的区块挑战. <0>�
 #: src/components/offers2/OfferBuilderTokenSelector.tsx:77
 #: src/components/offers2/OfferBuilderTokenSelector.tsx:112
 #: src/components/walletConnect/WalletConnectCATAmount.tsx:32
-#: src/util/resolveOfferInfo.tsx:78
+#: src/util/resolveOfferInfo.tsx:68
 msgid "This token can be revoked by the issuer"
 msgstr "此代币可由发行方销毁"
 
@@ -6526,7 +6330,7 @@ msgstr "总共获得的XCH"
 msgid "Touch all pages of buffer allocations before starting to plot."
 msgstr "在开始绘图之前，访问所有缓冲分配的页面。"
 
-#: src/constants/WalletConnectCommands.tsx:645
+#: src/constants/WalletConnectCommands.tsx:435
 msgid "Trade Id"
 msgstr "交易ID"
 
@@ -6558,10 +6362,6 @@ msgstr "交易已成功发送到区块链。"
 msgid "Transaction Speed"
 msgstr "交易速度"
 
-#: src/constants/WalletConnectCommands.tsx:506
-msgid "Transactions"
-msgstr ""
-
 #: src/components/block/Block.jsx:228
 msgid "Transactions Filter Hash"
 msgstr "交易过滤器哈希"
@@ -6575,13 +6375,13 @@ msgstr "低于该手续费的交易不会被自动确认。"
 msgid "Transfer"
 msgstr "转移"
 
-#: src/constants/WalletConnectCommands.tsx:1949
+#: src/constants/WalletConnectCommands.tsx:1707
 msgid "Transfer DID"
 msgstr "转移DID"
 
 #: src/components/nfts/NFTContextualActions.tsx:198
 #: src/components/nfts/NFTTransferAction.tsx:201
-#: src/constants/WalletConnectCommands.tsx:1064
+#: src/constants/WalletConnectCommands.tsx:847
 msgid "Transfer NFT"
 msgstr "转移 NFT"
 
@@ -6614,7 +6414,7 @@ msgid "Turn this off if you don't have any compressed plots to harvest"
 msgstr "关闭此选项，如果没有任何压缩图块供收割。"
 
 #: src/components/vcs/VCCard.tsx:163
-#: src/constants/WalletConnectCommands.tsx:2227
+#: src/constants/WalletConnectCommands.tsx:1985
 msgid "Type"
 msgstr "类型"
 
@@ -6687,7 +6487,7 @@ msgstr "未知应用 - {0}"
 msgid "Unknown Application"
 msgstr "未知应用程序"
 
-#: src/util/resolveOfferInfo.tsx:114
+#: src/util/resolveOfferInfo.tsx:104
 msgid "Unknown Asset"
 msgstr "未知资产"
 
@@ -6695,8 +6495,8 @@ msgstr "未知资产"
 #: src/components/offers/OfferSummaryRow.tsx:150
 #: src/components/offers/OfferSummaryRow.tsx:151
 #: src/components/walletConnect/WalletConnectCATAmount.tsx:43
-#: src/util/resolveOfferInfo.tsx:66
-#: src/util/resolveOfferInfo.tsx:151
+#: src/util/resolveOfferInfo.tsx:56
+#: src/util/resolveOfferInfo.tsx:141
 msgid "Unknown CAT"
 msgstr "未知的 CAT"
 
@@ -6716,7 +6516,7 @@ msgstr "未命名联系人"
 msgid "Unrecognized asset"
 msgstr "无法识别的资产"
 
-#: src/constants/WalletConnectCommands.tsx:1637
+#: src/constants/WalletConnectCommands.tsx:1420
 msgid "Unsubscribe"
 msgstr "取消订阅"
 
@@ -6728,11 +6528,11 @@ msgstr "不支持的命令"
 msgid "Update"
 msgstr "更新"
 
-#: src/constants/WalletConnectCommands.tsx:1985
+#: src/constants/WalletConnectCommands.tsx:1743
 msgid "Update DID Metadata"
 msgstr "更新DID Metadata"
 
-#: src/constants/WalletConnectCommands.tsx:2016
+#: src/constants/WalletConnectCommands.tsx:1774
 msgid "Update DID Recovery Ids"
 msgstr "更新 DID 恢复 ID"
 
@@ -6740,12 +6540,12 @@ msgstr "更新 DID 恢复 ID"
 msgid "Update Pending"
 msgstr "等待更新状态"
 
-#: src/constants/WalletConnectCommands.tsx:1005
+#: src/constants/WalletConnectCommands.tsx:788
 msgid "Uris"
 msgstr "网址"
 
 #: src/components/notification/NotificationAnnouncementDialog.tsx:76
-#: src/constants/WalletConnectCommands.tsx:2238
+#: src/constants/WalletConnectCommands.tsx:1996
 #: src/hooks/useOpenUnsafeLink.tsx:27
 #: src/hooks/useOpenUnsafeLink.tsx:72
 msgid "URL"
@@ -6755,23 +6555,15 @@ msgstr "URL"
 msgid "URL is not valid"
 msgstr "网址无效"
 
-#: src/constants/WalletConnectCommands.tsx:1121
-#: src/constants/WalletConnectCommands.tsx:1588
-#: src/constants/WalletConnectCommands.tsx:1605
+#: src/constants/WalletConnectCommands.tsx:904
+#: src/constants/WalletConnectCommands.tsx:1371
+#: src/constants/WalletConnectCommands.tsx:1388
 msgid "URLs"
 msgstr "网址"
-
-#: src/components/settings/SettingsAdvanced.tsx:137
-msgid "Use blockchain peak height for height info"
-msgstr ""
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:138
 msgid "Use left and right arrow keys to navigate"
 msgstr "使用左右方向键导航"
-
-#: src/constants/WalletConnectCommands.tsx:463
-msgid "Use peak height"
-msgstr ""
 
 #: src/components/plot/add/PlotAddChooseKeys.tsx:38
 msgid "Used to create a pool plot."
@@ -6790,7 +6582,7 @@ msgstr "有效"
 msgid "Valid Partials"
 msgstr "有效贡献点"
 
-#: src/constants/WalletConnectCommands.tsx:605
+#: src/constants/WalletConnectCommands.tsx:409
 msgid "Validate only"
 msgstr "仅验证"
 
@@ -6802,19 +6594,15 @@ msgstr "仅验证"
 #~ msgid "Validating hash..."
 #~ msgstr ""
 
-#: src/constants/WalletConnectCommands.tsx:1540
+#: src/constants/WalletConnectCommands.tsx:1323
 msgid "Value"
 msgstr "值"
-
-#: src/components/offers2/DataLayerOfferViewer.tsx:105
-msgid "Values to Prove"
-msgstr ""
 
 #: src/components/fullNode/card/FullNodeCardVDFSubSlotIterations.tsx:14
 msgid "VDF Sub Slot Iterations"
 msgstr "VDF子项迭代"
 
-#: src/constants/WalletConnectCommands.tsx:1250
+#: src/constants/WalletConnectCommands.tsx:1033
 msgid "Verbose"
 msgstr "详细模式"
 
@@ -6864,7 +6652,7 @@ msgstr "验证"
 msgid "Verify Message"
 msgstr "验证消息"
 
-#: src/constants/WalletConnectCommands.tsx:1655
+#: src/constants/WalletConnectCommands.tsx:1438
 msgid "Verify Offer"
 msgstr "验证报价"
 
@@ -6872,8 +6660,8 @@ msgstr "验证报价"
 msgid "Verify Pool Details"
 msgstr "验证联合耕种池详情"
 
-#: src/components/settings/SettingsAdvanced.tsx:176
-#: src/constants/WalletConnectCommands.tsx:383
+#: src/components/settings/SettingsAdvanced.tsx:92
+#: src/constants/WalletConnectCommands.tsx:255
 msgid "Verify Signature"
 msgstr "验证签名"
 
@@ -6881,11 +6669,11 @@ msgstr "验证签名"
 msgid "Verifying hash..."
 msgstr "正在验证哈希值..."
 
-#: src/components/offers2/OfferIncomingTable.tsx:103
+#: src/components/offers2/OfferIncomingTable.tsx:95
 msgid "View"
 msgstr "查看"
 
-#: src/components/offers/OfferImport.tsx:183
+#: src/components/offers/OfferImport.tsx:176
 msgid "View an Offer"
 msgstr "查看报价"
 
@@ -6902,7 +6690,7 @@ msgstr "查看证件数据"
 msgid "View Log"
 msgstr "查看日志"
 
-#: src/components/offers/OfferManager.tsx:441
+#: src/components/offers/OfferManager.tsx:436
 msgid "View Offer"
 msgstr "查看报价"
 
@@ -6993,41 +6781,38 @@ msgstr "钱包地址"
 
 #: src/constants/WalletConnectCommands.tsx:80
 #: src/constants/WalletConnectCommands.tsx:114
-#: src/constants/WalletConnectCommands.tsx:167
-#: src/constants/WalletConnectCommands.tsx:217
-#: src/constants/WalletConnectCommands.tsx:426
-#: src/constants/WalletConnectCommands.tsx:769
-#: src/constants/WalletConnectCommands.tsx:782
-#: src/constants/WalletConnectCommands.tsx:880
-#: src/constants/WalletConnectCommands.tsx:982
-#: src/constants/WalletConnectCommands.tsx:1069
-#: src/constants/WalletConnectCommands.tsx:1688
-#: src/constants/WalletConnectCommands.tsx:1806
-#: src/constants/WalletConnectCommands.tsx:1819
-#: src/constants/WalletConnectCommands.tsx:1844
-#: src/constants/WalletConnectCommands.tsx:1857
-#: src/constants/WalletConnectCommands.tsx:1870
-#: src/constants/WalletConnectCommands.tsx:1883
-#: src/constants/WalletConnectCommands.tsx:1955
-#: src/constants/WalletConnectCommands.tsx:1991
-#: src/constants/WalletConnectCommands.tsx:2022
-#: src/constants/WalletConnectCommands.tsx:2059
-#: src/constants/WalletConnectCommands.tsx:2071
-#: src/constants/WalletConnectCommands.tsx:2088
+#: src/constants/WalletConnectCommands.tsx:298
+#: src/constants/WalletConnectCommands.tsx:552
+#: src/constants/WalletConnectCommands.tsx:565
+#: src/constants/WalletConnectCommands.tsx:663
+#: src/constants/WalletConnectCommands.tsx:765
+#: src/constants/WalletConnectCommands.tsx:852
+#: src/constants/WalletConnectCommands.tsx:1564
+#: src/constants/WalletConnectCommands.tsx:1577
+#: src/constants/WalletConnectCommands.tsx:1602
+#: src/constants/WalletConnectCommands.tsx:1615
+#: src/constants/WalletConnectCommands.tsx:1628
+#: src/constants/WalletConnectCommands.tsx:1641
+#: src/constants/WalletConnectCommands.tsx:1713
+#: src/constants/WalletConnectCommands.tsx:1749
+#: src/constants/WalletConnectCommands.tsx:1780
+#: src/constants/WalletConnectCommands.tsx:1817
+#: src/constants/WalletConnectCommands.tsx:1829
+#: src/constants/WalletConnectCommands.tsx:1846
 msgid "Wallet Id"
 msgstr "钱包ID"
 
-#: src/constants/WalletConnectCommands.tsx:275
+#: src/constants/WalletConnectCommands.tsx:147
 msgid "Wallet ID"
 msgstr "钱包ID"
 
 #: src/constants/WalletConnectCommands.tsx:97
-#: src/constants/WalletConnectCommands.tsx:842
-#: src/constants/WalletConnectCommands.tsx:1103
+#: src/constants/WalletConnectCommands.tsx:625
+#: src/constants/WalletConnectCommands.tsx:886
 msgid "Wallet Ids"
 msgstr "钱包ID"
 
-#: src/constants/WalletConnectCommands.tsx:591
+#: src/constants/WalletConnectCommands.tsx:395
 msgid "Wallet Ids and Amounts"
 msgstr "钱包ID和金额"
 
@@ -7040,13 +6825,9 @@ msgstr "钱包未定义"
 msgid "Wallet Mode"
 msgstr "钱包模式"
 
-#: src/components/offers2/CreateOfferBuilder.tsx:107
+#: src/components/offers2/CreateOfferBuilder.tsx:102
 msgid "Wallet must be synced before creating an offer with an expiration time"
 msgstr "在创建定期报价之前，必须同步钱包。"
-
-#: src/components/settings/SettingsAdvanced.tsx:90
-msgid "Wallet sync RPC"
-msgstr ""
 
 #: src/components/settings/SettingsIntegration.tsx:139
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:218
@@ -7126,18 +6907,6 @@ msgstr "权重是施加给所有块包括目前这块的额外的困难度."
 #~ msgid "When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or cancelled, resulting in your spendable balance changing."
 #~ msgstr "When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or canceled, resulting in your spendable balance changing."
 
-#: src/components/settings/SettingsAdvanced.tsx:123
-msgid "When disabled, the wallet uses the default strict sync checks before spends (recommended)."
-msgstr ""
-
-#: src/components/settings/SettingsAdvanced.tsx:139
-msgid "When enabled, height info uses the chain tip even during sync. When disabled, height reflects the last block the wallet has finished syncing to."
-msgstr ""
-
-#: src/components/settings/SettingsAdvanced.tsx:113
-msgid "When enabled, transaction-style wallet RPC calls include allow_unsynced so they can run while the wallet is slightly behind or in a long sync, as long as it still has full-node peers. Fully disconnected wallets are still rejected."
-msgstr ""
-
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:455
 msgid "Which CUDA device to use when plotting"
 msgstr "选择绘图时要使用的CUDA设备"
@@ -7146,7 +6915,7 @@ msgstr "选择绘图时要使用的CUDA设备"
 #~ msgid "Window"
 #~ msgstr "Window"
 
-#: src/constants/WalletConnectCommands.tsx:1972
+#: src/constants/WalletConnectCommands.tsx:1730
 msgid "With Recovery Info"
 msgstr "包含恢复信息"
 
@@ -7174,11 +6943,11 @@ msgstr "您想要将指定的 NFT 移动到一个资料之下吗？"
 msgid "Would you like to transfer the specified NFT to a new owner?"
 msgstr "您想要将指定的 NFT 转移给一个新的所有者吗？"
 
-#: src/constants/WalletConnectCommands.tsx:926
+#: src/constants/WalletConnectCommands.tsx:709
 msgid "XCH Change Target"
 msgstr "XCH Change Target"
 
-#: src/constants/WalletConnectCommands.tsx:920
+#: src/constants/WalletConnectCommands.tsx:703
 msgid "XCH Coins"
 msgstr "XCH 硬币"
 
@@ -7224,7 +6993,7 @@ msgid "You can still create plots for this plot NFT, but you can not make change
 msgstr "你现在可以为这个联合耕种农田绘图，但是在同步完成前，不能进行任何更改。"
 
 #: src/components/offers/OfferHeader.tsx:38
-#: src/components/offers2/OfferBuilderViewer.tsx:428
+#: src/components/offers2/OfferBuilderViewer.tsx:294
 msgid "You created this offer"
 msgstr "您创建了此报价"
 
