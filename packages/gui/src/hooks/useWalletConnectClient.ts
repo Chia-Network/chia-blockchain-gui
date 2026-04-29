@@ -33,6 +33,14 @@ export type UseWalletConnectConfig = {
 
 let clientId = 1;
 
+type WalletConnectSingleton = {
+  client?: Client;
+  initPromise?: Promise<Client>;
+  configKey?: string;
+};
+
+const singleton: WalletConnectSingleton = {};
+
 export default function useWalletConnectClient(config: UseWalletConnectConfig) {
   const { projectId, relayUrl = 'wss://relay.walletconnect.com', metadata = defaultMetadata, debug = false } = config;
 
@@ -57,12 +65,12 @@ export default function useWalletConnectClient(config: UseWalletConnectConfig) {
         return;
       }
 
-      const newClient = await Client.init({
-        logger: debug ? 'debug' : undefined,
-        projectId,
-        relayUrl,
-        metadata: memoizedMetadata,
-      });
+      const configKey = JSON.stringify({ projectId, relayUrl, metadata: memoizedMetadata, debug });
+
+      if (singleton.configKey !== undefined && singleton.configKey !== configKey) {
+        singleton.client = undefined;
+        singleton.initPromise = undefined;
+      }
 
       if (!singleton.initPromise) {
         singleton.configKey = configKey;
@@ -80,12 +88,13 @@ export default function useWalletConnectClient(config: UseWalletConnectConfig) {
             console.error('[WC] Client.init() failed, clearing storage', initError);
             clearWalletConnectStorage();
             singleton.initPromise = undefined;
+            singleton.configKey = undefined;
             throw initError;
           });
       }
 
       const newClient = await singleton.initPromise;
-      if (currentRequestId === clientRequestId) {
+      if (currentClientId === clientId) {
         setClient(newClient);
       }
     } catch (e) {
