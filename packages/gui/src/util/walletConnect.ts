@@ -22,7 +22,7 @@ export const STANDARD_ERROR_MAP = {
 
 export function processError(error: Error) {
   if (error.message.includes('No matching key')) {
-    console.debug('[chia-gui:walletConnect] Pairing not found (stale key, safe to ignore):', error.message);
+    console.info('[chia-gui:walletConnect] Pairing not found (stale key, safe to ignore):', error.message);
     return;
   }
 

@@ -27,7 +27,7 @@ window.addEventListener('unhandledrejection', (event) => {
     return;
   }
 
-  console.debug('[chia-gui] Suppressing WalletConnect stale-key rejection:', message);
+  console.info('[chia-gui] Suppressing WalletConnect stale-key rejection:', message);
   event.preventDefault();
 });
 
