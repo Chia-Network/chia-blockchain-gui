@@ -100,7 +100,7 @@ export default function OfferBuilderExpirationSection(props: OfferExpirationSect
 
   function viewSection() {
     const countdownDisplay =
-      !isBlockchainTimeLoading && isWalletSynced && currentTime !== -20
+      !isBlockchainTimeLoading && isWalletSynced && currentTime !== 0
         ? OfferBuilderExpirationCountdown(currentTime, expirationTime, false)
         : t`Loading expiration time...`;
     return (
