@@ -3,6 +3,15 @@ import { useState, useEffect, useCallback, useMemo } from 'react';
 
 import useWalletConnectPreferences from './useWalletConnectPreferences';
 
+function clearWalletConnectStorage(): void {
+  if (typeof indexedDB === 'undefined') return;
+  try {
+    indexedDB.deleteDatabase('WALLET_CONNECT_V2_INDEXED_DB');
+  } catch {
+    /* best-effort */
+  }
+}
+
 const defaultMetadata = {
   name: 'Chia Blockchain',
   description: 'GUI for Chia Blockchain',
@@ -23,6 +32,13 @@ export type UseWalletConnectConfig = {
 };
 
 let clientId = 1;
+
+type WalletConnectSingleton = {
+  initPromise?: Promise<Client>;
+  configKey?: string;
+};
+
+const singleton: WalletConnectSingleton = {};
 
 export default function useWalletConnectClient(config: UseWalletConnectConfig) {
   const { projectId, relayUrl = 'wss://relay.walletconnect.com', metadata = defaultMetadata, debug = false } = config;
@@ -48,13 +64,29 @@ export default function useWalletConnectClient(config: UseWalletConnectConfig) {
         return;
       }
 
-      const newClient = await Client.init({
-        logger: debug ? 'debug' : undefined,
-        projectId,
-        relayUrl,
-        metadata: memoizedMetadata,
-      });
+      const configKey = JSON.stringify({ projectId, relayUrl, metadata: memoizedMetadata, debug });
 
+      if (singleton.configKey !== undefined && singleton.configKey !== configKey) {
+        singleton.initPromise = undefined;
+      }
+
+      if (!singleton.initPromise) {
+        singleton.configKey = configKey;
+        singleton.initPromise = Client.init({
+          logger: debug ? 'debug' : 'error',
+          projectId,
+          relayUrl,
+          metadata: memoizedMetadata,
+        }).catch((initError) => {
+          console.error('[WC] Client.init() failed, clearing storage', initError);
+          clearWalletConnectStorage();
+          singleton.initPromise = undefined;
+          singleton.configKey = undefined;
+          throw initError;
+        });
+      }
+
+      const newClient = await singleton.initPromise;
       if (currentClientId === clientId) {
         setClient(newClient);
       }

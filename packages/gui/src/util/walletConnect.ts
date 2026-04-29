@@ -22,7 +22,7 @@ export const STANDARD_ERROR_MAP = {
 
 export function processError(error: Error) {
   if (error.message.includes('No matching key')) {
-    log('Pairing not found');
+    console.info('[chia-gui:walletConnect] Pairing not found (stale key, safe to ignore):', error.message);
     return;
   }
 
@@ -48,12 +48,14 @@ export async function processSessionProposal(
         chia?: {
           chains: string[];
           methods: string[];
+          events?: string[];
         };
       };
       optionalNamespaces?: {
         chia?: {
           chains: string[];
           methods: string[];
+          events?: string[];
         };
       };
     };
@@ -90,6 +92,7 @@ export async function processSessionProposal(
 
     const chains = [...new Set([...(requiredChia?.chains ?? []), ...(optionalChia?.chains ?? [])])];
     const methods = [...new Set([...(requiredChia?.methods ?? []), ...(optionalChia?.methods ?? [])])];
+    const events = [...new Set([...(requiredChia?.events ?? []), ...(optionalChia?.events ?? [])])];
     const chain = chains.find((item) => ['chia:testnet', 'chia:mainnet'].includes(item));
     if (!chain) {
       throw new Error('Chain not supported');
@@ -119,7 +122,7 @@ export async function processSessionProposal(
       chia: {
         accounts,
         methods,
-        events: [],
+        events,
       },
     };
 
@@ -148,22 +151,13 @@ export async function processSessionProposal(
   } catch (error) {
     try {
       log('Session proposal error', error);
+      console.error('WC session proposal REJECTED due to error:', error);
 
-      const {
+      const { id } = event;
+
+      await client?.reject({
         id,
-        params: { pairingTopic },
-      } = event;
-
-      await client?.respond({
-        topic: pairingTopic,
-        response: {
-          id,
-          jsonrpc: '2.0',
-          error: {
-            code: -32_600,
-            message: (error as Error).message ?? 'Invalid Session Proposal',
-          },
-        },
+        reason: getSdkError('USER_REJECTED'),
       });
     } catch (e) {
       processError(e as Error);
@@ -282,40 +276,27 @@ export async function disconnectPair(client: Client, pairs: Pairs, topic: string
     const pairings = await client.core.pairing.getPairings();
     const pairing = pairings.find((p) => p.topic === topic);
     if (pairing) {
-      // disconnect all sessions
       const sessions = pairs.getPair(topic)?.sessions ?? [];
       await Promise.all(
         sessions.map(async (session) => {
           try {
             await client.disconnect({ topic: session.topic, reason: getSdkError('USER_DISCONNECTED') });
           } catch (e) {
-            if (e instanceof Error && e.message.includes('No matching key')) {
-              log(`Session was already disconnected ${session.topic}`);
-              // we can ignore this error because it means that session was already disconnected
-              return;
-            }
-
-            throw e;
+            log(`Failed to disconnect session ${session.topic}:`, e);
           }
         }),
       );
 
-      // then disconnect pairing
       try {
         await client.core.pairing.disconnect({ topic });
       } catch (e) {
-        if (e instanceof Error && e.message.includes('No matching key')) {
-          log(`Pairing was already disconnected ${topic}`);
-          // we can ignore this error because it means that session was already disconnected
-          return;
-        }
-        throw e;
+        log(`Failed to disconnect pairing ${topic}:`, e);
       }
     }
-
-    pairs.removePair(topic);
   } catch (e) {
-    processError(e as Error);
+    log('Error during pair disconnect, removing pair anyway:', e);
+  } finally {
+    pairs.removePair(topic);
   }
 }
 
