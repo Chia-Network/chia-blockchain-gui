@@ -156,6 +156,7 @@ export const {
   useGetCurrentAddressQuery,
   useGetNextAddressMutation,
   useGetCoinRecordsByNamesMutation,
+  usePushTransactionsMutation,
   useSelectCoinsQuery,
   useLazySelectCoinsQuery,
   useGetSpendableCoinsQuery,

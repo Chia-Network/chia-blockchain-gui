@@ -466,6 +466,39 @@ const walletConnectCommands: WalletConnectCommand[] = [
       },
     ],
   },
+  {
+    command: 'pushTransactions',
+    label: <Trans>Push Transactions</Trans>,
+    description: <Trans>Push a list of transactions to the blockchain via the wallet</Trans>,
+    service: ServiceName.WALLET,
+    waitForSync: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.TRANSACTIONS,
+        label: <Trans>Transactions</Trans>,
+        type: 'object',
+      },
+      {
+        name: WalletConnectCommandParamName.FEE,
+        label: <Trans>Fee</Trans>,
+        type: 'BigNumber',
+        isOptional: true,
+        displayComponent: (value) => <MojoToChia value={value} />,
+      },
+      {
+        name: WalletConnectCommandParamName.PUSH,
+        label: <Trans>Push</Trans>,
+        type: 'boolean',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.SIGN,
+        label: <Trans>Sign</Trans>,
+        type: 'boolean',
+        isOptional: true,
+      },
+    ],
+  },
 
   // offers
   {
