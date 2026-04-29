@@ -59,20 +59,6 @@ export default class Wallet extends Service {
     }>('get_coin_records_by_names', args);
   }
 
-  async getPuzzleAndSolution(args: { coinName: string; height: number }) {
-    return this.command<{
-      coinSolution: {
-        coin: {
-          amount: number;
-          parentCoinInfo: string;
-          puzzleHash: string;
-        };
-        puzzleReveal: string;
-        solution: string;
-      };
-    }>('get_puzzle_and_solution', args);
-  }
-
   async selectCoins(args: {
     walletId: number;
     amount: string | number;

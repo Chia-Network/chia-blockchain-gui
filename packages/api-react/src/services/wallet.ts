@@ -546,8 +546,6 @@ export const walletApi = apiWithTag.injectEndpoints({
 
     getCoinRecordsByNames: mutation(build, WalletService, 'getCoinRecordsByNames'),
 
-    getPuzzleAndSolution: mutation(build, WalletService, 'getPuzzleAndSolution'),
-
     selectCoins: query(build, WalletService, 'selectCoins'),
 
     getSpendableCoins: query(build, WalletService, 'getSpendableCoins'),
@@ -1567,7 +1565,6 @@ export const {
   useGetCurrentAddressQuery,
   useGetNextAddressMutation,
   useGetCoinRecordsByNamesMutation,
-  useGetPuzzleAndSolutionMutation,
   useSelectCoinsQuery,
   useLazySelectCoinsQuery,
   useGetSpendableCoinsQuery,

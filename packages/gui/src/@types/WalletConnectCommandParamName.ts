@@ -32,7 +32,6 @@ enum WalletConnectCommandParamName {
   HASH = 'hash',
   HASH1 = 'hash1',
   HASH2 = 'hash2',
-  HEIGHT = 'height',
   ID = 'id',
   IDS = 'ids',
   INCLUDE_DATA = 'includeData',

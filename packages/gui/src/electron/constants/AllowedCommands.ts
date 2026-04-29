@@ -32,7 +32,6 @@ export default [
   'chia_wallet.get_sync_status',
   'chia_wallet.get_wallets',
   'chia_wallet.get_coin_records_by_names',
-  'chia_wallet.get_puzzle_and_solution',
   'chia_wallet.select_coins',
   'chia_wallet.get_spendable_coins',
   'chia_wallet.nft_get_wallet_did',
