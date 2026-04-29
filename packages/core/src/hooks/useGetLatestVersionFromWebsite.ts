@@ -46,6 +46,16 @@ export default function useGetLatestVersionFromWebsite(): UseGetLatestVersionFro
       return;
     }
 
+    async function validateBlogUrl(blogUrlPath: string): Promise<boolean> {
+      try {
+        const fullBlogUrl = new URL(blogUrlPath, 'https://www.chia.net/').toString();
+        const blogResponse = await fetch(fullBlogUrl, { method: 'HEAD' });
+        return blogResponse.ok;
+      } catch {
+        return false;
+      }
+    }
+
     async function fetchLatestVersion() {
       try {
         const response = await fetch(latestVersionURL as string, {
@@ -59,11 +69,19 @@ export default function useGetLatestVersionFromWebsite(): UseGetLatestVersionFro
         const data = await response.json();
         const { version, downloadPageUrl, releaseNotesUrl, blogUrl } = data;
 
+        let validatedBlogUrl: string | null = blogUrl ?? null;
+        if (blogUrl) {
+          const blogExists = await validateBlogUrl(blogUrl);
+          if (!blogExists) {
+            validatedBlogUrl = null;
+          }
+        }
+
         setTimeout(() => {
           setLatestVersion(version);
           setDownloadPath(downloadPageUrl);
           setReleaseNotesPath(releaseNotesUrl);
-          setBlogPath(blogUrl);
+          setBlogPath(validatedBlogUrl);
           setIsLoading(false);
         }, 1000); /* we need the delay, otherwise dialog will close too fast */
       } catch (e) {
