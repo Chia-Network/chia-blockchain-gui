@@ -214,7 +214,20 @@ export async function processSessionRequest(
 
     const pair = pairs.getPairBySession(topic);
     if (!pair) {
-      throw new Error('Pair not found');
+      const allPairs = pairs.get();
+      const allSessions = allPairs.flatMap((p) => p.sessions?.map((s) => s.topic) ?? []);
+      console.warn(
+        `[WC] Pair not found for session=${topic} method=${method} id=${id}`,
+        `| knownPairs=${allPairs.length} pairTopics=[${allPairs.map((p) => p.topic.slice(0, 8)).join(',')}]`,
+        `| knownSessions=${allSessions.length} sessionTopics=[${allSessions.map((s) => s.slice(0, 8)).join(',')}]`,
+        '— disconnecting orphan session',
+      );
+      try {
+        await client.disconnect({ topic, reason: getSdkError('USER_DISCONNECTED') });
+      } catch (e) {
+        log('Failed to disconnect orphan session:', e);
+      }
+      return;
     }
 
     const [network, instance] = chainId.split(':');

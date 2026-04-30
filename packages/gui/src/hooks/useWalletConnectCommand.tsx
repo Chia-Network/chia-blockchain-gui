@@ -244,15 +244,6 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
       };
     }
 
-    // validate current fingerprint again
-    const currentLoggedInFingerprintPromise = store.dispatch(api.endpoints.getLoggedInFingerprint.initiate());
-    const { data: currentFingerprintAfterWait } = await currentLoggedInFingerprintPromise;
-    currentLoggedInFingerprintPromise.unsubscribe();
-
-    if (currentFingerprintAfterWait !== fingerprint) {
-      throw new Error(`Fingerprint changed during execution`);
-    }
-
     // execute command
     log('Executing', command, values);
     const endpoint = serviceCommand ?? command;
