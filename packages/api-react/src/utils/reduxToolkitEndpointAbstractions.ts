@@ -11,8 +11,13 @@ import withAllowUnsynced from './withAllowUnsynced';
 // is NOT passed. PR #2953 adds it but is not merged in v1.9.5.
 // When we need store access (mergeAllowUnsynced), we use `queryFn` instead.
 
+// Tuple-wrap to prevent distributive conditional type behavior, and strip
+// `undefined` from methods with optional parameters (e.g. `getHeightInfo(args?: {...})`)
+// so RTK's `build.query<Result, Arg>` doesn't collapse the arg type to `void`.
 type QueryArgs<TClass extends ServiceConstructor, Method extends keyof InstanceType<TClass> & string> =
-  MethodFirstParameter<TClass, Method> extends undefined ? void : MethodFirstParameter<TClass, Method>;
+  [MethodFirstParameter<TClass, Method>] extends [undefined]
+    ? void
+    : NonNullable<MethodFirstParameter<TClass, Method>>;
 
 export function query<
   TagTypes extends string,
@@ -30,11 +35,22 @@ export function query<
   options: {
     mergeAllowUnsynced?: boolean;
     transformResponse?: Transform;
-    // Note: adding onCacheEntryAdded, providesTags, and invalidatesTags to this type
-    // will allow typecsript to reject calls that use undeclared properties, but using
-    // "[key: string]: any;" allows Javascript to pass through properties outside this
-    // strictly defined type.
-    [key: string]: any;
+    // Derive the common RTK endpoint fields from `build.query`'s own options so
+    // callbacks get proper contextual types (e.g. `providesTags` sees the actual
+    // result type). Without this, callback parameters trip `noImplicitAny` under
+    // the strict tsconfig.
+    providesTags?: Parameters<
+      typeof build.query<ReturnType<Transform>, QueryArgs<TClass, Method>>
+    >[0]['providesTags'];
+    invalidatesTags?: Parameters<
+      typeof build.query<ReturnType<Transform>, QueryArgs<TClass, Method>>
+    >[0]['invalidatesTags'];
+    onCacheEntryAdded?: Parameters<
+      typeof build.query<ReturnType<Transform>, QueryArgs<TClass, Method>>
+    >[0]['onCacheEntryAdded'];
+    onQueryStarted?: Parameters<
+      typeof build.query<ReturnType<Transform>, QueryArgs<TClass, Method>>
+    >[0]['onQueryStarted'];
   } = {},
 ) {
   const { mergeAllowUnsynced, transformResponse = (data) => data, ...rest } = options;
@@ -80,6 +96,21 @@ export function mutation<
   options: {
     mergeAllowUnsynced?: boolean;
     transformResponse?: Transform;
+    // Same rationale as in `query()`: derive the common RTK endpoint fields from
+    // `build.mutation`'s own options so callback parameters get proper contextual
+    // typing.
+    providesTags?: Parameters<
+      typeof build.mutation<ReturnType<Transform>, QueryArgs<TClass, Method>>
+    >[0]['providesTags'];
+    invalidatesTags?: Parameters<
+      typeof build.mutation<ReturnType<Transform>, QueryArgs<TClass, Method>>
+    >[0]['invalidatesTags'];
+    onCacheEntryAdded?: Parameters<
+      typeof build.mutation<ReturnType<Transform>, QueryArgs<TClass, Method>>
+    >[0]['onCacheEntryAdded'];
+    onQueryStarted?: Parameters<
+      typeof build.mutation<ReturnType<Transform>, QueryArgs<TClass, Method>>
+    >[0]['onQueryStarted'];
   } = {}, // Omit<Parameters<typeof build.mutation<MethodReturnType<TClass, Method>, MethodFirstParameter<TClass, Method>>>[0], 'query'> = {}
 ) {
   const { mergeAllowUnsynced, transformResponse = (data) => data, ...rest } = options;
