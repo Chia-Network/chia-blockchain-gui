@@ -151,6 +151,11 @@ const walletConnectCommands: WalletConnectCommand[] = [
         isOptional: true,
         defaultValue: true,
       },
+      {
+        name: WalletConnectCommandParamName.ALLOW_UNSYNCED,
+        type: 'boolean',
+        isOptional: true,
+      },
     ],
   },
   {
@@ -159,7 +164,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
     description: <Trans>Selects coins to be spent from a specific wallet</Trans>,
     service: ServiceName.WALLET,
     bypassConfirm: true,
-    waitForSync: true,
+    waitForSync: false,
     params: [
       {
         name: WalletConnectCommandParamName.WALLET_ID,
@@ -200,6 +205,11 @@ const walletConnectCommands: WalletConnectCommand[] = [
         label: <Trans>Excluded Coin IDs</Trans>,
         isOptional: true,
         displayComponent: (value) => <>{JSON.stringify(value)}</>,
+      },
+      {
+        name: WalletConnectCommandParamName.ALLOW_UNSYNCED,
+        type: 'boolean',
+        isOptional: true,
       },
     ],
   },
@@ -499,7 +509,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
     label: <Trans>Push Transactions</Trans>,
     description: <Trans>Push a list of transactions to the blockchain via the wallet</Trans>,
     service: ServiceName.WALLET,
-    waitForSync: true,
+    waitForSync: false,
     params: [
       {
         name: WalletConnectCommandParamName.TRANSACTIONS,
@@ -522,6 +532,11 @@ const walletConnectCommands: WalletConnectCommand[] = [
       {
         name: WalletConnectCommandParamName.SIGN,
         label: <Trans>Sign</Trans>,
+        type: 'boolean',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.ALLOW_UNSYNCED,
         type: 'boolean',
         isOptional: true,
       },
@@ -632,6 +647,11 @@ const walletConnectCommands: WalletConnectCommand[] = [
         isOptional: true,
         type: 'object',
         displayComponent: (value) => <>{JSON.stringify(value)}</>,
+      },
+      {
+        name: WalletConnectCommandParamName.ALLOW_UNSYNCED,
+        type: 'boolean',
+        isOptional: true,
       },
     ],
   },
@@ -1675,6 +1695,13 @@ const walletConnectCommands: WalletConnectCommand[] = [
     command: 'createNewRemoteWallet',
     label: <Trans>Create new Remote Wallet</Trans>,
     service: ServiceName.WALLET,
+    params: [
+      {
+        name: WalletConnectCommandParamName.ALLOW_UNSYNCED,
+        type: 'boolean',
+        isOptional: true,
+      },
+    ],
   },
   {
     command: 'registerRemoteCoins',

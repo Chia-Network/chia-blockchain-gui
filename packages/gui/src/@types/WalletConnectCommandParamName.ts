@@ -1,6 +1,7 @@
 enum WalletConnectCommandParamName {
   ADDRESS = 'address',
   ALL_FINGERPRINTS = 'allFingerprints',
+  ALLOW_UNSYNCED = 'allowUnsynced',
   AMOUNT = 'amount',
   ASSET_ID = 'assetId',
   ATTEST_DATA = 'attestData',
