@@ -166,6 +166,7 @@ export const {
   useGetTimestampForHeightQuery,
   useLazyGetTimestampForHeightQuery,
   useGetHeightInfoQuery,
+  useGetPuzzleAndSolutionMutation,
   useGetNetworkInfoQuery,
   useGetSyncStatusQuery,
   useGetWalletConnectionsQuery,

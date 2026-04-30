@@ -2,26 +2,30 @@ import type BigNumber from 'bignumber.js';
 
 import CATToken, { type CATTokenStray } from '../@types/CATToken';
 import type Transaction from '../@types/Transaction';
-import Wallet from '../services/WalletService';
+import Wallet, { type AllowUnsyncedArg } from '../services/WalletService';
 
 export default class CATWallet extends Wallet {
-  async createNewCatWallet(args: { amount: string; fee: string }) {
+  async createNewCatWallet(args: { amount: string; fee: string } & AllowUnsyncedArg) {
+    const { allowUnsynced, ...opts } = args;
     return super.createNewWallet({
       walletType: 'cat_wallet',
       options: {
         mode: 'new',
-        ...args,
+        ...opts,
       },
+      ...(allowUnsynced != null ? { allowUnsynced } : {}),
     });
   }
 
-  async createWalletForExisting(args: { assetId: string; fee: string }) {
+  async createWalletForExisting(args: { assetId: string; fee: string } & AllowUnsyncedArg) {
+    const { allowUnsynced, ...opts } = args;
     return super.createNewWallet({
       walletType: 'cat_wallet',
       options: {
         mode: 'existing',
-        ...args,
+        ...opts,
       },
+      ...(allowUnsynced != null ? { allowUnsynced } : {}),
     });
   }
 
@@ -52,7 +56,9 @@ export default class CATWallet extends Wallet {
     }>('cat_set_name', args);
   }
 
-  async spend(args: { walletId: number; address: string; amount: string; fee: string; memos?: string[] }) {
+  async spend(
+    args: { walletId: number; address: string; amount: string; fee: string; memos?: string[] } & AllowUnsyncedArg,
+  ) {
     const { address, ...updatedArgs } = args;
     // cat_spend expects 'inner_address' instead of 'address'
     if (!(updatedArgs as any).innerAddress) {
@@ -77,15 +83,17 @@ export default class CATWallet extends Wallet {
     }>('get_stray_cats');
   }
 
-  async crCatApprovePending(args: {
-    walletId: number;
-    minAmountToClaim: number | BigNumber;
-    fee: number | BigNumber;
-    minCoinAmount?: number | BigNumber;
-    maxCoinAmount?: number | BigNumber;
-    excludedCoinAmounts?: Array<number | BigNumber>;
-    reusePuzhash?: boolean;
-  }) {
+  async crCatApprovePending(
+    args: {
+      walletId: number;
+      minAmountToClaim: number | BigNumber;
+      fee: number | BigNumber;
+      minCoinAmount?: number | BigNumber;
+      maxCoinAmount?: number | BigNumber;
+      excludedCoinAmounts?: Array<number | BigNumber>;
+      reusePuzhash?: boolean;
+    } & AllowUnsyncedArg,
+  ) {
     return this.command<{
       transactions: Transaction[];
     }>('crcat_approve_pending', args);
