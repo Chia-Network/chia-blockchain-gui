@@ -30,25 +30,13 @@ export function query<
   options: {
     mergeAllowUnsynced?: boolean;
     transformResponse?: Transform;
-    onCacheEntryAdded?: Parameters<
-      typeof build.query<ReturnType<Transform>, MethodFirstParameter<TClass, Method>>
-    >[0]['onCacheEntryAdded'];
-    providesTags?: Parameters<
-      typeof build.query<ReturnType<Transform>, MethodFirstParameter<TClass, Method>>
-    >[0]['providesTags'];
-    invalidatesTags?: Parameters<
-      typeof build.query<ReturnType<Transform>, MethodFirstParameter<TClass, Method>>
-    >[0]['invalidatesTags'];
   } = {},
 ) {
   const { mergeAllowUnsynced, transformResponse = (data) => data, ...rest } = options;
 
   if (mergeAllowUnsynced) {
-    const { onCacheEntryAdded, providesTags, invalidatesTags } = rest;
     return build.query<ReturnType<Transform>, QueryArgs<TClass, Method>>({
-      onCacheEntryAdded,
-      providesTags,
-      invalidatesTags,
+      ...rest,
       async queryFn(args, api, _extraOptions, baseQuery) {
         const mergedArgs = args && typeof args === 'object' ? withAllowUnsynced(api.getState(), args) : args;
         const result = await baseQuery({ service, command, args: mergedArgs });
@@ -87,25 +75,13 @@ export function mutation<
   options: {
     mergeAllowUnsynced?: boolean;
     transformResponse?: Transform;
-    onCacheEntryAdded?: Parameters<
-      typeof build.mutation<ReturnType<Transform>, MethodFirstParameter<TClass, Method>>
-    >[0]['onCacheEntryAdded'];
-    providesTags?: Parameters<
-      typeof build.mutation<ReturnType<Transform>, MethodFirstParameter<TClass, Method>>
-    >[0]['providesTags'];
-    invalidatesTags?: Parameters<
-      typeof build.mutation<ReturnType<Transform>, MethodFirstParameter<TClass, Method>>
-    >[0]['invalidatesTags'];
   } = {}, // Omit<Parameters<typeof build.mutation<MethodReturnType<TClass, Method>, MethodFirstParameter<TClass, Method>>>[0], 'query'> = {}
 ) {
   const { mergeAllowUnsynced, transformResponse = (data) => data, ...rest } = options;
 
   if (mergeAllowUnsynced) {
-    const { onCacheEntryAdded, providesTags, invalidatesTags } = rest;
     return build.mutation<ReturnType<Transform>, QueryArgs<TClass, Method>>({
-      onCacheEntryAdded,
-      providesTags,
-      invalidatesTags,
+      ...rest,
       async queryFn(args, api, _extraOptions, baseQuery) {
         const mergedArgs = args && typeof args === 'object' ? withAllowUnsynced(api.getState(), args) : args;
         const result = await baseQuery({ service, command, args: mergedArgs });
