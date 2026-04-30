@@ -9,6 +9,20 @@ const log = initDebug('chia-gui:walletConnect');
 
 const availableCommands = walletConnectCommands.map((command) => `chia_${command.command}`);
 
+async function respondSessionRequestError(client: Client, topic: string, id: number, message: string) {
+  await client.respond({
+    topic,
+    response: {
+      id,
+      jsonrpc: '2.0',
+      error: {
+        code: -32_600,
+        message,
+      },
+    },
+  });
+}
+
 /*
 export const STANDARD_ERROR_MAP = {
   [PARSE_ERROR]: { code: -32700, message: "Parse error" },
@@ -93,8 +107,8 @@ export async function processSessionProposal(
     const chains = [...new Set([...(requiredChia?.chains ?? []), ...(optionalChia?.chains ?? [])])];
     const methods = [...new Set([...(requiredChia?.methods ?? []), ...(optionalChia?.methods ?? [])])];
     const events = [...new Set([...(requiredChia?.events ?? []), ...(optionalChia?.events ?? [])])];
-    const chain = chains.find((item) => ['chia:testnet', 'chia:mainnet'].includes(item));
-    if (!chain) {
+    const supportedChains = chains.filter((item) => ['chia:testnet', 'chia:mainnet'].includes(item));
+    if (!supportedChains.length) {
       throw new Error('Chain not supported');
     }
 
@@ -115,9 +129,13 @@ export async function processSessionProposal(
     }
 
     const { fingerprints } = pair;
-    const [, requestedInstance] = chain.split(':');
-    const instance = requestedInstance === 'mainnet' ? 'mainnet' : 'testnet';
-    const accounts = fingerprints.map((fingerprint) => `chia:${instance}:${fingerprint}`);
+    const instance = pair.mainnet ? 'mainnet' : 'testnet';
+    const chain = `chia:${instance}`;
+    if (!supportedChains.includes(chain)) {
+      throw new Error(`Requested chains do not include pair network: ${chain}`);
+    }
+
+    const accounts = fingerprints.map((fingerprint) => `${chain}:${fingerprint}`);
 
     const namespaces = {
       chia: {
@@ -223,6 +241,12 @@ export async function processSessionRequest(
         '— disconnecting orphan session',
       );
       try {
+        await respondSessionRequestError(client, topic, id, 'Pair not found');
+      } catch (e) {
+        log('Failed to respond to orphan session request:', e);
+      }
+
+      try {
         await client.disconnect({ topic, reason: getSdkError('USER_DISCONNECTED') });
       } catch (e) {
         log('Failed to disconnect orphan session:', e);
@@ -267,17 +291,9 @@ export async function processSessionRequest(
       log('Session request error', error);
 
       const { id, topic } = event;
-      await client?.respond({
-        topic,
-        response: {
-          id,
-          jsonrpc: '2.0',
-          error: {
-            code: -32_600,
-            message: (error as Error).message ?? 'Invalid Session Request',
-          },
-        },
-      });
+      if (client) {
+        await respondSessionRequestError(client, topic, id, (error as Error).message ?? 'Invalid Session Request');
+      }
     } catch (e) {
       processError(e as Error);
     }
