@@ -30,6 +30,11 @@ export function query<
   options: {
     mergeAllowUnsynced?: boolean;
     transformResponse?: Transform;
+    // Note: adding onCacheEntryAdded, providesTags, and invalidatesTags to this type
+    // will allow typecsript to reject calls that use undeclared properties, but using
+    // "[key: string]: any;" allows Javascript to pass through properties outside this
+    // strictly defined type.
+    [key: string]: any;
   } = {},
 ) {
   const { mergeAllowUnsynced, transformResponse = (data) => data, ...rest } = options;
