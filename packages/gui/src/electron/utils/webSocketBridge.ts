@@ -10,6 +10,13 @@ import loadConfig from './loadConfig';
 
 const connections: Record<string, WebSocket> = {};
 
+export type WebSocketSendMeta = {
+  walletConnect?: {
+    topic?: string;
+    wcCommand?: string;
+  };
+};
+
 function getConnection(id: string) {
   const connection = connections[id];
   if (!connection) {
@@ -33,7 +40,7 @@ export default function bindEvents(
   webContents: WebContents,
   options: {
     net?: string;
-    onSend?: (id: string, data: string) => Promise<string | void>;
+    onSend?: (id: string, data: string, meta?: WebSocketSendMeta) => Promise<void>;
     onReceive?: (id: string, data: RawData) => Promise<void>;
   },
 ) {
@@ -112,7 +119,7 @@ export default function bindEvents(
     return id;
   });
 
-  ipcMainHandle(WebSocketAPI.SEND, async (id: string, data: string) => {
+  ipcMainHandle(WebSocketAPI.SEND, async (id: string, data: string, meta?: WebSocketSendMeta) => {
     const connection = getConnection(id);
 
     if (!onSend) {
@@ -121,8 +128,8 @@ export default function bindEvents(
     }
 
     try {
-      const updatedData = await onSend(id, data);
-      connection.send(updatedData ?? data);
+      await onSend(id, data, meta);
+      connection.send(data);
     } catch (err) {
       console.error(err);
 

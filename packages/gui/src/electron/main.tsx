@@ -34,6 +34,7 @@ import ChiaLogsAPI from './constants/ChiaLogsAPI';
 import LinkAPI from './constants/LinkAPI';
 import PreferencesAPI from './constants/PreferencesAPI';
 import WalletConnectAPI from './constants/WalletConnectAPI';
+import { resolveScope as resolveWalletConnectScope } from './constants/WalletConnectScopeMap';
 import About from './dialogs/About/About';
 import Confirm, { getTitle as getConfirmTitle } from './dialogs/Confirm/Confirm';
 import KeyDetail from './dialogs/KeyDetail/KeyDetail';
@@ -65,9 +66,8 @@ import {
   putSession as putWalletConnectSession,
   resetLedger as resetWalletConnectLedger,
   revokeSession as revokeWalletConnectSession,
-  setScopes as setWalletConnectScopes,
 } from './utils/walletConnectPolicy';
-import webSocketBridgeBindEvents from './utils/webSocketBridge';
+import webSocketBridgeBindEvents, { type WebSocketSendMeta } from './utils/webSocketBridge';
 
 const isPlaywrightTesting = process.env.PLAYWRIGHT_TESTS === 'true';
 const NET = 'mainnet';
@@ -510,22 +510,26 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
       return putWalletConnectSession(safeInput);
     });
     ipcMainHandle(WalletConnectAPI.REVOKE_SESSION, (topic: string) => revokeWalletConnectSession(topic));
-    ipcMainHandle(WalletConnectAPI.SET_SCOPES, async (topic: string, scopes) => {
+    ipcMainHandle(WalletConnectAPI.SET_SCOPES, async (topic: string) => {
       const session = getWalletConnectSession(topic);
-      const { response } = await dialog.showMessageBox({
-        type: 'question',
-        buttons: [i18n._(/* i18n */ { id: 'Cancel' }), i18n._(/* i18n */ { id: 'Save' })],
-        defaultId: 0,
-        title: i18n._(/* i18n */ { id: 'Update WalletConnect Permissions' }),
-        message: i18n._(/* i18n */ { id: 'Do you want to update WalletConnect permissions for this app?' }),
-        detail: session?.metadata.name ?? topic,
-      });
+      if (!session) {
+        throw new Error(`Unknown WalletConnect session: ${topic}`);
+      }
+      if (!mainWindow) {
+        throw new Error('`mainWindow` is empty');
+      }
 
-      if (response !== 1) {
+      const result = await promptWalletConnectPermissions({
+        topic,
+        requestedCommands: [],
+        metadata: session.metadata,
+      }, mainWindow);
+
+      if (!result.approved) {
         throw new Error('Operation cancelled by user');
       }
 
-      return setWalletConnectScopes(topic, scopes as Parameters<typeof setWalletConnectScopes>[1]);
+      return getWalletConnectSession(topic);
     });
     ipcMainHandle(WalletConnectAPI.GET_LEDGER, (topic: string, scope: string, sinceTs?: number) =>
       getWalletConnectLedger(topic, scope as Parameters<typeof getWalletConnectLedger>[1], sinceTs),
@@ -581,7 +585,7 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
           console.error(error);
         }
       },
-      onSend: async (_id: string, data: string) => {
+      onSend: async (_id: string, data: string, meta?: WebSocketSendMeta) => {
         if (!mainWindow) {
           throw new Error('`mainWindow` is empty');
         }
@@ -591,32 +595,24 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
         const destination = parsedData.destination.trim().toLowerCase();
 
         const nsCommand = `${destination}.${command}`;
-        const walletConnectMeta = parsedData.wallet_connect as
-          | {
-              topic?: string;
-              wcCommand?: string;
-              rendererOfferSummary?: Parameters<typeof evaluateWalletConnectPolicy>[0]['rendererOfferSummary'];
-            }
-          | undefined;
-
-        if (walletConnectMeta) {
-          delete parsedData.wallet_connect;
-        }
-
-        const sanitizedData = walletConnectMeta ? JSON.stringify(parsedData) : data;
+        const walletConnectMeta = meta?.walletConnect;
 
         if (['chia_wallet.get_private_key'].includes(nsCommand)) {
           throw new Error('Private key is not allowed to be sent to the renderer process');
         }
 
         if (walletConnectMeta?.topic) {
+          const nsScope = resolveWalletConnectScope({ nsCommand });
+          const wcScope = resolveWalletConnectScope({ wcCommand: walletConnectMeta.wcCommand });
+          if (walletConnectMeta.wcCommand && wcScope !== nsScope) {
+            throw new Error('WalletConnect command metadata does not match daemon command');
+          }
+
           const result = await evaluateWalletConnectPolicy(
             {
               nsCommand,
               parsedData: parsedData.data,
               topic: walletConnectMeta.topic,
-              wcCommand: walletConnectMeta.wcCommand,
-              rendererOfferSummary: walletConnectMeta.rendererOfferSummary,
             },
             mainWindow,
           );
@@ -625,13 +621,13 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
             throw new Error(result.reason);
           }
 
-          return sanitizedData;
+          return;
         }
 
         if (!AllowedCommands.includes(nsCommand)) {
           const bypassCommands = privatePreferences.get('bypassCommands', [] as string[]);
           if (bypassCommands.includes(nsCommand)) {
-            return sanitizedData;
+            return;
           }
 
           const result = await openReactDialog(
@@ -653,8 +649,6 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
             throw new Error('Operation cancelled by user');
           }
         }
-
-        return sanitizedData;
       },
     });
 

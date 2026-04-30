@@ -117,7 +117,7 @@ contextBridge.exposeInMainWorld(API.CACHE, {
 
 contextBridge.exposeInMainWorld(API.WEBSOCKET, {
   connect: () => invokeWithCustomErrors(WebSocketAPI.CONNECT),
-  send: (id: string, data: string) => invokeWithCustomErrors(WebSocketAPI.SEND, id, data),
+  send: (id: string, data: string, meta?: unknown) => invokeWithCustomErrors(WebSocketAPI.SEND, id, data, meta),
   close: (id: string) => invokeWithCustomErrors(WebSocketAPI.CLOSE, id),
   subscribeToOpen: (callback: (...args: unknown[]) => void) => onIpcEvent(WebSocketAPI.ON_OPEN, callback),
   subscribeToMessage: (callback: (...args: unknown[]) => void) => onIpcEvent(WebSocketAPI.ON_MESSAGE, callback),

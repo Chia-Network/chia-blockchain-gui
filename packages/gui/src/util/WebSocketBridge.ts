@@ -69,16 +69,12 @@ export default class WebSocketBridge extends EventEmitter {
         return;
       }
 
-      window.webSocketAPI.send(
-        this.id,
-        JSON.stringify({
-          ...parsed,
-          wallet_connect: {
-            topic: meta.topic,
-            wcCommand: meta.wcCommand,
-          },
-        }),
-      );
+      window.webSocketAPI.send(this.id, data, {
+        walletConnect: {
+          topic: meta.topic,
+          wcCommand: meta.wcCommand,
+        },
+      });
     } catch {
       window.webSocketAPI.send(this.id, data);
     }

@@ -1,6 +1,15 @@
 type WebSocketService = {
   connect: () => Promise<string>; // returns connection ID
-  send: (connectionId: string, data: string) => Promise<void>;
+  send: (
+    connectionId: string,
+    data: string,
+    meta?: {
+      walletConnect?: {
+        topic: string;
+        wcCommand: string;
+      };
+    },
+  ) => Promise<void>;
   close: (connectionId: string) => void;
 
   subscribeToOpen: (callback: (connectionId: string) => void) => () => void;

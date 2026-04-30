@@ -15,6 +15,13 @@ import useWalletConnectPairs from './useWalletConnectPairs';
 import useWalletConnectPreferences from './useWalletConnectPreferences';
 
 const log = debug('chia-gui:walletConnectCommand');
+let walletConnectExecutionQueue: Promise<unknown> = Promise.resolve();
+
+function runWalletConnectExclusive<TResult>(task: () => Promise<TResult>): Promise<TResult> {
+  const next = walletConnectExecutionQueue.then(task, task);
+  walletConnectExecutionQueue = next.catch(() => undefined);
+  return next;
+}
 
 type UseWalletConnectCommandOptions = {
   onNotification?: (notification: Notification) => void;
@@ -185,20 +192,22 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
     // execute command
     log('Executing', command, values);
     const endpoint = serviceCommand ?? command;
-    window.walletConnectRequestMeta = {
-      topic,
-      wcCommand: command,
-      destination: service,
-    };
-    const resultPromise = store.dispatch(api.endpoints[endpoint].initiate(values));
-    try {
-      const result = await resultPromise;
-      log('Result', result);
-      return result;
-    } finally {
-      delete window.walletConnectRequestMeta;
-      resultPromise.unsubscribe();
-    }
+    return runWalletConnectExclusive(async () => {
+      window.walletConnectRequestMeta = {
+        topic,
+        wcCommand: command,
+        destination: service,
+      };
+      const resultPromise = store.dispatch(api.endpoints[endpoint].initiate(values));
+      try {
+        const result = await resultPromise;
+        log('Result', result);
+        return result;
+      } finally {
+        delete window.walletConnectRequestMeta;
+        resultPromise.unsubscribe();
+      }
+    });
   }
 
   return {
