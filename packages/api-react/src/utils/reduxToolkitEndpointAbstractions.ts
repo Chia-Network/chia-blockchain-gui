@@ -41,9 +41,6 @@ export function query<
     // result type). Without this, callback parameters trip `noImplicitAny` under
     // the strict tsconfig.
     providesTags?: Parameters<typeof build.query<ReturnType<Transform>, QueryArgs<TClass, Method>>>[0]['providesTags'];
-    invalidatesTags?: Parameters<
-      typeof build.query<ReturnType<Transform>, QueryArgs<TClass, Method>>
-    >[0]['invalidatesTags'];
     onCacheEntryAdded?: Parameters<
       typeof build.query<ReturnType<Transform>, QueryArgs<TClass, Method>>
     >[0]['onCacheEntryAdded'];
@@ -98,9 +95,6 @@ export function mutation<
     // Same rationale as in `query()`: derive the common RTK endpoint fields from
     // `build.mutation`'s own options so callback parameters get proper contextual
     // typing.
-    providesTags?: Parameters<
-      typeof build.mutation<ReturnType<Transform>, QueryArgs<TClass, Method>>
-    >[0]['providesTags'];
     invalidatesTags?: Parameters<
       typeof build.mutation<ReturnType<Transform>, QueryArgs<TClass, Method>>
     >[0]['invalidatesTags'];
