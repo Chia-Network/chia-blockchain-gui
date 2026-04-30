@@ -14,10 +14,11 @@ import withAllowUnsynced from './withAllowUnsynced';
 // Tuple-wrap to prevent distributive conditional type behavior, and strip
 // `undefined` from methods with optional parameters (e.g. `getHeightInfo(args?: {...})`)
 // so RTK's `build.query<Result, Arg>` doesn't collapse the arg type to `void`.
-type QueryArgs<TClass extends ServiceConstructor, Method extends keyof InstanceType<TClass> & string> =
-  [MethodFirstParameter<TClass, Method>] extends [undefined]
-    ? void
-    : NonNullable<MethodFirstParameter<TClass, Method>>;
+type QueryArgs<TClass extends ServiceConstructor, Method extends keyof InstanceType<TClass> & string> = [
+  MethodFirstParameter<TClass, Method>,
+] extends [undefined]
+  ? void
+  : NonNullable<MethodFirstParameter<TClass, Method>>;
 
 export function query<
   TagTypes extends string,
@@ -39,9 +40,7 @@ export function query<
     // callbacks get proper contextual types (e.g. `providesTags` sees the actual
     // result type). Without this, callback parameters trip `noImplicitAny` under
     // the strict tsconfig.
-    providesTags?: Parameters<
-      typeof build.query<ReturnType<Transform>, QueryArgs<TClass, Method>>
-    >[0]['providesTags'];
+    providesTags?: Parameters<typeof build.query<ReturnType<Transform>, QueryArgs<TClass, Method>>>[0]['providesTags'];
     invalidatesTags?: Parameters<
       typeof build.query<ReturnType<Transform>, QueryArgs<TClass, Method>>
     >[0]['invalidatesTags'];
