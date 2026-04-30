@@ -104,3 +104,6 @@ dist
 **/coverage
 .coverage
 .nyc_output
+
+# Things having to do with differences between CI and local builds, e.g. translations
+*.po
