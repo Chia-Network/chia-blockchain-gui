@@ -18,6 +18,7 @@ export type PairProps = {
   defaultGrants?: PairGrants;
   defaultFingerprints?: number[];
   isEdit?: boolean;
+  currencyCode?: string;
   styleURL?: string;
   isDarkMode?: boolean;
 };
@@ -37,6 +38,7 @@ export default function Pair(props: PairProps) {
     defaultGrants,
     defaultFingerprints = [],
     isEdit = false,
+    currencyCode = 'XCH',
   } = props;
 
   const grants: PairGrants = defaultGrants ?? {
@@ -292,7 +294,9 @@ export default function Pair(props: PairProps) {
                   data-form-field="spendingCapXch"
                   className="w-28 px-2 py-1 rounded-md border border-chia-border-strong bg-chia-bg text-sm font-mono text-chia-text focus:outline-none focus:border-chia-primary focus:ring-2 focus:ring-chia-primary/20"
                 />
-                <span className="text-sm font-semibold uppercase tracking-wider text-chia-text-secondary">XCH</span>
+                <span className="text-sm font-semibold uppercase tracking-wider text-chia-text-secondary">
+                  {currencyCode}
+                </span>
               </div>
               <div className="mt-0.5 ml-[30px] text-sm text-chia-text-secondary leading-snug">
                 {i18n._(/* i18n */ {

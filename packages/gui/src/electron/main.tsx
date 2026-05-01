@@ -170,6 +170,7 @@ async function openPairDialog(
       defaultGrants: options.defaults?.grants,
       defaultFingerprints: options.defaults?.fingerprints ?? options.defaultFingerprints,
       isEdit: !!options.isEdit,
+      currencyCode: networkPrefix ? networkPrefix.toUpperCase() : 'XCH',
     },
     {
       title: getPairTitle(!!options.isEdit),
@@ -251,6 +252,7 @@ ipcMainHandle(
 
 // main window
 let mainWindow: BrowserWindow | null = null;
+let networkPrefix: string | undefined;
 
 let currentDownloadRequest: any;
 let abortDownloadingFiles: boolean = false;
@@ -312,7 +314,6 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
   let isClosing = false;
   let promptOnQuit = true;
   let mainWindowLaunchTasks: ((window: BrowserWindow) => void)[] = [];
-  let networkPrefix: string | undefined;
 
   const createWindow = async () => {
     if (manageDaemonLifetime(NET)) {
