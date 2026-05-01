@@ -125,6 +125,9 @@ function dialogResultToGrants(result: Record<string, unknown>): PairGrants {
     capabilities.watch = true;
     capabilities.walletCreate = true;
   }
+  if (result['cap-balance'] === true) {
+    capabilities.balance = true;
+  }
   if (result['cap-sign'] === true) {
     capabilities.sign = true;
   }

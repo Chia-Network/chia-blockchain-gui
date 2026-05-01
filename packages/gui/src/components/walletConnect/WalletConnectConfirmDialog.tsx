@@ -200,6 +200,8 @@ export default function WalletConnectConfirmDialog(props: WalletConnectConfirmDi
       cancelTitle={<Trans>Reject</Trans>}
       onClose={onCloseConfirmDialog}
       open={open}
+      disableBackdropClick
+      disableEscapeKeyDown
     >
       <LoadingOverlay isLoading={isLoadingPublicKeys}>
         <Flex flexDirection="column" gap={2}>

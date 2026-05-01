@@ -91,6 +91,8 @@ export default function WalletConnectRequestPermissionsConfirmDialog(
       onClose={handleClose}
       open={open}
       disableConfirmButton={disableApprove}
+      disableBackdropClick
+      disableEscapeKeyDown
     >
       <LoadingOverlay isLoading={isLoadingPublicKeys}>
         <Flex flexDirection="column" gap={2}>

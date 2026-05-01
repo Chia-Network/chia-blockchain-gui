@@ -1,6 +1,14 @@
-export type Capability = 'read' | 'watch' | 'walletCreate' | 'sign' | 'offer' | 'spend';
+export type Capability = 'read' | 'balance' | 'watch' | 'walletCreate' | 'sign' | 'offer' | 'spend';
 
-export const ALL_CAPABILITIES: Capability[] = ['read', 'watch', 'walletCreate', 'sign', 'offer', 'spend'];
+export const ALL_CAPABILITIES: Capability[] = [
+  'read',
+  'balance',
+  'watch',
+  'walletCreate',
+  'sign',
+  'offer',
+  'spend',
+];
 
 export type CapabilityGrants = Record<Capability, boolean>;
 
@@ -44,6 +52,7 @@ export type CheckResult =
 export function emptyCapabilities(): CapabilityGrants {
   return {
     read: false,
+    balance: false,
     watch: false,
     walletCreate: false,
     sign: false,

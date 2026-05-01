@@ -4,6 +4,15 @@ import type { CommandClassification } from './types';
 
 const READ_ONLY = new Set(AllowedCommands);
 
+const BALANCE_COMMANDS = new Set([
+  'chia_wallet.get_wallet_balance',
+  'chia_wallet.get_wallet_balances',
+]);
+
+export function isBalanceCommand(command: string): boolean {
+  return BALANCE_COMMANDS.has(command);
+}
+
 export function classifyCommand(command: string): CommandClassification {
   if (READ_ONLY.has(command)) {
     return { kind: 'allow' };

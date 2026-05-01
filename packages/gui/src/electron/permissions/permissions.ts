@@ -1,4 +1,4 @@
-import { classifyCommand } from './commandCapabilities';
+import { classifyCommand, isBalanceCommand } from './commandCapabilities';
 import { getPair, recordSpend } from './pairStore';
 import type { CheckResult, PairRecord, Principal } from './types';
 
@@ -13,6 +13,19 @@ export function checkPermission(
   payload: Record<string, unknown>,
 ): CheckContext {
   const classification = classifyCommand(command);
+
+  // Balance reads are universally allowed for the UI principal but gated for
+  // pair principals so users can keep balance hidden from a paired dapp.
+  if (principal.kind === 'pair' && isBalanceCommand(command)) {
+    const pair = getPair(principal.topic);
+    if (!pair) {
+      return { result: { decision: 'deny', reason: 'unknown pair' } };
+    }
+    if (!pair.grants.capabilities.balance) {
+      return { result: { decision: 'prompt', reason: 'balance not pre-approved' }, pair };
+    }
+    return { result: { decision: 'allow' }, pair };
+  }
 
   if (classification.kind === 'allow') {
     return { result: { decision: 'allow' } };
