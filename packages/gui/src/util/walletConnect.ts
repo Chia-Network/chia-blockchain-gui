@@ -112,15 +112,9 @@ export async function processSessionProposal(
       throw new Error('Chain not supported');
     }
 
-    // find unsupported methods
     const method = methods.find((item) => !availableCommands.includes(item));
     if (method) {
       log('dApp wants to use unsupported command', method);
-      // throw new Error(`Method not supported: ${method}`);
-    }
-
-    if (proposerMetadata) {
-      pairs.updatePair(pairingTopic, { metadata: proposerMetadata });
     }
 
     const pair = pairs.getPair(pairingTopic);
@@ -128,44 +122,20 @@ export async function processSessionProposal(
       throw new Error('Pair not found');
     }
 
-    const { fingerprints } = pair;
-    const instance = pair.mainnet ? 'mainnet' : 'testnet';
-    const chain = `chia:${instance}`;
-    if (!supportedChains.includes(chain)) {
-      throw new Error(`Requested chains do not include pair network: ${chain}`);
-    }
-
-    const accounts = fingerprints.map((fingerprint) => `${chain}:${fingerprint}`);
-
-    const namespaces = {
-      chia: {
-        accounts,
-        methods,
-        events,
-      },
-    };
-
-    const { acknowledged } = await client.approve({
-      id,
-      namespaces,
-    });
-
-    const result = await acknowledged();
-    if (!('topic' in result) || !result.topic) {
-      return;
-    }
-
-    // new session created
+    // Capture the proposal but do NOT approve yet. The wallet selection and
+    // permission grant happen in the main-process Pair dialog; once the user
+    // confirms, approveSessionProposal sends the approve call with the picked
+    // accounts.
     pairs.updatePair(pairingTopic, (p) => ({
       ...p,
-      sessions: [
-        ...p.sessions,
-        {
-          topic: result.topic,
-          metadata: proposerMetadata,
-          namespaces,
-        },
-      ],
+      metadata: proposerMetadata ?? p.metadata,
+      pendingProposal: {
+        id,
+        proposerMetadata,
+        methods,
+        events,
+        chains: supportedChains,
+      },
     }));
   } catch (error) {
     try {
@@ -182,6 +152,91 @@ export async function processSessionProposal(
       processError(e as Error);
     }
   }
+}
+
+export async function approveSessionProposal(
+  client: Client,
+  pairs: Pairs,
+  pairTopic: string,
+  fingerprints: number[],
+) {
+  if (!client) {
+    throw new Error('Client not initialized');
+  }
+
+  const pair = pairs.getPair(pairTopic);
+  if (!pair) {
+    throw new Error('Pair not found');
+  }
+
+  const proposal = pair.pendingProposal;
+  if (!proposal) {
+    throw new Error('No pending proposal for this pair');
+  }
+
+  if (!fingerprints.length) {
+    throw new Error('At least one wallet must be selected');
+  }
+
+  const instance = pair.mainnet ? 'mainnet' : 'testnet';
+  const chain = `chia:${instance}`;
+  if (!proposal.chains.includes(chain)) {
+    throw new Error(`Requested chains do not include pair network: ${chain}`);
+  }
+
+  const accounts = fingerprints.map((fingerprint) => `${chain}:${fingerprint}`);
+  const namespaces = {
+    chia: {
+      accounts,
+      methods: proposal.methods,
+      events: proposal.events,
+    },
+  };
+
+  const { acknowledged } = await client.approve({
+    id: proposal.id,
+    namespaces,
+  });
+
+  const result = await acknowledged();
+  if (!('topic' in result) || !result.topic) {
+    return;
+  }
+
+  pairs.updatePair(pairTopic, (p) => ({
+    ...p,
+    fingerprints,
+    pendingProposal: undefined,
+    sessions: [
+      ...p.sessions,
+      {
+        topic: result.topic,
+        metadata: proposal.proposerMetadata,
+        namespaces,
+      },
+    ],
+  }));
+}
+
+export async function rejectSessionProposal(client: Client, pairs: Pairs, pairTopic: string) {
+  if (!client) {
+    throw new Error('Client not initialized');
+  }
+
+  const pair = pairs.getPair(pairTopic);
+  const proposal = pair?.pendingProposal;
+  if (proposal) {
+    try {
+      await client.reject({
+        id: proposal.id,
+        reason: getSdkError('USER_REJECTED'),
+      });
+    } catch (e) {
+      log('Failed to reject session proposal', e);
+    }
+  }
+
+  await disconnectPair(client, pairs, pairTopic);
 }
 
 export async function processSessionDelete(client: Client, pairs: Pairs, event: { id: number; topic: string }) {
