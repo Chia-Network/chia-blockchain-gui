@@ -159,6 +159,21 @@ function getConfirmButtonText(command: string) {
   }
 }
 
+function isDestructiveCommand(command: string) {
+  switch (command) {
+    case 'chia_harvester.delete_plot':
+    case 'chia_wallet.delete_key':
+    case 'chia_harvester.remove_plot_directory':
+    case 'chia_full_node.close_connection':
+    case 'chia_farmer.close_connection':
+    case 'daemon.stop_plotting':
+    case 'chia_wallet.cancel_offer':
+      return true;
+    default:
+      return false;
+  }
+}
+
 function getFormattedData(
   command: string,
   data: Record<string, unknown>,
@@ -318,45 +333,90 @@ export default function Confirm(props: ConfirmProps) {
   const hasData = !!data && Object.keys(data).length > 0;
   const hasDataOrCommand = hasData || !!command;
 
+  const title = getTitle(command);
   const message = getMessage(command);
   const confirmButtonText = getConfirmButtonText(command);
+  const destructive = isDestructiveCommand(command);
   const formattedData = getFormattedData(command, data, networkPrefix).filter(({ value }) => value !== undefined);
 
+  const confirmButtonClasses = destructive
+    ? 'bg-chia-danger hover:brightness-110 text-white border-transparent'
+    : 'bg-chia-primary hover:bg-chia-primary-hover text-[#0f252a] border-transparent';
+
   return (
-    <div className="p-4 flex flex-col h-full text-gray-900 dark:text-gray-100">
-      <div className="mb-4 flex-1 flex flex-col">
-        <p className="mt-0 mb-4 text-base">{message}</p>
+    <div className="flex flex-col h-full bg-chia-bg text-chia-text">
+      <div className="flex-1 flex flex-col gap-5 px-6 pt-6 overflow-hidden">
+        <div className="flex items-start gap-3">
+          <div
+            className={`shrink-0 w-10 h-10 rounded-full flex items-center justify-center ${
+              destructive ? 'bg-chia-danger/15 text-chia-danger' : 'bg-chia-primary-soft text-chia-primary'
+            }`}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+              stroke="currentColor"
+              className="w-5 h-5"
+              aria-hidden="true"
+            >
+              {destructive ? (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"
+                />
+              ) : (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                />
+              )}
+            </svg>
+          </div>
+          <div className="flex-1 min-w-0">
+            <h1 className="m-0 text-lg font-semibold leading-tight text-chia-text">{title}</h1>
+            <p className="mt-1.5 mb-0 text-sm leading-relaxed text-chia-text-secondary">{message}</p>
+          </div>
+        </div>
 
         {hasDataOrCommand && (
-          <SandboxedIframe className="w-full flex-1" isDarkMode={isDarkMode}>
+          <SandboxedIframe className="w-full flex-1 border-0" isDarkMode={isDarkMode}>
             <link href={styleURL} type="text/css" rel="stylesheet" />
-            <div className="flex flex-col gap-4 h-full">
+            <div className="flex flex-col gap-3 h-full text-chia-text font-sans">
               {!!command && (
-                <div className="flex flex-col gap-1">
-                  <span className="text-gray-500 dark:text-gray-400 text-xs font-medium">Command</span>
-                  <pre className="break-all mt-1 text-sm">{command}</pre>
+                <div className="rounded-xl border border-chia-border bg-chia-card px-4 py-3">
+                  <div className="text-[10px] font-semibold tracking-wider uppercase text-chia-text-muted">
+                    Command
+                  </div>
+                  <pre className="m-0 mt-1.5 text-xs font-mono break-all whitespace-pre-wrap text-chia-text">
+                    {command}
+                  </pre>
                 </div>
               )}
 
               {hasData && (
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-3">
                   {!!formattedData.length && (
-                    <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                      <div className="grid gap-3">
-                        {formattedData.map(({ field, label, value }) => (
-                          <div className="flex flex-col" key={field}>
-                            <span className="text-gray-500 dark:text-gray-400 text-xs font-medium">{label}</span>
-                            <span className="font-medium mt-1 break-all whitespace-normal">{value}</span>
+                    <div className="rounded-xl border border-chia-border bg-chia-card divide-y divide-chia-border">
+                      {formattedData.map(({ field, label, value }) => (
+                        <div className="px-4 py-3" key={field}>
+                          <div className="text-[10px] font-semibold tracking-wider uppercase text-chia-text-muted">
+                            {label}
                           </div>
-                        ))}
-                      </div>
+                          <div className="mt-1 text-sm font-medium break-all whitespace-pre-wrap text-chia-text">
+                            {value}
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   )}
-                  <Collapsible title="More Details">
-                    <div className="flex flex-col gap-1">
-                      <span className="text-gray-500 dark:text-gray-400 text-xs font-medium">Data:</span>
-                      <pre className="break-all overflow-x-auto text-xs mt-1">{JSON.stringify(data, null, 2)}</pre>
-                    </div>
+                  <Collapsible title="Raw data">
+                    <pre className="m-0 text-[11px] font-mono leading-relaxed break-all whitespace-pre-wrap overflow-x-auto text-chia-text-secondary">
+                      {JSON.stringify(data, null, 2)}
+                    </pre>
                   </Collapsible>
                 </div>
               )}
@@ -364,18 +424,19 @@ export default function Confirm(props: ConfirmProps) {
           </SandboxedIframe>
         )}
       </div>
-      <div className="flex justify-end gap-3 mt-4">
+
+      <div className="flex justify-end gap-2 px-6 py-4 border-t border-chia-border bg-chia-bg">
         <button
           type="button"
           data-action="cancel"
-          className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+          className="px-4 py-2 text-sm font-medium rounded-lg border border-chia-border-strong bg-transparent text-chia-text hover:bg-chia-card transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-chia-primary"
         >
           {i18n._(/* i18n */ { id: 'Cancel' })}
         </button>
         <button
           type="button"
           id={confirmId}
-          className="px-4 py-2 text-sm font-medium text-white bg-green-500 border border-transparent rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+          className={`px-4 py-2 text-sm font-semibold rounded-lg border transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-chia-primary focus-visible:ring-offset-2 focus-visible:ring-offset-chia-bg ${confirmButtonClasses}`}
         >
           {confirmButtonText}
         </button>
