@@ -1,4 +1,5 @@
-import api, { store, useGetLoggedInFingerprintQuery } from '@chia-network/api-react';
+import { Message } from '@chia-network/api';
+import api, { getClientInstance, store, useGetLoggedInFingerprintQuery } from '@chia-network/api-react';
 import { useOpenDialog, useAuth } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import debug from 'debug';
@@ -12,7 +13,6 @@ import WalletConnectRequestPermissionsConfirmDialog from '../components/walletCo
 import NotificationType from '../constants/NotificationType';
 import walletConnectCommands from '../constants/WalletConnectCommands';
 import prepareWalletConnectCommand from '../util/prepareWalletConnectCommand';
-import { withPrincipal } from '../util/principalContext';
 import waitForWalletSync from '../util/waitForWalletSync';
 
 import useWalletConnectPairs from './useWalletConnectPairs';
@@ -293,23 +293,40 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
 
     // execute command
     log('Executing', command, values);
-    const endpoint = serviceCommand ?? command;
     const pair = getPairBySession(topic);
-    const principalTopic = pair?.topic;
-    const result = await withPrincipal(
-      principalTopic ? { kind: 'pair', topic: principalTopic } : { kind: 'ui' },
-      async () => {
-        const resultPromise = store.dispatch(api.endpoints[endpoint].initiate(values));
-        try {
-          return await resultPromise;
-        } finally {
-          resultPromise.unsubscribe();
-        }
-      },
-    );
-    log('Result', result);
+    if (!pair) {
+      throw new Error('Invalid session topic');
+    }
 
-    return result;
+    // 'NOTIFICATION' is handled at the top of this function (showNotification
+    // branch); 'EXECUTE' was just handled above. Anything else is a real
+    // ServiceNameValue carrying an RPC.
+    if (service === 'NOTIFICATION') {
+      throw new Error(`Unexpected NOTIFICATION service for command ${command}`);
+    }
+
+    // Dapp commands deliberately do NOT go through RTK Query. The renderer's
+    // RTK Query pipeline is shared with UI polling (sync status, stray cats,
+    // etc.) running on the same event loop, and any mechanism for "tagging"
+    // the dispatch with a principal would have to be ambient context — which
+    // leaks across awaits. Instead we build the wire Message directly and
+    // pass the principal explicitly to client.send, which forwards it to the
+    // IPC bridge as per-call metadata. UI polls keep flowing through RTK
+    // Query and main treats them as UI principal by default.
+    const client = await getClientInstance(store);
+    const message = new Message({
+      origin: client.origin,
+      destination: service,
+      command: camelToSnake(serviceCommand ?? command),
+      data: values,
+    });
+    const response = await client.send(message, undefined, undefined, {
+      kind: 'pair',
+      topic: pair.topic,
+    });
+    log('Result', response);
+
+    return { data: response.data };
   }
 
   return {

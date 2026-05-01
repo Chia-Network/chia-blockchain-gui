@@ -5,6 +5,17 @@ import { selectApiConfig } from './slices/api';
 
 const instances = new Map<ServiceConstructor, InstanceType<ServiceConstructor>>();
 
+/**
+ * Returns the singleton Client used by RTK Query. Exposed so call sites that
+ * cannot go through RTK Query (e.g. dapp-originated WalletConnect commands
+ * that need to pass an explicit principal) can still share the same WebSocket
+ * connection and request/response correlation. Pass any object whose
+ * `getState()` returns the redux state — the redux store itself works.
+ */
+export async function getClientInstance(store: { getState: () => unknown }): Promise<InstanceType<typeof Client>> {
+  return getInstance(Client, store);
+}
+
 async function getInstance<TService extends ServiceConstructor>(
   service: TService,
   api: any,
