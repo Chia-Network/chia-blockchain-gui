@@ -6,6 +6,7 @@ enum API {
   ADDRESS_BOOK = 'addressBookAPI',
   LINK = 'linkAPI',
   WEBSOCKET = 'webSocketAPI',
+  PERMISSIONS = 'permissionsAPI',
 }
 
 export default API;
