@@ -5,7 +5,15 @@ import {
   isUiAllowed,
 } from './commandCapabilities';
 import { getPair, recordSpend } from './pairStore';
-import type { CheckResult, CommandClassification, PairGrants, PairRecord, Principal } from './types';
+import { getOwnedPuzzleHashes } from './puzzleHashCache';
+import type {
+  AmountResolverContext,
+  CheckResult,
+  CommandClassification,
+  PairGrants,
+  PairRecord,
+  Principal,
+} from './types';
 
 export type CheckContext = {
   result: CheckResult;
@@ -85,8 +93,9 @@ function checkCapability(
 function resolveAmount(
   classification: Extract<CommandClassification, { kind: 'capability' }>,
   payload: Record<string, unknown>,
+  context?: AmountResolverContext,
 ): number | undefined {
-  if (classification.amountResolver) return classification.amountResolver(payload);
+  if (classification.amountResolver) return classification.amountResolver(payload, context);
   if (classification.amountField) return readMojos(payload, classification.amountField);
   return undefined;
 }
@@ -103,7 +112,10 @@ function checkSpending(
   // mode === 'auto'. Resolve a numeric XCH-mojo amount to budget against. If
   // the command shape doesn't expose one (CAT spend, NFT transfer, mixed
   // offer), prompt — we can't compare against an XCH cap fairly.
-  const amount = resolveAmount(classification, payload);
+  const context: AmountResolverContext = {
+    ownedPuzzleHashes: getOwnedPuzzleHashes(pair.fingerprints),
+  };
+  const amount = resolveAmount(classification, payload, context);
   if (amount === undefined) return prompt('spending needs confirmation', pair);
 
   const fee = classification.feeField ? readMojos(payload, classification.feeField) ?? 0 : 0;
@@ -130,7 +142,13 @@ export function consumeAllowedSpend(
   if (c.kind !== 'capability') return;
   if (c.capability !== 'spend' && c.capability !== 'offer') return;
 
-  const amount = resolveAmount(c, payload);
+  const pair = getPair(principal.topic);
+  if (!pair) return;
+
+  const context: AmountResolverContext = {
+    ownedPuzzleHashes: getOwnedPuzzleHashes(pair.fingerprints),
+  };
+  const amount = resolveAmount(c, payload, context);
   if (amount === undefined) return;
 
   const fee = c.feeField ? readMojos(payload, c.feeField) ?? 0 : 0;

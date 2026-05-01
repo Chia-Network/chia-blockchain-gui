@@ -9,11 +9,11 @@ const BALANCE_COMMANDS = new Set([
   'chia_wallet.get_wallet_balances',
 ]);
 
-// Commands that move funds via a pre-signed spend bundle. Universally allowed
-// for the UI principal (the wallet UI builds and reviews the bundle before
-// pushing) but gated for pair principals because we cannot easily extract a
-// numeric amount to apply a budget.
-const SPEND_BUNDLE_COMMANDS = new Set(['chia_wallet.push_transactions']);
+// Reserved for commands that move funds via a pre-signed bundle and have
+// no usable amount field at all (dapp-claimed amounts can't be trusted, and
+// no provable bound exists without parsing CLVM). Currently empty —
+// push_transactions is now budgeted via a coin-spend upper bound, see below.
+const SPEND_BUNDLE_COMMANDS = new Set<string>();
 
 // Read-only / state-creating commands that the user can opt into via the
 // Innocuous capability grant. Not auto-silent for pair principals — the user
@@ -112,6 +112,76 @@ export function isSpendBundleCommand(command: string): boolean {
   return SPEND_BUNDLE_COMMANDS.has(command);
 }
 
+function normalizePuzzleHash(value: unknown): string | undefined {
+  if (typeof value !== 'string') return undefined;
+  const trimmed = value.startsWith('0x') ? value.slice(2) : value;
+  return trimmed.toLowerCase();
+}
+
+// Sum the input coin amounts in a `push_transactions` payload, restricted
+// to coins whose puzzle_hash is in the user's owned-puzzle-hashes set.
+//
+// This is a *provable upper bound* on the user's outflow:
+//   - the chain validates each `coin_spends[].coin` matches a real coin
+//     (parent_coin_info + puzzle_hash + amount → coin id), so the bundle
+//     cannot lie about what's being spent;
+//   - filtering by ownedPuzzleHashes excludes coins from co-signers (the
+//     other party in a multi-party transaction), which the user does not pay
+//     for;
+//   - it still over-counts when the bundle returns change to the user
+//     (we'd need CLVM to subtract those additions — pessimistic but safe).
+//
+// Returns undefined when:
+//   - the cache hasn't been populated for this pair yet, OR
+//   - any transaction targets a non-XCH wallet (CAT/NFT amounts use
+//     non-XCH-mojo units), OR
+//   - the bundle structure looks malformed.
+// In those cases the caller falls back to prompting.
+function extractPushTransactionsUpperBound(
+  payload: Record<string, unknown>,
+  context?: import('./types').AmountResolverContext,
+): number | undefined {
+  if (!context?.ownedPuzzleHashes || context.ownedPuzzleHashes.size === 0) {
+    return undefined;
+  }
+  const owned = context.ownedPuzzleHashes;
+
+  const transactions = payload?.transactions;
+  if (!Array.isArray(transactions) || transactions.length === 0) return undefined;
+
+  let upperBound = 0;
+  for (const tx of transactions) {
+    if (!tx || typeof tx !== 'object') return undefined;
+    const t = tx as Record<string, unknown>;
+
+    const walletId = Number(t.wallet_id ?? t.walletId);
+    if (!Number.isFinite(walletId) || walletId !== 1) return undefined;
+
+    const bundle = (t.spend_bundle ?? t.spendBundle) as Record<string, unknown> | undefined;
+    if (!bundle || typeof bundle !== 'object') return undefined;
+
+    const coinSpends = (bundle.coin_spends ?? bundle.coinSpends) as unknown[] | undefined;
+    if (!Array.isArray(coinSpends)) return undefined;
+
+    for (const cs of coinSpends) {
+      if (!cs || typeof cs !== 'object') return undefined;
+      const coin = (cs as Record<string, unknown>).coin as Record<string, unknown> | undefined;
+      if (!coin || typeof coin !== 'object') return undefined;
+
+      const puzzleHash = normalizePuzzleHash(coin.puzzle_hash ?? coin.puzzleHash);
+      if (!puzzleHash || !owned.has(puzzleHash)) {
+        // Not the user's coin — the co-signer pays for this one.
+        continue;
+      }
+
+      const amount = Number(coin.amount ?? 0);
+      if (!Number.isFinite(amount) || amount < 0) return undefined;
+      upperBound += amount;
+    }
+  }
+  return upperBound;
+}
+
 // Sum the XCH mojos the user is giving up in a `create_offer_for_ids` offer.
 function extractOfferXchOutflow(payload: Record<string, unknown>): number | undefined {
   const offer = payload?.offer;
@@ -137,6 +207,17 @@ export function classifyCommand(command: string): CommandClassification {
   switch (command) {
     case 'chia_wallet.send_transaction':
       return { kind: 'capability', capability: 'spend', amountField: 'amount', feeField: 'fee' };
+
+    case 'chia_wallet.push_transactions':
+      // The dapp's `amount` field is metadata it can lie about. Instead we
+      // budget against a provable upper bound: sum of input coin amounts in
+      // the spend bundles. Worst case (compromised dapp), the user can lose
+      // the upper bound — but never more, so the budget caps the damage.
+      return {
+        kind: 'capability',
+        capability: 'spend',
+        amountResolver: extractPushTransactionsUpperBound,
+      };
 
     case 'chia_wallet.cat_spend':
       return { kind: 'capability', capability: 'spend' };
