@@ -34,10 +34,16 @@ export type PermissionsPairRecord = {
 
 export type PermissionsPrincipal = { kind: 'ui' } | { kind: 'pair'; topic: string };
 
-export type PermissionsCheckResult =
-  | { decision: 'allow' }
-  | { decision: 'prompt'; reason: string }
-  | { decision: 'deny'; reason: string };
+export type PermissionsPairContext = {
+  topic: string;
+  name: string;
+  url?: string;
+};
+
+export type PermissionsDecision =
+  | { kind: 'allow' }
+  | { kind: 'prompt'; reason: string; pair?: PermissionsPairContext }
+  | { kind: 'deny'; reason: string };
 
 type PermissionsService = {
   listPairs: () => Promise<PermissionsPairRecord[]>;
@@ -56,7 +62,7 @@ type PermissionsService = {
     principal: PermissionsPrincipal;
     command: string;
     data: Record<string, unknown>;
-  }) => Promise<PermissionsCheckResult>;
+  }) => Promise<PermissionsDecision>;
 };
 
 export default PermissionsService;

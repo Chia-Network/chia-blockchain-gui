@@ -8,24 +8,30 @@ import {
   isUiAllowed,
 } from './commandCapabilities';
 import { getPair, recordSpend } from './pairStore';
-import type { CheckResult, PairGrants, PairRecord, Principal, SpendClassification } from './types';
-
-export type CheckContext = {
-  result: CheckResult;
-  pair?: PairRecord;
-};
-
-const allow = (pair?: PairRecord): CheckContext => ({ result: { decision: 'allow' }, pair });
-const prompt = (reason: string, pair?: PairRecord): CheckContext => ({
-  result: { decision: 'prompt', reason },
-  pair,
-});
-const deny = (reason: string, pair?: PairRecord): CheckContext => ({
-  result: { decision: 'deny', reason },
-  pair,
-});
+import type {
+  Decision,
+  DecisionWire,
+  PairContext,
+  PairGrants,
+  PairRecord,
+  Principal,
+  SpendClassification,
+} from './types';
 
 const ZERO = new BigNumber(0);
+const NOOP = () => {};
+
+const allowDecision = (commit: () => void = NOOP): Decision => ({ kind: 'allow', commit });
+const promptDecision = (reason: string, pair?: PairContext): Decision => ({
+  kind: 'prompt',
+  reason,
+  pair,
+});
+const denyDecision = (reason: string): Decision => ({ kind: 'deny', reason });
+
+function pairCtx(pair: PairRecord): PairContext {
+  return { topic: pair.topic, name: pair.metadata.name, url: pair.metadata.url };
+}
 
 /**
  * Read a non-negative mojo amount from a payload field. Mojos are integer
@@ -45,37 +51,57 @@ function readMojos(payload: Record<string, unknown>, field: string): BigNumber |
 }
 
 /**
- * Pure decision function. No side effects. Safe to call multiple times for the
- * same command — the budget is debited only by `consumeAllowedSpend` at the
- * actual authorization point.
+ * Build the commit thunk for an allow decision. Captures the resolved mojo
+ * amount so the budget is debited against the same number the cap check used,
+ * even if the payload mutates between resolution and authorization. Idempotent
+ * — a second call is a no-op so accidental double-invocation can't double-charge.
  */
-export function checkPermission(
+function makeCommit(topic: string, mojos: BigNumber): () => void {
+  let consumed = false;
+  return () => {
+    if (consumed) return;
+    consumed = true;
+    if (!mojos.isFinite() || mojos.isLessThanOrEqualTo(0)) return;
+    recordSpend(topic, mojos);
+  };
+}
+
+/**
+ * Single resolution point for any command. Returns a discriminated decision:
+ * - `allow` carries `commit()` that records the resolved spend on call.
+ * - `prompt` carries dialog-shaped pair info and the human-readable reason.
+ * - `deny` is terminal — no further resolution possible.
+ *
+ * The function is "pure" in that it doesn't touch the budget itself; the only
+ * side effect happens through `commit()`. Calling `resolvePermission` repeatedly
+ * with the same inputs is safe — each call returns its own independent commit
+ * closure, and only the one that's invoked records a spend.
+ */
+export function resolvePermission(
   principal: Principal,
   command: string,
   payload: Record<string, unknown>,
-): CheckContext {
+): Decision {
   if (principal.kind === 'ui') {
-    return isUiAllowed(command) ? allow() : prompt('requires user confirmation');
+    return isUiAllowed(command) ? allowDecision() : promptDecision('requires user confirmation');
   }
 
   const pair = getPair(principal.topic);
-  if (!pair) {
-    return deny('unknown pair');
-  }
+  if (!pair) return denyDecision('unknown pair');
+  const ctx = pairCtx(pair);
 
-  // Pair-only special gates, evaluated before any classification:
   if (isBalanceCommand(command)) {
     return pair.grants.capabilities.balance
-      ? allow(pair)
-      : prompt('balance not pre-approved', pair);
+      ? allowDecision()
+      : promptDecision('balance not pre-approved', ctx);
   }
 
-  // push_transactions is a "broadcast" RPC. With sign:false (or omitted)
-  // the wallet just pushes a pre-signed bundle (the user already approved
-  // when they signed, typically via createOfferForIds) — treat it as
-  // innocuous. With any truthy `sign`, the wallet signs the bundle on the
-  // dapp's behalf, which collapses sign-and-broadcast into one step with
-  // no user-visible content; that always prompts.
+  // push_transactions is a "broadcast" RPC. With sign:false (or omitted) the
+  // wallet just pushes a pre-signed bundle (the user already approved when
+  // they signed, typically via createOfferForIds) — treat it as innocuous.
+  // With any truthy `sign`, the wallet signs the bundle on the dapp's behalf,
+  // which collapses sign-and-broadcast into one step with no user-visible
+  // content; that always prompts.
   //
   // We mirror the daemon's Python truthiness here: it does `if sign:`, so
   // values like "true", "false", 1, etc. all trigger signing on its side.
@@ -86,37 +112,39 @@ export function checkPermission(
   // we charge it against the budget conservatively so a compromised dapp
   // can't accumulate fees silently.
   if (command === 'chia_wallet.push_transactions') {
-    if (payload?.sign) {
-      return prompt('signing requested', pair);
-    }
+    if (payload?.sign) return promptDecision('signing requested', ctx);
     if (!pair.grants.capabilities.innocuous) {
-      return prompt('innocuous actions not pre-approved', pair);
+      return promptDecision('innocuous actions not pre-approved', ctx);
     }
     const fee = readMojos(payload, 'fee') ?? ZERO;
     if (fee.isGreaterThan(0)) {
       const spent = new BigNumber(pair.spentMojos ?? 0);
       const cap = new BigNumber(pair.grants.spendingCapMojos ?? 0);
       if (spent.plus(fee).isGreaterThan(cap)) {
-        return prompt('push fee exceeds remaining budget', pair);
+        return promptDecision('push fee exceeds remaining budget', ctx);
       }
     }
-    return allow(pair);
+    return allowDecision(makeCommit(pair.topic, fee));
   }
 
   if (isInnocuousCommand(command)) {
-    return pair.grants.capabilities.innocuous ? allow(pair) : prompt('innocuous not pre-approved', pair);
+    return pair.grants.capabilities.innocuous
+      ? allowDecision()
+      : promptDecision('innocuous not pre-approved', ctx);
   }
 
   if (isSignCommand(command)) {
-    return pair.grants.capabilities.sign ? allow(pair) : prompt('sign not pre-approved', pair);
+    return pair.grants.capabilities.sign
+      ? allowDecision()
+      : promptDecision('sign not pre-approved', ctx);
   }
 
   const spend = getSpendClassification(command);
   if (spend) {
-    return checkSpending(pair, spend, payload);
+    return resolveSpending(pair, ctx, spend, payload);
   }
 
-  return prompt('sensitive command', pair);
+  return promptDecision('sensitive command', ctx);
 }
 
 function resolveAmount(
@@ -128,61 +156,46 @@ function resolveAmount(
   return undefined;
 }
 
-function checkSpending(
+function resolveSpending(
   pair: PairRecord,
+  ctx: PairContext,
   classification: SpendClassification,
   payload: Record<string, unknown>,
-): CheckContext {
+): Decision {
   const mode = pair.grants.spendingMode ?? 'ask';
-  if (mode === 'block') return deny('spending blocked for this app', pair);
-  if (mode === 'ask') return prompt('spending needs confirmation', pair);
+  if (mode === 'block') return denyDecision('spending blocked for this app');
+  if (mode === 'ask') return promptDecision('spending needs confirmation', ctx);
 
   // mode === 'auto'. Resolve a numeric XCH-mojo amount to budget against. If
   // the command shape doesn't expose one (CAT spend, NFT transfer, mixed
   // offer), prompt — we can't compare against an XCH cap fairly.
   const amount = resolveAmount(classification, payload);
-  if (amount === undefined) return prompt('spending needs confirmation', pair);
+  if (amount === undefined) return promptDecision('spending needs confirmation', ctx);
 
   const fee = classification.feeField ? readMojos(payload, classification.feeField) ?? ZERO : ZERO;
   const total = amount.plus(fee);
   const spent = new BigNumber(pair.spentMojos ?? 0);
   const cap = new BigNumber(pair.grants.spendingCapMojos ?? 0);
   if (spent.plus(total).isGreaterThan(cap)) {
-    return prompt('budget exhausted', pair);
+    return promptDecision('budget exhausted', ctx);
   }
-  return allow(pair);
+  return allowDecision(makeCommit(pair.topic, total));
 }
 
 /**
- * Charge the pair's spending budget for an auto-approved transaction. Should
- * be called once per actual command at the authorization point. Safe no-op
- * for non-spend commands, UI principals, or commands without an amount.
+ * Strip the commit thunk so a Decision can cross the IPC boundary. The
+ * renderer never gets to invoke commit — only the main process, after the
+ * actual authorization at the wallet bridge, runs side effects.
  */
-export function consumeAllowedSpend(
-  principal: Principal,
-  command: string,
-  payload: Record<string, unknown>,
-): void {
-  if (principal.kind !== 'pair') return;
-
-  // push_transactions: only the optional top-level fee counts; the spend in
-  // the bundle was already debited at offer time.
-  if (command === 'chia_wallet.push_transactions') {
-    const fee = readMojos(payload, 'fee') ?? ZERO;
-    if (fee.isGreaterThan(0)) recordSpend(principal.topic, fee);
-    return;
+export function toWire(decision: Decision): DecisionWire {
+  switch (decision.kind) {
+    case 'allow':
+      return { kind: 'allow' };
+    case 'prompt':
+      return { kind: 'prompt', reason: decision.reason, pair: decision.pair };
+    case 'deny':
+      return { kind: 'deny', reason: decision.reason };
   }
-
-  const spend = getSpendClassification(command);
-  if (!spend) return;
-
-  const amount = resolveAmount(spend, payload);
-  if (amount === undefined) return;
-
-  const fee = spend.feeField ? readMojos(payload, spend.feeField) ?? ZERO : ZERO;
-  const total = amount.plus(fee);
-  if (total.isLessThanOrEqualTo(0)) return;
-  recordSpend(principal.topic, total);
 }
 
 // PairGrants is unused at runtime in this module but useful for downstream

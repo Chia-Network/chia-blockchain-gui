@@ -65,14 +65,8 @@ export default function Pair(props: PairProps) {
   const wallets = Array.isArray(availableWallets) ? availableWallets : [];
 
   return (
-    <div
-      className="grid h-screen bg-chia-bg text-chia-text text-base"
-      style={{ gridTemplateRows: '1fr auto' }}
-    >
-      <div
-        className="min-h-0 px-7 pt-4 pb-4 space-y-3"
-        style={{ overflowY: 'auto' }}
-      >
+    <div className="flex flex-col h-screen bg-chia-bg text-chia-text text-base">
+      <div className="flex-1 min-h-0 overflow-y-auto px-7 pt-4 pb-4 space-y-3">
         <div className="flex items-start gap-4">
           <div className="shrink-0 w-12 h-12 rounded-xl bg-chia-primary-soft text-chia-primary flex items-center justify-center text-xl font-bold uppercase">
             {(metadata.name || '?').charAt(0)}

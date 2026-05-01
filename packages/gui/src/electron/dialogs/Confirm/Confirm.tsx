@@ -339,7 +339,6 @@ export default function Confirm(props: ConfirmProps) {
   const { data, command, principal, styleURL, confirmId, isDarkMode, networkPrefix } = props;
 
   const hasData = !!data && Object.keys(data).length > 0;
-  const hasDataOrCommand = hasData || !!command;
 
   const title = getTitle(command);
   const message = getMessage(command);
@@ -352,116 +351,125 @@ export default function Confirm(props: ConfirmProps) {
     : 'bg-chia-primary hover:bg-chia-primary-hover text-[#0f252a] border-transparent';
 
   return (
-    <div
-      className="grid h-screen bg-chia-bg text-chia-text text-base"
-      style={{ gridTemplateRows: '1fr auto' }}
-    >
-      <div className="min-h-0 px-7 pt-4 pb-4 flex flex-col gap-3 overflow-hidden">
-        {principal && (
-          <div className="flex items-center gap-3 px-4 py-2.5 rounded-xl border border-chia-border bg-chia-primary-soft">
-            <div className="shrink-0 w-7 h-7 rounded-md bg-chia-primary/20 text-chia-primary flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-                <path
-                  fillRule="evenodd"
-                  d="M14.615 1.595a.75.75 0 0 1 .359.852L12.982 9.75h7.268a.75.75 0 0 1 .548 1.262l-10.5 11.25a.75.75 0 0 1-1.272-.71l1.992-7.302H3.75a.75.75 0 0 1-.548-1.262l10.5-11.25a.75.75 0 0 1 .913-.143Z"
-                  clipRule="evenodd"
-                />
+    <div className="flex flex-col h-screen bg-chia-bg text-chia-text text-base">
+      {/*
+       * The iframe is the entire body of the dialog. Flex column on the outer
+       * (rather than CSS Grid) is deliberate: replaced elements like iframes
+       * don't honor `align-self: stretch` in grid cells and percentage heights
+       * on grid items have indefinite resolution, so the iframe would sit at
+       * its intrinsic 300×150 and leave a huge gap above the footer. With
+       * `flex-1 min-h-0` the iframe actually stretches to fill remaining space.
+       *
+       * Inside the iframe document, an h-screen overflow-y-auto wrapper is the
+       * scroll container — `100vh` resolves to the iframe element's allotted
+       * height, and putting the scrollbar on a regular div surfaces it on
+       * macOS, where the iframe's native scrollbar is hidden as an overlay.
+       *
+       * Footer stays in the parent document so its button click handlers
+       * reach `confirmId` and `[data-action="cancel"]`.
+       */}
+      <SandboxedIframe className="flex-1 min-h-0 w-full border-0" isDarkMode={isDarkMode}>
+        <link href={styleURL} type="text/css" rel="stylesheet" />
+        <div className="h-screen overflow-y-auto px-7 pt-4 pb-4 space-y-3 text-chia-text font-sans text-base">
+          {principal && (
+            <div className="flex items-center gap-3 px-4 py-2.5 rounded-xl border border-chia-border bg-chia-primary-soft">
+              <div className="shrink-0 w-7 h-7 rounded-md bg-chia-primary/20 text-chia-primary flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
+                  <path
+                    fillRule="evenodd"
+                    d="M14.615 1.595a.75.75 0 0 1 .359.852L12.982 9.75h7.268a.75.75 0 0 1 .548 1.262l-10.5 11.25a.75.75 0 0 1-1.272-.71l1.992-7.302H3.75a.75.75 0 0 1-.548-1.262l10.5-11.25a.75.75 0 0 1 .913-.143Z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-baseline gap-2 min-w-0">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-chia-text-muted">
+                    {i18n._(/* i18n */ { id: 'Request from' })}
+                  </span>
+                  <span className="text-sm font-semibold truncate text-chia-text">{principal.name}</span>
+                </div>
+                {principal.url && <div className="text-xs text-chia-text-secondary truncate">{principal.url}</div>}
+              </div>
+              {principal.reason && (
+                <span className="shrink-0 text-[10px] font-medium uppercase tracking-wider px-2 py-1 rounded bg-chia-card text-chia-text-secondary">
+                  {principal.reason}
+                </span>
+              )}
+            </div>
+          )}
+
+          <div className="flex items-start gap-4">
+            <div
+              className={`shrink-0 w-12 h-12 rounded-xl flex items-center justify-center ${
+                destructive ? 'bg-chia-danger/15 text-chia-danger' : 'bg-chia-primary-soft text-chia-primary'
+              }`}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={2}
+                stroke="currentColor"
+                className="w-6 h-6"
+                aria-hidden="true"
+              >
+                {destructive ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                  />
+                )}
               </svg>
             </div>
             <div className="flex-1 min-w-0">
-              <div className="flex items-baseline gap-2 min-w-0">
-                <span className="text-xs font-semibold uppercase tracking-wider text-chia-text-muted">
-                  {i18n._(/* i18n */ { id: 'Request from' })}
-                </span>
-                <span className="text-sm font-semibold truncate text-chia-text">{principal.name}</span>
+              <h1 className="m-0 text-2xl font-semibold leading-tight text-chia-text">{title}</h1>
+              <p className="mt-0.5 mb-0 text-sm leading-snug text-chia-text-secondary">{message}</p>
+            </div>
+          </div>
+
+          {!!command && (
+            <section className="rounded-xl border border-chia-border bg-chia-card px-5 py-3">
+              <div className="text-xs font-semibold uppercase tracking-wider text-chia-text-muted">
+                Command
               </div>
-              {principal.url && <div className="text-xs text-chia-text-secondary truncate">{principal.url}</div>}
-            </div>
-            {principal.reason && (
-              <span className="shrink-0 text-[10px] font-medium uppercase tracking-wider px-2 py-1 rounded bg-chia-card text-chia-text-secondary">
-                {principal.reason}
-              </span>
-            )}
-          </div>
-        )}
+              <div className="mt-1 text-sm font-mono break-all text-chia-text">{command}</div>
+            </section>
+          )}
 
-        <div className="flex items-start gap-4">
-          <div
-            className={`shrink-0 w-12 h-12 rounded-xl flex items-center justify-center ${
-              destructive ? 'bg-chia-danger/15 text-chia-danger' : 'bg-chia-primary-soft text-chia-primary'
-            }`}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-              stroke="currentColor"
-              className="w-6 h-6"
-              aria-hidden="true"
-            >
-              {destructive ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                />
-              )}
-            </svg>
-          </div>
-          <div className="flex-1 min-w-0">
-            <h1 className="m-0 text-2xl font-semibold leading-tight text-chia-text">{title}</h1>
-            <p className="mt-0.5 mb-0 text-sm leading-snug text-chia-text-secondary">{message}</p>
-          </div>
-        </div>
-
-        {hasDataOrCommand && (
-          <SandboxedIframe className="flex-1 min-h-0 w-full border-0" isDarkMode={isDarkMode}>
-            <link href={styleURL} type="text/css" rel="stylesheet" />
-            <div className="px-1 py-1 flex flex-col gap-3 text-chia-text font-sans text-base">
-              {!!command && (
-                <section className="rounded-xl border border-chia-border bg-chia-card px-5 py-3">
+          {hasData && !!formattedData.length && (
+            <section className="rounded-xl border border-chia-border bg-chia-card overflow-hidden divide-y divide-chia-border">
+              {formattedData.map(({ field, label, value }) => (
+                <div className="px-5 py-2.5" key={field}>
                   <div className="text-xs font-semibold uppercase tracking-wider text-chia-text-muted">
-                    Command
+                    {label}
                   </div>
-                  <div className="mt-1 text-sm font-mono break-all text-chia-text">{command}</div>
-                </section>
-              )}
+                  <div className="mt-0.5 text-sm font-medium break-all whitespace-pre-wrap text-chia-text">
+                    {value}
+                  </div>
+                </div>
+              ))}
+            </section>
+          )}
 
-              {hasData && !!formattedData.length && (
-                <section className="rounded-xl border border-chia-border bg-chia-card overflow-hidden divide-y divide-chia-border">
-                  {formattedData.map(({ field, label, value }) => (
-                    <div className="px-5 py-2.5" key={field}>
-                      <div className="text-xs font-semibold uppercase tracking-wider text-chia-text-muted">
-                        {label}
-                      </div>
-                      <div className="mt-0.5 text-sm font-medium break-all whitespace-pre-wrap text-chia-text">
-                        {value}
-                      </div>
-                    </div>
-                  ))}
-                </section>
-              )}
+          {hasData && (
+            <Collapsible title="Raw data">
+              <pre className="m-0 text-xs font-mono leading-relaxed break-all whitespace-pre-wrap text-chia-text-secondary">
+                {JSON.stringify(data, null, 2)}
+              </pre>
+            </Collapsible>
+          )}
+        </div>
+      </SandboxedIframe>
 
-              {hasData && (
-                <Collapsible title="Raw data">
-                  <pre className="m-0 text-xs font-mono leading-relaxed break-all whitespace-pre-wrap text-chia-text-secondary">
-                    {JSON.stringify(data, null, 2)}
-                  </pre>
-                </Collapsible>
-              )}
-            </div>
-          </SandboxedIframe>
-        )}
-      </div>
-
-      <div className="flex justify-end items-center gap-2.5 px-7 py-3 border-t border-chia-border bg-chia-bg">
+      <div className="flex justify-end items-center gap-2.5 px-7 py-4 border-t border-chia-border bg-chia-bg">
         <button
           type="button"
           data-action="cancel"

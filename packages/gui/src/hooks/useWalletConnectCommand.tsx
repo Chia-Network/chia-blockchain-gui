@@ -134,8 +134,8 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
           command: nsCommand,
           data,
         });
-        if (decision.decision === 'allow') return true;
-        if (decision.decision === 'deny') return false;
+        if (decision.kind === 'allow') return true;
+        if (decision.kind === 'deny') return false;
       } catch (err) {
         log('permissionsAPI.check failed, falling back to renderer dialog', err);
       }

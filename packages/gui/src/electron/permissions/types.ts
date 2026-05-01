@@ -44,10 +44,28 @@ export type SpendClassification = {
   amountResolver?: AmountResolver;
 };
 
-export type CheckResult =
-  | { decision: 'allow' }
-  | { decision: 'prompt'; reason: string }
-  | { decision: 'deny'; reason: string };
+/** Dialog-shaped pair info. Never leak full PairRecord across boundaries. */
+export type PairContext = {
+  topic: string;
+  name: string;
+  url?: string;
+};
+
+/**
+ * Result of a single permission resolution. The caller binds the side effect
+ * to the decision: `allow.commit()` debits the already-resolved spend amount;
+ * idempotent so a duplicate call is a no-op rather than a double-charge.
+ */
+export type Decision =
+  | { kind: 'allow'; commit: () => void }
+  | { kind: 'prompt'; reason: string; pair?: PairContext }
+  | { kind: 'deny'; reason: string };
+
+/** IPC-safe variant. The commit thunk is stripped before crossing the wire. */
+export type DecisionWire =
+  | { kind: 'allow' }
+  | { kind: 'prompt'; reason: string; pair?: PairContext }
+  | { kind: 'deny'; reason: string };
 
 export function emptyCapabilities(): CapabilityGrants {
   return {

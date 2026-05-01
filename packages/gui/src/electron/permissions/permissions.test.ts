@@ -1,8 +1,8 @@
 import BigNumber from 'bignumber.js';
 
-import { checkPermission, consumeAllowedSpend } from './permissions';
+import { resolvePermission, toWire } from './permissions';
 import { getPair, recordSpend } from './pairStore';
-import type { CapabilityGrants, PairRecord, SpendingMode } from './types';
+import type { CapabilityGrants, Decision, PairRecord, SpendingMode } from './types';
 
 jest.mock('./pairStore', () => ({
   getPair: jest.fn(),
@@ -34,11 +34,12 @@ function makePair(
     spendingMode?: SpendingMode;
     spendingCapMojos?: string;
     spentMojos?: string;
+    metadata?: Partial<PairRecord['metadata']>;
   } = {},
 ): PairRecord {
   return {
     topic: TOPIC,
-    metadata: { name: 'Test Dapp' },
+    metadata: { name: 'Test Dapp', ...overrides.metadata },
     fingerprints: [123],
     createdAt: 0,
     updatedAt: 0,
@@ -51,129 +52,145 @@ function makePair(
   };
 }
 
+function expectAllow(d: Decision): Extract<Decision, { kind: 'allow' }> {
+  expect(d.kind).toBe('allow');
+  return d as Extract<Decision, { kind: 'allow' }>;
+}
+
 beforeEach(() => {
   mockGetPair.mockReset();
   mockRecordSpend.mockReset();
 });
 
-describe('checkPermission - UI principal', () => {
+describe('resolvePermission - UI principal', () => {
   it('allows commands present in AllowedCommands', () => {
-    expect(checkPermission(UI_PRINCIPAL, 'chia_wallet.get_wallets', {}).result).toEqual({
-      decision: 'allow',
-    });
+    expect(resolvePermission(UI_PRINCIPAL, 'chia_wallet.get_wallets', {}).kind).toBe('allow');
   });
 
   it('prompts for commands not in AllowedCommands', () => {
-    expect(checkPermission(UI_PRINCIPAL, 'chia_wallet.send_transaction', {}).result).toEqual({
-      decision: 'prompt',
+    expect(resolvePermission(UI_PRINCIPAL, 'chia_wallet.send_transaction', {})).toEqual({
+      kind: 'prompt',
       reason: 'requires user confirmation',
+      pair: undefined,
     });
   });
 
-  it('prompts for sensitive commands', () => {
-    expect(checkPermission(UI_PRINCIPAL, 'chia_wallet.delete_key', {}).result).toEqual({
-      decision: 'prompt',
-      reason: 'requires user confirmation',
-    });
-  });
-
-  it('does not consult the pair store for UI principals', () => {
-    checkPermission(UI_PRINCIPAL, 'chia_wallet.send_transaction', {});
+  it('does not consult the pair store', () => {
+    resolvePermission(UI_PRINCIPAL, 'chia_wallet.send_transaction', {});
     expect(mockGetPair).not.toHaveBeenCalled();
+  });
+
+  it('UI allow has a no-op commit (cannot debit a UI principal)', () => {
+    const d = expectAllow(resolvePermission(UI_PRINCIPAL, 'chia_wallet.get_wallets', {}));
+    d.commit();
+    d.commit();
+    expect(mockRecordSpend).not.toHaveBeenCalled();
   });
 });
 
-describe('checkPermission - unknown pair topic', () => {
+describe('resolvePermission - unknown pair topic', () => {
   it('denies before evaluating any command-specific rules', () => {
     mockGetPair.mockReturnValue(undefined);
-    expect(checkPermission(PAIR_PRINCIPAL, 'chia_wallet.get_wallets', {}).result).toEqual({
-      decision: 'deny',
+    expect(resolvePermission(PAIR_PRINCIPAL, 'chia_wallet.get_wallets', {})).toEqual({
+      kind: 'deny',
       reason: 'unknown pair',
     });
   });
 
   it('denies even for sensitive commands', () => {
     mockGetPair.mockReturnValue(undefined);
-    expect(checkPermission(PAIR_PRINCIPAL, 'chia_wallet.delete_key', {}).result).toEqual({
-      decision: 'deny',
+    expect(resolvePermission(PAIR_PRINCIPAL, 'chia_wallet.delete_key', {})).toEqual({
+      kind: 'deny',
       reason: 'unknown pair',
     });
   });
 });
 
-describe('checkPermission - balance commands', () => {
-  it('allows when the balance capability is granted', () => {
-    mockGetPair.mockReturnValue(makePair({ capabilities: { balance: true } }));
-    expect(
-      checkPermission(PAIR_PRINCIPAL, 'chia_wallet.get_wallet_balance', {}).result,
-    ).toEqual({ decision: 'allow' });
-    expect(
-      checkPermission(PAIR_PRINCIPAL, 'chia_wallet.get_wallet_balances', {}).result,
-    ).toEqual({ decision: 'allow' });
-  });
-
-  it('prompts when the balance capability is not granted', () => {
-    mockGetPair.mockReturnValue(makePair());
-    expect(
-      checkPermission(PAIR_PRINCIPAL, 'chia_wallet.get_wallet_balance', {}).result,
-    ).toEqual({ decision: 'prompt', reason: 'balance not pre-approved' });
-  });
-
-  it('returns the pair record on the context', () => {
-    const pair = makePair({ capabilities: { balance: true } });
+describe('resolvePermission - pair context shape', () => {
+  it('attaches dialog-shaped pair info to prompt decisions, never the raw record', () => {
+    const pair = makePair({ metadata: { name: 'My Dapp', url: 'https://app.example' } });
     mockGetPair.mockReturnValue(pair);
-    expect(checkPermission(PAIR_PRINCIPAL, 'chia_wallet.get_wallet_balance', {}).pair).toBe(pair);
-  });
-});
-
-describe('checkPermission - push_transactions', () => {
-  const CMD = 'chia_wallet.push_transactions';
-
-  it('prompts when sign:true (mirrors Python truthiness)', () => {
-    mockGetPair.mockReturnValue(makePair({ capabilities: { innocuous: true } }));
-    expect(checkPermission(PAIR_PRINCIPAL, CMD, { sign: true }).result).toEqual({
-      decision: 'prompt',
-      reason: 'signing requested',
+    const d = resolvePermission(PAIR_PRINCIPAL, 'chia_wallet.get_wallets', {});
+    expect(d).toEqual({
+      kind: 'prompt',
+      reason: 'innocuous not pre-approved',
+      pair: { topic: TOPIC, name: 'My Dapp', url: 'https://app.example' },
     });
   });
 
+  it('omits pair on UI prompts', () => {
+    const d = resolvePermission(UI_PRINCIPAL, 'chia_wallet.send_transaction', {});
+    expect(d).toEqual({ kind: 'prompt', reason: 'requires user confirmation', pair: undefined });
+  });
+
+  it('omits pair on deny ("unknown pair")', () => {
+    mockGetPair.mockReturnValue(undefined);
+    expect(resolvePermission(PAIR_PRINCIPAL, 'chia_wallet.send_transaction', {})).toEqual({
+      kind: 'deny',
+      reason: 'unknown pair',
+    });
+  });
+});
+
+describe('resolvePermission - balance commands', () => {
+  it('allows when balance capability granted', () => {
+    mockGetPair.mockReturnValue(makePair({ capabilities: { balance: true } }));
+    expect(resolvePermission(PAIR_PRINCIPAL, 'chia_wallet.get_wallet_balance', {}).kind).toBe('allow');
+    expect(resolvePermission(PAIR_PRINCIPAL, 'chia_wallet.get_wallet_balances', {}).kind).toBe('allow');
+  });
+
+  it('prompts when balance capability missing', () => {
+    mockGetPair.mockReturnValue(makePair());
+    const d = resolvePermission(PAIR_PRINCIPAL, 'chia_wallet.get_wallet_balance', {});
+    expect(d.kind).toBe('prompt');
+    expect((d as Extract<Decision, { kind: 'prompt' }>).reason).toBe('balance not pre-approved');
+  });
+
+  it('balance allow has no-op commit (read-only command)', () => {
+    mockGetPair.mockReturnValue(makePair({ capabilities: { balance: true } }));
+    const d = expectAllow(resolvePermission(PAIR_PRINCIPAL, 'chia_wallet.get_wallet_balance', {}));
+    d.commit();
+    expect(mockRecordSpend).not.toHaveBeenCalled();
+  });
+});
+
+describe('resolvePermission - push_transactions', () => {
+  const CMD = 'chia_wallet.push_transactions';
+
   it.each([
+    ['true', true],
     ['string "true"', 'true'],
     ['string "false"', 'false'],
     ['number 1', 1],
     ['object {}', {}],
-  ])('prompts when sign is truthy via %s', (_label, sign) => {
+  ])('prompts when sign is truthy via %s (Python truthiness)', (_label, sign) => {
     mockGetPair.mockReturnValue(makePair({ capabilities: { innocuous: true } }));
-    expect(checkPermission(PAIR_PRINCIPAL, CMD, { sign }).result).toEqual({
-      decision: 'prompt',
+    expect(resolvePermission(PAIR_PRINCIPAL, CMD, { sign })).toMatchObject({
+      kind: 'prompt',
       reason: 'signing requested',
     });
   });
 
   it('prompts when innocuous capability is missing', () => {
     mockGetPair.mockReturnValue(makePair());
-    expect(checkPermission(PAIR_PRINCIPAL, CMD, {}).result).toEqual({
-      decision: 'prompt',
+    expect(resolvePermission(PAIR_PRINCIPAL, CMD, {})).toMatchObject({
+      kind: 'prompt',
       reason: 'innocuous actions not pre-approved',
     });
   });
 
-  it('allows when sign is omitted, innocuous granted, no fee', () => {
-    mockGetPair.mockReturnValue(makePair({ capabilities: { innocuous: true } }));
-    expect(checkPermission(PAIR_PRINCIPAL, CMD, {}).result).toEqual({ decision: 'allow' });
-  });
-
   it.each([
+    ['omitted', undefined],
     ['false', false],
     ['number 0', 0],
     ['null', null],
-    ['undefined', undefined],
   ])('allows when sign is falsy via %s and innocuous granted', (_label, sign) => {
     mockGetPair.mockReturnValue(makePair({ capabilities: { innocuous: true } }));
-    expect(checkPermission(PAIR_PRINCIPAL, CMD, { sign }).result).toEqual({ decision: 'allow' });
+    const payload = sign === undefined ? {} : { sign };
+    expect(resolvePermission(PAIR_PRINCIPAL, CMD, payload).kind).toBe('allow');
   });
 
-  it('allows when fee fits within remaining budget', () => {
+  it('allows when fee fits in remaining budget and debits only the fee on commit', () => {
     mockGetPair.mockReturnValue(
       makePair({
         capabilities: { innocuous: true },
@@ -181,34 +198,27 @@ describe('checkPermission - push_transactions', () => {
         spentMojos: '200',
       }),
     );
-    expect(checkPermission(PAIR_PRINCIPAL, CMD, { fee: '500' }).result).toEqual({
-      decision: 'allow',
-    });
+    const d = expectAllow(resolvePermission(PAIR_PRINCIPAL, CMD, { fee: '500' }));
+    d.commit();
+    expect(mockRecordSpend).toHaveBeenCalledTimes(1);
+    const [topic, mojos] = mockRecordSpend.mock.calls[0];
+    expect(topic).toBe(TOPIC);
+    expect(mojos.toFixed(0)).toBe('500');
   });
 
-  it('allows when spent + fee equals the cap exactly', () => {
+  it('allows when spent + fee equals cap exactly', () => {
     mockGetPair.mockReturnValue(
-      makePair({
-        capabilities: { innocuous: true },
-        spendingCapMojos: '1000',
-        spentMojos: '400',
-      }),
+      makePair({ capabilities: { innocuous: true }, spendingCapMojos: '1000', spentMojos: '400' }),
     );
-    expect(checkPermission(PAIR_PRINCIPAL, CMD, { fee: '600' }).result).toEqual({
-      decision: 'allow',
-    });
+    expect(resolvePermission(PAIR_PRINCIPAL, CMD, { fee: '600' }).kind).toBe('allow');
   });
 
   it('prompts when fee exceeds remaining budget', () => {
     mockGetPair.mockReturnValue(
-      makePair({
-        capabilities: { innocuous: true },
-        spendingCapMojos: '1000',
-        spentMojos: '900',
-      }),
+      makePair({ capabilities: { innocuous: true }, spendingCapMojos: '1000', spentMojos: '900' }),
     );
-    expect(checkPermission(PAIR_PRINCIPAL, CMD, { fee: '200' }).result).toEqual({
-      decision: 'prompt',
+    expect(resolvePermission(PAIR_PRINCIPAL, CMD, { fee: '200' })).toMatchObject({
+      kind: 'prompt',
       reason: 'push fee exceeds remaining budget',
     });
   });
@@ -217,135 +227,160 @@ describe('checkPermission - push_transactions', () => {
     mockGetPair.mockReturnValue(
       makePair({ capabilities: { innocuous: true }, spendingCapMojos: '0', spentMojos: '0' }),
     );
-    expect(checkPermission(PAIR_PRINCIPAL, CMD, { fee: '-100' }).result).toEqual({
-      decision: 'allow',
-    });
+    const d = expectAllow(resolvePermission(PAIR_PRINCIPAL, CMD, { fee: '-100' }));
+    d.commit();
+    // Negative fee is sanitized to undefined, which becomes ZERO; commit
+    // resolves to a zero-debit and never reaches recordSpend.
+    expect(mockRecordSpend).not.toHaveBeenCalled();
   });
 
-  it('handles fees beyond JS safe-integer range without precision loss', () => {
+  it('does not record on commit when fee is zero or missing', () => {
+    mockGetPair.mockReturnValue(makePair({ capabilities: { innocuous: true } }));
+    expectAllow(resolvePermission(PAIR_PRINCIPAL, CMD, {})).commit();
+    expectAllow(resolvePermission(PAIR_PRINCIPAL, CMD, { fee: '0' })).commit();
+    expect(mockRecordSpend).not.toHaveBeenCalled();
+  });
+
+  it('preserves precision beyond JS safe-integer range', () => {
     const cap = '99999999999999999999';
     const fee = '99999999999999999999';
     mockGetPair.mockReturnValue(
-      makePair({
-        capabilities: { innocuous: true },
-        spendingCapMojos: cap,
-        spentMojos: '0',
-      }),
+      makePair({ capabilities: { innocuous: true }, spendingCapMojos: cap, spentMojos: '0' }),
     );
-    expect(checkPermission(PAIR_PRINCIPAL, CMD, { fee }).result).toEqual({ decision: 'allow' });
-
-    mockGetPair.mockReturnValue(
-      makePair({
-        capabilities: { innocuous: true },
-        spendingCapMojos: cap,
-        spentMojos: '1',
-      }),
-    );
-    expect(checkPermission(PAIR_PRINCIPAL, CMD, { fee }).result).toEqual({
-      decision: 'prompt',
-      reason: 'push fee exceeds remaining budget',
-    });
+    const d = expectAllow(resolvePermission(PAIR_PRINCIPAL, CMD, { fee }));
+    d.commit();
+    const [, mojos] = mockRecordSpend.mock.calls[0];
+    expect(mojos.toFixed(0)).toBe(fee);
+    expect(mojos).toBeInstanceOf(BigNumber);
   });
 });
 
-describe('checkPermission - innocuous-classified commands', () => {
+describe('resolvePermission - innocuous-classified commands', () => {
   it('allows when innocuous granted', () => {
     mockGetPair.mockReturnValue(makePair({ capabilities: { innocuous: true } }));
+    expect(resolvePermission(PAIR_PRINCIPAL, 'chia_wallet.get_wallets', {}).kind).toBe('allow');
     expect(
-      checkPermission(PAIR_PRINCIPAL, 'chia_wallet.get_wallets', {}).result,
-    ).toEqual({ decision: 'allow' });
-    expect(
-      checkPermission(PAIR_PRINCIPAL, 'chia_wallet.get_transactions', {}).result,
-    ).toEqual({ decision: 'allow' });
+      resolvePermission(PAIR_PRINCIPAL, 'chia_wallet.get_coin_records_by_names', {}).kind,
+    ).toBe('allow');
   });
 
   it('prompts when innocuous not granted', () => {
     mockGetPair.mockReturnValue(makePair());
-    expect(
-      checkPermission(PAIR_PRINCIPAL, 'chia_wallet.get_wallets', {}).result,
-    ).toEqual({ decision: 'prompt', reason: 'innocuous not pre-approved' });
+    expect(resolvePermission(PAIR_PRINCIPAL, 'chia_wallet.get_wallets', {})).toMatchObject({
+      kind: 'prompt',
+      reason: 'innocuous not pre-approved',
+    });
+  });
+
+  it('innocuous allow has no-op commit', () => {
+    mockGetPair.mockReturnValue(makePair({ capabilities: { innocuous: true } }));
+    expectAllow(resolvePermission(PAIR_PRINCIPAL, 'chia_wallet.get_wallets', {})).commit();
+    expect(mockRecordSpend).not.toHaveBeenCalled();
   });
 });
 
-describe('checkPermission - sign-classified commands', () => {
+describe('resolvePermission - sign-classified commands', () => {
   it('allows when sign granted', () => {
     mockGetPair.mockReturnValue(makePair({ capabilities: { sign: true } }));
     expect(
-      checkPermission(PAIR_PRINCIPAL, 'chia_wallet.sign_message_by_address', {}).result,
-    ).toEqual({ decision: 'allow' });
+      resolvePermission(PAIR_PRINCIPAL, 'chia_wallet.sign_message_by_address', {}).kind,
+    ).toBe('allow');
     expect(
-      checkPermission(PAIR_PRINCIPAL, 'chia_wallet.sign_message_by_id', {}).result,
-    ).toEqual({ decision: 'allow' });
+      resolvePermission(PAIR_PRINCIPAL, 'chia_wallet.sign_message_by_id', {}).kind,
+    ).toBe('allow');
   });
 
   it('prompts when sign not granted', () => {
     mockGetPair.mockReturnValue(makePair());
     expect(
-      checkPermission(PAIR_PRINCIPAL, 'chia_wallet.sign_message_by_address', {}).result,
-    ).toEqual({ decision: 'prompt', reason: 'sign not pre-approved' });
+      resolvePermission(PAIR_PRINCIPAL, 'chia_wallet.sign_message_by_address', {}),
+    ).toMatchObject({ kind: 'prompt', reason: 'sign not pre-approved' });
   });
 });
 
-describe('checkPermission - sensitive commands', () => {
+describe('resolvePermission - unclassified / sensitive commands', () => {
   it.each([
     'chia_wallet.delete_key',
+    'chia_wallet.cat_spend',
+    'chia_wallet.nft_transfer_nft',
+    'chia_wallet.take_offer',
+    'chia_wallet.cancel_offer',
     'chia_harvester.delete_plot',
-    'chia_harvester.add_plot_directory',
-    'chia_harvester.remove_plot_directory',
     'chia_full_node.open_connection',
-    'chia_full_node.close_connection',
-    'chia_farmer.close_connection',
-    'chia_farmer.set_payout_instructions',
-    'chia_wallet.set_payout_instructions',
-    'chia_wallet.set_auto_claim',
-    'daemon.stop_plotting',
     'totally.unknown_command',
   ])('prompts with "sensitive command" for %s', (cmd) => {
-    mockGetPair.mockReturnValue(makePair());
-    expect(checkPermission(PAIR_PRINCIPAL, cmd, {}).result).toEqual({
-      decision: 'prompt',
+    mockGetPair.mockReturnValue(makePair({ capabilities: { innocuous: true, sign: true } }));
+    expect(resolvePermission(PAIR_PRINCIPAL, cmd, {})).toMatchObject({
+      kind: 'prompt',
       reason: 'sensitive command',
     });
   });
 });
 
-describe('checkPermission - send_transaction (spend)', () => {
+describe('resolvePermission - send_transaction (spend)', () => {
   const CMD = 'chia_wallet.send_transaction';
 
   it('denies when spendingMode is block', () => {
     mockGetPair.mockReturnValue(makePair({ spendingMode: 'block', spendingCapMojos: '999' }));
-    expect(checkPermission(PAIR_PRINCIPAL, CMD, { amount: '10' }).result).toEqual({
-      decision: 'deny',
+    expect(resolvePermission(PAIR_PRINCIPAL, CMD, { amount: '10' })).toEqual({
+      kind: 'deny',
       reason: 'spending blocked for this app',
     });
   });
 
   it('prompts when spendingMode is ask', () => {
     mockGetPair.mockReturnValue(makePair({ spendingMode: 'ask', spendingCapMojos: '999' }));
-    expect(checkPermission(PAIR_PRINCIPAL, CMD, { amount: '10' }).result).toEqual({
-      decision: 'prompt',
+    expect(resolvePermission(PAIR_PRINCIPAL, CMD, { amount: '10' })).toMatchObject({
+      kind: 'prompt',
       reason: 'spending needs confirmation',
     });
   });
 
-  it('allows under cap with no fee', () => {
+  it('allows under cap and debits amount + fee on commit', () => {
     mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '1000' }));
-    expect(checkPermission(PAIR_PRINCIPAL, CMD, { amount: '999' }).result).toEqual({
-      decision: 'allow',
-    });
+    const d = expectAllow(resolvePermission(PAIR_PRINCIPAL, CMD, { amount: '700', fee: '50' }));
+    d.commit();
+    const [topic, mojos] = mockRecordSpend.mock.calls[0];
+    expect(topic).toBe(TOPIC);
+    expect(mojos.toFixed(0)).toBe('750');
+  });
+
+  it('commit is idempotent (second call no-ops)', () => {
+    mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '1000' }));
+    const d = expectAllow(resolvePermission(PAIR_PRINCIPAL, CMD, { amount: '700', fee: '50' }));
+    d.commit();
+    d.commit();
+    d.commit();
+    expect(mockRecordSpend).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not debit before commit is called', () => {
+    mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '1000' }));
+    expectAllow(resolvePermission(PAIR_PRINCIPAL, CMD, { amount: '700', fee: '50' }));
+    expect(mockRecordSpend).not.toHaveBeenCalled();
+  });
+
+  it('two independent allow decisions yield independent commits', () => {
+    mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '1000' }));
+    const a = expectAllow(resolvePermission(PAIR_PRINCIPAL, CMD, { amount: '100' }));
+    const b = expectAllow(resolvePermission(PAIR_PRINCIPAL, CMD, { amount: '200' }));
+    b.commit(); // only commit b
+    expect(mockRecordSpend).toHaveBeenCalledTimes(1);
+    expect(mockRecordSpend.mock.calls[0][1].toFixed(0)).toBe('200');
+    a.commit();
+    expect(mockRecordSpend).toHaveBeenCalledTimes(2);
+    expect(mockRecordSpend.mock.calls[1][1].toFixed(0)).toBe('100');
   });
 
   it('allows when amount + fee equals cap exactly', () => {
     mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '1000' }));
-    expect(checkPermission(PAIR_PRINCIPAL, CMD, { amount: '700', fee: '300' }).result).toEqual({
-      decision: 'allow',
-    });
+    expect(resolvePermission(PAIR_PRINCIPAL, CMD, { amount: '700', fee: '300' }).kind).toBe('allow');
   });
 
   it('prompts when amount + fee exceeds cap', () => {
     mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '1000' }));
-    expect(checkPermission(PAIR_PRINCIPAL, CMD, { amount: '700', fee: '301' }).result).toEqual({
-      decision: 'prompt',
+    expect(resolvePermission(PAIR_PRINCIPAL, CMD, { amount: '700', fee: '301' })).toMatchObject({
+      kind: 'prompt',
       reason: 'budget exhausted',
     });
   });
@@ -354,285 +389,129 @@ describe('checkPermission - send_transaction (spend)', () => {
     mockGetPair.mockReturnValue(
       makePair({ spendingMode: 'auto', spendingCapMojos: '1000', spentMojos: '900' }),
     );
-    expect(checkPermission(PAIR_PRINCIPAL, CMD, { amount: '50', fee: '50' }).result).toEqual({
-      decision: 'allow',
-    });
-    expect(checkPermission(PAIR_PRINCIPAL, CMD, { amount: '101' }).result).toEqual({
-      decision: 'prompt',
+    expect(resolvePermission(PAIR_PRINCIPAL, CMD, { amount: '50', fee: '50' }).kind).toBe('allow');
+    expect(resolvePermission(PAIR_PRINCIPAL, CMD, { amount: '101' })).toMatchObject({
+      kind: 'prompt',
       reason: 'budget exhausted',
     });
   });
 
-  it('prompts when amount cannot be parsed', () => {
+  it.each([
+    ['unparseable', { amount: 'not-a-number' }],
+    ['negative', { amount: '-5' }],
+    ['missing', {}],
+  ])('prompts when amount is %s under auto mode', (_label, payload) => {
     mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '1000' }));
-    expect(checkPermission(PAIR_PRINCIPAL, CMD, { amount: 'not-a-number' }).result).toEqual({
-      decision: 'prompt',
-      reason: 'spending needs confirmation',
-    });
-  });
-
-  it('prompts when amount is negative', () => {
-    mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '1000' }));
-    expect(checkPermission(PAIR_PRINCIPAL, CMD, { amount: '-5' }).result).toEqual({
-      decision: 'prompt',
-      reason: 'spending needs confirmation',
-    });
-  });
-
-  it('prompts when amount is missing entirely', () => {
-    mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '1000' }));
-    expect(checkPermission(PAIR_PRINCIPAL, CMD, {}).result).toEqual({
-      decision: 'prompt',
+    expect(resolvePermission(PAIR_PRINCIPAL, CMD, payload)).toMatchObject({
+      kind: 'prompt',
       reason: 'spending needs confirmation',
     });
   });
 
   it('handles values beyond JS safe-integer range', () => {
-    const cap = '100000000000000000000'; // 1e20 mojos
+    const cap = '100000000000000000000';
     const amount = '99999999999999999999';
     mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: cap }));
-    expect(checkPermission(PAIR_PRINCIPAL, CMD, { amount }).result).toEqual({
-      decision: 'allow',
-    });
-    expect(
-      checkPermission(PAIR_PRINCIPAL, CMD, { amount, fee: '2' }).result,
-    ).toEqual({ decision: 'prompt', reason: 'budget exhausted' });
-  });
-
-  it('treats fee as zero when missing', () => {
-    mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '100' }));
-    expect(checkPermission(PAIR_PRINCIPAL, CMD, { amount: '100' }).result).toEqual({
-      decision: 'allow',
+    expect(resolvePermission(PAIR_PRINCIPAL, CMD, { amount }).kind).toBe('allow');
+    expect(resolvePermission(PAIR_PRINCIPAL, CMD, { amount, fee: '2' })).toMatchObject({
+      kind: 'prompt',
+      reason: 'budget exhausted',
     });
   });
 });
 
-describe('checkPermission - cat_spend / nft transfers (spend without amount)', () => {
-  it.each([
-    'chia_wallet.cat_spend',
-    'chia_wallet.nft_transfer_nft',
-    'chia_wallet.nft_transfer_bulk',
-    'chia_wallet.nft_set_nft_did',
-    'chia_wallet.nft_set_did_bulk',
-  ])('prompts under auto mode because there is no resolvable amount: %s', (cmd) => {
-    mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '999999' }));
-    expect(checkPermission(PAIR_PRINCIPAL, cmd, { amount: '1' }).result).toEqual({
-      decision: 'prompt',
-      reason: 'spending needs confirmation',
-    });
-  });
-
-  it('denies under block mode regardless of payload', () => {
-    mockGetPair.mockReturnValue(makePair({ spendingMode: 'block' }));
-    expect(checkPermission(PAIR_PRINCIPAL, 'chia_wallet.cat_spend', {}).result).toEqual({
-      decision: 'deny',
-      reason: 'spending blocked for this app',
-    });
-  });
-});
-
-describe('checkPermission - create_offer_for_ids (offer with XCH outflow)', () => {
+describe('resolvePermission - create_offer_for_ids (offer with XCH outflow)', () => {
   const CMD = 'chia_wallet.create_offer_for_ids';
 
-  it('allows when XCH outflow + fee fit under cap', () => {
+  it('allows and debits XCH outflow + fee on commit', () => {
     mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '5000' }));
-    expect(
-      checkPermission(PAIR_PRINCIPAL, CMD, { offer: { 1: '1000' }, fee: '50' }).result,
-    ).toEqual({ decision: 'allow' });
-  });
-
-  it('sums multiple XCH outflow keys (xch + 1)', () => {
-    mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '5000' }));
-    expect(
-      checkPermission(PAIR_PRINCIPAL, CMD, {
-        offer: { 1: '1000', xch: '2000' },
-        fee: '0',
-      }).result,
-    ).toEqual({ decision: 'allow' });
+    const d = expectAllow(
+      resolvePermission(PAIR_PRINCIPAL, CMD, { offer: { 1: '1000', xch: '500' }, fee: '25' }),
+    );
+    d.commit();
+    expect(mockRecordSpend.mock.calls[0][1].toFixed(0)).toBe('1525');
   });
 
   it('prompts when XCH outflow + fee exceed cap', () => {
     mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '1000' }));
     expect(
-      checkPermission(PAIR_PRINCIPAL, CMD, { offer: { 1: '900' }, fee: '200' }).result,
-    ).toEqual({ decision: 'prompt', reason: 'budget exhausted' });
+      resolvePermission(PAIR_PRINCIPAL, CMD, { offer: { 1: '900' }, fee: '200' }),
+    ).toMatchObject({ kind: 'prompt', reason: 'budget exhausted' });
   });
 
   it('skips offer lines with non-positive amounts', () => {
     mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '100' }));
-    // 50 counts; -1000 and 0 are skipped per resolver rules.
     expect(
-      checkPermission(PAIR_PRINCIPAL, CMD, {
+      resolvePermission(PAIR_PRINCIPAL, CMD, {
         offer: { 1: '50', xch: '-1000' },
         fee: '0',
-      }).result,
-    ).toEqual({ decision: 'allow' });
+      }).kind,
+    ).toBe('allow');
   });
 
   it('prompts when offer touches a non-XCH key (cannot price against XCH cap)', () => {
     mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '99999' }));
     expect(
-      checkPermission(PAIR_PRINCIPAL, CMD, {
-        offer: { '8d3ed4c4...': '100' },
-        fee: '0',
-      }).result,
-    ).toEqual({ decision: 'prompt', reason: 'spending needs confirmation' });
+      resolvePermission(PAIR_PRINCIPAL, CMD, { offer: { '8d3ed4c4...': '100' }, fee: '0' }),
+    ).toMatchObject({ kind: 'prompt', reason: 'spending needs confirmation' });
   });
 
-  it('prompts when offer payload is missing or not an object', () => {
+  it.each([
+    ['missing offer', {}],
+    ['non-object offer', { offer: 'oops' }],
+  ])('prompts when offer payload is %s', (_label, payload) => {
     mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '99999' }));
-    expect(checkPermission(PAIR_PRINCIPAL, CMD, {}).result).toEqual({
-      decision: 'prompt',
-      reason: 'spending needs confirmation',
-    });
-    expect(checkPermission(PAIR_PRINCIPAL, CMD, { offer: 'oops' }).result).toEqual({
-      decision: 'prompt',
+    expect(resolvePermission(PAIR_PRINCIPAL, CMD, payload)).toMatchObject({
+      kind: 'prompt',
       reason: 'spending needs confirmation',
     });
   });
 
   it('denies under block mode', () => {
     mockGetPair.mockReturnValue(makePair({ spendingMode: 'block' }));
-    expect(
-      checkPermission(PAIR_PRINCIPAL, CMD, { offer: { 1: '100' } }).result,
-    ).toEqual({ decision: 'deny', reason: 'spending blocked for this app' });
+    expect(resolvePermission(PAIR_PRINCIPAL, CMD, { offer: { 1: '100' } })).toEqual({
+      kind: 'deny',
+      reason: 'spending blocked for this app',
+    });
   });
 
   it('prompts under ask mode without consulting the cap', () => {
     mockGetPair.mockReturnValue(makePair({ spendingMode: 'ask', spendingCapMojos: '0' }));
-    expect(
-      checkPermission(PAIR_PRINCIPAL, CMD, { offer: { 1: '100' } }).result,
-    ).toEqual({ decision: 'prompt', reason: 'spending needs confirmation' });
+    expect(resolvePermission(PAIR_PRINCIPAL, CMD, { offer: { 1: '100' } })).toMatchObject({
+      kind: 'prompt',
+      reason: 'spending needs confirmation',
+    });
   });
 });
 
-describe('checkPermission - take_offer / cancel_offer (offer without amount)', () => {
-  it.each(['chia_wallet.take_offer', 'chia_wallet.cancel_offer'])(
-    'prompts under auto mode because no XCH amount is resolvable: %s',
-    (cmd) => {
-      mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '999' }));
-      expect(checkPermission(PAIR_PRINCIPAL, cmd, {}).result).toEqual({
-        decision: 'prompt',
-        reason: 'spending needs confirmation',
-      });
-    },
-  );
-});
-
-describe('consumeAllowedSpend', () => {
-  it('is a no-op for UI principals', () => {
-    consumeAllowedSpend(UI_PRINCIPAL, 'chia_wallet.send_transaction', { amount: '10', fee: '1' });
-    expect(mockRecordSpend).not.toHaveBeenCalled();
+describe('toWire', () => {
+  it('strips commit from allow', () => {
+    mockGetPair.mockReturnValue(makePair({ capabilities: { innocuous: true } }));
+    const decision = resolvePermission(PAIR_PRINCIPAL, 'chia_wallet.get_wallets', {});
+    const wire = toWire(decision);
+    expect(wire).toEqual({ kind: 'allow' });
+    expect((wire as Record<string, unknown>).commit).toBeUndefined();
   });
 
-  it('is a no-op for sensitive / unknown commands', () => {
-    consumeAllowedSpend(PAIR_PRINCIPAL, 'chia_wallet.delete_key', {});
-    consumeAllowedSpend(PAIR_PRINCIPAL, 'totally.unknown', {});
-    expect(mockRecordSpend).not.toHaveBeenCalled();
-  });
-
-  it('is a no-op for innocuous-classified commands', () => {
-    consumeAllowedSpend(PAIR_PRINCIPAL, 'chia_wallet.get_wallets', {});
-    expect(mockRecordSpend).not.toHaveBeenCalled();
-  });
-
-  it('is a no-op for sign-classified commands', () => {
-    consumeAllowedSpend(PAIR_PRINCIPAL, 'chia_wallet.sign_message_by_id', {});
-    expect(mockRecordSpend).not.toHaveBeenCalled();
-  });
-
-  it('charges amount + fee for send_transaction', () => {
-    consumeAllowedSpend(PAIR_PRINCIPAL, 'chia_wallet.send_transaction', {
-      amount: '700',
-      fee: '50',
+  it('preserves prompt reason and pair', () => {
+    mockGetPair.mockReturnValue(makePair({ metadata: { name: 'X', url: 'https://x' } }));
+    const decision = resolvePermission(PAIR_PRINCIPAL, 'chia_wallet.send_transaction', {});
+    expect(toWire(decision)).toEqual({
+      kind: 'prompt',
+      reason: 'spending needs confirmation',
+      pair: { topic: TOPIC, name: 'X', url: 'https://x' },
     });
-    expect(mockRecordSpend).toHaveBeenCalledTimes(1);
-    const [topic, mojos] = mockRecordSpend.mock.calls[0];
-    expect(topic).toBe(TOPIC);
-    expect(mojos.toFixed(0)).toBe('750');
   });
 
-  it('treats fee as zero when missing on send_transaction', () => {
-    consumeAllowedSpend(PAIR_PRINCIPAL, 'chia_wallet.send_transaction', { amount: '700' });
-    const [, mojos] = mockRecordSpend.mock.calls[0];
-    expect(mojos.toFixed(0)).toBe('700');
+  it('preserves deny reason', () => {
+    mockGetPair.mockReturnValue(undefined);
+    const decision = resolvePermission(PAIR_PRINCIPAL, 'chia_wallet.send_transaction', {});
+    expect(toWire(decision)).toEqual({ kind: 'deny', reason: 'unknown pair' });
   });
 
-  it('does not record when send_transaction has no amount field', () => {
-    consumeAllowedSpend(PAIR_PRINCIPAL, 'chia_wallet.send_transaction', {});
-    expect(mockRecordSpend).not.toHaveBeenCalled();
-  });
-
-  it('does not record when total computes to <= 0', () => {
-    consumeAllowedSpend(PAIR_PRINCIPAL, 'chia_wallet.send_transaction', { amount: '0', fee: '0' });
-    expect(mockRecordSpend).not.toHaveBeenCalled();
-  });
-
-  it('does not record for cat_spend / nft_transfer (no amount field)', () => {
-    consumeAllowedSpend(PAIR_PRINCIPAL, 'chia_wallet.cat_spend', { amount: '999' });
-    consumeAllowedSpend(PAIR_PRINCIPAL, 'chia_wallet.nft_transfer_nft', { fee: '1' });
-    expect(mockRecordSpend).not.toHaveBeenCalled();
-  });
-
-  it('charges XCH outflow + fee for create_offer_for_ids', () => {
-    consumeAllowedSpend(PAIR_PRINCIPAL, 'chia_wallet.create_offer_for_ids', {
-      offer: { 1: '1000', xch: '500' },
-      fee: '25',
-    });
-    const [, mojos] = mockRecordSpend.mock.calls[0];
-    expect(mojos.toFixed(0)).toBe('1525');
-  });
-
-  it('does not record for create_offer_for_ids that touches non-XCH', () => {
-    consumeAllowedSpend(PAIR_PRINCIPAL, 'chia_wallet.create_offer_for_ids', {
-      offer: { '8d3ed4c4...': '100' },
-      fee: '5',
-    });
-    expect(mockRecordSpend).not.toHaveBeenCalled();
-  });
-
-  it('does not record for take_offer / cancel_offer (no amount resolver)', () => {
-    consumeAllowedSpend(PAIR_PRINCIPAL, 'chia_wallet.take_offer', {});
-    consumeAllowedSpend(PAIR_PRINCIPAL, 'chia_wallet.cancel_offer', {});
-    expect(mockRecordSpend).not.toHaveBeenCalled();
-  });
-
-  describe('push_transactions', () => {
-    const CMD = 'chia_wallet.push_transactions';
-
-    it('records only the top-level fee', () => {
-      consumeAllowedSpend(PAIR_PRINCIPAL, CMD, { fee: '42' });
-      const [, mojos] = mockRecordSpend.mock.calls[0];
-      expect(mojos.toFixed(0)).toBe('42');
-    });
-
-    it('does not record when fee is zero or missing', () => {
-      consumeAllowedSpend(PAIR_PRINCIPAL, CMD, {});
-      consumeAllowedSpend(PAIR_PRINCIPAL, CMD, { fee: '0' });
-      expect(mockRecordSpend).not.toHaveBeenCalled();
-    });
-
-    it('does not record on negative fee', () => {
-      consumeAllowedSpend(PAIR_PRINCIPAL, CMD, { fee: '-5' });
-      expect(mockRecordSpend).not.toHaveBeenCalled();
-    });
-
-    it('preserves precision for very large fees', () => {
-      const fee = '99999999999999999999';
-      consumeAllowedSpend(PAIR_PRINCIPAL, CMD, { fee });
-      const [, mojos] = mockRecordSpend.mock.calls[0];
-      expect(mojos.toFixed(0)).toBe(fee);
-      expect(mojos).toBeInstanceOf(BigNumber);
-    });
-
-    it('does not consult the spend classifier for push_transactions', () => {
-      // sign:true would prompt at check time, but consume is called only after
-      // an allow decision in main.tsx. We still verify that consume itself only
-      // looks at the `fee` field, not `sign`, and never delegates to
-      // classify-based spend resolution.
-      consumeAllowedSpend(PAIR_PRINCIPAL, CMD, { sign: true, fee: '7' });
-      const [, mojos] = mockRecordSpend.mock.calls[0];
-      expect(mojos.toFixed(0)).toBe('7');
-    });
+  it('roundtrip survives JSON (no functions on the wire)', () => {
+    mockGetPair.mockReturnValue(makePair({ capabilities: { innocuous: true } }));
+    const wire = toWire(resolvePermission(PAIR_PRINCIPAL, 'chia_wallet.get_wallets', {}));
+    expect(JSON.parse(JSON.stringify(wire))).toEqual(wire);
   });
 });

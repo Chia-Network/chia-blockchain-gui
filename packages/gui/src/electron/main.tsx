@@ -38,7 +38,7 @@ import About from './dialogs/About/About';
 import Confirm, { getTitle as getConfirmTitle } from './dialogs/Confirm/Confirm';
 import KeyDetail from './dialogs/KeyDetail/KeyDetail';
 import Pair, { getTitle as getPairTitle, type PairWalletOption } from './dialogs/Pair/Pair';
-import { checkPermission, consumeAllowedSpend } from './permissions/permissions';
+import { resolvePermission, toWire } from './permissions/permissions';
 import { getPair, listPairs, removePair, updateGrants, upsertPair } from './permissions/pairStore';
 import {
   type PairGrants,
@@ -258,7 +258,7 @@ ipcMainHandle(PermissionsAPI.PAIR_REVOKE, (topic: string) => {
 ipcMainHandle(
   PermissionsAPI.CHECK,
   (payload: { principal: Principal; command: string; data: Record<string, unknown> }) =>
-    checkPermission(payload.principal, payload.command, payload.data).result,
+    toWire(resolvePermission(payload.principal, payload.command, payload.data)),
 );
 
 // main window
@@ -697,17 +697,17 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
         }
 
         const principal: Principal = metadata?.principal ?? { kind: 'ui' };
-        const { result: check, pair } = checkPermission(principal, nsCommand, parsedData.data ?? {});
+        const decision = resolvePermission(principal, nsCommand, parsedData.data ?? {});
 
-        if (check.decision === 'allow') {
-          // Charge the pair's spend budget only at the real authorization point,
-          // not from the renderer's preview check. Safe no-op for non-spends.
-          consumeAllowedSpend(principal, nsCommand, parsedData.data ?? {});
+        if (decision.kind === 'allow') {
+          // Debit the budget at the real authorization point. Idempotent — the
+          // closure no-ops if the same decision is committed twice.
+          decision.commit();
           return;
         }
 
-        if (check.decision === 'deny') {
-          throw new Error(check.reason);
+        if (decision.kind === 'deny') {
+          throw new Error(decision.reason);
         }
 
         const bypassCommands = privatePreferences.get('bypassCommands', [] as string[]);
@@ -722,12 +722,12 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
             networkPrefix,
             command: nsCommand,
             data: parsedData.data,
-            principal: pair
+            principal: decision.pair
               ? {
                   kind: 'pair' as const,
-                  name: pair.metadata.name,
-                  url: pair.metadata.url,
-                  reason: check.reason,
+                  name: decision.pair.name,
+                  url: decision.pair.url,
+                  reason: decision.reason,
                 }
               : undefined,
           },
