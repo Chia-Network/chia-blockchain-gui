@@ -33,37 +33,37 @@ const CAPABILITY_ROWS: CapabilityRow[] = [
   {
     key: 'read',
     label: 'Read account info',
-    description: 'View balances, addresses, and wallet list. Cannot move funds.',
+    description: 'See balances, addresses, and your wallets.',
     preset: 'gaming',
   },
   {
     key: 'watch',
-    label: 'Watch on-chain activity',
-    description: 'Subscribe to coin updates and read block height. Cannot move funds.',
+    label: 'Watch wallet activity',
+    description: 'Track coins and check block height.',
     preset: 'gaming',
   },
   {
     key: 'walletCreate',
-    label: 'Create derived wallets',
-    description: 'Create new sub-wallets needed for game state. No on-chain effect.',
+    label: 'Create new wallets',
+    description: 'Make new wallets the app needs to work.',
     preset: 'gaming',
   },
   {
     key: 'sign',
     label: 'Sign messages',
-    description: 'Sign arbitrary messages. Used for off-chain authentication.',
+    description: 'Sign messages for login or proof of ownership.',
     preset: 'optional',
   },
   {
     key: 'offer',
-    label: 'Create and accept offers',
-    description: 'Create, take, and cancel offers. Locks assets until resolved.',
+    label: 'Trade with offers',
+    description: 'Make, accept, and cancel offers. Locks assets until the trade settles.',
     preset: 'optional',
   },
   {
     key: 'spend',
-    label: 'Spend up to the cap',
-    description: 'Submit transactions automatically up to the per-transaction cap below.',
+    label: 'Spend funds',
+    description: 'Send transactions for you, up to the budget below.',
     preset: 'gaming',
   },
 ];
@@ -123,12 +123,8 @@ export default function Pair(props: PairProps) {
             )}
             <p className="mt-1.5 mb-0 text-sm leading-snug text-chia-text-secondary">
               {isEdit
-                ? i18n._(/* i18n */ {
-                    id: 'Update what this app can do without prompting. Anything not pre-approved still asks you to confirm.',
-                  })
-                : i18n._(/* i18n */ {
-                    id: 'Pick what this app can do without prompting. Anything not pre-approved still asks you to confirm.',
-                  })}
+                ? i18n._(/* i18n */ { id: 'Update what this app can do without asking. Other things still ask you.' })
+                : i18n._(/* i18n */ { id: 'Pick what this app can do without asking. Other things still ask you.' })}
             </p>
           </div>
         </div>
@@ -214,26 +210,28 @@ export default function Pair(props: PairProps) {
 
         <section className="rounded-xl border border-chia-border bg-chia-card overflow-hidden">
           <div className="px-5 pt-3 pb-2 text-xs font-semibold uppercase tracking-wider text-chia-text-muted">
-            {i18n._(/* i18n */ { id: 'Auto-approve actions' })}
+            {i18n._(/* i18n */ { id: 'Auto-approve' })}
           </div>
           <ul className="m-0 p-0 list-none divide-y divide-chia-border border-t border-chia-border">
             {CAPABILITY_ROWS.map((row) => (
               <li key={row.key}>
-                <label className="flex items-center gap-3 px-5 py-2 cursor-pointer hover:bg-chia-card-elevated transition-colors">
+                <label className="flex items-start gap-3 px-5 py-2.5 cursor-pointer hover:bg-chia-card-elevated transition-colors">
                   <input
                     type="checkbox"
                     defaultChecked={grants.capabilities[row.key]}
                     data-form-field={`cap-${row.key}`}
-                    className="w-[18px] h-[18px] accent-chia-primary cursor-pointer shrink-0"
+                    className="mt-[3px] w-[18px] h-[18px] accent-chia-primary cursor-pointer shrink-0"
                   />
-                  <div className="flex-1 min-w-0 flex items-baseline gap-2 flex-wrap">
-                    <span className="text-sm font-medium text-chia-text">{row.label}</span>
-                    {row.preset === 'gaming' && (
-                      <span className="text-[10px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded bg-chia-primary-soft text-chia-primary">
-                        gaming
-                      </span>
-                    )}
-                    <span className="text-sm text-chia-text-secondary">— {row.description}</span>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm font-medium text-chia-text leading-tight">{row.label}</span>
+                      {row.preset === 'gaming' && (
+                        <span className="text-[10px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded bg-chia-primary-soft text-chia-primary">
+                          gaming
+                        </span>
+                      )}
+                    </div>
+                    <div className="mt-0.5 text-sm text-chia-text-secondary leading-snug">{row.description}</div>
                   </div>
                 </label>
               </li>
