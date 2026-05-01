@@ -11,8 +11,10 @@ export const WalletConnectContext = createContext<
       enabled: boolean;
       isLoading: boolean;
       error: Error | undefined;
-      pair: (uri: string, fingerprints: number[], mainnet?: boolean) => Promise<string>;
+      pair: (uri: string, mainnet?: boolean) => Promise<string>;
       disconnect: (topic: string) => Promise<void>;
+      approveSession: (topic: string, fingerprints: number[]) => Promise<void>;
+      rejectSession: (topic: string) => Promise<void>;
       pairs: {
         getPair: (topic: string) => Pair | undefined;
         get: () => Pair[];

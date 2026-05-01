@@ -1,7 +1,7 @@
 import { useEffect, useCallback, useRef } from 'react';
 
 import type Notification from '../@types/Notification';
-import { disconnectPair, bindEvents } from '../util/walletConnect';
+import { approveSessionProposal, bindEvents, disconnectPair, rejectSessionProposal } from '../util/walletConnect';
 
 import useWalletConnectClient from './useWalletConnectClient';
 import useWalletConnectCommand from './useWalletConnectCommand';
@@ -54,7 +54,7 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
   }, [client]);
 
   const handlePair = useCallback(
-    async (uri: string, fingerprints: number[], mainnet = false) => {
+    async (uri: string, mainnet = false) => {
       if (!client) {
         throw new Error('Client is not defined');
       }
@@ -66,7 +66,7 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
 
       pairsRef.current.addPair({
         topic,
-        fingerprints,
+        fingerprints: [],
         mainnet,
         sessions: [],
       });
@@ -87,6 +87,28 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
     [client],
   );
 
+  const handleApproveSession = useCallback(
+    (topic: string, fingerprints: number[]) => {
+      if (!client) {
+        throw new Error('Client is not defined');
+      }
+
+      return approveSessionProposal(client, pairsRef.current, topic, fingerprints);
+    },
+    [client],
+  );
+
+  const handleRejectSession = useCallback(
+    (topic: string) => {
+      if (!client) {
+        throw new Error('Client is not defined');
+      }
+
+      return rejectSessionProposal(client, pairsRef.current, topic);
+    },
+    [client],
+  );
+
   return {
     enabled,
     isLoading: isLoadingData,
@@ -94,6 +116,8 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
 
     pair: handlePair,
     disconnect: handleDisconnect,
+    approveSession: handleApproveSession,
+    rejectSession: handleRejectSession,
 
     pairs,
   };

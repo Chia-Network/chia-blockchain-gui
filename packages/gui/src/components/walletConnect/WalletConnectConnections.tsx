@@ -1,4 +1,4 @@
-import { useGetKeysQuery } from '@chia-network/api-react';
+import { useGetKeysQuery, useGetLoggedInFingerprintQuery } from '@chia-network/api-react';
 import { Flex, Loading, useOpenDialog, More, MenuItem, useShowError } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import {
@@ -9,26 +9,28 @@ import {
 import { Button, ListItemIcon, Typography, Divider } from '@mui/material';
 import React, { useCallback } from 'react';
 
+import type Pair from '../../@types/Pair';
 import useWalletConnectContext from '../../hooks/useWalletConnectContext';
 import useWalletConnectPreferences from '../../hooks/useWalletConnectPreferences';
 
 import WalletConnectAddConnectionDialog from './WalletConnectAddConnectionDialog';
 import WalletConnectPairInfoDialog from './WalletConnectPairInfoDialog';
 
-async function waitForPairMetadata(
-  getPair: (topic: string) => { metadata?: { name?: string } } | undefined,
+async function waitForPendingProposal(
+  getPair: (topic: string) => Pair | undefined,
   topic: string,
-  timeoutMs = 8000,
-): Promise<void> {
+  timeoutMs = 15_000,
+): Promise<Pair | undefined> {
   const start = Date.now();
   while (Date.now() - start < timeoutMs) {
     const pair = getPair(topic);
-    if (pair?.metadata?.name) return;
+    if (pair?.pendingProposal) return pair;
     // eslint-disable-next-line no-await-in-loop -- intentional poll
     await new Promise((resolve) => {
       setTimeout(resolve, 200);
     });
   }
+  return getPair(topic);
 }
 
 export type WalletConnectConnectionsProps = {
@@ -40,8 +42,9 @@ export default function WalletConnectConnections(props: WalletConnectConnections
   const openDialog = useOpenDialog();
   const showError = useShowError();
   const { enabled, setEnabled } = useWalletConnectPreferences();
-  const { disconnect, pairs, isLoading } = useWalletConnectContext();
+  const { disconnect, approveSession, rejectSession, pairs, isLoading } = useWalletConnectContext();
   const { data: keys } = useGetKeysQuery({});
+  const { data: loggedInFingerprint } = useGetLoggedInFingerprintQuery();
 
   const handleAddConnection = useCallback(async () => {
     onClose?.();
@@ -52,20 +55,25 @@ export default function WalletConnectConnections(props: WalletConnectConnections
     }
 
     try {
-      await waitForPairMetadata(pairs.getPair.bind(pairs), topic);
-      const pair = pairs.getPair(topic);
-      if (!pair) return;
+      const pair = await waitForPendingProposal(pairs.getPair.bind(pairs), topic);
+      if (!pair?.pendingProposal) {
+        // No proposal arrived in time - dapp dropped or never sent it. Tear down.
+        await disconnect(topic);
+        showError(new Error('No session proposal received from the application'));
+        return;
+      }
 
-      const selected = pair.fingerprints ?? [];
-      const availableWallets =
-        selected.length > 0
-          ? selected.map((fingerprint) => {
-              const key = keys?.find((k: any) => k.fingerprint === fingerprint);
-              return { fingerprint, name: key?.label ?? undefined };
-            })
-          : (keys ?? []).map((key: any) => ({ fingerprint: key.fingerprint, name: key.label ?? undefined }));
+      const availableWallets = (keys ?? []).map((key: any) => ({
+        fingerprint: key.fingerprint,
+        name: key.label ?? undefined,
+      }));
 
-      const result = await window.permissionsAPI.registerPair({
+      const defaultFingerprints =
+        loggedInFingerprint && availableWallets.some((w) => w.fingerprint === loggedInFingerprint)
+          ? [loggedInFingerprint]
+          : [];
+
+      const grant = await window.permissionsAPI.registerPair({
         topic,
         metadata: {
           name: pair.metadata?.name ?? 'Unknown application',
@@ -74,21 +82,31 @@ export default function WalletConnectConnections(props: WalletConnectConnections
           description: pair.metadata?.description,
         },
         availableWallets,
-        defaultFingerprints: selected.length > 0 ? selected : (keys ?? []).map((k: any) => k.fingerprint),
+        defaultFingerprints,
       });
 
-      if (!result) {
-        // User rejected. Disconnect the WC pair so the dapp loses access immediately.
+      if (!grant) {
+        // User rejected. Reject the WC proposal cleanly so the dapp gets the right signal.
         try {
-          await disconnect(topic);
-        } catch (disconnectErr) {
-          console.warn('Failed to disconnect rejected pair', disconnectErr);
+          await rejectSession(topic);
+        } catch (rejectErr) {
+          console.warn('Failed to reject WC session', rejectErr);
         }
+        return;
+      }
+
+      try {
+        await approveSession(topic, grant.fingerprints);
+      } catch (approveErr) {
+        // Approval failed (network, dapp dropped, etc). Roll back the main-process grant.
+        await window.permissionsAPI.revokePair(topic);
+        await disconnect(topic);
+        throw approveErr;
       }
     } catch (err) {
       showError(err);
     }
-  }, [onClose, openDialog, pairs, keys, disconnect, showError]);
+  }, [onClose, openDialog, pairs, keys, loggedInFingerprint, approveSession, rejectSession, disconnect, showError]);
 
   async function handleDisconnect(topic: string) {
     try {
