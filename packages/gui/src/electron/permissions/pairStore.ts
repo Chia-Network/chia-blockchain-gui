@@ -1,3 +1,4 @@
+import BigNumber from 'bignumber.js';
 import path from 'node:path';
 
 import { getUserDataDir } from '../utils/userData';
@@ -56,9 +57,11 @@ export function updateGrants(topic: string, grants: PairRecord['grants']) {
   return next;
 }
 
-export function recordSpend(topic: string, mojos: number) {
+export function recordSpend(topic: string, mojos: BigNumber) {
   const pair = getPair(topic);
-  if (!pair || !Number.isFinite(mojos) || mojos <= 0) return;
-  const next: PairRecord = { ...pair, spentMojos: (pair.spentMojos ?? 0) + mojos };
+  if (!pair) return;
+  if (!mojos.isFinite() || mojos.isLessThanOrEqualTo(0)) return;
+  const current = new BigNumber(pair.spentMojos ?? 0);
+  const next: PairRecord = { ...pair, spentMojos: current.plus(mojos).toFixed(0) };
   upsertPair(next);
 }

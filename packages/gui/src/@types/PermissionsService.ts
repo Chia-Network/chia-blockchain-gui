@@ -17,7 +17,8 @@ export type PermissionsSpendingMode = 'block' | 'ask' | 'auto';
 export type PermissionsPairGrants = {
   capabilities: Record<PermissionsCapability, boolean>;
   spendingMode: PermissionsSpendingMode;
-  spendingCapMojos: number;
+  /** Mojo amount serialized as a string for precision. */
+  spendingCapMojos: string;
 };
 
 export type PermissionsPairRecord = {
@@ -27,7 +28,8 @@ export type PermissionsPairRecord = {
   createdAt: number;
   updatedAt: number;
   grants: PermissionsPairGrants;
-  spentMojos: number;
+  /** Mojo amount serialized as a string for precision. */
+  spentMojos: string;
 };
 
 export type PermissionsPrincipal = { kind: 'ui' } | { kind: 'pair'; topic: string };

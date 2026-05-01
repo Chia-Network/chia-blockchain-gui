@@ -1,3 +1,5 @@
+import BigNumber from 'bignumber.js';
+
 import AllowedCommands from '../constants/AllowedCommands';
 
 import type { CommandClassification } from './types';
@@ -103,18 +105,23 @@ export function isBalanceCommand(command: string): boolean {
 }
 
 // Sum the XCH mojos the user is giving up in a `create_offer_for_ids` offer.
-function extractOfferXchOutflow(payload: Record<string, unknown>): number | undefined {
+function extractOfferXchOutflow(payload: Record<string, unknown>): BigNumber | undefined {
   const offer = payload?.offer;
   if (!offer || typeof offer !== 'object') return undefined;
 
-  let xchOut = 0;
+  let xchOut = new BigNumber(0);
   for (const [key, raw] of Object.entries(offer as Record<string, unknown>)) {
-    const amount = Number(raw);
-    if (!Number.isFinite(amount)) continue;
-    if (amount <= 0) continue;
+    let amount: BigNumber;
+    try {
+      amount = new BigNumber(typeof raw === 'string' ? raw : String(raw));
+    } catch {
+      continue;
+    }
+    if (!amount.isFinite()) continue;
+    if (amount.isLessThanOrEqualTo(0)) continue;
     const isXch = key === '1' || key === 'xch';
     if (!isXch) return undefined;
-    xchOut += amount;
+    xchOut = xchOut.plus(amount);
   }
   return xchOut;
 }

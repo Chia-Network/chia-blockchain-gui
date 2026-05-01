@@ -1,10 +1,11 @@
+import BigNumber from 'bignumber.js';
 import React from 'react';
 
 import { i18n } from '../../../config/locales';
 
 import type { PairGrants, PairMetadata } from '../../permissions/types';
 
-const MOJOS_PER_XCH = 1_000_000_000_000;
+const MOJOS_PER_XCH = new BigNumber('1000000000000');
 
 export type PairWalletOption = {
   fingerprint: number;
@@ -51,10 +52,10 @@ export default function Pair(props: PairProps) {
       spend: false,
     },
     spendingMode: 'ask',
-    spendingCapMojos: 10_000_000_000, // 0.01 XCH default budget when user picks auto
+    spendingCapMojos: '10000000000', // 0.01 XCH default budget when user picks auto
   };
 
-  const defaultCapXch = (grants.spendingCapMojos / MOJOS_PER_XCH).toString();
+  const defaultCapXch = new BigNumber(grants.spendingCapMojos ?? 0).div(MOJOS_PER_XCH).toFixed();
   const innocuousChecked = grants.capabilities.innocuous;
   const balanceChecked = grants.capabilities.balance;
   const signChecked = grants.capabilities.sign;

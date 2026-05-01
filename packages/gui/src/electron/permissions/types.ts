@@ -9,7 +9,8 @@ export type SpendingMode = 'block' | 'ask' | 'auto';
 export type PairGrants = {
   capabilities: CapabilityGrants;
   spendingMode: SpendingMode;
-  spendingCapMojos: number;
+  /** Mojo amount serialized as a string to survive JSON without precision loss. */
+  spendingCapMojos: string;
 };
 
 export type PairMetadata = {
@@ -26,12 +27,15 @@ export type PairRecord = {
   createdAt: number;
   updatedAt: number;
   grants: PairGrants;
-  spentMojos: number;
+  /** Mojo amount serialized as a string to survive JSON without precision loss. */
+  spentMojos: string;
 };
 
 export type Principal = { kind: 'ui' } | { kind: 'pair'; topic: string };
 
-export type AmountResolver = (payload: Record<string, unknown>) => number | undefined;
+import type BigNumber from 'bignumber.js';
+
+export type AmountResolver = (payload: Record<string, unknown>) => BigNumber | undefined;
 
 export type CommandClassification =
   | {

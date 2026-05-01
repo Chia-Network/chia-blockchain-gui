@@ -134,23 +134,11 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
           command: nsCommand,
           data,
         });
-        // eslint-disable-next-line no-console -- visible while we wire this up
-        console.info(`[wc] check ${nsCommand} → ${decision.decision}`, {
-          topic: pair.topic,
-          reason: 'reason' in decision ? decision.reason : undefined,
-        });
         if (decision.decision === 'allow') return true;
         if (decision.decision === 'deny') return false;
       } catch (err) {
-        // eslint-disable-next-line no-console -- visible while we wire this up
-        console.warn('[wc] permissionsAPI.check failed, falling back to renderer dialog', err);
+        log('permissionsAPI.check failed, falling back to renderer dialog', err);
       }
-    } else {
-      // eslint-disable-next-line no-console -- visible while we wire this up
-      console.info('[wc] skipping main check', {
-        nsCommand,
-        hasPermissionsAPI: !!window.permissionsAPI?.check,
-      });
     }
 
     if (command === 'requestPermissions') {

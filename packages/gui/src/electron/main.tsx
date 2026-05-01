@@ -15,6 +15,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import url from 'node:url';
 
+import BigNumber from 'bignumber.js';
 import windowStateKeeper from 'electron-window-state';
 import { uniq } from 'lodash';
 import sanitizeFilename from 'sanitize-filename';
@@ -116,7 +117,7 @@ ipcMainHandle(AppAPI.SHOW_NOTIFICATION, async (options: { title: string; body: s
   }).show();
 });
 
-const MOJOS_PER_XCH = 1_000_000_000_000;
+const MOJOS_PER_XCH = new BigNumber('1000000000000');
 
 function dialogResultToGrants(result: Record<string, unknown>): PairGrants {
   const capabilities = emptyCapabilities();
@@ -137,8 +138,18 @@ function dialogResultToGrants(result: Record<string, unknown>): PairGrants {
     capabilities.spend = true;
     capabilities.offer = true;
   }
-  const xch = Number(result.spendingCapXch);
-  const mojos = Number.isFinite(xch) && xch > 0 ? Math.floor(xch * MOJOS_PER_XCH) : 0;
+  let mojos = '0';
+  const rawXch = result.spendingCapXch;
+  if (rawXch !== null && rawXch !== undefined && rawXch !== '') {
+    try {
+      const xch = new BigNumber(typeof rawXch === 'string' ? rawXch : String(rawXch));
+      if (xch.isFinite() && xch.isGreaterThan(0)) {
+        mojos = xch.times(MOJOS_PER_XCH).integerValue(BigNumber.ROUND_FLOOR).toFixed(0);
+      }
+    } catch {
+      // Fall through with mojos = '0'.
+    }
+  }
   return {
     capabilities,
     spendingMode,
@@ -211,7 +222,7 @@ ipcMainHandle(
       createdAt: now,
       updatedAt: now,
       grants: decision.grants,
-      spentMojos: 0,
+      spentMojos: '0',
     };
     upsertPair(record);
     return record;

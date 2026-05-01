@@ -31,7 +31,10 @@ function generateScriptContent(confirmId: string) {
         } else if (type === 'radio') {
           if (el.checked) data[name] = el.value;
         } else if (type === 'number') {
-          data[name] = el.value === '' ? null : Number(el.value);
+          // Keep number-input values as strings so that callers parsing high-
+          // precision values (e.g. mojo amounts via BigNumber) don't lose
+          // precision through Number coercion.
+          data[name] = el.value === '' ? null : el.value;
         } else {
           data[name] = el.value;
         }

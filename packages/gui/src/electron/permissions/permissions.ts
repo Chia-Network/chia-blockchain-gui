@@ -1,3 +1,5 @@
+import BigNumber from 'bignumber.js';
+
 import { classifyCommand, isBalanceCommand, isUiAllowed } from './commandCapabilities';
 import { getPair, recordSpend } from './pairStore';
 import type { CheckResult, CommandClassification, PairGrants, PairRecord, Principal } from './types';
@@ -17,9 +19,23 @@ const deny = (reason: string, pair?: PairRecord): CheckContext => ({
   pair,
 });
 
-function readMojos(payload: Record<string, unknown>, field: string): number | undefined {
-  const value = Number(payload?.[field]);
-  return Number.isFinite(value) && value >= 0 ? value : undefined;
+const ZERO = new BigNumber(0);
+
+/**
+ * Read a non-negative mojo amount from a payload field. Mojos are integer
+ * counts of the smallest XCH unit; chia amounts can exceed `Number.MAX_SAFE_INTEGER`
+ * (2^53), so we go through BigNumber to keep precision.
+ */
+function readMojos(payload: Record<string, unknown>, field: string): BigNumber | undefined {
+  const raw = payload?.[field];
+  if (raw === undefined || raw === null) return undefined;
+  try {
+    const bn = new BigNumber(typeof raw === 'string' ? raw : String(raw));
+    if (!bn.isFinite() || bn.isNegative()) return undefined;
+    return bn;
+  } catch {
+    return undefined;
+  }
 }
 
 /**
@@ -70,11 +86,11 @@ export function checkPermission(
     if (!pair.grants.capabilities.innocuous) {
       return prompt('innocuous actions not pre-approved', pair);
     }
-    const fee = readMojos(payload, 'fee') ?? 0;
-    if (fee > 0) {
-      const spent = pair.spentMojos ?? 0;
-      const cap = pair.grants.spendingCapMojos ?? 0;
-      if (spent + fee > cap) {
+    const fee = readMojos(payload, 'fee') ?? ZERO;
+    if (fee.isGreaterThan(0)) {
+      const spent = new BigNumber(pair.spentMojos ?? 0);
+      const cap = new BigNumber(pair.grants.spendingCapMojos ?? 0);
+      if (spent.plus(fee).isGreaterThan(cap)) {
         return prompt('push fee exceeds remaining budget', pair);
       }
     }
@@ -108,7 +124,7 @@ function checkCapability(
 function resolveAmount(
   classification: Extract<CommandClassification, { kind: 'capability' }>,
   payload: Record<string, unknown>,
-): number | undefined {
+): BigNumber | undefined {
   if (classification.amountResolver) return classification.amountResolver(payload);
   if (classification.amountField) return readMojos(payload, classification.amountField);
   return undefined;
@@ -129,10 +145,11 @@ function checkSpending(
   const amount = resolveAmount(classification, payload);
   if (amount === undefined) return prompt('spending needs confirmation', pair);
 
-  const fee = classification.feeField ? readMojos(payload, classification.feeField) ?? 0 : 0;
-  const total = amount + fee;
-  const spent = pair.spentMojos ?? 0;
-  if (spent + total > (pair.grants.spendingCapMojos ?? 0)) {
+  const fee = classification.feeField ? readMojos(payload, classification.feeField) ?? ZERO : ZERO;
+  const total = amount.plus(fee);
+  const spent = new BigNumber(pair.spentMojos ?? 0);
+  const cap = new BigNumber(pair.grants.spendingCapMojos ?? 0);
+  if (spent.plus(total).isGreaterThan(cap)) {
     return prompt('budget exhausted', pair);
   }
   return allow(pair);
@@ -153,8 +170,8 @@ export function consumeAllowedSpend(
   // push_transactions: only the optional top-level fee counts; the spend in
   // the bundle was already debited at offer time.
   if (command === 'chia_wallet.push_transactions') {
-    const fee = readMojos(payload, 'fee') ?? 0;
-    if (fee > 0) recordSpend(principal.topic, fee);
+    const fee = readMojos(payload, 'fee') ?? ZERO;
+    if (fee.isGreaterThan(0)) recordSpend(principal.topic, fee);
     return;
   }
 
@@ -165,9 +182,9 @@ export function consumeAllowedSpend(
   const amount = resolveAmount(c, payload);
   if (amount === undefined) return;
 
-  const fee = c.feeField ? readMojos(payload, c.feeField) ?? 0 : 0;
-  const total = amount + fee;
-  if (total <= 0) return;
+  const fee = c.feeField ? readMojos(payload, c.feeField) ?? ZERO : ZERO;
+  const total = amount.plus(fee);
+  if (total.isLessThanOrEqualTo(0)) return;
   recordSpend(principal.topic, total);
 }
 
