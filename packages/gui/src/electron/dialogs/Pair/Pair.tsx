@@ -102,10 +102,13 @@ export default function Pair(props: PairProps) {
   const wallets = Array.isArray(availableWallets) ? availableWallets : [];
 
   return (
-    <div className="flex flex-col h-screen bg-chia-bg text-chia-text text-base">
+    <div
+      className="grid h-screen bg-chia-bg text-chia-text text-base"
+      style={{ gridTemplateRows: '1fr auto' }}
+    >
       <div
-        className="flex-1 min-h-0 px-7 pt-5 pb-5 flex flex-col gap-3.5"
-        style={{ overflowY: 'scroll' }}
+        className="min-h-0 px-7 pt-5 pb-5 flex flex-col gap-3.5"
+        style={{ overflowY: 'auto' }}
       >
         <div className="flex items-start gap-4">
           <div className="shrink-0 w-12 h-12 rounded-xl bg-chia-primary-soft text-chia-primary flex items-center justify-center text-xl font-bold uppercase">
@@ -126,72 +129,107 @@ export default function Pair(props: PairProps) {
           </div>
         </div>
 
-        <section className="rounded-xl border border-chia-border bg-chia-card overflow-hidden">
-          <header className="px-5 py-2.5 border-b border-chia-border">
-            <div className="text-xs font-semibold uppercase tracking-wider text-chia-text-muted">
+        <section className="relative z-30">
+          <div className="rounded-xl border border-chia-border bg-chia-card">
+            <div className="px-5 pt-3 pb-2 text-xs font-semibold uppercase tracking-wider text-chia-text-muted">
               {i18n._(/* i18n */ { id: 'Wallets' })}
             </div>
-          </header>
-          {wallets.length === 0 ? (
-            <div className="px-5 py-3 text-sm text-chia-text-secondary">
-              {i18n._(/* i18n */ { id: 'No wallets available.' })}
-            </div>
-          ) : (
-            <ul className="m-0 p-0 list-none divide-y divide-chia-border">
-              {wallets.map((wallet) => {
-                const checked = defaultFingerprints.includes(wallet.fingerprint);
-                return (
-                  <li key={wallet.fingerprint}>
-                    <label className="flex items-center gap-3.5 px-5 py-2.5 cursor-pointer hover:bg-chia-card-elevated transition-colors">
-                      <input
-                        type="checkbox"
-                        name="wallets"
-                        value={String(wallet.fingerprint)}
-                        defaultChecked={checked}
-                        data-form-field="wallets"
-                        data-multi=""
-                        className="w-[18px] h-[18px] accent-chia-primary cursor-pointer"
-                      />
-                      <div className="flex-1 min-w-0 flex items-baseline gap-2">
-                        <div className="text-base font-medium text-chia-text truncate leading-tight">
-                          {wallet.name || `Wallet ${wallet.fingerprint}`}
-                        </div>
-                        <div className="text-sm font-mono text-chia-text-muted truncate">
-                          {wallet.fingerprint}
-                        </div>
-                      </div>
-                    </label>
-                  </li>
-                );
-              })}
-            </ul>
-          )}
+            {wallets.length === 0 ? (
+              <div className="px-5 pb-3 text-sm text-chia-text-secondary">
+                {i18n._(/* i18n */ { id: 'No wallets available.' })}
+              </div>
+            ) : (
+              <details className="group relative">
+                <summary className="flex items-center gap-2 mx-3 mb-3 px-3 py-2 rounded-md border border-chia-border-strong bg-chia-bg cursor-pointer list-none select-none hover:border-chia-primary transition-colors">
+                  <div className="flex-1 flex flex-wrap items-center gap-1.5 min-w-0">
+                    {wallets.map((wallet) => (
+                      <span
+                        key={wallet.fingerprint}
+                        data-chip-for="wallets"
+                        data-chip-value={String(wallet.fingerprint)}
+                        style={{
+                          display: defaultFingerprints.includes(wallet.fingerprint) ? '' : 'none',
+                        }}
+                        className="inline-flex items-center text-sm px-2 py-0.5 rounded bg-chia-primary-soft text-chia-text font-medium max-w-[200px] truncate"
+                      >
+                        {wallet.name || `Wallet ${wallet.fingerprint}`}
+                      </span>
+                    ))}
+                    <span
+                      data-empty-placeholder="wallets"
+                      style={{ display: defaultFingerprints.length === 0 ? '' : 'none' }}
+                      className="text-sm text-chia-text-secondary"
+                    >
+                      {i18n._(/* i18n */ { id: 'Select wallets…' })}
+                    </span>
+                  </div>
+                  <svg
+                    className="shrink-0 w-4 h-4 text-chia-text-secondary transition-transform group-open:rotate-180"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="absolute left-3 right-3 top-full -mt-2 z-40 rounded-md border border-chia-border-strong bg-chia-surface shadow-xl max-h-60 overflow-y-auto">
+                  <ul className="m-0 p-0 list-none divide-y divide-chia-border">
+                    {wallets.map((wallet) => {
+                      const checked = defaultFingerprints.includes(wallet.fingerprint);
+                      return (
+                        <li key={wallet.fingerprint}>
+                          <label className="flex items-center gap-3 px-4 py-2 cursor-pointer hover:bg-chia-card-elevated transition-colors">
+                            <input
+                              type="checkbox"
+                              name="wallets"
+                              value={String(wallet.fingerprint)}
+                              defaultChecked={checked}
+                              data-form-field="wallets"
+                              data-multi=""
+                              className="w-[18px] h-[18px] accent-chia-primary cursor-pointer shrink-0"
+                            />
+                            <span className="flex-1 min-w-0 text-sm truncate">
+                              <span className="font-medium text-chia-text">
+                                {wallet.name || `Wallet ${wallet.fingerprint}`}
+                              </span>
+                              <span className="text-chia-text-muted font-mono ml-2">
+                                ({wallet.fingerprint})
+                              </span>
+                            </span>
+                          </label>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              </details>
+            )}
+          </div>
         </section>
 
         <section className="rounded-xl border border-chia-border bg-chia-card overflow-hidden">
-          <header className="px-5 py-2.5 border-b border-chia-border">
-            <div className="text-xs font-semibold uppercase tracking-wider text-chia-text-muted">
-              {i18n._(/* i18n */ { id: 'Permissions' })}
-            </div>
-          </header>
-          <ul className="m-0 p-0 list-none divide-y divide-chia-border">
+          <div className="px-5 pt-3 pb-2 text-xs font-semibold uppercase tracking-wider text-chia-text-muted">
+            {i18n._(/* i18n */ { id: 'Permissions' })}
+          </div>
+          <ul className="m-0 p-0 list-none divide-y divide-chia-border border-t border-chia-border">
             {CAPABILITY_ROWS.map((row) => (
               <li key={row.key}>
-                <label className="flex items-center gap-3.5 px-5 py-2 cursor-pointer hover:bg-chia-card-elevated transition-colors">
+                <label className="flex items-center gap-3 px-5 py-2 cursor-pointer hover:bg-chia-card-elevated transition-colors">
                   <input
                     type="checkbox"
                     defaultChecked={grants.capabilities[row.key]}
                     data-form-field={`cap-${row.key}`}
-                    className="w-[18px] h-[18px] accent-chia-primary cursor-pointer"
+                    className="w-[18px] h-[18px] accent-chia-primary cursor-pointer shrink-0"
                   />
                   <div className="flex-1 min-w-0 flex items-baseline gap-2 flex-wrap">
-                    <span className="text-base font-medium text-chia-text leading-tight">{row.label}</span>
+                    <span className="text-sm font-medium text-chia-text">{row.label}</span>
                     {row.preset === 'gaming' && (
                       <span className="text-[10px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded bg-chia-primary-soft text-chia-primary">
                         gaming
                       </span>
                     )}
-                    <span className="text-sm text-chia-text-secondary leading-snug">— {row.description}</span>
+                    <span className="text-sm text-chia-text-secondary">— {row.description}</span>
                   </div>
                 </label>
               </li>
@@ -211,7 +249,7 @@ export default function Pair(props: PairProps) {
                 step="0.000000000001"
                 defaultValue={defaultCapXch}
                 data-form-field="spendingCapXch"
-                className="w-32 px-3 py-1.5 rounded-md border border-chia-border-strong bg-chia-bg text-base font-mono text-chia-text focus:outline-none focus:border-chia-primary focus:ring-2 focus:ring-chia-primary/20"
+                className="w-32 px-3 py-1.5 rounded-md border border-chia-border-strong bg-chia-bg text-sm font-mono text-chia-text focus:outline-none focus:border-chia-primary focus:ring-2 focus:ring-chia-primary/20"
               />
               <span className="text-sm font-semibold uppercase tracking-wider text-chia-text-secondary">XCH</span>
             </div>

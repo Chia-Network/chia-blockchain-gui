@@ -352,8 +352,11 @@ export default function Confirm(props: ConfirmProps) {
     : 'bg-chia-primary hover:bg-chia-primary-hover text-[#0f252a] border-transparent';
 
   return (
-    <div className="flex flex-col h-screen bg-chia-bg text-chia-text text-base">
-      <div className="flex-1 min-h-0 flex flex-col gap-5 px-7 pt-7 overflow-hidden">
+    <div
+      className="grid h-screen bg-chia-bg text-chia-text text-base"
+      style={{ gridTemplateRows: '1fr auto' }}
+    >
+      <div className="min-h-0 flex flex-col gap-5 px-7 pt-7 overflow-hidden">
         {principal && (
           <div className="flex items-center gap-3 px-4 py-3 rounded-lg bg-chia-primary-soft border border-chia-border">
             <div className="shrink-0 w-8 h-8 rounded-md bg-chia-primary/20 text-chia-primary flex items-center justify-center">
