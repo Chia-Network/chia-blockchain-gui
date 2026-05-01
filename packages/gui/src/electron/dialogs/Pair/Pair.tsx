@@ -45,13 +45,13 @@ export default function Pair(props: PairProps) {
     capabilities: {
       read: true,
       balance: false,
-      innocuous: true,
+      innocuous: false,
       sign: false,
       offer: false,
       spend: false,
     },
     spendingMode: 'ask',
-    spendingCapMojos: 10_000_000_000, // 0.01 XCH default budget
+    spendingCapMojos: 10_000_000_000, // 0.01 XCH default budget when user picks auto
   };
 
   const defaultCapXch = (grants.spendingCapMojos / MOJOS_PER_XCH).toString();

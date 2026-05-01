@@ -1,7 +1,6 @@
 import {
   classifyCommand,
   isBalanceCommand,
-  isDappAllowed,
   isSpendBundleCommand,
   isUiAllowed,
 } from './commandCapabilities';
@@ -58,13 +57,10 @@ export function checkPermission(
       ? deny('spending blocked for this app', pair)
       : prompt('spend bundle needs confirmation', pair);
   }
-  if (isDappAllowed(command)) {
-    return pair.grants.capabilities.innocuous
-      ? allow(pair)
-      : prompt('innocuous actions not pre-approved', pair);
-  }
 
-  // Capability-classified commands:
+  // Capability-classified commands. INNOCUOUS_COMMANDS map to capability
+  // 'innocuous'; anything else falls through to its specific capability
+  // (sign / spend / offer) or to 'never'.
   const classification = classifyCommand(command);
   if (classification.kind === 'never') {
     return prompt('sensitive command', pair);
