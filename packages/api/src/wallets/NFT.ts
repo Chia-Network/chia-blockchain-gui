@@ -5,7 +5,7 @@ import type Coin from '../@types/Coin';
 import type NFTInfo from '../@types/NFTInfo';
 import type SpendBundle from '../@types/SpendBundle';
 import type Transaction from '../@types/Transaction';
-import Wallet from '../services/WalletService';
+import Wallet, { type AllowUnsyncedArg } from '../services/WalletService';
 
 export default class NFTWallet extends Wallet {
   async getNftsCount(args: { walletId: number }) {
@@ -38,33 +38,35 @@ export default class NFTWallet extends Wallet {
     }>('nft_get_wallet_did', args);
   }
 
-  async mintBulk(args: {
-    walletId: number;
-    metadataList: Array<{
-      uris: string[];
-      metaUris: string[];
-      licenseUris: string[];
-      hash: string;
-      editionNumber?: number;
-      editionTotal?: number;
-      metaHash?: string;
-      licenseHash?: string;
-    }>;
-    royaltyPercentage?: number;
-    royaltyAddress?: string;
-    targetList?: string[];
-    mintNumberStart?: number;
-    mintTotal?: number;
-    xchCoins?: Coin[];
-    xchChangeTarget?: string;
-    newInnerpuzhash?: string;
-    newP2Puzhash?: string;
-    didCoin?: Coin;
-    didLineageParent?: string;
-    mintFromDid?: boolean;
-    fee?: number;
-    reusePuzhash?: boolean;
-  }) {
+  async mintBulk(
+    args: {
+      walletId: number;
+      metadataList: Array<{
+        uris: string[];
+        metaUris: string[];
+        licenseUris: string[];
+        hash: string;
+        editionNumber?: number;
+        editionTotal?: number;
+        metaHash?: string;
+        licenseHash?: string;
+      }>;
+      royaltyPercentage?: number;
+      royaltyAddress?: string;
+      targetList?: string[];
+      mintNumberStart?: number;
+      mintTotal?: number;
+      xchCoins?: Coin[];
+      xchChangeTarget?: string;
+      newInnerpuzhash?: string;
+      newP2Puzhash?: string;
+      didCoin?: Coin;
+      didLineageParent?: string;
+      mintFromDid?: boolean;
+      fee?: number;
+      reusePuzhash?: boolean;
+    } & AllowUnsyncedArg,
+  ) {
     return this.command<
       | {
           success: true;
@@ -80,22 +82,24 @@ export default class NFTWallet extends Wallet {
     >('nft_mint_bulk', args);
   }
 
-  async mintNFT(args: {
-    walletId: number;
-    royaltyAddress: string;
-    royaltyPercentage: string;
-    targetAddress: string;
-    uris: string[];
-    hash: string;
-    metaUris: string[];
-    metaHash: string;
-    licenseUris: string[];
-    licenseHash: string;
-    editionNumber: number;
-    editionTotal: number;
-    didId: string;
-    fee: string;
-  }) {
+  async mintNFT(
+    args: {
+      walletId: number;
+      royaltyAddress: string;
+      royaltyPercentage: string;
+      targetAddress: string;
+      uris: string[];
+      hash: string;
+      metaUris: string[];
+      metaHash: string;
+      licenseUris: string[];
+      licenseHash: string;
+      editionNumber: number;
+      editionTotal: number;
+      didId: string;
+      fee: string;
+    } & AllowUnsyncedArg,
+  ) {
     const {
       walletId,
       royaltyAddress,
@@ -111,7 +115,9 @@ export default class NFTWallet extends Wallet {
       editionTotal,
       didId,
       fee,
+      allowUnsynced,
     } = args;
+    const extra = allowUnsynced != null ? { allowUnsynced } : {};
     return this.command<{
       walletId: number;
       spendBundle: SpendBundle;
@@ -131,11 +137,15 @@ export default class NFTWallet extends Wallet {
       editionTotal,
       didId,
       fee,
+      ...extra,
     });
   }
 
-  async transferNft(args: { walletId: number; nftCoinIds: string[]; targetAddress: string; fee: string }) {
-    const { walletId, nftCoinIds, targetAddress, fee } = args;
+  async transferNft(
+    args: { walletId: number; nftCoinIds: string[]; targetAddress: string; fee: string } & AllowUnsyncedArg,
+  ) {
+    const { walletId, nftCoinIds, targetAddress, fee, allowUnsynced } = args;
+    const extra = allowUnsynced != null ? { allowUnsynced } : {};
     if (nftCoinIds.length === 1) {
       return this.command<{
         walletId: number;
@@ -145,6 +155,7 @@ export default class NFTWallet extends Wallet {
         nftCoinId: nftCoinIds[0],
         targetAddress,
         fee,
+        ...extra,
       });
     }
     return this.command<{
@@ -155,11 +166,13 @@ export default class NFTWallet extends Wallet {
       nftCoinList: nftCoinIds.map((nftId: string) => ({ nft_coin_id: nftId, wallet_id: walletId })),
       targetAddress,
       fee,
+      ...extra,
     });
   }
 
-  async setNftDid(args: { walletId: number; nftCoinIds: string[]; did: string; fee: string }) {
-    const { walletId, nftCoinIds, did, fee } = args;
+  async setNftDid(args: { walletId: number; nftCoinIds: string[]; did: string; fee: string } & AllowUnsyncedArg) {
+    const { walletId, nftCoinIds, did, fee, allowUnsynced } = args;
+    const extra = allowUnsynced != null ? { allowUnsynced } : {};
     if (nftCoinIds.length === 1) {
       return this.command<{
         walletId: number;
@@ -169,6 +182,7 @@ export default class NFTWallet extends Wallet {
         nftCoinId: nftCoinIds[0],
         didId: did,
         fee,
+        ...extra,
       });
     }
     return this.command<{
@@ -179,15 +193,17 @@ export default class NFTWallet extends Wallet {
       nftCoinList: nftCoinIds.map((nftId: string) => ({ nft_coin_id: nftId, wallet_id: walletId })),
       didId: did,
       fee,
+      ...extra,
     });
   }
 
-  async setNftStatus(args: { walletId: number; nftCoinId: string; inTransaction: boolean }) {
+  async setNftStatus(args: { walletId: number; nftCoinId: string; inTransaction: boolean } & AllowUnsyncedArg) {
     const { walletId, nftCoinId, inTransaction } = args;
     return this.command<void>('nft_set_nft_status', {
       walletId,
       coinId: nftCoinId,
       inTransaction,
+      ...(args.allowUnsynced != null ? { allowUnsynced: args.allowUnsynced } : {}),
     });
   }
 

@@ -151,6 +151,11 @@ const walletConnectCommands: WalletConnectCommand[] = [
         isOptional: true,
         defaultValue: true,
       },
+      {
+        name: WalletConnectCommandParamName.ALLOW_UNSYNCED,
+        type: 'boolean',
+        isOptional: true,
+      },
     ],
   },
   {
@@ -159,7 +164,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
     description: <Trans>Selects coins to be spent from a specific wallet</Trans>,
     service: ServiceName.WALLET,
     bypassConfirm: true,
-    waitForSync: true,
+    waitForSync: false,
     params: [
       {
         name: WalletConnectCommandParamName.WALLET_ID,
@@ -200,6 +205,11 @@ const walletConnectCommands: WalletConnectCommand[] = [
         label: <Trans>Excluded Coin IDs</Trans>,
         isOptional: true,
         displayComponent: (value) => <>{JSON.stringify(value)}</>,
+      },
+      {
+        name: WalletConnectCommandParamName.ALLOW_UNSYNCED,
+        type: 'boolean',
+        isOptional: true,
       },
     ],
   },
@@ -449,9 +459,37 @@ const walletConnectCommands: WalletConnectCommand[] = [
   {
     command: 'getHeightInfo',
     label: <Trans>Get Height Info</Trans>,
-    description: <Trans>Requests the current wallet sync height information</Trans>,
+    description: (
+      <Trans>
+        Returns wallet height, latest block timestamp, and related fields. Optional usePeakHeight uses the chain tip
+        while syncing.
+      </Trans>
+    ),
     service: ServiceName.WALLET,
     bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.USE_PEAK_HEIGHT,
+        label: <Trans>Use peak height</Trans>,
+        isOptional: true,
+        defaultValue: false,
+        type: 'boolean',
+      },
+    ],
+  },
+  {
+    command: 'getPuzzleAndSolution',
+    label: <Trans>Get puzzle and solution</Trans>,
+    description: <Trans>Fetches the puzzle reveal and solution for a spent coin (hex strings).</Trans>,
+    service: ServiceName.WALLET,
+    bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.COIN_NAME,
+        label: <Trans>Coin name</Trans>,
+        type: 'string',
+      },
+    ],
   },
   {
     command: 'pushTx',
@@ -471,7 +509,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
     label: <Trans>Push Transactions</Trans>,
     description: <Trans>Push a list of transactions to the blockchain via the wallet</Trans>,
     service: ServiceName.WALLET,
-    waitForSync: true,
+    waitForSync: false,
     params: [
       {
         name: WalletConnectCommandParamName.TRANSACTIONS,
@@ -494,6 +532,11 @@ const walletConnectCommands: WalletConnectCommand[] = [
       {
         name: WalletConnectCommandParamName.SIGN,
         label: <Trans>Sign</Trans>,
+        type: 'boolean',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.ALLOW_UNSYNCED,
         type: 'boolean',
         isOptional: true,
       },
@@ -604,6 +647,11 @@ const walletConnectCommands: WalletConnectCommand[] = [
         isOptional: true,
         type: 'object',
         displayComponent: (value) => <>{JSON.stringify(value)}</>,
+      },
+      {
+        name: WalletConnectCommandParamName.ALLOW_UNSYNCED,
+        type: 'boolean',
+        isOptional: true,
       },
     ],
   },
@@ -1647,6 +1695,13 @@ const walletConnectCommands: WalletConnectCommand[] = [
     command: 'createNewRemoteWallet',
     label: <Trans>Create new Remote Wallet</Trans>,
     service: ServiceName.WALLET,
+    params: [
+      {
+        name: WalletConnectCommandParamName.ALLOW_UNSYNCED,
+        type: 'boolean',
+        isOptional: true,
+      },
+    ],
   },
   {
     command: 'registerRemoteCoins',

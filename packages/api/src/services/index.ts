@@ -9,3 +9,4 @@ export type { FarmingInfoWithIndex, HarvesterConfig } from './Harvester';
 export { default as PlotterService } from './PlotterService';
 export { default as Service } from './Service';
 export { default as WalletService } from './WalletService';
+export type { HeightInfo, AllowUnsyncedArg } from './WalletService';

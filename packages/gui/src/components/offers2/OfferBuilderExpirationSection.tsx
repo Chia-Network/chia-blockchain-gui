@@ -21,8 +21,7 @@ export type OfferExpirationSectionProps = {
   currentTime: number;
   expirationTime: number;
   onSubmit: (values: SetExpirationData) => Promise<void>;
-  isGetHeightInfoLoading?: boolean;
-  isGetTimestampForHeightLoading?: boolean;
+  isBlockchainTimeLoading?: boolean;
 };
 
 type SetExpirationData = {
@@ -53,8 +52,7 @@ function ViewTitle({ expirationValues, willExpirationBeEnabled }: any) {
 export default function OfferBuilderExpirationSection(props: OfferExpirationSectionProps) {
   const theme = useTheme();
   const navigate = useNavigate();
-  const { isViewing, currentTime, expirationTime, onSubmit, isGetHeightInfoLoading, isGetTimestampForHeightLoading } =
-    props;
+  const { isViewing, currentTime, expirationTime, onSubmit, isBlockchainTimeLoading } = props;
   const { offerExpirationDefaultTime, isOfferExpirationDefaultTimeEnabled } = useOfferExpirationDefaultTime();
   const isWalletSynced = useIsWalletSynced();
 
@@ -102,7 +100,7 @@ export default function OfferBuilderExpirationSection(props: OfferExpirationSect
 
   function viewSection() {
     const countdownDisplay =
-      !isGetHeightInfoLoading && !isGetTimestampForHeightLoading && isWalletSynced && currentTime !== -20
+      !isBlockchainTimeLoading && isWalletSynced && currentTime !== 0
         ? OfferBuilderExpirationCountdown(currentTime, expirationTime, false)
         : t`Loading expiration time...`;
     return (

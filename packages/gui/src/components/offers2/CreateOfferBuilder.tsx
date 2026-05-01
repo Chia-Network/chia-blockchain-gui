@@ -1,10 +1,5 @@
 import { WalletType } from '@chia-network/api';
-import {
-  useGetWalletsQuery,
-  useCreateOfferForIdsMutation,
-  useGetTimestampForHeightQuery,
-  useGetHeightInfoQuery,
-} from '@chia-network/api-react';
+import { useGetWalletsQuery, useCreateOfferForIdsMutation, useCurrentBlockchainTime } from '@chia-network/api-react';
 import { Flex, ButtonLoading, useOpenDialog, Loading } from '@chia-network/core';
 import { useIsWalletSynced } from '@chia-network/wallets';
 import { t, Trans } from '@lingui/macro';
@@ -15,7 +10,6 @@ import { useNavigate } from 'react-router-dom';
 import type OfferBuilderData from '../../@types/OfferBuilderData';
 import useSuppressShareOnCreate from '../../hooks/useSuppressShareOnCreate';
 import useWalletOffers from '../../hooks/useWalletOffers';
-import getCurrentTime from '../../util/getCurrentTime';
 import offerBuilderDataToOffer from '../../util/offerBuilderDataToOffer';
 
 import OfferBuilder from './OfferBuilder';
@@ -76,15 +70,7 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
 
   const [suppressShareOnCreate] = useSuppressShareOnCreate();
 
-  const { data: heightData, isLoading: isGetHeightInfoLoading } = useGetHeightInfoQuery(undefined, {
-    pollingInterval: 3000,
-  });
-  const height = heightData?.height;
-  const { data: lastBlockTimeStampData, isLoading: isGetTimestampForHeightLoading } = useGetTimestampForHeightQuery(
-    { height: height || 0 },
-    { skip: !height },
-  );
-  const currentTime = getCurrentTime(lastBlockTimeStampData);
+  const { timestamp: currentTime, isLoading: isBlockchainTimeLoading } = useCurrentBlockchainTime();
 
   const handleCreateOffer = useCallback(() => {
     offerBuilderRef.current?.submit();
@@ -96,10 +82,7 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
 
   const handleSubmit = useCallback(
     async (values: OfferBuilderData) => {
-      if (
-        expirationTimeMax !== 0 &&
-        (isGetHeightInfoLoading || isGetTimestampForHeightLoading || !isWalletSynced || currentTime === 0)
-      ) {
+      if (expirationTimeMax !== 0 && (isBlockchainTimeLoading || !isWalletSynced || currentTime === 0)) {
         throw new Error(t`Wallet must be synced before creating an offer with an expiration time`);
       }
 
@@ -180,8 +163,7 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
       nftId,
       expirationTimeMax,
       currentTime,
-      isGetHeightInfoLoading,
-      isGetTimestampForHeightLoading,
+      isBlockchainTimeLoading,
       isWalletSynced,
     ],
   );

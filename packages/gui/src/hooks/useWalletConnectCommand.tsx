@@ -232,6 +232,21 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
       log('Waiting for sync');
       // wait for wallet synchronisation
       await waitForWalletSync();
+
+      if (!allFingerprints) {
+        const fingerprintRequest = store.dispatch(
+          api.endpoints.getLoggedInFingerprint.initiate(undefined, { forceRefetch: true }),
+        );
+
+        try {
+          const latestFingerprint = await fingerprintRequest.unwrap();
+          if (latestFingerprint !== fingerprint) {
+            throw new Error('Fingerprint changed during execution');
+          }
+        } finally {
+          fingerprintRequest.unsubscribe();
+        }
+      }
     }
 
     if (service === 'EXECUTE') {
@@ -242,15 +257,6 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
         success: true,
         ...result,
       };
-    }
-
-    // validate current fingerprint again
-    const currentLoggedInFingerprintPromise = store.dispatch(api.endpoints.getLoggedInFingerprint.initiate());
-    const { data: currentFingerprintAfterWait } = await currentLoggedInFingerprintPromise;
-    currentLoggedInFingerprintPromise.unsubscribe();
-
-    if (currentFingerprintAfterWait !== fingerprint) {
-      throw new Error(`Fingerprint changed during execution`);
     }
 
     // execute command

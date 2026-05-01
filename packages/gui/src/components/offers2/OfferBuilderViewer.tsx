@@ -3,8 +3,7 @@ import { OfferSummaryValidTimes } from '@chia-network/api';
 import {
   useGetWalletsQuery,
   useCheckOfferValidityMutation,
-  useGetTimestampForHeightQuery,
-  useGetHeightInfoQuery,
+  useCurrentBlockchainTime,
   useTakeOfferMutation,
 } from '@chia-network/api-react';
 import {
@@ -33,7 +32,6 @@ import type OfferBuilderData from '../../@types/OfferBuilderData';
 import type OfferSummary from '../../@types/OfferSummary';
 import useAcceptOfferHook from '../../hooks/useAcceptOfferHook';
 import useWalletOffers from '../../hooks/useWalletOffers';
-import getCurrentTime from '../../util/getCurrentTime';
 import getUnknownCATs from '../../util/getUnknownCATs';
 import isDataLayerOfferSummary from '../../util/isDataLayerOfferSummary';
 import offerToOfferBuilderData from '../../util/offerToOfferBuilderData';
@@ -110,25 +108,17 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
   const hasExpiration =
     validTimeList?.maxTime !== null && validTimeList?.maxTime !== undefined && validTimeList?.maxTime !== 0;
 
-  let currentTime = null;
-  let expirationTime = null;
+  const { timestamp: blockchainTime, isLoading: isBlockchainTimeLoading } = useCurrentBlockchainTime();
+
+  let currentTime: number | null = null;
+  let expirationTime: number | null = null;
   let isExpired = false;
 
-  const { data: heightData, isLoading: isGetHeightInfoLoading } = useGetHeightInfoQuery(undefined, {
-    pollingInterval: 3000,
-  });
-  const height = heightData?.height;
-  const { data: lastBlockTimeStampData, isLoading: isGetTimestampForHeightLoading } = useGetTimestampForHeightQuery(
-    { height: height || 0 },
-    { skip: !height },
-  );
+  if (hasExpiration) {
+    currentTime = blockchainTime;
+    expirationTime = validTimeList?.maxTime ?? null;
 
-  if (hasExpiration && !isExpired) {
-    currentTime = getCurrentTime(lastBlockTimeStampData);
-
-    expirationTime = validTimeList?.maxTime;
-
-    if (expirationTime !== 0) {
+    if (expirationTime !== 0 && expirationTime !== null) {
       isExpired = expirationTime < currentTime;
     }
   }
@@ -434,8 +424,7 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
                 currentTime={currentTime}
                 expirationTime={expirationTime}
                 onSubmit={() => {}}
-                isGetHeightInfoLoading={isGetHeightInfoLoading}
-                isGetTimestampForHeightLoading={isGetTimestampForHeightLoading}
+                isBlockchainTimeLoading={isBlockchainTimeLoading}
               />
             )}
             <OfferBuilder

@@ -1,28 +1,24 @@
-import { useGetHeightInfoQuery } from '@chia-network/api-react';
+import { useGetWalletHeightInfoQuery } from '@chia-network/api-react';
 import { FormatLargeNumber } from '@chia-network/core';
 import React from 'react';
 
 export default function WalletStatusHeight() {
-  const { data: heightData, isLoading } = useGetHeightInfoQuery(
-    {},
-    {
-      pollingInterval: 10_000,
-    },
-  );
-  const height = heightData?.height;
+  const { data: heightInfo, isLoading } = useGetWalletHeightInfoQuery({
+    pollingInterval: 10_000,
+  });
 
   if (isLoading) {
     return null;
   }
 
-  if (height === undefined || height === null) {
+  if (heightInfo === undefined || heightInfo === null) {
     return null;
   }
 
   return (
     <>
       (
-      <FormatLargeNumber value={height} />)
+      <FormatLargeNumber value={heightInfo.height} />)
     </>
   );
 }

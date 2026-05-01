@@ -1,6 +1,7 @@
 enum WalletConnectCommandParamName {
   ADDRESS = 'address',
   ALL_FINGERPRINTS = 'allFingerprints',
+  ALLOW_UNSYNCED = 'allowUnsynced',
   AMOUNT = 'amount',
   ASSET_ID = 'assetId',
   ATTEST_DATA = 'attestData',
@@ -115,6 +116,7 @@ enum WalletConnectCommandParamName {
   URL = 'url',
   URLS = 'urls',
   VALIDATE_ONLY = 'validateOnly',
+  USE_PEAK_HEIGHT = 'usePeakHeight',
   VALUE = 'value',
   VC_ID = 'vcId',
   VC_PARENT_ID = 'vcParentId',
