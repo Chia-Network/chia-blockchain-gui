@@ -6,6 +6,7 @@ import AppAPI from './constants/AppAPI';
 import CacheAPI from './constants/CacheAPI';
 import ChiaLogsAPI from './constants/ChiaLogsAPI';
 import LinkAPI from './constants/LinkAPI';
+import PermissionsAPI from './constants/PermissionsAPI';
 import PreferencesAPI from './constants/PreferencesAPI';
 import WebSocketAPI from './constants/WebSocketAPI';
 
@@ -86,6 +87,24 @@ contextBridge.exposeInMainWorld(API.LINK, {
   openExternal: (url: string) => invokeWithCustomErrors(LinkAPI.OPEN_EXTERNAL, url),
 });
 
+contextBridge.exposeInMainWorld(API.PERMISSIONS, {
+  listPairs: () => invokeWithCustomErrors(PermissionsAPI.PAIR_LIST),
+  registerPair: (payload: {
+    topic: string;
+    metadata: { name: string; url?: string; icon?: string; description?: string };
+    availableWallets: { fingerprint: number; name?: string }[];
+    defaultFingerprints?: number[];
+  }) => invokeWithCustomErrors(PermissionsAPI.PAIR_REGISTER, payload),
+  editPair: (payload: { topic: string; availableWallets: { fingerprint: number; name?: string }[] }) =>
+    invokeWithCustomErrors(PermissionsAPI.PAIR_EDIT, payload),
+  revokePair: (topic: string) => invokeWithCustomErrors(PermissionsAPI.PAIR_REVOKE, topic),
+  check: (payload: {
+    principal: { kind: 'ui' } | { kind: 'pair'; topic: string };
+    command: string;
+    data: Record<string, unknown>;
+  }) => invokeWithCustomErrors(PermissionsAPI.CHECK, payload),
+});
+
 contextBridge.exposeInMainWorld(API.ADDRESS_BOOK, {
   read: () => invokeWithCustomErrors(AddressBookAPI.READ),
   save: (contacts: any[]) => invokeWithCustomErrors(AddressBookAPI.SAVE, contacts),
@@ -116,7 +135,8 @@ contextBridge.exposeInMainWorld(API.CACHE, {
 
 contextBridge.exposeInMainWorld(API.WEBSOCKET, {
   connect: () => invokeWithCustomErrors(WebSocketAPI.CONNECT),
-  send: (id: string, data: string) => invokeWithCustomErrors(WebSocketAPI.SEND, id, data),
+  send: (id: string, data: string, metadata?: { principal?: { kind: 'ui' } | { kind: 'pair'; topic: string } }) =>
+    invokeWithCustomErrors(WebSocketAPI.SEND, id, data, metadata),
   close: (id: string) => invokeWithCustomErrors(WebSocketAPI.CLOSE, id),
   subscribeToOpen: (callback: (...args: unknown[]) => void) => onIpcEvent(WebSocketAPI.ON_OPEN, callback),
   subscribeToMessage: (callback: (...args: unknown[]) => void) => onIpcEvent(WebSocketAPI.ON_MESSAGE, callback),

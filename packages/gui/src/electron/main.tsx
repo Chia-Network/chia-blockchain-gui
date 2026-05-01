@@ -28,14 +28,24 @@ import { i18n } from '../config/locales';
 
 import CacheManager from './CacheManager';
 import AddressBookAPI from './constants/AddressBookAPI';
-import AllowedCommands from './constants/AllowedCommands';
 import AppAPI from './constants/AppAPI';
 import ChiaLogsAPI from './constants/ChiaLogsAPI';
 import LinkAPI from './constants/LinkAPI';
 import PreferencesAPI from './constants/PreferencesAPI';
+import PermissionsAPI from './constants/PermissionsAPI';
 import About from './dialogs/About/About';
 import Confirm, { getTitle as getConfirmTitle } from './dialogs/Confirm/Confirm';
 import KeyDetail from './dialogs/KeyDetail/KeyDetail';
+import Pair, { getTitle as getPairTitle, type PairWalletOption } from './dialogs/Pair/Pair';
+import { checkPermission } from './permissions/permissions';
+import { getPair, listPairs, removePair, updateGrants, upsertPair } from './permissions/pairStore';
+import {
+  type PairGrants,
+  type PairMetadata,
+  type PairRecord,
+  type Principal,
+  emptyCapabilities,
+} from './permissions/types';
 import { readPrefs, savePrefs, migratePrefs } from './prefs';
 import { readAddressBook, saveAddressBook } from './utils/addressBook';
 import checkNFTOwnership from './utils/checkNFTOwnership';
@@ -105,6 +115,137 @@ ipcMainHandle(AppAPI.SHOW_NOTIFICATION, async (options: { title: string; body: s
     body,
   }).show();
 });
+
+const MOJOS_PER_XCH = 1_000_000_000_000;
+
+function expiryToTimestamp(expiry: unknown): number | undefined {
+  switch (expiry) {
+    case '24h':
+      return Date.now() + 24 * 60 * 60 * 1000;
+    case '7d':
+      return Date.now() + 7 * 24 * 60 * 60 * 1000;
+    case 'session':
+    case 'never':
+    default:
+      return undefined;
+  }
+}
+
+function dialogResultToGrants(result: Record<string, unknown>): PairGrants {
+  const capabilities = emptyCapabilities();
+  (Object.keys(capabilities) as (keyof typeof capabilities)[]).forEach((key) => {
+    capabilities[key] = result[`cap-${key}`] === true;
+  });
+  const xch = Number(result.spendingCapXch);
+  const mojos = Number.isFinite(xch) && xch > 0 ? Math.floor(xch * MOJOS_PER_XCH) : 0;
+  return {
+    capabilities,
+    spendingCapMojos: mojos,
+    expiresAt: expiryToTimestamp(result.expiry),
+  };
+}
+
+function dialogResultToFingerprints(result: Record<string, unknown>): number[] {
+  const raw = result.wallets;
+  const list = Array.isArray(raw) ? raw : [];
+  return list.map((v) => Number(v)).filter((n) => Number.isFinite(n));
+}
+
+async function openPairDialog(
+  metadata: PairMetadata,
+  availableWallets: PairWalletOption[],
+  options: { defaults?: PairRecord; defaultFingerprints?: number[]; isEdit?: boolean } = {},
+): Promise<{ grants: PairGrants; fingerprints: number[] } | undefined> {
+  if (!mainWindow) {
+    throw new Error('mainWindow is empty');
+  }
+
+  const result = await openReactDialog<Record<string, unknown> | true | false, React.ComponentProps<typeof Pair>>(
+    mainWindow,
+    Pair,
+    {
+      metadata,
+      availableWallets,
+      defaultGrants: options.defaults?.grants,
+      defaultFingerprints: options.defaults?.fingerprints ?? options.defaultFingerprints,
+      isEdit: !!options.isEdit,
+    },
+    {
+      title: getPairTitle(!!options.isEdit),
+      width: 640,
+      height: 720,
+    },
+  );
+
+  if (!result || result === true) {
+    return undefined;
+  }
+
+  return {
+    grants: dialogResultToGrants(result),
+    fingerprints: dialogResultToFingerprints(result),
+  };
+}
+
+ipcMainHandle(PermissionsAPI.PAIR_LIST, () => listPairs());
+
+ipcMainHandle(
+  PermissionsAPI.PAIR_REGISTER,
+  async (payload: {
+    topic: string;
+    metadata: PairMetadata;
+    availableWallets: PairWalletOption[];
+    defaultFingerprints?: number[];
+  }) => {
+    const { topic, metadata, availableWallets, defaultFingerprints } = payload;
+    const decision = await openPairDialog(metadata, availableWallets, { defaultFingerprints });
+    if (!decision) return null;
+
+    const now = Date.now();
+    const record: PairRecord = {
+      topic,
+      metadata,
+      fingerprints: decision.fingerprints,
+      createdAt: now,
+      updatedAt: now,
+      grants: decision.grants,
+    };
+    upsertPair(record);
+    return record;
+  },
+);
+
+ipcMainHandle(PermissionsAPI.PAIR_EDIT, async (payload: { topic: string; availableWallets: PairWalletOption[] }) => {
+  const { topic, availableWallets } = payload;
+  const existing = getPair(topic);
+  if (!existing) return null;
+
+  const decision = await openPairDialog(existing.metadata, availableWallets, {
+    defaults: existing,
+    isEdit: true,
+  });
+  if (!decision) return existing;
+
+  const updated: PairRecord = {
+    ...existing,
+    fingerprints: decision.fingerprints,
+    grants: decision.grants,
+    updatedAt: Date.now(),
+  };
+  upsertPair(updated);
+  return updated;
+});
+
+ipcMainHandle(PermissionsAPI.PAIR_REVOKE, (topic: string) => {
+  removePair(topic);
+  return true;
+});
+
+ipcMainHandle(
+  PermissionsAPI.CHECK,
+  (payload: { principal: Principal; command: string; data: Record<string, unknown> }) =>
+    checkPermission(payload.principal, payload.command, payload.data),
+);
 
 // main window
 let mainWindow: BrowserWindow | null = null;
@@ -526,7 +667,7 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
           console.error(error);
         }
       },
-      onSend: async (_id: string, data: string) => {
+      onSend: async (_id: string, data: string, metadata) => {
         if (!mainWindow) {
           throw new Error('`mainWindow` is empty');
         }
@@ -541,30 +682,47 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
           throw new Error('Private key is not allowed to be sent to the renderer process');
         }
 
-        if (!AllowedCommands.includes(nsCommand)) {
-          const bypassCommands = privatePreferences.get('bypassCommands', [] as string[]);
-          if (bypassCommands.includes(nsCommand)) {
-            return;
-          }
+        const principal: Principal = metadata?.principal ?? { kind: 'ui' };
+        const { result: check, pair } = checkPermission(principal, nsCommand, parsedData.data ?? {});
 
-          const result = await openReactDialog(
-            mainWindow,
-            Confirm,
-            {
-              networkPrefix,
-              command: nsCommand,
-              data: parsedData.data,
-            },
-            {
-              title: getConfirmTitle(nsCommand),
-              width: 600,
-              height: 500,
-            },
-          );
+        if (check.decision === 'allow') {
+          return;
+        }
 
-          if (result !== true) {
-            throw new Error('Operation cancelled by user');
-          }
+        if (check.decision === 'deny') {
+          throw new Error(check.reason);
+        }
+
+        const bypassCommands = privatePreferences.get('bypassCommands', [] as string[]);
+        if (principal.kind === 'ui' && bypassCommands.includes(nsCommand)) {
+          return;
+        }
+
+        const result = await openReactDialog(
+          mainWindow,
+          Confirm,
+          {
+            networkPrefix,
+            command: nsCommand,
+            data: parsedData.data,
+            principal: pair
+              ? {
+                  kind: 'pair' as const,
+                  name: pair.metadata.name,
+                  url: pair.metadata.url,
+                  reason: check.reason,
+                }
+              : undefined,
+          },
+          {
+            title: getConfirmTitle(nsCommand),
+            width: 640,
+            height: 600,
+          },
+        );
+
+        if (result !== true) {
+          throw new Error('Operation cancelled by user');
         }
       },
     });

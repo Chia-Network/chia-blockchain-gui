@@ -1,3 +1,4 @@
+import { useGetKeysQuery } from '@chia-network/api-react';
 import { Flex, Loading, useOpenDialog, More, MenuItem, useShowError } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import {
@@ -12,8 +13,23 @@ import useWalletConnectContext from '../../hooks/useWalletConnectContext';
 import useWalletConnectPreferences from '../../hooks/useWalletConnectPreferences';
 
 import WalletConnectAddConnectionDialog from './WalletConnectAddConnectionDialog';
-import WalletConnectConnectedDialog from './WalletConnectConnectedDialog';
 import WalletConnectPairInfoDialog from './WalletConnectPairInfoDialog';
+
+async function waitForPairMetadata(
+  getPair: (topic: string) => { metadata?: { name?: string } } | undefined,
+  topic: string,
+  timeoutMs = 8000,
+): Promise<void> {
+  const start = Date.now();
+  while (Date.now() - start < timeoutMs) {
+    const pair = getPair(topic);
+    if (pair?.metadata?.name) return;
+    // eslint-disable-next-line no-await-in-loop -- intentional poll
+    await new Promise((resolve) => {
+      setTimeout(resolve, 200);
+    });
+  }
+}
 
 export type WalletConnectConnectionsProps = {
   onClose?: () => void;
@@ -25,15 +41,54 @@ export default function WalletConnectConnections(props: WalletConnectConnections
   const showError = useShowError();
   const { enabled, setEnabled } = useWalletConnectPreferences();
   const { disconnect, pairs, isLoading } = useWalletConnectContext();
+  const { data: keys } = useGetKeysQuery({});
 
   const handleAddConnection = useCallback(async () => {
     onClose?.();
     const topic = await openDialog(<WalletConnectAddConnectionDialog />);
 
-    if (topic) {
-      await openDialog(<WalletConnectConnectedDialog topic={topic} />);
+    if (!topic) {
+      return;
     }
-  }, [onClose, openDialog]);
+
+    try {
+      await waitForPairMetadata(pairs.getPair.bind(pairs), topic);
+      const pair = pairs.getPair(topic);
+      if (!pair) return;
+
+      const selected = pair.fingerprints ?? [];
+      const availableWallets =
+        selected.length > 0
+          ? selected.map((fingerprint) => {
+              const key = keys?.find((k: any) => k.fingerprint === fingerprint);
+              return { fingerprint, name: key?.label ?? undefined };
+            })
+          : (keys ?? []).map((key: any) => ({ fingerprint: key.fingerprint, name: key.label ?? undefined }));
+
+      const result = await window.permissionsAPI.registerPair({
+        topic,
+        metadata: {
+          name: pair.metadata?.name ?? 'Unknown application',
+          url: pair.metadata?.url,
+          icon: pair.metadata?.icons?.[0],
+          description: pair.metadata?.description,
+        },
+        availableWallets,
+        defaultFingerprints: selected.length > 0 ? selected : (keys ?? []).map((k: any) => k.fingerprint),
+      });
+
+      if (!result) {
+        // User rejected. Disconnect the WC pair so the dapp loses access immediately.
+        try {
+          await disconnect(topic);
+        } catch (disconnectErr) {
+          console.warn('Failed to disconnect rejected pair', disconnectErr);
+        }
+      }
+    } catch (err) {
+      showError(err);
+    }
+  }, [onClose, openDialog, pairs, keys, disconnect, showError]);
 
   async function handleDisconnect(topic: string) {
     try {

@@ -318,17 +318,25 @@ function getFormattedData(
   }
 }
 
+export type ConfirmPrincipal = {
+  kind: 'pair';
+  name: string;
+  url?: string;
+  reason?: string;
+};
+
 export type ConfirmProps = {
   confirmId: string;
   networkPrefix?: string;
   data: Record<string, unknown>;
   command: string;
+  principal?: ConfirmPrincipal;
   styleURL?: string;
   isDarkMode?: boolean;
 };
 
 export default function Confirm(props: ConfirmProps) {
-  const { data, command, styleURL, confirmId, isDarkMode, networkPrefix } = props;
+  const { data, command, principal, styleURL, confirmId, isDarkMode, networkPrefix } = props;
 
   const hasData = !!data && Object.keys(data).length > 0;
   const hasDataOrCommand = hasData || !!command;
@@ -344,11 +352,39 @@ export default function Confirm(props: ConfirmProps) {
     : 'bg-chia-primary hover:bg-chia-primary-hover text-[#0f252a] border-transparent';
 
   return (
-    <div className="flex flex-col h-full bg-chia-bg text-chia-text">
-      <div className="flex-1 flex flex-col gap-5 px-6 pt-6 overflow-hidden">
-        <div className="flex items-start gap-3">
+    <div className="flex flex-col h-screen bg-chia-bg text-chia-text text-base">
+      <div className="flex-1 min-h-0 flex flex-col gap-5 px-7 pt-7 overflow-hidden">
+        {principal && (
+          <div className="flex items-center gap-3 px-4 py-3 rounded-lg bg-chia-primary-soft border border-chia-border">
+            <div className="shrink-0 w-8 h-8 rounded-md bg-chia-primary/20 text-chia-primary flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-[18px] h-[18px]">
+                <path
+                  fillRule="evenodd"
+                  d="M14.615 1.595a.75.75 0 0 1 .359.852L12.982 9.75h7.268a.75.75 0 0 1 .548 1.262l-10.5 11.25a.75.75 0 0 1-1.272-.71l1.992-7.302H3.75a.75.75 0 0 1-.548-1.262l10.5-11.25a.75.75 0 0 1 .913-.143Z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-baseline gap-2 min-w-0">
+                <span className="text-xs font-semibold uppercase tracking-wider text-chia-text-muted">
+                  Request from
+                </span>
+                <span className="text-base font-semibold truncate text-chia-text">{principal.name}</span>
+              </div>
+              {principal.url && <div className="mt-0.5 text-sm text-chia-text-secondary truncate">{principal.url}</div>}
+            </div>
+            {principal.reason && (
+              <span className="shrink-0 text-xs font-medium uppercase tracking-wider px-2 py-1 rounded-md bg-chia-card text-chia-text-secondary">
+                {principal.reason}
+              </span>
+            )}
+          </div>
+        )}
+
+        <div className="flex items-start gap-4">
           <div
-            className={`shrink-0 w-10 h-10 rounded-full flex items-center justify-center ${
+            className={`shrink-0 w-12 h-12 rounded-full flex items-center justify-center ${
               destructive ? 'bg-chia-danger/15 text-chia-danger' : 'bg-chia-primary-soft text-chia-primary'
             }`}
           >
@@ -358,7 +394,7 @@ export default function Confirm(props: ConfirmProps) {
               viewBox="0 0 24 24"
               strokeWidth={2}
               stroke="currentColor"
-              className="w-5 h-5"
+              className="w-6 h-6"
               aria-hidden="true"
             >
               {destructive ? (
@@ -377,21 +413,21 @@ export default function Confirm(props: ConfirmProps) {
             </svg>
           </div>
           <div className="flex-1 min-w-0">
-            <h1 className="m-0 text-lg font-semibold leading-tight text-chia-text">{title}</h1>
-            <p className="mt-1.5 mb-0 text-sm leading-relaxed text-chia-text-secondary">{message}</p>
+            <h1 className="m-0 text-2xl font-semibold leading-tight text-chia-text">{title}</h1>
+            <p className="mt-2 mb-0 text-base leading-relaxed text-chia-text-secondary">{message}</p>
           </div>
         </div>
 
         {hasDataOrCommand && (
           <SandboxedIframe className="w-full flex-1 border-0" isDarkMode={isDarkMode}>
             <link href={styleURL} type="text/css" rel="stylesheet" />
-            <div className="flex flex-col gap-3 h-full text-chia-text font-sans">
+            <div className="flex flex-col gap-3 h-full text-chia-text font-sans text-base">
               {!!command && (
-                <div className="rounded-xl border border-chia-border bg-chia-card px-4 py-3">
-                  <div className="text-[10px] font-semibold tracking-wider uppercase text-chia-text-muted">
+                <div className="rounded-xl border border-chia-border bg-chia-card px-5 py-4">
+                  <div className="text-xs font-semibold tracking-wider uppercase text-chia-text-muted">
                     Command
                   </div>
-                  <pre className="m-0 mt-1.5 text-xs font-mono break-all whitespace-pre-wrap text-chia-text">
+                  <pre className="m-0 mt-2 text-sm font-mono break-all whitespace-pre-wrap text-chia-text">
                     {command}
                   </pre>
                 </div>
@@ -402,11 +438,11 @@ export default function Confirm(props: ConfirmProps) {
                   {!!formattedData.length && (
                     <div className="rounded-xl border border-chia-border bg-chia-card divide-y divide-chia-border">
                       {formattedData.map(({ field, label, value }) => (
-                        <div className="px-4 py-3" key={field}>
-                          <div className="text-[10px] font-semibold tracking-wider uppercase text-chia-text-muted">
+                        <div className="px-5 py-3.5" key={field}>
+                          <div className="text-xs font-semibold tracking-wider uppercase text-chia-text-muted">
                             {label}
                           </div>
-                          <div className="mt-1 text-sm font-medium break-all whitespace-pre-wrap text-chia-text">
+                          <div className="mt-1.5 text-base font-medium break-all whitespace-pre-wrap text-chia-text">
                             {value}
                           </div>
                         </div>
@@ -414,7 +450,7 @@ export default function Confirm(props: ConfirmProps) {
                     </div>
                   )}
                   <Collapsible title="Raw data">
-                    <pre className="m-0 text-[11px] font-mono leading-relaxed break-all whitespace-pre-wrap overflow-x-auto text-chia-text-secondary">
+                    <pre className="m-0 text-xs font-mono leading-relaxed break-all whitespace-pre-wrap overflow-x-auto text-chia-text-secondary">
                       {JSON.stringify(data, null, 2)}
                     </pre>
                   </Collapsible>
@@ -425,18 +461,18 @@ export default function Confirm(props: ConfirmProps) {
         )}
       </div>
 
-      <div className="flex justify-end gap-2 px-6 py-4 border-t border-chia-border bg-chia-bg">
+      <div className="flex justify-end gap-2.5 px-7 py-4 border-t border-chia-border bg-chia-bg">
         <button
           type="button"
           data-action="cancel"
-          className="px-4 py-2 text-sm font-medium rounded-lg border border-chia-border-strong bg-transparent text-chia-text hover:bg-chia-card transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-chia-primary"
+          className="px-5 py-2 text-sm font-semibold uppercase tracking-wider rounded-md border border-chia-primary bg-transparent text-chia-primary hover:bg-chia-primary-soft transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-chia-primary"
         >
           {i18n._(/* i18n */ { id: 'Cancel' })}
         </button>
         <button
           type="button"
           id={confirmId}
-          className={`px-4 py-2 text-sm font-semibold rounded-lg border transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-chia-primary focus-visible:ring-offset-2 focus-visible:ring-offset-chia-bg ${confirmButtonClasses}`}
+          className={`px-5 py-2 text-sm font-semibold uppercase tracking-wider rounded-md border shadow-sm transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-chia-primary focus-visible:ring-offset-2 focus-visible:ring-offset-chia-bg ${confirmButtonClasses}`}
         >
           {confirmButtonText}
         </button>
