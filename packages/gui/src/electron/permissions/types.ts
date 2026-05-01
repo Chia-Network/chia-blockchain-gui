@@ -31,8 +31,16 @@ export type PairRecord = {
 
 export type Principal = { kind: 'ui' } | { kind: 'pair'; topic: string };
 
+export type AmountResolver = (payload: Record<string, unknown>) => number | undefined;
+
 export type CommandClassification =
-  | { kind: 'capability'; capability: Capability; amountField?: string; feeField?: string }
+  | {
+      kind: 'capability';
+      capability: Capability;
+      amountField?: string;
+      feeField?: string;
+      amountResolver?: AmountResolver;
+    }
   | { kind: 'never' };
 
 export type CheckResult =

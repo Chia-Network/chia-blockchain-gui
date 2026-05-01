@@ -86,6 +86,15 @@ function checkCapability(
     : prompt(`${capability} not pre-approved`, pair);
 }
 
+function resolveAmount(
+  classification: Extract<CommandClassification, { kind: 'capability' }>,
+  payload: Record<string, unknown>,
+): number | undefined {
+  if (classification.amountResolver) return classification.amountResolver(payload);
+  if (classification.amountField) return readMojos(payload, classification.amountField);
+  return undefined;
+}
+
 function checkSpending(
   pair: PairRecord,
   classification: Extract<CommandClassification, { kind: 'capability' }>,
@@ -95,15 +104,11 @@ function checkSpending(
   if (mode === 'block') return deny('spending blocked for this app', pair);
   if (mode === 'ask') return prompt('spending needs confirmation', pair);
 
-  // mode === 'auto'. Only commands with a numeric amount field can be
-  // budget-checked. Offers and unscoped spends (NFT transfers, CAT spend)
-  // always prompt because we cannot fairly measure them against an XCH cap.
-  if (classification.capability === 'offer' || !classification.amountField) {
-    return prompt('spending needs confirmation', pair);
-  }
-
-  const amount = readMojos(payload, classification.amountField);
-  if (amount === undefined) return prompt('spend amount missing', pair);
+  // mode === 'auto'. Resolve a numeric XCH-mojo amount to budget against. If
+  // the command shape doesn't expose one (CAT spend, NFT transfer, mixed
+  // offer), prompt — we can't compare against an XCH cap fairly.
+  const amount = resolveAmount(classification, payload);
+  if (amount === undefined) return prompt('spending needs confirmation', pair);
 
   const fee = classification.feeField ? readMojos(payload, classification.feeField) ?? 0 : 0;
   const total = amount + fee;
@@ -126,9 +131,12 @@ export function consumeAllowedSpend(
 ): void {
   if (principal.kind !== 'pair') return;
   const c = classifyCommand(command);
-  if (c.kind !== 'capability' || c.capability !== 'spend' || !c.amountField) return;
+  if (c.kind !== 'capability') return;
+  if (c.capability !== 'spend' && c.capability !== 'offer') return;
 
-  const amount = readMojos(payload, c.amountField) ?? 0;
+  const amount = resolveAmount(c, payload);
+  if (amount === undefined) return;
+
   const fee = c.feeField ? readMojos(payload, c.feeField) ?? 0 : 0;
   const total = amount + fee;
   if (total <= 0) return;

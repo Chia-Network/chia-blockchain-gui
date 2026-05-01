@@ -33,6 +33,35 @@ export function isSpendBundleCommand(command: string): boolean {
   return SPEND_BUNDLE_COMMANDS.has(command);
 }
 
+// Sum the XCH mojos the user is giving up in a `create_offer_for_ids` offer.
+// The `offer` payload is a map keyed by either wallet id (1 = XCH) or asset
+// id hex string. Positive values mean "I offer", negative mean "I want".
+//
+// Returns:
+//   - the XCH outflow amount, when the offer is purely XCH-out (only XCH on
+//     the giving side, anything on the receiving side)
+//   - undefined when there's any non-XCH outflow (CAT/NFT given up). Those
+//     can't be budgeted against an XCH cap and should always prompt.
+function extractOfferXchOutflow(payload: Record<string, unknown>): number | undefined {
+  const offer = payload?.offer;
+  if (!offer || typeof offer !== 'object') return undefined;
+
+  let xchOut = 0;
+  for (const [key, raw] of Object.entries(offer as Record<string, unknown>)) {
+    const amount = Number(raw);
+    if (!Number.isFinite(amount)) continue;
+    if (amount <= 0) continue; // negative / zero = receiving or no-op
+
+    const isXch = key === '1' || key === 'xch';
+    if (!isXch) {
+      // Non-XCH outflow exists; cannot fairly budget against an XCH cap.
+      return undefined;
+    }
+    xchOut += amount;
+  }
+  return xchOut;
+}
+
 export function classifyCommand(command: string): CommandClassification {
   switch (command) {
     case 'chia_wallet.send_transaction':
@@ -52,6 +81,15 @@ export function classifyCommand(command: string): CommandClassification {
       return { kind: 'capability', capability: 'spend' };
 
     case 'chia_wallet.create_offer_for_ids':
+      // Pure XCH-out offers (the chia-gaming channel-funding shape) can be
+      // budgeted via amountResolver. Any non-XCH outflow makes it prompt.
+      return {
+        kind: 'capability',
+        capability: 'offer',
+        feeField: 'fee',
+        amountResolver: extractOfferXchOutflow,
+      };
+
     case 'chia_wallet.take_offer':
     case 'chia_wallet.cancel_offer':
       return { kind: 'capability', capability: 'offer' };
