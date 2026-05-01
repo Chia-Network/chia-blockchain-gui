@@ -1,11 +1,4 @@
-export type PermissionsCapability =
-  | 'read'
-  | 'balance'
-  | 'watch'
-  | 'walletCreate'
-  | 'sign'
-  | 'offer'
-  | 'spend';
+export type PermissionsCapability = 'read' | 'balance' | 'innocuous' | 'sign' | 'offer' | 'spend';
 
 export type PermissionsPairMetadata = {
   name: string;

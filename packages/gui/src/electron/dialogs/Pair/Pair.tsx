@@ -43,8 +43,7 @@ export default function Pair(props: PairProps) {
     capabilities: {
       read: true,
       balance: false,
-      watch: true,
-      walletCreate: true,
+      innocuous: true,
       sign: false,
       offer: false,
       spend: false,
@@ -54,7 +53,7 @@ export default function Pair(props: PairProps) {
   };
 
   const defaultCapXch = (grants.spendingCapMojos / MOJOS_PER_XCH).toString();
-  const innocuousChecked = grants.capabilities.watch || grants.capabilities.walletCreate;
+  const innocuousChecked = grants.capabilities.innocuous;
   const balanceChecked = grants.capabilities.balance;
   const signChecked = grants.capabilities.sign;
   const spendingMode = grants.spendingMode ?? 'ask';
@@ -177,7 +176,7 @@ export default function Pair(props: PairProps) {
                 <input
                   type="checkbox"
                   defaultChecked={innocuousChecked}
-                  data-form-field="bundle-innocuous"
+                  data-form-field="cap-innocuous"
                   className="mt-[3px] w-[18px] h-[18px] accent-chia-primary cursor-pointer shrink-0"
                 />
                 <div className="flex-1 min-w-0">

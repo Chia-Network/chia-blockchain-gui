@@ -1,14 +1,6 @@
-export type Capability = 'read' | 'balance' | 'watch' | 'walletCreate' | 'sign' | 'offer' | 'spend';
+export type Capability = 'read' | 'balance' | 'innocuous' | 'sign' | 'offer' | 'spend';
 
-export const ALL_CAPABILITIES: Capability[] = [
-  'read',
-  'balance',
-  'watch',
-  'walletCreate',
-  'sign',
-  'offer',
-  'spend',
-];
+export const ALL_CAPABILITIES: Capability[] = ['read', 'balance', 'innocuous', 'sign', 'offer', 'spend'];
 
 export type CapabilityGrants = Record<Capability, boolean>;
 
@@ -40,7 +32,6 @@ export type PairRecord = {
 export type Principal = { kind: 'ui' } | { kind: 'pair'; topic: string };
 
 export type CommandClassification =
-  | { kind: 'allow' }
   | { kind: 'capability'; capability: Capability; amountField?: string; feeField?: string }
   | { kind: 'never' };
 
@@ -53,8 +44,7 @@ export function emptyCapabilities(): CapabilityGrants {
   return {
     read: false,
     balance: false,
-    watch: false,
-    walletCreate: false,
+    innocuous: false,
     sign: false,
     offer: false,
     spend: false,

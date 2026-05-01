@@ -120,10 +120,9 @@ const MOJOS_PER_XCH = 1_000_000_000_000;
 
 function dialogResultToGrants(result: Record<string, unknown>): PairGrants {
   const capabilities = emptyCapabilities();
-  capabilities.read = true; // reads are always allowed; reflect that in grants
-  if (result['bundle-innocuous'] === true) {
-    capabilities.watch = true;
-    capabilities.walletCreate = true;
+  capabilities.read = true;
+  if (result['cap-innocuous'] === true) {
+    capabilities.innocuous = true;
   }
   if (result['cap-balance'] === true) {
     capabilities.balance = true;

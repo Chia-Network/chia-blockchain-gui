@@ -1,8 +1,10 @@
 import AllowedCommands from '../constants/AllowedCommands';
+import DappAllowedCommands from '../constants/DappAllowedCommands';
 
 import type { CommandClassification } from './types';
 
-const READ_ONLY = new Set(AllowedCommands);
+const UI_ALLOWED = new Set<string>(AllowedCommands);
+const DAPP_ALLOWED = new Set<string>(DappAllowedCommands);
 
 const BALANCE_COMMANDS = new Set([
   'chia_wallet.get_wallet_balance',
@@ -15,6 +17,14 @@ const BALANCE_COMMANDS = new Set([
 // numeric amount to apply a budget.
 const SPEND_BUNDLE_COMMANDS = new Set(['chia_wallet.push_transactions']);
 
+export function isUiAllowed(command: string): boolean {
+  return UI_ALLOWED.has(command);
+}
+
+export function isDappAllowed(command: string): boolean {
+  return DAPP_ALLOWED.has(command);
+}
+
 export function isBalanceCommand(command: string): boolean {
   return BALANCE_COMMANDS.has(command);
 }
@@ -24,10 +34,6 @@ export function isSpendBundleCommand(command: string): boolean {
 }
 
 export function classifyCommand(command: string): CommandClassification {
-  if (READ_ONLY.has(command)) {
-    return { kind: 'allow' };
-  }
-
   switch (command) {
     case 'chia_wallet.send_transaction':
       // amount and fee are both in XCH mojos; budget against the sum so a
@@ -52,14 +58,12 @@ export function classifyCommand(command: string): CommandClassification {
 
     case 'chia_wallet.create_new_wallet':
     case 'chia_wallet.create_new_remote_wallet':
-      return { kind: 'capability', capability: 'walletCreate' };
+    case 'chia_wallet.register_remote_coins':
+      return { kind: 'capability', capability: 'innocuous' };
 
     case 'chia_wallet.sign_message_by_address':
     case 'chia_wallet.sign_message_by_id':
       return { kind: 'capability', capability: 'sign' };
-
-    case 'chia_wallet.register_remote_coins':
-      return { kind: 'capability', capability: 'watch' };
 
     case 'chia_wallet.delete_key':
     case 'chia_harvester.delete_plot':
