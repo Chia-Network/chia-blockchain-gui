@@ -39,6 +39,37 @@ function generateScriptContent(confirmId: string) {
       return hasField ? data : true;
     }
 
+    function updateDynamicSummary() {
+      document.querySelectorAll('[data-summary-counter]').forEach(function (el) {
+        var name = el.getAttribute('data-summary-counter');
+        if (!name) return;
+        var fields = document.querySelectorAll('[data-form-field="' + name + '"]');
+        var checked = 0;
+        fields.forEach(function (f) { if (f.checked) checked += 1; });
+        var template = el.getAttribute('data-summary-template') || '{checked} of {total}';
+        el.textContent = template.replace('{checked}', checked).replace('{total}', fields.length);
+      });
+      document.querySelectorAll('[data-chip-for]').forEach(function (chip) {
+        var name = chip.getAttribute('data-chip-for');
+        var value = chip.getAttribute('data-chip-value');
+        if (!name || value === null) return;
+        var input = document.querySelector('[data-form-field="' + name + '"][value="' + value + '"]');
+        chip.style.display = input && input.checked ? '' : 'none';
+      });
+      document.querySelectorAll('[data-empty-placeholder]').forEach(function (el) {
+        var name = el.getAttribute('data-empty-placeholder');
+        if (!name) return;
+        var any = document.querySelectorAll('[data-form-field="' + name + '"]:checked').length > 0;
+        el.style.display = any ? 'none' : '';
+      });
+    }
+
+    document.querySelectorAll('[data-form-field]').forEach(function (el) {
+      el.addEventListener('change', updateDynamicSummary);
+    });
+
+    updateDynamicSummary();
+
     document.getElementById('${confirmId}')?.addEventListener('click', function () {
       window.dialogAPI.resolve(collectFormData());
     });
