@@ -1,5 +1,4 @@
-import { Message } from '@chia-network/api';
-import api, { getClientInstance, store, useGetLoggedInFingerprintQuery } from '@chia-network/api-react';
+import api, { store, useGetLoggedInFingerprintQuery } from '@chia-network/api-react';
 import { useOpenDialog, useAuth } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import debug from 'debug';
@@ -305,28 +304,22 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
       throw new Error(`Unexpected NOTIFICATION service for command ${command}`);
     }
 
-    // Dapp commands deliberately do NOT go through RTK Query. The renderer's
-    // RTK Query pipeline is shared with UI polling (sync status, stray cats,
-    // etc.) running on the same event loop, and any mechanism for "tagging"
-    // the dispatch with a principal would have to be ambient context — which
-    // leaks across awaits. Instead we build the wire Message directly and
-    // pass the principal explicitly to client.send, which forwards it to the
-    // IPC bridge as per-call metadata. UI polls keep flowing through RTK
-    // Query and main treats them as UI principal by default.
-    const client = await getClientInstance(store);
-    const message = new Message({
-      origin: client.origin,
+    // Dapp commands take the IPC-direct path: main owns the principal, the
+    // permission flow, the spend commit, the wire envelope, and the response
+    // correlation. The renderer just hands over (destination, command, data,
+    // topic) and awaits the result. Crucially the renderer shares no
+    // request-dispatch infrastructure with UI calls (RTK Query / Client /
+    // WebSocketBridge), so there is no shared async context for a dapp
+    // principal to leak through onto unrelated polling.
+    const result = await window.permissionsAPI.dispatchAsPair({
       destination: service,
       command: camelToSnake(serviceCommand ?? command),
       data: values,
-    });
-    const response = await client.send(message, undefined, undefined, {
-      kind: 'pair',
       topic: pair.topic,
     });
-    log('Result', response);
+    log('Result', result);
 
-    return { data: response.data };
+    return result;
   }
 
   return {

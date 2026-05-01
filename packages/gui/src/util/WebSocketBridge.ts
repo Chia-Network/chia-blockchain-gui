@@ -1,18 +1,5 @@
 import { EventEmitter } from 'events';
 
-export type Principal = { kind: 'ui' } | { kind: 'pair'; topic: string };
-
-export type SendOptions = {
-  /**
-   * When set, the call is tagged with this principal at the IPC boundary so
-   * main can resolve permissions against the right pair (or default to UI when
-   * absent). Passed explicitly per-call — there is no ambient context, because
-   * async work between push and pop on a shared stack would let unrelated UI
-   * polls inherit a dapp's principal.
-   */
-  principal?: Principal;
-};
-
 export default class WebSocketBridge extends EventEmitter {
   private id: string | undefined;
 
@@ -64,12 +51,15 @@ export default class WebSocketBridge extends EventEmitter {
     }
   }
 
-  send(data: string, options?: SendOptions) {
+  send(data: string) {
     if (!this.id) {
       throw new Error('WebSocketBridge: wait for connection to be established');
     }
-    const metadata = options?.principal ? { principal: options.principal } : undefined;
-    window.webSocketAPI.send(this.id, data, metadata);
+    // No metadata: every send through this bridge is a UI-principal call. Dapp
+    // commands take a separate IPC path (permissions:dispatchAsPair) so the
+    // principal is bound at the entry point in main, not threaded through
+    // shared renderer infrastructure.
+    window.webSocketAPI.send(this.id, data);
   }
 
   close() {

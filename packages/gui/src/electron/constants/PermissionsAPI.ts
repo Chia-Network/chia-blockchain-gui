@@ -4,6 +4,7 @@ enum PermissionsAPI {
   PAIR_EDIT = 'permissions:pair:edit',
   PAIR_REVOKE = 'permissions:pair:revoke',
   CHECK = 'permissions:check',
+  DISPATCH_AS_PAIR = 'permissions:dispatchAsPair',
 }
 
 export default PermissionsAPI;

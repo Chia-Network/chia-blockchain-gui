@@ -103,6 +103,12 @@ contextBridge.exposeInMainWorld(API.PERMISSIONS, {
     command: string;
     data: Record<string, unknown>;
   }) => invokeWithCustomErrors(PermissionsAPI.CHECK, payload),
+  dispatchAsPair: (payload: {
+    destination: string;
+    command: string;
+    data?: Record<string, unknown>;
+    topic: string;
+  }) => invokeWithCustomErrors(PermissionsAPI.DISPATCH_AS_PAIR, payload),
 });
 
 contextBridge.exposeInMainWorld(API.ADDRESS_BOOK, {

@@ -246,12 +246,7 @@ export default class Client extends EventEmitter {
     }
   };
 
-  async send(
-    message: Message,
-    timeout?: number,
-    disableFormat?: boolean,
-    principal?: { kind: 'ui' } | { kind: 'pair'; topic: string },
-  ): Promise<Message> {
+  async send(message: Message, timeout?: number, disableFormat?: boolean): Promise<Message> {
     const {
       connected,
       options: { timeout: defaultTimeout, camelCase },
@@ -296,12 +291,7 @@ export default class Client extends EventEmitter {
       const value = message.toJSON(camelCase && !disableFormat);
       log('Sending message', value);
 
-      // The WebSocket abstraction may be a plain WebSocket (Node tests) or the
-      // renderer's WebSocketBridge (which forwards to the main process via IPC
-      // and accepts an options object carrying the principal). Pass options
-      // when the underlying transport supports it; the standard WebSocket
-      // ignores extra args.
-      this.ws.send(value, principal ? { principal } : undefined);
+      this.ws.send(value);
 
       if (currentTimeout) {
         setTimeout(() => {

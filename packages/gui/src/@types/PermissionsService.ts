@@ -63,6 +63,12 @@ type PermissionsService = {
     command: string;
     data: Record<string, unknown>;
   }) => Promise<PermissionsDecision>;
+  dispatchAsPair: (payload: {
+    destination: string;
+    command: string;
+    data?: Record<string, unknown>;
+    topic: string;
+  }) => Promise<{ data: Record<string, unknown> }>;
 };
 
 export default PermissionsService;

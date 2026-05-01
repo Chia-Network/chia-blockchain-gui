@@ -1,3 +1,4 @@
+import { toCamelCase, toSnakeCase } from '@chia-network/api';
 import {
   app,
   dialog,
@@ -11,6 +12,7 @@ import {
   type MenuItemConstructorOptions,
   nativeTheme,
 } from 'electron';
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import url from 'node:url';
@@ -39,6 +41,7 @@ import Confirm, { getTitle as getConfirmTitle } from './dialogs/Confirm/Confirm'
 import KeyDetail from './dialogs/KeyDetail/KeyDetail';
 import Pair, { getTitle as getPairTitle, type PairWalletOption } from './dialogs/Pair/Pair';
 import { resolvePermission, toWire } from './permissions/permissions';
+import { sendDappAndAwait } from './utils/webSocketBridge';
 import { getPair, listPairs, removePair, updateGrants, upsertPair } from './permissions/pairStore';
 import {
   type PairGrants,
@@ -259,6 +262,90 @@ ipcMainHandle(
   PermissionsAPI.CHECK,
   (payload: { principal: Principal; command: string; data: Record<string, unknown> }) =>
     toWire(resolvePermission(payload.principal, payload.command, payload.data)),
+);
+
+// Dapp WalletConnect dispatch. The renderer makes a single IPC call here
+// (instead of going through Client/Service/RTK Query) so the principal is
+// bound at the entry point rather than threaded through shared async
+// infrastructure that would let it leak across awaits onto unrelated UI
+// calls. Main does the permission flow, sends the wire envelope on the
+// existing daemon connection, and awaits the response by request_id.
+ipcMainHandle(
+  PermissionsAPI.DISPATCH_AS_PAIR,
+  async (payload: {
+    destination: string;
+    command: string;
+    data?: Record<string, unknown>;
+    topic: string;
+  }) => {
+    if (!mainWindow) {
+      throw new Error('mainWindow is empty');
+    }
+
+    const { destination, command, data: argsData, topic } = payload;
+    const data = argsData ?? {};
+    const principal: Principal = { kind: 'pair', topic };
+    const nsCommand = `${destination}.${command}`;
+
+    const decision = resolvePermission(principal, nsCommand, data);
+    if (decision.kind === 'deny') {
+      throw new Error(decision.reason);
+    }
+
+    if (decision.kind === 'prompt') {
+      const result = await openReactDialog(
+        mainWindow,
+        Confirm,
+        {
+          networkPrefix,
+          command: nsCommand,
+          data,
+          principal: decision.pair
+            ? {
+                kind: 'pair' as const,
+                name: decision.pair.name,
+                url: decision.pair.url,
+                reason: decision.reason,
+              }
+            : undefined,
+        },
+        {
+          title: getConfirmTitle(nsCommand),
+          width: 640,
+          height: 600,
+        },
+      );
+      if (result !== true) {
+        throw new Error('Operation cancelled by user');
+      }
+    } else {
+      // Auto-approved: debit the spend budget at the actual authorization
+      // point. Manually-approved prompts deliberately do not commit — that
+      // matches the existing onSend flow.
+      decision.commit();
+    }
+
+    const requestId = crypto.randomBytes(32).toString('hex');
+    const wire = {
+      origin: 'wallet_ui',
+      destination,
+      command,
+      data,
+      ack: false,
+      request_id: requestId,
+    };
+    const json = JSON.stringify(toSnakeCase(wire));
+    const response = (await sendDappAndAwait(requestId, json)) as {
+      data?: { error?: unknown; [k: string]: unknown };
+    };
+
+    const responseData = response?.data;
+    if (responseData?.error) {
+      throw new Error(String(responseData.error));
+    }
+
+    return { data: toCamelCase(responseData ?? {}) };
+  },
 );
 
 // main window

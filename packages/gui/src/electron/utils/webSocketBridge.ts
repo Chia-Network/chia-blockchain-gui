@@ -10,12 +10,58 @@ import loadConfig from './loadConfig';
 
 const connections: Record<string, WebSocket> = {};
 
+// Pending dapp request_id → response promise. Populated by `sendDappAndAwait`
+// and resolved from the shared `socket.on('message')` listener so dapp
+// responses don't need a separate WebSocket subscription. Only request_ids
+// minted here ever end up in this map; the renderer's Client uses its own
+// (different) request_ids and is unaffected.
+const dappPending = new Map<
+  string,
+  { resolve: (value: unknown) => void; reject: (reason: Error) => void }
+>();
+
 function getConnection(id: string) {
   const connection = connections[id];
   if (!connection) {
     throw new Error(`WebSocketConnection ${id} not found`);
   }
   return connection;
+}
+
+export function getPrimaryConnection(): WebSocket {
+  const list = Object.values(connections);
+  if (list.length === 0) {
+    throw new Error('No active WebSocket connection');
+  }
+  return list[0];
+}
+
+/**
+ * Send `payload` (already JSON-encoded) on the primary connection and resolve
+ * with the parsed response whose `request_id` matches `requestId`. The caller
+ * is responsible for putting `request_id` into the payload so the daemon
+ * echoes it back. Rejects after `timeoutMs`.
+ */
+export function sendDappAndAwait(requestId: string, payload: string, timeoutMs = 60_000): Promise<unknown> {
+  const conn = getPrimaryConnection();
+  return new Promise<unknown>((resolve, reject) => {
+    const timer = setTimeout(() => {
+      if (dappPending.delete(requestId)) {
+        reject(new Error(`Dapp request ${requestId} timed out after ${timeoutMs}ms`));
+      }
+    }, timeoutMs);
+    dappPending.set(requestId, {
+      resolve: (value) => {
+        clearTimeout(timer);
+        resolve(value);
+      },
+      reject: (reason) => {
+        clearTimeout(timer);
+        reject(reason);
+      },
+    });
+    conn.send(payload);
+  });
 }
 
 // Function to clean up all WebSocket connections
@@ -72,6 +118,25 @@ export default function bindEvents(
     });
 
     socket.on('message', async (data, isBinary) => {
+      // If this response matches a pending dapp request, resolve here and
+      // don't notify the renderer. Renderer's Client never minted this
+      // request_id, so forwarding would just produce noise.
+      try {
+        const parsed = JSON.parse(data.toString());
+        const requestId = typeof parsed?.request_id === 'string' ? parsed.request_id : undefined;
+        if (requestId) {
+          const pending = dappPending.get(requestId);
+          if (pending) {
+            dappPending.delete(requestId);
+            pending.resolve(parsed);
+            return;
+          }
+        }
+      } catch {
+        // Fall through — non-JSON or malformed messages still flow to the
+        // renderer's existing handler.
+      }
+
       if (!onReceive) {
         notifyWebContents(WebSocketAPI.ON_MESSAGE, id, data, isBinary);
         return;
