@@ -39,7 +39,6 @@ import KeyDetail from './dialogs/KeyDetail/KeyDetail';
 import Pair, { getTitle as getPairTitle, type PairWalletOption } from './dialogs/Pair/Pair';
 import { checkPermission, consumeAllowedSpend } from './permissions/permissions';
 import { getPair, listPairs, removePair, updateGrants, upsertPair } from './permissions/pairStore';
-import { refreshPuzzleHashesForFingerprints } from './permissions/puzzleHashCache';
 import {
   type PairGrants,
   type PairMetadata,
@@ -215,11 +214,6 @@ ipcMainHandle(
       spentMojos: 0,
     };
     upsertPair(record);
-    // Best-effort: warm the owned-puzzle-hash cache so the spend-budget
-    // check can filter co-signer inputs out of pushTransactions accounting.
-    refreshPuzzleHashesForFingerprints(record.fingerprints).catch((err) => {
-      console.warn('puzzle hash cache refresh failed', err);
-    });
     return record;
   },
 );
@@ -242,9 +236,6 @@ ipcMainHandle(PermissionsAPI.PAIR_EDIT, async (payload: { topic: string; availab
     updatedAt: Date.now(),
   };
   upsertPair(updated);
-  refreshPuzzleHashesForFingerprints(updated.fingerprints).catch((err) => {
-    console.warn('puzzle hash cache refresh failed', err);
-  });
   return updated;
 });
 

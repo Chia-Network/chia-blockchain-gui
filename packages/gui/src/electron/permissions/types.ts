@@ -31,14 +31,7 @@ export type PairRecord = {
 
 export type Principal = { kind: 'ui' } | { kind: 'pair'; topic: string };
 
-export type AmountResolverContext = {
-  ownedPuzzleHashes?: Set<string>;
-};
-
-export type AmountResolver = (
-  payload: Record<string, unknown>,
-  context?: AmountResolverContext,
-) => number | undefined;
+export type AmountResolver = (payload: Record<string, unknown>) => number | undefined;
 
 export type CommandClassification =
   | {
