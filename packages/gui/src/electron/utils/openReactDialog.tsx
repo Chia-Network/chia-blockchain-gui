@@ -13,12 +13,38 @@ import openExternal from './openExternal';
 
 function generateScriptContent(confirmId: string) {
   return `
-    document.getElementById('${confirmId}')?.addEventListener('click', () => {
-      window.dialogAPI.resolve(true);
+    function collectFormData() {
+      var data = {};
+      var hasField = false;
+      document.querySelectorAll('[data-form-field]').forEach(function (el) {
+        var name = el.getAttribute('data-form-field');
+        if (!name) return;
+        hasField = true;
+        var type = (el.getAttribute('type') || el.tagName).toLowerCase();
+        if (type === 'checkbox') {
+          if (el.dataset.multi !== undefined) {
+            if (!Array.isArray(data[name])) data[name] = [];
+            if (el.checked) data[name].push(el.value);
+          } else {
+            data[name] = el.checked;
+          }
+        } else if (type === 'radio') {
+          if (el.checked) data[name] = el.value;
+        } else if (type === 'number') {
+          data[name] = el.value === '' ? null : Number(el.value);
+        } else {
+          data[name] = el.value;
+        }
+      });
+      return hasField ? data : true;
+    }
+
+    document.getElementById('${confirmId}')?.addEventListener('click', function () {
+      window.dialogAPI.resolve(collectFormData());
     });
-    
-    document.querySelectorAll('[data-action="cancel"]').forEach(button => {
-      button.addEventListener('click', () => {
+
+    document.querySelectorAll('[data-action="cancel"]').forEach(function (button) {
+      button.addEventListener('click', function () {
         window.dialogAPI.resolve(false);
       });
     });
