@@ -124,7 +124,7 @@ msgstr ""
 msgid "Before sending this transaction, you should ensure that the recipient has a wallet that can claim it manually after the timer has expired."
 msgstr ""
 
-#: src/components/WalletHistoryClawbackChip.tsx:62
+#: src/components/WalletHistoryClawbackChip.tsx:53
 msgid "Can be claimed in "
 msgstr ""
 
@@ -152,7 +152,7 @@ msgstr ""
 msgid "Chia Asset Token"
 msgstr ""
 
-#: src/components/WalletHistoryClawbackChip.tsx:69
+#: src/components/WalletHistoryClawbackChip.tsx:60
 msgid "Claim transaction"
 msgstr ""
 
@@ -161,7 +161,7 @@ msgstr ""
 msgid "Claim Transaction"
 msgstr ""
 
-#: src/components/WalletHistoryClawbackChip.tsx:84
+#: src/components/WalletHistoryClawbackChip.tsx:75
 msgid "Claiming..."
 msgstr ""
 
@@ -173,7 +173,7 @@ msgstr ""
 msgid "Claw back expiration"
 msgstr ""
 
-#: src/components/WalletHistoryClawbackChip.tsx:95
+#: src/components/WalletHistoryClawbackChip.tsx:86
 msgid "Claw back this transaction"
 msgstr ""
 
@@ -201,7 +201,7 @@ msgstr ""
 msgid "Clawback will not be applied."
 msgstr ""
 
-#: src/components/WalletHistoryClawbackChip.tsx:110
+#: src/components/WalletHistoryClawbackChip.tsx:101
 msgid "Clawing back..."
 msgstr ""
 
@@ -798,7 +798,7 @@ msgstr ""
 msgid "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
 msgstr "Добре дошли! Следващите думи се използват за точка за възстановяване на вашият портфейл. Без тях, вие ще изгубите достъп до портфейла си, пазете ги в безопасност! Запишете ги в последователност с номерата до тях. (Реда е важен)"
 
-#: src/components/WalletHistoryClawbackChip.tsx:57
+#: src/components/WalletHistoryClawbackChip.tsx:48
 msgid "Will be autoclaimed in "
 msgstr ""
 
