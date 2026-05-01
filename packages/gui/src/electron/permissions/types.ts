@@ -4,8 +4,11 @@ export const ALL_CAPABILITIES: Capability[] = ['read', 'watch', 'walletCreate', 
 
 export type CapabilityGrants = Record<Capability, boolean>;
 
+export type SpendingMode = 'block' | 'ask' | 'auto';
+
 export type PairGrants = {
   capabilities: CapabilityGrants;
+  spendingMode: SpendingMode;
   spendingCapMojos: number;
 };
 

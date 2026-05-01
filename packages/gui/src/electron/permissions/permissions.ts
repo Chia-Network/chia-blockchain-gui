@@ -32,13 +32,20 @@ export function checkPermission(
   }
 
   const { capability, amountField } = classification;
-  if (!pair.grants.capabilities[capability]) {
-    return { result: { decision: 'prompt', reason: `${capability} not pre-approved` }, pair };
-  }
+  const mode = pair.grants.spendingMode ?? 'ask';
 
-  if (capability === 'spend') {
-    if (!amountField) {
-      return { result: { decision: 'prompt', reason: 'transfer amount cannot be auto-verified' }, pair };
+  if (capability === 'spend' || capability === 'offer') {
+    if (mode === 'block') {
+      return { result: { decision: 'deny', reason: 'spending blocked for this app' }, pair };
+    }
+    if (mode === 'ask') {
+      return { result: { decision: 'prompt', reason: 'spending needs confirmation' }, pair };
+    }
+    // mode === 'auto' — fall through to budget check
+    if (capability === 'offer' || !amountField) {
+      // Offers and unscoped spends (NFT transfers etc.) can't be auto-charged
+      // against a numeric budget, so always prompt even in auto mode.
+      return { result: { decision: 'prompt', reason: 'spending needs confirmation' }, pair };
     }
     const amount = Number(payload?.[amountField]);
     if (!Number.isFinite(amount) || amount < 0) {
@@ -49,9 +56,12 @@ export function checkPermission(
     if (spent + amount > cap) {
       return { result: { decision: 'prompt', reason: 'budget exhausted' }, pair };
     }
-    // Auto-approved spend: charge the budget so a compromised dapp can't drain
-    // via many small transactions under the per-call limit.
     recordSpend(principal.topic, amount);
+    return { result: { decision: 'allow' }, pair };
+  }
+
+  if (!pair.grants.capabilities[capability]) {
+    return { result: { decision: 'prompt', reason: `${capability} not pre-approved` }, pair };
   }
 
   return { result: { decision: 'allow' }, pair };

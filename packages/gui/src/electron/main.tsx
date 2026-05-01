@@ -120,13 +120,26 @@ const MOJOS_PER_XCH = 1_000_000_000_000;
 
 function dialogResultToGrants(result: Record<string, unknown>): PairGrants {
   const capabilities = emptyCapabilities();
-  (Object.keys(capabilities) as (keyof typeof capabilities)[]).forEach((key) => {
-    capabilities[key] = result[`cap-${key}`] === true;
-  });
+  capabilities.read = true; // reads are always allowed; reflect that in grants
+  if (result['bundle-innocuous'] === true) {
+    capabilities.watch = true;
+    capabilities.walletCreate = true;
+  }
+  if (result['cap-sign'] === true) {
+    capabilities.sign = true;
+  }
+  const rawMode = typeof result.spendingMode === 'string' ? result.spendingMode : 'ask';
+  const spendingMode: PairGrants['spendingMode'] =
+    rawMode === 'block' || rawMode === 'auto' ? rawMode : 'ask';
+  if (spendingMode === 'auto') {
+    capabilities.spend = true;
+    capabilities.offer = true;
+  }
   const xch = Number(result.spendingCapXch);
   const mojos = Number.isFinite(xch) && xch > 0 ? Math.floor(xch * MOJOS_PER_XCH) : 0;
   return {
     capabilities,
+    spendingMode,
     spendingCapMojos: mojos,
   };
 }

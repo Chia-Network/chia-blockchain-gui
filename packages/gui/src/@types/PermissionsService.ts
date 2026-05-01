@@ -12,8 +12,11 @@ export type PermissionsPairWallet = {
   name?: string;
 };
 
+export type PermissionsSpendingMode = 'block' | 'ask' | 'auto';
+
 export type PermissionsPairGrants = {
   capabilities: Record<PermissionsCapability, boolean>;
+  spendingMode: PermissionsSpendingMode;
   spendingCapMojos: number;
 };
 
