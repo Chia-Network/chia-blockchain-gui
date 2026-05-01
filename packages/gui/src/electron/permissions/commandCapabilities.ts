@@ -9,8 +9,18 @@ const BALANCE_COMMANDS = new Set([
   'chia_wallet.get_wallet_balances',
 ]);
 
+// Commands that move funds via a pre-signed spend bundle. Universally allowed
+// for the UI principal (the wallet UI builds and reviews the bundle before
+// pushing) but gated for pair principals because we cannot easily extract a
+// numeric amount to apply a budget.
+const SPEND_BUNDLE_COMMANDS = new Set(['chia_wallet.push_transactions']);
+
 export function isBalanceCommand(command: string): boolean {
   return BALANCE_COMMANDS.has(command);
+}
+
+export function isSpendBundleCommand(command: string): boolean {
+  return SPEND_BUNDLE_COMMANDS.has(command);
 }
 
 export function classifyCommand(command: string): CommandClassification {
@@ -20,8 +30,14 @@ export function classifyCommand(command: string): CommandClassification {
 
   switch (command) {
     case 'chia_wallet.send_transaction':
+      // amount and fee are both in XCH mojos; budget against the sum so a
+      // compromised dapp can't drain via fee.
+      return { kind: 'capability', capability: 'spend', amountField: 'amount', feeField: 'fee' };
+
     case 'chia_wallet.cat_spend':
-      return { kind: 'capability', capability: 'spend', amountField: 'amount' };
+      // amount is in CAT mojos which are not commensurable with the XCH-mojo
+      // budget. Always prompt — the user reviews CAT spends explicitly.
+      return { kind: 'capability', capability: 'spend' };
 
     case 'chia_wallet.nft_transfer_nft':
     case 'chia_wallet.nft_transfer_bulk':

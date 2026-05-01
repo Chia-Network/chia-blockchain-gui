@@ -12,12 +12,17 @@ import WalletConnectRequestPermissionsConfirmDialog from '../components/walletCo
 import NotificationType from '../constants/NotificationType';
 import walletConnectCommands from '../constants/WalletConnectCommands';
 import prepareWalletConnectCommand from '../util/prepareWalletConnectCommand';
+import { withPrincipal } from '../util/principalContext';
 import waitForWalletSync from '../util/waitForWalletSync';
 
 import useWalletConnectPairs from './useWalletConnectPairs';
 import useWalletConnectPreferences from './useWalletConnectPreferences';
 
 const log = debug('chia-gui:walletConnectCommand');
+
+function camelToSnake(name: string): string {
+  return name.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
+}
 
 type UseWalletConnectCommandOptions = {
   onNotification?: (notification: Notification) => void;
@@ -89,6 +94,7 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
     fingerprint: number;
     isDifferentFingerprint: boolean;
     command: string;
+    nsCommand?: string;
     bypassConfirm?: boolean;
     onChange: (values: Record<string, any>) => void;
   }) {
@@ -100,6 +106,7 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
       fingerprint,
       isDifferentFingerprint,
       command,
+      nsCommand,
       bypassConfirm = false,
       onChange,
     } = props;
@@ -113,6 +120,39 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
       log(`bypassing command ${command} with value ${pair.bypassCommands[command]}`);
       return pair.bypassCommands[command];
     }
+
+    // Ask the main process whether this command is pre-approved for this pair.
+    // If main has a grant covering it, skip the renderer-side dialog entirely.
+    if (nsCommand && window.permissionsAPI?.check) {
+      try {
+        // BigNumber instances do not survive IPC structured-clone (their
+        // prototype is stripped). Round-trip through JSON so the values main
+        // sees match what eventually gets sent on the wire.
+        const data = JSON.parse(JSON.stringify(values ?? {}));
+        const decision = await window.permissionsAPI.check({
+          principal: { kind: 'pair', topic: pair.topic },
+          command: nsCommand,
+          data,
+        });
+        // eslint-disable-next-line no-console -- visible while we wire this up
+        console.info(`[wc] check ${nsCommand} → ${decision.decision}`, {
+          topic: pair.topic,
+          reason: 'reason' in decision ? decision.reason : undefined,
+        });
+        if (decision.decision === 'allow') return true;
+        if (decision.decision === 'deny') return false;
+      } catch (err) {
+        // eslint-disable-next-line no-console -- visible while we wire this up
+        console.warn('[wc] permissionsAPI.check failed, falling back to renderer dialog', err);
+      }
+    } else {
+      // eslint-disable-next-line no-console -- visible while we wire this up
+      console.info('[wc] skipping main check', {
+        nsCommand,
+        hasPermissionsAPI: !!window.permissionsAPI?.check,
+      });
+    }
+
     if (command === 'requestPermissions') {
       if (!values.commands || values.commands.some((cmd: string) => cmd === 'requestPermissions')) {
         return false;
@@ -192,6 +232,9 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
 
     log('Confirm arguments', definitionParams);
 
+    const nsCommand =
+      service && service !== 'EXECUTE' ? `${service}.${camelToSnake(serviceCommand ?? command)}` : undefined;
+
     let values = defaultValues;
 
     function handleChangeParam(newValues: Record<string, any>) {
@@ -213,6 +256,7 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
       fingerprint,
       isDifferentFingerprint,
       command,
+      nsCommand,
       bypassConfirm,
       onChange: handleChangeParam,
     });
@@ -262,12 +306,20 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
     // execute command
     log('Executing', command, values);
     const endpoint = serviceCommand ?? command;
-    const resultPromise = store.dispatch(api.endpoints[endpoint].initiate(values));
-    const result = await resultPromise;
+    const pair = getPairBySession(topic);
+    const principalTopic = pair?.topic;
+    const result = await withPrincipal(
+      principalTopic ? { kind: 'pair', topic: principalTopic } : { kind: 'ui' },
+      async () => {
+        const resultPromise = store.dispatch(api.endpoints[endpoint].initiate(values));
+        try {
+          return await resultPromise;
+        } finally {
+          resultPromise.unsubscribe();
+        }
+      },
+    );
     log('Result', result);
-
-    // Removing the corresponding cache subscription
-    resultPromise.unsubscribe();
 
     return result;
   }

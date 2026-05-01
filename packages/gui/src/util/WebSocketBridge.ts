@@ -1,5 +1,7 @@
 import { EventEmitter } from 'events';
 
+import { getCurrentPrincipal } from './principalContext';
+
 export default class WebSocketBridge extends EventEmitter {
   private id: string | undefined;
 
@@ -55,7 +57,9 @@ export default class WebSocketBridge extends EventEmitter {
     if (!this.id) {
       throw new Error('WebSocketBridge: wait for connection to be established');
     }
-    window.webSocketAPI.send(this.id, data);
+    const principal = getCurrentPrincipal();
+    const metadata = principal ? { principal } : undefined;
+    window.webSocketAPI.send(this.id, data, metadata);
   }
 
   close() {

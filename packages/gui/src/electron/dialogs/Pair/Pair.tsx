@@ -91,11 +91,11 @@ export default function Pair(props: PairProps) {
         <section className="relative z-30">
           <div className="rounded-xl border border-chia-border bg-chia-card">
             <div className="px-5 pt-2.5 pb-1.5 text-xs font-semibold uppercase tracking-wider text-chia-text-muted">
-              {i18n._(/* i18n */ { id: 'Wallets' })}
+              {i18n._(/* i18n */ { id: 'Wallet keys' })}
             </div>
             {wallets.length === 0 ? (
               <div className="px-5 pb-3 text-sm text-chia-text-secondary">
-                {i18n._(/* i18n */ { id: 'No wallets available.' })}
+                {i18n._(/* i18n */ { id: 'No wallet keys available.' })}
               </div>
             ) : (
               <details className="group relative">
@@ -119,7 +119,7 @@ export default function Pair(props: PairProps) {
                       style={{ display: defaultFingerprints.length === 0 ? '' : 'none' }}
                       className="text-sm text-chia-text-secondary"
                     >
-                      {i18n._(/* i18n */ { id: 'Select wallets…' })}
+                      {i18n._(/* i18n */ { id: 'Select wallet keys…' })}
                     </span>
                   </div>
                   <svg

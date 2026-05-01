@@ -37,7 +37,7 @@ import About from './dialogs/About/About';
 import Confirm, { getTitle as getConfirmTitle } from './dialogs/Confirm/Confirm';
 import KeyDetail from './dialogs/KeyDetail/KeyDetail';
 import Pair, { getTitle as getPairTitle, type PairWalletOption } from './dialogs/Pair/Pair';
-import { checkPermission } from './permissions/permissions';
+import { checkPermission, consumeAllowedSpend } from './permissions/permissions';
 import { getPair, listPairs, removePair, updateGrants, upsertPair } from './permissions/pairStore';
 import {
   type PairGrants,
@@ -247,7 +247,7 @@ ipcMainHandle(PermissionsAPI.PAIR_REVOKE, (topic: string) => {
 ipcMainHandle(
   PermissionsAPI.CHECK,
   (payload: { principal: Principal; command: string; data: Record<string, unknown> }) =>
-    checkPermission(payload.principal, payload.command, payload.data),
+    checkPermission(payload.principal, payload.command, payload.data).result,
 );
 
 // main window
@@ -689,6 +689,9 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
         const { result: check, pair } = checkPermission(principal, nsCommand, parsedData.data ?? {});
 
         if (check.decision === 'allow') {
+          // Charge the pair's spend budget only at the real authorization point,
+          // not from the renderer's preview check. Safe no-op for non-spends.
+          consumeAllowedSpend(principal, nsCommand, parsedData.data ?? {});
           return;
         }
 

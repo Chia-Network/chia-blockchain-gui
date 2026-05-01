@@ -41,7 +41,7 @@ export type Principal = { kind: 'ui' } | { kind: 'pair'; topic: string };
 
 export type CommandClassification =
   | { kind: 'allow' }
-  | { kind: 'capability'; capability: Capability; amountField?: string }
+  | { kind: 'capability'; capability: Capability; amountField?: string; feeField?: string }
   | { kind: 'never' };
 
 export type CheckResult =
