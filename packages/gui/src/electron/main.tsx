@@ -118,19 +118,6 @@ ipcMainHandle(AppAPI.SHOW_NOTIFICATION, async (options: { title: string; body: s
 
 const MOJOS_PER_XCH = 1_000_000_000_000;
 
-function expiryToTimestamp(expiry: unknown): number | undefined {
-  switch (expiry) {
-    case '24h':
-      return Date.now() + 24 * 60 * 60 * 1000;
-    case '7d':
-      return Date.now() + 7 * 24 * 60 * 60 * 1000;
-    case 'session':
-    case 'never':
-    default:
-      return undefined;
-  }
-}
-
 function dialogResultToGrants(result: Record<string, unknown>): PairGrants {
   const capabilities = emptyCapabilities();
   (Object.keys(capabilities) as (keyof typeof capabilities)[]).forEach((key) => {
@@ -141,7 +128,6 @@ function dialogResultToGrants(result: Record<string, unknown>): PairGrants {
   return {
     capabilities,
     spendingCapMojos: mojos,
-    expiresAt: expiryToTimestamp(result.expiry),
   };
 }
 
@@ -209,6 +195,7 @@ ipcMainHandle(
       createdAt: now,
       updatedAt: now,
       grants: decision.grants,
+      spentMojos: 0,
     };
     upsertPair(record);
     return record;

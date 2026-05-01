@@ -93,7 +93,7 @@ export default function Pair(props: PairProps) {
       offer: false,
       spend: true,
     },
-    spendingCapMojos: 1_000_000_000, // 0.001 XCH default
+    spendingCapMojos: 10_000_000_000, // 0.01 XCH default budget
   };
 
   const defaultCapXch = (grants.spendingCapMojos / MOJOS_PER_XCH).toString();
@@ -123,8 +123,12 @@ export default function Pair(props: PairProps) {
             )}
             <p className="mt-1.5 mb-0 text-sm leading-snug text-chia-text-secondary">
               {isEdit
-                ? i18n._(/* i18n */ { id: 'Update what this application is allowed to do.' })
-                : i18n._(/* i18n */ { id: 'Choose what this app can do. Revoke any time.' })}
+                ? i18n._(/* i18n */ {
+                    id: 'Update what this app can do without prompting. Anything not pre-approved still asks you to confirm.',
+                  })
+                : i18n._(/* i18n */ {
+                    id: 'Pick what this app can do without prompting. Anything not pre-approved still asks you to confirm.',
+                  })}
             </p>
           </div>
         </div>
@@ -210,7 +214,7 @@ export default function Pair(props: PairProps) {
 
         <section className="rounded-xl border border-chia-border bg-chia-card overflow-hidden">
           <div className="px-5 pt-3 pb-2 text-xs font-semibold uppercase tracking-wider text-chia-text-muted">
-            {i18n._(/* i18n */ { id: 'Permissions' })}
+            {i18n._(/* i18n */ { id: 'Auto-approve actions' })}
           </div>
           <ul className="m-0 p-0 list-none divide-y divide-chia-border border-t border-chia-border">
             {CAPABILITY_ROWS.map((row) => (
@@ -240,7 +244,7 @@ export default function Pair(props: PairProps) {
         <section className="rounded-xl border border-chia-border bg-chia-card px-5 py-3">
           <div className="flex items-center justify-between gap-3">
             <div className="text-xs font-semibold uppercase tracking-wider text-chia-text-muted shrink-0">
-              {i18n._(/* i18n */ { id: 'Per-tx cap' })}
+              {i18n._(/* i18n */ { id: 'Spend budget' })}
             </div>
             <div className="flex items-center gap-2">
               <input
@@ -255,36 +259,9 @@ export default function Pair(props: PairProps) {
             </div>
           </div>
           <div className="mt-1.5 text-sm text-chia-text-secondary leading-snug">
-            {i18n._(/* i18n */ { id: 'At or below: silent. Above: asks to confirm.' })}
-          </div>
-        </section>
-
-        <section className="rounded-xl border border-chia-border bg-chia-card px-5 py-3">
-          <div className="text-xs font-semibold uppercase tracking-wider text-chia-text-muted">
-            {i18n._(/* i18n */ { id: 'Auto-revoke after' })}
-          </div>
-          <div className="mt-2 grid grid-cols-2 gap-2">
-            {[
-              { value: 'session', label: i18n._(/* i18n */ { id: 'When app disconnects' }) },
-              { value: '24h', label: i18n._(/* i18n */ { id: '24 hours' }) },
-              { value: '7d', label: i18n._(/* i18n */ { id: '7 days' }) },
-              { value: 'never', label: i18n._(/* i18n */ { id: 'Until I revoke' }) },
-            ].map((option, idx) => (
-              <label
-                key={option.value}
-                className="flex items-center gap-2.5 px-3 py-1.5 rounded-md border border-chia-border hover:border-chia-primary cursor-pointer transition-colors has-[:checked]:border-chia-primary has-[:checked]:bg-chia-primary-soft"
-              >
-                <input
-                  type="radio"
-                  name="expiry"
-                  value={option.value}
-                  defaultChecked={idx === 0}
-                  data-form-field="expiry"
-                  className="w-[18px] h-[18px] accent-chia-primary cursor-pointer"
-                />
-                <span className="text-sm text-chia-text">{option.label}</span>
-              </label>
-            ))}
+            {i18n._(/* i18n */ {
+              id: "How much this app can spend without asking. After that, it'll ask you each time.",
+            })}
           </div>
         </section>
       </div>

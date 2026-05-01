@@ -55,3 +55,10 @@ export function updateGrants(topic: string, grants: PairRecord['grants']) {
   upsertPair(next);
   return next;
 }
+
+export function recordSpend(topic: string, mojos: number) {
+  const pair = getPair(topic);
+  if (!pair || !Number.isFinite(mojos) || mojos <= 0) return;
+  const next: PairRecord = { ...pair, spentMojos: (pair.spentMojos ?? 0) + mojos };
+  upsertPair(next);
+}

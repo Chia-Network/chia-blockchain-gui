@@ -15,7 +15,6 @@ export type PermissionsPairWallet = {
 export type PermissionsPairGrants = {
   capabilities: Record<PermissionsCapability, boolean>;
   spendingCapMojos: number;
-  expiresAt?: number;
 };
 
 export type PermissionsPairRecord = {
@@ -25,6 +24,7 @@ export type PermissionsPairRecord = {
   createdAt: number;
   updatedAt: number;
   grants: PermissionsPairGrants;
+  spentMojos: number;
 };
 
 export type PermissionsPrincipal = { kind: 'ui' } | { kind: 'pair'; topic: string };

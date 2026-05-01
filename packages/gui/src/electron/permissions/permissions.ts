@@ -1,5 +1,5 @@
 import { classifyCommand } from './commandCapabilities';
-import { getPair } from './pairStore';
+import { getPair, recordSpend } from './pairStore';
 import type { CheckResult, PairRecord, Principal } from './types';
 
 export type CheckContext = {
@@ -26,9 +26,6 @@ export function checkPermission(
   if (!pair) {
     return { result: { decision: 'deny', reason: 'unknown pair' } };
   }
-  if (pair.grants.expiresAt && Date.now() > pair.grants.expiresAt) {
-    return { result: { decision: 'prompt', reason: 'pair grants expired' }, pair };
-  }
 
   if (classification.kind === 'never') {
     return { result: { decision: 'prompt', reason: 'sensitive command' }, pair };
@@ -36,7 +33,7 @@ export function checkPermission(
 
   const { capability, amountField } = classification;
   if (!pair.grants.capabilities[capability]) {
-    return { result: { decision: 'prompt', reason: `pair lacks ${capability} capability` }, pair };
+    return { result: { decision: 'prompt', reason: `${capability} not pre-approved` }, pair };
   }
 
   if (capability === 'spend') {
@@ -44,12 +41,17 @@ export function checkPermission(
       return { result: { decision: 'prompt', reason: 'transfer amount cannot be auto-verified' }, pair };
     }
     const amount = Number(payload?.[amountField]);
-    if (!Number.isFinite(amount)) {
+    if (!Number.isFinite(amount) || amount < 0) {
       return { result: { decision: 'prompt', reason: 'spend amount missing' }, pair };
     }
-    if (amount > pair.grants.spendingCapMojos) {
-      return { result: { decision: 'prompt', reason: 'spend exceeds cap' }, pair };
+    const spent = pair.spentMojos ?? 0;
+    const cap = pair.grants.spendingCapMojos ?? 0;
+    if (spent + amount > cap) {
+      return { result: { decision: 'prompt', reason: 'budget exhausted' }, pair };
     }
+    // Auto-approved spend: charge the budget so a compromised dapp can't drain
+    // via many small transactions under the per-call limit.
+    recordSpend(principal.topic, amount);
   }
 
   return { result: { decision: 'allow' }, pair };

@@ -7,7 +7,6 @@ export type CapabilityGrants = Record<Capability, boolean>;
 export type PairGrants = {
   capabilities: CapabilityGrants;
   spendingCapMojos: number;
-  expiresAt?: number;
 };
 
 export type PairMetadata = {
@@ -24,6 +23,7 @@ export type PairRecord = {
   createdAt: number;
   updatedAt: number;
   grants: PairGrants;
+  spentMojos: number;
 };
 
 export type Principal = { kind: 'ui' } | { kind: 'pair'; topic: string };
