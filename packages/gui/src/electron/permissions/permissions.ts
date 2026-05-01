@@ -1,8 +1,14 @@
 import BigNumber from 'bignumber.js';
 
-import { classifyCommand, isBalanceCommand, isUiAllowed } from './commandCapabilities';
+import {
+  getSpendClassification,
+  isBalanceCommand,
+  isInnocuousCommand,
+  isSignCommand,
+  isUiAllowed,
+} from './commandCapabilities';
 import { getPair, recordSpend } from './pairStore';
-import type { CheckResult, CommandClassification, PairGrants, PairRecord, Principal } from './types';
+import type { CheckResult, PairGrants, PairRecord, Principal, SpendClassification } from './types';
 
 export type CheckContext = {
   result: CheckResult;
@@ -97,32 +103,24 @@ export function checkPermission(
     return allow(pair);
   }
 
-  // Capability-classified commands. INNOCUOUS_COMMANDS map to capability
-  // 'innocuous'; anything else falls through to its specific capability
-  // (sign / spend / offer) or to 'never'.
-  const classification = classifyCommand(command);
-  if (classification.kind === 'never') {
-    return prompt('sensitive command', pair);
+  if (isInnocuousCommand(command)) {
+    return pair.grants.capabilities.innocuous ? allow(pair) : prompt('innocuous not pre-approved', pair);
   }
-  return checkCapability(pair, classification, payload);
-}
 
-function checkCapability(
-  pair: PairRecord,
-  classification: Extract<CommandClassification, { kind: 'capability' }>,
-  payload: Record<string, unknown>,
-): CheckContext {
-  const { capability } = classification;
-  if (capability === 'spend' || capability === 'offer') {
-    return checkSpending(pair, classification, payload);
+  if (isSignCommand(command)) {
+    return pair.grants.capabilities.sign ? allow(pair) : prompt('sign not pre-approved', pair);
   }
-  return pair.grants.capabilities[capability]
-    ? allow(pair)
-    : prompt(`${capability} not pre-approved`, pair);
+
+  const spend = getSpendClassification(command);
+  if (spend) {
+    return checkSpending(pair, spend, payload);
+  }
+
+  return prompt('sensitive command', pair);
 }
 
 function resolveAmount(
-  classification: Extract<CommandClassification, { kind: 'capability' }>,
+  classification: SpendClassification,
   payload: Record<string, unknown>,
 ): BigNumber | undefined {
   if (classification.amountResolver) return classification.amountResolver(payload);
@@ -132,7 +130,7 @@ function resolveAmount(
 
 function checkSpending(
   pair: PairRecord,
-  classification: Extract<CommandClassification, { kind: 'capability' }>,
+  classification: SpendClassification,
   payload: Record<string, unknown>,
 ): CheckContext {
   const mode = pair.grants.spendingMode ?? 'ask';
@@ -175,14 +173,13 @@ export function consumeAllowedSpend(
     return;
   }
 
-  const c = classifyCommand(command);
-  if (c.kind !== 'capability') return;
-  if (c.capability !== 'spend' && c.capability !== 'offer') return;
+  const spend = getSpendClassification(command);
+  if (!spend) return;
 
-  const amount = resolveAmount(c, payload);
+  const amount = resolveAmount(spend, payload);
   if (amount === undefined) return;
 
-  const fee = c.feeField ? readMojos(payload, c.feeField) ?? ZERO : ZERO;
+  const fee = spend.feeField ? readMojos(payload, spend.feeField) ?? ZERO : ZERO;
   const total = amount.plus(fee);
   if (total.isLessThanOrEqualTo(0)) return;
   recordSpend(principal.topic, total);

@@ -2,74 +2,71 @@ import BigNumber from 'bignumber.js';
 
 import AllowedCommands from '../constants/AllowedCommands';
 
-import type { CommandClassification } from './types';
+import type { SpendClassification } from './types';
+
+/*
+chia_getCurrentAddress, => chia_wallet.get_next_address
+chia_getWalletBalance, => chia_wallet.get_wallet_balance
+chia_getWallets, => chia_wallet.get_wallets
+chia_createNewRemoteWallet, => chia_wallet.create_new_remote_wallet
+
+Channel funding (called during the handshake A–F flow):
+chia_selectCoins, => chia_wallet.select_coins
+chia_createOfferForIds, => chia_wallet.create_offer_for_ids - spendable
+chia_walletPushTransactions, => chia_wallet.push_transactions - spendable
+
+On-chain coin watching (driven by BlockchainPoller):
+chia_registerRemoteCoins, => chia_wallet.register_remote_coins
+chia_getCoinRecordsByNames, => chia_wallet.get_coin_records_by_names
+chia_getHeightInfo, => chia_wallet.get_height_info
+
+// at the end
+chia_getPuzzleAndSolution, => chia_wallet.get_puzzle_and_solution
+*/
 
 const UI_ALLOWED = new Set<string>(AllowedCommands);
 
 const BALANCE_COMMANDS = new Set([
-  'chia_wallet.get_wallet_balance',
-  'chia_wallet.get_wallet_balances',
+  'chia_wallet.get_wallet_balance', // gaming
+  'chia_wallet.get_wallet_balances', 
 ]);
 
-// Read-only / state-creating commands that the user can opt into via the
-// Innocuous capability grant. Not auto-silent for pair principals — the user
-// has to explicitly tick the Innocuous bundle in the Pair dialog.
-//
-// Everything in this list must also be in `AllowedCommands.ts` (verified
-// below) — these are silent for the UI principal too.
+// Read-only commands a dapp can opt into via the Innocuous capability grant.
+// Independent of `AllowedCommands` — that list governs what the first-party UI
+// renderer can call silently and answers a different question.
 const INNOCUOUS_COMMANDS = new Set([
   // Wallet / account info reads
-  'chia_wallet.get_wallets',
-  'chia_wallet.get_next_address',
-  'chia_wallet.get_logged_in_fingerprint',
-  'chia_wallet.get_network_info',
+  'chia_wallet.get_wallets', // gaming
+  'chia_wallet.get_next_address', // gaming
   'chia_wallet.get_sync_status',
-  'chia_wallet.get_current_derivation_index',
-  'chia_wallet.get_auto_claim',
-  'chia_wallet.get_notifications',
   // Coin & blockchain reads
   'chia_wallet.get_coin_records_by_names',
-  'chia_wallet.get_spendable_coins',
-  'chia_wallet.select_coins',
-  'chia_wallet.get_height_info',
-  'chia_wallet.get_puzzle_and_solution',
+  'chia_wallet.select_coins', // gaming
+  'chia_wallet.get_height_info', // gaming
+  'chia_wallet.get_puzzle_and_solution', // gaming
   'chia_wallet.get_timestamp_for_height',
   // Transaction reads
   'chia_wallet.get_transaction',
-  'chia_wallet.get_transactions',
-  'chia_wallet.get_transaction_count',
-  'chia_wallet.get_transaction_memo',
-  'chia_wallet.get_farmed_amount',
   // Offer reads
   'chia_wallet.get_offer',
   'chia_wallet.get_offer_summary',
   'chia_wallet.check_offer_validity',
-  'chia_wallet.get_offers_count',
-  'chia_wallet.get_all_offers',
   // CAT info
   'chia_wallet.cat_get_asset_id',
   'chia_wallet.cat_get_name',
   'chia_wallet.cat_asset_id_to_name',
-  'chia_wallet.get_cat_list',
-  'chia_wallet.get_stray_cats',
   // NFT reads
-  'chia_wallet.nft_count_nfts',
-  'chia_wallet.nft_get_nfts',
   'chia_wallet.nft_get_info',
   'chia_wallet.nft_get_wallet_did',
-  'chia_wallet.nft_get_wallets_with_dids',
   'chia_wallet.nft_calculate_royalties',
   // VC reads
   'chia_wallet.vc_get',
-  'chia_wallet.vc_get_list',
   'chia_wallet.vc_get_proofs_for_root',
   // DID reads
   'chia_wallet.did_get_did',
   'chia_wallet.did_get_info',
   'chia_wallet.did_get_metadata',
   'chia_wallet.did_get_pubkey',
-  'chia_wallet.did_get_recovery_list',
-  'chia_wallet.did_get_information_needed_for_recovery',
   'chia_wallet.did_get_current_coin_info',
   'chia_wallet.did_get_wallet_name',
   // Pool wallet status
@@ -77,24 +74,12 @@ const INNOCUOUS_COMMANDS = new Set([
   // Verification + ping (no key access)
   'chia_wallet.verify_signature',
   'chia_wallet.ping',
-  // State-creating but non-fund-moving
-  'chia_wallet.register_remote_coins',
-  'chia_wallet.create_new_wallet',
-  'chia_wallet.create_new_remote_wallet',
+  // Remote wallet/coin tracking (no funds move, no on-chain effect)
+  'chia_wallet.create_new_remote_wallet', // gaming
+  'chia_wallet.register_remote_coins', // gaming
 ]);
 
-// Build-time invariant: every innocuous command (that's also a UI-allowed
-// command) really exists in AllowedCommands. The wallet-create commands
-// aren't in AllowedCommands, that's expected — they're not silent for UI.
-INNOCUOUS_COMMANDS.forEach((cmd) => {
-  if (cmd === 'chia_wallet.create_new_wallet' || cmd === 'chia_wallet.create_new_remote_wallet') return;
-  if (!UI_ALLOWED.has(cmd)) {
-    throw new Error(
-      `INNOCUOUS_COMMANDS contains '${cmd}' but it is not in AllowedCommands.ts. ` +
-        'Read-style innocuous commands must be UI-allowed too.',
-    );
-  }
-});
+const SIGN_COMMANDS = new Set(['chia_wallet.sign_message_by_address', 'chia_wallet.sign_message_by_id']);
 
 export function isUiAllowed(command: string): boolean {
   return UI_ALLOWED.has(command);
@@ -102,6 +87,14 @@ export function isUiAllowed(command: string): boolean {
 
 export function isBalanceCommand(command: string): boolean {
   return BALANCE_COMMANDS.has(command);
+}
+
+export function isInnocuousCommand(command: string): boolean {
+  return INNOCUOUS_COMMANDS.has(command);
+}
+
+export function isSignCommand(command: string): boolean {
+  return SIGN_COMMANDS.has(command);
 }
 
 // Sum the XCH mojos the user is giving up in a `create_offer_for_ids` offer.
@@ -126,54 +119,22 @@ function extractOfferXchOutflow(payload: Record<string, unknown>): BigNumber | u
   return xchOut;
 }
 
-export function classifyCommand(command: string): CommandClassification {
-  if (INNOCUOUS_COMMANDS.has(command)) {
-    return { kind: 'capability', capability: 'innocuous' };
-  }
-
+// Returns spend/offer metadata for fund-moving commands, or undefined for
+// anything else. Innocuous/balance/sign and "always-prompt" commands are
+// handled by their own membership checks in `permissions.ts`.
+export function getSpendClassification(command: string): SpendClassification | undefined {
   switch (command) {
     case 'chia_wallet.send_transaction':
-      return { kind: 'capability', capability: 'spend', amountField: 'amount', feeField: 'fee' };
-
-    case 'chia_wallet.cat_spend':
-      return { kind: 'capability', capability: 'spend' };
-
-    case 'chia_wallet.nft_transfer_nft':
-    case 'chia_wallet.nft_transfer_bulk':
-    case 'chia_wallet.nft_set_nft_did':
-    case 'chia_wallet.nft_set_did_bulk':
-      return { kind: 'capability', capability: 'spend' };
+      return { capability: 'spend', amountField: 'amount', feeField: 'fee' };
 
     case 'chia_wallet.create_offer_for_ids':
       return {
-        kind: 'capability',
         capability: 'offer',
         feeField: 'fee',
         amountResolver: extractOfferXchOutflow,
       };
 
-    case 'chia_wallet.take_offer':
-    case 'chia_wallet.cancel_offer':
-      return { kind: 'capability', capability: 'offer' };
-
-    case 'chia_wallet.sign_message_by_address':
-    case 'chia_wallet.sign_message_by_id':
-      return { kind: 'capability', capability: 'sign' };
-
-    case 'chia_wallet.delete_key':
-    case 'chia_harvester.delete_plot':
-    case 'chia_harvester.add_plot_directory':
-    case 'chia_harvester.remove_plot_directory':
-    case 'chia_full_node.open_connection':
-    case 'chia_full_node.close_connection':
-    case 'chia_farmer.close_connection':
-    case 'chia_farmer.set_payout_instructions':
-    case 'chia_wallet.set_payout_instructions':
-    case 'chia_wallet.set_auto_claim':
-    case 'daemon.stop_plotting':
-      return { kind: 'never' };
-
     default:
-      return { kind: 'never' };
+      return undefined;
   }
 }

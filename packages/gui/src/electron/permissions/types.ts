@@ -37,15 +37,12 @@ import type BigNumber from 'bignumber.js';
 
 export type AmountResolver = (payload: Record<string, unknown>) => BigNumber | undefined;
 
-export type CommandClassification =
-  | {
-      kind: 'capability';
-      capability: Capability;
-      amountField?: string;
-      feeField?: string;
-      amountResolver?: AmountResolver;
-    }
-  | { kind: 'never' };
+export type SpendClassification = {
+  capability: 'spend' | 'offer';
+  amountField?: string;
+  feeField?: string;
+  amountResolver?: AmountResolver;
+};
 
 export type CheckResult =
   | { decision: 'allow' }
