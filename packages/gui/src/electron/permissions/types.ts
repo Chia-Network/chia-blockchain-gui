@@ -49,6 +49,8 @@ export type PairContext = {
   topic: string;
   name: string;
   url?: string;
+  icon?: string;
+  description?: string;
 };
 
 /**

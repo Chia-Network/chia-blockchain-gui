@@ -276,13 +276,20 @@ ipcMainHandle(
     destination: string;
     command: string;
     data?: Record<string, unknown>;
+    display?: Record<string, unknown>;
     topic: string;
+    fingerprint?: {
+      requested: number;
+      current?: number;
+      requestedLabel?: string;
+      currentLabel?: string;
+    };
   }) => {
     if (!mainWindow) {
       throw new Error('mainWindow is empty');
     }
 
-    const { destination, command, data: argsData, topic } = payload;
+    const { destination, command, data: argsData, display, topic, fingerprint } = payload;
     const data = argsData ?? {};
     const principal: Principal = { kind: 'pair', topic };
     const nsCommand = `${destination}.${command}`;
@@ -300,14 +307,17 @@ ipcMainHandle(
           networkPrefix,
           command: nsCommand,
           data,
+          display,
           principal: decision.pair
             ? {
                 kind: 'pair' as const,
                 name: decision.pair.name,
                 url: decision.pair.url,
-                reason: decision.reason,
+                icon: decision.pair.icon,
+                description: decision.pair.description,
               }
             : undefined,
+          fingerprint,
         },
         {
           title: getConfirmTitle(nsCommand),
@@ -814,7 +824,8 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
                   kind: 'pair' as const,
                   name: decision.pair.name,
                   url: decision.pair.url,
-                  reason: decision.reason,
+                  icon: decision.pair.icon,
+                  description: decision.pair.description,
                 }
               : undefined,
           },

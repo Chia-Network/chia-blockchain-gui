@@ -107,7 +107,14 @@ contextBridge.exposeInMainWorld(API.PERMISSIONS, {
     destination: string;
     command: string;
     data?: Record<string, unknown>;
+    display?: Record<string, unknown>;
     topic: string;
+    fingerprint?: {
+      requested: number;
+      current?: number;
+      requestedLabel?: string;
+      currentLabel?: string;
+    };
   }) => invokeWithCustomErrors(PermissionsAPI.DISPATCH_AS_PAIR, payload),
 });
 

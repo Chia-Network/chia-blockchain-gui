@@ -67,7 +67,14 @@ type PermissionsService = {
     destination: string;
     command: string;
     data?: Record<string, unknown>;
+    display?: Record<string, unknown>;
     topic: string;
+    fingerprint?: {
+      requested: number;
+      current?: number;
+      requestedLabel?: string;
+      currentLabel?: string;
+    };
   }) => Promise<{ data: Record<string, unknown> }>;
 };
 

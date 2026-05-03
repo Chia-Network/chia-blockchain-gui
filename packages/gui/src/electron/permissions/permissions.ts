@@ -30,7 +30,13 @@ const promptDecision = (reason: string, pair?: PairContext): Decision => ({
 const denyDecision = (reason: string): Decision => ({ kind: 'deny', reason });
 
 function pairCtx(pair: PairRecord): PairContext {
-  return { topic: pair.topic, name: pair.metadata.name, url: pair.metadata.url };
+  return {
+    topic: pair.topic,
+    name: pair.metadata.name,
+    url: pair.metadata.url,
+    icon: pair.metadata.icon,
+    description: pair.metadata.description,
+  };
 }
 
 /**

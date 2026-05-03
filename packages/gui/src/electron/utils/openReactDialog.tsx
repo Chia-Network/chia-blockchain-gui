@@ -151,8 +151,8 @@ export default function openReactDialog<TResponse, TProps extends object>(
               connect-src 'none';
               font-src   'none';
               frame-src  'none';
-              img-src data:;
-              media-src 'none';
+              img-src    https: data:;
+              media-src  'none';
               object-src 'none';
               script-src asset:;
               style-src  asset:;
