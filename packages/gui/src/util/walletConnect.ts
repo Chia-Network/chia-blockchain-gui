@@ -10,17 +10,28 @@ const log = initDebug('chia-gui:walletConnect');
 const availableCommands = walletConnectCommands.map((command) => `chia_${command.command}`);
 
 async function respondSessionRequestError(client: Client, topic: string, id: number, message: string) {
-  await client.respond({
-    topic,
-    response: {
-      id,
-      jsonrpc: '2.0',
-      error: {
-        code: -32_600,
-        message,
+  try {
+    await client.respond({
+      topic,
+      response: {
+        id,
+        jsonrpc: '2.0',
+        error: {
+          code: -32_600,
+          message,
+        },
       },
-    },
-  });
+    });
+  } catch (e) {
+    // The dapp / WC SDK may have already evicted this request from its
+    // store (5-minute default expiry, dapp went offline, race with
+    // session disconnect). There's no recovery path: we can't apologize
+    // to the dapp on a record that no longer exists. Log and move on.
+    // Swallowing here keeps the error from becoming an uncaught
+    // promise rejection in the `session_request` event listener, which
+    // would otherwise surface as a popup the user can't act on.
+    log('Failed to respond to session request', { topic, id }, e);
+  }
 }
 
 /*
@@ -478,7 +489,17 @@ export function bindEvents(
   }
 
   async function handleSessionRequest(event: any) {
-    await processSessionRequest(client, pairs, onProcess(), event);
+    // Top-level catch-all. The WC SDK invokes this as a fire-and-forget
+    // event listener, so any uncaught rejection becomes an unhandled
+    // promise — which Electron surfaces as a user-visible error popup.
+    // `processSessionRequest` already handles its own errors, this is
+    // belt-and-braces for anything that slips past (expired records,
+    // SDK internals, etc.).
+    try {
+      await processSessionRequest(client, pairs, onProcess(), event);
+    } catch (e) {
+      log('Unhandled session_request error', e);
+    }
   }
 
   async function handlePairingDelete(event: any) {
