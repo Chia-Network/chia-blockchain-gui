@@ -213,11 +213,11 @@ describe('renderConfirm — every schema', () => {
     expect(new Set(names).size).toBe(names.length);
   });
 
-  it.each(SCHEMA_COMMANDS)('schema for %s only declares known param kinds', (command) => {
+  it.each(SCHEMA_COMMANDS)('schema for %s only declares known param types', (command) => {
     const schema = getConfirmSchema(command);
     const known = new Set(['text', 'mojo-to-xch', 'mojo-to-cat', 'bool', 'json']);
     for (const param of schema.params) {
-      expect(known.has(param.kind.kind)).toBe(true);
+      expect(known.has(param.type)).toBe(true);
     }
   });
 });

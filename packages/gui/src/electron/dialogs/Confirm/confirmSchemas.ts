@@ -19,24 +19,29 @@ import { i18n } from '../../../config/locales';
 import type { EnrichmentDisplay } from '../../utils/dappEnrichment';
 import { buildCreateOfferDisplay, buildTakeOfferDisplay, lookupCat } from '../../utils/dappEnrichment';
 
-/** A param renderer kind. Pure ones format from `data` synchronously; the
+/** A param renderer type. Pure ones format from `data` synchronously; the
  *  ones declared in `dappEnrichment` (mojo-to-cat needs a daemon lookup for
  *  the symbol) run async — `renderConfirm` awaits them. */
-export type ParamKind =
-  | { kind: 'text' }
-  | { kind: 'mojo-to-xch' }
-  | { kind: 'mojo-to-cat'; symbolFrom: string }
-  | { kind: 'bool' }
-  /** Pretty-print arbitrary JSON (objects, arrays). For object/array
-   *  WC params where the daemon RPC takes a structural value. */
-  | { kind: 'json' };
+export type ParamType = 'text' | 'mojo-to-xch' | 'mojo-to-cat' | 'bool' | 'json';
 
-export type ParamSchema = {
+type ParamSchemaBase = {
   /** snake_case key in `data`. */
   name: string;
   label: () => string;
-  kind: ParamKind;
 };
+
+export type ParamSchema = ParamSchemaBase &
+  (
+    | { type: 'text' }
+    | { type: 'mojo-to-xch' }
+    /** Render as `<amount> <CAT_symbol>`; symbol is fetched from the daemon
+     *  via the wallet id at `data[symbolFrom]`. */
+    | { type: 'mojo-to-cat'; symbolFrom: string }
+    | { type: 'bool' }
+    /** Pretty-print arbitrary JSON (objects, arrays). For object/array
+     *  WC params where the daemon RPC takes a structural value. */
+    | { type: 'json' }
+  );
 
 export type ConfirmSchema = {
   /** Defaults to `'Confirm'`. Omit when the dialog is generic. */
@@ -79,10 +84,10 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm this blockchain transaction.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Send' }),
     params: [
-      { name: 'address', label: () => i18n._(/* i18n */ { id: 'Address' }), kind: { kind: 'text' } },
-      { name: 'amount', label: () => i18n._(/* i18n */ { id: 'Amount' }), kind: { kind: 'mojo-to-xch' } },
-      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), kind: { kind: 'mojo-to-xch' } },
-      { name: 'puzzle_decorator', label: () => i18n._(/* i18n */ { id: 'Puzzle Decorator' }), kind: { kind: 'json' } },
+      { name: 'address', label: () => i18n._(/* i18n */ { id: 'Address' }), type: 'text' },
+      { name: 'amount', label: () => i18n._(/* i18n */ { id: 'Amount' }), type: 'mojo-to-xch' },
+      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
+      { name: 'puzzle_decorator', label: () => i18n._(/* i18n */ { id: 'Puzzle Decorator' }), type: 'json' },
     ],
   },
 
@@ -91,17 +96,17 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm this CAT spend.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Send' }),
     params: [
-      { name: 'wallet_id', label: () => i18n._(/* i18n */ { id: 'Wallet Id' }), kind: { kind: 'text' } },
+      { name: 'wallet_id', label: () => i18n._(/* i18n */ { id: 'Wallet Id' }), type: 'text' },
       // WC's `spendCAT` declares `address` (not `inner_address`). The dialog
       // shows what the dapp actually sent on the wire — main doesn't rename.
-      { name: 'address', label: () => i18n._(/* i18n */ { id: 'Address' }), kind: { kind: 'text' } },
+      { name: 'address', label: () => i18n._(/* i18n */ { id: 'Address' }), type: 'text' },
       {
         name: 'amount',
         label: () => i18n._(/* i18n */ { id: 'Amount' }),
-        kind: { kind: 'mojo-to-cat', symbolFrom: 'wallet_id' },
+        type: 'mojo-to-cat', symbolFrom: 'wallet_id',
       },
-      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), kind: { kind: 'mojo-to-xch' } },
-      { name: 'memos', label: () => i18n._(/* i18n */ { id: 'Memos' }), kind: { kind: 'json' } },
+      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
+      { name: 'memos', label: () => i18n._(/* i18n */ { id: 'Memos' }), type: 'json' },
     ],
     // The wallet-id → CAT info lookup also drives the `display.cat`
     // chip/icon styling (revocable badge), so resolve it once here too.
@@ -118,10 +123,10 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm this NFT transfer.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Transfer' }),
     params: [
-      { name: 'wallet_id', label: () => i18n._(/* i18n */ { id: 'Wallet Id' }), kind: { kind: 'text' } },
-      { name: 'nft_coin_ids', label: () => i18n._(/* i18n */ { id: 'NFT Coin Ids' }), kind: { kind: 'json' } },
-      { name: 'target_address', label: () => i18n._(/* i18n */ { id: 'Target Address' }), kind: { kind: 'text' } },
-      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), kind: { kind: 'mojo-to-xch' } },
+      { name: 'wallet_id', label: () => i18n._(/* i18n */ { id: 'Wallet Id' }), type: 'text' },
+      { name: 'nft_coin_ids', label: () => i18n._(/* i18n */ { id: 'NFT Coin Ids' }), type: 'json' },
+      { name: 'target_address', label: () => i18n._(/* i18n */ { id: 'Target Address' }), type: 'text' },
+      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
     ],
   },
 
@@ -130,9 +135,9 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm this NFT transfer.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Transfer' }),
     params: [
-      { name: 'nft_coin_list', label: () => i18n._(/* i18n */ { id: 'NFT Coin List' }), kind: { kind: 'json' } },
-      { name: 'target_address', label: () => i18n._(/* i18n */ { id: 'Target Address' }), kind: { kind: 'text' } },
-      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), kind: { kind: 'mojo-to-xch' } },
+      { name: 'nft_coin_list', label: () => i18n._(/* i18n */ { id: 'NFT Coin List' }), type: 'json' },
+      { name: 'target_address', label: () => i18n._(/* i18n */ { id: 'Target Address' }), type: 'text' },
+      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
     ],
   },
 
@@ -140,9 +145,9 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm this offer cancellation.' }),
     destructive: true,
     params: [
-      { name: 'trade_id', label: () => i18n._(/* i18n */ { id: 'Trade Id' }), kind: { kind: 'text' } },
-      { name: 'secure', label: () => i18n._(/* i18n */ { id: 'Secure' }), kind: { kind: 'bool' } },
-      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), kind: { kind: 'mojo-to-xch' } },
+      { name: 'trade_id', label: () => i18n._(/* i18n */ { id: 'Trade Id' }), type: 'text' },
+      { name: 'secure', label: () => i18n._(/* i18n */ { id: 'Secure' }), type: 'bool' },
+      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
     ],
   },
 
@@ -159,20 +164,21 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     // breakdown with NFT thumbnails) — too rich for a flat row. Other
     // structural params follow the WC curation.
     params: [
-      { name: 'driver_dict', label: () => i18n._(/* i18n */ { id: 'Driver Dict' }), kind: { kind: 'json' } },
-      { name: 'validate_only', label: () => i18n._(/* i18n */ { id: 'Validate Only' }), kind: { kind: 'bool' } },
+      { name: 'driver_dict', label: () => i18n._(/* i18n */ { id: 'Driver Dict' }), type: 'json' },
+      { name: 'validate_only', label: () => i18n._(/* i18n */ { id: 'Validate Only' }), type: 'bool' },
       {
         name: 'disable_json_formatting',
         label: () => i18n._(/* i18n */ { id: 'Disable JSON Formatting' }),
-        kind: { kind: 'bool' },
+        type: 'bool',
       },
-      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), kind: { kind: 'mojo-to-xch' } },
+      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
       {
         name: 'extra_conditions',
         label: () => i18n._(/* i18n */ { id: 'Extra Conditions' }),
-        kind: { kind: 'json' },
+        type: 'json',
       },
-      { name: 'coin_ids', label: () => i18n._(/* i18n */ { id: 'Coin Ids' }), kind: { kind: 'json' } },
+      { name: 'coin_ids', label: () => i18n._(/* i18n */ { id: 'Coin Ids' }), type: 'json' },
+      { name: 'allow_unsynced', label: () => i18n._(/* i18n */ { id: 'Allow Unsynced' }), type: 'bool' },
     ],
     enrich: async (data) => {
       const offer = await buildCreateOfferDisplay(data);
@@ -183,11 +189,11 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
   'chia_wallet.take_offer': {
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm this offer acceptance.' }),
     params: [
-      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), kind: { kind: 'mojo-to-xch' } },
+      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
       {
         name: 'extra_conditions',
         label: () => i18n._(/* i18n */ { id: 'Extra Conditions' }),
-        kind: { kind: 'json' },
+        type: 'json',
       },
     ],
     enrich: async (data) => {
@@ -201,10 +207,10 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     message: () => i18n._(/* i18n */ { id: 'Are you sure you want to sign this message?' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Sign' }),
     params: [
-      { name: 'address', label: () => i18n._(/* i18n */ { id: 'Address' }), kind: { kind: 'text' } },
-      { name: 'message', label: () => i18n._(/* i18n */ { id: 'Message' }), kind: { kind: 'text' } },
-      { name: 'is_hex', label: () => i18n._(/* i18n */ { id: 'Hex Encoded' }), kind: { kind: 'bool' } },
-      { name: 'safe_mode', label: () => i18n._(/* i18n */ { id: 'Safe Mode' }), kind: { kind: 'bool' } },
+      { name: 'address', label: () => i18n._(/* i18n */ { id: 'Address' }), type: 'text' },
+      { name: 'message', label: () => i18n._(/* i18n */ { id: 'Message' }), type: 'text' },
+      { name: 'is_hex', label: () => i18n._(/* i18n */ { id: 'Hex Encoded' }), type: 'bool' },
+      { name: 'safe_mode', label: () => i18n._(/* i18n */ { id: 'Safe Mode' }), type: 'bool' },
     ],
   },
 
@@ -213,9 +219,9 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     message: () => i18n._(/* i18n */ { id: 'Are you sure you want to sign this message?' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Sign' }),
     params: [
-      { name: 'id', label: () => i18n._(/* i18n */ { id: 'Id' }), kind: { kind: 'text' } },
-      { name: 'message', label: () => i18n._(/* i18n */ { id: 'Message' }), kind: { kind: 'text' } },
-      { name: 'is_hex', label: () => i18n._(/* i18n */ { id: 'Hex Encoded' }), kind: { kind: 'bool' } },
+      { name: 'id', label: () => i18n._(/* i18n */ { id: 'Id' }), type: 'text' },
+      { name: 'message', label: () => i18n._(/* i18n */ { id: 'Message' }), type: 'text' },
+      { name: 'is_hex', label: () => i18n._(/* i18n */ { id: 'Hex Encoded' }), type: 'bool' },
     ],
   },
 
@@ -224,13 +230,13 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     message: () => i18n._(/* i18n */ { id: 'Are you sure you want to move this NFT to the specified profile?' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Move' }),
     params: [
-      { name: 'wallet_id', label: () => i18n._(/* i18n */ { id: 'Wallet Id' }), kind: { kind: 'text' } },
-      { name: 'nft_launcher_id', label: () => i18n._(/* i18n */ { id: 'NFT Launcher Id' }), kind: { kind: 'text' } },
-      { name: 'nft_coin_ids', label: () => i18n._(/* i18n */ { id: 'NFT Coin Ids' }), kind: { kind: 'json' } },
+      { name: 'wallet_id', label: () => i18n._(/* i18n */ { id: 'Wallet Id' }), type: 'text' },
+      { name: 'nft_launcher_id', label: () => i18n._(/* i18n */ { id: 'NFT Launcher Id' }), type: 'text' },
+      { name: 'nft_coin_ids', label: () => i18n._(/* i18n */ { id: 'NFT Coin Ids' }), type: 'json' },
       // WC's `setNFTDID` declares `did` (not `did_id`) — show what the dapp
       // actually sent.
-      { name: 'did', label: () => i18n._(/* i18n */ { id: 'DID' }), kind: { kind: 'text' } },
-      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), kind: { kind: 'mojo-to-xch' } },
+      { name: 'did', label: () => i18n._(/* i18n */ { id: 'DID' }), type: 'text' },
+      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
     ],
   },
 
@@ -239,9 +245,9 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     message: () => i18n._(/* i18n */ { id: 'Are you sure you want to move these NFTs to the specified profile?' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Move' }),
     params: [
-      { name: 'nft_coin_list', label: () => i18n._(/* i18n */ { id: 'NFT Coin List' }), kind: { kind: 'json' } },
-      { name: 'did_id', label: () => i18n._(/* i18n */ { id: 'DID' }), kind: { kind: 'text' } },
-      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), kind: { kind: 'mojo-to-xch' } },
+      { name: 'nft_coin_list', label: () => i18n._(/* i18n */ { id: 'NFT Coin List' }), type: 'json' },
+      { name: 'did_id', label: () => i18n._(/* i18n */ { id: 'DID' }), type: 'text' },
+      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
     ],
   },
 
@@ -250,9 +256,9 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     message: () => i18n._(/* i18n */ { id: 'Are you sure you want to set auto claim?' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Set' }),
     params: [
-      { name: 'enabled', label: () => i18n._(/* i18n */ { id: 'Enabled' }), kind: { kind: 'bool' } },
-      { name: 'tx_fee', label: () => i18n._(/* i18n */ { id: 'Transaction Fee' }), kind: { kind: 'mojo-to-xch' } },
-      { name: 'min_amount', label: () => i18n._(/* i18n */ { id: 'Min Amount' }), kind: { kind: 'mojo-to-xch' } },
+      { name: 'enabled', label: () => i18n._(/* i18n */ { id: 'Enabled' }), type: 'bool' },
+      { name: 'tx_fee', label: () => i18n._(/* i18n */ { id: 'Transaction Fee' }), type: 'mojo-to-xch' },
+      { name: 'min_amount', label: () => i18n._(/* i18n */ { id: 'Min Amount' }), type: 'mojo-to-xch' },
     ],
   },
 
@@ -261,10 +267,10 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     message: () => i18n._(/* i18n */ { id: 'Are you sure you want to create a new wallet?' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Create' }),
     params: [
-      { name: 'wallet_name', label: () => i18n._(/* i18n */ { id: 'Name' }), kind: { kind: 'text' } },
-      { name: 'wallet_type', label: () => i18n._(/* i18n */ { id: 'Type' }), kind: { kind: 'text' } },
-      { name: 'asset_id', label: () => i18n._(/* i18n */ { id: 'Asset ID' }), kind: { kind: 'text' } },
-      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), kind: { kind: 'mojo-to-xch' } },
+      { name: 'wallet_name', label: () => i18n._(/* i18n */ { id: 'Name' }), type: 'text' },
+      { name: 'wallet_type', label: () => i18n._(/* i18n */ { id: 'Type' }), type: 'text' },
+      { name: 'asset_id', label: () => i18n._(/* i18n */ { id: 'Asset ID' }), type: 'text' },
+      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
     ],
   },
 
@@ -273,7 +279,7 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     message: () => i18n._(/* i18n */ { id: 'Are you sure you want to delete this wallet?' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Delete' }),
     destructive: true,
-    params: [{ name: 'fingerprint', label: () => i18n._(/* i18n */ { id: 'Fingerprint' }), kind: { kind: 'text' } }],
+    params: [{ name: 'fingerprint', label: () => i18n._(/* i18n */ { id: 'Fingerprint' }), type: 'text' }],
   },
 
   'chia_wallet.set_payout_instructions': {
@@ -284,7 +290,7 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
       {
         name: 'payout_instructions',
         label: () => i18n._(/* i18n */ { id: 'Payout Instructions' }),
-        kind: { kind: 'text' },
+        type: 'text',
       },
     ],
   },
@@ -293,19 +299,19 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     title: () => i18n._(/* i18n */ { id: 'Confirm Delete Plot' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Delete' }),
     destructive: true,
-    params: [{ name: 'filename', label: () => i18n._(/* i18n */ { id: 'Filename' }), kind: { kind: 'text' } }],
+    params: [{ name: 'filename', label: () => i18n._(/* i18n */ { id: 'Filename' }), type: 'text' }],
   },
 
   'chia_harvester.add_plot_directory': {
     title: () => i18n._(/* i18n */ { id: 'Confirm Add Plot Directory' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Add' }),
-    params: [{ name: 'dirname', label: () => i18n._(/* i18n */ { id: 'Directory' }), kind: { kind: 'text' } }],
+    params: [{ name: 'dirname', label: () => i18n._(/* i18n */ { id: 'Directory' }), type: 'text' }],
   },
 
   'chia_harvester.remove_plot_directory': {
     title: () => i18n._(/* i18n */ { id: 'Confirm Remove Plot Directory' }),
     destructive: true,
-    params: [{ name: 'dirname', label: () => i18n._(/* i18n */ { id: 'Directory' }), kind: { kind: 'text' } }],
+    params: [{ name: 'dirname', label: () => i18n._(/* i18n */ { id: 'Directory' }), type: 'text' }],
   },
 
   'chia_full_node.open_connection': {
@@ -313,8 +319,8 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     message: () => i18n._(/* i18n */ { id: 'Are you sure you want to open a connection to the specified node?' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Connect' }),
     params: [
-      { name: 'host', label: () => i18n._(/* i18n */ { id: 'Host' }), kind: { kind: 'text' } },
-      { name: 'port', label: () => i18n._(/* i18n */ { id: 'Port' }), kind: { kind: 'text' } },
+      { name: 'host', label: () => i18n._(/* i18n */ { id: 'Host' }), type: 'text' },
+      { name: 'port', label: () => i18n._(/* i18n */ { id: 'Port' }), type: 'text' },
     ],
   },
 
@@ -340,7 +346,7 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
       {
         name: 'payout_instructions',
         label: () => i18n._(/* i18n */ { id: 'Payout Instructions' }),
-        kind: { kind: 'text' },
+        type: 'text',
       },
     ],
   },
@@ -356,7 +362,7 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     title: () => i18n._(/* i18n */ { id: 'Confirm Log In' }),
     message: () => i18n._(/* i18n */ { id: 'Are you sure you want to switch to this wallet key?' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Log In' }),
-    params: [{ name: 'fingerprint', label: () => i18n._(/* i18n */ { id: 'Fingerprint' }), kind: { kind: 'text' } }],
+    params: [{ name: 'fingerprint', label: () => i18n._(/* i18n */ { id: 'Fingerprint' }), type: 'text' }],
   },
 
   // ── transactions ────────────────────────────────────────────────────────────
@@ -365,8 +371,8 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm this clawback spend.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Send' }),
     params: [
-      { name: 'coin_ids', label: () => i18n._(/* i18n */ { id: 'Coin Ids' }), kind: { kind: 'json' } },
-      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), kind: { kind: 'mojo-to-xch' } },
+      { name: 'coin_ids', label: () => i18n._(/* i18n */ { id: 'Coin Ids' }), type: 'json' },
+      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
     ],
   },
 
@@ -375,10 +381,11 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm pushing this transaction bundle.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Push' }),
     params: [
-      { name: 'transactions', label: () => i18n._(/* i18n */ { id: 'Transactions' }), kind: { kind: 'json' } },
-      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), kind: { kind: 'mojo-to-xch' } },
-      { name: 'push', label: () => i18n._(/* i18n */ { id: 'Push' }), kind: { kind: 'bool' } },
-      { name: 'sign', label: () => i18n._(/* i18n */ { id: 'Sign' }), kind: { kind: 'bool' } },
+      { name: 'transactions', label: () => i18n._(/* i18n */ { id: 'Transactions' }), type: 'json' },
+      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
+      { name: 'push', label: () => i18n._(/* i18n */ { id: 'Push' }), type: 'bool' },
+      { name: 'sign', label: () => i18n._(/* i18n */ { id: 'Sign' }), type: 'bool' },
+      { name: 'allow_unsynced', label: () => i18n._(/* i18n */ { id: 'Allow Unsynced' }), type: 'bool' },
     ],
   },
 
@@ -387,7 +394,7 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm pushing this transaction.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Push' }),
     params: [
-      { name: 'spend_bundle', label: () => i18n._(/* i18n */ { id: 'Spend Bundle' }), kind: { kind: 'json' } },
+      { name: 'spend_bundle', label: () => i18n._(/* i18n */ { id: 'Spend Bundle' }), type: 'json' },
     ],
   },
 
@@ -397,24 +404,24 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm this NFT mint.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Mint' }),
     params: [
-      { name: 'wallet_id', label: () => i18n._(/* i18n */ { id: 'Wallet Id' }), kind: { kind: 'text' } },
-      { name: 'royalty_address', label: () => i18n._(/* i18n */ { id: 'Royalty Address' }), kind: { kind: 'text' } },
+      { name: 'wallet_id', label: () => i18n._(/* i18n */ { id: 'Wallet Id' }), type: 'text' },
+      { name: 'royalty_address', label: () => i18n._(/* i18n */ { id: 'Royalty Address' }), type: 'text' },
       {
         name: 'royalty_percentage',
         label: () => i18n._(/* i18n */ { id: 'Royalty Percentage' }),
-        kind: { kind: 'text' },
+        type: 'text',
       },
-      { name: 'target_address', label: () => i18n._(/* i18n */ { id: 'Target Address' }), kind: { kind: 'text' } },
-      { name: 'uris', label: () => i18n._(/* i18n */ { id: 'URIs' }), kind: { kind: 'json' } },
-      { name: 'hash', label: () => i18n._(/* i18n */ { id: 'Hash' }), kind: { kind: 'text' } },
-      { name: 'meta_uris', label: () => i18n._(/* i18n */ { id: 'Meta URIs' }), kind: { kind: 'json' } },
-      { name: 'meta_hash', label: () => i18n._(/* i18n */ { id: 'Meta Hash' }), kind: { kind: 'text' } },
-      { name: 'license_uris', label: () => i18n._(/* i18n */ { id: 'License URIs' }), kind: { kind: 'json' } },
-      { name: 'license_hash', label: () => i18n._(/* i18n */ { id: 'License Hash' }), kind: { kind: 'text' } },
-      { name: 'edition_number', label: () => i18n._(/* i18n */ { id: 'Edition Number' }), kind: { kind: 'text' } },
-      { name: 'edition_total', label: () => i18n._(/* i18n */ { id: 'Edition Total' }), kind: { kind: 'text' } },
-      { name: 'did_id', label: () => i18n._(/* i18n */ { id: 'DID Id' }), kind: { kind: 'text' } },
-      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), kind: { kind: 'mojo-to-xch' } },
+      { name: 'target_address', label: () => i18n._(/* i18n */ { id: 'Target Address' }), type: 'text' },
+      { name: 'uris', label: () => i18n._(/* i18n */ { id: 'URIs' }), type: 'json' },
+      { name: 'hash', label: () => i18n._(/* i18n */ { id: 'Hash' }), type: 'text' },
+      { name: 'meta_uris', label: () => i18n._(/* i18n */ { id: 'Meta URIs' }), type: 'json' },
+      { name: 'meta_hash', label: () => i18n._(/* i18n */ { id: 'Meta Hash' }), type: 'text' },
+      { name: 'license_uris', label: () => i18n._(/* i18n */ { id: 'License URIs' }), type: 'json' },
+      { name: 'license_hash', label: () => i18n._(/* i18n */ { id: 'License Hash' }), type: 'text' },
+      { name: 'edition_number', label: () => i18n._(/* i18n */ { id: 'Edition Number' }), type: 'text' },
+      { name: 'edition_total', label: () => i18n._(/* i18n */ { id: 'Edition Total' }), type: 'text' },
+      { name: 'did_id', label: () => i18n._(/* i18n */ { id: 'DID Id' }), type: 'text' },
+      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
     ],
   },
 
@@ -423,23 +430,46 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm this bulk NFT mint.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Mint' }),
     params: [
-      { name: 'wallet_id', label: () => i18n._(/* i18n */ { id: 'Wallet Id' }), kind: { kind: 'text' } },
-      { name: 'metadata_list', label: () => i18n._(/* i18n */ { id: 'Metadata List' }), kind: { kind: 'json' } },
+      { name: 'wallet_id', label: () => i18n._(/* i18n */ { id: 'Wallet Id' }), type: 'text' },
+      { name: 'metadata_list', label: () => i18n._(/* i18n */ { id: 'Metadata List' }), type: 'json' },
       {
         name: 'royalty_percentage',
         label: () => i18n._(/* i18n */ { id: 'Royalty Percentage' }),
-        kind: { kind: 'text' },
+        type: 'text',
       },
-      { name: 'royalty_address', label: () => i18n._(/* i18n */ { id: 'Royalty Address' }), kind: { kind: 'text' } },
-      { name: 'target_list', label: () => i18n._(/* i18n */ { id: 'Target List' }), kind: { kind: 'json' } },
+      { name: 'royalty_address', label: () => i18n._(/* i18n */ { id: 'Royalty Address' }), type: 'text' },
+      { name: 'target_list', label: () => i18n._(/* i18n */ { id: 'Target List' }), type: 'json' },
       {
         name: 'mint_number_start',
         label: () => i18n._(/* i18n */ { id: 'Mint Start Number' }),
-        kind: { kind: 'text' },
+        type: 'text',
       },
-      { name: 'mint_total', label: () => i18n._(/* i18n */ { id: 'Mint Total' }), kind: { kind: 'text' } },
-      { name: 'mint_from_did', label: () => i18n._(/* i18n */ { id: 'Mint From DID' }), kind: { kind: 'bool' } },
-      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), kind: { kind: 'mojo-to-xch' } },
+      { name: 'mint_total', label: () => i18n._(/* i18n */ { id: 'Mint Total' }), type: 'text' },
+      { name: 'xch_coins', label: () => i18n._(/* i18n */ { id: 'XCH Coins' }), type: 'json' },
+      {
+        name: 'xch_change_target',
+        label: () => i18n._(/* i18n */ { id: 'XCH Change Target' }),
+        type: 'text',
+      },
+      {
+        name: 'new_innerpuzhash',
+        label: () => i18n._(/* i18n */ { id: 'New Inner Puzzle Hash' }),
+        type: 'json',
+      },
+      {
+        name: 'new_p_2_puzhash',
+        label: () => i18n._(/* i18n */ { id: 'New P2 Puzzle Hash' }),
+        type: 'text',
+      },
+      { name: 'did_coin', label: () => i18n._(/* i18n */ { id: 'DID Coin' }), type: 'json' },
+      {
+        name: 'did_lineage_parent',
+        label: () => i18n._(/* i18n */ { id: 'DID Lineage Parent' }),
+        type: 'text',
+      },
+      { name: 'mint_from_did', label: () => i18n._(/* i18n */ { id: 'Mint From DID' }), type: 'bool' },
+      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
+      { name: 'reuse_puzhash', label: () => i18n._(/* i18n */ { id: 'Reuse Puzzle Hash' }), type: 'bool' },
     ],
   },
 
@@ -448,7 +478,7 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     title: () => i18n._(/* i18n */ { id: 'Confirm Find Lost DID' }),
     message: () => i18n._(/* i18n */ { id: 'Are you sure you want to recover this DID?' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Recover' }),
-    params: [{ name: 'coin_id', label: () => i18n._(/* i18n */ { id: 'Coin Id' }), kind: { kind: 'text' } }],
+    params: [{ name: 'coin_id', label: () => i18n._(/* i18n */ { id: 'Coin Id' }), type: 'text' }],
   },
 
   'chia_wallet.did_update_metadata': {
@@ -456,10 +486,10 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm this DID metadata update.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Update' }),
     params: [
-      { name: 'wallet_id', label: () => i18n._(/* i18n */ { id: 'Wallet Id' }), kind: { kind: 'text' } },
-      { name: 'metadata', label: () => i18n._(/* i18n */ { id: 'DID Metadata' }), kind: { kind: 'json' } },
-      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), kind: { kind: 'mojo-to-xch' } },
-      { name: 'reuse_puzhash', label: () => i18n._(/* i18n */ { id: 'Reuse Puzzle Hash' }), kind: { kind: 'bool' } },
+      { name: 'wallet_id', label: () => i18n._(/* i18n */ { id: 'Wallet Id' }), type: 'text' },
+      { name: 'metadata', label: () => i18n._(/* i18n */ { id: 'DID Metadata' }), type: 'json' },
+      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
+      { name: 'reuse_puzhash', label: () => i18n._(/* i18n */ { id: 'Reuse Puzzle Hash' }), type: 'bool' },
     ],
   },
 
@@ -468,15 +498,15 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm this DID recovery list update.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Update' }),
     params: [
-      { name: 'wallet_id', label: () => i18n._(/* i18n */ { id: 'Wallet Id' }), kind: { kind: 'text' } },
-      { name: 'new_list', label: () => i18n._(/* i18n */ { id: 'New Recovery List' }), kind: { kind: 'json' } },
+      { name: 'wallet_id', label: () => i18n._(/* i18n */ { id: 'Wallet Id' }), type: 'text' },
+      { name: 'new_list', label: () => i18n._(/* i18n */ { id: 'New Recovery List' }), type: 'json' },
       {
         name: 'num_verifications_required',
         label: () => i18n._(/* i18n */ { id: 'Verifications Required' }),
-        kind: { kind: 'text' },
+        type: 'text',
       },
-      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), kind: { kind: 'mojo-to-xch' } },
-      { name: 'reuse_puzhash', label: () => i18n._(/* i18n */ { id: 'Reuse Puzzle Hash' }), kind: { kind: 'bool' } },
+      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
+      { name: 'reuse_puzhash', label: () => i18n._(/* i18n */ { id: 'Reuse Puzzle Hash' }), type: 'bool' },
     ],
   },
 
@@ -485,8 +515,8 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm renaming this DID wallet.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Set' }),
     params: [
-      { name: 'wallet_id', label: () => i18n._(/* i18n */ { id: 'Wallet Id' }), kind: { kind: 'text' } },
-      { name: 'name', label: () => i18n._(/* i18n */ { id: 'Name' }), kind: { kind: 'text' } },
+      { name: 'wallet_id', label: () => i18n._(/* i18n */ { id: 'Wallet Id' }), type: 'text' },
+      { name: 'name', label: () => i18n._(/* i18n */ { id: 'Name' }), type: 'text' },
     ],
   },
 
@@ -496,16 +526,16 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm this verifiable credential spend.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Send' }),
     params: [
-      { name: 'vc_id', label: () => i18n._(/* i18n */ { id: 'VC Id' }), kind: { kind: 'text' } },
-      { name: 'new_puzhash', label: () => i18n._(/* i18n */ { id: 'New Puzzle Hash' }), kind: { kind: 'text' } },
-      { name: 'new_proof_hash', label: () => i18n._(/* i18n */ { id: 'New Proof Hash' }), kind: { kind: 'text' } },
+      { name: 'vc_id', label: () => i18n._(/* i18n */ { id: 'VC Id' }), type: 'text' },
+      { name: 'new_puzhash', label: () => i18n._(/* i18n */ { id: 'New Puzzle Hash' }), type: 'text' },
+      { name: 'new_proof_hash', label: () => i18n._(/* i18n */ { id: 'New Proof Hash' }), type: 'text' },
       {
         name: 'provider_inner_puzhash',
         label: () => i18n._(/* i18n */ { id: 'Provider Inner Puzzle Hash' }),
-        kind: { kind: 'text' },
+        type: 'text',
       },
-      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), kind: { kind: 'mojo-to-xch' } },
-      { name: 'reuse_puzhash', label: () => i18n._(/* i18n */ { id: 'Reuse Puzzle Hash' }), kind: { kind: 'bool' } },
+      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
+      { name: 'reuse_puzhash', label: () => i18n._(/* i18n */ { id: 'Reuse Puzzle Hash' }), type: 'bool' },
     ],
   },
 
@@ -514,7 +544,7 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     message: () =>
       i18n._(/* i18n */ { id: 'Please carefully review and confirm adding proofs to this verifiable credential.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Add' }),
-    params: [{ name: 'proofs', label: () => i18n._(/* i18n */ { id: 'Proofs' }), kind: { kind: 'json' } }],
+    params: [{ name: 'proofs', label: () => i18n._(/* i18n */ { id: 'Proofs' }), type: 'json' }],
   },
 
   'chia_wallet.vc_revoke': {
@@ -523,8 +553,8 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     confirmLabel: () => i18n._(/* i18n */ { id: 'Revoke' }),
     destructive: true,
     params: [
-      { name: 'vc_parent_id', label: () => i18n._(/* i18n */ { id: 'Parent Coin Id' }), kind: { kind: 'text' } },
-      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), kind: { kind: 'mojo-to-xch' } },
+      { name: 'vc_parent_id', label: () => i18n._(/* i18n */ { id: 'Parent Coin Id' }), type: 'text' },
+      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
     ],
   },
 
@@ -534,8 +564,8 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm creating this data store.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Create' }),
     params: [
-      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), kind: { kind: 'mojo-to-xch' } },
-      { name: 'verbose', label: () => i18n._(/* i18n */ { id: 'Verbose' }), kind: { kind: 'bool' } },
+      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
+      { name: 'verbose', label: () => i18n._(/* i18n */ { id: 'Verbose' }), type: 'bool' },
     ],
   },
 
@@ -544,10 +574,10 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm this data store update.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Update' }),
     params: [
-      { name: 'id', label: () => i18n._(/* i18n */ { id: 'Store Id' }), kind: { kind: 'text' } },
-      { name: 'changelist', label: () => i18n._(/* i18n */ { id: 'Changelist' }), kind: { kind: 'json' } },
-      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), kind: { kind: 'mojo-to-xch' } },
-      { name: 'submit_on_chain', label: () => i18n._(/* i18n */ { id: 'Submit On Chain' }), kind: { kind: 'bool' } },
+      { name: 'id', label: () => i18n._(/* i18n */ { id: 'Store Id' }), type: 'text' },
+      { name: 'changelist', label: () => i18n._(/* i18n */ { id: 'Changelist' }), type: 'json' },
+      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
+      { name: 'submit_on_chain', label: () => i18n._(/* i18n */ { id: 'Submit On Chain' }), type: 'bool' },
     ],
   },
 
@@ -556,10 +586,10 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm this data store insert.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Insert' }),
     params: [
-      { name: 'id', label: () => i18n._(/* i18n */ { id: 'Store Id' }), kind: { kind: 'text' } },
-      { name: 'key', label: () => i18n._(/* i18n */ { id: 'Key' }), kind: { kind: 'text' } },
-      { name: 'value', label: () => i18n._(/* i18n */ { id: 'Value' }), kind: { kind: 'text' } },
-      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), kind: { kind: 'mojo-to-xch' } },
+      { name: 'id', label: () => i18n._(/* i18n */ { id: 'Store Id' }), type: 'text' },
+      { name: 'key', label: () => i18n._(/* i18n */ { id: 'Key' }), type: 'text' },
+      { name: 'value', label: () => i18n._(/* i18n */ { id: 'Value' }), type: 'text' },
+      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
     ],
   },
 
@@ -569,9 +599,9 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     confirmLabel: () => i18n._(/* i18n */ { id: 'Delete' }),
     destructive: true,
     params: [
-      { name: 'id', label: () => i18n._(/* i18n */ { id: 'Store Id' }), kind: { kind: 'text' } },
-      { name: 'key', label: () => i18n._(/* i18n */ { id: 'Key' }), kind: { kind: 'text' } },
-      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), kind: { kind: 'mojo-to-xch' } },
+      { name: 'id', label: () => i18n._(/* i18n */ { id: 'Store Id' }), type: 'text' },
+      { name: 'key', label: () => i18n._(/* i18n */ { id: 'Key' }), type: 'text' },
+      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
     ],
   },
 
@@ -580,10 +610,10 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm adding this mirror.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Add' }),
     params: [
-      { name: 'id', label: () => i18n._(/* i18n */ { id: 'Store Id' }), kind: { kind: 'text' } },
-      { name: 'urls', label: () => i18n._(/* i18n */ { id: 'URLs' }), kind: { kind: 'json' } },
-      { name: 'amount', label: () => i18n._(/* i18n */ { id: 'Amount' }), kind: { kind: 'text' } },
-      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), kind: { kind: 'mojo-to-xch' } },
+      { name: 'id', label: () => i18n._(/* i18n */ { id: 'Store Id' }), type: 'text' },
+      { name: 'urls', label: () => i18n._(/* i18n */ { id: 'URLs' }), type: 'json' },
+      { name: 'amount', label: () => i18n._(/* i18n */ { id: 'Amount' }), type: 'text' },
+      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
     ],
   },
 
@@ -593,8 +623,8 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     confirmLabel: () => i18n._(/* i18n */ { id: 'Delete' }),
     destructive: true,
     params: [
-      { name: 'coin_id', label: () => i18n._(/* i18n */ { id: 'Coin Id' }), kind: { kind: 'text' } },
-      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), kind: { kind: 'mojo-to-xch' } },
+      { name: 'coin_id', label: () => i18n._(/* i18n */ { id: 'Coin Id' }), type: 'text' },
+      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
     ],
   },
 
@@ -603,8 +633,8 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     message: () => i18n._(/* i18n */ { id: 'Please review and confirm this subscription.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Subscribe' }),
     params: [
-      { name: 'id', label: () => i18n._(/* i18n */ { id: 'Store Id' }), kind: { kind: 'text' } },
-      { name: 'urls', label: () => i18n._(/* i18n */ { id: 'URLs' }), kind: { kind: 'json' } },
+      { name: 'id', label: () => i18n._(/* i18n */ { id: 'Store Id' }), type: 'text' },
+      { name: 'urls', label: () => i18n._(/* i18n */ { id: 'URLs' }), type: 'json' },
     ],
   },
 
@@ -614,8 +644,8 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     confirmLabel: () => i18n._(/* i18n */ { id: 'Unsubscribe' }),
     destructive: true,
     params: [
-      { name: 'id', label: () => i18n._(/* i18n */ { id: 'Store Id' }), kind: { kind: 'text' } },
-      { name: 'retain', label: () => i18n._(/* i18n */ { id: 'Retain' }), kind: { kind: 'bool' } },
+      { name: 'id', label: () => i18n._(/* i18n */ { id: 'Store Id' }), type: 'text' },
+      { name: 'retain', label: () => i18n._(/* i18n */ { id: 'Retain' }), type: 'bool' },
     ],
   },
 
@@ -625,8 +655,8 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     confirmLabel: () => i18n._(/* i18n */ { id: 'Remove' }),
     destructive: true,
     params: [
-      { name: 'id', label: () => i18n._(/* i18n */ { id: 'Store Id' }), kind: { kind: 'text' } },
-      { name: 'urls', label: () => i18n._(/* i18n */ { id: 'URLs' }), kind: { kind: 'json' } },
+      { name: 'id', label: () => i18n._(/* i18n */ { id: 'Store Id' }), type: 'text' },
+      { name: 'urls', label: () => i18n._(/* i18n */ { id: 'URLs' }), type: 'json' },
     ],
   },
 
@@ -635,9 +665,9 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     message: () => i18n._(/* i18n */ { id: 'Please review and confirm syncing missing files.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Sync' }),
     params: [
-      { name: 'ids', label: () => i18n._(/* i18n */ { id: 'Store Ids' }), kind: { kind: 'json' } },
-      { name: 'overwrite', label: () => i18n._(/* i18n */ { id: 'Overwrite' }), kind: { kind: 'bool' } },
-      { name: 'foldername', label: () => i18n._(/* i18n */ { id: 'Folder Name' }), kind: { kind: 'text' } },
+      { name: 'ids', label: () => i18n._(/* i18n */ { id: 'Store Ids' }), type: 'json' },
+      { name: 'overwrite', label: () => i18n._(/* i18n */ { id: 'Overwrite' }), type: 'bool' },
+      { name: 'foldername', label: () => i18n._(/* i18n */ { id: 'Folder Name' }), type: 'text' },
     ],
   },
 
@@ -652,7 +682,7 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     message: () => i18n._(/* i18n */ { id: 'Are you sure you want to clear pending roots for this store?' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Clear' }),
     destructive: true,
-    params: [{ name: 'store_id', label: () => i18n._(/* i18n */ { id: 'Store Id' }), kind: { kind: 'text' } }],
+    params: [{ name: 'store_id', label: () => i18n._(/* i18n */ { id: 'Store Id' }), type: 'text' }],
   },
 
   'chia_data_layer.get_ancestors': {
@@ -660,8 +690,8 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     message: () => i18n._(/* i18n */ { id: 'Please review and confirm this query.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Query' }),
     params: [
-      { name: 'id', label: () => i18n._(/* i18n */ { id: 'Store Id' }), kind: { kind: 'text' } },
-      { name: 'hash', label: () => i18n._(/* i18n */ { id: 'Hash' }), kind: { kind: 'text' } },
+      { name: 'id', label: () => i18n._(/* i18n */ { id: 'Store Id' }), type: 'text' },
+      { name: 'hash', label: () => i18n._(/* i18n */ { id: 'Hash' }), type: 'text' },
     ],
   },
 
@@ -677,9 +707,9 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm this DataLayer offer.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Create' }),
     params: [
-      { name: 'maker', label: () => i18n._(/* i18n */ { id: 'Maker' }), kind: { kind: 'json' } },
-      { name: 'taker', label: () => i18n._(/* i18n */ { id: 'Taker' }), kind: { kind: 'json' } },
-      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), kind: { kind: 'mojo-to-xch' } },
+      { name: 'maker', label: () => i18n._(/* i18n */ { id: 'Maker' }), type: 'json' },
+      { name: 'taker', label: () => i18n._(/* i18n */ { id: 'Taker' }), type: 'json' },
+      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
     ],
   },
 
@@ -688,8 +718,8 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm taking this DataLayer offer.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Accept' }),
     params: [
-      { name: 'offer', label: () => i18n._(/* i18n */ { id: 'Offer' }), kind: { kind: 'json' } },
-      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), kind: { kind: 'mojo-to-xch' } },
+      { name: 'offer', label: () => i18n._(/* i18n */ { id: 'Offer' }), type: 'json' },
+      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
     ],
   },
 
@@ -699,9 +729,9 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     confirmLabel: () => i18n._(/* i18n */ { id: 'Cancel' }),
     destructive: true,
     params: [
-      { name: 'trade_id', label: () => i18n._(/* i18n */ { id: 'Trade Id' }), kind: { kind: 'text' } },
-      { name: 'secure', label: () => i18n._(/* i18n */ { id: 'Secure' }), kind: { kind: 'bool' } },
-      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), kind: { kind: 'mojo-to-xch' } },
+      { name: 'trade_id', label: () => i18n._(/* i18n */ { id: 'Trade Id' }), type: 'text' },
+      { name: 'secure', label: () => i18n._(/* i18n */ { id: 'Secure' }), type: 'bool' },
+      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
     ],
   },
 
@@ -710,8 +740,8 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     message: () => i18n._(/* i18n */ { id: 'Please review and confirm this offer verification.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Verify' }),
     params: [
-      { name: 'offer', label: () => i18n._(/* i18n */ { id: 'Offer' }), kind: { kind: 'json' } },
-      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), kind: { kind: 'mojo-to-xch' } },
+      { name: 'offer', label: () => i18n._(/* i18n */ { id: 'Offer' }), type: 'json' },
+      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
     ],
   },
 
@@ -723,7 +753,7 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     // WC's `createNewRemoteWallet` declares no fee/name — only an
     // `allowUnsynced` toggle. Reflect what the dapp actually sends.
     params: [
-      { name: 'allow_unsynced', label: () => i18n._(/* i18n */ { id: 'Allow Unsynced' }), kind: { kind: 'bool' } },
+      { name: 'allow_unsynced', label: () => i18n._(/* i18n */ { id: 'Allow Unsynced' }), type: 'bool' },
     ],
   },
 
@@ -732,8 +762,8 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     message: () => i18n._(/* i18n */ { id: 'Please review and confirm registering these remote coins.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Register' }),
     params: [
-      { name: 'wallet_id', label: () => i18n._(/* i18n */ { id: 'Wallet Id' }), kind: { kind: 'text' } },
-      { name: 'coin_ids', label: () => i18n._(/* i18n */ { id: 'Coin Ids' }), kind: { kind: 'json' } },
+      { name: 'wallet_id', label: () => i18n._(/* i18n */ { id: 'Wallet Id' }), type: 'text' },
+      { name: 'coin_ids', label: () => i18n._(/* i18n */ { id: 'Coin Ids' }), type: 'json' },
     ],
   },
 
@@ -742,14 +772,14 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     title: () => i18n._(/* i18n */ { id: 'Confirm Get DID Recovery Information' }),
     message: () => i18n._(/* i18n */ { id: 'Please review and confirm this query.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Query' }),
-    params: [{ name: 'wallet_id', label: () => i18n._(/* i18n */ { id: 'Wallet Id' }), kind: { kind: 'text' } }],
+    params: [{ name: 'wallet_id', label: () => i18n._(/* i18n */ { id: 'Wallet Id' }), type: 'text' }],
   },
 
   'daemon.get_public_key': {
     title: () => i18n._(/* i18n */ { id: 'Confirm Get Public Key' }),
     message: () => i18n._(/* i18n */ { id: 'An app is requesting access to a wallet public key.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Share' }),
-    params: [{ name: 'fingerprint', label: () => i18n._(/* i18n */ { id: 'Fingerprint' }), kind: { kind: 'text' } }],
+    params: [{ name: 'fingerprint', label: () => i18n._(/* i18n */ { id: 'Fingerprint' }), type: 'text' }],
   },
 };
 

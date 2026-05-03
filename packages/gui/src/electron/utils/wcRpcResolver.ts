@@ -53,6 +53,14 @@ const WC_COMMAND_OVERRIDES: Record<string, string> = {
   addVCProofs: 'vc_add_proofs',
   getProofsForRoot: 'vc_get_proofs_for_root',
   revokeVC: 'vc_revoke',
+
+  // DataLayer — WC names carry a "DataLayer" prefix to disambiguate from the
+  // wallet's offers, but the daemon RPCs (under destination=chia_data_layer)
+  // don't repeat it.
+  makeDataLayerOffer: 'make_offer',
+  takeDataLayerOffer: 'take_offer',
+  cancelDataLayerOffer: 'cancel_offer',
+  getDataLayerSyncStatus: 'get_sync_status',
 };
 
 function camelToSnake(name: string): string {

@@ -10,7 +10,7 @@ import { type EnrichmentDisplay, lookupCat } from '../../utils/dappEnrichment';
 import mojoToCatLocaleString from '../../utils/mojoToCATLocaleString';
 import mojoToChiaLocaleString from '../../utils/mojoToChiaLocaleString';
 
-import { getConfirmSchema, resolveTexts, type ParamKind } from './confirmSchemas';
+import { getConfirmSchema, resolveTexts, type ParamSchema } from './confirmSchemas';
 
 export type ConfirmRenderContext = {
   networkPrefix?: string;
@@ -53,18 +53,18 @@ function isPresent(raw: unknown): boolean {
 }
 
 async function formatParamValue(
-  kind: ParamKind,
+  param: ParamSchema,
   raw: unknown,
   data: Record<string, unknown>,
   ctx: ConfirmRenderContext,
 ): Promise<string> {
-  switch (kind.kind) {
+  switch (param.type) {
     case 'text':
       return String(raw);
     case 'mojo-to-xch':
       return formatMojoXch(raw, ctx.networkPrefix);
     case 'mojo-to-cat':
-      return formatMojoCat(raw, data, kind.symbolFrom);
+      return formatMojoCat(raw, data, param.symbolFrom);
     case 'bool':
       return raw ? i18n._(/* i18n */ { id: 'Yes' }) : i18n._(/* i18n */ { id: 'No' });
     case 'json':
@@ -74,12 +74,12 @@ async function formatParamValue(
         return String(raw);
       }
     default: {
-      // Exhaustiveness check — if a new ParamKind is added to the union and
-      // not handled above, this assignment fails to compile because `kind`
+      // Exhaustiveness check — if a new ParamType is added to the union and
+      // not handled above, this assignment fails to compile because `param`
       // is no longer narrowed to `never`. Better error message than relying
       // on the missing-trailing-return inference.
-      const exhaustive: never = kind;
-      throw new Error(`Unhandled param kind: ${JSON.stringify(exhaustive)}`);
+      const exhaustive: never = param;
+      throw new Error(`Unhandled param type: ${JSON.stringify(exhaustive)}`);
     }
   }
 }
@@ -96,7 +96,7 @@ export async function renderConfirm(
       schema.params.map(async (param) => {
         const raw = data[param.name];
         if (!isPresent(raw)) return undefined;
-        const value = await formatParamValue(param.kind, raw, data, ctx);
+        const value = await formatParamValue(param, raw, data, ctx);
         return { field: param.name, label: param.label(), value } satisfies ConfirmRow;
       }),
     ),

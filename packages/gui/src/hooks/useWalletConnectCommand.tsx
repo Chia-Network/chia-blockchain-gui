@@ -171,7 +171,7 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
       }
     }
 
-    const { service, params: definitionParams = [], serviceCommand } = definition;
+    const { service, params: definitionParams = [] } = definition;
 
     log('Confirm arguments', definitionParams);
 
@@ -264,9 +264,14 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
       const found = keys?.find((k: { fingerprint: number; label?: string | null }) => k.fingerprint === fp);
       return found?.label ?? undefined;
     };
+    // `serviceCommand` is a renderer-only override for RTK Query endpoint
+    // names (used to disambiguate `deleteKey` between wallet and DataLayer
+    // services); it doesn't correspond to the daemon RPC. Always send the
+    // canonical WC `command` so main's `resolveDaemonRpc` sees a consistent
+    // input.
     const result = await window.permissionsAPI.dispatchAsPair({
       destination: service,
-      wcCommand: serviceCommand ?? command,
+      wcCommand: command,
       data: values,
       topic: pair.topic,
       fingerprint: {
