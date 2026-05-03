@@ -1,9 +1,4 @@
-import api, {
-  store,
-  useGetKeysQuery,
-  useGetLoggedInFingerprintQuery,
-  useGetOfferSummaryMutation,
-} from '@chia-network/api-react';
+import api, { store, useGetKeysQuery, useGetLoggedInFingerprintQuery } from '@chia-network/api-react';
 import { useOpenDialog, useAuth } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import debug from 'debug';
@@ -15,26 +10,13 @@ import type WalletConnectCommandParam from '../@types/WalletConnectCommandParam'
 import WalletConnectRequestPermissionsConfirmDialog from '../components/walletConnect/WalletConnectRequestPermissionsConfirmDialog';
 import NotificationType from '../constants/NotificationType';
 import walletConnectCommands from '../constants/WalletConnectCommands';
-import {
-  type DappCommandDisplay,
-  buildCatDisplay,
-  buildCreateOfferDisplay,
-  buildTakeOfferDisplay,
-  enrichOfferNfts,
-  nftIdToCoinId,
-} from '../util/dappCommandDisplay';
 import prepareWalletConnectCommand from '../util/prepareWalletConnectCommand';
 import waitForWalletSync from '../util/waitForWalletSync';
 
-import useAssetIdName from './useAssetIdName';
 import useWalletConnectPairs from './useWalletConnectPairs';
 import useWalletConnectPreferences from './useWalletConnectPreferences';
 
 const log = debug('chia-gui:walletConnectCommand');
-
-function camelToSnake(name: string): string {
-  return name.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
-}
 
 type UseWalletConnectCommandOptions = {
   onNotification?: (notification: Notification) => void;
@@ -93,8 +75,6 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
   const { logIn } = useAuth();
   const { data: currentFingerprint, isLoading: isLoadingLoggedInFingerprint } = useGetLoggedInFingerprintQuery();
   const { getPairBySession } = useWalletConnectPairs();
-  const { lookupByWalletId } = useAssetIdName();
-  const [getOfferSummary] = useGetOfferSummaryMutation();
   const { data: keys } = useGetKeysQuery({});
 
   const { allowConfirmationFingerprintChange } = useWalletConnectPreferences();
@@ -267,61 +247,18 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
       throw new Error(`Unexpected NOTIFICATION service for command ${command}`);
     }
 
-    // Build the GUI-only enrichment that main's Confirm dialog needs but
-    // can't compute itself (no Redux, no RTK cache, no asset registry inside
-    // the sandboxed dialog window). The renderer has all that state, so we
-    // resolve here and pass a pre-formatted snapshot. `display` never reaches
-    // the daemon — main consumes it for rendering and drops it on send.
-    const rpcCommand = camelToSnake(serviceCommand ?? command);
-    const display: DappCommandDisplay = {};
-    if (rpcCommand === 'cat_spend') {
-      display.cat = buildCatDisplay(values, lookupByWalletId);
-    } else if (rpcCommand === 'create_offer_for_ids') {
-      display.offer = buildCreateOfferDisplay(values, lookupByWalletId);
-    } else if (rpcCommand === 'take_offer' && typeof values.offer === 'string') {
-      try {
-        const summary = await getOfferSummary({ offerData: values.offer }).unwrap();
-        // Skip DataLayer offers — they don't carry the offered/requested map
-        // we use here. Falls back to no display, dialog still renders the rest.
-        const record = (summary as { summary?: unknown }).summary;
-        if (record && typeof record === 'object' && 'offered' in record && 'requested' in record) {
-          display.offer = buildTakeOfferDisplay(
-            record as Parameters<typeof buildTakeOfferDisplay>[0],
-            values.fee as number | string | undefined,
-          );
-        }
-      } catch (err) {
-        log('Failed to fetch offer summary for display', err);
-      }
-    }
-
-    // Enrich NFT lines with a thumbnail data URI when the local wallet knows
-    // the NFT (e.g. you're offering one you own). Best effort — NFTs not in
-    // the wallet won't resolve, the dialog just shows the bech32 id instead.
-    if (display.offer) {
-      await enrichOfferNfts(display.offer, async (line) => {
-        const coinId = nftIdToCoinId(line.nftId);
-        if (!coinId) return undefined;
-        const promise = store.dispatch(api.endpoints.getNFTInfo.initiate({ coinId }));
-        try {
-          const nft = (await promise.unwrap()) as { dataUris?: string[] } | undefined;
-          const previewUrl = nft?.dataUris?.[0];
-          return previewUrl ? { previewUrl } : undefined;
-        } catch {
-          return undefined;
-        } finally {
-          promise.unsubscribe();
-        }
-      });
-    }
-
     // Dapp commands take the IPC-direct path: main owns the principal, the
-    // permission flow, the spend commit, the wire envelope, and the response
-    // correlation. The renderer just hands over (destination, command, data,
-    // topic) and awaits the result. Crucially the renderer shares no
-    // request-dispatch infrastructure with UI calls (RTK Query / Client /
-    // WebSocketBridge), so there is no shared async context for a dapp
-    // principal to leak through onto unrelated polling.
+    // permission flow, the spend commit, the wire envelope, the response
+    // correlation, AND any per-command display enrichment shown in the
+    // Confirm dialog. The renderer hands over (destination, wcCommand,
+    // data, topic) and awaits the result. Anything the user sees at
+    // confirmation time is computed by main from `data` (via daemon RPCs
+    // for asset names, offer summaries, NFT thumbnails) so a compromised
+    // renderer can't lie about what's being asked.
+    //
+    // The daemon RPC name is *not* computed here — main owns that mapping
+    // (see `electron/utils/wcRpcResolver.ts`). The renderer just sends the
+    // WC command name (camelCase) and main resolves it.
     const labelFor = (fp?: number): string | undefined => {
       if (fp === undefined) return undefined;
       const found = keys?.find((k: { fingerprint: number; label?: string | null }) => k.fingerprint === fp);
@@ -329,9 +266,8 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
     };
     const result = await window.permissionsAPI.dispatchAsPair({
       destination: service,
-      command: rpcCommand,
+      wcCommand: serviceCommand ?? command,
       data: values,
-      display,
       topic: pair.topic,
       fingerprint: {
         requested: fingerprint,

@@ -37,10 +37,13 @@ import LinkAPI from './constants/LinkAPI';
 import PreferencesAPI from './constants/PreferencesAPI';
 import PermissionsAPI from './constants/PermissionsAPI';
 import About from './dialogs/About/About';
-import Confirm, { getTitle as getConfirmTitle } from './dialogs/Confirm/Confirm';
+import Confirm from './dialogs/Confirm/Confirm';
+import { getConfirmSchema } from './dialogs/Confirm/confirmSchemas';
+import { renderConfirm } from './dialogs/Confirm/renderConfirm';
 import KeyDetail from './dialogs/KeyDetail/KeyDetail';
 import Pair, { getTitle as getPairTitle, type PairWalletOption } from './dialogs/Pair/Pair';
 import { resolvePermission, toWire } from './permissions/permissions';
+import { resolveDaemonRpc } from './utils/wcRpcResolver';
 import { sendDappAndAwait } from './utils/webSocketBridge';
 import { getPair, listPairs, removePair, updateGrants, upsertPair } from './permissions/pairStore';
 import {
@@ -274,9 +277,9 @@ ipcMainHandle(
   PermissionsAPI.DISPATCH_AS_PAIR,
   async (payload: {
     destination: string;
-    command: string;
+    /** camelCase WC command name; main resolves to the daemon RPC. */
+    wcCommand: string;
     data?: Record<string, unknown>;
-    display?: Record<string, unknown>;
     topic: string;
     fingerprint?: {
       requested: number;
@@ -289,9 +292,17 @@ ipcMainHandle(
       throw new Error('mainWindow is empty');
     }
 
-    const { destination, command, data: argsData, display, topic, fingerprint } = payload;
+    const { destination, wcCommand, data: argsData, topic, fingerprint } = payload;
+    // The dapp's payload is forwarded verbatim — main only verifies the
+    // permission decision and shows what's about to go on the wire. If a
+    // dapp sends fields the daemon doesn't recognize, the daemon rejects
+    // and the dapp gets the error; we don't silently translate.
     const data = argsData ?? {};
     const principal: Principal = { kind: 'pair', topic };
+    // Translate the WC name to the daemon RPC name in main — the renderer
+    // doesn't carry that mapping (no `rpcCommand` field on WC entries). The
+    // resolver covers acronym cases; everything else camelCase→snake_case.
+    const command = resolveDaemonRpc(wcCommand);
     const nsCommand = `${destination}.${command}`;
 
     const decision = resolvePermission(principal, nsCommand, data);
@@ -300,14 +311,24 @@ ipcMainHandle(
     }
 
     if (decision.kind === 'prompt') {
+      // Snake-case the data once: the dialog and the daemon both read the
+      // same wire shape. Any rendered field comes from this object, so the
+      // user is consenting to exactly what gets sent.
+      const wireData = toSnakeCase(data) as Record<string, unknown>;
+      const rendered = await renderConfirm(nsCommand, wireData, { networkPrefix });
       const result = await openReactDialog(
         mainWindow,
         Confirm,
         {
           networkPrefix,
           command: nsCommand,
-          data,
-          display,
+          data: wireData,
+          title: rendered.title,
+          message: rendered.message,
+          confirmLabel: rendered.confirmLabel,
+          destructive: rendered.destructive,
+          rows: rendered.rows,
+          display: rendered.display,
           principal: decision.pair
             ? {
                 kind: 'pair' as const,
@@ -320,7 +341,7 @@ ipcMainHandle(
           fingerprint,
         },
         {
-          title: getConfirmTitle(nsCommand),
+          title: rendered.title,
           width: 640,
           height: 600,
         },
@@ -812,13 +833,21 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
           return;
         }
 
+        const onSendData = (parsedData.data ?? {}) as Record<string, unknown>;
+        const rendered = await renderConfirm(nsCommand, onSendData, { networkPrefix });
         const result = await openReactDialog(
           mainWindow,
           Confirm,
           {
             networkPrefix,
             command: nsCommand,
-            data: parsedData.data,
+            data: onSendData,
+            title: rendered.title,
+            message: rendered.message,
+            confirmLabel: rendered.confirmLabel,
+            destructive: rendered.destructive,
+            rows: rendered.rows,
+            display: rendered.display,
             principal: decision.pair
               ? {
                   kind: 'pair' as const,
@@ -830,7 +859,7 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
               : undefined,
           },
           {
-            title: getConfirmTitle(nsCommand),
+            title: rendered.title,
             width: 640,
             height: 600,
           },

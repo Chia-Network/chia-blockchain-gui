@@ -105,9 +105,10 @@ contextBridge.exposeInMainWorld(API.PERMISSIONS, {
   }) => invokeWithCustomErrors(PermissionsAPI.CHECK, payload),
   dispatchAsPair: (payload: {
     destination: string;
-    command: string;
+    /** camelCase WalletConnect command name (e.g. `spendCAT`); main resolves
+     *  to the daemon RPC name. */
+    wcCommand: string;
     data?: Record<string, unknown>;
-    display?: Record<string, unknown>;
     topic: string;
     fingerprint?: {
       requested: number;

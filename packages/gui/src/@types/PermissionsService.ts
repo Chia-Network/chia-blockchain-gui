@@ -65,9 +65,9 @@ type PermissionsService = {
   }) => Promise<PermissionsDecision>;
   dispatchAsPair: (payload: {
     destination: string;
-    command: string;
+    /** camelCase WC command name (e.g. `spendCAT`); main resolves to RPC. */
+    wcCommand: string;
     data?: Record<string, unknown>;
-    display?: Record<string, unknown>;
     topic: string;
     fingerprint?: {
       requested: number;
