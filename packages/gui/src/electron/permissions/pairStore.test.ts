@@ -28,6 +28,7 @@ function makePair(overrides: Partial<PairRecord> = {}): PairRecord {
     createdAt: 1,
     updatedAt: 1,
     spentMojos: '0',
+    allowedWcCommands: [],
     grants: {
       capabilities: {
         read: true,
@@ -260,5 +261,58 @@ describe('pairStore - recordSpend (spend cap accounting)', () => {
 
     expect(store.getPair('a')?.spentMojos).toBe('150');
     expect(store.getPair('b')?.spentMojos).toBe('200');
+  });
+});
+
+describe('pairStore - allowedWcCommands migration', () => {
+  // Pair records persisted before the allowlist landed have no
+  // `allowedWcCommands` field. Reading that as "any command goes" would
+  // silently extend dapp reach; reading it as `[]` means the user has to
+  // re-pair to grant anything, which is the safe default for an upgrade.
+
+  it('defaults to [] when the field is absent on disk', () => {
+    const store = loadStore();
+    const file = path.join(mockTempDir, 'dapp-pairs.yaml');
+    const legacy = makePair({ topic: 'a' });
+    delete (legacy as Partial<PairRecord>).allowedWcCommands;
+    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
+
+    const reload = loadStore();
+    expect(reload.getPair('a')?.allowedWcCommands).toEqual([]);
+    void store;
+  });
+
+  it('defaults to [] when the field is non-array on disk', () => {
+    const file = path.join(mockTempDir, 'dapp-pairs.yaml');
+    const legacy = makePair({ topic: 'a' });
+    // Some other process / hand edit could leave a string here.
+    (legacy as unknown as { allowedWcCommands: unknown }).allowedWcCommands = 'oops';
+    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
+
+    const reload = loadStore();
+    expect(reload.getPair('a')?.allowedWcCommands).toEqual([]);
+  });
+
+  it('strips non-string entries from the persisted list', () => {
+    const file = path.join(mockTempDir, 'dapp-pairs.yaml');
+    const legacy = makePair({ topic: 'a' });
+    (legacy as unknown as { allowedWcCommands: unknown }).allowedWcCommands = [
+      'sendTransaction',
+      42,
+      null,
+      'getWallets',
+    ];
+    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
+
+    const reload = loadStore();
+    expect(reload.getPair('a')?.allowedWcCommands).toEqual(['sendTransaction', 'getWallets']);
+  });
+
+  it('round-trips a real list through write+read', () => {
+    const store = loadStore();
+    store.upsertPair(makePair({ topic: 'a', allowedWcCommands: ['sendTransaction', 'getWallets'] }));
+
+    const reload = loadStore();
+    expect(reload.getPair('a')?.allowedWcCommands).toEqual(['sendTransaction', 'getWallets']);
   });
 });

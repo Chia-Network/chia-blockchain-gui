@@ -194,6 +194,12 @@ describe('WC params → confirmSchemas coverage', () => {
       const ns = nsCommandFor(entry);
       if (!ns || !SCHEMA_COMMANDS.includes(ns)) continue;
       const schema = getConfirmSchema(ns);
+      // Stub schemas (read-only commands gated by the `innocuous`/`balance`
+      // capability) deliberately have no params — they never render a
+      // dialog, so per-param coverage is moot. Skip them; the per-stub
+      // assertion in `wcCommandRegistry.test.ts` verifies the dappAllowed
+      // flag is the correct one.
+      if (schema.params.length === 0 && schema.dappAllowed === true) continue;
       const schemaNames = new Set(schema.params.map((p) => p.name));
       const enrichHandled = ENRICH_HANDLED[ns] ?? new Set<string>();
       for (const param of entry.params) {

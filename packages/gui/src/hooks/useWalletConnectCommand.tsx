@@ -2,6 +2,7 @@ import api, { store, useGetKeysQuery, useGetLoggedInFingerprintQuery } from '@ch
 import { useOpenDialog, useAuth } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import debug from 'debug';
+import JSONbig from 'json-bigint';
 import React from 'react';
 
 import type Notification from '../@types/Notification';
@@ -269,10 +270,21 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
     // services); it doesn't correspond to the daemon RPC. Always send the
     // canonical WC `command` so main's `resolveDaemonRpc` sees a consistent
     // input.
+    // `prepareWalletConnectCommand` converts amount/fee into BigNumber
+    // instances. IPC structured clone walks own properties and ships
+    // BigNumber's internal `{s, e, c}` shape to main rather than calling
+    // its `toJSON`. Round-trip through `JSONbig` here — the same
+    // serializer `Message.ts` uses for the daemon socket — so BigNumbers
+    // flatten to their `toJSON` strings on the way out, and any
+    // BigInt-sized integers from a dapp survive the trip back without
+    // precision loss. Without this, both the Confirm dialog (`NaN TXCH`)
+    // and the daemon (rejecting the malformed amount) see garbage.
+    const wireValues = JSONbig.parse(JSONbig.stringify(values));
+
     const result = await window.permissionsAPI.dispatchAsPair({
       destination: service,
       wcCommand: command,
-      data: values,
+      data: wireValues,
       topic: pair.topic,
       fingerprint: {
         requested: fingerprint,

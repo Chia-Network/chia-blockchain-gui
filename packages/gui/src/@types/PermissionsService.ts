@@ -30,6 +30,8 @@ export type PermissionsPairRecord = {
   grants: PermissionsPairGrants;
   /** Mojo amount serialized as a string for precision. */
   spentMojos: string;
+  /** WC commands (camelCase, no `chia_` prefix) the user approved at pairing. */
+  allowedWcCommands: string[];
 };
 
 export type PermissionsPrincipal = { kind: 'ui' } | { kind: 'pair'; topic: string };
@@ -52,6 +54,8 @@ type PermissionsService = {
     metadata: PermissionsPairMetadata;
     availableWallets: PermissionsPairWallet[];
     defaultFingerprints?: number[];
+    /** WC `chia_<wcCommand>` method names from the dapp's session proposal. */
+    requestedMethods?: string[];
   }) => Promise<PermissionsPairRecord | null>;
   editPair: (payload: {
     topic: string;
@@ -62,6 +66,8 @@ type PermissionsService = {
     principal: PermissionsPrincipal;
     command: string;
     data: Record<string, unknown>;
+    /** Required when principal is a pair; identifies the per-pair allowlist entry. */
+    wcCommand?: string;
   }) => Promise<PermissionsDecision>;
   dispatchAsPair: (payload: {
     destination: string;

@@ -21,7 +21,15 @@ function getPath() {
 function load(): PairRecord[] {
   if (cache) return cache;
   const data = readData(getPath());
-  const list = Array.isArray(data?.pairs) ? (data.pairs as PairRecord[]) : [];
+  const raw = Array.isArray(data?.pairs) ? (data.pairs as PairRecord[]) : [];
+  // Normalize fields that may be missing on disk. `allowedWcCommands` was
+  // added later; treat its absence as deny-all (empty list) rather than a
+  // backwards-compatible "everything allowed" fallback. Forces existing
+  // records to be re-paired to grant any commands.
+  const list = raw.map((p) => ({
+    ...p,
+    allowedWcCommands: Array.isArray(p?.allowedWcCommands) ? p.allowedWcCommands.filter((c) => typeof c === 'string') : [],
+  }));
   cache = list;
   return list;
 }

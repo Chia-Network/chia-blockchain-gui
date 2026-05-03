@@ -94,6 +94,8 @@ contextBridge.exposeInMainWorld(API.PERMISSIONS, {
     metadata: { name: string; url?: string; icon?: string; description?: string };
     availableWallets: { fingerprint: number; name?: string }[];
     defaultFingerprints?: number[];
+    /** WC `chia_<wcCommand>` method names from the dapp's session proposal. */
+    requestedMethods?: string[];
   }) => invokeWithCustomErrors(PermissionsAPI.PAIR_REGISTER, payload),
   editPair: (payload: { topic: string; availableWallets: { fingerprint: number; name?: string }[] }) =>
     invokeWithCustomErrors(PermissionsAPI.PAIR_EDIT, payload),
@@ -102,6 +104,8 @@ contextBridge.exposeInMainWorld(API.PERMISSIONS, {
     principal: { kind: 'ui' } | { kind: 'pair'; topic: string };
     command: string;
     data: Record<string, unknown>;
+    /** Required when principal is a pair; identifies the per-pair allowlist entry. */
+    wcCommand?: string;
   }) => invokeWithCustomErrors(PermissionsAPI.CHECK, payload),
   dispatchAsPair: (payload: {
     destination: string;

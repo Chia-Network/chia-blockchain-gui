@@ -82,11 +82,16 @@ function makeCommit(topic: string, mojos: BigNumber): () => void {
  * side effect happens through `commit()`. Calling `resolvePermission` repeatedly
  * with the same inputs is safe — each call returns its own independent commit
  * closure, and only the one that's invoked records a spend.
+ *
+ * `wcCommand` is the camelCase WC name the dapp asked for. We require it for
+ * pair principals so we can verify it against the per-pair `allowedWcCommands`
+ * list captured at pairing time — that is the user's consent boundary.
  */
 export function resolvePermission(
   principal: Principal,
   command: string,
   payload: Record<string, unknown>,
+  wcCommand?: string,
 ): Decision {
   if (principal.kind === 'ui') {
     return isUiAllowed(command) ? allowDecision() : promptDecision('requires user confirmation');
@@ -95,6 +100,19 @@ export function resolvePermission(
   const pair = getPair(principal.topic);
   if (!pair) return denyDecision('unknown pair');
   const ctx = pairCtx(pair);
+
+  // Per-pair allowlist gate. The user only consented to the commands shown
+  // in the pair dialog; anything else — even if its schema marks it
+  // dapp-allowed at the wallet level — is a deny. A compromised renderer
+  // can supply any (`destination`, `wcCommand`) pair to dispatchAsPair, so
+  // checking against the persisted list is the only way to bind dispatch
+  // to the consent that was actually granted.
+  if (!wcCommand) {
+    return denyDecision('missing wc command');
+  }
+  if (!pair.allowedWcCommands.includes(wcCommand)) {
+    return denyDecision(`command not granted for this pair: ${wcCommand}`);
+  }
 
   if (isBalanceCommand(command)) {
     return pair.grants.capabilities.balance

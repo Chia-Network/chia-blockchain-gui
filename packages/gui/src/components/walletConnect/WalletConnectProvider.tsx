@@ -13,7 +13,7 @@ export const WalletConnectContext = createContext<
       error: Error | undefined;
       pair: (uri: string, mainnet?: boolean) => Promise<string>;
       disconnect: (topic: string) => Promise<void>;
-      approveSession: (topic: string, fingerprints: number[]) => Promise<void>;
+      approveSession: (topic: string, fingerprints: number[], methods?: string[]) => Promise<void>;
       rejectSession: (topic: string) => Promise<void>;
       pairs: {
         getPair: (topic: string) => Pair | undefined;

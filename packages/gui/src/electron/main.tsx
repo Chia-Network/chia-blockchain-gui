@@ -43,7 +43,7 @@ import { renderConfirm } from './dialogs/Confirm/renderConfirm';
 import KeyDetail from './dialogs/KeyDetail/KeyDetail';
 import Pair, { getTitle as getPairTitle, type PairWalletOption } from './dialogs/Pair/Pair';
 import { resolvePermission, toWire } from './permissions/permissions';
-import { resolveDaemonRpc } from './utils/wcRpcResolver';
+import { filterRequestedMethods, resolveDispatchTarget } from './permissions/wcCommandRegistry';
 import { sendDappAndAwait } from './utils/webSocketBridge';
 import { getPair, listPairs, removePair, updateGrants, upsertPair } from './permissions/pairStore';
 import {
@@ -172,7 +172,15 @@ function dialogResultToFingerprints(result: Record<string, unknown>): number[] {
 async function openPairDialog(
   metadata: PairMetadata,
   availableWallets: PairWalletOption[],
-  options: { defaults?: PairRecord; defaultFingerprints?: number[]; isEdit?: boolean } = {},
+  options: {
+    defaults?: PairRecord;
+    defaultFingerprints?: number[];
+    isEdit?: boolean;
+    /** WC command names the dapp asked for that this wallet supports. */
+    allowedWcCommands?: string[];
+    /** WC command names the dapp asked for that this wallet rejected. */
+    rejectedWcCommands?: string[];
+  } = {},
 ): Promise<{ grants: PairGrants; fingerprints: number[] } | undefined> {
   if (!mainWindow) {
     throw new Error('mainWindow is empty');
@@ -188,6 +196,8 @@ async function openPairDialog(
       defaultFingerprints: options.defaults?.fingerprints ?? options.defaultFingerprints,
       isEdit: !!options.isEdit,
       currencyCode: networkPrefix ? networkPrefix.toUpperCase() : 'XCH',
+      allowedWcCommands: options.allowedWcCommands ?? options.defaults?.allowedWcCommands ?? [],
+      rejectedWcCommands: options.rejectedWcCommands ?? [],
     },
     {
       title: getPairTitle(!!options.isEdit),
@@ -215,9 +225,22 @@ ipcMainHandle(
     metadata: PairMetadata;
     availableWallets: PairWalletOption[];
     defaultFingerprints?: number[];
+    /**
+     * Methods from the WC session proposal (`namespaces.chia.methods`),
+     * each in the form `chia_<wcCommand>`. Main filters this through
+     * `wcCommandRegistry` — anything not on the registry's `dappAllowed`
+     * list is dropped. The renderer is forwarding what the dapp said; we
+     * never trust that list as-is.
+     */
+    requestedMethods?: string[];
   }) => {
-    const { topic, metadata, availableWallets, defaultFingerprints } = payload;
-    const decision = await openPairDialog(metadata, availableWallets, { defaultFingerprints });
+    const { topic, metadata, availableWallets, defaultFingerprints, requestedMethods = [] } = payload;
+    const { allowedWcCommands, rejectedWcCommands } = filterRequestedMethods(requestedMethods);
+    const decision = await openPairDialog(metadata, availableWallets, {
+      defaultFingerprints,
+      allowedWcCommands,
+      rejectedWcCommands,
+    });
     if (!decision) return null;
 
     const now = Date.now();
@@ -229,6 +252,7 @@ ipcMainHandle(
       updatedAt: now,
       grants: decision.grants,
       spentMojos: '0',
+      allowedWcCommands,
     };
     upsertPair(record);
     return record;
@@ -243,6 +267,8 @@ ipcMainHandle(PermissionsAPI.PAIR_EDIT, async (payload: { topic: string; availab
   const decision = await openPairDialog(existing.metadata, availableWallets, {
     defaults: existing,
     isEdit: true,
+    // No new proposal on edit — show whatever was previously approved.
+    allowedWcCommands: existing.allowedWcCommands,
   });
   if (!decision) return existing;
 
@@ -263,8 +289,8 @@ ipcMainHandle(PermissionsAPI.PAIR_REVOKE, (topic: string) => {
 
 ipcMainHandle(
   PermissionsAPI.CHECK,
-  (payload: { principal: Principal; command: string; data: Record<string, unknown> }) =>
-    toWire(resolvePermission(payload.principal, payload.command, payload.data)),
+  (payload: { principal: Principal; command: string; data: Record<string, unknown>; wcCommand?: string }) =>
+    toWire(resolvePermission(payload.principal, payload.command, payload.data, payload.wcCommand)),
 );
 
 // Dapp WalletConnect dispatch. The renderer makes a single IPC call here
@@ -299,13 +325,19 @@ ipcMainHandle(
     // and the dapp gets the error; we don't silently translate.
     const data = argsData ?? {};
     const principal: Principal = { kind: 'pair', topic };
-    // Translate the WC name to the daemon RPC name in main — the renderer
-    // doesn't carry that mapping (no `rpcCommand` field on WC entries). The
-    // resolver covers acronym cases; everything else camelCase→snake_case.
-    const command = resolveDaemonRpc(wcCommand);
-    const nsCommand = `${destination}.${command}`;
+    // Resolve (`destination`, `wcCommand`) against the registry. This
+    // catches three classes of compromised-renderer abuse in one place:
+    //   1. WC commands main doesn't know about,
+    //   2. renderer-handled meta-commands (`requestPermissions`,
+    //      `showNotification`) sent down the dispatch path,
+    //   3. valid command names paired with the wrong destination service.
+    const target = resolveDispatchTarget(destination, wcCommand);
+    if (!target.ok) {
+      throw new Error(target.reason);
+    }
+    const { nsCommand, command } = target;
 
-    const decision = resolvePermission(principal, nsCommand, data);
+    const decision = resolvePermission(principal, nsCommand, data, wcCommand);
     if (decision.kind === 'deny') {
       throw new Error(decision.reason);
     }

@@ -83,6 +83,11 @@ export default function WalletConnectConnections(props: WalletConnectConnections
         },
         availableWallets,
         defaultFingerprints,
+        // Forward the dapp's full requested method list. Main re-derives the
+        // allowed subset against its registry — it does NOT trust this list,
+        // it only uses it as input. The renderer is forwarding the WC SDK's
+        // proposal payload as-is.
+        requestedMethods: pair.pendingProposal.methods,
       });
 
       if (!grant) {
@@ -96,7 +101,13 @@ export default function WalletConnectConnections(props: WalletConnectConnections
       }
 
       try {
-        await approveSession(topic, grant.fingerprints);
+        // Use the registry-filtered list main persisted, NOT what the dapp
+        // asked for, when telling the WC SDK which methods this session
+        // covers. WC SDK enforces method scope at session level — listing
+        // anything beyond what main will accept just produces dapp-visible
+        // errors at first use.
+        const approvedMethods = grant.allowedWcCommands.map((wc) => `chia_${wc}`);
+        await approveSession(topic, grant.fingerprints, approvedMethods);
       } catch (approveErr) {
         // Approval failed (network, dapp dropped, etc). Roll back the main-process grant.
         await window.permissionsAPI.revokePair(topic);

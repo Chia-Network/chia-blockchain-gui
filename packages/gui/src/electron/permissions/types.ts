@@ -29,6 +29,14 @@ export type PairRecord = {
   grants: PairGrants;
   /** Mojo amount serialized as a string to survive JSON without precision loss. */
   spentMojos: string;
+  /**
+   * WalletConnect command names (camelCase, no `chia_` prefix) that the user
+   * approved at pairing time. The intersection of (what the dapp asked for)
+   * ∩ (what the wallet's `dappAllowed` schema flag permits). Empty list means
+   * the dapp can call nothing — including for legacy records that predate
+   * this field, where reading absence as deny-all is the safe default.
+   */
+  allowedWcCommands: string[];
 };
 
 export type Principal = { kind: 'ui' } | { kind: 'pair'; topic: string };

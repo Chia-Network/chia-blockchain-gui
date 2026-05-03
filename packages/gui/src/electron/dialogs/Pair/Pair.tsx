@@ -20,9 +20,36 @@ export type PairProps = {
   defaultFingerprints?: number[];
   isEdit?: boolean;
   currencyCode?: string;
+  /**
+   * WC commands (camelCase, no `chia_` prefix) the dapp asked for that this
+   * wallet supports. Display-only — the binding decision is the binary
+   * Connect / Reject below; main persists this list verbatim if confirmed.
+   */
+  allowedWcCommands?: string[];
+  /**
+   * WC commands the dapp asked for that this wallet does NOT support and
+   * silently dropped. Shown so the user understands why an app might later
+   * report missing capability — they didn't reject, the wallet did.
+   */
+  rejectedWcCommands?: string[];
   styleURL?: string;
   isDarkMode?: boolean;
 };
+
+// Split a camelCase WC command into a human-readable label.
+//   `sendTransaction`        → "Send Transaction"
+//   `getNFTs`                → "Get NFTs"            (acronyms stay grouped)
+//   `cancelDataLayerOffer`   → "Cancel Data Layer Offer"
+function humanizeWcCommand(name: string): string {
+  if (!name) return name;
+  // Insert space before each acronym run and before each lowercase→uppercase
+  // transition. Order matters: do acronym→lowercase first so `NFTs` stays
+  // glued, then lowercase→uppercase to break apart camelCase.
+  const spaced = name
+    .replace(/([A-Z]+)([A-Z][a-z])/g, '$1 $2')
+    .replace(/([a-z0-9])([A-Z])/g, '$1 $2');
+  return spaced.charAt(0).toUpperCase() + spaced.slice(1);
+}
 
 
 export function getTitle(isEdit: boolean) {
@@ -40,6 +67,8 @@ export default function Pair(props: PairProps) {
     defaultFingerprints = [],
     isEdit = false,
     currencyCode = 'XCH',
+    allowedWcCommands = [],
+    rejectedWcCommands = [],
   } = props;
 
   const grants: PairGrants = defaultGrants ?? {
@@ -162,6 +191,72 @@ export default function Pair(props: PairProps) {
             )}
           </div>
         </section>
+
+        {(allowedWcCommands.length > 0 || rejectedWcCommands.length > 0) && (
+          <section className="rounded-xl border border-chia-border bg-chia-card overflow-hidden">
+            <details className="group">
+              <summary className="flex items-center justify-between gap-3 px-5 py-2.5 cursor-pointer list-none select-none hover:bg-chia-card-elevated transition-colors">
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-chia-text-muted">
+                    {i18n._(/* i18n */ { id: 'Requested commands' })}
+                  </span>
+                  <span className="text-xs text-chia-text-secondary">
+                    {rejectedWcCommands.length > 0
+                      ? `${allowedWcCommands.length} / ${allowedWcCommands.length + rejectedWcCommands.length}`
+                      : String(allowedWcCommands.length)}
+                  </span>
+                </div>
+                <svg
+                  className="shrink-0 w-4 h-4 text-chia-text-secondary transition-transform group-open:rotate-180"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="px-5 pb-3 pt-1 border-t border-chia-border space-y-2">
+                {allowedWcCommands.length > 0 && (
+                  <div>
+                    <div className="text-xs text-chia-text-muted mb-1">
+                      {i18n._(/* i18n */ { id: 'Allowed commands' })}
+                    </div>
+                    <div className="flex flex-wrap gap-1.5">
+                      {allowedWcCommands.map((wc) => (
+                        <span
+                          key={wc}
+                          title={`chia_${wc}`}
+                          className="inline-flex items-center text-xs px-2 py-0.5 rounded bg-chia-primary-soft text-chia-text font-medium"
+                        >
+                          {humanizeWcCommand(wc)}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {rejectedWcCommands.length > 0 && (
+                  <div>
+                    <div className="text-xs text-chia-text-muted mb-1">
+                      {i18n._(/* i18n */ { id: 'Not supported and excluded' })}
+                    </div>
+                    <div className="flex flex-wrap gap-1.5">
+                      {rejectedWcCommands.map((wc) => (
+                        <span
+                          key={wc}
+                          title={`chia_${wc}`}
+                          className="inline-flex items-center text-xs px-2 py-0.5 rounded border border-chia-border-strong text-chia-text-secondary font-medium"
+                        >
+                          {humanizeWcCommand(wc)}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </details>
+          </section>
+        )}
 
         <section className="rounded-xl border border-chia-border bg-chia-card overflow-hidden">
           <div className="px-5 pt-2.5 pb-1.5 text-xs font-semibold uppercase tracking-wider text-chia-text-muted">

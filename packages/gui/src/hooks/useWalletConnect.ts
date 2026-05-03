@@ -88,12 +88,12 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
   );
 
   const handleApproveSession = useCallback(
-    (topic: string, fingerprints: number[]) => {
+    (topic: string, fingerprints: number[], methods?: string[]) => {
       if (!client) {
         throw new Error('Client is not defined');
       }
 
-      return approveSessionProposal(client, pairsRef.current, topic, fingerprints);
+      return approveSessionProposal(client, pairsRef.current, topic, fingerprints, methods);
     },
     [client],
   );
