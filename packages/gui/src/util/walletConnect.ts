@@ -2,12 +2,9 @@ import Client from '@walletconnect/sign-client';
 import { getSdkError } from '@walletconnect/utils';
 import initDebug from 'debug';
 
-import walletConnectCommands from '../constants/WalletConnectCommands';
 import { type Pairs } from '../hooks/useWalletConnectPairs';
 
 const log = initDebug('chia-gui:walletConnect');
-
-const availableCommands = walletConnectCommands.map((command) => `chia_${command.command}`);
 
 async function respondSessionRequestError(client: Client, topic: string, id: number, message: string) {
   try {
@@ -53,6 +50,7 @@ export function processError(error: Error) {
 
   throw error;
 }
+
 
 export async function processSessionProposal(
   client: Client,
@@ -123,10 +121,10 @@ export async function processSessionProposal(
       throw new Error('Chain not supported');
     }
 
-    const method = methods.find((item) => !availableCommands.includes(item));
-    if (method) {
-      log('dApp wants to use unsupported command', method);
-    }
+    // Unsupported-method warning removed: main filters this list at
+    // PAIR_REGISTER (`filterRequestedMethods`) and the rejected set is
+    // shown directly in the Pair dialog, which is the right surface for
+    // the user to see that information.
 
     const pair = pairs.getPair(pairingTopic);
     if (!pair) {
@@ -171,6 +169,14 @@ export async function approveSessionProposal(
   pairTopic: string,
   fingerprints: number[],
   /**
+   * mainnet vs testnet for this pair. Sourced from the renderer's
+   * `useCurrencyCode()` at pair time — main also persists this on its YAML
+   * PairRecord during `registerPair`. We pass it in rather than reading it
+   * back from `permissionsAPI.listPairs()` because at this exact point we
+   * already know it (caller just passed it to `registerPair` too).
+   */
+  mainnet: boolean,
+  /**
    * Methods (`chia_<wcCommand>` form) the wallet is willing to honor for this
    * session. Should be the registry-filtered subset persisted on the pair
    * record — passing the dapp's raw `proposal.methods` undoes the filtering.
@@ -197,7 +203,7 @@ export async function approveSessionProposal(
     throw new Error('At least one wallet must be selected');
   }
 
-  const instance = pair.mainnet ? 'mainnet' : 'testnet';
+  const instance = mainnet ? 'mainnet' : 'testnet';
   const chain = `chia:${instance}`;
   if (!proposal.chains.includes(chain)) {
     throw new Error(`Requested chains do not include pair network: ${chain}`);
@@ -298,7 +304,7 @@ async function revokeMainPair(topic: string): Promise<void> {
 export async function processSessionRequest(
   client: Client | undefined,
   pairs: Pairs,
-  process: (topic: string, command: string, params: any) => Promise<any>,
+  process: (topic: string, command: string, params: any, ctx: { mainnet: boolean }) => Promise<any>,
   event: {
     id: number;
     topic: string;
@@ -349,11 +355,14 @@ export async function processSessionRequest(
     if (network !== 'chia') {
       throw new Error('Network not supported');
     }
-
     const isMainnet = instance === 'mainnet';
-    if (isMainnet !== pair.mainnet) {
-      throw new Error('Network instance is different');
-    }
+
+    // Pair-relevant gates (network match, fingerprint allowlist, commands
+    // allowlist) all live in main now — `dispatchAsPair` calls
+    // `checkPairAccess` with the wcCommand + fingerprint + mainnet we
+    // pass below. Renderer-side duplicates were removed: there's one
+    // source of truth and the renderer is no longer trusted for any of
+    // these checks.
 
     const { fingerprint, ...rest } = params;
     const updatedParams = {
@@ -361,12 +370,10 @@ export async function processSessionRequest(
       fingerprint: Number.parseInt(fingerprint, 10),
     };
 
-    if (!pair.fingerprints.includes(updatedParams.fingerprint)) {
-      throw new Error('Fingerprint not found');
-    }
-
     log('method', method, updatedParams);
-    const result = await process(topic, method, updatedParams);
+    // `mainnet` is renderer-internal context (derived from chainId);
+    // pass alongside params rather than mixing it into the dapp payload.
+    const result = await process(topic, method, updatedParams, { mainnet: isMainnet });
     log('result', result);
 
     await client.respond({

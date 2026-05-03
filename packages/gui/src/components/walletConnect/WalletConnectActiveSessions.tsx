@@ -3,10 +3,8 @@ import { Trans } from '@lingui/macro';
 import { Box, Typography } from '@mui/material';
 import React, { useMemo } from 'react';
 
-import WalletConnectCommands from '../../constants/WalletConnectCommands';
+import useCommandMetadata from '../../hooks/useCommandMetadata';
 import useWalletConnectContext from '../../hooks/useWalletConnectContext';
-
-const supportedCommands = WalletConnectCommands.map((item) => `chia_${item.command}`);
 
 export type WalletConnectActiveSessionsProps = {
   topic: string;
@@ -15,6 +13,7 @@ export type WalletConnectActiveSessionsProps = {
 export default function WalletConnectActiveSessions(props: WalletConnectActiveSessionsProps) {
   const { topic } = props;
   const { pairs, isLoading } = useWalletConnectContext();
+  const { byWc: supportedByWc } = useCommandMetadata();
 
   const pair = useMemo(() => pairs.getPair(topic), [topic, pairs]);
 
@@ -41,7 +40,7 @@ export default function WalletConnectActiveSessions(props: WalletConnectActiveSe
 
               const methods = namespaces.chia?.methods ?? [];
 
-              const unsupportedMethods = methods.filter((method) => !supportedCommands.includes(method));
+              const unsupportedMethods = methods.filter((method) => !supportedByWc.has(method));
 
               return (
                 <Flex flexDirection="column">

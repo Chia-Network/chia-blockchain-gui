@@ -91,15 +91,23 @@ contextBridge.exposeInMainWorld(API.PERMISSIONS, {
   listPairs: () => invokeWithCustomErrors(PermissionsAPI.PAIR_LIST),
   registerPair: (payload: {
     topic: string;
+    /** mainnet vs testnet from the renderer's WC pair init. */
+    mainnet: boolean;
     metadata: { name: string; url?: string; icon?: string; description?: string };
     availableWallets: { fingerprint: number; name?: string }[];
     defaultFingerprints?: number[];
-    /** WC `chia_<wcCommand>` method names from the dapp's session proposal. */
+    /** WC method names from the dapp's session proposal, in wire form
+     *  `chia_<name>`. */
     requestedMethods?: string[];
   }) => invokeWithCustomErrors(PermissionsAPI.PAIR_REGISTER, payload),
   editPair: (payload: { topic: string; availableWallets: { fingerprint: number; name?: string }[] }) =>
     invokeWithCustomErrors(PermissionsAPI.PAIR_EDIT, payload),
   revokePair: (topic: string) => invokeWithCustomErrors(PermissionsAPI.PAIR_REVOKE, topic),
+  setBypass: (payload: { topic: string; wcCommand: string; enabled: boolean }) =>
+    invokeWithCustomErrors(PermissionsAPI.PAIR_SET_BYPASS, payload),
+  commandsMetadata: () => invokeWithCustomErrors(PermissionsAPI.COMMANDS_METADATA),
+  subscribeToNotification: (callback: (...args: unknown[]) => void) =>
+    onIpcEvent(PermissionsAPI.NOTIFICATION_EVENT, callback),
   check: (payload: {
     principal: { kind: 'ui' } | { kind: 'pair'; topic: string };
     command: string;
@@ -108,12 +116,13 @@ contextBridge.exposeInMainWorld(API.PERMISSIONS, {
     wcCommand?: string;
   }) => invokeWithCustomErrors(PermissionsAPI.CHECK, payload),
   dispatchAsPair: (payload: {
-    destination: string;
     /** camelCase WalletConnect command name (e.g. `spendCAT`); main resolves
-     *  to the daemon RPC name. */
+     *  to the daemon destination + RPC name via the registry. */
     wcCommand: string;
     data?: Record<string, unknown>;
     topic: string;
+    /** Chain id derived from the dapp's WC chainId (`chia:mainnet` → true). */
+    mainnet: boolean;
     fingerprint?: {
       requested: number;
       current?: number;

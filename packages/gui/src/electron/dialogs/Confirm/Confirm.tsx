@@ -67,6 +67,10 @@ export type ConfirmProps = {
   networkPrefix?: string;
   principal?: ConfirmPrincipal;
   fingerprint?: ConfirmFingerprint;
+  /** Show the "Don't ask again for this command" checkbox. Set by main only
+   *  for pair-principal prompts on commands that don't have a spending
+   *  classification — bypass should not let dapps slip past the budget. */
+  showBypassToggle?: boolean;
   styleURL?: string;
   isDarkMode?: boolean;
 };
@@ -208,6 +212,7 @@ export default function Confirm(props: ConfirmProps) {
     networkPrefix,
     principal,
     fingerprint,
+    showBypassToggle = false,
     styleURL,
     confirmId,
     isDarkMode,
@@ -367,21 +372,35 @@ export default function Confirm(props: ConfirmProps) {
         </div>
       </SandboxedIframe>
 
-      <div className="flex justify-end items-center gap-2.5 px-7 py-4 border-t border-chia-border bg-chia-bg">
-        <button
-          type="button"
-          data-action="cancel"
-          className="h-9 px-5 text-sm font-semibold uppercase tracking-wider rounded-md border border-chia-primary bg-transparent text-chia-primary hover:bg-chia-primary-soft transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-chia-primary"
-        >
-          {i18n._(/* i18n */ { id: 'Cancel' })}
-        </button>
-        <button
-          type="button"
-          id={confirmId}
-          className={`h-9 px-5 text-sm font-semibold uppercase tracking-wider rounded-md border shadow-sm transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-chia-primary focus-visible:ring-offset-2 focus-visible:ring-offset-chia-bg ${confirmButtonClasses}`}
-        >
-          {confirmLabel}
-        </button>
+      <div className="flex justify-between items-center gap-2.5 px-7 py-4 border-t border-chia-border bg-chia-bg">
+        {showBypassToggle ? (
+          <label className="flex items-center gap-2 text-xs text-chia-text-secondary cursor-pointer select-none">
+            <input
+              type="checkbox"
+              data-form-field="bypass"
+              className="w-[16px] h-[16px] accent-chia-primary cursor-pointer"
+            />
+            <span>{i18n._(/* i18n */ { id: "Don't ask again for this command" })}</span>
+          </label>
+        ) : (
+          <span aria-hidden="true" />
+        )}
+        <div className="flex items-center gap-2.5">
+          <button
+            type="button"
+            data-action="cancel"
+            className="h-9 px-5 text-sm font-semibold uppercase tracking-wider rounded-md border border-chia-primary bg-transparent text-chia-primary hover:bg-chia-primary-soft transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-chia-primary"
+          >
+            {i18n._(/* i18n */ { id: 'Cancel' })}
+          </button>
+          <button
+            type="button"
+            id={confirmId}
+            className={`h-9 px-5 text-sm font-semibold uppercase tracking-wider rounded-md border shadow-sm transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-chia-primary focus-visible:ring-offset-2 focus-visible:ring-offset-chia-bg ${confirmButtonClasses}`}
+          >
+            {confirmLabel}
+          </button>
+        </div>
       </div>
     </div>
   );

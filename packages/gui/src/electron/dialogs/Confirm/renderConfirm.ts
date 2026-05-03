@@ -10,7 +10,7 @@ import { type EnrichmentDisplay, lookupCat } from '../../utils/dappEnrichment';
 import mojoToCatLocaleString from '../../utils/mojoToCATLocaleString';
 import mojoToChiaLocaleString from '../../utils/mojoToChiaLocaleString';
 
-import { getConfirmSchema, resolveTexts, type ParamSchema } from './confirmSchemas';
+import { getCommandSchema, resolveTexts, type ParamSchema } from '../../constants/commandRegistry';
 
 export type ConfirmRenderContext = {
   networkPrefix?: string;
@@ -89,7 +89,7 @@ export async function renderConfirm(
   data: Record<string, unknown>,
   ctx: ConfirmRenderContext = {},
 ): Promise<ConfirmRenderResult> {
-  const schema = getConfirmSchema(command);
+  const schema = getCommandSchema(command);
 
   const [resolvedRows, display] = await Promise.all([
     Promise.all(

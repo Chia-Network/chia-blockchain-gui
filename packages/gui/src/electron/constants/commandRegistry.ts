@@ -1,23 +1,29 @@
 /**
- * Canonical per-command schema for the Confirm dialog.
+ * Single, main-side registry of every wallet command — one entry per
+ * namespaced daemon RPC, plus two synthetic `chia_app.*` entries for the
+ * renderer-handled meta-commands (`chia_requestPermissions`,
+ * `chia_showNotification`).
  *
- * One entry per RPC command names what the user sees: window title, body
- * message, primary button label, destructive styling, and the param rows
- * (label + how to render the value out of `data`). Optional `enrich` runs
- * daemon RPCs for commands whose dialog needs structured async data (offer
- * summaries, NFT thumbnails) — anything beyond a single-field formatter.
+ * The schema is the only place that knows:
+ *   - which RPCs the wallet supports at all (the keys),
+ *   - which of those a paired dapp can invoke (entries with a `wcCommand`),
+ *   - which daemon destination + bare RPC name a dispatch lands on (split
+ *     the schema key on `.`),
+ *   - what the Confirm dialog renders when consent is needed.
  *
- * The schema is the only place that defines confirmation UX per command.
- * Both prompt paths in main (dapp `dispatchAsPair` and UI `onSend`) feed the
- * same data through `renderConfirm`, which consults this table.
+ * `wcCommand` values use the wire form (`chia_<name>`) — exactly what the
+ * dapp puts into `proposal.methods` and what we hand back to the WC SDK at
+ * `client.approve` time. `pair.commands` (and `pair.bypass`) stores the
+ * same form, so comparisons are direct without prefix slicing anywhere.
  *
  * Field names use snake_case to match the wire envelope sent to the daemon —
  * the same `data` is what shows up in the dialog and what crosses the socket.
  */
-import { i18n } from '../../../config/locales';
+import NotificationType from '../../constants/NotificationType';
+import { i18n } from '../../config/locales';
 
-import type { EnrichmentDisplay } from '../../utils/dappEnrichment';
-import { buildCreateOfferDisplay, buildTakeOfferDisplay, lookupCat } from '../../utils/dappEnrichment';
+import type { EnrichmentDisplay } from '../utils/dappEnrichment';
+import { buildCreateOfferDisplay, buildTakeOfferDisplay, lookupCat } from '../utils/dappEnrichment';
 
 /** A param renderer type. Pure ones format from `data` synchronously; the
  *  ones declared in `dappEnrichment` (mojo-to-cat needs a daemon lookup for
@@ -43,7 +49,34 @@ export type ParamSchema = ParamSchemaBase &
     | { type: 'json' }
   );
 
-export type ConfirmSchema = {
+export type CommandSchema = {
+  /**
+   * WC method name in wire form (`chia_<name>`). Presence makes this entry
+   * dapp-callable; absence means it is UI-initiated only (delete_key, plot
+   * ops, etc.). The two synthetic `chia_app.*` keys carry a wcCommand but
+   * reject at dispatch — they are renderer-handled meta-commands.
+   */
+  wcCommand?: string;
+  /**
+   * Short human label for this command (e.g. "Send Transaction"). Surfaced
+   * by the renderer's Settings/Integration UI via `permissions:commands:metadata`.
+   * Function form: defers i18n resolution until each call so locale
+   * switches after startup are reflected.
+   */
+  label?: () => string;
+  /**
+   * Long-form description shown alongside the label in Settings. Same
+   * function-form rationale as `label`.
+   */
+  description?: () => string;
+  /**
+   * True for commands whose dispatch should wait for the wallet to finish
+   * syncing (renderer-side sync wait). Set on the spend-class commands
+   * (`sendTransaction`, `spendCAT`, `spendClawbackCoins`, `getSpendableCoins`)
+   * where dispatching against stale state would silently produce wrong
+   * coin selections. Renderer reads via the metadata IPC.
+   */
+  requiresSync?: boolean;
   /** Defaults to `'Confirm'`. Omit when the dialog is generic. */
   title?: () => string;
   /** Defaults to `'Please review and confirm this action.'`. */
@@ -51,16 +84,17 @@ export type ConfirmSchema = {
   /** Defaults to `'Proceed'`. */
   confirmLabel?: () => string;
   destructive?: boolean;
-  /**
-   * Whether a paired dapp may invoke the namespaced RPC this schema describes.
-   * Default `false` — UI-initiated commands (delete_key, create_new_wallet,
-   * plot mutations, etc.) live here too, and we don't want a missing flag to
-   * silently extend dapp reach. The pair-register flow filters the dapp's
-   * requested methods against this; the dispatchAsPair flow rejects anything
-   * whose schema doesn't say `true`.
-   */
-  dappAllowed?: boolean;
   params: ParamSchema[];
+  /**
+   * Default param values applied at dispatch time when the dapp omits
+   * them. Keys are snake_case daemon param names (matching the wire
+   * envelope after `toSnakeCase`). Most common case is `wallet_id: 1` —
+   * the daemon requires a wallet id and dapps targeting the main wallet
+   * conventionally omit it. Kept separate from `params` because most
+   * defaulted fields are hidden boilerplate that doesn't need a Confirm
+   * dialog row of its own.
+   */
+  defaults?: Record<string, unknown>;
   /** Optional async enrichment (daemon RPCs) for offer summaries etc. */
   enrich?: (data: Record<string, unknown>) => Promise<EnrichmentDisplay>;
 };
@@ -69,9 +103,8 @@ const DEFAULT_TITLE = () => i18n._(/* i18n */ { id: 'Confirm' });
 const DEFAULT_MESSAGE = () => i18n._(/* i18n */ { id: 'Please review and confirm this action.' });
 const DEFAULT_CONFIRM_LABEL = () => i18n._(/* i18n */ { id: 'Proceed' });
 
-/** Title / message / confirmLabel resolved with the fallback. The `default`
- *  triple is what the dialog should show when a schema doesn't specify. */
-export function resolveTexts(schema: ConfirmSchema | undefined): {
+/** Title / message / confirmLabel resolved with the fallback. */
+export function resolveTexts(schema: CommandSchema | undefined): {
   title: string;
   message: string;
   confirmLabel: string;
@@ -83,16 +116,64 @@ export function resolveTexts(schema: ConfirmSchema | undefined): {
   };
 }
 
-const FALLBACK: ConfirmSchema = {
+const FALLBACK: CommandSchema = {
   params: [],
 };
 
-const SCHEMAS: Record<string, ConfirmSchema> = {
+/** Pseudo-namespace prefix marking entries the renderer handles itself.
+ *  Anything keyed under `chia_app.*` is rejected at `dispatchAsPair`. */
+const RENDERER_NAMESPACE = 'chia_app';
+
+const SCHEMAS: Record<string, CommandSchema> = {
+  // ── Renderer-handled meta-commands ─────────────────────────────────────────
+  // These two never dispatch to the daemon. They live in the registry only
+  // so `filterRequestedMethods` keeps them in `pair.commands` and the WC
+  // SDK accepts them at session-approval time.
+  'chia_app.request_permissions': {
+    wcCommand: 'chia_requestPermissions',
+    label: () => i18n._(/* i18n */ { id: "Request Permissions" }),
+    description: () => i18n._(/* i18n */ { id: "App is requesting permission to execute these commands" }),
+    params: [],
+  },
+  'chia_app.show_notification': {
+    wcCommand: 'chia_showNotification',
+    label: () => i18n._(/* i18n */ { id: 'Show Notification' }),
+    description: () => i18n._(/* i18n */ { id: 'Show notification with offer or general announcement' }),
+    title: () => i18n._(/* i18n */ { id: 'Confirm Notification' }),
+    message: () => i18n._(/* i18n */ { id: 'This app wants to show you a notification.' }),
+    confirmLabel: () => i18n._(/* i18n */ { id: 'Show' }),
+    // Param names match the camelCase keys the dapp sends (and that
+    // `buildShowNotification` reads). Other registry entries are snake_case
+    // because their data is run through `toSnakeCase` before crossing the
+    // daemon socket; show_notification never reaches the daemon, so the
+    // dialog renders the dapp's payload as-is.
+    params: [
+      { name: 'type', label: () => i18n._(/* i18n */ { id: 'Type' }), type: 'text' },
+      { name: 'message', label: () => i18n._(/* i18n */ { id: 'Message' }), type: 'text' },
+      { name: 'url', label: () => i18n._(/* i18n */ { id: 'URL' }), type: 'text' },
+      { name: 'allFingerprints', label: () => i18n._(/* i18n */ { id: 'All Wallets' }), type: 'bool' },
+    ],
+    enrich: async (data) => {
+      // OFFER notifications carry a base64 offer string in `offerData`. Render
+      // the offer summary the same way `take_offer` does — the user should see
+      // what's actually being offered, not a wall of base64.
+      if (data.type === NotificationType.OFFER && typeof data.offerData === 'string' && data.offerData) {
+        const offer = await buildTakeOfferDisplay({ offer: data.offerData });
+        return offer ? { offer } : {};
+      }
+      return {};
+    },
+  },
+
+  // ── Wallet (mutating) ──────────────────────────────────────────────────────
   'chia_wallet.send_transaction': {
+    wcCommand: 'chia_sendTransaction',
+    defaults: {"wallet_id":1},
+    requiresSync: true,
+    label: () => i18n._(/* i18n */ { id: "Send Transaction" }),
     title: () => i18n._(/* i18n */ { id: 'Confirm Send Transaction' }),
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm this blockchain transaction.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Send' }),
-    dappAllowed: true,
     params: [
       { name: 'address', label: () => i18n._(/* i18n */ { id: 'Address' }), type: 'text' },
       { name: 'amount', label: () => i18n._(/* i18n */ { id: 'Amount' }), type: 'mojo-to-xch' },
@@ -102,14 +183,14 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
   },
 
   'chia_wallet.cat_spend': {
+    wcCommand: 'chia_spendCAT',
+    requiresSync: true,
+    label: () => i18n._(/* i18n */ { id: "Spend CAT" }),
     title: () => i18n._(/* i18n */ { id: 'Confirm CAT Spend' }),
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm this CAT spend.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Send' }),
-    dappAllowed: true,
     params: [
       { name: 'wallet_id', label: () => i18n._(/* i18n */ { id: 'Wallet Id' }), type: 'text' },
-      // WC's `spendCAT` declares `address` (not `inner_address`). The dialog
-      // shows what the dapp actually sent on the wire — main doesn't rename.
       { name: 'address', label: () => i18n._(/* i18n */ { id: 'Address' }), type: 'text' },
       {
         name: 'amount',
@@ -119,8 +200,6 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
       { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
       { name: 'memos', label: () => i18n._(/* i18n */ { id: 'Memos' }), type: 'json' },
     ],
-    // The wallet-id → CAT info lookup also drives the `display.cat`
-    // chip/icon styling (revocable badge), so resolve it once here too.
     enrich: async (data) => {
       const walletId = data.wallet_id;
       if (walletId === undefined || walletId === null) return {};
@@ -130,10 +209,11 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
   },
 
   'chia_wallet.nft_transfer_nft': {
+    wcCommand: 'chia_transferNFT',
+    label: () => i18n._(/* i18n */ { id: "Transfer NFT" }),
     title: () => i18n._(/* i18n */ { id: 'Confirm NFT Transfer' }),
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm this NFT transfer.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Transfer' }),
-    dappAllowed: true,
     params: [
       { name: 'wallet_id', label: () => i18n._(/* i18n */ { id: 'Wallet Id' }), type: 'text' },
       { name: 'nft_coin_ids', label: () => i18n._(/* i18n */ { id: 'NFT Coin Ids' }), type: 'json' },
@@ -154,9 +234,10 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
   },
 
   'chia_wallet.cancel_offer': {
+    wcCommand: 'chia_cancelOffer',
+    label: () => i18n._(/* i18n */ { id: "Cancel Offer" }),
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm this offer cancellation.' }),
     destructive: true,
-    dappAllowed: true,
     params: [
       { name: 'trade_id', label: () => i18n._(/* i18n */ { id: 'Trade Id' }), type: 'text' },
       { name: 'secure', label: () => i18n._(/* i18n */ { id: 'Secure' }), type: 'bool' },
@@ -165,6 +246,8 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
   },
 
   'chia_wallet.create_offer_for_ids': {
+    wcCommand: 'chia_createOfferForIds',
+    label: () => i18n._(/* i18n */ { id: "Create Offer for Ids" }),
     title: () => i18n._(/* i18n */ { id: 'Confirm Create Offer' }),
     message: () =>
       i18n._(
@@ -173,24 +256,12 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
         },
       ),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Create' }),
-    dappAllowed: true,
-    // The `offer` param is rendered via `enrich` below (offered/requested
-    // breakdown with NFT thumbnails) — too rich for a flat row. Other
-    // structural params follow the WC curation.
     params: [
       { name: 'driver_dict', label: () => i18n._(/* i18n */ { id: 'Driver Dict' }), type: 'json' },
       { name: 'validate_only', label: () => i18n._(/* i18n */ { id: 'Validate Only' }), type: 'bool' },
-      {
-        name: 'disable_json_formatting',
-        label: () => i18n._(/* i18n */ { id: 'Disable JSON Formatting' }),
-        type: 'bool',
-      },
+      { name: 'disable_json_formatting', label: () => i18n._(/* i18n */ { id: 'Disable JSON Formatting' }), type: 'bool' },
       { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
-      {
-        name: 'extra_conditions',
-        label: () => i18n._(/* i18n */ { id: 'Extra Conditions' }),
-        type: 'json',
-      },
+      { name: 'extra_conditions', label: () => i18n._(/* i18n */ { id: 'Extra Conditions' }), type: 'json' },
       { name: 'coin_ids', label: () => i18n._(/* i18n */ { id: 'Coin Ids' }), type: 'json' },
       { name: 'allow_unsynced', label: () => i18n._(/* i18n */ { id: 'Allow Unsynced' }), type: 'bool' },
     ],
@@ -201,15 +272,12 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
   },
 
   'chia_wallet.take_offer': {
+    wcCommand: 'chia_takeOffer',
+    label: () => i18n._(/* i18n */ { id: "Take Offer" }),
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm this offer acceptance.' }),
-    dappAllowed: true,
     params: [
       { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
-      {
-        name: 'extra_conditions',
-        label: () => i18n._(/* i18n */ { id: 'Extra Conditions' }),
-        type: 'json',
-      },
+      { name: 'extra_conditions', label: () => i18n._(/* i18n */ { id: 'Extra Conditions' }), type: 'json' },
     ],
     enrich: async (data) => {
       const offer = await buildTakeOfferDisplay(data);
@@ -218,10 +286,11 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
   },
 
   'chia_wallet.sign_message_by_address': {
+    wcCommand: 'chia_signMessageByAddress',
+    label: () => i18n._(/* i18n */ { id: "Sign Message by Address" }),
     title: () => i18n._(/* i18n */ { id: 'Confirm Sign Message' }),
     message: () => i18n._(/* i18n */ { id: 'Are you sure you want to sign this message?' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Sign' }),
-    dappAllowed: true,
     params: [
       { name: 'address', label: () => i18n._(/* i18n */ { id: 'Address' }), type: 'text' },
       { name: 'message', label: () => i18n._(/* i18n */ { id: 'Message' }), type: 'text' },
@@ -231,10 +300,11 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
   },
 
   'chia_wallet.sign_message_by_id': {
+    wcCommand: 'chia_signMessageById',
+    label: () => i18n._(/* i18n */ { id: "Sign Message by Id" }),
     title: () => i18n._(/* i18n */ { id: 'Confirm Sign Message' }),
     message: () => i18n._(/* i18n */ { id: 'Are you sure you want to sign this message?' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Sign' }),
-    dappAllowed: true,
     params: [
       { name: 'id', label: () => i18n._(/* i18n */ { id: 'Id' }), type: 'text' },
       { name: 'message', label: () => i18n._(/* i18n */ { id: 'Message' }), type: 'text' },
@@ -243,16 +313,15 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
   },
 
   'chia_wallet.nft_set_nft_did': {
+    wcCommand: 'chia_setNFTDID',
+    label: () => i18n._(/* i18n */ { id: "Set NFT DID" }),
     title: () => i18n._(/* i18n */ { id: 'Confirm Move NFT to DID' }),
     message: () => i18n._(/* i18n */ { id: 'Are you sure you want to move this NFT to the specified profile?' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Move' }),
-    dappAllowed: true,
     params: [
       { name: 'wallet_id', label: () => i18n._(/* i18n */ { id: 'Wallet Id' }), type: 'text' },
       { name: 'nft_launcher_id', label: () => i18n._(/* i18n */ { id: 'NFT Launcher Id' }), type: 'text' },
       { name: 'nft_coin_ids', label: () => i18n._(/* i18n */ { id: 'NFT Coin Ids' }), type: 'json' },
-      // WC's `setNFTDID` declares `did` (not `did_id`) — show what the dapp
-      // actually sent.
       { name: 'did', label: () => i18n._(/* i18n */ { id: 'DID' }), type: 'text' },
       { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
     ],
@@ -269,6 +338,7 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     ],
   },
 
+  // ── Wallet (UI-only mutations) ─────────────────────────────────────────────
   'chia_wallet.set_auto_claim': {
     title: () => i18n._(/* i18n */ { id: 'Confirm Set Auto Claim' }),
     message: () => i18n._(/* i18n */ { id: 'Are you sure you want to set auto claim?' }),
@@ -305,14 +375,11 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     message: () => i18n._(/* i18n */ { id: 'Are you sure you want to set payout instructions?' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Set' }),
     params: [
-      {
-        name: 'payout_instructions',
-        label: () => i18n._(/* i18n */ { id: 'Payout Instructions' }),
-        type: 'text',
-      },
+      { name: 'payout_instructions', label: () => i18n._(/* i18n */ { id: 'Payout Instructions' }), type: 'text' },
     ],
   },
 
+  // ── Harvester / full-node / farmer / daemon (UI-only) ──────────────────────
   'chia_harvester.delete_plot': {
     title: () => i18n._(/* i18n */ { id: 'Confirm Delete Plot' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Delete' }),
@@ -361,11 +428,7 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     message: () => i18n._(/* i18n */ { id: 'Are you sure you want to set payout instructions?' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Set' }),
     params: [
-      {
-        name: 'payout_instructions',
-        label: () => i18n._(/* i18n */ { id: 'Payout Instructions' }),
-        type: 'text',
-      },
+      { name: 'payout_instructions', label: () => i18n._(/* i18n */ { id: 'Payout Instructions' }), type: 'text' },
     ],
   },
 
@@ -375,21 +438,24 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
     params: [],
   },
 
-  // ── login / fingerprint switch ──────────────────────────────────────────────
+  // ── Login / fingerprint switch ─────────────────────────────────────────────
   'chia_wallet.log_in': {
+    wcCommand: 'chia_logIn',
+    label: () => i18n._(/* i18n */ { id: "Log In" }),
     title: () => i18n._(/* i18n */ { id: 'Confirm Log In' }),
     message: () => i18n._(/* i18n */ { id: 'Are you sure you want to switch to this wallet key?' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Log In' }),
-    dappAllowed: true,
     params: [{ name: 'fingerprint', label: () => i18n._(/* i18n */ { id: 'Fingerprint' }), type: 'text' }],
   },
 
-  // ── transactions ────────────────────────────────────────────────────────────
+  // ── Transactions ───────────────────────────────────────────────────────────
   'chia_wallet.spend_clawback_coins': {
+    wcCommand: 'chia_spendClawbackCoins',
+    requiresSync: true,
+    label: () => i18n._(/* i18n */ { id: "Claw back or claim claw back transaction" }),
     title: () => i18n._(/* i18n */ { id: 'Confirm Clawback Spend' }),
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm this clawback spend.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Send' }),
-    dappAllowed: true,
     params: [
       { name: 'coin_ids', label: () => i18n._(/* i18n */ { id: 'Coin Ids' }), type: 'json' },
       { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
@@ -397,10 +463,12 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
   },
 
   'chia_wallet.push_transactions': {
+    wcCommand: 'chia_pushTransactions',
+    label: () => i18n._(/* i18n */ { id: "Push Transactions" }),
+    description: () => i18n._(/* i18n */ { id: "Push a list of transactions to the blockchain via the wallet" }),
     title: () => i18n._(/* i18n */ { id: 'Confirm Push Transactions' }),
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm pushing this transaction bundle.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Push' }),
-    dappAllowed: true,
     params: [
       { name: 'transactions', label: () => i18n._(/* i18n */ { id: 'Transactions' }), type: 'json' },
       { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
@@ -411,29 +479,28 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
   },
 
   'chia_full_node.push_tx': {
+    wcCommand: 'chia_pushTx',
+    label: () => i18n._(/* i18n */ { id: "Push Transaction" }),
+    description: () => i18n._(/* i18n */ { id: "Push a spend bundle (transaction) to the blockchain" }),
     title: () => i18n._(/* i18n */ { id: 'Confirm Push Transaction' }),
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm pushing this transaction.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Push' }),
-    dappAllowed: true,
     params: [
       { name: 'spend_bundle', label: () => i18n._(/* i18n */ { id: 'Spend Bundle' }), type: 'json' },
     ],
   },
 
-  // ── NFTs ────────────────────────────────────────────────────────────────────
+  // ── NFTs ───────────────────────────────────────────────────────────────────
   'chia_wallet.nft_mint_nft': {
+    wcCommand: 'chia_mintNFT',
+    label: () => i18n._(/* i18n */ { id: "Mint NFT" }),
     title: () => i18n._(/* i18n */ { id: 'Confirm Mint NFT' }),
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm this NFT mint.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Mint' }),
-    dappAllowed: true,
     params: [
       { name: 'wallet_id', label: () => i18n._(/* i18n */ { id: 'Wallet Id' }), type: 'text' },
       { name: 'royalty_address', label: () => i18n._(/* i18n */ { id: 'Royalty Address' }), type: 'text' },
-      {
-        name: 'royalty_percentage',
-        label: () => i18n._(/* i18n */ { id: 'Royalty Percentage' }),
-        type: 'text',
-      },
+      { name: 'royalty_percentage', label: () => i18n._(/* i18n */ { id: 'Royalty Percentage' }), type: 'text' },
       { name: 'target_address', label: () => i18n._(/* i18n */ { id: 'Target Address' }), type: 'text' },
       { name: 'uris', label: () => i18n._(/* i18n */ { id: 'URIs' }), type: 'json' },
       { name: 'hash', label: () => i18n._(/* i18n */ { id: 'Hash' }), type: 'text' },
@@ -449,68 +516,48 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
   },
 
   'chia_wallet.nft_mint_bulk': {
+    wcCommand: 'chia_mintBulk',
+    label: () => i18n._(/* i18n */ { id: "Mint Bulk" }),
+    description: () => i18n._(/* i18n */ { id: "Create a spend bundle to mint multiple NFTs" }),
     title: () => i18n._(/* i18n */ { id: 'Confirm Bulk Mint NFTs' }),
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm this bulk NFT mint.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Mint' }),
-    dappAllowed: true,
     params: [
       { name: 'wallet_id', label: () => i18n._(/* i18n */ { id: 'Wallet Id' }), type: 'text' },
       { name: 'metadata_list', label: () => i18n._(/* i18n */ { id: 'Metadata List' }), type: 'json' },
-      {
-        name: 'royalty_percentage',
-        label: () => i18n._(/* i18n */ { id: 'Royalty Percentage' }),
-        type: 'text',
-      },
+      { name: 'royalty_percentage', label: () => i18n._(/* i18n */ { id: 'Royalty Percentage' }), type: 'text' },
       { name: 'royalty_address', label: () => i18n._(/* i18n */ { id: 'Royalty Address' }), type: 'text' },
       { name: 'target_list', label: () => i18n._(/* i18n */ { id: 'Target List' }), type: 'json' },
-      {
-        name: 'mint_number_start',
-        label: () => i18n._(/* i18n */ { id: 'Mint Start Number' }),
-        type: 'text',
-      },
+      { name: 'mint_number_start', label: () => i18n._(/* i18n */ { id: 'Mint Start Number' }), type: 'text' },
       { name: 'mint_total', label: () => i18n._(/* i18n */ { id: 'Mint Total' }), type: 'text' },
       { name: 'xch_coins', label: () => i18n._(/* i18n */ { id: 'XCH Coins' }), type: 'json' },
-      {
-        name: 'xch_change_target',
-        label: () => i18n._(/* i18n */ { id: 'XCH Change Target' }),
-        type: 'text',
-      },
-      {
-        name: 'new_innerpuzhash',
-        label: () => i18n._(/* i18n */ { id: 'New Inner Puzzle Hash' }),
-        type: 'json',
-      },
-      {
-        name: 'new_p_2_puzhash',
-        label: () => i18n._(/* i18n */ { id: 'New P2 Puzzle Hash' }),
-        type: 'text',
-      },
+      { name: 'xch_change_target', label: () => i18n._(/* i18n */ { id: 'XCH Change Target' }), type: 'text' },
+      { name: 'new_innerpuzhash', label: () => i18n._(/* i18n */ { id: 'New Inner Puzzle Hash' }), type: 'json' },
+      { name: 'new_p_2_puzhash', label: () => i18n._(/* i18n */ { id: 'New P2 Puzzle Hash' }), type: 'text' },
       { name: 'did_coin', label: () => i18n._(/* i18n */ { id: 'DID Coin' }), type: 'json' },
-      {
-        name: 'did_lineage_parent',
-        label: () => i18n._(/* i18n */ { id: 'DID Lineage Parent' }),
-        type: 'text',
-      },
+      { name: 'did_lineage_parent', label: () => i18n._(/* i18n */ { id: 'DID Lineage Parent' }), type: 'text' },
       { name: 'mint_from_did', label: () => i18n._(/* i18n */ { id: 'Mint From DID' }), type: 'bool' },
       { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
       { name: 'reuse_puzhash', label: () => i18n._(/* i18n */ { id: 'Reuse Puzzle Hash' }), type: 'bool' },
     ],
   },
 
-  // ── DIDs ────────────────────────────────────────────────────────────────────
+  // ── DIDs ───────────────────────────────────────────────────────────────────
   'chia_wallet.did_find_lost': {
+    wcCommand: 'chia_findLostDID',
+    label: () => i18n._(/* i18n */ { id: "Find Lost DID" }),
     title: () => i18n._(/* i18n */ { id: 'Confirm Find Lost DID' }),
     message: () => i18n._(/* i18n */ { id: 'Are you sure you want to recover this DID?' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Recover' }),
-    dappAllowed: true,
     params: [{ name: 'coin_id', label: () => i18n._(/* i18n */ { id: 'Coin Id' }), type: 'text' }],
   },
 
   'chia_wallet.did_update_metadata': {
+    wcCommand: 'chia_updateDIDMetadata',
+    label: () => i18n._(/* i18n */ { id: "Update DID Metadata" }),
     title: () => i18n._(/* i18n */ { id: 'Confirm Update DID Metadata' }),
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm this DID metadata update.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Update' }),
-    dappAllowed: true,
     params: [
       { name: 'wallet_id', label: () => i18n._(/* i18n */ { id: 'Wallet Id' }), type: 'text' },
       { name: 'metadata', label: () => i18n._(/* i18n */ { id: 'DID Metadata' }), type: 'json' },
@@ -520,81 +567,79 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
   },
 
   'chia_wallet.did_update_recovery_ids': {
+    wcCommand: 'chia_updateDIDRecoveryIds',
+    label: () => i18n._(/* i18n */ { id: "Update DID Recovery Ids" }),
     title: () => i18n._(/* i18n */ { id: 'Confirm Update DID Recovery Ids' }),
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm this DID recovery list update.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Update' }),
-    dappAllowed: true,
     params: [
       { name: 'wallet_id', label: () => i18n._(/* i18n */ { id: 'Wallet Id' }), type: 'text' },
       { name: 'new_list', label: () => i18n._(/* i18n */ { id: 'New Recovery List' }), type: 'json' },
-      {
-        name: 'num_verifications_required',
-        label: () => i18n._(/* i18n */ { id: 'Verifications Required' }),
-        type: 'text',
-      },
+      { name: 'num_verifications_required', label: () => i18n._(/* i18n */ { id: 'Verifications Required' }), type: 'text' },
       { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
       { name: 'reuse_puzhash', label: () => i18n._(/* i18n */ { id: 'Reuse Puzzle Hash' }), type: 'bool' },
     ],
   },
 
   'chia_wallet.did_set_wallet_name': {
+    wcCommand: 'chia_setDIDName',
+    label: () => i18n._(/* i18n */ { id: "Set DID Name" }),
     title: () => i18n._(/* i18n */ { id: 'Confirm Set DID Name' }),
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm renaming this DID wallet.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Set' }),
-    dappAllowed: true,
     params: [
       { name: 'wallet_id', label: () => i18n._(/* i18n */ { id: 'Wallet Id' }), type: 'text' },
       { name: 'name', label: () => i18n._(/* i18n */ { id: 'Name' }), type: 'text' },
     ],
   },
 
-  // ── VCs ─────────────────────────────────────────────────────────────────────
+  // ── VCs ────────────────────────────────────────────────────────────────────
   'chia_wallet.vc_spend': {
+    wcCommand: 'chia_spendVC',
+    label: () => i18n._(/* i18n */ { id: "Add Proofs To Verifiable Credential" }),
     title: () => i18n._(/* i18n */ { id: 'Confirm VC Spend' }),
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm this verifiable credential spend.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Send' }),
-    dappAllowed: true,
     params: [
       { name: 'vc_id', label: () => i18n._(/* i18n */ { id: 'VC Id' }), type: 'text' },
       { name: 'new_puzhash', label: () => i18n._(/* i18n */ { id: 'New Puzzle Hash' }), type: 'text' },
       { name: 'new_proof_hash', label: () => i18n._(/* i18n */ { id: 'New Proof Hash' }), type: 'text' },
-      {
-        name: 'provider_inner_puzhash',
-        label: () => i18n._(/* i18n */ { id: 'Provider Inner Puzzle Hash' }),
-        type: 'text',
-      },
+      { name: 'provider_inner_puzhash', label: () => i18n._(/* i18n */ { id: 'Provider Inner Puzzle Hash' }), type: 'text' },
       { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
       { name: 'reuse_puzhash', label: () => i18n._(/* i18n */ { id: 'Reuse Puzzle Hash' }), type: 'bool' },
     ],
   },
 
   'chia_wallet.vc_add_proofs': {
+    wcCommand: 'chia_addVCProofs',
+    label: () => i18n._(/* i18n */ { id: "Add Proofs" }),
     title: () => i18n._(/* i18n */ { id: 'Confirm Add VC Proofs' }),
     message: () =>
       i18n._(/* i18n */ { id: 'Please carefully review and confirm adding proofs to this verifiable credential.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Add' }),
-    dappAllowed: true,
     params: [{ name: 'proofs', label: () => i18n._(/* i18n */ { id: 'Proofs' }), type: 'json' }],
   },
 
   'chia_wallet.vc_revoke': {
+    wcCommand: 'chia_revokeVC',
+    label: () => i18n._(/* i18n */ { id: "Revoke Verifiable Credential" }),
     title: () => i18n._(/* i18n */ { id: 'Confirm Revoke VC' }),
     message: () => i18n._(/* i18n */ { id: 'Are you sure you want to revoke this verifiable credential?' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Revoke' }),
     destructive: true,
-    dappAllowed: true,
     params: [
       { name: 'vc_parent_id', label: () => i18n._(/* i18n */ { id: 'Parent Coin Id' }), type: 'text' },
       { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
     ],
   },
 
-  // ── DataLayer (mutating) ────────────────────────────────────────────────────
+  // ── DataLayer (mutating) ───────────────────────────────────────────────────
   'chia_data_layer.create_data_store': {
+    wcCommand: 'chia_createDataStore',
+    label: () => i18n._(/* i18n */ { id: "Create DataStore" }),
     title: () => i18n._(/* i18n */ { id: 'Confirm Create DataStore' }),
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm creating this data store.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Create' }),
-    dappAllowed: true,
     params: [
       { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
       { name: 'verbose', label: () => i18n._(/* i18n */ { id: 'Verbose' }), type: 'bool' },
@@ -602,10 +647,11 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
   },
 
   'chia_data_layer.batch_update': {
+    wcCommand: 'chia_batchUpdate',
+    label: () => i18n._(/* i18n */ { id: "Batch Update" }),
     title: () => i18n._(/* i18n */ { id: 'Confirm DataStore Update' }),
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm this data store update.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Update' }),
-    dappAllowed: true,
     params: [
       { name: 'id', label: () => i18n._(/* i18n */ { id: 'Store Id' }), type: 'text' },
       { name: 'changelist', label: () => i18n._(/* i18n */ { id: 'Changelist' }), type: 'json' },
@@ -615,10 +661,11 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
   },
 
   'chia_data_layer.insert': {
+    wcCommand: 'chia_insert',
+    label: () => i18n._(/* i18n */ { id: "Insert" }),
     title: () => i18n._(/* i18n */ { id: 'Confirm DataStore Insert' }),
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm this data store insert.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Insert' }),
-    dappAllowed: true,
     params: [
       { name: 'id', label: () => i18n._(/* i18n */ { id: 'Store Id' }), type: 'text' },
       { name: 'key', label: () => i18n._(/* i18n */ { id: 'Key' }), type: 'text' },
@@ -628,11 +675,12 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
   },
 
   'chia_data_layer.delete_key': {
+    wcCommand: 'chia_deleteKey',
+    label: () => i18n._(/* i18n */ { id: "Delete Key" }),
     title: () => i18n._(/* i18n */ { id: 'Confirm DataStore Delete Key' }),
     message: () => i18n._(/* i18n */ { id: 'Are you sure you want to delete this key from the data store?' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Delete' }),
     destructive: true,
-    dappAllowed: true,
     params: [
       { name: 'id', label: () => i18n._(/* i18n */ { id: 'Store Id' }), type: 'text' },
       { name: 'key', label: () => i18n._(/* i18n */ { id: 'Key' }), type: 'text' },
@@ -641,10 +689,11 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
   },
 
   'chia_data_layer.add_mirror': {
+    wcCommand: 'chia_addMirror',
+    label: () => i18n._(/* i18n */ { id: "Add Mirror" }),
     title: () => i18n._(/* i18n */ { id: 'Confirm Add Mirror' }),
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm adding this mirror.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Add' }),
-    dappAllowed: true,
     params: [
       { name: 'id', label: () => i18n._(/* i18n */ { id: 'Store Id' }), type: 'text' },
       { name: 'urls', label: () => i18n._(/* i18n */ { id: 'URLs' }), type: 'json' },
@@ -654,11 +703,12 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
   },
 
   'chia_data_layer.delete_mirror': {
+    wcCommand: 'chia_deleteMirror',
+    label: () => i18n._(/* i18n */ { id: "Delete Mirror" }),
     title: () => i18n._(/* i18n */ { id: 'Confirm Delete Mirror' }),
     message: () => i18n._(/* i18n */ { id: 'Are you sure you want to delete this mirror?' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Delete' }),
     destructive: true,
-    dappAllowed: true,
     params: [
       { name: 'coin_id', label: () => i18n._(/* i18n */ { id: 'Coin Id' }), type: 'text' },
       { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
@@ -666,10 +716,11 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
   },
 
   'chia_data_layer.subscribe': {
+    wcCommand: 'chia_subscribe',
+    label: () => i18n._(/* i18n */ { id: "Subscribe" }),
     title: () => i18n._(/* i18n */ { id: 'Confirm DataStore Subscribe' }),
     message: () => i18n._(/* i18n */ { id: 'Please review and confirm this subscription.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Subscribe' }),
-    dappAllowed: true,
     params: [
       { name: 'id', label: () => i18n._(/* i18n */ { id: 'Store Id' }), type: 'text' },
       { name: 'urls', label: () => i18n._(/* i18n */ { id: 'URLs' }), type: 'json' },
@@ -677,11 +728,12 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
   },
 
   'chia_data_layer.unsubscribe': {
+    wcCommand: 'chia_unsubscribe',
+    label: () => i18n._(/* i18n */ { id: "Unsubscribe" }),
     title: () => i18n._(/* i18n */ { id: 'Confirm DataStore Unsubscribe' }),
     message: () => i18n._(/* i18n */ { id: 'Please review and confirm this unsubscribe.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Unsubscribe' }),
     destructive: true,
-    dappAllowed: true,
     params: [
       { name: 'id', label: () => i18n._(/* i18n */ { id: 'Store Id' }), type: 'text' },
       { name: 'retain', label: () => i18n._(/* i18n */ { id: 'Retain' }), type: 'bool' },
@@ -689,11 +741,12 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
   },
 
   'chia_data_layer.remove_subscriptions': {
+    wcCommand: 'chia_removeSubscriptions',
+    label: () => i18n._(/* i18n */ { id: "Remove Subscriptions" }),
     title: () => i18n._(/* i18n */ { id: 'Confirm Remove Subscriptions' }),
     message: () => i18n._(/* i18n */ { id: 'Are you sure you want to remove these subscription URLs?' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Remove' }),
     destructive: true,
-    dappAllowed: true,
     params: [
       { name: 'id', label: () => i18n._(/* i18n */ { id: 'Store Id' }), type: 'text' },
       { name: 'urls', label: () => i18n._(/* i18n */ { id: 'URLs' }), type: 'json' },
@@ -701,10 +754,11 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
   },
 
   'chia_data_layer.add_missing_files': {
+    wcCommand: 'chia_addMissingFiles',
+    label: () => i18n._(/* i18n */ { id: "Add Missing Files" }),
     title: () => i18n._(/* i18n */ { id: 'Confirm Add Missing Files' }),
     message: () => i18n._(/* i18n */ { id: 'Please review and confirm syncing missing files.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Sync' }),
-    dappAllowed: true,
     params: [
       { name: 'ids', label: () => i18n._(/* i18n */ { id: 'Store Ids' }), type: 'json' },
       { name: 'overwrite', label: () => i18n._(/* i18n */ { id: 'Overwrite' }), type: 'bool' },
@@ -713,26 +767,29 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
   },
 
   'chia_data_layer.check_plugins': {
+    wcCommand: 'chia_checkPlugins',
+    label: () => i18n._(/* i18n */ { id: "Check Plugins" }),
     title: () => i18n._(/* i18n */ { id: 'Confirm Check Plugins' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Check' }),
-    dappAllowed: true,
     params: [],
   },
 
   'chia_data_layer.clear_pending_roots': {
+    wcCommand: 'chia_clearPendingRoots',
+    label: () => i18n._(/* i18n */ { id: "Clear Pending Roots" }),
     title: () => i18n._(/* i18n */ { id: 'Confirm Clear Pending Roots' }),
     message: () => i18n._(/* i18n */ { id: 'Are you sure you want to clear pending roots for this store?' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Clear' }),
     destructive: true,
-    dappAllowed: true,
     params: [{ name: 'store_id', label: () => i18n._(/* i18n */ { id: 'Store Id' }), type: 'text' }],
   },
 
   'chia_data_layer.get_ancestors': {
+    wcCommand: 'chia_getAncestors',
+    label: () => i18n._(/* i18n */ { id: "Get Ancestors" }),
     title: () => i18n._(/* i18n */ { id: 'Confirm Get Ancestors' }),
     message: () => i18n._(/* i18n */ { id: 'Please review and confirm this query.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Query' }),
-    dappAllowed: true,
     params: [
       { name: 'id', label: () => i18n._(/* i18n */ { id: 'Store Id' }), type: 'text' },
       { name: 'hash', label: () => i18n._(/* i18n */ { id: 'Hash' }), type: 'text' },
@@ -740,18 +797,20 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
   },
 
   'chia_data_layer.subscriptions': {
+    wcCommand: 'chia_subscriptions',
+    label: () => i18n._(/* i18n */ { id: "Subscriptions" }),
     title: () => i18n._(/* i18n */ { id: 'Confirm List Subscriptions' }),
     message: () => i18n._(/* i18n */ { id: 'Please review and confirm this query.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Query' }),
-    dappAllowed: true,
     params: [],
   },
 
   'chia_data_layer.make_offer': {
+    wcCommand: 'chia_makeDataLayerOffer',
+    label: () => i18n._(/* i18n */ { id: "Make DataLayer Offer" }),
     title: () => i18n._(/* i18n */ { id: 'Confirm Make DataLayer Offer' }),
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm this DataLayer offer.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Create' }),
-    dappAllowed: true,
     params: [
       { name: 'maker', label: () => i18n._(/* i18n */ { id: 'Maker' }), type: 'json' },
       { name: 'taker', label: () => i18n._(/* i18n */ { id: 'Taker' }), type: 'json' },
@@ -760,10 +819,11 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
   },
 
   'chia_data_layer.take_offer': {
+    wcCommand: 'chia_takeDataLayerOffer',
+    label: () => i18n._(/* i18n */ { id: "Take DataLayer Offer" }),
     title: () => i18n._(/* i18n */ { id: 'Confirm Take DataLayer Offer' }),
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm taking this DataLayer offer.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Accept' }),
-    dappAllowed: true,
     params: [
       { name: 'offer', label: () => i18n._(/* i18n */ { id: 'Offer' }), type: 'json' },
       { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
@@ -771,11 +831,12 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
   },
 
   'chia_data_layer.cancel_offer': {
+    wcCommand: 'chia_cancelDataLayerOffer',
+    label: () => i18n._(/* i18n */ { id: "Cancel DataLayer Offer" }),
     title: () => i18n._(/* i18n */ { id: 'Confirm Cancel DataLayer Offer' }),
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm cancelling this DataLayer offer.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Cancel' }),
     destructive: true,
-    dappAllowed: true,
     params: [
       { name: 'trade_id', label: () => i18n._(/* i18n */ { id: 'Trade Id' }), type: 'text' },
       { name: 'secure', label: () => i18n._(/* i18n */ { id: 'Secure' }), type: 'bool' },
@@ -784,115 +845,311 @@ const SCHEMAS: Record<string, ConfirmSchema> = {
   },
 
   'chia_data_layer.verify_offer': {
+    wcCommand: 'chia_verifyOffer',
+    label: () => i18n._(/* i18n */ { id: "Verify Offer" }),
     title: () => i18n._(/* i18n */ { id: 'Confirm Verify DataLayer Offer' }),
     message: () => i18n._(/* i18n */ { id: 'Please review and confirm this offer verification.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Verify' }),
-    dappAllowed: true,
     params: [
       { name: 'offer', label: () => i18n._(/* i18n */ { id: 'Offer' }), type: 'json' },
       { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
     ],
   },
 
-  // ── Remote wallets / coin tracking ──────────────────────────────────────────
+  // ── Remote wallets / coin tracking ─────────────────────────────────────────
   'chia_wallet.create_new_remote_wallet': {
+    wcCommand: 'chia_createNewRemoteWallet',
+    label: () => i18n._(/* i18n */ { id: "Create new Remote Wallet" }),
     title: () => i18n._(/* i18n */ { id: 'Confirm Create Remote Wallet' }),
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm creating this remote wallet.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Create' }),
-    dappAllowed: true,
-    // WC's `createNewRemoteWallet` declares no fee/name — only an
-    // `allowUnsynced` toggle. Reflect what the dapp actually sends.
     params: [
       { name: 'allow_unsynced', label: () => i18n._(/* i18n */ { id: 'Allow Unsynced' }), type: 'bool' },
     ],
   },
 
   'chia_wallet.register_remote_coins': {
+    wcCommand: 'chia_registerRemoteCoins',
+    label: () => i18n._(/* i18n */ { id: "Register Remote Coins" }),
+    description: () => i18n._(/* i18n */ { id: "Registers a list of remote coin IDs with a remote wallet." }),
     title: () => i18n._(/* i18n */ { id: 'Confirm Register Remote Coins' }),
     message: () => i18n._(/* i18n */ { id: 'Please review and confirm registering these remote coins.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Register' }),
-    dappAllowed: true,
     params: [
       { name: 'wallet_id', label: () => i18n._(/* i18n */ { id: 'Wallet Id' }), type: 'text' },
       { name: 'coin_ids', label: () => i18n._(/* i18n */ { id: 'Coin Ids' }), type: 'json' },
     ],
   },
 
-  // ── Misc missing schemas ────────────────────────────────────────────────────
+  // ── Misc with dialog ───────────────────────────────────────────────────────
   'chia_wallet.did_get_information_needed_for_recovery': {
+    wcCommand: 'chia_getDIDInformationNeededForRecovery',
+    label: () => i18n._(/* i18n */ { id: "Get Information Needed For DID Recovery" }),
     title: () => i18n._(/* i18n */ { id: 'Confirm Get DID Recovery Information' }),
     message: () => i18n._(/* i18n */ { id: 'Please review and confirm this query.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Query' }),
-    dappAllowed: true,
     params: [{ name: 'wallet_id', label: () => i18n._(/* i18n */ { id: 'Wallet Id' }), type: 'text' }],
   },
 
   'daemon.get_public_key': {
+    wcCommand: 'chia_getPublicKey',
+    label: () => i18n._(/* i18n */ { id: "Get public key" }),
+    description: () => i18n._(/* i18n */ { id: "Requests a master public key from your wallet" }),
     title: () => i18n._(/* i18n */ { id: 'Confirm Get Public Key' }),
     message: () => i18n._(/* i18n */ { id: 'An app is requesting access to a wallet public key.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Share' }),
-    dappAllowed: true,
     params: [{ name: 'fingerprint', label: () => i18n._(/* i18n */ { id: 'Fingerprint' }), type: 'text' }],
   },
 
-  // ── Read-only stubs for dapp-callable RPCs without dialog UI ────────────────
+  // ── Read-only stubs for dapp-callable RPCs without dialog UI ───────────────
   // Reads short-circuit at the capability check (innocuous/balance) before
   // ever reaching the dialog renderer, so these schemas never produce a
-  // visible prompt. They exist solely so `dappAllowed: true` is the single
+  // visible prompt. They exist solely so this table remains the single
   // source of truth for "is this RPC reachable from a paired dapp."
-  'chia_wallet.get_wallets': { dappAllowed: true, params: [] },
-  'chia_wallet.get_transaction': { dappAllowed: true, params: [] },
-  'chia_wallet.get_wallet_balance': { dappAllowed: true, params: [] },
-  'chia_wallet.get_wallet_balances': { dappAllowed: true, params: [] },
-  'chia_wallet.get_current_address': { dappAllowed: true, params: [] },
-  'chia_wallet.get_coin_records_by_names': { dappAllowed: true, params: [] },
-  'chia_wallet.select_coins': { dappAllowed: true, params: [] },
-  'chia_wallet.get_spendable_coins': { dappAllowed: true, params: [] },
-  'chia_wallet.verify_signature': { dappAllowed: true, params: [] },
-  'chia_wallet.get_next_address': { dappAllowed: true, params: [] },
-  'chia_wallet.get_sync_status': { dappAllowed: true, params: [] },
-  'chia_wallet.get_height_info': { dappAllowed: true, params: [] },
-  'chia_wallet.get_puzzle_and_solution': { dappAllowed: true, params: [] },
-  'chia_wallet.get_all_offers': { dappAllowed: true, params: [] },
-  'chia_wallet.get_offers_count': { dappAllowed: true, params: [] },
-  'chia_wallet.check_offer_validity': { dappAllowed: true, params: [] },
-  'chia_wallet.get_offer_summary': { dappAllowed: true, params: [] },
-  'chia_wallet.get_offer_data': { dappAllowed: true, params: [] },
-  'chia_wallet.get_offer_record': { dappAllowed: true, params: [] },
-  'chia_wallet.cat_asset_id_to_name': { dappAllowed: true, params: [] },
-  'chia_wallet.cat_get_asset_id': { dappAllowed: true, params: [] },
-  'chia_wallet.nft_get_nfts': { dappAllowed: true, params: [] },
-  'chia_wallet.nft_get_info': { dappAllowed: true, params: [] },
-  'chia_wallet.nft_count_nfts': { dappAllowed: true, params: [] },
-  'chia_wallet.nft_get_wallets_with_dids': { dappAllowed: true, params: [] },
-  'chia_wallet.did_get_current_coin_info': { dappAllowed: true, params: [] },
-  'chia_wallet.did_get_did': { dappAllowed: true, params: [] },
-  'chia_wallet.did_get_info': { dappAllowed: true, params: [] },
-  'chia_wallet.did_get_metadata': { dappAllowed: true, params: [] },
-  'chia_wallet.did_get_pubkey': { dappAllowed: true, params: [] },
-  'chia_wallet.did_get_recovery_list': { dappAllowed: true, params: [] },
-  'chia_wallet.did_get_wallet_name': { dappAllowed: true, params: [] },
-  'chia_wallet.vc_get_list': { dappAllowed: true, params: [] },
-  'chia_wallet.vc_get': { dappAllowed: true, params: [] },
-  'chia_wallet.vc_get_proofs_for_root': { dappAllowed: true, params: [] },
-  'chia_data_layer.get_keys': { dappAllowed: true, params: [] },
-  'chia_data_layer.get_keys_values': { dappAllowed: true, params: [] },
-  'chia_data_layer.get_kv_diff': { dappAllowed: true, params: [] },
-  'chia_data_layer.get_local_root': { dappAllowed: true, params: [] },
-  'chia_data_layer.get_mirrors': { dappAllowed: true, params: [] },
-  'chia_data_layer.get_owned_stores': { dappAllowed: true, params: [] },
-  'chia_data_layer.get_root': { dappAllowed: true, params: [] },
-  'chia_data_layer.get_roots': { dappAllowed: true, params: [] },
-  'chia_data_layer.get_root_history': { dappAllowed: true, params: [] },
-  'chia_data_layer.get_sync_status': { dappAllowed: true, params: [] },
-  'chia_data_layer.get_value': { dappAllowed: true, params: [] },
-  'daemon.get_wallet_addresses': { dappAllowed: true, params: [] },
+  'chia_wallet.get_wallets': { wcCommand: 'chia_getWallets', params: [] },
+  'chia_wallet.get_transaction': { wcCommand: 'chia_getTransaction', params: [] },
+  'chia_wallet.get_wallet_balance': {
+    wcCommand: 'chia_getWalletBalance',
+    params: [],
+    defaults: {"wallet_id":1},
+  },
+  'chia_wallet.get_wallet_balances': { wcCommand: 'chia_getWalletBalances', params: [] },
+  'chia_wallet.get_current_address': {
+    wcCommand: 'chia_getCurrentAddress',
+    params: [],
+    defaults: {"wallet_id":1},
+  },
+  'chia_wallet.get_coin_records_by_names': {
+    wcCommand: 'chia_getCoinRecordsByNames',
+    params: [],
+    defaults: {"include_spent_coins":true},
+  },
+  'chia_wallet.select_coins': {
+    wcCommand: 'chia_selectCoins',
+    params: [],
+    defaults: {"wallet_id":1},
+  },
+  'chia_wallet.get_spendable_coins': {
+    wcCommand: 'chia_getSpendableCoins',
+    requiresSync: true,
+    params: [],
+    defaults: {"wallet_id":1},
+  },
+  'chia_wallet.verify_signature': { wcCommand: 'chia_verifySignature', params: [] },
+  'chia_wallet.get_next_address': {
+    wcCommand: 'chia_getNextAddress',
+    params: [],
+    defaults: {"wallet_id":1,"new_address":true},
+  },
+  'chia_wallet.get_sync_status': { wcCommand: 'chia_getSyncStatus', params: [] },
+  'chia_wallet.get_height_info': {
+    wcCommand: 'chia_getHeightInfo',
+    params: [],
+    defaults: {"use_peak_height":false},
+  },
+  'chia_wallet.get_puzzle_and_solution': { wcCommand: 'chia_getPuzzleAndSolution', params: [] },
+  'chia_wallet.get_all_offers': { wcCommand: 'chia_getAllOffers', params: [] },
+  'chia_wallet.get_offers_count': { wcCommand: 'chia_getOffersCount', params: [] },
+  'chia_wallet.check_offer_validity': { wcCommand: 'chia_checkOfferValidity', params: [] },
+  'chia_wallet.get_offer_summary': { wcCommand: 'chia_getOfferSummary', params: [] },
+  'chia_wallet.get_offer_data': { wcCommand: 'chia_getOfferData', params: [] },
+  'chia_wallet.get_offer_record': { wcCommand: 'chia_getOfferRecord', params: [] },
+  'chia_wallet.cat_asset_id_to_name': { wcCommand: 'chia_getCATWalletInfo', params: [] },
+  'chia_wallet.cat_get_asset_id': { wcCommand: 'chia_getCATAssetId', params: [] },
+  'chia_wallet.nft_get_nfts': { wcCommand: 'chia_getNFTs', params: [] },
+  'chia_wallet.nft_get_info': { wcCommand: 'chia_getNFTInfo', params: [] },
+  'chia_wallet.nft_count_nfts': { wcCommand: 'chia_getNFTsCount', params: [] },
+  'chia_wallet.nft_get_wallets_with_dids': { wcCommand: 'chia_getNFTWalletsWithDIDs', params: [] },
+  'chia_wallet.did_get_current_coin_info': { wcCommand: 'chia_getDIDCurrentCoinInfo', params: [] },
+  'chia_wallet.did_get_did': { wcCommand: 'chia_getDID', params: [] },
+  'chia_wallet.did_get_info': { wcCommand: 'chia_getDIDInfo', params: [] },
+  'chia_wallet.did_get_metadata': { wcCommand: 'chia_getDIDMetadata', params: [] },
+  'chia_wallet.did_get_pubkey': { wcCommand: 'chia_getDIDPubkey', params: [] },
+  'chia_wallet.did_get_recovery_list': { wcCommand: 'chia_getDIDRecoveryList', params: [] },
+  'chia_wallet.did_get_wallet_name': { wcCommand: 'chia_getDIDName', params: [] },
+  'chia_wallet.vc_get_list': { wcCommand: 'chia_getVCList', params: [] },
+  'chia_wallet.vc_get': { wcCommand: 'chia_getVC', params: [] },
+  'chia_wallet.vc_get_proofs_for_root': { wcCommand: 'chia_getProofsForRoot', params: [] },
+  'chia_data_layer.get_keys': { wcCommand: 'chia_getKeys', params: [] },
+  'chia_data_layer.get_keys_values': { wcCommand: 'chia_getKeysValues', params: [] },
+  'chia_data_layer.get_kv_diff': { wcCommand: 'chia_getKvDiff', params: [] },
+  'chia_data_layer.get_local_root': { wcCommand: 'chia_getLocalRoot', params: [] },
+  'chia_data_layer.get_mirrors': { wcCommand: 'chia_getMirrors', params: [] },
+  'chia_data_layer.get_owned_stores': { wcCommand: 'chia_getOwnedStores', params: [] },
+  'chia_data_layer.get_root': { wcCommand: 'chia_getRoot', params: [] },
+  'chia_data_layer.get_roots': { wcCommand: 'chia_getRoots', params: [] },
+  'chia_data_layer.get_root_history': { wcCommand: 'chia_getRootHistory', params: [] },
+  'chia_data_layer.get_sync_status': { wcCommand: 'chia_getDataLayerSyncStatus', params: [] },
+  'chia_data_layer.get_value': { wcCommand: 'chia_getValue', params: [] },
+  'daemon.get_wallet_addresses': { wcCommand: 'chia_getWalletAddresses', params: [] },
 };
 
-export function getConfirmSchema(command: string): ConfirmSchema {
-  return SCHEMAS[command] ?? FALLBACK;
+// Reverse index: WC command (wire form) → ns command. Built once at module
+// init by walking SCHEMAS. Duplicate `wcCommand` values throw at startup —
+// better than mysterious dispatches landing on the wrong RPC.
+const BY_WC_COMMAND = (() => {
+  const map = new Map<string, { nsCommand: string; schema: CommandSchema }>();
+  for (const [nsCommand, schema] of Object.entries(SCHEMAS)) {
+    if (!schema.wcCommand) continue;
+    if (map.has(schema.wcCommand)) {
+      throw new Error(
+        `commandRegistry: duplicate wcCommand "${schema.wcCommand}" on ${nsCommand} and ${
+          map.get(schema.wcCommand)!.nsCommand
+        }`,
+      );
+    }
+    map.set(schema.wcCommand, { nsCommand, schema });
+  }
+  return map;
+})();
+
+/** Schema lookup by namespaced daemon command (UI's `onSend` path). */
+export function getCommandSchema(nsCommand: string): CommandSchema {
+  return SCHEMAS[nsCommand] ?? FALLBACK;
 }
 
-// Exported for tests so they can iterate the full table without having to
-// know each command name.
+/** Schema lookup by WC command (wire form). Undefined for unknown / UI-only. */
+export function getCommandByWc(wcCommand: string): { nsCommand: string; schema: CommandSchema } | undefined {
+  return BY_WC_COMMAND.get(wcCommand);
+}
+
+/**
+ * True iff a paired dapp is allowed to invoke this WC command (by virtue of
+ * being in the registry — including the renderer-handled meta-commands,
+ * which the WC SDK still needs in the session method list even though they
+ * never reach `dispatchAsPair`).
+ */
+export function isDappAllowedWcCommand(wcCommand: string): boolean {
+  return BY_WC_COMMAND.has(wcCommand);
+}
+
+/**
+ * Resolve a `wcCommand` (wire form, `chia_<name>`) supplied by the renderer
+ * at dispatch time. Returns the daemon destination + bare RPC name, or a
+ * structured rejection. The renderer does NOT supply destination — main is
+ * the authority.
+ *
+ * Rejects:
+ *   1. WC commands main doesn't know about,
+ *   2. renderer-handled meta-commands (`chia_app.*`) routed down dispatch.
+ */
+export function resolveDispatch(
+  wcCommand: string,
+):
+  | { ok: true; destination: string; command: string; nsCommand: string }
+  | { ok: false; reason: string } {
+  const entry = BY_WC_COMMAND.get(wcCommand);
+  if (!entry) {
+    return { ok: false, reason: `unknown wc command: ${wcCommand}` };
+  }
+  const { nsCommand } = entry;
+  if (nsCommand.startsWith(`${RENDERER_NAMESPACE}.`)) {
+    return { ok: false, reason: `wc command not dispatchable: ${wcCommand}` };
+  }
+  const dotIdx = nsCommand.indexOf('.');
+  if (dotIdx < 0) {
+    return { ok: false, reason: `malformed schema key: ${nsCommand}` };
+  }
+  return {
+    ok: true,
+    destination: nsCommand.slice(0, dotIdx),
+    command: nsCommand.slice(dotIdx + 1),
+    nsCommand,
+  };
+}
+
+/**
+ * Filter a list of WC method names (the wire-form `chia_<name>` strings
+ * sent in the session proposal's `namespaces.chia.methods`) into the subset
+ * this wallet lets dapps invoke. Pure exact-match — no prefix slicing,
+ * since both the registry's `wcCommand` field and `proposal.methods` use
+ * the same form.
+ *
+ * Defensive against non-array input: `for...of` would throw on objects,
+ * and this is reached at an IPC boundary where TypeScript's `string[]` is
+ * just a suggestion. A compromised renderer sending
+ * `requestedMethods: {0: 'x'}` would otherwise crash PAIR_REGISTER before
+ * the dialog could open.
+ */
+export function filterRequestedMethods(requestedMethods: unknown): {
+  allowed: string[];
+  rejected: string[];
+} {
+  const allowed: string[] = [];
+  const rejected: string[] = [];
+  if (!Array.isArray(requestedMethods)) {
+    return { allowed, rejected };
+  }
+  const seen = new Set<string>();
+  for (const method of requestedMethods) {
+    if (typeof method !== 'string' || !method) continue;
+    if (seen.has(method)) continue;
+    seen.add(method);
+    if (BY_WC_COMMAND.has(method)) {
+      allowed.push(method);
+    } else {
+      rejected.push(method);
+    }
+  }
+  return { allowed, rejected };
+}
+
+/** Strip the `chia_` prefix from a WC command for human display. */
+export function bareWcCommand(wcCommand: string): string {
+  return wcCommand.startsWith('chia_') ? wcCommand.slice('chia_'.length) : wcCommand;
+}
+
+export type CommandMetadata = {
+  /** Wire-form WC command name (`chia_<name>`). */
+  wcCommand: string;
+  /** Resolved label string in the current locale, if the schema declares one. */
+  label?: string;
+  /** Resolved description in the current locale, if the schema declares one. */
+  description?: string;
+  /** Whether the renderer should wait for wallet sync before dispatching. */
+  requiresSync: boolean;
+};
+
+/**
+ * Snapshot of every WC-callable command's display metadata for the
+ * renderer. Strings are resolved against the current locale at call time
+ * — main re-runs this on every `permissions:commands:metadata` IPC, so a
+ * locale switch is reflected on the next fetch.
+ *
+ * Includes `chia_app.*` renderer-handled commands so the Settings UI can
+ * label them too.
+ */
+export function commandsMetadata(): CommandMetadata[] {
+  const out: CommandMetadata[] = [];
+  for (const schema of Object.values(SCHEMAS)) {
+    if (!schema.wcCommand) continue;
+    out.push({
+      wcCommand: schema.wcCommand,
+      label: schema.label?.(),
+      description: schema.description?.(),
+      requiresSync: schema.requiresSync === true,
+    });
+  }
+  return out;
+}
+
+/**
+ * Apply per-schema `defaults` to the wire-form (snake_case) data before it
+ * crosses the daemon socket. Only fills missing keys — never overwrites a
+ * value the dapp explicitly sent. Returns a new object; the input is not
+ * mutated.
+ */
+export function applyDefaults(nsCommand: string, snakeData: Record<string, unknown>): Record<string, unknown> {
+  const schema = SCHEMAS[nsCommand];
+  if (!schema?.defaults) return snakeData;
+  const next = { ...snakeData };
+  for (const [key, value] of Object.entries(schema.defaults)) {
+    if (next[key] === undefined) {
+      next[key] = value;
+    }
+  }
+  return next;
+}
+
+/** Exported for tests so they can iterate the full table. */
 export const SCHEMA_COMMANDS: readonly string[] = Object.keys(SCHEMAS);

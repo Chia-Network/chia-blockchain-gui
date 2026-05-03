@@ -1,5 +1,6 @@
 import BigNumber from 'bignumber.js';
 
+import { checkPairAccess } from './checkPairAccess';
 import {
   getSpendClassification,
   isBalanceCommand,
@@ -83,41 +84,57 @@ function makeCommit(topic: string, mojos: BigNumber): () => void {
  * with the same inputs is safe — each call returns its own independent commit
  * closure, and only the one that's invoked records a spend.
  *
- * `wcCommand` is the camelCase WC name the dapp asked for. We require it for
- * pair principals so we can verify it against the per-pair `allowedWcCommands`
- * list captured at pairing time — that is the user's consent boundary.
+ * `ctx` carries the WC command name and (optionally) the dapp-claimed
+ * fingerprint and chain. Pair-bound checks (existence, commands list,
+ * fingerprint allowlist, mainnet match) are delegated to
+ * `checkPairAccess` so all dispatch entry points share one truth.
  */
+export type ResolveContext = {
+  /** WC command in wire form (`chia_<name>`). Required for pair principals. */
+  wcCommand?: string;
+  /** Dapp-claimed fingerprint. Validated against `pair.fingerprints`. */
+  fingerprint?: number;
+  /** Chain id derived from the dapp's `chia:<instance>` claim. */
+  mainnet?: boolean;
+};
+
 export function resolvePermission(
   principal: Principal,
   command: string,
   payload: Record<string, unknown>,
-  wcCommand?: string,
+  ctx: ResolveContext = {},
 ): Decision {
   if (principal.kind === 'ui') {
     return isUiAllowed(command) ? allowDecision() : promptDecision('requires user confirmation');
   }
 
-  const pair = getPair(principal.topic);
-  if (!pair) return denyDecision('unknown pair');
-  const ctx = pairCtx(pair);
+  const access = checkPairAccess(
+    {
+      topic: principal.topic,
+      wcCommand: ctx.wcCommand,
+      fingerprint: ctx.fingerprint,
+      mainnet: ctx.mainnet,
+    },
+    { getPair },
+  );
+  if (!access.ok) return denyDecision(access.reason);
+  const { pair } = access;
+  const dialogCtx = pairCtx(pair);
+  const wcCommand = ctx.wcCommand!; // checkPairAccess rejected when missing
 
-  // Per-pair allowlist gate. The user only consented to the commands shown
-  // in the pair dialog; anything else — even if its schema marks it
-  // dapp-allowed at the wallet level — is a deny. A compromised renderer
-  // can supply any (`destination`, `wcCommand`) pair to dispatchAsPair, so
-  // checking against the persisted list is the only way to bind dispatch
-  // to the consent that was actually granted.
-  if (!wcCommand) {
-    return denyDecision('missing wc command');
-  }
-  if (!pair.allowedWcCommands.includes(wcCommand)) {
-    return denyDecision(`command not granted for this pair: ${wcCommand}`);
+  // "Don't ask again" shortcut. The user explicitly opted into silent
+  // execution for this WC command on this pair. We still respect the
+  // spending mode + cap below — bypass is about prompts, not about
+  // overriding budget. So spend / offer commands fall through to
+  // resolveSpending; everything else short-circuits here.
+  if (pair.bypass.includes(wcCommand) && !getSpendClassification(command)) {
+    return allowDecision();
   }
 
   if (isBalanceCommand(command)) {
     return pair.grants.capabilities.balance
       ? allowDecision()
-      : promptDecision('balance not pre-approved', ctx);
+      : promptDecision('balance not pre-approved', dialogCtx);
   }
 
   // push_transactions is a "broadcast" RPC. With sign:false (or omitted) the
@@ -136,16 +153,16 @@ export function resolvePermission(
   // we charge it against the budget conservatively so a compromised dapp
   // can't accumulate fees silently.
   if (command === 'chia_wallet.push_transactions') {
-    if (payload?.sign) return promptDecision('signing requested', ctx);
+    if (payload?.sign) return promptDecision('signing requested', dialogCtx);
     if (!pair.grants.capabilities.innocuous) {
-      return promptDecision('innocuous actions not pre-approved', ctx);
+      return promptDecision('innocuous actions not pre-approved', dialogCtx);
     }
     const fee = readMojos(payload, 'fee') ?? ZERO;
     if (fee.isGreaterThan(0)) {
       const spent = new BigNumber(pair.spentMojos ?? 0);
       const cap = new BigNumber(pair.grants.spendingCapMojos ?? 0);
       if (spent.plus(fee).isGreaterThan(cap)) {
-        return promptDecision('push fee exceeds remaining budget', ctx);
+        return promptDecision('push fee exceeds remaining budget', dialogCtx);
       }
     }
     return allowDecision(makeCommit(pair.topic, fee));
@@ -154,21 +171,21 @@ export function resolvePermission(
   if (isInnocuousCommand(command)) {
     return pair.grants.capabilities.innocuous
       ? allowDecision()
-      : promptDecision('innocuous not pre-approved', ctx);
+      : promptDecision('innocuous not pre-approved', dialogCtx);
   }
 
   if (isSignCommand(command)) {
     return pair.grants.capabilities.sign
       ? allowDecision()
-      : promptDecision('sign not pre-approved', ctx);
+      : promptDecision('sign not pre-approved', dialogCtx);
   }
 
   const spend = getSpendClassification(command);
   if (spend) {
-    return resolveSpending(pair, ctx, spend, payload);
+    return resolveSpending(pair, dialogCtx, spend, payload);
   }
 
-  return promptDecision('sensitive command', ctx);
+  return promptDecision('sensitive command', dialogCtx);
 }
 
 function resolveAmount(

@@ -1,4 +1,4 @@
-import { ButtonLoading, DialogActions, Flex, TextField, Button, Form, useCurrencyCode } from '@chia-network/core';
+import { ButtonLoading, DialogActions, Flex, TextField, Button, Form } from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
 import CloseIcon from '@mui/icons-material/Close';
 import { Box, Divider, Dialog, DialogContent, DialogTitle, IconButton, Typography } from '@mui/material';
@@ -22,7 +22,6 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
   const { onClose = () => {}, open = false } = props;
 
   const { pair } = useWalletConnectContext();
-  const mainnet = useCurrencyCode() === 'XCH';
   const methods = useForm<FormData>({
     defaultValues: {
       uri: '',
@@ -39,7 +38,10 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
       throw new Error(t`Please enter a URI`);
     }
 
-    const topic = await pair(uri, mainnet);
+    // mainnet/testnet is decided when the user actually approves the pair
+    // (in `WalletConnectConnections`, via `useCurrencyCode`). The URI
+    // input is just the WC handshake — no network commitment yet.
+    const topic = await pair(uri);
     onClose(topic);
   }
 

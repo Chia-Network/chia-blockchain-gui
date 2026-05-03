@@ -1,6 +1,13 @@
-export type Capability = 'read' | 'balance' | 'innocuous' | 'sign' | 'offer' | 'spend';
+export type Capability = 'balance' | 'innocuous' | 'sign' | 'offer' | 'spend' | 'notifications';
 
-export const ALL_CAPABILITIES: Capability[] = ['read', 'balance', 'innocuous', 'sign', 'offer', 'spend'];
+export const ALL_CAPABILITIES: Capability[] = [
+  'balance',
+  'innocuous',
+  'sign',
+  'offer',
+  'spend',
+  'notifications',
+];
 
 export type CapabilityGrants = Record<Capability, boolean>;
 
@@ -22,6 +29,9 @@ export type PairMetadata = {
 
 export type PairRecord = {
   topic: string;
+  /** mainnet vs testnet — captured at pairing, used by `client.approve` to
+   *  build the `chia:<instance>` chain id. */
+  mainnet: boolean;
   metadata: PairMetadata;
   fingerprints: number[];
   createdAt: number;
@@ -30,13 +40,20 @@ export type PairRecord = {
   /** Mojo amount serialized as a string to survive JSON without precision loss. */
   spentMojos: string;
   /**
-   * WalletConnect command names (camelCase, no `chia_` prefix) that the user
-   * approved at pairing time. The intersection of (what the dapp asked for)
-   * ∩ (what the wallet's `dappAllowed` schema flag permits). Empty list means
-   * the dapp can call nothing — including for legacy records that predate
-   * this field, where reading absence as deny-all is the safe default.
+   * WC method names (wire form `chia_<name>`) the user approved at pairing.
+   * The intersection of (what the dapp asked for) ∩ (what the registry
+   * recognizes). Empty list means the dapp can call nothing — including
+   * for legacy records that predate this field, where reading absence as
+   * deny-all is the safe default.
    */
-  allowedWcCommands: string[];
+  commands: string[];
+  /**
+   * WC method names (wire form) the user marked "don't ask again" via the
+   * Confirm dialog or the Settings/Integration UI. Main's gate short-
+   * circuits to `allow` for these (still respecting `block` spending mode
+   * and the cap, so bypass doesn't override budget).
+   */
+  bypass: string[];
 };
 
 export type Principal = { kind: 'ui' } | { kind: 'pair'; topic: string };
@@ -79,11 +96,11 @@ export type DecisionWire =
 
 export function emptyCapabilities(): CapabilityGrants {
   return {
-    read: false,
     balance: false,
     innocuous: false,
     sign: false,
     offer: false,
     spend: false,
+    notifications: false,
   };
 }

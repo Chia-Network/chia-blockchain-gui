@@ -23,20 +23,22 @@ const loadStore = (): typeof import('./pairStore') => {
 function makePair(overrides: Partial<PairRecord> = {}): PairRecord {
   return {
     topic: 'topic-1',
+    mainnet: true,
     metadata: { name: 'Test Dapp' },
     fingerprints: [123],
     createdAt: 1,
     updatedAt: 1,
     spentMojos: '0',
-    allowedWcCommands: [],
+    commands: [],
+    bypass: [],
     grants: {
       capabilities: {
-        read: true,
         balance: false,
         innocuous: false,
         sign: false,
         offer: false,
         spend: false,
+        notifications: false,
       },
       spendingMode: 'ask',
       spendingCapMojos: '0',
@@ -110,12 +112,12 @@ describe('pairStore - updateGrants', () => {
     const before = Date.now();
     const updated = store.updateGrants('a', {
       capabilities: {
-        read: true,
         balance: true,
         innocuous: true,
         sign: false,
         offer: false,
         spend: false,
+        notifications: false,
       },
       spendingMode: 'ask',
       spendingCapMojos: '0',
@@ -132,12 +134,12 @@ describe('pairStore - updateGrants', () => {
     const store = loadStore();
     const result = store.updateGrants('missing', {
       capabilities: {
-        read: true,
         balance: false,
         innocuous: false,
         sign: false,
         offer: false,
         spend: false,
+        notifications: false,
       },
       spendingMode: 'ask',
       spendingCapMojos: '0',
@@ -150,12 +152,12 @@ describe('pairStore - updateGrants', () => {
     store.upsertPair(makePair({ topic: 'a', spentMojos: '1234' }));
     const updated = store.updateGrants('a', {
       capabilities: {
-        read: true,
         balance: true,
         innocuous: false,
         sign: false,
         offer: false,
         spend: false,
+        notifications: false,
       },
       spendingMode: 'auto',
       spendingCapMojos: '999999',
@@ -264,55 +266,182 @@ describe('pairStore - recordSpend (spend cap accounting)', () => {
   });
 });
 
-describe('pairStore - allowedWcCommands migration', () => {
-  // Pair records persisted before the allowlist landed have no
-  // `allowedWcCommands` field. Reading that as "any command goes" would
-  // silently extend dapp reach; reading it as `[]` means the user has to
-  // re-pair to grant anything, which is the safe default for an upgrade.
+describe('pairStore - commands field migration', () => {
+  // Pair records persisted before the allowlist landed have no `commands`
+  // field. Reading that as "any command goes" would silently extend dapp
+  // reach; reading it as `[]` means the user has to re-pair to grant
+  // anything, which is the safe default for an upgrade.
 
   it('defaults to [] when the field is absent on disk', () => {
     const store = loadStore();
     const file = path.join(mockTempDir, 'dapp-pairs.yaml');
     const legacy = makePair({ topic: 'a' });
-    delete (legacy as Partial<PairRecord>).allowedWcCommands;
+    delete (legacy as Partial<PairRecord>).commands;
     fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
 
     const reload = loadStore();
-    expect(reload.getPair('a')?.allowedWcCommands).toEqual([]);
+    expect(reload.getPair('a')?.commands).toEqual([]);
     void store;
   });
 
   it('defaults to [] when the field is non-array on disk', () => {
     const file = path.join(mockTempDir, 'dapp-pairs.yaml');
     const legacy = makePair({ topic: 'a' });
-    // Some other process / hand edit could leave a string here.
-    (legacy as unknown as { allowedWcCommands: unknown }).allowedWcCommands = 'oops';
+    (legacy as unknown as { commands: unknown }).commands = 'oops';
     fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
 
     const reload = loadStore();
-    expect(reload.getPair('a')?.allowedWcCommands).toEqual([]);
+    expect(reload.getPair('a')?.commands).toEqual([]);
   });
 
   it('strips non-string entries from the persisted list', () => {
     const file = path.join(mockTempDir, 'dapp-pairs.yaml');
     const legacy = makePair({ topic: 'a' });
-    (legacy as unknown as { allowedWcCommands: unknown }).allowedWcCommands = [
-      'sendTransaction',
+    (legacy as unknown as { commands: unknown }).commands = [
+      'chia_sendTransaction',
       42,
       null,
+      'chia_getWallets',
+    ];
+    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
+
+    const reload = loadStore();
+    expect(reload.getPair('a')?.commands).toEqual(['chia_sendTransaction', 'chia_getWallets']);
+  });
+
+  it('round-trips a real list through write+read', () => {
+    const store = loadStore();
+    store.upsertPair(makePair({ topic: 'a', commands: ['chia_sendTransaction', 'chia_getWallets'] }));
+
+    const reload = loadStore();
+    expect(reload.getPair('a')?.commands).toEqual(['chia_sendTransaction', 'chia_getWallets']);
+  });
+
+  it('migrates legacy `allowedWcCommands` (bare names) into `commands` (wire form)', () => {
+    // Records persisted under the previous shape stored bare WC names
+    // (`sendTransaction`). New shape stores wire form (`chia_sendTransaction`).
+    // Migration prepends the prefix so the gate's exact-match check works.
+    const file = path.join(mockTempDir, 'dapp-pairs.yaml');
+    const legacy = makePair({ topic: 'a' });
+    delete (legacy as Partial<PairRecord>).commands;
+    (legacy as unknown as { allowedWcCommands: unknown }).allowedWcCommands = [
+      'sendTransaction',
       'getWallets',
     ];
     fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
 
     const reload = loadStore();
-    expect(reload.getPair('a')?.allowedWcCommands).toEqual(['sendTransaction', 'getWallets']);
+    expect(reload.getPair('a')?.commands).toEqual(['chia_sendTransaction', 'chia_getWallets']);
+  });
+
+  it('passes already-prefixed legacy entries through unchanged', () => {
+    // Defensive: if someone hand-edited a legacy record to wire form, don't
+    // double-prefix.
+    const file = path.join(mockTempDir, 'dapp-pairs.yaml');
+    const legacy = makePair({ topic: 'a' });
+    delete (legacy as Partial<PairRecord>).commands;
+    (legacy as unknown as { allowedWcCommands: unknown }).allowedWcCommands = ['chia_sendTransaction'];
+    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
+
+    const reload = loadStore();
+    expect(reload.getPair('a')?.commands).toEqual(['chia_sendTransaction']);
+  });
+});
+
+describe('pairStore - bypass field migration', () => {
+  // Records persisted before bypass landed have no `bypass` field. Default
+  // to empty list — opt-in feature, not auto-enabled on upgrade.
+
+  it('defaults to [] when the field is absent on disk', () => {
+    const file = path.join(mockTempDir, 'dapp-pairs.yaml');
+    const legacy = makePair({ topic: 'a' });
+    delete (legacy as Partial<PairRecord>).bypass;
+    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
+
+    const reload = loadStore();
+    expect(reload.getPair('a')?.bypass).toEqual([]);
+  });
+
+  it('defaults to [] when the field is non-array on disk', () => {
+    const file = path.join(mockTempDir, 'dapp-pairs.yaml');
+    const legacy = makePair({ topic: 'a' });
+    (legacy as unknown as { bypass: unknown }).bypass = { 0: 'chia_x' };
+    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
+
+    const reload = loadStore();
+    expect(reload.getPair('a')?.bypass).toEqual([]);
   });
 
   it('round-trips a real list through write+read', () => {
     const store = loadStore();
-    store.upsertPair(makePair({ topic: 'a', allowedWcCommands: ['sendTransaction', 'getWallets'] }));
+    store.upsertPair(makePair({ topic: 'a', bypass: ['chia_getWallets', 'chia_signMessageById'] }));
 
     const reload = loadStore();
-    expect(reload.getPair('a')?.allowedWcCommands).toEqual(['sendTransaction', 'getWallets']);
+    expect(reload.getPair('a')?.bypass).toEqual(['chia_getWallets', 'chia_signMessageById']);
+  });
+});
+
+describe('pairStore - mainnet field migration', () => {
+  // `mainnet` is required after the renderer's pair store stops being a
+  // source of truth. Default to mainnet on legacy records — matches the
+  // renderer's own historical default and is the safer choice (testnet
+  // dapps are rare; users with existing testnet pairs should re-pair).
+
+  it('defaults to true when the field is absent on disk', () => {
+    const file = path.join(mockTempDir, 'dapp-pairs.yaml');
+    const legacy = makePair({ topic: 'a' });
+    delete (legacy as Partial<PairRecord>).mainnet;
+    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
+
+    const reload = loadStore();
+    expect(reload.getPair('a')?.mainnet).toBe(true);
+  });
+
+  it('preserves an explicit false', () => {
+    const store = loadStore();
+    store.upsertPair(makePair({ topic: 'a', mainnet: false }));
+
+    const reload = loadStore();
+    expect(reload.getPair('a')?.mainnet).toBe(false);
+  });
+});
+
+describe('pairStore - notifications capability migration', () => {
+  // Legacy records persisted before the notifications capability landed
+  // have no `capabilities.notifications` field. Default to false — same
+  // safe-deny stance as the other migrations: never silently expand dapp
+  // reach across an upgrade.
+
+  it('defaults to false when the field is absent on disk', () => {
+    const file = path.join(mockTempDir, 'dapp-pairs.yaml');
+    const legacy = makePair({ topic: 'a' });
+    delete (legacy.grants.capabilities as Partial<typeof legacy.grants.capabilities>).notifications;
+    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
+
+    const reload = loadStore();
+    expect(reload.getPair('a')?.grants.capabilities.notifications).toBe(false);
+  });
+
+  it('coerces non-true values to false', () => {
+    // Strict equality with `true` — a hand-edited string `"true"` or any
+    // other truthy non-boolean is treated as denied, matching the
+    // strict-equality contract elsewhere in the permission flow.
+    const file = path.join(mockTempDir, 'dapp-pairs.yaml');
+    const legacy = makePair({ topic: 'a' });
+    (legacy.grants.capabilities as unknown as { notifications: unknown }).notifications = 'true';
+    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
+
+    const reload = loadStore();
+    expect(reload.getPair('a')?.grants.capabilities.notifications).toBe(false);
+  });
+
+  it('preserves an explicit true', () => {
+    const store = loadStore();
+    const pair = makePair({ topic: 'a' });
+    pair.grants.capabilities.notifications = true;
+    store.upsertPair(pair);
+
+    const reload = loadStore();
+    expect(reload.getPair('a')?.grants.capabilities.notifications).toBe(true);
   });
 });

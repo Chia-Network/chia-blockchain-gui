@@ -21,31 +21,40 @@ export type PairProps = {
   isEdit?: boolean;
   currencyCode?: string;
   /**
-   * WC commands (camelCase, no `chia_` prefix) the dapp asked for that this
+   * WC commands (wire form `chia_<name>`) the dapp asked for that this
    * wallet supports. Display-only — the binding decision is the binary
    * Connect / Reject below; main persists this list verbatim if confirmed.
    */
-  allowedWcCommands?: string[];
+  allowedCommands?: string[];
   /**
    * WC commands the dapp asked for that this wallet does NOT support and
    * silently dropped. Shown so the user understands why an app might later
    * report missing capability — they didn't reject, the wallet did.
    */
-  rejectedWcCommands?: string[];
+  rejectedCommands?: string[];
   styleURL?: string;
   isDarkMode?: boolean;
 };
 
-// Split a camelCase WC command into a human-readable label.
-//   `sendTransaction`        → "Send Transaction"
-//   `getNFTs`                → "Get NFTs"            (acronyms stay grouped)
-//   `cancelDataLayerOffer`   → "Cancel Data Layer Offer"
+// WC commands that exist in the registry (so the WC SDK accepts them at
+// session-approval time) but grant no real capability and have no per-call
+// confirmation flow. We keep them in `pair.commands` for SDK compatibility
+// but suppress them from the dialog so the user doesn't see a meaningless
+// permission row.
+const HIDDEN_COMMANDS = new Set(['chia_requestPermissions']);
+
+// Split a WC command (wire form, `chia_<camelCase>`) into a human-readable
+// label.
+//   `chia_sendTransaction`      → "Send Transaction"
+//   `chia_getNFTs`              → "Get NFTs"      (acronyms stay grouped)
+//   `chia_cancelDataLayerOffer` → "Cancel Data Layer Offer"
 function humanizeWcCommand(name: string): string {
   if (!name) return name;
+  const bare = name.startsWith('chia_') ? name.slice('chia_'.length) : name;
   // Insert space before each acronym run and before each lowercase→uppercase
   // transition. Order matters: do acronym→lowercase first so `NFTs` stays
   // glued, then lowercase→uppercase to break apart camelCase.
-  const spaced = name
+  const spaced = bare
     .replace(/([A-Z]+)([A-Z][a-z])/g, '$1 $2')
     .replace(/([a-z0-9])([A-Z])/g, '$1 $2');
   return spaced.charAt(0).toUpperCase() + spaced.slice(1);
@@ -67,18 +76,21 @@ export default function Pair(props: PairProps) {
     defaultFingerprints = [],
     isEdit = false,
     currencyCode = 'XCH',
-    allowedWcCommands = [],
-    rejectedWcCommands = [],
+    allowedCommands: allowedCommandsRaw = [],
+    rejectedCommands: rejectedCommandsRaw = [],
   } = props;
+
+  const allowedCommands = allowedCommandsRaw.filter((wc) => !HIDDEN_COMMANDS.has(wc));
+  const rejectedCommands = rejectedCommandsRaw.filter((wc) => !HIDDEN_COMMANDS.has(wc));
 
   const grants: PairGrants = defaultGrants ?? {
     capabilities: {
-      read: true,
       balance: false,
       innocuous: false,
       sign: false,
       offer: false,
       spend: false,
+      notifications: false,
     },
     spendingMode: 'ask',
     spendingCapMojos: '10000000000', // 0.01 XCH default budget when user picks auto
@@ -88,6 +100,7 @@ export default function Pair(props: PairProps) {
   const innocuousChecked = grants.capabilities.innocuous;
   const balanceChecked = grants.capabilities.balance;
   const signChecked = grants.capabilities.sign;
+  const notificationsChecked = grants.capabilities.notifications;
   const spendingMode = grants.spendingMode ?? 'ask';
 
   const hasUrl = !!metadata.url && metadata.url !== '#' && metadata.url.trim().length > 0;
@@ -192,7 +205,7 @@ export default function Pair(props: PairProps) {
           </div>
         </section>
 
-        {(allowedWcCommands.length > 0 || rejectedWcCommands.length > 0) && (
+        {(allowedCommands.length > 0 || rejectedCommands.length > 0) && (
           <section className="rounded-xl border border-chia-border bg-chia-card overflow-hidden">
             <details className="group">
               <summary className="flex items-center justify-between gap-3 px-5 py-2.5 cursor-pointer list-none select-none hover:bg-chia-card-elevated transition-colors">
@@ -201,9 +214,9 @@ export default function Pair(props: PairProps) {
                     {i18n._(/* i18n */ { id: 'Requested commands' })}
                   </span>
                   <span className="text-xs text-chia-text-secondary">
-                    {rejectedWcCommands.length > 0
-                      ? `${allowedWcCommands.length} / ${allowedWcCommands.length + rejectedWcCommands.length}`
-                      : String(allowedWcCommands.length)}
+                    {rejectedCommands.length > 0
+                      ? `${allowedCommands.length} / ${allowedCommands.length + rejectedCommands.length}`
+                      : String(allowedCommands.length)}
                   </span>
                 </div>
                 <svg
@@ -217,16 +230,16 @@ export default function Pair(props: PairProps) {
                 </svg>
               </summary>
               <div className="px-5 pb-3 pt-1 border-t border-chia-border space-y-2">
-                {allowedWcCommands.length > 0 && (
+                {allowedCommands.length > 0 && (
                   <div>
                     <div className="text-xs text-chia-text-muted mb-1">
                       {i18n._(/* i18n */ { id: 'Allowed commands' })}
                     </div>
                     <div className="flex flex-wrap gap-1.5">
-                      {allowedWcCommands.map((wc) => (
+                      {allowedCommands.map((wc) => (
                         <span
                           key={wc}
-                          title={`chia_${wc}`}
+                          title={wc}
                           className="inline-flex items-center text-xs px-2 py-0.5 rounded bg-chia-primary-soft text-chia-text font-medium"
                         >
                           {humanizeWcCommand(wc)}
@@ -235,16 +248,16 @@ export default function Pair(props: PairProps) {
                     </div>
                   </div>
                 )}
-                {rejectedWcCommands.length > 0 && (
+                {rejectedCommands.length > 0 && (
                   <div>
                     <div className="text-xs text-chia-text-muted mb-1">
                       {i18n._(/* i18n */ { id: 'Not supported and excluded' })}
                     </div>
                     <div className="flex flex-wrap gap-1.5">
-                      {rejectedWcCommands.map((wc) => (
+                      {rejectedCommands.map((wc) => (
                         <span
                           key={wc}
-                          title={`chia_${wc}`}
+                          title={wc}
                           className="inline-flex items-center text-xs px-2 py-0.5 rounded border border-chia-border-strong text-chia-text-secondary font-medium"
                         >
                           {humanizeWcCommand(wc)}
@@ -313,6 +326,24 @@ export default function Pair(props: PairProps) {
                   </div>
                   <div className="mt-0.5 text-sm text-chia-text-secondary leading-snug">
                     {i18n._(/* i18n */ { id: 'Sign messages for login or proof of ownership.' })}
+                  </div>
+                </div>
+              </label>
+            </li>
+            <li>
+              <label className="flex items-start gap-3 px-5 py-2 cursor-pointer hover:bg-chia-card-elevated transition-colors">
+                <input
+                  type="checkbox"
+                  defaultChecked={notificationsChecked}
+                  data-form-field="cap-notifications"
+                  className="mt-[3px] w-[18px] h-[18px] accent-chia-primary cursor-pointer shrink-0"
+                />
+                <div className="flex-1 min-w-0">
+                  <div className="text-sm font-medium text-chia-text leading-tight">
+                    {i18n._(/* i18n */ { id: 'Show notifications' })}
+                  </div>
+                  <div className="mt-0.5 text-sm text-chia-text-secondary leading-snug">
+                    {i18n._(/* i18n */ { id: 'Send you offers and announcements without asking each time.' })}
                   </div>
                 </div>
               </label>

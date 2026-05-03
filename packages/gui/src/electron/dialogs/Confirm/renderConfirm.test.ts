@@ -1,5 +1,6 @@
+import { SCHEMA_COMMANDS, getCommandSchema } from '../../constants/commandRegistry';
+
 import { renderConfirm } from './renderConfirm';
-import { SCHEMA_COMMANDS, getConfirmSchema } from './confirmSchemas';
 
 // Daemon enrichment goes through `dappEnrichment.callDaemon` which uses the
 // real WebSocket bridge. None of these tests exercise enrichment-needing
@@ -175,6 +176,44 @@ describe('renderConfirm', () => {
     expect(row?.value).toBe('[\n  "0x1",\n  "0x2"\n]');
   });
 
+  it('renders show_notification announcement with message + url', async () => {
+    const result = await renderConfirm(
+      'chia_app.show_notification',
+      { type: 'announcement', message: 'Hello world', url: 'https://example.com' },
+      {},
+    );
+    expect(result.title).toBe('Confirm Notification');
+    expect(result.confirmLabel).toBe('Show');
+    expect(result.rows).toEqual([
+      { field: 'type', label: 'Type', value: 'announcement' },
+      { field: 'message', label: 'Message', value: 'Hello world' },
+      { field: 'url', label: 'URL', value: 'https://example.com' },
+    ]);
+    // No offer enrichment — type is announcement, not offer.
+    expect(result.display).toEqual({});
+  });
+
+  it('renders show_notification announcement with allFingerprints flag', async () => {
+    const result = await renderConfirm(
+      'chia_app.show_notification',
+      { type: 'announcement', message: 'Hi', allFingerprints: true },
+      {},
+    );
+    const all = result.rows.find((r) => r.field === 'allFingerprints');
+    expect(all?.value).toBe('Yes');
+  });
+
+  it('show_notification with no offerData skips offer enrichment', async () => {
+    // type=offer + missing offerData should not attempt the daemon RPC. The
+    // enrich hook short-circuits before `buildTakeOfferDisplay` runs.
+    const result = await renderConfirm(
+      'chia_app.show_notification',
+      { type: 'offer' },
+      {},
+    );
+    expect(result.display).toEqual({});
+  });
+
   it('sign_message_by_address surfaces is_hex and safe_mode bool rows', async () => {
     const result = await renderConfirm(
       'chia_wallet.sign_message_by_address',
@@ -208,13 +247,13 @@ describe('renderConfirm — every schema', () => {
   });
 
   it.each(SCHEMA_COMMANDS)('schema for %s has unique param names', (command) => {
-    const schema = getConfirmSchema(command);
+    const schema = getCommandSchema(command);
     const names = schema.params.map((p) => p.name);
     expect(new Set(names).size).toBe(names.length);
   });
 
   it.each(SCHEMA_COMMANDS)('schema for %s only declares known param types', (command) => {
-    const schema = getConfirmSchema(command);
+    const schema = getCommandSchema(command);
     const known = new Set(['text', 'mojo-to-xch', 'mojo-to-cat', 'bool', 'json']);
     for (const param of schema.params) {
       expect(known.has(param.type)).toBe(true);

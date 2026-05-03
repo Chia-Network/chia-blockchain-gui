@@ -38,12 +38,16 @@ import PreferencesAPI from './constants/PreferencesAPI';
 import PermissionsAPI from './constants/PermissionsAPI';
 import About from './dialogs/About/About';
 import Confirm from './dialogs/Confirm/Confirm';
-import { getConfirmSchema } from './dialogs/Confirm/confirmSchemas';
 import { renderConfirm } from './dialogs/Confirm/renderConfirm';
 import KeyDetail from './dialogs/KeyDetail/KeyDetail';
 import Pair, { getTitle as getPairTitle, type PairWalletOption } from './dialogs/Pair/Pair';
+import { applyDefaults, commandsMetadata, filterRequestedMethods, resolveDispatch } from './constants/commandRegistry';
+import { buildNewPairRecord } from './permissions/buildPairRecord';
+import { buildShowNotification } from './permissions/buildShowNotification';
+import { captureBypassFromConfirmResult } from './permissions/bypassCapture';
+import { checkPairAccess } from './permissions/checkPairAccess';
+import { getSpendClassification } from './permissions/commandCapabilities';
 import { resolvePermission, toWire } from './permissions/permissions';
-import { filterRequestedMethods, resolveDispatchTarget } from './permissions/wcCommandRegistry';
 import { sendDappAndAwait } from './utils/webSocketBridge';
 import { getPair, listPairs, removePair, updateGrants, upsertPair } from './permissions/pairStore';
 import {
@@ -127,7 +131,6 @@ const MOJOS_PER_XCH = new BigNumber('1000000000000');
 
 function dialogResultToGrants(result: Record<string, unknown>): PairGrants {
   const capabilities = emptyCapabilities();
-  capabilities.read = true;
   if (result['cap-innocuous'] === true) {
     capabilities.innocuous = true;
   }
@@ -136,6 +139,9 @@ function dialogResultToGrants(result: Record<string, unknown>): PairGrants {
   }
   if (result['cap-sign'] === true) {
     capabilities.sign = true;
+  }
+  if (result['cap-notifications'] === true) {
+    capabilities.notifications = true;
   }
   const rawMode = typeof result.spendingMode === 'string' ? result.spendingMode : 'ask';
   const spendingMode: PairGrants['spendingMode'] =
@@ -176,10 +182,10 @@ async function openPairDialog(
     defaults?: PairRecord;
     defaultFingerprints?: number[];
     isEdit?: boolean;
-    /** WC command names the dapp asked for that this wallet supports. */
-    allowedWcCommands?: string[];
-    /** WC command names the dapp asked for that this wallet rejected. */
-    rejectedWcCommands?: string[];
+    /** WC commands (wire form) the dapp asked for that this wallet supports. */
+    allowed?: string[];
+    /** WC commands (wire form) the dapp asked for that this wallet rejected. */
+    rejected?: string[];
   } = {},
 ): Promise<{ grants: PairGrants; fingerprints: number[] } | undefined> {
   if (!mainWindow) {
@@ -196,13 +202,16 @@ async function openPairDialog(
       defaultFingerprints: options.defaults?.fingerprints ?? options.defaultFingerprints,
       isEdit: !!options.isEdit,
       currencyCode: networkPrefix ? networkPrefix.toUpperCase() : 'XCH',
-      allowedWcCommands: options.allowedWcCommands ?? options.defaults?.allowedWcCommands ?? [],
-      rejectedWcCommands: options.rejectedWcCommands ?? [],
+      allowedCommands: options.allowed ?? options.defaults?.commands ?? [],
+      rejectedCommands: options.rejected ?? [],
     },
     {
       title: getPairTitle(!!options.isEdit),
       width: 640,
-      height: 720,
+      // 800 fits all sections (wallets, requested-commands collapsed,
+      // capabilities, spending) without scrolling on a default zoom.
+      // 720 was sized before the requested-commands row landed.
+      height: 800,
     },
   );
 
@@ -222,38 +231,38 @@ ipcMainHandle(
   PermissionsAPI.PAIR_REGISTER,
   async (payload: {
     topic: string;
+    /** mainnet vs testnet from the renderer's WC pair init. */
+    mainnet: boolean;
     metadata: PairMetadata;
     availableWallets: PairWalletOption[];
     defaultFingerprints?: number[];
     /**
      * Methods from the WC session proposal (`namespaces.chia.methods`),
-     * each in the form `chia_<wcCommand>`. Main filters this through
-     * `wcCommandRegistry` — anything not on the registry's `dappAllowed`
-     * list is dropped. The renderer is forwarding what the dapp said; we
-     * never trust that list as-is.
+     * already in wire form `chia_<name>`. Main filters this through the
+     * registry — anything without a registry entry is dropped. The
+     * renderer is forwarding what the dapp said; we never trust that
+     * list as-is.
      */
     requestedMethods?: string[];
   }) => {
-    const { topic, metadata, availableWallets, defaultFingerprints, requestedMethods = [] } = payload;
-    const { allowedWcCommands, rejectedWcCommands } = filterRequestedMethods(requestedMethods);
+    const { topic, mainnet, metadata, availableWallets, defaultFingerprints, requestedMethods = [] } = payload;
+    const { allowed, rejected } = filterRequestedMethods(requestedMethods);
     const decision = await openPairDialog(metadata, availableWallets, {
       defaultFingerprints,
-      allowedWcCommands,
-      rejectedWcCommands,
+      allowed,
+      rejected,
     });
     if (!decision) return null;
 
-    const now = Date.now();
-    const record: PairRecord = {
+    const record = buildNewPairRecord({
       topic,
+      mainnet,
       metadata,
       fingerprints: decision.fingerprints,
-      createdAt: now,
-      updatedAt: now,
       grants: decision.grants,
-      spentMojos: '0',
-      allowedWcCommands,
-    };
+      commands: allowed,
+      now: Date.now(),
+    });
     upsertPair(record);
     return record;
   },
@@ -268,7 +277,7 @@ ipcMainHandle(PermissionsAPI.PAIR_EDIT, async (payload: { topic: string; availab
     defaults: existing,
     isEdit: true,
     // No new proposal on edit — show whatever was previously approved.
-    allowedWcCommands: existing.allowedWcCommands,
+    allowed: existing.commands,
   });
   if (!decision) return existing;
 
@@ -288,9 +297,41 @@ ipcMainHandle(PermissionsAPI.PAIR_REVOKE, (topic: string) => {
 });
 
 ipcMainHandle(
+  PermissionsAPI.PAIR_SET_BYPASS,
+  (payload: { topic: string; wcCommand: string; enabled: boolean }) => {
+    const pair = getPair(payload.topic);
+    if (!pair) return null;
+    const set = new Set(pair.bypass);
+    if (payload.enabled) {
+      set.add(payload.wcCommand);
+    } else {
+      set.delete(payload.wcCommand);
+    }
+    const updated: PairRecord = { ...pair, bypass: [...set], updatedAt: Date.now() };
+    upsertPair(updated);
+    return updated;
+  },
+);
+
+ipcMainHandle(PermissionsAPI.COMMANDS_METADATA, () => commandsMetadata());
+
+ipcMainHandle(
   PermissionsAPI.CHECK,
-  (payload: { principal: Principal; command: string; data: Record<string, unknown>; wcCommand?: string }) =>
-    toWire(resolvePermission(payload.principal, payload.command, payload.data, payload.wcCommand)),
+  (payload: {
+    principal: Principal;
+    command: string;
+    data: Record<string, unknown>;
+    wcCommand?: string;
+    fingerprint?: number;
+    mainnet?: boolean;
+  }) =>
+    toWire(
+      resolvePermission(payload.principal, payload.command, payload.data, {
+        wcCommand: payload.wcCommand,
+        fingerprint: payload.fingerprint,
+        mainnet: payload.mainnet,
+      }),
+    ),
 );
 
 // Dapp WalletConnect dispatch. The renderer makes a single IPC call here
@@ -302,11 +343,16 @@ ipcMainHandle(
 ipcMainHandle(
   PermissionsAPI.DISPATCH_AS_PAIR,
   async (payload: {
-    destination: string;
-    /** camelCase WC command name; main resolves to the daemon RPC. */
+    /**
+     * camelCase WC command name. Main resolves it against the registry to
+     * get the daemon destination + RPC name — the renderer is NOT trusted
+     * to claim a destination, so it doesn't supply one.
+     */
     wcCommand: string;
     data?: Record<string, unknown>;
     topic: string;
+    /** Chain id the dapp's WC request claimed (`chia:mainnet` → true). */
+    mainnet: boolean;
     fingerprint?: {
       requested: number;
       current?: number;
@@ -318,26 +364,109 @@ ipcMainHandle(
       throw new Error('mainWindow is empty');
     }
 
-    const { destination, wcCommand, data: argsData, topic, fingerprint } = payload;
+    const { wcCommand, data: argsData, topic, mainnet, fingerprint } = payload;
     // The dapp's payload is forwarded verbatim — main only verifies the
     // permission decision and shows what's about to go on the wire. If a
     // dapp sends fields the daemon doesn't recognize, the daemon rejects
     // and the dapp gets the error; we don't silently translate.
     const data = argsData ?? {};
-    const principal: Principal = { kind: 'pair', topic };
-    // Resolve (`destination`, `wcCommand`) against the registry. This
-    // catches three classes of compromised-renderer abuse in one place:
-    //   1. WC commands main doesn't know about,
-    //   2. renderer-handled meta-commands (`requestPermissions`,
-    //      `showNotification`) sent down the dispatch path,
-    //   3. valid command names paired with the wrong destination service.
-    const target = resolveDispatchTarget(destination, wcCommand);
+
+    // Single pair-access gate. `checkPairAccess` validates everything that
+    // depends on the persisted PairRecord — pair exists, wcCommand was
+    // granted at pairing, the dapp-claimed fingerprint is on the pair's
+    // wallet list, the chain matches what the user paired with. Any of
+    // those failing is a deny; the renderer is not consulted for
+    // anything below this line on a deny path.
+    const access = checkPairAccess(
+      { topic, wcCommand, fingerprint: fingerprint?.requested, mainnet },
+      { getPair },
+    );
+    if (!access.ok) {
+      throw new Error(access.reason);
+    }
+    const { pair } = access;
+
+    // Main-side commands (no daemon involvement). Action runs locally;
+    // both return `{success: true}` to mirror the legacy renderer-side
+    // behavior dapps have always seen.
+    if (wcCommand === 'chia_showNotification') {
+      // Notifications are user-facing content (offer to take, link to click),
+      // so they go through the same first-call-prompt + "Don't ask again"
+      // bypass flow as every other WC command. Once bypassed they fire
+      // silently — matching the legacy UX for paired dapps that have built
+      // up trust. The pair-time `notifications` capability is the explicit
+      // "I trust this app to notify me" toggle in the Pair dialog; it has
+      // the same effect as `bypass` for runtime resolution but is
+      // user-managed via the capabilities checkbox rather than the per-call
+      // "Don't ask again" path.
+      const isBypassed = pair.bypass.includes(wcCommand) || pair.grants.capabilities.notifications;
+      if (!isBypassed) {
+        const rendered = await renderConfirm('chia_app.show_notification', data, { networkPrefix });
+        const result = await openReactDialog<true | false | Record<string, unknown>, React.ComponentProps<typeof Confirm>>(
+          mainWindow,
+          Confirm,
+          {
+            networkPrefix,
+            command: 'chia_app.show_notification',
+            data,
+            title: rendered.title,
+            message: rendered.message,
+            confirmLabel: rendered.confirmLabel,
+            destructive: rendered.destructive,
+            rows: rendered.rows,
+            display: rendered.display,
+            principal: {
+              kind: 'pair' as const,
+              name: pair.metadata.name,
+              url: pair.metadata.url,
+              icon: pair.metadata.icon,
+              description: pair.metadata.description,
+            },
+            fingerprint,
+            showBypassToggle: true,
+          },
+          {
+            title: rendered.title,
+            width: 640,
+            height: 600,
+          },
+        );
+        if (result === false || result === undefined) {
+          throw new Error('Operation cancelled by user');
+        }
+        captureBypassFromConfirmResult(result, { topic, wcCommand }, { getPair, upsertPair });
+      }
+      const notification = buildShowNotification(pair, data, fingerprint?.requested);
+      if (notification) {
+        mainWindow.webContents.send(PermissionsAPI.NOTIFICATION_EVENT, notification);
+      }
+      return { data: { success: true } };
+    }
+    if (wcCommand === 'chia_requestPermissions') {
+      // No-op — main owns bypass via the user's "Don't ask again" flow
+      // in Confirm and the Settings UI; the dapp's batch request doesn't
+      // grant anything. Acknowledge so legacy dapps continue to function.
+      return { data: { success: true } };
+    }
+
+    // Resolve `wcCommand` against the registry for the daemon-bound path.
+    // Catches: unknown commands and any other `chia_app.*` entries that
+    // aren't the two main-handled cases above.
+    const target = resolveDispatch(wcCommand);
     if (!target.ok) {
       throw new Error(target.reason);
     }
-    const { nsCommand, command } = target;
+    const { destination, nsCommand, command } = target;
 
-    const decision = resolvePermission(principal, nsCommand, data, wcCommand);
+    const principal: Principal = { kind: 'pair', topic };
+    // resolvePermission re-runs `checkPairAccess` internally (cheap — pair
+    // is cached) and then layers the bucket / spend / bypass logic that's
+    // specific to daemon-bound commands.
+    const decision = resolvePermission(principal, nsCommand, data, {
+      wcCommand,
+      fingerprint: fingerprint?.requested,
+      mainnet,
+    });
     if (decision.kind === 'deny') {
       throw new Error(decision.reason);
     }
@@ -348,7 +477,7 @@ ipcMainHandle(
       // user is consenting to exactly what gets sent.
       const wireData = toSnakeCase(data) as Record<string, unknown>;
       const rendered = await renderConfirm(nsCommand, wireData, { networkPrefix });
-      const result = await openReactDialog(
+      const result = await openReactDialog<true | false | Record<string, unknown>, React.ComponentProps<typeof Confirm>>(
         mainWindow,
         Confirm,
         {
@@ -371,6 +500,12 @@ ipcMainHandle(
               }
             : undefined,
           fingerprint,
+          // Show the "Don't ask again" checkbox only when this is a pair
+          // principal — UI-initiated commands have no pair to attach to.
+          // Spend-classified commands deliberately don't get the toggle:
+          // the budget is the right knob there, and bypass would let
+          // unattended sends slip past the cap on next call.
+          showBypassToggle: !!decision.pair && !getSpendClassification(nsCommand),
         },
         {
           title: rendered.title,
@@ -378,9 +513,19 @@ ipcMainHandle(
           height: 600,
         },
       );
-      if (result !== true) {
+      // Result from `openReactDialog`:
+      //   - `false` / `undefined` → Cancel button or dialog closed.
+      //   - `true` → Confirm clicked, no form fields collected (when
+      //     `showBypassToggle` is false).
+      //   - object → Confirm clicked, form fields collected (e.g.
+      //     `{ bypass: true }` from the "Don't ask again" checkbox).
+      if (result === false || result === undefined) {
         throw new Error('Operation cancelled by user');
       }
+      // Persist the "don't ask again" choice when the user ticked the box.
+      // Helper interprets every form-result shape — see
+      // `bypassCapture.test.ts` for the case matrix.
+      captureBypassFromConfirmResult(result, { topic, wcCommand }, { getPair, upsertPair });
     } else {
       // Auto-approved: debit the spend budget at the actual authorization
       // point. Manually-approved prompts deliberately do not commit — that
@@ -389,11 +534,17 @@ ipcMainHandle(
     }
 
     const requestId = crypto.randomBytes(32).toString('hex');
+    // Snake-case once, then fill in any missing schema defaults (e.g.
+    // `wallet_id: 1` for wallet commands the dapp omits). Defaults apply
+    // post-snake-case because the schema's keys are snake_case daemon
+    // names. Only missing keys are filled — anything the dapp sent
+    // explicitly wins.
+    const wireData = applyDefaults(nsCommand, toSnakeCase(data) as Record<string, unknown>);
     const wire = {
       origin: 'wallet_ui',
       destination,
       command,
-      data,
+      data: wireData,
       ack: false,
       request_id: requestId,
     };

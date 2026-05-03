@@ -18,53 +18,53 @@ const UI_PRINCIPAL = { kind: 'ui' as const };
 
 function makeCapabilities(overrides: Partial<CapabilityGrants> = {}): CapabilityGrants {
   return {
-    read: true,
     balance: false,
     innocuous: false,
     sign: false,
     offer: false,
     spend: false,
+    notifications: false,
     ...overrides,
   };
 }
 
 // Wide default so tests focus on the capability/spend logic, not the
-// per-pair allowlist gate. The `allowedWcCommands` gate has its own dedicated
-// suite below; tests in this file that exercise other code paths assume the
-// command is in the list.
-const DEFAULT_ALLOWED_WC: readonly string[] = [
-  'getWallets',
-  'getWalletBalance',
-  'getWalletBalances',
-  'sendTransaction',
-  'spendCAT',
-  'transferNFT',
-  'takeOffer',
-  'cancelOffer',
-  'createOfferForIds',
-  'signMessageByAddress',
-  'signMessageById',
-  'pushTransactions',
-  'getCoinRecordsByNames',
+// per-pair allowlist gate. The `commands` gate has its own dedicated suite
+// below; tests in this file that exercise other code paths assume the
+// command is in the list. All entries use wire form (`chia_<name>`).
+const DEFAULT_COMMANDS: readonly string[] = [
+  'chia_getWallets',
+  'chia_getWalletBalance',
+  'chia_getWalletBalances',
+  'chia_sendTransaction',
+  'chia_spendCAT',
+  'chia_transferNFT',
+  'chia_takeOffer',
+  'chia_cancelOffer',
+  'chia_createOfferForIds',
+  'chia_signMessageByAddress',
+  'chia_signMessageById',
+  'chia_pushTransactions',
+  'chia_getCoinRecordsByNames',
 ];
 
-// Namespaced daemon command → WC name, for tests that pass an `nsCommand`
-// directly. Missing entries fall back to `unknown_wc_command`, which is what
-// "command not on dapp WC list" deserves — the gate denies it.
+// Namespaced daemon command → WC name (wire form), for tests that pass an
+// `nsCommand` directly. Missing entries fall back to `chia_unknown`, which
+// the gate then denies.
 const NS_TO_WC: Record<string, string> = {
-  'chia_wallet.get_wallets': 'getWallets',
-  'chia_wallet.get_wallet_balance': 'getWalletBalance',
-  'chia_wallet.get_wallet_balances': 'getWalletBalances',
-  'chia_wallet.send_transaction': 'sendTransaction',
-  'chia_wallet.cat_spend': 'spendCAT',
-  'chia_wallet.nft_transfer_nft': 'transferNFT',
-  'chia_wallet.take_offer': 'takeOffer',
-  'chia_wallet.cancel_offer': 'cancelOffer',
-  'chia_wallet.create_offer_for_ids': 'createOfferForIds',
-  'chia_wallet.sign_message_by_address': 'signMessageByAddress',
-  'chia_wallet.sign_message_by_id': 'signMessageById',
-  'chia_wallet.push_transactions': 'pushTransactions',
-  'chia_wallet.get_coin_records_by_names': 'getCoinRecordsByNames',
+  'chia_wallet.get_wallets': 'chia_getWallets',
+  'chia_wallet.get_wallet_balance': 'chia_getWalletBalance',
+  'chia_wallet.get_wallet_balances': 'chia_getWalletBalances',
+  'chia_wallet.send_transaction': 'chia_sendTransaction',
+  'chia_wallet.cat_spend': 'chia_spendCAT',
+  'chia_wallet.nft_transfer_nft': 'chia_transferNFT',
+  'chia_wallet.take_offer': 'chia_takeOffer',
+  'chia_wallet.cancel_offer': 'chia_cancelOffer',
+  'chia_wallet.create_offer_for_ids': 'chia_createOfferForIds',
+  'chia_wallet.sign_message_by_address': 'chia_signMessageByAddress',
+  'chia_wallet.sign_message_by_id': 'chia_signMessageById',
+  'chia_wallet.push_transactions': 'chia_pushTransactions',
+  'chia_wallet.get_coin_records_by_names': 'chia_getCoinRecordsByNames',
 };
 
 function makePair(
@@ -74,17 +74,20 @@ function makePair(
     spendingCapMojos?: string;
     spentMojos?: string;
     metadata?: Partial<PairRecord['metadata']>;
-    allowedWcCommands?: string[];
+    commands?: string[];
+    bypass?: string[];
   } = {},
 ): PairRecord {
   return {
     topic: TOPIC,
+    mainnet: true,
     metadata: { name: 'Test Dapp', ...overrides.metadata },
     fingerprints: [123],
     createdAt: 0,
     updatedAt: 0,
     spentMojos: overrides.spentMojos ?? '0',
-    allowedWcCommands: overrides.allowedWcCommands ?? [...DEFAULT_ALLOWED_WC],
+    commands: overrides.commands ?? [...DEFAULT_COMMANDS],
+    bypass: overrides.bypass ?? [],
     grants: {
       capabilities: makeCapabilities(overrides.capabilities),
       spendingMode: overrides.spendingMode ?? 'ask',
@@ -99,7 +102,9 @@ function makePair(
  * exercise the gate) can call `resolvePermission` directly.
  */
 function pairResolve(nsCommand: string, payload: Record<string, unknown> = {}): Decision {
-  return resolvePermission(PAIR_PRINCIPAL, nsCommand, payload, NS_TO_WC[nsCommand] ?? 'unknown_wc_command');
+  return resolvePermission(PAIR_PRINCIPAL, nsCommand, payload, {
+    wcCommand: NS_TO_WC[nsCommand] ?? 'chia_unknown',
+  });
 }
 
 function expectAllow(d: Decision): Extract<Decision, { kind: 'allow' }> {
@@ -368,13 +373,13 @@ describe('resolvePermission - dapp-allowed but unclassified commands', () => {
 
 describe('resolvePermission - per-pair allowlist gate', () => {
   // Per-pair gate runs before the capability buckets. Anything not in
-  // `allowedWcCommands` is denied even when the bucket alone would have
+  // `pair.commands` is denied even when the bucket alone would have
   // approved or prompted. Catches a compromised renderer asking for
   // commands the user did not consent to at pairing time.
 
   it('denies UI-only commands (delete_key, harvester, open_connection)', () => {
     // These ns commands have no WC equivalent in the registry, so pairResolve
-    // hands an `unknown_wc_command` to the gate, which denies.
+    // hands a `chia_unknown` to the gate, which denies.
     mockGetPair.mockReturnValue(makePair({ capabilities: { innocuous: true, sign: true } }));
     for (const cmd of [
       'chia_wallet.delete_key',
@@ -384,22 +389,22 @@ describe('resolvePermission - per-pair allowlist gate', () => {
     ]) {
       expect(pairResolve(cmd, {})).toEqual({
         kind: 'deny',
-        reason: 'command not granted for this pair: unknown_wc_command',
+        reason: 'command not granted for this pair: chia_unknown',
       });
     }
   });
 
   it('denies an otherwise-legal call when the wcCommand is not on the pair allowlist', () => {
-    // Pair has the capability AND the spending budget, but `sendTransaction`
-    // is not on `allowedWcCommands`. Gate denies before resolveSpending runs.
+    // Pair has the capability AND the spending budget, but `chia_sendTransaction`
+    // is not on `commands`. Gate denies before resolveSpending runs.
     mockGetPair.mockReturnValue(
-      makePair({ allowedWcCommands: ['getWallets'], spendingMode: 'auto', spendingCapMojos: '1000' }),
+      makePair({ commands: ['chia_getWallets'], spendingMode: 'auto', spendingCapMojos: '1000' }),
     );
     expect(
-      resolvePermission(PAIR_PRINCIPAL, 'chia_wallet.send_transaction', { amount: '10' }, 'sendTransaction'),
+      resolvePermission(PAIR_PRINCIPAL, 'chia_wallet.send_transaction', { amount: '10' }, { wcCommand: 'chia_sendTransaction' }),
     ).toEqual({
       kind: 'deny',
-      reason: 'command not granted for this pair: sendTransaction',
+      reason: 'command not granted for this pair: chia_sendTransaction',
     });
   });
 
@@ -415,13 +420,13 @@ describe('resolvePermission - per-pair allowlist gate', () => {
     // Defense in depth: an empty list means deny-all even if capability buckets
     // would otherwise allow. Forces re-pair after upgrade for legacy records.
     mockGetPair.mockReturnValue(
-      makePair({ capabilities: { innocuous: true }, allowedWcCommands: [] }),
+      makePair({ capabilities: { innocuous: true }, commands: [] }),
     );
     expect(
-      resolvePermission(PAIR_PRINCIPAL, 'chia_wallet.get_wallets', {}, 'getWallets'),
+      resolvePermission(PAIR_PRINCIPAL, 'chia_wallet.get_wallets', {}, { wcCommand: 'chia_getWallets' }),
     ).toEqual({
       kind: 'deny',
-      reason: 'command not granted for this pair: getWallets',
+      reason: 'command not granted for this pair: chia_getWallets',
     });
   });
 
@@ -439,10 +444,121 @@ describe('resolvePermission - per-pair allowlist gate', () => {
     // commands a known pair did not consent to.
     mockGetPair.mockReturnValue(undefined);
     expect(
-      resolvePermission(PAIR_PRINCIPAL, 'chia_wallet.send_transaction', {}, 'sendTransaction'),
+      resolvePermission(PAIR_PRINCIPAL, 'chia_wallet.send_transaction', {}, { wcCommand: 'chia_sendTransaction' }),
     ).toEqual({
       kind: 'deny',
       reason: 'unknown pair',
+    });
+  });
+});
+
+describe('resolvePermission - fingerprint + mainnet gates (via checkPairAccess)', () => {
+  // These were previously enforced renderer-side only (audit issue #1).
+  // After consolidation through `checkPairAccess`, main rejects requests
+  // whose dapp-claimed fingerprint isn't on the pair, or whose chain id
+  // doesn't match the pair's network.
+
+  it('denies when the dapp-claimed fingerprint is not on the pair list', () => {
+    mockGetPair.mockReturnValue(makePair());
+    expect(
+      resolvePermission(PAIR_PRINCIPAL, 'chia_wallet.send_transaction', { amount: '10' }, {
+        wcCommand: 'chia_sendTransaction',
+        fingerprint: 999, // pair has [123]
+      }),
+    ).toEqual({
+      kind: 'deny',
+      reason: 'fingerprint not granted for this pair: 999',
+    });
+  });
+
+  it('allows when the fingerprint is on the pair list (continues to bucket logic)', () => {
+    mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '1000' }));
+    const decision = resolvePermission(
+      PAIR_PRINCIPAL,
+      'chia_wallet.send_transaction',
+      { amount: '50' },
+      { wcCommand: 'chia_sendTransaction', fingerprint: 123 },
+    );
+    expect(decision.kind).toBe('allow');
+  });
+
+  it('denies on mainnet/testnet mismatch', () => {
+    mockGetPair.mockReturnValue(makePair()); // pair is mainnet
+    expect(
+      resolvePermission(PAIR_PRINCIPAL, 'chia_wallet.send_transaction', {}, {
+        wcCommand: 'chia_sendTransaction',
+        mainnet: false, // dapp claims testnet
+      }),
+    ).toEqual({
+      kind: 'deny',
+      reason: 'network mismatch',
+    });
+  });
+
+  it('allows when mainnet matches (continues to bucket logic)', () => {
+    mockGetPair.mockReturnValue(makePair());
+    const decision = resolvePermission(
+      PAIR_PRINCIPAL,
+      'chia_wallet.get_wallets',
+      {},
+      { wcCommand: 'chia_getWallets', mainnet: true, fingerprint: 123 },
+    );
+    // chia_getWallets is innocuous; without that capability, prompts.
+    // The point of this test is just that fingerprint+mainnet gates
+    // passed and we reached the bucket layer.
+    expect(decision.kind === 'prompt' || decision.kind === 'allow').toBe(true);
+  });
+});
+
+describe('resolvePermission - bypass list', () => {
+  // The "Don't ask again" path. Bypassed wcCommands skip the prompt and
+  // any capability bucket check, but spend-classified commands deliberately
+  // ignore bypass — the budget is the right knob there, and bypass would
+  // let unattended spends slip past the cap.
+
+  it('short-circuits to allow when bypass is set, even without the matching capability', () => {
+    mockGetPair.mockReturnValue(
+      makePair({ bypass: ['chia_getWallets'] }), // no `innocuous` capability granted
+    );
+    const d = pairResolve('chia_wallet.get_wallets', {});
+    expect(d.kind).toBe('allow');
+  });
+
+  it('does not bypass spend-classified commands (cap remains the gate)', () => {
+    mockGetPair.mockReturnValue(
+      makePair({
+        bypass: ['chia_sendTransaction'],
+        spendingMode: 'auto',
+        spendingCapMojos: '100',
+      }),
+    );
+    // Auto mode under the cap → allow as usual; bypass doesn't change this.
+    expect(pairResolve('chia_wallet.send_transaction', { amount: '50' }).kind).toBe('allow');
+    // Auto mode over the cap → still prompts (bypass would have skipped if
+    // it applied). The check is the same as without bypass.
+    expect(pairResolve('chia_wallet.send_transaction', { amount: '500' })).toMatchObject({
+      kind: 'prompt',
+      reason: 'budget exhausted',
+    });
+  });
+
+  it('does not bypass create_offer_for_ids either', () => {
+    mockGetPair.mockReturnValue(
+      makePair({ bypass: ['chia_createOfferForIds'], spendingMode: 'block' }),
+    );
+    expect(pairResolve('chia_wallet.create_offer_for_ids', { offer: { 1: '5' } })).toMatchObject({
+      kind: 'deny',
+      reason: 'spending blocked for this app',
+    });
+  });
+
+  it('still requires the wcCommand to be in `commands` (gate runs first)', () => {
+    mockGetPair.mockReturnValue(
+      makePair({ commands: [], bypass: ['chia_getWallets'] }),
+    );
+    expect(pairResolve('chia_wallet.get_wallets', {})).toEqual({
+      kind: 'deny',
+      reason: 'command not granted for this pair: chia_getWallets',
     });
   });
 });

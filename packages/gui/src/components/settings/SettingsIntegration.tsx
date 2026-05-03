@@ -1,26 +1,41 @@
-import { Flex, MenuItem, SettingsHR, SettingsSection, SettingsTitle, SettingsText } from '@chia-network/core';
-import { t, Trans } from '@lingui/macro';
+import { Flex, SettingsHR, SettingsSection, SettingsTitle, SettingsText } from '@chia-network/core';
+import { Trans, t } from '@lingui/macro';
 import {
   Autocomplete,
   Box,
   Button,
-  FormControl,
   FormControlLabel,
   Grid,
-  Select,
   Switch,
   TextField,
   Typography,
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import React, { useCallback, useEffect, useMemo, useRef } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import Pair from '../../@types/Pair';
-import type WalletConnectCommand from '../../@types/WalletConnectCommand';
-import walletConnectCommands from '../../constants/WalletConnectCommands';
+import type {
+  PermissionsCommandMetadata,
+  PermissionsPairRecord,
+} from '../../@types/PermissionsService';
+import useCommandMetadata from '../../hooks/useCommandMetadata';
 import useWalletConnectContext from '../../hooks/useWalletConnectContext';
-import useWalletConnectPairs from '../../hooks/useWalletConnectPairs';
 import useWalletConnectPreferences from '../../hooks/useWalletConnectPreferences';
+
+// Display label for a stored wire-form WC command (e.g. `chia_sendTransaction`).
+// Reads from main's `commandRegistry` via the metadata IPC. Falls back to the
+// bare name when the registry has no label for it.
+function commandLabel(wcCommand: string, byWc: Map<string, PermissionsCommandMetadata>): React.ReactNode {
+  const meta = byWc.get(wcCommand);
+  if (meta?.label) return meta.label;
+  return wcCommand.startsWith('chia_') ? wcCommand.slice('chia_'.length) : wcCommand;
+}
+
+function commandDescription(
+  wcCommand: string,
+  byWc: Map<string, PermissionsCommandMetadata>,
+): React.ReactNode | undefined {
+  return byWc.get(wcCommand)?.description;
+}
 
 export default function SettingsIntegration() {
   const theme = useTheme();
@@ -35,101 +50,93 @@ export default function SettingsIntegration() {
   const { disconnect } = useWalletConnectContext();
   const { enabled, setEnabled, allowConfirmationFingerprintChange, setAllowConfirmationFingerprintChange } =
     useWalletConnectPreferences();
+  const { byWc: commandsByWc } = useCommandMetadata();
 
-  const [topic, setTopic] = React.useState<string | null>(null);
-  const [bypassCommands, setBypassCommands] = React.useState<Record<string, boolean> | undefined>();
-  const selectedPair = useRef<Pair | undefined>(undefined);
-  const [autocompleteKey, setAutocompleteKey] = React.useState(0);
+  // Pair list is fetched from main on mount and after every mutation. Main
+  // owns the persisted state (commands + bypass + grants); the renderer is a
+  // pure view here.
+  const [pairs, setPairs] = useState<PermissionsPairRecord[]>([]);
+  const [topic, setTopic] = useState<string | null>(null);
+  const [autocompleteKey, setAutocompleteKey] = useState(0);
 
-  const { bypassCommand, removeBypassCommand, resetBypassForAllPairs, resetBypassForPair, get } =
-    useWalletConnectPairs();
-
-  const pairs = get();
-
-  const refreshBypassCommands = React.useCallback(() => {
-    if (selectedPair.current) {
-      setBypassCommands(selectedPair.current.bypassCommands);
-    }
-  }, [selectedPair, setBypassCommands]);
-
-  const updateSelectedPair = React.useCallback(
-    (pair: Pair) => {
-      setTopic(pair.topic);
-    },
-    [setTopic],
-  );
-
-  const handleDisconnectApp = useCallback(() => {
-    const pair = selectedPair.current;
-
-    if (!pair) {
-      return;
-    }
-    disconnect(pair.topic);
-    setTopic(null);
-    setBypassCommands(undefined);
-    selectedPair.current = undefined;
-    setAutocompleteKey((localKey) => localKey + 1); // hack to force autocomplete to re-render. without this, the selected value doesn't change
-  }, [disconnect, selectedPair, setTopic, setBypassCommands]);
-
-  const handleBypassCommandChange = useCallback(
-    (command: string, newState: boolean) => {
-      const pair = selectedPair.current;
-      if (!pair) {
-        return;
-      }
-      bypassCommand(pair.sessions[0].topic, command, newState);
-      setBypassCommands((localBypassCommands) => {
-        if (!localBypassCommands) {
-          return undefined;
-        }
-
-        return {
-          ...localBypassCommands,
-          [command]: newState,
-        };
-      });
-    },
-    [bypassCommand, setBypassCommands],
-  );
-
-  const handleResetForPair = useCallback(() => {
-    const pair = selectedPair.current;
-    if (!pair) {
-      return;
-    }
-    resetBypassForPair(pair.topic);
-  }, [resetBypassForPair, selectedPair]);
-
-  const handleRemoveBypassCommand = useCallback(
-    (command: string) => {
-      const pair = selectedPair.current;
-      if (!pair) {
-        return;
-      }
-      removeBypassCommand(pair.sessions[0].topic, command);
-    },
-    [removeBypassCommand, selectedPair],
-  );
-
-  const commands = useMemo(() => {
-    const commandKeys = Object.keys(bypassCommands ?? {});
-    return walletConnectCommands.filter((c) => commandKeys.includes(c.command));
-  }, [bypassCommands]);
+  // Bumped on every mutation to trigger a refetch via the effect below.
+  const [refreshTick, setRefreshTick] = useState(0);
+  // Stash the latest list in a ref so callbacks can iterate without
+  // re-rendering when only the trigger changes.
+  const pairsRef = useRef<PermissionsPairRecord[]>([]);
+  pairsRef.current = pairs;
 
   useEffect(() => {
-    if (topic && pairs.length > 0) {
-      const pair = pairs.find((localPair) => localPair.topic === topic);
-      if (!pair) {
-        return;
-      }
-      selectedPair.current = pair;
-      refreshBypassCommands();
-    } else {
-      selectedPair.current = undefined;
-      setBypassCommands(undefined);
+    let cancelled = false;
+    window.permissionsAPI
+      .listPairs()
+      .then((list) => {
+        if (!cancelled) setPairs(list);
+      })
+      .catch(() => {
+        if (!cancelled) setPairs([]);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [refreshTick]);
+
+  const refresh = useCallback(() => setRefreshTick((n) => n + 1), []);
+
+  const selectedPair = useMemo(() => pairs.find((p) => p.topic === topic), [pairs, topic]);
+  const bypassSet = useMemo(() => new Set(selectedPair?.bypass ?? []), [selectedPair]);
+
+  const handleDisconnectApp = useCallback(async () => {
+    if (!topic) return;
+    try {
+      // disconnectPair (in `util/walletConnect.ts`) also calls
+      // `permissionsAPI.revokePair` in its finally block, so the next
+      // refresh will drop this pair from the list.
+      await disconnect(topic);
+    } catch (e) {
+      console.warn('Failed to disconnect pair', e);
     }
-  }, [topic, pairs, refreshBypassCommands]);
+    setTopic(null);
+    setAutocompleteKey((k) => k + 1); // force the Autocomplete to clear its selection
+    refresh();
+  }, [disconnect, topic, refresh]);
+
+  const handleToggleBypass = useCallback(
+    async (wcCommand: string, enabledNext: boolean) => {
+      if (!topic) return;
+      await window.permissionsAPI.setBypass({ topic, wcCommand, enabled: enabledNext });
+      refresh();
+    },
+    [topic, refresh],
+  );
+
+  const handleResetForPair = useCallback(async () => {
+    if (!topic) return;
+    const pair = pairsRef.current.find((p) => p.topic === topic);
+    if (!pair) return;
+    // Loop is fine — bypass lists are bounded by the dapp's `commands`
+    // (typically <40 entries), and this UI runs at human pace. If main ever
+    // grows a batch endpoint, swap this for one call.
+    for (const wcCommand of pair.bypass) {
+      // eslint-disable-next-line no-await-in-loop
+      await window.permissionsAPI.setBypass({ topic, wcCommand, enabled: false });
+    }
+    refresh();
+  }, [topic, refresh]);
+
+  const handleResetForAllPairs = useCallback(async () => {
+    for (const pair of pairsRef.current) {
+      for (const wcCommand of pair.bypass) {
+        // eslint-disable-next-line no-await-in-loop
+        await window.permissionsAPI.setBypass({ topic: pair.topic, wcCommand, enabled: false });
+      }
+    }
+    refresh();
+  }, [refresh]);
+
+  const updateSelectedPair = useCallback((pair: PermissionsPairRecord | null) => {
+    setTopic(pair?.topic ?? null);
+  }, []);
 
   return (
     <Grid container style={{ maxWidth: '624px' }} gap={3}>
@@ -215,7 +222,10 @@ export default function SettingsIntegration() {
 
           <Grid item style={{ width: '400px' }}>
             <SettingsText>
-              <Trans>Manage permissions for your WalletConnect apps.</Trans>
+              <Trans>
+                Pick which commands a connected app can run silently. Anything not toggled will still ask for
+                confirmation.
+              </Trans>
             </SettingsText>
           </Grid>
 
@@ -229,21 +239,15 @@ export default function SettingsIntegration() {
                     id="app-permissions-select"
                     sx={{ width: 400 }}
                     options={pairs}
-                    onChange={(event, option) => updateSelectedPair(option)}
+                    onChange={(_event, option) => updateSelectedPair(option)}
                     isOptionEqualToValue={(a, b) => a.topic === b.topic}
                     autoHighlight={false}
                     disableClearable
                     getOptionLabel={(option) => option.metadata?.name ?? option.topic}
                     renderOption={(props, option) => (
                       <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
-                        {option.metadata?.icons && (
-                          <img
-                            loading="lazy"
-                            width="20"
-                            src={option.metadata?.icons[0]}
-                            srcSet={option.metadata?.icons[0]}
-                            alt=""
-                          />
+                        {option.metadata?.icon && (
+                          <img loading="lazy" width="20" src={option.metadata.icon} alt="" />
                         )}
                         {option.metadata?.name ?? t`Unknown App - ${option.topic}`}
                       </Box>
@@ -258,9 +262,7 @@ export default function SettingsIntegration() {
                             <Trans>No connected applications</Trans>
                           )
                         }
-                        inputProps={{
-                          ...params.inputProps,
-                        }}
+                        inputProps={{ ...params.inputProps }}
                       />
                     )}
                   />
@@ -276,66 +278,56 @@ export default function SettingsIntegration() {
         </Flex>
       </Grid>
 
-      {topic && (
+      {selectedPair && (
         <Grid container marginTop="8px">
           <Flex flexDirection="column" gap={2}>
             <Flex flexDirection="column" gap={1}>
-              {commands.length > 0 ? (
+              {selectedPair.commands.length > 0 ? (
                 <Box {...borderStyle}>
                   <Typography variant="h6">
                     <Trans>Skip Confirmation for Commands</Trans>
                   </Typography>
                   <Grid spacing={2} container marginTop="4px" marginRight="-32px">
-                    {commands.map((commandInfo: WalletConnectCommand, idx: number) => (
-                      <Grid item key={`grid-command-${commandInfo.command}`} width="624px" marginLeft="8px">
-                        <Flex flexDirection="row" alignItems="center" justifyContent="spaceBetween" gap={1}>
-                          <Grid item style={{ width: '400px' }}>
-                            <SettingsTitle>{commandInfo.label ?? commandInfo.command}</SettingsTitle>
-                          </Grid>
-                          <Grid item container xs justifyContent="flex-end" marginTop="-6px" marginRight="8px">
-                            <FormControl size="small">
-                              <Select
-                                value={(bypassCommands ?? {})[commandInfo.command] ? 1 : 0}
-                                id={`${idx}`}
-                                onChange={() =>
-                                  handleBypassCommandChange(
-                                    commandInfo.command,
-                                    !(bypassCommands ?? {})[commandInfo.command],
-                                  )
+                    {selectedPair.commands.map((wcCommand) => {
+                      const isBypassed = bypassSet.has(wcCommand);
+                      return (
+                        <Grid item key={`grid-command-${wcCommand}`} width="624px" marginLeft="8px">
+                          <Flex flexDirection="row" alignItems="center" justifyContent="spaceBetween" gap={1}>
+                            <Grid item style={{ width: '400px' }}>
+                              <SettingsTitle>{commandLabel(wcCommand, commandsByWc)}</SettingsTitle>
+                            </Grid>
+                            <Grid item container xs justifyContent="flex-end" marginTop="-6px" marginRight="8px">
+                              <FormControlLabel
+                                label={null}
+                                control={
+                                  <Switch
+                                    checked={isBypassed}
+                                    onChange={(_e, checked) => handleToggleBypass(wcCommand, checked)}
+                                  />
                                 }
-                              >
-                                <MenuItem value={1}>
-                                  <Trans>Always Allow</Trans>
-                                </MenuItem>
-                                <MenuItem value={0} divider>
-                                  <Trans>Always Reject</Trans>
-                                </MenuItem>
-                                <MenuItem onClick={() => handleRemoveBypassCommand(commandInfo.command)}>
-                                  <Trans>Require Confirmation</Trans>
-                                </MenuItem>
-                              </Select>
-                            </FormControl>
+                              />
+                            </Grid>
+                          </Flex>
+                          <Grid item style={{ width: '400px' }}>
+                            <SettingsText>{commandDescription(wcCommand, commandsByWc) ?? ''}</SettingsText>
                           </Grid>
-                        </Flex>
-                        <Grid item style={{ width: '400px' }}>
-                          <SettingsText>{commandInfo.description ?? ''}</SettingsText>
                         </Grid>
-                      </Grid>
-                    ))}
+                      );
+                    })}
                   </Grid>
                 </Box>
               ) : (
                 <Box {...borderStyle}>
                   <Grid item width="590px">
                     <Typography variant="subtitle1">
-                      <Trans>No Custom Permissions</Trans>
+                      <Trans>This app has no granted commands</Trans>
                     </Typography>
                   </Grid>
                 </Box>
               )}
             </Flex>
 
-            {topic && commands.length > 0 && (
+            {selectedPair.bypass.length > 0 && (
               <>
                 <Grid item style={{ width: '624px' }}>
                   <Flex flexDirection="row" alignItems="center" justifyContent="spaceBetween" gap={1}>
@@ -347,7 +339,6 @@ export default function SettingsIntegration() {
                         onClick={handleResetForPair}
                         color="secondary"
                         variant="outlined"
-                        data-testid="SettingsPanel-resync-wallet-db"
                       >
                         <Trans>Restore</Trans>
                       </Button>
@@ -357,8 +348,7 @@ export default function SettingsIntegration() {
                 <Grid item container style={{ width: '400px' }} gap={2}>
                   <SettingsText>
                     <Trans>
-                      This will restore the selected Dapp's permissions back to their default values. By default, every
-                      command issued by the Dapp will require confirmation in the Chia wallet.
+                      Clear every "always allow" override for this app. Future commands will require confirmation again.
                     </Trans>
                   </SettingsText>
                 </Grid>
@@ -380,13 +370,9 @@ export default function SettingsIntegration() {
             </SettingsTitle>
             <Flex flexDirection="row" flexGrow={1} justifyContent="flex-end" gap={2}>
               <Button
-                onClick={() => {
-                  resetBypassForAllPairs();
-                  setBypassCommands(undefined);
-                }}
+                onClick={handleResetForAllPairs}
                 color="secondary"
                 variant="outlined"
-                data-testid="SettingsPanel-resync-wallet-db"
               >
                 <Trans>Reset</Trans>
               </Button>
@@ -396,8 +382,8 @@ export default function SettingsIntegration() {
         <Grid item container style={{ width: '400px' }} gap={2}>
           <SettingsText>
             <Trans>
-              This will reset all previously granted permissions across all Dapps that have been connected to. After
-              resetting you will be asked to grant permission again.
+              Clear every "always allow" override across every connected app. After resetting, every command will ask
+              for confirmation.
             </Trans>
           </SettingsText>
         </Grid>

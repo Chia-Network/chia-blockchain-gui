@@ -9,9 +9,13 @@ export type PendingProposal = {
   chains: string[];
 };
 
+// Renderer-only pair record — strictly transient WC SDK state. The
+// persistent / security-relevant copy lives in `dapp-pairs.yaml` (main),
+// accessed through `permissionsAPI.listPairs`. Anything that needs to
+// survive an app restart, or that the gate has to trust, belongs there,
+// not here.
 type Pair = {
   topic: string;
-  mainnet: boolean;
   fingerprints: number[];
   sessions: {
     topic: string;
@@ -19,7 +23,6 @@ type Pair = {
     namespaces: WalletConnectNamespaces;
   }[];
   metadata?: WalletConnectMetadata;
-  bypassCommands?: Record<string, boolean>;
   pendingProposal?: PendingProposal;
 };
 

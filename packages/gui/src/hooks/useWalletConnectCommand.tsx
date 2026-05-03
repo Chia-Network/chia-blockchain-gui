@@ -1,169 +1,45 @@
 import api, { store, useGetKeysQuery, useGetLoggedInFingerprintQuery } from '@chia-network/api-react';
-import { useOpenDialog, useAuth } from '@chia-network/core';
-import { Trans } from '@lingui/macro';
+import { useAuth } from '@chia-network/core';
 import debug from 'debug';
 import JSONbig from 'json-bigint';
-import React from 'react';
 
-import type Notification from '../@types/Notification';
-import type Pair from '../@types/Pair';
-import type WalletConnectCommandParam from '../@types/WalletConnectCommandParam';
-import WalletConnectRequestPermissionsConfirmDialog from '../components/walletConnect/WalletConnectRequestPermissionsConfirmDialog';
-import NotificationType from '../constants/NotificationType';
-import walletConnectCommands from '../constants/WalletConnectCommands';
-import prepareWalletConnectCommand from '../util/prepareWalletConnectCommand';
 import waitForWalletSync from '../util/waitForWalletSync';
 
+import useCommandMetadata from './useCommandMetadata';
 import useWalletConnectPairs from './useWalletConnectPairs';
 import useWalletConnectPreferences from './useWalletConnectPreferences';
 
 const log = debug('chia-gui:walletConnectCommand');
 
-type UseWalletConnectCommandOptions = {
-  onNotification?: (notification: Notification) => void;
-};
+// `chia_logIn` opts out of the renderer's per-command fingerprint check
+// (it IS a fingerprint switch — of course it targets a different one).
+// Hardcoded here because it's the only command with that exception.
+const LOG_IN = 'chia_logIn';
 
-function parseNotification(
-  fingerprint: number,
-  values: Record<string, string | number | boolean>,
-  pair: Pair,
-): Notification {
-  const { type, allFingerprints, offerData } = values;
-
-  const from = pair.metadata?.name ?? <Trans>Unknown Dapp</Trans>;
-  const timestamp = Math.floor(new Date().getTime() / 1000);
-  const fingerprints = allFingerprints ? pair.fingerprints : [fingerprint];
-
-  const base = {
-    from,
-    timestamp,
-    fingerprints,
-  };
-
-  const uniqueRandomId = `wc-${new Date().getTime()}-${Math.floor(Math.random() * 1_000_000_000)}`;
-
-  if (type === NotificationType.OFFER) {
-    if (!offerData) {
-      throw new Error('Notification missing offerData');
-    }
-
-    return {
-      ...base,
-      type,
-      source: 'WALLET_CONNECT',
-      id: uniqueRandomId,
-      offerData: offerData.toString(),
-    };
-  }
-
-  if (type === NotificationType.ANNOUNCEMENT && 'message' in values) {
-    return {
-      ...base,
-      type,
-      source: 'WALLET_CONNECT',
-      id: uniqueRandomId,
-      message: values.message.toString(),
-      url: 'url' in values ? values.url.toString() : undefined,
-    };
-  }
-
-  throw new Error(`Invalid notification type ${type}`);
-}
-
-export default function useWalletConnectCommand(options: UseWalletConnectCommandOptions) {
-  const { onNotification } = options;
-  const openDialog = useOpenDialog();
+export default function useWalletConnectCommand() {
   const { logIn } = useAuth();
   const { data: currentFingerprint, isLoading: isLoadingLoggedInFingerprint } = useGetLoggedInFingerprintQuery();
   const { getPairBySession } = useWalletConnectPairs();
   const { data: keys } = useGetKeysQuery({});
+  const { byWc: commandsByWc, isLoading: isLoadingMetadata } = useCommandMetadata();
 
   const { allowConfirmationFingerprintChange } = useWalletConnectPreferences();
 
-  const isLoading = isLoadingLoggedInFingerprint;
+  const isLoading = isLoadingLoggedInFingerprint || isLoadingMetadata;
 
-  async function confirm(props: {
-    topic: string;
-    params: WalletConnectCommandParam[];
-    values: Record<string, any>;
-    fingerprint: number;
-    isDifferentFingerprint: boolean;
-    command: string;
-    onChange: (values: Record<string, any>) => void;
-  }) {
-    const { topic, params = [], values, fingerprint, isDifferentFingerprint, command, onChange } = props;
-
-    const pair = getPairBySession(topic);
-    if (!pair) {
-      throw new Error('Invalid session topic');
-    }
-
-    // Pair-local "remember my choice" shortcut. Kept for backward compat with
-    // existing pair entries; the toggle that writes to bypassCommands lived on
-    // the (now-removed) WalletConnectConfirmDialog, so no new entries get
-    // added through this path until that surface is reintroduced in main.
-    if (pair.bypassCommands && command in pair.bypassCommands) {
-      log(`bypassing command ${command} with value ${pair.bypassCommands[command]}`);
-      return pair.bypassCommands[command];
-    }
-
-    // requestPermissions is a meta-command: it sets up `bypassCommands` rather
-    // than invoking a daemon RPC, so it has its own renderer-side dialog and
-    // never reaches dispatchAsPair.
-    if (command === 'requestPermissions') {
-      if (!values.commands || values.commands.some((cmd: string) => cmd === 'requestPermissions')) {
-        return false;
-      }
-      const { bypassCommands } = pair;
-      const hasPermissions = !!bypassCommands && values.commands.every((cmd: string) => bypassCommands[cmd]);
-      if (hasPermissions) {
-        return true;
-      }
-      await window.appAPI.focusWindow();
-      const isConfirmed = await openDialog(
-        <WalletConnectRequestPermissionsConfirmDialog
-          topic={topic}
-          fingerprint={fingerprint}
-          isDifferentFingerprint={isDifferentFingerprint}
-          params={params}
-          values={values}
-          onChange={onChange}
-        />,
-      );
-      return isConfirmed;
-    }
-
-    // Everything else: trust dispatchAsPair to run resolvePermission and
-    // surface main's Confirm dialog when approval is needed. No renderer-side
-    // dialog — that was the source of the duplicate-confirmation bug.
-    return true;
-  }
-
-  async function handleProcess(topic: string, requestedCommand: string, requestedParams: any) {
-    const {
-      command,
-      values: defaultValues,
-      definition,
-    } = prepareWalletConnectCommand(walletConnectCommands, requestedCommand, requestedParams);
-
+  async function handleProcess(
+    topic: string,
+    requestedCommand: string,
+    requestedParams: any,
+    ctx: { mainnet: boolean },
+  ) {
     const { fingerprint } = requestedParams;
 
-    if (command === 'showNotification') {
-      const pair = getPairBySession(topic);
-      if (!pair) {
-        throw new Error('Invalid session topic');
-      }
-
-      const notification = parseNotification(fingerprint, defaultValues, pair);
-      onNotification?.(notification);
-
-      return {
-        success: true,
-      };
-    }
-
-    // validate fingerprint for current command
-    const { allFingerprints, waitForSync } = definition;
+    // Every WC command — including `chia_showNotification` and
+    // `chia_requestPermissions` — flows through `dispatchAsPair`. Main
+    // owns the gate (pair.commands check), the action (daemon RPC,
+    // notification emit, or no-op), and the response.
+    const allFingerprints = requestedCommand === LOG_IN;
     const hasCurrentFingerprint = currentFingerprint !== undefined && currentFingerprint !== null;
     const isDifferentFingerprint = hasCurrentFingerprint && fingerprint !== currentFingerprint;
     if (!allFingerprints) {
@@ -172,47 +48,22 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
       }
     }
 
-    const { service, params: definitionParams = [] } = definition;
-
-    log('Confirm arguments', definitionParams);
-
-    let values = defaultValues;
-
-    function handleChangeParam(newValues: Record<string, any>) {
-      values = newValues;
-    }
-
-    const confirmed = await confirm({
-      topic,
-      params: definitionParams,
-      values,
-      fingerprint,
-      isDifferentFingerprint,
-      command,
-      onChange: handleChangeParam,
-    });
-
-    if (!confirmed) {
-      throw new Error(`User cancelled command ${requestedCommand}`);
-    }
-
     // auto login before execute command
     if (isDifferentFingerprint && allowConfirmationFingerprintChange) {
       log('Changing fingerprint', fingerprint);
       await logIn(fingerprint);
     }
 
-    // wait for sync
-    if (waitForSync) {
+    // wait for sync (per-command flag from main's commandRegistry).
+    const meta = commandsByWc.get(requestedCommand);
+    if (meta?.requiresSync) {
       log('Waiting for sync');
-      // wait for wallet synchronisation
       await waitForWalletSync();
 
       if (!allFingerprints) {
         const fingerprintRequest = store.dispatch(
           api.endpoints.getLoggedInFingerprint.initiate(undefined, { forceRefetch: true }),
         );
-
         try {
           const latestFingerprint = await fingerprintRequest.unwrap();
           if (latestFingerprint !== fingerprint) {
@@ -224,68 +75,44 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
       }
     }
 
-    if (service === 'EXECUTE') {
-      const { execute } = definition;
-      const result = typeof execute === 'function' ? await execute(values) : execute;
-
-      return {
-        success: true,
-        ...result,
-      };
-    }
-
-    // execute command
-    log('Executing', command, values);
+    log('Executing', requestedCommand, requestedParams);
     const pair = getPairBySession(topic);
     if (!pair) {
       throw new Error('Invalid session topic');
     }
 
-    // 'NOTIFICATION' is handled at the top of this function (showNotification
-    // branch); 'EXECUTE' was just handled above. Anything else is a real
-    // ServiceNameValue carrying an RPC.
-    if (service === 'NOTIFICATION') {
-      throw new Error(`Unexpected NOTIFICATION service for command ${command}`);
-    }
-
-    // Dapp commands take the IPC-direct path: main owns the principal, the
-    // permission flow, the spend commit, the wire envelope, the response
-    // correlation, AND any per-command display enrichment shown in the
-    // Confirm dialog. The renderer hands over (destination, wcCommand,
-    // data, topic) and awaits the result. Anything the user sees at
-    // confirmation time is computed by main from `data` (via daemon RPCs
-    // for asset names, offer summaries, NFT thumbnails) so a compromised
-    // renderer can't lie about what's being asked.
+    // Dapp commands take the IPC-direct path: main owns the principal,
+    // the permission flow, the spend commit, the wire envelope, the
+    // response correlation, AND any per-command display enrichment shown
+    // in the Confirm dialog. The renderer hands over (wcCommand, data,
+    // topic) and awaits the result. Anything the user sees at confirmation
+    // time is computed by main from `data` (via daemon RPCs for asset
+    // names, offer summaries, NFT thumbnails) so a compromised renderer
+    // can't lie about what's being asked.
     //
-    // The daemon RPC name is *not* computed here — main owns that mapping
-    // (see `electron/utils/wcRpcResolver.ts`). The renderer just sends the
-    // WC command name (camelCase) and main resolves it.
+    // Main resolves the daemon destination + RPC name from the registry —
+    // the renderer is no longer trusted to claim them. Default values
+    // (e.g. `wallet_id: 1` for wallet commands) are also applied by main
+    // from the schema, so the renderer no longer pre-processes params.
     const labelFor = (fp?: number): string | undefined => {
       if (fp === undefined) return undefined;
       const found = keys?.find((k: { fingerprint: number; label?: string | null }) => k.fingerprint === fp);
       return found?.label ?? undefined;
     };
-    // `serviceCommand` is a renderer-only override for RTK Query endpoint
-    // names (used to disambiguate `deleteKey` between wallet and DataLayer
-    // services); it doesn't correspond to the daemon RPC. Always send the
-    // canonical WC `command` so main's `resolveDaemonRpc` sees a consistent
-    // input.
-    // `prepareWalletConnectCommand` converts amount/fee into BigNumber
-    // instances. IPC structured clone walks own properties and ships
-    // BigNumber's internal `{s, e, c}` shape to main rather than calling
-    // its `toJSON`. Round-trip through `JSONbig` here — the same
-    // serializer `Message.ts` uses for the daemon socket — so BigNumbers
-    // flatten to their `toJSON` strings on the way out, and any
-    // BigInt-sized integers from a dapp survive the trip back without
-    // precision loss. Without this, both the Confirm dialog (`NaN TXCH`)
-    // and the daemon (rejecting the malformed amount) see garbage.
-    const wireValues = JSONbig.parse(JSONbig.stringify(values));
+
+    // IPC structured clone walks own properties and ships BigNumber's
+    // internal `{s, e, c}` shape rather than calling `toJSON`. Round-trip
+    // through `JSONbig` (the same serializer `Message.ts` uses for the
+    // daemon socket) so any BigNumber-typed values flatten to wire-safe
+    // strings, and any BigInt-sized integers from a dapp survive the
+    // trip back without precision loss.
+    const wireValues = JSONbig.parse(JSONbig.stringify(requestedParams));
 
     const result = await window.permissionsAPI.dispatchAsPair({
-      destination: service,
-      wcCommand: command,
+      wcCommand: requestedCommand,
       data: wireValues,
       topic: pair.topic,
+      mainnet: ctx.mainnet,
       fingerprint: {
         requested: fingerprint,
         current: hasCurrentFingerprint ? currentFingerprint : undefined,

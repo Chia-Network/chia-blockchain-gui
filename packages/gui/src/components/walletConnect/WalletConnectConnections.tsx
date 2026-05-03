@@ -1,5 +1,5 @@
 import { useGetKeysQuery, useGetLoggedInFingerprintQuery } from '@chia-network/api-react';
-import { Flex, Loading, useOpenDialog, More, MenuItem, useShowError } from '@chia-network/core';
+import { Flex, Loading, useCurrencyCode, useOpenDialog, More, MenuItem, useShowError } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import {
   CheckCircleTwoTone as CheckCircleTwoToneIcon,
@@ -45,6 +45,10 @@ export default function WalletConnectConnections(props: WalletConnectConnections
   const { disconnect, approveSession, rejectSession, pairs, isLoading } = useWalletConnectContext();
   const { data: keys } = useGetKeysQuery({});
   const { data: loggedInFingerprint } = useGetLoggedInFingerprintQuery();
+  // mainnet vs testnet is decided here (the canonical "what network are we
+  // on" hook) and threaded through to both the main-side pair record and
+  // the WC SDK approve call. The renderer's `Pair` no longer carries it.
+  const mainnet = useCurrencyCode() === 'XCH';
 
   const handleAddConnection = useCallback(async () => {
     onClose?.();
@@ -75,6 +79,7 @@ export default function WalletConnectConnections(props: WalletConnectConnections
 
       const grant = await window.permissionsAPI.registerPair({
         topic,
+        mainnet,
         metadata: {
           name: pair.metadata?.name ?? 'Unknown application',
           url: pair.metadata?.url,
@@ -101,13 +106,11 @@ export default function WalletConnectConnections(props: WalletConnectConnections
       }
 
       try {
-        // Use the registry-filtered list main persisted, NOT what the dapp
-        // asked for, when telling the WC SDK which methods this session
-        // covers. WC SDK enforces method scope at session level — listing
-        // anything beyond what main will accept just produces dapp-visible
-        // errors at first use.
-        const approvedMethods = grant.allowedWcCommands.map((wc) => `chia_${wc}`);
-        await approveSession(topic, grant.fingerprints, approvedMethods);
+        // `grant.commands` is already in WC wire form (`chia_<name>`), the
+        // exact shape the WC SDK expects in `namespaces.chia.methods`. Pass
+        // through verbatim — listing more than this would let dapps make
+        // calls main will reject at the gate.
+        await approveSession(topic, grant.fingerprints, grant.mainnet, grant.commands);
       } catch (approveErr) {
         // Approval failed (network, dapp dropped, etc). Roll back the main-process grant.
         await window.permissionsAPI.revokePair(topic);
@@ -117,7 +120,7 @@ export default function WalletConnectConnections(props: WalletConnectConnections
     } catch (err) {
       showError(err);
     }
-  }, [onClose, openDialog, pairs, keys, loggedInFingerprint, approveSession, rejectSession, disconnect, showError]);
+  }, [onClose, openDialog, pairs, keys, loggedInFingerprint, mainnet, approveSession, rejectSession, disconnect, showError]);
 
   async function handleDisconnect(topic: string) {
     try {
