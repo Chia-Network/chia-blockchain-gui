@@ -113,9 +113,11 @@ const SCHEMAS: Record<string, CommandSchema> = {
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm this blockchain transaction.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Send' }),
     params: [
+      { name: 'wallet_id', label: () => i18n._(/* i18n */ { id: 'Wallet Id' }), type: 'text' },
       { name: 'address', label: () => i18n._(/* i18n */ { id: 'Address' }), type: 'text' },
       { name: 'amount', label: () => i18n._(/* i18n */ { id: 'Amount' }), type: 'mojo-to-xch' },
       { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'mojo-to-xch' },
+      { name: 'memos', label: () => i18n._(/* i18n */ { id: 'Memos' }), type: 'json' },
       { name: 'puzzle_decorator', label: () => i18n._(/* i18n */ { id: 'Puzzle Decorator' }), type: 'json' },
     ],
   },
