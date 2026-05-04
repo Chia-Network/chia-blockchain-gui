@@ -1,58 +1,56 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import type { PermissionsCommandMetadata } from '../@types/PermissionsService';
 
-type Lookup = {
-  /** Pre-indexed by wcCommand (wire form). */
-  byWc: Map<string, PermissionsCommandMetadata>;
-  list: PermissionsCommandMetadata[];
-};
+type CommandsByWc = Map<string, PermissionsCommandMetadata>;
 
-const empty: Lookup = { byWc: new Map(), list: [] };
+const EMPTY: CommandsByWc = new Map();
 
-/**
- * Single-source-of-truth metadata for every WC-callable command, fetched
- * from main via `permissionsAPI.commandsMetadata`. Replaces the renderer-
- * side `walletConnectCommands.tsx` table — labels, descriptions, and the
- * `requiresSync` flag all come from main's `commandRegistry` now.
- *
- * Refetched on `refresh()` — call this after a locale switch if you want
- * the cached strings to reflect the new language. The renderer's i18n
- * does not auto-rerender these because main resolves them at fetch time.
- */
+let cached: Promise<CommandsByWc> | null = null;
+
+function fetchCommandsByWc(): Promise<CommandsByWc> {
+  if (!cached) {
+    cached = (async () => {
+      try {
+        const rows = await window.permissionsAPI.commandsMetadata();
+        const map: CommandsByWc = new Map();
+        for (const row of rows) map.set(row.wcCommand, row);
+        return map;
+      } catch (err) {
+        cached = null;
+        throw err;
+      }
+    })();
+  }
+  return cached;
+}
+
 export default function useCommandMetadata(): {
   isLoading: boolean;
-  byWc: Map<string, PermissionsCommandMetadata>;
-  list: PermissionsCommandMetadata[];
-  refresh: () => void;
+  byWc: CommandsByWc;
 } {
-  const [{ byWc, list }, setLookup] = useState<Lookup>(empty);
+  const [byWc, setByWc] = useState<CommandsByWc>(EMPTY);
   const [isLoading, setIsLoading] = useState(true);
-  const [tick, setTick] = useState(0);
 
   useEffect(() => {
     let cancelled = false;
-    setIsLoading(true);
-    window.permissionsAPI
-      .commandsMetadata()
-      .then((rows) => {
+
+    (async () => {
+      try {
+        const map = await fetchCommandsByWc();
         if (cancelled) return;
-        const byWcLocal = new Map<string, PermissionsCommandMetadata>();
-        for (const row of rows) byWcLocal.set(row.wcCommand, row);
-        setLookup({ byWc: byWcLocal, list: rows });
-        setIsLoading(false);
-      })
-      .catch(() => {
+        setByWc(map);
+      } catch {
         if (cancelled) return;
-        setLookup(empty);
-        setIsLoading(false);
-      });
+        setByWc(EMPTY);
+      } finally {
+        if (!cancelled) setIsLoading(false);
+      }
+    })();
     return () => {
       cancelled = true;
     };
-  }, [tick]);
+  }, []);
 
-  const refresh = useCallback(() => setTick((n) => n + 1), []);
-
-  return { isLoading, byWc, list, refresh };
+  return { isLoading, byWc };
 }

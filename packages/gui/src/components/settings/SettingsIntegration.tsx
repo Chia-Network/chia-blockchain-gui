@@ -68,14 +68,16 @@ export default function SettingsIntegration() {
 
   useEffect(() => {
     let cancelled = false;
-    window.permissionsAPI
-      .listPairs()
-      .then((list) => {
+    // useEffect can't be async itself; IIFE keeps the await on top while
+    // letting the effect return its sync cleanup.
+    (async () => {
+      try {
+        const list = await window.permissionsAPI.listPairs();
         if (!cancelled) setPairs(list);
-      })
-      .catch(() => {
+      } catch {
         if (!cancelled) setPairs([]);
-      });
+      }
+    })();
     return () => {
       cancelled = true;
     };
