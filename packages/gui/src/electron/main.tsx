@@ -418,7 +418,13 @@ ipcMainHandle(
     const { destination, nsCommand, command } = target;
 
     const principal: Principal = { kind: 'pair', topic };
-    const decision = await resolvePermission(principal, nsCommand, data, {
+    // Snake-case once at the IPC boundary. The gate, the dialog, and the
+    // wire-out all read the same shape, so the user consents to exactly what
+    // goes to the daemon. Canonicalising here also closes the case-flip
+    // bypass surface (e.g. `Sign: true`, `Fee: <X>`) that case-sensitive
+    // payload lookups in the resolver would otherwise miss.
+    const snakeData = toSnakeCase(data) as Record<string, unknown>;
+    const decision = await resolvePermission(principal, nsCommand, snakeData, {
       wcCommand,
       fingerprint: fingerprint?.requested,
       mainnet,
@@ -428,10 +434,7 @@ ipcMainHandle(
     }
 
     if (decision.kind === 'prompt') {
-      // Snake-case once: the dialog and the daemon read the same shape, so
-      // the user consents to exactly what goes on the wire.
-      const wireData = toSnakeCase(data) as Record<string, unknown>;
-      const rendered = await renderConfirm(nsCommand, wireData, { networkPrefix });
+      const rendered = await renderConfirm(nsCommand, snakeData, { networkPrefix });
       const result = await openReactDialog<
         true | false | Record<string, unknown>,
         React.ComponentProps<typeof Confirm>
@@ -441,7 +444,7 @@ ipcMainHandle(
         {
           networkPrefix,
           command: nsCommand,
-          data: wireData,
+          data: snakeData,
           title: rendered.title,
           message: rendered.message,
           confirmLabel: rendered.confirmLabel,
@@ -480,7 +483,7 @@ ipcMainHandle(
 
     const requestId = crypto.randomBytes(32).toString('hex');
     // Schema defaults fill missing keys only (snake_case keyed); dapp values win.
-    const wireData = applyDefaults(nsCommand, toSnakeCase(data) as Record<string, unknown>);
+    const wireData = applyDefaults(nsCommand, snakeData);
     const wire = {
       origin: 'wallet_ui',
       destination,

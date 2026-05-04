@@ -1,5 +1,7 @@
 import BigNumber from 'bignumber.js';
 
+import toSnakeCase from '../utils/toSnakeCase';
+
 import { checkPairAccess } from './checkPairAccess';
 import { getSpendClassification, isUiAllowed } from './commandCapabilities';
 import { getPair, recordSpend } from './pairStore';
@@ -64,12 +66,19 @@ export type ResolveContext = {
 export async function resolvePermission(
   principal: Principal,
   command: string,
-  payload: Record<string, unknown>,
+  rawPayload: Record<string, unknown>,
   ctx: ResolveContext = {},
 ): Promise<Decision> {
   if (principal.kind === 'ui') {
     return isUiAllowed(command) ? allowDecision() : promptDecision('requires user confirmation');
   }
+
+  // Canonicalize keys to snake_case before any payload-shape check. The
+  // wire-out also snake-cases (main.tsx), so the daemon would honor `Sign`
+  // / `Fee` / etc. — without canonicalizing here, a case-sensitive lookup
+  // like `payload.sign` would miss `Sign: true` and let the dapp dodge the
+  // signing prompt or undercount the fee against the spending cap.
+  const payload = toSnakeCase(rawPayload) as Record<string, unknown>;
 
   const access = checkPairAccess(
     {

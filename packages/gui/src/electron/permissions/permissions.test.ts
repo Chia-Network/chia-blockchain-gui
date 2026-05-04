@@ -307,6 +307,36 @@ describe('resolvePermission - push_transactions', () => {
     expect(mojos.toFixed(0)).toBe(fee);
     expect(mojos).toBeInstanceOf(BigNumber);
   });
+
+  // Regression: a dapp that sends `Sign: true` (capital S) used to slip past
+  // the case-sensitive `payload.sign` check while `toSnakeCase` on the wire
+  // canonicalised it back to `sign`, silently signing the bundle. The
+  // resolver must canonicalise before the gate.
+  it.each([
+    ['Sign', { Sign: true }],
+    ['SIGN', { SIGN: true }],
+    ['sign (lowercase, baseline)', { sign: true }],
+  ])('prompts on signing requested even when payload uses %s', async (_label, payload) => {
+    mockGetPair.mockReturnValue(makePair({ bypass: [WC] }));
+    expect(await pairResolve(CMD, payload)).toMatchObject({
+      kind: 'prompt',
+      reason: 'signing requested',
+    });
+  });
+
+  // Same defect for the fee field: capitalised `Fee` snuck past the budget
+  // check while the daemon still honored it on the wire, undercounting the
+  // pair's spent total. The resolver must read fees regardless of casing.
+  it.each([
+    ['Fee', { Fee: '500' }],
+    ['FEE', { FEE: '500' }],
+  ])('counts %s against the budget on push_transactions', async (_label, payload) => {
+    mockGetPair.mockReturnValue(makePair({ bypass: [WC], spendingCapMojos: '1000', spentMojos: '0' }));
+    const d = expectAllow(await pairResolve(CMD, payload));
+    d.commit();
+    const [, mojos] = mockRecordSpend.mock.calls[0];
+    expect(mojos.toFixed(0)).toBe('500');
+  });
 });
 
 describe('resolvePermission - spend-class commands (governed by spendingMode)', () => {
@@ -343,6 +373,34 @@ describe('resolvePermission - spend-class commands (governed by spendingMode)', 
   it('auto prompts when amount + fee exceed remaining budget', async () => {
     mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '1000', spentMojos: '900' }));
     expect(await pairResolve(SEND, { amount: '500', fee: '0' })).toMatchObject({
+      kind: 'prompt',
+      reason: 'budget exhausted',
+    });
+  });
+
+  // Regression: capital-key payload fields (`Amount`, `Fee`) used to dodge
+  // case-sensitive lookups in the resolver while the wire-out canonicalised
+  // them on the way to the daemon — undercounting the budget. The resolver
+  // must canonicalise before any field read.
+  it('counts capitalized "Fee" against budget on send_transaction', async () => {
+    mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '1000', spentMojos: '0' }));
+    const d = expectAllow(await pairResolve(SEND, { amount: '500', Fee: '300' }));
+    d.commit();
+    const [, mojos] = mockRecordSpend.mock.calls[0];
+    expect(mojos.toFixed(0)).toBe('800');
+  });
+
+  it('resolves capitalized "Amount" on send_transaction so the gate sees the real spend', async () => {
+    mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '1000', spentMojos: '0' }));
+    const d = expectAllow(await pairResolve(SEND, { Amount: '500', Fee: '0' }));
+    d.commit();
+    const [, mojos] = mockRecordSpend.mock.calls[0];
+    expect(mojos.toFixed(0)).toBe('500');
+  });
+
+  it('capitalized "Amount" + "Fee" together: gate prompts when total exceeds remaining budget', async () => {
+    mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '1000', spentMojos: '0' }));
+    expect(await pairResolve(SEND, { Amount: '900', Fee: '200' })).toMatchObject({
       kind: 'prompt',
       reason: 'budget exhausted',
     });
