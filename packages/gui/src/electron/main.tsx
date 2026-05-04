@@ -37,7 +37,13 @@ import ChiaLogsAPI from './constants/ChiaLogsAPI';
 import LinkAPI from './constants/LinkAPI';
 import PermissionsAPI from './constants/PermissionsAPI';
 import PreferencesAPI from './constants/PreferencesAPI';
-import { applyDefaults, commandsMetadata, filterRequestedCommands, getCommandByWc, resolveDispatch } from './constants/commandRegistry';
+import {
+  applyDefaults,
+  commandsMetadata,
+  filterRequestedCommands,
+  getCommandByWc,
+  resolveDispatch,
+} from './constants/commandRegistry';
 import About from './dialogs/About/About';
 import Confirm from './dialogs/Confirm/Confirm';
 import { renderConfirm } from './dialogs/Confirm/renderConfirm';
@@ -47,35 +53,28 @@ import { buildNewPairRecord } from './permissions/buildPairRecord';
 import { buildShowNotification } from './permissions/buildShowNotification';
 import { captureBypassFromConfirmResult } from './permissions/bypassCapture';
 import { checkPairAccess } from './permissions/checkPairAccess';
-import { getSpendClassification, isBalanceCommand, isInnocuousCommand, isSignCommand } from './permissions/commandCapabilities';
 import {
-  getPair,
-  listPairs,
-  removePair,
-  resetBypass,
-  resetBypassAll,
-  upsertPair,
-} from './permissions/pairStore';
+  getSpendClassification,
+  isBalanceCommand,
+  isInnocuousCommand,
+  isSignCommand,
+} from './permissions/commandCapabilities';
+import { getPair, listPairs, removePair, resetBypass, resetBypassAll, upsertPair } from './permissions/pairStore';
 import { resolvePermission } from './permissions/permissions';
-import type {
-  PairGrants,
-  PairMetadata,
-  PairRecord,
-  Principal,
-} from './permissions/types';
+import type { PairGrants, PairMetadata, PairRecord, Principal } from './permissions/types';
 import { readPrefs, savePrefs, migratePrefs } from './prefs';
 import { readAddressBook, saveAddressBook } from './utils/addressBook';
 import checkNFTOwnership from './utils/checkNFTOwnership';
 import chiaEnvironment, { chiaInit } from './utils/chiaEnvironment';
 import downloadFile from './utils/downloadFile';
 import fetchJSON from './utils/fetchJSON';
+import getAvailableWallets from './utils/getAvailableWallets';
 import getKeyDetails from './utils/getKeyDetails';
 import getNetworkInfo from './utils/getNetworkInfo';
 import ipcMainHandle from './utils/ipcMainHandle';
 import isValidURL from './utils/isValidURL';
 import loadConfig, { checkConfigFileExists } from './utils/loadConfig';
 import manageDaemonLifetime from './utils/manageDaemonLifetime';
-import getAvailableWallets from './utils/getAvailableWallets';
 import openExternal from './utils/openExternal';
 import openReactDialog from './utils/openReactDialog';
 import * as privatePreferences from './utils/privatePreferences';
@@ -237,7 +236,7 @@ async function openPairDialog(
     {
       title: getPairTitle(!!options.isEdit),
       width: 640,
-      height: 540,
+      height: 590,
     },
   );
 
@@ -418,7 +417,7 @@ ipcMainHandle(
     const { destination, nsCommand, command } = target;
 
     const principal: Principal = { kind: 'pair', topic };
-    const decision = resolvePermission(principal, nsCommand, data, {
+    const decision = await resolvePermission(principal, nsCommand, data, {
       wcCommand,
       fingerprint: fingerprint?.requested,
       mainnet,
@@ -939,7 +938,7 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
         }
 
         // Renderer sends are always UI-principal; dapp calls go via DISPATCH_AS_PAIR.
-        const decision = resolvePermission({ kind: 'ui' }, nsCommand, parsedData.data ?? {});
+        const decision = await resolvePermission({ kind: 'ui' }, nsCommand, parsedData.data ?? {});
 
         if (decision.kind === 'allow') {
           decision.commit();

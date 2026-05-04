@@ -1,6 +1,10 @@
 import BigNumber from 'bignumber.js';
+import crypto from 'node:crypto';
+
+import JSONbig from 'json-bigint';
 
 import AllowedCommands from '../constants/AllowedCommands';
+import { sendDappAndAwait } from '../utils/webSocketBridge';
 
 import type { SpendClassification } from './types';
 
@@ -119,6 +123,62 @@ function extractOfferXchOutflow(payload: Record<string, unknown>): BigNumber | u
   return xchOut;
 }
 
+type OfferSummary = {
+  offered?: Record<string, number | string>;
+  requested?: Record<string, number | string>;
+};
+
+// Sum the XCH mojos the taker would give up. Calls `get_offer_summary` to
+// parse the bech32 offer; returns undefined (→ prompt) if the offer requests
+// anything other than XCH (CAT, NFT, mixed) or if the daemon can't parse it.
+// `data.fee` (the take-tx fee) is NOT added here — the spend resolver handles
+// it via `feeField`.
+async function extractTakeOfferXchOutflow(
+  payload: Record<string, unknown>,
+): Promise<BigNumber | undefined> {
+  const offer = payload?.offer;
+  if (typeof offer !== 'string' || !offer) return undefined;
+
+  let summary: OfferSummary | undefined;
+  try {
+    const requestId = crypto.randomBytes(32).toString('hex');
+    const wire = {
+      origin: 'wallet_ui',
+      destination: 'chia_wallet',
+      command: 'get_offer_summary',
+      data: { offer },
+      ack: false,
+      request_id: requestId,
+    };
+    const json = JSONbig.stringify(wire);
+    const response = (await sendDappAndAwait(requestId, json)) as {
+      data?: { error?: unknown; summary?: OfferSummary };
+    };
+    if (response?.data?.error) return undefined;
+    summary = response?.data?.summary;
+  } catch {
+    return undefined;
+  }
+  if (!summary || typeof summary !== 'object') return undefined;
+  const requested = summary.requested;
+  if (!requested || typeof requested !== 'object') return undefined;
+
+  let xchOut = new BigNumber(0);
+  for (const [key, raw] of Object.entries(requested)) {
+    let amount: BigNumber;
+    try {
+      amount = new BigNumber(typeof raw === 'string' ? raw : String(raw));
+    } catch {
+      continue;
+    }
+    if (!amount.isFinite()) continue;
+    if (amount.isLessThanOrEqualTo(0)) continue;
+    if (key !== 'xch') return undefined;
+    xchOut = xchOut.plus(amount);
+  }
+  return xchOut;
+}
+
 // Returns spend/offer metadata for fund-moving commands, or undefined for
 // anything else. Innocuous/balance/sign and "always-prompt" commands are
 // handled by their own membership checks in `permissions.ts`.
@@ -132,6 +192,13 @@ export function getSpendClassification(command: string): SpendClassification | u
         capability: 'offer',
         feeField: 'fee',
         amountResolver: extractOfferXchOutflow,
+      };
+
+    case 'chia_wallet.take_offer':
+      return {
+        capability: 'offer',
+        feeField: 'fee',
+        amountResolver: extractTakeOfferXchOutflow,
       };
 
     default:

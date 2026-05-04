@@ -2,7 +2,6 @@ import BigNumber from 'bignumber.js';
 import React from 'react';
 
 import { i18n } from '../../../config/locales';
-
 import type { PairGrants, PairMetadata } from '../../permissions/types';
 
 const MOJOS_PER_XCH = new BigNumber('1000000000000');
@@ -49,16 +48,12 @@ const HIDDEN_COMMANDS = new Set(['chia_requestPermissions']);
 function humanizeWcCommand(name: string): string {
   if (!name) return name;
   const bare = name.startsWith('chia_') ? name.slice('chia_'.length) : name;
-  const spaced = bare
-    .replace(/([A-Z]+)([A-Z][a-z])/g, '$1 $2')
-    .replace(/([a-z0-9])([A-Z])/g, '$1 $2');
+  const spaced = bare.replace(/([A-Z]+)([A-Z][a-z])/g, '$1 $2').replace(/([a-z0-9])([A-Z])/g, '$1 $2');
   return spaced.charAt(0).toUpperCase() + spaced.slice(1);
 }
 
 export function getTitle(isEdit: boolean) {
-  return isEdit
-    ? i18n._(/* i18n */ { id: 'Edit Connection' })
-    : i18n._(/* i18n */ { id: 'Connect Application' });
+  return isEdit ? i18n._(/* i18n */ { id: 'Edit Connection' }) : i18n._(/* i18n */ { id: 'Connect Application' });
 }
 
 type CapabilityGroup = {
@@ -93,7 +88,6 @@ export default function Pair(props: PairProps) {
   const defaultCapXch = new BigNumber(grants.spendingCapMojos ?? 0).div(MOJOS_PER_XCH).toFixed();
   const spentBn = new BigNumber(defaultSpentMojos ?? 0);
   const spentXch = spentBn.div(MOJOS_PER_XCH).toFixed();
-  const showSpentRow = isEdit && (grants.spendingMode ?? 'ask') === 'auto';
   const showResetSpent = isEdit && spentBn.isGreaterThan(0);
   const spendingMode = grants.spendingMode ?? 'ask';
 
@@ -233,9 +227,7 @@ export default function Pair(props: PairProps) {
                               <span className="font-medium text-chia-text">
                                 {wallet.name || `Wallet ${wallet.fingerprint}`}
                               </span>
-                              <span className="text-chia-text-muted font-mono ml-2">
-                                ({wallet.fingerprint})
-                              </span>
+                              <span className="text-chia-text-muted font-mono ml-2">({wallet.fingerprint})</span>
                             </span>
                           </label>
                         </li>
@@ -256,33 +248,41 @@ export default function Pair(props: PairProps) {
             {capabilityGroups.map((group) => {
               const isEmpty = group.commands.length === 0;
               return (
-              <li key={group.key} className={isEmpty ? 'opacity-50' : ''}>
-                <label
-                  className={`flex items-center gap-3 px-5 py-1.5 ${
-                    isEmpty ? 'cursor-not-allowed' : 'cursor-pointer hover:bg-chia-card-elevated'
-                  } transition-colors`}
-                  title={isEmpty ? i18n._(/* i18n */ { id: 'This app did not request commands of this type.' }) : undefined}
-                >
-                  <input
-                    type="checkbox"
-                    defaultChecked={groupDefaultChecked(group.commands)}
-                    disabled={isEmpty}
-                    data-cap-toggle={group.key}
-                    className="w-[18px] h-[18px] accent-chia-primary shrink-0 disabled:cursor-not-allowed"
-                  />
-                  <span className="flex-1 min-w-0 text-sm leading-snug">
-                    <span className="font-medium text-chia-text">{group.label}</span>
-                    <span className="text-chia-text-secondary">
-                      {': '}
-                      {group.description}
+                <li key={group.key} className={isEmpty ? 'opacity-50' : ''}>
+                  <label
+                    className={`flex items-center gap-3 px-5 py-1.5 ${
+                      isEmpty ? 'cursor-not-allowed' : 'cursor-pointer hover:bg-chia-card-elevated'
+                    } transition-colors`}
+                    title={
+                      isEmpty ? i18n._(/* i18n */ { id: 'This app did not request commands of this type.' }) : undefined
+                    }
+                  >
+                    <input
+                      type="checkbox"
+                      defaultChecked={groupDefaultChecked(group.commands)}
+                      disabled={isEmpty}
+                      data-cap-toggle={group.key}
+                      className="w-[18px] h-[18px] accent-chia-primary shrink-0 disabled:cursor-not-allowed"
+                    />
+                    <span className="flex-1 min-w-0 text-sm leading-snug">
+                      <span className="font-medium text-chia-text">{group.label}</span>
+                      <span className="text-chia-text-secondary">
+                        {': '}
+                        {group.description}
+                      </span>
                     </span>
-                  </span>
-                </label>
-              </li>
+                  </label>
+                </li>
               );
             })}
           </ul>
-          {(groups.innocuous.length + groups.balance.length + groups.sign.length + groups.notifications.length + groups.other.length + rejectedCommands.length) > 0 && (
+          {groups.innocuous.length +
+            groups.balance.length +
+            groups.sign.length +
+            groups.notifications.length +
+            groups.other.length +
+            rejectedCommands.length >
+            0 && (
             <details className="group border-t border-chia-border">
               <summary className="flex items-center justify-between gap-2 px-5 py-2 cursor-pointer list-none select-none hover:bg-chia-card-elevated transition-colors">
                 <span className="text-xs font-semibold uppercase tracking-wider text-chia-text-muted">
@@ -345,22 +345,23 @@ export default function Pair(props: PairProps) {
               {i18n._(/* i18n */ { id: 'Spending and trading' })}
             </span>
             {showResetSpent && (
-              // Checkbox styled as a button: ticks a hidden form field that
-              // main reads on Save (resets spentMojos to 0). Lets the user
-              // clear the counter without leaving the Edit dialog.
-              <label className="cursor-pointer select-none">
-                <input type="checkbox" data-form-field="resetSpent" className="peer sr-only" />
-                <span className="inline-flex items-center text-xs font-semibold uppercase tracking-wider px-2.5 py-1 rounded-md border border-chia-border-strong text-chia-text-secondary hover:border-chia-primary hover:text-chia-primary peer-checked:bg-chia-primary-soft peer-checked:text-chia-primary peer-checked:border-chia-primary transition-colors">
-                  <span className="peer-checked-hidden">{i18n._(/* i18n */ { id: 'Reset' })}</span>
+              <div className="flex items-center gap-2.5">
+                <span className="text-xs text-chia-text-muted">
+                  <span className="font-mono text-chia-text-secondary">{spentXch}</span> {currencyCode}{' '}
+                  {i18n._(/* i18n */ { id: 'used' })}
                 </span>
-              </label>
+                {/* Checkbox styled as a button: ticks a hidden form field that
+                    main reads on Save (resets spentMojos to 0). Lets the user
+                    clear the counter without leaving the Edit dialog. */}
+                <label className="cursor-pointer select-none">
+                  <input type="checkbox" data-form-field="resetSpent" className="peer sr-only" />
+                  <span className="inline-flex items-center text-xs font-semibold uppercase tracking-wider px-2.5 py-1 rounded-md border border-chia-border-strong text-chia-text-secondary hover:border-chia-primary hover:text-chia-primary peer-checked:bg-chia-primary-soft peer-checked:text-chia-primary peer-checked:border-chia-primary transition-colors">
+                    <span className="peer-checked-hidden">{i18n._(/* i18n */ { id: 'Reset' })}</span>
+                  </span>
+                </label>
+              </div>
             )}
           </div>
-          {showSpentRow && (
-            <div className="px-5 py-2 border-t border-chia-border text-sm text-chia-text-secondary">
-              {spentXch} / {defaultCapXch} {currencyCode} {i18n._(/* i18n */ { id: 'used' })}
-            </div>
-          )}
           {/* Auto amount stays editable regardless of selection — only consumed when 'auto'. */}
           <div className="px-5 py-2.5 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-chia-border">
             <label className="flex items-center gap-2 cursor-pointer">
@@ -372,9 +373,7 @@ export default function Pair(props: PairProps) {
                 data-form-field="spendingMode"
                 className="w-[18px] h-[18px] accent-chia-primary cursor-pointer shrink-0"
               />
-              <span className="text-sm font-medium text-chia-text">
-                {i18n._(/* i18n */ { id: 'Ask each time' })}
-              </span>
+              <span className="text-sm font-medium text-chia-text">{i18n._(/* i18n */ { id: 'Ask each time' })}</span>
             </label>
             <label className="flex items-center gap-2 cursor-pointer">
               <input
@@ -385,9 +384,7 @@ export default function Pair(props: PairProps) {
                 data-form-field="spendingMode"
                 className="w-[18px] h-[18px] accent-chia-primary cursor-pointer shrink-0"
               />
-              <span className="text-sm font-medium text-chia-text">
-                {i18n._(/* i18n */ { id: 'Block' })}
-              </span>
+              <span className="text-sm font-medium text-chia-text">{i18n._(/* i18n */ { id: 'Block' })}</span>
             </label>
             <label className="flex items-center gap-2 cursor-pointer">
               <input
@@ -398,16 +395,14 @@ export default function Pair(props: PairProps) {
                 data-form-field="spendingMode"
                 className="w-[18px] h-[18px] accent-chia-primary cursor-pointer shrink-0"
               />
-              <span className="text-sm font-medium text-chia-text">
-                {i18n._(/* i18n */ { id: 'Auto up to' })}
-              </span>
+              <span className="text-sm font-medium text-chia-text">{i18n._(/* i18n */ { id: 'Auto up to' })}</span>
               <input
                 type="number"
                 min="0"
                 step="0.000000000001"
                 defaultValue={defaultCapXch}
                 data-form-field="spendingCapXch"
-                className="w-44 px-2 py-1 rounded-md border border-chia-border-strong bg-chia-bg text-sm font-mono text-chia-text focus:outline-none focus:border-chia-primary focus:ring-2 focus:ring-chia-primary/20"
+                className="w-38 px-2 py-1 rounded-md border border-chia-border-strong bg-chia-bg text-sm font-mono text-chia-text focus:outline-none focus:border-chia-primary focus:ring-2 focus:ring-chia-primary/20"
               />
               <span className="text-sm font-semibold uppercase tracking-wider text-chia-text-secondary">
                 {currencyCode}

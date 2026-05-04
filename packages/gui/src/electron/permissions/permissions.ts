@@ -68,12 +68,12 @@ export type ResolveContext = {
 // Per-command bypass is the single source of truth for "always allow."
 // Spend-class commands are governed by spendingMode + cap regardless of
 // bypass — the budget is the right knob there.
-export function resolvePermission(
+export async function resolvePermission(
   principal: Principal,
   command: string,
   payload: Record<string, unknown>,
   ctx: ResolveContext = {},
-): Decision {
+): Promise<Decision> {
   if (principal.kind === 'ui') {
     return isUiAllowed(command) ? allowDecision() : promptDecision('requires user confirmation');
   }
@@ -125,28 +125,28 @@ export function resolvePermission(
   return promptDecision('not in bypass list', dialogCtx);
 }
 
-function resolveAmount(
+async function resolveAmount(
   classification: SpendClassification,
   payload: Record<string, unknown>,
-): BigNumber | undefined {
+): Promise<BigNumber | undefined> {
   if (classification.amountResolver) return classification.amountResolver(payload);
   if (classification.amountField) return readMojos(payload, classification.amountField);
   return undefined;
 }
 
-function resolveSpending(
+async function resolveSpending(
   pair: PairRecord,
   ctx: PairContext,
   classification: SpendClassification,
   payload: Record<string, unknown>,
-): Decision {
+): Promise<Decision> {
   const mode = pair.grants.spendingMode ?? 'ask';
   if (mode === 'block') return denyDecision('spending blocked for this app');
   if (mode === 'ask') return promptDecision('spending needs confirmation', ctx);
 
   // 'auto'. Without a numeric XCH-mojo amount (CAT spend, NFT transfer,
   // mixed offer), prompt — can't fairly compare against an XCH cap.
-  const amount = resolveAmount(classification, payload);
+  const amount = await resolveAmount(classification, payload);
   if (amount === undefined) return promptDecision('spending needs confirmation', ctx);
 
   const fee = classification.feeField ? readMojos(payload, classification.feeField) ?? ZERO : ZERO;

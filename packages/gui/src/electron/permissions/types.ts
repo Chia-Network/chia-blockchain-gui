@@ -33,7 +33,9 @@ export type Principal = { kind: 'ui' } | { kind: 'pair'; topic: string };
 
 import type BigNumber from 'bignumber.js';
 
-export type AmountResolver = (payload: Record<string, unknown>) => BigNumber | undefined;
+export type AmountResolver = (
+  payload: Record<string, unknown>,
+) => BigNumber | undefined | Promise<BigNumber | undefined>;
 
 export type SpendClassification = {
   capability: 'spend' | 'offer';
