@@ -86,6 +86,9 @@ type PermissionsService = {
     wcCommand: string;
     enabled: boolean;
   }) => Promise<PermissionsPairRecord | null>;
+  resetBypass: (topic: string) => Promise<PermissionsPairRecord | null>;
+  resetBypassAll: () => Promise<boolean>;
+  resetSpent: (topic: string) => Promise<PermissionsPairRecord | null>;
   commandsMetadata: () => Promise<PermissionsCommandMetadata[]>;
   /**
    * Subscribe to `chia_showNotification` payloads from main. Main fires

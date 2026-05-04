@@ -47,7 +47,16 @@ import { buildShowNotification } from './permissions/buildShowNotification';
 import { captureBypassFromConfirmResult } from './permissions/bypassCapture';
 import { checkPairAccess } from './permissions/checkPairAccess';
 import { getSpendClassification } from './permissions/commandCapabilities';
-import { getPair, listPairs, removePair, upsertPair } from './permissions/pairStore';
+import {
+  getPair,
+  listPairs,
+  removePair,
+  resetBypass,
+  resetBypassAll,
+  resetSpentMojos,
+  setBypass,
+  upsertPair,
+} from './permissions/pairStore';
 import { resolvePermission } from './permissions/permissions';
 import {
   type PairGrants,
@@ -198,6 +207,7 @@ async function openPairDialog(
       defaultGrants: options.defaults?.grants,
       defaultFingerprints: options.defaults?.fingerprints ?? options.defaultFingerprints,
       isEdit: !!options.isEdit,
+      defaultSpentMojos: options.defaults?.spentMojos,
       currencyCode: networkPrefix ? networkPrefix.toUpperCase() : 'XCH',
       allowedCommands: options.allowed ?? options.defaults?.commands ?? [],
       rejectedCommands: options.rejected ?? [],
@@ -283,18 +293,70 @@ ipcMainHandle(PermissionsAPI.PAIR_REVOKE, (topic: string) => {
   return true;
 });
 
-ipcMainHandle(PermissionsAPI.PAIR_SET_BYPASS, (payload: { topic: string; wcCommand: string; enabled: boolean }) => {
-  const pair = getPair(payload.topic);
+ipcMainHandle(
+  PermissionsAPI.PAIR_SET_BYPASS,
+  async (payload: { topic: string; wcCommand: string; enabled: boolean }) => {
+    const pair = getPair(payload.topic);
+    if (!pair) return null;
+    const isAlready = pair.bypass.includes(payload.wcCommand);
+    if (isAlready === payload.enabled) return pair;
+
+    // Granting silent execution requires a real OS click. A compromised
+    // renderer can fire this IPC but can't satisfy the dialog response.
+    // Disable doesn't need confirmation (revoking is always safer).
+    if (payload.enabled) {
+      const result = await dialog.showMessageBox({
+        type: 'warning',
+        buttons: [i18n._(/* i18n */ { id: 'Cancel' }), i18n._(/* i18n */ { id: 'Allow' })],
+        defaultId: 0,
+        cancelId: 0,
+        title: i18n._(/* i18n */ { id: 'Skip Confirmation' }),
+        message: i18n._('Allow "{name}" to use {command} without asking each time?', {
+          name: pair.metadata.name || i18n._(/* i18n */ { id: 'Unknown application' }),
+          command: payload.wcCommand,
+        }),
+        detail: i18n._(/* i18n */ {
+          id: 'Future calls from this app will run without confirmation. You can reverse this in Settings.',
+        }),
+      });
+      if (result.response !== 1) return pair;
+    }
+
+    return setBypass(payload.topic, payload.wcCommand, payload.enabled) ?? null;
+  },
+);
+
+ipcMainHandle(PermissionsAPI.PAIR_RESET_BYPASS, (topic: string) => resetBypass(topic) ?? null);
+
+ipcMainHandle(PermissionsAPI.PAIR_RESET_BYPASS_ALL, () => {
+  resetBypassAll();
+  return true;
+});
+
+ipcMainHandle(PermissionsAPI.PAIR_RESET_SPENT, async (topic: string) => {
+  const pair = getPair(topic);
   if (!pair) return null;
-  const set = new Set(pair.bypass);
-  if (payload.enabled) {
-    set.add(payload.wcCommand);
-  } else {
-    set.delete(payload.wcCommand);
-  }
-  const updated: PairRecord = { ...pair, bypass: [...set], updatedAt: Date.now() };
-  upsertPair(updated);
-  return updated;
+  // No-op short-circuit avoids prompting the user for a no-change action.
+  if (!pair.spentMojos || pair.spentMojos === '0') return pair;
+
+  // Resetting hands the dapp its full silent-spend budget back — same
+  // hard-click gate as setBypass.
+  const result = await dialog.showMessageBox({
+    type: 'warning',
+    buttons: [i18n._(/* i18n */ { id: 'Cancel' }), i18n._(/* i18n */ { id: 'Reset' })],
+    defaultId: 0,
+    cancelId: 0,
+    title: i18n._(/* i18n */ { id: 'Reset Spending Counter' }),
+    message: i18n._('Reset spending counter for "{name}"?', {
+      name: pair.metadata.name || i18n._(/* i18n */ { id: 'Unknown application' }),
+    }),
+    detail: i18n._(/* i18n */ {
+      id: 'The app will be allowed to spend up to its full budget again before being asked.',
+    }),
+  });
+  if (result.response !== 1) return pair;
+
+  return resetSpentMojos(topic) ?? null;
 });
 
 ipcMainHandle(PermissionsAPI.COMMANDS_METADATA, () => commandsMetadata());

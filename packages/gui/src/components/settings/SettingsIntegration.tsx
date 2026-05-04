@@ -11,7 +11,7 @@ import {
   Typography,
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import type {
   PermissionsCommandMetadata,
@@ -61,10 +61,6 @@ export default function SettingsIntegration() {
 
   // Bumped on every mutation to trigger a refetch via the effect below.
   const [refreshTick, setRefreshTick] = useState(0);
-  // Stash the latest list in a ref so callbacks can iterate without
-  // re-rendering when only the trigger changes.
-  const pairsRef = useRef<PermissionsPairRecord[]>([]);
-  pairsRef.current = pairs;
 
   useEffect(() => {
     let cancelled = false;
@@ -114,25 +110,12 @@ export default function SettingsIntegration() {
 
   const handleResetForPair = useCallback(async () => {
     if (!topic) return;
-    const pair = pairsRef.current.find((p) => p.topic === topic);
-    if (!pair) return;
-    // Loop is fine — bypass lists are bounded by the dapp's `commands`
-    // (typically <40 entries), and this UI runs at human pace. If main ever
-    // grows a batch endpoint, swap this for one call.
-    for (const wcCommand of pair.bypass) {
-      // eslint-disable-next-line no-await-in-loop
-      await window.permissionsAPI.setBypass({ topic, wcCommand, enabled: false });
-    }
+    await window.permissionsAPI.resetBypass(topic);
     refresh();
   }, [topic, refresh]);
 
   const handleResetForAllPairs = useCallback(async () => {
-    for (const pair of pairsRef.current) {
-      for (const wcCommand of pair.bypass) {
-        // eslint-disable-next-line no-await-in-loop
-        await window.permissionsAPI.setBypass({ topic: pair.topic, wcCommand, enabled: false });
-      }
-    }
+    await window.permissionsAPI.resetBypassAll();
     refresh();
   }, [refresh]);
 

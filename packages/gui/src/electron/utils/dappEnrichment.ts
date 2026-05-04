@@ -5,6 +5,7 @@
 import { toCamelCase, toSnakeCase, WalletType } from '@chia-network/api';
 import crypto from 'node:crypto';
 
+import isValidURL from './isValidURL';
 import { sendDappAndAwait } from './webSocketBridge';
 
 import mojoToCAT from './mojoToCAT';
@@ -91,13 +92,18 @@ export async function lookupCat(walletId: number | string): Promise<EnrichmentDi
 
 type NftInfo = { dataUris?: string[]; metadataUris?: string[]; nftCoinId?: string };
 
+function pickPreviewUrl(dataUris: string[] | undefined): string | undefined {
+  if (!dataUris) return undefined;
+  return dataUris.find((u) => isValidURL(u));
+}
+
 async function lookupNft(launcherIdHex: string): Promise<{ name?: string; previewUrl?: string } | undefined> {
   try {
     const result = await callDaemon<{ nftInfo?: NftInfo } & NftInfo>('chia_wallet', 'nft_get_info', {
       coinId: launcherIdHex,
     });
     const info = result.nftInfo ?? result;
-    const previewUrl = info.dataUris?.[0];
+    const previewUrl = pickPreviewUrl(info.dataUris);
     return previewUrl ? { previewUrl } : undefined;
   } catch {
     return undefined;
@@ -119,10 +125,12 @@ function hexToNftId(hex: string): string {
   }
 }
 
+// Daemon emits `'singleton'` for NFTs (NOT `'NFT'`). Confirmed against
+// the rest of the renderer's offer code (offerToOfferBuilderData.ts).
 type OfferSummaryRecord = {
   offered: Record<string, number | string>;
   requested: Record<string, number | string>;
-  infos: Record<string, { type: 'CAT' | 'NFT'; tail?: string; launcherId?: string }>;
+  infos: Record<string, { type: 'CAT' | 'singleton'; tail?: string; launcherId?: string }>;
   fees?: number;
 };
 
@@ -149,7 +157,7 @@ async function summaryToOffer(
           return { kind: 'xch', amount: mojoToChia(String(rawAmount).replace(/^-/, '')).toFixed() };
         }
         const info = summary.infos[key];
-        if (info?.type === 'NFT' && info.launcherId) {
+        if (info?.type === 'singleton' && info.launcherId) {
           const nftId = hexToNftId(info.launcherId);
           const enriched = await lookupNft(info.launcherId);
           return { kind: 'nft', nftId, ...enriched };

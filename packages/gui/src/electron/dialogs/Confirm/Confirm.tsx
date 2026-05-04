@@ -107,12 +107,11 @@ function shortenId(id: string, head = 12, tail = 8): string {
 
 function OfferLineRow({ line, networkPrefix }: { line: ConfirmOfferLine; networkPrefix?: string }) {
   if (line.kind === 'xch') {
+    // Inline `{amount} {unit}` matches the FEE row in the offer card so a
+    // single-line summary doesn't look like a wide-spaced table row.
     return (
-      <div className="flex items-baseline justify-between gap-3">
-        <span className="text-sm font-medium text-chia-text">{line.amount}</span>
-        <span className="text-xs uppercase tracking-wider text-chia-text-muted">
-          {networkPrefix ? networkPrefix.toUpperCase() : 'XCH'}
-        </span>
+      <div className="text-sm font-medium text-chia-text">
+        {line.amount} {networkPrefix ? networkPrefix.toUpperCase() : 'XCH'}
       </div>
     );
   }

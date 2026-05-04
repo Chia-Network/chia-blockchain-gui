@@ -1,12 +1,24 @@
+// dappEnrichment hits the WebSocket bridge for offer/CAT lookups, so we
+// stub the public helpers. The real implementation has try/catch fallbacks
+// returning undefined when the bridge is unavailable, but explicit mocks
+// let us pin enrichment-driven behavior (like the fee-dedup) deterministically.
+jest.mock('../../utils/dappEnrichment', () => {
+  const actual = jest.requireActual('../../utils/dappEnrichment');
+  return {
+    ...actual,
+    lookupCat: jest.fn(async () => undefined),
+    buildCreateOfferDisplay: jest.fn(async () => undefined),
+    buildTakeOfferDisplay: jest.fn(async () => undefined),
+  };
+});
+
+import { buildCreateOfferDisplay, buildTakeOfferDisplay } from '../../utils/dappEnrichment';
 import { SCHEMA_COMMANDS, getCommandSchema } from '../../constants/commandRegistry';
 
 import { renderConfirm } from './renderConfirm';
 
-// Daemon enrichment goes through `dappEnrichment.callDaemon` which uses the
-// real WebSocket bridge. None of these tests exercise enrichment-needing
-// commands (cat_spend's mojo-to-cat / take_offer / create_offer_for_ids); we
-// stick to the synchronous param kinds (text, mojo-to-xch, bool) where
-// schemas drive the dialog without a daemon round-trip.
+const mockBuildCreateOfferDisplay = buildCreateOfferDisplay as jest.MockedFunction<typeof buildCreateOfferDisplay>;
+const mockBuildTakeOfferDisplay = buildTakeOfferDisplay as jest.MockedFunction<typeof buildTakeOfferDisplay>;
 
 const xch = (mojos: string | number, prefix = 'XCH') =>
   expect.stringMatching(new RegExp(`\\s${prefix}$`));
@@ -258,6 +270,88 @@ describe('renderConfirm — every schema', () => {
     for (const param of schema.params) {
       expect(known.has(param.type)).toBe(true);
     }
+  });
+});
+
+describe('renderConfirm — offer fee dedup', () => {
+  // Fix for the "fee shown twice" bug on Confirm Create Offer / Take Offer:
+  // the schema's fee param row and the offer enrichment card both rendered
+  // it. The card is the canonical place; the row is suppressed.
+  beforeEach(() => {
+    mockBuildCreateOfferDisplay.mockReset();
+    mockBuildTakeOfferDisplay.mockReset();
+  });
+
+  it('drops the fee row from create_offer_for_ids when offer enrichment carries the fee', async () => {
+    mockBuildCreateOfferDisplay.mockResolvedValue({ offered: [], requested: [], fee: '0' });
+
+    const result = await renderConfirm(
+      'chia_wallet.create_offer_for_ids',
+      { fee: '500000000000', validate_only: false },
+      { networkPrefix: 'xch' },
+    );
+
+    expect(result.rows.find((r) => r.field === 'fee')).toBeUndefined();
+    expect(result.display.offer?.fee).toBe('0');
+  });
+
+  it('keeps the fee row when enrichment fails to produce a display (no offer card)', async () => {
+    // If the daemon RPC for offer summary times out, enrichment returns
+    // undefined → no offer card rendered → fee row must stay so the user
+    // still sees what they're paying.
+    mockBuildCreateOfferDisplay.mockResolvedValue(undefined);
+
+    const result = await renderConfirm(
+      'chia_wallet.create_offer_for_ids',
+      { fee: '500000000000', validate_only: false },
+      { networkPrefix: 'xch' },
+    );
+
+    const feeRow = result.rows.find((r) => r.field === 'fee');
+    expect(feeRow?.value).toBe('0.5 XCH');
+    expect(result.display.offer).toBeUndefined();
+  });
+
+  it('keeps the fee row when offer enrichment exists but has no fee field', async () => {
+    // Defensive: some future enrichment shape might omit fee. Still surface
+    // the param row so the value isn't lost.
+    mockBuildCreateOfferDisplay.mockResolvedValue({ offered: [], requested: [] });
+
+    const result = await renderConfirm(
+      'chia_wallet.create_offer_for_ids',
+      { fee: '500000000000', validate_only: false },
+      { networkPrefix: 'xch' },
+    );
+
+    const feeRow = result.rows.find((r) => r.field === 'fee');
+    expect(feeRow?.value).toBe('0.5 XCH');
+  });
+
+  it('drops the fee row from take_offer when offer enrichment carries the fee', async () => {
+    mockBuildTakeOfferDisplay.mockResolvedValue({ offered: [], requested: [], fee: '0' });
+
+    const result = await renderConfirm(
+      'chia_wallet.take_offer',
+      { fee: '0', offer: 'offer1abc...' },
+      { networkPrefix: 'xch' },
+    );
+
+    expect(result.rows.find((r) => r.field === 'fee')).toBeUndefined();
+    expect(result.display.offer?.fee).toBe('0');
+  });
+
+  it('preserves non-fee rows when fee is dropped (only fee is suppressed)', async () => {
+    mockBuildCreateOfferDisplay.mockResolvedValue({ offered: [], requested: [], fee: '0' });
+
+    const result = await renderConfirm(
+      'chia_wallet.create_offer_for_ids',
+      { fee: '500000000000', validate_only: true, allow_unsynced: false },
+      { networkPrefix: 'xch' },
+    );
+
+    expect(result.rows.find((r) => r.field === 'validate_only')?.value).toBe('Yes');
+    expect(result.rows.find((r) => r.field === 'allow_unsynced')?.value).toBe('No');
+    expect(result.rows.find((r) => r.field === 'fee')).toBeUndefined();
   });
 });
 

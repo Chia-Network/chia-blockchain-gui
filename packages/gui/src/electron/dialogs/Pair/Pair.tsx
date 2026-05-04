@@ -19,6 +19,8 @@ export type PairProps = {
   defaultGrants?: PairGrants;
   defaultFingerprints?: number[];
   isEdit?: boolean;
+  /** Mojos already auto-spent against the cap. Display-only; reset lives in the menu. */
+  defaultSpentMojos?: string;
   currencyCode?: string;
   /** Wire form `chia_<name>`. Display-only; main persists this if confirmed. */
   allowedCommands?: string[];
@@ -58,6 +60,7 @@ export default function Pair(props: PairProps) {
     defaultGrants,
     defaultFingerprints = [],
     isEdit = false,
+    defaultSpentMojos,
     currencyCode = 'XCH',
     allowedCommands: allowedCommandsRaw = [],
     rejectedCommands: rejectedCommandsRaw = [],
@@ -80,6 +83,8 @@ export default function Pair(props: PairProps) {
   };
 
   const defaultCapXch = new BigNumber(grants.spendingCapMojos ?? 0).div(MOJOS_PER_XCH).toFixed();
+  const spentXch = new BigNumber(defaultSpentMojos ?? 0).div(MOJOS_PER_XCH).toFixed();
+  const showSpentRow = isEdit && (grants.spendingMode ?? 'ask') === 'auto';
   const innocuousChecked = grants.capabilities.innocuous;
   const balanceChecked = grants.capabilities.balance;
   const signChecked = grants.capabilities.sign;
@@ -342,6 +347,11 @@ export default function Pair(props: PairProps) {
           <div className="px-5 pt-2.5 pb-1.5 text-xs font-semibold uppercase tracking-wider text-chia-text-muted">
             {i18n._(/* i18n */ { id: 'Spending and trading' })}
           </div>
+          {showSpentRow && (
+            <div className="px-5 py-2 border-t border-chia-border text-sm text-chia-text-secondary">
+              {spentXch} / {defaultCapXch} {currencyCode} {i18n._(/* i18n */ { id: 'used' })}
+            </div>
+          )}
           {/* Auto amount stays editable regardless of selection — only consumed when 'auto'. */}
           <div className="px-5 py-2.5 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-chia-border">
             <label className="flex items-center gap-2 cursor-pointer">

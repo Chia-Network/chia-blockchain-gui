@@ -97,10 +97,20 @@ export async function renderConfirm(
     schema.enrich ? schema.enrich(data) : Promise.resolve<EnrichmentDisplay>({}),
   ]);
 
+  // Drop the `fee` param row when offer enrichment already shows it —
+  // otherwise the dialog renders fee twice (once at the top with the other
+  // params, once in the offer summary card below).
+  const offerShowsFee = display.offer?.fee !== undefined;
+  const rows = resolvedRows.filter((r): r is ConfirmRow => {
+    if (r === undefined) return false;
+    if (r.field === 'fee' && offerShowsFee) return false;
+    return true;
+  });
+
   return {
     ...resolveTexts(schema),
     destructive: schema.destructive ?? false,
-    rows: resolvedRows.filter((r): r is ConfirmRow => r !== undefined),
+    rows,
     display,
   };
 }

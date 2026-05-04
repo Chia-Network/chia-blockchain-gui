@@ -383,3 +383,367 @@ describe('pairStore - notifications capability migration', () => {
     expect(reload.getPair('a')?.grants.capabilities.notifications).toBe(true);
   });
 });
+
+describe('pairStore - setBypass (toggle one command)', () => {
+  it('adds the command when enabling for the first time', () => {
+    const store = loadStore();
+    store.upsertPair(makePair({ topic: 'a', bypass: [] }));
+
+    const updated = store.setBypass('a', 'chia_sendTransaction', true);
+    expect(updated?.bypass).toEqual(['chia_sendTransaction']);
+    expect(store.getPair('a')?.bypass).toEqual(['chia_sendTransaction']);
+  });
+
+  it('removes the command when disabling', () => {
+    const store = loadStore();
+    store.upsertPair(makePair({ topic: 'a', bypass: ['chia_sendTransaction', 'chia_getWallets'] }));
+
+    const updated = store.setBypass('a', 'chia_sendTransaction', false);
+    expect(updated?.bypass).toEqual(['chia_getWallets']);
+  });
+
+  it('persists across reloads', () => {
+    const store = loadStore();
+    store.upsertPair(makePair({ topic: 'a', bypass: [] }));
+    store.setBypass('a', 'chia_sendTransaction', true);
+
+    const reload = loadStore();
+    expect(reload.getPair('a')?.bypass).toEqual(['chia_sendTransaction']);
+  });
+
+  it('returns undefined for an unknown topic without persisting', () => {
+    const store = loadStore();
+    store.upsertPair(makePair({ topic: 'a', bypass: [] }));
+
+    expect(store.setBypass('nonexistent', 'chia_sendTransaction', true)).toBeUndefined();
+    expect(store.getPair('a')?.bypass).toEqual([]);
+  });
+
+  it('is a no-op when enabling something already enabled (does not bump updatedAt)', () => {
+    // Idempotent toggles shouldn't churn updatedAt.
+    const store = loadStore();
+    store.upsertPair(makePair({ topic: 'a', updatedAt: 100, bypass: ['chia_sendTransaction'] }));
+
+    const result = store.setBypass('a', 'chia_sendTransaction', true);
+    expect(result?.updatedAt).toBe(100);
+    expect(store.getPair('a')?.updatedAt).toBe(100);
+  });
+
+  it('is a no-op when disabling something already absent (does not bump updatedAt)', () => {
+    const store = loadStore();
+    store.upsertPair(makePair({ topic: 'a', updatedAt: 100, bypass: [] }));
+
+    const result = store.setBypass('a', 'chia_sendTransaction', false);
+    expect(result?.updatedAt).toBe(100);
+    expect(store.getPair('a')?.updatedAt).toBe(100);
+  });
+
+  it('bumps updatedAt when state actually changed', () => {
+    const store = loadStore();
+    store.upsertPair(makePair({ topic: 'a', updatedAt: 100, bypass: [] }));
+
+    const before = Date.now();
+    const result = store.setBypass('a', 'chia_sendTransaction', true);
+    const after = Date.now();
+
+    expect(result?.updatedAt).toBeGreaterThanOrEqual(before);
+    expect(result?.updatedAt).toBeLessThanOrEqual(after);
+  });
+
+  it('only touches the targeted pair, not siblings', () => {
+    const store = loadStore();
+    store.upsertPair(makePair({ topic: 'a', bypass: [] }));
+    store.upsertPair(makePair({ topic: 'b', bypass: ['chia_getWallets'] }));
+
+    store.setBypass('a', 'chia_sendTransaction', true);
+    expect(store.getPair('a')?.bypass).toEqual(['chia_sendTransaction']);
+    expect(store.getPair('b')?.bypass).toEqual(['chia_getWallets']);
+  });
+
+  it('preserves the rest of the pair record (commands, fingerprints, grants)', () => {
+    const store = loadStore();
+    store.upsertPair(
+      makePair({
+        topic: 'a',
+        bypass: [],
+        commands: ['chia_sendTransaction', 'chia_getWallets'],
+        fingerprints: [111, 222],
+        spentMojos: '500',
+      }),
+    );
+
+    const result = store.setBypass('a', 'chia_sendTransaction', true);
+    expect(result?.commands).toEqual(['chia_sendTransaction', 'chia_getWallets']);
+    expect(result?.fingerprints).toEqual([111, 222]);
+    expect(result?.spentMojos).toBe('500');
+  });
+
+  it('does not duplicate when the command is added twice (defensive — handler also gates this)', () => {
+    // Belt-and-suspenders: even if the dialog gate were bypassed somehow,
+    // the underlying mutator still preserves the no-op invariant.
+    const store = loadStore();
+    store.upsertPair(makePair({ topic: 'a', bypass: ['chia_sendTransaction'] }));
+
+    store.setBypass('a', 'chia_sendTransaction', true);
+    expect(store.getPair('a')?.bypass).toEqual(['chia_sendTransaction']);
+  });
+});
+
+describe('pairStore - resetBypass (single pair)', () => {
+  it('clears a non-empty bypass list', () => {
+    const store = loadStore();
+    store.upsertPair(makePair({ topic: 'a', bypass: ['chia_sendTransaction', 'chia_getWallets'] }));
+
+    const updated = store.resetBypass('a');
+    expect(updated?.bypass).toEqual([]);
+    expect(store.getPair('a')?.bypass).toEqual([]);
+  });
+
+  it('persists across reloads', () => {
+    // The whole point of the reset button is that it survives an app
+    // restart. Reading from cache could pass even with a broken persist.
+    const store = loadStore();
+    store.upsertPair(makePair({ topic: 'a', bypass: ['chia_sendTransaction'] }));
+    store.resetBypass('a');
+
+    const reload = loadStore();
+    expect(reload.getPair('a')?.bypass).toEqual([]);
+  });
+
+  it('returns undefined for an unknown topic without persisting', () => {
+    const store = loadStore();
+    store.upsertPair(makePair({ topic: 'a', bypass: ['chia_sendTransaction'] }));
+
+    expect(store.resetBypass('nonexistent')).toBeUndefined();
+    // Existing pair untouched.
+    expect(store.getPair('a')?.bypass).toEqual(['chia_sendTransaction']);
+  });
+
+  it('is a no-op when the bypass list is already empty (does not bump updatedAt)', () => {
+    // Idle clicks on "Reset" shouldn't churn updatedAt — sync logic
+    // elsewhere may key off it.
+    const store = loadStore();
+    store.upsertPair(makePair({ topic: 'a', updatedAt: 100, bypass: [] }));
+
+    const result = store.resetBypass('a');
+    expect(result?.updatedAt).toBe(100);
+    expect(store.getPair('a')?.updatedAt).toBe(100);
+  });
+
+  it('bumps updatedAt when there was something to clear', () => {
+    const store = loadStore();
+    store.upsertPair(makePair({ topic: 'a', updatedAt: 100, bypass: ['chia_sendTransaction'] }));
+
+    const before = Date.now();
+    const result = store.resetBypass('a');
+    const after = Date.now();
+
+    expect(result?.updatedAt).toBeGreaterThanOrEqual(before);
+    expect(result?.updatedAt).toBeLessThanOrEqual(after);
+  });
+
+  it('only touches the targeted pair, not siblings', () => {
+    const store = loadStore();
+    store.upsertPair(makePair({ topic: 'a', bypass: ['chia_sendTransaction'] }));
+    store.upsertPair(makePair({ topic: 'b', bypass: ['chia_getWallets'] }));
+
+    store.resetBypass('a');
+    expect(store.getPair('a')?.bypass).toEqual([]);
+    expect(store.getPair('b')?.bypass).toEqual(['chia_getWallets']);
+  });
+
+  it('preserves the rest of the pair record (commands, fingerprints, grants)', () => {
+    const store = loadStore();
+    store.upsertPair(
+      makePair({
+        topic: 'a',
+        bypass: ['chia_sendTransaction'],
+        commands: ['chia_sendTransaction', 'chia_getWallets'],
+        fingerprints: [111, 222],
+        spentMojos: '500',
+      }),
+    );
+
+    const result = store.resetBypass('a');
+    expect(result?.commands).toEqual(['chia_sendTransaction', 'chia_getWallets']);
+    expect(result?.fingerprints).toEqual([111, 222]);
+    expect(result?.spentMojos).toBe('500');
+  });
+});
+
+describe('pairStore - resetBypassAll (every pair)', () => {
+  it('clears bypass on every pair', () => {
+    const store = loadStore();
+    store.upsertPair(makePair({ topic: 'a', bypass: ['chia_sendTransaction'] }));
+    store.upsertPair(makePair({ topic: 'b', bypass: ['chia_getWallets', 'chia_takeOffer'] }));
+    store.upsertPair(makePair({ topic: 'c', bypass: [] }));
+
+    store.resetBypassAll();
+    expect(store.getPair('a')?.bypass).toEqual([]);
+    expect(store.getPair('b')?.bypass).toEqual([]);
+    expect(store.getPair('c')?.bypass).toEqual([]);
+  });
+
+  it('persists across reloads', () => {
+    const store = loadStore();
+    store.upsertPair(makePair({ topic: 'a', bypass: ['chia_sendTransaction'] }));
+    store.upsertPair(makePair({ topic: 'b', bypass: ['chia_getWallets'] }));
+    store.resetBypassAll();
+
+    const reload = loadStore();
+    expect(reload.getPair('a')?.bypass).toEqual([]);
+    expect(reload.getPair('b')?.bypass).toEqual([]);
+  });
+
+  it('preserves updatedAt on pairs that had nothing to clear', () => {
+    // Otherwise resetBypassAll would silently rewrite every pair's
+    // timestamp on every click. Keep the file diff to actual mutations.
+    const store = loadStore();
+    store.upsertPair(makePair({ topic: 'untouched', updatedAt: 100, bypass: [] }));
+    store.upsertPair(makePair({ topic: 'cleared', updatedAt: 100, bypass: ['chia_sendTransaction'] }));
+
+    store.resetBypassAll();
+
+    expect(store.getPair('untouched')?.updatedAt).toBe(100);
+    expect(store.getPair('cleared')?.updatedAt).not.toBe(100);
+  });
+
+  it('is a no-op when no pair has any bypass (does not rewrite the file)', () => {
+    // If everything's already empty, resetBypassAll skips the write so
+    // the YAML file mtime doesn't change. Pin via byte-identical content.
+    const store = loadStore();
+    store.upsertPair(makePair({ topic: 'a', bypass: [] }));
+    store.upsertPair(makePair({ topic: 'b', bypass: [] }));
+    const file = path.join(mockTempDir, 'dapp-pairs.yaml');
+    const before = fs.readFileSync(file, 'utf-8');
+
+    store.resetBypassAll();
+
+    const after = fs.readFileSync(file, 'utf-8');
+    expect(after).toBe(before);
+  });
+
+  it('handles an empty pair list (no pairs at all)', () => {
+    const store = loadStore();
+    expect(() => store.resetBypassAll()).not.toThrow();
+    expect(store.listPairs()).toEqual([]);
+  });
+
+  it('preserves the rest of each pair record', () => {
+    const store = loadStore();
+    store.upsertPair(
+      makePair({
+        topic: 'a',
+        bypass: ['chia_sendTransaction'],
+        commands: ['chia_sendTransaction'],
+        fingerprints: [111],
+        spentMojos: '500',
+      }),
+    );
+
+    store.resetBypassAll();
+    const pair = store.getPair('a');
+    expect(pair?.commands).toEqual(['chia_sendTransaction']);
+    expect(pair?.fingerprints).toEqual([111]);
+    expect(pair?.spentMojos).toBe('500');
+  });
+});
+
+describe('pairStore - resetSpentMojos (per-pair budget counter)', () => {
+  it('clears a non-zero spentMojos to "0"', () => {
+    const store = loadStore();
+    store.upsertPair(makePair({ topic: 'a', spentMojos: '12345' }));
+
+    const updated = store.resetSpentMojos('a');
+    expect(updated?.spentMojos).toBe('0');
+    expect(store.getPair('a')?.spentMojos).toBe('0');
+  });
+
+  it('persists across reloads', () => {
+    const store = loadStore();
+    store.upsertPair(makePair({ topic: 'a', spentMojos: '12345' }));
+    store.resetSpentMojos('a');
+
+    const reload = loadStore();
+    expect(reload.getPair('a')?.spentMojos).toBe('0');
+  });
+
+  it('returns undefined for an unknown topic without persisting', () => {
+    const store = loadStore();
+    store.upsertPair(makePair({ topic: 'a', spentMojos: '500' }));
+
+    expect(store.resetSpentMojos('nonexistent')).toBeUndefined();
+    expect(store.getPair('a')?.spentMojos).toBe('500');
+  });
+
+  it('is a no-op when spentMojos is already "0" (does not bump updatedAt)', () => {
+    // Otherwise an idle "Reset" click would churn updatedAt unnecessarily.
+    const store = loadStore();
+    store.upsertPair(makePair({ topic: 'a', updatedAt: 100, spentMojos: '0' }));
+
+    const result = store.resetSpentMojos('a');
+    expect(result?.updatedAt).toBe(100);
+    expect(store.getPair('a')?.updatedAt).toBe(100);
+  });
+
+  it('treats a missing spentMojos field as zero (no-op)', () => {
+    // Defensive: a hand-edited or upgrade-path pair without the field
+    // should not crash or churn updatedAt.
+    const store = loadStore();
+    const pair = makePair({ topic: 'a', updatedAt: 100 });
+    delete (pair as Partial<PairRecord>).spentMojos;
+    store.upsertPair(pair as PairRecord);
+
+    const result = store.resetSpentMojos('a');
+    expect(result?.updatedAt).toBe(100);
+  });
+
+  it('bumps updatedAt only when state actually changed', () => {
+    const store = loadStore();
+    store.upsertPair(makePair({ topic: 'a', updatedAt: 100, spentMojos: '500' }));
+
+    const before = Date.now();
+    const result = store.resetSpentMojos('a');
+    const after = Date.now();
+
+    expect(result?.updatedAt).toBeGreaterThanOrEqual(before);
+    expect(result?.updatedAt).toBeLessThanOrEqual(after);
+  });
+
+  it('only touches the targeted pair, not siblings', () => {
+    const store = loadStore();
+    store.upsertPair(makePair({ topic: 'a', spentMojos: '500' }));
+    store.upsertPair(makePair({ topic: 'b', spentMojos: '777' }));
+
+    store.resetSpentMojos('a');
+    expect(store.getPair('a')?.spentMojos).toBe('0');
+    expect(store.getPair('b')?.spentMojos).toBe('777');
+  });
+
+  it('preserves the rest of the pair record (commands, bypass, fingerprints, grants)', () => {
+    const store = loadStore();
+    store.upsertPair(
+      makePair({
+        topic: 'a',
+        spentMojos: '500',
+        bypass: ['chia_sendTransaction'],
+        commands: ['chia_sendTransaction', 'chia_getWallets'],
+        fingerprints: [111, 222],
+      }),
+    );
+
+    const result = store.resetSpentMojos('a');
+    expect(result?.bypass).toEqual(['chia_sendTransaction']);
+    expect(result?.commands).toEqual(['chia_sendTransaction', 'chia_getWallets']);
+    expect(result?.fingerprints).toEqual([111, 222]);
+  });
+
+  it('handles BigNumber-sized spentMojos beyond Number.MAX_SAFE_INTEGER', () => {
+    // Mojos can exceed 2^53. The reset shouldn't depend on numeric precision.
+    const store = loadStore();
+    store.upsertPair(makePair({ topic: 'a', spentMojos: '99999999999999999999' }));
+
+    const result = store.resetSpentMojos('a');
+    expect(result?.spentMojos).toBe('0');
+  });
+});

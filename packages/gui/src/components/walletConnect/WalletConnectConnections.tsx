@@ -4,6 +4,7 @@ import {
   CheckCircleTwoTone as CheckCircleTwoToneIcon,
   Delete as DeleteIcon,
   Edit as EditIcon,
+  RestartAlt as ResetIcon,
 } from '@mui/icons-material';
 import { Button, ListItemIcon, Typography, Divider } from '@mui/material';
 import React, { useCallback } from 'react';
@@ -13,7 +14,6 @@ import useWalletConnectContext from '../../hooks/useWalletConnectContext';
 import useWalletConnectPreferences from '../../hooks/useWalletConnectPreferences';
 
 import WalletConnectAddConnectionDialog from './WalletConnectAddConnectionDialog';
-import WalletConnectPairInfoDialog from './WalletConnectPairInfoDialog';
 
 async function waitForPendingProposal(
   getPair: (topic: string) => Pair | undefined,
@@ -109,12 +109,30 @@ export default function WalletConnectConnections(props: WalletConnectConnections
     setEnabled(true);
   }
 
-  const handleShowMoreInfo = useCallback(
-    (topic: string) => {
+  const handleEdit = useCallback(
+    async (topic: string) => {
       onClose?.();
-      openDialog(<WalletConnectPairInfoDialog topic={topic} />);
+      try {
+        await window.permissionsAPI.editPair({ topic });
+      } catch (err) {
+        showError(err);
+      }
     },
-    [onClose, openDialog],
+    [onClose, showError],
+  );
+
+  const handleResetSpending = useCallback(
+    async (topic: string) => {
+      onClose?.();
+      try {
+        // Main pops the OS confirmation dialog only when there's actually
+        // a non-zero counter to clear; ask/block-mode dapps no-op silently.
+        await window.permissionsAPI.resetSpent(topic);
+      } catch (err) {
+        showError(err);
+      }
+    },
+    [onClose, showError],
   );
 
   const pairsList = pairs.get();
@@ -136,12 +154,20 @@ export default function WalletConnectConnections(props: WalletConnectConnections
                   <Typography>{pair.metadata?.name ?? <Trans>Unknown Application</Trans>}</Typography>
                 </Flex>
                 <More>
-                  <MenuItem onClick={() => handleShowMoreInfo(pair.topic)} close>
+                  <MenuItem onClick={() => handleEdit(pair.topic)} close>
                     <ListItemIcon>
                       <EditIcon fontSize="small" color="info" />
                     </ListItemIcon>
                     <Typography variant="inherit" noWrap>
-                      <Trans>More Info</Trans>
+                      <Trans>Edit</Trans>
+                    </Typography>
+                  </MenuItem>
+                  <MenuItem onClick={() => handleResetSpending(pair.topic)} close>
+                    <ListItemIcon>
+                      <ResetIcon fontSize="small" color="info" />
+                    </ListItemIcon>
+                    <Typography variant="inherit" noWrap>
+                      <Trans>Reset Spending</Trans>
                     </Typography>
                   </MenuItem>
                   <MenuItem onClick={() => handleDisconnect(pair.topic)} close>
