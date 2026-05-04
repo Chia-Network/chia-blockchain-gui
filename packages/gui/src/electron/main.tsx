@@ -273,6 +273,9 @@ ipcMainHandle(
     requestedCommands?: string[];
   }) => {
     const { topic, mainnet, metadata, requestedCommands = [] } = payload;
+    if (typeof mainnet !== 'boolean') {
+      throw new Error('mainnet flag is required');
+    }
     const { availableWallets, defaultFingerprints } = await getAvailableWallets();
     const { allowed, rejected } = filterRequestedCommands(requestedCommands);
     const decision = await openPairDialog(metadata, availableWallets, {
@@ -358,6 +361,9 @@ ipcMainHandle(
     }
 
     const { wcCommand, data: argsData, topic, mainnet, fingerprint } = payload;
+    if (typeof mainnet !== 'boolean') {
+      throw new Error('mainnet flag is required');
+    }
     const data = argsData ?? {};
 
     const access = checkPairAccess({ topic, wcCommand, fingerprint: fingerprint?.requested, mainnet }, { getPair });

@@ -47,13 +47,8 @@ describe('checkPairAccess — happy path', () => {
   });
 
   it('passes when fingerprint is omitted (caller has no fingerprint context)', () => {
-    const out = checkPairAccess({ topic: TOPIC, wcCommand: 'chia_sendTransaction' }, depsWith(makePair()));
-    expect(out.ok).toBe(true);
-  });
-
-  it('passes when mainnet is omitted (caller has no chain context)', () => {
     const out = checkPairAccess(
-      { topic: TOPIC, wcCommand: 'chia_sendTransaction', fingerprint: 111 },
+      { topic: TOPIC, wcCommand: 'chia_sendTransaction', mainnet: true },
       depsWith(makePair()),
     );
     expect(out.ok).toBe(true);
@@ -114,6 +109,32 @@ describe('checkPairAccess — failure modes', () => {
       depsWith(makePair({ mainnet: false })),
     );
     expect(out).toEqual({ ok: false, reason: 'network mismatch' });
+  });
+
+  // Fail-closed on missing/non-boolean mainnet: every dapp call is
+  // network-scoped, so a renderer that omits the flag (or sends a non-bool)
+  // must NOT slip past the network gate.
+  it('denies when mainnet is undefined (caller never set the flag)', () => {
+    const out = checkPairAccess(
+      { topic: TOPIC, wcCommand: 'chia_sendTransaction' } as Parameters<typeof checkPairAccess>[0],
+      depsWith(makePair({ mainnet: true })),
+    );
+    expect(out).toEqual({ ok: false, reason: 'network mismatch' });
+  });
+
+  it('denies when mainnet is not a boolean (string, null, etc.)', () => {
+    expect(
+      checkPairAccess(
+        { topic: TOPIC, wcCommand: 'chia_sendTransaction', mainnet: 'true' as unknown as boolean },
+        depsWith(makePair({ mainnet: true })),
+      ),
+    ).toEqual({ ok: false, reason: 'network mismatch' });
+    expect(
+      checkPairAccess(
+        { topic: TOPIC, wcCommand: 'chia_sendTransaction', mainnet: null as unknown as boolean },
+        depsWith(makePair({ mainnet: true })),
+      ),
+    ).toEqual({ ok: false, reason: 'network mismatch' });
   });
 });
 

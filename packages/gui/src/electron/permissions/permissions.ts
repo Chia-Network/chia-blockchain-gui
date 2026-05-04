@@ -57,6 +57,7 @@ export type ResolveContext = {
   /** Wire form (`chia_<name>`); required for pair principals. */
   wcCommand?: string;
   fingerprint?: number;
+  /** Required for pair principals; ignored for UI. Missing → network mismatch. */
   mainnet?: boolean;
 };
 
@@ -85,7 +86,7 @@ export async function resolvePermission(
       topic: principal.topic,
       wcCommand: ctx.wcCommand,
       fingerprint: ctx.fingerprint,
-      mainnet: ctx.mainnet,
+      mainnet: ctx.mainnet as boolean,
     },
     { getPair },
   );

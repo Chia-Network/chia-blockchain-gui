@@ -90,6 +90,10 @@ function makePair(
 function pairResolve(nsCommand: string, payload: Record<string, unknown> = {}): Promise<Decision> {
   return resolvePermission(PAIR_PRINCIPAL, nsCommand, payload, {
     wcCommand: NS_TO_WC[nsCommand] ?? 'chia_unknown',
+    // Default makePair returns mainnet: true; helper matches so tests focus
+    // on per-command logic and not the network gate (which has its own suite
+    // in checkPairAccess.test.ts).
+    mainnet: true,
   });
 }
 
