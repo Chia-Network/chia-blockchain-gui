@@ -240,7 +240,6 @@ describe('pairStore - commands field migration', () => {
     const reload = loadStore();
     expect(reload.getPair('a')?.commands).toEqual(['chia_sendTransaction', 'chia_getWallets']);
   });
-
 });
 
 describe('pairStore - bypass field migration', () => {
