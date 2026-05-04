@@ -107,14 +107,16 @@ export function isSignCommand(command: string): boolean {
 // is keyed by wallet id (numeric strings ≤ 16 chars, parsed via `int(...)`)
 // or asset-id hex (> 16 chars, parsed via `bytes32.from_hexstr`); see
 // `wallet_request_types.CreateOfferForIDs.offer_spec`. XCH is the standard
-// wallet, id `1`. Returns undefined (→ prompt) when any non-XCH outflow
-// exists, so CAT/NFT outflows never auto-approve against an XCH cap.
+// wallet, id `1`. Strict pure-XCH gate: any non-XCH key (CAT, NFT, mixed) on
+// either side returns undefined → prompt, because the spending cap is
+// denominated in XCH and can't fairly bound non-XCH transfers.
 function extractOfferXchOutflow(payload: Record<string, unknown>): BigNumber | undefined {
   const offer = payload?.offer;
   if (!offer || typeof offer !== 'object') return undefined;
 
   let xchOut = new BigNumber(0);
   for (const [key, raw] of Object.entries(offer as Record<string, unknown>)) {
+    if (key !== '1') return undefined;
     let amount: BigNumber;
     try {
       amount = new BigNumber(typeof raw === 'string' ? raw : String(raw));
@@ -122,9 +124,10 @@ function extractOfferXchOutflow(payload: Record<string, unknown>): BigNumber | u
       continue;
     }
     if (!amount.isFinite()) continue;
-    if (amount.isGreaterThanOrEqualTo(0)) continue;
-    if (key !== '1') return undefined;
-    xchOut = xchOut.plus(amount.abs());
+    if (amount.isLessThan(0)) {
+      xchOut = xchOut.plus(amount.abs());
+    }
+    // Positive XCH is inflow (we're requesting XCH) — doesn't add to outflow.
   }
   return xchOut;
 }
@@ -135,8 +138,10 @@ type OfferSummary = {
 };
 
 // Sum the XCH mojos the taker would give up. Calls `get_offer_summary` to
-// parse the bech32 offer; returns undefined (→ prompt) if the offer requests
-// anything other than XCH (CAT, NFT, mixed) or if the daemon can't parse it.
+// parse the bech32 offer. Strict pure-XCH gate: if EITHER side of the offer
+// (`offered` or `requested`) contains anything other than XCH, return
+// undefined → prompt. The spending cap is denominated in XCH; a CAT/NFT
+// inflow or outflow falls outside what the cap can fairly bound.
 // `data.fee` (the take-tx fee) is NOT added here — the spend resolver handles
 // it via `feeField`.
 async function extractTakeOfferXchOutflow(payload: Record<string, unknown>): Promise<BigNumber | undefined> {
@@ -165,20 +170,29 @@ async function extractTakeOfferXchOutflow(payload: Record<string, unknown>): Pro
   }
   if (!summary || typeof summary !== 'object') return undefined;
   const requested = summary.requested;
+  const offered = summary.offered;
   if (!requested || typeof requested !== 'object') return undefined;
+  if (!offered || typeof offered !== 'object') return undefined;
 
-  let xchOut = new BigNumber(0);
-  for (const [key, raw] of Object.entries(requested)) {
-    let amount: BigNumber;
-    try {
-      amount = new BigNumber(typeof raw === 'string' ? raw : String(raw));
-    } catch {
-      continue;
-    }
-    if (!amount.isFinite()) continue;
-    if (amount.isLessThanOrEqualTo(0)) continue;
+  // Either side may carry asset-id-hex (CAT) or singleton-launcher-hex (NFT)
+  // keys; we want pure XCH only.
+  for (const key of Object.keys(offered)) {
     if (key !== 'xch') return undefined;
-    xchOut = xchOut.plus(amount);
+  }
+  for (const key of Object.keys(requested)) {
+    if (key !== 'xch') return undefined;
+  }
+
+  // Daemon emits non-negative uint64 amounts; defensive skip of ≤ 0.
+  let xchOut = new BigNumber(0);
+  const raw = (requested as { xch?: unknown }).xch;
+  if (raw !== undefined) {
+    try {
+      const amount = new BigNumber(typeof raw === 'string' ? raw : String(raw));
+      if (amount.isFinite() && amount.isGreaterThan(0)) xchOut = amount;
+    } catch {
+      // invalid → leave outflow at 0
+    }
   }
   return xchOut;
 }
