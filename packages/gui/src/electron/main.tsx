@@ -236,7 +236,7 @@ async function openPairDialog(
     {
       title: getPairTitle(!!options.isEdit),
       width: 640,
-      height: 590,
+      height: 600,
     },
   );
 
