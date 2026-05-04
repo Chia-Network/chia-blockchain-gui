@@ -977,7 +977,7 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
           console.error(error);
         }
       },
-      onSend: async (_id: string, data: string, metadata) => {
+      onSend: async (_id: string, data: string) => {
         if (!mainWindow) {
           throw new Error('`mainWindow` is empty');
         }
@@ -992,8 +992,9 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
           throw new Error('Private key is not allowed to be sent to the renderer process');
         }
 
-        const principal: Principal = metadata?.principal ?? { kind: 'ui' };
-        const decision = resolvePermission(principal, nsCommand, parsedData.data ?? {});
+        // Renderer-originated sends are always UI-principal: dapp commands
+        // route through DISPATCH_AS_PAIR (in-main), not through this bridge.
+        const decision = resolvePermission({ kind: 'ui' }, nsCommand, parsedData.data ?? {});
 
         if (decision.kind === 'allow') {
           // Debit the budget at the real authorization point. Idempotent — the
@@ -1007,7 +1008,7 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
         }
 
         const bypassCommands = privatePreferences.get('bypassCommands', [] as string[]);
-        if (principal.kind === 'ui' && bypassCommands.includes(nsCommand)) {
+        if (bypassCommands.includes(nsCommand)) {
           return;
         }
 
@@ -1026,15 +1027,6 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
             destructive: rendered.destructive,
             rows: rendered.rows,
             display: rendered.display,
-            principal: decision.pair
-              ? {
-                  kind: 'pair' as const,
-                  name: decision.pair.name,
-                  url: decision.pair.url,
-                  icon: decision.pair.icon,
-                  description: decision.pair.description,
-                }
-              : undefined,
           },
           {
             title: rendered.title,

@@ -1,10 +1,6 @@
-export type WebSocketSendMetadata = {
-  principal?: { kind: 'ui' } | { kind: 'pair'; topic: string };
-};
-
 type WebSocketService = {
   connect: () => Promise<string>; // returns connection ID
-  send: (connectionId: string, data: string, metadata?: WebSocketSendMetadata) => Promise<void>;
+  send: (connectionId: string, data: string) => Promise<void>;
   close: (connectionId: string) => void;
 
   subscribeToOpen: (callback: (connectionId: string) => void) => () => void;

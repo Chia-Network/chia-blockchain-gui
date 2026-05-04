@@ -75,15 +75,11 @@ function cleanupConnections() {
   });
 }
 
-export type SendMetadata = {
-  principal?: { kind: 'ui' } | { kind: 'pair'; topic: string };
-};
-
 export default function bindEvents(
   webContents: WebContents,
   options: {
     net?: string;
-    onSend?: (id: string, data: string, metadata?: SendMetadata) => Promise<void>;
+    onSend?: (id: string, data: string) => Promise<void>;
     onReceive?: (id: string, data: RawData) => Promise<void>;
   },
 ) {
@@ -181,7 +177,7 @@ export default function bindEvents(
     return id;
   });
 
-  ipcMainHandle(WebSocketAPI.SEND, async (id: string, data: string, metadata?: SendMetadata) => {
+  ipcMainHandle(WebSocketAPI.SEND, async (id: string, data: string) => {
     const connection = getConnection(id);
 
     if (!onSend) {
@@ -190,7 +186,7 @@ export default function bindEvents(
     }
 
     try {
-      await onSend(id, data, metadata);
+      await onSend(id, data);
       connection.send(data);
     } catch (err) {
       console.error(err);
