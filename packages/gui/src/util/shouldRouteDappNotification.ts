@@ -1,4 +1,5 @@
 import type { PermissionsNotificationPayload } from '../@types/PermissionsService';
+import NotificationType from '../constants/NotificationType';
 
 export type DappNotificationPrefs = {
   dappOfferNotifications: boolean;
@@ -11,7 +12,7 @@ export default function shouldRouteDappNotification(
   notification: PermissionsNotificationPayload,
   prefs: DappNotificationPrefs,
 ): boolean {
-  if (notification.type === 'offer') return prefs.dappOfferNotifications;
-  if (notification.type === 'announcement') return prefs.dappAnnouncementNotifications;
+  if (notification.type === NotificationType.OFFER) return prefs.dappOfferNotifications;
+  if (notification.type === NotificationType.ANNOUNCEMENT) return prefs.dappAnnouncementNotifications;
   return true;
 }

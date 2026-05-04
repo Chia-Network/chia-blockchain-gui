@@ -1,3 +1,5 @@
+import NotificationType from '../constants/NotificationType';
+
 export type PermissionsCapability = 'balance' | 'innocuous' | 'sign' | 'offer' | 'spend';
 
 export type PermissionsPairMetadata = {
@@ -48,10 +50,15 @@ export type PermissionsCommandMetadata = {
  * after a paired dapp's `chia_showNotification` passed the gate. Renderer
  * routes this to its own notification system. Subset of the renderer's
  * shared `Notification` type — only the variants main can construct.
+ *
+ * Discriminators use `NotificationType` directly (not string literals) so
+ * main's producer and the renderer's consumer stay coupled at compile time.
+ * If the enum is ever renumbered or renamed, TS flags both sides instead of
+ * silently dropping notifications at runtime.
  */
 export type PermissionsNotificationPayload =
   | {
-      type: 'offer';
+      type: NotificationType.OFFER;
       timestamp: number;
       id: string;
       source: 'WALLET_CONNECT';
@@ -60,7 +67,7 @@ export type PermissionsNotificationPayload =
       offerData: string;
     }
   | {
-      type: 'announcement';
+      type: NotificationType.ANNOUNCEMENT;
       timestamp: number;
       id: string;
       source: 'WALLET_CONNECT';

@@ -1,9 +1,10 @@
 import type { PermissionsNotificationPayload } from '../@types/PermissionsService';
+import NotificationType from '../constants/NotificationType';
 
 import shouldRouteDappNotification from './shouldRouteDappNotification';
 
 const offerNotification: PermissionsNotificationPayload = {
-  type: 'offer',
+  type: NotificationType.OFFER,
   timestamp: 1,
   id: 'wc-1',
   source: 'WALLET_CONNECT',
@@ -11,7 +12,7 @@ const offerNotification: PermissionsNotificationPayload = {
 };
 
 const announcementNotification: PermissionsNotificationPayload = {
-  type: 'announcement',
+  type: NotificationType.ANNOUNCEMENT,
   timestamp: 1,
   id: 'wc-2',
   source: 'WALLET_CONNECT',
@@ -76,7 +77,7 @@ describe('shouldRouteDappNotification', () => {
   it('routes unknown future types by default (forward-compatible)', () => {
     // If main starts emitting a new type one day, we don't want a stale
     // renderer to silently drop it. Default to "show".
-    const future = { ...offerNotification, type: 'futureType' as unknown as 'offer' };
+    const future = { ...offerNotification, type: 'futureType' as unknown as NotificationType.OFFER };
     expect(
       shouldRouteDappNotification(future, {
         dappOfferNotifications: false,

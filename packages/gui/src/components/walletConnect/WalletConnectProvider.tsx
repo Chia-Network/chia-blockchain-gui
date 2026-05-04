@@ -1,6 +1,5 @@
 import React, { ReactNode, createContext, useEffect } from 'react';
 
-import type Notification from '../../@types/Notification';
 import type Pair from '../../@types/Pair';
 import type { PermissionsNotificationPayload } from '../../@types/PermissionsService';
 import useNotificationSettings from '../../hooks/useNotificationSettings';
@@ -47,7 +46,10 @@ export default function WalletConnectProvider(props: WalletConnectProviderProps)
         if (!shouldRouteDappNotification(notification, { dappOfferNotifications, dappAnnouncementNotifications })) {
           return;
         }
-        showNotification(notification as unknown as Notification);
+        // `PermissionsNotificationPayload` is a compile-time subset of the
+        // renderer's `Notification` type (shared `NotificationType` enum,
+        // narrower `source`/`from`), so no cast is needed.
+        showNotification(notification);
       }),
     [showNotification, dappOfferNotifications, dappAnnouncementNotifications],
   );
