@@ -1,4 +1,3 @@
-import { useGetKeysQuery, useGetLoggedInFingerprintQuery } from '@chia-network/api-react';
 import { Flex, Loading, useCurrencyCode, useOpenDialog, More, MenuItem, useShowError } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import {
@@ -43,11 +42,6 @@ export default function WalletConnectConnections(props: WalletConnectConnections
   const showError = useShowError();
   const { enabled, setEnabled } = useWalletConnectPreferences();
   const { disconnect, approveSession, rejectSession, pairs, isLoading } = useWalletConnectContext();
-  const { data: keys } = useGetKeysQuery({});
-  const { data: loggedInFingerprint } = useGetLoggedInFingerprintQuery();
-  // mainnet vs testnet is decided here (the canonical "what network are we
-  // on" hook) and threaded through to both the main-side pair record and
-  // the WC SDK approve call. The renderer's `Pair` no longer carries it.
   const mainnet = useCurrencyCode() === 'XCH';
 
   const handleAddConnection = useCallback(async () => {
@@ -61,21 +55,10 @@ export default function WalletConnectConnections(props: WalletConnectConnections
     try {
       const pair = await waitForPendingProposal(pairs.getPair.bind(pairs), topic);
       if (!pair?.pendingProposal) {
-        // No proposal arrived in time - dapp dropped or never sent it. Tear down.
         await disconnect(topic);
         showError(new Error('No session proposal received from the application'));
         return;
       }
-
-      const availableWallets = (keys ?? []).map((key: any) => ({
-        fingerprint: key.fingerprint,
-        name: key.label ?? undefined,
-      }));
-
-      const defaultFingerprints =
-        loggedInFingerprint && availableWallets.some((w) => w.fingerprint === loggedInFingerprint)
-          ? [loggedInFingerprint]
-          : [];
 
       const grant = await window.permissionsAPI.registerPair({
         topic,
@@ -86,17 +69,12 @@ export default function WalletConnectConnections(props: WalletConnectConnections
           icon: pair.metadata?.icons?.[0],
           description: pair.metadata?.description,
         },
-        availableWallets,
-        defaultFingerprints,
-        // Forward the dapp's full requested method list. Main re-derives the
-        // allowed subset against its registry — it does NOT trust this list,
-        // it only uses it as input. The renderer is forwarding the WC SDK's
-        // proposal payload as-is.
-        requestedMethods: pair.pendingProposal.methods,
+        // Forwarded as-is from the WC SDK's proposal; main re-derives the allowed subset.
+        requestedCommands: pair.pendingProposal.methods,
       });
 
       if (!grant) {
-        // User rejected. Reject the WC proposal cleanly so the dapp gets the right signal.
+        // User rejected — tell the dapp cleanly.
         try {
           await rejectSession(topic);
         } catch (rejectErr) {
@@ -106,13 +84,9 @@ export default function WalletConnectConnections(props: WalletConnectConnections
       }
 
       try {
-        // `grant.commands` is already in WC wire form (`chia_<name>`), the
-        // exact shape the WC SDK expects in `namespaces.chia.methods`. Pass
-        // through verbatim — listing more than this would let dapps make
-        // calls main will reject at the gate.
         await approveSession(topic, grant.fingerprints, grant.mainnet, grant.commands);
       } catch (approveErr) {
-        // Approval failed (network, dapp dropped, etc). Roll back the main-process grant.
+        // Roll back main's grant if the WC approve fails.
         await window.permissionsAPI.revokePair(topic);
         await disconnect(topic);
         throw approveErr;
@@ -120,7 +94,7 @@ export default function WalletConnectConnections(props: WalletConnectConnections
     } catch (err) {
       showError(err);
     }
-  }, [onClose, openDialog, pairs, keys, loggedInFingerprint, mainnet, approveSession, rejectSession, disconnect, showError]);
+  }, [onClose, openDialog, pairs, mainnet, approveSession, rejectSession, disconnect, showError]);
 
   async function handleDisconnect(topic: string) {
     try {

@@ -21,22 +21,10 @@ type NotificationAnnouncement = NotificationBase & {
   url?: string;
 };
 
-/** Wire-safe Notification payload main sends over IPC. The renderer's
- *  shared `Notification` type also accepts `from: ReactNode` and other
- *  variants; this is the subset main can construct. */
+/** Subset of the renderer's Notification shape that main can construct. */
 export type ShowNotificationPayload = NotificationOffer | NotificationAnnouncement;
 
-/**
- * Construct a Notification from main's PairRecord + the dapp's payload.
- * Returns `null` if the payload is malformed (bad type, missing fields)
- * — main logs and skips rather than throwing, so a hostile dapp can't
- * crash the dispatch handler with garbage notifications.
- *
- * Lives in main alongside the gate so the security boundary and the
- * action sit in the same process. Renderer used to do this construction;
- * pulling it here means a compromised renderer can't fabricate a
- * notification from a non-paired dapp.
- */
+// Returns null on malformed payloads so a hostile dapp can't crash dispatch.
 export function buildShowNotification(
   pair: PairRecord,
   payload: Record<string, unknown>,

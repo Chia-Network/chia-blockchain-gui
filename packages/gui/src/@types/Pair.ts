@@ -13,10 +13,10 @@ export type PendingProposal = {
 // persistent / security-relevant copy lives in `dapp-pairs.yaml` (main),
 // accessed through `permissionsAPI.listPairs`. Anything that needs to
 // survive an app restart, or that the gate has to trust, belongs there,
-// not here.
+// not here. Fingerprints in particular live exclusively on main's
+// PairRecord — the renderer doesn't need them for any decision.
 type Pair = {
   topic: string;
-  fingerprints: number[];
   sessions: {
     topic: string;
     metadata?: WalletConnectMetadata;

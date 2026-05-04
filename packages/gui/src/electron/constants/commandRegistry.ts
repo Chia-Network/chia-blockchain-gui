@@ -1,37 +1,17 @@
-/**
- * Single, main-side registry of every wallet command — one entry per
- * namespaced daemon RPC, plus two synthetic `chia_app.*` entries for the
- * renderer-handled meta-commands (`chia_requestPermissions`,
- * `chia_showNotification`).
- *
- * The schema is the only place that knows:
- *   - which RPCs the wallet supports at all (the keys),
- *   - which of those a paired dapp can invoke (entries with a `wcCommand`),
- *   - which daemon destination + bare RPC name a dispatch lands on (split
- *     the schema key on `.`),
- *   - what the Confirm dialog renders when consent is needed.
- *
- * `wcCommand` values use the wire form (`chia_<name>`) — exactly what the
- * dapp puts into `proposal.methods` and what we hand back to the WC SDK at
- * `client.approve` time. `pair.commands` (and `pair.bypass`) stores the
- * same form, so comparisons are direct without prefix slicing anywhere.
- *
- * Field names use snake_case to match the wire envelope sent to the daemon —
- * the same `data` is what shows up in the dialog and what crosses the socket.
- */
+// Single source of truth for which RPCs exist, which are dapp-callable
+// (entries with `wcCommand`), and what the Confirm dialog renders. Keys are
+// `<destination>.<command>` (split on `.`); param names are snake_case to
+// match the wire envelope. wcCommand uses wire form `chia_<name>` so it
+// matches `proposal.methods`, `pair.commands`, and `pair.bypass` directly.
 import NotificationType from '../../constants/NotificationType';
 import { i18n } from '../../config/locales';
 
 import type { EnrichmentDisplay } from '../utils/dappEnrichment';
 import { buildCreateOfferDisplay, buildTakeOfferDisplay, lookupCat } from '../utils/dappEnrichment';
 
-/** A param renderer type. Pure ones format from `data` synchronously; the
- *  ones declared in `dappEnrichment` (mojo-to-cat needs a daemon lookup for
- *  the symbol) run async — `renderConfirm` awaits them. */
 export type ParamType = 'text' | 'mojo-to-xch' | 'mojo-to-cat' | 'bool' | 'json';
 
 type ParamSchemaBase = {
-  /** snake_case key in `data`. */
   name: string;
   label: () => string;
 };
@@ -40,62 +20,29 @@ export type ParamSchema = ParamSchemaBase &
   (
     | { type: 'text' }
     | { type: 'mojo-to-xch' }
-    /** Render as `<amount> <CAT_symbol>`; symbol is fetched from the daemon
-     *  via the wallet id at `data[symbolFrom]`. */
+    /** Renders as `<amount> <symbol>`; symbol fetched via wallet id at `data[symbolFrom]`. */
     | { type: 'mojo-to-cat'; symbolFrom: string }
     | { type: 'bool' }
-    /** Pretty-print arbitrary JSON (objects, arrays). For object/array
-     *  WC params where the daemon RPC takes a structural value. */
     | { type: 'json' }
   );
 
+// String fields are functions to defer i18n resolution past startup so
+// locale switches take effect on the next read.
 export type CommandSchema = {
-  /**
-   * WC method name in wire form (`chia_<name>`). Presence makes this entry
-   * dapp-callable; absence means it is UI-initiated only (delete_key, plot
-   * ops, etc.). The two synthetic `chia_app.*` keys carry a wcCommand but
-   * reject at dispatch — they are renderer-handled meta-commands.
-   */
+  /** Wire form `chia_<name>`. Absence = UI-only command. */
   wcCommand?: string;
-  /**
-   * Short human label for this command (e.g. "Send Transaction"). Surfaced
-   * by the renderer's Settings/Integration UI via `permissions:commands:metadata`.
-   * Function form: defers i18n resolution until each call so locale
-   * switches after startup are reflected.
-   */
   label?: () => string;
-  /**
-   * Long-form description shown alongside the label in Settings. Same
-   * function-form rationale as `label`.
-   */
   description?: () => string;
-  /**
-   * True for commands whose dispatch should wait for the wallet to finish
-   * syncing (renderer-side sync wait). Set on the spend-class commands
-   * (`sendTransaction`, `spendCAT`, `spendClawbackCoins`, `getSpendableCoins`)
-   * where dispatching against stale state would silently produce wrong
-   * coin selections. Renderer reads via the metadata IPC.
-   */
+  /** Renderer waits for wallet sync before dispatching (set on spend-class commands). */
   requiresSync?: boolean;
-  /** Defaults to `'Confirm'`. Omit when the dialog is generic. */
   title?: () => string;
-  /** Defaults to `'Please review and confirm this action.'`. */
   message?: () => string;
-  /** Defaults to `'Proceed'`. */
   confirmLabel?: () => string;
   destructive?: boolean;
   params: ParamSchema[];
-  /**
-   * Default param values applied at dispatch time when the dapp omits
-   * them. Keys are snake_case daemon param names (matching the wire
-   * envelope after `toSnakeCase`). Most common case is `wallet_id: 1` —
-   * the daemon requires a wallet id and dapps targeting the main wallet
-   * conventionally omit it. Kept separate from `params` because most
-   * defaulted fields are hidden boilerplate that doesn't need a Confirm
-   * dialog row of its own.
-   */
+  /** Snake_case fields filled at dispatch when the dapp omits them. */
   defaults?: Record<string, unknown>;
-  /** Optional async enrichment (daemon RPCs) for offer summaries etc. */
+  /** Optional daemon-RPC enrichment for offer summaries, CAT names, etc. */
   enrich?: (data: Record<string, unknown>) => Promise<EnrichmentDisplay>;
 };
 
@@ -103,7 +50,6 @@ const DEFAULT_TITLE = () => i18n._(/* i18n */ { id: 'Confirm' });
 const DEFAULT_MESSAGE = () => i18n._(/* i18n */ { id: 'Please review and confirm this action.' });
 const DEFAULT_CONFIRM_LABEL = () => i18n._(/* i18n */ { id: 'Proceed' });
 
-/** Title / message / confirmLabel resolved with the fallback. */
 export function resolveTexts(schema: CommandSchema | undefined): {
   title: string;
   message: string;
@@ -120,15 +66,12 @@ const FALLBACK: CommandSchema = {
   params: [],
 };
 
-/** Pseudo-namespace prefix marking entries the renderer handles itself.
- *  Anything keyed under `chia_app.*` is rejected at `dispatchAsPair`. */
+// Anything under `chia_app.*` is renderer-handled and rejected at dispatch.
 const RENDERER_NAMESPACE = 'chia_app';
 
 const SCHEMAS: Record<string, CommandSchema> = {
-  // ── Renderer-handled meta-commands ─────────────────────────────────────────
-  // These two never dispatch to the daemon. They live in the registry only
-  // so `filterRequestedMethods` keeps them in `pair.commands` and the WC
-  // SDK accepts them at session-approval time.
+  // Renderer-handled meta-commands. Listed so the WC SDK accepts them at
+  // session approval; main dispatch rejects them (they have no daemon RPC).
   'chia_app.request_permissions': {
     wcCommand: 'chia_requestPermissions',
     label: () => i18n._(/* i18n */ { id: "Request Permissions" }),
@@ -142,11 +85,9 @@ const SCHEMAS: Record<string, CommandSchema> = {
     title: () => i18n._(/* i18n */ { id: 'Confirm Notification' }),
     message: () => i18n._(/* i18n */ { id: 'This app wants to show you a notification.' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Show' }),
-    // Param names match the camelCase keys the dapp sends (and that
-    // `buildShowNotification` reads). Other registry entries are snake_case
-    // because their data is run through `toSnakeCase` before crossing the
-    // daemon socket; show_notification never reaches the daemon, so the
-    // dialog renders the dapp's payload as-is.
+    // Param names are camelCase (not snake_case like daemon-bound entries) —
+    // show_notification never reaches the daemon, so we render the dapp's
+    // payload verbatim, matching what `buildShowNotification` reads.
     params: [
       { name: 'type', label: () => i18n._(/* i18n */ { id: 'Type' }), type: 'text' },
       { name: 'message', label: () => i18n._(/* i18n */ { id: 'Message' }), type: 'text' },
@@ -154,9 +95,7 @@ const SCHEMAS: Record<string, CommandSchema> = {
       { name: 'allFingerprints', label: () => i18n._(/* i18n */ { id: 'All Wallets' }), type: 'bool' },
     ],
     enrich: async (data) => {
-      // OFFER notifications carry a base64 offer string in `offerData`. Render
-      // the offer summary the same way `take_offer` does — the user should see
-      // what's actually being offered, not a wall of base64.
+      // Render the offer summary so the user sees what's offered, not base64.
       if (data.type === NotificationType.OFFER && typeof data.offerData === 'string' && data.offerData) {
         const offer = await buildTakeOfferDisplay({ offer: data.offerData });
         return offer ? { offer } : {};
@@ -1003,36 +942,21 @@ const BY_WC_COMMAND = (() => {
   return map;
 })();
 
-/** Schema lookup by namespaced daemon command (UI's `onSend` path). */
 export function getCommandSchema(nsCommand: string): CommandSchema {
   return SCHEMAS[nsCommand] ?? FALLBACK;
 }
 
-/** Schema lookup by WC command (wire form). Undefined for unknown / UI-only. */
 export function getCommandByWc(wcCommand: string): { nsCommand: string; schema: CommandSchema } | undefined {
   return BY_WC_COMMAND.get(wcCommand);
 }
 
-/**
- * True iff a paired dapp is allowed to invoke this WC command (by virtue of
- * being in the registry — including the renderer-handled meta-commands,
- * which the WC SDK still needs in the session method list even though they
- * never reach `dispatchAsPair`).
- */
 export function isDappAllowedWcCommand(wcCommand: string): boolean {
   return BY_WC_COMMAND.has(wcCommand);
 }
 
-/**
- * Resolve a `wcCommand` (wire form, `chia_<name>`) supplied by the renderer
- * at dispatch time. Returns the daemon destination + bare RPC name, or a
- * structured rejection. The renderer does NOT supply destination — main is
- * the authority.
- *
- * Rejects:
- *   1. WC commands main doesn't know about,
- *   2. renderer-handled meta-commands (`chia_app.*`) routed down dispatch.
- */
+// Returns the daemon destination + RPC name, or a structured rejection.
+// The renderer never supplies a destination — main resolves it from the
+// registry to keep the dapp from claiming services it wasn't granted.
 export function resolveDispatch(
   wcCommand: string,
 ):
@@ -1058,67 +982,44 @@ export function resolveDispatch(
   };
 }
 
-/**
- * Filter a list of WC method names (the wire-form `chia_<name>` strings
- * sent in the session proposal's `namespaces.chia.methods`) into the subset
- * this wallet lets dapps invoke. Pure exact-match — no prefix slicing,
- * since both the registry's `wcCommand` field and `proposal.methods` use
- * the same form.
- *
- * Defensive against non-array input: `for...of` would throw on objects,
- * and this is reached at an IPC boundary where TypeScript's `string[]` is
- * just a suggestion. A compromised renderer sending
- * `requestedMethods: {0: 'x'}` would otherwise crash PAIR_REGISTER before
- * the dialog could open.
- */
-export function filterRequestedMethods(requestedMethods: unknown): {
+// Defensive against non-array input — this is an IPC boundary where the
+// `string[]` type annotation is just a suggestion.
+export function filterRequestedCommands(requestedCommands: unknown): {
   allowed: string[];
   rejected: string[];
 } {
   const allowed: string[] = [];
   const rejected: string[] = [];
-  if (!Array.isArray(requestedMethods)) {
+  if (!Array.isArray(requestedCommands)) {
     return { allowed, rejected };
   }
   const seen = new Set<string>();
-  for (const method of requestedMethods) {
-    if (typeof method !== 'string' || !method) continue;
-    if (seen.has(method)) continue;
-    seen.add(method);
-    if (BY_WC_COMMAND.has(method)) {
-      allowed.push(method);
+  for (const command of requestedCommands) {
+    if (typeof command !== 'string' || !command) continue;
+    if (seen.has(command)) continue;
+    seen.add(command);
+    if (BY_WC_COMMAND.has(command)) {
+      allowed.push(command);
     } else {
-      rejected.push(method);
+      rejected.push(command);
     }
   }
   return { allowed, rejected };
 }
 
-/** Strip the `chia_` prefix from a WC command for human display. */
 export function bareWcCommand(wcCommand: string): string {
   return wcCommand.startsWith('chia_') ? wcCommand.slice('chia_'.length) : wcCommand;
 }
 
 export type CommandMetadata = {
-  /** Wire-form WC command name (`chia_<name>`). */
   wcCommand: string;
-  /** Resolved label string in the current locale, if the schema declares one. */
   label?: string;
-  /** Resolved description in the current locale, if the schema declares one. */
   description?: string;
-  /** Whether the renderer should wait for wallet sync before dispatching. */
   requiresSync: boolean;
 };
 
-/**
- * Snapshot of every WC-callable command's display metadata for the
- * renderer. Strings are resolved against the current locale at call time
- * — main re-runs this on every `permissions:commands:metadata` IPC, so a
- * locale switch is reflected on the next fetch.
- *
- * Includes `chia_app.*` renderer-handled commands so the Settings UI can
- * label them too.
- */
+// Re-resolves locale strings on every call so a locale switch propagates
+// on the next fetch. Includes `chia_app.*` so Settings can label them.
 export function commandsMetadata(): CommandMetadata[] {
   const out: CommandMetadata[] = [];
   for (const schema of Object.values(SCHEMAS)) {
@@ -1133,12 +1034,7 @@ export function commandsMetadata(): CommandMetadata[] {
   return out;
 }
 
-/**
- * Apply per-schema `defaults` to the wire-form (snake_case) data before it
- * crosses the daemon socket. Only fills missing keys — never overwrites a
- * value the dapp explicitly sent. Returns a new object; the input is not
- * mutated.
- */
+// Fills missing snake_case keys; dapp-supplied values win. Returns a new object.
 export function applyDefaults(nsCommand: string, snakeData: Record<string, unknown>): Record<string, unknown> {
   const schema = SCHEMAS[nsCommand];
   if (!schema?.defaults) return snakeData;
@@ -1151,5 +1047,5 @@ export function applyDefaults(nsCommand: string, snakeData: Record<string, unkno
   return next;
 }
 
-/** Exported for tests so they can iterate the full table. */
+/** For tests iterating the full table. */
 export const SCHEMA_COMMANDS: readonly string[] = Object.keys(SCHEMAS);

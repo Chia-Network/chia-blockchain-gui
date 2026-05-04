@@ -22,28 +22,14 @@ function load(): PairRecord[] {
   if (cache) return cache;
   const data = readData(getPath());
   const raw = Array.isArray(data?.pairs) ? (data.pairs as Record<string, unknown>[]) : [];
-  // Normalize fields that may be missing on disk. Four migrations:
-  //   1. `allowedWcCommands` (bare names) → `commands` (wire form,
-  //      `chia_<name>`). Old field is dropped on next write.
-  //   2. `bypass: []` defaulted when absent. New field, deny-all on
-  //      legacy records — user must re-grant via the Confirm checkbox.
-  //   3. `mainnet: true` defaulted when absent. Conservative — assumes
-  //      mainnet on legacy records, which is what the renderer's stored
-  //      pair list also defaulted to. Re-pair to correct.
-  //   4. `capabilities.notifications: false` defaulted when absent. New
-  //      field; legacy records get the safe deny default — user must
-  //      re-grant via the Pair dialog or the per-call "Don't ask again".
-  // Reading missing fields as deny / mainnet rather than as
-  // backwards-compatible "everything allowed" / unknown fallback keeps
-  // upgrades from silently expanding dapp reach.
+  // Migrations on read. Missing/legacy fields default to the safest value
+  // (deny-all, mainnet) so an upgrade can't silently expand dapp reach.
   const list = raw.map((p) => {
     const commands = (() => {
       if (Array.isArray(p?.commands)) {
         return (p.commands as unknown[]).filter((c): c is string => typeof c === 'string');
       }
-      // Migrate legacy `allowedWcCommands` (bare WC names) into the new
-      // `commands` (wire form). Strings that already start with `chia_`
-      // pass through; bare ones get the prefix.
+      // Legacy `allowedWcCommands` stored bare names; new `commands` is wire form.
       if (Array.isArray(p?.allowedWcCommands)) {
         return (p.allowedWcCommands as unknown[])
           .filter((c): c is string => typeof c === 'string')

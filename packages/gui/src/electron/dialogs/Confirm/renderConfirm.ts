@@ -1,9 +1,6 @@
-/**
- * Resolves a `ConfirmSchema` into the flat data the dialog actually renders.
- * Pure-formatting kinds (`text`, `mojo-to-xch`, `bool`) run synchronously
- * from `data`; the `mojo-to-cat` kind and `enrich` hook do daemon RPCs in
- * parallel. The dialog itself stays a dumb renderer of the result.
- */
+// Resolves the registry schema into flat dialog rows + enrichment display.
+// Sync param kinds run from `data` directly; `mojo-to-cat` and `enrich` do
+// daemon RPCs in parallel.
 import { i18n } from '../../../config/locales';
 
 import { type EnrichmentDisplay, lookupCat } from '../../utils/dappEnrichment';
@@ -74,10 +71,7 @@ async function formatParamValue(
         return String(raw);
       }
     default: {
-      // Exhaustiveness check — if a new ParamType is added to the union and
-      // not handled above, this assignment fails to compile because `param`
-      // is no longer narrowed to `never`. Better error message than relying
-      // on the missing-trailing-return inference.
+      // Exhaustiveness check.
       const exhaustive: never = param;
       throw new Error(`Unhandled param type: ${JSON.stringify(exhaustive)}`);
     }

@@ -9,7 +9,7 @@ import {
   applyDefaults,
   bareWcCommand,
   commandsMetadata,
-  filterRequestedMethods,
+  filterRequestedCommands,
   getCommandByWc,
   getCommandSchema,
   isDappAllowedWcCommand,
@@ -175,13 +175,13 @@ describe('getCommandByWc', () => {
   });
 });
 
-describe('filterRequestedMethods', () => {
+describe('filterRequestedCommands', () => {
   it('returns empty lists for an empty input', () => {
-    expect(filterRequestedMethods([])).toEqual({ allowed: [], rejected: [] });
+    expect(filterRequestedCommands([])).toEqual({ allowed: [], rejected: [] });
   });
 
   it('partitions wire-form names by registry membership (no slicing)', () => {
-    const result = filterRequestedMethods([
+    const result = filterRequestedCommands([
       'chia_sendTransaction',
       'chia_getWallets',
       'chia_totallyMadeUp',
@@ -193,7 +193,7 @@ describe('filterRequestedMethods', () => {
   it('rejects bare-form names (forces wire-form discipline)', () => {
     // A renderer that forgot to prefix is a bug — surface it loudly rather
     // than silently grant access.
-    const result = filterRequestedMethods(['sendTransaction']);
+    const result = filterRequestedCommands(['sendTransaction']);
     expect(result.allowed).toEqual([]);
     expect(result.rejected).toEqual(['sendTransaction']);
   });
@@ -201,7 +201,7 @@ describe('filterRequestedMethods', () => {
   it('drops methods outside the chia_ namespace into rejected (still string match)', () => {
     // Other-namespace methods aren't WC chia methods at all. The registry
     // doesn't know them so they end up in `rejected`.
-    const result = filterRequestedMethods([
+    const result = filterRequestedCommands([
       'eip155_personal_sign',
       'cosmos_signDirect',
       'chia_sendTransaction',
@@ -211,7 +211,7 @@ describe('filterRequestedMethods', () => {
   });
 
   it('deduplicates repeated method names', () => {
-    const result = filterRequestedMethods([
+    const result = filterRequestedCommands([
       'chia_sendTransaction',
       'chia_sendTransaction',
       'chia_madeUp',
@@ -222,7 +222,7 @@ describe('filterRequestedMethods', () => {
   });
 
   it('ignores non-string entries', () => {
-    const result = filterRequestedMethods([
+    const result = filterRequestedCommands([
       'chia_sendTransaction',
       // @ts-expect-error - exercising defensive runtime check
       null,
@@ -234,7 +234,7 @@ describe('filterRequestedMethods', () => {
   });
 
   it('drops empty-string entries', () => {
-    expect(filterRequestedMethods([''])).toEqual({ allowed: [], rejected: [] });
+    expect(filterRequestedCommands([''])).toEqual({ allowed: [], rejected: [] });
   });
 
   it.each([
@@ -243,18 +243,18 @@ describe('filterRequestedMethods', () => {
     ['object literal', { 0: 'chia_sendTransaction' }],
     ['number', 42],
     ['string', 'chia_sendTransaction'],
-  ])('returns empty lists when requestedMethods is %s (defensive against IPC garbage)', (_label, val) => {
-    expect(filterRequestedMethods(val as unknown)).toEqual({ allowed: [], rejected: [] });
+  ])('returns empty lists when requestedCommands is %s (defensive against IPC garbage)', (_label, val) => {
+    expect(filterRequestedCommands(val as unknown)).toEqual({ allowed: [], rejected: [] });
   });
 
   it('keeps renderer-handled meta-commands so the WC SDK accepts them at session approval', () => {
-    const result = filterRequestedMethods(['chia_requestPermissions', 'chia_showNotification']);
+    const result = filterRequestedCommands(['chia_requestPermissions', 'chia_showNotification']);
     expect(result.allowed.sort()).toEqual(['chia_requestPermissions', 'chia_showNotification']);
     expect(result.rejected).toEqual([]);
   });
 
   it('orchestration-only commands (createNewDIDWallet, transferDID, addCATToken) are filtered out', () => {
-    const result = filterRequestedMethods([
+    const result = filterRequestedCommands([
       'chia_createNewDIDWallet',
       'chia_transferDID',
       'chia_addCATToken',

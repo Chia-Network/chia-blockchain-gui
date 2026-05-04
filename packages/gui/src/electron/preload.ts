@@ -91,17 +91,11 @@ contextBridge.exposeInMainWorld(API.PERMISSIONS, {
   listPairs: () => invokeWithCustomErrors(PermissionsAPI.PAIR_LIST),
   registerPair: (payload: {
     topic: string;
-    /** mainnet vs testnet from the renderer's WC pair init. */
     mainnet: boolean;
     metadata: { name: string; url?: string; icon?: string; description?: string };
-    availableWallets: { fingerprint: number; name?: string }[];
-    defaultFingerprints?: number[];
-    /** WC method names from the dapp's session proposal, in wire form
-     *  `chia_<name>`. */
-    requestedMethods?: string[];
+    requestedCommands?: string[];
   }) => invokeWithCustomErrors(PermissionsAPI.PAIR_REGISTER, payload),
-  editPair: (payload: { topic: string; availableWallets: { fingerprint: number; name?: string }[] }) =>
-    invokeWithCustomErrors(PermissionsAPI.PAIR_EDIT, payload),
+  editPair: (payload: { topic: string }) => invokeWithCustomErrors(PermissionsAPI.PAIR_EDIT, payload),
   revokePair: (topic: string) => invokeWithCustomErrors(PermissionsAPI.PAIR_REVOKE, topic),
   setBypass: (payload: { topic: string; wcCommand: string; enabled: boolean }) =>
     invokeWithCustomErrors(PermissionsAPI.PAIR_SET_BYPASS, payload),

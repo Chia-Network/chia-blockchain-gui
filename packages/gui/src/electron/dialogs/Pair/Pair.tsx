@@ -20,40 +20,23 @@ export type PairProps = {
   defaultFingerprints?: number[];
   isEdit?: boolean;
   currencyCode?: string;
-  /**
-   * WC commands (wire form `chia_<name>`) the dapp asked for that this
-   * wallet supports. Display-only — the binding decision is the binary
-   * Connect / Reject below; main persists this list verbatim if confirmed.
-   */
+  /** Wire form `chia_<name>`. Display-only; main persists this if confirmed. */
   allowedCommands?: string[];
-  /**
-   * WC commands the dapp asked for that this wallet does NOT support and
-   * silently dropped. Shown so the user understands why an app might later
-   * report missing capability — they didn't reject, the wallet did.
-   */
+  /** Wire form. Asked for but dropped because this wallet doesn't support them. */
   rejectedCommands?: string[];
   styleURL?: string;
   isDarkMode?: boolean;
 };
 
-// WC commands that exist in the registry (so the WC SDK accepts them at
-// session-approval time) but grant no real capability and have no per-call
-// confirmation flow. We keep them in `pair.commands` for SDK compatibility
-// but suppress them from the dialog so the user doesn't see a meaningless
-// permission row.
+// Kept in pair.commands for WC SDK compatibility but hidden from the dialog
+// since they grant nothing and would just be a meaningless toggle.
 const HIDDEN_COMMANDS = new Set(['chia_requestPermissions']);
 
-// Split a WC command (wire form, `chia_<camelCase>`) into a human-readable
-// label.
-//   `chia_sendTransaction`      → "Send Transaction"
-//   `chia_getNFTs`              → "Get NFTs"      (acronyms stay grouped)
-//   `chia_cancelDataLayerOffer` → "Cancel Data Layer Offer"
+// chia_sendTransaction → "Send Transaction"; chia_getNFTs → "Get NFTs".
+// Acronym pass first so NFT/DID stay glued; then split camelCase.
 function humanizeWcCommand(name: string): string {
   if (!name) return name;
   const bare = name.startsWith('chia_') ? name.slice('chia_'.length) : name;
-  // Insert space before each acronym run and before each lowercase→uppercase
-  // transition. Order matters: do acronym→lowercase first so `NFTs` stays
-  // glued, then lowercase→uppercase to break apart camelCase.
   const spaced = bare
     .replace(/([A-Z]+)([A-Z][a-z])/g, '$1 $2')
     .replace(/([a-z0-9])([A-Z])/g, '$1 $2');
@@ -359,10 +342,7 @@ export default function Pair(props: PairProps) {
           <div className="px-5 pt-2.5 pb-1.5 text-xs font-semibold uppercase tracking-wider text-chia-text-muted">
             {i18n._(/* i18n */ { id: 'Spending and trading' })}
           </div>
-          {/* Three options on one row. The Auto amount input is always present
-              so the user can edit the cap regardless of which radio is
-              currently checked — its value is only consumed when spendingMode
-              === 'auto', so leaving a stale value selected is harmless. */}
+          {/* Auto amount stays editable regardless of selection — only consumed when 'auto'. */}
           <div className="px-5 py-2.5 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-chia-border">
             <label className="flex items-center gap-2 cursor-pointer">
               <input
@@ -415,9 +395,6 @@ export default function Pair(props: PairProps) {
               </span>
             </label>
           </div>
-          {/* Auto-approve is a cumulative budget, not a per-transaction limit.
-              Easy to misread, so the clarification sits directly under the
-              row without bloating the segmented control. */}
           <div className="px-5 pb-2.5 text-xs text-chia-text-muted leading-snug">
             {i18n._(/* i18n */ { id: "Spending adds up to this total. We'll ask again once it's reached." })}
           </div>

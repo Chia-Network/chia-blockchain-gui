@@ -39,11 +39,7 @@ function pairCtx(pair: PairRecord): PairContext {
   };
 }
 
-/**
- * Read a non-negative mojo amount from a payload field. Mojos are integer
- * counts of the smallest XCH unit; chia amounts can exceed `Number.MAX_SAFE_INTEGER`
- * (2^53), so we go through BigNumber to keep precision.
- */
+// BigNumber because mojo amounts routinely exceed 2^53.
 function readMojos(payload: Record<string, unknown>, field: string): BigNumber | undefined {
   const raw = payload?.[field];
   if (raw === undefined || raw === null) return undefined;
@@ -56,12 +52,8 @@ function readMojos(payload: Record<string, unknown>, field: string): BigNumber |
   }
 }
 
-/**
- * Build the commit thunk for an allow decision. Captures the resolved mojo
- * amount so the budget is debited against the same number the cap check used,
- * even if the payload mutates between resolution and authorization. Idempotent
- * — a second call is a no-op so accidental double-invocation can't double-charge.
- */
+// Idempotent so accidental double-invocation can't double-charge. Captures
+// `mojos` at decision time, not authorization time.
 function makeCommit(topic: string, mojos: BigNumber): () => void {
   let consumed = false;
   return () => {
@@ -72,28 +64,10 @@ function makeCommit(topic: string, mojos: BigNumber): () => void {
   };
 }
 
-/**
- * Single resolution point for any command. Returns a discriminated decision:
- * - `allow` carries `commit()` that records the resolved spend on call.
- * - `prompt` carries dialog-shaped pair info and the human-readable reason.
- * - `deny` is terminal — no further resolution possible.
- *
- * The function is "pure" in that it doesn't touch the budget itself; the only
- * side effect happens through `commit()`. Calling `resolvePermission` repeatedly
- * with the same inputs is safe — each call returns its own independent commit
- * closure, and only the one that's invoked records a spend.
- *
- * `ctx` carries the WC command name and (optionally) the dapp-claimed
- * fingerprint and chain. Pair-bound checks (existence, commands list,
- * fingerprint allowlist, mainnet match) are delegated to
- * `checkPairAccess` so all dispatch entry points share one truth.
- */
 export type ResolveContext = {
-  /** WC command in wire form (`chia_<name>`). Required for pair principals. */
+  /** Wire form (`chia_<name>`); required for pair principals. */
   wcCommand?: string;
-  /** Dapp-claimed fingerprint. Validated against `pair.fingerprints`. */
   fingerprint?: number;
-  /** Chain id derived from the dapp's `chia:<instance>` claim. */
   mainnet?: boolean;
 };
 
@@ -121,11 +95,8 @@ export function resolvePermission(
   const dialogCtx = pairCtx(pair);
   const wcCommand = ctx.wcCommand!; // checkPairAccess rejected when missing
 
-  // "Don't ask again" shortcut. The user explicitly opted into silent
-  // execution for this WC command on this pair. We still respect the
-  // spending mode + cap below — bypass is about prompts, not about
-  // overriding budget. So spend / offer commands fall through to
-  // resolveSpending; everything else short-circuits here.
+  // Bypass skips the prompt but never overrides the spending budget — spend
+  // commands fall through to resolveSpending below.
   if (pair.bypass.includes(wcCommand) && !getSpendClassification(command)) {
     return allowDecision();
   }
@@ -136,21 +107,10 @@ export function resolvePermission(
       : promptDecision('balance not pre-approved', dialogCtx);
   }
 
-  // push_transactions is a "broadcast" RPC. With sign:false (or omitted) the
-  // wallet just pushes a pre-signed bundle (the user already approved when
-  // they signed, typically via createOfferForIds) — treat it as innocuous.
-  // With any truthy `sign`, the wallet signs the bundle on the dapp's behalf,
-  // which collapses sign-and-broadcast into one step with no user-visible
-  // content; that always prompts.
-  //
-  // We mirror the daemon's Python truthiness here: it does `if sign:`, so
-  // values like "true", "false", 1, etc. all trigger signing on its side.
-  // Strict `=== true` would let the dapp slip a string past us.
-  //
-  // The bundle's own spend was already debited at offer time. The top-level
-  // `fee` field here is anything *extra* the dapp wants to add at push time;
-  // we charge it against the budget conservatively so a compromised dapp
-  // can't accumulate fees silently.
+  // push_transactions: pre-signed bundle is innocuous; dapp-asks-to-sign
+  // always prompts. Truthy (not strict ===) matches the daemon's Python
+  // `if sign:` so the dapp can't slip "true" past us. Extra `fee` here is
+  // on top of the bundle's own spend, charged conservatively.
   if (command === 'chia_wallet.push_transactions') {
     if (payload?.sign) return promptDecision('signing requested', dialogCtx);
     if (!pair.grants.capabilities.innocuous) {
@@ -206,9 +166,8 @@ function resolveSpending(
   if (mode === 'block') return denyDecision('spending blocked for this app');
   if (mode === 'ask') return promptDecision('spending needs confirmation', ctx);
 
-  // mode === 'auto'. Resolve a numeric XCH-mojo amount to budget against. If
-  // the command shape doesn't expose one (CAT spend, NFT transfer, mixed
-  // offer), prompt — we can't compare against an XCH cap fairly.
+  // 'auto'. Without a numeric XCH-mojo amount (CAT spend, NFT transfer,
+  // mixed offer), prompt — can't fairly compare against an XCH cap.
   const amount = resolveAmount(classification, payload);
   if (amount === undefined) return promptDecision('spending needs confirmation', ctx);
 
@@ -222,6 +181,4 @@ function resolveSpending(
   return allowDecision(makeCommit(pair.topic, total));
 }
 
-// PairGrants is unused at runtime in this module but useful for downstream
-// importers that re-export from here. Keep the re-export to avoid churn.
 export type { PairGrants };

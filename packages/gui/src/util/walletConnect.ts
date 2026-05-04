@@ -121,8 +121,8 @@ export async function processSessionProposal(
       throw new Error('Chain not supported');
     }
 
-    // Unsupported-method warning removed: main filters this list at
-    // PAIR_REGISTER (`filterRequestedMethods`) and the rejected set is
+    // Unsupported-command warning removed: main filters this list at
+    // PAIR_REGISTER (`filterRequestedCommands`) and the rejected set is
     // shown directly in the Pair dialog, which is the right surface for
     // the user to see that information.
 
@@ -373,7 +373,10 @@ export async function processSessionRequest(
     log('method', method, updatedParams);
     // `mainnet` is renderer-internal context (derived from chainId);
     // pass alongside params rather than mixing it into the dapp payload.
-    const result = await process(topic, method, updatedParams, { mainnet: isMainnet });
+    // We pass `pair.topic` (the pair's topic) — main keys its PairRecord
+    // by pair topic, not by WC session topic. The translation lives here
+    // because the renderer is the only side that knows about sessions.
+    const result = await process(pair.topic, method, updatedParams, { mainnet: isMainnet });
     log('result', result);
 
     await client.respond({

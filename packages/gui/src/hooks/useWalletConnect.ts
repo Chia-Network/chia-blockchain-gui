@@ -66,7 +66,6 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
       // state (sessions, pendingProposal).
       pairsRef.current.addPair({
         topic,
-        fingerprints: [],
         sessions: [],
       });
 

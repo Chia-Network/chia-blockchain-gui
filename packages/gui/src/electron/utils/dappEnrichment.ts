@@ -1,17 +1,7 @@
-/**
- * Confirmation-dialog enrichment, derived in main from the data on the wire.
- *
- * The renderer is treated as untrusted for display purposes: a compromised
- * renderer could otherwise lie about what the user is consenting to (show
- * "1 XCH to friend" while sending "50 XCH to attacker"). Anything that
- * appears in the Confirm dialog must therefore be computed by main from the
- * same `data` field that gets put on the wire — directly when possible, or
- * via daemon RPCs (the daemon is trusted: same machine, TLS-pinned socket,
- * our code).
- *
- * The renderer no longer ships a `display` snapshot through IPC. Main builds
- * the snapshot here for any prompt that benefits from enrichment.
- */
+// Confirm-dialog enrichment built in main from the same `data` that hits
+// the wire, so a compromised renderer can't show "1 XCH to friend" while
+// sending "50 XCH to attacker." Daemon RPCs are trusted (same machine,
+// TLS-pinned socket).
 import { toCamelCase, toSnakeCase, WalletType } from '@chia-network/api';
 import crypto from 'node:crypto';
 
@@ -36,12 +26,8 @@ export type OfferLine =
 
 type DaemonError = { error?: unknown; success?: boolean };
 
-/**
- * Send a daemon RPC over the same WebSocket the renderer's Client uses, with
- * a request_id we mint and watch for via `dappPending`. The renderer never
- * sees the request or the response — this is internal to main. Throws on
- * daemon-reported errors so callers can fall back gracefully.
- */
+// Daemon RPC over the renderer's WebSocket; resolved by request_id via
+// dappPending. Renderer never sees these calls.
 async function callDaemon<T>(
   destination: string,
   command: string,
@@ -118,12 +104,8 @@ async function lookupNft(launcherIdHex: string): Promise<{ name?: string; previe
   }
 }
 
-/**
- * Format hex → bech32m for stable display. We don't pull bech32 here because
- * `@chia-network/api` already exports `toBech32m`, but it's renderer-only
- * code. Inline the encoding the same way as `toBech32m` does for the 'nft'
- * prefix; if it fails, just show truncated hex.
- */
+// Inline bech32 because @chia-network/api's toBech32m is renderer-only.
+// Falls back to truncated hex on failure.
 function hexToNftId(hex: string): string {
   // Lazy require to avoid a hard dep on the api package's encoding utils
   // running at module init in main.

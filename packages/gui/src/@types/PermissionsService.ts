@@ -7,11 +7,6 @@ export type PermissionsPairMetadata = {
   description?: string;
 };
 
-export type PermissionsPairWallet = {
-  fingerprint: number;
-  name?: string;
-};
-
 export type PermissionsSpendingMode = 'block' | 'ask' | 'auto';
 
 export type PermissionsPairGrants = {
@@ -81,15 +76,10 @@ type PermissionsService = {
     topic: string;
     mainnet: boolean;
     metadata: PermissionsPairMetadata;
-    availableWallets: PermissionsPairWallet[];
-    defaultFingerprints?: number[];
-    /** WC method names from the dapp's session proposal, in wire form. */
-    requestedMethods?: string[];
+    /** WC commands from the dapp's session proposal, wire form `chia_<name>`. */
+    requestedCommands?: string[];
   }) => Promise<PermissionsPairRecord | null>;
-  editPair: (payload: {
-    topic: string;
-    availableWallets: PermissionsPairWallet[];
-  }) => Promise<PermissionsPairRecord | null>;
+  editPair: (payload: { topic: string }) => Promise<PermissionsPairRecord | null>;
   revokePair: (topic: string) => Promise<boolean>;
   setBypass: (payload: {
     topic: string;
