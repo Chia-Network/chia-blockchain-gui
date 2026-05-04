@@ -59,6 +59,21 @@ export default function WalletConnectConnections(props: WalletConnectConnections
         return;
       }
 
+      // Reject before opening the Pair dialog if the dapp's requested chains
+      // don't include the user's current network. Otherwise the user would
+      // grant permissions and `approveSessionProposal` would still throw and
+      // we'd `revokePair` immediately after.
+      const currentChain = mainnet ? 'chia:mainnet' : 'chia:testnet';
+      if (!pair.pendingProposal.chains.includes(currentChain)) {
+        await disconnect(topic);
+        showError(
+          new Error(
+            `This application does not support ${mainnet ? 'mainnet' : 'testnet'}. Switch networks and try again.`,
+          ),
+        );
+        return;
+      }
+
       const grant = await window.permissionsAPI.registerPair({
         topic,
         mainnet,
