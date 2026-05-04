@@ -108,13 +108,6 @@ contextBridge.exposeInMainWorld(API.PERMISSIONS, {
   commandsMetadata: () => invokeWithCustomErrors(PermissionsAPI.COMMANDS_METADATA),
   subscribeToNotification: (callback: (...args: unknown[]) => void) =>
     onIpcEvent(PermissionsAPI.NOTIFICATION_EVENT, callback),
-  check: (payload: {
-    principal: { kind: 'ui' } | { kind: 'pair'; topic: string };
-    command: string;
-    data: Record<string, unknown>;
-    /** Required when principal is a pair; identifies the per-pair allowlist entry. */
-    wcCommand?: string;
-  }) => invokeWithCustomErrors(PermissionsAPI.CHECK, payload),
   dispatchAsPair: (payload: {
     /** camelCase WalletConnect command name (e.g. `spendCAT`); main resolves
      *  to the daemon destination + RPC name via the registry. */

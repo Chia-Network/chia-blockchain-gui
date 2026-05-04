@@ -47,8 +47,8 @@ import { buildShowNotification } from './permissions/buildShowNotification';
 import { captureBypassFromConfirmResult } from './permissions/bypassCapture';
 import { checkPairAccess } from './permissions/checkPairAccess';
 import { getSpendClassification } from './permissions/commandCapabilities';
-import { getPair, listPairs, removePair, updateGrants, upsertPair } from './permissions/pairStore';
-import { resolvePermission, toWire } from './permissions/permissions';
+import { getPair, listPairs, removePair, upsertPair } from './permissions/pairStore';
+import { resolvePermission } from './permissions/permissions';
 import {
   type PairGrants,
   type PairMetadata,
@@ -306,25 +306,6 @@ ipcMainHandle(PermissionsAPI.PAIR_SET_BYPASS, (payload: { topic: string; wcComma
 });
 
 ipcMainHandle(PermissionsAPI.COMMANDS_METADATA, () => commandsMetadata());
-
-ipcMainHandle(
-  PermissionsAPI.CHECK,
-  (payload: {
-    principal: Principal;
-    command: string;
-    data: Record<string, unknown>;
-    wcCommand?: string;
-    fingerprint?: number;
-    mainnet?: boolean;
-  }) =>
-    toWire(
-      resolvePermission(payload.principal, payload.command, payload.data, {
-        wcCommand: payload.wcCommand,
-        fingerprint: payload.fingerprint,
-        mainnet: payload.mainnet,
-      }),
-    ),
-);
 
 // Dapp WalletConnect dispatch. The renderer makes a single IPC call here
 // (instead of going through Client/Service/RTK Query) so the principal is

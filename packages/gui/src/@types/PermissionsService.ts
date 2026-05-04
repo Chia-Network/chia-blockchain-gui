@@ -37,8 +37,6 @@ export type PermissionsPairRecord = {
   bypass: string[];
 };
 
-export type PermissionsPrincipal = { kind: 'ui' } | { kind: 'pair'; topic: string };
-
 export type PermissionsCommandMetadata = {
   /** Wire-form WC command name (`chia_<name>`). */
   wcCommand: string;
@@ -77,17 +75,6 @@ export type PermissionsNotificationPayload =
       url?: string;
     };
 
-export type PermissionsPairContext = {
-  topic: string;
-  name: string;
-  url?: string;
-};
-
-export type PermissionsDecision =
-  | { kind: 'allow' }
-  | { kind: 'prompt'; reason: string; pair?: PermissionsPairContext }
-  | { kind: 'deny'; reason: string };
-
 type PermissionsService = {
   listPairs: () => Promise<PermissionsPairRecord[]>;
   registerPair: (payload: {
@@ -118,13 +105,6 @@ type PermissionsService = {
   subscribeToNotification: (
     callback: (event: unknown, notification: PermissionsNotificationPayload) => void,
   ) => () => void;
-  check: (payload: {
-    principal: PermissionsPrincipal;
-    command: string;
-    data: Record<string, unknown>;
-    /** Required when principal is a pair; identifies the per-pair allowlist entry. */
-    wcCommand?: string;
-  }) => Promise<PermissionsDecision>;
   dispatchAsPair: (payload: {
     /** camelCase WC command name (e.g. `spendCAT`); main resolves to
      *  destination + RPC via the registry. Renderer is not trusted to

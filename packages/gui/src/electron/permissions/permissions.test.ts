@@ -1,6 +1,6 @@
 import BigNumber from 'bignumber.js';
 
-import { resolvePermission, toWire } from './permissions';
+import { resolvePermission } from './permissions';
 import { getPair, recordSpend } from './pairStore';
 import type { CapabilityGrants, Decision, PairRecord, SpendingMode } from './types';
 
@@ -730,34 +730,3 @@ describe('resolvePermission - create_offer_for_ids (offer with XCH outflow)', ()
   });
 });
 
-describe('toWire', () => {
-  it('strips commit from allow', () => {
-    mockGetPair.mockReturnValue(makePair({ capabilities: { innocuous: true } }));
-    const decision = pairResolve('chia_wallet.get_wallets', {});
-    const wire = toWire(decision);
-    expect(wire).toEqual({ kind: 'allow' });
-    expect((wire as Record<string, unknown>).commit).toBeUndefined();
-  });
-
-  it('preserves prompt reason and pair', () => {
-    mockGetPair.mockReturnValue(makePair({ metadata: { name: 'X', url: 'https://x' } }));
-    const decision = pairResolve('chia_wallet.send_transaction', {});
-    expect(toWire(decision)).toEqual({
-      kind: 'prompt',
-      reason: 'spending needs confirmation',
-      pair: { topic: TOPIC, name: 'X', url: 'https://x' },
-    });
-  });
-
-  it('preserves deny reason', () => {
-    mockGetPair.mockReturnValue(undefined);
-    const decision = pairResolve('chia_wallet.send_transaction', {});
-    expect(toWire(decision)).toEqual({ kind: 'deny', reason: 'unknown pair' });
-  });
-
-  it('roundtrip survives JSON (no functions on the wire)', () => {
-    mockGetPair.mockReturnValue(makePair({ capabilities: { innocuous: true } }));
-    const wire = toWire(pairResolve('chia_wallet.get_wallets', {}));
-    expect(JSON.parse(JSON.stringify(wire))).toEqual(wire);
-  });
-});

@@ -98,14 +98,6 @@ export function removePair(topic: string) {
   persist(load().filter((p) => p.topic !== topic));
 }
 
-export function updateGrants(topic: string, grants: PairRecord['grants']) {
-  const pair = getPair(topic);
-  if (!pair) return undefined;
-  const next: PairRecord = { ...pair, grants, updatedAt: Date.now() };
-  upsertPair(next);
-  return next;
-}
-
 export function recordSpend(topic: string, mojos: BigNumber) {
   const pair = getPair(topic);
   if (!pair) return;

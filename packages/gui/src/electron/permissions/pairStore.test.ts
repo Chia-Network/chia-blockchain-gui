@@ -104,68 +104,6 @@ describe('pairStore - listPairs / getPair / upsertPair / removePair', () => {
   });
 });
 
-describe('pairStore - updateGrants', () => {
-  it('updates grants and bumps updatedAt', () => {
-    const store = loadStore();
-    store.upsertPair(makePair({ topic: 'a', updatedAt: 100 }));
-
-    const before = Date.now();
-    const updated = store.updateGrants('a', {
-      capabilities: {
-        balance: true,
-        innocuous: true,
-        sign: false,
-        offer: false,
-        spend: false,
-        notifications: false,
-      },
-      spendingMode: 'ask',
-      spendingCapMojos: '0',
-    });
-    const after = Date.now();
-
-    expect(updated?.grants.capabilities.balance).toBe(true);
-    expect(updated?.grants.capabilities.innocuous).toBe(true);
-    expect(updated?.updatedAt).toBeGreaterThanOrEqual(before);
-    expect(updated?.updatedAt).toBeLessThanOrEqual(after);
-  });
-
-  it('returns undefined for unknown topic', () => {
-    const store = loadStore();
-    const result = store.updateGrants('missing', {
-      capabilities: {
-        balance: false,
-        innocuous: false,
-        sign: false,
-        offer: false,
-        spend: false,
-        notifications: false,
-      },
-      spendingMode: 'ask',
-      spendingCapMojos: '0',
-    });
-    expect(result).toBeUndefined();
-  });
-
-  it('preserves spentMojos when updating grants', () => {
-    const store = loadStore();
-    store.upsertPair(makePair({ topic: 'a', spentMojos: '1234' }));
-    const updated = store.updateGrants('a', {
-      capabilities: {
-        balance: true,
-        innocuous: false,
-        sign: false,
-        offer: false,
-        spend: false,
-        notifications: false,
-      },
-      spendingMode: 'auto',
-      spendingCapMojos: '999999',
-    });
-    expect(updated?.spentMojos).toBe('1234');
-  });
-});
-
 describe('pairStore - recordSpend (spend cap accounting)', () => {
   it('accumulates spent mojos across multiple calls', () => {
     const store = loadStore();

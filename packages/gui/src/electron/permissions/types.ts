@@ -1,15 +1,7 @@
-export type Capability = 'balance' | 'innocuous' | 'sign' | 'offer' | 'spend' | 'notifications';
-
-export const ALL_CAPABILITIES: Capability[] = [
-  'balance',
-  'innocuous',
-  'sign',
-  'offer',
-  'spend',
-  'notifications',
-];
-
-export type CapabilityGrants = Record<Capability, boolean>;
+export type CapabilityGrants = Record<
+  'balance' | 'innocuous' | 'sign' | 'offer' | 'spend' | 'notifications',
+  boolean
+>;
 
 export type SpendingMode = 'block' | 'ask' | 'auto';
 
@@ -85,12 +77,6 @@ export type PairContext = {
  */
 export type Decision =
   | { kind: 'allow'; commit: () => void }
-  | { kind: 'prompt'; reason: string; pair?: PairContext }
-  | { kind: 'deny'; reason: string };
-
-/** IPC-safe variant. The commit thunk is stripped before crossing the wire. */
-export type DecisionWire =
-  | { kind: 'allow' }
   | { kind: 'prompt'; reason: string; pair?: PairContext }
   | { kind: 'deny'; reason: string };
 

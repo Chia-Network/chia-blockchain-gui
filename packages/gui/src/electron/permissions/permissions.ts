@@ -11,7 +11,6 @@ import {
 import { getPair, recordSpend } from './pairStore';
 import type {
   Decision,
-  DecisionWire,
   PairContext,
   PairGrants,
   PairRecord,
@@ -221,22 +220,6 @@ function resolveSpending(
     return promptDecision('budget exhausted', ctx);
   }
   return allowDecision(makeCommit(pair.topic, total));
-}
-
-/**
- * Strip the commit thunk so a Decision can cross the IPC boundary. The
- * renderer never gets to invoke commit — only the main process, after the
- * actual authorization at the wallet bridge, runs side effects.
- */
-export function toWire(decision: Decision): DecisionWire {
-  switch (decision.kind) {
-    case 'allow':
-      return { kind: 'allow' };
-    case 'prompt':
-      return { kind: 'prompt', reason: decision.reason, pair: decision.pair };
-    case 'deny':
-      return { kind: 'deny', reason: decision.reason };
-  }
 }
 
 // PairGrants is unused at runtime in this module but useful for downstream
