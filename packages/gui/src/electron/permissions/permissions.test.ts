@@ -350,20 +350,117 @@ describe('resolvePermission - spend-class commands (governed by spendingMode)', 
 
   it('auto without resolvable amount prompts (CAT spend, NFT, mixed offer)', async () => {
     mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '1_000_000_000_000' }));
-    // create_offer_for_ids without a pure-XCH offer dict yields an
-    // unresolvable amount — fall back to prompt.
-    expect(await pairResolve(OFFER, { offer: { '0xcat': '100' }, fee: '0' })).toMatchObject({
+    // create_offer_for_ids with a non-XCH outflow (negative non-XCH key) is
+    // not resolvable against an XCH cap — fall back to prompt.
+    expect(await pairResolve(OFFER, { offer: { '0xcat': '-100' }, fee: '0' })).toMatchObject({
       kind: 'prompt',
       reason: 'spending needs confirmation',
     });
   });
 
-  it('create_offer_for_ids with pure-XCH offer + auto allows when fits in budget', async () => {
-    mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '10000', spentMojos: '0' }));
-    const d = expectAllow(await pairResolve(OFFER, { offer: { xch: '5000' }, fee: '0' }));
-    d.commit();
-    const [, mojos] = mockRecordSpend.mock.calls[0];
-    expect(mojos.toFixed(0)).toBe('5000');
+  // Convention (chia daemon trade_manager.create_offer_for_ids): NEGATIVE = outflow,
+  // POSITIVE = inflow. XCH is keyed as '1' (wallet id) or 'xch'. The resolver must
+  // (a) sum the absolute value of negative XCH entries, (b) ignore positives
+  // (those are receives, not spends), (c) prompt on any non-XCH outflow so a
+  // CAT/NFT giveaway never auto-approves against an XCH cap.
+  describe('create_offer_for_ids — outflow polarity (regression: was inverted)', () => {
+    it('the literal "xch" key is rejected (daemon expects wallet id; parses int() / bytes32 hex only)', async () => {
+      // Per wallet_request_types.CreateOfferForIDs.offer_spec, keys ≤16 chars
+      // go through int(...) which throws on "xch". The resolver must treat
+      // "xch" as a non-XCH outflow and prompt — never debit the cap for a
+      // payload the daemon itself would reject.
+      mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '10000', spentMojos: '0' }));
+      expect(await pairResolve(OFFER, { offer: { xch: '-5000' }, fee: '0' })).toMatchObject({
+        kind: 'prompt',
+        reason: 'spending needs confirmation',
+      });
+    });
+
+    it('pure-XCH outflow keyed as "1" (standard wallet id): auto allows and debits the absolute amount', async () => {
+      mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '10000', spentMojos: '0' }));
+      const d = expectAllow(await pairResolve(OFFER, { offer: { '1': '-5000' }, fee: '0' }));
+      d.commit();
+      const [, mojos] = mockRecordSpend.mock.calls[0];
+      expect(mojos.toFixed(0)).toBe('5000');
+    });
+
+    it('giveaway offer that exceeds the cap prompts (does not silently auto-approve)', async () => {
+      // Regression for the pre-fix bug: a `{ "1": "-100000000000000" }` payload
+      // would resolve to outflow=0, fit any cap, and auto-approve a 100-XCH
+      // unilateral giveaway. Under the corrected convention it must prompt.
+      mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '1000', spentMojos: '0' }));
+      expect(await pairResolve(OFFER, { offer: { '1': '-100000000000000' }, fee: '0' })).toMatchObject({
+        kind: 'prompt',
+        reason: 'budget exhausted',
+      });
+    });
+
+    it('CAT-only outflow (negative non-XCH key) prompts — never auto-approves against XCH cap', async () => {
+      mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '1_000_000_000_000' }));
+      expect(await pairResolve(OFFER, { offer: { '0xcat': '-1000' }, fee: '0' })).toMatchObject({
+        kind: 'prompt',
+        reason: 'spending needs confirmation',
+      });
+    });
+
+    it('mixed XCH + CAT outflow prompts (any non-XCH negative entry → prompt)', async () => {
+      mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '1_000_000_000_000' }));
+      expect(
+        await pairResolve(OFFER, { offer: { '1': '-1000', '0xcat': '-1' }, fee: '0' }),
+      ).toMatchObject({
+        kind: 'prompt',
+        reason: 'spending needs confirmation',
+      });
+    });
+
+    it('mixed XCH outflow + non-XCH inflow: outflow side counts, inflow ignored', async () => {
+      // {- 1000 XCH out, +5 CAT in } — taker-style receive on the CAT side
+      // doesn't disqualify; only outflow contributes to the cap.
+      mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '10000', spentMojos: '0' }));
+      const d = expectAllow(await pairResolve(OFFER, { offer: { '1': '-1000', '0xcat': '5' }, fee: '0' }));
+      d.commit();
+      const [, mojos] = mockRecordSpend.mock.calls[0];
+      expect(mojos.toFixed(0)).toBe('1000');
+    });
+
+    it('all-positive offer (pure inflow, no outflow): outflow=0, fee-only spend', async () => {
+      // The user is requesting; they give nothing on the asset side and pay
+      // only the fee. Auto-approve charges only the fee against the cap.
+      mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '1000', spentMojos: '0' }));
+      const d = expectAllow(await pairResolve(OFFER, { offer: { '1': '100', '0xcat': '5' }, fee: '50' }));
+      d.commit();
+      const [, mojos] = mockRecordSpend.mock.calls[0];
+      expect(mojos.toFixed(0)).toBe('50');
+    });
+
+    it('zero-amount entries are ignored', async () => {
+      mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '10000', spentMojos: '0' }));
+      const d = expectAllow(
+        await pairResolve(OFFER, { offer: { '1': '-1000', '2': '0', '0xcat': '0' }, fee: '0' }),
+      );
+      d.commit();
+      const [, mojos] = mockRecordSpend.mock.calls[0];
+      expect(mojos.toFixed(0)).toBe('1000');
+    });
+
+    it('outflow + fee combined against cap: prompts when total exceeds remaining budget', async () => {
+      mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '1000', spentMojos: '500' }));
+      expect(await pairResolve(OFFER, { offer: { '1': '-400' }, fee: '200' })).toMatchObject({
+        kind: 'prompt',
+        reason: 'budget exhausted',
+      });
+    });
+
+    it('preserves precision beyond JS safe-integer range', async () => {
+      const cap = '99999999999999999999';
+      const out = '-99999999999999999999';
+      mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: cap, spentMojos: '0' }));
+      const d = expectAllow(await pairResolve(OFFER, { offer: { '1': out }, fee: '0' }));
+      d.commit();
+      const [, mojos] = mockRecordSpend.mock.calls[0];
+      expect(mojos.toFixed(0)).toBe('99999999999999999999');
+      expect(mojos).toBeInstanceOf(BigNumber);
+    });
   });
 });
 

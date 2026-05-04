@@ -102,6 +102,13 @@ export function isSignCommand(command: string): boolean {
 }
 
 // Sum the XCH mojos the user is giving up in a `create_offer_for_ids` offer.
+// Convention (chia daemon `trade_manager.create_offer_for_ids`): NEGATIVE
+// amounts are outflow (we give), POSITIVE are inflow (we receive). The dict
+// is keyed by wallet id (numeric strings ≤ 16 chars, parsed via `int(...)`)
+// or asset-id hex (> 16 chars, parsed via `bytes32.from_hexstr`); see
+// `wallet_request_types.CreateOfferForIDs.offer_spec`. XCH is the standard
+// wallet, id `1`. Returns undefined (→ prompt) when any non-XCH outflow
+// exists, so CAT/NFT outflows never auto-approve against an XCH cap.
 function extractOfferXchOutflow(payload: Record<string, unknown>): BigNumber | undefined {
   const offer = payload?.offer;
   if (!offer || typeof offer !== 'object') return undefined;
@@ -115,10 +122,9 @@ function extractOfferXchOutflow(payload: Record<string, unknown>): BigNumber | u
       continue;
     }
     if (!amount.isFinite()) continue;
-    if (amount.isLessThanOrEqualTo(0)) continue;
-    const isXch = key === '1' || key === 'xch';
-    if (!isXch) return undefined;
-    xchOut = xchOut.plus(amount);
+    if (amount.isGreaterThanOrEqualTo(0)) continue;
+    if (key !== '1') return undefined;
+    xchOut = xchOut.plus(amount.abs());
   }
   return xchOut;
 }
