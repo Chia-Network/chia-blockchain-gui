@@ -12,10 +12,7 @@ import type { PairRecord } from './types';
 // the per-command bypass list. Only commands the dapp was actually granted
 // (`commands`) are added — never expand silently beyond what the user
 // originally approved at pair time.
-function legacyCapabilityCommands(
-  caps: Record<string, unknown>,
-  grantedWireCommands: string[],
-): string[] {
+function legacyCapabilityCommands(caps: Record<string, unknown>, grantedWireCommands: string[]): string[] {
   if (!caps || typeof caps !== 'object') return [];
   const balance = caps.balance === true;
   const innocuous = caps.innocuous === true;

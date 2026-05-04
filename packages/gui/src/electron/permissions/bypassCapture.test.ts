@@ -82,11 +82,7 @@ describe('captureBypassFromConfirmResult — no-op result shapes', () => {
     // a string `'true'` past the check; only the literal boolean from the
     // checkbox's `el.checked` collection counts.
     const deps = makeDeps(makePair());
-    const out = captureBypassFromConfirmResult(
-      { bypass: value },
-      { topic: TOPIC, wcCommand: WC_COMMAND },
-      deps,
-    );
+    const out = captureBypassFromConfirmResult({ bypass: value }, { topic: TOPIC, wcCommand: WC_COMMAND }, deps);
     expect(out).toBeNull();
     expect(deps.upsertPair).not.toHaveBeenCalled();
   });
@@ -96,11 +92,7 @@ describe('captureBypassFromConfirmResult — persistence path', () => {
   it('appends wcCommand to bypass and bumps updatedAt', () => {
     const deps = makeDeps(makePair({ bypass: ['chia_getWallets'] }));
     const before = Date.now();
-    const out = captureBypassFromConfirmResult(
-      { bypass: true },
-      { topic: TOPIC, wcCommand: WC_COMMAND },
-      deps,
-    );
+    const out = captureBypassFromConfirmResult({ bypass: true }, { topic: TOPIC, wcCommand: WC_COMMAND }, deps);
     const after = Date.now();
     expect(out).toEqual(['chia_getWallets', WC_COMMAND]);
     expect(deps.upsertPair).toHaveBeenCalledTimes(1);
@@ -127,11 +119,7 @@ describe('captureBypassFromConfirmResult — persistence path', () => {
 
   it('idempotent: appending an already-bypassed command does not duplicate or write', () => {
     const deps = makeDeps(makePair({ bypass: [WC_COMMAND] }));
-    const out = captureBypassFromConfirmResult(
-      { bypass: true },
-      { topic: TOPIC, wcCommand: WC_COMMAND },
-      deps,
-    );
+    const out = captureBypassFromConfirmResult({ bypass: true }, { topic: TOPIC, wcCommand: WC_COMMAND }, deps);
     expect(out).toEqual([WC_COMMAND]);
     // Crucially: no write happens. Otherwise an attacker could keep
     // bumping updatedAt on someone else's pair record by re-issuing
@@ -141,11 +129,7 @@ describe('captureBypassFromConfirmResult — persistence path', () => {
 
   it('returns null and does not write when pair is missing (race with revoke)', () => {
     const deps = makeDeps(undefined);
-    const out = captureBypassFromConfirmResult(
-      { bypass: true },
-      { topic: TOPIC, wcCommand: WC_COMMAND },
-      deps,
-    );
+    const out = captureBypassFromConfirmResult({ bypass: true }, { topic: TOPIC, wcCommand: WC_COMMAND }, deps);
     expect(out).toBeNull();
     expect(deps.upsertPair).not.toHaveBeenCalled();
   });
@@ -166,11 +150,7 @@ describe('captureBypassFromConfirmResult — persistence path', () => {
     // directly. Captured bypass entries must match the same shape, or the
     // gate's `pair.bypass.includes(wc)` would never hit on the next call.
     const deps = makeDeps(makePair());
-    captureBypassFromConfirmResult(
-      { bypass: true },
-      { topic: TOPIC, wcCommand: 'chia_spendCAT' },
-      deps,
-    );
+    captureBypassFromConfirmResult({ bypass: true }, { topic: TOPIC, wcCommand: 'chia_spendCAT' }, deps);
     expect(deps.upsertPair.mock.calls[0][0].bypass).toEqual(['chia_spendCAT']);
   });
 });

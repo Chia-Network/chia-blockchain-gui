@@ -261,9 +261,7 @@ describe('resolvePermission - push_transactions', () => {
   });
 
   it('allows when fee fits in remaining budget and debits only the fee on commit', async () => {
-    mockGetPair.mockReturnValue(
-      makePair({ bypass: [WC], spendingCapMojos: '1000', spentMojos: '200' }),
-    );
+    mockGetPair.mockReturnValue(makePair({ bypass: [WC], spendingCapMojos: '1000', spentMojos: '200' }));
     const d = expectAllow(await pairResolve(CMD, { fee: '500' }));
     d.commit();
     expect(mockRecordSpend).toHaveBeenCalledTimes(1);
@@ -335,9 +333,7 @@ describe('resolvePermission - spend-class commands (governed by spendingMode)', 
   });
 
   it('auto allows when amount + fee fit in remaining budget', async () => {
-    mockGetPair.mockReturnValue(
-      makePair({ spendingMode: 'auto', spendingCapMojos: '1000', spentMojos: '200' }),
-    );
+    mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '1000', spentMojos: '200' }));
     const d = expectAllow(await pairResolve(SEND, { amount: '500', fee: '100' }));
     d.commit();
     const [, mojos] = mockRecordSpend.mock.calls[0];
@@ -345,9 +341,7 @@ describe('resolvePermission - spend-class commands (governed by spendingMode)', 
   });
 
   it('auto prompts when amount + fee exceed remaining budget', async () => {
-    mockGetPair.mockReturnValue(
-      makePair({ spendingMode: 'auto', spendingCapMojos: '1000', spentMojos: '900' }),
-    );
+    mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '1000', spentMojos: '900' }));
     expect(await pairResolve(SEND, { amount: '500', fee: '0' })).toMatchObject({
       kind: 'prompt',
       reason: 'budget exhausted',
@@ -355,9 +349,7 @@ describe('resolvePermission - spend-class commands (governed by spendingMode)', 
   });
 
   it('auto without resolvable amount prompts (CAT spend, NFT, mixed offer)', async () => {
-    mockGetPair.mockReturnValue(
-      makePair({ spendingMode: 'auto', spendingCapMojos: '1_000_000_000_000' }),
-    );
+    mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '1_000_000_000_000' }));
     // create_offer_for_ids without a pure-XCH offer dict yields an
     // unresolvable amount — fall back to prompt.
     expect(await pairResolve(OFFER, { offer: { '0xcat': '100' }, fee: '0' })).toMatchObject({
@@ -367,9 +359,7 @@ describe('resolvePermission - spend-class commands (governed by spendingMode)', 
   });
 
   it('create_offer_for_ids with pure-XCH offer + auto allows when fits in budget', async () => {
-    mockGetPair.mockReturnValue(
-      makePair({ spendingMode: 'auto', spendingCapMojos: '10000', spentMojos: '0' }),
-    );
+    mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '10000', spentMojos: '0' }));
     const d = expectAllow(await pairResolve(OFFER, { offer: { xch: '5000' }, fee: '0' }));
     d.commit();
     const [, mojos] = mockRecordSpend.mock.calls[0];
@@ -406,9 +396,7 @@ describe('resolvePermission - take_offer (XCH-only auto-approve)', () => {
   });
 
   it('auto allows when summary.requested is XCH-only and fits in budget', async () => {
-    mockGetPair.mockReturnValue(
-      makePair({ spendingMode: 'auto', spendingCapMojos: '10000', spentMojos: '0' }),
-    );
+    mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '10000', spentMojos: '0' }));
     mockSummary({ offered: { '0xnft': 1 }, requested: { xch: '5000' } });
     const d = expectAllow(await pairResolve(TAKE, { offer: OFFER_STR, fee: '100' }));
     d.commit();
@@ -417,9 +405,7 @@ describe('resolvePermission - take_offer (XCH-only auto-approve)', () => {
   });
 
   it('auto prompts when summary.requested includes a CAT', async () => {
-    mockGetPair.mockReturnValue(
-      makePair({ spendingMode: 'auto', spendingCapMojos: '1_000_000_000_000' }),
-    );
+    mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '1_000_000_000_000' }));
     mockSummary({ offered: {}, requested: { xch: '1000', '0xcat': 5 } });
     expect(await pairResolve(TAKE, { offer: OFFER_STR, fee: '0' })).toMatchObject({
       kind: 'prompt',
@@ -428,9 +414,7 @@ describe('resolvePermission - take_offer (XCH-only auto-approve)', () => {
   });
 
   it('auto prompts when summary.requested is NFT-only (non-XCH)', async () => {
-    mockGetPair.mockReturnValue(
-      makePair({ spendingMode: 'auto', spendingCapMojos: '1_000_000_000_000' }),
-    );
+    mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '1_000_000_000_000' }));
     mockSummary({ offered: { xch: '1000' }, requested: { '0xnft': 1 } });
     expect(await pairResolve(TAKE, { offer: OFFER_STR, fee: '0' })).toMatchObject({
       kind: 'prompt',
@@ -439,9 +423,7 @@ describe('resolvePermission - take_offer (XCH-only auto-approve)', () => {
   });
 
   it('auto allows when summary.requested is empty (free offer) — only fee charged', async () => {
-    mockGetPair.mockReturnValue(
-      makePair({ spendingMode: 'auto', spendingCapMojos: '1000', spentMojos: '0' }),
-    );
+    mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '1000', spentMojos: '0' }));
     mockSummary({ offered: { '0xnft': 1 }, requested: {} });
     const d = expectAllow(await pairResolve(TAKE, { offer: OFFER_STR, fee: '50' }));
     d.commit();
@@ -450,9 +432,7 @@ describe('resolvePermission - take_offer (XCH-only auto-approve)', () => {
   });
 
   it('auto prompts when XCH outflow + fee exceed budget', async () => {
-    mockGetPair.mockReturnValue(
-      makePair({ spendingMode: 'auto', spendingCapMojos: '1000', spentMojos: '500' }),
-    );
+    mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '1000', spentMojos: '500' }));
     mockSummary({ offered: {}, requested: { xch: '600' } });
     expect(await pairResolve(TAKE, { offer: OFFER_STR, fee: '0' })).toMatchObject({
       kind: 'prompt',
@@ -461,9 +441,7 @@ describe('resolvePermission - take_offer (XCH-only auto-approve)', () => {
   });
 
   it('auto prompts when daemon returns an error (offer cannot be parsed)', async () => {
-    mockGetPair.mockReturnValue(
-      makePair({ spendingMode: 'auto', spendingCapMojos: '1_000_000_000_000' }),
-    );
+    mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '1_000_000_000_000' }));
     mockSendDappAndAwait.mockResolvedValueOnce({ data: { error: 'invalid bech32' } });
     expect(await pairResolve(TAKE, { offer: OFFER_STR, fee: '0' })).toMatchObject({
       kind: 'prompt',
@@ -472,9 +450,7 @@ describe('resolvePermission - take_offer (XCH-only auto-approve)', () => {
   });
 
   it('auto prompts when offer string is missing', async () => {
-    mockGetPair.mockReturnValue(
-      makePair({ spendingMode: 'auto', spendingCapMojos: '1_000_000_000_000' }),
-    );
+    mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '1_000_000_000_000' }));
     expect(await pairResolve(TAKE, { fee: '0' })).toMatchObject({
       kind: 'prompt',
       reason: 'spending needs confirmation',
@@ -483,9 +459,7 @@ describe('resolvePermission - take_offer (XCH-only auto-approve)', () => {
   });
 
   it('auto prompts when sendDappAndAwait throws (timeout, disconnect)', async () => {
-    mockGetPair.mockReturnValue(
-      makePair({ spendingMode: 'auto', spendingCapMojos: '1_000_000_000_000' }),
-    );
+    mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '1_000_000_000_000' }));
     mockSendDappAndAwait.mockRejectedValueOnce(new Error('timeout'));
     expect(await pairResolve(TAKE, { offer: OFFER_STR, fee: '0' })).toMatchObject({
       kind: 'prompt',
@@ -507,9 +481,10 @@ describe('resolvePermission - commands gate (pair.commands allowlist)', () => {
 
   it('denies when wcCommand is missing from the resolve context', async () => {
     mockGetPair.mockReturnValue(makePair({ bypass: ['chia_getWallets'] }));
-    expect(
-      await resolvePermission(PAIR_PRINCIPAL, 'chia_wallet.get_wallets', {}, {}),
-    ).toEqual({ kind: 'deny', reason: 'missing wc command' });
+    expect(await resolvePermission(PAIR_PRINCIPAL, 'chia_wallet.get_wallets', {}, {})).toEqual({
+      kind: 'deny',
+      reason: 'missing wc command',
+    });
   });
 });
 
@@ -518,9 +493,7 @@ describe('resolvePermission - commit idempotency', () => {
   // of the payload between resolve and authorization can't change what gets
   // debited. Idempotent commits prevent double-charge.
   it('commit is no-op on second call', async () => {
-    mockGetPair.mockReturnValue(
-      makePair({ spendingMode: 'auto', spendingCapMojos: '10000', spentMojos: '0' }),
-    );
+    mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '10000', spentMojos: '0' }));
     const d = expectAllow(await pairResolve('chia_wallet.send_transaction', { amount: '500' }));
     d.commit();
     d.commit();
@@ -528,9 +501,7 @@ describe('resolvePermission - commit idempotency', () => {
   });
 
   it('separate resolve calls produce independent commits', async () => {
-    mockGetPair.mockReturnValue(
-      makePair({ spendingMode: 'auto', spendingCapMojos: '10000', spentMojos: '0' }),
-    );
+    mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '10000', spentMojos: '0' }));
     const d1 = expectAllow(await pairResolve('chia_wallet.send_transaction', { amount: '500' }));
     const d2 = expectAllow(await pairResolve('chia_wallet.send_transaction', { amount: '300' }));
     d1.commit();

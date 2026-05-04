@@ -20,8 +20,7 @@ import { renderConfirm } from './renderConfirm';
 const mockBuildCreateOfferDisplay = buildCreateOfferDisplay as jest.MockedFunction<typeof buildCreateOfferDisplay>;
 const mockBuildTakeOfferDisplay = buildTakeOfferDisplay as jest.MockedFunction<typeof buildTakeOfferDisplay>;
 
-const xch = (mojos: string | number, prefix = 'XCH') =>
-  expect.stringMatching(new RegExp(`\\s${prefix}$`));
+const xch = (mojos: string | number, prefix = 'XCH') => expect.stringMatching(new RegExp(`\\s${prefix}$`));
 
 describe('renderConfirm', () => {
   it('renders send_transaction with address + amount + fee in network units', async () => {
@@ -68,11 +67,7 @@ describe('renderConfirm', () => {
   });
 
   it('marks delete_key destructive and uses the Delete button label', async () => {
-    const result = await renderConfirm(
-      'chia_wallet.delete_key',
-      { fingerprint: '1234567890' },
-      {},
-    );
+    const result = await renderConfirm('chia_wallet.delete_key', { fingerprint: '1234567890' }, {});
     expect(result.destructive).toBe(true);
     expect(result.confirmLabel).toBe('Delete');
     expect(result.rows).toEqual([{ field: 'fingerprint', label: 'Fingerprint', value: '1234567890' }]);
@@ -102,11 +97,7 @@ describe('renderConfirm', () => {
   });
 
   it('renders open_connection with host + port as text', async () => {
-    const result = await renderConfirm(
-      'chia_full_node.open_connection',
-      { host: 'node.example.com', port: 8444 },
-      {},
-    );
+    const result = await renderConfirm('chia_full_node.open_connection', { host: 'node.example.com', port: 8444 }, {});
     expect(result.confirmLabel).toBe('Connect');
     expect(result.rows).toEqual([
       { field: 'host', label: 'Host', value: 'node.example.com' },
@@ -122,11 +113,7 @@ describe('renderConfirm', () => {
   });
 
   it('renders cancel_offer as destructive with fee in XCH', async () => {
-    const result = await renderConfirm(
-      'chia_wallet.cancel_offer',
-      { fee: '100000000000' },
-      { networkPrefix: 'xch' },
-    );
+    const result = await renderConfirm('chia_wallet.cancel_offer', { fee: '100000000000' }, { networkPrefix: 'xch' });
     expect(result.destructive).toBe(true);
     expect(result.rows).toEqual([{ field: 'fee', label: 'Fee', value: '0.1 XCH' }]);
   });
@@ -179,11 +166,7 @@ describe('renderConfirm', () => {
   });
 
   it('json kind pretty-prints an object', async () => {
-    const result = await renderConfirm(
-      'chia_wallet.spend_clawback_coins',
-      { coin_ids: ['0x1', '0x2'], fee: '0' },
-      {},
-    );
+    const result = await renderConfirm('chia_wallet.spend_clawback_coins', { coin_ids: ['0x1', '0x2'], fee: '0' }, {});
     const row = result.rows.find((r) => r.field === 'coin_ids');
     expect(row?.value).toBe('[\n  "0x1",\n  "0x2"\n]');
   });
@@ -218,11 +201,7 @@ describe('renderConfirm', () => {
   it('show_notification with no offerData skips offer enrichment', async () => {
     // type=offer + missing offerData should not attempt the daemon RPC. The
     // enrich hook short-circuits before `buildTakeOfferDisplay` runs.
-    const result = await renderConfirm(
-      'chia_app.show_notification',
-      { type: 'offer' },
-      {},
-    );
+    const result = await renderConfirm('chia_app.show_notification', { type: 'offer' }, {});
     expect(result.display).toEqual({});
   });
 

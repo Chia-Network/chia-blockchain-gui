@@ -33,11 +33,7 @@ function formatMojoXch(amount: unknown, networkPrefix?: string): string {
   return networkPrefix ? `${formatted} ${networkPrefix.toUpperCase()}` : formatted;
 }
 
-async function formatMojoCat(
-  amount: unknown,
-  data: Record<string, unknown>,
-  symbolFrom: string,
-): Promise<string> {
+async function formatMojoCat(amount: unknown, data: Record<string, unknown>, symbolFrom: string): Promise<string> {
   const formatted = mojoToCatLocaleString(amount as string | number);
   const walletIdRaw = data[symbolFrom];
   if (walletIdRaw === undefined || walletIdRaw === null) return formatted;

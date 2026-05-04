@@ -16,10 +16,7 @@ const connections: Record<string, WebSocket> = {};
 // responses don't need a separate WebSocket subscription. Only request_ids
 // minted here ever end up in this map; the renderer's Client uses its own
 // (different) request_ids and is unaffected.
-const dappPending = new Map<
-  string,
-  { resolve: (value: unknown) => void; reject: (reason: Error) => void }
->();
+const dappPending = new Map<string, { resolve: (value: unknown) => void; reject: (reason: Error) => void }>();
 
 function getConnection(id: string) {
   const connection = connections[id];

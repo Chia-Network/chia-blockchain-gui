@@ -8,9 +8,7 @@ export type PairAccessCheck = {
   mainnet?: boolean;
 };
 
-export type PairAccessResult =
-  | { ok: true; pair: PairRecord }
-  | { ok: false; reason: string };
+export type PairAccessResult = { ok: true; pair: PairRecord } | { ok: false; reason: string };
 
 export type CheckPairAccessDeps = {
   getPair: (topic: string) => PairRecord | undefined;

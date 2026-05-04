@@ -32,7 +32,7 @@ const UI_ALLOWED = new Set<string>(AllowedCommands);
 
 const BALANCE_COMMANDS = new Set([
   'chia_wallet.get_wallet_balance', // gaming
-  'chia_wallet.get_wallet_balances', 
+  'chia_wallet.get_wallet_balances',
 ]);
 
 // Read-only commands a dapp can opt into via the Innocuous capability grant.
@@ -133,9 +133,7 @@ type OfferSummary = {
 // anything other than XCH (CAT, NFT, mixed) or if the daemon can't parse it.
 // `data.fee` (the take-tx fee) is NOT added here — the spend resolver handles
 // it via `feeField`.
-async function extractTakeOfferXchOutflow(
-  payload: Record<string, unknown>,
-): Promise<BigNumber | undefined> {
+async function extractTakeOfferXchOutflow(payload: Record<string, unknown>): Promise<BigNumber | undefined> {
   const offer = payload?.offer;
   if (typeof offer !== 'string' || !offer) return undefined;
 

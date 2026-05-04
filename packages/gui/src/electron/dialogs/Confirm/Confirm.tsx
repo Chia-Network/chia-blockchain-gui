@@ -326,9 +326,7 @@ export default function Confirm(props: ConfirmProps) {
                 />
               </svg>
               <div className="flex-1 min-w-0">
-                <div className="text-sm font-semibold">
-                  {i18n._(/* i18n */ { id: 'Different wallet key' })}
-                </div>
+                <div className="text-sm font-semibold">{i18n._(/* i18n */ { id: 'Different wallet key' })}</div>
                 <div className="mt-0.5 text-xs">
                   {i18n._('This app is asking to run under {requested}, but {current} is currently logged in.', {
                     requested: formatKey(requestedKeyLabel, requestedFingerprint),
@@ -351,9 +349,7 @@ export default function Confirm(props: ConfirmProps) {
               {rows.map(({ field, label, value }) => (
                 <div className="px-5 py-2.5" key={field}>
                   <div className="text-xs font-semibold uppercase tracking-wider text-chia-text-muted">{label}</div>
-                  <div className="mt-0.5 text-sm font-medium break-all whitespace-pre-wrap text-chia-text">
-                    {value}
-                  </div>
+                  <div className="mt-0.5 text-sm font-medium break-all whitespace-pre-wrap text-chia-text">{value}</div>
                 </div>
               ))}
             </section>

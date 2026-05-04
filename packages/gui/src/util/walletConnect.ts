@@ -51,7 +51,6 @@ export function processError(error: Error) {
   throw error;
 }
 
-
 export async function processSessionProposal(
   client: Client,
   pairs: Pairs,

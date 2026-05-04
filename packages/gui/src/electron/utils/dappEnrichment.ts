@@ -192,10 +192,7 @@ export async function buildTakeOfferDisplay(
     if (!summary || typeof summary !== 'object' || !('offered' in summary) || !('requested' in summary)) {
       return undefined;
     }
-    return summaryToOffer(
-      summary as OfferSummaryRecord,
-      data.fee as number | string | undefined,
-    );
+    return summaryToOffer(summary as OfferSummaryRecord, data.fee as number | string | undefined);
   } catch {
     return undefined;
   }
@@ -236,11 +233,7 @@ export async function buildCreateOfferDisplay(
           bucket.push({ kind: 'xch', amount: mojoToChia(abs).toFixed() });
           return;
         }
-        if (
-          wallet.type === WalletType.CAT ||
-          wallet.type === WalletType.RCAT ||
-          wallet.type === WalletType.CRCAT
-        ) {
+        if (wallet.type === WalletType.CAT || wallet.type === WalletType.RCAT || wallet.type === WalletType.CRCAT) {
           const assetId = wallet.meta?.assetId ?? wallet.meta?.tail ?? '';
           const symbol = (await lookupCatNameByAssetId(assetId)) ?? wallet.name;
           bucket.push({
@@ -263,4 +256,3 @@ export async function buildCreateOfferDisplay(
 
   return { offered, requested, fee };
 }
-

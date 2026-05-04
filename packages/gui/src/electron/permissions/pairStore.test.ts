@@ -227,12 +227,7 @@ describe('pairStore - commands field migration', () => {
   it('strips non-string entries from the persisted list', () => {
     const file = path.join(mockTempDir, 'dapp-pairs.yaml');
     const legacy = makePair({ topic: 'a' });
-    (legacy as unknown as { commands: unknown }).commands = [
-      'chia_sendTransaction',
-      42,
-      null,
-      'chia_getWallets',
-    ];
+    (legacy as unknown as { commands: unknown }).commands = ['chia_sendTransaction', 42, null, 'chia_getWallets'];
     fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
 
     const reload = loadStore();
@@ -254,10 +249,7 @@ describe('pairStore - commands field migration', () => {
     const file = path.join(mockTempDir, 'dapp-pairs.yaml');
     const legacy = makePair({ topic: 'a' });
     delete (legacy as Partial<PairRecord>).commands;
-    (legacy as unknown as { allowedWcCommands: unknown }).allowedWcCommands = [
-      'sendTransaction',
-      'getWallets',
-    ];
+    (legacy as unknown as { allowedWcCommands: unknown }).allowedWcCommands = ['sendTransaction', 'getWallets'];
     fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
 
     const reload = loadStore();
@@ -371,7 +363,11 @@ describe('pairStore - legacy capabilities → bypass migration', () => {
 
   it('expands balance:true into bypass entries for granted balance commands', () => {
     const file = path.join(mockTempDir, 'dapp-pairs.yaml');
-    const legacy = legacyPair('a', { balance: true }, ['chia_getWalletBalance', 'chia_getWalletBalances', 'chia_getWallets']);
+    const legacy = legacyPair('a', { balance: true }, [
+      'chia_getWalletBalance',
+      'chia_getWalletBalances',
+      'chia_getWallets',
+    ]);
     fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
 
     const reload = loadStore();
@@ -384,7 +380,11 @@ describe('pairStore - legacy capabilities → bypass migration', () => {
 
   it('expands innocuous:true into bypass entries for granted innocuous commands', () => {
     const file = path.join(mockTempDir, 'dapp-pairs.yaml');
-    const legacy = legacyPair('a', { innocuous: true }, ['chia_getWallets', 'chia_getNextAddress', 'chia_signMessageById']);
+    const legacy = legacyPair('a', { innocuous: true }, [
+      'chia_getWallets',
+      'chia_getNextAddress',
+      'chia_signMessageById',
+    ]);
     fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
 
     const reload = loadStore();
@@ -621,4 +621,3 @@ describe('pairStore - resetBypassAll (every pair)', () => {
     expect(pair?.spentMojos).toBe('500');
   });
 });
-

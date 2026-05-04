@@ -47,10 +47,7 @@ describe('checkPairAccess — happy path', () => {
   });
 
   it('passes when fingerprint is omitted (caller has no fingerprint context)', () => {
-    const out = checkPairAccess(
-      { topic: TOPIC, wcCommand: 'chia_sendTransaction' },
-      depsWith(makePair()),
-    );
+    const out = checkPairAccess({ topic: TOPIC, wcCommand: 'chia_sendTransaction' }, depsWith(makePair()));
     expect(out.ok).toBe(true);
   });
 
@@ -65,10 +62,7 @@ describe('checkPairAccess — happy path', () => {
 
 describe('checkPairAccess — failure modes', () => {
   it('denies "unknown pair" when topic is not in the store', () => {
-    const out = checkPairAccess(
-      { topic: TOPIC, wcCommand: 'chia_sendTransaction' },
-      depsWith(undefined),
-    );
+    const out = checkPairAccess({ topic: TOPIC, wcCommand: 'chia_sendTransaction' }, depsWith(undefined));
     expect(out).toEqual({ ok: false, reason: 'unknown pair' });
   });
 
@@ -137,10 +131,7 @@ describe('checkPairAccess — order of failures', () => {
   });
 
   it('"missing wc command" wins over fingerprint / mainnet', () => {
-    const out = checkPairAccess(
-      { topic: TOPIC, fingerprint: 999, mainnet: false },
-      depsWith(makePair()),
-    );
+    const out = checkPairAccess({ topic: TOPIC, fingerprint: 999, mainnet: false }, depsWith(makePair()));
     expect(out).toMatchObject({ reason: 'missing wc command' });
   });
 

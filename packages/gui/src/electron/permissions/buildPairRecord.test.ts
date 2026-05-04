@@ -32,8 +32,13 @@ describe('buildNewPairRecord', () => {
     // BigNumber arithmetic in `recordSpend` (which assumes string input
     // for >2^53 precision). Pin the type AND value.
     const record = buildNewPairRecord({
-      topic: 't', mainnet: true, metadata, fingerprints: [], grants,
-      commands: [], now: 0,
+      topic: 't',
+      mainnet: true,
+      metadata,
+      fingerprints: [],
+      grants,
+      commands: [],
+      now: 0,
     });
     expect(record.spentMojos).toBe('0');
     expect(typeof record.spentMojos).toBe('string');
@@ -44,16 +49,26 @@ describe('buildNewPairRecord', () => {
     // bypass entries can only land via the Confirm dialog's "Don't ask
     // again" path or the Settings UI, both running after this point.
     const record = buildNewPairRecord({
-      topic: 't', mainnet: true, metadata, fingerprints: [], grants,
-      commands: [], now: 0,
+      topic: 't',
+      mainnet: true,
+      metadata,
+      fingerprints: [],
+      grants,
+      commands: [],
+      now: 0,
     });
     expect(record.bypass).toEqual([]);
   });
 
   it('stamps createdAt and updatedAt with the same `now` value', () => {
     const record = buildNewPairRecord({
-      topic: 't', mainnet: true, metadata, fingerprints: [], grants,
-      commands: [], now: 1_700_000_000_000,
+      topic: 't',
+      mainnet: true,
+      metadata,
+      fingerprints: [],
+      grants,
+      commands: [],
+      now: 1_700_000_000_000,
     });
     expect(record.createdAt).toBe(1_700_000_000_000);
     expect(record.updatedAt).toBe(1_700_000_000_000);
@@ -61,7 +76,11 @@ describe('buildNewPairRecord', () => {
 
   it('preserves an empty commands array (deny-all) without falling back', () => {
     const record = buildNewPairRecord({
-      topic: 't', mainnet: true, metadata, fingerprints: [], grants,
+      topic: 't',
+      mainnet: true,
+      metadata,
+      fingerprints: [],
+      grants,
       commands: [],
       now: 0,
     });

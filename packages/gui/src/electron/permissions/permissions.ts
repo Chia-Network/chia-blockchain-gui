@@ -3,14 +3,7 @@ import BigNumber from 'bignumber.js';
 import { checkPairAccess } from './checkPairAccess';
 import { getSpendClassification, isUiAllowed } from './commandCapabilities';
 import { getPair, recordSpend } from './pairStore';
-import type {
-  Decision,
-  PairContext,
-  PairGrants,
-  PairRecord,
-  Principal,
-  SpendClassification,
-} from './types';
+import type { Decision, PairContext, PairGrants, PairRecord, Principal, SpendClassification } from './types';
 
 const ZERO = new BigNumber(0);
 const NOOP = () => {};
@@ -149,7 +142,7 @@ async function resolveSpending(
   const amount = await resolveAmount(classification, payload);
   if (amount === undefined) return promptDecision('spending needs confirmation', ctx);
 
-  const fee = classification.feeField ? readMojos(payload, classification.feeField) ?? ZERO : ZERO;
+  const fee = classification.feeField ? (readMojos(payload, classification.feeField) ?? ZERO) : ZERO;
   const total = amount.plus(fee);
   const spent = new BigNumber(pair.spentMojos ?? 0);
   const cap = new BigNumber(pair.grants.spendingCapMojos ?? 0);

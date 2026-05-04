@@ -1,14 +1,6 @@
 import { Flex, SettingsHR, SettingsSection, SettingsTitle, SettingsText } from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
-import {
-  Autocomplete,
-  Box,
-  Button,
-  FormControlLabel,
-  Grid,
-  Switch,
-  TextField,
-} from '@mui/material';
+import { Autocomplete, Box, Button, FormControlLabel, Grid, Switch, TextField } from '@mui/material';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import type { PermissionsPairRecord } from '../../@types/PermissionsService';
@@ -183,9 +175,7 @@ export default function SettingsIntegration() {
                     getOptionLabel={(option) => option.metadata?.name ?? option.topic}
                     renderOption={(props, option) => (
                       <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
-                        {option.metadata?.icon && (
-                          <img loading="lazy" width="20" src={option.metadata.icon} alt="" />
-                        )}
+                        {option.metadata?.icon && <img loading="lazy" width="20" src={option.metadata.icon} alt="" />}
                         {option.metadata?.name ?? t`Unknown App - ${option.topic}`}
                       </Box>
                     )}

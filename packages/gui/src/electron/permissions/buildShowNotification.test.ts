@@ -30,11 +30,7 @@ function makePair(overrides: Partial<PairRecord> = {}): PairRecord {
 
 describe('buildShowNotification — offer notifications', () => {
   it('builds an offer notification from a valid payload', () => {
-    const out = buildShowNotification(
-      makePair(),
-      { type: 'offer', offerData: 'offer1abc...' },
-      111,
-    );
+    const out = buildShowNotification(makePair(), { type: 'offer', offerData: 'offer1abc...' }, 111);
     expect(out).toMatchObject({
       type: 'offer',
       offerData: 'offer1abc...',
@@ -86,20 +82,12 @@ describe('buildShowNotification — announcement notifications', () => {
   });
 
   it('drops a non-string url field', () => {
-    const out = buildShowNotification(
-      makePair(),
-      { type: 'announcement', message: 'Hello', url: 42 },
-      111,
-    );
+    const out = buildShowNotification(makePair(), { type: 'announcement', message: 'Hello', url: 42 }, 111);
     expect((out as { url?: string }).url).toBeUndefined();
   });
 
   it('drops an empty-string url', () => {
-    const out = buildShowNotification(
-      makePair(),
-      { type: 'announcement', message: 'Hello', url: '' },
-      111,
-    );
+    const out = buildShowNotification(makePair(), { type: 'announcement', message: 'Hello', url: '' }, 111);
     expect((out as { url?: string }).url).toBeUndefined();
   });
 

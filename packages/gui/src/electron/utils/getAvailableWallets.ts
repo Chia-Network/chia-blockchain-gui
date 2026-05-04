@@ -8,10 +8,7 @@ export default async function getAvailableWallets(): Promise<{
   availableWallets: PairWalletOption[];
   defaultFingerprints: number[];
 }> {
-  const { keys = [] } = await sendCommand<{ keys?: { fingerprint: number; label?: string }[] }>(
-    'get_keys',
-    'daemon',
-  );
+  const { keys = [] } = await sendCommand<{ keys?: { fingerprint: number; label?: string }[] }>('get_keys', 'daemon');
   const availableWallets: PairWalletOption[] = keys.map((k) => ({
     fingerprint: k.fingerprint,
     name: k.label || undefined,
@@ -20,10 +17,7 @@ export default async function getAvailableWallets(): Promise<{
   // Default-selection only — tolerate failure; the dialog still opens.
   let loggedInFingerprint: number | undefined;
   try {
-    const { fingerprint } = await sendCommand<{ fingerprint?: number }>(
-      'get_logged_in_fingerprint',
-      'chia_wallet',
-    );
+    const { fingerprint } = await sendCommand<{ fingerprint?: number }>('get_logged_in_fingerprint', 'chia_wallet');
     loggedInFingerprint = typeof fingerprint === 'number' ? fingerprint : undefined;
   } catch (err) {
     console.warn('Failed to fetch logged-in fingerprint for pair dialog default', err);

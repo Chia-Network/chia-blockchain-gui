@@ -31,9 +31,7 @@ describe('registry shape', () => {
       const schema = getCommandSchema(ns);
       if (!schema.wcCommand) continue;
       if (seen.has(schema.wcCommand)) {
-        throw new Error(
-          `duplicate wcCommand "${schema.wcCommand}" on ${ns} and ${seen.get(schema.wcCommand)}`,
-        );
+        throw new Error(`duplicate wcCommand "${schema.wcCommand}" on ${ns} and ${seen.get(schema.wcCommand)}`);
       }
       seen.set(schema.wcCommand, ns);
     }
@@ -181,11 +179,7 @@ describe('filterRequestedCommands', () => {
   });
 
   it('partitions wire-form names by registry membership (no slicing)', () => {
-    const result = filterRequestedCommands([
-      'chia_sendTransaction',
-      'chia_getWallets',
-      'chia_totallyMadeUp',
-    ]);
+    const result = filterRequestedCommands(['chia_sendTransaction', 'chia_getWallets', 'chia_totallyMadeUp']);
     expect(result.allowed.sort()).toEqual(['chia_getWallets', 'chia_sendTransaction']);
     expect(result.rejected).toEqual(['chia_totallyMadeUp']);
   });
@@ -201,11 +195,7 @@ describe('filterRequestedCommands', () => {
   it('drops methods outside the chia_ namespace into rejected (still string match)', () => {
     // Other-namespace methods aren't WC chia methods at all. The registry
     // doesn't know them so they end up in `rejected`.
-    const result = filterRequestedCommands([
-      'eip155_personal_sign',
-      'cosmos_signDirect',
-      'chia_sendTransaction',
-    ]);
+    const result = filterRequestedCommands(['eip155_personal_sign', 'cosmos_signDirect', 'chia_sendTransaction']);
     expect(result.allowed).toEqual(['chia_sendTransaction']);
     expect(result.rejected.sort()).toEqual(['cosmos_signDirect', 'eip155_personal_sign']);
   });
@@ -254,11 +244,7 @@ describe('filterRequestedCommands', () => {
   });
 
   it('orchestration-only commands (createNewDIDWallet, transferDID, addCATToken) are filtered out', () => {
-    const result = filterRequestedCommands([
-      'chia_createNewDIDWallet',
-      'chia_transferDID',
-      'chia_addCATToken',
-    ]);
+    const result = filterRequestedCommands(['chia_createNewDIDWallet', 'chia_transferDID', 'chia_addCATToken']);
     expect(result.allowed).toEqual([]);
     expect(result.rejected.sort()).toEqual(['chia_addCATToken', 'chia_createNewDIDWallet', 'chia_transferDID']);
   });
