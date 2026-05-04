@@ -16,7 +16,6 @@ import fs from 'node:fs';
 import path from 'node:path';
 import url from 'node:url';
 
-import { toCamelCase, toSnakeCase } from '@chia-network/api';
 import BigNumber from 'bignumber.js';
 import windowStateKeeper from 'electron-window-state';
 import JSONbig from 'json-bigint';
@@ -78,6 +77,8 @@ import manageDaemonLifetime from './utils/manageDaemonLifetime';
 import openExternal from './utils/openExternal';
 import openReactDialog from './utils/openReactDialog';
 import * as privatePreferences from './utils/privatePreferences';
+import toCamelCase from './utils/toCamelCase';
+import toSnakeCase from './utils/toSnakeCase';
 import { setUserDataDir } from './utils/userData';
 import webSocketBridgeBindEvents, { sendDappAndAwait } from './utils/webSocketBridge';
 

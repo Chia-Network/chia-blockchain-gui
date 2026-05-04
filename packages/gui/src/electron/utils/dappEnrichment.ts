@@ -2,15 +2,18 @@
 // the wire, so a compromised renderer can't show "1 XCH to friend" while
 // sending "50 XCH to attacker." Daemon RPCs are trusted (same machine,
 // TLS-pinned socket).
-import { toCamelCase, toSnakeCase, WalletType } from '@chia-network/api';
 import BigNumber from 'bignumber.js';
 import crypto from 'node:crypto';
 
-import isValidURL from './isValidURL';
-import { sendDappAndAwait } from './webSocketBridge';
+import WalletType from '../constants/WalletType';
 
+import isValidURL from './isValidURL';
 import mojoToCAT from './mojoToCAT';
 import mojoToChia from './mojoToChia';
+import toBech32m from './toBech32m';
+import toCamelCase from './toCamelCase';
+import toSnakeCase from './toSnakeCase';
+import { sendDappAndAwait } from './webSocketBridge';
 
 export type EnrichmentDisplay = {
   cat?: { displayName: string; isRevocable: boolean };
@@ -111,15 +114,10 @@ async function lookupNft(launcherIdHex: string): Promise<{ name?: string; previe
   }
 }
 
-// Inline bech32 because @chia-network/api's toBech32m is renderer-only.
-// Falls back to truncated hex on failure.
+// Encode an NFT launcher hash as a bech32m `nft1...` id. Falls back to the
+// raw hex on encoding failure (e.g. odd-length input).
 function hexToNftId(hex: string): string {
-  // Lazy require to avoid a hard dep on the api package's encoding utils
-  // running at module init in main.
-  // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
   try {
-    // eslint-disable-next-line global-require
-    const { toBech32m } = require('@chia-network/api') as { toBech32m: (h: string, p: string) => string };
     return toBech32m(hex, 'nft');
   } catch {
     return hex;
