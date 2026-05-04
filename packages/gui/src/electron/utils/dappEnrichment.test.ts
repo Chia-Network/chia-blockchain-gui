@@ -327,6 +327,71 @@ describe('buildCreateOfferDisplay — already-working NFT path stays working', (
   });
 });
 
+describe('buildCreateOfferDisplay — magnitude precision (regression: was Number()-truncated)', () => {
+  // Mojo amounts can exceed Number.MAX_SAFE_INTEGER (2^53 ≈ 9e15). The wire
+  // value passes through verbatim; the dialog must show the same amount it
+  // sends, otherwise a hostile dapp can craft an offer where the displayed
+  // XCH amount differs from what the daemon actually executes.
+  it('preserves precision for an XCH outflow amount past MAX_SAFE_INTEGER', async () => {
+    setupDaemonMock({
+      'chia_wallet.get_wallets': () => ({ wallets: [{ id: 1, type: 0 /* STANDARD_WALLET */ }] }),
+    });
+
+    // 19-digit mojo value → ~10M XCH. Number() rounds the last 4 digits to 0
+    // (so the buggy display would show '10000000', missing the .000...999
+    // tail); BigNumber preserves every digit.
+    const display = await buildCreateOfferDisplay({ offer: { '1': '-9999999999999999999' } });
+
+    expect(display?.offered).toHaveLength(1);
+    expect(display?.offered[0]).toEqual({ kind: 'xch', amount: '9999999.999999999999' });
+  });
+
+  it('preserves precision for an XCH inflow amount as a numeric string', async () => {
+    setupDaemonMock({
+      'chia_wallet.get_wallets': () => ({ wallets: [{ id: 1, type: 0 /* STANDARD_WALLET */ }] }),
+    });
+
+    const display = await buildCreateOfferDisplay({ offer: { '1': '12345678901234567' } });
+
+    expect(display?.requested).toHaveLength(1);
+    expect(display?.requested[0]).toEqual({ kind: 'xch', amount: '12345.678901234567' });
+  });
+
+  it('preserves precision for a CAT outflow amount past MAX_SAFE_INTEGER', async () => {
+    setupDaemonMock({
+      'chia_wallet.get_wallets': () => ({
+        wallets: [{ id: 2, type: 6 /* CAT */, name: 'My CAT', meta: { assetId: '0xcat' } }],
+      }),
+      'chia_wallet.cat_asset_id_to_name': () => ({ name: 'TEST' }),
+    });
+
+    const display = await buildCreateOfferDisplay({ offer: { '2': '-9999999999999999999' } });
+
+    expect(display?.offered[0]).toMatchObject({
+      kind: 'cat',
+      assetId: '0xcat',
+      symbol: 'TEST',
+      // CATs use 1000 mojo = 1 unit (vs XCH's 1e12). Same precision discipline.
+      amount: '9999999999999999.999',
+    });
+  });
+
+  it('skips entries with non-numeric, non-string values gracefully', async () => {
+    setupDaemonMock({
+      'chia_wallet.get_wallets': () => ({ wallets: [{ id: 1, type: 0 /* STANDARD_WALLET */ }] }),
+    });
+
+    // BigNumber(undefined) / BigNumber({}) → NaN → skipped. Other entries on
+    // the same offer should still render.
+    const display = await buildCreateOfferDisplay({
+      offer: { '1': '-1000000000000', bogus: undefined as unknown as string, junk: { not: 'a number' } },
+    });
+
+    expect(display?.offered).toHaveLength(1);
+    expect(display?.offered[0]).toMatchObject({ kind: 'xch', amount: '1' });
+  });
+});
+
 describe('lookupCat', () => {
   it('returns the resolved displayName + isRevocable=false for a regular CAT', async () => {
     setupDaemonMock({

@@ -3,6 +3,7 @@
 // sending "50 XCH to attacker." Daemon RPCs are trusted (same machine,
 // TLS-pinned socket).
 import { toCamelCase, toSnakeCase, WalletType } from '@chia-network/api';
+import BigNumber from 'bignumber.js';
 import crypto from 'node:crypto';
 
 import isValidURL from './isValidURL';
@@ -218,10 +219,17 @@ export async function buildCreateOfferDisplay(
 
   await Promise.all(
     Object.entries(offerDict as Record<string, unknown>).map(async ([key, raw]) => {
-      const amountNum = Number(raw);
-      if (!Number.isFinite(amountNum) || amountNum === 0) return;
-      const bucket = amountNum > 0 ? requested : offered;
-      const abs = Math.abs(amountNum).toString();
+      // Mojo amounts can exceed Number.MAX_SAFE_INTEGER (2^53). Use BigNumber
+      // so the displayed magnitude matches exactly what goes on the wire.
+      let amount: BigNumber;
+      try {
+        amount = new BigNumber(typeof raw === 'string' || typeof raw === 'number' ? raw : String(raw));
+      } catch {
+        return;
+      }
+      if (!amount.isFinite() || amount.isZero()) return;
+      const bucket = amount.isPositive() ? requested : offered;
+      const abs = amount.abs().toFixed(0);
 
       // Numeric key → wallet id; otherwise treat as an asset id (CAT) or
       // bech32 nft id depending on prefix length.
