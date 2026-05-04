@@ -100,9 +100,19 @@ export default function WalletConnectConnections(props: WalletConnectConnections
       try {
         await approveSession(topic, grant.fingerprints, grant.mainnet, grant.commands);
       } catch (approveErr) {
-        // Roll back main's grant if the WC approve fails.
-        await window.permissionsAPI.revokePair(topic);
-        await disconnect(topic);
+        // Roll back main's grant if the WC approve fails. Each cleanup step
+        // runs independently so a failure in one doesn't skip the other or
+        // mask the original approval error surfaced to the user.
+        try {
+          await window.permissionsAPI.revokePair(topic);
+        } catch (revokeErr) {
+          console.warn('Failed to revoke pair after approve failure', revokeErr);
+        }
+        try {
+          await disconnect(topic);
+        } catch (disconnectErr) {
+          console.warn('Failed to disconnect after approve failure', disconnectErr);
+        }
         throw approveErr;
       }
     } catch (err) {
