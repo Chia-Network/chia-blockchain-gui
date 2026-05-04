@@ -19,6 +19,7 @@ import url from 'node:url';
 import { toCamelCase, toSnakeCase } from '@chia-network/api';
 import BigNumber from 'bignumber.js';
 import windowStateKeeper from 'electron-window-state';
+import JSONbig from 'json-bigint';
 import { uniq } from 'lodash';
 import sanitizeFilename from 'sanitize-filename';
 
@@ -488,7 +489,7 @@ ipcMainHandle(
       ack: false,
       request_id: requestId,
     };
-    const json = JSON.stringify(toSnakeCase(wire));
+    const json = JSONbig.stringify(toSnakeCase(wire));
     const response = (await sendDappAndAwait(requestId, json)) as {
       data?: { error?: unknown; [k: string]: unknown };
     };

@@ -1,6 +1,7 @@
 import { type WebContents } from 'electron';
 import crypto from 'node:crypto';
 
+import JSONbig from 'json-bigint';
 import WebSocket, { type RawData } from 'ws';
 
 import WebSocketAPI from '../constants/WebSocketAPI';
@@ -118,7 +119,7 @@ export default function bindEvents(
       // don't notify the renderer. Renderer's Client never minted this
       // request_id, so forwarding would just produce noise.
       try {
-        const parsed = JSON.parse(data.toString());
+        const parsed = JSONbig.parse(data.toString());
         const requestId = typeof parsed?.request_id === 'string' ? parsed.request_id : undefined;
         if (requestId) {
           const pending = dappPending.get(requestId);
