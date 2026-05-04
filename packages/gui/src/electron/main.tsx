@@ -336,8 +336,22 @@ ipcMainHandle(PermissionsAPI.PAIR_RESET_BYPASS_ALL, () => {
 ipcMainHandle(PermissionsAPI.PAIR_RESET_SPENT, async (topic: string) => {
   const pair = getPair(topic);
   if (!pair) return null;
-  // No-op short-circuit avoids prompting the user for a no-change action.
-  if (!pair.spentMojos || pair.spentMojos === '0') return pair;
+
+  const dappName = pair.metadata.name || i18n._(/* i18n */ { id: 'Unknown application' });
+  const hasSpent =
+    !!pair.spentMojos && pair.spentMojos !== '0' && !new BigNumber(pair.spentMojos).isZero();
+
+  // Always give visible feedback when the user clicks the menu item —
+  // silently no-op'ing on zero left users wondering whether the click landed.
+  if (!hasSpent) {
+    await dialog.showMessageBox({
+      type: 'info',
+      buttons: [i18n._(/* i18n */ { id: 'OK' })],
+      title: i18n._(/* i18n */ { id: 'Nothing to Reset' }),
+      message: i18n._('"{name}" has not auto-spent anything yet.', { name: dappName }),
+    });
+    return pair;
+  }
 
   // Resetting hands the dapp its full silent-spend budget back — same
   // hard-click gate as setBypass.
@@ -347,9 +361,7 @@ ipcMainHandle(PermissionsAPI.PAIR_RESET_SPENT, async (topic: string) => {
     defaultId: 0,
     cancelId: 0,
     title: i18n._(/* i18n */ { id: 'Reset Spending Counter' }),
-    message: i18n._('Reset spending counter for "{name}"?', {
-      name: pair.metadata.name || i18n._(/* i18n */ { id: 'Unknown application' }),
-    }),
+    message: i18n._('Reset spending counter for "{name}"?', { name: dappName }),
     detail: i18n._(/* i18n */ {
       id: 'The app will be allowed to spend up to its full budget again before being asked.',
     }),
