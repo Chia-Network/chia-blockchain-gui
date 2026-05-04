@@ -241,32 +241,6 @@ describe('pairStore - commands field migration', () => {
     expect(reload.getPair('a')?.commands).toEqual(['chia_sendTransaction', 'chia_getWallets']);
   });
 
-  it('migrates legacy `allowedWcCommands` (bare names) into `commands` (wire form)', () => {
-    // Records persisted under the previous shape stored bare WC names
-    // (`sendTransaction`). New shape stores wire form (`chia_sendTransaction`).
-    // Migration prepends the prefix so the gate's exact-match check works.
-    const file = path.join(mockTempDir, 'dapp-pairs.yaml');
-    const legacy = makePair({ topic: 'a' });
-    delete (legacy as Partial<PairRecord>).commands;
-    (legacy as unknown as { allowedWcCommands: unknown }).allowedWcCommands = ['sendTransaction', 'getWallets'];
-    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
-
-    const reload = loadStore();
-    expect(reload.getPair('a')?.commands).toEqual(['chia_sendTransaction', 'chia_getWallets']);
-  });
-
-  it('passes already-prefixed legacy entries through unchanged', () => {
-    // Defensive: if someone hand-edited a legacy record to wire form, don't
-    // double-prefix.
-    const file = path.join(mockTempDir, 'dapp-pairs.yaml');
-    const legacy = makePair({ topic: 'a' });
-    delete (legacy as Partial<PairRecord>).commands;
-    (legacy as unknown as { allowedWcCommands: unknown }).allowedWcCommands = ['chia_sendTransaction'];
-    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
-
-    const reload = loadStore();
-    expect(reload.getPair('a')?.commands).toEqual(['chia_sendTransaction']);
-  });
 });
 
 describe('pairStore - bypass field migration', () => {

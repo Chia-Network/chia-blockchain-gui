@@ -23,21 +23,13 @@ function load(): PairRecord[] {
   if (cache) return cache;
   const data = readData(getPath());
   const raw = Array.isArray(data?.pairs) ? (data.pairs as Record<string, unknown>[]) : [];
-  // Migrations on read. Missing/legacy fields default to the safest value
-  // (deny-all, mainnet) so an upgrade can't silently expand dapp reach.
+  // Defensive parse: missing or wrong-typed fields default to the safest
+  // value (deny-all, mainnet) so a partially-written or hand-edited record
+  // can't silently expand dapp reach.
   const list = raw.map((p) => {
-    const commands = (() => {
-      if (Array.isArray(p?.commands)) {
-        return (p.commands as unknown[]).filter((c): c is string => typeof c === 'string');
-      }
-      // Legacy `allowedWcCommands` stored bare names; new `commands` is wire form.
-      if (Array.isArray(p?.allowedWcCommands)) {
-        return (p.allowedWcCommands as unknown[])
-          .filter((c): c is string => typeof c === 'string')
-          .map((c) => (c.startsWith('chia_') ? c : `chia_${c}`));
-      }
-      return [];
-    })();
+    const commands = Array.isArray(p?.commands)
+      ? (p.commands as unknown[]).filter((c): c is string => typeof c === 'string')
+      : [];
     const bypass = Array.isArray(p?.bypass)
       ? (p.bypass as unknown[]).filter((c): c is string => typeof c === 'string')
       : [];

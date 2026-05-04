@@ -20,7 +20,6 @@ function makePair(overrides: Partial<PairRecord> = {}): PairRecord {
     commands: ['chia_showNotification'],
     bypass: [],
     grants: {
-      capabilities: { balance: false, innocuous: false, sign: false, offer: false, spend: false, notifications: false },
       spendingMode: 'ask',
       spendingCapMojos: '0',
     },

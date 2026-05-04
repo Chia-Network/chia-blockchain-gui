@@ -2,7 +2,6 @@ import { buildNewPairRecord } from './buildPairRecord';
 import type { PairGrants, PairMetadata } from './types';
 
 const grants: PairGrants = {
-  capabilities: { balance: true, innocuous: true, sign: false, offer: false, spend: false, notifications: false },
   spendingMode: 'ask',
   spendingCapMojos: '10000000000',
 };

@@ -177,12 +177,10 @@ export async function approveSessionProposal(
   mainnet: boolean,
   /**
    * Methods (`chia_<wcCommand>` form) the wallet is willing to honor for this
-   * session. Should be the registry-filtered subset persisted on the pair
+   * session. Must be the registry-filtered subset persisted on the pair
    * record — passing the dapp's raw `proposal.methods` undoes the filtering.
-   * Optional only because the renderer can fall back to the proposal list
-   * when no curated subset has been computed (legacy callers).
    */
-  approvedMethods?: string[],
+  approvedMethods: string[],
 ) {
   if (!client) {
     throw new Error('Client not initialized');
@@ -212,7 +210,7 @@ export async function approveSessionProposal(
   const namespaces = {
     chia: {
       accounts,
-      methods: approvedMethods ?? proposal.methods,
+      methods: approvedMethods,
       events: proposal.events,
     },
   };
@@ -285,12 +283,12 @@ export async function processPairingDelete(pairs: Pairs, event: { topic: string 
 }
 
 /**
- * Best-effort cleanup of the main-side pair record (YAML + capability grants
- * + spent-mojo budget). Failure here doesn't block the renderer-side
+ * Best-effort cleanup of the main-side pair record (YAML grant +
+ * spent-mojo budget). Failure here doesn't block the renderer-side
  * teardown — the WC SDK pairing is already gone, and a stale main record
- * is inert (its `allowedWcCommands` can never be used because the renderer
- * has no session to dispatch on its behalf). Logged for diagnostics, not
- * surfaced to the user.
+ * is inert (its `commands` can never be used because the renderer has no
+ * session to dispatch on its behalf). Logged for diagnostics, not surfaced
+ * to the user.
  */
 async function revokeMainPair(topic: string): Promise<void> {
   try {
@@ -427,10 +425,9 @@ export async function disconnectPair(client: Client, pairs: Pairs, topic: string
   } finally {
     pairs.removePair(topic);
     // Drop the main-side persisted grant + budget too. Without this a
-    // disconnected dapp's `allowedWcCommands` and `spentMojos` would
-    // linger in `dapp-pairs.yaml`, growing the file unbounded over time
-    // and leaving dormant consents in place. Best-effort — see
-    // `revokeMainPair`.
+    // disconnected dapp's `commands` and `spentMojos` would linger in
+    // `dapp-pairs.yaml`, growing the file unbounded over time and leaving
+    // dormant consents in place. Best-effort — see `revokeMainPair`.
     await revokeMainPair(topic);
   }
 }
