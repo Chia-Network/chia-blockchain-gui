@@ -1,4 +1,3 @@
-import { toCamelCase, toSnakeCase } from '@chia-network/api';
 import {
   app,
   dialog,
@@ -17,6 +16,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import url from 'node:url';
 
+import { toCamelCase, toSnakeCase } from '@chia-network/api';
 import BigNumber from 'bignumber.js';
 import windowStateKeeper from 'electron-window-state';
 import { uniq } from 'lodash';
@@ -34,22 +34,21 @@ import AddressBookAPI from './constants/AddressBookAPI';
 import AppAPI from './constants/AppAPI';
 import ChiaLogsAPI from './constants/ChiaLogsAPI';
 import LinkAPI from './constants/LinkAPI';
-import PreferencesAPI from './constants/PreferencesAPI';
 import PermissionsAPI from './constants/PermissionsAPI';
+import PreferencesAPI from './constants/PreferencesAPI';
+import { applyDefaults, commandsMetadata, filterRequestedMethods, resolveDispatch } from './constants/commandRegistry';
 import About from './dialogs/About/About';
 import Confirm from './dialogs/Confirm/Confirm';
 import { renderConfirm } from './dialogs/Confirm/renderConfirm';
 import KeyDetail from './dialogs/KeyDetail/KeyDetail';
 import Pair, { getTitle as getPairTitle, type PairWalletOption } from './dialogs/Pair/Pair';
-import { applyDefaults, commandsMetadata, filterRequestedMethods, resolveDispatch } from './constants/commandRegistry';
 import { buildNewPairRecord } from './permissions/buildPairRecord';
 import { buildShowNotification } from './permissions/buildShowNotification';
 import { captureBypassFromConfirmResult } from './permissions/bypassCapture';
 import { checkPairAccess } from './permissions/checkPairAccess';
 import { getSpendClassification } from './permissions/commandCapabilities';
-import { resolvePermission, toWire } from './permissions/permissions';
-import { sendDappAndAwait } from './utils/webSocketBridge';
 import { getPair, listPairs, removePair, updateGrants, upsertPair } from './permissions/pairStore';
+import { resolvePermission, toWire } from './permissions/permissions';
 import {
   type PairGrants,
   type PairMetadata,
@@ -73,7 +72,7 @@ import openExternal from './utils/openExternal';
 import openReactDialog from './utils/openReactDialog';
 import * as privatePreferences from './utils/privatePreferences';
 import { setUserDataDir } from './utils/userData';
-import webSocketBridgeBindEvents from './utils/webSocketBridge';
+import webSocketBridgeBindEvents, { sendDappAndAwait } from './utils/webSocketBridge';
 
 const isPlaywrightTesting = process.env.PLAYWRIGHT_TESTS === 'true';
 const NET = 'mainnet';
@@ -144,8 +143,7 @@ function dialogResultToGrants(result: Record<string, unknown>): PairGrants {
     capabilities.notifications = true;
   }
   const rawMode = typeof result.spendingMode === 'string' ? result.spendingMode : 'ask';
-  const spendingMode: PairGrants['spendingMode'] =
-    rawMode === 'block' || rawMode === 'auto' ? rawMode : 'ask';
+  const spendingMode: PairGrants['spendingMode'] = rawMode === 'block' || rawMode === 'auto' ? rawMode : 'ask';
   if (spendingMode === 'auto') {
     capabilities.spend = true;
     capabilities.offer = true;
@@ -208,10 +206,7 @@ async function openPairDialog(
     {
       title: getPairTitle(!!options.isEdit),
       width: 640,
-      // 800 fits all sections (wallets, requested-commands collapsed,
-      // capabilities, spending) without scrolling on a default zoom.
-      // 720 was sized before the requested-commands row landed.
-      height: 800,
+      height: 600,
     },
   );
 
@@ -296,22 +291,19 @@ ipcMainHandle(PermissionsAPI.PAIR_REVOKE, (topic: string) => {
   return true;
 });
 
-ipcMainHandle(
-  PermissionsAPI.PAIR_SET_BYPASS,
-  (payload: { topic: string; wcCommand: string; enabled: boolean }) => {
-    const pair = getPair(payload.topic);
-    if (!pair) return null;
-    const set = new Set(pair.bypass);
-    if (payload.enabled) {
-      set.add(payload.wcCommand);
-    } else {
-      set.delete(payload.wcCommand);
-    }
-    const updated: PairRecord = { ...pair, bypass: [...set], updatedAt: Date.now() };
-    upsertPair(updated);
-    return updated;
-  },
-);
+ipcMainHandle(PermissionsAPI.PAIR_SET_BYPASS, (payload: { topic: string; wcCommand: string; enabled: boolean }) => {
+  const pair = getPair(payload.topic);
+  if (!pair) return null;
+  const set = new Set(pair.bypass);
+  if (payload.enabled) {
+    set.add(payload.wcCommand);
+  } else {
+    set.delete(payload.wcCommand);
+  }
+  const updated: PairRecord = { ...pair, bypass: [...set], updatedAt: Date.now() };
+  upsertPair(updated);
+  return updated;
+});
 
 ipcMainHandle(PermissionsAPI.COMMANDS_METADATA, () => commandsMetadata());
 
@@ -377,10 +369,7 @@ ipcMainHandle(
     // wallet list, the chain matches what the user paired with. Any of
     // those failing is a deny; the renderer is not consulted for
     // anything below this line on a deny path.
-    const access = checkPairAccess(
-      { topic, wcCommand, fingerprint: fingerprint?.requested, mainnet },
-      { getPair },
-    );
+    const access = checkPairAccess({ topic, wcCommand, fingerprint: fingerprint?.requested, mainnet }, { getPair });
     if (!access.ok) {
       throw new Error(access.reason);
     }
@@ -402,7 +391,10 @@ ipcMainHandle(
       const isBypassed = pair.bypass.includes(wcCommand) || pair.grants.capabilities.notifications;
       if (!isBypassed) {
         const rendered = await renderConfirm('chia_app.show_notification', data, { networkPrefix });
-        const result = await openReactDialog<true | false | Record<string, unknown>, React.ComponentProps<typeof Confirm>>(
+        const result = await openReactDialog<
+          true | false | Record<string, unknown>,
+          React.ComponentProps<typeof Confirm>
+        >(
           mainWindow,
           Confirm,
           {
@@ -477,7 +469,10 @@ ipcMainHandle(
       // user is consenting to exactly what gets sent.
       const wireData = toSnakeCase(data) as Record<string, unknown>;
       const rendered = await renderConfirm(nsCommand, wireData, { networkPrefix });
-      const result = await openReactDialog<true | false | Record<string, unknown>, React.ComponentProps<typeof Confirm>>(
+      const result = await openReactDialog<
+        true | false | Record<string, unknown>,
+        React.ComponentProps<typeof Confirm>
+      >(
         mainWindow,
         Confirm,
         {

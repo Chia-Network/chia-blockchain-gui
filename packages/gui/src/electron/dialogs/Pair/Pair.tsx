@@ -277,75 +277,79 @@ export default function Pair(props: PairProps) {
           </div>
           <ul className="m-0 p-0 list-none divide-y divide-chia-border border-t border-chia-border">
             <li>
-              <label className="flex items-start gap-3 px-5 py-2 cursor-pointer hover:bg-chia-card-elevated transition-colors">
+              <label className="flex items-center gap-3 px-5 py-1.5 cursor-pointer hover:bg-chia-card-elevated transition-colors">
                 <input
                   type="checkbox"
                   defaultChecked={innocuousChecked}
                   data-form-field="cap-innocuous"
-                  className="mt-[3px] w-[18px] h-[18px] accent-chia-primary cursor-pointer shrink-0"
+                  className="w-[18px] h-[18px] accent-chia-primary cursor-pointer shrink-0"
                 />
-                <div className="flex-1 min-w-0">
-                  <div className="text-sm font-medium text-chia-text leading-tight">
+                <span className="flex-1 min-w-0 text-sm leading-snug">
+                  <span className="font-medium text-chia-text">
                     {i18n._(/* i18n */ { id: 'Innocuous actions' })}
-                  </div>
-                  <div className="mt-0.5 text-sm text-chia-text-secondary leading-snug">
-                    {i18n._(/* i18n */ { id: 'Reads accounts and creates wallets. Cannot move funds.' })}
-                  </div>
-                </div>
+                  </span>
+                  <span className="text-chia-text-secondary">
+                    {': '}
+                    {i18n._(/* i18n */ { id: 'reads accounts, makes wallets' })}
+                  </span>
+                </span>
               </label>
             </li>
             <li>
-              <label className="flex items-start gap-3 px-5 py-2 cursor-pointer hover:bg-chia-card-elevated transition-colors">
+              <label className="flex items-center gap-3 px-5 py-1.5 cursor-pointer hover:bg-chia-card-elevated transition-colors">
                 <input
                   type="checkbox"
                   defaultChecked={balanceChecked}
                   data-form-field="cap-balance"
-                  className="mt-[3px] w-[18px] h-[18px] accent-chia-primary cursor-pointer shrink-0"
+                  className="w-[18px] h-[18px] accent-chia-primary cursor-pointer shrink-0"
                 />
-                <div className="flex-1 min-w-0">
-                  <div className="text-sm font-medium text-chia-text leading-tight">
+                <span className="flex-1 min-w-0 text-sm leading-snug">
+                  <span className="font-medium text-chia-text">
                     {i18n._(/* i18n */ { id: 'Show balances' })}
-                  </div>
-                  <div className="mt-0.5 text-sm text-chia-text-secondary leading-snug">
-                    {i18n._(/* i18n */ { id: 'Lets the app see how much you hold across your wallets.' })}
-                  </div>
-                </div>
+                  </span>
+                  <span className="text-chia-text-secondary">
+                    {': '}
+                    {i18n._(/* i18n */ { id: 'sees how much you hold' })}
+                  </span>
+                </span>
               </label>
             </li>
             <li>
-              <label className="flex items-start gap-3 px-5 py-2 cursor-pointer hover:bg-chia-card-elevated transition-colors">
+              <label className="flex items-center gap-3 px-5 py-1.5 cursor-pointer hover:bg-chia-card-elevated transition-colors">
                 <input
                   type="checkbox"
                   defaultChecked={signChecked}
                   data-form-field="cap-sign"
-                  className="mt-[3px] w-[18px] h-[18px] accent-chia-primary cursor-pointer shrink-0"
+                  className="w-[18px] h-[18px] accent-chia-primary cursor-pointer shrink-0"
                 />
-                <div className="flex-1 min-w-0">
-                  <div className="text-sm font-medium text-chia-text leading-tight">
+                <span className="flex-1 min-w-0 text-sm leading-snug">
+                  <span className="font-medium text-chia-text">
                     {i18n._(/* i18n */ { id: 'Sign messages' })}
-                  </div>
-                  <div className="mt-0.5 text-sm text-chia-text-secondary leading-snug">
-                    {i18n._(/* i18n */ { id: 'Sign messages for login or proof of ownership.' })}
-                  </div>
-                </div>
+                  </span>
+                  <span className="text-chia-text-secondary">
+                    {': '}
+                    {i18n._(/* i18n */ { id: 'login or proof of ownership' })}
+                  </span>
+                </span>
               </label>
             </li>
             <li>
-              <label className="flex items-start gap-3 px-5 py-2 cursor-pointer hover:bg-chia-card-elevated transition-colors">
+              <label className="flex items-center gap-3 px-5 py-1.5 cursor-pointer hover:bg-chia-card-elevated transition-colors">
                 <input
                   type="checkbox"
                   defaultChecked={notificationsChecked}
                   data-form-field="cap-notifications"
-                  className="mt-[3px] w-[18px] h-[18px] accent-chia-primary cursor-pointer shrink-0"
+                  className="w-[18px] h-[18px] accent-chia-primary cursor-pointer shrink-0"
                 />
-                <div className="flex-1 min-w-0">
-                  <div className="text-sm font-medium text-chia-text leading-tight">
+                <span className="flex-1 min-w-0 text-sm leading-snug">
+                  <span className="font-medium text-chia-text">
                     {i18n._(/* i18n */ { id: 'Show notifications' })}
-                  </div>
-                  <div className="mt-0.5 text-sm text-chia-text-secondary leading-snug">
-                    {i18n._(/* i18n */ { id: 'Send you offers and announcements without asking each time.' })}
-                  </div>
-                </div>
+                  </span>
+                  <span className="text-chia-text-secondary">
+                    {': '}
+                    {i18n._(/* i18n */ { id: 'offers and announcements' })}
+                  </span>
+                </span>
               </label>
             </li>
           </ul>
@@ -355,76 +359,67 @@ export default function Pair(props: PairProps) {
           <div className="px-5 pt-2.5 pb-1.5 text-xs font-semibold uppercase tracking-wider text-chia-text-muted">
             {i18n._(/* i18n */ { id: 'Spending and trading' })}
           </div>
-          <div className="border-t border-chia-border divide-y divide-chia-border">
-            <label className="flex flex-col px-5 py-2 cursor-pointer hover:bg-chia-card-elevated transition-colors">
-              <div className="flex items-center gap-3">
-                <input
-                  type="radio"
-                  name="spendingMode"
-                  value="ask"
-                  defaultChecked={spendingMode === 'ask'}
-                  data-form-field="spendingMode"
-                  className="w-[18px] h-[18px] accent-chia-primary cursor-pointer shrink-0"
-                />
-                <span className="text-sm font-medium text-chia-text">
-                  {i18n._(/* i18n */ { id: 'Ask me each time' })}
-                </span>
-              </div>
-              <div className="mt-0.5 ml-[30px] text-sm text-chia-text-secondary leading-snug">
-                {i18n._(/* i18n */ { id: 'You confirm every spend, trade, or NFT transfer.' })}
-              </div>
+          {/* Three options on one row. The Auto amount input is always present
+              so the user can edit the cap regardless of which radio is
+              currently checked — its value is only consumed when spendingMode
+              === 'auto', so leaving a stale value selected is harmless. */}
+          <div className="px-5 py-2.5 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-chia-border">
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="radio"
+                name="spendingMode"
+                value="ask"
+                defaultChecked={spendingMode === 'ask'}
+                data-form-field="spendingMode"
+                className="w-[18px] h-[18px] accent-chia-primary cursor-pointer shrink-0"
+              />
+              <span className="text-sm font-medium text-chia-text">
+                {i18n._(/* i18n */ { id: 'Ask each time' })}
+              </span>
             </label>
-
-            <label className="flex flex-col px-5 py-2 cursor-pointer hover:bg-chia-card-elevated transition-colors">
-              <div className="flex items-center gap-3">
-                <input
-                  type="radio"
-                  name="spendingMode"
-                  value="block"
-                  defaultChecked={spendingMode === 'block'}
-                  data-form-field="spendingMode"
-                  className="w-[18px] h-[18px] accent-chia-primary cursor-pointer shrink-0"
-                />
-                <span className="text-sm font-medium text-chia-text">
-                  {i18n._(/* i18n */ { id: "Don't allow at all" })}
-                </span>
-              </div>
-              <div className="mt-0.5 ml-[30px] text-sm text-chia-text-secondary leading-snug">
-                {i18n._(/* i18n */ { id: 'Refuse without asking. The app cannot move funds.' })}
-              </div>
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="radio"
+                name="spendingMode"
+                value="block"
+                defaultChecked={spendingMode === 'block'}
+                data-form-field="spendingMode"
+                className="w-[18px] h-[18px] accent-chia-primary cursor-pointer shrink-0"
+              />
+              <span className="text-sm font-medium text-chia-text">
+                {i18n._(/* i18n */ { id: 'Block' })}
+              </span>
             </label>
-
-            <label className="flex flex-col px-5 py-2 cursor-pointer hover:bg-chia-card-elevated transition-colors">
-              <div className="flex items-center gap-3 flex-wrap">
-                <input
-                  type="radio"
-                  name="spendingMode"
-                  value="auto"
-                  defaultChecked={spendingMode === 'auto'}
-                  data-form-field="spendingMode"
-                  className="w-[18px] h-[18px] accent-chia-primary cursor-pointer shrink-0"
-                />
-                <span className="text-sm font-medium text-chia-text">
-                  {i18n._(/* i18n */ { id: 'Auto-approve up to' })}
-                </span>
-                <input
-                  type="number"
-                  min="0"
-                  step="0.000000000001"
-                  defaultValue={defaultCapXch}
-                  data-form-field="spendingCapXch"
-                  className="w-28 px-2 py-1 rounded-md border border-chia-border-strong bg-chia-bg text-sm font-mono text-chia-text focus:outline-none focus:border-chia-primary focus:ring-2 focus:ring-chia-primary/20"
-                />
-                <span className="text-sm font-semibold uppercase tracking-wider text-chia-text-secondary">
-                  {currencyCode}
-                </span>
-              </div>
-              <div className="mt-0.5 ml-[30px] text-sm text-chia-text-secondary leading-snug">
-                {i18n._(/* i18n */ {
-                  id: "Spends go through silently up to this amount. After that, it'll ask you.",
-                })}
-              </div>
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="radio"
+                name="spendingMode"
+                value="auto"
+                defaultChecked={spendingMode === 'auto'}
+                data-form-field="spendingMode"
+                className="w-[18px] h-[18px] accent-chia-primary cursor-pointer shrink-0"
+              />
+              <span className="text-sm font-medium text-chia-text">
+                {i18n._(/* i18n */ { id: 'Auto up to' })}
+              </span>
+              <input
+                type="number"
+                min="0"
+                step="0.000000000001"
+                defaultValue={defaultCapXch}
+                data-form-field="spendingCapXch"
+                className="w-24 px-2 py-1 rounded-md border border-chia-border-strong bg-chia-bg text-sm font-mono text-chia-text focus:outline-none focus:border-chia-primary focus:ring-2 focus:ring-chia-primary/20"
+              />
+              <span className="text-sm font-semibold uppercase tracking-wider text-chia-text-secondary">
+                {currencyCode}
+              </span>
             </label>
+          </div>
+          {/* Auto-approve is a cumulative budget, not a per-transaction limit.
+              Easy to misread, so the clarification sits directly under the
+              row without bloating the segmented control. */}
+          <div className="px-5 pb-2.5 text-xs text-chia-text-muted leading-snug">
+            {i18n._(/* i18n */ { id: "Spending adds up to this total. We'll ask again once it's reached." })}
           </div>
         </section>
       </div>
