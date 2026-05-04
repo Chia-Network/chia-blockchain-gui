@@ -36,7 +36,7 @@ import ChiaLogsAPI from './constants/ChiaLogsAPI';
 import LinkAPI from './constants/LinkAPI';
 import PermissionsAPI from './constants/PermissionsAPI';
 import PreferencesAPI from './constants/PreferencesAPI';
-import { applyDefaults, commandsMetadata, filterRequestedCommands, resolveDispatch } from './constants/commandRegistry';
+import { applyDefaults, commandsMetadata, filterRequestedCommands, getCommandByWc, resolveDispatch } from './constants/commandRegistry';
 import About from './dialogs/About/About';
 import Confirm from './dialogs/Confirm/Confirm';
 import { renderConfirm } from './dialogs/Confirm/renderConfirm';
@@ -46,7 +46,7 @@ import { buildNewPairRecord } from './permissions/buildPairRecord';
 import { buildShowNotification } from './permissions/buildShowNotification';
 import { captureBypassFromConfirmResult } from './permissions/bypassCapture';
 import { checkPairAccess } from './permissions/checkPairAccess';
-import { getSpendClassification } from './permissions/commandCapabilities';
+import { getSpendClassification, isBalanceCommand, isInnocuousCommand, isSignCommand } from './permissions/commandCapabilities';
 import {
   getPair,
   listPairs,
@@ -54,16 +54,14 @@ import {
   resetBypass,
   resetBypassAll,
   resetSpentMojos,
-  setBypass,
   upsertPair,
 } from './permissions/pairStore';
 import { resolvePermission } from './permissions/permissions';
-import {
-  type PairGrants,
-  type PairMetadata,
-  type PairRecord,
-  type Principal,
-  emptyCapabilities,
+import type {
+  PairGrants,
+  PairMetadata,
+  PairRecord,
+  Principal,
 } from './permissions/types';
 import { readPrefs, savePrefs, migratePrefs } from './prefs';
 import { readAddressBook, saveAddressBook } from './utils/addressBook';
@@ -139,25 +137,8 @@ ipcMainHandle(AppAPI.SHOW_NOTIFICATION, async (options: { title: string; body: s
 const MOJOS_PER_XCH = new BigNumber('1000000000000');
 
 function dialogResultToGrants(result: Record<string, unknown>): PairGrants {
-  const capabilities = emptyCapabilities();
-  if (result['cap-innocuous'] === true) {
-    capabilities.innocuous = true;
-  }
-  if (result['cap-balance'] === true) {
-    capabilities.balance = true;
-  }
-  if (result['cap-sign'] === true) {
-    capabilities.sign = true;
-  }
-  if (result['cap-notifications'] === true) {
-    capabilities.notifications = true;
-  }
   const rawMode = typeof result.spendingMode === 'string' ? result.spendingMode : 'ask';
   const spendingMode: PairGrants['spendingMode'] = rawMode === 'block' || rawMode === 'auto' ? rawMode : 'ask';
-  if (spendingMode === 'auto') {
-    capabilities.spend = true;
-    capabilities.offer = true;
-  }
   let mojos = '0';
   const rawXch = result.spendingCapXch;
   if (rawXch !== null && rawXch !== undefined && rawXch !== '') {
@@ -170,17 +151,54 @@ function dialogResultToGrants(result: Record<string, unknown>): PairGrants {
       // Fall through with mojos = '0'.
     }
   }
-  return {
-    capabilities,
-    spendingMode,
-    spendingCapMojos: mojos,
-  };
+  return { spendingMode, spendingCapMojos: mojos };
+}
+
+// Reads `bypass-<wcCommand>` form fields and returns the wire-form commands
+// the user ticked. Filters to the dapp's actually-granted commands so a
+// stray field can't grant something the registry didn't allow at pair time.
+function dialogResultToBypass(result: Record<string, unknown>, granted: string[]): string[] {
+  const grantedSet = new Set(granted);
+  const bypass: string[] = [];
+  for (const [key, value] of Object.entries(result)) {
+    if (!key.startsWith('bypass-')) continue;
+    if (value !== true) continue;
+    const wcCommand = key.slice('bypass-'.length);
+    if (grantedSet.has(wcCommand)) bypass.push(wcCommand);
+  }
+  return bypass;
 }
 
 function dialogResultToFingerprints(result: Record<string, unknown>): number[] {
   const raw = result.wallets;
   const list = Array.isArray(raw) ? raw : [];
   return list.map((v) => Number(v)).filter((n) => Number.isFinite(n));
+}
+
+// Classify granted commands into the buckets the Pair dialog renders.
+// Spend-class commands are excluded entirely — they're governed by
+// spendingMode + cap, not by bypass membership.
+function classifyForPairDialog(grantedWireCommands: string[]) {
+  const innocuous: string[] = [];
+  const balance: string[] = [];
+  const sign: string[] = [];
+  const notifications: string[] = [];
+  const other: string[] = [];
+  for (const wcCommand of grantedWireCommands) {
+    if (wcCommand === 'chia_showNotification') {
+      notifications.push(wcCommand);
+      continue;
+    }
+    const entry = getCommandByWc(wcCommand);
+    if (!entry) continue;
+    const { nsCommand } = entry;
+    if (getSpendClassification(nsCommand)) continue; // spend goes to spendingMode
+    if (isBalanceCommand(nsCommand)) balance.push(wcCommand);
+    else if (isInnocuousCommand(nsCommand)) innocuous.push(wcCommand);
+    else if (isSignCommand(nsCommand)) sign.push(wcCommand);
+    else other.push(wcCommand);
+  }
+  return { innocuous, balance, sign, notifications, other };
 }
 
 async function openPairDialog(
@@ -193,10 +211,13 @@ async function openPairDialog(
     allowed?: string[];
     rejected?: string[];
   } = {},
-): Promise<{ grants: PairGrants; fingerprints: number[] } | undefined> {
+): Promise<{ grants: PairGrants; fingerprints: number[]; bypass: string[] } | undefined> {
   if (!mainWindow) {
     throw new Error('mainWindow is empty');
   }
+
+  const grantedCommands = options.allowed ?? options.defaults?.commands ?? [];
+  const commandGroups = classifyForPairDialog(grantedCommands);
 
   const result = await openReactDialog<Record<string, unknown> | true | false, React.ComponentProps<typeof Pair>>(
     mainWindow,
@@ -208,14 +229,15 @@ async function openPairDialog(
       defaultFingerprints: options.defaults?.fingerprints ?? options.defaultFingerprints,
       isEdit: !!options.isEdit,
       defaultSpentMojos: options.defaults?.spentMojos,
+      defaultBypass: options.defaults?.bypass ?? [],
+      commandGroups,
       currencyCode: networkPrefix ? networkPrefix.toUpperCase() : 'XCH',
-      allowedCommands: options.allowed ?? options.defaults?.commands ?? [],
       rejectedCommands: options.rejected ?? [],
     },
     {
       title: getPairTitle(!!options.isEdit),
       width: 640,
-      height: 600,
+      height: 640,
     },
   );
 
@@ -226,6 +248,7 @@ async function openPairDialog(
   return {
     grants: dialogResultToGrants(result),
     fingerprints: dialogResultToFingerprints(result),
+    bypass: dialogResultToBypass(result, grantedCommands),
   };
 }
 
@@ -257,6 +280,7 @@ ipcMainHandle(
       fingerprints: decision.fingerprints,
       grants: decision.grants,
       commands: allowed,
+      bypass: decision.bypass,
       now: Date.now(),
     });
     upsertPair(record);
@@ -282,6 +306,7 @@ ipcMainHandle(PermissionsAPI.PAIR_EDIT, async (payload: { topic: string }) => {
     ...existing,
     fingerprints: decision.fingerprints,
     grants: decision.grants,
+    bypass: decision.bypass,
     updatedAt: Date.now(),
   };
   upsertPair(updated);
@@ -292,39 +317,6 @@ ipcMainHandle(PermissionsAPI.PAIR_REVOKE, (topic: string) => {
   removePair(topic);
   return true;
 });
-
-ipcMainHandle(
-  PermissionsAPI.PAIR_SET_BYPASS,
-  async (payload: { topic: string; wcCommand: string; enabled: boolean }) => {
-    const pair = getPair(payload.topic);
-    if (!pair) return null;
-    const isAlready = pair.bypass.includes(payload.wcCommand);
-    if (isAlready === payload.enabled) return pair;
-
-    // Granting silent execution requires a real OS click. A compromised
-    // renderer can fire this IPC but can't satisfy the dialog response.
-    // Disable doesn't need confirmation (revoking is always safer).
-    if (payload.enabled) {
-      const result = await dialog.showMessageBox({
-        type: 'warning',
-        buttons: [i18n._(/* i18n */ { id: 'Cancel' }), i18n._(/* i18n */ { id: 'Allow' })],
-        defaultId: 0,
-        cancelId: 0,
-        title: i18n._(/* i18n */ { id: 'Skip Confirmation' }),
-        message: i18n._('Allow "{name}" to use {command} without asking each time?', {
-          name: pair.metadata.name || i18n._(/* i18n */ { id: 'Unknown application' }),
-          command: payload.wcCommand,
-        }),
-        detail: i18n._(/* i18n */ {
-          id: 'Future calls from this app will run without confirmation. You can reverse this in Settings.',
-        }),
-      });
-      if (result.response !== 1) return pair;
-    }
-
-    return setBypass(payload.topic, payload.wcCommand, payload.enabled) ?? null;
-  },
-);
 
 ipcMainHandle(PermissionsAPI.PAIR_RESET_BYPASS, (topic: string) => resetBypass(topic) ?? null);
 
@@ -404,7 +396,7 @@ ipcMainHandle(
 
     // Renderer-handled commands (no daemon involvement).
     if (wcCommand === 'chia_showNotification') {
-      const isBypassed = pair.bypass.includes(wcCommand) || pair.grants.capabilities.notifications;
+      const isBypassed = pair.bypass.includes(wcCommand);
       if (!isBypassed) {
         const rendered = await renderConfirm('chia_app.show_notification', data, { networkPrefix });
         const result = await openReactDialog<

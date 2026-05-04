@@ -32,14 +32,6 @@ function makePair(overrides: Partial<PairRecord> = {}): PairRecord {
     commands: [],
     bypass: [],
     grants: {
-      capabilities: {
-        balance: false,
-        innocuous: false,
-        sign: false,
-        offer: false,
-        spend: false,
-        notifications: false,
-      },
       spendingMode: 'ask',
       spendingCapMojos: '0',
     },
@@ -344,148 +336,129 @@ describe('pairStore - mainnet field migration', () => {
   });
 });
 
-describe('pairStore - notifications capability migration', () => {
-  // Legacy records persisted before the notifications capability landed
-  // have no `capabilities.notifications` field. Default to false — same
-  // safe-deny stance as the other migrations: never silently expand dapp
-  // reach across an upgrade.
+describe('pairStore - legacy capabilities → bypass migration', () => {
+  // Pre-merge records carried `grants.capabilities.<bit>: true` and we
+  // resolved permissions by reading those bits at runtime. Post-merge, the
+  // bypass list is the only knob; capability bits expand into per-command
+  // bypass entries on first read and the field is dropped on next write.
 
-  it('defaults to false when the field is absent on disk', () => {
+  function legacyPair(topic: string, capabilities: Record<string, boolean>, commands: string[], bypass: string[] = []) {
+    return {
+      topic,
+      mainnet: true,
+      metadata: { name: 'X' },
+      fingerprints: [123],
+      createdAt: 0,
+      updatedAt: 0,
+      spentMojos: '0',
+      commands,
+      bypass,
+      grants: {
+        capabilities: {
+          balance: false,
+          innocuous: false,
+          sign: false,
+          offer: false,
+          spend: false,
+          notifications: false,
+          ...capabilities,
+        },
+        spendingMode: 'ask',
+        spendingCapMojos: '0',
+      },
+    };
+  }
+
+  it('expands balance:true into bypass entries for granted balance commands', () => {
     const file = path.join(mockTempDir, 'dapp-pairs.yaml');
-    const legacy = makePair({ topic: 'a' });
-    delete (legacy.grants.capabilities as Partial<typeof legacy.grants.capabilities>).notifications;
+    const legacy = legacyPair('a', { balance: true }, ['chia_getWalletBalance', 'chia_getWalletBalances', 'chia_getWallets']);
     fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
 
     const reload = loadStore();
-    expect(reload.getPair('a')?.grants.capabilities.notifications).toBe(false);
+    const pair = reload.getPair('a');
+    expect(pair?.bypass).toContain('chia_getWalletBalance');
+    expect(pair?.bypass).toContain('chia_getWalletBalances');
+    // chia_getWallets is innocuous, not balance — innocuous bit is false here.
+    expect(pair?.bypass).not.toContain('chia_getWallets');
   });
 
-  it('coerces non-true values to false', () => {
-    // Strict equality with `true` — a hand-edited string `"true"` or any
-    // other truthy non-boolean is treated as denied, matching the
-    // strict-equality contract elsewhere in the permission flow.
+  it('expands innocuous:true into bypass entries for granted innocuous commands', () => {
     const file = path.join(mockTempDir, 'dapp-pairs.yaml');
-    const legacy = makePair({ topic: 'a' });
-    (legacy.grants.capabilities as unknown as { notifications: unknown }).notifications = 'true';
+    const legacy = legacyPair('a', { innocuous: true }, ['chia_getWallets', 'chia_getNextAddress', 'chia_signMessageById']);
     fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
 
     const reload = loadStore();
-    expect(reload.getPair('a')?.grants.capabilities.notifications).toBe(false);
+    const pair = reload.getPair('a');
+    expect(pair?.bypass).toContain('chia_getWallets');
+    expect(pair?.bypass).toContain('chia_getNextAddress');
+    // sign command is not in innocuous bucket; sign:false means no expansion.
+    expect(pair?.bypass).not.toContain('chia_signMessageById');
   });
 
-  it('preserves an explicit true', () => {
-    const store = loadStore();
-    const pair = makePair({ topic: 'a' });
-    pair.grants.capabilities.notifications = true;
-    store.upsertPair(pair);
+  it('expands sign:true into bypass entries for granted sign commands', () => {
+    const file = path.join(mockTempDir, 'dapp-pairs.yaml');
+    const legacy = legacyPair('a', { sign: true }, ['chia_signMessageByAddress', 'chia_signMessageById']);
+    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
 
     const reload = loadStore();
-    expect(reload.getPair('a')?.grants.capabilities.notifications).toBe(true);
-  });
-});
-
-describe('pairStore - setBypass (toggle one command)', () => {
-  it('adds the command when enabling for the first time', () => {
-    const store = loadStore();
-    store.upsertPair(makePair({ topic: 'a', bypass: [] }));
-
-    const updated = store.setBypass('a', 'chia_sendTransaction', true);
-    expect(updated?.bypass).toEqual(['chia_sendTransaction']);
-    expect(store.getPair('a')?.bypass).toEqual(['chia_sendTransaction']);
+    const pair = reload.getPair('a');
+    expect(pair?.bypass).toContain('chia_signMessageByAddress');
+    expect(pair?.bypass).toContain('chia_signMessageById');
   });
 
-  it('removes the command when disabling', () => {
-    const store = loadStore();
-    store.upsertPair(makePair({ topic: 'a', bypass: ['chia_sendTransaction', 'chia_getWallets'] }));
-
-    const updated = store.setBypass('a', 'chia_sendTransaction', false);
-    expect(updated?.bypass).toEqual(['chia_getWallets']);
-  });
-
-  it('persists across reloads', () => {
-    const store = loadStore();
-    store.upsertPair(makePair({ topic: 'a', bypass: [] }));
-    store.setBypass('a', 'chia_sendTransaction', true);
+  it('expands notifications:true into a single chia_showNotification entry', () => {
+    const file = path.join(mockTempDir, 'dapp-pairs.yaml');
+    const legacy = legacyPair('a', { notifications: true }, ['chia_showNotification', 'chia_getWallets']);
+    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
 
     const reload = loadStore();
-    expect(reload.getPair('a')?.bypass).toEqual(['chia_sendTransaction']);
+    expect(reload.getPair('a')?.bypass).toContain('chia_showNotification');
   });
 
-  it('returns undefined for an unknown topic without persisting', () => {
-    const store = loadStore();
-    store.upsertPair(makePair({ topic: 'a', bypass: [] }));
+  it('only expands commands the dapp was actually granted (never silently broadens)', () => {
+    // balance:true on a pair that was only granted send_transaction must
+    // NOT add any balance commands — the registry knows what balance
+    // commands exist but `commands` defines the dapp's reach.
+    const file = path.join(mockTempDir, 'dapp-pairs.yaml');
+    const legacy = legacyPair('a', { balance: true }, ['chia_sendTransaction']);
+    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
 
-    expect(store.setBypass('nonexistent', 'chia_sendTransaction', true)).toBeUndefined();
-    expect(store.getPair('a')?.bypass).toEqual([]);
+    const reload = loadStore();
+    expect(reload.getPair('a')?.bypass).toEqual([]);
   });
 
-  it('is a no-op when enabling something already enabled (does not bump updatedAt)', () => {
-    // Idempotent toggles shouldn't churn updatedAt.
-    const store = loadStore();
-    store.upsertPair(makePair({ topic: 'a', updatedAt: 100, bypass: ['chia_sendTransaction'] }));
-
-    const result = store.setBypass('a', 'chia_sendTransaction', true);
-    expect(result?.updatedAt).toBe(100);
-    expect(store.getPair('a')?.updatedAt).toBe(100);
-  });
-
-  it('is a no-op when disabling something already absent (does not bump updatedAt)', () => {
-    const store = loadStore();
-    store.upsertPair(makePair({ topic: 'a', updatedAt: 100, bypass: [] }));
-
-    const result = store.setBypass('a', 'chia_sendTransaction', false);
-    expect(result?.updatedAt).toBe(100);
-    expect(store.getPair('a')?.updatedAt).toBe(100);
-  });
-
-  it('bumps updatedAt when state actually changed', () => {
-    const store = loadStore();
-    store.upsertPair(makePair({ topic: 'a', updatedAt: 100, bypass: [] }));
-
-    const before = Date.now();
-    const result = store.setBypass('a', 'chia_sendTransaction', true);
-    const after = Date.now();
-
-    expect(result?.updatedAt).toBeGreaterThanOrEqual(before);
-    expect(result?.updatedAt).toBeLessThanOrEqual(after);
-  });
-
-  it('only touches the targeted pair, not siblings', () => {
-    const store = loadStore();
-    store.upsertPair(makePair({ topic: 'a', bypass: [] }));
-    store.upsertPair(makePair({ topic: 'b', bypass: ['chia_getWallets'] }));
-
-    store.setBypass('a', 'chia_sendTransaction', true);
-    expect(store.getPair('a')?.bypass).toEqual(['chia_sendTransaction']);
-    expect(store.getPair('b')?.bypass).toEqual(['chia_getWallets']);
-  });
-
-  it('preserves the rest of the pair record (commands, fingerprints, grants)', () => {
-    const store = loadStore();
-    store.upsertPair(
-      makePair({
-        topic: 'a',
-        bypass: [],
-        commands: ['chia_sendTransaction', 'chia_getWallets'],
-        fingerprints: [111, 222],
-        spentMojos: '500',
-      }),
+  it('unions with any existing bypass entries (no duplicates, both preserved)', () => {
+    const file = path.join(mockTempDir, 'dapp-pairs.yaml');
+    const legacy = legacyPair(
+      'a',
+      { balance: true },
+      ['chia_getWalletBalance', 'chia_logIn'],
+      ['chia_logIn', 'chia_getWalletBalance'],
     );
+    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
 
-    const result = store.setBypass('a', 'chia_sendTransaction', true);
-    expect(result?.commands).toEqual(['chia_sendTransaction', 'chia_getWallets']);
-    expect(result?.fingerprints).toEqual([111, 222]);
-    expect(result?.spentMojos).toBe('500');
+    const reload = loadStore();
+    const pair = reload.getPair('a');
+    expect(pair?.bypass.sort()).toEqual(['chia_getWalletBalance', 'chia_logIn']);
   });
 
-  it('does not duplicate when the command is added twice (defensive — handler also gates this)', () => {
-    // Belt-and-suspenders: even if the dialog gate were bypassed somehow,
-    // the underlying mutator still preserves the no-op invariant.
-    const store = loadStore();
-    store.upsertPair(makePair({ topic: 'a', bypass: ['chia_sendTransaction'] }));
+  it('drops the capabilities field from the in-memory record (next write persists clean)', () => {
+    const file = path.join(mockTempDir, 'dapp-pairs.yaml');
+    const legacy = legacyPair('a', { balance: true }, ['chia_getWalletBalance']);
+    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
 
-    store.setBypass('a', 'chia_sendTransaction', true);
-    expect(store.getPair('a')?.bypass).toEqual(['chia_sendTransaction']);
+    const reload = loadStore();
+    const pair = reload.getPair('a');
+    expect((pair?.grants as unknown as { capabilities?: unknown }).capabilities).toBeUndefined();
+  });
+
+  it('all capability bits false (or missing) leaves bypass exactly as on disk', () => {
+    const file = path.join(mockTempDir, 'dapp-pairs.yaml');
+    const legacy = legacyPair('a', {}, ['chia_getWalletBalance'], ['chia_getWalletBalance']);
+    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
+
+    const reload = loadStore();
+    expect(reload.getPair('a')?.bypass).toEqual(['chia_getWalletBalance']);
   });
 });
 

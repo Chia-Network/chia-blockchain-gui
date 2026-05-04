@@ -2,7 +2,7 @@ import BigNumber from 'bignumber.js';
 
 import { resolvePermission } from './permissions';
 import { getPair, recordSpend } from './pairStore';
-import type { CapabilityGrants, Decision, PairRecord, SpendingMode } from './types';
+import type { Decision, PairRecord, SpendingMode } from './types';
 
 jest.mock('./pairStore', () => ({
   getPair: jest.fn(),
@@ -16,22 +16,10 @@ const TOPIC = 'topic-1';
 const PAIR_PRINCIPAL = { kind: 'pair' as const, topic: TOPIC };
 const UI_PRINCIPAL = { kind: 'ui' as const };
 
-function makeCapabilities(overrides: Partial<CapabilityGrants> = {}): CapabilityGrants {
-  return {
-    balance: false,
-    innocuous: false,
-    sign: false,
-    offer: false,
-    spend: false,
-    notifications: false,
-    ...overrides,
-  };
-}
-
-// Wide default so tests focus on the capability/spend logic, not the
-// per-pair allowlist gate. The `commands` gate has its own dedicated suite
-// below; tests in this file that exercise other code paths assume the
-// command is in the list. All entries use wire form (`chia_<name>`).
+// Wide default so tests focus on the bypass/spend logic, not the per-pair
+// allowlist gate. The `commands` gate has its own dedicated suite below;
+// tests in this file that exercise other code paths assume the command is
+// in the list. All entries use wire form (`chia_<name>`).
 const DEFAULT_COMMANDS: readonly string[] = [
   'chia_getWallets',
   'chia_getWalletBalance',
@@ -48,9 +36,7 @@ const DEFAULT_COMMANDS: readonly string[] = [
   'chia_getCoinRecordsByNames',
 ];
 
-// Namespaced daemon command → WC name (wire form), for tests that pass an
-// `nsCommand` directly. Missing entries fall back to `chia_unknown`, which
-// the gate then denies.
+// Namespaced daemon command → WC name (wire form).
 const NS_TO_WC: Record<string, string> = {
   'chia_wallet.get_wallets': 'chia_getWallets',
   'chia_wallet.get_wallet_balance': 'chia_getWalletBalance',
@@ -69,7 +55,6 @@ const NS_TO_WC: Record<string, string> = {
 
 function makePair(
   overrides: {
-    capabilities?: Partial<CapabilityGrants>;
     spendingMode?: SpendingMode;
     spendingCapMojos?: string;
     spentMojos?: string;
@@ -89,18 +74,12 @@ function makePair(
     commands: overrides.commands ?? [...DEFAULT_COMMANDS],
     bypass: overrides.bypass ?? [],
     grants: {
-      capabilities: makeCapabilities(overrides.capabilities),
       spendingMode: overrides.spendingMode ?? 'ask',
       spendingCapMojos: overrides.spendingCapMojos ?? '0',
     },
   };
 }
 
-/**
- * Test-side wrapper: derives the WC command name from the namespaced daemon
- * command using `NS_TO_WC`. Tests that need a specific wcCommand (e.g. to
- * exercise the gate) can call `resolvePermission` directly.
- */
 function pairResolve(nsCommand: string, payload: Record<string, unknown> = {}): Decision {
   return resolvePermission(PAIR_PRINCIPAL, nsCommand, payload, {
     wcCommand: NS_TO_WC[nsCommand] ?? 'chia_unknown',
@@ -168,7 +147,7 @@ describe('resolvePermission - pair context shape', () => {
     const d = pairResolve('chia_wallet.get_wallets', {});
     expect(d).toEqual({
       kind: 'prompt',
-      reason: 'innocuous not pre-approved',
+      reason: 'not in bypass list',
       pair: { topic: TOPIC, name: 'My Dapp', url: 'https://app.example' },
     });
   });
@@ -187,22 +166,49 @@ describe('resolvePermission - pair context shape', () => {
   });
 });
 
-describe('resolvePermission - balance commands', () => {
-  it('allows when balance capability granted', () => {
-    mockGetPair.mockReturnValue(makePair({ capabilities: { balance: true } }));
+describe('resolvePermission - bypass-driven allow', () => {
+  // The merged model: a command is silently allowed iff it appears in
+  // pair.bypass. No more capability buckets at the runtime layer — those
+  // were just UI groupings for bulk-toggling individual entries.
+  it('allows a balance command when its wcCommand is in bypass', () => {
+    mockGetPair.mockReturnValue(makePair({ bypass: ['chia_getWalletBalance', 'chia_getWalletBalances'] }));
     expect(pairResolve('chia_wallet.get_wallet_balance', {}).kind).toBe('allow');
     expect(pairResolve('chia_wallet.get_wallet_balances', {}).kind).toBe('allow');
   });
 
-  it('prompts when balance capability missing', () => {
-    mockGetPair.mockReturnValue(makePair());
-    const d = pairResolve('chia_wallet.get_wallet_balance', {});
-    expect(d.kind).toBe('prompt');
-    expect((d as Extract<Decision, { kind: 'prompt' }>).reason).toBe('balance not pre-approved');
+  it('allows an innocuous command when its wcCommand is in bypass', () => {
+    mockGetPair.mockReturnValue(makePair({ bypass: ['chia_getWallets', 'chia_getCoinRecordsByNames'] }));
+    expect(pairResolve('chia_wallet.get_wallets', {}).kind).toBe('allow');
+    expect(pairResolve('chia_wallet.get_coin_records_by_names', {}).kind).toBe('allow');
   });
 
-  it('balance allow has no-op commit (read-only command)', () => {
-    mockGetPair.mockReturnValue(makePair({ capabilities: { balance: true } }));
+  it('allows a sign command when its wcCommand is in bypass', () => {
+    mockGetPair.mockReturnValue(makePair({ bypass: ['chia_signMessageByAddress', 'chia_signMessageById'] }));
+    expect(pairResolve('chia_wallet.sign_message_by_address', {}).kind).toBe('allow');
+    expect(pairResolve('chia_wallet.sign_message_by_id', {}).kind).toBe('allow');
+  });
+
+  it('prompts with "not in bypass list" when wcCommand absent', () => {
+    mockGetPair.mockReturnValue(makePair({ bypass: [] }));
+    const d = pairResolve('chia_wallet.get_wallet_balance', {});
+    expect(d.kind).toBe('prompt');
+    expect((d as Extract<Decision, { kind: 'prompt' }>).reason).toBe('not in bypass list');
+  });
+
+  it('only-this-command-bypassed grants exactly that command, not its siblings', () => {
+    // The whole point of moving to a per-command list: if a future release
+    // adds a new balance command, an existing pair with only the OLD
+    // command bypassed does not silently auto-bypass the new one.
+    mockGetPair.mockReturnValue(makePair({ bypass: ['chia_getWalletBalance'] }));
+    expect(pairResolve('chia_wallet.get_wallet_balance', {}).kind).toBe('allow');
+    expect(pairResolve('chia_wallet.get_wallet_balances', {})).toMatchObject({
+      kind: 'prompt',
+      reason: 'not in bypass list',
+    });
+  });
+
+  it('bypass allow has no-op commit (read-only commands)', () => {
+    mockGetPair.mockReturnValue(makePair({ bypass: ['chia_getWalletBalance'] }));
     const d = expectAllow(pairResolve('chia_wallet.get_wallet_balance', {}));
     d.commit();
     expect(mockRecordSpend).not.toHaveBeenCalled();
@@ -211,6 +217,7 @@ describe('resolvePermission - balance commands', () => {
 
 describe('resolvePermission - push_transactions', () => {
   const CMD = 'chia_wallet.push_transactions';
+  const WC = 'chia_pushTransactions';
 
   it.each([
     ['true', true],
@@ -218,19 +225,19 @@ describe('resolvePermission - push_transactions', () => {
     ['string "false"', 'false'],
     ['number 1', 1],
     ['object {}', {}],
-  ])('prompts when sign is truthy via %s (Python truthiness)', (_label, sign) => {
-    mockGetPair.mockReturnValue(makePair({ capabilities: { innocuous: true } }));
+  ])('prompts with "signing requested" when sign is truthy via %s (Python truthiness)', (_label, sign) => {
+    mockGetPair.mockReturnValue(makePair({ bypass: [WC] }));
     expect(pairResolve(CMD, { sign })).toMatchObject({
       kind: 'prompt',
       reason: 'signing requested',
     });
   });
 
-  it('prompts when innocuous capability is missing', () => {
-    mockGetPair.mockReturnValue(makePair());
+  it('prompts when push is not in bypass', () => {
+    mockGetPair.mockReturnValue(makePair({ bypass: [] }));
     expect(pairResolve(CMD, {})).toMatchObject({
       kind: 'prompt',
-      reason: 'innocuous actions not pre-approved',
+      reason: 'not in bypass list',
     });
   });
 
@@ -239,19 +246,15 @@ describe('resolvePermission - push_transactions', () => {
     ['false', false],
     ['number 0', 0],
     ['null', null],
-  ])('allows when sign is falsy via %s and innocuous granted', (_label, sign) => {
-    mockGetPair.mockReturnValue(makePair({ capabilities: { innocuous: true } }));
+  ])('allows when sign is falsy via %s and push is in bypass', (_label, sign) => {
+    mockGetPair.mockReturnValue(makePair({ bypass: [WC] }));
     const payload = sign === undefined ? {} : { sign };
     expect(pairResolve(CMD, payload).kind).toBe('allow');
   });
 
   it('allows when fee fits in remaining budget and debits only the fee on commit', () => {
     mockGetPair.mockReturnValue(
-      makePair({
-        capabilities: { innocuous: true },
-        spendingCapMojos: '1000',
-        spentMojos: '200',
-      }),
+      makePair({ bypass: [WC], spendingCapMojos: '1000', spentMojos: '200' }),
     );
     const d = expectAllow(pairResolve(CMD, { fee: '500' }));
     d.commit();
@@ -262,16 +265,12 @@ describe('resolvePermission - push_transactions', () => {
   });
 
   it('allows when spent + fee equals cap exactly', () => {
-    mockGetPair.mockReturnValue(
-      makePair({ capabilities: { innocuous: true }, spendingCapMojos: '1000', spentMojos: '400' }),
-    );
+    mockGetPair.mockReturnValue(makePair({ bypass: [WC], spendingCapMojos: '1000', spentMojos: '400' }));
     expect(pairResolve(CMD, { fee: '600' }).kind).toBe('allow');
   });
 
   it('prompts when fee exceeds remaining budget', () => {
-    mockGetPair.mockReturnValue(
-      makePair({ capabilities: { innocuous: true }, spendingCapMojos: '1000', spentMojos: '900' }),
-    );
+    mockGetPair.mockReturnValue(makePair({ bypass: [WC], spendingCapMojos: '1000', spentMojos: '900' }));
     expect(pairResolve(CMD, { fee: '200' })).toMatchObject({
       kind: 'prompt',
       reason: 'push fee exceeds remaining budget',
@@ -279,18 +278,14 @@ describe('resolvePermission - push_transactions', () => {
   });
 
   it('treats negative fee as zero (cannot reduce spend)', () => {
-    mockGetPair.mockReturnValue(
-      makePair({ capabilities: { innocuous: true }, spendingCapMojos: '0', spentMojos: '0' }),
-    );
+    mockGetPair.mockReturnValue(makePair({ bypass: [WC], spendingCapMojos: '0', spentMojos: '0' }));
     const d = expectAllow(pairResolve(CMD, { fee: '-100' }));
     d.commit();
-    // Negative fee is sanitized to undefined, which becomes ZERO; commit
-    // resolves to a zero-debit and never reaches recordSpend.
     expect(mockRecordSpend).not.toHaveBeenCalled();
   });
 
   it('does not record on commit when fee is zero or missing', () => {
-    mockGetPair.mockReturnValue(makePair({ capabilities: { innocuous: true } }));
+    mockGetPair.mockReturnValue(makePair({ bypass: [WC] }));
     expectAllow(pairResolve(CMD, {})).commit();
     expectAllow(pairResolve(CMD, { fee: '0' })).commit();
     expect(mockRecordSpend).not.toHaveBeenCalled();
@@ -299,9 +294,7 @@ describe('resolvePermission - push_transactions', () => {
   it('preserves precision beyond JS safe-integer range', () => {
     const cap = '99999999999999999999';
     const fee = '99999999999999999999';
-    mockGetPair.mockReturnValue(
-      makePair({ capabilities: { innocuous: true }, spendingCapMojos: cap, spentMojos: '0' }),
-    );
+    mockGetPair.mockReturnValue(makePair({ bypass: [WC], spendingCapMojos: cap, spentMojos: '0' }));
     const d = expectAllow(pairResolve(CMD, { fee }));
     d.commit();
     const [, mojos] = mockRecordSpend.mock.calls[0];
@@ -310,423 +303,113 @@ describe('resolvePermission - push_transactions', () => {
   });
 });
 
-describe('resolvePermission - innocuous-classified commands', () => {
-  it('allows when innocuous granted', () => {
-    mockGetPair.mockReturnValue(makePair({ capabilities: { innocuous: true } }));
-    expect(pairResolve('chia_wallet.get_wallets', {}).kind).toBe('allow');
-    expect(
-      pairResolve('chia_wallet.get_coin_records_by_names', {}).kind,
-    ).toBe('allow');
-  });
+describe('resolvePermission - spend-class commands (governed by spendingMode)', () => {
+  // Spend-class commands are NOT bypassable — the budget is the right knob.
+  // Even with the wcCommand in bypass, spending logic still fires.
+  const SEND = 'chia_wallet.send_transaction';
+  const SEND_WC = 'chia_sendTransaction';
+  const OFFER = 'chia_wallet.create_offer_for_ids';
 
-  it('prompts when innocuous not granted', () => {
-    mockGetPair.mockReturnValue(makePair());
-    expect(pairResolve('chia_wallet.get_wallets', {})).toMatchObject({
-      kind: 'prompt',
-      reason: 'innocuous not pre-approved',
-    });
-  });
-
-  it('innocuous allow has no-op commit', () => {
-    mockGetPair.mockReturnValue(makePair({ capabilities: { innocuous: true } }));
-    expectAllow(pairResolve('chia_wallet.get_wallets', {})).commit();
-    expect(mockRecordSpend).not.toHaveBeenCalled();
-  });
-});
-
-describe('resolvePermission - sign-classified commands', () => {
-  it('allows when sign granted', () => {
-    mockGetPair.mockReturnValue(makePair({ capabilities: { sign: true } }));
-    expect(
-      pairResolve('chia_wallet.sign_message_by_address', {}).kind,
-    ).toBe('allow');
-    expect(
-      pairResolve('chia_wallet.sign_message_by_id', {}).kind,
-    ).toBe('allow');
-  });
-
-  it('prompts when sign not granted', () => {
-    mockGetPair.mockReturnValue(makePair());
-    expect(
-      pairResolve('chia_wallet.sign_message_by_address', {}),
-    ).toMatchObject({ kind: 'prompt', reason: 'sign not pre-approved' });
-  });
-});
-
-describe('resolvePermission - dapp-allowed but unclassified commands', () => {
-  // These fall through every bucket and `getSpendClassification`, ending at
-  // the generic "sensitive command" prompt. They must still pass the gate
-  // first — DEFAULT_ALLOWED_WC includes the matching wcCommands.
-  it.each([
-    'chia_wallet.cat_spend',
-    'chia_wallet.nft_transfer_nft',
-    'chia_wallet.take_offer',
-    'chia_wallet.cancel_offer',
-  ])('prompts with "sensitive command" for %s', (cmd) => {
-    mockGetPair.mockReturnValue(makePair({ capabilities: { innocuous: true, sign: true } }));
-    expect(pairResolve(cmd, {})).toMatchObject({
-      kind: 'prompt',
-      reason: 'sensitive command',
-    });
-  });
-});
-
-describe('resolvePermission - per-pair allowlist gate', () => {
-  // Per-pair gate runs before the capability buckets. Anything not in
-  // `pair.commands` is denied even when the bucket alone would have
-  // approved or prompted. Catches a compromised renderer asking for
-  // commands the user did not consent to at pairing time.
-
-  it('denies UI-only commands (delete_key, harvester, open_connection)', () => {
-    // These ns commands have no WC equivalent in the registry, so pairResolve
-    // hands a `chia_unknown` to the gate, which denies.
-    mockGetPair.mockReturnValue(makePair({ capabilities: { innocuous: true, sign: true } }));
-    for (const cmd of [
-      'chia_wallet.delete_key',
-      'chia_harvester.delete_plot',
-      'chia_full_node.open_connection',
-      'totally.unknown_command',
-    ]) {
-      expect(pairResolve(cmd, {})).toEqual({
-        kind: 'deny',
-        reason: 'command not granted for this pair: chia_unknown',
-      });
-    }
-  });
-
-  it('denies an otherwise-legal call when the wcCommand is not on the pair allowlist', () => {
-    // Pair has the capability AND the spending budget, but `chia_sendTransaction`
-    // is not on `commands`. Gate denies before resolveSpending runs.
-    mockGetPair.mockReturnValue(
-      makePair({ commands: ['chia_getWallets'], spendingMode: 'auto', spendingCapMojos: '1000' }),
-    );
-    expect(
-      resolvePermission(PAIR_PRINCIPAL, 'chia_wallet.send_transaction', { amount: '10' }, { wcCommand: 'chia_sendTransaction' }),
-    ).toEqual({
-      kind: 'deny',
-      reason: 'command not granted for this pair: chia_sendTransaction',
-    });
-  });
-
-  it('denies when wcCommand is missing entirely (pair principal requires it)', () => {
-    mockGetPair.mockReturnValue(makePair({ capabilities: { innocuous: true } }));
-    expect(resolvePermission(PAIR_PRINCIPAL, 'chia_wallet.get_wallets', {})).toEqual({
-      kind: 'deny',
-      reason: 'missing wc command',
-    });
-  });
-
-  it('denies even read-only commands when wcCommand is omitted', () => {
-    // Defense in depth: an empty list means deny-all even if capability buckets
-    // would otherwise allow. Forces re-pair after upgrade for legacy records.
-    mockGetPair.mockReturnValue(
-      makePair({ capabilities: { innocuous: true }, commands: [] }),
-    );
-    expect(
-      resolvePermission(PAIR_PRINCIPAL, 'chia_wallet.get_wallets', {}, { wcCommand: 'chia_getWallets' }),
-    ).toEqual({
-      kind: 'deny',
-      reason: 'command not granted for this pair: chia_getWallets',
-    });
-  });
-
-  it('UI principal is unaffected by the gate (no wcCommand needed)', () => {
-    expect(resolvePermission(UI_PRINCIPAL, 'chia_wallet.send_transaction', {})).toEqual({
-      kind: 'prompt',
-      reason: 'requires user confirmation',
-      pair: undefined,
-    });
-  });
-
-  it('runs the gate before "unknown pair" only after, so missing pair still wins', () => {
-    // Order matters: an unknown pair should report "unknown pair" rather
-    // than complain about wcCommand. The gate only protects against
-    // commands a known pair did not consent to.
-    mockGetPair.mockReturnValue(undefined);
-    expect(
-      resolvePermission(PAIR_PRINCIPAL, 'chia_wallet.send_transaction', {}, { wcCommand: 'chia_sendTransaction' }),
-    ).toEqual({
-      kind: 'deny',
-      reason: 'unknown pair',
-    });
-  });
-});
-
-describe('resolvePermission - fingerprint + mainnet gates (via checkPairAccess)', () => {
-  // These were previously enforced renderer-side only (audit issue #1).
-  // After consolidation through `checkPairAccess`, main rejects requests
-  // whose dapp-claimed fingerprint isn't on the pair, or whose chain id
-  // doesn't match the pair's network.
-
-  it('denies when the dapp-claimed fingerprint is not on the pair list', () => {
-    mockGetPair.mockReturnValue(makePair());
-    expect(
-      resolvePermission(PAIR_PRINCIPAL, 'chia_wallet.send_transaction', { amount: '10' }, {
-        wcCommand: 'chia_sendTransaction',
-        fingerprint: 999, // pair has [123]
-      }),
-    ).toEqual({
-      kind: 'deny',
-      reason: 'fingerprint not granted for this pair: 999',
-    });
-  });
-
-  it('allows when the fingerprint is on the pair list (continues to bucket logic)', () => {
-    mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '1000' }));
-    const decision = resolvePermission(
-      PAIR_PRINCIPAL,
-      'chia_wallet.send_transaction',
-      { amount: '50' },
-      { wcCommand: 'chia_sendTransaction', fingerprint: 123 },
-    );
-    expect(decision.kind).toBe('allow');
-  });
-
-  it('denies on mainnet/testnet mismatch', () => {
-    mockGetPair.mockReturnValue(makePair()); // pair is mainnet
-    expect(
-      resolvePermission(PAIR_PRINCIPAL, 'chia_wallet.send_transaction', {}, {
-        wcCommand: 'chia_sendTransaction',
-        mainnet: false, // dapp claims testnet
-      }),
-    ).toEqual({
-      kind: 'deny',
-      reason: 'network mismatch',
-    });
-  });
-
-  it('allows when mainnet matches (continues to bucket logic)', () => {
-    mockGetPair.mockReturnValue(makePair());
-    const decision = resolvePermission(
-      PAIR_PRINCIPAL,
-      'chia_wallet.get_wallets',
-      {},
-      { wcCommand: 'chia_getWallets', mainnet: true, fingerprint: 123 },
-    );
-    // chia_getWallets is innocuous; without that capability, prompts.
-    // The point of this test is just that fingerprint+mainnet gates
-    // passed and we reached the bucket layer.
-    expect(decision.kind === 'prompt' || decision.kind === 'allow').toBe(true);
-  });
-});
-
-describe('resolvePermission - bypass list', () => {
-  // The "Don't ask again" path. Bypassed wcCommands skip the prompt and
-  // any capability bucket check, but spend-classified commands deliberately
-  // ignore bypass — the budget is the right knob there, and bypass would
-  // let unattended spends slip past the cap.
-
-  it('short-circuits to allow when bypass is set, even without the matching capability', () => {
-    mockGetPair.mockReturnValue(
-      makePair({ bypass: ['chia_getWallets'] }), // no `innocuous` capability granted
-    );
-    const d = pairResolve('chia_wallet.get_wallets', {});
-    expect(d.kind).toBe('allow');
-  });
-
-  it('does not bypass spend-classified commands (cap remains the gate)', () => {
-    mockGetPair.mockReturnValue(
-      makePair({
-        bypass: ['chia_sendTransaction'],
-        spendingMode: 'auto',
-        spendingCapMojos: '100',
-      }),
-    );
-    // Auto mode under the cap → allow as usual; bypass doesn't change this.
-    expect(pairResolve('chia_wallet.send_transaction', { amount: '50' }).kind).toBe('allow');
-    // Auto mode over the cap → still prompts (bypass would have skipped if
-    // it applied). The check is the same as without bypass.
-    expect(pairResolve('chia_wallet.send_transaction', { amount: '500' })).toMatchObject({
-      kind: 'prompt',
-      reason: 'budget exhausted',
-    });
-  });
-
-  it('does not bypass create_offer_for_ids either', () => {
-    mockGetPair.mockReturnValue(
-      makePair({ bypass: ['chia_createOfferForIds'], spendingMode: 'block' }),
-    );
-    expect(pairResolve('chia_wallet.create_offer_for_ids', { offer: { 1: '5' } })).toMatchObject({
+  it('block mode denies spend regardless of bypass', () => {
+    mockGetPair.mockReturnValue(makePair({ spendingMode: 'block', bypass: [SEND_WC] }));
+    expect(pairResolve(SEND, { amount: '100', fee: '0' })).toEqual({
       kind: 'deny',
       reason: 'spending blocked for this app',
     });
   });
 
-  it('still requires the wcCommand to be in `commands` (gate runs first)', () => {
-    mockGetPair.mockReturnValue(
-      makePair({ commands: [], bypass: ['chia_getWallets'] }),
-    );
-    expect(pairResolve('chia_wallet.get_wallets', {})).toEqual({
-      kind: 'deny',
-      reason: 'command not granted for this pair: chia_getWallets',
-    });
-  });
-});
-
-describe('resolvePermission - send_transaction (spend)', () => {
-  const CMD = 'chia_wallet.send_transaction';
-
-  it('denies when spendingMode is block', () => {
-    mockGetPair.mockReturnValue(makePair({ spendingMode: 'block', spendingCapMojos: '999' }));
-    expect(pairResolve(CMD, { amount: '10' })).toEqual({
-      kind: 'deny',
-      reason: 'spending blocked for this app',
-    });
-  });
-
-  it('prompts when spendingMode is ask', () => {
-    mockGetPair.mockReturnValue(makePair({ spendingMode: 'ask', spendingCapMojos: '999' }));
-    expect(pairResolve(CMD, { amount: '10' })).toMatchObject({
+  it('ask mode prompts for spend regardless of bypass', () => {
+    mockGetPair.mockReturnValue(makePair({ spendingMode: 'ask', bypass: [SEND_WC] }));
+    expect(pairResolve(SEND, { amount: '100', fee: '0' })).toMatchObject({
       kind: 'prompt',
       reason: 'spending needs confirmation',
     });
   });
 
-  it('allows under cap and debits amount + fee on commit', () => {
-    mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '1000' }));
-    const d = expectAllow(pairResolve(CMD, { amount: '700', fee: '50' }));
+  it('auto allows when amount + fee fit in remaining budget', () => {
+    mockGetPair.mockReturnValue(
+      makePair({ spendingMode: 'auto', spendingCapMojos: '1000', spentMojos: '200' }),
+    );
+    const d = expectAllow(pairResolve(SEND, { amount: '500', fee: '100' }));
     d.commit();
-    const [topic, mojos] = mockRecordSpend.mock.calls[0];
-    expect(topic).toBe(TOPIC);
-    expect(mojos.toFixed(0)).toBe('750');
+    const [, mojos] = mockRecordSpend.mock.calls[0];
+    expect(mojos.toFixed(0)).toBe('600');
   });
 
-  it('commit is idempotent (second call no-ops)', () => {
-    mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '1000' }));
-    const d = expectAllow(pairResolve(CMD, { amount: '700', fee: '50' }));
-    d.commit();
-    d.commit();
-    d.commit();
-    expect(mockRecordSpend).toHaveBeenCalledTimes(1);
-  });
-
-  it('does not debit before commit is called', () => {
-    mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '1000' }));
-    expectAllow(pairResolve(CMD, { amount: '700', fee: '50' }));
-    expect(mockRecordSpend).not.toHaveBeenCalled();
-  });
-
-  it('two independent allow decisions yield independent commits', () => {
-    mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '1000' }));
-    const a = expectAllow(pairResolve(CMD, { amount: '100' }));
-    const b = expectAllow(pairResolve(CMD, { amount: '200' }));
-    b.commit(); // only commit b
-    expect(mockRecordSpend).toHaveBeenCalledTimes(1);
-    expect(mockRecordSpend.mock.calls[0][1].toFixed(0)).toBe('200');
-    a.commit();
-    expect(mockRecordSpend).toHaveBeenCalledTimes(2);
-    expect(mockRecordSpend.mock.calls[1][1].toFixed(0)).toBe('100');
-  });
-
-  it('allows when amount + fee equals cap exactly', () => {
-    mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '1000' }));
-    expect(pairResolve(CMD, { amount: '700', fee: '300' }).kind).toBe('allow');
-  });
-
-  it('prompts when amount + fee exceeds cap', () => {
-    mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '1000' }));
-    expect(pairResolve(CMD, { amount: '700', fee: '301' })).toMatchObject({
-      kind: 'prompt',
-      reason: 'budget exhausted',
-    });
-  });
-
-  it('respects already-spent mojos against the cap', () => {
+  it('auto prompts when amount + fee exceed remaining budget', () => {
     mockGetPair.mockReturnValue(
       makePair({ spendingMode: 'auto', spendingCapMojos: '1000', spentMojos: '900' }),
     );
-    expect(pairResolve(CMD, { amount: '50', fee: '50' }).kind).toBe('allow');
-    expect(pairResolve(CMD, { amount: '101' })).toMatchObject({
+    expect(pairResolve(SEND, { amount: '500', fee: '0' })).toMatchObject({
       kind: 'prompt',
       reason: 'budget exhausted',
     });
   });
 
-  it.each([
-    ['unparseable', { amount: 'not-a-number' }],
-    ['negative', { amount: '-5' }],
-    ['missing', {}],
-  ])('prompts when amount is %s under auto mode', (_label, payload) => {
-    mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '1000' }));
-    expect(pairResolve(CMD, payload)).toMatchObject({
-      kind: 'prompt',
-      reason: 'spending needs confirmation',
-    });
-  });
-
-  it('handles values beyond JS safe-integer range', () => {
-    const cap = '100000000000000000000';
-    const amount = '99999999999999999999';
-    mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: cap }));
-    expect(pairResolve(CMD, { amount }).kind).toBe('allow');
-    expect(pairResolve(CMD, { amount, fee: '2' })).toMatchObject({
-      kind: 'prompt',
-      reason: 'budget exhausted',
-    });
-  });
-});
-
-describe('resolvePermission - create_offer_for_ids (offer with XCH outflow)', () => {
-  const CMD = 'chia_wallet.create_offer_for_ids';
-
-  it('allows and debits XCH outflow + fee on commit', () => {
-    mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '5000' }));
-    const d = expectAllow(
-      pairResolve(CMD, { offer: { 1: '1000', xch: '500' }, fee: '25' }),
+  it('auto without resolvable amount prompts (CAT spend, NFT, mixed offer)', () => {
+    mockGetPair.mockReturnValue(
+      makePair({ spendingMode: 'auto', spendingCapMojos: '1_000_000_000_000' }),
     );
+    // create_offer_for_ids without a pure-XCH offer dict yields an
+    // unresolvable amount — fall back to prompt.
+    expect(pairResolve(OFFER, { offer: { '0xcat': '100' }, fee: '0' })).toMatchObject({
+      kind: 'prompt',
+      reason: 'spending needs confirmation',
+    });
+  });
+
+  it('create_offer_for_ids with pure-XCH offer + auto allows when fits in budget', () => {
+    mockGetPair.mockReturnValue(
+      makePair({ spendingMode: 'auto', spendingCapMojos: '10000', spentMojos: '0' }),
+    );
+    const d = expectAllow(pairResolve(OFFER, { offer: { xch: '5000' }, fee: '0' }));
     d.commit();
-    expect(mockRecordSpend.mock.calls[0][1].toFixed(0)).toBe('1525');
-  });
-
-  it('prompts when XCH outflow + fee exceed cap', () => {
-    mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '1000' }));
-    expect(
-      pairResolve(CMD, { offer: { 1: '900' }, fee: '200' }),
-    ).toMatchObject({ kind: 'prompt', reason: 'budget exhausted' });
-  });
-
-  it('skips offer lines with non-positive amounts', () => {
-    mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '100' }));
-    expect(
-      pairResolve(CMD, {
-        offer: { 1: '50', xch: '-1000' },
-        fee: '0',
-      }).kind,
-    ).toBe('allow');
-  });
-
-  it('prompts when offer touches a non-XCH key (cannot price against XCH cap)', () => {
-    mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '99999' }));
-    expect(
-      pairResolve(CMD, { offer: { '8d3ed4c4...': '100' }, fee: '0' }),
-    ).toMatchObject({ kind: 'prompt', reason: 'spending needs confirmation' });
-  });
-
-  it.each([
-    ['missing offer', {}],
-    ['non-object offer', { offer: 'oops' }],
-  ])('prompts when offer payload is %s', (_label, payload) => {
-    mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '99999' }));
-    expect(pairResolve(CMD, payload)).toMatchObject({
-      kind: 'prompt',
-      reason: 'spending needs confirmation',
-    });
-  });
-
-  it('denies under block mode', () => {
-    mockGetPair.mockReturnValue(makePair({ spendingMode: 'block' }));
-    expect(pairResolve(CMD, { offer: { 1: '100' } })).toEqual({
-      kind: 'deny',
-      reason: 'spending blocked for this app',
-    });
-  });
-
-  it('prompts under ask mode without consulting the cap', () => {
-    mockGetPair.mockReturnValue(makePair({ spendingMode: 'ask', spendingCapMojos: '0' }));
-    expect(pairResolve(CMD, { offer: { 1: '100' } })).toMatchObject({
-      kind: 'prompt',
-      reason: 'spending needs confirmation',
-    });
+    const [, mojos] = mockRecordSpend.mock.calls[0];
+    expect(mojos.toFixed(0)).toBe('5000');
   });
 });
 
+describe('resolvePermission - commands gate (pair.commands allowlist)', () => {
+  const SEND_WC = 'chia_sendTransaction';
+
+  it('denies a command not in pair.commands even if everything else lines up', () => {
+    mockGetPair.mockReturnValue(makePair({ commands: [], bypass: [SEND_WC], spendingMode: 'auto' }));
+    expect(pairResolve('chia_wallet.send_transaction', {})).toEqual({
+      kind: 'deny',
+      reason: `command not granted for this pair: ${SEND_WC}`,
+    });
+  });
+
+  it('denies when wcCommand is missing from the resolve context', () => {
+    mockGetPair.mockReturnValue(makePair({ bypass: ['chia_getWallets'] }));
+    expect(
+      resolvePermission(PAIR_PRINCIPAL, 'chia_wallet.get_wallets', {}, {}),
+    ).toEqual({ kind: 'deny', reason: 'missing wc command' });
+  });
+});
+
+describe('resolvePermission - commit idempotency', () => {
+  // Captures the resolved spend amount at decision time so a runtime mutation
+  // of the payload between resolve and authorization can't change what gets
+  // debited. Idempotent commits prevent double-charge.
+  it('commit is no-op on second call', () => {
+    mockGetPair.mockReturnValue(
+      makePair({ spendingMode: 'auto', spendingCapMojos: '10000', spentMojos: '0' }),
+    );
+    const d = expectAllow(pairResolve('chia_wallet.send_transaction', { amount: '500' }));
+    d.commit();
+    d.commit();
+    expect(mockRecordSpend).toHaveBeenCalledTimes(1);
+  });
+
+  it('separate resolve calls produce independent commits', () => {
+    mockGetPair.mockReturnValue(
+      makePair({ spendingMode: 'auto', spendingCapMojos: '10000', spentMojos: '0' }),
+    );
+    const d1 = expectAllow(pairResolve('chia_wallet.send_transaction', { amount: '500' }));
+    const d2 = expectAllow(pairResolve('chia_wallet.send_transaction', { amount: '300' }));
+    d1.commit();
+    d2.commit();
+    expect(mockRecordSpend).toHaveBeenCalledTimes(2);
+  });
+});

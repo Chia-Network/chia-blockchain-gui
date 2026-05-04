@@ -1,13 +1,7 @@
 import BigNumber from 'bignumber.js';
 
 import { checkPairAccess } from './checkPairAccess';
-import {
-  getSpendClassification,
-  isBalanceCommand,
-  isInnocuousCommand,
-  isSignCommand,
-  isUiAllowed,
-} from './commandCapabilities';
+import { getSpendClassification, isUiAllowed } from './commandCapabilities';
 import { getPair, recordSpend } from './pairStore';
 import type {
   Decision,
@@ -71,6 +65,9 @@ export type ResolveContext = {
   mainnet?: boolean;
 };
 
+// Per-command bypass is the single source of truth for "always allow."
+// Spend-class commands are governed by spendingMode + cap regardless of
+// bypass — the budget is the right knob there.
 export function resolvePermission(
   principal: Principal,
   command: string,
@@ -95,26 +92,20 @@ export function resolvePermission(
   const dialogCtx = pairCtx(pair);
   const wcCommand = ctx.wcCommand!; // checkPairAccess rejected when missing
 
-  // Bypass skips the prompt but never overrides the spending budget — spend
-  // commands fall through to resolveSpending below.
-  if (pair.bypass.includes(wcCommand) && !getSpendClassification(command)) {
-    return allowDecision();
+  const spend = getSpendClassification(command);
+  if (spend) {
+    return resolveSpending(pair, dialogCtx, spend, payload);
   }
 
-  if (isBalanceCommand(command)) {
-    return pair.grants.capabilities.balance
-      ? allowDecision()
-      : promptDecision('balance not pre-approved', dialogCtx);
-  }
-
-  // push_transactions: pre-signed bundle is innocuous; dapp-asks-to-sign
-  // always prompts. Truthy (not strict ===) matches the daemon's Python
-  // `if sign:` so the dapp can't slip "true" past us. Extra `fee` here is
-  // on top of the bundle's own spend, charged conservatively.
+  // push_transactions: pre-signed bundle is innocuous and goes through bypass;
+  // dapp-asks-to-sign always prompts (no bypass for sign). Truthy (not strict
+  // ===) matches the daemon's Python `if sign:` so the dapp can't slip "true"
+  // past us. Extra `fee` here is on top of the bundle's own spend, charged
+  // conservatively against the budget.
   if (command === 'chia_wallet.push_transactions') {
     if (payload?.sign) return promptDecision('signing requested', dialogCtx);
-    if (!pair.grants.capabilities.innocuous) {
-      return promptDecision('innocuous actions not pre-approved', dialogCtx);
+    if (!pair.bypass.includes(wcCommand)) {
+      return promptDecision('not in bypass list', dialogCtx);
     }
     const fee = readMojos(payload, 'fee') ?? ZERO;
     if (fee.isGreaterThan(0)) {
@@ -127,24 +118,11 @@ export function resolvePermission(
     return allowDecision(makeCommit(pair.topic, fee));
   }
 
-  if (isInnocuousCommand(command)) {
-    return pair.grants.capabilities.innocuous
-      ? allowDecision()
-      : promptDecision('innocuous not pre-approved', dialogCtx);
+  if (pair.bypass.includes(wcCommand)) {
+    return allowDecision();
   }
 
-  if (isSignCommand(command)) {
-    return pair.grants.capabilities.sign
-      ? allowDecision()
-      : promptDecision('sign not pre-approved', dialogCtx);
-  }
-
-  const spend = getSpendClassification(command);
-  if (spend) {
-    return resolveSpending(pair, dialogCtx, spend, payload);
-  }
-
-  return promptDecision('sensitive command', dialogCtx);
+  return promptDecision('not in bypass list', dialogCtx);
 }
 
 function resolveAmount(

@@ -81,11 +81,6 @@ type PermissionsService = {
   }) => Promise<PermissionsPairRecord | null>;
   editPair: (payload: { topic: string }) => Promise<PermissionsPairRecord | null>;
   revokePair: (topic: string) => Promise<boolean>;
-  setBypass: (payload: {
-    topic: string;
-    wcCommand: string;
-    enabled: boolean;
-  }) => Promise<PermissionsPairRecord | null>;
   resetBypass: (topic: string) => Promise<PermissionsPairRecord | null>;
   resetBypassAll: () => Promise<boolean>;
   resetSpent: (topic: string) => Promise<PermissionsPairRecord | null>;

@@ -1,7 +1,8 @@
 import type { PairGrants, PairMetadata, PairRecord } from './types';
 
-// spentMojos and bypass MUST start fresh — never inherit budget or silent
-// approvals from a prior pair.
+// spentMojos always starts fresh — never inherit budget from a prior pair.
+// bypass is whatever the user approved in the Pair dialog (typically empty
+// at first connect, populated when they tick capability/per-command boxes).
 export function buildNewPairRecord(input: {
   topic: string;
   mainnet: boolean;
@@ -9,6 +10,7 @@ export function buildNewPairRecord(input: {
   fingerprints: number[];
   grants: PairGrants;
   commands: string[];
+  bypass?: string[];
   now: number;
 }): PairRecord {
   return {
@@ -21,6 +23,6 @@ export function buildNewPairRecord(input: {
     grants: input.grants,
     spentMojos: '0',
     commands: input.commands,
-    bypass: [],
+    bypass: input.bypass ?? [],
   };
 }

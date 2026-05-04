@@ -1,12 +1,6 @@
-export type CapabilityGrants = Record<
-  'balance' | 'innocuous' | 'sign' | 'offer' | 'spend' | 'notifications',
-  boolean
->;
-
 export type SpendingMode = 'block' | 'ask' | 'auto';
 
 export type PairGrants = {
-  capabilities: CapabilityGrants;
   spendingMode: SpendingMode;
   /** String-encoded for BigNumber-safe JSON. */
   spendingCapMojos: string;
@@ -31,7 +25,7 @@ export type PairRecord = {
   spentMojos: string;
   /** Wire form `chia_<name>`. Granted at pairing; empty = deny-all. */
   commands: string[];
-  /** Wire form. "Don't ask again" list — gate skips the prompt for these. */
+  /** Wire form. Per-command "always allow" list — the only knob for silent execution. */
   bypass: string[];
 };
 
@@ -62,14 +56,3 @@ export type Decision =
   | { kind: 'allow'; commit: () => void }
   | { kind: 'prompt'; reason: string; pair?: PairContext }
   | { kind: 'deny'; reason: string };
-
-export function emptyCapabilities(): CapabilityGrants {
-  return {
-    balance: false,
-    innocuous: false,
-    sign: false,
-    offer: false,
-    spend: false,
-    notifications: false,
-  };
-}

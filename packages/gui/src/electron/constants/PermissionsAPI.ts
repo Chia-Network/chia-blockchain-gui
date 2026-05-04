@@ -3,7 +3,6 @@ enum PermissionsAPI {
   PAIR_REGISTER = 'permissions:pair:register',
   PAIR_EDIT = 'permissions:pair:edit',
   PAIR_REVOKE = 'permissions:pair:revoke',
-  PAIR_SET_BYPASS = 'permissions:pair:setBypass',
   PAIR_RESET_BYPASS = 'permissions:pair:resetBypass',
   PAIR_RESET_BYPASS_ALL = 'permissions:pair:resetBypassAll',
   PAIR_RESET_SPENT = 'permissions:pair:resetSpent',

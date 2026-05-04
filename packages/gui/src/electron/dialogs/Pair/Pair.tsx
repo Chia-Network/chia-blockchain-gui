@@ -12,30 +12,40 @@ export type PairWalletOption = {
   name?: string;
 };
 
+export type PairCommandGroups = {
+  innocuous: string[];
+  balance: string[];
+  sign: string[];
+  notifications: string[];
+  /** Commands that didn't classify into any of the above (e.g. chia_logIn). */
+  other: string[];
+};
+
 export type PairProps = {
   confirmId: string;
   metadata: PairMetadata;
   availableWallets: PairWalletOption[];
   defaultGrants?: PairGrants;
   defaultFingerprints?: number[];
+  /** Commands already in pair.bypass — pre-check them in the per-command list. */
+  defaultBypass?: string[];
+  /** Granted commands grouped by capability class. Spend-class is excluded. */
+  commandGroups?: PairCommandGroups;
+  /** Wire form. Asked for but dropped because this wallet doesn't support them. */
+  rejectedCommands?: string[];
   isEdit?: boolean;
   /** Mojos already auto-spent against the cap. Display-only; reset lives in the menu. */
   defaultSpentMojos?: string;
   currencyCode?: string;
-  /** Wire form `chia_<name>`. Display-only; main persists this if confirmed. */
-  allowedCommands?: string[];
-  /** Wire form. Asked for but dropped because this wallet doesn't support them. */
-  rejectedCommands?: string[];
   styleURL?: string;
   isDarkMode?: boolean;
 };
 
-// Kept in pair.commands for WC SDK compatibility but hidden from the dialog
-// since they grant nothing and would just be a meaningless toggle.
+// Hidden from the dialog because it grants nothing meaningful — we keep it
+// in pair.commands for WC SDK compatibility but don't expose a toggle.
 const HIDDEN_COMMANDS = new Set(['chia_requestPermissions']);
 
 // chia_sendTransaction → "Send Transaction"; chia_getNFTs → "Get NFTs".
-// Acronym pass first so NFT/DID stay glued; then split camelCase.
 function humanizeWcCommand(name: string): string {
   if (!name) return name;
   const bare = name.startsWith('chia_') ? name.slice('chia_'.length) : name;
@@ -45,12 +55,18 @@ function humanizeWcCommand(name: string): string {
   return spaced.charAt(0).toUpperCase() + spaced.slice(1);
 }
 
-
 export function getTitle(isEdit: boolean) {
   return isEdit
     ? i18n._(/* i18n */ { id: 'Edit Connection' })
     : i18n._(/* i18n */ { id: 'Connect Application' });
 }
+
+type CapabilityGroup = {
+  key: 'innocuous' | 'balance' | 'sign' | 'notifications';
+  label: string;
+  description: string;
+  commands: string[];
+};
 
 export default function Pair(props: PairProps) {
   const {
@@ -59,25 +75,17 @@ export default function Pair(props: PairProps) {
     availableWallets,
     defaultGrants,
     defaultFingerprints = [],
+    defaultBypass = [],
+    commandGroups,
+    rejectedCommands: rejectedCommandsRaw = [],
     isEdit = false,
     defaultSpentMojos,
     currencyCode = 'XCH',
-    allowedCommands: allowedCommandsRaw = [],
-    rejectedCommands: rejectedCommandsRaw = [],
   } = props;
 
-  const allowedCommands = allowedCommandsRaw.filter((wc) => !HIDDEN_COMMANDS.has(wc));
   const rejectedCommands = rejectedCommandsRaw.filter((wc) => !HIDDEN_COMMANDS.has(wc));
 
   const grants: PairGrants = defaultGrants ?? {
-    capabilities: {
-      balance: false,
-      innocuous: false,
-      sign: false,
-      offer: false,
-      spend: false,
-      notifications: false,
-    },
     spendingMode: 'ask',
     spendingCapMojos: '10000000000', // 0.01 XCH default budget when user picks auto
   };
@@ -85,11 +93,56 @@ export default function Pair(props: PairProps) {
   const defaultCapXch = new BigNumber(grants.spendingCapMojos ?? 0).div(MOJOS_PER_XCH).toFixed();
   const spentXch = new BigNumber(defaultSpentMojos ?? 0).div(MOJOS_PER_XCH).toFixed();
   const showSpentRow = isEdit && (grants.spendingMode ?? 'ask') === 'auto';
-  const innocuousChecked = grants.capabilities.innocuous;
-  const balanceChecked = grants.capabilities.balance;
-  const signChecked = grants.capabilities.sign;
-  const notificationsChecked = grants.capabilities.notifications;
   const spendingMode = grants.spendingMode ?? 'ask';
+
+  const filterHidden = (cmds: string[]) => cmds.filter((wc) => !HIDDEN_COMMANDS.has(wc));
+  const groups = {
+    innocuous: filterHidden(commandGroups?.innocuous ?? []),
+    balance: filterHidden(commandGroups?.balance ?? []),
+    sign: filterHidden(commandGroups?.sign ?? []),
+    notifications: filterHidden(commandGroups?.notifications ?? []),
+    other: filterHidden(commandGroups?.other ?? []),
+  };
+
+  const allCapabilityGroups: CapabilityGroup[] = [
+    {
+      key: 'innocuous',
+      label: i18n._(/* i18n */ { id: 'Innocuous actions' }),
+      description: i18n._(/* i18n */ { id: 'reads accounts, makes wallets' }),
+      commands: groups.innocuous,
+    },
+    {
+      key: 'balance',
+      label: i18n._(/* i18n */ { id: 'Show balances' }),
+      description: i18n._(/* i18n */ { id: 'sees how much you hold' }),
+      commands: groups.balance,
+    },
+    {
+      key: 'sign',
+      label: i18n._(/* i18n */ { id: 'Sign messages' }),
+      description: i18n._(/* i18n */ { id: 'login or proof of ownership' }),
+      commands: groups.sign,
+    },
+    {
+      key: 'notifications',
+      label: i18n._(/* i18n */ { id: 'Show notifications' }),
+      description: i18n._(/* i18n */ { id: 'offers and announcements' }),
+      commands: groups.notifications,
+    },
+  ];
+  // Always show all four groups so the dialog has a stable height and the
+  // user can see at a glance what the dapp didn't request. Empty groups
+  // render as disabled — toggling them would be a no-op since there are
+  // no commands to add to bypass.
+  const capabilityGroups = allCapabilityGroups;
+
+  const bypassSet = new Set(defaultBypass);
+  // Per-group default state computed at render time. The cascade JS in
+  // openReactDialog re-runs this on first paint via the indeterminate
+  // recompute, so SSR-emitted `defaultChecked` only seeds the run.
+  function groupDefaultChecked(commands: string[]): boolean {
+    return commands.length > 0 && commands.every((cmd) => bypassSet.has(cmd));
+  }
 
   const hasUrl = !!metadata.url && metadata.url !== '#' && metadata.url.trim().length > 0;
   const wallets = Array.isArray(availableWallets) ? availableWallets : [];
@@ -193,20 +246,46 @@ export default function Pair(props: PairProps) {
           </div>
         </section>
 
-        {(allowedCommands.length > 0 || rejectedCommands.length > 0) && (
-          <section className="rounded-xl border border-chia-border bg-chia-card overflow-hidden">
-            <details className="group">
-              <summary className="flex items-center justify-between gap-3 px-5 py-2.5 cursor-pointer list-none select-none hover:bg-chia-card-elevated transition-colors">
-                <div className="flex items-center gap-2 min-w-0">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-chia-text-muted">
-                    {i18n._(/* i18n */ { id: 'Requested commands' })}
+        <section className="rounded-xl border border-chia-border bg-chia-card overflow-hidden">
+          <div className="px-5 pt-2.5 pb-1.5 text-xs font-semibold uppercase tracking-wider text-chia-text-muted">
+            {i18n._(/* i18n */ { id: 'Allow without asking' })}
+          </div>
+          <ul className="m-0 p-0 list-none divide-y divide-chia-border border-t border-chia-border">
+            {capabilityGroups.map((group) => {
+              const isEmpty = group.commands.length === 0;
+              return (
+              <li key={group.key} className={isEmpty ? 'opacity-50' : ''}>
+                <label
+                  className={`flex items-center gap-3 px-5 py-1.5 ${
+                    isEmpty ? 'cursor-not-allowed' : 'cursor-pointer hover:bg-chia-card-elevated'
+                  } transition-colors`}
+                  title={isEmpty ? i18n._(/* i18n */ { id: 'This app did not request commands of this type.' }) : undefined}
+                >
+                  <input
+                    type="checkbox"
+                    defaultChecked={groupDefaultChecked(group.commands)}
+                    disabled={isEmpty}
+                    data-cap-toggle={group.key}
+                    className="w-[18px] h-[18px] accent-chia-primary shrink-0 disabled:cursor-not-allowed"
+                  />
+                  <span className="flex-1 min-w-0 text-sm leading-snug">
+                    <span className="font-medium text-chia-text">{group.label}</span>
+                    <span className="text-chia-text-secondary">
+                      {': '}
+                      {group.description}
+                    </span>
                   </span>
-                  <span className="text-xs text-chia-text-secondary">
-                    {rejectedCommands.length > 0
-                      ? `${allowedCommands.length} / ${allowedCommands.length + rejectedCommands.length}`
-                      : String(allowedCommands.length)}
-                  </span>
-                </div>
+                </label>
+              </li>
+              );
+            })}
+          </ul>
+          {(groups.innocuous.length + groups.balance.length + groups.sign.length + groups.notifications.length + groups.other.length + rejectedCommands.length) > 0 && (
+            <details className="group border-t border-chia-border">
+              <summary className="flex items-center justify-between gap-2 px-5 py-2 cursor-pointer list-none select-none hover:bg-chia-card-elevated transition-colors">
+                <span className="text-xs font-semibold uppercase tracking-wider text-chia-text-muted">
+                  {i18n._(/* i18n */ { id: 'Per-command' })}
+                </span>
                 <svg
                   className="shrink-0 w-4 h-4 text-chia-text-secondary transition-transform group-open:rotate-180"
                   fill="none"
@@ -217,31 +296,30 @@ export default function Pair(props: PairProps) {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </summary>
-              <div className="px-5 pb-3 pt-1 border-t border-chia-border space-y-2">
-                {allowedCommands.length > 0 && (
-                  <div>
-                    <div className="text-xs text-chia-text-muted mb-1">
-                      {i18n._(/* i18n */ { id: 'Allowed commands' })}
-                    </div>
-                    <div className="flex flex-wrap gap-1.5">
-                      {allowedCommands.map((wc) => (
-                        <span
-                          key={wc}
-                          title={wc}
-                          className="inline-flex items-center text-xs px-2 py-0.5 rounded bg-chia-primary-soft text-chia-text font-medium"
-                        >
-                          {humanizeWcCommand(wc)}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
+              <div className="border-t border-chia-border">
+                {capabilityGroups.map((group) => (
+                  <PerCommandGroup
+                    key={group.key}
+                    label={group.label}
+                    capKey={group.key}
+                    commands={group.commands}
+                    bypassSet={bypassSet}
+                  />
+                ))}
+                {groups.other.length > 0 && (
+                  <PerCommandGroup
+                    label={i18n._(/* i18n */ { id: 'Other' })}
+                    capKey={undefined}
+                    commands={groups.other}
+                    bypassSet={bypassSet}
+                  />
                 )}
                 {rejectedCommands.length > 0 && (
-                  <div>
-                    <div className="text-xs text-chia-text-muted mb-1">
+                  <div className="border-b border-chia-border last:border-b-0">
+                    <div className="px-5 pt-2 pb-1 text-xs text-chia-text-muted">
                       {i18n._(/* i18n */ { id: 'Not supported and excluded' })}
                     </div>
-                    <div className="flex flex-wrap gap-1.5">
+                    <div className="px-5 pb-2 flex flex-wrap gap-1.5">
                       {rejectedCommands.map((wc) => (
                         <span
                           key={wc}
@@ -256,91 +334,7 @@ export default function Pair(props: PairProps) {
                 )}
               </div>
             </details>
-          </section>
-        )}
-
-        <section className="rounded-xl border border-chia-border bg-chia-card overflow-hidden">
-          <div className="px-5 pt-2.5 pb-1.5 text-xs font-semibold uppercase tracking-wider text-chia-text-muted">
-            {i18n._(/* i18n */ { id: 'Allow without asking' })}
-          </div>
-          <ul className="m-0 p-0 list-none divide-y divide-chia-border border-t border-chia-border">
-            <li>
-              <label className="flex items-center gap-3 px-5 py-1.5 cursor-pointer hover:bg-chia-card-elevated transition-colors">
-                <input
-                  type="checkbox"
-                  defaultChecked={innocuousChecked}
-                  data-form-field="cap-innocuous"
-                  className="w-[18px] h-[18px] accent-chia-primary cursor-pointer shrink-0"
-                />
-                <span className="flex-1 min-w-0 text-sm leading-snug">
-                  <span className="font-medium text-chia-text">
-                    {i18n._(/* i18n */ { id: 'Innocuous actions' })}
-                  </span>
-                  <span className="text-chia-text-secondary">
-                    {': '}
-                    {i18n._(/* i18n */ { id: 'reads accounts, makes wallets' })}
-                  </span>
-                </span>
-              </label>
-            </li>
-            <li>
-              <label className="flex items-center gap-3 px-5 py-1.5 cursor-pointer hover:bg-chia-card-elevated transition-colors">
-                <input
-                  type="checkbox"
-                  defaultChecked={balanceChecked}
-                  data-form-field="cap-balance"
-                  className="w-[18px] h-[18px] accent-chia-primary cursor-pointer shrink-0"
-                />
-                <span className="flex-1 min-w-0 text-sm leading-snug">
-                  <span className="font-medium text-chia-text">
-                    {i18n._(/* i18n */ { id: 'Show balances' })}
-                  </span>
-                  <span className="text-chia-text-secondary">
-                    {': '}
-                    {i18n._(/* i18n */ { id: 'sees how much you hold' })}
-                  </span>
-                </span>
-              </label>
-            </li>
-            <li>
-              <label className="flex items-center gap-3 px-5 py-1.5 cursor-pointer hover:bg-chia-card-elevated transition-colors">
-                <input
-                  type="checkbox"
-                  defaultChecked={signChecked}
-                  data-form-field="cap-sign"
-                  className="w-[18px] h-[18px] accent-chia-primary cursor-pointer shrink-0"
-                />
-                <span className="flex-1 min-w-0 text-sm leading-snug">
-                  <span className="font-medium text-chia-text">
-                    {i18n._(/* i18n */ { id: 'Sign messages' })}
-                  </span>
-                  <span className="text-chia-text-secondary">
-                    {': '}
-                    {i18n._(/* i18n */ { id: 'login or proof of ownership' })}
-                  </span>
-                </span>
-              </label>
-            </li>
-            <li>
-              <label className="flex items-center gap-3 px-5 py-1.5 cursor-pointer hover:bg-chia-card-elevated transition-colors">
-                <input
-                  type="checkbox"
-                  defaultChecked={notificationsChecked}
-                  data-form-field="cap-notifications"
-                  className="w-[18px] h-[18px] accent-chia-primary cursor-pointer shrink-0"
-                />
-                <span className="flex-1 min-w-0 text-sm leading-snug">
-                  <span className="font-medium text-chia-text">
-                    {i18n._(/* i18n */ { id: 'Show notifications' })}
-                  </span>
-                  <span className="text-chia-text-secondary">
-                    {': '}
-                    {i18n._(/* i18n */ { id: 'offers and announcements' })}
-                  </span>
-                </span>
-              </label>
-            </li>
-          </ul>
+          )}
         </section>
 
         <section className="rounded-xl border border-chia-border bg-chia-card overflow-hidden">
@@ -427,6 +421,43 @@ export default function Pair(props: PairProps) {
           {isEdit ? i18n._(/* i18n */ { id: 'Save changes' }) : i18n._(/* i18n */ { id: 'Connect' })}
         </button>
       </div>
+    </div>
+  );
+}
+
+function PerCommandGroup({
+  label,
+  capKey,
+  commands,
+  bypassSet,
+}: {
+  label: string;
+  capKey: 'innocuous' | 'balance' | 'sign' | 'notifications' | undefined;
+  commands: string[];
+  bypassSet: Set<string>;
+}) {
+  if (commands.length === 0) return null;
+  return (
+    <div className="border-b border-chia-border last:border-b-0">
+      <div className="px-5 pt-2 pb-1 text-xs text-chia-text-muted">{label}</div>
+      <ul className="m-0 p-0 list-none">
+        {commands.map((wc) => (
+          <li key={wc}>
+            <label className="flex items-center gap-3 px-5 py-1 cursor-pointer hover:bg-chia-card-elevated transition-colors">
+              <input
+                type="checkbox"
+                defaultChecked={bypassSet.has(wc)}
+                data-form-field={`bypass-${wc}`}
+                data-cap-group={capKey}
+                className="w-[18px] h-[18px] accent-chia-primary cursor-pointer shrink-0"
+              />
+              <span className="text-sm text-chia-text font-mono truncate" title={wc}>
+                {humanizeWcCommand(wc)}
+              </span>
+            </label>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

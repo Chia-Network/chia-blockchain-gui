@@ -1,10 +1,43 @@
 import BigNumber from 'bignumber.js';
 import path from 'node:path';
 
+import { getCommandByWc } from '../constants/commandRegistry';
 import { getUserDataDir } from '../utils/userData';
 import { readData, writeData } from '../utils/yamlUtils';
 
+import { isBalanceCommand, isInnocuousCommand, isSignCommand } from './commandCapabilities';
 import type { PairRecord } from './types';
+
+// Expands legacy `pair.grants.capabilities.<bit>: true` into membership in
+// the per-command bypass list. Only commands the dapp was actually granted
+// (`commands`) are added — never expand silently beyond what the user
+// originally approved at pair time.
+function legacyCapabilityCommands(
+  caps: Record<string, unknown>,
+  grantedWireCommands: string[],
+): string[] {
+  if (!caps || typeof caps !== 'object') return [];
+  const balance = caps.balance === true;
+  const innocuous = caps.innocuous === true;
+  const sign = caps.sign === true;
+  const notifications = caps.notifications === true;
+  if (!balance && !innocuous && !sign && !notifications) return [];
+
+  const result: string[] = [];
+  for (const wcCommand of grantedWireCommands) {
+    if (notifications && wcCommand === 'chia_showNotification') {
+      result.push(wcCommand);
+      continue;
+    }
+    const entry = getCommandByWc(wcCommand);
+    if (!entry) continue;
+    const { nsCommand } = entry;
+    if (balance && isBalanceCommand(nsCommand)) result.push(wcCommand);
+    else if (innocuous && isInnocuousCommand(nsCommand)) result.push(wcCommand);
+    else if (sign && isSignCommand(nsCommand)) result.push(wcCommand);
+  }
+  return result;
+}
 
 const FILE = 'dapp-pairs.yaml';
 
@@ -37,18 +70,25 @@ function load(): PairRecord[] {
       }
       return [];
     })();
-    const bypass = Array.isArray(p?.bypass)
+    const baseBypass = Array.isArray(p?.bypass)
       ? (p.bypass as unknown[]).filter((c): c is string => typeof c === 'string')
       : [];
     const rawGrants = (p?.grants ?? {}) as Record<string, unknown>;
+
+    // Capabilities bits expand into bypass union, then the field is dropped.
+    // Old runtime semantics ("balance:true silently allows all balance
+    // commands") become explicit per-command bypass entries; the bool
+    // never gets persisted again.
     const rawCaps = (rawGrants.capabilities ?? {}) as Record<string, unknown>;
+    const fromCapabilities = legacyCapabilityCommands(rawCaps, commands);
+    const bypass = Array.from(new Set([...baseBypass, ...fromCapabilities]));
+
+    const spendingMode = typeof rawGrants.spendingMode === 'string' ? rawGrants.spendingMode : 'ask';
     const grants = {
-      ...rawGrants,
-      capabilities: {
-        ...rawCaps,
-        notifications: rawCaps.notifications === true,
-      },
+      spendingMode: spendingMode === 'block' || spendingMode === 'auto' ? spendingMode : 'ask',
+      spendingCapMojos: typeof rawGrants.spendingCapMojos === 'string' ? rawGrants.spendingCapMojos : '0',
     };
+
     return {
       ...(p as Record<string, unknown>),
       grants,
@@ -82,21 +122,6 @@ export function upsertPair(pair: PairRecord) {
 
 export function removePair(topic: string) {
   persist(load().filter((p) => p.topic !== topic));
-}
-
-// Toggles a single command in pair.bypass. Returns the updated record,
-// the existing record (unchanged) when state already matches, or undefined
-// for unknown topic. No-op skips the persist + updatedAt bump.
-export function setBypass(topic: string, wcCommand: string, enabled: boolean): PairRecord | undefined {
-  const pair = getPair(topic);
-  if (!pair) return undefined;
-  const isAlready = pair.bypass.includes(wcCommand);
-  if (isAlready === enabled) return pair;
-  const next: PairRecord = enabled
-    ? { ...pair, bypass: [...pair.bypass, wcCommand], updatedAt: Date.now() }
-    : { ...pair, bypass: pair.bypass.filter((c) => c !== wcCommand), updatedAt: Date.now() };
-  upsertPair(next);
-  return next;
 }
 
 // One persist; no-op when the list is already empty so updatedAt doesn't drift.

@@ -67,8 +67,56 @@ function generateScriptContent(confirmId: string) {
       });
     }
 
+    // Bidirectional cascade between a "group" checkbox (data-cap-toggle) and
+    // its members (data-cap-group). Group state mirrors the AND of members:
+    // checked when all are checked, indeterminate when partial, unchecked
+    // when none. Group is UI-only and is never collected into form data.
+    function refreshCapToggle(group) {
+      var toggle = document.querySelector('[data-cap-toggle="' + group + '"]');
+      if (!toggle) return;
+      var members = document.querySelectorAll('[data-cap-group="' + group + '"]');
+      if (members.length === 0) {
+        toggle.checked = false;
+        toggle.indeterminate = false;
+        return;
+      }
+      var checkedCount = 0;
+      members.forEach(function (m) { if (m.checked) checkedCount += 1; });
+      if (checkedCount === 0) {
+        toggle.checked = false;
+        toggle.indeterminate = false;
+      } else if (checkedCount === members.length) {
+        toggle.checked = true;
+        toggle.indeterminate = false;
+      } else {
+        toggle.checked = false;
+        toggle.indeterminate = true;
+      }
+    }
+
+    document.querySelectorAll('[data-cap-toggle]').forEach(function (toggle) {
+      var group = toggle.getAttribute('data-cap-toggle');
+      toggle.addEventListener('change', function () {
+        var members = document.querySelectorAll('[data-cap-group="' + group + '"]');
+        members.forEach(function (m) { m.checked = toggle.checked; });
+        toggle.indeterminate = false;
+      });
+    });
+
+    document.querySelectorAll('[data-cap-group]').forEach(function (member) {
+      var group = member.getAttribute('data-cap-group');
+      member.addEventListener('change', function () { refreshCapToggle(group); });
+    });
+
     document.querySelectorAll('[data-form-field]').forEach(function (el) {
       el.addEventListener('change', updateDynamicSummary);
+    });
+
+    // Initialize indeterminate states from default-checked attributes.
+    var seenGroups = new Set();
+    document.querySelectorAll('[data-cap-group]').forEach(function (member) {
+      var group = member.getAttribute('data-cap-group');
+      if (!seenGroups.has(group)) { seenGroups.add(group); refreshCapToggle(group); }
     });
 
     updateDynamicSummary();

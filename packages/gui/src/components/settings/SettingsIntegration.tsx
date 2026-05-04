@@ -8,53 +8,18 @@ import {
   Grid,
   Switch,
   TextField,
-  Typography,
 } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
-import type {
-  PermissionsCommandMetadata,
-  PermissionsPairRecord,
-} from '../../@types/PermissionsService';
-import useCommandMetadata from '../../hooks/useCommandMetadata';
+import type { PermissionsPairRecord } from '../../@types/PermissionsService';
 import useWalletConnectContext from '../../hooks/useWalletConnectContext';
 import useWalletConnectPreferences from '../../hooks/useWalletConnectPreferences';
 
-// Display label for a stored wire-form WC command (e.g. `chia_sendTransaction`).
-// Reads from main's `commandRegistry` via the metadata IPC. Falls back to the
-// bare name when the registry has no label for it.
-function commandLabel(wcCommand: string, byWc: Map<string, PermissionsCommandMetadata>): React.ReactNode {
-  const meta = byWc.get(wcCommand);
-  if (meta?.label) return meta.label;
-  return wcCommand.startsWith('chia_') ? wcCommand.slice('chia_'.length) : wcCommand;
-}
-
-function commandDescription(
-  wcCommand: string,
-  byWc: Map<string, PermissionsCommandMetadata>,
-): React.ReactNode | undefined {
-  return byWc.get(wcCommand)?.description;
-}
-
 export default function SettingsIntegration() {
-  const theme = useTheme();
-  const borderColor =
-    theme.palette.mode === 'dark' ? (theme.palette as any).border.dark : (theme.palette as any).border.main;
-  const borderStyle = {
-    border: 1,
-    borderColor,
-    borderRadius: 2,
-    padding: 2,
-  };
   const { disconnect } = useWalletConnectContext();
   const { enabled, setEnabled, allowConfirmationFingerprintChange, setAllowConfirmationFingerprintChange } =
     useWalletConnectPreferences();
-  const { byWc: commandsByWc } = useCommandMetadata();
 
-  // Pair list is fetched from main on mount and after every mutation. Main
-  // owns the persisted state (commands + bypass + grants); the renderer is a
-  // pure view here.
   const [pairs, setPairs] = useState<PermissionsPairRecord[]>([]);
   const [topic, setTopic] = useState<string | null>(null);
   const [autocompleteKey, setAutocompleteKey] = useState(0);
@@ -82,7 +47,6 @@ export default function SettingsIntegration() {
   const refresh = useCallback(() => setRefreshTick((n) => n + 1), []);
 
   const selectedPair = useMemo(() => pairs.find((p) => p.topic === topic), [pairs, topic]);
-  const bypassSet = useMemo(() => new Set(selectedPair?.bypass ?? []), [selectedPair]);
 
   const handleDisconnectApp = useCallback(async () => {
     if (!topic) return;
@@ -98,15 +62,6 @@ export default function SettingsIntegration() {
     setAutocompleteKey((k) => k + 1); // force the Autocomplete to clear its selection
     refresh();
   }, [disconnect, topic, refresh]);
-
-  const handleToggleBypass = useCallback(
-    async (wcCommand: string, enabledNext: boolean) => {
-      if (!topic) return;
-      await window.permissionsAPI.setBypass({ topic, wcCommand, enabled: enabledNext });
-      refresh();
-    },
-    [topic, refresh],
-  );
 
   const handleResetForPair = useCallback(async () => {
     if (!topic) return;
@@ -201,16 +156,13 @@ export default function SettingsIntegration() {
         <Flex flexDirection="column" gap={1}>
           <Grid item style={{ width: '400px' }}>
             <SettingsTitle>
-              <Trans>App Permissions</Trans>
+              <Trans>Connected Apps</Trans>
             </SettingsTitle>
           </Grid>
 
           <Grid item style={{ width: '400px' }}>
             <SettingsText>
-              <Trans>
-                Pick which commands a connected app can run silently. Anything not toggled will still ask for
-                confirmation.
-              </Trans>
+              <Trans>Pick an app to disconnect or restore its default permissions.</Trans>
             </SettingsText>
           </Grid>
 
@@ -263,83 +215,27 @@ export default function SettingsIntegration() {
         </Flex>
       </Grid>
 
-      {selectedPair && (
+      {selectedPair && selectedPair.bypass.length > 0 && (
         <Grid container marginTop="8px">
-          <Flex flexDirection="column" gap={2}>
-            <Flex flexDirection="column" gap={1}>
-              {selectedPair.commands.length > 0 ? (
-                <Box {...borderStyle}>
-                  <Typography variant="h6">
-                    <Trans>Skip Confirmation for Commands</Trans>
-                  </Typography>
-                  <Grid spacing={2} container marginTop="4px" marginRight="-32px">
-                    {selectedPair.commands.map((wcCommand) => {
-                      const isBypassed = bypassSet.has(wcCommand);
-                      return (
-                        <Grid item key={`grid-command-${wcCommand}`} width="624px" marginLeft="8px">
-                          <Flex flexDirection="row" alignItems="center" justifyContent="spaceBetween" gap={1}>
-                            <Grid item style={{ width: '400px' }}>
-                              <SettingsTitle>{commandLabel(wcCommand, commandsByWc)}</SettingsTitle>
-                            </Grid>
-                            <Grid item container xs justifyContent="flex-end" marginTop="-6px" marginRight="8px">
-                              <FormControlLabel
-                                label={null}
-                                control={
-                                  <Switch
-                                    checked={isBypassed}
-                                    onChange={(_e, checked) => handleToggleBypass(wcCommand, checked)}
-                                  />
-                                }
-                              />
-                            </Grid>
-                          </Flex>
-                          <Grid item style={{ width: '400px' }}>
-                            <SettingsText>{commandDescription(wcCommand, commandsByWc) ?? ''}</SettingsText>
-                          </Grid>
-                        </Grid>
-                      );
-                    })}
-                  </Grid>
-                </Box>
-              ) : (
-                <Box {...borderStyle}>
-                  <Grid item width="590px">
-                    <Typography variant="subtitle1">
-                      <Trans>This app has no granted commands</Trans>
-                    </Typography>
-                  </Grid>
-                </Box>
-              )}
+          <Grid item style={{ width: '624px' }}>
+            <Flex flexDirection="row" alignItems="center" justifyContent="spaceBetween" gap={1}>
+              <SettingsTitle>
+                <Trans>Restore Default Dapp Permissions</Trans>
+              </SettingsTitle>
+              <Flex flexDirection="row" flexGrow={1} justifyContent="flex-end" gap={2}>
+                <Button onClick={handleResetForPair} color="secondary" variant="outlined">
+                  <Trans>Restore</Trans>
+                </Button>
+              </Flex>
             </Flex>
-
-            {selectedPair.bypass.length > 0 && (
-              <>
-                <Grid item style={{ width: '624px' }}>
-                  <Flex flexDirection="row" alignItems="center" justifyContent="spaceBetween" gap={1}>
-                    <SettingsTitle>
-                      <Trans>Restore Default Dapp Permissions</Trans>
-                    </SettingsTitle>
-                    <Flex flexDirection="row" flexGrow={1} justifyContent="flex-end" gap={2}>
-                      <Button
-                        onClick={handleResetForPair}
-                        color="secondary"
-                        variant="outlined"
-                      >
-                        <Trans>Restore</Trans>
-                      </Button>
-                    </Flex>
-                  </Flex>
-                </Grid>
-                <Grid item container style={{ width: '400px' }} gap={2}>
-                  <SettingsText>
-                    <Trans>
-                      Clear every "always allow" override for this app. Future commands will require confirmation again.
-                    </Trans>
-                  </SettingsText>
-                </Grid>
-              </>
-            )}
-          </Flex>
+          </Grid>
+          <Grid item container style={{ width: '400px' }} gap={2}>
+            <SettingsText>
+              <Trans>
+                Clear every "always allow" override for this app. Future commands will require confirmation again.
+              </Trans>
+            </SettingsText>
+          </Grid>
         </Grid>
       )}
 
@@ -354,11 +250,7 @@ export default function SettingsIntegration() {
               <Trans>Reset WalletConnect Permissions</Trans>
             </SettingsTitle>
             <Flex flexDirection="row" flexGrow={1} justifyContent="flex-end" gap={2}>
-              <Button
-                onClick={handleResetForAllPairs}
-                color="secondary"
-                variant="outlined"
-              >
+              <Button onClick={handleResetForAllPairs} color="secondary" variant="outlined">
                 <Trans>Reset</Trans>
               </Button>
             </Flex>
