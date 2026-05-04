@@ -57,12 +57,20 @@ export default function SettingsIntegration() {
 
   const handleResetForPair = useCallback(async () => {
     if (!topic) return;
-    await window.permissionsAPI.resetBypass(topic);
+    try {
+      await window.permissionsAPI.resetBypass(topic);
+    } catch (e) {
+      console.warn('Failed to reset bypass for pair', e);
+    }
     refresh();
   }, [topic, refresh]);
 
   const handleResetForAllPairs = useCallback(async () => {
-    await window.permissionsAPI.resetBypassAll();
+    try {
+      await window.permissionsAPI.resetBypassAll();
+    } catch (e) {
+      console.warn('Failed to reset bypass for all pairs', e);
+    }
     refresh();
   }, [refresh]);
 
