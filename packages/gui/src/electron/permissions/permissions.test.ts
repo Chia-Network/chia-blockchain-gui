@@ -405,9 +405,7 @@ describe('resolvePermission - spend-class commands (governed by spendingMode)', 
 
     it('mixed XCH + CAT outflow prompts (any non-XCH negative entry → prompt)', async () => {
       mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '1_000_000_000_000' }));
-      expect(
-        await pairResolve(OFFER, { offer: { '1': '-1000', '0xcat': '-1' }, fee: '0' }),
-      ).toMatchObject({
+      expect(await pairResolve(OFFER, { offer: { '1': '-1000', '0xcat': '-1' }, fee: '0' })).toMatchObject({
         kind: 'prompt',
         reason: 'spending needs confirmation',
       });
@@ -417,9 +415,7 @@ describe('resolvePermission - spend-class commands (governed by spendingMode)', 
       // { -1000 XCH out, +5 CAT in } — auto-approve must reject because the
       // CAT inflow is outside what the XCH spending cap bounds.
       mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '10000', spentMojos: '0' }));
-      expect(
-        await pairResolve(OFFER, { offer: { '1': '-1000', '0xcat': '5' }, fee: '0' }),
-      ).toMatchObject({
+      expect(await pairResolve(OFFER, { offer: { '1': '-1000', '0xcat': '5' }, fee: '0' })).toMatchObject({
         kind: 'prompt',
         reason: 'spending needs confirmation',
       });
@@ -428,10 +424,10 @@ describe('resolvePermission - spend-class commands (governed by spendingMode)', 
     it('mixed XCH outflow + NFT inflow prompts', async () => {
       mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '10000', spentMojos: '0' }));
       expect(
-        await pairResolve(
-          OFFER,
-          { offer: { '1': '-1000', '0xnft0000000000000000000000000000000000000000000000000000000000': '1' }, fee: '0' },
-          ),
+        await pairResolve(OFFER, {
+          offer: { '1': '-1000', '0xnft0000000000000000000000000000000000000000000000000000000000': '1' },
+          fee: '0',
+        }),
       ).toMatchObject({
         kind: 'prompt',
         reason: 'spending needs confirmation',
@@ -452,9 +448,7 @@ describe('resolvePermission - spend-class commands (governed by spendingMode)', 
       // Even a zero-amount CAT/NFT key triggers prompt — auto-approve applies
       // only when the offer is exclusively XCH, regardless of amounts.
       mockGetPair.mockReturnValue(makePair({ spendingMode: 'auto', spendingCapMojos: '10000', spentMojos: '0' }));
-      expect(
-        await pairResolve(OFFER, { offer: { '1': '-1000', '0xcat': '0' }, fee: '0' }),
-      ).toMatchObject({
+      expect(await pairResolve(OFFER, { offer: { '1': '-1000', '0xcat': '0' }, fee: '0' })).toMatchObject({
         kind: 'prompt',
         reason: 'spending needs confirmation',
       });
