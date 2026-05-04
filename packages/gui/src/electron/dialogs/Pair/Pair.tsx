@@ -91,8 +91,10 @@ export default function Pair(props: PairProps) {
   };
 
   const defaultCapXch = new BigNumber(grants.spendingCapMojos ?? 0).div(MOJOS_PER_XCH).toFixed();
-  const spentXch = new BigNumber(defaultSpentMojos ?? 0).div(MOJOS_PER_XCH).toFixed();
+  const spentBn = new BigNumber(defaultSpentMojos ?? 0);
+  const spentXch = spentBn.div(MOJOS_PER_XCH).toFixed();
   const showSpentRow = isEdit && (grants.spendingMode ?? 'ask') === 'auto';
+  const showResetSpent = isEdit && spentBn.isGreaterThan(0);
   const spendingMode = grants.spendingMode ?? 'ask';
 
   const filterHidden = (cmds: string[]) => cmds.filter((wc) => !HIDDEN_COMMANDS.has(wc));
@@ -338,8 +340,21 @@ export default function Pair(props: PairProps) {
         </section>
 
         <section className="rounded-xl border border-chia-border bg-chia-card overflow-hidden">
-          <div className="px-5 pt-2.5 pb-1.5 text-xs font-semibold uppercase tracking-wider text-chia-text-muted">
-            {i18n._(/* i18n */ { id: 'Spending and trading' })}
+          <div className="flex items-center justify-between gap-3 px-5 pt-2.5 pb-1.5">
+            <span className="text-xs font-semibold uppercase tracking-wider text-chia-text-muted">
+              {i18n._(/* i18n */ { id: 'Spending and trading' })}
+            </span>
+            {showResetSpent && (
+              // Checkbox styled as a button: ticks a hidden form field that
+              // main reads on Save (resets spentMojos to 0). Lets the user
+              // clear the counter without leaving the Edit dialog.
+              <label className="cursor-pointer select-none">
+                <input type="checkbox" data-form-field="resetSpent" className="peer sr-only" />
+                <span className="inline-flex items-center text-xs font-semibold uppercase tracking-wider px-2.5 py-1 rounded-md border border-chia-border-strong text-chia-text-secondary hover:border-chia-primary hover:text-chia-primary peer-checked:bg-chia-primary-soft peer-checked:text-chia-primary peer-checked:border-chia-primary transition-colors">
+                  <span className="peer-checked-hidden">{i18n._(/* i18n */ { id: 'Reset' })}</span>
+                </span>
+              </label>
+            )}
           </div>
           {showSpentRow && (
             <div className="px-5 py-2 border-t border-chia-border text-sm text-chia-text-secondary">
@@ -392,7 +407,7 @@ export default function Pair(props: PairProps) {
                 step="0.000000000001"
                 defaultValue={defaultCapXch}
                 data-form-field="spendingCapXch"
-                className="w-24 px-2 py-1 rounded-md border border-chia-border-strong bg-chia-bg text-sm font-mono text-chia-text focus:outline-none focus:border-chia-primary focus:ring-2 focus:ring-chia-primary/20"
+                className="w-44 px-2 py-1 rounded-md border border-chia-border-strong bg-chia-bg text-sm font-mono text-chia-text focus:outline-none focus:border-chia-primary focus:ring-2 focus:ring-chia-primary/20"
               />
               <span className="text-sm font-semibold uppercase tracking-wider text-chia-text-secondary">
                 {currencyCode}

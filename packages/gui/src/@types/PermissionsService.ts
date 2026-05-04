@@ -83,7 +83,6 @@ type PermissionsService = {
   revokePair: (topic: string) => Promise<boolean>;
   resetBypass: (topic: string) => Promise<PermissionsPairRecord | null>;
   resetBypassAll: () => Promise<boolean>;
-  resetSpent: (topic: string) => Promise<PermissionsPairRecord | null>;
   commandsMetadata: () => Promise<PermissionsCommandMetadata[]>;
   /**
    * Subscribe to `chia_showNotification` payloads from main. Main fires

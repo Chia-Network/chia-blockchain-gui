@@ -4,7 +4,6 @@ import {
   CheckCircleTwoTone as CheckCircleTwoToneIcon,
   Delete as DeleteIcon,
   Edit as EditIcon,
-  RestartAlt as ResetIcon,
 } from '@mui/icons-material';
 import { Button, ListItemIcon, Typography, Divider } from '@mui/material';
 import React, { useCallback } from 'react';
@@ -121,20 +120,6 @@ export default function WalletConnectConnections(props: WalletConnectConnections
     [onClose, showError],
   );
 
-  const handleResetSpending = useCallback(
-    async (topic: string) => {
-      onClose?.();
-      try {
-        // Main pops the OS confirmation dialog only when there's actually
-        // a non-zero counter to clear; ask/block-mode dapps no-op silently.
-        await window.permissionsAPI.resetSpent(topic);
-      } catch (err) {
-        showError(err);
-      }
-    },
-    [onClose, showError],
-  );
-
   const pairsList = pairs.get();
 
   return (
@@ -160,14 +145,6 @@ export default function WalletConnectConnections(props: WalletConnectConnections
                     </ListItemIcon>
                     <Typography variant="inherit" noWrap>
                       <Trans>Edit</Trans>
-                    </Typography>
-                  </MenuItem>
-                  <MenuItem onClick={() => handleResetSpending(pair.topic)} close>
-                    <ListItemIcon>
-                      <ResetIcon fontSize="small" color="info" />
-                    </ListItemIcon>
-                    <Typography variant="inherit" noWrap>
-                      <Trans>Reset Spending</Trans>
                     </Typography>
                   </MenuItem>
                   <MenuItem onClick={() => handleDisconnect(pair.topic)} close>

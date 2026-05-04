@@ -53,7 +53,6 @@ import {
   removePair,
   resetBypass,
   resetBypassAll,
-  resetSpentMojos,
   upsertPair,
 } from './permissions/pairStore';
 import { resolvePermission } from './permissions/permissions';
@@ -211,7 +210,7 @@ async function openPairDialog(
     allowed?: string[];
     rejected?: string[];
   } = {},
-): Promise<{ grants: PairGrants; fingerprints: number[]; bypass: string[] } | undefined> {
+): Promise<{ grants: PairGrants; fingerprints: number[]; bypass: string[]; resetSpent: boolean } | undefined> {
   if (!mainWindow) {
     throw new Error('mainWindow is empty');
   }
@@ -237,7 +236,7 @@ async function openPairDialog(
     {
       title: getPairTitle(!!options.isEdit),
       width: 640,
-      height: 640,
+      height: 540,
     },
   );
 
@@ -249,6 +248,7 @@ async function openPairDialog(
     grants: dialogResultToGrants(result),
     fingerprints: dialogResultToFingerprints(result),
     bypass: dialogResultToBypass(result, grantedCommands),
+    resetSpent: result.resetSpent === true,
   };
 }
 
@@ -307,6 +307,7 @@ ipcMainHandle(PermissionsAPI.PAIR_EDIT, async (payload: { topic: string }) => {
     fingerprints: decision.fingerprints,
     grants: decision.grants,
     bypass: decision.bypass,
+    spentMojos: decision.resetSpent ? '0' : existing.spentMojos,
     updatedAt: Date.now(),
   };
   upsertPair(updated);
@@ -323,44 +324,6 @@ ipcMainHandle(PermissionsAPI.PAIR_RESET_BYPASS, (topic: string) => resetBypass(t
 ipcMainHandle(PermissionsAPI.PAIR_RESET_BYPASS_ALL, () => {
   resetBypassAll();
   return true;
-});
-
-ipcMainHandle(PermissionsAPI.PAIR_RESET_SPENT, async (topic: string) => {
-  const pair = getPair(topic);
-  if (!pair) return null;
-
-  const dappName = pair.metadata.name || i18n._(/* i18n */ { id: 'Unknown application' });
-  const hasSpent =
-    !!pair.spentMojos && pair.spentMojos !== '0' && !new BigNumber(pair.spentMojos).isZero();
-
-  // Always give visible feedback when the user clicks the menu item —
-  // silently no-op'ing on zero left users wondering whether the click landed.
-  if (!hasSpent) {
-    await dialog.showMessageBox({
-      type: 'info',
-      buttons: [i18n._(/* i18n */ { id: 'OK' })],
-      title: i18n._(/* i18n */ { id: 'Nothing to Reset' }),
-      message: i18n._('"{name}" has not auto-spent anything yet.', { name: dappName }),
-    });
-    return pair;
-  }
-
-  // Resetting hands the dapp its full silent-spend budget back — same
-  // hard-click gate as setBypass.
-  const result = await dialog.showMessageBox({
-    type: 'warning',
-    buttons: [i18n._(/* i18n */ { id: 'Cancel' }), i18n._(/* i18n */ { id: 'Reset' })],
-    defaultId: 0,
-    cancelId: 0,
-    title: i18n._(/* i18n */ { id: 'Reset Spending Counter' }),
-    message: i18n._('Reset spending counter for "{name}"?', { name: dappName }),
-    detail: i18n._(/* i18n */ {
-      id: 'The app will be allowed to spend up to its full budget again before being asked.',
-    }),
-  });
-  if (result.response !== 1) return pair;
-
-  return resetSpentMojos(topic) ?? null;
 });
 
 ipcMainHandle(PermissionsAPI.COMMANDS_METADATA, () => commandsMetadata());

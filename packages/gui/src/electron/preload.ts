@@ -99,7 +99,6 @@ contextBridge.exposeInMainWorld(API.PERMISSIONS, {
   revokePair: (topic: string) => invokeWithCustomErrors(PermissionsAPI.PAIR_REVOKE, topic),
   resetBypass: (topic: string) => invokeWithCustomErrors(PermissionsAPI.PAIR_RESET_BYPASS, topic),
   resetBypassAll: () => invokeWithCustomErrors(PermissionsAPI.PAIR_RESET_BYPASS_ALL),
-  resetSpent: (topic: string) => invokeWithCustomErrors(PermissionsAPI.PAIR_RESET_SPENT, topic),
   commandsMetadata: () => invokeWithCustomErrors(PermissionsAPI.COMMANDS_METADATA),
   subscribeToNotification: (callback: (...args: unknown[]) => void) =>
     onIpcEvent(PermissionsAPI.NOTIFICATION_EVENT, callback),

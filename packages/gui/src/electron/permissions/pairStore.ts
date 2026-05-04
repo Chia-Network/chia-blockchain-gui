@@ -148,19 +148,6 @@ export function resetBypassAll(): void {
   if (mutated) persist(next);
 }
 
-// Clear the cumulative auto-spend counter so the dapp gets its full budget
-// back. No-op (no persist, no updatedAt bump) when already zero.
-export function resetSpentMojos(topic: string): PairRecord | undefined {
-  const pair = getPair(topic);
-  if (!pair) return undefined;
-  if (!pair.spentMojos || pair.spentMojos === '0' || new BigNumber(pair.spentMojos).isZero()) {
-    return pair;
-  }
-  const next: PairRecord = { ...pair, spentMojos: '0', updatedAt: Date.now() };
-  upsertPair(next);
-  return next;
-}
-
 export function recordSpend(topic: string, mojos: BigNumber) {
   const pair = getPair(topic);
   if (!pair) return;
