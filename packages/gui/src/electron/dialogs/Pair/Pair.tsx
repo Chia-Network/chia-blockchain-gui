@@ -109,7 +109,7 @@ export default function Pair(props: PairProps) {
     {
       key: 'innocuous',
       label: i18n._(/* i18n */ { id: 'Innocuous actions' }),
-      description: i18n._(/* i18n */ { id: 'reads accounts, makes wallets' }),
+      description: i18n._(/* i18n */ { id: 'reads accounts, NFTs, and offers' }),
       commands: groups.innocuous,
     },
     {
@@ -121,13 +121,13 @@ export default function Pair(props: PairProps) {
     {
       key: 'sign',
       label: i18n._(/* i18n */ { id: 'Sign messages' }),
-      description: i18n._(/* i18n */ { id: 'login or proof of ownership' }),
+      description: i18n._(/* i18n */ { id: 'signs text with your key' }),
       commands: groups.sign,
     },
     {
       key: 'notifications',
       label: i18n._(/* i18n */ { id: 'Show notifications' }),
-      description: i18n._(/* i18n */ { id: 'offers and announcements' }),
+      description: i18n._(/* i18n */ { id: 'shows you offers and updates' }),
       commands: groups.notifications,
     },
   ];
