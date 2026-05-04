@@ -75,20 +75,14 @@ export type ConfirmProps = {
   isDarkMode?: boolean;
 };
 
-// Inline SVG fallback for the dapp icon. Used as the second layer in a CSS
-// multi-layer background — when the dapp's icon URL fails to load (or isn't
-// provided), the fallback shows. Pure CSS; no script needed, which matters
-// because the dialog HTML is server-rendered and the CSP blocks inline event
-// handlers.
-const DAPP_ICON_FALLBACK_SVG =
-  "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%235ece71'><path fill-rule='evenodd' d='M14.615 1.595a.75.75 0 0 1 .359.852L12.982 9.75h7.268a.75.75 0 0 1 .548 1.262l-10.5 11.25a.75.75 0 0 1-1.272-.71l1.992-7.302H3.75a.75.75 0 0 1-.548-1.262l10.5-11.25a.75.75 0 0 1 .913-.143Z' clip-rule='evenodd'/></svg>";
-
+// Only emit a background-image when the dapp's icon is a real https URL.
+// Sandbox CSP enforces this too, but filtering here keeps the markup clean
+// and dodges console noise from blocked data:/file: schemes.
 function buildIconBackground(iconUrl?: string): React.CSSProperties {
-  const fallback = `url(${JSON.stringify(DAPP_ICON_FALLBACK_SVG)})`;
-  const primary = iconUrl ? `url(${JSON.stringify(iconUrl)}), ${fallback}` : fallback;
+  if (!iconUrl || !/^https:\/\//i.test(iconUrl)) return {};
   return {
-    backgroundImage: primary,
-    backgroundSize: iconUrl ? 'cover, 50%' : '50%',
+    backgroundImage: `url(${JSON.stringify(iconUrl)})`,
+    backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
   };
