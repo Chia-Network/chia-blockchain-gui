@@ -1,6 +1,6 @@
-import BigNumber from 'bignumber.js';
 import crypto from 'node:crypto';
 
+import BigNumber from 'bignumber.js';
 import JSONbig from 'json-bigint';
 
 import AllowedCommands from '../constants/AllowedCommands';
@@ -117,17 +117,16 @@ function extractOfferXchOutflow(payload: Record<string, unknown>): BigNumber | u
   let xchOut = new BigNumber(0);
   for (const [key, raw] of Object.entries(offer as Record<string, unknown>)) {
     if (key !== '1') return undefined;
-    let amount: BigNumber;
+    let amount: BigNumber | undefined;
     try {
       amount = new BigNumber(typeof raw === 'string' ? raw : String(raw));
     } catch {
-      continue;
-    }
-    if (!amount.isFinite()) continue;
-    if (amount.isLessThan(0)) {
-      xchOut = xchOut.plus(amount.abs());
+      amount = undefined;
     }
     // Positive XCH is inflow (we're requesting XCH) — doesn't add to outflow.
+    if (amount && amount.isFinite() && amount.isLessThan(0)) {
+      xchOut = xchOut.plus(amount.abs());
+    }
   }
   return xchOut;
 }
@@ -169,8 +168,7 @@ async function extractTakeOfferXchOutflow(payload: Record<string, unknown>): Pro
     return undefined;
   }
   if (!summary || typeof summary !== 'object') return undefined;
-  const requested = summary.requested;
-  const offered = summary.offered;
+  const { requested, offered } = summary;
   if (!requested || typeof requested !== 'object') return undefined;
   if (!offered || typeof offered !== 'object') return undefined;
 

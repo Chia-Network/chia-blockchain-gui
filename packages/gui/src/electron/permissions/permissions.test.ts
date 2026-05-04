@@ -2,8 +2,8 @@ import BigNumber from 'bignumber.js';
 
 import { sendDappAndAwait } from '../utils/webSocketBridge';
 
-import { resolvePermission } from './permissions';
 import { getPair, recordSpend } from './pairStore';
+import { resolvePermission } from './permissions';
 import type { Decision, PairRecord, SpendingMode } from './types';
 
 jest.mock('./pairStore', () => ({

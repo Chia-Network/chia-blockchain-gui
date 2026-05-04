@@ -20,8 +20,9 @@ describe('registry shape', () => {
   it('every entry with a wcCommand is reachable via getCommandByWc', () => {
     for (const ns of SCHEMA_COMMANDS) {
       const schema = getCommandSchema(ns);
-      if (!schema.wcCommand) continue;
-      expect(getCommandByWc(schema.wcCommand)).toEqual({ nsCommand: ns, schema });
+      if (schema.wcCommand) {
+        expect(getCommandByWc(schema.wcCommand)).toEqual({ nsCommand: ns, schema });
+      }
     }
   });
 
@@ -29,20 +30,22 @@ describe('registry shape', () => {
     const seen = new Map<string, string>();
     for (const ns of SCHEMA_COMMANDS) {
       const schema = getCommandSchema(ns);
-      if (!schema.wcCommand) continue;
-      if (seen.has(schema.wcCommand)) {
-        throw new Error(`duplicate wcCommand "${schema.wcCommand}" on ${ns} and ${seen.get(schema.wcCommand)}`);
+      if (schema.wcCommand) {
+        if (seen.has(schema.wcCommand)) {
+          throw new Error(`duplicate wcCommand "${schema.wcCommand}" on ${ns} and ${seen.get(schema.wcCommand)}`);
+        }
+        seen.set(schema.wcCommand, ns);
       }
-      seen.set(schema.wcCommand, ns);
     }
   });
 
   it('every wcCommand uses wire form (`chia_<name>`)', () => {
     for (const ns of SCHEMA_COMMANDS) {
       const schema = getCommandSchema(ns);
-      if (!schema.wcCommand) continue;
-      expect(schema.wcCommand.startsWith('chia_')).toBe(true);
-      expect(schema.wcCommand.length).toBeGreaterThan('chia_'.length);
+      if (schema.wcCommand) {
+        expect(schema.wcCommand.startsWith('chia_')).toBe(true);
+        expect(schema.wcCommand.length).toBeGreaterThan('chia_'.length);
+      }
     }
   });
 

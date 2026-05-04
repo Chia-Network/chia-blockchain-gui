@@ -105,6 +105,12 @@ function shortenId(id: string, head = 12, tail = 8): string {
   return `${id.slice(0, head)}…${id.slice(-tail)}`;
 }
 
+function offerLineKey(line: ConfirmOfferLine, index: number): string {
+  if (line.kind === 'xch') return `xch-${line.amount}-${index}`;
+  if (line.kind === 'cat') return `cat-${line.assetId}-${line.amount}-${index}`;
+  return `nft-${line.nftId}-${index}`;
+}
+
 function OfferLineRow({ line, networkPrefix }: { line: ConfirmOfferLine; networkPrefix?: string }) {
   if (line.kind === 'xch') {
     // Inline `{amount} {unit}` matches the FEE row in the offer card so a
@@ -168,7 +174,9 @@ function OfferSummarySection({
           {offer.offered.length === 0 ? (
             <span className="text-sm text-chia-text-secondary">{i18n._(/* i18n */ { id: 'Nothing' })}</span>
           ) : (
-            offer.offered.map((line, i) => <OfferLineRow key={i} line={line} networkPrefix={networkPrefix} />)
+            offer.offered.map((line, i) => (
+              <OfferLineRow key={offerLineKey(line, i)} line={line} networkPrefix={networkPrefix} />
+            ))
           )}
         </div>
       </div>
@@ -180,7 +188,9 @@ function OfferSummarySection({
           {offer.requested.length === 0 ? (
             <span className="text-sm text-chia-text-secondary">{i18n._(/* i18n */ { id: 'Nothing' })}</span>
           ) : (
-            offer.requested.map((line, i) => <OfferLineRow key={i} line={line} networkPrefix={networkPrefix} />)
+            offer.requested.map((line, i) => (
+              <OfferLineRow key={offerLineKey(line, i)} line={line} networkPrefix={networkPrefix} />
+            ))
           )}
         </div>
       </div>

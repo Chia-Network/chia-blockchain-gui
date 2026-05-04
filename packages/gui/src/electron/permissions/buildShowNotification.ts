@@ -30,7 +30,7 @@ export function buildShowNotification(
   payload: Record<string, unknown>,
   requestFingerprint?: number,
 ): ShowNotificationPayload | null {
-  const type = payload.type;
+  const { type } = payload;
   const allFingerprints = payload.allFingerprints === true;
   const fingerprints = allFingerprints
     ? pair.fingerprints
@@ -44,13 +44,13 @@ export function buildShowNotification(
   const base = { from, timestamp, id, source: 'WALLET_CONNECT' as const, fingerprints };
 
   if (type === NotificationType.OFFER) {
-    const offerData = payload.offerData;
+    const { offerData } = payload;
     if (typeof offerData !== 'string' || !offerData) return null;
     return { ...base, type: NotificationType.OFFER, offerData };
   }
 
   if (type === NotificationType.ANNOUNCEMENT) {
-    const message = payload.message;
+    const { message } = payload;
     if (typeof message !== 'string' || !message) return null;
     const urlRaw = payload.url;
     const url = typeof urlRaw === 'string' && urlRaw ? urlRaw : undefined;

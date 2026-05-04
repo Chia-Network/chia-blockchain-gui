@@ -1,7 +1,8 @@
-import BigNumber from 'bignumber.js';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+
+import BigNumber from 'bignumber.js';
 
 import type { PairRecord } from './types';
 
@@ -13,10 +14,9 @@ jest.mock('../utils/userData', () => ({
 }));
 
 // Pulled in after the mock so the module reads the patched userDataDir.
-// eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
 const loadStore = (): typeof import('./pairStore') => {
   jest.resetModules();
-  // eslint-disable-next-line global-require
+  // eslint-disable-next-line global-require -- module must be required after jest.resetModules to pick up mocked deps
   return require('./pairStore');
 };
 
@@ -172,7 +172,7 @@ describe('pairStore - recordSpend (spend cap accounting)', () => {
   });
 
   it('treats undefined spentMojos on the existing record as zero', () => {
-    const store = loadStore();
+    loadStore();
     // Simulate an older record with no spentMojos field on disk.
     const file = path.join(mockTempDir, 'dapp-pairs.yaml');
     const legacy = makePair({ topic: 'a' });
@@ -203,7 +203,7 @@ describe('pairStore - commands field migration', () => {
   // anything, which is the safe default for an upgrade.
 
   it('defaults to [] when the field is absent on disk', () => {
-    const store = loadStore();
+    loadStore();
     const file = path.join(mockTempDir, 'dapp-pairs.yaml');
     const legacy = makePair({ topic: 'a' });
     delete (legacy as Partial<PairRecord>).commands;
@@ -211,7 +211,6 @@ describe('pairStore - commands field migration', () => {
 
     const reload = loadStore();
     expect(reload.getPair('a')?.commands).toEqual([]);
-    void store;
   });
 
   it('defaults to [] when the field is non-array on disk', () => {

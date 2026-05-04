@@ -100,6 +100,13 @@ const cacheManager = new CacheManager({
   maxCacheSize: prefs.maxCacheSize,
 });
 
+// Hoisted so IPC handlers registered below can close over them; assigned in
+// `createWindow` once Electron is ready.
+let mainWindow: BrowserWindow | null = null;
+let networkPrefix: string | undefined;
+let currentDownloadRequest: any;
+let abortDownloadingFiles: boolean = false;
+
 // IPC listeners
 ipcMainHandle(PreferencesAPI.READ, () => readPrefs());
 ipcMainHandle(PreferencesAPI.SAVE, (prefsObj) => savePrefs(prefsObj));
@@ -161,10 +168,10 @@ function dialogResultToBypass(result: Record<string, unknown>, granted: string[]
   const grantedSet = new Set(granted);
   const bypass: string[] = [];
   for (const [key, value] of Object.entries(result)) {
-    if (!key.startsWith('bypass-')) continue;
-    if (value !== true) continue;
-    const wcCommand = key.slice('bypass-'.length);
-    if (grantedSet.has(wcCommand)) bypass.push(wcCommand);
+    if (key.startsWith('bypass-') && value === true) {
+      const wcCommand = key.slice('bypass-'.length);
+      if (grantedSet.has(wcCommand)) bypass.push(wcCommand);
+    }
   }
   return bypass;
 }
@@ -187,16 +194,17 @@ function classifyForPairDialog(grantedWireCommands: string[]) {
   for (const wcCommand of grantedWireCommands) {
     if (wcCommand === 'chia_showNotification') {
       notifications.push(wcCommand);
-      continue;
+    } else {
+      const entry = getCommandByWc(wcCommand);
+      // spend-class is governed by spendingMode + cap, not bypass membership
+      if (entry && !getSpendClassification(entry.nsCommand)) {
+        const { nsCommand } = entry;
+        if (isBalanceCommand(nsCommand)) balance.push(wcCommand);
+        else if (isInnocuousCommand(nsCommand)) innocuous.push(wcCommand);
+        else if (isSignCommand(nsCommand)) sign.push(wcCommand);
+        else other.push(wcCommand);
+      }
     }
-    const entry = getCommandByWc(wcCommand);
-    if (!entry) continue;
-    const { nsCommand } = entry;
-    if (getSpendClassification(nsCommand)) continue; // spend goes to spendingMode
-    if (isBalanceCommand(nsCommand)) balance.push(wcCommand);
-    else if (isInnocuousCommand(nsCommand)) innocuous.push(wcCommand);
-    else if (isSignCommand(nsCommand)) sign.push(wcCommand);
-    else other.push(wcCommand);
   }
   return { innocuous, balance, sign, notifications, other };
 }
@@ -505,13 +513,6 @@ ipcMainHandle(
     return { data: toCamelCase(responseData ?? {}) };
   },
 );
-
-// main window
-let mainWindow: BrowserWindow | null = null;
-let networkPrefix: string | undefined;
-
-let currentDownloadRequest: any;
-let abortDownloadingFiles: boolean = false;
 
 // When there is no config file, it is assumed to be the first run.
 // At that time, the config file is created here by `chia init`.

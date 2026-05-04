@@ -1,5 +1,6 @@
-import BigNumber from 'bignumber.js';
 import path from 'node:path';
+
+import BigNumber from 'bignumber.js';
 
 import { getCommandByWc } from '../constants/commandRegistry';
 import { getUserDataDir } from '../utils/userData';
@@ -24,14 +25,15 @@ function legacyCapabilityCommands(caps: Record<string, unknown>, grantedWireComm
   for (const wcCommand of grantedWireCommands) {
     if (notifications && wcCommand === 'chia_showNotification') {
       result.push(wcCommand);
-      continue;
+    } else {
+      const entry = getCommandByWc(wcCommand);
+      if (entry) {
+        const { nsCommand } = entry;
+        if (balance && isBalanceCommand(nsCommand)) result.push(wcCommand);
+        else if (innocuous && isInnocuousCommand(nsCommand)) result.push(wcCommand);
+        else if (sign && isSignCommand(nsCommand)) result.push(wcCommand);
+      }
     }
-    const entry = getCommandByWc(wcCommand);
-    if (!entry) continue;
-    const { nsCommand } = entry;
-    if (balance && isBalanceCommand(nsCommand)) result.push(wcCommand);
-    else if (innocuous && isInnocuousCommand(nsCommand)) result.push(wcCommand);
-    else if (sign && isSignCommand(nsCommand)) result.push(wcCommand);
   }
   return result;
 }

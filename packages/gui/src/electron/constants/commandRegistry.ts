@@ -3,11 +3,10 @@
 // `<destination>.<command>` (split on `.`); param names are snake_case to
 // match the wire envelope. wcCommand uses wire form `chia_<name>` so it
 // matches `proposal.methods`, `pair.commands`, and `pair.bypass` directly.
-import NotificationType from '../../constants/NotificationType';
 import { i18n } from '../../config/locales';
-
-import type { EnrichmentDisplay } from '../utils/dappEnrichment';
+import NotificationType from '../../constants/NotificationType';
 import { buildCreateOfferDisplay, buildTakeOfferDisplay, lookupCat } from '../utils/dappEnrichment';
+import type { EnrichmentDisplay } from '../utils/dappEnrichment';
 
 export type ParamType = 'text' | 'mojo-to-xch' | 'mojo-to-cat' | 'bool' | 'json';
 
@@ -938,15 +937,16 @@ const SCHEMAS: Record<string, CommandSchema> = {
 const BY_WC_COMMAND = (() => {
   const map = new Map<string, { nsCommand: string; schema: CommandSchema }>();
   for (const [nsCommand, schema] of Object.entries(SCHEMAS)) {
-    if (!schema.wcCommand) continue;
-    if (map.has(schema.wcCommand)) {
-      throw new Error(
-        `commandRegistry: duplicate wcCommand "${schema.wcCommand}" on ${nsCommand} and ${
-          map.get(schema.wcCommand)!.nsCommand
-        }`,
-      );
+    if (schema.wcCommand) {
+      if (map.has(schema.wcCommand)) {
+        throw new Error(
+          `commandRegistry: duplicate wcCommand "${schema.wcCommand}" on ${nsCommand} and ${
+            map.get(schema.wcCommand)!.nsCommand
+          }`,
+        );
+      }
+      map.set(schema.wcCommand, { nsCommand, schema });
     }
-    map.set(schema.wcCommand, { nsCommand, schema });
   }
   return map;
 })();
@@ -1002,13 +1002,13 @@ export function filterRequestedCommands(requestedCommands: unknown): {
   }
   const seen = new Set<string>();
   for (const command of requestedCommands) {
-    if (typeof command !== 'string' || !command) continue;
-    if (seen.has(command)) continue;
-    seen.add(command);
-    if (BY_WC_COMMAND.has(command)) {
-      allowed.push(command);
-    } else {
-      rejected.push(command);
+    if (typeof command === 'string' && command && !seen.has(command)) {
+      seen.add(command);
+      if (BY_WC_COMMAND.has(command)) {
+        allowed.push(command);
+      } else {
+        rejected.push(command);
+      }
     }
   }
   return { allowed, rejected };
@@ -1030,13 +1030,14 @@ export type CommandMetadata = {
 export function commandsMetadata(): CommandMetadata[] {
   const out: CommandMetadata[] = [];
   for (const schema of Object.values(SCHEMAS)) {
-    if (!schema.wcCommand) continue;
-    out.push({
-      wcCommand: schema.wcCommand,
-      label: schema.label?.(),
-      description: schema.description?.(),
-      requiresSync: schema.requiresSync === true,
-    });
+    if (schema.wcCommand) {
+      out.push({
+        wcCommand: schema.wcCommand,
+        label: schema.label?.(),
+        description: schema.description?.(),
+        requiresSync: schema.requiresSync === true,
+      });
+    }
   }
   return out;
 }

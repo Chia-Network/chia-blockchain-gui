@@ -2,8 +2,9 @@
 // the wire, so a compromised renderer can't show "1 XCH to friend" while
 // sending "50 XCH to attacker." Daemon RPCs are trusted (same machine,
 // TLS-pinned socket).
-import BigNumber from 'bignumber.js';
 import crypto from 'node:crypto';
+
+import BigNumber from 'bignumber.js';
 
 import WalletType from '../constants/WalletType';
 
@@ -183,15 +184,15 @@ async function summaryToOffer(
 export async function buildTakeOfferDisplay(
   data: Record<string, unknown>,
 ): Promise<EnrichmentDisplay['offer'] | undefined> {
-  const offer = data.offer;
+  const { offer } = data;
   if (typeof offer !== 'string' || !offer) return undefined;
   try {
     const result = await callDaemon<GetOfferSummaryResult>('chia_wallet', 'get_offer_summary', { offer });
-    const summary = result.summary;
+    const { summary } = result;
     if (!summary || typeof summary !== 'object' || !('offered' in summary) || !('requested' in summary)) {
       return undefined;
     }
-    return summaryToOffer(summary as OfferSummaryRecord, data.fee as number | string | undefined);
+    return await summaryToOffer(summary as OfferSummaryRecord, data.fee as number | string | undefined);
   } catch {
     return undefined;
   }

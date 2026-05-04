@@ -8,9 +8,8 @@
 
 jest.mock('./webSocketBridge');
 
-import { sendDappAndAwait } from './webSocketBridge';
-
 import { buildCreateOfferDisplay, buildTakeOfferDisplay, lookupCat } from './dappEnrichment';
+import { sendDappAndAwait } from './webSocketBridge';
 
 const mockSendDappAndAwait = sendDappAndAwait as jest.MockedFunction<typeof sendDappAndAwait>;
 
@@ -304,7 +303,7 @@ describe('buildCreateOfferDisplay — already-working NFT path stays working', (
       'chia_wallet.get_wallets': () => ({ wallets: [{ id: 1, type: 0 /* STANDARD_WALLET */ }] }),
     });
 
-    const display = await buildCreateOfferDisplay({ offer: { '1': -1000000000000 } });
+    const display = await buildCreateOfferDisplay({ offer: { '1': -1_000_000_000_000 } });
     expect(display?.offered[0]).toMatchObject({ kind: 'xch' });
   });
 

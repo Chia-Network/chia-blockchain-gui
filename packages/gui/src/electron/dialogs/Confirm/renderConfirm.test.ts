@@ -12,15 +12,13 @@ jest.mock('../../utils/dappEnrichment', () => {
   };
 });
 
-import { buildCreateOfferDisplay, buildTakeOfferDisplay } from '../../utils/dappEnrichment';
 import { SCHEMA_COMMANDS, getCommandSchema } from '../../constants/commandRegistry';
+import { buildCreateOfferDisplay, buildTakeOfferDisplay } from '../../utils/dappEnrichment';
 
 import { renderConfirm } from './renderConfirm';
 
 const mockBuildCreateOfferDisplay = buildCreateOfferDisplay as jest.MockedFunction<typeof buildCreateOfferDisplay>;
 const mockBuildTakeOfferDisplay = buildTakeOfferDisplay as jest.MockedFunction<typeof buildTakeOfferDisplay>;
-
-const xch = (mojos: string | number, prefix = 'XCH') => expect.stringMatching(new RegExp(`\\s${prefix}$`));
 
 describe('renderConfirm', () => {
   it('renders send_transaction with address + amount + fee in network units', async () => {
@@ -333,6 +331,3 @@ describe('renderConfirm — offer fee dedup', () => {
     expect(result.rows.find((r) => r.field === 'fee')).toBeUndefined();
   });
 });
-
-// Suppress "unused variable" for the helper above.
-void xch;

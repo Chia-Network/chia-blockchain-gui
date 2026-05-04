@@ -2,12 +2,10 @@
 // Sync param kinds run from `data` directly; `mojo-to-cat` and `enrich` do
 // daemon RPCs in parallel.
 import { i18n } from '../../../config/locales';
-
+import { getCommandSchema, resolveTexts, type ParamSchema } from '../../constants/commandRegistry';
 import { type EnrichmentDisplay, lookupCat } from '../../utils/dappEnrichment';
 import mojoToCatLocaleString from '../../utils/mojoToCATLocaleString';
 import mojoToChiaLocaleString from '../../utils/mojoToChiaLocaleString';
-
-import { getCommandSchema, resolveTexts, type ParamSchema } from '../../constants/commandRegistry';
 
 export type ConfirmRenderContext = {
   networkPrefix?: string;

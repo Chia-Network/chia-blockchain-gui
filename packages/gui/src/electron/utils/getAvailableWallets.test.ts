@@ -7,9 +7,8 @@
 
 jest.mock('./sendCommand');
 
-import sendCommand from './sendCommand';
-
 import getAvailableWallets from './getAvailableWallets';
+import sendCommand from './sendCommand';
 
 const mockSendCommand = sendCommand as jest.MockedFunction<typeof sendCommand>;
 

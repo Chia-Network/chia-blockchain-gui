@@ -36,7 +36,12 @@ export type PairProps = {
   /** Mojos already auto-spent against the cap. Display-only; reset lives in the menu. */
   defaultSpentMojos?: string;
   currencyCode?: string;
+  // styleURL and isDarkMode are injected by openReactDialog for every dialog
+  // component; Pair only relies on the page-level styles those imply, so the
+  // values themselves don't need to be read here.
+  // eslint-disable-next-line react/no-unused-prop-types -- injected by host
   styleURL?: string;
+  // eslint-disable-next-line react/no-unused-prop-types -- injected by host
   isDarkMode?: boolean;
 };
 
