@@ -74,18 +74,33 @@ export default function WalletConnectConnections(props: WalletConnectConnections
         return;
       }
 
-      const grant = await window.permissionsAPI.registerPair({
-        topic,
-        mainnet,
-        metadata: {
-          name: pair.metadata?.name ?? 'Unknown application',
-          url: pair.metadata?.url,
-          icon: pair.metadata?.icons?.[0],
-          description: pair.metadata?.description,
-        },
-        // Forwarded as-is from the WC SDK's proposal; main re-derives the allowed subset.
-        requestedCommands: pair.pendingProposal.methods,
-      });
+      let grant;
+      try {
+        grant = await window.permissionsAPI.registerPair({
+          topic,
+          mainnet,
+          metadata: {
+            name: pair.metadata?.name ?? 'Unknown application',
+            url: pair.metadata?.url,
+            icon: pair.metadata?.icons?.[0],
+            description: pair.metadata?.description,
+          },
+          // Forwarded as-is from the WC SDK's proposal; main re-derives the allowed subset.
+          requestedCommands: pair.pendingProposal.methods,
+        });
+      } catch (registerErr) {
+        // Tear down the WC pair we created in the dialog. Without this the
+        // pair lingers as a zombie entry (no sessions, stale pendingProposal)
+        // in localStorage and in the "Connected Applications" list.
+        // `rejectSession` sends USER_REJECTED to the dapp and then disconnects,
+        // matching the cleanup the user-rejected path performs.
+        try {
+          await rejectSession(topic);
+        } catch (rejectErr) {
+          console.warn('Failed to reject WC session after registerPair failure', rejectErr);
+        }
+        throw registerErr;
+      }
 
       if (!grant) {
         // User rejected — tell the dapp cleanly.
