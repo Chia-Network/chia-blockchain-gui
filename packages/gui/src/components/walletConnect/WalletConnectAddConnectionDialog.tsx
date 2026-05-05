@@ -33,6 +33,8 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
   }
 
   async function handleSubmit(values: FormData) {
+    if (methods.formState.isSubmitting) return;
+
     const { uri } = values;
     if (!uri) {
       throw new Error(t`Please enter a URI`);
@@ -83,13 +85,12 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
               <TextField
                 name="uri"
                 label={<Trans>Paste link</Trans>}
-                multiline
                 required
                 autoFocus
                 onKeyDown={(e: React.KeyboardEvent) => {
-                  if (e.key === 'Enter' && !e.shiftKey) {
+                  if (e.key === 'Enter' && canSubmit) {
                     e.preventDefault();
-                    methods.handleSubmit(handleSubmit)();
+                    (e.target as HTMLElement).closest('form')?.requestSubmit();
                   }
                 }}
               />
