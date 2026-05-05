@@ -41,6 +41,7 @@ const BALANCE_COMMANDS = new Set([
 const INNOCUOUS_COMMANDS = new Set([
   // Wallet / account info reads
   'chia_wallet.get_wallets', // gaming
+  'chia_wallet.get_current_address', // gaming
   'chia_wallet.get_next_address', // gaming
   'chia_wallet.get_sync_status',
   // Coin & blockchain reads
