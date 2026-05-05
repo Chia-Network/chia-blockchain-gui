@@ -43,6 +43,25 @@ export type CommandSchema = {
   defaults?: Record<string, unknown>;
   /** Optional daemon-RPC enrichment for offer summaries, CAT names, etc. */
   enrich?: (data: Record<string, unknown>) => Promise<EnrichmentDisplay>;
+  /**
+   * Additional WC commands that share this daemon RPC. Used when two dapp-facing
+   * names map to the same RPC with different defaults (e.g. `chia_getCurrentAddress`
+   * and `chia_getNextAddress` both call `chia_wallet.get_next_address`, but the
+   * former pins `new_address: false`). Alias `defaults` are merged on top of the
+   * base schema's `defaults`; alias values win on overlap.
+   */
+  aliases?: WcAlias[];
+};
+
+export type WcAlias = {
+  /** Wire form `chia_<name>`; must be unique across all schemas + aliases. */
+  wcCommand: string;
+  label?: () => string;
+  description?: () => string;
+  /** Merged on top of the base schema's `defaults`; alias values override. */
+  defaults?: Record<string, unknown>;
+  /** Per-alias override; falls back to the base schema's `requiresSync`. */
+  requiresSync?: boolean;
 };
 
 const DEFAULT_TITLE = () => i18n._(/* i18n */ { id: 'Confirm' });
@@ -863,11 +882,6 @@ const SCHEMAS: Record<string, CommandSchema> = {
     defaults: { wallet_id: 1 },
   },
   'chia_wallet.get_wallet_balances': { wcCommand: 'chia_getWalletBalances', params: [] },
-  'chia_wallet.get_current_address': {
-    wcCommand: 'chia_getCurrentAddress',
-    params: [],
-    defaults: { wallet_id: 1 },
-  },
   'chia_wallet.get_coin_records_by_names': {
     wcCommand: 'chia_getCoinRecordsByNames',
     params: [],
@@ -889,6 +903,15 @@ const SCHEMAS: Record<string, CommandSchema> = {
     wcCommand: 'chia_getNextAddress',
     params: [],
     defaults: { wallet_id: 1, new_address: true },
+    // The Chia daemon has no `get_current_address` RPC — the legacy WC alias
+    // is `get_next_address` with `new_address: false`, matching the API
+    // shim in `packages/api-react/src/services/wallet.ts`.
+    aliases: [
+      {
+        wcCommand: 'chia_getCurrentAddress',
+        defaults: { new_address: false },
+      },
+    ],
   },
   'chia_wallet.get_sync_status': { wcCommand: 'chia_getSyncStatus', params: [] },
   'chia_wallet.get_height_info': {
@@ -933,21 +956,61 @@ const SCHEMAS: Record<string, CommandSchema> = {
   'daemon.get_wallet_addresses': { wcCommand: 'chia_getWalletAddresses', params: [] },
 };
 
-// Reverse index: WC command (wire form) → ns command. Built once at module
-// init by walking SCHEMAS. Duplicate `wcCommand` values throw at startup —
-// better than mysterious dispatches landing on the wrong RPC.
+// Reverse index: WC command (wire form) → ns command + per-WC effective
+// fields (defaults / label / description / requiresSync). Built once at
+// module init by walking SCHEMAS and their `aliases`. Duplicate `wcCommand`
+// values throw at startup — better than mysterious dispatches landing on
+// the wrong RPC.
+export type WcEntry = {
+  nsCommand: string;
+  schema: CommandSchema;
+  /** Effective defaults: schema.defaults + alias overrides (alias wins). */
+  defaults?: Record<string, unknown>;
+  /** Effective metadata: alias overrides fall back to schema. */
+  label?: () => string;
+  description?: () => string;
+  requiresSync: boolean;
+};
+
+function mergeDefaults(
+  base?: Record<string, unknown>,
+  override?: Record<string, unknown>,
+): Record<string, unknown> | undefined {
+  if (!base && !override) return undefined;
+  return { ...(base ?? {}), ...(override ?? {}) };
+}
+
 const BY_WC_COMMAND = (() => {
-  const map = new Map<string, { nsCommand: string; schema: CommandSchema }>();
+  const map = new Map<string, WcEntry>();
+  const register = (wcCommand: string, entry: WcEntry) => {
+    const existing = map.get(wcCommand);
+    if (existing) {
+      throw new Error(
+        `commandRegistry: duplicate wcCommand "${wcCommand}" on ${entry.nsCommand} and ${existing.nsCommand}`,
+      );
+    }
+    map.set(wcCommand, entry);
+  };
   for (const [nsCommand, schema] of Object.entries(SCHEMAS)) {
     if (schema.wcCommand) {
-      if (map.has(schema.wcCommand)) {
-        throw new Error(
-          `commandRegistry: duplicate wcCommand "${schema.wcCommand}" on ${nsCommand} and ${
-            map.get(schema.wcCommand)!.nsCommand
-          }`,
-        );
-      }
-      map.set(schema.wcCommand, { nsCommand, schema });
+      register(schema.wcCommand, {
+        nsCommand,
+        schema,
+        defaults: schema.defaults,
+        label: schema.label,
+        description: schema.description,
+        requiresSync: schema.requiresSync === true,
+      });
+    }
+    for (const alias of schema.aliases ?? []) {
+      register(alias.wcCommand, {
+        nsCommand,
+        schema,
+        defaults: mergeDefaults(schema.defaults, alias.defaults),
+        label: alias.label ?? schema.label,
+        description: alias.description ?? schema.description,
+        requiresSync: alias.requiresSync ?? schema.requiresSync === true,
+      });
     }
   }
   return map;
@@ -957,7 +1020,7 @@ export function getCommandSchema(nsCommand: string): CommandSchema {
   return SCHEMAS[nsCommand] ?? FALLBACK;
 }
 
-export function getCommandByWc(wcCommand: string): { nsCommand: string; schema: CommandSchema } | undefined {
+export function getCommandByWc(wcCommand: string): WcEntry | undefined {
   return BY_WC_COMMAND.get(wcCommand);
 }
 
@@ -1028,28 +1091,30 @@ export type CommandMetadata = {
 };
 
 // Re-resolves locale strings on every call so a locale switch propagates
-// on the next fetch. Includes `chia_app.*` so Settings can label them.
+// on the next fetch. Includes `chia_app.*` (renderer-handled) and aliases
+// so Settings can label every dispatchable wcCommand.
 export function commandsMetadata(): CommandMetadata[] {
   const out: CommandMetadata[] = [];
-  for (const schema of Object.values(SCHEMAS)) {
-    if (schema.wcCommand) {
-      out.push({
-        wcCommand: schema.wcCommand,
-        label: schema.label?.(),
-        description: schema.description?.(),
-        requiresSync: schema.requiresSync === true,
-      });
-    }
+  for (const [wcCommand, entry] of BY_WC_COMMAND) {
+    out.push({
+      wcCommand,
+      label: entry.label?.(),
+      description: entry.description?.(),
+      requiresSync: entry.requiresSync,
+    });
   }
   return out;
 }
 
 // Fills missing snake_case keys; dapp-supplied values win. Returns a new object.
-export function applyDefaults(nsCommand: string, snakeData: Record<string, unknown>): Record<string, unknown> {
-  const schema = SCHEMAS[nsCommand];
-  if (!schema?.defaults) return snakeData;
+// Keyed by wcCommand (not nsCommand) so aliases that share a daemon RPC can
+// supply their own defaults — e.g. `chia_getCurrentAddress` pins
+// `new_address: false` while `chia_getNextAddress` pins `true`.
+export function applyDefaults(wcCommand: string, snakeData: Record<string, unknown>): Record<string, unknown> {
+  const entry = BY_WC_COMMAND.get(wcCommand);
+  if (!entry?.defaults) return snakeData;
   const next = { ...snakeData };
-  for (const [key, value] of Object.entries(schema.defaults)) {
+  for (const [key, value] of Object.entries(entry.defaults)) {
     if (next[key] === undefined) {
       next[key] = value;
     }

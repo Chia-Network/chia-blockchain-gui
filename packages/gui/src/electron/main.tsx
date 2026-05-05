@@ -497,7 +497,9 @@ ipcMainHandle(
 
     const requestId = crypto.randomBytes(32).toString('hex');
     // Schema defaults fill missing keys only (snake_case keyed); dapp values win.
-    const wireData = applyDefaults(nsCommand, snakeData);
+    // Keyed by wcCommand so alias-specific defaults (e.g. `chia_getCurrentAddress`
+    // pinning `new_address: false`) apply, not the base schema's defaults.
+    const wireData = applyDefaults(wcCommand, snakeData);
     const wire = {
       origin: 'wallet_ui',
       destination,
