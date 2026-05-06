@@ -186,5 +186,10 @@ export async function dispatchDaemonCommandAsPair(
     decision.commit();
   }
 
-  return { data: toCamelCase(response?.data ?? {}) };
+  const camel = toCamelCase(response?.data ?? {}) as Record<string, unknown>;
+  // Per-schema reshape so dapp-facing payloads match what the legacy
+  // api-react endpoints emitted (e.g. `chia_getWallets` → wallets array,
+  // not `{ wallets: [...] }`).
+  const dappData = entry.schema.dapp?.transformResponse ? entry.schema.dapp.transformResponse(camel) : camel;
+  return { data: dappData as Record<string, unknown> };
 }

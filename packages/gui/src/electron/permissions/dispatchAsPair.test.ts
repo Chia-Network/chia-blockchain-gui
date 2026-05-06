@@ -260,6 +260,54 @@ describe('dispatchDaemonCommandAsPair - dapp param validation', () => {
   });
 });
 
+describe('dispatchDaemonCommandAsPair - response transform', () => {
+  // Schemas can declare `dapp.transformResponse` to reshape the daemon's
+  // response into what dapps written against the legacy api-react endpoint
+  // already expect. Without this, dapps that read e.g. `data.find(...)` on
+  // `chia_getWallets` break because the raw daemon response is an object,
+  // not a wallets array.
+
+  it('applies transformResponse for chia_getWallets — dapp receives the wallets array', async () => {
+    const deps = makeDeps(
+      { kind: 'allow', commit: jest.fn() },
+      {
+        sendDappAndAwait: jest.fn(async () => ({
+          data: {
+            success: true,
+            fingerprint: 0xabc,
+            wallets: [
+              { id: 1, type: 0, name: 'Standard' },
+              { id: 2, type: 6, name: 'CAT' },
+            ],
+          },
+        })),
+      },
+    );
+
+    const out = await dispatchDaemonCommandAsPair(
+      { ...baseInput, wcCommand: 'chia_getWallets', data: { include_data: true } },
+      deps,
+    );
+
+    expect(out).toEqual({
+      data: [
+        { id: 1, type: 0, name: 'Standard' },
+        { id: 2, type: 6, name: 'CAT' },
+      ],
+    });
+  });
+
+  it('falls back to the camelCased response when no transformResponse is declared', async () => {
+    // chia_sendTransaction has no transformResponse; dapp gets the raw shape.
+    const deps = makeDeps(
+      { kind: 'allow', commit: jest.fn() },
+      { sendDappAndAwait: jest.fn(async () => ({ data: { success: true, transaction_id: 'abc' } })) },
+    );
+    const out = await dispatchDaemonCommandAsPair(baseInput, deps);
+    expect(out).toEqual({ data: { success: true, transactionId: 'abc' } });
+  });
+});
+
 describe('dispatchDaemonCommandAsPair - handler routing', () => {
   function makeHandlerDeps(decision: Decision, overrides: Partial<DispatchAsPairDeps> = {}) {
     return makeDeps(decision, {

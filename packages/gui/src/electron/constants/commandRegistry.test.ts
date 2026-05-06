@@ -536,6 +536,94 @@ describe('applyDefaults', () => {
   });
 });
 
+describe('dapp.transformResponse', () => {
+  // Pins the legacy api-react response shapes for dapps written against the
+  // old endpoints. If you change the function's behaviour you'll likely
+  // break a real dapp — bump the test deliberately.
+
+  function tx(wcCommand: string, input: unknown) {
+    const fn = getCommandByWc(wcCommand)?.schema.dapp?.transformResponse;
+    if (!fn) throw new Error(`no transformResponse on ${wcCommand}`);
+    return fn(input as Record<string, unknown>);
+  }
+
+  it('chia_getWallets unwraps to the wallets array', () => {
+    expect(tx('chia_getWallets', { wallets: [{ id: 1 }], success: true })).toEqual([{ id: 1 }]);
+    expect(tx('chia_getWallets', { wallets: undefined, success: true })).toEqual([]);
+  });
+
+  it('chia_getTransaction unwraps to the transaction', () => {
+    expect(tx('chia_getTransaction', { transaction: { name: '0xabc' } })).toEqual({ name: '0xabc' });
+  });
+
+  it('chia_getWalletBalance unwraps to walletBalance (raw — no BigNumber math here)', () => {
+    expect(tx('chia_getWalletBalance', { walletBalance: { confirmed: '5', unconfirmed: '3' } })).toEqual({
+      confirmed: '5',
+      unconfirmed: '3',
+    });
+  });
+
+  it('chia_getWalletBalances unwraps to walletBalances dict', () => {
+    expect(tx('chia_getWalletBalances', { walletBalances: { '1': { confirmed: '0' } } })).toEqual({
+      '1': { confirmed: '0' },
+    });
+  });
+
+  it('chia_getNextAddress unwraps to address', () => {
+    expect(tx('chia_getNextAddress', { address: 'xch1abc' })).toBe('xch1abc');
+  });
+
+  it('chia_getCurrentAddress (alias of get_next_address) inherits the same transform', () => {
+    expect(tx('chia_getCurrentAddress', { address: 'xch1abc' })).toBe('xch1abc');
+  });
+
+  it('chia_getHeightInfo surfaces height fields and null-fills the optional ones', () => {
+    expect(tx('chia_getHeightInfo', { height: 100, latestTimestamp: 200 })).toEqual({
+      height: 100,
+      latestTimestamp: 200,
+      isTransactionBlock: null,
+      prevTransactionBlockHeight: null,
+    });
+    expect(
+      tx('chia_getHeightInfo', { height: 100, latestTimestamp: 200, isTransactionBlock: true, prevTransactionBlockHeight: 99 }),
+    ).toEqual({ height: 100, latestTimestamp: 200, isTransactionBlock: true, prevTransactionBlockHeight: 99 });
+  });
+
+  it('chia_getAllOffers returns tradeRecords as-is when offers is absent, zips _offerData when present', () => {
+    expect(tx('chia_getAllOffers', { tradeRecords: [{ tradeId: 'a' }, { tradeId: 'b' }] })).toEqual([
+      { tradeId: 'a' },
+      { tradeId: 'b' },
+    ]);
+    expect(
+      tx('chia_getAllOffers', {
+        tradeRecords: [{ tradeId: 'a' }, { tradeId: 'b' }],
+        offers: ['offerA', 'offerB'],
+      }),
+    ).toEqual([
+      { tradeId: 'a', _offerData: 'offerA' },
+      { tradeId: 'b', _offerData: 'offerB' },
+    ]);
+  });
+
+  it('chia_getCATAssetId unwraps to assetId', () => {
+    expect(tx('chia_getCATAssetId', { assetId: '0xdeadbeef' })).toBe('0xdeadbeef');
+  });
+
+  it('chia_getNFTWalletsWithDIDs unwraps to nftWallets', () => {
+    expect(tx('chia_getNFTWalletsWithDIDs', { nftWallets: [{ walletId: 5 }] })).toEqual([{ walletId: 5 }]);
+  });
+
+  it('chia_getVC unwraps to vcRecord', () => {
+    expect(tx('chia_getVC', { vcRecord: { vcId: '0xabc' } })).toEqual({ vcId: '0xabc' });
+  });
+
+  it('chia_getWalletAddresses unwraps to walletAddresses', () => {
+    expect(tx('chia_getWalletAddresses', { walletAddresses: { '0x1': [{ address: 'xch1abc' }] } })).toEqual({
+      '0x1': [{ address: 'xch1abc' }],
+    });
+  });
+});
+
 describe('bareWcCommand', () => {
   it('strips the chia_ prefix', () => {
     expect(bareWcCommand('chia_sendTransaction')).toBe('sendTransaction');

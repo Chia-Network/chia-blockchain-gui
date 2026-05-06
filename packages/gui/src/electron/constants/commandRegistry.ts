@@ -48,6 +48,13 @@ export type DappCommandSchema = {
   aliases?: WcAlias[];
   /** Routes to `dappHandlers[handlerKey]` instead of the daemon. */
   handlerKey?: string;
+  /**
+   * Reshapes the camelCased daemon response into the dapp-facing payload.
+   * Mirrors what legacy `api-react` RTK endpoints did via `transformResponse` —
+   * dapps that worked against the legacy endpoint expect the same shape.
+   * Only applies on the daemon-routed path (handlers produce their own data).
+   */
+  transformResponse?: (data: Record<string, unknown>) => unknown;
 };
 
 // Strings are functions to defer i18n resolution past startup so locale
@@ -1571,6 +1578,7 @@ const SCHEMAS: Record<string, CommandSchema> = {
       label: () => i18n._(/* i18n */ { id: 'Get Wallets' }),
       description: () =>
         i18n._(/* i18n */ { id: 'Requests a complete listing of the wallets associated with the current wallet key' }),
+      transformResponse: (data) => data.wallets ?? [],
     },
   },
 
@@ -1587,6 +1595,7 @@ const SCHEMAS: Record<string, CommandSchema> = {
       wcCommand: 'chia_getTransaction',
       label: () => i18n._(/* i18n */ { id: 'Get Transaction' }),
       description: () => i18n._(/* i18n */ { id: 'Requests details for a specific transaction' }),
+      transformResponse: (data) => data.transaction,
     },
   },
 
@@ -1609,6 +1618,7 @@ const SCHEMAS: Record<string, CommandSchema> = {
           /* i18n */ { id: 'Requests the asset balance for a specific wallet associated with the current wallet key' },
         ),
       defaults: { wallet_id: 1 },
+      transformResponse: (data) => data.walletBalance,
     },
   },
 
@@ -1631,6 +1641,7 @@ const SCHEMAS: Record<string, CommandSchema> = {
             id: 'Requests the asset balances for specific wallets associated with the current wallet key',
           },
         ),
+      transformResponse: (data) => data.walletBalances,
     },
   },
 
@@ -1820,6 +1831,7 @@ const SCHEMAS: Record<string, CommandSchema> = {
       label: () => i18n._(/* i18n */ { id: 'Get Next Address' }),
       description: () => i18n._(/* i18n */ { id: 'Requests a new receive address associated with the current wallet key' }),
       defaults: { wallet_id: 1, new_address: true },
+      transformResponse: (data) => data.address,
       // No daemon `get_current_address` RPC; alias routes to `get_next_address` with new_address=false.
       aliases: [
         {
@@ -1862,6 +1874,14 @@ const SCHEMAS: Record<string, CommandSchema> = {
           },
         ),
       defaults: { use_peak_height: false },
+      // Match legacy api-react shape: surface only the height-related fields,
+      // null-fill the optional ones so dapps can rely on the keys existing.
+      transformResponse: (data) => ({
+        height: data.height,
+        latestTimestamp: data.latestTimestamp,
+        isTransactionBlock: data.isTransactionBlock ?? null,
+        prevTransactionBlockHeight: data.prevTransactionBlockHeight ?? null,
+      }),
     },
   },
 
@@ -1927,6 +1947,17 @@ const SCHEMAS: Record<string, CommandSchema> = {
       label: () => i18n._(/* i18n */ { id: 'Get all Offers' }),
       description: () =>
         i18n._(/* i18n */ { id: 'Requests a complete listing of the offers associated with the current wallet key' }),
+      // Legacy `getAllOffers` zipped `tradeRecords` with `offers` (when
+      // present) under `_offerData` per record. Mirror that.
+      transformResponse: (data) => {
+        const tradeRecords = (data.tradeRecords as unknown[]) ?? [];
+        const offers = data.offers as unknown[] | undefined;
+        if (!offers) return tradeRecords;
+        return tradeRecords.map((record, i) => ({
+          ...(record as Record<string, unknown>),
+          _offerData: offers[i],
+        }));
+      },
     },
   },
 
@@ -2002,6 +2033,7 @@ const SCHEMAS: Record<string, CommandSchema> = {
       wcCommand: 'chia_getCATAssetId',
       label: () => i18n._(/* i18n */ { id: 'Get CAT Asset Id' }),
       description: () => i18n._(/* i18n */ { id: 'Requests the CAT asset ID for a specific CAT wallet' }),
+      transformResponse: (data) => data.assetId,
     },
   },
 
@@ -2065,6 +2097,7 @@ const SCHEMAS: Record<string, CommandSchema> = {
     dapp: {
       wcCommand: 'chia_getNFTWalletsWithDIDs',
       label: () => i18n._(/* i18n */ { id: 'Get NFT Wallets with DIDs' }),
+      transformResponse: (data) => data.nftWallets,
     },
   },
 
@@ -2149,6 +2182,7 @@ const SCHEMAS: Record<string, CommandSchema> = {
     dapp: {
       wcCommand: 'chia_getVC',
       label: () => i18n._(/* i18n */ { id: 'Get Verifiable Credential' }),
+      transformResponse: (data) => data.vcRecord,
     },
   },
 
@@ -2356,6 +2390,7 @@ const SCHEMAS: Record<string, CommandSchema> = {
     dapp: {
       wcCommand: 'chia_getWalletAddresses',
       label: () => i18n._(/* i18n */ { id: 'Get wallet addresses for one or more wallet keys' }),
+      transformResponse: (data) => data.walletAddresses,
     },
   },
 };
