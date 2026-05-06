@@ -27,17 +27,23 @@ export function dialogResultToGrants(result: Record<string, unknown>): PairGrant
   return { xchMojos: mojos };
 }
 
-// Reads `bypass-<wcCommand>` form fields and returns the wire-form commands
-// the user ticked. Filters to the dapp's actually-granted commands so a
-// stray field can't grant something the registry didn't allow at pair time.
+// Reads the multi-checkbox `bypass` form field (an array of wire-form wcCommands
+// for the boxes the user ticked). Filters to the dapp's actually-granted
+// commands so a stray value can't grant something the registry didn't allow
+// at pair time. Drops sign-class commands — `permissions.resolvePermission`
+// always prompts for them, so persisting a bypass entry would silently no-op
+// and mislead the user at edit time (the toggle would re-appear pre-checked
+// despite never taking effect).
 export function dialogResultToBypass(result: Record<string, unknown>, granted: string[]): string[] {
   const grantedSet = new Set(granted);
+  const raw = Array.isArray(result.bypass) ? result.bypass : [];
   const bypass: string[] = [];
-  for (const [key, value] of Object.entries(result)) {
-    if (key.startsWith('bypass-') && value === true) {
-      const wcCommand = key.slice('bypass-'.length);
-      if (grantedSet.has(wcCommand)) bypass.push(wcCommand);
-    }
+  for (const item of raw) {
+    if (typeof item !== 'string') continue;
+    if (!grantedSet.has(item)) continue;
+    const ns = getCommandByWc(item)?.nsCommand;
+    if (ns && isSignCommand(ns)) continue;
+    bypass.push(item);
   }
   return bypass;
 }

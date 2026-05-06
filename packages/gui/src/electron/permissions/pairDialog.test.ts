@@ -27,22 +27,40 @@ describe('dialogResultToGrants', () => {
 });
 
 describe('dialogResultToBypass', () => {
-  it('keeps only checked commands that were granted to the pair', () => {
+  it('keeps only the wcCommands that were granted to the pair', () => {
+    // The form scraper produces a `bypass` array of values from the checked
+    // boxes. Unchecked boxes simply don't appear, so there's no `false` to
+    // filter — we just gate on the granted-set.
     expect(
       dialogResultToBypass(
-        {
-          'bypass-chia_sendTransaction': true,
-          'bypass-chia_getWallets': true,
-          'bypass-chia_takeOffer': false,
-          'bypass-chia_notGranted': true,
-        },
+        { bypass: ['chia_sendTransaction', 'chia_getWallets', 'chia_notGranted'] },
         ['chia_sendTransaction', 'chia_takeOffer'],
       ),
     ).toEqual(['chia_sendTransaction']);
   });
 
-  it('requires literal boolean true', () => {
-    expect(dialogResultToBypass({ 'bypass-chia_sendTransaction': 'true' }, ['chia_sendTransaction'])).toEqual([]);
+  it('returns [] when the bypass field is missing or not an array', () => {
+    expect(dialogResultToBypass({}, ['chia_sendTransaction'])).toEqual([]);
+    expect(dialogResultToBypass({ bypass: 'chia_sendTransaction' }, ['chia_sendTransaction'])).toEqual([]);
+    expect(dialogResultToBypass({ bypass: null }, ['chia_sendTransaction'])).toEqual([]);
+  });
+
+  it('skips non-string entries inside the array', () => {
+    expect(
+      dialogResultToBypass(
+        { bypass: ['chia_sendTransaction', 42, null, true] },
+        ['chia_sendTransaction'],
+      ),
+    ).toEqual(['chia_sendTransaction']);
+  });
+
+  it('drops sign-class commands — `permissions.resolvePermission` always prompts for them, so a persisted bypass would silently no-op', () => {
+    expect(
+      dialogResultToBypass(
+        { bypass: ['chia_signMessageByAddress', 'chia_signMessageById', 'chia_sendTransaction'] },
+        ['chia_signMessageByAddress', 'chia_signMessageById', 'chia_sendTransaction'],
+      ),
+    ).toEqual(['chia_sendTransaction']);
   });
 });
 

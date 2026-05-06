@@ -473,7 +473,9 @@ function PerCommandGroup({
               <input
                 type="checkbox"
                 defaultChecked={bypassSet.has(wc)}
-                data-form-field={`bypass-${wc}`}
+                data-form-field="bypass"
+                data-multi=""
+                value={wc}
                 data-cap-group={capKey}
                 className="w-[18px] h-[18px] accent-chia-primary cursor-pointer shrink-0"
               />

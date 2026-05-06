@@ -119,11 +119,11 @@ export async function dispatchDaemonCommandAsPair(
     }
     const capture = deps.captureBypassFromConfirmResult ?? captureBypassFromConfirmResult;
     capture(result, { topic, wcCommand }, { getPair, upsertPair });
-  } else {
-    // Auto-approved: debit at the authorization point (manual prompts skip
-    // commit, matching the renderer-onSend flow).
-    decision.commit();
   }
+  // Auto-approved spends defer their `decision.commit()` until after a
+  // successful dispatch — committing early would let a hostile dapp drain
+  // the user's allowance with daemon-rejected requests. Idempotent commits
+  // (`consumed` flag) protect against double-charge.
 
   const dispatchDaemon = deps.dispatchDaemon ?? defaultDispatchDaemon;
   const handlerLookup = deps.getDappHandler ?? getDappHandler;
@@ -133,7 +133,7 @@ export async function dispatchDaemonCommandAsPair(
     if (!handler) {
       throw new WcError(`no handler registered for ${entry.handlerKey}`, WcErrorCode.INTERNAL_ERROR);
     }
-    return handler({
+    const out = await handler({
       data: snakeData,
       pair,
       mainnet,
@@ -144,6 +144,8 @@ export async function dispatchDaemonCommandAsPair(
       networkPrefix,
       dispatchDaemon,
     });
+    if (decision.kind === 'allow') decision.commit();
+    return out;
   }
 
   const { destination, command } = resolveDispatch(wcCommand);
@@ -164,7 +166,12 @@ export async function dispatchDaemonCommandAsPair(
     data?: { error?: unknown; [k: string]: unknown };
   };
 
-  // Daemon application errors come back as response data; JSON-RPC transport
-  // errors throw upstream.
+  // Daemon application errors come back as response data (JSON-RPC transport
+  // errors throw upstream). Don't debit the allowance for application errors —
+  // an attacker could drain it with daemon-rejectable requests otherwise.
+  if (decision.kind === 'allow' && !response?.data?.error) {
+    decision.commit();
+  }
+
   return { data: toCamelCase(response?.data ?? {}) };
 }

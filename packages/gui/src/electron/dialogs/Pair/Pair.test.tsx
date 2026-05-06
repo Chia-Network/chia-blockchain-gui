@@ -63,6 +63,9 @@ describe('Pair dialog - per-command groups', () => {
   });
 
   it('pre-checks command-level bypass entries, including spend commands', () => {
+    // Per-command bypass uses the multi-checkbox pattern: each box shares
+    // `data-form-field="bypass"` with `data-multi`, and its own value=wcCommand.
+    // The form scraper collects checked values into `result.bypass: string[]`.
     const html = renderPair({
       defaultBypass: ['chia_sendTransaction'],
       commandGroups: {
@@ -75,7 +78,9 @@ describe('Pair dialog - per-command groups', () => {
       },
     });
 
-    expect(html).toContain('data-form-field="bypass-chia_sendTransaction"');
-    expect(inputHasChecked(html, 'bypass-chia_sendTransaction')).toBe(true);
+    const match = html.match(/<input[^>]*data-form-field="bypass"[^>]*value="chia_sendTransaction"[^>]*\/?>/);
+    expect(match).not.toBeNull();
+    expect(match![0]).toContain('data-multi');
+    expect(match![0]).toContain('checked=""');
   });
 });

@@ -75,7 +75,16 @@ const addCATToken: DappHandler = async ({ data, dispatchDaemon }) => {
 };
 
 const transferDID: DappHandler = async ({ data, dispatchDaemon }) => {
-  const result = await dispatchDaemon('chia_wallet', 'did_transfer_did', data);
+  // Defense-in-depth: explicit field pick instead of forwarding `data` whole,
+  // so a future regression in `validateDappParams` can't expand the daemon
+  // call surface here.
+  const result = await dispatchDaemon('chia_wallet', 'did_transfer_did', {
+    wallet_id: data.wallet_id,
+    inner_address: data.inner_address,
+    fee: data.fee,
+    with_recovery_info: data.with_recovery_info,
+    reuse_puzhash: data.reuse_puzhash,
+  });
   return { data: result };
 };
 

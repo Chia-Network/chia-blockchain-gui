@@ -48,7 +48,9 @@ function parseWire(deps: TestDeps) {
 }
 
 describe('dispatchDaemonCommandAsPair - auto-approved commands', () => {
-  it('commits allowance usage before sending the daemon request and applies registry defaults', async () => {
+  it('commits allowance usage AFTER the daemon responds successfully', async () => {
+    // Committing before dispatch lets a hostile dapp drain the allowance with
+    // daemon-rejectable requests. The order must be: send → success → commit.
     const order: string[] = [];
     const commit = jest.fn(() => order.push('commit'));
     const deps = makeDeps({ kind: 'allow', commit });
@@ -60,7 +62,7 @@ describe('dispatchDaemonCommandAsPair - auto-approved commands', () => {
     const out = await dispatchDaemonCommandAsPair(baseInput, deps);
 
     expect(out).toEqual({ data: { success: true, transactionId: 'abc' } });
-    expect(order).toEqual(['commit', 'send']);
+    expect(order).toEqual(['send', 'commit']);
     expect(deps.openConfirm).not.toHaveBeenCalled();
     expect(deps.sendDappAndAwait).toHaveBeenCalledWith('request-1', expect.any(String));
     expect(parseWire(deps)).toMatchObject({
@@ -76,6 +78,38 @@ describe('dispatchDaemonCommandAsPair - auto-approved commands', () => {
       ack: false,
       request_id: 'request-1',
     });
+  });
+
+  it('does NOT commit when the daemon returns an application error', async () => {
+    // Daemon errors come back as `response.data.error`, not a thrown exception.
+    // Treating them as success would let an attacker spam rejected requests
+    // to drain the user's allowance.
+    const commit = jest.fn();
+    const deps = makeDeps(
+      { kind: 'allow', commit },
+      {
+        sendDappAndAwait: jest.fn(async () => ({ data: { success: false, error: 'fee too low' } })),
+      },
+    );
+
+    await dispatchDaemonCommandAsPair(baseInput, deps);
+
+    expect(commit).not.toHaveBeenCalled();
+  });
+
+  it('does NOT commit when the daemon dispatch throws (transport error)', async () => {
+    const commit = jest.fn();
+    const deps = makeDeps(
+      { kind: 'allow', commit },
+      {
+        sendDappAndAwait: jest.fn(async () => {
+          throw new Error('socket closed');
+        }),
+      },
+    );
+
+    await expect(dispatchDaemonCommandAsPair(baseInput, deps)).rejects.toThrow('socket closed');
+    expect(commit).not.toHaveBeenCalled();
   });
 
   it('uses alias-specific defaults for alternate WC commands', async () => {
