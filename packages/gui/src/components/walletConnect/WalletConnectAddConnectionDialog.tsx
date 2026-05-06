@@ -80,7 +80,21 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
                   <Trans>Paste the address from WalletConnect below.</Trans>
                 </Typography>
               </Box>
-              <TextField name="uri" label={<Trans>Paste link</Trans>} multiline required autoFocus />
+              <TextField
+                name="uri"
+                label={<Trans>Paste link</Trans>}
+                multiline
+                required
+                autoFocus
+                inputProps={{
+                  onKeyDown: (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                      e.preventDefault();
+                      (e.currentTarget.form as HTMLFormElement | null)?.requestSubmit();
+                    }
+                  },
+                }}
+              />
             </Flex>
           </Flex>
         </DialogContent>

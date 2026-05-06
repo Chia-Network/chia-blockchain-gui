@@ -81,9 +81,10 @@ describe('dispatchDaemonCommandAsPair - auto-approved commands', () => {
   });
 
   it('does NOT commit when the daemon returns an application error', async () => {
-    // Daemon errors come back as `response.data.error`, not a thrown exception.
-    // Treating them as success would let an attacker spam rejected requests
-    // to drain the user's allowance.
+    // Daemon errors come back as `response.data.error`. Throw so the WC client
+    // surfaces it; silently returning the envelope would let dapps act on
+    // missing fields. Allowance must not be debited either — an attacker could
+    // spam daemon-rejectable requests to drain it.
     const commit = jest.fn();
     const deps = makeDeps(
       { kind: 'allow', commit },
@@ -92,7 +93,7 @@ describe('dispatchDaemonCommandAsPair - auto-approved commands', () => {
       },
     );
 
-    await dispatchDaemonCommandAsPair(baseInput, deps);
+    await expect(dispatchDaemonCommandAsPair(baseInput, deps)).rejects.toThrow('fee too low');
 
     expect(commit).not.toHaveBeenCalled();
   });
@@ -378,7 +379,10 @@ describe('dispatchDaemonCommandAsPair - handler routing', () => {
 });
 
 describe('dispatchDaemonCommandAsPair - daemon response contract', () => {
-  it('returns daemon application errors as result data instead of throwing generic JSON-RPC errors', async () => {
+  it('throws WcError(INTERNAL_ERROR) on daemon application errors so the dapp sees a real failure', async () => {
+    // Without this, the dapp's WC client resolves successfully with
+    // `{ success: false, error: ... }` as the payload — and dapps that look
+    // for a specific field (e.g., `offer`) silently take a wrong code path.
     const deps = makeDeps(
       { kind: 'allow', commit: jest.fn() },
       {
@@ -388,8 +392,11 @@ describe('dispatchDaemonCommandAsPair - daemon response contract', () => {
       },
     );
 
-    await expect(dispatchDaemonCommandAsPair(baseInput, deps)).resolves.toEqual({
-      data: { success: false, error: "Coin ID's not found" },
+    const promise = dispatchDaemonCommandAsPair(baseInput, deps);
+    await expect(promise).rejects.toBeInstanceOf(WcError);
+    await expect(promise).rejects.toMatchObject({
+      code: WcErrorCode.INTERNAL_ERROR,
+      message: "Coin ID's not found",
     });
   });
 

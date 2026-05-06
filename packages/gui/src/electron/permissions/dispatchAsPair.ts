@@ -178,9 +178,16 @@ export async function dispatchDaemonCommandAsPair(
   };
 
   // Daemon application errors come back as response data (JSON-RPC transport
-  // errors throw upstream). Don't debit the allowance for application errors —
-  // an attacker could drain it with daemon-rejectable requests otherwise.
-  if (decision.kind === 'allow' && !response?.data?.error) {
+  // errors throw upstream). Throw so the WC client rejects the dapp's
+  // request — silently returning the error envelope would let the dapp see
+  // `{ error, success: false }` as a successful payload and act on missing
+  // fields. Don't debit the allowance: an attacker could otherwise drain it
+  // with daemon-rejectable requests.
+  if (response?.data?.error) {
+    throw new WcError(String(response.data.error), WcErrorCode.INTERNAL_ERROR);
+  }
+
+  if (decision.kind === 'allow') {
     decision.commit();
   }
 
