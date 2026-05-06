@@ -64,7 +64,7 @@ export type ResolveContext = {
 };
 
 // `'unresolvable'` = command moves funds but can't be priced in XCH mojos
-// (CAT/NFT/mixed/missing-amount). `undefined` = not allowance-controlled.
+// (CAT/NFT/mixed/missing-amount). `undefined` = not eligible for the allowance.
 type AllowanceCharge = BigNumber | 'unresolvable' | undefined;
 
 async function resolveAllowanceCharge(
@@ -104,7 +104,7 @@ function isSigningRequest(command: string, payload: Record<string, unknown>): bo
 /**
  * Two auto-approval mechanisms:
  *  - `pair.bypass` is exact command-level trust.
- *  - `pair.grants.allowanceMojos` is a bounded XCH fallback for spend-class commands.
+ *  - `pair.grants.xchMojos` is a bounded XCH fallback for spend-class commands.
  * Sign-class and `push_transactions` with `sign: true` always prompt.
  */
 export async function resolvePermission(
@@ -161,7 +161,7 @@ function resolveAllowance(pair: PairRecord, ctx: PairContext, charge: BigNumber 
   // regardless of allowance.
   if (charge.isLessThanOrEqualTo(0)) return allowDecision();
 
-  const allowance = new BigNumber(pair.grants.allowanceMojos ?? 0);
+  const allowance = new BigNumber(pair.grants.xchMojos ?? 0);
   if (allowance.isLessThanOrEqualTo(0)) {
     return promptDecision('spending needs confirmation', ctx);
   }

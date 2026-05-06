@@ -10,7 +10,7 @@ import type { PairGrants } from './types';
 export function dialogResultToGrants(result: Record<string, unknown>): PairGrants {
   // Unchecked checkbox -> allowance is 0 regardless of input value.
   if (result.enableAllowance !== true) {
-    return { allowanceMojos: '0' };
+    return { xchMojos: '0' };
   }
   let mojos = '0';
   const rawXch = result.allowanceXch;
@@ -24,7 +24,7 @@ export function dialogResultToGrants(result: Record<string, unknown>): PairGrant
       // Invalid input -> allowance stays 0.
     }
   }
-  return { allowanceMojos: mojos };
+  return { xchMojos: mojos };
 }
 
 // Reads `bypass-<wcCommand>` form fields and returns the wire-form commands

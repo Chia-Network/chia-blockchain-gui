@@ -7,22 +7,22 @@ import {
 
 describe('dialogResultToGrants', () => {
   it('stores zero when the allowance checkbox is unchecked, even if the input has a value', () => {
-    expect(dialogResultToGrants({ enableAllowance: false, allowanceXch: '0.01' })).toEqual({ allowanceMojos: '0' });
-    expect(dialogResultToGrants({ allowanceXch: '0.01' })).toEqual({ allowanceMojos: '0' });
+    expect(dialogResultToGrants({ enableAllowance: false, allowanceXch: '0.01' })).toEqual({ xchMojos: '0' });
+    expect(dialogResultToGrants({ allowanceXch: '0.01' })).toEqual({ xchMojos: '0' });
   });
 
   it('converts enabled XCH allowance to whole mojos', () => {
     expect(dialogResultToGrants({ enableAllowance: true, allowanceXch: '0.01' })).toEqual({
-      allowanceMojos: '10000000000',
+      xchMojos: '10000000000',
     });
   });
 
   it('floors fractional mojos and rejects non-positive or invalid values', () => {
     expect(dialogResultToGrants({ enableAllowance: true, allowanceXch: '0.0000000000019' })).toEqual({
-      allowanceMojos: '1',
+      xchMojos: '1',
     });
-    expect(dialogResultToGrants({ enableAllowance: true, allowanceXch: '-1' })).toEqual({ allowanceMojos: '0' });
-    expect(dialogResultToGrants({ enableAllowance: true, allowanceXch: 'oops' })).toEqual({ allowanceMojos: '0' });
+    expect(dialogResultToGrants({ enableAllowance: true, allowanceXch: '-1' })).toEqual({ xchMojos: '0' });
+    expect(dialogResultToGrants({ enableAllowance: true, allowanceXch: 'oops' })).toEqual({ xchMojos: '0' });
   });
 });
 

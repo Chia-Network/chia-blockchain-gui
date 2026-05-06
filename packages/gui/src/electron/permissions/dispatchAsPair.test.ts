@@ -76,7 +76,7 @@ describe('dispatchDaemonCommandAsPair - auto-approved commands', () => {
     });
   });
 
-  it('uses alias-specific defaults for legacy WC commands', async () => {
+  it('uses alias-specific defaults for alternate WC commands', async () => {
     const deps = makeDeps({ kind: 'allow', commit: jest.fn() });
 
     await dispatchDaemonCommandAsPair(

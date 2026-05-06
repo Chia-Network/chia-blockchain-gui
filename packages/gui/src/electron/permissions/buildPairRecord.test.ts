@@ -1,7 +1,7 @@
 import { buildNewPairRecord } from './buildPairRecord';
 import type { PairGrants, PairMetadata } from './types';
 
-const grants: PairGrants = { allowanceMojos: '10000000000' };
+const grants: PairGrants = { xchMojos: '10000000000' };
 const metadata: PairMetadata = { name: 'Test Dapp', url: 'https://test.app' };
 
 describe('buildNewPairRecord', () => {

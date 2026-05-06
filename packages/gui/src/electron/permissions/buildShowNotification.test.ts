@@ -19,7 +19,7 @@ function makePair(overrides: Partial<PairRecord> = {}): PairRecord {
     usedMojos: '0',
     commands: ['chia_showNotification'],
     bypass: [],
-    grants: { allowanceMojos: '0' },
+    grants: { xchMojos: '0' },
     ...overrides,
   };
 }

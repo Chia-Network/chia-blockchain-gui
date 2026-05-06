@@ -2,7 +2,7 @@ import type BigNumber from 'bignumber.js';
 
 export type PairGrants = {
   /** XCH mojos auto-approved per pair when the command is not bypassed. `'0'` = prompt unless bypassed. */
-  allowanceMojos: string;
+  xchMojos: string;
 };
 
 export type PairMetadata = {
@@ -20,14 +20,14 @@ export type PairRecord = {
   createdAt: number;
   updatedAt: number;
   grants: PairGrants;
-  /** Mojos debited from `grants.allowanceMojos`. */
+  /** Mojos debited from `grants.xchMojos`. */
   usedMojos: string;
   /** Wire form `chia_<name>`. Granted at pairing; empty = deny-all. */
   commands: string[];
   /**
    * Per-wcCommand "always allow" list. Spend-class wcCommands can be listed
    * here for exact command-level trust; otherwise they fall back to
-   * `grants.allowanceMojos`.
+   * `grants.xchMojos`.
    */
   bypass: string[];
 };

@@ -19,12 +19,7 @@ function getPath() {
   return path.join(userDataDir, FILE);
 }
 
-// Migrate persisted records to the unified allowance model. Carrying the
-// old `spendingCapMojos` forward as `allowanceMojos` only when the old mode
-// was `'auto'` is the safe choice — for `'ask'`/`'block'` the cap was never
-// an auto-approval signal, so a naïve carry-over would silently start
-// auto-approving spends up to that value on upgrade.
-function migrateRecord(p: Record<string, unknown>): PairRecord {
+function normalizeRecord(p: Record<string, unknown>): PairRecord {
   const commands = Array.isArray(p?.commands)
     ? (p.commands as unknown[]).filter((c): c is string => typeof c === 'string')
     : [];
@@ -33,14 +28,8 @@ function migrateRecord(p: Record<string, unknown>): PairRecord {
     : [];
 
   const rawGrants = (p?.grants ?? {}) as Record<string, unknown>;
-  const allowanceFromNew = typeof rawGrants.allowanceMojos === 'string' ? rawGrants.allowanceMojos : undefined;
-  const oldMode = typeof rawGrants.spendingMode === 'string' ? rawGrants.spendingMode : undefined;
-  const oldCap = typeof rawGrants.spendingCapMojos === 'string' ? rawGrants.spendingCapMojos : undefined;
-  const allowanceMojos = allowanceFromNew ?? (oldMode === 'auto' && oldCap ? oldCap : '0');
-
-  const usedFromNew = typeof p?.usedMojos === 'string' ? p.usedMojos : undefined;
-  const usedFromOld = typeof p?.spentMojos === 'string' ? p.spentMojos : undefined;
-  const usedMojos = usedFromNew ?? usedFromOld ?? '0';
+  const xchMojos = typeof rawGrants.xchMojos === 'string' ? rawGrants.xchMojos : '0';
+  const usedMojos = typeof p?.usedMojos === 'string' ? p.usedMojos : '0';
 
   return {
     topic: typeof p?.topic === 'string' ? p.topic : '',
@@ -51,7 +40,7 @@ function migrateRecord(p: Record<string, unknown>): PairRecord {
       : [],
     createdAt: typeof p?.createdAt === 'number' ? p.createdAt : 0,
     updatedAt: typeof p?.updatedAt === 'number' ? p.updatedAt : 0,
-    grants: { allowanceMojos },
+    grants: { xchMojos },
     usedMojos,
     commands,
     bypass: rawBypass,
@@ -62,9 +51,9 @@ function load(): PairRecord[] {
   if (cache) return cache;
   const data = readData(getPath());
   const raw = Array.isArray(data?.pairs) ? (data.pairs as Record<string, unknown>[]) : [];
-  // Missing/wrong-typed fields default to deny-all / mainnet / allowance 0
+  // Missing or wrong-typed fields default to deny-all / mainnet / allowance 0
   // so a hand-edited record can't silently expand dapp reach.
-  const list = raw.map(migrateRecord);
+  const list = raw.map(normalizeRecord);
   cache = list;
   return list;
 }

@@ -9,7 +9,7 @@ export type PermissionsPairMetadata = {
 
 export type PermissionsPairGrants = {
   /** XCH mojos auto-approved per pair when the command is not bypassed. `'0'` = prompt unless bypassed. */
-  allowanceMojos: string;
+  xchMojos: string;
 };
 
 export type PermissionsPairRecord = {
@@ -20,14 +20,14 @@ export type PermissionsPairRecord = {
   createdAt: number;
   updatedAt: number;
   grants: PermissionsPairGrants;
-  /** Mojos debited from `grants.allowanceMojos`. */
+  /** Mojos debited from `grants.xchMojos`. */
   usedMojos: string;
   /** Wire form `chia_<name>`. Granted at pairing; empty = deny-all. */
   commands: string[];
   /**
    * Per-wcCommand "don't ask again" list. Spend-class commands can be listed
    * here for exact command-level trust; otherwise they fall back to
-   * `grants.allowanceMojos`.
+   * `grants.xchMojos`.
    */
   bypass: string[];
 };

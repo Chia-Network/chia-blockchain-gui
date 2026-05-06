@@ -94,14 +94,14 @@ export default function Pair(props: PairProps) {
 
   const rejectedCommands = rejectedCommandsRaw.filter((wc) => !HIDDEN_COMMANDS.has(wc));
 
-  const grants: PairGrants = defaultGrants ?? { allowanceMojos: '0' };
+  const grants: PairGrants = defaultGrants ?? { xchMojos: '0' };
 
-  const allowanceBn = new BigNumber(grants.allowanceMojos ?? 0);
+  const allowanceBn = new BigNumber(grants.xchMojos ?? 0);
   // Derived from allowance — single source of truth, no drift possible.
   const enableAllowanceDefault = allowanceBn.isGreaterThan(0);
   // Keep a useful starter value in the disabled field; unchecked still saves
   // as zero via `dialogResultToGrants`.
-  const defaultAllowanceXch = enableAllowanceDefault ? mojosToXch(grants.allowanceMojos) : '0.01';
+  const defaultAllowanceXch = enableAllowanceDefault ? mojosToXch(grants.xchMojos) : '0.01';
   const usedBn = new BigNumber(defaultUsedMojos ?? 0);
   const usedXch = mojosToXch(defaultUsedMojos);
   const showSpent = isEdit;

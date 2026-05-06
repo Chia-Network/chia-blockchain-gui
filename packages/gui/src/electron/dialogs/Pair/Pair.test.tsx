@@ -37,7 +37,7 @@ describe('Pair dialog - spending allowance defaults', () => {
   });
 
   it('checks auto-approve and shows the existing allowance for edit/default grants', () => {
-    const html = renderPair({ defaultGrants: { allowanceMojos: '2500000000' } });
+    const html = renderPair({ defaultGrants: { xchMojos: '2500000000' } });
     expect(inputHasChecked(html, 'enableAllowance')).toBe(true);
     expect(html).toContain('value="0.0025"');
   });

@@ -24,7 +24,7 @@ function makePair(overrides: { bypass?: string[] } = {}): PairRecord {
     usedMojos: '0',
     commands: ['chia_signMessageByAddress', 'chia_getWallets'],
     bypass: overrides.bypass ?? [],
-    grants: { allowanceMojos: '0' },
+    grants: { xchMojos: '0' },
   };
 }
 

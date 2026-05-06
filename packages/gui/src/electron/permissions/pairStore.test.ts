@@ -31,7 +31,7 @@ function makePair(overrides: Partial<PairRecord> = {}): PairRecord {
     usedMojos: '0',
     commands: [],
     bypass: [],
-    grants: { allowanceMojos: '0' },
+    grants: { xchMojos: '0' },
     ...overrides,
   };
 }
@@ -171,9 +171,9 @@ describe('pairStore - recordUsage (allowance accounting)', () => {
   it('treats undefined usedMojos on the existing record as zero', () => {
     loadStore();
     const file = path.join(mockTempDir, 'dapp-pairs.yaml');
-    const legacy = makePair({ topic: 'a' });
-    delete (legacy as Partial<PairRecord>).usedMojos;
-    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
+    const record = makePair({ topic: 'a' });
+    delete (record as Partial<PairRecord>).usedMojos;
+    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(record)}\n`);
 
     const reload = loadStore();
     reload.recordUsage('a', new BigNumber(42));
@@ -192,18 +192,13 @@ describe('pairStore - recordUsage (allowance accounting)', () => {
   });
 });
 
-describe('pairStore - commands field migration', () => {
-  // Pair records persisted before the allowlist landed have no `commands`
-  // field. Reading that as "any command goes" would silently extend dapp
-  // reach; reading it as `[]` means the user has to re-pair to grant
-  // anything, which is the safe default for an upgrade.
-
+describe('pairStore - commands field normalization', () => {
   it('defaults to [] when the field is absent on disk', () => {
     loadStore();
     const file = path.join(mockTempDir, 'dapp-pairs.yaml');
-    const legacy = makePair({ topic: 'a' });
-    delete (legacy as Partial<PairRecord>).commands;
-    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
+    const record = makePair({ topic: 'a' });
+    delete (record as Partial<PairRecord>).commands;
+    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(record)}\n`);
 
     const reload = loadStore();
     expect(reload.getPair('a')?.commands).toEqual([]);
@@ -211,9 +206,9 @@ describe('pairStore - commands field migration', () => {
 
   it('defaults to [] when the field is non-array on disk', () => {
     const file = path.join(mockTempDir, 'dapp-pairs.yaml');
-    const legacy = makePair({ topic: 'a' });
-    (legacy as unknown as { commands: unknown }).commands = 'oops';
-    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
+    const record = makePair({ topic: 'a' });
+    (record as unknown as { commands: unknown }).commands = 'oops';
+    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(record)}\n`);
 
     const reload = loadStore();
     expect(reload.getPair('a')?.commands).toEqual([]);
@@ -221,9 +216,9 @@ describe('pairStore - commands field migration', () => {
 
   it('strips non-string entries from the persisted list', () => {
     const file = path.join(mockTempDir, 'dapp-pairs.yaml');
-    const legacy = makePair({ topic: 'a' });
-    (legacy as unknown as { commands: unknown }).commands = ['chia_sendTransaction', 42, null, 'chia_getWallets'];
-    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
+    const record = makePair({ topic: 'a' });
+    (record as unknown as { commands: unknown }).commands = ['chia_sendTransaction', 42, null, 'chia_getWallets'];
+    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(record)}\n`);
 
     const reload = loadStore();
     expect(reload.getPair('a')?.commands).toEqual(['chia_sendTransaction', 'chia_getWallets']);
@@ -238,15 +233,12 @@ describe('pairStore - commands field migration', () => {
   });
 });
 
-describe('pairStore - bypass field migration', () => {
-  // Records persisted before bypass landed have no `bypass` field. Default
-  // to empty list — opt-in feature, not auto-enabled on upgrade.
-
+describe('pairStore - bypass field normalization', () => {
   it('defaults to [] when the field is absent on disk', () => {
     const file = path.join(mockTempDir, 'dapp-pairs.yaml');
-    const legacy = makePair({ topic: 'a' });
-    delete (legacy as Partial<PairRecord>).bypass;
-    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
+    const record = makePair({ topic: 'a' });
+    delete (record as Partial<PairRecord>).bypass;
+    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(record)}\n`);
 
     const reload = loadStore();
     expect(reload.getPair('a')?.bypass).toEqual([]);
@@ -254,9 +246,9 @@ describe('pairStore - bypass field migration', () => {
 
   it('defaults to [] when the field is non-array on disk', () => {
     const file = path.join(mockTempDir, 'dapp-pairs.yaml');
-    const legacy = makePair({ topic: 'a' });
-    (legacy as unknown as { bypass: unknown }).bypass = { 0: 'chia_x' };
-    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
+    const record = makePair({ topic: 'a' });
+    (record as unknown as { bypass: unknown }).bypass = { 0: 'chia_x' };
+    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(record)}\n`);
 
     const reload = loadStore();
     expect(reload.getPair('a')?.bypass).toEqual([]);
@@ -271,17 +263,12 @@ describe('pairStore - bypass field migration', () => {
   });
 });
 
-describe('pairStore - mainnet field migration', () => {
-  // `mainnet` is required after the renderer's pair store stops being a
-  // source of truth. Default to mainnet on legacy records — matches the
-  // renderer's own historical default and is the safer choice (testnet
-  // dapps are rare; users with existing testnet pairs should re-pair).
-
+describe('pairStore - mainnet field normalization', () => {
   it('defaults to true when the field is absent on disk', () => {
     const file = path.join(mockTempDir, 'dapp-pairs.yaml');
-    const legacy = makePair({ topic: 'a' });
-    delete (legacy as Partial<PairRecord>).mainnet;
-    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
+    const record = makePair({ topic: 'a' });
+    delete (record as Partial<PairRecord>).mainnet;
+    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(record)}\n`);
 
     const reload = loadStore();
     expect(reload.getPair('a')?.mainnet).toBe(true);
@@ -296,113 +283,40 @@ describe('pairStore - mainnet field migration', () => {
   });
 });
 
-describe('pairStore - allowance / spendingMode migration', () => {
-  // The unified model dropped `spendingMode` and renamed `spendingCapMojos`
-  // → `allowanceMojos`. The migration must be conservative: only carry the
-  // old cap forward as the allowance when the user had explicitly opted
-  // into auto-spending. 'ask'/'block'/missing → 0, so the post-upgrade
-  // default is "every spend prompts" rather than "auto-approve up to the
-  // value the user only set as an upper bound for the auto branch".
-
-  it('carries `spendingCapMojos` forward as `allowanceMojos` only when old mode was "auto"', () => {
+describe('pairStore - grant normalization', () => {
+  it('treats missing grants as `xchMojos: "0"`', () => {
     const file = path.join(mockTempDir, 'dapp-pairs.yaml');
-    const legacy = makePair({ topic: 'a' });
-    (legacy as unknown as { grants: unknown }).grants = {
-      spendingMode: 'auto',
-      spendingCapMojos: '5000000000000',
-    };
-    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
+    const pair = makePair({ topic: 'a' });
+    delete (pair as Partial<PairRecord>).grants;
+    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(pair)}\n`);
 
     const reload = loadStore();
-    expect(reload.getPair('a')?.grants).toEqual({ allowanceMojos: '5000000000000' });
+    expect(reload.getPair('a')?.grants).toEqual({ xchMojos: '0' });
   });
 
-  it('zeroes `allowanceMojos` for legacy "ask" pairs (preserves "always prompt" semantics)', () => {
+  it('treats missing usage as zero', () => {
     const file = path.join(mockTempDir, 'dapp-pairs.yaml');
-    const legacy = makePair({ topic: 'a' });
-    (legacy as unknown as { grants: unknown }).grants = {
-      spendingMode: 'ask',
-      spendingCapMojos: '5000000000000',
-    };
-    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
+    const pair = makePair({ topic: 'a' });
+    delete (pair as Partial<PairRecord>).usedMojos;
+    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(pair)}\n`);
 
     const reload = loadStore();
-    expect(reload.getPair('a')?.grants).toEqual({ allowanceMojos: '0' });
-  });
-
-  it('zeroes `allowanceMojos` for legacy "block" pairs (no silent escalation post-upgrade)', () => {
-    const file = path.join(mockTempDir, 'dapp-pairs.yaml');
-    const legacy = makePair({ topic: 'a' });
-    (legacy as unknown as { grants: unknown }).grants = {
-      spendingMode: 'block',
-      spendingCapMojos: '999',
-    };
-    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
-
-    const reload = loadStore();
-    expect(reload.getPair('a')?.grants).toEqual({ allowanceMojos: '0' });
-  });
-
-  it('treats missing grants as `allowanceMojos: "0"`', () => {
-    const file = path.join(mockTempDir, 'dapp-pairs.yaml');
-    const legacy = makePair({ topic: 'a' });
-    delete (legacy as Partial<PairRecord>).grants;
-    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
-
-    const reload = loadStore();
-    expect(reload.getPair('a')?.grants).toEqual({ allowanceMojos: '0' });
-  });
-
-  it('prefers the new `allowanceMojos` field when both old and new are present', () => {
-    // Belt-and-braces: a hand-edited record might carry both. The new field
-    // wins so a user-driven write isn't quietly overridden by stale legacy.
-    const file = path.join(mockTempDir, 'dapp-pairs.yaml');
-    const legacy = makePair({ topic: 'a' });
-    (legacy as unknown as { grants: unknown }).grants = {
-      allowanceMojos: '7',
-      spendingMode: 'auto',
-      spendingCapMojos: '5000000000000',
-    };
-    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
-
-    const reload = loadStore();
-    expect(reload.getPair('a')?.grants).toEqual({ allowanceMojos: '7' });
-  });
-
-  it('renames `spentMojos` → `usedMojos`', () => {
-    const file = path.join(mockTempDir, 'dapp-pairs.yaml');
-    const legacy = makePair({ topic: 'a' });
-    delete (legacy as Partial<PairRecord>).usedMojos;
-    (legacy as unknown as { spentMojos: string }).spentMojos = '12345';
-    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
-
-    const reload = loadStore();
-    expect(reload.getPair('a')?.usedMojos).toBe('12345');
-  });
-
-  it('prefers the new `usedMojos` field when both fields exist on disk', () => {
-    const file = path.join(mockTempDir, 'dapp-pairs.yaml');
-    const legacy = makePair({ topic: 'a', usedMojos: '999' });
-    (legacy as unknown as { spentMojos: string }).spentMojos = '111';
-    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
-
-    const reload = loadStore();
-    expect(reload.getPair('a')?.usedMojos).toBe('999');
+    expect(reload.getPair('a')?.usedMojos).toBe('0');
   });
 });
 
-describe('pairStore - bypass migration: preserve command-level trust entries', () => {
+describe('pairStore - bypass command preservation', () => {
   // `bypass` is exact command-level trust. Spend-class wcCommands are valid
   // here too; the XCH allowance is only the bounded fallback when no bypass
   // entry exists.
 
   it('preserves `chia_pushTransactions` in a persisted bypass list', () => {
     const file = path.join(mockTempDir, 'dapp-pairs.yaml');
-    const legacy = makePair({
+    const record = makePair({
       topic: 'a',
       bypass: ['chia_getWallets', 'chia_pushTransactions', 'chia_signMessageByAddress'],
     });
-    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
+    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(record)}\n`);
 
     const reload = loadStore();
     expect(reload.getPair('a')?.bypass).toEqual([
@@ -412,9 +326,9 @@ describe('pairStore - bypass migration: preserve command-level trust entries', (
     ]);
   });
 
-  it('preserves allowance-controlled wcCommands in bypass', () => {
+  it('preserves spend wcCommands in bypass', () => {
     const file = path.join(mockTempDir, 'dapp-pairs.yaml');
-    const legacy = makePair({
+    const record = makePair({
       topic: 'a',
       bypass: [
         'chia_sendTransaction',
@@ -424,7 +338,7 @@ describe('pairStore - bypass migration: preserve command-level trust entries', (
         'chia_getWallets',
       ],
     });
-    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
+    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(record)}\n`);
 
     const reload = loadStore();
     expect(reload.getPair('a')?.bypass).toEqual([
@@ -438,11 +352,11 @@ describe('pairStore - bypass migration: preserve command-level trust entries', (
 
   it('leaves a clean bypass list untouched (no false positives)', () => {
     const file = path.join(mockTempDir, 'dapp-pairs.yaml');
-    const legacy = makePair({
+    const record = makePair({
       topic: 'a',
       bypass: ['chia_getWallets', 'chia_getWalletBalance', 'chia_signMessageByAddress'],
     });
-    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
+    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(record)}\n`);
 
     const reload = loadStore();
     expect(reload.getPair('a')?.bypass).toEqual([

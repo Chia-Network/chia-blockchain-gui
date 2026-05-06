@@ -21,7 +21,7 @@ function makePair(overrides: Partial<PairRecord> = {}): PairRecord {
     usedMojos: '0',
     commands: ['chia_sendTransaction', 'chia_getWallets'],
     bypass: [],
-    grants: { allowanceMojos: '0' },
+    grants: { xchMojos: '0' },
     ...overrides,
   };
 }
