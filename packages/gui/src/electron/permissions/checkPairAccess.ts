@@ -11,9 +11,7 @@ export type PairAccessCheck = {
   mainnet: boolean;
 };
 
-export type PairAccessResult =
-  | { ok: true; pair: PairRecord }
-  | { ok: false; reason: string; code: number };
+export type PairAccessResult = { ok: true; pair: PairRecord } | { ok: false; reason: string; code: number };
 
 export type CheckPairAccessDeps = {
   getPair: (topic: string) => PairRecord | undefined;

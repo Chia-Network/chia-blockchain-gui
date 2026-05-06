@@ -67,10 +67,7 @@ export type ResolveContext = {
 // (CAT/NFT/mixed/missing-amount). `undefined` = not eligible for the allowance.
 type AllowanceCharge = BigNumber | 'unresolvable' | undefined;
 
-async function resolveAllowanceCharge(
-  command: string,
-  payload: Record<string, unknown>,
-): Promise<AllowanceCharge> {
+async function resolveAllowanceCharge(command: string, payload: Record<string, unknown>): Promise<AllowanceCharge> {
   // push_transactions only contributes the optional fee — bundle is pre-signed.
   if (command === PUSH_TRANSACTIONS) {
     return readMojos(payload, 'fee') ?? ZERO;

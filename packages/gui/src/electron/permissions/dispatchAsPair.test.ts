@@ -327,9 +327,12 @@ describe('dispatchDaemonCommandAsPair - handler routing', () => {
 
   it('invokes the registered handler instead of the daemon', async () => {
     const handler = jest.fn(async () => ({ data: { success: true, walletId: 5 } }));
-    const deps = makeHandlerDeps({ kind: 'allow', commit: jest.fn() }, {
-      getDappHandler: jest.fn((key: string) => (key === 'addCATToken' ? handler : undefined)),
-    });
+    const deps = makeHandlerDeps(
+      { kind: 'allow', commit: jest.fn() },
+      {
+        getDappHandler: jest.fn((key: string) => (key === 'addCATToken' ? handler : undefined)),
+      },
+    );
 
     const out = await dispatchDaemonCommandAsPair(handlerInput, deps);
 
@@ -339,9 +342,12 @@ describe('dispatchDaemonCommandAsPair - handler routing', () => {
   });
 
   it('throws when the handler key has no registered implementation', async () => {
-    const deps = makeHandlerDeps({ kind: 'allow', commit: jest.fn() }, {
-      getDappHandler: jest.fn(() => undefined),
-    });
+    const deps = makeHandlerDeps(
+      { kind: 'allow', commit: jest.fn() },
+      {
+        getDappHandler: jest.fn(() => undefined),
+      },
+    );
 
     await expect(dispatchDaemonCommandAsPair(handlerInput, deps)).rejects.toThrow(
       'no handler registered for addCATToken',
@@ -351,9 +357,12 @@ describe('dispatchDaemonCommandAsPair - handler routing', () => {
 
   it('still runs validation + permission gate before the handler', async () => {
     const handler = jest.fn();
-    const deps = makeHandlerDeps({ kind: 'allow', commit: jest.fn() }, {
-      getDappHandler: jest.fn(() => handler),
-    });
+    const deps = makeHandlerDeps(
+      { kind: 'allow', commit: jest.fn() },
+      {
+        getDappHandler: jest.fn(() => handler),
+      },
+    );
 
     await expect(
       dispatchDaemonCommandAsPair(

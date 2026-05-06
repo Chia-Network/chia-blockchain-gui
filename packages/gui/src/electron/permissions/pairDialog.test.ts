@@ -32,10 +32,10 @@ describe('dialogResultToBypass', () => {
     // boxes. Unchecked boxes simply don't appear, so there's no `false` to
     // filter — we just gate on the granted-set.
     expect(
-      dialogResultToBypass(
-        { bypass: ['chia_sendTransaction', 'chia_getWallets', 'chia_notGranted'] },
-        ['chia_sendTransaction', 'chia_takeOffer'],
-      ),
+      dialogResultToBypass({ bypass: ['chia_sendTransaction', 'chia_getWallets', 'chia_notGranted'] }, [
+        'chia_sendTransaction',
+        'chia_takeOffer',
+      ]),
     ).toEqual(['chia_sendTransaction']);
   });
 
@@ -47,19 +47,17 @@ describe('dialogResultToBypass', () => {
 
   it('skips non-string entries inside the array', () => {
     expect(
-      dialogResultToBypass(
-        { bypass: ['chia_sendTransaction', 42, null, true] },
-        ['chia_sendTransaction'],
-      ),
+      dialogResultToBypass({ bypass: ['chia_sendTransaction', 42, null, true] }, ['chia_sendTransaction']),
     ).toEqual(['chia_sendTransaction']);
   });
 
   it('drops sign-class commands — `permissions.resolvePermission` always prompts for them, so a persisted bypass would silently no-op', () => {
     expect(
-      dialogResultToBypass(
-        { bypass: ['chia_signMessageByAddress', 'chia_signMessageById', 'chia_sendTransaction'] },
-        ['chia_signMessageByAddress', 'chia_signMessageById', 'chia_sendTransaction'],
-      ),
+      dialogResultToBypass({ bypass: ['chia_signMessageByAddress', 'chia_signMessageById', 'chia_sendTransaction'] }, [
+        'chia_signMessageByAddress',
+        'chia_signMessageById',
+        'chia_sendTransaction',
+      ]),
     ).toEqual(['chia_sendTransaction']);
   });
 });

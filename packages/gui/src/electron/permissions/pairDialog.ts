@@ -18,7 +18,11 @@ export function dialogResultToGrants(result: Record<string, unknown>): PairGrant
     try {
       const xch = new BigNumber(typeof rawXch === 'string' ? rawXch : String(rawXch));
       if (xch.isFinite() && xch.isGreaterThan(0)) {
-        mojos = chiaFormatter(xch, Unit.CHIA).to(Unit.MOJO).toBigNumber().integerValue(BigNumber.ROUND_FLOOR).toFixed(0);
+        mojos = chiaFormatter(xch, Unit.CHIA)
+          .to(Unit.MOJO)
+          .toBigNumber()
+          .integerValue(BigNumber.ROUND_FLOOR)
+          .toFixed(0);
       }
     } catch {
       // Invalid input -> allowance stays 0.

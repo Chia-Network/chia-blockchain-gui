@@ -4,7 +4,11 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import Pair, { type PairProps } from './Pair';
 
 function inputHasChecked(html: string, field: string): boolean {
-  const match = html.match(new RegExp(`<input[^>]*data-form-field="${field}"[^>]*>|<input[^>]*checked=""[^>]*data-form-field="${field}"[^>]*>`));
+  const match = html.match(
+    new RegExp(
+      `<input[^>]*data-form-field="${field}"[^>]*>|<input[^>]*checked=""[^>]*data-form-field="${field}"[^>]*>`,
+    ),
+  );
   return !!match?.[0]?.includes('checked=""');
 }
 

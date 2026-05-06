@@ -150,9 +150,7 @@ export async function dispatchDaemonCommandAsPair(
       data: snakeData,
       pair,
       mainnet,
-      fingerprint: fingerprint
-        ? { requested: fingerprint.requested, current: fingerprint.current }
-        : undefined,
+      fingerprint: fingerprint ? { requested: fingerprint.requested, current: fingerprint.current } : undefined,
       mainWindow,
       networkPrefix,
       dispatchDaemon,

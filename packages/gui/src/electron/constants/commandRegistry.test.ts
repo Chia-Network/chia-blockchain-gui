@@ -333,9 +333,7 @@ describe('validateDappParams', () => {
   });
 
   it('aliases inherit the base schema params (chia_getCurrentAddress)', () => {
-    expect(() =>
-      validateDappParams('chia_getCurrentAddress', { wallet_id: 1, new_address: false }),
-    ).not.toThrow();
+    expect(() => validateDappParams('chia_getCurrentAddress', { wallet_id: 1, new_address: false })).not.toThrow();
     expectThrow(
       () => validateDappParams('chia_getCurrentAddress', { surprise: true }),
       WcErrorCode.INVALID_PARAMS,
@@ -585,7 +583,12 @@ describe('dapp.transformResponse', () => {
       prevTransactionBlockHeight: null,
     });
     expect(
-      tx('chia_getHeightInfo', { height: 100, latestTimestamp: 200, isTransactionBlock: true, prevTransactionBlockHeight: 99 }),
+      tx('chia_getHeightInfo', {
+        height: 100,
+        latestTimestamp: 200,
+        isTransactionBlock: true,
+        prevTransactionBlockHeight: 99,
+      }),
     ).toEqual({ height: 100, latestTimestamp: 200, isTransactionBlock: true, prevTransactionBlockHeight: 99 });
   });
 

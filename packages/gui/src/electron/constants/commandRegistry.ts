@@ -97,9 +97,7 @@ const RENDERER_NAMESPACE = 'chia_app';
 const SCHEMAS: Record<string, CommandSchema> = {
   // ── Handler-routed (pure dapp, no daemon RPC) ─────────────────────────────
   'chia_app.request_permissions': {
-    params: [
-      { name: 'commands', label: () => i18n._(/* i18n */ { id: 'Commands' }), type: 'json', dappAllowed: true },
-    ],
+    params: [{ name: 'commands', label: () => i18n._(/* i18n */ { id: 'Commands' }), type: 'json', dappAllowed: true }],
     dapp: {
       wcCommand: 'chia_requestPermissions',
       label: () => i18n._(/* i18n */ { id: 'Request Permissions' }),
@@ -1380,9 +1378,7 @@ const SCHEMAS: Record<string, CommandSchema> = {
     message: () => i18n._(/* i18n */ { id: 'Are you sure you want to clear pending roots for this store?' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Clear' }),
     destructive: true,
-    params: [
-      { name: 'store_id', label: () => i18n._(/* i18n */ { id: 'Store Id' }), type: 'text', dappAllowed: true },
-    ],
+    params: [{ name: 'store_id', label: () => i18n._(/* i18n */ { id: 'Store Id' }), type: 'text', dappAllowed: true }],
     dapp: {
       wcCommand: 'chia_clearPendingRoots',
       label: () => i18n._(/* i18n */ { id: 'Clear Pending Roots' }),
@@ -1829,7 +1825,8 @@ const SCHEMAS: Record<string, CommandSchema> = {
     dapp: {
       wcCommand: 'chia_getNextAddress',
       label: () => i18n._(/* i18n */ { id: 'Get Next Address' }),
-      description: () => i18n._(/* i18n */ { id: 'Requests a new receive address associated with the current wallet key' }),
+      description: () =>
+        i18n._(/* i18n */ { id: 'Requests a new receive address associated with the current wallet key' }),
       defaults: { wallet_id: 1, new_address: true },
       transformResponse: (data) => data.address,
       // No daemon `get_current_address` RPC; alias routes to `get_next_address` with new_address=false.
@@ -1972,9 +1969,7 @@ const SCHEMAS: Record<string, CommandSchema> = {
   },
 
   'chia_wallet.check_offer_validity': {
-    params: [
-      { name: 'offer', label: () => i18n._(/* i18n */ { id: 'Offer Data' }), type: 'text', dappAllowed: true },
-    ],
+    params: [{ name: 'offer', label: () => i18n._(/* i18n */ { id: 'Offer Data' }), type: 'text', dappAllowed: true }],
     dapp: {
       wcCommand: 'chia_checkOfferValidity',
       label: () => i18n._(/* i18n */ { id: 'Check Offer Validity' }),
@@ -1994,9 +1989,7 @@ const SCHEMAS: Record<string, CommandSchema> = {
   },
 
   'chia_wallet.get_offer_data': {
-    params: [
-      { name: 'offer_id', label: () => i18n._(/* i18n */ { id: 'Offer Id' }), type: 'text', dappAllowed: true },
-    ],
+    params: [{ name: 'offer_id', label: () => i18n._(/* i18n */ { id: 'Offer Id' }), type: 'text', dappAllowed: true }],
     dapp: {
       wcCommand: 'chia_getOfferData',
       label: () => i18n._(/* i18n */ { id: 'Get Offer Data' }),
@@ -2005,9 +1998,7 @@ const SCHEMAS: Record<string, CommandSchema> = {
   },
 
   'chia_wallet.get_offer_record': {
-    params: [
-      { name: 'offer_id', label: () => i18n._(/* i18n */ { id: 'Offer Id' }), type: 'text', dappAllowed: true },
-    ],
+    params: [{ name: 'offer_id', label: () => i18n._(/* i18n */ { id: 'Offer Id' }), type: 'text', dappAllowed: true }],
     dapp: {
       wcCommand: 'chia_getOfferRecord',
       label: () => i18n._(/* i18n */ { id: 'Get Offer Record' }),
@@ -2016,9 +2007,7 @@ const SCHEMAS: Record<string, CommandSchema> = {
   },
 
   'chia_wallet.cat_asset_id_to_name': {
-    params: [
-      { name: 'asset_id', label: () => i18n._(/* i18n */ { id: 'Asset Id' }), type: 'text', dappAllowed: true },
-    ],
+    params: [{ name: 'asset_id', label: () => i18n._(/* i18n */ { id: 'Asset Id' }), type: 'text', dappAllowed: true }],
     dapp: {
       wcCommand: 'chia_getCATWalletInfo',
       label: () => i18n._(/* i18n */ { id: 'Get CAT Wallet Info' }),

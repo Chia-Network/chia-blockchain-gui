@@ -273,106 +273,103 @@ describe('legacy parity: command coverage', () => {
 });
 
 describe('legacy parity: per-command param parity', () => {
-  describe.each(legacyCommands.map((c): [string, LegacyCommand] => [c.command, c]))(
-    'chia_%s',
-    (_label, legacy) => {
-      const wcCommand = `chia_${legacy.command}`;
+  describe.each(legacyCommands.map((c): [string, LegacyCommand] => [c.command, c]))('chia_%s', (_label, legacy) => {
+    const wcCommand = `chia_${legacy.command}`;
 
-      it('schema is reachable', () => {
-        expect(getCommandByWc(wcCommand)).toBeDefined();
-      });
+    it('schema is reachable', () => {
+      expect(getCommandByWc(wcCommand)).toBeDefined();
+    });
 
-      it('every legacy param exists in the new schema with `dappAllowed: true`', () => {
-        const entry = getCommandByWc(wcCommand);
-        if (!entry) return;
-        const newParams = entry.schema.params;
-        const newByName = new Map(newParams.map((p) => [p.name, p]));
-        const missing: { legacy: string; expectedSnake: string }[] = [];
-        const notAllowed: string[] = [];
-        for (const lp of legacyParams(legacy)) {
-          const snake = snakeName(lp.name);
-          const np = newByName.get(snake);
-          if (!np) {
-            missing.push({ legacy: lp.name, expectedSnake: snake });
-            continue;
-          }
-          if (np.dappAllowed !== true) notAllowed.push(snake);
+    it('every legacy param exists in the new schema with `dappAllowed: true`', () => {
+      const entry = getCommandByWc(wcCommand);
+      if (!entry) return;
+      const newParams = entry.schema.params;
+      const newByName = new Map(newParams.map((p) => [p.name, p]));
+      const missing: { legacy: string; expectedSnake: string }[] = [];
+      const notAllowed: string[] = [];
+      for (const lp of legacyParams(legacy)) {
+        const snake = snakeName(lp.name);
+        const np = newByName.get(snake);
+        if (!np) {
+          missing.push({ legacy: lp.name, expectedSnake: snake });
+          continue;
         }
-        expect({ missing, notAllowed }).toEqual({ missing: [], notAllowed: [] });
-      });
+        if (np.dappAllowed !== true) notAllowed.push(snake);
+      }
+      expect({ missing, notAllowed }).toEqual({ missing: [], notAllowed: [] });
+    });
 
-      it('preserves legacy param order', () => {
-        const entry = getCommandByWc(wcCommand);
-        if (!entry) return;
-        const newOrder = entry.schema.params.map((p) => p.name);
-        const expected = legacyParams(legacy).map((p) => snakeName(p.name));
-        // Filter to legacy-known names so new rows don't muddy the comparison.
-        const legacyNames = new Set(expected);
-        const filteredNew = newOrder.filter((n) => legacyNames.has(n));
-        expect(filteredNew).toEqual(expected);
-      });
+    it('preserves legacy param order', () => {
+      const entry = getCommandByWc(wcCommand);
+      if (!entry) return;
+      const newOrder = entry.schema.params.map((p) => p.name);
+      const expected = legacyParams(legacy).map((p) => snakeName(p.name));
+      // Filter to legacy-known names so new rows don't muddy the comparison.
+      const legacyNames = new Set(expected);
+      const filteredNew = newOrder.filter((n) => legacyNames.has(n));
+      expect(filteredNew).toEqual(expected);
+    });
 
-      it('preserves `hide: true` flags', () => {
-        const entry = getCommandByWc(wcCommand);
-        if (!entry) return;
-        const newByName = new Map(entry.schema.params.map((p) => [p.name, p]));
-        const drift: { name: string; legacyHide: boolean; newHide: boolean }[] = [];
-        for (const lp of legacyParams(legacy)) {
-          const snake = snakeName(lp.name);
-          const np = newByName.get(snake);
-          if (!np) continue;
-          const legacyHide = lp.hide === true;
-          const newHide = np.hide === true;
-          if (legacyHide !== newHide) drift.push({ name: snake, legacyHide, newHide });
+    it('preserves `hide: true` flags', () => {
+      const entry = getCommandByWc(wcCommand);
+      if (!entry) return;
+      const newByName = new Map(entry.schema.params.map((p) => [p.name, p]));
+      const drift: { name: string; legacyHide: boolean; newHide: boolean }[] = [];
+      for (const lp of legacyParams(legacy)) {
+        const snake = snakeName(lp.name);
+        const np = newByName.get(snake);
+        if (!np) continue;
+        const legacyHide = lp.hide === true;
+        const newHide = np.hide === true;
+        if (legacyHide !== newHide) drift.push({ name: snake, legacyHide, newHide });
+      }
+      expect(drift).toEqual([]);
+    });
+
+    it('preserves `isOptional` flags', () => {
+      const entry = getCommandByWc(wcCommand);
+      if (!entry) return;
+      const newByName = new Map(entry.schema.params.map((p) => [p.name, p]));
+      const drift: { name: string; legacyOptional: boolean; newOptional: boolean }[] = [];
+      for (const lp of legacyParams(legacy)) {
+        const snake = snakeName(lp.name);
+        const np = newByName.get(snake);
+        if (!np) continue;
+        const legacyOptional = lp.isOptional === true;
+        const newOptional = np.isOptional === true;
+        if (legacyOptional !== newOptional) drift.push({ name: snake, legacyOptional, newOptional });
+      }
+      expect(drift).toEqual([]);
+    });
+
+    it('preserves param defaults from legacy `defaultValue`', () => {
+      // Skip `defaultValue: undefined` — legacy used it interchangeably
+      // with omitting the field, mirrored by absent keys in `dapp.defaults`.
+      const entry = getCommandByWc(wcCommand);
+      if (!entry) return;
+      const newDefaults = (entry.defaults ?? {}) as Record<string, unknown>;
+      const missing: { name: string; expected: unknown }[] = [];
+      const drift: { name: string; expected: unknown; actual: unknown }[] = [];
+      for (const lp of legacyParams(legacy)) {
+        if (lp.defaultValue === undefined) continue;
+        const snake = snakeName(lp.name);
+        if (!(snake in newDefaults)) {
+          missing.push({ name: snake, expected: lp.defaultValue });
+        } else if (newDefaults[snake] !== lp.defaultValue) {
+          drift.push({ name: snake, expected: lp.defaultValue, actual: newDefaults[snake] });
         }
-        expect(drift).toEqual([]);
-      });
+      }
+      expect({ missing, drift }).toEqual({ missing: [], drift: [] });
+    });
 
-      it('preserves `isOptional` flags', () => {
-        const entry = getCommandByWc(wcCommand);
-        if (!entry) return;
-        const newByName = new Map(entry.schema.params.map((p) => [p.name, p]));
-        const drift: { name: string; legacyOptional: boolean; newOptional: boolean }[] = [];
-        for (const lp of legacyParams(legacy)) {
-          const snake = snakeName(lp.name);
-          const np = newByName.get(snake);
-          if (!np) continue;
-          const legacyOptional = lp.isOptional === true;
-          const newOptional = np.isOptional === true;
-          if (legacyOptional !== newOptional) drift.push({ name: snake, legacyOptional, newOptional });
-        }
-        expect(drift).toEqual([]);
-      });
-
-      it('preserves param defaults from legacy `defaultValue`', () => {
-        // Skip `defaultValue: undefined` — legacy used it interchangeably
-        // with omitting the field, mirrored by absent keys in `dapp.defaults`.
-        const entry = getCommandByWc(wcCommand);
-        if (!entry) return;
-        const newDefaults = (entry.defaults ?? {}) as Record<string, unknown>;
-        const missing: { name: string; expected: unknown }[] = [];
-        const drift: { name: string; expected: unknown; actual: unknown }[] = [];
-        for (const lp of legacyParams(legacy)) {
-          if (lp.defaultValue === undefined) continue;
-          const snake = snakeName(lp.name);
-          if (!(snake in newDefaults)) {
-            missing.push({ name: snake, expected: lp.defaultValue });
-          } else if (newDefaults[snake] !== lp.defaultValue) {
-            drift.push({ name: snake, expected: lp.defaultValue, actual: newDefaults[snake] });
-          }
-        }
-        expect({ missing, drift }).toEqual({ missing: [], drift: [] });
-      });
-
-      it('legacy param payloads pass `validateDappParams`', () => {
-        const payload: Record<string, unknown> = {};
-        for (const lp of legacyParams(legacy)) {
-          payload[snakeName(lp.name)] = 'value';
-        }
-        expect(() => validateDappParams(wcCommand, payload)).not.toThrow();
-      });
-    },
-  );
+    it('legacy param payloads pass `validateDappParams`', () => {
+      const payload: Record<string, unknown> = {};
+      for (const lp of legacyParams(legacy)) {
+        payload[snakeName(lp.name)] = 'value';
+      }
+      expect(() => validateDappParams(wcCommand, payload)).not.toThrow();
+    });
+  });
 });
 
 describe('AllowedCommands coverage', () => {
