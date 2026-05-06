@@ -28,13 +28,10 @@ function makePair(overrides: Partial<PairRecord> = {}): PairRecord {
     fingerprints: [123],
     createdAt: 1,
     updatedAt: 1,
-    spentMojos: '0',
+    usedMojos: '0',
     commands: [],
     bypass: [],
-    grants: {
-      spendingMode: 'ask',
-      spendingCapMojos: '0',
-    },
+    grants: { allowanceMojos: '0' },
     ...overrides,
   };
 }
@@ -96,103 +93,102 @@ describe('pairStore - listPairs / getPair / upsertPair / removePair', () => {
   });
 });
 
-describe('pairStore - recordSpend (spend cap accounting)', () => {
-  it('accumulates spent mojos across multiple calls', () => {
+describe('pairStore - recordUsage (allowance accounting)', () => {
+  it('accumulates used mojos across multiple calls', () => {
     const store = loadStore();
-    store.upsertPair(makePair({ topic: 'a', spentMojos: '0' }));
+    store.upsertPair(makePair({ topic: 'a', usedMojos: '0' }));
 
-    store.recordSpend('a', new BigNumber(100));
-    expect(store.getPair('a')?.spentMojos).toBe('100');
+    store.recordUsage('a', new BigNumber(100));
+    expect(store.getPair('a')?.usedMojos).toBe('100');
 
-    store.recordSpend('a', new BigNumber(250));
-    expect(store.getPair('a')?.spentMojos).toBe('350');
+    store.recordUsage('a', new BigNumber(250));
+    expect(store.getPair('a')?.usedMojos).toBe('350');
 
-    store.recordSpend('a', new BigNumber(1));
-    expect(store.getPair('a')?.spentMojos).toBe('351');
+    store.recordUsage('a', new BigNumber(1));
+    expect(store.getPair('a')?.usedMojos).toBe('351');
   });
 
-  it('persists accumulated spend across module reloads', () => {
+  it('persists accumulated usage across module reloads', () => {
     const a = loadStore();
-    a.upsertPair(makePair({ topic: 'a', spentMojos: '500' }));
-    a.recordSpend('a', new BigNumber(123));
+    a.upsertPair(makePair({ topic: 'a', usedMojos: '500' }));
+    a.recordUsage('a', new BigNumber(123));
 
     const b = loadStore();
-    expect(b.getPair('a')?.spentMojos).toBe('623');
+    expect(b.getPair('a')?.usedMojos).toBe('623');
   });
 
   it('is a no-op for unknown topic', () => {
     const store = loadStore();
-    store.recordSpend('unknown', new BigNumber(100));
+    store.recordUsage('unknown', new BigNumber(100));
     expect(store.listPairs()).toEqual([]);
   });
 
   it('is a no-op for non-positive amounts', () => {
     const store = loadStore();
-    store.upsertPair(makePair({ topic: 'a', spentMojos: '500' }));
+    store.upsertPair(makePair({ topic: 'a', usedMojos: '500' }));
 
-    store.recordSpend('a', new BigNumber(0));
-    store.recordSpend('a', new BigNumber(-1));
-    store.recordSpend('a', new BigNumber('-9999999999999999999'));
+    store.recordUsage('a', new BigNumber(0));
+    store.recordUsage('a', new BigNumber(-1));
+    store.recordUsage('a', new BigNumber('-9999999999999999999'));
 
-    expect(store.getPair('a')?.spentMojos).toBe('500');
+    expect(store.getPair('a')?.usedMojos).toBe('500');
   });
 
   it('is a no-op for non-finite amounts', () => {
     const store = loadStore();
-    store.upsertPair(makePair({ topic: 'a', spentMojos: '500' }));
+    store.upsertPair(makePair({ topic: 'a', usedMojos: '500' }));
 
-    store.recordSpend('a', new BigNumber(NaN));
-    store.recordSpend('a', new BigNumber(Infinity));
+    store.recordUsage('a', new BigNumber(NaN));
+    store.recordUsage('a', new BigNumber(Infinity));
 
-    expect(store.getPair('a')?.spentMojos).toBe('500');
+    expect(store.getPair('a')?.usedMojos).toBe('500');
   });
 
   it('preserves precision beyond JS safe-integer range', () => {
     const store = loadStore();
-    store.upsertPair(makePair({ topic: 'a', spentMojos: '0' }));
+    store.upsertPair(makePair({ topic: 'a', usedMojos: '0' }));
 
     const huge = new BigNumber('99999999999999999999');
-    store.recordSpend('a', huge);
-    store.recordSpend('a', new BigNumber(1));
+    store.recordUsage('a', huge);
+    store.recordUsage('a', new BigNumber(1));
 
-    expect(store.getPair('a')?.spentMojos).toBe('100000000000000000000');
+    expect(store.getPair('a')?.usedMojos).toBe('100000000000000000000');
   });
 
   it('truncates fractional mojos via toFixed(0)', () => {
     const store = loadStore();
-    store.upsertPair(makePair({ topic: 'a', spentMojos: '0' }));
+    store.upsertPair(makePair({ topic: 'a', usedMojos: '0' }));
 
     // toFixed(0) rounds half-to-even on BigNumber by default.
-    store.recordSpend('a', new BigNumber('1.4'));
-    expect(store.getPair('a')?.spentMojos).toBe('1');
+    store.recordUsage('a', new BigNumber('1.4'));
+    expect(store.getPair('a')?.usedMojos).toBe('1');
 
-    store.recordSpend('a', new BigNumber('0.7'));
+    store.recordUsage('a', new BigNumber('0.7'));
     // 1 + 0.7 = 1.7 → rounded to 2.
-    expect(store.getPair('a')?.spentMojos).toBe('2');
+    expect(store.getPair('a')?.usedMojos).toBe('2');
   });
 
-  it('treats undefined spentMojos on the existing record as zero', () => {
+  it('treats undefined usedMojos on the existing record as zero', () => {
     loadStore();
-    // Simulate an older record with no spentMojos field on disk.
     const file = path.join(mockTempDir, 'dapp-pairs.yaml');
     const legacy = makePair({ topic: 'a' });
-    delete (legacy as Partial<PairRecord>).spentMojos;
+    delete (legacy as Partial<PairRecord>).usedMojos;
     fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
 
     const reload = loadStore();
-    reload.recordSpend('a', new BigNumber(42));
-    expect(reload.getPair('a')?.spentMojos).toBe('42');
+    reload.recordUsage('a', new BigNumber(42));
+    expect(reload.getPair('a')?.usedMojos).toBe('42');
   });
 
   it('does not affect siblings', () => {
     const store = loadStore();
-    store.upsertPair(makePair({ topic: 'a', spentMojos: '100' }));
-    store.upsertPair(makePair({ topic: 'b', spentMojos: '200' }));
+    store.upsertPair(makePair({ topic: 'a', usedMojos: '100' }));
+    store.upsertPair(makePair({ topic: 'b', usedMojos: '200' }));
 
-    store.recordSpend('a', new BigNumber(50));
+    store.recordUsage('a', new BigNumber(50));
 
-    expect(store.getPair('a')?.spentMojos).toBe('150');
-    expect(store.getPair('b')?.spentMojos).toBe('200');
+    expect(store.getPair('a')?.usedMojos).toBe('150');
+    expect(store.getPair('b')?.usedMojos).toBe('200');
   });
 });
 
@@ -300,10 +296,167 @@ describe('pairStore - mainnet field migration', () => {
   });
 });
 
+describe('pairStore - allowance / spendingMode migration', () => {
+  // The unified model dropped `spendingMode` and renamed `spendingCapMojos`
+  // → `allowanceMojos`. The migration must be conservative: only carry the
+  // old cap forward as the allowance when the user had explicitly opted
+  // into auto-spending. 'ask'/'block'/missing → 0, so the post-upgrade
+  // default is "every spend prompts" rather than "auto-approve up to the
+  // value the user only set as an upper bound for the auto branch".
+
+  it('carries `spendingCapMojos` forward as `allowanceMojos` only when old mode was "auto"', () => {
+    const file = path.join(mockTempDir, 'dapp-pairs.yaml');
+    const legacy = makePair({ topic: 'a' });
+    (legacy as unknown as { grants: unknown }).grants = {
+      spendingMode: 'auto',
+      spendingCapMojos: '5000000000000',
+    };
+    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
+
+    const reload = loadStore();
+    expect(reload.getPair('a')?.grants).toEqual({ allowanceMojos: '5000000000000' });
+  });
+
+  it('zeroes `allowanceMojos` for legacy "ask" pairs (preserves "always prompt" semantics)', () => {
+    const file = path.join(mockTempDir, 'dapp-pairs.yaml');
+    const legacy = makePair({ topic: 'a' });
+    (legacy as unknown as { grants: unknown }).grants = {
+      spendingMode: 'ask',
+      spendingCapMojos: '5000000000000',
+    };
+    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
+
+    const reload = loadStore();
+    expect(reload.getPair('a')?.grants).toEqual({ allowanceMojos: '0' });
+  });
+
+  it('zeroes `allowanceMojos` for legacy "block" pairs (no silent escalation post-upgrade)', () => {
+    const file = path.join(mockTempDir, 'dapp-pairs.yaml');
+    const legacy = makePair({ topic: 'a' });
+    (legacy as unknown as { grants: unknown }).grants = {
+      spendingMode: 'block',
+      spendingCapMojos: '999',
+    };
+    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
+
+    const reload = loadStore();
+    expect(reload.getPair('a')?.grants).toEqual({ allowanceMojos: '0' });
+  });
+
+  it('treats missing grants as `allowanceMojos: "0"`', () => {
+    const file = path.join(mockTempDir, 'dapp-pairs.yaml');
+    const legacy = makePair({ topic: 'a' });
+    delete (legacy as Partial<PairRecord>).grants;
+    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
+
+    const reload = loadStore();
+    expect(reload.getPair('a')?.grants).toEqual({ allowanceMojos: '0' });
+  });
+
+  it('prefers the new `allowanceMojos` field when both old and new are present', () => {
+    // Belt-and-braces: a hand-edited record might carry both. The new field
+    // wins so a user-driven write isn't quietly overridden by stale legacy.
+    const file = path.join(mockTempDir, 'dapp-pairs.yaml');
+    const legacy = makePair({ topic: 'a' });
+    (legacy as unknown as { grants: unknown }).grants = {
+      allowanceMojos: '7',
+      spendingMode: 'auto',
+      spendingCapMojos: '5000000000000',
+    };
+    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
+
+    const reload = loadStore();
+    expect(reload.getPair('a')?.grants).toEqual({ allowanceMojos: '7' });
+  });
+
+  it('renames `spentMojos` → `usedMojos`', () => {
+    const file = path.join(mockTempDir, 'dapp-pairs.yaml');
+    const legacy = makePair({ topic: 'a' });
+    delete (legacy as Partial<PairRecord>).usedMojos;
+    (legacy as unknown as { spentMojos: string }).spentMojos = '12345';
+    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
+
+    const reload = loadStore();
+    expect(reload.getPair('a')?.usedMojos).toBe('12345');
+  });
+
+  it('prefers the new `usedMojos` field when both fields exist on disk', () => {
+    const file = path.join(mockTempDir, 'dapp-pairs.yaml');
+    const legacy = makePair({ topic: 'a', usedMojos: '999' });
+    (legacy as unknown as { spentMojos: string }).spentMojos = '111';
+    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
+
+    const reload = loadStore();
+    expect(reload.getPair('a')?.usedMojos).toBe('999');
+  });
+});
+
+describe('pairStore - bypass migration: preserve command-level trust entries', () => {
+  // `bypass` is exact command-level trust. Spend-class wcCommands are valid
+  // here too; the XCH allowance is only the bounded fallback when no bypass
+  // entry exists.
+
+  it('preserves `chia_pushTransactions` in a persisted bypass list', () => {
+    const file = path.join(mockTempDir, 'dapp-pairs.yaml');
+    const legacy = makePair({
+      topic: 'a',
+      bypass: ['chia_getWallets', 'chia_pushTransactions', 'chia_signMessageByAddress'],
+    });
+    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
+
+    const reload = loadStore();
+    expect(reload.getPair('a')?.bypass).toEqual([
+      'chia_getWallets',
+      'chia_pushTransactions',
+      'chia_signMessageByAddress',
+    ]);
+  });
+
+  it('preserves allowance-controlled wcCommands in bypass', () => {
+    const file = path.join(mockTempDir, 'dapp-pairs.yaml');
+    const legacy = makePair({
+      topic: 'a',
+      bypass: [
+        'chia_sendTransaction',
+        'chia_createOfferForIds',
+        'chia_takeOffer',
+        'chia_pushTransactions',
+        'chia_getWallets',
+      ],
+    });
+    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
+
+    const reload = loadStore();
+    expect(reload.getPair('a')?.bypass).toEqual([
+      'chia_sendTransaction',
+      'chia_createOfferForIds',
+      'chia_takeOffer',
+      'chia_pushTransactions',
+      'chia_getWallets',
+    ]);
+  });
+
+  it('leaves a clean bypass list untouched (no false positives)', () => {
+    const file = path.join(mockTempDir, 'dapp-pairs.yaml');
+    const legacy = makePair({
+      topic: 'a',
+      bypass: ['chia_getWallets', 'chia_getWalletBalance', 'chia_signMessageByAddress'],
+    });
+    fs.writeFileSync(file, `pairs:\n  - ${JSON.stringify(legacy)}\n`);
+
+    const reload = loadStore();
+    expect(reload.getPair('a')?.bypass).toEqual([
+      'chia_getWallets',
+      'chia_getWalletBalance',
+      'chia_signMessageByAddress',
+    ]);
+  });
+});
+
 describe('pairStore - resetBypass (single pair)', () => {
   it('clears a non-empty bypass list', () => {
     const store = loadStore();
-    store.upsertPair(makePair({ topic: 'a', bypass: ['chia_sendTransaction', 'chia_getWallets'] }));
+    store.upsertPair(makePair({ topic: 'a', bypass: ['chia_getWalletBalance', 'chia_getWallets'] }));
 
     const updated = store.resetBypass('a');
     expect(updated?.bypass).toEqual([]);
@@ -314,7 +467,7 @@ describe('pairStore - resetBypass (single pair)', () => {
     // The whole point of the reset button is that it survives an app
     // restart. Reading from cache could pass even with a broken persist.
     const store = loadStore();
-    store.upsertPair(makePair({ topic: 'a', bypass: ['chia_sendTransaction'] }));
+    store.upsertPair(makePair({ topic: 'a', bypass: ['chia_getWallets'] }));
     store.resetBypass('a');
 
     const reload = loadStore();
@@ -323,11 +476,11 @@ describe('pairStore - resetBypass (single pair)', () => {
 
   it('returns undefined for an unknown topic without persisting', () => {
     const store = loadStore();
-    store.upsertPair(makePair({ topic: 'a', bypass: ['chia_sendTransaction'] }));
+    store.upsertPair(makePair({ topic: 'a', bypass: ['chia_getWallets'] }));
 
     expect(store.resetBypass('nonexistent')).toBeUndefined();
     // Existing pair untouched.
-    expect(store.getPair('a')?.bypass).toEqual(['chia_sendTransaction']);
+    expect(store.getPair('a')?.bypass).toEqual(['chia_getWallets']);
   });
 
   it('is a no-op when the bypass list is already empty (does not bump updatedAt)', () => {
@@ -343,7 +496,7 @@ describe('pairStore - resetBypass (single pair)', () => {
 
   it('bumps updatedAt when there was something to clear', () => {
     const store = loadStore();
-    store.upsertPair(makePair({ topic: 'a', updatedAt: 100, bypass: ['chia_sendTransaction'] }));
+    store.upsertPair(makePair({ topic: 'a', updatedAt: 100, bypass: ['chia_getWallets'] }));
 
     const before = Date.now();
     const result = store.resetBypass('a');
@@ -355,7 +508,7 @@ describe('pairStore - resetBypass (single pair)', () => {
 
   it('only touches the targeted pair, not siblings', () => {
     const store = loadStore();
-    store.upsertPair(makePair({ topic: 'a', bypass: ['chia_sendTransaction'] }));
+    store.upsertPair(makePair({ topic: 'a', bypass: ['chia_getWalletBalance'] }));
     store.upsertPair(makePair({ topic: 'b', bypass: ['chia_getWallets'] }));
 
     store.resetBypass('a');
@@ -363,30 +516,30 @@ describe('pairStore - resetBypass (single pair)', () => {
     expect(store.getPair('b')?.bypass).toEqual(['chia_getWallets']);
   });
 
-  it('preserves the rest of the pair record (commands, fingerprints, grants)', () => {
+  it('preserves the rest of the pair record (commands, fingerprints, grants, usedMojos)', () => {
     const store = loadStore();
     store.upsertPair(
       makePair({
         topic: 'a',
-        bypass: ['chia_sendTransaction'],
+        bypass: ['chia_getWallets'],
         commands: ['chia_sendTransaction', 'chia_getWallets'],
         fingerprints: [111, 222],
-        spentMojos: '500',
+        usedMojos: '500',
       }),
     );
 
     const result = store.resetBypass('a');
     expect(result?.commands).toEqual(['chia_sendTransaction', 'chia_getWallets']);
     expect(result?.fingerprints).toEqual([111, 222]);
-    expect(result?.spentMojos).toBe('500');
+    expect(result?.usedMojos).toBe('500');
   });
 });
 
 describe('pairStore - resetBypassAll (every pair)', () => {
   it('clears bypass on every pair', () => {
     const store = loadStore();
-    store.upsertPair(makePair({ topic: 'a', bypass: ['chia_sendTransaction'] }));
-    store.upsertPair(makePair({ topic: 'b', bypass: ['chia_getWallets', 'chia_takeOffer'] }));
+    store.upsertPair(makePair({ topic: 'a', bypass: ['chia_getWallets'] }));
+    store.upsertPair(makePair({ topic: 'b', bypass: ['chia_getWalletBalance', 'chia_signMessageByAddress'] }));
     store.upsertPair(makePair({ topic: 'c', bypass: [] }));
 
     store.resetBypassAll();
@@ -397,8 +550,8 @@ describe('pairStore - resetBypassAll (every pair)', () => {
 
   it('persists across reloads', () => {
     const store = loadStore();
-    store.upsertPair(makePair({ topic: 'a', bypass: ['chia_sendTransaction'] }));
-    store.upsertPair(makePair({ topic: 'b', bypass: ['chia_getWallets'] }));
+    store.upsertPair(makePair({ topic: 'a', bypass: ['chia_getWallets'] }));
+    store.upsertPair(makePair({ topic: 'b', bypass: ['chia_getWalletBalance'] }));
     store.resetBypassAll();
 
     const reload = loadStore();
@@ -411,7 +564,7 @@ describe('pairStore - resetBypassAll (every pair)', () => {
     // timestamp on every click. Keep the file diff to actual mutations.
     const store = loadStore();
     store.upsertPair(makePair({ topic: 'untouched', updatedAt: 100, bypass: [] }));
-    store.upsertPair(makePair({ topic: 'cleared', updatedAt: 100, bypass: ['chia_sendTransaction'] }));
+    store.upsertPair(makePair({ topic: 'cleared', updatedAt: 100, bypass: ['chia_getWallets'] }));
 
     store.resetBypassAll();
 
@@ -445,10 +598,10 @@ describe('pairStore - resetBypassAll (every pair)', () => {
     store.upsertPair(
       makePair({
         topic: 'a',
-        bypass: ['chia_sendTransaction'],
+        bypass: ['chia_getWallets'],
         commands: ['chia_sendTransaction'],
         fingerprints: [111],
-        spentMojos: '500',
+        usedMojos: '500',
       }),
     );
 
@@ -456,6 +609,6 @@ describe('pairStore - resetBypassAll (every pair)', () => {
     const pair = store.getPair('a');
     expect(pair?.commands).toEqual(['chia_sendTransaction']);
     expect(pair?.fingerprints).toEqual([111]);
-    expect(pair?.spentMojos).toBe('500');
+    expect(pair?.usedMojos).toBe('500');
   });
 });

@@ -424,10 +424,8 @@ export async function disconnectPair(client: Client, pairs: Pairs, topic: string
     log('Error during pair disconnect, removing pair anyway:', e);
   } finally {
     pairs.removePair(topic);
-    // Drop the main-side persisted grant + budget too. Without this a
-    // disconnected dapp's `commands` and `spentMojos` would linger in
-    // `dapp-pairs.yaml`, growing the file unbounded over time and leaving
-    // dormant consents in place. Best-effort — see `revokeMainPair`.
+    // Drop the main-side record so disconnected pairs don't linger and
+    // leave dormant consents. Best-effort — see `revokeMainPair`.
     await revokeMainPair(topic);
   }
 }

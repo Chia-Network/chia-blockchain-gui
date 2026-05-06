@@ -1,7 +1,5 @@
 import NotificationType from '../constants/NotificationType';
 
-export type PermissionsCapability = 'balance' | 'innocuous' | 'sign' | 'offer' | 'spend';
-
 export type PermissionsPairMetadata = {
   name: string;
   url?: string;
@@ -9,13 +7,9 @@ export type PermissionsPairMetadata = {
   description?: string;
 };
 
-export type PermissionsSpendingMode = 'block' | 'ask' | 'auto';
-
 export type PermissionsPairGrants = {
-  capabilities: Record<PermissionsCapability, boolean>;
-  spendingMode: PermissionsSpendingMode;
-  /** Mojo amount serialized as a string for precision. */
-  spendingCapMojos: string;
+  /** XCH mojos auto-approved per pair when the command is not bypassed. `'0'` = prompt unless bypassed. */
+  allowanceMojos: string;
 };
 
 export type PermissionsPairRecord = {
@@ -26,11 +20,15 @@ export type PermissionsPairRecord = {
   createdAt: number;
   updatedAt: number;
   grants: PermissionsPairGrants;
-  /** Mojo amount serialized as a string for precision. */
-  spentMojos: string;
-  /** WC commands (wire form, `chia_<name>`) the user approved at pairing. */
+  /** Mojos debited from `grants.allowanceMojos`. */
+  usedMojos: string;
+  /** Wire form `chia_<name>`. Granted at pairing; empty = deny-all. */
   commands: string[];
-  /** WC commands marked "don't ask again" — main short-circuits prompts. */
+  /**
+   * Per-wcCommand "don't ask again" list. Spend-class commands can be listed
+   * here for exact command-level trust; otherwise they fall back to
+   * `grants.allowanceMojos`.
+   */
   bypass: string[];
 };
 

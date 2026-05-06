@@ -21,13 +21,10 @@ function makePair(overrides: { bypass?: string[] } = {}): PairRecord {
     fingerprints: [123],
     createdAt: 0,
     updatedAt: 0,
-    spentMojos: '0',
+    usedMojos: '0',
     commands: ['chia_signMessageByAddress', 'chia_getWallets'],
     bypass: overrides.bypass ?? [],
-    grants: {
-      spendingMode: 'ask',
-      spendingCapMojos: '0',
-    },
+    grants: { allowanceMojos: '0' },
   };
 }
 
@@ -101,7 +98,7 @@ describe('captureBypassFromConfirmResult — persistence path', () => {
     expect(written.updatedAt).toBeLessThanOrEqual(after);
   });
 
-  it('preserves all other fields (topic, mainnet, grants, commands, spentMojos)', () => {
+  it('preserves all other fields (topic, mainnet, grants, commands, usedMojos)', () => {
     const original = makePair({ bypass: [] });
     const deps = makeDeps(original);
     captureBypassFromConfirmResult({ bypass: true }, { topic: TOPIC, wcCommand: WC_COMMAND }, deps);
@@ -111,7 +108,7 @@ describe('captureBypassFromConfirmResult — persistence path', () => {
     expect(written.metadata).toEqual(original.metadata);
     expect(written.fingerprints).toEqual(original.fingerprints);
     expect(written.commands).toEqual(original.commands);
-    expect(written.spentMojos).toBe(original.spentMojos);
+    expect(written.usedMojos).toBe(original.usedMojos);
     expect(written.grants).toEqual(original.grants);
     expect(written.createdAt).toBe(original.createdAt);
   });

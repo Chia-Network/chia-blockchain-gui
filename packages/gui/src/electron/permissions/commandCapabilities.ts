@@ -88,6 +88,17 @@ const INNOCUOUS_COMMANDS = new Set([
 
 const SIGN_COMMANDS = new Set(['chia_wallet.sign_message_by_address', 'chia_wallet.sign_message_by_id']);
 
+const SPEND_COMMANDS = new Set([
+  'chia_wallet.send_transaction',
+  'chia_wallet.cat_spend',
+  'chia_wallet.nft_transfer_nft',
+  'chia_wallet.cancel_offer',
+  'chia_wallet.create_offer_for_ids',
+  'chia_wallet.take_offer',
+  'chia_wallet.spend_clawback_coins',
+  'chia_wallet.push_transactions',
+]);
+
 export function isUiAllowed(command: string): boolean {
   return UI_ALLOWED.has(command);
 }
@@ -102,6 +113,10 @@ export function isInnocuousCommand(command: string): boolean {
 
 export function isSignCommand(command: string): boolean {
   return SIGN_COMMANDS.has(command);
+}
+
+export function isSpendCommand(command: string): boolean {
+  return SPEND_COMMANDS.has(command);
 }
 
 // Sum the XCH mojos the user is giving up in a `create_offer_for_ids` offer.

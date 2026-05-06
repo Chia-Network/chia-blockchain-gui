@@ -44,11 +44,8 @@ export type CommandSchema = {
   /** Optional daemon-RPC enrichment for offer summaries, CAT names, etc. */
   enrich?: (data: Record<string, unknown>) => Promise<EnrichmentDisplay>;
   /**
-   * Additional WC commands that share this daemon RPC. Used when two dapp-facing
-   * names map to the same RPC with different defaults (e.g. `chia_getCurrentAddress`
-   * and `chia_getNextAddress` both call `chia_wallet.get_next_address`, but the
-   * former pins `new_address: false`). Alias `defaults` are merged on top of the
-   * base schema's `defaults`; alias values win on overlap.
+   * Additional WC commands sharing this daemon RPC with different defaults
+   * (e.g. `chia_getCurrentAddress` aliases `get_next_address` with `new_address: false`).
    */
   aliases?: WcAlias[];
 };
@@ -60,7 +57,6 @@ export type WcAlias = {
   description?: () => string;
   /** Merged on top of the base schema's `defaults`; alias values override. */
   defaults?: Record<string, unknown>;
-  /** Per-alias override; falls back to the base schema's `requiresSync`. */
   requiresSync?: boolean;
 };
 
@@ -903,9 +899,7 @@ const SCHEMAS: Record<string, CommandSchema> = {
     wcCommand: 'chia_getNextAddress',
     params: [],
     defaults: { wallet_id: 1, new_address: true },
-    // The Chia daemon has no `get_current_address` RPC — the legacy WC alias
-    // is `get_next_address` with `new_address: false`, matching the API
-    // shim in `packages/api-react/src/services/wallet.ts`.
+    // No daemon `get_current_address` RPC — legacy alias is `get_next_address` with new_address=false.
     aliases: [
       {
         wcCommand: 'chia_getCurrentAddress',
@@ -956,17 +950,13 @@ const SCHEMAS: Record<string, CommandSchema> = {
   'daemon.get_wallet_addresses': { wcCommand: 'chia_getWalletAddresses', params: [] },
 };
 
-// Reverse index: WC command (wire form) → ns command + per-WC effective
-// fields (defaults / label / description / requiresSync). Built once at
-// module init by walking SCHEMAS and their `aliases`. Duplicate `wcCommand`
-// values throw at startup — better than mysterious dispatches landing on
-// the wrong RPC.
+// Reverse index: WC command → ns command + per-WC effective fields.
+// Duplicate `wcCommand` values throw at startup.
 export type WcEntry = {
   nsCommand: string;
   schema: CommandSchema;
-  /** Effective defaults: schema.defaults + alias overrides (alias wins). */
+  /** schema.defaults + alias overrides (alias wins). */
   defaults?: Record<string, unknown>;
-  /** Effective metadata: alias overrides fall back to schema. */
   label?: () => string;
   description?: () => string;
   requiresSync: boolean;
@@ -1090,9 +1080,7 @@ export type CommandMetadata = {
   requiresSync: boolean;
 };
 
-// Re-resolves locale strings on every call so a locale switch propagates
-// on the next fetch. Includes `chia_app.*` (renderer-handled) and aliases
-// so Settings can label every dispatchable wcCommand.
+// Re-resolves locale strings on every call so locale switches propagate. Includes aliases.
 export function commandsMetadata(): CommandMetadata[] {
   const out: CommandMetadata[] = [];
   for (const [wcCommand, entry] of BY_WC_COMMAND) {
@@ -1106,10 +1094,8 @@ export function commandsMetadata(): CommandMetadata[] {
   return out;
 }
 
-// Fills missing snake_case keys; dapp-supplied values win. Returns a new object.
-// Keyed by wcCommand (not nsCommand) so aliases that share a daemon RPC can
-// supply their own defaults — e.g. `chia_getCurrentAddress` pins
-// `new_address: false` while `chia_getNextAddress` pins `true`.
+// Fills missing snake_case keys; dapp-supplied values win.
+// Keyed by wcCommand so aliases sharing a daemon RPC can pin different defaults.
 export function applyDefaults(wcCommand: string, snakeData: Record<string, unknown>): Record<string, unknown> {
   const entry = BY_WC_COMMAND.get(wcCommand);
   if (!entry?.defaults) return snakeData;

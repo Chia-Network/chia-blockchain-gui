@@ -1,9 +1,8 @@
-export type SpendingMode = 'block' | 'ask' | 'auto';
+import type BigNumber from 'bignumber.js';
 
 export type PairGrants = {
-  spendingMode: SpendingMode;
-  /** String-encoded for BigNumber-safe JSON. */
-  spendingCapMojos: string;
+  /** XCH mojos auto-approved per pair when the command is not bypassed. `'0'` = prompt unless bypassed. */
+  allowanceMojos: string;
 };
 
 export type PairMetadata = {
@@ -21,17 +20,19 @@ export type PairRecord = {
   createdAt: number;
   updatedAt: number;
   grants: PairGrants;
-  /** String-encoded for BigNumber-safe JSON. */
-  spentMojos: string;
+  /** Mojos debited from `grants.allowanceMojos`. */
+  usedMojos: string;
   /** Wire form `chia_<name>`. Granted at pairing; empty = deny-all. */
   commands: string[];
-  /** Wire form. Per-command "always allow" list — the only knob for silent execution. */
+  /**
+   * Per-wcCommand "always allow" list. Spend-class wcCommands can be listed
+   * here for exact command-level trust; otherwise they fall back to
+   * `grants.allowanceMojos`.
+   */
   bypass: string[];
 };
 
 export type Principal = { kind: 'ui' } | { kind: 'pair'; topic: string };
-
-import type BigNumber from 'bignumber.js';
 
 export type AmountResolver = (
   payload: Record<string, unknown>,

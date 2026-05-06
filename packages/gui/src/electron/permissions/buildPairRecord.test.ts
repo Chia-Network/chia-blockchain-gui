@@ -1,10 +1,7 @@
 import { buildNewPairRecord } from './buildPairRecord';
 import type { PairGrants, PairMetadata } from './types';
 
-const grants: PairGrants = {
-  spendingMode: 'ask',
-  spendingCapMojos: '10000000000',
-};
+const grants: PairGrants = { allowanceMojos: '10000000000' };
 const metadata: PairMetadata = { name: 'Test Dapp', url: 'https://test.app' };
 
 describe('buildNewPairRecord', () => {
@@ -26,9 +23,9 @@ describe('buildNewPairRecord', () => {
     expect(record.commands).toEqual(['chia_sendTransaction', 'chia_getWallets']);
   });
 
-  it('initializes spentMojos to the string "0"', () => {
+  it('initializes usedMojos to the string "0"', () => {
     // Numeric zero would round-trip through YAML as a number and break the
-    // BigNumber arithmetic in `recordSpend` (which assumes string input
+    // BigNumber arithmetic in `recordUsage` (which assumes string input
     // for >2^53 precision). Pin the type AND value.
     const record = buildNewPairRecord({
       topic: 't',
@@ -39,8 +36,8 @@ describe('buildNewPairRecord', () => {
       commands: [],
       now: 0,
     });
-    expect(record.spentMojos).toBe('0');
-    expect(typeof record.spentMojos).toBe('string');
+    expect(record.usedMojos).toBe('0');
+    expect(typeof record.usedMojos).toBe('string');
   });
 
   it('initializes bypass to []', () => {

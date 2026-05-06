@@ -19,36 +19,52 @@ function getPath() {
   return path.join(userDataDir, FILE);
 }
 
+// Migrate persisted records to the unified allowance model. Carrying the
+// old `spendingCapMojos` forward as `allowanceMojos` only when the old mode
+// was `'auto'` is the safe choice — for `'ask'`/`'block'` the cap was never
+// an auto-approval signal, so a naïve carry-over would silently start
+// auto-approving spends up to that value on upgrade.
+function migrateRecord(p: Record<string, unknown>): PairRecord {
+  const commands = Array.isArray(p?.commands)
+    ? (p.commands as unknown[]).filter((c): c is string => typeof c === 'string')
+    : [];
+  const rawBypass = Array.isArray(p?.bypass)
+    ? (p.bypass as unknown[]).filter((c): c is string => typeof c === 'string')
+    : [];
+
+  const rawGrants = (p?.grants ?? {}) as Record<string, unknown>;
+  const allowanceFromNew = typeof rawGrants.allowanceMojos === 'string' ? rawGrants.allowanceMojos : undefined;
+  const oldMode = typeof rawGrants.spendingMode === 'string' ? rawGrants.spendingMode : undefined;
+  const oldCap = typeof rawGrants.spendingCapMojos === 'string' ? rawGrants.spendingCapMojos : undefined;
+  const allowanceMojos = allowanceFromNew ?? (oldMode === 'auto' && oldCap ? oldCap : '0');
+
+  const usedFromNew = typeof p?.usedMojos === 'string' ? p.usedMojos : undefined;
+  const usedFromOld = typeof p?.spentMojos === 'string' ? p.spentMojos : undefined;
+  const usedMojos = usedFromNew ?? usedFromOld ?? '0';
+
+  return {
+    topic: typeof p?.topic === 'string' ? p.topic : '',
+    mainnet: typeof p?.mainnet === 'boolean' ? p.mainnet : true,
+    metadata: (p?.metadata ?? { name: '' }) as PairRecord['metadata'],
+    fingerprints: Array.isArray(p?.fingerprints)
+      ? (p.fingerprints as unknown[]).filter((f): f is number => typeof f === 'number')
+      : [],
+    createdAt: typeof p?.createdAt === 'number' ? p.createdAt : 0,
+    updatedAt: typeof p?.updatedAt === 'number' ? p.updatedAt : 0,
+    grants: { allowanceMojos },
+    usedMojos,
+    commands,
+    bypass: rawBypass,
+  };
+}
+
 function load(): PairRecord[] {
   if (cache) return cache;
   const data = readData(getPath());
   const raw = Array.isArray(data?.pairs) ? (data.pairs as Record<string, unknown>[]) : [];
-  // Defensive parse: missing or wrong-typed fields default to the safest
-  // value (deny-all, mainnet) so a partially-written or hand-edited record
-  // can't silently expand dapp reach.
-  const list = raw.map((p) => {
-    const commands = Array.isArray(p?.commands)
-      ? (p.commands as unknown[]).filter((c): c is string => typeof c === 'string')
-      : [];
-    const bypass = Array.isArray(p?.bypass)
-      ? (p.bypass as unknown[]).filter((c): c is string => typeof c === 'string')
-      : [];
-    const rawGrants = (p?.grants ?? {}) as Record<string, unknown>;
-
-    const spendingMode = typeof rawGrants.spendingMode === 'string' ? rawGrants.spendingMode : 'ask';
-    const grants = {
-      spendingMode: spendingMode === 'block' || spendingMode === 'auto' ? spendingMode : 'ask',
-      spendingCapMojos: typeof rawGrants.spendingCapMojos === 'string' ? rawGrants.spendingCapMojos : '0',
-    };
-
-    return {
-      ...(p as Record<string, unknown>),
-      grants,
-      commands,
-      bypass,
-      mainnet: typeof p?.mainnet === 'boolean' ? p.mainnet : true,
-    } as PairRecord;
-  });
+  // Missing/wrong-typed fields default to deny-all / mainnet / allowance 0
+  // so a hand-edited record can't silently expand dapp reach.
+  const list = raw.map(migrateRecord);
   cache = list;
   return list;
 }
@@ -100,11 +116,13 @@ export function resetBypassAll(): void {
   if (mutated) persist(next);
 }
 
-export function recordSpend(topic: string, mojos: BigNumber) {
+// Idempotency lives at the call site (see `makeCommit` in `permissions.ts`);
+// this function only guards against non-positive / non-finite inputs.
+export function recordUsage(topic: string, mojos: BigNumber) {
   const pair = getPair(topic);
   if (!pair) return;
   if (!mojos.isFinite() || mojos.isLessThanOrEqualTo(0)) return;
-  const current = new BigNumber(pair.spentMojos ?? 0);
-  const next: PairRecord = { ...pair, spentMojos: current.plus(mojos).toFixed(0) };
+  const current = new BigNumber(pair.usedMojos ?? 0);
+  const next: PairRecord = { ...pair, usedMojos: current.plus(mojos).toFixed(0) };
   upsertPair(next);
 }

@@ -67,9 +67,8 @@ export type ConfirmProps = {
   networkPrefix?: string;
   principal?: ConfirmPrincipal;
   fingerprint?: ConfirmFingerprint;
-  /** Show the "Don't ask again for this command" checkbox. Set by main only
-   *  for pair-principal prompts on commands that don't have a spending
-   *  classification — bypass should not let dapps slip past the budget. */
+  /** Show the "Don't ask again for this command" checkbox. Main sets this
+   *  for pair-principal prompts; signing requests still never reach bypass. */
   showBypassToggle?: boolean;
   styleURL?: string;
   isDarkMode?: boolean;

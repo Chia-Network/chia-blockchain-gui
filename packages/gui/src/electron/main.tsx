@@ -11,14 +11,11 @@ import {
   type MenuItemConstructorOptions,
   nativeTheme,
 } from 'electron';
-import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import url from 'node:url';
 
-import BigNumber from 'bignumber.js';
 import windowStateKeeper from 'electron-window-state';
-import JSONbig from 'json-bigint';
 import { uniq } from 'lodash';
 import sanitizeFilename from 'sanitize-filename';
 
@@ -36,13 +33,7 @@ import ChiaLogsAPI from './constants/ChiaLogsAPI';
 import LinkAPI from './constants/LinkAPI';
 import PermissionsAPI from './constants/PermissionsAPI';
 import PreferencesAPI from './constants/PreferencesAPI';
-import {
-  applyDefaults,
-  commandsMetadata,
-  filterRequestedCommands,
-  getCommandByWc,
-  resolveDispatch,
-} from './constants/commandRegistry';
+import { commandsMetadata, filterRequestedCommands } from './constants/commandRegistry';
 import About from './dialogs/About/About';
 import Confirm from './dialogs/Confirm/Confirm';
 import { renderConfirm } from './dialogs/Confirm/renderConfirm';
@@ -52,15 +43,16 @@ import { buildNewPairRecord } from './permissions/buildPairRecord';
 import { buildShowNotification } from './permissions/buildShowNotification';
 import { captureBypassFromConfirmResult } from './permissions/bypassCapture';
 import { checkPairAccess } from './permissions/checkPairAccess';
+import { dispatchDaemonCommandAsPair } from './permissions/dispatchAsPair';
 import {
-  getSpendClassification,
-  isBalanceCommand,
-  isInnocuousCommand,
-  isSignCommand,
-} from './permissions/commandCapabilities';
+  classifyForPairDialog,
+  dialogResultToBypass,
+  dialogResultToFingerprints,
+  dialogResultToGrants,
+} from './permissions/pairDialog';
 import { getPair, listPairs, removePair, resetBypass, resetBypassAll, upsertPair } from './permissions/pairStore';
 import { resolvePermission } from './permissions/permissions';
-import type { PairGrants, PairMetadata, PairRecord, Principal } from './permissions/types';
+import type { PairGrants, PairMetadata, PairRecord } from './permissions/types';
 import { readPrefs, savePrefs, migratePrefs } from './prefs';
 import { readAddressBook, saveAddressBook } from './utils/addressBook';
 import checkNFTOwnership from './utils/checkNFTOwnership';
@@ -77,10 +69,8 @@ import manageDaemonLifetime from './utils/manageDaemonLifetime';
 import openExternal from './utils/openExternal';
 import openReactDialog from './utils/openReactDialog';
 import * as privatePreferences from './utils/privatePreferences';
-import toCamelCase from './utils/toCamelCase';
-import toSnakeCase from './utils/toSnakeCase';
 import { setUserDataDir } from './utils/userData';
-import webSocketBridgeBindEvents, { sendDappAndAwait } from './utils/webSocketBridge';
+import webSocketBridgeBindEvents from './utils/webSocketBridge';
 
 const isPlaywrightTesting = process.env.PLAYWRIGHT_TESTS === 'true';
 const NET = 'mainnet';
@@ -141,74 +131,6 @@ ipcMainHandle(AppAPI.SHOW_NOTIFICATION, async (options: { title: string; body: s
   }).show();
 });
 
-const MOJOS_PER_XCH = new BigNumber('1000000000000');
-
-function dialogResultToGrants(result: Record<string, unknown>): PairGrants {
-  const rawMode = typeof result.spendingMode === 'string' ? result.spendingMode : 'ask';
-  const spendingMode: PairGrants['spendingMode'] = rawMode === 'block' || rawMode === 'auto' ? rawMode : 'ask';
-  let mojos = '0';
-  const rawXch = result.spendingCapXch;
-  if (rawXch !== null && rawXch !== undefined && rawXch !== '') {
-    try {
-      const xch = new BigNumber(typeof rawXch === 'string' ? rawXch : String(rawXch));
-      if (xch.isFinite() && xch.isGreaterThan(0)) {
-        mojos = xch.times(MOJOS_PER_XCH).integerValue(BigNumber.ROUND_FLOOR).toFixed(0);
-      }
-    } catch {
-      // Fall through with mojos = '0'.
-    }
-  }
-  return { spendingMode, spendingCapMojos: mojos };
-}
-
-// Reads `bypass-<wcCommand>` form fields and returns the wire-form commands
-// the user ticked. Filters to the dapp's actually-granted commands so a
-// stray field can't grant something the registry didn't allow at pair time.
-function dialogResultToBypass(result: Record<string, unknown>, granted: string[]): string[] {
-  const grantedSet = new Set(granted);
-  const bypass: string[] = [];
-  for (const [key, value] of Object.entries(result)) {
-    if (key.startsWith('bypass-') && value === true) {
-      const wcCommand = key.slice('bypass-'.length);
-      if (grantedSet.has(wcCommand)) bypass.push(wcCommand);
-    }
-  }
-  return bypass;
-}
-
-function dialogResultToFingerprints(result: Record<string, unknown>): number[] {
-  const raw = result.wallets;
-  const list = Array.isArray(raw) ? raw : [];
-  return list.map((v) => Number(v)).filter((n) => Number.isFinite(n));
-}
-
-// Classify granted commands into the buckets the Pair dialog renders.
-// Spend-class commands are excluded entirely — they're governed by
-// spendingMode + cap, not by bypass membership.
-function classifyForPairDialog(grantedWireCommands: string[]) {
-  const innocuous: string[] = [];
-  const balance: string[] = [];
-  const sign: string[] = [];
-  const notifications: string[] = [];
-  const other: string[] = [];
-  for (const wcCommand of grantedWireCommands) {
-    if (wcCommand === 'chia_showNotification') {
-      notifications.push(wcCommand);
-    } else {
-      const entry = getCommandByWc(wcCommand);
-      // spend-class is governed by spendingMode + cap, not bypass membership
-      if (entry && !getSpendClassification(entry.nsCommand)) {
-        const { nsCommand } = entry;
-        if (isBalanceCommand(nsCommand)) balance.push(wcCommand);
-        else if (isInnocuousCommand(nsCommand)) innocuous.push(wcCommand);
-        else if (isSignCommand(nsCommand)) sign.push(wcCommand);
-        else other.push(wcCommand);
-      }
-    }
-  }
-  return { innocuous, balance, sign, notifications, other };
-}
-
 async function openPairDialog(
   metadata: PairMetadata,
   availableWallets: PairWalletOption[],
@@ -219,7 +141,7 @@ async function openPairDialog(
     allowed?: string[];
     rejected?: string[];
   } = {},
-): Promise<{ grants: PairGrants; fingerprints: number[]; bypass: string[]; resetSpent: boolean } | undefined> {
+): Promise<{ grants: PairGrants; fingerprints: number[]; bypass: string[]; resetUsed: boolean } | undefined> {
   if (!mainWindow) {
     throw new Error('mainWindow is empty');
   }
@@ -236,7 +158,7 @@ async function openPairDialog(
       defaultGrants: options.defaults?.grants,
       defaultFingerprints: options.defaults?.fingerprints ?? options.defaultFingerprints,
       isEdit: !!options.isEdit,
-      defaultSpentMojos: options.defaults?.spentMojos,
+      defaultUsedMojos: options.defaults?.usedMojos,
       defaultBypass: options.defaults?.bypass ?? [],
       commandGroups,
       currencyCode: networkPrefix ? networkPrefix.toUpperCase() : 'XCH',
@@ -257,7 +179,7 @@ async function openPairDialog(
     grants: dialogResultToGrants(result),
     fingerprints: dialogResultToFingerprints(result),
     bypass: dialogResultToBypass(result, grantedCommands),
-    resetSpent: result.resetSpent === true,
+    resetUsed: result.resetUsed === true,
   };
 }
 
@@ -319,7 +241,7 @@ ipcMainHandle(PermissionsAPI.PAIR_EDIT, async (payload: { topic: string }) => {
     fingerprints: decision.fingerprints,
     grants: decision.grants,
     bypass: decision.bypass,
-    spentMojos: decision.resetSpent ? '0' : existing.spentMojos,
+    usedMojos: decision.resetUsed ? '0' : existing.usedMojos,
     updatedAt: Date.now(),
   };
   upsertPair(updated);
@@ -359,6 +281,7 @@ ipcMainHandle(
     if (!mainWindow) {
       throw new Error('mainWindow is empty');
     }
+    const activeWindow = mainWindow;
 
     const { wcCommand, data: argsData, topic, mainnet, fingerprint } = payload;
     if (typeof mainnet !== 'boolean') {
@@ -425,100 +348,25 @@ ipcMainHandle(
       return { data: { success: true } };
     }
 
-    const target = resolveDispatch(wcCommand);
-    if (!target.ok) {
-      throw new Error(target.reason);
-    }
-    const { destination, nsCommand, command } = target;
-
-    const principal: Principal = { kind: 'pair', topic };
-    // Snake-case once at the IPC boundary. The gate, the dialog, and the
-    // wire-out all read the same shape, so the user consents to exactly what
-    // goes to the daemon. Canonicalising here also closes the case-flip
-    // bypass surface (e.g. `Sign: true`, `Fee: <X>`) that case-sensitive
-    // payload lookups in the resolver would otherwise miss.
-    const snakeData = toSnakeCase(data) as Record<string, unknown>;
-    const decision = await resolvePermission(principal, nsCommand, snakeData, {
-      wcCommand,
-      fingerprint: fingerprint?.requested,
-      mainnet,
-    });
-    if (decision.kind === 'deny') {
-      throw new Error(decision.reason);
-    }
-
-    if (decision.kind === 'prompt') {
-      const rendered = await renderConfirm(nsCommand, snakeData, { networkPrefix });
-      const result = await openReactDialog<
-        true | false | Record<string, unknown>,
-        React.ComponentProps<typeof Confirm>
-      >(
-        mainWindow,
-        Confirm,
-        {
-          networkPrefix,
-          command: nsCommand,
-          data: snakeData,
-          title: rendered.title,
-          message: rendered.message,
-          confirmLabel: rendered.confirmLabel,
-          destructive: rendered.destructive,
-          rows: rendered.rows,
-          display: rendered.display,
-          principal: decision.pair
-            ? {
-                kind: 'pair' as const,
-                name: decision.pair.name,
-                url: decision.pair.url,
-                icon: decision.pair.icon,
-                description: decision.pair.description,
-              }
-            : undefined,
-          fingerprint,
-          // No toggle for spend-class: budget is the cap there, bypass would
-          // let unattended sends slip past it.
-          showBypassToggle: !!decision.pair && !getSpendClassification(nsCommand),
-        },
-        {
-          title: rendered.title,
-          width: 640,
-          height: 600,
-        },
-      );
-      if (result === false || result === undefined) {
-        throw new Error('Operation cancelled by user');
-      }
-      captureBypassFromConfirmResult(result, { topic, wcCommand }, { getPair, upsertPair });
-    } else {
-      // Auto-approved: debit at the authorization point. Manual prompts skip
-      // commit (matches the renderer-onSend flow).
-      decision.commit();
-    }
-
-    const requestId = crypto.randomBytes(32).toString('hex');
-    // Schema defaults fill missing keys only (snake_case keyed); dapp values win.
-    // Keyed by wcCommand so alias-specific defaults (e.g. `chia_getCurrentAddress`
-    // pinning `new_address: false`) apply, not the base schema's defaults.
-    const wireData = applyDefaults(wcCommand, snakeData);
-    const wire = {
-      origin: 'wallet_ui',
-      destination,
-      command,
-      data: wireData,
-      ack: false,
-      request_id: requestId,
-    };
-    const json = JSONbig.stringify(toSnakeCase(wire));
-    const response = (await sendDappAndAwait(requestId, json)) as {
-      data?: { error?: unknown; [k: string]: unknown };
-    };
-
-    const responseData = response?.data;
-    if (responseData?.error) {
-      throw new Error(String(responseData.error));
-    }
-
-    return { data: toCamelCase(responseData ?? {}) };
+    return dispatchDaemonCommandAsPair(
+      {
+        wcCommand,
+        data,
+        topic,
+        mainnet,
+        fingerprint,
+        networkPrefix,
+      },
+      {
+        openConfirm: (props, options) =>
+          openReactDialog<true | false | Record<string, unknown>, React.ComponentProps<typeof Confirm>>(
+            activeWindow,
+            Confirm,
+            props,
+            options,
+          ),
+      },
+    );
   },
 );
 

@@ -16,13 +16,10 @@ function makePair(overrides: Partial<PairRecord> = {}): PairRecord {
     fingerprints: [111, 222],
     createdAt: 0,
     updatedAt: 0,
-    spentMojos: '0',
+    usedMojos: '0',
     commands: ['chia_showNotification'],
     bypass: [],
-    grants: {
-      spendingMode: 'ask',
-      spendingCapMojos: '0',
-    },
+    grants: { allowanceMojos: '0' },
     ...overrides,
   };
 }

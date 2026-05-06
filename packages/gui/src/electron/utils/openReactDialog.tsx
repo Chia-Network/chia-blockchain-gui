@@ -112,6 +112,17 @@ function generateScriptContent(confirmId: string) {
       el.addEventListener('change', updateDynamicSummary);
     });
 
+    // Disable an input when a named controller checkbox is unchecked.
+    // Form scraper ignores disabled, so the value persists across toggles.
+    document.querySelectorAll('[data-disabled-when-off]').forEach(function (input) {
+      var controllerName = input.getAttribute('data-disabled-when-off');
+      var controller = document.querySelector('[data-form-field="' + controllerName + '"]');
+      if (!controller) return;
+      function syncDisabled() { input.disabled = !controller.checked; }
+      controller.addEventListener('change', syncDisabled);
+      syncDisabled();
+    });
+
     // Initialize indeterminate states from default-checked attributes.
     var seenGroups = new Set();
     document.querySelectorAll('[data-cap-group]').forEach(function (member) {
