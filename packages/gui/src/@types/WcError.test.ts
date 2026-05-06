@@ -72,4 +72,15 @@ describe('encodeWcErrorForIpc / decodeWcErrorFromIpc', () => {
     expect(decoded?.code).toBe(-32602);
     expect(decoded?.message).toBe('bad params');
   });
+
+  it('decode finds the prefix when Electron wraps the message with "Error invoking remote method"', () => {
+    // Real-world shape: when a main-side IPC handler throws, the renderer's
+    // caught Error has a message like "Error invoking remote method 'X': Error: [wc:N] msg".
+    // The decoder must match the prefix anywhere, not only at the start.
+    const wrapped =
+      "Error invoking remote method 'permissions:dispatchAsPair': Error: [wc:-32602] param not allowed for dapp: fingerprint";
+    const decoded = decodeWcErrorFromIpc(wrapped);
+    expect(decoded?.code).toBe(-32602);
+    expect(decoded?.message).toBe('param not allowed for dapp: fingerprint');
+  });
 });

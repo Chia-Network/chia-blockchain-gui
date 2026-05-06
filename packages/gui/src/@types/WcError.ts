@@ -29,9 +29,12 @@ export class WcError extends Error {
   }
 }
 
-// Electron IPC strips custom Error properties — only `message` survives. The
-// prefix encodes the code into the message so the renderer can recover it.
-const IPC_PREFIX_RE = /^\[wc:(-?\d+)\]\s*([\s\S]*)$/;
+// Electron IPC strips custom Error properties — only `message` survives, and
+// it gets wrapped: a `new Error('[wc:5000] foo')` thrown from main shows up
+// in the renderer as `Error invoking remote method 'X': Error: [wc:5000] foo`.
+// The decode regex looks for the `[wc:CODE]` prefix anywhere in the wrapped
+// message and captures everything after it.
+const IPC_PREFIX_RE = /\[wc:(-?\d+)\]\s*([\s\S]*)$/;
 
 export function encodeWcErrorForIpc(error: unknown): string {
   if (error instanceof WcError) return `[wc:${error.code}] ${error.message}`;
