@@ -68,6 +68,19 @@ export async function dispatchDaemonCommandAsPair(
 
   // Snake-case before any field read so case-folding can't dodge the gate.
   const snakeData = toSnakeCase(data) as Record<string, unknown>;
+
+  // chia dapps include `fingerprint` in `params` as a routing field. Schemas
+  // that take it as a real RPC param (chia_logIn, chia_getPublicKey) declare
+  // it explicitly; for everything else it would just be a stray key that
+  // `validateDappParams` would reject. Strip it on the non-declaring path so
+  // those calls don't fail with "param not allowed for dapp: fingerprint".
+  // Matches legacy `prepareWalletConnectCommand`, which filtered `values`
+  // down to the schema-declared params.
+  const declaresFingerprint = entry.schema.params.some((p) => p.name === 'fingerprint');
+  if (!declaresFingerprint) {
+    delete snakeData.fingerprint;
+  }
+
   validateDappParams(wcCommand, snakeData);
 
   const principal: Principal = { kind: 'pair', topic };

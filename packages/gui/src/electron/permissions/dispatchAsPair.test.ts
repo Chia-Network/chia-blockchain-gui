@@ -229,6 +229,35 @@ describe('dispatchDaemonCommandAsPair - dapp param validation', () => {
       ),
     ).rejects.toThrow('param not allowed for dapp: evil_extra');
   });
+
+  it('drops `fingerprint` from data for schemas that do not declare it (chia dapps include it as routing context)', async () => {
+    // Without this, every non-logIn / non-getPublicKey call would fail with
+    // "param not allowed for dapp: fingerprint" because chia dapps put it
+    // alongside the actual RPC params.
+    const deps = makeDeps({ kind: 'allow', commit: jest.fn() });
+    await dispatchDaemonCommandAsPair(
+      {
+        ...baseInput,
+        data: { amount: '1', fee: '0', address: 'txch1abc', fingerprint: 999 },
+      },
+      deps,
+    );
+    expect(deps.sendDappAndAwait).toHaveBeenCalled();
+    expect(parseWire(deps).data).not.toHaveProperty('fingerprint');
+  });
+
+  it('keeps `fingerprint` in data for schemas that declare it (chia_logIn, chia_getPublicKey)', async () => {
+    const deps = makeDeps({ kind: 'allow', commit: jest.fn() });
+    await dispatchDaemonCommandAsPair(
+      {
+        ...baseInput,
+        wcCommand: 'chia_logIn',
+        data: { fingerprint: 7777 },
+      },
+      deps,
+    );
+    expect(parseWire(deps).data).toMatchObject({ fingerprint: 7777 });
+  });
 });
 
 describe('dispatchDaemonCommandAsPair - handler routing', () => {
