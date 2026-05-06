@@ -1,9 +1,7 @@
-/**
- * The registry is the single source of truth for what dapps can call and
- * how their wc commands map to daemon RPCs. A regression here means a
- * compromised renderer can either bypass the dispatch gate or talk to a
- * service it was never granted access to.
- */
+// Registry tests — a regression here means a compromised renderer can
+// bypass the dispatch gate or hit a service it wasn't granted.
+import { WcError, WcErrorCode } from '../../@types/WcError';
+
 import {
   SCHEMA_COMMANDS,
   applyDefaults,
@@ -14,21 +12,30 @@ import {
   getCommandSchema,
   isDappAllowedWcCommand,
   resolveDispatch,
+  validateDappParams,
 } from './commandRegistry';
 
+function captureThrow(fn: () => unknown): unknown {
+  try {
+    fn();
+  } catch (e) {
+    return e;
+  }
+  throw new Error('expected throw');
+}
+
 describe('registry shape', () => {
-  it('every entry with a wcCommand is reachable via getCommandByWc', () => {
+  it('every entry with a dapp.wcCommand is reachable via getCommandByWc', () => {
     for (const ns of SCHEMA_COMMANDS) {
       const schema = getCommandSchema(ns);
-      if (schema.wcCommand) {
-        const entry = getCommandByWc(schema.wcCommand);
-        expect(entry?.nsCommand).toBe(ns);
-        expect(entry?.schema).toBe(schema);
-      }
-      for (const alias of schema.aliases ?? []) {
-        const entry = getCommandByWc(alias.wcCommand);
-        expect(entry?.nsCommand).toBe(ns);
-        expect(entry?.schema).toBe(schema);
+      if (!schema.dapp) continue;
+      const entry = getCommandByWc(schema.dapp.wcCommand);
+      expect(entry?.nsCommand).toBe(ns);
+      expect(entry?.schema).toBe(schema);
+      for (const alias of schema.dapp.aliases ?? []) {
+        const aliasEntry = getCommandByWc(alias.wcCommand);
+        expect(aliasEntry?.nsCommand).toBe(ns);
+        expect(aliasEntry?.schema).toBe(schema);
       }
     }
   });
@@ -43,19 +50,19 @@ describe('registry shape', () => {
     };
     for (const ns of SCHEMA_COMMANDS) {
       const schema = getCommandSchema(ns);
-      if (schema.wcCommand) claim(schema.wcCommand, ns);
-      for (const alias of schema.aliases ?? []) claim(alias.wcCommand, ns);
+      if (!schema.dapp) continue;
+      claim(schema.dapp.wcCommand, ns);
+      for (const alias of schema.dapp.aliases ?? []) claim(alias.wcCommand, ns);
     }
   });
 
   it('every wcCommand uses wire form (`chia_<name>`)', () => {
     for (const ns of SCHEMA_COMMANDS) {
       const schema = getCommandSchema(ns);
-      if (schema.wcCommand) {
-        expect(schema.wcCommand.startsWith('chia_')).toBe(true);
-        expect(schema.wcCommand.length).toBeGreaterThan('chia_'.length);
-      }
-      for (const alias of schema.aliases ?? []) {
+      if (!schema.dapp) continue;
+      expect(schema.dapp.wcCommand.startsWith('chia_')).toBe(true);
+      expect(schema.dapp.wcCommand.length).toBeGreaterThan('chia_'.length);
+      for (const alias of schema.dapp.aliases ?? []) {
         expect(alias.wcCommand.startsWith('chia_')).toBe(true);
         expect(alias.wcCommand.length).toBeGreaterThan('chia_'.length);
       }
@@ -70,12 +77,55 @@ describe('registry shape', () => {
       expect(ns.slice(dot + 1)).not.toBe('');
     }
   });
+
+  it('handler-routed commands live under chia_app.* and declare a handlerKey', () => {
+    for (const ns of SCHEMA_COMMANDS) {
+      const schema = getCommandSchema(ns);
+      if (!schema.dapp) continue;
+      if (ns.startsWith('chia_app.')) {
+        expect(schema.dapp.handlerKey).toBeDefined();
+      } else {
+        expect(schema.dapp.handlerKey).toBeUndefined();
+      }
+    }
+  });
+});
+
+describe('dappAllowed defaults', () => {
+  it('UI-only schemas (no dapp block) leave params unmarked', () => {
+    const schema = getCommandSchema('chia_wallet.create_new_wallet');
+    expect(schema.dapp).toBeUndefined();
+    for (const param of schema.params) {
+      expect(param.dappAllowed).toBeUndefined();
+    }
+  });
+
+  it('every dapp-callable schema has `dappAllowed: true` on every declared param', () => {
+    for (const ns of SCHEMA_COMMANDS) {
+      const schema = getCommandSchema(ns);
+      if (!schema.dapp) continue;
+      for (const param of schema.params) {
+        if (param.dappAllowed !== true) {
+          throw new Error(
+            `Schema ${ns} declares dapp block but param "${param.name}" lacks \`dappAllowed: true\`. ` +
+              `Either drop the param from the schema or mark it explicitly.`,
+          );
+        }
+      }
+    }
+  });
 });
 
 describe('isDappAllowedWcCommand', () => {
-  it('returns true for renderer-handled meta-commands', () => {
+  it('returns true for handler-routed meta-commands', () => {
     expect(isDappAllowedWcCommand('chia_requestPermissions')).toBe(true);
     expect(isDappAllowedWcCommand('chia_showNotification')).toBe(true);
+  });
+
+  it('returns true for handler-routed wallet-flow commands', () => {
+    expect(isDappAllowedWcCommand('chia_addCATToken')).toBe(true);
+    expect(isDappAllowedWcCommand('chia_transferDID')).toBe(true);
+    expect(isDappAllowedWcCommand('chia_createNewDIDWallet')).toBe(true);
   });
 
   it('returns true for dispatchable wc commands (wire form)', () => {
@@ -90,8 +140,7 @@ describe('isDappAllowedWcCommand', () => {
   it('returns false for unknown / UI-only / wrong-form commands', () => {
     expect(isDappAllowedWcCommand('chia_totallyMadeUp')).toBe(false);
     expect(isDappAllowedWcCommand('')).toBe(false);
-    // Bare form (without `chia_` prefix) is not the registry shape — the
-    // wire-form expectation pins this.
+    // Bare form (no `chia_` prefix) is not the registry shape.
     expect(isDappAllowedWcCommand('sendTransaction')).toBe(false);
   });
 });
@@ -99,7 +148,6 @@ describe('isDappAllowedWcCommand', () => {
 describe('resolveDispatch', () => {
   it('resolves a known wcCommand to destination + bare command + nsCommand', () => {
     expect(resolveDispatch('chia_sendTransaction')).toEqual({
-      ok: true,
       destination: 'chia_wallet',
       command: 'send_transaction',
       nsCommand: 'chia_wallet.send_transaction',
@@ -108,19 +156,16 @@ describe('resolveDispatch', () => {
 
   it('handles acronym-bearing names that cannot be auto-derived', () => {
     expect(resolveDispatch('chia_spendCAT')).toEqual({
-      ok: true,
       destination: 'chia_wallet',
       command: 'cat_spend',
       nsCommand: 'chia_wallet.cat_spend',
     });
     expect(resolveDispatch('chia_getNFTInfo')).toEqual({
-      ok: true,
       destination: 'chia_wallet',
       command: 'nft_get_info',
       nsCommand: 'chia_wallet.nft_get_info',
     });
     expect(resolveDispatch('chia_setDIDName')).toEqual({
-      ok: true,
       destination: 'chia_wallet',
       command: 'did_set_wallet_name',
       nsCommand: 'chia_wallet.did_set_wallet_name',
@@ -129,12 +174,10 @@ describe('resolveDispatch', () => {
 
   it('routes DataLayer commands to chia_data_layer', () => {
     expect(resolveDispatch('chia_createDataStore')).toMatchObject({
-      ok: true,
       destination: 'chia_data_layer',
       command: 'create_data_store',
     });
     expect(resolveDispatch('chia_cancelDataLayerOffer')).toMatchObject({
-      ok: true,
       destination: 'chia_data_layer',
       command: 'cancel_offer',
     });
@@ -142,42 +185,41 @@ describe('resolveDispatch', () => {
 
   it('routes daemon-namespace commands correctly', () => {
     expect(resolveDispatch('chia_getPublicKey')).toMatchObject({
-      ok: true,
       destination: 'daemon',
       command: 'get_public_key',
     });
     expect(resolveDispatch('chia_getWalletAddresses')).toMatchObject({
-      ok: true,
       destination: 'daemon',
       command: 'get_wallet_addresses',
     });
   });
 
-  it('rejects unknown wc commands', () => {
-    expect(resolveDispatch('chia_totallyMadeUp')).toEqual({
-      ok: false,
-      reason: 'unknown wc command: chia_totallyMadeUp',
-    });
+  it('throws WcError(METHOD_NOT_FOUND) for unknown wc commands', () => {
+    const e = captureThrow(() => resolveDispatch('chia_totallyMadeUp'));
+    expect(e).toBeInstanceOf(WcError);
+    expect((e as WcError).code).toBe(WcErrorCode.METHOD_NOT_FOUND);
+    expect((e as WcError).message).toBe('unknown wc command: chia_totallyMadeUp');
   });
 
-  it('rejects renderer-handled meta-commands routed through dispatch', () => {
-    expect(resolveDispatch('chia_requestPermissions')).toEqual({
-      ok: false,
-      reason: 'wc command not dispatchable: chia_requestPermissions',
-    });
-    expect(resolveDispatch('chia_showNotification')).toEqual({
-      ok: false,
-      reason: 'wc command not dispatchable: chia_showNotification',
-    });
+  it('throws for handler-routed meta-commands routed through daemon dispatch', () => {
+    // Callers must intercept via `entry.handlerKey` before resolveDispatch.
+    for (const wc of [
+      'chia_requestPermissions',
+      'chia_showNotification',
+      'chia_addCATToken',
+      'chia_transferDID',
+      'chia_createNewDIDWallet',
+    ]) {
+      const e = captureThrow(() => resolveDispatch(wc));
+      expect(e).toBeInstanceOf(WcError);
+      expect((e as WcError).code).toBe(WcErrorCode.METHOD_NOT_FOUND);
+      expect((e as WcError).message).toBe(`wc command not dispatchable: ${wc}`);
+    }
   });
 
   it('routes the legacy `chia_getCurrentAddress` alias to `get_next_address`', () => {
-    // The daemon has no `get_current_address` RPC; dispatching the legacy
-    // wcCommand to a fabricated `chia_wallet.get_current_address` would
-    // come back as `unknown_command get_current_address`. The alias on
-    // `chia_wallet.get_next_address` is what makes this work.
+    // No daemon `get_current_address` RPC — alias lands on `get_next_address`.
     expect(resolveDispatch('chia_getCurrentAddress')).toEqual({
-      ok: true,
       destination: 'chia_wallet',
       command: 'get_next_address',
       nsCommand: 'chia_wallet.get_next_address',
@@ -189,26 +231,116 @@ describe('getCommandByWc', () => {
   it('returns ns + schema for a known wcCommand', () => {
     const result = getCommandByWc('chia_sendTransaction');
     expect(result?.nsCommand).toBe('chia_wallet.send_transaction');
-    expect(result?.schema.wcCommand).toBe('chia_sendTransaction');
+    expect(result?.schema.dapp?.wcCommand).toBe('chia_sendTransaction');
   });
 
-  it('returns ns + schema for a renderer-handled meta-command', () => {
+  it('returns ns + schema for a handler-routed meta-command', () => {
     const result = getCommandByWc('chia_requestPermissions');
     expect(result?.nsCommand).toBe('chia_app.request_permissions');
+    expect(result?.handlerKey).toBe('requestPermissions');
+  });
+
+  it('returns ns + schema + handlerKey for handler-routed wallet flows', () => {
+    const addCat = getCommandByWc('chia_addCATToken');
+    expect(addCat?.nsCommand).toBe('chia_app.add_cat_token');
+    expect(addCat?.handlerKey).toBe('addCATToken');
+
+    const transferDid = getCommandByWc('chia_transferDID');
+    expect(transferDid?.nsCommand).toBe('chia_app.transfer_did');
+    expect(transferDid?.handlerKey).toBe('transferDID');
+
+    const createDid = getCommandByWc('chia_createNewDIDWallet');
+    expect(createDid?.nsCommand).toBe('chia_app.create_new_did_wallet');
+    expect(createDid?.handlerKey).toBe('createNewDIDWallet');
   });
 
   it('returns the parent ns + schema for an alias wcCommand', () => {
-    // `chia_getCurrentAddress` is an alias of `chia_wallet.get_next_address`
-    // with `new_address: false`. The daemon-side dispatch must land on the
-    // real RPC, not the legacy `get_current_address` (which the daemon
-    // rejects with "unknown_command get_current_address").
+    // Alias dispatch must land on the real `get_next_address` RPC; without
+    // this the daemon would reject with "unknown_command get_current_address".
     const result = getCommandByWc('chia_getCurrentAddress');
     expect(result?.nsCommand).toBe('chia_wallet.get_next_address');
     expect(result?.defaults).toEqual({ wallet_id: 1, new_address: false });
   });
 
+  it('daemon-routed commands carry no handlerKey', () => {
+    const result = getCommandByWc('chia_sendTransaction');
+    expect(result?.handlerKey).toBeUndefined();
+  });
+
   it('returns undefined for unknown commands', () => {
     expect(getCommandByWc('chia_definitelyNotReal')).toBeUndefined();
+  });
+});
+
+describe('validateDappParams', () => {
+  function expectThrow(fn: () => unknown, code: number, message: string) {
+    const e = captureThrow(fn);
+    expect(e).toBeInstanceOf(WcError);
+    expect((e as WcError).code).toBe(code);
+    expect((e as WcError).message).toBe(message);
+  }
+
+  it('returns silently for a payload whose every key is declared with dappAllowed:true', () => {
+    expect(() =>
+      validateDappParams('chia_sendTransaction', { amount: '5', fee: '0', address: 'txch1abc' }),
+    ).not.toThrow();
+  });
+
+  it('returns silently for an empty payload', () => {
+    expect(() => validateDappParams('chia_sendTransaction', {})).not.toThrow();
+  });
+
+  it('throws WcError(INVALID_PARAMS) for a key not declared in the schema', () => {
+    expectThrow(
+      () => validateDappParams('chia_sendTransaction', { amount: '5', evil_extra: true }),
+      WcErrorCode.INVALID_PARAMS,
+      'param not allowed for dapp: evil_extra',
+    );
+  });
+
+  it('throws WcError(METHOD_NOT_FOUND) for an unknown wc command', () => {
+    expectThrow(
+      () => validateDappParams('chia_totallyMadeUp', { x: 1 }),
+      WcErrorCode.METHOD_NOT_FOUND,
+      'unknown wc command: chia_totallyMadeUp',
+    );
+  });
+
+  it('throws when the schema has no params and the dapp sends one', () => {
+    expectThrow(
+      () => validateDappParams('chia_getOffersCount', { sneaky: 1 }),
+      WcErrorCode.INVALID_PARAMS,
+      'param not allowed for dapp: sneaky',
+    );
+  });
+
+  it('runs against snake-cased keys (caller is responsible for canonicalisation)', () => {
+    expectThrow(
+      () => validateDappParams('chia_sendTransaction', { walletId: 1 }),
+      WcErrorCode.INVALID_PARAMS,
+      'param not allowed for dapp: walletId',
+    );
+    expect(() => validateDappParams('chia_sendTransaction', { wallet_id: 1 })).not.toThrow();
+  });
+
+  it('handler-routed commands enforce the same allowlist', () => {
+    expect(() => validateDappParams('chia_addCATToken', { asset_id: 'abc', name: 'My CAT' })).not.toThrow();
+    expectThrow(
+      () => validateDappParams('chia_addCATToken', { asset_id: 'abc', stowaway: true }),
+      WcErrorCode.INVALID_PARAMS,
+      'param not allowed for dapp: stowaway',
+    );
+  });
+
+  it('aliases inherit the base schema params (chia_getCurrentAddress)', () => {
+    expect(() =>
+      validateDappParams('chia_getCurrentAddress', { wallet_id: 1, new_address: false }),
+    ).not.toThrow();
+    expectThrow(
+      () => validateDappParams('chia_getCurrentAddress', { surprise: true }),
+      WcErrorCode.INVALID_PARAMS,
+      'param not allowed for dapp: surprise',
+    );
   });
 });
 
@@ -224,16 +356,12 @@ describe('filterRequestedCommands', () => {
   });
 
   it('rejects bare-form names (forces wire-form discipline)', () => {
-    // A renderer that forgot to prefix is a bug — surface it loudly rather
-    // than silently grant access.
     const result = filterRequestedCommands(['sendTransaction']);
     expect(result.allowed).toEqual([]);
     expect(result.rejected).toEqual(['sendTransaction']);
   });
 
   it('drops methods outside the chia_ namespace into rejected (still string match)', () => {
-    // Other-namespace methods aren't WC chia methods at all. The registry
-    // doesn't know them so they end up in `rejected`.
     const result = filterRequestedCommands(['eip155_personal_sign', 'cosmos_signDirect', 'chia_sendTransaction']);
     expect(result.allowed).toEqual(['chia_sendTransaction']);
     expect(result.rejected.sort()).toEqual(['cosmos_signDirect', 'eip155_personal_sign']);
@@ -276,46 +404,48 @@ describe('filterRequestedCommands', () => {
     expect(filterRequestedCommands(val as unknown)).toEqual({ allowed: [], rejected: [] });
   });
 
-  it('keeps renderer-handled meta-commands so the WC SDK accepts them at session approval', () => {
+  it('keeps handler-routed meta-commands so the WC SDK accepts them at session approval', () => {
     const result = filterRequestedCommands(['chia_requestPermissions', 'chia_showNotification']);
     expect(result.allowed.sort()).toEqual(['chia_requestPermissions', 'chia_showNotification']);
     expect(result.rejected).toEqual([]);
   });
 
-  it('orchestration-only commands (createNewDIDWallet, transferDID, addCATToken) are filtered out', () => {
+  it('keeps handler-routed wallet-flow commands (createNewDIDWallet, transferDID, addCATToken)', () => {
     const result = filterRequestedCommands(['chia_createNewDIDWallet', 'chia_transferDID', 'chia_addCATToken']);
-    expect(result.allowed).toEqual([]);
-    expect(result.rejected.sort()).toEqual(['chia_addCATToken', 'chia_createNewDIDWallet', 'chia_transferDID']);
+    expect(result.allowed.sort()).toEqual(['chia_addCATToken', 'chia_createNewDIDWallet', 'chia_transferDID']);
+    expect(result.rejected).toEqual([]);
   });
 });
 
 describe('commandsMetadata', () => {
-  // The renderer's `useCommandMetadata` hook depends on this snapshot
-  // shape. Catches accidental field renames and verifies that every
-  // dispatchable command has a label (Settings UI would otherwise show a
-  // bare wcCommand string).
+  // Renderer's `useCommandMetadata` depends on this shape; Settings UI
+  // would otherwise show bare wcCommand strings.
   const snapshot = commandsMetadata();
   const byWc = new Map(snapshot.map((m) => [m.wcCommand, m]));
 
-  it('returns an entry for every schema wcCommand and every alias (no orphans)', () => {
+  it('returns an entry for every schema dapp.wcCommand and every alias (no orphans)', () => {
     let expected = 0;
     for (const ns of SCHEMA_COMMANDS) {
       const schema = getCommandSchema(ns);
-      if (schema.wcCommand) expected += 1;
-      expected += schema.aliases?.length ?? 0;
+      if (!schema.dapp) continue;
+      expected += 1;
+      expected += schema.dapp.aliases?.length ?? 0;
     }
     expect(snapshot.length).toBe(expected);
   });
 
-  it('includes the renderer-handled meta-commands so the Settings UI can label them', () => {
+  it('includes the handler-routed meta-commands so the Settings UI can label them', () => {
     expect(byWc.get('chia_requestPermissions')?.label).toBe('Request Permissions');
     expect(byWc.get('chia_showNotification')?.label).toBeDefined();
   });
 
+  it('includes the handler-routed wallet flows', () => {
+    expect(byWc.get('chia_addCATToken')?.label).toBe('Add CAT Token');
+    expect(byWc.get('chia_transferDID')?.label).toBe('Transfer DID');
+    expect(byWc.get('chia_createNewDIDWallet')?.label).toBe('Create new DID Wallet');
+  });
+
   it('includes alias wcCommands (chia_getCurrentAddress) so Settings can render them', () => {
-    // Without the alias being surfaced in metadata, the Settings UI would
-    // show a bare wcCommand string for any dapp that lists getCurrentAddress
-    // among its proposal methods.
     const entry = byWc.get('chia_getCurrentAddress');
     expect(entry).toBeDefined();
     expect(entry?.requiresSync).toBe(false);
@@ -324,7 +454,6 @@ describe('commandsMetadata', () => {
   it('resolves label and description strings (i18n call happened at fetch time)', () => {
     const sendTx = byWc.get('chia_sendTransaction');
     expect(sendTx?.label).toBe('Send Transaction');
-    // description may be undefined for some commands that have no description in the schema
     expect(typeof sendTx?.label).toBe('string');
   });
 
@@ -343,11 +472,8 @@ describe('commandsMetadata', () => {
 });
 
 describe('applyDefaults', () => {
-  // The wire envelope has to carry `wallet_id: 1` (and a few similar defaults)
-  // for daemon RPCs that require it but that dapps conventionally omit.
-  // Without these, those commands silently fail at the daemon. Keyed by
-  // wcCommand so aliases that share an nsCommand (e.g. getCurrentAddress
-  // vs getNextAddress) can pin different defaults.
+  // The wire envelope must carry `wallet_id: 1` etc. that dapps conventionally
+  // omit; without these, daemon RPCs silently fail.
 
   it('fills in `wallet_id: 1` for chia_sendTransaction when omitted', () => {
     const out = applyDefaults('chia_sendTransaction', {
@@ -392,18 +518,13 @@ describe('applyDefaults', () => {
   });
 
   it('treats explicit `false` / `0` / empty string as set (does not overwrite)', () => {
-    // `applyDefaults` only fills `undefined` keys — falsy non-undefined values
-    // should pass through unchanged so a dapp can opt out of a default.
     const out = applyDefaults('chia_getNextAddress', { new_address: false });
     expect(out.new_address).toBe(false);
   });
 
   it('alias pins its own default (chia_getCurrentAddress → new_address: false)', () => {
-    // The Chia daemon has no `get_current_address` RPC. The legacy WC alias
-    // routes to `chia_wallet.get_next_address` with `new_address: false`,
-    // matching the api-react shim. Without per-alias defaults, the base
-    // schema would flip `new_address` to `true` and the dapp would silently
-    // get a fresh address on every call.
+    // Without per-alias defaults the base would flip `new_address: true`
+    // and the dapp would silently get a fresh address on every call.
     const out = applyDefaults('chia_getCurrentAddress', {});
     expect(out.wallet_id).toBe(1);
     expect(out.new_address).toBe(false);

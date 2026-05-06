@@ -5,6 +5,8 @@
  * therefore untrusted). Pin every output shape and every malformed-input
  * rejection.
  */
+import { WcError, WcErrorCode } from '../../@types/WcError';
+
 import { buildShowNotification } from './buildShowNotification';
 import type { PairRecord } from './types';
 
@@ -26,7 +28,8 @@ function makePair(overrides: Partial<PairRecord> = {}): PairRecord {
 
 describe('buildShowNotification — offer notifications', () => {
   it('builds an offer notification from a valid payload', () => {
-    const out = buildShowNotification(makePair(), { type: 'offer', offerData: 'offer1abc...' }, 111);
+    const out = buildShowNotification(makePair(), { type: 'offer', offer_data: 'offer1abc...' }, 111);
+    // Output keeps camelCase `offerData` — snake_case is input-only.
     expect(out).toMatchObject({
       type: 'offer',
       offerData: 'offer1abc...',
@@ -39,19 +42,19 @@ describe('buildShowNotification — offer notifications', () => {
     expect(out!.id).toMatch(/^wc-/);
   });
 
-  it('rejects an offer notification with missing offerData', () => {
-    const out = buildShowNotification(makePair(), { type: 'offer' }, 111);
-    expect(out).toBeNull();
-  });
-
-  it('rejects an offer notification with non-string offerData', () => {
-    const out = buildShowNotification(makePair(), { type: 'offer', offerData: 42 }, 111);
-    expect(out).toBeNull();
-  });
-
-  it('rejects an offer notification with empty-string offerData', () => {
-    const out = buildShowNotification(makePair(), { type: 'offer', offerData: '' }, 111);
-    expect(out).toBeNull();
+  it.each([
+    ['missing offer_data', { type: 'offer' }],
+    ['non-string offer_data', { type: 'offer', offer_data: 42 }],
+    ['empty-string offer_data', { type: 'offer', offer_data: '' }],
+  ])('throws WcError(INVALID_PARAMS) on %s', (_label, payload) => {
+    let caught: unknown;
+    try {
+      buildShowNotification(makePair(), payload as Record<string, unknown>, 111);
+    } catch (e) {
+      caught = e;
+    }
+    expect(caught).toBeInstanceOf(WcError);
+    expect((caught as WcError).code).toBe(WcErrorCode.INVALID_PARAMS);
   });
 });
 
@@ -87,14 +90,18 @@ describe('buildShowNotification — announcement notifications', () => {
     expect((out as { url?: string }).url).toBeUndefined();
   });
 
-  it('rejects an announcement with missing message', () => {
-    const out = buildShowNotification(makePair(), { type: 'announcement' }, 111);
-    expect(out).toBeNull();
-  });
-
-  it('rejects an announcement with non-string message', () => {
-    const out = buildShowNotification(makePair(), { type: 'announcement', message: 42 }, 111);
-    expect(out).toBeNull();
+  it.each([
+    ['missing message', { type: 'announcement' }],
+    ['non-string message', { type: 'announcement', message: 42 }],
+  ])('throws WcError(INVALID_PARAMS) on %s', (_label, payload) => {
+    let caught: unknown;
+    try {
+      buildShowNotification(makePair(), payload as Record<string, unknown>, 111);
+    } catch (e) {
+      caught = e;
+    }
+    expect(caught).toBeInstanceOf(WcError);
+    expect((caught as WcError).code).toBe(WcErrorCode.INVALID_PARAMS);
   });
 });
 
@@ -111,7 +118,7 @@ describe('buildShowNotification — fingerprint resolution', () => {
   it('uses every paired fingerprint when allFingerprints is true', () => {
     const out = buildShowNotification(
       makePair({ fingerprints: [111, 222, 333] }),
-      { type: 'announcement', message: 'Hi', allFingerprints: true },
+      { type: 'announcement', message: 'Hi', all_fingerprints: true },
       222,
     );
     expect(out!.fingerprints).toEqual([111, 222, 333]);
@@ -127,11 +134,11 @@ describe('buildShowNotification — fingerprint resolution', () => {
   });
 
   it('treats allFingerprints non-true values as false (strict ===)', () => {
-    // A hostile dapp can't sneak `allFingerprints: 'true'` to broaden the
+    // A hostile dapp can't sneak `all_fingerprints: 'true'` to broaden the
     // notification scope.
     const out = buildShowNotification(
       makePair({ fingerprints: [111, 222, 333] }),
-      { type: 'announcement', message: 'Hi', allFingerprints: 'true' },
+      { type: 'announcement', message: 'Hi', all_fingerprints: 'true' },
       222,
     );
     expect(out!.fingerprints).toEqual([222]);
@@ -144,9 +151,15 @@ describe('buildShowNotification — unknown / malformed types', () => {
     ['missing type', { message: 'x' }],
     ['null type', { type: null, message: 'x' }],
     ['number type', { type: 42, message: 'x' }],
-  ])('returns null for %s', (_label, payload) => {
-    const out = buildShowNotification(makePair(), payload as Record<string, unknown>, 111);
-    expect(out).toBeNull();
+  ])('throws WcError(INVALID_PARAMS) for %s', (_label, payload) => {
+    let caught: unknown;
+    try {
+      buildShowNotification(makePair(), payload as Record<string, unknown>, 111);
+    } catch (e) {
+      caught = e;
+    }
+    expect(caught).toBeInstanceOf(WcError);
+    expect((caught as WcError).code).toBe(WcErrorCode.INVALID_PARAMS);
   });
 });
 

@@ -5,6 +5,8 @@
  * four previously scattered checks. A regression here lets a compromised
  * renderer bypass any of those four gates.
  */
+import { WcErrorCode } from '../../@types/WcError';
+
 import { checkPairAccess } from './checkPairAccess';
 import type { PairRecord } from './types';
 
@@ -54,7 +56,7 @@ describe('checkPairAccess — happy path', () => {
 describe('checkPairAccess — failure modes', () => {
   it('denies "unknown pair" when topic is not in the store', () => {
     const out = checkPairAccess({ topic: TOPIC, wcCommand: 'chia_sendTransaction' }, depsWith(undefined));
-    expect(out).toEqual({ ok: false, reason: 'unknown pair' });
+    expect(out).toEqual({ ok: false, reason: 'Pair not found', code: WcErrorCode.USER_REJECTED });
   });
 
   it('denies "missing wc command" when wcCommand is empty / undefined', () => {
@@ -62,10 +64,12 @@ describe('checkPairAccess — failure modes', () => {
     expect(checkPairAccess({ topic: TOPIC }, depsWith(pair))).toEqual({
       ok: false,
       reason: 'missing wc command',
+      code: WcErrorCode.INVALID_PARAMS,
     });
     expect(checkPairAccess({ topic: TOPIC, wcCommand: '' }, depsWith(pair))).toEqual({
       ok: false,
       reason: 'missing wc command',
+      code: WcErrorCode.INVALID_PARAMS,
     });
   });
 
@@ -77,6 +81,7 @@ describe('checkPairAccess — failure modes', () => {
     expect(out).toEqual({
       ok: false,
       reason: 'command not granted for this pair: chia_signMessageByAddress',
+      code: WcErrorCode.UNAUTHORIZED_METHOD,
     });
   });
 
@@ -88,6 +93,7 @@ describe('checkPairAccess — failure modes', () => {
     expect(out).toEqual({
       ok: false,
       reason: 'fingerprint not granted for this pair: 999',
+      code: WcErrorCode.UNAUTHORIZED_METHOD,
     });
   });
 
@@ -96,7 +102,7 @@ describe('checkPairAccess — failure modes', () => {
       { topic: TOPIC, wcCommand: 'chia_sendTransaction', mainnet: false },
       depsWith(makePair({ mainnet: true })),
     );
-    expect(out).toEqual({ ok: false, reason: 'network mismatch' });
+    expect(out).toEqual({ ok: false, reason: 'network mismatch', code: WcErrorCode.UNSUPPORTED_CHAINS });
   });
 
   it('denies on mainnet/testnet mismatch (testnet pair, mainnet request)', () => {
@@ -104,7 +110,7 @@ describe('checkPairAccess — failure modes', () => {
       { topic: TOPIC, wcCommand: 'chia_sendTransaction', mainnet: true },
       depsWith(makePair({ mainnet: false })),
     );
-    expect(out).toEqual({ ok: false, reason: 'network mismatch' });
+    expect(out).toEqual({ ok: false, reason: 'network mismatch', code: WcErrorCode.UNSUPPORTED_CHAINS });
   });
 
   // Fail-closed on missing/non-boolean mainnet: every dapp call is
@@ -115,7 +121,7 @@ describe('checkPairAccess — failure modes', () => {
       { topic: TOPIC, wcCommand: 'chia_sendTransaction' } as Parameters<typeof checkPairAccess>[0],
       depsWith(makePair({ mainnet: true })),
     );
-    expect(out).toEqual({ ok: false, reason: 'network mismatch' });
+    expect(out).toEqual({ ok: false, reason: 'network mismatch', code: WcErrorCode.UNSUPPORTED_CHAINS });
   });
 
   it('denies when mainnet is not a boolean (string, null, etc.)', () => {
@@ -124,13 +130,13 @@ describe('checkPairAccess — failure modes', () => {
         { topic: TOPIC, wcCommand: 'chia_sendTransaction', mainnet: 'true' as unknown as boolean },
         depsWith(makePair({ mainnet: true })),
       ),
-    ).toEqual({ ok: false, reason: 'network mismatch' });
+    ).toEqual({ ok: false, reason: 'network mismatch', code: WcErrorCode.UNSUPPORTED_CHAINS });
     expect(
       checkPairAccess(
         { topic: TOPIC, wcCommand: 'chia_sendTransaction', mainnet: null as unknown as boolean },
         depsWith(makePair({ mainnet: true })),
       ),
-    ).toEqual({ ok: false, reason: 'network mismatch' });
+    ).toEqual({ ok: false, reason: 'network mismatch', code: WcErrorCode.UNSUPPORTED_CHAINS });
   });
 });
 
@@ -144,7 +150,7 @@ describe('checkPairAccess — order of failures', () => {
       { topic: 'no-such', wcCommand: 'chia_X', fingerprint: 9, mainnet: false },
       depsWith(makePair()),
     );
-    expect(out).toMatchObject({ reason: 'unknown pair' });
+    expect(out).toMatchObject({ reason: 'Pair not found' });
   });
 
   it('"missing wc command" wins over fingerprint / mainnet', () => {

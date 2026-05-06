@@ -1,6 +1,4 @@
 // Resolves the registry schema into flat dialog rows + enrichment display.
-// Sync param kinds run from `data` directly; `mojo-to-cat` and `enrich` do
-// daemon RPCs in parallel.
 import { i18n } from '../../../config/locales';
 import { getCommandSchema, resolveTexts, type ParamSchema } from '../../constants/commandRegistry';
 import { type EnrichmentDisplay, lookupCat } from '../../utils/dappEnrichment';
@@ -82,6 +80,7 @@ export async function renderConfirm(
   const [resolvedRows, display] = await Promise.all([
     Promise.all(
       schema.params.map(async (param) => {
+        if (param.hide) return undefined;
         const raw = data[param.name];
         if (!isPresent(raw)) return undefined;
         const value = await formatParamValue(param, raw, data, ctx);
@@ -91,9 +90,8 @@ export async function renderConfirm(
     schema.enrich ? schema.enrich(data) : Promise.resolve<EnrichmentDisplay>({}),
   ]);
 
-  // Drop the `fee` param row when offer enrichment already shows it —
-  // otherwise the dialog renders fee twice (once at the top with the other
-  // params, once in the offer summary card below).
+  // The offer summary card already renders fee — drop the param row to
+  // avoid duplicating it.
   const offerShowsFee = display.offer?.fee !== undefined;
   const rows = resolvedRows.filter((r): r is ConfirmRow => {
     if (r === undefined) return false;

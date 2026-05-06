@@ -3,6 +3,7 @@ import { useAuth } from '@chia-network/core';
 import debug from 'debug';
 import JSONbig from 'json-bigint';
 
+import { WcError, WcErrorCode } from '../@types/WcError';
 import waitForWalletSync from '../util/waitForWalletSync';
 
 import useCommandMetadata from './useCommandMetadata';
@@ -37,7 +38,7 @@ export default function useWalletConnectCommand() {
     const isDifferentFingerprint = hasCurrentFingerprint && fingerprint !== currentFingerprint;
     if (!allFingerprints) {
       if (isDifferentFingerprint && !allowConfirmationFingerprintChange) {
-        throw new Error(`Invalid fingerprint ${fingerprint}`);
+        throw new WcError(`Invalid fingerprint ${fingerprint}`, WcErrorCode.UNAUTHORIZED_METHOD);
       }
     }
 
@@ -59,7 +60,7 @@ export default function useWalletConnectCommand() {
         try {
           const latestFingerprint = await fingerprintRequest.unwrap();
           if (latestFingerprint !== fingerprint) {
-            throw new Error('Fingerprint changed during execution');
+            throw new WcError('Fingerprint changed during execution', WcErrorCode.INTERNAL_ERROR);
           }
         } finally {
           fingerprintRequest.unsubscribe();

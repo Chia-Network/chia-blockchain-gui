@@ -1,3 +1,5 @@
+import { WcError, WcErrorCode } from '../../@types/WcError';
+
 import { dispatchDaemonCommandAsPair, type DispatchAsPairDeps } from './dispatchAsPair';
 import type { Decision } from './types';
 
@@ -135,6 +137,123 @@ describe('dispatchDaemonCommandAsPair - prompted commands', () => {
 
     await expect(dispatchDaemonCommandAsPair(baseInput, deps)).rejects.toThrow('Operation cancelled by user');
     expect(deps.sendDappAndAwait).not.toHaveBeenCalled();
+  });
+});
+
+async function captureRejection(promise: Promise<unknown>): Promise<unknown> {
+  try {
+    await promise;
+  } catch (e) {
+    return e;
+  }
+  throw new Error('expected rejection');
+}
+
+describe('dispatchDaemonCommandAsPair - dapp param validation', () => {
+  // Validation runs before permission and dispatch — fails closed.
+
+  it('rejects an unknown wc command before any other work', async () => {
+    const deps = makeDeps({ kind: 'allow', commit: jest.fn() });
+    const e = await captureRejection(
+      dispatchDaemonCommandAsPair({ ...baseInput, wcCommand: 'chia_definitelyNotReal' }, deps),
+    );
+    expect(e).toBeInstanceOf(WcError);
+    expect((e as WcError).code).toBe(WcErrorCode.METHOD_NOT_FOUND);
+    expect((e as WcError).message).toBe('unknown wc command: chia_definitelyNotReal');
+    expect(deps.resolvePermission).not.toHaveBeenCalled();
+    expect(deps.sendDappAndAwait).not.toHaveBeenCalled();
+  });
+
+  it('rejects a payload key that is not declared in the schema', async () => {
+    const deps = makeDeps({ kind: 'allow', commit: jest.fn() });
+    const e = await captureRejection(
+      dispatchDaemonCommandAsPair(
+        {
+          ...baseInput,
+          data: { amount: '1', fee: '0', address: 'txch1abc', evil_extra: true },
+        },
+        deps,
+      ),
+    );
+    expect(e).toBeInstanceOf(WcError);
+    expect((e as WcError).code).toBe(WcErrorCode.INVALID_PARAMS);
+    expect((e as WcError).message).toBe('param not allowed for dapp: evil_extra');
+    expect(deps.resolvePermission).not.toHaveBeenCalled();
+    expect(deps.sendDappAndAwait).not.toHaveBeenCalled();
+  });
+
+  it('rejects camelCase keys not in the schema (validation runs after snake-casing)', async () => {
+    const deps = makeDeps({ kind: 'allow', commit: jest.fn() });
+    await expect(
+      dispatchDaemonCommandAsPair(
+        {
+          ...baseInput,
+          wcCommand: 'chia_mintBulk',
+          data: { walletId: 1, evilExtra: true },
+        },
+        deps,
+      ),
+    ).rejects.toThrow('param not allowed for dapp: evil_extra');
+  });
+});
+
+describe('dispatchDaemonCommandAsPair - handler routing', () => {
+  function makeHandlerDeps(decision: Decision, overrides: Partial<DispatchAsPairDeps> = {}) {
+    return makeDeps(decision, {
+      getDappHandler: jest.fn(),
+      dispatchDaemon: jest.fn(),
+      ...overrides,
+    });
+  }
+
+  const handlerInput = {
+    ...baseInput,
+    wcCommand: 'chia_addCATToken',
+    data: { asset_id: 'abc', name: 'Test CAT' },
+    mainWindow: {} as never,
+    pair: { topic: 'topic-1', metadata: { name: 'Test Dapp' } } as never,
+  };
+
+  it('invokes the registered handler instead of the daemon', async () => {
+    const handler = jest.fn(async () => ({ data: { success: true, walletId: 5 } }));
+    const deps = makeHandlerDeps({ kind: 'allow', commit: jest.fn() }, {
+      getDappHandler: jest.fn((key: string) => (key === 'addCATToken' ? handler : undefined)),
+    });
+
+    const out = await dispatchDaemonCommandAsPair(handlerInput, deps);
+
+    expect(handler).toHaveBeenCalledTimes(1);
+    expect(out).toEqual({ data: { success: true, walletId: 5 } });
+    expect(deps.sendDappAndAwait).not.toHaveBeenCalled();
+  });
+
+  it('throws when the handler key has no registered implementation', async () => {
+    const deps = makeHandlerDeps({ kind: 'allow', commit: jest.fn() }, {
+      getDappHandler: jest.fn(() => undefined),
+    });
+
+    await expect(dispatchDaemonCommandAsPair(handlerInput, deps)).rejects.toThrow(
+      'no handler registered for addCATToken',
+    );
+    expect(deps.sendDappAndAwait).not.toHaveBeenCalled();
+  });
+
+  it('still runs validation + permission gate before the handler', async () => {
+    const handler = jest.fn();
+    const deps = makeHandlerDeps({ kind: 'allow', commit: jest.fn() }, {
+      getDappHandler: jest.fn(() => handler),
+    });
+
+    await expect(
+      dispatchDaemonCommandAsPair(
+        {
+          ...handlerInput,
+          data: { asset_id: 'abc', name: 'Test', evil_extra: true },
+        },
+        deps,
+      ),
+    ).rejects.toThrow('param not allowed for dapp: evil_extra');
+    expect(handler).not.toHaveBeenCalled();
   });
 });
 

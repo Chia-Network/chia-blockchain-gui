@@ -133,17 +133,17 @@ describe('resolvePermission - UI principal', () => {
 describe('resolvePermission - unknown pair topic', () => {
   it('denies before evaluating any command-specific rules', async () => {
     mockGetPair.mockReturnValue(undefined);
-    expect(await pairResolve('chia_wallet.get_wallets', {})).toEqual({
+    expect(await pairResolve('chia_wallet.get_wallets', {})).toMatchObject({
       kind: 'deny',
-      reason: 'unknown pair',
+      reason: 'Pair not found',
     });
   });
 
   it('denies even for sensitive commands', async () => {
     mockGetPair.mockReturnValue(undefined);
-    expect(await pairResolve('chia_wallet.delete_key', {})).toEqual({
+    expect(await pairResolve('chia_wallet.delete_key', {})).toMatchObject({
       kind: 'deny',
-      reason: 'unknown pair',
+      reason: 'Pair not found',
     });
   });
 });
@@ -167,10 +167,10 @@ describe('resolvePermission - pair context shape', () => {
 
   it('omits pair on deny ("unknown pair")', async () => {
     mockGetPair.mockReturnValue(undefined);
-    expect(await pairResolve('chia_wallet.send_transaction', {})).toEqual({
-      kind: 'deny',
-      reason: 'unknown pair',
-    });
+    const d = await pairResolve('chia_wallet.send_transaction', {});
+    expect(d).toMatchObject({ kind: 'deny', reason: 'Pair not found' });
+    // No `pair` field on deny — only on prompt.
+    expect((d as { pair?: unknown }).pair).toBeUndefined();
   });
 });
 
@@ -745,7 +745,7 @@ describe('resolvePermission - commands gate (pair.commands allowlist)', () => {
 
   it('denies a command not in pair.commands even if everything else lines up', async () => {
     mockGetPair.mockReturnValue(makePair({ commands: [], bypass: [SEND_WC], xchMojos: '100000' }));
-    expect(await pairResolve('chia_wallet.send_transaction', {})).toEqual({
+    expect(await pairResolve('chia_wallet.send_transaction', {})).toMatchObject({
       kind: 'deny',
       reason: `command not granted for this pair: ${SEND_WC}`,
     });
@@ -753,7 +753,7 @@ describe('resolvePermission - commands gate (pair.commands allowlist)', () => {
 
   it('denies when wcCommand is missing from the resolve context', async () => {
     mockGetPair.mockReturnValue(makePair({ bypass: ['chia_getWallets'] }));
-    expect(await resolvePermission(PAIR_PRINCIPAL, 'chia_wallet.get_wallets', {}, {})).toEqual({
+    expect(await resolvePermission(PAIR_PRINCIPAL, 'chia_wallet.get_wallets', {}, {})).toMatchObject({
       kind: 'deny',
       reason: 'missing wc command',
     });

@@ -2,45 +2,47 @@ import Client from '@walletconnect/sign-client';
 import { getSdkError } from '@walletconnect/utils';
 import initDebug from 'debug';
 
+import { WcError, WcErrorCode, decodeWcErrorFromIpc } from '../@types/WcError';
 import { type Pairs } from '../hooks/useWalletConnectPairs';
 
 const log = initDebug('chia-gui:walletConnect');
 
-async function respondSessionRequestError(client: Client, topic: string, id: number, message: string) {
+async function respondSessionRequestError(
+  client: Client,
+  topic: string,
+  id: number,
+  message: string,
+  code: number,
+) {
   try {
     await client.respond({
       topic,
       response: {
         id,
         jsonrpc: '2.0',
-        error: {
-          code: -32_600,
-          message,
-        },
+        error: { code, message },
       },
     });
   } catch (e) {
-    // The dapp / WC SDK may have already evicted this request from its
-    // store (5-minute default expiry, dapp went offline, race with
-    // session disconnect). There's no recovery path: we can't apologize
-    // to the dapp on a record that no longer exists. Log and move on.
-    // Swallowing here keeps the error from becoming an uncaught
-    // promise rejection in the `session_request` event listener, which
-    // would otherwise surface as a popup the user can't act on.
+    // Dapp/SDK may have evicted the request (5-min expiry, disconnect race,
+    // etc.). Swallow so the `session_request` listener doesn't surface an
+    // uncaught rejection as a user-facing popup.
     log('Failed to respond to session request', { topic, id }, e);
   }
 }
 
-/*
-export const STANDARD_ERROR_MAP = {
-  [PARSE_ERROR]: { code: -32700, message: "Parse error" },
-  [INVALID_REQUEST]: { code: -32600, message: "Invalid Request" },
-  [METHOD_NOT_FOUND]: { code: -32601, message: "Method not found" },
-  [INVALID_PARAMS]: { code: -32602, message: "Invalid params" },
-  [INTERNAL_ERROR]: { code: -32603, message: "Internal error" },
-  [SERVER_ERROR]: { code: -32000, message: "Server error" },
-};
-*/
+// IPC strips the WcError prototype; main encodes the code via prefix and we
+// recover it here. Plain Errors (daemon failures, unexpected throws) default
+// to INTERNAL_ERROR — the spec-correct fallback for "wallet failed".
+function toWcError(error: unknown): WcError {
+  if (error instanceof WcError) return error;
+  if (error instanceof Error) {
+    const decoded = decodeWcErrorFromIpc(error.message);
+    if (decoded) return decoded;
+    return new WcError(error.message, WcErrorCode.INTERNAL_ERROR);
+  }
+  return new WcError(String(error), WcErrorCode.INTERNAL_ERROR);
+}
 
 export function processError(error: Error) {
   if (error.message.includes('No matching key')) {
@@ -102,9 +104,7 @@ export async function processSessionProposal(
       throw new Error('Pairing topic not found');
     }
 
-    // WalletConnect SDK v2.17+ deprecated requiredNamespaces and moves them
-    // to optionalNamespaces, so check both. When a dApp provides chia in both,
-    // merge them so the approved session advertises all supported capabilities.
+    // SDK v2.17+ moved requiredNamespaces to optionalNamespaces; merge both.
     const requiredChia = requiredNamespaces?.chia;
     const optionalChia = optionalNamespaces?.chia;
 
@@ -120,20 +120,14 @@ export async function processSessionProposal(
       throw new Error('Chain not supported');
     }
 
-    // Unsupported-command warning removed: main filters this list at
-    // PAIR_REGISTER (`filterRequestedCommands`) and the rejected set is
-    // shown directly in the Pair dialog, which is the right surface for
-    // the user to see that information.
-
     const pair = pairs.getPair(pairingTopic);
     if (!pair) {
       throw new Error('Pair not found');
     }
 
-    // Capture the proposal but do NOT approve yet. The wallet selection and
-    // permission grant happen in the main-process Pair dialog; once the user
-    // confirms, approveSessionProposal sends the approve call with the picked
-    // accounts.
+    // Capture the proposal but defer approval — the main-process Pair dialog
+    // owns wallet selection and permission grant; `approveSessionProposal`
+    // runs after the user confirms.
     pairs.updatePair(pairingTopic, (p) => ({
       ...p,
       metadata: proposerMetadata ?? p.metadata,
@@ -167,19 +161,8 @@ export async function approveSessionProposal(
   pairs: Pairs,
   pairTopic: string,
   fingerprints: number[],
-  /**
-   * mainnet vs testnet for this pair. Sourced from the renderer's
-   * `useCurrencyCode()` at pair time — main also persists this on its YAML
-   * PairRecord during `registerPair`. We pass it in rather than reading it
-   * back from `permissionsAPI.listPairs()` because at this exact point we
-   * already know it (caller just passed it to `registerPair` too).
-   */
   mainnet: boolean,
-  /**
-   * Methods (`chia_<wcCommand>` form) the wallet is willing to honor for this
-   * session. Must be the registry-filtered subset persisted on the pair
-   * record — passing the dapp's raw `proposal.methods` undoes the filtering.
-   */
+  /** Must be the registry-filtered subset persisted on the pair record. */
   approvedMethods: string[],
 ) {
   if (!client) {
@@ -282,14 +265,8 @@ export async function processPairingDelete(pairs: Pairs, event: { topic: string 
   await revokeMainPair(topic);
 }
 
-/**
- * Best-effort cleanup of the main-side pair record (YAML grant +
- * spent-mojo budget). Failure here doesn't block the renderer-side
- * teardown — the WC SDK pairing is already gone, and a stale main record
- * is inert (its `commands` can never be used because the renderer has no
- * session to dispatch on its behalf). Logged for diagnostics, not surfaced
- * to the user.
- */
+// Best-effort. A stale main record is inert (no session = no dispatch), so
+// failure here doesn't block teardown — log and move on.
 async function revokeMainPair(topic: string): Promise<void> {
   try {
     await window.permissionsAPI.revokePair(topic);
@@ -335,7 +312,7 @@ export async function processSessionRequest(
         '— disconnecting orphan session',
       );
       try {
-        await respondSessionRequestError(client, topic, id, 'Pair not found');
+        await respondSessionRequestError(client, topic, id, 'Pair not found', WcErrorCode.USER_REJECTED);
       } catch (e) {
         log('Failed to respond to orphan session request:', e);
       }
@@ -350,16 +327,12 @@ export async function processSessionRequest(
 
     const [network, instance] = chainId.split(':');
     if (network !== 'chia') {
-      throw new Error('Network not supported');
+      throw new WcError('Network not supported', WcErrorCode.UNSUPPORTED_CHAINS);
     }
     const isMainnet = instance === 'mainnet';
 
-    // Pair-relevant gates (network match, fingerprint allowlist, commands
-    // allowlist) all live in main now — `dispatchAsPair` calls
-    // `checkPairAccess` with the wcCommand + fingerprint + mainnet we
-    // pass below. Renderer-side duplicates were removed: there's one
-    // source of truth and the renderer is no longer trusted for any of
-    // these checks.
+    // All gates (network/fingerprint/commands) live in main; renderer is
+    // not trusted for any of them.
 
     const { fingerprint, ...rest } = params;
     const updatedParams = {
@@ -368,11 +341,7 @@ export async function processSessionRequest(
     };
 
     log('method', method, updatedParams);
-    // `mainnet` is renderer-internal context (derived from chainId);
-    // pass alongside params rather than mixing it into the dapp payload.
-    // We pass `pair.topic` (the pair's topic) — main keys its PairRecord
-    // by pair topic, not by WC session topic. The translation lives here
-    // because the renderer is the only side that knows about sessions.
+    // Main keys PairRecord by pair topic, not session topic — translate here.
     const result = await process(pair.topic, method, updatedParams, { mainnet: isMainnet });
     log('result', result);
 
@@ -390,7 +359,8 @@ export async function processSessionRequest(
 
       const { id, topic } = event;
       if (client) {
-        await respondSessionRequestError(client, topic, id, (error as Error).message ?? 'Invalid Session Request');
+        const wc = toWcError(error);
+        await respondSessionRequestError(client, topic, id, wc.message, wc.code);
       }
     } catch (e) {
       processError(e as Error);
@@ -424,8 +394,7 @@ export async function disconnectPair(client: Client, pairs: Pairs, topic: string
     log('Error during pair disconnect, removing pair anyway:', e);
   } finally {
     pairs.removePair(topic);
-    // Drop the main-side record so disconnected pairs don't linger and
-    // leave dormant consents. Best-effort — see `revokeMainPair`.
+    // Drop the main-side record so disconnected pairs don't leave dormant consents.
     await revokeMainPair(topic);
   }
 }
@@ -434,19 +403,16 @@ export async function cleanupPairings(client: Client, pairs: Pairs) {
   try {
     const pairings = await client.core.pairing.getPairings();
 
-    // disconnect pairings which are not registered in application or reactivate them
     await Promise.all(
       pairings.map(async (pairing) => {
         const { topic, active } = pairing;
 
-        // disconnect peers which are not used in application
         if (!pairs.hasPair(topic)) {
           log('Disconnecting pairing because WalletConnect pair is not registered in the application', topic);
           await disconnectPair(client, pairs, topic);
           return;
         }
 
-        // reactivate pairing if it was active before
         if (!active) {
           try {
             log('Reactivating pairing', topic);
@@ -458,7 +424,6 @@ export async function cleanupPairings(client: Client, pairs: Pairs) {
       }),
     );
 
-    // remove pairs which are not in pairing list
     await Promise.all(
       pairs.get().map(async (pair) => {
         const { topic } = pair;
@@ -493,12 +458,7 @@ export function bindEvents(
   }
 
   async function handleSessionRequest(event: any) {
-    // Top-level catch-all. The WC SDK invokes this as a fire-and-forget
-    // event listener, so any uncaught rejection becomes an unhandled
-    // promise — which Electron surfaces as a user-visible error popup.
-    // `processSessionRequest` already handles its own errors, this is
-    // belt-and-braces for anything that slips past (expired records,
-    // SDK internals, etc.).
+    // Catch-all so a stray rejection doesn't surface as an Electron popup.
     try {
       await processSessionRequest(client, pairs, onProcess(), event);
     } catch (e) {

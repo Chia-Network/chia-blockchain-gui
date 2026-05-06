@@ -1,8 +1,10 @@
 import crypto from 'node:crypto';
 
+import type { BrowserWindow } from 'electron';
 import JSONbig from 'json-bigint';
 
-import { applyDefaults, resolveDispatch } from '../constants/commandRegistry';
+import { WcError, WcErrorCode } from '../../@types/WcError';
+import { applyDefaults, getCommandByWc, resolveDispatch, validateDappParams } from '../constants/commandRegistry';
 import type { ConfirmProps } from '../dialogs/Confirm/Confirm';
 import { renderConfirm } from '../dialogs/Confirm/renderConfirm';
 import toCamelCase from '../utils/toCamelCase';
@@ -10,9 +12,10 @@ import toSnakeCase from '../utils/toSnakeCase';
 import { sendDappAndAwait } from '../utils/webSocketBridge';
 
 import { captureBypassFromConfirmResult } from './bypassCapture';
+import { defaultDispatchDaemon, getDappHandler } from './dappHandlers';
 import { getPair, upsertPair } from './pairStore';
 import { resolvePermission } from './permissions';
-import type { Principal } from './types';
+import type { PairRecord, Principal } from './types';
 
 export type DispatchAsPairFingerprint = {
   requested: number;
@@ -28,6 +31,10 @@ export type DispatchAsPairInput = {
   mainnet: boolean;
   fingerprint?: DispatchAsPairFingerprint;
   networkPrefix?: string;
+  /** Required for handlers that emit IPC events (e.g. showNotification). */
+  mainWindow: BrowserWindow;
+  /** Caller has already passed `checkPairAccess`. */
+  pair: PairRecord;
 };
 
 export type DispatchConfirmProps = Omit<ConfirmProps, 'confirmId' | 'styleURL' | 'isDarkMode'>;
@@ -44,29 +51,35 @@ export type DispatchAsPairDeps = {
   captureBypassFromConfirmResult?: typeof captureBypassFromConfirmResult;
   sendDappAndAwait?: typeof sendDappAndAwait;
   requestId?: () => string;
+  getDappHandler?: typeof getDappHandler;
+  dispatchDaemon?: typeof defaultDispatchDaemon;
 };
 
 export async function dispatchDaemonCommandAsPair(
   input: DispatchAsPairInput,
   deps: DispatchAsPairDeps,
 ): Promise<{ data: Record<string, unknown> }> {
-  const { wcCommand, data, topic, mainnet, fingerprint, networkPrefix } = input;
-  const target = resolveDispatch(wcCommand);
-  if (!target.ok) {
-    throw new Error(target.reason);
+  const { wcCommand, data, topic, mainnet, fingerprint, networkPrefix, mainWindow, pair } = input;
+
+  const entry = getCommandByWc(wcCommand);
+  if (!entry) {
+    throw new WcError(`unknown wc command: ${wcCommand}`, WcErrorCode.METHOD_NOT_FOUND);
   }
-  const { destination, nsCommand, command } = target;
+
+  // Snake-case before any field read so case-folding can't dodge the gate.
+  const snakeData = toSnakeCase(data) as Record<string, unknown>;
+  validateDappParams(wcCommand, snakeData);
 
   const principal: Principal = { kind: 'pair', topic };
-  const snakeData = toSnakeCase(data) as Record<string, unknown>;
   const permission = deps.resolvePermission ?? resolvePermission;
+  const nsCommand = entry.nsCommand;
   const decision = await permission(principal, nsCommand, snakeData, {
     wcCommand,
     fingerprint: fingerprint?.requested,
     mainnet,
   });
   if (decision.kind === 'deny') {
-    throw new Error(decision.reason);
+    throw new WcError(decision.reason, decision.code);
   }
 
   if (decision.kind === 'prompt') {
@@ -102,15 +115,38 @@ export async function dispatchDaemonCommandAsPair(
       },
     );
     if (result === false || result === undefined) {
-      throw new Error('Operation cancelled by user');
+      throw new WcError('Operation cancelled by user', WcErrorCode.USER_REJECTED);
     }
     const capture = deps.captureBypassFromConfirmResult ?? captureBypassFromConfirmResult;
     capture(result, { topic, wcCommand }, { getPair, upsertPair });
   } else {
-    // Auto-approved: debit at the authorization point. Manual prompts skip
-    // commit (matches the renderer-onSend flow).
+    // Auto-approved: debit at the authorization point (manual prompts skip
+    // commit, matching the renderer-onSend flow).
     decision.commit();
   }
+
+  const dispatchDaemon = deps.dispatchDaemon ?? defaultDispatchDaemon;
+  const handlerLookup = deps.getDappHandler ?? getDappHandler;
+
+  if (entry.handlerKey) {
+    const handler = handlerLookup(entry.handlerKey);
+    if (!handler) {
+      throw new WcError(`no handler registered for ${entry.handlerKey}`, WcErrorCode.INTERNAL_ERROR);
+    }
+    return handler({
+      data: snakeData,
+      pair,
+      mainnet,
+      fingerprint: fingerprint
+        ? { requested: fingerprint.requested, current: fingerprint.current }
+        : undefined,
+      mainWindow,
+      networkPrefix,
+      dispatchDaemon,
+    });
+  }
+
+  const { destination, command } = resolveDispatch(wcCommand);
 
   const requestId = deps.requestId?.() ?? crypto.randomBytes(32).toString('hex');
   const wireData = applyDefaults(wcCommand, snakeData);
@@ -128,7 +164,7 @@ export async function dispatchDaemonCommandAsPair(
     data?: { error?: unknown; [k: string]: unknown };
   };
 
-  // Preserve daemon application errors as result data. JSON-RPC transport
-  // errors are still thrown by the caller around this handler.
+  // Daemon application errors come back as response data; JSON-RPC transport
+  // errors throw upstream.
   return { data: toCamelCase(response?.data ?? {}) };
 }

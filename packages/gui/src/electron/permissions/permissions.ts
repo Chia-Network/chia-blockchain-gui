@@ -16,7 +16,7 @@ const promptDecision = (reason: string, pair?: PairContext): Decision => ({
   reason,
   pair,
 });
-const denyDecision = (reason: string): Decision => ({ kind: 'deny', reason });
+const denyDecision = (reason: string, code: number): Decision => ({ kind: 'deny', reason, code });
 
 const PUSH_TRANSACTIONS = 'chia_wallet.push_transactions';
 
@@ -131,7 +131,7 @@ export async function resolvePermission(
     },
     { getPair },
   );
-  if (!access.ok) return denyDecision(access.reason);
+  if (!access.ok) return denyDecision(access.reason, access.code);
   const { pair } = access;
   const dialogCtx = pairCtx(pair);
   const wcCommand = ctx.wcCommand!; // checkPairAccess rejected when missing

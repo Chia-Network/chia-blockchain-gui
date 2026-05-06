@@ -58,4 +58,4 @@ export type PairContext = {
 export type Decision =
   | { kind: 'allow'; commit: () => void }
   | { kind: 'prompt'; reason: string; pair?: PairContext }
-  | { kind: 'deny'; reason: string };
+  | { kind: 'deny'; reason: string; code: number };

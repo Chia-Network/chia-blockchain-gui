@@ -24,6 +24,7 @@ import '../config/env';
 
 import packageJson from '../../package.json';
 import AppIcon from '../assets/img/chia64x64.png';
+import { WcError, WcErrorCode, encodeWcErrorForIpc } from '../@types/WcError';
 import { i18n } from '../config/locales';
 
 import CacheManager from './CacheManager';
@@ -36,12 +37,9 @@ import PreferencesAPI from './constants/PreferencesAPI';
 import { commandsMetadata, filterRequestedCommands } from './constants/commandRegistry';
 import About from './dialogs/About/About';
 import Confirm from './dialogs/Confirm/Confirm';
-import { renderConfirm } from './dialogs/Confirm/renderConfirm';
 import KeyDetail from './dialogs/KeyDetail/KeyDetail';
 import Pair, { getTitle as getPairTitle, type PairWalletOption } from './dialogs/Pair/Pair';
 import { buildNewPairRecord } from './permissions/buildPairRecord';
-import { buildShowNotification } from './permissions/buildShowNotification';
-import { captureBypassFromConfirmResult } from './permissions/bypassCapture';
 import { checkPairAccess } from './permissions/checkPairAccess';
 import { dispatchDaemonCommandAsPair } from './permissions/dispatchAsPair';
 import {
@@ -52,6 +50,7 @@ import {
 } from './permissions/pairDialog';
 import { getPair, listPairs, removePair, resetBypass, resetBypassAll, upsertPair } from './permissions/pairStore';
 import { resolvePermission } from './permissions/permissions';
+import { renderConfirm } from './dialogs/Confirm/renderConfirm';
 import type { PairGrants, PairMetadata, PairRecord } from './permissions/types';
 import { readPrefs, savePrefs, migratePrefs } from './prefs';
 import { readAddressBook, saveAddressBook } from './utils/addressBook';
@@ -278,95 +277,50 @@ ipcMainHandle(
       currentLabel?: string;
     };
   }) => {
-    if (!mainWindow) {
-      throw new Error('mainWindow is empty');
-    }
-    const activeWindow = mainWindow;
-
-    const { wcCommand, data: argsData, topic, mainnet, fingerprint } = payload;
-    if (typeof mainnet !== 'boolean') {
-      throw new Error('mainnet flag is required');
-    }
-    const data = argsData ?? {};
-
-    const access = checkPairAccess({ topic, wcCommand, fingerprint: fingerprint?.requested, mainnet }, { getPair });
-    if (!access.ok) {
-      throw new Error(access.reason);
-    }
-    const { pair } = access;
-
-    // Renderer-handled commands (no daemon involvement).
-    if (wcCommand === 'chia_showNotification') {
-      const isBypassed = pair.bypass.includes(wcCommand);
-      if (!isBypassed) {
-        const rendered = await renderConfirm('chia_app.show_notification', data, { networkPrefix });
-        const result = await openReactDialog<
-          true | false | Record<string, unknown>,
-          React.ComponentProps<typeof Confirm>
-        >(
-          mainWindow,
-          Confirm,
-          {
-            networkPrefix,
-            command: 'chia_app.show_notification',
-            data,
-            title: rendered.title,
-            message: rendered.message,
-            confirmLabel: rendered.confirmLabel,
-            destructive: rendered.destructive,
-            rows: rendered.rows,
-            display: rendered.display,
-            principal: {
-              kind: 'pair' as const,
-              name: pair.metadata.name,
-              url: pair.metadata.url,
-              icon: pair.metadata.icon,
-              description: pair.metadata.description,
-            },
-            fingerprint,
-            showBypassToggle: true,
-          },
-          {
-            title: rendered.title,
-            width: 640,
-            height: 600,
-          },
-        );
-        if (result === false || result === undefined) {
-          throw new Error('Operation cancelled by user');
-        }
-        captureBypassFromConfirmResult(result, { topic, wcCommand }, { getPair, upsertPair });
+    try {
+      if (!mainWindow) {
+        throw new WcError('mainWindow is empty', WcErrorCode.INTERNAL_ERROR);
       }
-      const notification = buildShowNotification(pair, data, fingerprint?.requested);
-      if (notification) {
-        mainWindow.webContents.send(PermissionsAPI.NOTIFICATION_EVENT, notification);
-      }
-      return { data: { success: true } };
-    }
-    if (wcCommand === 'chia_requestPermissions') {
-      // No-op — main owns bypass; ack so legacy dapps still work.
-      return { data: { success: true } };
-    }
+      const activeWindow = mainWindow;
 
-    return dispatchDaemonCommandAsPair(
-      {
-        wcCommand,
-        data,
-        topic,
-        mainnet,
-        fingerprint,
-        networkPrefix,
-      },
-      {
-        openConfirm: (props, options) =>
-          openReactDialog<true | false | Record<string, unknown>, React.ComponentProps<typeof Confirm>>(
-            activeWindow,
-            Confirm,
-            props,
-            options,
-          ),
-      },
-    );
+      const { wcCommand, data: argsData, topic, mainnet, fingerprint } = payload;
+      if (typeof mainnet !== 'boolean') {
+        throw new WcError('mainnet flag is required', WcErrorCode.INVALID_PARAMS);
+      }
+      const data = argsData ?? {};
+
+      const access = checkPairAccess({ topic, wcCommand, fingerprint: fingerprint?.requested, mainnet }, { getPair });
+      if (!access.ok) {
+        throw new WcError(access.reason, access.code);
+      }
+      const { pair } = access;
+
+      return await dispatchDaemonCommandAsPair(
+        {
+          wcCommand,
+          data,
+          topic,
+          mainnet,
+          fingerprint,
+          networkPrefix,
+          mainWindow: activeWindow,
+          pair,
+        },
+        {
+          openConfirm: (props, options) =>
+            openReactDialog<true | false | Record<string, unknown>, React.ComponentProps<typeof Confirm>>(
+              activeWindow,
+              Confirm,
+              props,
+              options,
+            ),
+        },
+      );
+    } catch (e) {
+      // Electron IPC strips custom Error properties (`code`). Re-throw with
+      // the code encoded into the message; renderer decodes via decodeWcErrorFromIpc.
+      throw new Error(encodeWcErrorForIpc(e));
+    }
   },
 );
 

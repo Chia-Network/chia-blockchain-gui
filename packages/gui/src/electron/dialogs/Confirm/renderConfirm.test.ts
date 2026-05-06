@@ -21,7 +21,7 @@ const mockBuildCreateOfferDisplay = buildCreateOfferDisplay as jest.MockedFuncti
 const mockBuildTakeOfferDisplay = buildTakeOfferDisplay as jest.MockedFunction<typeof buildTakeOfferDisplay>;
 
 describe('renderConfirm', () => {
-  it('renders send_transaction with address + amount + fee in network units', async () => {
+  it('renders send_transaction with amount + fee + address in network units', async () => {
     const result = await renderConfirm(
       'chia_wallet.send_transaction',
       { address: 'txch1abc', amount: '1000000000000', fee: '500000000000' },
@@ -31,10 +31,27 @@ describe('renderConfirm', () => {
     expect(result.confirmLabel).toBe('Send');
     expect(result.destructive).toBe(false);
     expect(result.rows).toEqual([
-      { field: 'address', label: 'Address', value: 'txch1abc' },
       { field: 'amount', label: 'Amount', value: '1 TXCH' },
       { field: 'fee', label: 'Fee', value: '0.5 TXCH' },
+      { field: 'address', label: 'Address', value: 'txch1abc' },
     ]);
+  });
+
+  it('drops rows whose schema param has `hide: true` even when data supplies a value', async () => {
+    const result = await renderConfirm(
+      'chia_wallet.send_transaction',
+      {
+        amount: '1000000000000',
+        fee: '0',
+        address: 'txch1abc',
+        wallet_id: 7,
+        memos: ['note'],
+      },
+      { networkPrefix: 'txch' },
+    );
+    const fields = result.rows.map((r) => r.field);
+    expect(fields).not.toContain('wallet_id');
+    expect(fields).not.toContain('memos');
   });
 
   it('skips rows whose data field is undefined / null / empty string', async () => {
@@ -186,19 +203,18 @@ describe('renderConfirm', () => {
     expect(result.display).toEqual({});
   });
 
-  it('renders show_notification announcement with allFingerprints flag', async () => {
+  it('renders show_notification announcement with all_fingerprints flag', async () => {
     const result = await renderConfirm(
       'chia_app.show_notification',
-      { type: 'announcement', message: 'Hi', allFingerprints: true },
+      { type: 'announcement', message: 'Hi', all_fingerprints: true },
       {},
     );
-    const all = result.rows.find((r) => r.field === 'allFingerprints');
+    const all = result.rows.find((r) => r.field === 'all_fingerprints');
     expect(all?.value).toBe('Yes');
   });
 
-  it('show_notification with no offerData skips offer enrichment', async () => {
-    // type=offer + missing offerData should not attempt the daemon RPC. The
-    // enrich hook short-circuits before `buildTakeOfferDisplay` runs.
+  it('show_notification with no offer_data skips offer enrichment', async () => {
+    // enrich short-circuits before `buildTakeOfferDisplay` runs.
     const result = await renderConfirm('chia_app.show_notification', { type: 'offer' }, {});
     expect(result.display).toEqual({});
   });
