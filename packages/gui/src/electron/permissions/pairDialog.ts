@@ -43,11 +43,12 @@ export function dialogResultToBypass(result: Record<string, unknown>, granted: s
   const raw = Array.isArray(result.bypass) ? result.bypass : [];
   const bypass: string[] = [];
   for (const item of raw) {
-    if (typeof item !== 'string') continue;
-    if (!grantedSet.has(item)) continue;
-    const ns = getCommandByWc(item)?.nsCommand;
-    if (ns && isSignCommand(ns)) continue;
-    bypass.push(item);
+    if (typeof item === 'string' && grantedSet.has(item)) {
+      const ns = getCommandByWc(item)?.nsCommand;
+      if (!ns || !isSignCommand(ns)) {
+        bypass.push(item);
+      }
+    }
   }
   return bypass;
 }
