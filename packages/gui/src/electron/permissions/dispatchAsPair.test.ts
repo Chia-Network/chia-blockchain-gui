@@ -400,6 +400,25 @@ describe('dispatchDaemonCommandAsPair - daemon response contract', () => {
     });
   });
 
+  it('attaches the camelized daemon payload as WcError.data so it survives JSON-RPC clients that canonicalize message by code', async () => {
+    // Many dapp-side JSON-RPC clients display the canonical "Internal error"
+    // label for `-32603` and only surface the real payload through
+    // `error.data`. Snake-cased fields from the daemon must be camelized to
+    // match every other dapp-facing payload shape.
+    const deps = makeDeps(
+      { kind: 'allow', commit: jest.fn() },
+      {
+        sendDappAndAwait: jest.fn(async () => ({
+          data: { success: false, error: 'fee too low', wallet_id: 1 },
+        })),
+      },
+    );
+
+    const e = await captureRejection(dispatchDaemonCommandAsPair(baseInput, deps));
+    expect(e).toBeInstanceOf(WcError);
+    expect((e as WcError).data).toEqual({ success: false, error: 'fee too low', walletId: 1 });
+  });
+
   it('camel-cases successful daemon response data for dapps', async () => {
     const deps = makeDeps(
       { kind: 'allow', commit: jest.fn() },

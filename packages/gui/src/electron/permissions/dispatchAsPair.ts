@@ -195,14 +195,18 @@ export async function dispatchDaemonCommandAsPair(
     data?: { error?: unknown; [k: string]: unknown };
   };
 
-  // Daemon application errors come back as response data. Return them as-is
-  // so the dapp can see the actual error message and decide how to handle it
-  // (e.g. "coin not found" is normal during coin polling). Don't debit the
-  // allowance: an attacker could otherwise drain it with daemon-rejectable
-  // requests.
+  // Daemon application errors come back as response data (JSON-RPC transport
+  // errors throw upstream). Throw so the WC client rejects the dapp's
+  // request — silently returning the error envelope would let dapps that
+  // introspect happy-path fields (e.g. `result.offer`) take a wrong code
+  // path on every daemon error. The full daemon payload is carried via
+  // `error.data` so dapp clients that canonicalize `message` by code (many
+  // surface the canonical "Internal error" label for `-32603`) can still
+  // recover the original failure detail. Don't debit the allowance: an
+  // attacker could otherwise drain it with daemon-rejectable requests.
   if (response?.data?.error) {
     const camelErr = toCamelCase(response.data) as Record<string, unknown>;
-    return { data: camelErr };
+    throw new WcError(String(response.data.error), WcErrorCode.INTERNAL_ERROR, { data: camelErr });
   }
 
   if (decision.kind === 'allow') {

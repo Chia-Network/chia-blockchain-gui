@@ -7,6 +7,7 @@ import crypto from 'node:crypto';
 
 import JSONbig from 'json-bigint';
 
+import { WcError, WcErrorCode } from '../../@types/WcError';
 import PermissionsAPI from '../constants/PermissionsAPI';
 import toCamelCase from '../utils/toCamelCase';
 import toSnakeCase from '../utils/toSnakeCase';
@@ -46,7 +47,17 @@ export async function defaultDispatchDaemon(
     request_id: requestId,
   };
   const json = JSONbig.stringify(toSnakeCase(wire));
-  const response = (await sendDappAndAwait(requestId, json)) as { data?: Record<string, unknown> };
+  const response = (await sendDappAndAwait(requestId, json)) as {
+    data?: { error?: unknown; [k: string]: unknown };
+  };
+  // Mirror dispatchAsPair: daemon application errors come back as
+  // `response.data.error`. Throw with the camelized payload on `data` so
+  // composed handlers (e.g. addCATToken) fail closed instead of returning
+  // `{ success: false, error }` as a successful handler result.
+  if (response?.data?.error) {
+    const camelErr = toCamelCase(response.data) as Record<string, unknown>;
+    throw new WcError(String(response.data.error), WcErrorCode.INTERNAL_ERROR, { data: camelErr });
+  }
   return toCamelCase(response?.data ?? {}) as Record<string, unknown>;
 }
 
