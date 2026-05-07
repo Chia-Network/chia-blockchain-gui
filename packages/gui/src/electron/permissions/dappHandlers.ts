@@ -32,6 +32,20 @@ export type DappHandlerContext = {
 
 export type DappHandler = (ctx: DappHandlerContext) => Promise<{ data: Record<string, unknown> }>;
 
+export type DispatchResponse = { data?: { error?: unknown; [k: string]: unknown } | null } | undefined | null;
+
+// Mirror dispatchAsPair: daemon application errors come back as
+// `response.data.error`. Throw with the camelized payload on `data` so
+// composed handlers (e.g. addCATToken) fail closed instead of returning
+// `{ success: false, error }` as a successful handler result.
+export function processDispatchResponse(response: DispatchResponse): Record<string, unknown> {
+  if (response?.data?.error) {
+    const camelErr = toCamelCase(response.data) as Record<string, unknown>;
+    throw new WcError(String(response.data.error), WcErrorCode.INTERNAL_ERROR, { data: camelErr });
+  }
+  return toCamelCase(response?.data ?? {}) as Record<string, unknown>;
+}
+
 export async function defaultDispatchDaemon(
   destination: string,
   command: string,
@@ -47,18 +61,8 @@ export async function defaultDispatchDaemon(
     request_id: requestId,
   };
   const json = JSONbig.stringify(toSnakeCase(wire));
-  const response = (await sendDappAndAwait(requestId, json)) as {
-    data?: { error?: unknown; [k: string]: unknown };
-  };
-  // Mirror dispatchAsPair: daemon application errors come back as
-  // `response.data.error`. Throw with the camelized payload on `data` so
-  // composed handlers (e.g. addCATToken) fail closed instead of returning
-  // `{ success: false, error }` as a successful handler result.
-  if (response?.data?.error) {
-    const camelErr = toCamelCase(response.data) as Record<string, unknown>;
-    throw new WcError(String(response.data.error), WcErrorCode.INTERNAL_ERROR, { data: camelErr });
-  }
-  return toCamelCase(response?.data ?? {}) as Record<string, unknown>;
+  const response = (await sendDappAndAwait(requestId, json)) as DispatchResponse;
+  return processDispatchResponse(response);
 }
 
 // Main owns bypass/grants; ack so legacy dapps still work.
