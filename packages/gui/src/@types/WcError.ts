@@ -1,12 +1,14 @@
+import JSONbig from 'json-bigint';
+
 // JSON-RPC 2.0 + WalletConnect SDK error codes the wallet returns to dapps.
 // Codes verified against `@walletconnect/utils` v2.23.9 (`getSdkError`).
 export const WcErrorCode = {
   /** JSON-RPC 2.0 — method does not exist. */
-  METHOD_NOT_FOUND: -32601,
+  METHOD_NOT_FOUND: -32_601,
   /** JSON-RPC 2.0 — invalid method parameters. */
-  INVALID_PARAMS: -32602,
+  INVALID_PARAMS: -32_602,
   /** JSON-RPC 2.0 — internal wallet error. */
-  INTERNAL_ERROR: -32603,
+  INTERNAL_ERROR: -32_603,
   /** WC SDK — pair did not grant the method. */
   UNAUTHORIZED_METHOD: 3001,
   /** WC SDK — user explicitly rejected the request. */
@@ -48,9 +50,9 @@ const IPC_PREFIX_RE = /\[wc:(-?\d+)(?:\|([A-Za-z0-9+/=]*))?\]\s*([\s\S]*)$/;
 
 function encodeData(data: unknown): string {
   // base64 keeps the prefix ASCII-safe and free of `]`, which would confuse
-  // the decoder. JSON.stringify of arbitrary values can produce `undefined`
+  // the decoder. JSONbig.stringify of arbitrary values can produce `undefined`
   // (e.g. for a bare `undefined`), in which case we treat it as "no data".
-  const json = JSON.stringify(data);
+  const json = JSONbig.stringify(data);
   if (json === undefined) return '';
   // Buffer is available in both Node (main) and Electron renderer contexts.
   return Buffer.from(json, 'utf8').toString('base64');
