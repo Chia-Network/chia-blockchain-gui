@@ -7,12 +7,11 @@ import { WcError, WcErrorCode } from '../../@types/WcError';
 import { applyDefaults, getCommandByWc, resolveDispatch, validateDappParams } from '../constants/commandRegistry';
 import type { ConfirmProps } from '../dialogs/Confirm/Confirm';
 import { renderConfirm } from '../dialogs/Confirm/renderConfirm';
-import toCamelCase from '../utils/toCamelCase';
 import toSnakeCase from '../utils/toSnakeCase';
 import { sendDappAndAwait } from '../utils/webSocketBridge';
 
 import { captureBypassFromConfirmResult } from './bypassCapture';
-import { defaultDispatchDaemon, getDappHandler } from './dappHandlers';
+import { defaultDispatchDaemon, getDappHandler, processDispatchResponse } from './dappHandlers';
 import { getPair, upsertPair } from './pairStore';
 import { resolvePermission } from './permissions';
 import type { PairRecord, Principal } from './types';
@@ -195,25 +194,13 @@ export async function dispatchDaemonCommandAsPair(
     data?: { error?: unknown; [k: string]: unknown };
   };
 
-  // Daemon application errors come back as response data (JSON-RPC transport
-  // errors throw upstream). Throw so the WC client rejects the dapp's
-  // request — silently returning the error envelope would let dapps that
-  // introspect happy-path fields (e.g. `result.offer`) take a wrong code
-  // path on every daemon error. The full daemon payload is carried via
-  // `error.data` so dapp clients that canonicalize `message` by code (many
-  // surface the canonical "Internal error" label for `-32603`) can still
-  // recover the original failure detail. Don't debit the allowance: an
+  // Throws on daemon errors; don't debit the allowance on throw since an
   // attacker could otherwise drain it with daemon-rejectable requests.
-  if (response?.data?.error) {
-    const camelErr = toCamelCase(response.data) as Record<string, unknown>;
-    throw new WcError(String(response.data.error), WcErrorCode.INTERNAL_ERROR, { data: camelErr });
-  }
+  const camel = processDispatchResponse(response);
 
   if (decision.kind === 'allow') {
     decision.commit();
   }
-
-  const camel = toCamelCase(response?.data ?? {}) as Record<string, unknown>;
   // Per-schema reshape so dapp-facing payloads match what the legacy
   // api-react endpoints emitted (e.g. `chia_getWallets` → wallets array,
   // not `{ wallets: [...] }`).
