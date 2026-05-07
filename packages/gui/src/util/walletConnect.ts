@@ -7,13 +7,7 @@ import { type Pairs } from '../hooks/useWalletConnectPairs';
 
 const log = initDebug('chia-gui:walletConnect');
 
-async function respondSessionRequestError(
-  client: Client,
-  topic: string,
-  id: number,
-  message: string,
-  code: number,
-) {
+async function respondSessionRequestError(client: Client, topic: string, id: number, message: string, code: number) {
   try {
     await client.respond({
       topic,
