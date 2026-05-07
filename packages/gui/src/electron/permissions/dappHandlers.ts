@@ -2,9 +2,9 @@
 // in via `dapp.handlerKey`; `dispatchAsPair` runs validation + permission
 // + confirm first, then invokes the handler with `dispatchDaemon` for
 // composed flows.
+import type { BrowserWindow } from 'electron';
 import crypto from 'node:crypto';
 
-import type { BrowserWindow } from 'electron';
 import JSONbig from 'json-bigint';
 
 import PermissionsAPI from '../constants/PermissionsAPI';
@@ -50,10 +50,8 @@ export async function defaultDispatchDaemon(
   return toCamelCase(response?.data ?? {}) as Record<string, unknown>;
 }
 
-const requestPermissions: DappHandler = async () => {
-  // Main owns bypass/grants; ack so legacy dapps still work.
-  return { data: { success: true } };
-};
+// Main owns bypass/grants; ack so legacy dapps still work.
+const requestPermissions: DappHandler = async () => ({ data: { success: true } });
 
 const showNotification: DappHandler = async ({ data, pair, fingerprint, mainWindow }) => {
   const notification = buildShowNotification(pair, data, fingerprint?.requested);
@@ -100,12 +98,21 @@ const createNewDIDWallet: DappHandler = async ({ data, dispatchDaemon }) => {
   return { data: result };
 };
 
+const createNewRemoteWallet: DappHandler = async ({ data, dispatchDaemon }) => {
+  const result = await dispatchDaemon('chia_wallet', 'create_new_wallet', {
+    wallet_type: 'remote_wallet',
+    allow_unsynced: data.allow_unsynced,
+  });
+  return { data: result };
+};
+
 export const dappHandlers: Record<string, DappHandler> = {
   requestPermissions,
   showNotification,
   addCATToken,
   transferDID,
   createNewDIDWallet,
+  createNewRemoteWallet,
 };
 
 export function getDappHandler(key: string): DappHandler | undefined {

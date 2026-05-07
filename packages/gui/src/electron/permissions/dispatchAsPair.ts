@@ -1,6 +1,6 @@
+import type { BrowserWindow } from 'electron';
 import crypto from 'node:crypto';
 
-import type { BrowserWindow } from 'electron';
 import JSONbig from 'json-bigint';
 
 import { WcError, WcErrorCode } from '../../@types/WcError';
@@ -55,11 +55,29 @@ export type DispatchAsPairDeps = {
   dispatchDaemon?: typeof defaultDispatchDaemon;
 };
 
+const BROKEN_BIGINT_RE = /^-?\d+n$/;
+
+function deepFixBrokenBigInts(value: unknown): unknown {
+  if (typeof value === 'string' && BROKEN_BIGINT_RE.test(value)) {
+    return BigInt(value.slice(0, -1));
+  }
+  if (Array.isArray(value)) return value.map(deepFixBrokenBigInts);
+  if (value !== null && typeof value === 'object') {
+    const out: Record<string, unknown> = {};
+    for (const [k, v] of Object.entries(value)) {
+      out[k] = deepFixBrokenBigInts(v);
+    }
+    return out;
+  }
+  return value;
+}
+
 export async function dispatchDaemonCommandAsPair(
   input: DispatchAsPairInput,
   deps: DispatchAsPairDeps,
 ): Promise<{ data: Record<string, unknown> }> {
-  const { wcCommand, data, topic, mainnet, fingerprint, networkPrefix, mainWindow, pair } = input;
+  const { wcCommand, topic, mainnet, fingerprint, networkPrefix, mainWindow, pair } = input;
+  const data = deepFixBrokenBigInts(input.data) as Record<string, unknown>;
 
   const entry = getCommandByWc(wcCommand);
   if (!entry) {
@@ -85,7 +103,7 @@ export async function dispatchDaemonCommandAsPair(
 
   const principal: Principal = { kind: 'pair', topic };
   const permission = deps.resolvePermission ?? resolvePermission;
-  const nsCommand = entry.nsCommand;
+  const { nsCommand } = entry;
   const decision = await permission(principal, nsCommand, snakeData, {
     wcCommand,
     fingerprint: fingerprint?.requested,
@@ -177,14 +195,14 @@ export async function dispatchDaemonCommandAsPair(
     data?: { error?: unknown; [k: string]: unknown };
   };
 
-  // Daemon application errors come back as response data (JSON-RPC transport
-  // errors throw upstream). Throw so the WC client rejects the dapp's
-  // request — silently returning the error envelope would let the dapp see
-  // `{ error, success: false }` as a successful payload and act on missing
-  // fields. Don't debit the allowance: an attacker could otherwise drain it
-  // with daemon-rejectable requests.
+  // Daemon application errors come back as response data. Return them as-is
+  // so the dapp can see the actual error message and decide how to handle it
+  // (e.g. "coin not found" is normal during coin polling). Don't debit the
+  // allowance: an attacker could otherwise drain it with daemon-rejectable
+  // requests.
   if (response?.data?.error) {
-    throw new WcError(String(response.data.error), WcErrorCode.INTERNAL_ERROR);
+    const camelErr = toCamelCase(response.data) as Record<string, unknown>;
+    return { data: camelErr };
   }
 
   if (decision.kind === 'allow') {
