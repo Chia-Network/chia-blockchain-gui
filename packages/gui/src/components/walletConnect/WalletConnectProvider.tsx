@@ -42,7 +42,7 @@ export default function WalletConnectProvider(props: WalletConnectProviderProps)
   // applies the user-side mute toggles on top.
   useEffect(
     () =>
-      window.permissionsAPI.subscribeToNotification((_event: unknown, notification: PermissionsNotificationPayload) => {
+      window.permissionsAPI.subscribeToNotification((notification: PermissionsNotificationPayload) => {
         if (!shouldRouteDappNotification(notification, { dappOfferNotifications, dappAnnouncementNotifications })) {
           return;
         }

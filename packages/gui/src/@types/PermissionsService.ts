@@ -94,9 +94,7 @@ type PermissionsService = {
    * after the gate passes; renderer routes to its notification system.
    * Returns an unsubscribe function.
    */
-  subscribeToNotification: (
-    callback: (event: unknown, notification: PermissionsNotificationPayload) => void,
-  ) => () => void;
+  subscribeToNotification: (callback: (notification: PermissionsNotificationPayload) => void) => () => void;
   dispatchAsPair: (payload: {
     /** camelCase WC command name (e.g. `spendCAT`); main resolves to
      *  destination + RPC via the registry. Renderer is not trusted to
