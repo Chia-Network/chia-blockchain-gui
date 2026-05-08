@@ -7,6 +7,7 @@ import crypto from 'node:crypto';
 
 import JSONbig from 'json-bigint';
 
+import { WcError, WcErrorCode } from '../../@types/WcError';
 import PermissionsAPI from '../constants/PermissionsAPI';
 import toCamelCase from '../utils/toCamelCase';
 import toSnakeCase from '../utils/toSnakeCase';
@@ -31,6 +32,20 @@ export type DappHandlerContext = {
 
 export type DappHandler = (ctx: DappHandlerContext) => Promise<{ data: Record<string, unknown> }>;
 
+export type DispatchResponse = { data?: { error?: unknown; [k: string]: unknown } | null } | undefined | null;
+
+// Mirror dispatchAsPair: daemon application errors come back as
+// `response.data.error`. Throw with the camelized payload on `data` so
+// composed handlers (e.g. addCATToken) fail closed instead of returning
+// `{ success: false, error }` as a successful handler result.
+export function processDispatchResponse(response: DispatchResponse): Record<string, unknown> {
+  if (response?.data?.error) {
+    const camelErr = toCamelCase(response.data) as Record<string, unknown>;
+    throw new WcError(String(response.data.error), WcErrorCode.INTERNAL_ERROR, { data: camelErr });
+  }
+  return toCamelCase(response?.data ?? {}) as Record<string, unknown>;
+}
+
 export async function defaultDispatchDaemon(
   destination: string,
   command: string,
@@ -46,14 +61,12 @@ export async function defaultDispatchDaemon(
     request_id: requestId,
   };
   const json = JSONbig.stringify(toSnakeCase(wire));
-  const response = (await sendDappAndAwait(requestId, json)) as { data?: Record<string, unknown> };
-  return toCamelCase(response?.data ?? {}) as Record<string, unknown>;
+  const response = (await sendDappAndAwait(requestId, json)) as DispatchResponse;
+  return processDispatchResponse(response);
 }
 
-const requestPermissions: DappHandler = async () => 
-  // Main owns bypass/grants; ack so legacy dapps still work.
-   ({ data: { success: true } })
-;
+// Main owns bypass/grants; ack so legacy dapps still work.
+const requestPermissions: DappHandler = async () => ({ data: { success: true } });
 
 const showNotification: DappHandler = async ({ data, pair, fingerprint, mainWindow }) => {
   const notification = buildShowNotification(pair, data, fingerprint?.requested);
@@ -100,12 +113,21 @@ const createNewDIDWallet: DappHandler = async ({ data, dispatchDaemon }) => {
   return { data: result };
 };
 
+const createNewRemoteWallet: DappHandler = async ({ data, dispatchDaemon }) => {
+  const result = await dispatchDaemon('chia_wallet', 'create_new_wallet', {
+    wallet_type: 'remote_wallet',
+    allow_unsynced: data.allow_unsynced,
+  });
+  return { data: result };
+};
+
 export const dappHandlers: Record<string, DappHandler> = {
   requestPermissions,
   showNotification,
   addCATToken,
   transferDID,
   createNewDIDWallet,
+  createNewRemoteWallet,
 };
 
 export function getDappHandler(key: string): DappHandler | undefined {

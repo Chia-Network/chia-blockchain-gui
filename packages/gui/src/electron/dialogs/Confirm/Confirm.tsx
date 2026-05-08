@@ -363,7 +363,7 @@ export default function Confirm(props: ConfirmProps) {
           {hasData && (
             <Collapsible title="Raw data">
               <pre className="m-0 text-xs font-mono leading-relaxed break-all whitespace-pre-wrap text-chia-text-secondary">
-                {JSON.stringify(data, null, 2)}
+                {JSON.stringify(data, (_, v) => (typeof v === 'bigint' ? String(v) : v), 2)}
               </pre>
             </Collapsible>
           )}

@@ -7,12 +7,11 @@ import { WcError, WcErrorCode } from '../../@types/WcError';
 import { applyDefaults, getCommandByWc, resolveDispatch, validateDappParams } from '../constants/commandRegistry';
 import type { ConfirmProps } from '../dialogs/Confirm/Confirm';
 import { renderConfirm } from '../dialogs/Confirm/renderConfirm';
-import toCamelCase from '../utils/toCamelCase';
 import toSnakeCase from '../utils/toSnakeCase';
 import { sendDappAndAwait } from '../utils/webSocketBridge';
 
 import { captureBypassFromConfirmResult } from './bypassCapture';
-import { defaultDispatchDaemon, getDappHandler } from './dappHandlers';
+import { defaultDispatchDaemon, getDappHandler, processDispatchResponse } from './dappHandlers';
 import { getPair, upsertPair } from './pairStore';
 import { resolvePermission } from './permissions';
 import type { PairRecord, Principal } from './types';
@@ -55,11 +54,29 @@ export type DispatchAsPairDeps = {
   dispatchDaemon?: typeof defaultDispatchDaemon;
 };
 
+const BROKEN_BIGINT_RE = /^-?\d+n$/;
+
+function deepFixBrokenBigInts(value: unknown): unknown {
+  if (typeof value === 'string' && BROKEN_BIGINT_RE.test(value)) {
+    return BigInt(value.slice(0, -1));
+  }
+  if (Array.isArray(value)) return value.map(deepFixBrokenBigInts);
+  if (value !== null && typeof value === 'object') {
+    const out: Record<string, unknown> = {};
+    for (const [k, v] of Object.entries(value)) {
+      out[k] = deepFixBrokenBigInts(v);
+    }
+    return out;
+  }
+  return value;
+}
+
 export async function dispatchDaemonCommandAsPair(
   input: DispatchAsPairInput,
   deps: DispatchAsPairDeps,
 ): Promise<{ data: Record<string, unknown> }> {
-  const { wcCommand, data, topic, mainnet, fingerprint, networkPrefix, mainWindow, pair } = input;
+  const { wcCommand, topic, mainnet, fingerprint, networkPrefix, mainWindow, pair } = input;
+  const data = deepFixBrokenBigInts(input.data) as Record<string, unknown>;
 
   const entry = getCommandByWc(wcCommand);
   if (!entry) {
@@ -85,7 +102,7 @@ export async function dispatchDaemonCommandAsPair(
 
   const principal: Principal = { kind: 'pair', topic };
   const permission = deps.resolvePermission ?? resolvePermission;
-  const {nsCommand} = entry;
+  const { nsCommand } = entry;
   const decision = await permission(principal, nsCommand, snakeData, {
     wcCommand,
     fingerprint: fingerprint?.requested,
@@ -177,21 +194,13 @@ export async function dispatchDaemonCommandAsPair(
     data?: { error?: unknown; [k: string]: unknown };
   };
 
-  // Daemon application errors come back as response data (JSON-RPC transport
-  // errors throw upstream). Throw so the WC client rejects the dapp's
-  // request — silently returning the error envelope would let the dapp see
-  // `{ error, success: false }` as a successful payload and act on missing
-  // fields. Don't debit the allowance: an attacker could otherwise drain it
-  // with daemon-rejectable requests.
-  if (response?.data?.error) {
-    throw new WcError(String(response.data.error), WcErrorCode.INTERNAL_ERROR);
-  }
+  // Throws on daemon errors; don't debit the allowance on throw since an
+  // attacker could otherwise drain it with daemon-rejectable requests.
+  const camel = processDispatchResponse(response);
 
   if (decision.kind === 'allow') {
     decision.commit();
   }
-
-  const camel = toCamelCase(response?.data ?? {}) as Record<string, unknown>;
   // Per-schema reshape so dapp-facing payloads match what the legacy
   // api-react endpoints emitted (e.g. `chia_getWallets` → wallets array,
   // not `{ wallets: [...] }`).

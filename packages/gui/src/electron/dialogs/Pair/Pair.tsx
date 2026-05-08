@@ -153,8 +153,11 @@ export default function Pair(props: PairProps) {
   // Per-group default state computed at render time. The cascade JS in
   // openReactDialog re-runs this on first paint via the indeterminate
   // recompute, so SSR-emitted `defaultChecked` only seeds the run.
-  function groupDefaultChecked(commands: string[]): boolean {
-    return commands.length > 0 && commands.every((cmd) => bypassSet.has(cmd));
+  const DEFAULT_ON_GROUPS = new Set(['innocuous', 'balance']);
+  function groupDefaultChecked(key: string, commands: string[]): boolean {
+    if (commands.length === 0) return false;
+    if (bypassSet.size > 0) return commands.every((cmd) => bypassSet.has(cmd));
+    return DEFAULT_ON_GROUPS.has(key);
   }
 
   const hasUrl = !!metadata.url && metadata.url !== '#' && metadata.url.trim().length > 0;
@@ -276,7 +279,7 @@ export default function Pair(props: PairProps) {
                   >
                     <input
                       type="checkbox"
-                      defaultChecked={groupDefaultChecked(group.commands)}
+                      defaultChecked={groupDefaultChecked(group.key, group.commands)}
                       disabled={isEmpty}
                       data-cap-toggle={group.key}
                       className="w-[18px] h-[18px] accent-chia-primary shrink-0 disabled:cursor-not-allowed"

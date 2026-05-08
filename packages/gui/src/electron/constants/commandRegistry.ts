@@ -1510,6 +1510,7 @@ const SCHEMAS: Record<string, CommandSchema> = {
     dapp: {
       wcCommand: 'chia_createNewRemoteWallet',
       label: () => i18n._(/* i18n */ { id: 'Create new Remote Wallet' }),
+      handlerKey: 'createNewRemoteWallet',
     },
   },
 
@@ -2417,26 +2418,27 @@ const BY_WC_COMMAND = (() => {
     map.set(wcCommand, entry);
   };
   for (const [nsCommand, schema] of Object.entries(SCHEMAS)) {
-    if (!schema.dapp) continue;
-    register(schema.dapp.wcCommand, {
-      nsCommand,
-      schema,
-      defaults: schema.dapp.defaults,
-      label: schema.dapp.label,
-      description: schema.dapp.description,
-      requiresSync: schema.dapp.requiresSync === true,
-      handlerKey: schema.dapp.handlerKey,
-    });
-    for (const alias of schema.dapp.aliases ?? []) {
-      register(alias.wcCommand, {
+    if (schema.dapp) {
+      register(schema.dapp.wcCommand, {
         nsCommand,
         schema,
-        defaults: mergeDefaults(schema.dapp.defaults, alias.defaults),
-        label: alias.label ?? schema.dapp.label,
-        description: alias.description ?? schema.dapp.description,
-        requiresSync: alias.requiresSync ?? schema.dapp.requiresSync === true,
+        defaults: schema.dapp.defaults,
+        label: schema.dapp.label,
+        description: schema.dapp.description,
+        requiresSync: schema.dapp.requiresSync === true,
         handlerKey: schema.dapp.handlerKey,
       });
+      for (const alias of schema.dapp.aliases ?? []) {
+        register(alias.wcCommand, {
+          nsCommand,
+          schema,
+          defaults: mergeDefaults(schema.dapp.defaults, alias.defaults),
+          label: alias.label ?? schema.dapp.label,
+          description: alias.description ?? schema.dapp.description,
+          requiresSync: alias.requiresSync ?? schema.dapp.requiresSync === true,
+          handlerKey: schema.dapp.handlerKey,
+        });
+      }
     }
   }
   return map;

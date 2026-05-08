@@ -1,5 +1,15 @@
 import './wdyr.dev'; // must be first
 import './polyfill';
+
+// Make JSON.stringify BigInt-safe so WalletConnect's internal hash computation
+// (Verify API) doesn't crash when payloads contain BigInt values. Uses WC's own
+// "n"-suffix convention so hashes match the sender's patched sign-client.
+const origStringify = JSON.stringify;
+JSON.stringify = function jsonStringifyBigIntSafe(value: any, replacer?: any, space?: any) {
+  const effectiveReplacer = replacer || ((_: string, v: unknown) => (typeof v === 'bigint' ? `${v}n` : v));
+  return origStringify.call(JSON, value, effectiveReplacer, space);
+} as typeof JSON.stringify;
+
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 

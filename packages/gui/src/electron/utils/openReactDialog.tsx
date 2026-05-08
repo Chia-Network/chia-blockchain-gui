@@ -123,7 +123,15 @@ function generateScriptContent(confirmId: string) {
       syncDisabled();
     });
 
-    // Initialize indeterminate states from default-checked attributes.
+    // Seed member checkboxes from group toggles that were default-checked,
+    // then reconcile indeterminate states.
+    document.querySelectorAll('[data-cap-toggle]').forEach(function (toggle) {
+      if (!toggle.checked) return;
+      var group = toggle.getAttribute('data-cap-toggle');
+      document.querySelectorAll('[data-cap-group="' + group + '"]').forEach(function (m) {
+        m.checked = true;
+      });
+    });
     var seenGroups = new Set();
     document.querySelectorAll('[data-cap-group]').forEach(function (member) {
       var group = member.getAttribute('data-cap-group');
