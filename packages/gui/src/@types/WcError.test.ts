@@ -9,16 +9,16 @@ describe('WcError', () => {
   });
 
   it('instanceof Error and instanceof WcError both work after transpile', () => {
-    const e = new WcError('x', -32602);
+    const e = new WcError('x', -32_602);
     expect(e).toBeInstanceOf(Error);
     expect(e).toBeInstanceOf(WcError);
   });
 
   it('exposes the JSON-RPC + WC SDK code constants we use on the wire', () => {
     // Sanity: the values are what the spec / @walletconnect/utils define.
-    expect(WcErrorCode.METHOD_NOT_FOUND).toBe(-32601);
-    expect(WcErrorCode.INVALID_PARAMS).toBe(-32602);
-    expect(WcErrorCode.INTERNAL_ERROR).toBe(-32603);
+    expect(WcErrorCode.METHOD_NOT_FOUND).toBe(-32_601);
+    expect(WcErrorCode.INVALID_PARAMS).toBe(-32_602);
+    expect(WcErrorCode.INTERNAL_ERROR).toBe(-32_603);
     expect(WcErrorCode.UNAUTHORIZED_METHOD).toBe(3001);
     expect(WcErrorCode.USER_REJECTED).toBe(5000);
     expect(WcErrorCode.UNSUPPORTED_CHAINS).toBe(5100);
@@ -69,7 +69,7 @@ describe('encodeWcErrorForIpc / decodeWcErrorFromIpc', () => {
 
   it('decode handles negative codes (JSON-RPC range)', () => {
     const decoded = decodeWcErrorFromIpc('[wc:-32602] bad params');
-    expect(decoded?.code).toBe(-32602);
+    expect(decoded?.code).toBe(-32_602);
     expect(decoded?.message).toBe('bad params');
   });
 
@@ -80,7 +80,7 @@ describe('encodeWcErrorForIpc / decodeWcErrorFromIpc', () => {
     const wrapped =
       "Error invoking remote method 'permissions:dispatchAsPair': Error: [wc:-32602] param not allowed for dapp: fingerprint";
     const decoded = decodeWcErrorFromIpc(wrapped);
-    expect(decoded?.code).toBe(-32602);
+    expect(decoded?.code).toBe(-32_602);
     expect(decoded?.message).toBe('param not allowed for dapp: fingerprint');
   });
 });
@@ -138,7 +138,7 @@ describe('encodeWcErrorForIpc / decodeWcErrorFromIpc — data field', () => {
 
   it('decodes legacy prefix without data segment as no-data', () => {
     const decoded = decodeWcErrorFromIpc('[wc:-32603] m');
-    expect(decoded?.code).toBe(-32603);
+    expect(decoded?.code).toBe(-32_603);
     expect(decoded?.data).toBeUndefined();
   });
 
@@ -146,7 +146,7 @@ describe('encodeWcErrorForIpc / decodeWcErrorFromIpc — data field', () => {
     // Garbage in the data segment must not crash the error path — we'd be
     // dropping the only record of why something failed. Drop `data`, keep msg.
     const decoded = decodeWcErrorFromIpc('[wc:-32603|notvalidbase64==] still has a message');
-    expect(decoded?.code).toBe(-32603);
+    expect(decoded?.code).toBe(-32_603);
     expect(decoded?.message).toBe('still has a message');
     expect(decoded?.data).toBeUndefined();
   });

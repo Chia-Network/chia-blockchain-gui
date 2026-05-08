@@ -275,7 +275,7 @@ describe('dispatchDaemonCommandAsPair - response transform', () => {
         sendDappAndAwait: jest.fn(async () => ({
           data: {
             success: true,
-            fingerprint: 0xabc,
+            fingerprint: 0xa_bc,
             wallets: [
               { id: 1, type: 0, name: 'Standard' },
               { id: 2, type: 6, name: 'CAT' },
