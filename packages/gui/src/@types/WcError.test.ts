@@ -157,4 +157,13 @@ describe('encodeWcErrorForIpc / decodeWcErrorFromIpc — data field', () => {
     expect(decoded?.message).toBe('line1\nline2');
     expect(decoded?.data).toEqual({ x: 1 });
   });
+
+  it('preserves integers larger than Number.MAX_SAFE_INTEGER', () => {
+    const big = 18_446_744_073_709_551_615n;
+    const original = new WcError('big', WcErrorCode.INTERNAL_ERROR, {
+      data: { coinAmount: big },
+    });
+    const decoded = decodeWcErrorFromIpc(encodeWcErrorForIpc(original));
+    expect(decoded?.data).toEqual({ coinAmount: big });
+  });
 });

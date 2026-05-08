@@ -62,7 +62,7 @@ function decodeData(b64: string): unknown {
   if (!b64) return undefined;
   try {
     const json = Buffer.from(b64, 'base64').toString('utf8');
-    return JSON.parse(json);
+    return JSONbig({ useNativeBigInt: true }).parse(json);
   } catch {
     // Malformed payload — don't crash the error path; just drop `data`.
     return undefined;
