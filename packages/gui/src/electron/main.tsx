@@ -16,6 +16,7 @@ import path from 'node:path';
 import url from 'node:url';
 
 import windowStateKeeper from 'electron-window-state';
+import JSONbig from 'json-bigint';
 import { uniq } from 'lodash';
 import sanitizeFilename from 'sanitize-filename';
 
@@ -720,7 +721,7 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
             return;
           }
 
-          const parsedData = JSON.parse(data.toString());
+          const parsedData = JSONbig.parse(data.toString());
 
           if (
             parsedData.command === 'ping' &&
@@ -742,7 +743,7 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
           throw new Error('`mainWindow` is empty');
         }
 
-        const parsedData = JSON.parse(data);
+        const parsedData = JSONbig.parse(data);
         const command = parsedData.command.trim().toLowerCase();
         const destination = parsedData.destination.trim().toLowerCase();
 

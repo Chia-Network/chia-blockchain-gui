@@ -142,7 +142,7 @@ export default function bindEvents(
       } catch (err) {
         console.error(err);
 
-        const parsedMessage = JSON.parse(data.toString());
+        const parsedMessage = JSONbig.parse(data.toString());
 
         if (parsedMessage.request_id) {
           notifyWebContents(
@@ -189,7 +189,7 @@ export default function bindEvents(
     } catch (err) {
       console.error(err);
 
-      const parsedMessage = JSON.parse(data);
+      const parsedMessage = JSONbig.parse(data);
 
       if (parsedMessage.request_id) {
         notifyWebContents(
