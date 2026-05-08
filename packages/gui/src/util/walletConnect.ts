@@ -2,37 +2,52 @@ import Client from '@walletconnect/sign-client';
 import { getSdkError } from '@walletconnect/utils';
 import initDebug from 'debug';
 
-import walletConnectCommands from '../constants/WalletConnectCommands';
+import { WcError, WcErrorCode, decodeWcErrorFromIpc } from '../@types/WcError';
 import { type Pairs } from '../hooks/useWalletConnectPairs';
 
 const log = initDebug('chia-gui:walletConnect');
 
-const availableCommands = walletConnectCommands.map((command) => `chia_${command.command}`);
-
-async function respondSessionRequestError(client: Client, topic: string, id: number, message: string) {
-  await client.respond({
-    topic,
-    response: {
-      id,
-      jsonrpc: '2.0',
-      error: {
-        code: -32_600,
-        message,
+async function respondSessionRequestError(
+  client: Client,
+  topic: string,
+  id: number,
+  message: string,
+  code: number,
+  // Forwarded to JSON-RPC `error.data` so dapp clients that canonicalize
+  // `message` by code (many surface "Internal error" for `-32603` and only
+  // expose the original payload through `error.data`) can still recover the
+  // real failure detail.
+  data?: unknown,
+) {
+  try {
+    await client.respond({
+      topic,
+      response: {
+        id,
+        jsonrpc: '2.0',
+        error: { code, message, ...(data !== undefined ? { data } : {}) },
       },
-    },
-  });
+    });
+  } catch (e) {
+    // Dapp/SDK may have evicted the request (5-min expiry, disconnect race,
+    // etc.). Swallow so the `session_request` listener doesn't surface an
+    // uncaught rejection as a user-facing popup.
+    log('Failed to respond to session request', { topic, id }, e);
+  }
 }
 
-/*
-export const STANDARD_ERROR_MAP = {
-  [PARSE_ERROR]: { code: -32700, message: "Parse error" },
-  [INVALID_REQUEST]: { code: -32600, message: "Invalid Request" },
-  [METHOD_NOT_FOUND]: { code: -32601, message: "Method not found" },
-  [INVALID_PARAMS]: { code: -32602, message: "Invalid params" },
-  [INTERNAL_ERROR]: { code: -32603, message: "Internal error" },
-  [SERVER_ERROR]: { code: -32000, message: "Server error" },
-};
-*/
+// IPC strips the WcError prototype; main encodes the code via prefix and we
+// recover it here. Plain Errors (daemon failures, unexpected throws) default
+// to INTERNAL_ERROR — the spec-correct fallback for "wallet failed".
+function toWcError(error: unknown): WcError {
+  if (error instanceof WcError) return error;
+  if (error instanceof Error) {
+    const decoded = decodeWcErrorFromIpc(error.message);
+    if (decoded) return decoded;
+    return new WcError(error.message, WcErrorCode.INTERNAL_ERROR);
+  }
+  return new WcError(String(error), WcErrorCode.INTERNAL_ERROR);
+}
 
 export function processError(error: Error) {
   if (error.message.includes('No matching key')) {
@@ -94,9 +109,7 @@ export async function processSessionProposal(
       throw new Error('Pairing topic not found');
     }
 
-    // WalletConnect SDK v2.17+ deprecated requiredNamespaces and moves them
-    // to optionalNamespaces, so check both. When a dApp provides chia in both,
-    // merge them so the approved session advertises all supported capabilities.
+    // SDK v2.17+ moved requiredNamespaces to optionalNamespaces; merge both.
     const requiredChia = requiredNamespaces?.chia;
     const optionalChia = optionalNamespaces?.chia;
 
@@ -112,60 +125,24 @@ export async function processSessionProposal(
       throw new Error('Chain not supported');
     }
 
-    // find unsupported methods
-    const method = methods.find((item) => !availableCommands.includes(item));
-    if (method) {
-      log('dApp wants to use unsupported command', method);
-      // throw new Error(`Method not supported: ${method}`);
-    }
-
-    if (proposerMetadata) {
-      pairs.updatePair(pairingTopic, { metadata: proposerMetadata });
-    }
-
     const pair = pairs.getPair(pairingTopic);
     if (!pair) {
       throw new Error('Pair not found');
     }
 
-    const { fingerprints } = pair;
-    const instance = pair.mainnet ? 'mainnet' : 'testnet';
-    const chain = `chia:${instance}`;
-    if (!supportedChains.includes(chain)) {
-      throw new Error(`Requested chains do not include pair network: ${chain}`);
-    }
-
-    const accounts = fingerprints.map((fingerprint) => `${chain}:${fingerprint}`);
-
-    const namespaces = {
-      chia: {
-        accounts,
-        methods,
-        events,
-      },
-    };
-
-    const { acknowledged } = await client.approve({
-      id,
-      namespaces,
-    });
-
-    const result = await acknowledged();
-    if (!('topic' in result) || !result.topic) {
-      return;
-    }
-
-    // new session created
+    // Capture the proposal but defer approval — the main-process Pair dialog
+    // owns wallet selection and permission grant; `approveSessionProposal`
+    // runs after the user confirms.
     pairs.updatePair(pairingTopic, (p) => ({
       ...p,
-      sessions: [
-        ...p.sessions,
-        {
-          topic: result.topic,
-          metadata: proposerMetadata,
-          namespaces,
-        },
-      ],
+      metadata: proposerMetadata ?? p.metadata,
+      pendingProposal: {
+        id,
+        proposerMetadata,
+        methods,
+        events,
+        chains: supportedChains,
+      },
     }));
   } catch (error) {
     try {
@@ -184,6 +161,94 @@ export async function processSessionProposal(
   }
 }
 
+export async function approveSessionProposal(
+  client: Client,
+  pairs: Pairs,
+  pairTopic: string,
+  fingerprints: number[],
+  mainnet: boolean,
+  /** Must be the registry-filtered subset persisted on the pair record. */
+  approvedMethods: string[],
+) {
+  if (!client) {
+    throw new Error('Client not initialized');
+  }
+
+  const pair = pairs.getPair(pairTopic);
+  if (!pair) {
+    throw new Error('Pair not found');
+  }
+
+  const proposal = pair.pendingProposal;
+  if (!proposal) {
+    throw new Error('No pending proposal for this pair');
+  }
+
+  if (!fingerprints.length) {
+    throw new Error('At least one wallet must be selected');
+  }
+
+  const instance = mainnet ? 'mainnet' : 'testnet';
+  const chain = `chia:${instance}`;
+  if (!proposal.chains.includes(chain)) {
+    throw new Error(`Requested chains do not include pair network: ${chain}`);
+  }
+
+  const accounts = fingerprints.map((fingerprint) => `${chain}:${fingerprint}`);
+  const namespaces = {
+    chia: {
+      accounts,
+      methods: approvedMethods,
+      events: proposal.events,
+    },
+  };
+
+  const { acknowledged } = await client.approve({
+    id: proposal.id,
+    namespaces,
+  });
+
+  const result = await acknowledged();
+  if (!('topic' in result) || !result.topic) {
+    return;
+  }
+
+  pairs.updatePair(pairTopic, (p) => ({
+    ...p,
+    fingerprints,
+    pendingProposal: undefined,
+    sessions: [
+      ...p.sessions,
+      {
+        topic: result.topic,
+        metadata: proposal.proposerMetadata,
+        namespaces,
+      },
+    ],
+  }));
+}
+
+export async function rejectSessionProposal(client: Client, pairs: Pairs, pairTopic: string) {
+  if (!client) {
+    throw new Error('Client not initialized');
+  }
+
+  const pair = pairs.getPair(pairTopic);
+  const proposal = pair?.pendingProposal;
+  if (proposal) {
+    try {
+      await client.reject({
+        id: proposal.id,
+        reason: getSdkError('USER_REJECTED'),
+      });
+    } catch (e) {
+      log('Failed to reject session proposal', e);
+    }
+  }
+
+  await disconnectPair(client, pairs, pairTopic);
+}
+
 export async function processSessionDelete(client: Client, pairs: Pairs, event: { id: number; topic: string }) {
   try {
     const { topic: session } = event;
@@ -198,16 +263,27 @@ export async function processSessionDelete(client: Client, pairs: Pairs, event: 
   }
 }
 
-export function processPairingDelete(pairs: Pairs, event: { topic: string }) {
+export async function processPairingDelete(pairs: Pairs, event: { topic: string }) {
   const { topic } = event;
 
   pairs.removePair(topic);
+  await revokeMainPair(topic);
+}
+
+// Best-effort. A stale main record is inert (no session = no dispatch), so
+// failure here doesn't block teardown — log and move on.
+async function revokeMainPair(topic: string): Promise<void> {
+  try {
+    await window.permissionsAPI.revokePair(topic);
+  } catch (e) {
+    log('Failed to revoke main-side pair record', topic, e);
+  }
 }
 
 export async function processSessionRequest(
   client: Client | undefined,
   pairs: Pairs,
-  process: (topic: string, command: string, params: any) => Promise<any>,
+  process: (topic: string, command: string, params: any, ctx: { mainnet: boolean }) => Promise<any>,
   event: {
     id: number;
     topic: string;
@@ -241,7 +317,7 @@ export async function processSessionRequest(
         '— disconnecting orphan session',
       );
       try {
-        await respondSessionRequestError(client, topic, id, 'Pair not found');
+        await respondSessionRequestError(client, topic, id, 'Pair not found', WcErrorCode.USER_REJECTED);
       } catch (e) {
         log('Failed to respond to orphan session request:', e);
       }
@@ -256,13 +332,12 @@ export async function processSessionRequest(
 
     const [network, instance] = chainId.split(':');
     if (network !== 'chia') {
-      throw new Error('Network not supported');
+      throw new WcError('Network not supported', WcErrorCode.UNSUPPORTED_CHAINS);
     }
-
     const isMainnet = instance === 'mainnet';
-    if (isMainnet !== pair.mainnet) {
-      throw new Error('Network instance is different');
-    }
+
+    // All gates (network/fingerprint/commands) live in main; renderer is
+    // not trusted for any of them.
 
     const { fingerprint, ...rest } = params;
     const updatedParams = {
@@ -270,12 +345,9 @@ export async function processSessionRequest(
       fingerprint: Number.parseInt(fingerprint, 10),
     };
 
-    if (!pair.fingerprints.includes(updatedParams.fingerprint)) {
-      throw new Error('Fingerprint not found');
-    }
-
     log('method', method, updatedParams);
-    const result = await process(topic, method, updatedParams);
+    // Main keys PairRecord by pair topic, not session topic — translate here.
+    const result = await process(pair.topic, method, updatedParams, { mainnet: isMainnet });
     log('result', result);
 
     await client.respond({
@@ -292,7 +364,8 @@ export async function processSessionRequest(
 
       const { id, topic } = event;
       if (client) {
-        await respondSessionRequestError(client, topic, id, (error as Error).message ?? 'Invalid Session Request');
+        const wc = toWcError(error);
+        await respondSessionRequestError(client, topic, id, wc.message, wc.code, wc.data);
       }
     } catch (e) {
       processError(e as Error);
@@ -326,6 +399,8 @@ export async function disconnectPair(client: Client, pairs: Pairs, topic: string
     log('Error during pair disconnect, removing pair anyway:', e);
   } finally {
     pairs.removePair(topic);
+    // Drop the main-side record so disconnected pairs don't leave dormant consents.
+    await revokeMainPair(topic);
   }
 }
 
@@ -333,19 +408,16 @@ export async function cleanupPairings(client: Client, pairs: Pairs) {
   try {
     const pairings = await client.core.pairing.getPairings();
 
-    // disconnect pairings which are not registered in application or reactivate them
     await Promise.all(
       pairings.map(async (pairing) => {
         const { topic, active } = pairing;
 
-        // disconnect peers which are not used in application
         if (!pairs.hasPair(topic)) {
           log('Disconnecting pairing because WalletConnect pair is not registered in the application', topic);
           await disconnectPair(client, pairs, topic);
           return;
         }
 
-        // reactivate pairing if it was active before
         if (!active) {
           try {
             log('Reactivating pairing', topic);
@@ -357,7 +429,6 @@ export async function cleanupPairings(client: Client, pairs: Pairs) {
       }),
     );
 
-    // remove pairs which are not in pairing list
     await Promise.all(
       pairs.get().map(async (pair) => {
         const { topic } = pair;
@@ -392,7 +463,12 @@ export function bindEvents(
   }
 
   async function handleSessionRequest(event: any) {
-    await processSessionRequest(client, pairs, onProcess(), event);
+    // Catch-all so a stray rejection doesn't surface as an Electron popup.
+    try {
+      await processSessionRequest(client, pairs, onProcess(), event);
+    } catch (e) {
+      log('Unhandled session_request error', e);
+    }
   }
 
   async function handlePairingDelete(event: any) {

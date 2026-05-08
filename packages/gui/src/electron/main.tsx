@@ -16,6 +16,7 @@ import path from 'node:path';
 import url from 'node:url';
 
 import windowStateKeeper from 'electron-window-state';
+import JSONbig from 'json-bigint';
 import { uniq } from 'lodash';
 import sanitizeFilename from 'sanitize-filename';
 
@@ -23,25 +24,42 @@ import sanitizeFilename from 'sanitize-filename';
 import '../config/env';
 
 import packageJson from '../../package.json';
+import { WcError, WcErrorCode, encodeWcErrorForIpc } from '../@types/WcError';
 import AppIcon from '../assets/img/chia64x64.png';
 import { i18n } from '../config/locales';
 
 import CacheManager from './CacheManager';
 import AddressBookAPI from './constants/AddressBookAPI';
-import AllowedCommands from './constants/AllowedCommands';
 import AppAPI from './constants/AppAPI';
 import ChiaLogsAPI from './constants/ChiaLogsAPI';
 import LinkAPI from './constants/LinkAPI';
+import PermissionsAPI from './constants/PermissionsAPI';
 import PreferencesAPI from './constants/PreferencesAPI';
+import { commandsMetadata, filterRequestedCommands } from './constants/commandRegistry';
 import About from './dialogs/About/About';
-import Confirm, { getTitle as getConfirmTitle } from './dialogs/Confirm/Confirm';
+import Confirm from './dialogs/Confirm/Confirm';
+import { renderConfirm } from './dialogs/Confirm/renderConfirm';
 import KeyDetail from './dialogs/KeyDetail/KeyDetail';
+import Pair, { getTitle as getPairTitle, type PairWalletOption } from './dialogs/Pair/Pair';
+import { buildNewPairRecord } from './permissions/buildPairRecord';
+import { checkPairAccess } from './permissions/checkPairAccess';
+import { dispatchDaemonCommandAsPair } from './permissions/dispatchAsPair';
+import {
+  classifyForPairDialog,
+  dialogResultToBypass,
+  dialogResultToFingerprints,
+  dialogResultToGrants,
+} from './permissions/pairDialog';
+import { getPair, listPairs, removePair, resetBypass, resetBypassAll, upsertPair } from './permissions/pairStore';
+import { resolvePermission } from './permissions/permissions';
+import type { PairGrants, PairMetadata, PairRecord } from './permissions/types';
 import { readPrefs, savePrefs, migratePrefs } from './prefs';
 import { readAddressBook, saveAddressBook } from './utils/addressBook';
 import checkNFTOwnership from './utils/checkNFTOwnership';
 import chiaEnvironment, { chiaInit } from './utils/chiaEnvironment';
 import downloadFile from './utils/downloadFile';
 import fetchJSON from './utils/fetchJSON';
+import getAvailableWallets from './utils/getAvailableWallets';
 import getKeyDetails from './utils/getKeyDetails';
 import getNetworkInfo from './utils/getNetworkInfo';
 import ipcMainHandle from './utils/ipcMainHandle';
@@ -71,6 +89,13 @@ const cacheManager = new CacheManager({
   cacheDirectory,
   maxCacheSize: prefs.maxCacheSize,
 });
+
+// Hoisted so IPC handlers registered below can close over them; assigned in
+// `createWindow` once Electron is ready.
+let mainWindow: BrowserWindow | null = null;
+let networkPrefix: string | undefined;
+let currentDownloadRequest: any;
+let abortDownloadingFiles: boolean = false;
 
 // IPC listeners
 ipcMainHandle(PreferencesAPI.READ, () => readPrefs());
@@ -106,11 +131,199 @@ ipcMainHandle(AppAPI.SHOW_NOTIFICATION, async (options: { title: string; body: s
   }).show();
 });
 
-// main window
-let mainWindow: BrowserWindow | null = null;
+async function openPairDialog(
+  metadata: PairMetadata,
+  availableWallets: PairWalletOption[],
+  options: {
+    defaults?: PairRecord;
+    defaultFingerprints?: number[];
+    isEdit?: boolean;
+    allowed?: string[];
+    rejected?: string[];
+  } = {},
+): Promise<{ grants: PairGrants; fingerprints: number[]; bypass: string[]; resetUsed: boolean } | undefined> {
+  if (!mainWindow) {
+    throw new Error('mainWindow is empty');
+  }
 
-let currentDownloadRequest: any;
-let abortDownloadingFiles: boolean = false;
+  const grantedCommands = options.allowed ?? options.defaults?.commands ?? [];
+  const commandGroups = classifyForPairDialog(grantedCommands);
+
+  const result = await openReactDialog<Record<string, unknown> | true | false, React.ComponentProps<typeof Pair>>(
+    mainWindow,
+    Pair,
+    {
+      metadata,
+      availableWallets,
+      defaultGrants: options.defaults?.grants,
+      defaultFingerprints: options.defaults?.fingerprints ?? options.defaultFingerprints,
+      isEdit: !!options.isEdit,
+      defaultUsedMojos: options.defaults?.usedMojos,
+      defaultBypass: options.defaults?.bypass ?? [],
+      commandGroups,
+      currencyCode: networkPrefix ? networkPrefix.toUpperCase() : 'XCH',
+      rejectedCommands: options.rejected ?? [],
+    },
+    {
+      title: getPairTitle(!!options.isEdit),
+      width: 640,
+      height: 600,
+    },
+  );
+
+  if (!result || result === true) {
+    return undefined;
+  }
+
+  return {
+    grants: dialogResultToGrants(result),
+    fingerprints: dialogResultToFingerprints(result),
+    bypass: dialogResultToBypass(result, grantedCommands),
+    resetUsed: result.resetUsed === true,
+  };
+}
+
+ipcMainHandle(PermissionsAPI.PAIR_LIST, () => listPairs());
+
+ipcMainHandle(
+  PermissionsAPI.PAIR_REGISTER,
+  async (payload: {
+    topic: string;
+    mainnet: boolean;
+    metadata: PairMetadata;
+    /** Wire form `chia_<name>`; filtered through the registry — never trusted as-is. */
+    requestedCommands?: string[];
+  }) => {
+    const { topic, mainnet, metadata, requestedCommands = [] } = payload;
+    if (typeof mainnet !== 'boolean') {
+      throw new Error('mainnet flag is required');
+    }
+    const { availableWallets, defaultFingerprints } = await getAvailableWallets();
+    const { allowed, rejected } = filterRequestedCommands(requestedCommands);
+    const decision = await openPairDialog(metadata, availableWallets, {
+      defaultFingerprints,
+      allowed,
+      rejected,
+    });
+    if (!decision) return null;
+
+    const record = buildNewPairRecord({
+      topic,
+      mainnet,
+      metadata,
+      fingerprints: decision.fingerprints,
+      grants: decision.grants,
+      commands: allowed,
+      bypass: decision.bypass,
+      now: Date.now(),
+    });
+    upsertPair(record);
+    return record;
+  },
+);
+
+ipcMainHandle(PermissionsAPI.PAIR_EDIT, async (payload: { topic: string }) => {
+  const { topic } = payload;
+  const existing = getPair(topic);
+  if (!existing) return null;
+
+  const { availableWallets } = await getAvailableWallets();
+  const decision = await openPairDialog(existing.metadata, availableWallets, {
+    defaults: existing,
+    isEdit: true,
+    // No new proposal on edit — show whatever was previously approved.
+    allowed: existing.commands,
+  });
+  if (!decision) return existing;
+
+  const updated: PairRecord = {
+    ...existing,
+    fingerprints: decision.fingerprints,
+    grants: decision.grants,
+    bypass: decision.bypass,
+    usedMojos: decision.resetUsed ? '0' : existing.usedMojos,
+    updatedAt: Date.now(),
+  };
+  upsertPair(updated);
+  return updated;
+});
+
+ipcMainHandle(PermissionsAPI.PAIR_REVOKE, (topic: string) => {
+  removePair(topic);
+  return true;
+});
+
+ipcMainHandle(PermissionsAPI.PAIR_RESET_BYPASS, (topic: string) => resetBypass(topic) ?? null);
+
+ipcMainHandle(PermissionsAPI.PAIR_RESET_BYPASS_ALL, () => {
+  resetBypassAll();
+  return true;
+});
+
+ipcMainHandle(PermissionsAPI.COMMANDS_METADATA, () => commandsMetadata());
+
+// Dapp WC dispatch — single IPC entry point so the principal is bound here
+// rather than threaded through shared infrastructure where it could leak.
+ipcMainHandle(
+  PermissionsAPI.DISPATCH_AS_PAIR,
+  async (payload: {
+    wcCommand: string;
+    data?: Record<string, unknown>;
+    topic: string;
+    mainnet: boolean;
+    fingerprint?: {
+      requested: number;
+      current?: number;
+      requestedLabel?: string;
+      currentLabel?: string;
+    };
+  }) => {
+    try {
+      if (!mainWindow) {
+        throw new WcError('mainWindow is empty', WcErrorCode.INTERNAL_ERROR);
+      }
+      const activeWindow = mainWindow;
+
+      const { wcCommand, data: argsData, topic, mainnet, fingerprint } = payload;
+      if (typeof mainnet !== 'boolean') {
+        throw new WcError('mainnet flag is required', WcErrorCode.INVALID_PARAMS);
+      }
+      const data = argsData ?? {};
+
+      const access = checkPairAccess({ topic, wcCommand, fingerprint: fingerprint?.requested, mainnet }, { getPair });
+      if (!access.ok) {
+        throw new WcError(access.reason, access.code);
+      }
+      const { pair } = access;
+
+      return await dispatchDaemonCommandAsPair(
+        {
+          wcCommand,
+          data,
+          topic,
+          mainnet,
+          fingerprint,
+          networkPrefix,
+          mainWindow: activeWindow,
+          pair,
+        },
+        {
+          openConfirm: (props, options) =>
+            openReactDialog<true | false | Record<string, unknown>, React.ComponentProps<typeof Confirm>>(
+              activeWindow,
+              Confirm,
+              props,
+              options,
+            ),
+        },
+      );
+    } catch (e) {
+      // Electron IPC strips custom Error properties (`code`). Re-throw with
+      // the code encoded into the message; renderer decodes via decodeWcErrorFromIpc.
+      throw new Error(encodeWcErrorForIpc(e));
+    }
+  },
+);
 
 // When there is no config file, it is assumed to be the first run.
 // At that time, the config file is created here by `chia init`.
@@ -169,7 +382,6 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
   let isClosing = false;
   let promptOnQuit = true;
   let mainWindowLaunchTasks: ((window: BrowserWindow) => void)[] = [];
-  let networkPrefix: string | undefined;
 
   const createWindow = async () => {
     if (manageDaemonLifetime(NET)) {
@@ -509,7 +721,7 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
             return;
           }
 
-          const parsedData = JSON.parse(data.toString());
+          const parsedData = JSONbig.parse(data.toString());
 
           if (
             parsedData.command === 'ping' &&
@@ -531,7 +743,7 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
           throw new Error('`mainWindow` is empty');
         }
 
-        const parsedData = JSON.parse(data);
+        const parsedData = JSONbig.parse(data);
         const command = parsedData.command.trim().toLowerCase();
         const destination = parsedData.destination.trim().toLowerCase();
 
@@ -541,30 +753,48 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
           throw new Error('Private key is not allowed to be sent to the renderer process');
         }
 
-        if (!AllowedCommands.includes(nsCommand)) {
-          const bypassCommands = privatePreferences.get('bypassCommands', [] as string[]);
-          if (bypassCommands.includes(nsCommand)) {
-            return;
-          }
+        // Renderer sends are always UI-principal; dapp calls go via DISPATCH_AS_PAIR.
+        const decision = await resolvePermission({ kind: 'ui' }, nsCommand, parsedData.data ?? {});
 
-          const result = await openReactDialog(
-            mainWindow,
-            Confirm,
-            {
-              networkPrefix,
-              command: nsCommand,
-              data: parsedData.data,
-            },
-            {
-              title: getConfirmTitle(nsCommand),
-              width: 600,
-              height: 500,
-            },
-          );
+        if (decision.kind === 'allow') {
+          decision.commit();
+          return;
+        }
 
-          if (result !== true) {
-            throw new Error('Operation cancelled by user');
-          }
+        if (decision.kind === 'deny') {
+          throw new Error(decision.reason);
+        }
+
+        const bypassCommands = privatePreferences.get('bypassCommands', [] as string[]);
+        if (bypassCommands.includes(nsCommand)) {
+          return;
+        }
+
+        const onSendData = (parsedData.data ?? {}) as Record<string, unknown>;
+        const rendered = await renderConfirm(nsCommand, onSendData, { networkPrefix });
+        const result = await openReactDialog(
+          mainWindow,
+          Confirm,
+          {
+            networkPrefix,
+            command: nsCommand,
+            data: onSendData,
+            title: rendered.title,
+            message: rendered.message,
+            confirmLabel: rendered.confirmLabel,
+            destructive: rendered.destructive,
+            rows: rendered.rows,
+            display: rendered.display,
+          },
+          {
+            title: rendered.title,
+            width: 640,
+            height: 600,
+          },
+        );
+
+        if (result !== true) {
+          throw new Error('Operation cancelled by user');
         }
       },
     });

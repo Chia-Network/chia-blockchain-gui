@@ -18,6 +18,8 @@ export type ConfirmDialogProps = {
   onConfirm?: () => Promise<void>;
   disableConfirmButton?: boolean;
   autoClose?: 'confirm' | 'cancel';
+  disableBackdropClick?: boolean;
+  disableEscapeKeyDown?: boolean;
 };
 
 export default function ConfirmDialog(props: ConfirmDialogProps) {
@@ -32,6 +34,8 @@ export default function ConfirmDialog(props: ConfirmDialogProps) {
     onConfirm,
     disableConfirmButton,
     autoClose,
+    disableBackdropClick = false,
+    disableEscapeKeyDown = false,
     ...rest
   } = props;
 
@@ -66,9 +70,19 @@ export default function ConfirmDialog(props: ConfirmDialogProps) {
     }
   }, [autoClose, handleConfirm, handleCancel]);
 
+  const handleDialogClose = useCallback(
+    (_event: object, reason: 'backdropClick' | 'escapeKeyDown') => {
+      if (disableBackdropClick && reason === 'backdropClick') return;
+      if (disableEscapeKeyDown && reason === 'escapeKeyDown') return;
+      handleCancel();
+    },
+    [disableBackdropClick, disableEscapeKeyDown, handleCancel],
+  );
+
   return (
     <Dialog
-      onClose={handleCancel}
+      onClose={handleDialogClose}
+      disableEscapeKeyDown={disableEscapeKeyDown}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
       open={!autoClose && open}

@@ -22,7 +22,7 @@ export default function SandboxedIframe(props: SandboxIframeProps) {
               connect-src 'none';
               font-src   'none';
               frame-src  'none';
-              img-src 'none';
+              img-src    https:;
               media-src 'none';
               object-src 'none';
               script-src 'none';

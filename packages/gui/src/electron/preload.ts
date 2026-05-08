@@ -6,6 +6,7 @@ import AppAPI from './constants/AppAPI';
 import CacheAPI from './constants/CacheAPI';
 import ChiaLogsAPI from './constants/ChiaLogsAPI';
 import LinkAPI from './constants/LinkAPI';
+import PermissionsAPI from './constants/PermissionsAPI';
 import PreferencesAPI from './constants/PreferencesAPI';
 import WebSocketAPI from './constants/WebSocketAPI';
 
@@ -84,6 +85,38 @@ contextBridge.exposeInMainWorld(API.CHIA_LOGS, {
 
 contextBridge.exposeInMainWorld(API.LINK, {
   openExternal: (url: string) => invokeWithCustomErrors(LinkAPI.OPEN_EXTERNAL, url),
+});
+
+contextBridge.exposeInMainWorld(API.PERMISSIONS, {
+  listPairs: () => invokeWithCustomErrors(PermissionsAPI.PAIR_LIST),
+  registerPair: (payload: {
+    topic: string;
+    mainnet: boolean;
+    metadata: { name: string; url?: string; icon?: string; description?: string };
+    requestedCommands?: string[];
+  }) => invokeWithCustomErrors(PermissionsAPI.PAIR_REGISTER, payload),
+  editPair: (payload: { topic: string }) => invokeWithCustomErrors(PermissionsAPI.PAIR_EDIT, payload),
+  revokePair: (topic: string) => invokeWithCustomErrors(PermissionsAPI.PAIR_REVOKE, topic),
+  resetBypass: (topic: string) => invokeWithCustomErrors(PermissionsAPI.PAIR_RESET_BYPASS, topic),
+  resetBypassAll: () => invokeWithCustomErrors(PermissionsAPI.PAIR_RESET_BYPASS_ALL),
+  commandsMetadata: () => invokeWithCustomErrors(PermissionsAPI.COMMANDS_METADATA),
+  subscribeToNotification: (callback: (...args: unknown[]) => void) =>
+    onIpcEvent(PermissionsAPI.NOTIFICATION_EVENT, callback),
+  dispatchAsPair: (payload: {
+    /** camelCase WalletConnect command name (e.g. `spendCAT`); main resolves
+     *  to the daemon destination + RPC name via the registry. */
+    wcCommand: string;
+    data?: Record<string, unknown>;
+    topic: string;
+    /** Chain id derived from the dapp's WC chainId (`chia:mainnet` → true). */
+    mainnet: boolean;
+    fingerprint?: {
+      requested: number;
+      current?: number;
+      requestedLabel?: string;
+      currentLabel?: string;
+    };
+  }) => invokeWithCustomErrors(PermissionsAPI.DISPATCH_AS_PAIR, payload),
 });
 
 contextBridge.exposeInMainWorld(API.ADDRESS_BOOK, {
