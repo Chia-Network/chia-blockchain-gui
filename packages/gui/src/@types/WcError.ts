@@ -2,11 +2,11 @@
 // Codes verified against `@walletconnect/utils` v2.23.9 (`getSdkError`).
 export const WcErrorCode = {
   /** JSON-RPC 2.0 — method does not exist. */
-  METHOD_NOT_FOUND: -32601,
+  METHOD_NOT_FOUND: -32_601,
   /** JSON-RPC 2.0 — invalid method parameters. */
-  INVALID_PARAMS: -32602,
+  INVALID_PARAMS: -32_602,
   /** JSON-RPC 2.0 — internal wallet error. */
-  INTERNAL_ERROR: -32603,
+  INTERNAL_ERROR: -32_603,
   /** WC SDK — pair did not grant the method. */
   UNAUTHORIZED_METHOD: 3001,
   /** WC SDK — user explicitly rejected the request. */

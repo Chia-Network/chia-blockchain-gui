@@ -11,7 +11,7 @@
  * still imports under jest.
  */
 
-/* eslint-disable global-require, @typescript-eslint/no-require-imports */
+ 
 import { snakeCase } from 'lodash';
 
 jest.mock('@lingui/macro', () => ({
@@ -198,16 +198,15 @@ type LegacyCommand = {
   params?: LegacyParam[];
 };
 
-// eslint-disable-next-line import/first, import/order
+ 
 import legacyCommandsRaw from './WalletConnectCommands';
-// eslint-disable-next-line import/first, import/order
 import {
   SCHEMA_COMMANDS,
   getCommandByWc,
   getCommandSchema,
   validateDappParams,
 } from './electron/constants/commandRegistry';
-// eslint-disable-next-line import/first, import/order
+// eslint-disable-next-line import/order
 import allowedCommands from './electron/constants/AllowedCommands';
 
 const legacyCommands = legacyCommandsRaw as unknown as LegacyCommand[];

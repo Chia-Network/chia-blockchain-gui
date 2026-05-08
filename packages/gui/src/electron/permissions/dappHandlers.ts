@@ -2,9 +2,9 @@
 // in via `dapp.handlerKey`; `dispatchAsPair` runs validation + permission
 // + confirm first, then invokes the handler with `dispatchDaemon` for
 // composed flows.
+import type { BrowserWindow } from 'electron';
 import crypto from 'node:crypto';
 
-import type { BrowserWindow } from 'electron';
 import JSONbig from 'json-bigint';
 
 import PermissionsAPI from '../constants/PermissionsAPI';
@@ -50,10 +50,10 @@ export async function defaultDispatchDaemon(
   return toCamelCase(response?.data ?? {}) as Record<string, unknown>;
 }
 
-const requestPermissions: DappHandler = async () => {
+const requestPermissions: DappHandler = async () => 
   // Main owns bypass/grants; ack so legacy dapps still work.
-  return { data: { success: true } };
-};
+   ({ data: { success: true } })
+;
 
 const showNotification: DappHandler = async ({ data, pair, fingerprint, mainWindow }) => {
   const notification = buildShowNotification(pair, data, fingerprint?.requested);

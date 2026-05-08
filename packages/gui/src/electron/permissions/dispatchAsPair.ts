@@ -1,6 +1,6 @@
+import type { BrowserWindow } from 'electron';
 import crypto from 'node:crypto';
 
-import type { BrowserWindow } from 'electron';
 import JSONbig from 'json-bigint';
 
 import { WcError, WcErrorCode } from '../../@types/WcError';
@@ -85,7 +85,7 @@ export async function dispatchDaemonCommandAsPair(
 
   const principal: Principal = { kind: 'pair', topic };
   const permission = deps.resolvePermission ?? resolvePermission;
-  const nsCommand = entry.nsCommand;
+  const {nsCommand} = entry;
   const decision = await permission(principal, nsCommand, snakeData, {
     wcCommand,
     fingerprint: fingerprint?.requested,
