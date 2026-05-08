@@ -377,13 +377,7 @@ describe('filterRequestedCommands', () => {
   });
 
   it('ignores non-string entries', () => {
-    const result = filterRequestedCommands([
-      'chia_sendTransaction',
-      // @ts-expect-error - exercising defensive runtime check
-      null,
-      // @ts-expect-error
-      42,
-    ]);
+    const result = filterRequestedCommands(['chia_sendTransaction', null, 42] as unknown);
     expect(result.allowed).toEqual(['chia_sendTransaction']);
     expect(result.rejected).toEqual([]);
   });
