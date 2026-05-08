@@ -11,7 +11,6 @@
  * still imports under jest.
  */
 
-/* eslint-disable global-require, @typescript-eslint/no-require-imports */
 import { snakeCase } from 'lodash';
 
 jest.mock('@lingui/macro', () => ({
@@ -198,17 +197,15 @@ type LegacyCommand = {
   params?: LegacyParam[];
 };
 
-// eslint-disable-next-line import/first, import/order
+// eslint-disable-next-line import/extensions -- TODO: WalletConnectCommands file is missing from the repo, needs to be added
 import legacyCommandsRaw from './WalletConnectCommands';
-// eslint-disable-next-line import/first, import/order
+import allowedCommands from './electron/constants/AllowedCommands';
 import {
   SCHEMA_COMMANDS,
   getCommandByWc,
   getCommandSchema,
   validateDappParams,
 } from './electron/constants/commandRegistry';
-// eslint-disable-next-line import/first, import/order
-import allowedCommands from './electron/constants/AllowedCommands';
 
 const legacyCommands = legacyCommandsRaw as unknown as LegacyCommand[];
 
@@ -248,9 +245,10 @@ describe('legacy parity: command coverage', () => {
     const newWcCommands: string[] = [];
     for (const ns of SCHEMA_COMMANDS) {
       const schema = getCommandSchema(ns);
-      if (!schema.dapp) continue;
-      newWcCommands.push(schema.dapp.wcCommand);
-      for (const alias of schema.dapp.aliases ?? []) newWcCommands.push(alias.wcCommand);
+      if (schema.dapp) {
+        newWcCommands.push(schema.dapp.wcCommand);
+        for (const alias of schema.dapp.aliases ?? []) newWcCommands.push(alias.wcCommand);
+      }
     }
     const leaked = newWcCommands.filter((wc) => !legacySet.has(wc));
     expect(leaked).toEqual([]);
@@ -263,10 +261,11 @@ describe('legacy parity: command coverage', () => {
     for (const legacy of legacyCommands) {
       const wcCommand = `chia_${legacy.command}`;
       const entry = getCommandByWc(wcCommand);
-      if (!entry) continue;
-      const legacyWait = legacy.waitForSync === true;
-      const newRequires = entry.requiresSync === true;
-      if (legacyWait !== newRequires) drift.push({ wcCommand, legacyWait, newRequires });
+      if (entry) {
+        const legacyWait = legacy.waitForSync === true;
+        const newRequires = entry.requiresSync === true;
+        if (legacyWait !== newRequires) drift.push({ wcCommand, legacyWait, newRequires });
+      }
     }
     expect(drift).toEqual([]);
   });
@@ -292,9 +291,9 @@ describe('legacy parity: per-command param parity', () => {
         const np = newByName.get(snake);
         if (!np) {
           missing.push({ legacy: lp.name, expectedSnake: snake });
-          continue;
+        } else if (np.dappAllowed !== true) {
+          notAllowed.push(snake);
         }
-        if (np.dappAllowed !== true) notAllowed.push(snake);
       }
       expect({ missing, notAllowed }).toEqual({ missing: [], notAllowed: [] });
     });
@@ -318,10 +317,11 @@ describe('legacy parity: per-command param parity', () => {
       for (const lp of legacyParams(legacy)) {
         const snake = snakeName(lp.name);
         const np = newByName.get(snake);
-        if (!np) continue;
-        const legacyHide = lp.hide === true;
-        const newHide = np.hide === true;
-        if (legacyHide !== newHide) drift.push({ name: snake, legacyHide, newHide });
+        if (np) {
+          const legacyHide = lp.hide === true;
+          const newHide = np.hide === true;
+          if (legacyHide !== newHide) drift.push({ name: snake, legacyHide, newHide });
+        }
       }
       expect(drift).toEqual([]);
     });
@@ -334,10 +334,11 @@ describe('legacy parity: per-command param parity', () => {
       for (const lp of legacyParams(legacy)) {
         const snake = snakeName(lp.name);
         const np = newByName.get(snake);
-        if (!np) continue;
-        const legacyOptional = lp.isOptional === true;
-        const newOptional = np.isOptional === true;
-        if (legacyOptional !== newOptional) drift.push({ name: snake, legacyOptional, newOptional });
+        if (np) {
+          const legacyOptional = lp.isOptional === true;
+          const newOptional = np.isOptional === true;
+          if (legacyOptional !== newOptional) drift.push({ name: snake, legacyOptional, newOptional });
+        }
       }
       expect(drift).toEqual([]);
     });
@@ -351,12 +352,13 @@ describe('legacy parity: per-command param parity', () => {
       const missing: { name: string; expected: unknown }[] = [];
       const drift: { name: string; expected: unknown; actual: unknown }[] = [];
       for (const lp of legacyParams(legacy)) {
-        if (lp.defaultValue === undefined) continue;
-        const snake = snakeName(lp.name);
-        if (!(snake in newDefaults)) {
-          missing.push({ name: snake, expected: lp.defaultValue });
-        } else if (newDefaults[snake] !== lp.defaultValue) {
-          drift.push({ name: snake, expected: lp.defaultValue, actual: newDefaults[snake] });
+        if (lp.defaultValue !== undefined) {
+          const snake = snakeName(lp.name);
+          if (!(snake in newDefaults)) {
+            missing.push({ name: snake, expected: lp.defaultValue });
+          } else if (newDefaults[snake] !== lp.defaultValue) {
+            drift.push({ name: snake, expected: lp.defaultValue, actual: newDefaults[snake] });
+          }
         }
       }
       expect({ missing, drift }).toEqual({ missing: [], drift: [] });
@@ -383,9 +385,10 @@ describe('AllowedCommands coverage', () => {
     // (renders a confirm dialog for nobody).
     const incoherent: string[] = [];
     for (const ns of allowedCommands) {
-      if (!schemaSet.has(ns)) continue;
-      const schema = getCommandSchema(ns);
-      if (!schema.dapp) incoherent.push(ns);
+      if (schemaSet.has(ns)) {
+        const schema = getCommandSchema(ns);
+        if (!schema.dapp) incoherent.push(ns);
+      }
     }
     expect(incoherent).toEqual([]);
   });

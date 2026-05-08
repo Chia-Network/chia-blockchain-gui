@@ -23,8 +23,8 @@ import sanitizeFilename from 'sanitize-filename';
 import '../config/env';
 
 import packageJson from '../../package.json';
-import AppIcon from '../assets/img/chia64x64.png';
 import { WcError, WcErrorCode, encodeWcErrorForIpc } from '../@types/WcError';
+import AppIcon from '../assets/img/chia64x64.png';
 import { i18n } from '../config/locales';
 
 import CacheManager from './CacheManager';
@@ -37,6 +37,7 @@ import PreferencesAPI from './constants/PreferencesAPI';
 import { commandsMetadata, filterRequestedCommands } from './constants/commandRegistry';
 import About from './dialogs/About/About';
 import Confirm from './dialogs/Confirm/Confirm';
+import { renderConfirm } from './dialogs/Confirm/renderConfirm';
 import KeyDetail from './dialogs/KeyDetail/KeyDetail';
 import Pair, { getTitle as getPairTitle, type PairWalletOption } from './dialogs/Pair/Pair';
 import { buildNewPairRecord } from './permissions/buildPairRecord';
@@ -50,7 +51,6 @@ import {
 } from './permissions/pairDialog';
 import { getPair, listPairs, removePair, resetBypass, resetBypassAll, upsertPair } from './permissions/pairStore';
 import { resolvePermission } from './permissions/permissions';
-import { renderConfirm } from './dialogs/Confirm/renderConfirm';
 import type { PairGrants, PairMetadata, PairRecord } from './permissions/types';
 import { readPrefs, savePrefs, migratePrefs } from './prefs';
 import { readAddressBook, saveAddressBook } from './utils/addressBook';

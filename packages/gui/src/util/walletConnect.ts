@@ -7,14 +7,25 @@ import { type Pairs } from '../hooks/useWalletConnectPairs';
 
 const log = initDebug('chia-gui:walletConnect');
 
-async function respondSessionRequestError(client: Client, topic: string, id: number, message: string, code: number) {
+async function respondSessionRequestError(
+  client: Client,
+  topic: string,
+  id: number,
+  message: string,
+  code: number,
+  // Forwarded to JSON-RPC `error.data` so dapp clients that canonicalize
+  // `message` by code (many surface "Internal error" for `-32603` and only
+  // expose the original payload through `error.data`) can still recover the
+  // real failure detail.
+  data?: unknown,
+) {
   try {
     await client.respond({
       topic,
       response: {
         id,
         jsonrpc: '2.0',
-        error: { code, message },
+        error: { code, message, ...(data !== undefined ? { data } : {}) },
       },
     });
   } catch (e) {
@@ -354,7 +365,7 @@ export async function processSessionRequest(
       const { id, topic } = event;
       if (client) {
         const wc = toWcError(error);
-        await respondSessionRequestError(client, topic, id, wc.message, wc.code);
+        await respondSessionRequestError(client, topic, id, wc.message, wc.code, wc.data);
       }
     } catch (e) {
       processError(e as Error);
