@@ -1794,7 +1794,6 @@ const walletConnectCommands: WalletConnectCommand[] = [
     command: 'findLostDID',
     label: <Trans>Find Lost DID</Trans>,
     service: ServiceName.WALLET,
-    bypassConfirm: true,
     params: [
       {
         name: WalletConnectCommandParamName.COIN_ID,
