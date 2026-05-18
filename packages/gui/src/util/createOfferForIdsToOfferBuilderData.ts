@@ -1,4 +1,4 @@
-import { WalletType, removePrefix } from '@chia-network/api';
+import { WalletType } from '@chia-network/api';
 import { mojoToChia, mojoToCAT } from '@chia-network/core';
 import BigNumber from 'bignumber.js';
 
@@ -7,6 +7,7 @@ import createDefaultValues from '../components/offers2/utils/createDefaultValues
 import { AssetIdMapEntry } from '../hooks/useAssetIdName';
 
 import { launcherIdToNFTId } from './nfts';
+import removeHexPrefix from './removeHexPrefix';
 
 export default function createOfferForIdsToOfferBuilderData(
   walletIdsAndAmounts: Record<string, number>,
@@ -50,7 +51,7 @@ export default function createOfferForIdsToOfferBuilderData(
               case 'CAT':
                 section.tokens.push({
                   amount: mojoToCAT(numericValue.abs()).toFixed(),
-                  assetId: removePrefix(driver.tail, '0x'),
+                  assetId: removeHexPrefix(driver.tail),
                 });
                 return;
               case 'singleton': {
@@ -66,12 +67,8 @@ export default function createOfferForIdsToOfferBuilderData(
         // If the asset is still unknown, treat it as a CAT
         section.tokens.push({
           amount: mojoToCAT(numericValue.abs()).toFixed(),
-          assetId: removePrefix(walletOrAssetId, '0x'),
+          assetId: removeHexPrefix(walletOrAssetId),
         });
-        /*
-        const nftId = toBech32m(walletOrAssetId, 'nft');
-        section.nfts.push({ nftId });
-        */
       }
     } catch (e) {
       console.error(e);

@@ -614,7 +614,6 @@ const walletConnectCommands: WalletConnectCommand[] = [
         label: <Trans>Driver Dict</Trans>,
         type: 'object',
         displayComponent: (value) => <>{JSON.stringify(value)}</>,
-        isOptional: true,
       },
       {
         name: WalletConnectCommandParamName.VALIDATE_ONLY,
