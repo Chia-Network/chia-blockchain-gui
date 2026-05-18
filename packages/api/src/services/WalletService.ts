@@ -33,6 +33,33 @@ export type AllowUnsyncedArg = {
   allowUnsynced?: boolean;
 };
 
+export type CreateOfferForIdsArgs = {
+  offer: { [key: string]: number | BigNumber };
+  fee: number | BigNumber;
+  driverDict: any;
+  validateOnly?: boolean;
+  disableJSONFormatting?: boolean;
+  maxTime?: number;
+  offerOnly?: boolean;
+  extraConditions?: any[];
+  coinIds?: string[];
+} & AllowUnsyncedArg;
+
+export type CreateOfferForIdsResponse = {
+  offer: string;
+  tradeRecord: TradeRecord;
+};
+
+export type CreateOfferForIdsOfferOnlyResponse = {
+  offer: string;
+};
+
+export type CreateOfferForIdsResult<TArgs extends CreateOfferForIdsArgs> = TArgs['offerOnly'] extends true
+  ? CreateOfferForIdsOfferOnlyResponse
+  : TArgs['offerOnly'] extends false | undefined
+    ? CreateOfferForIdsResponse
+    : CreateOfferForIdsResponse | CreateOfferForIdsOfferOnlyResponse;
+
 export default class Wallet extends Service {
   constructor(client: Client, options?: Options) {
     super(ServiceName.WALLET, client, options);
@@ -312,21 +339,9 @@ export default class Wallet extends Service {
     return this.command<{ myOffersCount: number; takenOffersCount: number; total: number }>('get_offers_count');
   }
 
-  async createOfferForIds(
-    args: {
-      offer: { [key: string]: number | BigNumber };
-      fee: number | BigNumber;
-      driverDict: any;
-      validateOnly?: boolean;
-      disableJSONFormatting?: boolean;
-      maxTime?: number;
-      offerOnly?: boolean;
-      extraConditions?: any[];
-      coinIds?: string[];
-    } & AllowUnsyncedArg,
-  ) {
+  async createOfferForIds<TArgs extends CreateOfferForIdsArgs>(args: TArgs): Promise<CreateOfferForIdsResult<TArgs>> {
     const { disableJSONFormatting, driverDict, extraConditions, coinIds, ...restArgs } = args;
-    return this.command<{ offer: string; tradeRecord: TradeRecord }>(
+    return this.command<CreateOfferForIdsResult<TArgs>>(
       'create_offer_for_ids',
       { driver_dict: driverDict, extra_conditions: extraConditions, coin_ids: coinIds, ...restArgs },
       false,
