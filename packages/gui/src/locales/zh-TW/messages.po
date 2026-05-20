@@ -19,6 +19,47 @@ msgstr ""
 "X-Crowdin-File-ID: 35\n"
 
 #. js-lingui-explicit-id
+#: src/components/nfts/NFTBurnDialog.tsx:133
+msgid "Do you want to burn {count} NFTs?"
+msgstr "您想要燒毀 {count} 個 NFT 嗎？"
+
+#. js-lingui-explicit-id
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:155
+msgid "{count} transactions have been successfully submitted to the blockchain."
+msgstr "{count} 筆交易已成功提交至區塊鏈。"
+
+#. js-lingui-explicit-id
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:162
+msgid "{count} NFTs failed to move."
+msgstr "{count} 個 NFT 移動失敗。"
+
+#. js-lingui-explicit-id
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:354
+msgid "Would you like to move {count} NFTs to a profile?"
+msgstr "您是否要將 {count} 個 NFT 移動到個人檔案？"
+
+#. js-lingui-explicit-id
+#: src/components/nfts/NFTTransferAction.tsx:209
+msgid "Would you like to transfer {count} NFTs to a new owner?"
+msgstr "您是否要將 {count} 個 NFT 轉移給新擁有者？"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:73
+#: src/electron/main.tsx:853
+msgid "Confirm"
+msgstr "確認"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:74
+msgid "Please review and confirm this action."
+msgstr "請檢查並確認此操作。"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:75
+msgid "Proceed"
+msgstr "繼續執行"
+
+#. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:100
 msgid "Commands"
 msgstr ""
@@ -47,6 +88,20 @@ msgstr ""
 #: src/electron/constants/commandRegistry.ts:112
 msgid "Show"
 msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:114
+#: src/electron/constants/commandRegistry.ts:562
+msgid "Type"
+msgstr "類型"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:117
+#: src/electron/constants/commandRegistry.ts:463
+#: src/electron/constants/commandRegistry.ts:491
+#: src/electron/constants/commandRegistry.ts:1782
+msgid "Message"
+msgstr "訊息"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:124
@@ -86,10 +141,25 @@ msgid "This app wants to add a CAT token to your wallet."
 msgstr ""
 
 #. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:162
+#: src/electron/constants/commandRegistry.ts:595
+#: src/electron/constants/commandRegistry.ts:1113
+#: src/electron/constants/commandRegistry.ts:1243
+msgid "Add"
+msgstr "加入"
+
+#. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:164
 #: src/electron/constants/commandRegistry.ts:2011
 msgid "Asset Id"
 msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:165
+#: src/electron/constants/commandRegistry.ts:561
+#: src/electron/constants/commandRegistry.ts:1054
+msgid "Name"
+msgstr "名稱"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:169
@@ -105,6 +175,13 @@ msgstr ""
 #: src/electron/constants/commandRegistry.ts:176
 msgid "Please carefully review and confirm this DID transfer."
 msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:177
+#: src/electron/constants/commandRegistry.ts:316
+#: src/electron/constants/commandRegistry.ts:342
+msgid "Transfer"
+msgstr "轉移"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:179
@@ -139,6 +216,41 @@ msgid "Inner Address"
 msgstr ""
 
 #. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:188
+#: src/electron/constants/commandRegistry.ts:221
+#: src/electron/constants/commandRegistry.ts:244
+#: src/electron/constants/commandRegistry.ts:291
+#: src/electron/constants/commandRegistry.ts:331
+#: src/electron/constants/commandRegistry.ts:346
+#: src/electron/constants/commandRegistry.ts:356
+#: src/electron/constants/commandRegistry.ts:397
+#: src/electron/constants/commandRegistry.ts:438
+#: src/electron/constants/commandRegistry.ts:525
+#: src/electron/constants/commandRegistry.ts:540
+#: src/electron/constants/commandRegistry.ts:564
+#: src/electron/constants/commandRegistry.ts:665
+#: src/electron/constants/commandRegistry.ts:687
+#: src/electron/constants/commandRegistry.ts:809
+#: src/electron/constants/commandRegistry.ts:919
+#: src/electron/constants/commandRegistry.ts:989
+#: src/electron/constants/commandRegistry.ts:1029
+#: src/electron/constants/commandRegistry.ts:1090
+#: src/electron/constants/commandRegistry.ts:1133
+#: src/electron/constants/commandRegistry.ts:1149
+#: src/electron/constants/commandRegistry.ts:1177
+#: src/electron/constants/commandRegistry.ts:1206
+#: src/electron/constants/commandRegistry.ts:1228
+#: src/electron/constants/commandRegistry.ts:1250
+#: src/electron/constants/commandRegistry.ts:1271
+#: src/electron/constants/commandRegistry.ts:1422
+#: src/electron/constants/commandRegistry.ts:1442
+#: src/electron/constants/commandRegistry.ts:1464
+#: src/electron/constants/commandRegistry.ts:1484
+#: src/electron/dialogs/Confirm/Confirm.tsx:193
+msgid "Fee"
+msgstr "手續費"
+
+#. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:195
 msgid "With Recovery Info"
 msgstr ""
@@ -168,6 +280,25 @@ msgid "Please carefully review and confirm creating this DID wallet."
 msgstr ""
 
 #. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:218
+#: src/electron/constants/commandRegistry.ts:372
+#: src/electron/constants/commandRegistry.ts:559
+#: src/electron/constants/commandRegistry.ts:1145
+#: src/electron/constants/commandRegistry.ts:1416
+#: src/electron/constants/commandRegistry.ts:1500
+msgid "Create"
+msgstr "建立"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:220
+#: src/electron/constants/commandRegistry.ts:243
+#: src/electron/constants/commandRegistry.ts:286
+#: src/electron/constants/commandRegistry.ts:1247
+#: src/electron/constants/commandRegistry.ts:1694
+msgid "Amount"
+msgstr "金額"
+
+#. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:222
 msgid "Backup DIDs"
 msgstr ""
@@ -181,6 +312,32 @@ msgstr ""
 #: src/electron/constants/commandRegistry.ts:232
 msgid "Create new DID Wallet"
 msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:239
+msgid "Confirm Send Transaction"
+msgstr "確認發送交易"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:240
+msgid "Please carefully review and confirm this blockchain transaction."
+msgstr "請仔細檢查並確認此區塊鏈交易。"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:241
+#: src/electron/constants/commandRegistry.ts:280
+#: src/electron/constants/commandRegistry.ts:662
+#: src/electron/constants/commandRegistry.ts:1066
+msgid "Send"
+msgstr "發送"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:245
+#: src/electron/constants/commandRegistry.ts:283
+#: src/electron/constants/commandRegistry.ts:462
+#: src/electron/constants/commandRegistry.ts:1787
+msgid "Address"
+msgstr "位址"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:255
@@ -204,15 +361,39 @@ msgid "Confirm CAT Spend"
 msgstr ""
 
 #. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:279
+msgid "Please carefully review and confirm this CAT spend."
+msgstr "請仔細檢查並確認此 CAT 花費。"
+
+#. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:308
 msgid "Spend CAT"
 msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:314
+#: src/electron/constants/commandRegistry.ts:340
+msgid "Confirm NFT Transfer"
+msgstr "確認 NFT 轉移"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:315
+#: src/electron/constants/commandRegistry.ts:341
+msgid "Please carefully review and confirm this NFT transfer."
+msgstr "請仔細檢查並確認此 NFT 轉移。"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:321
 #: src/electron/constants/commandRegistry.ts:520
 msgid "NFT Coin Ids"
 msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:327
+#: src/electron/constants/commandRegistry.ts:345
+#: src/electron/constants/commandRegistry.ts:758
+msgid "Target Address"
+msgstr "目標地址"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:335
@@ -224,6 +405,11 @@ msgstr ""
 #: src/electron/constants/commandRegistry.ts:538
 msgid "NFT Coin List"
 msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:351
+msgid "Please carefully review and confirm this offer cancellation."
+msgstr "請仔細檢查並確認取消此報價。"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:354
@@ -241,6 +427,16 @@ msgstr ""
 #: src/electron/constants/commandRegistry.ts:360
 msgid "Cancel Offer"
 msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:365
+msgid "Confirm Create Offer"
+msgstr "確認建立報價單"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:368
+msgid "Please carefully review and confirm this offer creation. When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or cancelled, resulting in your spendable balance changing."
+msgstr "請仔細檢查並確認此報價建立。建立報價時，任何提供的資產都將被鎖定且無法使用，直到報價被接受或取消為止，這將導致您的可用餘額發生變化。"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:376
@@ -290,6 +486,11 @@ msgid "Create Offer for Ids"
 msgstr ""
 
 #. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:435
+msgid "Please carefully review and confirm this offer acceptance."
+msgstr "請仔細檢查並確認接受此報價。"
+
+#. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:437
 #: src/electron/constants/commandRegistry.ts:1439
 #: src/electron/constants/commandRegistry.ts:1481
@@ -300,6 +501,25 @@ msgstr ""
 #: src/electron/constants/commandRegistry.ts:453
 msgid "Take Offer"
 msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:458
+#: src/electron/constants/commandRegistry.ts:486
+msgid "Confirm Sign Message"
+msgstr "確認訊息簽署"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:459
+#: src/electron/constants/commandRegistry.ts:487
+msgid "Are you sure you want to sign this message?"
+msgstr "您確定要簽署此訊息嗎？"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:460
+#: src/electron/constants/commandRegistry.ts:488
+#: src/electron/constants/commandRegistry.ts:701
+msgid "Sign"
+msgstr "簽署"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:466
@@ -318,9 +538,30 @@ msgid "Sign Message by Address"
 msgstr ""
 
 #. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:490
+msgid "Id"
+msgstr "識別碼"
+
+#. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:502
 msgid "Sign Message by Id"
 msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:507
+msgid "Confirm Move NFT to DID"
+msgstr "確認移動 NFT 到 DID"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:508
+msgid "Are you sure you want to move this NFT to the specified profile?"
+msgstr "您確定要將此 NFT 移動到指定的個人檔案嗎？"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:509
+#: src/electron/constants/commandRegistry.ts:536
+msgid "Move"
+msgstr "移動"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:514
@@ -328,9 +569,185 @@ msgid "NFT Launcher Id"
 msgstr ""
 
 #. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:524
+#: src/electron/constants/commandRegistry.ts:539
+msgid "DID"
+msgstr "DID"
+
+#. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:529
 msgid "Set NFT DID"
 msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:534
+msgid "Confirm Move NFTs to DID"
+msgstr "確認移動多個 NFT 到 DID"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:535
+msgid "Are you sure you want to move these NFTs to the specified profile?"
+msgstr "您確定要將這些 NFT 移動到指定的個人檔案嗎？"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:546
+msgid "Confirm Set Auto Claim"
+msgstr "確認設定自動領取"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:547
+msgid "Are you sure you want to set auto claim?"
+msgstr "您確定要設定自動領取嗎？"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:548
+#: src/electron/constants/commandRegistry.ts:579
+#: src/electron/constants/commandRegistry.ts:632
+#: src/electron/constants/commandRegistry.ts:1051
+msgid "Set"
+msgstr "設定"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:550
+msgid "Enabled"
+msgstr "已啟用"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:551
+msgid "Transaction Fee"
+msgstr "交易手續費"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:552
+msgid "Min Amount"
+msgstr "最小金額"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:557
+msgid "Confirm Create New Wallet"
+msgstr "確認建立新錢包"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:558
+msgid "Are you sure you want to create a new wallet?"
+msgstr "您確定要建立新錢包嗎？"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:563
+msgid "Asset ID"
+msgstr "資產 ID"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:569
+msgid "Confirm Delete Wallet"
+msgstr "確認刪除錢包"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:570
+msgid "Are you sure you want to delete this wallet?"
+msgstr "您確定要刪除此錢包嗎？"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:571
+#: src/electron/constants/commandRegistry.ts:588
+#: src/electron/constants/commandRegistry.ts:1221
+#: src/electron/constants/commandRegistry.ts:1265
+msgid "Delete"
+msgstr "刪除"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:573
+#: src/electron/constants/commandRegistry.ts:650
+#: src/electron/constants/commandRegistry.ts:1551
+msgid "Fingerprint"
+msgstr "指紋"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:577
+#: src/electron/constants/commandRegistry.ts:630
+msgid "Confirm Set Payout Instructions"
+msgstr "確認設定支付說明"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:578
+#: src/electron/constants/commandRegistry.ts:631
+msgid "Are you sure you want to set payout instructions?"
+msgstr "您確定要設定支付說明嗎？"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:581
+#: src/electron/constants/commandRegistry.ts:634
+msgid "Payout Instructions"
+msgstr "支付說明"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:587
+msgid "Confirm Delete Plot"
+msgstr "確認刪除耕地"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:590
+msgid "Filename"
+msgstr "檔案名稱"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:594
+msgid "Confirm Add Plot Directory"
+msgstr "確認新增耕地目錄"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:596
+#: src/electron/constants/commandRegistry.ts:602
+msgid "Directory"
+msgstr "目錄"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:600
+msgid "Confirm Remove Plot Directory"
+msgstr "確認移除耕地目錄"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:606
+msgid "Confirm Open Connection"
+msgstr "確認開啟連接"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:607
+msgid "Are you sure you want to open a connection to the specified node?"
+msgstr "您確定要開啟與指定節點的連接嗎？"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:608
+#: src/electron/dialogs/Pair/Pair.tsx:450
+msgid "Connect"
+msgstr "連接"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:610
+msgid "Host"
+msgstr "主機"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:611
+msgid "Port"
+msgstr "連接埠 (Port)"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:616
+#: src/electron/constants/commandRegistry.ts:623
+msgid "Confirm Disconnect"
+msgstr "確認斷開連接"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:617
+#: src/electron/constants/commandRegistry.ts:624
+msgid "Disconnect"
+msgstr "中斷連線"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:639
+msgid "Stop"
+msgstr "停止"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:646
@@ -1125,6 +1542,14 @@ msgid "Please carefully review and confirm cancelling this DataLayer offer."
 msgstr ""
 
 #. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:1457
+#: src/electron/dialogs/Confirm/Confirm.tsx:392
+#: src/electron/dialogs/Pair/Pair.tsx:443
+#: src/electron/main.tsx:1016
+msgid "Cancel"
+msgstr "取消"
+
+#. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1472
 msgid "Cancel DataLayer Offer"
 msgstr ""
@@ -1354,6 +1779,12 @@ msgstr ""
 #: src/electron/constants/commandRegistry.ts:1774
 msgid "Requests spendable coins for a specific wallet"
 msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:1783
+#: src/electron/dialogs/KeyDetail/KeyDetail.tsx:32
+msgid "Public Key"
+msgstr "公鑰"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1784
@@ -1768,6 +2199,11 @@ msgid "Get wallet addresses for one or more wallet keys"
 msgstr ""
 
 #. js-lingui-explicit-id
+#: src/electron/dialogs/About/About.tsx:72
+msgid "Report an issue"
+msgstr "回報問題"
+
+#. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:164
 msgid "Offered"
 msgstr ""
@@ -1802,6 +2238,45 @@ msgstr ""
 #: src/electron/dialogs/Confirm/Confirm.tsx:381
 msgid "Don't ask again for this command"
 msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/renderConfirm.ts:58
+#: src/electron/main.tsx:622
+#: src/electron/main.tsx:852
+msgid "Yes"
+msgstr "是"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/renderConfirm.ts:58
+#: src/electron/main.tsx:622
+#: src/electron/main.tsx:852
+msgid "No"
+msgstr "否"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/KeyDetail/KeyDetail.tsx:37
+msgid "Farmer Public Key"
+msgstr "農夫公鑰"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/KeyDetail/KeyDetail.tsx:42
+msgid "Pool Public Key"
+msgstr "農會公鑰"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/KeyDetail/KeyDetail.tsx:48
+msgid "NEVER SHARE THESE WITH ANYONE"
+msgstr "絕不要與任何人分享這些"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/KeyDetail/KeyDetail.tsx:55
+msgid "Secret Key"
+msgstr "私鑰"
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/KeyDetail/KeyDetail.tsx:74
+msgid "Seed Phrase"
+msgstr "助記詞"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Pair/Pair.tsx:66
@@ -1942,481 +2417,6 @@ msgstr ""
 #: src/electron/dialogs/Pair/Pair.tsx:450
 msgid "Save changes"
 msgstr ""
-
-#. js-lingui-explicit-id
-#: src/components/nfts/NFTBurnDialog.tsx:133
-msgid "Do you want to burn {count} NFTs?"
-msgstr "您想要燒毀 {count} 個 NFT 嗎？"
-
-#. js-lingui-explicit-id
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:155
-msgid "{count} transactions have been successfully submitted to the blockchain."
-msgstr "{count} 筆交易已成功提交至區塊鏈。"
-
-#. js-lingui-explicit-id
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:162
-msgid "{count} NFTs failed to move."
-msgstr "{count} 個 NFT 移動失敗。"
-
-#. js-lingui-explicit-id
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:354
-msgid "Would you like to move {count} NFTs to a profile?"
-msgstr "您是否要將 {count} 個 NFT 移動到個人檔案？"
-
-#. js-lingui-explicit-id
-#: src/components/nfts/NFTTransferAction.tsx:209
-msgid "Would you like to transfer {count} NFTs to a new owner?"
-msgstr "您是否要將 {count} 個 NFT 轉移給新擁有者？"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:73
-#: src/electron/main.tsx:853
-msgid "Confirm"
-msgstr "確認"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:74
-msgid "Please review and confirm this action."
-msgstr "請檢查並確認此操作。"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:75
-msgid "Proceed"
-msgstr "繼續執行"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:114
-#: src/electron/constants/commandRegistry.ts:562
-msgid "Type"
-msgstr "類型"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:117
-#: src/electron/constants/commandRegistry.ts:463
-#: src/electron/constants/commandRegistry.ts:491
-#: src/electron/constants/commandRegistry.ts:1782
-msgid "Message"
-msgstr "訊息"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:162
-#: src/electron/constants/commandRegistry.ts:595
-#: src/electron/constants/commandRegistry.ts:1113
-#: src/electron/constants/commandRegistry.ts:1243
-msgid "Add"
-msgstr "加入"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:165
-#: src/electron/constants/commandRegistry.ts:561
-#: src/electron/constants/commandRegistry.ts:1054
-msgid "Name"
-msgstr "名稱"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:177
-#: src/electron/constants/commandRegistry.ts:316
-#: src/electron/constants/commandRegistry.ts:342
-msgid "Transfer"
-msgstr "轉移"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:188
-#: src/electron/constants/commandRegistry.ts:221
-#: src/electron/constants/commandRegistry.ts:244
-#: src/electron/constants/commandRegistry.ts:291
-#: src/electron/constants/commandRegistry.ts:331
-#: src/electron/constants/commandRegistry.ts:346
-#: src/electron/constants/commandRegistry.ts:356
-#: src/electron/constants/commandRegistry.ts:397
-#: src/electron/constants/commandRegistry.ts:438
-#: src/electron/constants/commandRegistry.ts:525
-#: src/electron/constants/commandRegistry.ts:540
-#: src/electron/constants/commandRegistry.ts:564
-#: src/electron/constants/commandRegistry.ts:665
-#: src/electron/constants/commandRegistry.ts:687
-#: src/electron/constants/commandRegistry.ts:809
-#: src/electron/constants/commandRegistry.ts:919
-#: src/electron/constants/commandRegistry.ts:989
-#: src/electron/constants/commandRegistry.ts:1029
-#: src/electron/constants/commandRegistry.ts:1090
-#: src/electron/constants/commandRegistry.ts:1133
-#: src/electron/constants/commandRegistry.ts:1149
-#: src/electron/constants/commandRegistry.ts:1177
-#: src/electron/constants/commandRegistry.ts:1206
-#: src/electron/constants/commandRegistry.ts:1228
-#: src/electron/constants/commandRegistry.ts:1250
-#: src/electron/constants/commandRegistry.ts:1271
-#: src/electron/constants/commandRegistry.ts:1422
-#: src/electron/constants/commandRegistry.ts:1442
-#: src/electron/constants/commandRegistry.ts:1464
-#: src/electron/constants/commandRegistry.ts:1484
-#: src/electron/dialogs/Confirm/Confirm.tsx:193
-msgid "Fee"
-msgstr "手續費"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:218
-#: src/electron/constants/commandRegistry.ts:372
-#: src/electron/constants/commandRegistry.ts:559
-#: src/electron/constants/commandRegistry.ts:1145
-#: src/electron/constants/commandRegistry.ts:1416
-#: src/electron/constants/commandRegistry.ts:1500
-msgid "Create"
-msgstr "建立"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:220
-#: src/electron/constants/commandRegistry.ts:243
-#: src/electron/constants/commandRegistry.ts:286
-#: src/electron/constants/commandRegistry.ts:1247
-#: src/electron/constants/commandRegistry.ts:1694
-msgid "Amount"
-msgstr "金額"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:239
-msgid "Confirm Send Transaction"
-msgstr "確認發送交易"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:240
-msgid "Please carefully review and confirm this blockchain transaction."
-msgstr "請仔細檢查並確認此區塊鏈交易。"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:241
-#: src/electron/constants/commandRegistry.ts:280
-#: src/electron/constants/commandRegistry.ts:662
-#: src/electron/constants/commandRegistry.ts:1066
-msgid "Send"
-msgstr "發送"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:245
-#: src/electron/constants/commandRegistry.ts:283
-#: src/electron/constants/commandRegistry.ts:462
-#: src/electron/constants/commandRegistry.ts:1787
-msgid "Address"
-msgstr "位址"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:279
-msgid "Please carefully review and confirm this CAT spend."
-msgstr "請仔細檢查並確認此 CAT 花費。"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:314
-#: src/electron/constants/commandRegistry.ts:340
-msgid "Confirm NFT Transfer"
-msgstr "確認 NFT 轉移"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:315
-#: src/electron/constants/commandRegistry.ts:341
-msgid "Please carefully review and confirm this NFT transfer."
-msgstr "請仔細檢查並確認此 NFT 轉移。"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:327
-#: src/electron/constants/commandRegistry.ts:345
-#: src/electron/constants/commandRegistry.ts:758
-msgid "Target Address"
-msgstr "目標地址"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:351
-msgid "Please carefully review and confirm this offer cancellation."
-msgstr "請仔細檢查並確認取消此報價。"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:365
-msgid "Confirm Create Offer"
-msgstr "確認建立報價單"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:368
-msgid "Please carefully review and confirm this offer creation. When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or cancelled, resulting in your spendable balance changing."
-msgstr "請仔細檢查並確認此報價建立。建立報價時，任何提供的資產都將被鎖定且無法使用，直到報價被接受或取消為止，這將導致您的可用餘額發生變化。"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:435
-msgid "Please carefully review and confirm this offer acceptance."
-msgstr "請仔細檢查並確認接受此報價。"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:458
-#: src/electron/constants/commandRegistry.ts:486
-msgid "Confirm Sign Message"
-msgstr "確認訊息簽署"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:459
-#: src/electron/constants/commandRegistry.ts:487
-msgid "Are you sure you want to sign this message?"
-msgstr "您確定要簽署此訊息嗎？"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:460
-#: src/electron/constants/commandRegistry.ts:488
-#: src/electron/constants/commandRegistry.ts:701
-msgid "Sign"
-msgstr "簽署"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:490
-msgid "Id"
-msgstr "識別碼"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:507
-msgid "Confirm Move NFT to DID"
-msgstr "確認移動 NFT 到 DID"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:508
-msgid "Are you sure you want to move this NFT to the specified profile?"
-msgstr "您確定要將此 NFT 移動到指定的個人檔案嗎？"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:509
-#: src/electron/constants/commandRegistry.ts:536
-msgid "Move"
-msgstr "移動"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:524
-#: src/electron/constants/commandRegistry.ts:539
-msgid "DID"
-msgstr "DID"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:534
-msgid "Confirm Move NFTs to DID"
-msgstr "確認移動多個 NFT 到 DID"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:535
-msgid "Are you sure you want to move these NFTs to the specified profile?"
-msgstr "您確定要將這些 NFT 移動到指定的個人檔案嗎？"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:546
-msgid "Confirm Set Auto Claim"
-msgstr "確認設定自動領取"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:547
-msgid "Are you sure you want to set auto claim?"
-msgstr "您確定要設定自動領取嗎？"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:548
-#: src/electron/constants/commandRegistry.ts:579
-#: src/electron/constants/commandRegistry.ts:632
-#: src/electron/constants/commandRegistry.ts:1051
-msgid "Set"
-msgstr "設定"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:550
-msgid "Enabled"
-msgstr "已啟用"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:551
-msgid "Transaction Fee"
-msgstr "交易手續費"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:552
-msgid "Min Amount"
-msgstr "最小金額"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:557
-msgid "Confirm Create New Wallet"
-msgstr "確認建立新錢包"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:558
-msgid "Are you sure you want to create a new wallet?"
-msgstr "您確定要建立新錢包嗎？"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:563
-msgid "Asset ID"
-msgstr "資產 ID"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:569
-msgid "Confirm Delete Wallet"
-msgstr "確認刪除錢包"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:570
-msgid "Are you sure you want to delete this wallet?"
-msgstr "您確定要刪除此錢包嗎？"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:571
-#: src/electron/constants/commandRegistry.ts:588
-#: src/electron/constants/commandRegistry.ts:1221
-#: src/electron/constants/commandRegistry.ts:1265
-msgid "Delete"
-msgstr "刪除"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:573
-#: src/electron/constants/commandRegistry.ts:650
-#: src/electron/constants/commandRegistry.ts:1551
-msgid "Fingerprint"
-msgstr "指紋"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:577
-#: src/electron/constants/commandRegistry.ts:630
-msgid "Confirm Set Payout Instructions"
-msgstr "確認設定支付說明"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:578
-#: src/electron/constants/commandRegistry.ts:631
-msgid "Are you sure you want to set payout instructions?"
-msgstr "您確定要設定支付說明嗎？"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:581
-#: src/electron/constants/commandRegistry.ts:634
-msgid "Payout Instructions"
-msgstr "支付說明"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:587
-msgid "Confirm Delete Plot"
-msgstr "確認刪除耕地"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:590
-msgid "Filename"
-msgstr "檔案名稱"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:594
-msgid "Confirm Add Plot Directory"
-msgstr "確認新增耕地目錄"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:596
-#: src/electron/constants/commandRegistry.ts:602
-msgid "Directory"
-msgstr "目錄"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:600
-msgid "Confirm Remove Plot Directory"
-msgstr "確認移除耕地目錄"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:606
-msgid "Confirm Open Connection"
-msgstr "確認開啟連接"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:607
-msgid "Are you sure you want to open a connection to the specified node?"
-msgstr "您確定要開啟與指定節點的連接嗎？"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:608
-#: src/electron/dialogs/Pair/Pair.tsx:450
-msgid "Connect"
-msgstr "連接"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:610
-msgid "Host"
-msgstr "主機"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:611
-msgid "Port"
-msgstr "連接埠 (Port)"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:616
-#: src/electron/constants/commandRegistry.ts:623
-msgid "Confirm Disconnect"
-msgstr "確認斷開連接"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:617
-#: src/electron/constants/commandRegistry.ts:624
-msgid "Disconnect"
-msgstr "中斷連線"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:639
-msgid "Stop"
-msgstr "停止"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:1457
-#: src/electron/dialogs/Confirm/Confirm.tsx:392
-#: src/electron/dialogs/Pair/Pair.tsx:443
-#: src/electron/main.tsx:1016
-msgid "Cancel"
-msgstr "取消"
-
-#. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:1783
-#: src/electron/dialogs/KeyDetail/KeyDetail.tsx:32
-msgid "Public Key"
-msgstr "公鑰"
-
-#. js-lingui-explicit-id
-#: src/electron/dialogs/About/About.tsx:72
-msgid "Report an issue"
-msgstr "回報問題"
-
-#. js-lingui-explicit-id
-#: src/electron/dialogs/Confirm/renderConfirm.ts:58
-#: src/electron/main.tsx:622
-#: src/electron/main.tsx:852
-msgid "Yes"
-msgstr "是"
-
-#. js-lingui-explicit-id
-#: src/electron/dialogs/Confirm/renderConfirm.ts:58
-#: src/electron/main.tsx:622
-#: src/electron/main.tsx:852
-msgid "No"
-msgstr "否"
-
-#. js-lingui-explicit-id
-#: src/electron/dialogs/KeyDetail/KeyDetail.tsx:37
-msgid "Farmer Public Key"
-msgstr "農夫公鑰"
-
-#. js-lingui-explicit-id
-#: src/electron/dialogs/KeyDetail/KeyDetail.tsx:42
-msgid "Pool Public Key"
-msgstr "農會公鑰"
-
-#. js-lingui-explicit-id
-#: src/electron/dialogs/KeyDetail/KeyDetail.tsx:48
-msgid "NEVER SHARE THESE WITH ANYONE"
-msgstr "絕不要與任何人分享這些"
-
-#. js-lingui-explicit-id
-#: src/electron/dialogs/KeyDetail/KeyDetail.tsx:55
-msgid "Secret Key"
-msgstr "私鑰"
-
-#. js-lingui-explicit-id
-#: src/electron/dialogs/KeyDetail/KeyDetail.tsx:74
-msgid "Seed Phrase"
-msgstr "助記詞"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:623
