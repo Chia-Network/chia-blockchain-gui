@@ -110,7 +110,7 @@
     "@babel/preset-react": "7.27.1",
     "@babel/preset-typescript": "7.27.1",
     "@babel/register": "7.27.1",
-    "@lingui/cli": "^6.1.0",
+    "@lingui/cli": "4.11.4",
     "@loadable/babel-plugin": "5.16.1",
     "@loadable/webpack-plugin": "5.15.2",
     "@playwright/test": "1.57.0",
