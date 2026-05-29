@@ -77,6 +77,7 @@
     "moment": "2.30.1",
     "normalize-url": "7.0.3",
     "punycode": "2.3.1",
+    "qs": "6.15.2",
     "react": "18.2.0",
     "react-chartjs-2": "5.2.0",
     "react-dom": "18.3.1",
@@ -89,7 +90,7 @@
     "react-router-dom": "6.30.3",
     "react-scroll-to-bottom": "4.2.0",
     "react-teleporter": "3.1.0",
-    "react-use": "17.4.0",
+    "react-use": "^13.14.3",
     "react-virtuoso": "4.5.0",
     "redux": "4.2.1",
     "regenerator-runtime": "0.14.1",
@@ -100,7 +101,7 @@
     "unique-names-generator": "4.6.0",
     "validator": "13.15.23",
     "victory": "^36.6.11",
-    "ws": "8.17.1"
+    "ws": "^8.21.0"
   },
   "devDependencies": {
     "@babel/core": "7.27.4",
@@ -109,7 +110,7 @@
     "@babel/preset-react": "7.27.1",
     "@babel/preset-typescript": "7.27.1",
     "@babel/register": "7.27.1",
-    "@lingui/cli": "4.11.4",
+    "@lingui/cli": "^6.1.0",
     "@loadable/babel-plugin": "5.16.1",
     "@loadable/webpack-plugin": "5.15.2",
     "@playwright/test": "1.57.0",
@@ -161,7 +162,7 @@
     "webpack": "5.105.1",
     "webpack-bundle-analyzer": "4.10.2",
     "webpack-cli": "6.0.1",
-    "webpack-dev-server": "5.2.3"
+    "webpack-dev-server": "^5.2.4"
   },
   "optionalDependencies": {
     "playwright": "1.57.0"
