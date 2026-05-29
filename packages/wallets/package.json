@@ -33,14 +33,17 @@
     "lodash": "4.18.1",
     "match-sorter": "6.3.4",
     "moment": "2.30.1",
+    "qs": "6.15.2",
     "react-dropzone": "14.2.3",
     "react-hook-form": "7.45.4",
     "react-redux": "8.1.2",
     "react-scroll-to-bottom": "4.2.0",
-    "react-use": "17.4.0",
+    "react-use": "^13.14.3",
     "react-use-timeout": "1.0.0",
     "use-dark-mode": "2.3.1",
-    "validator": "13.15.23"
+    "validator": "13.15.23",
+    "webpack-dev-server": "5.2.4",
+    "ws": "8.21.0"
   },
   "devDependencies": {
     "@babel/core": "7.27.4",
@@ -52,7 +55,7 @@
     "@chia-network/api": "1.0.0",
     "@chia-network/api-react": "1.0.0",
     "@chia-network/core": "1.0.0",
-    "@lingui/cli": "4.11.4",
+    "@lingui/cli": "^6.1.0",
     "@lingui/core": "4.11.4",
     "@lingui/react": "4.11.4",
     "@loadable/babel-plugin": "5.16.1",
