@@ -1,0 +1,24 @@
+name: gen-lock
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - npm_audit_june_cmj
+jobs:
+  gen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: ".nvmrc"
+      - name: Regenerate package-lock.json (native linux x64)
+        run: |
+          rm -f package-lock.json
+          npm install --package-lock-only --ignore-scripts
+          echo "=== sanity ==="
+          node -e "const d=require('./package-lock.json');const c=re=>Object.keys(d.packages).filter(k=>re.test(k)).length;console.log('parcel-watcher variants:',c(/@parcel\/watcher-/));console.log('rollup variants:',c(/@rollup\/rollup-/));console.log('esbuild variants:',c(/@esbuild\//));console.log('ramda:',!!d.packages['node_modules/ramda']);console.log('pseudolocale:',Object.keys(d.packages).some(k=>/pseudolocale$/.test(k)));console.log('electron:',d.packages['node_modules/electron'].version);console.log('total:',Object.keys(d.packages).length)"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: package-lock
+          path: package-lock.json
