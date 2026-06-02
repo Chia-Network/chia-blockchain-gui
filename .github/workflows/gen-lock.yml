@@ -14,7 +14,8 @@ jobs:
           node-version-file: ".nvmrc"
       - name: Regenerate package-lock.json via full install (native linux x64)
         run: |
-          rm -f package-lock.json
+          rm -rf package-lock.json node_modules
+          npm install --ignore-scripts
           npm install --ignore-scripts
           echo "=== sanity ==="
           node -e "const d=require('./package-lock.json');const c=re=>Object.keys(d.packages).filter(k=>re.test(k)).length;console.log('parcel-watcher variants:',c(/@parcel\/watcher-/));console.log('rollup variants:',c(/@rollup\/rollup-/));console.log('esbuild variants:',c(/@esbuild\//));console.log('ramda:',!!d.packages['node_modules/ramda']);console.log('pseudolocale:',Object.keys(d.packages).some(k=>/pseudolocale$/.test(k)));console.log('electron:',d.packages['node_modules/electron'].version);console.log('total:',Object.keys(d.packages).length)"
