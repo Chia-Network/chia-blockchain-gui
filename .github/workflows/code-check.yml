@@ -23,6 +23,29 @@ jobs:
           node-version-file: ".nvmrc"
       - name: npm ci
         run: npm ci
+      - name: Diagnose electron install (temporary)
+        if: always()
+        run: |
+          set +e
+          echo "=== env ==="
+          node -v; npm -v; uname -a
+          echo "=== node_modules/electron/path.txt ==="
+          cat node_modules/electron/path.txt 2>/dev/null && echo " [PRESENT]" || echo "[MISSING]"
+          echo "=== node_modules/electron/dist ==="
+          ls -la node_modules/electron/dist 2>/dev/null || echo "[no dist]"
+          echo "=== require('electron') ==="
+          node -e "try{const p=require('electron');console.log('require OK ->',p)}catch(e){console.log('require FAILED ->',e.message)}"
+          echo "=== electron resolved versions ==="
+          node -e "console.log('electron',require('electron/package.json').version)"
+          node -e "console.log('@electron/get',require('@electron/get/package.json').version)"
+          node -e "console.log('extract-zip',require('extract-zip/package.json').version)"
+          echo "=== re-run electron install.js with DEBUG ==="
+          ( cd node_modules/electron && DEBUG='@electron/get*,extract-zip*' node install.js 2>&1 | tail -60 )
+          echo "install.js exit=$?"
+          echo "=== path.txt after manual install ==="
+          cat node_modules/electron/path.txt 2>/dev/null && echo " [PRESENT]" || echo "[STILL MISSING]"
+          echo "=== dist after manual install ==="
+          ls node_modules/electron/dist 2>/dev/null | head -20 || echo "[no dist]"
       - name: npm run build:ci
         run: npm run build:ci
       - name: Check for Prettier issues
