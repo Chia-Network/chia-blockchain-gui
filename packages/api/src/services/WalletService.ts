@@ -276,6 +276,10 @@ export default class Wallet extends Service {
     return this.command<{ networkName: string; networkPrefix: string }>('get_network_info');
   }
 
+  async getFullNodePeerCount() {
+    return this.command<{ peerCount: number }>('get_full_node_peer_count');
+  }
+
   async getSyncStatus() {
     return this.command<{
       genesisInitialized: boolean;
