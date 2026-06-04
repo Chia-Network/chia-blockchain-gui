@@ -6,6 +6,7 @@ import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import AddressBook from '../addressbook/AddressBook';
 import Block from '../block/Block';
 import ChiaToolsPage from '../chiatools/ChiaToolsPage';
+import DashboardOverview from '../dashboard/DashboardOverview';
 import DashboardSideBar from '../dashboard/DashboardSideBar';
 import Farm from '../farm/Farm';
 import FullNode from '../fullNode/FullNode';
@@ -50,7 +51,8 @@ export default function AppRouter() {
             </Route>
           ) : (
             <Route element={<LayoutDashboard sidebar={<DashboardSideBar />} actions={<AppStatusHeader />} outlet />}>
-              <Route path="dashboard" element={<FullNode />} />
+              <Route path="dashboard" element={<DashboardOverview />} />
+              <Route path="dashboard/fullnode" element={<FullNode />} />
               <Route path="dashboard/block/:headerHash" element={<Block />} />
               <Route path="dashboard/wallets/*" element={<Wallets />} />
               <Route path="dashboard/offers/*" element={<CreateOffer />} />

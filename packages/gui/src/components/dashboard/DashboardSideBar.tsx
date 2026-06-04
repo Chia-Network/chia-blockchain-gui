@@ -14,6 +14,7 @@ import {
   VC as VCIcon,
 } from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
+import BarChartIcon from '@mui/icons-material/BarChart';
 import BuildOutlinedIcon from '@mui/icons-material/BuildOutlined';
 import { Box } from '@mui/material';
 import React from 'react';
@@ -41,7 +42,16 @@ export default function DashboardSideBar(props: DashboardSideBarProps) {
   return (
     <Flex height="100%" flexDirection="column">
       <StyledItemsContainer>
-        <Flex flexDirection="column" alignItems="center" paddingTop={5}>
+        <Flex flexDirection="column" alignItems="center" paddingTop={2}>
+          {!simple && (
+            <SideBarItem
+              to="/dashboard"
+              icon={BarChartIcon}
+              title={<Trans>Overview</Trans>}
+              data-testid="DashboardSideBar-overview"
+              end
+            />
+          )}
           <SideBarItem
             to="/dashboard/wallets"
             icon={TokensIcon}
@@ -77,16 +87,15 @@ export default function DashboardSideBar(props: DashboardSideBarProps) {
 
           {!simple && (
             <>
-              <Box my={1}>
+              <Box my={0.5}>
                 <StyledSideBarDivider />
               </Box>
 
               <SideBarItem
-                to="/dashboard"
+                to="/dashboard/fullnode"
                 icon={FullNodeIcon}
                 title={<Trans>Full Node</Trans>}
                 data-testid="DashboardSideBar-fullnode"
-                end
               />
               <SideBarItem
                 to="/dashboard/farm"
