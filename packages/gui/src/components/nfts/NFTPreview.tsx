@@ -61,10 +61,10 @@ const ModelExtension = styled.div<{ isDarkMode: boolean }>`
   justify-content: center;
   align-items: center;
   padding: 8px 16px;
-  background: ${(props) => (props.isDarkMode ? Color.Neutral[800] : Color.Neutral[50])};
+  background: ${(props) => (props.isDarkMode ? '#2a2418' : Color.Neutral[50])};
   box-shadow:
-    0px 0px 24px ${alpha(Color.Green[500], 0.5)},
-    0px 4px 8px ${alpha(Color.Green[700], 0.32)};
+    0px 0px 24px ${alpha('#d8ad45', 0.5)},
+    0px 4px 8px ${alpha('#9b7040', 0.32)};
   border-radius: 32px;
   color: ${(props) => (props.isDarkMode ? Color.Neutral[50] : Color.Neutral[800])};
 `;
@@ -79,10 +79,10 @@ const BlobBg = styled.div<{ isDarkMode: boolean }>`
     margin: auto;
     linearGradient {
       >stop: first-child {
-        stop-color: ${(props) => (props.isDarkMode ? Color.Green[800] : Color.Lime[100])};
+        stop-color: ${(props) => (props.isDarkMode ? '#5c4329' : '#f3df9b')};
       }
       >stop: last-child {
-        stop-color: ${(props) => (props.isDarkMode ? Color.Green[300] : Color.Green[400])};
+        stop-color: ${(props) => (props.isDarkMode ? '#d8ad45' : '#d2a33a')};
       }
     }
   }
@@ -103,7 +103,7 @@ const CompactExtension = styled.div`
   left: 0;
   right: 4px;
   text-align: center;
-  color: ${Color.Green[500]};
+  color: #b98524;
 `;
 
 export type NFTPreviewProps = {

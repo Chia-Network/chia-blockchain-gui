@@ -58,7 +58,7 @@ export default {
   mode: DEV ? 'development' : 'production',
   context: CONTEXT,
   devtool: DEV ? 'inline-source-map' : 'source-map',
-  entry: path.join(CONTEXT, '/src/index'),
+  entry: path.join(CONTEXT, process.env.GUI_DESIGN_SANDBOX === 'true' ? '/src/index-sandbox' : '/src/index'),
   target: 'web',
   stats: 'errors-only',
   cache: {
@@ -145,6 +145,7 @@ export default {
       'process.env.NODE_ENV': JSON.stringify(DEV ? 'development' : 'production'),
       'process.env.MULTIPLE_WALLETS': JSON.stringify(process.env.MULTIPLE_WALLETS),
       'process.env.LOCAL_TEST': JSON.stringify(process.env.LOCAL_TEST),
+      'process.env.GUI_DESIGN_SANDBOX': JSON.stringify(process.env.GUI_DESIGN_SANDBOX),
       'process.env.BROWSER': true,
       IS_BROWSER: true,
     }),

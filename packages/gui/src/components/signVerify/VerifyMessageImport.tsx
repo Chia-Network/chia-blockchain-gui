@@ -1,4 +1,4 @@
-import { Color, Dropzone, Flex, useShowError } from '@chia-network/core';
+import { Dropzone, Flex, useShowError } from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
 import { Box, Card, Typography } from '@mui/material';
 import React, { useState } from 'react';
@@ -134,7 +134,7 @@ export default function VerifyMessageImport(props: VerifyMessageImportProps) {
           </Typography>
           <Typography color="textSecondary" textAlign="center">
             <Trans>
-              or <span style={{ color: Color.Green[400] }}>browse</span> on your computer
+              or <span style={{ color: '#b98524' }}>browse</span> on your computer
             </Trans>
           </Typography>
         </Flex>

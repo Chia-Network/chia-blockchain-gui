@@ -7,6 +7,18 @@ import Color from '../../constants/Color';
 
 const StyledBaseButton = styled(({ nowrap: boolean, selected, ...rest }) => <BaseButton {...rest} />)`
   white-space: ${({ nowrap }) => (nowrap ? 'nowrap' : 'normal')};
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease,
+    box-shadow 120ms ease,
+    transform 120ms ease;
+
+  &:not(.Mui-disabled):hover {
+    transform: translateY(-1px);
+    box-shadow: ${({ theme }) =>
+      theme.palette.mode === 'dark' ? '0 3px 10px rgba(0, 0, 0, 0.2)' : '0 3px 10px rgba(71, 58, 36, 0.12)'};
+  }
+
   ${({ selected, theme }) => {
     if (!selected) {
       return '';

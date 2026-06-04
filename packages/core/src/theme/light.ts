@@ -10,19 +10,53 @@ export default createTheme({
     ...theme.palette,
     background: {
       ...theme.palette.background,
-      card: Color.Neutral[50],
-      paper: Color.Neutral[50],
+      default: '#f4f0e5',
+      card: '#fffaf0',
+      paper: '#fffaf0',
+    },
+    primary: {
+      main: '#b98524',
+      contrastText: '#fffaf0',
+    },
+    secondary: {
+      main: '#3c3424',
+      contrastText: '#fffaf0',
+    },
+    highlight: {
+      main: '#b98524',
     },
     info: {
       ...theme.palette.info,
-      main: Color.Neutral[500],
+      main: '#5c7882',
+    },
+    action: {
+      ...theme.palette.action,
+      hover: 'rgba(185, 133, 36, 0.12)',
+      selected: 'rgba(185, 133, 36, 0.18)',
+      focus: 'rgba(185, 133, 36, 0.18)',
     },
     text: {
-      primary: Color.Text.Light.Primary,
-      secondary: Color.Text.Light.Secondary,
+      primary: 'rgba(36, 48, 36, 0.9)',
+      secondary: 'rgba(36, 48, 36, 0.62)',
       disabled: Color.Text.Light.Disabled,
     },
-    sidebarBackground: theme.palette.sidebarBackground.main,
+    border: {
+      main: 'rgba(71, 58, 36, 0.16)',
+      dark: Color.Neutral[700],
+    },
+    sidebarBackground: '#302c1f',
+    sidebarIconSelected: {
+      main: '#f7df9b',
+      dark: '#d8ad45',
+    },
+    sidebarIcon: {
+      main: 'rgba(247, 239, 216, 0.68)',
+      dark: Color.Neutral[400],
+    },
+    sidebarIconHover: {
+      main: '#fff3cf',
+      dark: Color.Neutral[50],
+    },
 
     colors: {
       royal: {
@@ -133,6 +167,150 @@ export default createTheme({
         backgroundBadge: Color.Neutral[100],
         backgroundLight: Color.Neutral[50],
         text: Color.Neutral[600],
+      },
+    },
+  },
+  shape: {
+    borderRadius: 8,
+  },
+  components: {
+    ...theme.components,
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          backgroundColor: '#f4f0e5',
+          backgroundImage:
+            'linear-gradient(118deg, rgba(246, 241, 225, 0.98) 0%, rgba(236, 225, 195, 0.94) 42%, rgba(232, 229, 209, 0.94) 100%), repeating-linear-gradient(102deg, rgba(169, 121, 35, 0.1) 0 18px, rgba(205, 169, 79, 0.08) 18px 34px, transparent 34px 68px)',
+        },
+      },
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          borderRadius: 8,
+          borderColor: 'rgba(71, 58, 36, 0.14)',
+          backgroundColor: 'rgba(255, 250, 240, 0.86)',
+          backgroundImage: 'linear-gradient(180deg, rgba(255, 252, 244, 0.94) 0%, rgba(250, 244, 229, 0.82) 100%)',
+          boxShadow: '0 18px 54px rgba(71, 58, 36, 0.1)',
+        },
+      },
+    },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          backgroundImage: 'none',
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: 8,
+          textTransform: 'none',
+          fontWeight: 700,
+          transition:
+            'background-color 120ms ease, border-color 120ms ease, box-shadow 120ms ease, transform 120ms ease',
+          '&:not(.Mui-disabled):hover': {
+            transform: 'translateY(-1px)',
+            boxShadow: '0 3px 10px rgba(71, 58, 36, 0.12)',
+          },
+        },
+        containedPrimary: {
+          background: 'linear-gradient(180deg, #d2a33a 0%, #a3711d 100%)',
+          boxShadow: '0 10px 22px rgba(163, 113, 29, 0.24)',
+        },
+      },
+    },
+    MuiIconButton: {
+      styleOverrides: {
+        root: {
+          transition: 'background-color 120ms ease, box-shadow 120ms ease, color 120ms ease, transform 120ms ease',
+          '&:not(.Mui-disabled):hover': {
+            backgroundColor: 'rgba(185, 133, 36, 0.14)',
+            boxShadow: '0 3px 10px rgba(71, 58, 36, 0.14)',
+            color: '#8f641d',
+            transform: 'translateY(-1px)',
+          },
+        },
+      },
+    },
+    MuiMenuItem: {
+      styleOverrides: {
+        root: {
+          transition: 'background-color 120ms ease, box-shadow 120ms ease, color 120ms ease',
+          '&:not(.Mui-disabled):hover': {
+            backgroundColor: 'rgba(185, 133, 36, 0.14)',
+            boxShadow: 'inset 3px 0 0 #b98524',
+          },
+          '&.Mui-selected': {
+            backgroundColor: 'rgba(185, 133, 36, 0.18)',
+          },
+          '&.Mui-selected:hover': {
+            backgroundColor: 'rgba(185, 133, 36, 0.22)',
+          },
+        },
+      },
+    },
+    MuiListItemButton: {
+      styleOverrides: {
+        root: {
+          transition: 'background-color 120ms ease, box-shadow 120ms ease, transform 120ms ease',
+          '&:not(.Mui-disabled):hover': {
+            backgroundColor: 'rgba(185, 133, 36, 0.14)',
+            boxShadow: 'inset 3px 0 0 #b98524',
+            transform: 'translateY(-1px)',
+          },
+          '&.Mui-selected': {
+            backgroundColor: 'rgba(185, 133, 36, 0.18)',
+          },
+          '&.Mui-selected:hover': {
+            backgroundColor: 'rgba(185, 133, 36, 0.22)',
+          },
+        },
+      },
+    },
+    MuiCardActionArea: {
+      styleOverrides: {
+        root: {
+          transition: 'background-color 120ms ease, box-shadow 120ms ease, transform 120ms ease',
+          '&:hover': {
+            backgroundColor: 'rgba(185, 133, 36, 0.1)',
+            boxShadow: 'inset 0 0 0 1px rgba(185, 133, 36, 0.2)',
+            transform: 'translateY(-1px)',
+          },
+        },
+      },
+    },
+    MuiTableRow: {
+      styleOverrides: {
+        root: {
+          transition: 'background-color 120ms ease, box-shadow 120ms ease',
+          '&.MuiTableRow-hover:hover': {
+            backgroundColor: 'rgba(185, 133, 36, 0.12)',
+            boxShadow: 'inset 3px 0 0 #b98524',
+          },
+        },
+      },
+    },
+    MuiTab: {
+      styleOverrides: {
+        root: {
+          transition: 'background-color 120ms ease, color 120ms ease',
+          '&:hover': {
+            backgroundColor: 'rgba(185, 133, 36, 0.1)',
+            color: '#8f641d',
+          },
+        },
+      },
+    },
+    MuiLinearProgress: {
+      styleOverrides: {
+        root: {
+          backgroundColor: 'rgba(185, 133, 36, 0.2)',
+        },
+        bar: {
+          backgroundColor: '#b98524',
+        },
       },
     },
   },

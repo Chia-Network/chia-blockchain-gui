@@ -19,6 +19,7 @@
     "start": "npm run electron .",
     "dev:electron": "cross-env NODE_ENV=development webpack --config webpack.electron.babel.ts --mode development && electron .",
     "dev:react": "cross-env NODE_ENV=development NODE_OPTIONS=--max_old_space_size=8192 webpack serve --config webpack.react.babel.ts --mode development",
+    "design:sandbox": "cross-env GUI_DESIGN_SANDBOX=true npm run dev:react",
     "dev": "npm run locale && concurrently --kill-others \"npm run dev:react\" \"npm run dev:electron\"",
     "dev:skipLocales": "concurrently --kill-others \"npm run dev:react\" \"npm run dev:electron\"",
     "build:css": "tailwindcss -i ./src/main.css -o ./build/electron/main.css --minify",

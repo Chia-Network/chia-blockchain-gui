@@ -6,7 +6,7 @@ import JSONbig from 'json-bigint';
 import React, { useMemo, memo } from 'react';
 import styled from 'styled-components';
 
-import Color from '../../constants/Color';
+const graphColor = '#b98524';
 
 const StyledGraphContainer = styled.div<{ height: number }>`
   position: relative;
@@ -18,8 +18,8 @@ function LinearGradient() {
   return (
     <defs>
       <linearGradient id="graph-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%" stopColor={alpha(Color.Green[500], 0.4)} />
-        <stop offset="100%" stopColor={alpha(Color.Green[500], 0)} />
+        <stop offset="0%" stopColor={alpha(graphColor, 0.42)} />
+        <stop offset="100%" stopColor={alpha(graphColor, 0)} />
       </linearGradient>
     </defs>
   );
@@ -31,7 +31,7 @@ const sx = {
   },
 };
 
-const chartColors = [Color.Green[500]];
+const chartColors = [graphColor];
 const chartMargin = { top: 0, bottom: 0, left: 0, right: 0 };
 const defaultXValueFormatter = (value: number) => value.toString();
 const defaultYValueFormatter = (value: number | BigNumber | null) => (value !== null ? value.toString() : '');

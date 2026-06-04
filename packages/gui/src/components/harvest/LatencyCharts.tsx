@@ -69,7 +69,11 @@ function LatencyBarChart(props: BarChartProps) {
           display: false,
         },
         y: {
+          grid: {
+            color: 'rgba(71, 58, 36, 0.16)',
+          },
           ticks: {
+            color: '#6f6045',
             callback(value: number) {
               const formattedValue = unit === 'ms' ? value : value / 1000;
               return `${formattedValue} ${unit}`;
@@ -96,7 +100,7 @@ function LatencyBarChart(props: BarChartProps) {
         records.push(valInMs);
         if (valInMs < 8000) {
           // Normal color
-          backgroundColors.push('#ccdde1');
+          backgroundColors.push('#b98524');
         } else if (valInMs < 20_000) {
           // Warning color
           backgroundColors.push('#ffd388');
@@ -127,7 +131,7 @@ function LatencyBarChart(props: BarChartProps) {
         records.push(valInMs);
         if (valInMs < 8000) {
           // Normal color
-          backgroundColors.push('#ccdde1');
+          backgroundColors.push('#b98524');
         } else if (valInMs < 20_000) {
           // Warning color
           backgroundColors.push('#ffd388');

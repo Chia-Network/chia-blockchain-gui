@@ -30,7 +30,6 @@ import { styled } from '@mui/styles';
 import React, { useCallback, useRef } from 'react';
 import { VirtuosoGrid } from 'react-virtuoso';
 
-import VCEmptyPng from '../../assets/img/vc_empty.png';
 import { sha256, arrToHex } from '../../util/utils';
 
 import VCCard from './VCCard';
@@ -273,7 +272,11 @@ export default function VCList() {
               </Trans>
             </Typography>
           </Flex>
-          <Flex flexDirection="row" gap={4}>
+          <Flex
+            flexDirection="row"
+            gap={4}
+            sx={{ color: (palette) => (palette.palette.mode === 'dark' ? '#cdbb91' : '#9b7040') }}
+          >
             <Flex flexDirection="column" sx={{ alignItems: 'center', paddingTop: '25px' }} gap={2}>
               <VCZeroStateBadgeIcon />
               {renderBadgeContainer(<Trans>Badging</Trans>)}
@@ -281,15 +284,98 @@ export default function VCList() {
             <Flex flexDirection="column" sx={{ position: 'relative' }}>
               <Flex
                 sx={{
-                  img: {
-                    position: 'absolute',
-                    top: '-15px',
-                  },
                   width: '0px',
                   height: '410px',
                 }}
               >
-                <img src={VCEmptyPng} />
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    top: '-15px',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    width: 350,
+                    height: 390,
+                    borderRadius: '8px',
+                    border: (palette) => (palette.palette.mode === 'dark' ? '1px solid #d8ad45' : '1px solid #9b7040'),
+                    overflow: 'hidden',
+                    color: (palette) => (palette.palette.mode === 'dark' ? '#f7efd8' : '#273c3d'),
+                    background: (palette) =>
+                      palette.palette.mode === 'dark'
+                        ? 'linear-gradient(135deg, rgba(58, 48, 32, 0.98) 0%, rgba(155, 112, 64, 0.5) 52%, rgba(33, 27, 18, 0.98) 100%)'
+                        : 'linear-gradient(135deg, rgba(250, 238, 182, 0.95) 0%, rgba(210, 163, 58, 0.46) 52%, rgba(255, 250, 240, 0.95) 100%)',
+                    boxShadow: (palette) =>
+                      palette.palette.mode === 'dark'
+                        ? '0 34px 72px rgba(0, 0, 0, 0.32)'
+                        : '0 34px 72px rgba(71, 58, 36, 0.2)',
+                    '&::before': {
+                      content: '""',
+                      position: 'absolute',
+                      inset: 0,
+                      opacity: 0.26,
+                      background:
+                        'repeating-linear-gradient(115deg, rgba(155, 112, 64, 0.3) 0 1px, transparent 1px 9px)',
+                    },
+                  }}
+                >
+                  <Box sx={{ position: 'relative', p: 4 }}>
+                    <Typography
+                      variant="caption"
+                      sx={{
+                        letterSpacing: 1,
+                        color: (palette) => (palette.palette.mode === 'dark' ? '#cdbb91' : '#6f6045'),
+                      }}
+                    >
+                      VERIFIABLE CREDENTIAL
+                    </Typography>
+                    <Typography
+                      variant="h5"
+                      sx={{ mt: 1, color: (palette) => (palette.palette.mode === 'dark' ? '#f7efd8' : '#273c3d') }}
+                    >
+                      Credential ID
+                    </Typography>
+                    <Box
+                      sx={{
+                        mt: 3,
+                        width: 92,
+                        height: 92,
+                        borderRadius: 2,
+                        background: (palette) =>
+                          palette.palette.mode === 'dark'
+                            ? 'linear-gradient(145deg, #3a3020 0%, #9b7040 100%)'
+                            : 'linear-gradient(145deg, #f7efd8 0%, #cdbb91 100%)',
+                        border: '1px solid rgba(155, 112, 64, 0.45)',
+                      }}
+                    />
+                    <Box sx={{ mt: 3, height: 1, background: 'rgba(155, 112, 64, 0.28)' }} />
+                    <Typography
+                      variant="body2"
+                      sx={{ mt: 3, color: (palette) => (palette.palette.mode === 'dark' ? '#cdbb91' : '#6f6045') }}
+                    >
+                      Issued
+                    </Typography>
+                    <Typography variant="body1">02-22-2023</Typography>
+                    <Typography
+                      variant="body2"
+                      sx={{ mt: 2, color: (palette) => (palette.palette.mode === 'dark' ? '#cdbb91' : '#6f6045') }}
+                    >
+                      Holder
+                    </Typography>
+                    <Typography variant="body1">Bram Tiberius Cohen</Typography>
+                    <Box
+                      sx={{
+                        position: 'absolute',
+                        right: 32,
+                        top: 58,
+                        width: 88,
+                        height: 88,
+                        borderRadius: '50%',
+                        border: '2px solid #9b7040',
+                        background: 'radial-gradient(circle, #fffaf0 0%, #d2a33a 52%, #7d5520 100%)',
+                      }}
+                    />
+                  </Box>
+                </Box>
               </Flex>
               <Flex sx={{ width: '430px', justifyContent: 'center' }}>
                 {renderBadgeContainer(<Trans>Government IDs</Trans>)}

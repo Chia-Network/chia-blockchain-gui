@@ -12,9 +12,9 @@
   --color-chia-text: rgba(15, 37, 42, 0.9);
   --color-chia-text-secondary: rgba(15, 37, 42, 0.6);
   --color-chia-text-muted: rgba(15, 37, 42, 0.45);
-  --color-chia-primary: #35b24b;
-  --color-chia-primary-hover: #269339;
-  --color-chia-primary-soft: rgba(53, 178, 75, 0.1);
+  --color-chia-primary: #b98524;
+  --color-chia-primary-hover: #d2a33a;
+  --color-chia-primary-soft: rgba(185, 133, 36, 0.12);
   --color-chia-danger: #da2449;
 }
 
@@ -28,9 +28,9 @@
   --color-chia-text: rgba(248, 251, 252, 0.9);
   --color-chia-text-secondary: rgba(248, 251, 252, 0.7);
   --color-chia-text-muted: rgba(248, 251, 252, 0.45);
-  --color-chia-primary: #5ece71;
-  --color-chia-primary-hover: #92e39f;
-  --color-chia-primary-soft: rgba(94, 206, 113, 0.12);
+  --color-chia-primary: #d8ad45;
+  --color-chia-primary-hover: #f1d37a;
+  --color-chia-primary-soft: rgba(216, 173, 69, 0.14);
   --color-chia-danger: #f56073;
 }
 

@@ -1,4 +1,4 @@
-import { Color, Flex } from '@chia-network/core';
+import { Flex } from '@chia-network/core';
 import { WalletGraphTooltip } from '@chia-network/wallets';
 import { t } from '@lingui/macro';
 import { alpha, Box, Typography } from '@mui/material';
@@ -7,6 +7,7 @@ import { useMeasure } from 'react-use';
 import { VictoryChart, VictoryAxis, VictoryArea, VictoryTooltip, VictoryVoronoiContainer } from 'victory';
 
 const HOUR_SECONDS = 60 * 60;
+const graphColor = '#b98524';
 
 function aggregatePoints(points, hours = 2, totalHours = 24) {
   const current = Date.now() / 1000;
@@ -41,8 +42,8 @@ function aggregatePoints(points, hours = 2, totalHours = 24) {
 function LinearGradient() {
   return (
     <linearGradient id="graph-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stopColor={alpha(Color.Green[500], 0.4)} />
-      <stop offset="100%" stopColor={alpha(Color.Green[500], 0)} />
+      <stop offset="0%" stopColor={alpha(graphColor, 0.42)} />
+      <stop offset="100%" stopColor={alpha(graphColor, 0)} />
     </linearGradient>
   );
 }
@@ -91,7 +92,7 @@ export default function PlotNFTGraph(props: PlotNFTGraphProps) {
               interpolation="monotoneX"
               style={{
                 data: {
-                  stroke: Color.Green[500],
+                  stroke: graphColor,
                   strokeWidth: 2,
                   strokeLinecap: 'round',
                   fill: 'url(#graph-gradient)',

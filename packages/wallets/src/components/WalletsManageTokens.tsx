@@ -1,5 +1,5 @@
 import { WalletType } from '@chia-network/api';
-import { Button, Color, useColorModeValue, Spinner, Flex, Tooltip, useTrans, ScrollbarFlex } from '@chia-network/core';
+import { Button, useColorModeValue, Spinner, Flex, Tooltip, useTrans, ScrollbarFlex } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Add, KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
 import SearchIcon from '@mui/icons-material/Search';
@@ -16,9 +16,9 @@ import WalletTokenCard from './WalletTokenCard';
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: theme.palette.mode === 'dark' ? Color.Neutral[800] : Color.Neutral[100],
+  backgroundColor: theme.palette.mode === 'dark' ? 'rgba(216, 173, 69, 0.1)' : 'rgba(185, 133, 36, 0.08)',
   '&:hover': {
-    backgroundColor: theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[200],
+    backgroundColor: theme.palette.mode === 'dark' ? 'rgba(216, 173, 69, 0.16)' : 'rgba(185, 133, 36, 0.14)',
   },
   paddingLeft: theme.spacing(1),
   paddingRight: theme.spacing(1),
@@ -65,18 +65,18 @@ const StyledButtonContainer = styled(Box)`
 const StyledMainButton = styled(Button)`
   border-radius: ${({ theme }) => `${theme.spacing(2)} ${theme.spacing(2)} 0 0`};
   border: ${({ theme }) => `1px solid ${useColorModeValue(theme, 'border')}`};
-  background-color: ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[200])};
+  background-color: ${({ theme }) => (theme.palette.mode === 'dark' ? '#3a3020' : '#efe4c8')};
   height: ${({ theme }) => theme.spacing(6)};
   pointer-events: auto;
 
   &:hover {
-    background-color: ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[800] : Color.Neutral[300])};
+    background-color: ${({ theme }) => (theme.palette.mode === 'dark' ? '#4a3920' : '#e1d5b8')};
   }
 `;
 
 const StyledBody = styled(({ expanded, ...rest }) => <Box {...rest} />)`
   pointer-events: auto;
-  background-color: ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[200])};
+  background-color: ${({ theme }) => (theme.palette.mode === 'dark' ? '#3a3020' : '#efe4c8')};
   transition: all 0.25s ease-out;
   overflow: hidden;
   height: ${({ expanded }) => (expanded ? '100%' : '0%')};
@@ -84,10 +84,11 @@ const StyledBody = styled(({ expanded, ...rest }) => <Box {...rest} />)`
 
 const StyledContent = styled(Box)`
   height: 100%;
-  background-color: ${({ theme }) => theme.palette.action.hover};
+  background-color: ${({ theme }) =>
+    theme.palette.mode === 'dark' ? 'rgba(33, 27, 18, 0.96)' : 'rgba(255, 250, 240, 0.96)'};
   padding-top: ${({ theme }) => theme.spacing(2)};
-  border-left: 1px solid ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[300])};
-  border-right: 1px solid ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[300])};
+  border-left: 1px solid ${({ theme }) => (theme.palette.mode === 'dark' ? 'rgba(247, 223, 155, 0.14)' : '#e1d5b8')};
+  border-right: 1px solid ${({ theme }) => (theme.palette.mode === 'dark' ? 'rgba(247, 223, 155, 0.14)' : '#e1d5b8')};
   display: flex;
   flex-direction: column;
 `;

@@ -71,12 +71,12 @@ const indicatorStyle = {
   '.checkmark-icon': {
     g: {
       circle: {
-        stroke: '#3AAC59',
-        fill: '#3AAC59',
+        stroke: '#b98524',
+        fill: '#b98524',
       },
       path: {
-        stroke: '#3AAC59',
-        fill: '#3AAC59',
+        stroke: '#b98524',
+        fill: '#b98524',
       },
     },
   },

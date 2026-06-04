@@ -11,7 +11,7 @@ const ProgressBar = styled.div`
   margin-top: 30px !important;
   margin-left: 0 !important;
   > div {
-    background: ${Color.Green[200]};
+    background: #d2a33a;
     height: 10px;
     border-radius: 2px;
   }

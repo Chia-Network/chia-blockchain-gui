@@ -13,7 +13,7 @@ export default {
       default: Color.Neutral[50],
     },
     primary: {
-      main: Color.Green[500],
+      main: '#b98524',
       contrastText: Color.Neutral[50],
     },
     secondary: {
@@ -25,19 +25,19 @@ export default {
       contrastText: Color.Neutral[50],
     },
     highlight: {
-      main: Color.Chia.Primary,
+      main: '#b98524',
     },
     border: {
       main: Color.Neutral[300],
       dark: Color.Neutral[700],
     },
     sidebarBackground: {
-      main: Color.Green[50],
-      dark: Color.Neutral[600],
+      main: '#302c1f',
+      dark: '#211d13',
     },
     sidebarIconSelected: {
-      main: Color.Green[800],
-      dark: Color.Green[500],
+      main: '#f7df9b',
+      dark: '#f7df9b',
     },
     sidebarIcon: {
       main: Color.Neutral[500],

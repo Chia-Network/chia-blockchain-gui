@@ -43,10 +43,26 @@ export default function CardListItem(props: CardListItemProps) {
           `${selected ? getColorModeValue(theme, 'sidebarBackground') : theme.palette.background.paper}`,
         position: 'relative',
         overflow: 'visible',
+        transition: 'background-color 120ms ease, border-color 120ms ease, box-shadow 120ms ease, transform 120ms ease',
 
         '&:hover': {
           borderColor: (theme) =>
             `${disabled ? theme.palette.divider : selected ? theme.palette.highlight.main : theme.palette.divider}`,
+          backgroundColor: (theme) =>
+            disabled
+              ? undefined
+              : selected
+                ? getColorModeValue(theme, 'sidebarBackground')
+                : theme.palette.mode === 'dark'
+                  ? alpha('#d8ad45', 0.1)
+                  : alpha('#b98524', 0.08),
+          boxShadow: (theme) =>
+            disabled || !onSelect
+              ? undefined
+              : theme.palette.mode === 'dark'
+                ? '0 4px 14px rgba(0, 0, 0, 0.22)'
+                : '0 4px 14px rgba(71, 58, 36, 0.14)',
+          transform: disabled || !onSelect ? undefined : 'translateY(-1px)',
         },
       }}
     >

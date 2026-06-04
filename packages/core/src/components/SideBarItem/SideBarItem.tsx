@@ -4,27 +4,32 @@ import React, { type ReactNode } from 'react';
 import { useNavigate, useMatch } from 'react-router-dom';
 
 import Color from '../../constants/Color';
-import useColorModeValue from '../../utils/useColorModeValue';
 import Flex from '../Flex';
 
 const StyledListItemIcon = styled(ListItemIcon)`
   min-width: auto;
   position: relative;
   background-color: ${({ theme, selected }) =>
-    selected ? useColorModeValue(theme, 'sidebarBackground') : 'transparent'};
-  border-radius: ${({ theme }) => theme.spacing(1.5)};
-  width: ${({ theme }) => theme.spacing(6)};
-  height: ${({ theme }) => theme.spacing(6)};
+    selected ? (theme.palette.mode === 'dark' ? alpha('#d8ad45', 0.28) : alpha('#c7892a', 0.28)) : 'transparent'};
+  border-radius: ${({ theme }) => theme.spacing(1.25)};
+  width: ${({ theme }) => theme.spacing(5.25)};
+  height: ${({ theme }) => theme.spacing(5.25)};
   border: ${({ selected, theme }) =>
-    `1px solid ${selected ? theme.palette.highlight.main : useColorModeValue(theme, 'border')}`};
+    `1px solid ${selected ? alpha('#e6b756', 0.82) : alpha('#f7efd8', theme.palette.mode === 'dark' ? 0.16 : 0.18)}`};
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: border 0.3s ease-in-out;
+  box-shadow: ${({ selected, theme }) =>
+    selected ? `0 10px 24px ${alpha('#0f1a12', theme.palette.mode === 'dark' ? 0.26 : 0.24)}` : 'none'};
+  transition:
+    background-color 0.2s ease-in-out,
+    border 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out,
+    transform 0.2s ease-in-out;
 
   &::after {
     content: '';
-    border-radius: ${({ theme }) => theme.spacing(1.5)};
+    border-radius: ${({ theme }) => theme.spacing(1.25)};
     position: absolute;
     z-index: -1;
     top: 0;
@@ -32,15 +37,21 @@ const StyledListItemIcon = styled(ListItemIcon)`
     width: 100%;
     height: 100%;
     box-shadow:
-      0px -2px 4px ${alpha(Color.Green[300], 0.41)},
-      0px 1px 8px ${alpha(Color.Lime[400], 0.45)};
+      0px -2px 4px ${alpha('#f1d37a', 0.41)},
+      0px 1px 8px ${alpha('#e6b756', 0.5)};
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
   }
 
   svg {
     color: ${({ selected, theme }) =>
-      selected ? useColorModeValue(theme, 'sidebarIconSelected') : useColorModeValue(theme, 'sidebarIcon')};
+      selected
+        ? theme.palette.mode === 'dark'
+          ? '#fff3cf'
+          : '#fff3cf'
+        : theme.palette.mode === 'dark'
+          ? theme.palette.sidebarIcon.dark
+          : theme.palette.sidebarIcon.main};
   }
 `;
 
@@ -50,18 +61,22 @@ const StyledListItem = styled(ListItem)`
   align-items: center;
   padding-left: 0;
   padding-right: 0;
-  padding-top: ${({ theme }) => theme.spacing(1)};
-  padding-bottom: ${({ theme }) => theme.spacing(1)};
+  padding-top: ${({ theme }) => theme.spacing(0.5)};
+  padding-bottom: ${({ theme }) => theme.spacing(0.5)};
 
   &:hover {
     background-color: transparent;
   }
 
   &:hover ${StyledListItemIcon} {
-    border-color: ${Color.Green[500]};
+    border-color: ${alpha('#e6b756', 0.82)};
+    transform: translateY(-1px);
 
     svg {
-      color: ${({ theme }) => useColorModeValue(theme, 'sidebarIconHover')} !important;
+      color: ${({ theme }) =>
+        theme.palette.mode === 'dark'
+          ? theme.palette.sidebarIconHover.dark
+          : theme.palette.sidebarIconHover.main} !important;
     }
 
     &::after {
@@ -71,8 +86,9 @@ const StyledListItem = styled(ListItem)`
 `;
 
 const StyledListItemText = styled(Typography)`
-  font-size: ${({ theme }) => theme.typography.pxToRem(10)} !important;
-  font-weight: 500;
+  font-size: ${({ theme }) => theme.typography.pxToRem(9.5)} !important;
+  font-weight: 700;
+  color: ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[50] : alpha('#f7efd8', 0.82))};
 `;
 
 export type SideBarItemProps = {
@@ -102,7 +118,7 @@ export default function SideBarItem(props: SideBarItemProps) {
 
   return (
     <StyledListItem button onClick={() => handleClick()} {...rest}>
-      <Flex flexDirection="column" alignItems="center" gap={0.5}>
+      <Flex flexDirection="column" alignItems="center" gap={0.25}>
         <StyledListItemIcon selected={isSelected}>
           <Icon fontSize="sidebarIcon" />
         </StyledListItemIcon>

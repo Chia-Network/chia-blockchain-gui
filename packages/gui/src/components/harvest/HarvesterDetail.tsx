@@ -142,7 +142,7 @@ function HarvesterLatencyGraph(props: HarvesterLatencyGraphProps) {
                       <LinearProgress
                         variant="determinate"
                         value={totalSpaceOccupation?.toNumber()}
-                        sx={{ height: 20, '& > span': { backgroundColor: '#1a8284' } }}
+                        sx={{ height: 20, '& > span': { backgroundColor: '#a3711d' } }}
                       />
                     </Box>
                   </td>
@@ -176,7 +176,7 @@ function HarvesterLatencyGraph(props: HarvesterLatencyGraphProps) {
                       <LinearProgress
                         variant="determinate"
                         value={effectiveSpaceOccupation?.toNumber()}
-                        sx={{ height: 20, '& > span': { backgroundColor: '#5ece71' } }}
+                        sx={{ height: 20, '& > span': { backgroundColor: '#d2a33a' } }}
                       />
                     </Box>
                   </td>

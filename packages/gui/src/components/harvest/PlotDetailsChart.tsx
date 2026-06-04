@@ -5,25 +5,25 @@ import { Doughnut } from 'react-chartjs-2';
 ChartJS.register(ArcElement, Tooltip);
 
 export const ColorCodesForCompressions: Record<number, string> = {
-  0: '#5ECE71',
-  1: '#1EBF89',
-  2: '#1A8284',
-  3: '#094D4C',
-  4: '#FFFAE3',
-  5: '#E8FBBA',
-  6: '#D4FF72',
-  7: '#95B0B7',
-  8: '#CCDDE1',
-  9: '#E2EDF0',
+  0: '#d2a33a',
+  1: '#b98524',
+  2: '#a3711d',
+  3: '#7d5520',
+  4: '#f3df9b',
+  5: '#e8c76c',
+  6: '#c9972d',
+  7: '#a89063',
+  8: '#d8c9aa',
+  9: '#efe4c8',
 };
 
 export const ColorCodesForKSizes: Record<number, string> = {
-  25: '#E2EDF0',
-  31: '#95B0B7',
-  32: '#7676A9',
-  33: '#C3C3EE',
-  34: '#BCEFF2',
-  35: '#474765',
+  25: '#efe4c8',
+  31: '#cdbb91',
+  32: '#9b7040',
+  33: '#d2a33a',
+  34: '#e8c76c',
+  35: '#5c4329',
 };
 
 export type DoughnutChartData = { data: number[]; colors: string[]; labels: string[] };

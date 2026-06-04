@@ -2,7 +2,7 @@ import { useGetLoggedInFingerprintQuery, useGetKeyQuery, useFingerprintSettings 
 import { Trans } from '@lingui/macro';
 import { Edit as EditIcon } from '@mui/icons-material';
 import { Box, AppBar, Toolbar, Drawer, IconButton, Typography, CircularProgress, Button } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
+import { alpha, useTheme } from '@mui/material/styles';
 import React, { type ReactNode, useState, Suspense, useCallback } from 'react';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
@@ -21,7 +21,10 @@ import NewerAppVersionAvailable from './NewerAppVersionAvailable';
 // import LayoutFooter from '../LayoutMain/LayoutFooter';
 
 const StyledAppBar = styled(({ drawer, ...rest }) => <AppBar {...rest} />)`
-  border-bottom: 1px solid ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[300])};
+  border-bottom: 1px solid
+    ${({ theme }) => (theme.palette.mode === 'dark' ? alpha('#f7df9b', 0.16) : alpha('#473a24', 0.16))};
+  background: ${({ theme }) => (theme.palette.mode === 'dark' ? alpha('#211b12', 0.86) : alpha('#f4f0e5', 0.82))};
+  backdrop-filter: blur(18px);
   width: ${({ theme, drawer }) => (drawer ? `calc(100% - ${theme.drawer.width})` : '100%')};
   margin-left: ${({ theme, drawer }) => (drawer ? theme.drawer.width : 0)};
   z-index: ${({ theme }) => theme.zIndex.drawer + 1};};
@@ -35,7 +38,13 @@ const StyledDrawer = styled(Drawer)`
   > div {
     width: ${({ theme }) => theme.drawer.width};
     // border-width: 0px;
-    border-right: 1px solid ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[300])};
+    border-right: 1px solid
+      ${({ theme }) => (theme.palette.mode === 'dark' ? alpha('#f7df9b', 0.16) : alpha('#473a24', 0.18))};
+    background: ${({ theme }) =>
+      theme.palette.mode === 'dark'
+        ? 'linear-gradient(180deg, rgba(33, 29, 19, 0.98) 0%, rgba(24, 21, 14, 0.99) 100%)'
+        : 'linear-gradient(180deg, rgba(48, 44, 31, 0.98) 0%, rgba(58, 49, 31, 0.99) 100%)'};
+    color: ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[50] : '#f7efd8')};
   }
 `;
 
@@ -80,7 +89,7 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
   const isDark = theme.palette.mode === 'dark';
   const [walletKeyTheme, setWalletKeyTheme] = useFingerprintSettings<WalletKeyTheme>(fingerprint, 'walletKeyTheme', {
     emoji: ``,
-    color: 'green',
+    color: 'yellow',
   });
   const { appVersion, latestVersion, newVersionAvailable, isVersionSkipped, addVersionToSkip, downloadUrl, blogUrl } =
     useGetLatestVersionFromWebsite();
@@ -155,7 +164,15 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
   }
 
   return (
-    <Flex sx={{ height: '100%' }}>
+    <Flex
+      sx={{
+        height: '100%',
+        backgroundColor: isDark ? '#16130d' : 'background.default',
+        backgroundImage: isDark
+          ? 'linear-gradient(118deg, rgba(22, 19, 13, 0.98) 0%, rgba(54, 42, 22, 0.96) 44%, rgba(34, 29, 18, 0.98) 100%), repeating-linear-gradient(102deg, rgba(216, 173, 69, 0.12) 0 18px, rgba(155, 112, 64, 0.1) 18px 34px, transparent 34px 68px)'
+          : 'linear-gradient(118deg, rgba(246, 241, 225, 0.98) 0%, rgba(236, 225, 195, 0.94) 42%, rgba(232, 229, 209, 0.94) 100%), repeating-linear-gradient(102deg, rgba(169, 121, 35, 0.1) 0 18px, rgba(205, 169, 79, 0.08) 18px 34px, transparent 34px 68px)',
+      }}
+    >
       <Suspense fallback={<Loading center />}>
         {sidebar ? <StyledDrawer variant="permanent">{sidebar}</StyledDrawer> : null}
         <Flex flexDirection="column" flexGrow={1} sx={{ minWidth: 0 }}>

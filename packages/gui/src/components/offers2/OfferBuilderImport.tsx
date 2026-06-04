@@ -1,5 +1,5 @@
 import { useGetOfferSummaryMutation } from '@chia-network/api-react';
-import { Color, Dropzone, Flex, useSerializedNavigationState, useShowError } from '@chia-network/core';
+import { Dropzone, Flex, useSerializedNavigationState, useShowError } from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
 import { Box, Card, Typography } from '@mui/material';
 import React from 'react';
@@ -119,6 +119,12 @@ export default function OfferBuilderImport() {
         justifyContent: 'center',
         alignItems: 'center',
         cursor: 'pointer',
+        borderColor: '#d2a33a',
+        backgroundColor: 'rgba(255, 250, 240, 0.78)',
+        '&:hover': {
+          borderColor: '#b98524',
+          boxShadow: '0 0 0 1px rgba(185, 133, 36, 0.22), 0 18px 48px rgba(71, 58, 36, 0.1)',
+        },
       }}
     >
       <Dropzone maxFiles={1} onDrop={handleDrop} processing={isParsing} background={Background}>
@@ -130,7 +136,7 @@ export default function OfferBuilderImport() {
           </Typography>
           <Typography color="textSecondary" textAlign="center">
             <Trans>
-              or <span style={{ color: Color.Green[400] }}>browse</span> on your computer
+              or <span style={{ color: '#b98524' }}>browse</span> on your computer
             </Trans>
           </Typography>
         </Flex>
