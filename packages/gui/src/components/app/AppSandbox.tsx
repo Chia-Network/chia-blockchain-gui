@@ -1,3 +1,5 @@
+import { resolveAppTheme, ThemeProvider, useDarkMode, useThemeVariant } from '@chia-network/core';
+import { Overview as OverviewIcon } from '@chia-network/icons';
 import {
   AccountBalanceWallet,
   Agriculture,
@@ -27,18 +29,18 @@ import {
   Drawer,
   IconButton,
   LinearProgress,
-  ThemeProvider,
   Toolbar,
   Typography,
-  createTheme,
 } from '@mui/material';
 import { alpha, styled, useTheme } from '@mui/material/styles';
 import React, { useMemo, useState } from 'react';
 
+import GuiThemeAssetsProvider from '../../theme/GuiThemeAssetsProvider';
+
 const drawerWidth = 124;
 
 const navItems = [
-  { label: 'Overview', icon: BarChart },
+  { label: 'Overview', icon: OverviewIcon },
   { label: 'Wallets', icon: AccountBalanceWallet },
   { label: 'NFTs', icon: GridView },
   { label: 'Offers', icon: LocalOffer },
@@ -484,33 +486,16 @@ function SandboxScreen() {
 }
 
 export default function AppSandbox() {
-  const [darkMode] = useState(false);
-  const theme = useMemo(
-    () =>
-      createTheme({
-        palette: {
-          mode: darkMode ? 'dark' : 'light',
-          primary: {
-            main: '#2b8f5b',
-          },
-          secondary: {
-            main: '#355f9f',
-          },
-        },
-        typography: {
-          fontFamily: ['Inter', 'Roboto', 'Arial', 'sans-serif'].join(','),
-        },
-        shape: {
-          borderRadius: 8,
-        },
-      }),
-    [darkMode],
-  );
+  const { isDarkMode } = useDarkMode();
+  const { themeVariant } = useThemeVariant();
+  const theme = useMemo(() => resolveAppTheme(themeVariant, isDarkMode), [themeVariant, isDarkMode]);
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <SandboxScreen />
+    <ThemeProvider theme={theme} fonts global>
+      <GuiThemeAssetsProvider>
+        <CssBaseline />
+        <SandboxScreen />
+      </GuiThemeAssetsProvider>
     </ThemeProvider>
   );
 }

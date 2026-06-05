@@ -4,7 +4,7 @@ import React from 'react';
 import ChiaBlackIcon from './images/chia-black.svg';
 import ChiaIcon from './images/chia.svg';
 
-export default function Keys(props: SvgIconProps) {
+export default function Chia(props: SvgIconProps) {
   return <SvgIcon component={ChiaIcon} viewBox="0 0 150 58" {...props} />;
 }
 

@@ -173,7 +173,7 @@ export const LOG_COLORS: LogColors = {
   [LogLevel.CRITICAL]: '#FF0000',
   [LogLevel.ERROR]: '#FF4444',
   [LogLevel.WARNING]: '#FFA500',
-  [LogLevel.INFO]: '#b98524',
+  [LogLevel.INFO]: '#4CAF50',
   [LogLevel.DEBUG]: '#2196F3',
   [LogLevel.NOTSET]: '#757575',
 };

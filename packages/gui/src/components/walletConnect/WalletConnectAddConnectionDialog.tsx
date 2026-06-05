@@ -1,4 +1,4 @@
-import { ButtonLoading, DialogActions, Flex, TextField, Button, Form } from '@chia-network/core';
+import { ButtonLoading, DialogActions, Flex, TextField, Button, Form, useThemeAssets } from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
 import CloseIcon from '@mui/icons-material/Close';
 import { Box, Divider, Dialog, DialogContent, DialogTitle, IconButton, Typography } from '@mui/material';
@@ -6,8 +6,6 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 
 import useWalletConnectContext from '../../hooks/useWalletConnectContext';
-
-import HeroImage from './images/walletConnectToChia.svg';
 
 type FormData = {
   uri: string;
@@ -20,6 +18,7 @@ export type WalletConnectAddConnectionDialogProps = {
 
 export default function WalletConnectAddConnectionDialog(props: WalletConnectAddConnectionDialogProps) {
   const { onClose = () => {}, open = false } = props;
+  const { walletConnectToChia: HeroImage } = useThemeAssets();
 
   const { pair } = useWalletConnectContext();
   const methods = useForm<FormData>({

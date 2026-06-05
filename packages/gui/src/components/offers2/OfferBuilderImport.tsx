@@ -1,11 +1,9 @@
 import { useGetOfferSummaryMutation } from '@chia-network/api-react';
-import { Dropzone, Flex, useSerializedNavigationState, useShowError } from '@chia-network/core';
+import { Dropzone, Flex, useSerializedNavigationState, useShowError, useThemeAssets } from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
 import { Box, Card, Typography } from '@mui/material';
 import React from 'react';
 import { useHotkeys } from 'react-hotkeys-hook';
-
-import OfferFileIcon from './images/offerFileIcon.svg';
 
 function Background(props: { children: React.ReactNode }) {
   const { children } = props;
@@ -17,6 +15,7 @@ function Background(props: { children: React.ReactNode }) {
 }
 
 export default function OfferBuilderImport() {
+  const { offerFileIcon: OfferFileIcon } = useThemeAssets();
   const { navigate } = useSerializedNavigationState();
   const [getOfferSummary] = useGetOfferSummaryMutation();
   // const openDialog = useOpenDialog();
