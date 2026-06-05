@@ -1,25 +1,29 @@
-import { Color, IconMessage, Loading, Flex, SandboxedIframe, usePersistState, useDarkMode } from '@chia-network/core';
+import {
+  Color,
+  IconMessage,
+  Loading,
+  Flex,
+  SandboxedIframe,
+  usePersistState,
+  useDarkMode,
+  useThemeAssets,
+} from '@chia-network/core';
 import { t, Trans } from '@lingui/macro';
 import { NotInterested } from '@mui/icons-material';
 import { alpha, Box } from '@mui/material';
 import React, { useMemo, useRef, Fragment, useCallback, useEffect, type ReactNode } from 'react';
 import styled from 'styled-components';
 
-import AudioSmallIcon from '../../assets/img/audio-small.svg';
 import DocumentBlobIcon from '../../assets/img/document-blob.svg';
-import DocumentSmallIcon from '../../assets/img/document-small.svg';
 import DocumentPngIcon from '../../assets/img/document.png';
 import DocumentPngDarkIcon from '../../assets/img/document_dark.png';
 import ModelBlobIcon from '../../assets/img/model-blob.svg';
-import ModelSmallIcon from '../../assets/img/model-small.svg';
 import ModelPngIcon from '../../assets/img/model.png';
 import ModelPngDarkIcon from '../../assets/img/model_dark.png';
 import UnknownBlobIcon from '../../assets/img/unknown-blob.svg';
-import UnknownSmallIcon from '../../assets/img/unknown-small.svg';
 import UnknownPngIcon from '../../assets/img/unknown.png';
 import UnknownPngDarkIcon from '../../assets/img/unknown_dark.png';
 import VideoBlobIcon from '../../assets/img/video-blob.svg';
-import VideoSmallIcon from '../../assets/img/video-small.svg';
 import VideoPngIcon from '../../assets/img/video.png';
 import VideoPngDarkIcon from '../../assets/img/video_dark.png';
 import FileType from '../../constants/FileType';
@@ -91,19 +95,13 @@ const BlobBg = styled.div<{ isDarkMode: boolean }>`
   }
 `;
 
-const CompactVideoIcon = styled(VideoSmallIcon)``;
-const CompactAudioIcon = styled(AudioSmallIcon)``;
-const CompactUnknownIcon = styled(UnknownSmallIcon)``;
-const CompactDocumentIcon = styled(DocumentSmallIcon)``;
-const CompactModelIcon = styled(ModelSmallIcon)``;
-
 const CompactExtension = styled.div`
   position: absolute;
   top: 48px;
   left: 0;
   right: 4px;
   text-align: center;
-  color: #b98524;
+  color: ${({ theme }) => theme.palette.primary.main};
 `;
 
 export type NFTPreviewProps = {
@@ -140,6 +138,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
   const nftId = useMemo(() => getNFTId(id), [id]);
   const iframeRef = useRef<any>(null);
   const { isDarkMode } = useDarkMode();
+  const { audioSmall, documentSmall, modelSmall, unknownSmall, videoSmall } = useThemeAssets();
   const [, setError] = useStateAbort<Error | undefined>(undefined);
   const [previewContent, setPreviewContent] = useStateAbort<ReactNode | undefined>(undefined);
   const abortControllerRef = useRef(new AbortController());
@@ -249,22 +248,22 @@ export default function NFTPreview(props: NFTPreviewProps) {
   const previewCompactIcon = useMemo(() => {
     switch (previewFileType) {
       case FileType.VIDEO:
-        return <CompactVideoIcon width="100%" />;
+        return React.createElement(videoSmall, { width: '100%' });
       case FileType.AUDIO:
-        return <CompactAudioIcon width="100%" />;
+        return React.createElement(audioSmall, { width: '100%' });
       case FileType.MODEL:
-        return <CompactModelIcon width="100%" />;
+        return React.createElement(modelSmall, { width: '100%' });
       case FileType.DOCUMENT:
-        return <CompactDocumentIcon width="100%" />;
+        return React.createElement(documentSmall, { width: '100%' });
       default: {
         if (previewExtension) {
           return <CompactExtension>.{previewExtension}</CompactExtension>;
         }
 
-        return <CompactUnknownIcon width="100%" />;
+        return React.createElement(unknownSmall, { width: '100%' });
       }
     }
-  }, [previewFileType, previewExtension]);
+  }, [previewFileType, previewExtension, audioSmall, documentSmall, modelSmall, unknownSmall, videoSmall]);
 
   const previewIcon = useMemo(() => {
     switch (previewFileType) {

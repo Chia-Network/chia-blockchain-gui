@@ -8,7 +8,7 @@ import {
 } from '@chia-network/api-react';
 import { Flex, Link, StateIndicator, State, Tooltip, useCurrencyCode } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import { Box, Button, Paper, Typography, CircularProgress } from '@mui/material';
+import { Box, Button, Paper, Typography, CircularProgress, useTheme } from '@mui/material';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -55,46 +55,53 @@ const StyledInput = styled.input`
   display: inline-block;
 `;
 
-const indicatorStyle = {
-  marginTop: 1,
-  '> div > div': {
-    display: 'inline-flex',
-  },
-  '.cancel-icon': {
-    g: {
-      circle: {
-        stroke: '#D32F2F',
-        fill: '#D32F2F',
+function getIndicatorStyle(successColor: string) {
+  return {
+    marginTop: 1,
+    '> div > div': {
+      display: 'inline-flex',
+    },
+    '.cancel-icon': {
+      g: {
+        circle: {
+          stroke: '#D32F2F',
+          fill: '#D32F2F',
+        },
       },
     },
-  },
-  '.checkmark-icon': {
-    g: {
-      circle: {
-        stroke: '#b98524',
-        fill: '#b98524',
-      },
-      path: {
-        stroke: '#b98524',
-        fill: '#b98524',
-      },
-    },
-  },
-  '.reload-icon': {
-    g: {
-      circle: {
-        stroke: '#FF9800',
-        fill: '#FF9800',
-      },
-      path: {
-        fill: '#FF9800',
+    '.checkmark-icon': {
+      g: {
+        circle: {
+          stroke: successColor,
+          fill: successColor,
+        },
+        path: {
+          stroke: successColor,
+          fill: successColor,
+        },
       },
     },
-  },
-};
+    '.reload-icon': {
+      g: {
+        circle: {
+          stroke: '#FF9800',
+          fill: '#FF9800',
+        },
+        path: {
+          fill: '#FF9800',
+        },
+      },
+    },
+  };
+}
 
 export default React.memo(FarmHealth);
 function FarmHealth() {
+  const theme = useTheme();
+  const indicatorStyle = React.useMemo(
+    () => getIndicatorStyle(theme.palette.primary.main),
+    [theme.palette.primary.main],
+  );
   const { farmerStatus, blockchainState } = useFarmerStatus();
   const { data: missingSpsData, isLoading: isLoadingMissingSps } = useGetMissingSignagePointsQuery();
   const [resetMissingSps] = useResetMissingSignagePointsMutation();
