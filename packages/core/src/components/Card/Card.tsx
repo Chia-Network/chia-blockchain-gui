@@ -1,5 +1,4 @@
 import {
-  alpha,
   Box,
   Card as CardMaterial,
   CardProps as CardMaterialProps,
@@ -27,23 +26,9 @@ const StyledCardMaterial = styled(({ cursor, opacity, clickable, fullHeight, hig
   border: ${({ clickable }) => (clickable ? '1px solid transparent' : 'none')};
   border-radius: ${({ theme, highlight }) =>
     highlight ? `0 0 ${theme.shape.borderRadius}px ${theme.shape.borderRadius}px` : `${theme.shape.borderRadius}px`};
-  transition:
-    background-color 120ms ease,
-    border-color 120ms ease,
-    box-shadow 120ms ease,
-    transform 120ms ease;
 
   &:hover {
     border-color: ${({ theme, clickable }) => (clickable ? theme.palette.primary.main : 'transparent')};
-    background-color: ${({ theme, clickable }) =>
-      clickable ? (theme.palette.mode === 'dark' ? alpha('#d8ad45', 0.1) : alpha('#b98524', 0.08)) : undefined};
-    box-shadow: ${({ theme, clickable }) =>
-      clickable
-        ? theme.palette.mode === 'dark'
-          ? '0 4px 14px rgba(0, 0, 0, 0.22)'
-          : '0 4px 14px rgba(71, 58, 36, 0.14)'
-        : undefined};
-    transform: ${({ clickable, disabled }) => (clickable && !disabled ? 'translateY(-1px)' : 'none')};
   }
 
   ${({ transparent }) =>

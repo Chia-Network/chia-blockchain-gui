@@ -1,57 +1,57 @@
 import { alpha, ListItem, ListItemIcon, Typography } from '@mui/material';
+import type { Theme } from '@mui/material/styles';
 import { styled } from '@mui/material/styles';
 import React, { type ReactNode } from 'react';
 import { useNavigate, useMatch } from 'react-router-dom';
 
-import Color from '../../constants/Color';
+import getColorModeValue from '../../utils/useColorModeValue';
 import Flex from '../Flex';
 
-const StyledListItemIcon = styled(ListItemIcon)`
+type SidebarPaletteKey =
+  | 'sidebarBackground'
+  | 'sidebarSelectedFill'
+  | 'sidebarIcon'
+  | 'sidebarIconSelected'
+  | 'sidebarIconHover'
+  | 'sidebarText';
+
+function paletteColor(theme: Theme, key: SidebarPaletteKey): string {
+  return getColorModeValue(theme, key as Parameters<typeof getColorModeValue>[1]);
+}
+
+function selectedFill(theme: Theme): string {
+  if (theme.palette.sidebarSelectedFill) {
+    return paletteColor(theme, 'sidebarSelectedFill');
+  }
+  return paletteColor(theme, 'sidebarBackground');
+}
+
+function labelColor(theme: Theme): string {
+  if (theme.palette.sidebarText) {
+    return paletteColor(theme, 'sidebarText');
+  }
+  return paletteColor(theme, 'sidebarIcon');
+}
+
+const StyledListItemIcon = styled(ListItemIcon)<{ selected?: boolean }>`
   min-width: auto;
   position: relative;
-  background-color: ${({ theme, selected }) =>
-    selected ? (theme.palette.mode === 'dark' ? alpha('#d8ad45', 0.28) : alpha('#c7892a', 0.28)) : 'transparent'};
-  border-radius: ${({ theme }) => theme.spacing(1.25)};
-  width: ${({ theme }) => theme.spacing(5.25)};
-  height: ${({ theme }) => theme.spacing(5.25)};
+  background-color: ${({ theme, selected }) => (selected ? selectedFill(theme) : 'transparent')};
+  border-radius: ${({ theme }) => theme.spacing(1.5)};
+  width: ${({ theme }) => theme.spacing(6)};
+  height: ${({ theme }) => theme.spacing(6)};
   border: ${({ selected, theme }) =>
-    `1px solid ${selected ? alpha('#e6b756', 0.82) : alpha('#f7efd8', theme.palette.mode === 'dark' ? 0.16 : 0.18)}`};
+    selected ? `1px solid ${theme.palette.highlight.main}` : '1px solid transparent'};
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: ${({ selected, theme }) =>
-    selected ? `0 10px 24px ${alpha('#0f1a12', theme.palette.mode === 'dark' ? 0.26 : 0.24)}` : 'none'};
   transition:
-    background-color 0.2s ease-in-out,
-    border 0.2s ease-in-out,
-    box-shadow 0.2s ease-in-out,
-    transform 0.2s ease-in-out;
-
-  &::after {
-    content: '';
-    border-radius: ${({ theme }) => theme.spacing(1.25)};
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    box-shadow:
-      0px -2px 4px ${alpha('#f1d37a', 0.41)},
-      0px 1px 8px ${alpha('#e6b756', 0.5)};
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-  }
+    border-color 0.2s ease-in-out,
+    background-color 0.2s ease-in-out;
 
   svg {
     color: ${({ selected, theme }) =>
-      selected
-        ? theme.palette.mode === 'dark'
-          ? '#fff3cf'
-          : '#fff3cf'
-        : theme.palette.mode === 'dark'
-          ? theme.palette.sidebarIcon.dark
-          : theme.palette.sidebarIcon.main};
+      selected ? paletteColor(theme, 'sidebarIconSelected') : paletteColor(theme, 'sidebarIcon')};
   }
 `;
 
@@ -61,34 +61,27 @@ const StyledListItem = styled(ListItem)`
   align-items: center;
   padding-left: 0;
   padding-right: 0;
-  padding-top: ${({ theme }) => theme.spacing(0.5)};
-  padding-bottom: ${({ theme }) => theme.spacing(0.5)};
+  padding-top: ${({ theme }) => theme.spacing(1)};
+  padding-bottom: ${({ theme }) => theme.spacing(1)};
 
   &:hover {
     background-color: transparent;
   }
 
   &:hover ${StyledListItemIcon} {
-    border-color: ${alpha('#e6b756', 0.82)};
-    transform: translateY(-1px);
+    background-color: ${({ theme }) => alpha(paletteColor(theme, 'sidebarIcon'), 0.12)};
+    border-color: ${({ theme }) => alpha(paletteColor(theme, 'sidebarIconHover'), 0.55)};
 
     svg {
-      color: ${({ theme }) =>
-        theme.palette.mode === 'dark'
-          ? theme.palette.sidebarIconHover.dark
-          : theme.palette.sidebarIconHover.main} !important;
-    }
-
-    &::after {
-      opacity: 1;
+      color: ${({ theme }) => paletteColor(theme, 'sidebarIconHover')} !important;
     }
   }
 `;
 
 const StyledListItemText = styled(Typography)`
-  font-size: ${({ theme }) => theme.typography.pxToRem(9.5)} !important;
-  font-weight: 700;
-  color: ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[50] : alpha('#f7efd8', 0.82))};
+  font-size: ${({ theme }) => theme.typography.pxToRem(10)} !important;
+  font-weight: 500;
+  color: ${({ theme }) => labelColor(theme)};
 `;
 
 export type SideBarItemProps = {
@@ -118,7 +111,7 @@ export default function SideBarItem(props: SideBarItemProps) {
 
   return (
     <StyledListItem button onClick={() => handleClick()} {...rest}>
-      <Flex flexDirection="column" alignItems="center" gap={0.25}>
+      <Flex flexDirection="column" alignItems="center" gap={0.5}>
         <StyledListItemIcon selected={isSelected}>
           <Icon fontSize="sidebarIcon" />
         </StyledListItemIcon>

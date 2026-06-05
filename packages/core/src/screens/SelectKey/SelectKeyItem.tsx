@@ -41,7 +41,7 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
 
   const [walletKeyTheme, setWalletKeyTheme] = useFingerprintSettings<WalletKeyTheme>(fingerprint, 'walletKeyTheme', {
     emoji: `🌱`,
-    color: 'yellow',
+    color: 'green',
   });
 
   const [showEmojiPicker, setShowEmojiPicker] = useState<boolean>(false);

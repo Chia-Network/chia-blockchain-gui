@@ -1,4 +1,4 @@
-import { alpha, Box, Card, CardContent, CardActionArea } from '@mui/material';
+import { alpha, Box, Card, CardActionArea, CardContent } from '@mui/material';
 import React, { type ReactNode } from 'react';
 
 import Color from '../../constants/Color';
@@ -34,35 +34,29 @@ export default function CardListItem(props: CardListItemProps) {
         border: (theme) =>
           `1px solid ${
             selected
-              ? theme.palette.highlight.main
+              ? theme.palette.primary.main
               : borderTransparency
                 ? theme.palette.background.default
                 : getColorModeValue(theme, 'border')
           }`,
-        backgroundColor: (theme) =>
-          `${selected ? getColorModeValue(theme, 'sidebarBackground') : theme.palette.background.paper}`,
+        backgroundColor: (theme) => {
+          if (!selected) {
+            return theme.palette.background.paper;
+          }
+          if (theme.chiaTheme?.variant === 'chia') {
+            return theme.palette.action.selected;
+          }
+          if (theme.palette.sidebarSelectedFill) {
+            return getColorModeValue(theme, 'sidebarSelectedFill' as Parameters<typeof getColorModeValue>[1]);
+          }
+          return alpha(theme.palette.primary.main, theme.palette.mode === 'dark' ? 0.18 : 0.1);
+        },
         position: 'relative',
         overflow: 'visible',
-        transition: 'background-color 120ms ease, border-color 120ms ease, box-shadow 120ms ease, transform 120ms ease',
 
         '&:hover': {
           borderColor: (theme) =>
-            `${disabled ? theme.palette.divider : selected ? theme.palette.highlight.main : theme.palette.divider}`,
-          backgroundColor: (theme) =>
-            disabled
-              ? undefined
-              : selected
-                ? getColorModeValue(theme, 'sidebarBackground')
-                : theme.palette.mode === 'dark'
-                  ? alpha('#d8ad45', 0.1)
-                  : alpha('#b98524', 0.08),
-          boxShadow: (theme) =>
-            disabled || !onSelect
-              ? undefined
-              : theme.palette.mode === 'dark'
-                ? '0 4px 14px rgba(0, 0, 0, 0.22)'
-                : '0 4px 14px rgba(71, 58, 36, 0.14)',
-          transform: disabled || !onSelect ? undefined : 'translateY(-1px)',
+            `${disabled ? theme.palette.divider : selected ? theme.palette.primary.main : theme.palette.divider}`,
         },
       }}
     >

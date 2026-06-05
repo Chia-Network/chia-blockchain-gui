@@ -137,7 +137,7 @@ function CountdownBar({ startTime, refreshSeconds }: { startTime: number; refres
   const fillerStyle = {
     height: '100%',
     width: `${currentProgress}%`,
-    backgroundColor: '#b98524',
+    backgroundColor: Color.Green[600],
     borderRadius: 'inherit',
     // textAlign: 'right',
   };

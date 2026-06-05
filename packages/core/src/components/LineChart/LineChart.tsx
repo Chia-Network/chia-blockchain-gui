@@ -1,4 +1,4 @@
-import { alpha } from '@mui/material';
+import { alpha, useTheme } from '@mui/material';
 import { SparkLineChart, type SparkLineChartProps } from '@mui/x-charts';
 import { areaElementClasses } from '@mui/x-charts/LineChart';
 import BigNumber from 'bignumber.js';
@@ -6,7 +6,7 @@ import JSONbig from 'json-bigint';
 import React, { useMemo, memo } from 'react';
 import styled from 'styled-components';
 
-const graphColor = '#b98524';
+import Color from '../../constants/Color';
 
 const StyledGraphContainer = styled.div<{ height: number }>`
   position: relative;
@@ -14,24 +14,17 @@ const StyledGraphContainer = styled.div<{ height: number }>`
   height: ${({ height }) => `${height}px`};
 `;
 
-function LinearGradient() {
+function LinearGradient({ chartColor }: { chartColor: string }) {
   return (
     <defs>
       <linearGradient id="graph-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%" stopColor={alpha(graphColor, 0.42)} />
-        <stop offset="100%" stopColor={alpha(graphColor, 0)} />
+        <stop offset="0%" stopColor={alpha(chartColor, 0.4)} />
+        <stop offset="100%" stopColor={alpha(chartColor, 0)} />
       </linearGradient>
     </defs>
   );
 }
 
-const sx = {
-  [`& .${areaElementClasses.root}`]: {
-    fill: 'url(#graph-gradient)',
-  },
-};
-
-const chartColors = [graphColor];
 const chartMargin = { top: 0, bottom: 0, left: 0, right: 0 };
 const defaultXValueFormatter = (value: number) => value.toString();
 const defaultYValueFormatter = (value: number | BigNumber | null) => (value !== null ? value.toString() : '');
@@ -41,16 +34,25 @@ type Point = {
   y: number | BigNumber;
 };
 
-const MemoLineChart = memo((props: SparkLineChartProps) => (
-  <SparkLineChart {...props}>
-    <LinearGradient />
-    <rect x={0} y={0} width={0} height="100%" fill="url(#graph-gradient)" />
-  </SparkLineChart>
-));
+const MemoLineChart = memo((props: SparkLineChartProps & { chartColor: string }) => {
+  const { chartColor, sx, ...rest } = props;
+  const areaSx = {
+    [`& .${areaElementClasses.root}`]: {
+      fill: 'url(#graph-gradient)',
+    },
+    ...sx,
+  };
+
+  return (
+    <SparkLineChart {...rest} sx={areaSx}>
+      <LinearGradient chartColor={chartColor} />
+      <rect x={0} y={0} width={0} height="100%" fill="url(#graph-gradient)" />
+    </SparkLineChart>
+  );
+});
 
 export type LineChartProps = {
   data: Point[];
-  // min?: number;
   height?: number;
   xValueFormatter?: (value: number) => string;
   yValueFormatter?: (value: number | BigNumber | null) => string;
@@ -59,11 +61,14 @@ export type LineChartProps = {
 export default function LineChart(props: LineChartProps) {
   const {
     data,
-    // min: defaultMin = 0,
     xValueFormatter = defaultXValueFormatter,
     yValueFormatter = defaultYValueFormatter,
     height = 150,
   } = props;
+
+  const theme = useTheme();
+  const chartColor = theme.palette.primary?.main ?? Color.Green[500];
+  const chartColors = useMemo(() => [chartColor], [chartColor]);
 
   const stringifiedData = useMemo(() => JSONbig.stringify(data), [data]);
   const freezedData = useMemo<Point[]>(() => JSONbig.parse(stringifiedData), [stringifiedData]);
@@ -94,10 +99,10 @@ export default function LineChart(props: LineChartProps) {
         curve="monotoneX"
         margin={chartMargin}
         colors={chartColors}
+        chartColor={chartColor}
         area
         showHighlight
         showTooltip
-        sx={sx}
       />
     </StyledGraphContainer>
   );
