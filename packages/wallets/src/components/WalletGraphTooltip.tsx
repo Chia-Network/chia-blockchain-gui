@@ -1,7 +1,5 @@
-import { Box, Paper, Popper, Typography } from '@mui/material';
+import { Box, Paper, Popper, Typography, useTheme } from '@mui/material';
 import React, { ReactNode, useRef } from 'react';
-
-const graphColor = '#b98524';
 
 export type WalletGraphTooltipProps = {
   x?: number;
@@ -15,6 +13,8 @@ export type WalletGraphTooltipProps = {
 
 export default function WalletGraphTooltip(props: WalletGraphTooltipProps) {
   const { datum = { tooltip: '' }, x = 0, y = 0, suffix = '', dotSize = 4 } = props;
+  const theme = useTheme();
+  const graphColor = theme.palette.primary.main;
   const elementRef = useRef<HTMLDivElement | null>(null);
 
   return (
