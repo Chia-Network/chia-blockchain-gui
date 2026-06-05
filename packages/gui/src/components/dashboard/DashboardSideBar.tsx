@@ -12,9 +12,9 @@ import {
   Settings as SettingsIcon,
   Contacts as AddressBookIcon,
   VC as VCIcon,
+  Overview as OverviewIcon,
 } from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
-import BarChartIcon from '@mui/icons-material/BarChart';
 import BuildOutlinedIcon from '@mui/icons-material/BuildOutlined';
 import { Box } from '@mui/material';
 import React from 'react';
@@ -46,7 +46,7 @@ export default function DashboardSideBar(props: DashboardSideBarProps) {
           {!simple && (
             <SideBarItem
               to="/dashboard"
-              icon={BarChartIcon}
+              icon={OverviewIcon}
               title={<Trans>Overview</Trans>}
               data-testid="DashboardSideBar-overview"
               end

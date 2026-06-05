@@ -5,21 +5,22 @@ import {
   useGetTotalHarvestersSummaryQuery,
 } from '@chia-network/api-react';
 import { FormatBytes, FormatLargeNumber, mojoToChiaLocaleString, useCurrencyCode, useLocale } from '@chia-network/core';
-import { Trans } from '@lingui/macro';
 import {
-  AccountBalanceWallet,
-  Agriculture,
-  BlurOn,
-  BuildOutlined,
-  Contacts,
-  FactCheck,
-  GridView,
-  Hub,
-  Inventory2,
-  LocalOffer,
-  Settings,
-} from '@mui/icons-material';
-import { Box, Button, Card, CardActionArea, CardContent, Chip, LinearProgress, Typography } from '@mui/material';
+  Contacts as ContactsIcon,
+  Farm as FarmIcon,
+  FullNode as FullNodeIcon,
+  Harvest as HarvestIcon,
+  NFTs as NFTsIcon,
+  Offers as OffersIcon,
+  Plots as PlotsIcon,
+  Pooling as PoolingIcon,
+  Settings as SettingsIcon,
+  Tokens as TokensIcon,
+  VC as VCIcon,
+} from '@chia-network/icons';
+import { Trans } from '@lingui/macro';
+import BuildOutlinedIcon from '@mui/icons-material/BuildOutlined';
+import { Box, Card, CardActionArea, CardContent, LinearProgress, Typography } from '@mui/material';
 import { alpha, useTheme } from '@mui/material/styles';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -31,28 +32,29 @@ const quickStatus = [
     label: <Trans>Wallets</Trans>,
     detail: <Trans>Balances, send, receive, transactions</Trans>,
     to: '/dashboard/wallets',
-    icon: AccountBalanceWallet,
+    icon: TokensIcon,
+    iconScale: 1.15,
     key: 'Wallets',
   },
   {
     label: <Trans>Full Node</Trans>,
     detail: <Trans>Sync, peers, block inspection</Trans>,
     to: '/dashboard/fullnode',
-    icon: Hub,
+    icon: FullNodeIcon,
     key: 'Full Node',
   },
   {
     label: <Trans>Farm</Trans>,
     detail: <Trans>Farming status and rewards</Trans>,
     to: '/dashboard/farm',
-    icon: Agriculture,
+    icon: FarmIcon,
     key: 'Farm',
   },
   {
     label: <Trans>Plots</Trans>,
     detail: <Trans>Plot count, size, and add flow</Trans>,
     to: '/dashboard/plot',
-    icon: BlurOn,
+    icon: PlotsIcon,
     key: 'Plots',
   },
 ];
@@ -62,41 +64,63 @@ const preservedAreas = [
     label: <Trans>NFTs</Trans>,
     detail: <Trans>Gallery and detail pages</Trans>,
     to: '/dashboard/nfts',
-    icon: GridView,
+    icon: NFTsIcon,
   },
   {
     label: <Trans>Offers</Trans>,
     detail: <Trans>Create, import, inspect, manage</Trans>,
     to: '/dashboard/offers',
-    icon: LocalOffer,
+    icon: OffersIcon,
   },
   {
     label: <Trans>Credentials</Trans>,
     detail: <Trans>Verifiable credentials</Trans>,
     to: '/dashboard/vc',
-    icon: FactCheck,
+    icon: VCIcon,
+    iconScale: 1.2,
   },
-  { label: <Trans>Contacts</Trans>, detail: <Trans>Address book</Trans>, to: '/dashboard/addressbook', icon: Contacts },
+  {
+    label: <Trans>Contacts</Trans>,
+    detail: <Trans>Address book</Trans>,
+    to: '/dashboard/addressbook',
+    icon: ContactsIcon,
+  },
   {
     label: <Trans>Harvest</Trans>,
     detail: <Trans>Harvester overview</Trans>,
     to: '/dashboard/harvest',
-    icon: Inventory2,
+    icon: HarvestIcon,
   },
-  { label: <Trans>Pool</Trans>, detail: <Trans>Pooling controls</Trans>, to: '/dashboard/pool', icon: Inventory2 },
+  { label: <Trans>Pool</Trans>, detail: <Trans>Pooling controls</Trans>, to: '/dashboard/pool', icon: PoolingIcon },
   {
     label: <Trans>Tools</Trans>,
     detail: <Trans>Logs and diagnostics</Trans>,
     to: '/dashboard/chiatools',
-    icon: BuildOutlined,
+    icon: BuildOutlinedIcon,
   },
   {
     label: <Trans>Settings</Trans>,
     detail: <Trans>Preferences and services</Trans>,
     to: '/dashboard/settings/general',
-    icon: Settings,
+    icon: SettingsIcon,
   },
 ];
+
+function OverviewCardIcon(props: { icon: React.ElementType; scale?: number }) {
+  const { icon: Icon, scale = 1 } = props;
+  const size = 22 * scale;
+
+  return (
+    <Icon
+      sx={{
+        width: size,
+        height: size,
+        fontSize: size,
+        display: 'block',
+      }}
+    />
+  );
+}
 
 function OverviewCard(props: {
   label: React.ReactNode;
@@ -104,9 +128,10 @@ function OverviewCard(props: {
   detail: React.ReactNode;
   to: string;
   icon: React.ElementType;
+  iconScale?: number;
   progress?: number;
 }) {
-  const { label, value, detail, to, icon: Icon, progress } = props;
+  const { label, value, detail, to, icon, iconScale, progress } = props;
   const theme = useTheme();
   const navigate = useNavigate();
 
@@ -114,31 +139,43 @@ function OverviewCard(props: {
     <Card variant="outlined" sx={{ height: '100%' }}>
       <CardActionArea onClick={() => navigate(to)} sx={{ height: '100%' }}>
         <CardContent sx={{ height: '100%', display: 'flex', flexDirection: 'column', gap: 1 }}>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 2 }}>
-            <Box minWidth={0}>
+          <Box
+            sx={{
+              display: 'grid',
+              gridTemplateColumns: 'minmax(0, 1fr) auto',
+              gap: 1.5,
+              alignItems: 'start',
+            }}
+          >
+            <Box sx={{ minWidth: 0, pr: 0.5 }}>
               <Typography variant="body2" color="text.secondary">
                 {label}
               </Typography>
               {value && (
-                <Typography variant="h5" fontWeight={800} sx={{ mt: 0.25 }}>
+                <Typography
+                  variant="h6"
+                  fontWeight={800}
+                  sx={{ mt: 0.25, lineHeight: 1.25, overflowWrap: 'anywhere', wordBreak: 'break-word' }}
+                >
                   {value}
                 </Typography>
               )}
             </Box>
             <Box
               sx={{
-                width: 38,
-                height: 38,
+                width: 36,
+                height: 36,
                 borderRadius: 1,
-                display: 'grid',
-                placeItems: 'center',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
                 color: theme.palette.primary.main,
                 background: alpha(theme.palette.primary.main, 0.13),
                 border: `1px solid ${alpha(theme.palette.primary.main, 0.28)}`,
                 flexShrink: 0,
               }}
             >
-              <Icon fontSize="small" />
+              <OverviewCardIcon icon={icon} scale={iconScale} />
             </Box>
           </Box>
           <Typography variant="body2" color="text.secondary" sx={{ flexGrow: 1 }}>
@@ -342,26 +379,6 @@ export default function DashboardOverview() {
 
   return (
     <Box sx={{ p: 3 }}>
-      <Card variant="outlined" sx={{ mb: 2 }}>
-        <CardContent sx={{ p: 3 }}>
-          <Typography variant="overline" color="text.secondary">
-            <Trans>Dashboard</Trans>
-          </Typography>
-          <Typography variant="h4" fontWeight={900} sx={{ mt: 0.5 }}>
-            <Trans>Overview</Trans>
-          </Typography>
-          <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 720, mt: 1 }}>
-            <Trans>
-              Daily Chia checks in one place: wallet, node, farm, plots, offers, NFTs, pool, tools, and settings stay
-              one click away.
-            </Trans>
-          </Typography>
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mt: 2 }}>
-            <Chip label={<Trans>All original pages preserved</Trans>} size="small" color="primary" variant="outlined" />
-          </Box>
-        </CardContent>
-      </Card>
-
       <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 2, mb: 2 }}>
         {statusCards.map((item) => (
           <OverviewCard
@@ -371,25 +388,16 @@ export default function DashboardOverview() {
             detail={item.detail}
             to={item.to}
             icon={item.icon}
+            iconScale={item.iconScale}
           />
         ))}
       </Box>
 
       <Card variant="outlined">
         <CardContent sx={{ p: 2.5 }}>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 2, mb: 2 }}>
-            <Box>
-              <Typography variant="h6" fontWeight={800}>
-                <Trans>More areas</Trans>
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                <Trans>Overview adds a front door; original pages stay intact.</Trans>
-              </Typography>
-            </Box>
-            <Button variant="contained" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-              <Trans>Top</Trans>
-            </Button>
-          </Box>
+          <Typography variant="h6" fontWeight={800} sx={{ mb: 2 }}>
+            <Trans>More areas</Trans>
+          </Typography>
           <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))', gap: 1.5 }}>
             {preservedAreas.map((item) => (
               <OverviewCard key={item.to} {...item} />
