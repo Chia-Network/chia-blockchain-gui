@@ -1,4 +1,5 @@
 import { LatencyRecord } from '@chia-network/api';
+import { useTheme } from '@mui/material/styles';
 import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, BarController } from 'chart.js';
 import * as React from 'react';
 import { Bar } from 'react-chartjs-2';
@@ -58,6 +59,8 @@ export type BarChartProps = {
 export const PureLatencyBarChart = React.memo(LatencyBarChart);
 function LatencyBarChart(props: BarChartProps) {
   const { latency, period, unit } = props;
+  const theme = useTheme();
+  const primaryColor = theme.palette.primary.main;
 
   const options = React.useMemo(
     () => ({
@@ -100,7 +103,7 @@ function LatencyBarChart(props: BarChartProps) {
         records.push(valInMs);
         if (valInMs < 8000) {
           // Normal color
-          backgroundColors.push('#b98524');
+          backgroundColors.push(primaryColor);
         } else if (valInMs < 20_000) {
           // Warning color
           backgroundColors.push('#ffd388');
@@ -131,7 +134,7 @@ function LatencyBarChart(props: BarChartProps) {
         records.push(valInMs);
         if (valInMs < 8000) {
           // Normal color
-          backgroundColors.push('#b98524');
+          backgroundColors.push(primaryColor);
         } else if (valInMs < 20_000) {
           // Warning color
           backgroundColors.push('#ffd388');
@@ -153,7 +156,7 @@ function LatencyBarChart(props: BarChartProps) {
         },
       ],
     };
-  }, [latency, period]);
+  }, [latency, period, primaryColor]);
 
   return <Bar data={data} options={options} height={240} />;
 }
