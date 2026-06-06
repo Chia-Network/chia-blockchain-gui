@@ -45,7 +45,12 @@ const StyledPopover = styled((props: PopoverProps) => <Popover {...props} />)(({
 export default function AppStatusHeader() {
   const theme = useTheme();
   const { isDarkMode } = useDarkMode();
-  const borderColor = (theme.palette as any).border[isDarkMode ? 'dark' : 'main'];
+  const palette = theme.palette as typeof theme.palette & {
+    border: { dark: string; main: string };
+    danger?: { main: string };
+    highlight?: { main: string };
+  };
+  const borderColor = palette.border[isDarkMode ? 'dark' : 'main'];
   const ButtonGroupStyle = {
     minHeight: '42px',
   };
@@ -62,8 +67,8 @@ export default function AppStatusHeader() {
     '.cancel-icon': {
       g: {
         circle: {
-          stroke: Color.Red[600],
-          fill: Color.Red[600],
+          stroke: palette.danger?.main ?? theme.palette.error.main,
+          fill: palette.danger?.main ?? theme.palette.error.main,
         },
       },
     },
@@ -82,11 +87,11 @@ export default function AppStatusHeader() {
     '.reload-icon': {
       g: {
         circle: {
-          stroke: Color.Orange[400],
-          fill: Color.Orange[400],
+          stroke: palette.highlight?.main ?? theme.palette.warning.main,
+          fill: palette.highlight?.main ?? theme.palette.warning.main,
         },
         path: {
-          fill: Color.Orange[400],
+          fill: palette.highlight?.main ?? theme.palette.warning.main,
         },
       },
     },

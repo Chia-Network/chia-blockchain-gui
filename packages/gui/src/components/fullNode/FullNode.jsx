@@ -1,8 +1,9 @@
 import { useGetLatestBlocksQuery, useGetUnfinishedBlockHeadersQuery } from '@chia-network/api-react';
-import { FormatLargeNumber, Flex, Card, StateColor, Table, LayoutDashboardSub } from '@chia-network/core';
+import { FormatLargeNumber, Flex, Card, Table, LayoutDashboardSub } from '@chia-network/core';
 import { Status } from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
 import { Box, Tooltip, Typography } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import { get } from 'lodash';
 import moment from 'moment';
 import React from 'react';
@@ -13,77 +14,83 @@ import FullNodeBlockSearch from './FullNodeBlockSearch';
 import FullNodeConnections from './FullNodeConnections';
 import FullNodeCards from './card/FullNodeCards';
 
-const cols = [
-  {
-    minWidth: '250px',
-    field(row) {
-      const { isFinished = false, headerHash, foliage } = row;
+function getCols(theme) {
+  const { palette } = theme;
 
-      const { foliageTransactionBlockHash } = foliage || {};
+  return [
+    {
+      minWidth: '250px',
+      field(row) {
+        const { isFinished = false, headerHash, foliage } = row;
 
-      const value = isFinished ? headerHash : <span>{foliageTransactionBlockHash}</span>;
+        const { foliageTransactionBlockHash } = foliage || {};
 
-      const color = isFinished ? StateColor.SUCCESS : StateColor.WARNING;
+        const value = isFinished ? headerHash : <span>{foliageTransactionBlockHash}</span>;
 
-      const tooltip = isFinished ? <Trans>Finished</Trans> : <Trans>In Progress</Trans>;
+        const color = isFinished ? palette.primary.main : palette.warning.main;
 
-      return (
-        <Flex gap={1} alignItems="center">
-          <Tooltip title={<span>{tooltip}</span>}>
-            <Status color={color} />
-          </Tooltip>
-          <Tooltip title={<span>{value}</span>}>
-            <Box textOverflow="ellipsis" overflow="hidden">
-              {value}
-            </Box>
-          </Tooltip>
-        </Flex>
-      );
-    },
-    title: <Trans>Header Hash</Trans>,
-  },
-  {
-    field(row) {
-      const { isFinished, foliage, height } = row;
+        const tooltip = isFinished ? <Trans>Finished</Trans> : <Trans>In Progress</Trans>;
 
-      const { height: foliageHeight } = foliage || {};
-
-      if (!isFinished) {
         return (
-          <i>
-            <FormatLargeNumber value={foliageHeight} />
-          </i>
+          <Flex gap={1} alignItems="center">
+            <Tooltip title={<span>{tooltip}</span>}>
+              <Status color={color} />
+            </Tooltip>
+            <Tooltip title={<span>{value}</span>}>
+              <Box textOverflow="ellipsis" overflow="hidden">
+                {value}
+              </Box>
+            </Tooltip>
+          </Flex>
         );
-      }
-
-      return <FormatLargeNumber value={height} />;
+      },
+      title: <Trans>Header Hash</Trans>,
     },
-    title: <Trans>Height</Trans>,
-  },
-  {
-    field(row) {
-      const { isFinished } = row;
+    {
+      field(row) {
+        const { isFinished, foliage, height } = row;
 
-      const timestamp = isFinished ? row.timestamp : get(row, 'foliageTransactionBlock.timestamp');
+        const { height: foliageHeight } = foliage || {};
 
-      return timestamp ? moment(timestamp * 1000).format('LLL') : '';
+        if (!isFinished) {
+          return (
+            <i>
+              <FormatLargeNumber value={foliageHeight} />
+            </i>
+          );
+        }
+
+        return <FormatLargeNumber value={height} />;
+      },
+      title: <Trans>Height</Trans>,
     },
-    title: <Trans>Time Created</Trans>,
-  },
-  {
-    field(row) {
-      const { isFinished = false } = row;
+    {
+      field(row) {
+        const { isFinished } = row;
 
-      return isFinished ? <Trans>Finished</Trans> : <Trans>Unfinished</Trans>;
+        const timestamp = isFinished ? row.timestamp : get(row, 'foliageTransactionBlock.timestamp');
+
+        return timestamp ? moment(timestamp * 1000).format('LLL') : '';
+      },
+      title: <Trans>Time Created</Trans>,
     },
-    title: <Trans>State</Trans>,
-  },
-];
+    {
+      field(row) {
+        const { isFinished = false } = row;
+
+        return isFinished ? <Trans>Finished</Trans> : <Trans>Unfinished</Trans>;
+      },
+      title: <Trans>State</Trans>,
+    },
+  ];
+}
 
 function BlocksCard() {
+  const theme = useTheme();
   const navigate = useNavigate();
   const { data: latestBlocks = [], isLoading } = useGetLatestBlocksQuery();
   const { data: unfinishedBlockHeaders = [] } = useGetUnfinishedBlockHeadersQuery();
+  const cols = React.useMemo(() => getCols(theme), [theme]);
 
   const rows = [
     ...unfinishedBlockHeaders,

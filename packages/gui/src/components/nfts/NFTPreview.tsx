@@ -1,5 +1,4 @@
 import {
-  Color,
   IconMessage,
   Loading,
   Flex,
@@ -58,22 +57,22 @@ const IframePreventEvents = styled.div`
   z-index: 2;
 `;
 
-const ModelExtension = styled.div<{ isDarkMode: boolean }>`
+const ModelExtension = styled.div`
   position: relative;
   top: -20px;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 8px 16px;
-  background: ${(props) => (props.isDarkMode ? '#2a2418' : Color.Neutral[50])};
+  background: ${({ theme }) => theme.palette.background.paper};
   box-shadow:
-    0px 0px 24px ${alpha('#d8ad45', 0.5)},
-    0px 4px 8px ${alpha('#9b7040', 0.32)};
+    0px 0px 24px ${({ theme }) => alpha(theme.palette.primary.main, 0.5)},
+    0px 4px 8px ${({ theme }) => alpha(theme.palette.text.primary, 0.22)};
   border-radius: 32px;
-  color: ${(props) => (props.isDarkMode ? Color.Neutral[50] : Color.Neutral[800])};
+  color: ${({ theme }) => theme.palette.text.primary};
 `;
 
-const BlobBg = styled.div<{ isDarkMode: boolean }>`
+const BlobBg = styled.div`
   > svg {
     position: absolute;
     left: 0;
@@ -83,10 +82,10 @@ const BlobBg = styled.div<{ isDarkMode: boolean }>`
     margin: auto;
     linearGradient {
       >stop: first-child {
-        stop-color: ${(props) => (props.isDarkMode ? '#5c4329' : '#f3df9b')};
+        stop-color: ${({ theme }) => alpha(theme.palette.primary.main, theme.palette.mode === 'dark' ? 0.32 : 0.18)};
       }
       >stop: last-child {
-        stop-color: ${(props) => (props.isDarkMode ? '#d8ad45' : '#d2a33a')};
+        stop-color: ${({ theme }) => theme.palette.primary.main};
       }
     }
   }
@@ -269,7 +268,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
     switch (previewFileType) {
       case FileType.DOCUMENT:
         return (
-          <BlobBg isDarkMode={isDarkMode}>
+          <BlobBg>
             <DocumentBlobIcon />
             <img src={isDarkMode ? DocumentPngDarkIcon : DocumentPngIcon} />
           </BlobBg>
@@ -285,21 +284,21 @@ export default function NFTPreview(props: NFTPreviewProps) {
         */
       case FileType.VIDEO:
         return (
-          <BlobBg isDarkMode={isDarkMode}>
+          <BlobBg>
             <VideoBlobIcon />
             <img src={isDarkMode ? VideoPngDarkIcon : VideoPngIcon} />
           </BlobBg>
         );
       case FileType.MODEL:
         return (
-          <BlobBg isDarkMode={isDarkMode}>
+          <BlobBg>
             <ModelBlobIcon />
             <img src={isDarkMode ? ModelPngDarkIcon : ModelPngIcon} />
           </BlobBg>
         );
       default:
         return (
-          <BlobBg isDarkMode={isDarkMode}>
+          <BlobBg>
             <UnknownBlobIcon />
             <img src={isDarkMode ? UnknownPngDarkIcon : UnknownPngIcon} />
           </BlobBg>
@@ -322,7 +321,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
       return (
         <>
           {previewIcon}
-          {previewExtension && <ModelExtension isDarkMode={isDarkMode}>.{previewExtension}</ModelExtension>}
+          {previewExtension && <ModelExtension>.{previewExtension}</ModelExtension>}
         </>
       );
     }
@@ -371,7 +370,6 @@ export default function NFTPreview(props: NFTPreviewProps) {
     previewExtension,
     previewContent,
     iframeRef,
-    isDarkMode,
     blurPreview,
     previewCompactIcon,
   ]);

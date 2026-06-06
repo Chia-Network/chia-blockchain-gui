@@ -2,6 +2,7 @@ import { useGetOfferSummaryMutation } from '@chia-network/api-react';
 import { Dropzone, Flex, useSerializedNavigationState, useShowError, useThemeAssets } from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
 import { Box, Card, Typography } from '@mui/material';
+import { alpha, useTheme } from '@mui/material/styles';
 import React from 'react';
 import { useHotkeys } from 'react-hotkeys-hook';
 
@@ -16,6 +17,7 @@ function Background(props: { children: React.ReactNode }) {
 
 export default function OfferBuilderImport() {
   const { offerFileIcon: OfferFileIcon } = useThemeAssets();
+  const theme = useTheme();
   const { navigate } = useSerializedNavigationState();
   const [getOfferSummary] = useGetOfferSummaryMutation();
   // const openDialog = useOpenDialog();
@@ -118,11 +120,14 @@ export default function OfferBuilderImport() {
         justifyContent: 'center',
         alignItems: 'center',
         cursor: 'pointer',
-        borderColor: '#d2a33a',
-        backgroundColor: 'rgba(255, 250, 240, 0.78)',
+        borderColor: alpha(theme.palette.primary.main, 0.68),
+        backgroundColor: alpha(theme.palette.background.paper, 0.78),
         '&:hover': {
-          borderColor: '#b98524',
-          boxShadow: '0 0 0 1px rgba(185, 133, 36, 0.22), 0 18px 48px rgba(71, 58, 36, 0.1)',
+          borderColor: theme.palette.primary.main,
+          boxShadow: `0 0 0 1px ${alpha(theme.palette.primary.main, 0.22)}, 0 18px 48px ${alpha(
+            theme.palette.text.primary,
+            0.1,
+          )}`,
         },
       }}
     >
@@ -135,7 +140,7 @@ export default function OfferBuilderImport() {
           </Typography>
           <Typography color="textSecondary" textAlign="center">
             <Trans>
-              or <span style={{ color: '#b98524' }}>browse</span> on your computer
+              or <span style={{ color: theme.palette.primary.main }}>browse</span> on your computer
             </Trans>
           </Typography>
         </Flex>
