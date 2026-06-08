@@ -332,20 +332,55 @@ describe('buildCreateOfferDisplay — CAT vs NFT classification via driver_dict'
     expect(display?.offered[0]).toMatchObject({ kind: 'cat', assetId: '0xtail789', symbol: 'TEST' });
   });
 
-  it('defaults a non-numeric key with no driver_dict entry to CAT (never NFT)', async () => {
-    // Without a driver entry we can't prove an NFT, so we must not guess NFT
-    // — that was the regression. Default to CAT.
+  it('probes a no-driver key and renders an NFT when the daemon resolves it (regression: offered NFTs ship without a driver)', async () => {
+    // prepareNFTOffer attaches a driver only for *requested* NFTs, so an
+    // offered NFT (negative amount) arrives as a bare launcher id with no
+    // driver_dict entry. Probe nft_get_info so it still renders as an NFT
+    // instead of being mislabeled a CAT.
     setupDaemonMock({
       'chia_wallet.get_wallets': () => ({ wallets: [] }),
+      'chia_wallet.nft_get_info': () => ({ nftInfo: { dataUris: ['https://example.com/owned.png'] } }),
+    });
+
+    const display = await buildCreateOfferDisplay({ offer: { '0xlauncher999': -1 } });
+
+    expect(display?.offered).toHaveLength(1);
+    expect(display?.offered[0]).toMatchObject({ kind: 'nft', previewUrl: 'https://example.com/owned.png' });
+  });
+
+  it('renders a no-driver NFT that has no preview image as an NFT (not a CAT)', async () => {
+    // nft_get_info resolves (so it's a real NFT) but exposes no usable preview
+    // URL. lookupNft must still report "is an NFT" — otherwise a previewless
+    // offered NFT would be misclassified as a CAT.
+    setupDaemonMock({
+      'chia_wallet.get_wallets': () => ({ wallets: [] }),
+      'chia_wallet.nft_get_info': () => ({ nftInfo: {} }),
+    });
+
+    const display = await buildCreateOfferDisplay({ offer: { '0xlauncher000': -1 } });
+
+    expect(display?.offered).toHaveLength(1);
+    expect(display?.offered[0]).toMatchObject({ kind: 'nft' });
+    expect((display?.offered[0] as { previewUrl?: string }).previewUrl).toBeUndefined();
+  });
+
+  it('falls back to CAT for a no-driver key the daemon does not recognize as an NFT', async () => {
+    // No driver entry and nft_get_info errors (a CAT tail is not a valid NFT
+    // coin id), so we render a CAT rather than guessing NFT.
+    setupDaemonMock({
+      'chia_wallet.get_wallets': () => ({ wallets: [] }),
+      'chia_wallet.nft_get_info': () => {
+        throw new Error('not an NFT coin');
+      },
       'chia_wallet.cat_asset_id_to_name': () => {
         throw new Error('not in registry');
       },
     });
 
-    const display = await buildCreateOfferDisplay({ offer: { '0xunknownasset': -1000 } });
+    const display = await buildCreateOfferDisplay({ offer: { '0xcattail': -1000 } });
 
     expect(display?.offered).toHaveLength(1);
-    expect(display?.offered[0]).toMatchObject({ kind: 'cat', assetId: '0xunknownasset' });
+    expect(display?.offered[0]).toMatchObject({ kind: 'cat', assetId: '0xcattail' });
   });
 
   it('classifies a numeric STANDARD_WALLET key as XCH', async () => {

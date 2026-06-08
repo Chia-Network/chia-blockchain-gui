@@ -102,16 +102,21 @@ function pickPreviewUrl(dataUris: string[] | undefined): string | undefined {
   return dataUris.find((u) => isValidURL(u));
 }
 
-async function lookupNft(launcherIdHex: string): Promise<{ name?: string; previewUrl?: string } | undefined> {
+// `found` reports whether the id actually resolves to an NFT — nft_get_info
+// errors (caught below) for a coin id that isn't an NFT. It's a separate flag
+// from `previewUrl` on purpose: an NFT with no preview image still has
+// `found: true`, so it isn't mistaken for a CAT when no driver_dict entry says
+// which. This is what tells an NFT launcher id apart from a CAT tail.
+async function lookupNft(launcherIdHex: string): Promise<{ found: boolean; previewUrl?: string }> {
   try {
     const result = await callDaemon<{ nftInfo?: NftInfo } & NftInfo>('chia_wallet', 'nft_get_info', {
       coinId: launcherIdHex,
     });
     const info = result.nftInfo ?? result;
-    const previewUrl = pickPreviewUrl(info.dataUris);
-    return previewUrl ? { previewUrl } : undefined;
+    const previewUrl = pickPreviewUrl(info?.dataUris);
+    return { found: true, previewUrl };
   } catch {
-    return undefined;
+    return { found: false };
   }
 }
 
@@ -159,8 +164,8 @@ async function summaryToOffer(
         const info = summary.infos[key];
         if (info?.type === 'singleton' && info.launcherId) {
           const nftId = hexToNftId(info.launcherId);
-          const enriched = await lookupNft(info.launcherId);
-          return { kind: 'nft', nftId, ...enriched };
+          const { previewUrl } = await lookupNft(info.launcherId);
+          return { kind: 'nft', nftId, ...(previewUrl ? { previewUrl } : {}) };
         }
         const symbol = await lookupCatNameByAssetId(key);
         return {
@@ -260,27 +265,42 @@ export async function buildCreateOfferDisplay(
         return;
       }
 
-      // Non-numeric key: an asset id. In a create_offer_for_ids driver_dict
-      // the only top-level puzzle types are 'singleton' (NFTs/DIDs) and 'CAT'
-      // — the same set offerToOfferBuilderData.ts and the daemon offer summary
-      // `infos` branch on. The wire uses 'singleton'; the api side spells it
-      // 'NFT', so accept both.
+      // Non-numeric key: an asset id. driver_dict (when present) is the
+      // authoritative signal — the only top-level puzzle types in an offer are
+      // 'singleton' (NFTs/DIDs) and 'CAT', matching offerToOfferBuilderData.ts
+      // and the daemon offer summary `infos`. The wire uses 'singleton'; the
+      // api side spells it 'NFT', so accept both.
       const driver = driverDict[key];
       const driverType = driver?.type;
+
+      if (driverType === 'CAT') {
+        const assetId = driver?.tail ?? key;
+        const symbol = await lookupCatNameByAssetId(assetId);
+        bucket.push({ kind: 'cat', amount: mojoToCAT(abs).toFixed(), assetId, symbol });
+        return;
+      }
+
       if (driverType === 'singleton' || driverType === 'NFT') {
         const launcherId = driver?.launcher_id ?? key;
         const nftId = hexToNftId(launcherId);
-        const enriched = await lookupNft(launcherId);
-        bucket.push({ kind: 'nft', nftId, ...enriched });
+        const { previewUrl } = await lookupNft(launcherId);
+        bucket.push({ kind: 'nft', nftId, ...(previewUrl ? { previewUrl } : {}) });
         return;
       }
-      // 'CAT', or a missing/unrecognized driver entry. A confirm dialog must
-      // never silently drop a line (that hides what's being signed) and must
-      // not guess NFT for a bare asset id (the original regression), so
-      // anything that isn't a proven singleton renders as a CAT.
-      const assetId = driverType === 'CAT' && driver?.tail ? driver.tail : key;
-      const symbol = await lookupCatNameByAssetId(assetId);
-      bucket.push({ kind: 'cat', amount: mojoToCAT(abs).toFixed(), assetId, symbol });
+
+      // No driver entry: a bare 32-byte hash that's ambiguous between a CAT
+      // tail and an NFT launcher id — offered NFTs ship without a driver (the
+      // wallet owns them), so guessing either way mislabels half the cases.
+      // Ask the daemon which it is. nft_get_info resolving means it's an NFT;
+      // otherwise fall back to CAT.
+      const probe = await lookupNft(key);
+      if (probe.found) {
+        const nftId = hexToNftId(key);
+        bucket.push({ kind: 'nft', nftId, ...(probe.previewUrl ? { previewUrl: probe.previewUrl } : {}) });
+        return;
+      }
+      const symbol = await lookupCatNameByAssetId(key);
+      bucket.push({ kind: 'cat', amount: mojoToCAT(abs).toFixed(), assetId: key, symbol });
     }),
   );
 
