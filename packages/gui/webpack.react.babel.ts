@@ -6,7 +6,7 @@ import TerserPlugin from 'terser-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import LodashModuleReplacementPlugin from 'lodash-webpack-plugin';
 
-const PORT = 3000;
+const PORT = Number(process.env.PORT) || 3000;
 const CONTEXT = __dirname;
 const DEV = process.env.NODE_ENV !== 'production';
 
