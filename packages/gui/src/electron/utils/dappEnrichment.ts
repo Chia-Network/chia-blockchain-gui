@@ -205,6 +205,12 @@ export async function buildCreateOfferDisplay(
   if (!offerDict || typeof offerDict !== 'object') return undefined;
   const fee = data.fee !== undefined && data.fee !== null ? mojoToChia(String(data.fee)).toFixed() : undefined;
 
+  // driver_dict (snake-cased upstream) maps an asset id to its puzzle info,
+  // letting us classify non-wallet keys as CAT vs NFT instead of guessing.
+  const driverDict = (
+    typeof data.driver_dict === 'object' && data.driver_dict !== null ? data.driver_dict : {}
+  ) as Record<string, { type?: string; tail?: string; launcher_id?: string }>;
+
   let wallets: Wallet[] = [];
   try {
     const result = await callDaemon<{ wallets?: Wallet[] }>('chia_wallet', 'get_wallets', { includeData: true });
@@ -230,8 +236,8 @@ export async function buildCreateOfferDisplay(
       const bucket = amount.isPositive() ? requested : offered;
       const abs = amount.abs().toFixed(0);
 
-      // Numeric key → wallet id; otherwise treat as an asset id (CAT) or
-      // bech32 nft id depending on prefix length.
+      // Numeric key → wallet id; non-numeric → asset id classified via
+      // driver_dict below.
       const isNumeric = /^-?\d+$/.test(key);
       if (isNumeric) {
         const wallet = wallets.find((w) => Number(w.id) === Number(key));
@@ -254,10 +260,27 @@ export async function buildCreateOfferDisplay(
         return;
       }
 
-      // Non-numeric key: assume hex launcher id, encode as nft1...
-      const nftId = hexToNftId(key);
-      const enriched = await lookupNft(key);
-      bucket.push({ kind: 'nft', nftId, ...enriched });
+      // Non-numeric key: an asset id. In a create_offer_for_ids driver_dict
+      // the only top-level puzzle types are 'singleton' (NFTs/DIDs) and 'CAT'
+      // — the same set offerToOfferBuilderData.ts and the daemon offer summary
+      // `infos` branch on. The wire uses 'singleton'; the api side spells it
+      // 'NFT', so accept both.
+      const driver = driverDict[key];
+      const driverType = driver?.type;
+      if (driverType === 'singleton' || driverType === 'NFT') {
+        const launcherId = driver?.launcher_id ?? key;
+        const nftId = hexToNftId(launcherId);
+        const enriched = await lookupNft(launcherId);
+        bucket.push({ kind: 'nft', nftId, ...enriched });
+        return;
+      }
+      // 'CAT', or a missing/unrecognized driver entry. A confirm dialog must
+      // never silently drop a line (that hides what's being signed) and must
+      // not guess NFT for a bare asset id (the original regression), so
+      // anything that isn't a proven singleton renders as a CAT.
+      const assetId = driverType === 'CAT' && driver?.tail ? driver.tail : key;
+      const symbol = await lookupCatNameByAssetId(assetId);
+      bucket.push({ kind: 'cat', amount: mojoToCAT(abs).toFixed(), assetId, symbol });
     }),
   );
 

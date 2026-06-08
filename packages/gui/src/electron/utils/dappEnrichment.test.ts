@@ -280,11 +280,10 @@ describe('buildTakeOfferDisplay — input validation', () => {
   });
 });
 
-describe('buildCreateOfferDisplay — already-working NFT path stays working', () => {
-  it('treats a non-numeric hex key as an NFT launcher id', async () => {
-    // Numeric keys = wallet ids; non-numeric = hex launcher id. Belt-and-
-    // suspenders test against the create-offer regression where my fix to
-    // the take-offer side could conceivably also affect create.
+describe('buildCreateOfferDisplay — CAT vs NFT classification via driver_dict', () => {
+  it('classifies a non-numeric key as an NFT when driver_dict marks it a singleton', async () => {
+    // The dapp tells us the asset is an NFT via driver_dict; render the
+    // launcher id as an nft1... line with its preview image.
     setupDaemonMock({
       'chia_wallet.get_wallets': () => ({ wallets: [] }),
       'chia_wallet.nft_get_info': () => ({ nftInfo: { dataUris: ['https://example.com/owned.png'] } }),
@@ -292,10 +291,61 @@ describe('buildCreateOfferDisplay — already-working NFT path stays working', (
 
     const display = await buildCreateOfferDisplay({
       offer: { '0xlauncher123': -1 },
+      driver_dict: { '0xlauncher123': { type: 'singleton', launcher_id: '0xlauncher123' } },
     });
 
     expect(display?.offered).toHaveLength(1);
     expect(display?.offered[0]).toMatchObject({ kind: 'nft', previewUrl: 'https://example.com/owned.png' });
+  });
+
+  it("also accepts the api-style 'NFT' driver type as an NFT", async () => {
+    // The wire uses 'singleton', but the api side spells the same type 'NFT';
+    // accept both so the dapp's naming convention can't dodge classification.
+    setupDaemonMock({
+      'chia_wallet.get_wallets': () => ({ wallets: [] }),
+      'chia_wallet.nft_get_info': () => ({ nftInfo: { dataUris: ['https://example.com/owned.png'] } }),
+    });
+
+    const display = await buildCreateOfferDisplay({
+      offer: { '0xlauncher123': -1 },
+      driver_dict: { '0xlauncher123': { type: 'NFT', launcher_id: '0xlauncher123' } },
+    });
+
+    expect(display?.offered).toHaveLength(1);
+    expect(display?.offered[0]).toMatchObject({ kind: 'nft', previewUrl: 'https://example.com/owned.png' });
+  });
+
+  it('classifies a non-numeric key as a CAT when driver_dict marks it a CAT (regression: was rendered as NFT)', async () => {
+    // The original bug: create-offer treated every non-wallet asset id as an
+    // NFT launcher id, so CATs showed up as NFTs. driver_dict disambiguates.
+    setupDaemonMock({
+      'chia_wallet.get_wallets': () => ({ wallets: [] }),
+      'chia_wallet.cat_asset_id_to_name': (data) => ({ name: data.asset_id === '0xtail789' ? 'TEST' : undefined }),
+    });
+
+    const display = await buildCreateOfferDisplay({
+      offer: { '0xtail789': -1000 },
+      driver_dict: { '0xtail789': { type: 'CAT', tail: '0xtail789' } },
+    });
+
+    expect(display?.offered).toHaveLength(1);
+    expect(display?.offered[0]).toMatchObject({ kind: 'cat', assetId: '0xtail789', symbol: 'TEST' });
+  });
+
+  it('defaults a non-numeric key with no driver_dict entry to CAT (never NFT)', async () => {
+    // Without a driver entry we can't prove an NFT, so we must not guess NFT
+    // — that was the regression. Default to CAT.
+    setupDaemonMock({
+      'chia_wallet.get_wallets': () => ({ wallets: [] }),
+      'chia_wallet.cat_asset_id_to_name': () => {
+        throw new Error('not in registry');
+      },
+    });
+
+    const display = await buildCreateOfferDisplay({ offer: { '0xunknownasset': -1000 } });
+
+    expect(display?.offered).toHaveLength(1);
+    expect(display?.offered[0]).toMatchObject({ kind: 'cat', assetId: '0xunknownasset' });
   });
 
   it('classifies a numeric STANDARD_WALLET key as XCH', async () => {
