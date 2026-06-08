@@ -55,6 +55,10 @@ export default class WebSocketBridge extends EventEmitter {
     if (!this.id) {
       throw new Error('WebSocketBridge: wait for connection to be established');
     }
+    // Every send through this bridge is a UI-principal call. Dapp commands
+    // take a separate IPC path (permissions:dispatchAsPair) so the principal
+    // is bound at the entry point in main, not threaded through shared
+    // renderer infrastructure.
     window.webSocketAPI.send(this.id, data);
   }
 

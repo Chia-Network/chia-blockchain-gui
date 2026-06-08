@@ -18,12 +18,6 @@ export type Pairs = {
   removePairBySession: (sessionTopic: string) => void;
 
   removeSessionFromPair: (sessionTopic: string) => void;
-
-  bypassCommand: (sessionTopic: string, command: string, confirm: boolean) => void;
-  bypassCommands: (sessionTopic: string, commands: string[], confirm: boolean) => void;
-  removeBypassCommand: (sessionTopic: string, command: string) => void;
-  resetBypassForAllPairs: () => void;
-  resetBypassForPair: (pairTopic: string) => void;
 };
 
 export default function useWalletConnectPairs(): Pairs {
@@ -134,97 +128,6 @@ export default function useWalletConnectPairs(): Pairs {
 
   const get = useCallback(() => pairsRef.current[0], []);
 
-  const bypassCommand = useCallback((sessionTopic: string, command: string, confirm: boolean) => {
-    const [, setPairs] = pairsRef.current;
-    setPairs((pairs: Pair[]) => {
-      const pair = pairs.find((item) => item.sessions?.find((session) => session.topic === sessionTopic));
-      if (!pair) {
-        throw new Error('Pair not found');
-      }
-
-      return pairs.map((item) => ({
-        ...item,
-        bypassCommands:
-          item.topic === pair.topic
-            ? {
-                ...item.bypassCommands,
-                [command]: confirm,
-              }
-            : item.bypassCommands,
-      }));
-    });
-  }, []);
-
-  const bypassCommands = useCallback((sessionTopic: string, commands: string[], confirm: boolean) => {
-    const [, setPairs] = pairsRef.current;
-    setPairs((pairs: Pair[]) => {
-      const pair = pairs.find((item) => item.sessions?.find((session) => session.topic === sessionTopic));
-      if (!pair) {
-        throw new Error('Pair not found');
-      }
-
-      return pairs.map((item) => ({
-        ...item,
-        bypassCommands:
-          item.topic === pair.topic
-            ? {
-                ...item.bypassCommands,
-                ...commands.reduce((acc, command) => ({ ...acc, [command]: confirm }), {}),
-              }
-            : item.bypassCommands,
-      }));
-    });
-  }, []);
-
-  const removeBypassCommand = useCallback((sessionTopic: string, command: string) => {
-    const deleteCommand = (commands: Record<string, boolean> | undefined) => {
-      const newBypassCommands = { ...commands };
-      delete newBypassCommands[command];
-      return newBypassCommands;
-    };
-
-    const [, setPairs] = pairsRef.current;
-    setPairs((pairs: Pair[]) => {
-      const pair = pairs.find((item) => item.sessions?.find((session) => session.topic === sessionTopic));
-      if (!pair) {
-        throw new Error('Pair not found');
-      }
-
-      return pairs.map((item) => ({
-        ...item,
-        bypassCommands:
-          item.topic === pair.topic && command in (item.bypassCommands ?? {})
-            ? deleteCommand(item.bypassCommands)
-            : item.bypassCommands,
-      }));
-    });
-  }, []);
-
-  const resetBypassForAllPairs = useCallback(() => {
-    const [, setPairs] = pairsRef.current;
-
-    setPairs((pairs: Pair[]) =>
-      pairs.map((item) => ({
-        ...item,
-        bypassCommands: {},
-      })),
-    );
-  }, []);
-
-  const resetBypassForPair = useCallback((pairTopic: string) => {
-    const [, setPairs] = pairsRef.current;
-
-    setPairs((pairs: Pair[]) =>
-      pairs.map((item) => ({
-        ...item,
-        bypassCommands:
-          item.topic === pairTopic
-            ? {} // reset bypass commands
-            : item.bypassCommands,
-      })),
-    );
-  }, []);
-
   const pairs = useMemo(
     () => ({
       addPair,
@@ -239,11 +142,6 @@ export default function useWalletConnectPairs(): Pairs {
       removePairBySession,
 
       removeSessionFromPair,
-      bypassCommand,
-      bypassCommands,
-      removeBypassCommand,
-      resetBypassForAllPairs,
-      resetBypassForPair,
       pairs: currentPairs,
     }),
     [
@@ -256,11 +154,6 @@ export default function useWalletConnectPairs(): Pairs {
       getPairBySession,
       removePairBySession,
       removeSessionFromPair,
-      bypassCommand,
-      bypassCommands,
-      removeBypassCommand,
-      resetBypassForAllPairs,
-      resetBypassForPair,
       currentPairs,
     ],
   );
