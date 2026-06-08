@@ -814,11 +814,15 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
     // `did-finish-load` and a timeout fallback so the window is always revealed.
     let hasShownMainWindow = false;
     const showMainWindow = () => {
-      if (hasShownMainWindow || !mainWindow) {
+      // `mainWindow` is never reset to null on close, so a destroyed window is
+      // still a truthy reference; guard with `isDestroyed()` to avoid throwing
+      // if a trigger fires after the window is gone. Latch the flag only after a
+      // successful `show()` so a failed attempt doesn't block the other triggers.
+      if (hasShownMainWindow || !mainWindow || mainWindow.isDestroyed()) {
         return;
       }
-      hasShownMainWindow = true;
       mainWindow.show();
+      hasShownMainWindow = true;
     };
 
     mainWindow.once('ready-to-show', showMainWindow);
