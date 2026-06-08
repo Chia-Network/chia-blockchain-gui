@@ -895,7 +895,7 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
 
     const startUrl =
       process.env.NODE_ENV === 'development'
-        ? `http://localhost:${process.env.PORT || 3000}`
+        ? `http://localhost:${Number(process.env.CHIA_GUI_PORT) || 3000}`
         : url.format({
             pathname: path.join(__dirname, '/../renderer/index.html'),
             protocol: 'file:',
