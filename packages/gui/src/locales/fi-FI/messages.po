@@ -45,7 +45,7 @@ msgstr "Haluatko siirtää {count} NFT:tä uudelle omistajalle?"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:73
-#: src/electron/main.tsx:853
+#: src/electron/main.tsx:867
 msgid "Confirm"
 msgstr "Vahvista"
 
@@ -1545,7 +1545,7 @@ msgstr ""
 #: src/electron/constants/commandRegistry.ts:1457
 #: src/electron/dialogs/Confirm/Confirm.tsx:392
 #: src/electron/dialogs/Pair/Pair.tsx:443
-#: src/electron/main.tsx:1016
+#: src/electron/main.tsx:1030
 msgid "Cancel"
 msgstr "Peru"
 
@@ -2242,14 +2242,14 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/renderConfirm.ts:58
 #: src/electron/main.tsx:622
-#: src/electron/main.tsx:852
+#: src/electron/main.tsx:866
 msgid "Yes"
 msgstr "Kyllä"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/renderConfirm.ts:58
 #: src/electron/main.tsx:622
-#: src/electron/main.tsx:852
+#: src/electron/main.tsx:866
 msgid "No"
 msgstr "Ei"
 
@@ -2440,139 +2440,139 @@ msgstr ""
 " {commands}"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:855
+#: src/electron/main.tsx:869
 msgid "Are you sure you want to quit?"
 msgstr "Oletko varma että haluat lopettaa?"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:860
+#: src/electron/main.tsx:874
 msgid "Keep service running in the background"
 msgstr "Pidä palvelu käynnissä taustalla"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1016
+#: src/electron/main.tsx:1030
 msgid "Continue"
 msgstr "Jatka"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1018
+#: src/electron/main.tsx:1032
 msgid "Warning"
 msgstr "Varoitus"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1019
+#: src/electron/main.tsx:1033
 msgid "Log files may contain sensitive information"
 msgstr "Lokitiedostot saattavat sisältää arkaluontoisia tietoja"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1020
+#: src/electron/main.tsx:1034
 msgid "Are you sure you want to view the log contents?"
 msgstr "Oletko varma, että haluat tarkastella lokin sisältöä?"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1140
-#: src/electron/main.tsx:1348
+#: src/electron/main.tsx:1154
+#: src/electron/main.tsx:1362
 msgid "File"
 msgstr "Tiedosto"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1148
+#: src/electron/main.tsx:1162
 msgid "Edit"
 msgstr "Muokkaa"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1180
+#: src/electron/main.tsx:1194
 msgid "View"
 msgstr "Näkymä"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1189
+#: src/electron/main.tsx:1203
 msgid "Developer"
 msgstr "Kehittäjä"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1192
+#: src/electron/main.tsx:1206
 msgid "Developer Tools"
 msgstr "Kehitystyökalut"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1200
+#: src/electron/main.tsx:1214
 msgid "Trigger Desktop Notification"
 msgstr "Käynnistä Työpöytä-ilmoitus"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1229
+#: src/electron/main.tsx:1243
 msgid "Full Screen"
 msgstr "Kokoruutu"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1236
+#: src/electron/main.tsx:1250
 msgid "Window"
 msgstr "Ikkuna"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1250
+#: src/electron/main.tsx:1264
 msgid "Help"
 msgstr "Apuja"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1254
+#: src/electron/main.tsx:1268
 msgid "Chia Blockchain Wiki"
 msgstr "Chia Wiki"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1260
+#: src/electron/main.tsx:1274
 msgid "Frequently Asked Questions"
 msgstr "Usein Kysytyt Kysymykset"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1266
+#: src/electron/main.tsx:1280
 msgid "Release Notes"
 msgstr "Version Muutokset"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1272
+#: src/electron/main.tsx:1286
 msgid "Contribute on GitHub"
 msgstr "Anna panoksesi GitHubissa"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1281
+#: src/electron/main.tsx:1295
 msgid "Report an Issue..."
 msgstr "Raportoi Ongelma..."
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1287
+#: src/electron/main.tsx:1301
 msgid "Chat on Discord"
 msgstr "Chattaa Discordissa"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1293
+#: src/electron/main.tsx:1307
 msgid "Follow on X"
 msgstr "Seuraa X:ssä"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1305
+#: src/electron/main.tsx:1319
 msgid "Chia"
 msgstr "Chia"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1308
-#: src/electron/main.tsx:1404
+#: src/electron/main.tsx:1322
+#: src/electron/main.tsx:1418
 msgid "About Chia Blockchain"
 msgstr "Chia Lohkoketjusta"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1314
+#: src/electron/main.tsx:1328
 msgid "Check for Updates..."
 msgstr "Tarkista päivitykset..."
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1363
+#: src/electron/main.tsx:1377
 msgid "Speech"
 msgstr "Puhe"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1410
+#: src/electron/main.tsx:1424
 msgid "Check for updates..."
 msgstr "Tarkista päivitykset..."
 
