@@ -330,6 +330,10 @@ describe('validateDappParams', () => {
     expect(() => validateDappParams('chia_sendTransaction', { wallet_id: 1 })).not.toThrow();
   });
 
+  it('allows create_offer_for_ids to request offer-only responses', () => {
+    expect(() => validateDappParams('chia_createOfferForIds', { offer: {}, offer_only: true })).not.toThrow();
+  });
+
   it('handler-routed commands enforce the same allowlist', () => {
     expect(() => validateDappParams('chia_addCATToken', { asset_id: 'abc', name: 'My CAT' })).not.toThrow();
     expectThrow(

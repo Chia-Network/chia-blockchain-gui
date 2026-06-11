@@ -400,6 +400,13 @@ const SCHEMAS: Record<string, CommandSchema> = {
         dappAllowed: true,
       },
       {
+        name: 'offer_only',
+        label: () => i18n._(/* i18n */ { id: 'Omit transactions data' }),
+        type: 'bool',
+        isOptional: true,
+        dappAllowed: true,
+      },
+      {
         name: 'extra_conditions',
         label: () => i18n._(/* i18n */ { id: 'Extra Conditions' }),
         type: 'json',
