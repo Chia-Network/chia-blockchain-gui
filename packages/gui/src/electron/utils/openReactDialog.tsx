@@ -13,12 +13,139 @@ import openExternal from './openExternal';
 
 function generateScriptContent(confirmId: string) {
   return `
-    document.getElementById('${confirmId}')?.addEventListener('click', () => {
-      window.dialogAPI.resolve(true);
+    function collectFormData() {
+      var data = {};
+      var hasField = false;
+      document.querySelectorAll('[data-form-field]').forEach(function (el) {
+        var name = el.getAttribute('data-form-field');
+        if (!name) return;
+        hasField = true;
+        var type = (el.getAttribute('type') || el.tagName).toLowerCase();
+        if (type === 'checkbox') {
+          if (el.dataset.multi !== undefined) {
+            if (!Array.isArray(data[name])) data[name] = [];
+            if (el.checked) data[name].push(el.value);
+          } else {
+            data[name] = el.checked;
+          }
+        } else if (type === 'radio') {
+          if (el.checked) data[name] = el.value;
+        } else if (type === 'number') {
+          // Keep number-input values as strings so that callers parsing high-
+          // precision values (e.g. mojo amounts via BigNumber) don't lose
+          // precision through Number coercion.
+          data[name] = el.value === '' ? null : el.value;
+        } else {
+          data[name] = el.value;
+        }
+      });
+      return hasField ? data : true;
+    }
+
+    function updateDynamicSummary() {
+      document.querySelectorAll('[data-summary-counter]').forEach(function (el) {
+        var name = el.getAttribute('data-summary-counter');
+        if (!name) return;
+        var fields = document.querySelectorAll('[data-form-field="' + name + '"]');
+        var checked = 0;
+        fields.forEach(function (f) { if (f.checked) checked += 1; });
+        var template = el.getAttribute('data-summary-template') || '{checked} of {total}';
+        el.textContent = template.replace('{checked}', checked).replace('{total}', fields.length);
+      });
+      document.querySelectorAll('[data-chip-for]').forEach(function (chip) {
+        var name = chip.getAttribute('data-chip-for');
+        var value = chip.getAttribute('data-chip-value');
+        if (!name || value === null) return;
+        var input = document.querySelector('[data-form-field="' + name + '"][value="' + value + '"]');
+        chip.style.display = input && input.checked ? '' : 'none';
+      });
+      document.querySelectorAll('[data-empty-placeholder]').forEach(function (el) {
+        var name = el.getAttribute('data-empty-placeholder');
+        if (!name) return;
+        var any = document.querySelectorAll('[data-form-field="' + name + '"]:checked').length > 0;
+        el.style.display = any ? 'none' : '';
+      });
+    }
+
+    // Bidirectional cascade between a "group" checkbox (data-cap-toggle) and
+    // its members (data-cap-group). Group state mirrors the AND of members:
+    // checked when all are checked, indeterminate when partial, unchecked
+    // when none. Group is UI-only and is never collected into form data.
+    function refreshCapToggle(group) {
+      var toggle = document.querySelector('[data-cap-toggle="' + group + '"]');
+      if (!toggle) return;
+      var members = document.querySelectorAll('[data-cap-group="' + group + '"]');
+      if (members.length === 0) {
+        toggle.checked = false;
+        toggle.indeterminate = false;
+        return;
+      }
+      var checkedCount = 0;
+      members.forEach(function (m) { if (m.checked) checkedCount += 1; });
+      if (checkedCount === 0) {
+        toggle.checked = false;
+        toggle.indeterminate = false;
+      } else if (checkedCount === members.length) {
+        toggle.checked = true;
+        toggle.indeterminate = false;
+      } else {
+        toggle.checked = false;
+        toggle.indeterminate = true;
+      }
+    }
+
+    document.querySelectorAll('[data-cap-toggle]').forEach(function (toggle) {
+      var group = toggle.getAttribute('data-cap-toggle');
+      toggle.addEventListener('change', function () {
+        var members = document.querySelectorAll('[data-cap-group="' + group + '"]');
+        members.forEach(function (m) { m.checked = toggle.checked; });
+        toggle.indeterminate = false;
+      });
     });
-    
-    document.querySelectorAll('[data-action="cancel"]').forEach(button => {
-      button.addEventListener('click', () => {
+
+    document.querySelectorAll('[data-cap-group]').forEach(function (member) {
+      var group = member.getAttribute('data-cap-group');
+      member.addEventListener('change', function () { refreshCapToggle(group); });
+    });
+
+    document.querySelectorAll('[data-form-field]').forEach(function (el) {
+      el.addEventListener('change', updateDynamicSummary);
+    });
+
+    // Disable an input when a named controller checkbox is unchecked.
+    // Form scraper ignores disabled, so the value persists across toggles.
+    document.querySelectorAll('[data-disabled-when-off]').forEach(function (input) {
+      var controllerName = input.getAttribute('data-disabled-when-off');
+      var controller = document.querySelector('[data-form-field="' + controllerName + '"]');
+      if (!controller) return;
+      function syncDisabled() { input.disabled = !controller.checked; }
+      controller.addEventListener('change', syncDisabled);
+      syncDisabled();
+    });
+
+    // Seed member checkboxes from group toggles that were default-checked,
+    // then reconcile indeterminate states.
+    document.querySelectorAll('[data-cap-toggle]').forEach(function (toggle) {
+      if (!toggle.checked) return;
+      var group = toggle.getAttribute('data-cap-toggle');
+      document.querySelectorAll('[data-cap-group="' + group + '"]').forEach(function (m) {
+        m.checked = true;
+      });
+    });
+    var seenGroups = new Set();
+    document.querySelectorAll('[data-cap-group]').forEach(function (member) {
+      var group = member.getAttribute('data-cap-group');
+      if (!seenGroups.has(group)) { seenGroups.add(group); refreshCapToggle(group); }
+    });
+
+    updateDynamicSummary();
+
+    document.getElementById('${confirmId}')?.addEventListener('click', function () {
+      window.dialogAPI.resolve(collectFormData());
+    });
+
+    document.querySelectorAll('[data-action="cancel"]').forEach(function (button) {
+      button.addEventListener('click', function () {
         window.dialogAPI.resolve(false);
       });
     });
@@ -91,8 +218,8 @@ export default function openReactDialog<TResponse, TProps extends object>(
               connect-src 'none';
               font-src   'none';
               frame-src  'none';
-              img-src data:;
-              media-src 'none';
+              img-src    https: data:;
+              media-src  'none';
               object-src 'none';
               script-src asset:;
               style-src  asset:;

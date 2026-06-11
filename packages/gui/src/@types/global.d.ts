@@ -5,6 +5,7 @@ import type AppService from './AppService';
 import type CacheService from './CacheService';
 import type ChiaLogsService from './ChiaLogsService';
 import type LinkService from './LinkService';
+import type PermissionsService from './PermissionsService';
 import type PreferencesService from './PreferencesService';
 import type WebSocketService from './WebSocketService';
 
@@ -17,6 +18,7 @@ declare global {
     [API.PREFERENCES]: PreferencesService;
     [API.WEBSOCKET]: WebSocketService;
     [API.ADDRESS_BOOK]: AddressBookService;
+    [API.PERMISSIONS]: PermissionsService;
   }
 }
 

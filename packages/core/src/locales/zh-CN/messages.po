@@ -64,7 +64,7 @@ msgstr "确定要继续吗？输入钱包密钥的指纹以确认删除。"
 msgid "Back"
 msgstr "后退"
 
-#: src/components/ConfirmDialog/ConfirmDialog.tsx:29
+#: src/components/ConfirmDialog/ConfirmDialog.tsx:31
 #: src/hooks/useKeyringMigrationPrompt.tsx:18
 #: src/screens/SelectKey/SelectKeyRenameForm.tsx:90
 msgid "Cancel"
@@ -326,7 +326,7 @@ msgstr "未连接"
 #~ msgstr ""
 
 #: src/components/AlertDialog/AlertDialog.tsx:23
-#: src/components/ConfirmDialog/ConfirmDialog.tsx:30
+#: src/components/ConfirmDialog/ConfirmDialog.tsx:32
 msgid "OK"
 msgstr "确定"
 

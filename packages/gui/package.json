@@ -71,6 +71,7 @@
     "is-plain-object": "5.0.0",
     "isomorphic-fetch": "3.0.0",
     "js-yaml": "4.1.1",
+    "json-bigint": "1.0.0",
     "lodash": "4.18.1",
     "match-sorter": "6.3.4",
     "moment": "2.30.1",
@@ -99,7 +100,7 @@
     "unique-names-generator": "4.6.0",
     "validator": "13.15.23",
     "victory": "^36.6.11",
-    "ws": "8.17.1"
+    "ws": "8.21.0"
   },
   "devDependencies": {
     "@babel/core": "7.27.4",
@@ -118,6 +119,7 @@
     "@types/big.js": "6.2.0",
     "@types/jest": "29.5.3",
     "@types/js-yaml": "4.0.5",
+    "@types/json-bigint": "1.0.4",
     "@types/lodash": "4.14.202",
     "@types/node": "20.5.2",
     "@types/react": "18.2.20",
@@ -159,7 +161,7 @@
     "webpack": "5.105.1",
     "webpack-bundle-analyzer": "4.10.2",
     "webpack-cli": "6.0.1",
-    "webpack-dev-server": "5.2.3"
+    "webpack-dev-server": "5.2.4"
   },
   "optionalDependencies": {
     "playwright": "1.57.0"

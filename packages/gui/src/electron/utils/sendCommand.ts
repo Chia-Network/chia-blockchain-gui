@@ -5,7 +5,7 @@ import loadConfig from './loadConfig';
 export default async function sendCommand<TResponse extends Record<string, any>>(
   command: string,
   destination: 'daemon' | 'chia_wallet',
-  commandData?: Record<string, string>,
+  commandData?: Record<string, unknown>,
 ): Promise<TResponse> {
   const { url, key, cert } = await loadConfig();
 
