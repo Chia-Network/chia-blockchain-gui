@@ -54,11 +54,13 @@ export type CreateOfferForIdsOfferOnlyResponse = {
   offer: string;
 };
 
-export type CreateOfferForIdsResult<TArgs extends CreateOfferForIdsArgs> = TArgs['offerOnly'] extends true
+export type CreateOfferForIdsResult<TArgs extends CreateOfferForIdsArgs> = TArgs extends { offerOnly: true }
   ? CreateOfferForIdsOfferOnlyResponse
-  : TArgs['offerOnly'] extends false | undefined
+  : TArgs extends { offerOnly: false }
     ? CreateOfferForIdsResponse
-    : CreateOfferForIdsResponse | CreateOfferForIdsOfferOnlyResponse;
+    : TArgs extends { offerOnly: boolean }
+      ? CreateOfferForIdsResponse | CreateOfferForIdsOfferOnlyResponse
+      : CreateOfferForIdsResponse;
 
 export default class Wallet extends Service {
   constructor(client: Client, options?: Options) {
