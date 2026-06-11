@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_TW\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-02-08 00:11\n"
+"PO-Revision-Date: 2026-05-24 00:23\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -62,17 +62,17 @@ msgstr "繼續執行"
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:100
 msgid "Commands"
-msgstr ""
+msgstr "指令"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:103
 msgid "Request Permissions"
-msgstr ""
+msgstr "請求權限"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:104
 msgid "App is requesting permission to execute these commands"
-msgstr ""
+msgstr "應用程式正在請求執行這些指令的權限"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:110
@@ -87,7 +87,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:112
 msgid "Show"
-msgstr ""
+msgstr "顯示"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:114
@@ -106,14 +106,14 @@ msgstr "訊息"
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:124
 msgid "URL"
-msgstr ""
+msgstr "網址"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:131
 #: src/electron/constants/commandRegistry.ts:1973
 #: src/electron/constants/commandRegistry.ts:1983
 msgid "Offer Data"
-msgstr ""
+msgstr "報價資料"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:138
@@ -128,7 +128,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:154
 msgid "Show notification with offer or general announcement"
-msgstr ""
+msgstr "顯示帶有報價單或一般公告的通知"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:160
@@ -152,7 +152,7 @@ msgstr "加入"
 #: src/electron/constants/commandRegistry.ts:164
 #: src/electron/constants/commandRegistry.ts:2011
 msgid "Asset Id"
-msgstr ""
+msgstr "資產 ID"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:165
@@ -164,7 +164,7 @@ msgstr "名稱"
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:169
 msgid "Add CAT Token"
-msgstr ""
+msgstr "新增 CAT 代幣"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:175
@@ -208,12 +208,12 @@ msgstr "轉移"
 #: src/electron/constants/commandRegistry.ts:2144
 #: src/electron/constants/commandRegistry.ts:2154
 msgid "Wallet Id"
-msgstr ""
+msgstr "錢包 ID"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:182
 msgid "Inner Address"
-msgstr ""
+msgstr "內部地址"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:188
@@ -253,7 +253,7 @@ msgstr "手續費"
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:195
 msgid "With Recovery Info"
-msgstr ""
+msgstr "包含復原資訊"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:202
@@ -262,12 +262,12 @@ msgstr ""
 #: src/electron/constants/commandRegistry.ts:1036
 #: src/electron/constants/commandRegistry.ts:1097
 msgid "Reuse Puzzle Hash"
-msgstr ""
+msgstr "重複使用 Puzzle Hash"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:210
 msgid "Transfer DID"
-msgstr ""
+msgstr "轉移 DID"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:216
@@ -301,17 +301,17 @@ msgstr "金額"
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:222
 msgid "Backup DIDs"
-msgstr ""
+msgstr "備份 DIDs"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:225
 msgid "Number of Backup Ids Needed"
-msgstr ""
+msgstr "所需的備份 ID 數量"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:232
 msgid "Create new DID Wallet"
-msgstr ""
+msgstr "創建新的 DID 錢包"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:239
@@ -343,17 +343,17 @@ msgstr "位址"
 #: src/electron/constants/commandRegistry.ts:255
 #: src/electron/constants/commandRegistry.ts:294
 msgid "Memos"
-msgstr ""
+msgstr "備註"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:263
 msgid "Puzzle Decorator"
-msgstr ""
+msgstr "拼圖裝飾器"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:271
 msgid "Send Transaction"
-msgstr ""
+msgstr "發送交易"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:278
@@ -368,7 +368,7 @@ msgstr "請仔細檢查並確認此 CAT 花費。"
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:308
 msgid "Spend CAT"
-msgstr ""
+msgstr "花費 CAT"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:314
@@ -386,7 +386,7 @@ msgstr "請仔細檢查並確認此 NFT 轉移。"
 #: src/electron/constants/commandRegistry.ts:321
 #: src/electron/constants/commandRegistry.ts:520
 msgid "NFT Coin Ids"
-msgstr ""
+msgstr "NFT 代幣 ID"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:327
@@ -398,7 +398,7 @@ msgstr "目標地址"
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:335
 msgid "Transfer NFT"
-msgstr ""
+msgstr "轉移 NFT"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:344
@@ -415,18 +415,18 @@ msgstr "請仔細檢查並確認取消此報價。"
 #: src/electron/constants/commandRegistry.ts:354
 #: src/electron/constants/commandRegistry.ts:1460
 msgid "Trade Id"
-msgstr ""
+msgstr "交易 ID"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:355
 #: src/electron/constants/commandRegistry.ts:1461
 msgid "Secure"
-msgstr ""
+msgstr "安全"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:360
 msgid "Cancel Offer"
-msgstr ""
+msgstr "取消報價單"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:365
@@ -441,12 +441,12 @@ msgstr "請仔細檢查並確認此報價建立。建立報價時，任何提供
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:376
 msgid "Wallet Ids and Amounts"
-msgstr ""
+msgstr "錢包 IDs 和金額"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:380
 msgid "Driver Dict"
-msgstr ""
+msgstr "驅動程式字典"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:383
@@ -456,7 +456,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:390
 msgid "Disable JSON Formatting"
-msgstr ""
+msgstr "禁用JSON格式化"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:404
@@ -469,7 +469,7 @@ msgstr ""
 #: src/electron/constants/commandRegistry.ts:664
 #: src/electron/constants/commandRegistry.ts:1523
 msgid "Coin Ids"
-msgstr ""
+msgstr "硬幣編號"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:418
@@ -483,7 +483,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:430
 msgid "Create Offer for Ids"
-msgstr ""
+msgstr "為 Ids 建立報價"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:435
@@ -495,12 +495,12 @@ msgstr "請仔細檢查並確認接受此報價。"
 #: src/electron/constants/commandRegistry.ts:1439
 #: src/electron/constants/commandRegistry.ts:1481
 msgid "Offer"
-msgstr ""
+msgstr "報價"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:453
 msgid "Take Offer"
-msgstr ""
+msgstr "接受報價"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:458
@@ -535,7 +535,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:481
 msgid "Sign Message by Address"
-msgstr ""
+msgstr "按地址簽署訊息"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:490
@@ -545,7 +545,7 @@ msgstr "識別碼"
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:502
 msgid "Sign Message by Id"
-msgstr ""
+msgstr "按ID簽署訊息"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:507
@@ -566,7 +566,7 @@ msgstr "移動"
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:514
 msgid "NFT Launcher Id"
-msgstr ""
+msgstr "NFT 啟動器 ID"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:524
@@ -577,7 +577,7 @@ msgstr "DID"
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:529
 msgid "Set NFT DID"
-msgstr ""
+msgstr "設定 NFT 的 DID"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:534
@@ -763,7 +763,7 @@ msgstr ""
 #: src/electron/constants/commandRegistry.ts:648
 #: src/electron/constants/commandRegistry.ts:654
 msgid "Log In"
-msgstr ""
+msgstr "登入"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:660
@@ -778,7 +778,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:669
 msgid "Claw back or claim claw back transaction"
-msgstr ""
+msgstr "索回或領取索回交易"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:675
@@ -825,17 +825,17 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:726
 msgid "Spend Bundle"
-msgstr ""
+msgstr "支出組合 (Spend Bundle)"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:730
 msgid "Push Transaction"
-msgstr ""
+msgstr "推送交易"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:731
 msgid "Push a spend bundle (transaction) to the blockchain"
-msgstr ""
+msgstr "將支出組合 (交易) 推送至區塊鏈"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:737
@@ -857,13 +857,13 @@ msgstr ""
 #: src/electron/constants/commandRegistry.ts:744
 #: src/electron/constants/commandRegistry.ts:842
 msgid "Royalty Address"
-msgstr ""
+msgstr "版稅地址"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:751
 #: src/electron/constants/commandRegistry.ts:835
 msgid "Royalty Percentage"
-msgstr ""
+msgstr "版稅百分比"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:763
@@ -874,7 +874,7 @@ msgstr ""
 #: src/electron/constants/commandRegistry.ts:764
 #: src/electron/constants/commandRegistry.ts:1394
 msgid "Hash"
-msgstr ""
+msgstr "雜湊 (Hash)"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:765
@@ -884,7 +884,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:768
 msgid "Meta Hash"
-msgstr ""
+msgstr "中繼雜湊值"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:775
@@ -894,27 +894,27 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:781
 msgid "License Hash"
-msgstr ""
+msgstr "授權雜湊值"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:788
 msgid "Edition Number"
-msgstr ""
+msgstr "版本編號"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:795
 msgid "Edition Total"
-msgstr ""
+msgstr "版本總量"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:802
 msgid "DID Id"
-msgstr ""
+msgstr "DID 識別碼"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:817
 msgid "Mint NFT"
-msgstr ""
+msgstr "鑄造 NFT"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:822
@@ -929,42 +929,42 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:829
 msgid "Metadata List"
-msgstr ""
+msgstr "中繼資料列表"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:849
 msgid "Target List"
-msgstr ""
+msgstr "目標清單"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:856
 msgid "Mint Start Number"
-msgstr ""
+msgstr "鑄造起始編號"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:863
 msgid "Mint Total"
-msgstr ""
+msgstr "鑄造總量"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:870
 msgid "XCH Coins"
-msgstr ""
+msgstr "XCH 代幣 (Coins)"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:877
 msgid "XCH Change Target"
-msgstr ""
+msgstr "XCH 找零目標地址"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:884
 msgid "New Inner Puzzle Hash"
-msgstr ""
+msgstr "新的內部謎題雜湊 (Inner Puzzle Hash)"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:891
 msgid "New P2 Puzzle Hash"
-msgstr ""
+msgstr "新的 P2 謎題雜湊 (P2 Puzzle Hash)"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:898
@@ -974,22 +974,22 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:905
 msgid "DID Lineage Parent"
-msgstr ""
+msgstr "DID 血緣父項"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:912
 msgid "Mint From DID"
-msgstr ""
+msgstr "從 DID 鑄造"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:934
 msgid "Mint Bulk"
-msgstr ""
+msgstr "批量鑄造"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:935
 msgid "Create a spend bundle to mint multiple NFTs"
-msgstr ""
+msgstr "建立用於鑄造多個 NFT 的支出組合（Spend Bundle）"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:941
@@ -1012,28 +1012,28 @@ msgstr ""
 #: src/electron/constants/commandRegistry.ts:2061
 #: src/electron/constants/commandRegistry.ts:2115
 msgid "Coin Id"
-msgstr ""
+msgstr "硬幣編號"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:948
 msgid "Recovery List Hash"
-msgstr ""
+msgstr "恢復清單雜湊值"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:955
 msgid "Required Number of DIDs for Verification"
-msgstr ""
+msgstr "驗證所需的 DID 數量"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:962
 #: src/electron/constants/commandRegistry.ts:982
 msgid "DID Metadata"
-msgstr ""
+msgstr "DID 中繼資料"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:970
 msgid "Find Lost DID"
-msgstr ""
+msgstr "找回遺失的 DID"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:975
@@ -1050,12 +1050,12 @@ msgstr ""
 #: src/electron/constants/commandRegistry.ts:1011
 #: src/electron/constants/commandRegistry.ts:1171
 msgid "Update"
-msgstr ""
+msgstr "更新"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1004
 msgid "Update DID Metadata"
-msgstr ""
+msgstr "更新 DID 中繼資料"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1009
@@ -1080,7 +1080,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1044
 msgid "Update DID Recovery Ids"
-msgstr ""
+msgstr "更新 DID 復原 ID"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1049
@@ -1095,7 +1095,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1058
 msgid "Set DID Name"
-msgstr ""
+msgstr "設定 DID 名稱"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1064
@@ -1115,22 +1115,22 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1071
 msgid "New Puzzle Hash"
-msgstr ""
+msgstr "新的謎題雜湊 (Puzzle Hash)"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1078
 msgid "New Proof Hash"
-msgstr ""
+msgstr "新的證明雜湊 (Proof Hash)"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1084
 msgid "Provider Inner Puzzle Hash"
-msgstr ""
+msgstr "提供者內部 Puzzle Hash"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1105
 msgid "Add Proofs To Verifiable Credential"
-msgstr ""
+msgstr "新增證明至可驗證憑證"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1110
@@ -1145,12 +1145,12 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1114
 msgid "Proofs"
-msgstr ""
+msgstr "證明"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1117
 msgid "Add Proofs"
-msgstr ""
+msgstr "新增證明"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1122
@@ -1175,7 +1175,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1137
 msgid "Revoke Verifiable Credential"
-msgstr ""
+msgstr "撤銷可驗證憑證"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1143
@@ -1190,12 +1190,12 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1156
 msgid "Verbose"
-msgstr ""
+msgstr "詳細模式"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1164
 msgid "Create DataStore"
-msgstr ""
+msgstr "建立資料儲存庫"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1169
@@ -1227,12 +1227,12 @@ msgstr ""
 #: src/electron/constants/commandRegistry.ts:2324
 #: src/electron/constants/commandRegistry.ts:2333
 msgid "Store Id"
-msgstr ""
+msgstr "儲存庫 ID"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1174
 msgid "Changelist"
-msgstr ""
+msgstr "變更清單"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1184
@@ -1242,7 +1242,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1192
 msgid "Batch Update"
-msgstr ""
+msgstr "批次更新"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1197
@@ -1258,19 +1258,19 @@ msgstr ""
 #: src/electron/constants/commandRegistry.ts:1199
 #: src/electron/constants/commandRegistry.ts:1214
 msgid "Insert"
-msgstr ""
+msgstr "插入"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1202
 #: src/electron/constants/commandRegistry.ts:1225
 #: src/electron/constants/commandRegistry.ts:2334
 msgid "Key"
-msgstr ""
+msgstr "金鑰"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1203
 msgid "Value"
-msgstr ""
+msgstr "數值"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1219
@@ -1285,7 +1285,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1236
 msgid "Delete Key"
-msgstr ""
+msgstr "刪除私鑰"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1241
@@ -1302,12 +1302,12 @@ msgstr ""
 #: src/electron/constants/commandRegistry.ts:1289
 #: src/electron/constants/commandRegistry.ts:1325
 msgid "URLs"
-msgstr ""
+msgstr "網址列表"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1258
 msgid "Add Mirror"
-msgstr ""
+msgstr "新增鏡像"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1263
@@ -1322,7 +1322,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1279
 msgid "Delete Mirror"
-msgstr ""
+msgstr "刪除鏡像"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1284
@@ -1338,7 +1338,7 @@ msgstr ""
 #: src/electron/constants/commandRegistry.ts:1286
 #: src/electron/constants/commandRegistry.ts:1293
 msgid "Subscribe"
-msgstr ""
+msgstr "訂閱"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1298
@@ -1354,7 +1354,7 @@ msgstr ""
 #: src/electron/constants/commandRegistry.ts:1300
 #: src/electron/constants/commandRegistry.ts:1314
 msgid "Unsubscribe"
-msgstr ""
+msgstr "取消訂閱"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1306
@@ -1374,12 +1374,12 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1321
 msgid "Remove"
-msgstr ""
+msgstr "移除"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1329
 msgid "Remove Subscriptions"
-msgstr ""
+msgstr "移除訂閱"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1334
@@ -1400,22 +1400,22 @@ msgstr ""
 #: src/electron/constants/commandRegistry.ts:1340
 #: src/electron/constants/commandRegistry.ts:2308
 msgid "Store Ids"
-msgstr ""
+msgstr "儲存庫 ID 列表"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1347
 msgid "Overwrite"
-msgstr ""
+msgstr "覆寫"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1354
 msgid "Folder Name"
-msgstr ""
+msgstr "資料夾名稱"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1362
 msgid "Add Missing Files"
-msgstr ""
+msgstr "新增缺失檔案"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1367
@@ -1430,7 +1430,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1372
 msgid "Check Plugins"
-msgstr ""
+msgstr "檢查外掛程式"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1377
@@ -1450,7 +1450,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1384
 msgid "Clear Pending Roots"
-msgstr ""
+msgstr "清除待處理根節點"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1389
@@ -1474,7 +1474,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1398
 msgid "Get Ancestors"
-msgstr ""
+msgstr "獲取祖先節點"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1403
@@ -1484,7 +1484,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1409
 msgid "Subscriptions"
-msgstr ""
+msgstr "訂閱項目"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1414
@@ -1499,17 +1499,17 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1418
 msgid "Maker"
-msgstr ""
+msgstr "建立者 (Maker)"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1419
 msgid "Taker"
-msgstr ""
+msgstr "接受者 (Taker)"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1430
 msgid "Make DataLayer Offer"
-msgstr ""
+msgstr "建立資料層報價"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1435
@@ -1529,7 +1529,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1450
 msgid "Take DataLayer Offer"
-msgstr ""
+msgstr "接受資料層報價"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1455
@@ -1552,7 +1552,7 @@ msgstr "取消"
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1472
 msgid "Cancel DataLayer Offer"
-msgstr ""
+msgstr "取消資料層報價"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1477
@@ -1567,12 +1567,12 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1479
 msgid "Verify"
-msgstr ""
+msgstr "驗證"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1492
 msgid "Verify Offer"
-msgstr ""
+msgstr "驗證報價"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1498
@@ -1622,7 +1622,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1542
 msgid "Get Information Needed For DID Recovery"
-msgstr ""
+msgstr "獲取 DID 恢復所需的資訊"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1547
@@ -1637,74 +1637,74 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1549
 msgid "Share"
-msgstr ""
+msgstr "分享"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1555
 msgid "Get public key"
-msgstr ""
+msgstr "獲取公鑰"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1556
 msgid "Requests a master public key from your wallet"
-msgstr ""
+msgstr "從您的錢包請求主公鑰"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1568
 msgid "Include Wallet Metadata"
-msgstr ""
+msgstr "包含錢包元數據"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1575
 msgid "Get Wallets"
-msgstr ""
+msgstr "獲取錢包"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1577
 msgid "Requests a complete listing of the wallets associated with the current wallet key"
-msgstr ""
+msgstr "請求與當前錢包金鑰相關聯的所有錢包完整清單"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1586
 msgid "Transaction Id"
-msgstr ""
+msgstr "交易 ID"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1593
 msgid "Get Transaction"
-msgstr ""
+msgstr "獲取交易"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1594
 msgid "Requests details for a specific transaction"
-msgstr ""
+msgstr "請求特定交易的詳細資訊"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1612
 msgid "Get Wallet Balance"
-msgstr ""
+msgstr "獲取錢包餘額"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1615
 msgid "Requests the asset balance for a specific wallet associated with the current wallet key"
-msgstr ""
+msgstr "請求與當前錢包金鑰相關聯的特定錢包的資產餘額"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1626
 #: src/electron/constants/commandRegistry.ts:2032
 #: src/electron/constants/commandRegistry.ts:2071
 msgid "Wallet Ids"
-msgstr ""
+msgstr "錢包 IDs"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1634
 msgid "Get Wallet Balances"
-msgstr ""
+msgstr "獲取錢包餘額"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1637
 msgid "Requests the asset balances for specific wallets associated with the current wallet key"
-msgstr ""
+msgstr "請求與當前錢包金鑰相關聯的多個特定錢包的資產餘額"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1649
@@ -1789,57 +1789,57 @@ msgstr "公鑰"
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1784
 msgid "Signature"
-msgstr ""
+msgstr "簽署"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1794
 msgid "Signing Mode"
-msgstr ""
+msgstr "簽署模式"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1802
 msgid "Verify Signature"
-msgstr ""
+msgstr "驗證簽章"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1803
 msgid "Requests the verification status for a digital signature"
-msgstr ""
+msgstr "請求數位簽章的驗證狀態"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1819
 msgid "New Address"
-msgstr ""
+msgstr "新地址"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1828
 msgid "Get Next Address"
-msgstr ""
+msgstr "獲取下一個地址"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1830
 msgid "Requests a new receive address associated with the current wallet key"
-msgstr ""
+msgstr "請求與當前錢包金鑰相關聯的新接收地址"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1837
 msgid "Get Current Address"
-msgstr ""
+msgstr "獲取當前地址"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1839
 msgid "Requests the current receive address associated with the current wallet key"
-msgstr ""
+msgstr "請求與當前錢包金鑰相關聯的當前接收地址"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1850
 msgid "Get Wallet Sync Status"
-msgstr ""
+msgstr "獲取錢包同步狀態"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1851
 msgid "Requests the syncing status of current wallet"
-msgstr ""
+msgstr "請求目前錢包的同步狀態"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1859
@@ -1874,329 +1874,329 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1902
 msgid "Start"
-msgstr ""
+msgstr "開始"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1909
 msgid "End"
-msgstr ""
+msgstr "結束"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1916
 msgid "Start Key"
-msgstr ""
+msgstr "開始金鑰"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1923
 msgid "Reverse"
-msgstr ""
+msgstr "反轉"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1930
 msgid "Include My Offers"
-msgstr ""
+msgstr "包含我的報價"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1937
 msgid "Include Taken Offers"
-msgstr ""
+msgstr "包含已接受的報價"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1945
 msgid "Get all Offers"
-msgstr ""
+msgstr "獲取所有報價單"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1947
 msgid "Requests a complete listing of the offers associated with the current wallet key"
-msgstr ""
+msgstr "請求與當前錢包金鑰相關聯的所有報價完整清單"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1966
 msgid "Get Offers Count"
-msgstr ""
+msgstr "獲取報價單數量"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1968
 msgid "Requests the number of offers associated with the current wallet key"
-msgstr ""
+msgstr "請求與當前錢包金鑰相關聯的報價數量"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1976
 msgid "Check Offer Validity"
-msgstr ""
+msgstr "檢查報價有效性"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1977
 msgid "Requests the validity status of a specific offer"
-msgstr ""
+msgstr "請求特定報價的有效性狀態"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1987
 msgid "Get Offer Summary"
-msgstr ""
+msgstr "獲取報價單摘要"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1988
 msgid "Requests the summarized details of a specific offer"
-msgstr ""
+msgstr "請求特定報價的摘要詳情"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1993
 #: src/electron/constants/commandRegistry.ts:2002
 msgid "Offer Id"
-msgstr ""
+msgstr "報價單ID"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1996
 msgid "Get Offer Data"
-msgstr ""
+msgstr "獲取報價單數據"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1997
 msgid "Requests the raw offer data for a specific offer"
-msgstr ""
+msgstr "請求特定報價的原始資料"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2005
 msgid "Get Offer Record"
-msgstr ""
+msgstr "獲取報價單記錄"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2006
 msgid "Requests the details for a specific offer"
-msgstr ""
+msgstr "請求特定報價的詳細資訊"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2014
 msgid "Get CAT Wallet Info"
-msgstr ""
+msgstr "獲取 CAT 錢包資訊"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2024
 msgid "Get CAT Asset Id"
-msgstr ""
+msgstr "獲取 CAT 資產 ID"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2025
 msgid "Requests the CAT asset ID for a specific CAT wallet"
-msgstr ""
+msgstr "請求特定 CAT 錢包的 CAT 資產 ID"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2035
 msgid "Number of NFTs"
-msgstr ""
+msgstr "NFT 數量"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2042
 msgid "Start Index"
-msgstr ""
+msgstr "開始索引"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2050
 msgid "Get NFTs"
-msgstr ""
+msgstr "獲取 NFTs"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2053
 msgid "Requests a full or paginated listing of NFTs associated with one or more wallets associated with the current wallet key"
-msgstr ""
+msgstr "請求與當前錢包金鑰相關聯的一個或多個錢包中的 NFT 完整或分頁清單"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2064
 msgid "Get NFT Info"
-msgstr ""
+msgstr "獲取 NFT 資訊"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2065
 msgid "Requests details for a specific NFT"
-msgstr ""
+msgstr "請求特定 NFT 的詳細資訊"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2075
 msgid "Get NFTs Count"
-msgstr ""
+msgstr "獲取 NFTs 數量"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2078
 msgid "Requests the number of NFTs associated with one or more wallets associated with the current wallet key"
-msgstr ""
+msgstr "請求與當前錢包金鑰相關聯的一個或多個錢包中的 NFT 數量"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2089
 msgid "Get NFT Wallets with DIDs"
-msgstr ""
+msgstr "使用 DID 獲取 NFT 錢包"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2100
 msgid "Get DID Current Coin Info"
-msgstr ""
+msgstr "獲取 DID 當前代幣資訊"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2110
 msgid "Get DID"
-msgstr ""
+msgstr "獲取 DID"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2118
 msgid "Get DID Info"
-msgstr ""
+msgstr "獲獲取 DID 資訊"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2128
 msgid "Get DID Metadata"
-msgstr ""
+msgstr "獲取 DID 中繼資料"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2138
 msgid "Get DID Public Key"
-msgstr ""
+msgstr "獲取 DID 公鑰"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2148
 msgid "Get DID Recovery List"
-msgstr ""
+msgstr "獲取 DID 恢復清單"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2158
 msgid "Get DID Name"
-msgstr ""
+msgstr "獲取 DID 名稱"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2166
 msgid "Get All Verifiable Credentials"
-msgstr ""
+msgstr "獲取所有可驗證憑證"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2171
 msgid "Launcher Id"
-msgstr ""
+msgstr "啟動器 ID"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2174
 msgid "Get Verifiable Credential"
-msgstr ""
+msgstr "獲取可驗證憑證"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2180
 msgid "Proofs Hash"
-msgstr ""
+msgstr "證明雜湊"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2183
 msgid "Get Proofs For Root Hash"
-msgstr ""
+msgstr "獲取根雜湊的證明"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2192
 #: src/electron/constants/commandRegistry.ts:2223
 #: src/electron/constants/commandRegistry.ts:2337
 msgid "Root Hash"
-msgstr ""
+msgstr "根雜湊值 (Root Hash)"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2199
 #: src/electron/constants/commandRegistry.ts:2230
 #: src/electron/constants/commandRegistry.ts:2256
 msgid "Page"
-msgstr ""
+msgstr "分頁"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2206
 #: src/electron/constants/commandRegistry.ts:2237
 #: src/electron/constants/commandRegistry.ts:2263
 msgid "Max page size"
-msgstr ""
+msgstr "最大分頁大小"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2214
 msgid "Get Keys"
-msgstr ""
+msgstr "獲取金鑰"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2245
 msgid "Get Keys Values"
-msgstr ""
+msgstr "獲取鍵值對"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2252
 msgid "Hash 1"
-msgstr ""
+msgstr "雜湊 1"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2253
 msgid "Hash 2"
-msgstr ""
+msgstr "雜湊 2"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2271
 msgid "Get Kv Diff"
-msgstr ""
+msgstr "獲取鍵值差異 (KV Diff)"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2279
 msgid "Get Local Root"
-msgstr ""
+msgstr "獲取本地根節點"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2287
 msgid "Get Mirrors"
-msgstr ""
+msgstr "獲取鏡像"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2295
 msgid "Get Owned Stores"
-msgstr ""
+msgstr "獲取擁有的儲存庫"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2303
 msgid "Get Root"
-msgstr ""
+msgstr "獲取根節點"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2311
 msgid "Get Roots"
-msgstr ""
+msgstr "獲取根節點清單"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2319
 msgid "Get Root History"
-msgstr ""
+msgstr "獲取根節點歷史"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2327
 msgid "Get DataLayer Sync Status"
-msgstr ""
+msgstr "獲取資料層同步狀態"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2345
 msgid "Get Value"
-msgstr ""
+msgstr "獲取數值"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2353
 msgid "Fingerprints"
-msgstr ""
+msgstr "指紋"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2360
 msgid "Index"
-msgstr ""
+msgstr "索引"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2367
 msgid "Count"
-msgstr ""
+msgstr "計數"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2374
 msgid "Non Observer Derivation"
-msgstr ""
+msgstr "非觀察者衍生 (Non Observer Derivation)"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2382
 msgid "Get wallet addresses for one or more wallet keys"
-msgstr ""
+msgstr "獲取一個或多個錢包金鑰的錢包地址"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/About/About.tsx:72
@@ -2206,7 +2206,7 @@ msgstr "回報問題"
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:164
 msgid "Offered"
-msgstr ""
+msgstr "已報價"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:168
@@ -2217,7 +2217,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:178
 msgid "Requested"
-msgstr ""
+msgstr "已請求"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:300
@@ -2396,7 +2396,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Pair/Pair.tsx:389
 msgid "Reset"
-msgstr ""
+msgstr "重設"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Pair/Pair.tsx:408
@@ -2411,7 +2411,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Pair/Pair.tsx:443
 msgid "Reject"
-msgstr ""
+msgstr "拒絕"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Pair/Pair.tsx:450
@@ -2430,13 +2430,9 @@ msgstr "您是否要儲存以下指令的偏好設定？"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:629
-msgid ""
-"These commands will be executed without confirmation in the future:\n"
-"\n"
+msgid "These commands will be executed without confirmation in the future:\n\n"
 " {commands}"
-msgstr ""
-"這些指令將在未來直接執行，不再尋求確認：\n"
-"\n"
+msgstr "這些指令將在未來直接執行，不再尋求確認：\n\n"
 " {commands}"
 
 #. js-lingui-explicit-id
@@ -2579,22 +2575,22 @@ msgstr "檢查更新..."
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:93
 #~ msgid "Are you sure you want to disconnect?"
-#~ msgstr "您確定要斷開連接嗎？"
+#~ msgstr "Are you sure you want to disconnect?"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:95
 #~ msgid "Are you sure you want to stop plotting? The plot cannot be recovered."
-#~ msgstr "您確定要停止 P 圖嗎？耕地將無法恢復。"
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:97
 #~ msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
-#~ msgstr "您確定要刪除該耕地嗎？耕地將無法恢復。"
+#~ msgstr "Are you sure you want to delete the plot? The plot cannot be recovered."
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:99
 #~ msgid "Are you sure you want to remove the plot directory?"
-#~ msgstr "您確定要移除耕地目錄嗎？"
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:1037
@@ -2872,7 +2868,7 @@ msgstr "動作"
 
 #: src/components/walletConnect/WalletConnectActiveSessions.tsx:24
 #~ msgid "Active Sessions"
-#~ msgstr "活躍連線"
+#~ msgstr "Active Sessions"
 
 #: src/components/notification/NotificationsDropdown.tsx:40
 #: src/components/notification/NotificationsDropdown.tsx:47
@@ -2906,7 +2902,7 @@ msgstr "新增一塊農場"
 
 #: src/constants/WalletConnectCommands.tsx:831
 #~ msgid "Add CAT Token"
-#~ msgstr "新增 CAT 代幣"
+#~ msgstr "Add CAT Token"
 
 #: src/components/offers/OfferAssetSelector.tsx:144
 msgid "Add CAT wallets to have more options"
@@ -2922,11 +2918,11 @@ msgstr "新增聯絡人"
 
 #: src/constants/WalletConnectCommands.tsx:1131
 #~ msgid "Add Mirror"
-#~ msgstr "新增鏡像"
+#~ msgstr "Add Mirror"
 
 #: src/constants/WalletConnectCommands.tsx:1160
 #~ msgid "Add Missing Files"
-#~ msgstr "新增缺失檔案"
+#~ msgstr "Add Missing Files"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:148
 #~ msgid "Add option to set expiration time {0}"
@@ -2946,11 +2942,11 @@ msgstr "新增耕地至隊列"
 
 #: src/constants/WalletConnectCommands.tsx:2206
 #~ msgid "Add Proofs"
-#~ msgstr "新增證明"
+#~ msgstr "Add Proofs"
 
 #: src/constants/WalletConnectCommands.tsx:2166
 #~ msgid "Add Proofs To Verifiable Credential"
-#~ msgstr "新增證明至可驗證憑證"
+#~ msgstr "Add Proofs To Verifiable Credential"
 
 #: src/components/vcs/VCList.tsx:227
 msgid "Add Verifiable Credential from file"
@@ -2975,7 +2971,7 @@ msgstr "進階"
 
 #: src/components/walletConnect/WalletConnectRequestPermissionsConfirmDialog.tsx:101
 #~ msgid "After you approve, the connected app can execute these commands on your behalf without confirmation."
-#~ msgstr "在您批准後，已連線的應用程式可以代表您執行這些指令，而無需再次確認。"
+#~ msgstr "After you approve, the connected app can execute these commands on your behalf without confirmation."
 
 #: src/components/app/AppKeyringMigrator.tsx:251
 msgid "After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring."
@@ -3020,11 +3016,11 @@ msgstr "交替 tmpdir/tmpdir2"
 
 #: src/components/settings/SettingsIntegration.tsx:308
 #~ msgid "Always Allow"
-#~ msgstr "始終允許"
+#~ msgstr "Always Allow"
 
 #: src/components/settings/SettingsIntegration.tsx:311
 #~ msgid "Always Reject"
-#~ msgstr "始終拒絕"
+#~ msgstr "Always Reject"
 
 #: src/components/offers/NFTOfferEditor.tsx:232
 #: src/components/offers/OfferEditorConditionsPanel.tsx:130
@@ -3060,7 +3056,7 @@ msgstr "金額超過 XCH 的總餘額"
 
 #: src/components/walletConnect/WalletConnectRequestPermissionsConfirmDialog.tsx:98
 #~ msgid "An app has requested permission to execute the following commands."
-#~ msgstr "應用程式已請求執行以下指令的權限。"
+#~ msgstr "An app has requested permission to execute the following commands."
 
 #: src/components/farm/FarmHealth.tsx:321
 msgid "An increase in the number of missing signage points (SPs) suggests that you were either disconnected from or significantly distant from a Timelord in your Full Node network. The total number of missing SPs serves as an indicator of potential rewards you could have claimed."
@@ -3077,29 +3073,29 @@ msgstr "公告"
 
 #: src/constants/WalletConnectCommands.tsx:17
 #~ msgid "App is requesting permission to execute these commands"
-#~ msgstr "應用程式正在請求執行這些指令的權限"
+#~ msgstr "App is requesting permission to execute these commands"
 
 #: src/components/settings/SettingsIntegration.tsx:212
 #~ msgid "App Permissions"
-#~ msgstr "應用程式權限"
+#~ msgstr "App Permissions"
 
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:230
 #: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:92
 #: src/components/walletConnect/WalletConnectRequestPermissionsConfirmDialog.tsx:160
 #~ msgid "Application"
-#~ msgstr "應用程式"
+#~ msgstr "Application"
 
 #: src/components/walletConnect/WalletConnectActiveSessions.tsx:31
 #~ msgid "Application doesn't have any active pair."
-#~ msgstr "應用程式沒有任何活動的配對。"
+#~ msgstr "Application doesn't have any active pair."
 
 #: src/components/walletConnect/WalletConnectActiveSessions.tsx:35
 #~ msgid "Application has no active sessions"
-#~ msgstr "應用程式沒有任何活動的會話"
+#~ msgstr "Application has no active sessions"
 
 #: src/components/walletConnect/WalletConnectRequestPermissionsConfirmDialog.tsx:89
 #~ msgid "Approve"
-#~ msgstr "批准"
+#~ msgstr "Approve"
 
 #: src/components/offers2/OfferBuilderViewer.tsx:264
 msgid "Are you sure you want to accept this Data Layer offer?"
@@ -3161,7 +3157,7 @@ msgstr "資產"
 #: src/constants/WalletConnectCommands.tsx:775
 #: src/constants/WalletConnectCommands.tsx:836
 #~ msgid "Asset Id"
-#~ msgstr "資產 ID"
+#~ msgstr "Asset Id"
 
 #: src/components/offers/NFTOfferTokenSelector.tsx:92
 #: src/components/offers/OfferAssetSelector.tsx:139
@@ -3228,7 +3224,7 @@ msgstr "返回"
 
 #: src/constants/WalletConnectCommands.tsx:1745
 #~ msgid "Backup DIDs"
-#~ msgstr "備份 DIDs"
+#~ msgstr "Backup DIDs"
 
 #: src/components/vcs/VCList.tsx:279
 msgid "Badging"
@@ -3244,7 +3240,7 @@ msgstr "基礎塊農獎勵數量"
 
 #: src/constants/WalletConnectCommands.tsx:1185
 #~ msgid "Batch Update"
-#~ msgstr "批次更新"
+#~ msgstr "Batch Update"
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:74
 msgid "Before beginning the plotting process, ensure that you have at least 128GB of RAM available. If you are running low on additional memory space, we strongly advise closing all other applications to prevent memory errors."
@@ -3379,13 +3375,13 @@ msgstr "取消"
 
 #: src/constants/WalletConnectCommands.tsx:1215
 #~ msgid "Cancel DataLayer Offer"
-#~ msgstr "取消資料層報價"
+#~ msgstr "Cancel DataLayer Offer"
 
 #: src/components/offers/ConfirmOfferCancellation.tsx:62
 #: src/components/offers/ConfirmOfferCancellation.tsx:129
 #: src/components/offers/OfferManager.tsx:310
 msgid "Cancel Offer"
-msgstr "取消報價單"
+msgstr ""
 
 #: src/components/offers/ConfirmOfferCancellation.tsx:92
 msgid "Cancel on blockchain"
@@ -3440,7 +3436,7 @@ msgstr "變更農會"
 
 #: src/constants/WalletConnectCommands.tsx:1195
 #~ msgid "Changelist"
-#~ msgstr "變更清單"
+#~ msgstr "Changelist"
 
 #: src/components/settings/SettingsStartup.tsx:32
 msgid "Changes will take effect the next time Chia is started"
@@ -3456,11 +3452,11 @@ msgstr "更改將在下次啟動 Chia 時生效。"
 
 #: src/constants/WalletConnectCommands.tsx:683
 #~ msgid "Check Offer Validity"
-#~ msgstr "檢查報價有效性"
+#~ msgstr "Check Offer Validity"
 
 #: src/constants/WalletConnectCommands.tsx:1239
 #~ msgid "Check Plugins"
-#~ msgstr "檢查外掛程式"
+#~ msgstr "Check Plugins"
 
 #: src/components/offers/NFTOfferPreview.tsx:151
 #: src/components/offers2/OfferBuilderNFTProvenance.tsx:37
@@ -3535,7 +3531,7 @@ msgstr "領取獎勵"
 
 #: src/constants/WalletConnectCommands.tsx:308
 #~ msgid "Claw back or claim claw back transaction"
-#~ msgstr "索回或領取索回交易"
+#~ msgstr "Claw back or claim claw back transaction"
 
 #: src/components/settings/SettingsIntegration.tsx:259
 msgid "Clear every \"always allow\" override across every connected app. After resetting, every command will ask for confirmation."
@@ -3552,7 +3548,7 @@ msgstr "清除 NFT 快取"
 
 #: src/constants/WalletConnectCommands.tsx:1245
 #~ msgid "Clear Pending Roots"
-#~ msgstr "清除待處理根節點"
+#~ msgstr "Clear Pending Roots"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:90
 msgid "Clicking a delete icon only removes a directory from this list and never deletes the directory itself"
@@ -3586,7 +3582,7 @@ msgstr "正在關閉服務"
 #: src/constants/WalletConnectCommands.tsx:1802
 #: src/constants/WalletConnectCommands.tsx:1859
 #~ msgid "Coin Id"
-#~ msgstr "硬幣編號"
+#~ msgstr "Coin Id"
 
 #: src/components/vcs/VCCard.tsx:147
 msgid "Coin ID"
@@ -3595,15 +3591,15 @@ msgstr "硬幣編號"
 #: src/constants/WalletConnectCommands.tsx:314
 #: src/constants/WalletConnectCommands.tsx:1720
 #~ msgid "Coin Ids"
-#~ msgstr "硬幣編號"
+#~ msgstr "Coin Ids"
 
 #: src/constants/WalletConnectCommands.tsx:646
 #~ msgid "Coin IDs"
-#~ msgstr ""
+#~ msgstr "Coin IDs"
 
 #: src/constants/WalletConnectCommands.tsx:489
 #~ msgid "Coin name"
-#~ msgstr ""
+#~ msgstr "Coin name"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:215
 #: src/components/nfts/NFTSummary.tsx:50
@@ -3612,7 +3608,7 @@ msgstr "收藏"
 
 #: src/constants/WalletConnectCommands.tsx:24
 #~ msgid "Commands"
-#~ msgstr "指令"
+#~ msgstr "Commands"
 
 #: src/components/settings/SettingsAdvanced.tsx:260
 msgid "Commands listed here will be executed without confirmation. Use with caution as this can affect your funds."
@@ -3667,7 +3663,7 @@ msgstr "確認"
 
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:197
 #~ msgid "Confirmation Request"
-#~ msgstr "確認請求"
+#~ msgstr "Confirmation Request"
 
 #: src/components/offers/utils.ts:124
 msgid "Confirmed"
@@ -3780,7 +3776,7 @@ msgstr "無法解析報價數據"
 
 #: src/constants/WalletConnectCommands.tsx:2305
 #~ msgid "Count"
-#~ msgstr "計數"
+#~ msgstr "Count"
 
 #: src/components/offers2/OfferIncomingTable.tsx:108
 msgid "Counter"
@@ -3818,7 +3814,7 @@ msgstr "建立 Plot NFT"
 
 #: src/constants/WalletConnectCommands.tsx:895
 #~ msgid "Create a spend bundle to mint multiple NFTs"
-#~ msgstr "建立用於鑄造多個 NFT 的支出組合（Spend Bundle）"
+#~ msgstr "Create a spend bundle to mint multiple NFTs"
 
 #: src/components/offers/NFTOfferEditor.tsx:717
 msgid "Create an NFT Offer"
@@ -3839,7 +3835,7 @@ msgstr "建立反向報價"
 
 #: src/constants/WalletConnectCommands.tsx:1257
 #~ msgid "Create DataStore"
-#~ msgstr "建立資料儲存庫"
+#~ msgstr "Create DataStore"
 
 #: src/constants/WalletConnectCommands.tsx:476
 #~ msgid "Create new CAT Wallet"
@@ -3847,11 +3843,11 @@ msgstr "建立反向報價"
 
 #: src/constants/WalletConnectCommands.tsx:1728
 #~ msgid "Create new DID Wallet"
-#~ msgstr "創建新的 DID 錢包"
+#~ msgstr "Create new DID Wallet"
 
 #: src/constants/WalletConnectCommands.tsx:1696
 #~ msgid "Create new Remote Wallet"
-#~ msgstr ""
+#~ msgstr "Create new Remote Wallet"
 
 #: src/components/nfts/NFTContextualActions.tsx:150
 #: src/components/offers/NFTOfferEditor.tsx:438
@@ -3863,7 +3859,7 @@ msgstr "建立報價"
 
 #: src/constants/WalletConnectCommands.tsx:601
 #~ msgid "Create Offer for Ids"
-#~ msgstr "為 Ids 建立報價"
+#~ msgstr "Create Offer for Ids"
 
 #: src/components/settings/IdentitiesPanel.tsx:61
 msgid "Create Profile"
@@ -4030,11 +4026,11 @@ msgstr "刪除聯絡人"
 
 #: src/components/app/AppPassPrompt.tsx:103
 msgid "Delete Key"
-msgstr "刪除私鑰"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:1302
 #~ msgid "Delete Mirror"
-#~ msgstr "刪除鏡像"
+#~ msgstr "Delete Mirror"
 
 #: src/components/plot/PlotAction.tsx:24
 #: src/components/plot/queue/PlotQueueActions.tsx:33
@@ -4106,20 +4102,20 @@ msgstr "DID"
 
 #: src/constants/WalletConnectCommands.tsx:964
 #~ msgid "DID Coin Dictionary"
-#~ msgstr "DID 代幣字典"
+#~ msgstr "DID Coin Dictionary"
 
 #: src/constants/WalletConnectCommands.tsx:1069
 #~ msgid "DID Id"
-#~ msgstr "DID 識別碼"
+#~ msgstr "DID Id"
 
 #: src/constants/WalletConnectCommands.tsx:970
 #~ msgid "DID Lineage Parent"
-#~ msgstr "DID 血緣父項"
+#~ msgstr "DID Lineage Parent"
 
 #: src/constants/WalletConnectCommands.tsx:1819
 #: src/constants/WalletConnectCommands.tsx:2023
 #~ msgid "DID Metadata"
-#~ msgstr "DID 中繼資料"
+#~ msgstr "DID Metadata"
 
 #: src/components/block/Block.jsx:182
 #: src/components/fullNode/card/FullNodeCardDifficulty.tsx:14
@@ -4169,7 +4165,7 @@ msgstr "禁用在臨時目錄2上的直接I/O，以便在使用RAM磁碟時提�
 
 #: src/constants/WalletConnectCommands.tsx:626
 #~ msgid "Disable JSON Formatting"
-#~ msgstr "禁用JSON格式化"
+#~ msgstr "Disable JSON Formatting"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:377
 msgid "Disable NUMA"
@@ -4208,11 +4204,11 @@ msgstr "你想要燒毀這個 NFT 嗎？"
 
 #: src/hooks/useWalletConnectCommand.tsx:209
 #~ msgid "Do you want to execute command {command}?"
-#~ msgstr "您要執行指令 {command} 嗎？"
+#~ msgstr "Do you want to execute command {command}?"
 
 #: src/hooks/useWalletConnectCommand.tsx:205
 #~ msgid "Do you want to log in to {fingerprint} and execute command {command}?"
-#~ msgstr "您要登入至 {fingerprint} 並執行指令 {command} 嗎？"
+#~ msgstr "Do you want to log in to {fingerprint} and execute command {command}?"
 
 #: src/hooks/useBlockchainNotifications.tsx:170
 msgid "Do you want to remove this offer notification? This action cannot be undone."
@@ -4282,7 +4278,7 @@ msgstr "拖放一個報價單檔案，貼上"
 
 #: src/constants/WalletConnectCommands.tsx:614
 #~ msgid "Driver Dict"
-#~ msgstr "驅動程式字典"
+#~ msgstr "Driver Dict"
 
 #: src/components/plot/PlotHarvester.tsx:137
 msgid "Duplicate"
@@ -4302,7 +4298,7 @@ msgstr "累計收益"
 
 #: src/components/walletConnect/WalletConnectConnections.tsx:187
 msgid "Edit"
-msgstr "Edit"
+msgstr ""
 
 #: src/components/addressbook/ContactEdit.tsx:292
 #: src/components/addressbook/ContactSummary.tsx:167
@@ -4321,11 +4317,11 @@ msgstr "版本編號 #"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:226
 msgid "Edition Number"
-msgstr "版本編號"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:1063
 #~ msgid "Edition Total"
-#~ msgstr "版本總量"
+#~ msgstr "Edition Total"
 
 #: src/components/harvest/HarvesterDetail.tsx:159
 msgid "Effective Space"
@@ -4388,11 +4384,11 @@ msgstr "啟用/停用自動掃描所有子目錄以尋找耕地的功能"
 
 #: src/constants/WalletConnectCommands.tsx:562
 #~ msgid "End"
-#~ msgstr "結束"
+#~ msgstr "End"
 
 #: src/constants/WalletConnectCommands.tsx:143
 #~ msgid "End Height"
-#~ msgstr ""
+#~ msgstr "End Height"
 
 #: src/components/settings/SettingsHarvester.tsx:532
 msgid "Enforce GPU Index"
@@ -4499,12 +4495,12 @@ msgstr "排除最終目錄"
 #: src/constants/WalletConnectCommands.tsx:198
 #: src/constants/WalletConnectCommands.tsx:247
 #~ msgid "Excluded Coin Amounts"
-#~ msgstr ""
+#~ msgstr "Excluded Coin Amounts"
 
 #: src/constants/WalletConnectCommands.tsx:205
 #: src/constants/WalletConnectCommands.tsx:254
 #~ msgid "Excluded Coin IDs"
-#~ msgstr ""
+#~ msgstr "Excluded Coin IDs"
 
 #: src/components/farm/FarmHealth.tsx:252
 msgid "Expected Total plots passing filter"
@@ -4534,7 +4530,7 @@ msgstr "匯出日誌"
 #: src/constants/WalletConnectCommands.tsx:639
 #: src/constants/WalletConnectCommands.tsx:716
 #~ msgid "Extra Conditions"
-#~ msgstr ""
+#~ msgstr "Extra Conditions"
 
 #: src/components/offers/utils.ts:126
 #: src/components/plot/PlotHarvester.tsx:122
@@ -4706,7 +4702,7 @@ msgstr "報價中包含的費用："
 
 #: src/constants/WalletConnectCommands.tsx:483
 #~ msgid "Fetches the puzzle reveal and solution for a spent coin (hex strings)."
-#~ msgstr ""
+#~ msgstr "Fetches the puzzle reveal and solution for a spent coin (hex strings)."
 
 #: src/electron/main.tsx:942
 #: src/electron/main.tsx:1135
@@ -4730,16 +4726,16 @@ msgstr "最終資料夾位置"
 
 #: src/constants/WalletConnectCommands.tsx:1795
 #~ msgid "Find Lost DID"
-#~ msgstr "找回遺失的 DID"
+#~ msgstr "Find Lost DID"
 
 #: src/constants/WalletConnectCommands.tsx:38
 #: src/constants/WalletConnectCommands.tsx:2327
 #~ msgid "Fingerprint"
-#~ msgstr "指紋"
+#~ msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:2291
 #~ msgid "Fingerprints"
-#~ msgstr "指紋"
+#~ msgstr "Fingerprints"
 
 #: src/components/fullNode/FullNode.jsx:28
 #: src/components/fullNode/FullNode.jsx:77
@@ -4752,7 +4748,7 @@ msgstr "將圖片調整至卡片大小"
 
 #: src/constants/WalletConnectCommands.tsx:1177
 #~ msgid "Folder Name"
-#~ msgstr "資料夾名稱"
+#~ msgstr "Folder Name"
 
 #: src/electron/main.tsx:1086
 #~ msgid "Follow on Twitter"
@@ -4794,91 +4790,91 @@ msgstr "一般"
 
 #: src/constants/WalletConnectCommands.tsx:549
 #~ msgid "Get all Offers"
-#~ msgstr "獲取所有報價單"
+#~ msgstr "Get all Offers"
 
 #: src/constants/WalletConnectCommands.tsx:2147
 #~ msgid "Get All Verifiable Credentials"
-#~ msgstr "獲取所有可驗證憑證"
+#~ msgstr "Get All Verifiable Credentials"
 
 #: src/constants/WalletConnectCommands.tsx:1321
 #~ msgid "Get Ancestors"
-#~ msgstr "獲取祖先節點"
+#~ msgstr "Get Ancestors"
 
 #: src/constants/WalletConnectCommands.tsx:782
 #~ msgid "Get CAT Asset Id"
-#~ msgstr "獲取 CAT 資產 ID"
+#~ msgstr "Get CAT Asset Id"
 
 #: src/constants/WalletConnectCommands.tsx:769
 #~ msgid "Get CAT Wallet Info"
-#~ msgstr "獲取 CAT 錢包資訊"
+#~ msgstr "Get CAT Wallet Info"
 
 #: src/constants/WalletConnectCommands.tsx:123
 #~ msgid "Get Coin Records by Name"
-#~ msgstr ""
+#~ msgstr "Get Coin Records by Name"
 
 #: src/constants/WalletConnectCommands.tsx:106
 #~ msgid "Get Current Address"
-#~ msgstr "獲取當前地址"
+#~ msgstr "Get Current Address"
 
 #: src/constants/WalletConnectCommands.tsx:1508
 #~ msgid "Get DataLayer Sync Status"
-#~ msgstr "獲取資料層同步狀態"
+#~ msgstr "Get DataLayer Sync Status"
 
 #: src/constants/WalletConnectCommands.tsx:1839
 #~ msgid "Get DID"
-#~ msgstr "獲取 DID"
+#~ msgstr "Get DID"
 
 #: src/constants/WalletConnectCommands.tsx:1826
 #~ msgid "Get DID Current Coin Info"
-#~ msgstr "獲取 DID 當前代幣資訊"
+#~ msgstr "Get DID Current Coin Info"
 
 #: src/constants/WalletConnectCommands.tsx:1852
 #~ msgid "Get DID Info"
-#~ msgstr "獲獲取 DID 資訊"
+#~ msgstr "Get DID Info"
 
 #: src/constants/WalletConnectCommands.tsx:1877
 #~ msgid "Get DID Metadata"
-#~ msgstr "獲取 DID 中繼資料"
+#~ msgstr "Get DID Metadata"
 
 #: src/constants/WalletConnectCommands.tsx:2079
 #~ msgid "Get DID Name"
-#~ msgstr "獲取 DID 名稱"
+#~ msgstr "Get DID Name"
 
 #: src/constants/WalletConnectCommands.tsx:1890
 #~ msgid "Get DID Public Key"
-#~ msgstr "獲取 DID 公鑰"
+#~ msgstr "Get DID Public Key"
 
 #: src/constants/WalletConnectCommands.tsx:1903
 #~ msgid "Get DID Recovery List"
-#~ msgstr "獲取 DID 恢復清單"
+#~ msgstr "Get DID Recovery List"
 
 #: src/constants/WalletConnectCommands.tsx:461
 #~ msgid "Get Height Info"
-#~ msgstr ""
+#~ msgstr "Get Height Info"
 
 #: src/constants/WalletConnectCommands.tsx:1865
 #~ msgid "Get Information Needed For DID Recovery"
-#~ msgstr "獲取 DID 恢復所需的資訊"
+#~ msgstr "Get Information Needed For DID Recovery"
 
 #: src/constants/WalletConnectCommands.tsx:1338
 #~ msgid "Get Keys"
-#~ msgstr "獲取金鑰"
+#~ msgstr "Get Keys"
 
 #: src/constants/WalletConnectCommands.tsx:1370
 #~ msgid "Get Keys Values"
-#~ msgstr "獲取鍵值對"
+#~ msgstr "Get Keys Values"
 
 #: src/constants/WalletConnectCommands.tsx:1401
 #~ msgid "Get Kv Diff"
-#~ msgstr "獲取鍵值差異 (KV Diff)"
+#~ msgstr "Get Kv Diff"
 
 #: src/constants/WalletConnectCommands.tsx:1436
 #~ msgid "Get Local Root"
-#~ msgstr "獲取本地根節點"
+#~ msgstr "Get Local Root"
 
 #: src/constants/WalletConnectCommands.tsx:1449
 #~ msgid "Get Mirrors"
-#~ msgstr "獲取鏡像"
+#~ msgstr "Get Mirrors"
 
 #: src/components/settings/ProfileAdd.tsx:124
 msgid "Get Mojos from the Chia Faucet"
@@ -4886,103 +4882,103 @@ msgstr "從 Chia 水龍頭獲取 Mojos"
 
 #: src/constants/WalletConnectCommands.tsx:429
 #~ msgid "Get Next Address"
-#~ msgstr "獲取下一個地址"
+#~ msgstr "Get Next Address"
 
 #: src/constants/WalletConnectCommands.tsx:880
 #~ msgid "Get NFT Info"
-#~ msgstr "獲取 NFT 資訊"
+#~ msgstr "Get NFT Info"
 
 #: src/constants/WalletConnectCommands.tsx:2141
 #~ msgid "Get NFT Wallets with DIDs"
-#~ msgstr "使用 DID 獲取 NFT 錢包"
+#~ msgstr "Get NFT Wallets with DIDs"
 
 #: src/constants/WalletConnectCommands.tsx:850
 #~ msgid "Get NFTs"
-#~ msgstr "獲取 NFTs"
+#~ msgstr "Get NFTs"
 
 #: src/constants/WalletConnectCommands.tsx:1112
 #~ msgid "Get NFTs Count"
-#~ msgstr "獲取 NFTs 數量"
+#~ msgstr "Get NFTs Count"
 
 #: src/constants/WalletConnectCommands.tsx:739
 #~ msgid "Get Offer Data"
-#~ msgstr "獲取報價單數據"
+#~ msgstr "Get Offer Data"
 
 #: src/constants/WalletConnectCommands.tsx:753
 #~ msgid "Get Offer Record"
-#~ msgstr "獲取報價單記錄"
+#~ msgstr "Get Offer Record"
 
 #: src/constants/WalletConnectCommands.tsx:725
 #~ msgid "Get Offer Summary"
-#~ msgstr "獲取報價單摘要"
+#~ msgstr "Get Offer Summary"
 
 #: src/constants/WalletConnectCommands.tsx:594
 #~ msgid "Get Offers Count"
-#~ msgstr "獲取報價單數量"
+#~ msgstr "Get Offers Count"
 
 #: src/constants/WalletConnectCommands.tsx:1462
 #~ msgid "Get Owned Stores"
-#~ msgstr "獲取擁有的儲存庫"
+#~ msgstr "Get Owned Stores"
 
 #: src/constants/WalletConnectCommands.tsx:2218
 #~ msgid "Get Proofs For Root Hash"
-#~ msgstr "獲取根雜湊的證明"
+#~ msgstr "Get Proofs For Root Hash"
 
 #: src/constants/WalletConnectCommands.tsx:2320
 #~ msgid "Get public key"
-#~ msgstr "獲取公鑰"
+#~ msgstr "Get public key"
 
 #: src/constants/WalletConnectCommands.tsx:482
 #~ msgid "Get puzzle and solution"
-#~ msgstr ""
+#~ msgstr "Get puzzle and solution"
 
 #: src/constants/WalletConnectCommands.tsx:1469
 #~ msgid "Get Root"
-#~ msgstr "獲取根節點"
+#~ msgstr "Get Root"
 
 #: src/constants/WalletConnectCommands.tsx:1495
 #~ msgid "Get Root History"
-#~ msgstr "獲取根節點歷史"
+#~ msgstr "Get Root History"
 
 #: src/constants/WalletConnectCommands.tsx:1482
 #~ msgid "Get Roots"
-#~ msgstr "獲取根節點清單"
+#~ msgstr "Get Roots"
 
 #: src/constants/WalletConnectCommands.tsx:218
 #~ msgid "Get Spendable Coins"
-#~ msgstr ""
+#~ msgstr "Get Spendable Coins"
 
 #: src/constants/WalletConnectCommands.tsx:58
 #~ msgid "Get Transaction"
-#~ msgstr "獲取交易"
+#~ msgstr "Get Transaction"
 
 #: src/constants/WalletConnectCommands.tsx:1521
 #~ msgid "Get Value"
-#~ msgstr "獲取數值"
+#~ msgstr "Get Value"
 
 #: src/constants/WalletConnectCommands.tsx:2153
 #~ msgid "Get Verifiable Credential"
-#~ msgstr "獲取可驗證憑證"
+#~ msgstr "Get Verifiable Credential"
 
 #: src/constants/WalletConnectCommands.tsx:2284
 #~ msgid "Get wallet addresses for one or more wallet keys"
-#~ msgstr "獲取一個或多個錢包金鑰的錢包地址"
+#~ msgstr "Get wallet addresses for one or more wallet keys"
 
 #: src/constants/WalletConnectCommands.tsx:72
 #~ msgid "Get Wallet Balance"
-#~ msgstr "獲取錢包餘額"
+#~ msgstr "Get Wallet Balance"
 
 #: src/constants/WalletConnectCommands.tsx:89
 #~ msgid "Get Wallet Balances"
-#~ msgstr "獲取錢包餘額"
+#~ msgstr "Get Wallet Balances"
 
 #: src/constants/WalletConnectCommands.tsx:454
 #~ msgid "Get Wallet Sync Status"
-#~ msgstr "獲取錢包同步狀態"
+#~ msgstr "Get Wallet Sync Status"
 
 #: src/constants/WalletConnectCommands.tsx:44
 #~ msgid "Get Wallets"
-#~ msgstr "獲取錢包"
+#~ msgstr "Get Wallets"
 
 #: src/components/nfts/gallery/NFTGalleryHero.tsx:15
 msgid "Go collect some gems"
@@ -5038,15 +5034,15 @@ msgstr "採收效率"
 #: src/constants/WalletConnectCommands.tsx:1030
 #: src/constants/WalletConnectCommands.tsx:1331
 #~ msgid "Hash"
-#~ msgstr "雜湊 (Hash)"
+#~ msgstr "Hash"
 
 #: src/constants/WalletConnectCommands.tsx:1412
 #~ msgid "Hash 1"
-#~ msgstr "雜湊 1"
+#~ msgstr "Hash 1"
 
 #: src/constants/WalletConnectCommands.tsx:1417
 #~ msgid "Hash 2"
-#~ msgstr "雜湊 2"
+#~ msgstr "Hash 2"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:179
 #~ msgid "Hash is validated."
@@ -5149,7 +5145,7 @@ msgstr "混合磁碟模式允許記憶體較少的電腦透過將中間數據卸
 
 #: src/constants/WalletConnectCommands.tsx:332
 #~ msgid "Id"
-#~ msgstr "識別碼"
+#~ msgstr ""
 
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:188
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:127
@@ -5196,19 +5192,19 @@ msgstr "進行中"
 
 #: src/constants/WalletConnectCommands.tsx:580
 #~ msgid "Include My Offers"
-#~ msgstr "包含我的報價"
+#~ msgstr "Include My Offers"
 
 #: src/constants/WalletConnectCommands.tsx:150
 #~ msgid "Include Spent Coins"
-#~ msgstr ""
+#~ msgstr "Include Spent Coins"
 
 #: src/constants/WalletConnectCommands.tsx:586
 #~ msgid "Include Taken Offers"
-#~ msgstr "包含已接受的報價"
+#~ msgstr "Include Taken Offers"
 
 #: src/constants/WalletConnectCommands.tsx:52
 #~ msgid "Include Wallet Metadata"
-#~ msgstr "包含錢包元數據"
+#~ msgstr "Include Wallet Metadata"
 
 #: src/components/offers/NFTOfferEditor.tsx:86
 #: src/components/offers/OfferEditorConditionsPanel.tsx:394
@@ -5221,7 +5217,7 @@ msgstr "收到的報價"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:17
 msgid "Index"
-msgstr "索引"
+msgstr ""
 
 #: src/components/plot/PlotHarvesterPlots.tsx:126
 msgid "Initializing..."
@@ -5229,31 +5225,27 @@ msgstr "正在初始化..."
 
 #: src/constants/WalletConnectCommands.tsx:1987
 #~ msgid "Inner Address"
-#~ msgstr "內部地址"
+#~ msgstr "Inner Address"
 
 #: src/constants/WalletConnectCommands.tsx:1545
 #~ msgid "Insert"
-#~ msgstr "插入"
+#~ msgstr "Insert"
 
 #: src/components/offers/OfferShareDialog.tsx:1172
 #~ msgid "Install Keybase"
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"可用資金不足，無法接受報價。請確保您的\n"
+msgstr "可用資金不足，無法接受報價。請確保您的\n"
 "可支出餘額足以支付報價金額。"
 
 #: src/components/offers/OfferEditor.tsx:127
 #: src/components/offers2/CreateOfferBuilder.tsx:145
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"可用資金不足，無法建立報價。請確保您的\n"
+msgstr "可用資金不足，無法建立報價。請確保您的\n"
 "可支出餘額足以支付報價金額。"
 
 #: src/components/farm/PoolingHealth.tsx:302
@@ -5299,7 +5291,7 @@ msgstr "無效狀態"
 
 #: src/components/walletConnect/WalletConnectConfirmDialog.tsx:182
 #~ msgid "Invalid WalletConnect data"
-#~ msgstr "無效的 WalletConnect 資料"
+#~ msgstr "Invalid WalletConnect data"
 
 #: src/components/fullNode/FullNodeConnections.tsx:33
 msgid "IP address"
@@ -5311,7 +5303,7 @@ msgstr "IP 位址 / 主機"
 
 #: src/constants/WalletConnectCommands.tsx:2277
 #~ msgid "Is notification visible to all paired fingerprints"
-#~ msgstr "通知是否對所有配對的指紋可見"
+#~ msgstr "Is notification visible to all paired fingerprints"
 
 #: src/components/vcs/VCCard.tsx:159
 msgid "Issued"
@@ -5371,7 +5363,7 @@ msgstr "K 大小"
 #: src/constants/WalletConnectCommands.tsx:1532
 #: src/constants/WalletConnectCommands.tsx:1555
 #~ msgid "Key"
-#~ msgstr "金鑰"
+#~ msgstr "Key"
 
 #: src/components/settings/SettingsIntegration.tsx:65
 #~ msgid "Key switching"
@@ -5447,7 +5439,7 @@ msgstr "最新區塊挑戰"
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:255
 #: src/components/plotNFT/PlotNFTCard.tsx:292
 msgid "Launcher Id"
-msgstr "啟動器 ID"
+msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:64
 #: src/components/vcs/VCCard.tsx:132
@@ -5478,11 +5470,11 @@ msgstr "不再支援舊版金鑰環。您的金鑰需要遷移到由主密碼保
 
 #: src/components/nfts/NFTDetails.tsx:295
 msgid "License Hash"
-msgstr "授權雜湊值"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:1046
 #~ msgid "License Uris"
-#~ msgstr "授權網址"
+#~ msgstr "License Uris"
 
 #: src/components/nfts/NFTDetails.tsx:280
 msgid "License URL {0}"
@@ -5570,7 +5562,7 @@ msgstr "已鎖定"
 
 #: src/constants/WalletConnectCommands.tsx:31
 #~ msgid "Log In"
-#~ msgstr "登入"
+#~ msgstr "Log In"
 
 #: src/components/app/LogoutButton.tsx:25
 msgid "Log Out"
@@ -5582,11 +5574,11 @@ msgstr "日誌查看器"
 
 #: src/constants/WalletConnectCommands.tsx:1574
 #~ msgid "Make DataLayer Offer"
-#~ msgstr "建立資料層報價"
+#~ msgstr "Make DataLayer Offer"
 
 #: src/constants/WalletConnectCommands.tsx:1579
 #~ msgid "Maker"
-#~ msgstr "建立者 (Maker)"
+#~ msgstr "Maker"
 
 #: src/components/app/AppSelectMode.tsx:84
 msgid "Manage CAT tokens"
@@ -5602,7 +5594,7 @@ msgstr "管理檔案在此電腦上的儲存方式與位置。"
 
 #: src/components/settings/SettingsIntegration.tsx:218
 #~ msgid "Manage permissions for your WalletConnect apps."
-#~ msgstr "管理您的 WalletConnect 應用程式權限。"
+#~ msgstr "Manage permissions for your WalletConnect apps."
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:54
 msgid "Manage Plot Directories"
@@ -5619,13 +5611,13 @@ msgstr "最大值"
 #: src/constants/WalletConnectCommands.tsx:191
 #: src/constants/WalletConnectCommands.tsx:240
 #~ msgid "Max Coin Amount"
-#~ msgstr ""
+#~ msgstr "Max Coin Amount"
 
 #: src/constants/WalletConnectCommands.tsx:1362
 #: src/constants/WalletConnectCommands.tsx:1393
 #: src/constants/WalletConnectCommands.tsx:1428
 #~ msgid "Max page size"
-#~ msgstr "最大分頁大小"
+#~ msgstr "Max page size"
 
 #: src/components/vcs/VCList.tsx:305
 msgid "Memberships"
@@ -5634,7 +5626,7 @@ msgstr "會員身份"
 #: src/constants/WalletConnectCommands.tsx:292
 #: src/constants/WalletConnectCommands.tsx:824
 #~ msgid "Memos"
-#~ msgstr "備註"
+#~ msgstr "Memos"
 
 #: src/components/notification/NotificationAnnouncementDialog.tsx:67
 #: src/components/signVerify/SignMessage.tsx:204
@@ -5645,7 +5637,7 @@ msgstr "訊息"
 #: src/constants/WalletConnectCommands.tsx:342
 #: src/constants/WalletConnectCommands.tsx:365
 #~ msgid "Message Is Hex Encoded String"
-#~ msgstr "訊息為 Hex 編碼字串"
+#~ msgstr "Message Is Hex Encoded String"
 
 #: src/components/notification/utils.ts:115
 msgid "Message not available"
@@ -5653,11 +5645,11 @@ msgstr "訊息不可用"
 
 #: src/constants/WalletConnectCommands.tsx:1040
 #~ msgid "Meta Hash"
-#~ msgstr "中繼雜湊值"
+#~ msgstr "Meta Hash"
 
 #: src/constants/WalletConnectCommands.tsx:1035
 #~ msgid "Meta Uris"
-#~ msgstr "中繼網址"
+#~ msgstr "Meta Uris"
 
 #: src/components/nfts/NFTDetails.tsx:265
 msgid "Metadata Hash"
@@ -5669,7 +5661,7 @@ msgstr "中繼資料雜湊值"
 
 #: src/constants/WalletConnectCommands.tsx:905
 #~ msgid "Metadata List"
-#~ msgstr "中繼資料列表"
+#~ msgstr "Get Local Root"
 
 #: src/components/nfts/NFTDetails.tsx:250
 msgid "Metadata URL {0}"
@@ -5698,7 +5690,7 @@ msgstr "需要遷移以支援密碼保護"
 #: src/constants/WalletConnectCommands.tsx:184
 #: src/constants/WalletConnectCommands.tsx:233
 #~ msgid "Min Coin Amount"
-#~ msgstr ""
+#~ msgstr "Min Coin Amount"
 
 #: src/components/pool/PoolInfo.tsx:28
 msgid "Minimum Difficulty"
@@ -5706,23 +5698,23 @@ msgstr "最低難度"
 
 #: src/constants/WalletConnectCommands.tsx:894
 #~ msgid "Mint Bulk"
-#~ msgstr "批量鑄造"
+#~ msgstr "Mint Bulk"
 
 #: src/constants/WalletConnectCommands.tsx:976
 #~ msgid "Mint From DID"
-#~ msgstr "從 DID 鑄造"
+#~ msgstr "Mint From DID"
 
 #: src/constants/WalletConnectCommands.tsx:997
 #~ msgid "Mint NFT"
-#~ msgstr "鑄造 NFT"
+#~ msgstr "Mint NFT"
 
 #: src/constants/WalletConnectCommands.tsx:928
 #~ msgid "Mint Start Number"
-#~ msgstr "鑄造起始編號"
+#~ msgstr "Mint Start Number"
 
 #: src/constants/WalletConnectCommands.tsx:934
 #~ msgid "Mint Total"
-#~ msgstr "鑄造總量"
+#~ msgstr "Mint Total"
 
 #: src/components/nfts/NFTDetails.tsx:213
 msgid "Minted at Block Height"
@@ -5773,7 +5765,7 @@ msgstr "遺失標牌點"
 
 #: src/components/walletConnect/WalletConnectConnections.tsx:83
 #~ msgid "More Info"
-#~ msgstr "更多資訊"
+#~ msgstr "More Info"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:114
 msgid "More memory slightly increases speed"
@@ -5826,7 +5818,7 @@ msgstr "名稱"
 
 #: src/constants/WalletConnectCommands.tsx:131
 #~ msgid "Names (coin ids)"
-#~ msgstr ""
+#~ msgstr "Names (coin ids)"
 
 #: src/components/settings/ProfileAdd.tsx:121
 msgid "Need some {currencyCode}?"
@@ -5851,7 +5843,7 @@ msgstr "網路名稱"
 
 #: src/constants/WalletConnectCommands.tsx:444
 #~ msgid "New Address"
-#~ msgstr "新地址"
+#~ msgstr "New Address"
 
 #: src/components/notification/utils.ts:105
 msgid "New counter offer"
@@ -5859,7 +5851,7 @@ msgstr "新的反向報價"
 
 #: src/constants/WalletConnectCommands.tsx:952
 #~ msgid "New Inner Puzzle Hash"
-#~ msgstr "新的內部謎題雜湊 (Inner Puzzle Hash)"
+#~ msgstr "New Inner Puzzle Hash"
 
 #: src/components/notification/utils.ts:101
 msgid "New offer"
@@ -5867,7 +5859,7 @@ msgstr "新報價"
 
 #: src/constants/WalletConnectCommands.tsx:958
 #~ msgid "New P2 Puzzle Hash"
-#~ msgstr "新的 P2 謎題雜湊 (P2 Puzzle Hash)"
+#~ msgstr "New P2 Puzzle Hash"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:212
 msgid "New Passphrase"
@@ -5875,15 +5867,15 @@ msgstr "新私鑰密碼"
 
 #: src/constants/WalletConnectCommands.tsx:2183
 #~ msgid "New Proof Hash"
-#~ msgstr "新的證明雜湊 (Proof Hash)"
+#~ msgstr "New Proof Hash"
 
 #: src/constants/WalletConnectCommands.tsx:2177
 #~ msgid "New Puzzle Hash"
-#~ msgstr "新的謎題雜湊 (Puzzle Hash)"
+#~ msgstr "New Puzzle Hash"
 
 #: src/constants/WalletConnectCommands.tsx:2054
 #~ msgid "New Recovery DID List"
-#~ msgstr "新的恢復 DID 列表"
+#~ msgstr "New Recovery DID List"
 
 #: src/components/offers2/DataLayerOfferViewer.tsx:57
 msgid "New Root"
@@ -5918,7 +5910,7 @@ msgstr "NFT 代幣 ID"
 #: src/constants/WalletConnectCommands.tsx:1094
 #: src/constants/WalletConnectCommands.tsx:2124
 #~ msgid "NFT Coin Ids"
-#~ msgstr "NFT 代幣 ID"
+#~ msgstr "NFT Coin Ids"
 
 #: src/components/offers/NFTOfferEditor.tsx:617
 msgid "NFT details not available"
@@ -5948,7 +5940,7 @@ msgstr "NFT 識別碼未指向有效的 NFT 代幣。"
 
 #: src/constants/WalletConnectCommands.tsx:2119
 #~ msgid "NFT Launcher Id"
-#~ msgstr "NFT 啟動器 ID"
+#~ msgstr "NFT Launcher Id"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:177
 msgid "NFT Move Failed"
@@ -6027,7 +6019,7 @@ msgstr "目前無報價"
 
 #: src/components/settings/SettingsIntegration.tsx:331
 #~ msgid "No Custom Permissions"
-#~ msgstr "無自訂權限"
+#~ msgstr "No Custom Permissions"
 
 #: src/components/nfts/NFTPreview.tsx:391
 msgid "No file available"
@@ -6039,7 +6031,7 @@ msgstr "無收到的報價"
 
 #: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:115
 #~ msgid "No Paired Keys"
-#~ msgstr "無配對的金鑰"
+#~ msgstr "No Paired Keys"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:126
 msgid "No plots yet"
@@ -6063,7 +6055,7 @@ msgstr "節點 ID"
 
 #: src/constants/WalletConnectCommands.tsx:2312
 #~ msgid "Non Observer Derivation"
-#~ msgstr "非觀察者衍生 (Non Observer Derivation)"
+#~ msgstr "Non Observer Derivation"
 
 #: src/components/did/DIDProfileDropdown.tsx:98
 #: src/components/farm/FarmHealth.tsx:362
@@ -6156,7 +6148,7 @@ msgstr "通知目前擁有者"
 
 #: src/constants/WalletConnectCommands.tsx:1749
 #~ msgid "Number of Backup Ids Needed"
-#~ msgstr "所需的備份 ID 數量"
+#~ msgstr "Number of Backup Ids Needed"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:168
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:181
@@ -6169,11 +6161,11 @@ msgstr "階段 3 與 4 的桶數量"
 
 #: src/constants/WalletConnectCommands.tsx:2059
 #~ msgid "Number Of DIDs Required For Recovery"
-#~ msgstr "恢復所需的 DID 數量"
+#~ msgstr "Number Of DIDs Required For Recovery"
 
 #: src/constants/WalletConnectCommands.tsx:866
 #~ msgid "Number of NFTs"
-#~ msgstr "NFT 數量"
+#~ msgstr "Number of NFTs"
 
 #: src/components/harvest/HarvesterOverview.tsx:186
 msgid "Number of plots"
@@ -6224,7 +6216,7 @@ msgstr "佔用空間"
 #: src/constants/WalletConnectCommands.tsx:1643
 #: src/constants/WalletConnectCommands.tsx:1680
 #~ msgid "Offer"
-#~ msgstr "報價"
+#~ msgstr "Offer"
 
 #: src/components/offers/OfferManager.tsx:399
 #: src/components/offers2/OfferNavigationHeader.tsx:16
@@ -6240,7 +6232,7 @@ msgstr "無法接受報價，因為您不具備要求的資產"
 #: src/components/offers/OfferDataDialog.tsx:29
 #: src/components/offers/OfferDataDialog.tsx:37
 msgid "Offer Data"
-msgstr "報價資料"
+msgstr ""
 
 #: src/components/offers2/OfferBuilderViewerDialog.tsx:57
 msgid "Offer Details"
@@ -6278,7 +6270,7 @@ msgstr "報價已過期。"
 #: src/constants/WalletConnectCommands.tsx:746
 #: src/constants/WalletConnectCommands.tsx:760
 #~ msgid "Offer Id"
-#~ msgstr "報價單ID"
+#~ msgstr "Offer Id"
 
 #: src/components/offers/OfferManager.tsx:380
 msgid "Offer Management"
@@ -6304,7 +6296,7 @@ msgstr "報價將在 {0} {1} 後過期"
 #: src/components/offers/OfferManager.tsx:202
 #: src/components/offers2/CancelOfferList.tsx:80
 msgid "Offered"
-msgstr "已報價"
+msgstr ""
 
 #: src/components/offers2/DataLayerOfferViewer.tsx:164
 msgid "Offered Store Updates ({0})"
@@ -6433,7 +6425,7 @@ msgstr "覆蓋階段 3 的執行緒數量"
 
 #: src/constants/WalletConnectCommands.tsx:1171
 #~ msgid "Overwrite"
-#~ msgstr "覆寫"
+#~ msgstr "Overwrite"
 
 #: src/components/nfts/NFTDetails.tsx:87
 msgid "Owner Address"
@@ -6455,19 +6447,19 @@ msgstr "未定義p2SingletonPuzzleHash"
 #: src/constants/WalletConnectCommands.tsx:1387
 #: src/constants/WalletConnectCommands.tsx:1422
 #~ msgid "Page"
-#~ msgstr "分頁"
+#~ msgstr "Page"
 
 #: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:86
 #~ msgid "Pair does not exists"
-#~ msgstr "配對不存在"
+#~ msgstr "Pair does not exists"
 
 #: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:77
 #~ msgid "Pair Information"
-#~ msgstr "配對資訊"
+#~ msgstr "Pair Information"
 
 #: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:99
 #~ msgid "Paired Keys"
-#~ msgstr "已配對的金鑰"
+#~ msgstr "Paired Keys"
 
 #: src/components/settings/SettingsHarvester.tsx:464
 msgid "Parallel Decompressor Count"
@@ -6475,7 +6467,7 @@ msgstr "平行解壓縮器數量"
 
 #: src/constants/WalletConnectCommands.tsx:2237
 #~ msgid "Parent Coin Info"
-#~ msgstr "父幣資訊"
+#~ msgstr "Parent Coin Info"
 
 #: src/components/farm/PoolingHealth.tsx:317
 msgid "Partials found but not sent to pools. This usually happens when a partial is found before connections to pools are established"
@@ -6671,7 +6663,7 @@ msgstr "請選擇資產類型"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:113
 #~ msgid "Please select at least one key"
-#~ msgstr "請至少選擇一個金鑰"
+#~ msgstr "Please select at least one key"
 
 #: src/util/offerBuilderDataToOffer.ts:78
 msgid "Please specify at least one offered asset"
@@ -6989,7 +6981,7 @@ msgstr "空間證明大小"
 
 #: src/components/vcs/VCCard.tsx:179
 msgid "Proofs"
-msgstr "證明"
+msgstr ""
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:25
 msgid "Proofs Found"
@@ -6997,11 +6989,11 @@ msgstr "找到證明數"
 
 #: src/constants/WalletConnectCommands.tsx:2225
 #~ msgid "Proofs Hash"
-#~ msgstr "證明雜湊"
+#~ msgstr "Proofs Hash"
 
 #: src/constants/WalletConnectCommands.tsx:2212
 #~ msgid "Proofs Object (Key Value Pairs)"
-#~ msgstr "證明物件 (鍵值對)"
+#~ msgstr "Proofs Object (Key Value Pairs)"
 
 #: src/components/nfts/NFTProperties.tsx:101
 msgid "Properties"
@@ -7017,7 +7009,7 @@ msgstr "使用數位簽章證明或驗證對錢包地址、NFT 或 DID 的所有
 
 #: src/constants/WalletConnectCommands.tsx:2188
 #~ msgid "Provider Inner Puzzle Hash"
-#~ msgstr "提供者內部 Puzzle Hash"
+#~ msgstr "Provider Inner Puzzle Hash"
 
 #: src/components/signVerify/VerifyMessage.tsx:219
 msgid "Public Key"
@@ -7029,27 +7021,27 @@ msgstr "購買摘要"
 
 #: src/constants/WalletConnectCommands.tsx:528
 #~ msgid "Push"
-#~ msgstr ""
+#~ msgstr "Push"
 
 #: src/constants/WalletConnectCommands.tsx:510
 #~ msgid "Push a list of transactions to the blockchain via the wallet"
-#~ msgstr ""
+#~ msgstr "Push a list of transactions to the blockchain via the wallet"
 
 #: src/constants/WalletConnectCommands.tsx:497
 #~ msgid "Push a spend bundle (transaction) to the blockchain"
-#~ msgstr "將支出組合 (交易) 推送至區塊鏈"
+#~ msgstr "Push a spend bundle (transaction) to the blockchain"
 
 #: src/constants/WalletConnectCommands.tsx:496
 #~ msgid "Push Transaction"
-#~ msgstr "推送交易"
+#~ msgstr "Push Transaction"
 
 #: src/constants/WalletConnectCommands.tsx:509
 #~ msgid "Push Transactions"
-#~ msgstr ""
+#~ msgstr "Push Transactions"
 
 #: src/constants/WalletConnectCommands.tsx:299
 #~ msgid "Puzzle Decorator"
-#~ msgstr "拼圖裝飾器"
+#~ msgstr "Puzzle Decorator"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:216
 #: src/components/plot/PlotPlotting.tsx:22
@@ -7090,7 +7082,7 @@ msgstr "建議"
 
 #: src/constants/WalletConnectCommands.tsx:1807
 #~ msgid "Recovery List Hash"
-#~ msgstr "恢復清單雜湊值"
+#~ msgstr "Recovery List Hash"
 
 #: src/components/settings/SettingsHarvester.tsx:404
 msgid "Recursive Plot Scan"
@@ -7111,15 +7103,15 @@ msgstr "重新整理耕地"
 
 #: src/constants/WalletConnectCommands.tsx:1708
 #~ msgid "Register Remote Coins"
-#~ msgstr ""
+#~ msgstr "Register Remote Coins"
 
 #: src/constants/WalletConnectCommands.tsx:1709
 #~ msgid "Registers a list of remote coin IDs with a remote wallet."
-#~ msgstr ""
+#~ msgstr "Registers a list of remote coin IDs with a remote wallet."
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:104
 msgid "Reject"
-msgstr "拒絕"
+msgstr ""
 
 #: src/components/pool/PoolInfo.tsx:33
 msgid "Relative Lock Height"
@@ -7143,7 +7135,7 @@ msgstr "遠端收割機"
 
 #: src/components/settings/SettingsAdvanced.tsx:279
 msgid "Remove"
-msgstr "移除"
+msgstr ""
 
 #: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:359
 msgid "Remove Conflicting Offer"
@@ -7165,7 +7157,7 @@ msgstr "移除私鑰密碼"
 
 #: src/constants/WalletConnectCommands.tsx:1598
 #~ msgid "Remove Subscriptions"
-#~ msgstr "移除訂閱"
+#~ msgstr "Remove Subscriptions"
 
 #: src/components/vcs/VCCard.tsx:209
 #: src/components/vcs/VCCard.tsx:301
@@ -7182,12 +7174,12 @@ msgstr "正在移除"
 
 #: src/constants/WalletConnectCommands.tsx:16
 #~ msgid "Request Permissions"
-#~ msgstr "請求權限"
+#~ msgstr "Request Permissions"
 
 #: src/components/offers/OfferManager.tsx:212
 #: src/components/offers2/CancelOfferList.tsx:95
 msgid "Requested"
-msgstr "已請求"
+msgstr ""
 
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:31
 #: src/components/offers2/OfferIncomingTable.tsx:45
@@ -7196,103 +7188,103 @@ msgstr "請求中 (需求)"
 
 #: src/components/walletConnect/WalletConnectRequestPermissionsConfirmDialog.tsx:87
 #~ msgid "Requesting Permissions"
-#~ msgstr "正在請求權限"
+#~ msgstr "Requesting Permissions"
 
 #: src/constants/WalletConnectCommands.tsx:550
 #~ msgid "Requests a complete listing of the offers associated with the current wallet key"
-#~ msgstr "請求與當前錢包金鑰相關聯的所有報價完整清單"
+#~ msgstr "Requests a complete listing of the offers associated with the current wallet key"
 
 #: src/constants/WalletConnectCommands.tsx:45
 #~ msgid "Requests a complete listing of the wallets associated with the current wallet key"
-#~ msgstr "請求與當前錢包金鑰相關聯的所有錢包完整清單"
+#~ msgstr "Requests a complete listing of the wallets associated with the current wallet key"
 
 #: src/constants/WalletConnectCommands.tsx:852
 #~ msgid "Requests a full or paginated listing of NFTs associated with one or more wallets associated with the current wallet key"
-#~ msgstr "請求與當前錢包金鑰相關聯的一個或多個錢包中的 NFT 完整或分頁清單"
+#~ msgstr "Requests a full or paginated listing of NFTs associated with one or more wallets associated with the current wallet key"
 
 #: src/constants/WalletConnectCommands.tsx:2321
 #~ msgid "Requests a master public key from your wallet"
-#~ msgstr "從您的錢包請求主公鑰"
+#~ msgstr "Requests a master public key from your wallet"
 
 #: src/constants/WalletConnectCommands.tsx:430
 #~ msgid "Requests a new receive address associated with the current wallet key"
-#~ msgstr "請求與當前錢包金鑰相關聯的新接收地址"
+#~ msgstr "Requests a new receive address associated with the current wallet key"
 
 #: src/constants/WalletConnectCommands.tsx:881
 #~ msgid "Requests details for a specific NFT"
-#~ msgstr "請求特定 NFT 的詳細資訊"
+#~ msgstr "Requests details for a specific NFT"
 
 #: src/constants/WalletConnectCommands.tsx:59
 #~ msgid "Requests details for a specific transaction"
-#~ msgstr "請求特定交易的詳細資訊"
+#~ msgstr "Requests details for a specific transaction"
 
 #: src/constants/WalletConnectCommands.tsx:219
 #~ msgid "Requests spendable coins for a specific wallet"
-#~ msgstr ""
+#~ msgstr "Requests spendable coins for a specific wallet"
 
 #: src/constants/WalletConnectCommands.tsx:73
 #~ msgid "Requests the asset balance for a specific wallet associated with the current wallet key"
-#~ msgstr "請求與當前錢包金鑰相關聯的特定錢包的資產餘額"
+#~ msgstr "Requests the asset balance for a specific wallet associated with the current wallet key"
 
 #: src/constants/WalletConnectCommands.tsx:90
 #~ msgid "Requests the asset balances for specific wallets associated with the current wallet key"
-#~ msgstr "請求與當前錢包金鑰相關聯的多個特定錢包的資產餘額"
+#~ msgstr "Requests the asset balances for specific wallets associated with the current wallet key"
 
 #: src/constants/WalletConnectCommands.tsx:783
 #~ msgid "Requests the CAT asset ID for a specific CAT wallet"
-#~ msgstr "請求特定 CAT 錢包的 CAT 資產 ID"
+#~ msgstr "Requests the CAT asset ID for a specific CAT wallet"
 
 #: src/constants/WalletConnectCommands.tsx:107
 #~ msgid "Requests the current receive address associated with the current wallet key"
-#~ msgstr "請求與當前錢包金鑰相關聯的當前接收地址"
+#~ msgstr "Requests the current receive address associated with the current wallet key"
 
 #: src/constants/WalletConnectCommands.tsx:452
 #~ msgid "Requests the current wallet sync height information"
-#~ msgstr ""
+#~ msgstr "Requests the current wallet sync height information"
 
 #: src/constants/WalletConnectCommands.tsx:755
 #~ msgid "Requests the details for a specific offer"
-#~ msgstr "請求特定報價的詳細資訊"
+#~ msgstr "Requests the details for a specific offer"
 
 #: src/constants/WalletConnectCommands.tsx:1114
 #~ msgid "Requests the number of NFTs associated with one or more wallets associated with the current wallet key"
-#~ msgstr "請求與當前錢包金鑰相關聯的一個或多個錢包中的 NFT 數量"
+#~ msgstr "Requests the number of NFTs associated with one or more wallets associated with the current wallet key"
 
 #: src/constants/WalletConnectCommands.tsx:595
 #~ msgid "Requests the number of offers associated with the current wallet key"
-#~ msgstr "請求與當前錢包金鑰相關聯的報價數量"
+#~ msgstr "Requests the number of offers associated with the current wallet key"
 
 #: src/constants/WalletConnectCommands.tsx:740
 #~ msgid "Requests the raw offer data for a specific offer"
-#~ msgstr "請求特定報價的原始資料"
+#~ msgstr "Requests the raw offer data for a specific offer"
 
 #: src/constants/WalletConnectCommands.tsx:124
 #~ msgid "Requests the status of a list of coin records from the Wallet's coin store."
-#~ msgstr ""
+#~ msgstr "Requests the status of a list of coin records from the Wallet's coin store."
 
 #: src/constants/WalletConnectCommands.tsx:726
 #~ msgid "Requests the summarized details of a specific offer"
-#~ msgstr "請求特定報價的摘要詳情"
+#~ msgstr "Requests the summarized details of a specific offer"
 
 #: src/constants/WalletConnectCommands.tsx:455
 #~ msgid "Requests the syncing status of current wallet"
-#~ msgstr "請求目前錢包的同步狀態"
+#~ msgstr "Requests the syncing status of current wallet"
 
 #: src/constants/WalletConnectCommands.tsx:684
 #~ msgid "Requests the validity status of a specific offer"
-#~ msgstr "請求特定報價的有效性狀態"
+#~ msgstr "Requests the validity status of a specific offer"
 
 #: src/constants/WalletConnectCommands.tsx:394
 #~ msgid "Requests the verification status for a digital signature"
-#~ msgstr "請求數位簽章的驗證狀態"
+#~ msgstr "Requests the verification status for a digital signature"
 
 #: src/components/settings/SettingsIntegration.tsx:314
 #~ msgid "Require Confirmation"
-#~ msgstr "需要確認"
+#~ msgstr "Require Confirmation"
 
 #: src/constants/WalletConnectCommands.tsx:1813
 #~ msgid "Required Number of DIDs for Verification"
-#~ msgstr "驗證所需的 DID 數量"
+#~ msgstr "Required Number of DIDs for Verification"
 
 #: src/components/offers2/DataLayerOfferViewer.tsx:86
 msgid "Required Proofs"
@@ -7309,7 +7301,7 @@ msgstr ""
 #: src/components/settings/SettingsIntegration.tsx:252
 #: src/components/signVerify/VerifyMessage.tsx:266
 msgid "Reset"
-msgstr "重設"
+msgstr ""
 
 #: src/components/settings/SettingsIntegration.tsx:248
 msgid "Reset WalletConnect Permissions"
@@ -7346,11 +7338,11 @@ msgstr "重新同步會強制從區塊鏈重新載入您的交易資料，但不
 
 #: src/constants/WalletConnectCommands.tsx:1667
 #~ msgid "retain"
-#~ msgstr "保留"
+#~ msgstr "retain"
 
 #: src/constants/WalletConnectCommands.tsx:463
 #~ msgid "Returns wallet height, latest block timestamp, and related fields. Optional usePeakHeight uses the chain tip while syncing."
-#~ msgstr ""
+#~ msgstr "Returns wallet height, latest block timestamp, and related fields. Optional usePeakHeight uses the chain tip while syncing."
 
 #: src/constants/WalletConnectCommands.tsx:989
 #: src/constants/WalletConnectCommands.tsx:2005
@@ -7358,11 +7350,11 @@ msgstr "重新同步會強制從區塊鏈重新載入您的交易資料，但不
 #: src/constants/WalletConnectCommands.tsx:2072
 #: src/constants/WalletConnectCommands.tsx:2199
 #~ msgid "Reuse Puzzle Hash"
-#~ msgstr "重複使用 Puzzle Hash"
+#~ msgstr "Reuse Puzzle Hash"
 
 #: src/constants/WalletConnectCommands.tsx:574
 #~ msgid "Reverse"
-#~ msgstr "反轉"
+#~ msgstr "Reverse"
 
 #: src/components/offers2/OfferBuilderTokenSelector.tsx:75
 #: src/components/offers2/OfferBuilderTokenSelector.tsx:110
@@ -7373,7 +7365,7 @@ msgstr "可撤銷"
 #: src/components/vcs/VCCard.tsx:209
 #: src/components/vcs/VCCard.tsx:311
 msgid "Revoke Verifiable Credential"
-msgstr "撤銷可驗證憑證"
+msgstr ""
 
 #: src/components/vcs/VCCard.tsx:168
 msgid "Revoked"
@@ -7383,7 +7375,7 @@ msgstr "已撤銷"
 #: src/constants/WalletConnectCommands.tsx:1381
 #: src/constants/WalletConnectCommands.tsx:1537
 #~ msgid "Root Hash"
-#~ msgstr "根雜湊值 (Root Hash)"
+#~ msgstr "Root Hash"
 
 #: src/components/offers2/OfferBuilderNFTRoyalties.tsx:94
 msgid "Royalties are built into the NFT, so they will automatically be accounted for when the offer is created/accepted."
@@ -7392,11 +7384,11 @@ msgstr "版稅已內置於 NFT 中，因此在建立或接受報價時會自動�
 #: src/constants/WalletConnectCommands.tsx:916
 #: src/constants/WalletConnectCommands.tsx:1007
 #~ msgid "Royalty Address"
-#~ msgstr "版稅地址"
+#~ msgstr "Royalty Address"
 
 #: src/components/nfts/NFTDetails.tsx:159
 msgid "Royalty Percentage"
-msgstr "版稅百分比"
+msgstr ""
 
 #: src/components/app/AppSelectMode.tsx:139
 msgid "Runs the full node"
@@ -7454,7 +7446,7 @@ msgstr "第二個暫存資料夾位置"
 #: src/constants/WalletConnectCommands.tsx:670
 #: src/constants/WalletConnectCommands.tsx:1225
 #~ msgid "Secure"
-#~ msgstr "安全"
+#~ msgstr "Secure"
 
 #: src/components/settings/SettingsPanel.tsx:93
 msgid "Secure your keychain using a strong passphrase"
@@ -7483,7 +7475,7 @@ msgstr "選擇一個 NFT"
 
 #: src/constants/WalletConnectCommands.tsx:163
 #~ msgid "Select Coins"
-#~ msgstr ""
+#~ msgstr "Select Coins"
 
 #: src/components/settings/SettingsAdvanced.tsx:231
 #: src/components/settings/SettingsAdvanced.tsx:236
@@ -7500,11 +7492,11 @@ msgstr "選擇混合磁碟模式"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:154
 #~ msgid "Select Keys"
-#~ msgstr "選擇金鑰"
+#~ msgstr "Select Keys"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:247
 #~ msgid "Select keys which you want to share with WalletConnect"
-#~ msgstr "選擇您想要與 WalletConnect 分享的金鑰"
+#~ msgstr "Select keys which you want to share with WalletConnect"
 
 #: src/components/offers/OfferImport.tsx:159
 msgid "Select Offer File"
@@ -7553,7 +7545,7 @@ msgstr "已選擇"
 
 #: src/constants/WalletConnectCommands.tsx:164
 #~ msgid "Selects coins to be spent from a specific wallet"
-#~ msgstr ""
+#~ msgstr "Selects coins to be spent from a specific wallet"
 
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:93
 msgid "Self pool. When you win a block you will earn XCH rewards."
@@ -7588,7 +7580,7 @@ msgstr "發送至地址"
 
 #: src/constants/WalletConnectCommands.tsx:262
 #~ msgid "Send Transaction"
-#~ msgstr "發送交易"
+#~ msgstr "Send Transaction"
 
 #: src/components/settings/SettingsCustody.tsx:45
 msgid "Set a default time frame for all outbound XCH transactions."
@@ -7600,11 +7592,11 @@ msgstr "設定此報價過期的時間。"
 
 #: src/constants/WalletConnectCommands.tsx:2092
 #~ msgid "Set DID Name"
-#~ msgstr "設定 DID 名稱"
+#~ msgstr "Set DID Name"
 
 #: src/constants/WalletConnectCommands.tsx:2109
 #~ msgid "Set NFT DID"
-#~ msgstr "設定 NFT 的 DID"
+#~ msgstr "Set NFT DID"
 
 #: src/components/settings/SetPassphrasePrompt.tsx:156
 #: src/components/settings/SetPassphrasePrompt.tsx:271
@@ -7628,7 +7620,7 @@ msgstr ""
 #: src/components/offers/OfferManager.tsx:256
 #: src/components/offers/OfferShareDialog.tsx:715
 msgid "Share"
-msgstr "分享"
+msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:859
 msgid "Share Offer"
@@ -7668,7 +7660,7 @@ msgstr "分享在Spacescan.io"
 
 #: src/components/nfts/NFTContextualActions.tsx:511
 msgid "Show"
-msgstr "顯示"
+msgstr ""
 
 #: src/components/offers/OfferManager.tsx:270
 msgid "Show Details"
@@ -7676,12 +7668,12 @@ msgstr "顯示詳細資料"
 
 #: src/constants/WalletConnectCommands.tsx:2248
 #~ msgid "Show notification with offer or general announcement"
-#~ msgstr "顯示帶有報價單或一般公告的通知"
+#~ msgstr "Show notification with offer or general announcement"
 
 #: src/components/walletConnect/WalletConnectCreateOfferPreview.tsx:54
 #: src/components/walletConnect/WalletConnectOfferPreview.tsx:42
 #~ msgid "Show Offer Details"
-#~ msgstr "顯示報價單詳細資訊"
+#~ msgstr "Show Offer Details"
 
 #: src/components/nfts/NFTPreview.tsx:667
 #~ msgid "Show Preview"
@@ -7705,15 +7697,15 @@ msgstr "簽署訊息"
 
 #: src/constants/WalletConnectCommands.tsx:350
 #~ msgid "Sign Message by Address"
-#~ msgstr "按地址簽署訊息"
+#~ msgstr "Sign Message by Address"
 
 #: src/constants/WalletConnectCommands.tsx:327
 #~ msgid "Sign Message by Id"
-#~ msgstr "按ID簽署訊息"
+#~ msgstr "Sign Message by Id"
 
 #: src/components/signVerify/VerifyMessage.tsx:228
 msgid "Signature"
-msgstr "簽署"
+msgstr ""
 
 #: src/components/signVerify/VerifyMessage.tsx:197
 msgid "Signature Details"
@@ -7753,7 +7745,7 @@ msgstr "簽署實體"
 
 #: src/components/signVerify/VerifyMessage.tsx:237
 msgid "Signing Mode"
-msgstr "簽署模式"
+msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:240
 msgid "Size of cache to reserve for I/O"
@@ -7761,7 +7753,7 @@ msgstr "保留用於輸入/輸出的快取大小"
 
 #: src/components/settings/SettingsIntegration.tsx:286
 #~ msgid "Skip Confirmation for Commands"
-#~ msgstr "跳過指令確認"
+#~ msgstr "Skip Confirmation for Commands"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:439
 msgid "Skips adding a final directory to harvester for farming"
@@ -7814,15 +7806,15 @@ msgstr "若有多個 GPU，請指定收割用的 GPU 索引（0, 1, 2 等）"
 
 #: src/constants/WalletConnectCommands.tsx:502
 #~ msgid "Spend Bundle"
-#~ msgstr "支出組合 (Spend Bundle)"
+#~ msgstr "Spend Bundle"
 
 #: src/constants/WalletConnectCommands.tsx:796
 #~ msgid "Spend CAT"
-#~ msgstr "花費 CAT"
+#~ msgstr "Spend CAT"
 
 #: src/constants/WalletConnectCommands.tsx:2193
 #~ msgid "Spend Fee"
-#~ msgstr "支出費用"
+#~ msgstr "Spend Fee"
 
 #: src/components/offers2/OfferBuilderWalletBalance.tsx:44
 msgid "Spendable Balance: {0}"
@@ -7846,19 +7838,19 @@ msgstr "標準版本號"
 
 #: src/constants/WalletConnectCommands.tsx:556
 #~ msgid "Start"
-#~ msgstr "開始"
+#~ msgstr "Start"
 
 #: src/constants/WalletConnectCommands.tsx:136
 #~ msgid "Start Height"
-#~ msgstr ""
+#~ msgstr "Start Height"
 
 #: src/constants/WalletConnectCommands.tsx:872
 #~ msgid "Start Index"
-#~ msgstr "開始索引"
+#~ msgstr "Start Index"
 
 #: src/constants/WalletConnectCommands.tsx:568
 #~ msgid "Start Key"
-#~ msgstr "開始金鑰"
+#~ msgstr "Start Key"
 
 #: src/components/app/AppState.tsx:255
 msgid "Starting services"
@@ -7911,7 +7903,7 @@ msgstr "儲存並發送 XCH"
 #: src/constants/WalletConnectCommands.tsx:1620
 #: src/constants/WalletConnectCommands.tsx:1662
 #~ msgid "Store Id"
-#~ msgstr "儲存庫 ID"
+#~ msgstr "Store Id"
 
 #: src/components/offers2/DataLayerOfferViewer.tsx:49
 msgid "Store ID"
@@ -7920,7 +7912,7 @@ msgstr ""
 #: src/constants/WalletConnectCommands.tsx:1165
 #: src/constants/WalletConnectCommands.tsx:1488
 #~ msgid "Store Ids"
-#~ msgstr "儲存庫 ID 列表"
+#~ msgstr "Store Ids"
 
 #: src/components/app/AppPassPrompt.tsx:107
 msgid "Submit"
@@ -7928,15 +7920,15 @@ msgstr "提交"
 
 #: src/constants/WalletConnectCommands.tsx:1208
 #~ msgid "Submit on chain"
-#~ msgstr "提交至鏈上"
+#~ msgstr "Submit on chain"
 
 #: src/constants/WalletConnectCommands.tsx:1615
 #~ msgid "Subscribe"
-#~ msgstr "訂閱"
+#~ msgstr "Subscribe"
 
 #: src/constants/WalletConnectCommands.tsx:1632
 #~ msgid "Subscriptions"
-#~ msgstr "訂閱項目"
+#~ msgstr "Subscriptions"
 
 #: src/components/notification/NotificationSendDialog.tsx:144
 #: src/components/offers2/OfferBuilderViewer.tsx:274
@@ -7978,24 +7970,24 @@ msgstr "同步中 <0/> / <1/>"
 
 #: src/constants/WalletConnectCommands.tsx:1638
 #~ msgid "Take DataLayer Offer"
-#~ msgstr "接受資料層報價"
+#~ msgstr "Take DataLayer Offer"
 
 #: src/constants/WalletConnectCommands.tsx:697
 #~ msgid "Take Offer"
-#~ msgstr "接受報價"
+#~ msgstr "Take Offer"
 
 #: src/constants/WalletConnectCommands.tsx:1584
 #~ msgid "Taker"
-#~ msgstr "接受者 (Taker)"
+#~ msgstr "Taker"
 
 #: src/constants/WalletConnectCommands.tsx:1019
 #: src/constants/WalletConnectCommands.tsx:1099
 #~ msgid "Target Address"
-#~ msgstr "目標地址"
+#~ msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:922
 #~ msgid "Target List"
-#~ msgstr "目標清單"
+#~ msgstr "Target List"
 
 #: src/components/pool/PoolInfo.tsx:38
 msgid "Target Puzzle Hash"
@@ -8043,7 +8035,7 @@ msgstr "此資料夾位於 RAM 磁碟上"
 
 #: src/components/walletConnect/WalletConnectRequestPermissionsConfirmDialog.tsx:108
 #~ msgid "The following commands are not allowed to bypass confirmation."
-#~ msgstr "下列指令不允許跳過確認步驟。"
+#~ msgstr "The following commands are not allowed to bypass confirmation."
 
 #: src/components/offers2/DataLayerOfferViewer.tsx:90
 msgid "The following values must be proven to exist in the specified stores before this offer can be accepted."
@@ -8317,11 +8309,11 @@ msgstr "基於安全性考量，不允許使用此網址。"
 
 #: src/components/settings/SettingsIntegration.tsx:398
 #~ msgid "This will reset all previously granted permissions across all Dapps that have been connected to. After resetting you will be asked to grant permission again."
-#~ msgstr "這將重置您之前在所有連接過的 Dapps 上授予的所有權限。重置後，您將被要求再次授予權限。"
+#~ msgstr "This will reset all previously granted permissions across all Dapps that have been connected to. After resetting you will be asked to grant permission again."
 
 #: src/components/settings/SettingsIntegration.tsx:359
 #~ msgid "This will restore the selected Dapp's permissions back to their default values. By default, every command issued by the Dapp will require confirmation in the Chia wallet."
-#~ msgstr "這將將所選 Dapp 的權限恢復為其默認值。默認情況下，Dapp 發出的每個命令都需要在 Chia 錢包中確認。"
+#~ msgstr "This will restore the selected Dapp's permissions back to their default values. By default, every command issued by the Dapp will require confirmation in the Chia wallet."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:151
 msgid "Thread Multiplier for Phase 2"
@@ -8473,7 +8465,7 @@ msgstr "在開始繪圖前，觸及所有分配的緩衝區分頁（Touch all pa
 
 #: src/constants/WalletConnectCommands.tsx:665
 #~ msgid "Trade Id"
-#~ msgstr "交易 ID"
+#~ msgstr "Trade Id"
 
 #: src/components/app/AppSelectMode.tsx:90
 msgid "Trade tokens"
@@ -8489,7 +8481,7 @@ msgstr "交易費用"
 
 #: src/constants/WalletConnectCommands.tsx:66
 #~ msgid "Transaction Id"
-#~ msgstr "交易 ID"
+#~ msgstr "Transaction Id"
 
 #: src/components/settings/SettingsCustody.tsx:27
 msgid "Transaction protection"
@@ -8505,7 +8497,7 @@ msgstr "交易速度"
 
 #: src/constants/WalletConnectCommands.tsx:516
 #~ msgid "Transactions"
-#~ msgstr ""
+#~ msgstr "Transactions"
 
 #: src/components/block/Block.jsx:228
 msgid "Transactions Filter Hash"
@@ -8522,12 +8514,12 @@ msgstr "轉移"
 
 #: src/constants/WalletConnectCommands.tsx:1976
 #~ msgid "Transfer DID"
-#~ msgstr "轉移 DID"
+#~ msgstr "Transfer DID"
 
 #: src/components/nfts/NFTContextualActions.tsx:198
 #: src/components/nfts/NFTTransferAction.tsx:201
 msgid "Transfer NFT"
-msgstr "轉移 NFT"
+msgstr ""
 
 #: src/components/settings/SettingsNotifications.tsx:61
 msgid "Turn on/off the ability to process and display notifications."
@@ -8644,7 +8636,7 @@ msgstr "未知CAT"
 
 #: src/hooks/useWalletConnectCommand.tsx:33
 #~ msgid "Unknown Dapp"
-#~ msgstr "未知Dapp"
+#~ msgstr "Unknown Dapp"
 
 #: src/components/app/AppPassPrompt.tsx:89
 msgid "Unlock Keyring"
@@ -8660,23 +8652,23 @@ msgstr "無法識別的資產"
 
 #: src/constants/WalletConnectCommands.tsx:1657
 #~ msgid "Unsubscribe"
-#~ msgstr "取消訂閱"
+#~ msgstr "Unsubscribe"
 
 #: src/components/walletConnect/WalletConnectActiveSessions.tsx:54
 #~ msgid "Unsupported commands"
-#~ msgstr "不支援的指令"
+#~ msgstr "Unsupported commands"
 
 #: src/components/settings/LimitCacheSize.tsx:82
 msgid "Update"
-msgstr "更新"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:2012
 #~ msgid "Update DID Metadata"
-#~ msgstr "更新 DID 中繼資料"
+#~ msgstr "Update DID Metadata"
 
 #: src/constants/WalletConnectCommands.tsx:2043
 #~ msgid "Update DID Recovery Ids"
-#~ msgstr "更新 DID 復原 ID"
+#~ msgstr "Update DID Recovery Ids"
 
 #: src/components/nfts/NFTHashStatus.tsx:69
 msgid "Update Pending"
@@ -8684,13 +8676,13 @@ msgstr "更新待處理"
 
 #: src/constants/WalletConnectCommands.tsx:1025
 #~ msgid "Uris"
-#~ msgstr "URI 列表"
+#~ msgstr "Uris"
 
 #: src/components/notification/NotificationAnnouncementDialog.tsx:76
 #: src/hooks/useOpenUnsafeLink.tsx:27
 #: src/hooks/useOpenUnsafeLink.tsx:72
 msgid "URL"
-msgstr "網址"
+msgstr ""
 
 #: src/components/nfts/NFTHashStatus.tsx:77
 msgid "URL is not valid"
@@ -8700,7 +8692,7 @@ msgstr "網址無效"
 #: src/constants/WalletConnectCommands.tsx:1608
 #: src/constants/WalletConnectCommands.tsx:1625
 #~ msgid "URLs"
-#~ msgstr "網址列表"
+#~ msgstr "URLs"
 
 #: src/components/settings/SettingsAdvanced.tsx:137
 msgid "Use blockchain peak height for height info"
@@ -8712,7 +8704,7 @@ msgstr "使用左右方向鍵進行導覽"
 
 #: src/constants/WalletConnectCommands.tsx:473
 #~ msgid "Use peak height"
-#~ msgstr ""
+#~ msgstr "Use peak height"
 
 #: src/components/plot/add/PlotAddChooseKeys.tsx:38
 msgid "Used to create a pool plot."
@@ -8733,7 +8725,7 @@ msgstr "有效的 Partial 提交"
 
 #: src/constants/WalletConnectCommands.tsx:620
 #~ msgid "Validate only"
-#~ msgstr "僅驗證"
+#~ msgstr "Validate only"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:197
 #~ msgid "Validate SHA256 SUM"
@@ -8745,7 +8737,7 @@ msgstr "有效的 Partial 提交"
 
 #: src/constants/WalletConnectCommands.tsx:1560
 #~ msgid "Value"
-#~ msgstr "數值"
+#~ msgstr "Value"
 
 #: src/components/offers2/DataLayerOfferViewer.tsx:105
 msgid "Values to Prove"
@@ -8757,7 +8749,7 @@ msgstr "VDF 子欄位疊代次數"
 
 #: src/constants/WalletConnectCommands.tsx:1270
 #~ msgid "Verbose"
-#~ msgstr "詳細模式"
+#~ msgstr "Verbose"
 
 #: src/components/vcs/VCCard.tsx:56
 msgid "Verifiable Credential"
@@ -8799,7 +8791,7 @@ msgstr "驗證失敗"
 
 #: src/components/signVerify/VerifyMessage.tsx:274
 msgid "Verify"
-msgstr "驗證"
+msgstr ""
 
 #: src/components/signVerify/SignVerifyDialog.tsx:23
 msgid "Verify Message"
@@ -8807,7 +8799,7 @@ msgstr "驗證訊息"
 
 #: src/constants/WalletConnectCommands.tsx:1675
 #~ msgid "Verify Offer"
-#~ msgstr "驗證報價"
+#~ msgstr "Verify Offer"
 
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:133
 msgid "Verify Pool Details"
@@ -8815,7 +8807,7 @@ msgstr "驗證農會細節"
 
 #: src/components/settings/SettingsAdvanced.tsx:176
 msgid "Verify Signature"
-msgstr "驗證簽章"
+msgstr ""
 
 #: src/components/nfts/NFTHashStatus.tsx:65
 msgid "Verifying hash..."
@@ -8921,7 +8913,7 @@ msgstr "錢包"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:174
 #~ msgid "Wallet {0}"
-#~ msgstr "錢包 {0}"
+#~ msgstr "Wallet {0}"
 
 #: src/components/signVerify/SignMessage.tsx:163
 msgid "Wallet Address"
@@ -8951,21 +8943,21 @@ msgstr "錢包地址"
 #: src/constants/WalletConnectCommands.tsx:2098
 #: src/constants/WalletConnectCommands.tsx:2115
 #~ msgid "Wallet Id"
-#~ msgstr "錢包 ID"
+#~ msgstr "Wallet Id"
 
 #: src/constants/WalletConnectCommands.tsx:285
 #~ msgid "Wallet ID"
-#~ msgstr "錢包 ID"
+#~ msgstr "Wallet ID"
 
 #: src/constants/WalletConnectCommands.tsx:97
 #: src/constants/WalletConnectCommands.tsx:862
 #: src/constants/WalletConnectCommands.tsx:1123
 #~ msgid "Wallet Ids"
-#~ msgstr "錢包 IDs"
+#~ msgstr "Wallet Ids"
 
 #: src/constants/WalletConnectCommands.tsx:606
 #~ msgid "Wallet Ids and Amounts"
-#~ msgstr "錢包 IDs 和金額"
+#~ msgstr "Wallet Ids and Amounts"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:71
 msgid "Wallet is not defined"
@@ -9043,7 +9035,7 @@ msgstr "警告：您即將訪問一個網站"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:208
 #~ msgid "Warning! Selecting multiple keys will enable \"Key Switching\" inside Settings / Integration tab."
-#~ msgstr "警告！選擇多個金鑰將會啟用「設定 / 整合」分頁中的「金鑰切換」功能。"
+#~ msgstr "Warning! Selecting multiple keys will enable \"Key Switching\" inside Settings / Integration tab."
 
 #: src/constants/WalletConnectCommands.tsx:218
 #~ msgid "WARNING! When safeMode=false it means you could be signing a transaction, not just a message. Be sure you trust the source that's requesting this."
@@ -9083,7 +9075,7 @@ msgstr "繪圖時要使用的 CUDA 裝置"
 
 #: src/constants/WalletConnectCommands.tsx:1999
 #~ msgid "With Recovery Info"
-#~ msgstr "包含復原資訊"
+#~ msgstr "With Recovery Info"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:33
 #~ msgid "Without fees"
@@ -9111,11 +9103,11 @@ msgstr "您是否要將指定的 NFT 轉移給新擁有者？"
 
 #: src/constants/WalletConnectCommands.tsx:946
 #~ msgid "XCH Change Target"
-#~ msgstr "XCH 找零目標地址"
+#~ msgstr "XCH Change Target"
 
 #: src/constants/WalletConnectCommands.tsx:940
 #~ msgid "XCH Coins"
-#~ msgstr "XCH 代幣 (Coins)"
+#~ msgstr "XCH Coins"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:61
 #: src/components/vcs/VCCard.tsx:89
@@ -9152,7 +9144,7 @@ msgstr "您可以在此手動自訂農夫公鑰、農會 (Pool) 公鑰或農會�
 
 #: src/components/walletConnect/WalletConnectConnectedDialog.tsx:90
 #~ msgid "You can now connect to {0} in your browser."
-#~ msgstr "您現在可以在瀏覽器中連接到 {0}。"
+#~ msgstr "You can now connect to {0} in your browser."
 
 #: src/components/plotNFT/PlotNFTCard.tsx:351
 msgid "You can still create plots for this plot NFT, but you can not make changes until sync is complete."
@@ -9227,7 +9219,7 @@ msgstr "你將會收到 <0/> 到 {address}"
 
 #: src/components/walletConnect/WalletConnectActiveSessions.tsx:56
 #~ msgid "Your current version of the Chia application may not support some commands requested by the dApp. For the best experience, consider updating to the latest version."
-#~ msgstr "您目前使用的 Chia 應用程式版本可能不支持 dApp 要求的某些命令。為了獲得最佳體驗，請考慮更新到最新版本。"
+#~ msgstr "Your current version of the Chia application may not support some commands requested by the dApp. For the best experience, consider updating to the latest version."
 
 #: src/components/farm/FarmHeader.tsx:21
 #~ msgid "Your Farm Overview"
@@ -9274,3 +9266,4 @@ msgstr "您的可支配餘額必須大於1 mojo，才能建立個人檔案"
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "您的錢包需要運行才能自動索取"
+

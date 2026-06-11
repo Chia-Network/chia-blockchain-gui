@@ -8,7 +8,7 @@ msgstr ""
 "Language: vi_VN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-07-20 00:06\n"
+"PO-Revision-Date: 2026-05-24 00:23\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -64,7 +64,7 @@ msgstr ""
 msgid "Back"
 msgstr "Quay lại"
 
-#: src/components/ConfirmDialog/ConfirmDialog.tsx:29
+#: src/components/ConfirmDialog/ConfirmDialog.tsx:31
 #: src/hooks/useKeyringMigrationPrompt.tsx:18
 #: src/screens/SelectKey/SelectKeyRenameForm.tsx:90
 msgid "Cancel"
@@ -326,7 +326,7 @@ msgstr "Không được kết nối"
 #~ msgstr ""
 
 #: src/components/AlertDialog/AlertDialog.tsx:23
-#: src/components/ConfirmDialog/ConfirmDialog.tsx:30
+#: src/components/ConfirmDialog/ConfirmDialog.tsx:32
 msgid "OK"
 msgstr "Xong"
 
