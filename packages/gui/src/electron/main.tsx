@@ -807,13 +807,27 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
       mainWindow.setIcon(appIcon);
     }
 
-    mainWindow.once('ready-to-show', () => {
-      if (!mainWindow) {
-        throw new Error('`mainWindow` is empty');
+    // Reveal the window. `ready-to-show` is the preferred fast path, but on some
+    // compositors (notably Wayland/mutter) that event can fail to fire, which
+    // would otherwise leave the window hidden forever even though the page has
+    // loaded. Guard the show in a once-only helper and back it with
+    // `did-finish-load` and a timeout fallback so the window is always revealed.
+    let hasShownMainWindow = false;
+    const showMainWindow = () => {
+      // `mainWindow` is never reset to null on close, so a destroyed window is
+      // still a truthy reference; guard with `isDestroyed()` to avoid throwing
+      // if a trigger fires after the window is gone. Latch the flag only after a
+      // successful `show()` so a failed attempt doesn't block the other triggers.
+      if (hasShownMainWindow || !mainWindow || mainWindow.isDestroyed()) {
+        return;
       }
-
       mainWindow.show();
-    });
+      hasShownMainWindow = true;
+    };
+
+    mainWindow.once('ready-to-show', showMainWindow);
+    mainWindow.webContents.once('did-finish-load', showMainWindow);
+    setTimeout(showMainWindow, 5000);
 
     // don't show remote daeomn detials in the title bar
     if (!manageDaemonLifetime(NET)) {
