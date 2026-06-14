@@ -13,7 +13,7 @@ import styled from 'styled-components';
 const StyledCheckIcon = styled(CheckIcon)`
   border-radius: 9999px;
   padding: ${({ theme }) => theme.spacing(0.5)};
-  background-color: ${alpha('#d8ad45', 0.22)};
+  background-color: ${({ theme }) => alpha(theme.palette.primary.main, 0.22)};
 `;
 
 const StyledSettingsIcon = styled(SettingsIcon)`

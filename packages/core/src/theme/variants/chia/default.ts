@@ -27,7 +27,7 @@ export default {
       contrastText: B.brightWhite,
     },
     highlight: {
-      main: B.shock,
+      main: B.periwinklePursuit,
     },
     border: {
       main: B.periwinklePursuit,
@@ -43,7 +43,7 @@ export default {
     },
     sidebarIconSelected: {
       main: B.brightWhite,
-      dark: B.shock,
+      dark: B.brightWhite,
     },
     sidebarIcon: {
       main: B.mysticBlue,

@@ -131,10 +131,10 @@ export default function NFTHashStatus(props: NFTHashStatusProps) {
       sx={
         isVerified && !isLoading && !nft?.pendingTransaction
           ? {
-              backgroundColor: '#b98524',
-              color: '#fffaf0',
+              backgroundColor: 'primary.main',
+              color: 'primary.contrastText',
               '& .MuiChip-icon': {
-                color: '#fffaf0',
+                color: 'primary.contrastText',
               },
             }
           : undefined

@@ -8,7 +8,7 @@ import { Trans } from '@lingui/macro';
 import { Box, Paper, Typography, CircularProgress, Button, useTheme } from '@mui/material';
 import React from 'react';
 
-function getIndicatorStyle(successColor: string) {
+function getIndicatorStyle(successColor: string, warningColor: string, errorColor: string) {
   return {
     marginTop: 1,
     '> div > div': {
@@ -17,8 +17,8 @@ function getIndicatorStyle(successColor: string) {
     '.cancel-icon': {
       g: {
         circle: {
-          stroke: '#D32F2F',
-          fill: '#D32F2F',
+          stroke: errorColor,
+          fill: errorColor,
         },
       },
     },
@@ -37,11 +37,11 @@ function getIndicatorStyle(successColor: string) {
     '.reload-icon': {
       g: {
         circle: {
-          stroke: '#FF9800',
-          fill: '#FF9800',
+          stroke: warningColor,
+          fill: warningColor,
         },
         path: {
-          fill: '#FF9800',
+          fill: warningColor,
         },
       },
     },
@@ -51,9 +51,18 @@ function getIndicatorStyle(successColor: string) {
 export default React.memo(PoolingHealth);
 function PoolingHealth() {
   const theme = useTheme();
+  const palette = theme.palette as typeof theme.palette & {
+    danger?: { main: string };
+    highlight?: { main: string };
+  };
   const indicatorStyle = React.useMemo(
-    () => getIndicatorStyle(theme.palette.primary.main),
-    [theme.palette.primary.main],
+    () =>
+      getIndicatorStyle(
+        palette.primary.main,
+        palette.highlight?.main ?? palette.warning.main,
+        palette.danger?.main ?? palette.error.main,
+      ),
+    [palette.danger?.main, palette.error.main, palette.highlight?.main, palette.primary.main, palette.warning.main],
   );
   const { data, isLoading } = useGetPoolStateQuery();
   const { data: partialStatsOffset, isLoading: isLoadingPartialStatsOffset } = useGetPartialStatsOffsetQuery();

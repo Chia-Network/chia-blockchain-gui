@@ -1,6 +1,7 @@
 import { Dropzone, Flex, useShowError } from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
 import { Box, Card, Typography } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import React, { useState } from 'react';
 import { FileWithPath } from 'react-dropzone';
 
@@ -69,6 +70,7 @@ export type VerifyMessageImportProps = {
 
 export default function VerifyMessageImport(props: VerifyMessageImportProps) {
   const { onImport } = props;
+  const theme = useTheme();
   const [isParsing, setIsParsing] = useState<boolean>(false);
   const showError = useShowError();
   const prompt = (
@@ -134,7 +136,7 @@ export default function VerifyMessageImport(props: VerifyMessageImportProps) {
           </Typography>
           <Typography color="textSecondary" textAlign="center">
             <Trans>
-              or <span style={{ color: '#b98524' }}>browse</span> on your computer
+              or <span style={{ color: theme.palette.primary.main }}>browse</span> on your computer
             </Trans>
           </Typography>
         </Flex>

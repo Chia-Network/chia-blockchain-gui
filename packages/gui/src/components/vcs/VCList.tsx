@@ -25,7 +25,7 @@ import {
 } from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
 import { Box, Typography } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
+import { alpha, useTheme } from '@mui/material/styles';
 import { styled } from '@mui/styles';
 import React, { useCallback, useRef } from 'react';
 import { VirtuosoGrid } from 'react-virtuoso';
@@ -128,6 +128,53 @@ export default function VCList() {
   }, [isLoading, blockchainVCs, getProofsForRoot]);
 
   const theme = useTheme();
+  const palette = theme.palette as typeof theme.palette & {
+    border: { main: string; dark: string };
+  };
+
+  const zeroStateColors = React.useMemo(() => {
+    const accent = palette.primary.main;
+    const accentDark = palette.primary.dark;
+    const softAccent = alpha(accent, isDarkMode ? 0.3 : 0.18);
+    const surface = palette.background.paper;
+    const surfaceAlt = isDarkMode ? palette.background.default : palette.background.card;
+    const text = palette.text.primary;
+    const mutedText = palette.text.secondary;
+    const line = isDarkMode ? palette.border.dark : palette.border.main;
+
+    return {
+      accent,
+      accentDark,
+      badgeBackground: alpha(surface, isDarkMode ? 0.18 : 0.72),
+      badgeBorder: line,
+      badgeText: mutedText,
+      cardBorder: alpha(accent, 0.72),
+      cardText: text,
+      cardMutedText: mutedText,
+      cardBackground: `linear-gradient(135deg, ${alpha(surface, 0.98)} 0%, ${softAccent} 52%, ${alpha(
+        surfaceAlt,
+        0.98,
+      )} 100%)`,
+      cardShadow: `0 34px 72px ${alpha(palette.text.primary, isDarkMode ? 0.32 : 0.16)}`,
+      chipBackground: `linear-gradient(145deg, ${alpha(surfaceAlt, 0.92)} 0%, ${alpha(accent, 0.28)} 100%)`,
+      divider: alpha(accent, 0.24),
+      iconColor: palette.info.main,
+      sealBackground: `radial-gradient(circle, ${alpha(surface, 0.98)} 0%, ${accent} 52%, ${accentDark} 100%)`,
+      texture: `repeating-linear-gradient(115deg, ${alpha(accent, 0.2)} 0 1px, transparent 1px 9px)`,
+    };
+  }, [
+    isDarkMode,
+    palette.background.card,
+    palette.background.default,
+    palette.background.paper,
+    palette.border.dark,
+    palette.border.main,
+    palette.info.main,
+    palette.primary.dark,
+    palette.primary.main,
+    palette.text.primary,
+    palette.text.secondary,
+  ]);
 
   function onVCTimestamp(id: string, timestamp: number) {
     trackVCTimestamps.current[id] = timestamp;
@@ -238,12 +285,12 @@ export default function VCList() {
           display: 'inline-flex',
           padding: '5px 10px',
           borderRadius: '45px',
-          border: `2px solid ${isDarkMode ? theme.palette.colors.default.accent : theme.palette.colors.default.border}`,
+          border: `2px solid ${zeroStateColors.badgeBorder}`,
           textAlign: 'center',
-          background: theme.palette.colors.default.backgroundLight,
+          background: zeroStateColors.badgeBackground,
         }}
       >
-        <Typography variant="body1" sx={{ color: theme.palette.colors.default.text }}>
+        <Typography variant="body1" sx={{ color: zeroStateColors.badgeText }}>
           {titleNode}
         </Typography>
       </Flex>
@@ -272,11 +319,7 @@ export default function VCList() {
               </Trans>
             </Typography>
           </Flex>
-          <Flex
-            flexDirection="row"
-            gap={4}
-            sx={{ color: (palette) => (palette.palette.mode === 'dark' ? '#cdbb91' : '#9b7040') }}
-          >
+          <Flex flexDirection="row" gap={4} sx={{ color: zeroStateColors.iconColor }}>
             <Flex flexDirection="column" sx={{ alignItems: 'center', paddingTop: '25px' }} gap={2}>
               <VCZeroStateBadgeIcon />
               {renderBadgeContainer(<Trans>Badging</Trans>)}
@@ -297,24 +340,17 @@ export default function VCList() {
                     width: 350,
                     height: 390,
                     borderRadius: '8px',
-                    border: (palette) => (palette.palette.mode === 'dark' ? '1px solid #d8ad45' : '1px solid #9b7040'),
+                    border: `1px solid ${zeroStateColors.cardBorder}`,
                     overflow: 'hidden',
-                    color: (palette) => (palette.palette.mode === 'dark' ? '#f7efd8' : '#273c3d'),
-                    background: (palette) =>
-                      palette.palette.mode === 'dark'
-                        ? 'linear-gradient(135deg, rgba(58, 48, 32, 0.98) 0%, rgba(155, 112, 64, 0.5) 52%, rgba(33, 27, 18, 0.98) 100%)'
-                        : 'linear-gradient(135deg, rgba(250, 238, 182, 0.95) 0%, rgba(210, 163, 58, 0.46) 52%, rgba(255, 250, 240, 0.95) 100%)',
-                    boxShadow: (palette) =>
-                      palette.palette.mode === 'dark'
-                        ? '0 34px 72px rgba(0, 0, 0, 0.32)'
-                        : '0 34px 72px rgba(71, 58, 36, 0.2)',
+                    color: zeroStateColors.cardText,
+                    background: zeroStateColors.cardBackground,
+                    boxShadow: zeroStateColors.cardShadow,
                     '&::before': {
                       content: '""',
                       position: 'absolute',
                       inset: 0,
                       opacity: 0.26,
-                      background:
-                        'repeating-linear-gradient(115deg, rgba(155, 112, 64, 0.3) 0 1px, transparent 1px 9px)',
+                      background: zeroStateColors.texture,
                     },
                   }}
                 >
@@ -323,15 +359,12 @@ export default function VCList() {
                       variant="caption"
                       sx={{
                         letterSpacing: 1,
-                        color: (palette) => (palette.palette.mode === 'dark' ? '#cdbb91' : '#6f6045'),
+                        color: zeroStateColors.cardMutedText,
                       }}
                     >
                       VERIFIABLE CREDENTIAL
                     </Typography>
-                    <Typography
-                      variant="h5"
-                      sx={{ mt: 1, color: (palette) => (palette.palette.mode === 'dark' ? '#f7efd8' : '#273c3d') }}
-                    >
+                    <Typography variant="h5" sx={{ mt: 1, color: zeroStateColors.cardText }}>
                       Credential ID
                     </Typography>
                     <Box
@@ -340,25 +373,16 @@ export default function VCList() {
                         width: 92,
                         height: 92,
                         borderRadius: 2,
-                        background: (palette) =>
-                          palette.palette.mode === 'dark'
-                            ? 'linear-gradient(145deg, #3a3020 0%, #9b7040 100%)'
-                            : 'linear-gradient(145deg, #f7efd8 0%, #cdbb91 100%)',
-                        border: '1px solid rgba(155, 112, 64, 0.45)',
+                        background: zeroStateColors.chipBackground,
+                        border: `1px solid ${alpha(zeroStateColors.accent, 0.45)}`,
                       }}
                     />
-                    <Box sx={{ mt: 3, height: 1, background: 'rgba(155, 112, 64, 0.28)' }} />
-                    <Typography
-                      variant="body2"
-                      sx={{ mt: 3, color: (palette) => (palette.palette.mode === 'dark' ? '#cdbb91' : '#6f6045') }}
-                    >
+                    <Box sx={{ mt: 3, height: 1, background: zeroStateColors.divider }} />
+                    <Typography variant="body2" sx={{ mt: 3, color: zeroStateColors.cardMutedText }}>
                       Issued
                     </Typography>
                     <Typography variant="body1">02-22-2023</Typography>
-                    <Typography
-                      variant="body2"
-                      sx={{ mt: 2, color: (palette) => (palette.palette.mode === 'dark' ? '#cdbb91' : '#6f6045') }}
-                    >
+                    <Typography variant="body2" sx={{ mt: 2, color: zeroStateColors.cardMutedText }}>
                       Holder
                     </Typography>
                     <Typography variant="body1">Bram Tiberius Cohen</Typography>
@@ -370,8 +394,8 @@ export default function VCList() {
                         width: 88,
                         height: 88,
                         borderRadius: '50%',
-                        border: '2px solid #9b7040',
-                        background: 'radial-gradient(circle, #fffaf0 0%, #d2a33a 52%, #7d5520 100%)',
+                        border: `2px solid ${zeroStateColors.accentDark}`,
+                        background: zeroStateColors.sealBackground,
                       }}
                     />
                   </Box>

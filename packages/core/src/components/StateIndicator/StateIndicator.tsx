@@ -14,19 +14,20 @@ const StyledFlexContainer = styled(({ ...rest }) => <Flex {...rest} />)`
 
 function useStateColor(state: State): string {
   const theme = useTheme();
-  const variant = theme.chiaTheme?.variant;
+  const palette = theme.palette as typeof theme.palette & {
+    danger?: { main: string };
+    highlight?: { main: string };
+  };
 
-  if (variant === 'chia') {
-    switch (state) {
-      case State.SUCCESS:
-        return theme.palette.primary.main;
-      case State.WARNING:
-        return theme.palette.highlight.main;
-      case State.ERROR:
-        return theme.palette.danger.main;
-      default:
-        break;
-    }
+  switch (state) {
+    case State.SUCCESS:
+      return palette.primary.main;
+    case State.WARNING:
+      return palette.highlight?.main ?? StateColor.WARNING;
+    case State.ERROR:
+      return palette.danger?.main ?? StateColor.ERROR;
+    default:
+      break;
   }
 
   const Color = {
@@ -57,7 +58,7 @@ export default function StateComponent(props: StateComponentProps) {
   return (
     <StyledFlexContainer color={color} alignItems="center" gap={gap} flexDirection={reversed ? 'row-reverse' : 'row'}>
       {!hideTitle && <span>{children}</span>}
-      {indicator && <StateIndicatorDot state={state} />}
+      {indicator && <StateIndicatorDot color={color} state={state} />}
     </StyledFlexContainer>
   );
 }

@@ -27,7 +27,7 @@ export default createTheme(
         contrastText: B.morpheus,
       },
       highlight: {
-        main: B.shock,
+        main: B.periwinklePursuit,
       },
       info: {
         ...theme.palette.info,

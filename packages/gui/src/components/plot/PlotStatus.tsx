@@ -1,18 +1,11 @@
-import { Flex, Indicator, StateColor, TooltipIcon } from '@chia-network/core';
+import { Flex, Indicator, TooltipIcon } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
+import { useTheme } from '@mui/material/styles';
 import React from 'react';
 
 import FarmerStatus from '../../constants/FarmerStatus';
 import useFarmerStatus from '../../hooks/useFarmerStatus';
 import type Plot from '../../types/Plot';
-
-const Color = {
-  [FarmerStatus.FARMING]: StateColor.SUCCESS,
-  [FarmerStatus.SYNCHING]: StateColor.WARNING,
-  [FarmerStatus.NOT_AVAILABLE]: StateColor.WARNING,
-  [FarmerStatus.NOT_CONNECTED]: StateColor.ERROR,
-  [FarmerStatus.NOT_RUNNING]: StateColor.ERROR,
-};
 
 const Title = {
   [FarmerStatus.FARMING]: <Trans>Farming</Trans>,
@@ -36,8 +29,19 @@ type Props = {
 
 export default function PlotStatus(props: Props) {
   const { plot } = props;
+  const theme = useTheme();
+  const palette = theme.palette as typeof theme.palette & {
+    danger?: { main: string };
+    highlight?: { main: string };
+  };
   const { farmerStatus } = useFarmerStatus();
-  const color = Color[farmerStatus];
+  const color = {
+    [FarmerStatus.FARMING]: palette.primary.main,
+    [FarmerStatus.SYNCHING]: palette.highlight?.main ?? palette.warning.main,
+    [FarmerStatus.NOT_AVAILABLE]: palette.highlight?.main ?? palette.warning.main,
+    [FarmerStatus.NOT_CONNECTED]: palette.danger?.main ?? palette.error.main,
+    [FarmerStatus.NOT_RUNNING]: palette.danger?.main ?? palette.error.main,
+  }[farmerStatus];
   const title = Title[farmerStatus];
   const description = Description[farmerStatus];
 

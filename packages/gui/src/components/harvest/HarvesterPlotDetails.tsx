@@ -2,14 +2,10 @@ import { HarvesterInfo } from '@chia-network/api';
 import { Flex } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Box, Paper, Typography } from '@mui/material';
+import { alpha, useTheme } from '@mui/material/styles';
 import * as React from 'react';
 
-import {
-  ColorCodesForCompressions,
-  ColorCodesForKSizes,
-  DoughnutChartData,
-  PurePlotDetailsChart,
-} from './PlotDetailsChart';
+import { DoughnutChartData, PurePlotDetailsChart } from './PlotDetailsChart';
 
 export type HarvesterPlotDetailsProps = {
   harvester?: HarvesterInfo;
@@ -18,6 +14,53 @@ export type HarvesterPlotDetailsProps = {
 export default React.memo(HarvesterPlotDetails);
 function HarvesterPlotDetails(props: HarvesterPlotDetailsProps) {
   const { harvester } = props;
+  const theme = useTheme();
+  const palette = theme.palette as typeof theme.palette & {
+    highlight: { main: string };
+  };
+
+  const chartColors = React.useMemo(() => {
+    const compression = [
+      palette.primary.main,
+      palette.primary.dark,
+      palette.highlight.main,
+      palette.info.main,
+      palette.secondary.main,
+      alpha(palette.primary.main, 0.72),
+      alpha(palette.highlight.main, 0.72),
+      alpha(palette.info.main, 0.72),
+      alpha(palette.text.primary, 0.42),
+      alpha(palette.text.primary, 0.24),
+    ];
+
+    const kSize = [
+      alpha(palette.text.primary, 0.24),
+      alpha(palette.info.main, 0.72),
+      palette.info.main,
+      palette.primary.main,
+      palette.highlight.main,
+      palette.secondary.main,
+    ];
+
+    return { compression, kSize };
+  }, [
+    palette.highlight.main,
+    palette.info.main,
+    palette.primary.dark,
+    palette.primary.main,
+    palette.secondary.main,
+    palette.text.primary,
+  ]);
+
+  const getCompressionColor = React.useCallback(
+    (compressionLevel: number) => chartColors.compression[compressionLevel] ?? chartColors.compression[9],
+    [chartColors.compression],
+  );
+
+  const getKSizeColor = React.useCallback(
+    (kSize: number) => chartColors.kSize[[25, 31, 32, 33, 34, 35].indexOf(kSize)] ?? chartColors.kSize[5],
+    [chartColors.kSize],
+  );
 
   const plotSummary = React.useMemo(() => {
     if (!harvester) {
@@ -68,7 +111,7 @@ function HarvesterPlotDetails(props: HarvesterPlotDetailsProps) {
       const kSize = +kSizes[i];
       const count = plotsBySize[kSize];
       const percentage = (count / totalPlots) * 100;
-      const bgColor = ColorCodesForKSizes[kSize] || ColorCodesForKSizes[35];
+      const bgColor = getKSizeColor(kSize);
       kSizeData.labels.push(`K${kSize}`);
       kSizeData.data.push(count);
       kSizeData.colors.push(bgColor);
@@ -79,7 +122,7 @@ function HarvesterPlotDetails(props: HarvesterPlotDetailsProps) {
         const cl = +compressions[k];
         const countCompression = plotsBySizeAndCompression[kSize][cl];
         const percentageCompression = Math.round((countCompression / count) * 100);
-        const bgColorSize = ColorCodesForCompressions[cl] || ColorCodesForCompressions[9];
+        const bgColorSize = getCompressionColor(cl);
         kSizeAndCompressionData.labels.push(`C${cl}`);
         kSizeAndCompressionData.data.push(countCompression);
         kSizeAndCompressionData.colors.push(bgColorSize);
@@ -88,7 +131,7 @@ function HarvesterPlotDetails(props: HarvesterPlotDetailsProps) {
           <Typography variant="body2" key={`${kSize}-${cl}`} sx={{ whiteSpace: 'nowrap' }}>
             <Box
               sx={{
-                backgroundColor: ColorCodesForCompressions[cl],
+                backgroundColor: bgColorSize,
                 width: '10px',
                 height: '10px',
                 display: 'inline-block',
@@ -124,8 +167,8 @@ function HarvesterPlotDetails(props: HarvesterPlotDetailsProps) {
                 width: 6,
                 top: 0,
                 left: 4,
-                borderLeft: '1px solid #ccc',
-                borderBottom: '1px solid #ccc',
+                borderLeft: `1px solid ${alpha(palette.text.primary, 0.24)}`,
+                borderBottom: `1px solid ${alpha(palette.text.primary, 0.24)}`,
               }}
             />
             <Typography sx={{ fontWeight: 500 }} variant="caption">
@@ -138,7 +181,7 @@ function HarvesterPlotDetails(props: HarvesterPlotDetailsProps) {
     }
 
     return { breakDown, kSizeData, kSizeAndCompressionData };
-  }, [harvester]);
+  }, [getCompressionColor, getKSizeColor, harvester, palette.text.primary]);
 
   const plotDetailsChart = React.useMemo(() => {
     if (!plotStats.kSizeData || !plotStats.kSizeAndCompressionData) {

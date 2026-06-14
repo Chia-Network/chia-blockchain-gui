@@ -37,9 +37,9 @@ const StyledListItemIcon = styled(ListItemIcon)<{ selected?: boolean }>`
   min-width: auto;
   position: relative;
   background-color: ${({ theme, selected }) => (selected ? selectedFill(theme) : 'transparent')};
-  border-radius: ${({ theme }) => theme.spacing(1.5)};
-  width: ${({ theme }) => theme.spacing(6)};
-  height: ${({ theme }) => theme.spacing(6)};
+  border-radius: ${({ theme }) => theme.spacing(1.25)};
+  width: ${({ theme }) => theme.spacing(5.25)};
+  height: ${({ theme }) => theme.spacing(5.25)};
   border: ${({ selected, theme }) =>
     selected ? `1px solid ${theme.palette.highlight.main}` : '1px solid transparent'};
   display: flex;
@@ -61,8 +61,8 @@ const StyledListItem = styled(ListItem)`
   align-items: center;
   padding-left: 0;
   padding-right: 0;
-  padding-top: ${({ theme }) => theme.spacing(1)};
-  padding-bottom: ${({ theme }) => theme.spacing(1)};
+  padding-top: ${({ theme }) => theme.spacing(0.5)};
+  padding-bottom: ${({ theme }) => theme.spacing(0.5)};
 
   &:hover {
     background-color: transparent;
@@ -79,8 +79,8 @@ const StyledListItem = styled(ListItem)`
 `;
 
 const StyledListItemText = styled(Typography)`
-  font-size: ${({ theme }) => theme.typography.pxToRem(10)} !important;
-  font-weight: 500;
+  font-size: ${({ theme }) => theme.typography.pxToRem(9.5)} !important;
+  font-weight: 700;
   color: ${({ theme }) => labelColor(theme)};
 `;
 
@@ -111,7 +111,7 @@ export default function SideBarItem(props: SideBarItemProps) {
 
   return (
     <StyledListItem button onClick={() => handleClick()} {...rest}>
-      <Flex flexDirection="column" alignItems="center" gap={0.5}>
+      <Flex flexDirection="column" alignItems="center" gap={0.25}>
         <StyledListItemIcon selected={isSelected}>
           <Icon fontSize="sidebarIcon" />
         </StyledListItemIcon>

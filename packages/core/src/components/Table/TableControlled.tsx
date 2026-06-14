@@ -11,30 +11,42 @@ import {
   TablePagination,
   Collapse,
 } from '@mui/material';
+import { alpha } from '@mui/material/styles';
 import { get } from 'lodash';
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 import React, { ReactNode, useMemo, useState, SyntheticEvent, Fragment } from 'react';
 import styled from 'styled-components';
 
-import Color from '../../constants/Color';
 import LoadingOverlay from '../LoadingOverlay';
 
 const StyledTableHead = styled(TableHead)`
-  background-color: ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[200])};
+  background-color: ${({ theme }) => alpha(theme.palette.primary.main, theme.palette.mode === 'dark' ? 0.2 : 0.1)};
   font-weight: 500;
 `;
 
-export const StyledTableRow = styled(({ odd, oddRowBackgroundColor, ...rest }) => <TableRow {...rest} />)`
+export const StyledTableRow = styled(({ odd, oddRowBackgroundColor, rowHover, ...rest }) => <TableRow {...rest} />)`
   ${({ odd, oddRowBackgroundColor, theme }) =>
     odd
-      ? `background-color: ${
-          oddRowBackgroundColor || (theme.palette.mode === 'dark' ? Color.Neutral[800] : Color.Neutral[100])
-        };`
+      ? `background-color: ${oddRowBackgroundColor || alpha(theme.palette.primary.main, theme.palette.mode === 'dark' ? 0.08 : 0.05)};`
+      : undefined}
+  transition:
+    background-color 120ms ease,
+    box-shadow 120ms ease;
+  ${({ rowHover, theme }) =>
+    rowHover
+      ? `
+    cursor: pointer;
+
+    &:hover {
+      background-color: ${alpha(theme.palette.primary.main, theme.palette.mode === 'dark' ? 0.14 : 0.09)};
+      box-shadow: inset 3px 0 0 ${theme.palette.primary.main};
+    }
+  `
       : undefined}
 `;
 
 const StyledExpandedTableRow = styled(({ isExpanded, ...rest }) => <TableRow {...rest} />)`
-  background-color: ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[200])};
+  background-color: ${({ theme }) => alpha(theme.palette.primary.main, theme.palette.mode === 'dark' ? 0.2 : 0.1)};
   ${({ isExpanded }) => (!isExpanded ? 'display: none;' : undefined)}
 `;
 
@@ -42,7 +54,7 @@ const StyledTableCell = styled(({ width, minWidth, maxWidth, ...rest }) => <Tabl
   max-width: ${({ minWidth, maxWidth, width }) => (maxWidth || width || minWidth) ?? 'none'};
   min-width: ${({ minWidth }) => minWidth || '0'};
   width: ${({ width, minWidth }) => (width || minWidth ? width : 'auto')}};
-  border-bottom: 1px solid ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[800] : Color.Neutral[200])};
+  border-bottom: 1px solid ${({ theme }) => alpha(theme.palette.text.primary, theme.palette.mode === 'dark' ? 0.16 : 0.12)};
 `;
 
 const StyledTableCellContent = styled(Box)<{ forceWrap: boolean }>`
@@ -280,6 +292,7 @@ export function TableControlledRow({
         oddRowBackgroundColor={oddRowBackgroundColor}
         onClick={handleRowClick ? (e) => handleRowClick(e, row) : undefined}
         hover={rowHover}
+        rowHover={rowHover}
       >
         {currentCols.map((col) => {
           const { field, tooltip, forceWrap } = col;
