@@ -54,15 +54,16 @@ function PoolingHealth() {
   const palette = theme.palette as typeof theme.palette & {
     danger?: { main: string };
     highlight?: { main: string };
+    warning?: { main: string };
   };
   const indicatorStyle = React.useMemo(
     () =>
       getIndicatorStyle(
         palette.primary.main,
-        palette.highlight?.main ?? palette.warning.main,
+        palette.warning?.main ?? palette.highlight?.main,
         palette.danger?.main ?? palette.error.main,
       ),
-    [palette.danger?.main, palette.error.main, palette.highlight?.main, palette.primary.main, palette.warning.main],
+    [palette.danger?.main, palette.error.main, palette.highlight?.main, palette.primary.main, palette.warning?.main],
   );
   const { data, isLoading } = useGetPoolStateQuery();
   const { data: partialStatsOffset, isLoading: isLoadingPartialStatsOffset } = useGetPartialStatsOffsetQuery();
