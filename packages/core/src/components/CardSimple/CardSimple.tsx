@@ -22,7 +22,7 @@ export default function CardSimple(props: CardSimpleProps) {
     title,
     value,
     description,
-    valueColor = 'primary',
+    valueColor = 'textPrimary',
     loading = false,
     tooltip,
     error,

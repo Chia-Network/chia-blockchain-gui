@@ -11,7 +11,7 @@ export default function FullNodeCardConnectionStatus() {
   return (
     <CardSimple
       loading={isLoading}
-      valueColor={isRunning ? 'primary' : 'textPrimary'}
+      valueColor="textPrimary"
       title={<Trans>Connection Status</Trans>}
       value={isRunning ? <Trans>Connected</Trans> : <Trans>Not connected</Trans>}
       error={error}
