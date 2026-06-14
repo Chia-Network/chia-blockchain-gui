@@ -63,9 +63,10 @@ function LatencyBarChart(props: BarChartProps) {
   const palette = theme.palette as typeof theme.palette & {
     danger: { main: string };
     highlight: { main: string };
+    warning?: { main: string };
   };
   const primaryColor = palette.primary.main;
-  const warningColor = palette.highlight.main;
+  const warningColor = palette.warning?.main ?? palette.highlight.main;
   const errorColor = palette.danger.main;
 
   const options = React.useMemo<ChartOptions<'bar'>>(

@@ -49,8 +49,10 @@ export default function AppStatusHeader() {
     border: { dark: string; main: string };
     danger?: { main: string };
     highlight?: { main: string };
+    warning?: { main: string };
   };
   const borderColor = palette.border[isDarkMode ? 'dark' : 'main'];
+  const warningColor = palette.warning?.main ?? palette.highlight?.main ?? theme.palette.warning.main;
   const ButtonGroupStyle = {
     minHeight: '42px',
   };
@@ -87,11 +89,11 @@ export default function AppStatusHeader() {
     '.reload-icon': {
       g: {
         circle: {
-          stroke: palette.highlight?.main ?? theme.palette.warning.main,
-          fill: palette.highlight?.main ?? theme.palette.warning.main,
+          stroke: warningColor,
+          fill: warningColor,
         },
         path: {
-          fill: palette.highlight?.main ?? theme.palette.warning.main,
+          fill: warningColor,
         },
       },
     },
