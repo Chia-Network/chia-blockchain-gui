@@ -33,12 +33,13 @@ export default function PlotStatus(props: Props) {
   const palette = theme.palette as typeof theme.palette & {
     danger?: { main: string };
     highlight?: { main: string };
+    warning?: { main: string };
   };
   const { farmerStatus } = useFarmerStatus();
   const color = {
     [FarmerStatus.FARMING]: palette.primary.main,
-    [FarmerStatus.SYNCHING]: palette.highlight?.main ?? palette.warning.main,
-    [FarmerStatus.NOT_AVAILABLE]: palette.highlight?.main ?? palette.warning.main,
+    [FarmerStatus.SYNCHING]: palette.warning?.main ?? palette.highlight?.main ?? palette.primary.main,
+    [FarmerStatus.NOT_AVAILABLE]: palette.warning?.main ?? palette.highlight?.main ?? palette.primary.main,
     [FarmerStatus.NOT_CONNECTED]: palette.danger?.main ?? palette.error.main,
     [FarmerStatus.NOT_RUNNING]: palette.danger?.main ?? palette.error.main,
   }[farmerStatus];
