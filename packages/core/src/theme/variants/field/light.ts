@@ -25,6 +25,10 @@ export default createTheme({
     highlight: {
       main: '#b98524',
     },
+    warning: {
+      main: '#b98524',
+      contrastText: '#fffaf0',
+    },
     info: {
       ...theme.palette.info,
       main: '#5c7882',
@@ -199,6 +203,83 @@ export default createTheme({
       styleOverrides: {
         root: {
           backgroundImage: 'none',
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          '&.MuiButton-text:not(.Mui-disabled):hover, &.MuiButton-outlined:not(.Mui-disabled):hover': {
+            backgroundColor: 'rgba(185, 133, 36, 0.08)',
+          },
+        },
+      },
+    },
+    MuiIconButton: {
+      styleOverrides: {
+        root: {
+          '&:not(.Mui-disabled):hover': {
+            backgroundColor: 'rgba(185, 133, 36, 0.1)',
+            color: '#8f641d',
+          },
+        },
+      },
+    },
+    MuiMenuItem: {
+      styleOverrides: {
+        root: {
+          '&:not(.Mui-disabled):hover': {
+            backgroundColor: 'rgba(185, 133, 36, 0.1)',
+          },
+          '&.Mui-selected': {
+            backgroundColor: 'rgba(185, 133, 36, 0.14)',
+          },
+          '&.Mui-selected:hover': {
+            backgroundColor: 'rgba(185, 133, 36, 0.18)',
+          },
+        },
+      },
+    },
+    MuiListItemButton: {
+      styleOverrides: {
+        root: {
+          '&:not(.Mui-disabled):hover': {
+            backgroundColor: 'rgba(185, 133, 36, 0.1)',
+          },
+          '&.Mui-selected': {
+            backgroundColor: 'rgba(185, 133, 36, 0.14)',
+          },
+          '&.Mui-selected:hover': {
+            backgroundColor: 'rgba(185, 133, 36, 0.18)',
+          },
+        },
+      },
+    },
+    MuiCardActionArea: {
+      styleOverrides: {
+        root: {
+          '&:hover': {
+            backgroundColor: 'rgba(185, 133, 36, 0.08)',
+          },
+        },
+      },
+    },
+    MuiTableRow: {
+      styleOverrides: {
+        root: {
+          '&.MuiTableRow-hover:hover': {
+            backgroundColor: 'rgba(185, 133, 36, 0.08)',
+          },
+        },
+      },
+    },
+    MuiTab: {
+      styleOverrides: {
+        root: {
+          '&:hover': {
+            backgroundColor: 'rgba(185, 133, 36, 0.08)',
+            color: '#8f641d',
+          },
         },
       },
     },

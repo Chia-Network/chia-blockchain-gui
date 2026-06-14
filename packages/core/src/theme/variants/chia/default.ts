@@ -29,6 +29,10 @@ export default {
     highlight: {
       main: B.periwinklePursuit,
     },
+    warning: {
+      main: B.periwinklePursuit,
+      contrastText: B.morpheus,
+    },
     border: {
       main: B.periwinklePursuit,
       dark: B.starkBlue,
