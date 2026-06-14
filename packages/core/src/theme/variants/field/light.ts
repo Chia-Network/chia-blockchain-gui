@@ -23,10 +23,10 @@ export default createTheme({
       contrastText: '#fffaf0',
     },
     highlight: {
-      main: '#b98524',
+      main: '#d09a2d',
     },
     warning: {
-      main: '#b98524',
+      main: Color.Orange[500],
       contrastText: '#fffaf0',
     },
     info: {

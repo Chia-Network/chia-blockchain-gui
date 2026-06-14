@@ -17,13 +17,14 @@ function useStateColor(state: State): string {
   const palette = theme.palette as typeof theme.palette & {
     danger?: { main: string };
     highlight?: { main: string };
+    warning?: { main: string };
   };
 
   switch (state) {
     case State.SUCCESS:
       return palette.primary.main;
     case State.WARNING:
-      return palette.highlight?.main ?? StateColor.WARNING;
+      return palette.warning?.main ?? palette.highlight?.main ?? StateColor.WARNING;
     case State.ERROR:
       return palette.danger?.main ?? StateColor.ERROR;
     default:
