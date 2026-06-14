@@ -61,13 +61,19 @@ export default function FullNodeCardStatus() {
     },
   );
   const theme = useTheme();
-  const palette = theme.palette as typeof theme.palette & { highlight?: { main: string } };
+  const palette = theme.palette as typeof theme.palette & {
+    highlight?: { main: string };
+    warning?: { main: string };
+  };
 
   if (isLoading) {
     return <CardSimple loading title={<Trans>Status</Trans>} />;
   }
 
-  const { value, tooltip, color } = getData(state?.sync, palette.highlight?.main ?? StateColor.WARNING);
+  const { value, tooltip, color } = getData(
+    state?.sync,
+    palette.warning?.main ?? palette.highlight?.main ?? StateColor.WARNING,
+  );
 
   return <CardSimple valueColor={color} title={<Trans>Status</Trans>} tooltip={tooltip} value={value} error={error} />;
 }
