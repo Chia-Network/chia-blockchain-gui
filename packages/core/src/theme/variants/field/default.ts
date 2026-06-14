@@ -25,10 +25,10 @@ export default {
       contrastText: Color.Neutral[50],
     },
     highlight: {
-      main: '#b98524',
+      main: '#d09a2d',
     },
     warning: {
-      main: '#b98524',
+      main: Color.Orange[500],
       contrastText: Color.Neutral[50],
     },
     border: {

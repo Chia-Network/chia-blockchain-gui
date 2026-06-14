@@ -26,10 +26,10 @@ export default createTheme(
         contrastText: '#16130d',
       },
       highlight: {
-        main: '#d8ad45',
+        main: '#f7df9b',
       },
       warning: {
-        main: '#d8ad45',
+        main: Color.Orange[300],
         contrastText: '#16130d',
       },
       info: {

@@ -27,7 +27,9 @@ function getCols(theme) {
 
         const value = isFinished ? headerHash : <span>{foliageTransactionBlockHash}</span>;
 
-        const color = isFinished ? palette.primary.main : (palette.highlight?.main ?? palette.warning.main);
+        const color = isFinished
+          ? palette.primary.main
+          : (palette.warning?.main ?? palette.highlight?.main ?? palette.primary.main);
 
         const tooltip = isFinished ? <Trans>Finished</Trans> : <Trans>In Progress</Trans>;
 
