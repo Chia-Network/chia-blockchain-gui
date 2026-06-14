@@ -27,6 +27,10 @@ export default {
     highlight: {
       main: '#b98524',
     },
+    warning: {
+      main: '#b98524',
+      contrastText: Color.Neutral[50],
+    },
     border: {
       main: Color.Neutral[300],
       dark: Color.Neutral[700],
