@@ -19,11 +19,6 @@ msgstr ""
 "X-Crowdin-File-ID: 35\n"
 
 #. js-lingui-explicit-id
-#: src/electron/constants/commandRegistry.ts:404
-msgid "Omit transactions data"
-msgstr ""
-
-#. js-lingui-explicit-id
 #: src/components/nfts/NFTBurnDialog.tsx:133
 msgid "Do you want to burn {count} NFTs?"
 msgstr "Voulez-vous brûler ces {count} NFT ?"
@@ -462,6 +457,11 @@ msgstr ""
 #: src/electron/constants/commandRegistry.ts:390
 msgid "Disable JSON Formatting"
 msgstr "Désactiver la mise en forme JSON"
+
+#. js-lingui-explicit-id
+#: src/electron/constants/commandRegistry.ts:404
+msgid "Omit transactions data"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:411
