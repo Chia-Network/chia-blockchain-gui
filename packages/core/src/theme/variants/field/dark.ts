@@ -3,6 +3,7 @@ import { createTheme } from '@mui/material/styles';
 
 import Color from '../../../constants/Color';
 
+import getFieldButtonStyles from './buttonStyles';
 import theme from './default';
 
 export default createTheme(
@@ -31,6 +32,12 @@ export default createTheme(
       warning: {
         main: Color.Orange[300],
         contrastText: '#16130d',
+      },
+      semantic: {
+        success: '#d8ad45',
+        warning: Color.Orange[300],
+        error: Color.Red[300],
+        highlight: '#f7df9b',
       },
       info: {
         ...theme.palette.info,
@@ -210,19 +217,20 @@ export default createTheme(
         },
       },
       MuiButton: {
-        styleOverrides: {
-          root: {
-            '&.MuiButton-text:not(.Mui-disabled):hover, &.MuiButton-outlined:not(.Mui-disabled):hover': {
-              backgroundColor: 'rgba(216, 173, 69, 0.12)',
-            },
-          },
-        },
+        styleOverrides: getFieldButtonStyles({
+          hoverBackground: 'rgba(216, 173, 69, 0.2)',
+          outlinedHoverShadow: '0 0 0 1px rgba(247, 223, 155, 0.28)',
+          containedBackground: 'linear-gradient(180deg, #e0bd5e 0%, #bd8330 100%)',
+          containedHoverBackground: 'linear-gradient(180deg, #f0cf72 0%, #d8ad45 100%)',
+          containedShadow: '0 12px 24px rgba(0, 0, 0, 0.28)',
+          containedHoverShadow: '0 14px 30px rgba(0, 0, 0, 0.38)',
+        }),
       },
       MuiIconButton: {
         styleOverrides: {
           root: {
             '&:not(.Mui-disabled):hover': {
-              backgroundColor: 'rgba(216, 173, 69, 0.14)',
+              backgroundColor: 'rgba(216, 173, 69, 0.2)',
               color: '#fff3cf',
             },
           },
@@ -232,13 +240,13 @@ export default createTheme(
         styleOverrides: {
           root: {
             '&:not(.Mui-disabled):hover': {
-              backgroundColor: 'rgba(216, 173, 69, 0.14)',
+              backgroundColor: 'rgba(216, 173, 69, 0.18)',
             },
             '&.Mui-selected': {
               backgroundColor: 'rgba(216, 173, 69, 0.18)',
             },
             '&.Mui-selected:hover': {
-              backgroundColor: 'rgba(216, 173, 69, 0.22)',
+              backgroundColor: 'rgba(216, 173, 69, 0.26)',
             },
           },
         },
@@ -247,13 +255,13 @@ export default createTheme(
         styleOverrides: {
           root: {
             '&:not(.Mui-disabled):hover': {
-              backgroundColor: 'rgba(216, 173, 69, 0.14)',
+              backgroundColor: 'rgba(216, 173, 69, 0.18)',
             },
             '&.Mui-selected': {
               backgroundColor: 'rgba(216, 173, 69, 0.18)',
             },
             '&.Mui-selected:hover': {
-              backgroundColor: 'rgba(216, 173, 69, 0.22)',
+              backgroundColor: 'rgba(216, 173, 69, 0.26)',
             },
           },
         },
@@ -262,7 +270,7 @@ export default createTheme(
         styleOverrides: {
           root: {
             '&:hover': {
-              backgroundColor: 'rgba(216, 173, 69, 0.1)',
+              backgroundColor: 'rgba(216, 173, 69, 0.16)',
             },
           },
         },
@@ -271,7 +279,7 @@ export default createTheme(
         styleOverrides: {
           root: {
             '&.MuiTableRow-hover:hover': {
-              backgroundColor: 'rgba(216, 173, 69, 0.12)',
+              backgroundColor: 'rgba(216, 173, 69, 0.16)',
             },
           },
         },
@@ -280,7 +288,7 @@ export default createTheme(
         styleOverrides: {
           root: {
             '&:hover': {
-              backgroundColor: 'rgba(216, 173, 69, 0.1)',
+              backgroundColor: 'rgba(216, 173, 69, 0.16)',
               color: '#fff3cf',
             },
           },

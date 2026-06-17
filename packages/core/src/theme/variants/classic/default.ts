@@ -27,6 +27,12 @@ export default {
     highlight: {
       main: Color.Chia.Primary,
     },
+    semantic: {
+      success: Color.Green[500],
+      warning: Color.Orange[500],
+      error: Color.Red[600],
+      highlight: Color.Chia.Primary,
+    },
     border: {
       main: Color.Neutral[300],
       dark: Color.Neutral[700],
