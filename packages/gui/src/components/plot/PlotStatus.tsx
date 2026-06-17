@@ -6,6 +6,7 @@ import React from 'react';
 import FarmerStatus from '../../constants/FarmerStatus';
 import useFarmerStatus from '../../hooks/useFarmerStatus';
 import type Plot from '../../types/Plot';
+import { getSemanticColors } from '../../util/semanticColors';
 
 const Title = {
   [FarmerStatus.FARMING]: <Trans>Farming</Trans>,
@@ -30,18 +31,14 @@ type Props = {
 export default function PlotStatus(props: Props) {
   const { plot } = props;
   const theme = useTheme();
-  const palette = theme.palette as typeof theme.palette & {
-    danger?: { main: string };
-    highlight?: { main: string };
-    warning?: { main: string };
-  };
+  const semanticColors = getSemanticColors(theme.palette);
   const { farmerStatus } = useFarmerStatus();
   const color = {
-    [FarmerStatus.FARMING]: palette.primary.main,
-    [FarmerStatus.SYNCHING]: palette.warning?.main ?? palette.highlight?.main ?? palette.primary.main,
-    [FarmerStatus.NOT_AVAILABLE]: palette.warning?.main ?? palette.highlight?.main ?? palette.primary.main,
-    [FarmerStatus.NOT_CONNECTED]: palette.danger?.main ?? palette.error.main,
-    [FarmerStatus.NOT_RUNNING]: palette.danger?.main ?? palette.error.main,
+    [FarmerStatus.FARMING]: semanticColors.success,
+    [FarmerStatus.SYNCHING]: semanticColors.warning,
+    [FarmerStatus.NOT_AVAILABLE]: semanticColors.warning,
+    [FarmerStatus.NOT_CONNECTED]: semanticColors.error,
+    [FarmerStatus.NOT_RUNNING]: semanticColors.error,
   }[farmerStatus];
   const title = Title[farmerStatus];
   const description = Description[farmerStatus];

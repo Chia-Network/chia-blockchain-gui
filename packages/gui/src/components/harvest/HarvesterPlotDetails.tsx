@@ -15,19 +15,18 @@ export default React.memo(HarvesterPlotDetails);
 function HarvesterPlotDetails(props: HarvesterPlotDetailsProps) {
   const { harvester } = props;
   const theme = useTheme();
-  const palette = theme.palette as typeof theme.palette & {
-    highlight: { main: string };
-  };
+  const { palette } = theme;
+  const highlightColor = palette.highlight?.main ?? palette.warning.main;
 
   const chartColors = React.useMemo(() => {
     const compression = [
       palette.primary.main,
       palette.primary.dark,
-      palette.highlight.main,
+      highlightColor,
       palette.info.main,
       palette.secondary.main,
       alpha(palette.primary.main, 0.72),
-      alpha(palette.highlight.main, 0.72),
+      alpha(highlightColor, 0.72),
       alpha(palette.info.main, 0.72),
       alpha(palette.text.primary, 0.42),
       alpha(palette.text.primary, 0.24),
@@ -38,13 +37,13 @@ function HarvesterPlotDetails(props: HarvesterPlotDetailsProps) {
       alpha(palette.info.main, 0.72),
       palette.info.main,
       palette.primary.main,
-      palette.highlight.main,
+      highlightColor,
       palette.secondary.main,
     ];
 
     return { compression, kSize };
   }, [
-    palette.highlight.main,
+    highlightColor,
     palette.info.main,
     palette.primary.dark,
     palette.primary.main,

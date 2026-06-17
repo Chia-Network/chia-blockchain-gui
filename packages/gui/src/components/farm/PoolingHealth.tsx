@@ -8,6 +8,8 @@ import { Trans } from '@lingui/macro';
 import { Box, Paper, Typography, CircularProgress, Button, useTheme } from '@mui/material';
 import React from 'react';
 
+import { getSemanticColors } from '../../util/semanticColors';
+
 function getIndicatorStyle(successColor: string, warningColor: string, errorColor: string) {
   return {
     marginTop: 1,
@@ -51,19 +53,10 @@ function getIndicatorStyle(successColor: string, warningColor: string, errorColo
 export default React.memo(PoolingHealth);
 function PoolingHealth() {
   const theme = useTheme();
-  const palette = theme.palette as typeof theme.palette & {
-    danger?: { main: string };
-    highlight?: { main: string };
-    warning?: { main: string };
-  };
+  const semanticColors = getSemanticColors(theme.palette);
   const indicatorStyle = React.useMemo(
-    () =>
-      getIndicatorStyle(
-        palette.primary.main,
-        palette.warning?.main ?? palette.highlight?.main,
-        palette.danger?.main ?? palette.error.main,
-      ),
-    [palette.danger?.main, palette.error.main, palette.highlight?.main, palette.primary.main, palette.warning?.main],
+    () => getIndicatorStyle(semanticColors.success, semanticColors.warning, semanticColors.error),
+    [semanticColors.error, semanticColors.success, semanticColors.warning],
   );
   const { data, isLoading } = useGetPoolStateQuery();
   const { data: partialStatsOffset, isLoading: isLoadingPartialStatsOffset } = useGetPartialStatsOffsetQuery();
