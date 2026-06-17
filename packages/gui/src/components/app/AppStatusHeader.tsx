@@ -5,6 +5,7 @@ import { Box, ButtonGroup, Button, Popover, PopoverProps } from '@mui/material';
 import { useTheme, styled, alpha } from '@mui/material/styles';
 import React, { useState } from 'react';
 
+import { getSemanticColors } from '../../util/semanticColors';
 import Connections from '../fullNode/FullNodeConnections';
 import FullNodeStateIndicator from '../fullNode/FullNodeStateIndicator';
 import NotificationsDropdown from '../notification/NotificationsDropdown';
@@ -45,14 +46,9 @@ const StyledPopover = styled((props: PopoverProps) => <Popover {...props} />)(({
 export default function AppStatusHeader() {
   const theme = useTheme();
   const { isDarkMode } = useDarkMode();
-  const palette = theme.palette as typeof theme.palette & {
-    border: { dark: string; main: string };
-    danger?: { main: string };
-    highlight?: { main: string };
-    warning?: { main: string };
-  };
+  const { error: errorColor, warning: warningColor } = getSemanticColors(theme.palette);
+  const { palette } = theme;
   const borderColor = palette.border[isDarkMode ? 'dark' : 'main'];
-  const warningColor = palette.warning?.main ?? palette.highlight?.main ?? theme.palette.warning.main;
   const ButtonGroupStyle = {
     minHeight: '42px',
   };
@@ -69,8 +65,8 @@ export default function AppStatusHeader() {
     '.cancel-icon': {
       g: {
         circle: {
-          stroke: palette.danger?.main ?? theme.palette.error.main,
-          fill: palette.danger?.main ?? theme.palette.error.main,
+          stroke: errorColor,
+          fill: errorColor,
         },
       },
     },
