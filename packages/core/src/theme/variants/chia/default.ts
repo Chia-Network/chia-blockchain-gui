@@ -33,6 +33,12 @@ export default {
       main: B.periwinklePursuit,
       contrastText: B.morpheus,
     },
+    semantic: {
+      success: B.starkBlue,
+      warning: Color.Orange[500],
+      error: Color.Red[600],
+      highlight: B.periwinklePursuit,
+    },
     border: {
       main: B.periwinklePursuit,
       dark: B.starkBlue,

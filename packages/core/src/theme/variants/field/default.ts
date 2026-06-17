@@ -31,6 +31,12 @@ export default {
       main: Color.Orange[500],
       contrastText: Color.Neutral[50],
     },
+    semantic: {
+      success: '#b98524',
+      warning: Color.Orange[500],
+      error: Color.Red[600],
+      highlight: '#d09a2d',
+    },
     border: {
       main: Color.Neutral[300],
       dark: Color.Neutral[700],

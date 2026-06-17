@@ -10,12 +10,15 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // import HelpIcon from '@mui/icons-material/Help';
+import { getSemanticColors } from '../../util/semanticColors';
+
 import FullNodeBlockSearch from './FullNodeBlockSearch';
 import FullNodeConnections from './FullNodeConnections';
 import FullNodeCards from './card/FullNodeCards';
 
 function getCols(theme) {
   const { palette } = theme;
+  const semanticColors = getSemanticColors(palette);
 
   return [
     {
@@ -27,9 +30,7 @@ function getCols(theme) {
 
         const value = isFinished ? headerHash : <span>{foliageTransactionBlockHash}</span>;
 
-        const color = isFinished
-          ? palette.primary.main
-          : (palette.warning?.main ?? palette.highlight?.main ?? palette.primary.main);
+        const color = isFinished ? semanticColors.success : semanticColors.warning;
 
         const tooltip = isFinished ? <Trans>Finished</Trans> : <Trans>In Progress</Trans>;
 

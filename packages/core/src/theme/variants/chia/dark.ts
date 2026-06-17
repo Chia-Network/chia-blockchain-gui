@@ -29,6 +29,16 @@ export default createTheme(
       highlight: {
         main: B.periwinklePursuit,
       },
+      warning: {
+        main: Color.Orange[300],
+        contrastText: B.morpheus,
+      },
+      semantic: {
+        success: B.mysticBlue,
+        warning: Color.Orange[300],
+        error: Color.Red[300],
+        highlight: B.periwinklePursuit,
+      },
       info: {
         ...theme.palette.info,
         main: B.mysticBlue,
