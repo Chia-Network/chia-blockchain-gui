@@ -1896,6 +1896,20 @@ export const Commands: Record<string, CommandSchema> = {
       },
     ],
   },
+  'chia_wallet.get_fee_estimate': {
+    title: () => i18n._(/* i18n */ { id: 'Get Fee Estimate' }),
+    message: () => i18n._(/* i18n */ { id: 'Requests the current fee per cost estimate from the wallet' }),
+    confirmLabel: () => i18n._(/* i18n */ { id: 'Proceed' }),
+    params: [],
+    dapp: [
+      {
+        command: 'chia_getFeeEstimate',
+        title: () => i18n._(/* i18n */ { id: 'Get Fee Estimate' }),
+        message: () => i18n._(/* i18n */ { id: 'Requests the current fee per cost estimate from the wallet' }),
+        allowConfirmationBypass: true,
+      },
+    ],
+  },
 
   'chia_wallet.get_height_info': {
     title: () => i18n._(/* i18n */ { id: 'Get Height Info' }),
