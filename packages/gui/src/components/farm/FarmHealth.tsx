@@ -15,6 +15,7 @@ import styled from 'styled-components';
 import FarmerStatus from '../../constants/FarmerStatus';
 import useFarmerStatus from '../../hooks/useFarmerStatus';
 import { binomialProb } from '../../util/math';
+import { getSemanticColors } from '../../util/semanticColors';
 
 const StyledTable = styled.table`
   border-collapse: collapse;
@@ -98,18 +99,11 @@ function getIndicatorStyle(successColor: string, warningColor: string, errorColo
 export default React.memo(FarmHealth);
 function FarmHealth() {
   const theme = useTheme();
-  const palette = theme.palette as typeof theme.palette & {
-    danger?: { main: string };
-    highlight?: { main: string };
-  };
+  const { palette } = theme;
+  const semanticColors = getSemanticColors(palette);
   const indicatorStyle = React.useMemo(
-    () =>
-      getIndicatorStyle(
-        palette.primary.main,
-        palette.highlight?.main ?? palette.warning.main,
-        palette.danger?.main ?? palette.error.main,
-      ),
-    [palette.danger?.main, palette.error.main, palette.highlight?.main, palette.primary.main, palette.warning.main],
+    () => getIndicatorStyle(semanticColors.success, semanticColors.warning, semanticColors.error),
+    [semanticColors.error, semanticColors.success, semanticColors.warning],
   );
   const { farmerStatus, blockchainState } = useFarmerStatus();
   const { data: missingSpsData, isLoading: isLoadingMissingSps } = useGetMissingSignagePointsQuery();

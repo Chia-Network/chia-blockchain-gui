@@ -4,6 +4,8 @@ import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, BarController
 import * as React from 'react';
 import { Bar } from 'react-chartjs-2';
 
+import { getSemanticColors } from '../../util/semanticColors';
+
 ChartJS.register(BarElement, CategoryScale, LinearScale, BarController);
 
 export function getSliceOfLatency(data: LatencyRecord[], period: '1h' | '12h' | '24h' | '64sp') {
@@ -60,13 +62,11 @@ export const PureLatencyBarChart = React.memo(LatencyBarChart);
 function LatencyBarChart(props: BarChartProps) {
   const { latency, period, unit } = props;
   const theme = useTheme();
-  const palette = theme.palette as typeof theme.palette & {
-    danger: { main: string };
-    highlight: { main: string };
-  };
-  const primaryColor = palette.primary.main;
-  const warningColor = palette.highlight.main;
-  const errorColor = palette.danger.main;
+  const { palette } = theme;
+  const semanticColors = getSemanticColors(palette);
+  const primaryColor = semanticColors.success;
+  const warningColor = semanticColors.warning;
+  const errorColor = semanticColors.error;
 
   const options = React.useMemo<ChartOptions<'bar'>>(
     () => ({

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import State from '../../constants/State';
 import StateColor from '../../constants/StateColor';
+import { getSemanticColors } from '../../theme/semanticColors';
 import Flex from '../Flex';
 
 import StateIndicatorDot from './StateIndicatorDot';
@@ -14,18 +15,15 @@ const StyledFlexContainer = styled(({ ...rest }) => <Flex {...rest} />)`
 
 function useStateColor(state: State): string {
   const theme = useTheme();
-  const palette = theme.palette as typeof theme.palette & {
-    danger?: { main: string };
-    highlight?: { main: string };
-  };
+  const semanticColors = getSemanticColors(theme.palette);
 
   switch (state) {
     case State.SUCCESS:
-      return palette.primary.main;
+      return semanticColors.success;
     case State.WARNING:
-      return palette.highlight?.main ?? StateColor.WARNING;
+      return semanticColors.warning;
     case State.ERROR:
-      return palette.danger?.main ?? StateColor.ERROR;
+      return semanticColors.error;
     default:
       break;
   }
