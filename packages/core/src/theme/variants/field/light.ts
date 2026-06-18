@@ -1,8 +1,8 @@
 import { createTheme } from '@mui/material/styles';
 
 import Color from '../../../constants/Color';
+import getButtonStyles from '../../buttonStyles';
 
-import getFieldButtonStyles from './buttonStyles';
 import theme from './default';
 
 export default createTheme({
@@ -214,9 +214,14 @@ export default createTheme({
       },
     },
     MuiButton: {
-      styleOverrides: getFieldButtonStyles({
+      styleOverrides: getButtonStyles({
+        borderRadius: 8,
+        fontWeight: 700,
+        textTransform: 'none',
         hoverBackground: 'rgba(185, 133, 36, 0.14)',
-        outlinedHoverShadow: '0 0 0 1px rgba(185, 133, 36, 0.22)',
+        hoverShadow: '0 3px 10px rgba(71, 58, 36, 0.12)',
+        hoverTransform: 'translateY(-1px)',
+        outlinedHoverShadow: '0 3px 10px rgba(71, 58, 36, 0.12), 0 0 0 1px rgba(185, 133, 36, 0.22)',
         containedBackground: 'linear-gradient(180deg, #c5953a 0%, #a8731f 100%)',
         containedHoverBackground: 'linear-gradient(180deg, #d1a64a 0%, #b98524 100%)',
         containedShadow: '0 10px 22px rgba(71, 58, 36, 0.16)',

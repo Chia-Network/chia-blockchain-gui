@@ -30,8 +30,8 @@ export default {
       main: B.periwinklePursuit,
     },
     warning: {
-      main: B.periwinklePursuit,
-      contrastText: B.morpheus,
+      main: Color.Orange[500],
+      contrastText: B.brightWhite,
     },
     semantic: {
       success: B.starkBlue,
