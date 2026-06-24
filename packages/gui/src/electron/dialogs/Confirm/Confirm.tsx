@@ -1,16 +1,9 @@
-import React from 'react';
+import React, { type ReactNode } from 'react';
 
 import { i18n } from '../../../config/locales';
 import Collapsible from '../../components/Collapsible';
 import SandboxedIframe from '../../components/SandboxedIframe';
-
-export type ConfirmPrincipal = {
-  kind: 'pair';
-  name: string;
-  url?: string;
-  icon?: string;
-  description?: string;
-};
+import type { PairRecord } from '../../utils/pairSchemas';
 
 export type ConfirmFingerprint = {
   /** Fingerprint the dapp wants the call to run under. */
@@ -23,24 +16,22 @@ export type ConfirmFingerprint = {
   currentLabel?: string;
 };
 
-/**
- * Pre-formatted, GUI-only enrichment computed by main from `data` (via daemon
- * RPCs). The renderer never sees this; main builds it in
- * `electron/utils/dappEnrichment.ts` and `renderConfirm.ts`.
- */
-export type ConfirmDisplay = {
-  cat?: { displayName: string; isRevocable: boolean };
-  offer?: {
-    offered: ConfirmOfferLine[];
-    requested: ConfirmOfferLine[];
-    fee?: string;
-  };
+export type DisplayWalletDeltaItem =
+  | { kind: 'xch'; amount: string; amountWithRoyalties?: string }
+  | { kind: 'wallet'; walletId: string; amount: string; walletName?: string; amountWithRoyalties?: string }
+  | { kind: 'cat'; amount: string; assetId: string; symbol?: string; amountWithRoyalties?: string }
+  | { kind: 'nft'; nftId: string; name?: string; previewUrl?: string; royaltyPercentage?: number };
+
+export type DisplayWalletDelta = {
+  spending: DisplayWalletDeltaItem[];
+  receiving: DisplayWalletDeltaItem[];
+  fee?: string;
 };
 
-export type ConfirmOfferLine =
-  | { kind: 'xch'; amount: string }
-  | { kind: 'cat'; amount: string; assetId: string; symbol?: string }
-  | { kind: 'nft'; nftId: string; name?: string; previewUrl?: string };
+export type ConfirmDisplay = {
+  cat?: { displayName: string; isRevocable: boolean };
+  walletDelta?: DisplayWalletDelta;
+};
 
 /** A single label/value row resolved from the schema. */
 export type ConfirmRow = {
@@ -50,11 +41,13 @@ export type ConfirmRow = {
 };
 
 export type ConfirmProps = {
+  // dialog props
   confirmId: string;
-  /** Pre-resolved per-command label and copy from `confirmSchemas`. */
+
+  // visible base props
   title: string;
   message: string;
-  confirmLabel: string;
+  confirmLabel: ReactNode;
   destructive: boolean;
   /** Pre-resolved param rows from `renderConfirm` (label/value pairs). */
   rows: ConfirmRow[];
@@ -65,10 +58,9 @@ export type ConfirmProps = {
   /** Namespaced RPC name shown in the Command card. */
   command: string;
   networkPrefix?: string;
-  principal?: ConfirmPrincipal;
+  pair?: PairRecord;
   fingerprint?: ConfirmFingerprint;
-  /** Show the "Don't ask again for this command" checkbox. Main sets this
-   *  for pair-principal prompts; signing requests still never reach bypass. */
+  /** Show the "Always allow this command without asking" checkbox for dapp pair requests. */
   showBypassToggle?: boolean;
   styleURL?: string;
   isDarkMode?: boolean;
@@ -98,32 +90,66 @@ function shortenId(id: string, head = 12, tail = 8): string {
   return `${id.slice(0, head)}…${id.slice(-tail)}`;
 }
 
-function offerLineKey(line: ConfirmOfferLine, index: number): string {
+function offerLineKey(line: DisplayWalletDeltaItem, index: number): string {
   if (line.kind === 'xch') return `xch-${line.amount}-${index}`;
+  if (line.kind === 'wallet') return `wallet-${line.walletId}-${line.amount}-${index}`;
   if (line.kind === 'cat') return `cat-${line.assetId}-${line.amount}-${index}`;
   return `nft-${line.nftId}-${index}`;
 }
 
-function OfferLineRow({ line, networkPrefix }: { line: ConfirmOfferLine; networkPrefix?: string }) {
+function OfferLineRow({ line, networkPrefix }: { line: DisplayWalletDeltaItem; networkPrefix?: string }) {
   if (line.kind === 'xch') {
     // Inline `{amount} {unit}` matches the FEE row in the offer card so a
     // single-line summary doesn't look like a wide-spaced table row.
     return (
-      <div className="text-sm font-medium text-chia-text">
-        {line.amount} {networkPrefix ? networkPrefix.toUpperCase() : 'XCH'}
+      <div>
+        <div className="text-sm font-medium text-chia-text">
+          {line.amount} {networkPrefix ? networkPrefix.toUpperCase() : 'XCH'}
+        </div>
+        {line.amountWithRoyalties && (
+          <div className="text-xs text-chia-text-secondary">
+            {i18n._(/* i18n */ { id: 'Total Amount with Royalties' })}: {line.amountWithRoyalties}{' '}
+            {networkPrefix ? networkPrefix.toUpperCase() : 'XCH'}
+          </div>
+        )}
       </div>
     );
   }
   if (line.kind === 'cat') {
     return (
-      <div className="flex items-baseline justify-between gap-3">
-        <span className="text-sm font-medium text-chia-text">
-          {line.amount}
-          {line.symbol && <span className="ml-1 text-chia-text-secondary">{line.symbol}</span>}
-        </span>
-        <span className="text-xs font-mono text-chia-text-secondary truncate max-w-[55%]">
-          {shortenId(line.assetId)}
-        </span>
+      <div>
+        <div className="flex items-baseline gap-3">
+          <span className="text-sm font-medium text-chia-text">
+            {line.amount}
+            {line.symbol && <span className="ml-1 text-chia-text-secondary">{line.symbol}</span>}
+          </span>
+          <span className="text-xs font-mono text-chia-text-secondary truncate max-w-[55%]">
+            {shortenId(line.assetId)}
+          </span>
+        </div>
+        {line.amountWithRoyalties && (
+          <div className="text-xs text-chia-text-secondary">
+            {i18n._(/* i18n */ { id: 'Total Amount with Royalties' })}: {line.amountWithRoyalties}
+            {line.symbol && <span className="ml-1">{line.symbol}</span>}
+          </div>
+        )}
+      </div>
+    );
+  }
+  if (line.kind === 'wallet') {
+    return (
+      <div>
+        <div className="flex items-baseline gap-3">
+          <span className="text-sm font-medium text-chia-text">{line.amount}</span>
+          <span className="text-xs font-mono text-chia-text-secondary truncate max-w-[55%]">
+            {line.walletName ?? `${i18n._(/* i18n */ { id: 'Wallet ID' })} ${shortenId(line.walletId)}`}
+          </span>
+        </div>
+        {line.amountWithRoyalties && (
+          <div className="text-xs text-chia-text-secondary">
+            {i18n._(/* i18n */ { id: 'Total Amount with Royalties' })}: {line.amountWithRoyalties}
+          </div>
+        )}
       </div>
     );
   }
@@ -144,16 +170,21 @@ function OfferLineRow({ line, networkPrefix }: { line: ConfirmOfferLine; network
       <div className="flex-1 min-w-0">
         {line.name && <div className="text-sm font-medium text-chia-text truncate">{line.name}</div>}
         <span className="text-xs font-mono text-chia-text-secondary truncate block">{shortenId(line.nftId)}</span>
+        {line.royaltyPercentage !== undefined && line.royaltyPercentage > 0 && (
+          <div className="text-xs font-mono text-chia-text-secondary truncate block">
+            {i18n._(/* i18n */ { id: 'Royalties Percentage' })}: {line.royaltyPercentage / 100}%
+          </div>
+        )}
       </div>
     </div>
   );
 }
 
-function OfferSummarySection({
-  offer,
+function WalletDeltaSection({
+  walletDelta,
   networkPrefix,
 }: {
-  offer: NonNullable<ConfirmDisplay['offer']>;
+  walletDelta: NonNullable<ConfirmDisplay['walletDelta']>;
   networkPrefix?: string;
 }) {
   const feeUnit = networkPrefix ? networkPrefix.toUpperCase() : 'XCH';
@@ -161,13 +192,13 @@ function OfferSummarySection({
     <section className="rounded-xl border border-chia-border bg-chia-card overflow-hidden divide-y divide-chia-border">
       <div className="px-5 py-2.5">
         <div className="text-xs font-semibold uppercase tracking-wider text-chia-text-muted">
-          {i18n._(/* i18n */ { id: 'Offered' })}
+          {i18n._(/* i18n */ { id: 'You Spend' })}
         </div>
         <div className="mt-1.5 flex flex-col gap-1.5">
-          {offer.offered.length === 0 ? (
+          {walletDelta.spending.length === 0 ? (
             <span className="text-sm text-chia-text-secondary">{i18n._(/* i18n */ { id: 'Nothing' })}</span>
           ) : (
-            offer.offered.map((line, i) => (
+            walletDelta.spending.map((line, i) => (
               <OfferLineRow key={offerLineKey(line, i)} line={line} networkPrefix={networkPrefix} />
             ))
           )}
@@ -175,25 +206,25 @@ function OfferSummarySection({
       </div>
       <div className="px-5 py-2.5">
         <div className="text-xs font-semibold uppercase tracking-wider text-chia-text-muted">
-          {i18n._(/* i18n */ { id: 'Requested' })}
+          {i18n._(/* i18n */ { id: 'You Receive' })}
         </div>
         <div className="mt-1.5 flex flex-col gap-1.5">
-          {offer.requested.length === 0 ? (
+          {walletDelta.receiving.length === 0 ? (
             <span className="text-sm text-chia-text-secondary">{i18n._(/* i18n */ { id: 'Nothing' })}</span>
           ) : (
-            offer.requested.map((line, i) => (
+            walletDelta.receiving.map((line, i) => (
               <OfferLineRow key={offerLineKey(line, i)} line={line} networkPrefix={networkPrefix} />
             ))
           )}
         </div>
       </div>
-      {offer.fee !== undefined && (
+      {walletDelta.fee !== undefined && (
         <div className="px-5 py-2.5">
           <div className="text-xs font-semibold uppercase tracking-wider text-chia-text-muted">
-            {i18n._(/* i18n */ { id: 'Fee' })}
+            {i18n._(/* i18n */ { id: 'Offer Fees' })}
           </div>
           <div className="mt-0.5 text-sm font-medium text-chia-text">
-            {offer.fee} {feeUnit}
+            {walletDelta.fee} {feeUnit}
           </div>
         </div>
       )}
@@ -212,7 +243,7 @@ export default function Confirm(props: ConfirmProps) {
     data,
     command,
     networkPrefix,
-    principal,
+    pair,
     fingerprint,
     showBypassToggle = false,
     styleURL,
@@ -221,7 +252,7 @@ export default function Confirm(props: ConfirmProps) {
   } = props;
 
   const hasData = !!data && Object.keys(data).length > 0;
-  const offerDisplay = display?.offer;
+  const walletDelta = display?.walletDelta;
 
   const requestedFingerprint = fingerprint?.requested;
   const currentFingerprint = fingerprint?.current;
@@ -287,11 +318,11 @@ export default function Confirm(props: ConfirmProps) {
             </div>
           </div>
 
-          {principal && (
+          {pair && (
             <div className="flex items-start gap-3 px-4 py-2.5 rounded-xl border border-chia-border bg-chia-primary-soft">
               <div
                 className="shrink-0 w-9 h-9 rounded-md bg-chia-primary/20"
-                style={buildIconBackground(principal.icon)}
+                style={buildIconBackground(pair.metadata.icon)}
                 aria-hidden="true"
               />
               <div className="flex-1 min-w-0">
@@ -299,13 +330,13 @@ export default function Confirm(props: ConfirmProps) {
                   <span className="text-xs font-semibold uppercase tracking-wider text-chia-text-muted">
                     {i18n._(/* i18n */ { id: 'Request from' })}
                   </span>
-                  <span className="text-sm font-semibold truncate text-chia-text">{principal.name}</span>
+                  <span className="text-sm font-semibold truncate text-chia-text">{pair.metadata.name}</span>
                 </div>
-                {isDisplayableUrl(principal.url) && (
-                  <div className="text-xs text-chia-text-secondary truncate">{principal.url}</div>
+                {isDisplayableUrl(pair.metadata.url) && (
+                  <div className="text-xs text-chia-text-secondary truncate">{pair.metadata.url}</div>
                 )}
-                {principal.description && (
-                  <div className="mt-1 text-xs text-chia-text-secondary truncate">{principal.description}</div>
+                {pair.metadata.description && (
+                  <div className="mt-1 text-xs text-chia-text-secondary truncate">{pair.metadata.description}</div>
                 )}
               </div>
             </div>
@@ -347,6 +378,8 @@ export default function Confirm(props: ConfirmProps) {
             </section>
           )}
 
+          {walletDelta && <WalletDeltaSection walletDelta={walletDelta} networkPrefix={networkPrefix} />}
+
           {rows.length > 0 && (
             <section className="rounded-xl border border-chia-border bg-chia-card overflow-hidden divide-y divide-chia-border">
               {rows.map(({ field, label, value }) => (
@@ -357,8 +390,6 @@ export default function Confirm(props: ConfirmProps) {
               ))}
             </section>
           )}
-
-          {offerDisplay && <OfferSummarySection offer={offerDisplay} networkPrefix={networkPrefix} />}
 
           {hasData && (
             <Collapsible title="Raw data">
@@ -375,10 +406,10 @@ export default function Confirm(props: ConfirmProps) {
           <label className="flex items-center gap-2 text-xs text-chia-text-secondary cursor-pointer select-none">
             <input
               type="checkbox"
-              data-form-field="bypass"
+              data-form-field="rememberBypass"
               className="w-[16px] h-[16px] accent-chia-primary cursor-pointer"
             />
-            <span>{i18n._(/* i18n */ { id: "Don't ask again for this command" })}</span>
+            <span>{i18n._(/* i18n */ { id: 'Always allow this command without asking' })}</span>
           </label>
         ) : (
           <span aria-hidden="true" />
@@ -394,6 +425,7 @@ export default function Confirm(props: ConfirmProps) {
           <button
             type="button"
             id={confirmId}
+            data-payload='{"isAllowed":true,"rememberBypass":false}'
             className={`h-9 px-5 text-sm font-semibold uppercase tracking-wider rounded-md border shadow-sm transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-chia-primary focus-visible:ring-offset-2 focus-visible:ring-offset-chia-bg ${confirmButtonClasses}`}
           >
             {confirmLabel}

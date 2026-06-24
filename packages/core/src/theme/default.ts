@@ -22,7 +22,13 @@ export default {
     },
     danger: {
       main: Color.Red[600],
+      dark: Color.Red[700],
       contrastText: Color.Neutral[50],
+    },
+    default: {
+      main: Color.Neutral[300],
+      dark: Color.Neutral[400],
+      contrastText: Color.Neutral[900],
     },
     highlight: {
       main: Color.Chia.Primary,
