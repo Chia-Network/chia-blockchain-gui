@@ -15,11 +15,9 @@ function generateScriptContent(confirmId: string) {
   return `
     function collectFormData() {
       var data = {};
-      var hasField = false;
       document.querySelectorAll('[data-form-field]').forEach(function (el) {
         var name = el.getAttribute('data-form-field');
         if (!name) return;
-        hasField = true;
         var type = (el.getAttribute('type') || el.tagName).toLowerCase();
         if (type === 'checkbox') {
           if (el.dataset.multi !== undefined) {
@@ -39,7 +37,7 @@ function generateScriptContent(confirmId: string) {
           data[name] = el.value;
         }
       });
-      return hasField ? data : true;
+      return data;
     }
 
     function updateDynamicSummary() {
@@ -140,13 +138,16 @@ function generateScriptContent(confirmId: string) {
 
     updateDynamicSummary();
 
-    document.getElementById('${confirmId}')?.addEventListener('click', function () {
-      window.dialogAPI.resolve(collectFormData());
+    document.getElementById('${confirmId}')?.addEventListener('click', function (event) {
+      var formData = collectFormData();
+      var payload = event.currentTarget.getAttribute('data-payload');
+
+      window.dialogAPI.resolve(payload ? Object.assign(JSON.parse(payload), formData) : formData);
     });
 
     document.querySelectorAll('[data-action="cancel"]').forEach(function (button) {
       button.addEventListener('click', function () {
-        window.dialogAPI.resolve(false);
+        window.dialogAPI.resolve(undefined);
       });
     });
   `;

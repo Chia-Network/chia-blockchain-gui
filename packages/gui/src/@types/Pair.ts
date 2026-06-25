@@ -11,7 +11,7 @@ export type PendingProposal = {
 
 // Renderer-only pair record — strictly transient WC SDK state. The
 // persistent / security-relevant copy lives in `dapp-pairs.yaml` (main),
-// accessed through `permissionsAPI.listPairs`. Anything that needs to
+// accessed through `permissionsAPI.getPairs`. Anything that needs to
 // survive an app restart, or that the gate has to trust, belongs there,
 // not here. Fingerprints in particular live exclusively on main's
 // PairRecord — the renderer doesn't need them for any decision.
