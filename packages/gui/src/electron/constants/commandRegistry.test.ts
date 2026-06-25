@@ -142,6 +142,7 @@ describe('isDappAllowedWcCommand', () => {
     expect(isDappAllowedWcCommand('chia_signMessageByAddress')).toBe(true);
     expect(isDappAllowedWcCommand('chia_getWallets')).toBe(true);
     expect(isDappAllowedWcCommand('chia_getNFTInfo')).toBe(true);
+    expect(isDappAllowedWcCommand('chia_getFullNodePeerCount')).toBe(true);
   });
 
   it('returns false for unknown / UI-only / wrong-form commands', () => {
@@ -176,6 +177,14 @@ describe('resolveDispatch', () => {
       destination: 'chia_wallet',
       command: 'did_set_wallet_name',
       nsCommand: 'chia_wallet.did_set_wallet_name',
+    });
+  });
+
+  it('resolves chia_getFullNodePeerCount to the wallet RPC', () => {
+    expect(resolveDispatch('chia_getFullNodePeerCount')).toEqual({
+      destination: 'chia_wallet',
+      command: 'get_full_node_peer_count',
+      nsCommand: 'chia_wallet.get_full_node_peer_count',
     });
   });
 
@@ -473,6 +482,11 @@ describe('commandsMetadata', () => {
     expect(byWc.get('chia_signMessageByAddress')?.requiresSync).toBe(false);
     expect(byWc.get('chia_takeOffer')?.requiresSync).toBe(false);
   });
+
+  it('exposes a label for chia_getFullNodePeerCount with requiresSync false', () => {
+    expect(byWc.get('chia_getFullNodePeerCount')?.label).toBe('Get Full Node Peer Count');
+    expect(byWc.get('chia_getFullNodePeerCount')?.requiresSync).toBe(false);
+  });
 });
 
 describe('applyDefaults', () => {
@@ -616,6 +630,10 @@ describe('dapp.transformResponse', () => {
 
   it('chia_getCATAssetId unwraps to assetId', () => {
     expect(tx('chia_getCATAssetId', { assetId: '0xdeadbeef' })).toBe('0xdeadbeef');
+  });
+
+  it('chia_getFullNodePeerCount unwraps to peerCount', () => {
+    expect(tx('chia_getFullNodePeerCount', { peerCount: 8, success: true })).toBe(8);
   });
 
   it('chia_getNFTWalletsWithDIDs unwraps to nftWallets', () => {
