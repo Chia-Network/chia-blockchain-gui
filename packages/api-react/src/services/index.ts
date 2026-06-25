@@ -168,6 +168,7 @@ export const {
   useGetHeightInfoQuery,
   useGetPuzzleAndSolutionMutation,
   useGetNetworkInfoQuery,
+  useGetWalletFeeEstimateQuery,
   useGetSyncStatusQuery,
   useGetWalletConnectionsQuery,
   useGetAllOffersQuery,

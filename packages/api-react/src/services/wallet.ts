@@ -623,6 +623,8 @@ export const walletApi = apiWithTag.injectEndpoints({
 
     getNetworkInfo: query(build, WalletService, 'getNetworkInfo'),
 
+    getWalletFeeEstimate: query(build, WalletService, 'getFeeEstimate'),
+
     getSyncStatus: query(build, WalletService, 'getSyncStatus', {
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
@@ -1630,6 +1632,7 @@ export const {
   useGetHeightInfoQuery,
   useGetPuzzleAndSolutionMutation,
   useGetNetworkInfoQuery,
+  useGetWalletFeeEstimateQuery,
   useGetSyncStatusQuery,
   useGetWalletConnectionsQuery,
   useGetAllOffersQuery,

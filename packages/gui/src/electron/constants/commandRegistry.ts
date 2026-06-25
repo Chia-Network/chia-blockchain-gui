@@ -1859,6 +1859,17 @@ const SCHEMAS: Record<string, CommandSchema> = {
     },
   },
 
+  // Daemon wallet RPC takes no params (`request: Empty`) and returns
+  // `fee_per_cost`; surface the camelCased `{ feePerCost }` unchanged.
+  'chia_wallet.get_fee_estimate': {
+    params: [],
+    dapp: {
+      wcCommand: 'chia_getFeeEstimate',
+      label: () => i18n._(/* i18n */ { id: 'Get Fee Estimate' }),
+      description: () => i18n._(/* i18n */ { id: 'Requests the current fee per cost estimate from the wallet' }),
+    },
+  },
+
   'chia_wallet.get_height_info': {
     params: [
       {
