@@ -7,39 +7,19 @@ export type PermissionsPairMetadata = {
   description?: string;
 };
 
-export type PermissionsPairGrants = {
-  /** XCH mojos auto-approved per pair when the command is not bypassed. `'0'` = prompt unless bypassed. */
-  xchMojos: string;
-};
-
+/** Renderer-safe pair view returned over `permissionsAPI`. */
 export type PermissionsPairRecord = {
   topic: string;
   mainnet: boolean;
   metadata: PermissionsPairMetadata;
-  fingerprints: number[];
-  createdAt: number;
-  updatedAt: number;
-  grants: PermissionsPairGrants;
-  /** Mojos debited from `grants.xchMojos`. */
-  usedMojos: string;
+  fingerprint: number;
   /** Wire form `chia_<name>`. Granted at pairing; empty = deny-all. */
   commands: string[];
-  /**
-   * Per-wcCommand "don't ask again" list. Spend-class commands can be listed
-   * here for exact command-level trust; otherwise they fall back to
-   * `grants.xchMojos`.
-   */
-  bypass: string[];
+  /** Whether this pair has any command-level "always allow" overrides. */
+  hasBypass: boolean;
 };
 
 export type PermissionsCommandMetadata = {
-  /** Wire-form WC command name (`chia_<name>`). */
-  wcCommand: string;
-  /** Resolved label string in the current locale (when the schema declares one). */
-  label?: string;
-  /** Resolved description string in the current locale. */
-  description?: string;
-  /** Whether the renderer should wait for wallet sync before dispatching. */
   requiresSync: boolean;
 };
 
@@ -76,41 +56,27 @@ export type PermissionsNotificationPayload =
     };
 
 type PermissionsService = {
-  listPairs: () => Promise<PermissionsPairRecord[]>;
+  findPair: (topic: string) => Promise<PermissionsPairRecord | undefined>;
+  getPairs: () => Promise<PermissionsPairRecord[]>;
   registerPair: (payload: {
     topic: string;
     mainnet: boolean;
     metadata: PermissionsPairMetadata;
     /** WC commands from the dapp's session proposal, wire form `chia_<name>`. */
-    requestedCommands?: string[];
+    commands: string[];
   }) => Promise<PermissionsPairRecord | null>;
-  editPair: (payload: { topic: string }) => Promise<PermissionsPairRecord | null>;
-  revokePair: (topic: string) => Promise<boolean>;
-  resetBypass: (topic: string) => Promise<PermissionsPairRecord | null>;
-  resetBypassAll: () => Promise<boolean>;
-  commandsMetadata: () => Promise<PermissionsCommandMetadata[]>;
-  /**
-   * Subscribe to `chia_showNotification` payloads from main. Main fires
-   * after the gate passes; renderer routes to its notification system.
-   * Returns an unsubscribe function.
-   */
-  subscribeToNotification: (callback: (notification: PermissionsNotificationPayload) => void) => () => void;
+  editPair: (topic: string) => Promise<PermissionsPairRecord | null>;
+  revokePair: (topic: string) => Promise<void>;
+  resetPairBypass: (topic: string) => Promise<void>;
+  resetAllPairBypasses: () => Promise<void>;
+  getCommandMetadata: (command: string) => Promise<PermissionsCommandMetadata | undefined>;
+  subscribeForNotifications: (callback: (notification: PermissionsNotificationPayload) => void) => () => void;
   dispatchAsPair: (payload: {
-    /** camelCase WC command name (e.g. `spendCAT`); main resolves to
-     *  destination + RPC via the registry. Renderer is not trusted to
-     *  claim a destination. */
-    wcCommand: string;
-    data?: Record<string, unknown>;
     topic: string;
-    /** Chain id from the dapp's WC chainId — main validates against the pair. */
-    mainnet: boolean;
-    fingerprint?: {
-      requested: number;
-      current?: number;
-      requestedLabel?: string;
-      currentLabel?: string;
-    };
-  }) => Promise<{ data: Record<string, unknown> }>;
+    command: string;
+    // serialized params because of bigints
+    params: string;
+  }) => Promise<string>;
 };
 
 export default PermissionsService;

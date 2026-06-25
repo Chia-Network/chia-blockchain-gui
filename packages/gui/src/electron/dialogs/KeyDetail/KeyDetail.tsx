@@ -21,7 +21,7 @@ export default function KeyDetail(props: KeyDetailProps) {
   const { data } = props;
 
   return (
-    <div className="p-4 flex flex-col text-gray-900 dark:text-gray-100">
+    <div className="h-screen overflow-y-auto p-4 flex flex-col text-sm text-gray-900 dark:text-gray-100">
       <div className="mb-4">
         <h2 className="mt-0 mb-4 text-base">{data.label || `Wallet ${data.index + 1}`}</h2>
         <p className="mt-0 mb-4 text-gray-500 dark:text-gray-400">{data.fingerprint}</p>

@@ -4,12 +4,12 @@ import { Trans } from '@lingui/macro';
 import { Box, Button } from '@mui/material';
 import React from 'react';
 
-import useWalletConnectContext from '../../hooks/useWalletConnectContext';
+import useWalletConnect from '../../hooks/useWalletConnect';
 
 import WalletConnectConnections from './WalletConnectConnections';
 
 export default function WalletConnectDropdown() {
-  const { enabled, pairs, isLoading } = useWalletConnectContext();
+  const { enabled, pairs, isLoading } = useWalletConnect();
 
   const ButtonStyle = {
     minWidth: 0,
@@ -18,7 +18,7 @@ export default function WalletConnectDropdown() {
     borderRadius: '8px',
   };
 
-  const color = enabled && !isLoading && pairs.get().length > 0 ? 'primary' : 'info';
+  const color = enabled && !isLoading && pairs.length > 0 ? 'primary' : 'info';
 
   return (
     <DropdownBase>

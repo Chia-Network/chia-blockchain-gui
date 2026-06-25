@@ -1,10 +1,11 @@
 import { Trans } from '@lingui/macro';
-import { ButtonProps, Dialog, DialogTitle, DialogContent, DialogContentText } from '@mui/material';
+import { Dialog, DialogTitle, DialogContent, DialogContentText } from '@mui/material';
 import React, { type ReactNode, useEffect, useState, useCallback } from 'react';
 
 import useShowError from '../../hooks/useShowError';
 import Button from '../Button';
 import ButtonLoading from '../ButtonLoading';
+import type { ButtonLoadingProps } from '../ButtonLoading/ButtonLoading';
 import DialogActions from '../DialogActions';
 
 export type ConfirmDialogProps = {
@@ -14,7 +15,7 @@ export type ConfirmDialogProps = {
   onClose?: (value: boolean) => void;
   confirmTitle: ReactNode;
   cancelTitle: ReactNode;
-  confirmColor?: ButtonProps['color'] | 'danger';
+  confirmColor?: ButtonLoadingProps['color'];
   onConfirm?: () => Promise<void>;
   disableConfirmButton?: boolean;
   autoClose?: 'confirm' | 'cancel';

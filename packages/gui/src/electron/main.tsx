@@ -24,56 +24,71 @@ import sanitizeFilename from 'sanitize-filename';
 import '../config/env';
 
 import packageJson from '../../package.json';
+import type { PermissionsNotificationPayload } from '../@types/PermissionsService';
 import { WcError, WcErrorCode, encodeWcErrorForIpc } from '../@types/WcError';
 import AppIcon from '../assets/img/chia64x64.png';
 import { i18n } from '../config/locales';
 
 import CacheManager from './CacheManager';
+import { checkNFTOwnership } from './api/checkNFTOwnership';
+import { getKeyDetails } from './api/getKeyDetails';
+import { getNetworkInfo } from './api/getNetworkInfo';
+import { isMainnet } from './api/isMainnet';
+import { sendCommand } from './api/sendCommand';
+import { DappCommands } from './commands/DappCommands';
+import { filterRequestedDappCommands } from './commands/filterRequestedDappCommands';
+import { getDappCommandMetadata } from './commands/getDappCommandMetadata';
+import { humanizeCommand } from './commands/humanizeCommand';
+import { humanizeDappCommand } from './commands/humanizeDappCommand';
+import { isAllowedCommand } from './commands/isAllowedCommand';
+import { parseCommandDisplay } from './commands/parseCommandDisplay';
+import { parseCommandId } from './commands/parseCommandId';
+import { parseDappParams } from './commands/parseDappParams';
 import AddressBookAPI from './constants/AddressBookAPI';
 import AppAPI from './constants/AppAPI';
 import ChiaLogsAPI from './constants/ChiaLogsAPI';
 import LinkAPI from './constants/LinkAPI';
 import PermissionsAPI from './constants/PermissionsAPI';
 import PreferencesAPI from './constants/PreferencesAPI';
-import { commandsMetadata, filterRequestedCommands } from './constants/commandRegistry';
 import About from './dialogs/About/About';
-import Confirm from './dialogs/Confirm/Confirm';
-import { renderConfirm } from './dialogs/Confirm/renderConfirm';
+import Confirm, { type ConfirmProps } from './dialogs/Confirm/Confirm';
 import KeyDetail from './dialogs/KeyDetail/KeyDetail';
-import Pair, { getTitle as getPairTitle, type PairWalletOption } from './dialogs/Pair/Pair';
-import { buildNewPairRecord } from './permissions/buildPairRecord';
-import { checkPairAccess } from './permissions/checkPairAccess';
-import { dispatchDaemonCommandAsPair } from './permissions/dispatchAsPair';
-import {
-  classifyForPairDialog,
-  dialogResultToBypass,
-  dialogResultToFingerprints,
-  dialogResultToGrants,
-} from './permissions/pairDialog';
-import { getPair, listPairs, removePair, resetBypass, resetBypassAll, upsertPair } from './permissions/pairStore';
-import { resolvePermission } from './permissions/permissions';
-import type { PairGrants, PairMetadata, PairRecord } from './permissions/types';
 import { readPrefs, savePrefs, migratePrefs } from './prefs';
 import { readAddressBook, saveAddressBook } from './utils/addressBook';
-import checkNFTOwnership from './utils/checkNFTOwnership';
 import chiaEnvironment, { chiaInit } from './utils/chiaEnvironment';
+import { dispatchPairRequest } from './utils/dispatchPairRequest';
 import downloadFile from './utils/downloadFile';
 import fetchJSON from './utils/fetchJSON';
-import getAvailableWallets from './utils/getAvailableWallets';
-import getKeyDetails from './utils/getKeyDetails';
-import getNetworkInfo from './utils/getNetworkInfo';
 import ipcMainHandle from './utils/ipcMainHandle';
 import isValidURL from './utils/isValidURL';
-import loadConfig, { checkConfigFileExists } from './utils/loadConfig';
+import { loadConfig, checkConfigFileExists } from './utils/loadConfig';
 import manageDaemonLifetime from './utils/manageDaemonLifetime';
 import openExternal from './utils/openExternal';
+import { openPairDialog } from './utils/openPairDialog';
 import openReactDialog from './utils/openReactDialog';
+import { toPairPublicRecord, type PairMetadata, type PairRecord } from './utils/pairSchemas';
+import {
+  findPair,
+  getPairs,
+  removePair,
+  resetBypass,
+  resetBypassAll,
+  addPair,
+  updatePair,
+  addBypassCommand,
+} from './utils/pairStore';
 import * as privatePreferences from './utils/privatePreferences';
+import toCamelCase from './utils/toCamelCase';
 import { setUserDataDir } from './utils/userData';
 import webSocketBridgeBindEvents from './utils/webSocketBridge';
 
 const isPlaywrightTesting = process.env.PLAYWRIGHT_TESTS === 'true';
 const NET = 'mainnet';
+
+type ConfirmDialogResult = {
+  isAllowed: boolean;
+  rememberBypass: boolean;
+};
 
 app.disableHardwareAcceleration();
 app.commandLine.appendSwitch('disable-http-cache');
@@ -97,17 +112,25 @@ let networkPrefix: string | undefined;
 let currentDownloadRequest: any;
 let abortDownloadingFiles: boolean = false;
 
+function sendRendererNotification(notification: PermissionsNotificationPayload) {
+  if (!mainWindow || mainWindow.isDestroyed() || mainWindow.webContents.isDestroyed()) {
+    throw new Error('No renderer window available for notification');
+  }
+
+  mainWindow.webContents.send(PermissionsAPI.SUBSCRIBE_FOR_NOTIFICATIONS, notification);
+}
+
 // IPC listeners
 ipcMainHandle(PreferencesAPI.READ, () => readPrefs());
-ipcMainHandle(PreferencesAPI.SAVE, (prefsObj) => savePrefs(prefsObj));
-ipcMainHandle(PreferencesAPI.MIGRATE, (prefsObj) => migratePrefs(prefsObj));
+ipcMainHandle(PreferencesAPI.SAVE, (prefsObj) => savePrefs(sanitizeRendererPrefs(prefsObj)));
+ipcMainHandle(PreferencesAPI.MIGRATE, (prefsObj) => migratePrefs(sanitizeRendererPrefs(prefsObj)));
 
 ipcMainHandle(AddressBookAPI.SAVE, (addressBook) => saveAddressBook(addressBook));
 ipcMainHandle(AddressBookAPI.READ, () => readAddressBook());
 
 ipcMainHandle(LinkAPI.OPEN_EXTERNAL, (openUrl: string) => openExternal(openUrl));
 
-ipcMainHandle(AppAPI.OPEN_KEY_DETAIL, async (fingerprint: string) => {
+ipcMainHandle(AppAPI.OPEN_KEY_DETAIL, async (fingerprint: number) => {
   await openKeyDetail(fingerprint);
 });
 
@@ -131,192 +154,216 @@ ipcMainHandle(AppAPI.SHOW_NOTIFICATION, async (options: { title: string; body: s
   }).show();
 });
 
-async function openPairDialog(
-  metadata: PairMetadata,
-  availableWallets: PairWalletOption[],
-  options: {
-    defaults?: PairRecord;
-    defaultFingerprints?: number[];
-    isEdit?: boolean;
-    allowed?: string[];
-    rejected?: string[];
-  } = {},
-): Promise<{ grants: PairGrants; fingerprints: number[]; bypass: string[]; resetUsed: boolean } | undefined> {
+ipcMainHandle(PermissionsAPI.FIND_PAIR, (topic: string) => {
+  const pair = findPair(topic);
+  return pair ? toPairPublicRecord(pair) : undefined;
+});
+
+ipcMainHandle(PermissionsAPI.GET_PAIRS, () => getPairs().map(toPairPublicRecord));
+
+ipcMainHandle(
+  PermissionsAPI.REGISTER_PAIR,
+  async (payload: { topic: string; mainnet: boolean; metadata: PairMetadata; commands: string[] }) => {
+    const { topic, mainnet, metadata, commands = [] } = payload;
+    if (!mainWindow) {
+      throw new Error('mainWindow is empty');
+    }
+
+    if (!topic) {
+      throw new Error('topic is required');
+    }
+
+    if (typeof mainnet !== 'boolean') {
+      throw new Error('mainnet flag is required');
+    }
+
+    if (!commands || commands.length === 0) {
+      throw new Error('commands are required');
+    }
+
+    if (!metadata) {
+      throw new Error('metadata are required');
+    }
+
+    const isMainnetValue = await isMainnet();
+
+    // if renderer and daemon are not on the same network, throw an error
+    if (isMainnetValue !== mainnet) {
+      throw new Error('Mainnet flag does not match network prefix');
+    }
+
+    // filter out unsupported dapp commands (commands that are not in the commands list) from the list of requested commands
+    const { allowed } = filterRequestedDappCommands(commands);
+    if (!allowed.length) {
+      throw new Error('No allowed commands');
+    }
+
+    const decision = await openPairDialog(mainWindow, metadata, commands);
+    if (!decision) {
+      return null;
+    }
+
+    const { bypass, fingerprint } = decision;
+    if (!fingerprint) {
+      throw new Error('fingerprint is required');
+    }
+
+    const pair = addPair({
+      topic,
+      mainnet,
+      metadata,
+      commands: allowed,
+      fingerprint,
+      bypass,
+    });
+
+    return toPairPublicRecord(pair);
+  },
+);
+
+ipcMainHandle(PermissionsAPI.EDIT_PAIR, async (topic: string) => {
   if (!mainWindow) {
     throw new Error('mainWindow is empty');
   }
 
-  const grantedCommands = options.allowed ?? options.defaults?.commands ?? [];
-  const commandGroups = classifyForPairDialog(grantedCommands);
-
-  const result = await openReactDialog<Record<string, unknown> | true | false, React.ComponentProps<typeof Pair>>(
-    mainWindow,
-    Pair,
-    {
-      metadata,
-      availableWallets,
-      defaultGrants: options.defaults?.grants,
-      defaultFingerprints: options.defaults?.fingerprints ?? options.defaultFingerprints,
-      isEdit: !!options.isEdit,
-      defaultUsedMojos: options.defaults?.usedMojos,
-      defaultBypass: options.defaults?.bypass ?? [],
-      commandGroups,
-      currencyCode: networkPrefix ? networkPrefix.toUpperCase() : 'XCH',
-      rejectedCommands: options.rejected ?? [],
-    },
-    {
-      title: getPairTitle(!!options.isEdit),
-      width: 640,
-      height: 600,
-    },
-  );
-
-  if (!result || result === true) {
-    return undefined;
+  const pair = findPair(topic);
+  if (!pair) {
+    return null;
   }
 
-  return {
-    grants: dialogResultToGrants(result),
-    fingerprints: dialogResultToFingerprints(result),
-    bypass: dialogResultToBypass(result, grantedCommands),
-    resetUsed: result.resetUsed === true,
+  const result = await openPairDialog(mainWindow, pair.metadata, pair.commands, pair);
+  if (!result) {
+    return toPairPublicRecord(pair);
+  }
+
+  const { bypass } = result;
+
+  const updatedPair: Partial<PairRecord> = {
+    bypass,
   };
-}
 
-ipcMainHandle(PermissionsAPI.PAIR_LIST, () => listPairs());
-
-ipcMainHandle(
-  PermissionsAPI.PAIR_REGISTER,
-  async (payload: {
-    topic: string;
-    mainnet: boolean;
-    metadata: PairMetadata;
-    /** Wire form `chia_<name>`; filtered through the registry — never trusted as-is. */
-    requestedCommands?: string[];
-  }) => {
-    const { topic, mainnet, metadata, requestedCommands = [] } = payload;
-    if (typeof mainnet !== 'boolean') {
-      throw new Error('mainnet flag is required');
-    }
-    const { availableWallets, defaultFingerprints } = await getAvailableWallets();
-    const { allowed, rejected } = filterRequestedCommands(requestedCommands);
-    const decision = await openPairDialog(metadata, availableWallets, {
-      defaultFingerprints,
-      allowed,
-      rejected,
-    });
-    if (!decision) return null;
-
-    const record = buildNewPairRecord({
-      topic,
-      mainnet,
-      metadata,
-      fingerprints: decision.fingerprints,
-      grants: decision.grants,
-      commands: allowed,
-      bypass: decision.bypass,
-      now: Date.now(),
-    });
-    upsertPair(record);
-    return record;
-  },
-);
-
-ipcMainHandle(PermissionsAPI.PAIR_EDIT, async (payload: { topic: string }) => {
-  const { topic } = payload;
-  const existing = getPair(topic);
-  if (!existing) return null;
-
-  const { availableWallets } = await getAvailableWallets();
-  const decision = await openPairDialog(existing.metadata, availableWallets, {
-    defaults: existing,
-    isEdit: true,
-    // No new proposal on edit — show whatever was previously approved.
-    allowed: existing.commands,
-  });
-  if (!decision) return existing;
-
-  const updated: PairRecord = {
-    ...existing,
-    fingerprints: decision.fingerprints,
-    grants: decision.grants,
-    bypass: decision.bypass,
-    usedMojos: decision.resetUsed ? '0' : existing.usedMojos,
-    updatedAt: Date.now(),
-  };
-  upsertPair(updated);
-  return updated;
+  return toPairPublicRecord(updatePair(topic, updatedPair));
 });
 
-ipcMainHandle(PermissionsAPI.PAIR_REVOKE, (topic: string) => {
+ipcMainHandle(PermissionsAPI.REVOKE_PAIR, (topic: string) => {
   removePair(topic);
-  return true;
 });
 
-ipcMainHandle(PermissionsAPI.PAIR_RESET_BYPASS, (topic: string) => resetBypass(topic) ?? null);
+ipcMainHandle(PermissionsAPI.RESET_PAIR_BYPASS, (topic: string) => {
+  resetBypass(topic);
+});
 
-ipcMainHandle(PermissionsAPI.PAIR_RESET_BYPASS_ALL, () => {
+ipcMainHandle(PermissionsAPI.RESET_ALL_PAIR_BYPASSES, () => {
   resetBypassAll();
-  return true;
 });
 
-ipcMainHandle(PermissionsAPI.COMMANDS_METADATA, () => commandsMetadata());
+ipcMainHandle(PermissionsAPI.GET_COMMAND_METADATA, (command: string) => getDappCommandMetadata(command));
 
-// Dapp WC dispatch — single IPC entry point so the principal is bound here
-// rather than threaded through shared infrastructure where it could leak.
 ipcMainHandle(
   PermissionsAPI.DISPATCH_AS_PAIR,
   async (payload: {
-    wcCommand: string;
-    data?: Record<string, unknown>;
     topic: string;
-    mainnet: boolean;
-    fingerprint?: {
-      requested: number;
-      current?: number;
-      requestedLabel?: string;
-      currentLabel?: string;
-    };
+    command: string;
+    params: string; // serialized params because of bigints
   }) => {
+    const { topic, command, params } = payload;
+
     try {
       if (!mainWindow) {
         throw new WcError('mainWindow is empty', WcErrorCode.INTERNAL_ERROR);
       }
-      const activeWindow = mainWindow;
 
-      const { wcCommand, data: argsData, topic, mainnet, fingerprint } = payload;
-      if (typeof mainnet !== 'boolean') {
-        throw new WcError('mainnet flag is required', WcErrorCode.INVALID_PARAMS);
+      const dappCommandSchema = DappCommands.get(command);
+      if (!dappCommandSchema) {
+        throw new WcError(`Unknown wc command: ${command}`, WcErrorCode.METHOD_NOT_FOUND);
       }
-      const data = argsData ?? {};
 
-      const access = checkPairAccess({ topic, wcCommand, fingerprint: fingerprint?.requested, mainnet }, { getPair });
-      if (!access.ok) {
-        throw new WcError(access.reason, access.code);
-      }
-      const { pair } = access;
+      const { commandId } = dappCommandSchema;
+      const parsedParams = parseDappParams(command, params);
 
-      return await dispatchDaemonCommandAsPair(
-        {
-          wcCommand,
-          data,
-          topic,
-          mainnet,
-          fingerprint,
-          networkPrefix,
-          mainWindow: activeWindow,
-          pair,
+      // verify all permissions and execute command after user confirmation
+      const result = await dispatchPairRequest(
+        topic,
+        command,
+        parsedParams,
+        // process the command
+        async (context) => {
+          const { destination, command: chiaCommand } = parseCommandId(commandId);
+
+          const response = dappCommandSchema.handler
+            ? await dappCommandSchema.handler(parsedParams, {
+                ...context,
+                sendNotification: sendRendererNotification,
+                canBypassCommand: (requestedCommand) =>
+                  DappCommands.get(requestedCommand)?.allowConfirmationBypass === true,
+              })
+            : await sendCommand(chiaCommand, destination, parsedParams);
+
+          const transformedResponse = dappCommandSchema.transform ? dappCommandSchema.transform(response) : response;
+
+          // dapp is sending back camelCase response
+          const camelCaseResponse = toCamelCase(transformedResponse as Record<string, unknown>, {
+            deep: !dappCommandSchema.preserveNestedDataKeys,
+          });
+
+          return dappCommandSchema.handler ? camelCaseResponse : { data: camelCaseResponse };
         },
-        {
-          openConfirm: (props, options) =>
-            openReactDialog<true | false | Record<string, unknown>, React.ComponentProps<typeof Confirm>>(
-              activeWindow,
-              Confirm,
-              props,
-              options,
-            ),
+        // show the confirm dialog to the user
+        async () => {
+          // humanize all data from command
+          const { title, message, confirmLabel, destructive, rows } = await humanizeDappCommand(
+            command,
+            parsedParams,
+            networkPrefix,
+          );
+
+          const pair = findPair(topic);
+          if (!pair) {
+            throw new WcError(`Pair not found`, WcErrorCode.USER_REJECTED);
+          }
+
+          if (!mainWindow) {
+            throw new WcError('mainWindow is empty', WcErrorCode.INTERNAL_ERROR);
+          }
+
+          const display = await parseCommandDisplay(commandId, parsedParams);
+
+          const confirmResult = await openReactDialog<ConfirmDialogResult, ConfirmProps>(
+            mainWindow,
+            Confirm,
+            {
+              networkPrefix,
+              command: commandId,
+              data: parsedParams,
+              title,
+              message,
+              confirmLabel,
+              destructive,
+              rows,
+              pair,
+              display,
+              showBypassToggle: dappCommandSchema.allowConfirmationBypass === true,
+            },
+            {
+              title,
+              width: 640,
+              height: 600,
+            },
+          );
+
+          if (confirmResult && confirmResult.isAllowed === true) {
+            if (confirmResult.rememberBypass && dappCommandSchema.allowConfirmationBypass === true) {
+              addBypassCommand(topic, command);
+            }
+
+            return true;
+          }
+
+          throw new WcError('Operation cancelled by user', WcErrorCode.USER_REJECTED);
         },
       );
+
+      return JSONbig.stringify(result);
     } catch (e) {
       // Electron IPC strips custom Error properties (`code`). Re-throw with
       // the code encoded into the message; renderer decodes via decodeWcErrorFromIpc.
@@ -426,8 +473,8 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
             resolve(body);
           });
 
-          response.on('error', (e: string) => {
-            reject(new Error(e));
+          response.on('error', (e: Error | string) => {
+            reject(new Error(typeof e === 'string' ? e : e.message));
           });
         });
 
@@ -744,58 +791,65 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
         }
 
         const parsedData = JSONbig.parse(data);
+
         const command = parsedData.command.trim().toLowerCase();
         const destination = parsedData.destination.trim().toLowerCase();
 
-        const nsCommand = `${destination}.${command}`;
+        const commandId = `${destination}.${command}`;
 
-        if (['chia_wallet.get_private_key'].includes(nsCommand)) {
+        // if renderer is trying to get the private key
+        if (['chia_wallet.get_private_key'].includes(commandId)) {
           throw new Error('Private key is not allowed to be sent to the renderer process');
         }
 
-        // Renderer sends are always UI-principal; dapp calls go via DISPATCH_AS_PAIR.
-        const decision = await resolvePermission({ kind: 'ui' }, nsCommand, parsedData.data ?? {});
-
-        if (decision.kind === 'allow') {
-          decision.commit();
+        // if commands is allowed to run without confirmation
+        if (isAllowedCommand(commandId)) {
           return;
         }
 
-        if (decision.kind === 'deny') {
-          throw new Error(decision.reason);
-        }
-
-        const bypassCommands = privatePreferences.get('bypassCommands', [] as string[]);
-        if (bypassCommands.includes(nsCommand)) {
+        // if user put the command in the bypass commands
+        const bypassCommands = privatePreferences.get<string[]>('bypassCommands', []);
+        if (bypassCommands.includes(commandId)) {
           return;
         }
 
-        const onSendData = (parsedData.data ?? {}) as Record<string, unknown>;
-        const rendered = await renderConfirm(nsCommand, onSendData, { networkPrefix });
-        const result = await openReactDialog(
+        const commandData = (parsedData.data ?? {}) as Record<string, unknown>;
+
+        // humanize all data from command
+        const { title, message, confirmLabel, destructive, rows } = await humanizeCommand(
+          commandId,
+          commandData,
+          networkPrefix,
+        );
+
+        const display = await parseCommandDisplay(commandId, commandData);
+
+        const confirmResult = await openReactDialog<ConfirmDialogResult, ConfirmProps>(
           mainWindow,
           Confirm,
           {
             networkPrefix,
-            command: nsCommand,
-            data: onSendData,
-            title: rendered.title,
-            message: rendered.message,
-            confirmLabel: rendered.confirmLabel,
-            destructive: rendered.destructive,
-            rows: rendered.rows,
-            display: rendered.display,
+            command: commandId,
+            data: commandData,
+            title,
+            message,
+            confirmLabel,
+            destructive,
+            rows,
+            display,
           },
           {
-            title: rendered.title,
+            title,
             width: 640,
             height: 600,
           },
         );
 
-        if (result !== true) {
-          throw new Error('Operation cancelled by user');
+        if (confirmResult && confirmResult.isAllowed === true) {
+          return;
         }
+
+        throw new Error('Operation cancelled by user');
       },
     });
 
@@ -985,16 +1039,16 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
 
       logPath = filePath;
 
-      // Check file exists
-      await fs.promises.access(logPath, fs.constants.F_OK);
-      // Check file is readable
-      await fs.promises.access(logPath, fs.constants.R_OK);
+      // Validate and canonicalize the user-selected file (rejects symlinks /
+      // non-files) and store the resolved path so it matches the validation
+      // performed later in GET_CONTENT / GET_INFO.
+      const resolvedPath = await resolveTrustedLogPath(logPath);
 
       const currentPrefs = readPrefs();
 
       await savePrefs({
         ...currentPrefs,
-        customLogPath: logPath,
+        customLogPath: resolvedPath,
       });
 
       return { success: true };
@@ -1012,38 +1066,42 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
   ipcMainHandle(ChiaLogsAPI.GET_CONTENT, async () => {
     try {
       const currentPrefs = readPrefs();
+      const requestedPath = currentPrefs.customLogPath || getDefaultLogPath();
 
-      const logPath =
-        currentPrefs.customLogPath ||
-        path.join(process.env.CHIA_ROOT || path.join(app.getPath('home'), '.chia', 'mainnet'), 'log', 'debug.log');
-
-      // Check if file exists and is readable
+      // Resolve and validate the path (rejects symlinks / non-files) before it
+      // is read. `resolvedPath` is the canonical absolute path that will be
+      // shown to the user, so the file being read is never hidden.
+      let resolvedPath: string;
       try {
-        await fs.promises.access(logPath, fs.constants.R_OK);
+        resolvedPath = await resolveTrustedLogPath(requestedPath);
       } catch (e) {
+        if (e instanceof LogPathValidationError) {
+          return { error: e.message };
+        }
         return { error: 'Log file not accessible' };
       }
 
-      // Show confirmation dialog before reading logs
+      // Show confirmation dialog before reading logs, including the exact path
+      // so the user can see precisely which file will be read (anti-phishing).
       const { response } = await dialog.showMessageBox({
         type: 'warning',
         buttons: [i18n._(/* i18n */ { id: 'Cancel' }), i18n._(/* i18n */ { id: 'Continue' })],
         defaultId: 0,
         title: i18n._(/* i18n */ { id: 'Warning' }),
         message: i18n._(/* i18n */ { id: 'Log files may contain sensitive information' }),
-        detail: i18n._(/* i18n */ { id: 'Are you sure you want to view the log contents?' }),
+        detail: `${i18n._(/* i18n */ { id: 'Are you sure you want to view the log contents?' })}\n\n${resolvedPath}`,
       });
 
       if (response === 0) {
         return { error: 'Operation cancelled by user' };
       }
 
-      const content = await fs.promises.readFile(logPath, 'utf8');
-      const stats = await fs.promises.stat(logPath);
+      const content = await fs.promises.readFile(resolvedPath, 'utf8');
+      const stats = await fs.promises.stat(resolvedPath);
 
       return {
         content,
-        path: logPath,
+        path: resolvedPath,
         size: stats.size,
       };
     } catch (error: any) {
@@ -1054,12 +1112,12 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
   ipcMainHandle(ChiaLogsAPI.GET_INFO, async () => {
     try {
       const chiaRoot = process.env.CHIA_ROOT || path.join(app.getPath('home'), '.chia', 'mainnet');
-      const defaultLogPath = path.join(chiaRoot, 'log', 'debug.log');
+      const defaultLogPath = getDefaultLogPath();
       const currentPrefs = readPrefs();
-      const logPath = currentPrefs.customLogPath || defaultLogPath;
+      const requestedPath = currentPrefs.customLogPath || defaultLogPath;
 
       const info = {
-        path: logPath,
+        path: requestedPath,
         exists: false,
         size: 0,
         readable: false,
@@ -1073,15 +1131,19 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
         },
       };
 
+      // Only report metadata for a path that passes the same validation used by
+      // GET_CONTENT (rejects symlinks / non-files), preventing stealthy
+      // filesystem reconnaissance through a tampered or redirected path.
       try {
-        const stats = await fs.promises.stat(logPath);
+        const resolvedPath = await resolveTrustedLogPath(requestedPath);
+        const stats = await fs.promises.stat(resolvedPath);
+        info.path = resolvedPath;
         info.exists = true;
         info.size = stats.size;
-        await fs.promises.access(logPath, fs.constants.R_OK);
         info.readable = true;
         info.debugInfo.fileReadable = true;
       } catch (e) {
-        // File doesn't exist or isn't readable
+        // File doesn't exist, isn't readable, or failed validation
       }
 
       try {
@@ -1105,7 +1167,7 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
   });
 }
 
-async function openKeyDetail(fingerprint: string) {
+async function openKeyDetail(fingerprint: number) {
   if (!mainWindow) {
     throw new Error('`mainWindow` is empty');
   }

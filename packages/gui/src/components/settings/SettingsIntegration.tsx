@@ -4,13 +4,12 @@ import { Autocomplete, Box, Button, FormControlLabel, Grid, Switch, TextField } 
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import type { PermissionsPairRecord } from '../../@types/PermissionsService';
-import useWalletConnectContext from '../../hooks/useWalletConnectContext';
+import useWalletConnect from '../../hooks/useWalletConnect';
 import useWalletConnectPreferences from '../../hooks/useWalletConnectPreferences';
 
 export default function SettingsIntegration() {
-  const { disconnect } = useWalletConnectContext();
-  const { enabled, setEnabled, allowConfirmationFingerprintChange, setAllowConfirmationFingerprintChange } =
-    useWalletConnectPreferences();
+  const { disconnectPair } = useWalletConnect();
+  const { enabled, setEnabled } = useWalletConnectPreferences();
 
   const [pairs, setPairs] = useState<PermissionsPairRecord[]>([]);
   const [topic, setTopic] = useState<string | null>(null);
@@ -25,7 +24,7 @@ export default function SettingsIntegration() {
     // letting the effect return its sync cleanup.
     (async () => {
       try {
-        const list = await window.permissionsAPI.listPairs();
+        const list = await window.permissionsAPI.getPairs();
         if (!cancelled) setPairs(list);
       } catch {
         if (!cancelled) setPairs([]);
@@ -46,19 +45,19 @@ export default function SettingsIntegration() {
       // disconnectPair (in `util/walletConnect.ts`) also calls
       // `permissionsAPI.revokePair` in its finally block, so the next
       // refresh will drop this pair from the list.
-      await disconnect(topic);
+      await disconnectPair(topic);
     } catch (e) {
       console.warn('Failed to disconnect pair', e);
     }
     setTopic(null);
     setAutocompleteKey((k) => k + 1); // force the Autocomplete to clear its selection
     refresh();
-  }, [disconnect, topic, refresh]);
+  }, [disconnectPair, topic, refresh]);
 
   const handleResetForPair = useCallback(async () => {
     if (!topic) return;
     try {
-      await window.permissionsAPI.resetBypass(topic);
+      await window.permissionsAPI.resetPairBypass(topic);
     } catch (e) {
       console.warn('Failed to reset bypass for pair', e);
     }
@@ -67,7 +66,7 @@ export default function SettingsIntegration() {
 
   const handleResetForAllPairs = useCallback(async () => {
     try {
-      await window.permissionsAPI.resetBypassAll();
+      await window.permissionsAPI.resetAllPairBypasses();
     } catch (e) {
       console.warn('Failed to reset bypass for all pairs', e);
     }
@@ -121,35 +120,6 @@ export default function SettingsIntegration() {
             <Trans>Allow external Apps and websites to connect to your wallet through WalletConnect.</Trans>
           </SettingsText>
         </Grid>
-      </Grid>
-
-      <Grid container>
-        <Grid item style={{ width: '400px' }}>
-          <SettingsTitle>
-            <Trans>Key Switching</Trans>
-          </SettingsTitle>
-        </Grid>
-        <Grid item container xs justifyContent="flex-end" marginTop="-6px">
-          <FormControlLabel
-            label={null}
-            control={
-              <Switch
-                checked={allowConfirmationFingerprintChange}
-                onChange={() => setAllowConfirmationFingerprintChange(!allowConfirmationFingerprintChange)}
-                inputProps={{ 'data-testid': 'Enable_Wallet_Connect_Change_fingerprint' }}
-              />
-            }
-          />
-        </Grid>
-        <Grid item style={{ width: '400px' }}>
-          <SettingsText>
-            <Trans>Allow requests that require switching to a different wallet key.</Trans>
-          </SettingsText>
-        </Grid>
-      </Grid>
-
-      <Grid item xs={12} sm={12} lg={12}>
-        <SettingsHR />
       </Grid>
 
       <Grid container>
@@ -213,7 +183,7 @@ export default function SettingsIntegration() {
         </Flex>
       </Grid>
 
-      {selectedPair && selectedPair.bypass.length > 0 && (
+      {selectedPair && selectedPair.hasBypass && (
         <Grid container marginTop="8px">
           <Grid item style={{ width: '624px' }}>
             <Flex flexDirection="row" alignItems="center" justifyContent="spaceBetween" gap={1}>

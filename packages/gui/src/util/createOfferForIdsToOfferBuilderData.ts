@@ -6,9 +6,11 @@ import OfferBuilderData from '../@types/OfferBuilderData';
 import createDefaultValues from '../components/offers2/utils/createDefaultValues';
 import { AssetIdMapEntry } from '../hooks/useAssetIdName';
 
+import parseCreateOfferForIdsKey from './parseCreateOfferForIdsKey';
+
 export default function createOfferForIdsToOfferBuilderData(
   walletIdsAndAmounts: Record<string, number>,
-  lookupByWalletId: (walletId: string) => AssetIdMapEntry | undefined,
+  lookupByWalletId: (walletId: string | number) => AssetIdMapEntry | undefined,
   fee?: string,
 ): OfferBuilderData {
   const offerBuilderData: OfferBuilderData = createDefaultValues();
@@ -22,25 +24,29 @@ export default function createOfferForIdsToOfferBuilderData(
       throw new Error(`Invalid amount '${amount}' for walletId(assetId):${walletOrAssetId}`);
     }
 
+    const parsedKey = parseCreateOfferForIdsKey(walletOrAssetId);
+
     const section = numericValue.isPositive() ? offerBuilderData.requested : offerBuilderData.offered;
 
     try {
-      const asset = lookupByWalletId(walletOrAssetId);
+      if (parsedKey.type === 'walletId') {
+        const asset = lookupByWalletId(parsedKey.walletId);
 
-      if (asset) {
-        switch (asset.walletType) {
-          case WalletType.STANDARD_WALLET:
-            section.xch.push({ amount: mojoToChia(numericValue.abs()).toFixed() });
-            break;
-          case WalletType.CAT:
-          case WalletType.RCAT:
-            section.tokens.push({ amount: mojoToCAT(numericValue.abs()).toFixed(), assetId: asset.assetId });
-            break;
-          default:
-            break;
+        if (asset) {
+          switch (asset.walletType) {
+            case WalletType.STANDARD_WALLET:
+              section.xch.push({ amount: mojoToChia(numericValue.abs()).toFixed() });
+              break;
+            case WalletType.CAT:
+            case WalletType.RCAT:
+              section.tokens.push({ amount: mojoToCAT(numericValue.abs()).toFixed(), assetId: asset.assetId });
+              break;
+            default:
+              break;
+          }
         }
       } else {
-        const nftId = toBech32m(walletOrAssetId, 'nft');
+        const nftId = toBech32m(parsedKey.normalizedHex, 'nft');
         section.nfts.push({ nftId });
       }
     } catch (e) {
