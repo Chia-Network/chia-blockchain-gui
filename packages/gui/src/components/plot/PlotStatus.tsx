@@ -1,4 +1,4 @@
-import { Flex, Indicator, TooltipIcon } from '@chia-network/core';
+import { Flex, getSemanticColors, Indicator, TooltipIcon } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { useTheme } from '@mui/material/styles';
 import React from 'react';
@@ -6,7 +6,6 @@ import React from 'react';
 import FarmerStatus from '../../constants/FarmerStatus';
 import useFarmerStatus from '../../hooks/useFarmerStatus';
 import type Plot from '../../types/Plot';
-import { getSemanticColors } from '../../util/semanticColors';
 
 const Title = {
   [FarmerStatus.FARMING]: <Trans>Farming</Trans>,

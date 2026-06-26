@@ -1,6 +1,7 @@
 export { default as dark } from './variants/field/dark';
 export { default as light } from './variants/field/light';
 export { resolveAppTheme, resolveAppThemeFromPrefs, DEFAULT_THEME_VARIANT, parseThemeVariantId } from './registry';
+export { getSemanticColors } from './semanticColors';
 export { THEME_TYPOGRAPHY } from './typography';
 export type { ThemeAssets, ThemeSvgComponent } from './themeAugmentation';
 export { ThemeAssetsProvider, useThemeAssets } from './ThemeAssetsContext';

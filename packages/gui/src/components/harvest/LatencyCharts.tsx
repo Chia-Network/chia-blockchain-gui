@@ -1,10 +1,9 @@
 import { LatencyRecord } from '@chia-network/api';
+import { getSemanticColors } from '@chia-network/core';
 import { alpha, useTheme } from '@mui/material/styles';
 import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, BarController, ChartOptions } from 'chart.js';
 import * as React from 'react';
 import { Bar } from 'react-chartjs-2';
-
-import { getSemanticColors } from '../../util/semanticColors';
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, BarController);
 

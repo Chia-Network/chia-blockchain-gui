@@ -3,12 +3,10 @@ import {
   useGetPartialStatsOffsetQuery,
   useResetPartialStatsMutation,
 } from '@chia-network/api-react';
-import { Flex, StateIndicator, State, Tooltip } from '@chia-network/core';
+import { Flex, getSemanticColors, StateIndicator, State, Tooltip } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Box, Paper, Typography, CircularProgress, Button, useTheme } from '@mui/material';
 import React from 'react';
-
-import { getSemanticColors } from '../../util/semanticColors';
 
 function getIndicatorStyle(successColor: string, warningColor: string, errorColor: string) {
   return {

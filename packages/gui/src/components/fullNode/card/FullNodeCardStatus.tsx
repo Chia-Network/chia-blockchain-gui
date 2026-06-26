@@ -1,10 +1,8 @@
 import { useGetBlockchainStateQuery } from '@chia-network/api-react';
-import { FormatLargeNumber, CardSimple } from '@chia-network/core';
+import { FormatLargeNumber, CardSimple, getSemanticColors } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { useTheme } from '@mui/material/styles';
 import React from 'react';
-
-import { getSemanticColors } from '../../../util/semanticColors';
 
 function getData(sync: any, warningColor: string) {
   if (!sync) {
@@ -46,7 +44,7 @@ function getData(sync: any, warningColor: string) {
   }
   return {
     value: <Trans>Synced</Trans>,
-    color: 'textPrimary',
+    color: 'primary',
     tooltip: <Trans>This node is fully caught up and validating the network</Trans>,
   };
 }
