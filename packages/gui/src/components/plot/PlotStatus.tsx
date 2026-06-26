@@ -1,18 +1,11 @@
-import { Flex, Indicator, StateColor, TooltipIcon } from '@chia-network/core';
+import { Flex, getSemanticColors, Indicator, TooltipIcon } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
+import { useTheme } from '@mui/material/styles';
 import React from 'react';
 
 import FarmerStatus from '../../constants/FarmerStatus';
 import useFarmerStatus from '../../hooks/useFarmerStatus';
 import type Plot from '../../types/Plot';
-
-const Color = {
-  [FarmerStatus.FARMING]: StateColor.SUCCESS,
-  [FarmerStatus.SYNCHING]: StateColor.WARNING,
-  [FarmerStatus.NOT_AVAILABLE]: StateColor.WARNING,
-  [FarmerStatus.NOT_CONNECTED]: StateColor.ERROR,
-  [FarmerStatus.NOT_RUNNING]: StateColor.ERROR,
-};
 
 const Title = {
   [FarmerStatus.FARMING]: <Trans>Farming</Trans>,
@@ -36,8 +29,16 @@ type Props = {
 
 export default function PlotStatus(props: Props) {
   const { plot } = props;
+  const theme = useTheme();
+  const semanticColors = getSemanticColors(theme.palette);
   const { farmerStatus } = useFarmerStatus();
-  const color = Color[farmerStatus];
+  const color = {
+    [FarmerStatus.FARMING]: semanticColors.success,
+    [FarmerStatus.SYNCHING]: semanticColors.warning,
+    [FarmerStatus.NOT_AVAILABLE]: semanticColors.warning,
+    [FarmerStatus.NOT_CONNECTED]: semanticColors.error,
+    [FarmerStatus.NOT_RUNNING]: semanticColors.error,
+  }[farmerStatus];
   const title = Title[farmerStatus];
   const description = Description[farmerStatus];
 

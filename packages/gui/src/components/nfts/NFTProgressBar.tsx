@@ -1,17 +1,17 @@
-import { Color } from '@chia-network/core';
 import { Box } from '@mui/material';
+import { alpha } from '@mui/material/styles';
 import React from 'react';
 import styled from 'styled-components';
 
 const ProgressBar = styled.div`
   width: 100%;
   height: 12px;
-  border: 1px solid ${Color.Neutral[400]};
+  border: 1px solid ${({ theme }) => alpha(theme.palette.text.primary, 0.24)};
   border-radius: 3px;
   margin-top: 30px !important;
   margin-left: 0 !important;
   > div {
-    background: #d2a33a;
+    background: ${({ theme }) => theme.palette.primary.main};
     height: 10px;
     border-radius: 2px;
   }

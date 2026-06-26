@@ -2,6 +2,7 @@ import { alpha } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
 
 import Color from '../../../constants/Color';
+import getButtonStyles from '../../buttonStyles';
 
 import theme from './default';
 
@@ -26,7 +27,17 @@ export default createTheme(
         contrastText: '#16130d',
       },
       highlight: {
-        main: '#d8ad45',
+        main: '#f7df9b',
+      },
+      warning: {
+        main: Color.Orange[300],
+        contrastText: '#16130d',
+      },
+      semantic: {
+        success: '#d8ad45',
+        warning: Color.Orange[300],
+        error: Color.Red[300],
+        highlight: '#f7df9b',
       },
       info: {
         ...theme.palette.info,
@@ -206,33 +217,26 @@ export default createTheme(
         },
       },
       MuiButton: {
-        styleOverrides: {
-          root: {
-            borderRadius: 8,
-            textTransform: 'none',
-            fontWeight: 700,
-            transition:
-              'background-color 120ms ease, border-color 120ms ease, box-shadow 120ms ease, transform 120ms ease',
-            '&:not(.Mui-disabled):hover': {
-              transform: 'translateY(-1px)',
-              boxShadow: '0 3px 10px rgba(0, 0, 0, 0.2)',
-            },
-          },
-          containedPrimary: {
-            background: 'linear-gradient(180deg, #f1d37a 0%, #b98524 100%)',
-            boxShadow: '0 10px 22px rgba(185, 133, 36, 0.24)',
-          },
-        },
+        styleOverrides: getButtonStyles({
+          borderRadius: 8,
+          fontWeight: 700,
+          textTransform: 'none',
+          hoverBackground: 'rgba(216, 173, 69, 0.2)',
+          hoverShadow: '0 3px 10px rgba(0, 0, 0, 0.2)',
+          hoverTransform: 'translateY(-1px)',
+          outlinedHoverShadow: '0 3px 10px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(247, 223, 155, 0.28)',
+          containedBackground: 'linear-gradient(180deg, #e0bd5e 0%, #bd8330 100%)',
+          containedHoverBackground: 'linear-gradient(180deg, #f0cf72 0%, #d8ad45 100%)',
+          containedShadow: '0 12px 24px rgba(0, 0, 0, 0.28)',
+          containedHoverShadow: '0 14px 30px rgba(0, 0, 0, 0.38)',
+        }),
       },
       MuiIconButton: {
         styleOverrides: {
           root: {
-            transition: 'background-color 120ms ease, box-shadow 120ms ease, color 120ms ease, transform 120ms ease',
             '&:not(.Mui-disabled):hover': {
-              backgroundColor: 'rgba(216, 173, 69, 0.18)',
-              boxShadow: '0 3px 10px rgba(0, 0, 0, 0.24)',
+              backgroundColor: 'rgba(216, 173, 69, 0.2)',
               color: '#fff3cf',
-              transform: 'translateY(-1px)',
             },
           },
         },
@@ -240,16 +244,14 @@ export default createTheme(
       MuiMenuItem: {
         styleOverrides: {
           root: {
-            transition: 'background-color 120ms ease, box-shadow 120ms ease, color 120ms ease',
             '&:not(.Mui-disabled):hover': {
               backgroundColor: 'rgba(216, 173, 69, 0.18)',
-              boxShadow: 'inset 3px 0 0 #d8ad45',
             },
             '&.Mui-selected': {
-              backgroundColor: 'rgba(216, 173, 69, 0.22)',
+              backgroundColor: 'rgba(216, 173, 69, 0.18)',
             },
             '&.Mui-selected:hover': {
-              backgroundColor: 'rgba(216, 173, 69, 0.28)',
+              backgroundColor: 'rgba(216, 173, 69, 0.26)',
             },
           },
         },
@@ -257,17 +259,14 @@ export default createTheme(
       MuiListItemButton: {
         styleOverrides: {
           root: {
-            transition: 'background-color 120ms ease, box-shadow 120ms ease, transform 120ms ease',
             '&:not(.Mui-disabled):hover': {
               backgroundColor: 'rgba(216, 173, 69, 0.18)',
-              boxShadow: 'inset 3px 0 0 #d8ad45',
-              transform: 'translateY(-1px)',
             },
             '&.Mui-selected': {
-              backgroundColor: 'rgba(216, 173, 69, 0.22)',
+              backgroundColor: 'rgba(216, 173, 69, 0.18)',
             },
             '&.Mui-selected:hover': {
-              backgroundColor: 'rgba(216, 173, 69, 0.28)',
+              backgroundColor: 'rgba(216, 173, 69, 0.26)',
             },
           },
         },
@@ -275,11 +274,8 @@ export default createTheme(
       MuiCardActionArea: {
         styleOverrides: {
           root: {
-            transition: 'background-color 120ms ease, box-shadow 120ms ease, transform 120ms ease',
             '&:hover': {
-              backgroundColor: 'rgba(216, 173, 69, 0.14)',
-              boxShadow: 'inset 0 0 0 1px rgba(216, 173, 69, 0.24)',
-              transform: 'translateY(-1px)',
+              backgroundColor: 'rgba(216, 173, 69, 0.16)',
             },
           },
         },
@@ -287,10 +283,8 @@ export default createTheme(
       MuiTableRow: {
         styleOverrides: {
           root: {
-            transition: 'background-color 120ms ease, box-shadow 120ms ease',
             '&.MuiTableRow-hover:hover': {
               backgroundColor: 'rgba(216, 173, 69, 0.16)',
-              boxShadow: 'inset 3px 0 0 #d8ad45',
             },
           },
         },
@@ -298,9 +292,8 @@ export default createTheme(
       MuiTab: {
         styleOverrides: {
           root: {
-            transition: 'background-color 120ms ease, color 120ms ease',
             '&:hover': {
-              backgroundColor: 'rgba(216, 173, 69, 0.14)',
+              backgroundColor: 'rgba(216, 173, 69, 0.16)',
               color: '#fff3cf',
             },
           },

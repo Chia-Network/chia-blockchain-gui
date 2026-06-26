@@ -2,6 +2,7 @@ import { HarvesterInfo, LatencyData } from '@chia-network/api';
 import { Flex, FormatBytes, Tooltip, TooltipIcon } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Box, Paper, Typography, LinearProgress, Chip } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import BigNumber from 'bignumber.js';
 import * as React from 'react';
 
@@ -21,6 +22,7 @@ export default React.memo(HarvesterLatencyGraph);
 
 function HarvesterLatencyGraph(props: HarvesterLatencyGraphProps) {
   const { harvester, latencyData, totalFarmSizeRaw, totalFarmSizeEffective } = props;
+  const theme = useTheme();
   // const { isDarkMode } = useDarkMode();
   const nodeId = harvester?.connection.nodeId;
   const host = harvester?.connection.host;
@@ -142,7 +144,7 @@ function HarvesterLatencyGraph(props: HarvesterLatencyGraphProps) {
                       <LinearProgress
                         variant="determinate"
                         value={totalSpaceOccupation?.toNumber()}
-                        sx={{ height: 20, '& > span': { backgroundColor: '#a3711d' } }}
+                        sx={{ height: 20, '& .MuiLinearProgress-bar': { backgroundColor: theme.palette.primary.dark } }}
                       />
                     </Box>
                   </td>
@@ -176,7 +178,7 @@ function HarvesterLatencyGraph(props: HarvesterLatencyGraphProps) {
                       <LinearProgress
                         variant="determinate"
                         value={effectiveSpaceOccupation?.toNumber()}
-                        sx={{ height: 20, '& > span': { backgroundColor: '#d2a33a' } }}
+                        sx={{ height: 20, '& .MuiLinearProgress-bar': { backgroundColor: theme.palette.primary.main } }}
                       />
                     </Box>
                   </td>
@@ -187,7 +189,14 @@ function HarvesterLatencyGraph(props: HarvesterLatencyGraphProps) {
         </Box>
       </Paper>
     );
-  }, [harvester, totalFarmSizeRaw, totalFarmSizeEffective, noPlots]);
+  }, [
+    harvester,
+    totalFarmSizeRaw,
+    totalFarmSizeEffective,
+    noPlots,
+    theme.palette.primary.dark,
+    theme.palette.primary.main,
+  ]);
 
   const harvesterLatency = React.useMemo(() => {
     if (noPlots) {

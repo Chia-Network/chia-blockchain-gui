@@ -6,7 +6,7 @@ import {
   useResetFilterChallengeStatMutation,
   useGetPartialStatsOffsetQuery,
 } from '@chia-network/api-react';
-import { Flex, Link, StateIndicator, State, Tooltip, useCurrencyCode } from '@chia-network/core';
+import { Flex, getSemanticColors, Link, StateIndicator, State, Tooltip, useCurrencyCode } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Box, Button, Paper, Typography, CircularProgress, useTheme } from '@mui/material';
 import React from 'react';
@@ -55,7 +55,7 @@ const StyledInput = styled.input`
   display: inline-block;
 `;
 
-function getIndicatorStyle(successColor: string) {
+function getIndicatorStyle(successColor: string, warningColor: string, errorColor: string) {
   return {
     marginTop: 1,
     '> div > div': {
@@ -64,8 +64,8 @@ function getIndicatorStyle(successColor: string) {
     '.cancel-icon': {
       g: {
         circle: {
-          stroke: '#D32F2F',
-          fill: '#D32F2F',
+          stroke: errorColor,
+          fill: errorColor,
         },
       },
     },
@@ -84,11 +84,11 @@ function getIndicatorStyle(successColor: string) {
     '.reload-icon': {
       g: {
         circle: {
-          stroke: '#FF9800',
-          fill: '#FF9800',
+          stroke: warningColor,
+          fill: warningColor,
         },
         path: {
-          fill: '#FF9800',
+          fill: warningColor,
         },
       },
     },
@@ -98,9 +98,11 @@ function getIndicatorStyle(successColor: string) {
 export default React.memo(FarmHealth);
 function FarmHealth() {
   const theme = useTheme();
+  const { palette } = theme;
+  const semanticColors = getSemanticColors(palette);
   const indicatorStyle = React.useMemo(
-    () => getIndicatorStyle(theme.palette.primary.main),
-    [theme.palette.primary.main],
+    () => getIndicatorStyle(semanticColors.success, semanticColors.warning, semanticColors.error),
+    [semanticColors.error, semanticColors.success, semanticColors.warning],
   );
   const { farmerStatus, blockchainState } = useFarmerStatus();
   const { data: missingSpsData, isLoading: isLoadingMissingSps } = useGetMissingSignagePointsQuery();

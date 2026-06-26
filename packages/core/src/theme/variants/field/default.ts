@@ -25,7 +25,17 @@ export default {
       contrastText: Color.Neutral[50],
     },
     highlight: {
-      main: '#b98524',
+      main: '#d09a2d',
+    },
+    warning: {
+      main: Color.Orange[500],
+      contrastText: Color.Neutral[50],
+    },
+    semantic: {
+      success: '#b98524',
+      warning: Color.Orange[500],
+      error: Color.Red[600],
+      highlight: '#d09a2d',
     },
     border: {
       main: Color.Neutral[300],

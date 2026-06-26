@@ -3,12 +3,12 @@ import {
   useGetPartialStatsOffsetQuery,
   useResetPartialStatsMutation,
 } from '@chia-network/api-react';
-import { Flex, StateIndicator, State, Tooltip } from '@chia-network/core';
+import { Flex, getSemanticColors, StateIndicator, State, Tooltip } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Box, Paper, Typography, CircularProgress, Button, useTheme } from '@mui/material';
 import React from 'react';
 
-function getIndicatorStyle(successColor: string) {
+function getIndicatorStyle(successColor: string, warningColor: string, errorColor: string) {
   return {
     marginTop: 1,
     '> div > div': {
@@ -17,8 +17,8 @@ function getIndicatorStyle(successColor: string) {
     '.cancel-icon': {
       g: {
         circle: {
-          stroke: '#D32F2F',
-          fill: '#D32F2F',
+          stroke: errorColor,
+          fill: errorColor,
         },
       },
     },
@@ -37,11 +37,11 @@ function getIndicatorStyle(successColor: string) {
     '.reload-icon': {
       g: {
         circle: {
-          stroke: '#FF9800',
-          fill: '#FF9800',
+          stroke: warningColor,
+          fill: warningColor,
         },
         path: {
-          fill: '#FF9800',
+          fill: warningColor,
         },
       },
     },
@@ -51,9 +51,10 @@ function getIndicatorStyle(successColor: string) {
 export default React.memo(PoolingHealth);
 function PoolingHealth() {
   const theme = useTheme();
+  const semanticColors = getSemanticColors(theme.palette);
   const indicatorStyle = React.useMemo(
-    () => getIndicatorStyle(theme.palette.primary.main),
-    [theme.palette.primary.main],
+    () => getIndicatorStyle(semanticColors.success, semanticColors.warning, semanticColors.error),
+    [semanticColors.error, semanticColors.success, semanticColors.warning],
   );
   const { data, isLoading } = useGetPoolStateQuery();
   const { data: partialStatsOffset, isLoading: isLoadingPartialStatsOffset } = useGetPartialStatsOffsetQuery();

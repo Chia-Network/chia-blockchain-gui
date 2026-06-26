@@ -11,6 +11,7 @@ import {
   TablePagination,
   Collapse,
 } from '@mui/material';
+import { alpha } from '@mui/material/styles';
 import { get } from 'lodash';
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 import React, { ReactNode, useMemo, useState, SyntheticEvent, Fragment } from 'react';
@@ -24,12 +25,25 @@ const StyledTableHead = styled(TableHead)`
   font-weight: 500;
 `;
 
-export const StyledTableRow = styled(({ odd, oddRowBackgroundColor, ...rest }) => <TableRow {...rest} />)`
+export const StyledTableRow = styled(({ odd, oddRowBackgroundColor, rowHover, ...rest }) => <TableRow {...rest} />)`
   ${({ odd, oddRowBackgroundColor, theme }) =>
     odd
       ? `background-color: ${
           oddRowBackgroundColor || (theme.palette.mode === 'dark' ? Color.Neutral[800] : Color.Neutral[100])
         };`
+      : undefined}
+  transition:
+    background-color 120ms ease,
+    box-shadow 120ms ease;
+  ${({ rowHover, theme }) =>
+    rowHover
+      ? `
+    cursor: pointer;
+
+    &:hover {
+      background-color: ${theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[200]};
+    }
+  `
       : undefined}
 `;
 
@@ -42,7 +56,7 @@ const StyledTableCell = styled(({ width, minWidth, maxWidth, ...rest }) => <Tabl
   max-width: ${({ minWidth, maxWidth, width }) => (maxWidth || width || minWidth) ?? 'none'};
   min-width: ${({ minWidth }) => minWidth || '0'};
   width: ${({ width, minWidth }) => (width || minWidth ? width : 'auto')}};
-  border-bottom: 1px solid ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[800] : Color.Neutral[200])};
+  border-bottom: 1px solid ${({ theme }) => alpha(theme.palette.text.primary, theme.palette.mode === 'dark' ? 0.16 : 0.12)};
 `;
 
 const StyledTableCellContent = styled(Box)<{ forceWrap: boolean }>`
@@ -280,6 +294,7 @@ export function TableControlledRow({
         oddRowBackgroundColor={oddRowBackgroundColor}
         onClick={handleRowClick ? (e) => handleRowClick(e, row) : undefined}
         hover={rowHover}
+        rowHover={rowHover}
       >
         {currentCols.map((col) => {
           const { field, tooltip, forceWrap } = col;

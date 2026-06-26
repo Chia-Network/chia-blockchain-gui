@@ -1,14 +1,10 @@
 import { useGetBlockchainStateQuery } from '@chia-network/api-react';
-import { FormatLargeNumber, CardSimple, StateColor } from '@chia-network/core';
+import { FormatLargeNumber, CardSimple, getSemanticColors } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
+import { useTheme } from '@mui/material/styles';
 import React from 'react';
-import styled from 'styled-components';
 
-const StyledWarning = styled.span`
-  color: ${StateColor.WARNING};
-`;
-
-function getData(sync) {
+function getData(sync: any, warningColor: string) {
   if (!sync) {
     return {
       value: <Trans>Not Synced</Trans>,
@@ -23,12 +19,12 @@ function getData(sync) {
 
     return {
       value: (
-        <StyledWarning>
+        <span style={{ color: warningColor }}>
           <Trans>
             Syncing <FormatLargeNumber value={progress} />/
             <FormatLargeNumber value={tip} />
           </Trans>
-        </StyledWarning>
+        </span>
       ),
       color: 'error',
       tooltip: (
@@ -58,18 +54,16 @@ export default function FullNodeCardStatus() {
     data: state,
     isLoading,
     error,
-  } = useGetBlockchainStateQuery(
-    {},
-    {
-      pollingInterval: 10_000,
-    },
-  );
+  } = useGetBlockchainStateQuery(undefined, {
+    pollingInterval: 10_000,
+  });
+  const theme = useTheme();
 
   if (isLoading) {
     return <CardSimple loading title={<Trans>Status</Trans>} />;
   }
 
-  const { value, tooltip, color } = getData(state?.sync);
+  const { value, tooltip, color } = getData(state?.sync, getSemanticColors(theme.palette).warning);
 
   return <CardSimple valueColor={color} title={<Trans>Status</Trans>} tooltip={tooltip} value={value} error={error} />;
 }

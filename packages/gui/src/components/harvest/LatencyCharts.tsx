@@ -1,6 +1,7 @@
 import { LatencyRecord } from '@chia-network/api';
-import { useTheme } from '@mui/material/styles';
-import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, BarController } from 'chart.js';
+import { getSemanticColors } from '@chia-network/core';
+import { alpha, useTheme } from '@mui/material/styles';
+import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, BarController, ChartOptions } from 'chart.js';
 import * as React from 'react';
 import { Bar } from 'react-chartjs-2';
 
@@ -60,9 +61,13 @@ export const PureLatencyBarChart = React.memo(LatencyBarChart);
 function LatencyBarChart(props: BarChartProps) {
   const { latency, period, unit } = props;
   const theme = useTheme();
-  const primaryColor = theme.palette.primary.main;
+  const { palette } = theme;
+  const semanticColors = getSemanticColors(palette);
+  const primaryColor = semanticColors.success;
+  const warningColor = semanticColors.warning;
+  const errorColor = semanticColors.error;
 
-  const options = React.useMemo(
+  const options = React.useMemo<ChartOptions<'bar'>>(
     () => ({
       responsive: true,
       animation: false,
@@ -73,19 +78,20 @@ function LatencyBarChart(props: BarChartProps) {
         },
         y: {
           grid: {
-            color: 'rgba(71, 58, 36, 0.16)',
+            color: alpha(palette.text.primary, 0.16),
           },
           ticks: {
-            color: '#6f6045',
-            callback(value: number) {
-              const formattedValue = unit === 'ms' ? value : value / 1000;
+            color: palette.text.secondary,
+            callback(value: string | number) {
+              const numericValue = Number(value);
+              const formattedValue = unit === 'ms' ? numericValue : numericValue / 1000;
               return `${formattedValue} ${unit}`;
             },
           },
         },
       },
     }),
-    [unit],
+    [palette.text.primary, palette.text.secondary, unit],
   );
 
   const data = React.useMemo(() => {
@@ -106,10 +112,10 @@ function LatencyBarChart(props: BarChartProps) {
           backgroundColors.push(primaryColor);
         } else if (valInMs < 20_000) {
           // Warning color
-          backgroundColors.push('#ffd388');
+          backgroundColors.push(warningColor);
         } else {
           // Fatal color
-          backgroundColors.push('#faa7b0');
+          backgroundColors.push(errorColor);
         }
       }
 
@@ -137,10 +143,10 @@ function LatencyBarChart(props: BarChartProps) {
           backgroundColors.push(primaryColor);
         } else if (valInMs < 20_000) {
           // Warning color
-          backgroundColors.push('#ffd388');
+          backgroundColors.push(warningColor);
         } else {
           // Fatal color
-          backgroundColors.push('#faa7b0');
+          backgroundColors.push(errorColor);
         }
       }
     }
@@ -156,7 +162,7 @@ function LatencyBarChart(props: BarChartProps) {
         },
       ],
     };
-  }, [latency, period, primaryColor]);
+  }, [latency, period, primaryColor, warningColor, errorColor]);
 
   return <Bar data={data} options={options} height={240} />;
 }
