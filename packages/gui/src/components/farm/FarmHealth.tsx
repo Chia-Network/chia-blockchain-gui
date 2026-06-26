@@ -6,7 +6,7 @@ import {
   useResetFilterChallengeStatMutation,
   useGetPartialStatsOffsetQuery,
 } from '@chia-network/api-react';
-import { Flex, Link, StateIndicator, State, Tooltip, useCurrencyCode } from '@chia-network/core';
+import { Flex, getSemanticColors, Link, StateIndicator, State, Tooltip, useCurrencyCode } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Box, Button, Paper, Typography, CircularProgress, useTheme } from '@mui/material';
 import React from 'react';
@@ -15,7 +15,6 @@ import styled from 'styled-components';
 import FarmerStatus from '../../constants/FarmerStatus';
 import useFarmerStatus from '../../hooks/useFarmerStatus';
 import { binomialProb } from '../../util/math';
-import { getSemanticColors } from '../../util/semanticColors';
 
 const StyledTable = styled.table`
   border-collapse: collapse;

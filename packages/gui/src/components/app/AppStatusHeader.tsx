@@ -1,11 +1,10 @@
-import { Color, Flex, useMode, Mode, useDarkMode } from '@chia-network/core';
+import { Color, Flex, getSemanticColors, useMode, Mode, useDarkMode } from '@chia-network/core';
 import { WalletConnections, WalletStatus, WalletReceiveAddressField } from '@chia-network/wallets';
 import { Trans } from '@lingui/macro';
 import { Box, ButtonGroup, Button, Popover, PopoverProps } from '@mui/material';
 import { useTheme, styled, alpha } from '@mui/material/styles';
 import React, { useState } from 'react';
 
-import { getSemanticColors } from '../../util/semanticColors';
 import Connections from '../fullNode/FullNodeConnections';
 import FullNodeStateIndicator from '../fullNode/FullNodeStateIndicator';
 import NotificationsDropdown from '../notification/NotificationsDropdown';

@@ -1,5 +1,5 @@
 import { useGetLatestBlocksQuery, useGetUnfinishedBlockHeadersQuery } from '@chia-network/api-react';
-import { FormatLargeNumber, Flex, Card, Table, LayoutDashboardSub } from '@chia-network/core';
+import { FormatLargeNumber, Flex, Card, getSemanticColors, Table, LayoutDashboardSub } from '@chia-network/core';
 import { Status } from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
 import { Box, Tooltip, Typography } from '@mui/material';
@@ -10,8 +10,6 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // import HelpIcon from '@mui/icons-material/Help';
-import { getSemanticColors } from '../../util/semanticColors';
-
 import FullNodeBlockSearch from './FullNodeBlockSearch';
 import FullNodeConnections from './FullNodeConnections';
 import FullNodeCards from './card/FullNodeCards';
