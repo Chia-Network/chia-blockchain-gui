@@ -19,18 +19,6 @@ msgstr ""
 "X-Crowdin-File-ID: 35\n"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1883
-#: src/electron/commands/Commands.ts:1891
-msgid "Get Full Node Peer Count"
-msgstr "Get Full Node Peer Count"
-
-#. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1885
-#: src/electron/commands/Commands.ts:1893
-msgid "Requests the number of full node peers currently connected to the wallet"
-msgstr "Requests the number of full node peers currently connected to the wallet"
-
-#. js-lingui-explicit-id
 #: src/components/nfts/NFTBurnDialog.tsx:133
 msgid "Do you want to burn {count} NFTs?"
 msgstr "Do you want to burn {count} NFTs?"
@@ -1926,6 +1914,18 @@ msgstr "Get Wallet Sync Status"
 #: src/electron/commands/Commands.ts:1876
 msgid "Requests the syncing status of current wallet"
 msgstr "Requests the syncing status of current wallet"
+
+#. js-lingui-explicit-id
+#: src/electron/commands/Commands.ts:1883
+#: src/electron/commands/Commands.ts:1891
+msgid "Get Full Node Peer Count"
+msgstr "Get Full Node Peer Count"
+
+#. js-lingui-explicit-id
+#: src/electron/commands/Commands.ts:1885
+#: src/electron/commands/Commands.ts:1893
+msgid "Requests the number of full node peers currently connected to the wallet"
+msgstr "Requests the number of full node peers currently connected to the wallet"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1901
