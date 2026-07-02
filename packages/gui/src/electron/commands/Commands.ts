@@ -1879,6 +1879,24 @@ export const Commands: Record<string, CommandSchema> = {
     ],
   },
 
+  'chia_wallet.get_full_node_peer_count': {
+    title: () => i18n._(/* i18n */ { id: 'Get Full Node Peer Count' }),
+    message: () =>
+      i18n._(/* i18n */ { id: 'Requests the number of full node peers currently connected to the wallet' }),
+    confirmLabel: () => i18n._(/* i18n */ { id: 'Proceed' }),
+    params: [],
+    dapp: [
+      {
+        command: 'chia_getFullNodePeerCount',
+        title: () => i18n._(/* i18n */ { id: 'Get Full Node Peer Count' }),
+        message: () =>
+          i18n._(/* i18n */ { id: 'Requests the number of full node peers currently connected to the wallet' }),
+        transform: (data) => data.peer_count,
+        allowConfirmationBypass: true,
+      },
+    ],
+  },
+
   'chia_wallet.get_height_info': {
     title: () => i18n._(/* i18n */ { id: 'Get Height Info' }),
     message: () =>

@@ -25,4 +25,15 @@ describe('Commands', () => {
       });
     });
   });
+
+  describe('chia_getFullNodePeerCount transform', () => {
+    it('unwraps the daemon response to the peer count', () => {
+      const transform = Commands['chia_wallet.get_full_node_peer_count'].dapp?.find(
+        ({ command }) => command === 'chia_getFullNodePeerCount',
+      )?.transform;
+
+      expect(transform).toBeDefined();
+      expect(transform?.({ peer_count: 8, success: true })).toBe(8);
+    });
+  });
 });
