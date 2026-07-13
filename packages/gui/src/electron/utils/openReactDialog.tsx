@@ -309,7 +309,25 @@ export default function openReactDialog<TResponse, TProps extends object>(
       // open dev tools
       // dialog.webContents.openDevTools();
 
-      dialog.once('ready-to-show', () => dialog.show());
+      // Reveal the dialog. `ready-to-show` is the preferred fast path, but on some
+      // compositors (notably Wayland/mutter) that event can fail to fire, which
+      // would otherwise leave the dialog hidden forever even though the page has
+      // loaded. Guard the show in a once-only helper and back it with
+      // `did-finish-load` and a timeout fallback so the dialog is always revealed.
+      let hasShownDialog = false;
+      const showDialog = () => {
+        // Latch the flag only after a successful `show()` so a failed attempt
+        // doesn't block the other triggers.
+        if (hasShownDialog || dialog.isDestroyed()) {
+          return;
+        }
+        dialog.show();
+        hasShownDialog = true;
+      };
+
+      dialog.once('ready-to-show', showDialog);
+      dialog.webContents.once('did-finish-load', showDialog);
+      setTimeout(showDialog, 5000);
 
       if (hideMenu) {
         dialog.setMenu(null);
