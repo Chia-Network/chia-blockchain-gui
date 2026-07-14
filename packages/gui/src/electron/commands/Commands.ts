@@ -1698,6 +1698,7 @@ export const Commands: Record<string, CommandSchema> = {
         message: () =>
           i18n._(/* i18n */ { id: "Requests the status of a list of coin records from the Wallet's coin store." }),
         defaults: { include_spent_coins: true },
+        allowConfirmationBypass: true,
       },
     ],
   },
