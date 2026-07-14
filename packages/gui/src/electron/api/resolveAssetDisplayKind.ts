@@ -24,7 +24,10 @@ export default async function resolveAssetDisplayKind(assetId: string): Promise<
   try {
     const catInfo = await catAssetIdToName(normalizedAssetId);
 
-    if (catInfo.wallet_id !== null || catInfo.name !== null) {
+    if (
+      (catInfo.wallet_id !== null && catInfo.wallet_id !== undefined) ||
+      (catInfo.name !== null && catInfo.name !== undefined)
+    ) {
       return 'cat';
     }
   } catch {
