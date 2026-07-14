@@ -1913,6 +1913,7 @@ export const Commands: Record<string, CommandSchema> = {
           is_transaction_block: data.is_transaction_block ?? null,
           prev_transaction_block_height: data.prev_transaction_block_height ?? null,
         }),
+        allowConfirmationBypass: true,
       },
     ],
   },
