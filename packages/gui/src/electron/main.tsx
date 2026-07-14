@@ -53,7 +53,7 @@ import PreferencesAPI from './constants/PreferencesAPI';
 import About from './dialogs/About/About';
 import Confirm, { type ConfirmProps } from './dialogs/Confirm/Confirm';
 import KeyDetail from './dialogs/KeyDetail/KeyDetail';
-import { readPrefs, savePrefs, migratePrefs } from './prefs';
+import { readPrefs, savePrefs, migratePrefs, sanitizeRendererPrefs } from './prefs';
 import { readAddressBook, saveAddressBook } from './utils/addressBook';
 import chiaEnvironment, { chiaInit } from './utils/chiaEnvironment';
 import { dispatchPairRequest } from './utils/dispatchPairRequest';

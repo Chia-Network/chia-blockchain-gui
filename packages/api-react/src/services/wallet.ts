@@ -1063,8 +1063,9 @@ export const walletApi = apiWithTag.injectEndpoints({
 
           poolStates.forEach((poolStateItem: any) => {
             const poolWalletStatus = poolWalletStates.find(
-              (item) => item.launcherId === poolStateItem.poolConfig.launcherId,
+              (item) => normalizeHex(item.launcherId) === normalizeHex(poolStateItem.poolConfig.launcherId),
             );
+
             if (!poolWalletStatus) {
               external.push({
                 poolState: normalizePoolState(poolStateItem),
