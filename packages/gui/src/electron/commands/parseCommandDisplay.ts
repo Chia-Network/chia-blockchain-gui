@@ -2,6 +2,7 @@ import { catAssetIdToName } from '../api/catAssetIdToName';
 import { getOfferSummary } from '../api/getOfferSummary';
 import { getWalletInfos, type WalletInfo } from '../api/getWalletNames';
 import { nftGetInfo } from '../api/nftGetInfo';
+import resolveAssetDisplayKind from '../api/resolveAssetDisplayKind';
 import WalletType from '../constants/WalletType';
 import type { DisplayWalletDelta, DisplayWalletDeltaItem } from '../dialogs/Confirm/Confirm';
 import { isNumericKey } from '../utils/isNumericKey';
@@ -13,7 +14,7 @@ import { parseMojos } from '../utils/parseMojos';
 import toBech32m from '../utils/toBech32m';
 import { type WalletDelta, offerSummaryToWalletDelta, createOfferToWalletDelta } from '../utils/walletDelta';
 
-type AssetDisplayKind = 'chia' | 'wallet' | 'cat' | 'nft';
+type AssetDisplayKind = 'chia' | 'wallet' | 'cat' | 'nft' | 'unknown';
 
 type AssetDisplayKinds = {
   spending: Record<string, AssetDisplayKind | undefined>;
@@ -205,33 +206,37 @@ function offerSummaryRoyaltyPercentages(offerSummary: OfferSummaryForDisplay): A
   return royaltyPercentages;
 }
 
-function createOfferAssetKinds(
+async function createOfferAssetKinds(
   walletDelta: WalletDelta,
   walletInfos: Record<string, WalletInfo>,
   driverDict: Record<string, unknown>,
-): AssetDisplayKinds {
+): Promise<AssetDisplayKinds> {
   const assetKinds: AssetDisplayKinds = {
     spending: {},
     receiving: {},
   };
 
-  for (const assetId of Object.keys(walletDelta.spending)) {
-    if (isNumericKey(assetId)) {
-      assetKinds.spending[assetId] = assetKindForWalletId(assetId, walletInfos);
-    } else {
-      assetKinds.spending[assetId] = assetKindForDriverDictAssetId(assetId, driverDict);
+  async function resolveAssetKind(assetId: string): Promise<AssetDisplayKind> {
+    const driverKind = assetKindForDriverDictAssetId(assetId, driverDict);
+    if (driverKind !== undefined) {
+      return driverKind;
     }
+
+    return (await resolveAssetDisplayKind(assetId)) ?? 'unknown';
   }
 
-  for (const assetId of Object.keys(walletDelta.receiving)) {
-    if (isNumericKey(assetId)) {
-      assetKinds.receiving[assetId] = assetKindForWalletId(assetId, walletInfos);
-    } else {
-      // Backend legacy behavior treats positive requested bytes32 assets with
-      // no explicit driver as CATs.
-      assetKinds.receiving[assetId] = assetKindForDriverDictAssetId(assetId, driverDict) ?? 'cat';
-    }
-  }
+  await Promise.all([
+    ...Object.keys(walletDelta.spending).map(async (assetId) => {
+      assetKinds.spending[assetId] = isNumericKey(assetId)
+        ? assetKindForWalletId(assetId, walletInfos)
+        : await resolveAssetKind(assetId);
+    }),
+    ...Object.keys(walletDelta.receiving).map(async (assetId) => {
+      assetKinds.receiving[assetId] = isNumericKey(assetId)
+        ? assetKindForWalletId(assetId, walletInfos)
+        : await resolveAssetKind(assetId);
+    }),
+  ]);
 
   return assetKinds;
 }
@@ -328,6 +333,14 @@ async function parseWalletDeltaItem(
     return result;
   }
 
+  if (assetKind === 'unknown') {
+    return {
+      kind: 'unknown',
+      assetId: key,
+      amount: value.toString(),
+    };
+  }
+
   if (assetKind !== 'cat') {
     throw new Error('Asset type is not valid');
   }
@@ -338,7 +351,7 @@ async function parseWalletDeltaItem(
     kind: 'cat',
     amount: mojoToCATLocaleString(value),
     assetId: key,
-    symbol: name,
+    symbol: name ?? undefined,
   };
 }
 
@@ -471,7 +484,7 @@ export async function parseCommandDisplay(command: string, params: Record<string
     const walletDelta = createOfferToWalletDelta(params.offer);
     const walletInfos = await getWalletInfos();
     const driverDict = params.driver_dict ?? {};
-    const assetKinds = createOfferAssetKinds(walletDelta, walletInfos, driverDict);
+    const assetKinds = await createOfferAssetKinds(walletDelta, walletInfos, driverDict);
     const royaltyPercentages = createOfferRoyaltyPercentages(walletDelta, driverDict);
 
     return {
