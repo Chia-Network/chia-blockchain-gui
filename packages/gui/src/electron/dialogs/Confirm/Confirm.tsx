@@ -158,9 +158,7 @@ function OfferLineRow({ line, networkPrefix }: { line: DisplayWalletDeltaItem; n
   if (line.kind === 'unknown') {
     return (
       <div className="flex items-baseline gap-3">
-        <span className="text-sm font-medium text-chia-text">
-          {i18n._(/* i18n */ { id: 'Unknown Asset' })}
-        </span>
+        <span className="text-sm font-medium text-chia-text">{i18n._(/* i18n */ { id: 'Unknown Asset' })}</span>
         <span className="text-xs font-mono text-chia-text-secondary truncate max-w-[55%]">
           {shortenId(line.assetId)}
         </span>
