@@ -20,7 +20,8 @@ export type DisplayWalletDeltaItem =
   | { kind: 'xch'; amount: string; amountWithRoyalties?: string }
   | { kind: 'wallet'; walletId: string; amount: string; walletName?: string; amountWithRoyalties?: string }
   | { kind: 'cat'; amount: string; assetId: string; symbol?: string; amountWithRoyalties?: string }
-  | { kind: 'nft'; nftId: string; name?: string; previewUrl?: string; royaltyPercentage?: number };
+  | { kind: 'nft'; nftId: string; name?: string; previewUrl?: string; royaltyPercentage?: number }
+  | { kind: 'unknown'; assetId: string; amount: string };
 
 export type DisplayWalletDelta = {
   spending: DisplayWalletDeltaItem[];
@@ -94,6 +95,7 @@ function offerLineKey(line: DisplayWalletDeltaItem, index: number): string {
   if (line.kind === 'xch') return `xch-${line.amount}-${index}`;
   if (line.kind === 'wallet') return `wallet-${line.walletId}-${line.amount}-${index}`;
   if (line.kind === 'cat') return `cat-${line.assetId}-${line.amount}-${index}`;
+  if (line.kind === 'unknown') return `unknown-${line.assetId}-${line.amount}-${index}`;
   return `nft-${line.nftId}-${index}`;
 }
 
@@ -150,6 +152,21 @@ function OfferLineRow({ line, networkPrefix }: { line: DisplayWalletDeltaItem; n
             {i18n._(/* i18n */ { id: 'Total Amount with Royalties' })}: {line.amountWithRoyalties}
           </div>
         )}
+      </div>
+    );
+  }
+  if (line.kind === 'unknown') {
+    return (
+      <div className="flex items-baseline gap-3">
+        <span className="text-sm font-medium text-chia-text">
+          {i18n._(/* i18n */ { id: 'Unknown Asset' })}
+        </span>
+        <span className="text-xs font-mono text-chia-text-secondary truncate max-w-[55%]">
+          {shortenId(line.assetId)}
+        </span>
+        <span className="text-xs font-mono text-chia-text-secondary">
+          {i18n._(/* i18n */ { id: 'Raw Amount' })}: {line.amount}
+        </span>
       </div>
     );
   }
