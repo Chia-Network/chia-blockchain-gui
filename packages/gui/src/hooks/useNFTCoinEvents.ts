@@ -5,7 +5,7 @@ import { useCallback, useMemo } from 'react';
 
 type Event = {
   type: 'add' | 'remove' | 'updated' | 'didset';
-  walletId: string;
+  walletId: number;
 };
 
 export default function useNFTCoinEvents() {
@@ -17,17 +17,34 @@ export default function useNFTCoinEvents() {
 
   // immutable function
   const handleNFTEvent = useCallback(
-    (eventType: Event['type'], walletId: string) => {
+    (eventType: Event['type'], walletId: number) => {
       events.emit('change', { type: eventType, walletId });
     },
     [events /* immutable */],
   );
 
   // Subscribe to all events related to NFTs
-  useNFTCoinAdded((data) => handleNFTEvent('add', data.walletId));
-  useNFTCoinRemoved((data) => handleNFTEvent('remove', data.walletId));
-  useNFTCoinUpdated((data) => handleNFTEvent('updated', data.walletId));
-  useNFTCoinDIDSet((data) => handleNFTEvent('didset', data.walletId));
+  const handleNFTCoinAdded = useCallback(
+    (data: { walletId: number }) => handleNFTEvent('add', data.walletId),
+    [handleNFTEvent],
+  );
+  const handleNFTCoinRemoved = useCallback(
+    (data: { walletId: number }) => handleNFTEvent('remove', data.walletId),
+    [handleNFTEvent],
+  );
+  const handleNFTCoinUpdated = useCallback(
+    (data: { walletId: number }) => handleNFTEvent('updated', data.walletId),
+    [handleNFTEvent],
+  );
+  const handleNFTCoinDIDSet = useCallback(
+    (data: { walletId: number }) => handleNFTEvent('didset', data.walletId),
+    [handleNFTEvent],
+  );
+
+  useNFTCoinAdded(handleNFTCoinAdded);
+  useNFTCoinRemoved(handleNFTCoinRemoved);
+  useNFTCoinUpdated(handleNFTCoinUpdated);
+  useNFTCoinDIDSet(handleNFTCoinDIDSet);
 
   const subscribe = useCallback(
     (callback: (event?: Event) => void) => {
