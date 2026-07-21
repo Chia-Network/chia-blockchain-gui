@@ -625,6 +625,8 @@ export const walletApi = apiWithTag.injectEndpoints({
 
     getFullNodePeerCount: query(build, WalletService, 'getFullNodePeerCount'),
 
+    getWalletFeeEstimate: query(build, WalletService, 'getFeeEstimate'),
+
     getSyncStatus: query(build, WalletService, 'getSyncStatus', {
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
@@ -1634,6 +1636,7 @@ export const {
   useGetPuzzleAndSolutionMutation,
   useGetNetworkInfoQuery,
   useGetFullNodePeerCountQuery,
+  useGetWalletFeeEstimateQuery,
   useGetSyncStatusQuery,
   useGetWalletConnectionsQuery,
   useGetAllOffersQuery,

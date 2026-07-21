@@ -6,6 +6,7 @@ const DAPP_ALLOWED_COMMANDS = new Set<keyof typeof Commands>([
   'chia_wallet.get_next_address',
   'chia_wallet.get_sync_status',
   'chia_wallet.get_full_node_peer_count',
+  'chia_wallet.get_fee_estimate',
   'chia_wallet.get_coin_records_by_names',
   'chia_wallet.select_coins',
   'chia_wallet.get_height_info',
