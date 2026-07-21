@@ -8,7 +8,7 @@ msgstr ""
 "Language: el_GR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-05-24 00:23\n"
+"PO-Revision-Date: 2026-07-19 00:19\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -780,7 +780,7 @@ msgstr "Αποσύνδεση"
 #: src/electron/commands/Commands.ts:587
 #: src/electron/commands/Commands.ts:601
 msgid "Node ID"
-msgstr ""
+msgstr "ID κόμβου"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:595
@@ -2695,9 +2695,7 @@ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:677
-msgid ""
-"These commands will be executed without confirmation in the future:\n"
-"\n"
+msgid "These commands will be executed without confirmation in the future:\n\n"
 " {commands}"
 msgstr ""
 
@@ -2841,7 +2839,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:104
 #~ msgid "App is requesting permission to execute these commands"
-#~ msgstr ""
+#~ msgstr "App is requesting permission to execute these commands"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:138
@@ -2861,12 +2859,12 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:232
 #~ msgid "Create new DID Wallet"
-#~ msgstr ""
+#~ msgstr "Create new DID Wallet"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:365
 #~ msgid "Confirm Create Offer"
-#~ msgstr ""
+#~ msgstr "Confirm Create Offer"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:473
@@ -2917,7 +2915,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1051
 #~ msgid "Update DID Recovery Ids"
-#~ msgstr ""
+#~ msgstr "Update DID Recovery Ids"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1075
@@ -2927,7 +2925,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1121
 #~ msgid "Proofs"
-#~ msgstr ""
+#~ msgstr "Proofs"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1505
@@ -2942,22 +2940,22 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1549
 #~ msgid "Get Information Needed For DID Recovery"
-#~ msgstr ""
+#~ msgstr "Get Information Needed For DID Recovery"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2155
 #~ msgid "Get DID Recovery List"
-#~ msgstr ""
+#~ msgstr "Get DID Recovery List"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:164
 #~ msgid "Offered"
-#~ msgstr ""
+#~ msgstr "Offered"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:178
 #~ msgid "Requested"
-#~ msgstr ""
+#~ msgstr "Requested"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:381
@@ -2987,7 +2985,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Pair/Pair.tsx:389
 #~ msgid "Reset"
-#~ msgstr ""
+#~ msgstr "Reset"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Pair/Pair.tsx:408
@@ -3419,7 +3417,7 @@ msgstr ""
 
 #: src/components/settings/SettingsIntegration.tsx:146
 #~ msgid "Allow requests that require switching to a different wallet key."
-#~ msgstr ""
+#~ msgstr "Allow requests that require switching to a different wallet key."
 
 #: src/components/notification/NotificationSendDialog.tsx:286
 msgid "Allow the NFT holder to send a counter offer"
@@ -5663,15 +5661,13 @@ msgstr ""
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
 
 #: src/components/offers/OfferEditor.tsx:127
 #: src/components/offers2/CreateOfferBuilder.tsx:145
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
 
@@ -5798,7 +5794,7 @@ msgstr ""
 
 #: src/components/settings/SettingsIntegration.tsx:129
 #~ msgid "Key Switching"
-#~ msgstr ""
+#~ msgstr "Key Switching"
 
 #: src/components/offers/OfferShareDialog.tsx:1086
 #~ msgid "Keybase command failed {e}. If you haven't installed Keybase, you can download from https://keybase.io"
@@ -6478,7 +6474,7 @@ msgstr ""
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:29
 #: src/components/fullNode/FullNodeConnections.tsx:29
 msgid "Node ID"
-msgstr "ID κόμβου"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:2312
 #~ msgid "Non Observer Derivation"
@@ -9693,3 +9689,4 @@ msgstr ""
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr ""
+
