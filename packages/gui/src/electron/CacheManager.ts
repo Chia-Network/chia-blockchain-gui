@@ -1,8 +1,10 @@
-import { BrowserWindow, net, dialog, type Protocol } from 'electron';
+import { BrowserWindow, dialog, type Protocol } from 'electron';
 import { EventEmitter } from 'events';
 import crypto from 'node:crypto';
+import { createReadStream } from 'node:fs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { Readable } from 'node:stream';
 
 import debug from 'debug';
 import isURL from 'validator/lib/isURL';
@@ -14,7 +16,7 @@ import CacheState from '../constants/CacheState';
 import limit from '../util/limit';
 
 import CacheAPI from './constants/CacheAPI';
-import downloadFile from './utils/downloadFile';
+import downloadFile, { MAX_FILE_SIZE_EXCEEDED_ERROR } from './utils/downloadFile';
 import ensureDirectoryExists from './utils/ensureDirectoryExists';
 import getChecksum from './utils/getChecksum';
 import ipcMainHandle from './utils/ipcMainHandle';
@@ -24,7 +26,51 @@ import sanitizeNumber from './utils/sanitizeNumber';
 
 const log = debug('chia-gui:CacheManager');
 
-const CACHE_PROTOCOL = 'cache';
+export const CACHE_PROTOCOL = 'cache';
+
+// A single-range `bytes=start-end` Range header, parsed against the file size.
+// 'ignore' means the header is absent or uses a form we do not support
+// (e.g. multiple ranges), in which case the full file is served with a 200.
+type ParsedRange = { start: number; end: number } | 'invalid' | 'ignore';
+
+function parseRangeHeader(rangeHeader: string | null, fileSize: number): ParsedRange {
+  if (!rangeHeader) {
+    return 'ignore';
+  }
+
+  const match = /^bytes=(\d*)-(\d*)$/.exec(rangeHeader.trim());
+  if (!match) {
+    return 'ignore';
+  }
+
+  const [, startString, endString] = match;
+
+  if (startString === '' && endString === '') {
+    return 'invalid';
+  }
+
+  if (startString === '') {
+    // suffix range: the last N bytes of the file
+    const suffixLength = Number.parseInt(endString, 10);
+    if (suffixLength === 0 || fileSize === 0) {
+      return 'invalid';
+    }
+
+    return { start: Math.max(fileSize - suffixLength, 0), end: fileSize - 1 };
+  }
+
+  const start = Number.parseInt(startString, 10);
+  if (start >= fileSize) {
+    return 'invalid';
+  }
+
+  const end = endString === '' ? fileSize - 1 : Math.min(Number.parseInt(endString, 10), fileSize - 1);
+  if (start > end) {
+    return 'invalid';
+  }
+
+  return { start, end };
+}
 
 async function safeUnlink(filePath: string) {
   try {
@@ -112,8 +158,11 @@ export default class CacheManager extends EventEmitter {
         });
       }
 
-      const response = await net.fetch(`file://${filePath}`);
-      if (!response.ok) {
+      let fileSize: number;
+      try {
+        const stats = await fs.stat(filePath);
+        fileSize = stats.size;
+      } catch (error) {
         return new Response('Not found', {
           status: 404,
           headers: {
@@ -122,18 +171,45 @@ export default class CacheManager extends EventEmitter {
         });
       }
 
-      const { headers } = cacheInfo;
-      const updatedHeaders = new Headers(response.headers);
+      const contentTypeHeader = cacheInfo.headers?.['content-type'];
+      const contentType =
+        (Array.isArray(contentTypeHeader) ? contentTypeHeader[0] : contentTypeHeader) || 'application/octet-stream';
 
-      if (headers['content-type']) {
-        const contentType = Array.isArray(headers['content-type'])
-          ? headers['content-type'][0]
-          : headers['content-type'];
-        updatedHeaders.set('content-type', contentType);
+      const responseHeaders: Record<string, string> = {
+        'content-type': contentType,
+        'accept-ranges': 'bytes',
+      };
+
+      // Media elements seek by sending Range requests. Without 206 responses
+      // seeking is broken and MP4 files with the moov atom at the end of the
+      // file never start playing.
+      const range = parseRangeHeader(request.headers.get('range'), fileSize);
+
+      if (range === 'invalid') {
+        return new Response('Range Not Satisfiable', {
+          status: 416,
+          headers: {
+            'content-type': 'text/plain',
+            'content-range': `bytes */${fileSize}`,
+          },
+        });
       }
 
-      return new Response(response.body, {
-        headers: updatedHeaders,
+      if (range !== 'ignore') {
+        responseHeaders['content-length'] = String(range.end - range.start + 1);
+        responseHeaders['content-range'] = `bytes ${range.start}-${range.end}/${fileSize}`;
+
+        const partialStream = createReadStream(filePath, { start: range.start, end: range.end });
+        return new Response(Readable.toWeb(partialStream) as unknown as ReadableStream, {
+          status: 206,
+          headers: responseHeaders,
+        });
+      }
+
+      responseHeaders['content-length'] = String(fileSize);
+
+      return new Response(Readable.toWeb(createReadStream(filePath)) as unknown as ReadableStream, {
+        headers: responseHeaders,
       });
     });
   }
@@ -332,7 +408,12 @@ export default class CacheManager extends EventEmitter {
 
         if (cacheInfo.state === CacheState.ERROR) {
           log(`Url already downloaded with error: ${cacheInfo.error}`, url);
-          if (!['Response aborted', 'Request aborted'].includes(cacheInfo.error)) {
+
+          const isTransientError = ['Response aborted', 'Request aborted'].includes(cacheInfo.error);
+          // A persisted size-limit error is only retried when the caller lifts
+          // the limit, so oversized files are not re-downloaded on every visit.
+          const isSizeLimitLifted = cacheInfo.error === MAX_FILE_SIZE_EXCEEDED_ERROR && maxSize <= 0;
+          if (!isTransientError && !isSizeLimitLifted) {
             return cacheInfo;
           }
 
