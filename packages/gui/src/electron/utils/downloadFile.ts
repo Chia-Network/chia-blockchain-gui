@@ -63,10 +63,12 @@ class WriteStreamPromise {
   }
 }
 
+export const MAX_FILE_SIZE_EXCEEDED_ERROR = 'Maximum file size exceeded';
+
 type DownloadFileOptions = {
   timeout?: number;
   signal?: AbortSignal;
-  maxSize?: number;
+  maxSize?: number; // values <= 0 disable the size limit
   onProgress?: (progress: number, size: number, downloadedSize: number) => void;
   overrideFile?: boolean;
 };
@@ -84,11 +86,26 @@ export default async function downloadFile(
   const request = net.request(url);
   const outputStream = new WriteStreamPromise(tempFilePath, overrideFile);
 
+  // set when we abort the request ourselves, so abort events can be reported
+  // with the real reason instead of a generic aborted error
+  let abortError: Error | undefined;
+
   function abortRequest() {
     request.abort();
   }
 
   let timeoutId: NodeJS.Timeout | null = null;
+
+  // the timeout is an inactivity timeout - it is reset every time data
+  // arrives, so slow hosts serving large files (videos) are not cut off mid
+  // transfer while a stalled connection still fails fast
+  function resetTimeout() {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+
+    timeoutId = setTimeout(abortRequest, timeout);
+  }
 
   return new Promise<Headers>((resolve, reject) => {
     let downloadedSize = 0;
@@ -161,7 +178,8 @@ export default async function downloadFile(
         const size = Number.parseInt(contentLength, 10);
         if (!Number.isNaN(size)) {
           fileSize = size;
-          if (size > maxSize) {
+          if (maxSize > 0 && size > maxSize) {
+            abortError = new Error(MAX_FILE_SIZE_EXCEEDED_ERROR);
             request.abort();
             return;
           }
@@ -170,8 +188,10 @@ export default async function downloadFile(
 
       response.on('data', (chunk) => {
         downloadedSize += chunk.byteLength;
+        resetTimeout();
 
-        if (downloadedSize > maxSize) {
+        if (maxSize > 0 && downloadedSize > maxSize) {
+          abortError = new Error(MAX_FILE_SIZE_EXCEEDED_ERROR);
           request.abort();
           return;
         }
@@ -182,7 +202,7 @@ export default async function downloadFile(
 
         // send progress event only when we know the file size
         if (onProgress && fileSize !== undefined && fileSize > 0) {
-          const progress = Math.max((downloadedSize / fileSize) * 100, 100);
+          const progress = Math.min((downloadedSize / fileSize) * 100, 100);
           onProgress(progress, fileSize, downloadedSize);
         }
       });
@@ -192,7 +212,7 @@ export default async function downloadFile(
       });
 
       response.on('aborted', () => {
-        resolvePromise(false, new Error('Response aborted'));
+        resolvePromise(false, abortError ?? new Error('Response aborted'));
       });
 
       response.on('end', () => {
@@ -201,7 +221,7 @@ export default async function downloadFile(
     });
 
     request.on('abort', () => {
-      resolvePromise(false, new Error('Request aborted'));
+      resolvePromise(false, abortError ?? new Error('Request aborted'));
     });
 
     request.on('error', (error = new Error('Unknown request error')) => {
@@ -212,7 +232,7 @@ export default async function downloadFile(
       signal.addEventListener('abort', abortRequest);
     }
 
-    timeoutId = setTimeout(abortRequest, timeout);
+    resetTimeout();
 
     request.end();
   });
