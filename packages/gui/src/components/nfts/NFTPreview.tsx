@@ -210,7 +210,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
           }
         `;
 
-        const cachedURI = await getURI(preview.uri);
+        const cachedURI = await getURI(preview.uri, { maxSize: ignoreSizeLimit ? -1 : undefined });
         if (!cachedURI || !cachedURI.startsWith('cache://')) {
           setPreviewContent(undefined, signal);
           return;
@@ -237,7 +237,17 @@ export default function NFTPreview(props: NFTPreviewProps) {
         setError(e as Error, signal);
       }
     },
-    [preview, fit, getURI, previewFileType, disableInteractions, isDarkMode, setPreviewContent, setError],
+    [
+      preview,
+      fit,
+      getURI,
+      ignoreSizeLimit,
+      previewFileType,
+      disableInteractions,
+      isDarkMode,
+      setPreviewContent,
+      setError,
+    ],
   );
 
   useEffect(() => {
