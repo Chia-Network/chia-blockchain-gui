@@ -353,7 +353,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
         }}
       >
         {!canInteract && <IframePreventEvents />}
-        <SandboxedIframe hideUntilLoaded allowPointerEvents={!canInteract}>
+        <SandboxedIframe hideUntilLoaded allowPointerEvents={canInteract}>
           {previewContent}
         </SandboxedIframe>
         {blurPreview && (
