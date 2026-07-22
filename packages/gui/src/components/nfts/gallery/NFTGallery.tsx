@@ -13,7 +13,11 @@ import {
   ScrollbarVirtuoso,
 } from '@chia-network/core';
 import { t, Trans } from '@lingui/macro';
-import { FilterList as FilterListIcon, LibraryAddCheck as LibraryAddCheckIcon } from '@mui/icons-material';
+import {
+  FilterList as FilterListIcon,
+  LibraryAddCheck as LibraryAddCheckIcon,
+  Refresh as RefreshIcon,
+} from '@mui/icons-material';
 import {
   Divider,
   Chip,
@@ -36,6 +40,7 @@ import FileType from '../../../constants/FileType';
 import useFilteredNFTs from '../../../hooks/useFilteredNFTs';
 import useHideObjectionableContent from '../../../hooks/useHideObjectionableContent';
 import useNFTGalleryScrollPosition from '../../../hooks/useNFTGalleryScrollPosition';
+import useNFTProvider from '../../../hooks/useNFTProvider';
 import getNFTId from '../../../util/getNFTId';
 import LabelProgress from '../../helpers/LabelProgress';
 import NFTCard from '../NFTCard';
@@ -108,6 +113,8 @@ export default function NFTGallery() {
 
     statistics,
   } = useFilteredNFTs();
+
+  const { refetch } = useNFTProvider();
 
   const [scrollPosition, setScrollPosition] = useNFTGalleryScrollPosition();
   const scrollerRef = useRef<HTMLElement>(null);
@@ -284,6 +291,13 @@ export default function NFTGallery() {
                   <IconButton onClick={toggleShowFilters} color={showFilters ? 'primary' : undefined}>
                     <FilterListIcon color="info" />
                   </IconButton>
+                </Tooltip>
+                <Tooltip title={<Trans>Refresh NFTs</Trans>} placement="top">
+                  <span>
+                    <IconButton onClick={() => refetch()} disabled={isLoading}>
+                      <RefreshIcon color={isLoading ? 'disabled' : 'info'} />
+                    </IconButton>
+                  </span>
                 </Tooltip>
               </Flex>
             </Flex>
