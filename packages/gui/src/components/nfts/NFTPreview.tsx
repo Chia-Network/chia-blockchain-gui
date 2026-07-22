@@ -30,6 +30,7 @@ import useNFT from '../../hooks/useNFT';
 import useNFTImageFittingMode from '../../hooks/useNFTImageFittingMode';
 import useNFTMetadata from '../../hooks/useNFTMetadata';
 import useNFTVerifyHash from '../../hooks/useNFTVerifyHash';
+import useNFTVideoLoop from '../../hooks/useNFTVideoLoop';
 import useStateAbort from '../../hooks/useStateAbort';
 import getFileExtension from '../../util/getFileExtension';
 import getNFTId from '../../util/getNFTId';
@@ -155,6 +156,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
   });
 
   const { type: previewFileType, isLoading: isLoadingFileType } = useFileType(preview?.uri);
+  const loopVideo = useNFTVideoLoop(nftId);
 
   const { isLoading: isLoadingNFT } = useNFT(nftId);
   const { metadata, isLoading: isLoadingMetadata } = useNFTMetadata(nftId);
@@ -220,7 +222,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
           <>
             <style>{style}</style>
             {previewFileType === FileType.VIDEO ? (
-              <video width="100%" height="100%" controls={!disableInteractions}>
+              <video width="100%" height="100%" controls={!disableInteractions} loop={loopVideo}>
                 <source src={cachedURI} />
               </video>
             ) : previewFileType === FileType.AUDIO ? (
@@ -244,6 +246,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
       ignoreSizeLimit,
       previewFileType,
       disableInteractions,
+      loopVideo,
       isDarkMode,
       setPreviewContent,
       setError,
