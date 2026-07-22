@@ -17,6 +17,7 @@ const NFTProviderContext = createContext<
       error: Error | undefined;
 
       invalidate: (id: string | undefined) => Promise<void>;
+      refetch: () => Promise<void>;
 
       subscribeToChanges: (callback: () => void) => () => void;
 

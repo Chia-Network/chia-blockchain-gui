@@ -282,6 +282,7 @@ export default function useNFTData(props: UseNFTDataProps) {
     nfts,
 
     getNFT,
+    refetch: refetchData,
 
     isLoading,
     error,
