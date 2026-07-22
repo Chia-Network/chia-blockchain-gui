@@ -338,8 +338,13 @@ export default function NFTPreview(props: NFTPreviewProps) {
       );
     }
 
-    const canInteract =
-      !isPreview && !disableInteractions && (previewFileType === FileType.VIDEO || previewFileType === FileType.AUDIO);
+    const isPlayable = previewFileType === FileType.VIDEO || previewFileType === FileType.AUDIO;
+    const canInteract = !disableInteractions && isPlayable;
+    // In the gallery grid the media controls are directly clickable, while the
+    // rest of the tile keeps navigating to the detail view. The blockers below
+    // sit over the non-control area only, so clicks there fall through to the
+    // card while the native controls (play, seek, volume) stay exposed.
+    const showGridNavigationBlockers = isPreview && canInteract;
 
     return (
       <Box
@@ -356,6 +361,17 @@ export default function NFTPreview(props: NFTPreviewProps) {
         <SandboxedIframe hideUntilLoaded allowPointerEvents={canInteract}>
           {previewContent}
         </SandboxedIframe>
+        {showGridNavigationBlockers &&
+          (previewFileType === FileType.VIDEO ? (
+            // video controls render along the bottom edge of the tile
+            <Box sx={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 48, zIndex: 2 }} />
+          ) : (
+            // the audio control bar renders centered vertically in the tile
+            <>
+              <Box sx={{ position: 'absolute', top: 0, left: 0, right: 0, height: 'calc(50% - 32px)', zIndex: 2 }} />
+              <Box sx={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 'calc(50% - 32px)', zIndex: 2 }} />
+            </>
+          ))}
         {blurPreview && (
           <Box
             sx={{
