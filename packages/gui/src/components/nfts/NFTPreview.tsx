@@ -1,7 +1,7 @@
 import { Color, IconMessage, Loading, Flex, SandboxedIframe, usePersistState, useDarkMode } from '@chia-network/core';
 import { t, Trans } from '@lingui/macro';
-import { NotInterested } from '@mui/icons-material';
-import { alpha, Box } from '@mui/material';
+import { Loop as LoopIcon, NotInterested } from '@mui/icons-material';
+import { alpha, Box, IconButton, Tooltip } from '@mui/material';
 import React, { useMemo, useRef, Fragment, useCallback, useEffect, type ReactNode } from 'react';
 import styled from 'styled-components';
 
@@ -30,7 +30,7 @@ import useNFT from '../../hooks/useNFT';
 import useNFTImageFittingMode from '../../hooks/useNFTImageFittingMode';
 import useNFTMetadata from '../../hooks/useNFTMetadata';
 import useNFTVerifyHash from '../../hooks/useNFTVerifyHash';
-import useNFTVideoLoop from '../../hooks/useNFTVideoLoop';
+import { useNFTVideoLoopGlobal, useNFTVideoLoopForNFT } from '../../hooks/useNFTVideoLoop';
 import useStateAbort from '../../hooks/useStateAbort';
 import getFileExtension from '../../util/getFileExtension';
 import getNFTId from '../../util/getNFTId';
@@ -156,7 +156,19 @@ export default function NFTPreview(props: NFTPreviewProps) {
   });
 
   const { type: previewFileType, isLoading: isLoadingFileType } = useFileType(preview?.uri);
-  const loopVideo = useNFTVideoLoop(nftId);
+  const [globalVideoLoop] = useNFTVideoLoopGlobal();
+  const [perVideoLoop, setPerVideoLoop] = useNFTVideoLoopForNFT(nftId);
+  const loopVideo = globalVideoLoop || perVideoLoop;
+
+  const handleToggleVideoLoop = useCallback(
+    (event: React.MouseEvent) => {
+      // the button sits inside clickable areas (grid card navigation, detail
+      // view fullscreen) — keep the click from reaching them
+      event.stopPropagation();
+      setPerVideoLoop(!perVideoLoop);
+    },
+    [perVideoLoop, setPerVideoLoop],
+  );
 
   const { isLoading: isLoadingNFT } = useNFT(nftId);
   const { metadata, isLoading: isLoadingMetadata } = useNFTMetadata(nftId);
@@ -375,6 +387,42 @@ export default function NFTPreview(props: NFTPreviewProps) {
               <Box sx={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 'calc(50% - 32px)', zIndex: 2 }} />
             </>
           ))}
+        {previewFileType === FileType.VIDEO && canInteract && !blurPreview && (
+          <Tooltip
+            title={
+              globalVideoLoop ? (
+                <Trans>Looping is enabled for all videos in Settings</Trans>
+              ) : loopVideo ? (
+                <Trans>Looping on</Trans>
+              ) : (
+                <Trans>Loop video</Trans>
+              )
+            }
+            placement="left"
+          >
+            {/* wrapper keeps the tooltip working while the button is disabled */}
+            <Box sx={{ position: 'absolute', top: 8, right: 8, zIndex: 3 }}>
+              <IconButton
+                size="small"
+                disabled={globalVideoLoop}
+                onClick={handleToggleVideoLoop}
+                sx={{
+                  backgroundColor: alpha(Color.Neutral[900], 0.4),
+                  color: loopVideo ? Color.Green[400] : Color.Neutral[200],
+                  '&:hover': {
+                    backgroundColor: alpha(Color.Neutral[900], 0.6),
+                  },
+                  '&.Mui-disabled': {
+                    backgroundColor: alpha(Color.Neutral[900], 0.4),
+                    color: Color.Green[400],
+                  },
+                }}
+              >
+                <LoopIcon fontSize="small" />
+              </IconButton>
+            </Box>
+          </Tooltip>
+        )}
         {blurPreview && (
           <Box
             sx={{
@@ -404,6 +452,9 @@ export default function NFTPreview(props: NFTPreviewProps) {
     isDarkMode,
     blurPreview,
     previewCompactIcon,
+    globalVideoLoop,
+    loopVideo,
+    handleToggleVideoLoop,
   ]);
 
   const hasFile = !!preview;
