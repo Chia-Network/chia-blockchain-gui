@@ -7,16 +7,13 @@ import {
   ArrowBack as ArrowBackIcon,
   ArrowForward as ArrowForwardIcon,
 } from '@mui/icons-material';
-import { IconButton, Box, Grid, Typography, FormControlLabel, Switch } from '@mui/material';
+import { IconButton, Box, Grid, Typography } from '@mui/material';
 import React, { useEffect, useMemo, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
-import FileType from '../../../constants/FileType';
-import useFileType from '../../../hooks/useFileType';
 import useFilteredNFTs from '../../../hooks/useFilteredNFTs';
 import useNFT from '../../../hooks/useNFT';
 import useNFTMetadata from '../../../hooks/useNFTMetadata';
-import { useNFTVideoLoopGlobal, useNFTVideoLoopForNFT } from '../../../hooks/useNFTVideoLoop';
 import getNFTId from '../../../util/getNFTId';
 import { isImage } from '../../../util/utils';
 import OfferIncomingTable from '../../offers2/OfferIncomingTable';
@@ -52,15 +49,6 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
 
   const { nfts } = useFilteredNFTs();
   const navigate = useNavigate();
-
-  const { type: fileType } = useFileType(nft?.dataUris?.[0]);
-  const isVideo = fileType === FileType.VIDEO;
-  const [globalVideoLoop] = useNFTVideoLoopGlobal();
-  const [videoLoop, setVideoLoop] = useNFTVideoLoopForNFT(useMemo(() => getNFTId(nftId), [nftId]));
-
-  function handleChangeVideoLoop(event: React.ChangeEvent<HTMLInputElement>) {
-    setVideoLoop(event.target.checked);
-  }
 
   const position = useMemo(() => nfts.findIndex((item: NFTInfo) => getNFTId(item.launcherId) === nftId), [nftId, nfts]);
   const isLastPosition = nfts.length === position + 1;
@@ -178,30 +166,6 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
                   <Box onClick={handleShowFullScreen} sx={{ cursor: 'pointer' }}>
                     <NFTPreview id={nftId} height={412} fit="contain" hideStatus />
                   </Box>
-                  {isVideo && (
-                    <Flex justifyContent="center" marginTop={1}>
-                      <Tooltip
-                        title={
-                          globalVideoLoop ? (
-                            <Trans>Looping is enabled for all videos in Settings</Trans>
-                          ) : (
-                            <Trans>Restart this video automatically when it finishes playing</Trans>
-                          )
-                        }
-                      >
-                        <FormControlLabel
-                          control={
-                            <Switch
-                              checked={globalVideoLoop || videoLoop}
-                              disabled={globalVideoLoop}
-                              onChange={handleChangeVideoLoop}
-                            />
-                          }
-                          label={<Trans>Loop video</Trans>}
-                        />
-                      </Tooltip>
-                    </Flex>
-                  )}
                   {/*
                 <NFTProgressBar
                   nftIdUrl={`${nft.$nftId}_${uri}`}
