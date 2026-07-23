@@ -17,6 +17,7 @@ import React from 'react';
 import useCache from '../../hooks/useCache';
 import useHideObjectionableContent from '../../hooks/useHideObjectionableContent';
 import useNFTImageFittingMode from '../../hooks/useNFTImageFittingMode';
+import { useNFTVideoLoopGlobal } from '../../hooks/useNFTVideoLoop';
 
 import LimitCacheSize from './LimitCacheSize';
 
@@ -38,11 +39,16 @@ export default function SettingsGeneral() {
 
   const { cacheSize, clearCache, cacheDirectory, setCacheDirectory } = useCache();
   const [nftImageFittingMode, setNFTImageFittingMode] = useNFTImageFittingMode();
+  const [nftVideoLoop, setNFTVideoLoop] = useNFTVideoLoopGlobal();
   // const [, setCacheFolder] = usePrefs('cacheFolder', '');
   const openDialog = useOpenDialog();
 
   function handleScalePreviewImages(event: React.ChangeEvent<HTMLInputElement>) {
     setNFTImageFittingMode(event.target.checked ? 'contain' : 'cover');
+  }
+
+  function handleChangeVideoLoop(event: React.ChangeEvent<HTMLInputElement>) {
+    setNFTVideoLoop(event.target.checked);
   }
 
   async function clearNFTCache() {
@@ -115,6 +121,25 @@ export default function SettingsGeneral() {
         <Grid item style={{ width: '400px' }}>
           <SettingsText>
             <Trans>Images will be scaled to fill the NFT card and ignore their original proportions.</Trans>
+          </SettingsText>
+        </Grid>
+      </Grid>
+
+      <Grid container>
+        <Grid item style={{ width: '400px' }}>
+          <SettingsTitle>
+            <Trans>Loop videos</Trans>
+          </SettingsTitle>
+        </Grid>
+        <Grid item container xs justifyContent="flex-end" marginTop="-6px">
+          <FormControlLabel control={<Switch checked={nftVideoLoop} onChange={handleChangeVideoLoop} />} />
+        </Grid>
+        <Grid item style={{ width: '400px' }}>
+          <SettingsText>
+            <Trans>
+              All NFT videos will restart automatically when they finish playing. When disabled, looping can still be
+              turned on for individual videos from their detail page.
+            </Trans>
           </SettingsText>
         </Grid>
       </Grid>

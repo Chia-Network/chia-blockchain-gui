@@ -28,6 +28,7 @@ export default function NFTProvider(props: NFTProviderProps) {
     isLoading,
     error,
     getNFT: getNFTData,
+    refetch,
     count,
     loaded,
     progress,
@@ -194,6 +195,7 @@ export default function NFTProvider(props: NFTProviderProps) {
       subscribeToChanges,
 
       invalidate: invalidateNFT,
+      refetch,
 
       // mutable state
       isLoading,
@@ -217,6 +219,7 @@ export default function NFTProvider(props: NFTProviderProps) {
       progress,
       subscribeToChanges,
       invalidateNFT,
+      refetch,
     ],
   );
 
