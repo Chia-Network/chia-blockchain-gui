@@ -27,7 +27,7 @@
     "regenerator-runtime": "0.14.1"
   },
   "devDependencies": {
-    "@babel/core": "7.27.4",
+    "@babel/core": "7.29.6",
     "@babel/helper-get-function-arity": "7.16.7",
     "@babel/plugin-transform-runtime": "7.27.4",
     "@babel/preset-env": "7.27.2",
