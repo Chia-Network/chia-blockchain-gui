@@ -141,7 +141,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
   const nftId = useMemo(() => getNFTId(id), [id]);
   const iframeRef = useRef<any>(null);
   const { isDarkMode } = useDarkMode();
-  const [, setError] = useStateAbort<Error | undefined>(undefined);
+  const [prepareError, setPrepareError] = useStateAbort<Error | undefined>(undefined);
   const [previewContent, setPreviewContent] = useStateAbort<ReactNode | undefined>(undefined);
   const abortControllerRef = useRef(new AbortController());
   const [hideObjectionableContent] = useHideObjectionableContent();
@@ -172,7 +172,9 @@ export default function NFTPreview(props: NFTPreviewProps) {
 
   const { isLoading: isLoadingNFT } = useNFT(nftId);
   const { metadata, isLoading: isLoadingMetadata } = useNFTMetadata(nftId);
-  const isLoading = isLoadingVerifyHash || isLoadingMetadata || isLoadingNFT || isLoadingFileType;
+  // hash verification downloads the full data file, which can take a long time
+  // for large media — only wait for it while there is no preview uri to show yet
+  const isLoading = isLoadingMetadata || isLoadingNFT || isLoadingFileType || (isLoadingVerifyHash && !preview);
 
   const blurPreview = useMemo(() => {
     if (!hideObjectionableContent) {
@@ -196,12 +198,14 @@ export default function NFTPreview(props: NFTPreviewProps) {
 
   const previewExtension = useMemo(() => getFileExtension(preview?.uri), [preview]);
 
+  const previewUri = preview?.uri;
+
   const preparePreview = useCallback(
     async (signal: AbortSignal) => {
       try {
-        setError(undefined, signal);
+        setPrepareError(undefined, signal);
 
-        if (!preview?.uri) {
+        if (!previewUri) {
           setPreviewContent(undefined, signal);
           return;
         }
@@ -224,9 +228,10 @@ export default function NFTPreview(props: NFTPreviewProps) {
           }
         `;
 
-        const cachedURI = await getURI(preview.uri, { maxSize: ignoreSizeLimit ? -1 : undefined });
+        const cachedURI = await getURI(previewUri, { maxSize: ignoreSizeLimit ? -1 : undefined });
         if (!cachedURI || !cachedURI.startsWith('cache://')) {
           setPreviewContent(undefined, signal);
+          setPrepareError(new Error(t`File is not available`), signal);
           return;
         }
 
@@ -248,11 +253,12 @@ export default function NFTPreview(props: NFTPreviewProps) {
           signal,
         );
       } catch (e) {
-        setError(e as Error, signal);
+        setPreviewContent(undefined, signal);
+        setPrepareError(e as Error, signal);
       }
     },
     [
-      preview,
+      previewUri,
       fit,
       getURI,
       ignoreSizeLimit,
@@ -261,7 +267,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
       loopVideo,
       isDarkMode,
       setPreviewContent,
-      setError,
+      setPrepareError,
     ],
   );
 
@@ -459,6 +465,13 @@ export default function NFTPreview(props: NFTPreviewProps) {
 
   const hasFile = !!preview;
 
+  // icon, model, document and compact non-image previews do not render the
+  // iframe, so they never wait for the preview file to download
+  const usesIframe =
+    !(isCompact && previewFileType !== FileType.IMAGE) &&
+    !icon &&
+    ![FileType.MODEL, FileType.DOCUMENT].includes(previewFileType);
+
   return (
     <StyledCardPreview width={width} height={height} sx={{ aspectRatio: ratio.toString() }}>
       {isLoading ? (
@@ -471,6 +484,16 @@ export default function NFTPreview(props: NFTPreviewProps) {
             <Trans>No file available</Trans>
           </IconMessage>
         </Background>
+      ) : usesIframe && prepareError ? (
+        <Background>
+          <IconMessage icon={<NotInterested fontSize="large" />}>
+            <Trans>Preview is not available</Trans>
+          </IconMessage>
+        </Background>
+      ) : usesIframe && !previewContent ? (
+        <Flex position="absolute" left="0" top="0" bottom="0" right="0" justifyContent="center" alignItems="center">
+          <Loading center>{!isCompact && t`Loading preview...`}</Loading>
+        </Flex>
       ) : (
         previewIframe
       )}
