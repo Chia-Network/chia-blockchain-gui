@@ -19,6 +19,16 @@ msgstr ""
 "X-Crowdin-File-ID: 35\n"
 
 #. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:161
+msgid "Unknown Asset"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:166
+msgid "Raw Amount"
+msgstr ""
+
+#. js-lingui-explicit-id
 #: src/components/nfts/NFTBurnDialog.tsx:133
 msgid "Do you want to burn {count} NFTs?"
 msgstr "Přejete si vypálit {count} NFT?"
@@ -1616,7 +1626,7 @@ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1434
-#: src/electron/dialogs/Confirm/Confirm.tsx:423
+#: src/electron/dialogs/Confirm/Confirm.tsx:438
 #: src/electron/dialogs/Pair/Pair.tsx:377
 #: src/electron/main.tsx:1089
 msgid "Cancel"
@@ -2475,60 +2485,60 @@ msgid "Report an issue"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/dialogs/Confirm/Confirm.tsx:111
-#: src/electron/dialogs/Confirm/Confirm.tsx:132
-#: src/electron/dialogs/Confirm/Confirm.tsx:150
+#: src/electron/dialogs/Confirm/Confirm.tsx:113
+#: src/electron/dialogs/Confirm/Confirm.tsx:134
+#: src/electron/dialogs/Confirm/Confirm.tsx:152
 msgid "Total Amount with Royalties"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/dialogs/Confirm/Confirm.tsx:145
+#: src/electron/dialogs/Confirm/Confirm.tsx:147
 msgid "Wallet ID"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/dialogs/Confirm/Confirm.tsx:175
+#: src/electron/dialogs/Confirm/Confirm.tsx:190
 msgid "Royalties Percentage"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/dialogs/Confirm/Confirm.tsx:195
+#: src/electron/dialogs/Confirm/Confirm.tsx:210
 msgid "You Spend"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/dialogs/Confirm/Confirm.tsx:199
-#: src/electron/dialogs/Confirm/Confirm.tsx:213
+#: src/electron/dialogs/Confirm/Confirm.tsx:214
+#: src/electron/dialogs/Confirm/Confirm.tsx:228
 msgid "Nothing"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/dialogs/Confirm/Confirm.tsx:209
+#: src/electron/dialogs/Confirm/Confirm.tsx:224
 msgid "You Receive"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/dialogs/Confirm/Confirm.tsx:224
+#: src/electron/dialogs/Confirm/Confirm.tsx:239
 msgid "Offer Fees"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/dialogs/Confirm/Confirm.tsx:331
+#: src/electron/dialogs/Confirm/Confirm.tsx:346
 msgid "Request from"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/dialogs/Confirm/Confirm.tsx:363
+#: src/electron/dialogs/Confirm/Confirm.tsx:378
 msgid "Different wallet key"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/dialogs/Confirm/Confirm.tsx:365
+#: src/electron/dialogs/Confirm/Confirm.tsx:380
 msgid "This app is asking to run under {requested}, but {current} is currently logged in."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/dialogs/Confirm/Confirm.tsx:412
+#: src/electron/dialogs/Confirm/Confirm.tsx:427
 msgid "Always allow this command without asking"
 msgstr ""
 
