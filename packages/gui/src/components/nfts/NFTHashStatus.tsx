@@ -31,6 +31,7 @@ export default function NFTHashStatus(props: NFTHashStatusProps) {
   const isLoading = isLoadingNFTVerifyHash || isLoadingNFT;
   const isVerified = preview ? nftPreview?.isVerified : data?.isVerified;
   const error = (errorNFT ?? preview) ? nftPreview?.error : data?.error;
+  const failedFetch = preview ? nftPreview?.failedFetch : data?.failedFetch;
 
   const isValidURI = useMemo(() => {
     if (!nftPreview || !('originalUri' in nftPreview)) {
@@ -77,8 +78,12 @@ export default function NFTHashStatus(props: NFTHashStatusProps) {
       return <Trans>URL is not valid</Trans>;
     }
 
+    if (failedFetch) {
+      return <Trans>File is not available</Trans>;
+    }
+
     return <Trans>Invalid hash</Trans>;
-  }, [isLoading, isVerified, nft, isValidURI]);
+  }, [isLoading, isVerified, nft, isValidURI, failedFetch]);
 
   const color = useMemo(() => {
     if (isLoading) {

@@ -15,6 +15,10 @@ type PreviewState = {
   isVerified: boolean;
   uri: string;
   error?: Error;
+  // the file could not be downloaded — distinct from a real hash mismatch
+  failedFetch?: boolean;
+  // optimistic state: checksums are still being computed for this uri
+  isVerifying?: boolean;
 };
 
 export type UseNFTVerifyHashOptions = {
@@ -72,11 +76,15 @@ export default function useNFTVerifyHash(nftId?: string, options: UseNFTVerifyHa
           throw new Error('Invalid hash checksum');
         } catch (e) {
           log(`Failed to fetch ${uri}: ${(e as Error).message}`);
-          if (!first) {
+          const isMismatch = (e as Error).message === 'Invalid hash checksum';
+          // a hash mismatch on any uri outranks a download failure — a
+          // tampered file must not be reported as merely unavailable
+          if (!first || (first.failedFetch && isMismatch)) {
             first = {
               isVerified: false,
               uri,
               error: e as Error,
+              failedFetch: !isMismatch,
             };
           }
         }
@@ -149,8 +157,52 @@ export default function useNFTVerifyHash(nftId?: string, options: UseNFTVerifyHa
       return data;
     }
 
+    // Once verification has finished, report the settled result.
+    if (!isVerifying) {
+      const settled = previewVideo || previewImage || data;
+      if (settled) {
+        return settled;
+      }
+    }
+
+    // While checksums are still being computed, expose the first candidate uri
+    // whose validation has not already failed, so the thumbnail can render
+    // immediately instead of waiting for the full data file to download and a
+    // fast failure on one source does not flash an error tile while another
+    // source is still pending. The verified state replaces this once known.
+    const asCandidate = (uri: string | undefined): PreviewState | undefined =>
+      uri
+        ? {
+            isVerified: false,
+            isVerifying: true,
+            uri,
+          }
+        : undefined;
+
+    if (nft) {
+      if (preview) {
+        const videoUri = metadata?.preview_video_uris?.[0];
+        if (videoUri && !previewVideo) {
+          return asCandidate(videoUri);
+        }
+
+        const imageUri = metadata?.preview_image_uris?.[0];
+        if (imageUri && !previewImage) {
+          return asCandidate(imageUri);
+        }
+      }
+
+      if (!data) {
+        const candidate = asCandidate(nft.dataUris?.[0]);
+        if (candidate) {
+          return candidate;
+        }
+      }
+    }
+
+    // everything available has already failed — report the most relevant failure
     return previewVideo || previewImage || data;
-  }, [previewVideo, previewImage, data]);
+  }, [previewVideo, previewImage, data, nft, metadata, preview, isVerifying]);
 
   return {
     isVerified: data?.isVerified, // main data is the only one that matters
