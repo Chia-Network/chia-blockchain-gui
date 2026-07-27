@@ -1,7 +1,8 @@
 import { sendCommand } from './sendCommand';
 
 type CatAssetIdToNameResponse = {
-  name?: string;
+  wallet_id?: number | null;
+  name?: string | null;
 };
 
 export async function catAssetIdToName(assetId: string) {

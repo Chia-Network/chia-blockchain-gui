@@ -528,7 +528,7 @@ function buildOfferRequest(params: NFTBuildOfferRequestParams) {
       [nftLauncherId]: nftAmount,
       [tokenWalletInfo.walletId]: mojoAmount,
     },
-    exchangeType === NFTOfferExchangeType.TokenForNFT ? driverDict : undefined,
+    driverDict,
     feeMojoAmount,
   ];
 }

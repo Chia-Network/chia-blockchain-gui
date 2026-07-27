@@ -16,7 +16,7 @@ const mockGetWalletNames = jest.fn<Promise<WalletNamesResponse>, []>();
 const mockGetWalletInfos = jest.fn<Promise<WalletInfosResponse>, []>();
 const mockGetOfferSummary = jest.fn<Promise<OfferSummaryResponse | null>, [string]>();
 const mockNftGetInfo = jest.fn<Promise<unknown>, [string]>();
-const mockCatAssetIdToName = jest.fn<Promise<{ name?: string }>, [string]>();
+const mockCatAssetIdToName = jest.fn<Promise<{ wallet_id?: number | null; name?: string | null }>, [string]>();
 
 jest.mock('../api/catAssetIdToName', () => ({
   catAssetIdToName: mockCatAssetIdToName,
@@ -91,7 +91,7 @@ describe('parseCommandDisplay', () => {
     expect(mockGetWalletInfos).toHaveBeenCalledWith();
   });
 
-  it('uses the legacy CAT fallback for requested bytes32 create-offer assets without drivers', async () => {
+  it('resolves driverless requested CAT assets from the local wallet', async () => {
     const assetId = '1234567890123456789012345678901234567890123456789012345678901234';
 
     mockGetWalletInfos.mockResolvedValue({
@@ -116,7 +116,7 @@ describe('parseCommandDisplay', () => {
         ],
       },
     });
-    expect(mockNftGetInfo).not.toHaveBeenCalled();
+    expect(mockNftGetInfo).toHaveBeenCalledWith(assetId);
   });
 
   it('fails closed when create-offer params use xch keys instead of numeric wallet IDs', async () => {
@@ -488,9 +488,11 @@ describe('parseCommandDisplay', () => {
     expect(mockNftGetInfo).not.toHaveBeenCalled();
   });
 
-  it('fails closed for unresolved create-offer spending-side bytes32 assets without drivers', async () => {
+  it('renders unresolved create-offer spending-side bytes32 assets as unknown', async () => {
     const assetId = '31ffd54c5b38bb33352dc0be0ebf9cf4f29a6329156dd4811d6f4254f85c8200';
     mockGetWalletInfos.mockResolvedValue({});
+    mockNftGetInfo.mockRejectedValue(new Error('NFT not found'));
+    mockCatAssetIdToName.mockRejectedValue(new Error('CAT not found'));
 
     await expect(
       parseCommandDisplay('chia_wallet.create_offer_for_ids', {
@@ -498,9 +500,100 @@ describe('parseCommandDisplay', () => {
           [assetId]: '-1000',
         },
       }),
-    ).rejects.toThrow('Asset type is not valid');
+    ).resolves.toMatchObject({
+      walletDelta: {
+        spending: [
+          {
+            kind: 'unknown',
+            assetId,
+            amount: '1000',
+          },
+        ],
+      },
+    });
+    expect(mockCatAssetIdToName).toHaveBeenCalledWith(assetId);
+    expect(mockNftGetInfo).toHaveBeenCalledWith(assetId);
+  });
+
+  it('resolves driverless offered NFTs from the local wallet', async () => {
+    const assetId = '31ffd54c5b38bb33352dc0be0ebf9cf4f29a6329156dd4811d6f4254f85c8200';
+    mockGetWalletInfos.mockResolvedValue({});
+    mockNftGetInfo.mockResolvedValue({
+      nft_info: {
+        launcher_id: `0x${assetId}`,
+      },
+    });
+
+    await expect(
+      parseCommandDisplay('chia_wallet.create_offer_for_ids', {
+        offer: {
+          [assetId]: '-1',
+        },
+      }),
+    ).resolves.toMatchObject({
+      walletDelta: {
+        spending: [
+          {
+            kind: 'nft',
+          },
+        ],
+      },
+    });
     expect(mockCatAssetIdToName).not.toHaveBeenCalled();
-    expect(mockNftGetInfo).not.toHaveBeenCalled();
+  });
+
+  it('renders a CAT lookup with no wallet or name as unknown', async () => {
+    const assetId = '31ffd54c5b38bb33352dc0be0ebf9cf4f29a6329156dd4811d6f4254f85c8200';
+    mockGetWalletInfos.mockResolvedValue({});
+    mockNftGetInfo.mockRejectedValue(new Error('NFT not found'));
+    mockCatAssetIdToName.mockResolvedValue({ wallet_id: null, name: null });
+
+    await expect(
+      parseCommandDisplay('chia_wallet.create_offer_for_ids', {
+        offer: {
+          [assetId]: '-1',
+        },
+      }),
+    ).resolves.toMatchObject({
+      walletDelta: {
+        spending: [
+          {
+            kind: 'unknown',
+            assetId,
+            amount: '1',
+          },
+        ],
+      },
+    });
+  });
+
+  it('does not classify an NFT when its launcher ID does not match the offer asset ID', async () => {
+    const assetId = '31ffd54c5b38bb33352dc0be0ebf9cf4f29a6329156dd4811d6f4254f85c8200';
+    mockGetWalletInfos.mockResolvedValue({});
+    mockNftGetInfo.mockResolvedValue({
+      nft_info: {
+        launcher_id: 'd82dd03f8a9ad2f84353cd953c4de6b21dbaaf7de3ba3f4ddd9abe31ecba80ad',
+      },
+    });
+    mockCatAssetIdToName.mockRejectedValue(new Error('CAT not found'));
+
+    await expect(
+      parseCommandDisplay('chia_wallet.create_offer_for_ids', {
+        offer: {
+          [assetId]: '-1',
+        },
+      }),
+    ).resolves.toMatchObject({
+      walletDelta: {
+        spending: [
+          {
+            kind: 'unknown',
+            assetId,
+            amount: '1',
+          },
+        ],
+      },
+    });
   });
 
   it('fails closed for take-offer bytes32 assets missing offer summary type info', async () => {
