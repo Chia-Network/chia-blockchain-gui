@@ -19,16 +19,6 @@ msgstr ""
 "X-Crowdin-File-ID: 35\n"
 
 #. js-lingui-explicit-id
-#: src/electron/dialogs/Confirm/Confirm.tsx:161
-msgid "Unknown Asset"
-msgstr ""
-
-#. js-lingui-explicit-id
-#: src/electron/dialogs/Confirm/Confirm.tsx:166
-msgid "Raw Amount"
-msgstr ""
-
-#. js-lingui-explicit-id
 #: src/components/nfts/NFTBurnDialog.tsx:133
 msgid "Do you want to burn {count} NFTs?"
 msgstr "Do you want to burn {count} NFTs?"
@@ -2494,6 +2484,16 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:147
 msgid "Wallet ID"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:161
+msgid "Unknown Asset"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/dialogs/Confirm/Confirm.tsx:166
+msgid "Raw Amount"
 msgstr ""
 
 #. js-lingui-explicit-id
