@@ -1,7 +1,10 @@
+import FileType from '../../constants/FileType';
+import getFileType from '../../util/getFileType';
 import { catAssetIdToName } from '../api/catAssetIdToName';
 import { getOfferSummary } from '../api/getOfferSummary';
 import { getWalletInfos, type WalletInfo } from '../api/getWalletNames';
 import { nftGetInfo } from '../api/nftGetInfo';
+import { nftGetMetadata } from '../api/nftGetMetadata';
 import resolveAssetDisplayKind from '../api/resolveAssetDisplayKind';
 import WalletType from '../constants/WalletType';
 import type { DisplayWalletDelta, DisplayWalletDeltaItem } from '../dialogs/Confirm/Confirm';
@@ -44,6 +47,32 @@ function hexToNftId(hex: string): string {
   } catch {
     return hex;
   }
+}
+
+/** The confirmation dialog renders the preview in an `<img>`, which can only
+ * display images — a video/audio data uri would show as a broken image icon.
+ * Pick an image data uri when there is one, otherwise fall back to the
+ * metadata's preview image; NFTs with no usable image keep the placeholder. */
+export async function resolveNftPreviewUrl(dataUris: string[], metadataUris: string[]): Promise<string | undefined> {
+  const validDataUris = dataUris.filter((uri) => isValidURL(uri));
+
+  const imageUri = validDataUris.find((uri) => getFileType(uri) === FileType.IMAGE);
+  if (imageUri) {
+    return imageUri;
+  }
+
+  const metadataUri = metadataUris.find((uri) => isValidURL(uri));
+  if (metadataUri) {
+    const metadata = await nftGetMetadata(metadataUri);
+    const previewImageUri = metadata?.preview_image_uris?.find((uri) => typeof uri === 'string' && isValidURL(uri));
+    if (previewImageUri) {
+      return previewImageUri;
+    }
+  }
+
+  // an extensionless data uri (common on IPFS) is usually an image — better to
+  // attempt it than to show nothing; known non-image types keep the placeholder
+  return validDataUris.find((uri) => getFileType(uri) === FileType.UNKNOWN);
 }
 
 function parseRoyaltyPercentage(value: unknown): number | undefined {
@@ -315,8 +344,11 @@ async function parseWalletDeltaItem(
 
     try {
       const nftInfo = await nftGetInfo(key);
-      if (nftInfo && nftInfo.success && nftInfo.nft_info && nftInfo.nft_info.data_uris) {
-        const previewUrl = nftInfo.nft_info.data_uris.find((u) => isValidURL(u));
+      if (nftInfo && nftInfo.success && nftInfo.nft_info) {
+        const previewUrl = await resolveNftPreviewUrl(
+          nftInfo.nft_info.data_uris ?? [],
+          nftInfo.nft_info.metadata_uris ?? [],
+        );
 
         if (previewUrl) {
           result.previewUrl = previewUrl;

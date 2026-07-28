@@ -35,6 +35,12 @@ jest.mock('../api/nftGetInfo', () => ({
   nftGetInfo: mockNftGetInfo,
 }));
 
+const mockNftGetMetadata = jest.fn<Promise<unknown>, [string]>();
+
+jest.mock('../api/nftGetMetadata', () => ({
+  nftGetMetadata: mockNftGetMetadata,
+}));
+
 const { parseCommandDisplay } = jest.requireActual<typeof import('./parseCommandDisplay')>('./parseCommandDisplay');
 
 function makeOfferSummary(overrides: Partial<OfferSummaryResponse['summary']> = {}): OfferSummaryResponse {
@@ -55,6 +61,7 @@ describe('parseCommandDisplay', () => {
     mockGetWalletInfos.mockReset();
     mockGetOfferSummary.mockReset();
     mockNftGetInfo.mockReset();
+    mockNftGetMetadata.mockReset();
     mockCatAssetIdToName.mockReset();
   });
 
@@ -197,6 +204,121 @@ describe('parseCommandDisplay', () => {
       },
     });
     expect(mockNftGetInfo).toHaveBeenCalledWith(nftLauncherId);
+  });
+
+  it('uses the metadata preview image for a video NFT instead of the video data uri', async () => {
+    const nftLauncherId = '6b6b2a3b4c57c2b4596625583cbede95d081b59d18125fedb6b416a8ee46cfe5';
+    mockGetWalletInfos.mockResolvedValue({});
+    mockGetOfferSummary.mockResolvedValue(
+      makeOfferSummary({
+        requested: {
+          [nftLauncherId]: '1',
+        },
+        infos: {
+          [nftLauncherId]: {
+            type: 'singleton',
+          },
+        },
+      }),
+    );
+    mockNftGetInfo.mockResolvedValue({
+      success: true,
+      nft_info: {
+        data_uris: ['https://example.com/nft.mp4'],
+        metadata_uris: ['https://example.com/nft.json'],
+      },
+    });
+    mockNftGetMetadata.mockResolvedValue({
+      preview_image_uris: ['https://example.com/nft-preview.png'],
+    });
+
+    await expect(
+      parseCommandDisplay('chia_wallet.take_offer', {
+        offer: 'offer1...',
+      }),
+    ).resolves.toMatchObject({
+      walletDelta: {
+        spending: [
+          {
+            kind: 'nft',
+            previewUrl: 'https://example.com/nft-preview.png',
+          },
+        ],
+      },
+    });
+    expect(mockNftGetMetadata).toHaveBeenCalledWith('https://example.com/nft.json');
+  });
+
+  it('omits the preview for a video NFT without a metadata preview image', async () => {
+    const nftLauncherId = '6b6b2a3b4c57c2b4596625583cbede95d081b59d18125fedb6b416a8ee46cfe5';
+    mockGetWalletInfos.mockResolvedValue({});
+    mockGetOfferSummary.mockResolvedValue(
+      makeOfferSummary({
+        requested: {
+          [nftLauncherId]: '1',
+        },
+        infos: {
+          [nftLauncherId]: {
+            type: 'singleton',
+          },
+        },
+      }),
+    );
+    mockNftGetInfo.mockResolvedValue({
+      success: true,
+      nft_info: {
+        data_uris: ['https://example.com/nft.mp4'],
+        metadata_uris: ['https://example.com/nft.json'],
+      },
+    });
+    mockNftGetMetadata.mockResolvedValue({});
+
+    const result = await parseCommandDisplay('chia_wallet.take_offer', {
+      offer: 'offer1...',
+    });
+    const line = result.walletDelta!.spending[0] as { kind: string; previewUrl?: string };
+    expect(line.kind).toBe('nft');
+    expect(line.previewUrl).toBeUndefined();
+  });
+
+  it('uses an extensionless data uri as preview when metadata has no preview image', async () => {
+    const nftLauncherId = '6b6b2a3b4c57c2b4596625583cbede95d081b59d18125fedb6b416a8ee46cfe5';
+    mockGetWalletInfos.mockResolvedValue({});
+    mockGetOfferSummary.mockResolvedValue(
+      makeOfferSummary({
+        requested: {
+          [nftLauncherId]: '1',
+        },
+        infos: {
+          [nftLauncherId]: {
+            type: 'singleton',
+          },
+        },
+      }),
+    );
+    mockNftGetInfo.mockResolvedValue({
+      success: true,
+      nft_info: {
+        data_uris: ['https://ipfs.example.com/bafybeigdyrztest'],
+        metadata_uris: [],
+      },
+    });
+
+    await expect(
+      parseCommandDisplay('chia_wallet.take_offer', {
+        offer: 'offer1...',
+      }),
+    ).resolves.toMatchObject({
+      walletDelta: {
+        spending: [
+          {
+            kind: 'nft',
+            previewUrl: 'https://ipfs.example.com/bafybeigdyrztest',
+          },
+        ],
+      },
+    });
+    expect(mockNftGetMetadata).not.toHaveBeenCalled();
   });
 
   it('shows the take-offer fungible total with NFT creator royalties', async () => {
