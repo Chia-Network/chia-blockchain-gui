@@ -35,13 +35,16 @@ jest.mock('../api/nftGetInfo', () => ({
   nftGetInfo: mockNftGetInfo,
 }));
 
-const mockNftGetMetadata = jest.fn<Promise<unknown>, [string]>();
+const mockNftGetMetadata = jest.fn<Promise<unknown>, [string, string | undefined]>();
+const mockNftGetImageDataUrl = jest.fn<Promise<string | undefined>, [string, string | undefined]>();
 
 jest.mock('../api/nftGetMetadata', () => ({
   nftGetMetadata: mockNftGetMetadata,
+  nftGetImageDataUrl: mockNftGetImageDataUrl,
 }));
 
-const { parseCommandDisplay } = jest.requireActual<typeof import('./parseCommandDisplay')>('./parseCommandDisplay');
+const { parseCommandDisplay, resolveNftPreviewUrl } =
+  jest.requireActual<typeof import('./parseCommandDisplay')>('./parseCommandDisplay');
 
 function makeOfferSummary(overrides: Partial<OfferSummaryResponse['summary']> = {}): OfferSummaryResponse {
   return {
@@ -62,6 +65,7 @@ describe('parseCommandDisplay', () => {
     mockGetOfferSummary.mockReset();
     mockNftGetInfo.mockReset();
     mockNftGetMetadata.mockReset();
+    mockNftGetImageDataUrl.mockReset();
     mockCatAssetIdToName.mockReset();
   });
 
@@ -184,9 +188,11 @@ describe('parseCommandDisplay', () => {
       success: true,
       nft_info: {
         data_uris: ['https://example.com/nft.png'],
+        data_hash: 'data-hash',
         royalty_percentage: 250,
       },
     });
+    mockNftGetImageDataUrl.mockResolvedValue('data:image/png;base64,cHJldmlldw==');
 
     await expect(
       parseCommandDisplay('chia_wallet.take_offer', {
@@ -197,13 +203,14 @@ describe('parseCommandDisplay', () => {
         spending: [
           {
             kind: 'nft',
-            previewUrl: 'https://example.com/nft.png',
+            previewUrl: 'data:image/png;base64,cHJldmlldw==',
             royaltyPercentage: 250,
           },
         ],
       },
     });
     expect(mockNftGetInfo).toHaveBeenCalledWith(nftLauncherId);
+    expect(mockNftGetImageDataUrl).toHaveBeenCalledWith('https://example.com/nft.png', 'data-hash');
   });
 
   it('uses the metadata preview image for a video NFT instead of the video data uri', async () => {
@@ -226,11 +233,14 @@ describe('parseCommandDisplay', () => {
       nft_info: {
         data_uris: ['https://example.com/nft.mp4'],
         metadata_uris: ['https://example.com/nft.json'],
+        metadata_hash: 'metadata-hash',
       },
     });
     mockNftGetMetadata.mockResolvedValue({
       preview_image_uris: ['https://example.com/nft-preview.png'],
+      preview_image_hash: 'preview-image-hash',
     });
+    mockNftGetImageDataUrl.mockResolvedValue('data:image/png;base64,cHJldmlldw==');
 
     await expect(
       parseCommandDisplay('chia_wallet.take_offer', {
@@ -241,12 +251,49 @@ describe('parseCommandDisplay', () => {
         spending: [
           {
             kind: 'nft',
-            previewUrl: 'https://example.com/nft-preview.png',
+            previewUrl: 'data:image/png;base64,cHJldmlldw==',
           },
         ],
       },
     });
-    expect(mockNftGetMetadata).toHaveBeenCalledWith('https://example.com/nft.json');
+    expect(mockNftGetMetadata).toHaveBeenCalledWith('https://example.com/nft.json', 'metadata-hash');
+    expect(mockNftGetImageDataUrl).toHaveBeenCalledWith('https://example.com/nft-preview.png', 'preview-image-hash');
+  });
+
+  it('tries later metadata URIs when an earlier fallback cannot be verified', async () => {
+    mockNftGetMetadata.mockResolvedValueOnce(undefined).mockResolvedValueOnce({
+      preview_image_uris: ['https://example.com/verified-preview.png'],
+      preview_image_hash: 'preview-image-hash',
+    });
+    mockNftGetImageDataUrl.mockResolvedValue('data:image/png;base64,cHJldmlldw==');
+
+    await expect(
+      resolveNftPreviewUrl(
+        [],
+        undefined,
+        ['https://example.com/unavailable.json', 'https://example.com/verified.json'],
+        'metadata-hash',
+      ),
+    ).resolves.toBe('data:image/png;base64,cHJldmlldw==');
+
+    expect(mockNftGetMetadata.mock.calls).toEqual([
+      ['https://example.com/unavailable.json', 'metadata-hash'],
+      ['https://example.com/verified.json', 'metadata-hash'],
+    ]);
+  });
+
+  it('does not fetch confirmation previews that have no expected on-chain hash', async () => {
+    await expect(
+      resolveNftPreviewUrl(
+        ['https://example.com/unverifiable.png'],
+        undefined,
+        ['https://example.com/unverifiable.json'],
+        undefined,
+      ),
+    ).resolves.toBeUndefined();
+
+    expect(mockNftGetMetadata).not.toHaveBeenCalled();
+    expect(mockNftGetImageDataUrl).not.toHaveBeenCalled();
   });
 
   it('omits the preview for a video NFT without a metadata preview image', async () => {
@@ -269,6 +316,7 @@ describe('parseCommandDisplay', () => {
       nft_info: {
         data_uris: ['https://example.com/nft.mp4'],
         metadata_uris: ['https://example.com/nft.json'],
+        metadata_hash: 'metadata-hash',
       },
     });
     mockNftGetMetadata.mockResolvedValue({});
@@ -279,6 +327,7 @@ describe('parseCommandDisplay', () => {
     const line = result.walletDelta!.spending[0] as { kind: string; previewUrl?: string };
     expect(line.kind).toBe('nft');
     expect(line.previewUrl).toBeUndefined();
+    expect(mockNftGetMetadata).toHaveBeenCalledWith('https://example.com/nft.json', 'metadata-hash');
   });
 
   it('uses an extensionless data uri as preview when metadata has no preview image', async () => {
@@ -300,9 +349,11 @@ describe('parseCommandDisplay', () => {
       success: true,
       nft_info: {
         data_uris: ['https://ipfs.example.com/bafybeigdyrztest'],
+        data_hash: 'data-hash',
         metadata_uris: [],
       },
     });
+    mockNftGetImageDataUrl.mockResolvedValue('data:image/webp;base64,cHJldmlldw==');
 
     await expect(
       parseCommandDisplay('chia_wallet.take_offer', {
@@ -313,12 +364,13 @@ describe('parseCommandDisplay', () => {
         spending: [
           {
             kind: 'nft',
-            previewUrl: 'https://ipfs.example.com/bafybeigdyrztest',
+            previewUrl: 'data:image/webp;base64,cHJldmlldw==',
           },
         ],
       },
     });
     expect(mockNftGetMetadata).not.toHaveBeenCalled();
+    expect(mockNftGetImageDataUrl).toHaveBeenCalledWith('https://ipfs.example.com/bafybeigdyrztest', 'data-hash');
   });
 
   it('shows the take-offer fungible total with NFT creator royalties', async () => {

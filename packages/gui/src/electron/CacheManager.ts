@@ -277,9 +277,6 @@ export default class CacheManager extends EventEmitter {
 
   public set maxCacheSize(newSize: number | string) {
     const value = sanitizeNumber(newSize);
-    if (value < 0) {
-      throw new Error('Cache size cannot be negative');
-    }
 
     this.#maxCacheSize = value;
 
@@ -439,7 +436,7 @@ export default class CacheManager extends EventEmitter {
           log('Checksum computed', url);
 
           // save headers to a local JSON file
-          const updatedCacheInfo = this.setCacheInfo(url, {
+          const updatedCacheInfo = await this.setCacheInfo(url, {
             state: CacheState.CACHED,
             headers,
             checksum,
@@ -448,10 +445,11 @@ export default class CacheManager extends EventEmitter {
           log('Cache info saved', url);
           // remove old files if the cache is full
           const currentCacheSize = await this.getCacheSize();
-          const stats = await fs.stat(cacheFilePath);
-          if (this.maxCacheSize && currentCacheSize + stats.size > this.maxCacheSize) {
-            const spaceNeeded = currentCacheSize + stats.size - this.maxCacheSize;
-            await this.removeOldestFiles(spaceNeeded);
+          if (this.maxCacheSize > 0 && currentCacheSize > this.maxCacheSize) {
+            // The current size already includes the file that was just
+            // downloaded. Keep that file available to the caller and evict
+            // older entries down to the configured total-size target.
+            await this.removeOldestFiles(this.maxCacheSize, cacheFilePath);
           }
           // todo just add size and save it locally
           this.emit('sizeChanged');
@@ -655,19 +653,27 @@ export default class CacheManager extends EventEmitter {
     this.cacheDirectory = newDirectory;
   }
 
-  private async removeOldestFiles(targetSize: number): Promise<void> {
+  private async removeOldestFiles(targetSize: number, preserveFilePath?: string): Promise<void> {
     const files = await fs.readdir(this.cacheDirectory);
     const filePaths = files
       .filter((file) => isChiaCacheFile(file) && !isChiaCacheInfoFile(file))
       .map((file) => path.join(this.cacheDirectory, file));
 
-    // get the file sizes
+    // Include the sidecar metadata in each entry's size so the eviction total
+    // uses the same accounting as getCacheSize().
     const fileStats = await Promise.all(
       filePaths.map(async (filePath) => {
         const stats = await fs.stat(filePath);
+        let infoSize = 0;
+        try {
+          infoSize = (await fs.stat(getInfoFilePath(filePath))).size;
+        } catch {
+          // A missing sidecar is cleaned up with the data file as usual.
+        }
+
         return {
           filePath,
-          size: stats.size,
+          size: stats.size + infoSize,
           mtime: stats.mtime,
         };
       }),
@@ -678,13 +684,17 @@ export default class CacheManager extends EventEmitter {
 
     // remove files until the total size is below the new max total size
     let totalSize = fileStats.reduce((sum, { size }) => sum + size, 0);
-    const filesToRemove = fileStats.filter(({ size }) => {
-      if (totalSize > targetSize) {
-        totalSize -= size;
-        return true;
+    const filesToRemove: typeof fileStats = [];
+    for (const fileStat of fileStats) {
+      if (totalSize <= targetSize) {
+        break;
       }
-      return false;
-    });
+
+      if (fileStat.filePath !== preserveFilePath) {
+        totalSize -= fileStat.size;
+        filesToRemove.push(fileStat);
+      }
+    }
 
     await Promise.all(
       filesToRemove.map(async ({ filePath }) => {
@@ -717,8 +727,10 @@ export default class CacheManager extends EventEmitter {
   }
 
   async setMaxCacheSize(maxCacheSize: number | string) {
-    this.maxCacheSize = sanitizeNumber(maxCacheSize);
-    await this.removeOldestFiles(this.maxCacheSize);
+    this.maxCacheSize = maxCacheSize;
+    if (this.maxCacheSize > 0) {
+      await this.removeOldestFiles(this.maxCacheSize);
+    }
   }
 
   async getCacheSize() {
