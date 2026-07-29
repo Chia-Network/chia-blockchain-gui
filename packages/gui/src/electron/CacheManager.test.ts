@@ -57,6 +57,60 @@ describe('CacheManager eviction', () => {
     await expect(cacheManager.getCacheSize()).resolves.toBeLessThanOrEqual(1024);
   });
 
+  it('keeps a completed download cached when cache housekeeping fails', async () => {
+    const payload = Buffer.from('cached payload');
+    mockDownloadFile.mockImplementation(async (_url, localPath) => {
+      await fs.writeFile(localPath, payload);
+      return {
+        'content-type': 'image/png',
+      };
+    });
+
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+
+    // A concurrent invalidation can delete files mid-scan and make the
+    // post-download size check fail — that must not poison the download.
+    jest
+      .spyOn(cacheManager, 'getCacheSize')
+      .mockRejectedValueOnce(new Error("ENOENT: no such file or directory, stat '/cache/other-chiacache'"));
+
+    await expect(cacheManager.getContent('https://example.com/nft.png')).resolves.toEqual(payload);
+    await expect(cacheManager.getContent('https://example.com/nft.png')).resolves.toEqual(payload);
+    expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+  });
+
+  it('ignores files that vanish while the cache size is being measured', async () => {
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+
+    await fs.writeFile(path.join(cacheDirectory, 'aaaa-chiacache'), Buffer.alloc(100));
+    // a broken symlink stats like a file deleted between readdir and stat
+    await fs.symlink(path.join(cacheDirectory, 'missing-target'), path.join(cacheDirectory, 'bbbb-chiacache'));
+
+    await expect(cacheManager.getCacheSize()).resolves.toBe(100);
+  });
+
+  it('evicts without failing when a file vanishes during the eviction scan', async () => {
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+
+    await fs.writeFile(path.join(cacheDirectory, 'aaaa-chiacache'), Buffer.alloc(200));
+    await fs.symlink(path.join(cacheDirectory, 'missing-target'), path.join(cacheDirectory, 'bbbb-chiacache'));
+
+    await expect(cacheManager.setMaxCacheSize(100)).resolves.toBeUndefined();
+    await expect(fs.stat(path.join(cacheDirectory, 'aaaa-chiacache'))).rejects.toThrow('ENOENT');
+  });
+
   it('treats a zero cache limit as unlimited when updating the setting', async () => {
     const payload = Buffer.from('cached payload');
     mockDownloadFile.mockImplementation(async (_url, localPath) => {
