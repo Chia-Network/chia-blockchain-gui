@@ -127,7 +127,10 @@ export default class CacheManager extends EventEmitter {
 
     this.cacheDirectory = cacheDirectory;
     this.maxCacheSize = maxCacheSize;
-    this.#downloadLimit = limit(concurrency);
+    // LIFO: downloads for what the user is currently viewing (an offer
+    // preview, a just-opened detail page) are requested last and must not
+    // wait behind a long gallery-wide rebuild of earlier requests.
+    this.#downloadLimit = limit(concurrency, { lifo: true });
 
     this.setMaxListeners(50);
 
