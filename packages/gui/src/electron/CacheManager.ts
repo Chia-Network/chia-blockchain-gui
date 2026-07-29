@@ -246,8 +246,25 @@ export default class CacheManager extends EventEmitter {
       window.webContents.send(CacheAPI.ON_MAX_CACHE_SIZE_CHANGED, newSize);
     }
 
-    const onSizeChanged = async () => {
-      window.webContents.send(CacheAPI.ON_SIZE_CHANGED, await this.getCacheSize());
+    // Download and invalidation bursts emit sizeChanged per file, and every
+    // notification triggers a full cache-directory scan (here and again in the
+    // renderer), so coalesce bursts into one trailing notification.
+    let sizeChangedTimeout: NodeJS.Timeout | undefined;
+    const onSizeChanged = () => {
+      if (sizeChangedTimeout) {
+        return;
+      }
+      sizeChangedTimeout = setTimeout(async () => {
+        sizeChangedTimeout = undefined;
+        try {
+          const size = await this.getCacheSize();
+          if (!window.isDestroyed()) {
+            window.webContents.send(CacheAPI.ON_SIZE_CHANGED, size);
+          }
+        } catch {
+          // the next sizeChanged event delivers a fresh value
+        }
+      }, 500);
     };
 
     this.on('cacheDirectoryChanged', onCacheDirectoryChanged);
@@ -258,6 +275,10 @@ export default class CacheManager extends EventEmitter {
       this.off('cacheDirectoryChanged', onCacheDirectoryChanged);
       this.off('maxCacheSizeChanged', onMaxCacheSizeChanged);
       this.off('sizeChanged', onSizeChanged);
+      if (sizeChangedTimeout) {
+        clearTimeout(sizeChangedTimeout);
+        sizeChangedTimeout = undefined;
+      }
     };
 
     window.on('close', () => {
@@ -443,13 +464,19 @@ export default class CacheManager extends EventEmitter {
           });
 
           log('Cache info saved', url);
-          // remove old files if the cache is full
-          const currentCacheSize = await this.getCacheSize();
-          if (this.maxCacheSize > 0 && currentCacheSize > this.maxCacheSize) {
-            // The current size already includes the file that was just
-            // downloaded. Keep that file available to the caller and evict
-            // older entries down to the configured total-size target.
-            await this.removeOldestFiles(this.maxCacheSize, cacheFilePath);
+          try {
+            // remove old files if the cache is full
+            const currentCacheSize = await this.getCacheSize();
+            if (this.maxCacheSize > 0 && currentCacheSize > this.maxCacheSize) {
+              // The current size already includes the file that was just
+              // downloaded. Keep that file available to the caller and evict
+              // older entries down to the configured total-size target.
+              await this.removeOldestFiles(this.maxCacheSize, cacheFilePath);
+            }
+          } catch (housekeepingError) {
+            // The download and its cache info are already saved — a failure in
+            // cache bookkeeping must not overwrite that state with an error.
+            log(`Cache housekeeping failed: ${(housekeepingError as Error).message}`, url);
           }
           // todo just add size and save it locally
           this.emit('sizeChanged');
@@ -661,23 +688,30 @@ export default class CacheManager extends EventEmitter {
 
     // Include the sidecar metadata in each entry's size so the eviction total
     // uses the same accounting as getCacheSize().
-    const fileStats = await Promise.all(
-      filePaths.map(async (filePath) => {
-        const stats = await fs.stat(filePath);
-        let infoSize = 0;
-        try {
-          infoSize = (await fs.stat(getInfoFilePath(filePath))).size;
-        } catch {
-          // A missing sidecar is cleaned up with the data file as usual.
-        }
+    const fileStats = (
+      await Promise.all(
+        filePaths.map(async (filePath) => {
+          try {
+            const stats = await fs.stat(filePath);
+            let infoSize = 0;
+            try {
+              infoSize = (await fs.stat(getInfoFilePath(filePath))).size;
+            } catch {
+              // A missing sidecar is cleaned up with the data file as usual.
+            }
 
-        return {
-          filePath,
-          size: stats.size + infoSize,
-          mtime: stats.mtime,
-        };
-      }),
-    );
+            return {
+              filePath,
+              size: stats.size + infoSize,
+              mtime: stats.mtime,
+            };
+          } catch {
+            // Deleted by invalidation while scanning — nothing left to evict.
+            return undefined;
+          }
+        }),
+      )
+    ).filter((entry): entry is { filePath: string; size: number; mtime: Date } => entry !== undefined);
 
     // sort the file paths based on their last modified time (oldest first)
     fileStats.sort((a, b) => a.mtime.getTime() - b.mtime.getTime());
@@ -739,8 +773,17 @@ export default class CacheManager extends EventEmitter {
       .filter((filename) => isChiaCacheFile(filename))
       .map((filename) => path.join(this.cacheDirectory, filename));
 
-    // Get the file sizes and calculate the total size
-    const fileSizes = await Promise.all(filePaths.map(async (filePath) => (await fs.stat(filePath)).size));
+    // Invalidation and eviction delete files while this scan runs — a file
+    // that vanished between readdir and stat no longer occupies space.
+    const fileSizes = await Promise.all(
+      filePaths.map(async (filePath) => {
+        try {
+          return (await fs.stat(filePath)).size;
+        } catch {
+          return 0;
+        }
+      }),
+    );
     const totalSize = fileSizes.reduce((sum, size) => sum + size, 0);
 
     return totalSize;
