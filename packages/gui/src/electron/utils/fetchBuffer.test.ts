@@ -8,7 +8,8 @@ jest.mock('electron', () => ({
   },
 }));
 
-const fetchBuffer = jest.requireActual<typeof import('./fetchBuffer')>('./fetchBuffer').default;
+const { default: fetchBuffer, MaxSizeExceededError } =
+  jest.requireActual<typeof import('./fetchBuffer')>('./fetchBuffer');
 
 type MockRequest = EventEmitter & {
   abort: jest.Mock;
@@ -64,7 +65,7 @@ describe('fetchBuffer', () => {
     expect(request.end).toHaveBeenCalledWith();
   });
 
-  it('rejects an oversized response from its content-length header', async () => {
+  it('rejects an oversized response from its content-length header with the response headers', async () => {
     const resultPromise = fetchBuffer('https://example.com/image.png', {
       maxSize: 10,
     });
@@ -73,10 +74,17 @@ describe('fetchBuffer', () => {
       'response',
       makeResponse(200, {
         'content-length': '11',
+        'content-type': 'image/gif',
       }),
     );
 
-    await expect(resultPromise).rejects.toThrow('Response exceeded maximum allowed size');
+    await expect(resultPromise).rejects.toThrow(MaxSizeExceededError);
+    await expect(resultPromise).rejects.toMatchObject({
+      headers: {
+        'content-length': '11',
+        'content-type': 'image/gif',
+      },
+    });
     expect(request.abort).toHaveBeenCalledWith();
   });
 
@@ -84,12 +92,19 @@ describe('fetchBuffer', () => {
     const resultPromise = fetchBuffer('https://example.com/image.png', {
       maxSize: 10,
     });
-    const response = makeResponse();
+    const response = makeResponse(200, {
+      'content-type': 'image/gif',
+    });
 
     request.emit('response', response);
     response.emit('data', Buffer.alloc(11));
 
-    await expect(resultPromise).rejects.toThrow('Response exceeded maximum allowed size');
+    await expect(resultPromise).rejects.toThrow(MaxSizeExceededError);
+    await expect(resultPromise).rejects.toMatchObject({
+      headers: {
+        'content-type': 'image/gif',
+      },
+    });
     expect(request.abort).toHaveBeenCalledWith();
   });
 });
