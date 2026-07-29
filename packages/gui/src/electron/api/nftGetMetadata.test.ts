@@ -7,7 +7,11 @@ const mockFetchBuffer = jest.fn<ReturnType<FetchBuffer>, Parameters<FetchBuffer>
 jest.mock('../utils/fetchBuffer', () => ({
   __esModule: true,
   default: mockFetchBuffer,
+  MaxSizeExceededError:
+    jest.requireActual<typeof import('../utils/fetchBuffer')>('../utils/fetchBuffer').MaxSizeExceededError,
 }));
+
+const { MaxSizeExceededError } = jest.requireActual<typeof import('../utils/fetchBuffer')>('../utils/fetchBuffer');
 
 const { nftGetImageDataUrl, nftGetMetadata } =
   jest.requireActual<typeof import('./nftGetMetadata')>('./nftGetMetadata');
@@ -86,5 +90,33 @@ describe('nftGetImageDataUrl', () => {
   it('does not fetch an image without an expected hash', async () => {
     await expect(nftGetImageDataUrl('https://example.com/preview.png', undefined)).resolves.toBeUndefined();
     expect(mockFetchBuffer).not.toHaveBeenCalled();
+  });
+
+  it('falls back to the direct URL when an image response exceeds the size cap', async () => {
+    mockFetchBuffer.mockRejectedValue(
+      new MaxSizeExceededError({
+        'content-type': 'image/gif',
+      }),
+    );
+
+    await expect(nftGetImageDataUrl('https://example.com/large.gif', '00')).resolves.toBe(
+      'https://example.com/large.gif',
+    );
+  });
+
+  it('rejects an oversized response that is not an image', async () => {
+    mockFetchBuffer.mockRejectedValue(
+      new MaxSizeExceededError({
+        'content-type': 'video/mp4',
+      }),
+    );
+
+    await expect(nftGetImageDataUrl('https://example.com/large.mp4', '00')).resolves.toBeUndefined();
+  });
+
+  it('rejects on any other download failure', async () => {
+    mockFetchBuffer.mockRejectedValue(new Error('Request timeout after 10000ms'));
+
+    await expect(nftGetImageDataUrl('https://example.com/preview.png', '00')).resolves.toBeUndefined();
   });
 });

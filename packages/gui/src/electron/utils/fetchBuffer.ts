@@ -12,6 +12,19 @@ export type FetchBufferResult = {
   headers: Headers;
 };
 
+/** Carries the response headers so callers can decide how to degrade when a
+ * response is too large to buffer — e.g. fall back to a direct URL for a
+ * verified image content type. */
+export class MaxSizeExceededError extends Error {
+  readonly headers: Headers;
+
+  constructor(headers: Headers) {
+    super('Response exceeded maximum allowed size');
+    this.name = 'MaxSizeExceededError';
+    this.headers = headers;
+  }
+}
+
 export default async function fetchBuffer(
   url: string,
   options?: {
@@ -80,7 +93,7 @@ export default async function fetchBuffer(
       if (maxSize > 0 && contentLength) {
         const parsedContentLength = Number.parseInt(contentLength, 10);
         if (!Number.isNaN(parsedContentLength) && parsedContentLength > maxSize) {
-          abortWith(new Error('Response exceeded maximum allowed size'));
+          abortWith(new MaxSizeExceededError(response.headers as Headers));
           return;
         }
       }
@@ -96,7 +109,7 @@ export default async function fetchBuffer(
         const buffer = Uint8Array.from(chunk);
         dataSize += buffer.byteLength;
         if (maxSize > 0 && dataSize > maxSize) {
-          abortWith(new Error('Response exceeded maximum allowed size'));
+          abortWith(new MaxSizeExceededError(response.headers as Headers));
           return;
         }
 

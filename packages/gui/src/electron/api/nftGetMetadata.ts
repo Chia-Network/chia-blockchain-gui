@@ -1,7 +1,8 @@
 import crypto from 'node:crypto';
 
+import type Headers from '../../@types/Headers';
 import compareChecksums from '../../util/compareChecksums';
-import fetchBuffer from '../utils/fetchBuffer';
+import fetchBuffer, { MaxSizeExceededError } from '../utils/fetchBuffer';
 
 const METADATA_TIMEOUT = 10_000;
 const METADATA_MAX_SIZE = 5 * 1024 * 1024;
@@ -17,6 +18,17 @@ export type NftMetadata = Record<string, unknown> & {
 
 function checksum(data: Buffer): string {
   return crypto.createHash('sha256').update(data.toString('latin1'), 'latin1').digest('hex');
+}
+
+function getImageContentType(headers: Headers): string | undefined {
+  const contentTypeHeader = headers['content-type'];
+  const rawContentType = Array.isArray(contentTypeHeader) ? contentTypeHeader[0] : contentTypeHeader;
+  const contentType = rawContentType?.split(';', 1)[0].trim().toLowerCase();
+  if (!contentType || !/^image\/[\w.+-]+$/.test(contentType)) {
+    return undefined;
+  }
+
+  return contentType;
 }
 
 function hasExpectedChecksum(data: Buffer, expectedHash: string): boolean {
@@ -77,15 +89,20 @@ export async function nftGetImageDataUrl(
       return undefined;
     }
 
-    const contentTypeHeader = headers['content-type'];
-    const rawContentType = Array.isArray(contentTypeHeader) ? contentTypeHeader[0] : contentTypeHeader;
-    const contentType = rawContentType?.split(';', 1)[0].trim().toLowerCase();
-    if (!contentType || !/^image\/[\w.+-]+$/.test(contentType)) {
+    const contentType = getImageContentType(headers);
+    if (!contentType) {
       return undefined;
     }
 
     return `data:${contentType};base64,${data.toString('base64')}`;
-  } catch {
+  } catch (error) {
+    // An image too large to inline cannot be hash-verified without unbounded
+    // buffering. Fall back to the direct URL — the dialog CSP still allows
+    // https: images, matching the pre-verification behavior for these files.
+    if (error instanceof MaxSizeExceededError && getImageContentType(error.headers)) {
+      return imageUri;
+    }
+
     // image previews are best effort — the confirmation dialog has a fallback
     return undefined;
   }
