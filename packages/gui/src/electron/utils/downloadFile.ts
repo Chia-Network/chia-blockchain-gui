@@ -67,6 +67,7 @@ export const MAX_FILE_SIZE_EXCEEDED_ERROR = 'Maximum file size exceeded';
 
 type DownloadFileOptions = {
   timeout?: number;
+  maxDuration?: number; // absolute cap on the whole transfer
   signal?: AbortSignal;
   maxSize?: number; // values <= 0 disable the size limit
   onProgress?: (progress: number, size: number, downloadedSize: number) => void;
@@ -76,7 +77,14 @@ type DownloadFileOptions = {
 export default async function downloadFile(
   url: string,
   localPath: string,
-  { timeout = 30_000, signal, maxSize = 100 * 1024 * 1024, onProgress, overrideFile = false }: DownloadFileOptions = {},
+  {
+    timeout = 30_000,
+    maxDuration = 30 * 60 * 1000,
+    signal,
+    maxSize = 100 * 1024 * 1024,
+    onProgress,
+    overrideFile = false,
+  }: DownloadFileOptions = {},
 ): Promise<Headers> {
   if (!isValidURL(url)) {
     throw new Error('Invalid URL');
@@ -107,6 +115,10 @@ export default async function downloadFile(
     timeoutId = setTimeout(abortRequest, timeout);
   }
 
+  // absolute deadline for the whole transfer — the inactivity timeout alone
+  // would let a host trickling bytes hold a download slot forever
+  const maxDurationTimeoutId = setTimeout(abortRequest, maxDuration);
+
   return new Promise<Headers>((resolve, reject) => {
     let downloadedSize = 0;
 
@@ -131,6 +143,8 @@ export default async function downloadFile(
           clearTimeout(timeoutId);
           timeoutId = null;
         }
+
+        clearTimeout(maxDurationTimeoutId);
 
         await outputStream.close();
 
