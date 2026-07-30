@@ -111,6 +111,40 @@ describe('CacheManager eviction', () => {
     await expect(fs.stat(path.join(cacheDirectory, 'aaaa-chiacache'))).rejects.toThrow('ENOENT');
   });
 
+  it('does not retry a timed-out download on the next access', async () => {
+    mockDownloadFile.mockRejectedValue(new Error('Request timed out after 30000ms of inactivity'));
+
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+
+    await expect(cacheManager.getContent('https://example.com/nft.png')).rejects.toThrow('Request timed out');
+    await expect(cacheManager.getContent('https://example.com/nft.png')).rejects.toThrow('Request timed out');
+    expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+  });
+
+  it('retries an aborted download on the next access', async () => {
+    const payload = Buffer.from('cached payload');
+    mockDownloadFile.mockRejectedValueOnce(new Error('Request aborted')).mockImplementation(async (_url, localPath) => {
+      await fs.writeFile(localPath, payload);
+      return {
+        'content-type': 'image/png',
+      };
+    });
+
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+
+    await expect(cacheManager.getContent('https://example.com/nft.png')).rejects.toThrow('Request aborted');
+    await expect(cacheManager.getContent('https://example.com/nft.png')).resolves.toEqual(payload);
+    expect(mockDownloadFile).toHaveBeenCalledTimes(2);
+  });
+
   it('treats a zero cache limit as unlimited when updating the setting', async () => {
     const payload = Buffer.from('cached payload');
     mockDownloadFile.mockImplementation(async (_url, localPath) => {

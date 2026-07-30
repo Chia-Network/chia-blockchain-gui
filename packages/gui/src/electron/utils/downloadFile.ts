@@ -102,6 +102,14 @@ export default async function downloadFile(
     request.abort();
   }
 
+  // Timeouts must not report the generic aborted error: the cache retries
+  // aborted downloads on every access, so a stalled host would be retried
+  // (and stall again) forever instead of settling as a failed download.
+  function abortWithError(error: Error) {
+    abortError = error;
+    request.abort();
+  }
+
   let timeoutId: NodeJS.Timeout | null = null;
 
   // the timeout is an inactivity timeout - it is reset every time data
@@ -112,12 +120,18 @@ export default async function downloadFile(
       clearTimeout(timeoutId);
     }
 
-    timeoutId = setTimeout(abortRequest, timeout);
+    timeoutId = setTimeout(
+      () => abortWithError(new Error(`Request timed out after ${timeout}ms of inactivity`)),
+      timeout,
+    );
   }
 
   // absolute deadline for the whole transfer — the inactivity timeout alone
   // would let a host trickling bytes hold a download slot forever
-  const maxDurationTimeoutId = setTimeout(abortRequest, maxDuration);
+  const maxDurationTimeoutId = setTimeout(
+    () => abortWithError(new Error(`Request exceeded the ${maxDuration}ms download deadline`)),
+    maxDuration,
+  );
 
   return new Promise<Headers>((resolve, reject) => {
     let downloadedSize = 0;
