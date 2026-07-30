@@ -77,7 +77,10 @@ function NFTCard(props: NFTCardProps) {
               sx={{ zIndex: 1, position: 'absolute', right: 2, top: 2 }}
             />
           )}
-          <NFTPreview id={nftId} disableInteractions={isOffer} ratio={ratio} preview />
+          {/* in selection mode the whole tile selects on click, so media
+              interactions (and the video loop button, which would cover the
+              selection checkbox) are disabled */}
+          <NFTPreview id={nftId} disableInteractions={isOffer || !!onSelect} ratio={ratio} preview />
         </CardActionArea>
         <CardActionArea onClick={() => canExpandDetails && handleClick()} component="div">
           <CardContent>
