@@ -138,11 +138,14 @@ export default function useNFTVerifyHash(nftId?: string, options: UseNFTVerifyHa
     setPreviewVideo(undefined);
     setPreviewImage(undefined);
 
-    if (!nft || isLoadingNFT || isLoadingMetadata) {
+    if (!nft || isLoadingNFT) {
       setIsVerifying(false);
     } else {
       setIsVerifying(true);
-      verifyNFT(nft, metadata, generation);
+      // Metadata downloads can be slow or fail entirely — verify the data
+      // file right away and let the effect re-run for the preview URIs once
+      // the metadata fetch settles, instead of blocking all verification.
+      verifyNFT(nft, isLoadingMetadata ? undefined : metadata, generation);
     }
 
     return () => {
