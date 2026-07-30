@@ -1,14 +1,8 @@
 export default function sanitizeNumber(input: number | string): number {
-  let size: number;
+  const size = typeof input === 'string' ? Number(input) : input;
 
-  if (typeof input === 'string') {
-    size = parseInt(input, 10);
-  } else {
-    size = input;
-  }
-
-  if (Number.isNaN(size) || size <= 0) {
-    throw new Error('Invalid maxTotalSize value. It must be a positive number.');
+  if ((typeof input === 'string' && input.trim() === '') || !Number.isFinite(size) || size < 0) {
+    throw new Error('Invalid maxTotalSize value. It must be a non-negative finite number.');
   }
 
   return size;

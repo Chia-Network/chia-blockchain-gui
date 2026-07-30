@@ -120,9 +120,9 @@ const cacheDirectory: string = prefs.cacheFolder || defaultCacheFolder;
 
 // `cacheLimitSize` is the legacy preference key older versions of the
 // settings UI stored the value under. Invalid values are ignored because the
-// CacheManager constructor throws on non-positive sizes.
+// CacheManager constructor rejects negative sizes; zero means unlimited.
 const storedMaxCacheSize: number | undefined = [prefs.maxCacheSize, prefs.cacheLimitSize].find(
-  (size) => typeof size === 'number' && Number.isFinite(size) && size > 0,
+  (size) => typeof size === 'number' && Number.isFinite(size) && size >= 0,
 );
 
 const cacheManager = new CacheManager({
