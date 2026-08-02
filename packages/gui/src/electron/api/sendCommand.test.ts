@@ -281,6 +281,71 @@ describe('sendCommand', () => {
     expect(rawMessage).not.toContain('9007199254740993n');
   });
 
+  it('ignores broadcast events with long-precision floats while a command is pending', async () => {
+    await startServer((socket, message) => {
+      if (message.command === 'register_service') {
+        socket.send(JSONBig.stringify({ request_id: message.request_id, data: { success: true } }));
+        return;
+      }
+
+      // Raw frame mimicking a chia_harvester farming_info broadcast: the
+      // lookup time float is longer than 15 characters, which used to make
+      // the useNativeBigInt parser throw and reject the pending request.
+      socket.send(
+        '{"ack":false,"command":"farming_info","data":{"challenge_hash":"0xabc","total_plots":1000,"time":1.7656183690123726},"destination":"wallet_ui","origin":"chia_harvester","request_id":"broadcast"}',
+      );
+      socket.send(JSONBig.stringify({ request_id: message.request_id, data: { success: true, value: 'done' } }));
+    });
+    const sendCommand = loadSendCommand();
+
+    await expect(sendCommand('get_offer_summary', 'chia_wallet')).resolves.toMatchObject({ value: 'done' });
+  });
+
+  it('resolves a matched response that contains long-precision floats', async () => {
+    await startServer((socket, message) => {
+      if (message.command === 'register_service') {
+        socket.send(JSONBig.stringify({ request_id: message.request_id, data: { success: true } }));
+        return;
+      }
+
+      socket.send(`{"request_id":"${message.request_id}","data":{"success":true,"fee_rate":1.7656183690123726}}`);
+    });
+    const sendCommand = loadSendCommand();
+
+    const response = await sendCommand<{ fee_rate: unknown }>('get_fee_estimate', 'chia_full_node');
+
+    expect(String(response.fee_rate)).toBe('1.7656183690123726');
+  });
+
+  it('ignores frames that are not valid JSON while a command is pending', async () => {
+    await startServer((socket, message) => {
+      if (message.command === 'register_service') {
+        socket.send(JSONBig.stringify({ request_id: message.request_id, data: { success: true } }));
+        return;
+      }
+
+      socket.send('not json');
+      socket.send(JSONBig.stringify({ request_id: message.request_id, data: { success: true, value: 'done' } }));
+    });
+    const sendCommand = loadSendCommand();
+
+    await expect(sendCommand('get_wallets', 'chia_wallet')).resolves.toMatchObject({ value: 'done' });
+  });
+
+  it('ignores broadcast events with long-precision floats during service registration', async () => {
+    await startServer((socket, message) => {
+      if (message.command === 'register_service') {
+        socket.send(
+          '{"ack":false,"command":"farming_info","data":{"time":1.2395747610135004},"destination":"wallet_ui","origin":"chia_harvester","request_id":"broadcast"}',
+        );
+      }
+      socket.send(JSONBig.stringify({ request_id: message.request_id, data: { success: true, value: 'done' } }));
+    });
+    const sendCommand = loadSendCommand();
+
+    await expect(sendCommand('get_network_info', 'chia_wallet')).resolves.toMatchObject({ value: 'done' });
+  });
+
   it('rejects daemon command errors', async () => {
     await startServer((socket, message) => {
       socket.send(
