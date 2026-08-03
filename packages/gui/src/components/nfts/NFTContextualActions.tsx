@@ -25,6 +25,7 @@ import React, { useMemo, ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCopyToClipboard } from 'react-use';
 
+import OfferBuilderNFTMax from '../../constants/OfferBuilderNFTMax';
 import useBurnAddress from '../../hooks/useBurnAddress';
 import useHiddenNFTs from '../../hooks/useHiddenNFTs';
 import useNFTs from '../../hooks/useNFTs';
@@ -120,7 +121,8 @@ function NFTCreateOfferContextualAction(props: NFTCreateOfferContextualActionPro
   const navigate = useNavigate();
   const [, setSelectedNFTIds] = useLocalStorage('gallery-selected-nfts', []);
   const selectedNft: NFTInfo | undefined = selection?.items[0];
-  const disabled = !selection?.items?.length || selectedNft?.pendingTransaction || selection?.items?.length > 10;
+  const disabled =
+    !selection?.items?.length || selectedNft?.pendingTransaction || selection?.items?.length > OfferBuilderNFTMax;
 
   if (!selectedNft) return null;
 
