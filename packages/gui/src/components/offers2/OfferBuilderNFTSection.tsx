@@ -17,7 +17,7 @@ export type OfferBuilderNFTSectionProps = {
 };
 
 export default function OfferBuilderNFTSection(props: OfferBuilderNFTSectionProps) {
-  const { name, offering, muted, viewer, isMyOffer = false, max = 10 } = props;
+  const { name, offering, muted, viewer, isMyOffer = false, max = 20 } = props;
 
   const { fields, append, remove } = useFieldArray({
     name,
