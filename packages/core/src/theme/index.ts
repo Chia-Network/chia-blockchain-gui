@@ -1,3 +1,5 @@
+import './themeAugmentation';
+
 export { default as dark } from './variants/field/dark';
 export { default as light } from './variants/field/light';
 export { resolveAppTheme, resolveAppThemeFromPrefs, DEFAULT_THEME_VARIANT, parseThemeVariantId } from './registry';

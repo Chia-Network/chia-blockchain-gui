@@ -65,4 +65,8 @@ declare module '@mui/material/styles' {
     sidebarSelectedFill?: { light?: string; dark?: string; main?: string };
     sidebarText?: { light?: string; dark?: string; main?: string };
   }
+
+  interface TypeBackground {
+    card: string;
+  }
 }
