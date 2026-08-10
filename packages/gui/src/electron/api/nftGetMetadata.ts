@@ -20,7 +20,7 @@ export type NftMetadata = Record<string, unknown> & {
 };
 
 function checksum(data: Buffer): string {
-  return crypto.createHash('sha256').update(data.toString('latin1'), 'latin1').digest('hex');
+  return crypto.createHash('sha256').update(data).digest('hex');
 }
 
 function getImageContentType(headers: Headers): string | undefined {

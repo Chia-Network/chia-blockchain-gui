@@ -102,7 +102,7 @@ export default async function fetchBuffer(
         }
       }
 
-      const chunks: Uint8Array[] = [];
+      const chunks: Buffer[] = [];
       let dataSize = 0;
 
       response.on('data', (chunk: Buffer) => {
@@ -110,14 +110,13 @@ export default async function fetchBuffer(
           return;
         }
 
-        const buffer = Uint8Array.from(chunk);
-        dataSize += buffer.byteLength;
+        dataSize += chunk.byteLength;
         if (maxSize > 0 && dataSize > maxSize) {
           abortWith(new MaxSizeExceededError(response.headers as Headers));
           return;
         }
 
-        chunks.push(buffer);
+        chunks.push(chunk);
       });
 
       response.on('end', () => {
