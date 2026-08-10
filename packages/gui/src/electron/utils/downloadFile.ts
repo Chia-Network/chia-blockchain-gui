@@ -66,6 +66,15 @@ class WriteStreamPromise {
 
 export const MAX_FILE_SIZE_EXCEEDED_ERROR = 'Maximum file size exceeded';
 
+const INACTIVITY_TIMEOUT_ERROR_PREFIX = 'Request timed out after';
+const DOWNLOAD_DEADLINE_ERROR_PREFIX = 'Request exceeded the';
+
+/** Matches the messages of both timeout errors below, including messages that
+ * earlier sessions persisted into cache `-info` files. */
+export function isDownloadTimeoutError(message: string): boolean {
+  return message.startsWith(INACTIVITY_TIMEOUT_ERROR_PREFIX) || message.startsWith(DOWNLOAD_DEADLINE_ERROR_PREFIX);
+}
+
 type DownloadFileOptions = {
   timeout?: number;
   maxDuration?: number; // absolute cap on the whole transfer
@@ -136,7 +145,7 @@ export default async function downloadFile(
     }
 
     timeoutId = setTimeout(
-      () => abortWithError(new Error(`Request timed out after ${timeout}ms of inactivity`)),
+      () => abortWithError(new Error(`${INACTIVITY_TIMEOUT_ERROR_PREFIX} ${timeout}ms of inactivity`)),
       timeout,
     );
   }
@@ -144,7 +153,7 @@ export default async function downloadFile(
   // absolute deadline for the whole transfer — the inactivity timeout alone
   // would let a host trickling bytes hold a download slot forever
   const maxDurationTimeoutId = setTimeout(
-    () => abortWithError(new Error(`Request exceeded the ${maxDuration}ms download deadline`)),
+    () => abortWithError(new Error(`${DOWNLOAD_DEADLINE_ERROR_PREFIX} ${maxDuration}ms download deadline`)),
     maxDuration,
   );
 

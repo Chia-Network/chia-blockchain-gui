@@ -15,7 +15,7 @@ import CacheState from '../constants/CacheState';
 import limit from '../util/limit';
 
 import CacheAPI from './constants/CacheAPI';
-import downloadFile, { MAX_FILE_SIZE_EXCEEDED_ERROR } from './utils/downloadFile';
+import downloadFile, { MAX_FILE_SIZE_EXCEEDED_ERROR, isDownloadTimeoutError } from './utils/downloadFile';
 import ensureDirectoryExists from './utils/ensureDirectoryExists';
 import getChecksum from './utils/getChecksum';
 import ipcMainHandle from './utils/ipcMainHandle';
@@ -113,6 +113,11 @@ export default class CacheManager extends EventEmitter {
       abort: () => void;
     }
   > = new Map();
+
+  // URLs whose download timed out during this session. A persisted timeout is
+  // retried once per session — the set keeps a stalled host from being retried
+  // (and holding a download slot) on every access within the same session.
+  private timedOutUrls: Set<string> = new Set();
 
   constructor(
     options: {
@@ -449,10 +454,14 @@ export default class CacheManager extends EventEmitter {
           log(`Url already downloaded with error: ${cacheInfo.error}`, url);
 
           const isTransientError = ['Response aborted', 'Request aborted'].includes(cacheInfo.error);
+          // A persisted timeout settles for the rest of the session, but is
+          // retried in later sessions — a one-off network problem must not
+          // disable the preview until the whole cache is cleared.
+          const isRetriableTimeout = isDownloadTimeoutError(cacheInfo.error) && !this.timedOutUrls.has(url);
           // A persisted size-limit error is only retried when the caller lifts
           // the limit, so oversized files are not re-downloaded on every visit.
           const isSizeLimitLifted = cacheInfo.error === MAX_FILE_SIZE_EXCEEDED_ERROR && maxSize <= 0;
-          if (!isTransientError && !isSizeLimitLifted) {
+          if (!isTransientError && !isRetriableTimeout && !isSizeLimitLifted) {
             return cacheInfo;
           }
 
@@ -517,6 +526,10 @@ export default class CacheManager extends EventEmitter {
         }
 
         const currentError = (error as Error) ?? new Error('Unknown fetchRemoteContent error');
+
+        if (isDownloadTimeoutError(currentError.message)) {
+          this.timedOutUrls.add(url);
+        }
 
         return await this.setCacheInfo(url, {
           state: CacheState.ERROR,
