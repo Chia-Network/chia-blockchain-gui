@@ -168,6 +168,7 @@ export const {
   useGetHeightInfoQuery,
   useGetPuzzleAndSolutionMutation,
   useGetNetworkInfoQuery,
+  useGetFullNodePeerCountQuery,
   useGetSyncStatusQuery,
   useGetWalletConnectionsQuery,
   useGetAllOffersQuery,

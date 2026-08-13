@@ -5,7 +5,7 @@ import { Box, Divider, Dialog, DialogContent, DialogTitle, IconButton, Typograph
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-import useWalletConnectContext from '../../hooks/useWalletConnectContext';
+import useWalletConnect from '../../hooks/useWalletConnect';
 
 type FormData = {
   uri: string;
@@ -19,15 +19,23 @@ export type WalletConnectAddConnectionDialogProps = {
 export default function WalletConnectAddConnectionDialog(props: WalletConnectAddConnectionDialogProps) {
   const { onClose = () => {}, open = false } = props;
   const { walletConnectToChia: HeroImage } = useThemeAssets();
-
-  const { pair } = useWalletConnectContext();
+  const { pair } = useWalletConnect();
+  const pairAbortControllerRef = React.useRef<AbortController | undefined>(undefined);
   const methods = useForm<FormData>({
     defaultValues: {
       uri: '',
     },
   });
 
+  React.useEffect(
+    () => () => {
+      pairAbortControllerRef.current?.abort();
+    },
+    [],
+  );
+
   function handleClose() {
+    pairAbortControllerRef.current?.abort();
     onClose();
   }
 
@@ -37,11 +45,24 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
       throw new Error(t`Please enter a URI`);
     }
 
-    // mainnet/testnet is decided when the user actually approves the pair
-    // (in `WalletConnectConnections`, via `useCurrencyCode`). The URI
-    // input is just the WC handshake — no network commitment yet.
-    const topic = await pair(uri);
-    onClose(topic);
+    const controller = new AbortController();
+    pairAbortControllerRef.current = controller;
+
+    try {
+      await pair(uri, { signal: controller.signal });
+    } catch (error) {
+      if (controller.signal.aborted) {
+        return;
+      }
+
+      throw error;
+    } finally {
+      if (pairAbortControllerRef.current === controller) {
+        pairAbortControllerRef.current = undefined;
+      }
+    }
+
+    onClose();
   }
 
   const { isSubmitting } = methods.formState;

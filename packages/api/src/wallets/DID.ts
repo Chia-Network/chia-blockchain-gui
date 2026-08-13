@@ -173,7 +173,7 @@ export default class DIDWallet extends Wallet {
           latestCoinId: number;
         }
       | { success: false; error: false }
-    >('did_find_lost', args);
+    >('did_find_lost_did', args);
   }
 
   onDIDCoinAdded(callback: (data: any, message: Message) => void) {

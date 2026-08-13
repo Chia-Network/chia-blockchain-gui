@@ -15,11 +15,9 @@ function generateScriptContent(confirmId: string) {
   return `
     function collectFormData() {
       var data = {};
-      var hasField = false;
       document.querySelectorAll('[data-form-field]').forEach(function (el) {
         var name = el.getAttribute('data-form-field');
         if (!name) return;
-        hasField = true;
         var type = (el.getAttribute('type') || el.tagName).toLowerCase();
         if (type === 'checkbox') {
           if (el.dataset.multi !== undefined) {
@@ -39,7 +37,7 @@ function generateScriptContent(confirmId: string) {
           data[name] = el.value;
         }
       });
-      return hasField ? data : true;
+      return data;
     }
 
     function updateDynamicSummary() {
@@ -140,13 +138,16 @@ function generateScriptContent(confirmId: string) {
 
     updateDynamicSummary();
 
-    document.getElementById('${confirmId}')?.addEventListener('click', function () {
-      window.dialogAPI.resolve(collectFormData());
+    document.getElementById('${confirmId}')?.addEventListener('click', function (event) {
+      var formData = collectFormData();
+      var payload = event.currentTarget.getAttribute('data-payload');
+
+      window.dialogAPI.resolve(payload ? Object.assign(JSON.parse(payload), formData) : formData);
     });
 
     document.querySelectorAll('[data-action="cancel"]').forEach(function (button) {
       button.addEventListener('click', function () {
-        window.dialogAPI.resolve(false);
+        window.dialogAPI.resolve(undefined);
       });
     });
   `;
@@ -308,7 +309,25 @@ export default function openReactDialog<TResponse, TProps extends object>(
       // open dev tools
       // dialog.webContents.openDevTools();
 
-      dialog.once('ready-to-show', () => dialog.show());
+      // Reveal the dialog. `ready-to-show` is the preferred fast path, but on some
+      // compositors (notably Wayland/mutter) that event can fail to fire, which
+      // would otherwise leave the dialog hidden forever even though the page has
+      // loaded. Guard the show in a once-only helper and back it with
+      // `did-finish-load` and a timeout fallback so the dialog is always revealed.
+      let hasShownDialog = false;
+      const showDialog = () => {
+        // Latch the flag only after a successful `show()` so a failed attempt
+        // doesn't block the other triggers.
+        if (hasShownDialog || dialog.isDestroyed()) {
+          return;
+        }
+        dialog.show();
+        hasShownDialog = true;
+      };
+
+      dialog.once('ready-to-show', showDialog);
+      dialog.webContents.once('did-finish-load', showDialog);
+      setTimeout(showDialog, 5000);
 
       if (hideMenu) {
         dialog.setMenu(null);

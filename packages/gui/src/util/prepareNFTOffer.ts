@@ -70,6 +70,6 @@ export function prepareNFTOffer(nft: NFTInfo, offeredNFT: boolean) {
     nft,
     id,
     amount: offeredNFT ? new BigNumber(-1) : new BigNumber(1),
-    driver: !offeredNFT ? driver : undefined,
+    driver,
   };
 }

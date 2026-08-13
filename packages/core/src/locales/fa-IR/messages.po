@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-08-10 00:05\n"
+"PO-Revision-Date: 2026-05-24 00:23\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -64,7 +64,7 @@ msgstr "آیا مطمئن هستید که میخواهید ادامه دهید؟
 msgid "Back"
 msgstr "بازگشت"
 
-#: src/components/ConfirmDialog/ConfirmDialog.tsx:31
+#: src/components/ConfirmDialog/ConfirmDialog.tsx:32
 #: src/hooks/useKeyringMigrationPrompt.tsx:18
 #: src/screens/SelectKey/SelectKeyRenameForm.tsx:90
 msgid "Cancel"
@@ -328,7 +328,7 @@ msgstr "متضل نیست"
 #~ msgstr ""
 
 #: src/components/AlertDialog/AlertDialog.tsx:23
-#: src/components/ConfirmDialog/ConfirmDialog.tsx:32
+#: src/components/ConfirmDialog/ConfirmDialog.tsx:33
 msgid "OK"
 msgstr "قبول"
 
@@ -488,7 +488,7 @@ msgstr "با این کار کلید برای همیشه از رایانه شما
 
 #: src/utils/getTransactionResult.ts:40
 msgid "Transaction has been sent to a full node and is pending inclusion into the mempool. {0}"
-msgstr "تراکنش به یک نودکامل ارسال شد و منتظر قرار گرفتن در حافظه استخر تراکنش است. {0}"
+msgstr "تراکنش به یک نودکامل ارسال شده و منتظر قرار گرفتن در حافظه استخر تراکنش است. {0}"
 
 #: src/utils/getTransactionResult.ts:15
 msgid "Transaction has not been sent to node yet"

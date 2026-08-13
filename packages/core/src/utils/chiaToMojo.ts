@@ -1,4 +1,4 @@
-import BigNumber from 'bignumber.js';
+import type BigNumber from 'bignumber.js';
 
 import Unit from '../constants/Unit';
 

@@ -1,100 +1,108 @@
-import api, { store, useGetKeysQuery, useGetLoggedInFingerprintQuery } from '@chia-network/api-react';
-import { useAuth } from '@chia-network/core';
+import api, { store, useGetLoggedInFingerprintQuery } from '@chia-network/api-react';
 import debug from 'debug';
 import JSONbig from 'json-bigint';
 
 import { WcError, WcErrorCode } from '../@types/WcError';
 import waitForWalletSync from '../util/waitForWalletSync';
 
-import useCommandMetadata from './useCommandMetadata';
-import useWalletConnectPreferences from './useWalletConnectPreferences';
-
 const log = debug('chia-gui:walletConnectCommand');
-
-// chia_logIn IS the fingerprint switch, so it skips the per-command check.
-const LOG_IN = 'chia_logIn';
+const JSONbigNative = JSONbig({ useNativeBigInt: true });
 
 export default function useWalletConnectCommand() {
-  const { logIn } = useAuth();
-  const { data: currentFingerprint, isLoading: isLoadingLoggedInFingerprint } = useGetLoggedInFingerprintQuery();
-  const { data: keys } = useGetKeysQuery({});
-  const { byWc: commandsByWc, isLoading: isLoadingMetadata } = useCommandMetadata();
-
-  const { allowConfirmationFingerprintChange } = useWalletConnectPreferences();
-
-  const isLoading = isLoadingLoggedInFingerprint || isLoadingMetadata;
+  const { data: currentFingerprint, isLoading } = useGetLoggedInFingerprintQuery();
 
   async function handleProcess(
-    /** Pair topic, not session topic — translated upstream in processSessionRequest. */
     pairTopic: string,
-    requestedCommand: string,
-    requestedParams: any,
+    command: string,
+    params: Record<string, unknown> & { fingerprint?: number },
     ctx: { mainnet: boolean },
   ) {
-    const { fingerprint } = requestedParams;
+    const { fingerprint } = params;
 
-    const allFingerprints = requestedCommand === LOG_IN;
-    const hasCurrentFingerprint = currentFingerprint !== undefined && currentFingerprint !== null;
-    const isDifferentFingerprint = hasCurrentFingerprint && fingerprint !== currentFingerprint;
-    if (!allFingerprints) {
-      if (isDifferentFingerprint && !allowConfirmationFingerprintChange) {
-        throw new WcError(`Invalid fingerprint ${fingerprint}`, WcErrorCode.UNAUTHORIZED_METHOD);
-      }
+    // verify if pair exists
+    const pair = await window.permissionsAPI.findPair(pairTopic);
+    if (!pair) {
+      throw new WcError(`Pair not found`, WcErrorCode.INTERNAL_ERROR);
     }
 
-    // auto login before execute command
-    if (isDifferentFingerprint && allowConfirmationFingerprintChange) {
-      log('Changing fingerprint', fingerprint);
-      await logIn(fingerprint);
+    if (ctx.mainnet !== pair.mainnet) {
+      throw new WcError(`Network mismatch`, WcErrorCode.UNSUPPORTED_CHAINS);
     }
 
-    const meta = commandsByWc.get(requestedCommand);
-    if (meta?.requiresSync) {
+    // verify if pair allows the requested command
+    if (!pair.commands.includes(command)) {
+      throw new WcError(`Command not allowed for this pair`, WcErrorCode.UNAUTHORIZED_METHOD);
+    }
+
+    // verify if pair allows the requested fingerprint
+    const requestedFingerprint = fingerprint ?? currentFingerprint;
+    if (
+      typeof requestedFingerprint !== 'number' ||
+      !requestedFingerprint ||
+      requestedFingerprint !== pair.fingerprint ||
+      currentFingerprint !== pair.fingerprint
+    ) {
+      throw new WcError(`Fingerprint not allowed for this command`, WcErrorCode.UNAUTHORIZED_METHOD);
+    }
+
+    // verify if command is supported
+    const commandMetadata = await window.permissionsAPI.getCommandMetadata(command);
+    if (!commandMetadata) {
+      throw new WcError(`Command not found`, WcErrorCode.METHOD_NOT_FOUND);
+    }
+
+    if (commandMetadata.requiresSync) {
       log('Waiting for sync');
       await waitForWalletSync();
 
-      if (!allFingerprints) {
-        const fingerprintRequest = store.dispatch(
-          api.endpoints.getLoggedInFingerprint.initiate(undefined, { forceRefetch: true }),
-        );
-        try {
-          const latestFingerprint = await fingerprintRequest.unwrap();
-          if (latestFingerprint !== fingerprint) {
-            throw new WcError('Fingerprint changed during execution', WcErrorCode.INTERNAL_ERROR);
-          }
-        } finally {
-          fingerprintRequest.unsubscribe();
+      const fingerprintRequest = store.dispatch(
+        api.endpoints.getLoggedInFingerprint.initiate(undefined, { forceRefetch: true }),
+      );
+
+      try {
+        const fingerprintAfterSync = await fingerprintRequest.unwrap();
+
+        // verify if current fingerprint after sync is still correct
+        const requestedFingerprintAfterSync = fingerprint ?? fingerprintAfterSync;
+        if (
+          typeof requestedFingerprintAfterSync !== 'number' ||
+          !requestedFingerprintAfterSync ||
+          requestedFingerprintAfterSync !== pair.fingerprint ||
+          fingerprintAfterSync !== pair.fingerprint
+        ) {
+          throw new WcError(`Fingerprint not allowed for this command`, WcErrorCode.UNAUTHORIZED_METHOD);
         }
+
+        if (fingerprint && fingerprint !== fingerprintAfterSync) {
+          throw new WcError(`Fingerprint not allowed for this command`, WcErrorCode.INTERNAL_ERROR);
+        }
+      } finally {
+        fingerprintRequest.unsubscribe();
       }
     }
 
-    log('Executing', requestedCommand, requestedParams);
-
-    const labelFor = (fp?: number): string | undefined => {
-      if (fp === undefined) return undefined;
-      const found = keys?.find((k: { fingerprint: number; label?: string | null }) => k.fingerprint === fp);
-      return found?.label ?? undefined;
+    const commandParams = {
+      ...params,
     };
 
-    // IPC structured clone ignores BigNumber.toJSON; round-trip through
-    // JSONbig (same as Message.ts) so values flatten to wire-safe strings.
-    const wireValues = JSONbig.parse(JSONbig.stringify(requestedParams));
+    // remove old waitForConfirmation - back compatibility, we are using requiresSync instead
+    if ('waitForConfirmation' in commandParams) {
+      delete commandParams.waitForConfirmation;
+    }
+
+    log('Executing', command, commandParams);
 
     const result = await window.permissionsAPI.dispatchAsPair({
-      wcCommand: requestedCommand,
-      data: wireValues,
       topic: pairTopic,
-      mainnet: ctx.mainnet,
-      fingerprint: {
-        requested: fingerprint,
-        current: hasCurrentFingerprint ? currentFingerprint : undefined,
-        requestedLabel: labelFor(fingerprint),
-        currentLabel: hasCurrentFingerprint ? labelFor(currentFingerprint) : undefined,
-      },
+      command,
+      params: JSONbig.stringify(commandParams),
     });
-    log('Result', result);
 
-    return result;
+    // parse result to object
+    const resultObject = JSONbigNative.parse(result);
+
+    log('Result', resultObject);
+    return resultObject;
   }
 
   return {

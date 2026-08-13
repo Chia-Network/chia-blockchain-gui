@@ -13,7 +13,7 @@ const CHIA_START_ARGS = Object.freeze(['start', 'daemon', '--skip-keyring']);
 let pyProc = null;
 
 let IS_PACKAGED = null;
-const EXEC_PATH_CACHE = {}; // {[execName]: execPath}
+const LAUNCH_CACHE = {}; // {[execName]: { command, prefixArgs }}
 
 const guessPackaged = () => {
   // This is very important. This means guessing whether it's packaged is checked only once in a process lifetime.
@@ -32,11 +32,16 @@ const getVirtualEnvExecDir = () => {
   return null;
 };
 
-const getExecutablePath = (execName) => {
-  // This also means getting exec path is done only once
-  // to prevent to run a different executable with the same name in a process lifetime.
-  if (Object.prototype.hasOwnProperty.call(EXEC_PATH_CACHE, execName)) {
-    return EXEC_PATH_CACHE[execName];
+/**
+ * Resolve a spawnable chia launch without using shell:true.
+ * On Windows venvs that only ship chia.cmd, spawn python.exe + the chia script
+ * (same as chia.cmd) to avoid EINVAL under CVE-2024-27980.
+ */
+const getChiaLaunch = (execName = PY_CHIA_EXEC) => {
+  // Getting launch config is done only once to prevent running a different
+  // executable with the same name in a process lifetime.
+  if (Object.prototype.hasOwnProperty.call(LAUNCH_CACHE, execName)) {
+    return LAUNCH_CACHE[execName];
   }
 
   const execDir = guessPackaged() ? PY_DIST_FOLDER : getVirtualEnvExecDir();
@@ -45,38 +50,45 @@ const getExecutablePath = (execName) => {
   }
 
   if (process.platform === 'win32') {
-    let execPath = path.join(execDir, `${execName}.exe`);
-    if (fs.existsSync(execPath)) {
-      EXEC_PATH_CACHE[execName] = execPath;
-      return execPath;
+    const exePath = path.join(execDir, `${execName}.exe`);
+    if (fs.existsSync(exePath)) {
+      LAUNCH_CACHE[execName] = { command: exePath, prefixArgs: [] };
+      return LAUNCH_CACHE[execName];
     }
-    execPath = path.join(execDir, `${execName}.cmd`).replace(new RegExp(path.posix.sep, 'g'), path.win32.sep);
-    if (fs.existsSync(execPath)) {
-      EXEC_PATH_CACHE[execName] = execPath;
-      return execPath;
+
+    const pythonPath = path.join(execDir, 'python.exe');
+    const scriptPath = path.join(execDir, execName);
+    if (!fs.existsSync(pythonPath)) {
+      throw new Error(`python.exe could not be found in: ${execDir}`);
     }
-    throw new Error(`chia executable could not be found in: ${execDir}`);
+    if (!fs.existsSync(scriptPath)) {
+      throw new Error(`chia script could not be found in: ${execDir}`);
+    }
+
+    LAUNCH_CACHE[execName] = { command: pythonPath, prefixArgs: [scriptPath] };
+    return LAUNCH_CACHE[execName];
   }
 
-  EXEC_PATH_CACHE[execName] = path.join(execDir, execName);
-  return EXEC_PATH_CACHE[execName];
+  LAUNCH_CACHE[execName] = { command: path.join(execDir, execName), prefixArgs: [] };
+  return LAUNCH_CACHE[execName];
 };
 
 const getChiaVersion = () => {
-  const chiaExecPath = getExecutablePath(PY_CHIA_EXEC);
+  const { command, prefixArgs } = getChiaLaunch();
   return childProcess
-    .execFileSync(chiaExecPath, ['version'], {
+    .execFileSync(command, [...prefixArgs, 'version'], {
       encoding: 'UTF-8',
     })
     .trim();
 };
 
 const chiaInit = () => {
-  const chiaExecPath = getExecutablePath(PY_CHIA_EXEC);
-  console.info(`Executing: ${chiaExecPath} init`);
+  const { command, prefixArgs } = getChiaLaunch();
+  const args = [...prefixArgs, 'init'];
+  console.info(`Executing: ${command} ${args.join(' ')}`);
 
   try {
-    const output = childProcess.execFileSync(chiaExecPath, ['init']);
+    const output = childProcess.execFileSync(command, args);
     console.info(output.toString());
     return true;
   } catch (e) {
@@ -97,12 +109,13 @@ const startChiaDaemon = () => {
     };
   }
 
-  const chiaExec = getExecutablePath(PY_CHIA_EXEC);
+  const { command, prefixArgs } = getChiaLaunch();
+  const args = [...prefixArgs, ...CHIA_START_ARGS];
   console.info('Running python executable: ');
-  console.info(`Script: ${chiaExec} ${CHIA_START_ARGS.join(' ')}`);
+  console.info(`Script: ${command} ${args.join(' ')}`);
 
   try {
-    pyProc = childProcess.spawn(chiaExec, CHIA_START_ARGS, procOption);
+    pyProc = childProcess.spawn(command, args, procOption);
   } catch (e) {
     console.error('Running python executable: Error: ');
     console.error(e);

@@ -4,6 +4,7 @@ import BigNumber from 'bignumber.js';
 import { AssetIdMapEntry } from '../hooks/useAssetIdName';
 
 import createOfferForIdsToOfferBuilderData from './createOfferForIdsToOfferBuilderData';
+import parseCreateOfferForIdsKey from './parseCreateOfferForIdsKey';
 
 jest.mock('@chia-network/core', () => ({
   mojoToChia: jest.fn(),
@@ -17,7 +18,7 @@ describe('createOfferForIdsToOfferBuilderData', () => {
 
   describe('when offering XCH for CAT', () => {
     it('should return a valid offer builder data object', () => {
-      const calledLookupByWalletIdWithIds: string[] = [];
+      const calledLookupByWalletIdWithIds: Array<string | number> = [];
       const assetIdMapEntriesByWalletId: Record<string, AssetIdMapEntry> = {
         1: {
           walletId: 1,
@@ -59,7 +60,7 @@ describe('createOfferForIdsToOfferBuilderData', () => {
 
       const result = createOfferForIdsToOfferBuilderData(walletIdsAndAmounts, lookupByWalletId);
 
-      expect(calledLookupByWalletIdWithIds).toEqual(['1', '2']);
+      expect(calledLookupByWalletIdWithIds).toEqual([1, 2]);
 
       expect(result).toEqual({
         offered: {
@@ -80,7 +81,7 @@ describe('createOfferForIdsToOfferBuilderData', () => {
 
   describe('when offering a CAT for XCH', () => {
     it('should return a valid offer builder data object', () => {
-      const calledLookupByWalletIdWithIds: string[] = [];
+      const calledLookupByWalletIdWithIds: Array<string | number> = [];
       const assetIdMapEntriesByWalletId: Record<string, AssetIdMapEntry> = {
         1: {
           walletId: 1,
@@ -117,7 +118,7 @@ describe('createOfferForIdsToOfferBuilderData', () => {
 
       const result = createOfferForIdsToOfferBuilderData(walletIdsAndAmounts, lookupByWalletId);
 
-      expect(calledLookupByWalletIdWithIds).toEqual(['1', '2']);
+      expect(calledLookupByWalletIdWithIds).toEqual([1, 2]);
 
       expect(result).toEqual({
         offered: {
@@ -146,7 +147,7 @@ describe('createOfferForIdsToOfferBuilderData', () => {
   });
   describe('when offering XCH for an NFT', () => {
     it('should return a valid offer builder data object', () => {
-      const calledLookupByWalletIdWithIds: string[] = [];
+      const calledLookupByWalletIdWithIds: Array<string | number> = [];
       const assetIdMapEntriesByWalletId: Record<string, AssetIdMapEntry> = {
         1: {
           walletId: 1,
@@ -173,10 +174,7 @@ describe('createOfferForIdsToOfferBuilderData', () => {
 
       const result = createOfferForIdsToOfferBuilderData(walletIdsAndAmounts, lookupByWalletId);
 
-      expect(calledLookupByWalletIdWithIds).toEqual([
-        '1',
-        '8d3ed4c44a1ad053907044f12c8ba0f6a4fdad4eeff585ec76580b50a8de3d2d',
-      ]);
+      expect(calledLookupByWalletIdWithIds).toEqual([1]);
 
       expect(result).toEqual({
         offered: {
@@ -226,7 +224,7 @@ describe('createOfferForIdsToOfferBuilderData', () => {
   });
   describe('when the offered asset is for an unknown wallet type', () => {
     it('should ignore the unknown wallet assets', () => {
-      const calledLookupByWalletIdWithIds: string[] = [];
+      const calledLookupByWalletIdWithIds: Array<string | number> = [];
       const assetIdMapEntriesByWalletId: Record<string, AssetIdMapEntry> = {
         1: {
           walletId: 1,
@@ -262,7 +260,7 @@ describe('createOfferForIdsToOfferBuilderData', () => {
 
       const result = createOfferForIdsToOfferBuilderData(walletIdsAndAmounts, lookupByWalletId);
 
-      expect(calledLookupByWalletIdWithIds).toEqual(['1', '2']);
+      expect(calledLookupByWalletIdWithIds).toEqual([1, 2]);
 
       expect(result).toEqual({
         offered: {
@@ -284,6 +282,23 @@ describe('createOfferForIdsToOfferBuilderData', () => {
       });
     });
   });
+  describe('when offer keys are not canonical wallet id / hex (WalletConnect / RPC parity)', () => {
+    it('rejects fullwidth digit keys that Python int() would reject', () => {
+      const walletIdsAndAmounts = {
+        '\uFF11': -1_000_000,
+        2: 500_000,
+      };
+
+      expect(() => createOfferForIdsToOfferBuilderData(walletIdsAndAmounts as any, (() => {}) as any)).toThrow(
+        /Invalid wallet id key/,
+      );
+    });
+
+    it('parseCreateOfferForIdsKey rejects fullwidth digits', () => {
+      expect(() => parseCreateOfferForIdsKey('\uFF11')).toThrow(/Invalid wallet id key/);
+    });
+  });
+
   describe('when lookupByWalletId throws', () => {
     beforeAll(() => {
       jest.spyOn(console, 'error').mockImplementation(() => {});
@@ -292,7 +307,7 @@ describe('createOfferForIdsToOfferBuilderData', () => {
       (console.error as jest.Mock).mockRestore();
     });
     it('should ignore the asset that caused the error', () => {
-      const calledLookupByWalletIdWithIds: string[] = [];
+      const calledLookupByWalletIdWithIds: Array<string | number> = [];
 
       const lookupByWalletId = (walletId: string) => {
         calledLookupByWalletIdWithIds.push(walletId);
@@ -309,7 +324,7 @@ describe('createOfferForIdsToOfferBuilderData', () => {
 
       const result = createOfferForIdsToOfferBuilderData(walletIdsAndAmounts, lookupByWalletId);
 
-      expect(calledLookupByWalletIdWithIds).toEqual(['1', '2']);
+      expect(calledLookupByWalletIdWithIds).toEqual([1, 2]);
 
       expect(result).toEqual({
         offered: {

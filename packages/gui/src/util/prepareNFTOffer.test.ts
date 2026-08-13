@@ -110,7 +110,9 @@ describe('prepareNFTOffer', () => {
     expect(result.nft).toEqual(nftInfo);
     expect(result.id).toBe('8123ec891d048488ed110baff5b047e5b11e5ca4ee7a81c2ba04abf3eda4f077');
     expect(result.amount).toEqual(new BigNumber(-1));
-    expect(result.driver).toBeUndefined();
+    expect(result.driver).toBeTruthy();
+    expect(result.driver!.type).toBe('singleton');
+    expect(result.driver!.launcher_id).toBe(nftInfo.launcherId);
   });
 
   it('includes the ownership field if nft.supportsDid is true', () => {

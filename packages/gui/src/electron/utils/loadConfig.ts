@@ -25,7 +25,7 @@ export function readConfigFile(net?: string) {
   return yaml.load(fs.readFileSync(path.resolve(configRootDir, 'config/config.yaml'), 'utf8'));
 }
 
-export default async function loadConfig(net: string = 'mainnet'): Promise<{
+export async function loadConfig(net: string = 'mainnet'): Promise<{
   url: string;
   cert: string;
   key: string;

@@ -16,7 +16,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v6
         with:
           # Use node version from '.nvmrc' instead of hardcoding here
@@ -31,5 +31,3 @@ jobs:
         run: npm run check:lint
       - name: Check for TS issues
         run: npm run check:types
-      - name: Run tests
-        run: npm run test

@@ -608,6 +608,21 @@ describe('WalletService', () => {
     expect(client.send).toHaveBeenCalledWith(...expected);
   });
 
+  it('calls get_full_node_peer_count', async () => {
+    const expected = [
+      new Message({
+        command: 'get_full_node_peer_count',
+        destination: 'chia_wallet',
+        origin: 'test_origin' as ServiceNameValue,
+      }),
+      undefined,
+      undefined,
+    ];
+
+    await service.getFullNodePeerCount();
+    expect(client.send).toHaveBeenCalledWith(...expected);
+  });
+
   it('calls get_sync_status', async () => {
     const expected = [
       new Message({

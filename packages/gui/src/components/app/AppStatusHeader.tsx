@@ -1,4 +1,4 @@
-import { Color, Flex, getSemanticColors, useMode, Mode, useDarkMode } from '@chia-network/core';
+import { Color, Flex, useMode, Mode, useDarkMode } from '@chia-network/core';
 import { WalletConnections, WalletStatus, WalletReceiveAddressField } from '@chia-network/wallets';
 import { Trans } from '@lingui/macro';
 import { Box, ButtonGroup, Button, Popover, PopoverProps } from '@mui/material';
@@ -45,9 +45,7 @@ const StyledPopover = styled((props: PopoverProps) => <Popover {...props} />)(({
 export default function AppStatusHeader() {
   const theme = useTheme();
   const { isDarkMode } = useDarkMode();
-  const { error: errorColor, warning: warningColor } = getSemanticColors(theme.palette);
-  const { palette } = theme;
-  const borderColor = palette.border[isDarkMode ? 'dark' : 'main'];
+  const borderColor = (theme.palette as any).border[isDarkMode ? 'dark' : 'main'];
   const ButtonGroupStyle = {
     minHeight: '42px',
   };
@@ -64,8 +62,8 @@ export default function AppStatusHeader() {
     '.cancel-icon': {
       g: {
         circle: {
-          stroke: errorColor,
-          fill: errorColor,
+          stroke: Color.Red[600],
+          fill: Color.Red[600],
         },
       },
     },
@@ -84,11 +82,11 @@ export default function AppStatusHeader() {
     '.reload-icon': {
       g: {
         circle: {
-          stroke: warningColor,
-          fill: warningColor,
+          stroke: Color.Orange[400],
+          fill: Color.Orange[400],
         },
         path: {
-          fill: warningColor,
+          fill: Color.Orange[400],
         },
       },
     },

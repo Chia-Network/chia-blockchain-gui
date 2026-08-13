@@ -88,34 +88,26 @@ contextBridge.exposeInMainWorld(API.LINK, {
 });
 
 contextBridge.exposeInMainWorld(API.PERMISSIONS, {
-  listPairs: () => invokeWithCustomErrors(PermissionsAPI.PAIR_LIST),
+  findPair: (topic: string) => invokeWithCustomErrors(PermissionsAPI.FIND_PAIR, topic),
+  getPairs: () => invokeWithCustomErrors(PermissionsAPI.GET_PAIRS),
   registerPair: (payload: {
     topic: string;
     mainnet: boolean;
     metadata: { name: string; url?: string; icon?: string; description?: string };
-    requestedCommands?: string[];
-  }) => invokeWithCustomErrors(PermissionsAPI.PAIR_REGISTER, payload),
-  editPair: (payload: { topic: string }) => invokeWithCustomErrors(PermissionsAPI.PAIR_EDIT, payload),
-  revokePair: (topic: string) => invokeWithCustomErrors(PermissionsAPI.PAIR_REVOKE, topic),
-  resetBypass: (topic: string) => invokeWithCustomErrors(PermissionsAPI.PAIR_RESET_BYPASS, topic),
-  resetBypassAll: () => invokeWithCustomErrors(PermissionsAPI.PAIR_RESET_BYPASS_ALL),
-  commandsMetadata: () => invokeWithCustomErrors(PermissionsAPI.COMMANDS_METADATA),
-  subscribeToNotification: (callback: (...args: unknown[]) => void) =>
-    onIpcEvent(PermissionsAPI.NOTIFICATION_EVENT, callback),
+    commands: string[];
+  }) => invokeWithCustomErrors(PermissionsAPI.REGISTER_PAIR, payload),
+  editPair: (topic: string) => invokeWithCustomErrors(PermissionsAPI.EDIT_PAIR, topic),
+  revokePair: (topic: string) => invokeWithCustomErrors(PermissionsAPI.REVOKE_PAIR, topic),
+  resetPairBypass: (topic: string) => invokeWithCustomErrors(PermissionsAPI.RESET_PAIR_BYPASS, topic),
+  resetAllPairBypasses: () => invokeWithCustomErrors(PermissionsAPI.RESET_ALL_PAIR_BYPASSES),
+  getCommandMetadata: (command: string) => invokeWithCustomErrors(PermissionsAPI.GET_COMMAND_METADATA, command),
+  subscribeForNotifications: (callback: (...args: unknown[]) => void) =>
+    onIpcEvent(PermissionsAPI.SUBSCRIBE_FOR_NOTIFICATIONS, callback),
   dispatchAsPair: (payload: {
-    /** camelCase WalletConnect command name (e.g. `spendCAT`); main resolves
-     *  to the daemon destination + RPC name via the registry. */
-    wcCommand: string;
-    data?: Record<string, unknown>;
     topic: string;
-    /** Chain id derived from the dapp's WC chainId (`chia:mainnet` → true). */
-    mainnet: boolean;
-    fingerprint?: {
-      requested: number;
-      current?: number;
-      requestedLabel?: string;
-      currentLabel?: string;
-    };
+    command: string;
+    // serialized params because of bigints
+    params: string;
   }) => invokeWithCustomErrors(PermissionsAPI.DISPATCH_AS_PAIR, payload),
 });
 

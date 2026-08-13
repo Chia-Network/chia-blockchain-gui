@@ -1,13 +1,16 @@
+import API from './API';
+
 enum PermissionsAPI {
-  PAIR_LIST = 'permissions:pair:list',
-  PAIR_REGISTER = 'permissions:pair:register',
-  PAIR_EDIT = 'permissions:pair:edit',
-  PAIR_REVOKE = 'permissions:pair:revoke',
-  PAIR_RESET_BYPASS = 'permissions:pair:resetBypass',
-  PAIR_RESET_BYPASS_ALL = 'permissions:pair:resetBypassAll',
-  DISPATCH_AS_PAIR = 'permissions:dispatchAsPair',
-  COMMANDS_METADATA = 'permissions:commands:metadata',
-  NOTIFICATION_EVENT = 'permissions:notification',
+  FIND_PAIR = `${API.PERMISSIONS}:findPair`,
+  GET_PAIRS = `${API.PERMISSIONS}:getPairs`,
+  REGISTER_PAIR = `${API.PERMISSIONS}:registerPair`,
+  EDIT_PAIR = `${API.PERMISSIONS}:editPair`,
+  REVOKE_PAIR = `${API.PERMISSIONS}:revokePair`,
+  RESET_PAIR_BYPASS = `${API.PERMISSIONS}:resetPairBypass`,
+  RESET_ALL_PAIR_BYPASSES = `${API.PERMISSIONS}:resetAllPairBypasses`,
+  DISPATCH_AS_PAIR = `${API.PERMISSIONS}:dispatchAsPair`,
+  GET_COMMAND_METADATA = `${API.PERMISSIONS}:getCommandMetadata`,
+  SUBSCRIBE_FOR_NOTIFICATIONS = `${API.PERMISSIONS}:subscribeForNotifications`,
 }
 
 export default PermissionsAPI;
