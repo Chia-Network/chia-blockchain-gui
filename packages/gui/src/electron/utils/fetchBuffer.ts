@@ -1,6 +1,7 @@
 import { net, type IncomingMessage } from 'electron';
 
 import type Headers from '../../@types/Headers';
+import ipfsToGatewayUrl from '../../util/ipfs';
 
 import isValidURL from './isValidURL';
 
@@ -41,7 +42,9 @@ export default async function fetchBuffer(
 
   const request = net.request({
     method: 'GET',
-    url,
+    // ipfs:// URIs are fetched through an HTTPS gateway — Electron's net
+    // stack cannot request the ipfs scheme.
+    url: ipfsToGatewayUrl(url),
     headers,
   });
 

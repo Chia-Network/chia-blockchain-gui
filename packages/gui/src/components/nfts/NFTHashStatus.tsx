@@ -8,6 +8,7 @@ import React, { useMemo } from 'react';
 
 import useNFT from '../../hooks/useNFT';
 import useNFTVerifyHash from '../../hooks/useNFTVerifyHash';
+import ipfsToGatewayUrl from '../../util/ipfs';
 
 export type NFTHashStatusProps = {
   nftId: string;
@@ -39,7 +40,9 @@ export default function NFTHashStatus(props: NFTHashStatusProps) {
     }
 
     if (nftPreview.uri) {
-      return isValidURL(nftPreview.uri);
+      // ipfs:// URIs are served through an HTTPS gateway by the cache layer,
+      // so validate the gateway form instead of flagging them as invalid.
+      return isValidURL(ipfsToGatewayUrl(nftPreview.uri));
     }
 
     return false;

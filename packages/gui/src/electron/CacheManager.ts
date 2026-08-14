@@ -7,7 +7,6 @@ import path from 'node:path';
 import { Readable } from 'node:stream';
 
 import debug from 'debug';
-import isURL from 'validator/lib/isURL';
 
 import type CacheInfo from '../@types/CacheInfo';
 import type CacheInfoBase from '../@types/CacheInfoBase';
@@ -435,7 +434,7 @@ export default class CacheManager extends EventEmitter {
 
         const normalizedURL = decodeURI(url) === url ? encodeURI(url) : url;
 
-        if (!isURL(normalizedURL)) {
+        if (!isValidURL(normalizedURL)) {
           throw new Error(`Invalid URL: ${normalizedURL}`);
         }
 

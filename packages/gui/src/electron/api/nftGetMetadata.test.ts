@@ -124,6 +124,21 @@ describe('nftGetImageDataUrl', () => {
     );
   });
 
+  it('falls back to the gateway URL for an oversized ipfs image when unverified previews are enabled', async () => {
+    mockAllowUnverifiedNftPreviews.mockReturnValue(true);
+    mockFetchBuffer.mockRejectedValue(
+      new MaxSizeExceededError({
+        'content-type': 'image/gif',
+      }),
+    );
+
+    // the dialog CSP only allows https: and data: images, so the raw ipfs
+    // URI would render as a broken image
+    await expect(nftGetImageDataUrl('ipfs://bafybeigdyrztest/large.gif', '00')).resolves.toBe(
+      'https://ipfs.io/ipfs/bafybeigdyrztest/large.gif',
+    );
+  });
+
   it('rejects an oversized response that is not an image even when unverified previews are enabled', async () => {
     mockAllowUnverifiedNftPreviews.mockReturnValue(true);
     mockFetchBuffer.mockRejectedValue(

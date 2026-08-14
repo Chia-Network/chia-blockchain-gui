@@ -1,5 +1,7 @@
 import { net, IncomingMessage } from 'electron';
 
+import ipfsToGatewayUrl from '../../util/ipfs';
+
 import isValidURL from './isValidURL';
 
 const DEFAULT_TIMEOUT = 10 * 60 * 1000; // 10 minutes
@@ -17,7 +19,9 @@ export default async function fetchJSON<TData>(
 
   const request = net.request({
     method,
-    url,
+    // ipfs:// URIs are fetched through an HTTPS gateway — Electron's net
+    // stack cannot request the ipfs scheme.
+    url: ipfsToGatewayUrl(url),
     headers,
   });
 

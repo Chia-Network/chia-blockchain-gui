@@ -29,6 +29,7 @@ import type { PermissionsNotificationPayload } from '../@types/PermissionsServic
 import { WcError, WcErrorCode, encodeWcErrorForIpc } from '../@types/WcError';
 import AppIcon from '../assets/img/chia64x64.png';
 import { i18n } from '../config/locales';
+import ipfsToGatewayUrl from '../util/ipfs';
 
 import CacheManager, { CACHE_PROTOCOL } from './CacheManager';
 import { checkNFTOwnership } from './api/checkNFTOwnership';
@@ -575,7 +576,9 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
         return;
       }
 
-      mainWindow.webContents.downloadURL(urlLocal);
+      // Chromium's downloader cannot fetch the ipfs: scheme; download ipfs
+      // URIs through the HTTPS gateway like every other network path.
+      mainWindow.webContents.downloadURL(ipfsToGatewayUrl(urlLocal));
     });
 
     ipcMainHandle(AppAPI.START_MULTIPLE_DOWNLOAD, async (tasks: { url: string; filename: string }[]) => {
