@@ -200,7 +200,7 @@ msgstr "درحال فارم"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:338
 #: src/components/EstimatedFee/EstimatedFee.tsx:372
-#: src/components/Fee/Fee.tsx:44
+#: src/components/Fee/Fee.tsx:10
 msgid "Fee"
 msgstr "کارمزد"
 
