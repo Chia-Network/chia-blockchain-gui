@@ -4,10 +4,15 @@ import TableControlled, { TableControlledProps, InternalTableRow } from './Table
 
 type Props = TableControlledProps;
 
-export default function Table(props: Props) {
-  const { rows, page: defaultPage, pages, rowsPerPage: defaultRowsPerPage, ...rest } = props;
-  const [page, setPage] = useState<number>(defaultPage ?? 0);
-  const [rowsPerPage, setRowsPerPage] = useState<number>(defaultRowsPerPage ?? 10);
+export default function Table({
+  rows = [],
+  page: defaultPage = 0,
+  pages = false,
+  rowsPerPage: defaultRowsPerPage = 10,
+  ...rest
+}: Props) {
+  const [page, setPage] = useState<number>(defaultPage);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(defaultRowsPerPage);
 
   function handlePageChange(newRowsPerPage: number, newPage: number) {
     setPage(newPage);
@@ -34,19 +39,3 @@ export default function Table(props: Props) {
     />
   );
 }
-
-Table.defaultProps = {
-  rows: [],
-  pages: false,
-  page: 0,
-  rowsPerPageOptions: [10, 25, 100],
-  rowsPerPage: 10,
-  hideHeader: false,
-  caption: undefined,
-  children: undefined,
-  rowHover: false,
-  uniqueField: undefined,
-  metadata: undefined,
-  expandable: false,
-  expandedCellShift: 0,
-};

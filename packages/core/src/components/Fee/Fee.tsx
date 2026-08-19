@@ -7,9 +7,9 @@ import Amount, { AmountProps } from '../Amount';
 
 type FeeProps = AmountProps;
 
-export default function Fee(props: FeeProps) {
+export default function Fee({ label = <Trans>Fee</Trans>, name = 'fee', ...props }: FeeProps) {
   return (
-    <Amount {...props}>
+    <Amount label={label} name={name} {...props}>
       {({ value, mojo }) => {
         const isHigh = mojo.gte('100000000000');
         const isLow = mojo.gt('0') && mojo.lt('1');
@@ -39,8 +39,3 @@ export default function Fee(props: FeeProps) {
     </Amount>
   );
 }
-
-Fee.defaultProps = {
-  label: <Trans>Fee</Trans>,
-  name: 'fee',
-};
