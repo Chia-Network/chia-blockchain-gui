@@ -99,7 +99,7 @@
     "stacktrace-js": "2.0.2",
     "styled-components": "6.0.7",
     "unique-names-generator": "4.6.0",
-    "validator": "13.15.23",
+    "validator": "13.15.35",
     "victory": "^36.6.11",
     "ws": "8.21.0",
     "zod": "4.4.3"
@@ -130,7 +130,7 @@
     "@types/react-router-dom": "5.3.3",
     "@types/seedrandom": "3.0.5",
     "@types/styled-components": "5.1.26",
-    "@types/validator": "13.11.1",
+    "@types/validator": "13.15.10",
     "@walletconnect/types": "2.23.9",
     "@welldone-software/why-did-you-render": "7.0.1",
     "ajv": "8.18.0",
