@@ -2705,9 +2705,13 @@ msgstr "Haluatko tallentaa asetukset seuraaville komennoille?"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:677
-msgid "These commands will be executed without confirmation in the future:\n\n"
+msgid ""
+"These commands will be executed without confirmation in the future:\n"
+"\n"
 " {commands}"
-msgstr "Nämä komennot suoritetaan ilman vahvistusta tulevaisuudessa:\n\n"
+msgstr ""
+"Nämä komennot suoritetaan ilman vahvistusta tulevaisuudessa:\n"
+"\n"
 " {commands}"
 
 #. js-lingui-explicit-id
@@ -3297,7 +3301,7 @@ msgstr "Toiminto"
 #: src/components/farm/FarmFullNodeConnections.tsx:54
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:54
 #: src/components/fullNode/FullNodeConnections.tsx:65
-#: src/components/nfts/NFTContextualActions.tsx:605
+#: src/components/nfts/NFTContextualActions.tsx:607
 #: src/components/offers2/OfferIncomingTable.tsx:119
 msgid "Actions"
 msgstr "Toiminnot"
@@ -3746,7 +3750,7 @@ msgstr "Selaa"
 
 #: src/components/nfts/NFTBurnDialog.tsx:90
 #: src/components/nfts/NFTBurnDialog.tsx:185
-#: src/components/nfts/NFTContextualActions.tsx:543
+#: src/components/nfts/NFTContextualActions.tsx:545
 msgid "Burn"
 msgstr "Polta"
 
@@ -3823,7 +3827,7 @@ msgstr ""
 msgid "Cancel on blockchain"
 msgstr "Peru lohkoketjussa"
 
-#: src/components/nfts/NFTContextualActions.tsx:278
+#: src/components/nfts/NFTContextualActions.tsx:280
 msgid "Cancel Unconfirmed Transaction"
 msgstr "Poista Vahvistamattomat Transaktiot"
 
@@ -4178,11 +4182,11 @@ msgstr "Jatka"
 #~ msgid "Contribute on GitHub"
 #~ msgstr "Contribute on GitHub"
 
-#: src/components/nfts/NFTContextualActions.tsx:349
+#: src/components/nfts/NFTContextualActions.tsx:351
 msgid "Copy Media URL"
 msgstr "Kopioi Median URL"
 
-#: src/components/nfts/NFTContextualActions.tsx:106
+#: src/components/nfts/NFTContextualActions.tsx:107
 msgid "Copy NFT ID"
 msgstr "Kopioi NFT ID"
 
@@ -4285,7 +4289,7 @@ msgstr "Luo Vastatarjous"
 #~ msgid "Create new Remote Wallet"
 #~ msgstr "Create new Remote Wallet"
 
-#: src/components/nfts/NFTContextualActions.tsx:150
+#: src/components/nfts/NFTContextualActions.tsx:152
 #: src/components/offers/NFTOfferEditor.tsx:438
 #: src/components/offers/OfferEditor.tsx:156
 #: src/components/offers/OfferManager.tsx:393
@@ -4668,11 +4672,11 @@ msgstr "Toimialuenimet"
 #~ msgid "Don't allocate host tables using pinned buffers, instead download to intermediate pinned buffers then copy to the final host buffer."
 #~ msgstr "Don't allocate host tables using pinned buffers, instead download to intermediate pinned buffers then copy to the final host buffer."
 
-#: src/components/nfts/NFTContextualActions.tsx:461
+#: src/components/nfts/NFTContextualActions.tsx:463
 msgid "Download"
 msgstr "Lataa"
 
-#: src/components/nfts/NFTContextualActions.tsx:444
+#: src/components/nfts/NFTContextualActions.tsx:446
 msgid "Download Failed"
 msgstr "Lataus Epäonnistui"
 
@@ -5534,7 +5538,7 @@ msgstr "Piilotettu <0/>"
 #~ msgid "Hidden ({0})"
 #~ msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:511
+#: src/components/nfts/NFTContextualActions.tsx:513
 msgid "Hide"
 msgstr "Piilota"
 
@@ -5672,16 +5676,20 @@ msgstr "Alustetaan..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid "Insufficient funds available to accept offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "Riittämätön määrä varoja tarjouksen hyväksymiseen. Varmista, että\n"
+msgstr ""
+"Riittämätön määrä varoja tarjouksen hyväksymiseen. Varmista, että\n"
 "käytettävissä oleva saldo riittää tarjouksen määrän kattamiseen."
 
 #: src/components/offers/OfferEditor.tsx:127
 #: src/components/offers2/CreateOfferBuilder.tsx:145
-msgid "Insufficient funds available to create offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "Riittämätön määrä varoja tarjouksen luomiseen. Varmista, että\n"
+msgstr ""
+"Riittämätön määrä varoja tarjouksen luomiseen. Varmista, että\n"
 "käytettävissä oleva saldo riittää tarjouksen määrän kattamiseen."
 
 #: src/components/farm/PoolingHealth.tsx:302
@@ -6219,7 +6227,7 @@ msgstr "Siirrä"
 msgid "Move NFT to Profile"
 msgstr "Siirrä NFT profiiliin"
 
-#: src/components/nfts/NFTContextualActions.tsx:226
+#: src/components/nfts/NFTContextualActions.tsx:228
 msgid "Move to Profile"
 msgstr "Siirrä profiiliin"
 
@@ -6323,7 +6331,7 @@ msgid "Next"
 msgstr "Seuraava"
 
 #: src/components/offers/NFTOfferEditor.tsx:212
-#: src/components/offers2/OfferBuilderNFTSection.tsx:44
+#: src/components/offers2/OfferBuilderNFTSection.tsx:46
 #: src/components/settings/Settings.tsx:38
 #: src/components/settings/SettingsNFT.tsx:72
 #: src/components/signVerify/SignMessage.tsx:164
@@ -6396,19 +6404,19 @@ msgstr "NFT:tä ei määritetty"
 msgid "NFT Purchase Price"
 msgstr "NFT-ostohinta"
 
-#: src/components/nfts/NFTContextualActions.tsx:265
+#: src/components/nfts/NFTContextualActions.tsx:267
 msgid "NFT Status Update Failed"
 msgstr "NFT:n tilan päivitys epäonnistui"
 
-#: src/components/nfts/NFTContextualActions.tsx:255
+#: src/components/nfts/NFTContextualActions.tsx:257
 msgid "NFT Status Updated"
 msgstr "NFT:n tila päivitetty"
 
-#: src/components/nfts/NFTContextualActions.tsx:180
+#: src/components/nfts/NFTContextualActions.tsx:182
 msgid "NFT Transfer Failed"
 msgstr "NFT:n siirto epäonnistui"
 
-#: src/components/nfts/NFTContextualActions.tsx:174
+#: src/components/nfts/NFTContextualActions.tsx:176
 msgid "NFT Transfer Pending"
 msgstr "NFT:n siirto kesken"
 
@@ -6798,11 +6806,11 @@ msgstr "Yhtä tai useampaa tuntematonta tokenia tarjotaan. Varmista, että tarjo
 msgid "One or more unknown tokens are being offered. Please verify that the asset IDs of the tokens listed below match the asset IDs of the tokens you expect to receive."
 msgstr "Yhtä tai useampaa tuntematonta tokenia tarjotaan. Varmista, että alla lueteltujen tokeneiden Asset ID:t täsmäävät tokeneihin, joita odotat vastaanottavasi."
 
-#: src/components/offers2/OfferBuilderNFTSection.tsx:45
+#: src/components/offers2/OfferBuilderNFTSection.tsx:47
 msgid "One-of-a-kind Collectible assets"
 msgstr "Uniikit keräilyassetit"
 
-#: src/components/nfts/NFTContextualActions.tsx:317
+#: src/components/nfts/NFTContextualActions.tsx:319
 msgid "Open in Browser"
 msgstr "Avaa selaimessa"
 
@@ -7528,7 +7536,7 @@ msgstr "Rekursiivinen Plottiskannaus"
 msgid "Refresh"
 msgstr "Päivitä"
 
-#: src/components/nfts/NFTContextualActions.tsx:584
+#: src/components/nfts/NFTContextualActions.tsx:586
 msgid "Refresh NFT data"
 msgstr "Päivitä NFT-data"
 
@@ -8094,7 +8102,7 @@ msgstr "Jaa Spacescan.io:ssa"
 #~ msgid "Share Privately"
 #~ msgstr "Share Privately"
 
-#: src/components/nfts/NFTContextualActions.tsx:511
+#: src/components/nfts/NFTContextualActions.tsx:513
 msgid "Show"
 msgstr "Näytä"
 
@@ -8458,7 +8466,7 @@ msgstr "Takaisinvetoaika voidaan asettaa transaktiokohtaisesti"
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
 msgstr "Derivaatioindeksi asettaa lompakon osoitteiden määrän, jota lompakko skannaa lohkoketjusta. Tämä luku on yleensä suurempi, jos sinulla on paljon tapahtumia tai peruutettuja tarjouksia XCH-, CAT- tai NFT-kolikoille. Jos uskot, että saldo on väärä, nosta derivaatioindeksiä, mikä auttaa lompakkoa sisällyttämään puuttuvat kolikot saldoon."
 
-#: src/components/nfts/NFTContextualActions.tsx:445
+#: src/components/nfts/NFTContextualActions.tsx:447
 msgid "The download failed: {0}"
 msgstr "Lataus epäonnistui: {0}"
 
@@ -8502,15 +8510,15 @@ msgstr "NFT-siirto epäonnistui: {err}"
 msgid "The NFT move transaction has been successfully submitted to the blockchain."
 msgstr "NFT:n siirtotransaktio on onnistuneesti lähetetty lohkoketjuun."
 
-#: src/components/nfts/NFTContextualActions.tsx:256
+#: src/components/nfts/NFTContextualActions.tsx:258
 msgid "The NFT status has been updated. If the transaction was successfully sent to the mempool, it may still complete."
 msgstr "NFT:n tila on päivitetty. Jos transaktio lähetettiin onnistuneesti mempooliin, se saattaa silti sulkeutua onnistuneesti."
 
-#: src/components/nfts/NFTContextualActions.tsx:266
+#: src/components/nfts/NFTContextualActions.tsx:268
 msgid "The NFT status update failed: {err}"
 msgstr "NFT-päivitys epäonnistui: {err}"
 
-#: src/components/nfts/NFTContextualActions.tsx:181
+#: src/components/nfts/NFTContextualActions.tsx:183
 msgid "The NFT transfer failed: {0}"
 msgstr "NFT-siirto epäonnistui: {0}"
 
@@ -8518,7 +8526,7 @@ msgstr "NFT-siirto epäonnistui: {0}"
 #~ msgid "The NFT transfer failed: {error}"
 #~ msgstr "The NFT transfer failed: {error}"
 
-#: src/components/nfts/NFTContextualActions.tsx:175
+#: src/components/nfts/NFTContextualActions.tsx:177
 msgid "The NFT transfer transaction has been successfully submitted to the blockchain."
 msgstr "NFT:n siirtotransaktio on onnistuneesti lähetetty lohkoketjuun."
 
@@ -8952,7 +8960,7 @@ msgstr "Siirrä"
 #~ msgid "Transfer DID"
 #~ msgstr "Transfer DID"
 
-#: src/components/nfts/NFTContextualActions.tsx:198
+#: src/components/nfts/NFTContextualActions.tsx:200
 #: src/components/nfts/NFTTransferAction.tsx:201
 msgid "Transfer NFT"
 msgstr ""
@@ -9282,7 +9290,7 @@ msgstr "Näytä Dexiessä"
 #~ msgid "View on Hashgreen DEX"
 #~ msgstr "View on Hashgreen DEX"
 
-#: src/components/nfts/NFTContextualActions.tsx:661
+#: src/components/nfts/NFTContextualActions.tsx:663
 #: src/components/offers/OfferShareDialog.tsx:384
 msgid "View on MintGarden"
 msgstr "Näytä MintGardenissa"
@@ -9295,7 +9303,7 @@ msgstr "Näytä MintGardenissa"
 msgid "View on Offerpool"
 msgstr "Näytä Offerpoolissa"
 
-#: src/components/nfts/NFTContextualActions.tsx:669
+#: src/components/nfts/NFTContextualActions.tsx:671
 #: src/components/offers/OfferShareDialog.tsx:481
 msgid "View on Spacescan.io"
 msgstr "Näytä Spacescan.io:ssa"
@@ -9702,4 +9710,3 @@ msgstr "Käytettävissä olevan saldon on oltava suurempi kuin 1 mojo luodaksesi
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "Lompakkosi on oltava käynnissä, jotta automaattinen lunastaminen toimii."
-

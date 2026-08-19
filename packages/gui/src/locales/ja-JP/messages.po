@@ -2705,7 +2705,9 @@ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:677
-msgid "These commands will be executed without confirmation in the future:\n\n"
+msgid ""
+"These commands will be executed without confirmation in the future:\n"
+"\n"
 " {commands}"
 msgstr ""
 
@@ -3296,7 +3298,7 @@ msgstr "操作"
 #: src/components/farm/FarmFullNodeConnections.tsx:54
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:54
 #: src/components/fullNode/FullNodeConnections.tsx:65
-#: src/components/nfts/NFTContextualActions.tsx:605
+#: src/components/nfts/NFTContextualActions.tsx:607
 #: src/components/offers2/OfferIncomingTable.tsx:119
 msgid "Actions"
 msgstr "操作"
@@ -3745,7 +3747,7 @@ msgstr "参照"
 
 #: src/components/nfts/NFTBurnDialog.tsx:90
 #: src/components/nfts/NFTBurnDialog.tsx:185
-#: src/components/nfts/NFTContextualActions.tsx:543
+#: src/components/nfts/NFTContextualActions.tsx:545
 msgid "Burn"
 msgstr "焼却"
 
@@ -3822,7 +3824,7 @@ msgstr ""
 msgid "Cancel on blockchain"
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:278
+#: src/components/nfts/NFTContextualActions.tsx:280
 msgid "Cancel Unconfirmed Transaction"
 msgstr ""
 
@@ -4177,11 +4179,11 @@ msgstr ""
 #~ msgid "Contribute on GitHub"
 #~ msgstr "Contribute on GitHub"
 
-#: src/components/nfts/NFTContextualActions.tsx:349
+#: src/components/nfts/NFTContextualActions.tsx:351
 msgid "Copy Media URL"
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:106
+#: src/components/nfts/NFTContextualActions.tsx:107
 msgid "Copy NFT ID"
 msgstr ""
 
@@ -4284,7 +4286,7 @@ msgstr ""
 #~ msgid "Create new Remote Wallet"
 #~ msgstr "Create new Remote Wallet"
 
-#: src/components/nfts/NFTContextualActions.tsx:150
+#: src/components/nfts/NFTContextualActions.tsx:152
 #: src/components/offers/NFTOfferEditor.tsx:438
 #: src/components/offers/OfferEditor.tsx:156
 #: src/components/offers/OfferManager.tsx:393
@@ -4667,11 +4669,11 @@ msgstr ""
 #~ msgid "Don't allocate host tables using pinned buffers, instead download to intermediate pinned buffers then copy to the final host buffer."
 #~ msgstr "Don't allocate host tables using pinned buffers, instead download to intermediate pinned buffers then copy to the final host buffer."
 
-#: src/components/nfts/NFTContextualActions.tsx:461
+#: src/components/nfts/NFTContextualActions.tsx:463
 msgid "Download"
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:444
+#: src/components/nfts/NFTContextualActions.tsx:446
 msgid "Download Failed"
 msgstr ""
 
@@ -5533,7 +5535,7 @@ msgstr ""
 #~ msgid "Hidden ({0})"
 #~ msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:511
+#: src/components/nfts/NFTContextualActions.tsx:513
 msgid "Hide"
 msgstr "非表示"
 
@@ -5671,13 +5673,15 @@ msgstr "初期化中..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid "Insufficient funds available to accept offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
 
 #: src/components/offers/OfferEditor.tsx:127
 #: src/components/offers2/CreateOfferBuilder.tsx:145
-msgid "Insufficient funds available to create offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
 
@@ -5763,7 +5767,8 @@ msgstr "プールに参加する"
 
 #: src/components/plot/add/PlotAddNFT.tsx:49
 msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
-msgstr "参加したプールが当選するとXCHを獲得できます。\n"
+msgstr ""
+"参加したプールが当選するとXCHを獲得できます。\n"
 "プールでは定期的にXCHを獲得できますが引き換えに毎度の払い出しは少なくなります。\n"
 "長期的のリターンはソロファーミングで得られる報酬と変わりません。"
 
@@ -6218,7 +6223,7 @@ msgstr ""
 msgid "Move NFT to Profile"
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:226
+#: src/components/nfts/NFTContextualActions.tsx:228
 msgid "Move to Profile"
 msgstr ""
 
@@ -6322,7 +6327,7 @@ msgid "Next"
 msgstr "次へ"
 
 #: src/components/offers/NFTOfferEditor.tsx:212
-#: src/components/offers2/OfferBuilderNFTSection.tsx:44
+#: src/components/offers2/OfferBuilderNFTSection.tsx:46
 #: src/components/settings/Settings.tsx:38
 #: src/components/settings/SettingsNFT.tsx:72
 #: src/components/signVerify/SignMessage.tsx:164
@@ -6395,19 +6400,19 @@ msgstr ""
 msgid "NFT Purchase Price"
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:265
+#: src/components/nfts/NFTContextualActions.tsx:267
 msgid "NFT Status Update Failed"
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:255
+#: src/components/nfts/NFTContextualActions.tsx:257
 msgid "NFT Status Updated"
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:180
+#: src/components/nfts/NFTContextualActions.tsx:182
 msgid "NFT Transfer Failed"
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:174
+#: src/components/nfts/NFTContextualActions.tsx:176
 msgid "NFT Transfer Pending"
 msgstr ""
 
@@ -6797,11 +6802,11 @@ msgstr ""
 msgid "One or more unknown tokens are being offered. Please verify that the asset IDs of the tokens listed below match the asset IDs of the tokens you expect to receive."
 msgstr ""
 
-#: src/components/offers2/OfferBuilderNFTSection.tsx:45
+#: src/components/offers2/OfferBuilderNFTSection.tsx:47
 msgid "One-of-a-kind Collectible assets"
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:317
+#: src/components/nfts/NFTContextualActions.tsx:319
 msgid "Open in Browser"
 msgstr ""
 
@@ -7527,7 +7532,7 @@ msgstr ""
 msgid "Refresh"
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:584
+#: src/components/nfts/NFTContextualActions.tsx:586
 msgid "Refresh NFT data"
 msgstr ""
 
@@ -8093,7 +8098,7 @@ msgstr ""
 #~ msgid "Share Privately"
 #~ msgstr "Share Privately"
 
-#: src/components/nfts/NFTContextualActions.tsx:511
+#: src/components/nfts/NFTContextualActions.tsx:513
 msgid "Show"
 msgstr ""
 
@@ -8457,7 +8462,7 @@ msgstr ""
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:445
+#: src/components/nfts/NFTContextualActions.tsx:447
 msgid "The download failed: {0}"
 msgstr ""
 
@@ -8501,15 +8506,15 @@ msgstr ""
 msgid "The NFT move transaction has been successfully submitted to the blockchain."
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:256
+#: src/components/nfts/NFTContextualActions.tsx:258
 msgid "The NFT status has been updated. If the transaction was successfully sent to the mempool, it may still complete."
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:266
+#: src/components/nfts/NFTContextualActions.tsx:268
 msgid "The NFT status update failed: {err}"
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:181
+#: src/components/nfts/NFTContextualActions.tsx:183
 msgid "The NFT transfer failed: {0}"
 msgstr ""
 
@@ -8517,7 +8522,7 @@ msgstr ""
 #~ msgid "The NFT transfer failed: {error}"
 #~ msgstr "The NFT transfer failed: {error}"
 
-#: src/components/nfts/NFTContextualActions.tsx:175
+#: src/components/nfts/NFTContextualActions.tsx:177
 msgid "The NFT transfer transaction has been successfully submitted to the blockchain."
 msgstr ""
 
@@ -8951,7 +8956,7 @@ msgstr ""
 #~ msgid "Transfer DID"
 #~ msgstr "Transfer DID"
 
-#: src/components/nfts/NFTContextualActions.tsx:198
+#: src/components/nfts/NFTContextualActions.tsx:200
 #: src/components/nfts/NFTTransferAction.tsx:201
 msgid "Transfer NFT"
 msgstr ""
@@ -9281,7 +9286,7 @@ msgstr ""
 #~ msgid "View on Hashgreen DEX"
 #~ msgstr "View on Hashgreen DEX"
 
-#: src/components/nfts/NFTContextualActions.tsx:661
+#: src/components/nfts/NFTContextualActions.tsx:663
 #: src/components/offers/OfferShareDialog.tsx:384
 msgid "View on MintGarden"
 msgstr ""
@@ -9294,7 +9299,7 @@ msgstr ""
 msgid "View on Offerpool"
 msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:669
+#: src/components/nfts/NFTContextualActions.tsx:671
 #: src/components/offers/OfferShareDialog.tsx:481
 msgid "View on Spacescan.io"
 msgstr ""
@@ -9701,4 +9706,3 @@ msgstr ""
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr ""
-
