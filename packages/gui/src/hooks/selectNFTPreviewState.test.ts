@@ -32,6 +32,26 @@ describe('selectNFTPreviewState', () => {
     ).toBeUndefined();
   });
 
+  it('does not let verified data preempt a preview that is still verifying', () => {
+    expect(
+      selectNFTPreviewState({
+        isVerifying: true,
+        data: {
+          isVerified: true,
+          uri: 'https://example.com/data.mp4',
+        },
+        previewVideoCandidate: {
+          uris: ['https://example.com/preview.mp4'],
+          hash: 'preview-hash',
+        },
+      }),
+    ).toEqual({
+      isVerified: false,
+      isVerifying: true,
+      uri: 'https://example.com/preview.mp4',
+    });
+  });
+
   it('moves to the next verifiable candidate while an earlier source has failed', () => {
     expect(
       selectNFTPreviewState({

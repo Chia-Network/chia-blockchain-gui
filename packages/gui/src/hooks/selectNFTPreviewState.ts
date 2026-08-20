@@ -50,24 +50,26 @@ export default function selectNFTPreviewState({
 }: SelectNFTPreviewStateOptions): NFTPreviewState | undefined {
   const states = [previewVideo, previewImage, data];
 
-  const verified = states.find((state) => state?.isVerified);
-  if (verified) {
-    return verified;
-  }
+  // Walk sources strictly in priority order (preview video, preview image,
+  // data). A source that is still verifying holds its slot with an optimistic
+  // state, so a lower-priority source that happens to verify first (typically
+  // the cached data file) cannot preempt it — that would render the full data
+  // file and then visibly swap to the intended thumbnail moments later.
+  const ordered: [NFTPreviewState | undefined, PreviewCandidate | undefined][] = [
+    [previewVideo, previewVideoCandidate],
+    [previewImage, previewImageCandidate],
+    [data, dataCandidate],
+  ];
 
-  if (isVerifying) {
-    const candidates: [NFTPreviewState | undefined, PreviewCandidate | undefined][] = [
-      [previewVideo, previewVideoCandidate],
-      [previewImage, previewImageCandidate],
-      [data, dataCandidate],
-    ];
+  for (const [state, candidate] of ordered) {
+    if (state?.isVerified) {
+      return state;
+    }
 
-    for (const [state, candidate] of candidates) {
-      if (!state) {
-        const optimisticState = asCandidate(candidate);
-        if (optimisticState) {
-          return optimisticState;
-        }
+    if (!state && isVerifying) {
+      const optimisticState = asCandidate(candidate);
+      if (optimisticState) {
+        return optimisticState;
       }
     }
   }
