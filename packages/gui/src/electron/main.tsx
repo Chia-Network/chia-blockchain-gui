@@ -80,6 +80,7 @@ import {
   addBypassCommand,
 } from './utils/pairStore';
 import * as privatePreferences from './utils/privatePreferences';
+import resolveStoredMaxCacheSize from './utils/resolveStoredMaxCacheSize';
 import toCamelCase from './utils/toCamelCase';
 import { setUserDataDir } from './utils/userData';
 import webSocketBridgeBindEvents from './utils/webSocketBridge';
@@ -118,12 +119,7 @@ const prefs = readPrefs();
 const defaultCacheFolder = path.join(app.getPath('cache'), app.getName());
 const cacheDirectory: string = prefs.cacheFolder || defaultCacheFolder;
 
-// `cacheLimitSize` is the legacy preference key older versions of the
-// settings UI stored the value under. Invalid values are ignored because the
-// CacheManager constructor rejects negative sizes; zero means unlimited.
-const storedMaxCacheSize: number | undefined = [prefs.maxCacheSize, prefs.cacheLimitSize].find(
-  (size) => typeof size === 'number' && Number.isFinite(size) && size >= 0,
-);
+const storedMaxCacheSize: number | undefined = resolveStoredMaxCacheSize(prefs);
 
 const cacheManager = new CacheManager({
   cacheDirectory,
