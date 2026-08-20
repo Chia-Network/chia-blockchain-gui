@@ -230,15 +230,20 @@ export default function NFTPreview(props: NFTPreviewProps) {
           return;
         }
 
+        // Interactivity is controlled outside the iframe (pointer-events on
+        // the iframe plus the IframePreventEvents overlay), never inside the
+        // srcDoc: the sandbox forbids scripts, so any srcDoc change forces a
+        // full remount, and gating `controls` on disableInteractions would
+        // remount every gallery tile whenever multi-select is toggled.
         setPreviewContent(
           <>
             <style>{style}</style>
             {previewFileType === FileType.VIDEO ? (
-              <video width="100%" height="100%" controls={!disableInteractions} loop={loopVideo}>
+              <video width="100%" height="100%" controls loop={loopVideo}>
                 <source src={cachedURI} />
               </video>
             ) : previewFileType === FileType.AUDIO ? (
-              <audio className={isDarkMode ? 'dark' : ''} controls={!disableInteractions}>
+              <audio className={isDarkMode ? 'dark' : ''} controls>
                 <source src={cachedURI} />
               </audio>
             ) : (
@@ -251,18 +256,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
         setError(e as Error, signal);
       }
     },
-    [
-      preview,
-      fit,
-      getURI,
-      ignoreSizeLimit,
-      previewFileType,
-      disableInteractions,
-      loopVideo,
-      isDarkMode,
-      setPreviewContent,
-      setError,
-    ],
+    [preview, fit, getURI, ignoreSizeLimit, previewFileType, loopVideo, isDarkMode, setPreviewContent, setError],
   );
 
   useEffect(() => {
