@@ -33,7 +33,11 @@ export default function useNFTVerifyHash(nftId?: string, options: UseNFTVerifyHa
   const [previewImage, setPreviewImage] = useState<NFTPreviewState | undefined>();
   const verificationGeneration = useRef(0);
 
-  const isLoading = isLoadingNFT || isLoadingMetadata || isVerifying;
+  // A pending metadata download only blocks the result while there is no
+  // data verification outcome yet: `isVerified` is derived from the data
+  // file alone, so once it settles a slow or dead metadata host must not
+  // keep consumers (gallery tiles, hash status badges) in a loading state.
+  const isLoading = isLoadingNFT || isVerifying || (isLoadingMetadata && !data);
   const error = errorNFT || errorMetadata || errorVerify;
 
   const findValidUri = useCallback(

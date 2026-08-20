@@ -172,17 +172,20 @@ export default function NFTPreview(props: NFTPreviewProps) {
 
   const { isLoading: isLoadingNFT } = useNFT(nftId);
   const { metadata, isLoading: isLoadingMetadata } = useNFTMetadata(nftId);
-  // hash verification downloads the full data file, which can take a long time
-  // for large media — only wait for it while there is no preview uri to show yet
-  const isLoading = isLoadingMetadata || isLoadingNFT || isLoadingFileType || (isLoadingVerifyHash && !preview);
+  // hash verification downloads the full data file, which can take a long
+  // time for large media, and the metadata host can be slow or dead — either
+  // one only blocks the tile while there is no verified preview uri to show
+  const isLoading = isLoadingNFT || isLoadingFileType || ((isLoadingVerifyHash || isLoadingMetadata) && !preview);
 
   const blurPreview = useMemo(() => {
     if (!hideObjectionableContent) {
       return false;
     }
 
-    if (isLoading) {
-      return false;
+    // a verified preview can render before the metadata fetch settles — keep
+    // it covered until the sensitive-content flag can actually be read
+    if (isLoadingMetadata) {
+      return true;
     }
 
     if (!metadata) {
@@ -194,7 +197,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
     }
 
     return false;
-  }, [hideObjectionableContent, isLoading, metadata]);
+  }, [hideObjectionableContent, isLoadingMetadata, metadata]);
 
   const previewExtension = useMemo(() => getFileExtension(preview?.uri), [preview]);
 
