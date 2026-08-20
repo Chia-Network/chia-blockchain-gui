@@ -7,6 +7,7 @@ import compareChecksums from '../util/compareChecksums';
 
 import selectNFTPreviewState, { type NFTPreviewState } from './selectNFTPreviewState';
 import useCache from './useCache';
+import useIpfsGateway from './useIpfsGateway';
 import useNFT from './useNFT';
 import useNFTMetadata from './useNFTMetadata';
 
@@ -21,6 +22,11 @@ export default function useNFTVerifyHash(nftId?: string, options: UseNFTVerifyHa
   const { preview = false, ignoreSizeLimit = false } = options;
 
   const { getChecksum } = useCache();
+  // Not read directly: the value changes which URIs the main process will
+  // fetch at all, so both verification effects list it as a dependency and
+  // re-run when the user flips the option — without this, NFTs already on
+  // screen would keep their failed state until a remount.
+  const [ipfsGateway] = useIpfsGateway();
 
   const { nft, isLoading: isLoadingNFT, error: errorNFT } = useNFT(nftId);
   const { isLoading: isLoadingMetadata, metadata, error: errorMetadata } = useNFTMetadata(nftId);
@@ -201,7 +207,7 @@ export default function useNFTVerifyHash(nftId?: string, options: UseNFTVerifyHa
         dataGeneration.current += 1;
       }
     };
-  }, [nft, isLoadingNFT, validateData]);
+  }, [nft, isLoadingNFT, validateData, ipfsGateway]);
 
   useEffect(() => {
     const generation = previewGeneration.current + 1;
@@ -227,7 +233,7 @@ export default function useNFTVerifyHash(nftId?: string, options: UseNFTVerifyHa
         previewGeneration.current += 1;
       }
     };
-  }, [preview, nft, metadata, isLoadingNFT, isLoadingMetadata, validatePreview]);
+  }, [preview, nft, metadata, isLoadingNFT, isLoadingMetadata, validatePreview, ipfsGateway]);
 
   const previewState = useMemo(
     () =>

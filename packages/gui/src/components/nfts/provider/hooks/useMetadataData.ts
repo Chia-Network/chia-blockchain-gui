@@ -2,12 +2,13 @@ import { EventEmitter } from 'events';
 
 import { type NFTInfo } from '@chia-network/api';
 import debug from 'debug';
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useEffect, useMemo, useRef } from 'react';
 
 import type Metadata from '../../../../@types/Metadata';
 import type MetadataOnDemand from '../../../../@types/MetadataOnDemand';
 import type MetadataState from '../../../../@types/MetadataState';
 import useFetchAndProcessMetadata from '../../../../hooks/useFetchAndProcessMetadata';
+import useIpfsGateway from '../../../../hooks/useIpfsGateway';
 import getNFTId from '../../../../util/getNFTId';
 
 const log = debug('chia-gui:NFTProvider:useMetadataData');
@@ -158,6 +159,30 @@ export default function useMetadataData(props: UseMetadataDataProps) {
     },
     [getMetadata /* immutable */, metadatasOnDemand /* immutable */],
   );
+
+  const [ipfsGateway] = useIpfsGateway();
+  const lastIpfsGatewayRef = useRef(ipfsGateway);
+
+  useEffect(() => {
+    if (lastIpfsGatewayRef.current === ipfsGateway) {
+      return;
+    }
+    lastIpfsGatewayRef.current = ipfsGateway;
+
+    // Flipping the gateway option changes which URIs the main process will
+    // fetch, so cached failures are stale — without this, a failed ipfs
+    // metadata fetch stayed cached here and its NFT kept looking broken
+    // after enabling the option, until a full app reload. Only failures are
+    // retried: successfully fetched metadata is hash-verified content and
+    // unaffected by how it was fetched.
+    metadatasOnDemand.forEach((metadataOnDemand, nftId) => {
+      if (metadataOnDemand.error) {
+        invalidate(nftId).catch((e) => {
+          log(`Error retrying metadata for nftId: ${nftId}`, e);
+        });
+      }
+    });
+  }, [ipfsGateway, invalidate /* immutable */, metadatasOnDemand /* immutable */]);
 
   // immutable function
   const subscribeToMetadataChanges = useCallback(
