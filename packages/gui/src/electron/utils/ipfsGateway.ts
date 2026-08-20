@@ -30,3 +30,27 @@ export default function maybeIpfsToGatewayUrl(url: string): string {
 
   return ipfsToGatewayUrl(url);
 }
+
+// Thrown instead of attempting a fetch that cannot happen: with the gateway
+// option off there is no URL Electron's net stack could request for an
+// ipfs:// URI. CacheManager treats this error as non-persistent — flipping
+// the option on must retry cleanly, so it never poisons a cache entry.
+export class IpfsGatewayDisabledError extends Error {
+  constructor() {
+    super('IPFS gateway fetching is disabled');
+    this.name = 'IpfsGatewayDisabledError';
+  }
+}
+
+// The URL the network layer may actually request. The gateway option gates
+// only fetching: structural URL validation and serving already-cached content
+// stay independent of it, so every network call site funnels through here
+// instead of checking the option itself.
+export function toFetchableUrl(url: string): string {
+  const requestUrl = maybeIpfsToGatewayUrl(url);
+  if (isIpfsUrl(requestUrl)) {
+    throw new IpfsGatewayDisabledError();
+  }
+
+  return requestUrl;
+}

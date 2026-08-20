@@ -7,6 +7,8 @@ jest.mock('../prefs', () => ({
 const {
   default: maybeIpfsToGatewayUrl,
   ipfsGatewayEnabled,
+  toFetchableUrl,
+  IpfsGatewayDisabledError,
   NFT_IPFS_GATEWAY_PREF,
 } = jest.requireActual<typeof import('./ipfsGateway')>('./ipfsGateway');
 
@@ -61,6 +63,33 @@ describe('maybeIpfsToGatewayUrl', () => {
 
     expect(maybeIpfsToGatewayUrl('ipfs://QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/img.png')).toBe(
       'https://ipfs.io/ipfs/QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/img.png',
+    );
+  });
+});
+
+describe('toFetchableUrl', () => {
+  beforeEach(() => {
+    mockReadPrefs.mockReset();
+  });
+
+  it('passes non-ipfs URLs through without consulting the preferences store', () => {
+    expect(toFetchableUrl('https://example.com/image.png')).toBe('https://example.com/image.png');
+    expect(mockReadPrefs).not.toHaveBeenCalled();
+  });
+
+  it('translates ipfs URIs when the gateway option is on', () => {
+    mockReadPrefs.mockReturnValue({ [NFT_IPFS_GATEWAY_PREF]: true });
+
+    expect(toFetchableUrl('ipfs://QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/img.png')).toBe(
+      'https://ipfs.io/ipfs/QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/img.png',
+    );
+  });
+
+  it('refuses ipfs URIs while the gateway option is off', () => {
+    mockReadPrefs.mockReturnValue({});
+
+    expect(() => toFetchableUrl('ipfs://QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB')).toThrow(
+      IpfsGatewayDisabledError,
     );
   });
 });
