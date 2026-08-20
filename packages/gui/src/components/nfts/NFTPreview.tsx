@@ -1,7 +1,7 @@
 import { Color, IconMessage, Loading, Flex, SandboxedIframe, usePersistState, useDarkMode } from '@chia-network/core';
 import { t, Trans } from '@lingui/macro';
-import { NotInterested } from '@mui/icons-material';
-import { alpha, Box } from '@mui/material';
+import { Loop as LoopIcon, NotInterested } from '@mui/icons-material';
+import { alpha, Box, IconButton, Tooltip } from '@mui/material';
 import React, { useMemo, useRef, Fragment, useCallback, useEffect, type ReactNode } from 'react';
 import styled from 'styled-components';
 
@@ -30,6 +30,7 @@ import useNFT from '../../hooks/useNFT';
 import useNFTImageFittingMode from '../../hooks/useNFTImageFittingMode';
 import useNFTMetadata from '../../hooks/useNFTMetadata';
 import useNFTVerifyHash from '../../hooks/useNFTVerifyHash';
+import { useNFTVideoLoopGlobal, useNFTVideoLoopForNFT } from '../../hooks/useNFTVideoLoop';
 import useStateAbort from '../../hooks/useStateAbort';
 import getFileExtension from '../../util/getFileExtension';
 import getNFTId from '../../util/getNFTId';
@@ -155,6 +156,19 @@ export default function NFTPreview(props: NFTPreviewProps) {
   });
 
   const { type: previewFileType, isLoading: isLoadingFileType } = useFileType(preview?.uri);
+  const [globalVideoLoop] = useNFTVideoLoopGlobal();
+  const [perVideoLoop, setPerVideoLoop] = useNFTVideoLoopForNFT(nftId);
+  const loopVideo = globalVideoLoop || perVideoLoop;
+
+  const handleToggleVideoLoop = useCallback(
+    (event: React.MouseEvent) => {
+      // the button sits inside clickable areas (grid card navigation, detail
+      // view fullscreen) — keep the click from reaching them
+      event.stopPropagation();
+      setPerVideoLoop(!perVideoLoop);
+    },
+    [perVideoLoop, setPerVideoLoop],
+  );
 
   const { isLoading: isLoadingNFT } = useNFT(nftId);
   const { metadata, isLoading: isLoadingMetadata } = useNFTMetadata(nftId);
@@ -208,23 +222,51 @@ export default function NFTPreview(props: NFTPreviewProps) {
           img {
             object-fit: ${fit};
           }
+
+          /* Belt and braces with controlsList/disablePictureInPicture below:
+             the overflow menu is the one control that opens a popup upward,
+             where the grid navigation blockers would swallow its clicks. */
+          video::-webkit-media-controls-overflow-button,
+          audio::-webkit-media-controls-overflow-button {
+            display: none;
+          }
         `;
 
-        const cachedURI = await getURI(preview.uri);
+        const cachedURI = await getURI(preview.uri, { maxSize: ignoreSizeLimit ? -1 : undefined });
         if (!cachedURI || !cachedURI.startsWith('cache://')) {
           setPreviewContent(undefined, signal);
           return;
         }
 
+        // Interactivity is controlled outside the iframe (pointer-events on
+        // the iframe plus the IframePreventEvents overlay), never inside the
+        // srcDoc: the sandbox forbids scripts, so any srcDoc change forces a
+        // full remount, and gating `controls` on disableInteractions would
+        // remount every gallery tile whenever multi-select is toggled.
         setPreviewContent(
           <>
             <style>{style}</style>
+            {/* controlsList/disablePictureInPicture empty Chromium's overflow
+                menu (download and remote playback are blocked by the sandbox
+                anyway), so no control opens a popup that would extend upward
+                under the grid navigation blockers */}
             {previewFileType === FileType.VIDEO ? (
-              <video width="100%" height="100%" controls={!disableInteractions}>
+              <video
+                width="100%"
+                height="100%"
+                controls
+                controlsList="nodownload noplaybackrate noremoteplayback"
+                disablePictureInPicture
+                loop={loopVideo}
+              >
                 <source src={cachedURI} />
               </video>
             ) : previewFileType === FileType.AUDIO ? (
-              <audio className={isDarkMode ? 'dark' : ''} controls={!disableInteractions}>
+              <audio
+                className={isDarkMode ? 'dark' : ''}
+                controls
+                controlsList="nodownload noplaybackrate noremoteplayback"
+              >
                 <source src={cachedURI} />
               </audio>
             ) : (
@@ -237,7 +279,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
         setError(e as Error, signal);
       }
     },
-    [preview, fit, getURI, previewFileType, disableInteractions, isDarkMode, setPreviewContent, setError],
+    [preview, fit, getURI, ignoreSizeLimit, previewFileType, loopVideo, isDarkMode, setPreviewContent, setError],
   );
 
   useEffect(() => {
@@ -328,8 +370,13 @@ export default function NFTPreview(props: NFTPreviewProps) {
       );
     }
 
-    const canInteract =
-      !isPreview && !disableInteractions && (previewFileType === FileType.VIDEO || previewFileType === FileType.AUDIO);
+    const isPlayable = previewFileType === FileType.VIDEO || previewFileType === FileType.AUDIO;
+    const canInteract = !disableInteractions && isPlayable;
+    // In the gallery grid the media controls are directly clickable, while the
+    // rest of the tile keeps navigating to the detail view. The blockers below
+    // sit over the non-control area only, so clicks there fall through to the
+    // card while the native controls (play, seek, volume) stay exposed.
+    const showGridNavigationBlockers = isPreview && canInteract;
 
     return (
       <Box
@@ -343,9 +390,62 @@ export default function NFTPreview(props: NFTPreviewProps) {
         }}
       >
         {!canInteract && <IframePreventEvents />}
-        <SandboxedIframe hideUntilLoaded allowPointerEvents={!canInteract}>
+        <SandboxedIframe hideUntilLoaded allowPointerEvents={canInteract}>
           {previewContent}
         </SandboxedIframe>
+        {showGridNavigationBlockers &&
+          (previewFileType === FileType.VIDEO ? (
+            // video controls render along the bottom edge of the tile
+            <Box sx={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 48, zIndex: 2 }} />
+          ) : (
+            // the audio control bar renders centered vertically in the tile
+            <>
+              <Box sx={{ position: 'absolute', top: 0, left: 0, right: 0, height: 'calc(50% - 32px)', zIndex: 2 }} />
+              <Box sx={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 'calc(50% - 32px)', zIndex: 2 }} />
+            </>
+          ))}
+        {previewFileType === FileType.VIDEO && canInteract && !blurPreview && (
+          <Tooltip
+            title={
+              globalVideoLoop ? (
+                <Trans>Looping is enabled for all videos in Settings</Trans>
+              ) : loopVideo ? (
+                <Trans>Looping on</Trans>
+              ) : (
+                <Trans>Loop video</Trans>
+              )
+            }
+            placement="left"
+          >
+            {/* wrapper keeps the tooltip working while the button is disabled,
+                and swallows the click itself: a disabled button receives no
+                pointer events, so without this the click would bubble into the
+                card action area and navigate to the NFT */}
+            <Box
+              sx={{ position: 'absolute', top: 8, right: 8, zIndex: 3 }}
+              onClick={(event: React.MouseEvent) => event.stopPropagation()}
+            >
+              <IconButton
+                size="small"
+                disabled={globalVideoLoop}
+                onClick={handleToggleVideoLoop}
+                sx={{
+                  backgroundColor: alpha(Color.Neutral[900], 0.4),
+                  color: loopVideo ? Color.Green[400] : Color.Neutral[200],
+                  '&:hover': {
+                    backgroundColor: alpha(Color.Neutral[900], 0.6),
+                  },
+                  '&.Mui-disabled': {
+                    backgroundColor: alpha(Color.Neutral[900], 0.4),
+                    color: Color.Green[400],
+                  },
+                }}
+              >
+                <LoopIcon fontSize="small" />
+              </IconButton>
+            </Box>
+          </Tooltip>
+        )}
         {blurPreview && (
           <Box
             sx={{
@@ -375,6 +475,9 @@ export default function NFTPreview(props: NFTPreviewProps) {
     isDarkMode,
     blurPreview,
     previewCompactIcon,
+    globalVideoLoop,
+    loopVideo,
+    handleToggleVideoLoop,
   ]);
 
   const hasFile = !!preview;

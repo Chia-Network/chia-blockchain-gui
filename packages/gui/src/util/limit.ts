@@ -1,4 +1,6 @@
-export default function limit(concurrency: number) {
+export default function limit(concurrency: number, options: { lifo?: boolean } = {}) {
+  const { lifo = false } = options;
+
   const queue: {
     func: Function;
     resolve: (value: any) => void;
@@ -13,7 +15,10 @@ export default function limit(concurrency: number) {
 
     active++;
 
-    const item = queue.shift();
+    // LIFO runs the most recently requested task first, so work triggered by
+    // what the user is currently looking at is not starved by a long backlog
+    // of earlier background requests.
+    const item = lifo ? queue.pop() : queue.shift();
     if (!item) {
       return;
     }

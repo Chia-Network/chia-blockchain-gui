@@ -1,8 +1,10 @@
-import { BrowserWindow, net, dialog, type Protocol } from 'electron';
+import { BrowserWindow, dialog, type Protocol } from 'electron';
 import { EventEmitter } from 'events';
 import crypto from 'node:crypto';
+import { createReadStream } from 'node:fs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { Readable } from 'node:stream';
 
 import debug from 'debug';
 import isURL from 'validator/lib/isURL';
@@ -14,7 +16,7 @@ import CacheState from '../constants/CacheState';
 import limit from '../util/limit';
 
 import CacheAPI from './constants/CacheAPI';
-import downloadFile from './utils/downloadFile';
+import downloadFile, { MAX_FILE_SIZE_EXCEEDED_ERROR } from './utils/downloadFile';
 import ensureDirectoryExists from './utils/ensureDirectoryExists';
 import getChecksum from './utils/getChecksum';
 import ipcMainHandle from './utils/ipcMainHandle';
@@ -24,7 +26,51 @@ import sanitizeNumber from './utils/sanitizeNumber';
 
 const log = debug('chia-gui:CacheManager');
 
-const CACHE_PROTOCOL = 'cache';
+export const CACHE_PROTOCOL = 'cache';
+
+// A single-range `bytes=start-end` Range header, parsed against the file size.
+// 'ignore' means the header is absent or uses a form we do not support
+// (e.g. multiple ranges), in which case the full file is served with a 200.
+type ParsedRange = { start: number; end: number } | 'invalid' | 'ignore';
+
+function parseRangeHeader(rangeHeader: string | null, fileSize: number): ParsedRange {
+  if (!rangeHeader) {
+    return 'ignore';
+  }
+
+  const match = /^bytes=(\d*)-(\d*)$/.exec(rangeHeader.trim());
+  if (!match) {
+    return 'ignore';
+  }
+
+  const [, startString, endString] = match;
+
+  if (startString === '' && endString === '') {
+    return 'invalid';
+  }
+
+  if (startString === '') {
+    // suffix range: the last N bytes of the file
+    const suffixLength = Number.parseInt(endString, 10);
+    if (suffixLength === 0 || fileSize === 0) {
+      return 'invalid';
+    }
+
+    return { start: Math.max(fileSize - suffixLength, 0), end: fileSize - 1 };
+  }
+
+  const start = Number.parseInt(startString, 10);
+  if (start >= fileSize) {
+    return 'invalid';
+  }
+
+  const end = endString === '' ? fileSize - 1 : Math.min(Number.parseInt(endString, 10), fileSize - 1);
+  if (start > end) {
+    return 'invalid';
+  }
+
+  return { start, end };
+}
 
 async function safeUnlink(filePath: string) {
   try {
@@ -81,7 +127,10 @@ export default class CacheManager extends EventEmitter {
 
     this.cacheDirectory = cacheDirectory;
     this.maxCacheSize = maxCacheSize;
-    this.#downloadLimit = limit(concurrency);
+    // LIFO: downloads for what the user is currently viewing (an offer
+    // preview, a just-opened detail page) are requested last and must not
+    // wait behind a long gallery-wide rebuild of earlier requests.
+    this.#downloadLimit = limit(concurrency, { lifo: true });
 
     this.setMaxListeners(50);
 
@@ -112,8 +161,11 @@ export default class CacheManager extends EventEmitter {
         });
       }
 
-      const response = await net.fetch(`file://${filePath}`);
-      if (!response.ok) {
+      let fileSize: number;
+      try {
+        const stats = await fs.stat(filePath);
+        fileSize = stats.size;
+      } catch (error) {
         return new Response('Not found', {
           status: 404,
           headers: {
@@ -122,18 +174,45 @@ export default class CacheManager extends EventEmitter {
         });
       }
 
-      const { headers } = cacheInfo;
-      const updatedHeaders = new Headers(response.headers);
+      const contentTypeHeader = cacheInfo.headers?.['content-type'];
+      const contentType =
+        (Array.isArray(contentTypeHeader) ? contentTypeHeader[0] : contentTypeHeader) || 'application/octet-stream';
 
-      if (headers['content-type']) {
-        const contentType = Array.isArray(headers['content-type'])
-          ? headers['content-type'][0]
-          : headers['content-type'];
-        updatedHeaders.set('content-type', contentType);
+      const responseHeaders: Record<string, string> = {
+        'content-type': contentType,
+        'accept-ranges': 'bytes',
+      };
+
+      // Media elements seek by sending Range requests. Without 206 responses
+      // seeking is broken and MP4 files with the moov atom at the end of the
+      // file never start playing.
+      const range = parseRangeHeader(request.headers.get('range'), fileSize);
+
+      if (range === 'invalid') {
+        return new Response('Range Not Satisfiable', {
+          status: 416,
+          headers: {
+            'content-type': 'text/plain',
+            'content-range': `bytes */${fileSize}`,
+          },
+        });
       }
 
-      return new Response(response.body, {
-        headers: updatedHeaders,
+      if (range !== 'ignore') {
+        responseHeaders['content-length'] = String(range.end - range.start + 1);
+        responseHeaders['content-range'] = `bytes ${range.start}-${range.end}/${fileSize}`;
+
+        const partialStream = createReadStream(filePath, { start: range.start, end: range.end });
+        return new Response(Readable.toWeb(partialStream) as unknown as ReadableStream, {
+          status: 206,
+          headers: responseHeaders,
+        });
+      }
+
+      responseHeaders['content-length'] = String(fileSize);
+
+      return new Response(Readable.toWeb(createReadStream(filePath)) as unknown as ReadableStream, {
+        headers: responseHeaders,
       });
     });
   }
@@ -170,8 +249,42 @@ export default class CacheManager extends EventEmitter {
       window.webContents.send(CacheAPI.ON_MAX_CACHE_SIZE_CHANGED, newSize);
     }
 
-    const onSizeChanged = async () => {
-      window.webContents.send(CacheAPI.ON_SIZE_CHANGED, await this.getCacheSize());
+    // Download and invalidation bursts emit sizeChanged per file, and every
+    // notification triggers a full cache-directory scan (here and again in the
+    // renderer), so coalesce bursts into one trailing notification. Scans are
+    // also serialized: events arriving while a scan is running only mark it
+    // stale, and one follow-up scan is scheduled after it finishes, so a scan
+    // that outlives the coalescing window cannot overlap the next one.
+    let sizeChangedTimeout: NodeJS.Timeout | undefined;
+    let sizeScanRunning = false;
+    let sizeChangedDuringScan = false;
+
+    const onSizeChanged = () => {
+      if (sizeChangedTimeout) {
+        return;
+      }
+      if (sizeScanRunning) {
+        sizeChangedDuringScan = true;
+        return;
+      }
+      sizeChangedTimeout = setTimeout(async () => {
+        sizeChangedTimeout = undefined;
+        sizeScanRunning = true;
+        try {
+          const size = await this.getCacheSize();
+          if (!window.isDestroyed()) {
+            window.webContents.send(CacheAPI.ON_SIZE_CHANGED, size);
+          }
+        } catch {
+          // the next sizeChanged event delivers a fresh value
+        } finally {
+          sizeScanRunning = false;
+          if (sizeChangedDuringScan) {
+            sizeChangedDuringScan = false;
+            onSizeChanged();
+          }
+        }
+      }, 500);
     };
 
     this.on('cacheDirectoryChanged', onCacheDirectoryChanged);
@@ -182,6 +295,11 @@ export default class CacheManager extends EventEmitter {
       this.off('cacheDirectoryChanged', onCacheDirectoryChanged);
       this.off('maxCacheSizeChanged', onMaxCacheSizeChanged);
       this.off('sizeChanged', onSizeChanged);
+      sizeChangedDuringScan = false;
+      if (sizeChangedTimeout) {
+        clearTimeout(sizeChangedTimeout);
+        sizeChangedTimeout = undefined;
+      }
     };
 
     window.on('close', () => {
@@ -201,9 +319,6 @@ export default class CacheManager extends EventEmitter {
 
   public set maxCacheSize(newSize: number | string) {
     const value = sanitizeNumber(newSize);
-    if (value < 0) {
-      throw new Error('Cache size cannot be negative');
-    }
 
     this.#maxCacheSize = value;
 
@@ -332,7 +447,12 @@ export default class CacheManager extends EventEmitter {
 
         if (cacheInfo.state === CacheState.ERROR) {
           log(`Url already downloaded with error: ${cacheInfo.error}`, url);
-          if (!['Response aborted', 'Request aborted'].includes(cacheInfo.error)) {
+
+          const isTransientError = ['Response aborted', 'Request aborted'].includes(cacheInfo.error);
+          // A persisted size-limit error is only retried when the caller lifts
+          // the limit, so oversized files are not re-downloaded on every visit.
+          const isSizeLimitLifted = cacheInfo.error === MAX_FILE_SIZE_EXCEEDED_ERROR && maxSize <= 0;
+          if (!isTransientError && !isSizeLimitLifted) {
             return cacheInfo;
           }
 
@@ -358,19 +478,26 @@ export default class CacheManager extends EventEmitter {
           log('Checksum computed', url);
 
           // save headers to a local JSON file
-          const updatedCacheInfo = this.setCacheInfo(url, {
+          const updatedCacheInfo = await this.setCacheInfo(url, {
             state: CacheState.CACHED,
             headers,
             checksum,
           });
 
           log('Cache info saved', url);
-          // remove old files if the cache is full
-          const currentCacheSize = await this.getCacheSize();
-          const stats = await fs.stat(cacheFilePath);
-          if (this.maxCacheSize && currentCacheSize + stats.size > this.maxCacheSize) {
-            const spaceNeeded = currentCacheSize + stats.size - this.maxCacheSize;
-            await this.removeOldestFiles(spaceNeeded);
+          try {
+            // remove old files if the cache is full
+            const currentCacheSize = await this.getCacheSize();
+            if (this.maxCacheSize > 0 && currentCacheSize > this.maxCacheSize) {
+              // The current size already includes the file that was just
+              // downloaded. Keep that file available to the caller and evict
+              // older entries down to the configured total-size target.
+              await this.removeOldestFiles(this.maxCacheSize, cacheFilePath);
+            }
+          } catch (housekeepingError) {
+            // The download and its cache info are already saved — a failure in
+            // cache bookkeeping must not overwrite that state with an error.
+            log(`Cache housekeeping failed: ${(housekeepingError as Error).message}`, url);
           }
           // todo just add size and save it locally
           this.emit('sizeChanged');
@@ -574,36 +701,55 @@ export default class CacheManager extends EventEmitter {
     this.cacheDirectory = newDirectory;
   }
 
-  private async removeOldestFiles(targetSize: number): Promise<void> {
+  private async removeOldestFiles(targetSize: number, preserveFilePath?: string): Promise<void> {
     const files = await fs.readdir(this.cacheDirectory);
     const filePaths = files
       .filter((file) => isChiaCacheFile(file) && !isChiaCacheInfoFile(file))
       .map((file) => path.join(this.cacheDirectory, file));
 
-    // get the file sizes
-    const fileStats = await Promise.all(
-      filePaths.map(async (filePath) => {
-        const stats = await fs.stat(filePath);
-        return {
-          filePath,
-          size: stats.size,
-          mtime: stats.mtime,
-        };
-      }),
-    );
+    // Include the sidecar metadata in each entry's size so the eviction total
+    // uses the same accounting as getCacheSize().
+    const fileStats = (
+      await Promise.all(
+        filePaths.map(async (filePath) => {
+          try {
+            const stats = await fs.stat(filePath);
+            let infoSize = 0;
+            try {
+              infoSize = (await fs.stat(getInfoFilePath(filePath))).size;
+            } catch {
+              // A missing sidecar is cleaned up with the data file as usual.
+            }
+
+            return {
+              filePath,
+              size: stats.size + infoSize,
+              mtime: stats.mtime,
+            };
+          } catch {
+            // Deleted by invalidation while scanning — nothing left to evict.
+            return undefined;
+          }
+        }),
+      )
+    ).filter((entry): entry is { filePath: string; size: number; mtime: Date } => entry !== undefined);
 
     // sort the file paths based on their last modified time (oldest first)
     fileStats.sort((a, b) => a.mtime.getTime() - b.mtime.getTime());
 
     // remove files until the total size is below the new max total size
     let totalSize = fileStats.reduce((sum, { size }) => sum + size, 0);
-    const filesToRemove = fileStats.filter(({ size }) => {
-      if (totalSize > targetSize) {
-        totalSize -= size;
-        return true;
+    const filesToRemove: typeof fileStats = [];
+    for (const fileStat of fileStats) {
+      if (totalSize <= targetSize) {
+        break;
       }
-      return false;
-    });
+
+      if (fileStat.filePath !== preserveFilePath) {
+        totalSize -= fileStat.size;
+        filesToRemove.push(fileStat);
+      }
+    }
 
     await Promise.all(
       filesToRemove.map(async ({ filePath }) => {
@@ -636,8 +782,10 @@ export default class CacheManager extends EventEmitter {
   }
 
   async setMaxCacheSize(maxCacheSize: number | string) {
-    this.maxCacheSize = sanitizeNumber(maxCacheSize);
-    await this.removeOldestFiles(this.maxCacheSize);
+    this.maxCacheSize = maxCacheSize;
+    if (this.maxCacheSize > 0) {
+      await this.removeOldestFiles(this.maxCacheSize);
+    }
   }
 
   async getCacheSize() {
@@ -646,8 +794,17 @@ export default class CacheManager extends EventEmitter {
       .filter((filename) => isChiaCacheFile(filename))
       .map((filename) => path.join(this.cacheDirectory, filename));
 
-    // Get the file sizes and calculate the total size
-    const fileSizes = await Promise.all(filePaths.map(async (filePath) => (await fs.stat(filePath)).size));
+    // Invalidation and eviction delete files while this scan runs — a file
+    // that vanished between readdir and stat no longer occupies space.
+    const fileSizes = await Promise.all(
+      filePaths.map(async (filePath) => {
+        try {
+          return (await fs.stat(filePath)).size;
+        } catch {
+          return 0;
+        }
+      }),
+    );
     const totalSize = fileSizes.reduce((sum, size) => sum + size, 0);
 
     return totalSize;

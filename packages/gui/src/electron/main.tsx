@@ -10,6 +10,7 @@ import {
   Notification,
   type MenuItemConstructorOptions,
   nativeTheme,
+  protocol,
 } from 'electron';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -29,7 +30,7 @@ import { WcError, WcErrorCode, encodeWcErrorForIpc } from '../@types/WcError';
 import AppIcon from '../assets/img/chia64x64.png';
 import { i18n } from '../config/locales';
 
-import CacheManager from './CacheManager';
+import CacheManager, { CACHE_PROTOCOL } from './CacheManager';
 import { checkNFTOwnership } from './api/checkNFTOwnership';
 import { getKeyDetails } from './api/getKeyDetails';
 import { getNetworkInfo } from './api/getNetworkInfo';
@@ -79,6 +80,7 @@ import {
   addBypassCommand,
 } from './utils/pairStore';
 import * as privatePreferences from './utils/privatePreferences';
+import resolveStoredMaxCacheSize from './utils/resolveStoredMaxCacheSize';
 import toCamelCase from './utils/toCamelCase';
 import { setUserDataDir } from './utils/userData';
 import webSocketBridgeBindEvents from './utils/webSocketBridge';
@@ -94,6 +96,22 @@ type ConfirmDialogResult = {
 app.disableHardwareAcceleration();
 app.commandLine.appendSwitch('disable-http-cache');
 
+// The cache: scheme serves NFT media to <img>/<video>/<audio> tags. Media
+// elements expect protocols to buffer their responses unless the scheme is
+// registered with stream: true, so without this video and audio playback
+// stalls. Must be called before the app ready event.
+protocol.registerSchemesAsPrivileged([
+  {
+    scheme: CACHE_PROTOCOL,
+    privileges: {
+      standard: true,
+      secure: true,
+      supportFetchAPI: true,
+      stream: true,
+    },
+  },
+]);
+
 const appIcon = nativeImage.createFromPath(path.join(__dirname, AppIcon));
 
 const prefs = readPrefs();
@@ -101,9 +119,11 @@ const prefs = readPrefs();
 const defaultCacheFolder = path.join(app.getPath('cache'), app.getName());
 const cacheDirectory: string = prefs.cacheFolder || defaultCacheFolder;
 
+const storedMaxCacheSize: number | undefined = resolveStoredMaxCacheSize(prefs);
+
 const cacheManager = new CacheManager({
   cacheDirectory,
-  maxCacheSize: prefs.maxCacheSize,
+  maxCacheSize: storedMaxCacheSize,
 });
 
 // Hoisted so IPC handlers registered below can close over them; assigned in

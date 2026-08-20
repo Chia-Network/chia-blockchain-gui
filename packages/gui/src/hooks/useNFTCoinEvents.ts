@@ -23,11 +23,19 @@ export default function useNFTCoinEvents() {
     [events /* immutable */],
   );
 
-  // Subscribe to all events related to NFTs
-  useNFTCoinAdded((data) => handleNFTEvent('add', data.walletId));
-  useNFTCoinRemoved((data) => handleNFTEvent('remove', data.walletId));
-  useNFTCoinUpdated((data) => handleNFTEvent('updated', data.walletId));
-  useNFTCoinDIDSet((data) => handleNFTEvent('didset', data.walletId));
+  // Subscribe to all events related to NFTs. The callbacks must be stable:
+  // useSubscribeToEvent resubscribes whenever the callback identity changes,
+  // and a wallet event arriving between the unsubscribe and the new subscribe
+  // is silently lost, leaving the gallery stale until a remount.
+  const handleCoinAdded = useCallback((data: any) => handleNFTEvent('add', data.walletId), [handleNFTEvent]);
+  const handleCoinRemoved = useCallback((data: any) => handleNFTEvent('remove', data.walletId), [handleNFTEvent]);
+  const handleCoinUpdated = useCallback((data: any) => handleNFTEvent('updated', data.walletId), [handleNFTEvent]);
+  const handleCoinDIDSet = useCallback((data: any) => handleNFTEvent('didset', data.walletId), [handleNFTEvent]);
+
+  useNFTCoinAdded(handleCoinAdded);
+  useNFTCoinRemoved(handleCoinRemoved);
+  useNFTCoinUpdated(handleCoinUpdated);
+  useNFTCoinDIDSet(handleCoinDIDSet);
 
   const subscribe = useCallback(
     (callback: (event?: Event) => void) => {

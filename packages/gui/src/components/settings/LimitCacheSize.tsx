@@ -1,4 +1,3 @@
-import { usePrefs } from '@chia-network/api-react';
 import { AlertDialog, ButtonLoading, Flex, Form, TextField, useOpenDialog } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import React, { useEffect } from 'react';
@@ -15,8 +14,6 @@ type FormData = {
 export default function LimitCacheSize() {
   const openDialog = useOpenDialog();
   const { maxCacheSize, setMaxCacheSize } = useCache();
-
-  const [, setCacheLimitSize] = usePrefs(`cacheLimitSize`, 0);
 
   const methods = useForm<FormData>({
     defaultValues: {
@@ -45,8 +42,6 @@ export default function LimitCacheSize() {
 
     const newValue = Number(values.maxCacheSize) * MB_SIZE;
 
-    // todo move it ti electron/main
-    setCacheLimitSize(newValue);
     await setMaxCacheSize(newValue);
 
     await openDialog(
