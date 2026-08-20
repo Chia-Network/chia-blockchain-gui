@@ -145,6 +145,57 @@ describe('CacheManager eviction', () => {
     expect(mockDownloadFile).toHaveBeenCalledTimes(2);
   });
 
+  it('does not overlap cache size scans when a scan outlives the coalescing window', async () => {
+    jest.useFakeTimers();
+    try {
+      const cacheManager = new CacheManager({
+        cacheDirectory,
+        maxCacheSize: 1024,
+      });
+      await cacheManager.init();
+
+      let runningScans = 0;
+      let maxConcurrentScans = 0;
+      const scanResolvers: Array<() => void> = [];
+      const getCacheSizeSpy = jest.spyOn(cacheManager, 'getCacheSize').mockImplementation(
+        () =>
+          new Promise<number>((resolve) => {
+            runningScans += 1;
+            maxConcurrentScans = Math.max(maxConcurrentScans, runningScans);
+            scanResolvers.push(() => {
+              runningScans -= 1;
+              resolve(0);
+            });
+          }),
+      );
+
+      const send = jest.fn();
+      const fakeWindow = {
+        webContents: { send },
+        isDestroyed: () => false,
+        on: jest.fn(),
+      } as any;
+      cacheManager.bindEvents(fakeWindow);
+
+      cacheManager.emit('sizeChanged');
+      jest.advanceTimersByTime(500); // the first scan starts and stays in flight
+
+      cacheManager.emit('sizeChanged'); // burst arriving mid-scan
+      jest.advanceTimersByTime(500); // previously this started an overlapping scan
+
+      expect(maxConcurrentScans).toBe(1);
+
+      scanResolvers.shift()?.();
+      await Promise.resolve(); // let the first scan settle and reschedule
+      jest.advanceTimersByTime(500); // the follow-up scan delivers the fresh size
+
+      expect(getCacheSizeSpy).toHaveBeenCalledTimes(2);
+      expect(maxConcurrentScans).toBe(1);
+    } finally {
+      jest.useRealTimers();
+    }
+  });
+
   it('treats a zero cache limit as unlimited when updating the setting', async () => {
     const payload = Buffer.from('cached payload');
     mockDownloadFile.mockImplementation(async (_url, localPath) => {
