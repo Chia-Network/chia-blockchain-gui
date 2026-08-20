@@ -1,4 +1,4 @@
-import selectNFTPreviewState, { type NFTPreviewState } from './selectNFTPreviewState';
+import selectNFTPreviewState, { isSettledHashMismatch, type NFTPreviewState } from './selectNFTPreviewState';
 
 const fetchFailure: NFTPreviewState = {
   isVerified: false,
@@ -100,5 +100,20 @@ describe('selectNFTPreviewState', () => {
         previewImage: verifiedImage,
       }),
     ).toBe(verifiedVideo);
+  });
+});
+
+describe('isSettledHashMismatch', () => {
+  it('flags a settled mismatch so its bytes are never rendered', () => {
+    expect(isSettledHashMismatch(hashMismatch)).toBe(true);
+  });
+
+  it('does not flag verified, optimistic, failed-fetch, or missing states', () => {
+    expect(isSettledHashMismatch(undefined)).toBe(false);
+    expect(isSettledHashMismatch({ isVerified: true, uri: 'https://example.com/ok.png' })).toBe(false);
+    expect(
+      isSettledHashMismatch({ isVerified: false, isVerifying: true, uri: 'https://example.com/pending.png' }),
+    ).toBe(false);
+    expect(isSettledHashMismatch(fetchFailure)).toBe(false);
   });
 });

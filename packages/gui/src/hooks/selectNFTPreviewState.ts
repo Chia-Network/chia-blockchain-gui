@@ -23,6 +23,15 @@ export type SelectNFTPreviewStateOptions = {
   previewImageCandidate?: PreviewCandidate;
 };
 
+// A settled checksum mismatch: verification ran to completion and the bytes
+// do not match the on-chain hash. The state still carries the uri so status
+// badges can report which file failed, but consumers must never render that
+// uri as media content — the cached bytes are by definition not the content
+// the hash commits to.
+export function isSettledHashMismatch(state: NFTPreviewState | undefined): boolean {
+  return !!state && !state.isVerified && !state.isVerifying && state.failedFetch === false;
+}
+
 function asCandidate(candidate: PreviewCandidate | undefined): NFTPreviewState | undefined {
   const uri = candidate?.uris?.[0];
 

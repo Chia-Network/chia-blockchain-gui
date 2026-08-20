@@ -23,6 +23,7 @@ import VideoSmallIcon from '../../assets/img/video-small.svg';
 import VideoPngIcon from '../../assets/img/video.png';
 import VideoPngDarkIcon from '../../assets/img/video_dark.png';
 import FileType from '../../constants/FileType';
+import { isSettledHashMismatch } from '../../hooks/selectNFTPreviewState';
 import useCache from '../../hooks/useCache';
 import useFileType from '../../hooks/useFileType';
 import useHideObjectionableContent from '../../hooks/useHideObjectionableContent';
@@ -201,7 +202,11 @@ export default function NFTPreview(props: NFTPreviewProps) {
 
   const previewExtension = useMemo(() => getFileExtension(preview?.uri), [preview]);
 
-  const previewUri = preview?.uri;
+  // The cached bytes of a settled mismatch must never reach the iframe, even
+  // though the state still carries the uri so the hash badge can report it.
+  const isHashMismatch = isSettledHashMismatch(preview);
+
+  const previewUri = isHashMismatch ? undefined : preview?.uri;
 
   const preparePreview = useCallback(
     async (signal: AbortSignal) => {
@@ -518,6 +523,12 @@ export default function NFTPreview(props: NFTPreviewProps) {
         <Background>
           <IconMessage icon={<NotInterested fontSize="large" />}>
             <Trans>No file available</Trans>
+          </IconMessage>
+        </Background>
+      ) : isHashMismatch ? (
+        <Background>
+          <IconMessage icon={<NotInterested fontSize="large" />}>
+            <Trans>File does not match the expected hash</Trans>
           </IconMessage>
         </Background>
       ) : usesIframe && prepareError ? (
