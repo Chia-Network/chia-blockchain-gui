@@ -35,7 +35,23 @@ export default function useNFTVerifyHash(nftId?: string, options: UseNFTVerifyHa
   const dataGeneration = useRef(0);
   const previewGeneration = useRef(0);
 
-  const isVerifying = isVerifyingData || isVerifyingPreview;
+  // The inputs the preview effect last picked up. `isVerifyingPreview` is set
+  // inside that effect, which runs only after the render has painted, so on
+  // the frame where the metadata first arrives it still reads false — and an
+  // already-verified data file would win the preview slot for that one frame
+  // before the swap. Comparing the current inputs against this ref makes that
+  // frame count as verifying synchronously.
+  const previewInputs = useRef<{ nft?: NFTInfo; metadata?: Metadata }>({});
+
+  const settledMetadata = isLoadingMetadata ? undefined : metadata;
+  const isPreviewPassPending =
+    preview &&
+    !!nft &&
+    !isLoadingNFT &&
+    !!settledMetadata &&
+    (previewInputs.current.nft !== nft || previewInputs.current.metadata !== settledMetadata);
+
+  const isVerifying = isVerifyingData || isVerifyingPreview || isPreviewPassPending;
 
   // A pending metadata download only blocks the result while there is no
   // data verification outcome yet: `isVerified` is derived from the data
@@ -182,6 +198,7 @@ export default function useNFTVerifyHash(nftId?: string, options: UseNFTVerifyHa
     // verifies the data file right away, and this effect picks up the preview
     // URIs once the metadata fetch settles, instead of blocking on it.
     const nftMetadata = isLoadingMetadata ? undefined : metadata;
+    previewInputs.current = { nft: !isLoadingNFT ? nft : undefined, metadata: nftMetadata };
     if (!preview || !nft || isLoadingNFT || !nftMetadata) {
       setIsVerifyingPreview(false);
     } else {
