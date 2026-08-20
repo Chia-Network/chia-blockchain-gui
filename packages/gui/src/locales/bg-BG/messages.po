@@ -1618,7 +1618,7 @@ msgstr ""
 #: src/electron/commands/Commands.ts:1434
 #: src/electron/dialogs/Confirm/Confirm.tsx:438
 #: src/electron/dialogs/Pair/Pair.tsx:377
-#: src/electron/main.tsx:1089
+#: src/electron/main.tsx:1109
 msgid "Cancel"
 msgstr "Отмяна"
 
@@ -2441,7 +2441,7 @@ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/commands/humanizeCommand.ts:20
-#: src/electron/main.tsx:922
+#: src/electron/main.tsx:942
 msgid "Confirm"
 msgstr "Потвърждаване"
 
@@ -2457,15 +2457,15 @@ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/commands/humanizeParamValue.ts:63
-#: src/electron/main.tsx:670
-#: src/electron/main.tsx:921
+#: src/electron/main.tsx:690
+#: src/electron/main.tsx:941
 msgid "Yes"
 msgstr "Да"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/humanizeParamValue.ts:63
-#: src/electron/main.tsx:670
-#: src/electron/main.tsx:921
+#: src/electron/main.tsx:690
+#: src/electron/main.tsx:941
 msgid "No"
 msgstr "Не"
 
@@ -2694,17 +2694,17 @@ msgid "Save changes"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:671
+#: src/electron/main.tsx:691
 msgid "Save Command Preferences"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:673
+#: src/electron/main.tsx:693
 msgid "Would you like to save preferences for the following commands?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:677
+#: src/electron/main.tsx:697
 msgid ""
 "These commands will be executed without confirmation in the future:\n"
 "\n"
@@ -2712,139 +2712,139 @@ msgid ""
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:924
+#: src/electron/main.tsx:944
 msgid "Are you sure you want to quit?"
 msgstr "Сигурни ли сте, че искате да излезете?"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:929
+#: src/electron/main.tsx:949
 msgid "Keep service running in the background"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1089
+#: src/electron/main.tsx:1109
 msgid "Continue"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1091
+#: src/electron/main.tsx:1111
 msgid "Warning"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1092
+#: src/electron/main.tsx:1112
 msgid "Log files may contain sensitive information"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1093
+#: src/electron/main.tsx:1113
 msgid "Are you sure you want to view the log contents?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1217
-#: src/electron/main.tsx:1425
+#: src/electron/main.tsx:1237
+#: src/electron/main.tsx:1445
 msgid "File"
 msgstr "Файл"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1225
+#: src/electron/main.tsx:1245
 msgid "Edit"
 msgstr "Редактиране"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1257
+#: src/electron/main.tsx:1277
 msgid "View"
 msgstr "Виж"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1266
+#: src/electron/main.tsx:1286
 msgid "Developer"
 msgstr "Разработчик"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1269
+#: src/electron/main.tsx:1289
 msgid "Developer Tools"
 msgstr "Инструменти за разработчици"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1277
+#: src/electron/main.tsx:1297
 msgid "Trigger Desktop Notification"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1306
+#: src/electron/main.tsx:1326
 msgid "Full Screen"
 msgstr "Пълен екран"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1313
+#: src/electron/main.tsx:1333
 msgid "Window"
 msgstr "Прозорец"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1327
+#: src/electron/main.tsx:1347
 msgid "Help"
 msgstr "Помощ"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1331
+#: src/electron/main.tsx:1351
 msgid "Chia Blockchain Wiki"
 msgstr "Чиа блокчейн Wiki"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1337
+#: src/electron/main.tsx:1357
 msgid "Frequently Asked Questions"
 msgstr "Често задавани въпроси"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1343
+#: src/electron/main.tsx:1363
 msgid "Release Notes"
 msgstr "Списък с промени"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1349
+#: src/electron/main.tsx:1369
 msgid "Contribute on GitHub"
 msgstr "Помогни в GitHub"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1358
+#: src/electron/main.tsx:1378
 msgid "Report an Issue..."
 msgstr "Съобщете за проблем..."
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1364
+#: src/electron/main.tsx:1384
 msgid "Chat on Discord"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1370
+#: src/electron/main.tsx:1390
 msgid "Follow on X"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1382
+#: src/electron/main.tsx:1402
 msgid "Chia"
 msgstr "Чиа"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1385
-#: src/electron/main.tsx:1481
+#: src/electron/main.tsx:1405
+#: src/electron/main.tsx:1501
 msgid "About Chia Blockchain"
 msgstr "Относно Чиа Блокчейн"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1391
+#: src/electron/main.tsx:1411
 msgid "Check for Updates..."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1440
+#: src/electron/main.tsx:1460
 msgid "Speech"
 msgstr "Реч"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1487
+#: src/electron/main.tsx:1507
 msgid "Check for updates..."
 msgstr ""
 
@@ -3235,7 +3235,7 @@ msgstr ""
 msgid "+ Add New Plot NFT"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:306
+#: src/components/nfts/gallery/NFTGallery.tsx:320
 msgid "<0>Loading...</0> {0}%"
 msgstr ""
 
@@ -3243,7 +3243,7 @@ msgstr ""
 #~ msgid "<0>Need some XCH?</0>"
 #~ msgstr "<0>Need some XCH?</0>"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:296
+#: src/components/nfts/gallery/NFTGallery.tsx:310
 msgid "<0>Showing</0> {0} <1>of</1> {1}  <2>items</2>"
 msgstr ""
 
@@ -3414,6 +3414,10 @@ msgstr ""
 msgid "After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring."
 msgstr ""
 
+#: src/components/settings/SettingsNFT.tsx:139
+msgid "All NFT videos will restart automatically when they finish playing. When disabled, looping can still be turned on for individual videos from their detail page."
+msgstr ""
+
 #: src/components/nfts/NFTProfileDropdown.tsx:102
 #: src/components/nfts/NFTProfileDropdown.tsx:115
 msgid "All NFTs"
@@ -3542,7 +3546,7 @@ msgstr ""
 msgid "Are you sure you want to cancel your offer?"
 msgstr ""
 
-#: src/components/settings/SettingsNFT.tsx:58
+#: src/components/settings/SettingsNFT.tsx:64
 msgid "Are you sure you want to delete the NFT cache?"
 msgstr ""
 
@@ -3771,7 +3775,7 @@ msgstr ""
 msgid "Bypassed Commands"
 msgstr ""
 
-#: src/components/settings/SettingsNFT.tsx:125
+#: src/components/settings/SettingsNFT.tsx:150
 msgid "Cache"
 msgstr ""
 
@@ -3849,7 +3853,7 @@ msgid "Challenge Hash"
 msgstr "Предизвикателен хеш"
 
 #: src/components/plotNFT/PlotNFTChangePool.tsx:110
-#: src/components/settings/SettingsNFT.tsx:163
+#: src/components/settings/SettingsNFT.tsx:188
 msgid "Change"
 msgstr "Промяна"
 
@@ -3949,7 +3953,7 @@ msgstr ""
 msgid "Choose Wallet Mode"
 msgstr ""
 
-#: src/components/settings/SettingsNFT.tsx:75
+#: src/components/settings/SettingsNFT.tsx:81
 msgid "Choose what you want to see and how you want to view it."
 msgstr ""
 
@@ -3978,8 +3982,8 @@ msgstr ""
 msgid "Clear every \"always allow\" override for this app. Future commands will require confirmation again."
 msgstr ""
 
-#: src/components/settings/SettingsNFT.tsx:51
-#: src/components/settings/SettingsNFT.tsx:145
+#: src/components/settings/SettingsNFT.tsx:57
+#: src/components/settings/SettingsNFT.tsx:170
 msgid "Clear NFT cache"
 msgstr ""
 
@@ -4502,7 +4506,7 @@ msgstr ""
 msgid "Description"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:320
+#: src/components/nfts/gallery/NFTGallery.tsx:334
 msgid "Deselect all"
 msgstr ""
 
@@ -5153,7 +5157,7 @@ msgstr ""
 msgid "Filename"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:283
+#: src/components/nfts/gallery/NFTGallery.tsx:290
 msgid "Filter"
 msgstr ""
 
@@ -5179,7 +5183,7 @@ msgstr "Местоположение на финална папка"
 msgid "Finished"
 msgstr "Завършен"
 
-#: src/components/settings/SettingsNFT.tsx:107
+#: src/components/settings/SettingsNFT.tsx:113
 msgid "Fit images to cards"
 msgstr ""
 
@@ -5523,11 +5527,11 @@ msgstr ""
 msgid "Hex public key of pool"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:428
+#: src/components/nfts/gallery/NFTGallery.tsx:442
 msgid "Hidden"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:391
+#: src/components/nfts/gallery/NFTGallery.tsx:405
 msgid "Hidden  <0/>"
 msgstr ""
 
@@ -5539,7 +5543,7 @@ msgstr ""
 msgid "Hide"
 msgstr ""
 
-#: src/components/settings/SettingsNFT.tsx:87
+#: src/components/settings/SettingsNFT.tsx:93
 msgid "Hide objectionable content"
 msgstr ""
 
@@ -5609,7 +5613,7 @@ msgstr ""
 #~ msgid "Image Hash Mismatch"
 #~ msgstr "Image Hash Mismatch"
 
-#: src/components/settings/SettingsNFT.tsx:117
+#: src/components/settings/SettingsNFT.tsx:123
 msgid "Images will be scaled to fill the NFT card and ignore their original proportions."
 msgstr ""
 
@@ -5917,7 +5921,7 @@ msgstr ""
 msgid "License URL {0}"
 msgstr ""
 
-#: src/components/settings/SettingsNFT.tsx:176
+#: src/components/settings/SettingsNFT.tsx:201
 msgid "Limit cache size"
 msgstr ""
 
@@ -5958,7 +5962,7 @@ msgstr ""
 msgid "Loading NFT Info..."
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:386
+#: src/components/nfts/NFTPreview.tsx:489
 msgid "Loading NFT..."
 msgstr ""
 
@@ -5966,7 +5970,7 @@ msgstr ""
 #~ msgid "Loading NFTs..."
 #~ msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:386
+#: src/components/nfts/NFTPreview.tsx:489
 msgid "Loading preview..."
 msgstr ""
 
@@ -5985,7 +5989,7 @@ msgstr "Зареждане..."
 msgid "Local"
 msgstr ""
 
-#: src/components/settings/SettingsNFT.tsx:158
+#: src/components/settings/SettingsNFT.tsx:183
 msgid "Local folder"
 msgstr ""
 
@@ -6009,6 +6013,22 @@ msgstr ""
 msgid "Log Viewer"
 msgstr ""
 
+#: src/components/nfts/NFTPreview.tsx:415
+msgid "Loop video"
+msgstr ""
+
+#: src/components/settings/SettingsNFT.tsx:131
+msgid "Loop videos"
+msgstr ""
+
+#: src/components/nfts/NFTPreview.tsx:411
+msgid "Looping is enabled for all videos in Settings"
+msgstr ""
+
+#: src/components/nfts/NFTPreview.tsx:413
+msgid "Looping on"
+msgstr ""
+
 #: src/constants/WalletConnectCommands.tsx:1574
 #~ msgid "Make DataLayer Offer"
 #~ msgstr "Make DataLayer Offer"
@@ -6025,7 +6045,7 @@ msgstr ""
 msgid "Manage Farming Rewards"
 msgstr "Управлявай наградите за фармене"
 
-#: src/components/settings/SettingsNFT.tsx:128
+#: src/components/settings/SettingsNFT.tsx:153
 msgid "Manage how and where files are stored on this computer."
 msgstr ""
 
@@ -6224,7 +6244,7 @@ msgstr ""
 msgid "Move to Profile"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:278
+#: src/components/nfts/gallery/NFTGallery.tsx:285
 msgid "Multi-select"
 msgstr ""
 
@@ -6326,7 +6346,7 @@ msgstr "Следващ"
 #: src/components/offers/NFTOfferEditor.tsx:212
 #: src/components/offers2/OfferBuilderNFTSection.tsx:46
 #: src/components/settings/Settings.tsx:38
-#: src/components/settings/SettingsNFT.tsx:72
+#: src/components/settings/SettingsNFT.tsx:78
 #: src/components/signVerify/SignMessage.tsx:164
 msgid "NFT"
 msgstr ""
@@ -6417,7 +6437,7 @@ msgstr ""
 msgid "NFTs"
 msgstr ""
 
-#: src/components/settings/SettingsNFT.tsx:97
+#: src/components/settings/SettingsNFT.tsx:103
 msgid "NFTs that have been categorized by the creator as objectionable content will be hidden by default."
 msgstr ""
 
@@ -6458,7 +6478,7 @@ msgstr ""
 #~ msgid "No Custom Permissions"
 #~ msgstr "No Custom Permissions"
 
-#: src/components/nfts/NFTPreview.tsx:391
+#: src/components/nfts/NFTPreview.tsx:494
 msgid "No file available"
 msgstr ""
 
@@ -6509,7 +6529,7 @@ msgstr ""
 msgid "None"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:396
+#: src/components/nfts/gallery/NFTGallery.tsx:410
 msgid "None (0)"
 msgstr ""
 
@@ -6641,11 +6661,11 @@ msgstr ""
 msgid "Number of threads for Phase 3"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:366
+#: src/components/nfts/gallery/NFTGallery.tsx:380
 msgid "Objectionable Content"
 msgstr ""
 
-#: src/components/settings/SettingsNFT.tsx:140
+#: src/components/settings/SettingsNFT.tsx:165
 msgid "Occupied space"
 msgstr ""
 
@@ -7356,7 +7376,7 @@ msgstr ""
 msgid "Preparing standard wallet"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:231
+#: src/components/nfts/NFTPreview.tsx:273
 #: src/components/offers2/OfferBuilderNFT.tsx:75
 msgid "Preview"
 msgstr ""
@@ -7531,6 +7551,10 @@ msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:586
 msgid "Refresh NFT data"
+msgstr ""
+
+#: src/components/nfts/gallery/NFTGallery.tsx:295
+msgid "Refresh NFTs"
 msgstr ""
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:46
@@ -7871,7 +7895,7 @@ msgid "Search on Tail Database"
 msgstr ""
 
 #: src/components/addressbook/AddressBookSideBar.tsx:150
-#: src/components/nfts/gallery/NFTGallery.tsx:266
+#: src/components/nfts/gallery/NFTGallery.tsx:273
 msgid "Search..."
 msgstr ""
 
@@ -7898,7 +7922,7 @@ msgstr ""
 msgid "Select 2nd Temporary Directory"
 msgstr "Избери втора временна директория"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:320
+#: src/components/nfts/gallery/NFTGallery.tsx:334
 msgid "Select all"
 msgstr ""
 
@@ -8378,7 +8402,7 @@ msgstr ""
 msgid "Successfully restarted Harvester"
 msgstr ""
 
-#: src/components/settings/LimitCacheSize.tsx:54
+#: src/components/settings/LimitCacheSize.tsx:49
 msgid "Successfully updated cache size limit."
 msgstr ""
 
@@ -8994,7 +9018,7 @@ msgstr ""
 #~ msgid "Types ({0}/{1})"
 #~ msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:329
+#: src/components/nfts/gallery/NFTGallery.tsx:343
 msgid "Types{0}"
 msgstr ""
 
@@ -9095,7 +9119,7 @@ msgstr ""
 #~ msgid "Unsupported commands"
 #~ msgstr "Unsupported commands"
 
-#: src/components/settings/LimitCacheSize.tsx:82
+#: src/components/settings/LimitCacheSize.tsx:77
 msgid "Update"
 msgstr ""
 
@@ -9309,11 +9333,11 @@ msgstr ""
 msgid "Viewing offer"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:412
+#: src/components/nfts/gallery/NFTGallery.tsx:426
 msgid "Visible"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:386
+#: src/components/nfts/gallery/NFTGallery.tsx:400
 msgid "Visible  <0/>"
 msgstr ""
 
@@ -9321,7 +9345,7 @@ msgstr ""
 #~ msgid "Visible ({0})"
 #~ msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:381
+#: src/components/nfts/gallery/NFTGallery.tsx:395
 msgid "Visible and Hidden  <0/>"
 msgstr ""
 
@@ -9555,7 +9579,7 @@ msgstr ""
 msgid "Yes, Accept Offer"
 msgstr ""
 
-#: src/components/settings/SettingsNFT.tsx:52
+#: src/components/settings/SettingsNFT.tsx:58
 msgid "Yes, delete"
 msgstr ""
 
