@@ -90,6 +90,15 @@ export default async function downloadFile(
     throw new Error('Invalid URL');
   }
 
+  // A queued download can be aborted (invalidation, cache directory change)
+  // before the concurrency limiter starts it. Without this check the transfer
+  // would still run, hold a download slot, and could settle the URL with a
+  // permanent timeout error. The error matches the mid-flight abort message so
+  // the cache treats it as retryable.
+  if (signal?.aborted) {
+    throw new Error('Request aborted');
+  }
+
   const tempFilePath = `${localPath}.tmp`;
   const request = net.request(url);
   const outputStream = new WriteStreamPromise(tempFilePath, overrideFile);
