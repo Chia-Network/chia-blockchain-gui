@@ -222,6 +222,14 @@ export default function NFTPreview(props: NFTPreviewProps) {
           img {
             object-fit: ${fit};
           }
+
+          /* Belt and braces with controlsList/disablePictureInPicture below:
+             the overflow menu is the one control that opens a popup upward,
+             where the grid navigation blockers would swallow its clicks. */
+          video::-webkit-media-controls-overflow-button,
+          audio::-webkit-media-controls-overflow-button {
+            display: none;
+          }
         `;
 
         const cachedURI = await getURI(preview.uri, { maxSize: ignoreSizeLimit ? -1 : undefined });
@@ -238,12 +246,27 @@ export default function NFTPreview(props: NFTPreviewProps) {
         setPreviewContent(
           <>
             <style>{style}</style>
+            {/* controlsList/disablePictureInPicture empty Chromium's overflow
+                menu (download and remote playback are blocked by the sandbox
+                anyway), so no control opens a popup that would extend upward
+                under the grid navigation blockers */}
             {previewFileType === FileType.VIDEO ? (
-              <video width="100%" height="100%" controls loop={loopVideo}>
+              <video
+                width="100%"
+                height="100%"
+                controls
+                controlsList="nodownload noplaybackrate noremoteplayback"
+                disablePictureInPicture
+                loop={loopVideo}
+              >
                 <source src={cachedURI} />
               </video>
             ) : previewFileType === FileType.AUDIO ? (
-              <audio className={isDarkMode ? 'dark' : ''} controls>
+              <audio
+                className={isDarkMode ? 'dark' : ''}
+                controls
+                controlsList="nodownload noplaybackrate noremoteplayback"
+              >
                 <source src={cachedURI} />
               </audio>
             ) : (
@@ -394,8 +417,14 @@ export default function NFTPreview(props: NFTPreviewProps) {
             }
             placement="left"
           >
-            {/* wrapper keeps the tooltip working while the button is disabled */}
-            <Box sx={{ position: 'absolute', top: 8, right: 8, zIndex: 3 }}>
+            {/* wrapper keeps the tooltip working while the button is disabled,
+                and swallows the click itself: a disabled button receives no
+                pointer events, so without this the click would bubble into the
+                card action area and navigate to the NFT */}
+            <Box
+              sx={{ position: 'absolute', top: 8, right: 8, zIndex: 3 }}
+              onClick={(event: React.MouseEvent) => event.stopPropagation()}
+            >
               <IconButton
                 size="small"
                 disabled={globalVideoLoop}
