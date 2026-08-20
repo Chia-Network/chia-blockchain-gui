@@ -4,9 +4,9 @@ import { promises as fs, createWriteStream, type WriteStream } from 'node:fs';
 import debug from 'debug';
 
 import type Headers from '../../@types/Headers';
-import ipfsToGatewayUrl from '../../util/ipfs';
 
 import fileExists from './fileExists';
+import maybeIpfsToGatewayUrl from './ipfsGateway';
 import isValidURL from './isValidURL';
 
 const log = debug('chia-gui:downloadFile');
@@ -101,10 +101,11 @@ export default async function downloadFile(
   }
 
   const tempFilePath = `${localPath}.tmp`;
-  // ipfs:// URIs are fetched through an HTTPS gateway — Electron's net stack
-  // cannot request the ipfs scheme. Only this outgoing request uses the
-  // translated URL; callers keep the original URI as the cache key.
-  const request = net.request(ipfsToGatewayUrl(url));
+  // ipfs:// URIs are fetched through an HTTPS gateway when the user has
+  // enabled it — Electron's net stack cannot request the ipfs scheme. Only
+  // this outgoing request uses the translated URL; callers keep the original
+  // URI as the cache key.
+  const request = net.request(maybeIpfsToGatewayUrl(url));
   const outputStream = new WriteStreamPromise(tempFilePath, overrideFile);
 
   // set when we abort the request ourselves, so abort events can be reported

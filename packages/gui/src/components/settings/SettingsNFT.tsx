@@ -17,6 +17,7 @@ import React from 'react';
 import useAllowUnverifiedNFTPreviews from '../../hooks/useAllowUnverifiedNFTPreviews';
 import useCache from '../../hooks/useCache';
 import useHideObjectionableContent from '../../hooks/useHideObjectionableContent';
+import useIpfsGateway from '../../hooks/useIpfsGateway';
 import useNFTImageFittingMode from '../../hooks/useNFTImageFittingMode';
 import { useNFTVideoLoopGlobal } from '../../hooks/useNFTVideoLoop';
 
@@ -41,6 +42,7 @@ export default function SettingsGeneral() {
   const { cacheSize, clearCache, cacheDirectory, setCacheDirectory } = useCache();
   const [nftImageFittingMode, setNFTImageFittingMode] = useNFTImageFittingMode();
   const [nftVideoLoop, setNFTVideoLoop] = useNFTVideoLoopGlobal();
+  const [ipfsGateway, setIpfsGateway] = useIpfsGateway();
   const [allowUnverifiedPreviews, setAllowUnverifiedPreviews] = useAllowUnverifiedNFTPreviews();
   // const [, setCacheFolder] = usePrefs('cacheFolder', '');
   const openDialog = useOpenDialog();
@@ -51,6 +53,10 @@ export default function SettingsGeneral() {
 
   function handleChangeVideoLoop(event: React.ChangeEvent<HTMLInputElement>) {
     setNFTVideoLoop(event.target.checked);
+  }
+
+  function handleChangeIpfsGateway(event: React.ChangeEvent<HTMLInputElement>) {
+    setIpfsGateway(event.target.checked);
   }
 
   function handleChangeAllowUnverifiedPreviews(event: React.ChangeEvent<HTMLInputElement>) {
@@ -145,6 +151,26 @@ export default function SettingsGeneral() {
             <Trans>
               All NFT videos will restart automatically when they finish playing. When disabled, looping can still be
               turned on for individual videos from their detail page.
+            </Trans>
+          </SettingsText>
+        </Grid>
+      </Grid>
+
+      <Grid container>
+        <Grid item style={{ width: '400px' }}>
+          <SettingsTitle>
+            <Trans>Fetch IPFS content through a gateway</Trans>
+          </SettingsTitle>
+        </Grid>
+        <Grid item container xs justifyContent="flex-end" marginTop="-6px">
+          <FormControlLabel control={<Switch checked={ipfsGateway} onChange={handleChangeIpfsGateway} />} />
+        </Grid>
+        <Grid item style={{ width: '400px' }}>
+          <SettingsText>
+            <Trans>
+              NFT files published with ipfs:// addresses will be downloaded through the public ipfs.io HTTPS gateway.
+              The requested URL differs from the address recorded on chain, but downloaded content is still verified
+              against the NFT's on-chain hash. When disabled, ipfs:// files are not fetched.
             </Trans>
           </SettingsText>
         </Grid>

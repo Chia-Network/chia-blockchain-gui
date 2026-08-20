@@ -6,6 +6,7 @@ import { Chip, Typography } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 import React, { useMemo } from 'react';
 
+import useIpfsGateway from '../../hooks/useIpfsGateway';
 import useNFT from '../../hooks/useNFT';
 import useNFTVerifyHash from '../../hooks/useNFTVerifyHash';
 import ipfsToGatewayUrl from '../../util/ipfs';
@@ -28,6 +29,7 @@ export default function NFTHashStatus(props: NFTHashStatusProps) {
   });
 
   const { nft, isLoading: isLoadingNFT, error: errorNFT } = useNFT(nftId);
+  const [ipfsGateway] = useIpfsGateway();
 
   const isLoading = isLoadingNFTVerifyHash || isLoadingNFT;
   const isVerified = preview ? nftPreview?.isVerified : data?.isVerified;
@@ -40,13 +42,15 @@ export default function NFTHashStatus(props: NFTHashStatusProps) {
     }
 
     if (nftPreview.uri) {
-      // ipfs:// URIs are served through an HTTPS gateway by the cache layer,
-      // so validate the gateway form instead of flagging them as invalid.
-      return isValidURL(ipfsToGatewayUrl(nftPreview.uri));
+      // While the user has IPFS gateway fetching enabled, ipfs:// URIs are
+      // served through an HTTPS gateway by the cache layer, so validate the
+      // gateway form instead of flagging them as invalid. With the option
+      // off they are not fetchable and stay flagged.
+      return isValidURL(ipfsGateway ? ipfsToGatewayUrl(nftPreview.uri) : nftPreview.uri);
     }
 
     return false;
-  }, [nftPreview]);
+  }, [nftPreview, ipfsGateway]);
 
   const icon = useMemo(() => {
     if (hideIcon) {
