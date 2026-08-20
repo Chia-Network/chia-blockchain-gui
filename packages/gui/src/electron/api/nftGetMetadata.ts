@@ -2,6 +2,7 @@ import crypto from 'node:crypto';
 
 import type Headers from '../../@types/Headers';
 import compareChecksums from '../../util/compareChecksums';
+import allowUnverifiedNftPreviews from '../utils/allowUnverifiedNftPreviews';
 import fetchBuffer, { MaxSizeExceededError } from '../utils/fetchBuffer';
 
 const METADATA_TIMEOUT = 10_000;
@@ -97,9 +98,12 @@ export async function nftGetImageDataUrl(
     return `data:${contentType};base64,${data.toString('base64')}`;
   } catch (error) {
     // An image too large to inline cannot be hash-verified without unbounded
-    // buffering. Fall back to the direct URL — the dialog CSP still allows
-    // https: images, matching the pre-verification behavior for these files.
-    if (error instanceof MaxSizeExceededError && getImageContentType(error.headers)) {
+    // buffering. When the user has opted in, fall back to the direct URL — the
+    // dialog CSP still allows https: images, matching the pre-verification
+    // behavior for these files. Off by default: the response's size and type
+    // claims are attacker-controlled, so the fallback can be triggered
+    // deliberately to place unverified content in a confirmation dialog.
+    if (error instanceof MaxSizeExceededError && getImageContentType(error.headers) && allowUnverifiedNftPreviews()) {
       return imageUri;
     }
 

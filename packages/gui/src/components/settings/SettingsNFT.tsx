@@ -14,6 +14,7 @@ import { Trans } from '@lingui/macro';
 import { Grid, Button, Switch, FormControlLabel, Typography } from '@mui/material';
 import React from 'react';
 
+import useAllowUnverifiedNFTPreviews from '../../hooks/useAllowUnverifiedNFTPreviews';
 import useCache from '../../hooks/useCache';
 import useHideObjectionableContent from '../../hooks/useHideObjectionableContent';
 import useNFTImageFittingMode from '../../hooks/useNFTImageFittingMode';
@@ -40,6 +41,7 @@ export default function SettingsGeneral() {
   const { cacheSize, clearCache, cacheDirectory, setCacheDirectory } = useCache();
   const [nftImageFittingMode, setNFTImageFittingMode] = useNFTImageFittingMode();
   const [nftVideoLoop, setNFTVideoLoop] = useNFTVideoLoopGlobal();
+  const [allowUnverifiedPreviews, setAllowUnverifiedPreviews] = useAllowUnverifiedNFTPreviews();
   // const [, setCacheFolder] = usePrefs('cacheFolder', '');
   const openDialog = useOpenDialog();
 
@@ -49,6 +51,10 @@ export default function SettingsGeneral() {
 
   function handleChangeVideoLoop(event: React.ChangeEvent<HTMLInputElement>) {
     setNFTVideoLoop(event.target.checked);
+  }
+
+  function handleChangeAllowUnverifiedPreviews(event: React.ChangeEvent<HTMLInputElement>) {
+    setAllowUnverifiedPreviews(event.target.checked);
   }
 
   async function clearNFTCache() {
@@ -139,6 +145,28 @@ export default function SettingsGeneral() {
             <Trans>
               All NFT videos will restart automatically when they finish playing. When disabled, looping can still be
               turned on for individual videos from their detail page.
+            </Trans>
+          </SettingsText>
+        </Grid>
+      </Grid>
+
+      <Grid container>
+        <Grid item style={{ width: '400px' }}>
+          <SettingsTitle>
+            <Trans>Show unverified previews</Trans>
+          </SettingsTitle>
+        </Grid>
+        <Grid item container xs justifyContent="flex-end" marginTop="-6px">
+          <FormControlLabel
+            control={<Switch checked={allowUnverifiedPreviews} onChange={handleChangeAllowUnverifiedPreviews} />}
+          />
+        </Grid>
+        <Grid item style={{ width: '400px' }}>
+          <SettingsText>
+            <Trans>
+              When an NFT image is too large to verify against its on-chain hash, load the transaction confirmation
+              preview directly from its source URL without verification. When disabled, no preview is shown for these
+              NFTs.
             </Trans>
           </SettingsText>
         </Grid>

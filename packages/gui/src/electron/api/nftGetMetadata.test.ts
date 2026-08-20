@@ -11,6 +11,13 @@ jest.mock('../utils/fetchBuffer', () => ({
     jest.requireActual<typeof import('../utils/fetchBuffer')>('../utils/fetchBuffer').MaxSizeExceededError,
 }));
 
+const mockAllowUnverifiedNftPreviews = jest.fn<boolean, []>();
+
+jest.mock('../utils/allowUnverifiedNftPreviews', () => ({
+  __esModule: true,
+  default: mockAllowUnverifiedNftPreviews,
+}));
+
 const { MaxSizeExceededError } = jest.requireActual<typeof import('../utils/fetchBuffer')>('../utils/fetchBuffer');
 
 const { nftGetImageDataUrl, nftGetMetadata } =
@@ -59,6 +66,8 @@ describe('nftGetMetadata', () => {
 describe('nftGetImageDataUrl', () => {
   beforeEach(() => {
     mockFetchBuffer.mockReset();
+    mockAllowUnverifiedNftPreviews.mockReset();
+    mockAllowUnverifiedNftPreviews.mockReturnValue(false);
   });
 
   it('returns an immutable data URL for a verified image response', async () => {
@@ -92,7 +101,18 @@ describe('nftGetImageDataUrl', () => {
     expect(mockFetchBuffer).not.toHaveBeenCalled();
   });
 
-  it('falls back to the direct URL when an image response exceeds the size cap', async () => {
+  it('omits the preview for an oversized image response by default', async () => {
+    mockFetchBuffer.mockRejectedValue(
+      new MaxSizeExceededError({
+        'content-type': 'image/gif',
+      }),
+    );
+
+    await expect(nftGetImageDataUrl('https://example.com/large.gif', '00')).resolves.toBeUndefined();
+  });
+
+  it('falls back to the direct URL for an oversized image when unverified previews are enabled', async () => {
+    mockAllowUnverifiedNftPreviews.mockReturnValue(true);
     mockFetchBuffer.mockRejectedValue(
       new MaxSizeExceededError({
         'content-type': 'image/gif',
@@ -104,7 +124,8 @@ describe('nftGetImageDataUrl', () => {
     );
   });
 
-  it('rejects an oversized response that is not an image', async () => {
+  it('rejects an oversized response that is not an image even when unverified previews are enabled', async () => {
+    mockAllowUnverifiedNftPreviews.mockReturnValue(true);
     mockFetchBuffer.mockRejectedValue(
       new MaxSizeExceededError({
         'content-type': 'video/mp4',
