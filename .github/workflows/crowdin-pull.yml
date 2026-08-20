@@ -41,7 +41,7 @@ jobs:
           role_name: github-chia-blockchain-gui
 
       - name: Get secrets from vault
-        uses: hashicorp/vault-action@v3
+        uses: hashicorp/vault-action@v4
         with:
           url: ${{ secrets.VAULT_URL }}
           token: ${{ env.VAULT_TOKEN }}
