@@ -35,30 +35,45 @@ export default function useNFTVerifyHash(nftId?: string, options: UseNFTVerifyHa
   const dataGeneration = useRef(0);
   const previewGeneration = useRef(0);
 
-  // The inputs the preview effect last picked up. `isVerifyingPreview` is set
-  // inside that effect, which runs only after the render has painted, so on
-  // the frame where the metadata first arrives it still reads false — and an
-  // already-verified data file would win the preview slot for that one frame
-  // before the swap. Comparing the current inputs against this ref makes that
-  // frame count as verifying synchronously.
+  // The inputs each verification effect last picked up. The effects run only
+  // after the render has painted, which leaves two gaps these refs close
+  // synchronously:
+  // - a "pass pending" flag: on the frame where an input first arrives the
+  //   effect-set isVerifying flags still read false, and an already-verified
+  //   lower-priority source would win the preview slot for that one frame;
+  // - staleness: on the frame where nftId switches, the stored states still
+  //   hold the previous NFT's results, and surfacing them would flash the
+  //   previous NFT's media (and hash verdict) until the effects reset them.
+  const dataInputs = useRef<{ nft?: NFTInfo }>({});
   const previewInputs = useRef<{ nft?: NFTInfo; metadata?: Metadata }>({});
 
+  const settledNft = !isLoadingNFT ? nft : undefined;
   const settledMetadata = isLoadingMetadata ? undefined : metadata;
+
+  const isDataStale = dataInputs.current.nft !== settledNft;
+  const isPreviewStale = previewInputs.current.nft !== settledNft;
+
+  const currentData = isDataStale ? undefined : data;
+  const currentPreviewVideo = isPreviewStale ? undefined : previewVideo;
+  const currentPreviewImage = isPreviewStale ? undefined : previewImage;
+
+  const isDataPassPending = !!settledNft && isDataStale;
   const isPreviewPassPending =
     preview &&
-    !!nft &&
-    !isLoadingNFT &&
+    !!settledNft &&
     !!settledMetadata &&
-    (previewInputs.current.nft !== nft || previewInputs.current.metadata !== settledMetadata);
+    (previewInputs.current.nft !== settledNft || previewInputs.current.metadata !== settledMetadata);
 
-  const isVerifying = isVerifyingData || isVerifyingPreview || isPreviewPassPending;
+  const isVerifying = isVerifyingData || isVerifyingPreview || isDataPassPending || isPreviewPassPending;
 
   // A pending metadata download only blocks the result while there is no
   // data verification outcome yet: `isVerified` is derived from the data
   // file alone, so once it settles a slow or dead metadata host must not
   // keep consumers (gallery tiles, hash status badges) in a loading state.
-  const isLoading = isLoadingNFT || isVerifying || (isLoadingMetadata && !data);
-  const error = errorNFT || errorMetadata || errorVerify;
+  const isLoading = isLoadingNFT || isVerifying || (isLoadingMetadata && !currentData);
+  // errorVerify is cleared by the data effect, so it is stale on the same
+  // frames the stored states are
+  const error = errorNFT || errorMetadata || (isDataStale ? undefined : errorVerify);
 
   const findValidUri = useCallback(
     async (
@@ -173,6 +188,7 @@ export default function useNFTVerifyHash(nftId?: string, options: UseNFTVerifyHa
     setErrorVerify(undefined);
     setData(undefined);
 
+    dataInputs.current = { nft: !isLoadingNFT ? nft : undefined };
     if (!nft || isLoadingNFT) {
       setIsVerifyingData(false);
     } else {
@@ -217,9 +233,9 @@ export default function useNFTVerifyHash(nftId?: string, options: UseNFTVerifyHa
     () =>
       selectNFTPreviewState({
         isVerifying,
-        previewVideo,
-        previewImage,
-        data,
+        previewVideo: currentPreviewVideo,
+        previewImage: currentPreviewImage,
+        data: currentData,
         previewVideoCandidate: preview
           ? {
               uris: metadata?.preview_video_uris,
@@ -237,17 +253,17 @@ export default function useNFTVerifyHash(nftId?: string, options: UseNFTVerifyHa
           hash: nft?.dataHash,
         },
       }),
-    [previewVideo, previewImage, data, nft, metadata, preview, isVerifying],
+    [currentPreviewVideo, currentPreviewImage, currentData, nft, metadata, preview, isVerifying],
   );
 
   return {
-    isVerified: data?.isVerified, // main data is the only one that matters
+    isVerified: currentData?.isVerified, // main data is the only one that matters
     isLoading,
     error,
 
-    data,
-    previewImage,
-    previewVideo,
+    data: currentData,
+    previewImage: currentPreviewImage,
+    previewVideo: currentPreviewVideo,
 
     // preview is the first valid preview found or data
     preview: previewState,
