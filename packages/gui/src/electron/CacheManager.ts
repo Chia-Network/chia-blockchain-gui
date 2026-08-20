@@ -251,14 +251,25 @@ export default class CacheManager extends EventEmitter {
 
     // Download and invalidation bursts emit sizeChanged per file, and every
     // notification triggers a full cache-directory scan (here and again in the
-    // renderer), so coalesce bursts into one trailing notification.
+    // renderer), so coalesce bursts into one trailing notification. Scans are
+    // also serialized: events arriving while a scan is running only mark it
+    // stale, and one follow-up scan is scheduled after it finishes, so a scan
+    // that outlives the coalescing window cannot overlap the next one.
     let sizeChangedTimeout: NodeJS.Timeout | undefined;
+    let sizeScanRunning = false;
+    let sizeChangedDuringScan = false;
+
     const onSizeChanged = () => {
       if (sizeChangedTimeout) {
         return;
       }
+      if (sizeScanRunning) {
+        sizeChangedDuringScan = true;
+        return;
+      }
       sizeChangedTimeout = setTimeout(async () => {
         sizeChangedTimeout = undefined;
+        sizeScanRunning = true;
         try {
           const size = await this.getCacheSize();
           if (!window.isDestroyed()) {
@@ -266,6 +277,12 @@ export default class CacheManager extends EventEmitter {
           }
         } catch {
           // the next sizeChanged event delivers a fresh value
+        } finally {
+          sizeScanRunning = false;
+          if (sizeChangedDuringScan) {
+            sizeChangedDuringScan = false;
+            onSizeChanged();
+          }
         }
       }, 500);
     };
@@ -278,6 +295,7 @@ export default class CacheManager extends EventEmitter {
       this.off('cacheDirectoryChanged', onCacheDirectoryChanged);
       this.off('maxCacheSizeChanged', onMaxCacheSizeChanged);
       this.off('sizeChanged', onSizeChanged);
+      sizeChangedDuringScan = false;
       if (sizeChangedTimeout) {
         clearTimeout(sizeChangedTimeout);
         sizeChangedTimeout = undefined;
