@@ -4,39 +4,49 @@ import { type NFTInfo } from '@chia-network/api';
 import debug from 'debug';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
+import type CacheInfo from '../../../../@types/CacheInfo';
+import type MetadataState from '../../../../@types/MetadataState';
 import type NFTPreviewStatus from '../../../../@types/NFTPreviewStatus';
 import useCache from '../../../../hooks/useCache';
-import getNFTPreviewStatusFromCache from '../../../../util/getNFTPreviewStatusFromCache';
+import getNFTPreviewStatusFromCache, { getNFTPreviewUrls } from '../../../../util/getNFTPreviewStatusFromCache';
 
 const log = debug('chia-gui:NFTProvider:useNFTPreviewStatuses');
 
 // Cache infos are looked up in batches so a large collection does not hand
 // the main process thousands of file reads in one IPC call.
 const LOOKUP_BATCH_SIZE = 200;
+// NFT pages and metadata results arrive in bursts; one sweep per window.
+const LOOKUP_DELAY = 250;
 
 type UseNFTPreviewStatusesProps = {
   nfts: Map<string, NFTInfo>; // should be immutable
   nachos: Map<string, NFTInfo>; // should be immutable
+  getMetadata: (id: string) => MetadataState; // should be immutable
   subscribeToChanges: (callback: () => void) => () => void; // should be immutable
+  subscribeToMetadataChanges: (callback: () => void) => () => void; // should be immutable
 };
 
 // warning: only used by NFTProvider
 //
 // Tracks, per NFT, whether its gallery tile can show a preview. Tiles report
-// what they actually render once they settle; NFTs that are not on screen
-// (the gallery is virtualized, so most never mount) are classified from the
-// outcomes the cache persisted during earlier visits and sessions, without
-// downloading anything. A live report always wins over a cache lookup.
+// the verdict they settle on; NFTs that are not on screen (the gallery is
+// virtualized, so most never mount) are classified from the outcomes the
+// cache persisted during earlier visits and sessions, without downloading
+// anything. A live report always wins over a cache lookup.
 export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps) {
-  const { nfts, nachos, subscribeToChanges } = props;
+  const { nfts, nachos, getMetadata, subscribeToChanges, subscribeToMetadataChanges } = props;
 
   const { getCacheInfos } = useCache();
 
   const [statuses /* immutable */] = useState(() => new Map<string, NFTPreviewStatus>());
-  // NFTs whose cached outcomes were already looked up. An NFT that never
-  // reaches the screen never changes its cache state, so one lookup per
-  // session is enough; a tile that does mount reports live instead.
-  const [lookedUp /* immutable */] = useState(() => new Set<string>());
+  // NFTs that need no further lookup: a tile reported them, the cache settled
+  // them, or every input is known and only a download (which a tile would
+  // then report) can decide them.
+  const [settled /* immutable */] = useState(() => new Set<string>());
+  // Persisted outcomes already fetched. A url's outcome only changes through
+  // a download — which the tile then reports live — or an invalidation,
+  // which forgets it here.
+  const [cacheInfos /* immutable */] = useState(() => new Map<string, CacheInfo>());
 
   const events = useMemo(() => {
     const eventEmitter = new EventEmitter();
@@ -53,7 +63,7 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
   // immutable function
   const setPreviewStatus = useCallback(
     (nftId: string, status: NFTPreviewStatus) => {
-      lookedUp.add(nftId);
+      settled.add(nftId);
 
       if (statuses.get(nftId) === status) {
         return;
@@ -62,19 +72,20 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
       statuses.set(nftId, status);
       events.emit('changed');
     },
-    [events /* immutable */, statuses /* immutable */, lookedUp /* immutable */],
+    [events /* immutable */, statuses /* immutable */, settled /* immutable */],
   );
 
   // immutable function
   const invalidatePreviewStatus = useCallback(
-    (nftId: string) => {
-      lookedUp.delete(nftId);
+    (nftId: string, urls: string[]) => {
+      settled.delete(nftId);
+      urls.forEach((url) => cacheInfos.delete(url));
 
       if (statuses.delete(nftId)) {
         events.emit('changed');
       }
     },
-    [events /* immutable */, statuses /* immutable */, lookedUp /* immutable */],
+    [events /* immutable */, statuses /* immutable */, settled /* immutable */, cacheInfos /* immutable */],
   );
 
   // immutable function
@@ -92,9 +103,9 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
   const isLookingUpRef = useRef(false);
   const lookUpAgainRef = useRef(false);
 
-  // Classifies every NFT not yet looked up from the cache's persisted state.
-  // Runs serialized: NFT pages arrive in bursts, and a run that finds the
-  // flag set simply sweeps once more when it finishes.
+  // Classifies every NFT not yet settled from the cache's persisted state.
+  // Runs serialized: a sweep that finds the flag set simply sweeps once more
+  // when it finishes.
   const lookUpFromCache = useCallback(async () => {
     if (isLookingUpRef.current) {
       lookUpAgainRef.current = true;
@@ -108,7 +119,7 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
 
         const pending: [string, NFTInfo][] = [];
         const collect = (nft: NFTInfo, nftId: string) => {
-          if (!lookedUp.has(nftId)) {
+          if (!settled.has(nftId)) {
             pending.push([nftId, nft]);
           }
         };
@@ -121,27 +132,40 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
         });
 
         for (let start = 0; start < pending.length; start += LOOKUP_BATCH_SIZE) {
-          const batch = pending.slice(start, start + LOOKUP_BATCH_SIZE);
-          const urls = Array.from(new Set(batch.flatMap(([, nft]) => nft.dataUris ?? [])));
+          // The metadata store already fetches every NFT's metadata for the
+          // gallery's search and statistics; reading it here adds no requests.
+          const batch = pending
+            .slice(start, start + LOOKUP_BATCH_SIZE)
+            .map(([nftId, nft]) => ({ nftId, nft, metadataState: getMetadata(nftId) }));
 
-          // eslint-disable-next-line no-await-in-loop -- batches are sequential on purpose, to pace the main process
-          const cacheInfos = urls.length ? await getCacheInfos(urls) : [];
-          const cacheInfoByUrl = new Map(cacheInfos.map((cacheInfo) => [cacheInfo.url, cacheInfo]));
+          const urls = Array.from(
+            new Set(batch.flatMap(({ nft, metadataState }) => getNFTPreviewUrls(nft, metadataState))),
+          ).filter((url) => !cacheInfos.has(url));
+
+          if (urls.length) {
+            // eslint-disable-next-line no-await-in-loop -- batches are sequential on purpose, to pace the main process
+            const fetchedInfos = await getCacheInfos(urls);
+            fetchedInfos.forEach((cacheInfo) => cacheInfos.set(cacheInfo.url, cacheInfo));
+          }
 
           let changed = false;
-          batch.forEach(([nftId, nft]) => {
-            if (lookedUp.has(nftId)) {
+          batch.forEach(({ nftId, nft, metadataState }) => {
+            if (settled.has(nftId)) {
               // a tile reported live while the lookup was in flight
               return;
             }
 
-            lookedUp.add(nftId);
-
-            const status = getNFTPreviewStatusFromCache(nft, (url) => cacheInfoByUrl.get(url));
+            const status = getNFTPreviewStatusFromCache(nft, metadataState, (url) => cacheInfos.get(url));
             if (status) {
               statuses.set(nftId, status);
+              settled.add(nftId);
               changed = true;
+            } else if (!metadataState.isLoading) {
+              // every input is known and the cache cannot decide — only a
+              // download can, and the tile that performs it reports it
+              settled.add(nftId);
             }
+            // otherwise the metadata is still loading: swept again once it settles
           });
 
           if (changed) {
@@ -157,17 +181,43 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
   }, [
     nfts /* immutable */,
     nachos /* immutable */,
+    getMetadata /* immutable */,
     getCacheInfos /* immutable */,
     statuses /* immutable */,
-    lookedUp /* immutable */,
+    settled /* immutable */,
+    cacheInfos /* immutable */,
     events /* immutable */,
   ]);
 
-  useEffect(() => {
-    lookUpFromCache();
+  const lookUpTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
-    return subscribeToChanges(lookUpFromCache);
-  }, [lookUpFromCache, subscribeToChanges]);
+  const scheduleLookUp = useCallback(() => {
+    if (lookUpTimeoutRef.current) {
+      return;
+    }
+
+    lookUpTimeoutRef.current = setTimeout(() => {
+      lookUpTimeoutRef.current = undefined;
+      lookUpFromCache();
+    }, LOOKUP_DELAY);
+  }, [lookUpFromCache]);
+
+  useEffect(() => {
+    scheduleLookUp();
+
+    const unsubscribeNFTs = subscribeToChanges(scheduleLookUp);
+    const unsubscribeMetadata = subscribeToMetadataChanges(scheduleLookUp);
+
+    return () => {
+      unsubscribeNFTs();
+      unsubscribeMetadata();
+
+      if (lookUpTimeoutRef.current) {
+        clearTimeout(lookUpTimeoutRef.current);
+        lookUpTimeoutRef.current = undefined;
+      }
+    };
+  }, [scheduleLookUp, subscribeToChanges, subscribeToMetadataChanges]);
 
   return {
     getPreviewStatus, // immutable

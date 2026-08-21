@@ -99,6 +99,7 @@ export default function NFTProvider(props: NFTProviderProps) {
     getMetadata,
     fetchMetadata,
     subscribeToMetadataChanges,
+    subscribeToChanges: subscribeToMetadataDataChanges,
     invalidate: invalidateMetadata,
   } = useMetadataData({
     fetchNFT,
@@ -136,7 +137,9 @@ export default function NFTProvider(props: NFTProviderProps) {
     useNFTPreviewStatuses({
       nfts,
       nachos,
+      getMetadata,
       subscribeToChanges,
+      subscribeToMetadataChanges: subscribeToMetadataDataChanges,
     });
 
   const invalidateNFT = useCallback(
@@ -151,14 +154,13 @@ export default function NFTProvider(props: NFTProviderProps) {
         return;
       }
 
-      // the files are about to be re-fetched, so the preview verdict is stale
-      invalidatePreviewStatus(id);
-
       // invalidate nft files
       const promises = [];
+      const invalidatedUris: string[] = [];
       const { dataUris, metadataUris } = nft;
 
       dataUris.forEach((uri) => promises.push(invalidate(uri)));
+      invalidatedUris.push(...dataUris);
 
       const firstMetadataUri = metadataUris && metadataUris[0];
       if (firstMetadataUri) {
@@ -174,15 +176,19 @@ export default function NFTProvider(props: NFTProviderProps) {
 
           if (previewVideoUris) {
             previewVideoUris.forEach((uri: string) => promises.push(invalidate(uri)));
+            invalidatedUris.push(...previewVideoUris);
           }
 
           if (previewImageUris) {
             previewImageUris.forEach((uri: string) => promises.push(invalidate(uri)));
+            invalidatedUris.push(...previewImageUris);
           }
         }
       } catch (e) {
         log(`Error loading metadata for ${id}: ${(e as Error).message}`);
       } finally {
+        // the files are being re-fetched, so the preview verdict is stale
+        invalidatePreviewStatus(id, invalidatedUris);
         await Promise.all(promises);
       }
 
