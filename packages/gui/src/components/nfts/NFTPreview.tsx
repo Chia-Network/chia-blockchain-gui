@@ -516,30 +516,36 @@ export default function NFTPreview(props: NFTPreviewProps) {
     !icon &&
     ![FileType.MODEL, FileType.DOCUMENT].includes(previewFileType);
 
-  // What the tile settled on showing — the same decision the render below
-  // makes — so the gallery's preview filter classifies NFTs exactly as their
-  // tiles do. Undefined while the tile is still loading.
+  // The verdict behind the gallery's preview filter. It follows the
+  // verification state rather than the render path: a document or model
+  // tile draws its type icon even when the file could not be fetched, and a
+  // compact tile never opens the iframe, yet the file is just as unavailable
+  // (the hash badge says so) — so every preview-mode tile of an NFT reaches
+  // the same verdict, whichever of them happens to mount. Undefined while
+  // anything that could still change the verdict is in flight.
   const previewStatus = useMemo(() => {
-    if (isLoading) {
+    if (isLoading || isLoadingVerifyHash) {
       return undefined;
     }
 
-    if (!hasFile || isHashMismatch) {
+    if (!preview?.isVerified) {
+      // no file, a settled mismatch, or a file that failed to download — but
+      // a thumbnail in metadata that has not arrived yet may still verify
+      return isLoadingMetadata ? undefined : NFTPreviewStatus.UNAVAILABLE;
+    }
+
+    if (prepareError) {
+      // the verified file could not be served from the cache
       return NFTPreviewStatus.UNAVAILABLE;
     }
 
-    if (usesIframe) {
-      if (prepareError) {
-        return NFTPreviewStatus.UNAVAILABLE;
-      }
-
-      if (!previewContent) {
-        return undefined;
-      }
+    if (!previewContent) {
+      // preparePreview has not settled on this uri yet
+      return undefined;
     }
 
     return NFTPreviewStatus.AVAILABLE;
-  }, [isLoading, hasFile, isHashMismatch, usesIframe, prepareError, previewContent]);
+  }, [isLoading, isLoadingVerifyHash, isLoadingMetadata, preview, prepareError, previewContent]);
 
   useEffect(() => {
     // Only preview-mode tiles report: the detail view verifies the full data
