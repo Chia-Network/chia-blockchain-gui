@@ -156,11 +156,18 @@ export default function NFTProvider(props: NFTProviderProps) {
 
       // invalidate nft files
       const promises = [];
-      const invalidatedUris: string[] = [];
       const { dataUris, metadataUris } = nft;
+      const invalidatedUris: string[] = [...dataUris];
+
+      // Drop the preview verdict right away, together with what is known about
+      // the data files: the filter must not keep classifying an NFT that is
+      // being refreshed from what its files used to be while the metadata
+      // round-trip below is still running. Repeated once the files are gone —
+      // the preview uris are only known after that round-trip, and a lookup
+      // that overlaps the deletions could memoize outcomes they remove.
+      invalidatePreviewStatus(id, invalidatedUris);
 
       dataUris.forEach((uri) => promises.push(invalidate(uri)));
-      invalidatedUris.push(...dataUris);
 
       const firstMetadataUri = metadataUris && metadataUris[0];
       if (firstMetadataUri) {
@@ -187,9 +194,8 @@ export default function NFTProvider(props: NFTProviderProps) {
       } catch (e) {
         log(`Error loading metadata for ${id}: ${(e as Error).message}`);
       } finally {
-        // the files are being re-fetched, so the preview verdict is stale
-        invalidatePreviewStatus(id, invalidatedUris);
         await Promise.all(promises);
+        invalidatePreviewStatus(id, invalidatedUris);
       }
 
       await Promise.all([invalidateNachos(), invalidateMetadata(id), invalidateNFTOnDemand(id)]);
