@@ -1,3 +1,5 @@
+import type CacheInfo from './CacheInfo';
+
 type CacheRequestOptions = {
   maxSize?: number;
   timeout?: number;
@@ -22,6 +24,8 @@ type CacheService = {
   getChecksum: (url: string, options?: CacheRequestOptions) => Promise<string>;
   getURI: (url: string, options?: CacheRequestOptions) => Promise<string>;
   invalidate: (url: string) => Promise<void>;
+  // Read-only lookup of the persisted cache state of each url — never downloads
+  getCacheInfos: (urls: string[]) => Promise<CacheInfo[]>;
 
   // Event subscriptions
   subscribeToDirectoryChange: (callback: (newDirectory: string) => void) => () => void;
