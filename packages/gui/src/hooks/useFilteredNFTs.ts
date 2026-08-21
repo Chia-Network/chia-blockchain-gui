@@ -6,12 +6,13 @@ export default function useFilteredNFTs() {
   const filter = useNFTFilter();
   const [hideSensitiveContent, setHideSensitiveContent] = useHideObjectionableContent();
 
-  const { search, visibility, types, walletIds } = filter;
+  const { search, visibility, previewAvailability, types, walletIds } = filter;
 
   const nftsResult = useNFTs({
     // filter props
     search,
     visibility,
+    previewAvailability,
     types,
     walletIds,
 

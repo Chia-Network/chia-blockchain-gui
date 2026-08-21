@@ -9,6 +9,7 @@ import useMetadataData from './hooks/useMetadataData';
 import useNFTData from './hooks/useNFTData';
 import useNFTDataNachos from './hooks/useNFTDataNachos';
 import useNFTDataOnDemand from './hooks/useNFTDataOnDemand';
+import useNFTPreviewStatuses from './hooks/useNFTPreviewStatuses';
 
 const log = debug('nft:NFTProvider');
 
@@ -131,6 +132,13 @@ export default function NFTProvider(props: NFTProviderProps) {
     [subscribeToDataChanges, subscribeToNachosChanges],
   );
 
+  const { getPreviewStatus, setPreviewStatus, invalidatePreviewStatus, subscribeToPreviewStatusChanges } =
+    useNFTPreviewStatuses({
+      nfts,
+      nachos,
+      subscribeToChanges,
+    });
+
   const invalidateNFT = useCallback(
     async (id: string | undefined) => {
       log(`Invalidating ${id}`);
@@ -142,6 +150,9 @@ export default function NFTProvider(props: NFTProviderProps) {
       if (!nft) {
         return;
       }
+
+      // the files are about to be re-fetched, so the preview verdict is stale
+      invalidatePreviewStatus(id);
 
       // invalidate nft files
       const promises = [];
@@ -177,7 +188,15 @@ export default function NFTProvider(props: NFTProviderProps) {
 
       await Promise.all([invalidateNachos(), invalidateMetadata(id), invalidateNFTOnDemand(id)]);
     },
-    [fetchNFT, fetchMetadata, invalidate, invalidateNachos, invalidateMetadata, invalidateNFTOnDemand],
+    [
+      fetchNFT,
+      fetchMetadata,
+      invalidate,
+      invalidateNachos,
+      invalidateMetadata,
+      invalidateNFTOnDemand,
+      invalidatePreviewStatus,
+    ],
   );
 
   const context = useMemo(
@@ -191,6 +210,10 @@ export default function NFTProvider(props: NFTProviderProps) {
 
       getMetadata,
       subscribeToMetadataChanges,
+
+      getPreviewStatus,
+      setPreviewStatus,
+      subscribeToPreviewStatusChanges,
 
       subscribeToChanges,
 
@@ -214,6 +237,9 @@ export default function NFTProvider(props: NFTProviderProps) {
       subscribeToNFTChanges,
       getMetadata,
       subscribeToMetadataChanges,
+      getPreviewStatus,
+      setPreviewStatus,
+      subscribeToPreviewStatusChanges,
       count,
       loaded,
       progress,

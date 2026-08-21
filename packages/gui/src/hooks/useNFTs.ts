@@ -4,6 +4,8 @@ import { useMemo, useEffect, useState, useCallback } from 'react';
 
 import type Metadata from '../@types/Metadata';
 import MetadataState from '../@types/MetadataState';
+import NFTPreviewAvailability from '../@types/NFTPreviewAvailability';
+import NFTPreviewStatus from '../@types/NFTPreviewStatus';
 import NFTVisibility from '../@types/NFTVisibility';
 import NFTsDataStatistics from '../@types/NFTsDataStatistics';
 import FileType from '../constants/FileType';
@@ -24,9 +26,11 @@ const prepareNFTs = throttle(
     nfts: Map<string, NFTInfo>,
     nachos: Map<string, NFTInfo>,
     getMetadata: (id: string) => MetadataState,
+    getPreviewStatus: (nftId: string) => NFTPreviewStatus | undefined,
     walletIds: number[],
     isHidden: (nftId: string) => boolean,
     visibility: NFTVisibility,
+    previewAvailability: NFTPreviewAvailability,
     types: FileType[],
     search: string,
     onReponse: (filtered: NFTInfo[], statistics: NFTsDataStatistics) => void,
@@ -42,6 +46,8 @@ const prepareNFTs = throttle(
       hidden: 0,
       total: 0,
       sensitive: 0,
+      previewAvailable: 0,
+      previewUnavailable: 0,
     };
 
     const filtered: NFTInfo[] = [];
@@ -80,6 +86,15 @@ const prepareNFTs = throttle(
         stats.sensitive += 1;
       }
 
+      // Only a settled verdict places an NFT among the unavailable previews;
+      // one that has not been classified yet counts as available.
+      const isPreviewUnavailable = getPreviewStatus(nftId) === NFTPreviewStatus.UNAVAILABLE;
+      if (isPreviewUnavailable) {
+        stats.previewUnavailable += 1;
+      } else {
+        stats.previewAvailable += 1;
+      }
+
       stats.total += 1;
 
       // process filtering
@@ -92,6 +107,14 @@ const prepareNFTs = throttle(
         (visibility === NFTVisibility.VISIBLE && !isHiddenByUser) ||
         (visibility === NFTVisibility.HIDDEN && isHiddenByUser);
       if (!visible) {
+        return;
+      }
+
+      const previewMatches =
+        previewAvailability === NFTPreviewAvailability.ALL ||
+        (previewAvailability === NFTPreviewAvailability.AVAILABLE && !isPreviewUnavailable) ||
+        (previewAvailability === NFTPreviewAvailability.UNAVAILABLE && isPreviewUnavailable);
+      if (!previewMatches) {
         return;
       }
 
@@ -135,6 +158,7 @@ export type UseNFTsProps = {
   search?: string;
   types?: FileType[];
   visibility?: NFTVisibility;
+  previewAvailability?: NFTPreviewAvailability;
   hideSensitiveContent?: boolean | 'false' | 'true';
 };
 
@@ -147,11 +171,23 @@ export default function useNFTs(props: UseNFTsProps = {}) {
     types = allTypes,
     search = '',
     visibility = NFTVisibility.ALL,
+    previewAvailability = NFTPreviewAvailability.ALL,
     // hideSensitiveContent = false,
   } = props;
 
-  const { nfts, nachos, getMetadata, isLoading, error, progress, invalidate, count, subscribeToChanges } =
-    useNFTProvider();
+  const {
+    nfts,
+    nachos,
+    getMetadata,
+    getPreviewStatus,
+    subscribeToPreviewStatusChanges,
+    isLoading,
+    error,
+    progress,
+    invalidate,
+    count,
+    subscribeToChanges,
+  } = useNFTProvider();
   const [isNFTHidden] = useHiddenNFTs();
 
   const total = useMemo(() => count + nachos.size, [count, nachos.size]);
@@ -168,6 +204,8 @@ export default function useNFTs(props: UseNFTsProps = {}) {
     hidden: 0,
     total: 0,
     sensitive: 0,
+    previewAvailable: 0,
+    previewUnavailable: 0,
   });
 
   const updateFiltered = useCallback(() => {
@@ -176,9 +214,11 @@ export default function useNFTs(props: UseNFTsProps = {}) {
       nfts,
       nachos,
       getMetadata,
+      getPreviewStatus,
       walletIds,
       isNFTHidden,
       visibility,
+      previewAvailability,
       types,
       search,
       (newFiltered, newStatistics) => {
@@ -190,9 +230,11 @@ export default function useNFTs(props: UseNFTsProps = {}) {
     nfts, // immutable
     nachos, // immutable
     getMetadata, // immutable
+    getPreviewStatus, // immutable
     walletIds, // immutable
     isNFTHidden,
     visibility,
+    previewAvailability,
     types,
     search,
     setFiltered,
@@ -211,6 +253,9 @@ export default function useNFTs(props: UseNFTsProps = {}) {
       }),
     [subscribeToChanges, updateFiltered],
   );
+
+  // preview verdicts arrive as tiles settle and as cache lookups complete
+  useEffect(() => subscribeToPreviewStatusChanges(updateFiltered), [subscribeToPreviewStatusChanges, updateFiltered]);
 
   return {
     total,

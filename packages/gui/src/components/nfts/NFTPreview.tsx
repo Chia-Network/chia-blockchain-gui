@@ -5,6 +5,7 @@ import { alpha, Box, IconButton, Tooltip } from '@mui/material';
 import React, { useMemo, useRef, Fragment, useCallback, useEffect, type ReactNode } from 'react';
 import styled from 'styled-components';
 
+import NFTPreviewStatus from '../../@types/NFTPreviewStatus';
 import AudioSmallIcon from '../../assets/img/audio-small.svg';
 import DocumentBlobIcon from '../../assets/img/document-blob.svg';
 import DocumentSmallIcon from '../../assets/img/document-small.svg';
@@ -30,6 +31,7 @@ import useHideObjectionableContent from '../../hooks/useHideObjectionableContent
 import useNFT from '../../hooks/useNFT';
 import useNFTImageFittingMode from '../../hooks/useNFTImageFittingMode';
 import useNFTMetadata from '../../hooks/useNFTMetadata';
+import useNFTProvider from '../../hooks/useNFTProvider';
 import useNFTVerifyHash from '../../hooks/useNFTVerifyHash';
 import { useNFTVideoLoopGlobal, useNFTVideoLoopForNFT } from '../../hooks/useNFTVideoLoop';
 import useStateAbort from '../../hooks/useStateAbort';
@@ -139,6 +141,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
   } = props;
 
   const { getURI } = useCache();
+  const { setPreviewStatus } = useNFTProvider();
   const nftId = useMemo(() => getNFTId(id), [id]);
   const iframeRef = useRef<any>(null);
   const { isDarkMode } = useDarkMode();
@@ -512,6 +515,40 @@ export default function NFTPreview(props: NFTPreviewProps) {
     !(isCompact && previewFileType !== FileType.IMAGE) &&
     !icon &&
     ![FileType.MODEL, FileType.DOCUMENT].includes(previewFileType);
+
+  // What the tile settled on showing — the same decision the render below
+  // makes — so the gallery's preview filter classifies NFTs exactly as their
+  // tiles do. Undefined while the tile is still loading.
+  const previewStatus = useMemo(() => {
+    if (isLoading) {
+      return undefined;
+    }
+
+    if (!hasFile || isHashMismatch) {
+      return NFTPreviewStatus.UNAVAILABLE;
+    }
+
+    if (usesIframe) {
+      if (prepareError) {
+        return NFTPreviewStatus.UNAVAILABLE;
+      }
+
+      if (!previewContent) {
+        return undefined;
+      }
+    }
+
+    return NFTPreviewStatus.AVAILABLE;
+  }, [isLoading, hasFile, isHashMismatch, usesIframe, prepareError, previewContent]);
+
+  useEffect(() => {
+    // Only preview-mode tiles report: the detail view verifies the full data
+    // file rather than the thumbnail and can legitimately disagree with the
+    // gallery tile for the same NFT.
+    if (isPreview && previewStatus) {
+      setPreviewStatus(nftId, previewStatus);
+    }
+  }, [isPreview, previewStatus, nftId, setPreviewStatus]);
 
   return (
     <StyledCardPreview width={width} height={height} sx={{ aspectRatio: ratio.toString() }}>

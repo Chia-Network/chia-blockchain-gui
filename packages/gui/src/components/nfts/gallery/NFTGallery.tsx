@@ -35,6 +35,7 @@ import { xor, intersection /* , sortBy */ } from 'lodash';
 import React, { useMemo, useCallback, useRef, useEffect } from 'react';
 import { VirtuosoGrid } from 'react-virtuoso';
 
+import NFTPreviewAvailability from '../../../@types/NFTPreviewAvailability';
 import NFTVisibility from '../../../@types/NFTVisibility';
 import FileType from '../../../constants/FileType';
 import useFilteredNFTs from '../../../hooks/useFilteredNFTs';
@@ -110,6 +111,9 @@ export default function NFTGallery() {
 
     visibility,
     setVisibility,
+
+    previewAvailability,
+    setPreviewAvailability,
 
     statistics,
   } = useFilteredNFTs();
@@ -242,6 +246,40 @@ export default function NFTGallery() {
       case NFTVisibility.HIDDEN:
       default:
         setVisibility(NFTVisibility.NONE);
+    }
+  }
+
+  function togglePreviewAvailable() {
+    switch (previewAvailability) {
+      case NFTPreviewAvailability.ALL:
+        setPreviewAvailability(NFTPreviewAvailability.UNAVAILABLE);
+        return;
+      case NFTPreviewAvailability.AVAILABLE:
+        setPreviewAvailability(NFTPreviewAvailability.NONE);
+        return;
+      case NFTPreviewAvailability.NONE:
+        setPreviewAvailability(NFTPreviewAvailability.AVAILABLE);
+        return;
+      case NFTPreviewAvailability.UNAVAILABLE:
+      default:
+        setPreviewAvailability(NFTPreviewAvailability.ALL);
+    }
+  }
+
+  function togglePreviewUnavailable() {
+    switch (previewAvailability) {
+      case NFTPreviewAvailability.ALL:
+        setPreviewAvailability(NFTPreviewAvailability.AVAILABLE);
+        return;
+      case NFTPreviewAvailability.AVAILABLE:
+        setPreviewAvailability(NFTPreviewAvailability.ALL);
+        return;
+      case NFTPreviewAvailability.NONE:
+        setPreviewAvailability(NFTPreviewAvailability.UNAVAILABLE);
+        return;
+      case NFTPreviewAvailability.UNAVAILABLE:
+      default:
+        setPreviewAvailability(NFTPreviewAvailability.NONE);
     }
   }
 
@@ -442,6 +480,82 @@ export default function NFTGallery() {
                                   <Trans>Hidden</Trans>
                                 </Box>
                                 <Chip label={<FormatLargeNumber value={statistics.hidden} />} size="extraSmall" />
+                              </Flex>
+                            }
+                          />
+                        </Flex>
+                      </FormControl>
+                    </FilterPill>
+                  </Box>
+                </Fade>
+                <Fade in={showFilters} unmountOnExit>
+                  <Box>
+                    <FilterPill
+                      title={
+                        previewAvailability === NFTPreviewAvailability.ALL ? (
+                          <Trans>
+                            Any preview &nbsp;
+                            <Chip label={<FormatLargeNumber value={statistics.total} />} size="extraSmall" />
+                          </Trans>
+                        ) : previewAvailability === NFTPreviewAvailability.AVAILABLE ? (
+                          <Trans>
+                            Preview available &nbsp;
+                            <Chip label={<FormatLargeNumber value={statistics.previewAvailable} />} size="extraSmall" />
+                          </Trans>
+                        ) : previewAvailability === NFTPreviewAvailability.UNAVAILABLE ? (
+                          <Trans>
+                            Preview not available &nbsp;
+                            <Chip
+                              label={<FormatLargeNumber value={statistics.previewUnavailable} />}
+                              size="extraSmall"
+                            />
+                          </Trans>
+                        ) : (
+                          <Trans>None (0)</Trans>
+                        )
+                      }
+                    >
+                      <FormControl>
+                        <Flex flexDirection="column">
+                          <FormControlLabel
+                            control={
+                              <Checkbox
+                                checked={[NFTPreviewAvailability.AVAILABLE, NFTPreviewAvailability.ALL].includes(
+                                  previewAvailability,
+                                )}
+                                onChange={togglePreviewAvailable}
+                              />
+                            }
+                            label={
+                              <Flex width="100%" gap={1} justifyContent="space-between" alignItems="center">
+                                <Box>
+                                  <Trans>Preview available</Trans>
+                                </Box>
+                                <Chip
+                                  label={<FormatLargeNumber value={statistics.previewAvailable} />}
+                                  size="extraSmall"
+                                />
+                              </Flex>
+                            }
+                          />
+                          <FormControlLabel
+                            control={
+                              <Checkbox
+                                checked={[NFTPreviewAvailability.UNAVAILABLE, NFTPreviewAvailability.ALL].includes(
+                                  previewAvailability,
+                                )}
+                                onChange={togglePreviewUnavailable}
+                              />
+                            }
+                            label={
+                              <Flex width="100%" gap={1} justifyContent="space-between" alignItems="center">
+                                <Box>
+                                  <Trans>Preview not available</Trans>
+                                </Box>
+                                <Chip
+                                  label={<FormatLargeNumber value={statistics.previewUnavailable} />}
+                                  size="extraSmall"
+                                />
                               </Flex>
                             }
                           />
