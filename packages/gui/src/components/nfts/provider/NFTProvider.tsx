@@ -193,9 +193,17 @@ export default function NFTProvider(props: NFTProviderProps) {
         }
       } catch (e) {
         log(`Error loading metadata for ${id}: ${(e as Error).message}`);
-      } finally {
-        await Promise.all(promises);
-        invalidatePreviewStatus(id, invalidatedUris);
+      }
+
+      // Wait for every deletion, even when one of them fails (a uri the cache
+      // cannot key), so the reset below cannot race a deletion still in
+      // flight; the first failure still propagates afterwards as before.
+      const results = await Promise.allSettled(promises);
+      invalidatePreviewStatus(id, invalidatedUris);
+
+      const failure = results.find((result): result is PromiseRejectedResult => result.status === 'rejected');
+      if (failure) {
+        throw failure.reason;
       }
 
       await Promise.all([invalidateNachos(), invalidateMetadata(id), invalidateNFTOnDemand(id)]);

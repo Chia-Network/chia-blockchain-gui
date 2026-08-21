@@ -75,9 +75,15 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
     [events /* immutable */, statuses /* immutable */, settled /* immutable */],
   );
 
+  // Bumped by every invalidation. A lookup whose IPC round-trip spans one may
+  // have read files the invalidation deleted in the meantime, so it discards
+  // its result instead of memoizing it.
+  const invalidationGeneration = useRef(0);
+
   // immutable function
   const invalidatePreviewStatus = useCallback(
     (nftId: string, urls: string[]) => {
+      invalidationGeneration.current += 1;
       settled.delete(nftId);
       urls.forEach((url) => cacheInfos.delete(url));
 
@@ -143,8 +149,18 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
           ).filter((url) => !cacheInfos.has(url));
 
           if (urls.length) {
+            const generation = invalidationGeneration.current;
             // eslint-disable-next-line no-await-in-loop -- batches are sequential on purpose, to pace the main process
             const fetchedInfos = await getCacheInfos(urls);
+
+            if (generation !== invalidationGeneration.current) {
+              // an invalidation ran while this lookup was in flight — the
+              // outcomes may describe files that are gone now, and the NFTs
+              // it reset are unsettled again, so start the sweep over
+              lookUpAgainRef.current = true;
+              break;
+            }
+
             fetchedInfos.forEach((cacheInfo) => cacheInfos.set(cacheInfo.url, cacheInfo));
           }
 
