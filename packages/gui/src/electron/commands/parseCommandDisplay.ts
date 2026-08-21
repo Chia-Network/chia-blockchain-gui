@@ -1,7 +1,10 @@
+import FileType from '../../constants/FileType';
+import getFileType from '../../util/getFileType';
 import { catAssetIdToName } from '../api/catAssetIdToName';
 import { getOfferSummary } from '../api/getOfferSummary';
 import { getWalletInfos, type WalletInfo } from '../api/getWalletNames';
 import { nftGetInfo } from '../api/nftGetInfo';
+import { nftGetImageDataUrl, nftGetMetadata } from '../api/nftGetMetadata';
 import resolveAssetDisplayKind from '../api/resolveAssetDisplayKind';
 import WalletType from '../constants/WalletType';
 import type { DisplayWalletDelta, DisplayWalletDeltaItem } from '../dialogs/Confirm/Confirm';
@@ -44,6 +47,74 @@ function hexToNftId(hex: string): string {
   } catch {
     return hex;
   }
+}
+
+async function resolveVerifiedImage(uris: string[], expectedHash: string | undefined): Promise<string | undefined> {
+  if (!expectedHash) {
+    return undefined;
+  }
+
+  for (const uri of uris) {
+    if (isValidURL(uri)) {
+      // URI lists are ordered fallbacks for the same content.
+      // eslint-disable-next-line no-await-in-loop -- Fallbacks must be tried in their declared order.
+      const dataUrl = await nftGetImageDataUrl(uri, expectedHash);
+      if (dataUrl) {
+        return dataUrl;
+      }
+    }
+  }
+
+  return undefined;
+}
+
+/** The confirmation dialog renders the preview in an `<img>`, which can only
+ * display images — a video/audio payload would show as a broken image icon.
+ * Fetch and hash-check the content in the main process, then return an immutable
+ * data URL so the sandbox never performs a second, unauthenticated request. */
+export async function resolveNftPreviewUrl(
+  dataUris: string[],
+  dataHash: string | undefined,
+  metadataUris: string[],
+  metadataHash: string | undefined,
+): Promise<string | undefined> {
+  const validDataUris = dataUris.filter((uri) => isValidURL(uri));
+
+  const imageDataUrl = await resolveVerifiedImage(
+    validDataUris.filter((uri) => getFileType(uri) === FileType.IMAGE),
+    dataHash,
+  );
+  if (imageDataUrl) {
+    return imageDataUrl;
+  }
+
+  if (metadataHash) {
+    for (const metadataUri of metadataUris) {
+      if (isValidURL(metadataUri)) {
+        // Metadata URIs are ordered fallbacks for the same on-chain hash.
+        // eslint-disable-next-line no-await-in-loop -- Fallbacks must be tried in their declared order.
+        const metadata = await nftGetMetadata(metadataUri, metadataHash);
+        if (metadata) {
+          // eslint-disable-next-line no-await-in-loop -- Resolve each verified metadata fallback before moving on.
+          const previewDataUrl = await resolveVerifiedImage(
+            metadata.preview_image_uris ?? [],
+            metadata.preview_image_hash,
+          );
+          if (previewDataUrl) {
+            return previewDataUrl;
+          }
+        }
+      }
+    }
+  }
+
+  // An extensionless data URI (common on IPFS) may be an image. Its verified
+  // response MIME type decides whether it can be used; known non-image types
+  // keep the placeholder.
+  return resolveVerifiedImage(
+    validDataUris.filter((uri) => getFileType(uri) === FileType.UNKNOWN),
+    dataHash,
+  );
 }
 
 function parseRoyaltyPercentage(value: unknown): number | undefined {
@@ -315,8 +386,13 @@ async function parseWalletDeltaItem(
 
     try {
       const nftInfo = await nftGetInfo(key);
-      if (nftInfo && nftInfo.success && nftInfo.nft_info && nftInfo.nft_info.data_uris) {
-        const previewUrl = nftInfo.nft_info.data_uris.find((u) => isValidURL(u));
+      if (nftInfo && nftInfo.success && nftInfo.nft_info) {
+        const previewUrl = await resolveNftPreviewUrl(
+          nftInfo.nft_info.data_uris ?? [],
+          nftInfo.nft_info.data_hash,
+          nftInfo.nft_info.metadata_uris ?? [],
+          nftInfo.nft_info.metadata_hash,
+        );
 
         if (previewUrl) {
           result.previewUrl = previewUrl;

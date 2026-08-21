@@ -23,6 +23,7 @@ import VideoSmallIcon from '../../assets/img/video-small.svg';
 import VideoPngIcon from '../../assets/img/video.png';
 import VideoPngDarkIcon from '../../assets/img/video_dark.png';
 import FileType from '../../constants/FileType';
+import { isSettledHashMismatch } from '../../hooks/selectNFTPreviewState';
 import useCache from '../../hooks/useCache';
 import useFileType from '../../hooks/useFileType';
 import useHideObjectionableContent from '../../hooks/useHideObjectionableContent';
@@ -141,7 +142,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
   const nftId = useMemo(() => getNFTId(id), [id]);
   const iframeRef = useRef<any>(null);
   const { isDarkMode } = useDarkMode();
-  const [, setError] = useStateAbort<Error | undefined>(undefined);
+  const [prepareError, setPrepareError] = useStateAbort<Error | undefined>(undefined);
   const [previewContent, setPreviewContent] = useStateAbort<ReactNode | undefined>(undefined);
   const abortControllerRef = useRef(new AbortController());
   const [hideObjectionableContent] = useHideObjectionableContent();
@@ -172,15 +173,20 @@ export default function NFTPreview(props: NFTPreviewProps) {
 
   const { isLoading: isLoadingNFT } = useNFT(nftId);
   const { metadata, isLoading: isLoadingMetadata } = useNFTMetadata(nftId);
-  const isLoading = isLoadingVerifyHash || isLoadingMetadata || isLoadingNFT || isLoadingFileType;
+  // hash verification downloads the full data file, which can take a long
+  // time for large media, and the metadata host can be slow or dead — either
+  // one only blocks the tile while there is no verified preview uri to show
+  const isLoading = isLoadingNFT || isLoadingFileType || ((isLoadingVerifyHash || isLoadingMetadata) && !preview);
 
   const blurPreview = useMemo(() => {
     if (!hideObjectionableContent) {
       return false;
     }
 
-    if (isLoading) {
-      return false;
+    // a verified preview can render before the metadata fetch settles — keep
+    // it covered until the sensitive-content flag can actually be read
+    if (isLoadingMetadata) {
+      return true;
     }
 
     if (!metadata) {
@@ -192,16 +198,22 @@ export default function NFTPreview(props: NFTPreviewProps) {
     }
 
     return false;
-  }, [hideObjectionableContent, isLoading, metadata]);
+  }, [hideObjectionableContent, isLoadingMetadata, metadata]);
 
   const previewExtension = useMemo(() => getFileExtension(preview?.uri), [preview]);
+
+  // The cached bytes of a settled mismatch must never reach the iframe, even
+  // though the state still carries the uri so the hash badge can report it.
+  const isHashMismatch = isSettledHashMismatch(preview);
+
+  const previewUri = isHashMismatch ? undefined : preview?.uri;
 
   const preparePreview = useCallback(
     async (signal: AbortSignal) => {
       try {
-        setError(undefined, signal);
+        setPrepareError(undefined, signal);
 
-        if (!preview?.uri) {
+        if (!previewUri) {
           setPreviewContent(undefined, signal);
           return;
         }
@@ -232,9 +244,10 @@ export default function NFTPreview(props: NFTPreviewProps) {
           }
         `;
 
-        const cachedURI = await getURI(preview.uri, { maxSize: ignoreSizeLimit ? -1 : undefined });
+        const cachedURI = await getURI(previewUri, { maxSize: ignoreSizeLimit ? -1 : undefined });
         if (!cachedURI || !cachedURI.startsWith('cache://')) {
           setPreviewContent(undefined, signal);
+          setPrepareError(new Error(t`File is not available`), signal);
           return;
         }
 
@@ -276,10 +289,21 @@ export default function NFTPreview(props: NFTPreviewProps) {
           signal,
         );
       } catch (e) {
-        setError(e as Error, signal);
+        setPreviewContent(undefined, signal);
+        setPrepareError(e as Error, signal);
       }
     },
-    [preview, fit, getURI, ignoreSizeLimit, previewFileType, loopVideo, isDarkMode, setPreviewContent, setError],
+    [
+      previewUri,
+      fit,
+      getURI,
+      ignoreSizeLimit,
+      previewFileType,
+      loopVideo,
+      isDarkMode,
+      setPreviewContent,
+      setPrepareError,
+    ],
   );
 
   useEffect(() => {
@@ -482,6 +506,13 @@ export default function NFTPreview(props: NFTPreviewProps) {
 
   const hasFile = !!preview;
 
+  // icon, model, document and compact non-image previews do not render the
+  // iframe, so they never wait for the preview file to download
+  const usesIframe =
+    !(isCompact && previewFileType !== FileType.IMAGE) &&
+    !icon &&
+    ![FileType.MODEL, FileType.DOCUMENT].includes(previewFileType);
+
   return (
     <StyledCardPreview width={width} height={height} sx={{ aspectRatio: ratio.toString() }}>
       {isLoading ? (
@@ -494,6 +525,22 @@ export default function NFTPreview(props: NFTPreviewProps) {
             <Trans>No file available</Trans>
           </IconMessage>
         </Background>
+      ) : isHashMismatch ? (
+        <Background>
+          <IconMessage icon={<NotInterested fontSize="large" />}>
+            <Trans>File does not match the expected hash</Trans>
+          </IconMessage>
+        </Background>
+      ) : usesIframe && prepareError ? (
+        <Background>
+          <IconMessage icon={<NotInterested fontSize="large" />}>
+            <Trans>Preview is not available</Trans>
+          </IconMessage>
+        </Background>
+      ) : usesIframe && !previewContent ? (
+        <Flex position="absolute" left="0" top="0" bottom="0" right="0" justifyContent="center" alignItems="center">
+          <Loading center>{!isCompact && t`Loading preview...`}</Loading>
+        </Flex>
       ) : (
         previewIframe
       )}
