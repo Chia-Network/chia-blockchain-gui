@@ -3417,7 +3417,7 @@ msgstr "Lisäasetukset"
 msgid "After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring."
 msgstr "Kun avaimet ovat onnistuneesti siirretty uuteen avainlenkkiin, voit halutessasi poistaa avaimet vanhasta avainlenkistä."
 
-#: src/components/settings/SettingsNFT.tsx:139
+#: src/components/settings/SettingsNFT.tsx:145
 msgid "All NFT videos will restart automatically when they finish playing. When disabled, looping can still be turned on for individual videos from their detail page."
 msgstr ""
 
@@ -3549,7 +3549,7 @@ msgstr ""
 msgid "Are you sure you want to cancel your offer?"
 msgstr "Oletko varma, että haluat perua tarjouksen?"
 
-#: src/components/settings/SettingsNFT.tsx:64
+#: src/components/settings/SettingsNFT.tsx:70
 msgid "Are you sure you want to delete the NFT cache?"
 msgstr "Oletko varma, että haluat tyhjentää NFT-välimuistin?"
 
@@ -3778,7 +3778,7 @@ msgstr "Antamalla allekirjoitusosoitteen, julkinen avain voidaan validoida yhdis
 msgid "Bypassed Commands"
 msgstr "Ohitetut Komennot"
 
-#: src/components/settings/SettingsNFT.tsx:150
+#: src/components/settings/SettingsNFT.tsx:178
 msgid "Cache"
 msgstr "Välimuisti"
 
@@ -3856,7 +3856,7 @@ msgid "Challenge Hash"
 msgstr "Haastetiiviste"
 
 #: src/components/plotNFT/PlotNFTChangePool.tsx:110
-#: src/components/settings/SettingsNFT.tsx:188
+#: src/components/settings/SettingsNFT.tsx:216
 msgid "Change"
 msgstr "Vaihda"
 
@@ -3956,7 +3956,7 @@ msgstr "Valitse Plotteri"
 msgid "Choose Wallet Mode"
 msgstr "Valitse Lompakkotila"
 
-#: src/components/settings/SettingsNFT.tsx:81
+#: src/components/settings/SettingsNFT.tsx:87
 msgid "Choose what you want to see and how you want to view it."
 msgstr "Valitse, mitä haluat nähdä ja miten haluat nähdä ne."
 
@@ -3985,8 +3985,8 @@ msgstr ""
 msgid "Clear every \"always allow\" override for this app. Future commands will require confirmation again."
 msgstr ""
 
-#: src/components/settings/SettingsNFT.tsx:57
-#: src/components/settings/SettingsNFT.tsx:170
+#: src/components/settings/SettingsNFT.tsx:63
+#: src/components/settings/SettingsNFT.tsx:198
 msgid "Clear NFT cache"
 msgstr "Tyhjennä NFT-välimuisti"
 
@@ -4166,7 +4166,7 @@ msgstr "Yhteystiedon Nimi"
 msgid "Contacts"
 msgstr "Kontaktit"
 
-#: src/components/nfts/NFTHashStatus.tsx:109
+#: src/components/nfts/NFTHashStatus.tsx:114
 msgid "Content does not match the expected hash value that was specified during NFT minting. The content may have been modified."
 msgstr "Sisältö ei vastaa NFT:n luomisen aikana määritettyä tiivistettä. Sisältöä on mahdollisesti muutettu."
 
@@ -4174,7 +4174,7 @@ msgstr "Sisältö ei vastaa NFT:n luomisen aikana määritettyä tiivistettä. S
 #~ msgid "Content has not been validated against the hash that was specified during NFT minting."
 #~ msgstr ""
 
-#: src/components/nfts/NFTHashStatus.tsx:102
+#: src/components/nfts/NFTHashStatus.tsx:107
 msgid "Content has not been validated against the hash that was specified during NFT minting. Error: {0}"
 msgstr "Sisältöä ei ole validoitu NFT:n luonnin aikana määritettyä tiivistettä vastaan. Virhe: {0}"
 
@@ -5153,6 +5153,15 @@ msgstr "Tarjouksen sisältämät transaktiomaksut:"
 #~ msgid "File"
 #~ msgstr "File"
 
+#: src/components/nfts/NFTPreview.tsx:531
+msgid "File does not match the expected hash"
+msgstr ""
+
+#: src/components/nfts/NFTHashStatus.tsx:82
+#: src/components/nfts/NFTPreview.tsx:250
+msgid "File is not available"
+msgstr ""
+
 #: src/components/plot/PlotHarvesterPlots.tsx:70
 #: src/components/plot/PlotHarvesterPlotsDuplicate.tsx:14
 #: src/components/plot/PlotHarvesterPlotsFailed.tsx:14
@@ -5186,7 +5195,7 @@ msgstr "Lopullinen hakemisto"
 msgid "Finished"
 msgstr "Valmis"
 
-#: src/components/settings/SettingsNFT.tsx:113
+#: src/components/settings/SettingsNFT.tsx:119
 msgid "Fit images to cards"
 msgstr "Sovita kuvat kortteihin"
 
@@ -5492,7 +5501,7 @@ msgstr "Harvesteriteho"
 #~ msgid "Hash is validated."
 #~ msgstr ""
 
-#: src/components/nfts/NFTHashStatus.tsx:73
+#: src/components/nfts/NFTHashStatus.tsx:74
 msgid "Hash matches"
 msgstr "Tiivisteosumat"
 
@@ -5546,7 +5555,7 @@ msgstr "Piilotettu <0/>"
 msgid "Hide"
 msgstr "Piilota"
 
-#: src/components/settings/SettingsNFT.tsx:93
+#: src/components/settings/SettingsNFT.tsx:99
 msgid "Hide objectionable content"
 msgstr "Piilota kysseenalainen sisältö"
 
@@ -5616,7 +5625,7 @@ msgstr "Jos olet jo jakanut tarjouksesi tiedoston, saatat joutua lähettämään
 #~ msgid "Image Hash Mismatch"
 #~ msgstr "Image Hash Mismatch"
 
-#: src/components/settings/SettingsNFT.tsx:123
+#: src/components/settings/SettingsNFT.tsx:129
 msgid "Images will be scaled to fill the NFT card and ignore their original proportions."
 msgstr "Kuvat skaalataan NFT-kortin täyttämiseksi ja niiden alkuperäiset mittasuhteet jätetään huomioimatta."
 
@@ -5717,7 +5726,7 @@ msgstr "Plottihakemistojen päivitysskannausaikaväli"
 msgid "Invalid"
 msgstr "Virheellinen"
 
-#: src/components/nfts/NFTHashStatus.tsx:80
+#: src/components/nfts/NFTHashStatus.tsx:85
 msgid "Invalid hash"
 msgstr "Virheellinen tiiviste"
 
@@ -5928,7 +5937,7 @@ msgstr ""
 msgid "License URL {0}"
 msgstr "Lisenssin URL {0}"
 
-#: src/components/settings/SettingsNFT.tsx:201
+#: src/components/settings/SettingsNFT.tsx:229
 msgid "Limit cache size"
 msgstr "Rajoita välimuistin kokoa"
 
@@ -5969,7 +5978,7 @@ msgstr "Ladataan NFT"
 msgid "Loading NFT Info..."
 msgstr "Ladataan NFT-tietoja..."
 
-#: src/components/nfts/NFTPreview.tsx:489
+#: src/components/nfts/NFTPreview.tsx:520
 msgid "Loading NFT..."
 msgstr "Ladataan NFT..."
 
@@ -5977,7 +5986,8 @@ msgstr "Ladataan NFT..."
 #~ msgid "Loading NFTs..."
 #~ msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:489
+#: src/components/nfts/NFTPreview.tsx:520
+#: src/components/nfts/NFTPreview.tsx:542
 msgid "Loading preview..."
 msgstr "Ladataan esikatselua..."
 
@@ -5996,7 +6006,7 @@ msgstr "Lataa..."
 msgid "Local"
 msgstr "Paikallinen"
 
-#: src/components/settings/SettingsNFT.tsx:183
+#: src/components/settings/SettingsNFT.tsx:211
 msgid "Local folder"
 msgstr "Paikallinen kansio"
 
@@ -6020,19 +6030,19 @@ msgstr "Kirjaudu Ulos"
 msgid "Log Viewer"
 msgstr "Lokien Näyttö"
 
-#: src/components/nfts/NFTPreview.tsx:415
+#: src/components/nfts/NFTPreview.tsx:439
 msgid "Loop video"
 msgstr ""
 
-#: src/components/settings/SettingsNFT.tsx:131
+#: src/components/settings/SettingsNFT.tsx:137
 msgid "Loop videos"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:411
+#: src/components/nfts/NFTPreview.tsx:435
 msgid "Looping is enabled for all videos in Settings"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:413
+#: src/components/nfts/NFTPreview.tsx:437
 msgid "Looping on"
 msgstr ""
 
@@ -6052,7 +6062,7 @@ msgstr "Hallitse CAT-tokeneita"
 msgid "Manage Farming Rewards"
 msgstr "Hallitse Farmeripalkkioita"
 
-#: src/components/settings/SettingsNFT.tsx:153
+#: src/components/settings/SettingsNFT.tsx:181
 msgid "Manage how and where files are stored on this computer."
 msgstr "Hallitse kuinka ja mihin tiedostot tallennetaan tällä tietokoneella."
 
@@ -6353,7 +6363,7 @@ msgstr "Seuraava"
 #: src/components/offers/NFTOfferEditor.tsx:212
 #: src/components/offers2/OfferBuilderNFTSection.tsx:46
 #: src/components/settings/Settings.tsx:38
-#: src/components/settings/SettingsNFT.tsx:78
+#: src/components/settings/SettingsNFT.tsx:84
 #: src/components/signVerify/SignMessage.tsx:164
 msgid "NFT"
 msgstr "NFT"
@@ -6444,7 +6454,7 @@ msgstr "NFT:n siirto kesken"
 msgid "NFTs"
 msgstr "NFT:t"
 
-#: src/components/settings/SettingsNFT.tsx:103
+#: src/components/settings/SettingsNFT.tsx:109
 msgid "NFTs that have been categorized by the creator as objectionable content will be hidden by default."
 msgstr "NFT:t, jotka niiden tekijä on luokitellut ristiriitaista sisältöä sisältäväksi, piilotetaan oletusarvoisesti."
 
@@ -6485,7 +6495,7 @@ msgstr "Ei tarjouksia"
 #~ msgid "No Custom Permissions"
 #~ msgstr "No Custom Permissions"
 
-#: src/components/nfts/NFTPreview.tsx:494
+#: src/components/nfts/NFTPreview.tsx:525
 msgid "No file available"
 msgstr "Ei tiedostoa saatavilla"
 
@@ -6672,7 +6682,7 @@ msgstr "Vaiheen 3 säikeiden määrä"
 msgid "Objectionable Content"
 msgstr "Kyseenalainen sisältö"
 
-#: src/components/settings/SettingsNFT.tsx:165
+#: src/components/settings/SettingsNFT.tsx:193
 msgid "Occupied space"
 msgstr "Varattu tila"
 
@@ -7383,7 +7393,7 @@ msgstr "Valmistellaan Plot-NFT:tä"
 msgid "Preparing standard wallet"
 msgstr "Valmistellaan normaalia lompakkoa"
 
-#: src/components/nfts/NFTPreview.tsx:273
+#: src/components/nfts/NFTPreview.tsx:286
 #: src/components/offers2/OfferBuilderNFT.tsx:75
 msgid "Preview"
 msgstr "Esikatselu"
@@ -7395,6 +7405,10 @@ msgstr "Esikatselu"
 #: src/components/nfts/NFTDetails.tsx:310
 msgid "Preview image URL {index}"
 msgstr "Esikatselu-URL {index}"
+
+#: src/components/nfts/NFTPreview.tsx:537
+msgid "Preview is not available"
+msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:621
 #~ msgid "Preview URL is not valid"
@@ -8146,6 +8160,10 @@ msgstr "Näytä Tiedot"
 #: src/components/nfts/NFTPreview.tsx:667
 #~ msgid "Show Preview"
 #~ msgstr "Show Preview"
+
+#: src/components/settings/SettingsNFT.tsx:156
+msgid "Show unverified previews"
+msgstr ""
 
 #: src/components/nfts/gallery/NFTGallery.tsx:541
 #~ msgid "Showing {0} of {1} items"
@@ -9138,7 +9156,7 @@ msgstr "Päivitä"
 #~ msgid "Update DID Recovery Ids"
 #~ msgstr "Update DID Recovery Ids"
 
-#: src/components/nfts/NFTHashStatus.tsx:69
+#: src/components/nfts/NFTHashStatus.tsx:70
 msgid "Update Pending"
 msgstr "Odottaa Päivitystä"
 
@@ -9152,7 +9170,7 @@ msgstr "Odottaa Päivitystä"
 msgid "URL"
 msgstr "URL"
 
-#: src/components/nfts/NFTHashStatus.tsx:77
+#: src/components/nfts/NFTHashStatus.tsx:78
 msgid "URL is not valid"
 msgstr "URL ei ole kelvollinen"
 
@@ -9277,7 +9295,7 @@ msgstr "Tarkista Poolin Tiedot"
 msgid "Verify Signature"
 msgstr "Varmenna Allekirjoitus"
 
-#: src/components/nfts/NFTHashStatus.tsx:65
+#: src/components/nfts/NFTHashStatus.tsx:66
 msgid "Verifying hash..."
 msgstr "Tarkistetaan tiivistettä..."
 
@@ -9517,6 +9535,10 @@ msgstr "Paino"
 msgid "Weight is the total added difficulty of all blocks up to and including this one"
 msgstr "Paino on kaikkien tähänastisten lohkojen vaikeuskertoimien summa"
 
+#: src/components/settings/SettingsNFT.tsx:166
+msgid "When an NFT image is too large to verify against its on-chain hash, load the transaction confirmation preview directly from its source URL without verification. When disabled, no preview is shown for these NFTs."
+msgstr ""
+
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:22
 #~ msgid "When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or cancelled, resulting in your spendable balance changing."
 #~ msgstr "When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or canceled, resulting in your spendable balance changing."
@@ -9586,7 +9608,7 @@ msgstr "Kyllä"
 msgid "Yes, Accept Offer"
 msgstr "Kyllä, Hyväksy Tarjous"
 
-#: src/components/settings/SettingsNFT.tsx:58
+#: src/components/settings/SettingsNFT.tsx:64
 msgid "Yes, delete"
 msgstr "Kyllä, poista"
 

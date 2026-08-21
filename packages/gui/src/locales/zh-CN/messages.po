@@ -3416,7 +3416,7 @@ msgstr "高级选项"
 msgid "After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring."
 msgstr "当您的密钥成功迁移到新密钥串后，您可以选择从旧密钥串中移除您的密钥。"
 
-#: src/components/settings/SettingsNFT.tsx:139
+#: src/components/settings/SettingsNFT.tsx:145
 msgid "All NFT videos will restart automatically when they finish playing. When disabled, looping can still be turned on for individual videos from their detail page."
 msgstr ""
 
@@ -3548,7 +3548,7 @@ msgstr "确定要接受此数据层报价吗？"
 msgid "Are you sure you want to cancel your offer?"
 msgstr "你确定要取消你的报价吗？"
 
-#: src/components/settings/SettingsNFT.tsx:64
+#: src/components/settings/SettingsNFT.tsx:70
 msgid "Are you sure you want to delete the NFT cache?"
 msgstr "确定删除NFT缓存吗？"
 
@@ -3777,7 +3777,7 @@ msgstr "通过提供签名地址，可以使用公钥来验证该地址的有效
 msgid "Bypassed Commands"
 msgstr "绕过命令"
 
-#: src/components/settings/SettingsNFT.tsx:150
+#: src/components/settings/SettingsNFT.tsx:178
 msgid "Cache"
 msgstr "缓存"
 
@@ -3855,7 +3855,7 @@ msgid "Challenge Hash"
 msgstr "挑战哈希"
 
 #: src/components/plotNFT/PlotNFTChangePool.tsx:110
-#: src/components/settings/SettingsNFT.tsx:188
+#: src/components/settings/SettingsNFT.tsx:216
 msgid "Change"
 msgstr "变更"
 
@@ -3955,7 +3955,7 @@ msgstr "选择绘图软件"
 msgid "Choose Wallet Mode"
 msgstr "选择钱包模式"
 
-#: src/components/settings/SettingsNFT.tsx:81
+#: src/components/settings/SettingsNFT.tsx:87
 msgid "Choose what you want to see and how you want to view it."
 msgstr "选择想要看的内容以及如何查看它。"
 
@@ -3984,8 +3984,8 @@ msgstr "清除所有已连接应用的每个“始终允许”覆盖设置。重
 msgid "Clear every \"always allow\" override for this app. Future commands will require confirmation again."
 msgstr "清除此应用的所有“始终允许”覆盖设置。未来的命令将再次需要确认。"
 
-#: src/components/settings/SettingsNFT.tsx:57
-#: src/components/settings/SettingsNFT.tsx:170
+#: src/components/settings/SettingsNFT.tsx:63
+#: src/components/settings/SettingsNFT.tsx:198
 msgid "Clear NFT cache"
 msgstr "清除NFT缓存"
 
@@ -4165,7 +4165,7 @@ msgstr "联系人名称"
 msgid "Contacts"
 msgstr "联系人"
 
-#: src/components/nfts/NFTHashStatus.tsx:109
+#: src/components/nfts/NFTHashStatus.tsx:114
 msgid "Content does not match the expected hash value that was specified during NFT minting. The content may have been modified."
 msgstr "文件的哈希值与NFT初始铸造时指定的值不同，可能已被修改。"
 
@@ -4173,7 +4173,7 @@ msgstr "文件的哈希值与NFT初始铸造时指定的值不同，可能已被
 #~ msgid "Content has not been validated against the hash that was specified during NFT minting."
 #~ msgstr ""
 
-#: src/components/nfts/NFTHashStatus.tsx:102
+#: src/components/nfts/NFTHashStatus.tsx:107
 msgid "Content has not been validated against the hash that was specified during NFT minting. Error: {0}"
 msgstr "内容未与在NFT铸造过程中指定的哈希进行验证。错误：{0}"
 
@@ -5152,6 +5152,15 @@ msgstr "报价中包含的手续费:"
 #~ msgid "File"
 #~ msgstr "File"
 
+#: src/components/nfts/NFTPreview.tsx:531
+msgid "File does not match the expected hash"
+msgstr ""
+
+#: src/components/nfts/NFTHashStatus.tsx:82
+#: src/components/nfts/NFTPreview.tsx:250
+msgid "File is not available"
+msgstr ""
+
 #: src/components/plot/PlotHarvesterPlots.tsx:70
 #: src/components/plot/PlotHarvesterPlotsDuplicate.tsx:14
 #: src/components/plot/PlotHarvesterPlotsFailed.tsx:14
@@ -5185,7 +5194,7 @@ msgstr "最终输出文件夹位置"
 msgid "Finished"
 msgstr "已完成"
 
-#: src/components/settings/SettingsNFT.tsx:113
+#: src/components/settings/SettingsNFT.tsx:119
 msgid "Fit images to cards"
 msgstr "使图像适应卡片"
 
@@ -5491,7 +5500,7 @@ msgstr "收割效率"
 #~ msgid "Hash is validated."
 #~ msgstr ""
 
-#: src/components/nfts/NFTHashStatus.tsx:73
+#: src/components/nfts/NFTHashStatus.tsx:74
 msgid "Hash matches"
 msgstr "哈希匹配"
 
@@ -5545,7 +5554,7 @@ msgstr "隐藏  <0/>"
 msgid "Hide"
 msgstr "隐藏"
 
-#: src/components/settings/SettingsNFT.tsx:93
+#: src/components/settings/SettingsNFT.tsx:99
 msgid "Hide objectionable content"
 msgstr "隐藏令人反感的内容"
 
@@ -5615,7 +5624,7 @@ msgstr "如果已经分享了您的报价文件，可能需要提交一笔交易
 #~ msgid "Image Hash Mismatch"
 #~ msgstr "Image Hash Mismatch"
 
-#: src/components/settings/SettingsNFT.tsx:123
+#: src/components/settings/SettingsNFT.tsx:129
 msgid "Images will be scaled to fill the NFT card and ignore their original proportions."
 msgstr "图像将被缩放以填充NFT卡并忽略原始比例."
 
@@ -5716,7 +5725,7 @@ msgstr "目录刷新扫描的时间间隔(以秒为单位)，用于更新可用�
 msgid "Invalid"
 msgstr "无效"
 
-#: src/components/nfts/NFTHashStatus.tsx:80
+#: src/components/nfts/NFTHashStatus.tsx:85
 msgid "Invalid hash"
 msgstr "无效哈希"
 
@@ -5927,7 +5936,7 @@ msgstr "许可证哈希"
 msgid "License URL {0}"
 msgstr "许可证URL {0}"
 
-#: src/components/settings/SettingsNFT.tsx:201
+#: src/components/settings/SettingsNFT.tsx:229
 msgid "Limit cache size"
 msgstr "限制缓存大小"
 
@@ -5968,7 +5977,7 @@ msgstr "正在加载 NFT"
 msgid "Loading NFT Info..."
 msgstr "正在加载NFT信息..."
 
-#: src/components/nfts/NFTPreview.tsx:489
+#: src/components/nfts/NFTPreview.tsx:520
 msgid "Loading NFT..."
 msgstr "正在加载NFT..."
 
@@ -5976,7 +5985,8 @@ msgstr "正在加载NFT..."
 #~ msgid "Loading NFTs..."
 #~ msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:489
+#: src/components/nfts/NFTPreview.tsx:520
+#: src/components/nfts/NFTPreview.tsx:542
 msgid "Loading preview..."
 msgstr "正在加载预览..."
 
@@ -5995,7 +6005,7 @@ msgstr "正在载入……"
 msgid "Local"
 msgstr "本地"
 
-#: src/components/settings/SettingsNFT.tsx:183
+#: src/components/settings/SettingsNFT.tsx:211
 msgid "Local folder"
 msgstr "本地文件夹"
 
@@ -6019,19 +6029,19 @@ msgstr "注销"
 msgid "Log Viewer"
 msgstr "日志查看器"
 
-#: src/components/nfts/NFTPreview.tsx:415
+#: src/components/nfts/NFTPreview.tsx:439
 msgid "Loop video"
 msgstr ""
 
-#: src/components/settings/SettingsNFT.tsx:131
+#: src/components/settings/SettingsNFT.tsx:137
 msgid "Loop videos"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:411
+#: src/components/nfts/NFTPreview.tsx:435
 msgid "Looping is enabled for all videos in Settings"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:413
+#: src/components/nfts/NFTPreview.tsx:437
 msgid "Looping on"
 msgstr ""
 
@@ -6051,7 +6061,7 @@ msgstr "管理资产代币"
 msgid "Manage Farming Rewards"
 msgstr "管理耕种奖励"
 
-#: src/components/settings/SettingsNFT.tsx:153
+#: src/components/settings/SettingsNFT.tsx:181
 msgid "Manage how and where files are stored on this computer."
 msgstr "管理存储本地计算机上的文件。"
 
@@ -6352,7 +6362,7 @@ msgstr "下一步"
 #: src/components/offers/NFTOfferEditor.tsx:212
 #: src/components/offers2/OfferBuilderNFTSection.tsx:46
 #: src/components/settings/Settings.tsx:38
-#: src/components/settings/SettingsNFT.tsx:78
+#: src/components/settings/SettingsNFT.tsx:84
 #: src/components/signVerify/SignMessage.tsx:164
 msgid "NFT"
 msgstr "NFT"
@@ -6443,7 +6453,7 @@ msgstr "NFT 等待传输"
 msgid "NFTs"
 msgstr "NFT"
 
-#: src/components/settings/SettingsNFT.tsx:103
+#: src/components/settings/SettingsNFT.tsx:109
 msgid "NFTs that have been categorized by the creator as objectionable content will be hidden by default."
 msgstr "由创建者标注为不宜展示的NFT将被默认隐藏。"
 
@@ -6484,7 +6494,7 @@ msgstr "当前没有报价"
 #~ msgid "No Custom Permissions"
 #~ msgstr "No Custom Permissions"
 
-#: src/components/nfts/NFTPreview.tsx:494
+#: src/components/nfts/NFTPreview.tsx:525
 msgid "No file available"
 msgstr "没有可用文件"
 
@@ -6671,7 +6681,7 @@ msgstr "第3阶段的线程数"
 msgid "Objectionable Content"
 msgstr "令人反感的内容"
 
-#: src/components/settings/SettingsNFT.tsx:165
+#: src/components/settings/SettingsNFT.tsx:193
 msgid "Occupied space"
 msgstr "已占用空间"
 
@@ -7382,7 +7392,7 @@ msgstr "正在准备联合耕种农田"
 msgid "Preparing standard wallet"
 msgstr "正在准备标准钱包"
 
-#: src/components/nfts/NFTPreview.tsx:273
+#: src/components/nfts/NFTPreview.tsx:286
 #: src/components/offers2/OfferBuilderNFT.tsx:75
 msgid "Preview"
 msgstr "预览"
@@ -7394,6 +7404,10 @@ msgstr "预览"
 #: src/components/nfts/NFTDetails.tsx:310
 msgid "Preview image URL {index}"
 msgstr "图片预览网址{index}"
+
+#: src/components/nfts/NFTPreview.tsx:537
+msgid "Preview is not available"
+msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:621
 #~ msgid "Preview URL is not valid"
@@ -8145,6 +8159,10 @@ msgstr "显示详情"
 #: src/components/nfts/NFTPreview.tsx:667
 #~ msgid "Show Preview"
 #~ msgstr "Show Preview"
+
+#: src/components/settings/SettingsNFT.tsx:156
+msgid "Show unverified previews"
+msgstr ""
 
 #: src/components/nfts/gallery/NFTGallery.tsx:541
 #~ msgid "Showing {0} of {1} items"
@@ -9137,7 +9155,7 @@ msgstr "更新"
 #~ msgid "Update DID Recovery Ids"
 #~ msgstr "Update DID Recovery Ids"
 
-#: src/components/nfts/NFTHashStatus.tsx:69
+#: src/components/nfts/NFTHashStatus.tsx:70
 msgid "Update Pending"
 msgstr "等待更新状态"
 
@@ -9151,7 +9169,7 @@ msgstr "等待更新状态"
 msgid "URL"
 msgstr "网址"
 
-#: src/components/nfts/NFTHashStatus.tsx:77
+#: src/components/nfts/NFTHashStatus.tsx:78
 msgid "URL is not valid"
 msgstr "网址无效"
 
@@ -9276,7 +9294,7 @@ msgstr "验证联合耕种池详情"
 msgid "Verify Signature"
 msgstr "验证签名"
 
-#: src/components/nfts/NFTHashStatus.tsx:65
+#: src/components/nfts/NFTHashStatus.tsx:66
 msgid "Verifying hash..."
 msgstr "正在验证哈希值..."
 
@@ -9516,6 +9534,10 @@ msgstr "权重"
 msgid "Weight is the total added difficulty of all blocks up to and including this one"
 msgstr "权重是施加给所有块包括目前这块的额外的困难度."
 
+#: src/components/settings/SettingsNFT.tsx:166
+msgid "When an NFT image is too large to verify against its on-chain hash, load the transaction confirmation preview directly from its source URL without verification. When disabled, no preview is shown for these NFTs."
+msgstr ""
+
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:22
 #~ msgid "When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or cancelled, resulting in your spendable balance changing."
 #~ msgstr "When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or canceled, resulting in your spendable balance changing."
@@ -9585,7 +9607,7 @@ msgstr "是"
 msgid "Yes, Accept Offer"
 msgstr "接受报价"
 
-#: src/components/settings/SettingsNFT.tsx:58
+#: src/components/settings/SettingsNFT.tsx:64
 msgid "Yes, delete"
 msgstr "确定删除"
 

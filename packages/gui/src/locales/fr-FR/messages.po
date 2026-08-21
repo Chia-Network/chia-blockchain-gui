@@ -3414,7 +3414,7 @@ msgstr "Avancé"
 msgid "After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring."
 msgstr "Une fois vos clés migrées vers le nouveau trousseau, vous pourrez choisir de les supprimer de l'ancien trousseau."
 
-#: src/components/settings/SettingsNFT.tsx:139
+#: src/components/settings/SettingsNFT.tsx:145
 msgid "All NFT videos will restart automatically when they finish playing. When disabled, looping can still be turned on for individual videos from their detail page."
 msgstr ""
 
@@ -3546,7 +3546,7 @@ msgstr ""
 msgid "Are you sure you want to cancel your offer?"
 msgstr "Êtes-vous sûr de vouloir annuler votre offre ?"
 
-#: src/components/settings/SettingsNFT.tsx:64
+#: src/components/settings/SettingsNFT.tsx:70
 msgid "Are you sure you want to delete the NFT cache?"
 msgstr "Êtes-vous sûr de vouloir supprimer le cache NFT ?"
 
@@ -3775,7 +3775,7 @@ msgstr "En fournissant une adresse de signature, la clé publique peut être val
 msgid "Bypassed Commands"
 msgstr ""
 
-#: src/components/settings/SettingsNFT.tsx:150
+#: src/components/settings/SettingsNFT.tsx:178
 msgid "Cache"
 msgstr "Cache"
 
@@ -3853,7 +3853,7 @@ msgid "Challenge Hash"
 msgstr "Hash du défi"
 
 #: src/components/plotNFT/PlotNFTChangePool.tsx:110
-#: src/components/settings/SettingsNFT.tsx:188
+#: src/components/settings/SettingsNFT.tsx:216
 msgid "Change"
 msgstr "Modifier"
 
@@ -3953,7 +3953,7 @@ msgstr "Choisissez le traceur"
 msgid "Choose Wallet Mode"
 msgstr "Choisir le mode Portefeuille"
 
-#: src/components/settings/SettingsNFT.tsx:81
+#: src/components/settings/SettingsNFT.tsx:87
 msgid "Choose what you want to see and how you want to view it."
 msgstr "Choisissez ce que vous voulez voir, et la manière de l'afficher."
 
@@ -3982,8 +3982,8 @@ msgstr ""
 msgid "Clear every \"always allow\" override for this app. Future commands will require confirmation again."
 msgstr ""
 
-#: src/components/settings/SettingsNFT.tsx:57
-#: src/components/settings/SettingsNFT.tsx:170
+#: src/components/settings/SettingsNFT.tsx:63
+#: src/components/settings/SettingsNFT.tsx:198
 msgid "Clear NFT cache"
 msgstr "Vider le cache NFT"
 
@@ -4163,7 +4163,7 @@ msgstr "Nom du contact"
 msgid "Contacts"
 msgstr "Contacts"
 
-#: src/components/nfts/NFTHashStatus.tsx:109
+#: src/components/nfts/NFTHashStatus.tsx:114
 msgid "Content does not match the expected hash value that was specified during NFT minting. The content may have been modified."
 msgstr "Le hash du contenu ne correspond pas à la valeur spécifiée pendant la frappe du NFT. Le contenu peut avoir été modifié."
 
@@ -4171,7 +4171,7 @@ msgstr "Le hash du contenu ne correspond pas à la valeur spécifiée pendant la
 #~ msgid "Content has not been validated against the hash that was specified during NFT minting."
 #~ msgstr ""
 
-#: src/components/nfts/NFTHashStatus.tsx:102
+#: src/components/nfts/NFTHashStatus.tsx:107
 msgid "Content has not been validated against the hash that was specified during NFT minting. Error: {0}"
 msgstr "Le contenu n'a pas été validé par rapport au hachage spécifié pendant la frappe du NFT. Erreur : {0}"
 
@@ -5150,6 +5150,15 @@ msgstr "Frais inclus dans l'offre :"
 #~ msgid "File"
 #~ msgstr "File"
 
+#: src/components/nfts/NFTPreview.tsx:531
+msgid "File does not match the expected hash"
+msgstr ""
+
+#: src/components/nfts/NFTHashStatus.tsx:82
+#: src/components/nfts/NFTPreview.tsx:250
+msgid "File is not available"
+msgstr ""
+
 #: src/components/plot/PlotHarvesterPlots.tsx:70
 #: src/components/plot/PlotHarvesterPlotsDuplicate.tsx:14
 #: src/components/plot/PlotHarvesterPlotsFailed.tsx:14
@@ -5183,7 +5192,7 @@ msgstr "Emplacement du dossier final"
 msgid "Finished"
 msgstr "Terminé"
 
-#: src/components/settings/SettingsNFT.tsx:113
+#: src/components/settings/SettingsNFT.tsx:119
 msgid "Fit images to cards"
 msgstr "Ajuster les images aux cadres"
 
@@ -5489,7 +5498,7 @@ msgstr ""
 #~ msgid "Hash is validated."
 #~ msgstr ""
 
-#: src/components/nfts/NFTHashStatus.tsx:73
+#: src/components/nfts/NFTHashStatus.tsx:74
 msgid "Hash matches"
 msgstr "Le hachage correspond"
 
@@ -5543,7 +5552,7 @@ msgstr "Cachés  <0/>"
 msgid "Hide"
 msgstr "Masquer"
 
-#: src/components/settings/SettingsNFT.tsx:93
+#: src/components/settings/SettingsNFT.tsx:99
 msgid "Hide objectionable content"
 msgstr "Masquer le contenu inapproprié"
 
@@ -5613,7 +5622,7 @@ msgstr "Si vous avez déjà partagé votre fichier d'offre, vous devrez soumettr
 #~ msgid "Image Hash Mismatch"
 #~ msgstr "Image Hash Mismatch"
 
-#: src/components/settings/SettingsNFT.tsx:123
+#: src/components/settings/SettingsNFT.tsx:129
 msgid "Images will be scaled to fill the NFT card and ignore their original proportions."
 msgstr "Les images seront mises à l'échelle pour remplir le cadre du NFT et ignorer leurs proportions d'origine."
 
@@ -5714,7 +5723,7 @@ msgstr ""
 msgid "Invalid"
 msgstr "Invalide"
 
-#: src/components/nfts/NFTHashStatus.tsx:80
+#: src/components/nfts/NFTHashStatus.tsx:85
 msgid "Invalid hash"
 msgstr "Hachage invalide"
 
@@ -5925,7 +5934,7 @@ msgstr ""
 msgid "License URL {0}"
 msgstr "URL de la Licence {0}"
 
-#: src/components/settings/SettingsNFT.tsx:201
+#: src/components/settings/SettingsNFT.tsx:229
 msgid "Limit cache size"
 msgstr "Limiter la taille du cache"
 
@@ -5966,7 +5975,7 @@ msgstr "Chargement des NFT"
 msgid "Loading NFT Info..."
 msgstr "Chargement des informations du NFT..."
 
-#: src/components/nfts/NFTPreview.tsx:489
+#: src/components/nfts/NFTPreview.tsx:520
 msgid "Loading NFT..."
 msgstr ""
 
@@ -5974,7 +5983,8 @@ msgstr ""
 #~ msgid "Loading NFTs..."
 #~ msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:489
+#: src/components/nfts/NFTPreview.tsx:520
+#: src/components/nfts/NFTPreview.tsx:542
 msgid "Loading preview..."
 msgstr ""
 
@@ -5993,7 +6003,7 @@ msgstr "Chargement..."
 msgid "Local"
 msgstr "Local"
 
-#: src/components/settings/SettingsNFT.tsx:183
+#: src/components/settings/SettingsNFT.tsx:211
 msgid "Local folder"
 msgstr "Dossier local"
 
@@ -6017,19 +6027,19 @@ msgstr ""
 msgid "Log Viewer"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:415
+#: src/components/nfts/NFTPreview.tsx:439
 msgid "Loop video"
 msgstr ""
 
-#: src/components/settings/SettingsNFT.tsx:131
+#: src/components/settings/SettingsNFT.tsx:137
 msgid "Loop videos"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:411
+#: src/components/nfts/NFTPreview.tsx:435
 msgid "Looping is enabled for all videos in Settings"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:413
+#: src/components/nfts/NFTPreview.tsx:437
 msgid "Looping on"
 msgstr ""
 
@@ -6049,7 +6059,7 @@ msgstr "Gestion des jetons CAT"
 msgid "Manage Farming Rewards"
 msgstr "Gérer les récompenses de culture"
 
-#: src/components/settings/SettingsNFT.tsx:153
+#: src/components/settings/SettingsNFT.tsx:181
 msgid "Manage how and where files are stored on this computer."
 msgstr "Gérer comment et où les fichiers sont stockés sur cet ordinateur."
 
@@ -6350,7 +6360,7 @@ msgstr "Suivant"
 #: src/components/offers/NFTOfferEditor.tsx:212
 #: src/components/offers2/OfferBuilderNFTSection.tsx:46
 #: src/components/settings/Settings.tsx:38
-#: src/components/settings/SettingsNFT.tsx:78
+#: src/components/settings/SettingsNFT.tsx:84
 #: src/components/signVerify/SignMessage.tsx:164
 msgid "NFT"
 msgstr "NFT"
@@ -6441,7 +6451,7 @@ msgstr "Transfert du NFT en attente"
 msgid "NFTs"
 msgstr "NFT"
 
-#: src/components/settings/SettingsNFT.tsx:103
+#: src/components/settings/SettingsNFT.tsx:109
 msgid "NFTs that have been categorized by the creator as objectionable content will be hidden by default."
 msgstr "Les NFT catégorisés comme contenu sensible par le créateur seront masqués par défaut."
 
@@ -6482,7 +6492,7 @@ msgstr "Aucune offre en cours"
 #~ msgid "No Custom Permissions"
 #~ msgstr "No Custom Permissions"
 
-#: src/components/nfts/NFTPreview.tsx:494
+#: src/components/nfts/NFTPreview.tsx:525
 msgid "No file available"
 msgstr "Aucun fichier trouvé"
 
@@ -6669,7 +6679,7 @@ msgstr "Nombre de threads pour la phase 3"
 msgid "Objectionable Content"
 msgstr "Contenu sensible"
 
-#: src/components/settings/SettingsNFT.tsx:165
+#: src/components/settings/SettingsNFT.tsx:193
 msgid "Occupied space"
 msgstr "Espace occupé"
 
@@ -7380,7 +7390,7 @@ msgstr "Préparation du NFT de parcelles"
 msgid "Preparing standard wallet"
 msgstr "Préparation du portefeuille standard"
 
-#: src/components/nfts/NFTPreview.tsx:273
+#: src/components/nfts/NFTPreview.tsx:286
 #: src/components/offers2/OfferBuilderNFT.tsx:75
 msgid "Preview"
 msgstr "Aperçu"
@@ -7391,6 +7401,10 @@ msgstr "Aperçu"
 
 #: src/components/nfts/NFTDetails.tsx:310
 msgid "Preview image URL {index}"
+msgstr ""
+
+#: src/components/nfts/NFTPreview.tsx:537
+msgid "Preview is not available"
 msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:621
@@ -8143,6 +8157,10 @@ msgstr "Voir les détails"
 #: src/components/nfts/NFTPreview.tsx:667
 #~ msgid "Show Preview"
 #~ msgstr "Show Preview"
+
+#: src/components/settings/SettingsNFT.tsx:156
+msgid "Show unverified previews"
+msgstr ""
 
 #: src/components/nfts/gallery/NFTGallery.tsx:541
 #~ msgid "Showing {0} of {1} items"
@@ -9135,7 +9153,7 @@ msgstr ""
 #~ msgid "Update DID Recovery Ids"
 #~ msgstr "Update DID Recovery Ids"
 
-#: src/components/nfts/NFTHashStatus.tsx:69
+#: src/components/nfts/NFTHashStatus.tsx:70
 msgid "Update Pending"
 msgstr "Mise à jour en attente"
 
@@ -9149,7 +9167,7 @@ msgstr "Mise à jour en attente"
 msgid "URL"
 msgstr ""
 
-#: src/components/nfts/NFTHashStatus.tsx:77
+#: src/components/nfts/NFTHashStatus.tsx:78
 msgid "URL is not valid"
 msgstr "L'URL n'est pas valide"
 
@@ -9274,7 +9292,7 @@ msgstr "Vérifier les détails du pool"
 msgid "Verify Signature"
 msgstr ""
 
-#: src/components/nfts/NFTHashStatus.tsx:65
+#: src/components/nfts/NFTHashStatus.tsx:66
 msgid "Verifying hash..."
 msgstr "Validation du hash..."
 
@@ -9514,6 +9532,10 @@ msgstr "Poids"
 msgid "Weight is the total added difficulty of all blocks up to and including this one"
 msgstr "Le poids est la difficulté totale de tous les blocs, celui-ci inclus"
 
+#: src/components/settings/SettingsNFT.tsx:166
+msgid "When an NFT image is too large to verify against its on-chain hash, load the transaction confirmation preview directly from its source URL without verification. When disabled, no preview is shown for these NFTs."
+msgstr ""
+
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:22
 #~ msgid "When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or cancelled, resulting in your spendable balance changing."
 #~ msgstr "When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or canceled, resulting in your spendable balance changing."
@@ -9583,7 +9605,7 @@ msgstr ""
 msgid "Yes, Accept Offer"
 msgstr "Oui, Accepter l'offre"
 
-#: src/components/settings/SettingsNFT.tsx:58
+#: src/components/settings/SettingsNFT.tsx:64
 msgid "Yes, delete"
 msgstr "Oui, supprimer"
 
