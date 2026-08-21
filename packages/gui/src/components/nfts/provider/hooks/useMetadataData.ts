@@ -174,12 +174,20 @@ export default function useMetadataData(props: UseMetadataDataProps) {
     // metadata fetch stayed cached here and its NFT kept looking broken
     // after enabling the option, until a full app reload. Only failures are
     // retried: successfully fetched metadata is hash-verified content and
-    // unaffected by how it was fetched.
+    // unaffected by how it was fetched. A fetch that is still in flight
+    // started under the old preference and may fail because of it — after
+    // this effect has run, nothing else would retry that failure — so it is
+    // retried on rejection; a result that arrives successfully is kept.
     metadatasOnDemand.forEach((metadataOnDemand, nftId) => {
-      if (metadataOnDemand.error) {
+      const retry = () =>
         invalidate(nftId).catch((e) => {
           log(`Error retrying metadata for nftId: ${nftId}`, e);
         });
+
+      if (metadataOnDemand.error) {
+        retry();
+      } else if (metadataOnDemand.promise) {
+        metadataOnDemand.promise.catch(retry);
       }
     });
   }, [ipfsGateway, invalidate /* immutable */, metadatasOnDemand /* immutable */]);
