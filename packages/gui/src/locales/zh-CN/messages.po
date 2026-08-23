@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-08-02 00:21\n"
+"PO-Revision-Date: 2026-08-23 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -2705,12 +2705,9 @@ msgstr "为以下命令保存偏好吗？"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:697
-msgid ""
-"These commands will be executed without confirmation in the future:\n"
-"\n"
+msgid "These commands will be executed without confirmation in the future:\n\n"
 " {commands}"
-msgstr ""
-"这些命令将无需确认即可执行：\n"
+msgstr "这些命令将无需确认即可执行：\n"
 "{commands}"
 
 #. js-lingui-explicit-id
@@ -3418,7 +3415,7 @@ msgstr "当您的密钥成功迁移到新密钥串后，您可以选择从旧密
 
 #: src/components/settings/SettingsNFT.tsx:145
 msgid "All NFT videos will restart automatically when they finish playing. When disabled, looping can still be turned on for individual videos from their detail page."
-msgstr ""
+msgstr "所有 NFT 视频在播放结束后会自动重新开始播放。禁用此功能后，仍可在单个视频的详情页中为其单独开启循环播放。"
 
 #: src/components/nfts/NFTProfileDropdown.tsx:102
 #: src/components/nfts/NFTProfileDropdown.tsx:115
@@ -5154,12 +5151,12 @@ msgstr "报价中包含的手续费:"
 
 #: src/components/nfts/NFTPreview.tsx:531
 msgid "File does not match the expected hash"
-msgstr ""
+msgstr "文件与预期哈希不匹配"
 
 #: src/components/nfts/NFTHashStatus.tsx:82
 #: src/components/nfts/NFTPreview.tsx:250
 msgid "File is not available"
-msgstr ""
+msgstr "文件不可用"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:70
 #: src/components/plot/PlotHarvesterPlotsDuplicate.tsx:14
@@ -5688,20 +5685,16 @@ msgstr "正在初始化..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"可用资金不足，无法接受报价。请确保您的\n"
+msgstr "可用资金不足，无法接受报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
 #: src/components/offers/OfferEditor.tsx:127
 #: src/components/offers2/CreateOfferBuilder.tsx:145
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"可用的资金不足，无法创建报价。请确保您的\n"
+msgstr "可用的资金不足，无法创建报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
 #: src/components/farm/PoolingHealth.tsx:302
@@ -6031,19 +6024,19 @@ msgstr "日志查看器"
 
 #: src/components/nfts/NFTPreview.tsx:439
 msgid "Loop video"
-msgstr ""
+msgstr "循环播放视频"
 
 #: src/components/settings/SettingsNFT.tsx:137
 msgid "Loop videos"
-msgstr ""
+msgstr "循环播放视频"
 
 #: src/components/nfts/NFTPreview.tsx:435
 msgid "Looping is enabled for all videos in Settings"
-msgstr ""
+msgstr "已在设置中为所有视频启用循环播放"
 
 #: src/components/nfts/NFTPreview.tsx:437
 msgid "Looping on"
-msgstr ""
+msgstr "循环播放已开启"
 
 #: src/constants/WalletConnectCommands.tsx:1574
 #~ msgid "Make DataLayer Offer"
@@ -7407,7 +7400,7 @@ msgstr "图片预览网址{index}"
 
 #: src/components/nfts/NFTPreview.tsx:537
 msgid "Preview is not available"
-msgstr ""
+msgstr "预览不可用"
 
 #: src/components/nfts/NFTPreview.tsx:621
 #~ msgid "Preview URL is not valid"
@@ -7575,7 +7568,7 @@ msgstr "刷新 NFT 数据"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:295
 msgid "Refresh NFTs"
-msgstr ""
+msgstr "刷新 NFT"
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:46
 #: src/components/plot/overview/PlotOverviewPlots.tsx:63
@@ -8162,7 +8155,7 @@ msgstr "显示详情"
 
 #: src/components/settings/SettingsNFT.tsx:156
 msgid "Show unverified previews"
-msgstr ""
+msgstr "显示未验证的预览"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:541
 #~ msgid "Showing {0} of {1} items"
@@ -9536,7 +9529,7 @@ msgstr "权重是施加给所有块包括目前这块的额外的困难度."
 
 #: src/components/settings/SettingsNFT.tsx:166
 msgid "When an NFT image is too large to verify against its on-chain hash, load the transaction confirmation preview directly from its source URL without verification. When disabled, no preview is shown for these NFTs."
-msgstr ""
+msgstr "当 NFT 图像过大，无法根据其链上哈希进行验证时，将直接从其来源 URL 加载交易确认预览，跳过验证。禁用此选项后，将不为这些 NFT 显示任何预览。"
 
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:22
 #~ msgid "When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or cancelled, resulting in your spendable balance changing."
@@ -9755,3 +9748,4 @@ msgstr "可用余额必须大于1 mojo才能创建个人资料"
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "需确保钱包正在运行才能完成自动确认。"
+
