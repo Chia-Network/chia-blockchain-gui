@@ -2,8 +2,10 @@ import crypto from 'node:crypto';
 
 import type Headers from '../../@types/Headers';
 import compareChecksums from '../../util/compareChecksums';
+import { isIpfsUrl } from '../../util/ipfs';
 import allowUnverifiedNftPreviews from '../utils/allowUnverifiedNftPreviews';
 import fetchBuffer, { MaxSizeExceededError } from '../utils/fetchBuffer';
+import maybeIpfsToGatewayUrl from '../utils/ipfsGateway';
 
 const METADATA_TIMEOUT = 10_000;
 const METADATA_MAX_SIZE = 5 * 1024 * 1024;
@@ -103,8 +105,12 @@ export async function nftGetImageDataUrl(
     // behavior for these files. Off by default: the response's size and type
     // claims are attacker-controlled, so the fallback can be triggered
     // deliberately to place unverified content in a confirmation dialog.
+    // The CSP does not allow the ipfs: scheme either, so ipfs URIs fall back
+    // to their gateway form, and only when the user has also enabled the
+    // gateway — otherwise they get no preview rather than a CSP-blocked URL.
     if (error instanceof MaxSizeExceededError && getImageContentType(error.headers) && allowUnverifiedNftPreviews()) {
-      return imageUri;
+      const directUrl = maybeIpfsToGatewayUrl(imageUri);
+      return isIpfsUrl(directUrl) ? undefined : directUrl;
     }
 
     // image previews are best effort — the confirmation dialog has a fallback

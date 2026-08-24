@@ -29,6 +29,7 @@ import type { PermissionsNotificationPayload } from '../@types/PermissionsServic
 import { WcError, WcErrorCode, encodeWcErrorForIpc } from '../@types/WcError';
 import AppIcon from '../assets/img/chia64x64.png';
 import { i18n } from '../config/locales';
+import { isIpfsUrl } from '../util/ipfs';
 
 import CacheManager, { CACHE_PROTOCOL } from './CacheManager';
 import { checkNFTOwnership } from './api/checkNFTOwnership';
@@ -61,6 +62,7 @@ import { dispatchPairRequest } from './utils/dispatchPairRequest';
 import downloadFile from './utils/downloadFile';
 import fetchJSON from './utils/fetchJSON';
 import ipcMainHandle from './utils/ipcMainHandle';
+import maybeIpfsToGatewayUrl from './utils/ipfsGateway';
 import isValidURL from './utils/isValidURL';
 import { loadConfig, checkConfigFileExists } from './utils/loadConfig';
 import { getDefaultLogPath, LogPathValidationError, resolveTrustedLogPath } from './utils/logPath';
@@ -575,7 +577,17 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
         return;
       }
 
-      mainWindow.webContents.downloadURL(urlLocal);
+      // Chromium's downloader cannot fetch the ipfs: scheme; when the user
+      // has enabled the gateway, download ipfs URIs through it like every
+      // other network path. With the option off there is nothing the
+      // downloader could fetch, so the request is dropped instead of handing
+      // Chromium a URL it silently fails on.
+      const downloadUrl = maybeIpfsToGatewayUrl(urlLocal);
+      if (isIpfsUrl(downloadUrl)) {
+        return;
+      }
+
+      mainWindow.webContents.downloadURL(downloadUrl);
     });
 
     ipcMainHandle(AppAPI.START_MULTIPLE_DOWNLOAD, async (tasks: { url: string; filename: string }[]) => {

@@ -7,7 +7,6 @@ import path from 'node:path';
 import { Readable } from 'node:stream';
 
 import debug from 'debug';
-import isURL from 'validator/lib/isURL';
 
 import type CacheInfo from '../@types/CacheInfo';
 import type CacheInfoBase from '../@types/CacheInfoBase';
@@ -20,6 +19,7 @@ import downloadFile, { MAX_FILE_SIZE_EXCEEDED_ERROR } from './utils/downloadFile
 import ensureDirectoryExists from './utils/ensureDirectoryExists';
 import getChecksum from './utils/getChecksum';
 import ipcMainHandle from './utils/ipcMainHandle';
+import { IpfsGatewayDisabledError } from './utils/ipfsGateway';
 import isValidURL from './utils/isValidURL';
 import sanitizeFilename from './utils/sanitizeFilename';
 import sanitizeNumber from './utils/sanitizeNumber';
@@ -435,7 +435,7 @@ export default class CacheManager extends EventEmitter {
 
         const normalizedURL = decodeURI(url) === url ? encodeURI(url) : url;
 
-        if (!isURL(normalizedURL)) {
+        if (!isValidURL(normalizedURL)) {
           throw new Error(`Invalid URL: ${normalizedURL}`);
         }
 
@@ -507,6 +507,15 @@ export default class CacheManager extends EventEmitter {
 
         return await this.#downloadLimit<CacheInfo>(() => limitedRemoteFileDownload());
       } catch (error) {
+        // Not a property of the URL, just of the current preference: while
+        // the IPFS gateway option is off the fetch is refused before it
+        // starts. Persisting that as a cache error would keep the entry
+        // poisoned after the user turns the option on, so it propagates
+        // instead — already-cached content was served above regardless.
+        if (error instanceof IpfsGatewayDisabledError) {
+          throw error;
+        }
+
         const currentError = (error as Error) ?? new Error('Unknown fetchRemoteContent error');
 
         return await this.setCacheInfo(url, {

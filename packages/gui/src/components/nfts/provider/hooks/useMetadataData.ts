@@ -2,12 +2,13 @@ import { EventEmitter } from 'events';
 
 import { type NFTInfo } from '@chia-network/api';
 import debug from 'debug';
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useEffect, useMemo, useRef } from 'react';
 
 import type Metadata from '../../../../@types/Metadata';
 import type MetadataOnDemand from '../../../../@types/MetadataOnDemand';
 import type MetadataState from '../../../../@types/MetadataState';
 import useFetchAndProcessMetadata from '../../../../hooks/useFetchAndProcessMetadata';
+import useIpfsGateway from '../../../../hooks/useIpfsGateway';
 import getNFTId from '../../../../util/getNFTId';
 
 const log = debug('chia-gui:NFTProvider:useMetadataData');
@@ -158,6 +159,52 @@ export default function useMetadataData(props: UseMetadataDataProps) {
     },
     [getMetadata /* immutable */, metadatasOnDemand /* immutable */],
   );
+
+  const [ipfsGateway] = useIpfsGateway();
+  const lastIpfsGatewayRef = useRef(ipfsGateway);
+
+  useEffect(() => {
+    if (lastIpfsGatewayRef.current === ipfsGateway) {
+      return;
+    }
+    lastIpfsGatewayRef.current = ipfsGateway;
+
+    // Flipping the gateway option changes which URIs the main process will
+    // fetch, so cached failures are stale — without this, a failed ipfs
+    // metadata fetch stayed cached here and its NFT kept looking broken
+    // after enabling the option, until a full app reload. Only failures are
+    // retried: successfully fetched metadata is hash-verified content and
+    // unaffected by how it was fetched. A fetch that is still in flight
+    // started under the old preference and may fail because of it — after
+    // this effect has run, nothing else would retry that failure — so it is
+    // retried on rejection; a result that arrives successfully is kept.
+    //
+    // Iterate a snapshot: retrying an errored entry re-inserts its key with a
+    // fresh in-flight promise synchronously, and Map.forEach revisits keys
+    // re-added during the pass — the live map would attach a rejection retry
+    // to the very fetch this effect just started, double-fetching a failure.
+    Array.from(metadatasOnDemand.entries()).forEach(([nftId, metadataOnDemand]) => {
+      const retry = () =>
+        invalidate(nftId).catch((e) => {
+          log(`Error retrying metadata for nftId: ${nftId}`, e);
+        });
+
+      if (metadataOnDemand.error) {
+        retry();
+      } else if (metadataOnDemand.promise) {
+        metadataOnDemand.promise.catch((e) => {
+          // Retry only the failure this handler saw. The fetch's own catch
+          // stores its rejection as the entry's error, so anything else here
+          // means the entry has moved on — a stacked handler from another
+          // toggle already retried it, or a newer fetch succeeded — and a
+          // retry would discard that state and fetch again for nothing.
+          if (metadatasOnDemand.get(nftId)?.error === e) {
+            retry();
+          }
+        });
+      }
+    });
+  }, [ipfsGateway, invalidate /* immutable */, metadatasOnDemand /* immutable */]);
 
   // immutable function
   const subscribeToMetadataChanges = useCallback(

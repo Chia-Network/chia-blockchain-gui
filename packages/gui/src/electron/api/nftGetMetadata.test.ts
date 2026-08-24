@@ -11,6 +11,13 @@ jest.mock('../utils/fetchBuffer', () => ({
     jest.requireActual<typeof import('../utils/fetchBuffer')>('../utils/fetchBuffer').MaxSizeExceededError,
 }));
 
+const mockMaybeIpfsToGatewayUrl = jest.fn<string, [string]>();
+
+jest.mock('../utils/ipfsGateway', () => ({
+  __esModule: true,
+  default: mockMaybeIpfsToGatewayUrl,
+}));
+
 const mockAllowUnverifiedNftPreviews = jest.fn<boolean, []>();
 
 jest.mock('../utils/allowUnverifiedNftPreviews', () => ({
@@ -19,6 +26,8 @@ jest.mock('../utils/allowUnverifiedNftPreviews', () => ({
 }));
 
 const { MaxSizeExceededError } = jest.requireActual<typeof import('../utils/fetchBuffer')>('../utils/fetchBuffer');
+
+const ipfsToGatewayUrl = jest.requireActual<typeof import('../../util/ipfs')>('../../util/ipfs').default;
 
 const { nftGetImageDataUrl, nftGetMetadata } =
   jest.requireActual<typeof import('./nftGetMetadata')>('./nftGetMetadata');
@@ -66,6 +75,9 @@ describe('nftGetMetadata', () => {
 describe('nftGetImageDataUrl', () => {
   beforeEach(() => {
     mockFetchBuffer.mockReset();
+    mockMaybeIpfsToGatewayUrl.mockReset();
+    // gateway option off: URLs pass through untranslated
+    mockMaybeIpfsToGatewayUrl.mockImplementation((url) => url);
     mockAllowUnverifiedNftPreviews.mockReset();
     mockAllowUnverifiedNftPreviews.mockReturnValue(false);
   });
@@ -122,6 +134,47 @@ describe('nftGetImageDataUrl', () => {
     await expect(nftGetImageDataUrl('https://example.com/large.gif', '00')).resolves.toBe(
       'https://example.com/large.gif',
     );
+  });
+
+  it('falls back to the gateway URL for an oversized ipfs image when both options are on', async () => {
+    mockAllowUnverifiedNftPreviews.mockReturnValue(true);
+    mockMaybeIpfsToGatewayUrl.mockImplementation(ipfsToGatewayUrl);
+    mockFetchBuffer.mockRejectedValue(
+      new MaxSizeExceededError({
+        'content-type': 'image/gif',
+      }),
+    );
+
+    // the dialog CSP only allows https: and data: images, so the raw ipfs
+    // URI would render as a broken image
+    await expect(nftGetImageDataUrl('ipfs://bafybeigdyrztest/large.gif', '00')).resolves.toBe(
+      'https://ipfs.io/ipfs/bafybeigdyrztest/large.gif',
+    );
+  });
+
+  it('omits the preview for an oversized ipfs image while the gateway option is off', async () => {
+    mockAllowUnverifiedNftPreviews.mockReturnValue(true);
+    mockFetchBuffer.mockRejectedValue(
+      new MaxSizeExceededError({
+        'content-type': 'image/gif',
+      }),
+    );
+
+    // an untranslated ipfs URI would be blocked by the dialog CSP, so no
+    // preview is returned at all even though unverified previews are allowed
+    await expect(nftGetImageDataUrl('ipfs://bafybeigdyrztest/large.gif', '00')).resolves.toBeUndefined();
+  });
+
+  it('omits the preview for an oversized ipfs image while unverified previews are off', async () => {
+    mockMaybeIpfsToGatewayUrl.mockImplementation(ipfsToGatewayUrl);
+    mockFetchBuffer.mockRejectedValue(
+      new MaxSizeExceededError({
+        'content-type': 'image/gif',
+      }),
+    );
+
+    // the gateway option alone does not opt into unverified fallbacks
+    await expect(nftGetImageDataUrl('ipfs://bafybeigdyrztest/large.gif', '00')).resolves.toBeUndefined();
   });
 
   it('rejects an oversized response that is not an image even when unverified previews are enabled', async () => {
