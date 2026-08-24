@@ -572,4 +572,3 @@ msgstr "您目前的版本："
 #: src/hooks/useKeyringMigrationPrompt.tsx:21
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr "您的金鑰尚未遷移到新的金鑰圈。在遷移完成之前，您將無法建立新金鑰或刪除現有金鑰。您想現在遷移金鑰嗎？"
-

@@ -1618,7 +1618,7 @@ msgstr ""
 #: src/electron/commands/Commands.ts:1434
 #: src/electron/dialogs/Confirm/Confirm.tsx:438
 #: src/electron/dialogs/Pair/Pair.tsx:377
-#: src/electron/main.tsx:1109
+#: src/electron/main.tsx:1121
 msgid "Cancel"
 msgstr "Cancel"
 
@@ -2441,7 +2441,7 @@ msgstr "Non Observer Derivation"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/humanizeCommand.ts:20
-#: src/electron/main.tsx:942
+#: src/electron/main.tsx:954
 msgid "Confirm"
 msgstr "Confirm"
 
@@ -2457,15 +2457,15 @@ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/commands/humanizeParamValue.ts:63
-#: src/electron/main.tsx:690
-#: src/electron/main.tsx:941
+#: src/electron/main.tsx:702
+#: src/electron/main.tsx:953
 msgid "Yes"
 msgstr "Yes"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/humanizeParamValue.ts:63
-#: src/electron/main.tsx:690
-#: src/electron/main.tsx:941
+#: src/electron/main.tsx:702
+#: src/electron/main.tsx:953
 msgid "No"
 msgstr "No"
 
@@ -2694,155 +2694,157 @@ msgid "Save changes"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:691
+#: src/electron/main.tsx:703
 msgid "Save Command Preferences"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:693
+#: src/electron/main.tsx:705
 msgid "Would you like to save preferences for the following commands?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:697
-msgid "These commands will be executed without confirmation in the future:\n\n"
+#: src/electron/main.tsx:709
+msgid ""
+"These commands will be executed without confirmation in the future:\n"
+"\n"
 " {commands}"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:944
+#: src/electron/main.tsx:956
 msgid "Are you sure you want to quit?"
 msgstr "Are you sure you want to quit?"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:949
+#: src/electron/main.tsx:961
 msgid "Keep service running in the background"
 msgstr "Keep service running in the background"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1109
+#: src/electron/main.tsx:1121
 msgid "Continue"
 msgstr "Continue"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1111
+#: src/electron/main.tsx:1123
 msgid "Warning"
 msgstr "Warning"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1112
+#: src/electron/main.tsx:1124
 msgid "Log files may contain sensitive information"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1113
+#: src/electron/main.tsx:1125
 msgid "Are you sure you want to view the log contents?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1237
-#: src/electron/main.tsx:1445
+#: src/electron/main.tsx:1249
+#: src/electron/main.tsx:1457
 msgid "File"
 msgstr "File"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1245
+#: src/electron/main.tsx:1257
 msgid "Edit"
 msgstr "Edit"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1277
+#: src/electron/main.tsx:1289
 msgid "View"
 msgstr "View"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1286
+#: src/electron/main.tsx:1298
 msgid "Developer"
 msgstr "Developer"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1289
+#: src/electron/main.tsx:1301
 msgid "Developer Tools"
 msgstr "Developer Tools"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1297
+#: src/electron/main.tsx:1309
 msgid "Trigger Desktop Notification"
 msgstr "Trigger Desktop Notification"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1326
+#: src/electron/main.tsx:1338
 msgid "Full Screen"
 msgstr "Full Screen"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1333
+#: src/electron/main.tsx:1345
 msgid "Window"
 msgstr "Window"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1347
+#: src/electron/main.tsx:1359
 msgid "Help"
 msgstr "Help"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1351
+#: src/electron/main.tsx:1363
 msgid "Chia Blockchain Wiki"
 msgstr "Chia Blockchain Wiki"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1357
+#: src/electron/main.tsx:1369
 msgid "Frequently Asked Questions"
 msgstr "Frequently Asked Questions"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1363
+#: src/electron/main.tsx:1375
 msgid "Release Notes"
 msgstr "Release Notes"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1369
+#: src/electron/main.tsx:1381
 msgid "Contribute on GitHub"
 msgstr "Contribute on GitHub"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1378
+#: src/electron/main.tsx:1390
 msgid "Report an Issue..."
 msgstr "Report an Issue..."
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1384
+#: src/electron/main.tsx:1396
 msgid "Chat on Discord"
 msgstr "Chat on Discord"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1390
+#: src/electron/main.tsx:1402
 msgid "Follow on X"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1402
+#: src/electron/main.tsx:1414
 msgid "Chia"
 msgstr "Chia"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1405
-#: src/electron/main.tsx:1501
+#: src/electron/main.tsx:1417
+#: src/electron/main.tsx:1513
 msgid "About Chia Blockchain"
 msgstr "About Chia Blockchain"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1411
+#: src/electron/main.tsx:1423
 msgid "Check for Updates..."
 msgstr "Check for Updates..."
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1460
+#: src/electron/main.tsx:1472
 msgid "Speech"
 msgstr "Speech"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1507
+#: src/electron/main.tsx:1519
 msgid "Check for updates..."
 msgstr "Check for updates..."
 
@@ -3412,7 +3414,7 @@ msgstr "Advanced"
 msgid "After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring."
 msgstr "After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring."
 
-#: src/components/settings/SettingsNFT.tsx:145
+#: src/components/settings/SettingsNFT.tsx:151
 msgid "All NFT videos will restart automatically when they finish playing. When disabled, looping can still be turned on for individual videos from their detail page."
 msgstr ""
 
@@ -3544,7 +3546,7 @@ msgstr ""
 msgid "Are you sure you want to cancel your offer?"
 msgstr "Are you sure you want to cancel your offer?"
 
-#: src/components/settings/SettingsNFT.tsx:70
+#: src/components/settings/SettingsNFT.tsx:76
 msgid "Are you sure you want to delete the NFT cache?"
 msgstr "Are you sure you want to delete the NFT cache?"
 
@@ -3773,7 +3775,7 @@ msgstr "By providing a signing address, the public key can be validated as being
 msgid "Bypassed Commands"
 msgstr ""
 
-#: src/components/settings/SettingsNFT.tsx:178
+#: src/components/settings/SettingsNFT.tsx:204
 msgid "Cache"
 msgstr "Cache"
 
@@ -3851,7 +3853,7 @@ msgid "Challenge Hash"
 msgstr "Challenge Hash"
 
 #: src/components/plotNFT/PlotNFTChangePool.tsx:110
-#: src/components/settings/SettingsNFT.tsx:216
+#: src/components/settings/SettingsNFT.tsx:242
 msgid "Change"
 msgstr "Change"
 
@@ -3951,7 +3953,7 @@ msgstr "Choose Plotter"
 msgid "Choose Wallet Mode"
 msgstr "Choose Wallet Mode"
 
-#: src/components/settings/SettingsNFT.tsx:87
+#: src/components/settings/SettingsNFT.tsx:93
 msgid "Choose what you want to see and how you want to view it."
 msgstr "Choose what you want to see and how you want to view it."
 
@@ -3980,8 +3982,8 @@ msgstr ""
 msgid "Clear every \"always allow\" override for this app. Future commands will require confirmation again."
 msgstr ""
 
-#: src/components/settings/SettingsNFT.tsx:63
-#: src/components/settings/SettingsNFT.tsx:198
+#: src/components/settings/SettingsNFT.tsx:69
+#: src/components/settings/SettingsNFT.tsx:224
 msgid "Clear NFT cache"
 msgstr "Clear NFT cache"
 
@@ -4161,7 +4163,7 @@ msgstr "Contact Name"
 msgid "Contacts"
 msgstr "Contacts"
 
-#: src/components/nfts/NFTHashStatus.tsx:114
+#: src/components/nfts/NFTHashStatus.tsx:120
 msgid "Content does not match the expected hash value that was specified during NFT minting. The content may have been modified."
 msgstr "Content does not match the expected hash value that was specified during NFT minting. The content may have been modified."
 
@@ -4169,7 +4171,7 @@ msgstr "Content does not match the expected hash value that was specified during
 #~ msgid "Content has not been validated against the hash that was specified during NFT minting."
 #~ msgstr ""
 
-#: src/components/nfts/NFTHashStatus.tsx:107
+#: src/components/nfts/NFTHashStatus.tsx:113
 msgid "Content has not been validated against the hash that was specified during NFT minting. Error: {0}"
 msgstr "Content has not been validated against the hash that was specified during NFT minting. Error: {0}"
 
@@ -5139,6 +5141,10 @@ msgstr "Fees Amount"
 msgid "Fees included in offer:"
 msgstr "Fees included in offer:"
 
+#: src/components/settings/SettingsNFT.tsx:162
+msgid "Fetch IPFS content through a gateway"
+msgstr "Fetch IPFS content through a gateway"
+
 #: src/constants/WalletConnectCommands.tsx:483
 #~ msgid "Fetches the puzzle reveal and solution for a spent coin (hex strings)."
 #~ msgstr "Fetches the puzzle reveal and solution for a spent coin (hex strings)."
@@ -5152,7 +5158,7 @@ msgstr "Fees included in offer:"
 msgid "File does not match the expected hash"
 msgstr ""
 
-#: src/components/nfts/NFTHashStatus.tsx:82
+#: src/components/nfts/NFTHashStatus.tsx:88
 #: src/components/nfts/NFTPreview.tsx:250
 msgid "File is not available"
 msgstr ""
@@ -5190,7 +5196,7 @@ msgstr "Final folder location"
 msgid "Finished"
 msgstr "Finished"
 
-#: src/components/settings/SettingsNFT.tsx:119
+#: src/components/settings/SettingsNFT.tsx:125
 msgid "Fit images to cards"
 msgstr "Fit images to cards"
 
@@ -5496,7 +5502,7 @@ msgstr "Harvesting Effectiveness"
 #~ msgid "Hash is validated."
 #~ msgstr ""
 
-#: src/components/nfts/NFTHashStatus.tsx:74
+#: src/components/nfts/NFTHashStatus.tsx:80
 msgid "Hash matches"
 msgstr "Hash matches"
 
@@ -5550,7 +5556,7 @@ msgstr "Hidden  <0/>"
 msgid "Hide"
 msgstr "Hide"
 
-#: src/components/settings/SettingsNFT.tsx:99
+#: src/components/settings/SettingsNFT.tsx:105
 msgid "Hide objectionable content"
 msgstr "Hide objectionable content"
 
@@ -5620,7 +5626,7 @@ msgstr "If you have already shared your offer file, you may need to submit a tra
 #~ msgid "Image Hash Mismatch"
 #~ msgstr "Image Hash Mismatch"
 
-#: src/components/settings/SettingsNFT.tsx:129
+#: src/components/settings/SettingsNFT.tsx:135
 msgid "Images will be scaled to fill the NFT card and ignore their original proportions."
 msgstr "Images will be scaled to fill the NFT card and ignore their original proportions."
 
@@ -5684,16 +5690,20 @@ msgstr "Initializing..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid "Insufficient funds available to accept offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "Insufficient funds available to accept offer. Ensure that your\n"
+msgstr ""
+"Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 
 #: src/components/offers/OfferEditor.tsx:127
 #: src/components/offers2/CreateOfferBuilder.tsx:145
-msgid "Insufficient funds available to create offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "Insufficient funds available to create offer. Ensure that your\n"
+msgstr ""
+"Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 
 #: src/components/farm/PoolingHealth.tsx:302
@@ -5717,7 +5727,7 @@ msgstr "Interval (in seconds) in which directories are scanned to refresh the li
 msgid "Invalid"
 msgstr "Invalid"
 
-#: src/components/nfts/NFTHashStatus.tsx:85
+#: src/components/nfts/NFTHashStatus.tsx:91
 msgid "Invalid hash"
 msgstr "Invalid hash"
 
@@ -5928,7 +5938,7 @@ msgstr ""
 msgid "License URL {0}"
 msgstr "License URL {0}"
 
-#: src/components/settings/SettingsNFT.tsx:229
+#: src/components/settings/SettingsNFT.tsx:255
 msgid "Limit cache size"
 msgstr "Limit cache size"
 
@@ -5997,7 +6007,7 @@ msgstr "Loading..."
 msgid "Local"
 msgstr "Local"
 
-#: src/components/settings/SettingsNFT.tsx:211
+#: src/components/settings/SettingsNFT.tsx:237
 msgid "Local folder"
 msgstr "Local folder"
 
@@ -6025,7 +6035,7 @@ msgstr "Log Viewer"
 msgid "Loop video"
 msgstr ""
 
-#: src/components/settings/SettingsNFT.tsx:137
+#: src/components/settings/SettingsNFT.tsx:143
 msgid "Loop videos"
 msgstr ""
 
@@ -6053,7 +6063,7 @@ msgstr "Manage CAT tokens"
 msgid "Manage Farming Rewards"
 msgstr "Manage Farming Rewards"
 
-#: src/components/settings/SettingsNFT.tsx:181
+#: src/components/settings/SettingsNFT.tsx:207
 msgid "Manage how and where files are stored on this computer."
 msgstr "Manage how and where files are stored on this computer."
 
@@ -6354,7 +6364,7 @@ msgstr "Next"
 #: src/components/offers/NFTOfferEditor.tsx:212
 #: src/components/offers2/OfferBuilderNFTSection.tsx:46
 #: src/components/settings/Settings.tsx:38
-#: src/components/settings/SettingsNFT.tsx:84
+#: src/components/settings/SettingsNFT.tsx:90
 #: src/components/signVerify/SignMessage.tsx:164
 msgid "NFT"
 msgstr "NFT"
@@ -6380,6 +6390,10 @@ msgstr "NFT Coin ID"
 #: src/components/offers/NFTOfferEditor.tsx:617
 msgid "NFT details not available"
 msgstr "NFT details not available"
+
+#: src/components/settings/SettingsNFT.tsx:170
+msgid "NFT files published with ipfs:// addresses will be downloaded through the public ipfs.io HTTPS gateway. The requested URL differs from the address recorded on chain, but downloaded content is still verified against the NFT's on-chain hash. When disabled, ipfs:// files are not fetched."
+msgstr "NFT files published with ipfs:// addresses will be downloaded through the public ipfs.io HTTPS gateway. The requested URL differs from the address recorded on chain, but downloaded content is still verified against the NFT's on-chain hash. When disabled, ipfs:// files are not fetched."
 
 #: src/components/offers2/OfferBuilderNFTRoyalties.tsx:172
 msgid "NFT has no royalties"
@@ -6445,7 +6459,7 @@ msgstr "NFT Transfer Pending"
 msgid "NFTs"
 msgstr "NFTs"
 
-#: src/components/settings/SettingsNFT.tsx:109
+#: src/components/settings/SettingsNFT.tsx:115
 msgid "NFTs that have been categorized by the creator as objectionable content will be hidden by default."
 msgstr "NFTs that have been categorized by the creator as objectionable content will be hidden by default."
 
@@ -6673,7 +6687,7 @@ msgstr "Number of threads for Phase 3"
 msgid "Objectionable Content"
 msgstr "Objectionable Content"
 
-#: src/components/settings/SettingsNFT.tsx:193
+#: src/components/settings/SettingsNFT.tsx:219
 msgid "Occupied space"
 msgstr "Occupied space"
 
@@ -8152,7 +8166,7 @@ msgstr "Show Details"
 #~ msgid "Show Preview"
 #~ msgstr "Show Preview"
 
-#: src/components/settings/SettingsNFT.tsx:156
+#: src/components/settings/SettingsNFT.tsx:182
 msgid "Show unverified previews"
 msgstr ""
 
@@ -9147,7 +9161,7 @@ msgstr ""
 #~ msgid "Update DID Recovery Ids"
 #~ msgstr "Update DID Recovery Ids"
 
-#: src/components/nfts/NFTHashStatus.tsx:70
+#: src/components/nfts/NFTHashStatus.tsx:76
 msgid "Update Pending"
 msgstr "Update Pending"
 
@@ -9161,7 +9175,7 @@ msgstr "Update Pending"
 msgid "URL"
 msgstr ""
 
-#: src/components/nfts/NFTHashStatus.tsx:78
+#: src/components/nfts/NFTHashStatus.tsx:84
 msgid "URL is not valid"
 msgstr "URL is not valid"
 
@@ -9286,7 +9300,7 @@ msgstr "Verify Pool Details"
 msgid "Verify Signature"
 msgstr ""
 
-#: src/components/nfts/NFTHashStatus.tsx:66
+#: src/components/nfts/NFTHashStatus.tsx:72
 msgid "Verifying hash..."
 msgstr "Verifying hash..."
 
@@ -9526,7 +9540,7 @@ msgstr "Weight"
 msgid "Weight is the total added difficulty of all blocks up to and including this one"
 msgstr "Weight is the total added difficulty of all blocks up to and including this one"
 
-#: src/components/settings/SettingsNFT.tsx:166
+#: src/components/settings/SettingsNFT.tsx:192
 msgid "When an NFT image is too large to verify against its on-chain hash, load the transaction confirmation preview directly from its source URL without verification. When disabled, no preview is shown for these NFTs."
 msgstr ""
 
@@ -9599,7 +9613,7 @@ msgstr "Yes"
 msgid "Yes, Accept Offer"
 msgstr "Yes, Accept Offer"
 
-#: src/components/settings/SettingsNFT.tsx:64
+#: src/components/settings/SettingsNFT.tsx:70
 msgid "Yes, delete"
 msgstr "Yes, delete"
 
@@ -9747,4 +9761,3 @@ msgstr "Your spendable balance must be greater than 1 mojo to create a profile"
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "Your wallet is required to be running for auto claim to work."
-
