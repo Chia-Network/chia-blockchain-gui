@@ -3235,7 +3235,7 @@ msgstr "+ Přidat Pole"
 msgid "+ Add New Plot NFT"
 msgstr "+ Přidat nové vykreslování NFT"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:320
+#: src/components/nfts/gallery/NFTGallery.tsx:358
 msgid "<0>Loading...</0> {0}%"
 msgstr "<0>Načítám...</0>{0}%"
 
@@ -3243,7 +3243,7 @@ msgstr "<0>Načítám...</0>{0}%"
 #~ msgid "<0>Need some XCH?</0>"
 #~ msgstr "<0>Need some XCH?</0>"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:310
+#: src/components/nfts/gallery/NFTGallery.tsx:348
 msgid "<0>Showing</0> {0} <1>of</1> {1}  <2>items</2>"
 msgstr ""
 
@@ -3511,6 +3511,10 @@ msgstr ""
 #: src/components/notification/NotificationAnnouncementDialog.tsx:49
 msgid "Announcement"
 msgstr "Oznámení"
+
+#: src/components/nfts/gallery/NFTGallery.tsx:496
+msgid "Any preview  <0/>"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:17
 #~ msgid "App is requesting permission to execute these commands"
@@ -4506,7 +4510,7 @@ msgstr ""
 msgid "Description"
 msgstr "Popis"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:334
+#: src/components/nfts/gallery/NFTGallery.tsx:372
 msgid "Deselect all"
 msgstr "Odznačit vše"
 
@@ -5154,12 +5158,12 @@ msgstr ""
 #~ msgid "File"
 #~ msgstr "File"
 
-#: src/components/nfts/NFTPreview.tsx:531
+#: src/components/nfts/NFTPreview.tsx:574
 msgid "File does not match the expected hash"
 msgstr ""
 
 #: src/components/nfts/NFTHashStatus.tsx:88
-#: src/components/nfts/NFTPreview.tsx:250
+#: src/components/nfts/NFTPreview.tsx:253
 msgid "File is not available"
 msgstr ""
 
@@ -5170,7 +5174,7 @@ msgstr ""
 msgid "Filename"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:290
+#: src/components/nfts/gallery/NFTGallery.tsx:328
 msgid "Filter"
 msgstr "Filtr"
 
@@ -5540,11 +5544,11 @@ msgstr "Zde jsou aktuální blokové výzvy (block challenges). Pro tyto výzvy 
 msgid "Hex public key of pool"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:442
+#: src/components/nfts/gallery/NFTGallery.tsx:480
 msgid "Hidden"
 msgstr "Skrytý"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:405
+#: src/components/nfts/gallery/NFTGallery.tsx:443
 msgid "Hidden  <0/>"
 msgstr "Skrytý <0/>"
 
@@ -5975,7 +5979,7 @@ msgstr "Nahrávám NFT"
 msgid "Loading NFT Info..."
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:520
+#: src/components/nfts/NFTPreview.tsx:563
 msgid "Loading NFT..."
 msgstr ""
 
@@ -5983,8 +5987,8 @@ msgstr ""
 #~ msgid "Loading NFTs..."
 #~ msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:520
-#: src/components/nfts/NFTPreview.tsx:542
+#: src/components/nfts/NFTPreview.tsx:563
+#: src/components/nfts/NFTPreview.tsx:585
 msgid "Loading preview..."
 msgstr ""
 
@@ -6027,7 +6031,7 @@ msgstr "Odhlášení"
 msgid "Log Viewer"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:439
+#: src/components/nfts/NFTPreview.tsx:442
 msgid "Loop video"
 msgstr ""
 
@@ -6035,11 +6039,11 @@ msgstr ""
 msgid "Loop videos"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:435
+#: src/components/nfts/NFTPreview.tsx:438
 msgid "Looping is enabled for all videos in Settings"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:437
+#: src/components/nfts/NFTPreview.tsx:440
 msgid "Looping on"
 msgstr ""
 
@@ -6258,7 +6262,7 @@ msgstr "Přesunout NFT do profilu"
 msgid "Move to Profile"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:285
+#: src/components/nfts/gallery/NFTGallery.tsx:323
 msgid "Multi-select"
 msgstr "Vícenásobný výběr"
 
@@ -6496,7 +6500,7 @@ msgstr ""
 #~ msgid "No Custom Permissions"
 #~ msgstr "No Custom Permissions"
 
-#: src/components/nfts/NFTPreview.tsx:525
+#: src/components/nfts/NFTPreview.tsx:568
 msgid "No file available"
 msgstr ""
 
@@ -6547,7 +6551,8 @@ msgstr ""
 msgid "None"
 msgstr "Žádný"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:410
+#: src/components/nfts/gallery/NFTGallery.tsx:448
+#: src/components/nfts/gallery/NFTGallery.tsx:514
 msgid "None (0)"
 msgstr "Žádný (0)"
 
@@ -6679,7 +6684,7 @@ msgstr "Počet vláken pro fázi 2"
 msgid "Number of threads for Phase 3"
 msgstr "Počet vláken pro fázi 3"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:380
+#: src/components/nfts/gallery/NFTGallery.tsx:418
 msgid "Objectionable Content"
 msgstr ""
 
@@ -7394,10 +7399,18 @@ msgstr "Připravuji NFT pole"
 msgid "Preparing standard wallet"
 msgstr "Připravuji standardní peněženku"
 
-#: src/components/nfts/NFTPreview.tsx:286
+#: src/components/nfts/NFTPreview.tsx:289
 #: src/components/offers2/OfferBuilderNFT.tsx:75
 msgid "Preview"
 msgstr "Náhled"
+
+#: src/components/nfts/gallery/NFTGallery.tsx:532
+msgid "Preview available"
+msgstr ""
+
+#: src/components/nfts/gallery/NFTGallery.tsx:501
+msgid "Preview available  <0/>"
+msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:316
 #~ msgid "Preview image uris"
@@ -7407,8 +7420,16 @@ msgstr "Náhled"
 msgid "Preview image URL {index}"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:537
+#: src/components/nfts/NFTPreview.tsx:580
 msgid "Preview is not available"
+msgstr ""
+
+#: src/components/nfts/gallery/NFTGallery.tsx:553
+msgid "Preview not available"
+msgstr ""
+
+#: src/components/nfts/gallery/NFTGallery.tsx:506
+msgid "Preview not available  <0/>"
 msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:621
@@ -7575,7 +7596,7 @@ msgstr ""
 msgid "Refresh NFT data"
 msgstr "Obnovit NFT data"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:295
+#: src/components/nfts/gallery/NFTGallery.tsx:333
 msgid "Refresh NFTs"
 msgstr ""
 
@@ -7917,7 +7938,7 @@ msgid "Search on Tail Database"
 msgstr ""
 
 #: src/components/addressbook/AddressBookSideBar.tsx:150
-#: src/components/nfts/gallery/NFTGallery.tsx:273
+#: src/components/nfts/gallery/NFTGallery.tsx:311
 msgid "Search..."
 msgstr "Hledat..."
 
@@ -7944,7 +7965,7 @@ msgstr "Zobrazit všechny aktivity"
 msgid "Select 2nd Temporary Directory"
 msgstr "Zvolte druhou dočasnou složku"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:334
+#: src/components/nfts/gallery/NFTGallery.tsx:372
 msgid "Select all"
 msgstr "Vybrat vše"
 
@@ -9044,7 +9065,7 @@ msgstr ""
 #~ msgid "Types ({0}/{1})"
 #~ msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:343
+#: src/components/nfts/gallery/NFTGallery.tsx:381
 msgid "Types{0}"
 msgstr "Typy{0}"
 
@@ -9359,11 +9380,11 @@ msgstr "Zobrazit odkaz pro přihlášení do Poolu"
 msgid "Viewing offer"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:426
+#: src/components/nfts/gallery/NFTGallery.tsx:464
 msgid "Visible"
 msgstr "Viditelné"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:400
+#: src/components/nfts/gallery/NFTGallery.tsx:438
 msgid "Visible  <0/>"
 msgstr "Viditelné <0/>"
 
@@ -9371,7 +9392,7 @@ msgstr "Viditelné <0/>"
 #~ msgid "Visible ({0})"
 #~ msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:395
+#: src/components/nfts/gallery/NFTGallery.tsx:433
 msgid "Visible and Hidden  <0/>"
 msgstr "Viditelné a skryté <0/>"
 

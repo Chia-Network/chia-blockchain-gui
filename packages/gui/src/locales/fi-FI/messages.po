@@ -3238,7 +3238,7 @@ msgstr "+ Plottaa tiedosto"
 msgid "+ Add New Plot NFT"
 msgstr "+ Lisää Uusi Plot NFT"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:320
+#: src/components/nfts/gallery/NFTGallery.tsx:358
 msgid "<0>Loading...</0> {0}%"
 msgstr "<0>Ladataan...</0> {0}%"
 
@@ -3246,7 +3246,7 @@ msgstr "<0>Ladataan...</0> {0}%"
 #~ msgid "<0>Need some XCH?</0>"
 #~ msgstr "<0>Need some XCH?</0>"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:310
+#: src/components/nfts/gallery/NFTGallery.tsx:348
 msgid "<0>Showing</0> {0} <1>of</1> {1}  <2>items</2>"
 msgstr "<0>Näytetään</0>{0}<1>/</1>{1}<2>kohdetta</2>"
 
@@ -3514,6 +3514,10 @@ msgstr "NFT:n alkuperä on täydellinen historia sen omistusoikeudesta. Se yhdis
 #: src/components/notification/NotificationAnnouncementDialog.tsx:49
 msgid "Announcement"
 msgstr "Tiedotus"
+
+#: src/components/nfts/gallery/NFTGallery.tsx:496
+msgid "Any preview  <0/>"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:17
 #~ msgid "App is requesting permission to execute these commands"
@@ -4509,7 +4513,7 @@ msgstr "Derivaatioindeksin on oltava suurempi kuin {index}"
 msgid "Description"
 msgstr "Kuvaus"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:334
+#: src/components/nfts/gallery/NFTGallery.tsx:372
 msgid "Deselect all"
 msgstr "Poista valinnat"
 
@@ -5157,12 +5161,12 @@ msgstr ""
 #~ msgid "File"
 #~ msgstr "File"
 
-#: src/components/nfts/NFTPreview.tsx:531
+#: src/components/nfts/NFTPreview.tsx:574
 msgid "File does not match the expected hash"
 msgstr ""
 
 #: src/components/nfts/NFTHashStatus.tsx:88
-#: src/components/nfts/NFTPreview.tsx:250
+#: src/components/nfts/NFTPreview.tsx:253
 msgid "File is not available"
 msgstr ""
 
@@ -5173,7 +5177,7 @@ msgstr ""
 msgid "Filename"
 msgstr "Tiedosto"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:290
+#: src/components/nfts/gallery/NFTGallery.tsx:328
 msgid "Filter"
 msgstr "Suodatus"
 
@@ -5543,11 +5547,11 @@ msgstr "Tämänhetkiset lohkohaasteet, joiden tilatodisteet voivat löytyä plot
 msgid "Hex public key of pool"
 msgstr "Poolin julkinen heksa-avain"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:442
+#: src/components/nfts/gallery/NFTGallery.tsx:480
 msgid "Hidden"
 msgstr "Piilotettu"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:405
+#: src/components/nfts/gallery/NFTGallery.tsx:443
 msgid "Hidden  <0/>"
 msgstr "Piilotettu <0/>"
 
@@ -5982,7 +5986,7 @@ msgstr "Ladataan NFT"
 msgid "Loading NFT Info..."
 msgstr "Ladataan NFT-tietoja..."
 
-#: src/components/nfts/NFTPreview.tsx:520
+#: src/components/nfts/NFTPreview.tsx:563
 msgid "Loading NFT..."
 msgstr "Ladataan NFT..."
 
@@ -5990,8 +5994,8 @@ msgstr "Ladataan NFT..."
 #~ msgid "Loading NFTs..."
 #~ msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:520
-#: src/components/nfts/NFTPreview.tsx:542
+#: src/components/nfts/NFTPreview.tsx:563
+#: src/components/nfts/NFTPreview.tsx:585
 msgid "Loading preview..."
 msgstr "Ladataan esikatselua..."
 
@@ -6034,7 +6038,7 @@ msgstr "Kirjaudu Ulos"
 msgid "Log Viewer"
 msgstr "Lokien Näyttö"
 
-#: src/components/nfts/NFTPreview.tsx:439
+#: src/components/nfts/NFTPreview.tsx:442
 msgid "Loop video"
 msgstr ""
 
@@ -6042,11 +6046,11 @@ msgstr ""
 msgid "Loop videos"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:435
+#: src/components/nfts/NFTPreview.tsx:438
 msgid "Looping is enabled for all videos in Settings"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:437
+#: src/components/nfts/NFTPreview.tsx:440
 msgid "Looping on"
 msgstr ""
 
@@ -6265,7 +6269,7 @@ msgstr "Siirrä NFT profiiliin"
 msgid "Move to Profile"
 msgstr "Siirrä profiiliin"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:285
+#: src/components/nfts/gallery/NFTGallery.tsx:323
 msgid "Multi-select"
 msgstr "Monivalinta"
 
@@ -6503,7 +6507,7 @@ msgstr "Ei tarjouksia"
 #~ msgid "No Custom Permissions"
 #~ msgstr "No Custom Permissions"
 
-#: src/components/nfts/NFTPreview.tsx:525
+#: src/components/nfts/NFTPreview.tsx:568
 msgid "No file available"
 msgstr "Ei tiedostoa saatavilla"
 
@@ -6554,7 +6558,8 @@ msgstr ""
 msgid "None"
 msgstr "Ei yhtään"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:410
+#: src/components/nfts/gallery/NFTGallery.tsx:448
+#: src/components/nfts/gallery/NFTGallery.tsx:514
 msgid "None (0)"
 msgstr "Ei Yhtään (0)"
 
@@ -6686,7 +6691,7 @@ msgstr "Vaiheen 2 säikeiden määrä"
 msgid "Number of threads for Phase 3"
 msgstr "Vaiheen 3 säikeiden määrä"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:380
+#: src/components/nfts/gallery/NFTGallery.tsx:418
 msgid "Objectionable Content"
 msgstr "Kyseenalainen sisältö"
 
@@ -7401,10 +7406,18 @@ msgstr "Valmistellaan Plot-NFT:tä"
 msgid "Preparing standard wallet"
 msgstr "Valmistellaan normaalia lompakkoa"
 
-#: src/components/nfts/NFTPreview.tsx:286
+#: src/components/nfts/NFTPreview.tsx:289
 #: src/components/offers2/OfferBuilderNFT.tsx:75
 msgid "Preview"
 msgstr "Esikatselu"
+
+#: src/components/nfts/gallery/NFTGallery.tsx:532
+msgid "Preview available"
+msgstr ""
+
+#: src/components/nfts/gallery/NFTGallery.tsx:501
+msgid "Preview available  <0/>"
+msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:316
 #~ msgid "Preview image uris"
@@ -7414,8 +7427,16 @@ msgstr "Esikatselu"
 msgid "Preview image URL {index}"
 msgstr "Esikatselu-URL {index}"
 
-#: src/components/nfts/NFTPreview.tsx:537
+#: src/components/nfts/NFTPreview.tsx:580
 msgid "Preview is not available"
+msgstr ""
+
+#: src/components/nfts/gallery/NFTGallery.tsx:553
+msgid "Preview not available"
+msgstr ""
+
+#: src/components/nfts/gallery/NFTGallery.tsx:506
+msgid "Preview not available  <0/>"
 msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:621
@@ -7582,7 +7603,7 @@ msgstr "Päivitä"
 msgid "Refresh NFT data"
 msgstr "Päivitä NFT-data"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:295
+#: src/components/nfts/gallery/NFTGallery.tsx:333
 msgid "Refresh NFTs"
 msgstr ""
 
@@ -7924,7 +7945,7 @@ msgid "Search on Tail Database"
 msgstr "Etsi Tail-tietokannasta"
 
 #: src/components/addressbook/AddressBookSideBar.tsx:150
-#: src/components/nfts/gallery/NFTGallery.tsx:273
+#: src/components/nfts/gallery/NFTGallery.tsx:311
 msgid "Search..."
 msgstr "Etsi..."
 
@@ -7951,7 +7972,7 @@ msgstr "Katso Kaikki Aktiviteetit"
 msgid "Select 2nd Temporary Directory"
 msgstr "Valitse Toinen Väliaikaishakemisto"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:334
+#: src/components/nfts/gallery/NFTGallery.tsx:372
 msgid "Select all"
 msgstr "Valitse kaikki"
 
@@ -9051,7 +9072,7 @@ msgstr "Tyyppi"
 #~ msgid "Types ({0}/{1})"
 #~ msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:343
+#: src/components/nfts/gallery/NFTGallery.tsx:381
 msgid "Types{0}"
 msgstr "Tyypit{0}"
 
@@ -9366,11 +9387,11 @@ msgstr "Näytä Poolin Kirjautumislinkki"
 msgid "Viewing offer"
 msgstr "Näytä tarjous"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:426
+#: src/components/nfts/gallery/NFTGallery.tsx:464
 msgid "Visible"
 msgstr "Näkyvissä"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:400
+#: src/components/nfts/gallery/NFTGallery.tsx:438
 msgid "Visible  <0/>"
 msgstr "Näkyvissä <0/>"
 
@@ -9378,7 +9399,7 @@ msgstr "Näkyvissä <0/>"
 #~ msgid "Visible ({0})"
 #~ msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:395
+#: src/components/nfts/gallery/NFTGallery.tsx:433
 msgid "Visible and Hidden  <0/>"
 msgstr "Näkyvät ja piilotetut <0/>"
 

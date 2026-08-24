@@ -3237,7 +3237,7 @@ msgstr "+ 添加图块"
 msgid "+ Add New Plot NFT"
 msgstr "+ 新建联合耕种农田"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:320
+#: src/components/nfts/gallery/NFTGallery.tsx:358
 msgid "<0>Loading...</0> {0}%"
 msgstr "<0>载入中...</0> {0}%"
 
@@ -3245,7 +3245,7 @@ msgstr "<0>载入中...</0> {0}%"
 #~ msgid "<0>Need some XCH?</0>"
 #~ msgstr "<0>Need some XCH?</0>"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:310
+#: src/components/nfts/gallery/NFTGallery.tsx:348
 msgid "<0>Showing</0> {0} <1>of</1> {1}  <2>items</2>"
 msgstr "<0>显示</0> {0} <1>/</1> {1}  <2>项</2>"
 
@@ -3513,6 +3513,10 @@ msgstr "一个NFT的起源是其所有权历史的完整记录。 它提供了�
 #: src/components/notification/NotificationAnnouncementDialog.tsx:49
 msgid "Announcement"
 msgstr "通知"
+
+#: src/components/nfts/gallery/NFTGallery.tsx:496
+msgid "Any preview  <0/>"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:17
 #~ msgid "App is requesting permission to execute these commands"
@@ -4508,7 +4512,7 @@ msgstr "派生索引必须大于 {index}"
 msgid "Description"
 msgstr "描述"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:334
+#: src/components/nfts/gallery/NFTGallery.tsx:372
 msgid "Deselect all"
 msgstr "取消全选"
 
@@ -5156,12 +5160,12 @@ msgstr ""
 #~ msgid "File"
 #~ msgstr "File"
 
-#: src/components/nfts/NFTPreview.tsx:531
+#: src/components/nfts/NFTPreview.tsx:574
 msgid "File does not match the expected hash"
 msgstr "文件与预期哈希不匹配"
 
 #: src/components/nfts/NFTHashStatus.tsx:88
-#: src/components/nfts/NFTPreview.tsx:250
+#: src/components/nfts/NFTPreview.tsx:253
 msgid "File is not available"
 msgstr "文件不可用"
 
@@ -5172,7 +5176,7 @@ msgstr "文件不可用"
 msgid "Filename"
 msgstr "文件名"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:290
+#: src/components/nfts/gallery/NFTGallery.tsx:328
 msgid "Filter"
 msgstr "筛选"
 
@@ -5542,11 +5546,11 @@ msgstr "下面是当前的区块挑战。您可能有也可能没有这些挑战
 msgid "Hex public key of pool"
 msgstr "耕种池的十六进制公钥"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:442
+#: src/components/nfts/gallery/NFTGallery.tsx:480
 msgid "Hidden"
 msgstr "隐藏"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:405
+#: src/components/nfts/gallery/NFTGallery.tsx:443
 msgid "Hidden  <0/>"
 msgstr "隐藏  <0/>"
 
@@ -5981,7 +5985,7 @@ msgstr "正在加载 NFT"
 msgid "Loading NFT Info..."
 msgstr "正在加载NFT信息..."
 
-#: src/components/nfts/NFTPreview.tsx:520
+#: src/components/nfts/NFTPreview.tsx:563
 msgid "Loading NFT..."
 msgstr "正在加载NFT..."
 
@@ -5989,8 +5993,8 @@ msgstr "正在加载NFT..."
 #~ msgid "Loading NFTs..."
 #~ msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:520
-#: src/components/nfts/NFTPreview.tsx:542
+#: src/components/nfts/NFTPreview.tsx:563
+#: src/components/nfts/NFTPreview.tsx:585
 msgid "Loading preview..."
 msgstr "正在加载预览..."
 
@@ -6033,7 +6037,7 @@ msgstr "注销"
 msgid "Log Viewer"
 msgstr "日志查看器"
 
-#: src/components/nfts/NFTPreview.tsx:439
+#: src/components/nfts/NFTPreview.tsx:442
 msgid "Loop video"
 msgstr "循环播放视频"
 
@@ -6041,11 +6045,11 @@ msgstr "循环播放视频"
 msgid "Loop videos"
 msgstr "循环播放视频"
 
-#: src/components/nfts/NFTPreview.tsx:435
+#: src/components/nfts/NFTPreview.tsx:438
 msgid "Looping is enabled for all videos in Settings"
 msgstr "已在设置中为所有视频启用循环播放"
 
-#: src/components/nfts/NFTPreview.tsx:437
+#: src/components/nfts/NFTPreview.tsx:440
 msgid "Looping on"
 msgstr "循环播放已开启"
 
@@ -6264,7 +6268,7 @@ msgstr "将 NFT 移动到资料"
 msgid "Move to Profile"
 msgstr "移动到资料"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:285
+#: src/components/nfts/gallery/NFTGallery.tsx:323
 msgid "Multi-select"
 msgstr "多选"
 
@@ -6502,7 +6506,7 @@ msgstr "当前没有报价"
 #~ msgid "No Custom Permissions"
 #~ msgstr "No Custom Permissions"
 
-#: src/components/nfts/NFTPreview.tsx:525
+#: src/components/nfts/NFTPreview.tsx:568
 msgid "No file available"
 msgstr "没有可用文件"
 
@@ -6553,7 +6557,8 @@ msgstr "节点ID"
 msgid "None"
 msgstr "无"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:410
+#: src/components/nfts/gallery/NFTGallery.tsx:448
+#: src/components/nfts/gallery/NFTGallery.tsx:514
 msgid "None (0)"
 msgstr "无 (0)"
 
@@ -6685,7 +6690,7 @@ msgstr "第2阶段的线程数"
 msgid "Number of threads for Phase 3"
 msgstr "第3阶段的线程数"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:380
+#: src/components/nfts/gallery/NFTGallery.tsx:418
 msgid "Objectionable Content"
 msgstr "令人反感的内容"
 
@@ -7400,10 +7405,18 @@ msgstr "正在准备联合耕种农田"
 msgid "Preparing standard wallet"
 msgstr "正在准备标准钱包"
 
-#: src/components/nfts/NFTPreview.tsx:286
+#: src/components/nfts/NFTPreview.tsx:289
 #: src/components/offers2/OfferBuilderNFT.tsx:75
 msgid "Preview"
 msgstr "预览"
+
+#: src/components/nfts/gallery/NFTGallery.tsx:532
+msgid "Preview available"
+msgstr ""
+
+#: src/components/nfts/gallery/NFTGallery.tsx:501
+msgid "Preview available  <0/>"
+msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:316
 #~ msgid "Preview image uris"
@@ -7413,9 +7426,17 @@ msgstr "预览"
 msgid "Preview image URL {index}"
 msgstr "图片预览网址{index}"
 
-#: src/components/nfts/NFTPreview.tsx:537
+#: src/components/nfts/NFTPreview.tsx:580
 msgid "Preview is not available"
 msgstr "预览不可用"
+
+#: src/components/nfts/gallery/NFTGallery.tsx:553
+msgid "Preview not available"
+msgstr ""
+
+#: src/components/nfts/gallery/NFTGallery.tsx:506
+msgid "Preview not available  <0/>"
+msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:621
 #~ msgid "Preview URL is not valid"
@@ -7581,7 +7602,7 @@ msgstr "刷新"
 msgid "Refresh NFT data"
 msgstr "刷新 NFT 数据"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:295
+#: src/components/nfts/gallery/NFTGallery.tsx:333
 msgid "Refresh NFTs"
 msgstr "刷新 NFT"
 
@@ -7923,7 +7944,7 @@ msgid "Search on Tail Database"
 msgstr "在Tail Database中搜索"
 
 #: src/components/addressbook/AddressBookSideBar.tsx:150
-#: src/components/nfts/gallery/NFTGallery.tsx:273
+#: src/components/nfts/gallery/NFTGallery.tsx:311
 msgid "Search..."
 msgstr "搜索..."
 
@@ -7950,7 +7971,7 @@ msgstr "查看所有通知"
 msgid "Select 2nd Temporary Directory"
 msgstr "选择第二临时文件夹"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:334
+#: src/components/nfts/gallery/NFTGallery.tsx:372
 msgid "Select all"
 msgstr "选择所有"
 
@@ -9050,7 +9071,7 @@ msgstr "类型"
 #~ msgid "Types ({0}/{1})"
 #~ msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:343
+#: src/components/nfts/gallery/NFTGallery.tsx:381
 msgid "Types{0}"
 msgstr "类型{0}"
 
@@ -9365,11 +9386,11 @@ msgstr "查看联合耕种池登录地址"
 msgid "Viewing offer"
 msgstr "查看报价"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:426
+#: src/components/nfts/gallery/NFTGallery.tsx:464
 msgid "Visible"
 msgstr "可见"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:400
+#: src/components/nfts/gallery/NFTGallery.tsx:438
 msgid "Visible  <0/>"
 msgstr "可见的  <0/>"
 
@@ -9377,7 +9398,7 @@ msgstr "可见的  <0/>"
 #~ msgid "Visible ({0})"
 #~ msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:395
+#: src/components/nfts/gallery/NFTGallery.tsx:433
 msgid "Visible and Hidden  <0/>"
 msgstr "可见和隐藏  <0/>"
 
