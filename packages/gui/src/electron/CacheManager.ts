@@ -235,6 +235,7 @@ export default class CacheManager extends EventEmitter {
       this.getURI(url, options),
     );
     ipcMainHandle(CacheAPI.INVALIDATE, (url: string) => this.invalidate(url));
+    ipcMainHandle(CacheAPI.GET_CACHE_INFOS, (urls: string[]) => this.getCacheInfos(urls));
 
     ipcMainHandle(CacheAPI.GET_CACHE_DIRECTORY, () => this.cacheDirectory);
     ipcMainHandle(CacheAPI.GET_MAX_CACHE_SIZE, () => this.maxCacheSize);
@@ -649,6 +650,29 @@ export default class CacheManager extends EventEmitter {
     }
 
     throw new Error('Unknown cache state');
+  }
+
+  // Reports what the cache already knows about each url without fetching
+  // anything: a download that never happened stays NOT_CACHED, and a url the
+  // cache cannot key at all is reported as an error instead of failing the
+  // whole batch. This lets the renderer classify NFTs that are not on screen
+  // (and so never verify their files) from outcomes persisted by earlier
+  // visits and sessions.
+  async getCacheInfos(urls: string[]): Promise<CacheInfo[]> {
+    return Promise.all(
+      urls.map(async (url) => {
+        try {
+          return await this.getCacheInfoByURL(url);
+        } catch (error) {
+          return {
+            url,
+            state: CacheState.ERROR,
+            error: (error as Error).message,
+            timestamp: Date.now(),
+          };
+        }
+      }),
+    );
   }
 
   async clearCache() {

@@ -2,6 +2,7 @@ import { type NFTInfo } from '@chia-network/api';
 import { createContext } from 'react';
 
 import type MetadataState from '../../../@types/MetadataState';
+import type NFTPreviewStatus from '../../../@types/NFTPreviewStatus';
 import type NFTState from '../../../@types/NFTState';
 
 const NFTProviderContext = createContext<
@@ -29,6 +30,10 @@ const NFTProviderContext = createContext<
         id: string | undefined,
         callback: (metadataState: MetadataState) => void,
       ) => () => void;
+
+      getPreviewStatus: (id: string | undefined) => NFTPreviewStatus | undefined;
+      setPreviewStatus: (id: string, status: NFTPreviewStatus) => void;
+      subscribeToPreviewStatusChanges: (callback: () => void) => () => void;
     }
   | undefined
 >(undefined);

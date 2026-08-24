@@ -46,6 +46,8 @@ export default function useMetadataData(props: UseMetadataDataProps) {
         error: metadataOnDemand.error,
         isLoading: !!metadataOnDemand.promise,
       });
+
+      events.emit('changed');
     },
     [events /* immutable */, metadatasOnDemand /* immutable */],
   );
@@ -224,10 +226,23 @@ export default function useMetadataData(props: UseMetadataDataProps) {
     [events /* immutable */],
   );
 
+  // immutable function
+  const subscribeToChanges = useCallback(
+    (callback: () => void) => {
+      events.on('changed', callback);
+
+      return () => {
+        events.off('changed', callback);
+      };
+    },
+    [events /* immutable */],
+  );
+
   return {
     getMetadata,
     fetchMetadata,
     subscribeToMetadataChanges,
+    subscribeToChanges,
     invalidate,
   } as const;
 }

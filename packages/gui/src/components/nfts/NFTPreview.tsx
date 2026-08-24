@@ -5,6 +5,7 @@ import { alpha, Box, IconButton, Tooltip } from '@mui/material';
 import React, { useMemo, useRef, Fragment, useCallback, useEffect, type ReactNode } from 'react';
 import styled from 'styled-components';
 
+import NFTPreviewStatus from '../../@types/NFTPreviewStatus';
 import AudioSmallIcon from '../../assets/img/audio-small.svg';
 import DocumentBlobIcon from '../../assets/img/document-blob.svg';
 import DocumentSmallIcon from '../../assets/img/document-small.svg';
@@ -30,6 +31,7 @@ import useHideObjectionableContent from '../../hooks/useHideObjectionableContent
 import useNFT from '../../hooks/useNFT';
 import useNFTImageFittingMode from '../../hooks/useNFTImageFittingMode';
 import useNFTMetadata from '../../hooks/useNFTMetadata';
+import useNFTProvider from '../../hooks/useNFTProvider';
 import useNFTVerifyHash from '../../hooks/useNFTVerifyHash';
 import { useNFTVideoLoopGlobal, useNFTVideoLoopForNFT } from '../../hooks/useNFTVideoLoop';
 import useStateAbort from '../../hooks/useStateAbort';
@@ -139,6 +141,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
   } = props;
 
   const { getURI } = useCache();
+  const { setPreviewStatus } = useNFTProvider();
   const nftId = useMemo(() => getNFTId(id), [id]);
   const iframeRef = useRef<any>(null);
   const { isDarkMode } = useDarkMode();
@@ -512,6 +515,46 @@ export default function NFTPreview(props: NFTPreviewProps) {
     !(isCompact && previewFileType !== FileType.IMAGE) &&
     !icon &&
     ![FileType.MODEL, FileType.DOCUMENT].includes(previewFileType);
+
+  // The verdict behind the gallery's preview filter. It follows the
+  // verification state rather than the render path: a document or model
+  // tile draws its type icon even when the file could not be fetched, and a
+  // compact tile never opens the iframe, yet the file is just as unavailable
+  // (the hash badge says so) — so every preview-mode tile of an NFT reaches
+  // the same verdict, whichever of them happens to mount. Undefined while
+  // anything that could still change the verdict is in flight.
+  const previewStatus = useMemo(() => {
+    if (isLoading || isLoadingVerifyHash) {
+      return undefined;
+    }
+
+    if (!preview?.isVerified) {
+      // no file, a settled mismatch, or a file that failed to download — but
+      // a thumbnail in metadata that has not arrived yet may still verify
+      return isLoadingMetadata ? undefined : NFTPreviewStatus.UNAVAILABLE;
+    }
+
+    if (prepareError) {
+      // the verified file could not be served from the cache
+      return NFTPreviewStatus.UNAVAILABLE;
+    }
+
+    if (!previewContent) {
+      // preparePreview has not settled on this uri yet
+      return undefined;
+    }
+
+    return NFTPreviewStatus.AVAILABLE;
+  }, [isLoading, isLoadingVerifyHash, isLoadingMetadata, preview, prepareError, previewContent]);
+
+  useEffect(() => {
+    // Only preview-mode tiles report: the detail view verifies the full data
+    // file rather than the thumbnail and can legitimately disagree with the
+    // gallery tile for the same NFT.
+    if (isPreview && previewStatus) {
+      setPreviewStatus(nftId, previewStatus);
+    }
+  }, [isPreview, previewStatus, nftId, setPreviewStatus]);
 
   return (
     <StyledCardPreview width={width} height={height} sx={{ aspectRatio: ratio.toString() }}>

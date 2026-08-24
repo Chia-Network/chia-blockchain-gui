@@ -219,3 +219,57 @@ describe('CacheManager eviction', () => {
     expect(mockDownloadFile).toHaveBeenCalledTimes(1);
   });
 });
+
+describe('CacheManager getCacheInfos', () => {
+  let cacheDirectory: string;
+
+  beforeEach(async () => {
+    mockDownloadFile.mockReset();
+    cacheDirectory = await fs.mkdtemp(path.join(os.tmpdir(), 'chia-cache-manager-'));
+  });
+
+  afterEach(async () => {
+    await fs.rm(cacheDirectory, { recursive: true, force: true });
+  });
+
+  it('reports persisted outcomes per url without downloading anything', async () => {
+    const payload = Buffer.from('cached payload');
+    mockDownloadFile.mockImplementation(async (url, localPath) => {
+      if (url === 'https://example.com/broken.png') {
+        throw new Error('getaddrinfo ENOTFOUND example.com');
+      }
+      await fs.writeFile(localPath, payload);
+      return {
+        'content-type': 'image/png',
+      };
+    });
+
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+
+    await expect(cacheManager.getContent('https://example.com/ok.png')).resolves.toEqual(payload);
+    await expect(cacheManager.getContent('https://example.com/broken.png')).rejects.toThrow('ENOTFOUND');
+    mockDownloadFile.mockClear();
+
+    const infos = await cacheManager.getCacheInfos([
+      'https://example.com/ok.png',
+      'https://example.com/broken.png',
+      'https://example.com/never-requested.png',
+      'not a url',
+    ]);
+
+    expect(infos.map((info) => [info.url, info.state])).toEqual([
+      ['https://example.com/ok.png', 'CACHED'],
+      ['https://example.com/broken.png', 'ERROR'],
+      ['https://example.com/never-requested.png', 'NOT_CACHED'],
+      ['not a url', 'ERROR'],
+    ]);
+    expect(infos[0]).toMatchObject({ checksum: expect.any(String) });
+    expect(infos[1]).toMatchObject({ error: 'getaddrinfo ENOTFOUND example.com' });
+    expect(infos[3]).toMatchObject({ error: 'Invalid URL: not a url' });
+    expect(mockDownloadFile).not.toHaveBeenCalled();
+  });
+});
