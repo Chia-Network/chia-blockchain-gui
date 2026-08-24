@@ -34,11 +34,6 @@ export function useNFTVideoLoopForNFT(nftId: string): [boolean, (loopVideo: bool
   return [loop, setLoop];
 }
 
-// The effective looping state for one NFT video: the global preference forces
-// looping on when set, but never disables a video's own loop preference.
-export default function useNFTVideoLoop(nftId: string): boolean {
-  const [globalLoop] = useNFTVideoLoopGlobal();
-  const [videoLoop] = useNFTVideoLoopForNFT(nftId);
-
-  return globalLoop || videoLoop;
-}
+// The effective looping state for one NFT video is `global || perVideo`:
+// the global preference forces looping on when set, but never disables a
+// video's own loop preference. Consumers combine the two hooks above.

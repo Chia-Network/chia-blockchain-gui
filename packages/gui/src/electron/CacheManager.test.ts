@@ -17,6 +17,7 @@ jest.mock('./utils/downloadFile', () => ({
   __esModule: true,
   default: mockDownloadFile,
   MAX_FILE_SIZE_EXCEEDED_ERROR: 'Maximum file size exceeded',
+  isDownloadTimeoutError: jest.requireActual('./utils/downloadFile').isDownloadTimeoutError,
 }));
 
 jest.mock('./utils/ipcMainHandle', () => ({
@@ -123,6 +124,33 @@ describe('CacheManager eviction', () => {
     await expect(cacheManager.getContent('https://example.com/nft.png')).rejects.toThrow('Request timed out');
     await expect(cacheManager.getContent('https://example.com/nft.png')).rejects.toThrow('Request timed out');
     expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+  });
+
+  it('retries a timeout persisted by a previous session', async () => {
+    const payload = Buffer.from('cached payload');
+    mockDownloadFile.mockRejectedValue(new Error('Request timed out after 30000ms of inactivity'));
+
+    const firstSession = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await firstSession.init();
+    await expect(firstSession.getContent('https://example.com/nft.png')).rejects.toThrow('Request timed out');
+
+    mockDownloadFile.mockReset();
+    mockDownloadFile.mockImplementation(async (_url, localPath) => {
+      await fs.writeFile(localPath, payload);
+      return {
+        'content-type': 'image/png',
+      };
+    });
+
+    const secondSession = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await secondSession.init();
+    await expect(secondSession.getContent('https://example.com/nft.png')).resolves.toEqual(payload);
   });
 
   it('retries an aborted download on the next access', async () => {
