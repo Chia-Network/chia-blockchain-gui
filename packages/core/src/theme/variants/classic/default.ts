@@ -41,6 +41,10 @@ export default {
       main: Color.Green[50],
       dark: Color.Neutral[600],
     },
+    sidebarSelectedFill: {
+      main: Color.Green[200],
+      dark: Color.Neutral[500],
+    },
     sidebarIconSelected: {
       main: Color.Green[800],
       dark: Color.Green[500],

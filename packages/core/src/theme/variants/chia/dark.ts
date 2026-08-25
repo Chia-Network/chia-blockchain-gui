@@ -58,6 +58,7 @@ export default createTheme(
         hover: alpha(B.starkBlue, 0.35),
       },
       sidebarBackground: theme.palette.sidebarBackground.dark,
+      sidebarSelectedFill: theme.palette.sidebarSelectedFill.dark,
 
       colors: {
         royal: {

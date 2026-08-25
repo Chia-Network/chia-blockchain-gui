@@ -45,6 +45,10 @@ export default {
       main: '#302c1f',
       dark: '#211d13',
     },
+    sidebarSelectedFill: {
+      main: 'rgba(247, 223, 155, 0.18)',
+      dark: 'rgba(247, 223, 155, 0.16)',
+    },
     sidebarIconSelected: {
       main: '#f7df9b',
       dark: '#f7df9b',

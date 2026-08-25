@@ -31,6 +31,7 @@ export default createTheme(
         disabled: Color.Text.Dark.Disabled,
       },
       sidebarBackground: theme.palette.sidebarBackground.dark,
+      sidebarSelectedFill: theme.palette.sidebarSelectedFill.dark,
 
       colors: {
         royal: {

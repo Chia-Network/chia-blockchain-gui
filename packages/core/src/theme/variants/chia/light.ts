@@ -34,6 +34,8 @@ export default createTheme({
       main: B.periwinklePursuit,
       dark: B.starkBlue,
     },
+    sidebarBackground: theme.palette.sidebarBackground.main,
+    sidebarSelectedFill: theme.palette.sidebarSelectedFill.main,
 
     colors: {
       royal: {

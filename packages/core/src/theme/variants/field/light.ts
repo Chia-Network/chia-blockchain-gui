@@ -56,6 +56,7 @@ export default createTheme({
       dark: Color.Neutral[700],
     },
     sidebarBackground: '#302c1f',
+    sidebarSelectedFill: 'rgba(247, 223, 155, 0.18)',
     sidebarIconSelected: {
       main: '#f7df9b',
       dark: '#d8ad45',

@@ -132,7 +132,7 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
           flexDirection="row"
           justifyContent="center"
           style={{
-            background: theme.palette.sidebarBackground,
+            background: getColorModeValue(theme, 'sidebarBackground'),
             padding: '12px',
             lineHeight: '29px',
             marginBottom: '10px',

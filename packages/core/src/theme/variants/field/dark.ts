@@ -59,6 +59,7 @@ export default createTheme(
         dark: 'rgba(247, 223, 155, 0.2)',
       },
       sidebarBackground: '#211d13',
+      sidebarSelectedFill: 'rgba(247, 223, 155, 0.16)',
       sidebarIconSelected: {
         main: '#f7df9b',
         dark: '#f7df9b',

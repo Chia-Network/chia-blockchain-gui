@@ -1,2 +1,2 @@
 /** @deprecated Import via theme registry. Kept for compatibility with older imports. */
-export { default } from './variants/field/default';
+export { default } from './variants/classic/default';

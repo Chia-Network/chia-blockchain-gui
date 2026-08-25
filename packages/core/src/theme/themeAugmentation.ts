@@ -53,7 +53,7 @@ declare module '@mui/material/styles' {
     danger?: ChiaPaletteColor;
     highlight?: ChiaPaletteColor;
     semantic?: ChiaSemanticPalette;
-    sidebarSelectedFill?: { light?: string; dark?: string; main?: string };
+    sidebarSelectedFill?: string | { light?: string; dark?: string; main?: string };
     sidebarText?: { light?: string; dark?: string; main?: string };
   }
 
@@ -62,7 +62,7 @@ declare module '@mui/material/styles' {
     danger?: ChiaPaletteColor;
     highlight?: ChiaPaletteColor;
     semantic?: ChiaSemanticPalette;
-    sidebarSelectedFill?: { light?: string; dark?: string; main?: string };
+    sidebarSelectedFill?: string | { light?: string; dark?: string; main?: string };
     sidebarText?: { light?: string; dark?: string; main?: string };
   }
 

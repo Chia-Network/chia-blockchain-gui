@@ -23,6 +23,7 @@ export default createTheme({
       disabled: Color.Text.Light.Disabled,
     },
     sidebarBackground: theme.palette.sidebarBackground.main,
+    sidebarSelectedFill: theme.palette.sidebarSelectedFill.main,
 
     colors: {
       royal: {

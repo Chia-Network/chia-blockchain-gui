@@ -23,7 +23,8 @@ function selectedFill(theme: Theme): string {
   if (theme.palette.sidebarSelectedFill) {
     return paletteColor(theme, 'sidebarSelectedFill');
   }
-  return paletteColor(theme, 'sidebarBackground');
+  // Never fall back to sidebarBackground: the drawer paper uses that token.
+  return alpha(theme.palette.primary.main, theme.palette.mode === 'dark' ? 0.22 : 0.16);
 }
 
 function labelColor(theme: Theme): string {
