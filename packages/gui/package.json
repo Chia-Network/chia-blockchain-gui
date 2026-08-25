@@ -52,7 +52,7 @@
     "@mui/styles": "5.14.5",
     "@mui/x-charts": "7.3.2",
     "@rehooks/local-storage": "2.4.4",
-    "@walletconnect/sign-client": "2.23.9",
+    "@walletconnect/sign-client": "2.23.10",
     "@walletconnect/utils": "2.23.9",
     "@walletconnect/types": "2.23.9",
     "axios": "1.19.0",
