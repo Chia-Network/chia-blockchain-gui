@@ -48,7 +48,7 @@ msgstr ""
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:61
 #: src/components/cat/WalletCATCreateSimple.tsx:68
-#: src/components/WalletsManageTokens.tsx:155
+#: src/components/WalletsManageTokens.tsx:163
 msgid "Add Token"
 msgstr "トークンを追加"
 
@@ -358,7 +358,7 @@ msgstr "IP アドレス"
 msgid "List of connections is empty"
 msgstr "接続がありません"
 
-#: src/components/WalletsManageTokens.tsx:132
+#: src/components/WalletsManageTokens.tsx:140
 msgid "Manage token list"
 msgstr "トークンリストの管理"
 

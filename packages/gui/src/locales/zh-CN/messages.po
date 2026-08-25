@@ -2470,7 +2470,7 @@ msgid "No"
 msgstr "否"
 
 #. js-lingui-explicit-id
-#: src/electron/dialogs/About/About.tsx:72
+#: src/electron/dialogs/About/About.tsx:75
 msgid "Report an issue"
 msgstr "反馈问题"
 
@@ -2744,109 +2744,109 @@ msgid "Are you sure you want to view the log contents?"
 msgstr "确定查看日志内容？"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1249
-#: src/electron/main.tsx:1457
+#: src/electron/main.tsx:1251
+#: src/electron/main.tsx:1459
 msgid "File"
 msgstr "文件"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1257
+#: src/electron/main.tsx:1259
 msgid "Edit"
 msgstr "编辑"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1289
+#: src/electron/main.tsx:1291
 msgid "View"
 msgstr "查看"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1298
+#: src/electron/main.tsx:1300
 msgid "Developer"
 msgstr "开发者"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1301
+#: src/electron/main.tsx:1303
 msgid "Developer Tools"
 msgstr "开发者工具"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1309
+#: src/electron/main.tsx:1311
 msgid "Trigger Desktop Notification"
 msgstr "触发桌面通知"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1338
+#: src/electron/main.tsx:1340
 msgid "Full Screen"
 msgstr "全屏"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1345
+#: src/electron/main.tsx:1347
 msgid "Window"
 msgstr "窗口"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1359
+#: src/electron/main.tsx:1361
 msgid "Help"
 msgstr "帮助"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1363
+#: src/electron/main.tsx:1365
 msgid "Chia Blockchain Wiki"
 msgstr "Chia区块链百科"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1369
+#: src/electron/main.tsx:1371
 msgid "Frequently Asked Questions"
 msgstr "常见问题解答"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1375
+#: src/electron/main.tsx:1377
 msgid "Release Notes"
 msgstr "版本发布说明"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1381
+#: src/electron/main.tsx:1383
 msgid "Contribute on GitHub"
 msgstr "在 GitHub 上贡献"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1390
+#: src/electron/main.tsx:1392
 msgid "Report an Issue..."
 msgstr "报告问题"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1396
+#: src/electron/main.tsx:1398
 msgid "Chat on Discord"
 msgstr "在Discord上讨论"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1402
+#: src/electron/main.tsx:1404
 msgid "Follow on X"
 msgstr "在X上关注"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1414
+#: src/electron/main.tsx:1416
 msgid "Chia"
 msgstr "Chia"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1417
-#: src/electron/main.tsx:1513
+#: src/electron/main.tsx:1419
+#: src/electron/main.tsx:1515
 msgid "About Chia Blockchain"
 msgstr "关于Chia区块链项目"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1423
+#: src/electron/main.tsx:1425
 msgid "Check for Updates..."
 msgstr "检查更新..."
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1472
+#: src/electron/main.tsx:1474
 msgid "Speech"
 msgstr "演说"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1519
+#: src/electron/main.tsx:1521
 msgid "Check for updates..."
 msgstr "检查更新..."
 
@@ -3103,11 +3103,11 @@ msgstr "检查更新..."
 #~ msgid "- Set a time after which the offer expires.<0/>- An expiring offer can only be claimed prior to the expiration time."
 #~ msgstr ""
 
-#: src/components/offers2/OfferBuilderImport.tsx:129
+#: src/components/offers2/OfferBuilderImport.tsx:139
 msgid "(⌘V) a blob"
 msgstr "报价文件数据(Ctrl/⌘+V)"
 
-#: src/components/offers2/OfferBuilderImport.tsx:129
+#: src/components/offers2/OfferBuilderImport.tsx:139
 msgid "(Ctrl-V) a blob"
 msgstr "报价文件数据(Ctrl/⌘+V)"
 
@@ -3143,12 +3143,16 @@ msgstr "{0}"
 msgid "{0} {1}"
 msgstr "{0} {1}"
 
+#: src/components/dashboard/DashboardOverview.tsx:357
+msgid "{0} / {1} plots passed filter"
+msgstr ""
+
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:169
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:201
 msgid "{0} buckets is recommended"
 msgstr "推荐{0} 个bucket"
 
-#: src/components/nfts/detail/NFTDetailV2.tsx:230
+#: src/components/nfts/detail/NFTDetailV2.tsx:228
 msgid "{0} of {1}"
 msgstr "{0} / {1}"
 
@@ -3156,7 +3160,7 @@ msgstr "{0} / {1}"
 msgid "{0} of {allCount} items selected:"
 msgstr "选择了 {allCount} 项中的 {0} 项："
 
-#: src/components/plotNFT/PlotNFTGraph.tsx:63
+#: src/components/plotNFT/PlotNFTGraph.tsx:65
 msgid "{0} points {1} - {2} hours ago"
 msgstr "{0} 积分 {1} - {2} 小时前"
 
@@ -3387,7 +3391,7 @@ msgstr "将绘图任务添加到队列"
 #~ msgid "Add Proofs To Verifiable Credential"
 #~ msgstr "Add Proofs To Verifiable Credential"
 
-#: src/components/vcs/VCList.tsx:227
+#: src/components/vcs/VCList.tsx:273
 msgid "Add Verifiable Credential from file"
 msgstr "从文件中添加可验证证件"
 
@@ -3397,6 +3401,10 @@ msgstr "从文件中添加可验证证件"
 #: src/components/signVerify/SigningEntityWalletAddress.tsx:45
 msgid "Address"
 msgstr "地址"
+
+#: src/components/dashboard/DashboardOverview.tsx:84
+msgid "Address book"
+msgstr ""
 
 #: src/components/addressbook/ContactAdd.tsx:30
 #: src/components/addressbook/ContactEdit.tsx:33
@@ -3501,7 +3509,7 @@ msgstr "超出了XCH的总余额"
 #~ msgid "An app has requested permission to execute the following commands."
 #~ msgstr "An app has requested permission to execute the following commands."
 
-#: src/components/farm/FarmHealth.tsx:321
+#: src/components/farm/FarmHealth.tsx:330
 msgid "An increase in the number of missing signage points (SPs) suggests that you were either disconnected from or significantly distant from a Timelord in your Full Node network. The total number of missing SPs serves as an indicator of potential rewards you could have claimed."
 msgstr "缺失提交(signage points，SPs) 的增加表明可能与全节点网络中的时间领主断开连接或距离较远。缺失提交的总数可作为未领取的潜在奖励的指标。"
 
@@ -3673,13 +3681,17 @@ msgstr "后退"
 #~ msgid "Backup DIDs"
 #~ msgstr "Backup DIDs"
 
-#: src/components/vcs/VCList.tsx:279
+#: src/components/vcs/VCList.tsx:325
 msgid "Badging"
 msgstr "徽标"
 
 #: src/components/settings/ProfileAdd.tsx:98
 #~ msgid "Balance: {standardBalance} XCH"
 #~ msgstr "Balance: {standardBalance} XCH"
+
+#: src/components/dashboard/DashboardOverview.tsx:33
+msgid "Balances, send, receive, transactions"
+msgstr ""
 
 #: src/components/block/Block.jsx:236
 msgid "Base Farmer Reward Amount"
@@ -3915,6 +3927,10 @@ msgstr "在 MintGarden 上检查出处"
 msgid "Check Provenance on Spacescan.io"
 msgstr "在Spacescan.io 上检查出处"
 
+#: src/components/dashboard/DashboardOverview.tsx:355
+msgid "Checking plots"
+msgstr ""
+
 #: src/electron/main.tsx:1098
 #~ msgid "Chia"
 #~ msgstr "Chia"
@@ -4048,7 +4064,7 @@ msgstr "硬币ID"
 #~ msgid "Coin name"
 #~ msgstr "Coin name"
 
-#: src/components/nfts/detail/NFTDetailV2.tsx:215
+#: src/components/nfts/detail/NFTDetailV2.tsx:213
 #: src/components/nfts/NFTSummary.tsx:50
 msgid "Collection"
 msgstr "集合"
@@ -4061,7 +4077,7 @@ msgstr "集合"
 msgid "Commands listed here will be executed without confirmation. Use with caution as this can affect your funds."
 msgstr "此处列出的命令将不经确认即可执行。请谨慎使用，因为这可能会影响你的资金。"
 
-#: src/components/farm/FarmHealth.tsx:327
+#: src/components/farm/FarmHealth.tsx:336
 msgid "Common reasons for missing SPs include:"
 msgstr "导致缺失提交的常见原因包括："
 
@@ -4069,7 +4085,7 @@ msgstr "导致缺失提交的常见原因包括："
 msgid "Compressed plot support"
 msgstr "压缩图块支持"
 
-#: src/components/harvest/HarvesterPlotDetails.tsx:132
+#: src/components/harvest/HarvesterPlotDetails.tsx:172
 msgid "Compression"
 msgstr "压缩"
 
@@ -4165,7 +4181,8 @@ msgid "Contact Name"
 msgstr "联系人名称"
 
 #: src/components/addressbook/AddressBookSideBar.tsx:124
-#: src/components/dashboard/DashboardSideBar.tsx:74
+#: src/components/dashboard/DashboardOverview.tsx:83
+#: src/components/dashboard/DashboardSideBar.tsx:84
 msgid "Contacts"
 msgstr "联系人"
 
@@ -4181,7 +4198,7 @@ msgstr "文件的哈希值与NFT初始铸造时指定的值不同，可能已被
 msgid "Content has not been validated against the hash that was specified during NFT minting. Error: {0}"
 msgstr "内容未与在NFT铸造过程中指定的哈希进行验证。错误：{0}"
 
-#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:135
+#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:134
 msgid "Continue"
 msgstr "继续"
 
@@ -4217,7 +4234,7 @@ msgstr "向 NFT 持有者发送通知的成本"
 msgid "Could not connect to host {host} on port {port}"
 msgstr "无法通过端口{host}连接到主机{port}"
 
-#: src/components/offers2/OfferBuilderImport.tsx:37
+#: src/components/offers2/OfferBuilderImport.tsx:38
 msgid "Could not parse offer data"
 msgstr "无法解析报价数据"
 
@@ -4316,6 +4333,10 @@ msgstr "创建个人资料"
 msgid "Create Signature"
 msgstr "新建签名"
 
+#: src/components/dashboard/DashboardOverview.tsx:71
+msgid "Create, import, inspect, manage"
+msgstr ""
+
 #: src/components/offers/OfferViewerTitle.tsx:34
 msgid "created {0}"
 msgstr "已创建 {0}"
@@ -4359,7 +4380,8 @@ msgstr "创建者手续费({royaltyPercentage}%)"
 msgid "Creator royalty percentage seems high"
 msgstr "创建者版税比率似乎高"
 
-#: src/components/dashboard/DashboardSideBar.tsx:61
+#: src/components/dashboard/DashboardOverview.tsx:76
+#: src/components/dashboard/DashboardSideBar.tsx:71
 msgid "Credentials"
 msgstr "证件"
 
@@ -4508,7 +4530,7 @@ msgstr "派生索引"
 msgid "Derivation index must be greater than {index}"
 msgstr "派生索引必须大于 {index}"
 
-#: src/components/nfts/detail/NFTDetailV2.tsx:205
+#: src/components/nfts/detail/NFTDetailV2.tsx:203
 msgid "Description"
 msgstr "描述"
 
@@ -4711,7 +4733,7 @@ msgstr "正在下载文件 {0}/{1}"
 msgid "Downloading selected NFTs"
 msgstr "正在下载选中的 NFT"
 
-#: src/components/signVerify/VerifyMessageImport.tsx:75
+#: src/components/signVerify/VerifyMessageImport.tsx:77
 msgid "Drag & Drop a Signed Message File,<0/> Paste ({0}V)"
 msgstr "拖放签名消息文件，<0/> 粘贴({0}V)"
 
@@ -4719,7 +4741,7 @@ msgstr "拖放签名消息文件，<0/> 粘贴({0}V)"
 msgid "Drag & Drop an Offer File"
 msgstr "拖放报价文件"
 
-#: src/components/offers2/OfferBuilderImport.tsx:128
+#: src/components/offers2/OfferBuilderImport.tsx:138
 msgid "Drag & Drop an Offer File, Paste"
 msgstr "拖放报价文件，粘贴"
 
@@ -4739,7 +4761,7 @@ msgstr "重复图块"
 msgid "Duplicate Plots"
 msgstr "重复图块"
 
-#: src/components/harvest/HarvesterDetail.tsx:123
+#: src/components/harvest/HarvesterDetail.tsx:125
 msgid "Earned"
 msgstr "获得额外"
 
@@ -4762,7 +4784,7 @@ msgstr "编辑支付地址"
 msgid "Edition #"
 msgstr "版本 #"
 
-#: src/components/nfts/detail/NFTDetailV2.tsx:226
+#: src/components/nfts/detail/NFTDetailV2.tsx:224
 msgid "Edition Number"
 msgstr "版本号"
 
@@ -4770,7 +4792,7 @@ msgstr "版本号"
 #~ msgid "Edition Total"
 #~ msgstr "Edition Total"
 
-#: src/components/harvest/HarvesterDetail.tsx:159
+#: src/components/harvest/HarvesterDetail.tsx:161
 msgid "Effective Space"
 msgstr "有效空间"
 
@@ -4883,7 +4905,7 @@ msgstr "错误"
 #~ msgid "Error fetching video preview"
 #~ msgstr ""
 
-#: src/components/vcs/VCList.tsx:215
+#: src/components/vcs/VCList.tsx:261
 msgid "Error parsing file"
 msgstr "解析文件出错"
 
@@ -4949,7 +4971,7 @@ msgstr "不耕种最终输出文件夹"
 #~ msgid "Excluded Coin IDs"
 #~ msgstr "Excluded Coin IDs"
 
-#: src/components/farm/FarmHealth.tsx:252
+#: src/components/farm/FarmHealth.tsx:261
 msgid "Expected Total plots passing filter"
 msgstr "预计通过初筛的图块总数量"
 
@@ -4988,7 +5010,7 @@ msgstr "失败"
 msgid "Failed downloads:"
 msgstr "下载失败："
 
-#: src/components/farm/PoolingHealth.tsx:310
+#: src/components/farm/PoolingHealth.tsx:318
 msgid "Failed partials"
 msgstr "失败贡献点"
 
@@ -5020,11 +5042,12 @@ msgstr "设置私钥密码失败: {0}"
 msgid "Failure"
 msgstr "失败"
 
-#: src/components/dashboard/DashboardSideBar.tsx:94
+#: src/components/dashboard/DashboardOverview.tsx:47
+#: src/components/dashboard/DashboardSideBar.tsx:103
 msgid "Farm"
 msgstr "耕种"
 
-#: src/components/farm/FarmHealth.tsx:424
+#: src/components/farm/FarmHealth.tsx:433
 msgid "Farm Health"
 msgstr "耕种健康度"
 
@@ -5076,6 +5099,10 @@ msgstr "农民们通过贡献自己的空余存储空间，可以帮助提高整
 msgid "Farming"
 msgstr "耕种"
 
+#: src/components/dashboard/DashboardOverview.tsx:341
+msgid "Farming info did not respond"
+msgstr ""
+
 #: src/components/app/AppSelectMode.tsx:112
 msgid "Farming Mode"
 msgstr "耕种模式"
@@ -5099,6 +5126,10 @@ msgstr "耕种空间"
 #: src/components/farm/card/FarmCardStatus.tsx:59
 #~ msgid "Farming Status"
 #~ msgstr "Farming Status"
+
+#: src/components/dashboard/DashboardOverview.tsx:48
+msgid "Farming status and rewards"
+msgstr ""
 
 #: src/components/settings/SettingsAdvanced.tsx:77
 msgid "Features for advanced users."
@@ -5160,12 +5191,12 @@ msgstr ""
 #~ msgid "File"
 #~ msgstr "File"
 
-#: src/components/nfts/NFTPreview.tsx:574
+#: src/components/nfts/NFTPreview.tsx:571
 msgid "File does not match the expected hash"
 msgstr "文件与预期哈希不匹配"
 
 #: src/components/nfts/NFTHashStatus.tsx:88
-#: src/components/nfts/NFTPreview.tsx:253
+#: src/components/nfts/NFTPreview.tsx:251
 msgid "File is not available"
 msgstr "文件不可用"
 
@@ -5227,7 +5258,8 @@ msgid "From"
 msgstr "来自"
 
 #: src/components/app/AppStatusHeader.tsx:127
-#: src/components/dashboard/DashboardSideBar.tsx:87
+#: src/components/dashboard/DashboardOverview.tsx:40
+#: src/components/dashboard/DashboardSideBar.tsx:97
 #: src/components/fullNode/FullNode.jsx:116
 msgid "Full Node"
 msgstr "全节点"
@@ -5236,13 +5268,21 @@ msgstr "全节点"
 msgid "Full Node Connections"
 msgstr "全节点连接"
 
-#: src/components/farm/FarmHealth.tsx:336
+#: src/components/dashboard/DashboardOverview.tsx:263
+msgid "Full node service did not respond"
+msgstr ""
+
+#: src/components/farm/FarmHealth.tsx:345
 msgid "Full Node was out of sync"
 msgstr "全节点未同步"
 
 #: src/electron/main.tsx:1022
 #~ msgid "Full Screen"
 #~ msgstr "Full Screen"
+
+#: src/components/dashboard/DashboardOverview.tsx:65
+msgid "Gallery and detail pages"
+msgstr ""
 
 #: src/components/settings/Settings.tsx:29
 msgid "General"
@@ -5449,7 +5489,7 @@ msgstr "收集一些宝石吧"
 #~ msgid "Go to #{channelName}"
 #~ msgstr "Go to #{channelName}"
 
-#: src/components/vcs/VCList.tsx:295
+#: src/components/vcs/VCList.tsx:405
 msgid "Government IDs"
 msgstr "身份证"
 
@@ -5462,7 +5502,8 @@ msgstr "GPU设备索引"
 msgid "Halves the temp2 cache size requirements by alternating bucket writing methods between tables."
 msgstr "通过在table之间交替写入bucket的方法将缓存大小要求减半。"
 
-#: src/components/dashboard/DashboardSideBar.tsx:106
+#: src/components/dashboard/DashboardOverview.tsx:89
+#: src/components/dashboard/DashboardSideBar.tsx:115
 msgid "Harvest"
 msgstr "收割"
 
@@ -5474,6 +5515,10 @@ msgstr "收割机"
 msgid "Harvester latency"
 msgstr "收割机延迟"
 
+#: src/components/dashboard/DashboardOverview.tsx:90
+msgid "Harvester overview"
+msgstr ""
+
 #: src/components/settings/SettingsHarvester.tsx:372
 msgid "Harvester Services"
 msgstr "收割机服务"
@@ -5481,6 +5526,14 @@ msgstr "收割机服务"
 #: src/components/harvest/HarvesterOverview.tsx:153
 msgid "Harvester Summary"
 msgstr "收割概览"
+
+#: src/components/dashboard/DashboardOverview.tsx:309
+msgid "Harvester summary did not respond"
+msgstr ""
+
+#: src/components/dashboard/DashboardOverview.tsx:322
+msgid "harvesters"
+msgstr ""
 
 #: src/components/harvest/HarvesterOverview.tsx:218
 #: src/components/plot/PlotHarvesters.tsx:38
@@ -5529,6 +5582,7 @@ msgid "Header Hash"
 msgstr "头部哈希"
 
 #: src/components/block/Block.jsx:169
+#: src/components/dashboard/DashboardOverview.tsx:272
 #: src/components/fullNode/FullNode.jsx:61
 #: src/components/fullNode/FullNodeConnections.tsx:62
 msgid "Height"
@@ -5712,7 +5766,7 @@ msgstr ""
 "可用的资金不足，无法创建报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
-#: src/components/farm/PoolingHealth.tsx:302
+#: src/components/farm/PoolingHealth.tsx:310
 msgid "Insufficient partials"
 msgstr "难度不符贡献点"
 
@@ -5858,7 +5912,7 @@ msgstr "密钥"
 msgid "KiB Up/Down"
 msgstr "KiB 上传/下载"
 
-#: src/components/vcs/VCList.tsx:301
+#: src/components/vcs/VCList.tsx:411
 msgid "KYC status"
 msgstr "KYC状态"
 
@@ -5910,7 +5964,7 @@ msgstr "启动器ID"
 msgid "Launcher ID"
 msgstr "启动器 ID"
 
-#: src/components/farm/FarmHealth.tsx:341
+#: src/components/farm/FarmHealth.tsx:350
 #: src/components/plot/add/PlotAddNFT.tsx:84
 msgid "Learn more"
 msgstr "了解更多"
@@ -5956,7 +6010,14 @@ msgstr "连接列表为空"
 msgid "Load Logs"
 msgstr "载入日志"
 
-#: src/components/app/AppProviders.tsx:83
+#: src/components/dashboard/DashboardOverview.tsx:200
+#: src/components/dashboard/DashboardOverview.tsx:255
+#: src/components/dashboard/DashboardOverview.tsx:301
+#: src/components/dashboard/DashboardOverview.tsx:333
+msgid "Loading"
+msgstr ""
+
+#: src/components/app/AppProviders.tsx:86
 msgid "Loading configuration"
 msgstr "正在加载配置"
 
@@ -5985,7 +6046,7 @@ msgstr "正在加载 NFT"
 msgid "Loading NFT Info..."
 msgstr "正在加载NFT信息..."
 
-#: src/components/nfts/NFTPreview.tsx:563
+#: src/components/nfts/NFTPreview.tsx:560
 msgid "Loading NFT..."
 msgstr "正在加载NFT..."
 
@@ -5993,8 +6054,8 @@ msgstr "正在加载NFT..."
 #~ msgid "Loading NFTs..."
 #~ msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:563
-#: src/components/nfts/NFTPreview.tsx:585
+#: src/components/nfts/NFTPreview.tsx:560
+#: src/components/nfts/NFTPreview.tsx:582
 msgid "Loading preview..."
 msgstr "正在加载预览..."
 
@@ -6017,7 +6078,7 @@ msgstr "本地"
 msgid "Local folder"
 msgstr "本地文件夹"
 
-#: src/components/harvest/HarvesterDetail.tsx:47
+#: src/components/harvest/HarvesterDetail.tsx:49
 msgid "Local Harvester"
 msgstr "本地收割机"
 
@@ -6037,7 +6098,11 @@ msgstr "注销"
 msgid "Log Viewer"
 msgstr "日志查看器"
 
-#: src/components/nfts/NFTPreview.tsx:442
+#: src/components/dashboard/DashboardOverview.tsx:97
+msgid "Logs and diagnostics"
+msgstr ""
+
+#: src/components/nfts/NFTPreview.tsx:440
 msgid "Loop video"
 msgstr "循环播放视频"
 
@@ -6045,11 +6110,11 @@ msgstr "循环播放视频"
 msgid "Loop videos"
 msgstr "循环播放视频"
 
-#: src/components/nfts/NFTPreview.tsx:438
+#: src/components/nfts/NFTPreview.tsx:436
 msgid "Looping is enabled for all videos in Settings"
 msgstr "已在设置中为所有视频启用循环播放"
 
-#: src/components/nfts/NFTPreview.tsx:440
+#: src/components/nfts/NFTPreview.tsx:438
 msgid "Looping on"
 msgstr "循环播放已开启"
 
@@ -6100,7 +6165,7 @@ msgstr "最大值"
 #~ msgid "Max page size"
 #~ msgstr "Max page size"
 
-#: src/components/vcs/VCList.tsx:305
+#: src/components/vcs/VCList.tsx:415
 msgid "Memberships"
 msgstr "成员资格"
 
@@ -6227,7 +6292,7 @@ msgstr "分钟"
 msgid "Missing Keys"
 msgstr "缺少密钥"
 
-#: src/components/farm/PoolingHealth.tsx:325
+#: src/components/farm/PoolingHealth.tsx:333
 msgid "Missing partials"
 msgstr "延迟贡献点"
 
@@ -6239,10 +6304,14 @@ msgstr "延迟贡献点"
 #~ msgid "Missing preview_video_hash key"
 #~ msgstr ""
 
-#: src/components/farm/FarmHealth.tsx:359
-#: src/components/farm/FarmHealth.tsx:373
+#: src/components/farm/FarmHealth.tsx:368
+#: src/components/farm/FarmHealth.tsx:382
 msgid "Missing signage points"
 msgstr "缺失提交"
+
+#: src/components/dashboard/DashboardOverview.tsx:399
+msgid "More areas"
+msgstr ""
 
 #: src/components/walletConnect/WalletConnectConnections.tsx:83
 #~ msgid "More Info"
@@ -6252,7 +6321,7 @@ msgstr "缺失提交"
 msgid "More memory slightly increases speed"
 msgstr "增加内存可以略微提高速度"
 
-#: src/components/harvest/HarvesterDetail.tsx:129
+#: src/components/harvest/HarvesterDetail.tsx:131
 msgid "more space"
 msgstr "的空间"
 
@@ -6363,7 +6432,7 @@ msgid "New Root"
 msgstr "新Root"
 
 #: src/components/block/Block.jsx:260
-#: src/components/nfts/detail/NFTDetailV2.tsx:143
+#: src/components/nfts/detail/NFTDetailV2.tsx:141
 msgid "Next"
 msgstr "下一步"
 
@@ -6461,7 +6530,8 @@ msgstr "NFT 传输失败"
 msgid "NFT Transfer Pending"
 msgstr "NFT 等待传输"
 
-#: src/components/dashboard/DashboardSideBar.tsx:54
+#: src/components/dashboard/DashboardOverview.tsx:64
+#: src/components/dashboard/DashboardSideBar.tsx:64
 msgid "NFTs"
 msgstr "NFT"
 
@@ -6476,6 +6546,10 @@ msgstr "否"
 #: src/components/notification/NotificationsMenu.tsx:53
 msgid "No activities yet"
 msgstr "目前没有未读通知"
+
+#: src/components/dashboard/DashboardOverview.tsx:349
+msgid "No attempts"
+msgstr ""
 
 #: src/components/farm/card/FarmCardLastHeightFarmed.tsx:15
 #~ msgid "No blocks farmed yet"
@@ -6506,7 +6580,7 @@ msgstr "当前没有报价"
 #~ msgid "No Custom Permissions"
 #~ msgstr "No Custom Permissions"
 
-#: src/components/nfts/NFTPreview.tsx:568
+#: src/components/nfts/NFTPreview.tsx:565
 msgid "No file available"
 msgstr "没有可用文件"
 
@@ -6526,11 +6600,19 @@ msgstr "尚无图块"
 msgid "No private keys for one or both addresses. Safe only if you are sending rewards to another wallet."
 msgstr "本机没有所输入地址对应的私钥。请确认是否要将奖励发送至非本机钱包。"
 
+#: src/components/dashboard/DashboardOverview.tsx:350
+msgid "No recent plot filter attempts found"
+msgstr ""
+
 #: src/util/offerBuilderDataToOffer.ts:165
 #: src/util/offerBuilderDataToOffer.ts:193
 #: src/util/offerBuilderDataToOffer.ts:303
 msgid "No standard wallet found"
 msgstr "未找到标准钱包"
+
+#: src/components/dashboard/DashboardOverview.tsx:214
+msgid "No wallet"
+msgstr ""
 
 #: src/components/farm/FarmFullNodeConnections.tsx:29
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:29
@@ -6543,14 +6625,14 @@ msgstr "节点ID"
 #~ msgstr "Non Observer Derivation"
 
 #: src/components/did/DIDProfileDropdown.tsx:98
-#: src/components/farm/FarmHealth.tsx:362
-#: src/components/farm/FarmHealth.tsx:390
-#: src/components/farm/FarmHealth.tsx:408
-#: src/components/farm/PoolingHealth.tsx:87
-#: src/components/farm/PoolingHealth.tsx:125
-#: src/components/farm/PoolingHealth.tsx:162
-#: src/components/farm/PoolingHealth.tsx:199
-#: src/components/farm/PoolingHealth.tsx:236
+#: src/components/farm/FarmHealth.tsx:371
+#: src/components/farm/FarmHealth.tsx:399
+#: src/components/farm/FarmHealth.tsx:417
+#: src/components/farm/PoolingHealth.tsx:95
+#: src/components/farm/PoolingHealth.tsx:133
+#: src/components/farm/PoolingHealth.tsx:170
+#: src/components/farm/PoolingHealth.tsx:207
+#: src/components/farm/PoolingHealth.tsx:244
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:104
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:244
 #: src/components/plot/add/PlotAddNFT.tsx:96
@@ -6570,9 +6652,9 @@ msgstr "尚未有图块通过初筛。"
 msgid "Normal (RAM required: 256G)"
 msgstr "常规模式(需要内存：256G)"
 
-#: src/components/farm/FarmHealth.tsx:123
-#: src/components/farm/FarmHealth.tsx:170
-#: src/components/farm/FarmHealth.tsx:194
+#: src/components/farm/FarmHealth.tsx:132
+#: src/components/farm/FarmHealth.tsx:179
+#: src/components/farm/FarmHealth.tsx:203
 msgid "Not available"
 msgstr "不可用"
 
@@ -6585,16 +6667,20 @@ msgstr "不可用"
 msgid "Not Available"
 msgstr "不可用"
 
-#: src/components/farm/FarmHealth.tsx:131
-#: src/components/farm/FarmHealth.tsx:178
+#: src/components/farm/FarmHealth.tsx:140
+#: src/components/farm/FarmHealth.tsx:187
 #: src/components/fullNode/card/FullNodeCardConnectionStatus.tsx:16
 msgid "Not connected"
 msgstr "未连接"
 
-#: src/components/farm/FarmHealth.tsx:139
-#: src/components/farm/FarmHealth.tsx:186
+#: src/components/farm/FarmHealth.tsx:148
+#: src/components/farm/FarmHealth.tsx:195
 msgid "Not running"
 msgstr "未运行"
+
+#: src/components/dashboard/DashboardOverview.tsx:283
+msgid "Not synced"
+msgstr ""
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:14
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:44
@@ -6732,7 +6818,7 @@ msgstr "报价有效期"
 msgid "Offer Expiration Time"
 msgstr "报价到期时间"
 
-#: src/components/offers2/OfferBuilderImport.tsx:58
+#: src/components/offers2/OfferBuilderImport.tsx:59
 msgid "Offer file is too large (> 1MB)"
 msgstr "报价文件过大 (> 1MB)"
 
@@ -6801,8 +6887,9 @@ msgstr "提供"
 msgid "Offerpool URL"
 msgstr "Offerpool网址"
 
-#: src/components/dashboard/DashboardSideBar.tsx:68
-#: src/components/nfts/detail/NFTDetailV2.tsx:245
+#: src/components/dashboard/DashboardOverview.tsx:70
+#: src/components/dashboard/DashboardSideBar.tsx:78
+#: src/components/nfts/detail/NFTDetailV2.tsx:243
 msgid "Offers"
 msgstr "报价"
 
@@ -6822,7 +6909,7 @@ msgstr "已接受报价"
 msgid "Offers you created"
 msgstr "创建的报价"
 
-#: src/components/farm/FarmHealth.tsx:209
+#: src/components/farm/FarmHealth.tsx:218
 #: src/components/offers/OfferDataDialog.tsx:58
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:86
 msgid "OK"
@@ -6876,8 +6963,8 @@ msgstr "为加快报价成交，提供可选的手续费"
 msgid "Options"
 msgstr "选项"
 
-#: src/components/offers2/OfferBuilderImport.tsx:132
-#: src/components/signVerify/VerifyMessageImport.tsx:136
+#: src/components/offers2/OfferBuilderImport.tsx:142
+#: src/components/signVerify/VerifyMessageImport.tsx:138
 msgid "or <0>browse</0> on your computer"
 msgstr "或者在电脑中<0>浏览</0>"
 
@@ -6908,6 +6995,10 @@ msgstr "覆盖第2阶段的线程计数"
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:310
 msgid "Override the thread count for Phase 3"
 msgstr "覆盖第3阶段的线程计数"
+
+#: src/components/dashboard/DashboardSideBar.tsx:50
+msgid "Overview"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:1171
 #~ msgid "Overwrite"
@@ -6955,11 +7046,11 @@ msgstr "并行解压数量"
 #~ msgid "Parent Coin Info"
 #~ msgstr "Parent Coin Info"
 
-#: src/components/farm/PoolingHealth.tsx:317
+#: src/components/farm/PoolingHealth.tsx:325
 msgid "Partials found but not sent to pools. This usually happens when a partial is found before connections to pools are established"
 msgstr "尚未发送到耕种池的贡献点。通常情况下，这发生在与耕种池建立连接之前就产生了贡献点的情况下"
 
-#: src/components/farm/PoolingHealth.tsx:299
+#: src/components/farm/PoolingHealth.tsx:307
 msgid "Partials not good enough for difficulties for corresponding pools"
 msgstr "贡献点不符合相应耕种池的难度要求"
 
@@ -6967,15 +7058,15 @@ msgstr "贡献点不符合相应耕种池的难度要求"
 #~ msgid "Partials not good enough or rejected by pools"
 #~ msgstr ""
 
-#: src/components/farm/PoolingHealth.tsx:307
+#: src/components/farm/PoolingHealth.tsx:315
 msgid "Partials sent to pools but received error responses"
 msgstr "贡献点已发送到耕种池，但收到错误响应"
 
-#: src/components/farm/PoolingHealth.tsx:291
+#: src/components/farm/PoolingHealth.tsx:299
 msgid "Partials sent to pools but too late"
 msgstr "贡献点已发送到耕种池，但时间太晚"
 
-#: src/components/farm/PoolingHealth.tsx:283
+#: src/components/farm/PoolingHealth.tsx:291
 msgid "Partials successfully sent and acknowledged by pools"
 msgstr "贡献点已成功发送并得到耕种池确认"
 
@@ -7016,7 +7107,7 @@ msgstr "私钥密码保护已启用"
 msgid "Passphrase support requires migrating your keys to a new keyring"
 msgstr "私钥密码要求将密钥迁移到新的密钥串中"
 
-#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:106
+#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:105
 msgid "Paste link"
 msgstr "粘贴链接"
 
@@ -7025,7 +7116,7 @@ msgstr "粘贴链接"
 msgid "Paste Offer Data"
 msgstr "粘贴报价数据"
 
-#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:101
+#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:100
 msgid "Paste the address from WalletConnect below."
 msgstr "请在下方粘贴来自WalletConnect的地址。"
 
@@ -7033,10 +7124,19 @@ msgstr "请在下方粘贴来自WalletConnect的地址。"
 msgid "Payout Address"
 msgstr "支付地址"
 
+#: src/components/dashboard/DashboardOverview.tsx:289
+msgid "Peak"
+msgstr ""
+
 #: src/components/fullNode/card/FullNodeCardPeakHeight.tsx:14
 msgid "Peak Height"
 msgstr "最高高度"
 
+#: src/components/dashboard/DashboardOverview.tsx:279
+msgid "peers loading"
+msgstr ""
+
+#: src/components/dashboard/DashboardOverview.tsx:221
 #: src/components/plotNFT/PlotNFTState.tsx:41
 msgid "Pending"
 msgstr "待确认"
@@ -7075,7 +7175,7 @@ msgstr "请确认"
 msgid "Please enter a passphrase"
 msgstr "请输入密钥密码"
 
-#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:46
+#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:45
 msgid "Please enter a URI"
 msgstr "请输入网址"
 
@@ -7180,7 +7280,11 @@ msgstr "图块"
 msgid "Plot Count"
 msgstr "图块数量"
 
-#: src/components/harvest/HarvesterPlotDetails.tsx:159
+#: src/components/dashboard/DashboardOverview.tsx:55
+msgid "Plot count, size, and add flow"
+msgstr ""
+
+#: src/components/harvest/HarvesterPlotDetails.tsx:199
 msgid "Plot details"
 msgstr "图块详情"
 
@@ -7213,7 +7317,7 @@ msgstr "联合耕种农田的合约地址"
 msgid "Plot NFT with p2_singleton_puzzle_hash {plotNFTId} does not exists"
 msgstr "p2_singleton_puzzle_hash为 {plotNFTId} 的联合耕种农田不存在。"
 
-#: src/components/farm/FarmHealth.tsx:246
+#: src/components/farm/FarmHealth.tsx:255
 msgid "Plot pass ratio"
 msgstr "图块初筛值"
 
@@ -7225,7 +7329,7 @@ msgstr "图块公钥"
 #~ msgid "Plot Size"
 #~ msgstr "Plot Size"
 
-#: src/components/harvest/HarvesterPlotDetails.tsx:175
+#: src/components/harvest/HarvesterPlotDetails.tsx:215
 msgid "Plot Sizes"
 msgstr "图块大小"
 
@@ -7237,7 +7341,12 @@ msgstr "绘图到联合耕种农田"
 msgid "PlotNFT is transitioning to (target state). This can take a while. Please do not close the application until this is finalized."
 msgstr "联合耕种农田正在过渡到（目标状态）。这可能需要一段时间。请在完成之前不要关闭应用程序。"
 
-#: src/components/dashboard/DashboardSideBar.tsx:100
+#: src/components/dashboard/DashboardOverview.tsx:316
+msgid "plots"
+msgstr ""
+
+#: src/components/dashboard/DashboardOverview.tsx:54
+#: src/components/dashboard/DashboardSideBar.tsx:109
 #: src/components/plot/PlotHarvester.tsx:97
 msgid "Plots"
 msgstr "图块"
@@ -7258,8 +7367,8 @@ msgstr "相同队列中的图块将按顺序运行。"
 msgid "Plots Passed Filter"
 msgstr "通过初筛图块"
 
-#: src/components/farm/FarmHealth.tsx:219
-#: src/components/farm/FarmHealth.tsx:299
+#: src/components/farm/FarmHealth.tsx:228
+#: src/components/farm/FarmHealth.tsx:308
 msgid "Plots passing filter"
 msgstr "图块初筛情况"
 
@@ -7310,6 +7419,10 @@ msgstr "从开始以来获取的积分"
 #: src/components/plotNFT/PlotNFTCard.tsx:206
 msgid "Points Successful in Last 24 Hours"
 msgstr "最近24小时成功获取的积分"
+
+#: src/components/dashboard/DashboardOverview.tsx:94
+msgid "Pool"
+msgstr ""
 
 #: src/components/plot/PlotHarvesterPlots.tsx:64
 msgid "Pool Contract Address"
@@ -7378,14 +7491,18 @@ msgstr "联合耕种奖励金额"
 msgid "Pool:"
 msgstr "联合耕种池"
 
-#: src/components/dashboard/DashboardSideBar.tsx:119
-#: src/components/farm/PoolingHealth.tsx:273
+#: src/components/dashboard/DashboardSideBar.tsx:128
+#: src/components/farm/PoolingHealth.tsx:281
 #: src/components/plotNFT/PlotNFTExternalState.tsx:25
 #: src/components/plotNFT/PlotNFTState.tsx:57
 msgid "Pooling"
 msgstr "联合耕种"
 
-#: src/components/farm/PoolingHealth.tsx:278
+#: src/components/dashboard/DashboardOverview.tsx:94
+msgid "Pooling controls"
+msgstr ""
+
+#: src/components/farm/PoolingHealth.tsx:286
 msgid "Pooling Health"
 msgstr "联合耕种健康度"
 
@@ -7396,6 +7513,10 @@ msgstr "联合耕种健康度"
 msgid "Port"
 msgstr "端口"
 
+#: src/components/dashboard/DashboardOverview.tsx:103
+msgid "Preferences and services"
+msgstr ""
+
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:95
 #: src/components/plotNFT/PlotNFTChangePool.tsx:76
 msgid "Preparing Plot NFT"
@@ -7405,7 +7526,7 @@ msgstr "正在准备联合耕种农田"
 msgid "Preparing standard wallet"
 msgstr "正在准备标准钱包"
 
-#: src/components/nfts/NFTPreview.tsx:289
+#: src/components/nfts/NFTPreview.tsx:287
 #: src/components/offers2/OfferBuilderNFT.tsx:75
 msgid "Preview"
 msgstr "预览"
@@ -7426,7 +7547,7 @@ msgstr ""
 msgid "Preview image URL {index}"
 msgstr "图片预览网址{index}"
 
-#: src/components/nfts/NFTPreview.tsx:580
+#: src/components/nfts/NFTPreview.tsx:577
 msgid "Preview is not available"
 msgstr "预览不可用"
 
@@ -7451,7 +7572,7 @@ msgid "Preview video URL {index}"
 msgstr "视频预览网址{index}"
 
 #: src/components/block/Block.jsx:257
-#: src/components/nfts/detail/NFTDetailV2.tsx:133
+#: src/components/nfts/detail/NFTDetailV2.tsx:131
 msgid "Previous"
 msgstr "上一个"
 
@@ -7480,6 +7601,10 @@ msgstr "个人资料"
 #: src/components/settings/SettingsProfiles.tsx:50
 msgid "Profiles (DIDs)"
 msgstr "个人资料 (DID)"
+
+#: src/components/dashboard/DashboardOverview.tsx:355
+msgid "Proof found"
+msgstr ""
 
 #: src/components/block/Block.jsx:203
 msgid "Proof of Space Size"
@@ -7566,6 +7691,22 @@ msgstr "内存最大使用量"
 msgid "Rankings"
 msgstr "排名"
 
+#: src/components/dashboard/DashboardOverview.tsx:256
+msgid "Reading full node status"
+msgstr ""
+
+#: src/components/dashboard/DashboardOverview.tsx:302
+msgid "Reading harvester summary"
+msgstr ""
+
+#: src/components/dashboard/DashboardOverview.tsx:334
+msgid "Reading recent farming attempts"
+msgstr ""
+
+#: src/components/dashboard/DashboardOverview.tsx:201
+msgid "Reading standard wallet balance"
+msgstr ""
+
 #: src/components/settings/SettingsNotifications.tsx:123
 msgid "Receive general announcement notifications from connected Dapps"
 msgstr "接收来自已连接的 Dapp 的一般公告通知"
@@ -7619,7 +7760,7 @@ msgstr "刷新图块列表"
 #~ msgid "Registers a list of remote coin IDs with a remote wallet."
 #~ msgstr "Registers a list of remote coin IDs with a remote wallet."
 
-#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:125
+#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:124
 msgid "Reject"
 msgstr "拒绝"
 
@@ -7639,7 +7780,7 @@ msgstr "重新列出报价"
 msgid "Remote"
 msgstr "远端"
 
-#: src/components/harvest/HarvesterDetail.tsx:47
+#: src/components/harvest/HarvesterDetail.tsx:49
 msgid "Remote Harvester"
 msgstr "远程收割机"
 
@@ -7804,8 +7945,8 @@ msgstr "所需证明"
 msgid "Requires Proof From Store"
 msgstr "需要来自存储的证明"
 
-#: src/components/farm/FarmHealth.tsx:286
-#: src/components/farm/FarmHealth.tsx:348
+#: src/components/farm/FarmHealth.tsx:295
+#: src/components/farm/FarmHealth.tsx:357
 #: src/components/offers/NFTOfferEditor.tsx:435
 #: src/components/offers/OfferEditor.tsx:153
 #: src/components/settings/SettingsIntegration.tsx:222
@@ -8118,7 +8259,8 @@ msgstr "设置私钥密码"
 msgid "Set up keys manually"
 msgstr "手动设置密钥"
 
-#: src/components/dashboard/DashboardSideBar.tsx:137
+#: src/components/dashboard/DashboardOverview.tsx:102
+#: src/components/dashboard/DashboardSideBar.tsx:146
 #: src/components/settings/Settings.tsx:74
 msgid "Settings"
 msgstr "设置"
@@ -8245,7 +8387,7 @@ msgstr "签名者："
 msgid "Signed Message"
 msgstr "已签名的消息"
 
-#: src/components/signVerify/VerifyMessageImport.tsx:84
+#: src/components/signVerify/VerifyMessageImport.tsx:86
 msgid "Signed message file is too large (> 10MB)"
 msgstr "签名消息文件过大 (> 10MB)"
 
@@ -8289,7 +8431,7 @@ msgstr "独自耕种"
 msgid "Sorry, you can't switch to mainnet by clicking here..."
 msgstr "不能通过点击这里切换到主网..."
 
-#: src/components/harvest/HarvesterDetail.tsx:108
+#: src/components/harvest/HarvesterDetail.tsx:110
 #: src/components/harvest/HarvesterOverview.tsx:157
 msgid "Space"
 msgstr "空间"
@@ -8330,6 +8472,10 @@ msgstr "如果存在多个GPU，请指定GPU索引(0、1、2等) 以进行收割
 #~ msgid "Spend Fee"
 #~ msgstr "Spend Fee"
 
+#: src/components/dashboard/DashboardOverview.tsx:232
+msgid "Spendable {spendable} {currencyCode}"
+msgstr ""
+
 #: src/components/offers2/OfferBuilderWalletBalance.tsx:44
 msgid "Spendable Balance: {0}"
 msgstr "可用余额： {0}"
@@ -8338,17 +8484,21 @@ msgstr "可用余额： {0}"
 msgid "Spendable Balance: {spendableBalance} {currencyCode}"
 msgstr "可用余额： {spendableBalance} {currencyCode}"
 
-#: src/components/farm/FarmHealth.tsx:438
+#: src/components/farm/FarmHealth.tsx:447
 msgid "Stale partials"
 msgstr "过期贡献点"
 
-#: src/components/farm/PoolingHealth.tsx:294
+#: src/components/farm/PoolingHealth.tsx:302
 msgid "Stale Partials"
 msgstr "过期贡献点"
 
 #: src/components/vcs/VCCard.tsx:176
 msgid "Standard Version Number"
 msgstr "标准版本号"
+
+#: src/components/dashboard/DashboardOverview.tsx:215
+msgid "Standard wallet is not available"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:556
 #~ msgid "Start"
@@ -8463,17 +8613,23 @@ msgstr "成功更新缓存大小限制。"
 msgid "Successfully updated the derivation index. Your balances may take a while to update."
 msgstr "成功更新派生索引。您的余额可能需要一段时间才能更新。"
 
-#: src/components/farm/FarmHealth.tsx:430
+#: src/components/farm/FarmHealth.tsx:439
 msgid "Sync status"
 msgstr "同步状态"
 
-#: src/components/farm/FarmHealth.tsx:146
+#: src/components/dashboard/DashboardOverview.tsx:41
+msgid "Sync, peers, block inspection"
+msgstr ""
+
+#: src/components/dashboard/DashboardOverview.tsx:283
+#: src/components/farm/FarmHealth.tsx:155
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:50
 msgid "Synced"
 msgstr "已同步"
 
-#: src/components/farm/FarmHealth.tsx:115
-#: src/components/farm/FarmHealth.tsx:162
+#: src/components/dashboard/DashboardOverview.tsx:269
+#: src/components/farm/FarmHealth.tsx:124
+#: src/components/farm/FarmHealth.tsx:171
 #: src/components/plot/PlotStatus.tsx:19
 msgid "Syncing"
 msgstr "正在同步"
@@ -8669,7 +8825,7 @@ msgstr "该区块中的总交易手续费。将奖励给矿工。"
 msgid "Theme"
 msgstr "主题"
 
-#: src/components/farm/FarmHealth.tsx:331
+#: src/components/farm/FarmHealth.tsx:340
 msgid "There was a network issue and your Full Node or Farmer could not receive SPs."
 msgstr "存在网络问题，导致全节点或耕种程序无法收到提交请求。"
 
@@ -8706,7 +8862,7 @@ msgstr "这个难度值人为降低，仅用于耕种，以找到更多证明并
 msgid "This feature is available only from the GUI."
 msgstr "此功能只在图形界面中提供。"
 
-#: src/components/harvest/HarvesterDetail.tsx:67
+#: src/components/harvest/HarvesterDetail.tsx:69
 msgid "This harvester does not have any plots to harvest"
 msgstr "收割机没有任何可供收割的图块"
 
@@ -8714,7 +8870,7 @@ msgstr "收割机没有任何可供收割的图块"
 msgid "This is a sum of effective plot sizes currently farming. An effective plot size is a theoretical value which is derived only by kSize"
 msgstr "这是当前正在耕种的有效图块大小的总和。有效图块大小是一个理论值，仅由k值派生而来"
 
-#: src/components/harvest/HarvesterDetail.tsx:161
+#: src/components/harvest/HarvesterDetail.tsx:163
 msgid "This is a sum of effective plot sizes currently harvesting. An effective plot size is a theoretical value which is derived only by kSize."
 msgstr "这是当前正在收割的有效图块大小的总和。有效图块大小是一个理论值，仅由k值派生而来."
 
@@ -8857,7 +9013,7 @@ msgstr "要重新同步钱包，必须先关闭所有Chia服务。 关闭后，�
 msgid "Token Standard"
 msgstr "标准"
 
-#: src/components/dashboard/DashboardSideBar.tsx:48
+#: src/components/dashboard/DashboardSideBar.tsx:58
 #: src/components/offers2/OfferBuilderTokensSection.tsx:116
 msgid "Tokens"
 msgstr "代币"
@@ -8866,7 +9022,8 @@ msgstr "代币"
 msgid "Too Many Plot NFTs"
 msgstr "联合耕种农田过多"
 
-#: src/components/dashboard/DashboardSideBar.tsx:130
+#: src/components/dashboard/DashboardOverview.tsx:96
+#: src/components/dashboard/DashboardSideBar.tsx:139
 msgid "Tools"
 msgstr "工具"
 
@@ -8924,19 +9081,19 @@ msgstr "全网空间"
 #~ msgid "Total Network Space"
 #~ msgstr "Total Network Space"
 
-#: src/components/harvest/HarvesterPlotDetails.tsx:166
+#: src/components/harvest/HarvesterPlotDetails.tsx:206
 msgid "Total OG"
 msgstr "旧协议图块"
 
-#: src/components/farm/FarmHealth.tsx:234
+#: src/components/farm/FarmHealth.tsx:243
 msgid "Total plot filter challenges"
 msgstr "图块的挑战总数"
 
-#: src/components/harvest/HarvesterPlotDetails.tsx:169
+#: src/components/harvest/HarvesterPlotDetails.tsx:209
 msgid "Total plotNFT"
 msgstr "联合耕种协议图块"
 
-#: src/components/harvest/HarvesterPlotDetails.tsx:163
+#: src/components/harvest/HarvesterPlotDetails.tsx:203
 msgid "Total plots"
 msgstr "图块总数"
 
@@ -8944,7 +9101,7 @@ msgstr "图块总数"
 msgid "Total Plots"
 msgstr "图块总数"
 
-#: src/components/farm/FarmHealth.tsx:240
+#: src/components/farm/FarmHealth.tsx:249
 msgid "Total plots passing filter"
 msgstr "通过初筛图块总数量"
 
@@ -8960,7 +9117,7 @@ msgstr "已下载文件的总大小："
 #~ msgid "Total Size of Plots"
 #~ msgstr "Total Size of Plots"
 
-#: src/components/harvest/HarvesterDetail.tsx:115
+#: src/components/harvest/HarvesterDetail.tsx:117
 msgid "Total Space"
 msgstr "原始空间"
 
@@ -9114,6 +9271,13 @@ msgstr "未分配的"
 msgid "Unassigned NFTs"
 msgstr "未分配的 NFT"
 
+#: src/components/dashboard/DashboardOverview.tsx:207
+#: src/components/dashboard/DashboardOverview.tsx:262
+#: src/components/dashboard/DashboardOverview.tsx:308
+#: src/components/dashboard/DashboardOverview.tsx:340
+msgid "Unavailable"
+msgstr ""
+
 #: src/components/plotNFT/PlotNFTCard.tsx:135
 msgid "Unclaimed Rewards"
 msgstr "未申领奖励"
@@ -9212,7 +9376,7 @@ msgstr "网址无效"
 msgid "Use blockchain peak height for height info"
 msgstr "使用区块链的峰值高度作为高度信息"
 
-#: src/components/nfts/detail/NFTDetailV2.tsx:138
+#: src/components/nfts/detail/NFTDetailV2.tsx:136
 msgid "Use left and right arrow keys to navigate"
 msgstr "使用左右方向键导航"
 
@@ -9233,7 +9397,7 @@ msgstr "用于生成联合耕种图块。"
 msgid "Valid"
 msgstr "有效"
 
-#: src/components/farm/PoolingHealth.tsx:286
+#: src/components/farm/PoolingHealth.tsx:294
 msgid "Valid Partials"
 msgstr "有效贡献点"
 
@@ -9269,7 +9433,7 @@ msgstr "VDF子项迭代"
 msgid "Verifiable Credential"
 msgstr "可验证证件"
 
-#: src/components/vcs/VCList.tsx:199
+#: src/components/vcs/VCList.tsx:245
 msgid "Verifiable Credential already exists."
 msgstr "可验证证件已存在。"
 
@@ -9285,17 +9449,21 @@ msgstr "可验证证件已移除。"
 msgid "Verifiable Credential Revoked."
 msgstr "可验证证件已撤销。"
 
-#: src/components/vcs/VCList.tsx:207
+#: src/components/vcs/VCList.tsx:253
 msgid "Verifiable Credential successfully added."
 msgstr "成功添加了可验证证件。"
 
+#: src/components/dashboard/DashboardOverview.tsx:77
+msgid "Verifiable credentials"
+msgstr ""
+
 #: src/components/settings/SettingsVerifiableCredentials.tsx:17
-#: src/components/vcs/VCList.tsx:267
-#: src/components/vcs/VCList.tsx:328
+#: src/components/vcs/VCList.tsx:313
+#: src/components/vcs/VCList.tsx:438
 msgid "Verifiable Credentials"
 msgstr "可验证证件"
 
-#: src/components/vcs/VCList.tsx:270
+#: src/components/vcs/VCList.tsx:316
 msgid "Verifiable Credentials are like digital ID cards that can prove certain information about you without giving away your private details."
 msgstr "可验证证件就像是数字身份证，可以证明关于你的某些信息，而不泄露你的私人信息。"
 
@@ -9417,6 +9585,10 @@ msgstr "可见和隐藏  <0/>"
 msgid "Wait for synchronization"
 msgstr "等待同步"
 
+#: src/components/dashboard/DashboardOverview.tsx:222
+msgid "Waiting for balance data"
+msgstr ""
+
 #: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:80
 msgid "Waiting for the transaction to be confirmed"
 msgstr "正在等待交易确认"
@@ -9432,6 +9604,10 @@ msgstr "轻钱包"
 #: src/components/signVerify/SignMessage.tsx:163
 msgid "Wallet Address"
 msgstr "钱包地址"
+
+#: src/components/dashboard/DashboardOverview.tsx:208
+msgid "Wallet balance service did not respond"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:80
 #: src/constants/WalletConnectCommands.tsx:114
@@ -9491,7 +9667,7 @@ msgid "Wallet sync RPC"
 msgstr "钱包同步 RPC"
 
 #: src/components/settings/SettingsIntegration.tsx:85
-#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:75
+#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:74
 #: src/components/walletConnect/WalletConnectDropdown.tsx:26
 msgid "WalletConnect"
 msgstr "WalletConnect"
@@ -9500,9 +9676,13 @@ msgstr "WalletConnect"
 msgid "WalletConnect enables a decentralized app on the Chia blockchain to communicate and make requests directly to a Chia wallet."
 msgstr "WalletConnect使得Chia区块链上的去中心化应用能够直接与Chia钱包进行通信和交互。"
 
-#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:98
+#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:97
 msgid "WalletConnect Integration"
 msgstr "WalletConnect 集成"
+
+#: src/components/dashboard/DashboardOverview.tsx:32
+msgid "Wallets"
+msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:83
 msgid "Want to have a delay before the next plot starts?"
@@ -9516,13 +9696,13 @@ msgstr "想要加入联合耕种池？先新建一个联合耕种农田"
 msgid "Warm start"
 msgstr "热启动"
 
-#: src/components/farm/FarmHealth.tsx:202
+#: src/components/farm/FarmHealth.tsx:211
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:32
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:73
 msgid "Warning"
 msgstr "警告"
 
-#: src/components/farm/FarmHealth.tsx:266
+#: src/components/farm/FarmHealth.tsx:275
 msgid "Warning Threshold"
 msgstr "警告阈值"
 

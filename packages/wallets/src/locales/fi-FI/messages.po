@@ -48,7 +48,7 @@ msgstr "Lisää peruttavissa oleva transaktio-optio"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:61
 #: src/components/cat/WalletCATCreateSimple.tsx:68
-#: src/components/WalletsManageTokens.tsx:155
+#: src/components/WalletsManageTokens.tsx:163
 msgid "Add Token"
 msgstr "Lisää Token"
 
@@ -358,7 +358,7 @@ msgstr "IP-osoite"
 msgid "List of connections is empty"
 msgstr "Yhteyksien luettelo on tyhjä"
 
-#: src/components/WalletsManageTokens.tsx:132
+#: src/components/WalletsManageTokens.tsx:140
 msgid "Manage token list"
 msgstr "Hallitse tokenilistaa"
 

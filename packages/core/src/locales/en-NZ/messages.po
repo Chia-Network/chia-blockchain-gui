@@ -42,7 +42,7 @@ msgstr "A new version of Chia is available!"
 msgid "Add Icon"
 msgstr "Verification Failed"
 
-#: src/screens/SelectKey/SelectKey.tsx:174
+#: src/screens/SelectKey/SelectKey.tsx:175
 msgid "Add wallet"
 msgstr "Add wallet"
 
@@ -50,16 +50,20 @@ msgstr "Add wallet"
 msgid "Amount"
 msgstr "Amount"
 
-#: src/components/Settings/SettingsApp.tsx:90
+#: src/components/Settings/SettingsApp.tsx:91
 msgid "Appearance"
 msgstr "Appearance"
+
+#: src/components/Settings/SettingsApp.tsx:119
+msgid "Applies immediately. Stored locally in app preferences."
+msgstr ""
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:161
 msgid "Are you sure you want to continue? Type in the fingerprint of this wallet key to confirm deletion."
 msgstr "Are you sure you want to continue? Type in the fingerprint of this wallet key to confirm deletion."
 
 #: src/components/FormBackButton/FormBackButton.tsx:15
-#: src/screens/SelectKey/SelectKey.tsx:129
+#: src/screens/SelectKey/SelectKey.tsx:130
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:173
 msgid "Back"
 msgstr "Back"
@@ -70,7 +74,7 @@ msgstr "Back"
 msgid "Cancel"
 msgstr "Cancel"
 
-#: src/components/Settings/SettingsApp.tsx:136
+#: src/components/Settings/SettingsApp.tsx:147
 msgid "Check for updates"
 msgstr "Check for updates"
 
@@ -82,7 +86,7 @@ msgstr "Checking for updates..."
 msgid "Chia {latestVersion} is currently the latest version available."
 msgstr "Chia {latestVersion} is currently the latest version available."
 
-#: src/components/Settings/SettingsApp.tsx:122
+#: src/components/Settings/SettingsApp.tsx:133
 msgid "Chia Application Version:"
 msgstr "Chia Application Version:"
 
@@ -91,6 +95,10 @@ msgstr "Chia Application Version:"
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:70
 msgid "Close"
 msgstr "Close"
+
+#: src/components/Settings/SettingsApp.tsx:115
+msgid "Color Theme"
+msgstr ""
 
 #: src/components/FormatConnectionStatus/FormatConnectionStatus.tsx:32
 msgid "Connected"
@@ -108,33 +116,33 @@ msgstr "Copy to Clipboard"
 #~ msgid "Create a new private key"
 #~ msgstr "Create a new private key"
 
-#: src/screens/SelectKey/SelectKey.tsx:274
+#: src/screens/SelectKey/SelectKey.tsx:275
 msgid "Create a new wallet key"
 msgstr "Create a new wallet key"
 
-#: src/screens/SelectKey/SelectKey.tsx:266
+#: src/screens/SelectKey/SelectKey.tsx:267
 msgid "Create a new wallet key to get started with Chia."
 msgstr "Create a new wallet key to get started with Chia."
 
-#: src/screens/SelectKey/SelectKey.tsx:177
+#: src/screens/SelectKey/SelectKey.tsx:178
 msgid "Create New"
 msgstr "Create New"
 
-#: src/components/Settings/SettingsApp.tsx:107
+#: src/components/Settings/SettingsApp.tsx:108
 msgid "Dark"
 msgstr "Dark"
 
-#: src/screens/SelectKey/SelectKey.tsx:128
+#: src/screens/SelectKey/SelectKey.tsx:129
 #: src/screens/SelectKey/SelectKeyItem.tsx:113
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:183
 msgid "Delete"
 msgstr "Delete"
 
-#: src/screens/SelectKey/SelectKey.tsx:127
+#: src/screens/SelectKey/SelectKey.tsx:128
 msgid "Delete all keys"
 msgstr "Delete all keys"
 
-#: src/screens/SelectKey/SelectKey.tsx:202
+#: src/screens/SelectKey/SelectKey.tsx:203
 msgid "Delete All Keys"
 msgstr "Delete All Keys"
 
@@ -142,7 +150,7 @@ msgstr "Delete All Keys"
 msgid "Delete key {fingerprint}"
 msgstr "Delete key {fingerprint}"
 
-#: src/screens/SelectKey/SelectKey.tsx:133
+#: src/screens/SelectKey/SelectKey.tsx:134
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
 msgstr "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
 
@@ -163,7 +171,7 @@ msgstr "Disable Passphrase Protection"
 msgid "Discard"
 msgstr "Discard"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:148
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:157
 msgid "Download"
 msgstr "Download"
 
@@ -192,7 +200,7 @@ msgstr "Farmer Public Key"
 msgid "Farmer public key:"
 msgstr "Farmer public key:"
 
-#: src/components/Settings/SettingsApp.tsx:75
+#: src/components/Settings/SettingsApp.tsx:76
 msgid "Farming"
 msgstr "Farming"
 
@@ -206,7 +214,7 @@ msgstr "Fee"
 msgid "Fingerprint does not match"
 msgstr "Fingerprint does not match"
 
-#: src/components/Settings/SettingsApp.tsx:148
+#: src/components/Settings/SettingsApp.tsx:159
 msgid "Frequently Asked Questions"
 msgstr "Frequently Asked Questions"
 
@@ -214,7 +222,7 @@ msgstr "Frequently Asked Questions"
 msgid "Go To Download Page"
 msgstr "Go To Download Page"
 
-#: src/components/Settings/SettingsApp.tsx:144
+#: src/components/Settings/SettingsApp.tsx:155
 msgid "Help"
 msgstr "Help"
 
@@ -231,7 +239,7 @@ msgstr "Hide"
 msgid "Hide Advanced Options"
 msgstr "Hide Advanced Options"
 
-#: src/screens/SelectKey/SelectKey.tsx:182
+#: src/screens/SelectKey/SelectKey.tsx:183
 msgid "Import Existing"
 msgstr "Import Existing"
 
@@ -243,7 +251,7 @@ msgstr "Import Existing"
 msgid "Incorrect value"
 msgstr "Incorrect value"
 
-#: src/components/Settings/SettingsApp.tsx:114
+#: src/components/Settings/SettingsApp.tsx:125
 msgid "Language"
 msgstr "Language"
 
@@ -251,7 +259,7 @@ msgstr "Language"
 msgid "Latest Version:"
 msgstr "Latest Version:"
 
-#: src/components/Settings/SettingsApp.tsx:99
+#: src/components/Settings/SettingsApp.tsx:100
 msgid "Light"
 msgstr "Light"
 
@@ -271,7 +279,7 @@ msgstr "Likely in >5 minutes"
 msgid "Loading details"
 msgstr "Loading details"
 
-#: src/screens/SelectKey/SelectKey.tsx:236
+#: src/screens/SelectKey/SelectKey.tsx:237
 msgid "Loading keys"
 msgstr "Loading keys"
 
@@ -296,7 +304,7 @@ msgstr "Migrate"
 msgid "Migration required"
 msgstr "Migration required"
 
-#: src/components/Settings/SettingsApp.tsx:66
+#: src/components/Settings/SettingsApp.tsx:67
 msgid "Mode"
 msgstr "Mode"
 
@@ -308,7 +316,7 @@ msgstr "NEVER SHARE THESE WITH ANYONE"
 msgid "New passphrase is the same as your current passphrase"
 msgstr "New passphrase is the same as your current passphrase"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:133
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:142
 msgid "New version {latestVersion} available"
 msgstr "New version {latestVersion} available"
 
@@ -330,7 +338,7 @@ msgstr "Not connected"
 msgid "OK"
 msgstr "OK"
 
-#: src/screens/SelectKey/SelectKey.tsx:258
+#: src/screens/SelectKey/SelectKey.tsx:259
 msgid "Open a world of possibilities."
 msgstr "Open a world of possibilities."
 
@@ -422,7 +430,7 @@ msgid "Select..."
 msgstr "Select..."
 
 #: src/components/LayoutMain/LayoutFooter.tsx:50
-#: src/components/Settings/SettingsApp.tsx:151
+#: src/components/Settings/SettingsApp.tsx:162
 msgid "Send Feedback"
 msgstr "Send Feedback"
 
@@ -443,7 +451,7 @@ msgstr "Show Advanced Options"
 #~ msgid "Sign In"
 #~ msgstr "Sign In"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:136
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:145
 #: src/hooks/useValidateChangePassphraseParams.tsx:51
 msgid "Skip"
 msgstr "Skip"
@@ -500,11 +508,11 @@ msgstr "Transaction has not been sent to node yet"
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "Transaction has successfully been sent to a full node and included in the mempool."
 
-#: src/screens/SelectKey/SelectKey.tsx:243
+#: src/screens/SelectKey/SelectKey.tsx:244
 msgid "Try Again"
 msgstr "Try Again"
 
-#: src/screens/SelectKey/SelectKey.tsx:247
+#: src/screens/SelectKey/SelectKey.tsx:248
 msgid "Unable to load keys"
 msgstr "Unable to load keys"
 
@@ -529,8 +537,8 @@ msgstr "Using a passphrase is strongly recommended to protect your keys. Are you
 msgid "Value seems high"
 msgstr "Value seems high"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:233
-#: src/components/Settings/SettingsApp.tsx:83
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:242
+#: src/components/Settings/SettingsApp.tsx:84
 msgid "Wallet"
 msgstr "Wallet"
 
@@ -543,7 +551,7 @@ msgstr "Wallet {0}"
 msgid "Wallet Fingerprint"
 msgstr "Wallet Fingerprint"
 
-#: src/screens/SelectKey/SelectKey.tsx:223
+#: src/screens/SelectKey/SelectKey.tsx:224
 msgid "Wallet Keys"
 msgstr "Wallet Keys"
 
@@ -551,7 +559,7 @@ msgstr "Wallet Keys"
 #~ msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
 #~ msgstr "Welcome to Chia. Please log in with an existing key, or create a new key."
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:142
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:151
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:66
 msgid "What's New"
 msgstr "What's New"

@@ -42,7 +42,7 @@ msgstr "Nová verze Chia je k dispozici!"
 msgid "Add Icon"
 msgstr "Přidat ikonu"
 
-#: src/screens/SelectKey/SelectKey.tsx:174
+#: src/screens/SelectKey/SelectKey.tsx:175
 msgid "Add wallet"
 msgstr "Přidat peněženku"
 
@@ -50,16 +50,20 @@ msgstr "Přidat peněženku"
 msgid "Amount"
 msgstr "Částka"
 
-#: src/components/Settings/SettingsApp.tsx:90
+#: src/components/Settings/SettingsApp.tsx:91
 msgid "Appearance"
 msgstr "Vzhled"
+
+#: src/components/Settings/SettingsApp.tsx:119
+msgid "Applies immediately. Stored locally in app preferences."
+msgstr ""
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:161
 msgid "Are you sure you want to continue? Type in the fingerprint of this wallet key to confirm deletion."
 msgstr "Jste si jisti, že chcete pokračovat? Pro potvrzení smazání zadejte otisk této peněženky."
 
 #: src/components/FormBackButton/FormBackButton.tsx:15
-#: src/screens/SelectKey/SelectKey.tsx:129
+#: src/screens/SelectKey/SelectKey.tsx:130
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:173
 msgid "Back"
 msgstr "Zpět"
@@ -70,7 +74,7 @@ msgstr "Zpět"
 msgid "Cancel"
 msgstr "Zrušit"
 
-#: src/components/Settings/SettingsApp.tsx:136
+#: src/components/Settings/SettingsApp.tsx:147
 msgid "Check for updates"
 msgstr "Kontrola aktualizací"
 
@@ -82,7 +86,7 @@ msgstr "Kontrola aktualizací..."
 msgid "Chia {latestVersion} is currently the latest version available."
 msgstr "Chia {latestVersion} je nejnovější dostupná verze."
 
-#: src/components/Settings/SettingsApp.tsx:122
+#: src/components/Settings/SettingsApp.tsx:133
 msgid "Chia Application Version:"
 msgstr "Verze aplikace Chia:"
 
@@ -91,6 +95,10 @@ msgstr "Verze aplikace Chia:"
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:70
 msgid "Close"
 msgstr "Zavřít"
+
+#: src/components/Settings/SettingsApp.tsx:115
+msgid "Color Theme"
+msgstr ""
 
 #: src/components/FormatConnectionStatus/FormatConnectionStatus.tsx:32
 msgid "Connected"
@@ -108,33 +116,33 @@ msgstr "Zkopírovat do schránky"
 #~ msgid "Create a new private key"
 #~ msgstr "Create a new private key"
 
-#: src/screens/SelectKey/SelectKey.tsx:274
+#: src/screens/SelectKey/SelectKey.tsx:275
 msgid "Create a new wallet key"
 msgstr "Vytvořit nový klíč peněženky"
 
-#: src/screens/SelectKey/SelectKey.tsx:266
+#: src/screens/SelectKey/SelectKey.tsx:267
 msgid "Create a new wallet key to get started with Chia."
 msgstr "Vytvořte nový klíč peněženky, abyste mohli začít s Chia."
 
-#: src/screens/SelectKey/SelectKey.tsx:177
+#: src/screens/SelectKey/SelectKey.tsx:178
 msgid "Create New"
 msgstr "Založit nový"
 
-#: src/components/Settings/SettingsApp.tsx:107
+#: src/components/Settings/SettingsApp.tsx:108
 msgid "Dark"
 msgstr "Tmavý"
 
-#: src/screens/SelectKey/SelectKey.tsx:128
+#: src/screens/SelectKey/SelectKey.tsx:129
 #: src/screens/SelectKey/SelectKeyItem.tsx:113
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:183
 msgid "Delete"
 msgstr "Odstranit"
 
-#: src/screens/SelectKey/SelectKey.tsx:127
+#: src/screens/SelectKey/SelectKey.tsx:128
 msgid "Delete all keys"
 msgstr "Smazat všechny klíče"
 
-#: src/screens/SelectKey/SelectKey.tsx:202
+#: src/screens/SelectKey/SelectKey.tsx:203
 msgid "Delete All Keys"
 msgstr "Smazat všechny klíče"
 
@@ -142,7 +150,7 @@ msgstr "Smazat všechny klíče"
 msgid "Delete key {fingerprint}"
 msgstr "Smazat klíč {fingerprint}"
 
-#: src/screens/SelectKey/SelectKey.tsx:133
+#: src/screens/SelectKey/SelectKey.tsx:134
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
 msgstr "Smazáním klíčů permanentně odeberete všechny klíče z počítače. Ujistěte se, že máte zálohu. Jste si jisti, že chcete pokračovat?"
 
@@ -163,7 +171,7 @@ msgstr "Vypnutí ochrany heslem"
 msgid "Discard"
 msgstr "Zahodit"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:148
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:157
 msgid "Download"
 msgstr "Stáhnout"
 
@@ -192,7 +200,7 @@ msgstr "Farmářuv veřejný klíč"
 msgid "Farmer public key:"
 msgstr "Farmářuv veřejný klíč:"
 
-#: src/components/Settings/SettingsApp.tsx:75
+#: src/components/Settings/SettingsApp.tsx:76
 msgid "Farming"
 msgstr "Farmaření"
 
@@ -206,7 +214,7 @@ msgstr "Poplatek"
 msgid "Fingerprint does not match"
 msgstr "Otisk se neshoduje"
 
-#: src/components/Settings/SettingsApp.tsx:148
+#: src/components/Settings/SettingsApp.tsx:159
 msgid "Frequently Asked Questions"
 msgstr "Často kladené otázky"
 
@@ -214,7 +222,7 @@ msgstr "Často kladené otázky"
 msgid "Go To Download Page"
 msgstr "Přejít na stránku stahování"
 
-#: src/components/Settings/SettingsApp.tsx:144
+#: src/components/Settings/SettingsApp.tsx:155
 msgid "Help"
 msgstr "Nápověda"
 
@@ -231,7 +239,7 @@ msgstr "Skrýt"
 msgid "Hide Advanced Options"
 msgstr "Skrýt Rozšířené Možnosti"
 
-#: src/screens/SelectKey/SelectKey.tsx:182
+#: src/screens/SelectKey/SelectKey.tsx:183
 msgid "Import Existing"
 msgstr "Import existující"
 
@@ -243,7 +251,7 @@ msgstr "Import existující"
 msgid "Incorrect value"
 msgstr "Nesprávná hodnota"
 
-#: src/components/Settings/SettingsApp.tsx:114
+#: src/components/Settings/SettingsApp.tsx:125
 msgid "Language"
 msgstr "Jazyk"
 
@@ -251,7 +259,7 @@ msgstr "Jazyk"
 msgid "Latest Version:"
 msgstr "Nejnovější verze:"
 
-#: src/components/Settings/SettingsApp.tsx:99
+#: src/components/Settings/SettingsApp.tsx:100
 msgid "Light"
 msgstr "Světlý"
 
@@ -271,7 +279,7 @@ msgstr "Pravděpodobné za > 5 minut"
 msgid "Loading details"
 msgstr "Načítám podrobnosti"
 
-#: src/screens/SelectKey/SelectKey.tsx:236
+#: src/screens/SelectKey/SelectKey.tsx:237
 msgid "Loading keys"
 msgstr "Načítání klíčů"
 
@@ -296,7 +304,7 @@ msgstr "Migrovat"
 msgid "Migration required"
 msgstr "Vyžadována migrace"
 
-#: src/components/Settings/SettingsApp.tsx:66
+#: src/components/Settings/SettingsApp.tsx:67
 msgid "Mode"
 msgstr "Režim"
 
@@ -308,7 +316,7 @@ msgstr "TOHLE NIKDY NIKOMU NESDĚLUJTE"
 msgid "New passphrase is the same as your current passphrase"
 msgstr "Nové heslo je stejné jako vaše aktuální heslo"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:133
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:142
 msgid "New version {latestVersion} available"
 msgstr "Nová verze {latestVersion} je k dispozici"
 
@@ -330,7 +338,7 @@ msgstr "Nepřipojeno"
 msgid "OK"
 msgstr "OK"
 
-#: src/screens/SelectKey/SelectKey.tsx:258
+#: src/screens/SelectKey/SelectKey.tsx:259
 msgid "Open a world of possibilities."
 msgstr "Otevřít svět možností."
 
@@ -422,7 +430,7 @@ msgid "Select..."
 msgstr "Zvolit..."
 
 #: src/components/LayoutMain/LayoutFooter.tsx:50
-#: src/components/Settings/SettingsApp.tsx:151
+#: src/components/Settings/SettingsApp.tsx:162
 msgid "Send Feedback"
 msgstr "Odeslat zpětnou vazbu"
 
@@ -443,7 +451,7 @@ msgstr "Zobrazit pokročilé možnosti"
 #~ msgid "Sign In"
 #~ msgstr "Sign In"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:136
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:145
 #: src/hooks/useValidateChangePassphraseParams.tsx:51
 msgid "Skip"
 msgstr "Přeskočit"
@@ -500,11 +508,11 @@ msgstr "Transakce zatím nebyla odeslána do uzlu"
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "Transakce byla úspěšně odeslána do plného uzlu a zahrnuta do mempoolu."
 
-#: src/screens/SelectKey/SelectKey.tsx:243
+#: src/screens/SelectKey/SelectKey.tsx:244
 msgid "Try Again"
 msgstr "Zkusit znovu"
 
-#: src/screens/SelectKey/SelectKey.tsx:247
+#: src/screens/SelectKey/SelectKey.tsx:248
 msgid "Unable to load keys"
 msgstr "Nemohu nahrát klíče"
 
@@ -529,8 +537,8 @@ msgstr "Nastavení hesla je výrazně doporučeno pro ochranu vašich klíčů. 
 msgid "Value seems high"
 msgstr "Hodnota se zdá vysoká"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:233
-#: src/components/Settings/SettingsApp.tsx:83
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:242
+#: src/components/Settings/SettingsApp.tsx:84
 msgid "Wallet"
 msgstr "Peněženka"
 
@@ -543,7 +551,7 @@ msgstr "Peněženka {0}"
 msgid "Wallet Fingerprint"
 msgstr "Otisk peněženky"
 
-#: src/screens/SelectKey/SelectKey.tsx:223
+#: src/screens/SelectKey/SelectKey.tsx:224
 msgid "Wallet Keys"
 msgstr "Klíče peněženky"
 
@@ -551,7 +559,7 @@ msgstr "Klíče peněženky"
 #~ msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
 #~ msgstr "Welcome to Chia. Please log in with an existing key, or create a new key."
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:142
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:151
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:66
 msgid "What's New"
 msgstr "Co nového"

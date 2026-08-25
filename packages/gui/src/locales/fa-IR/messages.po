@@ -2470,7 +2470,7 @@ msgid "No"
 msgstr "خیر"
 
 #. js-lingui-explicit-id
-#: src/electron/dialogs/About/About.tsx:72
+#: src/electron/dialogs/About/About.tsx:75
 msgid "Report an issue"
 msgstr "گزارش یک خطا"
 
@@ -2742,109 +2742,109 @@ msgid "Are you sure you want to view the log contents?"
 msgstr "آیا مطمئن هستید که میخواهید محتوای گزارش را مشاهده کنید؟"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1249
-#: src/electron/main.tsx:1457
+#: src/electron/main.tsx:1251
+#: src/electron/main.tsx:1459
 msgid "File"
 msgstr "فایل"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1257
+#: src/electron/main.tsx:1259
 msgid "Edit"
 msgstr "ويرايش"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1289
+#: src/electron/main.tsx:1291
 msgid "View"
 msgstr "مشاهده"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1298
+#: src/electron/main.tsx:1300
 msgid "Developer"
 msgstr "توسعه دهنده"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1301
+#: src/electron/main.tsx:1303
 msgid "Developer Tools"
 msgstr "ابزارهای توسعه دهنده"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1309
+#: src/electron/main.tsx:1311
 msgid "Trigger Desktop Notification"
 msgstr "راه‌اندازی اعلان دسکتاپ"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1338
+#: src/electron/main.tsx:1340
 msgid "Full Screen"
 msgstr "نمایش تمام صفحه"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1345
+#: src/electron/main.tsx:1347
 msgid "Window"
 msgstr "پنجره"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1359
+#: src/electron/main.tsx:1361
 msgid "Help"
 msgstr "راهنما"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1363
+#: src/electron/main.tsx:1365
 msgid "Chia Blockchain Wiki"
 msgstr "بلاکچین چیا در ویکیپدیا"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1369
+#: src/electron/main.tsx:1371
 msgid "Frequently Asked Questions"
 msgstr "پرسش ها و پاسخ های متداول"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1375
+#: src/electron/main.tsx:1377
 msgid "Release Notes"
 msgstr "یادداشت‌های انتشار"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1381
+#: src/electron/main.tsx:1383
 msgid "Contribute on GitHub"
 msgstr "مشارکت در GitHub"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1390
+#: src/electron/main.tsx:1392
 msgid "Report an Issue..."
 msgstr "گزارش یک خطا..."
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1396
+#: src/electron/main.tsx:1398
 msgid "Chat on Discord"
 msgstr "اشتراک گداری در Discord"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1402
+#: src/electron/main.tsx:1404
 msgid "Follow on X"
 msgstr "در ایکس دنبال کنید"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1414
+#: src/electron/main.tsx:1416
 msgid "Chia"
 msgstr "چیا"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1417
-#: src/electron/main.tsx:1513
+#: src/electron/main.tsx:1419
+#: src/electron/main.tsx:1515
 msgid "About Chia Blockchain"
 msgstr "درباره بلاکچین چیا"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1423
+#: src/electron/main.tsx:1425
 msgid "Check for Updates..."
 msgstr "بروز رسانی را بررسی کنید..."
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1472
+#: src/electron/main.tsx:1474
 msgid "Speech"
 msgstr "سخن"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1519
+#: src/electron/main.tsx:1521
 msgid "Check for updates..."
 msgstr "بروز رسانی را بررسی کنید..."
 
@@ -3101,11 +3101,11 @@ msgstr "بروز رسانی را بررسی کنید..."
 #~ msgid "- Set a time after which the offer expires.<0/>- An expiring offer can only be claimed prior to the expiration time."
 #~ msgstr ""
 
-#: src/components/offers2/OfferBuilderImport.tsx:129
+#: src/components/offers2/OfferBuilderImport.tsx:139
 msgid "(⌘V) a blob"
 msgstr "یک بلوب (⌘V)"
 
-#: src/components/offers2/OfferBuilderImport.tsx:129
+#: src/components/offers2/OfferBuilderImport.tsx:139
 msgid "(Ctrl-V) a blob"
 msgstr "یک بلوب (Ctrl-V)"
 
@@ -3141,12 +3141,16 @@ msgstr "{0}"
 msgid "{0} {1}"
 msgstr "{0} {1}"
 
+#: src/components/dashboard/DashboardOverview.tsx:357
+msgid "{0} / {1} plots passed filter"
+msgstr ""
+
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:169
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:201
 msgid "{0} buckets is recommended"
 msgstr "{0} باکت توصیه میشود"
 
-#: src/components/nfts/detail/NFTDetailV2.tsx:230
+#: src/components/nfts/detail/NFTDetailV2.tsx:228
 msgid "{0} of {1}"
 msgstr "{0} از {1}"
 
@@ -3154,7 +3158,7 @@ msgstr "{0} از {1}"
 msgid "{0} of {allCount} items selected:"
 msgstr "{0} موارد از {allCount} انتخاب شد:"
 
-#: src/components/plotNFT/PlotNFTGraph.tsx:63
+#: src/components/plotNFT/PlotNFTGraph.tsx:65
 msgid "{0} points {1} - {2} hours ago"
 msgstr "{0} امتیاز {1} - {2} مدتی قبل"
 
@@ -3385,7 +3389,7 @@ msgstr "اضافه کردن پلات به صف"
 #~ msgid "Add Proofs To Verifiable Credential"
 #~ msgstr "Add Proofs To Verifiable Credential"
 
-#: src/components/vcs/VCList.tsx:227
+#: src/components/vcs/VCList.tsx:273
 msgid "Add Verifiable Credential from file"
 msgstr "اضافه نمودن اعتبار قابل تأیید را از فایل"
 
@@ -3395,6 +3399,10 @@ msgstr "اضافه نمودن اعتبار قابل تأیید را از فای�
 #: src/components/signVerify/SigningEntityWalletAddress.tsx:45
 msgid "Address"
 msgstr "آدرس ها"
+
+#: src/components/dashboard/DashboardOverview.tsx:84
+msgid "Address book"
+msgstr ""
 
 #: src/components/addressbook/ContactAdd.tsx:30
 #: src/components/addressbook/ContactEdit.tsx:33
@@ -3499,7 +3507,7 @@ msgstr "مقدار از موجودی کل چیا بیشتر است"
 #~ msgid "An app has requested permission to execute the following commands."
 #~ msgstr "An app has requested permission to execute the following commands."
 
-#: src/components/farm/FarmHealth.tsx:321
+#: src/components/farm/FarmHealth.tsx:330
 msgid "An increase in the number of missing signage points (SPs) suggests that you were either disconnected from or significantly distant from a Timelord in your Full Node network. The total number of missing SPs serves as an indicator of potential rewards you could have claimed."
 msgstr "افزایش تعداد نقاط علامت گمشده (اس پی) نشان میدهد که شما یا از یک تایم لرد در شبکه فوا نود خود قطع شده اید یا به طور قابل توجهی از آن فاصله گرفته اید. تعداد کل اس پی های گمشده به عنوان شاخصی از پاداش های بالقوه ای است که میتوانستید دریافت کنید."
 
@@ -3671,13 +3679,17 @@ msgstr "بازگشت"
 #~ msgid "Backup DIDs"
 #~ msgstr "Backup DIDs"
 
-#: src/components/vcs/VCList.tsx:279
+#: src/components/vcs/VCList.tsx:325
 msgid "Badging"
 msgstr "نمایش"
 
 #: src/components/settings/ProfileAdd.tsx:98
 #~ msgid "Balance: {standardBalance} XCH"
 #~ msgstr "Balance: {standardBalance} XCH"
+
+#: src/components/dashboard/DashboardOverview.tsx:33
+msgid "Balances, send, receive, transactions"
+msgstr ""
 
 #: src/components/block/Block.jsx:236
 msgid "Base Farmer Reward Amount"
@@ -3913,6 +3925,10 @@ msgstr "بررسی کنید MintGarden منشأ را در"
 msgid "Check Provenance on Spacescan.io"
 msgstr "بررسی کنید Spacescan.io منشأ را در"
 
+#: src/components/dashboard/DashboardOverview.tsx:355
+msgid "Checking plots"
+msgstr ""
+
 #: src/electron/main.tsx:1098
 #~ msgid "Chia"
 #~ msgstr "Chia"
@@ -4046,7 +4062,7 @@ msgstr "شناسه ارز"
 #~ msgid "Coin name"
 #~ msgstr "Coin name"
 
-#: src/components/nfts/detail/NFTDetailV2.tsx:215
+#: src/components/nfts/detail/NFTDetailV2.tsx:213
 #: src/components/nfts/NFTSummary.tsx:50
 msgid "Collection"
 msgstr "مجموعه"
@@ -4059,7 +4075,7 @@ msgstr "مجموعه"
 msgid "Commands listed here will be executed without confirmation. Use with caution as this can affect your funds."
 msgstr "دستورات ذکر شده در اینجا بدون تأیید اجرا می‌شوند. با احتیاط استفاده کنید زیرا این می‌تواند روی موجودی شما تأثیر بگذارد."
 
-#: src/components/farm/FarmHealth.tsx:327
+#: src/components/farm/FarmHealth.tsx:336
 msgid "Common reasons for missing SPs include:"
 msgstr "دلایل رایج علت از دست دادن اس پی ها عبارتند از:"
 
@@ -4067,7 +4083,7 @@ msgstr "دلایل رایج علت از دست دادن اس پی ها عبار�
 msgid "Compressed plot support"
 msgstr "پشتیبانی از پلات فشرده"
 
-#: src/components/harvest/HarvesterPlotDetails.tsx:132
+#: src/components/harvest/HarvesterPlotDetails.tsx:172
 msgid "Compression"
 msgstr "فشرده سازی"
 
@@ -4163,7 +4179,8 @@ msgid "Contact Name"
 msgstr "نام اطلاعات تماس"
 
 #: src/components/addressbook/AddressBookSideBar.tsx:124
-#: src/components/dashboard/DashboardSideBar.tsx:74
+#: src/components/dashboard/DashboardOverview.tsx:83
+#: src/components/dashboard/DashboardSideBar.tsx:84
 msgid "Contacts"
 msgstr "اطلاعات تماس"
 
@@ -4179,7 +4196,7 @@ msgstr "محتوا با مقدار هش مورد انتظاری که در طول
 msgid "Content has not been validated against the hash that was specified during NFT minting. Error: {0}"
 msgstr "محتوا در برابر آن هش‌ که در طول ثبت ان اف تی مشخص شده بود تأیید نشده است. خطا: {0}"
 
-#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:135
+#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:134
 msgid "Continue"
 msgstr "ادامه"
 
@@ -4215,7 +4232,7 @@ msgstr "هزینه ارسال اعلان به دارنده ان اف تی"
 msgid "Could not connect to host {host} on port {port}"
 msgstr "امکان‌پذیر نیست {host} در پورت {port} اتصال به میزبان"
 
-#: src/components/offers2/OfferBuilderImport.tsx:37
+#: src/components/offers2/OfferBuilderImport.tsx:38
 msgid "Could not parse offer data"
 msgstr "تجزیه اطلاعات پیشنهاد ممکن نیست"
 
@@ -4314,6 +4331,10 @@ msgstr "ایجاد مشخصات"
 msgid "Create Signature"
 msgstr "ایجاد امضاء"
 
+#: src/components/dashboard/DashboardOverview.tsx:71
+msgid "Create, import, inspect, manage"
+msgstr ""
+
 #: src/components/offers/OfferViewerTitle.tsx:34
 msgid "created {0}"
 msgstr "ایجاد شده {0}"
@@ -4357,7 +4378,8 @@ msgstr "({royaltyPercentage}%) کارمزد سازنده"
 msgid "Creator royalty percentage seems high"
 msgstr "درصد حق امتیاز سازنده بالا به نظر میرسد"
 
-#: src/components/dashboard/DashboardSideBar.tsx:61
+#: src/components/dashboard/DashboardOverview.tsx:76
+#: src/components/dashboard/DashboardSideBar.tsx:71
 msgid "Credentials"
 msgstr "اعتبارنامه"
 
@@ -4506,7 +4528,7 @@ msgstr "فهرست استخراج"
 msgid "Derivation index must be greater than {index}"
 msgstr "باشد {index} فهرست استخراج باید بزرگتر از"
 
-#: src/components/nfts/detail/NFTDetailV2.tsx:205
+#: src/components/nfts/detail/NFTDetailV2.tsx:203
 msgid "Description"
 msgstr "توضیحات"
 
@@ -4709,7 +4731,7 @@ msgstr "در حال ذخیره فایل‌های {0}/{1}"
 msgid "Downloading selected NFTs"
 msgstr "در حال ذخیره ان اف تی های انتخاب شده"
 
-#: src/components/signVerify/VerifyMessageImport.tsx:75
+#: src/components/signVerify/VerifyMessageImport.tsx:77
 msgid "Drag & Drop a Signed Message File,<0/> Paste ({0}V)"
 msgstr "یک فایل پیام امضا شده را انتخاب و در اینجا قرار دهید،<0/> جای‌گذاری ({0}V)"
 
@@ -4717,7 +4739,7 @@ msgstr "یک فایل پیام امضا شده را انتخاب و در این�
 msgid "Drag & Drop an Offer File"
 msgstr "یک فایل پیشنهاد را انتخاب و در اینجا قرار دهید"
 
-#: src/components/offers2/OfferBuilderImport.tsx:128
+#: src/components/offers2/OfferBuilderImport.tsx:138
 msgid "Drag & Drop an Offer File, Paste"
 msgstr "یک فایل پیشنهاد را انتخاب و در اینجا قرار دهید، جای‌گذاری"
 
@@ -4737,7 +4759,7 @@ msgstr "پلاتهای تکراری"
 msgid "Duplicate Plots"
 msgstr "پلاتهای تکرار شده"
 
-#: src/components/harvest/HarvesterDetail.tsx:123
+#: src/components/harvest/HarvesterDetail.tsx:125
 msgid "Earned"
 msgstr "به دست آورده"
 
@@ -4760,7 +4782,7 @@ msgstr "ویرایش دستورالعمل های پرداخت"
 msgid "Edition #"
 msgstr "نسخه #"
 
-#: src/components/nfts/detail/NFTDetailV2.tsx:226
+#: src/components/nfts/detail/NFTDetailV2.tsx:224
 msgid "Edition Number"
 msgstr ""
 
@@ -4768,7 +4790,7 @@ msgstr ""
 #~ msgid "Edition Total"
 #~ msgstr "Edition Total"
 
-#: src/components/harvest/HarvesterDetail.tsx:159
+#: src/components/harvest/HarvesterDetail.tsx:161
 msgid "Effective Space"
 msgstr "فضای تاثير گذار"
 
@@ -4881,7 +4903,7 @@ msgstr "خطا"
 #~ msgid "Error fetching video preview"
 #~ msgstr ""
 
-#: src/components/vcs/VCList.tsx:215
+#: src/components/vcs/VCList.tsx:261
 msgid "Error parsing file"
 msgstr "خطا در تجزیه فایل"
 
@@ -4947,7 +4969,7 @@ msgstr "فهرست نهایی را حذف کنید"
 #~ msgid "Excluded Coin IDs"
 #~ msgstr "Excluded Coin IDs"
 
-#: src/components/farm/FarmHealth.tsx:252
+#: src/components/farm/FarmHealth.tsx:261
 msgid "Expected Total plots passing filter"
 msgstr "تعداد مورد انتظار پلاتهایی که از فیلتر عبور می کنند"
 
@@ -4986,7 +5008,7 @@ msgstr "ناموفق"
 msgid "Failed downloads:"
 msgstr "دانلودهای ناموفق:"
 
-#: src/components/farm/PoolingHealth.tsx:310
+#: src/components/farm/PoolingHealth.tsx:318
 msgid "Failed partials"
 msgstr "بخشهایی ناموفق بوده"
 
@@ -5018,11 +5040,12 @@ msgstr "بروزرسانی رمز ورود ناموفق: {0}"
 msgid "Failure"
 msgstr "عدم موفقیت"
 
-#: src/components/dashboard/DashboardSideBar.tsx:94
+#: src/components/dashboard/DashboardOverview.tsx:47
+#: src/components/dashboard/DashboardSideBar.tsx:103
 msgid "Farm"
 msgstr "فارم"
 
-#: src/components/farm/FarmHealth.tsx:424
+#: src/components/farm/FarmHealth.tsx:433
 msgid "Farm Health"
 msgstr "سلامت فارم"
 
@@ -5074,6 +5097,10 @@ msgstr "فارمرها با اختصاص فضای خالی به شبکه برا�
 msgid "Farming"
 msgstr "درحال فارم"
 
+#: src/components/dashboard/DashboardOverview.tsx:341
+msgid "Farming info did not respond"
+msgstr ""
+
 #: src/components/app/AppSelectMode.tsx:112
 msgid "Farming Mode"
 msgstr "حالت فارم کردن"
@@ -5097,6 +5124,10 @@ msgstr "فضای فارم کردن"
 #: src/components/farm/card/FarmCardStatus.tsx:59
 #~ msgid "Farming Status"
 #~ msgstr "Farming Status"
+
+#: src/components/dashboard/DashboardOverview.tsx:48
+msgid "Farming status and rewards"
+msgstr ""
 
 #: src/components/settings/SettingsAdvanced.tsx:77
 msgid "Features for advanced users."
@@ -5158,12 +5189,12 @@ msgstr ""
 #~ msgid "File"
 #~ msgstr "File"
 
-#: src/components/nfts/NFTPreview.tsx:574
+#: src/components/nfts/NFTPreview.tsx:571
 msgid "File does not match the expected hash"
 msgstr ""
 
 #: src/components/nfts/NFTHashStatus.tsx:88
-#: src/components/nfts/NFTPreview.tsx:253
+#: src/components/nfts/NFTPreview.tsx:251
 msgid "File is not available"
 msgstr ""
 
@@ -5225,7 +5256,8 @@ msgid "From"
 msgstr "از"
 
 #: src/components/app/AppStatusHeader.tsx:127
-#: src/components/dashboard/DashboardSideBar.tsx:87
+#: src/components/dashboard/DashboardOverview.tsx:40
+#: src/components/dashboard/DashboardSideBar.tsx:97
 #: src/components/fullNode/FullNode.jsx:116
 msgid "Full Node"
 msgstr "نود کامل"
@@ -5234,13 +5266,21 @@ msgstr "نود کامل"
 msgid "Full Node Connections"
 msgstr "ارتباطات نود کامل"
 
-#: src/components/farm/FarmHealth.tsx:336
+#: src/components/dashboard/DashboardOverview.tsx:263
+msgid "Full node service did not respond"
+msgstr ""
+
+#: src/components/farm/FarmHealth.tsx:345
 msgid "Full Node was out of sync"
 msgstr "فول نود سینک نبود"
 
 #: src/electron/main.tsx:1022
 #~ msgid "Full Screen"
 #~ msgstr "Full Screen"
+
+#: src/components/dashboard/DashboardOverview.tsx:65
+msgid "Gallery and detail pages"
+msgstr ""
 
 #: src/components/settings/Settings.tsx:29
 msgid "General"
@@ -5447,7 +5487,7 @@ msgstr "برو چند جواهر جمع کن"
 #~ msgid "Go to #{channelName}"
 #~ msgstr "Go to #{channelName}"
 
-#: src/components/vcs/VCList.tsx:295
+#: src/components/vcs/VCList.tsx:405
 msgid "Government IDs"
 msgstr "شناسه های دولتی"
 
@@ -5460,7 +5500,8 @@ msgstr "شاخص دستگاه کارت گرافیک"
 msgid "Halves the temp2 cache size requirements by alternating bucket writing methods between tables."
 msgstr "با استفاده از روشهای متناوب نوشتن باکت بین جداول، نیاز به اندازه حافظه پنهان موقت 2 را نصف میکند."
 
-#: src/components/dashboard/DashboardSideBar.tsx:106
+#: src/components/dashboard/DashboardOverview.tsx:89
+#: src/components/dashboard/DashboardSideBar.tsx:115
 msgid "Harvest"
 msgstr "برداشت کننده"
 
@@ -5472,6 +5513,10 @@ msgstr "برداشت کننده"
 msgid "Harvester latency"
 msgstr "تاخیر برداشت کننده"
 
+#: src/components/dashboard/DashboardOverview.tsx:90
+msgid "Harvester overview"
+msgstr ""
+
 #: src/components/settings/SettingsHarvester.tsx:372
 msgid "Harvester Services"
 msgstr "خدمات برداشت کننده"
@@ -5479,6 +5524,14 @@ msgstr "خدمات برداشت کننده"
 #: src/components/harvest/HarvesterOverview.tsx:153
 msgid "Harvester Summary"
 msgstr "خلاصه برداشت کننده"
+
+#: src/components/dashboard/DashboardOverview.tsx:309
+msgid "Harvester summary did not respond"
+msgstr ""
+
+#: src/components/dashboard/DashboardOverview.tsx:322
+msgid "harvesters"
+msgstr ""
 
 #: src/components/harvest/HarvesterOverview.tsx:218
 #: src/components/plot/PlotHarvesters.tsx:38
@@ -5527,6 +5580,7 @@ msgid "Header Hash"
 msgstr "عنوان هش"
 
 #: src/components/block/Block.jsx:169
+#: src/components/dashboard/DashboardOverview.tsx:272
 #: src/components/fullNode/FullNode.jsx:61
 #: src/components/fullNode/FullNodeConnections.tsx:62
 msgid "Height"
@@ -5710,7 +5764,7 @@ msgstr ""
 "مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
 "موجودی قابل مصرف شما برای پوشش مبلغ پیشنهاد کافی است."
 
-#: src/components/farm/PoolingHealth.tsx:302
+#: src/components/farm/PoolingHealth.tsx:310
 msgid "Insufficient partials"
 msgstr "بخش هایی ناموفق بوده"
 
@@ -5856,7 +5910,7 @@ msgstr "کلیدها"
 msgid "KiB Up/Down"
 msgstr "کیلوبایت ذخیره/بارگذاری"
 
-#: src/components/vcs/VCList.tsx:301
+#: src/components/vcs/VCList.tsx:411
 msgid "KYC status"
 msgstr " KYC وضعیت شناختن مشتری یا"
 
@@ -5908,7 +5962,7 @@ msgstr ""
 msgid "Launcher ID"
 msgstr "شناسه لانچر"
 
-#: src/components/farm/FarmHealth.tsx:341
+#: src/components/farm/FarmHealth.tsx:350
 #: src/components/plot/add/PlotAddNFT.tsx:84
 msgid "Learn more"
 msgstr "بیشتر بدانید"
@@ -5954,7 +6008,14 @@ msgstr "لیست اتصالات خالی است"
 msgid "Load Logs"
 msgstr "بارگذاری فایل گزارش"
 
-#: src/components/app/AppProviders.tsx:83
+#: src/components/dashboard/DashboardOverview.tsx:200
+#: src/components/dashboard/DashboardOverview.tsx:255
+#: src/components/dashboard/DashboardOverview.tsx:301
+#: src/components/dashboard/DashboardOverview.tsx:333
+msgid "Loading"
+msgstr ""
+
+#: src/components/app/AppProviders.tsx:86
 msgid "Loading configuration"
 msgstr "بارکذاری پیکربندی"
 
@@ -5983,7 +6044,7 @@ msgstr "بارگذاری ان اف تی"
 msgid "Loading NFT Info..."
 msgstr "اطلاعات بارکذاری ان اف تی..."
 
-#: src/components/nfts/NFTPreview.tsx:563
+#: src/components/nfts/NFTPreview.tsx:560
 msgid "Loading NFT..."
 msgstr "در حال بارگیری ان اف تی..."
 
@@ -5991,8 +6052,8 @@ msgstr "در حال بارگیری ان اف تی..."
 #~ msgid "Loading NFTs..."
 #~ msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:563
-#: src/components/nfts/NFTPreview.tsx:585
+#: src/components/nfts/NFTPreview.tsx:560
+#: src/components/nfts/NFTPreview.tsx:582
 msgid "Loading preview..."
 msgstr "در حال بارگیری پیش نمایش..."
 
@@ -6015,7 +6076,7 @@ msgstr "محلی"
 msgid "Local folder"
 msgstr "پوشه محلی"
 
-#: src/components/harvest/HarvesterDetail.tsx:47
+#: src/components/harvest/HarvesterDetail.tsx:49
 msgid "Local Harvester"
 msgstr "برداشت کننده محلی"
 
@@ -6035,7 +6096,11 @@ msgstr "خروج"
 msgid "Log Viewer"
 msgstr "بازنگری گزارش"
 
-#: src/components/nfts/NFTPreview.tsx:442
+#: src/components/dashboard/DashboardOverview.tsx:97
+msgid "Logs and diagnostics"
+msgstr ""
+
+#: src/components/nfts/NFTPreview.tsx:440
 msgid "Loop video"
 msgstr ""
 
@@ -6043,11 +6108,11 @@ msgstr ""
 msgid "Loop videos"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:438
+#: src/components/nfts/NFTPreview.tsx:436
 msgid "Looping is enabled for all videos in Settings"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:440
+#: src/components/nfts/NFTPreview.tsx:438
 msgid "Looping on"
 msgstr ""
 
@@ -6098,7 +6163,7 @@ msgstr "حداکثر"
 #~ msgid "Max page size"
 #~ msgstr "Max page size"
 
-#: src/components/vcs/VCList.tsx:305
+#: src/components/vcs/VCList.tsx:415
 msgid "Memberships"
 msgstr "عضویت ها"
 
@@ -6225,7 +6290,7 @@ msgstr "دقایق"
 msgid "Missing Keys"
 msgstr "نبودن کلیدها"
 
-#: src/components/farm/PoolingHealth.tsx:325
+#: src/components/farm/PoolingHealth.tsx:333
 msgid "Missing partials"
 msgstr "مشازکت از دست رفته"
 
@@ -6237,10 +6302,14 @@ msgstr "مشازکت از دست رفته"
 #~ msgid "Missing preview_video_hash key"
 #~ msgstr ""
 
-#: src/components/farm/FarmHealth.tsx:359
-#: src/components/farm/FarmHealth.tsx:373
+#: src/components/farm/FarmHealth.tsx:368
+#: src/components/farm/FarmHealth.tsx:382
 msgid "Missing signage points"
 msgstr "نقاط علامت گذاری از دست رفته"
+
+#: src/components/dashboard/DashboardOverview.tsx:399
+msgid "More areas"
+msgstr ""
 
 #: src/components/walletConnect/WalletConnectConnections.tsx:83
 #~ msgid "More Info"
@@ -6250,7 +6319,7 @@ msgstr "نقاط علامت گذاری از دست رفته"
 msgid "More memory slightly increases speed"
 msgstr "حافظه بیشتر کمی سرعت را افزایش میدهد"
 
-#: src/components/harvest/HarvesterDetail.tsx:129
+#: src/components/harvest/HarvesterDetail.tsx:131
 msgid "more space"
 msgstr "فضای بیشتر"
 
@@ -6361,7 +6430,7 @@ msgid "New Root"
 msgstr ""
 
 #: src/components/block/Block.jsx:260
-#: src/components/nfts/detail/NFTDetailV2.tsx:143
+#: src/components/nfts/detail/NFTDetailV2.tsx:141
 msgid "Next"
 msgstr "بعدی"
 
@@ -6459,7 +6528,8 @@ msgstr "انتقال ان اف تی ناموفق بود"
 msgid "NFT Transfer Pending"
 msgstr "انتقال ان اف تی در انتظار است"
 
-#: src/components/dashboard/DashboardSideBar.tsx:54
+#: src/components/dashboard/DashboardOverview.tsx:64
+#: src/components/dashboard/DashboardSideBar.tsx:64
 msgid "NFTs"
 msgstr "ان اف تی ها"
 
@@ -6474,6 +6544,10 @@ msgstr "خیر"
 #: src/components/notification/NotificationsMenu.tsx:53
 msgid "No activities yet"
 msgstr "بدون هیچ فعالیتی"
+
+#: src/components/dashboard/DashboardOverview.tsx:349
+msgid "No attempts"
+msgstr ""
 
 #: src/components/farm/card/FarmCardLastHeightFarmed.tsx:15
 #~ msgid "No blocks farmed yet"
@@ -6504,7 +6578,7 @@ msgstr "پیشنهاد فعلی وجود ندارد"
 #~ msgid "No Custom Permissions"
 #~ msgstr "No Custom Permissions"
 
-#: src/components/nfts/NFTPreview.tsx:568
+#: src/components/nfts/NFTPreview.tsx:565
 msgid "No file available"
 msgstr "فایلی موجود نیست"
 
@@ -6524,11 +6598,19 @@ msgstr "هیچ پلاتی وجود ندارد"
 msgid "No private keys for one or both addresses. Safe only if you are sending rewards to another wallet."
 msgstr "هیچ کلید شخصی برای یک یا هر دو آدرس یافت نشد. فقط در صورتی امن است که پاداش را به کیف پول دیگری ارسال کنید."
 
+#: src/components/dashboard/DashboardOverview.tsx:350
+msgid "No recent plot filter attempts found"
+msgstr ""
+
 #: src/util/offerBuilderDataToOffer.ts:165
 #: src/util/offerBuilderDataToOffer.ts:193
 #: src/util/offerBuilderDataToOffer.ts:303
 msgid "No standard wallet found"
 msgstr "کیف پول استانداردی پیدا نشد"
+
+#: src/components/dashboard/DashboardOverview.tsx:214
+msgid "No wallet"
+msgstr ""
 
 #: src/components/farm/FarmFullNodeConnections.tsx:29
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:29
@@ -6541,14 +6623,14 @@ msgstr ""
 #~ msgstr "Non Observer Derivation"
 
 #: src/components/did/DIDProfileDropdown.tsx:98
-#: src/components/farm/FarmHealth.tsx:362
-#: src/components/farm/FarmHealth.tsx:390
-#: src/components/farm/FarmHealth.tsx:408
-#: src/components/farm/PoolingHealth.tsx:87
-#: src/components/farm/PoolingHealth.tsx:125
-#: src/components/farm/PoolingHealth.tsx:162
-#: src/components/farm/PoolingHealth.tsx:199
-#: src/components/farm/PoolingHealth.tsx:236
+#: src/components/farm/FarmHealth.tsx:371
+#: src/components/farm/FarmHealth.tsx:399
+#: src/components/farm/FarmHealth.tsx:417
+#: src/components/farm/PoolingHealth.tsx:95
+#: src/components/farm/PoolingHealth.tsx:133
+#: src/components/farm/PoolingHealth.tsx:170
+#: src/components/farm/PoolingHealth.tsx:207
+#: src/components/farm/PoolingHealth.tsx:244
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:104
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:244
 #: src/components/plot/add/PlotAddNFT.tsx:96
@@ -6568,9 +6650,9 @@ msgstr "هیچ کدام از پلات های شما هنوز از بررسی ف�
 msgid "Normal (RAM required: 256G)"
 msgstr "بطورمعمول (حافظه مورد نیاز: 256 گیگ)"
 
-#: src/components/farm/FarmHealth.tsx:123
-#: src/components/farm/FarmHealth.tsx:170
-#: src/components/farm/FarmHealth.tsx:194
+#: src/components/farm/FarmHealth.tsx:132
+#: src/components/farm/FarmHealth.tsx:179
+#: src/components/farm/FarmHealth.tsx:203
 msgid "Not available"
 msgstr "در دسترس نیست"
 
@@ -6583,16 +6665,20 @@ msgstr "در دسترس نیست"
 msgid "Not Available"
 msgstr "غیرقابل دسترسی"
 
-#: src/components/farm/FarmHealth.tsx:131
-#: src/components/farm/FarmHealth.tsx:178
+#: src/components/farm/FarmHealth.tsx:140
+#: src/components/farm/FarmHealth.tsx:187
 #: src/components/fullNode/card/FullNodeCardConnectionStatus.tsx:16
 msgid "Not connected"
 msgstr "متصل نشده"
 
-#: src/components/farm/FarmHealth.tsx:139
-#: src/components/farm/FarmHealth.tsx:186
+#: src/components/farm/FarmHealth.tsx:148
+#: src/components/farm/FarmHealth.tsx:195
 msgid "Not running"
 msgstr "در حال اجرا نیست"
+
+#: src/components/dashboard/DashboardOverview.tsx:283
+msgid "Not synced"
+msgstr ""
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:14
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:44
@@ -6730,7 +6816,7 @@ msgstr "انقضای پیشنهاد"
 msgid "Offer Expiration Time"
 msgstr "زمان انقضای پیشنهاد"
 
-#: src/components/offers2/OfferBuilderImport.tsx:58
+#: src/components/offers2/OfferBuilderImport.tsx:59
 msgid "Offer file is too large (> 1MB)"
 msgstr "فایل پیشنهاد خیلی بزرگ است (> 1 مگابایت)"
 
@@ -6799,8 +6885,9 @@ msgstr "پیشنهاد دادن"
 msgid "Offerpool URL"
 msgstr "ادرس سایت استخر پیشنهاد"
 
-#: src/components/dashboard/DashboardSideBar.tsx:68
-#: src/components/nfts/detail/NFTDetailV2.tsx:245
+#: src/components/dashboard/DashboardOverview.tsx:70
+#: src/components/dashboard/DashboardSideBar.tsx:78
+#: src/components/nfts/detail/NFTDetailV2.tsx:243
 msgid "Offers"
 msgstr "پیشنهادها"
 
@@ -6820,7 +6907,7 @@ msgstr "پیشنهاداتی که پذیرفته اید"
 msgid "Offers you created"
 msgstr "پیشنهاداتی که ایجاد کردید"
 
-#: src/components/farm/FarmHealth.tsx:209
+#: src/components/farm/FarmHealth.tsx:218
 #: src/components/offers/OfferDataDialog.tsx:58
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:86
 msgid "OK"
@@ -6874,8 +6961,8 @@ msgstr "کارمزد اختیاری شبکه برای تسریع پذیرش پی
 msgid "Options"
 msgstr "گزینه ها"
 
-#: src/components/offers2/OfferBuilderImport.tsx:132
-#: src/components/signVerify/VerifyMessageImport.tsx:136
+#: src/components/offers2/OfferBuilderImport.tsx:142
+#: src/components/signVerify/VerifyMessageImport.tsx:138
 msgid "or <0>browse</0> on your computer"
 msgstr "یا<0>مرورکنید</0> را در رایانه خود"
 
@@ -6906,6 +6993,10 @@ msgstr "نادیده گرفتن تعداد رشته ها را برای فاز 2"
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:310
 msgid "Override the thread count for Phase 3"
 msgstr "نادیده گرفتن تعداد رشته ها را برای فاز 3"
+
+#: src/components/dashboard/DashboardSideBar.tsx:50
+msgid "Overview"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:1171
 #~ msgid "Overwrite"
@@ -6953,11 +7044,11 @@ msgstr "شمارش غیرفشرده سازی موازی"
 #~ msgid "Parent Coin Info"
 #~ msgstr "Parent Coin Info"
 
-#: src/components/farm/PoolingHealth.tsx:317
+#: src/components/farm/PoolingHealth.tsx:325
 msgid "Partials found but not sent to pools. This usually happens when a partial is found before connections to pools are established"
 msgstr "مشازکت پیدا شد اما به استخرها ارسال نشد. این معمولاً زمانی اتفاق می‌افتد که قبل از برقراری ارتباط با استخرها، مشازکت پیدا شود"
 
-#: src/components/farm/PoolingHealth.tsx:299
+#: src/components/farm/PoolingHealth.tsx:307
 msgid "Partials not good enough for difficulties for corresponding pools"
 msgstr "بخش هایی برای مشکلات استخرهای مورد نظر به اندازه کافی خوب نیستند"
 
@@ -6965,15 +7056,15 @@ msgstr "بخش هایی برای مشکلات استخرهای مورد نظر �
 #~ msgid "Partials not good enough or rejected by pools"
 #~ msgstr ""
 
-#: src/components/farm/PoolingHealth.tsx:307
+#: src/components/farm/PoolingHealth.tsx:315
 msgid "Partials sent to pools but received error responses"
 msgstr "بخش هایی به استخرها ارسال شد اما پاسخ های خطا دریافت کرد"
 
-#: src/components/farm/PoolingHealth.tsx:291
+#: src/components/farm/PoolingHealth.tsx:299
 msgid "Partials sent to pools but too late"
 msgstr "مشارکت ها به استخرها ارسال شد اما خیلی دیر"
 
-#: src/components/farm/PoolingHealth.tsx:283
+#: src/components/farm/PoolingHealth.tsx:291
 msgid "Partials successfully sent and acknowledged by pools"
 msgstr "مشازکت ها با موفقیت ارسال شد و توسط استخرها تأیید شد"
 
@@ -7014,7 +7105,7 @@ msgstr "حفاظت از رمز ورود فعال است"
 msgid "Passphrase support requires migrating your keys to a new keyring"
 msgstr "پشتیبانی از رمز ورود نیاز به انتقال کلیدهای خود به یک کلید جدید است"
 
-#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:106
+#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:105
 msgid "Paste link"
 msgstr "جای گزاری لینک"
 
@@ -7023,7 +7114,7 @@ msgstr "جای گزاری لینک"
 msgid "Paste Offer Data"
 msgstr "چسباندن اطلاعات پیشنهاد"
 
-#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:101
+#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:100
 msgid "Paste the address from WalletConnect below."
 msgstr "در زیر جای‌گذاری کنید. WalletConnect آدرس را از"
 
@@ -7031,10 +7122,19 @@ msgstr "در زیر جای‌گذاری کنید. WalletConnect آدرس را ا
 msgid "Payout Address"
 msgstr "آدرس پرداخت"
 
+#: src/components/dashboard/DashboardOverview.tsx:289
+msgid "Peak"
+msgstr ""
+
 #: src/components/fullNode/card/FullNodeCardPeakHeight.tsx:14
 msgid "Peak Height"
 msgstr "حداکثر ارتفاع"
 
+#: src/components/dashboard/DashboardOverview.tsx:279
+msgid "peers loading"
+msgstr ""
+
+#: src/components/dashboard/DashboardOverview.tsx:221
 #: src/components/plotNFT/PlotNFTState.tsx:41
 msgid "Pending"
 msgstr "در انتظار"
@@ -7073,7 +7173,7 @@ msgstr "لطفا تایید کنید"
 msgid "Please enter a passphrase"
 msgstr "لطفا یک رمز ورود وارد کنید"
 
-#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:46
+#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:45
 msgid "Please enter a URI"
 msgstr "لطفا یک URI وارد کنید"
 
@@ -7178,7 +7278,11 @@ msgstr "پلات"
 msgid "Plot Count"
 msgstr "تعداد پلات ها"
 
-#: src/components/harvest/HarvesterPlotDetails.tsx:159
+#: src/components/dashboard/DashboardOverview.tsx:55
+msgid "Plot count, size, and add flow"
+msgstr ""
+
+#: src/components/harvest/HarvesterPlotDetails.tsx:199
 msgid "Plot details"
 msgstr "جزئیات پلات"
 
@@ -7211,7 +7315,7 @@ msgstr "آدرس قرارداد استخر پلات ان اف تی"
 msgid "Plot NFT with p2_singleton_puzzle_hash {plotNFTId} does not exists"
 msgstr "وجود ندارد p2_singleton_puzzle_hash {plotNFTId} پلات ان اف تی با"
 
-#: src/components/farm/FarmHealth.tsx:246
+#: src/components/farm/FarmHealth.tsx:255
 msgid "Plot pass ratio"
 msgstr "نسبت عبور پلات"
 
@@ -7223,7 +7327,7 @@ msgstr "کلید عمومی پلات"
 #~ msgid "Plot Size"
 #~ msgstr "Plot Size"
 
-#: src/components/harvest/HarvesterPlotDetails.tsx:175
+#: src/components/harvest/HarvesterPlotDetails.tsx:215
 msgid "Plot Sizes"
 msgstr "اندازه پلات"
 
@@ -7235,7 +7339,12 @@ msgstr "پلات برای یک پلات ان اف تی"
 msgid "PlotNFT is transitioning to (target state). This can take a while. Please do not close the application until this is finalized."
 msgstr "پلات ان اف تی در حال انتقال به (وضعیت هدف) است. این میتواند مدتی طول بکشد. لطفاً تا زمانیکه این مورد نهایی نشده است، برنامه را نبندید."
 
-#: src/components/dashboard/DashboardSideBar.tsx:100
+#: src/components/dashboard/DashboardOverview.tsx:316
+msgid "plots"
+msgstr ""
+
+#: src/components/dashboard/DashboardOverview.tsx:54
+#: src/components/dashboard/DashboardSideBar.tsx:109
 #: src/components/plot/PlotHarvester.tsx:97
 msgid "Plots"
 msgstr "پلات ها"
@@ -7256,8 +7365,8 @@ msgstr "پلات ها در همان صف به صورت متوالی اجرا م�
 msgid "Plots Passed Filter"
 msgstr "پلات ها از فیلتر عبور کردند"
 
-#: src/components/farm/FarmHealth.tsx:219
-#: src/components/farm/FarmHealth.tsx:299
+#: src/components/farm/FarmHealth.tsx:228
+#: src/components/farm/FarmHealth.tsx:308
 msgid "Plots passing filter"
 msgstr "پلاتها از فیلتر عبور می کنند"
 
@@ -7308,6 +7417,10 @@ msgstr "امتیازهای پیداشده از زمان شروع"
 #: src/components/plotNFT/PlotNFTCard.tsx:206
 msgid "Points Successful in Last 24 Hours"
 msgstr "امتیاهای موفقیت آمیز در 24 ساعت گذشته"
+
+#: src/components/dashboard/DashboardOverview.tsx:94
+msgid "Pool"
+msgstr ""
 
 #: src/components/plot/PlotHarvesterPlots.tsx:64
 msgid "Pool Contract Address"
@@ -7376,14 +7489,18 @@ msgstr "مبلغ پاداش استخر"
 msgid "Pool:"
 msgstr "استخر:"
 
-#: src/components/dashboard/DashboardSideBar.tsx:119
-#: src/components/farm/PoolingHealth.tsx:273
+#: src/components/dashboard/DashboardSideBar.tsx:128
+#: src/components/farm/PoolingHealth.tsx:281
 #: src/components/plotNFT/PlotNFTExternalState.tsx:25
 #: src/components/plotNFT/PlotNFTState.tsx:57
 msgid "Pooling"
 msgstr "درحالت استخر"
 
-#: src/components/farm/PoolingHealth.tsx:278
+#: src/components/dashboard/DashboardOverview.tsx:94
+msgid "Pooling controls"
+msgstr ""
+
+#: src/components/farm/PoolingHealth.tsx:286
 msgid "Pooling Health"
 msgstr "سلامت استخر"
 
@@ -7394,6 +7511,10 @@ msgstr "سلامت استخر"
 msgid "Port"
 msgstr "پورت"
 
+#: src/components/dashboard/DashboardOverview.tsx:103
+msgid "Preferences and services"
+msgstr ""
+
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:95
 #: src/components/plotNFT/PlotNFTChangePool.tsx:76
 msgid "Preparing Plot NFT"
@@ -7403,7 +7524,7 @@ msgstr "آماده‌سازی پلات ان اف تی"
 msgid "Preparing standard wallet"
 msgstr "آماده‌سازی کیف پول استاندارد"
 
-#: src/components/nfts/NFTPreview.tsx:289
+#: src/components/nfts/NFTPreview.tsx:287
 #: src/components/offers2/OfferBuilderNFT.tsx:75
 msgid "Preview"
 msgstr "پیش نمایش"
@@ -7424,7 +7545,7 @@ msgstr ""
 msgid "Preview image URL {index}"
 msgstr "پیش نمایش آدرس تصویر {index}"
 
-#: src/components/nfts/NFTPreview.tsx:580
+#: src/components/nfts/NFTPreview.tsx:577
 msgid "Preview is not available"
 msgstr ""
 
@@ -7449,7 +7570,7 @@ msgid "Preview video URL {index}"
 msgstr "پیش نمایش آدرس ویدیو {index}"
 
 #: src/components/block/Block.jsx:257
-#: src/components/nfts/detail/NFTDetailV2.tsx:133
+#: src/components/nfts/detail/NFTDetailV2.tsx:131
 msgid "Previous"
 msgstr "قبلی"
 
@@ -7478,6 +7599,10 @@ msgstr "حساب کاربری"
 #: src/components/settings/SettingsProfiles.tsx:50
 msgid "Profiles (DIDs)"
 msgstr "(DIDs) کاربرهای شناسه غیرمتمرکز"
+
+#: src/components/dashboard/DashboardOverview.tsx:355
+msgid "Proof found"
+msgstr ""
 
 #: src/components/block/Block.jsx:203
 msgid "Proof of Space Size"
@@ -7564,6 +7689,22 @@ msgstr "حداکثر مصرف حافطه"
 msgid "Rankings"
 msgstr "رتبه بندی"
 
+#: src/components/dashboard/DashboardOverview.tsx:256
+msgid "Reading full node status"
+msgstr ""
+
+#: src/components/dashboard/DashboardOverview.tsx:302
+msgid "Reading harvester summary"
+msgstr ""
+
+#: src/components/dashboard/DashboardOverview.tsx:334
+msgid "Reading recent farming attempts"
+msgstr ""
+
+#: src/components/dashboard/DashboardOverview.tsx:201
+msgid "Reading standard wallet balance"
+msgstr ""
+
 #: src/components/settings/SettingsNotifications.tsx:123
 msgid "Receive general announcement notifications from connected Dapps"
 msgstr "متصل دریافت کنید Dapps اعلان‌های عمومی را از"
@@ -7617,7 +7758,7 @@ msgstr "بروز رسانی پلات ها"
 #~ msgid "Registers a list of remote coin IDs with a remote wallet."
 #~ msgstr "Registers a list of remote coin IDs with a remote wallet."
 
-#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:125
+#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:124
 msgid "Reject"
 msgstr ""
 
@@ -7637,7 +7778,7 @@ msgstr "پیشنهاد مجدد"
 msgid "Remote"
 msgstr "از راه دور"
 
-#: src/components/harvest/HarvesterDetail.tsx:47
+#: src/components/harvest/HarvesterDetail.tsx:49
 msgid "Remote Harvester"
 msgstr "برداشت کننده از راه دور"
 
@@ -7802,8 +7943,8 @@ msgstr ""
 msgid "Requires Proof From Store"
 msgstr ""
 
-#: src/components/farm/FarmHealth.tsx:286
-#: src/components/farm/FarmHealth.tsx:348
+#: src/components/farm/FarmHealth.tsx:295
+#: src/components/farm/FarmHealth.tsx:357
 #: src/components/offers/NFTOfferEditor.tsx:435
 #: src/components/offers/OfferEditor.tsx:153
 #: src/components/settings/SettingsIntegration.tsx:222
@@ -8116,7 +8257,8 @@ msgstr "تنظیم رمز ورود جدید"
 msgid "Set up keys manually"
 msgstr "کلیدها را به صورت دستی تنظیم کنید"
 
-#: src/components/dashboard/DashboardSideBar.tsx:137
+#: src/components/dashboard/DashboardOverview.tsx:102
+#: src/components/dashboard/DashboardSideBar.tsx:146
 #: src/components/settings/Settings.tsx:74
 msgid "Settings"
 msgstr "تنظیمات"
@@ -8243,7 +8385,7 @@ msgstr "امضاء شده توسط:"
 msgid "Signed Message"
 msgstr "پیام امضاء شده"
 
-#: src/components/signVerify/VerifyMessageImport.tsx:84
+#: src/components/signVerify/VerifyMessageImport.tsx:86
 msgid "Signed message file is too large (> 10MB)"
 msgstr "فایل پیام امضاء شده خیلی بزرگ است (> 10 مگابایت)"
 
@@ -8287,7 +8429,7 @@ msgstr "فارم شخصی"
 msgid "Sorry, you can't switch to mainnet by clicking here..."
 msgstr "...با عرض پوزش، نمیتوانید با کلیک کردن در اینجا به شبکه اصلی تغییر دهید"
 
-#: src/components/harvest/HarvesterDetail.tsx:108
+#: src/components/harvest/HarvesterDetail.tsx:110
 #: src/components/harvest/HarvesterOverview.tsx:157
 msgid "Space"
 msgstr "فضا"
@@ -8328,6 +8470,10 @@ msgstr "اگر بیش از یک کارت گراقیک وجود دارد، شاخ
 #~ msgid "Spend Fee"
 #~ msgstr "Spend Fee"
 
+#: src/components/dashboard/DashboardOverview.tsx:232
+msgid "Spendable {spendable} {currencyCode}"
+msgstr ""
+
 #: src/components/offers2/OfferBuilderWalletBalance.tsx:44
 msgid "Spendable Balance: {0}"
 msgstr "موجودی قابل خرج کزدن: {0}"
@@ -8336,17 +8482,21 @@ msgstr "موجودی قابل خرج کزدن: {0}"
 msgid "Spendable Balance: {spendableBalance} {currencyCode}"
 msgstr "{spendableBalance} {currencyCode} :موجودی قابل خرج کزدن"
 
-#: src/components/farm/FarmHealth.tsx:438
+#: src/components/farm/FarmHealth.tsx:447
 msgid "Stale partials"
 msgstr "مشازکت قدیمی"
 
-#: src/components/farm/PoolingHealth.tsx:294
+#: src/components/farm/PoolingHealth.tsx:302
 msgid "Stale Partials"
 msgstr "مشازکت قدیمی"
 
 #: src/components/vcs/VCCard.tsx:176
 msgid "Standard Version Number"
 msgstr "شماره نسخه استاندارد"
+
+#: src/components/dashboard/DashboardOverview.tsx:215
+msgid "Standard wallet is not available"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:556
 #~ msgid "Start"
@@ -8461,17 +8611,23 @@ msgstr "محدودیت اندازه حافظه پنهان با موفقیت بر
 msgid "Successfully updated the derivation index. Your balances may take a while to update."
 msgstr "لیست استخراج با موفقیت بروز شد. بروز رسانی موجودی شما ممکن است کمی طول بکشد."
 
-#: src/components/farm/FarmHealth.tsx:430
+#: src/components/farm/FarmHealth.tsx:439
 msgid "Sync status"
 msgstr "وضعیت سینک"
 
-#: src/components/farm/FarmHealth.tsx:146
+#: src/components/dashboard/DashboardOverview.tsx:41
+msgid "Sync, peers, block inspection"
+msgstr ""
+
+#: src/components/dashboard/DashboardOverview.tsx:283
+#: src/components/farm/FarmHealth.tsx:155
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:50
 msgid "Synced"
 msgstr "سینک شده"
 
-#: src/components/farm/FarmHealth.tsx:115
-#: src/components/farm/FarmHealth.tsx:162
+#: src/components/dashboard/DashboardOverview.tsx:269
+#: src/components/farm/FarmHealth.tsx:124
+#: src/components/farm/FarmHealth.tsx:171
 #: src/components/plot/PlotStatus.tsx:19
 msgid "Syncing"
 msgstr "درحال سینک"
@@ -8667,7 +8823,7 @@ msgstr "کل کارمزدهای تراکنش ها در این بلاک. به ف�
 msgid "Theme"
 msgstr "موضوع"
 
-#: src/components/farm/FarmHealth.tsx:331
+#: src/components/farm/FarmHealth.tsx:340
 msgid "There was a network issue and your Full Node or Farmer could not receive SPs."
 msgstr "مشکلی در شبکه وجود داشت که قول نود یا فارم شما نتوانستند اس پی ها را دریافت کنند."
 
@@ -8704,7 +8860,7 @@ msgstr "این سختی مصنوعی نسبت به شبکه واقعی کمتر 
 msgid "This feature is available only from the GUI."
 msgstr "این ویژگی فقط در نسخه گرافیکی برنامه در دسترس است."
 
-#: src/components/harvest/HarvesterDetail.tsx:67
+#: src/components/harvest/HarvesterDetail.tsx:69
 msgid "This harvester does not have any plots to harvest"
 msgstr "این برداشت کننده هیچ پلاتی برای برداشت ندارد"
 
@@ -8712,7 +8868,7 @@ msgstr "این برداشت کننده هیچ پلاتی برای برداشت �
 msgid "This is a sum of effective plot sizes currently farming. An effective plot size is a theoretical value which is derived only by kSize"
 msgstr "مجموع اندازه های مفید پلات که در حال فارم است. اندازه پلات مفید یک مقدار نظری است که فقط با اندازه حجم یا مخفف کی به دست می آید"
 
-#: src/components/harvest/HarvesterDetail.tsx:161
+#: src/components/harvest/HarvesterDetail.tsx:163
 msgid "This is a sum of effective plot sizes currently harvesting. An effective plot size is a theoretical value which is derived only by kSize."
 msgstr "مجموع اندازه های مفید پلات که در حال برداشت است. اندازه پلات مفید یک مقدار نظری است که فقط با اندازه حجم یا مخفف کی به دست می آید."
 
@@ -8855,7 +9011,7 @@ msgstr "برای شروع به سینک مجدد کیف پول، ابتدا با
 msgid "Token Standard"
 msgstr "توکن استاندارد"
 
-#: src/components/dashboard/DashboardSideBar.tsx:48
+#: src/components/dashboard/DashboardSideBar.tsx:58
 #: src/components/offers2/OfferBuilderTokensSection.tsx:116
 msgid "Tokens"
 msgstr "توکن ها"
@@ -8864,7 +9020,8 @@ msgstr "توکن ها"
 msgid "Too Many Plot NFTs"
 msgstr "تعداد زیاد پلات ان اف تی"
 
-#: src/components/dashboard/DashboardSideBar.tsx:130
+#: src/components/dashboard/DashboardOverview.tsx:96
+#: src/components/dashboard/DashboardSideBar.tsx:139
 msgid "Tools"
 msgstr "ابزارها"
 
@@ -8922,19 +9079,19 @@ msgstr "مجموع فضای شبکه"
 #~ msgid "Total Network Space"
 #~ msgstr "Total Network Space"
 
-#: src/components/harvest/HarvesterPlotDetails.tsx:166
+#: src/components/harvest/HarvesterPlotDetails.tsx:206
 msgid "Total OG"
 msgstr "مجموع پلات قدیمی"
 
-#: src/components/farm/FarmHealth.tsx:234
+#: src/components/farm/FarmHealth.tsx:243
 msgid "Total plot filter challenges"
 msgstr "کل چالش های فیلتر پلات"
 
-#: src/components/harvest/HarvesterPlotDetails.tsx:169
+#: src/components/harvest/HarvesterPlotDetails.tsx:209
 msgid "Total plotNFT"
 msgstr "مجموغ پلات ان اف تی"
 
-#: src/components/harvest/HarvesterPlotDetails.tsx:163
+#: src/components/harvest/HarvesterPlotDetails.tsx:203
 msgid "Total plots"
 msgstr "مجموغ پلاتها"
 
@@ -8942,7 +9099,7 @@ msgstr "مجموغ پلاتها"
 msgid "Total Plots"
 msgstr "مجموغ پلاتها"
 
-#: src/components/farm/FarmHealth.tsx:240
+#: src/components/farm/FarmHealth.tsx:249
 msgid "Total plots passing filter"
 msgstr "تعداد پلاتهایی که از فیلتر عبور می کنند"
 
@@ -8958,7 +9115,7 @@ msgstr "حجم کل فایل های ذخیره شده:"
 #~ msgid "Total Size of Plots"
 #~ msgstr "Total Size of Plots"
 
-#: src/components/harvest/HarvesterDetail.tsx:115
+#: src/components/harvest/HarvesterDetail.tsx:117
 msgid "Total Space"
 msgstr "مجموع فضا"
 
@@ -9112,6 +9269,13 @@ msgstr "اختصاص داده نشده"
 msgid "Unassigned NFTs"
 msgstr "ان اف تی های اختصاص نیافته"
 
+#: src/components/dashboard/DashboardOverview.tsx:207
+#: src/components/dashboard/DashboardOverview.tsx:262
+#: src/components/dashboard/DashboardOverview.tsx:308
+#: src/components/dashboard/DashboardOverview.tsx:340
+msgid "Unavailable"
+msgstr ""
+
 #: src/components/plotNFT/PlotNFTCard.tsx:135
 msgid "Unclaimed Rewards"
 msgstr "پاداشهای برداشت نشده"
@@ -9210,7 +9374,7 @@ msgstr "آدرس سایت معتبر نیست"
 msgid "Use blockchain peak height for height info"
 msgstr "از حداکثر ارتفاع بلاک چین به عنوان اطلاعات بلاک استفاده کنید"
 
-#: src/components/nfts/detail/NFTDetailV2.tsx:138
+#: src/components/nfts/detail/NFTDetailV2.tsx:136
 msgid "Use left and right arrow keys to navigate"
 msgstr "با استفاده از کلیدهای جهت دار به چپ و راست حرکت کنید"
 
@@ -9231,7 +9395,7 @@ msgstr "برای ایجاد پلات استخر استفاده میشود."
 msgid "Valid"
 msgstr "معتبر"
 
-#: src/components/farm/PoolingHealth.tsx:286
+#: src/components/farm/PoolingHealth.tsx:294
 msgid "Valid Partials"
 msgstr "مشارکت معتبر"
 
@@ -9267,7 +9431,7 @@ msgstr "تعداد تکرار زیرمجموعه تابع تاخیر قابل ت
 msgid "Verifiable Credential"
 msgstr "اعتبار قابل تایید"
 
-#: src/components/vcs/VCList.tsx:199
+#: src/components/vcs/VCList.tsx:245
 msgid "Verifiable Credential already exists."
 msgstr "اعتبار قابل تأیید از قبل وجود دارد."
 
@@ -9283,17 +9447,21 @@ msgstr "اعتبار قابل تأیید حذف شد."
 msgid "Verifiable Credential Revoked."
 msgstr "اعتبار قابل تأیید باطل شد."
 
-#: src/components/vcs/VCList.tsx:207
+#: src/components/vcs/VCList.tsx:253
 msgid "Verifiable Credential successfully added."
 msgstr "اعتبار قابل تأیید با موفقیت اضافه شد."
 
+#: src/components/dashboard/DashboardOverview.tsx:77
+msgid "Verifiable credentials"
+msgstr ""
+
 #: src/components/settings/SettingsVerifiableCredentials.tsx:17
-#: src/components/vcs/VCList.tsx:267
-#: src/components/vcs/VCList.tsx:328
+#: src/components/vcs/VCList.tsx:313
+#: src/components/vcs/VCList.tsx:438
 msgid "Verifiable Credentials"
 msgstr "اعتبار قابل تایید"
 
-#: src/components/vcs/VCList.tsx:270
+#: src/components/vcs/VCList.tsx:316
 msgid "Verifiable Credentials are like digital ID cards that can prove certain information about you without giving away your private details."
 msgstr "اعتبارنامه‌های قابل تأیید مانند کارت‌های شناسایی دیجیتال هستند که میتوانند اطلاعات خاصی را در مورد شما بدون ارائه اطلاعات شخصیتان ثابت کنند"
 
@@ -9415,6 +9583,10 @@ msgstr "<0/> قابل دیدن و پنهان"
 msgid "Wait for synchronization"
 msgstr "منتظر سینک شدن باشید"
 
+#: src/components/dashboard/DashboardOverview.tsx:222
+msgid "Waiting for balance data"
+msgstr ""
+
 #: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:80
 msgid "Waiting for the transaction to be confirmed"
 msgstr "منتظر تایید تراکنش هستیم"
@@ -9430,6 +9602,10 @@ msgstr "کیف پول"
 #: src/components/signVerify/SignMessage.tsx:163
 msgid "Wallet Address"
 msgstr "آدرس کیف پول"
+
+#: src/components/dashboard/DashboardOverview.tsx:208
+msgid "Wallet balance service did not respond"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:80
 #: src/constants/WalletConnectCommands.tsx:114
@@ -9489,7 +9665,7 @@ msgid "Wallet sync RPC"
 msgstr "سینک کیف پول با پروتکل RPC"
 
 #: src/components/settings/SettingsIntegration.tsx:85
-#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:75
+#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:74
 #: src/components/walletConnect/WalletConnectDropdown.tsx:26
 msgid "WalletConnect"
 msgstr "اتصال کیف پول"
@@ -9498,9 +9674,13 @@ msgstr "اتصال کیف پول"
 msgid "WalletConnect enables a decentralized app on the Chia blockchain to communicate and make requests directly to a Chia wallet."
 msgstr ".یک برنامه غیرمتمرکز در بلاکچین را قادر میسازد تا مستقیماً با کیف پول چیا ارتباط برقرار کرده و درخواست کند WalletConnect"
 
-#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:98
+#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:97
 msgid "WalletConnect Integration"
 msgstr "WalletConnect ادغام"
+
+#: src/components/dashboard/DashboardOverview.tsx:32
+msgid "Wallets"
+msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:83
 msgid "Want to have a delay before the next plot starts?"
@@ -9514,13 +9694,13 @@ msgstr "میخواهید به یک استخر متصل شوید؟ یک پلات 
 msgid "Warm start"
 msgstr "شروع گرم"
 
-#: src/components/farm/FarmHealth.tsx:202
+#: src/components/farm/FarmHealth.tsx:211
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:32
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:73
 msgid "Warning"
 msgstr "اخطار"
 
-#: src/components/farm/FarmHealth.tsx:266
+#: src/components/farm/FarmHealth.tsx:275
 msgid "Warning Threshold"
 msgstr "آستانه هشدار"
 

@@ -48,7 +48,7 @@ msgstr "添加可撤回交易选项"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:61
 #: src/components/cat/WalletCATCreateSimple.tsx:68
-#: src/components/WalletsManageTokens.tsx:155
+#: src/components/WalletsManageTokens.tsx:163
 msgid "Add Token"
 msgstr "添加代币"
 
@@ -358,7 +358,7 @@ msgstr "IP地址"
 msgid "List of connections is empty"
 msgstr "连接列表为空"
 
-#: src/components/WalletsManageTokens.tsx:132
+#: src/components/WalletsManageTokens.tsx:140
 msgid "Manage token list"
 msgstr "管理代币列表"
 

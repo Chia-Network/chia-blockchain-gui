@@ -48,7 +48,7 @@ msgstr ""
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:61
 #: src/components/cat/WalletCATCreateSimple.tsx:68
-#: src/components/WalletsManageTokens.tsx:155
+#: src/components/WalletsManageTokens.tsx:163
 msgid "Add Token"
 msgstr "Ajouter un Type de Jeton"
 
@@ -358,7 +358,7 @@ msgstr "Adresse IP"
 msgid "List of connections is empty"
 msgstr "La liste des connexions est vide"
 
-#: src/components/WalletsManageTokens.tsx:132
+#: src/components/WalletsManageTokens.tsx:140
 msgid "Manage token list"
 msgstr "Gérer les types de jetons"
 

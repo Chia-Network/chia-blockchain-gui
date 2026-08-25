@@ -42,7 +42,7 @@ msgstr "Доступна новая версия Chia!"
 msgid "Add Icon"
 msgstr ""
 
-#: src/screens/SelectKey/SelectKey.tsx:174
+#: src/screens/SelectKey/SelectKey.tsx:175
 msgid "Add wallet"
 msgstr "Добавить кошелек"
 
@@ -50,16 +50,20 @@ msgstr "Добавить кошелек"
 msgid "Amount"
 msgstr "Количество"
 
-#: src/components/Settings/SettingsApp.tsx:90
+#: src/components/Settings/SettingsApp.tsx:91
 msgid "Appearance"
 msgstr "Внешний вид"
+
+#: src/components/Settings/SettingsApp.tsx:119
+msgid "Applies immediately. Stored locally in app preferences."
+msgstr ""
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:161
 msgid "Are you sure you want to continue? Type in the fingerprint of this wallet key to confirm deletion."
 msgstr ""
 
 #: src/components/FormBackButton/FormBackButton.tsx:15
-#: src/screens/SelectKey/SelectKey.tsx:129
+#: src/screens/SelectKey/SelectKey.tsx:130
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:173
 msgid "Back"
 msgstr "Назад"
@@ -70,7 +74,7 @@ msgstr "Назад"
 msgid "Cancel"
 msgstr "Отмена"
 
-#: src/components/Settings/SettingsApp.tsx:136
+#: src/components/Settings/SettingsApp.tsx:147
 msgid "Check for updates"
 msgstr "Проверить обновления"
 
@@ -82,7 +86,7 @@ msgstr "Проверка обновлений..."
 msgid "Chia {latestVersion} is currently the latest version available."
 msgstr ""
 
-#: src/components/Settings/SettingsApp.tsx:122
+#: src/components/Settings/SettingsApp.tsx:133
 msgid "Chia Application Version:"
 msgstr "Версия приложения Chia:"
 
@@ -91,6 +95,10 @@ msgstr "Версия приложения Chia:"
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:70
 msgid "Close"
 msgstr "Закрыть"
+
+#: src/components/Settings/SettingsApp.tsx:115
+msgid "Color Theme"
+msgstr ""
 
 #: src/components/FormatConnectionStatus/FormatConnectionStatus.tsx:32
 msgid "Connected"
@@ -108,33 +116,33 @@ msgstr "Скопировать в буфер обмена"
 #~ msgid "Create a new private key"
 #~ msgstr "Create a new private key"
 
-#: src/screens/SelectKey/SelectKey.tsx:274
+#: src/screens/SelectKey/SelectKey.tsx:275
 msgid "Create a new wallet key"
 msgstr "Создать новый ключ кошелька"
 
-#: src/screens/SelectKey/SelectKey.tsx:266
+#: src/screens/SelectKey/SelectKey.tsx:267
 msgid "Create a new wallet key to get started with Chia."
 msgstr "Создайте новый ключ кошелька, чтобы начать с Chia."
 
-#: src/screens/SelectKey/SelectKey.tsx:177
+#: src/screens/SelectKey/SelectKey.tsx:178
 msgid "Create New"
 msgstr "Создать новый"
 
-#: src/components/Settings/SettingsApp.tsx:107
+#: src/components/Settings/SettingsApp.tsx:108
 msgid "Dark"
 msgstr "Тёмный"
 
-#: src/screens/SelectKey/SelectKey.tsx:128
+#: src/screens/SelectKey/SelectKey.tsx:129
 #: src/screens/SelectKey/SelectKeyItem.tsx:113
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:183
 msgid "Delete"
 msgstr "Удалить"
 
-#: src/screens/SelectKey/SelectKey.tsx:127
+#: src/screens/SelectKey/SelectKey.tsx:128
 msgid "Delete all keys"
 msgstr "Удалить все ключи"
 
-#: src/screens/SelectKey/SelectKey.tsx:202
+#: src/screens/SelectKey/SelectKey.tsx:203
 msgid "Delete All Keys"
 msgstr "Удалить все ключи"
 
@@ -142,7 +150,7 @@ msgstr "Удалить все ключи"
 msgid "Delete key {fingerprint}"
 msgstr "Удалить ключ {fingerprint}"
 
-#: src/screens/SelectKey/SelectKey.tsx:133
+#: src/screens/SelectKey/SelectKey.tsx:134
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
 msgstr "Удаление всех ключей приведет к безвозвратному удалению ключей с вашего компьютера, убедитесь, что у вас есть резервные копии. Вы уверены что хотите продолжить?"
 
@@ -163,7 +171,7 @@ msgstr "Отключить защиту паролем"
 msgid "Discard"
 msgstr "Oтказаться"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:148
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:157
 msgid "Download"
 msgstr "Загрузить"
 
@@ -192,7 +200,7 @@ msgstr "Открытый ключ фермера"
 msgid "Farmer public key:"
 msgstr "Открытый ключ фермера:"
 
-#: src/components/Settings/SettingsApp.tsx:75
+#: src/components/Settings/SettingsApp.tsx:76
 msgid "Farming"
 msgstr "Фарминг"
 
@@ -206,7 +214,7 @@ msgstr "Комиссия"
 msgid "Fingerprint does not match"
 msgstr "Отпечаток не совпадает"
 
-#: src/components/Settings/SettingsApp.tsx:148
+#: src/components/Settings/SettingsApp.tsx:159
 msgid "Frequently Asked Questions"
 msgstr "Часто задаваемые вопросы"
 
@@ -214,7 +222,7 @@ msgstr "Часто задаваемые вопросы"
 msgid "Go To Download Page"
 msgstr "Перейти на страницу загрузки"
 
-#: src/components/Settings/SettingsApp.tsx:144
+#: src/components/Settings/SettingsApp.tsx:155
 msgid "Help"
 msgstr "Помощь"
 
@@ -231,7 +239,7 @@ msgstr "Скрыть"
 msgid "Hide Advanced Options"
 msgstr "Скрыть дополнительные опции"
 
-#: src/screens/SelectKey/SelectKey.tsx:182
+#: src/screens/SelectKey/SelectKey.tsx:183
 msgid "Import Existing"
 msgstr ""
 
@@ -243,7 +251,7 @@ msgstr ""
 msgid "Incorrect value"
 msgstr "Некорректное значение"
 
-#: src/components/Settings/SettingsApp.tsx:114
+#: src/components/Settings/SettingsApp.tsx:125
 msgid "Language"
 msgstr "Язык"
 
@@ -251,7 +259,7 @@ msgstr "Язык"
 msgid "Latest Version:"
 msgstr "Последняя версия:"
 
-#: src/components/Settings/SettingsApp.tsx:99
+#: src/components/Settings/SettingsApp.tsx:100
 msgid "Light"
 msgstr "Светлый"
 
@@ -271,7 +279,7 @@ msgstr ""
 msgid "Loading details"
 msgstr "Загрузка сведений"
 
-#: src/screens/SelectKey/SelectKey.tsx:236
+#: src/screens/SelectKey/SelectKey.tsx:237
 msgid "Loading keys"
 msgstr "Загрузка ключей"
 
@@ -296,7 +304,7 @@ msgstr "Мигрировать"
 msgid "Migration required"
 msgstr "Требуется миграция"
 
-#: src/components/Settings/SettingsApp.tsx:66
+#: src/components/Settings/SettingsApp.tsx:67
 msgid "Mode"
 msgstr "Режим"
 
@@ -308,7 +316,7 @@ msgstr ""
 msgid "New passphrase is the same as your current passphrase"
 msgstr "Новый пароль совпадает с вашим текущим паролем"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:133
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:142
 msgid "New version {latestVersion} available"
 msgstr ""
 
@@ -330,7 +338,7 @@ msgstr "Нет подключения"
 msgid "OK"
 msgstr "ОК"
 
-#: src/screens/SelectKey/SelectKey.tsx:258
+#: src/screens/SelectKey/SelectKey.tsx:259
 msgid "Open a world of possibilities."
 msgstr ""
 
@@ -422,7 +430,7 @@ msgid "Select..."
 msgstr "Выбрать..."
 
 #: src/components/LayoutMain/LayoutFooter.tsx:50
-#: src/components/Settings/SettingsApp.tsx:151
+#: src/components/Settings/SettingsApp.tsx:162
 msgid "Send Feedback"
 msgstr "Оставить отзыв"
 
@@ -443,7 +451,7 @@ msgstr "Показать дополнительные опции"
 #~ msgid "Sign In"
 #~ msgstr "Sign In"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:136
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:145
 #: src/hooks/useValidateChangePassphraseParams.tsx:51
 msgid "Skip"
 msgstr "Пропустить"
@@ -500,11 +508,11 @@ msgstr "Транзакция пока еще не была отправлена 
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "Транзакция успешно отправлена на полный узел и включена в мемпул."
 
-#: src/screens/SelectKey/SelectKey.tsx:243
+#: src/screens/SelectKey/SelectKey.tsx:244
 msgid "Try Again"
 msgstr "Попробовать снова"
 
-#: src/screens/SelectKey/SelectKey.tsx:247
+#: src/screens/SelectKey/SelectKey.tsx:248
 msgid "Unable to load keys"
 msgstr "Не удается загрузить ключи"
 
@@ -529,8 +537,8 @@ msgstr "Настоятельно рекомендуется использова
 msgid "Value seems high"
 msgstr "Значение вероятно завышено"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:233
-#: src/components/Settings/SettingsApp.tsx:83
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:242
+#: src/components/Settings/SettingsApp.tsx:84
 msgid "Wallet"
 msgstr "Кошелёк"
 
@@ -543,7 +551,7 @@ msgstr "Кошелёк {0}"
 msgid "Wallet Fingerprint"
 msgstr "Отпечаток кошелька"
 
-#: src/screens/SelectKey/SelectKey.tsx:223
+#: src/screens/SelectKey/SelectKey.tsx:224
 msgid "Wallet Keys"
 msgstr "Ключи кошелька"
 
@@ -551,7 +559,7 @@ msgstr "Ключи кошелька"
 #~ msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
 #~ msgstr "Welcome to Chia. Please log in with an existing key, or create a new key."
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:142
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:151
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:66
 msgid "What's New"
 msgstr "Что нового"

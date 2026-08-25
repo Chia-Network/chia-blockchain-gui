@@ -42,7 +42,7 @@ msgstr "有新版本的 Chia 可用！"
 msgid "Add Icon"
 msgstr "新增圖示"
 
-#: src/screens/SelectKey/SelectKey.tsx:174
+#: src/screens/SelectKey/SelectKey.tsx:175
 msgid "Add wallet"
 msgstr "新增錢包"
 
@@ -50,16 +50,20 @@ msgstr "新增錢包"
 msgid "Amount"
 msgstr "金額"
 
-#: src/components/Settings/SettingsApp.tsx:90
+#: src/components/Settings/SettingsApp.tsx:91
 msgid "Appearance"
 msgstr "外觀"
+
+#: src/components/Settings/SettingsApp.tsx:119
+msgid "Applies immediately. Stored locally in app preferences."
+msgstr ""
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:161
 msgid "Are you sure you want to continue? Type in the fingerprint of this wallet key to confirm deletion."
 msgstr "您確定要繼續嗎？請輸入此錢包金鑰的指紋以確認刪除。"
 
 #: src/components/FormBackButton/FormBackButton.tsx:15
-#: src/screens/SelectKey/SelectKey.tsx:129
+#: src/screens/SelectKey/SelectKey.tsx:130
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:173
 msgid "Back"
 msgstr "返回"
@@ -70,7 +74,7 @@ msgstr "返回"
 msgid "Cancel"
 msgstr "取消"
 
-#: src/components/Settings/SettingsApp.tsx:136
+#: src/components/Settings/SettingsApp.tsx:147
 msgid "Check for updates"
 msgstr "檢查更新"
 
@@ -82,7 +86,7 @@ msgstr "正在檢查更新..."
 msgid "Chia {latestVersion} is currently the latest version available."
 msgstr "目前可用的最新版本為 Chia {latestVersion}。"
 
-#: src/components/Settings/SettingsApp.tsx:122
+#: src/components/Settings/SettingsApp.tsx:133
 msgid "Chia Application Version:"
 msgstr "Chia 應用程式版本："
 
@@ -91,6 +95,10 @@ msgstr "Chia 應用程式版本："
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:70
 msgid "Close"
 msgstr "關閉"
+
+#: src/components/Settings/SettingsApp.tsx:115
+msgid "Color Theme"
+msgstr ""
 
 #: src/components/FormatConnectionStatus/FormatConnectionStatus.tsx:32
 msgid "Connected"
@@ -108,33 +116,33 @@ msgstr "複製到剪貼簿"
 #~ msgid "Create a new private key"
 #~ msgstr "Create a new private key"
 
-#: src/screens/SelectKey/SelectKey.tsx:274
+#: src/screens/SelectKey/SelectKey.tsx:275
 msgid "Create a new wallet key"
 msgstr "建立新的錢包金鑰"
 
-#: src/screens/SelectKey/SelectKey.tsx:266
+#: src/screens/SelectKey/SelectKey.tsx:267
 msgid "Create a new wallet key to get started with Chia."
 msgstr "建立新的錢包金鑰以開始使用 Chia。"
 
-#: src/screens/SelectKey/SelectKey.tsx:177
+#: src/screens/SelectKey/SelectKey.tsx:178
 msgid "Create New"
 msgstr "建立新的"
 
-#: src/components/Settings/SettingsApp.tsx:107
+#: src/components/Settings/SettingsApp.tsx:108
 msgid "Dark"
 msgstr "深色"
 
-#: src/screens/SelectKey/SelectKey.tsx:128
+#: src/screens/SelectKey/SelectKey.tsx:129
 #: src/screens/SelectKey/SelectKeyItem.tsx:113
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:183
 msgid "Delete"
 msgstr "刪除"
 
-#: src/screens/SelectKey/SelectKey.tsx:127
+#: src/screens/SelectKey/SelectKey.tsx:128
 msgid "Delete all keys"
 msgstr "刪除所有金鑰"
 
-#: src/screens/SelectKey/SelectKey.tsx:202
+#: src/screens/SelectKey/SelectKey.tsx:203
 msgid "Delete All Keys"
 msgstr "刪除所有金鑰"
 
@@ -142,7 +150,7 @@ msgstr "刪除所有金鑰"
 msgid "Delete key {fingerprint}"
 msgstr "刪除金鑰 {fingerprint}"
 
-#: src/screens/SelectKey/SelectKey.tsx:133
+#: src/screens/SelectKey/SelectKey.tsx:134
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
 msgstr "刪除所有金鑰將永久從您的電腦中移除，請確保您已有備份。您確定要繼續嗎？"
 
@@ -163,7 +171,7 @@ msgstr "停用密語保護"
 msgid "Discard"
 msgstr "放棄"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:148
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:157
 msgid "Download"
 msgstr "下載"
 
@@ -192,7 +200,7 @@ msgstr "農夫公鑰"
 msgid "Farmer public key:"
 msgstr "農夫公鑰："
 
-#: src/components/Settings/SettingsApp.tsx:75
+#: src/components/Settings/SettingsApp.tsx:76
 msgid "Farming"
 msgstr "耕種"
 
@@ -206,7 +214,7 @@ msgstr "手續費"
 msgid "Fingerprint does not match"
 msgstr "指紋不符合"
 
-#: src/components/Settings/SettingsApp.tsx:148
+#: src/components/Settings/SettingsApp.tsx:159
 msgid "Frequently Asked Questions"
 msgstr "常見問題"
 
@@ -214,7 +222,7 @@ msgstr "常見問題"
 msgid "Go To Download Page"
 msgstr "前往下載頁面"
 
-#: src/components/Settings/SettingsApp.tsx:144
+#: src/components/Settings/SettingsApp.tsx:155
 msgid "Help"
 msgstr "說明"
 
@@ -231,7 +239,7 @@ msgstr "隱藏"
 msgid "Hide Advanced Options"
 msgstr "隱藏進階選項"
 
-#: src/screens/SelectKey/SelectKey.tsx:182
+#: src/screens/SelectKey/SelectKey.tsx:183
 msgid "Import Existing"
 msgstr "匯入現有金鑰"
 
@@ -243,7 +251,7 @@ msgstr "匯入現有金鑰"
 msgid "Incorrect value"
 msgstr "數值不正確"
 
-#: src/components/Settings/SettingsApp.tsx:114
+#: src/components/Settings/SettingsApp.tsx:125
 msgid "Language"
 msgstr "語言"
 
@@ -251,7 +259,7 @@ msgstr "語言"
 msgid "Latest Version:"
 msgstr "最新版本："
 
-#: src/components/Settings/SettingsApp.tsx:99
+#: src/components/Settings/SettingsApp.tsx:100
 msgid "Light"
 msgstr "淺色"
 
@@ -271,7 +279,7 @@ msgstr "可能超過 5 分鐘"
 msgid "Loading details"
 msgstr "正在載入詳細資訊"
 
-#: src/screens/SelectKey/SelectKey.tsx:236
+#: src/screens/SelectKey/SelectKey.tsx:237
 msgid "Loading keys"
 msgstr "正在載入金鑰"
 
@@ -296,7 +304,7 @@ msgstr "遷移"
 msgid "Migration required"
 msgstr "需要遷移"
 
-#: src/components/Settings/SettingsApp.tsx:66
+#: src/components/Settings/SettingsApp.tsx:67
 msgid "Mode"
 msgstr "模式"
 
@@ -308,7 +316,7 @@ msgstr "絕不要與任何人分享這些資訊"
 msgid "New passphrase is the same as your current passphrase"
 msgstr "新密語與目前的密語相同"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:133
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:142
 msgid "New version {latestVersion} available"
 msgstr "有新版本 {latestVersion} 可用"
 
@@ -330,7 +338,7 @@ msgstr "未連線"
 msgid "OK"
 msgstr "確定"
 
-#: src/screens/SelectKey/SelectKey.tsx:258
+#: src/screens/SelectKey/SelectKey.tsx:259
 msgid "Open a world of possibilities."
 msgstr "開啟無限可能的世界。"
 
@@ -422,7 +430,7 @@ msgid "Select..."
 msgstr "選擇..."
 
 #: src/components/LayoutMain/LayoutFooter.tsx:50
-#: src/components/Settings/SettingsApp.tsx:151
+#: src/components/Settings/SettingsApp.tsx:162
 msgid "Send Feedback"
 msgstr "傳送意見反應"
 
@@ -443,7 +451,7 @@ msgstr "顯示進階選項"
 #~ msgid "Sign In"
 #~ msgstr "Sign In"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:136
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:145
 #: src/hooks/useValidateChangePassphraseParams.tsx:51
 msgid "Skip"
 msgstr "跳過"
@@ -500,11 +508,11 @@ msgstr "交易尚未發送至節點"
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "交易已成功發送至全節點並已包含在交易池中。"
 
-#: src/screens/SelectKey/SelectKey.tsx:243
+#: src/screens/SelectKey/SelectKey.tsx:244
 msgid "Try Again"
 msgstr "重試"
 
-#: src/screens/SelectKey/SelectKey.tsx:247
+#: src/screens/SelectKey/SelectKey.tsx:248
 msgid "Unable to load keys"
 msgstr "無法載入金鑰"
 
@@ -529,8 +537,8 @@ msgstr "強烈建議使用密語保護您的金鑰。您確定要停用密語保
 msgid "Value seems high"
 msgstr "數值似乎過高"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:233
-#: src/components/Settings/SettingsApp.tsx:83
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:242
+#: src/components/Settings/SettingsApp.tsx:84
 msgid "Wallet"
 msgstr "錢包"
 
@@ -543,7 +551,7 @@ msgstr "錢包 {0}"
 msgid "Wallet Fingerprint"
 msgstr "錢包指紋"
 
-#: src/screens/SelectKey/SelectKey.tsx:223
+#: src/screens/SelectKey/SelectKey.tsx:224
 msgid "Wallet Keys"
 msgstr "錢包金鑰"
 
@@ -551,7 +559,7 @@ msgstr "錢包金鑰"
 #~ msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
 #~ msgstr "Welcome to Chia. Please log in with an existing key, or create a new key."
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:142
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:151
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:66
 msgid "What's New"
 msgstr "最新動態"

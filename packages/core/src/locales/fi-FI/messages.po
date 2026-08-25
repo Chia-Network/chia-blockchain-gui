@@ -42,7 +42,7 @@ msgstr "Uusi versio Chiasta on saatavilla!"
 msgid "Add Icon"
 msgstr "Lisää Ikoni"
 
-#: src/screens/SelectKey/SelectKey.tsx:174
+#: src/screens/SelectKey/SelectKey.tsx:175
 msgid "Add wallet"
 msgstr "Lisää Lompakko"
 
@@ -50,16 +50,20 @@ msgstr "Lisää Lompakko"
 msgid "Amount"
 msgstr "Summa"
 
-#: src/components/Settings/SettingsApp.tsx:90
+#: src/components/Settings/SettingsApp.tsx:91
 msgid "Appearance"
 msgstr "Ulkoasu"
+
+#: src/components/Settings/SettingsApp.tsx:119
+msgid "Applies immediately. Stored locally in app preferences."
+msgstr ""
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:161
 msgid "Are you sure you want to continue? Type in the fingerprint of this wallet key to confirm deletion."
 msgstr "Oletko varma, että haluat jatkaa? Kirjoita tämän lompakon sormenjälki vahvistaaksesi poistamisen."
 
 #: src/components/FormBackButton/FormBackButton.tsx:15
-#: src/screens/SelectKey/SelectKey.tsx:129
+#: src/screens/SelectKey/SelectKey.tsx:130
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:173
 msgid "Back"
 msgstr "Takaisin"
@@ -70,7 +74,7 @@ msgstr "Takaisin"
 msgid "Cancel"
 msgstr "Peru"
 
-#: src/components/Settings/SettingsApp.tsx:136
+#: src/components/Settings/SettingsApp.tsx:147
 msgid "Check for updates"
 msgstr "Tarkista päivitykset"
 
@@ -82,7 +86,7 @@ msgstr "Tarkistetaan päivityksiä..."
 msgid "Chia {latestVersion} is currently the latest version available."
 msgstr "Chia {latestVersion} on tällä hetkellä uusin versio."
 
-#: src/components/Settings/SettingsApp.tsx:122
+#: src/components/Settings/SettingsApp.tsx:133
 msgid "Chia Application Version:"
 msgstr "Chia-sovelluksen Versio:"
 
@@ -91,6 +95,10 @@ msgstr "Chia-sovelluksen Versio:"
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:70
 msgid "Close"
 msgstr "Sulje"
+
+#: src/components/Settings/SettingsApp.tsx:115
+msgid "Color Theme"
+msgstr ""
 
 #: src/components/FormatConnectionStatus/FormatConnectionStatus.tsx:32
 msgid "Connected"
@@ -108,33 +116,33 @@ msgstr "Kopioi Leikepöydälle"
 #~ msgid "Create a new private key"
 #~ msgstr "Create a new private key"
 
-#: src/screens/SelectKey/SelectKey.tsx:274
+#: src/screens/SelectKey/SelectKey.tsx:275
 msgid "Create a new wallet key"
 msgstr "Luo uusi lompakon avain"
 
-#: src/screens/SelectKey/SelectKey.tsx:266
+#: src/screens/SelectKey/SelectKey.tsx:267
 msgid "Create a new wallet key to get started with Chia."
 msgstr "Luo uusi lompakon avain päästäksesi alkuun Chian kanssa."
 
-#: src/screens/SelectKey/SelectKey.tsx:177
+#: src/screens/SelectKey/SelectKey.tsx:178
 msgid "Create New"
 msgstr "Luo Uusi"
 
-#: src/components/Settings/SettingsApp.tsx:107
+#: src/components/Settings/SettingsApp.tsx:108
 msgid "Dark"
 msgstr "Tumma"
 
-#: src/screens/SelectKey/SelectKey.tsx:128
+#: src/screens/SelectKey/SelectKey.tsx:129
 #: src/screens/SelectKey/SelectKeyItem.tsx:113
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:183
 msgid "Delete"
 msgstr "Poista"
 
-#: src/screens/SelectKey/SelectKey.tsx:127
+#: src/screens/SelectKey/SelectKey.tsx:128
 msgid "Delete all keys"
 msgstr "Poista kaikki avaimet"
 
-#: src/screens/SelectKey/SelectKey.tsx:202
+#: src/screens/SelectKey/SelectKey.tsx:203
 msgid "Delete All Keys"
 msgstr "Poista Kaikki Avaimet"
 
@@ -142,7 +150,7 @@ msgstr "Poista Kaikki Avaimet"
 msgid "Delete key {fingerprint}"
 msgstr "Poista avain {fingerprint}"
 
-#: src/screens/SelectKey/SelectKey.tsx:133
+#: src/screens/SelectKey/SelectKey.tsx:134
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
 msgstr "Avainten poisto poistaa ne tietokoneeltasi. Varmista että sinulla on varmuuskopio. Haluatko jatkaa?"
 
@@ -163,7 +171,7 @@ msgstr "Poista Salasanasuojaus Käytöstä"
 msgid "Discard"
 msgstr "Hylkää"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:148
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:157
 msgid "Download"
 msgstr "Lataa"
 
@@ -192,7 +200,7 @@ msgstr "Farmarin julkinen avain"
 msgid "Farmer public key:"
 msgstr "Farmarin julkinen avain:"
 
-#: src/components/Settings/SettingsApp.tsx:75
+#: src/components/Settings/SettingsApp.tsx:76
 msgid "Farming"
 msgstr "Farmarointi"
 
@@ -206,7 +214,7 @@ msgstr "Maksu"
 msgid "Fingerprint does not match"
 msgstr "Sormenjälki ei täsmää"
 
-#: src/components/Settings/SettingsApp.tsx:148
+#: src/components/Settings/SettingsApp.tsx:159
 msgid "Frequently Asked Questions"
 msgstr "Usein Kysytyt Kysymykset"
 
@@ -214,7 +222,7 @@ msgstr "Usein Kysytyt Kysymykset"
 msgid "Go To Download Page"
 msgstr "Siirry Lataussivulle"
 
-#: src/components/Settings/SettingsApp.tsx:144
+#: src/components/Settings/SettingsApp.tsx:155
 msgid "Help"
 msgstr "Apuja"
 
@@ -231,7 +239,7 @@ msgstr "Piilota"
 msgid "Hide Advanced Options"
 msgstr "Piilota Lisävalinnat"
 
-#: src/screens/SelectKey/SelectKey.tsx:182
+#: src/screens/SelectKey/SelectKey.tsx:183
 msgid "Import Existing"
 msgstr "Tuo Olemassaoleva"
 
@@ -243,7 +251,7 @@ msgstr "Tuo Olemassaoleva"
 msgid "Incorrect value"
 msgstr "Virheellinen arvo"
 
-#: src/components/Settings/SettingsApp.tsx:114
+#: src/components/Settings/SettingsApp.tsx:125
 msgid "Language"
 msgstr "Kieli"
 
@@ -251,7 +259,7 @@ msgstr "Kieli"
 msgid "Latest Version:"
 msgstr "Viimeisin Versio:"
 
-#: src/components/Settings/SettingsApp.tsx:99
+#: src/components/Settings/SettingsApp.tsx:100
 msgid "Light"
 msgstr "Vaalea"
 
@@ -271,7 +279,7 @@ msgstr "Todennäköisesti >5 minuutissa"
 msgid "Loading details"
 msgstr "Ladataan lisätietoja"
 
-#: src/screens/SelectKey/SelectKey.tsx:236
+#: src/screens/SelectKey/SelectKey.tsx:237
 msgid "Loading keys"
 msgstr "Ladataan avaimia"
 
@@ -296,7 +304,7 @@ msgstr "Siirrä"
 msgid "Migration required"
 msgstr "Siirto vaaditaan"
 
-#: src/components/Settings/SettingsApp.tsx:66
+#: src/components/Settings/SettingsApp.tsx:67
 msgid "Mode"
 msgstr "Tila"
 
@@ -308,7 +316,7 @@ msgstr "ÄLÄ KOSKAAN JAA NÄITÄ KENELLEKÄÄN"
 msgid "New passphrase is the same as your current passphrase"
 msgstr "Uusi salasana on sama kuin nykyinen salasana"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:133
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:142
 msgid "New version {latestVersion} available"
 msgstr "Uusi versio {latestVersion} saatavilla"
 
@@ -330,7 +338,7 @@ msgstr "Ei yhteyttä"
 msgid "OK"
 msgstr "OK"
 
-#: src/screens/SelectKey/SelectKey.tsx:258
+#: src/screens/SelectKey/SelectKey.tsx:259
 msgid "Open a world of possibilities."
 msgstr "Avaa mahdollisuuksien maailma."
 
@@ -422,7 +430,7 @@ msgid "Select..."
 msgstr "Valitse..."
 
 #: src/components/LayoutMain/LayoutFooter.tsx:50
-#: src/components/Settings/SettingsApp.tsx:151
+#: src/components/Settings/SettingsApp.tsx:162
 msgid "Send Feedback"
 msgstr "Lähetä palautetta"
 
@@ -443,7 +451,7 @@ msgstr "Näytä Lisävalinnat"
 #~ msgid "Sign In"
 #~ msgstr "Sign In"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:136
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:145
 #: src/hooks/useValidateChangePassphraseParams.tsx:51
 msgid "Skip"
 msgstr "Ohita"
@@ -500,11 +508,11 @@ msgstr "Transaktioita ei ole vielä lähetetty noodiin"
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "Transaktio on onnistuneesti lähetetty noodille ja sisällytetty mempooliin."
 
-#: src/screens/SelectKey/SelectKey.tsx:243
+#: src/screens/SelectKey/SelectKey.tsx:244
 msgid "Try Again"
 msgstr "Yritä uudelleen"
 
-#: src/screens/SelectKey/SelectKey.tsx:247
+#: src/screens/SelectKey/SelectKey.tsx:248
 msgid "Unable to load keys"
 msgstr "Avaimia ei voi ladata"
 
@@ -529,8 +537,8 @@ msgstr "Salasanan asettaminen on erittäin suositeltavaa avaimien suojaamiseksi.
 msgid "Value seems high"
 msgstr "Arvo vaikuttaa suurelta"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:233
-#: src/components/Settings/SettingsApp.tsx:83
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:242
+#: src/components/Settings/SettingsApp.tsx:84
 msgid "Wallet"
 msgstr "Lompakot"
 
@@ -543,7 +551,7 @@ msgstr "Lompakko {0}"
 msgid "Wallet Fingerprint"
 msgstr "Lompakon Sormenjälki"
 
-#: src/screens/SelectKey/SelectKey.tsx:223
+#: src/screens/SelectKey/SelectKey.tsx:224
 msgid "Wallet Keys"
 msgstr "Lompakon Avaimet"
 
@@ -551,7 +559,7 @@ msgstr "Lompakon Avaimet"
 #~ msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
 #~ msgstr "Welcome to Chia. Please log in with an existing key, or create a new key."
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:142
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:151
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:66
 msgid "What's New"
 msgstr "Mitä Uutta"

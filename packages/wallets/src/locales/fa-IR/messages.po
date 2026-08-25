@@ -48,7 +48,7 @@ msgstr "گزینه ای را به بازگرداندن تراکنش اضافه �
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:61
 #: src/components/cat/WalletCATCreateSimple.tsx:68
-#: src/components/WalletsManageTokens.tsx:155
+#: src/components/WalletsManageTokens.tsx:163
 msgid "Add Token"
 msgstr "اضافه نمودن توکن"
 
@@ -358,7 +358,7 @@ msgstr "آدرس ای پی"
 msgid "List of connections is empty"
 msgstr "لیست اتصالات خالی است"
 
-#: src/components/WalletsManageTokens.tsx:132
+#: src/components/WalletsManageTokens.tsx:140
 msgid "Manage token list"
 msgstr "مدیریت لیست توکن"
 

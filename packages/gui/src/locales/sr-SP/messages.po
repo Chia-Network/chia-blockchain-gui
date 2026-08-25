@@ -2470,7 +2470,7 @@ msgid "No"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/dialogs/About/About.tsx:72
+#: src/electron/dialogs/About/About.tsx:75
 msgid "Report an issue"
 msgstr ""
 
@@ -2742,109 +2742,109 @@ msgid "Are you sure you want to view the log contents?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1249
-#: src/electron/main.tsx:1457
+#: src/electron/main.tsx:1251
+#: src/electron/main.tsx:1459
 msgid "File"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1257
+#: src/electron/main.tsx:1259
 msgid "Edit"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1289
+#: src/electron/main.tsx:1291
 msgid "View"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1298
+#: src/electron/main.tsx:1300
 msgid "Developer"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1301
+#: src/electron/main.tsx:1303
 msgid "Developer Tools"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1309
+#: src/electron/main.tsx:1311
 msgid "Trigger Desktop Notification"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1338
+#: src/electron/main.tsx:1340
 msgid "Full Screen"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1345
+#: src/electron/main.tsx:1347
 msgid "Window"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1359
+#: src/electron/main.tsx:1361
 msgid "Help"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1363
+#: src/electron/main.tsx:1365
 msgid "Chia Blockchain Wiki"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1369
+#: src/electron/main.tsx:1371
 msgid "Frequently Asked Questions"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1375
+#: src/electron/main.tsx:1377
 msgid "Release Notes"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1381
+#: src/electron/main.tsx:1383
 msgid "Contribute on GitHub"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1390
+#: src/electron/main.tsx:1392
 msgid "Report an Issue..."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1396
+#: src/electron/main.tsx:1398
 msgid "Chat on Discord"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1402
+#: src/electron/main.tsx:1404
 msgid "Follow on X"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1414
+#: src/electron/main.tsx:1416
 msgid "Chia"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1417
-#: src/electron/main.tsx:1513
+#: src/electron/main.tsx:1419
+#: src/electron/main.tsx:1515
 msgid "About Chia Blockchain"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1423
+#: src/electron/main.tsx:1425
 msgid "Check for Updates..."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1472
+#: src/electron/main.tsx:1474
 msgid "Speech"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1519
+#: src/electron/main.tsx:1521
 msgid "Check for updates..."
 msgstr ""
 
@@ -3092,11 +3092,11 @@ msgstr ""
 #~ msgid "- Set a time after which the offer expires.<0/>- An expiring offer can only be claimed prior to the expiration time."
 #~ msgstr ""
 
-#: src/components/offers2/OfferBuilderImport.tsx:129
+#: src/components/offers2/OfferBuilderImport.tsx:139
 msgid "(⌘V) a blob"
 msgstr ""
 
-#: src/components/offers2/OfferBuilderImport.tsx:129
+#: src/components/offers2/OfferBuilderImport.tsx:139
 msgid "(Ctrl-V) a blob"
 msgstr ""
 
@@ -3132,12 +3132,16 @@ msgstr ""
 msgid "{0} {1}"
 msgstr ""
 
+#: src/components/dashboard/DashboardOverview.tsx:357
+msgid "{0} / {1} plots passed filter"
+msgstr ""
+
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:169
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:201
 msgid "{0} buckets is recommended"
 msgstr ""
 
-#: src/components/nfts/detail/NFTDetailV2.tsx:230
+#: src/components/nfts/detail/NFTDetailV2.tsx:228
 msgid "{0} of {1}"
 msgstr ""
 
@@ -3145,7 +3149,7 @@ msgstr ""
 msgid "{0} of {allCount} items selected:"
 msgstr ""
 
-#: src/components/plotNFT/PlotNFTGraph.tsx:63
+#: src/components/plotNFT/PlotNFTGraph.tsx:65
 msgid "{0} points {1} - {2} hours ago"
 msgstr ""
 
@@ -3376,7 +3380,7 @@ msgstr "Додај плот на чекање"
 #~ msgid "Add Proofs To Verifiable Credential"
 #~ msgstr ""
 
-#: src/components/vcs/VCList.tsx:227
+#: src/components/vcs/VCList.tsx:273
 msgid "Add Verifiable Credential from file"
 msgstr ""
 
@@ -3385,6 +3389,10 @@ msgstr ""
 #: src/components/notification/NotificationSendDialog.tsx:221
 #: src/components/signVerify/SigningEntityWalletAddress.tsx:45
 msgid "Address"
+msgstr ""
+
+#: src/components/dashboard/DashboardOverview.tsx:84
+msgid "Address book"
 msgstr ""
 
 #: src/components/addressbook/ContactAdd.tsx:30
@@ -3490,7 +3498,7 @@ msgstr ""
 #~ msgid "An app has requested permission to execute the following commands."
 #~ msgstr ""
 
-#: src/components/farm/FarmHealth.tsx:321
+#: src/components/farm/FarmHealth.tsx:330
 msgid "An increase in the number of missing signage points (SPs) suggests that you were either disconnected from or significantly distant from a Timelord in your Full Node network. The total number of missing SPs serves as an indicator of potential rewards you could have claimed."
 msgstr ""
 
@@ -3662,13 +3670,17 @@ msgstr ""
 #~ msgid "Backup DIDs"
 #~ msgstr ""
 
-#: src/components/vcs/VCList.tsx:279
+#: src/components/vcs/VCList.tsx:325
 msgid "Badging"
 msgstr ""
 
 #: src/components/settings/ProfileAdd.tsx:98
 #~ msgid "Balance: {standardBalance} XCH"
 #~ msgstr ""
+
+#: src/components/dashboard/DashboardOverview.tsx:33
+msgid "Balances, send, receive, transactions"
+msgstr ""
 
 #: src/components/block/Block.jsx:236
 msgid "Base Farmer Reward Amount"
@@ -3904,6 +3916,10 @@ msgstr ""
 msgid "Check Provenance on Spacescan.io"
 msgstr ""
 
+#: src/components/dashboard/DashboardOverview.tsx:355
+msgid "Checking plots"
+msgstr ""
+
 #: src/electron/main.tsx:1098
 #~ msgid "Chia"
 #~ msgstr ""
@@ -4037,7 +4053,7 @@ msgstr ""
 #~ msgid "Coin name"
 #~ msgstr ""
 
-#: src/components/nfts/detail/NFTDetailV2.tsx:215
+#: src/components/nfts/detail/NFTDetailV2.tsx:213
 #: src/components/nfts/NFTSummary.tsx:50
 msgid "Collection"
 msgstr ""
@@ -4050,7 +4066,7 @@ msgstr ""
 msgid "Commands listed here will be executed without confirmation. Use with caution as this can affect your funds."
 msgstr ""
 
-#: src/components/farm/FarmHealth.tsx:327
+#: src/components/farm/FarmHealth.tsx:336
 msgid "Common reasons for missing SPs include:"
 msgstr ""
 
@@ -4058,7 +4074,7 @@ msgstr ""
 msgid "Compressed plot support"
 msgstr ""
 
-#: src/components/harvest/HarvesterPlotDetails.tsx:132
+#: src/components/harvest/HarvesterPlotDetails.tsx:172
 msgid "Compression"
 msgstr ""
 
@@ -4154,7 +4170,8 @@ msgid "Contact Name"
 msgstr ""
 
 #: src/components/addressbook/AddressBookSideBar.tsx:124
-#: src/components/dashboard/DashboardSideBar.tsx:74
+#: src/components/dashboard/DashboardOverview.tsx:83
+#: src/components/dashboard/DashboardSideBar.tsx:84
 msgid "Contacts"
 msgstr ""
 
@@ -4170,7 +4187,7 @@ msgstr ""
 msgid "Content has not been validated against the hash that was specified during NFT minting. Error: {0}"
 msgstr ""
 
-#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:135
+#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:134
 msgid "Continue"
 msgstr ""
 
@@ -4206,7 +4223,7 @@ msgstr ""
 msgid "Could not connect to host {host} on port {port}"
 msgstr ""
 
-#: src/components/offers2/OfferBuilderImport.tsx:37
+#: src/components/offers2/OfferBuilderImport.tsx:38
 msgid "Could not parse offer data"
 msgstr ""
 
@@ -4305,6 +4322,10 @@ msgstr ""
 msgid "Create Signature"
 msgstr ""
 
+#: src/components/dashboard/DashboardOverview.tsx:71
+msgid "Create, import, inspect, manage"
+msgstr ""
+
 #: src/components/offers/OfferViewerTitle.tsx:34
 msgid "created {0}"
 msgstr ""
@@ -4348,7 +4369,8 @@ msgstr ""
 msgid "Creator royalty percentage seems high"
 msgstr ""
 
-#: src/components/dashboard/DashboardSideBar.tsx:61
+#: src/components/dashboard/DashboardOverview.tsx:76
+#: src/components/dashboard/DashboardSideBar.tsx:71
 msgid "Credentials"
 msgstr ""
 
@@ -4497,7 +4519,7 @@ msgstr ""
 msgid "Derivation index must be greater than {index}"
 msgstr ""
 
-#: src/components/nfts/detail/NFTDetailV2.tsx:205
+#: src/components/nfts/detail/NFTDetailV2.tsx:203
 msgid "Description"
 msgstr ""
 
@@ -4700,7 +4722,7 @@ msgstr ""
 msgid "Downloading selected NFTs"
 msgstr ""
 
-#: src/components/signVerify/VerifyMessageImport.tsx:75
+#: src/components/signVerify/VerifyMessageImport.tsx:77
 msgid "Drag & Drop a Signed Message File,<0/> Paste ({0}V)"
 msgstr ""
 
@@ -4708,7 +4730,7 @@ msgstr ""
 msgid "Drag & Drop an Offer File"
 msgstr ""
 
-#: src/components/offers2/OfferBuilderImport.tsx:128
+#: src/components/offers2/OfferBuilderImport.tsx:138
 msgid "Drag & Drop an Offer File, Paste"
 msgstr ""
 
@@ -4728,7 +4750,7 @@ msgstr ""
 msgid "Duplicate Plots"
 msgstr ""
 
-#: src/components/harvest/HarvesterDetail.tsx:123
+#: src/components/harvest/HarvesterDetail.tsx:125
 msgid "Earned"
 msgstr ""
 
@@ -4751,7 +4773,7 @@ msgstr ""
 msgid "Edition #"
 msgstr ""
 
-#: src/components/nfts/detail/NFTDetailV2.tsx:226
+#: src/components/nfts/detail/NFTDetailV2.tsx:224
 msgid "Edition Number"
 msgstr ""
 
@@ -4759,7 +4781,7 @@ msgstr ""
 #~ msgid "Edition Total"
 #~ msgstr ""
 
-#: src/components/harvest/HarvesterDetail.tsx:159
+#: src/components/harvest/HarvesterDetail.tsx:161
 msgid "Effective Space"
 msgstr ""
 
@@ -4872,7 +4894,7 @@ msgstr "Грешка"
 #~ msgid "Error fetching video preview"
 #~ msgstr ""
 
-#: src/components/vcs/VCList.tsx:215
+#: src/components/vcs/VCList.tsx:261
 msgid "Error parsing file"
 msgstr ""
 
@@ -4938,7 +4960,7 @@ msgstr "Изузмите коначни директоријум"
 #~ msgid "Excluded Coin IDs"
 #~ msgstr ""
 
-#: src/components/farm/FarmHealth.tsx:252
+#: src/components/farm/FarmHealth.tsx:261
 msgid "Expected Total plots passing filter"
 msgstr ""
 
@@ -4977,7 +4999,7 @@ msgstr ""
 msgid "Failed downloads:"
 msgstr ""
 
-#: src/components/farm/PoolingHealth.tsx:310
+#: src/components/farm/PoolingHealth.tsx:318
 msgid "Failed partials"
 msgstr ""
 
@@ -5009,11 +5031,12 @@ msgstr ""
 msgid "Failure"
 msgstr ""
 
-#: src/components/dashboard/DashboardSideBar.tsx:94
+#: src/components/dashboard/DashboardOverview.tsx:47
+#: src/components/dashboard/DashboardSideBar.tsx:103
 msgid "Farm"
 msgstr ""
 
-#: src/components/farm/FarmHealth.tsx:424
+#: src/components/farm/FarmHealth.tsx:433
 msgid "Farm Health"
 msgstr ""
 
@@ -5065,6 +5088,10 @@ msgstr "Пољопривредници зарађују блоковске на�
 msgid "Farming"
 msgstr "Обрађивање"
 
+#: src/components/dashboard/DashboardOverview.tsx:341
+msgid "Farming info did not respond"
+msgstr ""
+
 #: src/components/app/AppSelectMode.tsx:112
 msgid "Farming Mode"
 msgstr ""
@@ -5088,6 +5115,10 @@ msgstr ""
 #: src/components/farm/card/FarmCardStatus.tsx:59
 #~ msgid "Farming Status"
 #~ msgstr "Статус обраде"
+
+#: src/components/dashboard/DashboardOverview.tsx:48
+msgid "Farming status and rewards"
+msgstr ""
 
 #: src/components/settings/SettingsAdvanced.tsx:77
 msgid "Features for advanced users."
@@ -5149,12 +5180,12 @@ msgstr ""
 #~ msgid "File"
 #~ msgstr "Датотека"
 
-#: src/components/nfts/NFTPreview.tsx:574
+#: src/components/nfts/NFTPreview.tsx:571
 msgid "File does not match the expected hash"
 msgstr ""
 
 #: src/components/nfts/NFTHashStatus.tsx:88
-#: src/components/nfts/NFTPreview.tsx:253
+#: src/components/nfts/NFTPreview.tsx:251
 msgid "File is not available"
 msgstr ""
 
@@ -5216,7 +5247,8 @@ msgid "From"
 msgstr ""
 
 #: src/components/app/AppStatusHeader.tsx:127
-#: src/components/dashboard/DashboardSideBar.tsx:87
+#: src/components/dashboard/DashboardOverview.tsx:40
+#: src/components/dashboard/DashboardSideBar.tsx:97
 #: src/components/fullNode/FullNode.jsx:116
 msgid "Full Node"
 msgstr "Пун Чвор"
@@ -5225,13 +5257,21 @@ msgstr "Пун Чвор"
 msgid "Full Node Connections"
 msgstr ""
 
-#: src/components/farm/FarmHealth.tsx:336
+#: src/components/dashboard/DashboardOverview.tsx:263
+msgid "Full node service did not respond"
+msgstr ""
+
+#: src/components/farm/FarmHealth.tsx:345
 msgid "Full Node was out of sync"
 msgstr ""
 
 #: src/electron/main.tsx:1022
 #~ msgid "Full Screen"
 #~ msgstr "Цео Екран"
+
+#: src/components/dashboard/DashboardOverview.tsx:65
+msgid "Gallery and detail pages"
+msgstr ""
 
 #: src/components/settings/Settings.tsx:29
 msgid "General"
@@ -5438,7 +5478,7 @@ msgstr ""
 #~ msgid "Go to #{channelName}"
 #~ msgstr ""
 
-#: src/components/vcs/VCList.tsx:295
+#: src/components/vcs/VCList.tsx:405
 msgid "Government IDs"
 msgstr ""
 
@@ -5451,7 +5491,8 @@ msgstr ""
 msgid "Halves the temp2 cache size requirements by alternating bucket writing methods between tables."
 msgstr ""
 
-#: src/components/dashboard/DashboardSideBar.tsx:106
+#: src/components/dashboard/DashboardOverview.tsx:89
+#: src/components/dashboard/DashboardSideBar.tsx:115
 msgid "Harvest"
 msgstr ""
 
@@ -5463,12 +5504,24 @@ msgstr ""
 msgid "Harvester latency"
 msgstr ""
 
+#: src/components/dashboard/DashboardOverview.tsx:90
+msgid "Harvester overview"
+msgstr ""
+
 #: src/components/settings/SettingsHarvester.tsx:372
 msgid "Harvester Services"
 msgstr ""
 
 #: src/components/harvest/HarvesterOverview.tsx:153
 msgid "Harvester Summary"
+msgstr ""
+
+#: src/components/dashboard/DashboardOverview.tsx:309
+msgid "Harvester summary did not respond"
+msgstr ""
+
+#: src/components/dashboard/DashboardOverview.tsx:322
+msgid "harvesters"
 msgstr ""
 
 #: src/components/harvest/HarvesterOverview.tsx:218
@@ -5518,6 +5571,7 @@ msgid "Header Hash"
 msgstr "Хеш код заглавља"
 
 #: src/components/block/Block.jsx:169
+#: src/components/dashboard/DashboardOverview.tsx:272
 #: src/components/fullNode/FullNode.jsx:61
 #: src/components/fullNode/FullNodeConnections.tsx:62
 msgid "Height"
@@ -5697,7 +5751,7 @@ msgid ""
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
 
-#: src/components/farm/PoolingHealth.tsx:302
+#: src/components/farm/PoolingHealth.tsx:310
 msgid "Insufficient partials"
 msgstr ""
 
@@ -5843,7 +5897,7 @@ msgstr ""
 msgid "KiB Up/Down"
 msgstr "KiB горе/доле"
 
-#: src/components/vcs/VCList.tsx:301
+#: src/components/vcs/VCList.tsx:411
 msgid "KYC status"
 msgstr ""
 
@@ -5895,7 +5949,7 @@ msgstr ""
 msgid "Launcher ID"
 msgstr ""
 
-#: src/components/farm/FarmHealth.tsx:341
+#: src/components/farm/FarmHealth.tsx:350
 #: src/components/plot/add/PlotAddNFT.tsx:84
 msgid "Learn more"
 msgstr ""
@@ -5941,7 +5995,14 @@ msgstr ""
 msgid "Load Logs"
 msgstr ""
 
-#: src/components/app/AppProviders.tsx:83
+#: src/components/dashboard/DashboardOverview.tsx:200
+#: src/components/dashboard/DashboardOverview.tsx:255
+#: src/components/dashboard/DashboardOverview.tsx:301
+#: src/components/dashboard/DashboardOverview.tsx:333
+msgid "Loading"
+msgstr ""
+
+#: src/components/app/AppProviders.tsx:86
 msgid "Loading configuration"
 msgstr ""
 
@@ -5970,7 +6031,7 @@ msgstr ""
 msgid "Loading NFT Info..."
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:563
+#: src/components/nfts/NFTPreview.tsx:560
 msgid "Loading NFT..."
 msgstr ""
 
@@ -5978,8 +6039,8 @@ msgstr ""
 #~ msgid "Loading NFTs..."
 #~ msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:563
-#: src/components/nfts/NFTPreview.tsx:585
+#: src/components/nfts/NFTPreview.tsx:560
+#: src/components/nfts/NFTPreview.tsx:582
 msgid "Loading preview..."
 msgstr ""
 
@@ -6002,7 +6063,7 @@ msgstr ""
 msgid "Local folder"
 msgstr ""
 
-#: src/components/harvest/HarvesterDetail.tsx:47
+#: src/components/harvest/HarvesterDetail.tsx:49
 msgid "Local Harvester"
 msgstr ""
 
@@ -6022,7 +6083,11 @@ msgstr ""
 msgid "Log Viewer"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:442
+#: src/components/dashboard/DashboardOverview.tsx:97
+msgid "Logs and diagnostics"
+msgstr ""
+
+#: src/components/nfts/NFTPreview.tsx:440
 msgid "Loop video"
 msgstr ""
 
@@ -6030,11 +6095,11 @@ msgstr ""
 msgid "Loop videos"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:438
+#: src/components/nfts/NFTPreview.tsx:436
 msgid "Looping is enabled for all videos in Settings"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:440
+#: src/components/nfts/NFTPreview.tsx:438
 msgid "Looping on"
 msgstr ""
 
@@ -6085,7 +6150,7 @@ msgstr ""
 #~ msgid "Max page size"
 #~ msgstr ""
 
-#: src/components/vcs/VCList.tsx:305
+#: src/components/vcs/VCList.tsx:415
 msgid "Memberships"
 msgstr ""
 
@@ -6212,7 +6277,7 @@ msgstr "Минута"
 msgid "Missing Keys"
 msgstr ""
 
-#: src/components/farm/PoolingHealth.tsx:325
+#: src/components/farm/PoolingHealth.tsx:333
 msgid "Missing partials"
 msgstr ""
 
@@ -6224,9 +6289,13 @@ msgstr ""
 #~ msgid "Missing preview_video_hash key"
 #~ msgstr ""
 
-#: src/components/farm/FarmHealth.tsx:359
-#: src/components/farm/FarmHealth.tsx:373
+#: src/components/farm/FarmHealth.tsx:368
+#: src/components/farm/FarmHealth.tsx:382
 msgid "Missing signage points"
+msgstr ""
+
+#: src/components/dashboard/DashboardOverview.tsx:399
+msgid "More areas"
 msgstr ""
 
 #: src/components/walletConnect/WalletConnectConnections.tsx:83
@@ -6237,7 +6306,7 @@ msgstr ""
 msgid "More memory slightly increases speed"
 msgstr "Више меморије мало повећава брзину"
 
-#: src/components/harvest/HarvesterDetail.tsx:129
+#: src/components/harvest/HarvesterDetail.tsx:131
 msgid "more space"
 msgstr ""
 
@@ -6348,7 +6417,7 @@ msgid "New Root"
 msgstr ""
 
 #: src/components/block/Block.jsx:260
-#: src/components/nfts/detail/NFTDetailV2.tsx:143
+#: src/components/nfts/detail/NFTDetailV2.tsx:141
 msgid "Next"
 msgstr "Даље"
 
@@ -6446,7 +6515,8 @@ msgstr ""
 msgid "NFT Transfer Pending"
 msgstr ""
 
-#: src/components/dashboard/DashboardSideBar.tsx:54
+#: src/components/dashboard/DashboardOverview.tsx:64
+#: src/components/dashboard/DashboardSideBar.tsx:64
 msgid "NFTs"
 msgstr ""
 
@@ -6460,6 +6530,10 @@ msgstr "Не"
 
 #: src/components/notification/NotificationsMenu.tsx:53
 msgid "No activities yet"
+msgstr ""
+
+#: src/components/dashboard/DashboardOverview.tsx:349
+msgid "No attempts"
 msgstr ""
 
 #: src/components/farm/card/FarmCardLastHeightFarmed.tsx:15
@@ -6491,7 +6565,7 @@ msgstr ""
 #~ msgid "No Custom Permissions"
 #~ msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:568
+#: src/components/nfts/NFTPreview.tsx:565
 msgid "No file available"
 msgstr ""
 
@@ -6511,10 +6585,18 @@ msgstr ""
 msgid "No private keys for one or both addresses. Safe only if you are sending rewards to another wallet."
 msgstr "Нема приватних кључева за једну или обе адресе. Безбедно је само ако награде шаљете на други новчаник."
 
+#: src/components/dashboard/DashboardOverview.tsx:350
+msgid "No recent plot filter attempts found"
+msgstr ""
+
 #: src/util/offerBuilderDataToOffer.ts:165
 #: src/util/offerBuilderDataToOffer.ts:193
 #: src/util/offerBuilderDataToOffer.ts:303
 msgid "No standard wallet found"
+msgstr ""
+
+#: src/components/dashboard/DashboardOverview.tsx:214
+msgid "No wallet"
 msgstr ""
 
 #: src/components/farm/FarmFullNodeConnections.tsx:29
@@ -6528,14 +6610,14 @@ msgstr "ID чвора"
 #~ msgstr ""
 
 #: src/components/did/DIDProfileDropdown.tsx:98
-#: src/components/farm/FarmHealth.tsx:362
-#: src/components/farm/FarmHealth.tsx:390
-#: src/components/farm/FarmHealth.tsx:408
-#: src/components/farm/PoolingHealth.tsx:87
-#: src/components/farm/PoolingHealth.tsx:125
-#: src/components/farm/PoolingHealth.tsx:162
-#: src/components/farm/PoolingHealth.tsx:199
-#: src/components/farm/PoolingHealth.tsx:236
+#: src/components/farm/FarmHealth.tsx:371
+#: src/components/farm/FarmHealth.tsx:399
+#: src/components/farm/FarmHealth.tsx:417
+#: src/components/farm/PoolingHealth.tsx:95
+#: src/components/farm/PoolingHealth.tsx:133
+#: src/components/farm/PoolingHealth.tsx:170
+#: src/components/farm/PoolingHealth.tsx:207
+#: src/components/farm/PoolingHealth.tsx:244
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:104
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:244
 #: src/components/plot/add/PlotAddNFT.tsx:96
@@ -6555,9 +6637,9 @@ msgstr "Ниједан твој плот још увек није прошао �
 msgid "Normal (RAM required: 256G)"
 msgstr ""
 
-#: src/components/farm/FarmHealth.tsx:123
-#: src/components/farm/FarmHealth.tsx:170
-#: src/components/farm/FarmHealth.tsx:194
+#: src/components/farm/FarmHealth.tsx:132
+#: src/components/farm/FarmHealth.tsx:179
+#: src/components/farm/FarmHealth.tsx:203
 msgid "Not available"
 msgstr ""
 
@@ -6570,15 +6652,19 @@ msgstr ""
 msgid "Not Available"
 msgstr "Недоступно"
 
-#: src/components/farm/FarmHealth.tsx:131
-#: src/components/farm/FarmHealth.tsx:178
+#: src/components/farm/FarmHealth.tsx:140
+#: src/components/farm/FarmHealth.tsx:187
 #: src/components/fullNode/card/FullNodeCardConnectionStatus.tsx:16
 msgid "Not connected"
 msgstr "Није повезано"
 
-#: src/components/farm/FarmHealth.tsx:139
-#: src/components/farm/FarmHealth.tsx:186
+#: src/components/farm/FarmHealth.tsx:148
+#: src/components/farm/FarmHealth.tsx:195
 msgid "Not running"
+msgstr ""
+
+#: src/components/dashboard/DashboardOverview.tsx:283
+msgid "Not synced"
 msgstr ""
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:14
@@ -6717,7 +6803,7 @@ msgstr ""
 msgid "Offer Expiration Time"
 msgstr ""
 
-#: src/components/offers2/OfferBuilderImport.tsx:58
+#: src/components/offers2/OfferBuilderImport.tsx:59
 msgid "Offer file is too large (> 1MB)"
 msgstr ""
 
@@ -6786,8 +6872,9 @@ msgstr ""
 msgid "Offerpool URL"
 msgstr ""
 
-#: src/components/dashboard/DashboardSideBar.tsx:68
-#: src/components/nfts/detail/NFTDetailV2.tsx:245
+#: src/components/dashboard/DashboardOverview.tsx:70
+#: src/components/dashboard/DashboardSideBar.tsx:78
+#: src/components/nfts/detail/NFTDetailV2.tsx:243
 msgid "Offers"
 msgstr ""
 
@@ -6807,7 +6894,7 @@ msgstr ""
 msgid "Offers you created"
 msgstr ""
 
-#: src/components/farm/FarmHealth.tsx:209
+#: src/components/farm/FarmHealth.tsx:218
 #: src/components/offers/OfferDataDialog.tsx:58
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:86
 msgid "OK"
@@ -6861,8 +6948,8 @@ msgstr ""
 msgid "Options"
 msgstr ""
 
-#: src/components/offers2/OfferBuilderImport.tsx:132
-#: src/components/signVerify/VerifyMessageImport.tsx:136
+#: src/components/offers2/OfferBuilderImport.tsx:142
+#: src/components/signVerify/VerifyMessageImport.tsx:138
 msgid "or <0>browse</0> on your computer"
 msgstr ""
 
@@ -6892,6 +6979,10 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:310
 msgid "Override the thread count for Phase 3"
+msgstr ""
+
+#: src/components/dashboard/DashboardSideBar.tsx:50
+msgid "Overview"
 msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:1171
@@ -6940,11 +7031,11 @@ msgstr ""
 #~ msgid "Parent Coin Info"
 #~ msgstr ""
 
-#: src/components/farm/PoolingHealth.tsx:317
+#: src/components/farm/PoolingHealth.tsx:325
 msgid "Partials found but not sent to pools. This usually happens when a partial is found before connections to pools are established"
 msgstr ""
 
-#: src/components/farm/PoolingHealth.tsx:299
+#: src/components/farm/PoolingHealth.tsx:307
 msgid "Partials not good enough for difficulties for corresponding pools"
 msgstr ""
 
@@ -6952,15 +7043,15 @@ msgstr ""
 #~ msgid "Partials not good enough or rejected by pools"
 #~ msgstr ""
 
-#: src/components/farm/PoolingHealth.tsx:307
+#: src/components/farm/PoolingHealth.tsx:315
 msgid "Partials sent to pools but received error responses"
 msgstr ""
 
-#: src/components/farm/PoolingHealth.tsx:291
+#: src/components/farm/PoolingHealth.tsx:299
 msgid "Partials sent to pools but too late"
 msgstr ""
 
-#: src/components/farm/PoolingHealth.tsx:283
+#: src/components/farm/PoolingHealth.tsx:291
 msgid "Partials successfully sent and acknowledged by pools"
 msgstr ""
 
@@ -7001,7 +7092,7 @@ msgstr ""
 msgid "Passphrase support requires migrating your keys to a new keyring"
 msgstr ""
 
-#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:106
+#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:105
 msgid "Paste link"
 msgstr ""
 
@@ -7010,7 +7101,7 @@ msgstr ""
 msgid "Paste Offer Data"
 msgstr ""
 
-#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:101
+#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:100
 msgid "Paste the address from WalletConnect below."
 msgstr ""
 
@@ -7018,10 +7109,19 @@ msgstr ""
 msgid "Payout Address"
 msgstr ""
 
+#: src/components/dashboard/DashboardOverview.tsx:289
+msgid "Peak"
+msgstr ""
+
 #: src/components/fullNode/card/FullNodeCardPeakHeight.tsx:14
 msgid "Peak Height"
 msgstr "Врх раста"
 
+#: src/components/dashboard/DashboardOverview.tsx:279
+msgid "peers loading"
+msgstr ""
+
+#: src/components/dashboard/DashboardOverview.tsx:221
 #: src/components/plotNFT/PlotNFTState.tsx:41
 msgid "Pending"
 msgstr "На чекању"
@@ -7060,7 +7160,7 @@ msgstr ""
 msgid "Please enter a passphrase"
 msgstr ""
 
-#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:46
+#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:45
 msgid "Please enter a URI"
 msgstr ""
 
@@ -7165,7 +7265,11 @@ msgstr ""
 msgid "Plot Count"
 msgstr "Број плотова"
 
-#: src/components/harvest/HarvesterPlotDetails.tsx:159
+#: src/components/dashboard/DashboardOverview.tsx:55
+msgid "Plot count, size, and add flow"
+msgstr ""
+
+#: src/components/harvest/HarvesterPlotDetails.tsx:199
 msgid "Plot details"
 msgstr ""
 
@@ -7198,7 +7302,7 @@ msgstr ""
 msgid "Plot NFT with p2_singleton_puzzle_hash {plotNFTId} does not exists"
 msgstr ""
 
-#: src/components/farm/FarmHealth.tsx:246
+#: src/components/farm/FarmHealth.tsx:255
 msgid "Plot pass ratio"
 msgstr ""
 
@@ -7210,7 +7314,7 @@ msgstr "Јавни кључ плота"
 #~ msgid "Plot Size"
 #~ msgstr "Величина плота"
 
-#: src/components/harvest/HarvesterPlotDetails.tsx:175
+#: src/components/harvest/HarvesterPlotDetails.tsx:215
 msgid "Plot Sizes"
 msgstr ""
 
@@ -7222,7 +7326,12 @@ msgstr ""
 msgid "PlotNFT is transitioning to (target state). This can take a while. Please do not close the application until this is finalized."
 msgstr ""
 
-#: src/components/dashboard/DashboardSideBar.tsx:100
+#: src/components/dashboard/DashboardOverview.tsx:316
+msgid "plots"
+msgstr ""
+
+#: src/components/dashboard/DashboardOverview.tsx:54
+#: src/components/dashboard/DashboardSideBar.tsx:109
 #: src/components/plot/PlotHarvester.tsx:97
 msgid "Plots"
 msgstr "Плотови"
@@ -7243,8 +7352,8 @@ msgstr ""
 msgid "Plots Passed Filter"
 msgstr "Филтрирани плотови"
 
-#: src/components/farm/FarmHealth.tsx:219
-#: src/components/farm/FarmHealth.tsx:299
+#: src/components/farm/FarmHealth.tsx:228
+#: src/components/farm/FarmHealth.tsx:308
 msgid "Plots passing filter"
 msgstr ""
 
@@ -7294,6 +7403,10 @@ msgstr ""
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:172
 #: src/components/plotNFT/PlotNFTCard.tsx:206
 msgid "Points Successful in Last 24 Hours"
+msgstr ""
+
+#: src/components/dashboard/DashboardOverview.tsx:94
+msgid "Pool"
 msgstr ""
 
 #: src/components/plot/PlotHarvesterPlots.tsx:64
@@ -7363,14 +7476,18 @@ msgstr "Износ награде за пул"
 msgid "Pool:"
 msgstr ""
 
-#: src/components/dashboard/DashboardSideBar.tsx:119
-#: src/components/farm/PoolingHealth.tsx:273
+#: src/components/dashboard/DashboardSideBar.tsx:128
+#: src/components/farm/PoolingHealth.tsx:281
 #: src/components/plotNFT/PlotNFTExternalState.tsx:25
 #: src/components/plotNFT/PlotNFTState.tsx:57
 msgid "Pooling"
 msgstr ""
 
-#: src/components/farm/PoolingHealth.tsx:278
+#: src/components/dashboard/DashboardOverview.tsx:94
+msgid "Pooling controls"
+msgstr ""
+
+#: src/components/farm/PoolingHealth.tsx:286
 msgid "Pooling Health"
 msgstr ""
 
@@ -7381,6 +7498,10 @@ msgstr ""
 msgid "Port"
 msgstr "Порт"
 
+#: src/components/dashboard/DashboardOverview.tsx:103
+msgid "Preferences and services"
+msgstr ""
+
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:95
 #: src/components/plotNFT/PlotNFTChangePool.tsx:76
 msgid "Preparing Plot NFT"
@@ -7390,7 +7511,7 @@ msgstr ""
 msgid "Preparing standard wallet"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:289
+#: src/components/nfts/NFTPreview.tsx:287
 #: src/components/offers2/OfferBuilderNFT.tsx:75
 msgid "Preview"
 msgstr ""
@@ -7411,7 +7532,7 @@ msgstr ""
 msgid "Preview image URL {index}"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:580
+#: src/components/nfts/NFTPreview.tsx:577
 msgid "Preview is not available"
 msgstr ""
 
@@ -7436,7 +7557,7 @@ msgid "Preview video URL {index}"
 msgstr ""
 
 #: src/components/block/Block.jsx:257
-#: src/components/nfts/detail/NFTDetailV2.tsx:133
+#: src/components/nfts/detail/NFTDetailV2.tsx:131
 msgid "Previous"
 msgstr "Назад"
 
@@ -7464,6 +7585,10 @@ msgstr ""
 #: src/components/settings/Settings.tsx:37
 #: src/components/settings/SettingsProfiles.tsx:50
 msgid "Profiles (DIDs)"
+msgstr ""
+
+#: src/components/dashboard/DashboardOverview.tsx:355
+msgid "Proof found"
 msgstr ""
 
 #: src/components/block/Block.jsx:203
@@ -7551,6 +7676,22 @@ msgstr "Максимална меморија"
 msgid "Rankings"
 msgstr ""
 
+#: src/components/dashboard/DashboardOverview.tsx:256
+msgid "Reading full node status"
+msgstr ""
+
+#: src/components/dashboard/DashboardOverview.tsx:302
+msgid "Reading harvester summary"
+msgstr ""
+
+#: src/components/dashboard/DashboardOverview.tsx:334
+msgid "Reading recent farming attempts"
+msgstr ""
+
+#: src/components/dashboard/DashboardOverview.tsx:201
+msgid "Reading standard wallet balance"
+msgstr ""
+
 #: src/components/settings/SettingsNotifications.tsx:123
 msgid "Receive general announcement notifications from connected Dapps"
 msgstr ""
@@ -7604,7 +7745,7 @@ msgstr "Освежи плотове"
 #~ msgid "Registers a list of remote coin IDs with a remote wallet."
 #~ msgstr ""
 
-#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:125
+#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:124
 msgid "Reject"
 msgstr ""
 
@@ -7624,7 +7765,7 @@ msgstr ""
 msgid "Remote"
 msgstr ""
 
-#: src/components/harvest/HarvesterDetail.tsx:47
+#: src/components/harvest/HarvesterDetail.tsx:49
 msgid "Remote Harvester"
 msgstr ""
 
@@ -7789,8 +7930,8 @@ msgstr ""
 msgid "Requires Proof From Store"
 msgstr ""
 
-#: src/components/farm/FarmHealth.tsx:286
-#: src/components/farm/FarmHealth.tsx:348
+#: src/components/farm/FarmHealth.tsx:295
+#: src/components/farm/FarmHealth.tsx:357
 #: src/components/offers/NFTOfferEditor.tsx:435
 #: src/components/offers/OfferEditor.tsx:153
 #: src/components/settings/SettingsIntegration.tsx:222
@@ -8103,7 +8244,8 @@ msgstr ""
 msgid "Set up keys manually"
 msgstr ""
 
-#: src/components/dashboard/DashboardSideBar.tsx:137
+#: src/components/dashboard/DashboardOverview.tsx:102
+#: src/components/dashboard/DashboardSideBar.tsx:146
 #: src/components/settings/Settings.tsx:74
 msgid "Settings"
 msgstr ""
@@ -8230,7 +8372,7 @@ msgstr ""
 msgid "Signed Message"
 msgstr ""
 
-#: src/components/signVerify/VerifyMessageImport.tsx:84
+#: src/components/signVerify/VerifyMessageImport.tsx:86
 msgid "Signed message file is too large (> 10MB)"
 msgstr ""
 
@@ -8274,7 +8416,7 @@ msgstr ""
 msgid "Sorry, you can't switch to mainnet by clicking here..."
 msgstr ""
 
-#: src/components/harvest/HarvesterDetail.tsx:108
+#: src/components/harvest/HarvesterDetail.tsx:110
 #: src/components/harvest/HarvesterOverview.tsx:157
 msgid "Space"
 msgstr ""
@@ -8315,6 +8457,10 @@ msgstr ""
 #~ msgid "Spend Fee"
 #~ msgstr ""
 
+#: src/components/dashboard/DashboardOverview.tsx:232
+msgid "Spendable {spendable} {currencyCode}"
+msgstr ""
+
 #: src/components/offers2/OfferBuilderWalletBalance.tsx:44
 msgid "Spendable Balance: {0}"
 msgstr ""
@@ -8323,16 +8469,20 @@ msgstr ""
 msgid "Spendable Balance: {spendableBalance} {currencyCode}"
 msgstr ""
 
-#: src/components/farm/FarmHealth.tsx:438
+#: src/components/farm/FarmHealth.tsx:447
 msgid "Stale partials"
 msgstr ""
 
-#: src/components/farm/PoolingHealth.tsx:294
+#: src/components/farm/PoolingHealth.tsx:302
 msgid "Stale Partials"
 msgstr ""
 
 #: src/components/vcs/VCCard.tsx:176
 msgid "Standard Version Number"
+msgstr ""
+
+#: src/components/dashboard/DashboardOverview.tsx:215
+msgid "Standard wallet is not available"
 msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:556
@@ -8448,17 +8598,23 @@ msgstr ""
 msgid "Successfully updated the derivation index. Your balances may take a while to update."
 msgstr ""
 
-#: src/components/farm/FarmHealth.tsx:430
+#: src/components/farm/FarmHealth.tsx:439
 msgid "Sync status"
 msgstr ""
 
-#: src/components/farm/FarmHealth.tsx:146
+#: src/components/dashboard/DashboardOverview.tsx:41
+msgid "Sync, peers, block inspection"
+msgstr ""
+
+#: src/components/dashboard/DashboardOverview.tsx:283
+#: src/components/farm/FarmHealth.tsx:155
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:50
 msgid "Synced"
 msgstr "Синхронизовано"
 
-#: src/components/farm/FarmHealth.tsx:115
-#: src/components/farm/FarmHealth.tsx:162
+#: src/components/dashboard/DashboardOverview.tsx:269
+#: src/components/farm/FarmHealth.tsx:124
+#: src/components/farm/FarmHealth.tsx:171
 #: src/components/plot/PlotStatus.tsx:19
 msgid "Syncing"
 msgstr "Синхронизација"
@@ -8654,7 +8810,7 @@ msgstr "Укупне накнаде за трансакције у овом бл
 msgid "Theme"
 msgstr ""
 
-#: src/components/farm/FarmHealth.tsx:331
+#: src/components/farm/FarmHealth.tsx:340
 msgid "There was a network issue and your Full Node or Farmer could not receive SPs."
 msgstr ""
 
@@ -8691,7 +8847,7 @@ msgstr ""
 msgid "This feature is available only from the GUI."
 msgstr "Ова опција је доступна само кроз корисничко окружење."
 
-#: src/components/harvest/HarvesterDetail.tsx:67
+#: src/components/harvest/HarvesterDetail.tsx:69
 msgid "This harvester does not have any plots to harvest"
 msgstr ""
 
@@ -8699,7 +8855,7 @@ msgstr ""
 msgid "This is a sum of effective plot sizes currently farming. An effective plot size is a theoretical value which is derived only by kSize"
 msgstr ""
 
-#: src/components/harvest/HarvesterDetail.tsx:161
+#: src/components/harvest/HarvesterDetail.tsx:163
 msgid "This is a sum of effective plot sizes currently harvesting. An effective plot size is a theoretical value which is derived only by kSize."
 msgstr ""
 
@@ -8842,7 +8998,7 @@ msgstr ""
 msgid "Token Standard"
 msgstr ""
 
-#: src/components/dashboard/DashboardSideBar.tsx:48
+#: src/components/dashboard/DashboardSideBar.tsx:58
 #: src/components/offers2/OfferBuilderTokensSection.tsx:116
 msgid "Tokens"
 msgstr ""
@@ -8851,7 +9007,8 @@ msgstr ""
 msgid "Too Many Plot NFTs"
 msgstr ""
 
-#: src/components/dashboard/DashboardSideBar.tsx:130
+#: src/components/dashboard/DashboardOverview.tsx:96
+#: src/components/dashboard/DashboardSideBar.tsx:139
 msgid "Tools"
 msgstr ""
 
@@ -8909,19 +9066,19 @@ msgstr ""
 #~ msgid "Total Network Space"
 #~ msgstr "Укупни простор на мрежи"
 
-#: src/components/harvest/HarvesterPlotDetails.tsx:166
+#: src/components/harvest/HarvesterPlotDetails.tsx:206
 msgid "Total OG"
 msgstr ""
 
-#: src/components/farm/FarmHealth.tsx:234
+#: src/components/farm/FarmHealth.tsx:243
 msgid "Total plot filter challenges"
 msgstr ""
 
-#: src/components/harvest/HarvesterPlotDetails.tsx:169
+#: src/components/harvest/HarvesterPlotDetails.tsx:209
 msgid "Total plotNFT"
 msgstr ""
 
-#: src/components/harvest/HarvesterPlotDetails.tsx:163
+#: src/components/harvest/HarvesterPlotDetails.tsx:203
 msgid "Total plots"
 msgstr ""
 
@@ -8929,7 +9086,7 @@ msgstr ""
 msgid "Total Plots"
 msgstr ""
 
-#: src/components/farm/FarmHealth.tsx:240
+#: src/components/farm/FarmHealth.tsx:249
 msgid "Total plots passing filter"
 msgstr ""
 
@@ -8945,7 +9102,7 @@ msgstr ""
 #~ msgid "Total Size of Plots"
 #~ msgstr "Укупна величина плотова"
 
-#: src/components/harvest/HarvesterDetail.tsx:115
+#: src/components/harvest/HarvesterDetail.tsx:117
 msgid "Total Space"
 msgstr ""
 
@@ -9099,6 +9256,13 @@ msgstr ""
 msgid "Unassigned NFTs"
 msgstr ""
 
+#: src/components/dashboard/DashboardOverview.tsx:207
+#: src/components/dashboard/DashboardOverview.tsx:262
+#: src/components/dashboard/DashboardOverview.tsx:308
+#: src/components/dashboard/DashboardOverview.tsx:340
+msgid "Unavailable"
+msgstr ""
+
 #: src/components/plotNFT/PlotNFTCard.tsx:135
 msgid "Unclaimed Rewards"
 msgstr ""
@@ -9197,7 +9361,7 @@ msgstr ""
 msgid "Use blockchain peak height for height info"
 msgstr ""
 
-#: src/components/nfts/detail/NFTDetailV2.tsx:138
+#: src/components/nfts/detail/NFTDetailV2.tsx:136
 msgid "Use left and right arrow keys to navigate"
 msgstr ""
 
@@ -9218,7 +9382,7 @@ msgstr ""
 msgid "Valid"
 msgstr ""
 
-#: src/components/farm/PoolingHealth.tsx:286
+#: src/components/farm/PoolingHealth.tsx:294
 msgid "Valid Partials"
 msgstr ""
 
@@ -9254,7 +9418,7 @@ msgstr "Подслотови VDF понављања"
 msgid "Verifiable Credential"
 msgstr ""
 
-#: src/components/vcs/VCList.tsx:199
+#: src/components/vcs/VCList.tsx:245
 msgid "Verifiable Credential already exists."
 msgstr ""
 
@@ -9270,17 +9434,21 @@ msgstr ""
 msgid "Verifiable Credential Revoked."
 msgstr ""
 
-#: src/components/vcs/VCList.tsx:207
+#: src/components/vcs/VCList.tsx:253
 msgid "Verifiable Credential successfully added."
 msgstr ""
 
+#: src/components/dashboard/DashboardOverview.tsx:77
+msgid "Verifiable credentials"
+msgstr ""
+
 #: src/components/settings/SettingsVerifiableCredentials.tsx:17
-#: src/components/vcs/VCList.tsx:267
-#: src/components/vcs/VCList.tsx:328
+#: src/components/vcs/VCList.tsx:313
+#: src/components/vcs/VCList.tsx:438
 msgid "Verifiable Credentials"
 msgstr ""
 
-#: src/components/vcs/VCList.tsx:270
+#: src/components/vcs/VCList.tsx:316
 msgid "Verifiable Credentials are like digital ID cards that can prove certain information about you without giving away your private details."
 msgstr ""
 
@@ -9402,6 +9570,10 @@ msgstr ""
 msgid "Wait for synchronization"
 msgstr "Сачекај синхронизацију"
 
+#: src/components/dashboard/DashboardOverview.tsx:222
+msgid "Waiting for balance data"
+msgstr ""
+
 #: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:80
 msgid "Waiting for the transaction to be confirmed"
 msgstr ""
@@ -9416,6 +9588,10 @@ msgstr ""
 
 #: src/components/signVerify/SignMessage.tsx:163
 msgid "Wallet Address"
+msgstr ""
+
+#: src/components/dashboard/DashboardOverview.tsx:208
+msgid "Wallet balance service did not respond"
 msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:80
@@ -9476,7 +9652,7 @@ msgid "Wallet sync RPC"
 msgstr ""
 
 #: src/components/settings/SettingsIntegration.tsx:85
-#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:75
+#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:74
 #: src/components/walletConnect/WalletConnectDropdown.tsx:26
 msgid "WalletConnect"
 msgstr ""
@@ -9485,8 +9661,12 @@ msgstr ""
 msgid "WalletConnect enables a decentralized app on the Chia blockchain to communicate and make requests directly to a Chia wallet."
 msgstr ""
 
-#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:98
+#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:97
 msgid "WalletConnect Integration"
+msgstr ""
+
+#: src/components/dashboard/DashboardOverview.tsx:32
+msgid "Wallets"
 msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:83
@@ -9501,13 +9681,13 @@ msgstr ""
 msgid "Warm start"
 msgstr ""
 
-#: src/components/farm/FarmHealth.tsx:202
+#: src/components/farm/FarmHealth.tsx:211
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:32
 #: src/components/plot/add/PlotAddSelectHybridDiskMode.tsx:73
 msgid "Warning"
 msgstr ""
 
-#: src/components/farm/FarmHealth.tsx:266
+#: src/components/farm/FarmHealth.tsx:275
 msgid "Warning Threshold"
 msgstr ""
 
