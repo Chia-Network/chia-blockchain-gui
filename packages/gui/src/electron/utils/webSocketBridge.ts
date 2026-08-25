@@ -149,5 +149,3 @@ export default function bindEvents(
     connection.close();
   });
 }
-
-export { sendDappAndAwait } from '../api/sendCommand';
