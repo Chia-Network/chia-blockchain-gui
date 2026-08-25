@@ -6,7 +6,7 @@ import {
   useGetKeysQuery,
   type Serializable,
 } from '@chia-network/api-react';
-import { ChiaBlack, Coins } from '@chia-network/icons';
+import { Coins } from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
 import { Delete as DeleteIcon } from '@mui/icons-material';
 import { Alert, Typography, Container, ListItemIcon } from '@mui/material';
@@ -23,6 +23,7 @@ import Flex from '../../components/Flex';
 import Loading from '../../components/Loading';
 import MenuItem from '../../components/MenuItem/MenuItem';
 import More from '../../components/More';
+import { ThemedChiaBlack } from '../../components/ThemedChia';
 import TooltipIcon from '../../components/TooltipIcon';
 import Color from '../../constants/Color';
 import useAuth from '../../hooks/useAuth';
@@ -218,7 +219,7 @@ export default function SelectKey() {
         sx={{ borderBottom: `1px solid ${Color.Neutral[level]}`, paddingBottom: '30px' }}
       >
         <Flex alignItems="left">
-          <ChiaBlack color="secondary" />
+          <ThemedChiaBlack color="secondary" />
           <Typography variant="h4" component="h1" sx={{ position: 'relative', left: '15px', top: '5px' }}>
             <Trans>Wallet Keys</Trans>
           </Typography>

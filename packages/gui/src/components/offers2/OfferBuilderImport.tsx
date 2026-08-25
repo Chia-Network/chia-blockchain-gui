@@ -1,11 +1,10 @@
 import { useGetOfferSummaryMutation } from '@chia-network/api-react';
-import { Color, Dropzone, Flex, useSerializedNavigationState, useShowError } from '@chia-network/core';
+import { Dropzone, Flex, useSerializedNavigationState, useShowError, useThemeAssets } from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
 import { Box, Card, Typography } from '@mui/material';
+import { alpha, useTheme } from '@mui/material/styles';
 import React from 'react';
 import { useHotkeys } from 'react-hotkeys-hook';
-
-import OfferFileIcon from './images/offerFileIcon.svg';
 
 function Background(props: { children: React.ReactNode }) {
   const { children } = props;
@@ -17,6 +16,8 @@ function Background(props: { children: React.ReactNode }) {
 }
 
 export default function OfferBuilderImport() {
+  const { offerFileIcon: OfferFileIcon } = useThemeAssets();
+  const theme = useTheme();
   const { navigate } = useSerializedNavigationState();
   const [getOfferSummary] = useGetOfferSummaryMutation();
   // const openDialog = useOpenDialog();
@@ -119,6 +120,15 @@ export default function OfferBuilderImport() {
         justifyContent: 'center',
         alignItems: 'center',
         cursor: 'pointer',
+        borderColor: alpha(theme.palette.primary.main, 0.68),
+        backgroundColor: alpha(theme.palette.background.paper, 0.78),
+        '&:hover': {
+          borderColor: theme.palette.primary.main,
+          boxShadow: `0 0 0 1px ${alpha(theme.palette.primary.main, 0.22)}, 0 18px 48px ${alpha(
+            theme.palette.text.primary,
+            0.1,
+          )}`,
+        },
       }}
     >
       <Dropzone maxFiles={1} onDrop={handleDrop} processing={isParsing} background={Background}>
@@ -130,7 +140,7 @@ export default function OfferBuilderImport() {
           </Typography>
           <Typography color="textSecondary" textAlign="center">
             <Trans>
-              or <span style={{ color: Color.Green[400] }}>browse</span> on your computer
+              or <span style={{ color: theme.palette.primary.main }}>browse</span> on your computer
             </Trans>
           </Typography>
         </Flex>

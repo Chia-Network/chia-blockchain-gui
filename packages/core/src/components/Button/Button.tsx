@@ -3,8 +3,6 @@ import React, { SyntheticEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import Color from '../../constants/Color';
-
 const StyledBaseButton = styled(({ nowrap: boolean, selected, ...rest }) => <BaseButton {...rest} />)`
   white-space: ${({ nowrap }) => (nowrap ? 'nowrap' : 'normal')};
   ${({ selected, theme }) => {
@@ -13,11 +11,17 @@ const StyledBaseButton = styled(({ nowrap: boolean, selected, ...rest }) => <Bas
     }
 
     const isDark = theme.palette.mode === 'dark';
-    const level = isDark ? '50' : '900';
+    const primary = theme.palette.primary.main;
+    const text = theme.palette.text.primary;
 
     return `
-      background-color: ${alpha(Color.Neutral[level], 0.1)};
-      border-color: ${alpha(Color.Neutral[level], 0.3)} !important;
+      background-color: ${alpha(primary, isDark ? 0.24 : 0.1)};
+      border-color: ${alpha(primary, isDark ? 0.55 : 0.4)} !important;
+      color: ${text} !important;
+
+      .MuiSvgIcon-root {
+        color: ${text} !important;
+      }
     `;
   }}
 `;

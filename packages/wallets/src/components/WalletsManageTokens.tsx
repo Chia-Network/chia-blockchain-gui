@@ -1,9 +1,9 @@
 import { WalletType } from '@chia-network/api';
-import { Button, Color, useColorModeValue, Spinner, Flex, Tooltip, useTrans, ScrollbarFlex } from '@chia-network/core';
+import { Button, Spinner, Flex, Tooltip, useTrans, ScrollbarFlex } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Add, KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
 import SearchIcon from '@mui/icons-material/Search';
-import { Box, IconButton, InputBase } from '@mui/material';
+import { alpha, Box, IconButton, InputBase } from '@mui/material';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useToggle } from 'react-use';
@@ -16,9 +16,9 @@ import WalletTokenCard from './WalletTokenCard';
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: theme.palette.mode === 'dark' ? Color.Neutral[800] : Color.Neutral[100],
+  backgroundColor: alpha(theme.palette.primary.main, theme.palette.mode === 'dark' ? 0.14 : 0.08),
   '&:hover': {
-    backgroundColor: theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[200],
+    backgroundColor: alpha(theme.palette.primary.main, theme.palette.mode === 'dark' ? 0.22 : 0.12),
   },
   paddingLeft: theme.spacing(1),
   paddingRight: theme.spacing(1),
@@ -62,21 +62,26 @@ const StyledButtonContainer = styled(Box)`
   background-color: ${({ theme }) => theme.palette.background.default};
 `;
 
+function panelBorder(theme: { palette: { mode: string; primary: { main: string } } }) {
+  return alpha(theme.palette.primary.main, theme.palette.mode === 'dark' ? 0.22 : 0.18);
+}
+
 const StyledMainButton = styled(Button)`
   border-radius: ${({ theme }) => `${theme.spacing(2)} ${theme.spacing(2)} 0 0`};
-  border: ${({ theme }) => `1px solid ${useColorModeValue(theme, 'border')}`};
-  background-color: ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[200])};
+  border: ${({ theme }) => `1px solid ${panelBorder(theme)}`};
+  background-color: ${({ theme }) => alpha(theme.palette.primary.main, theme.palette.mode === 'dark' ? 0.2 : 0.1)};
+  color: ${({ theme }) => theme.palette.text.primary};
   height: ${({ theme }) => theme.spacing(6)};
   pointer-events: auto;
 
   &:hover {
-    background-color: ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[800] : Color.Neutral[300])};
+    background-color: ${({ theme }) => alpha(theme.palette.primary.main, theme.palette.mode === 'dark' ? 0.3 : 0.16)};
   }
 `;
 
 const StyledBody = styled(({ expanded, ...rest }) => <Box {...rest} />)`
   pointer-events: auto;
-  background-color: ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[200])};
+  background-color: ${({ theme }) => alpha(theme.palette.primary.main, theme.palette.mode === 'dark' ? 0.2 : 0.1)};
   transition: all 0.25s ease-out;
   overflow: hidden;
   height: ${({ expanded }) => (expanded ? '100%' : '0%')};
@@ -84,10 +89,13 @@ const StyledBody = styled(({ expanded, ...rest }) => <Box {...rest} />)`
 
 const StyledContent = styled(Box)`
   height: 100%;
-  background-color: ${({ theme }) => theme.palette.action.hover};
+  background-color: ${({ theme }) =>
+    theme.palette.mode === 'dark'
+      ? alpha(theme.palette.background.paper, 0.96)
+      : alpha(theme.palette.background.paper, 0.98)};
   padding-top: ${({ theme }) => theme.spacing(2)};
-  border-left: 1px solid ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[300])};
-  border-right: 1px solid ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[300])};
+  border-left: 1px solid ${({ theme }) => panelBorder(theme)};
+  border-right: 1px solid ${({ theme }) => panelBorder(theme)};
   display: flex;
   flex-direction: column;
 `;

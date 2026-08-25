@@ -133,7 +133,25 @@ export default function NFTHashStatus(props: NFTHashStatusProps) {
     return null;
   }
 
-  const chip = <Chip icon={icon} label={message} color={color} size="small" />;
+  const chip = (
+    <Chip
+      icon={icon}
+      label={message}
+      color={color}
+      size="small"
+      sx={
+        isVerified && !isLoading && !nft?.pendingTransaction
+          ? {
+              backgroundColor: 'primary.main',
+              color: 'primary.contrastText',
+              '& .MuiChip-icon': {
+                color: 'primary.contrastText',
+              },
+            }
+          : undefined
+      }
+    />
+  );
 
   if (tooltipContent) {
     return <Tooltip title={<Typography variant="caption">{tooltipContent}</Typography>}>{chip}</Tooltip>;

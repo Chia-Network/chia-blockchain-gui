@@ -1,6 +1,7 @@
 import { store, api } from '@chia-network/api-react';
 import {
   useDarkMode,
+  useThemeVariant,
   sleep,
   ThemeProvider,
   ModalDialogsProvider,
@@ -8,18 +9,18 @@ import {
   LocaleProvider,
   LayoutLoading,
   AddressBookProvider,
-  dark,
-  light,
+  resolveAppTheme,
   ErrorBoundary,
   AuthProvider,
 } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Typography } from '@mui/material';
-import React, { ReactNode, useEffect, useState, Suspense } from 'react';
+import React, { ReactNode, useEffect, useMemo, useState, Suspense } from 'react';
 import { Provider } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 
 import { i18n, defaultLocale, locales } from '../../config/locales';
+import GuiThemeAssetsProvider from '../../theme/GuiThemeAssetsProvider';
 import WebSocketBridge from '../../util/WebSocketBridge';
 import CacheProvider from '../cache/CacheProvider';
 import LRUsProvider from '../lrus/LRUsProvider';
@@ -52,8 +53,9 @@ export default function App(props: AppProps) {
   const { children, outlet } = props;
   const [isReady, setIsReady] = useState<boolean>(false);
   const { isDarkMode } = useDarkMode();
+  const { themeVariant } = useThemeVariant();
 
-  const theme = isDarkMode ? dark : light;
+  const theme = useMemo(() => resolveAppTheme(themeVariant, isDarkMode), [themeVariant, isDarkMode]);
 
   async function init() {
     const config = await waitForConfig();
@@ -78,11 +80,13 @@ export default function App(props: AppProps) {
     return (
       <LocaleProvider i18n={i18n} defaultLocale={defaultLocale} locales={locales}>
         <ThemeProvider theme={theme} fonts global>
-          <LayoutLoading>
-            <Typography variant="body1">
-              <Trans>Loading configuration</Trans>
-            </Typography>
-          </LayoutLoading>
+          <GuiThemeAssetsProvider>
+            <LayoutLoading>
+              <Typography variant="body1">
+                <Trans>Loading configuration</Trans>
+              </Typography>
+            </LayoutLoading>
+          </GuiThemeAssetsProvider>
         </ThemeProvider>
       </LocaleProvider>
     );
@@ -92,30 +96,32 @@ export default function App(props: AppProps) {
     <Provider store={store}>
       <LocaleProvider i18n={i18n} defaultLocale={defaultLocale} locales={locales}>
         <ThemeProvider theme={theme} fonts global>
-          <ErrorBoundary>
-            <AuthProvider>
-              <CacheProvider>
-                <LRUsProvider>
-                  <NFTProvider>
-                    <ModalDialogsProvider>
-                      <Suspense fallback={<LayoutLoading />}>
-                        <AddressBookProvider>
-                          <OffersProvider>
-                            <NotificationsProvider>
-                              <WalletConnectProvider projectId={WalletConnectChiaProjectId}>
-                                <AppState>{outlet ? <Outlet /> : children}</AppState>
-                                <ModalDialogs />
-                              </WalletConnectProvider>
-                            </NotificationsProvider>
-                          </OffersProvider>
-                        </AddressBookProvider>
-                      </Suspense>
-                    </ModalDialogsProvider>
-                  </NFTProvider>
-                </LRUsProvider>
-              </CacheProvider>
-            </AuthProvider>
-          </ErrorBoundary>
+          <GuiThemeAssetsProvider>
+            <ErrorBoundary>
+              <AuthProvider>
+                <CacheProvider>
+                  <LRUsProvider>
+                    <NFTProvider>
+                      <ModalDialogsProvider>
+                        <Suspense fallback={<LayoutLoading />}>
+                          <AddressBookProvider>
+                            <OffersProvider>
+                              <NotificationsProvider>
+                                <WalletConnectProvider projectId={WalletConnectChiaProjectId}>
+                                  <AppState>{outlet ? <Outlet /> : children}</AppState>
+                                  <ModalDialogs />
+                                </WalletConnectProvider>
+                              </NotificationsProvider>
+                            </OffersProvider>
+                          </AddressBookProvider>
+                        </Suspense>
+                      </ModalDialogsProvider>
+                    </NFTProvider>
+                  </LRUsProvider>
+                </CacheProvider>
+              </AuthProvider>
+            </ErrorBoundary>
+          </GuiThemeAssetsProvider>
         </ThemeProvider>
       </LocaleProvider>
     </Provider>

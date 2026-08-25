@@ -2,7 +2,7 @@ import { useGetLoggedInFingerprintQuery, useGetKeyQuery, useFingerprintSettings 
 import { Trans } from '@lingui/macro';
 import { Edit as EditIcon } from '@mui/icons-material';
 import { Box, AppBar, Toolbar, Drawer, IconButton, Typography, CircularProgress, Button } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
+import { alpha, useTheme } from '@mui/material/styles';
 import React, { type ReactNode, useState, Suspense, useCallback } from 'react';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
@@ -12,6 +12,7 @@ import useGetLatestVersionFromWebsite from '../../hooks/useGetLatestVersionFromW
 import useOpenDialog from '../../hooks/useOpenDialog';
 import EmojiAndColorPicker from '../../screens/SelectKey/EmojiAndColorPicker';
 import SelectKeyRenameForm from '../../screens/SelectKey/SelectKeyRenameForm';
+import getColorModeValue from '../../utils/useColorModeValue';
 import Flex from '../Flex';
 import Link from '../Link';
 import Loading from '../Loading';
@@ -32,10 +33,18 @@ const StyledDrawer = styled(Drawer)`
   width: ${({ theme }) => theme.drawer.width};
   flex-shrink: 0;
 
-  > div {
+  & .MuiDrawer-paper {
     width: ${({ theme }) => theme.drawer.width};
-    // border-width: 0px;
-    border-right: 1px solid ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[300])};
+    background-color: ${({ theme }) => getColorModeValue(theme, 'sidebarBackground')};
+    border-right: 1px solid
+      ${({ theme }) =>
+        theme.palette.mode === 'dark'
+          ? alpha(getColorModeValue(theme, 'border'), 0.45)
+          : alpha(getColorModeValue(theme, 'border'), 0.35)};
+    color: ${({ theme }) =>
+      theme.palette.sidebarText
+        ? getColorModeValue(theme, 'sidebarText' as Parameters<typeof getColorModeValue>[1])
+        : getColorModeValue(theme, 'sidebarIcon')};
   }
 `;
 
@@ -123,7 +132,7 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
           flexDirection="row"
           justifyContent="center"
           style={{
-            background: theme.palette.sidebarBackground,
+            background: getColorModeValue(theme, 'sidebarBackground'),
             padding: '12px',
             lineHeight: '29px',
             marginBottom: '10px',

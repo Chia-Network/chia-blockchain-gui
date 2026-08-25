@@ -4,18 +4,34 @@ import styled from 'styled-components';
 
 import State from '../../constants/State';
 
-const WrapperStyled = styled.div`
+const WrapperStyled = styled.div<{ $color?: string }>`
   display: inline-block;
   font-size: 1rem;
   position: relative;
+
+  ${({ $color }) =>
+    $color
+      ? `
+    .checkmark-icon g circle,
+    .checkmark-icon g path,
+    .reload-icon g circle,
+    .reload-icon g path,
+    .cancel-icon g circle,
+    .cancel-icon g path {
+      stroke: ${$color};
+      fill: ${$color};
+    }
+  `
+      : ''}
 `;
 
 type StateIndicatorDotTypes = {
   state: string;
+  color?: string;
 };
 
 export default function StateIndicatorDot(props: StateIndicatorDotTypes) {
-  const { state } = props;
+  const { state, color } = props;
   function renderIcon() {
     if (state === State.SUCCESS) {
       return <ConnectCheckmark className="checkmark-icon" sx={{ width: '21px', height: '21px' }} />;
@@ -28,5 +44,5 @@ export default function StateIndicatorDot(props: StateIndicatorDotTypes) {
     }
     return null;
   }
-  return <WrapperStyled>{renderIcon()}</WrapperStyled>;
+  return <WrapperStyled $color={color}>{renderIcon()}</WrapperStyled>;
 }

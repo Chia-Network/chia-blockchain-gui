@@ -19,6 +19,7 @@ import Flex from '../Flex';
 import NewerAppVersionAvailable from '../LayoutDashboard/NewerAppVersionAvailable';
 import Link from '../Link';
 import LocaleToggle from '../LocaleToggle';
+import ThemeVariantToggle from '../ThemeVariantToggle';
 
 import SettingsLabel from './SettingsLabel';
 
@@ -107,6 +108,16 @@ export default function SettingsApp(props: SettingsAppProps) {
             <Trans>Dark</Trans>
           </Button>
         </ButtonGroup>
+      </Flex>
+
+      <Flex flexDirection="column" gap={1}>
+        <SettingsLabel>
+          <Trans>Color Theme</Trans>
+        </SettingsLabel>
+        <ThemeVariantToggle variant="outlined" />
+        <Typography variant="body2" color="textSecondary">
+          <Trans>Applies immediately. Stored locally in app preferences.</Trans>
+        </Typography>
       </Flex>
 
       <Flex flexDirection="column" gap={1}>

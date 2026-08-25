@@ -1224,6 +1224,7 @@ async function openAbout() {
     throw new Error('`mainWindow` is empty');
   }
 
+  const aboutPrefs = readPrefs();
   await openReactDialog(
     mainWindow,
     About,
@@ -1231,6 +1232,7 @@ async function openAbout() {
       packageJson,
       versions: process.versions as Record<string, string>,
       version: app.getVersion(),
+      themeVariant: aboutPrefs.themeVariant,
     },
     {
       title: 'About',

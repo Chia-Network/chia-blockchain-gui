@@ -25,12 +25,11 @@ import {
 } from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
 import { Box, Typography } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
+import { alpha, useTheme } from '@mui/material/styles';
 import { styled } from '@mui/styles';
 import React, { useCallback, useRef } from 'react';
 import { VirtuosoGrid } from 'react-virtuoso';
 
-import VCEmptyPng from '../../assets/img/vc_empty.png';
 import { sha256, arrToHex } from '../../util/utils';
 
 import VCCard from './VCCard';
@@ -129,6 +128,53 @@ export default function VCList() {
   }, [isLoading, blockchainVCs, getProofsForRoot]);
 
   const theme = useTheme();
+  const palette = theme.palette as typeof theme.palette & {
+    border: { main: string; dark: string };
+  };
+
+  const zeroStateColors = React.useMemo(() => {
+    const accent = palette.primary.main;
+    const accentDark = palette.primary.dark;
+    const softAccent = alpha(accent, isDarkMode ? 0.3 : 0.18);
+    const surface = palette.background.paper;
+    const surfaceAlt = isDarkMode ? palette.background.default : palette.background.card;
+    const text = palette.text.primary;
+    const mutedText = palette.text.secondary;
+    const line = isDarkMode ? palette.border.dark : palette.border.main;
+
+    return {
+      accent,
+      accentDark,
+      badgeBackground: alpha(surface, isDarkMode ? 0.18 : 0.72),
+      badgeBorder: line,
+      badgeText: mutedText,
+      cardBorder: alpha(accent, 0.72),
+      cardText: text,
+      cardMutedText: mutedText,
+      cardBackground: `linear-gradient(135deg, ${alpha(surface, 0.98)} 0%, ${softAccent} 52%, ${alpha(
+        surfaceAlt,
+        0.98,
+      )} 100%)`,
+      cardShadow: `0 34px 72px ${alpha(palette.text.primary, isDarkMode ? 0.32 : 0.16)}`,
+      chipBackground: `linear-gradient(145deg, ${alpha(surfaceAlt, 0.92)} 0%, ${alpha(accent, 0.28)} 100%)`,
+      divider: alpha(accent, 0.24),
+      iconColor: palette.info.main,
+      sealBackground: `radial-gradient(circle, ${alpha(surface, 0.98)} 0%, ${accent} 52%, ${accentDark} 100%)`,
+      texture: `repeating-linear-gradient(115deg, ${alpha(accent, 0.2)} 0 1px, transparent 1px 9px)`,
+    };
+  }, [
+    isDarkMode,
+    palette.background.card,
+    palette.background.default,
+    palette.background.paper,
+    palette.border.dark,
+    palette.border.main,
+    palette.info.main,
+    palette.primary.dark,
+    palette.primary.main,
+    palette.text.primary,
+    palette.text.secondary,
+  ]);
 
   function onVCTimestamp(id: string, timestamp: number) {
     trackVCTimestamps.current[id] = timestamp;
@@ -239,12 +285,12 @@ export default function VCList() {
           display: 'inline-flex',
           padding: '5px 10px',
           borderRadius: '45px',
-          border: `2px solid ${isDarkMode ? theme.palette.colors.default.accent : theme.palette.colors.default.border}`,
+          border: `2px solid ${zeroStateColors.badgeBorder}`,
           textAlign: 'center',
-          background: theme.palette.colors.default.backgroundLight,
+          background: zeroStateColors.badgeBackground,
         }}
       >
-        <Typography variant="body1" sx={{ color: theme.palette.colors.default.text }}>
+        <Typography variant="body1" sx={{ color: zeroStateColors.badgeText }}>
           {titleNode}
         </Typography>
       </Flex>
@@ -273,7 +319,7 @@ export default function VCList() {
               </Trans>
             </Typography>
           </Flex>
-          <Flex flexDirection="row" gap={4}>
+          <Flex flexDirection="row" gap={4} sx={{ color: zeroStateColors.iconColor }}>
             <Flex flexDirection="column" sx={{ alignItems: 'center', paddingTop: '25px' }} gap={2}>
               <VCZeroStateBadgeIcon />
               {renderBadgeContainer(<Trans>Badging</Trans>)}
@@ -281,15 +327,79 @@ export default function VCList() {
             <Flex flexDirection="column" sx={{ position: 'relative' }}>
               <Flex
                 sx={{
-                  img: {
-                    position: 'absolute',
-                    top: '-15px',
-                  },
                   width: '0px',
                   height: '410px',
                 }}
               >
-                <img src={VCEmptyPng} />
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    top: '-15px',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    width: 350,
+                    height: 390,
+                    borderRadius: '8px',
+                    border: `1px solid ${zeroStateColors.cardBorder}`,
+                    overflow: 'hidden',
+                    color: zeroStateColors.cardText,
+                    background: zeroStateColors.cardBackground,
+                    boxShadow: zeroStateColors.cardShadow,
+                    '&::before': {
+                      content: '""',
+                      position: 'absolute',
+                      inset: 0,
+                      opacity: 0.26,
+                      background: zeroStateColors.texture,
+                    },
+                  }}
+                >
+                  <Box sx={{ position: 'relative', p: 4 }}>
+                    <Typography
+                      variant="caption"
+                      sx={{
+                        letterSpacing: 1,
+                        color: zeroStateColors.cardMutedText,
+                      }}
+                    >
+                      VERIFIABLE CREDENTIAL
+                    </Typography>
+                    <Typography variant="h5" sx={{ mt: 1, color: zeroStateColors.cardText }}>
+                      Credential ID
+                    </Typography>
+                    <Box
+                      sx={{
+                        mt: 3,
+                        width: 92,
+                        height: 92,
+                        borderRadius: 2,
+                        background: zeroStateColors.chipBackground,
+                        border: `1px solid ${alpha(zeroStateColors.accent, 0.45)}`,
+                      }}
+                    />
+                    <Box sx={{ mt: 3, height: 1, background: zeroStateColors.divider }} />
+                    <Typography variant="body2" sx={{ mt: 3, color: zeroStateColors.cardMutedText }}>
+                      Issued
+                    </Typography>
+                    <Typography variant="body1">02-22-2023</Typography>
+                    <Typography variant="body2" sx={{ mt: 2, color: zeroStateColors.cardMutedText }}>
+                      Holder
+                    </Typography>
+                    <Typography variant="body1">Bram Tiberius Cohen</Typography>
+                    <Box
+                      sx={{
+                        position: 'absolute',
+                        right: 32,
+                        top: 58,
+                        width: 88,
+                        height: 88,
+                        borderRadius: '50%',
+                        border: `2px solid ${zeroStateColors.accentDark}`,
+                        background: zeroStateColors.sealBackground,
+                      }}
+                    />
+                  </Box>
+                </Box>
               </Flex>
               <Flex sx={{ width: '430px', justifyContent: 'center' }}>
                 {renderBadgeContainer(<Trans>Government IDs</Trans>)}

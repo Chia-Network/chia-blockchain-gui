@@ -51,6 +51,7 @@ export { default as Loading } from './Loading';
 export { default as LoadingOverlay } from './LoadingOverlay';
 export { default as LocaleProvider, LocaleContext } from './LocaleProvider';
 export { default as LocaleToggle } from './LocaleToggle';
+export { default as ThemeVariantToggle } from './ThemeVariantToggle';
 export { default as Log } from './Log';
 export { default as Logo } from './Logo';
 export * from './Menu';

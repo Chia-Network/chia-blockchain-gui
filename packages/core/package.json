@@ -25,6 +25,8 @@
   "dependencies": {
     "@babel/runtime": "7.27.6",
     "@emoji-mart/data": "1.1.2",
+    "@fontsource/inter": "5.0.8",
+    "@fontsource/poppins": "5.0.8",
     "@fontsource/roboto": "5.0.8",
     "@lingui/macro": "4.11.4",
     "@mui/utils": "5.14.5",

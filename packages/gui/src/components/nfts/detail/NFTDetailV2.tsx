@@ -15,7 +15,6 @@ import useFilteredNFTs from '../../../hooks/useFilteredNFTs';
 import useNFT from '../../../hooks/useNFT';
 import useNFTMetadata from '../../../hooks/useNFTMetadata';
 import getNFTId from '../../../util/getNFTId';
-import { isImage } from '../../../util/utils';
 import OfferIncomingTable from '../../offers2/OfferIncomingTable';
 import NFTContextualActions, { NFTContextualActionTypes } from '../NFTContextualActions';
 import NFTDetails from '../NFTDetails';
@@ -80,8 +79,7 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
   }, [navigateToDetail]);
 
   function handleShowFullScreen() {
-    const uri = nft?.dataUris?.[0];
-    if (isImage(uri)) {
+    if (nft) {
       openDialog(<NFTPreviewDialog id={nftId} />);
     }
   }

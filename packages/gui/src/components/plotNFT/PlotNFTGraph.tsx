@@ -1,7 +1,7 @@
-import { Color, Flex } from '@chia-network/core';
+import { Flex } from '@chia-network/core';
 import { WalletGraphTooltip } from '@chia-network/wallets';
 import { t } from '@lingui/macro';
-import { alpha, Box, Typography } from '@mui/material';
+import { alpha, Box, Typography, useTheme } from '@mui/material';
 import React, { ReactNode } from 'react';
 import { useMeasure } from 'react-use';
 import { VictoryChart, VictoryAxis, VictoryArea, VictoryTooltip, VictoryVoronoiContainer } from 'victory';
@@ -38,11 +38,11 @@ function aggregatePoints(points, hours = 2, totalHours = 24) {
   return items;
 }
 
-function LinearGradient() {
+function LinearGradient({ graphColor }: { graphColor: string }) {
   return (
     <linearGradient id="graph-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stopColor={alpha(Color.Green[500], 0.4)} />
-      <stop offset="100%" stopColor={alpha(Color.Green[500], 0)} />
+      <stop offset="0%" stopColor={alpha(graphColor, 0.42)} />
+      <stop offset="100%" stopColor={alpha(graphColor, 0)} />
     </linearGradient>
   );
 }
@@ -54,6 +54,8 @@ export type PlotNFTGraphProps = {
 
 export default function PlotNFTGraph(props: PlotNFTGraphProps) {
   const { points, title } = props;
+  const theme = useTheme();
+  const graphColor = theme.palette.primary.main;
   const aggregated = aggregatePoints(points, 2);
   const [ref, containerSize] = useMeasure();
 
@@ -91,7 +93,7 @@ export default function PlotNFTGraph(props: PlotNFTGraphProps) {
               interpolation="monotoneX"
               style={{
                 data: {
-                  stroke: Color.Green[500],
+                  stroke: graphColor,
                   strokeWidth: 2,
                   strokeLinecap: 'round',
                   fill: 'url(#graph-gradient)',
@@ -107,7 +109,7 @@ export default function PlotNFTGraph(props: PlotNFTGraphProps) {
                 tickLabels: { fill: 'transparent' },
               }}
             />
-            <LinearGradient />
+            <LinearGradient graphColor={graphColor} />
           </VictoryChart>
         </Box>
       </Flex>

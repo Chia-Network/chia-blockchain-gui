@@ -15,6 +15,7 @@ export { default as MyContacts } from './MyContacts';
 export { default as NFTs, NFTsSmall, Reload, Copy } from './NFTs';
 export { default as Offering } from './Offering';
 export { default as Offers, OffersSmall } from './Offers';
+export { default as Overview } from './Overview';
 export { default as Plot } from './Plot';
 export { default as Plots } from './Plots';
 export { default as Pool } from './Pool';

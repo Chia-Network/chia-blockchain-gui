@@ -1,9 +1,10 @@
-import { Chia } from '@chia-network/icons';
 import { Box, BoxProps } from '@mui/material';
 import React from 'react';
 import styled from 'styled-components';
 
-const StyledChia = styled(Chia)`
+import { ThemedChia } from '../ThemedChia';
+
+const StyledChia = styled(ThemedChia)`
   max-width: 100%;
   width: auto;
   height: auto;

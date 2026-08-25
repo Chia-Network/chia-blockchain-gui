@@ -3,51 +3,59 @@ import {
   useGetPartialStatsOffsetQuery,
   useResetPartialStatsMutation,
 } from '@chia-network/api-react';
-import { Flex, StateIndicator, State, Tooltip } from '@chia-network/core';
+import { Flex, getSemanticColors, StateIndicator, State, Tooltip } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import { Box, Paper, Typography, CircularProgress, Button } from '@mui/material';
+import { Box, Paper, Typography, CircularProgress, Button, useTheme } from '@mui/material';
 import React from 'react';
 
-const indicatorStyle = {
-  marginTop: 1,
-  '> div > div': {
-    display: 'inline-flex',
-  },
-  '.cancel-icon': {
-    g: {
-      circle: {
-        stroke: '#D32F2F',
-        fill: '#D32F2F',
+function getIndicatorStyle(successColor: string, warningColor: string, errorColor: string) {
+  return {
+    marginTop: 1,
+    '> div > div': {
+      display: 'inline-flex',
+    },
+    '.cancel-icon': {
+      g: {
+        circle: {
+          stroke: errorColor,
+          fill: errorColor,
+        },
       },
     },
-  },
-  '.checkmark-icon': {
-    g: {
-      circle: {
-        stroke: '#3AAC59',
-        fill: '#3AAC59',
-      },
-      path: {
-        stroke: '#3AAC59',
-        fill: '#3AAC59',
-      },
-    },
-  },
-  '.reload-icon': {
-    g: {
-      circle: {
-        stroke: '#FF9800',
-        fill: '#FF9800',
-      },
-      path: {
-        fill: '#FF9800',
+    '.checkmark-icon': {
+      g: {
+        circle: {
+          stroke: successColor,
+          fill: successColor,
+        },
+        path: {
+          stroke: successColor,
+          fill: successColor,
+        },
       },
     },
-  },
-};
+    '.reload-icon': {
+      g: {
+        circle: {
+          stroke: warningColor,
+          fill: warningColor,
+        },
+        path: {
+          fill: warningColor,
+        },
+      },
+    },
+  };
+}
 
 export default React.memo(PoolingHealth);
 function PoolingHealth() {
+  const theme = useTheme();
+  const semanticColors = getSemanticColors(theme.palette);
+  const indicatorStyle = React.useMemo(
+    () => getIndicatorStyle(semanticColors.success, semanticColors.warning, semanticColors.error),
+    [semanticColors.error, semanticColors.success, semanticColors.warning],
+  );
   const { data, isLoading } = useGetPoolStateQuery();
   const { data: partialStatsOffset, isLoading: isLoadingPartialStatsOffset } = useGetPartialStatsOffsetQuery();
   const [resetPartialStatsOffset] = useResetPartialStatsMutation();
