@@ -12,19 +12,21 @@ const WrapperStyled = styled.div`
 
 type StateIndicatorDotTypes = {
   state: string;
+  color?: string;
 };
 
 export default function StateIndicatorDot(props: StateIndicatorDotTypes) {
-  const { state } = props;
+  const { state, color } = props;
+  const iconSx = { width: '21px', height: '21px', ...(color ? { color } : {}) };
   function renderIcon() {
     if (state === State.SUCCESS) {
-      return <ConnectCheckmark className="checkmark-icon" sx={{ width: '21px', height: '21px' }} />;
+      return <ConnectCheckmark className="checkmark-icon" sx={iconSx} />;
     }
     if (state === State.WARNING) {
-      return <ConnectReload className="reload-icon" sx={{ width: '21px', height: '21px' }} />;
+      return <ConnectReload className="reload-icon" sx={iconSx} />;
     }
     if (state === State.ERROR) {
-      return <ConnectCancel className="cancel-icon" sx={{ width: '21px', height: '21px' }} />;
+      return <ConnectCancel className="cancel-icon" sx={iconSx} />;
     }
     return null;
   }

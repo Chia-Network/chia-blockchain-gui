@@ -140,15 +140,17 @@ export async function sendDappAndAwait(requestId: string, json: string, timeoutM
   // eslint-disable-next-line no-async-promise-executor -- connect must complete before request listeners are registered.
   return new Promise(async (resolveMessage, rejectMessage) => {
     let isDone = false;
+    let socket: WebSocket | undefined;
 
     const timeout = setTimeout(() => {
       handleReject(new Error(`The request ${requestId} timed out after ${timeoutMs / 1000} seconds.`));
     }, timeoutMs);
 
-    const socket = await connect();
-
     function cleanup() {
       clearTimeout(timeout);
+      if (!socket) {
+        return;
+      }
       socket.removeListener('message', handleMessage);
       socket.removeListener('error', handleSocketError);
       socket.removeListener('close', handleSocketClose);
@@ -190,11 +192,14 @@ export async function sendDappAndAwait(requestId: string, json: string, timeoutM
       handleResolve(response);
     }
 
-    socket.on('message', handleMessage);
-    socket.on('error', handleSocketError);
-    socket.on('close', handleSocketClose);
-
     try {
+      socket = await connect();
+      if (isDone) {
+        return;
+      }
+      socket.on('message', handleMessage);
+      socket.on('error', handleSocketError);
+      socket.on('close', handleSocketClose);
       socket.send(json);
     } catch (error) {
       handleReject(error instanceof Error ? error : new Error(String(error)));

@@ -1,4 +1,4 @@
-import { resolveAppTheme, ThemeProvider, useDarkMode, useThemeVariant } from '@chia-network/core';
+import { resolveAppTheme, ThemeProvider, useColorModeValue, useDarkMode, useThemeVariant } from '@chia-network/core';
 import { Overview as OverviewIcon } from '@chia-network/icons';
 import {
   AccountBalanceWallet,
@@ -58,21 +58,19 @@ const navItems = [
 const StyledRoot = styled(Box)(({ theme }) => ({
   minHeight: '100vh',
   color: theme.palette.text.primary,
-  backgroundColor: '#f4f0e5',
-  backgroundImage: [
-    'linear-gradient(118deg, rgba(244, 240, 229, 0.96) 0%, rgba(237, 229, 207, 0.92) 38%, rgba(226, 235, 227, 0.94) 100%)',
-    'repeating-linear-gradient(102deg, rgba(158, 117, 47, 0.1) 0 18px, rgba(63, 99, 72, 0.09) 18px 34px, transparent 34px 68px)',
-  ].join(','),
+  backgroundColor: theme.palette.background.default,
 }));
 
-const StyledDrawer = styled(Drawer)(() => ({
+const StyledDrawer = styled(Drawer)(({ theme }) => ({
   width: drawerWidth,
   flexShrink: 0,
   '& .MuiDrawer-paper': {
     width: drawerWidth,
-    borderRight: `1px solid ${alpha('#473a24', 0.18)}`,
-    background: 'linear-gradient(180deg, rgba(38, 51, 41, 0.97) 0%, rgba(51, 55, 44, 0.98) 100%)',
-    color: '#f7efd8',
+    borderRight: `1px solid ${alpha(useColorModeValue(theme, 'border'), theme.palette.mode === 'dark' ? 0.45 : 0.35)}`,
+    backgroundColor: useColorModeValue(theme, 'sidebarBackground'),
+    color: theme.palette.sidebarText
+      ? useColorModeValue(theme, 'sidebarText' as Parameters<typeof useColorModeValue>[1])
+      : useColorModeValue(theme, 'sidebarIcon' as Parameters<typeof useColorModeValue>[1]),
   },
 }));
 
@@ -82,10 +80,10 @@ const StyledMain = styled(Box)(() => ({
 }));
 
 const Surface = styled(Box)(({ theme }) => ({
-  border: `1px solid ${alpha('#473a24', 0.14)}`,
+  border: `1px solid ${alpha(useColorModeValue(theme, 'border'), 0.35)}`,
   background: alpha(theme.palette.background.paper, 0.82),
   borderRadius: 8,
-  boxShadow: `0 18px 54px ${alpha('#473a24', 0.1)}`,
+  boxShadow: `0 18px 54px ${alpha(theme.palette.text.primary, 0.08)}`,
 }));
 
 const FieldMap = styled(Box)(() => ({
@@ -119,6 +117,13 @@ function NavButton({
   active?: boolean;
   onSelect: () => void;
 }) {
+  const theme = useTheme();
+  const iconColor = useColorModeValue(theme, 'sidebarIcon' as Parameters<typeof useColorModeValue>[1]);
+  const selectedFillToken = useColorModeValue(theme, 'sidebarSelectedFill' as Parameters<typeof useColorModeValue>[1]);
+  const selectedIconColor = useColorModeValue(theme, 'sidebarIconSelected' as Parameters<typeof useColorModeValue>[1]);
+  const selectedFill = theme.palette.sidebarSelectedFill ? selectedFillToken : alpha(theme.palette.primary.main, 0.22);
+  const selectedColor = theme.palette.sidebarIconSelected ? selectedIconColor : theme.palette.primary.contrastText;
+
   return (
     <Box
       component="button"
@@ -127,14 +132,14 @@ function NavButton({
         width: 88,
         height: 64,
         margin: '4px 12px',
-        border: active ? `1px solid ${alpha('#e6b756', 0.7)}` : '1px solid transparent',
+        border: active
+          ? `1px solid ${alpha(theme.palette.highlight?.main ?? theme.palette.primary.main, 0.7)}`
+          : '1px solid transparent',
         borderRadius: 8,
         cursor: 'pointer',
-        color: active ? '#fff3cf' : alpha('#f7efd8', 0.68),
-        background: active
-          ? 'linear-gradient(180deg, rgba(199, 137, 42, 0.36) 0%, rgba(46, 78, 54, 0.34) 100%)'
-          : 'transparent',
-        boxShadow: active ? `0 10px 28px ${alpha('#0f1a12', 0.26)}` : 'none',
+        color: active ? selectedColor : alpha(iconColor, 0.82),
+        background: active ? selectedFill : 'transparent',
+        boxShadow: 'none',
       }}
       onClick={onSelect}
     >
@@ -285,7 +290,7 @@ function SandboxScreen() {
           sx={{
             borderBottom: `1px solid ${alpha(theme.palette.text.primary, 0.12)}`,
             backdropFilter: 'blur(18px)',
-            background: alpha('#f4f0e5', 0.76),
+            background: alpha(theme.palette.background.default, 0.76),
           }}
         >
           <Toolbar sx={{ minHeight: 84, gap: 2, px: 3 }}>
