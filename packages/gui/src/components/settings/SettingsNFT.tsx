@@ -14,9 +14,12 @@ import { Trans } from '@lingui/macro';
 import { Grid, Button, Switch, FormControlLabel, Typography } from '@mui/material';
 import React from 'react';
 
+import useAllowUnverifiedNFTPreviews from '../../hooks/useAllowUnverifiedNFTPreviews';
 import useCache from '../../hooks/useCache';
 import useHideObjectionableContent from '../../hooks/useHideObjectionableContent';
+import useIpfsGateway from '../../hooks/useIpfsGateway';
 import useNFTImageFittingMode from '../../hooks/useNFTImageFittingMode';
+import { useNFTVideoLoopGlobal } from '../../hooks/useNFTVideoLoop';
 
 import LimitCacheSize from './LimitCacheSize';
 
@@ -38,11 +41,26 @@ export default function SettingsGeneral() {
 
   const { cacheSize, clearCache, cacheDirectory, setCacheDirectory } = useCache();
   const [nftImageFittingMode, setNFTImageFittingMode] = useNFTImageFittingMode();
+  const [nftVideoLoop, setNFTVideoLoop] = useNFTVideoLoopGlobal();
+  const [ipfsGateway, setIpfsGateway] = useIpfsGateway();
+  const [allowUnverifiedPreviews, setAllowUnverifiedPreviews] = useAllowUnverifiedNFTPreviews();
   // const [, setCacheFolder] = usePrefs('cacheFolder', '');
   const openDialog = useOpenDialog();
 
   function handleScalePreviewImages(event: React.ChangeEvent<HTMLInputElement>) {
     setNFTImageFittingMode(event.target.checked ? 'contain' : 'cover');
+  }
+
+  function handleChangeVideoLoop(event: React.ChangeEvent<HTMLInputElement>) {
+    setNFTVideoLoop(event.target.checked);
+  }
+
+  function handleChangeIpfsGateway(event: React.ChangeEvent<HTMLInputElement>) {
+    setIpfsGateway(event.target.checked);
+  }
+
+  function handleChangeAllowUnverifiedPreviews(event: React.ChangeEvent<HTMLInputElement>) {
+    setAllowUnverifiedPreviews(event.target.checked);
   }
 
   async function clearNFTCache() {
@@ -115,6 +133,67 @@ export default function SettingsGeneral() {
         <Grid item style={{ width: '400px' }}>
           <SettingsText>
             <Trans>Images will be scaled to fill the NFT card and ignore their original proportions.</Trans>
+          </SettingsText>
+        </Grid>
+      </Grid>
+
+      <Grid container>
+        <Grid item style={{ width: '400px' }}>
+          <SettingsTitle>
+            <Trans>Loop videos</Trans>
+          </SettingsTitle>
+        </Grid>
+        <Grid item container xs justifyContent="flex-end" marginTop="-6px">
+          <FormControlLabel control={<Switch checked={nftVideoLoop} onChange={handleChangeVideoLoop} />} />
+        </Grid>
+        <Grid item style={{ width: '400px' }}>
+          <SettingsText>
+            <Trans>
+              All NFT videos will restart automatically when they finish playing. When disabled, looping can still be
+              turned on for individual videos from their detail page.
+            </Trans>
+          </SettingsText>
+        </Grid>
+      </Grid>
+
+      <Grid container>
+        <Grid item style={{ width: '400px' }}>
+          <SettingsTitle>
+            <Trans>Fetch IPFS content through a gateway</Trans>
+          </SettingsTitle>
+        </Grid>
+        <Grid item container xs justifyContent="flex-end" marginTop="-6px">
+          <FormControlLabel control={<Switch checked={ipfsGateway} onChange={handleChangeIpfsGateway} />} />
+        </Grid>
+        <Grid item style={{ width: '400px' }}>
+          <SettingsText>
+            <Trans>
+              NFT files published with ipfs:// addresses will be downloaded through the public ipfs.io HTTPS gateway.
+              The requested URL differs from the address recorded on chain, but downloaded content is still verified
+              against the NFT's on-chain hash. When disabled, ipfs:// files are not fetched.
+            </Trans>
+          </SettingsText>
+        </Grid>
+      </Grid>
+
+      <Grid container>
+        <Grid item style={{ width: '400px' }}>
+          <SettingsTitle>
+            <Trans>Show unverified previews</Trans>
+          </SettingsTitle>
+        </Grid>
+        <Grid item container xs justifyContent="flex-end" marginTop="-6px">
+          <FormControlLabel
+            control={<Switch checked={allowUnverifiedPreviews} onChange={handleChangeAllowUnverifiedPreviews} />}
+          />
+        </Grid>
+        <Grid item style={{ width: '400px' }}>
+          <SettingsText>
+            <Trans>
+              When an NFT image is too large to verify against its on-chain hash, load the transaction confirmation
+              preview directly from its source URL without verification. When disabled, no preview is shown for these
+              NFTs.
+            </Trans>
           </SettingsText>
         </Grid>
       </Grid>

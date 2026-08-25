@@ -9,6 +9,7 @@ import useMetadataData from './hooks/useMetadataData';
 import useNFTData from './hooks/useNFTData';
 import useNFTDataNachos from './hooks/useNFTDataNachos';
 import useNFTDataOnDemand from './hooks/useNFTDataOnDemand';
+import useNFTPreviewStatuses from './hooks/useNFTPreviewStatuses';
 
 const log = debug('nft:NFTProvider');
 
@@ -28,6 +29,7 @@ export default function NFTProvider(props: NFTProviderProps) {
     isLoading,
     error,
     getNFT: getNFTData,
+    refetch,
     count,
     loaded,
     progress,
@@ -97,6 +99,7 @@ export default function NFTProvider(props: NFTProviderProps) {
     getMetadata,
     fetchMetadata,
     subscribeToMetadataChanges,
+    subscribeToChanges: subscribeToMetadataDataChanges,
     invalidate: invalidateMetadata,
   } = useMetadataData({
     fetchNFT,
@@ -130,6 +133,15 @@ export default function NFTProvider(props: NFTProviderProps) {
     [subscribeToDataChanges, subscribeToNachosChanges],
   );
 
+  const { getPreviewStatus, setPreviewStatus, invalidatePreviewStatus, subscribeToPreviewStatusChanges } =
+    useNFTPreviewStatuses({
+      nfts,
+      nachos,
+      getMetadata,
+      subscribeToChanges,
+      subscribeToMetadataChanges: subscribeToMetadataDataChanges,
+    });
+
   const invalidateNFT = useCallback(
     async (id: string | undefined) => {
       log(`Invalidating ${id}`);
@@ -145,6 +157,15 @@ export default function NFTProvider(props: NFTProviderProps) {
       // invalidate nft files
       const promises = [];
       const { dataUris, metadataUris } = nft;
+      const invalidatedUris: string[] = [...dataUris];
+
+      // Drop the preview verdict right away, together with what is known about
+      // the data files: the filter must not keep classifying an NFT that is
+      // being refreshed from what its files used to be while the metadata
+      // round-trip below is still running. Repeated once the files are gone —
+      // the preview uris are only known after that round-trip, and a lookup
+      // that overlaps the deletions could memoize outcomes they remove.
+      invalidatePreviewStatus(id, invalidatedUris);
 
       dataUris.forEach((uri) => promises.push(invalidate(uri)));
 
@@ -162,21 +183,40 @@ export default function NFTProvider(props: NFTProviderProps) {
 
           if (previewVideoUris) {
             previewVideoUris.forEach((uri: string) => promises.push(invalidate(uri)));
+            invalidatedUris.push(...previewVideoUris);
           }
 
           if (previewImageUris) {
             previewImageUris.forEach((uri: string) => promises.push(invalidate(uri)));
+            invalidatedUris.push(...previewImageUris);
           }
         }
       } catch (e) {
         log(`Error loading metadata for ${id}: ${(e as Error).message}`);
-      } finally {
-        await Promise.all(promises);
+      }
+
+      // Wait for every deletion, even when one of them fails (a uri the cache
+      // cannot key), so the reset below cannot race a deletion still in
+      // flight; the first failure still propagates afterwards as before.
+      const results = await Promise.allSettled(promises);
+      invalidatePreviewStatus(id, invalidatedUris);
+
+      const failure = results.find((result): result is PromiseRejectedResult => result.status === 'rejected');
+      if (failure) {
+        throw failure.reason;
       }
 
       await Promise.all([invalidateNachos(), invalidateMetadata(id), invalidateNFTOnDemand(id)]);
     },
-    [fetchNFT, fetchMetadata, invalidate, invalidateNachos, invalidateMetadata, invalidateNFTOnDemand],
+    [
+      fetchNFT,
+      fetchMetadata,
+      invalidate,
+      invalidateNachos,
+      invalidateMetadata,
+      invalidateNFTOnDemand,
+      invalidatePreviewStatus,
+    ],
   );
 
   const context = useMemo(
@@ -191,9 +231,14 @@ export default function NFTProvider(props: NFTProviderProps) {
       getMetadata,
       subscribeToMetadataChanges,
 
+      getPreviewStatus,
+      setPreviewStatus,
+      subscribeToPreviewStatusChanges,
+
       subscribeToChanges,
 
       invalidate: invalidateNFT,
+      refetch,
 
       // mutable state
       isLoading,
@@ -212,11 +257,15 @@ export default function NFTProvider(props: NFTProviderProps) {
       subscribeToNFTChanges,
       getMetadata,
       subscribeToMetadataChanges,
+      getPreviewStatus,
+      setPreviewStatus,
+      subscribeToPreviewStatusChanges,
       count,
       loaded,
       progress,
       subscribeToChanges,
       invalidateNFT,
+      refetch,
     ],
   );
 

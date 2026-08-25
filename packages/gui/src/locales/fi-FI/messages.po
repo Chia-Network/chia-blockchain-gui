@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-06-07 00:26\n"
+"PO-Revision-Date: 2026-08-23 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -780,7 +780,7 @@ msgstr "Katkaise Yhteys"
 #: src/electron/commands/Commands.ts:587
 #: src/electron/commands/Commands.ts:601
 msgid "Node ID"
-msgstr ""
+msgstr "Noodin tunnus"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:595
@@ -1618,7 +1618,7 @@ msgstr "Tarkista ja vahvista tämän DataLayer-tarjouksen peruminen."
 #: src/electron/commands/Commands.ts:1434
 #: src/electron/dialogs/Confirm/Confirm.tsx:438
 #: src/electron/dialogs/Pair/Pair.tsx:377
-#: src/electron/main.tsx:1089
+#: src/electron/main.tsx:1121
 msgid "Cancel"
 msgstr "Peru"
 
@@ -2441,7 +2441,7 @@ msgstr "Ei-lukuderivaatio"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/humanizeCommand.ts:20
-#: src/electron/main.tsx:922
+#: src/electron/main.tsx:954
 msgid "Confirm"
 msgstr "Vahvista"
 
@@ -2457,15 +2457,15 @@ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/commands/humanizeParamValue.ts:63
-#: src/electron/main.tsx:670
-#: src/electron/main.tsx:921
+#: src/electron/main.tsx:702
+#: src/electron/main.tsx:953
 msgid "Yes"
 msgstr "Kyllä"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/humanizeParamValue.ts:63
-#: src/electron/main.tsx:670
-#: src/electron/main.tsx:921
+#: src/electron/main.tsx:702
+#: src/electron/main.tsx:953
 msgid "No"
 msgstr "Ei"
 
@@ -2479,7 +2479,7 @@ msgstr "Raportoi Ongelma"
 #: src/electron/dialogs/Confirm/Confirm.tsx:134
 #: src/electron/dialogs/Confirm/Confirm.tsx:152
 msgid "Total Amount with Royalties"
-msgstr ""
+msgstr "Yhteissumma rojaltien kanssa"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:147
@@ -2489,7 +2489,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:161
 msgid "Unknown Asset"
-msgstr ""
+msgstr "Tuntematon Assetti"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:166
@@ -2694,17 +2694,17 @@ msgid "Save changes"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:671
+#: src/electron/main.tsx:703
 msgid "Save Command Preferences"
 msgstr "Tallenna Komentoasetukset"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:673
+#: src/electron/main.tsx:705
 msgid "Would you like to save preferences for the following commands?"
 msgstr "Haluatko tallentaa asetukset seuraaville komennoille?"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:677
+#: src/electron/main.tsx:709
 msgid ""
 "These commands will be executed without confirmation in the future:\n"
 "\n"
@@ -2715,262 +2715,262 @@ msgstr ""
 " {commands}"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:924
+#: src/electron/main.tsx:956
 msgid "Are you sure you want to quit?"
 msgstr "Oletko varma että haluat lopettaa?"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:929
+#: src/electron/main.tsx:961
 msgid "Keep service running in the background"
 msgstr "Pidä palvelu käynnissä taustalla"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1089
+#: src/electron/main.tsx:1121
 msgid "Continue"
 msgstr "Jatka"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1091
+#: src/electron/main.tsx:1123
 msgid "Warning"
 msgstr "Varoitus"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1092
+#: src/electron/main.tsx:1124
 msgid "Log files may contain sensitive information"
 msgstr "Lokitiedostot saattavat sisältää arkaluontoisia tietoja"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1093
+#: src/electron/main.tsx:1125
 msgid "Are you sure you want to view the log contents?"
 msgstr "Oletko varma, että haluat tarkastella lokin sisältöä?"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1217
-#: src/electron/main.tsx:1425
+#: src/electron/main.tsx:1249
+#: src/electron/main.tsx:1457
 msgid "File"
 msgstr "Tiedosto"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1225
+#: src/electron/main.tsx:1257
 msgid "Edit"
 msgstr "Muokkaa"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1257
+#: src/electron/main.tsx:1289
 msgid "View"
 msgstr "Näkymä"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1266
+#: src/electron/main.tsx:1298
 msgid "Developer"
 msgstr "Kehittäjä"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1269
+#: src/electron/main.tsx:1301
 msgid "Developer Tools"
 msgstr "Kehitystyökalut"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1277
+#: src/electron/main.tsx:1309
 msgid "Trigger Desktop Notification"
 msgstr "Käynnistä Työpöytä-ilmoitus"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1306
+#: src/electron/main.tsx:1338
 msgid "Full Screen"
 msgstr "Kokoruutu"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1313
+#: src/electron/main.tsx:1345
 msgid "Window"
 msgstr "Ikkuna"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1327
+#: src/electron/main.tsx:1359
 msgid "Help"
 msgstr "Apuja"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1331
+#: src/electron/main.tsx:1363
 msgid "Chia Blockchain Wiki"
 msgstr "Chia Wiki"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1337
+#: src/electron/main.tsx:1369
 msgid "Frequently Asked Questions"
 msgstr "Usein Kysytyt Kysymykset"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1343
+#: src/electron/main.tsx:1375
 msgid "Release Notes"
 msgstr "Version Muutokset"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1349
+#: src/electron/main.tsx:1381
 msgid "Contribute on GitHub"
 msgstr "Anna panoksesi GitHubissa"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1358
+#: src/electron/main.tsx:1390
 msgid "Report an Issue..."
 msgstr "Raportoi Ongelma..."
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1364
+#: src/electron/main.tsx:1396
 msgid "Chat on Discord"
 msgstr "Chattaa Discordissa"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1370
+#: src/electron/main.tsx:1402
 msgid "Follow on X"
 msgstr "Seuraa X:ssä"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1382
+#: src/electron/main.tsx:1414
 msgid "Chia"
 msgstr "Chia"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1385
-#: src/electron/main.tsx:1481
+#: src/electron/main.tsx:1417
+#: src/electron/main.tsx:1513
 msgid "About Chia Blockchain"
 msgstr "Chia Lohkoketjusta"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1391
+#: src/electron/main.tsx:1423
 msgid "Check for Updates..."
 msgstr "Tarkista päivitykset..."
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1440
+#: src/electron/main.tsx:1472
 msgid "Speech"
 msgstr "Puhe"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1487
+#: src/electron/main.tsx:1519
 msgid "Check for updates..."
 msgstr "Tarkista päivitykset..."
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:104
 #~ msgid "App is requesting permission to execute these commands"
-#~ msgstr "Sovellus pyytää lupaa näiden komentojen suorittamiseen"
+#~ msgstr "App is requesting permission to execute these commands"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:138
 #~ msgid "All Wallets"
-#~ msgstr "Kaikki Lompakot"
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:160
 #~ msgid "Confirm Add CAT Token"
-#~ msgstr "Vahvista CAT-tokenin lisääminen"
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:161
 #~ msgid "This app wants to add a CAT token to your wallet."
-#~ msgstr "Tämä sovellus haluaa lisätä CAT-tokenin lompakkoosi."
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:232
 #~ msgid "Create new DID Wallet"
-#~ msgstr "Luo uusi DID-lompakko"
+#~ msgstr "Create new DID Wallet"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:365
 #~ msgid "Confirm Create Offer"
-#~ msgstr "Vahvista Tarjouksen Tekeminen"
+#~ msgstr "Confirm Create Offer"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:473
 #: src/electron/constants/commandRegistry.ts:501
 #~ msgid "Hex Encoded"
-#~ msgstr "Hex-koodattu"
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:770
 #~ msgid "URIs"
-#~ msgstr "URI"
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:772
 #~ msgid "Meta URIs"
-#~ msgstr "Meta-URIt"
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:782
 #~ msgid "License URIs"
-#~ msgstr "Lisenssi-URIt"
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:905
 #~ msgid "DID Coin"
-#~ msgstr "DID-kolikko"
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1016
 #~ msgid "Confirm Update DID Recovery Ids"
-#~ msgstr "Vahvista DID:n Palautustunnusten Päivitys"
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1017
 #~ msgid "Please carefully review and confirm this DID recovery list update."
-#~ msgstr "Tarkista huolellisesti ja vahvista tämä DID:n palautusluettelon päivitys."
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1023
 #~ msgid "New Recovery List"
-#~ msgstr "Uusi Palautuslista"
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1029
 #~ msgid "Verifications Required"
-#~ msgstr "Vaaditut Vahvistukset"
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1051
 #~ msgid "Update DID Recovery Ids"
-#~ msgstr "Päivitä DID:n Palautustunnisteet"
+#~ msgstr "Update DID Recovery Ids"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1075
 #~ msgid "VC Id"
-#~ msgstr "VC-tunniste"
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1121
 #~ msgid "Proofs"
-#~ msgstr "Todisteet"
+#~ msgstr "Proofs"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1505
 #~ msgid "Confirm Create Remote Wallet"
-#~ msgstr "Vahvista Uuden Etälompakon Luonti"
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1541
 #~ msgid "Confirm Get DID Recovery Information"
-#~ msgstr "Vahvista DID:n Palautustiedot"
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1549
 #~ msgid "Get Information Needed For DID Recovery"
-#~ msgstr "Hae Tarvittavat Tiedot DID:n Palautukselle"
+#~ msgstr "Get Information Needed For DID Recovery"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2155
 #~ msgid "Get DID Recovery List"
-#~ msgstr "Hae DID-palautuslista"
+#~ msgstr "Get DID Recovery List"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:164
 #~ msgid "Offered"
-#~ msgstr "Tarjottu"
+#~ msgstr "Offered"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:178
 #~ msgid "Requested"
-#~ msgstr "Pyydetty"
+#~ msgstr "Requested"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:381
@@ -3000,7 +3000,7 @@ msgstr "Tarkista päivitykset..."
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Pair/Pair.tsx:389
 #~ msgid "Reset"
-#~ msgstr "Palauta"
+#~ msgstr "Reset"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Pair/Pair.tsx:408
@@ -3238,7 +3238,7 @@ msgstr "+ Plottaa tiedosto"
 msgid "+ Add New Plot NFT"
 msgstr "+ Lisää Uusi Plot NFT"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:306
+#: src/components/nfts/gallery/NFTGallery.tsx:358
 msgid "<0>Loading...</0> {0}%"
 msgstr "<0>Ladataan...</0> {0}%"
 
@@ -3246,7 +3246,7 @@ msgstr "<0>Ladataan...</0> {0}%"
 #~ msgid "<0>Need some XCH?</0>"
 #~ msgstr "<0>Need some XCH?</0>"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:296
+#: src/components/nfts/gallery/NFTGallery.tsx:348
 msgid "<0>Showing</0> {0} <1>of</1> {1}  <2>items</2>"
 msgstr "<0>Näytetään</0>{0}<1>/</1>{1}<2>kohdetta</2>"
 
@@ -3301,7 +3301,7 @@ msgstr "Toiminto"
 #: src/components/farm/FarmFullNodeConnections.tsx:54
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:54
 #: src/components/fullNode/FullNodeConnections.tsx:65
-#: src/components/nfts/NFTContextualActions.tsx:605
+#: src/components/nfts/NFTContextualActions.tsx:607
 #: src/components/offers2/OfferIncomingTable.tsx:119
 msgid "Actions"
 msgstr "Toiminnot"
@@ -3417,6 +3417,10 @@ msgstr "Lisäasetukset"
 msgid "After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring."
 msgstr "Kun avaimet ovat onnistuneesti siirretty uuteen avainlenkkiin, voit halutessasi poistaa avaimet vanhasta avainlenkistä."
 
+#: src/components/settings/SettingsNFT.tsx:151
+msgid "All NFT videos will restart automatically when they finish playing. When disabled, looping can still be turned on for individual videos from their detail page."
+msgstr ""
+
 #: src/components/nfts/NFTProfileDropdown.tsx:102
 #: src/components/nfts/NFTProfileDropdown.tsx:115
 msgid "All NFTs"
@@ -3432,7 +3436,7 @@ msgstr "Salli ulkoisten sovellusten ja sivustojen muodostaa yhteys lompakkoosi W
 
 #: src/components/settings/SettingsIntegration.tsx:146
 #~ msgid "Allow requests that require switching to a different wallet key."
-#~ msgstr "Salli pyynnöt, jotka vaativat vaihtamisen toiseen lompakkoavaimeen."
+#~ msgstr "Allow requests that require switching to a different wallet key."
 
 #: src/components/notification/NotificationSendDialog.tsx:286
 msgid "Allow the NFT holder to send a counter offer"
@@ -3511,6 +3515,10 @@ msgstr "NFT:n alkuperä on täydellinen historia sen omistusoikeudesta. Se yhdis
 msgid "Announcement"
 msgstr "Tiedotus"
 
+#: src/components/nfts/gallery/NFTGallery.tsx:496
+msgid "Any preview  <0/>"
+msgstr ""
+
 #: src/constants/WalletConnectCommands.tsx:17
 #~ msgid "App is requesting permission to execute these commands"
 #~ msgstr "App is requesting permission to execute these commands"
@@ -3545,7 +3553,7 @@ msgstr ""
 msgid "Are you sure you want to cancel your offer?"
 msgstr "Oletko varma, että haluat perua tarjouksen?"
 
-#: src/components/settings/SettingsNFT.tsx:58
+#: src/components/settings/SettingsNFT.tsx:76
 msgid "Are you sure you want to delete the NFT cache?"
 msgstr "Oletko varma, että haluat tyhjentää NFT-välimuistin?"
 
@@ -3750,7 +3758,7 @@ msgstr "Selaa"
 
 #: src/components/nfts/NFTBurnDialog.tsx:90
 #: src/components/nfts/NFTBurnDialog.tsx:185
-#: src/components/nfts/NFTContextualActions.tsx:543
+#: src/components/nfts/NFTContextualActions.tsx:545
 msgid "Burn"
 msgstr "Polta"
 
@@ -3774,7 +3782,7 @@ msgstr "Antamalla allekirjoitusosoitteen, julkinen avain voidaan validoida yhdis
 msgid "Bypassed Commands"
 msgstr "Ohitetut Komennot"
 
-#: src/components/settings/SettingsNFT.tsx:125
+#: src/components/settings/SettingsNFT.tsx:204
 msgid "Cache"
 msgstr "Välimuisti"
 
@@ -3827,7 +3835,7 @@ msgstr ""
 msgid "Cancel on blockchain"
 msgstr "Peru lohkoketjussa"
 
-#: src/components/nfts/NFTContextualActions.tsx:278
+#: src/components/nfts/NFTContextualActions.tsx:280
 msgid "Cancel Unconfirmed Transaction"
 msgstr "Poista Vahvistamattomat Transaktiot"
 
@@ -3852,7 +3860,7 @@ msgid "Challenge Hash"
 msgstr "Haastetiiviste"
 
 #: src/components/plotNFT/PlotNFTChangePool.tsx:110
-#: src/components/settings/SettingsNFT.tsx:163
+#: src/components/settings/SettingsNFT.tsx:242
 msgid "Change"
 msgstr "Vaihda"
 
@@ -3952,7 +3960,7 @@ msgstr "Valitse Plotteri"
 msgid "Choose Wallet Mode"
 msgstr "Valitse Lompakkotila"
 
-#: src/components/settings/SettingsNFT.tsx:75
+#: src/components/settings/SettingsNFT.tsx:93
 msgid "Choose what you want to see and how you want to view it."
 msgstr "Valitse, mitä haluat nähdä ja miten haluat nähdä ne."
 
@@ -3981,8 +3989,8 @@ msgstr ""
 msgid "Clear every \"always allow\" override for this app. Future commands will require confirmation again."
 msgstr ""
 
-#: src/components/settings/SettingsNFT.tsx:51
-#: src/components/settings/SettingsNFT.tsx:145
+#: src/components/settings/SettingsNFT.tsx:69
+#: src/components/settings/SettingsNFT.tsx:224
 msgid "Clear NFT cache"
 msgstr "Tyhjennä NFT-välimuisti"
 
@@ -4162,7 +4170,7 @@ msgstr "Yhteystiedon Nimi"
 msgid "Contacts"
 msgstr "Kontaktit"
 
-#: src/components/nfts/NFTHashStatus.tsx:109
+#: src/components/nfts/NFTHashStatus.tsx:120
 msgid "Content does not match the expected hash value that was specified during NFT minting. The content may have been modified."
 msgstr "Sisältö ei vastaa NFT:n luomisen aikana määritettyä tiivistettä. Sisältöä on mahdollisesti muutettu."
 
@@ -4170,7 +4178,7 @@ msgstr "Sisältö ei vastaa NFT:n luomisen aikana määritettyä tiivistettä. S
 #~ msgid "Content has not been validated against the hash that was specified during NFT minting."
 #~ msgstr ""
 
-#: src/components/nfts/NFTHashStatus.tsx:102
+#: src/components/nfts/NFTHashStatus.tsx:113
 msgid "Content has not been validated against the hash that was specified during NFT minting. Error: {0}"
 msgstr "Sisältöä ei ole validoitu NFT:n luonnin aikana määritettyä tiivistettä vastaan. Virhe: {0}"
 
@@ -4182,11 +4190,11 @@ msgstr "Jatka"
 #~ msgid "Contribute on GitHub"
 #~ msgstr "Contribute on GitHub"
 
-#: src/components/nfts/NFTContextualActions.tsx:349
+#: src/components/nfts/NFTContextualActions.tsx:351
 msgid "Copy Media URL"
 msgstr "Kopioi Median URL"
 
-#: src/components/nfts/NFTContextualActions.tsx:106
+#: src/components/nfts/NFTContextualActions.tsx:107
 msgid "Copy NFT ID"
 msgstr "Kopioi NFT ID"
 
@@ -4289,7 +4297,7 @@ msgstr "Luo Vastatarjous"
 #~ msgid "Create new Remote Wallet"
 #~ msgstr "Create new Remote Wallet"
 
-#: src/components/nfts/NFTContextualActions.tsx:150
+#: src/components/nfts/NFTContextualActions.tsx:152
 #: src/components/offers/NFTOfferEditor.tsx:438
 #: src/components/offers/OfferEditor.tsx:156
 #: src/components/offers/OfferManager.tsx:393
@@ -4505,7 +4513,7 @@ msgstr "Derivaatioindeksin on oltava suurempi kuin {index}"
 msgid "Description"
 msgstr "Kuvaus"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:320
+#: src/components/nfts/gallery/NFTGallery.tsx:372
 msgid "Deselect all"
 msgstr "Poista valinnat"
 
@@ -4672,11 +4680,11 @@ msgstr "Toimialuenimet"
 #~ msgid "Don't allocate host tables using pinned buffers, instead download to intermediate pinned buffers then copy to the final host buffer."
 #~ msgstr "Don't allocate host tables using pinned buffers, instead download to intermediate pinned buffers then copy to the final host buffer."
 
-#: src/components/nfts/NFTContextualActions.tsx:461
+#: src/components/nfts/NFTContextualActions.tsx:463
 msgid "Download"
 msgstr "Lataa"
 
-#: src/components/nfts/NFTContextualActions.tsx:444
+#: src/components/nfts/NFTContextualActions.tsx:446
 msgid "Download Failed"
 msgstr "Lataus Epäonnistui"
 
@@ -5140,6 +5148,10 @@ msgstr "Palkkiosumma"
 msgid "Fees included in offer:"
 msgstr "Tarjouksen sisältämät transaktiomaksut:"
 
+#: src/components/settings/SettingsNFT.tsx:162
+msgid "Fetch IPFS content through a gateway"
+msgstr ""
+
 #: src/constants/WalletConnectCommands.tsx:483
 #~ msgid "Fetches the puzzle reveal and solution for a spent coin (hex strings)."
 #~ msgstr "Fetches the puzzle reveal and solution for a spent coin (hex strings)."
@@ -5149,6 +5161,15 @@ msgstr "Tarjouksen sisältämät transaktiomaksut:"
 #~ msgid "File"
 #~ msgstr "File"
 
+#: src/components/nfts/NFTPreview.tsx:574
+msgid "File does not match the expected hash"
+msgstr ""
+
+#: src/components/nfts/NFTHashStatus.tsx:88
+#: src/components/nfts/NFTPreview.tsx:253
+msgid "File is not available"
+msgstr ""
+
 #: src/components/plot/PlotHarvesterPlots.tsx:70
 #: src/components/plot/PlotHarvesterPlotsDuplicate.tsx:14
 #: src/components/plot/PlotHarvesterPlotsFailed.tsx:14
@@ -5156,7 +5177,7 @@ msgstr "Tarjouksen sisältämät transaktiomaksut:"
 msgid "Filename"
 msgstr "Tiedosto"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:283
+#: src/components/nfts/gallery/NFTGallery.tsx:328
 msgid "Filter"
 msgstr "Suodatus"
 
@@ -5182,7 +5203,7 @@ msgstr "Lopullinen hakemisto"
 msgid "Finished"
 msgstr "Valmis"
 
-#: src/components/settings/SettingsNFT.tsx:107
+#: src/components/settings/SettingsNFT.tsx:125
 msgid "Fit images to cards"
 msgstr "Sovita kuvat kortteihin"
 
@@ -5488,7 +5509,7 @@ msgstr "Harvesteriteho"
 #~ msgid "Hash is validated."
 #~ msgstr ""
 
-#: src/components/nfts/NFTHashStatus.tsx:73
+#: src/components/nfts/NFTHashStatus.tsx:80
 msgid "Hash matches"
 msgstr "Tiivisteosumat"
 
@@ -5526,11 +5547,11 @@ msgstr "Tämänhetkiset lohkohaasteet, joiden tilatodisteet voivat löytyä plot
 msgid "Hex public key of pool"
 msgstr "Poolin julkinen heksa-avain"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:428
+#: src/components/nfts/gallery/NFTGallery.tsx:480
 msgid "Hidden"
 msgstr "Piilotettu"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:391
+#: src/components/nfts/gallery/NFTGallery.tsx:443
 msgid "Hidden  <0/>"
 msgstr "Piilotettu <0/>"
 
@@ -5538,11 +5559,11 @@ msgstr "Piilotettu <0/>"
 #~ msgid "Hidden ({0})"
 #~ msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:511
+#: src/components/nfts/NFTContextualActions.tsx:513
 msgid "Hide"
 msgstr "Piilota"
 
-#: src/components/settings/SettingsNFT.tsx:87
+#: src/components/settings/SettingsNFT.tsx:105
 msgid "Hide objectionable content"
 msgstr "Piilota kysseenalainen sisältö"
 
@@ -5612,7 +5633,7 @@ msgstr "Jos olet jo jakanut tarjouksesi tiedoston, saatat joutua lähettämään
 #~ msgid "Image Hash Mismatch"
 #~ msgstr "Image Hash Mismatch"
 
-#: src/components/settings/SettingsNFT.tsx:117
+#: src/components/settings/SettingsNFT.tsx:135
 msgid "Images will be scaled to fill the NFT card and ignore their original proportions."
 msgstr "Kuvat skaalataan NFT-kortin täyttämiseksi ja niiden alkuperäiset mittasuhteet jätetään huomioimatta."
 
@@ -5713,7 +5734,7 @@ msgstr "Plottihakemistojen päivitysskannausaikaväli"
 msgid "Invalid"
 msgstr "Virheellinen"
 
-#: src/components/nfts/NFTHashStatus.tsx:80
+#: src/components/nfts/NFTHashStatus.tsx:91
 msgid "Invalid hash"
 msgstr "Virheellinen tiiviste"
 
@@ -5815,7 +5836,7 @@ msgstr "K-Arvo"
 
 #: src/components/settings/SettingsIntegration.tsx:129
 #~ msgid "Key Switching"
-#~ msgstr "Avaimen Vaihto"
+#~ msgstr "Key Switching"
 
 #: src/components/offers/OfferShareDialog.tsx:1086
 #~ msgid "Keybase command failed {e}. If you haven't installed Keybase, you can download from https://keybase.io"
@@ -5924,7 +5945,7 @@ msgstr ""
 msgid "License URL {0}"
 msgstr "Lisenssin URL {0}"
 
-#: src/components/settings/SettingsNFT.tsx:176
+#: src/components/settings/SettingsNFT.tsx:255
 msgid "Limit cache size"
 msgstr "Rajoita välimuistin kokoa"
 
@@ -5965,7 +5986,7 @@ msgstr "Ladataan NFT"
 msgid "Loading NFT Info..."
 msgstr "Ladataan NFT-tietoja..."
 
-#: src/components/nfts/NFTPreview.tsx:386
+#: src/components/nfts/NFTPreview.tsx:563
 msgid "Loading NFT..."
 msgstr "Ladataan NFT..."
 
@@ -5973,7 +5994,8 @@ msgstr "Ladataan NFT..."
 #~ msgid "Loading NFTs..."
 #~ msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:386
+#: src/components/nfts/NFTPreview.tsx:563
+#: src/components/nfts/NFTPreview.tsx:585
 msgid "Loading preview..."
 msgstr "Ladataan esikatselua..."
 
@@ -5992,7 +6014,7 @@ msgstr "Lataa..."
 msgid "Local"
 msgstr "Paikallinen"
 
-#: src/components/settings/SettingsNFT.tsx:158
+#: src/components/settings/SettingsNFT.tsx:237
 msgid "Local folder"
 msgstr "Paikallinen kansio"
 
@@ -6016,6 +6038,22 @@ msgstr "Kirjaudu Ulos"
 msgid "Log Viewer"
 msgstr "Lokien Näyttö"
 
+#: src/components/nfts/NFTPreview.tsx:442
+msgid "Loop video"
+msgstr ""
+
+#: src/components/settings/SettingsNFT.tsx:143
+msgid "Loop videos"
+msgstr ""
+
+#: src/components/nfts/NFTPreview.tsx:438
+msgid "Looping is enabled for all videos in Settings"
+msgstr ""
+
+#: src/components/nfts/NFTPreview.tsx:440
+msgid "Looping on"
+msgstr ""
+
 #: src/constants/WalletConnectCommands.tsx:1574
 #~ msgid "Make DataLayer Offer"
 #~ msgstr "Make DataLayer Offer"
@@ -6032,7 +6070,7 @@ msgstr "Hallitse CAT-tokeneita"
 msgid "Manage Farming Rewards"
 msgstr "Hallitse Farmeripalkkioita"
 
-#: src/components/settings/SettingsNFT.tsx:128
+#: src/components/settings/SettingsNFT.tsx:207
 msgid "Manage how and where files are stored on this computer."
 msgstr "Hallitse kuinka ja mihin tiedostot tallennetaan tällä tietokoneella."
 
@@ -6227,11 +6265,11 @@ msgstr "Siirrä"
 msgid "Move NFT to Profile"
 msgstr "Siirrä NFT profiiliin"
 
-#: src/components/nfts/NFTContextualActions.tsx:226
+#: src/components/nfts/NFTContextualActions.tsx:228
 msgid "Move to Profile"
 msgstr "Siirrä profiiliin"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:278
+#: src/components/nfts/gallery/NFTGallery.tsx:323
 msgid "Multi-select"
 msgstr "Monivalinta"
 
@@ -6331,9 +6369,9 @@ msgid "Next"
 msgstr "Seuraava"
 
 #: src/components/offers/NFTOfferEditor.tsx:212
-#: src/components/offers2/OfferBuilderNFTSection.tsx:44
+#: src/components/offers2/OfferBuilderNFTSection.tsx:46
 #: src/components/settings/Settings.tsx:38
-#: src/components/settings/SettingsNFT.tsx:72
+#: src/components/settings/SettingsNFT.tsx:90
 #: src/components/signVerify/SignMessage.tsx:164
 msgid "NFT"
 msgstr "NFT"
@@ -6359,6 +6397,10 @@ msgstr "NFT-kolikon Tunniste"
 #: src/components/offers/NFTOfferEditor.tsx:617
 msgid "NFT details not available"
 msgstr "NFT:n tietoja ei ole saatavilla"
+
+#: src/components/settings/SettingsNFT.tsx:170
+msgid "NFT files published with ipfs:// addresses will be downloaded through the public ipfs.io HTTPS gateway. The requested URL differs from the address recorded on chain, but downloaded content is still verified against the NFT's on-chain hash. When disabled, ipfs:// files are not fetched."
+msgstr ""
 
 #: src/components/offers2/OfferBuilderNFTRoyalties.tsx:172
 msgid "NFT has no royalties"
@@ -6404,19 +6446,19 @@ msgstr "NFT:tä ei määritetty"
 msgid "NFT Purchase Price"
 msgstr "NFT-ostohinta"
 
-#: src/components/nfts/NFTContextualActions.tsx:265
+#: src/components/nfts/NFTContextualActions.tsx:267
 msgid "NFT Status Update Failed"
 msgstr "NFT:n tilan päivitys epäonnistui"
 
-#: src/components/nfts/NFTContextualActions.tsx:255
+#: src/components/nfts/NFTContextualActions.tsx:257
 msgid "NFT Status Updated"
 msgstr "NFT:n tila päivitetty"
 
-#: src/components/nfts/NFTContextualActions.tsx:180
+#: src/components/nfts/NFTContextualActions.tsx:182
 msgid "NFT Transfer Failed"
 msgstr "NFT:n siirto epäonnistui"
 
-#: src/components/nfts/NFTContextualActions.tsx:174
+#: src/components/nfts/NFTContextualActions.tsx:176
 msgid "NFT Transfer Pending"
 msgstr "NFT:n siirto kesken"
 
@@ -6424,7 +6466,7 @@ msgstr "NFT:n siirto kesken"
 msgid "NFTs"
 msgstr "NFT:t"
 
-#: src/components/settings/SettingsNFT.tsx:97
+#: src/components/settings/SettingsNFT.tsx:115
 msgid "NFTs that have been categorized by the creator as objectionable content will be hidden by default."
 msgstr "NFT:t, jotka niiden tekijä on luokitellut ristiriitaista sisältöä sisältäväksi, piilotetaan oletusarvoisesti."
 
@@ -6465,7 +6507,7 @@ msgstr "Ei tarjouksia"
 #~ msgid "No Custom Permissions"
 #~ msgstr "No Custom Permissions"
 
-#: src/components/nfts/NFTPreview.tsx:391
+#: src/components/nfts/NFTPreview.tsx:568
 msgid "No file available"
 msgstr "Ei tiedostoa saatavilla"
 
@@ -6495,7 +6537,7 @@ msgstr "Standardilompakkoa ei löytynyt"
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:29
 #: src/components/fullNode/FullNodeConnections.tsx:29
 msgid "Node ID"
-msgstr "Noodin tunnus"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:2312
 #~ msgid "Non Observer Derivation"
@@ -6516,7 +6558,8 @@ msgstr "Noodin tunnus"
 msgid "None"
 msgstr "Ei yhtään"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:396
+#: src/components/nfts/gallery/NFTGallery.tsx:448
+#: src/components/nfts/gallery/NFTGallery.tsx:514
 msgid "None (0)"
 msgstr "Ei Yhtään (0)"
 
@@ -6648,11 +6691,11 @@ msgstr "Vaiheen 2 säikeiden määrä"
 msgid "Number of threads for Phase 3"
 msgstr "Vaiheen 3 säikeiden määrä"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:366
+#: src/components/nfts/gallery/NFTGallery.tsx:418
 msgid "Objectionable Content"
 msgstr "Kyseenalainen sisältö"
 
-#: src/components/settings/SettingsNFT.tsx:140
+#: src/components/settings/SettingsNFT.tsx:219
 msgid "Occupied space"
 msgstr "Varattu tila"
 
@@ -6740,7 +6783,7 @@ msgstr "Tarjous vanhenee {0} {1} kuluttua"
 #: src/components/offers/OfferManager.tsx:202
 #: src/components/offers2/CancelOfferList.tsx:80
 msgid "Offered"
-msgstr ""
+msgstr "Tarjottu"
 
 #: src/components/offers2/DataLayerOfferViewer.tsx:164
 msgid "Offered Store Updates ({0})"
@@ -6806,11 +6849,11 @@ msgstr "Yhtä tai useampaa tuntematonta tokenia tarjotaan. Varmista, että tarjo
 msgid "One or more unknown tokens are being offered. Please verify that the asset IDs of the tokens listed below match the asset IDs of the tokens you expect to receive."
 msgstr "Yhtä tai useampaa tuntematonta tokenia tarjotaan. Varmista, että alla lueteltujen tokeneiden Asset ID:t täsmäävät tokeneihin, joita odotat vastaanottavasi."
 
-#: src/components/offers2/OfferBuilderNFTSection.tsx:45
+#: src/components/offers2/OfferBuilderNFTSection.tsx:47
 msgid "One-of-a-kind Collectible assets"
 msgstr "Uniikit keräilyassetit"
 
-#: src/components/nfts/NFTContextualActions.tsx:317
+#: src/components/nfts/NFTContextualActions.tsx:319
 msgid "Open in Browser"
 msgstr "Avaa selaimessa"
 
@@ -7363,10 +7406,18 @@ msgstr "Valmistellaan Plot-NFT:tä"
 msgid "Preparing standard wallet"
 msgstr "Valmistellaan normaalia lompakkoa"
 
-#: src/components/nfts/NFTPreview.tsx:231
+#: src/components/nfts/NFTPreview.tsx:289
 #: src/components/offers2/OfferBuilderNFT.tsx:75
 msgid "Preview"
 msgstr "Esikatselu"
+
+#: src/components/nfts/gallery/NFTGallery.tsx:532
+msgid "Preview available"
+msgstr ""
+
+#: src/components/nfts/gallery/NFTGallery.tsx:501
+msgid "Preview available  <0/>"
+msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:316
 #~ msgid "Preview image uris"
@@ -7375,6 +7426,18 @@ msgstr "Esikatselu"
 #: src/components/nfts/NFTDetails.tsx:310
 msgid "Preview image URL {index}"
 msgstr "Esikatselu-URL {index}"
+
+#: src/components/nfts/NFTPreview.tsx:580
+msgid "Preview is not available"
+msgstr ""
+
+#: src/components/nfts/gallery/NFTGallery.tsx:553
+msgid "Preview not available"
+msgstr ""
+
+#: src/components/nfts/gallery/NFTGallery.tsx:506
+msgid "Preview not available  <0/>"
+msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:621
 #~ msgid "Preview URL is not valid"
@@ -7425,7 +7488,7 @@ msgstr "Tilatodisteavaruuden Koko"
 
 #: src/components/vcs/VCCard.tsx:179
 msgid "Proofs"
-msgstr ""
+msgstr "Todisteet"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:25
 msgid "Proofs Found"
@@ -7536,9 +7599,13 @@ msgstr "Rekursiivinen Plottiskannaus"
 msgid "Refresh"
 msgstr "Päivitä"
 
-#: src/components/nfts/NFTContextualActions.tsx:584
+#: src/components/nfts/NFTContextualActions.tsx:586
 msgid "Refresh NFT data"
 msgstr "Päivitä NFT-data"
+
+#: src/components/nfts/gallery/NFTGallery.tsx:333
+msgid "Refresh NFTs"
+msgstr ""
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:46
 #: src/components/plot/overview/PlotOverviewPlots.tsx:63
@@ -7623,7 +7690,7 @@ msgstr "Poistetaan"
 #: src/components/offers/OfferManager.tsx:212
 #: src/components/offers2/CancelOfferList.tsx:95
 msgid "Requested"
-msgstr ""
+msgstr "Pyydetty"
 
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:31
 #: src/components/offers2/OfferIncomingTable.tsx:45
@@ -7878,7 +7945,7 @@ msgid "Search on Tail Database"
 msgstr "Etsi Tail-tietokannasta"
 
 #: src/components/addressbook/AddressBookSideBar.tsx:150
-#: src/components/nfts/gallery/NFTGallery.tsx:266
+#: src/components/nfts/gallery/NFTGallery.tsx:311
 msgid "Search..."
 msgstr "Etsi..."
 
@@ -7905,7 +7972,7 @@ msgstr "Katso Kaikki Aktiviteetit"
 msgid "Select 2nd Temporary Directory"
 msgstr "Valitse Toinen Väliaikaishakemisto"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:320
+#: src/components/nfts/gallery/NFTGallery.tsx:372
 msgid "Select all"
 msgstr "Valitse kaikki"
 
@@ -8102,7 +8169,7 @@ msgstr "Jaa Spacescan.io:ssa"
 #~ msgid "Share Privately"
 #~ msgstr "Share Privately"
 
-#: src/components/nfts/NFTContextualActions.tsx:511
+#: src/components/nfts/NFTContextualActions.tsx:513
 msgid "Show"
 msgstr "Näytä"
 
@@ -8122,6 +8189,10 @@ msgstr "Näytä Tiedot"
 #: src/components/nfts/NFTPreview.tsx:667
 #~ msgid "Show Preview"
 #~ msgstr "Show Preview"
+
+#: src/components/settings/SettingsNFT.tsx:182
+msgid "Show unverified previews"
+msgstr ""
 
 #: src/components/nfts/gallery/NFTGallery.tsx:541
 #~ msgid "Showing {0} of {1} items"
@@ -8385,7 +8456,7 @@ msgstr "Onnistui"
 msgid "Successfully restarted Harvester"
 msgstr "Harvesterin uudelleenkäynnistys onnistui"
 
-#: src/components/settings/LimitCacheSize.tsx:54
+#: src/components/settings/LimitCacheSize.tsx:49
 msgid "Successfully updated cache size limit."
 msgstr "Välimuistin kokoraja päivitettiin onnistuneesti."
 
@@ -8466,7 +8537,7 @@ msgstr "Takaisinvetoaika voidaan asettaa transaktiokohtaisesti"
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
 msgstr "Derivaatioindeksi asettaa lompakon osoitteiden määrän, jota lompakko skannaa lohkoketjusta. Tämä luku on yleensä suurempi, jos sinulla on paljon tapahtumia tai peruutettuja tarjouksia XCH-, CAT- tai NFT-kolikoille. Jos uskot, että saldo on väärä, nosta derivaatioindeksiä, mikä auttaa lompakkoa sisällyttämään puuttuvat kolikot saldoon."
 
-#: src/components/nfts/NFTContextualActions.tsx:445
+#: src/components/nfts/NFTContextualActions.tsx:447
 msgid "The download failed: {0}"
 msgstr "Lataus epäonnistui: {0}"
 
@@ -8510,15 +8581,15 @@ msgstr "NFT-siirto epäonnistui: {err}"
 msgid "The NFT move transaction has been successfully submitted to the blockchain."
 msgstr "NFT:n siirtotransaktio on onnistuneesti lähetetty lohkoketjuun."
 
-#: src/components/nfts/NFTContextualActions.tsx:256
+#: src/components/nfts/NFTContextualActions.tsx:258
 msgid "The NFT status has been updated. If the transaction was successfully sent to the mempool, it may still complete."
 msgstr "NFT:n tila on päivitetty. Jos transaktio lähetettiin onnistuneesti mempooliin, se saattaa silti sulkeutua onnistuneesti."
 
-#: src/components/nfts/NFTContextualActions.tsx:266
+#: src/components/nfts/NFTContextualActions.tsx:268
 msgid "The NFT status update failed: {err}"
 msgstr "NFT-päivitys epäonnistui: {err}"
 
-#: src/components/nfts/NFTContextualActions.tsx:181
+#: src/components/nfts/NFTContextualActions.tsx:183
 msgid "The NFT transfer failed: {0}"
 msgstr "NFT-siirto epäonnistui: {0}"
 
@@ -8526,7 +8597,7 @@ msgstr "NFT-siirto epäonnistui: {0}"
 #~ msgid "The NFT transfer failed: {error}"
 #~ msgstr "The NFT transfer failed: {error}"
 
-#: src/components/nfts/NFTContextualActions.tsx:175
+#: src/components/nfts/NFTContextualActions.tsx:177
 msgid "The NFT transfer transaction has been successfully submitted to the blockchain."
 msgstr "NFT:n siirtotransaktio on onnistuneesti lähetetty lohkoketjuun."
 
@@ -8820,7 +8891,7 @@ msgstr "Pyydetty Kokonaissumma"
 
 #: src/components/offers2/OfferBuilderAmountWithRoyalties.tsx:31
 msgid "Total Amount with Royalties"
-msgstr "Yhteissumma rojaltien kanssa"
+msgstr ""
 
 #: src/components/farm/card/FarmCardTotalChiaFarmed.tsx:27
 #~ msgid "Total Chia Farmed"
@@ -8960,7 +9031,7 @@ msgstr "Siirrä"
 #~ msgid "Transfer DID"
 #~ msgstr "Transfer DID"
 
-#: src/components/nfts/NFTContextualActions.tsx:198
+#: src/components/nfts/NFTContextualActions.tsx:200
 #: src/components/nfts/NFTTransferAction.tsx:201
 msgid "Transfer NFT"
 msgstr ""
@@ -9001,7 +9072,7 @@ msgstr "Tyyppi"
 #~ msgid "Types ({0}/{1})"
 #~ msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:329
+#: src/components/nfts/gallery/NFTGallery.tsx:381
 msgid "Types{0}"
 msgstr "Tyypit{0}"
 
@@ -9068,7 +9139,7 @@ msgstr "Tuntematon Sovellus"
 
 #: src/util/resolveOfferInfo.tsx:114
 msgid "Unknown Asset"
-msgstr "Tuntematon Assetti"
+msgstr ""
 
 #: src/components/offers/NFTOfferViewer.tsx:370
 #: src/components/offers/OfferSummaryRow.tsx:150
@@ -9102,7 +9173,7 @@ msgstr "Tunnistamaton assetti"
 #~ msgid "Unsupported commands"
 #~ msgstr "Unsupported commands"
 
-#: src/components/settings/LimitCacheSize.tsx:82
+#: src/components/settings/LimitCacheSize.tsx:77
 msgid "Update"
 msgstr "Päivitä"
 
@@ -9114,7 +9185,7 @@ msgstr "Päivitä"
 #~ msgid "Update DID Recovery Ids"
 #~ msgstr "Update DID Recovery Ids"
 
-#: src/components/nfts/NFTHashStatus.tsx:69
+#: src/components/nfts/NFTHashStatus.tsx:76
 msgid "Update Pending"
 msgstr "Odottaa Päivitystä"
 
@@ -9128,7 +9199,7 @@ msgstr "Odottaa Päivitystä"
 msgid "URL"
 msgstr "URL"
 
-#: src/components/nfts/NFTHashStatus.tsx:77
+#: src/components/nfts/NFTHashStatus.tsx:84
 msgid "URL is not valid"
 msgstr "URL ei ole kelvollinen"
 
@@ -9253,7 +9324,7 @@ msgstr "Tarkista Poolin Tiedot"
 msgid "Verify Signature"
 msgstr "Varmenna Allekirjoitus"
 
-#: src/components/nfts/NFTHashStatus.tsx:65
+#: src/components/nfts/NFTHashStatus.tsx:72
 msgid "Verifying hash..."
 msgstr "Tarkistetaan tiivistettä..."
 
@@ -9290,7 +9361,7 @@ msgstr "Näytä Dexiessä"
 #~ msgid "View on Hashgreen DEX"
 #~ msgstr "View on Hashgreen DEX"
 
-#: src/components/nfts/NFTContextualActions.tsx:661
+#: src/components/nfts/NFTContextualActions.tsx:663
 #: src/components/offers/OfferShareDialog.tsx:384
 msgid "View on MintGarden"
 msgstr "Näytä MintGardenissa"
@@ -9303,7 +9374,7 @@ msgstr "Näytä MintGardenissa"
 msgid "View on Offerpool"
 msgstr "Näytä Offerpoolissa"
 
-#: src/components/nfts/NFTContextualActions.tsx:669
+#: src/components/nfts/NFTContextualActions.tsx:671
 #: src/components/offers/OfferShareDialog.tsx:481
 msgid "View on Spacescan.io"
 msgstr "Näytä Spacescan.io:ssa"
@@ -9316,11 +9387,11 @@ msgstr "Näytä Poolin Kirjautumislinkki"
 msgid "Viewing offer"
 msgstr "Näytä tarjous"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:412
+#: src/components/nfts/gallery/NFTGallery.tsx:464
 msgid "Visible"
 msgstr "Näkyvissä"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:386
+#: src/components/nfts/gallery/NFTGallery.tsx:438
 msgid "Visible  <0/>"
 msgstr "Näkyvissä <0/>"
 
@@ -9328,7 +9399,7 @@ msgstr "Näkyvissä <0/>"
 #~ msgid "Visible ({0})"
 #~ msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:381
+#: src/components/nfts/gallery/NFTGallery.tsx:433
 msgid "Visible and Hidden  <0/>"
 msgstr "Näkyvät ja piilotetut <0/>"
 
@@ -9493,6 +9564,10 @@ msgstr "Paino"
 msgid "Weight is the total added difficulty of all blocks up to and including this one"
 msgstr "Paino on kaikkien tähänastisten lohkojen vaikeuskertoimien summa"
 
+#: src/components/settings/SettingsNFT.tsx:192
+msgid "When an NFT image is too large to verify against its on-chain hash, load the transaction confirmation preview directly from its source URL without verification. When disabled, no preview is shown for these NFTs."
+msgstr ""
+
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:22
 #~ msgid "When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or cancelled, resulting in your spendable balance changing."
 #~ msgstr "When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or canceled, resulting in your spendable balance changing."
@@ -9562,7 +9637,7 @@ msgstr "Kyllä"
 msgid "Yes, Accept Offer"
 msgstr "Kyllä, Hyväksy Tarjous"
 
-#: src/components/settings/SettingsNFT.tsx:52
+#: src/components/settings/SettingsNFT.tsx:70
 msgid "Yes, delete"
 msgstr "Kyllä, poista"
 

@@ -4,6 +4,8 @@ import { Trans } from '@lingui/macro';
 import React from 'react';
 import { useFieldArray } from 'react-hook-form';
 
+import OfferBuilderNFTMax from '../../constants/OfferBuilderNFTMax';
+
 import OfferBuilderNFT from './OfferBuilderNFT';
 import OfferBuilderSection from './OfferBuilderSection';
 
@@ -17,7 +19,7 @@ export type OfferBuilderNFTSectionProps = {
 };
 
 export default function OfferBuilderNFTSection(props: OfferBuilderNFTSectionProps) {
-  const { name, offering, muted, viewer, isMyOffer = false, max = 10 } = props;
+  const { name, offering, muted, viewer, isMyOffer = false, max = OfferBuilderNFTMax } = props;
 
   const { fields, append, remove } = useFieldArray({
     name,

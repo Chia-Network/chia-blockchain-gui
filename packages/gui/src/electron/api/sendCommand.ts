@@ -6,6 +6,26 @@ import { loadConfig } from '../utils/loadConfig';
 const REQUEST_TIMEOUT_MS = 10 * 60 * 1000;
 const JSONBigNative = JSONBig({ useNativeBigInt: true });
 
+// The wallet_ui socket also receives daemon broadcast events (farming_info,
+// get_fee_estimate, get_connections, ...). json-bigint with useNativeBigInt
+// passes any number literal longer than 15 characters to BigInt(), which
+// throws on the long-precision floats those events carry, so fall back to the
+// BigNumber-based parser before giving up on a frame. Returns undefined for
+// frames that are not valid JSON at all.
+function parseIncomingMessage(data: Buffer): any | undefined {
+  const text = data.toString();
+
+  try {
+    return JSONBigNative.parse(text);
+  } catch {
+    try {
+      return JSONBig.parse(text);
+    } catch {
+      return undefined;
+    }
+  }
+}
+
 let socketPromise: Promise<WebSocket> | undefined;
 
 async function connect(): Promise<WebSocket> {
@@ -37,12 +57,12 @@ async function connect(): Promise<WebSocket> {
     });
 
     function handleMessage(data: Buffer) {
-      try {
-        const response = JSONBigNative.parse(data.toString());
-        if (response.request_id !== requestId) {
-          return;
-        }
+      const response = parseIncomingMessage(data);
+      if (!response || response.request_id !== requestId) {
+        return;
+      }
 
+      try {
         if (!response.data.success) {
           throw new Error(`Daemon service is not registered`);
         }
@@ -167,12 +187,12 @@ export async function sendCommand<TResponse extends Record<string, unknown>>(
     }
 
     function handleMessage(data: Buffer) {
-      try {
-        const response = JSONBigNative.parse(data.toString());
-        if (response.request_id !== requestId) {
-          return;
-        }
+      const response = parseIncomingMessage(data);
+      if (!response || response.request_id !== requestId) {
+        return;
+      }
 
+      try {
         if (!response.data.success) {
           throw new Error(response.data.error);
         }

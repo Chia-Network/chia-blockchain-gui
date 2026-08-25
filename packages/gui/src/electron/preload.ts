@@ -132,6 +132,7 @@ contextBridge.exposeInMainWorld(API.CACHE, {
   getURI: (url: string, options?: { maxSize?: number; timeout?: number }) =>
     invokeWithCustomErrors(CacheAPI.GET_URI, url, options),
   invalidate: (url: string) => invokeWithCustomErrors(CacheAPI.INVALIDATE, url),
+  getCacheInfos: (urls: string[]) => invokeWithCustomErrors(CacheAPI.GET_CACHE_INFOS, urls),
   subscribeToDirectoryChange: (callback: (...args: unknown[]) => void) =>
     onIpcEvent(CacheAPI.ON_CACHE_DIRECTORY_CHANGED, callback),
   subscribeToMaxSizeChange: (callback: (...args: unknown[]) => void) =>

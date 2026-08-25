@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-05-24 00:23\n"
+"PO-Revision-Date: 2026-08-23 00:04\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -87,7 +87,7 @@ msgstr "报价资料"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:92
 msgid "Is notification visible to the paired fingerprint"
-msgstr ""
+msgstr "通知对配对的指纹是否可见"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:100
@@ -108,12 +108,12 @@ msgstr "请求权限"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:109
 msgid "This app wants to always allow selected commands without confirmation."
-msgstr ""
+msgstr "此应用想要始终允许选定的命令而无需确认。"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:110
 msgid "Allow"
-msgstr ""
+msgstr "允许"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:114
@@ -123,7 +123,7 @@ msgstr "命令"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:122
 msgid "Always allow selected commands without asking for confirmation"
-msgstr ""
+msgstr "始终允许选定的命令，无需询问确认"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:132
@@ -296,7 +296,7 @@ msgstr "NFT 硬币列表"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:252
 msgid "Confirm Cancel Offer"
-msgstr ""
+msgstr "确认取消报价"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:253
@@ -375,7 +375,7 @@ msgstr "取消报价"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:279
 msgid "Confirm Create Offer for Ids"
-msgstr ""
+msgstr "确认创建 Id 报价"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:282
@@ -414,7 +414,7 @@ msgstr "禁用 JSON 格式化"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:316
 msgid "Omit transactions data"
-msgstr ""
+msgstr "省略交易数据"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:323
@@ -446,7 +446,7 @@ msgstr "创建指定ID的报价"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:350
 msgid "Confirm Take Offer"
-msgstr ""
+msgstr "确认接受报价"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:351
@@ -494,7 +494,7 @@ msgstr "签名"
 #: src/electron/commands/Commands.ts:381
 #: src/electron/commands/Commands.ts:409
 msgid "Message Is Hex Encoded String"
-msgstr ""
+msgstr "消息为十六进制编码字符串"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:387
@@ -622,7 +622,7 @@ msgstr "添加资产代币"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:489
 msgid "Wallet Name"
-msgstr ""
+msgstr "钱包名称"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:500
@@ -652,7 +652,7 @@ msgstr "新建远程钱包"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:521
 msgid "Please carefully review and confirm creating this remote wallet."
-msgstr ""
+msgstr "请仔细检查并确认创建此远程钱包。"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:539
@@ -687,7 +687,7 @@ msgstr "确认删除图块"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:548
 msgid "Are you sure you want to delete this plot?"
-msgstr ""
+msgstr "确定要删除此图块吗？"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:551
@@ -702,7 +702,7 @@ msgstr "确认添加图块目录"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:556
 msgid "Are you sure you want to add this plot directory?"
-msgstr ""
+msgstr "确定添加此图块目录吗？"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:557
@@ -725,7 +725,7 @@ msgstr "确认删除图块目录"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:563
 msgid "Are you sure you want to remove this plot directory?"
-msgstr ""
+msgstr "确定移除此图块目录吗？"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:564
@@ -768,7 +768,7 @@ msgstr "确认断开连接"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:581
 msgid "Are you sure you want to disconnect from the specified node?"
-msgstr ""
+msgstr "确定要断开指定节点的连接吗？"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:582
@@ -780,12 +780,12 @@ msgstr "断开连接"
 #: src/electron/commands/Commands.ts:587
 #: src/electron/commands/Commands.ts:601
 msgid "Node ID"
-msgstr ""
+msgstr "节点ID"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:595
 msgid "Are you sure you want to disconnect from the specified farmer?"
-msgstr ""
+msgstr "确定要断开指定农民的连接吗？"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:608
@@ -805,12 +805,12 @@ msgstr "支付说明"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:617
 msgid "Confirm Stop Plotting"
-msgstr ""
+msgstr "确认停止绘画"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:618
 msgid "Are you sure you want to stop plotting?"
-msgstr ""
+msgstr "确定停止绘图吗？"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:619
@@ -820,7 +820,7 @@ msgstr "停止"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:621
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:625
@@ -940,7 +940,7 @@ msgstr "版税百分比"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:732
 msgid "Uris"
-msgstr ""
+msgstr "网址"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:733
@@ -951,7 +951,7 @@ msgstr "哈希"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:734
 msgid "Meta Uris"
-msgstr ""
+msgstr "元数据网址"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:737
@@ -961,7 +961,7 @@ msgstr "元数据哈希"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:743
 msgid "License Uris"
-msgstr ""
+msgstr "许可证网址"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:748
@@ -1041,7 +1041,7 @@ msgstr "新的P2谜题哈希"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:853
 msgid "DID Coin Dictionary"
-msgstr ""
+msgstr "DID 硬币字典"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:859
@@ -1225,7 +1225,7 @@ msgstr "请仔细检查并确认向此可验证凭证添加证明。"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1061
 msgid "Proofs Object (Key Value Pairs)"
-msgstr ""
+msgstr "证明对象（键值对）"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1067
@@ -1240,17 +1240,17 @@ msgstr "确认撤销可验证凭证"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1074
 msgid "Are you sure you want to revoke this verifiable credential?"
-msgstr ""
+msgstr "确定要撤销此可验证凭据吗？"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1075
 msgid "Revoke"
-msgstr ""
+msgstr "撤销"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1080
 msgid "Parent Coin Id"
-msgstr ""
+msgstr "父硬币ID"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1088
@@ -1260,12 +1260,12 @@ msgstr "撤销可验证证件"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1094
 msgid "Confirm Create DataStore"
-msgstr ""
+msgstr "确认创建数据存储"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1095
 msgid "Please carefully review and confirm creating this data store."
-msgstr ""
+msgstr "请仔细检查并确认创建此数据存储。"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1107
@@ -1280,12 +1280,12 @@ msgstr "创建DataStore"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1121
 msgid "Confirm DataStore Update"
-msgstr ""
+msgstr "确认数据存储更新"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1122
 msgid "Please carefully review and confirm this data store update."
-msgstr ""
+msgstr "请仔细检查并确认更新此数据存储。"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1125
@@ -1317,7 +1317,7 @@ msgstr "变更列表"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1136
 msgid "Submit On Chain"
-msgstr ""
+msgstr "提交到区块链"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1144
@@ -1327,12 +1327,12 @@ msgstr "批量更新"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1150
 msgid "Confirm DataStore Insert"
-msgstr ""
+msgstr "确认数据存储插入"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1151
 msgid "Please carefully review and confirm this data store insert."
-msgstr ""
+msgstr "请仔细检查并确认插入此数据存储。"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1152
@@ -1355,12 +1355,12 @@ msgstr "值"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1174
 msgid "Confirm DataStore Delete Key"
-msgstr ""
+msgstr "确认删除数据存储键"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1175
 msgid "Are you sure you want to delete this key from the data store?"
-msgstr ""
+msgstr "确定要从数据存储中删除此键吗？"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1192
@@ -1370,12 +1370,12 @@ msgstr "删除密钥"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1198
 msgid "Confirm Add Mirror"
-msgstr ""
+msgstr "确认添加镜像"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1199
 msgid "Please carefully review and confirm adding this mirror."
-msgstr ""
+msgstr "请仔细检查并确认添加此镜像。"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1203
@@ -1392,12 +1392,12 @@ msgstr "添加镜像"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1221
 msgid "Confirm Delete Mirror"
-msgstr ""
+msgstr "确认删除镜像"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1222
 msgid "Are you sure you want to delete this mirror?"
-msgstr ""
+msgstr "确定要删除此镜像吗？"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1238
@@ -1407,12 +1407,12 @@ msgstr "删除镜像"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1244
 msgid "Confirm DataStore Subscribe"
-msgstr ""
+msgstr "确认数据存储订阅"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1245
 msgid "Please review and confirm this subscription."
-msgstr ""
+msgstr "请检查并确认此订阅。"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1246
@@ -1423,12 +1423,12 @@ msgstr "订阅"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1260
 msgid "Confirm DataStore Unsubscribe"
-msgstr ""
+msgstr "确认取消订阅数据存储"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1261
 msgid "Please review and confirm this unsubscribe."
-msgstr ""
+msgstr "请检查并确认此取消订阅。"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1262
@@ -1439,17 +1439,17 @@ msgstr "取消订阅"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1268
 msgid "Retain"
-msgstr ""
+msgstr "保留"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1282
 msgid "Confirm Remove Subscriptions"
-msgstr ""
+msgstr "确认移除订阅"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1283
 msgid "Are you sure you want to remove these subscription URLs?"
-msgstr ""
+msgstr "你确定要移除这些订阅 URL 吗？"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1293
@@ -1459,17 +1459,17 @@ msgstr "移除订阅"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1299
 msgid "Confirm Add Missing Files"
-msgstr ""
+msgstr "确认添加缺少的文件"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1300
 msgid "Please review and confirm syncing missing files."
-msgstr ""
+msgstr "请检查并确认同步缺失的文件。"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1301
 msgid "Sync"
-msgstr ""
+msgstr "同步"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1305
@@ -1495,17 +1495,17 @@ msgstr "添加缺少的文件"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1331
 msgid "Confirm Check Plugins"
-msgstr ""
+msgstr "确认检查插件"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1332
 msgid "Please review and confirm this plugin check."
-msgstr ""
+msgstr "请检查并确认此插件检查。"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1333
 msgid "Check"
-msgstr ""
+msgstr "检查"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1338
@@ -1515,17 +1515,17 @@ msgstr "检查插件"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1344
 msgid "Confirm Clear Pending Roots"
-msgstr ""
+msgstr "确认清除待处理根"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1345
 msgid "Are you sure you want to clear pending roots for this store?"
-msgstr ""
+msgstr "你确定要清除此存储的待处理根吗？"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1346
 msgid "Clear"
-msgstr ""
+msgstr "清除"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1352
@@ -1535,19 +1535,19 @@ msgstr "清除Pending Roots"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1358
 msgid "Confirm Get Ancestors"
-msgstr ""
+msgstr "确认获取祖先"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1359
 #: src/electron/commands/Commands.ts:1375
 msgid "Please review and confirm this query."
-msgstr ""
+msgstr "请检查并确认此查询。"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1360
 #: src/electron/commands/Commands.ts:1376
 msgid "Query"
-msgstr ""
+msgstr "查询"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1368
@@ -1557,7 +1557,7 @@ msgstr "获取Ancestors"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1374
 msgid "Confirm List Subscriptions"
-msgstr ""
+msgstr "确认列出订阅"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1381
@@ -1567,12 +1567,12 @@ msgstr "订阅"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1387
 msgid "Confirm Make DataLayer Offer"
-msgstr ""
+msgstr "确认提供数据层报价"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1388
 msgid "Please carefully review and confirm this DataLayer offer."
-msgstr ""
+msgstr "请仔细检查并确认数据层报价。"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1391
@@ -1592,12 +1592,12 @@ msgstr "生成数据层报价"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1410
 msgid "Confirm Take DataLayer Offer"
-msgstr ""
+msgstr "确认接受数据层报价"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1411
 msgid "Please carefully review and confirm taking this DataLayer offer."
-msgstr ""
+msgstr "请仔细检查并确认接受此数据层报价。"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1426
@@ -1607,18 +1607,18 @@ msgstr "接受数据层报价接受者"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1432
 msgid "Confirm Cancel DataLayer Offer"
-msgstr ""
+msgstr "确认取消数据层报价"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1433
 msgid "Please carefully review and confirm cancelling this DataLayer offer."
-msgstr ""
+msgstr "请仔细检查并确认取消此数据层报价。"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1434
 #: src/electron/dialogs/Confirm/Confirm.tsx:438
 #: src/electron/dialogs/Pair/Pair.tsx:377
-#: src/electron/main.tsx:1089
+#: src/electron/main.tsx:1121
 msgid "Cancel"
 msgstr "取消"
 
@@ -1630,12 +1630,12 @@ msgstr "取消数据层报价"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1471
 msgid "Confirm Verify DataLayer Offer"
-msgstr ""
+msgstr "确认验证数据层报价"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1472
 msgid "Please review and confirm this offer verification."
-msgstr ""
+msgstr "请检查并确认此报价验证。"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1473
@@ -1651,17 +1651,17 @@ msgstr "验证报价"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1493
 msgid "Confirm Register Remote Coins"
-msgstr ""
+msgstr "确认注册远程硬币"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1494
 msgid "Please review and confirm registering these remote coins."
-msgstr ""
+msgstr "请检查并确认注册这些远程硬币。"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1495
 msgid "Register"
-msgstr ""
+msgstr "注册"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1503
@@ -1676,7 +1676,7 @@ msgstr "使用远程钱包注册远程硬币ID列表。"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1510
 msgid "Confirm Get Public Key"
-msgstr ""
+msgstr "确认获取公钥"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1511
@@ -1810,7 +1810,7 @@ msgstr "选择要从指定钱包花费的硬币"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1709
 msgid "Select"
-msgstr ""
+msgstr "选择"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1715
@@ -1919,13 +1919,13 @@ msgstr "获取当前钱包的同步状态"
 #: src/electron/commands/Commands.ts:1884
 #: src/electron/commands/Commands.ts:1892
 msgid "Get Full Node Peer Count"
-msgstr ""
+msgstr "获取全节点节点数量"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1886
 #: src/electron/commands/Commands.ts:1894
 msgid "Requests the number of full node peers currently connected to the wallet"
-msgstr ""
+msgstr "请求当前连接到钱包的全节点对等节点数"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1902
@@ -2078,7 +2078,7 @@ msgstr "获取资产代币钱包信息"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2103
 msgid "Requests the CAT wallet info"
-msgstr ""
+msgstr "请求 CAT 钱包信息"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2105
@@ -2150,7 +2150,7 @@ msgstr "获取包含DID的NFT钱包"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2207
 msgid "Requests a complete listing of the NFT wallets associated with the current wallet key"
-msgstr ""
+msgstr "请求完整列出与当前钱包密钥关联的所有 NFT 钱包"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2222
@@ -2161,7 +2161,7 @@ msgstr "获取DID当前硬币信息"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2223
 msgid "Requests the current coin info for a specific DID"
-msgstr ""
+msgstr "请求获取特定 DID 的当前代币信息"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2236
@@ -2172,7 +2172,7 @@ msgstr "获取DID"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2237
 msgid "Requests the DID"
-msgstr ""
+msgstr "请求 DID"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2250
@@ -2183,7 +2183,7 @@ msgstr "获取DID信息"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2251
 msgid "Requests the info for a specific DID"
-msgstr ""
+msgstr "请求获取特定 DID 的信息"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2264
@@ -2194,7 +2194,7 @@ msgstr "获取DID Metadata"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2265
 msgid "Requests the metadata for a specific DID"
-msgstr ""
+msgstr "请求获取特定 DID 的元数据"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2278
@@ -2205,7 +2205,7 @@ msgstr "获取DID公钥"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2279
 msgid "Requests the public key for a specific DID"
-msgstr ""
+msgstr "请求获取特定 DID 的公钥"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2292
@@ -2216,7 +2216,7 @@ msgstr "获取DID名称"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2293
 msgid "Requests the name for a specific DID"
-msgstr ""
+msgstr "请求获取特定 DID 的名称"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2306
@@ -2227,7 +2227,7 @@ msgstr "获取所有可验证证件"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2307
 msgid "Requests a complete listing of all verifiable credentials"
-msgstr ""
+msgstr "请求完整列出所有可验证凭证"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2320
@@ -2238,7 +2238,7 @@ msgstr "获取可验证证件"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2321
 msgid "Requests the verifiable credential for a specific launcher id"
-msgstr ""
+msgstr "请求获取特定启动器 Id 的可验证凭证"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2335
@@ -2249,7 +2249,7 @@ msgstr "获取根哈希的证明"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2336
 msgid "Requests the proofs for a specific root hash"
-msgstr ""
+msgstr "请求获取特定根哈希的证明"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2338
@@ -2265,7 +2265,7 @@ msgstr "获取Keys"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2350
 msgid "Requests the keys for a specific store"
-msgstr ""
+msgstr "请求获取特定存储的密钥"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2356
@@ -2297,7 +2297,7 @@ msgstr "获取Keys Values"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2384
 msgid "Requests the values for a specific store"
-msgstr ""
+msgstr "请求获取特定存储的值"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2417
@@ -2308,7 +2308,7 @@ msgstr "获取Kv Diff"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2418
 msgid "Requests the diff between two hashes for a specific store"
-msgstr ""
+msgstr "请求获取特定存储的两个哈希之间的差异"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2422
@@ -2329,7 +2329,7 @@ msgstr "获取Local Root"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2448
 msgid "Requests the local root for a specific store"
-msgstr ""
+msgstr "请求获取特定存储的本地根"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2461
@@ -2340,7 +2340,7 @@ msgstr "获取镜像"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2462
 msgid "Requests the mirrors for a specific store"
-msgstr ""
+msgstr "请求获取特定存储的镜像"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2475
@@ -2351,7 +2351,7 @@ msgstr "获取拥有的Stores"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2476
 msgid "Requests a complete listing of all owned stores"
-msgstr ""
+msgstr "请求完整列出所有拥有的存储"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2489
@@ -2362,7 +2362,7 @@ msgstr "获取Root"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2490
 msgid "Requests the root for a specific store"
-msgstr ""
+msgstr "请求获取特定存储的根"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2503
@@ -2373,7 +2373,7 @@ msgstr "获取Root"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2504
 msgid "Requests the roots for a specific store ids"
-msgstr ""
+msgstr "请求获取特定存储 Id 的根"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2517
@@ -2384,7 +2384,7 @@ msgstr "获取Root History"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2518
 msgid "Requests the history for a specific store"
-msgstr ""
+msgstr "请求获取特定存储的历史记录"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2531
@@ -2395,7 +2395,7 @@ msgstr "获取数据层同步状态"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2532
 msgid "Requests the sync status for a specific store"
-msgstr ""
+msgstr "请求获取特定存储的同步状态"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2545
@@ -2406,7 +2406,7 @@ msgstr "获取Value"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2546
 msgid "Requests the value for a specific store and key"
-msgstr ""
+msgstr "请求获取特定存储和密钥的值"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2568
@@ -2417,7 +2417,7 @@ msgstr "获取一个或多个钱包密钥的钱包地址"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2569
 msgid "Requests the addresses for a specific wallet keys"
-msgstr ""
+msgstr "请求获取特定钱包密钥的地址"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2574
@@ -2441,7 +2441,7 @@ msgstr "非观察派生"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/humanizeCommand.ts:20
-#: src/electron/main.tsx:922
+#: src/electron/main.tsx:954
 msgid "Confirm"
 msgstr "确定"
 
@@ -2453,19 +2453,19 @@ msgstr "请检查并确认此操作。"
 #. js-lingui-explicit-id
 #: src/electron/commands/humanizeParamValue.ts:40
 msgid "Not provided"
-msgstr ""
+msgstr "未提供"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/humanizeParamValue.ts:63
-#: src/electron/main.tsx:670
-#: src/electron/main.tsx:921
+#: src/electron/main.tsx:702
+#: src/electron/main.tsx:953
 msgid "Yes"
 msgstr "是"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/humanizeParamValue.ts:63
-#: src/electron/main.tsx:670
-#: src/electron/main.tsx:921
+#: src/electron/main.tsx:702
+#: src/electron/main.tsx:953
 msgid "No"
 msgstr "否"
 
@@ -2479,32 +2479,32 @@ msgstr "反馈问题"
 #: src/electron/dialogs/Confirm/Confirm.tsx:134
 #: src/electron/dialogs/Confirm/Confirm.tsx:152
 msgid "Total Amount with Royalties"
-msgstr ""
+msgstr "包含版税的总金额"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:147
 msgid "Wallet ID"
-msgstr ""
+msgstr "钱包ID"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:161
 msgid "Unknown Asset"
-msgstr ""
+msgstr "未知资产"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:166
 msgid "Raw Amount"
-msgstr ""
+msgstr "原始金额"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:190
 msgid "Royalties Percentage"
-msgstr ""
+msgstr "版税百分比"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:210
 msgid "You Spend"
-msgstr ""
+msgstr "支出"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:214
@@ -2515,12 +2515,12 @@ msgstr "无"
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:224
 msgid "You Receive"
-msgstr ""
+msgstr "接收"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:239
 msgid "Offer Fees"
-msgstr ""
+msgstr "报价手续费"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:346
@@ -2540,7 +2540,7 @@ msgstr "此应用请求以 {requested} 身份运行，但当前登录的是 {cur
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:427
 msgid "Always allow this command without asking"
-msgstr ""
+msgstr "总是允许此命令而不询问"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/KeyDetail/KeyDetail.tsx:37
@@ -2651,7 +2651,7 @@ msgstr "钱包密钥"
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Pair/Pair.tsx:189
 msgid "No wallet key selected."
-msgstr ""
+msgstr "未选择钱包密钥。"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Pair/Pair.tsx:195
@@ -2661,7 +2661,7 @@ msgstr "没有可用的钱包密钥。"
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Pair/Pair.tsx:219
 msgid "Select a wallet key…"
-msgstr ""
+msgstr "选择一个钱包密钥…"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Pair/Pair.tsx:269
@@ -2671,12 +2671,12 @@ msgstr "允许，无需询问"
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Pair/Pair.tsx:298
 msgid "Per-command"
-msgstr ""
+msgstr "每个命令"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Pair/Pair.tsx:339
 msgid "Always ask for confirmation"
-msgstr ""
+msgstr "总是要求确认"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Pair/Pair.tsx:349
@@ -2694,17 +2694,17 @@ msgid "Save changes"
 msgstr "保存更改"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:671
+#: src/electron/main.tsx:703
 msgid "Save Command Preferences"
 msgstr "保存命令偏好设置"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:673
+#: src/electron/main.tsx:705
 msgid "Would you like to save preferences for the following commands?"
 msgstr "为以下命令保存偏好吗？"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:677
+#: src/electron/main.tsx:709
 msgid ""
 "These commands will be executed without confirmation in the future:\n"
 "\n"
@@ -2714,232 +2714,232 @@ msgstr ""
 "{commands}"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:924
+#: src/electron/main.tsx:956
 msgid "Are you sure you want to quit?"
 msgstr "您确定要退出吗？"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:929
+#: src/electron/main.tsx:961
 msgid "Keep service running in the background"
 msgstr "保持服务在后台运行"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1089
+#: src/electron/main.tsx:1121
 msgid "Continue"
 msgstr "继续"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1091
+#: src/electron/main.tsx:1123
 msgid "Warning"
 msgstr "警告"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1092
+#: src/electron/main.tsx:1124
 msgid "Log files may contain sensitive information"
 msgstr "日志文件可能包含敏感信息"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1093
+#: src/electron/main.tsx:1125
 msgid "Are you sure you want to view the log contents?"
 msgstr "确定查看日志内容？"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1217
-#: src/electron/main.tsx:1425
+#: src/electron/main.tsx:1249
+#: src/electron/main.tsx:1457
 msgid "File"
 msgstr "文件"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1225
+#: src/electron/main.tsx:1257
 msgid "Edit"
 msgstr "编辑"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1257
+#: src/electron/main.tsx:1289
 msgid "View"
 msgstr "查看"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1266
+#: src/electron/main.tsx:1298
 msgid "Developer"
 msgstr "开发者"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1269
+#: src/electron/main.tsx:1301
 msgid "Developer Tools"
 msgstr "开发者工具"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1277
+#: src/electron/main.tsx:1309
 msgid "Trigger Desktop Notification"
 msgstr "触发桌面通知"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1306
+#: src/electron/main.tsx:1338
 msgid "Full Screen"
 msgstr "全屏"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1313
+#: src/electron/main.tsx:1345
 msgid "Window"
 msgstr "窗口"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1327
+#: src/electron/main.tsx:1359
 msgid "Help"
 msgstr "帮助"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1331
+#: src/electron/main.tsx:1363
 msgid "Chia Blockchain Wiki"
 msgstr "Chia区块链百科"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1337
+#: src/electron/main.tsx:1369
 msgid "Frequently Asked Questions"
 msgstr "常见问题解答"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1343
+#: src/electron/main.tsx:1375
 msgid "Release Notes"
 msgstr "版本发布说明"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1349
+#: src/electron/main.tsx:1381
 msgid "Contribute on GitHub"
 msgstr "在 GitHub 上贡献"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1358
+#: src/electron/main.tsx:1390
 msgid "Report an Issue..."
 msgstr "报告问题"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1364
+#: src/electron/main.tsx:1396
 msgid "Chat on Discord"
 msgstr "在Discord上讨论"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1370
+#: src/electron/main.tsx:1402
 msgid "Follow on X"
 msgstr "在X上关注"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1382
+#: src/electron/main.tsx:1414
 msgid "Chia"
 msgstr "Chia"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1385
-#: src/electron/main.tsx:1481
+#: src/electron/main.tsx:1417
+#: src/electron/main.tsx:1513
 msgid "About Chia Blockchain"
 msgstr "关于Chia区块链项目"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1391
+#: src/electron/main.tsx:1423
 msgid "Check for Updates..."
 msgstr "检查更新..."
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1440
+#: src/electron/main.tsx:1472
 msgid "Speech"
 msgstr "演说"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1487
+#: src/electron/main.tsx:1519
 msgid "Check for updates..."
 msgstr "检查更新..."
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:104
 #~ msgid "App is requesting permission to execute these commands"
-#~ msgstr "应用正在请求权限以执行这些命令"
+#~ msgstr "App is requesting permission to execute these commands"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:138
 #~ msgid "All Wallets"
-#~ msgstr "所有钱包"
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:160
 #~ msgid "Confirm Add CAT Token"
-#~ msgstr "确认添加 CAT 代币"
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:161
 #~ msgid "This app wants to add a CAT token to your wallet."
-#~ msgstr "该App想要在你的钱包中添加一个 CAT 代币。"
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:232
 #~ msgid "Create new DID Wallet"
-#~ msgstr "新建DID钱包"
+#~ msgstr "Create new DID Wallet"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:365
 #~ msgid "Confirm Create Offer"
-#~ msgstr "确认创建报价"
+#~ msgstr "Confirm Create Offer"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:473
 #: src/electron/constants/commandRegistry.ts:501
 #~ msgid "Hex Encoded"
-#~ msgstr "十六进制编码"
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:770
 #~ msgid "URIs"
-#~ msgstr "网址"
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:772
 #~ msgid "Meta URIs"
-#~ msgstr "元数据网址"
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:782
 #~ msgid "License URIs"
-#~ msgstr "许可证网址"
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:905
 #~ msgid "DID Coin"
-#~ msgstr "DID 硬币"
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1016
 #~ msgid "Confirm Update DID Recovery Ids"
-#~ msgstr "确认更新 DID 恢复ID"
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1017
 #~ msgid "Please carefully review and confirm this DID recovery list update."
-#~ msgstr "请仔细检查并确认此 DID 恢复列表更新。"
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1023
 #~ msgid "New Recovery List"
-#~ msgstr "新的恢复列表"
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1029
 #~ msgid "Verifications Required"
-#~ msgstr "需要验证"
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1051
 #~ msgid "Update DID Recovery Ids"
-#~ msgstr "更新 DID 恢复 ID"
+#~ msgstr "Update DID Recovery Ids"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1075
 #~ msgid "VC Id"
-#~ msgstr "可验证凭证 ID"
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1121
 #~ msgid "Proofs"
-#~ msgstr "证明"
+#~ msgstr "Proofs"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1505
@@ -2954,62 +2954,62 @@ msgstr "检查更新..."
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:1549
 #~ msgid "Get Information Needed For DID Recovery"
-#~ msgstr "获取DID恢复所需的信息"
+#~ msgstr "Get Information Needed For DID Recovery"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:2155
 #~ msgid "Get DID Recovery List"
-#~ msgstr "获取DID恢复列表"
+#~ msgstr "Get DID Recovery List"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:164
 #~ msgid "Offered"
-#~ msgstr "提供"
+#~ msgstr "Offered"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:178
 #~ msgid "Requested"
-#~ msgstr "请求"
+#~ msgstr "Requested"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:381
 #~ msgid "Don't ask again for this command"
-#~ msgstr "不再询问此命令"
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Pair/Pair.tsx:217
 #~ msgid "Select wallet keys…"
-#~ msgstr "选择钱包密钥…"
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Pair/Pair.tsx:277
 #~ msgid "This app did not request commands of this type."
-#~ msgstr "此应用未请求此类命令。"
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Pair/Pair.tsx:376
 #~ msgid "Spending"
-#~ msgstr "正在支出"
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Pair/Pair.tsx:381
 #~ msgid "Spent"
-#~ msgstr "已使用"
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Pair/Pair.tsx:389
 #~ msgid "Reset"
-#~ msgstr "重置"
+#~ msgstr "Reset"
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Pair/Pair.tsx:408
 #~ msgid "Auto-approve up to"
-#~ msgstr "自动批准上限"
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Pair/Pair.tsx:429
 #~ msgid "One limit for all XCH transactions and fees. CATs and NFTs are not included."
-#~ msgstr "所有 XCH 交易及手续费的统一限额。CAT 和 NFT 不包含在内。"
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/dialogs/Confirm/Confirm.tsx:93
@@ -3237,7 +3237,7 @@ msgstr "+ 添加图块"
 msgid "+ Add New Plot NFT"
 msgstr "+ 新建联合耕种农田"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:306
+#: src/components/nfts/gallery/NFTGallery.tsx:358
 msgid "<0>Loading...</0> {0}%"
 msgstr "<0>载入中...</0> {0}%"
 
@@ -3245,7 +3245,7 @@ msgstr "<0>载入中...</0> {0}%"
 #~ msgid "<0>Need some XCH?</0>"
 #~ msgstr "<0>Need some XCH?</0>"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:296
+#: src/components/nfts/gallery/NFTGallery.tsx:348
 msgid "<0>Showing</0> {0} <1>of</1> {1}  <2>items</2>"
 msgstr "<0>显示</0> {0} <1>/</1> {1}  <2>项</2>"
 
@@ -3300,7 +3300,7 @@ msgstr "操作"
 #: src/components/farm/FarmFullNodeConnections.tsx:54
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:54
 #: src/components/fullNode/FullNodeConnections.tsx:65
-#: src/components/nfts/NFTContextualActions.tsx:605
+#: src/components/nfts/NFTContextualActions.tsx:607
 #: src/components/offers2/OfferIncomingTable.tsx:119
 msgid "Actions"
 msgstr "操作"
@@ -3416,6 +3416,10 @@ msgstr "高级选项"
 msgid "After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring."
 msgstr "当您的密钥成功迁移到新密钥串后，您可以选择从旧密钥串中移除您的密钥。"
 
+#: src/components/settings/SettingsNFT.tsx:151
+msgid "All NFT videos will restart automatically when they finish playing. When disabled, looping can still be turned on for individual videos from their detail page."
+msgstr "所有 NFT 视频在播放结束后会自动重新开始播放。禁用此功能后，仍可在单个视频的详情页中为其单独开启循环播放。"
+
 #: src/components/nfts/NFTProfileDropdown.tsx:102
 #: src/components/nfts/NFTProfileDropdown.tsx:115
 msgid "All NFTs"
@@ -3431,7 +3435,7 @@ msgstr "允许外部应用程序和网站通过WalletConnect连接到你的钱�
 
 #: src/components/settings/SettingsIntegration.tsx:146
 #~ msgid "Allow requests that require switching to a different wallet key."
-#~ msgstr "允许在不同钱包之间进行切换。"
+#~ msgstr "Allow requests that require switching to a different wallet key."
 
 #: src/components/notification/NotificationSendDialog.tsx:286
 msgid "Allow the NFT holder to send a counter offer"
@@ -3510,6 +3514,10 @@ msgstr "一个NFT的起源是其所有权历史的完整记录。 它提供了�
 msgid "Announcement"
 msgstr "通知"
 
+#: src/components/nfts/gallery/NFTGallery.tsx:496
+msgid "Any preview  <0/>"
+msgstr ""
+
 #: src/constants/WalletConnectCommands.tsx:17
 #~ msgid "App is requesting permission to execute these commands"
 #~ msgstr "App is requesting permission to execute these commands"
@@ -3544,7 +3552,7 @@ msgstr "确定要接受此数据层报价吗？"
 msgid "Are you sure you want to cancel your offer?"
 msgstr "你确定要取消你的报价吗？"
 
-#: src/components/settings/SettingsNFT.tsx:58
+#: src/components/settings/SettingsNFT.tsx:76
 msgid "Are you sure you want to delete the NFT cache?"
 msgstr "确定删除NFT缓存吗？"
 
@@ -3749,7 +3757,7 @@ msgstr "浏览"
 
 #: src/components/nfts/NFTBurnDialog.tsx:90
 #: src/components/nfts/NFTBurnDialog.tsx:185
-#: src/components/nfts/NFTContextualActions.tsx:543
+#: src/components/nfts/NFTContextualActions.tsx:545
 msgid "Burn"
 msgstr "销毁"
 
@@ -3773,7 +3781,7 @@ msgstr "通过提供签名地址，可以使用公钥来验证该地址的有效
 msgid "Bypassed Commands"
 msgstr "绕过命令"
 
-#: src/components/settings/SettingsNFT.tsx:125
+#: src/components/settings/SettingsNFT.tsx:204
 msgid "Cache"
 msgstr "缓存"
 
@@ -3826,7 +3834,7 @@ msgstr "取消报价"
 msgid "Cancel on blockchain"
 msgstr "在区块链上取消"
 
-#: src/components/nfts/NFTContextualActions.tsx:278
+#: src/components/nfts/NFTContextualActions.tsx:280
 msgid "Cancel Unconfirmed Transaction"
 msgstr "删除未确认的交易"
 
@@ -3851,7 +3859,7 @@ msgid "Challenge Hash"
 msgstr "挑战哈希"
 
 #: src/components/plotNFT/PlotNFTChangePool.tsx:110
-#: src/components/settings/SettingsNFT.tsx:163
+#: src/components/settings/SettingsNFT.tsx:242
 msgid "Change"
 msgstr "变更"
 
@@ -3951,7 +3959,7 @@ msgstr "选择绘图软件"
 msgid "Choose Wallet Mode"
 msgstr "选择钱包模式"
 
-#: src/components/settings/SettingsNFT.tsx:75
+#: src/components/settings/SettingsNFT.tsx:93
 msgid "Choose what you want to see and how you want to view it."
 msgstr "选择想要看的内容以及如何查看它。"
 
@@ -3980,8 +3988,8 @@ msgstr "清除所有已连接应用的每个“始终允许”覆盖设置。重
 msgid "Clear every \"always allow\" override for this app. Future commands will require confirmation again."
 msgstr "清除此应用的所有“始终允许”覆盖设置。未来的命令将再次需要确认。"
 
-#: src/components/settings/SettingsNFT.tsx:51
-#: src/components/settings/SettingsNFT.tsx:145
+#: src/components/settings/SettingsNFT.tsx:69
+#: src/components/settings/SettingsNFT.tsx:224
 msgid "Clear NFT cache"
 msgstr "清除NFT缓存"
 
@@ -4161,7 +4169,7 @@ msgstr "联系人名称"
 msgid "Contacts"
 msgstr "联系人"
 
-#: src/components/nfts/NFTHashStatus.tsx:109
+#: src/components/nfts/NFTHashStatus.tsx:120
 msgid "Content does not match the expected hash value that was specified during NFT minting. The content may have been modified."
 msgstr "文件的哈希值与NFT初始铸造时指定的值不同，可能已被修改。"
 
@@ -4169,7 +4177,7 @@ msgstr "文件的哈希值与NFT初始铸造时指定的值不同，可能已被
 #~ msgid "Content has not been validated against the hash that was specified during NFT minting."
 #~ msgstr ""
 
-#: src/components/nfts/NFTHashStatus.tsx:102
+#: src/components/nfts/NFTHashStatus.tsx:113
 msgid "Content has not been validated against the hash that was specified during NFT minting. Error: {0}"
 msgstr "内容未与在NFT铸造过程中指定的哈希进行验证。错误：{0}"
 
@@ -4181,11 +4189,11 @@ msgstr "继续"
 #~ msgid "Contribute on GitHub"
 #~ msgstr "Contribute on GitHub"
 
-#: src/components/nfts/NFTContextualActions.tsx:349
+#: src/components/nfts/NFTContextualActions.tsx:351
 msgid "Copy Media URL"
 msgstr "复制媒体URL"
 
-#: src/components/nfts/NFTContextualActions.tsx:106
+#: src/components/nfts/NFTContextualActions.tsx:107
 msgid "Copy NFT ID"
 msgstr "复制 NFT ID"
 
@@ -4288,7 +4296,7 @@ msgstr "创建定时报价"
 #~ msgid "Create new Remote Wallet"
 #~ msgstr "Create new Remote Wallet"
 
-#: src/components/nfts/NFTContextualActions.tsx:150
+#: src/components/nfts/NFTContextualActions.tsx:152
 #: src/components/offers/NFTOfferEditor.tsx:438
 #: src/components/offers/OfferEditor.tsx:156
 #: src/components/offers/OfferManager.tsx:393
@@ -4504,7 +4512,7 @@ msgstr "派生索引必须大于 {index}"
 msgid "Description"
 msgstr "描述"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:320
+#: src/components/nfts/gallery/NFTGallery.tsx:372
 msgid "Deselect all"
 msgstr "取消全选"
 
@@ -4671,11 +4679,11 @@ msgstr "域名名称"
 #~ msgid "Don't allocate host tables using pinned buffers, instead download to intermediate pinned buffers then copy to the final host buffer."
 #~ msgstr "Don't allocate host tables using pinned buffers, instead download to intermediate pinned buffers then copy to the final host buffer."
 
-#: src/components/nfts/NFTContextualActions.tsx:461
+#: src/components/nfts/NFTContextualActions.tsx:463
 msgid "Download"
 msgstr "下载"
 
-#: src/components/nfts/NFTContextualActions.tsx:444
+#: src/components/nfts/NFTContextualActions.tsx:446
 msgid "Download Failed"
 msgstr "下载失败"
 
@@ -5139,6 +5147,10 @@ msgstr "手续费金额"
 msgid "Fees included in offer:"
 msgstr "报价中包含的手续费:"
 
+#: src/components/settings/SettingsNFT.tsx:162
+msgid "Fetch IPFS content through a gateway"
+msgstr ""
+
 #: src/constants/WalletConnectCommands.tsx:483
 #~ msgid "Fetches the puzzle reveal and solution for a spent coin (hex strings)."
 #~ msgstr "Fetches the puzzle reveal and solution for a spent coin (hex strings)."
@@ -5148,6 +5160,15 @@ msgstr "报价中包含的手续费:"
 #~ msgid "File"
 #~ msgstr "File"
 
+#: src/components/nfts/NFTPreview.tsx:574
+msgid "File does not match the expected hash"
+msgstr "文件与预期哈希不匹配"
+
+#: src/components/nfts/NFTHashStatus.tsx:88
+#: src/components/nfts/NFTPreview.tsx:253
+msgid "File is not available"
+msgstr "文件不可用"
+
 #: src/components/plot/PlotHarvesterPlots.tsx:70
 #: src/components/plot/PlotHarvesterPlotsDuplicate.tsx:14
 #: src/components/plot/PlotHarvesterPlotsFailed.tsx:14
@@ -5155,7 +5176,7 @@ msgstr "报价中包含的手续费:"
 msgid "Filename"
 msgstr "文件名"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:283
+#: src/components/nfts/gallery/NFTGallery.tsx:328
 msgid "Filter"
 msgstr "筛选"
 
@@ -5181,7 +5202,7 @@ msgstr "最终输出文件夹位置"
 msgid "Finished"
 msgstr "已完成"
 
-#: src/components/settings/SettingsNFT.tsx:107
+#: src/components/settings/SettingsNFT.tsx:125
 msgid "Fit images to cards"
 msgstr "使图像适应卡片"
 
@@ -5487,7 +5508,7 @@ msgstr "收割效率"
 #~ msgid "Hash is validated."
 #~ msgstr ""
 
-#: src/components/nfts/NFTHashStatus.tsx:73
+#: src/components/nfts/NFTHashStatus.tsx:80
 msgid "Hash matches"
 msgstr "哈希匹配"
 
@@ -5525,11 +5546,11 @@ msgstr "下面是当前的区块挑战。您可能有也可能没有这些挑战
 msgid "Hex public key of pool"
 msgstr "耕种池的十六进制公钥"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:428
+#: src/components/nfts/gallery/NFTGallery.tsx:480
 msgid "Hidden"
 msgstr "隐藏"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:391
+#: src/components/nfts/gallery/NFTGallery.tsx:443
 msgid "Hidden  <0/>"
 msgstr "隐藏  <0/>"
 
@@ -5537,11 +5558,11 @@ msgstr "隐藏  <0/>"
 #~ msgid "Hidden ({0})"
 #~ msgstr ""
 
-#: src/components/nfts/NFTContextualActions.tsx:511
+#: src/components/nfts/NFTContextualActions.tsx:513
 msgid "Hide"
 msgstr "隐藏"
 
-#: src/components/settings/SettingsNFT.tsx:87
+#: src/components/settings/SettingsNFT.tsx:105
 msgid "Hide objectionable content"
 msgstr "隐藏令人反感的内容"
 
@@ -5611,7 +5632,7 @@ msgstr "如果已经分享了您的报价文件，可能需要提交一笔交易
 #~ msgid "Image Hash Mismatch"
 #~ msgstr "Image Hash Mismatch"
 
-#: src/components/settings/SettingsNFT.tsx:117
+#: src/components/settings/SettingsNFT.tsx:135
 msgid "Images will be scaled to fill the NFT card and ignore their original proportions."
 msgstr "图像将被缩放以填充NFT卡并忽略原始比例."
 
@@ -5712,7 +5733,7 @@ msgstr "目录刷新扫描的时间间隔(以秒为单位)，用于更新可用�
 msgid "Invalid"
 msgstr "无效"
 
-#: src/components/nfts/NFTHashStatus.tsx:80
+#: src/components/nfts/NFTHashStatus.tsx:91
 msgid "Invalid hash"
 msgstr "无效哈希"
 
@@ -5814,7 +5835,7 @@ msgstr "K值大小"
 
 #: src/components/settings/SettingsIntegration.tsx:129
 #~ msgid "Key Switching"
-#~ msgstr "密钥切换"
+#~ msgstr "Key Switching"
 
 #: src/components/offers/OfferShareDialog.tsx:1086
 #~ msgid "Keybase command failed {e}. If you haven't installed Keybase, you can download from https://keybase.io"
@@ -5923,7 +5944,7 @@ msgstr "许可证哈希"
 msgid "License URL {0}"
 msgstr "许可证URL {0}"
 
-#: src/components/settings/SettingsNFT.tsx:176
+#: src/components/settings/SettingsNFT.tsx:255
 msgid "Limit cache size"
 msgstr "限制缓存大小"
 
@@ -5964,7 +5985,7 @@ msgstr "正在加载 NFT"
 msgid "Loading NFT Info..."
 msgstr "正在加载NFT信息..."
 
-#: src/components/nfts/NFTPreview.tsx:386
+#: src/components/nfts/NFTPreview.tsx:563
 msgid "Loading NFT..."
 msgstr "正在加载NFT..."
 
@@ -5972,7 +5993,8 @@ msgstr "正在加载NFT..."
 #~ msgid "Loading NFTs..."
 #~ msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:386
+#: src/components/nfts/NFTPreview.tsx:563
+#: src/components/nfts/NFTPreview.tsx:585
 msgid "Loading preview..."
 msgstr "正在加载预览..."
 
@@ -5991,7 +6013,7 @@ msgstr "正在载入……"
 msgid "Local"
 msgstr "本地"
 
-#: src/components/settings/SettingsNFT.tsx:158
+#: src/components/settings/SettingsNFT.tsx:237
 msgid "Local folder"
 msgstr "本地文件夹"
 
@@ -6015,6 +6037,22 @@ msgstr "注销"
 msgid "Log Viewer"
 msgstr "日志查看器"
 
+#: src/components/nfts/NFTPreview.tsx:442
+msgid "Loop video"
+msgstr "循环播放视频"
+
+#: src/components/settings/SettingsNFT.tsx:143
+msgid "Loop videos"
+msgstr "循环播放视频"
+
+#: src/components/nfts/NFTPreview.tsx:438
+msgid "Looping is enabled for all videos in Settings"
+msgstr "已在设置中为所有视频启用循环播放"
+
+#: src/components/nfts/NFTPreview.tsx:440
+msgid "Looping on"
+msgstr "循环播放已开启"
+
 #: src/constants/WalletConnectCommands.tsx:1574
 #~ msgid "Make DataLayer Offer"
 #~ msgstr "Make DataLayer Offer"
@@ -6031,7 +6069,7 @@ msgstr "管理资产代币"
 msgid "Manage Farming Rewards"
 msgstr "管理耕种奖励"
 
-#: src/components/settings/SettingsNFT.tsx:128
+#: src/components/settings/SettingsNFT.tsx:207
 msgid "Manage how and where files are stored on this computer."
 msgstr "管理存储本地计算机上的文件。"
 
@@ -6226,11 +6264,11 @@ msgstr "移动"
 msgid "Move NFT to Profile"
 msgstr "将 NFT 移动到资料"
 
-#: src/components/nfts/NFTContextualActions.tsx:226
+#: src/components/nfts/NFTContextualActions.tsx:228
 msgid "Move to Profile"
 msgstr "移动到资料"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:278
+#: src/components/nfts/gallery/NFTGallery.tsx:323
 msgid "Multi-select"
 msgstr "多选"
 
@@ -6330,9 +6368,9 @@ msgid "Next"
 msgstr "下一步"
 
 #: src/components/offers/NFTOfferEditor.tsx:212
-#: src/components/offers2/OfferBuilderNFTSection.tsx:44
+#: src/components/offers2/OfferBuilderNFTSection.tsx:46
 #: src/components/settings/Settings.tsx:38
-#: src/components/settings/SettingsNFT.tsx:72
+#: src/components/settings/SettingsNFT.tsx:90
 #: src/components/signVerify/SignMessage.tsx:164
 msgid "NFT"
 msgstr "NFT"
@@ -6358,6 +6396,10 @@ msgstr "NFT硬币ID"
 #: src/components/offers/NFTOfferEditor.tsx:617
 msgid "NFT details not available"
 msgstr "NFT 详细信息不可用"
+
+#: src/components/settings/SettingsNFT.tsx:170
+msgid "NFT files published with ipfs:// addresses will be downloaded through the public ipfs.io HTTPS gateway. The requested URL differs from the address recorded on chain, but downloaded content is still verified against the NFT's on-chain hash. When disabled, ipfs:// files are not fetched."
+msgstr ""
 
 #: src/components/offers2/OfferBuilderNFTRoyalties.tsx:172
 msgid "NFT has no royalties"
@@ -6403,19 +6445,19 @@ msgstr "NFT 未指定"
 msgid "NFT Purchase Price"
 msgstr "NFT 购买价格"
 
-#: src/components/nfts/NFTContextualActions.tsx:265
+#: src/components/nfts/NFTContextualActions.tsx:267
 msgid "NFT Status Update Failed"
 msgstr "NFT 状态更新失败"
 
-#: src/components/nfts/NFTContextualActions.tsx:255
+#: src/components/nfts/NFTContextualActions.tsx:257
 msgid "NFT Status Updated"
 msgstr "NFT 状态已更新"
 
-#: src/components/nfts/NFTContextualActions.tsx:180
+#: src/components/nfts/NFTContextualActions.tsx:182
 msgid "NFT Transfer Failed"
 msgstr "NFT 传输失败"
 
-#: src/components/nfts/NFTContextualActions.tsx:174
+#: src/components/nfts/NFTContextualActions.tsx:176
 msgid "NFT Transfer Pending"
 msgstr "NFT 等待传输"
 
@@ -6423,7 +6465,7 @@ msgstr "NFT 等待传输"
 msgid "NFTs"
 msgstr "NFT"
 
-#: src/components/settings/SettingsNFT.tsx:97
+#: src/components/settings/SettingsNFT.tsx:115
 msgid "NFTs that have been categorized by the creator as objectionable content will be hidden by default."
 msgstr "由创建者标注为不宜展示的NFT将被默认隐藏。"
 
@@ -6464,7 +6506,7 @@ msgstr "当前没有报价"
 #~ msgid "No Custom Permissions"
 #~ msgstr "No Custom Permissions"
 
-#: src/components/nfts/NFTPreview.tsx:391
+#: src/components/nfts/NFTPreview.tsx:568
 msgid "No file available"
 msgstr "没有可用文件"
 
@@ -6515,7 +6557,8 @@ msgstr "节点ID"
 msgid "None"
 msgstr "无"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:396
+#: src/components/nfts/gallery/NFTGallery.tsx:448
+#: src/components/nfts/gallery/NFTGallery.tsx:514
 msgid "None (0)"
 msgstr "无 (0)"
 
@@ -6647,11 +6690,11 @@ msgstr "第2阶段的线程数"
 msgid "Number of threads for Phase 3"
 msgstr "第3阶段的线程数"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:366
+#: src/components/nfts/gallery/NFTGallery.tsx:418
 msgid "Objectionable Content"
 msgstr "令人反感的内容"
 
-#: src/components/settings/SettingsNFT.tsx:140
+#: src/components/settings/SettingsNFT.tsx:219
 msgid "Occupied space"
 msgstr "已占用空间"
 
@@ -6739,7 +6782,7 @@ msgstr "报价将在 {0} {1} 后过期"
 #: src/components/offers/OfferManager.tsx:202
 #: src/components/offers2/CancelOfferList.tsx:80
 msgid "Offered"
-msgstr "已报价"
+msgstr "提供"
 
 #: src/components/offers2/DataLayerOfferViewer.tsx:164
 msgid "Offered Store Updates ({0})"
@@ -6805,11 +6848,11 @@ msgstr "提供了一个或多个未知的代币。请确保验证提供的代币
 msgid "One or more unknown tokens are being offered. Please verify that the asset IDs of the tokens listed below match the asset IDs of the tokens you expect to receive."
 msgstr "一个或多个未知的代币正被报价。 请验证下面列出的代币的资产ID与您预期收到的代币的资产ID相匹配。"
 
-#: src/components/offers2/OfferBuilderNFTSection.tsx:45
+#: src/components/offers2/OfferBuilderNFTSection.tsx:47
 msgid "One-of-a-kind Collectible assets"
 msgstr "独一无二的收藏品资产"
 
-#: src/components/nfts/NFTContextualActions.tsx:317
+#: src/components/nfts/NFTContextualActions.tsx:319
 msgid "Open in Browser"
 msgstr "在浏览器中打开"
 
@@ -7362,10 +7405,18 @@ msgstr "正在准备联合耕种农田"
 msgid "Preparing standard wallet"
 msgstr "正在准备标准钱包"
 
-#: src/components/nfts/NFTPreview.tsx:231
+#: src/components/nfts/NFTPreview.tsx:289
 #: src/components/offers2/OfferBuilderNFT.tsx:75
 msgid "Preview"
 msgstr "预览"
+
+#: src/components/nfts/gallery/NFTGallery.tsx:532
+msgid "Preview available"
+msgstr ""
+
+#: src/components/nfts/gallery/NFTGallery.tsx:501
+msgid "Preview available  <0/>"
+msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:316
 #~ msgid "Preview image uris"
@@ -7374,6 +7425,18 @@ msgstr "预览"
 #: src/components/nfts/NFTDetails.tsx:310
 msgid "Preview image URL {index}"
 msgstr "图片预览网址{index}"
+
+#: src/components/nfts/NFTPreview.tsx:580
+msgid "Preview is not available"
+msgstr "预览不可用"
+
+#: src/components/nfts/gallery/NFTGallery.tsx:553
+msgid "Preview not available"
+msgstr ""
+
+#: src/components/nfts/gallery/NFTGallery.tsx:506
+msgid "Preview not available  <0/>"
+msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:621
 #~ msgid "Preview URL is not valid"
@@ -7535,9 +7598,13 @@ msgstr "递归图块扫描"
 msgid "Refresh"
 msgstr "刷新"
 
-#: src/components/nfts/NFTContextualActions.tsx:584
+#: src/components/nfts/NFTContextualActions.tsx:586
 msgid "Refresh NFT data"
 msgstr "刷新 NFT 数据"
+
+#: src/components/nfts/gallery/NFTGallery.tsx:333
+msgid "Refresh NFTs"
+msgstr "刷新 NFT"
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:46
 #: src/components/plot/overview/PlotOverviewPlots.tsx:63
@@ -7622,7 +7689,7 @@ msgstr "删除中"
 #: src/components/offers/OfferManager.tsx:212
 #: src/components/offers2/CancelOfferList.tsx:95
 msgid "Requested"
-msgstr "已请求"
+msgstr "请求"
 
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:31
 #: src/components/offers2/OfferIncomingTable.tsx:45
@@ -7744,7 +7811,7 @@ msgstr "需要来自存储的证明"
 #: src/components/settings/SettingsIntegration.tsx:222
 #: src/components/signVerify/VerifyMessage.tsx:266
 msgid "Reset"
-msgstr ""
+msgstr "重置"
 
 #: src/components/settings/SettingsIntegration.tsx:218
 msgid "Reset WalletConnect Permissions"
@@ -7808,7 +7875,7 @@ msgstr "可销毁"
 #: src/components/vcs/VCCard.tsx:209
 #: src/components/vcs/VCCard.tsx:311
 msgid "Revoke Verifiable Credential"
-msgstr ""
+msgstr "撤销可验证证件"
 
 #: src/components/vcs/VCCard.tsx:168
 msgid "Revoked"
@@ -7831,7 +7898,7 @@ msgstr "版税已内置在NFT中，因此在创建/接受报价时将自动计�
 
 #: src/components/nfts/NFTDetails.tsx:159
 msgid "Royalty Percentage"
-msgstr ""
+msgstr "版税百分比"
 
 #: src/components/app/AppSelectMode.tsx:139
 msgid "Runs the full node"
@@ -7877,7 +7944,7 @@ msgid "Search on Tail Database"
 msgstr "在Tail Database中搜索"
 
 #: src/components/addressbook/AddressBookSideBar.tsx:150
-#: src/components/nfts/gallery/NFTGallery.tsx:266
+#: src/components/nfts/gallery/NFTGallery.tsx:311
 msgid "Search..."
 msgstr "搜索..."
 
@@ -7904,7 +7971,7 @@ msgstr "查看所有通知"
 msgid "Select 2nd Temporary Directory"
 msgstr "选择第二临时文件夹"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:320
+#: src/components/nfts/gallery/NFTGallery.tsx:372
 msgid "Select all"
 msgstr "选择所有"
 
@@ -8063,7 +8130,7 @@ msgstr "用于较新钱包 RPC 行为的设置。误用可能会基于不完整�
 #: src/components/offers/OfferManager.tsx:256
 #: src/components/offers/OfferShareDialog.tsx:715
 msgid "Share"
-msgstr ""
+msgstr "分享"
 
 #: src/components/offers/OfferShareDialog.tsx:859
 msgid "Share Offer"
@@ -8101,9 +8168,9 @@ msgstr "分享到Spacescan.io"
 #~ msgid "Share Privately"
 #~ msgstr "Share Privately"
 
-#: src/components/nfts/NFTContextualActions.tsx:511
+#: src/components/nfts/NFTContextualActions.tsx:513
 msgid "Show"
-msgstr ""
+msgstr "显示"
 
 #: src/components/offers/OfferManager.tsx:270
 msgid "Show Details"
@@ -8121,6 +8188,10 @@ msgstr "显示详情"
 #: src/components/nfts/NFTPreview.tsx:667
 #~ msgid "Show Preview"
 #~ msgstr "Show Preview"
+
+#: src/components/settings/SettingsNFT.tsx:182
+msgid "Show unverified previews"
+msgstr "显示未验证的预览"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:541
 #~ msgid "Showing {0} of {1} items"
@@ -8148,7 +8219,7 @@ msgstr "消息签名"
 
 #: src/components/signVerify/VerifyMessage.tsx:228
 msgid "Signature"
-msgstr ""
+msgstr "签名"
 
 #: src/components/signVerify/VerifyMessage.tsx:197
 msgid "Signature Details"
@@ -8188,7 +8259,7 @@ msgstr "签名实体"
 
 #: src/components/signVerify/VerifyMessage.tsx:237
 msgid "Signing Mode"
-msgstr ""
+msgstr "签名模式"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:240
 msgid "Size of cache to reserve for I/O"
@@ -8384,7 +8455,7 @@ msgstr "成功"
 msgid "Successfully restarted Harvester"
 msgstr "重启收割机成功"
 
-#: src/components/settings/LimitCacheSize.tsx:54
+#: src/components/settings/LimitCacheSize.tsx:49
 msgid "Successfully updated cache size limit."
 msgstr "成功更新缓存大小限制。"
 
@@ -8465,7 +8536,7 @@ msgstr "可以手动调整每笔交易的可撤回时间。"
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
 msgstr "派生索引设置了钱包在区块链上扫描钱包地址的范围。如果您有大量的交易或取消了的XCH、CAT或NFT报价，通常情况下这个数字会更高。如果您认为余额不正确，因为缺少某些币，那么增加派生索引可能有助于钱包将缺失的硬币纳入余额总数中。"
 
-#: src/components/nfts/NFTContextualActions.tsx:445
+#: src/components/nfts/NFTContextualActions.tsx:447
 msgid "The download failed: {0}"
 msgstr "下载失败: {0}"
 
@@ -8509,15 +8580,15 @@ msgstr "NFT 移动失败: {err}"
 msgid "The NFT move transaction has been successfully submitted to the blockchain."
 msgstr "移动NFT的交易已成功提交到区块链。"
 
-#: src/components/nfts/NFTContextualActions.tsx:256
+#: src/components/nfts/NFTContextualActions.tsx:258
 msgid "The NFT status has been updated. If the transaction was successfully sent to the mempool, it may still complete."
 msgstr "NFT 状态已更新。如果交易已成功发送到内存池，它可能仍然会完成。"
 
-#: src/components/nfts/NFTContextualActions.tsx:266
+#: src/components/nfts/NFTContextualActions.tsx:268
 msgid "The NFT status update failed: {err}"
 msgstr "NFT 状态更新失败: {err}"
 
-#: src/components/nfts/NFTContextualActions.tsx:181
+#: src/components/nfts/NFTContextualActions.tsx:183
 msgid "The NFT transfer failed: {0}"
 msgstr "NFT转移失败：{0}"
 
@@ -8525,7 +8596,7 @@ msgstr "NFT转移失败：{0}"
 #~ msgid "The NFT transfer failed: {error}"
 #~ msgstr "The NFT transfer failed: {error}"
 
-#: src/components/nfts/NFTContextualActions.tsx:175
+#: src/components/nfts/NFTContextualActions.tsx:177
 msgid "The NFT transfer transaction has been successfully submitted to the blockchain."
 msgstr "NFT 传输交易已成功提交到区块链。"
 
@@ -8819,7 +8890,7 @@ msgstr "要求的金额"
 
 #: src/components/offers2/OfferBuilderAmountWithRoyalties.tsx:31
 msgid "Total Amount with Royalties"
-msgstr "包含版税的总金额"
+msgstr "含版税总金额"
 
 #: src/components/farm/card/FarmCardTotalChiaFarmed.tsx:27
 #~ msgid "Total Chia Farmed"
@@ -8959,10 +9030,10 @@ msgstr "转移"
 #~ msgid "Transfer DID"
 #~ msgstr "Transfer DID"
 
-#: src/components/nfts/NFTContextualActions.tsx:198
+#: src/components/nfts/NFTContextualActions.tsx:200
 #: src/components/nfts/NFTTransferAction.tsx:201
 msgid "Transfer NFT"
-msgstr ""
+msgstr "转移 NFT"
 
 #: src/components/settings/SettingsNotifications.tsx:61
 msgid "Turn on/off the ability to process and display notifications."
@@ -9000,7 +9071,7 @@ msgstr "类型"
 #~ msgid "Types ({0}/{1})"
 #~ msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:329
+#: src/components/nfts/gallery/NFTGallery.tsx:381
 msgid "Types{0}"
 msgstr "类型{0}"
 
@@ -9101,9 +9172,9 @@ msgstr "无法识别的资产"
 #~ msgid "Unsupported commands"
 #~ msgstr "Unsupported commands"
 
-#: src/components/settings/LimitCacheSize.tsx:82
+#: src/components/settings/LimitCacheSize.tsx:77
 msgid "Update"
-msgstr ""
+msgstr "更新"
 
 #: src/constants/WalletConnectCommands.tsx:2012
 #~ msgid "Update DID Metadata"
@@ -9113,7 +9184,7 @@ msgstr ""
 #~ msgid "Update DID Recovery Ids"
 #~ msgstr "Update DID Recovery Ids"
 
-#: src/components/nfts/NFTHashStatus.tsx:69
+#: src/components/nfts/NFTHashStatus.tsx:76
 msgid "Update Pending"
 msgstr "等待更新状态"
 
@@ -9125,9 +9196,9 @@ msgstr "等待更新状态"
 #: src/hooks/useOpenUnsafeLink.tsx:27
 #: src/hooks/useOpenUnsafeLink.tsx:72
 msgid "URL"
-msgstr ""
+msgstr "网址"
 
-#: src/components/nfts/NFTHashStatus.tsx:77
+#: src/components/nfts/NFTHashStatus.tsx:84
 msgid "URL is not valid"
 msgstr "网址无效"
 
@@ -9234,7 +9305,7 @@ msgstr "验证失败"
 
 #: src/components/signVerify/VerifyMessage.tsx:274
 msgid "Verify"
-msgstr ""
+msgstr "验证"
 
 #: src/components/signVerify/SignVerifyDialog.tsx:23
 msgid "Verify Message"
@@ -9250,9 +9321,9 @@ msgstr "验证联合耕种池详情"
 
 #: src/components/settings/SettingsAdvanced.tsx:176
 msgid "Verify Signature"
-msgstr ""
+msgstr "验证签名"
 
-#: src/components/nfts/NFTHashStatus.tsx:65
+#: src/components/nfts/NFTHashStatus.tsx:72
 msgid "Verifying hash..."
 msgstr "正在验证哈希值..."
 
@@ -9289,7 +9360,7 @@ msgstr "在 Dexie 上查看"
 #~ msgid "View on Hashgreen DEX"
 #~ msgstr "View on Hashgreen DEX"
 
-#: src/components/nfts/NFTContextualActions.tsx:661
+#: src/components/nfts/NFTContextualActions.tsx:663
 #: src/components/offers/OfferShareDialog.tsx:384
 msgid "View on MintGarden"
 msgstr "在 MintGarden 上查看"
@@ -9302,7 +9373,7 @@ msgstr "在 MintGarden 上查看"
 msgid "View on Offerpool"
 msgstr "在Offerpool上查看"
 
-#: src/components/nfts/NFTContextualActions.tsx:669
+#: src/components/nfts/NFTContextualActions.tsx:671
 #: src/components/offers/OfferShareDialog.tsx:481
 msgid "View on Spacescan.io"
 msgstr "在 Spacescan.io 上查看"
@@ -9315,11 +9386,11 @@ msgstr "查看联合耕种池登录地址"
 msgid "Viewing offer"
 msgstr "查看报价"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:412
+#: src/components/nfts/gallery/NFTGallery.tsx:464
 msgid "Visible"
 msgstr "可见"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:386
+#: src/components/nfts/gallery/NFTGallery.tsx:438
 msgid "Visible  <0/>"
 msgstr "可见的  <0/>"
 
@@ -9327,7 +9398,7 @@ msgstr "可见的  <0/>"
 #~ msgid "Visible ({0})"
 #~ msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:381
+#: src/components/nfts/gallery/NFTGallery.tsx:433
 msgid "Visible and Hidden  <0/>"
 msgstr "可见和隐藏  <0/>"
 
@@ -9492,6 +9563,10 @@ msgstr "权重"
 msgid "Weight is the total added difficulty of all blocks up to and including this one"
 msgstr "权重是施加给所有块包括目前这块的额外的困难度."
 
+#: src/components/settings/SettingsNFT.tsx:192
+msgid "When an NFT image is too large to verify against its on-chain hash, load the transaction confirmation preview directly from its source URL without verification. When disabled, no preview is shown for these NFTs."
+msgstr "当 NFT 图像过大，无法根据其链上哈希进行验证时，将直接从其来源 URL 加载交易确认预览，跳过验证。禁用此选项后，将不为这些 NFT 显示任何预览。"
+
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:22
 #~ msgid "When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or cancelled, resulting in your spendable balance changing."
 #~ msgstr "When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or canceled, resulting in your spendable balance changing."
@@ -9561,7 +9636,7 @@ msgstr "是"
 msgid "Yes, Accept Offer"
 msgstr "接受报价"
 
-#: src/components/settings/SettingsNFT.tsx:52
+#: src/components/settings/SettingsNFT.tsx:70
 msgid "Yes, delete"
 msgstr "确定删除"
 

@@ -18,6 +18,7 @@ enum CacheAPI {
   GET_HEADERS = `${API.CACHE}:getHeaders`,
   GET_CHECKSUM = `${API.CACHE}:getChecksum`,
   GET_URI = `${API.CACHE}:getUri`,
+  GET_CACHE_INFOS = `${API.CACHE}:getCacheInfos`,
   INVALIDATE = `${API.CACHE}:invalidate`,
 
   // Event subscriptions

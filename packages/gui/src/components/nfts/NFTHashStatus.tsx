@@ -6,8 +6,10 @@ import { Chip, Typography } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 import React, { useMemo } from 'react';
 
+import useIpfsGateway from '../../hooks/useIpfsGateway';
 import useNFT from '../../hooks/useNFT';
 import useNFTVerifyHash from '../../hooks/useNFTVerifyHash';
+import ipfsToGatewayUrl from '../../util/ipfs';
 
 export type NFTHashStatusProps = {
   nftId: string;
@@ -27,22 +29,27 @@ export default function NFTHashStatus(props: NFTHashStatusProps) {
   });
 
   const { nft, isLoading: isLoadingNFT, error: errorNFT } = useNFT(nftId);
+  const [ipfsGateway] = useIpfsGateway();
 
   const isLoading = isLoadingNFTVerifyHash || isLoadingNFT;
   const isVerified = preview ? nftPreview?.isVerified : data?.isVerified;
   const error = (errorNFT ?? preview) ? nftPreview?.error : data?.error;
+  const failedFetch = preview ? nftPreview?.failedFetch : data?.failedFetch;
 
   const isValidURI = useMemo(() => {
-    if (!nftPreview || !('originalUri' in nftPreview)) {
+    const uri = nftPreview?.uri;
+    if (!uri) {
+      // nothing to validate — other branches cover the missing-preview cases
       return true;
     }
 
-    if (nftPreview.uri) {
-      return isValidURL(nftPreview.uri);
-    }
-
-    return false;
-  }, [nftPreview]);
+    // While the user has IPFS gateway fetching enabled, ipfs:// URIs are
+    // served through an HTTPS gateway by the cache layer, so validate the
+    // gateway form instead of flagging them as invalid. With the option off
+    // they are not fetchable and stay flagged — unless the file already
+    // verified from the cache, which the message branches above this check.
+    return isValidURL(ipfsGateway ? ipfsToGatewayUrl(uri) : uri);
+  }, [nftPreview, ipfsGateway]);
 
   const icon = useMemo(() => {
     if (hideIcon) {
@@ -77,8 +84,12 @@ export default function NFTHashStatus(props: NFTHashStatusProps) {
       return <Trans>URL is not valid</Trans>;
     }
 
+    if (failedFetch) {
+      return <Trans>File is not available</Trans>;
+    }
+
     return <Trans>Invalid hash</Trans>;
-  }, [isLoading, isVerified, nft, isValidURI]);
+  }, [isLoading, isVerified, nft, isValidURI, failedFetch]);
 
   const color = useMemo(() => {
     if (isLoading) {

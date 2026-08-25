@@ -6,6 +6,7 @@ import debug from 'debug';
 import type Headers from '../../@types/Headers';
 
 import fileExists from './fileExists';
+import { toFetchableUrl } from './ipfsGateway';
 import isValidURL from './isValidURL';
 
 const log = debug('chia-gui:downloadFile');
@@ -63,10 +64,22 @@ class WriteStreamPromise {
   }
 }
 
+export const MAX_FILE_SIZE_EXCEEDED_ERROR = 'Maximum file size exceeded';
+
+const INACTIVITY_TIMEOUT_ERROR_PREFIX = 'Request timed out after';
+const DOWNLOAD_DEADLINE_ERROR_PREFIX = 'Request exceeded the';
+
+/** Matches the messages of both timeout errors below, including messages that
+ * earlier sessions persisted into cache `-info` files. */
+export function isDownloadTimeoutError(message: string): boolean {
+  return message.startsWith(INACTIVITY_TIMEOUT_ERROR_PREFIX) || message.startsWith(DOWNLOAD_DEADLINE_ERROR_PREFIX);
+}
+
 type DownloadFileOptions = {
   timeout?: number;
+  maxDuration?: number; // absolute cap on the whole transfer
   signal?: AbortSignal;
-  maxSize?: number;
+  maxSize?: number; // values <= 0 disable the size limit
   onProgress?: (progress: number, size: number, downloadedSize: number) => void;
   overrideFile?: boolean;
 };
@@ -74,21 +87,75 @@ type DownloadFileOptions = {
 export default async function downloadFile(
   url: string,
   localPath: string,
-  { timeout = 30_000, signal, maxSize = 100 * 1024 * 1024, onProgress, overrideFile = false }: DownloadFileOptions = {},
+  {
+    timeout = 30_000,
+    maxDuration = 30 * 60 * 1000,
+    signal,
+    maxSize = 100 * 1024 * 1024,
+    onProgress,
+    overrideFile = false,
+  }: DownloadFileOptions = {},
 ): Promise<Headers> {
   if (!isValidURL(url)) {
     throw new Error('Invalid URL');
   }
 
+  // A queued download can be aborted (invalidation, cache directory change)
+  // before the concurrency limiter starts it. Without this check the transfer
+  // would still run, hold a download slot, and could settle the URL with a
+  // permanent timeout error. The error matches the mid-flight abort message so
+  // the cache treats it as retryable.
+  if (signal?.aborted) {
+    throw new Error('Request aborted');
+  }
+
   const tempFilePath = `${localPath}.tmp`;
-  const request = net.request(url);
+  // ipfs:// URIs are fetched through an HTTPS gateway when the user has
+  // enabled it — Electron's net stack cannot request the ipfs scheme, and
+  // with the option off toFetchableUrl refuses the fetch outright. Only
+  // this outgoing request uses the translated URL; callers keep the original
+  // URI as the cache key.
+  const request = net.request(toFetchableUrl(url));
   const outputStream = new WriteStreamPromise(tempFilePath, overrideFile);
+
+  // set when we abort the request ourselves, so abort events can be reported
+  // with the real reason instead of a generic aborted error
+  let abortError: Error | undefined;
 
   function abortRequest() {
     request.abort();
   }
 
+  // Timeouts must not report the generic aborted error: the cache retries
+  // aborted downloads on every access, so a stalled host would be retried
+  // (and stall again) forever instead of settling as a failed download.
+  function abortWithError(error: Error) {
+    abortError = error;
+    request.abort();
+  }
+
   let timeoutId: NodeJS.Timeout | null = null;
+
+  // the timeout is an inactivity timeout - it is reset every time data
+  // arrives, so slow hosts serving large files (videos) are not cut off mid
+  // transfer while a stalled connection still fails fast
+  function resetTimeout() {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+
+    timeoutId = setTimeout(
+      () => abortWithError(new Error(`${INACTIVITY_TIMEOUT_ERROR_PREFIX} ${timeout}ms of inactivity`)),
+      timeout,
+    );
+  }
+
+  // absolute deadline for the whole transfer — the inactivity timeout alone
+  // would let a host trickling bytes hold a download slot forever
+  const maxDurationTimeoutId = setTimeout(
+    () => abortWithError(new Error(`${DOWNLOAD_DEADLINE_ERROR_PREFIX} ${maxDuration}ms download deadline`)),
+    maxDuration,
+  );
 
   return new Promise<Headers>((resolve, reject) => {
     let downloadedSize = 0;
@@ -114,6 +181,8 @@ export default async function downloadFile(
           clearTimeout(timeoutId);
           timeoutId = null;
         }
+
+        clearTimeout(maxDurationTimeoutId);
 
         await outputStream.close();
 
@@ -161,7 +230,8 @@ export default async function downloadFile(
         const size = Number.parseInt(contentLength, 10);
         if (!Number.isNaN(size)) {
           fileSize = size;
-          if (size > maxSize) {
+          if (maxSize > 0 && size > maxSize) {
+            abortError = new Error(MAX_FILE_SIZE_EXCEEDED_ERROR);
             request.abort();
             return;
           }
@@ -170,8 +240,10 @@ export default async function downloadFile(
 
       response.on('data', (chunk) => {
         downloadedSize += chunk.byteLength;
+        resetTimeout();
 
-        if (downloadedSize > maxSize) {
+        if (maxSize > 0 && downloadedSize > maxSize) {
+          abortError = new Error(MAX_FILE_SIZE_EXCEEDED_ERROR);
           request.abort();
           return;
         }
@@ -182,7 +254,7 @@ export default async function downloadFile(
 
         // send progress event only when we know the file size
         if (onProgress && fileSize !== undefined && fileSize > 0) {
-          const progress = Math.max((downloadedSize / fileSize) * 100, 100);
+          const progress = Math.min((downloadedSize / fileSize) * 100, 100);
           onProgress(progress, fileSize, downloadedSize);
         }
       });
@@ -192,7 +264,7 @@ export default async function downloadFile(
       });
 
       response.on('aborted', () => {
-        resolvePromise(false, new Error('Response aborted'));
+        resolvePromise(false, abortError ?? new Error('Response aborted'));
       });
 
       response.on('end', () => {
@@ -201,7 +273,7 @@ export default async function downloadFile(
     });
 
     request.on('abort', () => {
-      resolvePromise(false, new Error('Request aborted'));
+      resolvePromise(false, abortError ?? new Error('Request aborted'));
     });
 
     request.on('error', (error = new Error('Unknown request error')) => {
@@ -212,7 +284,7 @@ export default async function downloadFile(
       signal.addEventListener('abort', abortRequest);
     }
 
-    timeoutId = setTimeout(abortRequest, timeout);
+    resetTimeout();
 
     request.end();
   });

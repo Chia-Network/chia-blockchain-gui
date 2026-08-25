@@ -34,7 +34,7 @@ jobs:
           fetch-depth: 0
 
       - name: Cache npm
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         env:
           cache-name: cache-node-modules
         with:
@@ -47,7 +47,7 @@ jobs:
             ${{ runner.os }}-
 
       - name: Setup Node 24.x
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: "24.x"
 

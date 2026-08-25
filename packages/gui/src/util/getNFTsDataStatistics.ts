@@ -19,6 +19,8 @@ export default function getNFTsDataStatistics(
     hidden: 0,
     total: 0,
     sensitive: 0,
+    previewAvailable: 0,
+    previewUnavailable: 0,
   };
 
   data.forEach((item) => {
@@ -36,6 +38,9 @@ export default function getNFTsDataStatistics(
     if (!metadata || hasSensitiveContent(metadata)) {
       stats.sensitive += 1;
     }
+
+    // no preview verdicts are known here — nothing counts as unavailable
+    stats.previewAvailable += 1;
 
     stats.total += 1;
   });
