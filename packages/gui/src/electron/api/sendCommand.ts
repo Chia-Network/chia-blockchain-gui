@@ -135,6 +135,73 @@ async function connect(): Promise<WebSocket> {
   return socketPromise;
 }
 
+/** Send a pre-built daemon envelope from main and resolve by `request_id`. */
+export async function sendDappAndAwait(requestId: string, json: string, timeoutMs = 15_000): Promise<unknown> {
+  // eslint-disable-next-line no-async-promise-executor -- connect must complete before request listeners are registered.
+  return new Promise(async (resolveMessage, rejectMessage) => {
+    let isDone = false;
+
+    const timeout = setTimeout(() => {
+      handleReject(new Error(`The request ${requestId} timed out after ${timeoutMs / 1000} seconds.`));
+    }, timeoutMs);
+
+    const socket = await connect();
+
+    function cleanup() {
+      clearTimeout(timeout);
+      socket.removeListener('message', handleMessage);
+      socket.removeListener('error', handleSocketError);
+      socket.removeListener('close', handleSocketClose);
+    }
+
+    function handleSocketError(error: Error) {
+      handleReject(error);
+    }
+    function handleSocketClose() {
+      handleReject(new Error('Connection closed before receiving response'));
+    }
+
+    function handleResolve(data: unknown) {
+      if (isDone) {
+        return;
+      }
+
+      isDone = true;
+      cleanup();
+      resolveMessage(data);
+    }
+
+    function handleReject(error: Error) {
+      if (isDone) {
+        return;
+      }
+
+      isDone = true;
+      cleanup();
+      rejectMessage(error);
+    }
+
+    function handleMessage(data: Buffer) {
+      const response = parseIncomingMessage(data);
+      if (!response || response.request_id !== requestId) {
+        return;
+      }
+
+      handleResolve(response);
+    }
+
+    socket.on('message', handleMessage);
+    socket.on('error', handleSocketError);
+    socket.on('close', handleSocketClose);
+
+    try {
+      socket.send(json);
+    } catch (error) {
+      handleReject(error instanceof Error ? error : new Error(String(error)));
+    }
+  });
+}
+
 export async function sendCommand<TResponse extends Record<string, unknown>>(
   command: string,
   destination: 'daemon' | 'chia_wallet' | string,
