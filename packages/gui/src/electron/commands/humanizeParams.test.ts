@@ -1,5 +1,4 @@
-import { type ParamSchema } from './Commands';
-import { humanizeDappCommand } from './humanizeDappCommand';
+import { Commands, type ParamSchema } from './Commands';
 import { humanizeParams } from './humanizeParams';
 
 function buildParam(name: string, options: Partial<ParamSchema> = {}): ParamSchema {
@@ -88,8 +87,8 @@ describe('humanizeParams', () => {
       puzzle_decorator: [{ decorator: 'CLAWBACK', clawback_timelock: 99_999_999_999 }],
     };
 
-    const result = await humanizeDappCommand('chia_sendTransaction', data, 'txch');
-    const row = result.rows.find(({ field }) => field === 'puzzle_decorator');
+    const rows = await humanizeParams(Commands['chia_wallet.send_transaction'].params, data, 'txch');
+    const row = rows.find(({ field }) => field === 'puzzle_decorator');
 
     expect(row?.value).toContain('Clawback timelock');
     expect(row?.value).toContain('years');
