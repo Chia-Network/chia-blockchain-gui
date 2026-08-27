@@ -28,6 +28,23 @@ describe('parseDappParams', () => {
       ).toThrow('param not allowed for dapp: evil_extra');
     });
 
+    it.each(['puzzle_decorator', 'puzzleDecorator'])(
+      'rejects dapp-supplied send transaction decorators using the %s spelling',
+      (field) => {
+        expect(() =>
+          parseDappParams(
+            'chia_sendTransaction',
+            serialize({
+              amount: '1',
+              fee: '0',
+              address: 'txch1address',
+              [field]: [{ decorator: 'CLAWBACK', clawback_timelock: '99999999999' }],
+            }),
+          ),
+        ).toThrow('param not allowed for dapp: puzzle_decorator');
+      },
+    );
+
     it('normalizes camelCase params to snake_case before allowlist validation', () => {
       const result = parseDappParams(
         'chia_pushTransactions',

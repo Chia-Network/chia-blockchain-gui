@@ -1,4 +1,5 @@
 import JSONBig from 'json-bigint';
+import moment from 'moment';
 
 import { i18n } from '../../config/locales';
 // import { lookupCat } from '../utils/dappEnrichment';
@@ -7,6 +8,14 @@ import mojoToChiaLocaleString from '../utils/mojoToChiaLocaleString';
 import { parseMojos } from '../utils/parseMojos';
 
 import { type ParamSchema } from './Commands';
+
+function safeJsonStringify(value: unknown): string {
+  try {
+    return JSONBig.stringify(value, null, 2);
+  } catch {
+    return String(value);
+  }
+}
 
 function formatMojoXch(amount: unknown, networkPrefix?: string): string {
   const formatted = mojoToChiaLocaleString(amount as string | number);
@@ -30,6 +39,39 @@ async function formatMojoCat(amount: unknown, data: Record<string, unknown>): Pr
   // return cat?.displayName ? `${formatted} ${cat.displayName}` : formatted;
 }
 
+function formatDuration(rawSeconds: unknown): string {
+  const seconds = Number(rawSeconds);
+  if (!Number.isFinite(seconds)) {
+    return String(rawSeconds);
+  }
+  if (seconds <= 0) {
+    return i18n._(/* i18n */ { id: 'None' });
+  }
+  return moment.duration(seconds, 'seconds').humanize();
+}
+
+function formatPuzzleDecorator(value: unknown): string {
+  if (!Array.isArray(value) || value.length === 0) {
+    return safeJsonStringify(value);
+  }
+
+  return value
+    .map((entry) => {
+      if (entry && typeof entry === 'object' && (entry as Record<string, unknown>).decorator === 'CLAWBACK') {
+        const timelock = (entry as Record<string, unknown>).clawback_timelock;
+        return i18n._(
+          /* i18n */ {
+            id: 'Clawback timelock: {duration}. Recipient can claim after this delay; sender can reclaim until recipient claims.',
+            values: { duration: formatDuration(timelock) },
+          },
+        );
+      }
+
+      return safeJsonStringify(entry);
+    })
+    .join('\n');
+}
+
 export async function humanizeParamValue(
   param: ParamSchema,
   value: unknown,
@@ -48,6 +90,8 @@ export async function humanizeParamValue(
         return formatMojoXch(value, networkPrefix);
       case 'mojo-to-cat':
         return formatMojoCat(value, data);
+      case 'puzzle-decorator':
+        return formatPuzzleDecorator(value);
       default:
         throw new Error('Unhandled humanize type');
     }
@@ -62,11 +106,7 @@ export async function humanizeParamValue(
     case 'bool':
       return value === true ? i18n._(/* i18n */ { id: 'Yes' }) : i18n._(/* i18n */ { id: 'No' });
     case 'json':
-      try {
-        return JSONBig.stringify(value, null, 2);
-      } catch {
-        return String(value);
-      }
+      return safeJsonStringify(value);
     default: {
       throw new Error('Unhandled param type');
     }
