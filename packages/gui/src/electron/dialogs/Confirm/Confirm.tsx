@@ -50,7 +50,7 @@ export type ConfirmProps = {
   message: string;
   confirmLabel: ReactNode;
   destructive: boolean;
-  /** Pre-resolved param rows from `renderConfirm` (label/value pairs). */
+  /** Pre-resolved param rows from the command humanizer (label/value pairs). */
   rows: ConfirmRow[];
   /** Daemon-derived offer summary / CAT info; rendered if present. */
   display?: ConfirmDisplay;
