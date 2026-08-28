@@ -19,16 +19,6 @@ msgstr ""
 "X-Crowdin-File-ID: 35\n"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/humanizeParamValue.ts:48
-msgid "None"
-msgstr ""
-
-#. js-lingui-explicit-id
-#: src/electron/commands/humanizeParamValue.ts:63
-msgid "Clawback timelock: {duration}. Recipient can claim after this delay; sender can reclaim until recipient claims."
-msgstr ""
-
-#. js-lingui-explicit-id
 #: src/components/nfts/NFTBurnDialog.tsx:133
 msgid "Do you want to burn {count} NFTs?"
 msgstr "Voulez-vous brûler ces {count} NFT ?"
@@ -2456,6 +2446,16 @@ msgstr "Confirmer"
 #. js-lingui-explicit-id
 #: src/electron/commands/humanizeCommand.ts:21
 msgid "Please review and confirm this action."
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/commands/humanizeParamValue.ts:48
+msgid "None"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/commands/humanizeParamValue.ts:63
+msgid "Clawback timelock: {duration}. Recipient can claim after this delay; sender can reclaim until recipient claims."
 msgstr ""
 
 #. js-lingui-explicit-id
