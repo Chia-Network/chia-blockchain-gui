@@ -19,6 +19,16 @@ msgstr ""
 "X-Crowdin-File-ID: 35\n"
 
 #. js-lingui-explicit-id
+#: src/electron/commands/humanizeParamValue.ts:48
+msgid "None"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/commands/humanizeParamValue.ts:63
+msgid "Clawback timelock: {duration}. Recipient can claim after this delay; sender can reclaim until recipient claims."
+msgstr ""
+
+#. js-lingui-explicit-id
 #: src/components/nfts/NFTBurnDialog.tsx:133
 msgid "Do you want to burn {count} NFTs?"
 msgstr "Chcete spáliť {count} NFT?"
@@ -60,15 +70,16 @@ msgstr "Zobraziť"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:69
-#: src/electron/commands/Commands.ts:480
+#: src/electron/commands/Commands.ts:519
 msgid "Type"
 msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:74
-#: src/electron/commands/Commands.ts:378
-#: src/electron/commands/Commands.ts:406
-#: src/electron/commands/Commands.ts:1801
+#: src/electron/commands/Commands.ts:407
+#: src/electron/commands/Commands.ts:427
+#: src/electron/commands/Commands.ts:445
+#: src/electron/commands/Commands.ts:1833
 msgid "Message"
 msgstr ""
 
@@ -79,8 +90,8 @@ msgstr "URL"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:86
-#: src/electron/commands/Commands.ts:2043
-#: src/electron/commands/Commands.ts:2058
+#: src/electron/commands/Commands.ts:2075
+#: src/electron/commands/Commands.ts:2090
 msgid "Offer Data"
 msgstr "Údaje o ponuke"
 
@@ -137,91 +148,97 @@ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:134
-#: src/electron/commands/Commands.ts:182
-#: src/electron/commands/Commands.ts:634
-#: src/electron/commands/Commands.ts:1014
+#: src/electron/commands/Commands.ts:211
+#: src/electron/commands/Commands.ts:673
+#: src/electron/commands/Commands.ts:1046
 msgid "Send"
 msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:138
-#: src/electron/commands/Commands.ts:188
-#: src/electron/commands/Commands.ts:504
-#: src/electron/commands/Commands.ts:1204
-#: src/electron/commands/Commands.ts:1712
+#: src/electron/commands/Commands.ts:179
+#: src/electron/commands/Commands.ts:217
+#: src/electron/commands/Commands.ts:543
+#: src/electron/commands/Commands.ts:1236
+#: src/electron/commands/Commands.ts:1744
 msgid "Amount"
 msgstr "Suma"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:144
-#: src/electron/commands/Commands.ts:194
-#: src/electron/commands/Commands.ts:230
-#: src/electron/commands/Commands.ts:247
+#: src/electron/commands/Commands.ts:185
+#: src/electron/commands/Commands.ts:223
 #: src/electron/commands/Commands.ts:259
-#: src/electron/commands/Commands.ts:271
-#: src/electron/commands/Commands.ts:308
-#: src/electron/commands/Commands.ts:354
-#: src/electron/commands/Commands.ts:439
-#: src/electron/commands/Commands.ts:457
-#: src/electron/commands/Commands.ts:482
-#: src/electron/commands/Commands.ts:505
-#: src/electron/commands/Commands.ts:637
-#: src/electron/commands/Commands.ts:660
-#: src/electron/commands/Commands.ts:772
-#: src/electron/commands/Commands.ts:871
-#: src/electron/commands/Commands.ts:939
-#: src/electron/commands/Commands.ts:969
-#: src/electron/commands/Commands.ts:1035
-#: src/electron/commands/Commands.ts:1083
-#: src/electron/commands/Commands.ts:1100
-#: src/electron/commands/Commands.ts:1129
-#: src/electron/commands/Commands.ts:1159
-#: src/electron/commands/Commands.ts:1183
-#: src/electron/commands/Commands.ts:1207
-#: src/electron/commands/Commands.ts:1229
-#: src/electron/commands/Commands.ts:1395
-#: src/electron/commands/Commands.ts:1417
-#: src/electron/commands/Commands.ts:1442
-#: src/electron/commands/Commands.ts:1460
-#: src/electron/commands/Commands.ts:1478
+#: src/electron/commands/Commands.ts:276
+#: src/electron/commands/Commands.ts:288
+#: src/electron/commands/Commands.ts:300
+#: src/electron/commands/Commands.ts:337
+#: src/electron/commands/Commands.ts:383
+#: src/electron/commands/Commands.ts:478
+#: src/electron/commands/Commands.ts:496
+#: src/electron/commands/Commands.ts:521
+#: src/electron/commands/Commands.ts:544
+#: src/electron/commands/Commands.ts:676
+#: src/electron/commands/Commands.ts:699
+#: src/electron/commands/Commands.ts:811
+#: src/electron/commands/Commands.ts:910
+#: src/electron/commands/Commands.ts:971
+#: src/electron/commands/Commands.ts:1001
+#: src/electron/commands/Commands.ts:1067
+#: src/electron/commands/Commands.ts:1115
+#: src/electron/commands/Commands.ts:1132
+#: src/electron/commands/Commands.ts:1161
+#: src/electron/commands/Commands.ts:1191
+#: src/electron/commands/Commands.ts:1215
+#: src/electron/commands/Commands.ts:1239
+#: src/electron/commands/Commands.ts:1261
+#: src/electron/commands/Commands.ts:1427
+#: src/electron/commands/Commands.ts:1449
+#: src/electron/commands/Commands.ts:1474
+#: src/electron/commands/Commands.ts:1492
+#: src/electron/commands/Commands.ts:1510
 msgid "Fee"
 msgstr "Poplatok"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:148
-#: src/electron/commands/Commands.ts:185
-#: src/electron/commands/Commands.ts:377
-#: src/electron/commands/Commands.ts:1806
+#: src/electron/commands/Commands.ts:189
+#: src/electron/commands/Commands.ts:214
+#: src/electron/commands/Commands.ts:406
+#: src/electron/commands/Commands.ts:426
+#: src/electron/commands/Commands.ts:1838
 msgid "Address"
 msgstr "Adresa"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:151
-#: src/electron/commands/Commands.ts:184
-#: src/electron/commands/Commands.ts:219
-#: src/electron/commands/Commands.ts:427
-#: src/electron/commands/Commands.ts:713
-#: src/electron/commands/Commands.ts:791
-#: src/electron/commands/Commands.ts:930
-#: src/electron/commands/Commands.ts:965
-#: src/electron/commands/Commands.ts:1000
-#: src/electron/commands/Commands.ts:1497
-#: src/electron/commands/Commands.ts:1581
-#: src/electron/commands/Commands.ts:1711
-#: src/electron/commands/Commands.ts:1759
-#: src/electron/commands/Commands.ts:1834
-#: src/electron/commands/Commands.ts:2119
-#: src/electron/commands/Commands.ts:2225
-#: src/electron/commands/Commands.ts:2239
-#: src/electron/commands/Commands.ts:2267
-#: src/electron/commands/Commands.ts:2281
-#: src/electron/commands/Commands.ts:2295
+#: src/electron/commands/Commands.ts:192
+#: src/electron/commands/Commands.ts:213
+#: src/electron/commands/Commands.ts:248
+#: src/electron/commands/Commands.ts:466
+#: src/electron/commands/Commands.ts:752
+#: src/electron/commands/Commands.ts:830
+#: src/electron/commands/Commands.ts:962
+#: src/electron/commands/Commands.ts:997
+#: src/electron/commands/Commands.ts:1032
+#: src/electron/commands/Commands.ts:1529
+#: src/electron/commands/Commands.ts:1613
+#: src/electron/commands/Commands.ts:1743
+#: src/electron/commands/Commands.ts:1791
+#: src/electron/commands/Commands.ts:1866
+#: src/electron/commands/Commands.ts:2151
+#: src/electron/commands/Commands.ts:2257
+#: src/electron/commands/Commands.ts:2271
+#: src/electron/commands/Commands.ts:2299
+#: src/electron/commands/Commands.ts:2313
+#: src/electron/commands/Commands.ts:2327
 msgid "Wallet Id"
 msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:157
-#: src/electron/commands/Commands.ts:200
+#: src/electron/commands/Commands.ts:198
+#: src/electron/commands/Commands.ts:229
 msgid "Memos"
 msgstr "Poznámky"
 
@@ -231,1391 +248,1382 @@ msgid "Puzzle Decorator"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:172
+#: src/electron/commands/Commands.ts:173
 msgid "Send Transaction"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:180
+#: src/electron/commands/Commands.ts:209
 msgid "Confirm CAT Spend"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:181
+#: src/electron/commands/Commands.ts:210
 msgid "Please carefully review and confirm this CAT spend."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:208
+#: src/electron/commands/Commands.ts:237
 msgid "Spend CAT"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:215
-#: src/electron/commands/Commands.ts:241
+#: src/electron/commands/Commands.ts:244
+#: src/electron/commands/Commands.ts:270
 msgid "Confirm NFT Transfer"
 msgstr "Potvrdiť prenos NFT"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:216
-#: src/electron/commands/Commands.ts:242
+#: src/electron/commands/Commands.ts:245
+#: src/electron/commands/Commands.ts:271
 msgid "Please carefully review and confirm this NFT transfer."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:217
-#: src/electron/commands/Commands.ts:243
-#: src/electron/commands/Commands.ts:963
+#: src/electron/commands/Commands.ts:246
+#: src/electron/commands/Commands.ts:272
+#: src/electron/commands/Commands.ts:995
 msgid "Transfer"
 msgstr "Prevod"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:222
-#: src/electron/commands/Commands.ts:435
+#: src/electron/commands/Commands.ts:251
+#: src/electron/commands/Commands.ts:474
 msgid "NFT Coin Ids"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:227
-#: src/electron/commands/Commands.ts:246
-#: src/electron/commands/Commands.ts:728
+#: src/electron/commands/Commands.ts:256
+#: src/electron/commands/Commands.ts:275
+#: src/electron/commands/Commands.ts:767
 msgid "Target Address"
 msgstr "Cieľová adresa"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:235
+#: src/electron/commands/Commands.ts:264
 msgid "Transfer NFT"
 msgstr "Previesť NFT"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:245
-#: src/electron/commands/Commands.ts:455
+#: src/electron/commands/Commands.ts:274
+#: src/electron/commands/Commands.ts:494
 msgid "NFT Coin List"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:252
+#: src/electron/commands/Commands.ts:281
 msgid "Confirm Cancel Offer"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:253
+#: src/electron/commands/Commands.ts:282
 msgid "Please carefully review and confirm this offer cancellation."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:254
-#: src/electron/commands/Commands.ts:1527
-#: src/electron/commands/Commands.ts:1552
-#: src/electron/commands/Commands.ts:1577
-#: src/electron/commands/Commands.ts:1633
-#: src/electron/commands/Commands.ts:1662
-#: src/electron/commands/Commands.ts:1757
-#: src/electron/commands/Commands.ts:1830
-#: src/electron/commands/Commands.ts:1871
-#: src/electron/commands/Commands.ts:1887
-#: src/electron/commands/Commands.ts:1909
-#: src/electron/commands/Commands.ts:1943
-#: src/electron/commands/Commands.ts:1959
-#: src/electron/commands/Commands.ts:2026
-#: src/electron/commands/Commands.ts:2042
-#: src/electron/commands/Commands.ts:2057
-#: src/electron/commands/Commands.ts:2072
-#: src/electron/commands/Commands.ts:2088
+#: src/electron/commands/Commands.ts:283
+#: src/electron/commands/Commands.ts:1559
+#: src/electron/commands/Commands.ts:1584
+#: src/electron/commands/Commands.ts:1609
+#: src/electron/commands/Commands.ts:1665
+#: src/electron/commands/Commands.ts:1694
+#: src/electron/commands/Commands.ts:1789
+#: src/electron/commands/Commands.ts:1862
+#: src/electron/commands/Commands.ts:1903
+#: src/electron/commands/Commands.ts:1919
+#: src/electron/commands/Commands.ts:1941
+#: src/electron/commands/Commands.ts:1975
+#: src/electron/commands/Commands.ts:1991
+#: src/electron/commands/Commands.ts:2058
+#: src/electron/commands/Commands.ts:2074
+#: src/electron/commands/Commands.ts:2089
 #: src/electron/commands/Commands.ts:2104
-#: src/electron/commands/Commands.ts:2118
-#: src/electron/commands/Commands.ts:2139
-#: src/electron/commands/Commands.ts:2173
-#: src/electron/commands/Commands.ts:2193
-#: src/electron/commands/Commands.ts:2209
-#: src/electron/commands/Commands.ts:2224
-#: src/electron/commands/Commands.ts:2238
-#: src/electron/commands/Commands.ts:2252
-#: src/electron/commands/Commands.ts:2266
-#: src/electron/commands/Commands.ts:2280
-#: src/electron/commands/Commands.ts:2294
-#: src/electron/commands/Commands.ts:2308
-#: src/electron/commands/Commands.ts:2322
-#: src/electron/commands/Commands.ts:2337
-#: src/electron/commands/Commands.ts:2351
-#: src/electron/commands/Commands.ts:2385
-#: src/electron/commands/Commands.ts:2419
-#: src/electron/commands/Commands.ts:2449
-#: src/electron/commands/Commands.ts:2463
-#: src/electron/commands/Commands.ts:2477
-#: src/electron/commands/Commands.ts:2491
-#: src/electron/commands/Commands.ts:2505
-#: src/electron/commands/Commands.ts:2519
-#: src/electron/commands/Commands.ts:2533
-#: src/electron/commands/Commands.ts:2547
-#: src/electron/commands/Commands.ts:2570
+#: src/electron/commands/Commands.ts:2120
+#: src/electron/commands/Commands.ts:2136
+#: src/electron/commands/Commands.ts:2150
+#: src/electron/commands/Commands.ts:2171
+#: src/electron/commands/Commands.ts:2205
+#: src/electron/commands/Commands.ts:2225
+#: src/electron/commands/Commands.ts:2241
+#: src/electron/commands/Commands.ts:2256
+#: src/electron/commands/Commands.ts:2270
+#: src/electron/commands/Commands.ts:2284
+#: src/electron/commands/Commands.ts:2298
+#: src/electron/commands/Commands.ts:2312
+#: src/electron/commands/Commands.ts:2326
+#: src/electron/commands/Commands.ts:2340
+#: src/electron/commands/Commands.ts:2354
+#: src/electron/commands/Commands.ts:2369
+#: src/electron/commands/Commands.ts:2383
+#: src/electron/commands/Commands.ts:2417
+#: src/electron/commands/Commands.ts:2451
+#: src/electron/commands/Commands.ts:2481
+#: src/electron/commands/Commands.ts:2495
+#: src/electron/commands/Commands.ts:2509
+#: src/electron/commands/Commands.ts:2523
+#: src/electron/commands/Commands.ts:2537
+#: src/electron/commands/Commands.ts:2551
+#: src/electron/commands/Commands.ts:2565
+#: src/electron/commands/Commands.ts:2579
+#: src/electron/commands/Commands.ts:2602
 #: src/electron/commands/humanizeCommand.ts:22
 msgid "Proceed"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:257
-#: src/electron/commands/Commands.ts:270
-#: src/electron/commands/Commands.ts:1438
-#: src/electron/commands/Commands.ts:1457
+#: src/electron/commands/Commands.ts:286
+#: src/electron/commands/Commands.ts:299
+#: src/electron/commands/Commands.ts:1470
+#: src/electron/commands/Commands.ts:1489
 msgid "Trade Id"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:258
-#: src/electron/commands/Commands.ts:1439
+#: src/electron/commands/Commands.ts:287
+#: src/electron/commands/Commands.ts:1471
 msgid "Secure"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:264
+#: src/electron/commands/Commands.ts:293
 msgid "Cancel Offer"
 msgstr "Zrušiť ponuku"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:279
+#: src/electron/commands/Commands.ts:308
 msgid "Confirm Create Offer for Ids"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:282
+#: src/electron/commands/Commands.ts:311
 msgid "Please carefully review and confirm this offer creation. When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or cancelled, resulting in your spendable balance changing."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:286
-#: src/electron/commands/Commands.ts:476
-#: src/electron/commands/Commands.ts:502
-#: src/electron/commands/Commands.ts:1096
-#: src/electron/commands/Commands.ts:1389
+#: src/electron/commands/Commands.ts:315
+#: src/electron/commands/Commands.ts:515
+#: src/electron/commands/Commands.ts:541
+#: src/electron/commands/Commands.ts:1128
+#: src/electron/commands/Commands.ts:1421
 msgid "Create"
 msgstr "Vytvoriť"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:290
+#: src/electron/commands/Commands.ts:319
 msgid "Wallet Ids and Amounts"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:293
+#: src/electron/commands/Commands.ts:322
 msgid "Driver Dict"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:296
+#: src/electron/commands/Commands.ts:325
 msgid "Validate Only"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:302
+#: src/electron/commands/Commands.ts:331
 msgid "Disable JSON Formatting"
 msgstr "Vypnúť JSON formátovanie"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:316
+#: src/electron/commands/Commands.ts:345
 msgid "Omit transactions data"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:323
-#: src/electron/commands/Commands.ts:359
+#: src/electron/commands/Commands.ts:352
+#: src/electron/commands/Commands.ts:388
 msgid "Extra Conditions"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:329
-#: src/electron/commands/Commands.ts:636
-#: src/electron/commands/Commands.ts:1498
+#: src/electron/commands/Commands.ts:358
+#: src/electron/commands/Commands.ts:675
+#: src/electron/commands/Commands.ts:1530
 msgid "Coin Ids"
 msgstr "ID mincí"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:335
-#: src/electron/commands/Commands.ts:526
-#: src/electron/commands/Commands.ts:680
-#: src/electron/commands/Commands.ts:1689
-#: src/electron/commands/Commands.ts:1739
+#: src/electron/commands/Commands.ts:364
+#: src/electron/commands/Commands.ts:565
+#: src/electron/commands/Commands.ts:719
+#: src/electron/commands/Commands.ts:1721
+#: src/electron/commands/Commands.ts:1771
 msgid "Allow Unsynced"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:344
+#: src/electron/commands/Commands.ts:373
 msgid "Create Offer for Ids"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:350
+#: src/electron/commands/Commands.ts:379
 msgid "Confirm Take Offer"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:351
+#: src/electron/commands/Commands.ts:380
 msgid "Please carefully review and confirm this offer acceptance."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:352
-#: src/electron/commands/Commands.ts:1412
+#: src/electron/commands/Commands.ts:381
+#: src/electron/commands/Commands.ts:1444
 msgid "Accept"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:355
-#: src/electron/commands/Commands.ts:1414
-#: src/electron/commands/Commands.ts:1475
+#: src/electron/commands/Commands.ts:384
+#: src/electron/commands/Commands.ts:1446
+#: src/electron/commands/Commands.ts:1507
 msgid "Offer"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:367
+#: src/electron/commands/Commands.ts:396
 msgid "Take Offer"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:373
-#: src/electron/commands/Commands.ts:401
+#: src/electron/commands/Commands.ts:402
+#: src/electron/commands/Commands.ts:440
 msgid "Confirm Sign Message"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:374
-#: src/electron/commands/Commands.ts:402
+#: src/electron/commands/Commands.ts:403
+#: src/electron/commands/Commands.ts:441
 msgid "Are you sure you want to sign this message?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:375
-#: src/electron/commands/Commands.ts:403
-#: src/electron/commands/Commands.ts:673
+#: src/electron/commands/Commands.ts:404
+#: src/electron/commands/Commands.ts:442
+#: src/electron/commands/Commands.ts:712
 msgid "Sign"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:381
-#: src/electron/commands/Commands.ts:409
+#: src/electron/commands/Commands.ts:410
+#: src/electron/commands/Commands.ts:430
+#: src/electron/commands/Commands.ts:448
 msgid "Message Is Hex Encoded String"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:387
+#: src/electron/commands/Commands.ts:416
 msgid "Safe Mode"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:395
+#: src/electron/commands/Commands.ts:424
 msgid "Sign Message by Address"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:405
+#: src/electron/commands/Commands.ts:444
 msgid "Id"
 msgstr "ID"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:417
+#: src/electron/commands/Commands.ts:456
 msgid "Sign Message by Id"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:423
+#: src/electron/commands/Commands.ts:462
 msgid "Confirm Move NFT to DID"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:424
+#: src/electron/commands/Commands.ts:463
 msgid "Are you sure you want to move this NFT to the specified profile?"
 msgstr "Naozaj chcete presunúť tento NFT do určeného profilu?"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:425
-#: src/electron/commands/Commands.ts:453
+#: src/electron/commands/Commands.ts:464
+#: src/electron/commands/Commands.ts:492
 msgid "Move"
 msgstr "Presunúť"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:430
+#: src/electron/commands/Commands.ts:469
 msgid "NFT Launcher Id"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:438
-#: src/electron/commands/Commands.ts:456
+#: src/electron/commands/Commands.ts:477
+#: src/electron/commands/Commands.ts:495
 msgid "DID"
 msgstr "DID"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:444
+#: src/electron/commands/Commands.ts:483
 msgid "Set NFT DID"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:451
+#: src/electron/commands/Commands.ts:490
 msgid "Confirm Move NFTs to DID"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:452
+#: src/electron/commands/Commands.ts:491
 msgid "Are you sure you want to move these NFTs to the specified profile?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:463
+#: src/electron/commands/Commands.ts:502
 msgid "Confirm Set Auto Claim"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:464
+#: src/electron/commands/Commands.ts:503
 msgid "Are you sure you want to set auto claim?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:465
-#: src/electron/commands/Commands.ts:610
-#: src/electron/commands/Commands.ts:998
+#: src/electron/commands/Commands.ts:504
+#: src/electron/commands/Commands.ts:649
+#: src/electron/commands/Commands.ts:1030
 msgid "Set"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:467
+#: src/electron/commands/Commands.ts:506
 msgid "Enabled"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:468
+#: src/electron/commands/Commands.ts:507
 msgid "Transaction Fee"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:469
+#: src/electron/commands/Commands.ts:508
 msgid "Min Amount"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:474
+#: src/electron/commands/Commands.ts:513
 msgid "Confirm Create New Wallet"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:475
+#: src/electron/commands/Commands.ts:514
 msgid "Are you sure you want to create a new wallet?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:478
-#: src/electron/commands/Commands.ts:479
-#: src/electron/commands/Commands.ts:523
-#: src/electron/commands/Commands.ts:1001
+#: src/electron/commands/Commands.ts:517
+#: src/electron/commands/Commands.ts:518
+#: src/electron/commands/Commands.ts:562
+#: src/electron/commands/Commands.ts:1033
 msgid "Name"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:481
-#: src/electron/commands/Commands.ts:490
+#: src/electron/commands/Commands.ts:520
+#: src/electron/commands/Commands.ts:529
 msgid "Asset ID"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:487
+#: src/electron/commands/Commands.ts:526
 msgid "Add CAT Token"
 msgstr "Pridať CAT token"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:489
+#: src/electron/commands/Commands.ts:528
 msgid "Wallet Name"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:500
+#: src/electron/commands/Commands.ts:539
 msgid "Confirm Create DID Wallet"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:501
+#: src/electron/commands/Commands.ts:540
 msgid "Please carefully review and confirm creating this DID wallet."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:506
+#: src/electron/commands/Commands.ts:545
 msgid "Backup DIDs"
 msgstr "Záložné DIDy"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:509
+#: src/electron/commands/Commands.ts:548
 msgid "Number of Backup Ids Needed"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:520
+#: src/electron/commands/Commands.ts:559
 msgid "Create new Remote Wallet"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:521
+#: src/electron/commands/Commands.ts:560
 msgid "Please carefully review and confirm creating this remote wallet."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:539
+#: src/electron/commands/Commands.ts:578
 msgid "Confirm Delete Wallet"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:540
+#: src/electron/commands/Commands.ts:579
 msgid "Are you sure you want to delete this wallet?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:541
-#: src/electron/commands/Commands.ts:549
-#: src/electron/commands/Commands.ts:1176
-#: src/electron/commands/Commands.ts:1223
+#: src/electron/commands/Commands.ts:580
+#: src/electron/commands/Commands.ts:588
+#: src/electron/commands/Commands.ts:1208
+#: src/electron/commands/Commands.ts:1255
 msgid "Delete"
 msgstr "Zmazať"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:543
-#: src/electron/commands/Commands.ts:628
-#: src/electron/commands/Commands.ts:1513
+#: src/electron/commands/Commands.ts:582
+#: src/electron/commands/Commands.ts:667
+#: src/electron/commands/Commands.ts:1545
 msgid "Fingerprint"
 msgstr "Odtlačok"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:547
+#: src/electron/commands/Commands.ts:586
 msgid "Confirm Delete Plot"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:548
+#: src/electron/commands/Commands.ts:587
 msgid "Are you sure you want to delete this plot?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:551
+#: src/electron/commands/Commands.ts:590
 msgid "Filename"
 msgstr "Meno súboru"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:555
+#: src/electron/commands/Commands.ts:594
 msgid "Confirm Add Plot Directory"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:556
+#: src/electron/commands/Commands.ts:595
 msgid "Are you sure you want to add this plot directory?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:557
-#: src/electron/commands/Commands.ts:1059
-#: src/electron/commands/Commands.ts:1200
+#: src/electron/commands/Commands.ts:596
+#: src/electron/commands/Commands.ts:1091
+#: src/electron/commands/Commands.ts:1232
 msgid "Add"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:558
-#: src/electron/commands/Commands.ts:566
+#: src/electron/commands/Commands.ts:597
+#: src/electron/commands/Commands.ts:605
 msgid "Directory"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:562
+#: src/electron/commands/Commands.ts:601
 msgid "Confirm Remove Plot Directory"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:563
+#: src/electron/commands/Commands.ts:602
 msgid "Are you sure you want to remove this plot directory?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:564
-#: src/electron/commands/Commands.ts:1284
+#: src/electron/commands/Commands.ts:603
+#: src/electron/commands/Commands.ts:1316
 msgid "Remove"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:570
+#: src/electron/commands/Commands.ts:609
 msgid "Confirm Open Connection"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:571
+#: src/electron/commands/Commands.ts:610
 msgid "Are you sure you want to open a connection to the specified node?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:572
+#: src/electron/commands/Commands.ts:611
 #: src/electron/dialogs/Pair/Pair.tsx:385
 msgid "Connect"
 msgstr "Pripojiť"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:574
+#: src/electron/commands/Commands.ts:613
 msgid "Host"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:575
+#: src/electron/commands/Commands.ts:614
 msgid "Port"
 msgstr "Port"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:580
-#: src/electron/commands/Commands.ts:594
+#: src/electron/commands/Commands.ts:619
+#: src/electron/commands/Commands.ts:633
 msgid "Confirm Disconnect"
 msgstr "Potvrďte odpojenie"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:581
+#: src/electron/commands/Commands.ts:620
 msgid "Are you sure you want to disconnect from the specified node?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:582
-#: src/electron/commands/Commands.ts:596
+#: src/electron/commands/Commands.ts:621
+#: src/electron/commands/Commands.ts:635
 msgid "Disconnect"
 msgstr "Odpojiť"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:587
-#: src/electron/commands/Commands.ts:601
+#: src/electron/commands/Commands.ts:626
+#: src/electron/commands/Commands.ts:640
 msgid "Node ID"
 msgstr "ID uzla"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:595
+#: src/electron/commands/Commands.ts:634
 msgid "Are you sure you want to disconnect from the specified farmer?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:608
+#: src/electron/commands/Commands.ts:647
 msgid "Confirm Set Payout Instructions"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:609
+#: src/electron/commands/Commands.ts:648
 msgid "Are you sure you want to set payout instructions?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:612
+#: src/electron/commands/Commands.ts:651
 msgid "Payout Instructions"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:617
+#: src/electron/commands/Commands.ts:656
 msgid "Confirm Stop Plotting"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:618
+#: src/electron/commands/Commands.ts:657
 msgid "Are you sure you want to stop plotting?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:619
+#: src/electron/commands/Commands.ts:658
 msgid "Stop"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:621
+#: src/electron/commands/Commands.ts:660
 msgid "ID"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:625
+#: src/electron/commands/Commands.ts:664
 msgid "Confirm Log In"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:626
+#: src/electron/commands/Commands.ts:665
 msgid "Are you sure you want to switch to this wallet key?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:627
+#: src/electron/commands/Commands.ts:666
 msgid "Log In"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:632
+#: src/electron/commands/Commands.ts:671
 msgid "Confirm Clawback Spend"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:633
+#: src/electron/commands/Commands.ts:672
 msgid "Please carefully review and confirm this clawback spend."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:642
+#: src/electron/commands/Commands.ts:681
 msgid "Claw back or claim claw back transaction"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:649
+#: src/electron/commands/Commands.ts:688
 msgid "Confirm Push Transactions"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:650
+#: src/electron/commands/Commands.ts:689
 msgid "Please carefully review and confirm pushing this transaction bundle."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:651
-#: src/electron/commands/Commands.ts:667
-#: src/electron/commands/Commands.ts:697
+#: src/electron/commands/Commands.ts:690
+#: src/electron/commands/Commands.ts:706
+#: src/electron/commands/Commands.ts:736
 msgid "Push"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:655
+#: src/electron/commands/Commands.ts:694
 msgid "Transactions"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:688
+#: src/electron/commands/Commands.ts:727
 msgid "Push Transactions"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:689
+#: src/electron/commands/Commands.ts:728
 msgid "Push a list of transactions to the blockchain via the wallet"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:695
+#: src/electron/commands/Commands.ts:734
 msgid "Confirm Push Transaction"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:696
+#: src/electron/commands/Commands.ts:735
 msgid "Please carefully review and confirm pushing this transaction."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:698
+#: src/electron/commands/Commands.ts:737
 msgid "Spend Bundle"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:702
+#: src/electron/commands/Commands.ts:741
 msgid "Push Transaction"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:703
+#: src/electron/commands/Commands.ts:742
 msgid "Push a spend bundle (transaction) to the blockchain"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:709
+#: src/electron/commands/Commands.ts:748
 msgid "Confirm Mint NFT"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:710
+#: src/electron/commands/Commands.ts:749
 msgid "Please carefully review and confirm this NFT mint."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:711
-#: src/electron/commands/Commands.ts:789
+#: src/electron/commands/Commands.ts:750
+#: src/electron/commands/Commands.ts:828
 msgid "Mint"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:716
-#: src/electron/commands/Commands.ts:805
+#: src/electron/commands/Commands.ts:755
+#: src/electron/commands/Commands.ts:844
 msgid "Royalty Address"
 msgstr "Adresa autorského honoráru"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:722
-#: src/electron/commands/Commands.ts:799
+#: src/electron/commands/Commands.ts:761
+#: src/electron/commands/Commands.ts:838
 msgid "Royalty Percentage"
 msgstr "Percento autorského honoráru"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:732
+#: src/electron/commands/Commands.ts:771
 msgid "Uris"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:733
-#: src/electron/commands/Commands.ts:1363
+#: src/electron/commands/Commands.ts:772
+#: src/electron/commands/Commands.ts:1395
 msgid "Hash"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:734
+#: src/electron/commands/Commands.ts:773
 msgid "Meta Uris"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:737
+#: src/electron/commands/Commands.ts:776
 msgid "Meta Hash"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:743
+#: src/electron/commands/Commands.ts:782
 msgid "License Uris"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:748
+#: src/electron/commands/Commands.ts:787
 msgid "License Hash"
 msgstr "Hash licencie"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:754
+#: src/electron/commands/Commands.ts:793
 msgid "Edition Number"
 msgstr "Číslo vydania"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:760
+#: src/electron/commands/Commands.ts:799
 msgid "Edition Total"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:766
+#: src/electron/commands/Commands.ts:805
 msgid "DID Id"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:781
+#: src/electron/commands/Commands.ts:820
 msgid "Mint NFT"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:787
+#: src/electron/commands/Commands.ts:826
 msgid "Confirm Bulk Mint NFTs"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:788
+#: src/electron/commands/Commands.ts:827
 msgid "Please carefully review and confirm this bulk NFT mint."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:794
+#: src/electron/commands/Commands.ts:833
 msgid "Metadata List"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:811
+#: src/electron/commands/Commands.ts:850
 msgid "Target List"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:817
+#: src/electron/commands/Commands.ts:856
 msgid "Mint Start Number"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:823
+#: src/electron/commands/Commands.ts:862
 msgid "Mint Total"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:829
+#: src/electron/commands/Commands.ts:868
 msgid "XCH Coins"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:835
+#: src/electron/commands/Commands.ts:874
 msgid "XCH Change Target"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:841
+#: src/electron/commands/Commands.ts:880
 msgid "New Inner Puzzle Hash"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:847
+#: src/electron/commands/Commands.ts:886
 msgid "New P2 Puzzle Hash"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:853
+#: src/electron/commands/Commands.ts:892
 msgid "DID Coin Dictionary"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:859
+#: src/electron/commands/Commands.ts:898
 msgid "DID Lineage Parent"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:865
+#: src/electron/commands/Commands.ts:904
 msgid "Mint From DID"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:878
-#: src/electron/commands/Commands.ts:946
-#: src/electron/commands/Commands.ts:982
-#: src/electron/commands/Commands.ts:1042
+#: src/electron/commands/Commands.ts:917
+#: src/electron/commands/Commands.ts:978
+#: src/electron/commands/Commands.ts:1014
+#: src/electron/commands/Commands.ts:1074
 msgid "Reuse Puzzle Hash"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:886
-msgid "Mint Bulk"
-msgstr ""
-
-#. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:887
-msgid "Create a spend bundle to mint multiple NFTs"
-msgstr ""
-
-#. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:893
+#: src/electron/commands/Commands.ts:925
 msgid "Confirm Find Lost DID"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:894
+#: src/electron/commands/Commands.ts:926
 msgid "Are you sure you want to recover this DID?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:895
+#: src/electron/commands/Commands.ts:927
 msgid "Recover"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:897
-#: src/electron/commands/Commands.ts:1226
-#: src/electron/commands/Commands.ts:2174
-#: src/electron/commands/Commands.ts:2253
+#: src/electron/commands/Commands.ts:929
+#: src/electron/commands/Commands.ts:1258
+#: src/electron/commands/Commands.ts:2206
+#: src/electron/commands/Commands.ts:2285
 msgid "Coin Id"
 msgstr "ID mince"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:900
+#: src/electron/commands/Commands.ts:932
 msgid "Recovery List Hash"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:906
+#: src/electron/commands/Commands.ts:938
 msgid "Required Number of DIDs for Verification"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:912
-#: src/electron/commands/Commands.ts:933
+#: src/electron/commands/Commands.ts:944
+#: src/electron/commands/Commands.ts:965
 msgid "DID Metadata"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:920
+#: src/electron/commands/Commands.ts:952
 msgid "Find Lost DID"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:926
+#: src/electron/commands/Commands.ts:958
 msgid "Confirm Update DID Metadata"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:927
+#: src/electron/commands/Commands.ts:959
 msgid "Please carefully review and confirm this DID metadata update."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:928
-#: src/electron/commands/Commands.ts:1123
+#: src/electron/commands/Commands.ts:960
+#: src/electron/commands/Commands.ts:1155
 msgid "Update"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:955
+#: src/electron/commands/Commands.ts:987
 msgid "Update DID Metadata"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:961
+#: src/electron/commands/Commands.ts:993
 msgid "Confirm Transfer DID"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:962
+#: src/electron/commands/Commands.ts:994
 msgid "Please carefully review and confirm this DID transfer."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:966
+#: src/electron/commands/Commands.ts:998
 msgid "Inner Address"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:976
+#: src/electron/commands/Commands.ts:1008
 msgid "With Recovery Info"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:990
+#: src/electron/commands/Commands.ts:1022
 msgid "Transfer DID"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:996
+#: src/electron/commands/Commands.ts:1028
 msgid "Confirm Set DID Name"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:997
+#: src/electron/commands/Commands.ts:1029
 msgid "Please carefully review and confirm renaming this DID wallet."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1006
+#: src/electron/commands/Commands.ts:1038
 msgid "Set DID Name"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1012
+#: src/electron/commands/Commands.ts:1044
 msgid "Confirm VC Spend"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1013
+#: src/electron/commands/Commands.ts:1045
 msgid "Please carefully review and confirm this verifiable credential spend."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1016
-#: src/electron/commands/Commands.ts:2323
+#: src/electron/commands/Commands.ts:1048
+#: src/electron/commands/Commands.ts:2355
 msgid "Launcher Id"
 msgstr "Id spúšťača"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1019
+#: src/electron/commands/Commands.ts:1051
 msgid "New Puzzle Hash"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1025
+#: src/electron/commands/Commands.ts:1057
 msgid "New Proof Hash"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1030
+#: src/electron/commands/Commands.ts:1062
 msgid "Provider Inner Puzzle Hash"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1050
+#: src/electron/commands/Commands.ts:1082
 msgid "Add Proofs To Verifiable Credential"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1056
+#: src/electron/commands/Commands.ts:1088
 msgid "Confirm Add VC Proofs"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1058
+#: src/electron/commands/Commands.ts:1090
 msgid "Please carefully review and confirm adding proofs to this verifiable credential."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1061
+#: src/electron/commands/Commands.ts:1093
 msgid "Proofs Object (Key Value Pairs)"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1067
+#: src/electron/commands/Commands.ts:1099
 msgid "Add Proofs"
 msgstr "Pridať dôkazy"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1073
+#: src/electron/commands/Commands.ts:1105
 msgid "Confirm Revoke VC"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1074
+#: src/electron/commands/Commands.ts:1106
 msgid "Are you sure you want to revoke this verifiable credential?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1075
+#: src/electron/commands/Commands.ts:1107
 msgid "Revoke"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1080
+#: src/electron/commands/Commands.ts:1112
 msgid "Parent Coin Id"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1088
+#: src/electron/commands/Commands.ts:1120
 msgid "Revoke Verifiable Credential"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1094
+#: src/electron/commands/Commands.ts:1126
 msgid "Confirm Create DataStore"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1095
+#: src/electron/commands/Commands.ts:1127
 msgid "Please carefully review and confirm creating this data store."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1107
+#: src/electron/commands/Commands.ts:1139
 msgid "Verbose"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1115
+#: src/electron/commands/Commands.ts:1147
 msgid "Create DataStore"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1121
+#: src/electron/commands/Commands.ts:1153
 msgid "Confirm DataStore Update"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1122
+#: src/electron/commands/Commands.ts:1154
 msgid "Please carefully review and confirm this data store update."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1125
-#: src/electron/commands/Commands.ts:1154
-#: src/electron/commands/Commands.ts:1179
-#: src/electron/commands/Commands.ts:1202
-#: src/electron/commands/Commands.ts:1248
-#: src/electron/commands/Commands.ts:1265
-#: src/electron/commands/Commands.ts:1287
-#: src/electron/commands/Commands.ts:1348
-#: src/electron/commands/Commands.ts:1362
-#: src/electron/commands/Commands.ts:2353
-#: src/electron/commands/Commands.ts:2387
-#: src/electron/commands/Commands.ts:2421
-#: src/electron/commands/Commands.ts:2450
-#: src/electron/commands/Commands.ts:2464
-#: src/electron/commands/Commands.ts:2492
-#: src/electron/commands/Commands.ts:2520
-#: src/electron/commands/Commands.ts:2534
-#: src/electron/commands/Commands.ts:2549
+#: src/electron/commands/Commands.ts:1157
+#: src/electron/commands/Commands.ts:1186
+#: src/electron/commands/Commands.ts:1211
+#: src/electron/commands/Commands.ts:1234
+#: src/electron/commands/Commands.ts:1280
+#: src/electron/commands/Commands.ts:1297
+#: src/electron/commands/Commands.ts:1319
+#: src/electron/commands/Commands.ts:1380
+#: src/electron/commands/Commands.ts:1394
+#: src/electron/commands/Commands.ts:2385
+#: src/electron/commands/Commands.ts:2419
+#: src/electron/commands/Commands.ts:2453
+#: src/electron/commands/Commands.ts:2482
+#: src/electron/commands/Commands.ts:2496
+#: src/electron/commands/Commands.ts:2524
+#: src/electron/commands/Commands.ts:2552
+#: src/electron/commands/Commands.ts:2566
+#: src/electron/commands/Commands.ts:2581
 msgid "Store Id"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1126
+#: src/electron/commands/Commands.ts:1158
 msgid "Changelist"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1136
+#: src/electron/commands/Commands.ts:1168
 msgid "Submit On Chain"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1144
+#: src/electron/commands/Commands.ts:1176
 msgid "Batch Update"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1150
+#: src/electron/commands/Commands.ts:1182
 msgid "Confirm DataStore Insert"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1151
+#: src/electron/commands/Commands.ts:1183
 msgid "Please carefully review and confirm this data store insert."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1152
-#: src/electron/commands/Commands.ts:1168
+#: src/electron/commands/Commands.ts:1184
+#: src/electron/commands/Commands.ts:1200
 msgid "Insert"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1155
-#: src/electron/commands/Commands.ts:1180
-#: src/electron/commands/Commands.ts:2550
+#: src/electron/commands/Commands.ts:1187
+#: src/electron/commands/Commands.ts:1212
+#: src/electron/commands/Commands.ts:2582
 msgid "Key"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1156
+#: src/electron/commands/Commands.ts:1188
 msgid "Value"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1174
+#: src/electron/commands/Commands.ts:1206
 msgid "Confirm DataStore Delete Key"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1175
+#: src/electron/commands/Commands.ts:1207
 msgid "Are you sure you want to delete this key from the data store?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1192
+#: src/electron/commands/Commands.ts:1224
 msgid "Delete Key"
 msgstr "Odstrániť kľúč"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1198
+#: src/electron/commands/Commands.ts:1230
 msgid "Confirm Add Mirror"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1199
+#: src/electron/commands/Commands.ts:1231
 msgid "Please carefully review and confirm adding this mirror."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1203
-#: src/electron/commands/Commands.ts:1249
-#: src/electron/commands/Commands.ts:1288
+#: src/electron/commands/Commands.ts:1235
+#: src/electron/commands/Commands.ts:1281
+#: src/electron/commands/Commands.ts:1320
 msgid "URLs"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1215
+#: src/electron/commands/Commands.ts:1247
 msgid "Add Mirror"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1221
+#: src/electron/commands/Commands.ts:1253
 msgid "Confirm Delete Mirror"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1222
+#: src/electron/commands/Commands.ts:1254
 msgid "Are you sure you want to delete this mirror?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1238
+#: src/electron/commands/Commands.ts:1270
 msgid "Delete Mirror"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1244
+#: src/electron/commands/Commands.ts:1276
 msgid "Confirm DataStore Subscribe"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1245
+#: src/electron/commands/Commands.ts:1277
 msgid "Please review and confirm this subscription."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1246
-#: src/electron/commands/Commands.ts:1254
+#: src/electron/commands/Commands.ts:1278
+#: src/electron/commands/Commands.ts:1286
 msgid "Subscribe"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1260
+#: src/electron/commands/Commands.ts:1292
 msgid "Confirm DataStore Unsubscribe"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1261
+#: src/electron/commands/Commands.ts:1293
 msgid "Please review and confirm this unsubscribe."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1262
-#: src/electron/commands/Commands.ts:1276
+#: src/electron/commands/Commands.ts:1294
+#: src/electron/commands/Commands.ts:1308
 msgid "Unsubscribe"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1268
+#: src/electron/commands/Commands.ts:1300
 msgid "Retain"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1282
+#: src/electron/commands/Commands.ts:1314
 msgid "Confirm Remove Subscriptions"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1283
+#: src/electron/commands/Commands.ts:1315
 msgid "Are you sure you want to remove these subscription URLs?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1293
+#: src/electron/commands/Commands.ts:1325
 msgid "Remove Subscriptions"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1299
+#: src/electron/commands/Commands.ts:1331
 msgid "Confirm Add Missing Files"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1300
+#: src/electron/commands/Commands.ts:1332
 msgid "Please review and confirm syncing missing files."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1301
+#: src/electron/commands/Commands.ts:1333
 msgid "Sync"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1305
-#: src/electron/commands/Commands.ts:2506
+#: src/electron/commands/Commands.ts:1337
+#: src/electron/commands/Commands.ts:2538
 msgid "Store Ids"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1311
+#: src/electron/commands/Commands.ts:1343
 msgid "Overwrite"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1317
+#: src/electron/commands/Commands.ts:1349
 msgid "Folder Name"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1325
+#: src/electron/commands/Commands.ts:1357
 msgid "Add Missing Files"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1331
+#: src/electron/commands/Commands.ts:1363
 msgid "Confirm Check Plugins"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1332
+#: src/electron/commands/Commands.ts:1364
 msgid "Please review and confirm this plugin check."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1333
+#: src/electron/commands/Commands.ts:1365
 msgid "Check"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1338
+#: src/electron/commands/Commands.ts:1370
 msgid "Check Plugins"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1344
+#: src/electron/commands/Commands.ts:1376
 msgid "Confirm Clear Pending Roots"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1345
+#: src/electron/commands/Commands.ts:1377
 msgid "Are you sure you want to clear pending roots for this store?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1346
+#: src/electron/commands/Commands.ts:1378
 msgid "Clear"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1352
+#: src/electron/commands/Commands.ts:1384
 msgid "Clear Pending Roots"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1358
+#: src/electron/commands/Commands.ts:1390
 msgid "Confirm Get Ancestors"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1359
-#: src/electron/commands/Commands.ts:1375
+#: src/electron/commands/Commands.ts:1391
+#: src/electron/commands/Commands.ts:1407
 msgid "Please review and confirm this query."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1360
-#: src/electron/commands/Commands.ts:1376
+#: src/electron/commands/Commands.ts:1392
+#: src/electron/commands/Commands.ts:1408
 msgid "Query"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1368
+#: src/electron/commands/Commands.ts:1400
 msgid "Get Ancestors"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1374
+#: src/electron/commands/Commands.ts:1406
 msgid "Confirm List Subscriptions"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1381
+#: src/electron/commands/Commands.ts:1413
 msgid "Subscriptions"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1387
+#: src/electron/commands/Commands.ts:1419
 msgid "Confirm Make DataLayer Offer"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1388
+#: src/electron/commands/Commands.ts:1420
 msgid "Please carefully review and confirm this DataLayer offer."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1391
+#: src/electron/commands/Commands.ts:1423
 msgid "Maker"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1392
+#: src/electron/commands/Commands.ts:1424
 msgid "Taker"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1404
+#: src/electron/commands/Commands.ts:1436
 msgid "Make DataLayer Offer"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1410
+#: src/electron/commands/Commands.ts:1442
 msgid "Confirm Take DataLayer Offer"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1411
+#: src/electron/commands/Commands.ts:1443
 msgid "Please carefully review and confirm taking this DataLayer offer."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1426
+#: src/electron/commands/Commands.ts:1458
 msgid "Take DataLayer Offer"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1432
+#: src/electron/commands/Commands.ts:1464
 msgid "Confirm Cancel DataLayer Offer"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1433
+#: src/electron/commands/Commands.ts:1465
 msgid "Please carefully review and confirm cancelling this DataLayer offer."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1434
+#: src/electron/commands/Commands.ts:1466
 #: src/electron/dialogs/Confirm/Confirm.tsx:438
 #: src/electron/dialogs/Pair/Pair.tsx:377
 #: src/electron/main.tsx:1121
@@ -1623,819 +1631,819 @@ msgid "Cancel"
 msgstr "Zrušiť"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1451
+#: src/electron/commands/Commands.ts:1483
 msgid "Cancel DataLayer Offer"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1471
+#: src/electron/commands/Commands.ts:1503
 msgid "Confirm Verify DataLayer Offer"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1472
+#: src/electron/commands/Commands.ts:1504
 msgid "Please review and confirm this offer verification."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1473
-#: src/electron/commands/Commands.ts:1799
+#: src/electron/commands/Commands.ts:1505
+#: src/electron/commands/Commands.ts:1831
 msgid "Verify"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1487
+#: src/electron/commands/Commands.ts:1519
 msgid "Verify Offer"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1493
+#: src/electron/commands/Commands.ts:1525
 msgid "Confirm Register Remote Coins"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1494
+#: src/electron/commands/Commands.ts:1526
 msgid "Please review and confirm registering these remote coins."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1495
+#: src/electron/commands/Commands.ts:1527
 msgid "Register"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1503
+#: src/electron/commands/Commands.ts:1535
 msgid "Register Remote Coins"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1504
+#: src/electron/commands/Commands.ts:1536
 msgid "Registers a list of remote coin IDs with a remote wallet."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1510
+#: src/electron/commands/Commands.ts:1542
 msgid "Confirm Get Public Key"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1511
+#: src/electron/commands/Commands.ts:1543
 msgid "An app is requesting access to a wallet public key."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1512
+#: src/electron/commands/Commands.ts:1544
 msgid "Share"
 msgstr "Zdieľať"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1517
+#: src/electron/commands/Commands.ts:1549
 msgid "Get public key"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1518
+#: src/electron/commands/Commands.ts:1550
 msgid "Requests a master public key from your wallet"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1524
-#: src/electron/commands/Commands.ts:1538
+#: src/electron/commands/Commands.ts:1556
+#: src/electron/commands/Commands.ts:1570
 msgid "Get Wallets"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1526
-#: src/electron/commands/Commands.ts:1541
+#: src/electron/commands/Commands.ts:1558
+#: src/electron/commands/Commands.ts:1573
 msgid "Requests a complete listing of the wallets associated with the current wallet key"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1531
+#: src/electron/commands/Commands.ts:1563
 msgid "Include Wallet Metadata"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1550
-#: src/electron/commands/Commands.ts:1563
+#: src/electron/commands/Commands.ts:1582
+#: src/electron/commands/Commands.ts:1595
 msgid "Get Transaction"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1551
-#: src/electron/commands/Commands.ts:1564
+#: src/electron/commands/Commands.ts:1583
+#: src/electron/commands/Commands.ts:1596
 msgid "Requests details for a specific transaction"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1556
+#: src/electron/commands/Commands.ts:1588
 msgid "Transaction Id"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1572
-#: src/electron/commands/Commands.ts:1590
+#: src/electron/commands/Commands.ts:1604
+#: src/electron/commands/Commands.ts:1622
 msgid "Get Wallet Balance"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1575
-#: src/electron/commands/Commands.ts:1593
+#: src/electron/commands/Commands.ts:1607
+#: src/electron/commands/Commands.ts:1625
 msgid "Requests the asset balance for a specific wallet associated with the current wallet key"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1628
-#: src/electron/commands/Commands.ts:1645
+#: src/electron/commands/Commands.ts:1660
+#: src/electron/commands/Commands.ts:1677
 msgid "Get Wallet Balances"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1631
-#: src/electron/commands/Commands.ts:1648
+#: src/electron/commands/Commands.ts:1663
+#: src/electron/commands/Commands.ts:1680
 msgid "Requests the asset balances for specific wallets associated with the current wallet key"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1637
-#: src/electron/commands/Commands.ts:2141
-#: src/electron/commands/Commands.ts:2194
+#: src/electron/commands/Commands.ts:1669
+#: src/electron/commands/Commands.ts:2173
+#: src/electron/commands/Commands.ts:2226
 msgid "Wallet Ids"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1659
-#: src/electron/commands/Commands.ts:1697
+#: src/electron/commands/Commands.ts:1691
+#: src/electron/commands/Commands.ts:1729
 msgid "Get Coin Records by Name"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1661
-#: src/electron/commands/Commands.ts:1699
+#: src/electron/commands/Commands.ts:1693
+#: src/electron/commands/Commands.ts:1731
 msgid "Requests the status of a list of coin records from the Wallet's coin store."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1666
+#: src/electron/commands/Commands.ts:1698
 msgid "Names (coin ids)"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1671
+#: src/electron/commands/Commands.ts:1703
 msgid "Start Height"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1677
+#: src/electron/commands/Commands.ts:1709
 msgid "End Height"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1683
+#: src/electron/commands/Commands.ts:1715
 msgid "Include Spent Coins"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1707
-#: src/electron/commands/Commands.ts:1747
+#: src/electron/commands/Commands.ts:1739
+#: src/electron/commands/Commands.ts:1779
 msgid "Select Coins"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1708
-#: src/electron/commands/Commands.ts:1748
+#: src/electron/commands/Commands.ts:1740
+#: src/electron/commands/Commands.ts:1780
 msgid "Selects coins to be spent from a specific wallet"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1709
+#: src/electron/commands/Commands.ts:1741
 msgid "Select"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1715
-#: src/electron/commands/Commands.ts:1762
+#: src/electron/commands/Commands.ts:1747
+#: src/electron/commands/Commands.ts:1794
 msgid "Min Coin Amount"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1721
-#: src/electron/commands/Commands.ts:1768
+#: src/electron/commands/Commands.ts:1753
+#: src/electron/commands/Commands.ts:1800
 msgid "Max Coin Amount"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1727
-#: src/electron/commands/Commands.ts:1774
+#: src/electron/commands/Commands.ts:1759
+#: src/electron/commands/Commands.ts:1806
 msgid "Excluded Coin Amounts"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1733
-#: src/electron/commands/Commands.ts:1780
+#: src/electron/commands/Commands.ts:1765
+#: src/electron/commands/Commands.ts:1812
 msgid "Excluded Coin IDs"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1755
-#: src/electron/commands/Commands.ts:1788
+#: src/electron/commands/Commands.ts:1787
+#: src/electron/commands/Commands.ts:1820
 msgid "Get Spendable Coins"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1756
-#: src/electron/commands/Commands.ts:1789
+#: src/electron/commands/Commands.ts:1788
+#: src/electron/commands/Commands.ts:1821
 msgid "Requests spendable coins for a specific wallet"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1797
-#: src/electron/commands/Commands.ts:1820
+#: src/electron/commands/Commands.ts:1829
+#: src/electron/commands/Commands.ts:1852
 msgid "Verify Signature"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1798
-#: src/electron/commands/Commands.ts:1821
+#: src/electron/commands/Commands.ts:1830
+#: src/electron/commands/Commands.ts:1853
 msgid "Requests the verification status for a digital signature"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1802
+#: src/electron/commands/Commands.ts:1834
 #: src/electron/dialogs/KeyDetail/KeyDetail.tsx:32
 msgid "Public Key"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1803
+#: src/electron/commands/Commands.ts:1835
 msgid "Signature"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1812
+#: src/electron/commands/Commands.ts:1844
 msgid "Signing Mode"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1828
-#: src/electron/commands/Commands.ts:1850
+#: src/electron/commands/Commands.ts:1860
+#: src/electron/commands/Commands.ts:1882
 msgid "Get Next Address"
 msgstr "Získať ďalšiu adresu"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1829
-#: src/electron/commands/Commands.ts:1852
+#: src/electron/commands/Commands.ts:1861
+#: src/electron/commands/Commands.ts:1884
 msgid "Requests a new receive address associated with the current wallet key"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1841
+#: src/electron/commands/Commands.ts:1873
 msgid "New Address"
 msgstr "Nová adresa"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1858
+#: src/electron/commands/Commands.ts:1890
 msgid "Get Current Address"
 msgstr "Získať aktuálnu adresu"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1860
+#: src/electron/commands/Commands.ts:1892
 msgid "Requests the current receive address associated with the current wallet key"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1869
-#: src/electron/commands/Commands.ts:1876
+#: src/electron/commands/Commands.ts:1901
+#: src/electron/commands/Commands.ts:1908
 msgid "Get Wallet Sync Status"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1870
-#: src/electron/commands/Commands.ts:1877
+#: src/electron/commands/Commands.ts:1902
+#: src/electron/commands/Commands.ts:1909
 msgid "Requests the syncing status of current wallet"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1884
-#: src/electron/commands/Commands.ts:1892
+#: src/electron/commands/Commands.ts:1916
+#: src/electron/commands/Commands.ts:1924
 msgid "Get Full Node Peer Count"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1886
-#: src/electron/commands/Commands.ts:1894
+#: src/electron/commands/Commands.ts:1918
+#: src/electron/commands/Commands.ts:1926
 msgid "Requests the number of full node peers currently connected to the wallet"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1902
-#: src/electron/commands/Commands.ts:1921
+#: src/electron/commands/Commands.ts:1934
+#: src/electron/commands/Commands.ts:1953
 msgid "Get Height Info"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1905
-#: src/electron/commands/Commands.ts:1924
+#: src/electron/commands/Commands.ts:1937
+#: src/electron/commands/Commands.ts:1956
 msgid "Returns wallet height, latest block timestamp, and related fields. Optional usePeakHeight uses the chain tip while syncing."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1913
+#: src/electron/commands/Commands.ts:1945
 msgid "Use peak height"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1941
-#: src/electron/commands/Commands.ts:1948
+#: src/electron/commands/Commands.ts:1973
+#: src/electron/commands/Commands.ts:1980
 msgid "Get puzzle and solution"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1942
-#: src/electron/commands/Commands.ts:1950
+#: src/electron/commands/Commands.ts:1974
+#: src/electron/commands/Commands.ts:1982
 msgid "Fetches the puzzle reveal and solution for a spent coin (hex strings)."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1944
+#: src/electron/commands/Commands.ts:1976
 msgid "Coin name"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1956
-#: src/electron/commands/Commands.ts:2001
+#: src/electron/commands/Commands.ts:1988
+#: src/electron/commands/Commands.ts:2033
 msgid "Get all Offers"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1958
-#: src/electron/commands/Commands.ts:2003
+#: src/electron/commands/Commands.ts:1990
+#: src/electron/commands/Commands.ts:2035
 msgid "Requests a complete listing of the offers associated with the current wallet key"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1963
+#: src/electron/commands/Commands.ts:1995
 msgid "Start"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1969
+#: src/electron/commands/Commands.ts:2001
 msgid "End"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1975
+#: src/electron/commands/Commands.ts:2007
 msgid "Start Key"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1981
+#: src/electron/commands/Commands.ts:2013
 msgid "Reverse"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1987
+#: src/electron/commands/Commands.ts:2019
 msgid "Include My Offers"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1993
-msgid "Include Taken Offers"
-msgstr ""
-
-#. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2024
-#: src/electron/commands/Commands.ts:2031
-msgid "Get Offers Count"
-msgstr ""
-
-#. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2025
-#: src/electron/commands/Commands.ts:2033
-msgid "Requests the number of offers associated with the current wallet key"
-msgstr ""
-
-#. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2040
-#: src/electron/commands/Commands.ts:2047
-msgid "Check Offer Validity"
-msgstr "Skontrolovať platnosť ponuky"
-
-#. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2041
-#: src/electron/commands/Commands.ts:2048
-msgid "Requests the validity status of a specific offer"
-msgstr ""
-
-#. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2055
-#: src/electron/commands/Commands.ts:2062
-msgid "Get Offer Summary"
+msgid "Include Taken Offers"
 msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2056
 #: src/electron/commands/Commands.ts:2063
-msgid "Requests the summarized details of a specific offer"
+msgid "Get Offers Count"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2070
-#: src/electron/commands/Commands.ts:2077
-msgid "Get Offer Data"
+#: src/electron/commands/Commands.ts:2057
+#: src/electron/commands/Commands.ts:2065
+msgid "Requests the number of offers associated with the current wallet key"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2071
-#: src/electron/commands/Commands.ts:2078
-msgid "Requests the raw offer data for a specific offer"
-msgstr ""
+#: src/electron/commands/Commands.ts:2072
+#: src/electron/commands/Commands.ts:2079
+msgid "Check Offer Validity"
+msgstr "Skontrolovať platnosť ponuky"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2073
-#: src/electron/commands/Commands.ts:2089
-msgid "Offer Id"
-msgstr ""
-
-#. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2086
-#: src/electron/commands/Commands.ts:2093
-msgid "Get Offer Record"
+#: src/electron/commands/Commands.ts:2080
+msgid "Requests the validity status of a specific offer"
 msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2087
 #: src/electron/commands/Commands.ts:2094
-msgid "Requests the details for a specific offer"
+msgid "Get Offer Summary"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/commands/Commands.ts:2088
+#: src/electron/commands/Commands.ts:2095
+msgid "Requests the summarized details of a specific offer"
 msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2102
 #: src/electron/commands/Commands.ts:2109
-msgid "Get CAT Wallet Info"
+msgid "Get Offer Data"
 msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2103
-msgid "Requests the CAT wallet info"
+#: src/electron/commands/Commands.ts:2110
+msgid "Requests the raw offer data for a specific offer"
 msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2105
-msgid "Asset Id"
+#: src/electron/commands/Commands.ts:2121
+msgid "Offer Id"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2116
-#: src/electron/commands/Commands.ts:2123
-msgid "Get CAT Asset Id"
+#: src/electron/commands/Commands.ts:2118
+#: src/electron/commands/Commands.ts:2125
+msgid "Get Offer Record"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2117
-#: src/electron/commands/Commands.ts:2124
-msgid "Requests the CAT asset ID for a specific CAT wallet"
+#: src/electron/commands/Commands.ts:2119
+#: src/electron/commands/Commands.ts:2126
+msgid "Requests the details for a specific offer"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2132
-#: src/electron/commands/Commands.ts:2158
-msgid "Get NFTs"
+#: src/electron/commands/Commands.ts:2134
+#: src/electron/commands/Commands.ts:2141
+msgid "Get CAT Wallet Info"
 msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2135
-#: src/electron/commands/Commands.ts:2161
+msgid "Requests the CAT wallet info"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/commands/Commands.ts:2137
+msgid "Asset Id"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/commands/Commands.ts:2148
+#: src/electron/commands/Commands.ts:2155
+msgid "Get CAT Asset Id"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/commands/Commands.ts:2149
+#: src/electron/commands/Commands.ts:2156
+msgid "Requests the CAT asset ID for a specific CAT wallet"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/commands/Commands.ts:2164
+#: src/electron/commands/Commands.ts:2190
+msgid "Get NFTs"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/commands/Commands.ts:2167
+#: src/electron/commands/Commands.ts:2193
 msgid "Requests a full or paginated listing of NFTs associated with one or more wallets associated with the current wallet key"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2144
+#: src/electron/commands/Commands.ts:2176
 msgid "Number of NFTs"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2150
+#: src/electron/commands/Commands.ts:2182
 msgid "Start Index"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2171
-#: src/electron/commands/Commands.ts:2178
+#: src/electron/commands/Commands.ts:2203
+#: src/electron/commands/Commands.ts:2210
 msgid "Get NFT Info"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2172
-#: src/electron/commands/Commands.ts:2179
+#: src/electron/commands/Commands.ts:2204
+#: src/electron/commands/Commands.ts:2211
 msgid "Requests details for a specific NFT"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2186
+#: src/electron/commands/Commands.ts:2218
 msgid "Get NFTs Count"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2189
+#: src/electron/commands/Commands.ts:2221
 msgid "Requests the number of NFTs associated with one or more wallets associated with the current wallet key"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2204
-#: src/electron/commands/Commands.ts:2214
+#: src/electron/commands/Commands.ts:2236
+#: src/electron/commands/Commands.ts:2246
 msgid "Get NFT Wallets with DIDs"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2207
+#: src/electron/commands/Commands.ts:2239
 msgid "Requests a complete listing of the NFT wallets associated with the current wallet key"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2222
-#: src/electron/commands/Commands.ts:2229
+#: src/electron/commands/Commands.ts:2254
+#: src/electron/commands/Commands.ts:2261
 msgid "Get DID Current Coin Info"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2223
+#: src/electron/commands/Commands.ts:2255
 msgid "Requests the current coin info for a specific DID"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2236
-#: src/electron/commands/Commands.ts:2243
+#: src/electron/commands/Commands.ts:2268
+#: src/electron/commands/Commands.ts:2275
 msgid "Get DID"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2237
+#: src/electron/commands/Commands.ts:2269
 msgid "Requests the DID"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2250
-#: src/electron/commands/Commands.ts:2257
+#: src/electron/commands/Commands.ts:2282
+#: src/electron/commands/Commands.ts:2289
 msgid "Get DID Info"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2251
+#: src/electron/commands/Commands.ts:2283
 msgid "Requests the info for a specific DID"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2264
-#: src/electron/commands/Commands.ts:2271
+#: src/electron/commands/Commands.ts:2296
+#: src/electron/commands/Commands.ts:2303
 msgid "Get DID Metadata"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2265
+#: src/electron/commands/Commands.ts:2297
 msgid "Requests the metadata for a specific DID"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2278
-#: src/electron/commands/Commands.ts:2285
+#: src/electron/commands/Commands.ts:2310
+#: src/electron/commands/Commands.ts:2317
 msgid "Get DID Public Key"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2279
+#: src/electron/commands/Commands.ts:2311
 msgid "Requests the public key for a specific DID"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2292
-#: src/electron/commands/Commands.ts:2299
+#: src/electron/commands/Commands.ts:2324
+#: src/electron/commands/Commands.ts:2331
 msgid "Get DID Name"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2293
+#: src/electron/commands/Commands.ts:2325
 msgid "Requests the name for a specific DID"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2306
-#: src/electron/commands/Commands.ts:2313
+#: src/electron/commands/Commands.ts:2338
+#: src/electron/commands/Commands.ts:2345
 msgid "Get All Verifiable Credentials"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2307
+#: src/electron/commands/Commands.ts:2339
 msgid "Requests a complete listing of all verifiable credentials"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2320
-#: src/electron/commands/Commands.ts:2327
+#: src/electron/commands/Commands.ts:2352
+#: src/electron/commands/Commands.ts:2359
 msgid "Get Verifiable Credential"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2321
+#: src/electron/commands/Commands.ts:2353
 msgid "Requests the verifiable credential for a specific launcher id"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2335
-#: src/electron/commands/Commands.ts:2342
+#: src/electron/commands/Commands.ts:2367
+#: src/electron/commands/Commands.ts:2374
 msgid "Get Proofs For Root Hash"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2336
+#: src/electron/commands/Commands.ts:2368
 msgid "Requests the proofs for a specific root hash"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2338
+#: src/electron/commands/Commands.ts:2370
 msgid "Proofs Hash"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2349
-#: src/electron/commands/Commands.ts:2376
+#: src/electron/commands/Commands.ts:2381
+#: src/electron/commands/Commands.ts:2408
 msgid "Get Keys"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2350
+#: src/electron/commands/Commands.ts:2382
 msgid "Requests the keys for a specific store"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2356
-#: src/electron/commands/Commands.ts:2390
-#: src/electron/commands/Commands.ts:2553
+#: src/electron/commands/Commands.ts:2388
+#: src/electron/commands/Commands.ts:2422
+#: src/electron/commands/Commands.ts:2585
 msgid "Root Hash"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2362
-#: src/electron/commands/Commands.ts:2396
-#: src/electron/commands/Commands.ts:2426
+#: src/electron/commands/Commands.ts:2394
+#: src/electron/commands/Commands.ts:2428
+#: src/electron/commands/Commands.ts:2458
 msgid "Page"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2368
-#: src/electron/commands/Commands.ts:2402
-#: src/electron/commands/Commands.ts:2432
+#: src/electron/commands/Commands.ts:2400
+#: src/electron/commands/Commands.ts:2434
+#: src/electron/commands/Commands.ts:2464
 msgid "Max page size"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2383
-#: src/electron/commands/Commands.ts:2410
+#: src/electron/commands/Commands.ts:2415
+#: src/electron/commands/Commands.ts:2442
 msgid "Get Keys Values"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2384
+#: src/electron/commands/Commands.ts:2416
 msgid "Requests the values for a specific store"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2417
-#: src/electron/commands/Commands.ts:2440
+#: src/electron/commands/Commands.ts:2449
+#: src/electron/commands/Commands.ts:2472
 msgid "Get Kv Diff"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2418
+#: src/electron/commands/Commands.ts:2450
 msgid "Requests the diff between two hashes for a specific store"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2422
+#: src/electron/commands/Commands.ts:2454
 msgid "Hash 1"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2423
+#: src/electron/commands/Commands.ts:2455
 msgid "Hash 2"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2447
-#: src/electron/commands/Commands.ts:2454
+#: src/electron/commands/Commands.ts:2479
+#: src/electron/commands/Commands.ts:2486
 msgid "Get Local Root"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2448
+#: src/electron/commands/Commands.ts:2480
 msgid "Requests the local root for a specific store"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2461
-#: src/electron/commands/Commands.ts:2468
+#: src/electron/commands/Commands.ts:2493
+#: src/electron/commands/Commands.ts:2500
 msgid "Get Mirrors"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2462
+#: src/electron/commands/Commands.ts:2494
 msgid "Requests the mirrors for a specific store"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2475
-#: src/electron/commands/Commands.ts:2482
+#: src/electron/commands/Commands.ts:2507
+#: src/electron/commands/Commands.ts:2514
 msgid "Get Owned Stores"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2476
+#: src/electron/commands/Commands.ts:2508
 msgid "Requests a complete listing of all owned stores"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2489
-#: src/electron/commands/Commands.ts:2496
+#: src/electron/commands/Commands.ts:2521
+#: src/electron/commands/Commands.ts:2528
 msgid "Get Root"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2490
+#: src/electron/commands/Commands.ts:2522
 msgid "Requests the root for a specific store"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2503
-#: src/electron/commands/Commands.ts:2510
+#: src/electron/commands/Commands.ts:2535
+#: src/electron/commands/Commands.ts:2542
 msgid "Get Roots"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2504
+#: src/electron/commands/Commands.ts:2536
 msgid "Requests the roots for a specific store ids"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2517
-#: src/electron/commands/Commands.ts:2524
+#: src/electron/commands/Commands.ts:2549
+#: src/electron/commands/Commands.ts:2556
 msgid "Get Root History"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2518
+#: src/electron/commands/Commands.ts:2550
 msgid "Requests the history for a specific store"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2531
-#: src/electron/commands/Commands.ts:2538
+#: src/electron/commands/Commands.ts:2563
+#: src/electron/commands/Commands.ts:2570
 msgid "Get DataLayer Sync Status"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2532
+#: src/electron/commands/Commands.ts:2564
 msgid "Requests the sync status for a specific store"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2545
-#: src/electron/commands/Commands.ts:2561
+#: src/electron/commands/Commands.ts:2577
+#: src/electron/commands/Commands.ts:2593
 msgid "Get Value"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2546
+#: src/electron/commands/Commands.ts:2578
 msgid "Requests the value for a specific store and key"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2568
 #: src/electron/commands/Commands.ts:2600
+#: src/electron/commands/Commands.ts:2632
 msgid "Get wallet addresses for one or more wallet keys"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2569
+#: src/electron/commands/Commands.ts:2601
 msgid "Requests the addresses for a specific wallet keys"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2574
+#: src/electron/commands/Commands.ts:2606
 msgid "Fingerprints"
 msgstr "Odtlačky"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2580
+#: src/electron/commands/Commands.ts:2612
 msgid "Index"
 msgstr "Index"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2586
+#: src/electron/commands/Commands.ts:2618
 msgid "Count"
 msgstr "Počet"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2592
+#: src/electron/commands/Commands.ts:2624
 msgid "Non Observer Derivation"
 msgstr ""
 
@@ -2451,19 +2459,19 @@ msgid "Please review and confirm this action."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/humanizeParamValue.ts:40
+#: src/electron/commands/humanizeParamValue.ts:82
 msgid "Not provided"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/commands/humanizeParamValue.ts:63
+#: src/electron/commands/humanizeParamValue.ts:107
 #: src/electron/main.tsx:702
 #: src/electron/main.tsx:953
 msgid "Yes"
 msgstr "Áno"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/humanizeParamValue.ts:63
+#: src/electron/commands/humanizeParamValue.ts:107
 #: src/electron/main.tsx:702
 #: src/electron/main.tsx:953
 msgid "No"
@@ -2847,6 +2855,16 @@ msgstr "Reč"
 #: src/electron/main.tsx:1521
 msgid "Check for updates..."
 msgstr "Skontrolovať aktualizácie..."
+
+#. js-lingui-explicit-id
+#: src/electron/commands/Commands.ts:886
+#~ msgid "Mint Bulk"
+#~ msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/commands/Commands.ts:887
+#~ msgid "Create a spend bundle to mint multiple NFTs"
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:104
