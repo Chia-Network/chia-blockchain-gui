@@ -13,7 +13,7 @@ export type ParamSchema = {
   isOptional?: boolean;
   hide?: boolean; // hidden from the confirm dialog - still showed under json details
   type: 'string' | 'number' | 'bool' | 'bigint' | 'json';
-  humanize?: 'mojo-to-xch' | 'mojo-to-cat';
+  humanize?: 'mojo-to-xch' | 'mojo-to-cat' | 'puzzle-decorator';
 };
 
 type CommandBase = {
@@ -163,6 +163,7 @@ export const Commands: Record<string, CommandSchema> = {
         name: 'puzzle_decorator',
         label: () => i18n._(/* i18n */ { id: 'Puzzle Decorator' }),
         type: 'json',
+        humanize: 'puzzle-decorator',
         isOptional: true,
       },
     ],
@@ -172,6 +173,34 @@ export const Commands: Record<string, CommandSchema> = {
         title: () => i18n._(/* i18n */ { id: 'Send Transaction' }),
         requiresSync: true,
         defaults: { wallet_id: 1 },
+        params: [
+          {
+            name: 'amount',
+            label: () => i18n._(/* i18n */ { id: 'Amount' }),
+            type: 'bigint',
+            humanize: 'mojo-to-xch',
+          },
+          {
+            name: 'fee',
+            label: () => i18n._(/* i18n */ { id: 'Fee' }),
+            type: 'bigint',
+            humanize: 'mojo-to-xch',
+          },
+          { name: 'address', label: () => i18n._(/* i18n */ { id: 'Address' }), type: 'string' },
+          {
+            name: 'wallet_id',
+            label: () => i18n._(/* i18n */ { id: 'Wallet Id' }),
+            type: 'number',
+            hide: true,
+          },
+          {
+            name: 'memos',
+            label: () => i18n._(/* i18n */ { id: 'Memos' }),
+            type: 'json',
+            isOptional: true,
+            hide: true,
+          },
+        ],
       },
     ],
   },
@@ -393,6 +422,16 @@ export const Commands: Record<string, CommandSchema> = {
       {
         command: 'chia_signMessageByAddress',
         title: () => i18n._(/* i18n */ { id: 'Sign Message by Address' }),
+        params: [
+          { name: 'address', label: () => i18n._(/* i18n */ { id: 'Address' }), type: 'string' },
+          { name: 'message', label: () => i18n._(/* i18n */ { id: 'Message' }), type: 'string' },
+          {
+            name: 'is_hex',
+            label: () => i18n._(/* i18n */ { id: 'Message Is Hex Encoded String' }),
+            type: 'bool',
+            isOptional: true,
+          },
+        ],
       },
     ],
   },
@@ -878,13 +917,6 @@ export const Commands: Record<string, CommandSchema> = {
         label: () => i18n._(/* i18n */ { id: 'Reuse Puzzle Hash' }),
         type: 'bool',
         isOptional: true,
-      },
-    ],
-    dapp: [
-      {
-        command: 'chia_mintBulk',
-        title: () => i18n._(/* i18n */ { id: 'Mint Bulk' }),
-        message: () => i18n._(/* i18n */ { id: 'Create a spend bundle to mint multiple NFTs' }),
       },
     ],
   },
