@@ -1,4 +1,4 @@
-import { type ParamSchema } from './Commands';
+import { Commands, type ParamSchema } from './Commands';
 import { humanizeParams } from './humanizeParams';
 
 function buildParam(name: string, options: Partial<ParamSchema> = {}): ParamSchema {
@@ -77,5 +77,42 @@ describe('humanizeParams', () => {
     const data = { amount: 'not-a-bigint' };
 
     await expect(humanizeParams(params, data)).rejects.toThrow('Cannot convert not-a-bigint to a BigInt');
+  });
+
+  it('decodes a clawback puzzle decorator into a human-readable timelock', async () => {
+    const data = {
+      amount: 1n,
+      fee: 0n,
+      address: 'txch1abc',
+      puzzle_decorator: [{ decorator: 'CLAWBACK', clawback_timelock: 99_999_999_999 }],
+    };
+
+    const rows = await humanizeParams(Commands['chia_wallet.send_transaction'].params, data, 'txch');
+    const row = rows.find(({ field }) => field === 'puzzle_decorator');
+
+    expect(row?.value).toContain('Clawback timelock');
+    expect(row?.value).toContain('years');
+    expect(row?.value).toContain('sender can reclaim until recipient claims');
+    expect(row?.value).not.toContain('99999999999');
+  });
+
+  it('falls back to JSON for unknown puzzle decorator entries', async () => {
+    const params = [buildParam('puzzle_decorator', { type: 'json', humanize: 'puzzle-decorator' })];
+    const data = {
+      puzzle_decorator: [{ decorator: 'UNKNOWN', foo: 1 }],
+    };
+
+    const [row] = await humanizeParams(params, data);
+
+    expect(row.value).toContain('UNKNOWN');
+  });
+
+  it('renders an empty puzzle decorator array as JSON instead of a blank value', async () => {
+    const params = [buildParam('puzzle_decorator', { type: 'json', humanize: 'puzzle-decorator' })];
+    const data = { puzzle_decorator: [] };
+
+    const [row] = await humanizeParams(params, data);
+
+    expect(row.value).toBe('[]');
   });
 });
