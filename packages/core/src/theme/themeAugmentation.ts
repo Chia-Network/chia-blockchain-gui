@@ -36,6 +36,14 @@ type ChiaSemanticPalette = {
   highlight?: string;
 };
 
+type ChiaSurfacePalette = {
+  control?: string;
+  tableHeader?: string;
+  tableRowAlternate?: string;
+  tableExpanded?: string;
+  tableBorder?: string;
+};
+
 declare module '@mui/material/styles' {
   interface Theme {
     chiaTheme: {
@@ -53,6 +61,7 @@ declare module '@mui/material/styles' {
     danger?: ChiaPaletteColor;
     highlight?: ChiaPaletteColor;
     semantic?: ChiaSemanticPalette;
+    surfaces?: ChiaSurfacePalette;
     sidebarSelectedFill?: string | { light?: string; dark?: string; main?: string };
     sidebarText?: { light?: string; dark?: string; main?: string };
   }
@@ -62,6 +71,7 @@ declare module '@mui/material/styles' {
     danger?: ChiaPaletteColor;
     highlight?: ChiaPaletteColor;
     semantic?: ChiaSemanticPalette;
+    surfaces?: ChiaSurfacePalette;
     sidebarSelectedFill?: string | { light?: string; dark?: string; main?: string };
     sidebarText?: { light?: string; dark?: string; main?: string };
   }
