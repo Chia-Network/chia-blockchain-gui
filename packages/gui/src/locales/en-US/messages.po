@@ -8,7 +8,7 @@ msgstr ""
 "Language: en_US\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-08-23 00:04\n"
+"PO-Revision-Date: 2026-08-30 00:08\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -2456,7 +2456,7 @@ msgstr "None"
 #. js-lingui-explicit-id
 #: src/electron/commands/humanizeParamValue.ts:63
 msgid "Clawback timelock: {duration}. Recipient can claim after this delay; sender can reclaim until recipient claims."
-msgstr "Clawback timelock: {duration}. Recipient can claim after this delay; sender can reclaim until recipient claims."
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/commands/humanizeParamValue.ts:82
@@ -2713,9 +2713,7 @@ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:709
-msgid ""
-"These commands will be executed without confirmation in the future:\n"
-"\n"
+msgid "These commands will be executed without confirmation in the future:\n\n"
 " {commands}"
 msgstr ""
 
@@ -3161,7 +3159,7 @@ msgstr "{0} {1}"
 
 #: src/components/dashboard/DashboardOverview.tsx:357
 msgid "{0} / {1} plots passed filter"
-msgstr "{0} / {1} plots passed filter"
+msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:169
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:201
@@ -3420,7 +3418,7 @@ msgstr ""
 
 #: src/components/dashboard/DashboardOverview.tsx:84
 msgid "Address book"
-msgstr "Address book"
+msgstr ""
 
 #: src/components/addressbook/ContactAdd.tsx:30
 #: src/components/addressbook/ContactEdit.tsx:33
@@ -3540,7 +3538,7 @@ msgstr "Announcement"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:496
 msgid "Any preview  <0/>"
-msgstr "Any preview  <0/>"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:17
 #~ msgid "App is requesting permission to execute these commands"
@@ -3707,7 +3705,7 @@ msgstr "Badging"
 
 #: src/components/dashboard/DashboardOverview.tsx:33
 msgid "Balances, send, receive, transactions"
-msgstr "Balances, send, receive, transactions"
+msgstr ""
 
 #: src/components/block/Block.jsx:236
 msgid "Base Farmer Reward Amount"
@@ -3945,7 +3943,7 @@ msgstr "Check Provenance on Spacescan.io"
 
 #: src/components/dashboard/DashboardOverview.tsx:355
 msgid "Checking plots"
-msgstr "Checking plots"
+msgstr ""
 
 #: src/electron/main.tsx:1098
 #~ msgid "Chia"
@@ -4351,7 +4349,7 @@ msgstr "Create Signature"
 
 #: src/components/dashboard/DashboardOverview.tsx:71
 msgid "Create, import, inspect, manage"
-msgstr "Create, import, inspect, manage"
+msgstr ""
 
 #: src/components/offers/OfferViewerTitle.tsx:34
 msgid "created {0}"
@@ -5117,7 +5115,7 @@ msgstr "Farming"
 
 #: src/components/dashboard/DashboardOverview.tsx:341
 msgid "Farming info did not respond"
-msgstr "Farming info did not respond"
+msgstr ""
 
 #: src/components/app/AppSelectMode.tsx:112
 msgid "Farming Mode"
@@ -5145,7 +5143,7 @@ msgstr "Farming Space"
 
 #: src/components/dashboard/DashboardOverview.tsx:48
 msgid "Farming status and rewards"
-msgstr "Farming status and rewards"
+msgstr ""
 
 #: src/components/settings/SettingsAdvanced.tsx:77
 msgid "Features for advanced users."
@@ -5196,7 +5194,7 @@ msgstr "Fees included in offer:"
 
 #: src/components/settings/SettingsNFT.tsx:162
 msgid "Fetch IPFS content through a gateway"
-msgstr "Fetch IPFS content through a gateway"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:483
 #~ msgid "Fetches the puzzle reveal and solution for a spent coin (hex strings)."
@@ -5286,7 +5284,7 @@ msgstr "Full Node Connections"
 
 #: src/components/dashboard/DashboardOverview.tsx:263
 msgid "Full node service did not respond"
-msgstr "Full node service did not respond"
+msgstr ""
 
 #: src/components/farm/FarmHealth.tsx:345
 msgid "Full Node was out of sync"
@@ -5298,7 +5296,7 @@ msgstr "Full Node was out of sync"
 
 #: src/components/dashboard/DashboardOverview.tsx:65
 msgid "Gallery and detail pages"
-msgstr "Gallery and detail pages"
+msgstr ""
 
 #: src/components/settings/Settings.tsx:29
 msgid "General"
@@ -5533,7 +5531,7 @@ msgstr "Harvester latency"
 
 #: src/components/dashboard/DashboardOverview.tsx:90
 msgid "Harvester overview"
-msgstr "Harvester overview"
+msgstr ""
 
 #: src/components/settings/SettingsHarvester.tsx:372
 msgid "Harvester Services"
@@ -5545,11 +5543,11 @@ msgstr "Harvester Summary"
 
 #: src/components/dashboard/DashboardOverview.tsx:309
 msgid "Harvester summary did not respond"
-msgstr "Harvester summary did not respond"
+msgstr ""
 
 #: src/components/dashboard/DashboardOverview.tsx:322
 msgid "harvesters"
-msgstr "harvesters"
+msgstr ""
 
 #: src/components/harvest/HarvesterOverview.tsx:218
 #: src/components/plot/PlotHarvesters.tsx:38
@@ -5766,20 +5764,16 @@ msgstr "Initializing..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgstr "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 
 #: src/components/offers/OfferEditor.tsx:127
 #: src/components/offers2/CreateOfferBuilder.tsx:145
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgstr "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 
 #: src/components/farm/PoolingHealth.tsx:310
@@ -6031,7 +6025,7 @@ msgstr "Load Logs"
 #: src/components/dashboard/DashboardOverview.tsx:301
 #: src/components/dashboard/DashboardOverview.tsx:333
 msgid "Loading"
-msgstr "Loading"
+msgstr ""
 
 #: src/components/app/AppProviders.tsx:86
 msgid "Loading configuration"
@@ -6116,7 +6110,7 @@ msgstr "Log Viewer"
 
 #: src/components/dashboard/DashboardOverview.tsx:97
 msgid "Logs and diagnostics"
-msgstr "Logs and diagnostics"
+msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:440
 msgid "Loop video"
@@ -6327,7 +6321,7 @@ msgstr "Missing signage points"
 
 #: src/components/dashboard/DashboardOverview.tsx:399
 msgid "More areas"
-msgstr "More areas"
+msgstr ""
 
 #: src/components/walletConnect/WalletConnectConnections.tsx:83
 #~ msgid "More Info"
@@ -6484,7 +6478,7 @@ msgstr "NFT details not available"
 
 #: src/components/settings/SettingsNFT.tsx:170
 msgid "NFT files published with ipfs:// addresses will be downloaded through the public ipfs.io HTTPS gateway. The requested URL differs from the address recorded on chain, but downloaded content is still verified against the NFT's on-chain hash. When disabled, ipfs:// files are not fetched."
-msgstr "NFT files published with ipfs:// addresses will be downloaded through the public ipfs.io HTTPS gateway. The requested URL differs from the address recorded on chain, but downloaded content is still verified against the NFT's on-chain hash. When disabled, ipfs:// files are not fetched."
+msgstr ""
 
 #: src/components/offers2/OfferBuilderNFTRoyalties.tsx:172
 msgid "NFT has no royalties"
@@ -6565,7 +6559,7 @@ msgstr "No activities yet"
 
 #: src/components/dashboard/DashboardOverview.tsx:349
 msgid "No attempts"
-msgstr "No attempts"
+msgstr ""
 
 #: src/components/farm/card/FarmCardLastHeightFarmed.tsx:15
 #~ msgid "No blocks farmed yet"
@@ -6618,7 +6612,7 @@ msgstr "No private keys for one or both addresses. Safe only if you are sending 
 
 #: src/components/dashboard/DashboardOverview.tsx:350
 msgid "No recent plot filter attempts found"
-msgstr "No recent plot filter attempts found"
+msgstr ""
 
 #: src/util/offerBuilderDataToOffer.ts:165
 #: src/util/offerBuilderDataToOffer.ts:193
@@ -6628,7 +6622,7 @@ msgstr "No standard wallet found"
 
 #: src/components/dashboard/DashboardOverview.tsx:214
 msgid "No wallet"
-msgstr "No wallet"
+msgstr ""
 
 #: src/components/farm/FarmFullNodeConnections.tsx:29
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:29
@@ -6653,7 +6647,7 @@ msgstr ""
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:244
 #: src/components/plot/add/PlotAddNFT.tsx:96
 msgid "None"
-msgstr "None"
+msgstr ""
 
 #: src/components/nfts/gallery/NFTGallery.tsx:448
 #: src/components/nfts/gallery/NFTGallery.tsx:514
@@ -6696,7 +6690,7 @@ msgstr "Not running"
 
 #: src/components/dashboard/DashboardOverview.tsx:283
 msgid "Not synced"
-msgstr "Not synced"
+msgstr ""
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:14
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:44
@@ -7014,7 +7008,7 @@ msgstr "Override the thread count for Phase 3"
 
 #: src/components/dashboard/DashboardSideBar.tsx:50
 msgid "Overview"
-msgstr "Overview"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:1171
 #~ msgid "Overwrite"
@@ -7142,7 +7136,7 @@ msgstr "Payout Address"
 
 #: src/components/dashboard/DashboardOverview.tsx:289
 msgid "Peak"
-msgstr "Peak"
+msgstr ""
 
 #: src/components/fullNode/card/FullNodeCardPeakHeight.tsx:14
 msgid "Peak Height"
@@ -7150,7 +7144,7 @@ msgstr "Peak Height"
 
 #: src/components/dashboard/DashboardOverview.tsx:279
 msgid "peers loading"
-msgstr "peers loading"
+msgstr ""
 
 #: src/components/dashboard/DashboardOverview.tsx:221
 #: src/components/plotNFT/PlotNFTState.tsx:41
@@ -7298,7 +7292,7 @@ msgstr "Plot Count"
 
 #: src/components/dashboard/DashboardOverview.tsx:55
 msgid "Plot count, size, and add flow"
-msgstr "Plot count, size, and add flow"
+msgstr ""
 
 #: src/components/harvest/HarvesterPlotDetails.tsx:199
 msgid "Plot details"
@@ -7359,7 +7353,7 @@ msgstr "PlotNFT is transitioning to (target state). This can take a while. Pleas
 
 #: src/components/dashboard/DashboardOverview.tsx:316
 msgid "plots"
-msgstr "plots"
+msgstr ""
 
 #: src/components/dashboard/DashboardOverview.tsx:54
 #: src/components/dashboard/DashboardSideBar.tsx:109
@@ -7438,7 +7432,7 @@ msgstr "Points Successful in Last 24 Hours"
 
 #: src/components/dashboard/DashboardOverview.tsx:94
 msgid "Pool"
-msgstr "Pool"
+msgstr ""
 
 #: src/components/plot/PlotHarvesterPlots.tsx:64
 msgid "Pool Contract Address"
@@ -7516,7 +7510,7 @@ msgstr "Pooling"
 
 #: src/components/dashboard/DashboardOverview.tsx:94
 msgid "Pooling controls"
-msgstr "Pooling controls"
+msgstr ""
 
 #: src/components/farm/PoolingHealth.tsx:286
 msgid "Pooling Health"
@@ -7531,7 +7525,7 @@ msgstr ""
 
 #: src/components/dashboard/DashboardOverview.tsx:103
 msgid "Preferences and services"
-msgstr "Preferences and services"
+msgstr ""
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:95
 #: src/components/plotNFT/PlotNFTChangePool.tsx:76
@@ -7549,11 +7543,11 @@ msgstr "Preview"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:532
 msgid "Preview available"
-msgstr "Preview available"
+msgstr ""
 
 #: src/components/nfts/gallery/NFTGallery.tsx:501
 msgid "Preview available  <0/>"
-msgstr "Preview available  <0/>"
+msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:316
 #~ msgid "Preview image uris"
@@ -7569,11 +7563,11 @@ msgstr ""
 
 #: src/components/nfts/gallery/NFTGallery.tsx:553
 msgid "Preview not available"
-msgstr "Preview not available"
+msgstr ""
 
 #: src/components/nfts/gallery/NFTGallery.tsx:506
 msgid "Preview not available  <0/>"
-msgstr "Preview not available  <0/>"
+msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:621
 #~ msgid "Preview URL is not valid"
@@ -7620,7 +7614,7 @@ msgstr "Profiles (DIDs)"
 
 #: src/components/dashboard/DashboardOverview.tsx:355
 msgid "Proof found"
-msgstr "Proof found"
+msgstr ""
 
 #: src/components/block/Block.jsx:203
 msgid "Proof of Space Size"
@@ -7709,19 +7703,19 @@ msgstr "Rankings"
 
 #: src/components/dashboard/DashboardOverview.tsx:256
 msgid "Reading full node status"
-msgstr "Reading full node status"
+msgstr ""
 
 #: src/components/dashboard/DashboardOverview.tsx:302
 msgid "Reading harvester summary"
-msgstr "Reading harvester summary"
+msgstr ""
 
 #: src/components/dashboard/DashboardOverview.tsx:334
 msgid "Reading recent farming attempts"
-msgstr "Reading recent farming attempts"
+msgstr ""
 
 #: src/components/dashboard/DashboardOverview.tsx:201
 msgid "Reading standard wallet balance"
-msgstr "Reading standard wallet balance"
+msgstr ""
 
 #: src/components/settings/SettingsNotifications.tsx:123
 msgid "Receive general announcement notifications from connected Dapps"
@@ -8490,7 +8484,7 @@ msgstr "Specify GPU index (0, 1, 2, etc) for harvesting if more than one GPU is 
 
 #: src/components/dashboard/DashboardOverview.tsx:232
 msgid "Spendable {spendable} {currencyCode}"
-msgstr "Spendable {spendable} {currencyCode}"
+msgstr ""
 
 #: src/components/offers2/OfferBuilderWalletBalance.tsx:44
 msgid "Spendable Balance: {0}"
@@ -8514,7 +8508,7 @@ msgstr "Standard Version Number"
 
 #: src/components/dashboard/DashboardOverview.tsx:215
 msgid "Standard wallet is not available"
-msgstr "Standard wallet is not available"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:556
 #~ msgid "Start"
@@ -8635,7 +8629,7 @@ msgstr "Sync status"
 
 #: src/components/dashboard/DashboardOverview.tsx:41
 msgid "Sync, peers, block inspection"
-msgstr "Sync, peers, block inspection"
+msgstr ""
 
 #: src/components/dashboard/DashboardOverview.tsx:283
 #: src/components/farm/FarmHealth.tsx:155
@@ -9292,7 +9286,7 @@ msgstr "Unassigned NFTs"
 #: src/components/dashboard/DashboardOverview.tsx:308
 #: src/components/dashboard/DashboardOverview.tsx:340
 msgid "Unavailable"
-msgstr "Unavailable"
+msgstr ""
 
 #: src/components/plotNFT/PlotNFTCard.tsx:135
 msgid "Unclaimed Rewards"
@@ -9471,7 +9465,7 @@ msgstr "Verifiable Credential successfully added."
 
 #: src/components/dashboard/DashboardOverview.tsx:77
 msgid "Verifiable credentials"
-msgstr "Verifiable credentials"
+msgstr ""
 
 #: src/components/settings/SettingsVerifiableCredentials.tsx:17
 #: src/components/vcs/VCList.tsx:313
@@ -9603,7 +9597,7 @@ msgstr "Wait for synchronization"
 
 #: src/components/dashboard/DashboardOverview.tsx:222
 msgid "Waiting for balance data"
-msgstr "Waiting for balance data"
+msgstr ""
 
 #: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:80
 msgid "Waiting for the transaction to be confirmed"
@@ -9623,7 +9617,7 @@ msgstr "Wallet Address"
 
 #: src/components/dashboard/DashboardOverview.tsx:208
 msgid "Wallet balance service did not respond"
-msgstr "Wallet balance service did not respond"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:80
 #: src/constants/WalletConnectCommands.tsx:114
@@ -9698,7 +9692,7 @@ msgstr "WalletConnect Integration"
 
 #: src/components/dashboard/DashboardOverview.tsx:32
 msgid "Wallets"
-msgstr "Wallets"
+msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:83
 msgid "Want to have a delay before the next plot starts?"
@@ -9980,3 +9974,4 @@ msgstr "Your spendable balance must be greater than 1 mojo to create a profile"
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "Your wallet is required to be running for auto claim to work."
+

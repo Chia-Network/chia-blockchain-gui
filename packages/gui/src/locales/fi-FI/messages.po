@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-08-23 00:04\n"
+"PO-Revision-Date: 2026-08-30 00:08\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -2451,7 +2451,7 @@ msgstr "Tarkista ja vahvista tämä toiminto."
 #. js-lingui-explicit-id
 #: src/electron/commands/humanizeParamValue.ts:48
 msgid "None"
-msgstr ""
+msgstr "Ei yhtään"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/humanizeParamValue.ts:63
@@ -2713,13 +2713,9 @@ msgstr "Haluatko tallentaa asetukset seuraaville komennoille?"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:709
-msgid ""
-"These commands will be executed without confirmation in the future:\n"
-"\n"
+msgid "These commands will be executed without confirmation in the future:\n\n"
 " {commands}"
-msgstr ""
-"Nämä komennot suoritetaan ilman vahvistusta tulevaisuudessa:\n"
-"\n"
+msgstr "Nämä komennot suoritetaan ilman vahvistusta tulevaisuudessa:\n\n"
 " {commands}"
 
 #. js-lingui-explicit-id
@@ -2862,12 +2858,12 @@ msgstr "Tarkista päivitykset..."
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:886
 #~ msgid "Mint Bulk"
-#~ msgstr "Luo Useampi"
+#~ msgstr "Mint Bulk"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:887
 #~ msgid "Create a spend bundle to mint multiple NFTs"
-#~ msgstr "Luo transaktiobundle useampia NFT:itä varten"
+#~ msgstr "Create a spend bundle to mint multiple NFTs"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:104
@@ -5769,20 +5765,16 @@ msgstr "Alustetaan..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"Riittämätön määrä varoja tarjouksen hyväksymiseen. Varmista, että\n"
+msgstr "Riittämätön määrä varoja tarjouksen hyväksymiseen. Varmista, että\n"
 "käytettävissä oleva saldo riittää tarjouksen määrän kattamiseen."
 
 #: src/components/offers/OfferEditor.tsx:127
 #: src/components/offers2/CreateOfferBuilder.tsx:145
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"Riittämätön määrä varoja tarjouksen luomiseen. Varmista, että\n"
+msgstr "Riittämätön määrä varoja tarjouksen luomiseen. Varmista, että\n"
 "käytettävissä oleva saldo riittää tarjouksen määrän kattamiseen."
 
 #: src/components/farm/PoolingHealth.tsx:310
@@ -6656,7 +6648,7 @@ msgstr ""
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:244
 #: src/components/plot/add/PlotAddNFT.tsx:96
 msgid "None"
-msgstr "Ei yhtään"
+msgstr ""
 
 #: src/components/nfts/gallery/NFTGallery.tsx:448
 #: src/components/nfts/gallery/NFTGallery.tsx:514
@@ -9983,3 +9975,4 @@ msgstr "Käytettävissä olevan saldon on oltava suurempi kuin 1 mojo luodaksesi
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "Lompakkosi on oltava käynnissä, jotta automaattinen lunastaminen toimii."
+
