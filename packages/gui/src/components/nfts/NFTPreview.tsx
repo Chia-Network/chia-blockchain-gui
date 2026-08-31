@@ -3,6 +3,7 @@ import {
   Loading,
   Flex,
   SandboxedIframe,
+  getSemanticColors,
   usePersistState,
   useDarkMode,
   useThemeAssets,
@@ -454,17 +455,21 @@ export default function NFTPreview(props: NFTPreviewProps) {
                 size="small"
                 disabled={globalVideoLoop}
                 onClick={handleToggleVideoLoop}
-                sx={(theme) => ({
-                  backgroundColor: alpha(theme.palette.common.black, 0.4),
-                  color: loopVideo ? theme.palette.primary.main : theme.palette.common.white,
-                  '&:hover': {
-                    backgroundColor: alpha(theme.palette.common.black, 0.6),
-                  },
-                  '&.Mui-disabled': {
+                sx={(theme) => {
+                  // highlight stays readable on this overlay; Chia light primary.main does not
+                  const loopAccent = getSemanticColors(theme.palette).highlight;
+                  return {
                     backgroundColor: alpha(theme.palette.common.black, 0.4),
-                    color: theme.palette.primary.main,
-                  },
-                })}
+                    color: loopVideo ? loopAccent : theme.palette.common.white,
+                    '&:hover': {
+                      backgroundColor: alpha(theme.palette.common.black, 0.6),
+                    },
+                    '&.Mui-disabled': {
+                      backgroundColor: alpha(theme.palette.common.black, 0.4),
+                      color: loopAccent,
+                    },
+                  };
+                }}
               >
                 <LoopIcon fontSize="small" />
               </IconButton>
