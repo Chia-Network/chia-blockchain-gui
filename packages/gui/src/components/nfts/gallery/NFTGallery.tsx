@@ -3,7 +3,6 @@ import type { NFTInfo } from '@chia-network/api';
 import { useLocalStorage } from '@chia-network/api-react';
 import {
   Button,
-  Color,
   FormatLargeNumber,
   Flex,
   LayoutDashboardSub,
@@ -315,7 +314,7 @@ export default function NFTGallery() {
                   backgroundColor: 'background.paper',
                   paddingX: 1,
                   borderRadius: 1,
-                  borderColor: theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[300],
+                  borderColor: theme.palette.mode === 'dark' ? theme.palette.border.dark : theme.palette.border.main,
                   borderWidth: 1,
                   borderStyle: 'solid',
                 }}

@@ -1,5 +1,5 @@
 import type { NFTAttribute } from '@chia-network/api';
-import { Color, CopyToClipboard, Flex, Tooltip } from '@chia-network/core';
+import { CopyToClipboard, Flex, Tooltip } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { alpha, Box, Grid, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
@@ -12,7 +12,7 @@ import isRankingAttribute from '../../util/isRankingAttribute';
 
 const StyledTitle = styled(Box)`
   font-size: 0.625rem;
-  color: ${alpha(Color.Neutral[50], 0.7)};
+  color: ${({ theme }) => alpha(theme.palette.common.white, 0.7)};
 `;
 
 const StyledValue = styled(Box)`

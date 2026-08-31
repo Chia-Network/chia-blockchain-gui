@@ -1,4 +1,4 @@
-import { Color, IconButton, Flex } from '@chia-network/core';
+import { IconButton, Flex } from '@chia-network/core';
 import { MoreVert } from '@mui/icons-material';
 import { Card, CardActionArea, CardContent, Checkbox, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
@@ -63,7 +63,7 @@ function NFTCard(props: NFTCardProps) {
       <Card
         sx={{
           borderRadius: '8px',
-          borderColor: theme.palette.mode === 'light' ? Color.Neutral[300] : Color.Neutral[700],
+          borderColor: theme.palette.mode === 'light' ? theme.palette.border.main : theme.palette.border.dark,
           opacity: isHidden ? 0.5 : 1,
         }}
         variant="outlined"
