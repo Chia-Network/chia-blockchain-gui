@@ -1,6 +1,5 @@
 import { toBech32m } from '@chia-network/api';
 import {
-  Color,
   Flex,
   CardKeyValue,
   CopyToClipboard,
@@ -23,7 +22,7 @@ import removeHexPrefix from '../../util/removeHexPrefix';
 
 const StyledTitle = styled(Box)`
   font-size: 0.625rem;
-  color: ${alpha(Color.Neutral[50], 0.7)};
+  color: ${({ theme }) => alpha(theme.palette.common.white, 0.7)};
 `;
 
 const StyledValue = styled(Box)`

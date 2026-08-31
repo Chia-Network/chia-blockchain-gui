@@ -1,12 +1,4 @@
-import {
-  Color,
-  useCurrencyCode,
-  chiaToMojo,
-  ConfirmDialog,
-  Flex,
-  TooltipIcon,
-  FormatLargeNumber,
-} from '@chia-network/core';
+import { useCurrencyCode, chiaToMojo, ConfirmDialog, Flex, TooltipIcon, FormatLargeNumber } from '@chia-network/core';
 import { Trans, Plural } from '@lingui/macro';
 import { alpha, Box, Divider, Typography } from '@mui/material';
 import React, { type ReactNode } from 'react';
@@ -14,7 +6,7 @@ import styled from 'styled-components';
 
 const StyledTitle = styled(Box)`
   font-size: 0.625rem;
-  color: ${alpha(Color.Neutral[50], 0.7)};
+  color: ${({ theme }) => alpha(theme.palette.common.white, 0.7)};
 `;
 
 const StyledValue = styled(Box)`
