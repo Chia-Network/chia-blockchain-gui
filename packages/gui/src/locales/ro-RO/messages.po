@@ -3147,7 +3147,7 @@ msgstr ""
 msgid "(Recommended)"
 msgstr ""
 
-#: src/components/nfts/NFTTransferConfirmationDialog.tsx:97
+#: src/components/nfts/NFTTransferConfirmationDialog.tsx:89
 msgid "{0, plural, one {mojo} other {mojos}}"
 msgstr ""
 
@@ -3172,7 +3172,7 @@ msgstr ""
 msgid "{0} of {1}"
 msgstr ""
 
-#: src/components/nfts/gallery/SelectedActionsDialog.tsx:67
+#: src/components/nfts/gallery/SelectedActionsDialog.tsx:66
 msgid "{0} of {allCount} items selected:"
 msgstr ""
 
@@ -3257,7 +3257,7 @@ msgstr ""
 msgid "+ Add New Plot NFT"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:358
+#: src/components/nfts/gallery/NFTGallery.tsx:357
 msgid "<0>Loading...</0> {0}%"
 msgstr ""
 
@@ -3265,7 +3265,7 @@ msgstr ""
 #~ msgid "<0>Need some XCH?</0>"
 #~ msgstr "<0>Need some XCH?</0>"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:348
+#: src/components/nfts/gallery/NFTGallery.tsx:347
 msgid "<0>Showing</0> {0} <1>of</1> {1}  <2>items</2>"
 msgstr ""
 
@@ -3538,7 +3538,7 @@ msgstr ""
 msgid "Announcement"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:496
+#: src/components/nfts/gallery/NFTGallery.tsx:495
 msgid "Any preview  <0/>"
 msgstr ""
 
@@ -3826,7 +3826,7 @@ msgstr ""
 #: src/components/fullNode/FullNodeAddConnection.tsx:100
 #: src/components/nfts/MultipleDownloadDialog.tsx:119
 #: src/components/nfts/NFTBurnDialog.tsx:175
-#: src/components/nfts/NFTTransferConfirmationDialog.tsx:57
+#: src/components/nfts/NFTTransferConfirmationDialog.tsx:49
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:24
 #: src/components/offers/OfferDataEntryDialog.tsx:58
 #: src/components/offers/OfferShareDialog.tsx:712
@@ -4126,7 +4126,7 @@ msgstr ""
 msgid "Confirm New Passphrase"
 msgstr ""
 
-#: src/components/nfts/NFTTransferConfirmationDialog.tsx:38
+#: src/components/nfts/NFTTransferConfirmationDialog.tsx:30
 msgid "Confirm NFT Transfer"
 msgstr ""
 
@@ -4431,7 +4431,7 @@ msgstr ""
 msgid "Dapp sending the message"
 msgstr ""
 
-#: src/components/nfts/NFTDetails.tsx:235
+#: src/components/nfts/NFTDetails.tsx:234
 msgid "Data Hash"
 msgstr ""
 
@@ -4439,7 +4439,7 @@ msgstr ""
 msgid "Data Layer Offer"
 msgstr ""
 
-#: src/components/nfts/NFTDetails.tsx:222
+#: src/components/nfts/NFTDetails.tsx:221
 msgid "Data URL {0}"
 msgstr ""
 
@@ -4550,19 +4550,19 @@ msgstr ""
 msgid "Description"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:372
+#: src/components/nfts/gallery/NFTGallery.tsx:371
 msgid "Deselect all"
 msgstr ""
 
-#: src/components/nfts/NFTTransferConfirmationDialog.tsx:77
+#: src/components/nfts/NFTTransferConfirmationDialog.tsx:69
 msgid "Destination"
 msgstr ""
 
-#: src/components/nfts/NFTTransferConfirmationDialog.tsx:67
+#: src/components/nfts/NFTTransferConfirmationDialog.tsx:59
 msgid "Destination:"
 msgstr ""
 
-#: src/components/nfts/NFTDetails.tsx:353
+#: src/components/nfts/NFTDetails.tsx:352
 msgid "Details"
 msgstr ""
 
@@ -5207,12 +5207,12 @@ msgstr ""
 #~ msgid "File"
 #~ msgstr "File"
 
-#: src/components/nfts/NFTPreview.tsx:571
+#: src/components/nfts/NFTPreview.tsx:576
 msgid "File does not match the expected hash"
 msgstr ""
 
 #: src/components/nfts/NFTHashStatus.tsx:88
-#: src/components/nfts/NFTPreview.tsx:251
+#: src/components/nfts/NFTPreview.tsx:252
 msgid "File is not available"
 msgstr ""
 
@@ -5223,7 +5223,7 @@ msgstr ""
 msgid "Filename"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:328
+#: src/components/nfts/gallery/NFTGallery.tsx:327
 msgid "Filter"
 msgstr ""
 
@@ -5616,11 +5616,11 @@ msgstr ""
 msgid "Hex public key of pool"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:480
+#: src/components/nfts/gallery/NFTGallery.tsx:479
 msgid "Hidden"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:443
+#: src/components/nfts/gallery/NFTGallery.tsx:442
 msgid "Hidden  <0/>"
 msgstr ""
 
@@ -5971,7 +5971,7 @@ msgstr "Încercări Block Recente"
 msgid "Launcher Id"
 msgstr ""
 
-#: src/components/nfts/NFTDetails.tsx:64
+#: src/components/nfts/NFTDetails.tsx:63
 #: src/components/vcs/VCCard.tsx:132
 msgid "Launcher ID"
 msgstr ""
@@ -5998,7 +5998,7 @@ msgstr ""
 msgid "Legacy keyrings are no longer supported. Your keys need to be migrated to a new keyring that is secured by a master passphrase."
 msgstr ""
 
-#: src/components/nfts/NFTDetails.tsx:295
+#: src/components/nfts/NFTDetails.tsx:294
 msgid "License Hash"
 msgstr ""
 
@@ -6006,7 +6006,7 @@ msgstr ""
 #~ msgid "License Uris"
 #~ msgstr "License Uris"
 
-#: src/components/nfts/NFTDetails.tsx:280
+#: src/components/nfts/NFTDetails.tsx:279
 msgid "License URL {0}"
 msgstr ""
 
@@ -6058,7 +6058,7 @@ msgstr ""
 msgid "Loading NFT Info..."
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:560
+#: src/components/nfts/NFTPreview.tsx:565
 msgid "Loading NFT..."
 msgstr ""
 
@@ -6066,8 +6066,8 @@ msgstr ""
 #~ msgid "Loading NFTs..."
 #~ msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:560
-#: src/components/nfts/NFTPreview.tsx:582
+#: src/components/nfts/NFTPreview.tsx:565
+#: src/components/nfts/NFTPreview.tsx:587
 msgid "Loading preview..."
 msgstr ""
 
@@ -6114,7 +6114,7 @@ msgstr ""
 msgid "Logs and diagnostics"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:440
+#: src/components/nfts/NFTPreview.tsx:441
 msgid "Loop video"
 msgstr ""
 
@@ -6122,11 +6122,11 @@ msgstr ""
 msgid "Loop videos"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:436
+#: src/components/nfts/NFTPreview.tsx:437
 msgid "Looping is enabled for all videos in Settings"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:438
+#: src/components/nfts/NFTPreview.tsx:439
 msgid "Looping on"
 msgstr ""
 
@@ -6209,7 +6209,7 @@ msgstr ""
 #~ msgid "Meta Uris"
 #~ msgstr "Meta Uris"
 
-#: src/components/nfts/NFTDetails.tsx:265
+#: src/components/nfts/NFTDetails.tsx:264
 msgid "Metadata Hash"
 msgstr ""
 
@@ -6221,7 +6221,7 @@ msgstr ""
 #~ msgid "Metadata List"
 #~ msgstr "Get Local Root"
 
-#: src/components/nfts/NFTDetails.tsx:250
+#: src/components/nfts/NFTDetails.tsx:249
 msgid "Metadata URL {0}"
 msgstr ""
 
@@ -6274,7 +6274,7 @@ msgstr ""
 #~ msgid "Mint Total"
 #~ msgstr "Mint Total"
 
-#: src/components/nfts/NFTDetails.tsx:213
+#: src/components/nfts/NFTDetails.tsx:212
 msgid "Minted at Block Height"
 msgstr ""
 
@@ -6282,7 +6282,7 @@ msgstr ""
 msgid "Minter"
 msgstr ""
 
-#: src/components/nfts/NFTDetails.tsx:172
+#: src/components/nfts/NFTDetails.tsx:171
 msgid "Minter DID"
 msgstr ""
 
@@ -6349,7 +6349,7 @@ msgstr ""
 msgid "Move to Profile"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:323
+#: src/components/nfts/gallery/NFTGallery.tsx:322
 msgid "Multi-select"
 msgstr ""
 
@@ -6465,7 +6465,7 @@ msgstr ""
 #~ msgid "NFT Coin Id"
 #~ msgstr ""
 
-#: src/components/nfts/NFTDetails.tsx:73
+#: src/components/nfts/NFTDetails.tsx:72
 msgid "NFT Coin ID"
 msgstr ""
 
@@ -6490,7 +6490,7 @@ msgstr ""
 msgid "NFT holder address"
 msgstr ""
 
-#: src/components/nfts/NFTDetails.tsx:55
+#: src/components/nfts/NFTDetails.tsx:54
 #: src/components/offers2/OfferBuilderNFT.tsx:54
 #: src/components/signVerify/SigningEntityNFT.tsx:65
 msgid "NFT ID"
@@ -6592,7 +6592,7 @@ msgstr ""
 #~ msgid "No Custom Permissions"
 #~ msgstr "No Custom Permissions"
 
-#: src/components/nfts/NFTPreview.tsx:565
+#: src/components/nfts/NFTPreview.tsx:570
 msgid "No file available"
 msgstr ""
 
@@ -6651,8 +6651,8 @@ msgstr ""
 msgid "None"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:448
-#: src/components/nfts/gallery/NFTGallery.tsx:514
+#: src/components/nfts/gallery/NFTGallery.tsx:447
+#: src/components/nfts/gallery/NFTGallery.tsx:513
 msgid "None (0)"
 msgstr ""
 
@@ -6788,7 +6788,7 @@ msgstr ""
 msgid "Number of threads for Phase 3"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:418
+#: src/components/nfts/gallery/NFTGallery.tsx:417
 msgid "Objectionable Content"
 msgstr ""
 
@@ -6935,7 +6935,7 @@ msgstr ""
 #~ msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer {0} NFTs?"
 #~ msgstr "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer {0} NFTs?"
 
-#: src/components/nfts/NFTTransferConfirmationDialog.tsx:40
+#: src/components/nfts/NFTTransferConfirmationDialog.tsx:32
 msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer the NFT?"
 msgstr ""
 
@@ -7016,15 +7016,15 @@ msgstr ""
 #~ msgid "Overwrite"
 #~ msgstr "Overwrite"
 
-#: src/components/nfts/NFTDetails.tsx:87
+#: src/components/nfts/NFTDetails.tsx:86
 msgid "Owner Address"
 msgstr ""
 
-#: src/components/nfts/NFTDetails.tsx:108
+#: src/components/nfts/NFTDetails.tsx:107
 msgid "Owner DID"
 msgstr ""
 
-#: src/components/nfts/NFTDetails.tsx:148
+#: src/components/nfts/NFTDetails.tsx:147
 msgid "Owner Public Key"
 msgstr ""
 
@@ -7538,16 +7538,16 @@ msgstr ""
 msgid "Preparing standard wallet"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:287
+#: src/components/nfts/NFTPreview.tsx:288
 #: src/components/offers2/OfferBuilderNFT.tsx:75
 msgid "Preview"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:532
+#: src/components/nfts/gallery/NFTGallery.tsx:531
 msgid "Preview available"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:501
+#: src/components/nfts/gallery/NFTGallery.tsx:500
 msgid "Preview available  <0/>"
 msgstr ""
 
@@ -7555,19 +7555,19 @@ msgstr ""
 #~ msgid "Preview image uris"
 #~ msgstr ""
 
-#: src/components/nfts/NFTDetails.tsx:310
+#: src/components/nfts/NFTDetails.tsx:309
 msgid "Preview image URL {index}"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:577
+#: src/components/nfts/NFTPreview.tsx:582
 msgid "Preview is not available"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:553
+#: src/components/nfts/gallery/NFTGallery.tsx:552
 msgid "Preview not available"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:506
+#: src/components/nfts/gallery/NFTGallery.tsx:505
 msgid "Preview not available  <0/>"
 msgstr ""
 
@@ -7579,7 +7579,7 @@ msgstr ""
 #~ msgid "Preview video uris"
 #~ msgstr ""
 
-#: src/components/nfts/NFTDetails.tsx:327
+#: src/components/nfts/NFTDetails.tsx:326
 msgid "Preview video URL {index}"
 msgstr ""
 
@@ -7755,7 +7755,7 @@ msgstr ""
 msgid "Refresh NFT data"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:333
+#: src/components/nfts/gallery/NFTGallery.tsx:332
 msgid "Refresh NFTs"
 msgstr ""
 
@@ -8049,7 +8049,7 @@ msgstr ""
 #~ msgid "Royalty Address"
 #~ msgstr "Royalty Address"
 
-#: src/components/nfts/NFTDetails.tsx:159
+#: src/components/nfts/NFTDetails.tsx:158
 msgid "Royalty Percentage"
 msgstr ""
 
@@ -8097,7 +8097,7 @@ msgid "Search on Tail Database"
 msgstr ""
 
 #: src/components/addressbook/AddressBookSideBar.tsx:150
-#: src/components/nfts/gallery/NFTGallery.tsx:311
+#: src/components/nfts/gallery/NFTGallery.tsx:310
 msgid "Search..."
 msgstr ""
 
@@ -8124,7 +8124,7 @@ msgstr ""
 msgid "Select 2nd Temporary Directory"
 msgstr "Selectează al 2-lea director temporar"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:372
+#: src/components/nfts/gallery/NFTGallery.tsx:371
 msgid "Select all"
 msgstr ""
 
@@ -9191,7 +9191,7 @@ msgid "Transactions less than the fee will not be auto claimed."
 msgstr ""
 
 #: src/components/nfts/NFTTransferAction.tsx:153
-#: src/components/nfts/NFTTransferConfirmationDialog.tsx:45
+#: src/components/nfts/NFTTransferConfirmationDialog.tsx:37
 msgid "Transfer"
 msgstr ""
 
@@ -9240,7 +9240,7 @@ msgstr ""
 #~ msgid "Types ({0}/{1})"
 #~ msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:381
+#: src/components/nfts/gallery/NFTGallery.tsx:380
 msgid "Types{0}"
 msgstr ""
 
@@ -9272,9 +9272,9 @@ msgstr ""
 #~ msgid "Unable to open Keybase. Install Keybase from https://keybase.io"
 #~ msgstr "Unable to open Keybase. Install Keybase from https://keybase.io"
 
-#: src/components/nfts/NFTDetails.tsx:141
-#: src/components/nfts/NFTDetails.tsx:162
-#: src/components/nfts/NFTDetails.tsx:205
+#: src/components/nfts/NFTDetails.tsx:140
+#: src/components/nfts/NFTDetails.tsx:161
+#: src/components/nfts/NFTDetails.tsx:204
 msgid "Unassigned"
 msgstr ""
 
@@ -9566,11 +9566,11 @@ msgstr ""
 msgid "Viewing offer"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:464
+#: src/components/nfts/gallery/NFTGallery.tsx:463
 msgid "Visible"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:438
+#: src/components/nfts/gallery/NFTGallery.tsx:437
 msgid "Visible  <0/>"
 msgstr ""
 
@@ -9578,7 +9578,7 @@ msgstr ""
 #~ msgid "Visible ({0})"
 #~ msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:433
+#: src/components/nfts/gallery/NFTGallery.tsx:432
 msgid "Visible and Hidden  <0/>"
 msgstr ""
 

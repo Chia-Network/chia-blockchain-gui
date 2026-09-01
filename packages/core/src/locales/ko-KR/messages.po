@@ -171,7 +171,7 @@ msgstr "암호 보호 비활성화"
 msgid "Discard"
 msgstr "디스코드"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:157
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:156
 msgid "Download"
 msgstr ""
 
@@ -316,7 +316,7 @@ msgstr ""
 msgid "New passphrase is the same as your current passphrase"
 msgstr "새 암호가 현재 암호와 동일합니다."
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:142
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:141
 msgid "New version {latestVersion} available"
 msgstr ""
 
@@ -451,7 +451,7 @@ msgstr "고급 옵션 표시"
 #~ msgid "Sign In"
 #~ msgstr "Sign In"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:145
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:144
 #: src/hooks/useValidateChangePassphraseParams.tsx:51
 msgid "Skip"
 msgstr "건너뛰기"
@@ -537,7 +537,7 @@ msgstr "키를 보호하려면 암호를 사용하는 것이 좋습니다. 암�
 msgid "Value seems high"
 msgstr "값이 높음"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:242
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:241
 #: src/components/Settings/SettingsApp.tsx:84
 msgid "Wallet"
 msgstr "내 지갑"
@@ -559,7 +559,7 @@ msgstr ""
 #~ msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
 #~ msgstr "Welcome to Chia. Please log in with an existing key, or create a new key."
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:151
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:150
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:66
 msgid "What's New"
 msgstr ""

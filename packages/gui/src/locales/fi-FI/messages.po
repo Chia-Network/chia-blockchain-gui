@@ -3150,7 +3150,7 @@ msgstr "(Ei tuettu)"
 msgid "(Recommended)"
 msgstr "(Suositus)"
 
-#: src/components/nfts/NFTTransferConfirmationDialog.tsx:97
+#: src/components/nfts/NFTTransferConfirmationDialog.tsx:89
 msgid "{0, plural, one {mojo} other {mojos}}"
 msgstr "{0, plural, one {mojo} other {mojoa}}"
 
@@ -3175,7 +3175,7 @@ msgstr "{0} muistilohkoa on suositusmäärä"
 msgid "{0} of {1}"
 msgstr "{0} / {1}"
 
-#: src/components/nfts/gallery/SelectedActionsDialog.tsx:67
+#: src/components/nfts/gallery/SelectedActionsDialog.tsx:66
 msgid "{0} of {allCount} items selected:"
 msgstr "{0} / {allCount} kohdetta valittu:"
 
@@ -3260,7 +3260,7 @@ msgstr "+ Plottaa tiedosto"
 msgid "+ Add New Plot NFT"
 msgstr "+ Lisää Uusi Plot NFT"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:358
+#: src/components/nfts/gallery/NFTGallery.tsx:357
 msgid "<0>Loading...</0> {0}%"
 msgstr "<0>Ladataan...</0> {0}%"
 
@@ -3268,7 +3268,7 @@ msgstr "<0>Ladataan...</0> {0}%"
 #~ msgid "<0>Need some XCH?</0>"
 #~ msgstr "<0>Need some XCH?</0>"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:348
+#: src/components/nfts/gallery/NFTGallery.tsx:347
 msgid "<0>Showing</0> {0} <1>of</1> {1}  <2>items</2>"
 msgstr "<0>Näytetään</0>{0}<1>/</1>{1}<2>kohdetta</2>"
 
@@ -3541,7 +3541,7 @@ msgstr "NFT:n alkuperä on täydellinen historia sen omistusoikeudesta. Se yhdis
 msgid "Announcement"
 msgstr "Tiedotus"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:496
+#: src/components/nfts/gallery/NFTGallery.tsx:495
 msgid "Any preview  <0/>"
 msgstr ""
 
@@ -3829,7 +3829,7 @@ msgstr "Välimuistin koko (GB)"
 #: src/components/fullNode/FullNodeAddConnection.tsx:100
 #: src/components/nfts/MultipleDownloadDialog.tsx:119
 #: src/components/nfts/NFTBurnDialog.tsx:175
-#: src/components/nfts/NFTTransferConfirmationDialog.tsx:57
+#: src/components/nfts/NFTTransferConfirmationDialog.tsx:49
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:24
 #: src/components/offers/OfferDataEntryDialog.tsx:58
 #: src/components/offers/OfferShareDialog.tsx:712
@@ -4129,7 +4129,7 @@ msgstr "Vahvista"
 msgid "Confirm New Passphrase"
 msgstr "Vahvista Uusi Salasana"
 
-#: src/components/nfts/NFTTransferConfirmationDialog.tsx:38
+#: src/components/nfts/NFTTransferConfirmationDialog.tsx:30
 msgid "Confirm NFT Transfer"
 msgstr "Vahvista NFT:n siirto"
 
@@ -4434,7 +4434,7 @@ msgstr "Dapp {from} lähettää viestin"
 msgid "Dapp sending the message"
 msgstr "Dapp lähettää viestin"
 
-#: src/components/nfts/NFTDetails.tsx:235
+#: src/components/nfts/NFTDetails.tsx:234
 msgid "Data Hash"
 msgstr "Datan tiiviste"
 
@@ -4442,7 +4442,7 @@ msgstr "Datan tiiviste"
 msgid "Data Layer Offer"
 msgstr ""
 
-#: src/components/nfts/NFTDetails.tsx:222
+#: src/components/nfts/NFTDetails.tsx:221
 msgid "Data URL {0}"
 msgstr "Datan URL {0}"
 
@@ -4553,19 +4553,19 @@ msgstr "Derivaatioindeksin on oltava suurempi kuin {index}"
 msgid "Description"
 msgstr "Kuvaus"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:372
+#: src/components/nfts/gallery/NFTGallery.tsx:371
 msgid "Deselect all"
 msgstr "Poista valinnat"
 
-#: src/components/nfts/NFTTransferConfirmationDialog.tsx:77
+#: src/components/nfts/NFTTransferConfirmationDialog.tsx:69
 msgid "Destination"
 msgstr "Kohde"
 
-#: src/components/nfts/NFTTransferConfirmationDialog.tsx:67
+#: src/components/nfts/NFTTransferConfirmationDialog.tsx:59
 msgid "Destination:"
 msgstr "Kohde:"
 
-#: src/components/nfts/NFTDetails.tsx:353
+#: src/components/nfts/NFTDetails.tsx:352
 msgid "Details"
 msgstr "Lisätiedot"
 
@@ -5210,12 +5210,12 @@ msgstr ""
 #~ msgid "File"
 #~ msgstr "File"
 
-#: src/components/nfts/NFTPreview.tsx:571
+#: src/components/nfts/NFTPreview.tsx:576
 msgid "File does not match the expected hash"
 msgstr ""
 
 #: src/components/nfts/NFTHashStatus.tsx:88
-#: src/components/nfts/NFTPreview.tsx:251
+#: src/components/nfts/NFTPreview.tsx:252
 msgid "File is not available"
 msgstr ""
 
@@ -5226,7 +5226,7 @@ msgstr ""
 msgid "Filename"
 msgstr "Tiedosto"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:328
+#: src/components/nfts/gallery/NFTGallery.tsx:327
 msgid "Filter"
 msgstr "Suodatus"
 
@@ -5619,11 +5619,11 @@ msgstr "Tämänhetkiset lohkohaasteet, joiden tilatodisteet voivat löytyä plot
 msgid "Hex public key of pool"
 msgstr "Poolin julkinen heksa-avain"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:480
+#: src/components/nfts/gallery/NFTGallery.tsx:479
 msgid "Hidden"
 msgstr "Piilotettu"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:443
+#: src/components/nfts/gallery/NFTGallery.tsx:442
 msgid "Hidden  <0/>"
 msgstr "Piilotettu <0/>"
 
@@ -5978,7 +5978,7 @@ msgstr "Viimeisimmät Lohkohaasteet"
 msgid "Launcher Id"
 msgstr ""
 
-#: src/components/nfts/NFTDetails.tsx:64
+#: src/components/nfts/NFTDetails.tsx:63
 #: src/components/vcs/VCCard.tsx:132
 msgid "Launcher ID"
 msgstr "Käynnistimen Tunnus"
@@ -6005,7 +6005,7 @@ msgstr "Vanhoja avainlenkkejä ei enää tueta. Avaimesi on siirrettävä uuteen
 msgid "Legacy keyrings are no longer supported. Your keys need to be migrated to a new keyring that is secured by a master passphrase."
 msgstr "Vanhoja avainlenkkejä ei enää tueta. Avaimesi on siirrettävä uuteen avainlenkkiin, joka on suojattu pääsalasanalla."
 
-#: src/components/nfts/NFTDetails.tsx:295
+#: src/components/nfts/NFTDetails.tsx:294
 msgid "License Hash"
 msgstr ""
 
@@ -6013,7 +6013,7 @@ msgstr ""
 #~ msgid "License Uris"
 #~ msgstr "License Uris"
 
-#: src/components/nfts/NFTDetails.tsx:280
+#: src/components/nfts/NFTDetails.tsx:279
 msgid "License URL {0}"
 msgstr "Lisenssin URL {0}"
 
@@ -6065,7 +6065,7 @@ msgstr "Ladataan NFT"
 msgid "Loading NFT Info..."
 msgstr "Ladataan NFT-tietoja..."
 
-#: src/components/nfts/NFTPreview.tsx:560
+#: src/components/nfts/NFTPreview.tsx:565
 msgid "Loading NFT..."
 msgstr "Ladataan NFT..."
 
@@ -6073,8 +6073,8 @@ msgstr "Ladataan NFT..."
 #~ msgid "Loading NFTs..."
 #~ msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:560
-#: src/components/nfts/NFTPreview.tsx:582
+#: src/components/nfts/NFTPreview.tsx:565
+#: src/components/nfts/NFTPreview.tsx:587
 msgid "Loading preview..."
 msgstr "Ladataan esikatselua..."
 
@@ -6121,7 +6121,7 @@ msgstr "Lokien Näyttö"
 msgid "Logs and diagnostics"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:440
+#: src/components/nfts/NFTPreview.tsx:441
 msgid "Loop video"
 msgstr ""
 
@@ -6129,11 +6129,11 @@ msgstr ""
 msgid "Loop videos"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:436
+#: src/components/nfts/NFTPreview.tsx:437
 msgid "Looping is enabled for all videos in Settings"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:438
+#: src/components/nfts/NFTPreview.tsx:439
 msgid "Looping on"
 msgstr ""
 
@@ -6216,7 +6216,7 @@ msgstr "Viesti ei saatavilla"
 #~ msgid "Meta Uris"
 #~ msgstr "Meta Uris"
 
-#: src/components/nfts/NFTDetails.tsx:265
+#: src/components/nfts/NFTDetails.tsx:264
 msgid "Metadata Hash"
 msgstr "Matatietojen tiiviste"
 
@@ -6228,7 +6228,7 @@ msgstr "Matatietojen tiiviste"
 #~ msgid "Metadata List"
 #~ msgstr "Get Local Root"
 
-#: src/components/nfts/NFTDetails.tsx:250
+#: src/components/nfts/NFTDetails.tsx:249
 msgid "Metadata URL {0}"
 msgstr "Metatietojen URL {0}"
 
@@ -6281,7 +6281,7 @@ msgstr "Pienin Vaikeustaso"
 #~ msgid "Mint Total"
 #~ msgstr "Mint Total"
 
-#: src/components/nfts/NFTDetails.tsx:213
+#: src/components/nfts/NFTDetails.tsx:212
 msgid "Minted at Block Height"
 msgstr "Lyöty lohkokorkeudessa"
 
@@ -6289,7 +6289,7 @@ msgstr "Lyöty lohkokorkeudessa"
 msgid "Minter"
 msgstr "Tekijä"
 
-#: src/components/nfts/NFTDetails.tsx:172
+#: src/components/nfts/NFTDetails.tsx:171
 msgid "Minter DID"
 msgstr "Tekijän DID"
 
@@ -6356,7 +6356,7 @@ msgstr "Siirrä NFT profiiliin"
 msgid "Move to Profile"
 msgstr "Siirrä profiiliin"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:323
+#: src/components/nfts/gallery/NFTGallery.tsx:322
 msgid "Multi-select"
 msgstr "Monivalinta"
 
@@ -6472,7 +6472,7 @@ msgstr "NFT {nftId} on jo käytetty tarjoukseen"
 #~ msgid "NFT Coin Id"
 #~ msgstr ""
 
-#: src/components/nfts/NFTDetails.tsx:73
+#: src/components/nfts/NFTDetails.tsx:72
 msgid "NFT Coin ID"
 msgstr "NFT-kolikon Tunniste"
 
@@ -6497,7 +6497,7 @@ msgstr "NFT:llä ei ole rojalteja"
 msgid "NFT holder address"
 msgstr "NFT:n haltijan osoite"
 
-#: src/components/nfts/NFTDetails.tsx:55
+#: src/components/nfts/NFTDetails.tsx:54
 #: src/components/offers2/OfferBuilderNFT.tsx:54
 #: src/components/signVerify/SigningEntityNFT.tsx:65
 msgid "NFT ID"
@@ -6599,7 +6599,7 @@ msgstr "Ei tarjouksia"
 #~ msgid "No Custom Permissions"
 #~ msgstr "No Custom Permissions"
 
-#: src/components/nfts/NFTPreview.tsx:565
+#: src/components/nfts/NFTPreview.tsx:570
 msgid "No file available"
 msgstr "Ei tiedostoa saatavilla"
 
@@ -6658,8 +6658,8 @@ msgstr ""
 msgid "None"
 msgstr "Ei yhtään"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:448
-#: src/components/nfts/gallery/NFTGallery.tsx:514
+#: src/components/nfts/gallery/NFTGallery.tsx:447
+#: src/components/nfts/gallery/NFTGallery.tsx:513
 msgid "None (0)"
 msgstr "Ei Yhtään (0)"
 
@@ -6795,7 +6795,7 @@ msgstr "Vaiheen 2 säikeiden määrä"
 msgid "Number of threads for Phase 3"
 msgstr "Vaiheen 3 säikeiden määrä"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:418
+#: src/components/nfts/gallery/NFTGallery.tsx:417
 msgid "Objectionable Content"
 msgstr "Kyseenalainen sisältö"
 
@@ -6942,7 +6942,7 @@ msgstr "Kun hyväksyt tämän tarjouksen, et voi peruuttaa transaktiota. Oletko 
 #~ msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer {0} NFTs?"
 #~ msgstr "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer {0} NFTs?"
 
-#: src/components/nfts/NFTTransferConfirmationDialog.tsx:40
+#: src/components/nfts/NFTTransferConfirmationDialog.tsx:32
 msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer the NFT?"
 msgstr "Kun aloitat siirron, et voi peruuttaa transaktiota. Oletko varma, että haluat siirtää NFT:n?"
 
@@ -7023,15 +7023,15 @@ msgstr ""
 #~ msgid "Overwrite"
 #~ msgstr "Overwrite"
 
-#: src/components/nfts/NFTDetails.tsx:87
+#: src/components/nfts/NFTDetails.tsx:86
 msgid "Owner Address"
 msgstr "Omistajan Osoite"
 
-#: src/components/nfts/NFTDetails.tsx:108
+#: src/components/nfts/NFTDetails.tsx:107
 msgid "Owner DID"
 msgstr "Omistajan DID"
 
-#: src/components/nfts/NFTDetails.tsx:148
+#: src/components/nfts/NFTDetails.tsx:147
 msgid "Owner Public Key"
 msgstr "Omistajan Julkinen Avain"
 
@@ -7545,16 +7545,16 @@ msgstr "Valmistellaan Plot-NFT:tä"
 msgid "Preparing standard wallet"
 msgstr "Valmistellaan normaalia lompakkoa"
 
-#: src/components/nfts/NFTPreview.tsx:287
+#: src/components/nfts/NFTPreview.tsx:288
 #: src/components/offers2/OfferBuilderNFT.tsx:75
 msgid "Preview"
 msgstr "Esikatselu"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:532
+#: src/components/nfts/gallery/NFTGallery.tsx:531
 msgid "Preview available"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:501
+#: src/components/nfts/gallery/NFTGallery.tsx:500
 msgid "Preview available  <0/>"
 msgstr ""
 
@@ -7562,19 +7562,19 @@ msgstr ""
 #~ msgid "Preview image uris"
 #~ msgstr ""
 
-#: src/components/nfts/NFTDetails.tsx:310
+#: src/components/nfts/NFTDetails.tsx:309
 msgid "Preview image URL {index}"
 msgstr "Esikatselu-URL {index}"
 
-#: src/components/nfts/NFTPreview.tsx:577
+#: src/components/nfts/NFTPreview.tsx:582
 msgid "Preview is not available"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:553
+#: src/components/nfts/gallery/NFTGallery.tsx:552
 msgid "Preview not available"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:506
+#: src/components/nfts/gallery/NFTGallery.tsx:505
 msgid "Preview not available  <0/>"
 msgstr ""
 
@@ -7586,7 +7586,7 @@ msgstr ""
 #~ msgid "Preview video uris"
 #~ msgstr ""
 
-#: src/components/nfts/NFTDetails.tsx:327
+#: src/components/nfts/NFTDetails.tsx:326
 msgid "Preview video URL {index}"
 msgstr "Esikatseluvideo-URL {index}"
 
@@ -7762,7 +7762,7 @@ msgstr "Päivitä"
 msgid "Refresh NFT data"
 msgstr "Päivitä NFT-data"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:333
+#: src/components/nfts/gallery/NFTGallery.tsx:332
 msgid "Refresh NFTs"
 msgstr ""
 
@@ -8056,7 +8056,7 @@ msgstr "Rojaltit on sisäänrakennettu NFT:ään, joten ne kirjataan automaattis
 #~ msgid "Royalty Address"
 #~ msgstr "Royalty Address"
 
-#: src/components/nfts/NFTDetails.tsx:159
+#: src/components/nfts/NFTDetails.tsx:158
 msgid "Royalty Percentage"
 msgstr "Rojaltiprosentti"
 
@@ -8104,7 +8104,7 @@ msgid "Search on Tail Database"
 msgstr "Etsi Tail-tietokannasta"
 
 #: src/components/addressbook/AddressBookSideBar.tsx:150
-#: src/components/nfts/gallery/NFTGallery.tsx:311
+#: src/components/nfts/gallery/NFTGallery.tsx:310
 msgid "Search..."
 msgstr "Etsi..."
 
@@ -8131,7 +8131,7 @@ msgstr "Katso Kaikki Aktiviteetit"
 msgid "Select 2nd Temporary Directory"
 msgstr "Valitse Toinen Väliaikaishakemisto"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:372
+#: src/components/nfts/gallery/NFTGallery.tsx:371
 msgid "Select all"
 msgstr "Valitse kaikki"
 
@@ -9198,7 +9198,7 @@ msgid "Transactions less than the fee will not be auto claimed."
 msgstr "Transaktioita, joiden arvo on pienempi kuin maksu, ei lunasteta automaattisesti."
 
 #: src/components/nfts/NFTTransferAction.tsx:153
-#: src/components/nfts/NFTTransferConfirmationDialog.tsx:45
+#: src/components/nfts/NFTTransferConfirmationDialog.tsx:37
 msgid "Transfer"
 msgstr "Siirrä"
 
@@ -9247,7 +9247,7 @@ msgstr "Tyyppi"
 #~ msgid "Types ({0}/{1})"
 #~ msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:381
+#: src/components/nfts/gallery/NFTGallery.tsx:380
 msgid "Types{0}"
 msgstr "Tyypit{0}"
 
@@ -9279,9 +9279,9 @@ msgstr "NFT:tä {entityId} ei löydy"
 #~ msgid "Unable to open Keybase. Install Keybase from https://keybase.io"
 #~ msgstr "Unable to open Keybase. Install Keybase from https://keybase.io"
 
-#: src/components/nfts/NFTDetails.tsx:141
-#: src/components/nfts/NFTDetails.tsx:162
-#: src/components/nfts/NFTDetails.tsx:205
+#: src/components/nfts/NFTDetails.tsx:140
+#: src/components/nfts/NFTDetails.tsx:161
+#: src/components/nfts/NFTDetails.tsx:204
 msgid "Unassigned"
 msgstr "Määrittelemätön"
 
@@ -9573,11 +9573,11 @@ msgstr "Näytä Poolin Kirjautumislinkki"
 msgid "Viewing offer"
 msgstr "Näytä tarjous"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:464
+#: src/components/nfts/gallery/NFTGallery.tsx:463
 msgid "Visible"
 msgstr "Näkyvissä"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:438
+#: src/components/nfts/gallery/NFTGallery.tsx:437
 msgid "Visible  <0/>"
 msgstr "Näkyvissä <0/>"
 
@@ -9585,7 +9585,7 @@ msgstr "Näkyvissä <0/>"
 #~ msgid "Visible ({0})"
 #~ msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:433
+#: src/components/nfts/gallery/NFTGallery.tsx:432
 msgid "Visible and Hidden  <0/>"
 msgstr "Näkyvät ja piilotetut <0/>"
 

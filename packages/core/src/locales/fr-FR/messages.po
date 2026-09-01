@@ -171,7 +171,7 @@ msgstr "Désactiver la protection par phrase secrète"
 msgid "Discard"
 msgstr "Rejeter"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:157
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:156
 msgid "Download"
 msgstr "Télécharger"
 
@@ -316,7 +316,7 @@ msgstr "NE JAMAIS PARTAGER AVEC QUICONQUE"
 msgid "New passphrase is the same as your current passphrase"
 msgstr "La nouvelle phrase secrète est identique à votre phrase secrète actuelle"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:142
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:141
 msgid "New version {latestVersion} available"
 msgstr "Nouvelle version {latestVersion} disponible"
 
@@ -451,7 +451,7 @@ msgstr "Afficher les options avancées"
 #~ msgid "Sign In"
 #~ msgstr "Sign In"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:145
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:144
 #: src/hooks/useValidateChangePassphraseParams.tsx:51
 msgid "Skip"
 msgstr "Ignorer"
@@ -537,7 +537,7 @@ msgstr "Utiliser une phrase secrète est fortement recommandé pour la protectio
 msgid "Value seems high"
 msgstr "La valeur semble élevée"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:242
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:241
 #: src/components/Settings/SettingsApp.tsx:84
 msgid "Wallet"
 msgstr "Portefeuille"
@@ -559,7 +559,7 @@ msgstr "Clés des portefeuilles"
 #~ msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
 #~ msgstr "Welcome to Chia. Please log in with an existing key, or create a new key."
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:151
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:150
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:66
 msgid "What's New"
 msgstr "Nouveautés"

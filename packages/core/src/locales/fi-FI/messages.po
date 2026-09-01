@@ -171,7 +171,7 @@ msgstr "Poista Salasanasuojaus Käytöstä"
 msgid "Discard"
 msgstr "Hylkää"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:157
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:156
 msgid "Download"
 msgstr "Lataa"
 
@@ -316,7 +316,7 @@ msgstr "ÄLÄ KOSKAAN JAA NÄITÄ KENELLEKÄÄN"
 msgid "New passphrase is the same as your current passphrase"
 msgstr "Uusi salasana on sama kuin nykyinen salasana"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:142
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:141
 msgid "New version {latestVersion} available"
 msgstr "Uusi versio {latestVersion} saatavilla"
 
@@ -451,7 +451,7 @@ msgstr "Näytä Lisävalinnat"
 #~ msgid "Sign In"
 #~ msgstr "Sign In"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:145
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:144
 #: src/hooks/useValidateChangePassphraseParams.tsx:51
 msgid "Skip"
 msgstr "Ohita"
@@ -537,7 +537,7 @@ msgstr "Salasanan asettaminen on erittäin suositeltavaa avaimien suojaamiseksi.
 msgid "Value seems high"
 msgstr "Arvo vaikuttaa suurelta"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:242
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:241
 #: src/components/Settings/SettingsApp.tsx:84
 msgid "Wallet"
 msgstr "Lompakot"
@@ -559,7 +559,7 @@ msgstr "Lompakon Avaimet"
 #~ msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
 #~ msgstr "Welcome to Chia. Please log in with an existing key, or create a new key."
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:151
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:150
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:66
 msgid "What's New"
 msgstr "Mitä Uutta"

@@ -173,7 +173,7 @@ msgstr "محافظت از رمز ورودی را غیرفعال کنید"
 msgid "Discard"
 msgstr "دست برداشتن"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:157
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:156
 msgid "Download"
 msgstr "دخیره"
 
@@ -318,7 +318,7 @@ msgstr "هرگز این موارد را با کسی به اشتراک نگذار
 msgid "New passphrase is the same as your current passphrase"
 msgstr "رمز ورودی جدید همانند رمز ورودی فعلی شما است"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:142
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:141
 msgid "New version {latestVersion} available"
 msgstr "موجود است {latestVersion} نسخه جدید"
 
@@ -453,7 +453,7 @@ msgstr "نمایش گزینه‌های پیشرفته"
 #~ msgid "Sign In"
 #~ msgstr "Sign In"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:145
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:144
 #: src/hooks/useValidateChangePassphraseParams.tsx:51
 msgid "Skip"
 msgstr "صرف نظر"
@@ -539,7 +539,7 @@ msgstr "تنظیم یک رمز ورود برای محافظت از کلیدها�
 msgid "Value seems high"
 msgstr "ارزش بالا به نظر میرسد"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:242
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:241
 #: src/components/Settings/SettingsApp.tsx:84
 msgid "Wallet"
 msgstr "کیف پول"
@@ -561,7 +561,7 @@ msgstr "کلیدهای کیف پول"
 #~ msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
 #~ msgstr "Welcome to Chia. Please log in with an existing key, or create a new key."
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:151
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:150
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:66
 msgid "What's New"
 msgstr "اخبار جدید"

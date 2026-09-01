@@ -3150,7 +3150,7 @@ msgstr "(不支援)"
 msgid "(Recommended)"
 msgstr "(建議)"
 
-#: src/components/nfts/NFTTransferConfirmationDialog.tsx:97
+#: src/components/nfts/NFTTransferConfirmationDialog.tsx:89
 msgid "{0, plural, one {mojo} other {mojos}}"
 msgstr "{0, plural, one {mojo} other {mojos}}"
 
@@ -3175,7 +3175,7 @@ msgstr "建議使用 {0} 個桶"
 msgid "{0} of {1}"
 msgstr "{0} of {1}"
 
-#: src/components/nfts/gallery/SelectedActionsDialog.tsx:67
+#: src/components/nfts/gallery/SelectedActionsDialog.tsx:66
 msgid "{0} of {allCount} items selected:"
 msgstr "{0} of {allCount} 個項目已選取："
 
@@ -3260,7 +3260,7 @@ msgstr "+新增一個耕地"
 msgid "+ Add New Plot NFT"
 msgstr "+ 新增新的農場"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:358
+#: src/components/nfts/gallery/NFTGallery.tsx:357
 msgid "<0>Loading...</0> {0}%"
 msgstr "<0>載入中...</0> {0}%"
 
@@ -3268,7 +3268,7 @@ msgstr "<0>載入中...</0> {0}%"
 #~ msgid "<0>Need some XCH?</0>"
 #~ msgstr "<0>Need some XCH?</0>"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:348
+#: src/components/nfts/gallery/NFTGallery.tsx:347
 msgid "<0>Showing</0> {0} <1>of</1> {1}  <2>items</2>"
 msgstr "<0>顯示</0> {0} <1>/</1> {1}  <2>項</2>"
 
@@ -3541,7 +3541,7 @@ msgstr "NFT 的來源是它的所有權歷史的完整記錄。它提供了一�
 msgid "Announcement"
 msgstr "公告"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:496
+#: src/components/nfts/gallery/NFTGallery.tsx:495
 msgid "Any preview  <0/>"
 msgstr ""
 
@@ -3829,7 +3829,7 @@ msgstr "快取大小（GB）"
 #: src/components/fullNode/FullNodeAddConnection.tsx:100
 #: src/components/nfts/MultipleDownloadDialog.tsx:119
 #: src/components/nfts/NFTBurnDialog.tsx:175
-#: src/components/nfts/NFTTransferConfirmationDialog.tsx:57
+#: src/components/nfts/NFTTransferConfirmationDialog.tsx:49
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:24
 #: src/components/offers/OfferDataEntryDialog.tsx:58
 #: src/components/offers/OfferShareDialog.tsx:712
@@ -4129,7 +4129,7 @@ msgstr "確認"
 msgid "Confirm New Passphrase"
 msgstr "確認新的私鑰密碼"
 
-#: src/components/nfts/NFTTransferConfirmationDialog.tsx:38
+#: src/components/nfts/NFTTransferConfirmationDialog.tsx:30
 msgid "Confirm NFT Transfer"
 msgstr "確認 NFT 轉移"
 
@@ -4434,7 +4434,7 @@ msgstr "Dapp {from} 正在傳送訊息"
 msgid "Dapp sending the message"
 msgstr "Dapp正在傳送訊息"
 
-#: src/components/nfts/NFTDetails.tsx:235
+#: src/components/nfts/NFTDetails.tsx:234
 msgid "Data Hash"
 msgstr "資料雜湊值"
 
@@ -4442,7 +4442,7 @@ msgstr "資料雜湊值"
 msgid "Data Layer Offer"
 msgstr ""
 
-#: src/components/nfts/NFTDetails.tsx:222
+#: src/components/nfts/NFTDetails.tsx:221
 msgid "Data URL {0}"
 msgstr "資料 URL {0}"
 
@@ -4553,19 +4553,19 @@ msgstr "派生索引必须大於  {index}"
 msgid "Description"
 msgstr "描述"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:372
+#: src/components/nfts/gallery/NFTGallery.tsx:371
 msgid "Deselect all"
 msgstr "取消選取全部"
 
-#: src/components/nfts/NFTTransferConfirmationDialog.tsx:77
+#: src/components/nfts/NFTTransferConfirmationDialog.tsx:69
 msgid "Destination"
 msgstr "目标路徑"
 
-#: src/components/nfts/NFTTransferConfirmationDialog.tsx:67
+#: src/components/nfts/NFTTransferConfirmationDialog.tsx:59
 msgid "Destination:"
 msgstr "目标路徑:"
 
-#: src/components/nfts/NFTDetails.tsx:353
+#: src/components/nfts/NFTDetails.tsx:352
 msgid "Details"
 msgstr "詳細資料"
 
@@ -5210,12 +5210,12 @@ msgstr ""
 #~ msgid "File"
 #~ msgstr "File"
 
-#: src/components/nfts/NFTPreview.tsx:571
+#: src/components/nfts/NFTPreview.tsx:576
 msgid "File does not match the expected hash"
 msgstr ""
 
 #: src/components/nfts/NFTHashStatus.tsx:88
-#: src/components/nfts/NFTPreview.tsx:251
+#: src/components/nfts/NFTPreview.tsx:252
 msgid "File is not available"
 msgstr ""
 
@@ -5226,7 +5226,7 @@ msgstr ""
 msgid "Filename"
 msgstr "檔案名稱"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:328
+#: src/components/nfts/gallery/NFTGallery.tsx:327
 msgid "Filter"
 msgstr "篩選"
 
@@ -5619,11 +5619,11 @@ msgstr "以下是目前的區塊挑戰。對於這些挑戰，您可能擁有也
 msgid "Hex public key of pool"
 msgstr "農會的 Hex 公鑰"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:480
+#: src/components/nfts/gallery/NFTGallery.tsx:479
 msgid "Hidden"
 msgstr "已隱藏"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:443
+#: src/components/nfts/gallery/NFTGallery.tsx:442
 msgid "Hidden  <0/>"
 msgstr "隱藏  <0/>"
 
@@ -5978,7 +5978,7 @@ msgstr "最新區塊挑戰"
 msgid "Launcher Id"
 msgstr ""
 
-#: src/components/nfts/NFTDetails.tsx:64
+#: src/components/nfts/NFTDetails.tsx:63
 #: src/components/vcs/VCCard.tsx:132
 msgid "Launcher ID"
 msgstr "啟動器 ID"
@@ -6005,7 +6005,7 @@ msgstr "不再支援舊版金鑰環。您的金鑰需要遷移到新金鑰環，
 msgid "Legacy keyrings are no longer supported. Your keys need to be migrated to a new keyring that is secured by a master passphrase."
 msgstr "不再支援舊版金鑰環。您的金鑰需要遷移到由主密碼保護的新金鑰環。"
 
-#: src/components/nfts/NFTDetails.tsx:295
+#: src/components/nfts/NFTDetails.tsx:294
 msgid "License Hash"
 msgstr ""
 
@@ -6013,7 +6013,7 @@ msgstr ""
 #~ msgid "License Uris"
 #~ msgstr "License Uris"
 
-#: src/components/nfts/NFTDetails.tsx:280
+#: src/components/nfts/NFTDetails.tsx:279
 msgid "License URL {0}"
 msgstr "授權網址 {0}"
 
@@ -6065,7 +6065,7 @@ msgstr "正在載入 NFT"
 msgid "Loading NFT Info..."
 msgstr "正在載入 NFT 資訊..."
 
-#: src/components/nfts/NFTPreview.tsx:560
+#: src/components/nfts/NFTPreview.tsx:565
 msgid "Loading NFT..."
 msgstr "正在載入 NFT..."
 
@@ -6073,8 +6073,8 @@ msgstr "正在載入 NFT..."
 #~ msgid "Loading NFTs..."
 #~ msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:560
-#: src/components/nfts/NFTPreview.tsx:582
+#: src/components/nfts/NFTPreview.tsx:565
+#: src/components/nfts/NFTPreview.tsx:587
 msgid "Loading preview..."
 msgstr "正在載入預覽..."
 
@@ -6121,7 +6121,7 @@ msgstr "日誌查看器"
 msgid "Logs and diagnostics"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:440
+#: src/components/nfts/NFTPreview.tsx:441
 msgid "Loop video"
 msgstr ""
 
@@ -6129,11 +6129,11 @@ msgstr ""
 msgid "Loop videos"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:436
+#: src/components/nfts/NFTPreview.tsx:437
 msgid "Looping is enabled for all videos in Settings"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:438
+#: src/components/nfts/NFTPreview.tsx:439
 msgid "Looping on"
 msgstr ""
 
@@ -6216,7 +6216,7 @@ msgstr "訊息不可用"
 #~ msgid "Meta Uris"
 #~ msgstr "Meta Uris"
 
-#: src/components/nfts/NFTDetails.tsx:265
+#: src/components/nfts/NFTDetails.tsx:264
 msgid "Metadata Hash"
 msgstr "中繼資料雜湊值"
 
@@ -6228,7 +6228,7 @@ msgstr "中繼資料雜湊值"
 #~ msgid "Metadata List"
 #~ msgstr "Get Local Root"
 
-#: src/components/nfts/NFTDetails.tsx:250
+#: src/components/nfts/NFTDetails.tsx:249
 msgid "Metadata URL {0}"
 msgstr "中繼資料網址 {0}"
 
@@ -6281,7 +6281,7 @@ msgstr "最低難度"
 #~ msgid "Mint Total"
 #~ msgstr "Mint Total"
 
-#: src/components/nfts/NFTDetails.tsx:213
+#: src/components/nfts/NFTDetails.tsx:212
 msgid "Minted at Block Height"
 msgstr "鑄造於區塊高度"
 
@@ -6289,7 +6289,7 @@ msgstr "鑄造於區塊高度"
 msgid "Minter"
 msgstr "鑄造者"
 
-#: src/components/nfts/NFTDetails.tsx:172
+#: src/components/nfts/NFTDetails.tsx:171
 msgid "Minter DID"
 msgstr "鑄造者 DID"
 
@@ -6356,7 +6356,7 @@ msgstr "將 NFT 移動到個人檔案"
 msgid "Move to Profile"
 msgstr "移動到個人檔案"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:323
+#: src/components/nfts/gallery/NFTGallery.tsx:322
 msgid "Multi-select"
 msgstr "多選"
 
@@ -6472,7 +6472,7 @@ msgstr "NFT {nftId} 已在此報價中使用"
 #~ msgid "NFT Coin Id"
 #~ msgstr ""
 
-#: src/components/nfts/NFTDetails.tsx:73
+#: src/components/nfts/NFTDetails.tsx:72
 msgid "NFT Coin ID"
 msgstr "NFT 代幣 ID"
 
@@ -6497,7 +6497,7 @@ msgstr "此 NFT 無版稅"
 msgid "NFT holder address"
 msgstr "NFT 持有者地址"
 
-#: src/components/nfts/NFTDetails.tsx:55
+#: src/components/nfts/NFTDetails.tsx:54
 #: src/components/offers2/OfferBuilderNFT.tsx:54
 #: src/components/signVerify/SigningEntityNFT.tsx:65
 msgid "NFT ID"
@@ -6599,7 +6599,7 @@ msgstr "目前無報價"
 #~ msgid "No Custom Permissions"
 #~ msgstr "No Custom Permissions"
 
-#: src/components/nfts/NFTPreview.tsx:565
+#: src/components/nfts/NFTPreview.tsx:570
 msgid "No file available"
 msgstr "無可用檔案"
 
@@ -6658,8 +6658,8 @@ msgstr ""
 msgid "None"
 msgstr "無"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:448
-#: src/components/nfts/gallery/NFTGallery.tsx:514
+#: src/components/nfts/gallery/NFTGallery.tsx:447
+#: src/components/nfts/gallery/NFTGallery.tsx:513
 msgid "None (0)"
 msgstr "無 (0)"
 
@@ -6795,7 +6795,7 @@ msgstr "階段 2 的執行緒數量"
 msgid "Number of threads for Phase 3"
 msgstr "階段 3 的執行緒數量"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:418
+#: src/components/nfts/gallery/NFTGallery.tsx:417
 msgid "Objectionable Content"
 msgstr "不當內容"
 
@@ -6942,7 +6942,7 @@ msgstr "一旦您接受此報價，將無法取消交易。您確定要接受此
 #~ msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer {0} NFTs?"
 #~ msgstr "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer {0} NFTs?"
 
-#: src/components/nfts/NFTTransferConfirmationDialog.tsx:40
+#: src/components/nfts/NFTTransferConfirmationDialog.tsx:32
 msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer the NFT?"
 msgstr "一旦您發起此轉移，將無法取消交易。您確定要轉移此 NFT 嗎？"
 
@@ -7023,15 +7023,15 @@ msgstr ""
 #~ msgid "Overwrite"
 #~ msgstr "Overwrite"
 
-#: src/components/nfts/NFTDetails.tsx:87
+#: src/components/nfts/NFTDetails.tsx:86
 msgid "Owner Address"
 msgstr "擁有者地址"
 
-#: src/components/nfts/NFTDetails.tsx:108
+#: src/components/nfts/NFTDetails.tsx:107
 msgid "Owner DID"
 msgstr "擁有者 DID"
 
-#: src/components/nfts/NFTDetails.tsx:148
+#: src/components/nfts/NFTDetails.tsx:147
 msgid "Owner Public Key"
 msgstr "擁有者公鑰"
 
@@ -7545,16 +7545,16 @@ msgstr "正在準備 Plot NFT"
 msgid "Preparing standard wallet"
 msgstr "正在準備標準錢包"
 
-#: src/components/nfts/NFTPreview.tsx:287
+#: src/components/nfts/NFTPreview.tsx:288
 #: src/components/offers2/OfferBuilderNFT.tsx:75
 msgid "Preview"
 msgstr "預覽"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:532
+#: src/components/nfts/gallery/NFTGallery.tsx:531
 msgid "Preview available"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:501
+#: src/components/nfts/gallery/NFTGallery.tsx:500
 msgid "Preview available  <0/>"
 msgstr ""
 
@@ -7562,19 +7562,19 @@ msgstr ""
 #~ msgid "Preview image uris"
 #~ msgstr ""
 
-#: src/components/nfts/NFTDetails.tsx:310
+#: src/components/nfts/NFTDetails.tsx:309
 msgid "Preview image URL {index}"
 msgstr "預覽圖片 URL {index}"
 
-#: src/components/nfts/NFTPreview.tsx:577
+#: src/components/nfts/NFTPreview.tsx:582
 msgid "Preview is not available"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:553
+#: src/components/nfts/gallery/NFTGallery.tsx:552
 msgid "Preview not available"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:506
+#: src/components/nfts/gallery/NFTGallery.tsx:505
 msgid "Preview not available  <0/>"
 msgstr ""
 
@@ -7586,7 +7586,7 @@ msgstr ""
 #~ msgid "Preview video uris"
 #~ msgstr ""
 
-#: src/components/nfts/NFTDetails.tsx:327
+#: src/components/nfts/NFTDetails.tsx:326
 msgid "Preview video URL {index}"
 msgstr "預覽影片 URL {index}"
 
@@ -7762,7 +7762,7 @@ msgstr "重新整理"
 msgid "Refresh NFT data"
 msgstr "重新整理 NFT 資料"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:333
+#: src/components/nfts/gallery/NFTGallery.tsx:332
 msgid "Refresh NFTs"
 msgstr ""
 
@@ -8056,7 +8056,7 @@ msgstr "版稅已內置於 NFT 中，因此在建立或接受報價時會自動�
 #~ msgid "Royalty Address"
 #~ msgstr "Royalty Address"
 
-#: src/components/nfts/NFTDetails.tsx:159
+#: src/components/nfts/NFTDetails.tsx:158
 msgid "Royalty Percentage"
 msgstr ""
 
@@ -8104,7 +8104,7 @@ msgid "Search on Tail Database"
 msgstr "在 TAIL 資料庫中搜尋"
 
 #: src/components/addressbook/AddressBookSideBar.tsx:150
-#: src/components/nfts/gallery/NFTGallery.tsx:311
+#: src/components/nfts/gallery/NFTGallery.tsx:310
 msgid "Search..."
 msgstr "搜尋..."
 
@@ -8131,7 +8131,7 @@ msgstr "查看所有活動"
 msgid "Select 2nd Temporary Directory"
 msgstr "選擇第二個暫存目錄"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:372
+#: src/components/nfts/gallery/NFTGallery.tsx:371
 msgid "Select all"
 msgstr "全選"
 
@@ -9198,7 +9198,7 @@ msgid "Transactions less than the fee will not be auto claimed."
 msgstr "低於費用的交易將不會自動索取。"
 
 #: src/components/nfts/NFTTransferAction.tsx:153
-#: src/components/nfts/NFTTransferConfirmationDialog.tsx:45
+#: src/components/nfts/NFTTransferConfirmationDialog.tsx:37
 msgid "Transfer"
 msgstr "轉移"
 
@@ -9247,7 +9247,7 @@ msgstr "類型"
 #~ msgid "Types ({0}/{1})"
 #~ msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:381
+#: src/components/nfts/gallery/NFTGallery.tsx:380
 msgid "Types{0}"
 msgstr "類型{0}"
 
@@ -9279,9 +9279,9 @@ msgstr "無法找到 NFT {entityId}"
 #~ msgid "Unable to open Keybase. Install Keybase from https://keybase.io"
 #~ msgstr "Unable to open Keybase. Install Keybase from https://keybase.io"
 
-#: src/components/nfts/NFTDetails.tsx:141
-#: src/components/nfts/NFTDetails.tsx:162
-#: src/components/nfts/NFTDetails.tsx:205
+#: src/components/nfts/NFTDetails.tsx:140
+#: src/components/nfts/NFTDetails.tsx:161
+#: src/components/nfts/NFTDetails.tsx:204
 msgid "Unassigned"
 msgstr "未分配"
 
@@ -9573,11 +9573,11 @@ msgstr "查看農會登入連結"
 msgid "Viewing offer"
 msgstr "查看報價"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:464
+#: src/components/nfts/gallery/NFTGallery.tsx:463
 msgid "Visible"
 msgstr "可見"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:438
+#: src/components/nfts/gallery/NFTGallery.tsx:437
 msgid "Visible  <0/>"
 msgstr "可見  <0/>"
 
@@ -9585,7 +9585,7 @@ msgstr "可見  <0/>"
 #~ msgid "Visible ({0})"
 #~ msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:433
+#: src/components/nfts/gallery/NFTGallery.tsx:432
 msgid "Visible and Hidden  <0/>"
 msgstr "可見和隱藏  <0/>"
 
