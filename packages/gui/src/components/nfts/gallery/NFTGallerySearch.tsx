@@ -1,4 +1,4 @@
-import { Color, Flex } from '@chia-network/core';
+import { Flex } from '@chia-network/core';
 import { Search as SearchIcon } from '@mui/icons-material';
 import { InputBase, InputBaseProps } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
@@ -11,14 +11,14 @@ export type SearchProps = InputBaseProps & {
 
 export default function Search(props: SearchProps) {
   const { onUpdate, placeholder, ...rest } = props;
-  const theme: any = useTheme();
+  const theme = useTheme();
 
   return (
     <Flex
       gap={1}
       alignItems="center"
       sx={{
-        borderColor: theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[300],
+        borderColor: theme.palette.mode === 'dark' ? theme.palette.border.dark : theme.palette.border.main,
         backgroundColor: 'background.paper',
         paddingX: 1,
         borderRadius: 1,
@@ -26,7 +26,7 @@ export default function Search(props: SearchProps) {
         borderStyle: 'solid',
       }}
     >
-      <SearchIcon sx={{ color: theme.palette.mode === 'dark' ? Color.Neutral[400] : Color.Neutral[500] }} />
+      <SearchIcon sx={{ color: 'text.secondary' }} />
       <InputBase
         onInput={(event) => onUpdate((event.target as HTMLInputElement).value)}
         placeholder={placeholder}
