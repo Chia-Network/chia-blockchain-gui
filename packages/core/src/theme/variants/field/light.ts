@@ -55,6 +55,13 @@ export default createTheme({
       main: 'rgba(71, 58, 36, 0.16)',
       dark: Color.Neutral[700],
     },
+    surfaces: {
+      control: 'rgba(234, 218, 183, 0.86)',
+      tableHeader: 'rgba(221, 202, 159, 0.78)',
+      tableRowAlternate: 'rgba(234, 218, 183, 0.58)',
+      tableExpanded: 'rgba(221, 202, 159, 0.78)',
+      tableBorder: 'rgba(126, 99, 48, 0.2)',
+    },
     sidebarBackground: '#302c1f',
     sidebarSelectedFill: 'rgba(247, 223, 155, 0.18)',
     sidebarIconSelected: {

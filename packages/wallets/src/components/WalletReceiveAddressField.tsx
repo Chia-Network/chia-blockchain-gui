@@ -27,7 +27,8 @@ const WalletReceiveAddressWrapper = styled.div`
     border: 1px solid
       ${(props) => (props.isDarkMode ? props.theme.palette.border.dark : props.theme.palette.border.main)};
     border-radius: 4px;
-    background: ${(props) => (props.isDarkMode ? Color.Neutral[800] : Color.Neutral[100])};
+    background: ${(props) =>
+      props.theme.palette.surfaces?.control || (props.isDarkMode ? Color.Neutral[800] : Color.Neutral[100])};
   }
   > .MuiButton-root:hover {
     background: ${({ theme }) => useColorModeValue(theme, 'sidebarBackground')};
@@ -42,7 +43,7 @@ const WalletReceiveAddressWrapper = styled.div`
     padding: 3px 5px;
   }
   fieldSet {
-    border: 1px solid ${alpha(Color.Neutral[900], 0.15)};
+    border: 1px solid ${({ theme }) => theme.palette.border.main || alpha(Color.Neutral[900], 0.15)};
   }
 `;
 
