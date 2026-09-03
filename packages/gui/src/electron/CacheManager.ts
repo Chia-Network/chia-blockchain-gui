@@ -435,9 +435,10 @@ export default class CacheManager extends EventEmitter {
       throw new Error(`Invalid URL: ${url}`);
     }
 
-    // Captured once, up front: the gateway a request goes through is part of
-    // its outcome, so a failure must be recorded against the gateway that was
-    // current when the request started, not the one current when it fails.
+    // Captured once, up front, and pinned for the download itself (which may
+    // wait in the queue while the user changes the preference): the gateway a
+    // request goes through is part of its outcome, so a failure must be
+    // recorded against the gateway the request actually used.
     const requestGateway = isIpfsUrl(url) ? ipfsGatewayBase() : undefined;
 
     const ongoingRequest = this.ongoingRequests.get(url);
@@ -516,6 +517,7 @@ export default class CacheManager extends EventEmitter {
             maxSize,
             signal: abortController.signal,
             overrideFile: true,
+            gatewayBase: requestGateway,
           });
 
           log('Download finished', url);

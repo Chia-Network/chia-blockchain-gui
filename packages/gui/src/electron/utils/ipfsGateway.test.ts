@@ -139,4 +139,23 @@ describe('toFetchableUrl', () => {
       IpfsGatewayDisabledError,
     );
   });
+
+  it('uses the pinned gateway over the current preference when one is given', () => {
+    mockReadPrefs.mockReturnValue({
+      [NFT_IPFS_GATEWAY_PREF]: true,
+      [NFT_IPFS_GATEWAY_URL_PREF]: 'https://dweb.link/ipfs/',
+    });
+
+    expect(
+      toFetchableUrl('ipfs://QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/img.png', 'https://ipfs.io/ipfs/'),
+    ).toBe('https://ipfs.io/ipfs/QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/img.png');
+  });
+
+  it('still refuses ipfs URIs while the option is off, whatever gateway is pinned', () => {
+    mockReadPrefs.mockReturnValue({});
+
+    expect(() =>
+      toFetchableUrl('ipfs://QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB', 'https://ipfs.io/ipfs/'),
+    ).toThrow(IpfsGatewayDisabledError);
+  });
 });

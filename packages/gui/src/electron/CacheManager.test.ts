@@ -380,6 +380,34 @@ describe('CacheManager eviction', () => {
     }
   });
 
+  it('downloads through the gateway captured when the request entered, even if the preference changed before the transfer started', async () => {
+    const url = 'ipfs://QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/img.png';
+    mockDownloadFile.mockRejectedValue(new Error('HTTP error: 403'));
+
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+
+    try {
+      const pending = cacheManager.getContent(url);
+      // the download has not started yet (the sidecar is still being read)
+      expect(mockDownloadFile).not.toHaveBeenCalled();
+      mockIpfsGatewayBase.mockReturnValue('https://dweb.link/ipfs/');
+
+      await expect(pending).rejects.toThrow('HTTP error: 403');
+
+      // the transfer was pinned to the gateway the request entered with, and
+      // the sidecar names that same gateway
+      expect(mockDownloadFile.mock.calls[0][2]).toMatchObject({ gatewayBase: 'https://ipfs.io/ipfs/' });
+      const [info] = await cacheManager.getCacheInfos([url]);
+      expect(info).toMatchObject({ state: 'ERROR', gateway: 'https://ipfs.io/ipfs/' });
+    } finally {
+      mockIpfsGatewayBase.mockReturnValue('https://ipfs.io/ipfs/');
+    }
+  });
+
   it('does not treat a gateway change as a reason to retry a non-ipfs failure', async () => {
     mockDownloadFile.mockRejectedValue(new Error('HTTP error: 404'));
 
