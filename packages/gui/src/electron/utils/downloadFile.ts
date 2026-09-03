@@ -75,6 +75,42 @@ export function isDownloadTimeoutError(message: string): boolean {
   return message.startsWith(INACTIVITY_TIMEOUT_ERROR_PREFIX) || message.startsWith(DOWNLOAD_DEADLINE_ERROR_PREFIX);
 }
 
+const HTTP_ERROR_PREFIX = 'HTTP error: ';
+
+// Statuses below 500 that still describe a passing condition of the host
+// rather than of the resource. 403 is included because Cloudflare fronts the
+// public IPFS gateways (ipfs.io, and nftstorage.link which now redirects to
+// it) and answers with a 403 "Just a moment..." bot challenge whenever it is
+// in a challenging mood; the file is still there and the next request often
+// succeeds. 408/425/429 are the timeout, too-early and rate-limit statuses.
+const TRANSIENT_HTTP_STATUSES = new Set([403, 408, 425, 429]);
+
+/** Whether a persisted download failure describes a condition that can clear
+ * on its own — a timeout, a gateway/server error, a rate limit or bot
+ * challenge, or a Chromium network error — as opposed to a resource that is
+ * gone for good (404, 410) or a local policy (size cap). CacheManager retries
+ * these after a cooling-off period instead of keeping the entry poisoned
+ * until the whole cache is cleared. */
+export function isTransientDownloadError(message: string): boolean {
+  if (isDownloadTimeoutError(message)) {
+    return true;
+  }
+
+  // Chromium network errors (net::ERR_CONNECTION_RESET, net::ERR_QUIC_PROTOCOL_ERROR,
+  // net::ERR_BLOCKED_BY_RESPONSE for a challenge page that carries a
+  // Cross-Origin-Resource-Policy header, ...)
+  if (message.startsWith('net::ERR_')) {
+    return true;
+  }
+
+  if (message.startsWith(HTTP_ERROR_PREFIX)) {
+    const status = Number.parseInt(message.slice(HTTP_ERROR_PREFIX.length), 10);
+    return status >= 500 || TRANSIENT_HTTP_STATUSES.has(status);
+  }
+
+  return false;
+}
+
 type DownloadFileOptions = {
   timeout?: number;
   maxDuration?: number; // absolute cap on the whole transfer

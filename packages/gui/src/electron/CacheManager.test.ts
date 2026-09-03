@@ -17,7 +17,7 @@ jest.mock('./utils/downloadFile', () => ({
   __esModule: true,
   default: mockDownloadFile,
   MAX_FILE_SIZE_EXCEEDED_ERROR: 'Maximum file size exceeded',
-  isDownloadTimeoutError: jest.requireActual('./utils/downloadFile').isDownloadTimeoutError,
+  isTransientDownloadError: jest.requireActual('./utils/downloadFile').isTransientDownloadError,
 }));
 
 jest.mock('./utils/ipcMainHandle', () => ({
@@ -25,7 +25,8 @@ jest.mock('./utils/ipcMainHandle', () => ({
   default: jest.fn(),
 }));
 
-const CacheManager = jest.requireActual<typeof import('./CacheManager')>('./CacheManager').default;
+const { default: CacheManager, TRANSIENT_ERROR_RETRY_DELAY } =
+  jest.requireActual<typeof import('./CacheManager')>('./CacheManager');
 
 describe('CacheManager eviction', () => {
   let cacheDirectory: string;
@@ -151,6 +152,104 @@ describe('CacheManager eviction', () => {
     });
     await secondSession.init();
     await expect(secondSession.getContent('https://example.com/nft.png')).resolves.toEqual(payload);
+  });
+
+  it('does not retry a gateway error on the next access', async () => {
+    mockDownloadFile.mockRejectedValue(new Error('HTTP error: 504'));
+
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+
+    await expect(cacheManager.getContent('https://example.com/nft.png')).rejects.toThrow('HTTP error: 504');
+    await expect(cacheManager.getContent('https://example.com/nft.png')).rejects.toThrow('HTTP error: 504');
+    expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+  });
+
+  it.each(['HTTP error: 504', 'HTTP error: 403', 'net::ERR_BLOCKED_BY_RESPONSE'])(
+    'retries %p persisted by a previous session',
+    async (message) => {
+      const payload = Buffer.from('cached payload');
+      mockDownloadFile.mockRejectedValue(new Error(message));
+
+      const firstSession = new CacheManager({
+        cacheDirectory,
+        maxCacheSize: 1024,
+      });
+      await firstSession.init();
+      await expect(firstSession.getContent('https://example.com/nft.png')).rejects.toThrow(message);
+
+      mockDownloadFile.mockReset();
+      mockDownloadFile.mockImplementation(async (_url, localPath) => {
+        await fs.writeFile(localPath, payload);
+        return {
+          'content-type': 'image/png',
+        };
+      });
+
+      const secondSession = new CacheManager({
+        cacheDirectory,
+        maxCacheSize: 1024,
+      });
+      await secondSession.init();
+      await expect(secondSession.getContent('https://example.com/nft.png')).resolves.toEqual(payload);
+    },
+  );
+
+  it('retries a transient error within the session once the retry delay has elapsed', async () => {
+    const payload = Buffer.from('cached payload');
+    const failedAt = Date.now();
+    const nowSpy = jest.spyOn(Date, 'now').mockReturnValue(failedAt);
+    mockDownloadFile.mockRejectedValue(new Error('HTTP error: 504'));
+
+    try {
+      const cacheManager = new CacheManager({
+        cacheDirectory,
+        maxCacheSize: 1024,
+      });
+      await cacheManager.init();
+
+      await expect(cacheManager.getContent('https://example.com/nft.png')).rejects.toThrow('HTTP error: 504');
+
+      nowSpy.mockReturnValue(failedAt + TRANSIENT_ERROR_RETRY_DELAY - 1);
+      await expect(cacheManager.getContent('https://example.com/nft.png')).rejects.toThrow('HTTP error: 504');
+      expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+
+      mockDownloadFile.mockReset();
+      mockDownloadFile.mockImplementation(async (_url, localPath) => {
+        await fs.writeFile(localPath, payload);
+        return {
+          'content-type': 'image/png',
+        };
+      });
+
+      nowSpy.mockReturnValue(failedAt + TRANSIENT_ERROR_RETRY_DELAY);
+      await expect(cacheManager.getContent('https://example.com/nft.png')).resolves.toEqual(payload);
+      expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+    } finally {
+      nowSpy.mockRestore();
+    }
+  });
+
+  it('keeps a missing resource settled across sessions', async () => {
+    mockDownloadFile.mockRejectedValue(new Error('HTTP error: 404'));
+
+    const firstSession = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await firstSession.init();
+    await expect(firstSession.getContent('https://example.com/nft.png')).rejects.toThrow('HTTP error: 404');
+
+    const secondSession = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await secondSession.init();
+    await expect(secondSession.getContent('https://example.com/nft.png')).rejects.toThrow('HTTP error: 404');
+    expect(mockDownloadFile).toHaveBeenCalledTimes(1);
   });
 
   it('retries an aborted download on the next access', async () => {
