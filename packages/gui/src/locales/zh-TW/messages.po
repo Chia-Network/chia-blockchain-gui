@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_TW\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-08-23 00:04\n"
+"PO-Revision-Date: 2026-08-30 00:08\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -2451,7 +2451,7 @@ msgstr "請檢查並確認此操作。"
 #. js-lingui-explicit-id
 #: src/electron/commands/humanizeParamValue.ts:48
 msgid "None"
-msgstr ""
+msgstr "無"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/humanizeParamValue.ts:63
@@ -2713,13 +2713,9 @@ msgstr "您是否要儲存以下指令的偏好設定？"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:709
-msgid ""
-"These commands will be executed without confirmation in the future:\n"
-"\n"
+msgid "These commands will be executed without confirmation in the future:\n\n"
 " {commands}"
-msgstr ""
-"這些指令將在未來直接執行，不再尋求確認：\n"
-"\n"
+msgstr "這些指令將在未來直接執行，不再尋求確認：\n\n"
 " {commands}"
 
 #. js-lingui-explicit-id
@@ -2862,12 +2858,12 @@ msgstr "檢查更新..."
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:886
 #~ msgid "Mint Bulk"
-#~ msgstr "批量鑄造"
+#~ msgstr "Mint Bulk"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:887
 #~ msgid "Create a spend bundle to mint multiple NFTs"
-#~ msgstr "建立用於鑄造多個 NFT 的支出組合（Spend Bundle）"
+#~ msgstr "Create a spend bundle to mint multiple NFTs"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:104
@@ -5769,20 +5765,16 @@ msgstr "正在初始化..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"可用資金不足，無法接受報價。請確保您的\n"
+msgstr "可用資金不足，無法接受報價。請確保您的\n"
 "可支出餘額足以支付報價金額。"
 
 #: src/components/offers/OfferEditor.tsx:127
 #: src/components/offers2/CreateOfferBuilder.tsx:145
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"可用資金不足，無法建立報價。請確保您的\n"
+msgstr "可用資金不足，無法建立報價。請確保您的\n"
 "可支出餘額足以支付報價金額。"
 
 #: src/components/farm/PoolingHealth.tsx:310
@@ -6656,7 +6648,7 @@ msgstr ""
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:244
 #: src/components/plot/add/PlotAddNFT.tsx:96
 msgid "None"
-msgstr "無"
+msgstr ""
 
 #: src/components/nfts/gallery/NFTGallery.tsx:447
 #: src/components/nfts/gallery/NFTGallery.tsx:513
@@ -9983,3 +9975,4 @@ msgstr "您的可支配餘額必須大於1 mojo，才能建立個人檔案"
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "您的錢包需要運行才能自動索取"
+

@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-08-23 00:04\n"
+"PO-Revision-Date: 2026-08-30 00:08\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -2451,7 +2451,7 @@ msgstr "لطفا این اقدام را بررسی و تایید کنید."
 #. js-lingui-explicit-id
 #: src/electron/commands/humanizeParamValue.ts:48
 msgid "None"
-msgstr ""
+msgstr "هیچ یک"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/humanizeParamValue.ts:63
@@ -2713,9 +2713,7 @@ msgstr "آیا میخواهید تنظیمات برگزیده برای دستو�
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:709
-msgid ""
-"These commands will be executed without confirmation in the future:\n"
-"\n"
+msgid "These commands will be executed without confirmation in the future:\n\n"
 " {commands}"
 msgstr ": این دستورات در آینده بدون تأیید اجرا خواهند شد"
 
@@ -2859,12 +2857,12 @@ msgstr "بروز رسانی را بررسی کنید..."
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:886
 #~ msgid "Mint Bulk"
-#~ msgstr "ثبت گروهی"
+#~ msgstr "Mint Bulk"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:887
 #~ msgid "Create a spend bundle to mint multiple NFTs"
-#~ msgstr "یک بسته خرج کزدن برای ثبت چندین ان اف تی ایجاد کنید"
+#~ msgstr "Create a spend bundle to mint multiple NFTs"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:104
@@ -5196,7 +5194,7 @@ msgstr "کارمزد ها در پیشنهاد موجود است:"
 
 #: src/components/settings/SettingsNFT.tsx:162
 msgid "Fetch IPFS content through a gateway"
-msgstr ""
+msgstr "دریافت محتوای IPFS از طریق یک دروازه"
 
 #: src/constants/WalletConnectCommands.tsx:483
 #~ msgid "Fetches the puzzle reveal and solution for a spent coin (hex strings)."
@@ -5766,20 +5764,16 @@ msgstr "در حال شروع..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
+msgstr "مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
 "موجودی قابل مصرف شما برای پوشش مبلغ پیشنهاد کافی است."
 
 #: src/components/offers/OfferEditor.tsx:127
 #: src/components/offers2/CreateOfferBuilder.tsx:145
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
+msgstr "مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
 "موجودی قابل مصرف شما برای پوشش مبلغ پیشنهاد کافی است."
 
 #: src/components/farm/PoolingHealth.tsx:310
@@ -6484,7 +6478,7 @@ msgstr "جزئیات ان اف تی در دسترس نیست"
 
 #: src/components/settings/SettingsNFT.tsx:170
 msgid "NFT files published with ipfs:// addresses will be downloaded through the public ipfs.io HTTPS gateway. The requested URL differs from the address recorded on chain, but downloaded content is still verified against the NFT's on-chain hash. When disabled, ipfs:// files are not fetched."
-msgstr ""
+msgstr "فایل‌های NFT منتشر شده با آدرس‌های ipfs:// از طریق دروازه عمومی HTTPS ipfs.io دانلود می‌شوند. آدرس اینترنتی درخواستی با آدرس ثبت شده روی بلاکچین متفاوت است، اما محتوای دانلود شده همچنان با هش روی بلاکچین NFT تأیید می‌شود. در صورت غیرفعال بودن، فایل‌های ipfs:// دریافت نمی‌شوند."
 
 #: src/components/offers2/OfferBuilderNFTRoyalties.tsx:172
 msgid "NFT has no royalties"
@@ -6653,7 +6647,7 @@ msgstr ""
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:244
 #: src/components/plot/add/PlotAddNFT.tsx:96
 msgid "None"
-msgstr "هیچ یک"
+msgstr ""
 
 #: src/components/nfts/gallery/NFTGallery.tsx:447
 #: src/components/nfts/gallery/NFTGallery.tsx:513
@@ -7549,7 +7543,7 @@ msgstr "پیش نمایش"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:531
 msgid "Preview available"
-msgstr ""
+msgstr "پیش‌نمایش موجود است"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:500
 msgid "Preview available  <0/>"
@@ -7569,7 +7563,7 @@ msgstr ""
 
 #: src/components/nfts/gallery/NFTGallery.tsx:552
 msgid "Preview not available"
-msgstr ""
+msgstr "پیش‌نمایش موجود نیست"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:505
 msgid "Preview not available  <0/>"
@@ -9980,3 +9974,4 @@ msgstr "برای ایجاد حساب کاربری، موجودی قابل خرج
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "برای انجام مطالبه خودکار، باید کیف پول شما در حال اجرا باشد."
+

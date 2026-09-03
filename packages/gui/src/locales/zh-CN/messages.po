@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-08-23 00:04\n"
+"PO-Revision-Date: 2026-08-30 00:08\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -2451,7 +2451,7 @@ msgstr "请检查并确认此操作。"
 #. js-lingui-explicit-id
 #: src/electron/commands/humanizeParamValue.ts:48
 msgid "None"
-msgstr ""
+msgstr "无"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/humanizeParamValue.ts:63
@@ -2713,12 +2713,9 @@ msgstr "为以下命令保存偏好吗？"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:709
-msgid ""
-"These commands will be executed without confirmation in the future:\n"
-"\n"
+msgid "These commands will be executed without confirmation in the future:\n\n"
 " {commands}"
-msgstr ""
-"这些命令将无需确认即可执行：\n"
+msgstr "这些命令将无需确认即可执行：\n"
 "{commands}"
 
 #. js-lingui-explicit-id
@@ -2861,12 +2858,12 @@ msgstr "检查更新..."
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:886
 #~ msgid "Mint Bulk"
-#~ msgstr "批量铸造"
+#~ msgstr "Mint Bulk"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:887
 #~ msgid "Create a spend bundle to mint multiple NFTs"
-#~ msgstr "创建一个支出包以铸造多个NFT"
+#~ msgstr "Create a spend bundle to mint multiple NFTs"
 
 #. js-lingui-explicit-id
 #: src/electron/constants/commandRegistry.ts:104
@@ -3542,7 +3539,7 @@ msgstr "通知"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:495
 msgid "Any preview  <0/>"
-msgstr ""
+msgstr "任何预览  <0/>"
 
 #: src/constants/WalletConnectCommands.tsx:17
 #~ msgid "App is requesting permission to execute these commands"
@@ -5198,7 +5195,7 @@ msgstr "报价中包含的手续费:"
 
 #: src/components/settings/SettingsNFT.tsx:162
 msgid "Fetch IPFS content through a gateway"
-msgstr ""
+msgstr "通过网关获取 IPFS 内容"
 
 #: src/constants/WalletConnectCommands.tsx:483
 #~ msgid "Fetches the puzzle reveal and solution for a spent coin (hex strings)."
@@ -5768,20 +5765,16 @@ msgstr "正在初始化..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"可用资金不足，无法接受报价。请确保您的\n"
+msgstr "可用资金不足，无法接受报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
 #: src/components/offers/OfferEditor.tsx:127
 #: src/components/offers2/CreateOfferBuilder.tsx:145
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"可用的资金不足，无法创建报价。请确保您的\n"
+msgstr "可用的资金不足，无法创建报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
 #: src/components/farm/PoolingHealth.tsx:310
@@ -6486,7 +6479,7 @@ msgstr "NFT 详细信息不可用"
 
 #: src/components/settings/SettingsNFT.tsx:170
 msgid "NFT files published with ipfs:// addresses will be downloaded through the public ipfs.io HTTPS gateway. The requested URL differs from the address recorded on chain, but downloaded content is still verified against the NFT's on-chain hash. When disabled, ipfs:// files are not fetched."
-msgstr ""
+msgstr "使用 ipfs:// 地址发布的 NFT 文件将通过公共 ipfs.io HTTPS 网关下载。请求的 URL 与链上记录的地址不同，但下载的内容仍会根据 NFT 的链上哈希进行验证。禁用后，将不会获取 ipfs:// 文件。"
 
 #: src/components/offers2/OfferBuilderNFTRoyalties.tsx:172
 msgid "NFT has no royalties"
@@ -6655,7 +6648,7 @@ msgstr "节点ID"
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:244
 #: src/components/plot/add/PlotAddNFT.tsx:96
 msgid "None"
-msgstr "无"
+msgstr ""
 
 #: src/components/nfts/gallery/NFTGallery.tsx:447
 #: src/components/nfts/gallery/NFTGallery.tsx:513
@@ -7551,11 +7544,11 @@ msgstr "预览"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:531
 msgid "Preview available"
-msgstr ""
+msgstr "预览可用"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:500
 msgid "Preview available  <0/>"
-msgstr ""
+msgstr "预览可用  <0/>"
 
 #: src/components/nfts/NFTDetails.tsx:316
 #~ msgid "Preview image uris"
@@ -7571,11 +7564,11 @@ msgstr "预览不可用"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:552
 msgid "Preview not available"
-msgstr ""
+msgstr "预览不可用"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:505
 msgid "Preview not available  <0/>"
-msgstr ""
+msgstr "预览不可用  <0/>"
 
 #: src/components/nfts/NFTPreview.tsx:621
 #~ msgid "Preview URL is not valid"
@@ -9982,3 +9975,4 @@ msgstr "可用余额必须大于1 mojo才能创建个人资料"
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "需确保钱包正在运行才能完成自动确认。"
+
