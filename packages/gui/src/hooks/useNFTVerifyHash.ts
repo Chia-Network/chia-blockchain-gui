@@ -73,7 +73,7 @@ export default function useNFTVerifyHash(nftId?: string, options: UseNFTVerifyHa
   //   hold the previous NFT's results, and surfacing them would flash the
   //   previous NFT's media (and hash verdict) until the effects reset them.
   const dataInputs = useRef<{ nft?: NFTInfo }>({});
-  const previewInputs = useRef<{ nft?: NFTInfo; metadata?: Metadata }>({});
+  const previewInputs = useRef<{ nft?: NFTInfo; metadata?: Metadata; excludedKey?: string }>({});
 
   const settledNft = !isLoadingNFT ? nft : undefined;
   const settledMetadata = isLoadingMetadata ? undefined : metadata;
@@ -81,16 +81,25 @@ export default function useNFTVerifyHash(nftId?: string, options: UseNFTVerifyHa
   const isDataStale = dataInputs.current.nft !== settledNft;
   const isPreviewStale = previewInputs.current.nft !== settledNft;
 
+  // An excluded uri is masked out of the stored states as well as the
+  // candidates: on the frame a caller excludes the uri it is currently
+  // showing, the stored state still holds that verified file, and surfacing
+  // it would let the caller settle on "unplayable" (and report the NFT as
+  // unavailable) before the pass below has had a chance to move on.
+  const isExcluded = (state: NFTPreviewState | undefined) => !!state && excludedPreview.has(state.uri);
+
   const currentData = isDataStale ? undefined : data;
-  const currentPreviewVideo = isPreviewStale ? undefined : previewVideo;
-  const currentPreviewImage = isPreviewStale ? undefined : previewImage;
+  const currentPreviewVideo = isPreviewStale || isExcluded(previewVideo) ? undefined : previewVideo;
+  const currentPreviewImage = isPreviewStale || isExcluded(previewImage) ? undefined : previewImage;
 
   const isDataPassPending = !!settledNft && isDataStale;
   const isPreviewPassPending =
     preview &&
     !!settledNft &&
     !!settledMetadata &&
-    (previewInputs.current.nft !== settledNft || previewInputs.current.metadata !== settledMetadata);
+    (previewInputs.current.nft !== settledNft ||
+      previewInputs.current.metadata !== settledMetadata ||
+      previewInputs.current.excludedKey !== excludedPreviewKey);
 
   const isVerifying = isVerifyingData || isVerifyingPreview || isDataPassPending || isPreviewPassPending;
 
@@ -242,7 +251,11 @@ export default function useNFTVerifyHash(nftId?: string, options: UseNFTVerifyHa
     // verifies the data file right away, and this effect picks up the preview
     // URIs once the metadata fetch settles, instead of blocking on it.
     const nftMetadata = isLoadingMetadata ? undefined : metadata;
-    previewInputs.current = { nft: !isLoadingNFT ? nft : undefined, metadata: nftMetadata };
+    previewInputs.current = {
+      nft: !isLoadingNFT ? nft : undefined,
+      metadata: nftMetadata,
+      excludedKey: excludedPreviewKey,
+    };
     if (!preview || !nft || isLoadingNFT || !nftMetadata) {
       setIsVerifyingPreview(false);
     } else {
@@ -255,7 +268,7 @@ export default function useNFTVerifyHash(nftId?: string, options: UseNFTVerifyHa
         previewGeneration.current += 1;
       }
     };
-  }, [preview, nft, metadata, isLoadingNFT, isLoadingMetadata, validatePreview, ipfsGateway]);
+  }, [preview, nft, metadata, isLoadingNFT, isLoadingMetadata, validatePreview, ipfsGateway, excludedPreviewKey]);
 
   const previewState = useMemo(
     () =>
