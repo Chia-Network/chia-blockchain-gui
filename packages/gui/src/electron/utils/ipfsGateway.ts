@@ -1,4 +1,9 @@
-import ipfsToGatewayUrl, { isIpfsUrl } from '../../util/ipfs';
+import ipfsToGatewayUrl, {
+  DEFAULT_IPFS_GATEWAY_BASE,
+  NFT_IPFS_GATEWAY_URL_PREF,
+  isIpfsUrl,
+  normalizeIpfsGatewayBase,
+} from '../../util/ipfs';
 import { readPrefs } from '../prefs';
 
 // Preference key shared with the renderer's useIpfsGateway hook. The renderer
@@ -18,6 +23,17 @@ export function ipfsGatewayEnabled(): boolean {
   }
 }
 
+// The gateway base ipfs paths are appended to: the user's choice when it is
+// set and usable, otherwise the public default. Falls back to the default
+// when the preferences store is unreadable, like ipfsGatewayEnabled.
+export function ipfsGatewayBase(): string {
+  try {
+    return normalizeIpfsGatewayBase(readPrefs()[NFT_IPFS_GATEWAY_URL_PREF]) ?? DEFAULT_IPFS_GATEWAY_BASE;
+  } catch {
+    return DEFAULT_IPFS_GATEWAY_BASE;
+  }
+}
+
 // Translates an ipfs:// URI to its HTTPS gateway equivalent only when the
 // user has enabled gateway fetching; every other URL — and every ipfs URI
 // while the option is off — is returned unchanged, so this can wrap any URL
@@ -28,7 +44,7 @@ export default function maybeIpfsToGatewayUrl(url: string): string {
     return url;
   }
 
-  return ipfsToGatewayUrl(url);
+  return ipfsToGatewayUrl(url, ipfsGatewayBase());
 }
 
 // Thrown instead of attempting a fetch that cannot happen: with the gateway

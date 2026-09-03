@@ -7,6 +7,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import React, { useMemo } from 'react';
 
 import useIpfsGateway from '../../hooks/useIpfsGateway';
+import { useIpfsGatewayBase } from '../../hooks/useIpfsGatewayUrl';
 import useNFT from '../../hooks/useNFT';
 import useNFTVerifyHash from '../../hooks/useNFTVerifyHash';
 import ipfsToGatewayUrl from '../../util/ipfs';
@@ -30,6 +31,7 @@ export default function NFTHashStatus(props: NFTHashStatusProps) {
 
   const { nft, isLoading: isLoadingNFT, error: errorNFT } = useNFT(nftId);
   const [ipfsGateway] = useIpfsGateway();
+  const ipfsGatewayBase = useIpfsGatewayBase();
 
   const isLoading = isLoadingNFTVerifyHash || isLoadingNFT;
   const isVerified = preview ? nftPreview?.isVerified : data?.isVerified;
@@ -48,8 +50,8 @@ export default function NFTHashStatus(props: NFTHashStatusProps) {
     // gateway form instead of flagging them as invalid. With the option off
     // they are not fetchable and stay flagged — unless the file already
     // verified from the cache, which the message branches above this check.
-    return isValidURL(ipfsGateway ? ipfsToGatewayUrl(uri) : uri);
-  }, [nftPreview, ipfsGateway]);
+    return isValidURL(ipfsGateway ? ipfsToGatewayUrl(uri, ipfsGatewayBase) : uri);
+  }, [nftPreview, ipfsGateway, ipfsGatewayBase]);
 
   const icon = useMemo(() => {
     if (hideIcon) {

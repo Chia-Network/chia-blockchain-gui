@@ -25,6 +25,13 @@ jest.mock('./utils/ipcMainHandle', () => ({
   default: jest.fn(),
 }));
 
+const mockIpfsGatewayBase = jest.fn<string, []>(() => 'https://ipfs.io/ipfs/');
+
+jest.mock('./utils/ipfsGateway', () => ({
+  ...jest.requireActual('./utils/ipfsGateway'),
+  ipfsGatewayBase: () => mockIpfsGatewayBase(),
+}));
+
 const { default: CacheManager, TRANSIENT_ERROR_RETRY_DELAY } =
   jest.requireActual<typeof import('./CacheManager')>('./CacheManager');
 
@@ -250,6 +257,58 @@ describe('CacheManager eviction', () => {
     await secondSession.init();
     await expect(secondSession.getContent('https://example.com/nft.png')).rejects.toThrow('HTTP error: 404');
     expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+  });
+
+  it('retries a failed ipfs download as soon as the gateway changes', async () => {
+    const payload = Buffer.from('cached payload');
+    const url = 'ipfs://QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/img.png';
+    mockDownloadFile.mockRejectedValue(new Error('HTTP error: 403'));
+
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+
+    await expect(cacheManager.getContent(url)).rejects.toThrow('HTTP error: 403');
+    // same gateway, within the retry delay: still settled
+    await expect(cacheManager.getContent(url)).rejects.toThrow('HTTP error: 403');
+    expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+
+    mockDownloadFile.mockReset();
+    mockDownloadFile.mockImplementation(async (_url, localPath) => {
+      await fs.writeFile(localPath, payload);
+      return {
+        'content-type': 'image/png',
+      };
+    });
+    mockIpfsGatewayBase.mockReturnValue('https://dweb.link/ipfs/');
+
+    try {
+      await expect(cacheManager.getContent(url)).resolves.toEqual(payload);
+      expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+    } finally {
+      mockIpfsGatewayBase.mockReturnValue('https://ipfs.io/ipfs/');
+    }
+  });
+
+  it('does not treat a gateway change as a reason to retry a non-ipfs failure', async () => {
+    mockDownloadFile.mockRejectedValue(new Error('HTTP error: 404'));
+
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+
+    await expect(cacheManager.getContent('https://example.com/nft.png')).rejects.toThrow('HTTP error: 404');
+    mockIpfsGatewayBase.mockReturnValue('https://dweb.link/ipfs/');
+    try {
+      await expect(cacheManager.getContent('https://example.com/nft.png')).rejects.toThrow('HTTP error: 404');
+      expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+    } finally {
+      mockIpfsGatewayBase.mockReturnValue('https://ipfs.io/ipfs/');
+    }
   });
 
   it('retries an aborted download on the next access', async () => {

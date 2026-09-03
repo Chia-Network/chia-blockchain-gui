@@ -1,7 +1,8 @@
 import { usePrefs } from '@chia-network/api-react';
 
 // When enabled, NFT resources published with ipfs:// URIs are fetched through
-// the public HTTPS gateway; the requested URL then differs from the URI
+// an HTTPS gateway (ipfs.io unless useIpfsGatewayUrl says otherwise); the
+// requested URL then differs from the URI
 // recorded on chain, which is why this is a user-selectable opt-in (off by
 // default — ipfs:// resources are simply not fetched). Downloaded content is
 // still verified against the NFT's on-chain hash either way. The main process

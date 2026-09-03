@@ -110,9 +110,11 @@ export async function nftGetImageDataUrl(
     // The CSP does not allow the ipfs: scheme either, so ipfs URIs fall back
     // to their gateway form, and only when the user has also enabled the
     // gateway — otherwise they get no preview rather than a CSP-blocked URL.
+    // The same goes for a plain-http local gateway: the dialog can only
+    // embed https: images.
     if (error instanceof MaxSizeExceededError && getImageContentType(error.headers) && allowUnverifiedNftPreviews()) {
       const directUrl = maybeIpfsToGatewayUrl(imageUri);
-      return isIpfsUrl(directUrl) ? undefined : directUrl;
+      return isIpfsUrl(directUrl) || !directUrl.startsWith('https://') ? undefined : directUrl;
     }
 
     // image previews are best effort — the confirmation dialog has a fallback

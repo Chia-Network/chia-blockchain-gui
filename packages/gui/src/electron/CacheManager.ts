@@ -12,6 +12,7 @@ import type CacheInfo from '../@types/CacheInfo';
 import type CacheInfoBase from '../@types/CacheInfoBase';
 import type Headers from '../@types/Headers';
 import CacheState from '../constants/CacheState';
+import { isIpfsUrl } from '../util/ipfs';
 import limit from '../util/limit';
 
 import CacheAPI from './constants/CacheAPI';
@@ -19,7 +20,7 @@ import downloadFile, { MAX_FILE_SIZE_EXCEEDED_ERROR, isTransientDownloadError } 
 import ensureDirectoryExists from './utils/ensureDirectoryExists';
 import getChecksum from './utils/getChecksum';
 import ipcMainHandle from './utils/ipcMainHandle';
-import { IpfsGatewayDisabledError } from './utils/ipfsGateway';
+import { IpfsGatewayDisabledError, ipfsGatewayBase } from './utils/ipfsGateway';
 import isValidURL from './utils/isValidURL';
 import sanitizeFilename from './utils/sanitizeFilename';
 import sanitizeNumber from './utils/sanitizeNumber';
@@ -474,7 +475,12 @@ export default class CacheManager extends EventEmitter {
           // A persisted size-limit error is only retried when the caller lifts
           // the limit, so oversized files are not re-downloaded on every visit.
           const isSizeLimitLifted = cacheInfo.error === MAX_FILE_SIZE_EXCEEDED_ERROR && maxSize <= 0;
-          if (!isAbortError && !isRetriableTransientError && !isSizeLimitLifted) {
+          // An ipfs failure is a verdict on one gateway, not on the resource:
+          // once the user points the option at another gateway the entry is
+          // re-requested right away, whatever the error was and however
+          // recently it was recorded.
+          const isGatewayChanged = isIpfsUrl(url) && cacheInfo.gateway !== ipfsGatewayBase();
+          if (!isAbortError && !isRetriableTransientError && !isSizeLimitLifted && !isGatewayChanged) {
             return cacheInfo;
           }
 
@@ -547,6 +553,8 @@ export default class CacheManager extends EventEmitter {
         return await this.setCacheInfo(url, {
           state: CacheState.ERROR,
           error: currentError.message,
+          // which gateway the verdict belongs to (see isGatewayChanged above)
+          ...(isIpfsUrl(url) ? { gateway: ipfsGatewayBase() } : {}),
         });
       } finally {
         this.ongoingRequests.delete(url);
