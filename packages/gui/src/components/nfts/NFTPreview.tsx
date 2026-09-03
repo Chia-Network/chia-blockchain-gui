@@ -42,6 +42,7 @@ import useStateAbort from '../../hooks/useStateAbort';
 import getFileExtension from '../../util/getFileExtension';
 import getNFTId from '../../util/getNFTId';
 import hasSensitiveContent from '../../util/hasSensitiveContent';
+import probeMediaPlayability from '../../util/probeMediaPlayability';
 
 import NFTHashStatus from './NFTHashStatus';
 
@@ -153,10 +154,35 @@ export default function NFTPreview(props: NFTPreviewProps) {
     `nft-preview-ignore-size-limit-${nftId}`,
   );
 
-  const { preview, isLoading: isLoadingVerifyHash } = useNFTVerifyHash(nftId, {
+  const {
+    preview: selectedPreview,
+    previewImage,
+    isLoading: isLoadingVerifyHash,
+  } = useNFTVerifyHash(nftId, {
     preview: isPreview,
     ignoreSizeLimit,
   });
+
+  // The uri of a verified media file Chromium turned out not to decode (an
+  // HEVC video on Linux, say). Set by preparePreview after probing the cached
+  // file; the sandboxed player could not report the failure itself.
+  const [unplayableUri, setUnplayableUri] = useStateAbort<string | undefined>(undefined);
+
+  // When the selected preview video cannot be played, fall back to the
+  // verified preview image (the next source in the hook's own priority order)
+  // rather than showing a notice while a perfectly good thumbnail exists.
+  const preview = useMemo(() => {
+    if (
+      selectedPreview &&
+      unplayableUri === selectedPreview.uri &&
+      previewImage?.isVerified &&
+      previewImage.uri !== unplayableUri
+    ) {
+      return previewImage;
+    }
+
+    return selectedPreview;
+  }, [selectedPreview, previewImage, unplayableUri]);
 
   const { type: previewFileType, isLoading: isLoadingFileType } = useFileType(preview?.uri);
   const [globalVideoLoop] = useNFTVideoLoopGlobal();
@@ -209,6 +235,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
   const isHashMismatch = isSettledHashMismatch(preview);
 
   const previewUri = isHashMismatch ? undefined : preview?.uri;
+  const isUnplayable = !!previewUri && unplayableUri === previewUri;
 
   const preparePreview = useCallback(
     async (signal: AbortSignal) => {
@@ -251,6 +278,26 @@ export default function NFTPreview(props: NFTPreviewProps) {
           setPreviewContent(undefined, signal);
           setPrepareError(new Error(t`File is not available`), signal);
           return;
+        }
+
+        // The player runs in a scriptless sandbox and cannot say when Chromium
+        // rejects the stream, so ask the media pipeline first. Only a definite
+        // verdict counts — a probe that fails for any other reason falls
+        // through to the player as before.
+        if (previewFileType === FileType.VIDEO || previewFileType === FileType.AUDIO) {
+          const playability = await probeMediaPlayability(
+            cachedURI,
+            previewFileType === FileType.VIDEO ? 'video' : 'audio',
+            { signal },
+          );
+          if (signal.aborted) {
+            return;
+          }
+          if (playability === 'unsupported') {
+            setPreviewContent(undefined, signal);
+            setUnplayableUri(previewUri, signal);
+            return;
+          }
         }
 
         // Interactivity is controlled outside the iframe (pointer-events on
@@ -305,6 +352,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
       isDarkMode,
       setPreviewContent,
       setPrepareError,
+      setUnplayableUri,
     ],
   );
 
@@ -536,8 +584,9 @@ export default function NFTPreview(props: NFTPreviewProps) {
       return isLoadingMetadata ? undefined : NFTPreviewStatus.UNAVAILABLE;
     }
 
-    if (prepareError) {
-      // the verified file could not be served from the cache
+    if (prepareError || isUnplayable) {
+      // the verified file could not be served from the cache, or Chromium
+      // cannot decode it — either way there is nothing to show
       return NFTPreviewStatus.UNAVAILABLE;
     }
 
@@ -547,7 +596,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
     }
 
     return NFTPreviewStatus.AVAILABLE;
-  }, [isLoading, isLoadingVerifyHash, isLoadingMetadata, preview, prepareError, previewContent]);
+  }, [isLoading, isLoadingVerifyHash, isLoadingMetadata, preview, prepareError, previewContent, isUnplayable]);
 
   useEffect(() => {
     // Only preview-mode tiles report: the detail view verifies the full data
@@ -574,6 +623,16 @@ export default function NFTPreview(props: NFTPreviewProps) {
         <Background>
           <IconMessage icon={<NotInterested fontSize="large" />}>
             <Trans>File does not match the expected hash</Trans>
+          </IconMessage>
+        </Background>
+      ) : usesIframe && isUnplayable ? (
+        <Background>
+          <IconMessage icon={<NotInterested fontSize="large" />}>
+            {previewFileType === FileType.AUDIO ? (
+              <Trans>This audio format cannot be played here</Trans>
+            ) : (
+              <Trans>This video format cannot be played here</Trans>
+            )}
           </IconMessage>
         </Background>
       ) : usesIframe && prepareError ? (
