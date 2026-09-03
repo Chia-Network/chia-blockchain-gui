@@ -118,6 +118,8 @@ export default class CacheManager extends EventEmitter {
     {
       promise: Promise<CacheInfo>;
       abort: () => void;
+      // for ipfs:// URLs: the gateway base the request was started through
+      gateway?: string;
     }
   > = new Map();
 
@@ -433,9 +435,27 @@ export default class CacheManager extends EventEmitter {
       throw new Error(`Invalid URL: ${url}`);
     }
 
+    // Captured once, up front: the gateway a request goes through is part of
+    // its outcome, so a failure must be recorded against the gateway that was
+    // current when the request started, not the one current when it fails.
+    const requestGateway = isIpfsUrl(url) ? ipfsGatewayBase() : undefined;
+
     const ongoingRequest = this.ongoingRequests.get(url);
     if (ongoingRequest) {
       log('Request already ongoing', url);
+
+      if (ongoingRequest.gateway !== requestGateway) {
+        // The in-flight request went through a gateway the user has since
+        // moved away from, so its outcome is a verdict on that gateway only.
+        // Wait for it, then look again: a success is served from the cache,
+        // a failure — recorded under the old gateway — is retried through
+        // the current one by the gateway check below. Without this the
+        // caller would inherit the old gateway's error until the retry delay
+        // elapsed.
+        const lookAgain = () => this.fetchRemoteContent(url, options);
+        return ongoingRequest.promise.then(lookAgain, lookAgain);
+      }
+
       return ongoingRequest.promise;
     }
 
@@ -554,7 +574,7 @@ export default class CacheManager extends EventEmitter {
           state: CacheState.ERROR,
           error: currentError.message,
           // which gateway the verdict belongs to (see isGatewayChanged above)
-          ...(isIpfsUrl(url) ? { gateway: ipfsGatewayBase() } : {}),
+          ...(requestGateway === undefined ? {} : { gateway: requestGateway }),
         });
       } finally {
         this.ongoingRequests.delete(url);
@@ -566,6 +586,7 @@ export default class CacheManager extends EventEmitter {
     this.ongoingRequests.set(url, {
       abort: () => abortController.abort(),
       promise,
+      gateway: requestGateway,
     });
 
     return promise;

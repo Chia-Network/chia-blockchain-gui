@@ -35,6 +35,18 @@ jest.mock('./utils/ipfsGateway', () => ({
 const { default: CacheManager, TRANSIENT_ERROR_RETRY_DELAY } =
   jest.requireActual<typeof import('./CacheManager')>('./CacheManager');
 
+// The download starts only after the sidecar has been read, so a test that
+// interferes with an in-flight download has to wait for it to actually start.
+async function untilDownloadsStarted(count: number) {
+  for (let attempt = 0; attempt < 200 && mockDownloadFile.mock.calls.length < count; attempt += 1) {
+    // eslint-disable-next-line no-await-in-loop -- polling
+    await new Promise((resolve) => {
+      setTimeout(resolve, 5);
+    });
+  }
+  expect(mockDownloadFile).toHaveBeenCalledTimes(count);
+}
+
 describe('CacheManager eviction', () => {
   let cacheDirectory: string;
 
@@ -287,6 +299,82 @@ describe('CacheManager eviction', () => {
     try {
       await expect(cacheManager.getContent(url)).resolves.toEqual(payload);
       expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+    } finally {
+      mockIpfsGatewayBase.mockReturnValue('https://ipfs.io/ipfs/');
+    }
+  });
+
+  it('retries through the new gateway when a fetch joined in flight was started under the old one', async () => {
+    const payload = Buffer.from('cached payload');
+    const url = 'ipfs://QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/img.png';
+
+    let failFirstDownload!: (error: Error) => void;
+    mockDownloadFile.mockImplementationOnce(
+      () =>
+        new Promise((_resolve, reject) => {
+          failFirstDownload = reject;
+        }),
+    );
+
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+
+    try {
+      // started through the default gateway, still in flight
+      const first = cacheManager.getContent(url);
+      await untilDownloadsStarted(1);
+
+      // the user switches gateways while it is in flight, and a tile asks again
+      mockIpfsGatewayBase.mockReturnValue('https://dweb.link/ipfs/');
+      mockDownloadFile.mockImplementation(async (_url, localPath) => {
+        await fs.writeFile(localPath, payload);
+        return {
+          'content-type': 'image/png',
+        };
+      });
+      const second = cacheManager.getContent(url);
+
+      failFirstDownload(new Error('HTTP error: 403'));
+
+      await expect(first).rejects.toThrow('HTTP error: 403');
+      // the failure belongs to the old gateway, so the joiner is retried
+      // through the new one instead of inheriting the error
+      await expect(second).resolves.toEqual(payload);
+      expect(mockDownloadFile).toHaveBeenCalledTimes(2);
+    } finally {
+      mockIpfsGatewayBase.mockReturnValue('https://ipfs.io/ipfs/');
+    }
+  });
+
+  it('records a failure against the gateway the request was started through', async () => {
+    const url = 'ipfs://QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/img.png';
+
+    let failDownload!: (error: Error) => void;
+    mockDownloadFile.mockImplementationOnce(
+      () =>
+        new Promise((_resolve, reject) => {
+          failDownload = reject;
+        }),
+    );
+
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+
+    try {
+      const pending = cacheManager.getContent(url);
+      await untilDownloadsStarted(1);
+      mockIpfsGatewayBase.mockReturnValue('https://dweb.link/ipfs/');
+      failDownload(new Error('HTTP error: 403'));
+      await expect(pending).rejects.toThrow('HTTP error: 403');
+
+      const [info] = await cacheManager.getCacheInfos([url]);
+      expect(info).toMatchObject({ state: 'ERROR', gateway: 'https://ipfs.io/ipfs/' });
     } finally {
       mockIpfsGatewayBase.mockReturnValue('https://ipfs.io/ipfs/');
     }
