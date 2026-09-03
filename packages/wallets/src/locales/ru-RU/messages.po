@@ -231,11 +231,11 @@ msgstr "Подтверждено на блоке"
 msgid "Connection type"
 msgstr "Тип подключения"
 
-#: src/components/WalletReceiveAddressField.tsx:71
+#: src/components/WalletReceiveAddressField.tsx:72
 msgid "Copied"
 msgstr "Скопировано"
 
-#: src/components/WalletReceiveAddressField.tsx:75
+#: src/components/WalletReceiveAddressField.tsx:76
 msgid "Copy wallet address"
 msgstr "Копировать адрес кошелька"
 
@@ -395,7 +395,7 @@ msgstr "Имя"
 msgid "New Address"
 msgstr "Новый адрес"
 
-#: src/components/WalletReceiveAddressField.tsx:114
+#: src/components/WalletReceiveAddressField.tsx:115
 msgid "New Receive Address"
 msgstr "Новый адрес для получения"
 

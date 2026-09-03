@@ -231,11 +231,11 @@ msgstr "承認完了、高さ"
 msgid "Connection type"
 msgstr "接続の種類"
 
-#: src/components/WalletReceiveAddressField.tsx:71
+#: src/components/WalletReceiveAddressField.tsx:72
 msgid "Copied"
 msgstr "コピーしました"
 
-#: src/components/WalletReceiveAddressField.tsx:75
+#: src/components/WalletReceiveAddressField.tsx:76
 msgid "Copy wallet address"
 msgstr "ウォレットアドレスをコピー"
 
@@ -395,7 +395,7 @@ msgstr "名称"
 msgid "New Address"
 msgstr "新規アドレス"
 
-#: src/components/WalletReceiveAddressField.tsx:114
+#: src/components/WalletReceiveAddressField.tsx:115
 msgid "New Receive Address"
 msgstr "受取アドレスを新規作成"
 

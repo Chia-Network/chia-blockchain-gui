@@ -231,11 +231,11 @@ msgstr "確認於區塊高度"
 msgid "Connection type"
 msgstr "連線類型"
 
-#: src/components/WalletReceiveAddressField.tsx:71
+#: src/components/WalletReceiveAddressField.tsx:72
 msgid "Copied"
 msgstr "已複製"
 
-#: src/components/WalletReceiveAddressField.tsx:75
+#: src/components/WalletReceiveAddressField.tsx:76
 msgid "Copy wallet address"
 msgstr "複製錢包地址"
 
@@ -395,7 +395,7 @@ msgstr "名稱"
 msgid "New Address"
 msgstr "新位址"
 
-#: src/components/WalletReceiveAddressField.tsx:114
+#: src/components/WalletReceiveAddressField.tsx:115
 msgid "New Receive Address"
 msgstr "新的接收位址"
 

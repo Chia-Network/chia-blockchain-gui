@@ -231,11 +231,11 @@ msgstr "Confirmado na altura"
 msgid "Connection type"
 msgstr "Tipo de conexão"
 
-#: src/components/WalletReceiveAddressField.tsx:71
+#: src/components/WalletReceiveAddressField.tsx:72
 msgid "Copied"
 msgstr ""
 
-#: src/components/WalletReceiveAddressField.tsx:75
+#: src/components/WalletReceiveAddressField.tsx:76
 msgid "Copy wallet address"
 msgstr ""
 
@@ -395,7 +395,7 @@ msgstr "Nome"
 msgid "New Address"
 msgstr "Novo endereço"
 
-#: src/components/WalletReceiveAddressField.tsx:114
+#: src/components/WalletReceiveAddressField.tsx:115
 msgid "New Receive Address"
 msgstr ""
 

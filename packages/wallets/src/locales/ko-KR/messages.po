@@ -231,11 +231,11 @@ msgstr "높이에서 승인"
 msgid "Connection type"
 msgstr "연결 유형"
 
-#: src/components/WalletReceiveAddressField.tsx:71
+#: src/components/WalletReceiveAddressField.tsx:72
 msgid "Copied"
 msgstr ""
 
-#: src/components/WalletReceiveAddressField.tsx:75
+#: src/components/WalletReceiveAddressField.tsx:76
 msgid "Copy wallet address"
 msgstr ""
 
@@ -395,7 +395,7 @@ msgstr ""
 msgid "New Address"
 msgstr "새 주소"
 
-#: src/components/WalletReceiveAddressField.tsx:114
+#: src/components/WalletReceiveAddressField.tsx:115
 msgid "New Receive Address"
 msgstr ""
 

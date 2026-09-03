@@ -231,11 +231,11 @@ msgstr "Potvrdené na pozícii"
 msgid "Connection type"
 msgstr "Typ pripojenia"
 
-#: src/components/WalletReceiveAddressField.tsx:71
+#: src/components/WalletReceiveAddressField.tsx:72
 msgid "Copied"
 msgstr "Skopírované"
 
-#: src/components/WalletReceiveAddressField.tsx:75
+#: src/components/WalletReceiveAddressField.tsx:76
 msgid "Copy wallet address"
 msgstr "Skopírovať adresu peňaženky"
 
@@ -395,7 +395,7 @@ msgstr "Názov"
 msgid "New Address"
 msgstr "Nová adresa"
 
-#: src/components/WalletReceiveAddressField.tsx:114
+#: src/components/WalletReceiveAddressField.tsx:115
 msgid "New Receive Address"
 msgstr "Nová adresa príjemcu"
 

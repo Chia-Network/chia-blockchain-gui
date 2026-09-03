@@ -231,11 +231,11 @@ msgstr "Підтверджено на висоті блоку"
 msgid "Connection type"
 msgstr "Тип підключення"
 
-#: src/components/WalletReceiveAddressField.tsx:71
+#: src/components/WalletReceiveAddressField.tsx:72
 msgid "Copied"
 msgstr ""
 
-#: src/components/WalletReceiveAddressField.tsx:75
+#: src/components/WalletReceiveAddressField.tsx:76
 msgid "Copy wallet address"
 msgstr ""
 
@@ -395,7 +395,7 @@ msgstr "Назва"
 msgid "New Address"
 msgstr "Нова адреса"
 
-#: src/components/WalletReceiveAddressField.tsx:114
+#: src/components/WalletReceiveAddressField.tsx:115
 msgid "New Receive Address"
 msgstr ""
 

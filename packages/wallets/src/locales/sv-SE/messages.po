@@ -231,11 +231,11 @@ msgstr "Bekräftad vid höjd"
 msgid "Connection type"
 msgstr "Anslutningstyp"
 
-#: src/components/WalletReceiveAddressField.tsx:71
+#: src/components/WalletReceiveAddressField.tsx:72
 msgid "Copied"
 msgstr "Kopierades"
 
-#: src/components/WalletReceiveAddressField.tsx:75
+#: src/components/WalletReceiveAddressField.tsx:76
 msgid "Copy wallet address"
 msgstr "Kopiera plånboksadress"
 
@@ -395,7 +395,7 @@ msgstr "Namn"
 msgid "New Address"
 msgstr "Ny adress"
 
-#: src/components/WalletReceiveAddressField.tsx:114
+#: src/components/WalletReceiveAddressField.tsx:115
 msgid "New Receive Address"
 msgstr "Ny mottagaradress"
 
