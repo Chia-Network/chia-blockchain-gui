@@ -3,6 +3,7 @@ import { useCallback } from 'react';
 
 import type Metadata from '../@types/Metadata';
 import compareChecksums from '../util/compareChecksums';
+import { CHECKSUM_MISMATCH_ERROR } from '../util/fetchMetadataFromUris';
 import parseFileContent from '../util/parseFileContent';
 
 import useCache from './useCache';
@@ -21,7 +22,7 @@ export default function useFetchAndProcessMetadata() {
 
       log(`Comparing checksums ${checksum} and ${hash}`);
       if (hash && !compareChecksums(checksum, hash)) {
-        throw new Error('Checksum mismatch');
+        throw new Error(CHECKSUM_MISMATCH_ERROR);
       }
 
       const headers = await getHeaders(uri);

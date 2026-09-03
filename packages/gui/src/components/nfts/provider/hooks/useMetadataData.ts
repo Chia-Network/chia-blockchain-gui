@@ -9,6 +9,7 @@ import type MetadataOnDemand from '../../../../@types/MetadataOnDemand';
 import type MetadataState from '../../../../@types/MetadataState';
 import useFetchAndProcessMetadata from '../../../../hooks/useFetchAndProcessMetadata';
 import useIpfsGateway from '../../../../hooks/useIpfsGateway';
+import fetchMetadataFromUris from '../../../../util/fetchMetadataFromUris';
 import getNFTId from '../../../../util/getNFTId';
 
 const log = debug('chia-gui:NFTProvider:useMetadataData');
@@ -76,14 +77,12 @@ export default function useMetadataData(props: UseMetadataDataProps) {
         try {
           log(`Fetching metadata for ${id} from API`);
           const nft = await fetchNFT(nftId);
-          const { metadataUris = [], metadataHash } = nft;
+          const { metadataUris, metadataHash } = nft;
 
-          const [firstUri] = metadataUris;
-          if (!firstUri) {
-            throw new Error('No metadata URI');
-          }
-
-          const metadata = await fetchAndProcessMetadata(firstUri, metadataHash);
+          // Every recorded copy is a fallback for the others: a gateway that
+          // is down or challenging the request must not hide metadata that
+          // another URI (typically the ipfs:// one) still serves.
+          const metadata = await fetchMetadataFromUris(metadataUris, metadataHash, fetchAndProcessMetadata);
           setMetadataOnDemand(nftId, { metadata });
           return metadata;
         } catch (e) {

@@ -155,7 +155,7 @@ export default function NFTProvider(props: NFTProviderProps) {
       }
 
       // invalidate nft files
-      const promises = [];
+      const promises: Promise<unknown>[] = [];
       const { dataUris, metadataUris } = nft;
       const invalidatedUris: string[] = [...dataUris];
 
@@ -169,10 +169,8 @@ export default function NFTProvider(props: NFTProviderProps) {
 
       dataUris.forEach((uri) => promises.push(invalidate(uri)));
 
-      const firstMetadataUri = metadataUris && metadataUris[0];
-      if (firstMetadataUri) {
-        promises.push(invalidate(firstMetadataUri));
-      }
+      // the metadata may have been served by any of its URIs
+      metadataUris?.forEach((uri) => promises.push(invalidate(uri)));
 
       // invalidate metadata files
       try {
