@@ -7,8 +7,12 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type CacheInfo from '../../../../@types/CacheInfo';
 import type MetadataState from '../../../../@types/MetadataState';
 import type NFTPreviewStatus from '../../../../@types/NFTPreviewStatus';
+import CacheState from '../../../../constants/CacheState';
 import useCache from '../../../../hooks/useCache';
+import useIpfsGateway from '../../../../hooks/useIpfsGateway';
+import { useIpfsGatewayBase } from '../../../../hooks/useIpfsGatewayUrl';
 import getNFTPreviewStatusFromCache, { getNFTPreviewUrls } from '../../../../util/getNFTPreviewStatusFromCache';
+import { isIpfsUrl } from '../../../../util/ipfs';
 
 const log = debug('chia-gui:NFTProvider:useNFTPreviewStatuses');
 
@@ -47,6 +51,20 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
   // a download — which the tile then reports live — or an invalidation,
   // which forgets it here.
   const [cacheInfos /* immutable */] = useState(() => new Map<string, CacheInfo>());
+  // NFTs whose status came from the cache rather than from a tile. Only these
+  // are reconsidered when the gateway changes: a tile that is mounted
+  // re-verifies on its own and reports again.
+  const [fromCache /* immutable */] = useState(() => new Set<string>());
+
+  // The gateway ipfs:// files are fetched through (empty while the option is
+  // off). A persisted ipfs failure is a verdict on the gateway it went
+  // through; CacheManager re-requests such an entry as soon as the gateway
+  // differs, so here it settles nothing under any other gateway.
+  const [ipfsGateway] = useIpfsGateway();
+  const ipfsGatewayBase = useIpfsGatewayBase();
+  const ipfsGatewayKey = ipfsGateway ? ipfsGatewayBase : '';
+  const ipfsGatewayKeyRef = useRef(ipfsGatewayKey);
+  ipfsGatewayKeyRef.current = ipfsGatewayKey;
 
   const events = useMemo(() => {
     const eventEmitter = new EventEmitter();
@@ -64,6 +82,7 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
   const setPreviewStatus = useCallback(
     (nftId: string, status: NFTPreviewStatus) => {
       settled.add(nftId);
+      fromCache.delete(nftId);
 
       if (statuses.get(nftId) === status) {
         return;
@@ -72,7 +91,7 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
       statuses.set(nftId, status);
       events.emit('changed');
     },
-    [events /* immutable */, statuses /* immutable */, settled /* immutable */],
+    [events /* immutable */, statuses /* immutable */, settled /* immutable */, fromCache /* immutable */],
   );
 
   // Bumped by every invalidation. A lookup whose IPC round-trip spans one may
@@ -85,13 +104,20 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
     (nftId: string, urls: string[]) => {
       invalidationGeneration.current += 1;
       settled.delete(nftId);
+      fromCache.delete(nftId);
       urls.forEach((url) => cacheInfos.delete(url));
 
       if (statuses.delete(nftId)) {
         events.emit('changed');
       }
     },
-    [events /* immutable */, statuses /* immutable */, settled /* immutable */, cacheInfos /* immutable */],
+    [
+      events /* immutable */,
+      statuses /* immutable */,
+      settled /* immutable */,
+      cacheInfos /* immutable */,
+      fromCache /* immutable */,
+    ],
   );
 
   // immutable function
@@ -164,6 +190,23 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
             fetchedInfos.forEach((cacheInfo) => cacheInfos.set(cacheInfo.url, cacheInfo));
           }
 
+          const currentGateway = ipfsGatewayKeyRef.current;
+          const getCacheInfo = (url: string): CacheInfo | undefined => {
+            const cacheInfo = cacheInfos.get(url);
+            if (
+              cacheInfo?.state === CacheState.ERROR &&
+              currentGateway &&
+              isIpfsUrl(url) &&
+              cacheInfo.gateway !== undefined &&
+              cacheInfo.gateway !== currentGateway
+            ) {
+              // recorded under another gateway — the next access re-requests it
+              return { url: cacheInfo.url, timestamp: cacheInfo.timestamp, state: CacheState.NOT_CACHED };
+            }
+
+            return cacheInfo;
+          };
+
           let changed = false;
           batch.forEach(({ nftId, nft, metadataState }) => {
             if (settled.has(nftId)) {
@@ -171,10 +214,11 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
               return;
             }
 
-            const status = getNFTPreviewStatusFromCache(nft, metadataState, (url) => cacheInfos.get(url));
+            const status = getNFTPreviewStatusFromCache(nft, metadataState, getCacheInfo);
             if (status) {
               statuses.set(nftId, status);
               settled.add(nftId);
+              fromCache.add(nftId);
               changed = true;
             } else if (!metadataState.isLoading) {
               // every input is known and the cache cannot decide — only a
@@ -202,6 +246,7 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
     statuses /* immutable */,
     settled /* immutable */,
     cacheInfos /* immutable */,
+    fromCache /* immutable */,
     events /* immutable */,
   ]);
 
@@ -217,6 +262,58 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
       lookUpFromCache();
     }, LOOKUP_DELAY);
   }, [lookUpFromCache]);
+
+  // A gateway change makes every cache-derived verdict that rests on an
+  // ipfs:// file stale: mounted tiles re-verify on their own, but an NFT the
+  // gallery filter keeps unmounted because it was classified as unavailable
+  // would otherwise never be looked at again. Forget those verdicts and the
+  // ipfs outcomes behind them, and sweep again — an outcome recorded under
+  // the old gateway then settles nothing, so the NFT shows up for its tile
+  // to re-request the file through the new gateway.
+  const lastIpfsGatewayKeyRef = useRef(ipfsGatewayKey);
+  useEffect(() => {
+    if (lastIpfsGatewayKeyRef.current === ipfsGatewayKey) {
+      return;
+    }
+    lastIpfsGatewayKeyRef.current = ipfsGatewayKey;
+
+    let changed = false;
+    Array.from(fromCache).forEach((nftId) => {
+      const nft = nfts.get(nftId) ?? nachos.get(nftId);
+      if (!nft) {
+        return;
+      }
+
+      const ipfsUrls = getNFTPreviewUrls(nft, getMetadata(nftId)).filter(isIpfsUrl);
+      if (!ipfsUrls.length) {
+        return;
+      }
+
+      invalidationGeneration.current += 1;
+      fromCache.delete(nftId);
+      settled.delete(nftId);
+      ipfsUrls.forEach((url) => cacheInfos.delete(url));
+      if (statuses.delete(nftId)) {
+        changed = true;
+      }
+    });
+
+    if (changed) {
+      events.emit('changed');
+    }
+    scheduleLookUp();
+  }, [
+    ipfsGatewayKey,
+    nfts /* immutable */,
+    nachos /* immutable */,
+    getMetadata /* immutable */,
+    fromCache /* immutable */,
+    settled /* immutable */,
+    statuses /* immutable */,
+    cacheInfos /* immutable */,
+    events /* immutable */,
+    scheduleLookUp,
+  ]);
 
   useEffect(() => {
     scheduleLookUp();

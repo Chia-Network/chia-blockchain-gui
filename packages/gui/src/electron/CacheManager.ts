@@ -20,7 +20,7 @@ import downloadFile, { MAX_FILE_SIZE_EXCEEDED_ERROR, isTransientDownloadError } 
 import ensureDirectoryExists from './utils/ensureDirectoryExists';
 import getChecksum from './utils/getChecksum';
 import ipcMainHandle from './utils/ipcMainHandle';
-import { IpfsGatewayDisabledError, ipfsGatewayBase } from './utils/ipfsGateway';
+import { IpfsGatewayDisabledError, ipfsGatewayBase, ipfsGatewayEnabled } from './utils/ipfsGateway';
 import isValidURL from './utils/isValidURL';
 import sanitizeFilename from './utils/sanitizeFilename';
 import sanitizeNumber from './utils/sanitizeNumber';
@@ -499,8 +499,15 @@ export default class CacheManager extends EventEmitter {
           // An ipfs failure is a verdict on one gateway, not on the resource:
           // once the user points the option at another gateway the entry is
           // re-requested right away, whatever the error was and however
-          // recently it was recorded.
-          const isGatewayChanged = isIpfsUrl(url) && cacheInfo.gateway !== ipfsGatewayBase();
+          // recently it was recorded. Only a sidecar that names its gateway
+          // can say so — older ones follow the transient-error rules — and
+          // only while the option is on, since with it off there is no
+          // gateway to retry through and the refusal would never settle.
+          const isGatewayChanged =
+            isIpfsUrl(url) &&
+            cacheInfo.gateway !== undefined &&
+            ipfsGatewayEnabled() &&
+            cacheInfo.gateway !== ipfsGatewayBase();
           if (!isAbortError && !isRetriableTransientError && !isSizeLimitLifted && !isGatewayChanged) {
             return cacheInfo;
           }

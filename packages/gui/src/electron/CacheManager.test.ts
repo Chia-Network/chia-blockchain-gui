@@ -1,3 +1,4 @@
+import crypto from 'node:crypto';
 import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
@@ -26,10 +27,12 @@ jest.mock('./utils/ipcMainHandle', () => ({
 }));
 
 const mockIpfsGatewayBase = jest.fn<string, []>(() => 'https://ipfs.io/ipfs/');
+const mockIpfsGatewayEnabled = jest.fn<boolean, []>(() => true);
 
 jest.mock('./utils/ipfsGateway', () => ({
   ...jest.requireActual('./utils/ipfsGateway'),
   ipfsGatewayBase: () => mockIpfsGatewayBase(),
+  ipfsGatewayEnabled: () => mockIpfsGatewayEnabled(),
 }));
 
 const { default: CacheManager, TRANSIENT_ERROR_RETRY_DELAY } =
@@ -405,6 +408,52 @@ describe('CacheManager eviction', () => {
       expect(info).toMatchObject({ state: 'ERROR', gateway: 'https://ipfs.io/ipfs/' });
     } finally {
       mockIpfsGatewayBase.mockReturnValue('https://ipfs.io/ipfs/');
+    }
+  });
+
+  it('does not keep re-requesting an ipfs failure whose sidecar predates gateway tracking', async () => {
+    const url = 'ipfs://QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/img.png';
+    // an ERROR sidecar written by a version that did not record the gateway
+    const urlHash = crypto.createHash('md5').update(url).digest('hex');
+    await fs.writeFile(
+      path.join(cacheDirectory, `${urlHash}-chiacache-info`),
+      JSON.stringify({ url, state: 'ERROR', error: 'HTTP error: 403', timestamp: Date.now() }),
+    );
+    mockDownloadFile.mockRejectedValue(new Error('HTTP error: 403'));
+
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+
+    // retried once per session like any transient failure...
+    await expect(cacheManager.getContent(url)).rejects.toThrow('HTTP error: 403');
+    // ...and then settled, instead of on every access
+    await expect(cacheManager.getContent(url)).rejects.toThrow('HTTP error: 403');
+    expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not treat a gateway change as a reason to retry while the gateway option is off', async () => {
+    const url = 'ipfs://QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/img.png';
+    mockDownloadFile.mockRejectedValue(new Error('HTTP error: 403'));
+
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+
+    await expect(cacheManager.getContent(url)).rejects.toThrow('HTTP error: 403');
+
+    mockIpfsGatewayBase.mockReturnValue('https://dweb.link/ipfs/');
+    mockIpfsGatewayEnabled.mockReturnValue(false);
+    try {
+      await expect(cacheManager.getContent(url)).rejects.toThrow('HTTP error: 403');
+      expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+    } finally {
+      mockIpfsGatewayBase.mockReturnValue('https://ipfs.io/ipfs/');
+      mockIpfsGatewayEnabled.mockReturnValue(true);
     }
   });
 
