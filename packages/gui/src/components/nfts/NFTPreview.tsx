@@ -154,35 +154,19 @@ export default function NFTPreview(props: NFTPreviewProps) {
     `nft-preview-ignore-size-limit-${nftId}`,
   );
 
-  const {
-    preview: selectedPreview,
-    previewImage,
-    isLoading: isLoadingVerifyHash,
-  } = useNFTVerifyHash(nftId, {
+  // Verified media files Chromium turned out not to decode (an HEVC video on
+  // Linux, say), recorded by preparePreview after probing the cached file —
+  // the sandboxed player cannot report the failure itself. Handed back to the
+  // verifier so it passes over an unplayable preview video and settles on the
+  // next source (preview image, data file) instead; the data file itself is
+  // never skipped, so an unplayable data file ends up as the notice below.
+  const [unplayableUris, setUnplayableUris] = useStateAbort<string[]>([]);
+
+  const { preview, isLoading: isLoadingVerifyHash } = useNFTVerifyHash(nftId, {
     preview: isPreview,
     ignoreSizeLimit,
+    excludedPreviewUris: unplayableUris,
   });
-
-  // The uri of a verified media file Chromium turned out not to decode (an
-  // HEVC video on Linux, say). Set by preparePreview after probing the cached
-  // file; the sandboxed player could not report the failure itself.
-  const [unplayableUri, setUnplayableUri] = useStateAbort<string | undefined>(undefined);
-
-  // When the selected preview video cannot be played, fall back to the
-  // verified preview image (the next source in the hook's own priority order)
-  // rather than showing a notice while a perfectly good thumbnail exists.
-  const preview = useMemo(() => {
-    if (
-      selectedPreview &&
-      unplayableUri === selectedPreview.uri &&
-      previewImage?.isVerified &&
-      previewImage.uri !== unplayableUri
-    ) {
-      return previewImage;
-    }
-
-    return selectedPreview;
-  }, [selectedPreview, previewImage, unplayableUri]);
 
   const { type: previewFileType, isLoading: isLoadingFileType } = useFileType(preview?.uri);
   const [globalVideoLoop] = useNFTVideoLoopGlobal();
@@ -235,7 +219,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
   const isHashMismatch = isSettledHashMismatch(preview);
 
   const previewUri = isHashMismatch ? undefined : preview?.uri;
-  const isUnplayable = !!previewUri && unplayableUri === previewUri;
+  const isUnplayable = !!previewUri && unplayableUris.includes(previewUri);
 
   const preparePreview = useCallback(
     async (signal: AbortSignal) => {
@@ -295,7 +279,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
           }
           if (playability === 'unsupported') {
             setPreviewContent(undefined, signal);
-            setUnplayableUri(previewUri, signal);
+            setUnplayableUris((uris) => (uris.includes(previewUri) ? uris : [...uris, previewUri]), signal);
             return;
           }
         }
@@ -352,7 +336,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
       isDarkMode,
       setPreviewContent,
       setPrepareError,
-      setUnplayableUri,
+      setUnplayableUris,
     ],
   );
 

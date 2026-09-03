@@ -16,10 +16,32 @@ const log = debug('chia-gui:useNFTVerifyHash');
 export type UseNFTVerifyHashOptions = {
   preview?: boolean;
   ignoreSizeLimit?: boolean;
+  // Preview URIs to pass over — files that verified but that Chromium turned
+  // out not to decode. Verification then moves on to the next source in
+  // priority order (preview image, data file) instead of settling on a file
+  // that cannot be shown. Only preview candidates are affected: the data
+  // file is what isVerified is derived from and is never skipped.
+  excludedPreviewUris?: string[];
 };
 
+function withoutExcluded(uris: string[] | undefined, excluded: Set<string>): string[] | undefined {
+  if (!uris || excluded.size === 0) {
+    return uris;
+  }
+
+  return uris.filter((uri) => !excluded.has(uri));
+}
+
 export default function useNFTVerifyHash(nftId?: string, options: UseNFTVerifyHashOptions = {}) {
-  const { preview = false, ignoreSizeLimit = false } = options;
+  const { preview = false, ignoreSizeLimit = false, excludedPreviewUris } = options;
+
+  // a stable key so a caller passing a fresh array each render does not
+  // restart preview verification
+  const excludedPreviewKey = excludedPreviewUris?.length ? excludedPreviewUris.join('\n') : '';
+  const excludedPreview = useMemo(
+    () => new Set(excludedPreviewKey ? excludedPreviewKey.split('\n') : []),
+    [excludedPreviewKey],
+  );
 
   const { getChecksum } = useCache();
   // Not read directly: the value changes which URIs the main process will
@@ -157,14 +179,14 @@ export default function useNFTVerifyHash(nftId?: string, options: UseNFTVerifyHa
       try {
         const { preview_video_uris: previewVideoUris, preview_video_hash: previewVideoHash } = nftMetadata;
 
-        const videoState = await findValidUri(previewVideoUris, previewVideoHash);
+        const videoState = await findValidUri(withoutExcluded(previewVideoUris, excludedPreview), previewVideoHash);
         if (generationRef.current === generation) {
           setPreviewVideo(videoState);
         }
 
         if (!videoState?.isVerified) {
           const { preview_image_uris: previewImageUris, preview_image_hash: previewImageHash } = nftMetadata;
-          const imageState = await findValidUri(previewImageUris, previewImageHash);
+          const imageState = await findValidUri(withoutExcluded(previewImageUris, excludedPreview), previewImageHash);
           if (generationRef.current === generation) {
             setPreviewImage(imageState);
           }
@@ -179,7 +201,7 @@ export default function useNFTVerifyHash(nftId?: string, options: UseNFTVerifyHa
         }
       }
     },
-    [findValidUri],
+    [findValidUri, excludedPreview],
   );
 
   // Data and preview verification run as independent effects: the data file
@@ -244,13 +266,13 @@ export default function useNFTVerifyHash(nftId?: string, options: UseNFTVerifyHa
         data: currentData,
         previewVideoCandidate: preview
           ? {
-              uris: metadata?.preview_video_uris,
+              uris: withoutExcluded(metadata?.preview_video_uris, excludedPreview),
               hash: metadata?.preview_video_hash,
             }
           : undefined,
         previewImageCandidate: preview
           ? {
-              uris: metadata?.preview_image_uris,
+              uris: withoutExcluded(metadata?.preview_image_uris, excludedPreview),
               hash: metadata?.preview_image_hash,
             }
           : undefined,
@@ -259,7 +281,7 @@ export default function useNFTVerifyHash(nftId?: string, options: UseNFTVerifyHa
           hash: nft?.dataHash,
         },
       }),
-    [currentPreviewVideo, currentPreviewImage, currentData, nft, metadata, preview, isVerifying],
+    [currentPreviewVideo, currentPreviewImage, currentData, nft, metadata, preview, isVerifying, excludedPreview],
   );
 
   return {
