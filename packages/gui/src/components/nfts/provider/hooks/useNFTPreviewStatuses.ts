@@ -51,10 +51,6 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
   // a download — which the tile then reports live — or an invalidation,
   // which forgets it here.
   const [cacheInfos /* immutable */] = useState(() => new Map<string, CacheInfo>());
-  // NFTs whose status came from the cache rather than from a tile. Only these
-  // are reconsidered when the gateway changes: a tile that is mounted
-  // re-verifies on its own and reports again.
-  const [fromCache /* immutable */] = useState(() => new Set<string>());
 
   // The gateway ipfs:// files are fetched through (empty while the option is
   // off). A persisted ipfs failure is a verdict on the gateway it went
@@ -82,7 +78,6 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
   const setPreviewStatus = useCallback(
     (nftId: string, status: NFTPreviewStatus) => {
       settled.add(nftId);
-      fromCache.delete(nftId);
 
       if (statuses.get(nftId) === status) {
         return;
@@ -91,7 +86,7 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
       statuses.set(nftId, status);
       events.emit('changed');
     },
-    [events /* immutable */, statuses /* immutable */, settled /* immutable */, fromCache /* immutable */],
+    [events /* immutable */, statuses /* immutable */, settled /* immutable */],
   );
 
   // Bumped by every invalidation. A lookup whose IPC round-trip spans one may
@@ -104,20 +99,13 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
     (nftId: string, urls: string[]) => {
       invalidationGeneration.current += 1;
       settled.delete(nftId);
-      fromCache.delete(nftId);
       urls.forEach((url) => cacheInfos.delete(url));
 
       if (statuses.delete(nftId)) {
         events.emit('changed');
       }
     },
-    [
-      events /* immutable */,
-      statuses /* immutable */,
-      settled /* immutable */,
-      cacheInfos /* immutable */,
-      fromCache /* immutable */,
-    ],
+    [events /* immutable */, statuses /* immutable */, settled /* immutable */, cacheInfos /* immutable */],
   );
 
   // immutable function
@@ -218,7 +206,6 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
             if (status) {
               statuses.set(nftId, status);
               settled.add(nftId);
-              fromCache.add(nftId);
               changed = true;
             } else if (!metadataState.isLoading) {
               // every input is known and the cache cannot decide — only a
@@ -246,7 +233,6 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
     statuses /* immutable */,
     settled /* immutable */,
     cacheInfos /* immutable */,
-    fromCache /* immutable */,
     events /* immutable */,
   ]);
 
@@ -263,13 +249,17 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
     }, LOOKUP_DELAY);
   }, [lookUpFromCache]);
 
-  // A gateway change makes every cache-derived verdict that rests on an
-  // ipfs:// file stale: mounted tiles re-verify on their own, but an NFT the
-  // gallery filter keeps unmounted because it was classified as unavailable
-  // would otherwise never be looked at again. Forget those verdicts and the
-  // ipfs outcomes behind them, and sweep again — an outcome recorded under
-  // the old gateway then settles nothing, so the NFT shows up for its tile
-  // to re-request the file through the new gateway.
+  // A gateway change (or flipping the option) makes every verdict that rests
+  // on an ipfs:// file stale, however it was reached: a tile that reported
+  // and has since unmounted will not report again, an NFT left undecided
+  // was left so under the old gateway, and an NFT the gallery filter keeps
+  // unmounted because it was classified as unavailable would never be looked
+  // at again. Forget all of them and the ipfs outcomes behind them, and
+  // sweep again: mounted tiles re-verify on their own and report, and for
+  // the rest an outcome recorded under the old gateway settles nothing, so
+  // the NFT shows up for its tile to re-request the file through the new
+  // gateway — or, with the option now off, is classified from what the
+  // cache holds.
   const lastIpfsGatewayKeyRef = useRef(ipfsGatewayKey);
   useEffect(() => {
     if (lastIpfsGatewayKeyRef.current === ipfsGatewayKey) {
@@ -278,23 +268,24 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
     lastIpfsGatewayKeyRef.current = ipfsGatewayKey;
 
     let changed = false;
-    Array.from(fromCache).forEach((nftId) => {
-      const nft = nfts.get(nftId) ?? nachos.get(nftId);
-      if (!nft) {
-        return;
-      }
-
+    const reconsider = (nft: NFTInfo, nftId: string) => {
       const ipfsUrls = getNFTPreviewUrls(nft, getMetadata(nftId)).filter(isIpfsUrl);
       if (!ipfsUrls.length) {
         return;
       }
 
       invalidationGeneration.current += 1;
-      fromCache.delete(nftId);
       settled.delete(nftId);
       ipfsUrls.forEach((url) => cacheInfos.delete(url));
       if (statuses.delete(nftId)) {
         changed = true;
+      }
+    };
+
+    nfts.forEach(reconsider);
+    nachos.forEach((nft, nftId) => {
+      if (!nfts.has(nftId)) {
+        reconsider(nft, nftId);
       }
     });
 
@@ -307,7 +298,6 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
     nfts /* immutable */,
     nachos /* immutable */,
     getMetadata /* immutable */,
-    fromCache /* immutable */,
     settled /* immutable */,
     statuses /* immutable */,
     cacheInfos /* immutable */,
