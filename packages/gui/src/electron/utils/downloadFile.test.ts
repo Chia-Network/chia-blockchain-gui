@@ -9,7 +9,8 @@ jest.mock('electron', () => ({
   },
 }));
 
-const downloadFile = jest.requireActual<typeof import('./downloadFile')>('./downloadFile').default;
+const { default: downloadFile, isTransientDownloadError } =
+  jest.requireActual<typeof import('./downloadFile')>('./downloadFile');
 
 describe('downloadFile', () => {
   beforeEach(() => {
@@ -27,5 +28,38 @@ describe('downloadFile', () => {
     ).rejects.toThrow('Request aborted');
 
     expect(mockNetRequest).not.toHaveBeenCalled();
+  });
+});
+
+describe('isTransientDownloadError', () => {
+  it.each([
+    'Request timed out after 30000ms of inactivity',
+    'Request exceeded the 1800000ms download deadline',
+    'HTTP error: 500',
+    'HTTP error: 502',
+    'HTTP error: 504',
+    'HTTP error: 520',
+    'HTTP error: 429',
+    'HTTP error: 408',
+    // Cloudflare bot challenge in front of the public IPFS gateways
+    'HTTP error: 403',
+    'net::ERR_BLOCKED_BY_RESPONSE',
+    'net::ERR_CONNECTION_RESET',
+    'net::ERR_QUIC_PROTOCOL_ERROR',
+  ])('treats %p as transient', (message) => {
+    expect(isTransientDownloadError(message)).toBe(true);
+  });
+
+  it.each([
+    'HTTP error: 404',
+    'HTTP error: 410',
+    'HTTP error: 400',
+    'HTTP error: 401',
+    'Maximum file size exceeded',
+    'Invalid URL',
+    'Unknown error',
+    'IPFS gateway fetching is disabled',
+  ])('treats %p as permanent', (message) => {
+    expect(isTransientDownloadError(message)).toBe(false);
   });
 });

@@ -15,7 +15,7 @@ import CacheState from '../constants/CacheState';
 import limit from '../util/limit';
 
 import CacheAPI from './constants/CacheAPI';
-import downloadFile, { MAX_FILE_SIZE_EXCEEDED_ERROR, isDownloadTimeoutError } from './utils/downloadFile';
+import downloadFile, { MAX_FILE_SIZE_EXCEEDED_ERROR, isTransientDownloadError } from './utils/downloadFile';
 import ensureDirectoryExists from './utils/ensureDirectoryExists';
 import getChecksum from './utils/getChecksum';
 import ipcMainHandle from './utils/ipcMainHandle';
@@ -85,6 +85,12 @@ const FILE_SUFFIX = '-chiacache';
 const MAX_TOTAL_SIZE = 1024 * 1024 * 1024; // 1GB
 const MAX_FILE_SIZE = 1024 * 1024 * 100; // 100MB
 
+// How long a persisted transient download failure (timeout, gateway error,
+// rate limit, bot challenge) settles before the next access retries it. Long
+// enough that a stalled host is not re-probed on every tile mount, short
+// enough that a gateway hiccup does not blank an NFT until the GUI restarts.
+export const TRANSIENT_ERROR_RETRY_DELAY = 10 * 60 * 1000; // 10 minutes
+
 const SUFFIXES = [FILE_SUFFIX, `${FILE_SUFFIX}${INFO_SUFFIX}`];
 
 function isChiaCacheFile(filePath: string) {
@@ -114,10 +120,12 @@ export default class CacheManager extends EventEmitter {
     }
   > = new Map();
 
-  // URLs whose download timed out during this session. A persisted timeout is
-  // retried once per session — the set keeps a stalled host from being retried
-  // (and holding a download slot) on every access within the same session.
-  private timedOutUrls: Set<string> = new Set();
+  // URLs whose download failed transiently during this session. A persisted
+  // transient failure is retried once per session and again whenever the retry
+  // delay has elapsed since it was recorded — the set keeps a stalled or
+  // challenging host from being retried (and holding a download slot) on every
+  // access in between.
+  private transientFailureUrls: Set<string> = new Set();
 
   constructor(
     options: {
@@ -454,15 +462,19 @@ export default class CacheManager extends EventEmitter {
         if (cacheInfo.state === CacheState.ERROR) {
           log(`Url already downloaded with error: ${cacheInfo.error}`, url);
 
-          const isTransientError = ['Response aborted', 'Request aborted'].includes(cacheInfo.error);
-          // A persisted timeout settles for the rest of the session, but is
-          // retried in later sessions — a one-off network problem must not
-          // disable the preview until the whole cache is cleared.
-          const isRetriableTimeout = isDownloadTimeoutError(cacheInfo.error) && !this.timedOutUrls.has(url);
+          const isAbortError = ['Response aborted', 'Request aborted'].includes(cacheInfo.error);
+          // A persisted transient failure (timeout, 5xx, rate limit, bot
+          // challenge, network error) settles until the retry delay elapses
+          // or a new session starts — a one-off gateway problem must not
+          // disable the preview until the whole cache is cleared. Sidecars
+          // written without a timestamp fall back to the once-per-session rule.
+          const isRetriableTransientError =
+            isTransientDownloadError(cacheInfo.error) &&
+            (!this.transientFailureUrls.has(url) || Date.now() - cacheInfo.timestamp >= TRANSIENT_ERROR_RETRY_DELAY);
           // A persisted size-limit error is only retried when the caller lifts
           // the limit, so oversized files are not re-downloaded on every visit.
           const isSizeLimitLifted = cacheInfo.error === MAX_FILE_SIZE_EXCEEDED_ERROR && maxSize <= 0;
-          if (!isTransientError && !isRetriableTimeout && !isSizeLimitLifted) {
+          if (!isAbortError && !isRetriableTransientError && !isSizeLimitLifted) {
             return cacheInfo;
           }
 
@@ -528,8 +540,8 @@ export default class CacheManager extends EventEmitter {
 
         const currentError = (error as Error) ?? new Error('Unknown fetchRemoteContent error');
 
-        if (isDownloadTimeoutError(currentError.message)) {
-          this.timedOutUrls.add(url);
+        if (isTransientDownloadError(currentError.message)) {
+          this.transientFailureUrls.add(url);
         }
 
         return await this.setCacheInfo(url, {
