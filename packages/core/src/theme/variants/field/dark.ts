@@ -58,6 +58,13 @@ export default createTheme(
         main: 'rgba(247, 223, 155, 0.16)',
         dark: 'rgba(247, 223, 155, 0.2)',
       },
+      surfaces: {
+        control: 'rgba(56, 43, 24, 0.9)',
+        tableHeader: 'rgba(78, 63, 31, 0.92)',
+        tableRowAlternate: 'rgba(49, 38, 22, 0.86)',
+        tableExpanded: 'rgba(78, 63, 31, 0.92)',
+        tableBorder: 'rgba(247, 223, 155, 0.2)',
+      },
       sidebarBackground: '#211d13',
       sidebarSelectedFill: 'rgba(247, 223, 155, 0.16)',
       sidebarIconSelected: {
