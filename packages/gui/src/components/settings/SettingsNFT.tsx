@@ -21,6 +21,7 @@ import useIpfsGateway from '../../hooks/useIpfsGateway';
 import useNFTImageFittingMode from '../../hooks/useNFTImageFittingMode';
 import { useNFTVideoLoopGlobal } from '../../hooks/useNFTVideoLoop';
 
+import IpfsGatewayUrl from './IpfsGatewayUrl';
 import LimitCacheSize from './LimitCacheSize';
 
 /* todo it is deprecated we should remove it from users local storage
@@ -168,9 +169,29 @@ export default function SettingsGeneral() {
         <Grid item style={{ width: '400px' }}>
           <SettingsText>
             <Trans>
-              NFT files published with ipfs:// addresses will be downloaded through the public ipfs.io HTTPS gateway.
-              The requested URL differs from the address recorded on chain, but downloaded content is still verified
-              against the NFT's on-chain hash. When disabled, ipfs:// files are not fetched.
+              NFT files published with ipfs:// addresses will be downloaded through an HTTPS gateway. The requested URL
+              differs from the address recorded on chain, but downloaded content is still verified against the NFT's
+              on-chain hash. When disabled, ipfs:// files are not fetched.
+            </Trans>
+          </SettingsText>
+        </Grid>
+      </Grid>
+
+      <Grid container>
+        <Grid item style={{ width: '400px' }}>
+          <SettingsTitle>
+            <Trans>IPFS gateway</Trans>
+          </SettingsTitle>
+        </Grid>
+        <Grid item xs={12} sx={{ marginTop: 1 }}>
+          <IpfsGatewayUrl disabled={!ipfsGateway} />
+        </Grid>
+        <Grid item style={{ width: '400px' }}>
+          <SettingsText>
+            <Trans>
+              The gateway used for ipfs:// addresses. Leave it empty to use the public ipfs.io gateway, or enter another
+              public gateway or a local IPFS node such as http://127.0.0.1:8080. Files are re-checked through the new
+              gateway right away.
             </Trans>
           </SettingsText>
         </Grid>

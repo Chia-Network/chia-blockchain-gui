@@ -152,6 +152,19 @@ describe('nftGetImageDataUrl', () => {
     );
   });
 
+  it('omits the preview for an oversized ipfs image served by a plain-http local gateway', async () => {
+    mockAllowUnverifiedNftPreviews.mockReturnValue(true);
+    mockMaybeIpfsToGatewayUrl.mockImplementation((url) => ipfsToGatewayUrl(url, 'http://127.0.0.1:8080/ipfs/'));
+    mockFetchBuffer.mockRejectedValue(
+      new MaxSizeExceededError({
+        'content-type': 'image/gif',
+      }),
+    );
+
+    // the dialog CSP allows https: images only
+    await expect(nftGetImageDataUrl('ipfs://bafybeigdyrztest/large.gif', '00')).resolves.toBeUndefined();
+  });
+
   it('omits the preview for an oversized ipfs image while the gateway option is off', async () => {
     mockAllowUnverifiedNftPreviews.mockReturnValue(true);
     mockFetchBuffer.mockRejectedValue(
