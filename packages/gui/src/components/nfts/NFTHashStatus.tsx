@@ -9,7 +9,7 @@ import React, { useMemo } from 'react';
 import useIpfsGateway from '../../hooks/useIpfsGateway';
 import useNFT from '../../hooks/useNFT';
 import useNFTVerifyHash from '../../hooks/useNFTVerifyHash';
-import ipfsToGatewayUrl from '../../util/ipfs';
+import { getIpfsPath, isIpfsUrl } from '../../util/ipfs';
 
 export type NFTHashStatusProps = {
   nftId: string;
@@ -44,11 +44,17 @@ export default function NFTHashStatus(props: NFTHashStatusProps) {
     }
 
     // While the user has IPFS gateway fetching enabled, ipfs:// URIs are
-    // served through an HTTPS gateway by the cache layer, so validate the
-    // gateway form instead of flagging them as invalid. With the option off
+    // served through a gateway by the cache layer, so an ipfs URI is valid
+    // when it carries a CID path — the gateway itself was validated when the
+    // user configured it, and may legitimately be a plain-http local node
+    // that the https-only URL check here would reject. With the option off
     // they are not fetchable and stay flagged — unless the file already
     // verified from the cache, which the message branches above this check.
-    return isValidURL(ipfsGateway ? ipfsToGatewayUrl(uri) : uri);
+    if (isIpfsUrl(uri)) {
+      return ipfsGateway && getIpfsPath(uri) !== undefined;
+    }
+
+    return isValidURL(uri);
   }, [nftPreview, ipfsGateway]);
 
   const icon = useMemo(() => {

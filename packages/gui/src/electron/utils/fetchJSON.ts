@@ -2,6 +2,7 @@ import { net, IncomingMessage } from 'electron';
 
 import { toFetchableUrl } from './ipfsGateway';
 import isValidURL from './isValidURL';
+import getRequestUserAgent from './requestUserAgent';
 
 const DEFAULT_TIMEOUT = 10 * 60 * 1000; // 10 minutes
 const DEFAULT_MAX_SIZE = 100 * 1024 * 1024; // 100 MB
@@ -24,6 +25,8 @@ export default async function fetchJSON<TData>(
     url: toFetchableUrl(url),
     headers,
   });
+
+  request.setHeader('User-Agent', getRequestUserAgent());
 
   request.setHeader('Accept', 'application/json');
 

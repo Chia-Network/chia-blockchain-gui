@@ -14,6 +14,9 @@ type CacheInfoBase =
   | {
       state: CacheState.ERROR;
       error: string;
+      // For ipfs:// URLs: the gateway base the failed request went through,
+      // so a later gateway change retries the entry immediately.
+      gateway?: string;
     };
 
 export default CacheInfoBase;

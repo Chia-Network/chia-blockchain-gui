@@ -12,14 +12,20 @@ import type CacheInfo from '../@types/CacheInfo';
 import type CacheInfoBase from '../@types/CacheInfoBase';
 import type Headers from '../@types/Headers';
 import CacheState from '../constants/CacheState';
+import ipfsToGatewayUrl, {
+  getIpfsPathFromGatewayUrl,
+  isIpfsBackedUrl,
+  isIpfsUrl,
+  normalizeIpfsGatewayBase,
+} from '../util/ipfs';
 import limit from '../util/limit';
 
 import CacheAPI from './constants/CacheAPI';
-import downloadFile, { MAX_FILE_SIZE_EXCEEDED_ERROR, isDownloadTimeoutError } from './utils/downloadFile';
+import downloadFile, { MAX_FILE_SIZE_EXCEEDED_ERROR, isTransientDownloadError } from './utils/downloadFile';
 import ensureDirectoryExists from './utils/ensureDirectoryExists';
 import getChecksum from './utils/getChecksum';
 import ipcMainHandle from './utils/ipcMainHandle';
-import { IpfsGatewayDisabledError } from './utils/ipfsGateway';
+import { IpfsGatewayDisabledError, ipfsGatewayBase, ipfsGatewayEnabled } from './utils/ipfsGateway';
 import isValidURL from './utils/isValidURL';
 import sanitizeFilename from './utils/sanitizeFilename';
 import sanitizeNumber from './utils/sanitizeNumber';
@@ -85,6 +91,12 @@ const FILE_SUFFIX = '-chiacache';
 const MAX_TOTAL_SIZE = 1024 * 1024 * 1024; // 1GB
 const MAX_FILE_SIZE = 1024 * 1024 * 100; // 100MB
 
+// How long a persisted transient download failure (timeout, gateway error,
+// rate limit, bot challenge) settles before the next access retries it. Long
+// enough that a stalled host is not re-probed on every tile mount, short
+// enough that a gateway hiccup does not blank an NFT until the GUI restarts.
+export const TRANSIENT_ERROR_RETRY_DELAY = 10 * 60 * 1000; // 10 minutes
+
 const SUFFIXES = [FILE_SUFFIX, `${FILE_SUFFIX}${INFO_SUFFIX}`];
 
 function isChiaCacheFile(filePath: string) {
@@ -111,13 +123,17 @@ export default class CacheManager extends EventEmitter {
     {
       promise: Promise<CacheInfo>;
       abort: () => void;
+      // for ipfs:// URLs: the gateway base the request was started through
+      gateway?: string;
     }
   > = new Map();
 
-  // URLs whose download timed out during this session. A persisted timeout is
-  // retried once per session — the set keeps a stalled host from being retried
-  // (and holding a download slot) on every access within the same session.
-  private timedOutUrls: Set<string> = new Set();
+  // URLs whose download failed transiently during this session. A persisted
+  // transient failure is retried once per session and again whenever the retry
+  // delay has elapsed since it was recorded — the set keeps a stalled or
+  // challenging host from being retried (and holding a download slot) on every
+  // access in between.
+  private transientFailureUrls: Set<string> = new Set();
 
   constructor(
     options: {
@@ -424,9 +440,34 @@ export default class CacheManager extends EventEmitter {
       throw new Error(`Invalid URL: ${url}`);
     }
 
+    // Captured once, up front, and pinned for the download itself (which may
+    // wait in the queue while the user changes the preference): the gateway a
+    // request goes through is part of its outcome, so a failure must be
+    // recorded against the gateway the request actually used. This covers
+    // ipfs:// URIs and https gateway URLs alike — the latter fall back to the
+    // configured gateway when their own host fails (see below), but only
+    // while the option is on, so with it off a gateway link's failure is a
+    // verdict on its own host alone and records no gateway; turning the
+    // option on then gives the link its first fallback (isGatewayChanged).
+    const requestGateway =
+      isIpfsUrl(url) || (isIpfsBackedUrl(url) && ipfsGatewayEnabled()) ? ipfsGatewayBase() : undefined;
+
     const ongoingRequest = this.ongoingRequests.get(url);
     if (ongoingRequest) {
       log('Request already ongoing', url);
+
+      if (ongoingRequest.gateway !== requestGateway) {
+        // The in-flight request went through a gateway the user has since
+        // moved away from, so its outcome is a verdict on that gateway only.
+        // Wait for it, then look again: a success is served from the cache,
+        // a failure — recorded under the old gateway — is retried through
+        // the current one by the gateway check below. Without this the
+        // caller would inherit the old gateway's error until the retry delay
+        // elapsed.
+        const lookAgain = () => this.fetchRemoteContent(url, options);
+        return ongoingRequest.promise.then(lookAgain, lookAgain);
+      }
+
       return ongoingRequest.promise;
     }
 
@@ -454,15 +495,34 @@ export default class CacheManager extends EventEmitter {
         if (cacheInfo.state === CacheState.ERROR) {
           log(`Url already downloaded with error: ${cacheInfo.error}`, url);
 
-          const isTransientError = ['Response aborted', 'Request aborted'].includes(cacheInfo.error);
-          // A persisted timeout settles for the rest of the session, but is
-          // retried in later sessions — a one-off network problem must not
-          // disable the preview until the whole cache is cleared.
-          const isRetriableTimeout = isDownloadTimeoutError(cacheInfo.error) && !this.timedOutUrls.has(url);
+          const isAbortError = ['Response aborted', 'Request aborted'].includes(cacheInfo.error);
+          // A persisted transient failure (timeout, 5xx, rate limit, bot
+          // challenge, network error) settles until the retry delay elapses
+          // or a new session starts — a one-off gateway problem must not
+          // disable the preview until the whole cache is cleared. Sidecars
+          // written without a timestamp fall back to the once-per-session rule.
+          const isRetriableTransientError =
+            isTransientDownloadError(cacheInfo.error) &&
+            (!this.transientFailureUrls.has(url) || Date.now() - cacheInfo.timestamp >= TRANSIENT_ERROR_RETRY_DELAY);
           // A persisted size-limit error is only retried when the caller lifts
           // the limit, so oversized files are not re-downloaded on every visit.
           const isSizeLimitLifted = cacheInfo.error === MAX_FILE_SIZE_EXCEEDED_ERROR && maxSize <= 0;
-          if (!isTransientError && !isRetriableTimeout && !isSizeLimitLifted) {
+          // An ipfs failure is a verdict on one gateway, not on the resource:
+          // once the user points the option at another gateway the entry is
+          // re-requested right away, whatever the error was and however
+          // recently it was recorded. Only while the option is on, since with
+          // it off there is no gateway to retry through and the refusal would
+          // never settle. A sidecar that names its gateway is compared with
+          // the current one; an https gateway link without a recorded gateway
+          // failed without ever getting the fallback (the option was off, or
+          // the sidecar predates it), so it gets one now — the attempt records
+          // the gateway and settles it. An ipfs:// sidecar without a gateway
+          // predates gateway tracking and follows the transient-error rules.
+          const isGatewayChanged =
+            isIpfsBackedUrl(url) &&
+            ipfsGatewayEnabled() &&
+            (cacheInfo.gateway === undefined ? !isIpfsUrl(url) : cacheInfo.gateway !== ipfsGatewayBase());
+          if (!isAbortError && !isRetriableTransientError && !isSizeLimitLifted && !isGatewayChanged) {
             return cacheInfo;
           }
 
@@ -472,13 +532,33 @@ export default class CacheManager extends EventEmitter {
         const limitedRemoteFileDownload = async (): Promise<CacheInfo> => {
           const cacheFilePath = this.getCacheFilePath(url);
 
-          log('Starting download', url);
-          const headers = await downloadFile(url, cacheFilePath, {
+          const downloadOptions = {
             timeout,
             maxSize,
             signal: abortController.signal,
             overrideFile: true,
-          });
+            gatewayBase: requestGateway,
+          };
+
+          log('Starting download', url);
+          let headers: Headers;
+          try {
+            headers = await downloadFile(url, cacheFilePath, downloadOptions);
+          } catch (downloadError) {
+            // An https gateway URL names its content by CID, so when its own
+            // host fails (gone, rate limiting, challenging the request) the
+            // same bytes can be fetched through the user's gateway and are
+            // still verified against the on-chain hash. Only when the option
+            // is on, the host is not already that gateway, and the failure is
+            // the host's — not an abort, a size cap, or the option itself.
+            const fallbackUrl = this.getGatewayFallbackUrl(url, requestGateway, downloadError as Error);
+            if (!fallbackUrl) {
+              throw downloadError;
+            }
+
+            log(`Download failed (${(downloadError as Error).message}), retrying through the gateway`, url);
+            headers = await downloadFile(url, cacheFilePath, { ...downloadOptions, requestUrl: fallbackUrl });
+          }
 
           log('Download finished', url);
 
@@ -528,13 +608,15 @@ export default class CacheManager extends EventEmitter {
 
         const currentError = (error as Error) ?? new Error('Unknown fetchRemoteContent error');
 
-        if (isDownloadTimeoutError(currentError.message)) {
-          this.timedOutUrls.add(url);
+        if (isTransientDownloadError(currentError.message)) {
+          this.transientFailureUrls.add(url);
         }
 
         return await this.setCacheInfo(url, {
           state: CacheState.ERROR,
           error: currentError.message,
+          // which gateway the verdict belongs to (see isGatewayChanged above)
+          ...(requestGateway === undefined ? {} : { gateway: requestGateway }),
         });
       } finally {
         this.ongoingRequests.delete(url);
@@ -546,9 +628,40 @@ export default class CacheManager extends EventEmitter {
     this.ongoingRequests.set(url, {
       abort: () => abortController.abort(),
       promise,
+      gateway: requestGateway,
     });
 
     return promise;
+  }
+
+  // The configured-gateway URL to refetch an https gateway URL from after its
+  // own host failed, or undefined when no fallback applies.
+  private getGatewayFallbackUrl(url: string, gatewayBase: string | undefined, error: Error): string | undefined {
+    if (gatewayBase === undefined || !ipfsGatewayEnabled()) {
+      return undefined;
+    }
+
+    const ipfsPath = getIpfsPathFromGatewayUrl(url);
+    if (!ipfsPath) {
+      // ipfs:// URIs already went through the gateway
+      return undefined;
+    }
+
+    const isHostFailure =
+      !['Response aborted', 'Request aborted', MAX_FILE_SIZE_EXCEEDED_ERROR].includes(error.message) &&
+      !(error instanceof IpfsGatewayDisabledError);
+    if (!isHostFailure) {
+      return undefined;
+    }
+
+    const fallbackUrl = ipfsToGatewayUrl(`ipfs://${ipfsPath}`, gatewayBase);
+    // the URL's own host is the configured gateway: nothing else to try
+    const ownBase = normalizeIpfsGatewayBase(url.slice(0, url.indexOf('/ipfs/') + 1));
+    if (fallbackUrl === url || ownBase === gatewayBase) {
+      return undefined;
+    }
+
+    return fallbackUrl;
   }
 
   async getHeaders(

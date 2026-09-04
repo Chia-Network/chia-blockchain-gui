@@ -4,10 +4,12 @@ import { promises as fs, createWriteStream, type WriteStream } from 'node:fs';
 import debug from 'debug';
 
 import type Headers from '../../@types/Headers';
+import { isLoopbackHttpUrl } from '../../util/ipfs';
 
 import fileExists from './fileExists';
 import { toFetchableUrl } from './ipfsGateway';
 import isValidURL from './isValidURL';
+import getRequestUserAgent from './requestUserAgent';
 
 const log = debug('chia-gui:downloadFile');
 
@@ -75,6 +77,42 @@ export function isDownloadTimeoutError(message: string): boolean {
   return message.startsWith(INACTIVITY_TIMEOUT_ERROR_PREFIX) || message.startsWith(DOWNLOAD_DEADLINE_ERROR_PREFIX);
 }
 
+const HTTP_ERROR_PREFIX = 'HTTP error: ';
+
+// Statuses below 500 that still describe a passing condition of the host
+// rather than of the resource. 403 is included because Cloudflare fronts the
+// public IPFS gateways (ipfs.io, and nftstorage.link which now redirects to
+// it) and answers with a 403 "Just a moment..." bot challenge whenever it is
+// in a challenging mood; the file is still there and the next request often
+// succeeds. 408/425/429 are the timeout, too-early and rate-limit statuses.
+const TRANSIENT_HTTP_STATUSES = new Set([403, 408, 425, 429]);
+
+/** Whether a persisted download failure describes a condition that can clear
+ * on its own — a timeout, a gateway/server error, a rate limit or bot
+ * challenge, or a Chromium network error — as opposed to a resource that is
+ * gone for good (404, 410) or a local policy (size cap). CacheManager retries
+ * these after a cooling-off period instead of keeping the entry poisoned
+ * until the whole cache is cleared. */
+export function isTransientDownloadError(message: string): boolean {
+  if (isDownloadTimeoutError(message)) {
+    return true;
+  }
+
+  // Chromium network errors (net::ERR_CONNECTION_RESET, net::ERR_QUIC_PROTOCOL_ERROR,
+  // net::ERR_BLOCKED_BY_RESPONSE for a challenge page that carries a
+  // Cross-Origin-Resource-Policy header, ...)
+  if (message.startsWith('net::ERR_')) {
+    return true;
+  }
+
+  if (message.startsWith(HTTP_ERROR_PREFIX)) {
+    const status = Number.parseInt(message.slice(HTTP_ERROR_PREFIX.length), 10);
+    return status >= 500 || TRANSIENT_HTTP_STATUSES.has(status);
+  }
+
+  return false;
+}
+
 type DownloadFileOptions = {
   timeout?: number;
   maxDuration?: number; // absolute cap on the whole transfer
@@ -82,6 +120,15 @@ type DownloadFileOptions = {
   maxSize?: number; // values <= 0 disable the size limit
   onProgress?: (progress: number, size: number, downloadedSize: number) => void;
   overrideFile?: boolean;
+  // the gateway base an ipfs:// url is fetched through; defaults to the
+  // current preference (see toFetchableUrl)
+  gatewayBase?: string;
+  // the URL to actually request instead of `url` — the caller keeps `url` as
+  // its cache key while fetching the same content from elsewhere (an IPFS
+  // gateway URL whose own host failed, refetched through the configured
+  // gateway); must itself be an https URL or a plain-http one on this
+  // machine, the forms the gateway setting accepts
+  requestUrl?: string;
 };
 
 export default async function downloadFile(
@@ -94,9 +141,15 @@ export default async function downloadFile(
     maxSize = 100 * 1024 * 1024,
     onProgress,
     overrideFile = false,
+    gatewayBase,
+    requestUrl,
   }: DownloadFileOptions = {},
 ): Promise<Headers> {
   if (!isValidURL(url)) {
+    throw new Error('Invalid URL');
+  }
+
+  if (requestUrl !== undefined && !isValidURL(requestUrl) && !isLoopbackHttpUrl(requestUrl)) {
     throw new Error('Invalid URL');
   }
 
@@ -115,7 +168,8 @@ export default async function downloadFile(
   // with the option off toFetchableUrl refuses the fetch outright. Only
   // this outgoing request uses the translated URL; callers keep the original
   // URI as the cache key.
-  const request = net.request(toFetchableUrl(url));
+  const request = net.request(toFetchableUrl(requestUrl ?? url, gatewayBase));
+  request.setHeader('User-Agent', getRequestUserAgent());
   const outputStream = new WriteStreamPromise(tempFilePath, overrideFile);
 
   // set when we abort the request ourselves, so abort events can be reported

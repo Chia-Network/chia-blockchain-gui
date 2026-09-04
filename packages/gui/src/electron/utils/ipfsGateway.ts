@@ -1,4 +1,9 @@
-import ipfsToGatewayUrl, { isIpfsUrl } from '../../util/ipfs';
+import ipfsToGatewayUrl, {
+  DEFAULT_IPFS_GATEWAY_BASE,
+  NFT_IPFS_GATEWAY_URL_PREF,
+  isIpfsUrl,
+  normalizeIpfsGatewayBase,
+} from '../../util/ipfs';
 import { readPrefs } from '../prefs';
 
 // Preference key shared with the renderer's useIpfsGateway hook. The renderer
@@ -18,17 +23,32 @@ export function ipfsGatewayEnabled(): boolean {
   }
 }
 
+// The gateway base ipfs paths are appended to: the user's choice when it is
+// set and usable, otherwise the public default. Falls back to the default
+// when the preferences store is unreadable, like ipfsGatewayEnabled.
+export function ipfsGatewayBase(): string {
+  try {
+    return normalizeIpfsGatewayBase(readPrefs()[NFT_IPFS_GATEWAY_URL_PREF]) ?? DEFAULT_IPFS_GATEWAY_BASE;
+  } catch {
+    return DEFAULT_IPFS_GATEWAY_BASE;
+  }
+}
+
 // Translates an ipfs:// URI to its HTTPS gateway equivalent only when the
 // user has enabled gateway fetching; every other URL — and every ipfs URI
 // while the option is off — is returned unchanged, so this can wrap any URL
 // right where it reaches the network layer. The ipfs check runs first so the
-// hot non-ipfs paths never touch the preferences store.
-export default function maybeIpfsToGatewayUrl(url: string): string {
+// hot non-ipfs paths never touch the preferences store. `gatewayBase` pins
+// the gateway for callers that decided on one earlier (CacheManager records
+// the gateway a request went through, so the request must use that exact
+// gateway even if the preference changed while it waited in the download
+// queue); by default the current preference is used.
+export default function maybeIpfsToGatewayUrl(url: string, gatewayBase?: string): string {
   if (!isIpfsUrl(url) || !ipfsGatewayEnabled()) {
     return url;
   }
 
-  return ipfsToGatewayUrl(url);
+  return ipfsToGatewayUrl(url, gatewayBase ?? ipfsGatewayBase());
 }
 
 // Thrown instead of attempting a fetch that cannot happen: with the gateway
@@ -46,8 +66,8 @@ export class IpfsGatewayDisabledError extends Error {
 // only fetching: structural URL validation and serving already-cached content
 // stay independent of it, so every network call site funnels through here
 // instead of checking the option itself.
-export function toFetchableUrl(url: string): string {
-  const requestUrl = maybeIpfsToGatewayUrl(url);
+export function toFetchableUrl(url: string, gatewayBase?: string): string {
+  const requestUrl = maybeIpfsToGatewayUrl(url, gatewayBase);
   if (isIpfsUrl(requestUrl)) {
     throw new IpfsGatewayDisabledError();
   }
