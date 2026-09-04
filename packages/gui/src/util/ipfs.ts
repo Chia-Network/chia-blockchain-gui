@@ -74,6 +74,48 @@ export function getIpfsPath(url: string): string | undefined {
   return ipfsPath.length > 0 ? ipfsPath : undefined;
 }
 
+// IPFS content is also published as plain gateway URLs — path style
+// (`https://nftstorage.link/ipfs/<CID>/file.png`) or subdomain style
+// (`https://<CID>.ipfs.dweb.link/file.png`). Such a URL names the content by
+// its CID just like an ipfs:// URI does, so when its host stops serving it
+// the same bytes can be fetched from any other gateway and still verified
+// against the on-chain hash. Returns the `<CID>[/path]` part, or undefined
+// for URLs that do not point at IPFS content.
+const PATH_GATEWAY = /^https?:\/\/[^/?#]+\/ipfs\/([^?#]+)$/i;
+const SUBDOMAIN_GATEWAY = /^https?:\/\/([a-z0-9]+)\.ipfs\.[^/?#]+(\/[^?#]*)?$/i;
+
+export function getIpfsPathFromGatewayUrl(url: string): string | undefined {
+  if (typeof url !== 'string') {
+    return undefined;
+  }
+
+  const pathMatch = PATH_GATEWAY.exec(url);
+  if (pathMatch) {
+    const ipfsPath = pathMatch[1].replace(/\/+$/, '');
+    return ipfsPath.length > 0 ? ipfsPath : undefined;
+  }
+
+  const subdomainMatch = SUBDOMAIN_GATEWAY.exec(url);
+  if (subdomainMatch) {
+    const [, cid, path = ''] = subdomainMatch;
+    return `${cid}${path.replace(/\/+$/, '')}`;
+  }
+
+  return undefined;
+}
+
+// The `<CID>[/path]` behind any URL that names IPFS content — an ipfs:// URI
+// or a gateway URL — or undefined.
+export function getIpfsPathFromAnyUrl(url: string): string | undefined {
+  return getIpfsPath(url) ?? getIpfsPathFromGatewayUrl(url);
+}
+
+// Whether a URL names IPFS content that the configured gateway could serve:
+// an ipfs:// URI, or an https gateway URL whose own host may fail.
+export function isIpfsBackedUrl(url: string): boolean {
+  return getIpfsPathFromAnyUrl(url) !== undefined;
+}
+
 // Translates an ipfs:// URI to its HTTPS gateway equivalent. Anything else
 // (including an unusable bare `ipfs://`) is returned unchanged, so this can
 // wrap any URL right where it reaches the network layer. `gatewayBase` is a

@@ -12,7 +12,7 @@ import useCache from '../../../../hooks/useCache';
 import useIpfsGateway from '../../../../hooks/useIpfsGateway';
 import { useIpfsGatewayBase } from '../../../../hooks/useIpfsGatewayUrl';
 import getNFTPreviewStatusFromCache, { getNFTPreviewUrls } from '../../../../util/getNFTPreviewStatusFromCache';
-import { isIpfsUrl } from '../../../../util/ipfs';
+import { isIpfsBackedUrl } from '../../../../util/ipfs';
 
 const log = debug('chia-gui:NFTProvider:useNFTPreviewStatuses');
 
@@ -52,10 +52,11 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
   // which forgets it here.
   const [cacheInfos /* immutable */] = useState(() => new Map<string, CacheInfo>());
 
-  // The gateway ipfs:// files are fetched through (empty while the option is
-  // off). A persisted ipfs failure is a verdict on the gateway it went
-  // through; CacheManager re-requests such an entry as soon as the gateway
-  // differs, so here it settles nothing under any other gateway.
+  // The gateway ipfs:// files are fetched through, and https gateway links
+  // fall back to (empty while the option is off). A persisted ipfs failure is
+  // a verdict on the gateway it went through; CacheManager re-requests such
+  // an entry as soon as the gateway differs, so here it settles nothing under
+  // any other gateway.
   const [ipfsGateway] = useIpfsGateway();
   const ipfsGatewayBase = useIpfsGatewayBase();
   const ipfsGatewayKey = ipfsGateway ? ipfsGatewayBase : '';
@@ -184,7 +185,7 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
             if (
               cacheInfo?.state === CacheState.ERROR &&
               currentGateway &&
-              isIpfsUrl(url) &&
+              isIpfsBackedUrl(url) &&
               cacheInfo.gateway !== undefined &&
               cacheInfo.gateway !== currentGateway
             ) {
@@ -272,7 +273,7 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
     let changed = false;
     const reconsider = (nft: NFTInfo, nftId: string) => {
       const metadataState = getMetadata(nftId);
-      const ipfsUrls = getNFTPreviewUrls(nft, metadataState).filter(isIpfsUrl);
+      const ipfsUrls = getNFTPreviewUrls(nft, metadataState).filter(isIpfsBackedUrl);
       const isMetadataFailed = !metadataState.isLoading && !metadataState.metadata && !!metadataState.error;
       if (!ipfsUrls.length && !isMetadataFailed) {
         return;

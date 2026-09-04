@@ -8,6 +8,7 @@ import type Headers from '../../@types/Headers';
 import fileExists from './fileExists';
 import { toFetchableUrl } from './ipfsGateway';
 import isValidURL from './isValidURL';
+import getRequestUserAgent from './requestUserAgent';
 
 const log = debug('chia-gui:downloadFile');
 
@@ -121,6 +122,11 @@ type DownloadFileOptions = {
   // the gateway base an ipfs:// url is fetched through; defaults to the
   // current preference (see toFetchableUrl)
   gatewayBase?: string;
+  // the URL to actually request instead of `url` — the caller keeps `url` as
+  // its cache key while fetching the same content from elsewhere (an IPFS
+  // gateway URL whose own host failed, refetched through the configured
+  // gateway); must itself be a valid URL
+  requestUrl?: string;
 };
 
 export default async function downloadFile(
@@ -134,9 +140,10 @@ export default async function downloadFile(
     onProgress,
     overrideFile = false,
     gatewayBase,
+    requestUrl,
   }: DownloadFileOptions = {},
 ): Promise<Headers> {
-  if (!isValidURL(url)) {
+  if (!isValidURL(url) || (requestUrl !== undefined && !isValidURL(requestUrl))) {
     throw new Error('Invalid URL');
   }
 
@@ -155,7 +162,8 @@ export default async function downloadFile(
   // with the option off toFetchableUrl refuses the fetch outright. Only
   // this outgoing request uses the translated URL; callers keep the original
   // URI as the cache key.
-  const request = net.request(toFetchableUrl(url, gatewayBase));
+  const request = net.request(toFetchableUrl(requestUrl ?? url, gatewayBase));
+  request.setHeader('User-Agent', getRequestUserAgent());
   const outputStream = new WriteStreamPromise(tempFilePath, overrideFile);
 
   // set when we abort the request ourselves, so abort events can be reported

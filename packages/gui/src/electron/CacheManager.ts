@@ -12,7 +12,7 @@ import type CacheInfo from '../@types/CacheInfo';
 import type CacheInfoBase from '../@types/CacheInfoBase';
 import type Headers from '../@types/Headers';
 import CacheState from '../constants/CacheState';
-import { isIpfsUrl } from '../util/ipfs';
+import ipfsToGatewayUrl, { getIpfsPathFromGatewayUrl, isIpfsBackedUrl, normalizeIpfsGatewayBase } from '../util/ipfs';
 import limit from '../util/limit';
 
 import CacheAPI from './constants/CacheAPI';
@@ -438,8 +438,10 @@ export default class CacheManager extends EventEmitter {
     // Captured once, up front, and pinned for the download itself (which may
     // wait in the queue while the user changes the preference): the gateway a
     // request goes through is part of its outcome, so a failure must be
-    // recorded against the gateway the request actually used.
-    const requestGateway = isIpfsUrl(url) ? ipfsGatewayBase() : undefined;
+    // recorded against the gateway the request actually used. This covers
+    // ipfs:// URIs and https gateway URLs alike — the latter fall back to the
+    // configured gateway when their own host fails (see below).
+    const requestGateway = isIpfsBackedUrl(url) ? ipfsGatewayBase() : undefined;
 
     const ongoingRequest = this.ongoingRequests.get(url);
     if (ongoingRequest) {
@@ -504,7 +506,7 @@ export default class CacheManager extends EventEmitter {
           // only while the option is on, since with it off there is no
           // gateway to retry through and the refusal would never settle.
           const isGatewayChanged =
-            isIpfsUrl(url) &&
+            isIpfsBackedUrl(url) &&
             cacheInfo.gateway !== undefined &&
             ipfsGatewayEnabled() &&
             cacheInfo.gateway !== ipfsGatewayBase();
@@ -518,14 +520,33 @@ export default class CacheManager extends EventEmitter {
         const limitedRemoteFileDownload = async (): Promise<CacheInfo> => {
           const cacheFilePath = this.getCacheFilePath(url);
 
-          log('Starting download', url);
-          const headers = await downloadFile(url, cacheFilePath, {
+          const downloadOptions = {
             timeout,
             maxSize,
             signal: abortController.signal,
             overrideFile: true,
             gatewayBase: requestGateway,
-          });
+          };
+
+          log('Starting download', url);
+          let headers: Headers;
+          try {
+            headers = await downloadFile(url, cacheFilePath, downloadOptions);
+          } catch (downloadError) {
+            // An https gateway URL names its content by CID, so when its own
+            // host fails (gone, rate limiting, challenging the request) the
+            // same bytes can be fetched through the user's gateway and are
+            // still verified against the on-chain hash. Only when the option
+            // is on, the host is not already that gateway, and the failure is
+            // the host's — not an abort, a size cap, or the option itself.
+            const fallbackUrl = this.getGatewayFallbackUrl(url, requestGateway, downloadError as Error);
+            if (!fallbackUrl) {
+              throw downloadError;
+            }
+
+            log(`Download failed (${(downloadError as Error).message}), retrying through the gateway`, url);
+            headers = await downloadFile(url, cacheFilePath, { ...downloadOptions, requestUrl: fallbackUrl });
+          }
 
           log('Download finished', url);
 
@@ -599,6 +620,36 @@ export default class CacheManager extends EventEmitter {
     });
 
     return promise;
+  }
+
+  // The configured-gateway URL to refetch an https gateway URL from after its
+  // own host failed, or undefined when no fallback applies.
+  private getGatewayFallbackUrl(url: string, gatewayBase: string | undefined, error: Error): string | undefined {
+    if (gatewayBase === undefined || !ipfsGatewayEnabled()) {
+      return undefined;
+    }
+
+    const ipfsPath = getIpfsPathFromGatewayUrl(url);
+    if (!ipfsPath) {
+      // ipfs:// URIs already went through the gateway
+      return undefined;
+    }
+
+    const isHostFailure =
+      !['Response aborted', 'Request aborted', MAX_FILE_SIZE_EXCEEDED_ERROR].includes(error.message) &&
+      !(error instanceof IpfsGatewayDisabledError);
+    if (!isHostFailure) {
+      return undefined;
+    }
+
+    const fallbackUrl = ipfsToGatewayUrl(`ipfs://${ipfsPath}`, gatewayBase);
+    // the URL's own host is the configured gateway: nothing else to try
+    const ownBase = normalizeIpfsGatewayBase(url.slice(0, url.indexOf('/ipfs/') + 1));
+    if (fallbackUrl === url || ownBase === gatewayBase) {
+      return undefined;
+    }
+
+    return fallbackUrl;
   }
 
   async getHeaders(

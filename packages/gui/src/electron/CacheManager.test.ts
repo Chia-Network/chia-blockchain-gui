@@ -457,6 +457,113 @@ describe('CacheManager eviction', () => {
     }
   });
 
+  it('refetches an IPFS gateway link through the configured gateway when its own host fails', async () => {
+    const payload = Buffer.from('cached payload');
+    const url = 'https://nftstorage.link/ipfs/QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/img.png';
+    mockDownloadFile
+      .mockRejectedValueOnce(new Error('HTTP error: 403'))
+      .mockImplementationOnce(async (_url, localPath) => {
+        await fs.writeFile(localPath, payload);
+        return {
+          'content-type': 'image/png',
+        };
+      });
+
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+
+    await expect(cacheManager.getContent(url)).resolves.toEqual(payload);
+    expect(mockDownloadFile).toHaveBeenCalledTimes(2);
+    // same cache key, fetched from the gateway instead
+    expect(mockDownloadFile.mock.calls[1][0]).toBe(url);
+    expect(mockDownloadFile.mock.calls[1][2]).toMatchObject({
+      requestUrl: 'https://ipfs.io/ipfs/QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/img.png',
+    });
+  });
+
+  it.each([
+    ['a plain https url', 'https://example.com/nft.png', 'HTTP error: 403'],
+    [
+      'a link already served by the configured gateway',
+      'https://ipfs.io/ipfs/QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/img.png',
+      'HTTP error: 403',
+    ],
+    [
+      'an aborted download',
+      'https://nftstorage.link/ipfs/QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/img.png',
+      'Request aborted',
+    ],
+    [
+      'a download over the size cap',
+      'https://nftstorage.link/ipfs/QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/img.png',
+      'Maximum file size exceeded',
+    ],
+  ])('does not fall back to the gateway for %s', async (_label, url, message) => {
+    mockDownloadFile.mockRejectedValue(new Error(message));
+
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+
+    await expect(cacheManager.getContent(url)).rejects.toThrow(message);
+    expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not fall back to the gateway while the gateway option is off', async () => {
+    const url = 'https://nftstorage.link/ipfs/QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/img.png';
+    mockDownloadFile.mockRejectedValue(new Error('HTTP error: 403'));
+    mockIpfsGatewayEnabled.mockReturnValue(false);
+
+    try {
+      const cacheManager = new CacheManager({
+        cacheDirectory,
+        maxCacheSize: 1024,
+      });
+      await cacheManager.init();
+
+      await expect(cacheManager.getContent(url)).rejects.toThrow('HTTP error: 403');
+      expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+    } finally {
+      mockIpfsGatewayEnabled.mockReturnValue(true);
+    }
+  });
+
+  it('records the gateway a failed fallback went through, so a gateway change retries the link', async () => {
+    const payload = Buffer.from('cached payload');
+    const url = 'https://nftstorage.link/ipfs/QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/img.png';
+    mockDownloadFile.mockRejectedValue(new Error('HTTP error: 504'));
+
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+
+    await expect(cacheManager.getContent(url)).rejects.toThrow('HTTP error: 504');
+    expect(mockDownloadFile).toHaveBeenCalledTimes(2);
+    const [info] = await cacheManager.getCacheInfos([url]);
+    expect(info).toMatchObject({ state: 'ERROR', gateway: 'https://ipfs.io/ipfs/' });
+
+    mockDownloadFile.mockReset();
+    mockDownloadFile.mockImplementation(async (_url, localPath) => {
+      await fs.writeFile(localPath, payload);
+      return {
+        'content-type': 'image/png',
+      };
+    });
+    mockIpfsGatewayBase.mockReturnValue('https://gateway.pinata.cloud/ipfs/');
+    try {
+      await expect(cacheManager.getContent(url)).resolves.toEqual(payload);
+    } finally {
+      mockIpfsGatewayBase.mockReturnValue('https://ipfs.io/ipfs/');
+    }
+  });
+
   it('does not treat a gateway change as a reason to retry a non-ipfs failure', async () => {
     mockDownloadFile.mockRejectedValue(new Error('HTTP error: 404'));
 
