@@ -42,6 +42,29 @@ describe('downloadFile', () => {
     expect(request.setHeader).toHaveBeenCalledWith('User-Agent', expect.stringMatching(/^Chia-Blockchain-GUI\//));
   });
 
+  it('accepts a plain-http override on this machine, the form a local gateway takes', async () => {
+    const request = Object.assign(new EventEmitter(), {
+      abort: jest.fn(),
+      setHeader: jest.fn(),
+      end: jest.fn(() => {
+        const response = Object.assign(new EventEmitter(), { statusCode: 404, headers: {} });
+        request.emit('response', response);
+      }),
+    });
+    request.abort.mockImplementation(() => request.emit('abort'));
+    mockNetRequest.mockReturnValue(request);
+
+    await expect(
+      downloadFile(
+        'https://nftstorage.link/ipfs/bafybeigdyrztest/img.png',
+        path.join(os.tmpdir(), 'downloadFile-test-local-override.png'),
+        { requestUrl: 'http://127.0.0.1:8080/ipfs/bafybeigdyrztest/img.png' },
+      ),
+    ).rejects.toThrow('HTTP error: 404');
+
+    expect(mockNetRequest).toHaveBeenCalledWith('http://127.0.0.1:8080/ipfs/bafybeigdyrztest/img.png');
+  });
+
   it('rejects an invalid override URL before requesting anything', async () => {
     await expect(
       downloadFile('https://example.com/img.png', path.join(os.tmpdir(), 'downloadFile-test-bad-override.png'), {

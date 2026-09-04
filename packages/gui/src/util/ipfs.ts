@@ -16,6 +16,18 @@ export const NFT_IPFS_GATEWAY_URL_PREF = 'nftIpfsGatewayUrl';
 // https like every other NFT resource URL.
 const LOOPBACK_HOSTS = new Set(['localhost', '127.0.0.1', '[::1]']);
 
+// A plain-http URL on this machine — the one form of non-https URL the
+// gateway setting accepts (see normalizeIpfsGatewayBase), so a request URL
+// built from such a gateway is fetchable even though it is not https.
+export function isLoopbackHttpUrl(url: string): boolean {
+  try {
+    const parsed = new URL(url);
+    return parsed.protocol === 'http:' && LOOPBACK_HOSTS.has(parsed.hostname);
+  } catch {
+    return false;
+  }
+}
+
 // Turns whatever the user typed into the base every ipfs path is appended
 // to: `https://dweb.link`, `https://dweb.link/ipfs` and `https://dweb.link/ipfs/`
 // all become `https://dweb.link/ipfs/`. Returns undefined for anything that

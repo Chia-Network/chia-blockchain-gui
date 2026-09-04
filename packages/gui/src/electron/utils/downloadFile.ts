@@ -4,6 +4,7 @@ import { promises as fs, createWriteStream, type WriteStream } from 'node:fs';
 import debug from 'debug';
 
 import type Headers from '../../@types/Headers';
+import { isLoopbackHttpUrl } from '../../util/ipfs';
 
 import fileExists from './fileExists';
 import { toFetchableUrl } from './ipfsGateway';
@@ -125,7 +126,8 @@ type DownloadFileOptions = {
   // the URL to actually request instead of `url` — the caller keeps `url` as
   // its cache key while fetching the same content from elsewhere (an IPFS
   // gateway URL whose own host failed, refetched through the configured
-  // gateway); must itself be a valid URL
+  // gateway); must itself be an https URL or a plain-http one on this
+  // machine, the forms the gateway setting accepts
   requestUrl?: string;
 };
 
@@ -143,7 +145,11 @@ export default async function downloadFile(
     requestUrl,
   }: DownloadFileOptions = {},
 ): Promise<Headers> {
-  if (!isValidURL(url) || (requestUrl !== undefined && !isValidURL(requestUrl))) {
+  if (!isValidURL(url)) {
+    throw new Error('Invalid URL');
+  }
+
+  if (requestUrl !== undefined && !isValidURL(requestUrl) && !isLoopbackHttpUrl(requestUrl)) {
     throw new Error('Invalid URL');
   }
 

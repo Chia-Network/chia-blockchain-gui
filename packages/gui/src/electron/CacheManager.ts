@@ -12,7 +12,12 @@ import type CacheInfo from '../@types/CacheInfo';
 import type CacheInfoBase from '../@types/CacheInfoBase';
 import type Headers from '../@types/Headers';
 import CacheState from '../constants/CacheState';
-import ipfsToGatewayUrl, { getIpfsPathFromGatewayUrl, isIpfsBackedUrl, normalizeIpfsGatewayBase } from '../util/ipfs';
+import ipfsToGatewayUrl, {
+  getIpfsPathFromGatewayUrl,
+  isIpfsBackedUrl,
+  isIpfsUrl,
+  normalizeIpfsGatewayBase,
+} from '../util/ipfs';
 import limit from '../util/limit';
 
 import CacheAPI from './constants/CacheAPI';
@@ -440,8 +445,12 @@ export default class CacheManager extends EventEmitter {
     // request goes through is part of its outcome, so a failure must be
     // recorded against the gateway the request actually used. This covers
     // ipfs:// URIs and https gateway URLs alike — the latter fall back to the
-    // configured gateway when their own host fails (see below).
-    const requestGateway = isIpfsBackedUrl(url) ? ipfsGatewayBase() : undefined;
+    // configured gateway when their own host fails (see below), but only
+    // while the option is on, so with it off a gateway link's failure is a
+    // verdict on its own host alone and records no gateway; turning the
+    // option on then gives the link its first fallback (isGatewayChanged).
+    const requestGateway =
+      isIpfsUrl(url) || (isIpfsBackedUrl(url) && ipfsGatewayEnabled()) ? ipfsGatewayBase() : undefined;
 
     const ongoingRequest = this.ongoingRequests.get(url);
     if (ongoingRequest) {
@@ -501,15 +510,18 @@ export default class CacheManager extends EventEmitter {
           // An ipfs failure is a verdict on one gateway, not on the resource:
           // once the user points the option at another gateway the entry is
           // re-requested right away, whatever the error was and however
-          // recently it was recorded. Only a sidecar that names its gateway
-          // can say so — older ones follow the transient-error rules — and
-          // only while the option is on, since with it off there is no
-          // gateway to retry through and the refusal would never settle.
+          // recently it was recorded. Only while the option is on, since with
+          // it off there is no gateway to retry through and the refusal would
+          // never settle. A sidecar that names its gateway is compared with
+          // the current one; an https gateway link without a recorded gateway
+          // failed without ever getting the fallback (the option was off, or
+          // the sidecar predates it), so it gets one now — the attempt records
+          // the gateway and settles it. An ipfs:// sidecar without a gateway
+          // predates gateway tracking and follows the transient-error rules.
           const isGatewayChanged =
             isIpfsBackedUrl(url) &&
-            cacheInfo.gateway !== undefined &&
             ipfsGatewayEnabled() &&
-            cacheInfo.gateway !== ipfsGatewayBase();
+            (cacheInfo.gateway === undefined ? !isIpfsUrl(url) : cacheInfo.gateway !== ipfsGatewayBase());
           if (!isAbortError && !isRetriableTransientError && !isSizeLimitLifted && !isGatewayChanged) {
             return cacheInfo;
           }

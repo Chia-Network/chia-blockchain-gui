@@ -514,23 +514,59 @@ describe('CacheManager eviction', () => {
     expect(mockDownloadFile).toHaveBeenCalledTimes(1);
   });
 
-  it('does not fall back to the gateway while the gateway option is off', async () => {
+  it('does not fall back to the gateway while the gateway option is off, and gives the link its fallback once it is on', async () => {
+    const payload = Buffer.from('cached payload');
     const url = 'https://nftstorage.link/ipfs/QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/img.png';
     mockDownloadFile.mockRejectedValue(new Error('HTTP error: 403'));
     mockIpfsGatewayEnabled.mockReturnValue(false);
 
-    try {
-      const cacheManager = new CacheManager({
-        cacheDirectory,
-        maxCacheSize: 1024,
-      });
-      await cacheManager.init();
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
 
+    try {
       await expect(cacheManager.getContent(url)).rejects.toThrow('HTTP error: 403');
       expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+      // the failure was the host's alone: no gateway was involved
+      const [info] = await cacheManager.getCacheInfos([url]);
+      expect(info).toMatchObject({ state: 'ERROR', error: 'HTTP error: 403' });
+      expect(info).not.toHaveProperty('gateway');
     } finally {
       mockIpfsGatewayEnabled.mockReturnValue(true);
     }
+
+    // the same gateway as before, just switched on: the link is retried and
+    // this time falls back to the gateway
+    mockDownloadFile.mockReset();
+    mockDownloadFile
+      .mockRejectedValueOnce(new Error('HTTP error: 403'))
+      .mockImplementationOnce(async (_url, localPath) => {
+        await fs.writeFile(localPath, payload);
+        return {
+          'content-type': 'image/png',
+        };
+      });
+    await expect(cacheManager.getContent(url)).resolves.toEqual(payload);
+    expect(mockDownloadFile).toHaveBeenCalledTimes(2);
+  });
+
+  it('settles a gateway link whose host is the configured gateway instead of retrying it on every access', async () => {
+    const url = 'https://ipfs.io/ipfs/QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/img.png';
+    mockDownloadFile.mockRejectedValue(new Error('HTTP error: 403'));
+
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+
+    await expect(cacheManager.getContent(url)).rejects.toThrow('HTTP error: 403');
+    await expect(cacheManager.getContent(url)).rejects.toThrow('HTTP error: 403');
+    expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+    const [info] = await cacheManager.getCacheInfos([url]);
+    expect(info).toMatchObject({ state: 'ERROR', gateway: 'https://ipfs.io/ipfs/' });
   });
 
   it('records the gateway a failed fallback went through, so a gateway change retries the link', async () => {
