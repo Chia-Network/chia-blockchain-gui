@@ -12,7 +12,7 @@ import useCache from '../../../../hooks/useCache';
 import useIpfsGateway from '../../../../hooks/useIpfsGateway';
 import { useIpfsGatewayBase } from '../../../../hooks/useIpfsGatewayUrl';
 import getNFTPreviewStatusFromCache, { getNFTPreviewUrls } from '../../../../util/getNFTPreviewStatusFromCache';
-import { isIpfsBackedUrl } from '../../../../util/ipfs';
+import { isIpfsBackedUrl, isIpfsUrl } from '../../../../util/ipfs';
 
 const log = debug('chia-gui:NFTProvider:useNFTPreviewStatuses');
 
@@ -179,6 +179,12 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
             fetchedInfos.forEach((cacheInfo) => cacheInfos.set(cacheInfo.url, cacheInfo));
           }
 
+          // Mirrors CacheManager's gateway-change rule: while the option is
+          // on, a failure recorded under another gateway — or, for an https
+          // gateway link, without any gateway, meaning it never got the
+          // fallback — is re-requested on the next access, so it settles
+          // nothing here. An ipfs:// sidecar without a gateway predates
+          // gateway tracking and stays a settled failure.
           const currentGateway = ipfsGatewayKeyRef.current;
           const getCacheInfo = (url: string): CacheInfo | undefined => {
             const cacheInfo = cacheInfos.get(url);
@@ -186,10 +192,8 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
               cacheInfo?.state === CacheState.ERROR &&
               currentGateway &&
               isIpfsBackedUrl(url) &&
-              cacheInfo.gateway !== undefined &&
-              cacheInfo.gateway !== currentGateway
+              (cacheInfo.gateway === undefined ? !isIpfsUrl(url) : cacheInfo.gateway !== currentGateway)
             ) {
-              // recorded under another gateway — the next access re-requests it
               return { url: cacheInfo.url, timestamp: cacheInfo.timestamp, state: CacheState.NOT_CACHED };
             }
 
