@@ -1,5 +1,26 @@
 # PR #3068 audit follow-up: serialize directory migration with downloads and clear
 
+## 2026-09-07: enforce the quota for failed-download records
+
+Eviction now groups every owned file by its cache entry, including standalone
+ERROR sidecars and stale sidecar temporary files. Its byte total therefore
+matches the size display even when no download succeeds. Housekeeping runs
+after saving failures as well as successes. The newest result stays available
+to its caller, while older entries can be removed to meet the configured quota.
+
+Eviction passes are serialized so concurrent failure completions do not all
+skip each other's unfinished writes and leave the cache permanently oversized.
+Active downloads and leased reads protect all files belonging to their entry.
+As before, active files or an individual preserved entry larger than the quota
+can temporarily exceed it; the setting is not a reservation of disk space.
+
+Four regressions cover reducing a failure-only cache's limit, automatic
+housekeeping after failures, concurrent failure bursts, and orphan sidecar
+temporaries. The migration, read-lease, deadline and existing eviction tests
+also run against the combined implementation.
+
+## Earlier migration follow-up
+
 The previous implementation left a live temporary file in the old directory,
 then published the new cache directory while the transfer was still active.
 The transfer subsequently renamed its data in the old directory but wrote its
