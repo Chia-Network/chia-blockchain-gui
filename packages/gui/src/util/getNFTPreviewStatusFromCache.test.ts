@@ -3,9 +3,11 @@ import type MetadataState from '../@types/MetadataState';
 import NFTPreviewStatus from '../@types/NFTPreviewStatus';
 import CacheState from '../constants/CacheState';
 
+import { MAX_TRANSIENT_RETRIES, transientErrorRetryDelay } from './downloadErrors';
 import getNFTPreviewStatusFromCache, {
   MAX_URIS_PER_CANDIDATE,
   getNFTPreviewUrls,
+  getNFTPreviewRetryDueAt,
 } from './getNFTPreviewStatusFromCache';
 
 const HASH = '0xabc123';
@@ -92,7 +94,8 @@ describe('getNFTPreviewStatusFromCache', () => {
     'net::ERR_CONNECTION_RESET',
     'net::ERR_NAME_NOT_RESOLVED',
     'Request timed out after 30000ms of inactivity',
-  ])('stays undecided after %p, an error the cache will retry', (message) => {
+  ])('stays undecided after %p, an error the cache will retry on the next access', (message) => {
+    // recorded long ago: its retry delay has run out
     const status = getNFTPreviewStatusFromCache(
       { dataUris: ['https://a/x.png'], dataHash: HASH },
       noMetadata,
@@ -100,6 +103,68 @@ describe('getNFTPreviewStatusFromCache', () => {
     );
 
     expect(status).toBeUndefined();
+  });
+
+  describe('a transient failure inside its retry delay', () => {
+    const now = 1_700_000_000_000;
+    const failure = (retries: number | undefined, ago: number): CacheInfo => ({
+      url: 'https://a/x.png',
+      state: CacheState.ERROR,
+      error: 'HTTP error: 504',
+      timestamp: now - ago,
+      ...(retries === undefined ? {} : { retries }),
+    });
+    const nft = { dataUris: ['https://a/x.png'], dataHash: HASH };
+
+    it('is unavailable for now: a tile that asked would be served the persisted failure', () => {
+      expect(getNFTPreviewStatusFromCache(nft, noMetadata, lookup([failure(1, 1000)]), now)).toBe(
+        NFTPreviewStatus.UNAVAILABLE,
+      );
+      expect(getNFTPreviewRetryDueAt(nft, noMetadata, lookup([failure(1, 1000)]), now)).toBe(
+        now - 1000 + transientErrorRetryDelay(1),
+      );
+    });
+
+    it('is undecided again once the delay has run out', () => {
+      const infos = lookup([failure(1, transientErrorRetryDelay(1))]);
+      expect(getNFTPreviewStatusFromCache(nft, noMetadata, infos, now)).toBeUndefined();
+      expect(getNFTPreviewRetryDueAt(nft, noMetadata, infos, now)).toBeUndefined();
+    });
+
+    it('waits longer after every consecutive failure', () => {
+      const infos = lookup([failure(3, transientErrorRetryDelay(3) - 1)]);
+      expect(getNFTPreviewStatusFromCache(nft, noMetadata, infos, now)).toBe(NFTPreviewStatus.UNAVAILABLE);
+      expect(getNFTPreviewRetryDueAt(nft, noMetadata, infos, now)).toBe(now + 1);
+    });
+
+    it('is unavailable for good once the retries are exhausted', () => {
+      const infos = lookup([failure(MAX_TRANSIENT_RETRIES, 365 * 24 * 60 * 60 * 1000)]);
+      expect(getNFTPreviewStatusFromCache(nft, noMetadata, infos, now)).toBe(NFTPreviewStatus.UNAVAILABLE);
+      // nothing to look at again
+      expect(getNFTPreviewRetryDueAt(nft, noMetadata, infos, now)).toBeUndefined();
+    });
+
+    it('treats a sidecar written before failures were timestamped as due', () => {
+      const infos = lookup([{ ...failure(1, 0), timestamp: 0 }]);
+      expect(getNFTPreviewStatusFromCache(nft, noMetadata, infos, now)).toBeUndefined();
+    });
+
+    it('is not held back by an abort, which the cache retries at once', () => {
+      const infos = lookup([{ ...failure(1, 1000), error: 'Request aborted' }]);
+      expect(getNFTPreviewStatusFromCache(nft, noMetadata, infos, now)).toBeUndefined();
+      expect(getNFTPreviewRetryDueAt(nft, noMetadata, infos, now)).toBeUndefined();
+    });
+
+    it('reports the earliest retry among the sources', () => {
+      const infos = lookup([
+        { ...failure(2, 1000), url: 'https://a/x.png' },
+        { ...failure(1, 1000), url: 'https://thumbs/x.png' },
+      ]);
+      expect(getNFTPreviewStatusFromCache(nft, metadataWithPreview, infos, now)).toBe(NFTPreviewStatus.UNAVAILABLE);
+      expect(getNFTPreviewRetryDueAt(nft, metadataWithPreview, infos, now)).toBe(
+        now - 1000 + transientErrorRetryDelay(1),
+      );
+    });
   });
 
   it.each(['HTTP error: 404', 'HTTP error: 410', 'HTTP error: 501', 'net::ERR_CERT_AUTHORITY_INVALID', 'Invalid URL'])(
