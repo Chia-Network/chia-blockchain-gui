@@ -1,7 +1,7 @@
 import { BrowserWindow, dialog, type Protocol } from 'electron';
 import { EventEmitter } from 'events';
 import crypto from 'node:crypto';
-import { createReadStream } from 'node:fs';
+import { createReadStream, type Stats } from 'node:fs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { Readable } from 'node:stream';
@@ -13,6 +13,7 @@ import type CacheInfoBase from '../@types/CacheInfoBase';
 import type { CacheContent, CacheRequestOptions } from '../@types/CacheService';
 import type Headers from '../@types/Headers';
 import CacheState from '../constants/CacheState';
+import { DOWNLOAD_DEADLINE_ERROR_PREFIX, INACTIVITY_TIMEOUT_ERROR_PREFIX } from '../util/downloadErrors';
 import ipfsToGatewayUrl, { getGatewayHost, getIpfsPathFromGatewayUrl, isIpfsBackedUrl, isIpfsUrl } from '../util/ipfs';
 import limit from '../util/limit';
 
@@ -42,6 +43,8 @@ export const CACHE_PROTOCOL = 'cache';
 // 'ignore' means the header is absent or uses a form we do not support
 // (e.g. multiple ranges), in which case the full file is served with a 200.
 type ParsedRange = { start: number; end: number } | 'invalid' | 'ignore';
+
+type DownloadPolicy = { maxSize: number; maxDuration: number; timeout: number };
 
 function parseRangeHeader(rangeHeader: string | null, fileSize: number): ParsedRange {
   if (!rangeHeader) {
@@ -227,6 +230,8 @@ export default class CacheManager extends EventEmitter {
   private maintenance: Promise<void> | undefined;
 
   private clearing: Promise<void> | undefined;
+
+  private eviction: Promise<void> = Promise.resolve();
 
   private maintenanceGeneration = 0;
 
@@ -647,7 +652,22 @@ export default class CacheManager extends EventEmitter {
   // is cached, or a failure the retry rules say not to retry now — so that
   // no transfer is called for. Shared by the transfer path and by callers
   // whose allowance can afford no transfer.
-  private isSettledOutcome(cacheInfo: CacheInfo, url: string, maxSize: number): boolean {
+  private isPolicyLimitLifted(cacheInfo: CacheInfo, policy: DownloadPolicy): boolean {
+    if (cacheInfo.state !== CacheState.ERROR) {
+      return false;
+    }
+    return (
+      (cacheInfo.error === MAX_FILE_SIZE_EXCEEDED_ERROR && policy.maxSize > (cacheInfo.maxSize ?? MAX_FILE_SIZE)) ||
+      (cacheInfo.error.startsWith(DOWNLOAD_DEADLINE_ERROR_PREFIX) &&
+        cacheInfo.maxDuration !== undefined &&
+        policy.maxDuration > cacheInfo.maxDuration) ||
+      (cacheInfo.error.startsWith(INACTIVITY_TIMEOUT_ERROR_PREFIX) &&
+        cacheInfo.timeout !== undefined &&
+        policy.timeout > cacheInfo.timeout)
+    );
+  }
+
+  private isSettledOutcome(cacheInfo: CacheInfo, url: string, policy: DownloadPolicy): boolean {
     if (cacheInfo.state === CacheState.CACHED) {
       return true;
     }
@@ -670,10 +690,9 @@ export default class CacheManager extends EventEmitter {
       isTransientDownloadError(cacheInfo.error) &&
       (!this.transientFailureUrls.has(url) ||
         (retries < MAX_TRANSIENT_RETRIES && Date.now() - cacheInfo.timestamp >= transientErrorRetryDelay(retries)));
-    // A persisted size-limit error is only retried when the caller lifts
-    // the limit, so oversized files are not re-downloaded on every visit.
-    const isSizeLimitLifted =
-      cacheInfo.error === MAX_FILE_SIZE_EXCEEDED_ERROR && maxSize > (cacheInfo.maxSize ?? MAX_FILE_SIZE);
+    // A caller limit describes that attempt, not the resource. Keep backoff
+    // at the same or smaller limits, but allow a larger caller its own try.
+    const isLimitLifted = this.isPolicyLimitLifted(cacheInfo, policy);
     // An ipfs failure is a verdict on one gateway, not on the resource:
     // once the user points the option at another gateway the entry is
     // re-requested right away, whatever the error was and however
@@ -689,7 +708,7 @@ export default class CacheManager extends EventEmitter {
       isIpfsBackedUrl(url) &&
       ipfsGatewayEnabled() &&
       (cacheInfo.gateway === undefined ? !isIpfsUrl(url) : cacheInfo.gateway !== ipfsGatewayBase());
-    return !isAbortError && !isRetriableTransientError && !isSizeLimitLifted && !isGatewayChanged;
+    return !isAbortError && !isRetriableTransientError && !isLimitLifted && !isGatewayChanged;
   }
 
   async fetchRemoteContent(
@@ -711,6 +730,7 @@ export default class CacheManager extends EventEmitter {
     // joins. The floor is never reached: a spent allowance is turned away
     // below before it could start or join one.
     const maxDuration = Math.max(1, Math.min(normalizeDownloadDuration(options.maxDuration), budget.remaining));
+    const policy = { maxSize, maxDuration, timeout };
 
     // Recheck after each await: another maintenance operation may have been
     // queued while this caller waited. No await separates the last check from
@@ -733,7 +753,7 @@ export default class CacheManager extends EventEmitter {
     if (budget.remaining <= 0) {
       if (!this.ongoingRequests.has(url)) {
         const cacheInfo = await this.getCacheInfoByURL(url);
-        if (this.isSettledOutcome(cacheInfo, url, maxSize)) {
+        if (this.isSettledOutcome(cacheInfo, url, policy)) {
           return cacheInfo;
         }
       }
@@ -808,7 +828,15 @@ export default class CacheManager extends EventEmitter {
         return joinWithinBudget(ongoingRequest).then(lookAgain, lookAgain);
       }
 
-      return joinWithinBudget(ongoingRequest);
+      const outcome = await joinWithinBudget(ongoingRequest);
+      // The first caller may have requested metadata while this caller wants
+      // a larger/longer media transfer. Its limit failure cannot decide ours.
+      // The old writer has fully settled before re-admission; the time already
+      // spent waiting is charged above and is never granted again.
+      if (budget.remaining > 0 && this.isPolicyLimitLifted(outcome, { ...policy, maxDuration: budget.remaining })) {
+        return this.fetchRemoteContent(url, options, budget);
+      }
+      return outcome;
     }
 
     const abortController = new AbortController();
@@ -848,7 +876,7 @@ export default class CacheManager extends EventEmitter {
 
         if (cacheInfo.state === CacheState.ERROR) {
           log(`Url already downloaded with error: ${cacheInfo.error}`, url);
-          if (this.isSettledOutcome(cacheInfo, url, maxSize)) {
+          if (this.isSettledOutcome(cacheInfo, url, policy)) {
             return cacheInfo;
           }
 
@@ -917,22 +945,7 @@ export default class CacheManager extends EventEmitter {
           });
 
           log('Cache info saved', url);
-          try {
-            // remove old files if the cache is full
-            const currentCacheSize = await this.getCacheSize();
-            if (this.maxCacheSize > 0 && currentCacheSize > this.maxCacheSize) {
-              // The current size already includes the file that was just
-              // downloaded. Keep that file available to the caller and evict
-              // older entries down to the configured total-size target.
-              await this.removeOldestFiles(this.maxCacheSize, cacheFilePath);
-            }
-          } catch (housekeepingError) {
-            // The download and its cache info are already saved — a failure in
-            // cache bookkeeping must not overwrite that state with an error.
-            log(`Cache housekeeping failed: ${(housekeepingError as Error).message}`, url);
-          }
-          // todo just add size and save it locally
-          this.emit('sizeChanged');
+          await this.trimCache(cacheFilePath);
 
           return updatedCacheInfo;
         };
@@ -957,16 +970,21 @@ export default class CacheManager extends EventEmitter {
           this.transientFailureUrls.add(url);
         }
 
-        return await this.setCacheInfo(url, {
+        const failureInfo = await this.setCacheInfo(url, {
           state: CacheState.ERROR,
           error: currentError.message,
           // the cap this attempt ran under, so a later caller with a larger
           // one is retried and one with the same or a smaller one is not
           ...(currentError.message === MAX_FILE_SIZE_EXCEEDED_ERROR ? { maxSize } : {}),
+          ...(currentError.message.startsWith(DOWNLOAD_DEADLINE_ERROR_PREFIX) ? { maxDuration } : {}),
+          ...(currentError.message.startsWith(INACTIVITY_TIMEOUT_ERROR_PREFIX) ? { timeout } : {}),
           ...(isTransient ? { retries: this.consecutiveTransientFailures(previousCacheInfo, requestGateway) + 1 } : {}),
           // which gateway the verdict belongs to (see isGatewayChanged above)
           ...(requestGateway === undefined ? {} : { gateway: requestGateway }),
         });
+        // Failed downloads own sidecars too, even when no data file arrived.
+        await this.trimCache(this.getCacheFilePath(url));
+        return failureInfo;
       } finally {
         transferDeadline.finish();
         // Clearing may have allowed a replacement request under this key.
@@ -1394,71 +1412,85 @@ export default class CacheManager extends EventEmitter {
     });
   }
 
-  private async removeOldestFiles(targetSize: number, preserveFilePath?: string): Promise<void> {
-    const files = await fs.readdir(this.cacheDirectory);
-    // Temp files of downloads in flight count toward the total like every
-    // other file but are never evicted — the download would fail; stale ones
-    // are evictable like any other file.
-    const inFlight = this.inFlightTempFilePaths();
-    const filePaths = files
-      .filter((file) => isChiaCacheFile(file) && !isChiaCacheInfoFile(file))
-      .map((file) => path.join(this.cacheDirectory, file));
+  private async trimCache(preserveFilePath: string) {
+    try {
+      if ((await this.getCacheSize()) > this.maxCacheSize) {
+        await this.removeOldestFiles(this.maxCacheSize, preserveFilePath);
+      }
+    } catch (error) {
+      // Housekeeping must not replace the download's saved success or failure.
+      log(`Cache housekeeping failed: ${(error as Error).message}`);
+    }
+    this.emit('sizeChanged');
+  }
 
-    // Include the sidecar metadata in each entry's size so the eviction total
-    // uses the same accounting as getCacheSize().
+  private removeOldestFiles(targetSize: number, preserveFilePath?: string): Promise<void> {
+    // A burst of completions must not have every scan skip every other entry
+    // as still in flight and then leave the directory over quota permanently.
+    const pending = this.eviction.catch(() => {}).then(() => this.performEviction(targetSize, preserveFilePath));
+    this.eviction = pending;
+    return pending;
+  }
+
+  private async performEviction(targetSize: number, preserveFilePath?: string): Promise<void> {
+    const directory = this.cacheDirectory;
+    const files = await fs.readdir(directory);
+    const groups = new Map<string, string[]>();
+    files.filter(isChiaCacheFile).forEach((file) => {
+      const suffix = isChiaCacheInfoFile(file)
+        ? file.endsWith(INFO_TEMP_SUFFIX)
+          ? INFO_TEMP_SUFFIX
+          : INFO_SUFFIX
+        : file.endsWith(TEMP_FILE_SUFFIX)
+          ? TEMP_FILE_SUFFIX
+          : '';
+      const filePath = path.join(directory, suffix ? file.slice(0, -suffix.length) : file);
+      const members = groups.get(filePath) ?? [];
+      members.push(path.join(directory, file));
+      groups.set(filePath, members);
+    });
+
+    // Count every owned file exactly once, including ERROR-only sidecars and
+    // stale sidecar temporaries. Group companions so eviction never leaves a
+    // CACHED record behind after deleting its bytes.
     const statLimit = limit(FILE_STAT_CONCURRENCY);
-    const fileStats = (
-      await Promise.all(
-        filePaths.map((filePath) =>
-          statLimit<{ filePath: string; size: number; mtime: Date } | undefined>(async () => {
-            try {
-              const stats = await fs.stat(filePath);
-              let infoSize = 0;
+    const fileStats = await Promise.all(
+      Array.from(groups, async ([filePath, members]) => {
+        const stats = await Promise.all(
+          members.map((member) =>
+            statLimit<Stats | undefined>(async () => {
               try {
-                infoSize = (await fs.stat(getInfoFilePath(filePath))).size;
+                return await fs.stat(member);
               } catch {
-                // A missing sidecar is cleaned up with the data file as usual.
+                return undefined;
               }
+            }),
+          ),
+        );
+        return {
+          filePath,
+          members,
+          size: stats.reduce((sum, stat) => sum + (stat?.size ?? 0), 0),
+          mtime: Math.min(...stats.map((stat) => stat?.mtimeMs ?? Infinity)),
+        };
+      }),
+    );
+    fileStats.sort((a, b) => a.mtime - b.mtime);
 
-              return {
-                filePath,
-                size: stats.size + infoSize,
-                mtime: stats.mtime,
-              };
-            } catch {
-              // Deleted by invalidation while scanning — nothing left to evict.
-              return undefined;
-            }
-          }),
-        ),
-      )
-    ).filter((entry): entry is { filePath: string; size: number; mtime: Date } => entry !== undefined);
-
-    // sort the file paths based on their last modified time (oldest first)
-    fileStats.sort((a, b) => a.mtime.getTime() - b.mtime.getTime());
-
-    // remove files until the total size is below the new max total size
-    let totalSize = fileStats.reduce((sum, { size }) => sum + size, 0);
-    const filesToRemove: typeof fileStats = [];
-    for (const fileStat of fileStats) {
+    const inFlight = this.inFlightTempFilePaths();
+    let totalSize = fileStats.reduce((sum, entry) => sum + entry.size, 0);
+    const remove: typeof fileStats = [];
+    for (const entry of fileStats) {
       if (totalSize <= targetSize) {
         break;
       }
-
-      const beingRead = Array.from(this.activeReads.values()).some((read) => read.filePath === fileStat.filePath);
-      if (fileStat.filePath !== preserveFilePath && !inFlight.has(fileStat.filePath) && !beingRead) {
-        totalSize -= fileStat.size;
-        filesToRemove.push(fileStat);
+      const beingRead = Array.from(this.activeReads.values()).some((read) => read.filePath === entry.filePath);
+      if (entry.filePath !== preserveFilePath && !inFlight.has(`${entry.filePath}${TEMP_FILE_SUFFIX}`) && !beingRead) {
+        totalSize -= entry.size;
+        remove.push(entry);
       }
     }
-
-    await Promise.all(
-      filesToRemove.map(async ({ filePath }) => {
-        await safeUnlink(filePath);
-        await safeUnlink(getInfoFilePath(filePath));
-      }),
-    );
-
+    await Promise.all(remove.flatMap(({ members }) => members.map(safeUnlink)));
     this.emit('sizeChanged');
   }
 
