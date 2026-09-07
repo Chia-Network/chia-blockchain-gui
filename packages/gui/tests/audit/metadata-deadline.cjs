@@ -234,7 +234,7 @@ test('active trickle hits absolute deadline, aborts real downloader, deletes tem
     const [info] = await manager.getCacheInfos(['https://test.invalid/slow']);
     assert.match(info.error, /download deadline/);
     const count = requests.length;
-    await assert.rejects(manager.getContent('https://test.invalid/slow'), /download deadline/);
+    await assert.rejects(manager.getContent('https://test.invalid/slow', { maxDuration: 100 }), /download deadline/);
     assert.equal(requests.length, count);
     assert.equal(clock.pending, 0);
   }));
@@ -290,14 +290,21 @@ test('joining a transfer that has run longer than the allowance is refused after
     requests[0].succeed('{}');
     await first;
   }));
-test('longer coalesced callers cannot extend a short deadline', async () =>
+test('a longer coalesced caller retries after the short owner deadline within its remaining allowance', async () =>
   withManager(async ({ manager, requests, clock }) => {
     const r1 = assert.rejects(manager.getContent('https://test.invalid/short', { maxDuration: 100 }), /deadline/);
     await spin(() => requests.length === 1);
     clock.advance(50);
-    const r2 = assert.rejects(manager.getContent('https://test.invalid/short'), /deadline/);
+    const r2 = manager.getContent('https://test.invalid/short', { maxDuration: 200 });
+    await new Promise(setImmediate);
     clock.advance(50);
-    await Promise.all([r1, r2]);
+    await r1;
+    assert.equal(requests[0].aborted, true);
+    await spin(() => requests.length === 2);
+    clock.advance(149);
+    assert.equal(requests[1].aborted, false);
+    requests[1].succeed('{}');
+    assert.equal((await r2).toString(), '{}');
   }));
 test('a joiner of a queued transfer is not charged for the queue wait, and gives up after its allowance once the transfer runs', async () =>
   withManager(async ({ manager, requests, clock }) => {
