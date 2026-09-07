@@ -12,7 +12,9 @@ import type CacheInfo from '../@types/CacheInfo';
 import type CacheInfoBase from '../@types/CacheInfoBase';
 import type { CacheContent, CacheRequestOptions } from '../@types/CacheService';
 import type Headers from '../@types/Headers';
+import type IpfsGatewayHealth from '../@types/IpfsGatewayHealth';
 import CacheState from '../constants/CacheState';
+import { isHostUnreachableError } from '../util/downloadErrors';
 import ipfsToGatewayUrl, { getGatewayHost, getIpfsPathFromGatewayUrl, isIpfsBackedUrl, isIpfsUrl } from '../util/ipfs';
 import limit from '../util/limit';
 
@@ -31,6 +33,7 @@ import getChecksum from './utils/getChecksum';
 import ipcMainHandle from './utils/ipcMainHandle';
 import { IpfsGatewayDisabledError, ipfsGatewayBase, ipfsGatewayEnabled } from './utils/ipfsGateway';
 import isValidURL from './utils/isValidURL';
+import probeIpfsGateway from './utils/probeIpfsGateway';
 import sanitizeFilename from './utils/sanitizeFilename';
 import sanitizeNumber from './utils/sanitizeNumber';
 
@@ -109,6 +112,12 @@ export const TRANSIENT_ERROR_RETRY_DELAY = 10 * 60 * 1000; // 10 minutes
 // for as long as the wallet is open — a liveness beacon for whoever runs it.
 export const MAX_TRANSIENT_ERROR_RETRY_DELAY = 24 * 60 * 60 * 1000; // 1 day
 export const MAX_TRANSIENT_RETRIES = 8;
+
+// How many requests in a row must fail to reach the gateway host before the
+// gateway is reported unreachable (IpfsGatewayHealth). One failure is a
+// resolver hiccup; three requests to three names that all fail the same way
+// while nothing succeeds is the address.
+export const GATEWAY_UNREACHABLE_THRESHOLD = 3;
 
 // The wait before the next in-session retry of a URL that has failed
 // transiently `retries` times in a row: 10 min, 20 min, 40 min, ...
@@ -220,6 +229,14 @@ export default class CacheManager extends EventEmitter {
   // challenging host from being retried (and holding a download slot) on every
   // access in between.
   private transientFailureUrls: Set<string> = new Set();
+
+  // The gateway's reachability as the downloads through it report it: the
+  // current run of requests that could not reach the host, and the verdict
+  // last announced to the renderer (undefined until one is). A verdict is on
+  // one gateway; a request through another gateway starts both over.
+  private gatewayHostFailures: { gateway: string; count: number; error: string } | undefined;
+
+  private gatewayHealth: IpfsGatewayHealth | undefined;
 
   // Clear, migration and invalidation share one barrier. Waiters must not enter
   // the request map until admitted: maintenance drains that map, so a request
@@ -412,6 +429,11 @@ export default class CacheManager extends EventEmitter {
       guarded((urls: string[]) => this.getCacheInfos(urls)),
     );
 
+    ipcMainHandle(
+      CacheAPI.PROBE_IPFS_GATEWAY,
+      guarded((gateway: string) => this.probeIpfsGateway(gateway)),
+    );
+    ipcMainHandle(CacheAPI.GET_IPFS_GATEWAY_HEALTH, () => this.getIpfsGatewayHealth());
     ipcMainHandle(CacheAPI.GET_CACHE_DIRECTORY, () => this.cacheDirectory);
     ipcMainHandle(CacheAPI.GET_MAX_CACHE_SIZE, () => this.maxCacheSize);
   }
@@ -463,14 +485,22 @@ export default class CacheManager extends EventEmitter {
       }, 500);
     };
 
+    function onIpfsGatewayHealthChanged(health: IpfsGatewayHealth) {
+      if (!window.isDestroyed()) {
+        window.webContents.send(CacheAPI.ON_IPFS_GATEWAY_HEALTH_CHANGED, health);
+      }
+    }
+
     this.on('cacheDirectoryChanged', onCacheDirectoryChanged);
     this.on('maxCacheSizeChanged', onMaxCacheSizeChanged);
     this.on('sizeChanged', onSizeChanged);
+    this.on('ipfsGatewayHealthChanged', onIpfsGatewayHealthChanged);
 
     const unbind = () => {
       this.off('cacheDirectoryChanged', onCacheDirectoryChanged);
       this.off('maxCacheSizeChanged', onMaxCacheSizeChanged);
       this.off('sizeChanged', onSizeChanged);
+      this.off('ipfsGatewayHealthChanged', onIpfsGatewayHealthChanged);
       sizeChangedDuringScan = false;
       if (sizeChangedTimeout) {
         clearTimeout(sizeChangedTimeout);
@@ -825,6 +855,10 @@ export default class CacheManager extends EventEmitter {
     // the persisted outcome this attempt is retrying, if any — a transient
     // failure recorded on top of an earlier one continues its retry count
     let previousCacheInfo: CacheInfo | undefined;
+    // whether the transfer went to the gateway — an ipfs:// URI always does, a
+    // gateway link only once its own host failed and the fallback ran — so an
+    // outcome is charged to the gateway's health only when it was the gateway's
+    let gatewayLegUsed = requestGateway !== undefined && isIpfsUrl(url);
 
     const process = async (): Promise<CacheInfo> => {
       try {
@@ -893,6 +927,7 @@ export default class CacheManager extends EventEmitter {
             }
 
             log(`Download failed (${(downloadError as Error).message}), retrying through the gateway`, url);
+            gatewayLegUsed = true;
             headers = await downloadFile(url, cacheFilePath, {
               ...downloadOptions,
               requestUrl: fallbackUrl,
@@ -902,6 +937,9 @@ export default class CacheManager extends EventEmitter {
 
           transferDeadline.throwIfExpired();
           log('Download finished', url);
+          if (gatewayLegUsed) {
+            this.noteGatewayAnswered(requestGateway);
+          }
 
           // compute checksum
           const checksum = await getChecksum(cacheFilePath);
@@ -951,6 +989,9 @@ export default class CacheManager extends EventEmitter {
         const currentError = this.redactCachePath(
           transferDeadline.error ?? (error as Error) ?? new Error('Unknown fetchRemoteContent error'),
         );
+        if (gatewayLegUsed) {
+          this.noteGatewayOutcome(requestGateway, currentError.message);
+        }
 
         const isTransient = isTransientDownloadError(currentError.message);
         if (isTransient) {
@@ -987,6 +1028,76 @@ export default class CacheManager extends EventEmitter {
     this.ongoingRequests.set(url, ongoingRequestEntry);
 
     return consume(ongoingRequestEntry);
+  }
+
+  /** Whether the configured gateway can be reached, as the downloads through
+   * it have shown, or undefined while no verdict has been reached. */
+  getIpfsGatewayHealth(): IpfsGatewayHealth | undefined {
+    return this.gatewayHealth;
+  }
+
+  /** Asks the gateway at `input` for a well-known file once (see
+   * probeIpfsGateway). An answer also clears an "unreachable" verdict on that
+   * gateway: the user just saw it respond, so the tiles get to try again. */
+  async probeIpfsGateway(input: string) {
+    const result = await probeIpfsGateway(input);
+    if (result.reachable) {
+      this.noteGatewayAnswered(result.gateway);
+    }
+    return result;
+  }
+
+  // A request through `gateway` failed with `message`. A failure to reach the
+  // host at all lengthens the current run against that gateway and, at the
+  // threshold, announces the gateway unreachable; an HTTP status is an answer
+  // and ends the run. Anything else — an abort from our side, a transfer that
+  // stalled or outran its deadline — says nothing about the host either way.
+  private noteGatewayOutcome(gateway: string | undefined, message: string) {
+    if (gateway === undefined) {
+      return;
+    }
+    if (message.startsWith('HTTP error: ')) {
+      this.noteGatewayAnswered(gateway);
+      return;
+    }
+    if (!isHostUnreachableError(message)) {
+      return;
+    }
+    const failures =
+      this.gatewayHostFailures?.gateway === gateway
+        ? { ...this.gatewayHostFailures, count: this.gatewayHostFailures.count + 1, error: message }
+        : { gateway, count: 1, error: message };
+    this.gatewayHostFailures = failures;
+    if (failures.count < GATEWAY_UNREACHABLE_THRESHOLD) {
+      return;
+    }
+    const previous = this.gatewayHealth;
+    if (previous?.gateway === gateway && !previous.reachable && previous.error === message) {
+      // the same verdict, one failure longer — nothing new for the renderer
+      this.gatewayHealth = { ...previous, failures: failures.count };
+      return;
+    }
+    this.announceGatewayHealth({ gateway, reachable: false, error: message, failures: failures.count });
+  }
+
+  // The host at `gateway` answered something: a download completed, a status
+  // came back, a probe got a status line. The run of failures against it
+  // ends, and an "unreachable" verdict on it is withdrawn.
+  private noteGatewayAnswered(gateway: string | undefined) {
+    if (gateway === undefined) {
+      return;
+    }
+    if (this.gatewayHostFailures?.gateway === gateway) {
+      this.gatewayHostFailures = undefined;
+    }
+    if (this.gatewayHealth?.gateway === gateway && !this.gatewayHealth.reachable) {
+      this.announceGatewayHealth({ gateway, reachable: true, failures: 0 });
+    }
+  }
+
+  private announceGatewayHealth(health: IpfsGatewayHealth) {
+    this.gatewayHealth = health;
+    this.emit('ipfsGatewayHealthChanged', health);
   }
 
   // How many transient failures in a row the persisted outcome already

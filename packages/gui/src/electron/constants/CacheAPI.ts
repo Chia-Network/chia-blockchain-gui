@@ -22,10 +22,15 @@ enum CacheAPI {
   GET_CACHE_INFOS = `${API.CACHE}:getCacheInfos`,
   INVALIDATE = `${API.CACHE}:invalidate`,
 
+  // IPFS gateway reachability
+  PROBE_IPFS_GATEWAY = `${API.CACHE}:probeIpfsGateway`,
+  GET_IPFS_GATEWAY_HEALTH = `${API.CACHE}:getIpfsGatewayHealth`,
+
   // Event subscriptions
   ON_CACHE_DIRECTORY_CHANGED = `${API.CACHE}:onCacheDirectoryChanged`,
   ON_MAX_CACHE_SIZE_CHANGED = `${API.CACHE}:onMaxCacheSizeChanged`,
   ON_SIZE_CHANGED = `${API.CACHE}:onSizeChanged`,
+  ON_IPFS_GATEWAY_HEALTH_CHANGED = `${API.CACHE}:onIpfsGatewayHealthChanged`,
 }
 
 export default CacheAPI;
