@@ -141,3 +141,19 @@ not charged), and is refused with the spent-budget error when that runs
 out; the transfer and its other callers are untouched. A metadata caller
 still cannot inherit a video-sized wait. The harness scenarios for joining
 were rewritten to this contract.
+
+## 2026-09-07: preserve the larger caller's allowance in either arrival order
+
+A smaller metadata request could still own a URL before a media caller joined.
+Its size/deadline failure was then returned to both callers and persisted against
+the URL. Time-limit failures now record the actual attempt's normalized limits,
+as size failures already did. A larger caller may retry a limit failure; the same
+or a smaller caller keeps the existing backoff. HTTP/network errors keep their
+existing retry policy.
+
+A joiner rechecks only after the owner's complete request has settled, so there
+is still one writer per cache path. Its wait is deducted before a replacement
+transfer starts: retries share the remaining allowance, including gateway legs.
+This complements the earlier change that prevents a short joiner from aborting
+a larger owner. New policy regressions cover both size and duration, persisted
+failures, and preserving a remote 404 without another transfer.
