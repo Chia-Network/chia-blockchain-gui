@@ -23,6 +23,10 @@ type CacheInfoBase =
       // For a size-limit failure: the cap the attempt ran under, so a later
       // caller is retried only when it allows more.
       maxSize?: number;
+      // The caller's time limits, recorded only when that limit ended the
+      // transfer. A larger caller must not inherit a smaller caller's cap.
+      maxDuration?: number;
+      timeout?: number;
     };
 
 export default CacheInfoBase;
