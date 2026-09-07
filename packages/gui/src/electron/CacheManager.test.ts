@@ -1872,17 +1872,17 @@ describe('CacheManager dead IPFS content', () => {
     mockDownloadFile.mockRejectedValueOnce(new Error('HTTP error: 403')).mockRejectedValueOnce(new Error(gatewayError));
   }
 
-  it('does not ask any host again for a directory two hosts could not produce', async () => {
+  it('does not ask another host again for the exact path two hosts could not produce', async () => {
     const cacheManager = await createCacheManager();
     failBothLegs('HTTP error: 504');
     await expect(cacheManager.getContent(link('a.png'))).rejects.toThrow('HTTP error: 504');
     expect(mockDownloadFile).toHaveBeenCalledTimes(2);
 
-    // a sibling link: neither its own host nor the gateway is asked, and no
-    // verdict of its own is written — the one on a.png governs the retry
-    await expect(cacheManager.getContent(link('b.png'))).rejects.toThrow('HTTP error: 504');
+    // The same path on another host shares the verdict, without its own sidecar.
+    const twin = link('a.png').replace('nftstorage.link', 'other.example');
+    await expect(cacheManager.getContent(twin)).rejects.toThrow('HTTP error: 504');
     expect(mockDownloadFile).toHaveBeenCalledTimes(2);
-    const [info] = await cacheManager.getCacheInfos([link('b.png')]);
+    const [info] = await cacheManager.getCacheInfos([twin]);
     expect(info).toMatchObject({ state: 'NOT_CACHED' });
   });
 
@@ -1903,12 +1903,11 @@ describe('CacheManager dead IPFS content', () => {
     failBothLegs('Request timed out after 30000ms of inactivity');
     await expect(cacheManager.getContent(link('a.png'))).rejects.toThrow('Request timed out');
 
-    // the ipfs:// twin of the same file, and a sibling in the same directory
+    // The ipfs:// twin names the same file.
     await expect(cacheManager.getContent(ipfsUri('a.png'))).rejects.toThrow('Request timed out');
-    await expect(cacheManager.getContent(ipfsUri('c.png'))).rejects.toThrow('Request timed out');
     expect(mockDownloadFile).toHaveBeenCalledTimes(2);
-    const infos = await cacheManager.getCacheInfos([ipfsUri('a.png'), ipfsUri('c.png')]);
-    expect(infos.map((info) => info.state)).toEqual(['NOT_CACHED', 'NOT_CACHED']);
+    const [info] = await cacheManager.getCacheInfos([ipfsUri('a.png')]);
+    expect(info.state).toBe('NOT_CACHED');
   });
 
   it('cools only the path itself when the gateway answered 404 or 403 for it', async () => {
@@ -1927,7 +1926,7 @@ describe('CacheManager dead IPFS content', () => {
     expect(mockDownloadFile.mock.calls[3][2]).toMatchObject({ requestUrl: gatewayUrl('b.png') });
   });
 
-  it('cools a directory only when the content failed on its own host first', async () => {
+  it('keeps gateway-only failures scoped to each path', async () => {
     const cacheManager = await createCacheManager();
     // an ipfs uri has one route; a 504 on it cools that path, not the directory
     mockDownloadFile.mockRejectedValueOnce(new Error('HTTP error: 504'));
@@ -1961,12 +1960,12 @@ describe('CacheManager dead IPFS content', () => {
       await expect(cacheManager.getContent(link('a.png'))).rejects.toThrow('HTTP error: 504');
 
       now += COLD_IPFS_PATH_DURATION - 1;
-      await expect(cacheManager.getContent(link('b.png'))).rejects.toThrow('HTTP error: 504');
+      await expect(cacheManager.getContent(ipfsUri('a.png'))).rejects.toThrow('HTTP error: 504');
       expect(mockDownloadFile).toHaveBeenCalledTimes(2);
 
       now += 2;
       failBothLegs('HTTP error: 504');
-      await expect(cacheManager.getContent(link('c.png'))).rejects.toThrow('HTTP error: 504');
+      await expect(cacheManager.getContent(link('a.png'))).rejects.toThrow('HTTP error: 504');
       expect(mockDownloadFile).toHaveBeenCalledTimes(4);
     } finally {
       nowSpy.mockRestore();
@@ -2088,18 +2087,18 @@ describe('CacheManager dead IPFS content', () => {
     await expect(cacheManager.getContent(link('a.png', OTHER_CID))).rejects.toThrow('HTTP error: 504');
     expect(mockDownloadFile).toHaveBeenCalledTimes(4);
 
-    // refreshing one NFT's file lets its directory be asked for again
+    // Refreshing one NFT's file lets that exact path be asked for again.
     await cacheManager.invalidate(ipfsUri('a.png'));
-    failBothLegs('HTTP error: 504');
-    await expect(cacheManager.getContent(link('b.png'))).rejects.toThrow('HTTP error: 504');
-    expect(mockDownloadFile).toHaveBeenCalledTimes(6);
-    // the other directory is still cold
-    await expect(cacheManager.getContent(link('b.png', OTHER_CID))).rejects.toThrow('HTTP error: 504');
-    expect(mockDownloadFile).toHaveBeenCalledTimes(6);
+    mockDownloadFile.mockRejectedValueOnce(new Error('HTTP error: 504'));
+    await expect(cacheManager.getContent(ipfsUri('a.png'))).rejects.toThrow('HTTP error: 504');
+    expect(mockDownloadFile).toHaveBeenCalledTimes(5);
+    // The other file is still cold.
+    await expect(cacheManager.getContent(ipfsUri('a.png', OTHER_CID))).rejects.toThrow('HTTP error: 504');
+    expect(mockDownloadFile).toHaveBeenCalledTimes(5);
 
     await cacheManager.clearCache();
     failBothLegs('HTTP error: 504');
-    await expect(cacheManager.getContent(link('c.png', OTHER_CID))).rejects.toThrow('HTTP error: 504');
-    expect(mockDownloadFile).toHaveBeenCalledTimes(8);
+    await expect(cacheManager.getContent(link('a.png', OTHER_CID))).rejects.toThrow('HTTP error: 504');
+    expect(mockDownloadFile).toHaveBeenCalledTimes(7);
   });
 });
