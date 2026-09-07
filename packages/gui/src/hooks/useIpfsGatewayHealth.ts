@@ -19,20 +19,25 @@ export default function useIpfsGatewayHealth(): IpfsGatewayHealth | undefined {
 
   useEffect(() => {
     let cancelled = false;
+    // The snapshot is a round trip behind the subscription: a verdict announced
+    // while it was in flight is newer than what it returns, and must not be
+    // overwritten by it.
+    let announced = false;
+    const unsubscribe = subscribeToIpfsGatewayHealthChange((next) => {
+      if (!cancelled) {
+        announced = true;
+        setHealth(next);
+      }
+    });
     getIpfsGatewayHealth()
       .then((current) => {
-        if (!cancelled) {
+        if (!cancelled && !announced) {
           setHealth(current ?? undefined);
         }
       })
       .catch(() => {
-        // nothing known yet; the subscription below delivers the first verdict
+        // nothing known yet; the subscription delivers the first verdict
       });
-    const unsubscribe = subscribeToIpfsGatewayHealthChange((next) => {
-      if (!cancelled) {
-        setHealth(next);
-      }
-    });
     return () => {
       cancelled = true;
       unsubscribe();
