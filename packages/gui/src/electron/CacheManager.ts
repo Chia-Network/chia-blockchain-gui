@@ -14,7 +14,7 @@ import type { CacheContent, CacheRequestOptions } from '../@types/CacheService';
 import type Headers from '../@types/Headers';
 import type IpfsGatewayHealth from '../@types/IpfsGatewayHealth';
 import CacheState from '../constants/CacheState';
-import { isDownloadTimeoutError, isHostUnreachableError } from '../util/downloadErrors';
+import { INACTIVITY_TIMEOUT_ERROR_PREFIX, isHostUnreachableError } from '../util/downloadErrors';
 import ipfsToGatewayUrl, {
   getGatewayHost,
   getIpfsPathFromAnyUrl,
@@ -926,9 +926,12 @@ export default class CacheManager extends EventEmitter {
     // failure recorded on top of an earlier one continues its retry count
     let previousCacheInfo: CacheInfo | undefined;
     // whether the transfer went to the gateway — an ipfs:// URI always does, a
-    // gateway link only once its own host failed and the fallback ran — so an
-    // outcome is charged to the gateway's health only when it was the gateway's
-    let gatewayLegUsed = requestGateway !== undefined && isIpfsUrl(url);
+    // link served by the gateway's own host does too, and any other gateway
+    // link only once its own host failed and the fallback ran — so an outcome
+    // is charged to the gateway only when it was the gateway's
+    const isSelfGatewayLink =
+      requestGateway !== undefined && !isIpfsUrl(url) && getGatewayHost(url) === getGatewayHost(requestGateway);
+    let gatewayLegUsed = requestGateway !== undefined && (isIpfsUrl(url) || isSelfGatewayLink);
 
     const process = async (): Promise<CacheInfo> => {
       try {
@@ -1089,8 +1092,14 @@ export default class CacheManager extends EventEmitter {
         );
         if (gatewayLegUsed) {
           this.noteGatewayOutcome(requestGateway, currentError.message);
-          // a gateway link reached the gateway only after its own host failed
-          this.noteGatewayContentFailure(requestGateway, url, currentError.message, !isIpfsUrl(url));
+          // a gateway link on another host reached the gateway only after its
+          // own host failed; a link on the gateway's host is one host failing
+          this.noteGatewayContentFailure(
+            requestGateway,
+            url,
+            currentError.message,
+            !isIpfsUrl(url) && !isSelfGatewayLink,
+          );
         }
 
         const isTransient = isTransientDownloadError(currentError.message);
@@ -1201,10 +1210,12 @@ export default class CacheManager extends EventEmitter {
   }
 
   // The request for `url` through `gateway` ended in `message`. A 429 puts
-  // the gateway on cooldown. A failure that is the content's — not the
-  // host's, not an abort, a size cap or a refused redirect — makes the ipfs
-  // path cold for that gateway, and when the gateway could not produce the
-  // content at all (a timeout, a 5xx) and `afterOriginFailed` says the
+  // the gateway on cooldown. A failure that is the content's — an HTTP status
+  // or a gateway that stopped sending, not the host's unreachability, an
+  // abort, a size cap, a refused redirect, or the caller's own deadline
+  // running out (which says nothing about the content) — makes the ipfs path
+  // cold for that gateway, and when the gateway could not produce the content
+  // at all (it stopped sending, or a 5xx) and `afterOriginFailed` says the
   // content's own host had already failed too, the whole CID with it: two
   // hosts that cannot produce a directory's file will not produce its
   // siblings either. A 404 or a 403 cools the path alone — a directory can
@@ -1222,8 +1233,9 @@ export default class CacheManager extends EventEmitter {
       this.noteRateLimited(getGatewayHost(gateway));
       return;
     }
+    const stoppedSending = message.startsWith(INACTIVITY_TIMEOUT_ERROR_PREFIX);
     const isContentFailure =
-      (message.startsWith('HTTP error: ') || isDownloadTimeoutError(message)) &&
+      (message.startsWith('HTTP error: ') || stoppedSending) &&
       !isHostUnreachableError(message) &&
       message !== MAX_FILE_SIZE_EXCEEDED_ERROR;
     if (!isContentFailure) {
@@ -1236,7 +1248,7 @@ export default class CacheManager extends EventEmitter {
     const verdict = { until: Date.now() + COLD_IPFS_PATH_DURATION, error: message, twoHosts: afterOriginFailed };
     this.pruneColdIpfsPaths();
     this.coldIpfsPaths.set(coldIpfsPathKey(gateway, ipfsPath), verdict);
-    const couldNotProduce = isDownloadTimeoutError(message) || /^HTTP error: 5\d\d$/.test(message);
+    const couldNotProduce = stoppedSending || /^HTTP error: 5\d\d$/.test(message);
     if (afterOriginFailed && couldNotProduce) {
       this.coldIpfsPaths.set(coldIpfsPathKey(gateway, cidOf(ipfsPath)), verdict);
     }

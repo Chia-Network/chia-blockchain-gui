@@ -2046,6 +2046,40 @@ describe('CacheManager dead IPFS content', () => {
     expect(mockDownloadFile).toHaveBeenCalledTimes(4);
   });
 
+  it("cools the path when a link served by the gateway's own host fails, without calling it two hosts", async () => {
+    const cacheManager = await createCacheManager();
+    // ipfs.io is the configured gateway: this link has no fallback, and its
+    // failure is the gateway's verdict on the content
+    mockDownloadFile.mockRejectedValueOnce(new Error('HTTP error: 504'));
+    await expect(cacheManager.getContent(gatewayUrl('a.png'))).rejects.toThrow('HTTP error: 504');
+    expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+
+    // the ipfs twin would go to the same host for the same answer
+    await expect(cacheManager.getContent(ipfsUri('a.png'))).rejects.toThrow('HTTP error: 504');
+    expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+
+    // one host failed, so a link on another host is still fetched from it,
+    // and the directory is not cold
+    mockDownloadFile.mockRejectedValueOnce(new Error('HTTP error: 403'));
+    await expect(cacheManager.getContent(link('a.png'))).rejects.toThrow('HTTP error: 403');
+    mockDownloadFile.mockRejectedValueOnce(new Error('HTTP error: 504'));
+    await expect(cacheManager.getContent(ipfsUri('b.png'))).rejects.toThrow('HTTP error: 504');
+    expect(mockDownloadFile).toHaveBeenCalledTimes(3);
+  });
+
+  it("does not cool anything when the fallback merely ran out of the caller's deadline", async () => {
+    const cacheManager = await createCacheManager();
+    failBothLegs('Request exceeded the 1886ms download deadline');
+    await expect(cacheManager.getContent(link('a.png'))).rejects.toThrow('download deadline');
+
+    // the twin and the sibling are asked for as if nothing had been learned
+    mockDownloadFile.mockRejectedValueOnce(new Error('HTTP error: 504'));
+    await expect(cacheManager.getContent(ipfsUri('a.png'))).rejects.toThrow('HTTP error: 504');
+    failBothLegs('HTTP error: 504');
+    await expect(cacheManager.getContent(link('b.png'))).rejects.toThrow('HTTP error: 504');
+    expect(mockDownloadFile).toHaveBeenCalledTimes(5);
+  });
+
   it('forgets a verdict when its content is invalidated, and every verdict when the cache is cleared', async () => {
     const cacheManager = await createCacheManager();
     failBothLegs('HTTP error: 504');
