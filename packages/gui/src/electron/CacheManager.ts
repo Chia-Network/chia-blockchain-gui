@@ -244,6 +244,12 @@ export default class CacheManager extends EventEmitter {
 
   private gatewayHealth: IpfsGatewayHealth | undefined;
 
+  // When a gateway last answered after a run of requests that could not reach
+  // it. Failures recorded against it before that moment were verdicts on an
+  // unreachable host, not on the content, and are retried on the next access
+  // instead of waiting out their retry delay (see isSettledOutcome).
+  private gatewayRecoveredAt: Map<string, number> = new Map();
+
   // Clear, migration and invalidation share one barrier. Waiters must not enter
   // the request map until admitted: maintenance drains that map, so a request
   // which itself awaits maintenance would create a circular wait.
@@ -741,7 +747,16 @@ export default class CacheManager extends EventEmitter {
       isIpfsBackedUrl(url) &&
       ipfsGatewayEnabled() &&
       (cacheInfo.gateway === undefined ? !isIpfsUrl(url) : cacheInfo.gateway !== ipfsGatewayBase());
-    return !isAbortError && !isRetriableTransientError && !isLimitLifted && !isGatewayChanged;
+    // A failure to reach the gateway host, recorded before the gateway was
+    // last seen answering, says nothing about the content: the host was down
+    // (or the address was wrong) and is not any more.
+    const isRecoveredGatewayFailure =
+      cacheInfo.gateway !== undefined &&
+      isHostUnreachableError(cacheInfo.error) &&
+      (this.gatewayRecoveredAt.get(cacheInfo.gateway) ?? 0) > cacheInfo.timestamp;
+    return (
+      !isAbortError && !isRetriableTransientError && !isLimitLifted && !isGatewayChanged && !isRecoveredGatewayFailure
+    );
   }
 
   async fetchRemoteContent(
@@ -1108,11 +1123,18 @@ export default class CacheManager extends EventEmitter {
     if (gateway === undefined) {
       return;
     }
+    const wasFailing =
+      this.gatewayHostFailures?.gateway === gateway ||
+      (this.gatewayHealth?.gateway === gateway && !this.gatewayHealth.reachable);
     if (this.gatewayHostFailures?.gateway === gateway) {
       this.gatewayHostFailures = undefined;
     }
     if (this.gatewayHealth?.gateway === gateway && !this.gatewayHealth.reachable) {
       this.announceGatewayHealth({ gateway, reachable: true, failures: 0 });
+    }
+    if (wasFailing) {
+      // the failures recorded meanwhile are released for retry
+      this.gatewayRecoveredAt.set(gateway, Date.now());
     }
   }
 
