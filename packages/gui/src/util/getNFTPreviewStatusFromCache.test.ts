@@ -3,7 +3,7 @@ import type MetadataState from '../@types/MetadataState';
 import NFTPreviewStatus from '../@types/NFTPreviewStatus';
 import CacheState from '../constants/CacheState';
 
-import { MAX_TRANSIENT_RETRIES, transientErrorRetryDelay } from './downloadErrors';
+import { MAX_TRANSIENT_RETRIES, REPEATED_TRANSIENT_FAILURES, transientErrorRetryDelay } from './downloadErrors';
 import getNFTPreviewStatusFromCache, {
   MAX_URIS_PER_CANDIDATE,
   getNFTPreviewUrls,
@@ -131,10 +131,23 @@ describe('getNFTPreviewStatusFromCache', () => {
       expect(getNFTPreviewRetryDueAt(nft, noMetadata, infos, now)).toBeUndefined();
     });
 
-    it('waits longer after every consecutive failure', () => {
-      const infos = lookup([failure(3, transientErrorRetryDelay(3) - 1)]);
-      expect(getNFTPreviewStatusFromCache(nft, noMetadata, infos, now)).toBe(NFTPreviewStatus.UNAVAILABLE);
-      expect(getNFTPreviewRetryDueAt(nft, noMetadata, infos, now)).toBe(now + 1);
+    it('stays unavailable once the failure has repeated, even when its retry is due', () => {
+      for (const retries of [REPEATED_TRANSIENT_FAILURES, 3, 5]) {
+        // long past its delay: the cache would retry it for a tile that asked
+        const infos = lookup([failure(retries, transientErrorRetryDelay(retries) + 60_000)]);
+        expect(getNFTPreviewStatusFromCache(nft, noMetadata, infos, now)).toBe(NFTPreviewStatus.UNAVAILABLE);
+        // and it earns no wake-up: the verdict holds until a tile gets the file
+        expect(getNFTPreviewRetryDueAt(nft, noMetadata, infos, now)).toBeUndefined();
+      }
+    });
+
+    it('gives a first failure its second chance, but not a repeated one, in the same NFT', () => {
+      const infos = lookup([
+        { ...failure(1, transientErrorRetryDelay(1) + 1), url: 'https://a/x.png' },
+        { ...failure(3, transientErrorRetryDelay(3) + 1), url: 'https://thumbs/x.png' },
+      ]);
+      // the thumbnail has repeated and counts as failed; the data file is due, so the NFT is undecided
+      expect(getNFTPreviewStatusFromCache(nft, metadataWithPreview, infos, now)).toBeUndefined();
     });
 
     it('is unavailable for good once the retries are exhausted', () => {
@@ -157,12 +170,13 @@ describe('getNFTPreviewStatusFromCache', () => {
 
     it('reports the earliest retry among the sources', () => {
       const infos = lookup([
-        { ...failure(2, 1000), url: 'https://a/x.png' },
+        { ...failure(1, 5000), url: 'https://a/x.png' },
         { ...failure(1, 1000), url: 'https://thumbs/x.png' },
       ]);
       expect(getNFTPreviewStatusFromCache(nft, metadataWithPreview, infos, now)).toBe(NFTPreviewStatus.UNAVAILABLE);
+      // the older failure's retry comes first
       expect(getNFTPreviewRetryDueAt(nft, metadataWithPreview, infos, now)).toBe(
-        now - 1000 + transientErrorRetryDelay(1),
+        now - 5000 + transientErrorRetryDelay(1),
       );
     });
   });

@@ -5,7 +5,12 @@ import NFTPreviewStatus from '../@types/NFTPreviewStatus';
 import CacheState from '../constants/CacheState';
 
 import compareChecksums from './compareChecksums';
-import { isAbortedDownloadError, isTransientDownloadError, transientRetryDueAt } from './downloadErrors';
+import {
+  REPEATED_TRANSIENT_FAILURES,
+  isAbortedDownloadError,
+  isTransientDownloadError,
+  transientRetryDueAt,
+} from './downloadErrors';
 
 export type NFTPreviewSource = {
   dataUris?: string[];
@@ -76,12 +81,16 @@ function classifyUri(hash: string, cacheInfo: CacheInfo | undefined, now: number
     // a filtered gallery a file that may well arrive. A transient failure
     // still inside its retry delay is what a tile would be served, so for now
     // the preview is unavailable — and the sweep looks again when the delay
-    // runs out (getNFTPreviewRetryDueAt). One that has exhausted its retries
-    // is settled for good.
+    // runs out (getNFTPreviewRetryDueAt). One that has repeated
+    // (REPEATED_TRANSIENT_FAILURES) stays unavailable until a tile gets the
+    // file, and one that has exhausted its retries is settled for good.
     if (isAbortedDownloadError(cacheInfo.error)) {
       return 'undecided';
     }
     if (isTransientDownloadError(cacheInfo.error)) {
+      if ((cacheInfo.retries ?? 0) >= REPEATED_TRANSIENT_FAILURES) {
+        return 'failed';
+      }
       const dueAt = transientRetryDueAt(cacheInfo);
       return dueAt !== undefined && dueAt <= now ? 'undecided' : 'failed';
     }
@@ -142,11 +151,13 @@ export default function getNFTPreviewStatusFromCache(
 
 /**
  * When an NFT classified unavailable may become undecided again: the earliest
- * time one of its consulted uris' transient failures is retried on access
- * (see transientRetryDueAt), if any lies ahead of `now`. The sweep that
- * classified the NFT looks at it again then, so a file that failed during a
- * gateway hiccup rejoins the gallery's available previews — and gets its tile
- * to ask for it — without the user having to visit the unavailable ones.
+ * time one of its consulted uris' first-time transient failures is retried on
+ * access (see transientRetryDueAt), if any lies ahead of `now`. The sweep that
+ * classified the NFT looks at it again then, so a file that failed once
+ * during a gateway hiccup rejoins the gallery's available previews — and gets
+ * its tile to ask for it — without the user having to visit the unavailable
+ * ones. A failure that has repeated (REPEATED_TRANSIENT_FAILURES) earns no
+ * such wake-up: its verdict holds until a tile gets the file.
  */
 export function getNFTPreviewRetryDueAt(
   nft: NFTPreviewSource,
@@ -159,7 +170,11 @@ export function getNFTPreviewRetryDueAt(
     // consultedUris is empty for a source without a hash
     for (const uri of consultedUris(candidate)) {
       const cacheInfo = getCacheInfo(uri);
-      if (cacheInfo?.state === CacheState.ERROR && isTransientDownloadError(cacheInfo.error)) {
+      if (
+        cacheInfo?.state === CacheState.ERROR &&
+        isTransientDownloadError(cacheInfo.error) &&
+        (cacheInfo.retries ?? 0) < REPEATED_TRANSIENT_FAILURES
+      ) {
         const uriDueAt = transientRetryDueAt(cacheInfo);
         if (uriDueAt !== undefined && uriDueAt > now && (dueAt === undefined || uriDueAt < dueAt)) {
           dueAt = uriDueAt;
