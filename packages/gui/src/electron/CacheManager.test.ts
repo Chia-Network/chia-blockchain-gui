@@ -2256,3 +2256,82 @@ describe('CacheManager IPFS gateway recovery', () => {
     expect(mockDownloadFile).not.toHaveBeenCalled();
   });
 });
+
+describe('CacheManager clear housekeeping', () => {
+  let cacheDirectory: string;
+
+  beforeEach(async () => {
+    mockDownloadFile.mockReset();
+    cacheDirectory = await fs.mkdtemp(path.join(os.tmpdir(), 'chia-cache-manager-'));
+  });
+
+  afterEach(async () => {
+    await fs.rm(cacheDirectory, { recursive: true, force: true });
+  });
+
+  // A clear aborts every download in flight or queued and waits for them to
+  // settle before deleting anything. Each aborted download used to record a
+  // "Request aborted" sidecar — which the clear deletes a moment later — and
+  // then run the post-download housekeeping: a full size scan of the cache
+  // directory and possibly an eviction pass. A gallery holding a queue of
+  // hundreds of dead files thus paid for hundreds of full-directory scans
+  // before the first file was deleted, and the occupied-space figure on the
+  // settings page could not move until they were done.
+  it('does not run per-download housekeeping for downloads it aborted', async () => {
+    const FILES = 1500;
+    const QUEUED = 60;
+    // a populated cache: every size scan has to stat all of it
+    await Promise.all(
+      Array.from({ length: FILES }, async (_, index) => {
+        const base = path.join(cacheDirectory, `${index.toString(16).padStart(8, '0')}-chiacache`);
+        await fs.writeFile(base, Buffer.alloc(64));
+        await fs.writeFile(
+          `${base}-info`,
+          JSON.stringify({ url: `https://example.com/${index}.png`, state: 'CACHED', timestamp: Date.now() }),
+        );
+      }),
+    );
+
+    // like the real downloadFile: streams into the temp file, and on abort
+    // removes it and fails
+    mockDownloadFile.mockImplementation(async (_url, localPath, options) => {
+      await fs.writeFile(`${localPath}.tmp`, Buffer.alloc(10));
+      await new Promise<void>((resolve) => {
+        options?.signal?.addEventListener('abort', () => resolve());
+      });
+      await fs.unlink(`${localPath}.tmp`);
+      throw new Error('Request aborted');
+    });
+
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024 * 1024 * 1024,
+    });
+    await cacheManager.init();
+
+    const scans = jest.spyOn(cacheManager, 'getCacheSize');
+    const sidecarWrites = jest.spyOn(cacheManager as any, 'setCacheInfo');
+
+    const pending = Array.from({ length: QUEUED }, (_, index) =>
+      cacheManager.getContent(`https://example.com/queued-${index}.png`).catch((error: Error) => error.message),
+    );
+    await untilDownloadsStarted(10); // the concurrency limit; the rest wait in the queue
+
+    scans.mockClear();
+    sidecarWrites.mockClear();
+    const startedAt = Date.now();
+    await cacheManager.clearCache();
+    const clearTook = Date.now() - startedAt;
+
+    // every caller still learns its download was aborted, and nothing survives the clear
+    expect(await Promise.all(pending)).toEqual(Array(QUEUED).fill('Request aborted'));
+    await expect(fs.readdir(cacheDirectory)).resolves.toEqual([]);
+
+    console.info(
+      `clear of ${FILES} cached files with ${QUEUED} downloads aborted took ${clearTook} ms: ` +
+        `${scans.mock.calls.length} full size scans and ${sidecarWrites.mock.calls.length} sidecars written by the aborted downloads`,
+    );
+    expect(sidecarWrites).not.toHaveBeenCalled();
+    expect(scans).not.toHaveBeenCalled();
+  });
+});
