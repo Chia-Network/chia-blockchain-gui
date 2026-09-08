@@ -10,6 +10,7 @@ import NFTPreviewStatus from '../../../../@types/NFTPreviewStatus';
 import CacheState from '../../../../constants/CacheState';
 import useCache from '../../../../hooks/useCache';
 import useIpfsGateway from '../../../../hooks/useIpfsGateway';
+import useIpfsGatewayHealth from '../../../../hooks/useIpfsGatewayHealth';
 import { useIpfsGatewayBase } from '../../../../hooks/useIpfsGatewayUrl';
 import getNFTPreviewStatusFromCache, {
   getNFTPreviewRetryDueAt,
@@ -359,13 +360,8 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
   // failure has usually already become a fetch in flight. Either way the
   // preview uris the metadata brings are unknown until it arrives, and a
   // verdict reached without them must not outlive the change.
-  const lastIpfsGatewayKeyRef = useRef(ipfsGatewayKey);
-  useEffect(() => {
-    if (lastIpfsGatewayKeyRef.current === ipfsGatewayKey) {
-      return;
-    }
-    lastIpfsGatewayKeyRef.current = ipfsGatewayKey;
-
+  // immutable function
+  const forgetIpfsVerdicts = useCallback(() => {
     let changed = false;
     const reconsider = (nft: NFTInfo, nftId: string) => {
       const metadataState = getMetadata(nftId);
@@ -396,7 +392,6 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
     }
     scheduleLookUp();
   }, [
-    ipfsGatewayKey,
     retryDue /* immutable */,
     nfts /* immutable */,
     nachos /* immutable */,
@@ -407,6 +402,30 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
     events /* immutable */,
     scheduleLookUp,
   ]);
+
+  const lastIpfsGatewayKeyRef = useRef(ipfsGatewayKey);
+  useEffect(() => {
+    if (lastIpfsGatewayKeyRef.current === ipfsGatewayKey) {
+      return;
+    }
+    lastIpfsGatewayKeyRef.current = ipfsGatewayKey;
+    forgetIpfsVerdicts();
+  }, [ipfsGatewayKey, forgetIpfsVerdicts]);
+
+  // The gateway came back after a run of requests that could not reach it:
+  // the failures recorded meanwhile were verdicts on an unreachable host, and
+  // CacheManager retries them on the next access (gatewayRecoveredAt), so
+  // they settle nothing here any more — forget them the same way, and let
+  // the tiles ask again.
+  const gatewayHealth = useIpfsGatewayHealth();
+  const wasGatewayUnreachableRef = useRef(false);
+  useEffect(() => {
+    const isUnreachable = gatewayHealth?.reachable === false;
+    if (wasGatewayUnreachableRef.current && !isUnreachable) {
+      forgetIpfsVerdicts();
+    }
+    wasGatewayUnreachableRef.current = isUnreachable;
+  }, [gatewayHealth, forgetIpfsVerdicts]);
 
   useEffect(() => {
     scheduleLookUp();
