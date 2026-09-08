@@ -105,6 +105,64 @@ describe('getNFTPreviewStatusFromCache', () => {
     expect(status).toBeUndefined();
   });
 
+  describe('an ipfs twin of a failed gateway link', () => {
+    const now = 1_700_000_000_000;
+    const CID = 'QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB';
+    const link = `https://nftstorage.link/ipfs/${CID}/x.png`;
+    const twin = `ipfs://${CID}/x.png`;
+    const failedLink: CacheInfo = {
+      url: link,
+      state: CacheState.ERROR,
+      error: 'HTTP error: 504',
+      timestamp: now - 60 * 60 * 1000,
+      retries: 3,
+    };
+
+    it('is unavailable when the link failed and its never-fetched twin names the same content', () => {
+      // the cache refuses the twin as cold content without writing a sidecar
+      const status = getNFTPreviewStatusFromCache(
+        { dataUris: [link, twin], dataHash: HASH },
+        noMetadata,
+        lookup([failedLink]),
+        now,
+      );
+      expect(status).toBe(NFTPreviewStatus.UNAVAILABLE);
+    });
+
+    it('stays undecided for a never-fetched uri naming other content', () => {
+      const other = 'ipfs://QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG/x.png';
+      const status = getNFTPreviewStatusFromCache(
+        { dataUris: [link, other], dataHash: HASH },
+        noMetadata,
+        lookup([failedLink]),
+        now,
+      );
+      expect(status).toBeUndefined();
+    });
+
+    it('lets a twin with an outcome of its own speak for itself', () => {
+      const status = getNFTPreviewStatusFromCache(
+        { dataUris: [link, twin], dataHash: HASH },
+        noMetadata,
+        lookup([failedLink, cached(twin, HASH)]),
+        now,
+      );
+      expect(status).toBe(NFTPreviewStatus.AVAILABLE);
+    });
+
+    it('dooms a metadata fetch whose ipfs copy is the twin of its failed gateway copy', () => {
+      const metaLink = `https://nftstorage.link/ipfs/${CID}/x.json`;
+      const metaTwin = `ipfs://${CID}/x.json`;
+      const status = getNFTPreviewStatusFromCache(
+        { dataUris: [link, twin], dataHash: HASH, metadataUris: [metaLink, metaTwin] },
+        loadingMetadata,
+        lookup([failedLink, { ...failedLink, url: metaLink }]),
+        now,
+      );
+      expect(status).toBe(NFTPreviewStatus.UNAVAILABLE);
+    });
+  });
+
   describe('metadata still being fetched', () => {
     const now = 1_700_000_000_000;
     const repeated = (url: string, error = 'HTTP error: 504'): CacheInfo => ({

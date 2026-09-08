@@ -11,6 +11,7 @@ import {
   isTransientDownloadError,
   transientRetryDueAt,
 } from './downloadErrors';
+import { getIpfsPathFromAnyUrl } from './ipfs';
 
 export type NFTPreviewSource = {
   dataUris?: string[];
@@ -125,19 +126,34 @@ function classifyFailure(cacheInfo: CacheInfo | undefined, now: number): UriOutc
   return 'undecided';
 }
 
-/**
- * Classifies an NFT's preview from what the cache already persisted about its
- * files, without fetching anything. Mirrors what a preview-mode tile settles
- * on: it walks the same sources `useNFTVerifyHash` verifies — preview video,
- * preview image, data file — and the first uri whose cached bytes match its
- * hash makes the preview available. The preview is unavailable only once
- * every uri of every source has a settled failure (a persisted download error
- * or cached bytes with the wrong checksum). Anything the cache has not seen
- * yet, or failed only transiently, leaves the outcome undecided
- * (`undefined`), as does metadata that is still loading: until it settles the
- * preview sources are unknown, and a thumbnail may still make the preview
- * available even when the data file itself is unreachable.
- */
+// The ipfs paths (`<CID>[/path]`) of the uris among `uris` whose outcome is a
+// failure. An NFT commonly records the same file twice — a gateway link and
+// its ipfs:// twin — and CacheManager refuses the twin of content the gateway
+// just failed to produce without a download and without a sidecar of its own
+// (ColdIpfsPathError), so the twin never gets an outcome here. A uri never
+// fetched that names the same content as one that failed is read as failed
+// too: a tile asking for it would be refused the same way.
+function failedIpfsPaths(uris: string[], outcomeOf: (uri: string) => UriOutcome): Set<string> {
+  const paths = new Set<string>();
+  uris.forEach((uri) => {
+    if (outcomeOf(uri) === 'failed') {
+      const ipfsPath = getIpfsPathFromAnyUrl(uri);
+      if (ipfsPath) {
+        paths.add(ipfsPath);
+      }
+    }
+  });
+  return paths;
+}
+
+function isTwinOfFailure(uri: string, cacheInfo: CacheInfo | undefined, failedPaths: Set<string>): boolean {
+  if (cacheInfo !== undefined && cacheInfo.state !== CacheState.NOT_CACHED) {
+    return false;
+  }
+  const ipfsPath = getIpfsPathFromAnyUrl(uri);
+  return ipfsPath !== undefined && failedPaths.has(ipfsPath);
+}
+
 // A metadata fetch still in flight whose every source the cache has already
 // seen fail — and would serve that failure to a tile asking now. The metadata
 // store fetches every NFT's metadata on the first pass through the gallery,
@@ -155,14 +171,29 @@ function isMetadataFetchDoomed(
   now: number,
 ): boolean {
   const uris = consultedMetadataUris(nft, metadataState);
+  const outcomeOf = (uri: string) => classifyFailure(getCacheInfo(uri), now);
+  const failedPaths = failedIpfsPaths(uris, outcomeOf);
   return (
     uris.length > 0 &&
     // every recorded copy, not just the consulted ones, must have been seen to fail
     uris.length === (nft.metadataUris?.length ?? 0) &&
-    uris.every((uri) => classifyFailure(getCacheInfo(uri), now) === 'failed')
+    uris.every((uri) => outcomeOf(uri) === 'failed' || isTwinOfFailure(uri, getCacheInfo(uri), failedPaths))
   );
 }
 
+/**
+ * Classifies an NFT's preview from what the cache already persisted about its
+ * files, without fetching anything. Mirrors what a preview-mode tile settles
+ * on: it walks the same sources `useNFTVerifyHash` verifies — preview video,
+ * preview image, data file — and the first uri whose cached bytes match its
+ * hash makes the preview available. The preview is unavailable only once
+ * every uri of every source has a settled failure (a persisted download error
+ * or cached bytes with the wrong checksum). Anything the cache has not seen
+ * yet, or failed only transiently, leaves the outcome undecided
+ * (`undefined`), as does metadata that is still loading: until it settles the
+ * preview sources are unknown, and a thumbnail may still make the preview
+ * available even when the data file itself is unreachable.
+ */
 export default function getNFTPreviewStatusFromCache(
   nft: NFTPreviewSource,
   metadataState: MetadataState,
@@ -176,8 +207,11 @@ export default function getNFTPreviewStatusFromCache(
     // nothing — it can neither make the preview available nor fail it
     const uris = consultedUris(candidate);
     if (candidate.hash && uris.length) {
+      const { hash } = candidate;
+      const failedPaths = failedIpfsPaths(uris, (uri) => classifyUri(hash, getCacheInfo(uri), now));
       for (const uri of uris) {
-        const outcome = classifyUri(candidate.hash, getCacheInfo(uri), now);
+        const cacheInfo = getCacheInfo(uri);
+        const outcome = isTwinOfFailure(uri, cacheInfo, failedPaths) ? 'failed' : classifyUri(hash, cacheInfo, now);
 
         if (outcome === 'verified') {
           return NFTPreviewStatus.AVAILABLE;
