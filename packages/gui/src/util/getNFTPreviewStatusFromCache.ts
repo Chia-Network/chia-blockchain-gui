@@ -15,6 +15,8 @@ import {
 export type NFTPreviewSource = {
   dataUris?: string[];
   dataHash?: string;
+  // where the metadata — and with it the preview candidates — comes from
+  metadataUris?: string[];
 };
 
 type PreviewCandidate = {
@@ -60,9 +62,20 @@ function consultedUris(candidate: PreviewCandidate): string[] {
   return candidate.hash && Array.isArray(candidate.uris) ? candidate.uris.slice(0, MAX_URIS_PER_CANDIDATE) : [];
 }
 
+// The metadata uris the classification consults while the metadata is still
+// being fetched (see isMetadataFetchDoomed), bounded like a source's.
+function consultedMetadataUris(nft: NFTPreviewSource, metadataState: MetadataState): string[] {
+  return metadataState.isLoading && Array.isArray(nft.metadataUris)
+    ? nft.metadataUris.slice(0, MAX_URIS_PER_CANDIDATE)
+    : [];
+}
+
 /** The urls whose cache state `getNFTPreviewStatusFromCache` consults. */
 export function getNFTPreviewUrls(nft: NFTPreviewSource, metadataState: MetadataState): string[] {
-  return getCandidates(nft, settledMetadata(metadataState)).flatMap(consultedUris);
+  return [
+    ...consultedMetadataUris(nft, metadataState),
+    ...getCandidates(nft, settledMetadata(metadataState)).flatMap(consultedUris),
+  ];
 }
 
 type UriOutcome = 'verified' | 'failed' | 'undecided';
@@ -71,6 +84,18 @@ function classifyUri(hash: string, cacheInfo: CacheInfo | undefined, now: number
   if (cacheInfo?.state === CacheState.CACHED) {
     // a cached file with the wrong checksum is a settled failure for this uri
     return cacheInfo.checksum && compareChecksums(cacheInfo.checksum, hash) ? 'verified' : 'failed';
+  }
+
+  return classifyFailure(cacheInfo, now);
+}
+
+// Whether a persisted outcome without a hash to check against — a metadata
+// uri while its fetch is in flight — is a failure a tile asking for it would
+// be served, by the same rules as classifyUri's. A cached file counts as
+// verified: it is what the fetch will come back with.
+function classifyFailure(cacheInfo: CacheInfo | undefined, now: number): UriOutcome {
+  if (cacheInfo?.state === CacheState.CACHED) {
+    return 'verified';
   }
 
   if (cacheInfo?.state === CacheState.ERROR) {
@@ -113,13 +138,38 @@ function classifyUri(hash: string, cacheInfo: CacheInfo | undefined, now: number
  * preview sources are unknown, and a thumbnail may still make the preview
  * available even when the data file itself is unreachable.
  */
+// A metadata fetch still in flight whose every source the cache has already
+// seen fail — and would serve that failure to a tile asking now. The metadata
+// store fetches every NFT's metadata on the first pass through the gallery,
+// and for a file whose hosts are gone that fetch spends its whole budget
+// (each uri's transfer deadline, in a queue full of the same) before it fails
+// the same way it did last time; until then the NFT would count as undecided
+// — undecided counts as available — and its tile would sit in "Preview
+// available" showing the failure of its data file. Nothing settles here: the
+// fetch runs on, and if it does bring the metadata the store's change
+// notification has the NFT swept again with the preview candidates it brings.
+function isMetadataFetchDoomed(
+  nft: NFTPreviewSource,
+  metadataState: MetadataState,
+  getCacheInfo: (url: string) => CacheInfo | undefined,
+  now: number,
+): boolean {
+  const uris = consultedMetadataUris(nft, metadataState);
+  return (
+    uris.length > 0 &&
+    // every recorded copy, not just the consulted ones, must have been seen to fail
+    uris.length === (nft.metadataUris?.length ?? 0) &&
+    uris.every((uri) => classifyFailure(getCacheInfo(uri), now) === 'failed')
+  );
+}
+
 export default function getNFTPreviewStatusFromCache(
   nft: NFTPreviewSource,
   metadataState: MetadataState,
   getCacheInfo: (url: string) => CacheInfo | undefined,
   now: number = Date.now(),
 ): NFTPreviewStatus | undefined {
-  let isUndecided = metadataState.isLoading;
+  let isUndecided = metadataState.isLoading && !isMetadataFetchDoomed(nft, metadataState, getCacheInfo, now);
 
   for (const candidate of getCandidates(nft, settledMetadata(metadataState))) {
     // a source without a hash or uris has nothing to verify and contributes
@@ -166,9 +216,14 @@ export function getNFTPreviewRetryDueAt(
   now: number = Date.now(),
 ): number | undefined {
   let dueAt: number | undefined;
-  for (const candidate of getCandidates(nft, settledMetadata(metadataState))) {
+  const uriGroups = [
+    // a metadata fetch the cache has seen fail: its first-time failures get a wake-up too
+    consultedMetadataUris(nft, metadataState),
     // consultedUris is empty for a source without a hash
-    for (const uri of consultedUris(candidate)) {
+    ...getCandidates(nft, settledMetadata(metadataState)).map(consultedUris),
+  ];
+  for (const uris of uriGroups) {
+    for (const uri of uris) {
       const cacheInfo = getCacheInfo(uri);
       if (
         cacheInfo?.state === CacheState.ERROR &&

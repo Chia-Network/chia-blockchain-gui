@@ -105,6 +105,67 @@ describe('getNFTPreviewStatusFromCache', () => {
     expect(status).toBeUndefined();
   });
 
+  describe('metadata still being fetched', () => {
+    const now = 1_700_000_000_000;
+    const repeated = (url: string, error = 'HTTP error: 504'): CacheInfo => ({
+      url,
+      state: CacheState.ERROR,
+      error,
+      timestamp: now - 60 * 60 * 1000,
+      retries: 3,
+    });
+    const nft = {
+      dataUris: ['https://a/x.png'],
+      dataHash: HASH,
+      metadataUris: ['https://a/x.json', 'ipfs://QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/x.json'],
+    };
+
+    it('consults the metadata uris while the fetch is in flight, and not once it has settled', () => {
+      expect(getNFTPreviewUrls(nft, loadingMetadata)).toEqual([...nft.metadataUris, 'https://a/x.png']);
+      expect(getNFTPreviewUrls(nft, noMetadata)).toEqual(['https://a/x.png']);
+    });
+
+    it('is unavailable when the data file and every metadata copy have been seen to fail', () => {
+      const infos = lookup([repeated('https://a/x.png'), repeated(nft.metadataUris[0]), repeated(nft.metadataUris[1])]);
+      expect(getNFTPreviewStatusFromCache(nft, loadingMetadata, infos, now)).toBe(NFTPreviewStatus.UNAVAILABLE);
+    });
+
+    it('stays undecided while a metadata copy has never been fetched, or is cached', () => {
+      const fresh = lookup([repeated('https://a/x.png'), repeated(nft.metadataUris[0])]);
+      expect(getNFTPreviewStatusFromCache(nft, loadingMetadata, fresh, now)).toBeUndefined();
+
+      const cachedCopy = lookup([
+        repeated('https://a/x.png'),
+        repeated(nft.metadataUris[0]),
+        cached(nft.metadataUris[1], '0x1234'),
+      ]);
+      expect(getNFTPreviewStatusFromCache(nft, loadingMetadata, cachedCopy, now)).toBeUndefined();
+    });
+
+    it('stays undecided while a metadata copy failed only once and its retry is due', () => {
+      const infos = lookup([
+        repeated('https://a/x.png'),
+        repeated(nft.metadataUris[0]),
+        { ...repeated(nft.metadataUris[1]), retries: 1 },
+      ]);
+      expect(getNFTPreviewStatusFromCache(nft, loadingMetadata, infos, now)).toBeUndefined();
+    });
+
+    it('stays undecided when only some of the recorded copies could be consulted', () => {
+      const many = {
+        ...nft,
+        metadataUris: Array.from({ length: MAX_URIS_PER_CANDIDATE + 1 }, (_, i) => `https://a/${i}.json`),
+      };
+      const infos = lookup([repeated('https://a/x.png'), ...many.metadataUris.map((uri) => repeated(uri))]);
+      expect(getNFTPreviewStatusFromCache(many, loadingMetadata, infos, now)).toBeUndefined();
+    });
+
+    it('does not decide the preview from the data file alone while the metadata is merely slow', () => {
+      const infos = lookup([repeated('https://a/x.png')]);
+      expect(getNFTPreviewStatusFromCache(nft, loadingMetadata, infos, now)).toBeUndefined();
+    });
+  });
+
   describe('a transient failure inside its retry delay', () => {
     const now = 1_700_000_000_000;
     const failure = (retries: number | undefined, ago: number): CacheInfo => ({
