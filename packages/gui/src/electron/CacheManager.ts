@@ -1257,12 +1257,13 @@ export default class CacheManager extends EventEmitter {
     if (this.gatewayHostFailures?.gateway === gateway) {
       this.gatewayHostFailures = undefined;
     }
-    if (this.gatewayHealth?.gateway === gateway && !this.gatewayHealth.reachable) {
-      this.announceGatewayHealth({ gateway, reachable: true, failures: 0 });
-    }
+    const recoveredAt = Date.now();
     if (wasFailing) {
       // the failures recorded meanwhile are released for retry
-      this.gatewayRecoveredAt.set(gateway, Date.now());
+      this.gatewayRecoveredAt.set(gateway, recoveredAt);
+    }
+    if (this.gatewayHealth?.gateway === gateway && !this.gatewayHealth.reachable) {
+      this.announceGatewayHealth({ gateway, reachable: true, failures: 0, recoveredAt });
     }
   }
 

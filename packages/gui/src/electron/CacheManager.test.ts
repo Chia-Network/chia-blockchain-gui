@@ -1798,6 +1798,7 @@ describe('CacheManager IPFS gateway health', () => {
       gateway: 'https://ipfs.io/ipfs/',
       reachable: true,
       failures: 0,
+      recoveredAt: expect.any(Number),
     });
     expect(announcements).toHaveLength(2);
     expect(announcements[1]).toMatchObject({ reachable: true });
