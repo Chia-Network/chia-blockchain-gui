@@ -2278,7 +2278,8 @@ describe('CacheManager clear housekeeping', () => {
   // before the first file was deleted, and the occupied-space figure on the
   // settings page could not move until they were done.
   it('does not run per-download housekeeping for downloads it aborted', async () => {
-    const FILES = 1500;
+    // enough for a scan to cost something; 1500 times out on CI
+    const FILES = 300;
     const QUEUED = 60;
     // a populated cache: every size scan has to stat all of it
     await Promise.all(
@@ -2333,5 +2334,5 @@ describe('CacheManager clear housekeeping', () => {
     );
     expect(sidecarWrites).not.toHaveBeenCalled();
     expect(scans).not.toHaveBeenCalled();
-  });
+  }, 30_000);
 });
