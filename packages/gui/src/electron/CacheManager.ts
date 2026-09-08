@@ -812,13 +812,16 @@ export default class CacheManager extends EventEmitter {
       isIpfsBackedUrl(url) &&
       ipfsGatewayEnabled() &&
       (cacheInfo.gateway === undefined ? !isIpfsUrl(url) : cacheInfo.gateway !== ipfsGatewayBase());
-    // A failure to reach the gateway host, recorded before the gateway was
-    // last seen answering, says nothing about the content: the host was down
-    // (or the address was wrong) and is not any more.
+    // A failure to reach the gateway host whose transfer began before the
+    // gateway was last seen answering says nothing about the content: the
+    // host was down (or the address was wrong) and is not any more. Dated by
+    // the transfer's start (startedAt), not the sidecar's write: a request in
+    // flight when another one got through fails, and is written, after the
+    // recovery was stamped, yet its failure predates it.
     const isRecoveredGatewayFailure =
       cacheInfo.gateway !== undefined &&
       isHostUnreachableError(cacheInfo.error) &&
-      (this.gatewayRecoveredAt.get(cacheInfo.gateway) ?? 0) > cacheInfo.timestamp;
+      (this.gatewayRecoveredAt.get(cacheInfo.gateway) ?? 0) > (cacheInfo.startedAt ?? cacheInfo.timestamp);
     return (
       !isAbortError && !isRetriableTransientError && !isLimitLifted && !isGatewayChanged && !isRecoveredGatewayFailure
     );
@@ -973,6 +976,9 @@ export default class CacheManager extends EventEmitter {
     const isSelfGatewayLink =
       requestGateway !== undefined && !isIpfsUrl(url) && getGatewayHost(url) === getGatewayHost(requestGateway);
     let gatewayLegUsed = requestGateway !== undefined && (isIpfsUrl(url) || isSelfGatewayLink);
+    // when the transfer itself began — a failure to reach the gateway is dated
+    // by this, not by when its sidecar was written (see isRecoveredGatewayFailure)
+    let transferStartedAt: number | undefined;
 
     const process = async (): Promise<CacheInfo> => {
       try {
@@ -1012,6 +1018,7 @@ export default class CacheManager extends EventEmitter {
             throw new SharedDownloadBudgetSpentError();
           }
           transferDeadline.start();
+          transferStartedAt = Date.now();
           const downloadOptions = {
             timeout,
             maxSize,
@@ -1156,6 +1163,11 @@ export default class CacheManager extends EventEmitter {
           ...(isTransient ? { retries: this.consecutiveTransientFailures(previousCacheInfo, requestGateway) + 1 } : {}),
           // which gateway the verdict belongs to (see isGatewayChanged above)
           ...(requestGateway === undefined ? {} : { gateway: requestGateway }),
+          // when a failure to reach the gateway began, so a recovery of the
+          // gateway between the start and this write still releases it
+          ...(gatewayLegUsed && isHostUnreachableError(currentError.message)
+            ? { startedAt: transferStartedAt ?? Date.now() }
+            : {}),
         });
         // Failed downloads own sidecars too, even when no data file arrived.
         await this.trimCache(this.getCacheFilePath(url));
