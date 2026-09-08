@@ -739,7 +739,7 @@ function NFTPreviewContent(props: NFTPreviewProps) {
           }}
         >
           <NFTHashStatus nftId={nftId} hideValid />
-          {showNFTSource && <NFTSourceStatus nftId={nftId} preview={isPreview} />}
+          {showNFTSource && <NFTSourceStatus uri={preview?.isVerified ? preview.uri : undefined} />}
         </Box>
       )}
     </StyledCardPreview>

@@ -1,32 +1,32 @@
-import { Tooltip } from '@chia-network/core';
+import { Tooltip, getSemanticColors } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import DeviceHubIcon from '@mui/icons-material/DeviceHub';
 import LanguageIcon from '@mui/icons-material/Language';
-import { Chip, Typography } from '@mui/material';
+import { Chip, Typography, useTheme } from '@mui/material';
 import React, { useEffect, useMemo, useState } from 'react';
 
 import type CacheInfo from '../../@types/CacheInfo';
 import useCache from '../../hooks/useCache';
-import useNFTVerifyHash from '../../hooks/useNFTVerifyHash';
 import getNFTSource from '../../util/getNFTSource';
 
 export type NFTSourceStatusProps = {
-  nftId: string;
-  preview?: boolean;
+  // The URI of the verified file the tile is showing — the tile's own
+  // verification result, exclusions and all, so the chip describes the file
+  // on screen and not another candidate of the same NFT. Undefined while
+  // nothing has verified: there is no file to describe then, and the
+  // hash-status chip beside this one is reporting instead.
+  uri?: string;
 };
 
 // A chip saying where the file a tile shows came from (see getNFTSource).
-// Rendered only once the file has verified: until then there is no file to
-// describe, and the hash-status chip beside it is reporting instead. The
-// gateway that produced an IPFS file is read from its cache sidecar, one
+// The gateway that produced an IPFS file is read from its cache sidecar, one
 // lookup per tile, made only while the user has the label switched on
 // (useShowNFTSource) — the tile mounts this component only then.
 export default function NFTSourceStatus(props: NFTSourceStatusProps) {
-  const { nftId, preview = false } = props;
-  const { preview: nftPreview } = useNFTVerifyHash(nftId, { preview });
+  const { uri } = props;
   const { getCacheInfos } = useCache();
+  const theme = useTheme();
 
-  const uri = nftPreview?.isVerified ? nftPreview.uri : undefined;
   const [cacheInfo, setCacheInfo] = useState<{ uri: string; info: CacheInfo | undefined } | undefined>();
 
   useEffect(() => {
@@ -81,6 +81,12 @@ export default function NFTSourceStatus(props: NFTSourceStatusProps) {
     tooltip = <Trans>IPFS content fetched through an IPFS gateway.</Trans>;
   }
 
+  // The chip sits over the media, where a theme's primary.main can be too
+  // dark to read; highlight is the accent that stays readable on overlays
+  // (the loop control in NFTPreview uses it for the same reason).
+  const accent = getSemanticColors(theme.palette).highlight;
+  const onAccent = theme.palette.getContrastText(accent);
+
   return (
     <Tooltip title={<Typography variant="caption">{tooltip}</Typography>}>
       <Chip
@@ -88,10 +94,10 @@ export default function NFTSourceStatus(props: NFTSourceStatusProps) {
         label={label}
         size="small"
         sx={{
-          backgroundColor: 'primary.main',
-          color: 'primary.contrastText',
+          backgroundColor: accent,
+          color: onAccent,
           '& .MuiChip-icon': {
-            color: 'primary.contrastText',
+            color: onAccent,
           },
         }}
       />
