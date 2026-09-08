@@ -15,6 +15,7 @@ enum CacheAPI {
 
   // Content operations
   GET_CONTENT = `${API.CACHE}:getContent`,
+  GET_CONTENT_WITH_INFO = `${API.CACHE}:getContentWithInfo`,
   GET_HEADERS = `${API.CACHE}:getHeaders`,
   GET_CHECKSUM = `${API.CACHE}:getChecksum`,
   GET_URI = `${API.CACHE}:getUri`,

@@ -155,7 +155,7 @@ export default function NFTProvider(props: NFTProviderProps) {
       }
 
       // invalidate nft files
-      const promises = [];
+      const promises: Promise<unknown>[] = [];
       const { dataUris, metadataUris } = nft;
       const invalidatedUris: string[] = [...dataUris];
 
@@ -169,10 +169,8 @@ export default function NFTProvider(props: NFTProviderProps) {
 
       dataUris.forEach((uri) => promises.push(invalidate(uri)));
 
-      const firstMetadataUri = metadataUris && metadataUris[0];
-      if (firstMetadataUri) {
-        promises.push(invalidate(firstMetadataUri));
-      }
+      // the metadata may have been served by any of its URIs
+      metadataUris?.forEach((uri) => promises.push(invalidate(uri)));
 
       // invalidate metadata files
       try {
@@ -197,16 +195,18 @@ export default function NFTProvider(props: NFTProviderProps) {
 
       // Wait for every deletion, even when one of them fails (a uri the cache
       // cannot key), so the reset below cannot race a deletion still in
-      // flight; the first failure still propagates afterwards as before.
+      // flight. The in-memory records are dropped regardless: every metadata
+      // uri is invalidated now, and an NFT whose minter recorded one unusable
+      // uri among several must still get its fresh fetch — the first failure
+      // propagates afterwards, as before.
       const results = await Promise.allSettled(promises);
       invalidatePreviewStatus(id, invalidatedUris);
+      await Promise.all([invalidateNachos(), invalidateMetadata(id), invalidateNFTOnDemand(id)]);
 
       const failure = results.find((result): result is PromiseRejectedResult => result.status === 'rejected');
       if (failure) {
         throw failure.reason;
       }
-
-      await Promise.all([invalidateNachos(), invalidateMetadata(id), invalidateNFTOnDemand(id)]);
     },
     [
       fetchNFT,
