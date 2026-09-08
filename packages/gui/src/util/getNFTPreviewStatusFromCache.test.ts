@@ -3,7 +3,10 @@ import type MetadataState from '../@types/MetadataState';
 import NFTPreviewStatus from '../@types/NFTPreviewStatus';
 import CacheState from '../constants/CacheState';
 
-import getNFTPreviewStatusFromCache, { getNFTPreviewUrls } from './getNFTPreviewStatusFromCache';
+import getNFTPreviewStatusFromCache, {
+  MAX_URIS_PER_CANDIDATE,
+  getNFTPreviewUrls,
+} from './getNFTPreviewStatusFromCache';
 
 const HASH = '0xabc123';
 const PREVIEW_HASH = '0xdef456';
@@ -159,5 +162,46 @@ describe('getNFTPreviewStatusFromCache', () => {
         isLoading: false,
       }),
     ).toEqual(['https://a/x.png']);
+  });
+
+  // The uri arrays are minter-authored and uncapped; every url listed here is
+  // a file read in the main process, so the sweep consults a bounded prefix.
+  it('consults at most MAX_URIS_PER_CANDIDATE uris of one source', () => {
+    const manyUris = Array.from({ length: 5000 }, (_, i) => `https://a/${i}.png`);
+    const nft = { dataUris: manyUris, dataHash: HASH };
+
+    const urls = getNFTPreviewUrls(nft, noMetadata);
+    expect(urls).toHaveLength(MAX_URIS_PER_CANDIDATE);
+    expect(urls).toEqual(manyUris.slice(0, MAX_URIS_PER_CANDIDATE));
+
+    // per source, not per NFT: the thumbnail gets its own prefix
+    expect(
+      getNFTPreviewUrls(nft, {
+        metadata: { preview_image_uris: manyUris, preview_image_hash: PREVIEW_HASH },
+        isLoading: false,
+      }),
+    ).toHaveLength(2 * MAX_URIS_PER_CANDIDATE);
+  });
+
+  it('stays undecided when only uris past the cap are left, instead of calling the preview unavailable', () => {
+    const manyUris = Array.from({ length: MAX_URIS_PER_CANDIDATE + 1 }, (_, i) => `https://a/${i}.png`);
+    const nft = { dataUris: manyUris, dataHash: HASH };
+    const consultedAllDead = manyUris
+      .slice(0, MAX_URIS_PER_CANDIDATE)
+      .map((url) => errored(url, 'getaddrinfo ENOTFOUND a'));
+
+    // the ones consulted all failed, but the last was never looked at
+    expect(getNFTPreviewStatusFromCache(nft, noMetadata, lookup(consultedAllDead))).toBeUndefined();
+
+    // a verified uri within the prefix still decides it
+    expect(
+      getNFTPreviewStatusFromCache(nft, noMetadata, lookup([...consultedAllDead.slice(1), cached(manyUris[0], HASH)])),
+    ).toBe(NFTPreviewStatus.AVAILABLE);
+
+    // exactly the cap: every uri was consulted, so all-failed is unavailable
+    const atCap = { dataUris: manyUris.slice(0, MAX_URIS_PER_CANDIDATE), dataHash: HASH };
+    expect(getNFTPreviewStatusFromCache(atCap, noMetadata, lookup(consultedAllDead))).toBe(
+      NFTPreviewStatus.UNAVAILABLE,
+    );
   });
 });
