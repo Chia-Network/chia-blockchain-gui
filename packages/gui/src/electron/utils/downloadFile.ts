@@ -14,7 +14,7 @@ import {
 
 import fileExists from './fileExists';
 import { toFetchableUrl } from './ipfsGateway';
-import isValidURL from './isValidURL';
+import isValidURL, { isValidRequestURL } from './isValidURL';
 import guardRedirects from './redirectPolicy';
 
 const log = debug('chia-gui:downloadFile');
@@ -85,6 +85,9 @@ type DownloadFileOptions = {
   maxSize?: number; // values <= 0 disable the size limit
   onProgress?: (progress: number, size: number, downloadedSize: number) => void;
   overrideFile?: boolean;
+  // the gateway base an ipfs:// url is fetched through; defaults to the
+  // current preference (see toFetchableUrl)
+  gatewayBase?: string;
 };
 
 export default async function downloadFile(
@@ -97,6 +100,7 @@ export default async function downloadFile(
     maxSize = 100 * 1024 * 1024,
     onProgress,
     overrideFile = false,
+    gatewayBase,
   }: DownloadFileOptions = {},
 ): Promise<Headers> {
   if (!isValidURL(url)) {
@@ -112,17 +116,22 @@ export default async function downloadFile(
     throw new Error('Request aborted');
   }
 
-  const tempFilePath = `${localPath}.tmp`;
   // ipfs:// URIs are fetched through an HTTPS gateway when the user has
   // enabled it — Electron's net stack cannot request the ipfs scheme, and
   // with the option off toFetchableUrl refuses the fetch outright. Only
   // this outgoing request uses the translated URL; callers keep the original
-  // URI as the cache key.
-  const fetchUrl = toFetchableUrl(url);
+  // URI as the cache key. The translated URL is what actually leaves the
+  // machine, so it is the string that gets validated.
+  const requestUrl = toFetchableUrl(url, gatewayBase);
+  if (!isValidRequestURL(requestUrl)) {
+    throw new Error('Invalid URL');
+  }
+
+  const tempFilePath = `${localPath}.tmp`;
   // Redirects are followed one at a time, each checked against the same rule
   // as the requested URL (see redirectPolicy), so a host cannot redirect the
   // main process to a plain-http, loopback or private address.
-  const request = net.request({ url: fetchUrl, redirect: 'manual' });
+  const request = net.request({ url: requestUrl, redirect: 'manual' });
   const outputStream = new WriteStreamPromise(tempFilePath, overrideFile);
 
   // set when we abort the request ourselves, so abort events can be reported
@@ -141,7 +150,7 @@ export default async function downloadFile(
     request.abort();
   }
 
-  guardRedirects(request, fetchUrl, abortWithError);
+  guardRedirects(request, requestUrl, abortWithError);
 
   let timeoutId: NodeJS.Timeout | null = null;
 

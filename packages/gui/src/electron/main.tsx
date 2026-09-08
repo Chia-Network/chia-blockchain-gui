@@ -63,7 +63,7 @@ import downloadFile from './utils/downloadFile';
 import fetchJSON from './utils/fetchJSON';
 import ipcMainHandle from './utils/ipcMainHandle';
 import maybeIpfsToGatewayUrl from './utils/ipfsGateway';
-import isValidURL from './utils/isValidURL';
+import isValidURL, { isValidRequestURL } from './utils/isValidURL';
 import { loadConfig, checkConfigFileExists } from './utils/loadConfig';
 import { getDefaultLogPath, LogPathValidationError, resolveTrustedLogPath } from './utils/logPath';
 import manageDaemonLifetime from './utils/manageDaemonLifetime';
@@ -97,6 +97,17 @@ type ConfirmDialogResult = {
 
 app.disableHardwareAcceleration();
 app.commandLine.appendSwitch('disable-http-cache');
+
+// A URL without its fragment: what a window would actually load.
+function documentOf(target: string): string {
+  try {
+    const parsed = new URL(target);
+    parsed.hash = '';
+    return parsed.href;
+  } catch {
+    return target;
+  }
+}
 
 // The cache: scheme serves NFT media to <img>/<video>/<audio> tags. Media
 // elements expect protocols to buffer their responses unless the scheme is
@@ -581,9 +592,10 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
       // has enabled the gateway, download ipfs URIs through it like every
       // other network path. With the option off there is nothing the
       // downloader could fetch, so the request is dropped instead of handing
-      // Chromium a URL it silently fails on.
+      // Chromium a URL it silently fails on. The gateway form is the URL
+      // actually requested, so it is the one validated.
       const downloadUrl = maybeIpfsToGatewayUrl(urlLocal);
-      if (isIpfsUrl(downloadUrl)) {
+      if (isIpfsUrl(downloadUrl) || !isValidRequestURL(downloadUrl)) {
         return;
       }
 
@@ -1002,6 +1014,20 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
             protocol: 'file:',
             slashes: true,
           });
+
+    // The window shows the bundled renderer and nothing else. A navigation
+    // away from that document — a link inside NFT content that found a way
+    // out of its sandbox, a dropped file, a submitted form — is refused, and
+    // a request to open a new window is denied: external links reach the
+    // system browser through LinkAPI.OPEN_EXTERNAL instead. Hash changes are
+    // in-page and never reach this handler.
+    const rendererDocument = documentOf(startUrl);
+    mainWindow.webContents.on('will-navigate', (event, navigationUrl) => {
+      if (documentOf(navigationUrl) !== rendererDocument) {
+        event.preventDefault();
+      }
+    });
+    mainWindow.webContents.setWindowOpenHandler(() => ({ action: 'deny' }));
 
     mainWindow.loadURL(startUrl);
   };
