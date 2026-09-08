@@ -1062,6 +1062,9 @@ export default class CacheManager extends EventEmitter {
             state: CacheState.CACHED,
             headers,
             checksum,
+            // Which gateway produced the file, when one did (see
+            // CacheInfoBase). The renderer shows it as the file's source.
+            ...(gatewayLegUsed && requestGateway !== undefined ? { gateway: requestGateway } : {}),
           });
 
           log('Cache info saved', url);

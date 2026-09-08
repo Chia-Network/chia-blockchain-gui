@@ -39,6 +39,7 @@ import useNFTMetadata from '../../hooks/useNFTMetadata';
 import useNFTProvider from '../../hooks/useNFTProvider';
 import useNFTVerifyHash from '../../hooks/useNFTVerifyHash';
 import { useNFTVideoLoopGlobal, useNFTVideoLoopForNFT } from '../../hooks/useNFTVideoLoop';
+import useShowNFTSource from '../../hooks/useShowNFTSource';
 import useStateAbort from '../../hooks/useStateAbort';
 import getFileExtension from '../../util/getFileExtension';
 import getNFTId from '../../util/getNFTId';
@@ -46,6 +47,7 @@ import hasSensitiveContent from '../../util/hasSensitiveContent';
 import probeMediaPlayability from '../../util/probeMediaPlayability';
 
 import NFTHashStatus from './NFTHashStatus';
+import NFTSourceStatus from './NFTSourceStatus';
 
 const StyledCardPreview = styled(Box)`
   position: relative;
@@ -232,6 +234,7 @@ function NFTPreviewContent(props: NFTPreviewProps) {
   // never skipped, so an unplayable data file ends up as the notice below.
   const [unplayableUris, setUnplayableUris] = useStateAbort<string[]>([]);
 
+  const [showNFTSource] = useShowNFTSource();
   const { preview, isLoading: isLoadingVerifyHash } = useNFTVerifyHash(nftId, {
     preview: isPreview,
     ignoreSizeLimit,
@@ -731,10 +734,12 @@ function NFTPreviewContent(props: NFTPreviewProps) {
             left: 16,
             right: 16,
             justifyContent: 'center',
+            gap: 1,
             zIndex: 1,
           }}
         >
           <NFTHashStatus nftId={nftId} hideValid />
+          {showNFTSource && <NFTSourceStatus nftId={nftId} preview={isPreview} />}
         </Box>
       )}
     </StyledCardPreview>
