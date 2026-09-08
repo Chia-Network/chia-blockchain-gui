@@ -58,10 +58,7 @@ describe('getNFTPreviewStatusFromCache', () => {
     const status = getNFTPreviewStatusFromCache(
       { dataUris: ['https://a/x.png', 'https://b/x.png'], dataHash: HASH },
       noMetadata,
-      lookup([
-        errored('https://a/x.png', 'HTTP error: 404'),
-        cached('https://b/x.png', 'feed'),
-      ]),
+      lookup([errored('https://a/x.png', 'HTTP error: 404'), cached('https://b/x.png', 'feed')]),
     );
 
     expect(status).toBe(NFTPreviewStatus.UNAVAILABLE);
