@@ -6,12 +6,13 @@ import CacheState from '../constants/CacheState';
 
 import compareChecksums from './compareChecksums';
 import {
+  INACTIVITY_TIMEOUT_ERROR_PREFIX,
   REPEATED_TRANSIENT_FAILURES,
   isAbortedDownloadError,
   isTransientDownloadError,
   transientRetryDueAt,
 } from './downloadErrors';
-import { getIpfsPathFromAnyUrl } from './ipfs';
+import { getIpfsPathFromAnyUrl, isIpfsBackedUrl, isIpfsUrl } from './ipfs';
 
 export type NFTPreviewSource = {
   dataUris?: string[];
@@ -126,17 +127,32 @@ function classifyFailure(cacheInfo: CacheInfo | undefined, now: number): UriOutc
   return 'undecided';
 }
 
-// The ipfs paths (`<CID>[/path]`) of the uris among `uris` whose outcome is a
-// failure. An NFT commonly records the same file twice — a gateway link and
-// its ipfs:// twin — and CacheManager refuses the twin of content the gateway
-// just failed to produce without a download and without a sidecar of its own
-// (ColdIpfsPathError), so the twin never gets an outcome here. A uri never
-// fetched that names the same content as one that failed is read as failed
-// too: a tile asking for it would be refused the same way.
-function failedIpfsPaths(uris: string[], outcomeOf: (uri: string) => UriOutcome): Set<string> {
+// An NFT commonly records the same file twice — an https gateway link and its
+// ipfs:// twin. When the link fails on its own host and then through the
+// gateway with an HTTP status or an inactivity timeout, CacheManager remembers
+// the content as cold and refuses the ipfs:// twin — whose only route is that
+// gateway — without a download and without a sidecar of its own
+// (ColdIpfsPathError), so the twin never gets an outcome here. The ipfs paths
+// (`<CID>[/path]`) of exactly those failures: a persisted HTTP-status or
+// inactivity failure of a gateway link that classifies as failed. Not a hash
+// mismatch (the content exists), not a network or deadline error (no verdict
+// on the content), and not a failed ipfs:// uri (a link's own host would
+// still be tried).
+const HTTP_STATUS_FAILURE = /^HTTP error: \d{3}$/;
+
+function failedIpfsPaths(
+  uris: string[],
+  getCacheInfo: (url: string) => CacheInfo | undefined,
+  outcomeOf: (uri: string) => UriOutcome,
+): Set<string> {
   const paths = new Set<string>();
   uris.forEach((uri) => {
-    if (outcomeOf(uri) === 'failed') {
+    const cacheInfo = getCacheInfo(uri);
+    const isGatewayLink = isIpfsBackedUrl(uri) && !isIpfsUrl(uri);
+    const isContentFailure =
+      cacheInfo?.state === CacheState.ERROR &&
+      (HTTP_STATUS_FAILURE.test(cacheInfo.error) || cacheInfo.error.startsWith(INACTIVITY_TIMEOUT_ERROR_PREFIX));
+    if (isGatewayLink && isContentFailure && outcomeOf(uri) === 'failed') {
       const ipfsPath = getIpfsPathFromAnyUrl(uri);
       if (ipfsPath) {
         paths.add(ipfsPath);
@@ -146,8 +162,11 @@ function failedIpfsPaths(uris: string[], outcomeOf: (uri: string) => UriOutcome)
   return paths;
 }
 
+// A never-fetched ipfs:// uri naming content a gateway link of the same NFT
+// failed to get (see failedIpfsPaths): a tile asking for it would be refused
+// the same way, so it is read as failed too.
 function isTwinOfFailure(uri: string, cacheInfo: CacheInfo | undefined, failedPaths: Set<string>): boolean {
-  if (cacheInfo !== undefined && cacheInfo.state !== CacheState.NOT_CACHED) {
+  if (!isIpfsUrl(uri) || (cacheInfo !== undefined && cacheInfo.state !== CacheState.NOT_CACHED)) {
     return false;
   }
   const ipfsPath = getIpfsPathFromAnyUrl(uri);
@@ -172,7 +191,7 @@ function isMetadataFetchDoomed(
 ): boolean {
   const uris = consultedMetadataUris(nft, metadataState);
   const outcomeOf = (uri: string) => classifyFailure(getCacheInfo(uri), now);
-  const failedPaths = failedIpfsPaths(uris, outcomeOf);
+  const failedPaths = failedIpfsPaths(uris, getCacheInfo, outcomeOf);
   return (
     uris.length > 0 &&
     // every recorded copy, not just the consulted ones, must have been seen to fail
@@ -208,7 +227,7 @@ export default function getNFTPreviewStatusFromCache(
     const uris = consultedUris(candidate);
     if (candidate.hash && uris.length) {
       const { hash } = candidate;
-      const failedPaths = failedIpfsPaths(uris, (uri) => classifyUri(hash, getCacheInfo(uri), now));
+      const failedPaths = failedIpfsPaths(uris, getCacheInfo, (uri) => classifyUri(hash, getCacheInfo(uri), now));
       for (const uri of uris) {
         const cacheInfo = getCacheInfo(uri);
         const outcome = isTwinOfFailure(uri, cacheInfo, failedPaths) ? 'failed' : classifyUri(hash, cacheInfo, now);

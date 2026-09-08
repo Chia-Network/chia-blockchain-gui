@@ -140,6 +140,48 @@ describe('getNFTPreviewStatusFromCache', () => {
       expect(status).toBeUndefined();
     });
 
+    it.each([['a failed ipfs uri does not fail a never-fetched link: its own host would still be tried', twin, link]])(
+      '%s',
+      (_label, failedUri, neverFetched) => {
+        const status = getNFTPreviewStatusFromCache(
+          { dataUris: [failedUri, neverFetched], dataHash: HASH },
+          noMetadata,
+          lookup([{ ...failedLink, url: failedUri }]),
+          now,
+        );
+        expect(status).toBeUndefined();
+      },
+    );
+
+    it.each([
+      // the content exists; a twin would be downloaded (and mismatch on its own)
+      ['a hash mismatch', cached(link, '0xffff')],
+      // no verdict on the content
+      ['a network error', { ...failedLink, error: 'net::ERR_CONNECTION_RESET' }],
+      ["the caller's deadline running out", { ...failedLink, error: 'Request exceeded the 30000ms download deadline' }],
+    ])('does not fail the twin after %s of the link', (_label, linkInfo) => {
+      const status = getNFTPreviewStatusFromCache(
+        { dataUris: [link, twin], dataHash: HASH },
+        noMetadata,
+        lookup([linkInfo as CacheInfo]),
+        now,
+      );
+      expect(status).toBeUndefined();
+    });
+
+    it.each(['HTTP error: 404', 'HTTP error: 504', 'Request timed out after 30000ms of inactivity'])(
+      'fails the twin after %p of the link, which cools the content for the gateway',
+      (error) => {
+        const status = getNFTPreviewStatusFromCache(
+          { dataUris: [link, twin], dataHash: HASH },
+          noMetadata,
+          lookup([{ ...failedLink, error }]),
+          now,
+        );
+        expect(status).toBe(NFTPreviewStatus.UNAVAILABLE);
+      },
+    );
+
     it('lets a twin with an outcome of its own speak for itself', () => {
       const status = getNFTPreviewStatusFromCache(
         { dataUris: [link, twin], dataHash: HASH },
