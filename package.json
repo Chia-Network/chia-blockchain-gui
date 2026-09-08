@@ -42,6 +42,7 @@
     "*": "prettier --check --ignore-unknown --ignore-path .gitignore"
   },
   "dependencies": {
+    "fast-uri": "^3.1.7",
     "lerna": "9.0.7",
     "rollup": "4.62.4"
   },
