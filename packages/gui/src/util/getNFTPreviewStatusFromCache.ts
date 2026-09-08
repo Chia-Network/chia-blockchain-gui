@@ -5,13 +5,7 @@ import NFTPreviewStatus from '../@types/NFTPreviewStatus';
 import CacheState from '../constants/CacheState';
 
 import compareChecksums from './compareChecksums';
-import {
-  INACTIVITY_TIMEOUT_ERROR_PREFIX,
-  REPEATED_TRANSIENT_FAILURES,
-  isAbortedDownloadError,
-  isTransientDownloadError,
-  transientRetryDueAt,
-} from './downloadErrors';
+import { INACTIVITY_TIMEOUT_ERROR_PREFIX, isAbortedDownloadError } from './downloadErrors';
 import { getIpfsPathFromAnyUrl, isIpfsBackedUrl, isIpfsUrl } from './ipfs';
 
 export type NFTPreviewSource = {
@@ -82,46 +76,37 @@ export function getNFTPreviewUrls(nft: NFTPreviewSource, metadataState: Metadata
 
 type UriOutcome = 'verified' | 'failed' | 'undecided';
 
-function classifyUri(hash: string, cacheInfo: CacheInfo | undefined, now: number): UriOutcome {
+function classifyUri(hash: string, cacheInfo: CacheInfo | undefined): UriOutcome {
   if (cacheInfo?.state === CacheState.CACHED) {
     // a cached file with the wrong checksum is a settled failure for this uri
     return cacheInfo.checksum && compareChecksums(cacheInfo.checksum, hash) ? 'verified' : 'failed';
   }
 
-  return classifyFailure(cacheInfo, now);
+  return classifyFailure(cacheInfo);
 }
 
 // Whether a persisted outcome without a hash to check against — a metadata
 // uri while its fetch is in flight — is a failure a tile asking for it would
 // be served, by the same rules as classifyUri's. A cached file counts as
 // verified: it is what the fetch will come back with.
-function classifyFailure(cacheInfo: CacheInfo | undefined, now: number): UriOutcome {
+function classifyFailure(cacheInfo: CacheInfo | undefined): UriOutcome {
   if (cacheInfo?.state === CacheState.CACHED) {
     return 'verified';
   }
 
   if (cacheInfo?.state === CacheState.ERROR) {
-    // A failure the cache will try again on the next access — an abort, or a
-    // transient one (timeout, 5xx, rate limit, bot challenge, network error)
-    // whose retry delay has passed — settles nothing: a tile that asked for
-    // the file would fetch it, so calling the NFT unavailable would hide from
-    // a filtered gallery a file that may well arrive. A transient failure
-    // still inside its retry delay is what a tile would be served, so for now
-    // the preview is unavailable — and the sweep looks again when the delay
-    // runs out (getNFTPreviewRetryDueAt). One that has repeated
-    // (REPEATED_TRANSIENT_FAILURES) stays unavailable until a tile gets the
-    // file, and one that has exhausted its retries is settled for good.
-    if (isAbortedDownloadError(cacheInfo.error)) {
-      return 'undecided';
-    }
-    if (isTransientDownloadError(cacheInfo.error)) {
-      if ((cacheInfo.retries ?? 0) >= REPEATED_TRANSIENT_FAILURES) {
-        return 'failed';
-      }
-      const dueAt = transientRetryDueAt(cacheInfo);
-      return dueAt !== undefined && dueAt <= now ? 'undecided' : 'failed';
-    }
-    return 'failed';
+    // A download cancelled from our side is retried on the very next access
+    // and settles nothing. Every other persisted failure — a transient one
+    // (timeout, 5xx, rate limit, bot challenge, network error) as much as a
+    // settled one (404, bad certificate) — is what a tile asking for the file
+    // would be shown right now, so for the filter the preview is unavailable.
+    // The cache keeps its own retry schedule: a tile that asks — in the
+    // unavailable view, or in the unfiltered gallery — is served a retry when
+    // one is due, and its live report replaces this verdict. Reading a due
+    // retry as "undecided" here instead put every file whose hosts are gone
+    // back under "Preview available" as soon as its delay ran out, where it
+    // sat, unasked, until the user scrolled to it and watched it fail again.
+    return isAbortedDownloadError(cacheInfo.error) ? 'undecided' : 'failed';
   }
 
   return 'undecided';
@@ -174,7 +159,7 @@ function isTwinOfFailure(uri: string, cacheInfo: CacheInfo | undefined, failedPa
 }
 
 // A metadata fetch still in flight whose every source the cache has already
-// seen fail — and would serve that failure to a tile asking now. The metadata
+// seen fail. The metadata
 // store fetches every NFT's metadata on the first pass through the gallery,
 // and for a file whose hosts are gone that fetch spends its whole budget
 // (each uri's transfer deadline, in a queue full of the same) before it fails
@@ -187,10 +172,9 @@ function isMetadataFetchDoomed(
   nft: NFTPreviewSource,
   metadataState: MetadataState,
   getCacheInfo: (url: string) => CacheInfo | undefined,
-  now: number,
 ): boolean {
   const uris = consultedMetadataUris(nft, metadataState);
-  const outcomeOf = (uri: string) => classifyFailure(getCacheInfo(uri), now);
+  const outcomeOf = (uri: string) => classifyFailure(getCacheInfo(uri));
   const failedPaths = failedIpfsPaths(uris, getCacheInfo, outcomeOf);
   return (
     uris.length > 0 &&
@@ -208,18 +192,18 @@ function isMetadataFetchDoomed(
  * hash makes the preview available. The preview is unavailable only once
  * every uri of every source has a settled failure (a persisted download error
  * or cached bytes with the wrong checksum). Anything the cache has not seen
- * yet, or failed only transiently, leaves the outcome undecided
- * (`undefined`), as does metadata that is still loading: until it settles the
- * preview sources are unknown, and a thumbnail may still make the preview
- * available even when the data file itself is unreachable.
+ * yet, or a download it aborted, leaves the outcome undecided (`undefined`),
+ * as does metadata that is still loading (unless its fetch is doomed, see
+ * isMetadataFetchDoomed): until it settles the preview sources are unknown,
+ * and a thumbnail may still make the preview available even when the data
+ * file itself is unreachable.
  */
 export default function getNFTPreviewStatusFromCache(
   nft: NFTPreviewSource,
   metadataState: MetadataState,
   getCacheInfo: (url: string) => CacheInfo | undefined,
-  now: number = Date.now(),
 ): NFTPreviewStatus | undefined {
-  let isUndecided = metadataState.isLoading && !isMetadataFetchDoomed(nft, metadataState, getCacheInfo, now);
+  let isUndecided = metadataState.isLoading && !isMetadataFetchDoomed(nft, metadataState, getCacheInfo);
 
   for (const candidate of getCandidates(nft, settledMetadata(metadataState))) {
     // a source without a hash or uris has nothing to verify and contributes
@@ -227,10 +211,10 @@ export default function getNFTPreviewStatusFromCache(
     const uris = consultedUris(candidate);
     if (candidate.hash && uris.length) {
       const { hash } = candidate;
-      const failedPaths = failedIpfsPaths(uris, getCacheInfo, (uri) => classifyUri(hash, getCacheInfo(uri), now));
+      const failedPaths = failedIpfsPaths(uris, getCacheInfo, (uri) => classifyUri(hash, getCacheInfo(uri)));
       for (const uri of uris) {
         const cacheInfo = getCacheInfo(uri);
-        const outcome = isTwinOfFailure(uri, cacheInfo, failedPaths) ? 'failed' : classifyUri(hash, cacheInfo, now);
+        const outcome = isTwinOfFailure(uri, cacheInfo, failedPaths) ? 'failed' : classifyUri(hash, cacheInfo);
 
         if (outcome === 'verified') {
           return NFTPreviewStatus.AVAILABLE;
@@ -250,45 +234,4 @@ export default function getNFTPreviewStatusFromCache(
   }
 
   return isUndecided ? undefined : NFTPreviewStatus.UNAVAILABLE;
-}
-
-/**
- * When an NFT classified unavailable may become undecided again: the earliest
- * time one of its consulted uris' first-time transient failures is retried on
- * access (see transientRetryDueAt), if any lies ahead of `now`. The sweep that
- * classified the NFT looks at it again then, so a file that failed once
- * during a gateway hiccup rejoins the gallery's available previews — and gets
- * its tile to ask for it — without the user having to visit the unavailable
- * ones. A failure that has repeated (REPEATED_TRANSIENT_FAILURES) earns no
- * such wake-up: its verdict holds until a tile gets the file.
- */
-export function getNFTPreviewRetryDueAt(
-  nft: NFTPreviewSource,
-  metadataState: MetadataState,
-  getCacheInfo: (url: string) => CacheInfo | undefined,
-  now: number = Date.now(),
-): number | undefined {
-  let dueAt: number | undefined;
-  const uriGroups = [
-    // a metadata fetch the cache has seen fail: its first-time failures get a wake-up too
-    consultedMetadataUris(nft, metadataState),
-    // consultedUris is empty for a source without a hash
-    ...getCandidates(nft, settledMetadata(metadataState)).map(consultedUris),
-  ];
-  for (const uris of uriGroups) {
-    for (const uri of uris) {
-      const cacheInfo = getCacheInfo(uri);
-      if (
-        cacheInfo?.state === CacheState.ERROR &&
-        isTransientDownloadError(cacheInfo.error) &&
-        (cacheInfo.retries ?? 0) < REPEATED_TRANSIENT_FAILURES
-      ) {
-        const uriDueAt = transientRetryDueAt(cacheInfo);
-        if (uriDueAt !== undefined && uriDueAt > now && (dueAt === undefined || uriDueAt < dueAt)) {
-          dueAt = uriDueAt;
-        }
-      }
-    }
-  }
-  return dueAt;
 }

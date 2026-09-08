@@ -388,24 +388,3 @@ describe('isHostUnreachableError', () => {
     expect(isHostUnreachableError(message)).toBe(false);
   });
 });
-
-describe('transientRetryDueAt', () => {
-  const { MAX_TRANSIENT_RETRIES, transientErrorRetryDelay, transientRetryDueAt } =
-    jest.requireActual<typeof import('../../util/downloadErrors')>('../../util/downloadErrors');
-
-  it('is the failure time plus the delay its retry count earns', () => {
-    expect(transientRetryDueAt({ timestamp: 1000, retries: 1 })).toBe(1000 + transientErrorRetryDelay(1));
-    expect(transientRetryDueAt({ timestamp: 1000, retries: 3 })).toBe(1000 + transientErrorRetryDelay(3));
-    // a sidecar without a count is a first failure
-    expect(transientRetryDueAt({ timestamp: 1000 })).toBe(1000 + transientErrorRetryDelay(0));
-  });
-
-  it('is due at once for a sidecar written before failures were timestamped', () => {
-    expect(transientRetryDueAt({ retries: 2 })).toBe(0);
-    expect(transientRetryDueAt({ timestamp: 0, retries: 2 })).toBe(0);
-  });
-
-  it('is never due once the retries are exhausted', () => {
-    expect(transientRetryDueAt({ timestamp: 1000, retries: MAX_TRANSIENT_RETRIES })).toBeUndefined();
-  });
-});

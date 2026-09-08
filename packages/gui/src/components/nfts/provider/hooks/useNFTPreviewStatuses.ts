@@ -6,16 +6,13 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import type CacheInfo from '../../../../@types/CacheInfo';
 import type MetadataState from '../../../../@types/MetadataState';
-import NFTPreviewStatus from '../../../../@types/NFTPreviewStatus';
+import type NFTPreviewStatus from '../../../../@types/NFTPreviewStatus';
 import CacheState from '../../../../constants/CacheState';
 import useCache from '../../../../hooks/useCache';
 import useIpfsGateway from '../../../../hooks/useIpfsGateway';
 import { useIpfsGatewayBase } from '../../../../hooks/useIpfsGatewayUrl';
 import { isHostUnreachableError } from '../../../../util/downloadErrors';
-import getNFTPreviewStatusFromCache, {
-  getNFTPreviewRetryDueAt,
-  getNFTPreviewUrls,
-} from '../../../../util/getNFTPreviewStatusFromCache';
+import getNFTPreviewStatusFromCache, { getNFTPreviewUrls } from '../../../../util/getNFTPreviewStatusFromCache';
 import { isIpfsBackedUrl } from '../../../../util/ipfs';
 
 const log = debug('chia-gui:NFTProvider:useNFTPreviewStatuses');
@@ -73,11 +70,6 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
   // which forgets it here.
   const [cacheInfos /* immutable */] = useState(() => new Map<string, CacheInfo>());
 
-  // NFTs classified unavailable on the strength of a transient failure, and
-  // when the cache will retry that failure on access: at that time the NFT is
-  // undecided again and is looked at once more (see scheduleRetryDueLookUp).
-  const [retryDue /* immutable */] = useState(() => new Map<string, number>());
-
   // The gateway ipfs:// files are fetched through, and https gateway links
   // fall back to (empty while the option is off). A change of it forgets the
   // verdicts that rested on ipfs files (forgetIpfsVerdicts) and sweeps again;
@@ -106,8 +98,6 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
   const setPreviewStatus = useCallback(
     (nftId: string, status: NFTPreviewStatus) => {
       settled.add(nftId);
-      // a live report is the verdict; nothing to look at again
-      retryDue.delete(nftId);
 
       if (statuses.get(nftId) === status) {
         return;
@@ -116,7 +106,7 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
       statuses.set(nftId, status);
       events.emit('changed');
     },
-    [events /* immutable */, statuses /* immutable */, settled /* immutable */, retryDue /* immutable */],
+    [events /* immutable */, statuses /* immutable */, settled /* immutable */],
   );
 
   // Bumped by every invalidation. A lookup whose IPC round-trip spans one may
@@ -129,20 +119,13 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
     (nftId: string, urls: string[]) => {
       invalidationGeneration.current += 1;
       settled.delete(nftId);
-      retryDue.delete(nftId);
       urls.forEach((url) => cacheInfos.delete(url));
 
       if (statuses.delete(nftId)) {
         events.emit('changed');
       }
     },
-    [
-      events /* immutable */,
-      statuses /* immutable */,
-      settled /* immutable */,
-      cacheInfos /* immutable */,
-      retryDue /* immutable */,
-    ],
+    [events /* immutable */, statuses /* immutable */, settled /* immutable */, cacheInfos /* immutable */],
   );
 
   // immutable function
@@ -159,53 +142,6 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
 
   const isLookingUpRef = useRef(false);
   const lookUpAgainRef = useRef(false);
-
-  // The sweep below, reachable from the retry timer that the sweep itself
-  // (re)arms; a ref breaks the cycle between the two callbacks.
-  const lookUpFromCacheRef = useRef<() => Promise<void>>(async () => {});
-
-  // Wakes when the earliest transient failure behind an "unavailable" verdict
-  // is due for a retry: those NFTs are undecided again — the cache would fetch
-  // the file for a tile that asked — so their verdicts are forgotten and the
-  // sweep runs once more. Re-armed after every sweep for whatever is due next;
-  // nothing is armed while no verdict rests on a transient failure.
-  const retryDueTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
-  const scheduleRetryDueLookUp = useCallback(() => {
-    if (retryDueTimeoutRef.current) {
-      clearTimeout(retryDueTimeoutRef.current);
-      retryDueTimeoutRef.current = undefined;
-    }
-    let earliest: number | undefined;
-    retryDue.forEach((dueAt) => {
-      if (earliest === undefined || dueAt < earliest) {
-        earliest = dueAt;
-      }
-    });
-    if (earliest === undefined) {
-      return;
-    }
-    retryDueTimeoutRef.current = setTimeout(
-      () => {
-        retryDueTimeoutRef.current = undefined;
-        const now = Date.now();
-        let changed = false;
-        retryDue.forEach((dueAt, nftId) => {
-          if (dueAt <= now) {
-            retryDue.delete(nftId);
-            settled.delete(nftId);
-            if (statuses.delete(nftId)) {
-              changed = true;
-            }
-          }
-        });
-        if (changed) {
-          events.emit('changed');
-        }
-        lookUpFromCacheRef.current();
-      },
-      Math.max(0, earliest - Date.now()),
-    );
-  }, [retryDue /* immutable */, settled /* immutable */, statuses /* immutable */, events /* immutable */]);
 
   // Classifies every NFT not yet settled from the cache's persisted state.
   // Runs serialized: a sweep that finds the flag set simply sweeps once more
@@ -309,8 +245,7 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
               return;
             }
 
-            const now = Date.now();
-            const status = getNFTPreviewStatusFromCache(nft, metadataState, getCacheInfo, now);
+            const status = getNFTPreviewStatusFromCache(nft, metadataState, getCacheInfo);
             if (status) {
               statuses.set(nftId, status);
               // A verdict reached while the metadata is still being fetched
@@ -323,15 +258,6 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
                 settled.add(nftId);
               }
               changed = true;
-              const dueAt =
-                status === NFTPreviewStatus.UNAVAILABLE
-                  ? getNFTPreviewRetryDueAt(nft, metadataState, getCacheInfo, now)
-                  : undefined;
-              if (dueAt !== undefined) {
-                retryDue.set(nftId, dueAt);
-              } else {
-                retryDue.delete(nftId);
-              }
             } else if (!metadataState.isLoading) {
               // every input is known and the cache cannot decide — only a
               // download can, and the tile that performs it reports it
@@ -340,7 +266,6 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
               // loading (see above) is stale now that the metadata has
               // arrived: drop it so the NFT rejoins the available previews
               // and a tile mounts to fetch the candidates it brought
-              retryDue.delete(nftId);
               if (statuses.delete(nftId)) {
                 changed = true;
               }
@@ -357,7 +282,6 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
       log(`Error looking up preview statuses from the cache: ${(e as Error).message}`);
     } finally {
       isLookingUpRef.current = false;
-      scheduleRetryDueLookUp();
     }
   }, [
     nfts /* immutable */,
@@ -367,11 +291,8 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
     statuses /* immutable */,
     settled /* immutable */,
     cacheInfos /* immutable */,
-    retryDue /* immutable */,
     events /* immutable */,
-    scheduleRetryDueLookUp /* immutable */,
   ]);
-  lookUpFromCacheRef.current = lookUpFromCache;
 
   const lookUpTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
@@ -416,7 +337,6 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
 
       invalidationGeneration.current += 1;
       settled.delete(nftId);
-      retryDue.delete(nftId);
       ipfsUrls.forEach((url) => cacheInfos.delete(url));
       if (statuses.delete(nftId)) {
         changed = true;
@@ -435,7 +355,6 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
     }
     scheduleLookUp();
   }, [
-    retryDue /* immutable */,
     nfts /* immutable */,
     nachos /* immutable */,
     getMetadata /* immutable */,
@@ -482,10 +401,6 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
       if (lookUpTimeoutRef.current) {
         clearTimeout(lookUpTimeoutRef.current);
         lookUpTimeoutRef.current = undefined;
-      }
-      if (retryDueTimeoutRef.current) {
-        clearTimeout(retryDueTimeoutRef.current);
-        retryDueTimeoutRef.current = undefined;
       }
     };
   }, [scheduleLookUp, subscribeToChanges, subscribeToMetadataChanges]);

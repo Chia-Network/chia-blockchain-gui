@@ -103,37 +103,6 @@ export function transientErrorRetryDelay(retries: number): number {
   return Math.min(TRANSIENT_ERROR_RETRY_DELAY * 2 ** exponent, MAX_TRANSIENT_ERROR_RETRY_DELAY);
 }
 
-// How many transient failures in a row make a file's preview unavailable for
-// the gallery filter even once its retry is due. One failure is a hiccup and
-// the file rejoins "Preview available" as soon as the cache would try again;
-// a file that has failed again on that retry has shown a pattern, and
-// advertising it as available for another 30-second attempt each time its
-// delay runs out — for every such file after every restart — fills the view
-// with failures. The cache still retries it whenever a tile asks (in the
-// unavailable view, or in the unfiltered gallery); it is the filter's verdict
-// that waits for that to actually succeed.
-export const REPEATED_TRANSIENT_FAILURES = 2;
-
-/** When the cache will next retry a persisted transient failure on access:
- * the time its retry delay runs out, 0 for a sidecar written before failures
- * were timestamped (retried on the next access), or undefined once the entry
- * has failed MAX_TRANSIENT_RETRIES times in a row and settled for good. Until
- * that time a tile asking for the file is served the persisted failure, so the
- * preview is unavailable for now — which is how the gallery filter reads it
- * (getNFTPreviewStatusFromCache). The cache also retries each such failure
- * once per session regardless of the delay, which a reader of the sidecar
- * cannot see; a tile that asks then reports the outcome live. */
-export function transientRetryDueAt(failure: { timestamp?: number; retries?: number }): number | undefined {
-  const retries = failure.retries ?? 0;
-  if (retries >= MAX_TRANSIENT_RETRIES) {
-    return undefined;
-  }
-  if (!failure.timestamp) {
-    return 0;
-  }
-  return failure.timestamp + transientErrorRetryDelay(retries);
-}
-
 // Chromium network errors that say the request never reached a host at the
 // URL's name: the name does not resolve, nothing listens at the address, or
 // what listens presents a certificate for some other name. For a request
