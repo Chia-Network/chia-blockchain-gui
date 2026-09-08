@@ -2297,8 +2297,14 @@ describe('CacheManager clear housekeeping', () => {
     // removes it and fails
     mockDownloadFile.mockImplementation(async (_url, localPath, options) => {
       await fs.writeFile(`${localPath}.tmp`, Buffer.alloc(10));
+      // like the real downloadFile, an already-aborted signal ends it at once
+      const { signal } = options ?? {};
       await new Promise<void>((resolve) => {
-        options?.signal?.addEventListener('abort', () => resolve());
+        if (signal?.aborted) {
+          resolve();
+          return;
+        }
+        signal?.addEventListener('abort', () => resolve(), { once: true });
       });
       await fs.unlink(`${localPath}.tmp`);
       throw new Error('Request aborted');
