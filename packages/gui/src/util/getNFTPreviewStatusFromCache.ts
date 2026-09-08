@@ -51,7 +51,8 @@ export const MAX_URIS_PER_CANDIDATE = 10;
 // The uris of a source the classification consults: none without a hash to
 // verify against, and at most MAX_URIS_PER_CANDIDATE otherwise.
 function consultedUris(candidate: PreviewCandidate): string[] {
-  return candidate.hash ? (candidate.uris ?? []).slice(0, MAX_URIS_PER_CANDIDATE) : [];
+  // a list that is not one (unnormalized minter metadata) consults nothing
+  return candidate.hash && Array.isArray(candidate.uris) ? candidate.uris.slice(0, MAX_URIS_PER_CANDIDATE) : [];
 }
 
 /** The urls whose cache state `getNFTPreviewStatusFromCache` consults. */

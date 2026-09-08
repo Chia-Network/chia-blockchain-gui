@@ -150,6 +150,24 @@ describe('getNFTPreviewStatusFromCache', () => {
     expect(getNFTPreviewStatusFromCache(nft, noMetadata, lookup([dead]))).toBe(NFTPreviewStatus.UNAVAILABLE);
   });
 
+  it('consults nothing for a preview source whose uri list is not a list', () => {
+    const nft = { dataUris: ['https://a/x.png'], dataHash: HASH };
+    const hostile: MetadataState = {
+      metadata: {
+        preview_image_uris: {} as unknown as string[],
+        preview_image_hash: PREVIEW_HASH,
+        preview_video_uris: 5 as unknown as string[],
+        preview_video_hash: PREVIEW_HASH,
+      },
+      isLoading: false,
+    };
+
+    expect(getNFTPreviewUrls(nft, hostile)).toEqual(['https://a/x.png']);
+    expect(getNFTPreviewStatusFromCache(nft, hostile, lookup([cached('https://a/x.png', HASH)]))).toBe(
+      NFTPreviewStatus.AVAILABLE,
+    );
+  });
+
   it('lists the urls the classification consults', () => {
     const nft = { dataUris: ['https://a/x.png'], dataHash: HASH };
 
