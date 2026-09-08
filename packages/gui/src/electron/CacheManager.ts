@@ -1,7 +1,7 @@
 import { BrowserWindow, dialog, type Protocol } from 'electron';
 import { EventEmitter } from 'events';
 import crypto from 'node:crypto';
-import { createReadStream } from 'node:fs';
+import { createReadStream, type Stats } from 'node:fs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { Readable } from 'node:stream';
@@ -22,6 +22,7 @@ import DownloadDeadline, { normalizeDownloadDuration } from './utils/DownloadDea
 import SharedDownloadBudgetSpentError from './utils/SharedDownloadBudgetSpentError';
 import downloadFile, {
   MAX_FILE_SIZE_EXCEEDED_ERROR,
+  TEMP_FILE_SUFFIX,
   isTransientDownloadError,
   normalizeMaxSize,
   normalizeTimeout,
@@ -124,19 +125,57 @@ export function transientErrorRetryDelay(retries: number): number {
 // anything that could only come from somewhere else.
 export const MAX_CACHE_INFO_LOOKUPS = 1000;
 const CACHE_INFO_LOOKUP_CONCURRENCY = 16;
+// How many files a directory scan (size accounting, eviction) stats at a
+// time. Stat-ing every file at once stalls the main thread for the better
+// part of a second on a cache of a few hundred thousand entries, and the
+// scans run after every completed download.
+const FILE_STAT_CONCURRENCY = 64;
 
-const SUFFIXES = [FILE_SUFFIX, `${FILE_SUFFIX}${INFO_SUFFIX}`];
+// Every file the cache owns: the data file, its `-info` sidecar, and the
+// `.tmp` file a download streams into before it is renamed into place. The
+// temp files count too — an interrupted download (quit, crash, a failed
+// cleanup) leaves one behind, and a file the size accounting, eviction and
+// "Clear cache" cannot see would grow the directory past the user's limit
+// with no way to reclaim it from the UI.
+// A sidecar is written beside its final name and renamed into place, so the
+// cache owns a fourth kind of file for the length of that write.
+const INFO_TEMP_SUFFIX = `${INFO_SUFFIX}${TEMP_FILE_SUFFIX}`;
+const SUFFIXES = [
+  FILE_SUFFIX,
+  `${FILE_SUFFIX}${INFO_SUFFIX}`,
+  `${FILE_SUFFIX}${TEMP_FILE_SUFFIX}`,
+  `${FILE_SUFFIX}${INFO_TEMP_SUFFIX}`,
+];
 
 function isChiaCacheFile(filePath: string) {
   return SUFFIXES.some((suffix) => filePath.endsWith(suffix));
 }
 
+// A sidecar, finished or still being written: never a data file.
 function isChiaCacheInfoFile(filePath: string) {
-  return isChiaCacheFile(filePath) && filePath.endsWith(INFO_SUFFIX);
+  return isChiaCacheFile(filePath) && (filePath.endsWith(INFO_SUFFIX) || filePath.endsWith(INFO_TEMP_SUFFIX));
+}
+
+// A file a write is streaming into, data or sidecar; stale once no write is.
+function isChiaCacheTempFile(filePath: string) {
+  return (
+    filePath.endsWith(`${FILE_SUFFIX}${TEMP_FILE_SUFFIX}`) || filePath.endsWith(`${FILE_SUFFIX}${INFO_TEMP_SUFFIX}`)
+  );
 }
 
 function getInfoFilePath(filePath: string) {
   return `${filePath}${INFO_SUFFIX}`;
+}
+
+// Whether a sidecar claims its data file is present. An unreadable sidecar is
+// left alone: the lookup path reports it on its own terms.
+async function isCachedSidecar(infoFilePath: string): Promise<boolean> {
+  try {
+    const info = JSON.parse(await fs.readFile(infoFilePath, 'utf-8')) as Partial<CacheInfo>;
+    return info.state === CacheState.CACHED;
+  } catch {
+    return false;
+  }
 }
 
 // The type the cache: response declares for a file. A media type the
@@ -185,7 +224,19 @@ export default class CacheManager extends EventEmitter {
   // access in between.
   private transientFailureUrls: Set<string> = new Set();
 
+  // Clear, migration and invalidation share one barrier. Waiters must not enter
+  // the request map until admitted: maintenance drains that map, so a request
+  // which itself awaits maintenance would create a circular wait.
   private maintenance: Promise<void> | undefined;
+
+  private clearing: Promise<void> | undefined;
+
+  private eviction: Promise<void> = Promise.resolve();
+
+  private maintenanceGeneration = 0;
+
+  // Only disk reads enter this map; they never wait for maintenance or fetches.
+  private activeReads = new Map<Promise<Buffer>, { url: string; filePath: string }>();
 
   constructor(
     options: {
@@ -296,22 +347,75 @@ export default class CacheManager extends EventEmitter {
     });
   }
 
+  // An fs error names the file it failed on, absolute path included, and the
+  // cache directory is somewhere under the user's home. Such a message stays
+  // in the main-process log; what crosses to the renderer, or is persisted
+  // in a sidecar it can read, says only what went wrong.
+  redactCachePath(error: unknown): Error {
+    const original = error instanceof Error ? error : new Error(String(error));
+    if (!original.message.includes(this.cacheDirectory)) {
+      return original;
+    }
+    log(`Cache file operation failed: ${original.message}`);
+    const { code } = original as { code?: string };
+    return new Error(`${code ?? 'EIO'}: cache file operation failed`);
+  }
+
   private prepareIPC() {
-    ipcMainHandle(CacheAPI.GET_CACHE_SIZE, () => this.getCacheSize());
-    ipcMainHandle(CacheAPI.CLEAR_CACHE, () => this.clearCache());
-    ipcMainHandle(CacheAPI.SET_CACHE_DIRECTORY, () => this.setCacheDirectory());
-    ipcMainHandle(CacheAPI.SET_MAX_CACHE_SIZE, (newSize: number) => this.setMaxCacheSize(newSize));
-    ipcMainHandle(CacheAPI.GET_CONTENT_WITH_INFO, (url: string, options?: CacheRequestOptions) =>
-      this.getContentWithInfo(url, options),
+    const guarded =
+      <Args extends unknown[], Result>(handler: (...args: Args) => Promise<Result> | Result) =>
+      async (...args: Args): Promise<Result> => {
+        try {
+          return await handler(...args);
+        } catch (error) {
+          throw this.redactCachePath(error);
+        }
+      };
+
+    ipcMainHandle(
+      CacheAPI.GET_CACHE_SIZE,
+      guarded(() => this.getCacheSize()),
     );
-    ipcMainHandle(CacheAPI.GET_CONTENT, (url: string, options?: CacheRequestOptions) => this.getContent(url, options));
-    ipcMainHandle(CacheAPI.GET_HEADERS, (url: string, options?: CacheRequestOptions) => this.getHeaders(url, options));
-    ipcMainHandle(CacheAPI.GET_CHECKSUM, (url: string, options?: CacheRequestOptions) =>
-      this.getChecksum(url, options),
+    ipcMainHandle(
+      CacheAPI.CLEAR_CACHE,
+      guarded(() => this.clearCache()),
     );
-    ipcMainHandle(CacheAPI.GET_URI, (url: string, options?: CacheRequestOptions) => this.getURI(url, options));
-    ipcMainHandle(CacheAPI.INVALIDATE, (url: string) => this.invalidate(url));
-    ipcMainHandle(CacheAPI.GET_CACHE_INFOS, (urls: string[]) => this.getCacheInfos(urls));
+    ipcMainHandle(
+      CacheAPI.SET_CACHE_DIRECTORY,
+      guarded(() => this.setCacheDirectory()),
+    );
+    ipcMainHandle(
+      CacheAPI.SET_MAX_CACHE_SIZE,
+      guarded((newSize: number) => this.setMaxCacheSize(newSize)),
+    );
+    ipcMainHandle(
+      CacheAPI.GET_CONTENT_WITH_INFO,
+      guarded((url: string, options?: CacheRequestOptions) => this.getContentWithInfo(url, options)),
+    );
+    ipcMainHandle(
+      CacheAPI.GET_CONTENT,
+      guarded((url: string, options?: CacheRequestOptions) => this.getContent(url, options)),
+    );
+    ipcMainHandle(
+      CacheAPI.GET_HEADERS,
+      guarded((url: string, options?: CacheRequestOptions) => this.getHeaders(url, options)),
+    );
+    ipcMainHandle(
+      CacheAPI.GET_CHECKSUM,
+      guarded((url: string, options?: CacheRequestOptions) => this.getChecksum(url, options)),
+    );
+    ipcMainHandle(
+      CacheAPI.GET_URI,
+      guarded((url: string, options?: CacheRequestOptions) => this.getURI(url, options)),
+    );
+    ipcMainHandle(
+      CacheAPI.INVALIDATE,
+      guarded((url: string) => this.invalidate(url)),
+    );
+    ipcMainHandle(
+      CacheAPI.GET_CACHE_INFOS,
+      guarded((urls: string[]) => this.getCacheInfos(urls)),
+    );
 
     ipcMainHandle(CacheAPI.GET_CACHE_DIRECTORY, () => this.cacheDirectory);
     ipcMainHandle(CacheAPI.GET_MAX_CACHE_SIZE, () => this.maxCacheSize);
@@ -388,6 +492,44 @@ export default class CacheManager extends EventEmitter {
 
   async init() {
     await ensureDirectoryExists(this.cacheDirectory);
+    await this.removeStaleTempFiles();
+  }
+
+  // Deletes the temp files of downloads that are not in flight. At startup
+  // that is every temp file: none can belong to a live download. Errors are
+  // ignored — a file that cannot be removed is still counted and evictable.
+  private async removeStaleTempFiles() {
+    let files: string[];
+    try {
+      files = await fs.readdir(this.cacheDirectory);
+    } catch (error) {
+      log(`Could not list the cache directory for stale temp files: ${(error as Error).message}`);
+      return;
+    }
+
+    const inFlight = this.inFlightTempFilePaths();
+    await Promise.all(
+      files
+        .filter((file) => isChiaCacheTempFile(file))
+        .map((file) => path.join(this.cacheDirectory, file))
+        .filter((filePath) => !inFlight.has(filePath))
+        .map((filePath) => safeUnlink(filePath)),
+    );
+  }
+
+  // The temp files that downloads currently in flight are writing to. Their
+  // urls are the ongoing requests; a temp file that is not one of these is a
+  // leftover no download will ever finish.
+  private inFlightTempFilePaths(): Set<string> {
+    const paths = new Set<string>();
+    this.ongoingRequests.forEach((_request, url) => {
+      try {
+        paths.add(`${this.getCacheFilePath(url)}${TEMP_FILE_SUFFIX}`);
+      } catch {
+        // a url the cache cannot key has no file
+      }
+    });
+    return paths;
   }
 
   public get maxCacheSize(): number {
@@ -434,7 +576,8 @@ export default class CacheManager extends EventEmitter {
       return JSON.parse(infoString) as CacheInfo;
     } catch (error) {
       const currentError = (error as Error) ?? new Error('Unknown error');
-      if ((currentError as { code?: string }).code === 'ENOENT') {
+      const { code } = currentError as { code?: string };
+      if (code === 'ENOENT') {
         return {
           url,
           state: CacheState.NOT_CACHED,
@@ -442,10 +585,29 @@ export default class CacheManager extends EventEmitter {
         };
       }
 
+      // A sidecar that is not JSON is one this cache did not finish writing
+      // (a crash before the atomic rename existed, a disk error). Nothing in
+      // it can be trusted, and reporting it as an error would settle the
+      // entry for good; it is removed and the entry fetched afresh instead.
+      if (currentError instanceof SyntaxError) {
+        log(`Removing an unreadable cache info for ${url}`);
+        await safeUnlink(filePath);
+        return {
+          url,
+          state: CacheState.NOT_CACHED,
+          timestamp: Date.now(),
+        };
+      }
+
+      // The full message of an fs error embeds the absolute path of the
+      // sidecar — the user's home directory included — and this record is
+      // handed to the renderer (getCacheInfos). The code says what went
+      // wrong; the path stays in the main process log.
+      log(`Could not read the cache info for ${url}: ${currentError.message}`);
       return {
         url,
         state: CacheState.ERROR,
-        error: currentError.message,
+        error: code ?? 'Cache info unreadable',
         timestamp: Date.now(),
       };
     }
@@ -466,7 +628,11 @@ export default class CacheManager extends EventEmitter {
       timestamp: Date.now(),
     };
 
-    await fs.writeFile(infoFilePath, JSON.stringify(cacheInfo), 'utf-8');
+    // Renamed into place so that a crash mid-write leaves either the previous
+    // sidecar or none, never a truncated one that would settle the entry.
+    const tempInfoFilePath = `${infoFilePath}${TEMP_FILE_SUFFIX}`;
+    await fs.writeFile(tempInfoFilePath, JSON.stringify(cacheInfo), 'utf-8');
+    await fs.rename(tempInfoFilePath, infoFilePath);
 
     return cacheInfo;
   }
@@ -779,22 +945,7 @@ export default class CacheManager extends EventEmitter {
           });
 
           log('Cache info saved', url);
-          try {
-            // remove old files if the cache is full
-            const currentCacheSize = await this.getCacheSize();
-            if (this.maxCacheSize > 0 && currentCacheSize > this.maxCacheSize) {
-              // The current size already includes the file that was just
-              // downloaded. Keep that file available to the caller and evict
-              // older entries down to the configured total-size target.
-              await this.removeOldestFiles(this.maxCacheSize, cacheFilePath);
-            }
-          } catch (housekeepingError) {
-            // The download and its cache info are already saved — a failure in
-            // cache bookkeeping must not overwrite that state with an error.
-            log(`Cache housekeeping failed: ${(housekeepingError as Error).message}`, url);
-          }
-          // todo just add size and save it locally
-          this.emit('sizeChanged');
+          await this.trimCache(cacheFilePath);
 
           return updatedCacheInfo;
         };
@@ -810,15 +961,16 @@ export default class CacheManager extends EventEmitter {
           throw error;
         }
 
-        const currentError =
-          transferDeadline.error ?? (error as Error) ?? new Error('Unknown fetchRemoteContent error');
+        const currentError = this.redactCachePath(
+          transferDeadline.error ?? (error as Error) ?? new Error('Unknown fetchRemoteContent error'),
+        );
 
         const isTransient = isTransientDownloadError(currentError.message);
         if (isTransient) {
           this.transientFailureUrls.add(url);
         }
 
-        return await this.setCacheInfo(url, {
+        const failureInfo = await this.setCacheInfo(url, {
           state: CacheState.ERROR,
           error: currentError.message,
           // the cap this attempt ran under, so a later caller with a larger
@@ -830,6 +982,9 @@ export default class CacheManager extends EventEmitter {
           // which gateway the verdict belongs to (see isGatewayChanged above)
           ...(requestGateway === undefined ? {} : { gateway: requestGateway }),
         });
+        // Failed downloads own sidecars too, even when no data file arrived.
+        await this.trimCache(this.getCacheFilePath(url));
+        return failureInfo;
       } finally {
         transferDeadline.finish();
         // Clearing may have allowed a replacement request under this key.
@@ -923,60 +1078,83 @@ export default class CacheManager extends EventEmitter {
   }
 
   async getContent(url: string, options?: CacheRequestOptions): Promise<Buffer> {
-    if (!isValidURL(url)) {
-      throw new Error(`Invalid URL: ${url}`);
-    }
-
-    const cacheInfo = await this.fetchRemoteContent(url, options);
-
-    if (cacheInfo.state === CacheState.ERROR) {
-      throw new Error(cacheInfo.error);
-    }
-
-    if (cacheInfo.state === CacheState.NOT_CACHED) {
-      throw new Error('Url is not cached');
-    }
-
-    if (cacheInfo.state === CacheState.CACHED) {
-      const filePath = this.getCacheFilePath(url);
-      return fs.readFile(filePath);
-    }
-
-    throw new Error('Unknown cache state');
+    return (await this.getContentWithInfo(url, options)).content;
   }
 
-  // Metadata needs headers, checksum and bytes from ONE download decision.
-  // Three independent calls could re-download after eviction/invalidation,
-  // spending an attempt's transfer allowance three times. Hash the bytes we
-  // return so a concurrent replacement cannot pair new bytes with an old hash.
-  async getContentWithInfo(url: string, options?: CacheRequestOptions): Promise<CacheContent> {
-    const cacheInfo = await this.fetchRemoteContent(url, options);
-    if (cacheInfo.state === CacheState.ERROR) {
-      throw new Error(cacheInfo.error);
+  // Keep bytes, headers and checksum from one stable cache decision. A clear,
+  // invalidation or migration can overtake the lookup, even finish before its
+  // continuation resumes. A generation check detects that completed operation.
+  async getContentWithInfo(
+    url: string,
+    options: CacheRequestOptions = {},
+  ): Promise<CacheContent & { content: Buffer }> {
+    const budget = { remaining: normalizeDownloadDuration(options.maxDuration) };
+    for (let attempt = 0; attempt < 3; attempt += 1) {
+      const generation = this.maintenanceGeneration;
+      // eslint-disable-next-line no-await-in-loop -- Recheck a decision overtaken by maintenance.
+      const cacheInfo = await this.fetchRemoteContent(url, options, budget);
+      if (cacheInfo.state === CacheState.ERROR) {
+        throw new Error(cacheInfo.error);
+      }
+      if (cacheInfo.state !== CacheState.CACHED) {
+        throw new Error('Url is not cached');
+      }
+      if (this.maintenance || generation !== this.maintenanceGeneration) {
+        // eslint-disable-next-line no-await-in-loop -- Wait outside the drained request/read maps.
+        await this.waitForMaintenance();
+        // eslint-disable-next-line no-continue -- The completed maintenance invalidated this lookup.
+        continue;
+      }
+
+      const filePath = this.getCacheFilePath(url);
+      // A file another caller cached under a larger cap — a data file that
+      // is also the NFT's metadata — is not handed to a caller whose cap it
+      // exceeds: the cap is what keeps the renderer from decoding and
+      // parsing that much on its thread. The entry stays cached for the
+      // callers it fits. The size is taken inside the leased read, so that
+      // maintenance waits for it like for the read itself; a file that is
+      // gone fails the read, which repairs the entry below.
+      const maxSize = normalizeMaxSize(options.maxSize);
+      const read = fs.stat(filePath).then(({ size }) => {
+        if (size > maxSize) {
+          throw new Error(MAX_FILE_SIZE_EXCEEDED_ERROR);
+        }
+        return fs.readFile(filePath);
+      });
+      // Register synchronously after the generation check. Maintenance waits
+      // for this read before touching its files; eviction also skips the path.
+      this.activeReads.set(read, { url, filePath });
+      try {
+        // eslint-disable-next-line no-await-in-loop -- Read only the stable decision's bytes.
+        const content = await read;
+        return {
+          content,
+          headers: cacheInfo.headers,
+          checksum: crypto.createHash('sha256').update(content).digest('hex'),
+        };
+      } catch (error) {
+        if ((error as NodeJS.ErrnoException).code !== 'ENOENT') {
+          throw this.redactCachePath(error);
+        }
+      } finally {
+        this.activeReads.delete(read);
+      }
+      // An external deletion or a completed eviction may leave an orphaned
+      // sidecar. Drop it before one bounded retry, using the remaining budget.
+      // eslint-disable-next-line no-await-in-loop -- Repair the missing entry before retrying.
+      await this.invalidate(url);
     }
-    if (cacheInfo.state !== CacheState.CACHED) {
-      throw new Error('Url is not cached');
-    }
+    throw new Error('Cache changed repeatedly while reading; please retry');
+  }
+
+  // Waits out every maintenance operation (clear, migration, invalidation) in
+  // progress or queued. A failed operation is its caller's to report; here it
+  // only ends the wait.
+  private async waitForMaintenance() {
     while (this.maintenance) {
-      // eslint-disable-next-line no-await-in-loop -- Read the completed destination, not a half-migrated pair.
+      // eslint-disable-next-line no-await-in-loop -- another operation may have been queued while this one ran
       await this.maintenance.catch(() => {});
     }
-    const filePath = this.getCacheFilePath(url);
-    // A file another caller cached under a larger cap — a data file that is
-    // also the NFT's metadata — is not handed to a caller whose cap it
-    // exceeds: the cap is what keeps the renderer from decoding and parsing
-    // that much on its thread. The entry stays cached for callers it fits.
-    const maxSize = normalizeMaxSize(options?.maxSize);
-    const { size } = await fs.stat(filePath);
-    if (size > maxSize) {
-      throw new Error(MAX_FILE_SIZE_EXCEEDED_ERROR);
-    }
-    const content = await fs.readFile(filePath);
-    return {
-      content,
-      headers: cacheInfo.headers,
-      checksum: crypto.createHash('sha256').update(content).digest('hex'),
-    };
   }
 
   async getChecksum(url: string, options?: CacheRequestOptions): Promise<string> {
@@ -1066,12 +1244,44 @@ export default class CacheManager extends EventEmitter {
   }
 
   async clearCache() {
-    // cancel all ongoing requests
-    for (const ongoingRequest of this.ongoingRequests.values()) {
-      ongoingRequest.abort();
+    // one clear at a time; a second call joins the one in progress
+    if (!this.clearing) {
+      this.clearing = this.runMaintenance(() => this.performClear()).finally(() => {
+        this.clearing = undefined;
+      });
     }
-    this.ongoingRequests.clear();
 
+    return this.clearing;
+  }
+
+  // Install the barrier before scheduling any work. A failed operation is
+  // reported to its caller but must not poison subsequent maintenance/fetches.
+  // Invalidation drains only its URL; clear and migration must drain them all.
+  private runMaintenance(operation: () => Promise<void>, url?: string): Promise<void> {
+    this.maintenanceGeneration += 1;
+    const previous = this.maintenance ?? Promise.resolve();
+    const pending = previous
+      .catch(() => {})
+      .then(async () => {
+        const ongoing = Array.from(this.ongoingRequests.entries())
+          .filter(([requestUrl]) => url === undefined || requestUrl === url)
+          .map(([, request]) => request);
+        ongoing.forEach((request) => request.abort());
+        const reads = Array.from(this.activeReads.entries())
+          .filter(([, read]) => url === undefined || read.url === url)
+          .map(([read]) => read);
+        await Promise.allSettled([...ongoing.map((request) => request.promise), ...reads]);
+        await operation();
+      });
+    this.maintenance = pending;
+    return pending.finally(() => {
+      if (this.maintenance === pending) {
+        this.maintenance = undefined;
+      }
+    });
+  }
+
+  private async performClear() {
     const files = await fs.readdir(this.cacheDirectory);
     const unlinkPromises = files.map(async (file) => {
       const hasSuffix = SUFFIXES.some((suffix) => file.endsWith(suffix));
@@ -1100,87 +1310,187 @@ export default class CacheManager extends EventEmitter {
 
     const newDirectory = result.filePaths[0];
 
-    await ensureDirectoryExists(newDirectory);
+    // The picker opens on the current cache directory, so confirming it is the
+    // common way to change nothing. Decide that here: the barrier below aborts
+    // every download in flight before its operation runs, which is the price
+    // of a move, not of a no-op. The check inside the barrier still covers a
+    // migration that completes while this one waits its turn.
+    if (path.resolve(this.cacheDirectory) === path.resolve(newDirectory)) {
+      return;
+    }
 
-    // move the files from the current cache directory to the new directory
-    const files = await fs.readdir(this.cacheDirectory);
-    const movePromises = files.map(async (file) => {
-      if (!isChiaCacheFile(file)) {
+    await this.runMaintenance(async () => {
+      // Resolve the source inside the serialized operation, not before the
+      // native picker: another migration may have completed while it was open.
+      const oldDirectory = this.cacheDirectory;
+      if (path.resolve(oldDirectory) === path.resolve(newDirectory)) {
         return;
       }
+      await ensureDirectoryExists(newDirectory);
 
-      const oldFilePath = path.join(this.cacheDirectory, file);
-      const newFilePath = path.join(newDirectory, file);
-
-      const stat = await fs.lstat(oldFilePath);
-
-      if (stat.isFile()) {
-        await fs.rename(oldFilePath, newFilePath);
-      }
-    });
-
-    await Promise.all(movePromises);
-
-    this.cacheDirectory = newDirectory;
-  }
-
-  private async removeOldestFiles(targetSize: number, preserveFilePath?: string): Promise<void> {
-    const files = await fs.readdir(this.cacheDirectory);
-    const filePaths = files
-      .filter((file) => isChiaCacheFile(file) && !isChiaCacheInfoFile(file))
-      .map((file) => path.join(this.cacheDirectory, file));
-
-    // Include the sidecar metadata in each entry's size so the eviction total
-    // uses the same accounting as getCacheSize().
-    const fileStats = (
-      await Promise.all(
-        filePaths.map(async (filePath) => {
-          try {
-            const stats = await fs.stat(filePath);
-            let infoSize = 0;
+      // All admitted transfers have settled, including their checksum and
+      // sidecar writes. No live temp can be left here and no replacement can
+      // start until this operation releases the barrier.
+      const files = await fs.readdir(oldDirectory);
+      const moved: { file: string; destination: string }[] = [];
+      // Every source that was copied, orphans included: the old directory is
+      // never looked at again once the destination is published, so anything
+      // left there is never counted, evicted or cleared.
+      const copiedSources: string[] = [];
+      try {
+        for (const file of files.filter((name) => isChiaCacheFile(name))) {
+          const source = path.join(oldDirectory, file);
+          const destination = path.join(newDirectory, file);
+          if (isChiaCacheTempFile(file)) {
+            // a leftover: nothing in flight is left by now
+            // eslint-disable-next-line no-await-in-loop -- Keep migration ordered.
+            await safeUnlink(source);
+          } else {
             try {
-              infoSize = (await fs.stat(getInfoFilePath(filePath))).size;
-            } catch {
-              // A missing sidecar is cleaned up with the data file as usual.
+              // eslint-disable-next-line no-await-in-loop -- Keep migration ordered.
+              const stat = await fs.lstat(source);
+              if (stat.isFile()) {
+                // Do not overwrite a pre-existing cache in the destination. Copy
+                // first also permits cross-volume migration; remove the source
+                // only after the entire copy pass has succeeded.
+                // eslint-disable-next-line no-await-in-loop -- Keep migration ordered.
+                await fs.copyFile(source, destination, fs.constants.COPYFILE_EXCL);
+                moved.push({ file, destination });
+                copiedSources.push(source);
+              }
+            } catch (error) {
+              // A source deleted from outside since the listing has nothing
+              // to migrate; it must not fail the whole move.
+              if ((error as { code?: string }).code !== 'ENOENT') {
+                throw error;
+              }
             }
+          }
+        }
 
-            return {
-              filePath,
-              size: stats.size + infoSize,
-              mtime: stats.mtime,
-            };
-          } catch {
-            // Deleted by invalidation while scanning — nothing left to evict.
-            return undefined;
+        // A data file whose sidecar did not make it across cannot be served
+        // (the cache never trusts bytes without their sidecar), so it is not
+        // carried over either. The reverse holds for a CACHED sidecar whose
+        // data file did not arrive: the cache would trust it and then fail to
+        // read the bytes, until the entry is invalidated or the cache cleared.
+        // Dropping it lets the next request fetch the entry afresh. Sidecars
+        // in any other state stand on their own, as ERROR entries do.
+        const movedFiles = new Set(moved.map(({ file }) => file));
+        const orphanChecks = await Promise.all(
+          moved.map(async (entry) => {
+            const { file, destination } = entry;
+            if (!isChiaCacheInfoFile(file)) {
+              return movedFiles.has(getInfoFilePath(file)) ? undefined : entry;
+            }
+            if (movedFiles.has(file.slice(0, -INFO_SUFFIX.length))) {
+              return undefined;
+            }
+            return (await isCachedSidecar(destination)) ? entry : undefined;
+          }),
+        );
+        const orphans = orphanChecks.filter((entry): entry is (typeof moved)[number] => entry !== undefined);
+        await Promise.all(orphans.map(({ destination }) => safeUnlink(destination)));
+        orphans.forEach((orphan) => moved.splice(moved.indexOf(orphan), 1));
+      } catch (error) {
+        await Promise.all(moved.map(({ destination }) => safeUnlink(destination)));
+        throw error;
+      }
+
+      // Publish only a complete destination. Failure to unlink an old copy is
+      // logged rather than turning a successful copy into a split live entry.
+      await Promise.all(
+        copiedSources.map(async (source) => {
+          try {
+            await fs.unlink(source);
+          } catch (error) {
+            log(`Could not remove migrated cache copy: ${(error as Error).message}`);
           }
         }),
-      )
-    ).filter((entry): entry is { filePath: string; size: number; mtime: Date } => entry !== undefined);
+      );
+      this.cacheDirectory = newDirectory;
+      this.emit('sizeChanged');
+    });
+  }
 
-    // sort the file paths based on their last modified time (oldest first)
-    fileStats.sort((a, b) => a.mtime.getTime() - b.mtime.getTime());
+  private async trimCache(preserveFilePath: string) {
+    try {
+      if ((await this.getCacheSize()) > this.maxCacheSize) {
+        await this.removeOldestFiles(this.maxCacheSize, preserveFilePath);
+      }
+    } catch (error) {
+      // Housekeeping must not replace the download's saved success or failure.
+      log(`Cache housekeeping failed: ${(error as Error).message}`);
+    }
+    this.emit('sizeChanged');
+  }
 
-    // remove files until the total size is below the new max total size
-    let totalSize = fileStats.reduce((sum, { size }) => sum + size, 0);
-    const filesToRemove: typeof fileStats = [];
-    for (const fileStat of fileStats) {
+  private removeOldestFiles(targetSize: number, preserveFilePath?: string): Promise<void> {
+    // A burst of completions must not have every scan skip every other entry
+    // as still in flight and then leave the directory over quota permanently.
+    const pending = this.eviction.catch(() => {}).then(() => this.performEviction(targetSize, preserveFilePath));
+    this.eviction = pending;
+    return pending;
+  }
+
+  private async performEviction(targetSize: number, preserveFilePath?: string): Promise<void> {
+    const directory = this.cacheDirectory;
+    const files = await fs.readdir(directory);
+    const groups = new Map<string, string[]>();
+    files.filter(isChiaCacheFile).forEach((file) => {
+      const suffix = isChiaCacheInfoFile(file)
+        ? file.endsWith(INFO_TEMP_SUFFIX)
+          ? INFO_TEMP_SUFFIX
+          : INFO_SUFFIX
+        : file.endsWith(TEMP_FILE_SUFFIX)
+          ? TEMP_FILE_SUFFIX
+          : '';
+      const filePath = path.join(directory, suffix ? file.slice(0, -suffix.length) : file);
+      const members = groups.get(filePath) ?? [];
+      members.push(path.join(directory, file));
+      groups.set(filePath, members);
+    });
+
+    // Count every owned file exactly once, including ERROR-only sidecars and
+    // stale sidecar temporaries. Group companions so eviction never leaves a
+    // CACHED record behind after deleting its bytes.
+    const statLimit = limit(FILE_STAT_CONCURRENCY);
+    const fileStats = await Promise.all(
+      Array.from(groups, async ([filePath, members]) => {
+        const stats = await Promise.all(
+          members.map((member) =>
+            statLimit<Stats | undefined>(async () => {
+              try {
+                return await fs.stat(member);
+              } catch {
+                return undefined;
+              }
+            }),
+          ),
+        );
+        return {
+          filePath,
+          members,
+          size: stats.reduce((sum, stat) => sum + (stat?.size ?? 0), 0),
+          mtime: Math.min(...stats.map((stat) => stat?.mtimeMs ?? Infinity)),
+        };
+      }),
+    );
+    fileStats.sort((a, b) => a.mtime - b.mtime);
+
+    const inFlight = this.inFlightTempFilePaths();
+    let totalSize = fileStats.reduce((sum, entry) => sum + entry.size, 0);
+    const remove: typeof fileStats = [];
+    for (const entry of fileStats) {
       if (totalSize <= targetSize) {
         break;
       }
-
-      if (fileStat.filePath !== preserveFilePath) {
-        totalSize -= fileStat.size;
-        filesToRemove.push(fileStat);
+      const beingRead = Array.from(this.activeReads.values()).some((read) => read.filePath === entry.filePath);
+      if (entry.filePath !== preserveFilePath && !inFlight.has(`${entry.filePath}${TEMP_FILE_SUFFIX}`) && !beingRead) {
+        totalSize -= entry.size;
+        remove.push(entry);
       }
     }
-
-    await Promise.all(
-      filesToRemove.map(async ({ filePath }) => {
-        await safeUnlink(filePath);
-        await safeUnlink(getInfoFilePath(filePath));
-      }),
-    );
-
+    await Promise.all(remove.flatMap(({ members }) => members.map(safeUnlink)));
     this.emit('sizeChanged');
   }
 
@@ -1188,25 +1498,25 @@ export default class CacheManager extends EventEmitter {
     if (!isValidURL(url)) {
       throw new Error(`Invalid URL: ${url}`);
     }
-    // cancel the ongoing request
-    const ongoingRequest = this.ongoingRequests.get(url);
-    if (ongoingRequest) {
-      ongoingRequest.abort();
-    }
 
-    // prepare invalidation
-    const filePath = this.getCacheFilePath(url);
+    // Register before the first await so a later migration cannot copy an
+    // entry while its deletion is underway. Drain this URL's complete request
+    // first: abort cleanup or a late success can still write its sidecar.
+    await this.runMaintenance(async () => {
+      // An earlier migration may have changed the directory while we waited.
+      const filePath = this.getCacheFilePath(url);
+      await safeUnlink(filePath);
+      await safeUnlink(getInfoFilePath(filePath));
 
-    // remove the file
-    await safeUnlink(filePath);
-    await safeUnlink(getInfoFilePath(filePath));
-
-    this.emit('sizeChanged');
+      this.emit('sizeChanged');
+    }, url);
   }
 
   async setMaxCacheSize(maxCacheSize: number | string) {
     this.maxCacheSize = maxCacheSize;
     if (this.maxCacheSize > 0) {
+      // eviction deletes files too — see invalidate
+      await this.waitForMaintenance();
       await this.removeOldestFiles(this.maxCacheSize);
     }
   }
@@ -1219,14 +1529,17 @@ export default class CacheManager extends EventEmitter {
 
     // Invalidation and eviction delete files while this scan runs — a file
     // that vanished between readdir and stat no longer occupies space.
+    const statLimit = limit(FILE_STAT_CONCURRENCY);
     const fileSizes = await Promise.all(
-      filePaths.map(async (filePath) => {
-        try {
-          return (await fs.stat(filePath)).size;
-        } catch {
-          return 0;
-        }
-      }),
+      filePaths.map((filePath) =>
+        statLimit<number>(async () => {
+          try {
+            return (await fs.stat(filePath)).size;
+          } catch {
+            return 0;
+          }
+        }),
+      ),
     );
     const totalSize = fileSizes.reduce((sum, size) => sum + size, 0);
 

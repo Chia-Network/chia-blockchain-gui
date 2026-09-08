@@ -9,5 +9,5 @@ it('enforces metadata deadlines through preload, CacheManager and downloadFile',
     encoding: 'utf8',
     timeout: 30_000,
   });
-  expect(output).toContain('16/16 focused production-source regressions passed');
+  expect(output).toContain('17/17 focused production-source regressions passed');
 }, 35_000);

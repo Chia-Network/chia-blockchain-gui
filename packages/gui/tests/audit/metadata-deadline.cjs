@@ -486,6 +486,30 @@ test('joining an active fallback is bounded by the joining allowance and leaves 
     requests[1].succeed('{}');
     await first;
   }));
+test('a read retry after a completed clear keeps its remaining active budget', async () =>
+  withManager(async ({ manager, requests, clock }) => {
+    const url = 'https://test.invalid/clear-after-success';
+    let cleared = false;
+    const original = manager.fetchRemoteContent.bind(manager);
+    manager.fetchRemoteContent = async (...args) => {
+      const info = await original(...args);
+      if (!cleared && info.state === 'CACHED') {
+        cleared = true;
+        await manager.clearCache();
+      }
+      return info;
+    };
+    const failure = assert.rejects(manager.getContentWithInfo(url, { maxDuration: 100 }), /download deadline/);
+    await spin(() => requests.length === 1);
+    clock.advance(70);
+    requests[0].succeed('{}');
+    await spin(() => requests.length === 2);
+    clock.advance(29);
+    assert.equal(requests[1].aborted, false);
+    clock.advance(1);
+    await failure;
+    assert.equal(requests[1].aborted, true);
+  }));
 (async () => {
   let passed = 0;
   for (const { name, fn } of tests) {

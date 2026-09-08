@@ -1,5 +1,6 @@
-import { AlertDialog, ButtonLoading, Flex, Form, TextField, useOpenDialog } from '@chia-network/core';
+import { AlertDialog, Flex, Form, TextField, useOpenDialog } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
+import { LoadingButton } from '@mui/lab';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -21,7 +22,7 @@ export default function LimitCacheSize() {
     },
   });
 
-  const { reset } = methods;
+  const { reset, setError } = methods;
 
   useEffect(() => {
     if (maxCacheSize !== undefined) {
@@ -40,7 +41,19 @@ export default function LimitCacheSize() {
       return;
     }
 
-    const newValue = Number(values.maxCacheSize) * MB_SIZE;
+    // An emptied field reads as 0 (Number('') === 0), and zero would not
+    // limit the cache but switch eviction off — the main process refuses it,
+    // so say so here instead of submitting it. The field's `min` rule below
+    // normally catches this before submit; this is the backstop for a value
+    // the browser let through, and it raises the same rule so the same
+    // message shows — the core TextField renders only rule messages.
+    const sizeInMiB = Number(values.maxCacheSize);
+    if (!Number.isFinite(sizeInMiB) || sizeInMiB <= 0) {
+      setError('maxCacheSize', { type: 'min' });
+      return;
+    }
+
+    const newValue = sizeInMiB * MB_SIZE;
 
     await setMaxCacheSize(newValue);
 
@@ -60,13 +73,23 @@ export default function LimitCacheSize() {
           type="number"
           disabled={!canSubmit}
           size="small"
+          rules={{
+            required: {
+              value: true,
+              message: <Trans>Enter a cache size limit above 0 MiB</Trans>,
+            },
+            min: {
+              value: 1,
+              message: <Trans>Enter a cache size limit above 0 MiB</Trans>,
+            },
+          }}
           InputProps={{
             inputProps: {
-              min: 0,
+              min: 1,
             },
           }}
         />
-        <ButtonLoading
+        <LoadingButton
           size="small"
           disabled={!canSubmit}
           type="submit"
@@ -75,7 +98,7 @@ export default function LimitCacheSize() {
           color="secondary"
         >
           <Trans>Update</Trans>
-        </ButtonLoading>
+        </LoadingButton>
       </Flex>
     </Form>
   );
