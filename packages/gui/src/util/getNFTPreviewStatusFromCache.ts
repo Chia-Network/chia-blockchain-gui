@@ -121,9 +121,11 @@ function classifyFailure(cacheInfo: CacheInfo | undefined): UriOutcome {
 // (`<CID>[/path]`) of exactly those failures: a persisted HTTP-status or
 // inactivity failure of a gateway link that classifies as failed. Not a hash
 // mismatch (the content exists), not a network or deadline error (no verdict
-// on the content), and not a failed ipfs:// uri (a link's own host would
+// on the content), not a 429 (the cache puts the host on cooldown and still
+// fetches the twin), and not a failed ipfs:// uri (a link's own host would
 // still be tried).
 const HTTP_STATUS_FAILURE = /^HTTP error: \d{3}$/;
+const RATE_LIMITED = 'HTTP error: 429';
 
 function failedIpfsPaths(
   uris: string[],
@@ -136,6 +138,7 @@ function failedIpfsPaths(
     const isGatewayLink = isIpfsBackedUrl(uri) && !isIpfsUrl(uri);
     const isContentFailure =
       cacheInfo?.state === CacheState.ERROR &&
+      cacheInfo.error !== RATE_LIMITED &&
       (HTTP_STATUS_FAILURE.test(cacheInfo.error) || cacheInfo.error.startsWith(INACTIVITY_TIMEOUT_ERROR_PREFIX));
     if (isGatewayLink && isContentFailure && outcomeOf(uri) === 'failed') {
       const ipfsPath = getIpfsPathFromAnyUrl(uri);

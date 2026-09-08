@@ -190,6 +190,8 @@ describe('getNFTPreviewStatusFromCache', () => {
       // no verdict on the content
       ['a network error', { ...failedLink, error: 'net::ERR_CONNECTION_RESET' }],
       ["the caller's deadline running out", { ...failedLink, error: 'Request exceeded the 30000ms download deadline' }],
+      // the host is put on cooldown; the content is not cold and the twin is still fetched
+      ['a rate limit', { ...failedLink, error: 'HTTP error: 429' }],
     ])('does not fail the twin after %s of the link', (_label, linkInfo) => {
       const status = getNFTPreviewStatusFromCache(
         { dataUris: [link, twin], dataHash: HASH },
