@@ -129,12 +129,16 @@ export type NFTPreviewProps = {
 // One tile's failure stays that tile's. Whatever an NFT's files or metadata
 // hold, a render error here is shown in place of the preview; without this
 // the nearest boundary is the one around the whole app, and one NFT in the
-// wallet would replace the gallery with the crash page on every load.
+// wallet would replace the gallery with the crash page on every load. The
+// content it replaces can no longer report a preview status, so the boundary
+// reports for it (`onFailed`): a tile that shows this notice has no preview,
+// whatever verdict its content had reached before it crashed.
 type NFTPreviewErrorBoundaryProps = {
   children: ReactNode;
   width: number | string;
   height: number | string;
   ratio: number;
+  onFailed?: () => void;
 };
 
 class NFTPreviewErrorBoundary extends React.Component<NFTPreviewErrorBoundaryProps, { failed: boolean }> {
@@ -149,6 +153,7 @@ class NFTPreviewErrorBoundary extends React.Component<NFTPreviewErrorBoundaryPro
 
   componentDidCatch(error: Error) {
     log(`NFT preview failed to render: ${error.message}`);
+    this.props.onFailed?.();
   }
 
   render() {
@@ -171,9 +176,18 @@ class NFTPreviewErrorBoundary extends React.Component<NFTPreviewErrorBoundaryPro
 export default function NFTPreview(props: NFTPreviewProps) {
   // keyed by the NFT: a failure is that NFT's, and the boundary starts
   // afresh when the same tile (the detail view's arrows) shows another
-  const { width = '100%', height = 'auto', ratio = 1 } = props;
+  const { id, width = '100%', height = 'auto', ratio = 1, preview: isPreview = false } = props;
+  const { setPreviewStatus } = useNFTProvider();
+  const nftId = useMemo(() => getNFTId(id), [id]);
+  // like the content's own report below, only a preview-mode tile speaks for
+  // the gallery filter
+  const handleFailed = useCallback(() => {
+    if (isPreview) {
+      setPreviewStatus(nftId, NFTPreviewStatus.UNAVAILABLE);
+    }
+  }, [isPreview, nftId, setPreviewStatus]);
   return (
-    <NFTPreviewErrorBoundary key={props.id} width={width} height={height} ratio={ratio}>
+    <NFTPreviewErrorBoundary key={id} width={width} height={height} ratio={ratio} onFailed={handleFailed}>
       <NFTPreviewContent {...props} />
     </NFTPreviewErrorBoundary>
   );
