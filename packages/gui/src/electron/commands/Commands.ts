@@ -200,6 +200,32 @@ export const Commands: Record<string, CommandSchema> = {
             isOptional: true,
             hide: true,
           },
+          // Generic transaction-endpoint fields honored by the wallet's
+          // tx_endpoint wrapper. parseDappParams rejects any param not declared
+          // here, so without these a dapp cannot build a signed-but-unpushed
+          // spend (push: false) carrying a bound fee (extra_conditions). Mirrors
+          // the equivalent additions on chia_createOfferForIds.
+          {
+            name: 'push',
+            label: () => i18n._(/* i18n */ { id: 'Push' }),
+            type: 'bool',
+            isOptional: true,
+            hide: true,
+          },
+          {
+            name: 'extra_conditions',
+            label: () => i18n._(/* i18n */ { id: 'Extra Conditions' }),
+            type: 'json',
+            isOptional: true,
+            hide: true,
+          },
+          {
+            name: 'allow_unsynced',
+            label: () => i18n._(/* i18n */ { id: 'Allow Unsynced' }),
+            type: 'bool',
+            isOptional: true,
+            hide: true,
+          },
         ],
       },
     ],
