@@ -312,7 +312,15 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
             const status = getNFTPreviewStatusFromCache(nft, metadataState, getCacheInfo, now);
             if (status) {
               statuses.set(nftId, status);
-              settled.add(nftId);
+              // A verdict reached while the metadata is still being fetched
+              // (the fetch looked doomed) is provisional: should the fetch
+              // bring the metadata after all, its preview candidates may
+              // change the verdict, so the NFT is left unsettled and the
+              // store's change notification has it swept again. A tile's
+              // live report settles it regardless.
+              if (!metadataState.isLoading) {
+                settled.add(nftId);
+              }
               changed = true;
               const dueAt =
                 status === NFTPreviewStatus.UNAVAILABLE
