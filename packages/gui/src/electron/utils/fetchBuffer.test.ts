@@ -14,6 +14,7 @@ const { default: fetchBuffer, MaxSizeExceededError } =
 type MockRequest = EventEmitter & {
   abort: jest.Mock;
   end: jest.Mock;
+  setHeader: jest.Mock;
 };
 
 type MockResponse = EventEmitter & {
@@ -36,11 +37,22 @@ describe('fetchBuffer', () => {
     request = Object.assign(new EventEmitter(), {
       abort: jest.fn(),
       end: jest.fn(),
+      setHeader: jest.fn(),
     });
     request.abort.mockImplementation(() => {
       request.emit('abort');
     });
     mockNetRequest.mockReturnValue(request);
+  });
+
+  it('identifies itself as the application rather than a browser', async () => {
+    const resultPromise = fetchBuffer('https://example.com/metadata.json');
+    const response = makeResponse();
+    request.emit('response', response);
+    response.emit('end');
+    await resultPromise;
+
+    expect(request.setHeader).toHaveBeenCalledWith('User-Agent', expect.stringMatching(/^Chia-Blockchain-GUI\//));
   });
 
   it('returns response bytes and headers', async () => {
