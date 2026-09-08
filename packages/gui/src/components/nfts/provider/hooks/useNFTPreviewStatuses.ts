@@ -38,9 +38,9 @@ type UseNFTPreviewStatusesProps = {
   subscribeToChanges: (callback: () => void) => () => void; // should be immutable
   subscribeToMetadataChanges: (callback: () => void) => () => void; // should be immutable
   // see NFTProvider: how many times the gateway has come back after being
-  // unreachable, and whether it has this session
+  // unreachable, and when it last did (IpfsGatewayHealth.recoveredAt)
   ipfsGatewayRecoveries: number;
-  isIpfsGatewayRecovered: boolean;
+  ipfsGatewayRecoveredAt: number | undefined;
 };
 
 // warning: only used by NFTProvider
@@ -58,7 +58,7 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
     subscribeToChanges,
     subscribeToMetadataChanges,
     ipfsGatewayRecoveries,
-    isIpfsGatewayRecovered,
+    ipfsGatewayRecoveredAt,
   } = props;
 
   const { getCacheInfos } = useCache();
@@ -88,8 +88,8 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
   const ipfsGatewayKey = ipfsGateway ? ipfsGatewayBase : '';
   const ipfsGatewayKeyRef = useRef(ipfsGatewayKey);
   ipfsGatewayKeyRef.current = ipfsGatewayKey;
-  const isIpfsGatewayRecoveredRef = useRef(isIpfsGatewayRecovered);
-  isIpfsGatewayRecoveredRef.current = isIpfsGatewayRecovered;
+  const ipfsGatewayRecoveredAtRef = useRef(ipfsGatewayRecoveredAt);
+  ipfsGatewayRecoveredAtRef.current = ipfsGatewayRecoveredAt;
 
   const events = useMemo(() => {
     const eventEmitter = new EventEmitter();
@@ -274,20 +274,25 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
           // fallback — is re-requested on the next access, so it settles
           // nothing here. An ipfs:// sidecar without a gateway predates
           // gateway tracking and stays a settled failure. Likewise its
-          // recovery rule: once the gateway has come back after being
-          // unreachable, a failure to reach it recorded under the current
-          // gateway was a verdict on the host, and CacheManager retries it on
-          // the next access (isRecoveredGatewayFailure) — so it settles
-          // nothing here either, and the NFT stays in view for its tile to ask.
+          // recovery rule (isRecoveredGatewayFailure): once the gateway has
+          // come back after being unreachable, a failure to reach it recorded
+          // under the current gateway whose transfer began before that moment
+          // was a verdict on the host, and CacheManager retries it on the next
+          // access — so it settles nothing here either, and the NFT stays in
+          // view for its tile to ask. One that began after the recovery is a
+          // new failure and follows the ordinary rules.
           const currentGateway = ipfsGatewayKeyRef.current;
-          const isRecovered = isIpfsGatewayRecoveredRef.current;
+          const recoveredAt = ipfsGatewayRecoveredAtRef.current;
           const getCacheInfo = (url: string): CacheInfo | undefined => {
             const cacheInfo = cacheInfos.get(url);
             if (cacheInfo?.state === CacheState.ERROR && currentGateway && isIpfsBackedUrl(url)) {
               const isOtherGateway =
                 cacheInfo.gateway === undefined ? !isIpfsUrl(url) : cacheInfo.gateway !== currentGateway;
               const isRecoveredFailure =
-                isRecovered && cacheInfo.gateway === currentGateway && isHostUnreachableError(cacheInfo.error);
+                recoveredAt !== undefined &&
+                cacheInfo.gateway === currentGateway &&
+                isHostUnreachableError(cacheInfo.error) &&
+                recoveredAt > (cacheInfo.startedAt ?? cacheInfo.timestamp);
               if (isOtherGateway || isRecoveredFailure) {
                 return { url: cacheInfo.url, timestamp: cacheInfo.timestamp, state: CacheState.NOT_CACHED };
               }

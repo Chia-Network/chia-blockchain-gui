@@ -13,6 +13,12 @@ type IpfsGatewayHealth = {
   error?: string;
   // how many requests in a row could not reach it
   failures: number;
+  // when a reachable verdict was reached after an unreachable one: the moment
+  // the gateway was seen answering again. A failure to reach it whose
+  // transfer began before that moment is retried on the next access
+  // (CacheManager.isRecoveredGatewayFailure), so a reader of the sidecars
+  // treats it as unset; one that began after it is a new failure.
+  recoveredAt?: number;
 };
 
 export default IpfsGatewayHealth;

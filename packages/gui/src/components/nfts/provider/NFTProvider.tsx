@@ -34,7 +34,7 @@ export default function NFTProvider(props: NFTProviderProps) {
   // retries them on the next access, and everything here that remembers a
   // failure re-runs on the count below, the way it does on a gateway change.
   const ipfsGatewayHealth = useIpfsGatewayHealth();
-  const isIpfsGatewayRecovered = ipfsGatewayHealth?.reachable === true;
+  const ipfsGatewayRecoveredAt = ipfsGatewayHealth?.reachable ? ipfsGatewayHealth.recoveredAt : undefined;
   const [ipfsGatewayRecoveries, setIpfsGatewayRecoveries] = useState(0);
   const wasIpfsGatewayUnreachableRef = useRef(false);
   useEffect(() => {
@@ -163,7 +163,7 @@ export default function NFTProvider(props: NFTProviderProps) {
       subscribeToChanges,
       subscribeToMetadataChanges: subscribeToMetadataDataChanges,
       ipfsGatewayRecoveries,
-      isIpfsGatewayRecovered,
+      ipfsGatewayRecoveredAt,
     });
 
   const invalidateNFT = useCallback(
