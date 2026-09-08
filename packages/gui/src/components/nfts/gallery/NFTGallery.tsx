@@ -18,6 +18,7 @@ import {
   Refresh as RefreshIcon,
 } from '@mui/icons-material';
 import {
+  Alert,
   Divider,
   Chip,
   FormControlLabel,
@@ -32,6 +33,7 @@ import { useTheme } from '@mui/material/styles';
 import { styled } from '@mui/styles';
 import { xor, intersection /* , sortBy */ } from 'lodash';
 import React, { useMemo, useCallback, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { VirtuosoGrid } from 'react-virtuoso';
 
 import NFTPreviewAvailability from '../../../@types/NFTPreviewAvailability';
@@ -39,6 +41,7 @@ import NFTVisibility from '../../../@types/NFTVisibility';
 import FileType from '../../../constants/FileType';
 import useFilteredNFTs from '../../../hooks/useFilteredNFTs';
 import useHideObjectionableContent from '../../../hooks/useHideObjectionableContent';
+import useIpfsGatewayHealth from '../../../hooks/useIpfsGatewayHealth';
 import useNFTGalleryScrollPosition from '../../../hooks/useNFTGalleryScrollPosition';
 import useNFTProvider from '../../../hooks/useNFTProvider';
 import getNFTId from '../../../util/getNFTId';
@@ -94,6 +97,10 @@ export const defaultCacheSizeLimit = 1024; /* MB */
 
 export default function NFTGallery() {
   const theme: any = useTheme();
+  const navigate = useNavigate();
+  // One notice for a gateway that cannot be reached at all, in place of the
+  // same generic failure on every tile fetched through it.
+  const gatewayHealth = useIpfsGatewayHealth();
   const {
     nfts,
     isLoading,
@@ -304,6 +311,21 @@ export default function NFTGallery() {
       // onScroll={handleOnScroll}
       header={
         <Flex gap={1} flexDirection="column">
+          {gatewayHealth && !gatewayHealth.reachable && (
+            <Alert
+              severity="warning"
+              action={
+                <Button size="small" color="inherit" onClick={() => navigate('/dashboard/settings/nft')}>
+                  <Trans>Settings</Trans>
+                </Button>
+              }
+            >
+              <Trans>
+                The IPFS gateway {gatewayHealth.gateway} cannot be reached ({gatewayHealth.error}). NFT files fetched
+                through it cannot be shown until it answers; check the gateway address.
+              </Trans>
+            </Alert>
+          )}
           <Flex gap={2} alignItems="stretch" flexWrap="wrap" justifyContent="space-between">
             <NFTProfileDropdown onChange={handleSetWalletId} walletId={walletIds?.[0]} />
             <Flex gap={2} alignItems="stretch" justifyContent="space-between">
