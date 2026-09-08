@@ -1,7 +1,8 @@
 import debug from 'debug';
-import React, { useMemo, useCallback, type ReactNode } from 'react';
+import React, { useMemo, useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
 
 import useCache from '../../../hooks/useCache';
+import useIpfsGatewayHealth from '../../../hooks/useIpfsGatewayHealth';
 import { MAX_METADATA_URI_ATTEMPTS } from '../../../util/fetchMetadataFromUris';
 import { MAX_URIS_PER_CANDIDATE } from '../../../util/getNFTPreviewStatusFromCache';
 import NFTFilterProvider from '../NFTFilterProvider';
@@ -25,6 +26,24 @@ export default function NFTProvider(props: NFTProviderProps) {
   const { children, concurrency = 10, pageSize = 24 } = props;
 
   const { invalidate } = useCache();
+
+  // The gateway came back after a run of requests that could not reach it
+  // (see IpfsGatewayHealth). The failures recorded meanwhile — persisted by
+  // the cache, remembered by the metadata store and by the tiles' verifiers —
+  // were verdicts on an unreachable host, not on the content; CacheManager
+  // retries them on the next access, and everything here that remembers a
+  // failure re-runs on the count below, the way it does on a gateway change.
+  const ipfsGatewayHealth = useIpfsGatewayHealth();
+  const isIpfsGatewayRecovered = ipfsGatewayHealth?.reachable === true;
+  const [ipfsGatewayRecoveries, setIpfsGatewayRecoveries] = useState(0);
+  const wasIpfsGatewayUnreachableRef = useRef(false);
+  useEffect(() => {
+    const isUnreachable = ipfsGatewayHealth?.reachable === false;
+    if (wasIpfsGatewayUnreachableRef.current && !isUnreachable) {
+      setIpfsGatewayRecoveries((count) => count + 1);
+    }
+    wasIpfsGatewayUnreachableRef.current = isUnreachable;
+  }, [ipfsGatewayHealth]);
 
   const {
     nfts,
@@ -105,6 +124,7 @@ export default function NFTProvider(props: NFTProviderProps) {
     invalidate: invalidateMetadata,
   } = useMetadataData({
     fetchNFT,
+    ipfsGatewayRecoveries,
   });
 
   const subscribeToNFTChanges = useCallback(
@@ -142,6 +162,8 @@ export default function NFTProvider(props: NFTProviderProps) {
       getMetadata,
       subscribeToChanges,
       subscribeToMetadataChanges: subscribeToMetadataDataChanges,
+      ipfsGatewayRecoveries,
+      isIpfsGatewayRecovered,
     });
 
   const invalidateNFT = useCallback(
@@ -244,6 +266,7 @@ export default function NFTProvider(props: NFTProviderProps) {
       getPreviewStatus,
       setPreviewStatus,
       subscribeToPreviewStatusChanges,
+      ipfsGatewayRecoveries,
 
       subscribeToChanges,
 
@@ -270,6 +293,7 @@ export default function NFTProvider(props: NFTProviderProps) {
       getPreviewStatus,
       setPreviewStatus,
       subscribeToPreviewStatusChanges,
+      ipfsGatewayRecoveries,
       count,
       loaded,
       progress,

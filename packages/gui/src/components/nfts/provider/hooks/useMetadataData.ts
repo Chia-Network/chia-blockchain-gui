@@ -21,11 +21,13 @@ function getChangedEventName(nftId: string) {
 
 type UseMetadataDataProps = {
   fetchNFT: (id: string) => Promise<NFTInfo>; // should be immutable
+  // see NFTProvider: a change retries failed fetches like a gateway change does
+  ipfsGatewayRecoveries: number;
 };
 
 // warning: only used by NFTProvider
 export default function useMetadataData(props: UseMetadataDataProps) {
-  const { fetchNFT } = props;
+  const { fetchNFT, ipfsGatewayRecoveries } = props;
 
   const [metadatasOnDemand] = useState(() => new Map<string, MetadataOnDemand>());
   const fetchAndProcessMetadata = useFetchAndProcessMetadata();
@@ -164,8 +166,11 @@ export default function useMetadataData(props: UseMetadataDataProps) {
 
   const [ipfsGateway] = useIpfsGateway();
   const ipfsGatewayBase = useIpfsGatewayBase();
-  // one key for both gateway preferences: the option and the gateway itself
-  const ipfsGatewayKey = ipfsGateway ? ipfsGatewayBase : false;
+  // one key for both gateway preferences — the option and the gateway itself
+  // — and for the gateway coming back after being unreachable: a failure
+  // recorded while it was down is as stale as one recorded under another
+  // gateway
+  const ipfsGatewayKey = `${ipfsGateway ? ipfsGatewayBase : 'off'}#${ipfsGatewayRecoveries}`;
   const lastIpfsGatewayRef = useRef(ipfsGatewayKey);
 
   useEffect(() => {

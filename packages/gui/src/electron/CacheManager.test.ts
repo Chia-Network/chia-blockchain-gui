@@ -1896,6 +1896,36 @@ describe('CacheManager IPFS gateway recovery', () => {
     expect(mockDownloadFile).toHaveBeenCalledTimes(3);
   });
 
+  it('releases a failure whose transfer began before the recovery, even if it is written after it', async () => {
+    const cacheManager = new CacheManager({ cacheDirectory, maxCacheSize: 1024 });
+    await cacheManager.init();
+    await failToReachGateway(cacheManager, ['a.png', 'b.png', 'c.png']);
+
+    // one request is still in flight when another one gets through
+    let failInFlight!: (error: Error) => void;
+    mockDownloadFile.mockReset();
+    mockDownloadFile.mockImplementationOnce(
+      () =>
+        new Promise((_resolve, reject) => {
+          failInFlight = reject;
+        }),
+    );
+    const inFlight = cacheManager.getContent(ipfsUrl('slow.png'));
+    await untilDownloadsStarted(1);
+    mockDownloadFile.mockImplementationOnce(serve);
+    await expect(cacheManager.getContent(ipfsUrl('d.png'))).resolves.toEqual(payload);
+    expect(cacheManager.getIpfsGatewayHealth()).toMatchObject({ reachable: true });
+
+    // its failure is written after the recovery was stamped
+    failInFlight(new Error('net::ERR_NAME_NOT_RESOLVED'));
+    await expect(inFlight).rejects.toThrow('net::ERR_NAME_NOT_RESOLVED');
+
+    // yet it began before, so the next access fetches again
+    mockDownloadFile.mockImplementation(serve);
+    await expect(cacheManager.getContent(ipfsUrl('slow.png'))).resolves.toEqual(payload);
+    expect(mockDownloadFile).toHaveBeenCalledTimes(3);
+  });
+
   it('releases them when a probe of the gateway gets an answer', async () => {
     const cacheManager = new CacheManager({ cacheDirectory, maxCacheSize: 1024 });
     await cacheManager.init();
