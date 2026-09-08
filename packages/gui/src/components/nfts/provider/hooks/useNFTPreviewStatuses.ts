@@ -313,11 +313,15 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
   // was left so under the old gateway, and an NFT the gallery filter keeps
   // unmounted because it was classified as unavailable would never be looked
   // at again. Forget all of them and the ipfs outcomes behind them, and
-  // sweep again: mounted tiles re-verify on their own and report, and for
-  // the rest an outcome recorded under the old gateway settles nothing, so
-  // the NFT shows up for its tile to re-request the file through the new
-  // gateway — or, with the option now off, is classified from what the
-  // cache holds. An NFT whose metadata is not known is forgotten too — one
+  // sweep again: mounted tiles re-verify on their own and report, and the
+  // rest are classified afresh from what the cache holds. A failure recorded
+  // under the old gateway still counts as one (the look-up says why), so such
+  // an NFT sits under "unavailable" until a tile asks for it — in that view,
+  // or in the unfiltered gallery — and CacheManager re-requests the file
+  // through the new gateway; a verdict that rested on an abort, or on nothing
+  // recorded, is undecided again and the NFT shows up for its tile. With the
+  // option now off, the same sweep classifies from what the cache holds
+  // without a gateway. An NFT whose metadata is not known is forgotten too — one
   // whose metadata failed to load, and one whose metadata is being fetched:
   // the metadata store retries failed fetches on the same change, and its
   // effect runs before this one, so by the time an NFT is looked at here its
