@@ -228,17 +228,6 @@ function coldIpfsPathKey(gateway: string, ipfsPath: string): string {
   return `${gateway} ${ipfsPath}`;
 }
 
-// The host a request to `url` reaches, or undefined for an ipfs:// uri (whose
-// host is the gateway's) and anything that does not parse.
-function hostOf(url: string): string | undefined {
-  try {
-    const { protocol, hostname } = new URL(url);
-    return protocol === 'https:' || protocol === 'http:' ? hostname.toLowerCase() : undefined;
-  } catch {
-    return undefined;
-  }
-}
-
 export default class CacheManager extends EventEmitter {
   #cacheDirectory: string = './cache';
 
@@ -285,9 +274,11 @@ export default class CacheManager extends EventEmitter {
   // Entries expire after COLD_IPFS_PATH_DURATION; see getColdIpfsPath.
   private coldIpfsPaths: Map<string, { until: number; error: string; twoHosts: boolean }> = new Map();
 
-  // Hosts that answered 429, and when they may be asked again. Keyed by
-  // hostname: a rate limit is the host's, whether it was reached as a link's
-  // own host or as the gateway.
+  // Hosts that answered 429, and when they may be asked again. Keyed by the
+  // operator's host (getGatewayHost: the hostname less a subdomain gateway's
+  // `<CID>.ipfs.` label, so every file on that gateway shares the cooldown):
+  // a rate limit is the host's, whether it was reached as a link's own host
+  // or as the gateway.
   private hostCooldowns: Map<string, number> = new Map();
 
   private readonly rateLimitCooldown: number;
@@ -1025,7 +1016,7 @@ export default class CacheManager extends EventEmitter {
           } catch (downloadError) {
             // the host itself said so, whether or not a fallback follows
             if ((downloadError as Error).message === 'HTTP error: 429') {
-              this.noteRateLimited(hostOf(url));
+              this.noteRateLimited(getGatewayHost(url));
             }
             // An https gateway URL names its content by CID, so when its own
             // host fails (gone, rate limiting, challenging the request) the
@@ -1084,7 +1075,7 @@ export default class CacheManager extends EventEmitter {
           }
         };
         const requestHost =
-          gatewayLegUsed && requestGateway !== undefined ? getGatewayHost(requestGateway) : hostOf(url);
+          gatewayLegUsed && requestGateway !== undefined ? getGatewayHost(requestGateway) : getGatewayHost(url);
         const admitDownload = async (): Promise<CacheInfo | undefined> => {
           if (abortController.signal.aborted) {
             throw new Error('Request aborted');

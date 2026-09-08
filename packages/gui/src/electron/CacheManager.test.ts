@@ -2087,6 +2087,31 @@ describe('CacheManager dead IPFS content', () => {
     expect(mockDownloadFile).toHaveBeenCalledTimes(5);
   });
 
+  it('keys a rate limit by the operator, so a subdomain link shares it with the path-style links', async () => {
+    const cacheManager = await createCacheManager({ rateLimitCooldown: 200 });
+    const payload = Buffer.from('cached payload');
+    const serve = async (_url: string, localPath: string) => {
+      await fs.writeFile(localPath, payload);
+      return { 'content-type': 'image/png' };
+    };
+    // the operator answers 429 to a subdomain-style link; the fallback serves it
+    mockDownloadFile.mockRejectedValueOnce(new Error('HTTP error: 429')).mockImplementationOnce(serve);
+    await expect(cacheManager.getContent(`https://${CID}.ipfs.nftstorage.link/a.png`)).resolves.toEqual(payload);
+    expect(mockDownloadFile).toHaveBeenCalledTimes(2);
+
+    // a path-style link on the same operator waits out the cooldown
+    mockDownloadFile.mockImplementationOnce(serve);
+    const started = Date.now();
+    const pending = cacheManager.getContent(link('b.png', OTHER_CID));
+    await new Promise((resolve) => {
+      setTimeout(resolve, 50);
+    });
+    expect(mockDownloadFile).toHaveBeenCalledTimes(2);
+    await expect(pending).resolves.toEqual(payload);
+    expect(Date.now() - started).toBeGreaterThanOrEqual(150);
+    expect(mockDownloadFile).toHaveBeenCalledTimes(3);
+  });
+
   it('forgets a verdict when its content is invalidated, and every verdict when the cache is cleared', async () => {
     const cacheManager = await createCacheManager();
     failBothLegs('HTTP error: 504');
