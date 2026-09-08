@@ -335,6 +335,14 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
               // every input is known and the cache cannot decide — only a
               // download can, and the tile that performs it reports it
               settled.add(nftId);
+              // a provisional verdict reached while the metadata was still
+              // loading (see above) is stale now that the metadata has
+              // arrived: drop it so the NFT rejoins the available previews
+              // and a tile mounts to fetch the candidates it brought
+              retryDue.delete(nftId);
+              if (statuses.delete(nftId)) {
+                changed = true;
+              }
             }
             // otherwise the metadata is still loading: swept again once it settles
           });
