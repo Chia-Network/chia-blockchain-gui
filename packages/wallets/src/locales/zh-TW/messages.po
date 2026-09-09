@@ -325,7 +325,8 @@ msgid "HD or Hierarchical Deterministic keys are a type of public key/private ke
 msgstr "HD 或分層確定性（Hierarchical Deterministic）金鑰是一種公鑰/私鑰架構，其中一個私鑰可以擁有幾乎無限數量的不同公鑰（即錢包接收位址），這些位址最終都歸屬於同一個私鑰，並可由其支配。"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:47
-msgid "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a\n"
+msgid ""
+"If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a\n"
 "higher fee."
 msgstr "如果您想加快交易速度，請刪除未確認的交易，並以較高的手續費重試。"
 
@@ -659,7 +660,8 @@ msgid "The recipient of this transaction will need to have valid credentials in 
 msgstr "此筆交易的接收方需要具備有效憑證才能領取所發送的資產。請參閱上方的 CR CAT 限制。"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:44
-msgid "The transaction could not be immediately included in the mempool because the specified fee is too low. The\n"
+msgid ""
+"The transaction could not be immediately included in the mempool because the specified fee is too low. The\n"
 "transaction will be retried periodically, and may be included in the mempool once fees are lower, or if\n"
 "space becomes available."
 msgstr "由於指定的手續費過低，交易無法立即納入交易池 (Mempool)。該交易將定期重試，並可能在手續費門檻降低或空間釋放後納入交易池。"
@@ -669,7 +671,8 @@ msgstr "由於指定的手續費過低，交易無法立即納入交易池 (Memp
 #~ msgstr "The transaction could not be immediately included in the mempool because the specified fee is too low. The transaction will be retried periodically, and may be included in the mempool once fees are lower, or if space becomes available."
 
 #: src/components/WalletSendTransactionResultDialog.tsx:38
-msgid "The transaction is pending inclusion in the mempool because it conflicts with one or more other transactions\n"
+msgid ""
+"The transaction is pending inclusion in the mempool because it conflicts with one or more other transactions\n"
 "already in the mempool. The transaction will be retried periodically, and may be included in the mempool if\n"
 "the conflicting transactions are removed."
 msgstr "由於該交易與交易池中已存在的一項或多項交易衝突，目前正等待納入。系統將定期重試，若衝突的交易被移除，該交易可能會納入交易池。"
@@ -816,4 +819,3 @@ msgstr "您擁有來自正確授權提供者的可驗證憑證"
 #: src/components/WalletImport.tsx:73
 msgid "Your pasted list does not include {mnemonicWordCount} valid mnemonic words."
 msgstr "您貼上的列表不包含 {mnemonicWordCount} 個有效的助記詞。"
-
