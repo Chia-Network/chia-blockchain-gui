@@ -10,16 +10,21 @@ import debug from 'debug';
 
 import type CacheInfo from '../@types/CacheInfo';
 import type CacheInfoBase from '../@types/CacheInfoBase';
+import type { CacheContent, CacheRequestOptions } from '../@types/CacheService';
 import type Headers from '../@types/Headers';
 import CacheState from '../constants/CacheState';
+import { DOWNLOAD_DEADLINE_ERROR_PREFIX, INACTIVITY_TIMEOUT_ERROR_PREFIX } from '../util/downloadErrors';
 import ipfsToGatewayUrl, { getGatewayHost, getIpfsPathFromGatewayUrl, isIpfsBackedUrl, isIpfsUrl } from '../util/ipfs';
 import limit from '../util/limit';
 
 import CacheAPI from './constants/CacheAPI';
+import DownloadDeadline, { normalizeDownloadDuration } from './utils/DownloadDeadline';
+import SharedDownloadBudgetSpentError from './utils/SharedDownloadBudgetSpentError';
 import downloadFile, {
-  DEFAULT_DOWNLOAD_MAX_DURATION,
   MAX_FILE_SIZE_EXCEEDED_ERROR,
   isTransientDownloadError,
+  normalizeMaxSize,
+  normalizeTimeout,
 } from './utils/downloadFile';
 import ensureDirectoryExists from './utils/ensureDirectoryExists';
 import getChecksum from './utils/getChecksum';
@@ -37,6 +42,8 @@ export const CACHE_PROTOCOL = 'cache';
 // 'ignore' means the header is absent or uses a form we do not support
 // (e.g. multiple ranges), in which case the full file is served with a 200.
 type ParsedRange = { start: number; end: number } | 'invalid' | 'ignore';
+
+type DownloadPolicy = { maxSize: number; maxDuration: number; timeout: number };
 
 function parseRangeHeader(rangeHeader: string | null, fileSize: number): ParsedRange {
   if (!rangeHeader) {
@@ -161,6 +168,7 @@ export default class CacheManager extends EventEmitter {
       abort: () => void;
       // for ipfs:// URLs: the gateway base the request was started through
       gateway?: string;
+      deadline: DownloadDeadline;
     }
   > = new Map();
 
@@ -170,6 +178,8 @@ export default class CacheManager extends EventEmitter {
   // challenging host from being retried (and holding a download slot) on every
   // access in between.
   private transientFailureUrls: Set<string> = new Set();
+
+  private maintenance: Promise<void> | undefined;
 
   constructor(
     options: {
@@ -285,18 +295,15 @@ export default class CacheManager extends EventEmitter {
     ipcMainHandle(CacheAPI.CLEAR_CACHE, () => this.clearCache());
     ipcMainHandle(CacheAPI.SET_CACHE_DIRECTORY, () => this.setCacheDirectory());
     ipcMainHandle(CacheAPI.SET_MAX_CACHE_SIZE, (newSize: number) => this.setMaxCacheSize(newSize));
-    ipcMainHandle(CacheAPI.GET_CONTENT, (url: string, options?: { maxSize?: number; timeout?: number }) =>
-      this.getContent(url, options),
+    ipcMainHandle(CacheAPI.GET_CONTENT_WITH_INFO, (url: string, options?: CacheRequestOptions) =>
+      this.getContentWithInfo(url, options),
     );
-    ipcMainHandle(CacheAPI.GET_HEADERS, (url: string, options?: { maxSize?: number; timeout?: number }) =>
-      this.getHeaders(url, options),
-    );
-    ipcMainHandle(CacheAPI.GET_CHECKSUM, (url: string, options?: { maxSize?: number; timeout?: number }) =>
+    ipcMainHandle(CacheAPI.GET_CONTENT, (url: string, options?: CacheRequestOptions) => this.getContent(url, options));
+    ipcMainHandle(CacheAPI.GET_HEADERS, (url: string, options?: CacheRequestOptions) => this.getHeaders(url, options));
+    ipcMainHandle(CacheAPI.GET_CHECKSUM, (url: string, options?: CacheRequestOptions) =>
       this.getChecksum(url, options),
     );
-    ipcMainHandle(CacheAPI.GET_URI, (url: string, options?: { maxSize?: number; timeout?: number }) =>
-      this.getURI(url, options),
-    );
+    ipcMainHandle(CacheAPI.GET_URI, (url: string, options?: CacheRequestOptions) => this.getURI(url, options));
     ipcMainHandle(CacheAPI.INVALIDATE, (url: string) => this.invalidate(url));
     ipcMainHandle(CacheAPI.GET_CACHE_INFOS, (urls: string[]) => this.getCacheInfos(urls));
 
@@ -469,17 +476,116 @@ export default class CacheManager extends EventEmitter {
     }
   }
 
+  // Whether the persisted outcome for a url stands as it is — content that
+  // is cached, or a failure the retry rules say not to retry now — so that
+  // no transfer is called for. Shared by the transfer path and by callers
+  // whose allowance can afford no transfer.
+  private isPolicyLimitLifted(cacheInfo: CacheInfo, policy: DownloadPolicy): boolean {
+    if (cacheInfo.state !== CacheState.ERROR) {
+      return false;
+    }
+    return (
+      (cacheInfo.error === MAX_FILE_SIZE_EXCEEDED_ERROR && policy.maxSize > (cacheInfo.maxSize ?? MAX_FILE_SIZE)) ||
+      (cacheInfo.error.startsWith(DOWNLOAD_DEADLINE_ERROR_PREFIX) &&
+        cacheInfo.maxDuration !== undefined &&
+        policy.maxDuration > cacheInfo.maxDuration) ||
+      (cacheInfo.error.startsWith(INACTIVITY_TIMEOUT_ERROR_PREFIX) &&
+        cacheInfo.timeout !== undefined &&
+        policy.timeout > cacheInfo.timeout)
+    );
+  }
+
+  private isSettledOutcome(cacheInfo: CacheInfo, url: string, policy: DownloadPolicy): boolean {
+    if (cacheInfo.state === CacheState.CACHED) {
+      return true;
+    }
+    if (cacheInfo.state !== CacheState.ERROR) {
+      return false;
+    }
+
+    const isAbortError = ['Response aborted', 'Request aborted'].includes(cacheInfo.error);
+    // A persisted transient failure (timeout, 5xx, rate limit, bot
+    // challenge, network error) is retried once per session, and again
+    // within the session once its retry delay has elapsed — a one-off
+    // gateway problem must not disable the preview until the whole
+    // cache is cleared. The delay grows with every consecutive failure
+    // and the in-session retries stop after MAX_TRANSIENT_RETRIES, so
+    // a host that never recovers is not re-probed every ten minutes for
+    // the life of the process. Sidecars written without a timestamp
+    // fall back to the once-per-session rule.
+    const retries = cacheInfo.retries ?? 0;
+    const isRetriableTransientError =
+      isTransientDownloadError(cacheInfo.error) &&
+      (!this.transientFailureUrls.has(url) ||
+        (retries < MAX_TRANSIENT_RETRIES && Date.now() - cacheInfo.timestamp >= transientErrorRetryDelay(retries)));
+    // A caller limit describes that attempt, not the resource. Keep backoff
+    // at the same or smaller limits, but allow a larger caller its own try.
+    const isLimitLifted = this.isPolicyLimitLifted(cacheInfo, policy);
+    // An ipfs failure is a verdict on one gateway, not on the resource:
+    // once the user points the option at another gateway the entry is
+    // re-requested right away, whatever the error was and however
+    // recently it was recorded. Only while the option is on, since with
+    // it off there is no gateway to retry through and the refusal would
+    // never settle. A sidecar that names its gateway is compared with
+    // the current one; an https gateway link without a recorded gateway
+    // failed without ever getting the fallback (the option was off, or
+    // the sidecar predates it), so it gets one now — the attempt records
+    // the gateway and settles it. An ipfs:// sidecar without a gateway
+    // predates gateway tracking and follows the transient-error rules.
+    const isGatewayChanged =
+      isIpfsBackedUrl(url) &&
+      ipfsGatewayEnabled() &&
+      (cacheInfo.gateway === undefined ? !isIpfsUrl(url) : cacheInfo.gateway !== ipfsGatewayBase());
+    return !isAbortError && !isRetriableTransientError && !isLimitLifted && !isGatewayChanged;
+  }
+
   async fetchRemoteContent(
     url: string,
-    options: {
-      maxSize?: number;
-      timeout?: number;
-    } = {},
+    options: CacheRequestOptions = {},
+    budget = { remaining: normalizeDownloadDuration(options.maxDuration) },
   ): Promise<CacheInfo> {
-    const { maxSize = MAX_FILE_SIZE, timeout = 30_000 } = options;
+    // Both come from the renderer and reach a timer and a byte counter; see
+    // the normalizers for what an absent, invalid or "unlimited" value means.
+    const maxSize = normalizeMaxSize(options.maxSize);
+    const timeout = normalizeTimeout(options.timeout);
 
+    // Validate before coalescing, reading sidecars, or queuing network work.
     if (!isValidURL(url)) {
       throw new Error(`Invalid URL: ${url}`);
+    }
+
+    // What is left of the caller's allowance bounds any transfer it starts or
+    // joins. The floor is never reached: a spent allowance is turned away
+    // below before it could start or join one.
+    const maxDuration = Math.max(1, Math.min(normalizeDownloadDuration(options.maxDuration), budget.remaining));
+    const policy = { maxSize, maxDuration, timeout };
+
+    // Recheck after each await: another maintenance operation may have been
+    // queued while this caller waited. No await separates the last check from
+    // registration below, so every request is either admitted or held back.
+    while (this.maintenance) {
+      // eslint-disable-next-line no-await-in-loop -- Serialize admission against maintenance.
+      await this.maintenance.catch(() => {});
+    }
+
+    // A spent allowance still reads the cache — content that is already
+    // there costs nothing to serve, and a recheck after a join or a
+    // maintenance wait commonly finds exactly that — but it buys no transfer:
+    // not a seat on another caller's (joining would tighten that transfer's
+    // deadline to the floor and abort a healthy download someone else is
+    // waiting on) and none of its own. Decided here, before this caller could
+    // register as the url's owner: a refusal raised from inside the transfer
+    // would be caught below and persisted as a transient error against the
+    // current gateway — a verdict on nothing — and inherited by every caller
+    // that joined in the meantime. Nothing is written on this path.
+    if (budget.remaining <= 0) {
+      if (!this.ongoingRequests.has(url)) {
+        const cacheInfo = await this.getCacheInfoByURL(url);
+        if (this.isSettledOutcome(cacheInfo, url, policy)) {
+          return cacheInfo;
+        }
+      }
+      throw new SharedDownloadBudgetSpentError();
     }
 
     // Captured once, up front, and pinned for the download itself (which may
@@ -494,6 +600,46 @@ export default class CacheManager extends EventEmitter {
     const requestGateway =
       isIpfsUrl(url) || (isIpfsBackedUrl(url) && ipfsGatewayEnabled()) ? ipfsGatewayBase() : undefined;
 
+    // Charge actual admitted work, including a joined transfer, exactly once
+    // per fetch decision. Rechecks after maintenance/gateway changes share this
+    // budget instead of receiving another full metadata allowance.
+    const consume = async (request: { promise: Promise<CacheInfo>; deadline: DownloadDeadline }) => {
+      try {
+        return await request.promise;
+      } finally {
+        // eslint-disable-next-line no-param-reassign -- Rechecks consume the caller's shared allowance.
+        budget.remaining = Math.max(0, budget.remaining - request.deadline.elapsed());
+      }
+    };
+
+    // Waiting on another caller's transfer, for this caller's own allowance
+    // and no longer. The transfer itself is left as it is: its deadline is
+    // its owner's, and a caller with a smaller allowance — a metadata fetch
+    // whose NFT lists the url another NFT's video is downloading from — must
+    // not be able to end it for everyone waiting on it. Queue wait is not
+    // charged, as for a transfer of one's own; the clock starts with the
+    // transfer's. A caller whose allowance runs out is refused with the
+    // spent-budget error, nothing persisted, and charged for what it waited.
+    const joinWithinBudget = async (request: { promise: Promise<CacheInfo>; deadline: DownloadDeadline }) => {
+      await request.deadline.whenStarted();
+      const startedAt = Date.now();
+      let timer: ReturnType<typeof setTimeout> | undefined;
+      try {
+        return await Promise.race([
+          request.promise,
+          new Promise<never>((_resolve, reject) => {
+            timer = setTimeout(() => reject(new SharedDownloadBudgetSpentError()), maxDuration);
+          }),
+        ]);
+      } finally {
+        if (timer !== undefined) {
+          clearTimeout(timer);
+        }
+        // eslint-disable-next-line no-param-reassign -- The wait consumes the caller's shared allowance.
+        budget.remaining = Math.max(0, budget.remaining - (Date.now() - startedAt));
+      }
+    };
+
     const ongoingRequest = this.ongoingRequests.get(url);
     if (ongoingRequest) {
       log('Request already ongoing', url);
@@ -506,14 +652,31 @@ export default class CacheManager extends EventEmitter {
         // the current one by the gateway check below. Without this the
         // caller would inherit the old gateway's error until the retry delay
         // elapsed.
-        const lookAgain = () => this.fetchRemoteContent(url, options);
-        return ongoingRequest.promise.then(lookAgain, lookAgain);
+        const lookAgain = () => this.fetchRemoteContent(url, options, budget);
+        return joinWithinBudget(ongoingRequest).then(lookAgain, lookAgain);
       }
 
-      return ongoingRequest.promise;
+      const outcome = await joinWithinBudget(ongoingRequest);
+      // The first caller may have requested metadata while this caller wants
+      // a larger/longer media transfer. Its limit failure cannot decide ours.
+      // The old writer has fully settled before re-admission; the time already
+      // spent waiting is charged above and is never granted again.
+      if (budget.remaining > 0 && this.isPolicyLimitLifted(outcome, { ...policy, maxDuration: budget.remaining })) {
+        return this.fetchRemoteContent(url, options, budget);
+      }
+      return outcome;
     }
 
     const abortController = new AbortController();
+    const transferDeadline = new DownloadDeadline(maxDuration, () => abortController.abort());
+    let ongoingRequestEntry:
+      | {
+          promise: Promise<CacheInfo>;
+          abort: () => void;
+          deadline: DownloadDeadline;
+          gateway?: string;
+        }
+      | undefined;
 
     // the persisted outcome this attempt is retrying, if any — a transient
     // failure recorded on top of an earlier one continues its retry count
@@ -541,42 +704,7 @@ export default class CacheManager extends EventEmitter {
 
         if (cacheInfo.state === CacheState.ERROR) {
           log(`Url already downloaded with error: ${cacheInfo.error}`, url);
-
-          const isAbortError = ['Response aborted', 'Request aborted'].includes(cacheInfo.error);
-          // A persisted transient failure (timeout, 5xx, rate limit, bot
-          // challenge, network error) is retried once per session, and again
-          // within the session once its retry delay has elapsed — a one-off
-          // gateway problem must not disable the preview until the whole
-          // cache is cleared. The delay grows with every consecutive failure
-          // and the in-session retries stop after MAX_TRANSIENT_RETRIES, so
-          // a host that never recovers is not re-probed every ten minutes for
-          // the life of the process. Sidecars written without a timestamp
-          // fall back to the once-per-session rule.
-          const retries = cacheInfo.retries ?? 0;
-          const isRetriableTransientError =
-            isTransientDownloadError(cacheInfo.error) &&
-            (!this.transientFailureUrls.has(url) ||
-              (retries < MAX_TRANSIENT_RETRIES &&
-                Date.now() - cacheInfo.timestamp >= transientErrorRetryDelay(retries)));
-          // A persisted size-limit error is only retried when the caller lifts
-          // the limit, so oversized files are not re-downloaded on every visit.
-          const isSizeLimitLifted = cacheInfo.error === MAX_FILE_SIZE_EXCEEDED_ERROR && maxSize <= 0;
-          // An ipfs failure is a verdict on one gateway, not on the resource:
-          // once the user points the option at another gateway the entry is
-          // re-requested right away, whatever the error was and however
-          // recently it was recorded. Only while the option is on, since with
-          // it off there is no gateway to retry through and the refusal would
-          // never settle. A sidecar that names its gateway is compared with
-          // the current one; an https gateway link without a recorded gateway
-          // failed without ever getting the fallback (the option was off, or
-          // the sidecar predates it), so it gets one now — the attempt records
-          // the gateway and settles it. An ipfs:// sidecar without a gateway
-          // predates gateway tracking and follows the transient-error rules.
-          const isGatewayChanged =
-            isIpfsBackedUrl(url) &&
-            ipfsGatewayEnabled() &&
-            (cacheInfo.gateway === undefined ? !isIpfsUrl(url) : cacheInfo.gateway !== ipfsGatewayBase());
-          if (!isAbortError && !isRetriableTransientError && !isSizeLimitLifted && !isGatewayChanged) {
+          if (this.isSettledOutcome(cacheInfo, url, policy)) {
             return cacheInfo;
           }
 
@@ -586,16 +714,16 @@ export default class CacheManager extends EventEmitter {
         const limitedRemoteFileDownload = async (): Promise<CacheInfo> => {
           const cacheFilePath = this.getCacheFilePath(url);
 
-          // One deadline for the whole slot, shared by the download and its
-          // gateway fallback: a host that held the connection for the full
-          // duration has already cost the most one URL may, and must not
-          // earn the gateway a second full-length attempt on top.
-          const deadline = Date.now() + DEFAULT_DOWNLOAD_MAX_DURATION;
-
+          // One active-transfer deadline covers the original host and fallback.
+          // Queue wait consumes no allowance; coalesced callers can tighten it.
+          if (budget.remaining <= 0) {
+            throw new SharedDownloadBudgetSpentError();
+          }
+          transferDeadline.start();
           const downloadOptions = {
             timeout,
             maxSize,
-            maxDuration: DEFAULT_DOWNLOAD_MAX_DURATION,
+            maxDuration: transferDeadline.remaining(),
             signal: abortController.signal,
             overrideFile: true,
             gatewayBase: requestGateway,
@@ -613,7 +741,7 @@ export default class CacheManager extends EventEmitter {
             // is on, the host is not already that gateway, the failure is
             // the host's — not an abort, a size cap, or the option itself —
             // and the shared deadline has time left.
-            const timeLeft = deadline - Date.now();
+            const timeLeft = transferDeadline.remaining();
             const fallbackUrl =
               timeLeft > 0 ? this.getGatewayFallbackUrl(url, requestGateway, downloadError as Error) : undefined;
             if (!fallbackUrl) {
@@ -628,11 +756,13 @@ export default class CacheManager extends EventEmitter {
             });
           }
 
+          transferDeadline.throwIfExpired();
           log('Download finished', url);
 
           // compute checksum
           const checksum = await getChecksum(cacheFilePath);
 
+          transferDeadline.throwIfExpired();
           log('Checksum computed', url);
 
           // save headers to a local JSON file
@@ -670,11 +800,12 @@ export default class CacheManager extends EventEmitter {
         // starts. Persisting that as a cache error would keep the entry
         // poisoned after the user turns the option on, so it propagates
         // instead — already-cached content was served above regardless.
-        if (error instanceof IpfsGatewayDisabledError) {
+        if (error instanceof IpfsGatewayDisabledError || error instanceof SharedDownloadBudgetSpentError) {
           throw error;
         }
 
-        const currentError = (error as Error) ?? new Error('Unknown fetchRemoteContent error');
+        const currentError =
+          transferDeadline.error ?? (error as Error) ?? new Error('Unknown fetchRemoteContent error');
 
         const isTransient = isTransientDownloadError(currentError.message);
         if (isTransient) {
@@ -684,24 +815,35 @@ export default class CacheManager extends EventEmitter {
         return await this.setCacheInfo(url, {
           state: CacheState.ERROR,
           error: currentError.message,
+          // the cap this attempt ran under, so a later caller with a larger
+          // one is retried and one with the same or a smaller one is not
+          ...(currentError.message === MAX_FILE_SIZE_EXCEEDED_ERROR ? { maxSize } : {}),
+          ...(currentError.message.startsWith(DOWNLOAD_DEADLINE_ERROR_PREFIX) ? { maxDuration } : {}),
+          ...(currentError.message.startsWith(INACTIVITY_TIMEOUT_ERROR_PREFIX) ? { timeout } : {}),
           ...(isTransient ? { retries: this.consecutiveTransientFailures(previousCacheInfo, requestGateway) + 1 } : {}),
           // which gateway the verdict belongs to (see isGatewayChanged above)
           ...(requestGateway === undefined ? {} : { gateway: requestGateway }),
         });
       } finally {
-        this.ongoingRequests.delete(url);
+        transferDeadline.finish();
+        // Clearing may have allowed a replacement request under this key.
+        if (this.ongoingRequests.get(url) === ongoingRequestEntry) {
+          this.ongoingRequests.delete(url);
+        }
       }
     };
 
     const promise = process();
 
-    this.ongoingRequests.set(url, {
+    ongoingRequestEntry = {
       abort: () => abortController.abort(),
       promise,
       gateway: requestGateway,
-    });
+      deadline: transferDeadline,
+    };
+    this.ongoingRequests.set(url, ongoingRequestEntry);
 
-    return promise;
+    return consume(ongoingRequestEntry);
   }
 
   // How many transient failures in a row the persisted outcome already
@@ -752,13 +894,7 @@ export default class CacheManager extends EventEmitter {
     return fallbackUrl;
   }
 
-  async getHeaders(
-    url: string,
-    options?: {
-      maxSize?: number;
-      timeout?: number;
-    },
-  ): Promise<Headers> {
+  async getHeaders(url: string, options?: CacheRequestOptions): Promise<Headers> {
     if (!isValidURL(url)) {
       throw new Error(`Invalid URL: ${url}`);
     }
@@ -780,13 +916,7 @@ export default class CacheManager extends EventEmitter {
     throw new Error('Unknown cache state');
   }
 
-  async getContent(
-    url: string,
-    options?: {
-      maxSize?: number;
-      timeout?: number;
-    },
-  ): Promise<Buffer> {
+  async getContent(url: string, options?: CacheRequestOptions): Promise<Buffer> {
     if (!isValidURL(url)) {
       throw new Error(`Invalid URL: ${url}`);
     }
@@ -809,13 +939,41 @@ export default class CacheManager extends EventEmitter {
     throw new Error('Unknown cache state');
   }
 
-  async getChecksum(
-    url: string,
-    options?: {
-      maxSize?: number;
-      timeout?: number;
-    },
-  ): Promise<string> {
+  // Metadata needs headers, checksum and bytes from ONE download decision.
+  // Three independent calls could re-download after eviction/invalidation,
+  // spending an attempt's transfer allowance three times. Hash the bytes we
+  // return so a concurrent replacement cannot pair new bytes with an old hash.
+  async getContentWithInfo(url: string, options?: CacheRequestOptions): Promise<CacheContent> {
+    const cacheInfo = await this.fetchRemoteContent(url, options);
+    if (cacheInfo.state === CacheState.ERROR) {
+      throw new Error(cacheInfo.error);
+    }
+    if (cacheInfo.state !== CacheState.CACHED) {
+      throw new Error('Url is not cached');
+    }
+    while (this.maintenance) {
+      // eslint-disable-next-line no-await-in-loop -- Read the completed destination, not a half-migrated pair.
+      await this.maintenance.catch(() => {});
+    }
+    const filePath = this.getCacheFilePath(url);
+    // A file another caller cached under a larger cap — a data file that is
+    // also the NFT's metadata — is not handed to a caller whose cap it
+    // exceeds: the cap is what keeps the renderer from decoding and parsing
+    // that much on its thread. The entry stays cached for callers it fits.
+    const maxSize = normalizeMaxSize(options?.maxSize);
+    const { size } = await fs.stat(filePath);
+    if (size > maxSize) {
+      throw new Error(MAX_FILE_SIZE_EXCEEDED_ERROR);
+    }
+    const content = await fs.readFile(filePath);
+    return {
+      content,
+      headers: cacheInfo.headers,
+      checksum: crypto.createHash('sha256').update(content).digest('hex'),
+    };
+  }
+
+  async getChecksum(url: string, options?: CacheRequestOptions): Promise<string> {
     if (!isValidURL(url)) {
       throw new Error(`Invalid URL: ${url}`);
     }
@@ -837,13 +995,7 @@ export default class CacheManager extends EventEmitter {
     throw new Error('Unknown cache state');
   }
 
-  async getURI(
-    url: string,
-    options?: {
-      maxSize?: number;
-      timeout?: number;
-    },
-  ) {
+  async getURI(url: string, options?: CacheRequestOptions) {
     if (!isValidURL(url)) {
       throw new Error(`Invalid URL: ${url}`);
     }
