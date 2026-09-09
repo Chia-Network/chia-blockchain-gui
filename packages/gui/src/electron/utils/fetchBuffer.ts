@@ -3,7 +3,7 @@ import { net, type IncomingMessage } from 'electron';
 import type Headers from '../../@types/Headers';
 
 import { toFetchableUrl } from './ipfsGateway';
-import isValidURL from './isValidURL';
+import isValidURL, { isValidRequestURL } from './isValidURL';
 import guardRedirects from './redirectPolicy';
 
 const DEFAULT_TIMEOUT = 10 * 60 * 1000; // 10 minutes
@@ -41,13 +41,18 @@ export default async function fetchBuffer(
     throw new Error('Invalid URL');
   }
 
-  const fetchUrl = toFetchableUrl(url);
+  // ipfs:// URIs are fetched through an HTTPS gateway when the user has
+  // enabled it — Electron's net stack cannot request the ipfs scheme, and
+  // with the option off toFetchableUrl refuses the fetch outright. The
+  // translated URL is the one that leaves the machine, so it is validated too.
+  const requestUrl = toFetchableUrl(url);
+  if (!isValidRequestURL(requestUrl)) {
+    throw new Error('Invalid URL');
+  }
+
   const request = net.request({
     method: 'GET',
-    // ipfs:// URIs are fetched through an HTTPS gateway when the user has
-    // enabled it — Electron's net stack cannot request the ipfs scheme, and
-    // with the option off toFetchableUrl refuses the fetch outright.
-    url: fetchUrl,
+    url: requestUrl,
     headers,
     // each redirect is checked against the same rule as the requested URL
     redirect: 'manual',
@@ -147,7 +152,7 @@ export default async function fetchBuffer(
       rejectOnce(new Error('Request aborted'));
     });
 
-    guardRedirects(request, fetchUrl, (error) => {
+    guardRedirects(request, requestUrl, (error) => {
       rejectOnce(error);
       request.abort();
     });
