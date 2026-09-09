@@ -20,6 +20,8 @@ jest.mock('./utils/downloadFile', () => ({
   MAX_FILE_SIZE_EXCEEDED_ERROR: 'Maximum file size exceeded',
   DEFAULT_DOWNLOAD_MAX_DURATION: jest.requireActual('./utils/downloadFile').DEFAULT_DOWNLOAD_MAX_DURATION,
   isTransientDownloadError: jest.requireActual('./utils/downloadFile').isTransientDownloadError,
+  normalizeMaxSize: jest.requireActual('./utils/downloadFile').normalizeMaxSize,
+  normalizeTimeout: jest.requireActual('./utils/downloadFile').normalizeTimeout,
 }));
 
 const { DEFAULT_DOWNLOAD_MAX_DURATION } =
@@ -742,6 +744,235 @@ describe('CacheManager eviction', () => {
     }
   });
 
+  it('refuses a caller whose shared budget is spent instead of expiring the download it would join', async () => {
+    const payload = Buffer.from('cached payload');
+    const url = 'https://example.com/nft.png';
+    let finishDownload!: () => Promise<void>;
+    let aborted = false;
+    mockDownloadFile.mockImplementationOnce(
+      (_url, localPath, options) =>
+        new Promise((resolve, reject) => {
+          options?.signal?.addEventListener(
+            'abort',
+            () => {
+              aborted = true;
+              reject(new Error('Request aborted'));
+            },
+            { once: true },
+          );
+          finishDownload = async () => {
+            await fs.writeFile(localPath, payload);
+            resolve({ 'content-type': 'image/png' });
+          };
+        }),
+    );
+
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+
+    const first = cacheManager.getContent(url);
+    await untilDownloadsStarted(1);
+
+    // a recheck arrives with nothing left of its shared allowance: it is
+    // refused outright rather than seated on the transfer with a deadline
+    // that expires at once
+    await expect(cacheManager.fetchRemoteContent(url, {}, { remaining: 0 })).rejects.toThrow(
+      'shared download deadline',
+    );
+    expect(aborted).toBe(false);
+
+    await finishDownload();
+    await expect(first).resolves.toEqual(payload);
+    expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+    // the refusal recorded nothing: the entry is the completed download's
+    const [info] = await cacheManager.getCacheInfos([url]);
+    expect(info.state).toBe('CACHED');
+  });
+
+  it('serves cached content to a caller whose shared budget is spent', async () => {
+    const payload = Buffer.from('cached payload');
+    const url = 'https://example.com/nft.png';
+    mockDownloadFile.mockImplementation(async (_url, localPath) => {
+      await fs.writeFile(localPath, payload);
+      return { 'content-type': 'image/png' };
+    });
+
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+    await expect(cacheManager.getContent(url)).resolves.toEqual(payload);
+
+    // a recheck whose allowance the transfer used up in full still finds the
+    // file it paid for: serving it needs no further transfer
+    await expect(cacheManager.fetchRemoteContent(url, {}, { remaining: 0 })).resolves.toMatchObject({
+      state: 'CACHED',
+    });
+    expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+  });
+
+  it('records nothing when a caller whose shared budget is spent finds no cached entry', async () => {
+    const url = 'https://example.com/nft.png';
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+
+    await expect(cacheManager.fetchRemoteContent(url, {}, { remaining: 0 })).rejects.toThrow(
+      'shared download deadline',
+    );
+    expect(mockDownloadFile).not.toHaveBeenCalled();
+    // the refusal is the caller's, not the url's: no sidecar, so a funded
+    // caller — and the next gateway — start from nothing
+    const [info] = await cacheManager.getCacheInfos([url]);
+    expect(info.state).toBe('NOT_CACHED');
+    expect(await fs.readdir(cacheDirectory)).toEqual([]);
+  });
+
+  it('hands a caller whose shared budget is spent the settled failure the cache holds', async () => {
+    const url = 'https://example.com/nft.png';
+    mockDownloadFile.mockRejectedValue(new Error('HTTP error: 404'));
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+    await expect(cacheManager.getContent(url)).rejects.toThrow('HTTP error: 404');
+
+    // a 404 is not retried, so the spent caller is told what the cache knows
+    await expect(cacheManager.fetchRemoteContent(url, {}, { remaining: 0 })).resolves.toMatchObject({
+      state: 'ERROR',
+      error: 'HTTP error: 404',
+    });
+    expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+  });
+
+  it('serves every caller that shares a lookup of an entry that is already cached', async () => {
+    const payload = Buffer.from('shared bytes');
+    mockDownloadFile.mockImplementation(async (_url, localPath) => {
+      await fs.writeFile(localPath, payload);
+      return { 'content-type': 'image/png' };
+    });
+    const cacheManager = new CacheManager({ cacheDirectory, maxCacheSize: 1024 });
+    await cacheManager.init();
+    const url = 'https://example.com/shared.png';
+    await cacheManager.getContent(url);
+
+    // several tiles ask for the same cached file at once: the first lookup
+    // finishes from the sidecar and never starts a transfer, and the others
+    // must still be answered
+    const results = await Promise.all([
+      cacheManager.getContent(url),
+      cacheManager.getContent(url, { maxDuration: 100 }),
+      cacheManager.getChecksum(url),
+      cacheManager.getURI(url),
+    ]);
+    expect(results[0]).toEqual(payload);
+    expect(results[1]).toEqual(payload);
+    expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+  });
+
+  it('answers a caller that shares a lookup of a settled failure', async () => {
+    mockDownloadFile.mockRejectedValue(new Error('HTTP error: 404'));
+    const cacheManager = new CacheManager({ cacheDirectory, maxCacheSize: 1024 });
+    await cacheManager.init();
+    const url = 'https://example.com/gone.png';
+    await expect(cacheManager.getContent(url)).rejects.toThrow('HTTP error: 404');
+
+    const results = await Promise.allSettled([
+      cacheManager.getContent(url),
+      cacheManager.getContent(url, { maxDuration: 100 }),
+    ]);
+    expect(results.map((result) => result.status)).toEqual(['rejected', 'rejected']);
+    expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+  });
+
+  it('refuses a joiner after its own allowance without ending the transfer it joined', async () => {
+    const payload = Buffer.from('video bytes');
+    const url = 'https://example.com/video.mp4';
+    let finishDownload!: () => Promise<void>;
+    let aborted = false;
+    mockDownloadFile.mockImplementationOnce(
+      (_url, localPath, options) =>
+        new Promise((resolve, reject) => {
+          options?.signal?.addEventListener(
+            'abort',
+            () => {
+              aborted = true;
+              reject(new Error('Request aborted'));
+            },
+            { once: true },
+          );
+          finishDownload = async () => {
+            await fs.writeFile(localPath, payload);
+            resolve({ 'content-type': 'video/mp4' });
+          };
+        }),
+    );
+    const cacheManager = new CacheManager({ cacheDirectory, maxCacheSize: 1024 });
+    await cacheManager.init();
+
+    // another NFT's tile is downloading the video
+    const owner = cacheManager.getContent(url);
+    await untilDownloadsStarted(1);
+    // a metadata fetch whose NFT lists the same url joins with a small allowance
+    await expect(cacheManager.fetchRemoteContent(url, { maxDuration: 40 })).rejects.toThrow('shared download deadline');
+    // ... and the video transfer is still running, untouched
+    expect(aborted).toBe(false);
+    await finishDownload();
+    await expect(owner).resolves.toEqual(payload);
+    expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+    const [info] = await cacheManager.getCacheInfos([url]);
+    expect(info.state).toBe('CACHED');
+  });
+
+  it('does not hand a cached file to a caller whose cap it exceeds, and keeps it for callers it fits', async () => {
+    const payload = Buffer.alloc(3000, 1);
+    mockDownloadFile.mockImplementation(async (_url, localPath) => {
+      await fs.writeFile(localPath, payload);
+      return { 'content-type': 'application/json' };
+    });
+    const cacheManager = new CacheManager({ cacheDirectory, maxCacheSize: 1024 * 1024 });
+    await cacheManager.init();
+    const url = 'https://example.com/data.json';
+    await expect(cacheManager.getContent(url)).resolves.toEqual(payload);
+    await expect(cacheManager.getContentWithInfo(url, { maxSize: 2000 })).rejects.toThrow('Maximum file size exceeded');
+    await expect(cacheManager.getContent(url)).resolves.toEqual(payload);
+    expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+  });
+
+  it('retries a size-limit failure only for a caller that allows more than the cap it failed under', async () => {
+    const url = 'https://example.com/big.json';
+    mockDownloadFile.mockRejectedValueOnce(new Error('Maximum file size exceeded'));
+    const cacheManager = new CacheManager({ cacheDirectory, maxCacheSize: 1024 * 1024 });
+    await cacheManager.init();
+    await expect(cacheManager.getContent(url, { maxSize: 5 * 1024 * 1024 })).rejects.toThrow(
+      'Maximum file size exceeded',
+    );
+    const [info] = await cacheManager.getCacheInfos([url]);
+    expect(info).toMatchObject({ state: 'ERROR', maxSize: 5 * 1024 * 1024 });
+
+    // the same cap: settled, no second transfer
+    await expect(cacheManager.getContent(url, { maxSize: 5 * 1024 * 1024 })).rejects.toThrow(
+      'Maximum file size exceeded',
+    );
+    expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+
+    // a larger cap (the data verifier's default): tried again
+    const payload = Buffer.from('fits now');
+    mockDownloadFile.mockImplementation(async (_url, localPath) => {
+      await fs.writeFile(localPath, payload);
+      return { 'content-type': 'application/json' };
+    });
+    await expect(cacheManager.getContent(url)).resolves.toEqual(payload);
+    expect(mockDownloadFile).toHaveBeenCalledTimes(2);
+  });
+
   it('does not fall back to the gateway once the host has used up the whole download deadline', async () => {
     const url = 'https://nftstorage.link/ipfs/QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/img.png';
     let now = Date.now();
@@ -1016,6 +1247,44 @@ describe('CacheManager getCacheInfos', () => {
     expect(infos[1]).toMatchObject({ error: 'getaddrinfo ENOTFOUND example.com' });
     expect(infos[3]).toMatchObject({ error: 'Invalid URL: not a url' });
     expect(mockDownloadFile).not.toHaveBeenCalled();
+  });
+});
+
+describe('CacheManager request options from the renderer', () => {
+  let cacheDirectory: string;
+
+  beforeEach(async () => {
+    mockDownloadFile.mockReset();
+    cacheDirectory = await fs.mkdtemp(path.join(os.tmpdir(), 'chia-cache-options-'));
+  });
+
+  afterEach(async () => {
+    await fs.rm(cacheDirectory, { recursive: true, force: true });
+  });
+
+  it.each([
+    // a request for "no limit" gets the ceiling, not an unbounded transfer
+    [{ maxSize: -1 }, { maxSize: 2 * 1024 * 1024 * 1024, timeout: 30_000 }],
+    [{ maxSize: 0 }, { maxSize: 2 * 1024 * 1024 * 1024, timeout: 30_000 }],
+    [{ maxSize: Number.NaN }, { maxSize: 100 * 1024 * 1024, timeout: 30_000 }],
+    [{ maxSize: 'huge' as unknown as number }, { maxSize: 100 * 1024 * 1024, timeout: 30_000 }],
+    // a timeout a timer cannot hold is clamped to the transfer ceiling
+    [{ timeout: 1e12 }, { maxSize: 100 * 1024 * 1024, timeout: 30 * 60 * 1000 }],
+    [{ timeout: 0 }, { maxSize: 100 * 1024 * 1024, timeout: 30_000 }],
+    [
+      { maxSize: 5 * 1024 * 1024, timeout: 10_000 },
+      { maxSize: 5 * 1024 * 1024, timeout: 10_000 },
+    ],
+  ])('hands the download %p as %p', async (options, expected) => {
+    mockDownloadFile.mockImplementation(async (_url, localPath) => {
+      await fs.writeFile(localPath, 'bytes');
+      return { 'content-type': 'image/png' };
+    });
+    const cacheManager = new CacheManager({ cacheDirectory, maxCacheSize: 1024 });
+    await cacheManager.init();
+    await cacheManager.getContent('https://example.com/nft.png', options);
+    expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+    expect(mockDownloadFile.mock.calls[0][2]).toMatchObject(expected);
   });
 });
 

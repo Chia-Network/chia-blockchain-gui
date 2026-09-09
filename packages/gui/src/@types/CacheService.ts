@@ -1,8 +1,17 @@
 import type CacheInfo from './CacheInfo';
+import type Headers from './Headers';
 
-type CacheRequestOptions = {
+export type CacheRequestOptions = {
   maxSize?: number;
   timeout?: number;
+  // Absolute transfer limit, not an inactivity timeout; queue time is excluded.
+  maxDuration?: number;
+};
+
+export type CacheContent = {
+  content: Uint8Array;
+  headers: Headers;
+  checksum: string;
 };
 
 type CacheService = {
@@ -20,11 +29,12 @@ type CacheService = {
 
   // Content operations
   getContent: (url: string, options?: CacheRequestOptions) => Promise<Uint8Array>;
+  getContentWithInfo: (url: string, options?: CacheRequestOptions) => Promise<CacheContent>;
   getHeaders: (url: string, options?: CacheRequestOptions) => Promise<Record<string, string>>;
   getChecksum: (url: string, options?: CacheRequestOptions) => Promise<string>;
   getURI: (url: string, options?: CacheRequestOptions) => Promise<string>;
   invalidate: (url: string) => Promise<void>;
-  // Read-only lookup of the persisted cache state of each url — never downloads
+  // Read-only lookup of the persisted cache state of each url - never downloads
   getCacheInfos: (urls: string[]) => Promise<CacheInfo[]>;
 
   // Event subscriptions

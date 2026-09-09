@@ -1,5 +1,6 @@
-import { ButtonLoading, Flex, Form, TextField } from '@chia-network/core';
+import { Flex, Form, TextField } from '@chia-network/core';
 import { t, Trans } from '@lingui/macro';
+import { LoadingButton } from '@mui/lab';
 import { Button } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
@@ -81,7 +82,7 @@ export default function IpfsGatewayUrl(props: IpfsGatewayUrlProps) {
             autoCorrect: 'off',
           }}
         />
-        <ButtonLoading
+        <LoadingButton
           size="small"
           disabled={!canSubmit}
           type="submit"
@@ -90,7 +91,7 @@ export default function IpfsGatewayUrl(props: IpfsGatewayUrlProps) {
           color="secondary"
         >
           <Trans>Update</Trans>
-        </ButtonLoading>
+        </LoadingButton>
         {!isDefault && (
           <Button size="small" disabled={!canSubmit} variant="text" color="secondary" onClick={handleReset}>
             <Trans>Reset</Trans>

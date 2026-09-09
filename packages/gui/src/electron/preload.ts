@@ -1,5 +1,7 @@
 import { contextBridge, ipcRenderer } from 'electron';
 
+import type { CacheRequestOptions } from '../@types/CacheService';
+
 import API from './constants/API';
 import AddressBookAPI from './constants/AddressBookAPI';
 import AppAPI from './constants/AppAPI';
@@ -123,14 +125,15 @@ contextBridge.exposeInMainWorld(API.CACHE, {
   setCacheDirectory: () => invokeWithCustomErrors(CacheAPI.SET_CACHE_DIRECTORY),
   setMaxCacheSize: (maxCacheSize: number) => invokeWithCustomErrors(CacheAPI.SET_MAX_CACHE_SIZE, maxCacheSize),
   getMaxCacheSize: () => invokeWithCustomErrors(CacheAPI.GET_MAX_CACHE_SIZE),
-  getContent: (url: string, options?: { maxSize?: number; timeout?: number }) =>
+  getContentWithInfo: (url: string, options?: CacheRequestOptions) =>
+    invokeWithCustomErrors(CacheAPI.GET_CONTENT_WITH_INFO, url, options),
+  getContent: (url: string, options?: CacheRequestOptions) =>
     invokeWithCustomErrors(CacheAPI.GET_CONTENT, url, options),
-  getHeaders: (url: string, options?: { maxSize?: number; timeout?: number }) =>
+  getHeaders: (url: string, options?: CacheRequestOptions) =>
     invokeWithCustomErrors(CacheAPI.GET_HEADERS, url, options),
-  getChecksum: (url: string, options?: { maxSize?: number; timeout?: number }) =>
+  getChecksum: (url: string, options?: CacheRequestOptions) =>
     invokeWithCustomErrors(CacheAPI.GET_CHECKSUM, url, options),
-  getURI: (url: string, options?: { maxSize?: number; timeout?: number }) =>
-    invokeWithCustomErrors(CacheAPI.GET_URI, url, options),
+  getURI: (url: string, options?: CacheRequestOptions) => invokeWithCustomErrors(CacheAPI.GET_URI, url, options),
   invalidate: (url: string) => invokeWithCustomErrors(CacheAPI.INVALIDATE, url),
   getCacheInfos: (urls: string[]) => invokeWithCustomErrors(CacheAPI.GET_CACHE_INFOS, urls),
   subscribeToDirectoryChange: (callback: (...args: unknown[]) => void) =>

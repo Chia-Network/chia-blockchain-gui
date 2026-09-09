@@ -16,8 +16,16 @@ jest.mock('../prefs', () => ({
   readPrefs: mockReadPrefs,
 }));
 
-const { default: downloadFile, isTransientDownloadError } =
-  jest.requireActual<typeof import('./downloadFile')>('./downloadFile');
+const {
+  default: downloadFile,
+  isTransientDownloadError,
+  normalizeMaxSize,
+  normalizeTimeout,
+  DEFAULT_MAX_FILE_SIZE,
+  MAX_FILE_SIZE_CEILING,
+  DEFAULT_INACTIVITY_TIMEOUT,
+  DEFAULT_DOWNLOAD_MAX_DURATION,
+} = jest.requireActual<typeof import('./downloadFile')>('./downloadFile');
 const { NFT_IPFS_GATEWAY_PREF } = jest.requireActual<typeof import('./ipfsGateway')>('./ipfsGateway');
 
 const CID = 'QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB';
@@ -284,5 +292,40 @@ describe('isTransientDownloadError', () => {
     'net::ERR_TOO_MANY_REDIRECTS',
   ])('treats the network error %p as permanent', (message) => {
     expect(isTransientDownloadError(message)).toBe(false);
+  });
+});
+
+describe('normalizeMaxSize', () => {
+  it.each([
+    [undefined, DEFAULT_MAX_FILE_SIZE],
+    [Number.NaN, DEFAULT_MAX_FILE_SIZE],
+    ['10' as unknown as number, DEFAULT_MAX_FILE_SIZE],
+    [{} as unknown as number, DEFAULT_MAX_FILE_SIZE],
+    // "no limit" is the ceiling, never unbounded
+    [-1, MAX_FILE_SIZE_CEILING],
+    [0, MAX_FILE_SIZE_CEILING],
+    [Number.POSITIVE_INFINITY, MAX_FILE_SIZE_CEILING],
+    [MAX_FILE_SIZE_CEILING * 4, MAX_FILE_SIZE_CEILING],
+    [5 * 1024 * 1024, 5 * 1024 * 1024],
+    [1234.9, 1234],
+  ])('turns %p into %p', (value, expected) => {
+    expect(normalizeMaxSize(value)).toBe(expected);
+  });
+});
+
+describe('normalizeTimeout', () => {
+  it.each([
+    [undefined, DEFAULT_INACTIVITY_TIMEOUT],
+    [Number.NaN, DEFAULT_INACTIVITY_TIMEOUT],
+    [0, DEFAULT_INACTIVITY_TIMEOUT],
+    [-5, DEFAULT_INACTIVITY_TIMEOUT],
+    ['10' as unknown as number, DEFAULT_INACTIVITY_TIMEOUT],
+    [Number.POSITIVE_INFINITY, DEFAULT_INACTIVITY_TIMEOUT],
+    // beyond what a timer can represent: clamped, never overflowing to ~1 ms
+    [1e12, DEFAULT_DOWNLOAD_MAX_DURATION],
+    [10_000, 10_000],
+    [0.5, 1],
+  ])('turns %p into %p', (value, expected) => {
+    expect(normalizeTimeout(value)).toBe(expected);
   });
 });
