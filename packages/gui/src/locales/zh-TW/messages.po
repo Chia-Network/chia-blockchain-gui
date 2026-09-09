@@ -4899,7 +4899,7 @@ msgstr "輸入一個強韌的密碼以保護您的金鑰："
 msgid "Enter a wallet address to sign with"
 msgstr "輸入要使用的錢包地址進行簽署"
 
-#: src/components/settings/IpfsGatewayUrl.tsx:56
+#: src/components/settings/IpfsGatewayUrl.tsx:57
 msgid "Enter an https:// gateway address, for example https://dweb.link"
 msgstr ""
 
@@ -7980,7 +7980,7 @@ msgstr ""
 #: src/components/farm/FarmHealth.tsx:357
 #: src/components/offers/NFTOfferEditor.tsx:435
 #: src/components/offers/OfferEditor.tsx:153
-#: src/components/settings/IpfsGatewayUrl.tsx:96
+#: src/components/settings/IpfsGatewayUrl.tsx:97
 #: src/components/settings/SettingsIntegration.tsx:222
 #: src/components/signVerify/VerifyMessage.tsx:266
 msgid "Reset"
@@ -9376,7 +9376,7 @@ msgstr "無法識別的資產"
 #~ msgid "Unsupported commands"
 #~ msgstr "Unsupported commands"
 
-#: src/components/settings/IpfsGatewayUrl.tsx:92
+#: src/components/settings/IpfsGatewayUrl.tsx:93
 #: src/components/settings/LimitCacheSize.tsx:77
 msgid "Update"
 msgstr ""

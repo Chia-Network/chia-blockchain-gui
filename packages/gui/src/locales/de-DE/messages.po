@@ -4896,7 +4896,7 @@ msgstr ""
 msgid "Enter a wallet address to sign with"
 msgstr ""
 
-#: src/components/settings/IpfsGatewayUrl.tsx:56
+#: src/components/settings/IpfsGatewayUrl.tsx:57
 msgid "Enter an https:// gateway address, for example https://dweb.link"
 msgstr ""
 
@@ -7975,7 +7975,7 @@ msgstr ""
 #: src/components/farm/FarmHealth.tsx:357
 #: src/components/offers/NFTOfferEditor.tsx:435
 #: src/components/offers/OfferEditor.tsx:153
-#: src/components/settings/IpfsGatewayUrl.tsx:96
+#: src/components/settings/IpfsGatewayUrl.tsx:97
 #: src/components/settings/SettingsIntegration.tsx:222
 #: src/components/signVerify/VerifyMessage.tsx:266
 msgid "Reset"
@@ -9371,7 +9371,7 @@ msgstr ""
 #~ msgid "Unsupported commands"
 #~ msgstr "Unsupported commands"
 
-#: src/components/settings/IpfsGatewayUrl.tsx:92
+#: src/components/settings/IpfsGatewayUrl.tsx:93
 #: src/components/settings/LimitCacheSize.tsx:77
 msgid "Update"
 msgstr ""
