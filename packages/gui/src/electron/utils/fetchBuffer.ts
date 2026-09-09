@@ -5,6 +5,7 @@ import type Headers from '../../@types/Headers';
 import { toFetchableUrl } from './ipfsGateway';
 import isValidURL, { isValidRequestURL } from './isValidURL';
 import guardRedirects from './redirectPolicy';
+import getRequestUserAgent from './requestUserAgent';
 
 const DEFAULT_TIMEOUT = 10 * 60 * 1000; // 10 minutes
 const DEFAULT_MAX_SIZE = 100 * 1024 * 1024; // 100 MB
@@ -57,6 +58,8 @@ export default async function fetchBuffer(
     // each redirect is checked against the same rule as the requested URL
     redirect: 'manual',
   });
+
+  request.setHeader('User-Agent', getRequestUserAgent());
 
   return new Promise<FetchBufferResult>((resolve, reject) => {
     let settled = false;

@@ -16,6 +16,7 @@ import fileExists from './fileExists';
 import { toFetchableUrl } from './ipfsGateway';
 import isValidURL, { isValidRequestURL } from './isValidURL';
 import guardRedirects from './redirectPolicy';
+import getRequestUserAgent from './requestUserAgent';
 
 const log = debug('chia-gui:downloadFile');
 
@@ -78,6 +79,11 @@ class WriteStreamPromise {
 // from this module.
 export { MAX_FILE_SIZE_EXCEEDED_ERROR, isDownloadTimeoutError, isTransientDownloadError };
 
+// The absolute cap on one transfer unless the caller sets its own. Sized for
+// videos on slow hosts; the inactivity timeout alone would let a host that
+// trickles bytes hold a download slot forever.
+export const DEFAULT_DOWNLOAD_MAX_DURATION = 30 * 60 * 1000; // 30 minutes
+
 type DownloadFileOptions = {
   timeout?: number;
   maxDuration?: number; // absolute cap on the whole transfer
@@ -88,6 +94,12 @@ type DownloadFileOptions = {
   // the gateway base an ipfs:// url is fetched through; defaults to the
   // current preference (see toFetchableUrl)
   gatewayBase?: string;
+  // the URL to actually request instead of `url` — the caller keeps `url` as
+  // its cache key while fetching the same content from elsewhere (an IPFS
+  // gateway URL whose own host failed, refetched through the configured
+  // gateway); must itself be an https URL or a plain-http one on this
+  // machine, the forms the gateway setting accepts
+  requestUrl?: string;
 };
 
 export default async function downloadFile(
@@ -95,12 +107,13 @@ export default async function downloadFile(
   localPath: string,
   {
     timeout = 30_000,
-    maxDuration = 30 * 60 * 1000,
+    maxDuration = DEFAULT_DOWNLOAD_MAX_DURATION,
     signal,
     maxSize = 100 * 1024 * 1024,
     onProgress,
     overrideFile = false,
     gatewayBase,
+    requestUrl,
   }: DownloadFileOptions = {},
 ): Promise<Headers> {
   if (!isValidURL(url)) {
@@ -122,8 +135,8 @@ export default async function downloadFile(
   // this outgoing request uses the translated URL; callers keep the original
   // URI as the cache key. The translated URL is what actually leaves the
   // machine, so it is the string that gets validated.
-  const requestUrl = toFetchableUrl(url, gatewayBase);
-  if (!isValidRequestURL(requestUrl)) {
+  const fetchUrl = toFetchableUrl(requestUrl ?? url, gatewayBase);
+  if (!isValidRequestURL(fetchUrl)) {
     throw new Error('Invalid URL');
   }
 
@@ -131,7 +144,8 @@ export default async function downloadFile(
   // Redirects are followed one at a time, each checked against the same rule
   // as the requested URL (see redirectPolicy), so a host cannot redirect the
   // main process to a plain-http, loopback or private address.
-  const request = net.request({ url: requestUrl, redirect: 'manual' });
+  const request = net.request({ url: fetchUrl, redirect: 'manual' });
+  request.setHeader('User-Agent', getRequestUserAgent());
   const outputStream = new WriteStreamPromise(tempFilePath, overrideFile);
 
   // set when we abort the request ourselves, so abort events can be reported
@@ -150,7 +164,7 @@ export default async function downloadFile(
     request.abort();
   }
 
-  guardRedirects(request, requestUrl, abortWithError);
+  guardRedirects(request, fetchUrl, abortWithError);
 
   let timeoutId: NodeJS.Timeout | null = null;
 
