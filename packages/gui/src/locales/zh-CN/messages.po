@@ -1616,7 +1616,7 @@ msgstr "请仔细检查并确认取消此数据层报价。"
 #: src/electron/commands/Commands.ts:1466
 #: src/electron/dialogs/Confirm/Confirm.tsx:438
 #: src/electron/dialogs/Pair/Pair.tsx:377
-#: src/electron/main.tsx:1121
+#: src/electron/main.tsx:1147
 msgid "Cancel"
 msgstr "取消"
 
@@ -2439,7 +2439,7 @@ msgstr "非观察派生"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/humanizeCommand.ts:20
-#: src/electron/main.tsx:954
+#: src/electron/main.tsx:966
 msgid "Confirm"
 msgstr "确定"
 
@@ -2465,15 +2465,15 @@ msgstr "未提供"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/humanizeParamValue.ts:107
-#: src/electron/main.tsx:702
-#: src/electron/main.tsx:953
+#: src/electron/main.tsx:714
+#: src/electron/main.tsx:965
 msgid "Yes"
 msgstr "是"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/humanizeParamValue.ts:107
-#: src/electron/main.tsx:702
-#: src/electron/main.tsx:953
+#: src/electron/main.tsx:714
+#: src/electron/main.tsx:965
 msgid "No"
 msgstr "否"
 
@@ -2702,17 +2702,17 @@ msgid "Save changes"
 msgstr "保存更改"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:703
+#: src/electron/main.tsx:715
 msgid "Save Command Preferences"
 msgstr "保存命令偏好设置"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:705
+#: src/electron/main.tsx:717
 msgid "Would you like to save preferences for the following commands?"
 msgstr "为以下命令保存偏好吗？"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:709
+#: src/electron/main.tsx:721
 msgid ""
 "These commands will be executed without confirmation in the future:\n"
 "\n"
@@ -2722,139 +2722,139 @@ msgstr ""
 "{commands}"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:956
+#: src/electron/main.tsx:968
 msgid "Are you sure you want to quit?"
 msgstr "您确定要退出吗？"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:961
+#: src/electron/main.tsx:973
 msgid "Keep service running in the background"
 msgstr "保持服务在后台运行"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1121
+#: src/electron/main.tsx:1147
 msgid "Continue"
 msgstr "继续"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1123
+#: src/electron/main.tsx:1149
 msgid "Warning"
 msgstr "警告"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1124
+#: src/electron/main.tsx:1150
 msgid "Log files may contain sensitive information"
 msgstr "日志文件可能包含敏感信息"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1125
+#: src/electron/main.tsx:1151
 msgid "Are you sure you want to view the log contents?"
 msgstr "确定查看日志内容？"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1251
-#: src/electron/main.tsx:1459
+#: src/electron/main.tsx:1277
+#: src/electron/main.tsx:1485
 msgid "File"
 msgstr "文件"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1259
+#: src/electron/main.tsx:1285
 msgid "Edit"
 msgstr "编辑"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1291
+#: src/electron/main.tsx:1317
 msgid "View"
 msgstr "查看"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1300
+#: src/electron/main.tsx:1326
 msgid "Developer"
 msgstr "开发者"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1303
+#: src/electron/main.tsx:1329
 msgid "Developer Tools"
 msgstr "开发者工具"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1311
+#: src/electron/main.tsx:1337
 msgid "Trigger Desktop Notification"
 msgstr "触发桌面通知"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1340
+#: src/electron/main.tsx:1366
 msgid "Full Screen"
 msgstr "全屏"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1347
+#: src/electron/main.tsx:1373
 msgid "Window"
 msgstr "窗口"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1361
+#: src/electron/main.tsx:1387
 msgid "Help"
 msgstr "帮助"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1365
+#: src/electron/main.tsx:1391
 msgid "Chia Blockchain Wiki"
 msgstr "Chia区块链百科"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1371
+#: src/electron/main.tsx:1397
 msgid "Frequently Asked Questions"
 msgstr "常见问题解答"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1377
+#: src/electron/main.tsx:1403
 msgid "Release Notes"
 msgstr "版本发布说明"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1383
+#: src/electron/main.tsx:1409
 msgid "Contribute on GitHub"
 msgstr "在 GitHub 上贡献"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1392
+#: src/electron/main.tsx:1418
 msgid "Report an Issue..."
 msgstr "报告问题"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1398
+#: src/electron/main.tsx:1424
 msgid "Chat on Discord"
 msgstr "在Discord上讨论"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1404
+#: src/electron/main.tsx:1430
 msgid "Follow on X"
 msgstr "在X上关注"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1416
+#: src/electron/main.tsx:1442
 msgid "Chia"
 msgstr "Chia"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1419
-#: src/electron/main.tsx:1515
+#: src/electron/main.tsx:1445
+#: src/electron/main.tsx:1541
 msgid "About Chia Blockchain"
 msgstr "关于Chia区块链项目"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1425
+#: src/electron/main.tsx:1451
 msgid "Check for Updates..."
 msgstr "检查更新..."
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1474
+#: src/electron/main.tsx:1500
 msgid "Speech"
 msgstr "演说"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1521
+#: src/electron/main.tsx:1547
 msgid "Check for updates..."
 msgstr "检查更新..."
 
@@ -3442,7 +3442,7 @@ msgstr "高级选项"
 msgid "After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring."
 msgstr "当您的密钥成功迁移到新密钥串后，您可以选择从旧密钥串中移除您的密钥。"
 
-#: src/components/settings/SettingsNFT.tsx:151
+#: src/components/settings/SettingsNFT.tsx:152
 msgid "All NFT videos will restart automatically when they finish playing. When disabled, looping can still be turned on for individual videos from their detail page."
 msgstr "所有 NFT 视频在播放结束后会自动重新开始播放。禁用此功能后，仍可在单个视频的详情页中为其单独开启循环播放。"
 
@@ -3578,7 +3578,7 @@ msgstr "确定要接受此数据层报价吗？"
 msgid "Are you sure you want to cancel your offer?"
 msgstr "你确定要取消你的报价吗？"
 
-#: src/components/settings/SettingsNFT.tsx:76
+#: src/components/settings/SettingsNFT.tsx:77
 msgid "Are you sure you want to delete the NFT cache?"
 msgstr "确定删除NFT缓存吗？"
 
@@ -3811,7 +3811,7 @@ msgstr "通过提供签名地址，可以使用公钥来验证该地址的有效
 msgid "Bypassed Commands"
 msgstr "绕过命令"
 
-#: src/components/settings/SettingsNFT.tsx:204
+#: src/components/settings/SettingsNFT.tsx:226
 msgid "Cache"
 msgstr "缓存"
 
@@ -3889,7 +3889,7 @@ msgid "Challenge Hash"
 msgstr "挑战哈希"
 
 #: src/components/plotNFT/PlotNFTChangePool.tsx:110
-#: src/components/settings/SettingsNFT.tsx:242
+#: src/components/settings/SettingsNFT.tsx:264
 msgid "Change"
 msgstr "变更"
 
@@ -3993,7 +3993,7 @@ msgstr "选择绘图软件"
 msgid "Choose Wallet Mode"
 msgstr "选择钱包模式"
 
-#: src/components/settings/SettingsNFT.tsx:93
+#: src/components/settings/SettingsNFT.tsx:94
 msgid "Choose what you want to see and how you want to view it."
 msgstr "选择想要看的内容以及如何查看它。"
 
@@ -4022,8 +4022,8 @@ msgstr "清除所有已连接应用的每个“始终允许”覆盖设置。重
 msgid "Clear every \"always allow\" override for this app. Future commands will require confirmation again."
 msgstr "清除此应用的所有“始终允许”覆盖设置。未来的命令将再次需要确认。"
 
-#: src/components/settings/SettingsNFT.tsx:69
-#: src/components/settings/SettingsNFT.tsx:224
+#: src/components/settings/SettingsNFT.tsx:70
+#: src/components/settings/SettingsNFT.tsx:246
 msgid "Clear NFT cache"
 msgstr "清除NFT缓存"
 
@@ -4204,7 +4204,7 @@ msgstr "联系人名称"
 msgid "Contacts"
 msgstr "联系人"
 
-#: src/components/nfts/NFTHashStatus.tsx:120
+#: src/components/nfts/NFTHashStatus.tsx:126
 msgid "Content does not match the expected hash value that was specified during NFT minting. The content may have been modified."
 msgstr "文件的哈希值与NFT初始铸造时指定的值不同，可能已被修改。"
 
@@ -4212,7 +4212,7 @@ msgstr "文件的哈希值与NFT初始铸造时指定的值不同，可能已被
 #~ msgid "Content has not been validated against the hash that was specified during NFT minting."
 #~ msgstr ""
 
-#: src/components/nfts/NFTHashStatus.tsx:113
+#: src/components/nfts/NFTHashStatus.tsx:119
 msgid "Content has not been validated against the hash that was specified during NFT minting. Error: {0}"
 msgstr "内容未与在NFT铸造过程中指定的哈希进行验证。错误：{0}"
 
@@ -4898,6 +4898,10 @@ msgstr "输入复杂的密码来保护您的密钥串："
 msgid "Enter a wallet address to sign with"
 msgstr "输入要进行签名的钱包地址"
 
+#: src/components/settings/IpfsGatewayUrl.tsx:56
+msgid "Enter an https:// gateway address, for example https://dweb.link"
+msgstr ""
+
 #: src/components/signVerify/SignMessage.tsx:94
 msgid "Enter an NFT or DID to sign with"
 msgstr "输入要进行签名的NFT或DID"
@@ -5196,7 +5200,7 @@ msgstr "手续费金额"
 msgid "Fees included in offer:"
 msgstr "报价中包含的手续费:"
 
-#: src/components/settings/SettingsNFT.tsx:162
+#: src/components/settings/SettingsNFT.tsx:163
 msgid "Fetch IPFS content through a gateway"
 msgstr "通过网关获取 IPFS 内容"
 
@@ -5213,7 +5217,7 @@ msgstr "通过网关获取 IPFS 内容"
 msgid "File does not match the expected hash"
 msgstr "文件与预期哈希不匹配"
 
-#: src/components/nfts/NFTHashStatus.tsx:88
+#: src/components/nfts/NFTHashStatus.tsx:94
 #: src/components/nfts/NFTPreview.tsx:252
 msgid "File is not available"
 msgstr "文件不可用"
@@ -5251,7 +5255,7 @@ msgstr "最终输出文件夹位置"
 msgid "Finished"
 msgstr "已完成"
 
-#: src/components/settings/SettingsNFT.tsx:125
+#: src/components/settings/SettingsNFT.tsx:126
 msgid "Fit images to cards"
 msgstr "使图像适应卡片"
 
@@ -5579,7 +5583,7 @@ msgstr "收割效率"
 #~ msgid "Hash is validated."
 #~ msgstr ""
 
-#: src/components/nfts/NFTHashStatus.tsx:80
+#: src/components/nfts/NFTHashStatus.tsx:86
 msgid "Hash matches"
 msgstr "哈希匹配"
 
@@ -5634,7 +5638,7 @@ msgstr "隐藏  <0/>"
 msgid "Hide"
 msgstr "隐藏"
 
-#: src/components/settings/SettingsNFT.tsx:105
+#: src/components/settings/SettingsNFT.tsx:106
 msgid "Hide objectionable content"
 msgstr "隐藏令人反感的内容"
 
@@ -5704,7 +5708,7 @@ msgstr "如果已经分享了您的报价文件，可能需要提交一笔交易
 #~ msgid "Image Hash Mismatch"
 #~ msgstr "Image Hash Mismatch"
 
-#: src/components/settings/SettingsNFT.tsx:135
+#: src/components/settings/SettingsNFT.tsx:136
 msgid "Images will be scaled to fill the NFT card and ignore their original proportions."
 msgstr "图像将被缩放以填充NFT卡并忽略原始比例."
 
@@ -5805,7 +5809,7 @@ msgstr "目录刷新扫描的时间间隔(以秒为单位)，用于更新可用�
 msgid "Invalid"
 msgstr "无效"
 
-#: src/components/nfts/NFTHashStatus.tsx:91
+#: src/components/nfts/NFTHashStatus.tsx:97
 msgid "Invalid hash"
 msgstr "无效哈希"
 
@@ -5836,6 +5840,10 @@ msgstr "IP地址"
 #: src/components/fullNode/FullNodeAddConnection.tsx:89
 msgid "IP address / host"
 msgstr "IP地址 / 主机"
+
+#: src/components/settings/SettingsNFT.tsx:184
+msgid "IPFS gateway"
+msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:2277
 #~ msgid "Is notification visible to all paired fingerprints"
@@ -6016,7 +6024,7 @@ msgstr "许可证哈希"
 msgid "License URL {0}"
 msgstr "许可证URL {0}"
 
-#: src/components/settings/SettingsNFT.tsx:255
+#: src/components/settings/SettingsNFT.tsx:277
 msgid "Limit cache size"
 msgstr "限制缓存大小"
 
@@ -6092,7 +6100,7 @@ msgstr "正在载入……"
 msgid "Local"
 msgstr "本地"
 
-#: src/components/settings/SettingsNFT.tsx:237
+#: src/components/settings/SettingsNFT.tsx:259
 msgid "Local folder"
 msgstr "本地文件夹"
 
@@ -6124,7 +6132,7 @@ msgstr ""
 msgid "Loop video"
 msgstr "循环播放视频"
 
-#: src/components/settings/SettingsNFT.tsx:143
+#: src/components/settings/SettingsNFT.tsx:144
 msgid "Loop videos"
 msgstr "循环播放视频"
 
@@ -6152,7 +6160,7 @@ msgstr "管理资产代币"
 msgid "Manage Farming Rewards"
 msgstr "管理耕种奖励"
 
-#: src/components/settings/SettingsNFT.tsx:207
+#: src/components/settings/SettingsNFT.tsx:229
 msgid "Manage how and where files are stored on this computer."
 msgstr "管理存储本地计算机上的文件。"
 
@@ -6457,7 +6465,7 @@ msgstr "下一步"
 #: src/components/offers/NFTOfferEditor.tsx:212
 #: src/components/offers2/OfferBuilderNFTSection.tsx:46
 #: src/components/settings/Settings.tsx:38
-#: src/components/settings/SettingsNFT.tsx:90
+#: src/components/settings/SettingsNFT.tsx:91
 #: src/components/signVerify/SignMessage.tsx:164
 msgid "NFT"
 msgstr "NFT"
@@ -6484,9 +6492,13 @@ msgstr "NFT硬币ID"
 msgid "NFT details not available"
 msgstr "NFT 详细信息不可用"
 
+#: src/components/settings/SettingsNFT.tsx:171
+msgid "NFT files published with ipfs:// addresses will be downloaded through an HTTPS gateway. The requested URL differs from the address recorded on chain, but downloaded content is still verified against the NFT's on-chain hash. The gateway operator can see your IP address and which NFT files you view. When disabled, ipfs:// files are not fetched."
+msgstr ""
+
 #: src/components/settings/SettingsNFT.tsx:170
-msgid "NFT files published with ipfs:// addresses will be downloaded through the public ipfs.io HTTPS gateway. The requested URL differs from the address recorded on chain, but downloaded content is still verified against the NFT's on-chain hash. When disabled, ipfs:// files are not fetched."
-msgstr "使用 ipfs:// 地址发布的 NFT 文件将通过公共 ipfs.io HTTPS 网关下载。请求的 URL 与链上记录的地址不同，但下载的内容仍会根据 NFT 的链上哈希进行验证。禁用后，将不会获取 ipfs:// 文件。"
+#~ msgid "NFT files published with ipfs:// addresses will be downloaded through the public ipfs.io HTTPS gateway. The requested URL differs from the address recorded on chain, but downloaded content is still verified against the NFT's on-chain hash. When disabled, ipfs:// files are not fetched."
+#~ msgstr "使用 ipfs:// 地址发布的 NFT 文件将通过公共 ipfs.io HTTPS 网关下载。请求的 URL 与链上记录的地址不同，但下载的内容仍会根据 NFT 的链上哈希进行验证。禁用后，将不会获取 ipfs:// 文件。"
 
 #: src/components/offers2/OfferBuilderNFTRoyalties.tsx:172
 msgid "NFT has no royalties"
@@ -6553,7 +6565,7 @@ msgstr "NFT 等待传输"
 msgid "NFTs"
 msgstr "NFT"
 
-#: src/components/settings/SettingsNFT.tsx:115
+#: src/components/settings/SettingsNFT.tsx:116
 msgid "NFTs that have been categorized by the creator as objectionable content will be hidden by default."
 msgstr "由创建者标注为不宜展示的NFT将被默认隐藏。"
 
@@ -6798,7 +6810,7 @@ msgstr "第3阶段的线程数"
 msgid "Objectionable Content"
 msgstr "令人反感的内容"
 
-#: src/components/settings/SettingsNFT.tsx:219
+#: src/components/settings/SettingsNFT.tsx:241
 msgid "Occupied space"
 msgstr "已占用空间"
 
@@ -7967,6 +7979,7 @@ msgstr "需要来自存储的证明"
 #: src/components/farm/FarmHealth.tsx:357
 #: src/components/offers/NFTOfferEditor.tsx:435
 #: src/components/offers/OfferEditor.tsx:153
+#: src/components/settings/IpfsGatewayUrl.tsx:96
 #: src/components/settings/SettingsIntegration.tsx:222
 #: src/components/signVerify/VerifyMessage.tsx:266
 msgid "Reset"
@@ -8349,7 +8362,7 @@ msgstr "显示详情"
 #~ msgid "Show Preview"
 #~ msgstr "Show Preview"
 
-#: src/components/settings/SettingsNFT.tsx:182
+#: src/components/settings/SettingsNFT.tsx:204
 msgid "Show unverified previews"
 msgstr "显示未验证的预览"
 
@@ -8732,6 +8745,10 @@ msgstr "以下值必须证明存在于指定的存储，然后才能接受该报
 #: src/components/farm/FarmFullNodeConnections.tsx:79
 msgid "The full node that your farmer is connected to is below. <0>Learn more</0>"
 msgstr "你的农场连接的全节点如下.<0>了解更多</0>"
+
+#: src/components/settings/SettingsNFT.tsx:192
+msgid "The gateway used for ipfs:// addresses. Leave it empty to use the public ipfs.io gateway, or enter another public gateway or a local IPFS node such as http://127.0.0.1:8080. Files are re-checked through the new gateway right away."
+msgstr ""
 
 #: src/components/settings/SettingsHarvester.tsx:375
 msgid "The Harvester manages plots and fetches proofs of space corresponding to challenges sent by a farmer."
@@ -9354,6 +9371,7 @@ msgstr "无法识别的资产"
 #~ msgid "Unsupported commands"
 #~ msgstr "Unsupported commands"
 
+#: src/components/settings/IpfsGatewayUrl.tsx:92
 #: src/components/settings/LimitCacheSize.tsx:77
 msgid "Update"
 msgstr "更新"
@@ -9366,7 +9384,7 @@ msgstr "更新"
 #~ msgid "Update DID Recovery Ids"
 #~ msgstr "Update DID Recovery Ids"
 
-#: src/components/nfts/NFTHashStatus.tsx:76
+#: src/components/nfts/NFTHashStatus.tsx:82
 msgid "Update Pending"
 msgstr "等待更新状态"
 
@@ -9380,7 +9398,7 @@ msgstr "等待更新状态"
 msgid "URL"
 msgstr "网址"
 
-#: src/components/nfts/NFTHashStatus.tsx:84
+#: src/components/nfts/NFTHashStatus.tsx:90
 msgid "URL is not valid"
 msgstr "网址无效"
 
@@ -9509,7 +9527,7 @@ msgstr "验证联合耕种池详情"
 msgid "Verify Signature"
 msgstr "验证签名"
 
-#: src/components/nfts/NFTHashStatus.tsx:72
+#: src/components/nfts/NFTHashStatus.tsx:78
 msgid "Verifying hash..."
 msgstr "正在验证哈希值..."
 
@@ -9761,7 +9779,7 @@ msgstr "权重"
 msgid "Weight is the total added difficulty of all blocks up to and including this one"
 msgstr "权重是施加给所有块包括目前这块的额外的困难度."
 
-#: src/components/settings/SettingsNFT.tsx:192
+#: src/components/settings/SettingsNFT.tsx:214
 msgid "When an NFT image is too large to verify against its on-chain hash, load the transaction confirmation preview directly from its source URL without verification. When disabled, no preview is shown for these NFTs."
 msgstr "当 NFT 图像过大，无法根据其链上哈希进行验证时，将直接从其来源 URL 加载交易确认预览，跳过验证。禁用此选项后，将不为这些 NFT 显示任何预览。"
 
@@ -9834,7 +9852,7 @@ msgstr "是"
 msgid "Yes, Accept Offer"
 msgstr "接受报价"
 
-#: src/components/settings/SettingsNFT.tsx:70
+#: src/components/settings/SettingsNFT.tsx:71
 msgid "Yes, delete"
 msgstr "确定删除"
 
