@@ -3811,7 +3811,7 @@ msgstr "通过提供签名地址，可以使用公钥来验证该地址的有效
 msgid "Bypassed Commands"
 msgstr "绕过命令"
 
-#: src/components/settings/SettingsNFT.tsx:226
+#: src/components/settings/SettingsNFT.tsx:228
 msgid "Cache"
 msgstr "缓存"
 
@@ -3889,7 +3889,7 @@ msgid "Challenge Hash"
 msgstr "挑战哈希"
 
 #: src/components/plotNFT/PlotNFTChangePool.tsx:110
-#: src/components/settings/SettingsNFT.tsx:264
+#: src/components/settings/SettingsNFT.tsx:266
 msgid "Change"
 msgstr "变更"
 
@@ -4023,7 +4023,7 @@ msgid "Clear every \"always allow\" override for this app. Future commands will 
 msgstr "清除此应用的所有“始终允许”覆盖设置。未来的命令将再次需要确认。"
 
 #: src/components/settings/SettingsNFT.tsx:70
-#: src/components/settings/SettingsNFT.tsx:246
+#: src/components/settings/SettingsNFT.tsx:248
 msgid "Clear NFT cache"
 msgstr "清除NFT缓存"
 
@@ -6024,7 +6024,7 @@ msgstr "许可证哈希"
 msgid "License URL {0}"
 msgstr "许可证URL {0}"
 
-#: src/components/settings/SettingsNFT.tsx:277
+#: src/components/settings/SettingsNFT.tsx:279
 msgid "Limit cache size"
 msgstr "限制缓存大小"
 
@@ -6100,7 +6100,7 @@ msgstr "正在载入……"
 msgid "Local"
 msgstr "本地"
 
-#: src/components/settings/SettingsNFT.tsx:259
+#: src/components/settings/SettingsNFT.tsx:261
 msgid "Local folder"
 msgstr "本地文件夹"
 
@@ -6160,7 +6160,7 @@ msgstr "管理资产代币"
 msgid "Manage Farming Rewards"
 msgstr "管理耕种奖励"
 
-#: src/components/settings/SettingsNFT.tsx:229
+#: src/components/settings/SettingsNFT.tsx:231
 msgid "Manage how and where files are stored on this computer."
 msgstr "管理存储本地计算机上的文件。"
 
@@ -6810,7 +6810,7 @@ msgstr "第3阶段的线程数"
 msgid "Objectionable Content"
 msgstr "令人反感的内容"
 
-#: src/components/settings/SettingsNFT.tsx:241
+#: src/components/settings/SettingsNFT.tsx:243
 msgid "Occupied space"
 msgstr "已占用空间"
 
@@ -8362,7 +8362,7 @@ msgstr "显示详情"
 #~ msgid "Show Preview"
 #~ msgstr "Show Preview"
 
-#: src/components/settings/SettingsNFT.tsx:204
+#: src/components/settings/SettingsNFT.tsx:206
 msgid "Show unverified previews"
 msgstr "显示未验证的预览"
 
@@ -8747,8 +8747,12 @@ msgid "The full node that your farmer is connected to is below. <0>Learn more</0
 msgstr "你的农场连接的全节点如下.<0>了解更多</0>"
 
 #: src/components/settings/SettingsNFT.tsx:192
-msgid "The gateway used for ipfs:// addresses. Leave it empty to use the public ipfs.io gateway, or enter another public gateway or a local IPFS node such as http://127.0.0.1:8080. Files are re-checked through the new gateway right away."
+msgid "The gateway used for ipfs:// addresses, and the fallback for gateway links (such as https://nftstorage.link/ipfs/…) whose own host no longer serves them. Leave it empty to use the public ipfs.io gateway, which is being wound down and rate limits applications; https://ipfs.mintgarden.io, https://gateway.pinata.cloud and https://ipfs.filebase.io currently work, as does a local IPFS node such as http://127.0.0.1:8080. Files are re-checked through the new gateway right away."
 msgstr ""
+
+#: src/components/settings/SettingsNFT.tsx:192
+#~ msgid "The gateway used for ipfs:// addresses. Leave it empty to use the public ipfs.io gateway, or enter another public gateway or a local IPFS node such as http://127.0.0.1:8080. Files are re-checked through the new gateway right away."
+#~ msgstr ""
 
 #: src/components/settings/SettingsHarvester.tsx:375
 msgid "The Harvester manages plots and fetches proofs of space corresponding to challenges sent by a farmer."
@@ -9779,7 +9783,7 @@ msgstr "权重"
 msgid "Weight is the total added difficulty of all blocks up to and including this one"
 msgstr "权重是施加给所有块包括目前这块的额外的困难度."
 
-#: src/components/settings/SettingsNFT.tsx:214
+#: src/components/settings/SettingsNFT.tsx:216
 msgid "When an NFT image is too large to verify against its on-chain hash, load the transaction confirmation preview directly from its source URL without verification. When disabled, no preview is shown for these NFTs."
 msgstr "当 NFT 图像过大，无法根据其链上哈希进行验证时，将直接从其来源 URL 加载交易确认预览，跳过验证。禁用此选项后，将不为这些 NFT 显示任何预览。"
 

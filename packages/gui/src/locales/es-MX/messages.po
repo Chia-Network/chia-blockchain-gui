@@ -3809,7 +3809,7 @@ msgstr ""
 msgid "Bypassed Commands"
 msgstr ""
 
-#: src/components/settings/SettingsNFT.tsx:226
+#: src/components/settings/SettingsNFT.tsx:228
 msgid "Cache"
 msgstr ""
 
@@ -3887,7 +3887,7 @@ msgid "Challenge Hash"
 msgstr "Desafío Hash"
 
 #: src/components/plotNFT/PlotNFTChangePool.tsx:110
-#: src/components/settings/SettingsNFT.tsx:264
+#: src/components/settings/SettingsNFT.tsx:266
 msgid "Change"
 msgstr "Cambiar"
 
@@ -4021,7 +4021,7 @@ msgid "Clear every \"always allow\" override for this app. Future commands will 
 msgstr ""
 
 #: src/components/settings/SettingsNFT.tsx:70
-#: src/components/settings/SettingsNFT.tsx:246
+#: src/components/settings/SettingsNFT.tsx:248
 msgid "Clear NFT cache"
 msgstr ""
 
@@ -6018,7 +6018,7 @@ msgstr ""
 msgid "License URL {0}"
 msgstr ""
 
-#: src/components/settings/SettingsNFT.tsx:277
+#: src/components/settings/SettingsNFT.tsx:279
 msgid "Limit cache size"
 msgstr ""
 
@@ -6094,7 +6094,7 @@ msgstr "Cargando..."
 msgid "Local"
 msgstr ""
 
-#: src/components/settings/SettingsNFT.tsx:259
+#: src/components/settings/SettingsNFT.tsx:261
 msgid "Local folder"
 msgstr ""
 
@@ -6154,7 +6154,7 @@ msgstr ""
 msgid "Manage Farming Rewards"
 msgstr "Administrar Recompensas de Cultivo"
 
-#: src/components/settings/SettingsNFT.tsx:229
+#: src/components/settings/SettingsNFT.tsx:231
 msgid "Manage how and where files are stored on this computer."
 msgstr ""
 
@@ -6804,7 +6804,7 @@ msgstr ""
 msgid "Objectionable Content"
 msgstr ""
 
-#: src/components/settings/SettingsNFT.tsx:241
+#: src/components/settings/SettingsNFT.tsx:243
 msgid "Occupied space"
 msgstr ""
 
@@ -8356,7 +8356,7 @@ msgstr ""
 #~ msgid "Show Preview"
 #~ msgstr "Show Preview"
 
-#: src/components/settings/SettingsNFT.tsx:204
+#: src/components/settings/SettingsNFT.tsx:206
 msgid "Show unverified previews"
 msgstr ""
 
@@ -8741,8 +8741,12 @@ msgid "The full node that your farmer is connected to is below. <0>Learn more</0
 msgstr "El nodo completo al que está conectado su agricultor se encuentra a continuación. <0> Más información </0>"
 
 #: src/components/settings/SettingsNFT.tsx:192
-msgid "The gateway used for ipfs:// addresses. Leave it empty to use the public ipfs.io gateway, or enter another public gateway or a local IPFS node such as http://127.0.0.1:8080. Files are re-checked through the new gateway right away."
+msgid "The gateway used for ipfs:// addresses, and the fallback for gateway links (such as https://nftstorage.link/ipfs/…) whose own host no longer serves them. Leave it empty to use the public ipfs.io gateway, which is being wound down and rate limits applications; https://ipfs.mintgarden.io, https://gateway.pinata.cloud and https://ipfs.filebase.io currently work, as does a local IPFS node such as http://127.0.0.1:8080. Files are re-checked through the new gateway right away."
 msgstr ""
+
+#: src/components/settings/SettingsNFT.tsx:192
+#~ msgid "The gateway used for ipfs:// addresses. Leave it empty to use the public ipfs.io gateway, or enter another public gateway or a local IPFS node such as http://127.0.0.1:8080. Files are re-checked through the new gateway right away."
+#~ msgstr ""
 
 #: src/components/settings/SettingsHarvester.tsx:375
 msgid "The Harvester manages plots and fetches proofs of space corresponding to challenges sent by a farmer."
@@ -9773,7 +9777,7 @@ msgstr "Peso"
 msgid "Weight is the total added difficulty of all blocks up to and including this one"
 msgstr ""
 
-#: src/components/settings/SettingsNFT.tsx:214
+#: src/components/settings/SettingsNFT.tsx:216
 msgid "When an NFT image is too large to verify against its on-chain hash, load the transaction confirmation preview directly from its source URL without verification. When disabled, no preview is shown for these NFTs."
 msgstr ""
 
