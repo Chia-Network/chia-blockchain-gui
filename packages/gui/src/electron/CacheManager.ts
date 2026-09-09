@@ -15,7 +15,7 @@ import CacheState from '../constants/CacheState';
 import limit from '../util/limit';
 
 import CacheAPI from './constants/CacheAPI';
-import downloadFile, { MAX_FILE_SIZE_EXCEEDED_ERROR, isDownloadTimeoutError } from './utils/downloadFile';
+import downloadFile, { MAX_FILE_SIZE_EXCEEDED_ERROR, isTransientDownloadError } from './utils/downloadFile';
 import ensureDirectoryExists from './utils/ensureDirectoryExists';
 import getChecksum from './utils/getChecksum';
 import ipcMainHandle from './utils/ipcMainHandle';
@@ -85,6 +85,28 @@ const FILE_SUFFIX = '-chiacache';
 const MAX_TOTAL_SIZE = 1024 * 1024 * 1024; // 1GB
 const MAX_FILE_SIZE = 1024 * 1024 * 100; // 100MB
 
+// How long a persisted transient download failure (timeout, gateway error,
+// rate limit, bot challenge) settles before the next access retries it. Long
+// enough that a stalled host is not re-probed on every tile mount, short
+// enough that a gateway hiccup does not blank an NFT until the GUI restarts.
+export const TRANSIENT_ERROR_RETRY_DELAY = 10 * 60 * 1000; // 10 minutes
+
+// The delay doubles with every consecutive transient failure, up to this
+// ceiling, and after MAX_TRANSIENT_RETRIES failures in a row the entry settles
+// for good (until the NFT is refreshed or the cache cleared). Every URL here
+// is minter-authored, so a retry schedule must have a bound: with a fixed
+// delay a host that answers 503 forever would be re-probed every ten minutes
+// for as long as the wallet is open — a liveness beacon for whoever runs it.
+export const MAX_TRANSIENT_ERROR_RETRY_DELAY = 24 * 60 * 60 * 1000; // 1 day
+export const MAX_TRANSIENT_RETRIES = 8;
+
+// The wait before the next in-session retry of a URL that has failed
+// transiently `retries` times in a row: 10 min, 20 min, 40 min, ...
+export function transientErrorRetryDelay(retries: number): number {
+  const exponent = Math.max(0, Math.min(retries - 1, 31));
+  return Math.min(TRANSIENT_ERROR_RETRY_DELAY * 2 ** exponent, MAX_TRANSIENT_ERROR_RETRY_DELAY);
+}
+
 const SUFFIXES = [FILE_SUFFIX, `${FILE_SUFFIX}${INFO_SUFFIX}`];
 
 function isChiaCacheFile(filePath: string) {
@@ -97,6 +119,27 @@ function isChiaCacheInfoFile(filePath: string) {
 
 function getInfoFilePath(filePath: string) {
   return `${filePath}${INFO_SUFFIX}`;
+}
+
+// The type the cache: response declares for a file. A media type the
+// preview renders — image, video, audio, model — is passed through from the
+// remote header with whatever parameters it carries (codecs, charset), as
+// long as they are well formed. Anything else — a document type, a script
+// type, nothing at all — is served as an opaque byte stream, which the
+// renderer's image and media elements still decode by sniffing, as they did
+// before the header was constrained, and which is never read as a document.
+const MEDIA_TYPE = /^(image|video|audio|model)\/[\w.+-]+$/i;
+// A parameter is printable ASCII, quoted or bare: a NUL, a control character
+// or a code point outside Latin-1 is not a header value the response can
+// carry, and a value the response cannot carry would fail the whole file.
+const MEDIA_TYPE_PARAMETER = /^[\w.+-]+=(?:"[\x20-\x21\x23-\x7e]*"|[\x21\x23-\x3a\x3c-\x7e]+)$/;
+
+export function servedContentType(contentType: string | undefined): string {
+  const [type, ...parameters] = (contentType ?? '').split(';').map((part) => part.trim());
+  if (!MEDIA_TYPE.test(type) || !parameters.every((parameter) => MEDIA_TYPE_PARAMETER.test(parameter))) {
+    return 'application/octet-stream';
+  }
+  return [type, ...parameters].join('; ');
 }
 
 export default class CacheManager extends EventEmitter {
@@ -114,10 +157,12 @@ export default class CacheManager extends EventEmitter {
     }
   > = new Map();
 
-  // URLs whose download timed out during this session. A persisted timeout is
-  // retried once per session — the set keeps a stalled host from being retried
-  // (and holding a download slot) on every access within the same session.
-  private timedOutUrls: Set<string> = new Set();
+  // URLs whose download failed transiently during this session. A persisted
+  // transient failure is retried once per session and again whenever the retry
+  // delay has elapsed since it was recorded — the set keeps a stalled or
+  // challenging host from being retried (and holding a download slot) on every
+  // access in between.
+  private transientFailureUrls: Set<string> = new Set();
 
   constructor(
     options: {
@@ -180,12 +225,18 @@ export default class CacheManager extends EventEmitter {
       }
 
       const contentTypeHeader = cacheInfo.headers?.['content-type'];
-      const contentType =
-        (Array.isArray(contentTypeHeader) ? contentTypeHeader[0] : contentTypeHeader) || 'application/octet-stream';
+      const contentType = servedContentType(
+        Array.isArray(contentTypeHeader) ? contentTypeHeader[0] : contentTypeHeader,
+      );
 
       const responseHeaders: Record<string, string> = {
         'content-type': contentType,
         'accept-ranges': 'bytes',
+        // The bytes and their declared type both come from whoever served the
+        // NFT's file. They are only ever shown through <img>, <video> and
+        // <audio>, so a response that could be read as a document — and its
+        // scripts — is denied here as well as by the renderer's policy.
+        'content-security-policy': "default-src 'none'; sandbox",
       };
 
       // Media elements seek by sending Range requests. Without 206 responses
@@ -432,6 +483,10 @@ export default class CacheManager extends EventEmitter {
 
     const abortController = new AbortController();
 
+    // the persisted outcome this attempt is retrying, if any — a transient
+    // failure recorded on top of an earlier one continues its retry count
+    let previousCacheInfo: CacheInfo | undefined;
+
     const process = async (): Promise<CacheInfo> => {
       try {
         // From isValidURL.ts
@@ -446,6 +501,7 @@ export default class CacheManager extends EventEmitter {
         }
 
         const cacheInfo = await this.getCacheInfoByURL(url);
+        previousCacheInfo = cacheInfo;
         if (cacheInfo.state === CacheState.CACHED) {
           log('Url already downloaded', url);
           return cacheInfo;
@@ -454,15 +510,26 @@ export default class CacheManager extends EventEmitter {
         if (cacheInfo.state === CacheState.ERROR) {
           log(`Url already downloaded with error: ${cacheInfo.error}`, url);
 
-          const isTransientError = ['Response aborted', 'Request aborted'].includes(cacheInfo.error);
-          // A persisted timeout settles for the rest of the session, but is
-          // retried in later sessions — a one-off network problem must not
-          // disable the preview until the whole cache is cleared.
-          const isRetriableTimeout = isDownloadTimeoutError(cacheInfo.error) && !this.timedOutUrls.has(url);
+          const isAbortError = ['Response aborted', 'Request aborted'].includes(cacheInfo.error);
+          // A persisted transient failure (timeout, 5xx, rate limit, bot
+          // challenge, network error) is retried once per session, and again
+          // within the session once its retry delay has elapsed — a one-off
+          // gateway problem must not disable the preview until the whole
+          // cache is cleared. The delay grows with every consecutive failure
+          // and the in-session retries stop after MAX_TRANSIENT_RETRIES, so
+          // a host that never recovers is not re-probed every ten minutes for
+          // the life of the process. Sidecars written without a timestamp
+          // fall back to the once-per-session rule.
+          const retries = cacheInfo.retries ?? 0;
+          const isRetriableTransientError =
+            isTransientDownloadError(cacheInfo.error) &&
+            (!this.transientFailureUrls.has(url) ||
+              (retries < MAX_TRANSIENT_RETRIES &&
+                Date.now() - cacheInfo.timestamp >= transientErrorRetryDelay(retries)));
           // A persisted size-limit error is only retried when the caller lifts
           // the limit, so oversized files are not re-downloaded on every visit.
           const isSizeLimitLifted = cacheInfo.error === MAX_FILE_SIZE_EXCEEDED_ERROR && maxSize <= 0;
-          if (!isTransientError && !isRetriableTimeout && !isSizeLimitLifted) {
+          if (!isAbortError && !isRetriableTransientError && !isSizeLimitLifted) {
             return cacheInfo;
           }
 
@@ -528,13 +595,15 @@ export default class CacheManager extends EventEmitter {
 
         const currentError = (error as Error) ?? new Error('Unknown fetchRemoteContent error');
 
-        if (isDownloadTimeoutError(currentError.message)) {
-          this.timedOutUrls.add(url);
+        const isTransient = isTransientDownloadError(currentError.message);
+        if (isTransient) {
+          this.transientFailureUrls.add(url);
         }
 
         return await this.setCacheInfo(url, {
           state: CacheState.ERROR,
           error: currentError.message,
+          ...(isTransient ? { retries: this.consecutiveTransientFailures(previousCacheInfo) + 1 } : {}),
         });
       } finally {
         this.ongoingRequests.delete(url);
@@ -549,6 +618,17 @@ export default class CacheManager extends EventEmitter {
     });
 
     return promise;
+  }
+
+  // How many transient failures in a row the persisted outcome already
+  // records — zero when there is none, or when the last outcome was anything
+  // other than a transient failure (a success, a settled error, an abort).
+  private consecutiveTransientFailures(previous: CacheInfo | undefined): number {
+    if (previous?.state !== CacheState.ERROR || !isTransientDownloadError(previous.error)) {
+      return 0;
+    }
+
+    return previous.retries ?? 0;
   }
 
   async getHeaders(

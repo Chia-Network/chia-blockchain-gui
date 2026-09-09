@@ -1,3 +1,5 @@
+import { EventEmitter } from 'node:events';
+import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 
@@ -9,7 +11,8 @@ jest.mock('electron', () => ({
   },
 }));
 
-const downloadFile = jest.requireActual<typeof import('./downloadFile')>('./downloadFile').default;
+const { default: downloadFile, isTransientDownloadError } =
+  jest.requireActual<typeof import('./downloadFile')>('./downloadFile');
 
 describe('downloadFile', () => {
   beforeEach(() => {
@@ -27,5 +30,129 @@ describe('downloadFile', () => {
     ).rejects.toThrow('Request aborted');
 
     expect(mockNetRequest).not.toHaveBeenCalled();
+  });
+});
+
+describe('downloadFile redirects', () => {
+  type MockRequest = EventEmitter & { end: jest.Mock; abort: jest.Mock; followRedirect: jest.Mock };
+  let request: MockRequest;
+
+  function makeResponse(statusCode = 200, headers: Record<string, string> = { 'content-type': 'image/png' }) {
+    return Object.assign(new EventEmitter(), { statusCode, headers });
+  }
+
+  beforeEach(() => {
+    request = Object.assign(new EventEmitter(), { end: jest.fn(), abort: jest.fn(), followRedirect: jest.fn() });
+    request.abort.mockImplementation(() => {
+      request.emit('abort');
+    });
+    mockNetRequest.mockReturnValue(request);
+  });
+
+  it('asks for manual redirects and follows one that stays on https', async () => {
+    const localPath = path.join(await fs.mkdtemp(path.join(os.tmpdir(), 'downloadFile-redirect-')), 'nft.png');
+    const download = downloadFile('https://minter.example/a.png', localPath);
+    await new Promise((resolve) => {
+      setImmediate(resolve);
+    });
+    expect(mockNetRequest).toHaveBeenCalledWith({ url: 'https://minter.example/a.png', redirect: 'manual' });
+
+    request.emit('redirect', 302, 'GET', 'https://cdn.example/a.png', {});
+    expect(request.followRedirect).toHaveBeenCalledTimes(1);
+
+    const response = makeResponse();
+    request.emit('response', response);
+    response.emit('data', Buffer.from('png bytes'));
+    response.emit('end');
+
+    await expect(download).resolves.toEqual({ 'content-type': 'image/png' });
+    expect((await fs.readFile(localPath)).toString()).toBe('png bytes');
+  });
+
+  it('refuses a redirect to a plain-http loopback address and settles permanently', async () => {
+    const localPath = path.join(await fs.mkdtemp(path.join(os.tmpdir(), 'downloadFile-redirect-')), 'nft.png');
+    const download = downloadFile('https://minter.example/a.png', localPath);
+    await new Promise((resolve) => {
+      setImmediate(resolve);
+    });
+
+    request.emit('redirect', 302, 'GET', 'http://127.0.0.1:8080/api/v0/shutdown', {});
+    expect(request.followRedirect).not.toHaveBeenCalled();
+    expect(request.abort).toHaveBeenCalled();
+
+    await expect(download).rejects.toThrow('Redirect refused');
+    expect(isTransientDownloadError('Redirect refused')).toBe(false);
+    await expect(fs.stat(`${localPath}.tmp`)).rejects.toThrow();
+  });
+});
+
+describe('isTransientDownloadError', () => {
+  it.each([
+    'Request timed out after 30000ms of inactivity',
+    'Request exceeded the 1800000ms download deadline',
+    'HTTP error: 500',
+    'HTTP error: 502',
+    'HTTP error: 503',
+    'HTTP error: 504',
+    'HTTP error: 507',
+    'HTTP error: 520',
+    'HTTP error: 522',
+    'HTTP error: 429',
+    'HTTP error: 408',
+    // Cloudflare bot challenge in front of the public IPFS gateways
+    'HTTP error: 403',
+    'net::ERR_BLOCKED_BY_RESPONSE',
+    'net::ERR_CONNECTION_RESET',
+    'net::ERR_CONNECTION_REFUSED',
+    'net::ERR_QUIC_PROTOCOL_ERROR',
+    'net::ERR_HTTP2_PROTOCOL_ERROR',
+    'net::ERR_INTERNET_DISCONNECTED',
+    // offline, or a resolver hiccup, as often as a name that does not exist
+    'net::ERR_NAME_NOT_RESOLVED',
+    'net::ERR_NAME_RESOLUTION_FAILED',
+    // an unknown network error keeps the benefit of the doubt
+    'net::ERR_SOMETHING_NEW',
+    // this machine's own trouble, not the host's
+    'EMFILE: cache file operation failed',
+    'ENOSPC: no space left on device, write',
+    'EBUSY: resource busy or locked, rename',
+  ])('treats %p as transient', (message) => {
+    expect(isTransientDownloadError(message)).toBe(true);
+  });
+
+  it.each([
+    'HTTP error: 404',
+    'HTTP error: 410',
+    'HTTP error: 400',
+    'HTTP error: 401',
+    // the host does not implement the request or the protocol
+    'HTTP error: 501',
+    'HTTP error: 505',
+    'Maximum file size exceeded',
+    'Invalid URL',
+    'Unknown error',
+    'EACCES: cache file operation failed',
+    'ENOENT: no such file or directory',
+    'IPFS gateway fetching is disabled',
+  ])('treats %p as permanent', (message) => {
+    expect(isTransientDownloadError(message)).toBe(false);
+  });
+
+  // Every URL that reaches this predicate was written by the NFT's minter, and
+  // a "transient" verdict re-probes it for as long as the wallet is open —
+  // a failure that is a property of the URL must settle instead.
+  it.each([
+    'net::ERR_CERT_AUTHORITY_INVALID',
+    'net::ERR_CERT_DATE_INVALID',
+    'net::ERR_CERT_COMMON_NAME_INVALID',
+    'net::ERR_UNSAFE_PORT',
+    'net::ERR_DISALLOWED_URL_SCHEME',
+    'net::ERR_UNKNOWN_URL_SCHEME',
+    'net::ERR_INVALID_URL',
+    'net::ERR_BLOCKED_BY_CLIENT',
+    'net::ERR_INVALID_REDIRECT',
+    'net::ERR_TOO_MANY_REDIRECTS',
+  ])('treats the network error %p as permanent', (message) => {
+    expect(isTransientDownloadError(message)).toBe(false);
   });
 });

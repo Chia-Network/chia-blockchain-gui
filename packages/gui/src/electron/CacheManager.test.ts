@@ -1,3 +1,4 @@
+import crypto from 'node:crypto';
 import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
@@ -17,7 +18,7 @@ jest.mock('./utils/downloadFile', () => ({
   __esModule: true,
   default: mockDownloadFile,
   MAX_FILE_SIZE_EXCEEDED_ERROR: 'Maximum file size exceeded',
-  isDownloadTimeoutError: jest.requireActual('./utils/downloadFile').isDownloadTimeoutError,
+  isTransientDownloadError: jest.requireActual('./utils/downloadFile').isTransientDownloadError,
 }));
 
 jest.mock('./utils/ipcMainHandle', () => ({
@@ -25,7 +26,14 @@ jest.mock('./utils/ipcMainHandle', () => ({
   default: jest.fn(),
 }));
 
-const CacheManager = jest.requireActual<typeof import('./CacheManager')>('./CacheManager').default;
+const {
+  default: CacheManager,
+  TRANSIENT_ERROR_RETRY_DELAY,
+  MAX_TRANSIENT_ERROR_RETRY_DELAY,
+  MAX_TRANSIENT_RETRIES,
+  transientErrorRetryDelay,
+  servedContentType,
+} = jest.requireActual<typeof import('./CacheManager')>('./CacheManager');
 
 describe('CacheManager eviction', () => {
   let cacheDirectory: string;
@@ -151,6 +159,208 @@ describe('CacheManager eviction', () => {
     });
     await secondSession.init();
     await expect(secondSession.getContent('https://example.com/nft.png')).resolves.toEqual(payload);
+  });
+
+  it('does not retry a gateway error on the next access', async () => {
+    mockDownloadFile.mockRejectedValue(new Error('HTTP error: 504'));
+
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+
+    await expect(cacheManager.getContent('https://example.com/nft.png')).rejects.toThrow('HTTP error: 504');
+    await expect(cacheManager.getContent('https://example.com/nft.png')).rejects.toThrow('HTTP error: 504');
+    expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+  });
+
+  it.each(['HTTP error: 504', 'HTTP error: 403', 'net::ERR_BLOCKED_BY_RESPONSE'])(
+    'retries %p persisted by a previous session',
+    async (message) => {
+      const payload = Buffer.from('cached payload');
+      mockDownloadFile.mockRejectedValue(new Error(message));
+
+      const firstSession = new CacheManager({
+        cacheDirectory,
+        maxCacheSize: 1024,
+      });
+      await firstSession.init();
+      await expect(firstSession.getContent('https://example.com/nft.png')).rejects.toThrow(message);
+
+      mockDownloadFile.mockReset();
+      mockDownloadFile.mockImplementation(async (_url, localPath) => {
+        await fs.writeFile(localPath, payload);
+        return {
+          'content-type': 'image/png',
+        };
+      });
+
+      const secondSession = new CacheManager({
+        cacheDirectory,
+        maxCacheSize: 1024,
+      });
+      await secondSession.init();
+      await expect(secondSession.getContent('https://example.com/nft.png')).resolves.toEqual(payload);
+    },
+  );
+
+  it('retries a transient error within the session once the retry delay has elapsed', async () => {
+    const payload = Buffer.from('cached payload');
+    const failedAt = Date.now();
+    const nowSpy = jest.spyOn(Date, 'now').mockReturnValue(failedAt);
+    mockDownloadFile.mockRejectedValue(new Error('HTTP error: 504'));
+
+    try {
+      const cacheManager = new CacheManager({
+        cacheDirectory,
+        maxCacheSize: 1024,
+      });
+      await cacheManager.init();
+
+      await expect(cacheManager.getContent('https://example.com/nft.png')).rejects.toThrow('HTTP error: 504');
+
+      nowSpy.mockReturnValue(failedAt + TRANSIENT_ERROR_RETRY_DELAY - 1);
+      await expect(cacheManager.getContent('https://example.com/nft.png')).rejects.toThrow('HTTP error: 504');
+      expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+
+      mockDownloadFile.mockReset();
+      mockDownloadFile.mockImplementation(async (_url, localPath) => {
+        await fs.writeFile(localPath, payload);
+        return {
+          'content-type': 'image/png',
+        };
+      });
+
+      nowSpy.mockReturnValue(failedAt + TRANSIENT_ERROR_RETRY_DELAY);
+      await expect(cacheManager.getContent('https://example.com/nft.png')).resolves.toEqual(payload);
+      expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+    } finally {
+      nowSpy.mockRestore();
+    }
+  });
+
+  it('waits twice as long before each further in-session retry of a transient error', async () => {
+    const url = 'https://example.com/nft.png';
+    const firstFailure = Date.now();
+    const nowSpy = jest.spyOn(Date, 'now').mockReturnValue(firstFailure);
+    mockDownloadFile.mockRejectedValue(new Error('HTTP error: 503'));
+
+    try {
+      const cacheManager = new CacheManager({
+        cacheDirectory,
+        maxCacheSize: 1024,
+      });
+      await cacheManager.init();
+
+      await expect(cacheManager.getContent(url)).rejects.toThrow('HTTP error: 503');
+      expect(await cacheManager.getCacheInfos([url])).toEqual([expect.objectContaining({ retries: 1 })]);
+
+      // first retry after the base delay, and it fails again
+      const secondFailure = firstFailure + transientErrorRetryDelay(1);
+      nowSpy.mockReturnValue(secondFailure);
+      await expect(cacheManager.getContent(url)).rejects.toThrow('HTTP error: 503');
+      expect(mockDownloadFile).toHaveBeenCalledTimes(2);
+      expect(await cacheManager.getCacheInfos([url])).toEqual([expect.objectContaining({ retries: 2 })]);
+
+      // the base delay is no longer enough...
+      nowSpy.mockReturnValue(secondFailure + transientErrorRetryDelay(1));
+      await expect(cacheManager.getContent(url)).rejects.toThrow('HTTP error: 503');
+      expect(mockDownloadFile).toHaveBeenCalledTimes(2);
+
+      // ...twice the base delay is
+      nowSpy.mockReturnValue(secondFailure + transientErrorRetryDelay(2));
+      await expect(cacheManager.getContent(url)).rejects.toThrow('HTTP error: 503');
+      expect(mockDownloadFile).toHaveBeenCalledTimes(3);
+      expect(transientErrorRetryDelay(2)).toBe(2 * TRANSIENT_ERROR_RETRY_DELAY);
+    } finally {
+      nowSpy.mockRestore();
+    }
+  });
+
+  it('stops retrying a transient error within the session after the retry cap, but still once per later session', async () => {
+    const url = 'https://example.com/nft.png';
+    let now = Date.now();
+    const nowSpy = jest.spyOn(Date, 'now').mockImplementation(() => now);
+    mockDownloadFile.mockRejectedValue(new Error('net::ERR_CONNECTION_RESET'));
+
+    try {
+      const cacheManager = new CacheManager({
+        cacheDirectory,
+        maxCacheSize: 1024,
+      });
+      await cacheManager.init();
+
+      await expect(cacheManager.getContent(url)).rejects.toThrow('net::ERR_CONNECTION_RESET');
+      for (let attempt = 2; attempt <= MAX_TRANSIENT_RETRIES; attempt += 1) {
+        now += MAX_TRANSIENT_ERROR_RETRY_DELAY;
+        // eslint-disable-next-line no-await-in-loop -- consecutive retries
+        await expect(cacheManager.getContent(url)).rejects.toThrow('net::ERR_CONNECTION_RESET');
+        expect(mockDownloadFile).toHaveBeenCalledTimes(attempt);
+      }
+      expect(await cacheManager.getCacheInfos([url])).toEqual([
+        expect.objectContaining({ retries: MAX_TRANSIENT_RETRIES }),
+      ]);
+
+      // the cap is reached: however long the wallet stays open, no more probes
+      now += 100 * MAX_TRANSIENT_ERROR_RETRY_DELAY;
+      await expect(cacheManager.getContent(url)).rejects.toThrow('net::ERR_CONNECTION_RESET');
+      expect(mockDownloadFile).toHaveBeenCalledTimes(MAX_TRANSIENT_RETRIES);
+
+      // a later session still gives the URL its one retry
+      const laterSession = new CacheManager({
+        cacheDirectory,
+        maxCacheSize: 1024,
+      });
+      await laterSession.init();
+      await expect(laterSession.getContent(url)).rejects.toThrow('net::ERR_CONNECTION_RESET');
+      expect(mockDownloadFile).toHaveBeenCalledTimes(MAX_TRANSIENT_RETRIES + 1);
+      await expect(laterSession.getContent(url)).rejects.toThrow('net::ERR_CONNECTION_RESET');
+      expect(mockDownloadFile).toHaveBeenCalledTimes(MAX_TRANSIENT_RETRIES + 1);
+    } finally {
+      nowSpy.mockRestore();
+    }
+  });
+
+  it('starts the retry count over when a transient failure follows a settled one', async () => {
+    const url = 'https://example.com/nft.png';
+    const urlHash = crypto.createHash('md5').update(url).digest('hex');
+    // a sidecar left by an earlier version, or by a failure that has since
+    // become permanent: the count belongs to an unbroken run of transient
+    // failures only
+    await fs.writeFile(
+      path.join(cacheDirectory, `${urlHash}-chiacache-info`),
+      JSON.stringify({ url, state: 'ERROR', error: 'Request aborted', timestamp: Date.now(), retries: 5 }),
+    );
+    mockDownloadFile.mockRejectedValue(new Error('HTTP error: 502'));
+
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+
+    await expect(cacheManager.getContent(url)).rejects.toThrow('HTTP error: 502');
+    expect(await cacheManager.getCacheInfos([url])).toEqual([expect.objectContaining({ retries: 1 })]);
+  });
+
+  it('keeps a missing resource settled across sessions', async () => {
+    mockDownloadFile.mockRejectedValue(new Error('HTTP error: 404'));
+
+    const firstSession = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await firstSession.init();
+    await expect(firstSession.getContent('https://example.com/nft.png')).rejects.toThrow('HTTP error: 404');
+
+    const secondSession = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await secondSession.init();
+    await expect(secondSession.getContent('https://example.com/nft.png')).rejects.toThrow('HTTP error: 404');
+    expect(mockDownloadFile).toHaveBeenCalledTimes(1);
   });
 
   it('retries an aborted download on the next access', async () => {
@@ -299,5 +509,74 @@ describe('CacheManager getCacheInfos', () => {
     expect(infos[1]).toMatchObject({ error: 'getaddrinfo ENOTFOUND example.com' });
     expect(infos[3]).toMatchObject({ error: 'Invalid URL: not a url' });
     expect(mockDownloadFile).not.toHaveBeenCalled();
+  });
+});
+
+describe('CacheManager cache: responses', () => {
+  let cacheDirectory: string;
+
+  beforeEach(async () => {
+    mockDownloadFile.mockReset();
+    cacheDirectory = await fs.mkdtemp(path.join(os.tmpdir(), 'chia-cache-protocol-'));
+  });
+
+  afterEach(async () => {
+    await fs.rm(cacheDirectory, { recursive: true, force: true });
+  });
+
+  it.each([
+    ['image/png', 'image/png'],
+    ['video/mp4; charset=binary', 'video/mp4; charset=binary'],
+    ['video/mp4; codecs="avc1.42E01E, mp4a.40.2"', 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"'],
+    ['audio/webm;codecs=opus', 'audio/webm; codecs=opus'],
+    ['audio/ogg', 'audio/ogg'],
+    ['model/gltf-binary', 'model/gltf-binary'],
+    ['image/svg+xml; foo=bar', 'image/svg+xml; foo=bar'],
+    ['text/html', 'application/octet-stream'],
+    ['text/html; charset=utf-8', 'application/octet-stream'],
+    ['application/javascript', 'application/octet-stream'],
+    ['application/octet-stream', 'application/octet-stream'],
+    // a parameter that is not one (a smuggled header line) is not passed through
+    ['image/png; x=a\r\nX-Injected: 1', 'application/octet-stream'],
+    // a value the response cannot carry is not passed through either
+    ['image/png; a="\u0000"', 'application/octet-stream'],
+    ['image/png; a="\u65e5"', 'application/octet-stream'],
+    ['image/png; a=\u00e9', 'application/octet-stream'],
+    [
+      'video/mp4; codecs="avc1.42E01E, mp4a.40.2"; charset=binary',
+      'video/mp4; codecs="avc1.42E01E, mp4a.40.2"; charset=binary',
+    ],
+    ['', 'application/octet-stream'],
+    [undefined, 'application/octet-stream'],
+  ])('serves a stored type of %p as %p', (stored, served) => {
+    expect(servedContentType(stored)).toBe(served);
+  });
+
+  it('serves cached bytes as an opaque, sandboxed response when the remote type is not media', async () => {
+    const payload = Buffer.from('<script>alert(1)</script>');
+    mockDownloadFile.mockImplementation(async (_url, localPath) => {
+      await fs.writeFile(localPath, payload);
+      return { 'content-type': 'text/html' };
+    });
+    const cacheManager = new CacheManager({ cacheDirectory, maxCacheSize: 1024 });
+    await cacheManager.init();
+    const url = 'https://example.com/nft';
+    await expect(cacheManager.getContent(url)).resolves.toEqual(payload);
+    // what the tile is handed and what the protocol serves are the same file
+    const cacheUrl = await cacheManager.getURI(url);
+    expect(cacheUrl.startsWith('cache://')).toBe(true);
+
+    let handler: ((request: Request) => Promise<Response>) | undefined;
+    cacheManager.prepareProtocol({
+      handle: (_scheme: string, callback: (request: Request) => Promise<Response>) => {
+        handler = callback;
+      },
+    } as never);
+    const response = await handler!(new Request(cacheUrl));
+    expect(response.status).toBe(200);
+    expect(response.headers.get('content-type')).toBe('application/octet-stream');
+    expect(response.headers.get('x-content-type-options')).toBeNull();
+    expect(response.headers.get('content-security-policy')).toBe("default-src 'none'; sandbox");
+    expect(Buffer.from(await response.arrayBuffer())).toEqual(payload);
   });
 });
