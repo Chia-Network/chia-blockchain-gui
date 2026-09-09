@@ -733,13 +733,17 @@ function NFTPreviewContent(props: NFTPreviewProps) {
             top: 16,
             left: 16,
             right: 16,
-            justifyContent: 'center',
+            alignItems: 'flex-start',
             gap: 1,
             zIndex: 1,
           }}
         >
-          <NFTHashStatus nftId={nftId} hideValid />
+          {/* The source chip keeps the top-left corner; the hash status stays
+              centered in whatever width is left, so the two never overlap. */}
           {showNFTSource && <NFTSourceStatus uri={preview?.isVerified ? preview.uri : undefined} />}
+          <Box sx={{ display: 'flex', flex: 1, justifyContent: 'center' }}>
+            <NFTHashStatus nftId={nftId} hideValid />
+          </Box>
         </Box>
       )}
     </StyledCardPreview>
