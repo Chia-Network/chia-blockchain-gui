@@ -4,10 +4,18 @@ import { promises as fs, createWriteStream, type WriteStream } from 'node:fs';
 import debug from 'debug';
 
 import type Headers from '../../@types/Headers';
+import {
+  DOWNLOAD_DEADLINE_ERROR_PREFIX,
+  INACTIVITY_TIMEOUT_ERROR_PREFIX,
+  MAX_FILE_SIZE_EXCEEDED_ERROR,
+  isDownloadTimeoutError,
+  isTransientDownloadError,
+} from '../../util/downloadErrors';
 
 import fileExists from './fileExists';
 import { toFetchableUrl } from './ipfsGateway';
 import isValidURL from './isValidURL';
+import guardRedirects from './redirectPolicy';
 
 const log = debug('chia-gui:downloadFile');
 
@@ -59,21 +67,16 @@ class WriteStreamPromise {
     });
   }
 
-  on(event: string, listener: () => void) {
+  on(event: string, listener: (...args: any[]) => void) {
     return this.stream.on(event, listener);
   }
 }
 
-export const MAX_FILE_SIZE_EXCEEDED_ERROR = 'Maximum file size exceeded';
-
-const INACTIVITY_TIMEOUT_ERROR_PREFIX = 'Request timed out after';
-const DOWNLOAD_DEADLINE_ERROR_PREFIX = 'Request exceeded the';
-
-/** Matches the messages of both timeout errors below, including messages that
- * earlier sessions persisted into cache `-info` files. */
-export function isDownloadTimeoutError(message: string): boolean {
-  return message.startsWith(INACTIVITY_TIMEOUT_ERROR_PREFIX) || message.startsWith(DOWNLOAD_DEADLINE_ERROR_PREFIX);
-}
+// The error classification lives in util/downloadErrors so the renderer's
+// gallery classifier reads persisted failures the same way the main process
+// does; re-exported here for the main-process callers that always imported it
+// from this module.
+export { MAX_FILE_SIZE_EXCEEDED_ERROR, isDownloadTimeoutError, isTransientDownloadError };
 
 type DownloadFileOptions = {
   timeout?: number;
@@ -115,7 +118,11 @@ export default async function downloadFile(
   // with the option off toFetchableUrl refuses the fetch outright. Only
   // this outgoing request uses the translated URL; callers keep the original
   // URI as the cache key.
-  const request = net.request(toFetchableUrl(url));
+  const fetchUrl = toFetchableUrl(url);
+  // Redirects are followed one at a time, each checked against the same rule
+  // as the requested URL (see redirectPolicy), so a host cannot redirect the
+  // main process to a plain-http, loopback or private address.
+  const request = net.request({ url: fetchUrl, redirect: 'manual' });
   const outputStream = new WriteStreamPromise(tempFilePath, overrideFile);
 
   // set when we abort the request ourselves, so abort events can be reported
@@ -133,6 +140,8 @@ export default async function downloadFile(
     abortError = error;
     request.abort();
   }
+
+  guardRedirects(request, fetchUrl, abortWithError);
 
   let timeoutId: NodeJS.Timeout | null = null;
 
@@ -206,7 +215,12 @@ export default async function downloadFile(
         throw error ?? new Error('Unknown error');
       } catch (e) {
         log('Download failed', url, (e as Error)?.message);
-        await fs.unlink(tempFilePath);
+        // The temp file may never have been created (the stream failed to
+        // open) or may already be gone. Cleanup must not decide whether the
+        // promise settles: this runs from fire-and-forget event handlers, so a
+        // throw here would leave the caller — and its download slot — waiting
+        // forever.
+        await fs.unlink(tempFilePath).catch(() => {});
         reject(e);
       }
     }
@@ -278,6 +292,14 @@ export default async function downloadFile(
 
     request.on('error', (error = new Error('Unknown request error')) => {
       resolvePromise(false, error);
+    });
+
+    // A write stream that cannot open its file (missing cache directory, no
+    // permission, too many open files) reports it as an 'error' event; with no
+    // listener that is an uncaught exception in the main process.
+    outputStream.on('error', (error: Error = new Error('Unknown write error')) => {
+      resolvePromise(false, error);
+      request.abort();
     });
 
     if (signal) {

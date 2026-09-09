@@ -14,6 +14,9 @@ type CacheInfoBase =
   | {
       state: CacheState.ERROR;
       error: string;
+      // How many times in a row the download has failed with a transient
+      // error, so retries can back off and eventually stop (CacheManager).
+      retries?: number;
     };
 
 export default CacheInfoBase;

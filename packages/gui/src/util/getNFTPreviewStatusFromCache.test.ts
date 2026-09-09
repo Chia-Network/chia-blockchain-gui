@@ -58,10 +58,7 @@ describe('getNFTPreviewStatusFromCache', () => {
     const status = getNFTPreviewStatusFromCache(
       { dataUris: ['https://a/x.png', 'https://b/x.png'], dataHash: HASH },
       noMetadata,
-      lookup([
-        errored('https://a/x.png', 'Request timed out after 30000ms of inactivity'),
-        cached('https://b/x.png', 'feed'),
-      ]),
+      lookup([errored('https://a/x.png', 'HTTP error: 404'), cached('https://b/x.png', 'feed')]),
     );
 
     expect(status).toBe(NFTPreviewStatus.UNAVAILABLE);
@@ -80,15 +77,40 @@ describe('getNFTPreviewStatusFromCache', () => {
     ).toBeUndefined();
   });
 
-  it('stays undecided after a transient error the cache will retry', () => {
+  // The cache retries these on a later access, so a tile that asked would
+  // fetch again; settling the NFT as unavailable would hide it from a
+  // filtered gallery, and a hidden tile never asks.
+  it.each([
+    'Request aborted',
+    'Response aborted',
+    'HTTP error: 503',
+    'HTTP error: 403',
+    'HTTP error: 429',
+    'net::ERR_CONNECTION_RESET',
+    'net::ERR_NAME_NOT_RESOLVED',
+    'Request timed out after 30000ms of inactivity',
+  ])('stays undecided after %p, an error the cache will retry', (message) => {
     const status = getNFTPreviewStatusFromCache(
       { dataUris: ['https://a/x.png'], dataHash: HASH },
       noMetadata,
-      lookup([errored('https://a/x.png', 'Request aborted')]),
+      lookup([errored('https://a/x.png', message)]),
     );
 
     expect(status).toBeUndefined();
   });
+
+  it.each(['HTTP error: 404', 'HTTP error: 410', 'HTTP error: 501', 'net::ERR_CERT_AUTHORITY_INVALID', 'Invalid URL'])(
+    'is unavailable after %p, an error the cache will not retry',
+    (message) => {
+      const status = getNFTPreviewStatusFromCache(
+        { dataUris: ['https://a/x.png'], dataHash: HASH },
+        noMetadata,
+        lookup([errored('https://a/x.png', message)]),
+      );
+
+      expect(status).toBe(NFTPreviewStatus.UNAVAILABLE);
+    },
+  );
 
   it('is available through a verified thumbnail even when the data file is unreachable', () => {
     const status = getNFTPreviewStatusFromCache(

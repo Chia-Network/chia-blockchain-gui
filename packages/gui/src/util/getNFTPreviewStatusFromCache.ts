@@ -5,10 +5,7 @@ import NFTPreviewStatus from '../@types/NFTPreviewStatus';
 import CacheState from '../constants/CacheState';
 
 import compareChecksums from './compareChecksums';
-
-// Persisted errors the cache retries on the next access, so a tile would try
-// the download again — they do not settle a uri as failed.
-const TRANSIENT_ERRORS = ['Response aborted', 'Request aborted'];
+import { isAbortedDownloadError, isTransientDownloadError } from './downloadErrors';
 
 export type NFTPreviewSource = {
   dataUris?: string[];
@@ -58,7 +55,14 @@ function classifyUri(hash: string, cacheInfo: CacheInfo | undefined): UriOutcome
   }
 
   if (cacheInfo?.state === CacheState.ERROR) {
-    return TRANSIENT_ERRORS.includes(cacheInfo.error) ? 'undecided' : 'failed';
+    // A failure the cache will try again — an abort on the next access, a
+    // transient one (timeout, 5xx, rate limit, bot challenge, network error)
+    // once its retry delay has passed — settles nothing: a tile that asked for
+    // the file would fetch it. Calling the NFT unavailable here would hide it
+    // from a filtered gallery, and a hidden tile never asks.
+    return isAbortedDownloadError(cacheInfo.error) || isTransientDownloadError(cacheInfo.error)
+      ? 'undecided'
+      : 'failed';
   }
 
   return 'undecided';
