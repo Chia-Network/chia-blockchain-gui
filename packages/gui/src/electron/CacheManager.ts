@@ -12,6 +12,7 @@ import type CacheInfo from '../@types/CacheInfo';
 import type CacheInfoBase from '../@types/CacheInfoBase';
 import type Headers from '../@types/Headers';
 import CacheState from '../constants/CacheState';
+import { isIpfsUrl } from '../util/ipfs';
 import limit from '../util/limit';
 
 import CacheAPI from './constants/CacheAPI';
@@ -19,7 +20,7 @@ import downloadFile, { MAX_FILE_SIZE_EXCEEDED_ERROR, isTransientDownloadError } 
 import ensureDirectoryExists from './utils/ensureDirectoryExists';
 import getChecksum from './utils/getChecksum';
 import ipcMainHandle from './utils/ipcMainHandle';
-import { IpfsGatewayDisabledError } from './utils/ipfsGateway';
+import { IpfsGatewayDisabledError, ipfsGatewayBase, ipfsGatewayEnabled } from './utils/ipfsGateway';
 import isValidURL from './utils/isValidURL';
 import sanitizeFilename from './utils/sanitizeFilename';
 import sanitizeNumber from './utils/sanitizeNumber';
@@ -154,6 +155,8 @@ export default class CacheManager extends EventEmitter {
     {
       promise: Promise<CacheInfo>;
       abort: () => void;
+      // for ipfs:// URLs: the gateway base the request was started through
+      gateway?: string;
     }
   > = new Map();
 
@@ -475,9 +478,28 @@ export default class CacheManager extends EventEmitter {
       throw new Error(`Invalid URL: ${url}`);
     }
 
+    // Captured once, up front, and pinned for the download itself (which may
+    // wait in the queue while the user changes the preference): the gateway a
+    // request goes through is part of its outcome, so a failure must be
+    // recorded against the gateway the request actually used.
+    const requestGateway = isIpfsUrl(url) ? ipfsGatewayBase() : undefined;
+
     const ongoingRequest = this.ongoingRequests.get(url);
     if (ongoingRequest) {
       log('Request already ongoing', url);
+
+      if (ongoingRequest.gateway !== requestGateway) {
+        // The in-flight request went through a gateway the user has since
+        // moved away from, so its outcome is a verdict on that gateway only.
+        // Wait for it, then look again: a success is served from the cache,
+        // a failure — recorded under the old gateway — is retried through
+        // the current one by the gateway check below. Without this the
+        // caller would inherit the old gateway's error until the retry delay
+        // elapsed.
+        const lookAgain = () => this.fetchRemoteContent(url, options);
+        return ongoingRequest.promise.then(lookAgain, lookAgain);
+      }
+
       return ongoingRequest.promise;
     }
 
@@ -529,7 +551,19 @@ export default class CacheManager extends EventEmitter {
           // A persisted size-limit error is only retried when the caller lifts
           // the limit, so oversized files are not re-downloaded on every visit.
           const isSizeLimitLifted = cacheInfo.error === MAX_FILE_SIZE_EXCEEDED_ERROR && maxSize <= 0;
-          if (!isAbortError && !isRetriableTransientError && !isSizeLimitLifted) {
+          // An ipfs failure is a verdict on one gateway, not on the resource:
+          // once the user points the option at another gateway the entry is
+          // re-requested right away, whatever the error was and however
+          // recently it was recorded. Only a sidecar that names its gateway
+          // can say so — older ones follow the transient-error rules — and
+          // only while the option is on, since with it off there is no
+          // gateway to retry through and the refusal would never settle.
+          const isGatewayChanged =
+            isIpfsUrl(url) &&
+            cacheInfo.gateway !== undefined &&
+            ipfsGatewayEnabled() &&
+            cacheInfo.gateway !== ipfsGatewayBase();
+          if (!isAbortError && !isRetriableTransientError && !isSizeLimitLifted && !isGatewayChanged) {
             return cacheInfo;
           }
 
@@ -545,6 +579,7 @@ export default class CacheManager extends EventEmitter {
             maxSize,
             signal: abortController.signal,
             overrideFile: true,
+            gatewayBase: requestGateway,
           });
 
           log('Download finished', url);
@@ -603,7 +638,9 @@ export default class CacheManager extends EventEmitter {
         return await this.setCacheInfo(url, {
           state: CacheState.ERROR,
           error: currentError.message,
-          ...(isTransient ? { retries: this.consecutiveTransientFailures(previousCacheInfo) + 1 } : {}),
+          ...(isTransient ? { retries: this.consecutiveTransientFailures(previousCacheInfo, requestGateway) + 1 } : {}),
+          // which gateway the verdict belongs to (see isGatewayChanged above)
+          ...(requestGateway === undefined ? {} : { gateway: requestGateway }),
         });
       } finally {
         this.ongoingRequests.delete(url);
@@ -615,16 +652,23 @@ export default class CacheManager extends EventEmitter {
     this.ongoingRequests.set(url, {
       abort: () => abortController.abort(),
       promise,
+      gateway: requestGateway,
     });
 
     return promise;
   }
 
   // How many transient failures in a row the persisted outcome already
-  // records — zero when there is none, or when the last outcome was anything
-  // other than a transient failure (a success, a settled error, an abort).
-  private consecutiveTransientFailures(previous: CacheInfo | undefined): number {
-    if (previous?.state !== CacheState.ERROR || !isTransientDownloadError(previous.error)) {
+  // records — zero when there is none, when the last outcome was anything
+  // other than a transient failure (a success, a settled error, an abort), or
+  // when it went through a different gateway: a failure is a verdict on one
+  // gateway, so a new gateway starts with a clean slate.
+  private consecutiveTransientFailures(previous: CacheInfo | undefined, gateway: string | undefined): number {
+    if (
+      previous?.state !== CacheState.ERROR ||
+      !isTransientDownloadError(previous.error) ||
+      previous.gateway !== gateway
+    ) {
       return 0;
     }
 

@@ -4,6 +4,7 @@ import os from 'node:os';
 import path from 'node:path';
 
 const mockNetRequest = jest.fn();
+const mockReadPrefs = jest.fn<Record<string, any>, []>();
 
 jest.mock('electron', () => ({
   net: {
@@ -11,12 +12,73 @@ jest.mock('electron', () => ({
   },
 }));
 
+jest.mock('../prefs', () => ({
+  readPrefs: mockReadPrefs,
+}));
+
 const { default: downloadFile, isTransientDownloadError } =
   jest.requireActual<typeof import('./downloadFile')>('./downloadFile');
+const { NFT_IPFS_GATEWAY_PREF } = jest.requireActual<typeof import('./ipfsGateway')>('./ipfsGateway');
+
+const CID = 'QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB';
+
+// a request that answers every call with a 404, so the download settles
+// without touching the network or the disk
+function make404Request() {
+  const request = Object.assign(new EventEmitter(), {
+    abort: jest.fn(),
+    setHeader: jest.fn(),
+    end: jest.fn(() => {
+      const response = Object.assign(new EventEmitter(), { statusCode: 404, headers: {} });
+      request.emit('response', response);
+    }),
+  });
+  request.abort.mockImplementation(() => request.emit('abort'));
+  return request;
+}
 
 describe('downloadFile', () => {
   beforeEach(() => {
     mockNetRequest.mockReset();
+    mockReadPrefs.mockReset();
+    mockReadPrefs.mockReturnValue({ [NFT_IPFS_GATEWAY_PREF]: true });
+  });
+
+  it('requests an ipfs URI through a local plain-http gateway, the form the gateway setting allows', async () => {
+    mockNetRequest.mockReturnValue(make404Request());
+
+    await expect(
+      downloadFile(`ipfs://${CID}/img.png`, path.join(os.tmpdir(), 'downloadFile-test-local-gateway.png'), {
+        gatewayBase: 'http://127.0.0.1:8080/ipfs/',
+      }),
+    ).rejects.toThrow('HTTP error: 404');
+
+    expect(mockNetRequest).toHaveBeenCalledWith({
+      url: `http://127.0.0.1:8080/ipfs/${CID}/img.png`,
+      redirect: 'manual',
+    });
+  });
+
+  // The URL that leaves the machine is the gateway form, not the ipfs URI the
+  // structural check saw — so it is validated on its own before the request.
+  it('does not request a gateway URL that fails validation', async () => {
+    await expect(
+      downloadFile(`ipfs://${CID}/img.png`, path.join(os.tmpdir(), 'downloadFile-test-bad-gateway.png'), {
+        gatewayBase: 'http://192.168.1.10:8080/ipfs/',
+      }),
+    ).rejects.toThrow('Invalid URL');
+
+    expect(mockNetRequest).not.toHaveBeenCalled();
+  });
+
+  it('does not request an ipfs URI whose path leaves the gateway prefix', async () => {
+    await expect(
+      downloadFile('ipfs://../../admin', path.join(os.tmpdir(), 'downloadFile-test-traversal.png'), {
+        gatewayBase: 'http://127.0.0.1:8080/ipfs/',
+      }),
+    ).rejects.toThrow('Invalid URL');
+
+    expect(mockNetRequest).not.toHaveBeenCalled();
   });
 
   it('does not start a transfer whose signal was aborted while queued', async () => {
