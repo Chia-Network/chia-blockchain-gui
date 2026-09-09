@@ -81,6 +81,69 @@ describe('downloadFile', () => {
     expect(mockNetRequest).not.toHaveBeenCalled();
   });
 
+  it('requests the override URL, identified as the application, while keeping the cache key', async () => {
+    const request = Object.assign(new EventEmitter(), {
+      abort: jest.fn(),
+      setHeader: jest.fn(),
+      end: jest.fn(() => {
+        const response = Object.assign(new EventEmitter(), { statusCode: 404, headers: {} });
+        request.emit('response', response);
+      }),
+    });
+    request.abort.mockImplementation(() => request.emit('abort'));
+    mockNetRequest.mockReturnValue(request);
+
+    await expect(
+      downloadFile(
+        'https://nftstorage.link/ipfs/bafybeigdyrztest/img.png',
+        path.join(os.tmpdir(), 'downloadFile-test-override.png'),
+        { requestUrl: 'https://gateway.pinata.cloud/ipfs/bafybeigdyrztest/img.png' },
+      ),
+    ).rejects.toThrow('HTTP error: 404');
+
+    expect(mockNetRequest).toHaveBeenCalledWith({
+      url: 'https://gateway.pinata.cloud/ipfs/bafybeigdyrztest/img.png',
+      redirect: 'manual',
+    });
+    expect(request.setHeader).toHaveBeenCalledWith('User-Agent', expect.stringMatching(/^Chia-Blockchain-GUI\//));
+  });
+
+  it('accepts a plain-http override on this machine, the form a local gateway takes', async () => {
+    const request = Object.assign(new EventEmitter(), {
+      abort: jest.fn(),
+      setHeader: jest.fn(),
+      end: jest.fn(() => {
+        const response = Object.assign(new EventEmitter(), { statusCode: 404, headers: {} });
+        request.emit('response', response);
+      }),
+    });
+    request.abort.mockImplementation(() => request.emit('abort'));
+    mockNetRequest.mockReturnValue(request);
+
+    await expect(
+      downloadFile(
+        'https://nftstorage.link/ipfs/bafybeigdyrztest/img.png',
+        path.join(os.tmpdir(), 'downloadFile-test-local-override.png'),
+        { requestUrl: 'http://127.0.0.1:8080/ipfs/bafybeigdyrztest/img.png' },
+      ),
+    ).rejects.toThrow('HTTP error: 404');
+
+    expect(mockNetRequest).toHaveBeenCalledWith({
+      url: 'http://127.0.0.1:8080/ipfs/bafybeigdyrztest/img.png',
+      redirect: 'manual',
+    });
+  });
+
+  it('rejects an invalid override URL before requesting anything', async () => {
+    await expect(
+      downloadFile('https://example.com/img.png', path.join(os.tmpdir(), 'downloadFile-test-bad-override.png'), {
+        requestUrl: 'not a url',
+      }),
+    ).rejects.toThrow('Invalid URL');
+
+    expect(mockNetRequest).not.toHaveBeenCalled();
+  });
+
   it('does not start a transfer whose signal was aborted while queued', async () => {
     const abortController = new AbortController();
     abortController.abort();
@@ -104,7 +167,12 @@ describe('downloadFile redirects', () => {
   }
 
   beforeEach(() => {
-    request = Object.assign(new EventEmitter(), { end: jest.fn(), abort: jest.fn(), followRedirect: jest.fn() });
+    request = Object.assign(new EventEmitter(), {
+      end: jest.fn(),
+      abort: jest.fn(),
+      followRedirect: jest.fn(),
+      setHeader: jest.fn(),
+    });
     request.abort.mockImplementation(() => {
       request.emit('abort');
     });

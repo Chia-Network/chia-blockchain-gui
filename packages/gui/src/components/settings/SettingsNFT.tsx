@@ -190,9 +190,11 @@ export default function SettingsGeneral() {
         <Grid item style={{ width: '400px' }}>
           <SettingsText>
             <Trans>
-              The gateway used for ipfs:// addresses. Leave it empty to use the public ipfs.io gateway, or enter another
-              public gateway or a local IPFS node such as http://127.0.0.1:8080. Files are re-checked through the new
-              gateway right away.
+              The gateway used for ipfs:// addresses, and the fallback for gateway links (such as
+              https://nftstorage.link/ipfs/…) whose own host no longer serves them. Leave it empty to use the public
+              ipfs.io gateway, which is being wound down and rate limits applications; https://ipfs.mintgarden.io,
+              https://gateway.pinata.cloud and https://ipfs.filebase.io currently work, as does a local IPFS node such
+              as http://127.0.0.1:8080. Files are re-checked through the new gateway right away.
             </Trans>
           </SettingsText>
         </Grid>

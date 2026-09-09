@@ -1,6 +1,10 @@
 import ipfsToGatewayUrl, {
   DEFAULT_IPFS_GATEWAY_BASE,
+  getGatewayHost,
   getIpfsPath,
+  getIpfsPathFromAnyUrl,
+  getIpfsPathFromGatewayUrl,
+  isIpfsBackedUrl,
   isIpfsPath,
   isIpfsUrl,
   isLoopbackUrl,
@@ -250,6 +254,106 @@ describe('normalizeIpfsGatewayBase', () => {
   });
 });
 
+describe('getIpfsPathFromGatewayUrl', () => {
+  it('reads the CID and path out of a path-style gateway URL', () => {
+    expect(getIpfsPathFromGatewayUrl(`https://nftstorage.link/ipfs/${CID_V1}/BatGAN_POAP_Miami_12.png`)).toBe(
+      `${CID_V1}/BatGAN_POAP_Miami_12.png`,
+    );
+    expect(getIpfsPathFromGatewayUrl(`https://ipfs.mintgarden.io/ipfs/${CID_V1}`)).toBe(CID_V1);
+    expect(getIpfsPathFromGatewayUrl(`http://127.0.0.1:8080/ipfs/${CID_V0}/image.png`)).toBe(`${CID_V0}/image.png`);
+  });
+
+  it('reads the CID and path out of a subdomain-style gateway URL', () => {
+    expect(getIpfsPathFromGatewayUrl(`https://${CID_V1}.ipfs.dweb.link/020.png`)).toBe(`${CID_V1}/020.png`);
+    expect(getIpfsPathFromGatewayUrl(`https://${CID_V1}.ipfs.nftstorage.link`)).toBe(CID_V1);
+  });
+
+  it('keeps the subdomain CID when the file path itself starts with /ipfs/', () => {
+    // a directory published under a CID may contain a folder called ipfs; the
+    // content is still the subdomain's CID, not whatever follows /ipfs/
+    expect(getIpfsPathFromGatewayUrl(`https://${CID_V1}.ipfs.dweb.link/ipfs/${CID_V0}/x.png`)).toBe(
+      `${CID_V1}/ipfs/${CID_V0}/x.png`,
+    );
+    // a path-style gateway whose hostname merely contains "ipfs" is not a
+    // subdomain gateway — its short label is no CID
+    expect(getIpfsPathFromGatewayUrl(`https://gw.ipfs.example.com/ipfs/${CID_V0}/x.png`)).toBe(`${CID_V0}/x.png`);
+  });
+
+  it('keeps the path exactly as published', () => {
+    expect(getIpfsPathFromGatewayUrl(`https://nftstorage.link/ipfs/${CID_V1}/image%20-%20one.jfif`)).toBe(
+      `${CID_V1}/image%20-%20one.jfif`,
+    );
+  });
+
+  it('carries a query string along and drops a fragment', () => {
+    expect(getIpfsPathFromGatewayUrl(`https://example.com/ipfs/${CID_V1}?download=1`)).toBe(`${CID_V1}?download=1`);
+    expect(getIpfsPathFromGatewayUrl(`https://example.com/ipfs/${CID_V1}/a.png?filename=b.png#top`)).toBe(
+      `${CID_V1}/a.png?filename=b.png`,
+    );
+    expect(getIpfsPathFromGatewayUrl(`https://${CID_V1}.ipfs.dweb.link/a.png?x=1`)).toBe(`${CID_V1}/a.png?x=1`);
+    // the query never reaches the CID-path check, and the fallback URL keeps it
+    expect(ipfsToGatewayUrl(`ipfs://${CID_V1}?download=1`, 'http://127.0.0.1:8080/ipfs/')).toBe(
+      `http://127.0.0.1:8080/ipfs/${CID_V1}?download=1`,
+    );
+    expect(getIpfsPathFromGatewayUrl('https://example.com/ipfs/../../admin?x=1')).toBeUndefined();
+  });
+
+  it('returns undefined for URLs that do not name IPFS content', () => {
+    expect(getIpfsPathFromGatewayUrl('https://example.com/image.png')).toBeUndefined();
+    expect(getIpfsPathFromGatewayUrl('https://example.com/ipfs/')).toBeUndefined();
+    expect(getIpfsPathFromGatewayUrl('https://example.com/ipfs/?x=1')).toBeUndefined();
+    expect(getIpfsPathFromGatewayUrl(`ipfs://${CID_V1}`)).toBeUndefined();
+    expect(getIpfsPathFromGatewayUrl('')).toBeUndefined();
+  });
+
+  // Any host may carry /ipfs/ in a URL, and the text after it is refetched
+  // from the user's gateway, so it gets the same CID-path check as an ipfs://
+  // URI: a path that would leave /ipfs/ — on a local gateway, a path on this
+  // machine — is not IPFS content.
+  it.each([
+    'https://attacker.example/ipfs/../../admin',
+    'https://attacker.example/ipfs/../api/v0/id',
+    'https://attacker.example/ipfs/%2e%2e/%2e%2e/api/v0/shutdown',
+    `https://attacker.example/ipfs/${CID_V1}/../../admin`,
+    `https://attacker.example/ipfs/${CID_V1}//admin`,
+    'https://attacker.example/ipfs/not a cid',
+    'https://attacker.example/ipfs/-/x',
+    `https://abc.ipfs.attacker.example/../../debug/vars`,
+    `https://${CID_V1}.ipfs.dweb.link/%2e%2e/x`,
+  ])('returns undefined for %p, whose path is not a CID path', (url) => {
+    expect(getIpfsPathFromGatewayUrl(url)).toBeUndefined();
+  });
+});
+
+describe('getIpfsPathFromAnyUrl / isIpfsBackedUrl', () => {
+  it('covers ipfs:// URIs and gateway URLs alike', () => {
+    expect(getIpfsPathFromAnyUrl(`ipfs://${CID_V1}/020.png`)).toBe(`${CID_V1}/020.png`);
+    expect(getIpfsPathFromAnyUrl(`https://nftstorage.link/ipfs/${CID_V1}/020.png`)).toBe(`${CID_V1}/020.png`);
+    expect(isIpfsBackedUrl(`ipfs://${CID_V1}`)).toBe(true);
+    expect(isIpfsBackedUrl(`https://${CID_V1}.ipfs.dweb.link/020.png`)).toBe(true);
+    expect(isIpfsBackedUrl('https://example.com/image.png')).toBe(false);
+  });
+});
+
+describe('getGatewayHost', () => {
+  it('is the hostname of a path-style link or gateway base', () => {
+    expect(getGatewayHost(`https://nftstorage.link/ipfs/${CID_V1}/x.png`)).toBe('nftstorage.link');
+    expect(getGatewayHost(DEFAULT_IPFS_GATEWAY_BASE)).toBe('ipfs.io');
+    expect(getGatewayHost('http://127.0.0.1:8080/ipfs/')).toBe('127.0.0.1');
+  });
+
+  it('is the gateway behind the CID label of a subdomain-style link', () => {
+    expect(getGatewayHost(`https://${CID_V1}.ipfs.dweb.link/x.png`)).toBe('dweb.link');
+    expect(getGatewayHost(`https://${CID_V1}.ipfs.ipfs.io/x.png`)).toBe('ipfs.io');
+    // a short label is a hostname of its own, not a CID
+    expect(getGatewayHost(`https://gw.ipfs.example.com/ipfs/${CID_V0}`)).toBe('gw.ipfs.example.com');
+  });
+
+  it('is undefined for something that is not a URL', () => {
+    expect(getGatewayHost('not a url')).toBeUndefined();
+  });
+});
+
 describe('trimTrailingSlashes', () => {
   it('removes trailing slashes and leaves everything else', () => {
     expect(trimTrailingSlashes('a/b///')).toBe('a/b');
@@ -278,5 +382,14 @@ describe('length bound', () => {
 
   it('refuses a gateway base past the limit', () => {
     expect(normalizeIpfsGatewayBase(`https://dweb.link/${'a'.repeat(3000)}`)).toBeUndefined();
+  });
+});
+
+describe('gateway link length bound', () => {
+  it('refuses a gateway link past the validator limit without working on it', () => {
+    const longLink = `https://example.com/ipfs/${'/'.repeat(100_000)}x`;
+    const started = process.hrtime.bigint();
+    expect(getIpfsPathFromGatewayUrl(longLink)).toBeUndefined();
+    expect(Number(process.hrtime.bigint() - started) / 1e6).toBeLessThan(50);
   });
 });

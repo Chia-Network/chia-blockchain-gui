@@ -151,6 +151,76 @@ export function getIpfsPath(url: string): string | undefined {
   return trimmedPath.length > 0 && isIpfsPath(trimmedPath) ? `${trimmedPath}${query}` : undefined;
 }
 
+// IPFS content is also published as plain gateway URLs — path style
+// (`https://nftstorage.link/ipfs/<CID>/file.png`) or subdomain style
+// (`https://<CID>.ipfs.dweb.link/file.png`). Such a URL names the content by
+// its CID just like an ipfs:// URI does, so when its host stops serving it
+// the same bytes can be fetched from any other gateway and still verified
+// against the on-chain hash. Returns the `<CID>[/path]` part, or undefined
+// for URLs that do not point at IPFS content — including any whose path is
+// not a CID path (see isIpfsPath): the host is whatever the minter chose, and
+// the extracted text is re-requested from the user's gateway, so it gets the
+// same scrutiny as the path of an ipfs:// URI. A query string is carried
+// along (a fragment is not: it is never sent). The subdomain form is tried
+// first, and only when the label is long enough to be a CID — CIDv1 in base32
+// or base36 is at least 46 characters, while `gw.ipfs.example.com` is a
+// path-style gateway whose hostname merely contains `ipfs` — so a subdomain
+// gateway serving a directory whose own path starts with `/ipfs/` keeps its
+// CID instead of being read as a path-style link to a different one.
+const SUBDOMAIN_GATEWAY = /^https?:\/\/([a-z0-9]{46,})\.ipfs\.[^/?#]+(\/[^?#]*)?(\?[^#]*)?(?:#.*)?$/i;
+const PATH_GATEWAY = /^https?:\/\/[^/?#]+\/ipfs\/([^?#]+)(\?[^#]*)?(?:#.*)?$/i;
+
+export function getIpfsPathFromGatewayUrl(url: string): string | undefined {
+  if (typeof url !== 'string' || url.length > MAX_URL_LENGTH) {
+    return undefined;
+  }
+
+  let ipfsPath: string | undefined;
+  let query = '';
+
+  const subdomainMatch = SUBDOMAIN_GATEWAY.exec(url);
+  if (subdomainMatch) {
+    const [, cid, path = '', search = ''] = subdomainMatch;
+    ipfsPath = `${cid}${trimTrailingSlashes(path)}`;
+    query = search;
+  } else {
+    const pathMatch = PATH_GATEWAY.exec(url);
+    if (pathMatch) {
+      const [, path, search = ''] = pathMatch;
+      ipfsPath = trimTrailingSlashes(path);
+      query = search;
+    }
+  }
+
+  return ipfsPath !== undefined && ipfsPath.length > 0 && isIpfsPath(ipfsPath) ? `${ipfsPath}${query}` : undefined;
+}
+
+// The `<CID>[/path]` behind any URL that names IPFS content — an ipfs:// URI
+// or a gateway URL — or undefined.
+export function getIpfsPathFromAnyUrl(url: string): string | undefined {
+  return getIpfsPath(url) ?? getIpfsPathFromGatewayUrl(url);
+}
+
+// Whether a URL names IPFS content that the configured gateway could serve:
+// an ipfs:// URI, or an https gateway URL whose own host may fail.
+export function isIpfsBackedUrl(url: string): boolean {
+  return getIpfsPathFromAnyUrl(url) !== undefined;
+}
+
+// The gateway a gateway link is served by: its hostname, less the `<CID>.ipfs.`
+// label of the subdomain form — `https://<CID>.ipfs.dweb.link/x` is served by
+// dweb.link, the same operator as `https://dweb.link/ipfs/<CID>/x`. Undefined
+// for anything that is not a URL.
+const SUBDOMAIN_GATEWAY_LABEL = /^[a-z0-9]{46,}\.ipfs\./i;
+
+export function getGatewayHost(url: string): string | undefined {
+  try {
+    return new URL(url).hostname.replace(SUBDOMAIN_GATEWAY_LABEL, '');
+  } catch {
+    return undefined;
+  }
+}
+
 // Translates an ipfs:// URI to its HTTPS gateway equivalent. Anything else
 // (including an unusable bare `ipfs://`) is returned unchanged, so this can
 // wrap any URL right where it reaches the network layer. `gatewayBase` is a

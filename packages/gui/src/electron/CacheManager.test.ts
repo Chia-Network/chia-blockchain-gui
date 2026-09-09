@@ -18,8 +18,12 @@ jest.mock('./utils/downloadFile', () => ({
   __esModule: true,
   default: mockDownloadFile,
   MAX_FILE_SIZE_EXCEEDED_ERROR: 'Maximum file size exceeded',
+  DEFAULT_DOWNLOAD_MAX_DURATION: jest.requireActual('./utils/downloadFile').DEFAULT_DOWNLOAD_MAX_DURATION,
   isTransientDownloadError: jest.requireActual('./utils/downloadFile').isTransientDownloadError,
 }));
+
+const { DEFAULT_DOWNLOAD_MAX_DURATION } =
+  jest.requireActual<typeof import('./utils/downloadFile')>('./utils/downloadFile');
 
 jest.mock('./utils/ipcMainHandle', () => ({
   __esModule: true,
@@ -598,6 +602,252 @@ describe('CacheManager eviction', () => {
     } finally {
       mockIpfsGatewayBase.mockReturnValue('https://ipfs.io/ipfs/');
       mockIpfsGatewayEnabled.mockReturnValue(true);
+    }
+  });
+
+  it('refetches an IPFS gateway link through the configured gateway when its own host fails', async () => {
+    const payload = Buffer.from('cached payload');
+    const url = 'https://nftstorage.link/ipfs/QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/img.png';
+    mockDownloadFile
+      .mockRejectedValueOnce(new Error('HTTP error: 403'))
+      .mockImplementationOnce(async (_url, localPath) => {
+        await fs.writeFile(localPath, payload);
+        return {
+          'content-type': 'image/png',
+        };
+      });
+
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+
+    await expect(cacheManager.getContent(url)).resolves.toEqual(payload);
+    expect(mockDownloadFile).toHaveBeenCalledTimes(2);
+    // same cache key, fetched from the gateway instead
+    expect(mockDownloadFile.mock.calls[1][0]).toBe(url);
+    expect(mockDownloadFile.mock.calls[1][2]).toMatchObject({
+      requestUrl: 'https://ipfs.io/ipfs/QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/img.png',
+    });
+  });
+
+  it.each([
+    ['a plain https url', 'https://example.com/nft.png', 'HTTP error: 403'],
+    [
+      'a link already served by the configured gateway',
+      'https://ipfs.io/ipfs/QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/img.png',
+      'HTTP error: 403',
+    ],
+    [
+      // the same operator behind a subdomain: a retry through it would ask the host that just failed
+      'a subdomain link on the configured gateway host',
+      'https://bafybeiceg2gltyhlkukwetn26k7t2zdvthg4u4c6uj23rpni2adzgvo5si.ipfs.ipfs.io/img.png',
+      'HTTP error: 403',
+    ],
+    [
+      'an aborted download',
+      'https://nftstorage.link/ipfs/QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/img.png',
+      'Request aborted',
+    ],
+    [
+      'a download over the size cap',
+      'https://nftstorage.link/ipfs/QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/img.png',
+      'Maximum file size exceeded',
+    ],
+    // the text after /ipfs/ is not a CID path, so there is nothing a gateway
+    // could serve — and appended to a local gateway it would name a path on
+    // this machine
+    ['a gateway-looking link whose path leaves /ipfs/', 'https://attacker.example/ipfs/../../admin', 'HTTP error: 500'],
+    [
+      'a gateway-looking link with an encoded dot segment',
+      'https://attacker.example/ipfs/%2e%2e/%2e%2e/api/v0/shutdown',
+      'HTTP error: 500',
+    ],
+    [
+      'a subdomain-style link whose path leaves /ipfs/',
+      'https://abc.ipfs.attacker.example/../../debug/vars',
+      'HTTP error: 500',
+    ],
+  ])('does not fall back to the gateway for %s', async (_label, url, message) => {
+    mockDownloadFile.mockRejectedValue(new Error(message));
+
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+
+    await expect(cacheManager.getContent(url)).rejects.toThrow(message);
+    expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+  });
+
+  it('refetches a subdomain gateway link on another host through the configured gateway', async () => {
+    const payload = Buffer.from('cached payload');
+    const cid = 'bafybeiceg2gltyhlkukwetn26k7t2zdvthg4u4c6uj23rpni2adzgvo5si';
+    const url = `https://${cid}.ipfs.dweb.link/img.png`;
+    mockDownloadFile
+      .mockRejectedValueOnce(new Error('HTTP error: 502'))
+      .mockImplementationOnce(async (_url, localPath) => {
+        await fs.writeFile(localPath, payload);
+        return {
+          'content-type': 'image/png',
+        };
+      });
+
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+
+    await expect(cacheManager.getContent(url)).resolves.toEqual(payload);
+    expect(mockDownloadFile).toHaveBeenCalledTimes(2);
+    expect(mockDownloadFile.mock.calls[1][2]).toMatchObject({ requestUrl: `https://ipfs.io/ipfs/${cid}/img.png` });
+  });
+
+  it('gives the gateway fallback only what is left of the download deadline', async () => {
+    const payload = Buffer.from('cached payload');
+    const url = 'https://nftstorage.link/ipfs/QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/img.png';
+    let now = Date.now();
+    const nowSpy = jest.spyOn(Date, 'now').mockImplementation(() => now);
+    const firstLegDuration = 10 * 60 * 1000;
+    mockDownloadFile
+      .mockImplementationOnce(async () => {
+        now += firstLegDuration;
+        throw new Error('Request timed out after 30000ms of inactivity');
+      })
+      .mockImplementationOnce(async (_url, localPath) => {
+        await fs.writeFile(localPath, payload);
+        return {
+          'content-type': 'image/png',
+        };
+      });
+
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+
+    try {
+      await expect(cacheManager.getContent(url)).resolves.toEqual(payload);
+      expect(mockDownloadFile).toHaveBeenCalledTimes(2);
+      expect(mockDownloadFile.mock.calls[0][2]).toMatchObject({ maxDuration: DEFAULT_DOWNLOAD_MAX_DURATION });
+      expect(mockDownloadFile.mock.calls[1][2]).toMatchObject({
+        maxDuration: DEFAULT_DOWNLOAD_MAX_DURATION - firstLegDuration,
+      });
+    } finally {
+      nowSpy.mockRestore();
+    }
+  });
+
+  it('does not fall back to the gateway once the host has used up the whole download deadline', async () => {
+    const url = 'https://nftstorage.link/ipfs/QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/img.png';
+    let now = Date.now();
+    const nowSpy = jest.spyOn(Date, 'now').mockImplementation(() => now);
+    mockDownloadFile.mockImplementation(async () => {
+      now += DEFAULT_DOWNLOAD_MAX_DURATION;
+      throw new Error(`Request exceeded the ${DEFAULT_DOWNLOAD_MAX_DURATION}ms download deadline`);
+    });
+
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+
+    try {
+      await expect(cacheManager.getContent(url)).rejects.toThrow('download deadline');
+      expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+    } finally {
+      nowSpy.mockRestore();
+    }
+  });
+
+  it('does not fall back to the gateway while the gateway option is off, and gives the link its fallback once it is on', async () => {
+    const payload = Buffer.from('cached payload');
+    const url = 'https://nftstorage.link/ipfs/QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/img.png';
+    mockDownloadFile.mockRejectedValue(new Error('HTTP error: 403'));
+    mockIpfsGatewayEnabled.mockReturnValue(false);
+
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+
+    try {
+      await expect(cacheManager.getContent(url)).rejects.toThrow('HTTP error: 403');
+      expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+      // the failure was the host's alone: no gateway was involved
+      const [info] = await cacheManager.getCacheInfos([url]);
+      expect(info).toMatchObject({ state: 'ERROR', error: 'HTTP error: 403' });
+      expect(info).not.toHaveProperty('gateway');
+    } finally {
+      mockIpfsGatewayEnabled.mockReturnValue(true);
+    }
+
+    // the same gateway as before, just switched on: the link is retried and
+    // this time falls back to the gateway
+    mockDownloadFile.mockReset();
+    mockDownloadFile
+      .mockRejectedValueOnce(new Error('HTTP error: 403'))
+      .mockImplementationOnce(async (_url, localPath) => {
+        await fs.writeFile(localPath, payload);
+        return {
+          'content-type': 'image/png',
+        };
+      });
+    await expect(cacheManager.getContent(url)).resolves.toEqual(payload);
+    expect(mockDownloadFile).toHaveBeenCalledTimes(2);
+  });
+
+  it('settles a gateway link whose host is the configured gateway instead of retrying it on every access', async () => {
+    const url = 'https://ipfs.io/ipfs/QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/img.png';
+    mockDownloadFile.mockRejectedValue(new Error('HTTP error: 403'));
+
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+
+    await expect(cacheManager.getContent(url)).rejects.toThrow('HTTP error: 403');
+    await expect(cacheManager.getContent(url)).rejects.toThrow('HTTP error: 403');
+    expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+    const [info] = await cacheManager.getCacheInfos([url]);
+    expect(info).toMatchObject({ state: 'ERROR', gateway: 'https://ipfs.io/ipfs/' });
+  });
+
+  it('records the gateway a failed fallback went through, so a gateway change retries the link', async () => {
+    const payload = Buffer.from('cached payload');
+    const url = 'https://nftstorage.link/ipfs/QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/img.png';
+    mockDownloadFile.mockRejectedValue(new Error('HTTP error: 504'));
+
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+
+    await expect(cacheManager.getContent(url)).rejects.toThrow('HTTP error: 504');
+    expect(mockDownloadFile).toHaveBeenCalledTimes(2);
+    const [info] = await cacheManager.getCacheInfos([url]);
+    expect(info).toMatchObject({ state: 'ERROR', gateway: 'https://ipfs.io/ipfs/' });
+
+    mockDownloadFile.mockReset();
+    mockDownloadFile.mockImplementation(async (_url, localPath) => {
+      await fs.writeFile(localPath, payload);
+      return {
+        'content-type': 'image/png',
+      };
+    });
+    mockIpfsGatewayBase.mockReturnValue('https://gateway.pinata.cloud/ipfs/');
+    try {
+      await expect(cacheManager.getContent(url)).resolves.toEqual(payload);
+    } finally {
+      mockIpfsGatewayBase.mockReturnValue('https://ipfs.io/ipfs/');
     }
   });
 

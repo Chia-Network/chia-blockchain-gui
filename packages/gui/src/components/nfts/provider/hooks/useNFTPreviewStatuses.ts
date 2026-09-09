@@ -12,7 +12,7 @@ import useCache from '../../../../hooks/useCache';
 import useIpfsGateway from '../../../../hooks/useIpfsGateway';
 import { useIpfsGatewayBase } from '../../../../hooks/useIpfsGatewayUrl';
 import getNFTPreviewStatusFromCache, { getNFTPreviewUrls } from '../../../../util/getNFTPreviewStatusFromCache';
-import { isIpfsUrl } from '../../../../util/ipfs';
+import { isIpfsBackedUrl, isIpfsUrl } from '../../../../util/ipfs';
 
 const log = debug('chia-gui:NFTProvider:useNFTPreviewStatuses');
 
@@ -52,10 +52,11 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
   // which forgets it here.
   const [cacheInfos /* immutable */] = useState(() => new Map<string, CacheInfo>());
 
-  // The gateway ipfs:// files are fetched through (empty while the option is
-  // off). A persisted ipfs failure is a verdict on the gateway it went
-  // through; CacheManager re-requests such an entry as soon as the gateway
-  // differs, so here it settles nothing under any other gateway.
+  // The gateway ipfs:// files are fetched through, and https gateway links
+  // fall back to (empty while the option is off). A persisted ipfs failure is
+  // a verdict on the gateway it went through; CacheManager re-requests such
+  // an entry as soon as the gateway differs, so here it settles nothing under
+  // any other gateway.
   const [ipfsGateway] = useIpfsGateway();
   const ipfsGatewayBase = useIpfsGatewayBase();
   const ipfsGatewayKey = ipfsGateway ? ipfsGatewayBase : '';
@@ -178,17 +179,21 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
             fetchedInfos.forEach((cacheInfo) => cacheInfos.set(cacheInfo.url, cacheInfo));
           }
 
+          // Mirrors CacheManager's gateway-change rule: while the option is
+          // on, a failure recorded under another gateway — or, for an https
+          // gateway link, without any gateway, meaning it never got the
+          // fallback — is re-requested on the next access, so it settles
+          // nothing here. An ipfs:// sidecar without a gateway predates
+          // gateway tracking and stays a settled failure.
           const currentGateway = ipfsGatewayKeyRef.current;
           const getCacheInfo = (url: string): CacheInfo | undefined => {
             const cacheInfo = cacheInfos.get(url);
             if (
               cacheInfo?.state === CacheState.ERROR &&
               currentGateway &&
-              isIpfsUrl(url) &&
-              cacheInfo.gateway !== undefined &&
-              cacheInfo.gateway !== currentGateway
+              isIpfsBackedUrl(url) &&
+              (cacheInfo.gateway === undefined ? !isIpfsUrl(url) : cacheInfo.gateway !== currentGateway)
             ) {
-              // recorded under another gateway — the next access re-requests it
               return { url: cacheInfo.url, timestamp: cacheInfo.timestamp, state: CacheState.NOT_CACHED };
             }
 
@@ -276,7 +281,7 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
     let changed = false;
     const reconsider = (nft: NFTInfo, nftId: string) => {
       const metadataState = getMetadata(nftId);
-      const ipfsUrls = getNFTPreviewUrls(nft, metadataState).filter(isIpfsUrl);
+      const ipfsUrls = getNFTPreviewUrls(nft, metadataState).filter(isIpfsBackedUrl);
       const isMetadataUnknown = metadataState.isLoading || (!metadataState.metadata && !!metadataState.error);
       if (!ipfsUrls.length && !isMetadataUnknown) {
         return;
