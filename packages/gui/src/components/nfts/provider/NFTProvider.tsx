@@ -2,6 +2,8 @@ import debug from 'debug';
 import React, { useMemo, useCallback, type ReactNode } from 'react';
 
 import useCache from '../../../hooks/useCache';
+import { MAX_METADATA_URI_ATTEMPTS } from '../../../util/fetchMetadataFromUris';
+import { MAX_URIS_PER_CANDIDATE } from '../../../util/getNFTPreviewStatusFromCache';
 import NFTFilterProvider from '../NFTFilterProvider';
 
 import NFTProviderContext from './NFTProviderContext';
@@ -157,7 +159,12 @@ export default function NFTProvider(props: NFTProviderProps) {
       // invalidate nft files
       const promises: Promise<unknown>[] = [];
       const { dataUris, metadataUris } = nft;
-      const invalidatedUris: string[] = [...dataUris];
+      // The chain's lists are as long as the minter made them; only the first
+      // MAX_URIS_PER_CANDIDATE data uris and MAX_METADATA_URI_ATTEMPTS
+      // metadata uris are ever fetched, so only those can be cached.
+      const consultedDataUris = dataUris.slice(0, MAX_URIS_PER_CANDIDATE);
+      const consultedMetadataUris = metadataUris?.slice(0, MAX_METADATA_URI_ATTEMPTS);
+      const invalidatedUris: string[] = [...consultedDataUris];
 
       // Drop the preview verdict right away, together with what is known about
       // the data files: the filter must not keep classifying an NFT that is
@@ -167,10 +174,10 @@ export default function NFTProvider(props: NFTProviderProps) {
       // that overlaps the deletions could memoize outcomes they remove.
       invalidatePreviewStatus(id, invalidatedUris);
 
-      dataUris.forEach((uri) => promises.push(invalidate(uri)));
+      consultedDataUris.forEach((uri) => promises.push(invalidate(uri)));
 
       // the metadata may have been served by any of its URIs
-      metadataUris?.forEach((uri) => promises.push(invalidate(uri)));
+      consultedMetadataUris?.forEach((uri) => promises.push(invalidate(uri)));
 
       // invalidate metadata files
       try {
@@ -179,15 +186,18 @@ export default function NFTProvider(props: NFTProviderProps) {
           // invalidate all previews
           const { preview_video_uris: previewVideoUris, preview_image_uris: previewImageUris } = metadata;
 
-          if (previewVideoUris) {
-            previewVideoUris.forEach((uri: string) => promises.push(invalidate(uri)));
-            invalidatedUris.push(...previewVideoUris);
-          }
-
-          if (previewImageUris) {
-            previewImageUris.forEach((uri: string) => promises.push(invalidate(uri)));
-            invalidatedUris.push(...previewImageUris);
-          }
+          // These lists come from the NFT's metadata and can be as long as
+          // its author likes. Only the first MAX_URIS_PER_CANDIDATE of each
+          // were ever fetched (the verifier and the gallery sweep stop
+          // there), so only those can be cached and only those are
+          // invalidated: one cache round-trip per uri, bounded by the same
+          // cap, instead of one per entry in an unbounded list.
+          [previewVideoUris, previewImageUris].forEach((uris) => {
+            uris?.slice(0, MAX_URIS_PER_CANDIDATE).forEach((uri: string) => {
+              promises.push(invalidate(uri));
+              invalidatedUris.push(uri);
+            });
+          });
         }
       } catch (e) {
         log(`Error loading metadata for ${id}: ${(e as Error).message}`);

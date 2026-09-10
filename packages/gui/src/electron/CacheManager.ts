@@ -119,6 +119,12 @@ export function transientErrorRetryDelay(retries: number): number {
   return Math.min(TRANSIENT_ERROR_RETRY_DELAY * 2 ** exponent, MAX_TRANSIENT_ERROR_RETRY_DELAY);
 }
 
+// Bounds on one getCacheInfos call (see there). The renderer's sweep asks for
+// at most 500 urls at a time; the cap leaves headroom for that and refuses
+// anything that could only come from somewhere else.
+export const MAX_CACHE_INFO_LOOKUPS = 1000;
+const CACHE_INFO_LOOKUP_CONCURRENCY = 16;
+
 const SUFFIXES = [FILE_SUFFIX, `${FILE_SUFFIX}${INFO_SUFFIX}`];
 
 function isChiaCacheFile(filePath: string) {
@@ -1024,20 +1030,38 @@ export default class CacheManager extends EventEmitter {
   // whole batch. This lets the renderer classify NFTs that are not on screen
   // (and so never verify their files) from outcomes persisted by earlier
   // visits and sessions.
+  //
+  // The urls are NFT data the minter wrote, so the batch is bounded here as
+  // well as by the caller: a batch over the cap is refused outright, and the
+  // lookups within one run a few at a time — each one hashes and validates
+  // its url synchronously before its file read, and thousands of those in one
+  // go would stall the main process for every window of the wallet.
   async getCacheInfos(urls: string[]): Promise<CacheInfo[]> {
+    if (!Array.isArray(urls)) {
+      throw new Error('Invalid urls');
+    }
+
+    if (urls.length > MAX_CACHE_INFO_LOOKUPS) {
+      throw new Error(`Too many urls: ${urls.length} (at most ${MAX_CACHE_INFO_LOOKUPS} per lookup)`);
+    }
+
+    const lookupLimit = limit(CACHE_INFO_LOOKUP_CONCURRENCY);
+
     return Promise.all(
-      urls.map(async (url) => {
-        try {
-          return await this.getCacheInfoByURL(url);
-        } catch (error) {
-          return {
-            url,
-            state: CacheState.ERROR,
-            error: (error as Error).message,
-            timestamp: Date.now(),
-          };
-        }
-      }),
+      urls.map((url) =>
+        lookupLimit<CacheInfo>(async () => {
+          try {
+            return await this.getCacheInfoByURL(url);
+          } catch (error) {
+            return {
+              url,
+              state: CacheState.ERROR,
+              error: (error as Error).message,
+              timestamp: Date.now(),
+            };
+          }
+        }),
+      ),
     );
   }
 

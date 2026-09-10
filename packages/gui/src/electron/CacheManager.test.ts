@@ -43,6 +43,7 @@ jest.mock('./utils/ipfsGateway', () => ({
 
 const {
   default: CacheManager,
+  MAX_CACHE_INFO_LOOKUPS,
   TRANSIENT_ERROR_RETRY_DELAY,
   MAX_TRANSIENT_ERROR_RETRY_DELAY,
   MAX_TRANSIENT_RETRIES,
@@ -1247,6 +1248,26 @@ describe('CacheManager getCacheInfos', () => {
     expect(infos[1]).toMatchObject({ error: 'getaddrinfo ENOTFOUND example.com' });
     expect(infos[3]).toMatchObject({ error: 'Invalid URL: not a url' });
     expect(mockDownloadFile).not.toHaveBeenCalled();
+  });
+
+  // The urls are NFT data; the renderer batches them, but the IPC channel is
+  // the boundary that has to hold regardless of who calls it.
+  it('refuses a lookup over the batch cap, and anything that is not an array', async () => {
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+
+    const urls = Array.from({ length: MAX_CACHE_INFO_LOOKUPS + 1 }, (_, i) => `https://example.com/${i}.png`);
+    await expect(cacheManager.getCacheInfos(urls)).rejects.toThrow('Too many urls');
+    await expect(cacheManager.getCacheInfos('https://example.com/x.png' as unknown as string[])).rejects.toThrow(
+      'Invalid urls',
+    );
+
+    const infos = await cacheManager.getCacheInfos(urls.slice(0, MAX_CACHE_INFO_LOOKUPS));
+    expect(infos).toHaveLength(MAX_CACHE_INFO_LOOKUPS);
+    expect(infos.every((info) => info.state === 'NOT_CACHED')).toBe(true);
   });
 });
 
