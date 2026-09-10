@@ -65,6 +65,7 @@ export default function AppRouter() {
               <Route path="dashboard/pool/*" element={<Pool />} />
               <Route path="dashboard/addressbook/*" element={<AddressBook />} />
               <Route path="dashboard/chiatools/*" element={<ChiaToolsPage />} />
+              <Route path="dashboard/*" element={<Navigate to="/dashboard" />} />
             </Route>
           )}
         </Route>
