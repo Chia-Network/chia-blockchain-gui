@@ -18,7 +18,7 @@ export default function BlockTitle(props: Props) {
   const navigate = useNavigate();
 
   function handleGoBack() {
-    navigate('/dashboard');
+    navigate('/dashboard/fullnode');
   }
 
   return (
