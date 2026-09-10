@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback, useMemo, useRef } from 'react';
 
 import type Metadata from '../@types/Metadata';
 import compareChecksums from '../util/compareChecksums';
+import { MAX_URIS_PER_CANDIDATE } from '../util/getNFTPreviewStatusFromCache';
 
 import selectNFTPreviewState, { type NFTPreviewState } from './selectNFTPreviewState';
 import useCache from './useCache';
@@ -95,7 +96,9 @@ export default function useNFTVerifyHash(nftId?: string, options: UseNFTVerifyHa
       }
 
       // use only first uri when onlyFirst is true
-      const urisToCheck = onlyFirst ? [uris[0]] : uris;
+      // The lists are minter-authored and unbounded; the gallery sweep and a
+      // refresh stop at MAX_URIS_PER_CANDIDATE, and so does verification.
+      const urisToCheck = onlyFirst ? [uris[0]] : uris.slice(0, MAX_URIS_PER_CANDIDATE);
       let first: NFTPreviewState | undefined;
 
       for (const uri of urisToCheck) {

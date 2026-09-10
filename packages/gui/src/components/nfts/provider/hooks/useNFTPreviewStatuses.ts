@@ -17,8 +17,13 @@ import { isIpfsBackedUrl, isIpfsUrl } from '../../../../util/ipfs';
 const log = debug('chia-gui:NFTProvider:useNFTPreviewStatuses');
 
 // Cache infos are looked up in batches so a large collection does not hand
-// the main process thousands of file reads in one IPC call.
+// the main process thousands of file reads in one IPC call. NFTs are
+// classified LOOKUP_BATCH_SIZE at a time, and the urls those NFTs need are
+// fetched LOOKUP_URL_BATCH_SIZE per call: how many urls an NFT carries is up
+// to its minter (getNFTPreviewUrls caps it per source), so the batch that
+// reaches the main process is measured in urls, not NFTs.
 const LOOKUP_BATCH_SIZE = 200;
+const LOOKUP_URL_BATCH_SIZE = 500;
 // NFT pages and metadata results arrive in bursts; one sweep per window.
 const LOOKUP_DELAY = 250;
 
@@ -163,20 +168,25 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
             new Set(batch.flatMap(({ nft, metadataState }) => getNFTPreviewUrls(nft, metadataState))),
           ).filter((url) => !cacheInfos.has(url));
 
-          if (urls.length) {
-            const generation = invalidationGeneration.current;
+          const generation = invalidationGeneration.current;
+          let invalidated = false;
+          for (let urlStart = 0; urlStart < urls.length && !invalidated; urlStart += LOOKUP_URL_BATCH_SIZE) {
             // eslint-disable-next-line no-await-in-loop -- batches are sequential on purpose, to pace the main process
-            const fetchedInfos = await getCacheInfos(urls);
+            const fetchedInfos = await getCacheInfos(urls.slice(urlStart, urlStart + LOOKUP_URL_BATCH_SIZE));
 
             if (generation !== invalidationGeneration.current) {
               // an invalidation ran while this lookup was in flight — the
               // outcomes may describe files that are gone now, and the NFTs
               // it reset are unsettled again, so start the sweep over
-              lookUpAgainRef.current = true;
-              break;
+              invalidated = true;
+            } else {
+              fetchedInfos.forEach((cacheInfo) => cacheInfos.set(cacheInfo.url, cacheInfo));
             }
+          }
 
-            fetchedInfos.forEach((cacheInfo) => cacheInfos.set(cacheInfo.url, cacheInfo));
+          if (invalidated) {
+            lookUpAgainRef.current = true;
+            break;
           }
 
           // Mirrors CacheManager's gateway-change rule: while the option is
