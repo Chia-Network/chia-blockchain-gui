@@ -1063,8 +1063,14 @@ export default class CacheManager extends EventEmitter {
             headers,
             checksum,
             // Which gateway produced the file, when one did (see
-            // CacheInfoBase). The renderer shows it as the file's source.
-            ...(gatewayLegUsed && requestGateway !== undefined ? { gateway: requestGateway } : {}),
+            // CacheInfoBase): the only route for an ipfs:// URI, or the
+            // fallback a gateway link got once its own host failed. A link
+            // whose own host is the gateway is charged to the gateway above
+            // (outage accounting) but was served by the host in its address,
+            // so the renderer shows it as fetched directly (getNFTSource).
+            ...(gatewayLegUsed && requestGateway !== undefined && (isIpfsUrl(url) || !isSelfGatewayLink)
+              ? { gateway: requestGateway }
+              : {}),
           });
 
           log('Cache info saved', url);

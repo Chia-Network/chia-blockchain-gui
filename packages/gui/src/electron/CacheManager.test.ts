@@ -587,6 +587,28 @@ describe('CacheManager eviction', () => {
     }
   });
 
+  it('records no gateway for a link whose own host is the configured gateway', async () => {
+    const payload = Buffer.from('cached payload');
+    const url = 'https://ipfs.io/ipfs/QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/img.png';
+    mockDownloadFile.mockImplementationOnce(async (_url, localPath) => {
+      await fs.writeFile(localPath, payload);
+      return { 'content-type': 'image/png' };
+    });
+
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+
+    await expect(cacheManager.getContent(url)).resolves.toEqual(payload);
+    expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+
+    const [info] = await cacheManager.getCacheInfos([url]);
+    expect(info).toMatchObject({ state: 'CACHED' });
+    expect(info).not.toHaveProperty('gateway');
+  });
+
   it('does not keep re-requesting an ipfs failure whose sidecar predates gateway tracking', async () => {
     const url = 'ipfs://QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/img.png';
     // an ERROR sidecar written by a version that did not record the gateway
