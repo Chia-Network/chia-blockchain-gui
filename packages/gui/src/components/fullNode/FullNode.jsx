@@ -97,7 +97,7 @@ function BlocksCard() {
     const { isFinished, headerHash } = row;
 
     if (isFinished && headerHash) {
-      navigate(`block/${headerHash}`);
+      navigate(`/dashboard/block/${headerHash}`);
     }
   }
 
