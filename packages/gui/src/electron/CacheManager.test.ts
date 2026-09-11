@@ -20,6 +20,8 @@ jest.mock('./utils/downloadFile', () => ({
   MAX_FILE_SIZE_EXCEEDED_ERROR: 'Maximum file size exceeded',
   DEFAULT_DOWNLOAD_MAX_DURATION: jest.requireActual('./utils/downloadFile').DEFAULT_DOWNLOAD_MAX_DURATION,
   isTransientDownloadError: jest.requireActual('./utils/downloadFile').isTransientDownloadError,
+  TEMP_FILE_SUFFIX: '.tmp',
+  isDownloadTimeoutError: jest.requireActual('./utils/downloadFile').isDownloadTimeoutError,
   normalizeMaxSize: jest.requireActual('./utils/downloadFile').normalizeMaxSize,
   normalizeTimeout: jest.requireActual('./utils/downloadFile').normalizeTimeout,
 }));
@@ -1173,10 +1175,202 @@ describe('CacheManager eviction', () => {
     }
   });
 
-  it('treats a zero cache limit as unlimited when updating the setting', async () => {
-    const payload = Buffer.from('cached payload');
+  // Both eviction gates are `> 0`, so a zero limit would not mean "no cache"
+  // but "no eviction" — the renderer-reachable state SEC-866 was about.
+  it.each([0, '0', '', -1, Number.NaN, Number.POSITIVE_INFINITY])(
+    'refuses %p as a cache limit and keeps the current one',
+    async (limit) => {
+      const cacheManager = new CacheManager({
+        cacheDirectory,
+        maxCacheSize: 1024,
+      });
+      await cacheManager.init();
+
+      await expect(cacheManager.setMaxCacheSize(limit)).rejects.toThrow('positive finite number');
+      expect(cacheManager.maxCacheSize).toBe(1024);
+    },
+  );
+
+  // Downloads stream into `<file>.tmp` and rename into place; a quit or crash
+  // mid-download leaves the temp file behind. Those files are the cache's too.
+  it('sweeps leftover temp files at startup', async () => {
+    const stale = path.join(cacheDirectory, 'aaaa-chiacache.tmp');
+    await fs.writeFile(stale, Buffer.alloc(300));
+    await fs.writeFile(path.join(cacheDirectory, 'bbbb-chiacache'), Buffer.alloc(100));
+    await fs.writeFile(path.join(cacheDirectory, 'unrelated.tmp'), Buffer.alloc(50));
+
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+
+    await expect(fs.stat(stale)).rejects.toThrow('ENOENT');
+    // cached files, and files that are not the cache's, are left alone
+    await expect(fs.stat(path.join(cacheDirectory, 'bbbb-chiacache'))).resolves.toBeDefined();
+    await expect(fs.stat(path.join(cacheDirectory, 'unrelated.tmp'))).resolves.toBeDefined();
+  });
+
+  it('counts temp files toward the cache size and removes them with the cache', async () => {
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+
+    const temp = path.join(cacheDirectory, 'aaaa-chiacache.tmp');
+    await fs.writeFile(temp, Buffer.alloc(300));
+    await fs.writeFile(path.join(cacheDirectory, 'bbbb-chiacache'), Buffer.alloc(100));
+
+    await expect(cacheManager.getCacheSize()).resolves.toBe(400);
+
+    await cacheManager.clearCache();
+    await expect(fs.stat(temp)).rejects.toThrow('ENOENT');
+    await expect(cacheManager.getCacheSize()).resolves.toBe(0);
+  });
+
+  it('waits for a download in flight to settle before clearing the cache, so nothing survives the clear', async () => {
+    const inFlightUrl = 'https://example.com/in-flight.png';
+    let tempFilePath = '';
+    let cleanedUpByDownload = false;
+    mockDownloadFile.mockImplementation(async (_url, localPath, options) => {
+      // the real downloadFile streams into the temp file, and on abort removes
+      // it itself — which must still find it there
+      tempFilePath = `${localPath}.tmp`;
+      await fs.writeFile(tempFilePath, Buffer.alloc(300));
+      await new Promise<void>((resolve) => {
+        options?.signal?.addEventListener('abort', () => resolve());
+      });
+      await fs.unlink(tempFilePath);
+      cleanedUpByDownload = true;
+      throw new Error('Request aborted');
+    });
+
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+
+    const pending = cacheManager.getContent(inFlightUrl);
+    await untilDownloadsStarted(1);
+    await fs.writeFile(path.join(cacheDirectory, 'bbbb-chiacache'), Buffer.alloc(100));
+
+    // the download rejects while the clear is still waiting on it, so its
+    // expectation has to be attached before the clear runs
+    const pendingRejection = expect(pending).rejects.toThrow('Request aborted');
+    await cacheManager.clearCache();
+
+    // the clear waited for the aborted download to settle, so its temp file,
+    // the sidecar its abort recorded and the rest of the cache are all gone
+    await pendingRejection;
+    expect(cleanedUpByDownload).toBe(true);
+    await expect(fs.readdir(cacheDirectory)).resolves.toEqual([]);
+  });
+
+  it('holds a request that arrives during a clear until the clear is done', async () => {
+    const payload = Buffer.from('next uri');
+    let clearFinished = false;
+    let nextDownloadStartedAfterClear: boolean | undefined;
+    mockDownloadFile
+      // the download the clear aborts: like the real one, it fails on abort
+      .mockImplementationOnce(async (_url, localPath, options) => {
+        await fs.writeFile(`${localPath}.tmp`, Buffer.alloc(300));
+        await new Promise<void>((resolve) => {
+          options?.signal?.addEventListener('abort', () => resolve());
+        });
+        await fs.unlink(`${localPath}.tmp`);
+        throw new Error('Request aborted');
+      })
+      // the download a tile starts for its next uri as soon as it sees that failure
+      .mockImplementationOnce(async (_url, localPath) => {
+        nextDownloadStartedAfterClear = clearFinished;
+        await fs.writeFile(localPath, payload);
+        return {
+          'content-type': 'image/png',
+        };
+      });
+
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+
+    const aborted = cacheManager.getContent('https://example.com/first.png');
+    await untilDownloadsStarted(1);
+    // a tile that sees its download fail moves straight on to the next uri —
+    // while the clear is still waiting on that very failure
+    const next = aborted.catch(() => cacheManager.getContent('https://example.com/second.png'));
+
+    const clear = cacheManager.clearCache().then(() => {
+      clearFinished = true;
+    });
+    await clear;
+
+    await expect(next).resolves.toEqual(payload);
+    // the second download did not start until the clear had finished, so the
+    // unlink pass could not take its temp file from under it
+    expect(nextDownloadStartedAfterClear).toBe(true);
+    await expect(fs.readdir(cacheDirectory)).resolves.toHaveLength(2); // its data file and sidecar
+  });
+
+  it('keeps tracking a request that replaced one the clear aborted, so later callers join it', async () => {
+    const payload = Buffer.from('retried');
+    const url = 'https://example.com/nft.png';
+    let finishRetry!: () => void;
+    mockDownloadFile
+      .mockImplementationOnce(async (_url, localPath, options) => {
+        await fs.writeFile(`${localPath}.tmp`, Buffer.alloc(300));
+        await new Promise<void>((resolve) => {
+          options?.signal?.addEventListener('abort', () => resolve());
+        });
+        await fs.unlink(`${localPath}.tmp`);
+        throw new Error('Request aborted');
+      })
+      .mockImplementationOnce(async (_url, localPath) => {
+        await new Promise<void>((resolve) => {
+          finishRetry = resolve;
+        });
+        await fs.writeFile(localPath, payload);
+        return {
+          'content-type': 'image/png',
+        };
+      });
+
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+
+    const aborted = cacheManager.getContent(url);
+    await untilDownloadsStarted(1);
+    // the same url is requested again the moment the abort is seen — while the
+    // aborted request is still settling and about to remove itself from the map
+    const retried = aborted.catch(() => cacheManager.getContent(url));
+    await cacheManager.clearCache();
+    await untilDownloadsStarted(2);
+
+    // a third caller must join the retry, not start a third download
+    const joined = cacheManager.getContent(url);
+    finishRetry();
+
+    await expect(retried).resolves.toEqual(payload);
+    await expect(joined).resolves.toEqual(payload);
+    expect(mockDownloadFile).toHaveBeenCalledTimes(2);
+  });
+
+  it('evicts a stale temp file but never the one a download in flight is writing', async () => {
+    let finishDownload!: () => void;
+    const inFlightUrl = 'https://example.com/in-flight.png';
     mockDownloadFile.mockImplementation(async (_url, localPath) => {
-      await fs.writeFile(localPath, payload);
+      // the real downloadFile streams into the temp file before renaming it
+      await fs.writeFile(`${localPath}.tmp`, Buffer.alloc(300));
+      await new Promise<void>((resolve) => {
+        finishDownload = resolve;
+      });
+      await fs.rename(`${localPath}.tmp`, localPath);
       return {
         'content-type': 'image/png',
       };
@@ -1187,13 +1381,43 @@ describe('CacheManager eviction', () => {
       maxCacheSize: 1024,
     });
     await cacheManager.init();
-    await cacheManager.getContent('https://example.com/nft.png');
 
-    await cacheManager.setMaxCacheSize(0);
+    const stale = path.join(cacheDirectory, 'aaaa-chiacache.tmp');
+    await fs.writeFile(stale, Buffer.alloc(300));
 
-    expect(cacheManager.maxCacheSize).toBe(0);
-    await expect(cacheManager.getContent('https://example.com/nft.png')).resolves.toEqual(payload);
-    expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+    const pending = cacheManager.getContent(inFlightUrl);
+    await untilDownloadsStarted(1);
+    const inFlightTemp = (await fs.readdir(cacheDirectory)).find(
+      (file) => file.endsWith('.tmp') && file !== 'aaaa-chiacache.tmp',
+    );
+    expect(inFlightTemp).toBeDefined();
+
+    // both temp files count; evicting down to 350 bytes must drop the stale
+    // one and keep the live one
+    await expect(cacheManager.getCacheSize()).resolves.toBe(600);
+    await cacheManager.setMaxCacheSize(350);
+    await expect(fs.stat(stale)).rejects.toThrow('ENOENT');
+    await expect(fs.stat(path.join(cacheDirectory, inFlightTemp!))).resolves.toBeDefined();
+
+    finishDownload();
+    await expect(pending).resolves.toEqual(Buffer.alloc(300));
+  });
+
+  it('reports a sidecar that cannot be read by its error code, not its path', async () => {
+    const url = 'https://example.com/nft.png';
+    const urlHash = crypto.createHash('md5').update(url).digest('hex');
+    // a directory where the sidecar should be makes readFile fail with EISDIR
+    await fs.mkdir(path.join(cacheDirectory, `${urlHash}-chiacache-info`));
+
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+
+    const [info] = await cacheManager.getCacheInfos([url]);
+    expect(info).toMatchObject({ state: 'ERROR', error: 'EISDIR' });
+    expect(info.state === 'ERROR' && info.error.includes(cacheDirectory)).toBe(false);
   });
 });
 
@@ -1306,6 +1530,122 @@ describe('CacheManager request options from the renderer', () => {
     await cacheManager.getContent('https://example.com/nft.png', options);
     expect(mockDownloadFile).toHaveBeenCalledTimes(1);
     expect(mockDownloadFile.mock.calls[0][2]).toMatchObject(expected);
+  });
+});
+
+describe('CacheManager sidecar integrity and error redaction', () => {
+  let cacheDirectory: string;
+
+  beforeEach(async () => {
+    mockDownloadFile.mockReset();
+    cacheDirectory = await fs.mkdtemp(path.join(os.tmpdir(), 'chia-cache-sidecar-'));
+  });
+
+  afterEach(async () => {
+    await fs.rm(cacheDirectory, { recursive: true, force: true });
+  });
+
+  it('writes a sidecar through a temp file that is gone once the entry is published', async () => {
+    mockDownloadFile.mockImplementation(async (_url, localPath) => {
+      await fs.writeFile(localPath, 'bytes');
+      return { 'content-type': 'image/png' };
+    });
+    const cacheManager = new CacheManager({ cacheDirectory, maxCacheSize: 1024 });
+    await cacheManager.init();
+    await cacheManager.getContent('https://example.com/nft.png');
+    const files = await fs.readdir(cacheDirectory);
+    expect(files).toHaveLength(2);
+    expect(files.some((file) => file.endsWith('.tmp'))).toBe(false);
+  });
+
+  it('treats a sidecar that is not JSON as no entry, removes it, and fetches afresh', async () => {
+    const payload = Buffer.from('fresh bytes');
+    mockDownloadFile.mockImplementation(async (_url, localPath) => {
+      await fs.writeFile(localPath, payload);
+      return { 'content-type': 'image/png' };
+    });
+    const cacheManager = new CacheManager({ cacheDirectory, maxCacheSize: 1024 });
+    await cacheManager.init();
+    const url = 'https://example.com/nft.png';
+    await cacheManager.getContent(url);
+    const infoFile = (await fs.readdir(cacheDirectory)).find((file) => file.endsWith('-info'))!;
+    // what a crash mid-write left behind before sidecars were renamed into place
+    await fs.writeFile(path.join(cacheDirectory, infoFile), '{"url":"https://example.com/nft.png","state":"CA');
+
+    const [info] = await cacheManager.getCacheInfos([url]);
+    expect(info.state).toBe('NOT_CACHED');
+    await expect(fs.stat(path.join(cacheDirectory, infoFile))).rejects.toThrow();
+
+    await expect(cacheManager.getContent(url)).resolves.toEqual(payload);
+    expect(mockDownloadFile).toHaveBeenCalledTimes(2);
+    const [after] = await cacheManager.getCacheInfos([url]);
+    expect(after.state).toBe('CACHED');
+  });
+
+  it('keeps the cache directory out of a persisted download error and out of what the renderer reads', async () => {
+    mockDownloadFile.mockRejectedValue(
+      Object.assign(new Error(`EACCES: permission denied, open '${cacheDirectory}/abc-chiacache.tmp'`), {
+        code: 'EACCES',
+      }),
+    );
+    const cacheManager = new CacheManager({ cacheDirectory, maxCacheSize: 1024 });
+    await cacheManager.init();
+    const url = 'https://example.com/nft.png';
+    await expect(cacheManager.getContent(url)).rejects.toThrow('EACCES: cache file operation failed');
+    const [info] = await cacheManager.getCacheInfos([url]);
+    expect(info.state).toBe('ERROR');
+    expect(info.error).toBe('EACCES: cache file operation failed');
+    expect(info.error).not.toContain(cacheDirectory);
+  });
+
+  it('leaves an error that names no cache path as it is', () => {
+    const cacheManager = new CacheManager({ cacheDirectory, maxCacheSize: 1024 });
+    const error = new Error('HTTP error: 404');
+    expect(cacheManager.redactCachePath(error)).toBe(error);
+  });
+});
+
+describe('CacheManager directory scans', () => {
+  let cacheDirectory: string;
+
+  beforeEach(async () => {
+    mockDownloadFile.mockReset();
+    cacheDirectory = await fs.mkdtemp(path.join(os.tmpdir(), 'chia-cache-scan-'));
+  });
+
+  afterEach(async () => {
+    await fs.rm(cacheDirectory, { recursive: true, force: true });
+  });
+
+  it('stats a large cache a bounded number of files at a time', async () => {
+    await Promise.all(
+      Array.from({ length: 300 }, (_, i) => fs.writeFile(path.join(cacheDirectory, `f${i}-chiacache`), 'x')),
+    );
+    const cacheManager = new CacheManager({ cacheDirectory, maxCacheSize: 1024 * 1024 });
+    await cacheManager.init();
+
+    const realStat = fs.stat.bind(fs);
+    let inFlight = 0;
+    let peak = 0;
+    const statSpy = jest.spyOn(fs, 'stat').mockImplementation(async (...args) => {
+      inFlight += 1;
+      peak = Math.max(peak, inFlight);
+      try {
+        await new Promise((resolve) => {
+          setTimeout(resolve, 1);
+        });
+        return await realStat(...(args as Parameters<typeof fs.stat>));
+      } finally {
+        inFlight -= 1;
+      }
+    });
+    try {
+      await expect(cacheManager.getCacheSize()).resolves.toBe(300);
+    } finally {
+      statSpy.mockRestore();
+    }
+    expect(peak).toBeGreaterThan(1);
+    expect(peak).toBeLessThanOrEqual(64);
   });
 });
 

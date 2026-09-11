@@ -1,4 +1,7 @@
+import fs from 'node:fs';
 import path from 'node:path';
+
+import cloneDeep from 'lodash/cloneDeep';
 
 import { getUserDataDir } from './utils/userData';
 import { readData, writeData } from './utils/yamlUtils';
@@ -11,11 +14,28 @@ function getPrefsPath() {
   return path.join(userDataDir, 'prefs.yaml');
 }
 
+let cachedPrefs: { filePath: string; fingerprint: string; value: Record<string, any> } | undefined;
+
 export function readPrefs(): Record<string, any> {
-  return readData(getPrefsPath());
+  const filePath = getPrefsPath();
+  try {
+    // Detect external edits/replacements as well as saves through this module.
+    // Repeated gateway checks need not reread and parse the same YAML file.
+    const stat = fs.statSync(filePath, { bigint: true });
+    const fingerprint = `${stat.dev}:${stat.ino}:${stat.size}:${stat.mtimeNs}:${stat.ctimeNs}`;
+    if (cachedPrefs?.filePath !== filePath || cachedPrefs.fingerprint !== fingerprint) {
+      cachedPrefs = { filePath, fingerprint, value: readData(filePath) };
+    }
+    // Callers such as migratePrefs mutate their result before saving it.
+    return cloneDeep(cachedPrefs.value);
+  } catch {
+    cachedPrefs = undefined;
+    return {};
+  }
 }
 
 export function savePrefs(prefs: Record<string, any>) {
+  cachedPrefs = undefined;
   writeData(prefs, getPrefsPath());
 }
 

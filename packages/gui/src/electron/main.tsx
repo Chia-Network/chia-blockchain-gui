@@ -82,6 +82,7 @@ import {
   addBypassCommand,
 } from './utils/pairStore';
 import * as privatePreferences from './utils/privatePreferences';
+import resolveStoredCacheDirectory from './utils/resolveStoredCacheDirectory';
 import resolveStoredMaxCacheSize from './utils/resolveStoredMaxCacheSize';
 import toCamelCase from './utils/toCamelCase';
 import { setUserDataDir } from './utils/userData';
@@ -130,7 +131,9 @@ const appIcon = nativeImage.createFromPath(path.join(__dirname, AppIcon));
 const prefs = readPrefs();
 
 const defaultCacheFolder = path.join(app.getPath('cache'), app.getName());
-const cacheDirectory: string = prefs.cacheFolder || defaultCacheFolder;
+const cacheDirectory: string = resolveStoredCacheDirectory(prefs.cacheFolder, defaultCacheFolder, (message) =>
+  console.warn(message),
+);
 
 const storedMaxCacheSize: number | undefined = resolveStoredMaxCacheSize(prefs);
 

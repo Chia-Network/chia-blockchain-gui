@@ -7,12 +7,12 @@ const isStoredCacheSize = (size: unknown): size is number => typeof size === 'nu
 
 // `cacheLimitSize` is the legacy preference key older versions of the
 // settings UI stored the value under. Invalid values are ignored because the
-// CacheManager constructor rejects negative sizes. Zero means unlimited, but
-// only under the current key: builds that wrote `cacheLimitSize` rejected
-// zero at startup and kept the default limit, so a stored legacy zero must
-// keep falling through to the default instead of disabling eviction.
+// CacheManager constructor rejects them. A stored zero falls through to the
+// default under either key: zero would disable eviction rather than limit
+// the cache (see sanitizeNumber), and a build that briefly accepted it may
+// have persisted one from an emptied settings field.
 export default function resolveStoredMaxCacheSize(prefs: StoredCacheSizePrefs): number | undefined {
-  if (isStoredCacheSize(prefs.maxCacheSize) && prefs.maxCacheSize >= 0) {
+  if (isStoredCacheSize(prefs.maxCacheSize) && prefs.maxCacheSize > 0) {
     return prefs.maxCacheSize;
   }
 

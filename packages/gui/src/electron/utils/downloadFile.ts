@@ -84,6 +84,10 @@ export { MAX_FILE_SIZE_EXCEEDED_ERROR, isDownloadTimeoutError, isTransientDownlo
 // videos on slow hosts; the inactivity timeout alone would let a host that
 // trickles bytes hold a download slot forever.
 export { DEFAULT_DOWNLOAD_MAX_DURATION };
+// A download streams into `<localPath>.tmp` and is renamed into place once it
+// completes, so a partial file is never served. CacheManager accounts for,
+// evicts and sweeps these files by the same suffix.
+export const TEMP_FILE_SUFFIX = '.tmp';
 
 // The default per-file cap, and the most any caller can ask for. A request
 // for "no limit" (any value at or below zero, the form the size-limit
@@ -172,7 +176,7 @@ export default async function downloadFile(
     throw new Error('Invalid URL');
   }
 
-  const tempFilePath = `${localPath}.tmp`;
+  const tempFilePath = `${localPath}${TEMP_FILE_SUFFIX}`;
   // Redirects are followed one at a time, each checked against the same rule
   // as the requested URL (see redirectPolicy), so a host cannot redirect the
   // main process to a plain-http, loopback or private address.
