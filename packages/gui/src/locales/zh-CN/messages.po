@@ -5218,12 +5218,12 @@ msgstr "通过网关获取 IPFS 内容"
 #~ msgid "File"
 #~ msgstr "File"
 
-#: src/components/nfts/NFTPreview.tsx:576
+#: src/components/nfts/NFTPreview.tsx:698
 msgid "File does not match the expected hash"
 msgstr "文件与预期哈希不匹配"
 
 #: src/components/nfts/NFTHashStatus.tsx:94
-#: src/components/nfts/NFTPreview.tsx:252
+#: src/components/nfts/NFTPreview.tsx:343
 msgid "File is not available"
 msgstr "文件不可用"
 
@@ -6077,7 +6077,7 @@ msgstr "正在加载 NFT"
 msgid "Loading NFT Info..."
 msgstr "正在加载NFT信息..."
 
-#: src/components/nfts/NFTPreview.tsx:565
+#: src/components/nfts/NFTPreview.tsx:687
 msgid "Loading NFT..."
 msgstr "正在加载NFT..."
 
@@ -6085,8 +6085,8 @@ msgstr "正在加载NFT..."
 #~ msgid "Loading NFTs..."
 #~ msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:565
-#: src/components/nfts/NFTPreview.tsx:587
+#: src/components/nfts/NFTPreview.tsx:687
+#: src/components/nfts/NFTPreview.tsx:719
 msgid "Loading preview..."
 msgstr "正在加载预览..."
 
@@ -6133,7 +6133,7 @@ msgstr "日志查看器"
 msgid "Logs and diagnostics"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:441
+#: src/components/nfts/NFTPreview.tsx:562
 msgid "Loop video"
 msgstr "循环播放视频"
 
@@ -6141,11 +6141,11 @@ msgstr "循环播放视频"
 msgid "Loop videos"
 msgstr "循环播放视频"
 
-#: src/components/nfts/NFTPreview.tsx:437
+#: src/components/nfts/NFTPreview.tsx:558
 msgid "Looping is enabled for all videos in Settings"
 msgstr "已在设置中为所有视频启用循环播放"
 
-#: src/components/nfts/NFTPreview.tsx:439
+#: src/components/nfts/NFTPreview.tsx:560
 msgid "Looping on"
 msgstr "循环播放已开启"
 
@@ -6615,7 +6615,7 @@ msgstr "当前没有报价"
 #~ msgid "No Custom Permissions"
 #~ msgstr "No Custom Permissions"
 
-#: src/components/nfts/NFTPreview.tsx:570
+#: src/components/nfts/NFTPreview.tsx:692
 msgid "No file available"
 msgstr "没有可用文件"
 
@@ -7561,7 +7561,7 @@ msgstr "正在准备联合耕种农田"
 msgid "Preparing standard wallet"
 msgstr "正在准备标准钱包"
 
-#: src/components/nfts/NFTPreview.tsx:288
+#: src/components/nfts/NFTPreview.tsx:402
 #: src/components/offers2/OfferBuilderNFT.tsx:75
 msgid "Preview"
 msgstr "预览"
@@ -7574,6 +7574,10 @@ msgstr "预览可用"
 msgid "Preview available  <0/>"
 msgstr "预览可用  <0/>"
 
+#: src/components/nfts/NFTPreview.tsx:167
+msgid "Preview cannot be shown"
+msgstr ""
+
 #: src/components/nfts/NFTDetails.tsx:316
 #~ msgid "Preview image uris"
 #~ msgstr ""
@@ -7582,7 +7586,7 @@ msgstr "预览可用  <0/>"
 msgid "Preview image URL {index}"
 msgstr "图片预览网址{index}"
 
-#: src/components/nfts/NFTPreview.tsx:582
+#: src/components/nfts/NFTPreview.tsx:714
 msgid "Preview is not available"
 msgstr "预览不可用"
 
@@ -8893,6 +8897,10 @@ msgstr "他们将收到:"
 msgid "This allows you to add a directory that has plots in it. If you have not created any plots, go to the plotting screen."
 msgstr "添加一个包含图块的目录。如果还没有创建任何图块，请前往绘图界面。"
 
+#: src/components/nfts/NFTPreview.tsx:705
+msgid "This audio format cannot be played here"
+msgstr ""
+
 #: src/components/offers2/OfferBuilderViewer.tsx:314
 msgid "This Data Layer offer contains no store updates and cannot be accepted."
 msgstr "此数据层报价不包含存储更新，不能接受。"
@@ -9020,6 +9028,10 @@ msgstr "此代币可由发行方销毁"
 #: src/hooks/useOpenUnsafeLink.tsx:24
 msgid "This URL is not allowed for security reasons."
 msgstr "此网址由于安全原因不允许使用。"
+
+#: src/components/nfts/NFTPreview.tsx:707
+msgid "This video format cannot be played here"
+msgstr ""
 
 #: src/components/settings/SettingsIntegration.tsx:398
 #~ msgid "This will reset all previously granted permissions across all Dapps that have been connected to. After resetting you will be asked to grant permission again."

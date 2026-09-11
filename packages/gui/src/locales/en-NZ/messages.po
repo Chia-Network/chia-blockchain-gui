@@ -5216,12 +5216,12 @@ msgstr ""
 #~ msgid "File"
 #~ msgstr "File"
 
-#: src/components/nfts/NFTPreview.tsx:576
+#: src/components/nfts/NFTPreview.tsx:698
 msgid "File does not match the expected hash"
 msgstr ""
 
 #: src/components/nfts/NFTHashStatus.tsx:94
-#: src/components/nfts/NFTPreview.tsx:252
+#: src/components/nfts/NFTPreview.tsx:343
 msgid "File is not available"
 msgstr ""
 
@@ -6075,7 +6075,7 @@ msgstr "Loading NFT"
 msgid "Loading NFT Info..."
 msgstr "Loading NFT Info..."
 
-#: src/components/nfts/NFTPreview.tsx:565
+#: src/components/nfts/NFTPreview.tsx:687
 msgid "Loading NFT..."
 msgstr "Loading NFT..."
 
@@ -6083,8 +6083,8 @@ msgstr "Loading NFT..."
 #~ msgid "Loading NFTs..."
 #~ msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:565
-#: src/components/nfts/NFTPreview.tsx:587
+#: src/components/nfts/NFTPreview.tsx:687
+#: src/components/nfts/NFTPreview.tsx:719
 msgid "Loading preview..."
 msgstr "Loading preview..."
 
@@ -6131,7 +6131,7 @@ msgstr "Log Viewer"
 msgid "Logs and diagnostics"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:441
+#: src/components/nfts/NFTPreview.tsx:562
 msgid "Loop video"
 msgstr ""
 
@@ -6139,11 +6139,11 @@ msgstr ""
 msgid "Loop videos"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:437
+#: src/components/nfts/NFTPreview.tsx:558
 msgid "Looping is enabled for all videos in Settings"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:439
+#: src/components/nfts/NFTPreview.tsx:560
 msgid "Looping on"
 msgstr ""
 
@@ -6613,7 +6613,7 @@ msgstr "No current offers"
 #~ msgid "No Custom Permissions"
 #~ msgstr "No Custom Permissions"
 
-#: src/components/nfts/NFTPreview.tsx:570
+#: src/components/nfts/NFTPreview.tsx:692
 msgid "No file available"
 msgstr "No file available"
 
@@ -7559,7 +7559,7 @@ msgstr "Preparing Plot NFT"
 msgid "Preparing standard wallet"
 msgstr "Preparing standard wallet"
 
-#: src/components/nfts/NFTPreview.tsx:288
+#: src/components/nfts/NFTPreview.tsx:402
 #: src/components/offers2/OfferBuilderNFT.tsx:75
 msgid "Preview"
 msgstr "Preview"
@@ -7572,6 +7572,10 @@ msgstr ""
 msgid "Preview available  <0/>"
 msgstr ""
 
+#: src/components/nfts/NFTPreview.tsx:167
+msgid "Preview cannot be shown"
+msgstr ""
+
 #: src/components/nfts/NFTDetails.tsx:316
 #~ msgid "Preview image uris"
 #~ msgstr ""
@@ -7580,7 +7584,7 @@ msgstr ""
 msgid "Preview image URL {index}"
 msgstr "Preview image URL {index}"
 
-#: src/components/nfts/NFTPreview.tsx:582
+#: src/components/nfts/NFTPreview.tsx:714
 msgid "Preview is not available"
 msgstr ""
 
@@ -8891,6 +8895,10 @@ msgstr "They will receive"
 msgid "This allows you to add a directory that has plots in it. If you have not created any plots, go to the plotting screen."
 msgstr "This allows you to add a directory that has plots in it. If you have not created any plots, go to the plotting screen."
 
+#: src/components/nfts/NFTPreview.tsx:705
+msgid "This audio format cannot be played here"
+msgstr ""
+
 #: src/components/offers2/OfferBuilderViewer.tsx:314
 msgid "This Data Layer offer contains no store updates and cannot be accepted."
 msgstr ""
@@ -9018,6 +9026,10 @@ msgstr ""
 #: src/hooks/useOpenUnsafeLink.tsx:24
 msgid "This URL is not allowed for security reasons."
 msgstr "This URL is not allowed for security reasons."
+
+#: src/components/nfts/NFTPreview.tsx:707
+msgid "This video format cannot be played here"
+msgstr ""
 
 #: src/components/settings/SettingsIntegration.tsx:398
 #~ msgid "This will reset all previously granted permissions across all Dapps that have been connected to. After resetting you will be asked to grant permission again."
