@@ -1616,7 +1616,7 @@ msgstr ""
 #: src/electron/commands/Commands.ts:1466
 #: src/electron/dialogs/Confirm/Confirm.tsx:438
 #: src/electron/dialogs/Pair/Pair.tsx:377
-#: src/electron/main.tsx:1147
+#: src/electron/main.tsx:1150
 msgid "Cancel"
 msgstr "Anuloje"
 
@@ -2439,7 +2439,7 @@ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/commands/humanizeCommand.ts:20
-#: src/electron/main.tsx:966
+#: src/electron/main.tsx:969
 msgid "Confirm"
 msgstr "Konfirmo"
 
@@ -2465,15 +2465,15 @@ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/commands/humanizeParamValue.ts:107
-#: src/electron/main.tsx:714
-#: src/electron/main.tsx:965
+#: src/electron/main.tsx:717
+#: src/electron/main.tsx:968
 msgid "Yes"
 msgstr "Po"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/humanizeParamValue.ts:107
-#: src/electron/main.tsx:714
-#: src/electron/main.tsx:965
+#: src/electron/main.tsx:717
+#: src/electron/main.tsx:968
 msgid "No"
 msgstr "Jo"
 
@@ -2702,17 +2702,17 @@ msgid "Save changes"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:715
+#: src/electron/main.tsx:718
 msgid "Save Command Preferences"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:717
+#: src/electron/main.tsx:720
 msgid "Would you like to save preferences for the following commands?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:721
+#: src/electron/main.tsx:724
 msgid ""
 "These commands will be executed without confirmation in the future:\n"
 "\n"
@@ -2720,139 +2720,139 @@ msgid ""
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:968
+#: src/electron/main.tsx:971
 msgid "Are you sure you want to quit?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:973
+#: src/electron/main.tsx:976
 msgid "Keep service running in the background"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1147
+#: src/electron/main.tsx:1150
 msgid "Continue"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1149
+#: src/electron/main.tsx:1152
 msgid "Warning"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1150
+#: src/electron/main.tsx:1153
 msgid "Log files may contain sensitive information"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1151
+#: src/electron/main.tsx:1154
 msgid "Are you sure you want to view the log contents?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1277
-#: src/electron/main.tsx:1485
+#: src/electron/main.tsx:1280
+#: src/electron/main.tsx:1488
 msgid "File"
 msgstr "Skedari"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1285
+#: src/electron/main.tsx:1288
 msgid "Edit"
 msgstr "Modifiko"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1317
+#: src/electron/main.tsx:1320
 msgid "View"
 msgstr "Shiko"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1326
+#: src/electron/main.tsx:1329
 msgid "Developer"
 msgstr "Programuesi"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1329
+#: src/electron/main.tsx:1332
 msgid "Developer Tools"
 msgstr "Veglat e Programuesit"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1337
+#: src/electron/main.tsx:1340
 msgid "Trigger Desktop Notification"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1366
+#: src/electron/main.tsx:1369
 msgid "Full Screen"
 msgstr "Ekran i plotë"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1373
+#: src/electron/main.tsx:1376
 msgid "Window"
 msgstr "Dritare"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1387
+#: src/electron/main.tsx:1390
 msgid "Help"
 msgstr "Ndihmë"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1391
+#: src/electron/main.tsx:1394
 msgid "Chia Blockchain Wiki"
 msgstr "Zinxhiri Chia Wiki"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1397
+#: src/electron/main.tsx:1400
 msgid "Frequently Asked Questions"
 msgstr "Pyetjet më të shpeshta"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1403
+#: src/electron/main.tsx:1406
 msgid "Release Notes"
 msgstr "Shënimet e Lirimit"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1409
+#: src/electron/main.tsx:1412
 msgid "Contribute on GitHub"
 msgstr "Kontribo në GitHub"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1418
+#: src/electron/main.tsx:1421
 msgid "Report an Issue..."
 msgstr "Raportoni një çështje..."
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1424
+#: src/electron/main.tsx:1427
 msgid "Chat on Discord"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1430
+#: src/electron/main.tsx:1433
 msgid "Follow on X"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1442
+#: src/electron/main.tsx:1445
 msgid "Chia"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1445
-#: src/electron/main.tsx:1541
+#: src/electron/main.tsx:1448
+#: src/electron/main.tsx:1544
 msgid "About Chia Blockchain"
 msgstr "Rreth zinxhirit Chia"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1451
+#: src/electron/main.tsx:1454
 msgid "Check for Updates..."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1500
+#: src/electron/main.tsx:1503
 msgid "Speech"
 msgstr "Të folurit"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1547
+#: src/electron/main.tsx:1550
 msgid "Check for updates..."
 msgstr ""
 
@@ -4877,6 +4877,11 @@ msgstr ""
 
 #: src/components/settings/SettingsHarvester.tsx:532
 msgid "Enforce GPU Index"
+msgstr ""
+
+#: src/components/settings/LimitCacheSize.tsx:79
+#: src/components/settings/LimitCacheSize.tsx:83
+msgid "Enter a cache size limit above 0 MiB"
 msgstr ""
 
 #: src/components/signVerify/SignMessage.tsx:61
@@ -8630,7 +8635,7 @@ msgstr ""
 msgid "Successfully restarted Harvester"
 msgstr ""
 
-#: src/components/settings/LimitCacheSize.tsx:49
+#: src/components/settings/LimitCacheSize.tsx:62
 msgid "Successfully updated cache size limit."
 msgstr ""
 
@@ -9370,7 +9375,7 @@ msgstr ""
 #~ msgstr "Unsupported commands"
 
 #: src/components/settings/IpfsGatewayUrl.tsx:93
-#: src/components/settings/LimitCacheSize.tsx:77
+#: src/components/settings/LimitCacheSize.tsx:100
 msgid "Update"
 msgstr ""
 
