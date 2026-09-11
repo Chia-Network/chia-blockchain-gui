@@ -5,8 +5,11 @@ describe('resolveStoredMaxCacheSize', () => {
     expect(resolveStoredMaxCacheSize({ maxCacheSize: 2048 })).toBe(2048);
   });
 
-  it('accepts zero (unlimited) from the current key', () => {
-    expect(resolveStoredMaxCacheSize({ maxCacheSize: 0 })).toBe(0);
+  it('ignores a stored zero under the current key so eviction stays enabled', () => {
+    // zero would disable eviction rather than limit the cache; a build that
+    // accepted it may have persisted one from an emptied settings field
+    expect(resolveStoredMaxCacheSize({ maxCacheSize: 0 })).toBeUndefined();
+    expect(resolveStoredMaxCacheSize({ maxCacheSize: 0, cacheLimitSize: 1024 })).toBe(1024);
   });
 
   it('accepts a positive size from the legacy key', () => {

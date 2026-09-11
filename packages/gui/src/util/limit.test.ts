@@ -1,4 +1,4 @@
-import limit from './limit';
+import limit, { MAX_LIFO_BURST } from './limit';
 
 function deferred() {
   let resolve!: () => void;
@@ -9,6 +9,24 @@ function deferred() {
 }
 
 describe('limit', () => {
+  it('admits an old task even when newer work keeps arriving', async () => {
+    const add = limit(1, { lifo: true });
+    const first = deferred();
+    const order: string[] = [];
+    const tasks = [add(() => first.promise), add(() => order.push('old'))];
+    const recent = () => {
+      order.push('recent');
+      if (order.length <= MAX_LIFO_BURST) {
+        tasks.push(add(recent));
+      }
+    };
+    tasks.push(add(recent));
+    first.resolve();
+    await tasks[1];
+    expect(order.indexOf('old')).toBeLessThanOrEqual(MAX_LIFO_BURST);
+    await Promise.all(tasks);
+  });
+
   it('runs queued tasks in FIFO order by default', async () => {
     const add = limit(1);
     const first = deferred();

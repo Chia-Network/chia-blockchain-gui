@@ -1,3 +1,6 @@
+// Recent views stay responsive, while one oldest task runs after each burst.
+export const MAX_LIFO_BURST = 8;
+
 export default function limit(concurrency: number, options: { lifo?: boolean } = {}) {
   const { lifo = false } = options;
 
@@ -7,6 +10,7 @@ export default function limit(concurrency: number, options: { lifo?: boolean } =
     reject: (error: Error) => void;
   }[] = [];
   let active = 0;
+  let recentStarts = 0;
 
   async function execute() {
     if (!queue.length || active >= concurrency) {
@@ -18,7 +22,9 @@ export default function limit(concurrency: number, options: { lifo?: boolean } =
     // LIFO runs the most recently requested task first, so work triggered by
     // what the user is currently looking at is not starved by a long backlog
     // of earlier background requests.
-    const item = lifo ? queue.pop() : queue.shift();
+    const takeRecent = lifo && queue.length > 1 && recentStarts < MAX_LIFO_BURST;
+    const item = takeRecent ? queue.pop() : queue.shift();
+    recentStarts = takeRecent ? recentStarts + 1 : 0;
     if (!item) {
       return;
     }
