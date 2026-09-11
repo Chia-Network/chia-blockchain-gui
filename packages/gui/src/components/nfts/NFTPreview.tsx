@@ -11,6 +11,7 @@ import {
 import { t, Trans } from '@lingui/macro';
 import { Loop as LoopIcon, NotInterested } from '@mui/icons-material';
 import { alpha, Box, IconButton, Tooltip } from '@mui/material';
+import debug from 'debug';
 import React, { useMemo, useRef, Fragment, useCallback, useEffect, type ReactNode } from 'react';
 import styled from 'styled-components';
 
@@ -42,6 +43,7 @@ import useStateAbort from '../../hooks/useStateAbort';
 import getFileExtension from '../../util/getFileExtension';
 import getNFTId from '../../util/getNFTId';
 import hasSensitiveContent from '../../util/hasSensitiveContent';
+import probeMediaPlayability from '../../util/probeMediaPlayability';
 
 import NFTHashStatus from './NFTHashStatus';
 
@@ -108,6 +110,8 @@ const CompactExtension = styled.div`
   color: ${({ theme }) => theme.palette.primary.main};
 `;
 
+const log = debug('chia-gui:NFTPreview');
+
 export type NFTPreviewProps = {
   id: string;
   width?: number | string;
@@ -122,7 +126,74 @@ export type NFTPreviewProps = {
   hideStatus?: boolean;
 };
 
+// One tile's failure stays that tile's. Whatever an NFT's files or metadata
+// hold, a render error here is shown in place of the preview; without this
+// the nearest boundary is the one around the whole app, and one NFT in the
+// wallet would replace the gallery with the crash page on every load. The
+// content it replaces can no longer report a preview status, so the boundary
+// reports for it (`onFailed`): a tile that shows this notice has no preview,
+// whatever verdict its content had reached before it crashed.
+type NFTPreviewErrorBoundaryProps = {
+  children: ReactNode;
+  width: number | string;
+  height: number | string;
+  ratio: number;
+  onFailed?: () => void;
+};
+
+class NFTPreviewErrorBoundary extends React.Component<NFTPreviewErrorBoundaryProps, { failed: boolean }> {
+  constructor(props: NFTPreviewErrorBoundaryProps) {
+    super(props);
+    this.state = { failed: false };
+  }
+
+  static getDerivedStateFromError() {
+    return { failed: true };
+  }
+
+  componentDidCatch(error: Error) {
+    log(`NFT preview failed to render: ${error.message}`);
+    this.props.onFailed?.();
+  }
+
+  render() {
+    if (this.state.failed) {
+      // the same box the preview would have filled, so the tile keeps its
+      // place in the grid
+      const { width, height, ratio } = this.props;
+      return (
+        <StyledCardPreview width={width} height={height} sx={{ aspectRatio: ratio.toString() }}>
+          <IconMessage icon={<NotInterested fontSize="large" />}>
+            <Trans>Preview cannot be shown</Trans>
+          </IconMessage>
+        </StyledCardPreview>
+      );
+    }
+    return this.props.children;
+  }
+}
+
 export default function NFTPreview(props: NFTPreviewProps) {
+  // keyed by the NFT: a failure is that NFT's, and the boundary starts
+  // afresh when the same tile (the detail view's arrows) shows another
+  const { id, width = '100%', height = 'auto', ratio = 1, preview: isPreview = false } = props;
+  const { setPreviewStatus } = useNFTProvider();
+  const nftId = useMemo(() => getNFTId(id), [id]);
+  // like the content's own report below, only a preview-mode tile speaks for
+  // the gallery filter
+  const handleFailed = useCallback(() => {
+    if (isPreview) {
+      setPreviewStatus(nftId, NFTPreviewStatus.UNAVAILABLE);
+    }
+  }, [isPreview, nftId, setPreviewStatus]);
+  return (
+    <NFTPreviewErrorBoundary key={id} width={width} height={height} ratio={ratio} onFailed={handleFailed}>
+      <NFTPreviewContent {...props} />
+    </NFTPreviewErrorBoundary>
+  );
+}
+
+function NFTPreviewContent(props: NFTPreviewProps) {
   const [nftImageFittingMode] = useNFTImageFittingMode();
   const {
     id,
@@ -153,9 +224,18 @@ export default function NFTPreview(props: NFTPreviewProps) {
     `nft-preview-ignore-size-limit-${nftId}`,
   );
 
+  // Verified media files Chromium turned out not to decode (an HEVC video on
+  // Linux, say), recorded by preparePreview after probing the cached file —
+  // the sandboxed player cannot report the failure itself. Handed back to the
+  // verifier so it passes over an unplayable preview video and settles on the
+  // next source (preview image, data file) instead; the data file itself is
+  // never skipped, so an unplayable data file ends up as the notice below.
+  const [unplayableUris, setUnplayableUris] = useStateAbort<string[]>([]);
+
   const { preview, isLoading: isLoadingVerifyHash } = useNFTVerifyHash(nftId, {
     preview: isPreview,
     ignoreSizeLimit,
+    excludedPreviewUris: unplayableUris,
   });
 
   const { type: previewFileType, isLoading: isLoadingFileType } = useFileType(preview?.uri);
@@ -209,6 +289,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
   const isHashMismatch = isSettledHashMismatch(preview);
 
   const previewUri = isHashMismatch ? undefined : preview?.uri;
+  const isUnplayable = !!previewUri && unplayableUris.includes(previewUri);
 
   const preparePreview = useCallback(
     async (signal: AbortSignal) => {
@@ -216,6 +297,16 @@ export default function NFTPreview(props: NFTPreviewProps) {
         setPrepareError(undefined, signal);
 
         if (!previewUri) {
+          setPreviewContent(undefined, signal);
+          return;
+        }
+
+        // An extensionless uri (a bare ipfs CID, say) has no type until its
+        // headers arrive. Preparing it before then would render it as an image
+        // — a broken one for a video — and that content would still be on
+        // screen, and counted as an available preview, while the run for the
+        // settled type is probing the file below.
+        if (isLoadingFileType) {
           setPreviewContent(undefined, signal);
           return;
         }
@@ -251,6 +342,29 @@ export default function NFTPreview(props: NFTPreviewProps) {
           setPreviewContent(undefined, signal);
           setPrepareError(new Error(t`File is not available`), signal);
           return;
+        }
+
+        // The player runs in a scriptless sandbox and cannot say when Chromium
+        // rejects the stream, so ask the media pipeline first. Only a definite
+        // verdict counts — a probe that fails for any other reason falls
+        // through to the player as before. Whatever an earlier run of this
+        // callback left on screen comes down first: nothing is a preview, and
+        // nothing reports as one, until the probe has passed.
+        if (previewFileType === FileType.VIDEO || previewFileType === FileType.AUDIO) {
+          setPreviewContent(undefined, signal);
+          const playability = await probeMediaPlayability(
+            cachedURI,
+            previewFileType === FileType.VIDEO ? 'video' : 'audio',
+            { signal },
+          );
+          if (signal.aborted) {
+            return;
+          }
+          if (playability === 'unsupported') {
+            setPreviewContent(undefined, signal);
+            setUnplayableUris((uris) => (uris.includes(previewUri) ? uris : [...uris, previewUri]), signal);
+            return;
+          }
         }
 
         // Interactivity is controlled outside the iframe (pointer-events on
@@ -301,17 +415,24 @@ export default function NFTPreview(props: NFTPreviewProps) {
       getURI,
       ignoreSizeLimit,
       previewFileType,
+      isLoadingFileType,
       loopVideo,
       isDarkMode,
       setPreviewContent,
       setPrepareError,
+      setUnplayableUris,
     ],
   );
 
   useEffect(() => {
     abortControllerRef.current.abort();
-    abortControllerRef.current = new AbortController();
-    preparePreview(abortControllerRef.current.signal);
+    const abortController = new AbortController();
+    abortControllerRef.current = abortController;
+    preparePreview(abortController.signal);
+    // A tile that scrolls away mid-preparation lets go of its probe slot and
+    // its pending state updates, instead of holding one of the few probe
+    // slots until the probe's own timeout.
+    return () => abortController.abort();
   }, [preparePreview]);
 
   const previewCompactIcon = useMemo(() => {
@@ -536,8 +657,9 @@ export default function NFTPreview(props: NFTPreviewProps) {
       return isLoadingMetadata ? undefined : NFTPreviewStatus.UNAVAILABLE;
     }
 
-    if (prepareError) {
-      // the verified file could not be served from the cache
+    if (prepareError || isUnplayable) {
+      // the verified file could not be served from the cache, or Chromium
+      // cannot decode it — either way there is nothing to show
       return NFTPreviewStatus.UNAVAILABLE;
     }
 
@@ -547,7 +669,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
     }
 
     return NFTPreviewStatus.AVAILABLE;
-  }, [isLoading, isLoadingVerifyHash, isLoadingMetadata, preview, prepareError, previewContent]);
+  }, [isLoading, isLoadingVerifyHash, isLoadingMetadata, preview, prepareError, previewContent, isUnplayable]);
 
   useEffect(() => {
     // Only preview-mode tiles report: the detail view verifies the full data
@@ -574,6 +696,16 @@ export default function NFTPreview(props: NFTPreviewProps) {
         <Background>
           <IconMessage icon={<NotInterested fontSize="large" />}>
             <Trans>File does not match the expected hash</Trans>
+          </IconMessage>
+        </Background>
+      ) : usesIframe && isUnplayable ? (
+        <Background>
+          <IconMessage icon={<NotInterested fontSize="large" />}>
+            {previewFileType === FileType.AUDIO ? (
+              <Trans>This audio format cannot be played here</Trans>
+            ) : (
+              <Trans>This video format cannot be played here</Trans>
+            )}
           </IconMessage>
         </Background>
       ) : usesIframe && prepareError ? (
