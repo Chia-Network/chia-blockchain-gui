@@ -511,6 +511,54 @@ describe('CacheManager eviction', () => {
     }
   });
 
+  it('records the gateway that served an ipfs:// file', async () => {
+    const payload = Buffer.from('cached payload');
+    const url = 'ipfs://QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/img.png';
+    mockDownloadFile.mockImplementationOnce(async (_url, localPath) => {
+      await fs.writeFile(localPath, payload);
+      return { 'content-type': 'image/png' };
+    });
+
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+
+    await expect(cacheManager.getContent(url)).resolves.toEqual(payload);
+
+    const [info] = await cacheManager.getCacheInfos([url]);
+    expect(info).toMatchObject({ state: 'CACHED', gateway: 'https://ipfs.io/ipfs/' });
+  });
+
+  it('records the gateway that served a gateway link through the fallback, and none for one its own host served', async () => {
+    const payload = Buffer.from('cached payload');
+    const fallbackUrl = 'https://nftstorage.link/ipfs/QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/img.png';
+    const directUrl = 'https://nftstorage.link/ipfs/QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/other.png';
+    const serve = async (_url: string, localPath: string) => {
+      await fs.writeFile(localPath, payload);
+      return { 'content-type': 'image/png' };
+    };
+    mockDownloadFile
+      .mockRejectedValueOnce(new Error('HTTP error: 403'))
+      .mockImplementationOnce(serve)
+      .mockImplementationOnce(serve);
+
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+
+    await expect(cacheManager.getContent(fallbackUrl)).resolves.toEqual(payload);
+    await expect(cacheManager.getContent(directUrl)).resolves.toEqual(payload);
+
+    const [viaFallback, viaOwnHost] = await cacheManager.getCacheInfos([fallbackUrl, directUrl]);
+    expect(viaFallback).toMatchObject({ state: 'CACHED', gateway: 'https://ipfs.io/ipfs/' });
+    expect(viaOwnHost).toMatchObject({ state: 'CACHED' });
+    expect(viaOwnHost).not.toHaveProperty('gateway');
+  });
+
   it('downloads through the gateway captured when the request entered, even if the preference changed before the transfer started', async () => {
     const url = 'ipfs://QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/img.png';
     mockDownloadFile.mockRejectedValue(new Error('HTTP error: 403'));
@@ -537,6 +585,28 @@ describe('CacheManager eviction', () => {
     } finally {
       mockIpfsGatewayBase.mockReturnValue('https://ipfs.io/ipfs/');
     }
+  });
+
+  it('records no gateway for a link whose own host is the configured gateway', async () => {
+    const payload = Buffer.from('cached payload');
+    const url = 'https://ipfs.io/ipfs/QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/img.png';
+    mockDownloadFile.mockImplementationOnce(async (_url, localPath) => {
+      await fs.writeFile(localPath, payload);
+      return { 'content-type': 'image/png' };
+    });
+
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+
+    await expect(cacheManager.getContent(url)).resolves.toEqual(payload);
+    expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+
+    const [info] = await cacheManager.getCacheInfos([url]);
+    expect(info).toMatchObject({ state: 'CACHED' });
+    expect(info).not.toHaveProperty('gateway');
   });
 
   it('does not keep re-requesting an ipfs failure whose sidecar predates gateway tracking', async () => {

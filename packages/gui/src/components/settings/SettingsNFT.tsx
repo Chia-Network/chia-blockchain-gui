@@ -20,6 +20,7 @@ import useHideObjectionableContent from '../../hooks/useHideObjectionableContent
 import useIpfsGateway from '../../hooks/useIpfsGateway';
 import useNFTImageFittingMode from '../../hooks/useNFTImageFittingMode';
 import { useNFTVideoLoopGlobal } from '../../hooks/useNFTVideoLoop';
+import useShowNFTSource from '../../hooks/useShowNFTSource';
 
 import IpfsGatewayUrl from './IpfsGatewayUrl';
 import LimitCacheSize from './LimitCacheSize';
@@ -45,6 +46,7 @@ export default function SettingsGeneral() {
   const [nftVideoLoop, setNFTVideoLoop] = useNFTVideoLoopGlobal();
   const [ipfsGateway, setIpfsGateway] = useIpfsGateway();
   const [allowUnverifiedPreviews, setAllowUnverifiedPreviews] = useAllowUnverifiedNFTPreviews();
+  const [showNFTSource, setShowNFTSource] = useShowNFTSource();
   // const [, setCacheFolder] = usePrefs('cacheFolder', '');
   const openDialog = useOpenDialog();
 
@@ -62,6 +64,10 @@ export default function SettingsGeneral() {
 
   function handleChangeAllowUnverifiedPreviews(event: React.ChangeEvent<HTMLInputElement>) {
     setAllowUnverifiedPreviews(event.target.checked);
+  }
+
+  function handleChangeShowNFTSource(event: React.ChangeEvent<HTMLInputElement>) {
+    setShowNFTSource(event.target.checked);
   }
 
   async function clearNFTCache() {
@@ -195,6 +201,26 @@ export default function SettingsGeneral() {
               ipfs.io gateway, which is being wound down and rate limits applications; https://ipfs.mintgarden.io,
               https://gateway.pinata.cloud and https://ipfs.filebase.io currently work, as does a local IPFS node such
               as http://127.0.0.1:8080. Files are re-checked through the new gateway right away.
+            </Trans>
+          </SettingsText>
+        </Grid>
+      </Grid>
+
+      <Grid container>
+        <Grid item style={{ width: '400px' }}>
+          <SettingsTitle>
+            <Trans>Show where NFT files come from</Trans>
+          </SettingsTitle>
+        </Grid>
+        <Grid item container xs justifyContent="flex-end" marginTop="-6px">
+          <FormControlLabel control={<Switch checked={showNFTSource} onChange={handleChangeShowNFTSource} />} />
+        </Grid>
+        <Grid item style={{ width: '400px' }}>
+          <SettingsText>
+            <Trans>
+              Each NFT card gets a label saying whether the file it shows is IPFS content, and whether that content came
+              through the IPFS gateway above or directly from the host in the file's address. A file downloaded before
+              this option existed may be labeled as direct even when a gateway served it.
             </Trans>
           </SettingsText>
         </Grid>
