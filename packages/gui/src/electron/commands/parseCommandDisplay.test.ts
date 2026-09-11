@@ -43,7 +43,15 @@ jest.mock('../api/nftGetMetadata', () => ({
   nftGetImageDataUrl: mockNftGetImageDataUrl,
 }));
 
-const { parseCommandDisplay, resolveNftPreviewUrl } =
+// the IPFS gateway preference, read by the resolver to know whether ipfs://
+// URIs can be fetched at all; off unless a test turns it on
+const mockReadPrefs = jest.fn<Record<string, any>, []>(() => ({}));
+
+jest.mock('../prefs', () => ({
+  readPrefs: () => mockReadPrefs(),
+}));
+
+const { parseCommandDisplay, resolveNftPreviewUrl, MAX_NFT_PREVIEW_URI_ATTEMPTS } =
   jest.requireActual<typeof import('./parseCommandDisplay')>('./parseCommandDisplay');
 
 function makeOfferSummary(overrides: Partial<OfferSummaryResponse['summary']> = {}): OfferSummaryResponse {
@@ -313,6 +321,42 @@ describe('parseCommandDisplay', () => {
     } finally {
       nowSpy.mockRestore();
     }
+  });
+
+  it('does not try ipfs URIs while the gateway option is off, and does once it is on', async () => {
+    const CID = 'QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB';
+    // With the option off an ipfs URI is refused synchronously before any
+    // request — a list of them would spin through the budget without ever
+    // yielding — so they are dropped up front and only the https copy is tried.
+    const ipfsUris = Array.from({ length: 1000 }, (_, i) => `ipfs://${CID}/${i}.png`);
+    mockNftGetImageDataUrl.mockResolvedValue(undefined);
+
+    await expect(
+      resolveNftPreviewUrl([...ipfsUris, 'https://example.com/copy.png'], 'data-hash', [], undefined),
+    ).resolves.toBeUndefined();
+    expect(mockNftGetImageDataUrl.mock.calls.map(([uri]) => uri)).toEqual(['https://example.com/copy.png']);
+
+    mockNftGetImageDataUrl.mockClear();
+    mockReadPrefs.mockReturnValue({ nftIpfsGateway: true });
+    try {
+      await expect(resolveNftPreviewUrl([ipfsUris[0]], 'data-hash', [], undefined)).resolves.toBeUndefined();
+      expect(mockNftGetImageDataUrl).toHaveBeenCalledWith(ipfsUris[0], 'data-hash', expect.any(Number));
+    } finally {
+      mockReadPrefs.mockReturnValue({});
+    }
+  });
+
+  it('tries at most MAX_NFT_PREVIEW_URI_ATTEMPTS fallbacks per URI list, whatever the budget', async () => {
+    const dataUris = Array.from({ length: 100 }, (_, i) => `https://example.com/${i}.png`);
+    const metadataUris = Array.from({ length: 100 }, (_, i) => `https://example.com/${i}.json`);
+    // every attempt fails at once, so the time budget alone would never stop the walk
+    mockNftGetImageDataUrl.mockResolvedValue(undefined);
+    mockNftGetMetadata.mockResolvedValue(undefined);
+
+    await expect(resolveNftPreviewUrl(dataUris, 'data-hash', metadataUris, 'metadata-hash')).resolves.toBeUndefined();
+
+    expect(mockNftGetImageDataUrl).toHaveBeenCalledTimes(MAX_NFT_PREVIEW_URI_ATTEMPTS);
+    expect(mockNftGetMetadata).toHaveBeenCalledTimes(MAX_NFT_PREVIEW_URI_ATTEMPTS);
   });
 
   it('does not fetch confirmation previews that have no expected on-chain hash', async () => {
