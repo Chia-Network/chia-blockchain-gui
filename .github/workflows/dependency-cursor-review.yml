@@ -1034,14 +1034,19 @@ jobs:
               r"(?:example|output|required)\s+format"
               r"|format\s+example"
               r"|(?:example\s+)?template"
+              r"|for\s+example"
+              r"|example(?!\s+format\b)"
               r")\s*:?"
               r"(?:\*\*)?"
               r"\s*:?"
               r"[ \t]*$",
               re.IGNORECASE,
           )
-          OR_FORMAT_LINE_RE = re.compile(r"^\s*or\s*:\s*$", re.IGNORECASE)
-          OR_FORMAT_LINE_PREFIX_RE = re.compile(r"^\s*or\s*:", re.IGNORECASE)
+          OR_FORMAT_LINE_RE = re.compile(r"^\s*or\b\s*:?\s*$", re.IGNORECASE)
+          OR_FORMAT_LINE_PREFIX_RE = re.compile(r"^\s*or\b\s*:", re.IGNORECASE)
+          EVIDENCE_PREFIX_RE = re.compile(
+              r"(?i)^(?:based on|with|given|due to|per|after|following)\b"
+          )
           PROMPT_INSTRUCTION_HEADING_RE = re.compile(
               r"^\s*your response must begin\b.*$",
               re.IGNORECASE,
@@ -1053,6 +1058,7 @@ jobs:
               r"|[.!?]"
               r"|\([^)]*\)"
               r"|[-–—][ \t]+[^\n]*"
+              r"|(?:based on|with|given|due to|per|after|following)[ \t]+[^\n]*"
               r")"
               r"[ \t]*"
               r")*[ \t]*$",
@@ -1139,6 +1145,8 @@ jobs:
               return False
             if re.match(r"(?i)^because\b", stripped):
               return True
+            if EVIDENCE_PREFIX_RE.match(stripped):
+              return False
             return bool(re.match(r"^[a-z]", stripped))
 
           def _is_line_start_official_with_trailer(text: str, match: re.Match) -> bool:
@@ -1172,6 +1180,27 @@ jobs:
               if _is_format_example_line(text, found):
                 continue
               if _is_glued_verdict_match(text, found):
+                return True
+            return False
+
+          def _is_formatted_glued_verdict_match(text: str, match: re.Match) -> bool:
+            if not _is_glued_verdict_match(text, match):
+              return False
+            matched = text[match.start() : match.end()]
+            return "**" in matched
+
+          def _has_later_contradictory_formatted_glued_verdict(
+            text: str, matches: list[re.Match], after: re.Match
+          ) -> bool:
+            because_value = _verdict_value(after)
+            for found in matches:
+              if found.start() <= after.start():
+                continue
+              if _is_format_example_line(text, found):
+                continue
+              if not _is_formatted_glued_verdict_match(text, found):
+                continue
+              if _verdict_value(found) != because_value:
                 return True
             return False
 
@@ -1221,6 +1250,8 @@ jobs:
                 return True
               if _is_because_line_start_verdict(text, match):
                 if _has_later_line_start_official_verdict(text, matches, match):
+                  return False
+                if _has_later_contradictory_formatted_glued_verdict(text, matches, match):
                   return False
                 return _has_later_glued_verdict(text, matches, match)
               if _has_line_start_reasoning_continuation(text, match):
