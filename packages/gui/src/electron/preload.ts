@@ -136,11 +136,15 @@ contextBridge.exposeInMainWorld(API.CACHE, {
   getURI: (url: string, options?: CacheRequestOptions) => invokeWithCustomErrors(CacheAPI.GET_URI, url, options),
   invalidate: (url: string) => invokeWithCustomErrors(CacheAPI.INVALIDATE, url),
   getCacheInfos: (urls: string[]) => invokeWithCustomErrors(CacheAPI.GET_CACHE_INFOS, urls),
+  probeIpfsGateway: (gateway: string) => invokeWithCustomErrors(CacheAPI.PROBE_IPFS_GATEWAY, gateway),
+  getIpfsGatewayHealth: () => invokeWithCustomErrors(CacheAPI.GET_IPFS_GATEWAY_HEALTH),
   subscribeToDirectoryChange: (callback: (...args: unknown[]) => void) =>
     onIpcEvent(CacheAPI.ON_CACHE_DIRECTORY_CHANGED, callback),
   subscribeToMaxSizeChange: (callback: (...args: unknown[]) => void) =>
     onIpcEvent(CacheAPI.ON_MAX_CACHE_SIZE_CHANGED, callback),
   subscribeToSizeChange: (callback: (...args: unknown[]) => void) => onIpcEvent(CacheAPI.ON_SIZE_CHANGED, callback),
+  subscribeToIpfsGatewayHealthChange: (callback: (...args: unknown[]) => void) =>
+    onIpcEvent(CacheAPI.ON_IPFS_GATEWAY_HEALTH_CHANGED, callback),
 });
 
 contextBridge.exposeInMainWorld(API.WEBSOCKET, {

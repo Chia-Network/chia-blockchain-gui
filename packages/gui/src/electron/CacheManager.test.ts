@@ -34,6 +34,13 @@ jest.mock('./utils/ipcMainHandle', () => ({
   default: jest.fn(),
 }));
 
+const mockProbeIpfsGateway = jest.fn();
+
+jest.mock('./utils/probeIpfsGateway', () => ({
+  __esModule: true,
+  default: (...args: unknown[]) => mockProbeIpfsGateway(...args),
+}));
+
 const mockIpfsGatewayBase = jest.fn<string, []>(() => 'https://ipfs.io/ipfs/');
 const mockIpfsGatewayEnabled = jest.fn<boolean, []>(() => true);
 
@@ -45,6 +52,7 @@ jest.mock('./utils/ipfsGateway', () => ({
 
 const {
   default: CacheManager,
+  GATEWAY_UNREACHABLE_THRESHOLD,
   MAX_CACHE_INFO_LOOKUPS,
   TRANSIENT_ERROR_RETRY_DELAY,
   MAX_TRANSIENT_ERROR_RETRY_DELAY,
@@ -1715,5 +1723,244 @@ describe('CacheManager cache: responses', () => {
     expect(response.headers.get('x-content-type-options')).toBeNull();
     expect(response.headers.get('content-security-policy')).toBe("default-src 'none'; sandbox");
     expect(Buffer.from(await response.arrayBuffer())).toEqual(payload);
+  });
+});
+
+describe('CacheManager IPFS gateway health', () => {
+  let cacheDirectory: string;
+
+  beforeEach(async () => {
+    mockDownloadFile.mockReset();
+    mockIpfsGatewayBase.mockReturnValue('https://ipfs.io/ipfs/');
+    mockIpfsGatewayEnabled.mockReturnValue(true);
+    cacheDirectory = await fs.mkdtemp(path.join(os.tmpdir(), 'chia-cache-manager-'));
+  });
+
+  afterEach(async () => {
+    await fs.rm(cacheDirectory, { recursive: true, force: true });
+  });
+
+  async function createCacheManager() {
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+    });
+    await cacheManager.init();
+    const announcements: unknown[] = [];
+    cacheManager.on('ipfsGatewayHealthChanged', (health) => announcements.push(health));
+    return { cacheManager, announcements };
+  }
+
+  const ipfsUrl = (name: string) => `ipfs://QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/${name}`;
+
+  it('reports the gateway unreachable once enough requests in a row cannot reach its host', async () => {
+    mockDownloadFile.mockRejectedValue(new Error('net::ERR_NAME_NOT_RESOLVED'));
+    const { cacheManager, announcements } = await createCacheManager();
+
+    for (const name of ['a.png', 'b.png']) {
+      // eslint-disable-next-line no-await-in-loop -- consecutive failures
+      await expect(cacheManager.getContent(ipfsUrl(name))).rejects.toThrow('net::ERR_NAME_NOT_RESOLVED');
+    }
+    expect(cacheManager.getIpfsGatewayHealth()).toBeUndefined();
+    expect(announcements).toEqual([]);
+
+    await expect(cacheManager.getContent(ipfsUrl('c.png'))).rejects.toThrow('net::ERR_NAME_NOT_RESOLVED');
+    const verdict = {
+      gateway: 'https://ipfs.io/ipfs/',
+      reachable: false,
+      error: 'net::ERR_NAME_NOT_RESOLVED',
+      failures: GATEWAY_UNREACHABLE_THRESHOLD,
+    };
+    expect(cacheManager.getIpfsGatewayHealth()).toEqual(verdict);
+    expect(announcements).toEqual([verdict]);
+
+    // one more of the same only lengthens the run
+    await expect(cacheManager.getContent(ipfsUrl('d.png'))).rejects.toThrow('net::ERR_NAME_NOT_RESOLVED');
+    expect(cacheManager.getIpfsGatewayHealth()).toMatchObject({ failures: GATEWAY_UNREACHABLE_THRESHOLD + 1 });
+    expect(announcements).toHaveLength(1);
+  });
+
+  it('withdraws the verdict as soon as the gateway answers', async () => {
+    mockDownloadFile.mockRejectedValue(new Error('net::ERR_CONNECTION_REFUSED'));
+    const { cacheManager, announcements } = await createCacheManager();
+    for (const name of ['a.png', 'b.png', 'c.png']) {
+      // eslint-disable-next-line no-await-in-loop -- consecutive failures
+      await expect(cacheManager.getContent(ipfsUrl(name))).rejects.toThrow();
+    }
+    expect(cacheManager.getIpfsGatewayHealth()).toMatchObject({ reachable: false });
+
+    // a status is an answer, whatever it says
+    mockDownloadFile.mockRejectedValue(new Error('HTTP error: 504'));
+    await expect(cacheManager.getContent(ipfsUrl('d.png'))).rejects.toThrow('HTTP error: 504');
+
+    expect(cacheManager.getIpfsGatewayHealth()).toEqual({
+      gateway: 'https://ipfs.io/ipfs/',
+      reachable: true,
+      failures: 0,
+      recoveredAt: expect.any(Number),
+    });
+    expect(announcements).toHaveLength(2);
+    expect(announcements[1]).toMatchObject({ reachable: true });
+  });
+
+  it('does not count failures of hosts other than the gateway, or aborts and stalls', async () => {
+    const { cacheManager, announcements } = await createCacheManager();
+
+    mockDownloadFile.mockRejectedValue(new Error('net::ERR_NAME_NOT_RESOLVED'));
+    for (const url of ['https://one.example/a.png', 'https://two.example/a.png', 'https://three.example/a.png']) {
+      // eslint-disable-next-line no-await-in-loop -- consecutive failures
+      await expect(cacheManager.getContent(url)).rejects.toThrow();
+    }
+    mockDownloadFile.mockRejectedValue(new Error('Request timed out after 30000ms of inactivity'));
+    for (const name of ['a.png', 'b.png', 'c.png']) {
+      // eslint-disable-next-line no-await-in-loop -- consecutive failures
+      await expect(cacheManager.getContent(ipfsUrl(name))).rejects.toThrow();
+    }
+
+    expect(cacheManager.getIpfsGatewayHealth()).toBeUndefined();
+    expect(announcements).toEqual([]);
+  });
+
+  it('starts the run over when the gateway changes', async () => {
+    mockDownloadFile.mockRejectedValue(new Error('net::ERR_NAME_NOT_RESOLVED'));
+    const { cacheManager, announcements } = await createCacheManager();
+    await expect(cacheManager.getContent(ipfsUrl('a.png'))).rejects.toThrow();
+    await expect(cacheManager.getContent(ipfsUrl('b.png'))).rejects.toThrow();
+
+    mockIpfsGatewayBase.mockReturnValue('https://ipfs.mintgraden.io/ipfs/');
+    await expect(cacheManager.getContent(ipfsUrl('c.png'))).rejects.toThrow();
+    expect(cacheManager.getIpfsGatewayHealth()).toBeUndefined();
+
+    await expect(cacheManager.getContent(ipfsUrl('d.png'))).rejects.toThrow();
+    await expect(cacheManager.getContent(ipfsUrl('e.png'))).rejects.toThrow();
+    expect(announcements).toEqual([
+      {
+        gateway: 'https://ipfs.mintgraden.io/ipfs/',
+        reachable: false,
+        error: 'net::ERR_NAME_NOT_RESOLVED',
+        failures: GATEWAY_UNREACHABLE_THRESHOLD,
+      },
+    ]);
+  });
+});
+
+describe('CacheManager IPFS gateway recovery', () => {
+  let cacheDirectory: string;
+
+  beforeEach(async () => {
+    mockDownloadFile.mockReset();
+    mockProbeIpfsGateway.mockReset();
+    mockIpfsGatewayBase.mockReturnValue('https://ipfs.io/ipfs/');
+    mockIpfsGatewayEnabled.mockReturnValue(true);
+    cacheDirectory = await fs.mkdtemp(path.join(os.tmpdir(), 'chia-cache-manager-'));
+  });
+
+  afterEach(async () => {
+    await fs.rm(cacheDirectory, { recursive: true, force: true });
+  });
+
+  const ipfsUrl = (name: string) => `ipfs://QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/${name}`;
+  const payload = Buffer.from('cached payload');
+  const serve = async (_url: string, localPath: string) => {
+    await fs.writeFile(localPath, payload);
+    return { 'content-type': 'image/png' };
+  };
+
+  async function failToReachGateway(cacheManager: InstanceType<typeof CacheManager>, names: string[]) {
+    mockDownloadFile.mockRejectedValue(new Error('net::ERR_NAME_NOT_RESOLVED'));
+    for (const name of names) {
+      // eslint-disable-next-line no-await-in-loop -- consecutive failures
+      await expect(cacheManager.getContent(ipfsUrl(name))).rejects.toThrow('net::ERR_NAME_NOT_RESOLVED');
+    }
+  }
+
+  it('retries the failures recorded while the gateway was unreachable as soon as it answers', async () => {
+    const cacheManager = new CacheManager({ cacheDirectory, maxCacheSize: 1024 });
+    await cacheManager.init();
+    await failToReachGateway(cacheManager, ['a.png', 'b.png', 'c.png']);
+    expect(cacheManager.getIpfsGatewayHealth()).toMatchObject({ reachable: false });
+
+    // still inside the retry delay: the persisted failure is what a tile gets
+    mockDownloadFile.mockReset();
+    await expect(cacheManager.getContent(ipfsUrl('a.png'))).rejects.toThrow('net::ERR_NAME_NOT_RESOLVED');
+    expect(mockDownloadFile).not.toHaveBeenCalled();
+
+    // the gateway answers for another file
+    mockDownloadFile.mockImplementationOnce(serve);
+    await expect(cacheManager.getContent(ipfsUrl('d.png'))).resolves.toEqual(payload);
+    expect(cacheManager.getIpfsGatewayHealth()).toMatchObject({ reachable: true });
+
+    // the earlier failures are retried at once, not after their delay
+    mockDownloadFile.mockImplementation(serve);
+    await expect(cacheManager.getContent(ipfsUrl('a.png'))).resolves.toEqual(payload);
+    await expect(cacheManager.getContent(ipfsUrl('b.png'))).resolves.toEqual(payload);
+    expect(mockDownloadFile).toHaveBeenCalledTimes(3);
+  });
+
+  it('releases a failure whose transfer began before the recovery, even if it is written after it', async () => {
+    const cacheManager = new CacheManager({ cacheDirectory, maxCacheSize: 1024 });
+    await cacheManager.init();
+    await failToReachGateway(cacheManager, ['a.png', 'b.png', 'c.png']);
+
+    // one request is still in flight when another one gets through
+    let failInFlight!: (error: Error) => void;
+    mockDownloadFile.mockReset();
+    mockDownloadFile.mockImplementationOnce(
+      () =>
+        new Promise((_resolve, reject) => {
+          failInFlight = reject;
+        }),
+    );
+    const inFlight = cacheManager.getContent(ipfsUrl('slow.png'));
+    await untilDownloadsStarted(1);
+    mockDownloadFile.mockImplementationOnce(serve);
+    await expect(cacheManager.getContent(ipfsUrl('d.png'))).resolves.toEqual(payload);
+    expect(cacheManager.getIpfsGatewayHealth()).toMatchObject({ reachable: true });
+
+    // its failure is written after the recovery was stamped
+    failInFlight(new Error('net::ERR_NAME_NOT_RESOLVED'));
+    await expect(inFlight).rejects.toThrow('net::ERR_NAME_NOT_RESOLVED');
+
+    // yet it began before, so the next access fetches again
+    mockDownloadFile.mockImplementation(serve);
+    await expect(cacheManager.getContent(ipfsUrl('slow.png'))).resolves.toEqual(payload);
+    expect(mockDownloadFile).toHaveBeenCalledTimes(3);
+  });
+
+  it('releases them when a probe of the gateway gets an answer', async () => {
+    const cacheManager = new CacheManager({ cacheDirectory, maxCacheSize: 1024 });
+    await cacheManager.init();
+    await failToReachGateway(cacheManager, ['a.png', 'b.png', 'c.png']);
+
+    mockProbeIpfsGateway.mockResolvedValue({ gateway: 'https://ipfs.io/ipfs/', reachable: true, status: 200 });
+    await expect(cacheManager.probeIpfsGateway('https://ipfs.io')).resolves.toMatchObject({ reachable: true });
+    expect(cacheManager.getIpfsGatewayHealth()).toMatchObject({ reachable: true });
+
+    mockDownloadFile.mockReset();
+    mockDownloadFile.mockImplementation(serve);
+    await expect(cacheManager.getContent(ipfsUrl('a.png'))).resolves.toEqual(payload);
+    expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+  });
+
+  it('releases only failures to reach the host, recorded before the recovery', async () => {
+    const cacheManager = new CacheManager({ cacheDirectory, maxCacheSize: 1024 });
+    await cacheManager.init();
+    await failToReachGateway(cacheManager, ['a.png', 'b.png', 'c.png']);
+    // a content failure through the same gateway, meanwhile
+    mockDownloadFile.mockRejectedValueOnce(new Error('HTTP error: 504'));
+    await expect(cacheManager.getContent(ipfsUrl('slow.png'))).rejects.toThrow('HTTP error: 504');
+
+    mockProbeIpfsGateway.mockResolvedValue({ gateway: 'https://ipfs.io/ipfs/', reachable: true, status: 200 });
+    await cacheManager.probeIpfsGateway('https://ipfs.io');
+
+    // a failure recorded after the recovery waits out its delay like any other
+    mockDownloadFile.mockRejectedValueOnce(new Error('net::ERR_NAME_NOT_RESOLVED'));
+    await expect(cacheManager.getContent(ipfsUrl('e.png'))).rejects.toThrow('net::ERR_NAME_NOT_RESOLVED');
+
+    mockDownloadFile.mockReset();
+    mockDownloadFile.mockImplementation(serve);
+    await expect(cacheManager.getContent(ipfsUrl('slow.png'))).rejects.toThrow('HTTP error: 504');
+    await expect(cacheManager.getContent(ipfsUrl('e.png'))).rejects.toThrow('net::ERR_NAME_NOT_RESOLVED');
+    expect(mockDownloadFile).not.toHaveBeenCalled();
   });
 });

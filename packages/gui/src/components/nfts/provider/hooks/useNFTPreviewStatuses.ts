@@ -11,6 +11,7 @@ import CacheState from '../../../../constants/CacheState';
 import useCache from '../../../../hooks/useCache';
 import useIpfsGateway from '../../../../hooks/useIpfsGateway';
 import { useIpfsGatewayBase } from '../../../../hooks/useIpfsGatewayUrl';
+import { isHostUnreachableError } from '../../../../util/downloadErrors';
 import getNFTPreviewStatusFromCache, { getNFTPreviewUrls } from '../../../../util/getNFTPreviewStatusFromCache';
 import { isIpfsBackedUrl, isIpfsUrl } from '../../../../util/ipfs';
 
@@ -33,6 +34,10 @@ type UseNFTPreviewStatusesProps = {
   getMetadata: (id: string) => MetadataState; // should be immutable
   subscribeToChanges: (callback: () => void) => () => void; // should be immutable
   subscribeToMetadataChanges: (callback: () => void) => () => void; // should be immutable
+  // see NFTProvider: how many times the gateway has come back after being
+  // unreachable, and when it last did (IpfsGatewayHealth.recoveredAt)
+  ipfsGatewayRecoveries: number;
+  ipfsGatewayRecoveredAt: number | undefined;
 };
 
 // warning: only used by NFTProvider
@@ -43,7 +48,15 @@ type UseNFTPreviewStatusesProps = {
 // cache persisted during earlier visits and sessions, without downloading
 // anything. A live report always wins over a cache lookup.
 export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps) {
-  const { nfts, nachos, getMetadata, subscribeToChanges, subscribeToMetadataChanges } = props;
+  const {
+    nfts,
+    nachos,
+    getMetadata,
+    subscribeToChanges,
+    subscribeToMetadataChanges,
+    ipfsGatewayRecoveries,
+    ipfsGatewayRecoveredAt,
+  } = props;
 
   const { getCacheInfos } = useCache();
 
@@ -67,6 +80,8 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
   const ipfsGatewayKey = ipfsGateway ? ipfsGatewayBase : '';
   const ipfsGatewayKeyRef = useRef(ipfsGatewayKey);
   ipfsGatewayKeyRef.current = ipfsGatewayKey;
+  const ipfsGatewayRecoveredAtRef = useRef(ipfsGatewayRecoveredAt);
+  ipfsGatewayRecoveredAtRef.current = ipfsGatewayRecoveredAt;
 
   const events = useMemo(() => {
     const eventEmitter = new EventEmitter();
@@ -194,17 +209,29 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
           // gateway link, without any gateway, meaning it never got the
           // fallback — is re-requested on the next access, so it settles
           // nothing here. An ipfs:// sidecar without a gateway predates
-          // gateway tracking and stays a settled failure.
+          // gateway tracking and stays a settled failure. Likewise its
+          // recovery rule (isRecoveredGatewayFailure): once the gateway has
+          // come back after being unreachable, a failure to reach it recorded
+          // under the current gateway whose transfer began before that moment
+          // was a verdict on the host, and CacheManager retries it on the next
+          // access — so it settles nothing here either, and the NFT stays in
+          // view for its tile to ask. One that began after the recovery is a
+          // new failure and follows the ordinary rules.
           const currentGateway = ipfsGatewayKeyRef.current;
+          const recoveredAt = ipfsGatewayRecoveredAtRef.current;
           const getCacheInfo = (url: string): CacheInfo | undefined => {
             const cacheInfo = cacheInfos.get(url);
-            if (
-              cacheInfo?.state === CacheState.ERROR &&
-              currentGateway &&
-              isIpfsBackedUrl(url) &&
-              (cacheInfo.gateway === undefined ? !isIpfsUrl(url) : cacheInfo.gateway !== currentGateway)
-            ) {
-              return { url: cacheInfo.url, timestamp: cacheInfo.timestamp, state: CacheState.NOT_CACHED };
+            if (cacheInfo?.state === CacheState.ERROR && currentGateway && isIpfsBackedUrl(url)) {
+              const isOtherGateway =
+                cacheInfo.gateway === undefined ? !isIpfsUrl(url) : cacheInfo.gateway !== currentGateway;
+              const isRecoveredFailure =
+                recoveredAt !== undefined &&
+                cacheInfo.gateway === currentGateway &&
+                isHostUnreachableError(cacheInfo.error) &&
+                recoveredAt > (cacheInfo.startedAt ?? cacheInfo.timestamp);
+              if (isOtherGateway || isRecoveredFailure) {
+                return { url: cacheInfo.url, timestamp: cacheInfo.timestamp, state: CacheState.NOT_CACHED };
+              }
             }
 
             return cacheInfo;
@@ -281,13 +308,8 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
   // failure has usually already become a fetch in flight. Either way the
   // preview uris the metadata brings are unknown until it arrives, and a
   // verdict reached without them must not outlive the change.
-  const lastIpfsGatewayKeyRef = useRef(ipfsGatewayKey);
-  useEffect(() => {
-    if (lastIpfsGatewayKeyRef.current === ipfsGatewayKey) {
-      return;
-    }
-    lastIpfsGatewayKeyRef.current = ipfsGatewayKey;
-
+  // immutable function
+  const forgetIpfsVerdicts = useCallback(() => {
     let changed = false;
     const reconsider = (nft: NFTInfo, nftId: string) => {
       const metadataState = getMetadata(nftId);
@@ -317,7 +339,6 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
     }
     scheduleLookUp();
   }, [
-    ipfsGatewayKey,
     nfts /* immutable */,
     nachos /* immutable */,
     getMetadata /* immutable */,
@@ -327,6 +348,29 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
     events /* immutable */,
     scheduleLookUp,
   ]);
+
+  const lastIpfsGatewayKeyRef = useRef(ipfsGatewayKey);
+  useEffect(() => {
+    if (lastIpfsGatewayKeyRef.current === ipfsGatewayKey) {
+      return;
+    }
+    lastIpfsGatewayKeyRef.current = ipfsGatewayKey;
+    forgetIpfsVerdicts();
+  }, [ipfsGatewayKey, forgetIpfsVerdicts]);
+
+  // The gateway came back after a run of requests that could not reach it:
+  // the failures recorded meanwhile were verdicts on an unreachable host, and
+  // CacheManager retries them on the next access (gatewayRecoveredAt), so
+  // they settle nothing here any more (see getCacheInfo above) — forget the
+  // verdicts that rested on them the same way, and let the tiles ask again.
+  const lastIpfsGatewayRecoveriesRef = useRef(ipfsGatewayRecoveries);
+  useEffect(() => {
+    if (lastIpfsGatewayRecoveriesRef.current === ipfsGatewayRecoveries) {
+      return;
+    }
+    lastIpfsGatewayRecoveriesRef.current = ipfsGatewayRecoveries;
+    forgetIpfsVerdicts();
+  }, [ipfsGatewayRecoveries, forgetIpfsVerdicts]);
 
   useEffect(() => {
     scheduleLookUp();

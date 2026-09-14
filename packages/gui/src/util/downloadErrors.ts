@@ -81,6 +81,28 @@ const PERMANENT_NET_ERRORS = new Set([
 // made from it would settle the entry for something the url did nothing.
 const TRANSIENT_LOCAL_ERROR_CODES = ['EMFILE', 'ENFILE', 'EAGAIN', 'EBUSY', 'ENOSPC', 'EIO'];
 
+// Chromium network errors that say the request never reached a host at the
+// URL's name: the name does not resolve, nothing listens at the address, or
+// what listens presents a certificate for some other name. For a request
+// through the IPFS gateway these describe the gateway address itself, not the
+// content behind it — every request through a misspelled gateway fails this
+// way — which is what CacheManager's gateway health reports on.
+const HOST_UNREACHABLE_NET_ERRORS = new Set([
+  'net::ERR_NAME_NOT_RESOLVED',
+  'net::ERR_NAME_RESOLUTION_FAILED',
+  'net::ERR_CONNECTION_REFUSED',
+  'net::ERR_ADDRESS_UNREACHABLE',
+  'net::ERR_ADDRESS_INVALID',
+  'net::ERR_SSL_PROTOCOL_ERROR',
+]);
+
+/** Whether a download failure says the host itself could not be reached
+ * (see HOST_UNREACHABLE_NET_ERRORS), as opposed to a host that answered — with
+ * an HTTP status, a redirect, or silence after accepting the connection. */
+export function isHostUnreachableError(message: string): boolean {
+  return HOST_UNREACHABLE_NET_ERRORS.has(message) || message.startsWith('net::ERR_CERT_');
+}
+
 export function isTransientDownloadError(message: string): boolean {
   if (isDownloadTimeoutError(message)) {
     return true;

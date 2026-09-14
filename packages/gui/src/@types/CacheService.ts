@@ -1,5 +1,7 @@
 import type CacheInfo from './CacheInfo';
 import type Headers from './Headers';
+import type IpfsGatewayHealth from './IpfsGatewayHealth';
+import type IpfsGatewayProbeResult from './IpfsGatewayProbeResult';
 
 export type CacheRequestOptions = {
   maxSize?: number;
@@ -37,10 +39,16 @@ type CacheService = {
   // Read-only lookup of the persisted cache state of each url - never downloads
   getCacheInfos: (urls: string[]) => Promise<CacheInfo[]>;
 
+  // IPFS gateway reachability: a one-off check of an address the user is
+  // saving, and what recent downloads say about the gateway in use
+  probeIpfsGateway: (gateway: string) => Promise<IpfsGatewayProbeResult>;
+  getIpfsGatewayHealth: () => Promise<IpfsGatewayHealth | undefined>;
+
   // Event subscriptions
   subscribeToDirectoryChange: (callback: (newDirectory: string) => void) => () => void;
   subscribeToMaxSizeChange: (callback: (newSize: number) => void) => () => void;
   subscribeToSizeChange: (callback: () => void) => () => void;
+  subscribeToIpfsGatewayHealthChange: (callback: (health: IpfsGatewayHealth) => void) => () => void;
 };
 
 export default CacheService;

@@ -34,6 +34,11 @@ const NFTProviderContext = createContext<
       getPreviewStatus: (id: string | undefined) => NFTPreviewStatus | undefined;
       setPreviewStatus: (id: string, status: NFTPreviewStatus) => void;
       subscribeToPreviewStatusChanges: (callback: () => void) => () => void;
+      // How many times the IPFS gateway has come back after being unreachable
+      // this session. Consumers that remember fetch failures re-run on a
+      // change, the way they do on a gateway change: the failures recorded
+      // while the gateway was down are verdicts on the host, not the content.
+      ipfsGatewayRecoveries: number;
     }
   | undefined
 >(undefined);
