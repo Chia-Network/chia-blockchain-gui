@@ -3257,7 +3257,7 @@ msgstr ""
 msgid "+ Add New Plot NFT"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:357
+#: src/components/nfts/gallery/NFTGallery.tsx:379
 msgid "<0>Loading...</0> {0}%"
 msgstr ""
 
@@ -3265,7 +3265,7 @@ msgstr ""
 #~ msgid "<0>Need some XCH?</0>"
 #~ msgstr "<0>Need some XCH?</0>"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:347
+#: src/components/nfts/gallery/NFTGallery.tsx:369
 msgid "<0>Showing</0> {0} <1>of</1> {1}  <2>items</2>"
 msgstr ""
 
@@ -3538,7 +3538,7 @@ msgstr ""
 msgid "Announcement"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:495
+#: src/components/nfts/gallery/NFTGallery.tsx:517
 msgid "Any preview  <0/>"
 msgstr ""
 
@@ -4550,7 +4550,7 @@ msgstr ""
 msgid "Description"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:371
+#: src/components/nfts/gallery/NFTGallery.tsx:393
 msgid "Deselect all"
 msgstr ""
 
@@ -4901,7 +4901,7 @@ msgstr ""
 msgid "Enter a wallet address to sign with"
 msgstr ""
 
-#: src/components/settings/IpfsGatewayUrl.tsx:57
+#: src/components/settings/IpfsGatewayUrl.tsx:72
 msgid "Enter an https:// gateway address, for example https://dweb.link"
 msgstr ""
 
@@ -5232,7 +5232,7 @@ msgstr ""
 msgid "Filename"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:327
+#: src/components/nfts/gallery/NFTGallery.tsx:349
 msgid "Filter"
 msgstr ""
 
@@ -5625,11 +5625,11 @@ msgstr ""
 msgid "Hex public key of pool"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:479
+#: src/components/nfts/gallery/NFTGallery.tsx:501
 msgid "Hidden"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:442
+#: src/components/nfts/gallery/NFTGallery.tsx:464
 msgid "Hidden  <0/>"
 msgstr ""
 
@@ -6362,7 +6362,7 @@ msgstr ""
 msgid "Move to Profile"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:322
+#: src/components/nfts/gallery/NFTGallery.tsx:344
 msgid "Multi-select"
 msgstr ""
 
@@ -6668,8 +6668,8 @@ msgstr ""
 msgid "None"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:447
-#: src/components/nfts/gallery/NFTGallery.tsx:513
+#: src/components/nfts/gallery/NFTGallery.tsx:469
+#: src/components/nfts/gallery/NFTGallery.tsx:535
 msgid "None (0)"
 msgstr ""
 
@@ -6805,7 +6805,7 @@ msgstr ""
 msgid "Number of threads for Phase 3"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:417
+#: src/components/nfts/gallery/NFTGallery.tsx:439
 msgid "Objectionable Content"
 msgstr ""
 
@@ -7560,11 +7560,11 @@ msgstr ""
 msgid "Preview"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:531
+#: src/components/nfts/gallery/NFTGallery.tsx:553
 msgid "Preview available"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:500
+#: src/components/nfts/gallery/NFTGallery.tsx:522
 msgid "Preview available  <0/>"
 msgstr ""
 
@@ -7584,11 +7584,11 @@ msgstr ""
 msgid "Preview is not available"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:552
+#: src/components/nfts/gallery/NFTGallery.tsx:574
 msgid "Preview not available"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:505
+#: src/components/nfts/gallery/NFTGallery.tsx:527
 msgid "Preview not available  <0/>"
 msgstr ""
 
@@ -7776,7 +7776,7 @@ msgstr ""
 msgid "Refresh NFT data"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:332
+#: src/components/nfts/gallery/NFTGallery.tsx:354
 msgid "Refresh NFTs"
 msgstr ""
 
@@ -7982,7 +7982,7 @@ msgstr ""
 #: src/components/farm/FarmHealth.tsx:357
 #: src/components/offers/NFTOfferEditor.tsx:435
 #: src/components/offers/OfferEditor.tsx:153
-#: src/components/settings/IpfsGatewayUrl.tsx:97
+#: src/components/settings/IpfsGatewayUrl.tsx:129
 #: src/components/settings/SettingsIntegration.tsx:222
 #: src/components/signVerify/VerifyMessage.tsx:266
 msgid "Reset"
@@ -8119,7 +8119,7 @@ msgid "Search on Tail Database"
 msgstr ""
 
 #: src/components/addressbook/AddressBookSideBar.tsx:150
-#: src/components/nfts/gallery/NFTGallery.tsx:310
+#: src/components/nfts/gallery/NFTGallery.tsx:332
 msgid "Search..."
 msgstr ""
 
@@ -8146,7 +8146,7 @@ msgstr ""
 msgid "Select 2nd Temporary Directory"
 msgstr "Odaberi drugi privremeni direktorij"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:371
+#: src/components/nfts/gallery/NFTGallery.tsx:393
 msgid "Select all"
 msgstr ""
 
@@ -8295,6 +8295,7 @@ msgstr ""
 
 #: src/components/dashboard/DashboardOverview.tsx:102
 #: src/components/dashboard/DashboardSideBar.tsx:146
+#: src/components/nfts/gallery/NFTGallery.tsx:319
 #: src/components/settings/Settings.tsx:74
 msgid "Settings"
 msgstr ""
@@ -8749,6 +8750,14 @@ msgstr ""
 msgid "The full node that your farmer is connected to is below. <0>Learn more</0>"
 msgstr "Puni čvor na koji je tvoj žetelac spojen naveden je dolje niže. <0>Saznaj više</0>"
 
+#: src/components/settings/IpfsGatewayUrl.tsx:142
+msgid "The gateway answered (HTTP {0})."
+msgstr ""
+
+#: src/components/settings/IpfsGatewayUrl.tsx:135
+msgid "The gateway did not answer ({0}). The address is saved; check it if NFT previews stay empty."
+msgstr ""
+
 #: src/components/settings/SettingsNFT.tsx:192
 msgid "The gateway used for ipfs:// addresses, and the fallback for gateway links (such as https://nftstorage.link/ipfs/…) whose own host no longer serves them. Leave it empty to use the public ipfs.io gateway, which is being wound down and rate limits applications; https://ipfs.mintgarden.io, https://gateway.pinata.cloud and https://ipfs.filebase.io currently work, as does a local IPFS node such as http://127.0.0.1:8080. Files are re-checked through the new gateway right away."
 msgstr ""
@@ -8759,6 +8768,10 @@ msgstr ""
 
 #: src/components/settings/SettingsHarvester.tsx:375
 msgid "The Harvester manages plots and fetches proofs of space corresponding to challenges sent by a farmer."
+msgstr ""
+
+#: src/components/nfts/gallery/NFTGallery.tsx:323
+msgid "The IPFS gateway {0} cannot be reached ({1}). NFT files fetched through it cannot be shown until it answers; check the gateway address."
 msgstr ""
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:60
@@ -9278,7 +9291,7 @@ msgstr ""
 #~ msgid "Types ({0}/{1})"
 #~ msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:380
+#: src/components/nfts/gallery/NFTGallery.tsx:402
 msgid "Types{0}"
 msgstr ""
 
@@ -9386,7 +9399,7 @@ msgstr ""
 #~ msgid "Unsupported commands"
 #~ msgstr "Unsupported commands"
 
-#: src/components/settings/IpfsGatewayUrl.tsx:93
+#: src/components/settings/IpfsGatewayUrl.tsx:125
 #: src/components/settings/LimitCacheSize.tsx:100
 msgid "Update"
 msgstr ""
@@ -9605,11 +9618,11 @@ msgstr ""
 msgid "Viewing offer"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:463
+#: src/components/nfts/gallery/NFTGallery.tsx:485
 msgid "Visible"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:437
+#: src/components/nfts/gallery/NFTGallery.tsx:459
 msgid "Visible  <0/>"
 msgstr ""
 
@@ -9617,7 +9630,7 @@ msgstr ""
 #~ msgid "Visible ({0})"
 #~ msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:432
+#: src/components/nfts/gallery/NFTGallery.tsx:454
 msgid "Visible and Hidden  <0/>"
 msgstr ""
 

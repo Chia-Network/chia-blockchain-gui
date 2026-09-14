@@ -3260,7 +3260,7 @@ msgstr "+新增一個耕地"
 msgid "+ Add New Plot NFT"
 msgstr "+ 新增新的農場"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:357
+#: src/components/nfts/gallery/NFTGallery.tsx:379
 msgid "<0>Loading...</0> {0}%"
 msgstr "<0>載入中...</0> {0}%"
 
@@ -3268,7 +3268,7 @@ msgstr "<0>載入中...</0> {0}%"
 #~ msgid "<0>Need some XCH?</0>"
 #~ msgstr "<0>Need some XCH?</0>"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:347
+#: src/components/nfts/gallery/NFTGallery.tsx:369
 msgid "<0>Showing</0> {0} <1>of</1> {1}  <2>items</2>"
 msgstr "<0>顯示</0> {0} <1>/</1> {1}  <2>項</2>"
 
@@ -3541,7 +3541,7 @@ msgstr "NFT 的來源是它的所有權歷史的完整記錄。它提供了一�
 msgid "Announcement"
 msgstr "公告"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:495
+#: src/components/nfts/gallery/NFTGallery.tsx:517
 msgid "Any preview  <0/>"
 msgstr ""
 
@@ -4553,7 +4553,7 @@ msgstr "派生索引必须大於  {index}"
 msgid "Description"
 msgstr "描述"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:371
+#: src/components/nfts/gallery/NFTGallery.tsx:393
 msgid "Deselect all"
 msgstr "取消選取全部"
 
@@ -4904,7 +4904,7 @@ msgstr "輸入一個強韌的密碼以保護您的金鑰："
 msgid "Enter a wallet address to sign with"
 msgstr "輸入要使用的錢包地址進行簽署"
 
-#: src/components/settings/IpfsGatewayUrl.tsx:57
+#: src/components/settings/IpfsGatewayUrl.tsx:72
 msgid "Enter an https:// gateway address, for example https://dweb.link"
 msgstr ""
 
@@ -5235,7 +5235,7 @@ msgstr ""
 msgid "Filename"
 msgstr "檔案名稱"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:327
+#: src/components/nfts/gallery/NFTGallery.tsx:349
 msgid "Filter"
 msgstr "篩選"
 
@@ -5628,11 +5628,11 @@ msgstr "以下是目前的區塊挑戰。對於這些挑戰，您可能擁有也
 msgid "Hex public key of pool"
 msgstr "農會的 Hex 公鑰"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:479
+#: src/components/nfts/gallery/NFTGallery.tsx:501
 msgid "Hidden"
 msgstr "已隱藏"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:442
+#: src/components/nfts/gallery/NFTGallery.tsx:464
 msgid "Hidden  <0/>"
 msgstr "隱藏  <0/>"
 
@@ -6369,7 +6369,7 @@ msgstr "將 NFT 移動到個人檔案"
 msgid "Move to Profile"
 msgstr "移動到個人檔案"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:322
+#: src/components/nfts/gallery/NFTGallery.tsx:344
 msgid "Multi-select"
 msgstr "多選"
 
@@ -6675,8 +6675,8 @@ msgstr ""
 msgid "None"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:447
-#: src/components/nfts/gallery/NFTGallery.tsx:513
+#: src/components/nfts/gallery/NFTGallery.tsx:469
+#: src/components/nfts/gallery/NFTGallery.tsx:535
 msgid "None (0)"
 msgstr "無 (0)"
 
@@ -6812,7 +6812,7 @@ msgstr "階段 2 的執行緒數量"
 msgid "Number of threads for Phase 3"
 msgstr "階段 3 的執行緒數量"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:417
+#: src/components/nfts/gallery/NFTGallery.tsx:439
 msgid "Objectionable Content"
 msgstr "不當內容"
 
@@ -7567,11 +7567,11 @@ msgstr "正在準備標準錢包"
 msgid "Preview"
 msgstr "預覽"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:531
+#: src/components/nfts/gallery/NFTGallery.tsx:553
 msgid "Preview available"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:500
+#: src/components/nfts/gallery/NFTGallery.tsx:522
 msgid "Preview available  <0/>"
 msgstr ""
 
@@ -7591,11 +7591,11 @@ msgstr "預覽圖片 URL {index}"
 msgid "Preview is not available"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:552
+#: src/components/nfts/gallery/NFTGallery.tsx:574
 msgid "Preview not available"
 msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:505
+#: src/components/nfts/gallery/NFTGallery.tsx:527
 msgid "Preview not available  <0/>"
 msgstr ""
 
@@ -7783,7 +7783,7 @@ msgstr "重新整理"
 msgid "Refresh NFT data"
 msgstr "重新整理 NFT 資料"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:332
+#: src/components/nfts/gallery/NFTGallery.tsx:354
 msgid "Refresh NFTs"
 msgstr ""
 
@@ -7989,7 +7989,7 @@ msgstr ""
 #: src/components/farm/FarmHealth.tsx:357
 #: src/components/offers/NFTOfferEditor.tsx:435
 #: src/components/offers/OfferEditor.tsx:153
-#: src/components/settings/IpfsGatewayUrl.tsx:97
+#: src/components/settings/IpfsGatewayUrl.tsx:129
 #: src/components/settings/SettingsIntegration.tsx:222
 #: src/components/signVerify/VerifyMessage.tsx:266
 msgid "Reset"
@@ -8126,7 +8126,7 @@ msgid "Search on Tail Database"
 msgstr "在 TAIL 資料庫中搜尋"
 
 #: src/components/addressbook/AddressBookSideBar.tsx:150
-#: src/components/nfts/gallery/NFTGallery.tsx:310
+#: src/components/nfts/gallery/NFTGallery.tsx:332
 msgid "Search..."
 msgstr "搜尋..."
 
@@ -8153,7 +8153,7 @@ msgstr "查看所有活動"
 msgid "Select 2nd Temporary Directory"
 msgstr "選擇第二個暫存目錄"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:371
+#: src/components/nfts/gallery/NFTGallery.tsx:393
 msgid "Select all"
 msgstr "全選"
 
@@ -8302,6 +8302,7 @@ msgstr "手動設定金鑰"
 
 #: src/components/dashboard/DashboardOverview.tsx:102
 #: src/components/dashboard/DashboardSideBar.tsx:146
+#: src/components/nfts/gallery/NFTGallery.tsx:319
 #: src/components/settings/Settings.tsx:74
 msgid "Settings"
 msgstr "設定"
@@ -8756,6 +8757,14 @@ msgstr ""
 msgid "The full node that your farmer is connected to is below. <0>Learn more</0>"
 msgstr "您的農夫連線的完整節點如下。<0>了解更多</0>"
 
+#: src/components/settings/IpfsGatewayUrl.tsx:142
+msgid "The gateway answered (HTTP {0})."
+msgstr ""
+
+#: src/components/settings/IpfsGatewayUrl.tsx:135
+msgid "The gateway did not answer ({0}). The address is saved; check it if NFT previews stay empty."
+msgstr ""
+
 #: src/components/settings/SettingsNFT.tsx:192
 msgid "The gateway used for ipfs:// addresses, and the fallback for gateway links (such as https://nftstorage.link/ipfs/…) whose own host no longer serves them. Leave it empty to use the public ipfs.io gateway, which is being wound down and rate limits applications; https://ipfs.mintgarden.io, https://gateway.pinata.cloud and https://ipfs.filebase.io currently work, as does a local IPFS node such as http://127.0.0.1:8080. Files are re-checked through the new gateway right away."
 msgstr ""
@@ -8767,6 +8776,10 @@ msgstr ""
 #: src/components/settings/SettingsHarvester.tsx:375
 msgid "The Harvester manages plots and fetches proofs of space corresponding to challenges sent by a farmer."
 msgstr "收割機負責管理耕地，並根據農夫發送的挑戰擷取相對應的空間證明。"
+
+#: src/components/nfts/gallery/NFTGallery.tsx:323
+msgid "The IPFS gateway {0} cannot be reached ({1}). NFT files fetched through it cannot be shown until it answers; check the gateway address."
+msgstr ""
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:60
 #: src/components/plot/add/PlotAddChooseSize.tsx:117
@@ -9285,7 +9298,7 @@ msgstr "類型"
 #~ msgid "Types ({0}/{1})"
 #~ msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:380
+#: src/components/nfts/gallery/NFTGallery.tsx:402
 msgid "Types{0}"
 msgstr "類型{0}"
 
@@ -9393,7 +9406,7 @@ msgstr "無法識別的資產"
 #~ msgid "Unsupported commands"
 #~ msgstr "Unsupported commands"
 
-#: src/components/settings/IpfsGatewayUrl.tsx:93
+#: src/components/settings/IpfsGatewayUrl.tsx:125
 #: src/components/settings/LimitCacheSize.tsx:100
 msgid "Update"
 msgstr ""
@@ -9612,11 +9625,11 @@ msgstr "查看農會登入連結"
 msgid "Viewing offer"
 msgstr "查看報價"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:463
+#: src/components/nfts/gallery/NFTGallery.tsx:485
 msgid "Visible"
 msgstr "可見"
 
-#: src/components/nfts/gallery/NFTGallery.tsx:437
+#: src/components/nfts/gallery/NFTGallery.tsx:459
 msgid "Visible  <0/>"
 msgstr "可見  <0/>"
 
@@ -9624,7 +9637,7 @@ msgstr "可見  <0/>"
 #~ msgid "Visible ({0})"
 #~ msgstr ""
 
-#: src/components/nfts/gallery/NFTGallery.tsx:432
+#: src/components/nfts/gallery/NFTGallery.tsx:454
 msgid "Visible and Hidden  <0/>"
 msgstr "可見和隱藏  <0/>"
 
