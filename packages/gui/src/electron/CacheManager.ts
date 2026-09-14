@@ -19,10 +19,17 @@ import {
   INACTIVITY_TIMEOUT_ERROR_PREFIX,
   isHostUnreachableError,
 } from '../util/downloadErrors';
-import ipfsToGatewayUrl, { getGatewayHost, getIpfsPathFromGatewayUrl, isIpfsBackedUrl, isIpfsUrl } from '../util/ipfs';
+import ipfsToGatewayUrl, {
+  getGatewayHost,
+  getIpfsPathFromAnyUrl,
+  getIpfsPathFromGatewayUrl,
+  isIpfsBackedUrl,
+  isIpfsUrl,
+} from '../util/ipfs';
 import limit from '../util/limit';
 
 import CacheAPI from './constants/CacheAPI';
+import ColdIpfsPathError from './utils/ColdIpfsPathError';
 import DownloadDeadline, { normalizeDownloadDuration } from './utils/DownloadDeadline';
 import SharedDownloadBudgetSpentError from './utils/SharedDownloadBudgetSpentError';
 import downloadFile, {
@@ -125,6 +132,16 @@ export const MAX_TRANSIENT_RETRIES = 8;
 // while nothing succeeds is the address.
 export const GATEWAY_UNREACHABLE_THRESHOLD = 3;
 
+// How long the gateway is not asked again for content it just failed to
+// produce (see coldIpfsPaths). The same as the first transient retry delay:
+// the url that established the verdict is not retried sooner either, and the
+// siblings that inherit it should not fare better than it does.
+export const COLD_IPFS_PATH_DURATION = TRANSIENT_ERROR_RETRY_DELAY;
+// How long no request goes to a host that has just answered 429. Long enough
+// for a per-minute limit to open up, short enough that the tiles in view are
+// not blanked by one burst.
+export const RATE_LIMIT_COOLDOWN = 30 * 1000;
+
 // The wait before the next in-session retry of a URL that has failed
 // transiently `retries` times in a row: 10 min, 20 min, 40 min, ...
 export function transientErrorRetryDelay(retries: number): number {
@@ -211,6 +228,16 @@ export function servedContentType(contentType: string | undefined): string {
   return [type, ...parameters].join('; ');
 }
 
+// Bound on remembered cold-content verdicts before expired ones are swept.
+const MAX_COLD_IPFS_PATHS = 4096;
+
+// The key of a cold-content verdict: the gateway it belongs to and the ipfs
+// path (`<CID>[/path][?query]`) it is about. A space cannot occur
+// in a gateway base, so the two parts never blur.
+function coldIpfsPathKey(gateway: string, ipfsPath: string): string {
+  return `${gateway} ${ipfsPath}`;
+}
+
 export default class CacheManager extends EventEmitter {
   #cacheDirectory: string = './cache';
 
@@ -244,6 +271,28 @@ export default class CacheManager extends EventEmitter {
 
   private gatewayHealth: IpfsGatewayHealth | undefined;
 
+  // Content the gateway failed to produce a moment ago, so that no other url
+  // naming the same content sends it back for the same answer: a dead CID is
+  // typically listed twice per NFT (a gateway link and its ipfs:// twin) and
+  // once more per file, and every one of those would otherwise hold one of the
+  // few download slots for the whole deadline. Keyed by gateway and ipfs path
+  // — the verdict is the gateway's. A failed path says nothing about siblings
+  // in the same CID: a directory may have only some blocks pinned, and a host
+  // may fail a particular path. A verdict reached after the content's own
+  // host had failed too (`twoHosts`) also spares the direct leg of other links naming
+  // that exact content: two hosts that cannot produce it are not made three.
+  // Entries expire after COLD_IPFS_PATH_DURATION; see getColdIpfsPath.
+  private coldIpfsPaths: Map<string, { until: number; error: string; twoHosts: boolean }> = new Map();
+
+  // Hosts that answered 429, and when they may be asked again. Keyed by the
+  // operator's host (getGatewayHost: the hostname less a subdomain gateway's
+  // `<CID>.ipfs.` label, so every file on that gateway shares the cooldown):
+  // a rate limit is the host's, whether it was reached as a link's own host
+  // or as the gateway.
+  private hostCooldowns: Map<string, number> = new Map();
+
+  private readonly rateLimitCooldown: number;
+
   // When a gateway last answered after a run of requests that could not reach
   // it. Failures recorded against it before that moment were verdicts on an
   // unreachable host, not on the content, and are retried on the next access
@@ -269,11 +318,18 @@ export default class CacheManager extends EventEmitter {
       cacheDirectory?: string;
       maxCacheSize?: number | string;
       concurrency?: number;
+      rateLimitCooldown?: number;
     } = {},
   ) {
     super();
 
-    const { cacheDirectory = './cache', maxCacheSize = MAX_TOTAL_SIZE, concurrency = 10 } = options;
+    const {
+      cacheDirectory = './cache',
+      maxCacheSize = MAX_TOTAL_SIZE,
+      concurrency = 10,
+      rateLimitCooldown = RATE_LIMIT_COOLDOWN,
+    } = options;
+    this.rateLimitCooldown = rateLimitCooldown;
 
     this.cacheDirectory = cacheDirectory;
     this.maxCacheSize = maxCacheSize;
@@ -905,9 +961,12 @@ export default class CacheManager extends EventEmitter {
     // failure recorded on top of an earlier one continues its retry count
     let previousCacheInfo: CacheInfo | undefined;
     // whether the transfer went to the gateway — an ipfs:// URI always does, a
-    // gateway link only once its own host failed and the fallback ran — so an
-    // outcome is charged to the gateway's health only when it was the gateway's
-    let gatewayLegUsed = requestGateway !== undefined && isIpfsUrl(url);
+    // link served by the gateway's own host does too, and any other gateway
+    // link only once its own host failed and the fallback ran — so an outcome
+    // is charged to the gateway only when it was the gateway's
+    const isSelfGatewayLink =
+      requestGateway !== undefined && !isIpfsUrl(url) && getGatewayHost(url) === getGatewayHost(requestGateway);
+    let gatewayLegUsed = requestGateway !== undefined && (isIpfsUrl(url) || isSelfGatewayLink);
     // when the transfer itself began — a failure to reach the gateway is dated
     // by this, not by when its sidecar was written (see isRecoveredGatewayFailure)
     let transferStartedAt: number | undefined;
@@ -965,6 +1024,10 @@ export default class CacheManager extends EventEmitter {
           try {
             headers = await downloadFile(url, cacheFilePath, downloadOptions);
           } catch (downloadError) {
+            // the host itself said so, whether or not a fallback follows
+            if ((downloadError as Error).message === 'HTTP error: 429') {
+              this.noteRateLimited(getGatewayHost(url));
+            }
             // An https gateway URL names its content by CID, so when its own
             // host fails (gone, rate limiting, challenging the request) the
             // same bytes can be fetched through the user's gateway and are
@@ -1013,23 +1076,67 @@ export default class CacheManager extends EventEmitter {
           return updatedCacheInfo;
         };
 
-        return await this.#downloadLimit<CacheInfo>(() => limitedRemoteFileDownload());
+        const refuseColdContent = () => {
+          if (requestGateway !== undefined) {
+            const cold = this.getColdIpfsPath(requestGateway, url, { directLeg: !gatewayLegUsed });
+            if (cold) {
+              throw new ColdIpfsPathError(cold.error);
+            }
+          }
+        };
+        const requestHost =
+          gatewayLegUsed && requestGateway !== undefined ? getGatewayHost(requestGateway) : getGatewayHost(url);
+        const admitDownload = async (): Promise<CacheInfo | undefined> => {
+          if (abortController.signal.aborted) {
+            throw new Error('Request aborted');
+          }
+          // Another request may have failed since this one entered the queue.
+          // Neither decision can be made only at enqueue time.
+          refuseColdContent();
+          if (this.hostCooldownRemaining(requestHost) > 0) {
+            return undefined;
+          }
+          try {
+            return await limitedRemoteFileDownload();
+          } catch (error) {
+            // Publish gateway outcomes before releasing the slot, so the very
+            // next queued request sees its 429 or exact-path failure.
+            if (gatewayLegUsed) {
+              const { message } = transferDeadline.error ?? (error as Error);
+              this.noteGatewayOutcome(requestGateway, message);
+              this.noteGatewayContentFailure(requestGateway, url, message, !isIpfsUrl(url) && !isSelfGatewayLink);
+            }
+            throw error;
+          }
+        };
+        for (;;) {
+          refuseColdContent();
+          // Cooldown waits hold no download slot and consume no transfer time.
+          // eslint-disable-next-line no-await-in-loop -- Recheck a cooldown extended while queued or waiting.
+          await this.waitForHostCooldown(requestHost, abortController.signal);
+          // eslint-disable-next-line no-await-in-loop -- A changed admission decision releases its slot before retrying.
+          const result = await this.#downloadLimit<CacheInfo | undefined>(admitDownload);
+          if (result !== undefined) {
+            return result;
+          }
+        }
       } catch (error) {
         // Not a property of the URL, just of the current preference: while
         // the IPFS gateway option is off the fetch is refused before it
         // starts. Persisting that as a cache error would keep the entry
         // poisoned after the user turns the option on, so it propagates
         // instead — already-cached content was served above regardless.
-        if (error instanceof IpfsGatewayDisabledError || error instanceof SharedDownloadBudgetSpentError) {
+        if (
+          error instanceof IpfsGatewayDisabledError ||
+          error instanceof SharedDownloadBudgetSpentError ||
+          error instanceof ColdIpfsPathError
+        ) {
           throw error;
         }
 
         const currentError = this.redactCachePath(
           transferDeadline.error ?? (error as Error) ?? new Error('Unknown fetchRemoteContent error'),
         );
-        if (gatewayLegUsed) {
-          this.noteGatewayOutcome(requestGateway, currentError.message);
-        }
 
         const isTransient = isTransientDownloadError(currentError.message);
         if (isTransient) {
@@ -1156,6 +1263,144 @@ export default class CacheManager extends EventEmitter {
     this.emit('ipfsGatewayHealthChanged', health);
   }
 
+  // The request for `url` through `gateway` ended in `message`. A 429 puts
+  // the gateway on cooldown. A failure that is the content's — an HTTP status
+  // or a gateway that stopped sending, not the host's unreachability, an
+  // abort, a size cap, a refused redirect, or the caller's own deadline
+  // running out (which says nothing about the content) — makes the ipfs path
+  // cold for that gateway. Every status and timeout is scoped to the exact
+  // path, even when its origin also failed: neither response proves that a
+  // sibling file in the same CID is unavailable.
+  private noteGatewayContentFailure(
+    gateway: string | undefined,
+    url: string,
+    message: string,
+    afterOriginFailed: boolean,
+  ) {
+    if (gateway === undefined) {
+      return;
+    }
+    if (message === 'HTTP error: 429') {
+      this.noteRateLimited(getGatewayHost(gateway));
+      return;
+    }
+    const stoppedSending = message.startsWith(INACTIVITY_TIMEOUT_ERROR_PREFIX);
+    const isContentFailure =
+      (message.startsWith('HTTP error: ') || stoppedSending) &&
+      !isHostUnreachableError(message) &&
+      message !== MAX_FILE_SIZE_EXCEEDED_ERROR;
+    if (!isContentFailure) {
+      return;
+    }
+    const ipfsPath = getIpfsPathFromAnyUrl(url);
+    if (!ipfsPath) {
+      return;
+    }
+    const verdict = { until: Date.now() + COLD_IPFS_PATH_DURATION, error: message, twoHosts: afterOriginFailed };
+    this.pruneColdIpfsPaths();
+    this.coldIpfsPaths.set(coldIpfsPathKey(gateway, ipfsPath), verdict);
+  }
+
+  // The standing verdict on `url`'s content for `gateway`, if the gateway
+  // failed to produce that exact path within
+  // COLD_IPFS_PATH_DURATION. For the direct leg of a gateway link only a
+  // verdict two hosts share counts: the gateway alone failing says nothing
+  // about the link's own host. Expired verdicts are dropped as they are met.
+  private getColdIpfsPath(
+    gateway: string,
+    url: string,
+    options: { directLeg?: boolean } = {},
+  ): { error: string } | undefined {
+    const ipfsPath = getIpfsPathFromAnyUrl(url);
+    if (!ipfsPath) {
+      return undefined;
+    }
+    const key = coldIpfsPathKey(gateway, ipfsPath);
+    const verdict = this.coldIpfsPaths.get(key);
+    if (verdict) {
+      if (verdict.until <= Date.now()) {
+        this.coldIpfsPaths.delete(key);
+      } else if (!options.directLeg || verdict.twoHosts) {
+        return { error: verdict.error };
+      }
+    }
+    return undefined;
+  }
+
+  // Refreshing an NFT (invalidate) means the user wants its files fetched
+  // again — through every gateway, whatever the last one said about them.
+  private forgetColdIpfsPath(url: string) {
+    const ipfsPath = getIpfsPathFromAnyUrl(url);
+    if (!ipfsPath) {
+      return;
+    }
+    const suffix = ` ${ipfsPath}`;
+    for (const key of Array.from(this.coldIpfsPaths.keys())) {
+      if (key.endsWith(suffix)) {
+        this.coldIpfsPaths.delete(key);
+      }
+    }
+  }
+
+  // Verdicts expire on their own; this keeps a session that meets thousands
+  // of dead files from carrying every one of them until it does.
+  private pruneColdIpfsPaths() {
+    if (this.coldIpfsPaths.size < MAX_COLD_IPFS_PATHS) {
+      return;
+    }
+    const now = Date.now();
+    for (const [key, verdict] of Array.from(this.coldIpfsPaths.entries())) {
+      if (verdict.until <= now) {
+        this.coldIpfsPaths.delete(key);
+      }
+    }
+  }
+
+  private noteRateLimited(host: string | undefined) {
+    if (host !== undefined) {
+      this.hostCooldowns.set(host, Date.now() + this.rateLimitCooldown);
+    }
+  }
+
+  private hostCooldownRemaining(host: string | undefined): number {
+    const until = host === undefined ? undefined : this.hostCooldowns.get(host);
+    if (host === undefined || until === undefined) {
+      return 0;
+    }
+    const remaining = until - Date.now();
+    if (remaining <= 0) {
+      this.hostCooldowns.delete(host);
+      return 0;
+    }
+    return remaining;
+  }
+
+  // Resolves once `host` may be asked again; rejects like an aborted
+  // download if the request is abandoned (maintenance) in the meantime.
+  private waitForHostCooldown(host: string | undefined, signal: AbortSignal): Promise<void> {
+    const remaining = this.hostCooldownRemaining(host);
+    if (remaining <= 0) {
+      return Promise.resolve();
+    }
+    log(`Waiting ${remaining}ms for the host's rate limit`, host);
+    return new Promise((resolve, reject) => {
+      let timer: ReturnType<typeof setTimeout> | undefined;
+      const onAbort = () => {
+        clearTimeout(timer);
+        reject(new Error('Request aborted'));
+      };
+      if (signal.aborted) {
+        onAbort();
+        return;
+      }
+      timer = setTimeout(() => {
+        signal.removeEventListener('abort', onAbort);
+        resolve();
+      }, remaining);
+      signal.addEventListener('abort', onAbort, { once: true });
+    });
+  }
+
   // How many transient failures in a row the persisted outcome already
   // records — zero when there is none, when the last outcome was anything
   // other than a transient failure (a success, a settled error, an abort), or
@@ -1190,6 +1435,12 @@ export default class CacheManager extends EventEmitter {
       !['Response aborted', 'Request aborted', MAX_FILE_SIZE_EXCEEDED_ERROR].includes(error.message) &&
       !(error instanceof IpfsGatewayDisabledError);
     if (!isHostFailure) {
+      return undefined;
+    }
+    // Not for content the gateway failed to produce a moment ago, nor while it
+    // is rate limiting us: the link's own failure stands, and is retried on
+    // its own schedule.
+    if (this.getColdIpfsPath(gatewayBase, url) || this.hostCooldownRemaining(getGatewayHost(gatewayBase)) > 0) {
       return undefined;
     }
 
@@ -1441,6 +1692,9 @@ export default class CacheManager extends EventEmitter {
     });
 
     await Promise.all(unlinkPromises);
+    // a cleared cache starts every verdict over as well
+    this.coldIpfsPaths.clear();
+    this.hostCooldowns.clear();
 
     this.emit('sizeChanged');
   }
@@ -1656,6 +1910,7 @@ export default class CacheManager extends EventEmitter {
       const filePath = this.getCacheFilePath(url);
       await safeUnlink(filePath);
       await safeUnlink(getInfoFilePath(filePath));
+      this.forgetColdIpfsPath(url);
 
       this.emit('sizeChanged');
     }, url);
