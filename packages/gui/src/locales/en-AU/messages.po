@@ -8,7 +8,7 @@ msgstr ""
 "Language: en_AU\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-09-06 00:08\n"
+"PO-Revision-Date: 2026-09-13 00:08\n"
 "Last-Translator: \n"
 "Language-Team: English, Australia\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -2713,9 +2713,7 @@ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:724
-msgid ""
-"These commands will be executed without confirmation in the future:\n"
-"\n"
+msgid "These commands will be executed without confirmation in the future:\n\n"
 " {commands}"
 msgstr ""
 
@@ -5775,20 +5773,16 @@ msgstr "Initialising..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgstr "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 
 #: src/components/offers/OfferEditor.tsx:127
 #: src/components/offers2/CreateOfferBuilder.tsx:145
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgstr "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 
 #: src/components/farm/PoolingHealth.tsx:310
@@ -8768,7 +8762,7 @@ msgstr ""
 
 #: src/components/settings/SettingsNFT.tsx:192
 #~ msgid "The gateway used for ipfs:// addresses. Leave it empty to use the public ipfs.io gateway, or enter another public gateway or a local IPFS node such as http://127.0.0.1:8080. Files are re-checked through the new gateway right away."
-#~ msgstr ""
+#~ msgstr "The gateway used for ipfs:// addresses. Leave it empty to use the public ipfs.io gateway, or enter another public gateway or a local IPFS node such as http://127.0.0.1:8080. Files are re-checked through the new gateway right away."
 
 #: src/components/settings/SettingsHarvester.tsx:375
 msgid "The Harvester manages plots and fetches proofs of space corresponding to challenges sent by a farmer."
@@ -10032,3 +10026,4 @@ msgstr "Your spendable balance must be greater than 1 mojo to create a profile"
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "Your wallet is required to be running for auto claim to work."
+
