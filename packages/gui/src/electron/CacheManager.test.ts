@@ -52,6 +52,7 @@ jest.mock('./utils/ipfsGateway', () => ({
 
 const {
   default: CacheManager,
+  COLD_IPFS_PATH_DURATION,
   GATEWAY_UNREACHABLE_THRESHOLD,
   MAX_CACHE_INFO_LOOKUPS,
   TRANSIENT_ERROR_RETRY_DELAY,
@@ -1841,6 +1842,297 @@ describe('CacheManager IPFS gateway health', () => {
         failures: GATEWAY_UNREACHABLE_THRESHOLD,
       },
     ]);
+  });
+});
+
+describe('CacheManager dead IPFS content', () => {
+  let cacheDirectory: string;
+
+  beforeEach(async () => {
+    mockDownloadFile.mockReset();
+    mockIpfsGatewayBase.mockReturnValue('https://ipfs.io/ipfs/');
+    mockIpfsGatewayEnabled.mockReturnValue(true);
+    cacheDirectory = await fs.mkdtemp(path.join(os.tmpdir(), 'chia-cache-manager-'));
+  });
+
+  afterEach(async () => {
+    await fs.rm(cacheDirectory, { recursive: true, force: true });
+  });
+
+  const CID = 'QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB';
+  const OTHER_CID = 'QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG';
+  const link = (name: string, cid = CID) => `https://nftstorage.link/ipfs/${cid}/${name}`;
+  const ipfsUri = (name: string, cid = CID) => `ipfs://${cid}/${name}`;
+  const gatewayUrl = (name: string, cid = CID) => `https://ipfs.io/ipfs/${cid}/${name}`;
+
+  async function createCacheManager(options: { rateLimitCooldown?: number } = {}) {
+    const cacheManager = new CacheManager({
+      cacheDirectory,
+      maxCacheSize: 1024,
+      ...options,
+    });
+    await cacheManager.init();
+    return cacheManager;
+  }
+
+  // the link's own host fails, then the gateway answers `gatewayError`
+  function failBothLegs(gatewayError: string) {
+    mockDownloadFile.mockRejectedValueOnce(new Error('HTTP error: 403')).mockRejectedValueOnce(new Error(gatewayError));
+  }
+
+  it('does not ask another host again for the exact path two hosts could not produce', async () => {
+    const cacheManager = await createCacheManager();
+    failBothLegs('HTTP error: 504');
+    await expect(cacheManager.getContent(link('a.png'))).rejects.toThrow('HTTP error: 504');
+    expect(mockDownloadFile).toHaveBeenCalledTimes(2);
+
+    // The same path on another host shares the verdict, without its own sidecar.
+    const twin = link('a.png').replace('nftstorage.link', 'other.example');
+    await expect(cacheManager.getContent(twin)).rejects.toThrow('HTTP error: 504');
+    expect(mockDownloadFile).toHaveBeenCalledTimes(2);
+    const [info] = await cacheManager.getCacheInfos([twin]);
+    expect(info).toMatchObject({ state: 'NOT_CACHED' });
+  });
+
+  it("spares a link's own host only for a verdict two hosts share", async () => {
+    const cacheManager = await createCacheManager();
+    // the gateway alone could not produce the ipfs uri: its own verdict, not the link host's
+    mockDownloadFile.mockRejectedValueOnce(new Error('HTTP error: 504'));
+    await expect(cacheManager.getContent(ipfsUri('a.png'))).rejects.toThrow('HTTP error: 504');
+
+    // the link is still fetched from its own host; only the fallback is spared
+    mockDownloadFile.mockRejectedValueOnce(new Error('HTTP error: 403'));
+    await expect(cacheManager.getContent(link('a.png'))).rejects.toThrow('HTTP error: 403');
+    expect(mockDownloadFile).toHaveBeenCalledTimes(2);
+  });
+
+  it('fails an ipfs uri of cold content at once, without a download or a verdict of its own', async () => {
+    const cacheManager = await createCacheManager();
+    failBothLegs('Request timed out after 30000ms of inactivity');
+    await expect(cacheManager.getContent(link('a.png'))).rejects.toThrow('Request timed out');
+
+    // The ipfs:// twin names the same file.
+    await expect(cacheManager.getContent(ipfsUri('a.png'))).rejects.toThrow('Request timed out');
+    expect(mockDownloadFile).toHaveBeenCalledTimes(2);
+    const [info] = await cacheManager.getCacheInfos([ipfsUri('a.png')]);
+    expect(info.state).toBe('NOT_CACHED');
+  });
+
+  it('cools only the path itself when the gateway answered 404 or 403 for it', async () => {
+    const cacheManager = await createCacheManager();
+    failBothLegs('HTTP error: 404');
+    await expect(cacheManager.getContent(link('a.png'))).rejects.toThrow('HTTP error: 404');
+
+    // the same file through its ipfs uri: refused without a download
+    await expect(cacheManager.getContent(ipfsUri('a.png'))).rejects.toThrow('HTTP error: 404');
+    expect(mockDownloadFile).toHaveBeenCalledTimes(2);
+
+    // a sibling still gets its fallback: one missing file says nothing about the directory
+    failBothLegs('HTTP error: 404');
+    await expect(cacheManager.getContent(link('b.png'))).rejects.toThrow('HTTP error: 404');
+    expect(mockDownloadFile).toHaveBeenCalledTimes(4);
+    expect(mockDownloadFile.mock.calls[3][2]).toMatchObject({ requestUrl: gatewayUrl('b.png') });
+  });
+
+  it('keeps gateway-only failures scoped to each path', async () => {
+    const cacheManager = await createCacheManager();
+    // an ipfs uri has one route; a 504 on it cools that path, not the directory
+    mockDownloadFile.mockRejectedValueOnce(new Error('HTTP error: 504'));
+    await expect(cacheManager.getContent(ipfsUri('a.png'))).rejects.toThrow('HTTP error: 504');
+
+    mockDownloadFile.mockRejectedValueOnce(new Error('HTTP error: 504'));
+    await expect(cacheManager.getContent(ipfsUri('b.png'))).rejects.toThrow('HTTP error: 504');
+    expect(mockDownloadFile).toHaveBeenCalledTimes(2);
+  });
+
+  it('keeps the verdict to the gateway that gave it', async () => {
+    const cacheManager = await createCacheManager();
+    failBothLegs('HTTP error: 504');
+    await expect(cacheManager.getContent(link('a.png'))).rejects.toThrow('HTTP error: 504');
+
+    mockIpfsGatewayBase.mockReturnValue('https://dweb.link/ipfs/');
+    failBothLegs('HTTP error: 504');
+    await expect(cacheManager.getContent(link('b.png'))).rejects.toThrow('HTTP error: 504');
+    expect(mockDownloadFile).toHaveBeenCalledTimes(4);
+    expect(mockDownloadFile.mock.calls[3][2]).toMatchObject({
+      requestUrl: `https://dweb.link/ipfs/${CID}/b.png`,
+    });
+  });
+
+  it('lets the verdict expire', async () => {
+    let now = Date.now();
+    const nowSpy = jest.spyOn(Date, 'now').mockImplementation(() => now);
+    try {
+      const cacheManager = await createCacheManager();
+      failBothLegs('HTTP error: 504');
+      await expect(cacheManager.getContent(link('a.png'))).rejects.toThrow('HTTP error: 504');
+
+      now += COLD_IPFS_PATH_DURATION - 1;
+      await expect(cacheManager.getContent(ipfsUri('a.png'))).rejects.toThrow('HTTP error: 504');
+      expect(mockDownloadFile).toHaveBeenCalledTimes(2);
+
+      now += 2;
+      failBothLegs('HTTP error: 504');
+      await expect(cacheManager.getContent(link('a.png'))).rejects.toThrow('HTTP error: 504');
+      expect(mockDownloadFile).toHaveBeenCalledTimes(4);
+    } finally {
+      nowSpy.mockRestore();
+    }
+  });
+
+  it("does not cool content for failures that are not the gateway's verdict on it", async () => {
+    const cacheManager = await createCacheManager();
+    const messages = ['net::ERR_NAME_NOT_RESOLVED', 'Request aborted', 'Maximum file size exceeded'];
+    for (const [index, message] of messages.entries()) {
+      mockDownloadFile.mockReset();
+      mockDownloadFile.mockRejectedValue(new Error(message));
+      // eslint-disable-next-line no-await-in-loop -- one failure kind at a time
+      await expect(cacheManager.getContent(ipfsUri(`${index}.png`, OTHER_CID))).rejects.toThrow(message);
+      mockDownloadFile.mockReset();
+      mockDownloadFile.mockRejectedValue(new Error('HTTP error: 502'));
+      // eslint-disable-next-line no-await-in-loop -- the next uri is still asked for
+      await expect(cacheManager.getContent(ipfsUri(`${index}-next.png`, OTHER_CID))).rejects.toThrow('HTTP error: 502');
+      expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+    }
+  });
+
+  it('skips the fallback and makes ipfs uris wait while the gateway is rate limiting', async () => {
+    const cacheManager = await createCacheManager({ rateLimitCooldown: 200 });
+    failBothLegs('HTTP error: 429');
+    await expect(cacheManager.getContent(link('a.png'))).rejects.toThrow('HTTP error: 429');
+
+    // another link, another directory: its own failure stands, no fallback
+    mockDownloadFile.mockRejectedValueOnce(new Error('HTTP error: 403'));
+    await expect(cacheManager.getContent(link('a.png', OTHER_CID))).rejects.toThrow('HTTP error: 403');
+    expect(mockDownloadFile).toHaveBeenCalledTimes(3);
+
+    // an ipfs uri is held back — without a download slot — until the cooldown ends
+    const payload = Buffer.from('cached payload');
+    mockDownloadFile.mockImplementationOnce(async (_url, localPath) => {
+      await fs.writeFile(localPath, payload);
+      return { 'content-type': 'image/png' };
+    });
+    const started = Date.now();
+    const pending = cacheManager.getContent(ipfsUri('b.png', OTHER_CID));
+    await new Promise((resolve) => {
+      setTimeout(resolve, 50);
+    });
+    expect(mockDownloadFile).toHaveBeenCalledTimes(3);
+    await expect(pending).resolves.toEqual(payload);
+    expect(Date.now() - started).toBeGreaterThanOrEqual(150);
+    expect(mockDownloadFile).toHaveBeenCalledTimes(4);
+  });
+
+  it("waits out a rate limit of a link's own host without touching other hosts", async () => {
+    const cacheManager = await createCacheManager({ rateLimitCooldown: 200 });
+    const payload = Buffer.from('cached payload');
+    const serve = async (_url: string, localPath: string) => {
+      await fs.writeFile(localPath, payload);
+      return { 'content-type': 'image/png' };
+    };
+    // the link's own host answers 429; the fallback is not a rate-limited host's business
+    mockDownloadFile.mockRejectedValueOnce(new Error('HTTP error: 429')).mockImplementationOnce(serve);
+    await expect(cacheManager.getContent(link('a.png'))).resolves.toEqual(payload);
+    expect(mockDownloadFile).toHaveBeenCalledTimes(2);
+
+    // another host is not made to wait
+    mockDownloadFile.mockImplementationOnce(serve);
+    await expect(cacheManager.getContent('https://example.com/nft.png')).resolves.toEqual(payload);
+    expect(mockDownloadFile).toHaveBeenCalledTimes(3);
+
+    // the rate-limited host is
+    mockDownloadFile.mockImplementationOnce(serve);
+    const started = Date.now();
+    const pending = cacheManager.getContent(link('b.png', OTHER_CID));
+    await new Promise((resolve) => {
+      setTimeout(resolve, 50);
+    });
+    expect(mockDownloadFile).toHaveBeenCalledTimes(3);
+    await expect(pending).resolves.toEqual(payload);
+    expect(Date.now() - started).toBeGreaterThanOrEqual(150);
+    expect(mockDownloadFile).toHaveBeenCalledTimes(4);
+  });
+
+  it("cools the path when a link served by the gateway's own host fails, without calling it two hosts", async () => {
+    const cacheManager = await createCacheManager();
+    // ipfs.io is the configured gateway: this link has no fallback, and its
+    // failure is the gateway's verdict on the content
+    mockDownloadFile.mockRejectedValueOnce(new Error('HTTP error: 504'));
+    await expect(cacheManager.getContent(gatewayUrl('a.png'))).rejects.toThrow('HTTP error: 504');
+    expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+
+    // the ipfs twin would go to the same host for the same answer
+    await expect(cacheManager.getContent(ipfsUri('a.png'))).rejects.toThrow('HTTP error: 504');
+    expect(mockDownloadFile).toHaveBeenCalledTimes(1);
+
+    // one host failed, so a link on another host is still fetched from it,
+    // and the directory is not cold
+    mockDownloadFile.mockRejectedValueOnce(new Error('HTTP error: 403'));
+    await expect(cacheManager.getContent(link('a.png'))).rejects.toThrow('HTTP error: 403');
+    mockDownloadFile.mockRejectedValueOnce(new Error('HTTP error: 504'));
+    await expect(cacheManager.getContent(ipfsUri('b.png'))).rejects.toThrow('HTTP error: 504');
+    expect(mockDownloadFile).toHaveBeenCalledTimes(3);
+  });
+
+  it("does not cool anything when the fallback merely ran out of the caller's deadline", async () => {
+    const cacheManager = await createCacheManager();
+    failBothLegs('Request exceeded the 1886ms download deadline');
+    await expect(cacheManager.getContent(link('a.png'))).rejects.toThrow('download deadline');
+
+    // the twin and the sibling are asked for as if nothing had been learned
+    mockDownloadFile.mockRejectedValueOnce(new Error('HTTP error: 504'));
+    await expect(cacheManager.getContent(ipfsUri('a.png'))).rejects.toThrow('HTTP error: 504');
+    failBothLegs('HTTP error: 504');
+    await expect(cacheManager.getContent(link('b.png'))).rejects.toThrow('HTTP error: 504');
+    expect(mockDownloadFile).toHaveBeenCalledTimes(5);
+  });
+
+  it('keys a rate limit by the operator, so a subdomain link shares it with the path-style links', async () => {
+    const cacheManager = await createCacheManager({ rateLimitCooldown: 200 });
+    const payload = Buffer.from('cached payload');
+    const serve = async (_url: string, localPath: string) => {
+      await fs.writeFile(localPath, payload);
+      return { 'content-type': 'image/png' };
+    };
+    // the operator answers 429 to a subdomain-style link; the fallback serves it
+    mockDownloadFile.mockRejectedValueOnce(new Error('HTTP error: 429')).mockImplementationOnce(serve);
+    await expect(cacheManager.getContent(`https://${CID}.ipfs.nftstorage.link/a.png`)).resolves.toEqual(payload);
+    expect(mockDownloadFile).toHaveBeenCalledTimes(2);
+
+    // a path-style link on the same operator waits out the cooldown
+    mockDownloadFile.mockImplementationOnce(serve);
+    const started = Date.now();
+    const pending = cacheManager.getContent(link('b.png', OTHER_CID));
+    await new Promise((resolve) => {
+      setTimeout(resolve, 50);
+    });
+    expect(mockDownloadFile).toHaveBeenCalledTimes(2);
+    await expect(pending).resolves.toEqual(payload);
+    expect(Date.now() - started).toBeGreaterThanOrEqual(150);
+    expect(mockDownloadFile).toHaveBeenCalledTimes(3);
+  });
+
+  it('forgets a verdict when its content is invalidated, and every verdict when the cache is cleared', async () => {
+    const cacheManager = await createCacheManager();
+    failBothLegs('HTTP error: 504');
+    await expect(cacheManager.getContent(link('a.png'))).rejects.toThrow('HTTP error: 504');
+    failBothLegs('HTTP error: 504');
+    await expect(cacheManager.getContent(link('a.png', OTHER_CID))).rejects.toThrow('HTTP error: 504');
+    expect(mockDownloadFile).toHaveBeenCalledTimes(4);
+
+    // Refreshing one NFT's file lets that exact path be asked for again.
+    await cacheManager.invalidate(ipfsUri('a.png'));
+    mockDownloadFile.mockRejectedValueOnce(new Error('HTTP error: 504'));
+    await expect(cacheManager.getContent(ipfsUri('a.png'))).rejects.toThrow('HTTP error: 504');
+    expect(mockDownloadFile).toHaveBeenCalledTimes(5);
+    // The other file is still cold.
+    await expect(cacheManager.getContent(ipfsUri('a.png', OTHER_CID))).rejects.toThrow('HTTP error: 504');
+    expect(mockDownloadFile).toHaveBeenCalledTimes(5);
+
+    await cacheManager.clearCache();
+    failBothLegs('HTTP error: 504');
+    await expect(cacheManager.getContent(link('a.png', OTHER_CID))).rejects.toThrow('HTTP error: 504');
+    expect(mockDownloadFile).toHaveBeenCalledTimes(7);
   });
 });
 
