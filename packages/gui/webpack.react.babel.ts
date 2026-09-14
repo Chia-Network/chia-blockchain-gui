@@ -1,12 +1,15 @@
 import webpack from 'webpack';
 import path from 'path';
+import dotenv from 'dotenv';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import LoadablePlugin from '@loadable/webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import LodashModuleReplacementPlugin from 'lodash-webpack-plugin';
 
-const PORT = 3000;
+dotenv.config({ path: path.join(__dirname, '.env') });
+
+const PORT = Number(process.env.CHIA_GUI_PORT) || 3000;
 const CONTEXT = __dirname;
 const DEV = process.env.NODE_ENV !== 'production';
 
