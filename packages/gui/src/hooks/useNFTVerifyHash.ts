@@ -11,6 +11,7 @@ import useIpfsGateway from './useIpfsGateway';
 import { useIpfsGatewayBase } from './useIpfsGatewayUrl';
 import useNFT from './useNFT';
 import useNFTMetadata from './useNFTMetadata';
+import useNFTProvider from './useNFTProvider';
 
 export type UseNFTVerifyHashOptions = {
   preview?: boolean;
@@ -53,6 +54,9 @@ export default function useNFTVerifyHash(nftId?: string, options: UseNFTVerifyHa
   // already on screen would keep their failed state until a remount.
   const [ipfsGateway] = useIpfsGateway();
   const ipfsGatewayBase = useIpfsGatewayBase();
+  // a gateway that came back after being unreachable re-runs verification the
+  // way a gateway change does: the failures remembered meanwhile were the host's
+  const { ipfsGatewayRecoveries } = useNFTProvider();
 
   const { nft, isLoading: isLoadingNFT, error: errorNFT } = useNFT(nftId);
   const { isLoading: isLoadingMetadata, metadata, error: errorMetadata } = useNFTMetadata(nftId);
@@ -120,12 +124,12 @@ export default function useNFTVerifyHash(nftId?: string, options: UseNFTVerifyHa
     () => createNFTUriVerifier(getChecksum, ignoreSizeLimit ? -1 : undefined),
     // A refresh or gateway/size-policy change must discard remembered failures.
     // eslint-disable-next-line react-hooks/exhaustive-deps -- Input identity deliberately defines memo lifetime.
-    [getChecksum, ignoreSizeLimit, nft, ipfsGateway, ipfsGatewayBase],
+    [getChecksum, ignoreSizeLimit, nft, ipfsGateway, ipfsGatewayBase, ipfsGatewayRecoveries],
   );
   const findPreviewUri = useMemo(
     () => createNFTUriVerifier(getChecksum, ignoreSizeLimit ? -1 : undefined),
     // eslint-disable-next-line react-hooks/exhaustive-deps -- Metadata refresh resets preview decisions only.
-    [getChecksum, ignoreSizeLimit, nft, metadata, ipfsGateway, ipfsGatewayBase],
+    [getChecksum, ignoreSizeLimit, nft, metadata, ipfsGateway, ipfsGatewayBase, ipfsGatewayRecoveries],
   );
 
   const validateData = useCallback(
@@ -203,7 +207,7 @@ export default function useNFTVerifyHash(nftId?: string, options: UseNFTVerifyHa
         dataGeneration.current += 1;
       }
     };
-  }, [nft, isLoadingNFT, validateData, ipfsGateway, ipfsGatewayBase]);
+  }, [nft, isLoadingNFT, validateData, ipfsGateway, ipfsGatewayBase, ipfsGatewayRecoveries]);
 
   useEffect(() => {
     const generation = previewGeneration.current + 1;
@@ -242,6 +246,7 @@ export default function useNFTVerifyHash(nftId?: string, options: UseNFTVerifyHa
     validatePreview,
     ipfsGateway,
     ipfsGatewayBase,
+    ipfsGatewayRecoveries,
     excludedPreviewKey,
   ]);
 

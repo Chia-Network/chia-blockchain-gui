@@ -351,3 +351,40 @@ describe('normalizeTimeout', () => {
     expect(normalizeTimeout(value)).toBe(expected);
   });
 });
+
+describe('isHostUnreachableError', () => {
+  const { isHostUnreachableError } =
+    jest.requireActual<typeof import('../../util/downloadErrors')>('../../util/downloadErrors');
+
+  it.each([
+    'net::ERR_NAME_NOT_RESOLVED',
+    'net::ERR_NAME_RESOLUTION_FAILED',
+    'net::ERR_CONNECTION_REFUSED',
+    'net::ERR_ADDRESS_UNREACHABLE',
+    'net::ERR_ADDRESS_INVALID',
+    'net::ERR_SSL_PROTOCOL_ERROR',
+    // what listens at that name is not the gateway the address names
+    'net::ERR_CERT_COMMON_NAME_INVALID',
+    'net::ERR_CERT_AUTHORITY_INVALID',
+  ])('treats %p as the host being unreachable', (message) => {
+    expect(isHostUnreachableError(message)).toBe(true);
+  });
+
+  it.each([
+    // the host answered
+    'HTTP error: 404',
+    'HTTP error: 429',
+    'HTTP error: 504',
+    // the host accepted the connection, then went quiet or was cut off
+    'Request timed out after 30000ms of inactivity',
+    'Request exceeded the 30000ms download deadline',
+    'net::ERR_CONNECTION_RESET',
+    'net::ERR_BLOCKED_BY_RESPONSE',
+    // this machine, not the host
+    'net::ERR_INTERNET_DISCONNECTED',
+    'Request aborted',
+    'Maximum file size exceeded',
+  ])('does not treat %p as the host being unreachable', (message) => {
+    expect(isHostUnreachableError(message)).toBe(false);
+  });
+});

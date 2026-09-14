@@ -20,6 +20,10 @@ type CacheInfoBase =
       // For ipfs:// URLs: the gateway base the failed request went through,
       // so a later gateway change retries the entry immediately.
       gateway?: string;
+      // When the failed transfer started, recorded for a failure to reach the
+      // gateway host: a recovery of the gateway after that moment releases the
+      // entry for retry even if it was written after the recovery (CacheManager).
+      startedAt?: number;
       // For a size-limit failure: the cap the attempt ran under, so a later
       // caller is retried only when it allows more.
       maxSize?: number;
