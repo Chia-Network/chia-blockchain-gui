@@ -938,6 +938,10 @@ export default class CacheManager extends EventEmitter {
 
     const abortController = new AbortController();
     const transferDeadline = new DownloadDeadline(maxDuration, () => abortController.abort());
+    // set when the request was ended from outside — by maintenance (clear,
+    // invalidation, see runMaintenance) or by the requester (abort) — rather
+    // than by its own deadline
+    let abortedByCaller = false;
     let ongoingRequestEntry:
       | {
           promise: Promise<CacheInfo>;
@@ -1124,6 +1128,16 @@ export default class CacheManager extends EventEmitter {
           throw error;
         }
 
+        // A download ended from outside is no verdict on the url. Maintenance
+        // deletes the entry as soon as this request settles, and a requester
+        // that gave up is retried anyway (an abort never settles an entry).
+        // Recording the abort and then running the post-download housekeeping
+        // — a full size scan of the cache directory per aborted download —
+        // would only hold back the clear that is waiting on this very request.
+        if (abortedByCaller) {
+          throw error;
+        }
+
         const currentError = this.redactCachePath(
           transferDeadline.error ?? (error as Error) ?? new Error('Unknown fetchRemoteContent error'),
         );
@@ -1165,7 +1179,10 @@ export default class CacheManager extends EventEmitter {
     const promise = process();
 
     ongoingRequestEntry = {
-      abort: () => abortController.abort(),
+      abort: () => {
+        abortedByCaller = true;
+        abortController.abort();
+      },
       promise,
       gateway: requestGateway,
       deadline: transferDeadline,
