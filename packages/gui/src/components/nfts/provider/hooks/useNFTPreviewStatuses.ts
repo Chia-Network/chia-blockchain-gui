@@ -13,7 +13,7 @@ import useIpfsGateway from '../../../../hooks/useIpfsGateway';
 import { useIpfsGatewayBase } from '../../../../hooks/useIpfsGatewayUrl';
 import { isHostUnreachableError } from '../../../../util/downloadErrors';
 import getNFTPreviewStatusFromCache, { getNFTPreviewUrls } from '../../../../util/getNFTPreviewStatusFromCache';
-import { isIpfsBackedUrl, isIpfsUrl } from '../../../../util/ipfs';
+import { isIpfsBackedUrl } from '../../../../util/ipfs';
 
 const log = debug('chia-gui:NFTProvider:useNFTPreviewStatuses');
 
@@ -71,10 +71,9 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
   const [cacheInfos /* immutable */] = useState(() => new Map<string, CacheInfo>());
 
   // The gateway ipfs:// files are fetched through, and https gateway links
-  // fall back to (empty while the option is off). A persisted ipfs failure is
-  // a verdict on the gateway it went through; CacheManager re-requests such
-  // an entry as soon as the gateway differs, so here it settles nothing under
-  // any other gateway.
+  // fall back to (empty while the option is off). A change of it forgets the
+  // verdicts that rested on ipfs files (forgetIpfsVerdicts) and sweeps again;
+  // the recorded failures themselves still count (see getCacheInfo below).
   const [ipfsGateway] = useIpfsGateway();
   const ipfsGatewayBase = useIpfsGatewayBase();
   const ipfsGatewayKey = ipfsGateway ? ipfsGatewayBase : '';
@@ -204,34 +203,36 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
             break;
           }
 
-          // Mirrors CacheManager's gateway-change rule: while the option is
-          // on, a failure recorded under another gateway — or, for an https
-          // gateway link, without any gateway, meaning it never got the
-          // fallback — is re-requested on the next access, so it settles
-          // nothing here. An ipfs:// sidecar without a gateway predates
-          // gateway tracking and stays a settled failure. Likewise its
-          // recovery rule (isRecoveredGatewayFailure): once the gateway has
-          // come back after being unreachable, a failure to reach it recorded
-          // under the current gateway whose transfer began before that moment
-          // was a verdict on the host, and CacheManager retries it on the next
-          // access — so it settles nothing here either, and the NFT stays in
-          // view for its tile to ask. One that began after the recovery is a
-          // new failure and follows the ordinary rules.
+          // A failure recorded under another gateway is still a failure for
+          // the filter. CacheManager re-requests such an entry through the
+          // current gateway the moment a tile asks (its gateway-change rule),
+          // so nothing is lost by classifying it: the NFT sits under
+          // "unavailable", and the tile that asks — in that view, or in the
+          // unfiltered gallery — reports whatever the new gateway yields. Reading
+          // it as "never fetched" instead put every file whose hosts are gone
+          // back under "Preview available" after every gateway change, each
+          // holding a download slot until it failed the same way again. What
+          // does settle nothing here is CacheManager's recovery rule
+          // (isRecoveredGatewayFailure): once the gateway has come back after
+          // being unreachable, a failure to reach it recorded under the current
+          // gateway whose transfer began before that moment was a verdict on
+          // the host, not on the content, so the NFT stays in view for its tile
+          // to ask. One that began after the recovery is a new failure and
+          // follows the ordinary rules.
           const currentGateway = ipfsGatewayKeyRef.current;
           const recoveredAt = ipfsGatewayRecoveredAtRef.current;
           const getCacheInfo = (url: string): CacheInfo | undefined => {
             const cacheInfo = cacheInfos.get(url);
-            if (cacheInfo?.state === CacheState.ERROR && currentGateway && isIpfsBackedUrl(url)) {
-              const isOtherGateway =
-                cacheInfo.gateway === undefined ? !isIpfsUrl(url) : cacheInfo.gateway !== currentGateway;
-              const isRecoveredFailure =
-                recoveredAt !== undefined &&
-                cacheInfo.gateway === currentGateway &&
-                isHostUnreachableError(cacheInfo.error) &&
-                recoveredAt > (cacheInfo.startedAt ?? cacheInfo.timestamp);
-              if (isOtherGateway || isRecoveredFailure) {
-                return { url: cacheInfo.url, timestamp: cacheInfo.timestamp, state: CacheState.NOT_CACHED };
-              }
+            if (
+              cacheInfo?.state === CacheState.ERROR &&
+              currentGateway &&
+              isIpfsBackedUrl(url) &&
+              recoveredAt !== undefined &&
+              cacheInfo.gateway === currentGateway &&
+              isHostUnreachableError(cacheInfo.error) &&
+              recoveredAt > (cacheInfo.startedAt ?? cacheInfo.timestamp)
+            ) {
+              return { url: cacheInfo.url, timestamp: cacheInfo.timestamp, state: CacheState.NOT_CACHED };
             }
 
             return cacheInfo;
@@ -247,12 +248,27 @@ export default function useNFTPreviewStatuses(props: UseNFTPreviewStatusesProps)
             const status = getNFTPreviewStatusFromCache(nft, metadataState, getCacheInfo);
             if (status) {
               statuses.set(nftId, status);
-              settled.add(nftId);
+              // A verdict reached while the metadata is still being fetched
+              // (the fetch looked doomed) is provisional: should the fetch
+              // bring the metadata after all, its preview candidates may
+              // change the verdict, so the NFT is left unsettled and the
+              // store's change notification has it swept again. A tile's
+              // live report settles it regardless.
+              if (!metadataState.isLoading) {
+                settled.add(nftId);
+              }
               changed = true;
             } else if (!metadataState.isLoading) {
               // every input is known and the cache cannot decide — only a
               // download can, and the tile that performs it reports it
               settled.add(nftId);
+              // a provisional verdict reached while the metadata was still
+              // loading (see above) is stale now that the metadata has
+              // arrived: drop it so the NFT rejoins the available previews
+              // and a tile mounts to fetch the candidates it brought
+              if (statuses.delete(nftId)) {
+                changed = true;
+              }
             }
             // otherwise the metadata is still loading: swept again once it settles
           });

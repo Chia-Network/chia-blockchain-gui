@@ -81,6 +81,28 @@ const PERMANENT_NET_ERRORS = new Set([
 // made from it would settle the entry for something the url did nothing.
 const TRANSIENT_LOCAL_ERROR_CODES = ['EMFILE', 'ENFILE', 'EAGAIN', 'EBUSY', 'ENOSPC', 'EIO'];
 
+// How long a persisted transient download failure (timeout, gateway error,
+// rate limit, bot challenge) settles before the next access retries it. Long
+// enough that a stalled host is not re-probed on every tile mount, short
+// enough that a gateway hiccup does not blank an NFT until the GUI restarts.
+export const TRANSIENT_ERROR_RETRY_DELAY = 10 * 60 * 1000; // 10 minutes
+
+// The delay doubles with every consecutive transient failure, up to this
+// ceiling, and after MAX_TRANSIENT_RETRIES failures in a row the entry settles
+// for good (until the NFT is refreshed or the cache cleared). Every URL here
+// is minter-authored, so a retry schedule must have a bound: with a fixed
+// delay a host that answers 503 forever would be re-probed every ten minutes
+// for as long as the wallet is open — a liveness beacon for whoever runs it.
+export const MAX_TRANSIENT_ERROR_RETRY_DELAY = 24 * 60 * 60 * 1000; // 1 day
+export const MAX_TRANSIENT_RETRIES = 8;
+
+// The wait before the next in-session retry of a URL that has failed
+// transiently `retries` times in a row: 10 min, 20 min, 40 min, ...
+export function transientErrorRetryDelay(retries: number): number {
+  const exponent = Math.max(0, Math.min(retries - 1, 31));
+  return Math.min(TRANSIENT_ERROR_RETRY_DELAY * 2 ** exponent, MAX_TRANSIENT_ERROR_RETRY_DELAY);
+}
+
 // Chromium network errors that say the request never reached a host at the
 // URL's name: the name does not resolve, nothing listens at the address, or
 // what listens presents a certificate for some other name. For a request

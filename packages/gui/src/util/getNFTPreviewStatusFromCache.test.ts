@@ -83,23 +83,220 @@ describe('getNFTPreviewStatusFromCache', () => {
   // The cache retries these on a later access, so a tile that asked would
   // fetch again; settling the NFT as unavailable would hide it from a
   // filtered gallery, and a hidden tile never asks.
+  it.each(['Request aborted', 'Response aborted'])(
+    'stays undecided after %p, a download cancelled from our side and retried on the next access',
+    (message) => {
+      const status = getNFTPreviewStatusFromCache(
+        { dataUris: ['https://a/x.png'], dataHash: HASH },
+        noMetadata,
+        lookup([errored('https://a/x.png', message)]),
+      );
+
+      expect(status).toBeUndefined();
+    },
+  );
+
   it.each([
-    'Request aborted',
-    'Response aborted',
     'HTTP error: 503',
     'HTTP error: 403',
     'HTTP error: 429',
     'net::ERR_CONNECTION_RESET',
     'net::ERR_NAME_NOT_RESOLVED',
     'Request timed out after 30000ms of inactivity',
-  ])('stays undecided after %p, an error the cache will retry', (message) => {
+  ])('is unavailable after %p, a transient failure the cache retries only when a tile asks', (message) => {
+    // recorded long ago, so the cache would retry it for a tile that asked —
+    // the filter still shows what a tile would be shown right now
     const status = getNFTPreviewStatusFromCache(
       { dataUris: ['https://a/x.png'], dataHash: HASH },
       noMetadata,
       lookup([errored('https://a/x.png', message)]),
     );
 
-    expect(status).toBeUndefined();
+    expect(status).toBe(NFTPreviewStatus.UNAVAILABLE);
+  });
+
+  it('is unavailable after a transient failure whatever its age or count', () => {
+    const now = 1_700_000_000_000;
+    for (const [retries, ago] of [
+      [undefined, 1000],
+      [1, 1000],
+      [1, 2 * 60 * 60 * 1000],
+      [5, 24 * 60 * 60 * 1000],
+    ] as const) {
+      const info: CacheInfo = {
+        url: 'https://a/x.png',
+        state: CacheState.ERROR,
+        error: 'HTTP error: 504',
+        timestamp: now - ago,
+        ...(retries === undefined ? {} : { retries }),
+      };
+      expect(
+        getNFTPreviewStatusFromCache({ dataUris: ['https://a/x.png'], dataHash: HASH }, noMetadata, lookup([info])),
+      ).toBe(NFTPreviewStatus.UNAVAILABLE);
+    }
+  });
+
+  describe('an ipfs twin of a failed gateway link', () => {
+    const now = 1_700_000_000_000;
+    const CID = 'QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB';
+    const link = `https://nftstorage.link/ipfs/${CID}/x.png`;
+    const twin = `ipfs://${CID}/x.png`;
+    const failedLink: CacheInfo = {
+      url: link,
+      state: CacheState.ERROR,
+      error: 'HTTP error: 504',
+      timestamp: now - 60 * 60 * 1000,
+      retries: 3,
+    };
+
+    it('is unavailable when the link failed and its never-fetched twin names the same content', () => {
+      // the cache refuses the twin as cold content without writing a sidecar
+      const status = getNFTPreviewStatusFromCache(
+        { dataUris: [link, twin], dataHash: HASH },
+        noMetadata,
+        lookup([failedLink]),
+        now,
+      );
+      expect(status).toBe(NFTPreviewStatus.UNAVAILABLE);
+    });
+
+    it('stays undecided for a never-fetched uri naming other content', () => {
+      const other = 'ipfs://QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG/x.png';
+      const status = getNFTPreviewStatusFromCache(
+        { dataUris: [link, other], dataHash: HASH },
+        noMetadata,
+        lookup([failedLink]),
+        now,
+      );
+      expect(status).toBeUndefined();
+    });
+
+    it.each([['a failed ipfs uri does not fail a never-fetched link: its own host would still be tried', twin, link]])(
+      '%s',
+      (_label, failedUri, neverFetched) => {
+        const status = getNFTPreviewStatusFromCache(
+          { dataUris: [failedUri, neverFetched], dataHash: HASH },
+          noMetadata,
+          lookup([{ ...failedLink, url: failedUri }]),
+          now,
+        );
+        expect(status).toBeUndefined();
+      },
+    );
+
+    it.each([
+      // the content exists; a twin would be downloaded (and mismatch on its own)
+      ['a hash mismatch', cached(link, '0xffff')],
+      // no verdict on the content
+      ['a network error', { ...failedLink, error: 'net::ERR_CONNECTION_RESET' }],
+      ["the caller's deadline running out", { ...failedLink, error: 'Request exceeded the 30000ms download deadline' }],
+      // the host is put on cooldown; the content is not cold and the twin is still fetched
+      ['a rate limit', { ...failedLink, error: 'HTTP error: 429' }],
+    ])('does not fail the twin after %s of the link', (_label, linkInfo) => {
+      const status = getNFTPreviewStatusFromCache(
+        { dataUris: [link, twin], dataHash: HASH },
+        noMetadata,
+        lookup([linkInfo as CacheInfo]),
+        now,
+      );
+      expect(status).toBeUndefined();
+    });
+
+    it.each(['HTTP error: 404', 'HTTP error: 504', 'Request timed out after 30000ms of inactivity'])(
+      'fails the twin after %p of the link, which cools the content for the gateway',
+      (error) => {
+        const status = getNFTPreviewStatusFromCache(
+          { dataUris: [link, twin], dataHash: HASH },
+          noMetadata,
+          lookup([{ ...failedLink, error }]),
+          now,
+        );
+        expect(status).toBe(NFTPreviewStatus.UNAVAILABLE);
+      },
+    );
+
+    it('lets a twin with an outcome of its own speak for itself', () => {
+      const status = getNFTPreviewStatusFromCache(
+        { dataUris: [link, twin], dataHash: HASH },
+        noMetadata,
+        lookup([failedLink, cached(twin, HASH)]),
+        now,
+      );
+      expect(status).toBe(NFTPreviewStatus.AVAILABLE);
+    });
+
+    it('dooms a metadata fetch whose ipfs copy is the twin of its failed gateway copy', () => {
+      const metaLink = `https://nftstorage.link/ipfs/${CID}/x.json`;
+      const metaTwin = `ipfs://${CID}/x.json`;
+      const status = getNFTPreviewStatusFromCache(
+        { dataUris: [link, twin], dataHash: HASH, metadataUris: [metaLink, metaTwin] },
+        loadingMetadata,
+        lookup([failedLink, { ...failedLink, url: metaLink }]),
+        now,
+      );
+      expect(status).toBe(NFTPreviewStatus.UNAVAILABLE);
+    });
+  });
+
+  describe('metadata still being fetched', () => {
+    const now = 1_700_000_000_000;
+    const repeated = (url: string, error = 'HTTP error: 504'): CacheInfo => ({
+      url,
+      state: CacheState.ERROR,
+      error,
+      timestamp: now - 60 * 60 * 1000,
+      retries: 3,
+    });
+    const nft = {
+      dataUris: ['https://a/x.png'],
+      dataHash: HASH,
+      metadataUris: ['https://a/x.json', 'ipfs://QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/x.json'],
+    };
+
+    it('consults the metadata uris while the fetch is in flight, and not once it has settled', () => {
+      expect(getNFTPreviewUrls(nft, loadingMetadata)).toEqual([...nft.metadataUris, 'https://a/x.png']);
+      expect(getNFTPreviewUrls(nft, noMetadata)).toEqual(['https://a/x.png']);
+    });
+
+    it('is unavailable when the data file and every metadata copy have been seen to fail', () => {
+      const infos = lookup([repeated('https://a/x.png'), repeated(nft.metadataUris[0]), repeated(nft.metadataUris[1])]);
+      expect(getNFTPreviewStatusFromCache(nft, loadingMetadata, infos)).toBe(NFTPreviewStatus.UNAVAILABLE);
+    });
+
+    it('stays undecided while a metadata copy has never been fetched, or is cached', () => {
+      const fresh = lookup([repeated('https://a/x.png'), repeated(nft.metadataUris[0])]);
+      expect(getNFTPreviewStatusFromCache(nft, loadingMetadata, fresh)).toBeUndefined();
+
+      const cachedCopy = lookup([
+        repeated('https://a/x.png'),
+        repeated(nft.metadataUris[0]),
+        cached(nft.metadataUris[1], '0x1234'),
+      ]);
+      expect(getNFTPreviewStatusFromCache(nft, loadingMetadata, cachedCopy)).toBeUndefined();
+    });
+
+    it('is unavailable even when a metadata copy failed only once: a tile asking would be shown that failure', () => {
+      const infos = lookup([
+        repeated('https://a/x.png'),
+        repeated(nft.metadataUris[0]),
+        { ...repeated(nft.metadataUris[1]), retries: 1, timestamp: now - 24 * 60 * 60 * 1000 },
+      ]);
+      expect(getNFTPreviewStatusFromCache(nft, loadingMetadata, infos)).toBe(NFTPreviewStatus.UNAVAILABLE);
+    });
+
+    it('stays undecided when only some of the recorded copies could be consulted', () => {
+      const many = {
+        ...nft,
+        metadataUris: Array.from({ length: MAX_URIS_PER_CANDIDATE + 1 }, (_, i) => `https://a/${i}.json`),
+      };
+      const infos = lookup([repeated('https://a/x.png'), ...many.metadataUris.map((uri) => repeated(uri))]);
+      expect(getNFTPreviewStatusFromCache(many, loadingMetadata, infos)).toBeUndefined();
+    });
+
+    it('does not decide the preview from the data file alone while the metadata is merely slow', () => {
+      const infos = lookup([repeated('https://a/x.png')]);
+      expect(getNFTPreviewStatusFromCache(nft, loadingMetadata, infos)).toBeUndefined();
+    });
   });
 
   it.each(['HTTP error: 404', 'HTTP error: 410', 'HTTP error: 501', 'net::ERR_CERT_AUTHORITY_INVALID', 'Invalid URL'])(
