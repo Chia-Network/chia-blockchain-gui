@@ -300,7 +300,12 @@ describe('CacheManager directory migration', () => {
       invalidation = cache.invalidate(url);
       await aborted.promise;
       finish.resolve();
-      await Promise.all([first, invalidation]);
+      // a transfer the invalidation aborted settles by rejecting — no verdict
+      // is recorded for it — while one that already succeeded resolves
+      await Promise.all([
+        completion === 'abort cleanup' ? expect(first).rejects.toThrow('Request aborted') : first,
+        invalidation,
+      ]);
     } finally {
       finish.resolve();
       await Promise.allSettled([first, invalidation]);

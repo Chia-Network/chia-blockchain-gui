@@ -145,8 +145,11 @@ describe('CacheManager admission and failure scope', () => {
     await tick();
     fail(new Error('HTTP error: 429'));
     await first;
+    // the clear aborts the request waiting out the cooldown; it settles by
+    // rejecting, and records nothing the clear would have to delete
+    const drained = expect(second).rejects.toThrow('Request aborted');
     await manager.clearCache();
-    await expect(second).resolves.toMatchObject({ state: 'ERROR', error: 'Request aborted' });
+    await drained;
     expect(mockDownloadFile).toHaveBeenCalledTimes(1);
     expect(await fs.readdir(directory)).toEqual([]);
     await expect(manager.getContent('https://other.example/ok.png')).resolves.toEqual(Buffer.from('healthy'));
