@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-09-06 00:08\n"
+"PO-Revision-Date: 2026-09-13 00:08\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -2713,9 +2713,7 @@ msgstr "آیا میخواهید تنظیمات برگزیده برای دستو�
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:724
-msgid ""
-"These commands will be executed without confirmation in the future:\n"
-"\n"
+msgid "These commands will be executed without confirmation in the future:\n\n"
 " {commands}"
 msgstr ": این دستورات در آینده بدون تأیید اجرا خواهند شد"
 
@@ -4903,7 +4901,7 @@ msgstr "یک آدرس کیف پول برای امضاء وارد کنید"
 
 #: src/components/settings/IpfsGatewayUrl.tsx:72
 msgid "Enter an https:// gateway address, for example https://dweb.link"
-msgstr ""
+msgstr "آدرس ورودی https:// را وارد کنید، برای مثال https://dweb.link"
 
 #: src/components/signVerify/SignMessage.tsx:94
 msgid "Enter an NFT or DID to sign with"
@@ -5775,20 +5773,16 @@ msgstr "در حال شروع..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
+msgstr "مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
 "موجودی قابل مصرف شما برای پوشش مبلغ پیشنهاد کافی است."
 
 #: src/components/offers/OfferEditor.tsx:127
 #: src/components/offers2/CreateOfferBuilder.tsx:145
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
+msgstr "مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
 "موجودی قابل مصرف شما برای پوشش مبلغ پیشنهاد کافی است."
 
 #: src/components/farm/PoolingHealth.tsx:310
@@ -5846,7 +5840,7 @@ msgstr "آی پی آدرس / میزبان"
 
 #: src/components/settings/SettingsNFT.tsx:184
 msgid "IPFS gateway"
-msgstr ""
+msgstr "ورودی IPFS"
 
 #: src/constants/WalletConnectCommands.tsx:2277
 #~ msgid "Is notification visible to all paired fingerprints"
@@ -6497,11 +6491,11 @@ msgstr "جزئیات ان اف تی در دسترس نیست"
 
 #: src/components/settings/SettingsNFT.tsx:171
 msgid "NFT files published with ipfs:// addresses will be downloaded through an HTTPS gateway. The requested URL differs from the address recorded on chain, but downloaded content is still verified against the NFT's on-chain hash. The gateway operator can see your IP address and which NFT files you view. When disabled, ipfs:// files are not fetched."
-msgstr ""
+msgstr "فایل‌های NFT منتشر شده با آدرس‌های //:ipfs از طریق دروازه عمومی HTTPS  دانلود می‌شوند. آدرس اینترنتی درخواستی با آدرس ثبت شده روی بلاکچین متفاوت است، اما محتوای دانلود شده همچنان با هش روی بلاکچین NFT تأیید می‌شود. در صورت غیرفعال بودن، فایل‌های //:ipfs دریافت نمی‌شوند."
 
 #: src/components/settings/SettingsNFT.tsx:170
 #~ msgid "NFT files published with ipfs:// addresses will be downloaded through the public ipfs.io HTTPS gateway. The requested URL differs from the address recorded on chain, but downloaded content is still verified against the NFT's on-chain hash. When disabled, ipfs:// files are not fetched."
-#~ msgstr "فایل‌های NFT منتشر شده با آدرس‌های ipfs:// از طریق دروازه عمومی HTTPS ipfs.io دانلود می‌شوند. آدرس اینترنتی درخواستی با آدرس ثبت شده روی بلاکچین متفاوت است، اما محتوای دانلود شده همچنان با هش روی بلاکچین NFT تأیید می‌شود. در صورت غیرفعال بودن، فایل‌های ipfs:// دریافت نمی‌شوند."
+#~ msgstr ""
 
 #: src/components/offers2/OfferBuilderNFTRoyalties.tsx:172
 msgid "NFT has no royalties"
@@ -8764,11 +8758,11 @@ msgstr ""
 
 #: src/components/settings/SettingsNFT.tsx:192
 msgid "The gateway used for ipfs:// addresses, and the fallback for gateway links (such as https://nftstorage.link/ipfs/…) whose own host no longer serves them. Leave it empty to use the public ipfs.io gateway, which is being wound down and rate limits applications; https://ipfs.mintgarden.io, https://gateway.pinata.cloud and https://ipfs.filebase.io currently work, as does a local IPFS node such as http://127.0.0.1:8080. Files are re-checked through the new gateway right away."
-msgstr ""
+msgstr "ورودی که برای آدرس‌های ipfs:// استفاده می‌شود، و جایگزین برای لینک‌های ورودی (مانند.../https://nftstorage.link/ipfs) که میزبان خودشان دیگر به آنها سرویس نمی‌دهد. برای استفاده از ورودی عمومی ipfs.io که در حال کوچک شدن است و برنامه‌هایی که محدودیت سرعت دارد، این قسمت را خالی بگذارید؛ https://ipfs.mintgarden.io، https://gateway.pinata.cloud و https://ipfs.filebase.io در حال حاضر کار می‌کنند، همانطور که یک نود IPFS محلی مانند http://127.0.0.1:8080 نیز کار می‌کند. فایل‌ها بلافاصله از طریق ورودی جدید دوباره بررسی می‌شوند."
 
 #: src/components/settings/SettingsNFT.tsx:192
 #~ msgid "The gateway used for ipfs:// addresses. Leave it empty to use the public ipfs.io gateway, or enter another public gateway or a local IPFS node such as http://127.0.0.1:8080. Files are re-checked through the new gateway right away."
-#~ msgstr ""
+#~ msgstr "The gateway used for ipfs:// addresses. Leave it empty to use the public ipfs.io gateway, or enter another public gateway or a local IPFS node such as http://127.0.0.1:8080. Files are re-checked through the new gateway right away."
 
 #: src/components/settings/SettingsHarvester.tsx:375
 msgid "The Harvester manages plots and fetches proofs of space corresponding to challenges sent by a farmer."
@@ -10032,3 +10026,4 @@ msgstr "برای ایجاد حساب کاربری، موجودی قابل خرج
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "برای انجام مطالبه خودکار، باید کیف پول شما در حال اجرا باشد."
+
