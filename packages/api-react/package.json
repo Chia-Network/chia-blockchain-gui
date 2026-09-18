@@ -36,7 +36,7 @@
     "@reduxjs/toolkit": "1.9.5",
     "@rollup/plugin-babel": "6.0.4",
     "@rollup/plugin-commonjs": "25.0.4",
-    "@rollup/plugin-node-resolve": "15.2.1",
+    "@rollup/plugin-node-resolve": "16.0.3",
     "@types/core-js": "2.5.5",
     "@types/jest": "29.5.3",
     "@types/lodash": "4.14.197",
