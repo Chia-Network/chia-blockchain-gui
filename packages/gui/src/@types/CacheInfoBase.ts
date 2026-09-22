@@ -10,6 +10,13 @@ type CacheInfoBase =
       state: CacheState.CACHED;
       headers: Headers;
       checksum: string;
+      // The gateway base the file came through, when a gateway served it:
+      // the only route for an ipfs:// URI, and the fallback for a gateway
+      // link whose own host failed. Absent when the URL's own host produced
+      // the file, and on sidecars written before this was recorded. Shown
+      // to the user as the file's source (getNFTSource); it plays no part
+      // in the cache's own decisions — a cached file is settled either way.
+      gateway?: string;
     }
   | {
       state: CacheState.ERROR;
