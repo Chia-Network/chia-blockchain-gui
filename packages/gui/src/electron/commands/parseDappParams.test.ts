@@ -153,6 +153,20 @@ describe('parseDappParams', () => {
       expect(result).not.toHaveProperty('push');
       expect(result).not.toHaveProperty('allow_unsynced');
     });
+
+    it('requires a fee for create fee transaction and keeps coin selection optional', () => {
+      expect(() => parseDappParams('chia_createFeeTransaction', serialize({}))).toThrow('param is required: fee');
+
+      expect(parseDappParams('chia_createFeeTransaction', serialize({ fee: '1000' }))).toEqual({
+        fee: 1000n,
+      });
+    });
+
+    it('rejects create fee transaction params that are not declared by the schema', () => {
+      expect(() => parseDappParams('chia_createFeeTransaction', serialize({ fee: '1000', sign: false }))).toThrow(
+        'param not allowed for dapp: sign',
+      );
+    });
   });
 
   describe('fingerprint handling', () => {
