@@ -738,13 +738,25 @@ export const Commands: Record<string, CommandSchema> = {
       { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'bigint', humanize: 'mojo-to-xch' },
       { name: 'coins', label: () => i18n._(/* i18n */ { id: 'Coins' }), type: 'json', isOptional: true },
       { name: 'push', label: () => i18n._(/* i18n */ { id: 'Push' }), type: 'bool', isOptional: true },
+      {
+        name: 'extra_conditions',
+        label: () => i18n._(/* i18n */ { id: 'Extra Conditions' }),
+        type: 'json',
+        isOptional: true,
+      },
+      {
+        name: 'allow_unsynced',
+        label: () => i18n._(/* i18n */ { id: 'Allow Unsynced' }),
+        type: 'bool',
+        isOptional: true,
+      },
     ],
     dapp: [
       {
         command: 'chia_createFeeTransaction',
+        preserveNestedDataKeys: true,
         title: () => i18n._(/* i18n */ { id: 'Create Fee Transaction' }),
         message: () => i18n._(/* i18n */ { id: 'Create a transaction from your wallet that pays a fee' }),
-        requiresSync: true,
       },
     ],
   },

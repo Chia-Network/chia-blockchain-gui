@@ -162,6 +162,21 @@ describe('parseDappParams', () => {
       });
     });
 
+    it('passes extra conditions through for create fee transaction', () => {
+      expect(
+        parseDappParams(
+          'chia_createFeeTransaction',
+          serialize({
+            fee: '1000',
+            extraConditions: [{ opcode: 64, args: { coin_id: '0xabcd' } }],
+          }),
+        ),
+      ).toMatchObject({
+        fee: 1000n,
+        extra_conditions: [{ opcode: 64, args: { coin_id: '0xabcd' } }],
+      });
+    });
+
     it('rejects create fee transaction params that are not declared by the schema', () => {
       expect(() => parseDappParams('chia_createFeeTransaction', serialize({ fee: '1000', sign: false }))).toThrow(
         'param not allowed for dapp: sign',
