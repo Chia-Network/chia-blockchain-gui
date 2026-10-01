@@ -1,4 +1,4 @@
-﻿import Color from '../../../constants/Color';
+import Color from '../../../constants/Color';
 
 import { ChiaBrand2025 as B } from './brandColors';
 
