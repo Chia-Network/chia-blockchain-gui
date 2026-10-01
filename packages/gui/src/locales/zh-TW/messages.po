@@ -2713,9 +2713,13 @@ msgstr "您是否要儲存以下指令的偏好設定？"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:724
-msgid "These commands will be executed without confirmation in the future:\n\n"
+msgid ""
+"These commands will be executed without confirmation in the future:\n"
+"\n"
 " {commands}"
-msgstr "這些指令將在未來直接執行，不再尋求確認：\n\n"
+msgstr ""
+"這些指令將在未來直接執行，不再尋求確認：\n"
+"\n"
 " {commands}"
 
 #. js-lingui-explicit-id
@@ -3439,7 +3443,7 @@ msgstr "進階"
 msgid "After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring."
 msgstr "在您的金鑰成功遷移至新的金鑰圈之後，您可以選擇從舊的金鑰圈中移除您的金鑰。"
 
-#: src/components/settings/SettingsNFT.tsx:152
+#: src/components/settings/SettingsNFT.tsx:158
 msgid "All NFT videos will restart automatically when they finish playing. When disabled, looping can still be turned on for individual videos from their detail page."
 msgstr ""
 
@@ -3575,7 +3579,7 @@ msgstr ""
 msgid "Are you sure you want to cancel your offer?"
 msgstr "您確定要取消您的報價嗎？"
 
-#: src/components/settings/SettingsNFT.tsx:77
+#: src/components/settings/SettingsNFT.tsx:83
 msgid "Are you sure you want to delete the NFT cache?"
 msgstr "您確定要刪除 NFT 快取嗎？"
 
@@ -3808,7 +3812,7 @@ msgstr "通過提供簽名地址，可以驗證公鑰與用於簽名的地址相
 msgid "Bypassed Commands"
 msgstr "已忽略指令"
 
-#: src/components/settings/SettingsNFT.tsx:228
+#: src/components/settings/SettingsNFT.tsx:254
 msgid "Cache"
 msgstr "快取"
 
@@ -3886,7 +3890,7 @@ msgid "Challenge Hash"
 msgstr "挑戰哈希"
 
 #: src/components/plotNFT/PlotNFTChangePool.tsx:110
-#: src/components/settings/SettingsNFT.tsx:266
+#: src/components/settings/SettingsNFT.tsx:292
 msgid "Change"
 msgstr "變更"
 
@@ -3990,7 +3994,7 @@ msgstr "選擇P圖工具"
 msgid "Choose Wallet Mode"
 msgstr "選擇錢包模式"
 
-#: src/components/settings/SettingsNFT.tsx:94
+#: src/components/settings/SettingsNFT.tsx:100
 msgid "Choose what you want to see and how you want to view it."
 msgstr "選擇您想要查看的內容以及查看方式。"
 
@@ -4019,8 +4023,8 @@ msgstr ""
 msgid "Clear every \"always allow\" override for this app. Future commands will require confirmation again."
 msgstr ""
 
-#: src/components/settings/SettingsNFT.tsx:70
-#: src/components/settings/SettingsNFT.tsx:248
+#: src/components/settings/SettingsNFT.tsx:76
+#: src/components/settings/SettingsNFT.tsx:274
 msgid "Clear NFT cache"
 msgstr "清除 NFT 快取"
 
@@ -4776,6 +4780,10 @@ msgstr "重複耕地"
 msgid "Duplicate Plots"
 msgstr "重複耕地"
 
+#: src/components/settings/SettingsNFT.tsx:220
+msgid "Each NFT card gets a label saying whether the file it shows is IPFS content, and whether that content came through the IPFS gateway above or directly from the host in the file's address. A file downloaded before this option existed may be labeled as direct even when a gateway served it."
+msgstr ""
+
 #: src/components/harvest/HarvesterDetail.tsx:125
 msgid "Earned"
 msgstr "累計收益"
@@ -5202,8 +5210,12 @@ msgstr "手續費金額"
 msgid "Fees included in offer:"
 msgstr "報價中包含的費用："
 
-#: src/components/settings/SettingsNFT.tsx:163
+#: src/components/settings/SettingsNFT.tsx:169
 msgid "Fetch IPFS content through a gateway"
+msgstr ""
+
+#: src/components/nfts/NFTSourceStatus.tsx:75
+msgid "Fetched from {0}. This file is not published on IPFS."
 msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:483
@@ -5215,12 +5227,12 @@ msgstr ""
 #~ msgid "File"
 #~ msgstr "File"
 
-#: src/components/nfts/NFTPreview.tsx:698
+#: src/components/nfts/NFTPreview.tsx:701
 msgid "File does not match the expected hash"
 msgstr ""
 
 #: src/components/nfts/NFTHashStatus.tsx:94
-#: src/components/nfts/NFTPreview.tsx:343
+#: src/components/nfts/NFTPreview.tsx:346
 msgid "File is not available"
 msgstr ""
 
@@ -5257,7 +5269,7 @@ msgstr "最終資料夾位置"
 msgid "Finished"
 msgstr "已完成"
 
-#: src/components/settings/SettingsNFT.tsx:126
+#: src/components/settings/SettingsNFT.tsx:132
 msgid "Fit images to cards"
 msgstr "將圖片調整至卡片大小"
 
@@ -5640,7 +5652,7 @@ msgstr "隱藏  <0/>"
 msgid "Hide"
 msgstr "隱藏"
 
-#: src/components/settings/SettingsNFT.tsx:106
+#: src/components/settings/SettingsNFT.tsx:112
 msgid "Hide objectionable content"
 msgstr "隱藏不當內容"
 
@@ -5710,7 +5722,7 @@ msgstr "如果您已經分享了您的報價單檔案，您可能需要提交一
 #~ msgid "Image Hash Mismatch"
 #~ msgstr "Image Hash Mismatch"
 
-#: src/components/settings/SettingsNFT.tsx:136
+#: src/components/settings/SettingsNFT.tsx:142
 msgid "Images will be scaled to fill the NFT card and ignore their original proportions."
 msgstr "圖片將被縮放以填滿 NFT 卡片，並忽略它們的原始比例。"
 
@@ -5774,16 +5786,20 @@ msgstr "正在初始化..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid "Insufficient funds available to accept offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "可用資金不足，無法接受報價。請確保您的\n"
+msgstr ""
+"可用資金不足，無法接受報價。請確保您的\n"
 "可支出餘額足以支付報價金額。"
 
 #: src/components/offers/OfferEditor.tsx:127
 #: src/components/offers2/CreateOfferBuilder.tsx:145
-msgid "Insufficient funds available to create offer. Ensure that your\n"
+msgid ""
+"Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr "可用資金不足，無法建立報價。請確保您的\n"
+msgstr ""
+"可用資金不足，無法建立報價。請確保您的\n"
 "可支出餘額足以支付報價金額。"
 
 #: src/components/farm/PoolingHealth.tsx:310
@@ -5839,7 +5855,24 @@ msgstr "IP 位址"
 msgid "IP address / host"
 msgstr "IP 位址 / 主機"
 
-#: src/components/settings/SettingsNFT.tsx:184
+#: src/components/nfts/NFTSourceStatus.tsx:71
+msgid "IPFS"
+msgstr ""
+
+#: src/components/nfts/NFTSourceStatus.tsx:77
+msgid "IPFS content fetched directly from {0}, the host in the file's address."
+msgstr ""
+
+#: src/components/nfts/NFTSourceStatus.tsx:81
+msgid "IPFS content fetched through an IPFS gateway."
+msgstr ""
+
+#: src/components/nfts/NFTSourceStatus.tsx:79
+msgid "IPFS content fetched through the IPFS gateway {0}."
+msgstr ""
+
+#: src/components/nfts/NFTSourceStatus.tsx:71
+#: src/components/settings/SettingsNFT.tsx:190
 msgid "IPFS gateway"
 msgstr ""
 
@@ -6022,7 +6055,7 @@ msgstr ""
 msgid "License URL {0}"
 msgstr "授權網址 {0}"
 
-#: src/components/settings/SettingsNFT.tsx:279
+#: src/components/settings/SettingsNFT.tsx:305
 msgid "Limit cache size"
 msgstr "限制快取大小"
 
@@ -6070,7 +6103,7 @@ msgstr "正在載入 NFT"
 msgid "Loading NFT Info..."
 msgstr "正在載入 NFT 資訊..."
 
-#: src/components/nfts/NFTPreview.tsx:687
+#: src/components/nfts/NFTPreview.tsx:690
 msgid "Loading NFT..."
 msgstr "正在載入 NFT..."
 
@@ -6078,8 +6111,8 @@ msgstr "正在載入 NFT..."
 #~ msgid "Loading NFTs..."
 #~ msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:687
-#: src/components/nfts/NFTPreview.tsx:719
+#: src/components/nfts/NFTPreview.tsx:690
+#: src/components/nfts/NFTPreview.tsx:722
 msgid "Loading preview..."
 msgstr "正在載入預覽..."
 
@@ -6098,7 +6131,7 @@ msgstr "載入中..."
 msgid "Local"
 msgstr "本地"
 
-#: src/components/settings/SettingsNFT.tsx:261
+#: src/components/settings/SettingsNFT.tsx:287
 msgid "Local folder"
 msgstr "本地資料夾"
 
@@ -6126,19 +6159,19 @@ msgstr "日誌查看器"
 msgid "Logs and diagnostics"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:562
+#: src/components/nfts/NFTPreview.tsx:565
 msgid "Loop video"
 msgstr ""
 
-#: src/components/settings/SettingsNFT.tsx:144
+#: src/components/settings/SettingsNFT.tsx:150
 msgid "Loop videos"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:558
+#: src/components/nfts/NFTPreview.tsx:561
 msgid "Looping is enabled for all videos in Settings"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:560
+#: src/components/nfts/NFTPreview.tsx:563
 msgid "Looping on"
 msgstr ""
 
@@ -6158,7 +6191,7 @@ msgstr "管理 CAT 代幣"
 msgid "Manage Farming Rewards"
 msgstr "管理耕種獎勵"
 
-#: src/components/settings/SettingsNFT.tsx:231
+#: src/components/settings/SettingsNFT.tsx:257
 msgid "Manage how and where files are stored on this computer."
 msgstr "管理檔案在此電腦上的儲存方式與位置。"
 
@@ -6463,7 +6496,7 @@ msgstr "下一步"
 #: src/components/offers/NFTOfferEditor.tsx:212
 #: src/components/offers2/OfferBuilderNFTSection.tsx:46
 #: src/components/settings/Settings.tsx:38
-#: src/components/settings/SettingsNFT.tsx:91
+#: src/components/settings/SettingsNFT.tsx:97
 #: src/components/signVerify/SignMessage.tsx:164
 msgid "NFT"
 msgstr "NFT"
@@ -6490,7 +6523,7 @@ msgstr "NFT 代幣 ID"
 msgid "NFT details not available"
 msgstr "NFT 詳細資訊不可用"
 
-#: src/components/settings/SettingsNFT.tsx:171
+#: src/components/settings/SettingsNFT.tsx:177
 msgid "NFT files published with ipfs:// addresses will be downloaded through an HTTPS gateway. The requested URL differs from the address recorded on chain, but downloaded content is still verified against the NFT's on-chain hash. The gateway operator can see your IP address and which NFT files you view. When disabled, ipfs:// files are not fetched."
 msgstr ""
 
@@ -6563,7 +6596,7 @@ msgstr "NFT 轉移處理中"
 msgid "NFTs"
 msgstr "NFT"
 
-#: src/components/settings/SettingsNFT.tsx:116
+#: src/components/settings/SettingsNFT.tsx:122
 msgid "NFTs that have been categorized by the creator as objectionable content will be hidden by default."
 msgstr "被創作者歸類為不當內容的 NFT 預設會被隱藏。"
 
@@ -6608,7 +6641,7 @@ msgstr "目前無報價"
 #~ msgid "No Custom Permissions"
 #~ msgstr "No Custom Permissions"
 
-#: src/components/nfts/NFTPreview.tsx:692
+#: src/components/nfts/NFTPreview.tsx:695
 msgid "No file available"
 msgstr "無可用檔案"
 
@@ -6808,7 +6841,7 @@ msgstr "階段 3 的執行緒數量"
 msgid "Objectionable Content"
 msgstr "不當內容"
 
-#: src/components/settings/SettingsNFT.tsx:243
+#: src/components/settings/SettingsNFT.tsx:269
 msgid "Occupied space"
 msgstr "佔用空間"
 
@@ -7554,7 +7587,7 @@ msgstr "正在準備 Plot NFT"
 msgid "Preparing standard wallet"
 msgstr "正在準備標準錢包"
 
-#: src/components/nfts/NFTPreview.tsx:402
+#: src/components/nfts/NFTPreview.tsx:405
 #: src/components/offers2/OfferBuilderNFT.tsx:75
 msgid "Preview"
 msgstr "預覽"
@@ -7567,7 +7600,7 @@ msgstr ""
 msgid "Preview available  <0/>"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:167
+#: src/components/nfts/NFTPreview.tsx:169
 msgid "Preview cannot be shown"
 msgstr ""
 
@@ -7579,7 +7612,7 @@ msgstr ""
 msgid "Preview image URL {index}"
 msgstr "預覽圖片 URL {index}"
 
-#: src/components/nfts/NFTPreview.tsx:714
+#: src/components/nfts/NFTPreview.tsx:717
 msgid "Preview is not available"
 msgstr ""
 
@@ -8365,8 +8398,12 @@ msgstr "顯示詳細資料"
 #~ msgid "Show Preview"
 #~ msgstr "Show Preview"
 
-#: src/components/settings/SettingsNFT.tsx:206
+#: src/components/settings/SettingsNFT.tsx:232
 msgid "Show unverified previews"
+msgstr ""
+
+#: src/components/settings/SettingsNFT.tsx:212
+msgid "Show where NFT files come from"
 msgstr ""
 
 #: src/components/nfts/gallery/NFTGallery.tsx:541
@@ -8757,7 +8794,7 @@ msgstr ""
 msgid "The gateway did not answer ({0}). The address is saved; check it if NFT previews stay empty."
 msgstr ""
 
-#: src/components/settings/SettingsNFT.tsx:192
+#: src/components/settings/SettingsNFT.tsx:198
 msgid "The gateway used for ipfs:// addresses, and the fallback for gateway links (such as https://nftstorage.link/ipfs/…) whose own host no longer serves them. Leave it empty to use the public ipfs.io gateway, which is being wound down and rate limits applications; https://ipfs.mintgarden.io, https://gateway.pinata.cloud and https://ipfs.filebase.io currently work, as does a local IPFS node such as http://127.0.0.1:8080. Files are re-checked through the new gateway right away."
 msgstr ""
 
@@ -8903,7 +8940,7 @@ msgstr "他們將收到"
 msgid "This allows you to add a directory that has plots in it. If you have not created any plots, go to the plotting screen."
 msgstr "這允許您添加一個包含耕地的目錄。如果您尚未創建任何耕地，請轉到耕作畫面。"
 
-#: src/components/nfts/NFTPreview.tsx:705
+#: src/components/nfts/NFTPreview.tsx:708
 msgid "This audio format cannot be played here"
 msgstr ""
 
@@ -9035,7 +9072,7 @@ msgstr "此代幣可由發行者撤回"
 msgid "This URL is not allowed for security reasons."
 msgstr "基於安全性考量，不允許使用此網址。"
 
-#: src/components/nfts/NFTPreview.tsx:707
+#: src/components/nfts/NFTPreview.tsx:710
 msgid "This video format cannot be played here"
 msgstr ""
 
@@ -9798,6 +9835,10 @@ msgstr "警告：您即將訪問一個網站"
 #~ msgid "WARNING! When safeMode=false it means you could be signing a transaction, not just a message. Be sure you trust the source that's requesting this."
 #~ msgstr ""
 
+#: src/components/nfts/NFTSourceStatus.tsx:71
+msgid "Web"
+msgstr ""
+
 #: src/components/block/Block.jsx:173
 msgid "Weight"
 msgstr "權重"
@@ -9806,7 +9847,7 @@ msgstr "權重"
 msgid "Weight is the total added difficulty of all blocks up to and including this one"
 msgstr "權重是包含本區塊在內的所有區塊的總加權難度"
 
-#: src/components/settings/SettingsNFT.tsx:216
+#: src/components/settings/SettingsNFT.tsx:242
 msgid "When an NFT image is too large to verify against its on-chain hash, load the transaction confirmation preview directly from its source URL without verification. When disabled, no preview is shown for these NFTs."
 msgstr ""
 
@@ -9879,7 +9920,7 @@ msgstr "是"
 msgid "Yes, Accept Offer"
 msgstr "是，接受報價"
 
-#: src/components/settings/SettingsNFT.tsx:71
+#: src/components/settings/SettingsNFT.tsx:77
 msgid "Yes, delete"
 msgstr "是，刪除"
 
@@ -10027,4 +10068,3 @@ msgstr "您的可支配餘額必須大於1 mojo，才能建立個人檔案"
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "您的錢包需要運行才能自動索取"
-
