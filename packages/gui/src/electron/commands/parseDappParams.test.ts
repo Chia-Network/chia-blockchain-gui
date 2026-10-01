@@ -435,6 +435,33 @@ describe('parseDappParams', () => {
         },
       });
     });
+
+    it('accepts push and preserves nested offer keys for create spend bundle params', () => {
+      const assetId = '0fbdb7f21392f248f4ce3f8b1497496f056db6eb3856990ea3f697e28ec082c4';
+
+      expect(
+        parseDappParams(
+          'chia_createSpendBundleForIds',
+          serialize({
+            offer: {
+              1: '-100',
+              [assetId]: '1',
+            },
+            driverDict: {},
+            push: true,
+            fee: '0',
+          }),
+        ),
+      ).toMatchObject({
+        offer: {
+          1: '-100',
+          [assetId]: '1',
+        },
+        driver_dict: {},
+        push: true,
+        fee: 0n,
+      });
+    });
   });
 
   describe('malformed payloads', () => {

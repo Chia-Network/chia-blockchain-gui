@@ -375,6 +375,82 @@ export const Commands: Record<string, CommandSchema> = {
     ],
   },
 
+  // Same request as create_offer_for_ids, but the wallet can push the maker spend.
+  'chia_wallet.create_spendbundle_for_ids': {
+    title: () => i18n._(/* i18n */ { id: 'Confirm Create Spend Bundle for Ids' }),
+    message: () =>
+      i18n._(
+        /* i18n */ {
+          id: 'Please carefully review and confirm this offer spend. Any assets that are being offered will be locked and unavailable until the offer is accepted or cancelled, resulting in your spendable balance changing. If push is enabled, the spend is also submitted to the blockchain.',
+        },
+      ),
+    confirmLabel: () => i18n._(/* i18n */ { id: 'Create' }),
+    params: [
+      {
+        name: 'offer',
+        label: () => i18n._(/* i18n */ { id: 'Wallet Ids and Amounts' }),
+        type: 'json',
+      },
+      { name: 'driver_dict', label: () => i18n._(/* i18n */ { id: 'Driver Dict' }), type: 'json' },
+      {
+        name: 'validate_only',
+        label: () => i18n._(/* i18n */ { id: 'Validate Only' }),
+        type: 'bool',
+        isOptional: true,
+      },
+      {
+        name: 'disable_json_formatting',
+        label: () => i18n._(/* i18n */ { id: 'Disable JSON Formatting' }),
+        type: 'bool',
+        isOptional: true,
+      },
+      {
+        name: 'fee',
+        label: () => i18n._(/* i18n */ { id: 'Fee' }),
+        type: 'bigint',
+        humanize: 'mojo-to-xch',
+        isOptional: true,
+      },
+      {
+        name: 'offer_only',
+        label: () => i18n._(/* i18n */ { id: 'Omit transactions data' }),
+        type: 'bool',
+        isOptional: true,
+      },
+      {
+        name: 'push',
+        label: () => i18n._(/* i18n */ { id: 'Push' }),
+        type: 'bool',
+        isOptional: true,
+      },
+      {
+        name: 'extra_conditions',
+        label: () => i18n._(/* i18n */ { id: 'Extra Conditions' }),
+        type: 'json',
+        isOptional: true,
+      },
+      {
+        name: 'coin_ids',
+        label: () => i18n._(/* i18n */ { id: 'Coin Ids' }),
+        type: 'json',
+        isOptional: true,
+      },
+      {
+        name: 'allow_unsynced',
+        label: () => i18n._(/* i18n */ { id: 'Allow Unsynced' }),
+        type: 'bool',
+        isOptional: true,
+      },
+    ],
+    dapp: [
+      {
+        command: 'chia_createSpendBundleForIds',
+        preserveNestedDataKeys: true,
+        title: () => i18n._(/* i18n */ { id: 'Create Spend Bundle for Ids' }),
+      },
+    ],
+  },
+
   'chia_wallet.take_offer': {
     title: () => i18n._(/* i18n */ { id: 'Confirm Take Offer' }),
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm this offer acceptance.' }),

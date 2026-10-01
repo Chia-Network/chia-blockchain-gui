@@ -110,6 +110,38 @@ describe('parseCommandDisplay', () => {
     expect(mockGetWalletInfos).toHaveBeenCalledWith();
   });
 
+  it('displays create spend bundle offers with the same wallet delta as create offer', async () => {
+    mockGetWalletInfos.mockResolvedValue({
+      1: { name: 'Chia', type: WalletType.STANDARD_WALLET },
+      6: { name: 'Test CAT', type: WalletType.CAT },
+    });
+
+    await expect(
+      parseCommandDisplay('chia_wallet.create_spendbundle_for_ids', {
+        offer: {
+          1: -10_000,
+          6: 2_323_000,
+        },
+        push: true,
+      }),
+    ).resolves.toMatchObject({
+      walletDelta: {
+        spending: [
+          {
+            kind: 'xch',
+          },
+        ],
+        receiving: [
+          {
+            kind: 'wallet',
+            walletId: '6',
+            walletName: 'Test CAT',
+          },
+        ],
+      },
+    });
+  });
+
   it('resolves driverless requested CAT assets from the local wallet', async () => {
     const assetId = '1234567890123456789012345678901234567890123456789012345678901234';
 

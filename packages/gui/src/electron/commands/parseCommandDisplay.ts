@@ -486,7 +486,7 @@ export async function parseCommandDisplay(command: string, params: Record<string
     };
   }
 
-  if (command === 'chia_wallet.create_offer_for_ids') {
+  if (command === 'chia_wallet.create_offer_for_ids' || command === 'chia_wallet.create_spendbundle_for_ids') {
     if (!params.offer || !isPlainObject(params.offer)) {
       throw new Error('Offer is not valid');
     }

@@ -11,6 +11,7 @@ export default [
   'chia_wallet.send_notification',
   'chia_wallet.cat_spend',
   'chia_wallet.create_offer_for_ids',
+  'chia_wallet.create_spendbundle_for_ids',
   'chia_wallet.take_offer',
   'chia_wallet.cancel_offer',
   'chia_wallet.cancel_offers',
