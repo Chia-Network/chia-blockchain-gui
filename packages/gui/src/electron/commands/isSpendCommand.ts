@@ -10,6 +10,7 @@ const SPEND_COMMANDS = new Set<keyof typeof Commands>([
   'chia_wallet.spend_clawback_coins',
   'chia_wallet.did_transfer_did',
   'chia_wallet.push_transactions',
+  'chia_wallet.create_fee_transaction',
 ]);
 
 export function isSpendCommand(command: string): boolean {
