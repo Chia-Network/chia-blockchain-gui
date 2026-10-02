@@ -8,6 +8,7 @@ import type OfferSummaryRecord from '../@types/OfferSummaryRecord';
 import type PoolWalletStatus from '../@types/PoolWalletStatus';
 import type PrivateKey from '../@types/PrivateKey';
 import type PuzzleDecorator from '../@types/PuzzleDecorator';
+import type SpendBundle from '../@types/SpendBundle';
 import type TradeRecord from '../@types/TradeRecord';
 import type Transaction from '../@types/Transaction';
 import type { WalletListItem } from '../@types/Wallet';
@@ -16,6 +17,7 @@ import type WalletCreate from '../@types/WalletCreate';
 import Client from '../Client';
 import type Message from '../Message';
 import ServiceName from '../constants/ServiceName';
+import toSnakeCase from '../utils/toSnakeCase';
 
 import Service from './Service';
 import type { Options } from './Service';
@@ -43,7 +45,14 @@ export type CreateOfferForIdsArgs = {
   offerOnly?: boolean;
   extraConditions?: any[];
   coinIds?: string[];
+  /** Optional spend bundle (object or hex string) merged into the generated offer spend. */
+  extraSpendBundle?: SpendBundle | string;
 } & AllowUnsyncedArg;
+
+export type CreateSpendBundleForIdsArgs = CreateOfferForIdsArgs & {
+  /** When true, the wallet submits the generated spend to the blockchain. */
+  push?: boolean;
+};
 
 export type CreateOfferForIdsResponse = {
   offer: string;
@@ -61,6 +70,23 @@ export type CreateOfferForIdsResult<TArgs extends CreateOfferForIdsArgs> = TArgs
     : TArgs extends { offerOnly: boolean }
       ? CreateOfferForIdsResponse | CreateOfferForIdsOfferOnlyResponse
       : CreateOfferForIdsResponse;
+
+// The wallet accepts extra_spend_bundle as either a hex string or a spend-bundle object.
+// A hex string passes through unchanged; an object is converted to the wallet's snake_case
+// field names so it survives even when disableJSONFormatting skips the message-level conversion.
+function toExtraSpendBundleParam(
+  extraSpendBundle: SpendBundle | string | undefined,
+): string | { [key: string]: unknown } | undefined {
+  if (extraSpendBundle === undefined) {
+    return undefined;
+  }
+
+  if (typeof extraSpendBundle === 'string') {
+    return extraSpendBundle;
+  }
+
+  return toSnakeCase(extraSpendBundle);
+}
 
 export default class Wallet extends Service {
   constructor(client: Client, options?: Options) {
@@ -346,10 +372,35 @@ export default class Wallet extends Service {
   }
 
   async createOfferForIds<TArgs extends CreateOfferForIdsArgs>(args: TArgs): Promise<CreateOfferForIdsResult<TArgs>> {
-    const { disableJSONFormatting, driverDict, extraConditions, coinIds, ...restArgs } = args;
+    const { disableJSONFormatting, driverDict, extraConditions, coinIds, extraSpendBundle, ...restArgs } = args;
     return this.command<CreateOfferForIdsResult<TArgs>>(
       'create_offer_for_ids',
-      { driver_dict: driverDict, extra_conditions: extraConditions, coin_ids: coinIds, ...restArgs },
+      {
+        driver_dict: driverDict,
+        extra_conditions: extraConditions,
+        coin_ids: coinIds,
+        extra_spend_bundle: toExtraSpendBundleParam(extraSpendBundle),
+        ...restArgs,
+      },
+      false,
+      undefined,
+      disableJSONFormatting,
+    );
+  }
+
+  async createSpendBundleForIds<TArgs extends CreateSpendBundleForIdsArgs>(
+    args: TArgs,
+  ): Promise<CreateOfferForIdsResult<TArgs>> {
+    const { disableJSONFormatting, driverDict, extraConditions, coinIds, extraSpendBundle, ...restArgs } = args;
+    return this.command<CreateOfferForIdsResult<TArgs>>(
+      'create_spendbundle_for_ids',
+      {
+        driver_dict: driverDict,
+        extra_conditions: extraConditions,
+        coin_ids: coinIds,
+        extra_spend_bundle: toExtraSpendBundleParam(extraSpendBundle),
+        ...restArgs,
+      },
       false,
       undefined,
       disableJSONFormatting,

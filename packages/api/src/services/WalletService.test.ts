@@ -747,6 +747,113 @@ describe('WalletService', () => {
     expect(client.send).toHaveBeenCalledWith(...expected);
   });
 
+  it('converts a camelCase extra spend bundle to snake_case for create_offer_for_ids', async () => {
+    const args = {
+      fee: new BigNumber(1),
+      driverDict: {},
+      offer: { '42': -1234 },
+      disableJSONFormatting: true,
+      extraSpendBundle: {
+        coinSpends: [
+          {
+            coin: { amount: 1, parentCoinInfo: '0xabc', puzzleHash: '0xdef' },
+            puzzleReveal: '0x01',
+            solution: '0x02',
+          },
+        ],
+        aggregatedSignature: '0xsig',
+      },
+    };
+    const expected = [
+      new Message({
+        command: 'create_offer_for_ids',
+        data: {
+          driver_dict: {},
+          extra_conditions: undefined,
+          coin_ids: undefined,
+          extra_spend_bundle: {
+            coin_spends: [
+              {
+                coin: { amount: 1, parent_coin_info: '0xabc', puzzle_hash: '0xdef' },
+                puzzle_reveal: '0x01',
+                solution: '0x02',
+              },
+            ],
+            aggregated_signature: '0xsig',
+          },
+          fee: args.fee,
+          offer: args.offer,
+        },
+        destination: 'chia_wallet',
+        origin: 'test_origin' as ServiceNameValue,
+      }),
+      undefined,
+      true,
+    ];
+
+    await service.createOfferForIds(args as any);
+    expect(client.send).toHaveBeenCalledWith(...expected);
+  });
+
+  it('passes a hex extra spend bundle through unchanged', async () => {
+    const args = {
+      fee: new BigNumber(1),
+      driverDict: {},
+      offer: { '42': -1234 },
+      extraSpendBundle: '0xdeadbeef',
+    };
+    const expected = [
+      new Message({
+        command: 'create_offer_for_ids',
+        data: {
+          driver_dict: {},
+          extra_conditions: undefined,
+          coin_ids: undefined,
+          extra_spend_bundle: '0xdeadbeef',
+          fee: args.fee,
+          offer: args.offer,
+        },
+        destination: 'chia_wallet',
+        origin: 'test_origin' as ServiceNameValue,
+      }),
+      undefined,
+      undefined,
+    ];
+
+    await service.createOfferForIds(args as any);
+    expect(client.send).toHaveBeenCalledWith(...expected);
+  });
+
+  it('calls create_spendbundle_for_ids with push and the correct parameters', async () => {
+    const args = {
+      fee: new BigNumber(1),
+      driverDict: {},
+      offer: { '42': -1234 },
+      push: true,
+    };
+    const expected = [
+      new Message({
+        command: 'create_spendbundle_for_ids',
+        data: {
+          driver_dict: {},
+          extra_conditions: undefined,
+          coin_ids: undefined,
+          extra_spend_bundle: undefined,
+          fee: args.fee,
+          offer: args.offer,
+          push: true,
+        },
+        destination: 'chia_wallet',
+        origin: 'test_origin' as ServiceNameValue,
+      }),
+      undefined,
+      undefined,
+    ];
+
+    await service.createSpendBundleForIds(args as any);
+    expect(client.send).toHaveBeenCalledWith(...expected);
+  });
+
   it('calls cancel_offer with the correct parameters', async () => {
     const args = {
       tradeId: 'test_trade_id',

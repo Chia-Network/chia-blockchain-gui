@@ -360,6 +360,12 @@ export const Commands: Record<string, CommandSchema> = {
         isOptional: true,
       },
       {
+        name: 'extra_spend_bundle',
+        label: () => i18n._(/* i18n */ { id: 'Extra Spend Bundle' }),
+        type: 'json',
+        isOptional: true,
+      },
+      {
         name: 'allow_unsynced',
         label: () => i18n._(/* i18n */ { id: 'Allow Unsynced' }),
         type: 'bool',
@@ -432,6 +438,12 @@ export const Commands: Record<string, CommandSchema> = {
       {
         name: 'coin_ids',
         label: () => i18n._(/* i18n */ { id: 'Coin Ids' }),
+        type: 'json',
+        isOptional: true,
+      },
+      {
+        name: 'extra_spend_bundle',
+        label: () => i18n._(/* i18n */ { id: 'Extra Spend Bundle' }),
         type: 'json',
         isOptional: true,
       },

@@ -712,6 +712,11 @@ export const walletApi = apiWithTag.injectEndpoints({
       invalidatesTags: [{ type: 'OfferTradeRecord', id: 'LIST' }, 'OfferCounts'],
     }),
 
+    createSpendBundleForIds: mutation(build, WalletService, 'createSpendBundleForIds', {
+      mergeAllowUnsynced: true,
+      invalidatesTags: [{ type: 'OfferTradeRecord', id: 'LIST' }, 'OfferCounts'],
+    }),
+
     cancelOffer: mutation(build, WalletService, 'cancelOffer', {
       mergeAllowUnsynced: true,
       invalidatesTags: (_result, _error, { tradeId }) => [{ type: 'OfferTradeRecord', id: tradeId }],
@@ -1639,6 +1644,7 @@ export const {
   useGetAllOffersQuery,
   useGetOffersCountQuery,
   useCreateOfferForIdsMutation,
+  useCreateSpendBundleForIdsMutation,
   useCancelOfferMutation,
   useCheckOfferValidityMutation,
   useTakeOfferMutation,

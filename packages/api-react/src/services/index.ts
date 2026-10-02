@@ -174,6 +174,7 @@ export const {
   useGetAllOffersQuery,
   useGetOffersCountQuery,
   useCreateOfferForIdsMutation,
+  useCreateSpendBundleForIdsMutation,
   useCancelOfferMutation,
   useCheckOfferValidityMutation,
   useTakeOfferMutation,

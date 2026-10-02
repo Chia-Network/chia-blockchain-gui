@@ -462,6 +462,61 @@ describe('parseDappParams', () => {
         fee: 0n,
       });
     });
+
+    it('accepts an extra spend bundle and preserves its nested wallet field names', () => {
+      const result = parseDappParams(
+        'chia_createSpendBundleForIds',
+        serialize({
+          offer: {
+            1: '-100',
+          },
+          driverDict: {},
+          extraSpendBundle: {
+            coin_spends: [
+              {
+                coin: { amount: 1, parent_coin_info: '0xabc', puzzle_hash: '0xdef' },
+                puzzle_reveal: '0x01',
+                solution: '0x02',
+              },
+            ],
+            aggregated_signature: '0xsig',
+          },
+        }),
+      );
+
+      expect(result).toMatchObject({
+        offer: {
+          1: '-100',
+        },
+        extra_spend_bundle: {
+          coin_spends: [
+            {
+              coin: { amount: 1, parent_coin_info: '0xabc', puzzle_hash: '0xdef' },
+              puzzle_reveal: '0x01',
+              solution: '0x02',
+            },
+          ],
+          aggregated_signature: '0xsig',
+        },
+      });
+    });
+
+    it('accepts a hex-encoded extra spend bundle string', () => {
+      const result = parseDappParams(
+        'chia_createOfferForIds',
+        serialize({
+          offer: {
+            1: '-100',
+          },
+          driverDict: {},
+          extraSpendBundle: '0xdeadbeef',
+        }),
+      );
+
+      expect(result).toMatchObject({
+        extra_spend_bundle: '0xdeadbeef',
+      });
+    });
   });
 
   describe('malformed payloads', () => {
