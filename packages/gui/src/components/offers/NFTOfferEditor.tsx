@@ -490,7 +490,9 @@ type NFTBuildOfferRequestParams = {
 
 function buildOfferRequest(params: NFTBuildOfferRequestParams) {
   const { exchangeType, nft, nftLauncherId, tokenWalletInfo, tokenAmount, fee } = params;
-  const baseMojoAmount: BigNumber = [WalletType.CAT, WalletType.CRCAT].includes(tokenWalletInfo.walletType)
+  const baseMojoAmount: BigNumber = [WalletType.CAT, WalletType.RCAT, WalletType.CRCAT].includes(
+    tokenWalletInfo.walletType,
+  )
     ? catToMojo(tokenAmount)
     : chiaToMojo(tokenAmount);
   const mojoAmount = exchangeType === NFTOfferExchangeType.NFTForToken ? baseMojoAmount : baseMojoAmount.negated();
