@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-09-20 00:08\n"
+"PO-Revision-Date: 2026-10-04 00:52\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -2713,9 +2713,7 @@ msgstr "آیا میخواهید تنظیمات برگزیده برای دستو�
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:724
-msgid ""
-"These commands will be executed without confirmation in the future:\n"
-"\n"
+msgid "These commands will be executed without confirmation in the future:\n\n"
 " {commands}"
 msgstr ": این دستورات در آینده بدون تأیید اجرا خواهند شد"
 
@@ -4886,7 +4884,7 @@ msgstr "شاخص کارت گرافیک را اعمال کنید"
 #: src/components/settings/LimitCacheSize.tsx:79
 #: src/components/settings/LimitCacheSize.tsx:83
 msgid "Enter a cache size limit above 0 MiB"
-msgstr ""
+msgstr "محدودیت اندازه حافظه را بالاتر از 0 مگابایت وارد کنید"
 
 #: src/components/signVerify/SignMessage.tsx:61
 #: src/components/signVerify/SignMessage.tsx:89
@@ -5783,20 +5781,16 @@ msgstr "در حال شروع..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
+msgstr "مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
 "موجودی قابل مصرف شما برای پوشش مبلغ پیشنهاد کافی است."
 
 #: src/components/offers/OfferEditor.tsx:127
 #: src/components/offers2/CreateOfferBuilder.tsx:145
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
+msgstr "مبلغ کافی برای پذیرش پیشنهاد موجود نیست. مظمئن شوید که\n"
 "موجودی قابل مصرف شما برای پوشش مبلغ پیشنهاد کافی است."
 
 #: src/components/farm/PoolingHealth.tsx:310
@@ -7599,7 +7593,7 @@ msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:169
 msgid "Preview cannot be shown"
-msgstr ""
+msgstr "پیش‌نمایش را نمیتوان نشان داد"
 
 #: src/components/nfts/NFTDetails.tsx:316
 #~ msgid "Preview image uris"
@@ -8939,7 +8933,7 @@ msgstr "این به شما اجازه میدهد تا مسیر پوشه ای ک�
 
 #: src/components/nfts/NFTPreview.tsx:708
 msgid "This audio format cannot be played here"
-msgstr ""
+msgstr "این فرمت صوتی اینجا قابل پخش نیست"
 
 #: src/components/offers2/OfferBuilderViewer.tsx:314
 msgid "This Data Layer offer contains no store updates and cannot be accepted."
@@ -9071,7 +9065,7 @@ msgstr "این آدرس به دلایل امنیتی مجاز نیست."
 
 #: src/components/nfts/NFTPreview.tsx:710
 msgid "This video format cannot be played here"
-msgstr ""
+msgstr "این فرمت ویدیویی اینجا قابل پخش نیست"
 
 #: src/components/settings/SettingsIntegration.tsx:398
 #~ msgid "This will reset all previously granted permissions across all Dapps that have been connected to. After resetting you will be asked to grant permission again."
@@ -10065,3 +10059,4 @@ msgstr "برای ایجاد حساب کاربری، موجودی قابل خرج
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "برای انجام مطالبه خودکار، باید کیف پول شما در حال اجرا باشد."
+
