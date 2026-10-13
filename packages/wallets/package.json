@@ -1,6 +1,6 @@
 {
   "name": "@chia-network/wallets",
-  "author": "Chia Network <hello@chia.net> (https://www.chia.net/)",
+  "author": "Chia Network <hello@chia.net> (https://chia.net/)",
   "description": "Chia wallets Library",
   "version": "1.0.0",
   "engines": {
