@@ -1,6 +1,6 @@
 {
   "name": "@chia-network/gui",
-  "author": "Chia Network <hello@chia.net> (https://chia.net/)",
+  "author": "Chia Network <hello@chia.net> (https://www.chia.net/)",
   "description": "GUI for Chia Blockchain",
   "license": "Apache-2.0",
   "productName": "Chia Blockchain",
