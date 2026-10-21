@@ -54,4 +54,4 @@ jobs:
       - name: Check npm audit on ${{ matrix.os }}
         shell: bash
         run: |
-          npm audit --audit-level=high
+          npm run audit
