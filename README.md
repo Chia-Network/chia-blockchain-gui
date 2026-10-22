@@ -1,6 +1,6 @@
 # chia-blockchain-gui
 
-![Chia logo](https://www.chia.net/wp-content/uploads/2022/09/chia-logo.svg)
+![Chia logo](.github/assets/chia-logo.svg)
 
 ![GitHub contributors](https://img.shields.io/github/contributors/Chia-Network/chia-blockchain-gui?logo=GitHub)
 

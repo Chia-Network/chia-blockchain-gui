@@ -16,7 +16,7 @@ const defaultMetadata = {
   name: 'Chia Blockchain',
   description: 'GUI for Chia Blockchain',
   url: 'https://www.chia.net',
-  icons: ['https://www.chia.net/wp-content/uploads/2022/09/chia-logo.svg'],
+  icons: ['https://www.chia.net/brand/chia-logo.svg'],
 };
 
 export type UseWalletConnectConfig = {
