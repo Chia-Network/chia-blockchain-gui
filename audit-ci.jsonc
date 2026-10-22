@@ -1,0 +1,14 @@
+{
+  "$schema": "https://raw.githubusercontent.com/IBM/audit-ci/v7.1.0/docs/schema.json",
+  "high": true,
+  "show-found": true,
+  "allowlist": [
+    {
+      "GHSA-vfj7-8cjw-p6xm": {
+        "active": true,
+        "expiry": "2026-12-31T23:59:59Z",
+        "notes": "Temporary acceptance of the unpatched braces stack-exhaustion advisory. No patched release is available; upstream disputes the advisory. This does not establish that every GUI dependency path is unreachable. Reassess exposure and remove this exception when a fix or dependency removal is available, or before expiry. https://github.com/micromatch/braces/issues/73",
+      },
+    },
+  ],
+}
