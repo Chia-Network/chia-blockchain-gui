@@ -730,6 +730,37 @@ export const Commands: Record<string, CommandSchema> = {
     ],
   },
 
+  'chia_wallet.create_fee_transaction': {
+    title: () => i18n._(/* i18n */ { id: 'Confirm Fee Transaction' }),
+    message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm this fee transaction.' }),
+    confirmLabel: () => i18n._(/* i18n */ { id: 'Send' }),
+    params: [
+      { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'bigint', humanize: 'mojo-to-xch' },
+      { name: 'coins', label: () => i18n._(/* i18n */ { id: 'Coins' }), type: 'json', isOptional: true },
+      { name: 'push', label: () => i18n._(/* i18n */ { id: 'Push' }), type: 'bool', isOptional: true },
+      {
+        name: 'extra_conditions',
+        label: () => i18n._(/* i18n */ { id: 'Extra Conditions' }),
+        type: 'json',
+        isOptional: true,
+      },
+      {
+        name: 'allow_unsynced',
+        label: () => i18n._(/* i18n */ { id: 'Allow Unsynced' }),
+        type: 'bool',
+        isOptional: true,
+      },
+    ],
+    dapp: [
+      {
+        command: 'chia_createFeeTransaction',
+        preserveNestedDataKeys: true,
+        title: () => i18n._(/* i18n */ { id: 'Create Fee Transaction' }),
+        message: () => i18n._(/* i18n */ { id: 'Create a transaction from your wallet that pays a fee' }),
+      },
+    ],
+  },
+
   'chia_full_node.push_tx': {
     title: () => i18n._(/* i18n */ { id: 'Confirm Push Transaction' }),
     message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm pushing this transaction.' }),
