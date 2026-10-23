@@ -309,6 +309,10 @@ export default class Wallet extends Service {
     return this.command<{ peerCount: number }>('get_full_node_peer_count');
   }
 
+  async getFeeEstimate() {
+    return this.command<{ feePerCost: number }>('get_fee_estimate');
+  }
+
   async getSyncStatus() {
     return this.command<{
       genesisInitialized: boolean;
