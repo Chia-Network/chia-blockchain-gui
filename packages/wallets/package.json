@@ -34,7 +34,7 @@
     "match-sorter": "6.3.4",
     "moment": "2.31.0",
     "react-dropzone": "14.2.3",
-    "react-hook-form": "7.45.4",
+    "react-hook-form": "7.89.0",
     "react-redux": "8.1.2",
     "react-scroll-to-bottom": "4.2.0",
     "react-use": "17.4.0",
