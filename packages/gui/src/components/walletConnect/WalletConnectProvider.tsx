@@ -19,6 +19,53 @@ import { waitForEvent } from '../../util/waitForEvent';
 export const WalletConnectChiaProjectId = 'f3f661fcfc24e2e6e6c6f926f02c9c6e';
 const log = initDebug('chia-gui:walletConnect');
 
+type PendingRequestInfo = { method: string; receivedAt: number };
+const pendingRequests = new Map<string, PendingRequestInfo>();
+
+// Always-on (not gated by the `debug` namespace) so it shows up in the Electron DevTools console.
+function logWalletConnect(label: string, payload: Record<string, unknown>) {
+  /* eslint-disable no-console -- intentional DevTools diagnostics for WalletConnect traffic */
+  console.groupCollapsed(`[chia-gui:walletConnect] ${label}`);
+  console.debug(payload);
+  console.groupEnd();
+  /* eslint-enable no-console -- end of DevTools diagnostics */
+}
+
+async function respondToSessionRequest(
+  client: Client,
+  topic: string,
+  response: { id: number; jsonrpc: '2.0'; result?: unknown; error?: { code: number; message: string; data?: unknown } },
+) {
+  const key = `${topic}:${response.id}`;
+  const pending = pendingRequests.get(key);
+  pendingRequests.delete(key);
+
+  const report = {
+    topic,
+    id: response.id,
+    method: pending?.method,
+    durationMs: pending ? Date.now() - pending.receivedAt : undefined,
+    timestamp: new Date().toISOString(),
+    status: response.error ? 'error' : 'success',
+    response,
+  };
+
+  try {
+    await client.respond({ topic, response });
+    logWalletConnect(`Outgoing response (${report.status}) ${pending?.method ?? ''} #${response.id}`.trim(), {
+      ...report,
+      delivered: true,
+    });
+  } catch (e) {
+    logWalletConnect(`Outgoing response FAILED to send ${pending?.method ?? ''} #${response.id}`.trim(), {
+      ...report,
+      delivered: false,
+      sendError: e,
+    });
+    throw e;
+  }
+}
+
 async function respondSessionRequestError(
   client: Client,
   topic: string,
@@ -32,13 +79,10 @@ async function respondSessionRequestError(
   data?: unknown,
 ) {
   try {
-    await client.respond({
-      topic,
-      response: {
-        id,
-        jsonrpc: '2.0',
-        error: { code, message, ...(data !== undefined ? { data } : {}) },
-      },
+    await respondToSessionRequest(client, topic, {
+      id,
+      jsonrpc: '2.0',
+      error: { code, message, ...(data !== undefined ? { data } : {}) },
     });
   } catch (e) {
     // Dapp/SDK may have evicted the request (5-min expiry, disconnect race,
@@ -298,6 +342,22 @@ export default function WalletConnectProvider(props: WalletConnectProviderProps)
     const currentClient = clientRef.current;
     const currentProcess = processRef.current;
 
+    logWalletConnect(`Incoming request ${event.params?.request?.method} #${event.id}`, {
+      topic: event.topic,
+      id: event.id,
+      method: event.params?.request?.method,
+      params: event.params?.request?.params,
+      chainId: event.params?.chainId,
+      expiryTimestamp: event.params?.request?.expiryTimestamp,
+      verifyContext: event.verifyContext,
+      timestamp: new Date().toISOString(),
+      event,
+    });
+    pendingRequests.set(`${event.topic}:${event.id}`, {
+      method: event.params?.request?.method,
+      receivedAt: Date.now(),
+    });
+
     try {
       if (!currentClient) {
         throw new Error('Client not initialized');
@@ -366,13 +426,10 @@ export default function WalletConnectProvider(props: WalletConnectProviderProps)
       const result = await currentProcess(pairTopic, method, commandParams, { mainnet: isMainnet });
       log('result', result);
 
-      await currentClient.respond({
-        topic,
-        response: {
-          id,
-          jsonrpc: '2.0',
-          result,
-        },
+      await respondToSessionRequest(currentClient, topic, {
+        id,
+        jsonrpc: '2.0',
+        result,
       });
     } catch (sessionRequestError) {
       try {
