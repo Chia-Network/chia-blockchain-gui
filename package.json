@@ -29,7 +29,7 @@
     "locale:extract": "lerna run locale:extract",
     "locale:clean": "lerna run locale:clean",
     "locale": "lerna run locale",
-    "audit": "npx --yes audit-ci@7.1.0 --config audit-ci.jsonc",
+    "audit": "npm audit --audit-level=high",
     "audit:fix": "lerna exec -- npm audit fix",
     "test": "lerna run test --stream -- --passWithNoTests --coverage --coverageDirectory=.coverage && npm run coverage:merge && npm run coverage:report",
     "coverage:merge": "npx istanbul-merge --out .nyc_output/coverage.json packages/api/.coverage/coverage-final.json packages/api-react/.coverage/coverage-final.json packages/core/.coverage/coverage-final.json packages/gui/.coverage/coverage-final.json  packages/icons/.coverage/coverage-final.json packages/wallets/.coverage/coverage-final.json",
