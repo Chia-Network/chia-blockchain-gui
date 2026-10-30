@@ -87,7 +87,7 @@
     "brace-expansion@5": "5.0.12",
     "minimatch@9.0.3": "9.0.9",
     "rollup": "4.62.4",
-    "serialize-javascript": "7.0.5",
+    "serialize-javascript": "7.1.4",
     "uuid": "14.0.0",
     "yaml": "2.8.3",
     "js-cookie": "3.0.8",
