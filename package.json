@@ -73,7 +73,7 @@
   },
   "overrides": {
     "axios": "1.20.0",
-    "follow-redirects": "1.16.0",
+    "follow-redirects": "1.16.1",
     "lodash": "4.18.1",
     "@noble/hashes": "1.8.0",
     "@walletconnect/keyvaluestorage": "1.1.1",
@@ -85,7 +85,6 @@
     "schema-utils": "4.3.3",
     "tar": "7.5.22",
     "brace-expansion@5": "5.0.12",
-    "nx": "22.7.8",
     "minimatch@9.0.3": "9.0.9",
     "rollup": "4.62.4",
     "serialize-javascript": "7.0.5",

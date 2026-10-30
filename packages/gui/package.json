@@ -103,7 +103,7 @@
     "validator": "13.15.35",
     "victory": "^36.6.11",
     "ws": "8.21.0",
-    "zod": "4.4.3"
+    "zod": "4.6.7"
   },
   "devDependencies": {
     "@babel/core": "7.29.7",
@@ -146,7 +146,7 @@
     "cross-env": "7.0.3",
     "css-loader": "6.11.0",
     "date-and-time": "2.4.3",
-    "electron": "43.7.7",
+    "electron": "43.8.1",
     "electron-devtools-assembler": "1.2.0",
     "electron-playwright-helpers": "^1.6.0",
     "electron-winstaller": "5.4.0",
