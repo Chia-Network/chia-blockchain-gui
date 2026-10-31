@@ -169,6 +169,7 @@ export const {
   useGetPuzzleAndSolutionMutation,
   useGetNetworkInfoQuery,
   useGetFullNodePeerCountQuery,
+  useGetWalletFeeEstimateQuery,
   useGetSyncStatusQuery,
   useGetWalletConnectionsQuery,
   useGetAllOffersQuery,
