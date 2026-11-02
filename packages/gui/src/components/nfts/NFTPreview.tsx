@@ -39,6 +39,7 @@ import useNFTMetadata from '../../hooks/useNFTMetadata';
 import useNFTProvider from '../../hooks/useNFTProvider';
 import useNFTVerifyHash from '../../hooks/useNFTVerifyHash';
 import { useNFTVideoLoopGlobal, useNFTVideoLoopForNFT } from '../../hooks/useNFTVideoLoop';
+import useShowNFTSource from '../../hooks/useShowNFTSource';
 import useStateAbort from '../../hooks/useStateAbort';
 import getFileExtension from '../../util/getFileExtension';
 import getNFTId from '../../util/getNFTId';
@@ -46,6 +47,7 @@ import hasSensitiveContent from '../../util/hasSensitiveContent';
 import probeMediaPlayability from '../../util/probeMediaPlayability';
 
 import NFTHashStatus from './NFTHashStatus';
+import NFTSourceStatus from './NFTSourceStatus';
 
 const StyledCardPreview = styled(Box)`
   position: relative;
@@ -232,6 +234,7 @@ function NFTPreviewContent(props: NFTPreviewProps) {
   // never skipped, so an unplayable data file ends up as the notice below.
   const [unplayableUris, setUnplayableUris] = useStateAbort<string[]>([]);
 
+  const [showNFTSource] = useShowNFTSource();
   const { preview, isLoading: isLoadingVerifyHash } = useNFTVerifyHash(nftId, {
     preview: isPreview,
     ignoreSizeLimit,
@@ -730,11 +733,17 @@ function NFTPreviewContent(props: NFTPreviewProps) {
             top: 16,
             left: 16,
             right: 16,
-            justifyContent: 'center',
+            alignItems: 'flex-start',
+            gap: 1,
             zIndex: 1,
           }}
         >
-          <NFTHashStatus nftId={nftId} hideValid />
+          {/* The source chip keeps the top-left corner; the hash status stays
+              centered in whatever width is left, so the two never overlap. */}
+          {showNFTSource && <NFTSourceStatus uri={preview?.isVerified ? preview.uri : undefined} />}
+          <Box sx={{ display: 'flex', flex: 1, justifyContent: 'center' }}>
+            <NFTHashStatus nftId={nftId} hideValid />
+          </Box>
         </Box>
       )}
     </StyledCardPreview>
