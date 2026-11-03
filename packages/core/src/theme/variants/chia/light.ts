@@ -2,40 +2,89 @@ import { createTheme } from '@mui/material/styles';
 
 import Color from '../../../constants/Color';
 
-import { ChiaBrand2025 as B } from './brandColors';
-import theme from './default';
+import { ChiaNetBrand as B, ChiaNetLight as T, ChiaNetStatus } from './brandColors';
+import getChiaNetComponents from './components';
+import layout from './default';
+
+const S = ChiaNetStatus.light;
 
 export default createTheme({
-  ...theme,
+  ...layout,
   palette: {
-    ...theme.palette,
+    mode: 'light',
     background: {
-      ...theme.palette.background,
-      default: '#EEF3FE',
-      card: B.brightWhite,
-      paper: B.brightWhite,
+      default: T.ground,
+      paper: T.card,
+      card: T.card,
     },
-    action: {
-      ...theme.palette.action,
-      hover: 'rgba(210, 227, 254, 0.45)',
-      selected: 'rgba(168, 190, 241, 0.35)',
-      focus: 'rgba(66, 80, 108, 0.18)',
+    primary: {
+      main: T.primary,
+      dark: T.primaryHover,
+      contrastText: T.onPrimary,
+    },
+    secondary: {
+      main: T.text,
+      contrastText: T.ground,
+    },
+    danger: {
+      main: T.destructive,
+      contrastText: B.white,
+    },
+    error: {
+      main: T.errorText,
+    },
+    success: {
+      main: S.success,
+    },
+    warning: {
+      main: S.warning,
+      contrastText: T.onPrimary,
     },
     info: {
-      ...theme.palette.info,
-      main: B.starkBlue,
+      main: T.primary,
+    },
+    highlight: {
+      main: T.primary,
+    },
+    semantic: {
+      success: S.success,
+      warning: S.warning,
+      error: T.errorText,
+      highlight: T.primary,
     },
     text: {
-      primary: B.morpheus,
-      secondary: 'rgba(66, 80, 108, 0.75)',
+      primary: T.text,
+      secondary: T.muted,
       disabled: Color.Text.Light.Disabled,
     },
+    divider: T.hairline,
     border: {
-      main: B.periwinklePursuit,
-      dark: B.starkBlue,
+      main: T.hairline,
+      dark: T.edge,
     },
-    sidebarBackground: theme.palette.sidebarBackground.main,
-    sidebarSelectedFill: theme.palette.sidebarSelectedFill.main,
+    action: {
+      hover: T.hover,
+      selected: T.selected,
+      focus: T.selected,
+    },
+    surfaces: {
+      control: T.hover,
+      tableHeader: T.hover,
+      tableRowAlternate: T.ground,
+      tableExpanded: T.selected,
+      tableBorder: T.hairline,
+      frame: T.card,
+      frameBorder: T.hairline,
+      field: T.field,
+    },
+    // Light frame: the sidebar shares the card surface; the current item is a quiet fill, a green edge bar and a green icon.
+    sidebarBackground: T.card,
+    sidebarSelectedFill: T.navCurrent,
+    sidebarMarkCurrent: T.mark,
+    sidebarIconSelected: { main: T.mark, dark: T.mark },
+    sidebarIcon: { main: T.muted, dark: T.muted },
+    sidebarIconHover: { main: T.text, dark: T.text },
+    sidebarText: { main: T.muted, dark: T.muted },
 
     colors: {
       royal: {
@@ -149,4 +198,5 @@ export default createTheme({
       },
     },
   },
+  components: getChiaNetComponents(T),
 });

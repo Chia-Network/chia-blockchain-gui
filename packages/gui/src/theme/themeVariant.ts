@@ -2,7 +2,7 @@
  * Electron-safe mirror of `packages/core/src/theme/variantTypes.ts`.
  * Do not import `@chia-network/core` from code used by `webpack.electron` — it bundles CSS.
  */
-export const THEME_VARIANT_IDS = ['classic', 'field', 'chia'] as const;
+export const THEME_VARIANT_IDS = ['classic', 'field', 'chia', 'chia2024'] as const;
 
 export type ThemeVariantId = (typeof THEME_VARIANT_IDS)[number];
 

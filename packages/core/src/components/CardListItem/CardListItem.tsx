@@ -43,7 +43,7 @@ export default function CardListItem(props: CardListItemProps) {
           if (!selected) {
             return theme.palette.background.paper;
           }
-          if (theme.chiaTheme?.variant === 'chia') {
+          if (theme.chiaTheme?.variant === 'chia' || theme.chiaTheme?.variant === 'chia2024') {
             return theme.palette.action.selected;
           }
           if (theme.palette.sidebarSelectedFill) {

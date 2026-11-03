@@ -34,15 +34,20 @@ function labelColor(theme: Theme): string {
   return paletteColor(theme, 'sidebarIcon');
 }
 
+// Edge-bar mode: themes that set `sidebarMarkCurrent` mark the current row with a bar and fill on the row itself.
+function hasEdgeBar(theme: Theme): boolean {
+  return !!theme.palette.sidebarMarkCurrent;
+}
+
 const StyledListItemIcon = styled(ListItemIcon)<{ selected?: boolean }>`
   min-width: auto;
   position: relative;
-  background-color: ${({ theme, selected }) => (selected ? selectedFill(theme) : 'transparent')};
+  background-color: ${({ theme, selected }) => (selected && !hasEdgeBar(theme) ? selectedFill(theme) : 'transparent')};
   border-radius: ${({ theme }) => theme.spacing(1.25)};
   width: ${({ theme }) => theme.spacing(5.25)};
   height: ${({ theme }) => theme.spacing(5.25)};
   border: ${({ selected, theme }) =>
-    selected ? `1px solid ${theme.palette.highlight.main}` : '1px solid transparent'};
+    selected && !hasEdgeBar(theme) ? `1px solid ${theme.palette.highlight.main}` : '1px solid transparent'};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -56,7 +61,10 @@ const StyledListItemIcon = styled(ListItemIcon)<{ selected?: boolean }>`
   }
 `;
 
-const StyledListItem = styled(ListItem)`
+const StyledListItem = styled(ListItem, { shouldForwardProp: (prop) => prop !== '$selected' })<{
+  $selected?: boolean;
+}>`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -65,13 +73,29 @@ const StyledListItem = styled(ListItem)`
   padding-top: ${({ theme }) => theme.spacing(0.5)};
   padding-bottom: ${({ theme }) => theme.spacing(0.5)};
 
+  background-color: ${({ theme, $selected }) => ($selected && hasEdgeBar(theme) ? selectedFill(theme) : 'transparent')};
+
+  &::before {
+    content: '';
+    display: ${({ theme, $selected }) => ($selected && hasEdgeBar(theme) ? 'block' : 'none')};
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 3px;
+    background-color: ${({ theme }) => theme.palette.sidebarMarkCurrent};
+  }
+
   &:hover {
-    background-color: transparent;
+    background-color: ${({ theme, $selected }) =>
+      hasEdgeBar(theme) ? ($selected ? selectedFill(theme) : theme.palette.action.hover) : 'transparent'};
   }
 
   &:hover ${StyledListItemIcon} {
-    background-color: ${({ theme }) => alpha(paletteColor(theme, 'sidebarIcon'), 0.12)};
-    border-color: ${({ theme }) => alpha(paletteColor(theme, 'sidebarIconHover'), 0.55)};
+    background-color: ${({ theme }) =>
+      hasEdgeBar(theme) ? 'transparent' : alpha(paletteColor(theme, 'sidebarIcon'), 0.12)};
+    border-color: ${({ theme }) =>
+      hasEdgeBar(theme) ? 'transparent' : alpha(paletteColor(theme, 'sidebarIconHover'), 0.55)};
 
     svg {
       color: ${({ theme }) => paletteColor(theme, 'sidebarIconHover')} !important;
@@ -79,10 +103,12 @@ const StyledListItem = styled(ListItem)`
   }
 `;
 
-const StyledListItemText = styled(Typography)`
+const StyledListItemText = styled(Typography, { shouldForwardProp: (prop) => prop !== '$selected' })<{
+  $selected?: boolean;
+}>`
   font-size: ${({ theme }) => theme.typography.pxToRem(9.5)} !important;
   font-weight: 700;
-  color: ${({ theme }) => labelColor(theme)};
+  color: ${({ theme, $selected }) => ($selected && hasEdgeBar(theme) ? theme.palette.text.primary : labelColor(theme))};
 `;
 
 export type SideBarItemProps = {
@@ -111,12 +137,14 @@ export default function SideBarItem(props: SideBarItemProps) {
   }
 
   return (
-    <StyledListItem button onClick={() => handleClick()} {...rest}>
+    <StyledListItem button onClick={() => handleClick()} $selected={isSelected} {...rest}>
       <Flex flexDirection="column" alignItems="center" gap={0.25}>
         <StyledListItemIcon selected={isSelected}>
           <Icon fontSize="sidebarIcon" />
         </StyledListItemIcon>
-        <StyledListItemText align="center">{title}</StyledListItemText>
+        <StyledListItemText align="center" $selected={isSelected}>
+          {title}
+        </StyledListItemText>
       </Flex>
     </StyledListItem>
   );

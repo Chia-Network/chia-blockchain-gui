@@ -1,5 +1,5 @@
 /** Whitelisted GUI color themes. Values are static code only — never loaded from network or user files. */
-export const THEME_VARIANT_IDS = ['classic', 'field', 'chia'] as const;
+export const THEME_VARIANT_IDS = ['classic', 'field', 'chia', 'chia2024'] as const;
 
 export type ThemeVariantId = (typeof THEME_VARIANT_IDS)[number];
 
@@ -15,7 +15,12 @@ export const THEME_VARIANT_META: ThemeVariantMeta[] = [
   {
     id: 'chia',
     label: 'Chia',
-    description: 'Chia Network Enterprise palette (2025): Stark Blue, Mystic Blue, Periwinkle, Shock accent.',
+    description: 'Current chia.net brand: Chia Navy, Chia Green, Barlow and Inter.',
+  },
+  {
+    id: 'chia2024',
+    label: 'Chia (2024)',
+    description: 'Retired Chia brand palette: Stark Blue, Mystic Blue, Periwinkle, Shock accent.',
   },
   {
     id: 'classic',

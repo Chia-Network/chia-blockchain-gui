@@ -21,7 +21,8 @@ import NewerAppVersionAvailable from './NewerAppVersionAvailable';
 // import LayoutFooter from '../LayoutMain/LayoutFooter';
 
 const StyledAppBar = styled(({ drawer, ...rest }) => <AppBar {...rest} />)`
-  border-bottom: 1px solid ${({ theme }) => getColorModeValue(theme, 'border')};
+  border-bottom: 1px solid ${({ theme }) => theme.palette.surfaces?.frameBorder ?? getColorModeValue(theme, 'border')};
+  background-color: ${({ theme }) => theme.palette.surfaces?.frame ?? 'transparent'};
   width: ${({ theme, drawer }) => (drawer ? `calc(100% - ${theme.drawer.width})` : '100%')};
   margin-left: ${({ theme, drawer }) => (drawer ? theme.drawer.width : 0)};
   z-index: ${({ theme }) => theme.zIndex.drawer + 1};};
@@ -37,9 +38,10 @@ const StyledDrawer = styled(Drawer)`
     background-color: ${({ theme }) => getColorModeValue(theme, 'sidebarBackground')};
     border-right: 1px solid
       ${({ theme }) =>
-        theme.palette.mode === 'dark'
+        theme.palette.surfaces?.frameBorder ??
+        (theme.palette.mode === 'dark'
           ? alpha(getColorModeValue(theme, 'border'), 0.45)
-          : alpha(getColorModeValue(theme, 'border'), 0.35)};
+          : alpha(getColorModeValue(theme, 'border'), 0.35))};
     color: ${({ theme }) =>
       theme.palette.sidebarText
         ? getColorModeValue(theme, 'sidebarText' as Parameters<typeof getColorModeValue>[1])

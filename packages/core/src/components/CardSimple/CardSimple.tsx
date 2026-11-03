@@ -2,6 +2,7 @@ import { Trans } from '@lingui/macro';
 import { Box, Card, CardContent, Typography, TypographyProps, CircularProgress } from '@mui/material';
 import React, { type ReactNode, ReactElement } from 'react';
 
+import { amountSx, sectionTitleSx } from '../../theme/textRoles';
 import Flex from '../Flex';
 import TooltipIcon from '../TooltipIcon';
 
@@ -48,14 +49,14 @@ export default function CardSimple(props: CardSimpleProps) {
           </Box>
         ) : error ? (
           <Flex alignItems="center">
-            <Typography variant="h5" color="error" fontSize="1.25rem">
+            <Typography variant="h5" color="error" fontSize="1.25rem" sx={sectionTitleSx}>
               <Trans>Error</Trans>
             </Typography>
             &nbsp;
             <TooltipIcon>{error?.message}</TooltipIcon>
           </Flex>
         ) : (
-          <Typography variant="h5" color={valueColor} sx={{ wordWrap: 'break-word', fontSize: '1.25rem' }}>
+          <Typography variant="h5" color={valueColor} sx={{ ...amountSx, wordWrap: 'break-word', fontSize: '1.25rem' }}>
             {value}
           </Typography>
         )}
