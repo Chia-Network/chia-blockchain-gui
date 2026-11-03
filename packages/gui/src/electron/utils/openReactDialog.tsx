@@ -6,6 +6,8 @@ import path from 'node:path';
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 
+import { parseThemeVariantId } from '../../theme/themeVariant';
+import { resolveWindowBackground } from '../../theme/windowBackground';
 import * as preferences from '../prefs';
 
 import { addAsset, registerAssetProtocol, removeAsset } from './assets';
@@ -191,7 +193,8 @@ export default function openReactDialog<TResponse, TProps extends object>(
   const confirmId = crypto.randomUUID();
 
   const isDarkMode = prefs.darkMode ?? nativeTheme.shouldUseDarkColors;
-  const initialBgColor = isDarkMode ? '#0f252a' : '#ffffff';
+  const themeVariant = parseThemeVariantId(prefs.themeVariant);
+  const initialBgColor = resolveWindowBackground(themeVariant, isDarkMode);
 
   try {
     const scriptAssetURL = addAsset({
@@ -208,7 +211,7 @@ export default function openReactDialog<TResponse, TProps extends object>(
     });
 
     const html = renderToStaticMarkup(
-      <html lang="en" className={isDarkMode ? 'dark' : ''}>
+      <html lang="en" className={isDarkMode ? 'dark' : ''} data-theme-variant={themeVariant}>
         <head>
           <meta charSet="utf-8" />
           <meta
@@ -232,7 +235,13 @@ export default function openReactDialog<TResponse, TProps extends object>(
           <link href={styleAssetURL} type="text/css" rel="stylesheet" />
         </head>
         <body>
-          <Component {...props} confirmId={confirmId} styleURL={styleAssetURL} isDarkMode={isDarkMode} />
+          <Component
+            {...props}
+            confirmId={confirmId}
+            styleURL={styleAssetURL}
+            isDarkMode={isDarkMode}
+            themeVariant={themeVariant}
+          />
           <script src={scriptAssetURL} />
         </body>
       </html>,

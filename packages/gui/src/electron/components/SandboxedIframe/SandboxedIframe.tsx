@@ -5,13 +5,15 @@ export type SandboxIframeProps = {
   children: ReactNode;
   className?: string;
   isDarkMode?: boolean;
+  /** Mirrors the parent dialog's `data-theme-variant` so the iframe picks up the same CSS tokens. */
+  themeVariant?: string;
 };
 
 export default function SandboxedIframe(props: SandboxIframeProps) {
-  const { children, className, isDarkMode = false } = props;
+  const { children, className, isDarkMode = false, themeVariant } = props;
 
   const iframeContent = renderToStaticMarkup(
-    <html className={isDarkMode ? 'dark' : ''}>
+    <html className={isDarkMode ? 'dark' : ''} data-theme-variant={themeVariant}>
       <head>
         <meta charSet="utf-8" />
         <meta

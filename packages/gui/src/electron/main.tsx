@@ -29,6 +29,7 @@ import type { PermissionsNotificationPayload } from '../@types/PermissionsServic
 import { WcError, WcErrorCode, encodeWcErrorForIpc } from '../@types/WcError';
 import AppIcon from '../assets/img/chia64x64.png';
 import { i18n } from '../config/locales';
+import { resolveWindowBackground } from '../theme/windowBackground';
 import { isIpfsUrl } from '../util/ipfs';
 
 import CacheManager, { CACHE_PROTOCOL } from './CacheManager';
@@ -769,7 +770,7 @@ if (ensureSingleInstance() && ensureCorrectEnvironment()) {
 
     const isDarkMode = prefs.darkMode ?? nativeTheme.shouldUseDarkColors;
 
-    const initialBgColor = isDarkMode ? '#0f252a' : '#ffffff';
+    const initialBgColor = resolveWindowBackground(prefs.themeVariant, isDarkMode);
 
     mainWindow = new BrowserWindow({
       x: mainWindowState.x,
@@ -1391,15 +1392,15 @@ function getMenuTemplate() {
       role: 'help',
       submenu: [
         {
-          label: i18n._(/* i18n */ { id: 'Chia Blockchain Wiki' }),
+          label: i18n._(/* i18n */ { id: 'Documentation' }),
           click: () => {
-            openExternal('https://github.com/Chia-Network/chia-blockchain/wiki');
+            openExternal('https://docs.chia.net/');
           },
         },
         {
           label: i18n._(/* i18n */ { id: 'Frequently Asked Questions' }),
           click: () => {
-            openExternal('https://github.com/Chia-Network/chia-blockchain/wiki/FAQ');
+            openExternal('https://docs.chia.net/faq/');
           },
         },
         {
