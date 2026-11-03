@@ -98,7 +98,8 @@ const StyledListItem = styled(ListItem, { shouldForwardProp: (prop) => prop !== 
       hasEdgeBar(theme) ? 'transparent' : alpha(paletteColor(theme, 'sidebarIconHover'), 0.55)};
 
     svg {
-      color: ${({ theme }) => paletteColor(theme, 'sidebarIconHover')} !important;
+      color: ${({ theme, $selected }) =>
+        paletteColor(theme, $selected && hasEdgeBar(theme) ? 'sidebarIconSelected' : 'sidebarIconHover')} !important;
     }
   }
 `;
