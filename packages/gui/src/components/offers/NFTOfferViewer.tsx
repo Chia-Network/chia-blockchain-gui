@@ -17,6 +17,8 @@ import {
   mojoToChia,
   useColorModeValue,
   useShowError,
+  amountSx,
+  sectionTitleSx,
 } from '@chia-network/core';
 import { Plural, Trans, t } from '@lingui/macro';
 import { Warning as WarningIcon } from '@mui/icons-material';
@@ -138,7 +140,7 @@ function NFTOfferSummaryRow(props: NFTOfferSummaryRowProps) {
         console.error(`Unhandled OfferAsset type: ${assetType}`);
         return (
           <div>
-            <Typography variant="h5">
+            <Typography variant="h5" sx={sectionTitleSx}>
               <Trans>Unrecognized asset</Trans>
             </Typography>
           </div>
@@ -592,7 +594,7 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
                           </TooltipIcon>
                         </Flex>
                       </Flex>
-                      <Typography variant="h5" fontWeight="bold">
+                      <Typography variant="h5" fontWeight="bold" sx={amountSx}>
                         <FormatLargeNumber value={new BigNumber(nftSaleInfo?.nftSellerNetAmount ?? 0)} /> {displayName}
                       </Typography>
                     </Flex>

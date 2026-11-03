@@ -15,6 +15,7 @@ import {
   useDarkMode,
   LayoutDashboardSub,
   ScrollbarVirtuoso,
+  sectionTitleSx,
 } from '@chia-network/core';
 import {
   VCZeroStateBackground as VCZeroStateBackgroundIcon,
@@ -364,7 +365,7 @@ export default function VCList() {
                     >
                       VERIFIABLE CREDENTIAL
                     </Typography>
-                    <Typography variant="h5" sx={{ mt: 1, color: zeroStateColors.cardText }}>
+                    <Typography variant="h5" sx={{ ...sectionTitleSx, mt: 1, color: zeroStateColors.cardText }}>
                       Credential ID
                     </Typography>
                     <Box

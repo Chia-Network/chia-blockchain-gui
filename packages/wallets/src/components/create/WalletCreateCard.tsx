@@ -1,4 +1,4 @@
-import { Card, Flex, Loading } from '@chia-network/core';
+import { Card, Flex, Loading, sectionTitleSx } from '@chia-network/core';
 import { Typography } from '@mui/material';
 import React, { useState, ReactNode } from 'react';
 import styled from 'styled-components';
@@ -45,7 +45,7 @@ export default function WalletCreateCard(props: Props) {
           ) : (
             <>
               {symbol && (
-                <Typography variant="h5" color="primary">
+                <Typography variant="h5" color="primary" sx={sectionTitleSx}>
                   {symbol}
                 </Typography>
               )}

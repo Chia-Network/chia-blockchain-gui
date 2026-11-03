@@ -8,6 +8,7 @@ import {
   useOpenDialog,
   useSerializedNavigationState,
   useShowError,
+  sectionTitleSx,
 } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Button, Grid, Typography } from '@mui/material';
@@ -162,7 +163,7 @@ function SelectOfferFile() {
       </Flex>
       <Dropzone maxFiles={1} onDrop={handleDrop} processing={isParsing}>
         <Flex flexDirection="column" alignItems="center">
-          <Typography color="textSecondary" variant="h5">
+          <Typography color="textSecondary" variant="h5" sx={sectionTitleSx}>
             <Trans>Drag & Drop an Offer File</Trans>
           </Typography>
           <Typography color="textSecondary" variant="h6">

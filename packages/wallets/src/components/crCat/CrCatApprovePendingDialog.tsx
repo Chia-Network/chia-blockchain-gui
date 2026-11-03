@@ -10,6 +10,7 @@ import {
   chiaToMojo,
   useOpenDialog,
   sleep,
+  amountSx,
 } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Close as CloseIcon } from '@mui/icons-material';
@@ -107,7 +108,9 @@ export default function CrCatApprovePendingDialog(props: Props) {
         <DialogContent dividers>
           <Flex gap={2} flexDirection="column" sx={{ textAlign: 'center', alignItems: 'center' }}>
             <Box sx={{ mb: 3 }}>
-              <Typography variant="h5">{amountHuman}</Typography>
+              <Typography variant="h5" sx={amountSx}>
+                {amountHuman}
+              </Typography>
             </Box>
 
             {!isSynced && (

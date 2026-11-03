@@ -21,6 +21,7 @@ import {
   chiaToMojo,
   Checkbox,
   useOpenDialog,
+  amountSx,
 } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Close as CloseIcon } from '@mui/icons-material';
@@ -166,7 +167,7 @@ export default function ClawbackClaimTransactionDialog(props: Props) {
           <DialogContent dividers>
             <Flex gap={2} flexDirection="column" sx={{ textAlign: 'center', alignItems: 'center' }}>
               <Box sx={{ mb: 3 }}>
-                <Typography variant="h5">
+                <Typography variant="h5" sx={amountSx}>
                   <FormatLargeNumber value={mojoToChia(amountInMojo)} />{' '}
                   <Box
                     component="span"

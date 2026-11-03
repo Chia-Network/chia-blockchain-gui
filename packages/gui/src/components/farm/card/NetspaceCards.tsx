@@ -1,3 +1,4 @@
+import { sectionTitleSx } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Grid, Typography } from '@mui/material';
 import React from 'react';
@@ -9,7 +10,7 @@ export default React.memo(NetSpaceCards);
 function NetSpaceCards() {
   return (
     <div>
-      <Typography variant="h5" sx={{ marginBottom: 1 }}>
+      <Typography variant="h5" sx={{ ...sectionTitleSx, marginBottom: 1 }}>
         <Trans>Netspace</Trans>
       </Typography>
       <Grid spacing={2} alignItems="stretch" container>

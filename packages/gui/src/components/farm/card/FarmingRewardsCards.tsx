@@ -1,5 +1,12 @@
 import { useGetBlockchainStateQuery, useGetTotalHarvestersSummaryQuery } from '@chia-network/api-react';
-import { State, CardSimple, useCurrencyCode, mojoToChiaLocaleString, useLocale } from '@chia-network/core';
+import {
+  State,
+  CardSimple,
+  useCurrencyCode,
+  mojoToChiaLocaleString,
+  useLocale,
+  sectionTitleSx,
+} from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Grid, Typography, Box } from '@mui/material';
 import BigNumber from 'bignumber.js';
@@ -156,7 +163,7 @@ function FarmingRewardsCards() {
 
   return (
     <Box>
-      <Typography variant="h5" sx={{ marginBottom: 1 }}>
+      <Typography variant="h5" sx={{ ...sectionTitleSx, marginBottom: 1 }}>
         <Trans>Farming Rewards</Trans>
       </Typography>
       <Grid spacing={2} alignItems="stretch" container>
