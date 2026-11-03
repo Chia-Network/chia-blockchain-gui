@@ -10,6 +10,16 @@ import chiaOfferFileIcon from '../assets/theme/chia/offerFileIcon.svg';
 import chiaUnknownSmall from '../assets/theme/chia/unknown-small.svg';
 import chiaVideoSmall from '../assets/theme/chia/video-small.svg';
 import chiaWalletConnectToChia from '../assets/theme/chia/walletConnectToChia.svg';
+import chia2024AudioSmall from '../assets/theme/chia2024/audio-small.svg';
+import chia2024ChiaBlack from '../assets/theme/chia2024/chia-black.svg';
+import chia2024Chia from '../assets/theme/chia2024/chia.svg';
+import chia2024ChiaCircle from '../assets/theme/chia2024/chia_circle.svg';
+import chia2024DocumentSmall from '../assets/theme/chia2024/document-small.svg';
+import chia2024ModelSmall from '../assets/theme/chia2024/model-small.svg';
+import chia2024OfferFileIcon from '../assets/theme/chia2024/offerFileIcon.svg';
+import chia2024UnknownSmall from '../assets/theme/chia2024/unknown-small.svg';
+import chia2024VideoSmall from '../assets/theme/chia2024/video-small.svg';
+import chia2024WalletConnectToChia from '../assets/theme/chia2024/walletConnectToChia.svg';
 import classicAudioSmall from '../assets/theme/classic/audio-small.svg';
 import classicChiaBlack from '../assets/theme/classic/chia-black.svg';
 import classicChia from '../assets/theme/classic/chia.svg';
@@ -68,5 +78,17 @@ export const GUI_THEME_ASSETS: Record<ThemeVariantId, ThemeAssets> = {
     videoSmall: chiaVideoSmall,
     offerFileIcon: chiaOfferFileIcon,
     walletConnectToChia: chiaWalletConnectToChia,
+  },
+  chia2024: {
+    chiaCircle: chia2024ChiaCircle,
+    chiaWordmark: chia2024Chia,
+    chiaWordmarkBlack: chia2024ChiaBlack,
+    audioSmall: chia2024AudioSmall,
+    documentSmall: chia2024DocumentSmall,
+    modelSmall: chia2024ModelSmall,
+    unknownSmall: chia2024UnknownSmall,
+    videoSmall: chia2024VideoSmall,
+    offerFileIcon: chia2024OfferFileIcon,
+    walletConnectToChia: chia2024WalletConnectToChia,
   },
 };
