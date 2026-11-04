@@ -43,7 +43,7 @@
   },
   "dependencies": {
     "fast-uri": "^3.1.7",
-    "lerna": "9.0.7",
+    "lerna": "10.1.1",
     "rollup": "4.62.4"
   },
   "devDependencies": {
