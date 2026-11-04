@@ -8,6 +8,8 @@ export default function AppTestnetIndicator() {
   const isTestnet = useCurrencyCode() === 'TXCH';
   const theme = useTheme();
   const borderColor = (theme.palette as any).colors.blue.border;
+  // The border tone is too dark for text on dark grounds; the label uses the lighter blue.
+  const darkLabelColor = (theme.palette as any).colors.blue.main;
   const [clickCount, setClickCount] = useState(0);
   const openDialog = useOpenDialog();
 
@@ -61,7 +63,7 @@ export default function AppTestnetIndicator() {
         <Flex gap={1} alignItems="center">
           <Typography
             variant="body2"
-            color={theme.palette.mode === 'dark' ? borderColor : theme.palette.secondary.main}
+            color={theme.palette.mode === 'dark' ? darkLabelColor : theme.palette.secondary.main}
             sx={{ fontSize: '13px', fontWeight: 500, marginTop: '3px', textTransform: 'uppercase' }}
           >
             Testnet
