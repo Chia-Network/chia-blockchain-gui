@@ -9,7 +9,8 @@ import {
   Flex,
   Form,
   FormatLargeNumber,
-  StateColor,
+  getStateColors,
+  stateTextSx,
   Tooltip,
   TooltipIcon,
   catToMojo,
@@ -55,11 +56,11 @@ import {
 /* ========================================================================== */
 
 const StyledWarningText = styled(Typography)`
-  color: ${StateColor.WARNING};
+  color: ${({ theme }) => getStateColors(theme.palette).warning};
 `;
 
 const StyledWarningIcon = styled(WarningIcon)`
-  color: ${StateColor.WARNING};
+  color: ${({ theme }) => getStateColors(theme.palette).warning};
 `;
 
 /* ========================================================================== */
@@ -395,7 +396,6 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
     };
   }, [amount, exchangeType, makerFee, nft]);
   const showRoyaltyWarning = (nftSaleInfo?.royaltyPercentage ?? 0) >= 20;
-  const royaltyPercentageColor = showRoyaltyWarning ? StateColor.WARNING : 'textSecondary';
   const overrideNFTSellerAmount =
     exchangeType === NFTOfferExchangeType.TokenForNFT
       ? assetType === OfferAsset.CHIA
@@ -516,7 +516,11 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
                     </Flex>
                     <Flex flexDirection="column" gap={1}>
                       <Flex flexDirection="row" alignItems="center" gap={1}>
-                        <Typography variant="body1" color={royaltyPercentageColor}>
+                        <Typography
+                          variant="body1"
+                          color="textSecondary"
+                          sx={showRoyaltyWarning ? stateTextSx.warning : undefined}
+                        >
                           <Trans>Creator Fee ({`${nftSaleInfo?.royaltyPercentage}%)`}</Trans>
                         </Typography>
                         {showRoyaltyWarning && (

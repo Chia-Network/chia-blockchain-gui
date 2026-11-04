@@ -18,7 +18,7 @@ const StyledPopover = styled((props: PopoverProps) => <Popover {...props} />)(({
     borderRadius: '8px',
     marginTop: theme.spacing(1),
     minWidth: 180,
-    color: theme.palette.mode === 'light' ? Color.Comet[700] : theme.palette.grey[300],
+    color: theme.palette.ink?.menu ?? (theme.palette.mode === 'light' ? Color.Comet[700] : theme.palette.grey[300]),
     boxShadow: `${Color.Neutral[50]} 0px 0px 0px 0px, ${alpha(
       Color.Neutral[900],
       theme.palette.mode === 'dark' ? 0.15 : 0.05,
@@ -62,31 +62,31 @@ export default function AppStatusHeader() {
     '.cancel-icon': {
       g: {
         circle: {
-          stroke: Color.Red[600],
-          fill: Color.Red[600],
+          stroke: theme.palette.ink?.error ?? Color.Red[600],
+          fill: theme.palette.ink?.error ?? Color.Red[600],
         },
       },
     },
     '.checkmark-icon': {
       g: {
         circle: {
-          stroke: theme.palette.primary.main,
-          fill: theme.palette.primary.main,
+          stroke: theme.palette.ink?.success ?? theme.palette.primary.main,
+          fill: theme.palette.ink?.success ?? theme.palette.primary.main,
         },
         path: {
-          stroke: theme.palette.primary.main,
-          fill: theme.palette.primary.main,
+          stroke: theme.palette.ink?.success ?? theme.palette.primary.main,
+          fill: theme.palette.ink?.success ?? theme.palette.primary.main,
         },
       },
     },
     '.reload-icon': {
       g: {
         circle: {
-          stroke: Color.Orange[400],
-          fill: Color.Orange[400],
+          stroke: theme.palette.ink?.warning ?? Color.Orange[400],
+          fill: theme.palette.ink?.warning ?? Color.Orange[400],
         },
         path: {
-          fill: Color.Orange[400],
+          fill: theme.palette.ink?.warning ?? Color.Orange[400],
         },
       },
     },

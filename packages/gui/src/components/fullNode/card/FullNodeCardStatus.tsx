@@ -1,11 +1,11 @@
 import { useGetBlockchainStateQuery } from '@chia-network/api-react';
-import { FormatLargeNumber, CardSimple, StateColor } from '@chia-network/core';
+import { FormatLargeNumber, CardSimple, getStateColors } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import React from 'react';
 import styled from 'styled-components';
 
 const StyledWarning = styled.span`
-  color: ${StateColor.WARNING};
+  color: ${({ theme }) => getStateColors(theme.palette).warning};
 `;
 
 function getData(sync) {

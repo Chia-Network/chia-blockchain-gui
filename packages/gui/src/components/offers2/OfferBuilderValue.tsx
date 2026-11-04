@@ -8,7 +8,7 @@ import {
   FormatLargeNumber,
   Link,
   Loading,
-  StateColor,
+  stateTextSx,
   TooltipIcon,
 } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
@@ -208,7 +208,7 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
       )}
       {warnUnknownCAT && (
         <Flex gap={0.5} alignItems="center">
-          <Typography variant="body2" color={StateColor.WARNING}>
+          <Typography variant="body2" sx={stateTextSx.warning}>
             Unknown CAT
           </Typography>
           <TooltipIcon>

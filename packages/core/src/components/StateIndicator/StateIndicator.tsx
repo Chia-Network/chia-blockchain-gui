@@ -3,7 +3,6 @@ import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 
 import State from '../../constants/State';
-import StateColor from '../../constants/StateColor';
 import { getSemanticColors } from '../../theme/semanticColors';
 import Flex from '../Flex';
 
@@ -13,7 +12,7 @@ const StyledFlexContainer = styled(({ ...rest }) => <Flex {...rest} />)`
   gap: 4px;
 `;
 
-function useStateColor(state: State): string {
+function useStateColor(state: State): string | undefined {
   const theme = useTheme();
   const semanticColors = getSemanticColors(theme.palette);
 
@@ -25,16 +24,9 @@ function useStateColor(state: State): string {
     case State.ERROR:
       return semanticColors.error;
     default:
-      break;
+      // No state: no color, so the text inherits it.
+      return undefined;
   }
-
-  const Color = {
-    [State.SUCCESS]: StateColor.SUCCESS,
-    [State.WARNING]: StateColor.WARNING,
-    [State.ERROR]: StateColor.ERROR,
-  };
-
-  return Color[state];
 }
 
 export type StateComponentProps = {

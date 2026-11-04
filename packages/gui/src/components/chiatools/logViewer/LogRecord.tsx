@@ -17,11 +17,32 @@ const SecondaryText = styled.span(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
+// Themes with `ink` state colors use them, so levels stay readable on light grounds; the rest keep LOG_COLORS.
+function logLevelColor(theme: any, level: LogLevel): string {
+  const { ink } = theme.palette;
+  if (!ink) {
+    return LOG_COLORS[level];
+  }
+  switch (level) {
+    case LogLevel.CRITICAL:
+    case LogLevel.ERROR:
+      return ink.error;
+    case LogLevel.WARNING:
+      return ink.warning;
+    case LogLevel.INFO:
+      return ink.success;
+    case LogLevel.DEBUG:
+      return theme.palette.primary.main;
+    default:
+      return ink.muted;
+  }
+}
+
 type LogLevelProps = {
   level: LogLevel;
 };
-const LogLevelLabel = styled.span<LogLevelProps>(({ level }) => ({
-  color: LOG_COLORS[level],
+const LogLevelLabel = styled.span<LogLevelProps>(({ theme, level }) => ({
+  color: logLevelColor(theme, level),
   fontWeight: level === 'CRITICAL' || level === 'ERROR' ? 'bold' : 'normal',
 }));
 
@@ -30,7 +51,7 @@ type IndentedLineProps = {
 };
 const IndentedLine = styled(Box)<IndentedLineProps>(({ theme, line }) => ({
   whiteSpace: 'pre-wrap',
-  color: line.startsWith(' ') ? LOG_COLORS.ERROR : theme.palette.text.primary,
+  color: line.startsWith(' ') ? logLevelColor(theme, LogLevel.ERROR) : theme.palette.text.primary,
   paddingLeft: line.startsWith(' ') ? 2 : 0,
 }));
 

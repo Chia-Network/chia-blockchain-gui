@@ -1,4 +1,4 @@
-import { CardStep, ConfirmDialog, Link, Select, StateColor, useOpenDialog } from '@chia-network/core';
+import { CardStep, ConfirmDialog, Link, Select, getStateColors, useOpenDialog } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Grid, FormControl, Typography, InputLabel, MenuItem, FormHelperText } from '@mui/material';
 import React, { useEffect, useState } from 'react';
@@ -12,7 +12,7 @@ import Plotter from '../../../types/Plotter';
 const MIN_MAINNET_K_SIZE = 32;
 
 const StyledFormHelperText = styled(FormHelperText)`
-  color: ${StateColor.WARNING};
+  color: ${({ theme }) => getStateColors(theme.palette).warning};
 `;
 
 type Props = {

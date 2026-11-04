@@ -1,4 +1,4 @@
-import { StateColor } from '@chia-network/core';
+import { stateTextSx } from '@chia-network/core';
 import { t } from '@lingui/macro';
 import { Typography } from '@mui/material';
 import React from 'react';
@@ -9,7 +9,8 @@ export default function OfferBuilderExpirationCountdown(currentTime, expirationT
   const timeUntilExpiration = expirationTime - currentTime;
   const timeUntilExpirationAsTuple = getOfferExpirationTimeAsTuple(timeUntilExpiration);
 
-  let countdownColor = isCaption ? StateColor.SUCCESS : StateColor.INFO;
+  // Captions carry the state color; the body text keeps the normal text color.
+  let countdownState: keyof typeof stateTextSx | undefined = isCaption ? 'success' : undefined;
   let countdownDisplay = null;
 
   if (timeUntilExpiration > 86_399) {
@@ -17,22 +18,22 @@ export default function OfferBuilderExpirationCountdown(currentTime, expirationT
       timeUntilExpirationAsTuple.days > 1 ? `days` : `day`
     }`;
   } else if (timeUntilExpiration > 3599) {
-    countdownColor = isCaption ? StateColor.WARNING : countdownColor;
+    countdownState = isCaption ? 'warning' : countdownState;
     countdownDisplay = t`Offer will expire in ${timeUntilExpirationAsTuple.hours} ${
       timeUntilExpirationAsTuple.hours > 1 ? `hours` : `hour`
     }`;
   } else if (timeUntilExpiration > 59) {
-    countdownColor = isCaption ? StateColor.WARNING : countdownColor;
+    countdownState = isCaption ? 'warning' : countdownState;
     countdownDisplay = t`Offer will expire in ${timeUntilExpirationAsTuple.minutes} ${
       timeUntilExpirationAsTuple.minutes > 1 ? `minutes` : `minute`
     }`;
   } else if (timeUntilExpiration < 0) {
-    countdownColor = isCaption ? StateColor.ERROR : countdownColor;
+    countdownState = isCaption ? 'error' : countdownState;
     countdownDisplay = t`Offer has expired`;
   }
 
   return (
-    <Typography color={countdownColor} variant={isCaption ? 'caption' : 'body2'}>
+    <Typography sx={countdownState ? stateTextSx[countdownState] : undefined} variant={isCaption ? 'caption' : 'body2'}>
       {countdownDisplay}
     </Typography>
   );
