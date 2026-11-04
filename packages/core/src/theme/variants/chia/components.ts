@@ -148,8 +148,8 @@ export default function getChiaNetComponents(t: ChiaNetModeTokens): Components<O
           backgroundColor: t.field,
           borderRadius: 6,
           '& .MuiOutlinedInput-notchedOutline, &:hover .MuiOutlinedInput-notchedOutline': { borderColor: t.edge },
-          '&.Mui-focused .MuiOutlinedInput-notchedOutline': { borderColor: t.edge, borderWidth: 1 },
-          '&.Mui-focused': focusRing,
+          // Focus thickens the notched edge in the focus color. An outline ring would cut through the floating label.
+          '&.Mui-focused .MuiOutlinedInput-notchedOutline': { borderColor: t.focus, borderWidth: 2 },
           '&.Mui-error .MuiOutlinedInput-notchedOutline': { borderColor: t.errorText },
         },
       },
