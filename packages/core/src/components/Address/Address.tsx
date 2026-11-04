@@ -26,6 +26,7 @@ export default function Address(props: Props) {
           <Box
             sx={{
               wordBreak: 'break-all',
+              fontFamily: (theme) => `var(--chia-font-mono, ${theme.typography.fontFamily})`,
             }}
           >
             {address}

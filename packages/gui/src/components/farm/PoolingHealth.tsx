@@ -3,7 +3,7 @@ import {
   useGetPartialStatsOffsetQuery,
   useResetPartialStatsMutation,
 } from '@chia-network/api-react';
-import { Flex, getSemanticColors, StateIndicator, State, Tooltip } from '@chia-network/core';
+import { Flex, getSemanticColors, StateIndicator, State, Tooltip, sectionTitleSx } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Box, Paper, Typography, CircularProgress, Button, useTheme } from '@mui/material';
 import React from 'react';
@@ -277,7 +277,7 @@ function PoolingHealth() {
 
   return (
     <Box>
-      <Typography variant="h5" sx={{ marginBottom: 1 }}>
+      <Typography variant="h5" sx={{ ...sectionTitleSx, marginBottom: 1 }}>
         <Trans>Pooling</Trans>
       </Typography>
       <Paper sx={{ padding: 2 }} variant="outlined">

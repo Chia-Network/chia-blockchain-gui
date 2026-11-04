@@ -21,25 +21,25 @@ export default function KeyDetail(props: KeyDetailProps) {
   const { data } = props;
 
   return (
-    <div className="h-screen overflow-y-auto p-4 flex flex-col text-sm text-gray-900 dark:text-gray-100">
+    <div className="h-screen overflow-y-auto p-4 flex flex-col text-sm text-chia-text">
       <div className="mb-4">
         <h2 className="mt-0 mb-4 text-base">{data.label || `Wallet ${data.index + 1}`}</h2>
-        <p className="mt-0 mb-4 text-gray-500 dark:text-gray-400">{data.fingerprint}</p>
+        <p className="mt-0 mb-4 text-chia-text-secondary">{data.fingerprint}</p>
       </div>
 
       <div className="grid gap-4 mb-4">
         <div className="flex flex-col gap-1">
-          <span className="text-gray-500 dark:text-gray-400">{i18n._(/* i18n */ { id: 'Public Key' })}</span>
+          <span className="text-chia-text-secondary">{i18n._(/* i18n */ { id: 'Public Key' })}</span>
           <span className="break-all">{data.publicKey}</span>
         </div>
 
         <div className="flex flex-col gap-1">
-          <span className="text-gray-500 dark:text-gray-400">{i18n._(/* i18n */ { id: 'Farmer Public Key' })}</span>
+          <span className="text-chia-text-secondary">{i18n._(/* i18n */ { id: 'Farmer Public Key' })}</span>
           <span className="break-all">{data.farmerPublicKey}</span>
         </div>
 
         <div className="flex flex-col gap-1">
-          <span className="text-gray-500 dark:text-gray-400">{i18n._(/* i18n */ { id: 'Pool Public Key' })}</span>
+          <span className="text-chia-text-secondary">{i18n._(/* i18n */ { id: 'Pool Public Key' })}</span>
           <span className="break-all">{data.poolPublicKey}</span>
         </div>
       </div>
@@ -49,10 +49,10 @@ export default function KeyDetail(props: KeyDetailProps) {
       </p>
 
       <div className="grid gap-4">
-        <div className="border border-gray-200 dark:border-gray-700 rounded-lg">
+        <div className="border border-chia-border rounded-lg">
           <details className="group">
             <summary className="flex items-center justify-between p-4 cursor-pointer list-none">
-              <span className="text-gray-500 dark:text-gray-400">{i18n._(/* i18n */ { id: 'Secret Key' })}</span>
+              <span className="text-chia-text-secondary">{i18n._(/* i18n */ { id: 'Secret Key' })}</span>
               <svg
                 className="w-4 h-4 transition-transform group-open:rotate-180"
                 fill="none"
@@ -68,10 +68,10 @@ export default function KeyDetail(props: KeyDetailProps) {
           </details>
         </div>
 
-        <div className="border border-gray-200 dark:border-gray-700 rounded-lg">
+        <div className="border border-chia-border rounded-lg">
           <details className="group">
             <summary className="flex items-center justify-between p-4 cursor-pointer list-none">
-              <span className="text-gray-500 dark:text-gray-400">{i18n._(/* i18n */ { id: 'Seed Phrase' })}</span>
+              <span className="text-chia-text-secondary">{i18n._(/* i18n */ { id: 'Seed Phrase' })}</span>
               <svg
                 className="w-4 h-4 transition-transform group-open:rotate-180"
                 fill="none"

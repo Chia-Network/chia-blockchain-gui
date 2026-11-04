@@ -1,4 +1,4 @@
-import { Button, Color, Flex, Logo, Card, useMode, Mode } from '@chia-network/core';
+import { Button, Color, Flex, Logo, Card, useMode, Mode, sectionTitleSx } from '@chia-network/core';
 import { Farming as FarmingIcon } from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
 import {
@@ -33,7 +33,7 @@ const StyledContainer = styled(Container)`
 `;
 
 const StyledAccountBalanceWalletIconBase = styled(AccountBalanceWalletIcon)`
-  color: ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[50] : alpha(Color.Neutral[900], 0.54))};
+  color: ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[50] : theme.palette.text.secondary)};
 `;
 
 const StyledAccountBalanceWalletIcon = styled(StyledAccountBalanceWalletIconBase)`
@@ -66,7 +66,7 @@ export default function AppSelectMode() {
                       <StyledAccountBalanceWalletIcon />
                     </Box>
 
-                    <Typography variant="h5" align="center">
+                    <Typography variant="h5" align="center" sx={sectionTitleSx}>
                       <Trans>Wallet Mode</Trans>
                     </Typography>
                   </Flex>
@@ -108,7 +108,7 @@ export default function AppSelectMode() {
                       <FarmingIcon fontSize="extraLarge" />
                     </Box>
 
-                    <Typography variant="h5" align="center">
+                    <Typography variant="h5" align="center" sx={sectionTitleSx}>
                       <Trans>Farming Mode</Trans>
                     </Typography>
                   </Flex>

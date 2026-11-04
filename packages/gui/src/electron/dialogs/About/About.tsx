@@ -27,7 +27,7 @@ export default function About(props: AboutProps) {
   const currentYear = new Date().getFullYear();
 
   return (
-    <div className="p-4 flex flex-col justify-center items-center text-sm text-gray-900 dark:text-gray-100">
+    <div className="p-4 flex flex-col justify-center items-center text-sm text-chia-text">
       <a href="https://www.chia.net/" className="no-underline text-inherit hover:no-underline">
         <div className="w-[200px] mx-auto">
           <img src={icon} alt="Chia Logo" className="h-[200px] mb-8" />
@@ -41,7 +41,7 @@ export default function About(props: AboutProps) {
       <div className="mb-4" />
       <div>Copyright (c) {currentYear} Chia Network</div>
       <div className="mb-4" />
-      <table className="border-collapse text-gray-500 dark:text-gray-400 text-xs">
+      <table className="border-collapse text-chia-text-secondary text-xs">
         {versions?.electron && (
           <tr>
             <td className="pr-4">Electron</td>
@@ -70,7 +70,7 @@ export default function About(props: AboutProps) {
 
       <a
         href="https://github.com/Chia-Network/chia-blockchain/issues"
-        className="absolute right-2 bottom-2 text-sm text-blue-500 dark:text-blue-400"
+        className="chia-dialog-link absolute right-2 bottom-2 text-sm text-blue-500 dark:text-blue-400"
       >
         {i18n._(/* i18n */ { id: 'Report an issue' })}
       </a>

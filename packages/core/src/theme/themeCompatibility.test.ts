@@ -4,6 +4,8 @@ import deprecatedDark from './dark';
 import deprecatedLight from './light';
 import chiaDark from './variants/chia/dark';
 import chiaLight from './variants/chia/light';
+import chia2024Dark from './variants/chia2024/dark';
+import chia2024Light from './variants/chia2024/light';
 import classicDark from './variants/classic/dark';
 import classicLight from './variants/classic/light';
 import fieldDark from './variants/field/dark';
@@ -25,6 +27,8 @@ describe('theme compatibility', () => {
   test.each([
     ['chia light', chiaLight],
     ['chia dark', chiaDark],
+    ['chia 2024 light', chia2024Light],
+    ['chia 2024 dark', chia2024Dark],
     ['classic light', classicLight],
     ['classic dark', classicDark],
     ['field light', fieldLight],
@@ -37,6 +41,8 @@ describe('theme compatibility', () => {
   test.each([
     ['chia light', chiaLight],
     ['chia dark', chiaDark],
+    ['chia 2024 light', chia2024Light],
+    ['chia 2024 dark', chia2024Dark],
     ['classic light', classicLight],
     ['classic dark', classicDark],
     ['field light', fieldLight],

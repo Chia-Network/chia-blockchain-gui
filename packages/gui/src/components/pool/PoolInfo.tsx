@@ -1,4 +1,4 @@
-import { CardKeyValue, Flex, Link } from '@chia-network/core';
+import { CardKeyValue, Flex, Link, sectionTitleSx } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Typography } from '@mui/material';
 import React from 'react';
@@ -48,7 +48,7 @@ export default function PoolInfo(props: Props) {
       </Box>
       */}
       <Flex flexDirection="column" gap={1}>
-        <Typography gutterBottom variant="h5" component="h2">
+        <Typography gutterBottom variant="h5" component="h2" sx={sectionTitleSx}>
           {poolInfo.name}
         </Typography>
         <Typography gutterBottom variant="body2" color="textSecondary" component="p">

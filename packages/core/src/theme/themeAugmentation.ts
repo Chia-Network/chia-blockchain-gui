@@ -42,6 +42,11 @@ type ChiaSurfacePalette = {
   tableRowAlternate?: string;
   tableExpanded?: string;
   tableBorder?: string;
+  /** App frame (header and sidebar) surface and its seam, when it differs from the page ground. */
+  frame?: string;
+  frameBorder?: string;
+  /** Fill for hand-built inputs, matching the theme's text fields. */
+  field?: string;
 };
 
 declare module '@mui/material/styles' {
@@ -64,6 +69,8 @@ declare module '@mui/material/styles' {
     surfaces?: ChiaSurfacePalette;
     sidebarSelectedFill?: string | { light?: string; dark?: string; main?: string };
     sidebarText?: { light?: string; dark?: string; main?: string };
+    /** When set, the current sidebar item gets an edge bar in this color instead of an outlined tile. */
+    sidebarMarkCurrent?: string;
   }
 
   interface PaletteOptions {
@@ -74,6 +81,7 @@ declare module '@mui/material/styles' {
     surfaces?: ChiaSurfacePalette;
     sidebarSelectedFill?: string | { light?: string; dark?: string; main?: string };
     sidebarText?: { light?: string; dark?: string; main?: string };
+    sidebarMarkCurrent?: string;
   }
 
   interface TypeBackground {

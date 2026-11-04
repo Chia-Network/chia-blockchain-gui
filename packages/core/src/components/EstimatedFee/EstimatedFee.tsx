@@ -9,6 +9,7 @@ import {
   SelectProps as MaterialSelectProps,
   Typography,
 } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import React, { useState, useEffect, useMemo } from 'react';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
 
@@ -111,6 +112,7 @@ function Select(props: SelectProps) {
 }
 
 function CountdownBar({ startTime, refreshSeconds }: { startTime: number; refreshSeconds: number }) {
+  const theme = useTheme();
   const [currentProgress, setCurrentProgress] = useState(0);
 
   useEffect(() => {
@@ -129,7 +131,7 @@ function CountdownBar({ startTime, refreshSeconds }: { startTime: number; refres
   const containerStyle = {
     height: 2,
     width: '100%',
-    backgroundColor: Color.Neutral[200],
+    backgroundColor: theme.palette.divider,
     borderRadius: 0,
     margin: 0,
   };
@@ -137,7 +139,7 @@ function CountdownBar({ startTime, refreshSeconds }: { startTime: number; refres
   const fillerStyle = {
     height: '100%',
     width: `${currentProgress}%`,
-    backgroundColor: Color.Green[600],
+    backgroundColor: theme.palette.primary.main,
     borderRadius: 'inherit',
     // textAlign: 'right',
   };

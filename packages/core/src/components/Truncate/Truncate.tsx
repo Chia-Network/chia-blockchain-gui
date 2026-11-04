@@ -1,4 +1,5 @@
 import { Typography, TypographyProps } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import React from 'react';
 
 import Tooltip from '../Tooltip';
@@ -67,6 +68,11 @@ export function truncateValue(children: string, opts: TruncateValueOptions): str
 
 /* ========================================================================== */
 
+// Hashes and IDs use the theme's mono face when it defines one (the `--chia-font-mono` variable).
+const StyledValue = styled(Typography)(({ theme }) => ({
+  fontFamily: `var(--chia-font-mono, ${theme.typography.fontFamily})`,
+}));
+
 export type TruncateProps = TruncateValueOptions & {
   children: string;
   tooltip?: boolean;
@@ -81,10 +87,10 @@ export default function Truncate(props: TruncateProps) {
   if (tooltip) {
     return (
       <Tooltip title={children} copyToClipboard={copyToClipboard}>
-        <Typography {...ValueProps}>{value}</Typography>
+        <StyledValue {...ValueProps}>{value}</StyledValue>
       </Tooltip>
     );
   }
 
-  return <Typography {...ValueProps}>{value}</Typography>;
+  return <StyledValue {...ValueProps}>{value}</StyledValue>;
 }

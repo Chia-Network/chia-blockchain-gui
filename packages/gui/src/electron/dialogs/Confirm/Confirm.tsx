@@ -65,6 +65,7 @@ export type ConfirmProps = {
   showBypassToggle?: boolean;
   styleURL?: string;
   isDarkMode?: boolean;
+  themeVariant?: string;
 };
 
 // Only emit a background-image when the dapp's icon is a real https URL.
@@ -264,6 +265,7 @@ export default function Confirm(props: ConfirmProps) {
     styleURL,
     confirmId,
     isDarkMode,
+    themeVariant,
   } = props;
 
   const hasData = !!data && Object.keys(data).length > 0;
@@ -281,7 +283,7 @@ export default function Confirm(props: ConfirmProps) {
 
   const confirmButtonClasses = destructive
     ? 'bg-chia-danger hover:brightness-110 text-white border-transparent'
-    : 'bg-chia-primary hover:bg-chia-primary-hover text-[#0f252a] border-transparent';
+    : 'bg-chia-primary hover:bg-chia-primary-hover text-chia-on-primary border-transparent';
 
   return (
     <div className="flex flex-col h-screen bg-chia-bg text-chia-text text-base">
@@ -294,7 +296,7 @@ export default function Confirm(props: ConfirmProps) {
        * Footer stays in the parent document so its button click handlers
        * reach `confirmId` and `[data-action="cancel"]`.
        */}
-      <SandboxedIframe className="flex-1 min-h-0 w-full border-0" isDarkMode={isDarkMode}>
+      <SandboxedIframe className="flex-1 min-h-0 w-full border-0" isDarkMode={isDarkMode} themeVariant={themeVariant}>
         <link href={styleURL} type="text/css" rel="stylesheet" />
         <div className="h-screen overflow-y-auto px-7 pt-4 pb-4 space-y-3 text-chia-text font-sans text-base">
           <div className="flex items-start gap-4">
@@ -433,7 +435,7 @@ export default function Confirm(props: ConfirmProps) {
           <button
             type="button"
             data-action="cancel"
-            className="h-9 px-5 text-sm font-semibold uppercase tracking-wider rounded-md border border-chia-primary bg-transparent text-chia-primary hover:bg-chia-primary-soft transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-chia-primary"
+            className="chia-dialog-button h-9 px-5 text-sm font-semibold uppercase tracking-wider rounded-md border border-chia-primary bg-transparent text-chia-primary hover:bg-chia-primary-soft transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-chia-primary"
           >
             {i18n._(/* i18n */ { id: 'Cancel' })}
           </button>
@@ -441,7 +443,7 @@ export default function Confirm(props: ConfirmProps) {
             type="button"
             id={confirmId}
             data-payload='{"isAllowed":true,"rememberBypass":false}'
-            className={`h-9 px-5 text-sm font-semibold uppercase tracking-wider rounded-md border shadow-sm transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-chia-primary focus-visible:ring-offset-2 focus-visible:ring-offset-chia-bg ${confirmButtonClasses}`}
+            className={`chia-dialog-button h-9 px-5 text-sm font-semibold uppercase tracking-wider rounded-md border shadow-sm transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-chia-primary focus-visible:ring-offset-2 focus-visible:ring-offset-chia-bg ${confirmButtonClasses}`}
           >
             {confirmLabel}
           </button>

@@ -15,6 +15,7 @@
   --color-chia-primary: #35b24b;
   --color-chia-primary-hover: #269339;
   --color-chia-primary-soft: rgba(53, 178, 75, 0.1);
+  --color-chia-on-primary: #0f252a;
   --color-chia-danger: #da2449;
 }
 
@@ -32,6 +33,70 @@
   --color-chia-primary-hover: #92e39f;
   --color-chia-primary-soft: rgba(94, 206, 113, 0.12);
   --color-chia-danger: #f56073;
+}
+
+/* chia.net brand for the Chia theme: navy text and blue actions on light; a #0e1e3d ground with holo-blue actions on dark. */
+[data-theme-variant="chia"] {
+  --color-chia-bg: #f6f7f9;
+  --color-chia-surface: #fafbfc;
+  --color-chia-card: rgba(18, 41, 87, 0.04);
+  --color-chia-card-elevated: rgba(18, 41, 87, 0.06);
+  --color-chia-border: #dde1e9;
+  --color-chia-border-strong: #848b98;
+  --color-chia-text: #122957;
+  --color-chia-text-secondary: #656d7b;
+  --color-chia-text-muted: #505760;
+  --color-chia-primary: #1b397a;
+  --color-chia-primary-hover: #122957;
+  --color-chia-primary-soft: rgba(27, 57, 122, 0.08);
+  --color-chia-on-primary: #fafbfc;
+  --color-chia-secondary-hover: #eef0f5;
+  --color-chia-danger: #d1343a;
+}
+
+.dark[data-theme-variant="chia"] {
+  --color-chia-bg: #0e1e3d;
+  --color-chia-surface: #1c2740;
+  --color-chia-card: rgba(250, 251, 252, 0.06);
+  --color-chia-card-elevated: rgba(250, 251, 252, 0.09);
+  --color-chia-border: #374057;
+  --color-chia-border-strong: #707887;
+  --color-chia-text: #fafbfc;
+  --color-chia-text-secondary: #c2c6cd;
+  --color-chia-text-muted: #a6aab5;
+  --color-chia-primary: #6fa8ff;
+  --color-chia-primary-hover: #9cc4ff;
+  --color-chia-primary-soft: rgba(111, 168, 255, 0.14);
+  --color-chia-on-primary: #0e1e3d;
+  --color-chia-secondary-hover: #303a51;
+  --color-chia-danger: #d1343a;
+}
+
+/* chia.net buttons in the Chia theme: pill shape, sentence-case labels (no forced capitals). */
+[data-theme-variant="chia"] .chia-dialog-button {
+  border-radius: 9999px;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* Cancel and Reject are secondaries: the surface fill, the 3:1 edge, text color, a gray hover. */
+[data-theme-variant="chia"] .chia-dialog-button[data-action="cancel"] {
+  border-color: var(--color-chia-border-strong);
+  background-color: var(--color-chia-surface);
+  color: var(--color-chia-text);
+}
+
+[data-theme-variant="chia"] .chia-dialog-button[data-action="cancel"]:hover {
+  background-color: var(--color-chia-secondary-hover);
+}
+
+.dark[data-theme-variant="chia"] .chia-dialog-button[data-action="cancel"] {
+  background-color: transparent;
+}
+
+[data-theme-variant="chia"] .chia-dialog-link {
+  color: var(--color-chia-primary);
 }
 
 :root {

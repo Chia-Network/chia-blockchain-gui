@@ -26,6 +26,7 @@ import {
   useCurrencyCode,
   useLocale,
   useShowError,
+  amountSx,
 } from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
 import { Warning as WarningIcon } from '@mui/icons-material';
@@ -405,7 +406,7 @@ function NFTOfferConditionalsPanel(props: NFTOfferConditionalsPanelProps) {
                       </TooltipIcon>
                     </Flex>
                   </Flex>
-                  <Typography variant="h5" fontWeight="bold">
+                  <Typography variant="h5" fontWeight="bold" sx={amountSx}>
                     <FormatLargeNumber value={new BigNumber(totalAmountString ?? 0)} />{' '}
                     {tokenWalletInfo.symbol ?? tokenWalletInfo.name ?? ''}
                     {tab === NFTOfferExchangeType.TokenForNFT &&

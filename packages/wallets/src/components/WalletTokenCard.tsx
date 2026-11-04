@@ -12,6 +12,8 @@ export type WalletTokenCardProps = {
   item: ListItem;
   onHide: (id: number) => void;
   onShow: (id: number | string) => Promise<void>;
+  /** A plain row split by hairlines, for lists that already sit on a surface (no cards inside cards). */
+  plain?: boolean;
 };
 
 type FormData = {
@@ -23,6 +25,7 @@ export default function WalletTokenCard(props: WalletTokenCardProps) {
     item: { type, walletType, walletId, assetId, hidden, name },
     onHide,
     onShow,
+    plain = false,
   } = props;
 
   const [localCatName, setLocalCatName] = useGetLocalCatName(assetId);
@@ -144,56 +147,69 @@ export default function WalletTokenCard(props: WalletTokenCardProps) {
     return assetId;
   }, [assetId, type, walletType]);
 
-  return (
-    <CardListItem>
-      <Flex gap={1} alignItems="center" width="100%">
-        <Flex flexDirection="column" gap={0.5} flexGrow={1} flexBasis={0} minWidth={0}>
-          {walletType === WalletType.STANDARD_WALLET ? (
-            <Typography noWrap>{name}</Typography>
-          ) : (
-            <Form methods={form} onSubmit={handleSubmit}>
-              <TextField
-                name="name"
-                label="Name"
-                onBlur={(event) => handleRename(event.target.value)}
-                disabled={isLoading}
-                size="small"
-                fullWidth
-                hiddenLabel
-              />
-            </Form>
-          )}
-          {(!!subTitle || assetId) && (
-            <Flex flexDirection="column" flexGrow={1} flexBasis={0} minWidth={0}>
-              {!!subTitle && (
-                <Tooltip title={subTitle} placement="right" copyToClipboard>
-                  <Typography color="textSecondary" variant="caption" noWrap>
-                    {subTitle}
-                  </Typography>
-                </Tooltip>
-              )}
-              {assetId && (
-                <Link href={`https://www.taildatabase.com/tail/${assetId}`} target="_blank" variant="caption">
-                  <Trans>Search on Tail Database</Trans>
-                </Link>
-              )}
-            </Flex>
-          )}
-        </Flex>
-        {walletType !== WalletType.STANDARD_WALLET && (
-          <Box width="60px" textAlign="center" position="relative">
-            <Box position="absolute" top="0" left="25%">
-              <CircularProgress size={34} sx={{ zIndex: -1, opacity: isLoading ? 1 : 0 }} />
-            </Box>
-            <Switch
-              checked={!hidden}
-              onChange={handleVisibleChange}
-              disabled={isChangingVisibility}
-              sx={{ opacity: isLoading ? 0 : 1 }}
+  const content = (
+    <Flex gap={1} alignItems="center" width="100%">
+      <Flex flexDirection="column" gap={0.5} flexGrow={1} flexBasis={0} minWidth={0}>
+        {walletType === WalletType.STANDARD_WALLET ? (
+          <Typography noWrap>{name}</Typography>
+        ) : (
+          <Form methods={form} onSubmit={handleSubmit}>
+            <TextField
+              name="name"
+              label="Name"
+              onBlur={(event) => handleRename(event.target.value)}
+              disabled={isLoading}
+              size="small"
+              fullWidth
+              hiddenLabel
             />
-          </Box>
+          </Form>
+        )}
+        {(!!subTitle || assetId) && (
+          <Flex flexDirection="column" flexGrow={1} flexBasis={0} minWidth={0}>
+            {!!subTitle && (
+              <Tooltip title={subTitle} placement="right" copyToClipboard>
+                <Typography color="textSecondary" variant="caption" noWrap>
+                  {subTitle}
+                </Typography>
+              </Tooltip>
+            )}
+            {assetId && (
+              <Link href={`https://www.taildatabase.com/tail/${assetId}`} target="_blank" variant="caption">
+                <Trans>Search on Tail Database</Trans>
+              </Link>
+            )}
+          </Flex>
         )}
       </Flex>
-    </CardListItem>
+      {walletType !== WalletType.STANDARD_WALLET && (
+        <Box width="60px" textAlign="center" position="relative">
+          <Box position="absolute" top="0" left="25%">
+            <CircularProgress size={34} sx={{ zIndex: -1, opacity: isLoading ? 1 : 0 }} />
+          </Box>
+          <Switch
+            checked={!hidden}
+            onChange={handleVisibleChange}
+            disabled={isChangingVisibility}
+            sx={{ opacity: isLoading ? 0 : 1 }}
+          />
+        </Box>
+      )}
+    </Flex>
   );
+
+  if (plain) {
+    return (
+      <Box
+        sx={{
+          py: 1,
+          '&:not(:first-of-type)': { borderTop: (theme) => `1px solid ${theme.palette.divider}` },
+        }}
+      >
+        {content}
+      </Box>
+    );
+  }
+
+  return <CardListItem>{content}</CardListItem>;
 }
