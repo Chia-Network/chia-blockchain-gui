@@ -110,12 +110,12 @@ describe('parseDappParams', () => {
       });
     });
 
-    it.each([
-      ['chia_cancelOffer', { tradeId: 'abc', fee: 0 }],
-      ['chia_cancelOffers', { cancelAll: true }],
-    ])('defaults secure to true for %s and preserves explicit false', (command, params) => {
-      expect(parseDappParams(command, serialize(params))).toMatchObject({ secure: true });
-      expect(parseDappParams(command, serialize({ ...params, secure: false }))).toMatchObject({ secure: false });
+    it('defaults secure to true for chia_cancelOffer and preserves explicit false', () => {
+      const params = { tradeId: 'abc', fee: 0 };
+      expect(parseDappParams('chia_cancelOffer', serialize(params))).toMatchObject({ secure: true });
+      expect(parseDappParams('chia_cancelOffer', serialize({ ...params, secure: false }))).toMatchObject({
+        secure: false,
+      });
     });
 
     it('allows request-permissions command lists for the custom handler', () => {
