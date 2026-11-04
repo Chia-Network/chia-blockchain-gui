@@ -110,20 +110,18 @@ describe('parseDappParams', () => {
       });
     });
 
-    it('forces secure for chia_cancelOffers and lets the dapp opt out via spending_cancel', () => {
-      expect(parseDappParams('chia_cancelOffers', serialize({ cancelAll: true }))).toMatchObject({
+    it('defaults secure to true for chia_cancelOffers and preserves explicit false', () => {
+      expect(parseDappParams('chia_cancelOffers', serialize({ cancelAll: true }))).toEqual({
         secure: true,
-        spending_cancel: true,
         cancel_all: true,
       });
 
-      expect(parseDappParams('chia_cancelOffers', serialize({ spendingCancel: false }))).toMatchObject({
-        secure: true,
-        spending_cancel: false,
+      expect(parseDappParams('chia_cancelOffers', serialize({ secure: false }))).toEqual({
+        secure: false,
       });
 
-      expect(() => parseDappParams('chia_cancelOffers', serialize({ secure: false }))).toThrow(
-        'param not allowed for dapp: secure',
+      expect(() => parseDappParams('chia_cancelOffers', serialize({ spendingCancel: false }))).toThrow(
+        'param not allowed for dapp: spending_cancel',
       );
     });
 
