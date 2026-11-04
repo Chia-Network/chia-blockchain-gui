@@ -97,8 +97,11 @@ export const ChiaNetDark: ChiaNetModeTokens = {
   shadowHigh: '0 4px 8px -2px rgba(0, 0, 0, 0.15)',
 };
 
-/** Status colors, kept apart from the brand green: brand green is a mark, never a status. */
+/**
+ * Status colors, kept apart from the brand green: brand green is a mark, never a status. They're used as text,
+ * so each clears 4.5:1 on cards; the light warning is the brand amber (#B87A00) darkened for that.
+ */
 export const ChiaNetStatus = {
-  light: { success: '#18794D', warning: '#B87A00' },
+  light: { success: '#18794D', warning: '#9A6700' },
   dark: { success: '#4CC38A', warning: '#F0C000' },
 } as const;

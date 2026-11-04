@@ -3,7 +3,7 @@ import './themeAugmentation';
 export { default as dark } from './variants/classic/dark';
 export { default as light } from './variants/classic/light';
 export { resolveAppTheme, resolveAppThemeFromPrefs, DEFAULT_THEME_VARIANT, parseThemeVariantId } from './registry';
-export { getSemanticColors } from './semanticColors';
+export { getSemanticColors, getStateColors, stateTextSx } from './semanticColors';
 export { amountSx, sectionTitleSx } from './textRoles';
 export { THEME_TYPOGRAPHY } from './typography';
 export type { ThemeAssets, ThemeSvgComponent } from './themeAugmentation';
