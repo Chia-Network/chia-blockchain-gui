@@ -73,27 +73,19 @@
   },
   "overrides": {
     "axios": "1.20.0",
-    "follow-redirects": "1.16.1",
-    "lodash": "4.18.1",
+    "follow-redirects": "1.16.2",
     "@noble/hashes": "1.8.0",
-    "@walletconnect/keyvaluestorage": "1.1.1",
-    "tslib": "2.6.2",
-    "cross-spawn": "7.0.6",
     "js-yaml": "4.3.2",
     "esbuild": "0.25.5",
     "tmp": "0.2.7",
-    "schema-utils": "4.3.3",
     "tar": "7.5.22",
     "brace-expansion@5": "5.0.12",
-    "minimatch@9.0.3": "9.0.9",
-    "rollup": "4.62.4",
-    "serialize-javascript": "7.0.5",
     "uuid": "14.0.0",
     "yaml": "2.8.3",
     "js-cookie": "3.0.8",
     "ws": "8.21.0",
     "pacote": "21.5.1",
-    "smol-toml": "1.7.1"
+    "smol-toml": "1.9.1"
   },
   "version": "2.6.1-rc2.dev60"
 }
