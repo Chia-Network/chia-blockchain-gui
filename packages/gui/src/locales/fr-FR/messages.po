@@ -19,6 +19,11 @@ msgstr ""
 "X-Crowdin-File-ID: 35\n"
 
 #. js-lingui-explicit-id
+#: src/electron/main.tsx:1395
+msgid "Documentation"
+msgstr ""
+
+#. js-lingui-explicit-id
 #: src/components/nfts/NFTBurnDialog.tsx:133
 msgid "Do you want to burn {count} NFTs?"
 msgstr "Voulez-vous brûler ces {count} NFT ?"
@@ -1614,9 +1619,9 @@ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1466
-#: src/electron/dialogs/Confirm/Confirm.tsx:438
+#: src/electron/dialogs/Confirm/Confirm.tsx:440
 #: src/electron/dialogs/Pair/Pair.tsx:377
-#: src/electron/main.tsx:1150
+#: src/electron/main.tsx:1151
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -2439,7 +2444,7 @@ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/commands/humanizeCommand.ts:20
-#: src/electron/main.tsx:969
+#: src/electron/main.tsx:970
 msgid "Confirm"
 msgstr "Confirmer"
 
@@ -2465,15 +2470,15 @@ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/commands/humanizeParamValue.ts:107
-#: src/electron/main.tsx:717
-#: src/electron/main.tsx:968
+#: src/electron/main.tsx:718
+#: src/electron/main.tsx:969
 msgid "Yes"
 msgstr "Oui"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/humanizeParamValue.ts:107
-#: src/electron/main.tsx:717
-#: src/electron/main.tsx:968
+#: src/electron/main.tsx:718
+#: src/electron/main.tsx:969
 msgid "No"
 msgstr "Non"
 
@@ -2483,70 +2488,70 @@ msgid "Report an issue"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/dialogs/Confirm/Confirm.tsx:113
-#: src/electron/dialogs/Confirm/Confirm.tsx:134
-#: src/electron/dialogs/Confirm/Confirm.tsx:152
+#: src/electron/dialogs/Confirm/Confirm.tsx:114
+#: src/electron/dialogs/Confirm/Confirm.tsx:135
+#: src/electron/dialogs/Confirm/Confirm.tsx:153
 msgid "Total Amount with Royalties"
 msgstr "Montant Total avec Royalties"
 
 #. js-lingui-explicit-id
-#: src/electron/dialogs/Confirm/Confirm.tsx:147
+#: src/electron/dialogs/Confirm/Confirm.tsx:148
 msgid "Wallet ID"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/dialogs/Confirm/Confirm.tsx:161
+#: src/electron/dialogs/Confirm/Confirm.tsx:162
 msgid "Unknown Asset"
 msgstr "Actif inconnu"
 
 #. js-lingui-explicit-id
-#: src/electron/dialogs/Confirm/Confirm.tsx:166
+#: src/electron/dialogs/Confirm/Confirm.tsx:167
 msgid "Raw Amount"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/dialogs/Confirm/Confirm.tsx:190
+#: src/electron/dialogs/Confirm/Confirm.tsx:191
 msgid "Royalties Percentage"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/dialogs/Confirm/Confirm.tsx:210
+#: src/electron/dialogs/Confirm/Confirm.tsx:211
 msgid "You Spend"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/dialogs/Confirm/Confirm.tsx:214
-#: src/electron/dialogs/Confirm/Confirm.tsx:228
+#: src/electron/dialogs/Confirm/Confirm.tsx:215
+#: src/electron/dialogs/Confirm/Confirm.tsx:229
 msgid "Nothing"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/dialogs/Confirm/Confirm.tsx:224
+#: src/electron/dialogs/Confirm/Confirm.tsx:225
 msgid "You Receive"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/dialogs/Confirm/Confirm.tsx:239
+#: src/electron/dialogs/Confirm/Confirm.tsx:240
 msgid "Offer Fees"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/dialogs/Confirm/Confirm.tsx:346
+#: src/electron/dialogs/Confirm/Confirm.tsx:348
 msgid "Request from"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/dialogs/Confirm/Confirm.tsx:378
+#: src/electron/dialogs/Confirm/Confirm.tsx:380
 msgid "Different wallet key"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/dialogs/Confirm/Confirm.tsx:380
+#: src/electron/dialogs/Confirm/Confirm.tsx:382
 msgid "This app is asking to run under {requested}, but {current} is currently logged in."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/dialogs/Confirm/Confirm.tsx:427
+#: src/electron/dialogs/Confirm/Confirm.tsx:429
 msgid "Always allow this command without asking"
 msgstr ""
 
@@ -2702,17 +2707,17 @@ msgid "Save changes"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:718
+#: src/electron/main.tsx:719
 msgid "Save Command Preferences"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:720
+#: src/electron/main.tsx:721
 msgid "Would you like to save preferences for the following commands?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:724
+#: src/electron/main.tsx:725
 msgid ""
 "These commands will be executed without confirmation in the future:\n"
 "\n"
@@ -2720,141 +2725,141 @@ msgid ""
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:971
+#: src/electron/main.tsx:972
 msgid "Are you sure you want to quit?"
 msgstr "Êtes-vous sûr de vouloir quitter ?"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:976
+#: src/electron/main.tsx:977
 msgid "Keep service running in the background"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1150
+#: src/electron/main.tsx:1151
 msgid "Continue"
 msgstr "Continuer"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1152
+#: src/electron/main.tsx:1153
 msgid "Warning"
 msgstr "Avertissement"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1153
+#: src/electron/main.tsx:1154
 msgid "Log files may contain sensitive information"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1154
+#: src/electron/main.tsx:1155
 msgid "Are you sure you want to view the log contents?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1280
-#: src/electron/main.tsx:1488
+#: src/electron/main.tsx:1281
+#: src/electron/main.tsx:1489
 msgid "File"
 msgstr "Fichier"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1288
+#: src/electron/main.tsx:1289
 msgid "Edit"
 msgstr "Éditer"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1320
+#: src/electron/main.tsx:1321
 msgid "View"
 msgstr "Voir"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1329
+#: src/electron/main.tsx:1330
 msgid "Developer"
 msgstr "Développeur"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1332
+#: src/electron/main.tsx:1333
 msgid "Developer Tools"
 msgstr "Outils Développeur"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1340
+#: src/electron/main.tsx:1341
 msgid "Trigger Desktop Notification"
 msgstr "Déclencher une notification de bureau"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1369
+#: src/electron/main.tsx:1370
 msgid "Full Screen"
 msgstr "Plein écran"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1376
+#: src/electron/main.tsx:1377
 msgid "Window"
 msgstr "Fenêtre"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1390
+#: src/electron/main.tsx:1391
 msgid "Help"
 msgstr "Aide"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1394
-msgid "Chia Blockchain Wiki"
-msgstr "Wiki de la Blockchain Chia"
-
-#. js-lingui-explicit-id
-#: src/electron/main.tsx:1400
+#: src/electron/main.tsx:1401
 msgid "Frequently Asked Questions"
 msgstr "Question fréquentes"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1406
+#: src/electron/main.tsx:1407
 msgid "Release Notes"
 msgstr "Notes de version"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1412
+#: src/electron/main.tsx:1413
 msgid "Contribute on GitHub"
 msgstr "Contribuer sur GitHub"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1421
+#: src/electron/main.tsx:1422
 msgid "Report an Issue..."
 msgstr "Remonter un problème..."
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1427
+#: src/electron/main.tsx:1428
 msgid "Chat on Discord"
 msgstr "Discuter sur Discord"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1433
+#: src/electron/main.tsx:1434
 msgid "Follow on X"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1445
+#: src/electron/main.tsx:1446
 msgid "Chia"
 msgstr "Chia"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1448
-#: src/electron/main.tsx:1544
+#: src/electron/main.tsx:1449
+#: src/electron/main.tsx:1545
 msgid "About Chia Blockchain"
 msgstr "À propos de la blockchain Chia"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1454
+#: src/electron/main.tsx:1455
 msgid "Check for Updates..."
 msgstr "Vérification des mises à jour..."
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1503
+#: src/electron/main.tsx:1504
 msgid "Speech"
 msgstr "Dicter"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1550
+#: src/electron/main.tsx:1551
 msgid "Check for updates..."
 msgstr "Vérification des mises à jour..."
+
+#. js-lingui-explicit-id
+#: src/electron/main.tsx:1394
+#~ msgid "Chia Blockchain Wiki"
+#~ msgstr "Wiki de la Blockchain Chia"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:886
@@ -3208,7 +3213,7 @@ msgstr "{from} <0>envoi du message</0>"
 #~ msgid "{key} ({0})"
 #~ msgstr ""
 
-#: src/components/offers/NFTOfferViewer.tsx:206
+#: src/components/offers/NFTOfferViewer.tsx:208
 #: src/components/offers/OfferSummary.tsx:174
 msgid "{makerFee, plural, one {mojo} other {mojos}}"
 msgstr "{makerFee, plural, one {mojo} other {mojos}}"
@@ -3302,7 +3307,7 @@ msgstr ""
 msgid "Accept Data Layer Offer"
 msgstr ""
 
-#: src/components/offers/NFTOfferViewer.tsx:642
+#: src/components/offers/NFTOfferViewer.tsx:644
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:21
 #: src/components/offers2/OfferBuilderViewer.tsx:307
 #: src/components/offers2/OfferBuilderViewer.tsx:372
@@ -3407,7 +3412,7 @@ msgstr "Ajouter la parcelle à la file"
 #~ msgid "Add Proofs To Verifiable Credential"
 #~ msgstr "Add Proofs To Verifiable Credential"
 
-#: src/components/vcs/VCList.tsx:273
+#: src/components/vcs/VCList.tsx:274
 msgid "Add Verifiable Credential from file"
 msgstr "Ajouter un Certificat Vérifiable à partir d'un fichier"
 
@@ -3489,7 +3494,7 @@ msgstr "Répertoire tmpdir/tmpdir2 alternatif"
 #~ msgid "Always Reject"
 #~ msgstr "Always Reject"
 
-#: src/components/offers/NFTOfferEditor.tsx:232
+#: src/components/offers/NFTOfferEditor.tsx:233
 #: src/components/offers/OfferEditorConditionsPanel.tsx:130
 #: src/components/offers2/OfferBuilderNFTRoyalties.tsx:121
 #: src/components/offers2/OfferBuilderWalletAmount.tsx:36
@@ -3500,7 +3505,7 @@ msgstr ""
 msgid "Amount before adding royalties"
 msgstr "Montant sans royalties"
 
-#: src/components/offers/NFTOfferEditor.tsx:591
+#: src/components/offers/NFTOfferEditor.tsx:592
 #: src/components/offers/OfferEditor.tsx:96
 msgid "Amount exceeds spendable balance"
 msgstr "Le montant dépasse le solde disponible"
@@ -3689,7 +3694,7 @@ msgstr "Nom généré automatiquement à partir de l'adresse du contrat de pool"
 msgid "Avg"
 msgstr "Moy"
 
-#: src/components/offers/NFTOfferViewer.tsx:633
+#: src/components/offers/NFTOfferViewer.tsx:635
 msgid "Back"
 msgstr "Retour"
 
@@ -3697,7 +3702,7 @@ msgstr "Retour"
 #~ msgid "Backup DIDs"
 #~ msgstr "Backup DIDs"
 
-#: src/components/vcs/VCList.tsx:325
+#: src/components/vcs/VCList.tsx:326
 msgid "Badging"
 msgstr "Badges"
 
@@ -3797,7 +3802,7 @@ msgstr "Confirmation de brûlure du NFT"
 msgid "Burning a non-fungible token means removing it from circulation by sending it to a verifiably un-spendable address. However, transactions leading up to the burn will remain on the blockchain ledger."
 msgstr "Brûler un jeton non fongible le retire de la circulation en l’envoyant vers une adresse prouvée comme non-dépensable. L'historique des transactions de ce NFT resteront sur la blockchain."
 
-#: src/components/offers/NFTOfferEditor.tsx:308
+#: src/components/offers/NFTOfferEditor.tsx:309
 msgid "Buy an NFT"
 msgstr "Acheter un NFT"
 
@@ -4296,7 +4301,7 @@ msgstr "Créer un NFT de parcelles"
 #~ msgid "Create a spend bundle to mint multiple NFTs"
 #~ msgstr "Create a spend bundle to mint multiple NFTs"
 
-#: src/components/offers/NFTOfferEditor.tsx:717
+#: src/components/offers/NFTOfferEditor.tsx:718
 msgid "Create an NFT Offer"
 msgstr "Créer une offre de NFT"
 
@@ -4330,7 +4335,7 @@ msgstr "Créer une contre-offre"
 #~ msgstr "Create new Remote Wallet"
 
 #: src/components/nfts/NFTContextualActions.tsx:152
-#: src/components/offers/NFTOfferEditor.tsx:438
+#: src/components/offers/NFTOfferEditor.tsx:439
 #: src/components/offers/OfferEditor.tsx:156
 #: src/components/offers/OfferManager.tsx:393
 #: src/components/offers2/CreateOfferBuilder.tsx:177
@@ -4383,16 +4388,16 @@ msgstr "Créer un NFT de parcelles pour culture en solo"
 msgid "Creation Date"
 msgstr "Date de création"
 
-#: src/components/offers/NFTOfferViewer.tsx:518
+#: src/components/offers/NFTOfferViewer.tsx:520
 msgid "Creator Fee ({0}%)"
 msgstr "Frais du créateur ({0}%)"
 
-#: src/components/offers/NFTOfferEditor.tsx:330
+#: src/components/offers/NFTOfferEditor.tsx:331
 msgid "Creator Fee ({royaltyPercentage}%)"
 msgstr "Frais du créateur ({royaltyPercentage}%)"
 
-#: src/components/offers/NFTOfferEditor.tsx:333
-#: src/components/offers/NFTOfferViewer.tsx:521
+#: src/components/offers/NFTOfferEditor.tsx:334
+#: src/components/offers/NFTOfferViewer.tsx:523
 msgid "Creator royalty percentage seems high"
 msgstr "Les royalties du créateur sont élevées"
 
@@ -4753,7 +4758,7 @@ msgstr "Téléchargement des NFT sélectionnés"
 msgid "Drag & Drop a Signed Message File,<0/> Paste ({0}V)"
 msgstr "Glisser-déposer un fichier de message signé,<0/> Coller ({0}V)"
 
-#: src/components/offers/OfferImport.tsx:166
+#: src/components/offers/OfferImport.tsx:167
 msgid "Drag & Drop an Offer File"
 msgstr "Glisser-déposer un Fichier d'Offre"
 
@@ -4934,7 +4939,7 @@ msgstr "Erreur"
 #~ msgid "Error fetching video preview"
 #~ msgstr ""
 
-#: src/components/vcs/VCList.tsx:261
+#: src/components/vcs/VCList.tsx:262
 msgid "Error parsing file"
 msgstr "Erreur lors de la lecture du fichier"
 
@@ -4959,14 +4964,14 @@ msgid "Esc"
 msgstr "Échap"
 
 #: src/components/farm/card/EstimatedEarning.tsx:65
-#: src/components/farm/card/FarmingRewardsCards.tsx:105
-#: src/components/farm/card/FarmingRewardsCards.tsx:115
+#: src/components/farm/card/FarmingRewardsCards.tsx:112
+#: src/components/farm/card/FarmingRewardsCards.tsx:122
 msgid "Estimated daily XCH"
 msgstr ""
 
 #: src/components/farm/card/EstimatedEarning.tsx:65
-#: src/components/farm/card/FarmingRewardsCards.tsx:133
-#: src/components/farm/card/FarmingRewardsCards.tsx:143
+#: src/components/farm/card/FarmingRewardsCards.tsx:140
+#: src/components/farm/card/FarmingRewardsCards.tsx:150
 msgid "Estimated monthly XCH"
 msgstr ""
 
@@ -4981,8 +4986,8 @@ msgstr "Espace disque total de tous les fermiers du réseau"
 #: src/components/farm/card/EstimatedEarning.tsx:60
 #: src/components/farm/card/ExpectedTimeToWin.tsx:55
 #: src/components/farm/card/ExpectedTimeToWin.tsx:60
-#: src/components/farm/card/FarmingRewardsCards.tsx:74
-#: src/components/farm/card/FarmingRewardsCards.tsx:86
+#: src/components/farm/card/FarmingRewardsCards.tsx:81
+#: src/components/farm/card/FarmingRewardsCards.tsx:93
 msgid "Estimated Time to Win"
 msgstr "Durée prévue pour gagner"
 
@@ -5043,7 +5048,7 @@ msgstr "Téléchargements échoués :"
 msgid "Failed partials"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:582
+#: src/components/offers/NFTOfferEditor.tsx:583
 msgid "Failed to decode NFT identifier"
 msgstr "Impossible de décoder l'identifiant NFT"
 
@@ -5136,7 +5141,7 @@ msgstr ""
 msgid "Farming Mode"
 msgstr "Mode Farming"
 
-#: src/components/farm/card/FarmingRewardsCards.tsx:160
+#: src/components/farm/card/FarmingRewardsCards.tsx:167
 msgid "Farming Rewards"
 msgstr ""
 
@@ -5172,7 +5177,7 @@ msgstr "Fonctionnalités pour vous offrir plus de protection et de contrôle de 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:291
 #: src/components/nfts/NFTTransferAction.tsx:142
 #: src/components/offers/ConfirmOfferCancellation.tsx:109
-#: src/components/offers/NFTOfferViewer.tsx:615
+#: src/components/offers/NFTOfferViewer.tsx:617
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:158
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:122
 #: src/components/pool/PoolInfo.tsx:18
@@ -5181,7 +5186,7 @@ msgstr "Fonctionnalités pour vous offrir plus de protection et de contrôle de 
 msgid "Fee"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:81
+#: src/components/offers/NFTOfferEditor.tsx:82
 #: src/components/offers/OfferEditorConditionsPanel.tsx:388
 msgid "Fee (Optional)"
 msgstr "Frais (facultatif)"
@@ -5202,7 +5207,7 @@ msgstr "Frais"
 msgid "Fees Amount"
 msgstr "Montant des frais"
 
-#: src/components/offers/NFTOfferViewer.tsx:200
+#: src/components/offers/NFTOfferViewer.tsx:202
 #: src/components/offers/OfferSummary.tsx:168
 msgid "Fees included in offer:"
 msgstr "Frais inclus dans l'offre :"
@@ -5522,7 +5527,7 @@ msgstr "Partez à la recherche de perles rares"
 #~ msgid "Go to #{channelName}"
 #~ msgstr "Go to #{channelName}"
 
-#: src/components/vcs/VCList.tsx:405
+#: src/components/vcs/VCList.tsx:406
 msgid "Government IDs"
 msgstr "ID du gouvernement"
 
@@ -5727,7 +5732,7 @@ msgstr "Les images seront mises à l'échelle pour remplir le cadre du NFT et ig
 msgid "Import"
 msgstr "Importer"
 
-#: src/components/offers/NFTOfferViewer.tsx:483
+#: src/components/offers/NFTOfferViewer.tsx:485
 #: src/components/offers/OfferEditorConditionsPanel.tsx:292
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:28
 msgid "In exchange for"
@@ -5753,7 +5758,7 @@ msgstr "En cours"
 #~ msgid "Include Wallet Metadata"
 #~ msgstr "Include Wallet Metadata"
 
-#: src/components/offers/NFTOfferEditor.tsx:86
+#: src/components/offers/NFTOfferEditor.tsx:87
 #: src/components/offers/OfferEditorConditionsPanel.tsx:394
 msgid "Including a fee in the offer can help expedite the transaction when the offer is accepted. The recommended minimum fee is 0.000005 XCH (5,000,000 mojos)"
 msgstr "Inclure des frais dans l'offre peut accélérer la transaction lorsque celle-ci est acceptée. Les frais minimums recommandés sont de 0.000005 XCH (5 000 000 mojos)"
@@ -5828,7 +5833,7 @@ msgstr "Hachage invalide"
 #~ msgid "Invalid metadata url"
 #~ msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:580
+#: src/components/offers/NFTOfferEditor.tsx:581
 msgid "Invalid NFT identifier"
 msgstr "Identifiant du NFT invalide"
 
@@ -5966,7 +5971,7 @@ msgstr ""
 msgid "KiB Up/Down"
 msgstr "Kio envoyés/reçus"
 
-#: src/components/vcs/VCList.tsx:411
+#: src/components/vcs/VCList.tsx:412
 msgid "KYC status"
 msgstr "Status du KYC"
 
@@ -6219,7 +6224,7 @@ msgstr ""
 #~ msgid "Max page size"
 #~ msgstr "Max page size"
 
-#: src/components/vcs/VCList.tsx:415
+#: src/components/vcs/VCList.tsx:416
 msgid "Memberships"
 msgstr "Adhésions"
 
@@ -6428,15 +6433,15 @@ msgstr ""
 msgid "Need some {currencyCode}?"
 msgstr "Besoin de {currencyCode}?"
 
-#: src/components/offers/NFTOfferViewer.tsx:584
+#: src/components/offers/NFTOfferViewer.tsx:586
 msgid "Net Proceeds"
 msgstr "Revenus nets"
 
-#: src/components/farm/card/NetspaceCards.tsx:13
+#: src/components/farm/card/NetspaceCards.tsx:14
 msgid "Netspace"
 msgstr ""
 
-#: src/components/offers/NFTOfferViewer.tsx:607
+#: src/components/offers/NFTOfferViewer.tsx:609
 #: src/components/offers2/OfferBuilderViewer.tsx:338
 msgid "Network Fee (Optional)"
 msgstr "Frais de réseau (Facultatif)"
@@ -6490,7 +6495,7 @@ msgstr ""
 msgid "Next"
 msgstr "Suivant"
 
-#: src/components/offers/NFTOfferEditor.tsx:212
+#: src/components/offers/NFTOfferEditor.tsx:213
 #: src/components/offers2/OfferBuilderNFTSection.tsx:46
 #: src/components/settings/Settings.tsx:38
 #: src/components/settings/SettingsNFT.tsx:97
@@ -6516,7 +6521,7 @@ msgstr "ID de la pièce du NFT"
 #~ msgid "NFT Coin Ids"
 #~ msgstr "NFT Coin Ids"
 
-#: src/components/offers/NFTOfferEditor.tsx:617
+#: src/components/offers/NFTOfferEditor.tsx:618
 msgid "NFT details not available"
 msgstr "Détail du NFT non disponible"
 
@@ -6542,7 +6547,7 @@ msgstr "Adresse du détenteur du NFT"
 msgid "NFT ID"
 msgstr "ID du NFT"
 
-#: src/components/offers/NFTOfferEditor.tsx:214
+#: src/components/offers/NFTOfferEditor.tsx:215
 msgid "NFT Identifier"
 msgstr "Identifiant du NFT"
 
@@ -6568,7 +6573,7 @@ msgstr "Transfert du NFT en attente"
 msgid "NFT not specified"
 msgstr "NFT non spécifié"
 
-#: src/components/offers/NFTOfferViewer.tsx:498
+#: src/components/offers/NFTOfferViewer.tsx:500
 msgid "NFT Purchase Price"
 msgstr "Prix d'achat du NFT"
 
@@ -6853,7 +6858,7 @@ msgstr "Espace occupé"
 msgid "Offer Builder"
 msgstr "Constructeur d'offres"
 
-#: src/components/offers/NFTOfferViewer.tsx:173
+#: src/components/offers/NFTOfferViewer.tsx:175
 #: src/components/offers2/OfferBuilderValue.tsx:217
 #: src/components/offers2/OfferBuilderViewer.tsx:403
 msgid "Offer cannot be accepted because you don't possess the requested assets"
@@ -7026,11 +7031,11 @@ msgstr ""
 msgid "or <0>browse</0> on your computer"
 msgstr "ou <0>parcourir</0> sur votre ordinateur"
 
-#: src/components/offers/OfferImport.tsx:169
+#: src/components/offers/OfferImport.tsx:170
 msgid "or Paste (⌘V) an Offer blob"
 msgstr "ou Collez (⌘V) les Données d'une Offre"
 
-#: src/components/offers/OfferImport.tsx:169
+#: src/components/offers/OfferImport.tsx:170
 msgid "or Paste (Ctrl-V) an Offer blob"
 msgstr "ou Collez (Ctrl-V) les Données d'une Offre"
 
@@ -7170,7 +7175,7 @@ msgid "Paste link"
 msgstr "Coller le lien"
 
 #: src/components/offers/OfferDataEntryDialog.tsx:33
-#: src/components/offers/OfferImport.tsx:156
+#: src/components/offers/OfferImport.tsx:157
 msgid "Paste Offer Data"
 msgstr "Coller les données d'une offre"
 
@@ -7241,7 +7246,7 @@ msgstr "Veuillez entrer une URI"
 msgid "Please enter a valid numeric fee"
 msgstr "Veuillez saisir un montant de frais valide"
 
-#: src/components/offers/NFTOfferEditor.tsx:586
+#: src/components/offers/NFTOfferEditor.tsx:587
 msgid "Please enter an amount"
 msgstr "Veuillez saisir un montant"
 
@@ -7257,7 +7262,7 @@ msgstr "Veuillez entrer un montant pour le jeton {catName}"
 msgid "Please enter an amount for each row"
 msgstr "Veuillez saisir un montant pour chaque ligne"
 
-#: src/components/offers/NFTOfferEditor.tsx:578
+#: src/components/offers/NFTOfferEditor.tsx:579
 msgid "Please enter an NFT identifier"
 msgstr "Veuillez saisir un identifiant NFT"
 
@@ -7297,7 +7302,7 @@ msgstr "Veuillez saisir un actif pour chaque ligne"
 msgid "Please select an asset for each token"
 msgstr "Veuillez sélectionner un actif pour chaque jeton"
 
-#: src/components/offers/NFTOfferEditor.tsx:584
+#: src/components/offers/NFTOfferEditor.tsx:585
 msgid "Please select an asset type"
 msgstr "Veuillez sélectionner un type d'actif"
 
@@ -7708,7 +7713,7 @@ msgstr "Prouvez ou vérifiez la possession d'une adresse de portefeuille, de NFT
 msgid "Public Key"
 msgstr ""
 
-#: src/components/offers/NFTOfferViewer.tsx:473
+#: src/components/offers/NFTOfferViewer.tsx:475
 msgid "Purchase Summary"
 msgstr "Résumé de l'achat"
 
@@ -8009,7 +8014,7 @@ msgstr ""
 
 #: src/components/farm/FarmHealth.tsx:295
 #: src/components/farm/FarmHealth.tsx:357
-#: src/components/offers/NFTOfferEditor.tsx:435
+#: src/components/offers/NFTOfferEditor.tsx:436
 #: src/components/offers/OfferEditor.tsx:153
 #: src/components/settings/IpfsGatewayUrl.tsx:129
 #: src/components/settings/SettingsIntegration.tsx:222
@@ -8212,7 +8217,7 @@ msgstr ""
 #~ msgid "Select keys which you want to share with WalletConnect"
 #~ msgstr "Select keys which you want to share with WalletConnect"
 
-#: src/components/offers/OfferImport.tsx:159
+#: src/components/offers/OfferImport.tsx:160
 msgid "Select Offer File"
 msgstr "Ouvrir un fichier d'offre"
 
@@ -8270,7 +8275,7 @@ msgstr "Pool solitaire. Vous gagnerez des récompenses XCH lorsque vous gagnez u
 msgid "Self Pooling"
 msgstr "Pool solitaire"
 
-#: src/components/offers/NFTOfferEditor.tsx:309
+#: src/components/offers/NFTOfferEditor.tsx:310
 msgid "Sell an NFT"
 msgstr "Vendre un NFT"
 
@@ -8812,7 +8817,7 @@ msgstr ""
 msgid "The minimum required size for mainnet is k=32"
 msgstr "La taille minimum requise pour le mainnet est k=32"
 
-#: src/components/offers/NFTOfferViewer.tsx:588
+#: src/components/offers/NFTOfferViewer.tsx:590
 msgid "The net proceeds include the asking price, minus any associated creator fees (if the NFT has royalty payments enabled)."
 msgstr "Le revenu net est le prix demandé moins les royalties associées (si le NFT en comprend)."
 
@@ -8881,19 +8886,19 @@ msgstr "La graine utilisée pour créer le plot. Cela dépend du pk du pool et d
 msgid "The signature was made by the private key associated with the wallet address. The signer can be assumed to be the owner of the private key."
 msgstr "La signature a été faite par la clé privée associée à l'adresse du portefeuille. Le signataire peut être supposé comme étant le propriétaire de la clé privée."
 
-#: src/components/offers/NFTOfferViewer.tsx:562
+#: src/components/offers/NFTOfferViewer.tsx:564
 msgid "The total amount offered includes the offered purchase price, plus the optional offer creation fee.<0/>If the NFT has royalty payments enabled, those creator fees will be paid from the offered purchase price."
 msgstr "Le montant total offert comprend le prix d'achat offert, plus les frais de création de l'offre facultative. <0/>Si le NFT requiert le paiement de royalties, ces frais seront payés à partir du prix d'achat offert."
 
-#: src/components/offers/NFTOfferEditor.tsx:396
+#: src/components/offers/NFTOfferEditor.tsx:397
 msgid "The total amount offered includes the price you're willing to pay for the NFT, plus the optional offer creation fee. One or more coins totalling at least the amount shown below will be deducted from your spendable balance upon offer creation.<0/>If the NFT has royalty payments enabled, those creator fees will be paid by the party that accepts the offer."
 msgstr "Le montant total offert comprend le prix que vous êtes prêt à payer pour le NFT, plus les frais de création de l'offre facultatifs. Une ou plusieurs pièces totalisant au moins le montant indiqué ci-dessous seront déduites de votre solde dépensable lors de la création de l'offre. <0/>Si le NFT a activé les royalties, elles seront payés par la partie qui accepte l'offre."
 
-#: src/components/offers/NFTOfferEditor.tsx:387
+#: src/components/offers/NFTOfferEditor.tsx:388
 msgid "The total amount requested includes the asking price, plus the associated creator fees (if the NFT has royalty payments enabled). Creator fees will be paid by the party that accepts the offer.<0/>The optional offer creation fee is not included in this total, and will be deducted from your spendable balance upon offer creation."
 msgstr "Le montant total demandé comprend le prix demandé, plus les frais de créateur associés (si la NFT a activé les royalties). Les frais de créateur seront payés par la partie qui accepte l'offre. <0/>Les frais de création d'offres optionnels ne sont pas inclus dans ce total, et seront déduits de votre solde dépensable lors de la création de l'offre."
 
-#: src/components/offers/NFTOfferViewer.tsx:551
+#: src/components/offers/NFTOfferViewer.tsx:553
 msgid "The total amount requested includes the asking price, plus the associated creator fees (if the NFT has royalty payments enabled).{0}"
 msgstr "Le montant total demandé est la somme du prix demandé et des royalties (si le NFT en comprend).{0}"
 
@@ -8929,7 +8934,7 @@ msgstr "Ces parcelles sont invalides, vous devriez les supprimer."
 msgid "These stores will have their roots updated to the specified values."
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:361
+#: src/components/offers/NFTOfferEditor.tsx:362
 msgid "They will receive"
 msgstr "Ils recevront"
 
@@ -9001,12 +9006,12 @@ msgstr ""
 msgid "This node is fully caught up and validating the network"
 msgstr "Ce nœud est complètement à jour et valide le réseau"
 
-#: src/components/offers/NFTOfferViewer.tsx:215
+#: src/components/offers/NFTOfferViewer.tsx:217
 #: src/components/offers/OfferSummary.tsx:183
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted."
 msgstr "Cette offre inclue des frais pour accélérer la transaction lorsque l'offre est acceptée."
 
-#: src/components/offers/NFTOfferViewer.tsx:210
+#: src/components/offers/NFTOfferViewer.tsx:212
 #: src/components/offers/OfferSummary.tsx:178
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted. You may specify an additional fee if you feel that the included fee is too small."
 msgstr "Cette offre inclue des frais pour accélérer la transaction lorsque l'offre est acceptée. Vous pouvez rajouter des frais supplémentaires si vous pensez que les frais inclus sont trop faibles."
@@ -9131,13 +9136,13 @@ msgstr "Montant total"
 msgid "Total amount including royalties"
 msgstr "Montant total incluant les royalties"
 
-#: src/components/offers/NFTOfferEditor.tsx:381
-#: src/components/offers/NFTOfferViewer.tsx:545
+#: src/components/offers/NFTOfferEditor.tsx:382
+#: src/components/offers/NFTOfferViewer.tsx:547
 msgid "Total Amount Offered"
 msgstr "Montant total offert"
 
-#: src/components/offers/NFTOfferEditor.tsx:379
-#: src/components/offers/NFTOfferViewer.tsx:541
+#: src/components/offers/NFTOfferEditor.tsx:380
+#: src/components/offers/NFTOfferViewer.tsx:543
 msgid "Total Amount Requested"
 msgstr "Montant total demandé"
 
@@ -9328,15 +9333,15 @@ msgstr ""
 msgid "Types{0}"
 msgstr "Types{0}"
 
-#: src/components/offers/NFTOfferEditor.tsx:633
+#: src/components/offers/NFTOfferEditor.tsx:634
 msgid "Unable to create an offer for an NFT that you do not own."
 msgstr "Impossible de créer une offre pour un NFT que vous ne possédez pas."
 
-#: src/components/offers/NFTOfferEditor.tsx:642
+#: src/components/offers/NFTOfferEditor.tsx:643
 msgid "Unable to create an offer for an NFT with a creator royalty percentage greater than 100%"
 msgstr "Impossible de créer une offre pour une NFT ayant des royalties supérieures à 100%"
 
-#: src/components/offers/NFTOfferEditor.tsx:370
+#: src/components/offers/NFTOfferEditor.tsx:371
 msgid "Unable to create an offer where the net amount is negative"
 msgstr "Impossible de créer une offre dont le montant est négatif"
 
@@ -9400,7 +9405,7 @@ msgstr "Application inconnue"
 msgid "Unknown Asset"
 msgstr ""
 
-#: src/components/offers/NFTOfferViewer.tsx:370
+#: src/components/offers/NFTOfferViewer.tsx:372
 #: src/components/offers/OfferSummaryRow.tsx:150
 #: src/components/offers/OfferSummaryRow.tsx:151
 #: src/util/resolveOfferInfo.tsx:66
@@ -9420,7 +9425,7 @@ msgstr "Déverrouiller le trousseau"
 msgid "Unnamed Contact"
 msgstr ""
 
-#: src/components/offers/NFTOfferViewer.tsx:142
+#: src/components/offers/NFTOfferViewer.tsx:144
 msgid "Unrecognized asset"
 msgstr "Actif non reconnu"
 
@@ -9530,7 +9535,7 @@ msgstr "Itération du sous emplacement VDF"
 msgid "Verifiable Credential"
 msgstr "Certificat Vérifiable"
 
-#: src/components/vcs/VCList.tsx:245
+#: src/components/vcs/VCList.tsx:246
 msgid "Verifiable Credential already exists."
 msgstr "Le Certificat Vérifiable existe déjà."
 
@@ -9546,7 +9551,7 @@ msgstr "Certificat Vérifiable Supprimé."
 msgid "Verifiable Credential Revoked."
 msgstr "Certificat Vérifiable Révoqué."
 
-#: src/components/vcs/VCList.tsx:253
+#: src/components/vcs/VCList.tsx:254
 msgid "Verifiable Credential successfully added."
 msgstr "Le Certificat Vérifiable a été ajouté avec succès."
 
@@ -9555,12 +9560,12 @@ msgid "Verifiable credentials"
 msgstr ""
 
 #: src/components/settings/SettingsVerifiableCredentials.tsx:17
-#: src/components/vcs/VCList.tsx:313
-#: src/components/vcs/VCList.tsx:438
+#: src/components/vcs/VCList.tsx:314
+#: src/components/vcs/VCList.tsx:439
 msgid "Verifiable Credentials"
 msgstr "Certificat Vérifiable"
 
-#: src/components/vcs/VCList.tsx:316
+#: src/components/vcs/VCList.tsx:317
 msgid "Verifiable Credentials are like digital ID cards that can prove certain information about you without giving away your private details."
 msgstr "Les Certificats Vérifiable sont similaires à des cartes d'identités numériques qui peuvent prouver certaines informations vous concernant sans divulguer d'informations privées."
 
@@ -9596,7 +9601,7 @@ msgstr "Validation du hash..."
 msgid "View"
 msgstr ""
 
-#: src/components/offers/OfferImport.tsx:183
+#: src/components/offers/OfferImport.tsx:184
 msgid "View an Offer"
 msgstr "Voir une offre"
 
@@ -9963,7 +9968,7 @@ msgstr "Vous n'avez pas besoin d'être connectés pour tracer une parcelle. Les 
 msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3 to 4 times longer than this estimate."
 msgstr "Vous possédez {0}% de la taille sur le réseau, donc le temps prévu pour cultiver un bloc est de {expectedTimeToWin}. Les résultats réels peuvent prendre 3 à 4 fois plus de temps que cette estimation."
 
-#: src/components/farm/card/FarmingRewardsCards.tsx:89
+#: src/components/farm/card/FarmingRewardsCards.tsx:96
 msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWinHumanized} in expectation. Actual results may take 3 to 4 times longer than this estimate."
 msgstr ""
 
@@ -10007,8 +10012,8 @@ msgstr "Vous donnerez"
 msgid "You will offer"
 msgstr "Vous offrirez"
 
-#: src/components/offers/NFTOfferEditor.tsx:359
-#: src/components/offers/NFTOfferViewer.tsx:478
+#: src/components/offers/NFTOfferEditor.tsx:360
+#: src/components/offers/NFTOfferViewer.tsx:480
 msgid "You will receive"
 msgstr "Vous recevrez"
 

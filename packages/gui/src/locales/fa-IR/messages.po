@@ -19,6 +19,11 @@ msgstr ""
 "X-Crowdin-File-ID: 35\n"
 
 #. js-lingui-explicit-id
+#: src/electron/main.tsx:1395
+msgid "Documentation"
+msgstr ""
+
+#. js-lingui-explicit-id
 #: src/components/nfts/NFTBurnDialog.tsx:133
 msgid "Do you want to burn {count} NFTs?"
 msgstr "ان اف تی را ثبت کنید؟ {count} آیا میخواهید"
@@ -1614,9 +1619,9 @@ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1466
-#: src/electron/dialogs/Confirm/Confirm.tsx:438
+#: src/electron/dialogs/Confirm/Confirm.tsx:440
 #: src/electron/dialogs/Pair/Pair.tsx:377
-#: src/electron/main.tsx:1150
+#: src/electron/main.tsx:1151
 msgid "Cancel"
 msgstr "لغو"
 
@@ -2439,7 +2444,7 @@ msgstr "استخراج غیر ناظر"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/humanizeCommand.ts:20
-#: src/electron/main.tsx:969
+#: src/electron/main.tsx:970
 msgid "Confirm"
 msgstr "تایید"
 
@@ -2465,15 +2470,15 @@ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/commands/humanizeParamValue.ts:107
-#: src/electron/main.tsx:717
-#: src/electron/main.tsx:968
+#: src/electron/main.tsx:718
+#: src/electron/main.tsx:969
 msgid "Yes"
 msgstr "بله"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/humanizeParamValue.ts:107
-#: src/electron/main.tsx:717
-#: src/electron/main.tsx:968
+#: src/electron/main.tsx:718
+#: src/electron/main.tsx:969
 msgid "No"
 msgstr "خیر"
 
@@ -2483,70 +2488,70 @@ msgid "Report an issue"
 msgstr "گزارش یک خطا"
 
 #. js-lingui-explicit-id
-#: src/electron/dialogs/Confirm/Confirm.tsx:113
-#: src/electron/dialogs/Confirm/Confirm.tsx:134
-#: src/electron/dialogs/Confirm/Confirm.tsx:152
+#: src/electron/dialogs/Confirm/Confirm.tsx:114
+#: src/electron/dialogs/Confirm/Confirm.tsx:135
+#: src/electron/dialogs/Confirm/Confirm.tsx:153
 msgid "Total Amount with Royalties"
 msgstr "کل مبلغ با حق امتیاز"
 
 #. js-lingui-explicit-id
-#: src/electron/dialogs/Confirm/Confirm.tsx:147
+#: src/electron/dialogs/Confirm/Confirm.tsx:148
 msgid "Wallet ID"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/dialogs/Confirm/Confirm.tsx:161
+#: src/electron/dialogs/Confirm/Confirm.tsx:162
 msgid "Unknown Asset"
 msgstr "دارایی ناشناخته"
 
 #. js-lingui-explicit-id
-#: src/electron/dialogs/Confirm/Confirm.tsx:166
+#: src/electron/dialogs/Confirm/Confirm.tsx:167
 msgid "Raw Amount"
 msgstr "مبلغ اصلی"
 
 #. js-lingui-explicit-id
-#: src/electron/dialogs/Confirm/Confirm.tsx:190
+#: src/electron/dialogs/Confirm/Confirm.tsx:191
 msgid "Royalties Percentage"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/dialogs/Confirm/Confirm.tsx:210
+#: src/electron/dialogs/Confirm/Confirm.tsx:211
 msgid "You Spend"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/dialogs/Confirm/Confirm.tsx:214
-#: src/electron/dialogs/Confirm/Confirm.tsx:228
+#: src/electron/dialogs/Confirm/Confirm.tsx:215
+#: src/electron/dialogs/Confirm/Confirm.tsx:229
 msgid "Nothing"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/dialogs/Confirm/Confirm.tsx:224
+#: src/electron/dialogs/Confirm/Confirm.tsx:225
 msgid "You Receive"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/dialogs/Confirm/Confirm.tsx:239
+#: src/electron/dialogs/Confirm/Confirm.tsx:240
 msgid "Offer Fees"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/dialogs/Confirm/Confirm.tsx:346
+#: src/electron/dialogs/Confirm/Confirm.tsx:348
 msgid "Request from"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/dialogs/Confirm/Confirm.tsx:378
+#: src/electron/dialogs/Confirm/Confirm.tsx:380
 msgid "Different wallet key"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/dialogs/Confirm/Confirm.tsx:380
+#: src/electron/dialogs/Confirm/Confirm.tsx:382
 msgid "This app is asking to run under {requested}, but {current} is currently logged in."
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/dialogs/Confirm/Confirm.tsx:427
+#: src/electron/dialogs/Confirm/Confirm.tsx:429
 msgid "Always allow this command without asking"
 msgstr ""
 
@@ -2702,17 +2707,17 @@ msgid "Save changes"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:718
+#: src/electron/main.tsx:719
 msgid "Save Command Preferences"
 msgstr "ذخیره تنظیمات فرمان"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:720
+#: src/electron/main.tsx:721
 msgid "Would you like to save preferences for the following commands?"
 msgstr "آیا میخواهید تنظیمات برگزیده برای دستورات زیر ذخیره شود؟"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:724
+#: src/electron/main.tsx:725
 msgid ""
 "These commands will be executed without confirmation in the future:\n"
 "\n"
@@ -2720,141 +2725,141 @@ msgid ""
 msgstr ": این دستورات در آینده بدون تأیید اجرا خواهند شد"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:971
+#: src/electron/main.tsx:972
 msgid "Are you sure you want to quit?"
 msgstr "آیا مطمئن هستید که میخواهید خارج شوید؟"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:976
+#: src/electron/main.tsx:977
 msgid "Keep service running in the background"
 msgstr "بگدارید سرویس در پس‌زمینه اجرا شود"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1150
+#: src/electron/main.tsx:1151
 msgid "Continue"
 msgstr "ادامه هید"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1152
+#: src/electron/main.tsx:1153
 msgid "Warning"
 msgstr "اخطار"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1153
+#: src/electron/main.tsx:1154
 msgid "Log files may contain sensitive information"
 msgstr "فایل‌های گزارش ممکن است حاوی اطلاعات حساس باشند"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1154
+#: src/electron/main.tsx:1155
 msgid "Are you sure you want to view the log contents?"
 msgstr "آیا مطمئن هستید که میخواهید محتوای گزارش را مشاهده کنید؟"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1280
-#: src/electron/main.tsx:1488
+#: src/electron/main.tsx:1281
+#: src/electron/main.tsx:1489
 msgid "File"
 msgstr "فایل"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1288
+#: src/electron/main.tsx:1289
 msgid "Edit"
 msgstr "ويرايش"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1320
+#: src/electron/main.tsx:1321
 msgid "View"
 msgstr "مشاهده"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1329
+#: src/electron/main.tsx:1330
 msgid "Developer"
 msgstr "توسعه دهنده"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1332
+#: src/electron/main.tsx:1333
 msgid "Developer Tools"
 msgstr "ابزارهای توسعه دهنده"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1340
+#: src/electron/main.tsx:1341
 msgid "Trigger Desktop Notification"
 msgstr "راه‌اندازی اعلان دسکتاپ"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1369
+#: src/electron/main.tsx:1370
 msgid "Full Screen"
 msgstr "نمایش تمام صفحه"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1376
+#: src/electron/main.tsx:1377
 msgid "Window"
 msgstr "پنجره"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1390
+#: src/electron/main.tsx:1391
 msgid "Help"
 msgstr "راهنما"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1394
-msgid "Chia Blockchain Wiki"
-msgstr "بلاکچین چیا در ویکیپدیا"
-
-#. js-lingui-explicit-id
-#: src/electron/main.tsx:1400
+#: src/electron/main.tsx:1401
 msgid "Frequently Asked Questions"
 msgstr "پرسش ها و پاسخ های متداول"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1406
+#: src/electron/main.tsx:1407
 msgid "Release Notes"
 msgstr "یادداشت‌های انتشار"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1412
+#: src/electron/main.tsx:1413
 msgid "Contribute on GitHub"
 msgstr "مشارکت در GitHub"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1421
+#: src/electron/main.tsx:1422
 msgid "Report an Issue..."
 msgstr "گزارش یک خطا..."
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1427
+#: src/electron/main.tsx:1428
 msgid "Chat on Discord"
 msgstr "اشتراک گداری در Discord"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1433
+#: src/electron/main.tsx:1434
 msgid "Follow on X"
 msgstr "در ایکس دنبال کنید"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1445
+#: src/electron/main.tsx:1446
 msgid "Chia"
 msgstr "چیا"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1448
-#: src/electron/main.tsx:1544
+#: src/electron/main.tsx:1449
+#: src/electron/main.tsx:1545
 msgid "About Chia Blockchain"
 msgstr "درباره بلاکچین چیا"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1454
+#: src/electron/main.tsx:1455
 msgid "Check for Updates..."
 msgstr "بروز رسانی را بررسی کنید..."
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1503
+#: src/electron/main.tsx:1504
 msgid "Speech"
 msgstr "سخن"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1550
+#: src/electron/main.tsx:1551
 msgid "Check for updates..."
 msgstr "بروز رسانی را بررسی کنید..."
+
+#. js-lingui-explicit-id
+#: src/electron/main.tsx:1394
+#~ msgid "Chia Blockchain Wiki"
+#~ msgstr "بلاکچین چیا در ویکیپدیا"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:886
@@ -3208,7 +3213,7 @@ msgstr "{from} <0>ارسال پیام</0>"
 #~ msgid "{key} ({0})"
 #~ msgstr ""
 
-#: src/components/offers/NFTOfferViewer.tsx:206
+#: src/components/offers/NFTOfferViewer.tsx:208
 #: src/components/offers/OfferSummary.tsx:174
 msgid "{makerFee, plural, one {mojo} other {mojos}}"
 msgstr "{makerFee,plural,one {موجو} other {موجوها}}"
@@ -3302,7 +3307,7 @@ msgstr ""
 msgid "Accept Data Layer Offer"
 msgstr "موافق پیشنهاد لایه داده ها"
 
-#: src/components/offers/NFTOfferViewer.tsx:642
+#: src/components/offers/NFTOfferViewer.tsx:644
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:21
 #: src/components/offers2/OfferBuilderViewer.tsx:307
 #: src/components/offers2/OfferBuilderViewer.tsx:372
@@ -3407,7 +3412,7 @@ msgstr "اضافه کردن پلات به صف"
 #~ msgid "Add Proofs To Verifiable Credential"
 #~ msgstr "Add Proofs To Verifiable Credential"
 
-#: src/components/vcs/VCList.tsx:273
+#: src/components/vcs/VCList.tsx:274
 msgid "Add Verifiable Credential from file"
 msgstr "اضافه نمودن اعتبار قابل تأیید را از فایل"
 
@@ -3489,7 +3494,7 @@ msgstr "tmpdir/tmpdir2 جایگزین"
 #~ msgid "Always Reject"
 #~ msgstr "Always Reject"
 
-#: src/components/offers/NFTOfferEditor.tsx:232
+#: src/components/offers/NFTOfferEditor.tsx:233
 #: src/components/offers/OfferEditorConditionsPanel.tsx:130
 #: src/components/offers2/OfferBuilderNFTRoyalties.tsx:121
 #: src/components/offers2/OfferBuilderWalletAmount.tsx:36
@@ -3500,7 +3505,7 @@ msgstr "مبلغ"
 msgid "Amount before adding royalties"
 msgstr "مبلغ قبل از اضافه کردن حق امتیاز"
 
-#: src/components/offers/NFTOfferEditor.tsx:591
+#: src/components/offers/NFTOfferEditor.tsx:592
 #: src/components/offers/OfferEditor.tsx:96
 msgid "Amount exceeds spendable balance"
 msgstr "مبلغ از موجودی قابل خرج کردن بیشتر است"
@@ -3689,7 +3694,7 @@ msgstr "برای آدرس قراردادی استخر نام خودکار ایج
 msgid "Avg"
 msgstr "میانگین"
 
-#: src/components/offers/NFTOfferViewer.tsx:633
+#: src/components/offers/NFTOfferViewer.tsx:635
 msgid "Back"
 msgstr "بازگشت"
 
@@ -3697,7 +3702,7 @@ msgstr "بازگشت"
 #~ msgid "Backup DIDs"
 #~ msgstr "Backup DIDs"
 
-#: src/components/vcs/VCList.tsx:325
+#: src/components/vcs/VCList.tsx:326
 msgid "Badging"
 msgstr "نمایش"
 
@@ -3797,7 +3802,7 @@ msgstr "تاییدیه سوزاندن ان اف تی"
 msgid "Burning a non-fungible token means removing it from circulation by sending it to a verifiably un-spendable address. However, transactions leading up to the burn will remain on the blockchain ledger."
 msgstr "سوزاندن یک توکن غیرقابل تعویض به معنای حذف آن از گردش با ارسال آن به آدرسی غیرقابل تایید است. با این حال، تراکنش‌های منتهی به سوختن در سیستم بلاک چین باقی میمانند."
 
-#: src/components/offers/NFTOfferEditor.tsx:308
+#: src/components/offers/NFTOfferEditor.tsx:309
 msgid "Buy an NFT"
 msgstr "خرید یک ان اف تی"
 
@@ -4296,7 +4301,7 @@ msgstr "ایجاد یک پلات ان اف تی"
 #~ msgid "Create a spend bundle to mint multiple NFTs"
 #~ msgstr "Create a spend bundle to mint multiple NFTs"
 
-#: src/components/offers/NFTOfferEditor.tsx:717
+#: src/components/offers/NFTOfferEditor.tsx:718
 msgid "Create an NFT Offer"
 msgstr "ایجاد یشنهاد ان اف تی"
 
@@ -4330,7 +4335,7 @@ msgstr "ایجاد پیشنهاد زمان‌بندی شده"
 #~ msgstr "Create new Remote Wallet"
 
 #: src/components/nfts/NFTContextualActions.tsx:152
-#: src/components/offers/NFTOfferEditor.tsx:438
+#: src/components/offers/NFTOfferEditor.tsx:439
 #: src/components/offers/OfferEditor.tsx:156
 #: src/components/offers/OfferManager.tsx:393
 #: src/components/offers2/CreateOfferBuilder.tsx:177
@@ -4383,16 +4388,16 @@ msgstr "ایجاد پلات ان اف تی برای استخر شخصی"
 msgid "Creation Date"
 msgstr "تاریخ ایجاد"
 
-#: src/components/offers/NFTOfferViewer.tsx:518
+#: src/components/offers/NFTOfferViewer.tsx:520
 msgid "Creator Fee ({0}%)"
 msgstr "کارمزد سازنده ({0}%)"
 
-#: src/components/offers/NFTOfferEditor.tsx:330
+#: src/components/offers/NFTOfferEditor.tsx:331
 msgid "Creator Fee ({royaltyPercentage}%)"
 msgstr "({royaltyPercentage}%) کارمزد سازنده"
 
-#: src/components/offers/NFTOfferEditor.tsx:333
-#: src/components/offers/NFTOfferViewer.tsx:521
+#: src/components/offers/NFTOfferEditor.tsx:334
+#: src/components/offers/NFTOfferViewer.tsx:523
 msgid "Creator royalty percentage seems high"
 msgstr "درصد حق امتیاز سازنده بالا به نظر میرسد"
 
@@ -4753,7 +4758,7 @@ msgstr "در حال ذخیره ان اف تی های انتخاب شده"
 msgid "Drag & Drop a Signed Message File,<0/> Paste ({0}V)"
 msgstr "یک فایل پیام امضا شده را انتخاب و در اینجا قرار دهید،<0/> جای‌گذاری ({0}V)"
 
-#: src/components/offers/OfferImport.tsx:166
+#: src/components/offers/OfferImport.tsx:167
 msgid "Drag & Drop an Offer File"
 msgstr "یک فایل پیشنهاد را انتخاب و در اینجا قرار دهید"
 
@@ -4934,7 +4939,7 @@ msgstr "خطا"
 #~ msgid "Error fetching video preview"
 #~ msgstr ""
 
-#: src/components/vcs/VCList.tsx:261
+#: src/components/vcs/VCList.tsx:262
 msgid "Error parsing file"
 msgstr "خطا در تجزیه فایل"
 
@@ -4959,14 +4964,14 @@ msgid "Esc"
 msgstr "خروج"
 
 #: src/components/farm/card/EstimatedEarning.tsx:65
-#: src/components/farm/card/FarmingRewardsCards.tsx:105
-#: src/components/farm/card/FarmingRewardsCards.tsx:115
+#: src/components/farm/card/FarmingRewardsCards.tsx:112
+#: src/components/farm/card/FarmingRewardsCards.tsx:122
 msgid "Estimated daily XCH"
 msgstr "مقدار تخمینی روزانه چیا"
 
 #: src/components/farm/card/EstimatedEarning.tsx:65
-#: src/components/farm/card/FarmingRewardsCards.tsx:133
-#: src/components/farm/card/FarmingRewardsCards.tsx:143
+#: src/components/farm/card/FarmingRewardsCards.tsx:140
+#: src/components/farm/card/FarmingRewardsCards.tsx:150
 msgid "Estimated monthly XCH"
 msgstr "مقدار تخمینی ماهانه چیا"
 
@@ -4981,8 +4986,8 @@ msgstr "مجموع تخمینی تمام فضای پلاتهای ساخته شد
 #: src/components/farm/card/EstimatedEarning.tsx:60
 #: src/components/farm/card/ExpectedTimeToWin.tsx:55
 #: src/components/farm/card/ExpectedTimeToWin.tsx:60
-#: src/components/farm/card/FarmingRewardsCards.tsx:74
-#: src/components/farm/card/FarmingRewardsCards.tsx:86
+#: src/components/farm/card/FarmingRewardsCards.tsx:81
+#: src/components/farm/card/FarmingRewardsCards.tsx:93
 msgid "Estimated Time to Win"
 msgstr "زمان تخمینی برای برنده شدن"
 
@@ -5043,7 +5048,7 @@ msgstr "دانلودهای ناموفق:"
 msgid "Failed partials"
 msgstr "بخشهایی ناموفق بوده"
 
-#: src/components/offers/NFTOfferEditor.tsx:582
+#: src/components/offers/NFTOfferEditor.tsx:583
 msgid "Failed to decode NFT identifier"
 msgstr "رمزگشایی شناسه ان اف تی انجام نشد"
 
@@ -5136,7 +5141,7 @@ msgstr ""
 msgid "Farming Mode"
 msgstr "حالت فارم کردن"
 
-#: src/components/farm/card/FarmingRewardsCards.tsx:160
+#: src/components/farm/card/FarmingRewardsCards.tsx:167
 msgid "Farming Rewards"
 msgstr "پاداشهای فارم کردن"
 
@@ -5172,7 +5177,7 @@ msgstr "ویژگی هایی برای محافظت و کنترل بیشتر بر 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:291
 #: src/components/nfts/NFTTransferAction.tsx:142
 #: src/components/offers/ConfirmOfferCancellation.tsx:109
-#: src/components/offers/NFTOfferViewer.tsx:615
+#: src/components/offers/NFTOfferViewer.tsx:617
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:158
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:122
 #: src/components/pool/PoolInfo.tsx:18
@@ -5181,7 +5186,7 @@ msgstr "ویژگی هایی برای محافظت و کنترل بیشتر بر 
 msgid "Fee"
 msgstr "کارمزد"
 
-#: src/components/offers/NFTOfferEditor.tsx:81
+#: src/components/offers/NFTOfferEditor.tsx:82
 #: src/components/offers/OfferEditorConditionsPanel.tsx:388
 msgid "Fee (Optional)"
 msgstr "کارمزد (اختیاری)"
@@ -5202,7 +5207,7 @@ msgstr "کارمزدها"
 msgid "Fees Amount"
 msgstr "هزینه کارمزدها"
 
-#: src/components/offers/NFTOfferViewer.tsx:200
+#: src/components/offers/NFTOfferViewer.tsx:202
 #: src/components/offers/OfferSummary.tsx:168
 msgid "Fees included in offer:"
 msgstr "کارمزد ها در پیشنهاد موجود است:"
@@ -5522,7 +5527,7 @@ msgstr "برو چند جواهر جمع کن"
 #~ msgid "Go to #{channelName}"
 #~ msgstr "Go to #{channelName}"
 
-#: src/components/vcs/VCList.tsx:405
+#: src/components/vcs/VCList.tsx:406
 msgid "Government IDs"
 msgstr "شناسه های دولتی"
 
@@ -5727,7 +5732,7 @@ msgstr "تصاویر برای پر کردن مکان نمایش ان اف تی �
 msgid "Import"
 msgstr "وارد كردن"
 
-#: src/components/offers/NFTOfferViewer.tsx:483
+#: src/components/offers/NFTOfferViewer.tsx:485
 #: src/components/offers/OfferEditorConditionsPanel.tsx:292
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:28
 msgid "In exchange for"
@@ -5753,7 +5758,7 @@ msgstr "در حال پیشرفت"
 #~ msgid "Include Wallet Metadata"
 #~ msgstr "Include Wallet Metadata"
 
-#: src/components/offers/NFTOfferEditor.tsx:86
+#: src/components/offers/NFTOfferEditor.tsx:87
 #: src/components/offers/OfferEditorConditionsPanel.tsx:394
 msgid "Including a fee in the offer can help expedite the transaction when the offer is accepted. The recommended minimum fee is 0.000005 XCH (5,000,000 mojos)"
 msgstr "درج کارمزد در پیشنهاد میتواند به سرعت معامله در هنگام پذیرش پیشنهاد کمک کند. حداقل هزینه توصیه شده 0.000005 چیا (5000000 موجو) است"
@@ -5828,7 +5833,7 @@ msgstr "هش نامعتبر"
 #~ msgid "Invalid metadata url"
 #~ msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:580
+#: src/components/offers/NFTOfferEditor.tsx:581
 msgid "Invalid NFT identifier"
 msgstr "شناسه ان اف تی نامعتبر"
 
@@ -5966,7 +5971,7 @@ msgstr "کلیدها"
 msgid "KiB Up/Down"
 msgstr "کیلوبایت ذخیره/بارگذاری"
 
-#: src/components/vcs/VCList.tsx:411
+#: src/components/vcs/VCList.tsx:412
 msgid "KYC status"
 msgstr " KYC وضعیت شناختن مشتری یا"
 
@@ -6219,7 +6224,7 @@ msgstr "حداکثر"
 #~ msgid "Max page size"
 #~ msgstr "Max page size"
 
-#: src/components/vcs/VCList.tsx:415
+#: src/components/vcs/VCList.tsx:416
 msgid "Memberships"
 msgstr "عضویت ها"
 
@@ -6428,15 +6433,15 @@ msgstr "نام"
 msgid "Need some {currencyCode}?"
 msgstr "نیاز دارید؟ {currencyCode} به مقداری"
 
-#: src/components/offers/NFTOfferViewer.tsx:584
+#: src/components/offers/NFTOfferViewer.tsx:586
 msgid "Net Proceeds"
 msgstr "درآمد خالص"
 
-#: src/components/farm/card/NetspaceCards.tsx:13
+#: src/components/farm/card/NetspaceCards.tsx:14
 msgid "Netspace"
 msgstr "فضای شبکه"
 
-#: src/components/offers/NFTOfferViewer.tsx:607
+#: src/components/offers/NFTOfferViewer.tsx:609
 #: src/components/offers2/OfferBuilderViewer.tsx:338
 msgid "Network Fee (Optional)"
 msgstr "کارمزد شبکه (اختیاری)"
@@ -6490,7 +6495,7 @@ msgstr ""
 msgid "Next"
 msgstr "بعدی"
 
-#: src/components/offers/NFTOfferEditor.tsx:212
+#: src/components/offers/NFTOfferEditor.tsx:213
 #: src/components/offers2/OfferBuilderNFTSection.tsx:46
 #: src/components/settings/Settings.tsx:38
 #: src/components/settings/SettingsNFT.tsx:97
@@ -6516,7 +6521,7 @@ msgstr "شناسه ارز ان اف تی"
 #~ msgid "NFT Coin Ids"
 #~ msgstr "NFT Coin Ids"
 
-#: src/components/offers/NFTOfferEditor.tsx:617
+#: src/components/offers/NFTOfferEditor.tsx:618
 msgid "NFT details not available"
 msgstr "جزئیات ان اف تی در دسترس نیست"
 
@@ -6542,7 +6547,7 @@ msgstr "آدرس دارنده ان اف تی"
 msgid "NFT ID"
 msgstr "شناسه ان اف تی"
 
-#: src/components/offers/NFTOfferEditor.tsx:214
+#: src/components/offers/NFTOfferEditor.tsx:215
 msgid "NFT Identifier"
 msgstr "تصمیم گیرنده ان اف تی"
 
@@ -6568,7 +6573,7 @@ msgstr "درحال انتقال ان اف تی"
 msgid "NFT not specified"
 msgstr "ان اف تی مشخص نشده"
 
-#: src/components/offers/NFTOfferViewer.tsx:498
+#: src/components/offers/NFTOfferViewer.tsx:500
 msgid "NFT Purchase Price"
 msgstr "قیمت خرید ان اف تی"
 
@@ -6853,7 +6858,7 @@ msgstr "فضای اشغال شده"
 msgid "Offer Builder"
 msgstr "ساختن پیشنهاد"
 
-#: src/components/offers/NFTOfferViewer.tsx:173
+#: src/components/offers/NFTOfferViewer.tsx:175
 #: src/components/offers2/OfferBuilderValue.tsx:217
 #: src/components/offers2/OfferBuilderViewer.tsx:403
 msgid "Offer cannot be accepted because you don't possess the requested assets"
@@ -7026,11 +7031,11 @@ msgstr "گزینه ها"
 msgid "or <0>browse</0> on your computer"
 msgstr "یا<0>مرورکنید</0> را در رایانه خود"
 
-#: src/components/offers/OfferImport.tsx:169
+#: src/components/offers/OfferImport.tsx:170
 msgid "or Paste (⌘V) an Offer blob"
 msgstr "یک پیشنهاد بلوب (⌘V) یا جای‌گذاری"
 
-#: src/components/offers/OfferImport.tsx:169
+#: src/components/offers/OfferImport.tsx:170
 msgid "or Paste (Ctrl-V) an Offer blob"
 msgstr "یک پیشنهاد بلوب (Ctrl-V) یا جای‌گذاری"
 
@@ -7170,7 +7175,7 @@ msgid "Paste link"
 msgstr "جای گزاری لینک"
 
 #: src/components/offers/OfferDataEntryDialog.tsx:33
-#: src/components/offers/OfferImport.tsx:156
+#: src/components/offers/OfferImport.tsx:157
 msgid "Paste Offer Data"
 msgstr "چسباندن اطلاعات پیشنهاد"
 
@@ -7241,7 +7246,7 @@ msgstr "لطفا یک URI وارد کنید"
 msgid "Please enter a valid numeric fee"
 msgstr "لطفاً یک کارمزد با اعداد معتبر وارد کنید"
 
-#: src/components/offers/NFTOfferEditor.tsx:586
+#: src/components/offers/NFTOfferEditor.tsx:587
 msgid "Please enter an amount"
 msgstr "لطفا یک مبلع وارد کنید"
 
@@ -7257,7 +7262,7 @@ msgstr "وارد کنید {catName} لطفاً مبلغی را برای توکن
 msgid "Please enter an amount for each row"
 msgstr "لطفاً برای هر ردیف مبلغی را وارد کنید"
 
-#: src/components/offers/NFTOfferEditor.tsx:578
+#: src/components/offers/NFTOfferEditor.tsx:579
 msgid "Please enter an NFT identifier"
 msgstr "لطفاً یک شناسه ان اف تی وارد کنید"
 
@@ -7297,7 +7302,7 @@ msgstr "لطفاً برای هر ردیف مبلغی را انتخاب کنید"
 msgid "Please select an asset for each token"
 msgstr "لطفاً یک دارایی برای هر توکن انتخاب کنید"
 
-#: src/components/offers/NFTOfferEditor.tsx:584
+#: src/components/offers/NFTOfferEditor.tsx:585
 msgid "Please select an asset type"
 msgstr "لطفاً یک نوع دارایی را انتخاب کنید"
 
@@ -7708,7 +7713,7 @@ msgstr "با استفاده از امضاء دیجیتال، داشتن آدرس
 msgid "Public Key"
 msgstr "کلید عمومی"
 
-#: src/components/offers/NFTOfferViewer.tsx:473
+#: src/components/offers/NFTOfferViewer.tsx:475
 msgid "Purchase Summary"
 msgstr "خلاصه خرید"
 
@@ -8009,7 +8014,7 @@ msgstr ""
 
 #: src/components/farm/FarmHealth.tsx:295
 #: src/components/farm/FarmHealth.tsx:357
-#: src/components/offers/NFTOfferEditor.tsx:435
+#: src/components/offers/NFTOfferEditor.tsx:436
 #: src/components/offers/OfferEditor.tsx:153
 #: src/components/settings/IpfsGatewayUrl.tsx:129
 #: src/components/settings/SettingsIntegration.tsx:222
@@ -8212,7 +8217,7 @@ msgstr "حالت دیسک هیبریدی را انتخاب کنید"
 #~ msgid "Select keys which you want to share with WalletConnect"
 #~ msgstr "Select keys which you want to share with WalletConnect"
 
-#: src/components/offers/OfferImport.tsx:159
+#: src/components/offers/OfferImport.tsx:160
 msgid "Select Offer File"
 msgstr "انتخاب قایل پیشنهاد"
 
@@ -8270,7 +8275,7 @@ msgstr "در استخر شخصی وقتی یک بلاک را برنده میشو
 msgid "Self Pooling"
 msgstr "استخر شخصی"
 
-#: src/components/offers/NFTOfferEditor.tsx:309
+#: src/components/offers/NFTOfferEditor.tsx:310
 msgid "Sell an NFT"
 msgstr "فروش یک ان اف تی"
 
@@ -8812,7 +8817,7 @@ msgstr "({1}). دسترسی به ورودی IPFS {0} امکان‌پذیر نی�
 msgid "The minimum required size for mainnet is k=32"
 msgstr "حداقل اندازه مورد نیاز برای شبکه اصلی k=32 است"
 
-#: src/components/offers/NFTOfferViewer.tsx:588
+#: src/components/offers/NFTOfferViewer.tsx:590
 msgid "The net proceeds include the asking price, minus any associated creator fees (if the NFT has royalty payments enabled)."
 msgstr "درآمد خالص شامل قیمت درخواستی، به منهای هر گونه کارمزد ایجادکننده مرتبط است (اگر ان اف تی پرداخت حق امتیاز را فعال کرده باشد)."
 
@@ -8881,19 +8886,19 @@ msgstr "کلمات رمز برای ایجاد پلات استفاده شد. ای
 msgid "The signature was made by the private key associated with the wallet address. The signer can be assumed to be the owner of the private key."
 msgstr "امضاء توسط کلید شخصی مرتبط با آدرس کیف پول انجام شده است. امضاء کننده را میتوان مالک کلید شخصی فرض کرد."
 
-#: src/components/offers/NFTOfferViewer.tsx:562
+#: src/components/offers/NFTOfferViewer.tsx:564
 msgid "The total amount offered includes the offered purchase price, plus the optional offer creation fee.<0/>If the NFT has royalty payments enabled, those creator fees will be paid from the offered purchase price."
 msgstr "کل مبلغ پیشنهاد شامل قیمت خرید پیشنهادی، به اضافه هزینه ایجاد پیشنهاد اختیاری است.<0/>اگر ان اف تی پرداخت حق امتیاز را فعال کرده باشد، همه هزینه‌های ایجادشده از قیمت خرید پیشنهادی پرداخت میشود."
 
-#: src/components/offers/NFTOfferEditor.tsx:396
+#: src/components/offers/NFTOfferEditor.tsx:397
 msgid "The total amount offered includes the price you're willing to pay for the NFT, plus the optional offer creation fee. One or more coins totalling at least the amount shown below will be deducted from your spendable balance upon offer creation.<0/>If the NFT has royalty payments enabled, those creator fees will be paid by the party that accepts the offer."
 msgstr "کل مبلغ ارائه شده شامل قیمتی است که مایلید برای ان اف تی بپردازید،به علاوه کارمزد اختیاری ایجاد پیشنهاد. یک یا چند ارزکه مجموعاً حداقل مبلغ نمایان داده شده در پایین است، پس از ایجاد پیشنهاد، از موجودی قابل خرج کردن شما کسر خواهد شد.<0/>اگر ان اف تی پرداخت حق امتیاز را فعال کرده باشد، آن هزینه های ایجادکننده توسط طرفی که پیشنهاد را میپذیرد پرداخت میشود."
 
-#: src/components/offers/NFTOfferEditor.tsx:387
+#: src/components/offers/NFTOfferEditor.tsx:388
 msgid "The total amount requested includes the asking price, plus the associated creator fees (if the NFT has royalty payments enabled). Creator fees will be paid by the party that accepts the offer.<0/>The optional offer creation fee is not included in this total, and will be deducted from your spendable balance upon offer creation."
 msgstr "کل مبلغ درخواستی شامل قیمت درخواستی، به‌علاوه هزینه‌های مربوط به ایجادکننده است (اگر ان اف تی پرداخت حق امتیاز را فعال کرده باشد). هزینه‌های ایجادکننده توسط طرفی که پیشنهاد را میپذیرد پرداخت میشود.<0/>هزینه اختیاری ایجاد پیشنهاد در این مجموع لحاظ نمیشود و پس از ایجاد پیشنهاد، از موجودی قابل مصرف شما کسر میشود."
 
-#: src/components/offers/NFTOfferViewer.tsx:551
+#: src/components/offers/NFTOfferViewer.tsx:553
 msgid "The total amount requested includes the asking price, plus the associated creator fees (if the NFT has royalty payments enabled).{0}"
 msgstr "کل مبلغ درخواستی شامل قیمت درخواستی، به‌علاوه هزینه‌های سازنده مرتبط است (اگر ان اف تی پرداخت حق امتیاز را فعال کرده باشد).{0}"
 
@@ -8929,7 +8934,7 @@ msgstr "این پلاتها نامعتبر هستند، ممکن است بخوا
 msgid "These stores will have their roots updated to the specified values."
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:361
+#: src/components/offers/NFTOfferEditor.tsx:362
 msgid "They will receive"
 msgstr "دریافت خواهند کرد"
 
@@ -9001,12 +9006,12 @@ msgstr "این تعداد کل امتیازهایی است که فارم شما 
 msgid "This node is fully caught up and validating the network"
 msgstr "این نود به طور کامل با نودهای اطراف ارتباط پیدا کرده و اعتبارسنجی را در شبکه انجام میدهد"
 
-#: src/components/offers/NFTOfferViewer.tsx:215
+#: src/components/offers/NFTOfferViewer.tsx:217
 #: src/components/offers/OfferSummary.tsx:183
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted."
 msgstr "این پیشنهاد برای سریعتر شدن ارسال تراکنش کارمزد دارد."
 
-#: src/components/offers/NFTOfferViewer.tsx:210
+#: src/components/offers/NFTOfferViewer.tsx:212
 #: src/components/offers/OfferSummary.tsx:178
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted. You may specify an additional fee if you feel that the included fee is too small."
 msgstr "این پیشنهاد برای سریعتر شدن ارسال تراکنش کارمزد دارد. اگر احساس میکنید که کارمزد اضافه شده بسیار کم است، میتوانید یک کارمزد بیشتر را مشخص کنید."
@@ -9131,13 +9136,13 @@ msgstr "کل مبلغ"
 msgid "Total amount including royalties"
 msgstr "مبلغ کل با احتساب حق امتیاز"
 
-#: src/components/offers/NFTOfferEditor.tsx:381
-#: src/components/offers/NFTOfferViewer.tsx:545
+#: src/components/offers/NFTOfferEditor.tsx:382
+#: src/components/offers/NFTOfferViewer.tsx:547
 msgid "Total Amount Offered"
 msgstr "کل مبلغ پیشنهادی"
 
-#: src/components/offers/NFTOfferEditor.tsx:379
-#: src/components/offers/NFTOfferViewer.tsx:541
+#: src/components/offers/NFTOfferEditor.tsx:380
+#: src/components/offers/NFTOfferViewer.tsx:543
 msgid "Total Amount Requested"
 msgstr "مجموع مبلغ درخواست شده"
 
@@ -9328,15 +9333,15 @@ msgstr "نوع"
 msgid "Types{0}"
 msgstr "انواع{0}"
 
-#: src/components/offers/NFTOfferEditor.tsx:633
+#: src/components/offers/NFTOfferEditor.tsx:634
 msgid "Unable to create an offer for an NFT that you do not own."
 msgstr "نمیتوانید برای ان اف تی که مالک آن نیستید پیشنهادی ایجاد کنید."
 
-#: src/components/offers/NFTOfferEditor.tsx:642
+#: src/components/offers/NFTOfferEditor.tsx:643
 msgid "Unable to create an offer for an NFT with a creator royalty percentage greater than 100%"
 msgstr "ایجاد پیشنهاد برای یک ان اف تی با درصد حق امتیاز سازنده بیشتر از 100٪ ممکن نیست"
 
-#: src/components/offers/NFTOfferEditor.tsx:370
+#: src/components/offers/NFTOfferEditor.tsx:371
 msgid "Unable to create an offer where the net amount is negative"
 msgstr "نمیتوان پیشنهادی ایجاد کرد که مبلغ خالص آن منفی است"
 
@@ -9400,7 +9405,7 @@ msgstr "برنامه ناشناخته"
 msgid "Unknown Asset"
 msgstr "دارایی‌ ناشناخته"
 
-#: src/components/offers/NFTOfferViewer.tsx:370
+#: src/components/offers/NFTOfferViewer.tsx:372
 #: src/components/offers/OfferSummaryRow.tsx:150
 #: src/components/offers/OfferSummaryRow.tsx:151
 #: src/util/resolveOfferInfo.tsx:66
@@ -9420,7 +9425,7 @@ msgstr "بازکردن دسته کلید"
 msgid "Unnamed Contact"
 msgstr "اطلاعات تماس بی نام"
 
-#: src/components/offers/NFTOfferViewer.tsx:142
+#: src/components/offers/NFTOfferViewer.tsx:144
 msgid "Unrecognized asset"
 msgstr "دارایی شناسایی نشده"
 
@@ -9530,7 +9535,7 @@ msgstr "تعداد تکرار زیرمجموعه تابع تاخیر قابل ت
 msgid "Verifiable Credential"
 msgstr "اعتبار قابل تایید"
 
-#: src/components/vcs/VCList.tsx:245
+#: src/components/vcs/VCList.tsx:246
 msgid "Verifiable Credential already exists."
 msgstr "اعتبار قابل تأیید از قبل وجود دارد."
 
@@ -9546,7 +9551,7 @@ msgstr "اعتبار قابل تأیید حذف شد."
 msgid "Verifiable Credential Revoked."
 msgstr "اعتبار قابل تأیید باطل شد."
 
-#: src/components/vcs/VCList.tsx:253
+#: src/components/vcs/VCList.tsx:254
 msgid "Verifiable Credential successfully added."
 msgstr "اعتبار قابل تأیید با موفقیت اضافه شد."
 
@@ -9555,12 +9560,12 @@ msgid "Verifiable credentials"
 msgstr ""
 
 #: src/components/settings/SettingsVerifiableCredentials.tsx:17
-#: src/components/vcs/VCList.tsx:313
-#: src/components/vcs/VCList.tsx:438
+#: src/components/vcs/VCList.tsx:314
+#: src/components/vcs/VCList.tsx:439
 msgid "Verifiable Credentials"
 msgstr "اعتبار قابل تایید"
 
-#: src/components/vcs/VCList.tsx:316
+#: src/components/vcs/VCList.tsx:317
 msgid "Verifiable Credentials are like digital ID cards that can prove certain information about you without giving away your private details."
 msgstr "اعتبارنامه‌های قابل تأیید مانند کارت‌های شناسایی دیجیتال هستند که میتوانند اطلاعات خاصی را در مورد شما بدون ارائه اطلاعات شخصیتان ثابت کنند"
 
@@ -9596,7 +9601,7 @@ msgstr "در حال تأیید هش..."
 msgid "View"
 msgstr "مشاهده"
 
-#: src/components/offers/OfferImport.tsx:183
+#: src/components/offers/OfferImport.tsx:184
 msgid "View an Offer"
 msgstr "دیدن یک پیشنهاد"
 
@@ -9963,7 +9968,7 @@ msgstr "شما نیازی به سینک یا اتصال به پلات نداری
 msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3 to 4 times longer than this estimate."
 msgstr "طول بکشد. نتایج واقعی ممکن است 3 تا 4 برابر بیشتر از این تخمین طول بکشد. {expectedTimeToWin} شما {0}٪ از فضای شبکه را در اختیار دارید، بنابراین برای فارم یک بلاک، انتظار میرود"
 
-#: src/components/farm/card/FarmingRewardsCards.tsx:89
+#: src/components/farm/card/FarmingRewardsCards.tsx:96
 msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWinHumanized} in expectation. Actual results may take 3 to 4 times longer than this estimate."
 msgstr "طول بکشد. نتایج واقعی ممکن است 3 تا 4 برابر بیشتر از این تخمین طول بکشد. {expectedTimeToWinHumanized} شما {0}٪ از فضای شبکه را در اختیار دارید، بنابراین برای فارم یک بلاک، انتظار میرود"
 
@@ -10007,8 +10012,8 @@ msgstr "خواهید داد"
 msgid "You will offer"
 msgstr "پیشنهاد خواهید کرد"
 
-#: src/components/offers/NFTOfferEditor.tsx:359
-#: src/components/offers/NFTOfferViewer.tsx:478
+#: src/components/offers/NFTOfferEditor.tsx:360
+#: src/components/offers/NFTOfferViewer.tsx:480
 msgid "You will receive"
 msgstr "دریافت خواهید کرد"
 

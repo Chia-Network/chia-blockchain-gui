@@ -18,11 +18,11 @@ msgstr ""
 "X-Crowdin-File: /main/packages/core/src/locales/en-US/messages.po\n"
 "X-Crowdin-File-ID: 15\n"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:64
+#: src/components/EstimatedFee/EstimatedFee.tsx:65
 msgid "(>5 min)"
 msgstr "(>5 min)"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:64
+#: src/components/EstimatedFee/EstimatedFee.tsx:65
 msgid "(~{selectedTime} min)"
 msgstr "(~{selectedTime} min)"
 
@@ -171,11 +171,11 @@ msgstr "Deaktivovať ochranu prístupovou frázou"
 msgid "Discard"
 msgstr "Odstrániť"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:156
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:158
 msgid "Download"
 msgstr "Stiahnuť"
 
-#: src/components/CardSimple/CardSimple.tsx:52
+#: src/components/CardSimple/CardSimple.tsx:53
 #: src/hooks/useShowError.tsx:14
 msgid "Error"
 msgstr "Chyba"
@@ -204,8 +204,8 @@ msgstr "Verejný kľúč farmára:"
 msgid "Farming"
 msgstr "Ťažba"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:338
-#: src/components/EstimatedFee/EstimatedFee.tsx:372
+#: src/components/EstimatedFee/EstimatedFee.tsx:340
+#: src/components/EstimatedFee/EstimatedFee.tsx:374
 #: src/components/Fee/Fee.tsx:10
 msgid "Fee"
 msgstr "Poplatok"
@@ -263,15 +263,15 @@ msgstr "Najnovšia verzia:"
 msgid "Light"
 msgstr "Svetlý"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:227
+#: src/components/EstimatedFee/EstimatedFee.tsx:229
 msgid "Likely in {0} seconds"
 msgstr "Pravdepodobne o {0} sekúnd"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:224
+#: src/components/EstimatedFee/EstimatedFee.tsx:226
 msgid "Likely in {minutes} minutes"
 msgstr "Pravdepodobne o {minutes} minút"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:226
+#: src/components/EstimatedFee/EstimatedFee.tsx:228
 msgid "Likely in >5 minutes"
 msgstr "Pravdepodobne >5 minút"
 
@@ -316,7 +316,7 @@ msgstr "TIETO NIKDY NIKOMU NEPREZRÁDZAJTE"
 msgid "New passphrase is the same as your current passphrase"
 msgstr "Nová prístupová fráza je rovnaká ako vaša aktuálna prístupová fráza"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:141
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:143
 msgid "New version {latestVersion} available"
 msgstr "K dispozícii je nová verzia {latestVersion}"
 
@@ -451,7 +451,7 @@ msgstr "Zobraziť rozšírené možnosti"
 #~ msgid "Sign In"
 #~ msgstr "Sign In"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:144
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:146
 #: src/hooks/useValidateChangePassphraseParams.tsx:51
 msgid "Skip"
 msgstr "Preskočiť"
@@ -537,7 +537,7 @@ msgstr "Na ochranu vašich kľúčov sa dôrazne odporúča používať prístup
 msgid "Value seems high"
 msgstr "Hodnota sa zdá byť vysoká"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:241
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:243
 #: src/components/Settings/SettingsApp.tsx:84
 msgid "Wallet"
 msgstr "Peňaženka"
@@ -559,7 +559,7 @@ msgstr "Kľúče peňaženiek"
 #~ msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
 #~ msgstr "Welcome to Chia. Please log in with an existing key, or create a new key."
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:150
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:152
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:66
 msgid "What's New"
 msgstr "Čo je nové"

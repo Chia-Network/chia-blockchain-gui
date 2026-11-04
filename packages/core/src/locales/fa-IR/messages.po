@@ -18,11 +18,11 @@ msgstr ""
 "X-Crowdin-File: /main/packages/core/src/locales/en-US/messages.po\n"
 "X-Crowdin-File-ID: 15\n"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:64
+#: src/components/EstimatedFee/EstimatedFee.tsx:65
 msgid "(>5 min)"
 msgstr "(> 5 دقیقه)"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:64
+#: src/components/EstimatedFee/EstimatedFee.tsx:65
 msgid "(~{selectedTime} min)"
 msgstr "(~{selectedTime} min)"
 
@@ -173,11 +173,11 @@ msgstr "محافظت از رمز ورودی را غیرفعال کنید"
 msgid "Discard"
 msgstr "دست برداشتن"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:156
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:158
 msgid "Download"
 msgstr "دخیره"
 
-#: src/components/CardSimple/CardSimple.tsx:52
+#: src/components/CardSimple/CardSimple.tsx:53
 #: src/hooks/useShowError.tsx:14
 msgid "Error"
 msgstr "خطا"
@@ -206,8 +206,8 @@ msgstr "کلید عمومی فارم کننده:"
 msgid "Farming"
 msgstr "درحال فارم"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:338
-#: src/components/EstimatedFee/EstimatedFee.tsx:372
+#: src/components/EstimatedFee/EstimatedFee.tsx:340
+#: src/components/EstimatedFee/EstimatedFee.tsx:374
 #: src/components/Fee/Fee.tsx:10
 msgid "Fee"
 msgstr "کارمزد"
@@ -265,15 +265,15 @@ msgstr "آخرین نسخه:"
 msgid "Light"
 msgstr "روشن"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:227
+#: src/components/EstimatedFee/EstimatedFee.tsx:229
 msgid "Likely in {0} seconds"
 msgstr "احتمالاً در {0} ثانیه"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:224
+#: src/components/EstimatedFee/EstimatedFee.tsx:226
 msgid "Likely in {minutes} minutes"
 msgstr "{minutes} احتمالاً در"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:226
+#: src/components/EstimatedFee/EstimatedFee.tsx:228
 msgid "Likely in >5 minutes"
 msgstr "ممکن است بیشتر از 5 دقیقه باشد"
 
@@ -318,7 +318,7 @@ msgstr "هرگز این موارد را با کسی به اشتراک نگذار
 msgid "New passphrase is the same as your current passphrase"
 msgstr "رمز ورودی جدید همانند رمز ورودی فعلی شما است"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:141
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:143
 msgid "New version {latestVersion} available"
 msgstr "موجود است {latestVersion} نسخه جدید"
 
@@ -453,7 +453,7 @@ msgstr "نمایش گزینه‌های پیشرفته"
 #~ msgid "Sign In"
 #~ msgstr "Sign In"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:144
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:146
 #: src/hooks/useValidateChangePassphraseParams.tsx:51
 msgid "Skip"
 msgstr "صرف نظر"
@@ -539,7 +539,7 @@ msgstr "تنظیم یک رمز ورود برای محافظت از کلیدها�
 msgid "Value seems high"
 msgstr "ارزش بالا به نظر میرسد"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:241
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:243
 #: src/components/Settings/SettingsApp.tsx:84
 msgid "Wallet"
 msgstr "کیف پول"
@@ -561,7 +561,7 @@ msgstr "کلیدهای کیف پول"
 #~ msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
 #~ msgstr "Welcome to Chia. Please log in with an existing key, or create a new key."
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:150
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:152
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:66
 msgid "What's New"
 msgstr "اخبار جدید"

@@ -18,11 +18,11 @@ msgstr ""
 "X-Crowdin-File: /main/packages/core/src/locales/en-US/messages.po\n"
 "X-Crowdin-File-ID: 15\n"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:64
+#: src/components/EstimatedFee/EstimatedFee.tsx:65
 msgid "(>5 min)"
 msgstr "(>5 min)"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:64
+#: src/components/EstimatedFee/EstimatedFee.tsx:65
 msgid "(~{selectedTime} min)"
 msgstr "(~{selectedTime} min)"
 
@@ -171,11 +171,11 @@ msgstr "Disable Passphrase Protection"
 msgid "Discard"
 msgstr "Discard"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:156
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:158
 msgid "Download"
 msgstr "Download"
 
-#: src/components/CardSimple/CardSimple.tsx:52
+#: src/components/CardSimple/CardSimple.tsx:53
 #: src/hooks/useShowError.tsx:14
 msgid "Error"
 msgstr "Error"
@@ -204,8 +204,8 @@ msgstr "Farmer public key:"
 msgid "Farming"
 msgstr "Farming"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:338
-#: src/components/EstimatedFee/EstimatedFee.tsx:372
+#: src/components/EstimatedFee/EstimatedFee.tsx:340
+#: src/components/EstimatedFee/EstimatedFee.tsx:374
 #: src/components/Fee/Fee.tsx:10
 msgid "Fee"
 msgstr "Fee"
@@ -263,15 +263,15 @@ msgstr "Latest Version:"
 msgid "Light"
 msgstr "Light"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:227
+#: src/components/EstimatedFee/EstimatedFee.tsx:229
 msgid "Likely in {0} seconds"
 msgstr "Likely in {0} seconds"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:224
+#: src/components/EstimatedFee/EstimatedFee.tsx:226
 msgid "Likely in {minutes} minutes"
 msgstr "Likely in {minutes} minutes"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:226
+#: src/components/EstimatedFee/EstimatedFee.tsx:228
 msgid "Likely in >5 minutes"
 msgstr "Likely in >5 minutes"
 
@@ -316,7 +316,7 @@ msgstr "NEVER SHARE THESE WITH ANYONE"
 msgid "New passphrase is the same as your current passphrase"
 msgstr "New passphrase is the same as your current passphrase"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:141
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:143
 msgid "New version {latestVersion} available"
 msgstr "New version {latestVersion} available"
 
@@ -451,7 +451,7 @@ msgstr "Show Advanced Options"
 #~ msgid "Sign In"
 #~ msgstr "Sign In"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:144
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:146
 #: src/hooks/useValidateChangePassphraseParams.tsx:51
 msgid "Skip"
 msgstr "Skip"
@@ -537,7 +537,7 @@ msgstr "Using a passphrase is strongly recommended to protect your keys. Are you
 msgid "Value seems high"
 msgstr "Value seems high"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:241
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:243
 #: src/components/Settings/SettingsApp.tsx:84
 msgid "Wallet"
 msgstr "Wallet"
@@ -559,7 +559,7 @@ msgstr "Wallet Keys"
 #~ msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
 #~ msgstr "Welcome to Chia. Please log in with an existing key, or create a new key."
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:150
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:152
 #: src/components/LayoutDashboard/NewerAppVersionAvailable.tsx:66
 msgid "What's New"
 msgstr "What's New"

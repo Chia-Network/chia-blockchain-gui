@@ -48,7 +48,7 @@ msgstr ""
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:61
 #: src/components/cat/WalletCATCreateSimple.tsx:68
-#: src/components/WalletsManageTokens.tsx:163
+#: src/components/WalletsManageTokens.tsx:204
 msgid "Add Token"
 msgstr ""
 
@@ -82,11 +82,11 @@ msgstr "Cantidad"
 msgid "Approve"
 msgstr ""
 
-#: src/components/crCat/CrCatApprovePendingDialog.tsx:91
+#: src/components/crCat/CrCatApprovePendingDialog.tsx:92
 msgid "Approve pending CR-CAT transactions"
 msgstr ""
 
-#: src/components/crCat/CrCatApprovePendingDialog.tsx:147
+#: src/components/crCat/CrCatApprovePendingDialog.tsx:150
 msgid "Approve pending transactions"
 msgstr ""
 
@@ -116,7 +116,7 @@ msgstr ""
 msgid "Authorized providers"
 msgstr ""
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:234
+#: src/components/ClawbackClaimTransactionDialog.tsx:235
 msgid "Auto-claim transactions with this fee from now on."
 msgstr ""
 
@@ -156,8 +156,8 @@ msgstr ""
 msgid "Claim transaction"
 msgstr ""
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:138
-#: src/components/ClawbackClaimTransactionDialog.tsx:267
+#: src/components/ClawbackClaimTransactionDialog.tsx:139
+#: src/components/ClawbackClaimTransactionDialog.tsx:268
 msgid "Claim Transaction"
 msgstr ""
 
@@ -177,19 +177,19 @@ msgstr ""
 msgid "Claw back this transaction"
 msgstr ""
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:267
+#: src/components/ClawbackClaimTransactionDialog.tsx:268
 msgid "Claw back Transaction"
 msgstr ""
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:138
+#: src/components/ClawbackClaimTransactionDialog.tsx:139
 msgid "Claw Back Transaction"
 msgstr ""
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:130
+#: src/components/ClawbackClaimTransactionDialog.tsx:131
 msgid "Clawback payment claimed"
 msgstr ""
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:130
+#: src/components/ClawbackClaimTransactionDialog.tsx:131
 msgid "Clawback payment clawed back"
 msgstr ""
 
@@ -209,9 +209,9 @@ msgstr ""
 #~ msgid "Click here to download an older version of the wallet"
 #~ msgstr "Click here to download an older version of the wallet"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:159
-#: src/components/ClawbackClaimTransactionDialog.tsx:256
-#: src/components/crCat/CrCatApprovePendingDialog.tsx:136
+#: src/components/ClawbackClaimTransactionDialog.tsx:160
+#: src/components/ClawbackClaimTransactionDialog.tsx:257
+#: src/components/crCat/CrCatApprovePendingDialog.tsx:139
 msgid "Close"
 msgstr ""
 
@@ -316,7 +316,7 @@ msgstr "Granja"
 msgid "Fee"
 msgstr "Tarifa"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:183
+#: src/components/ClawbackClaimTransactionDialog.tsx:184
 msgid "From:"
 msgstr ""
 
@@ -358,7 +358,7 @@ msgstr "Dirección IP"
 msgid "List of connections is empty"
 msgstr ""
 
-#: src/components/WalletsManageTokens.tsx:140
+#: src/components/WalletsManageTokens.tsx:181
 msgid "Manage token list"
 msgstr ""
 
@@ -458,7 +458,7 @@ msgstr ""
 msgid "Paste Mnemonic ({0} words)"
 msgstr ""
 
-#: src/components/crCat/CrCatApprovePendingDialog.tsx:82
+#: src/components/crCat/CrCatApprovePendingDialog.tsx:83
 msgid "Payments approved"
 msgstr ""
 
@@ -486,19 +486,19 @@ msgstr ""
 msgid "Pending Total Balance"
 msgstr "Saldo Pendiente Total"
 
-#: src/components/crCat/CrCatApprovePendingDialog.tsx:83
+#: src/components/crCat/CrCatApprovePendingDialog.tsx:84
 msgid "Please allow some time for the payments to reflect in the blockchain."
 msgstr ""
 
-#: src/components/crCat/CrCatApprovePendingDialog.tsx:120
+#: src/components/crCat/CrCatApprovePendingDialog.tsx:123
 msgid "Please enter a transaction fee to approve the above amount:"
 msgstr ""
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:214
+#: src/components/ClawbackClaimTransactionDialog.tsx:215
 msgid "Please enter a transaction fee to claim the above amount:"
 msgstr ""
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:216
+#: src/components/ClawbackClaimTransactionDialog.tsx:217
 msgid "Please enter a transaction fee to claw back the above amount:"
 msgstr ""
 
@@ -605,7 +605,7 @@ msgid "Save"
 msgstr "Guardar"
 
 #: src/components/cat/WalletCATTAILDialog.tsx:59
-#: src/components/WalletTokenCard.tsx:177
+#: src/components/WalletTokenCard.tsx:179
 msgid "Search on Tail Database"
 msgstr ""
 
@@ -710,7 +710,7 @@ msgstr "Este es el saldo total + saldo pendiente: es lo que será su saldo despu
 msgid "This token can be revoked by the issuer"
 msgstr ""
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:201
+#: src/components/ClawbackClaimTransactionDialog.tsx:202
 msgid "This transaction will be automatically claimed with a fee:"
 msgstr ""
 
@@ -718,7 +718,7 @@ msgstr ""
 #~ msgid "To"
 #~ msgstr "To"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:183
+#: src/components/ClawbackClaimTransactionDialog.tsx:184
 #: src/components/WalletHistory.tsx:197
 msgid "To:"
 msgstr ""
@@ -747,11 +747,11 @@ msgstr ""
 msgid "Transactions"
 msgstr ""
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:240
+#: src/components/ClawbackClaimTransactionDialog.tsx:241
 msgid "Transactions will be claimed automatically when the Clawback time expires."
 msgstr ""
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:243
+#: src/components/ClawbackClaimTransactionDialog.tsx:244
 msgid "Transactions with values smaller than the fee will not be auto claimed."
 msgstr ""
 
@@ -772,11 +772,11 @@ msgstr "La cartera no existe"
 msgid "Wallet Name"
 msgstr ""
 
-#: src/components/crCat/CrCatApprovePendingDialog.tsx:115
+#: src/components/crCat/CrCatApprovePendingDialog.tsx:118
 msgid "Wallet needs to be synced before approving transactions"
 msgstr ""
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:208
+#: src/components/ClawbackClaimTransactionDialog.tsx:209
 msgid "Wallet needs to be synced for claiming clawback transactions"
 msgstr ""
 
@@ -800,7 +800,7 @@ msgstr "¡Bienvenido! Las siguientes palabras se utilizan para la copia de segur
 msgid "Will be autoclaimed in "
 msgstr ""
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:246
+#: src/components/ClawbackClaimTransactionDialog.tsx:247
 msgid "You can change the Clawback Auto Claim fee in Settings."
 msgstr ""
 
