@@ -19,11 +19,6 @@ msgstr ""
 "X-Crowdin-File-ID: 1888\n"
 
 #. js-lingui-explicit-id
-#: src/electron/main.tsx:1395
-msgid "Documentation"
-msgstr ""
-
-#. js-lingui-explicit-id
 #: src/components/nfts/NFTBurnDialog.tsx:133
 msgid "Do you want to burn {count} NFTs?"
 msgstr ""
@@ -2798,6 +2793,11 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:1391
 msgid "Help"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/main.tsx:1395
+msgid "Documentation"
 msgstr ""
 
 #. js-lingui-explicit-id
