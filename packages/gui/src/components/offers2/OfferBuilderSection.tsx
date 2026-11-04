@@ -47,7 +47,9 @@ export default function OfferBuilderSectionCard(props: OfferBuilderSectionCardPr
         paddingY: isMuted ? 1.5 : 3,
         backgroundColor: isMuted ? 'transparent' : 'background.card',
         border: '1px solid',
-        borderColor: theme.palette.mode === 'light' ? Color.Neutral[300] : Color.Neutral[600],
+        borderColor:
+          theme.palette.surfaces?.panelBorder ??
+          (theme.palette.mode === 'light' ? Color.Neutral[300] : Color.Neutral[600]),
         transition: '0.25s padding ease-out',
         '&:hover': {
           backgroundColor: 'background.card',

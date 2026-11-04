@@ -229,7 +229,7 @@ export default function AppKeyringMigrator() {
             <Tooltip
               title={t`Your passphrase can be stored in your system's secure credential store. Chia will be able to access your keys without prompting for your passphrase.`}
             >
-              <HelpIcon style={{ color: Color.Neutral[300], fontSize: 12 }} />
+              <HelpIcon sx={{ color: (theme) => theme.palette.ink?.muted ?? Color.Neutral[300], fontSize: 12 }} />
             </Tooltip>
           </Box>
         )}
@@ -250,7 +250,7 @@ export default function AppKeyringMigrator() {
             <Tooltip
               title={t`After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring.`}
             >
-              <HelpIcon style={{ color: Color.Neutral[300], fontSize: 12 }} />
+              <HelpIcon sx={{ color: (theme) => theme.palette.ink?.muted ?? Color.Neutral[300], fontSize: 12 }} />
             </Tooltip>
           </Box>
         )}

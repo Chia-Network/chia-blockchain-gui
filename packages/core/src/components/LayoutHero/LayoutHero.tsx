@@ -12,10 +12,14 @@ const StyledWrapper = styled(Box)`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  background: ${({ theme }) =>
-    theme.palette.mode === 'dark'
+  background: ${({ theme }) => {
+    if (theme.palette.surfaces?.hero) {
+      return theme.palette.surfaces.hero;
+    }
+    return theme.palette.mode === 'dark'
       ? `linear-gradient(45deg, ${Color.Neutral[900]} 30%, ${Color.Neutral[800]} 90%)`
-      : `linear-gradient(45deg, ${Color.Neutral[50]} 30%, ${Color.Neutral[100]} 90%)`};
+      : `linear-gradient(45deg, ${Color.Neutral[50]} 30%, ${Color.Neutral[100]} 90%)`;
+  }};
 `;
 
 const StyledBody = styled(Scrollbar)`

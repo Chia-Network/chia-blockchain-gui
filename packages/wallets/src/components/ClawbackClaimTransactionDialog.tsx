@@ -144,7 +144,9 @@ export default function ClawbackClaimTransactionDialog(props: Props) {
             position: 'absolute',
             right: 8,
             top: 8,
-            color: (theme) => (theme.palette.mode === 'dark' ? Color.Neutral[400] : Color.Neutral[500]),
+            color: (theme) =>
+              (theme.palette as any).ink?.muted ??
+              (theme.palette.mode === 'dark' ? Color.Neutral[400] : Color.Neutral[500]),
           }}
         >
           <CloseIcon />
@@ -171,7 +173,11 @@ export default function ClawbackClaimTransactionDialog(props: Props) {
                   <FormatLargeNumber value={mojoToChia(amountInMojo)} />{' '}
                   <Box
                     component="span"
-                    sx={{ color: (theme) => (theme.palette.mode === 'dark' ? Color.Neutral[400] : Color.Neutral[500]) }}
+                    sx={{
+                      color: (theme) =>
+                        (theme.palette as any).ink?.muted ??
+                        (theme.palette.mode === 'dark' ? Color.Neutral[400] : Color.Neutral[500]),
+                    }}
                   >
                     {currencyCode}
                   </Box>
@@ -179,7 +185,11 @@ export default function ClawbackClaimTransactionDialog(props: Props) {
                 <Typography variant="subtitle1" sx={{ mt: 1 }}>
                   <Box
                     component="span"
-                    sx={{ color: (theme) => (theme.palette.mode === 'dark' ? Color.Neutral[400] : Color.Neutral[500]) }}
+                    sx={{
+                      color: (theme) =>
+                        (theme.palette as any).ink?.muted ??
+                        (theme.palette.mode === 'dark' ? Color.Neutral[400] : Color.Neutral[500]),
+                    }}
                   >
                     {fromOrTo === 'from' ? <Trans>From:</Trans> : <Trans>To:</Trans>}{' '}
                   </Box>

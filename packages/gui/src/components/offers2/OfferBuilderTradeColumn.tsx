@@ -101,9 +101,12 @@ export default function OfferBuilderTradeColumn(props: OfferBuilderTradeColumnPr
         gap={1}
         sx={{
           borderRadius: 2,
-          backgroundColor: theme.palette.mode === 'light' ? Color.Neutral[200] : Color.Neutral[800],
+          backgroundColor:
+            theme.palette.surfaces?.panel ?? (theme.palette.mode === 'light' ? Color.Neutral[200] : Color.Neutral[800]),
           border: '1px solid',
-          borderColor: theme.palette.mode === 'light' ? Color.Neutral[300] : Color.Neutral[600],
+          borderColor:
+            theme.palette.surfaces?.panelBorder ??
+            (theme.palette.mode === 'light' ? Color.Neutral[300] : Color.Neutral[600]),
           padding: 1,
         }}
       >

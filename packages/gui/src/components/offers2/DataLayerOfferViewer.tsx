@@ -33,7 +33,9 @@ function StoreUpdateCard({ entry, index }: { entry: SingletonSummaryRecord; inde
         p: 3,
         backgroundColor: 'background.card',
         border: '1px solid',
-        borderColor: theme.palette.mode === 'light' ? Color.Neutral[300] : Color.Neutral[600],
+        borderColor:
+          theme.palette.surfaces?.panelBorder ??
+          (theme.palette.mode === 'light' ? Color.Neutral[300] : Color.Neutral[600]),
       }}
     >
       <Flex flexDirection="column" gap={2}>

@@ -12,8 +12,8 @@ const StyledScrollToBottom = styled(ScrollToBottom)`
 `;
 
 const StyledPaper = styled(Paper)`
-  background-color: ${Color.Neutral[800]};
-  color: ${Color.Neutral[50]};
+  background-color: ${({ theme }) => theme.palette.surfaces?.console ?? Color.Neutral[800]};
+  color: ${({ theme }) => theme.palette.ink?.console ?? Color.Neutral[50]};
   min-width: 50vw;
   width: 100%;
   height: 40vh;

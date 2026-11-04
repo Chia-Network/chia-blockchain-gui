@@ -3,6 +3,7 @@ import { Color, TableControlledRow, useDarkMode } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { AccessTime as AccessTimeIcon } from '@mui/icons-material';
 import { TableCell, TableRow, Chip } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import React, { useState, ReactNode } from 'react';
 
 import useWalletTransactions from '../hooks/useWalletTransactions';
@@ -17,6 +18,7 @@ type Props = {
 
 function WalletHistoryPending(props: Props) {
   const { isDarkMode } = useDarkMode();
+  const theme: any = useTheme();
   const { walletId, cols, metadata, expandedField, expandedCellShift } = props;
   const [expanded, setExpanded] = useState<{
     [key: string]: boolean;
@@ -51,8 +53,8 @@ function WalletHistoryPending(props: Props) {
         <TableCell
           colSpan={cols.length}
           sx={{
-            backgroundColor: isDarkMode ? Color.Neutral[500] : Color.Neutral[400],
-            color: Color.Neutral[50],
+            backgroundColor: theme.palette.surfaces?.panel ?? (isDarkMode ? Color.Neutral[500] : Color.Neutral[400]),
+            color: theme.palette.ink?.menu ?? Color.Neutral[50],
             fontSize: 16,
             '& svg': {
               verticalAlign: 'middle',
@@ -64,10 +66,11 @@ function WalletHistoryPending(props: Props) {
           <Chip
             label={transactions?.length}
             sx={{
-              backgroundColor: isDarkMode ? Color.Neutral[700] : Color.Neutral[500],
+              backgroundColor:
+                theme.palette.surfaces?.panelBorder ?? (isDarkMode ? Color.Neutral[700] : Color.Neutral[500]),
               marginLeft: 1,
               minWidth: '30px',
-              color: Color.Neutral[50],
+              color: theme.palette.ink?.menu ?? Color.Neutral[50],
             }}
             size="small"
           />
@@ -78,7 +81,9 @@ function WalletHistoryPending(props: Props) {
         <TableControlledRow
           row={row}
           rowIndex={rowIndex}
-          oddRowBackgroundColor={isDarkMode ? Color.Neutral[700] : Color.Neutral[300]}
+          oddRowBackgroundColor={
+            theme.palette.surfaces?.tableRowAlternate ?? (isDarkMode ? Color.Neutral[700] : Color.Neutral[300])
+          }
           currentCols={cols}
           metadata={metadata}
           expandedField={expandedField}
@@ -91,7 +96,7 @@ function WalletHistoryPending(props: Props) {
         <TableCell
           colSpan={cols.length}
           sx={{
-            backgroundColor: isDarkMode ? Color.Neutral[500] : Color.Neutral[400],
+            backgroundColor: theme.palette.surfaces?.panel ?? (isDarkMode ? Color.Neutral[500] : Color.Neutral[400]),
             height: '10px',
             padding: 0,
           }}

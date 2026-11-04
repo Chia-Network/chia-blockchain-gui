@@ -18,6 +18,7 @@ import {
 import { Trans } from '@lingui/macro';
 import { Help as HelpIcon } from '@mui/icons-material';
 import { Tooltip } from '@mui/material';
+import type { Theme } from '@mui/material/styles';
 import React from 'react';
 
 import ChangePassphrasePrompt from './ChangePassphrasePrompt';
@@ -80,8 +81,8 @@ export default function SettingsPanel() {
     let state: State = null;
     let statusMessage: JSX.Element | null = null;
     let tooltipTitle: React.ReactElement;
-    const tooltipIconStyle: React.CSSProperties = {
-      color: Color.Neutral[300],
+    const tooltipIconSx = {
+      color: (theme: Theme) => theme.palette.ink?.muted ?? Color.Neutral[300],
       fontSize: 12,
     };
 
@@ -105,7 +106,7 @@ export default function SettingsPanel() {
         {statusMessage}
         &nbsp;
         <Tooltip title={tooltipTitle}>
-          <HelpIcon style={tooltipIconStyle} />
+          <HelpIcon sx={tooltipIconSx} />
         </Tooltip>
       </StateTypography>
     );

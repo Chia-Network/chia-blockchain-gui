@@ -137,7 +137,9 @@ export default function AddressBookSideBar() {
             gap={1}
             alignItems="center"
             sx={{
-              borderColor: theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[300],
+              borderColor:
+                theme.palette.surfaces?.panelBorder ??
+                (theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[300]),
               backgroundColor: 'background.paper',
               paddingX: 1,
               paddingY: 0.5,
@@ -146,7 +148,12 @@ export default function AddressBookSideBar() {
               borderStyle: 'solid',
             }}
           >
-            <SearchIcon sx={{ color: theme.palette.mode === 'dark' ? Color.Neutral[400] : Color.Neutral[500] }} />
+            <SearchIcon
+              sx={{
+                color:
+                  theme.palette.ink?.muted ?? (theme.palette.mode === 'dark' ? Color.Neutral[400] : Color.Neutral[500]),
+              }}
+            />
             <InputBase onChange={handleFilterChanged} placeholder={t`Search...`} />
           </Flex>
           <Flex>

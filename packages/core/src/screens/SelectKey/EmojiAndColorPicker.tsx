@@ -57,7 +57,7 @@ export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
   const theme: any = useTheme();
 
   const pickerStyle: any = {
-    backgroundColor: isDark ? Color.Neutral[800] : Color.Neutral[50],
+    backgroundColor: theme.palette.surfaces?.raised ?? (isDark ? Color.Neutral[800] : Color.Neutral[50]),
     border: `1px solid ${isDark ? theme.palette.border.dark : theme.palette.border.main}`,
     boxShadow: isDark
       ? 'none'
@@ -160,7 +160,7 @@ export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
               width: '17px',
               height: '17px',
               path: {
-                stroke: isDark ? Color.Neutral[100] : Color.Neutral[400],
+                stroke: theme.palette.ink?.muted ?? (isDark ? Color.Neutral[100] : Color.Neutral[400]),
                 fill: 'none',
               },
             }}
