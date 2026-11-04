@@ -5,6 +5,7 @@ const SPEND_COMMANDS = new Set<keyof typeof Commands>([
   'chia_wallet.cat_spend',
   'chia_wallet.nft_transfer_nft',
   'chia_wallet.cancel_offer',
+  'chia_wallet.cancel_offers',
   'chia_wallet.create_offer_for_ids',
   'chia_wallet.take_offer',
   'chia_wallet.spend_clawback_coins',

@@ -303,6 +303,91 @@ export const Commands: Record<string, CommandSchema> = {
     ],
   },
 
+  'chia_wallet.cancel_offers': {
+    title: () => i18n._(/* i18n */ { id: 'Confirm Cancel Offers' }),
+    message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm these offer cancellations.' }),
+    confirmLabel: () => i18n._(/* i18n */ { id: 'Proceed' }),
+    destructive: true,
+    params: [
+      { name: 'secure', label: () => i18n._(/* i18n */ { id: 'Secure' }), type: 'bool' },
+      {
+        name: 'batch_fee',
+        label: () => i18n._(/* i18n */ { id: 'Batch Fee' }),
+        type: 'bigint',
+        humanize: 'mojo-to-xch',
+        isOptional: true,
+      },
+      {
+        name: 'batch_size',
+        label: () => i18n._(/* i18n */ { id: 'Batch Size' }),
+        type: 'number',
+        isOptional: true,
+      },
+      {
+        name: 'cancel_all',
+        label: () => i18n._(/* i18n */ { id: 'Cancel All' }),
+        type: 'bool',
+        isOptional: true,
+      },
+      {
+        name: 'asset_id',
+        label: () => i18n._(/* i18n */ { id: 'Asset Id' }),
+        type: 'string',
+        isOptional: true,
+      },
+      {
+        name: 'spending_cancel',
+        label: () => i18n._(/* i18n */ { id: 'Spending Cancel' }),
+        type: 'bool',
+        isOptional: true,
+      },
+    ],
+    dapp: [
+      {
+        command: 'chia_cancelOffers',
+        title: () => i18n._(/* i18n */ { id: 'Cancel Offers' }),
+        defaults: {
+          secure: true,
+          spending_cancel: true,
+        },
+        // override list of params to hide secure; spending_cancel is the dapp's opt-out of the on-chain cancel
+        params: [
+          {
+            name: 'batch_fee',
+            label: () => i18n._(/* i18n */ { id: 'Batch Fee' }),
+            type: 'bigint',
+            humanize: 'mojo-to-xch',
+            isOptional: true,
+          },
+          {
+            name: 'batch_size',
+            label: () => i18n._(/* i18n */ { id: 'Batch Size' }),
+            type: 'number',
+            isOptional: true,
+          },
+          {
+            name: 'cancel_all',
+            label: () => i18n._(/* i18n */ { id: 'Cancel All' }),
+            type: 'bool',
+            isOptional: true,
+          },
+          {
+            name: 'asset_id',
+            label: () => i18n._(/* i18n */ { id: 'Asset Id' }),
+            type: 'string',
+            isOptional: true,
+          },
+          {
+            name: 'spending_cancel',
+            label: () => i18n._(/* i18n */ { id: 'Spending Cancel' }),
+            type: 'bool',
+            isOptional: true,
+          },
+        ],
+      },
+    ],
+  },
+
   // TODO verify last 3 params
   'chia_wallet.create_offer_for_ids': {
     title: () => i18n._(/* i18n */ { id: 'Confirm Create Offer for Ids' }),

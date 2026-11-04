@@ -110,6 +110,23 @@ describe('parseDappParams', () => {
       });
     });
 
+    it('forces secure for chia_cancelOffers and lets the dapp opt out via spending_cancel', () => {
+      expect(parseDappParams('chia_cancelOffers', serialize({ cancelAll: true }))).toMatchObject({
+        secure: true,
+        spending_cancel: true,
+        cancel_all: true,
+      });
+
+      expect(parseDappParams('chia_cancelOffers', serialize({ spendingCancel: false }))).toMatchObject({
+        secure: true,
+        spending_cancel: false,
+      });
+
+      expect(() => parseDappParams('chia_cancelOffers', serialize({ secure: false }))).toThrow(
+        'param not allowed for dapp: secure',
+      );
+    });
+
     it('allows request-permissions command lists for the custom handler', () => {
       expect(
         parseDappParams(
