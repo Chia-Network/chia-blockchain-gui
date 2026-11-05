@@ -116,11 +116,11 @@ msgstr "Copier dans le presse-papier"
 #~ msgid "Create a new private key"
 #~ msgstr "Create a new private key"
 
-#: src/screens/SelectKey/SelectKey.tsx:275
+#: src/screens/SelectKey/SelectKey.tsx:278
 msgid "Create a new wallet key"
 msgstr "Créer une nouvelle clé de portefeuille"
 
-#: src/screens/SelectKey/SelectKey.tsx:267
+#: src/screens/SelectKey/SelectKey.tsx:270
 msgid "Create a new wallet key to get started with Chia."
 msgstr "Créez une nouvelle clé de portefeuille pour démarrer avec Chia."
 
@@ -279,7 +279,7 @@ msgstr "Plus de 5 minutes"
 msgid "Loading details"
 msgstr "Chargement des détails"
 
-#: src/screens/SelectKey/SelectKey.tsx:237
+#: src/screens/SelectKey/SelectKey.tsx:240
 msgid "Loading keys"
 msgstr "Chargement des clés"
 
@@ -338,7 +338,7 @@ msgstr "Non connecté"
 msgid "OK"
 msgstr "D'accord"
 
-#: src/screens/SelectKey/SelectKey.tsx:259
+#: src/screens/SelectKey/SelectKey.tsx:262
 msgid "Open a world of possibilities."
 msgstr "Ouvrez un monde de possibilités."
 
@@ -508,11 +508,11 @@ msgstr "Transaction pas encore transmise au nœud"
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "La transaction a été transmise au réseau et est maintenant incluse dans la mempool."
 
-#: src/screens/SelectKey/SelectKey.tsx:244
+#: src/screens/SelectKey/SelectKey.tsx:247
 msgid "Try Again"
 msgstr "Réessayer"
 
-#: src/screens/SelectKey/SelectKey.tsx:248
+#: src/screens/SelectKey/SelectKey.tsx:251
 msgid "Unable to load keys"
 msgstr "Impossible de charger les clés"
 
@@ -551,7 +551,7 @@ msgstr "Porte-monnaie {0}"
 msgid "Wallet Fingerprint"
 msgstr "Empreinte du porte-monnaie"
 
-#: src/screens/SelectKey/SelectKey.tsx:224
+#: src/screens/SelectKey/SelectKey.tsx:227
 msgid "Wallet Keys"
 msgstr "Clés des portefeuilles"
 

@@ -3213,7 +3213,7 @@ msgstr ""
 #~ msgid "{key} ({0})"
 #~ msgstr ""
 
-#: src/components/offers/NFTOfferViewer.tsx:208
+#: src/components/offers/NFTOfferViewer.tsx:209
 #: src/components/offers/OfferSummary.tsx:174
 msgid "{makerFee, plural, one {mojo} other {mojos}}"
 msgstr ""
@@ -3307,7 +3307,7 @@ msgstr ""
 msgid "Accept Data Layer Offer"
 msgstr ""
 
-#: src/components/offers/NFTOfferViewer.tsx:644
+#: src/components/offers/NFTOfferViewer.tsx:648
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:21
 #: src/components/offers2/OfferBuilderViewer.tsx:307
 #: src/components/offers2/OfferBuilderViewer.tsx:372
@@ -3355,8 +3355,8 @@ msgstr "耕地を追加"
 #: src/components/farm/FarmHero.tsx:37
 #: src/components/plot/add/PlotAddForm.tsx:254
 #: src/components/plot/overview/PlotOverviewHero.tsx:43
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:199
-#: src/components/plotNFT/PlotNFTCard.tsx:233
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:200
+#: src/components/plotNFT/PlotNFTCard.tsx:234
 msgid "Add a Plot"
 msgstr "耕地を追加"
 
@@ -3494,7 +3494,7 @@ msgstr "代替のtmpdir/tmpdir2"
 #~ msgid "Always Reject"
 #~ msgstr "Always Reject"
 
-#: src/components/offers/NFTOfferEditor.tsx:233
+#: src/components/offers/NFTOfferEditor.tsx:234
 #: src/components/offers/OfferEditorConditionsPanel.tsx:130
 #: src/components/offers2/OfferBuilderNFTRoyalties.tsx:121
 #: src/components/offers2/OfferBuilderWalletAmount.tsx:36
@@ -3505,7 +3505,7 @@ msgstr ""
 msgid "Amount before adding royalties"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:592
+#: src/components/offers/NFTOfferEditor.tsx:596
 #: src/components/offers/OfferEditor.tsx:96
 msgid "Amount exceeds spendable balance"
 msgstr ""
@@ -3590,7 +3590,7 @@ msgstr ""
 #~ msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
 #~ msgstr "Are you sure you want to delete the plot? The plot cannot be recovered."
 
-#: src/components/plotNFT/PlotNFTCard.tsx:114
+#: src/components/plotNFT/PlotNFTCard.tsx:115
 msgid "Are you sure you want to delete unconfirmed transactions?"
 msgstr "未確認の取引を削除してもよろしいですか?"
 
@@ -3610,11 +3610,11 @@ msgstr ""
 #~ msgid "Are you sure you want to quit?"
 #~ msgstr "Are you sure you want to quit?"
 
-#: src/components/vcs/VCCard.tsx:213
+#: src/components/vcs/VCCard.tsx:216
 msgid "Are you sure you want to remove"
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:215
+#: src/components/vcs/VCCard.tsx:218
 msgid "Are you sure you want to revoke"
 msgstr ""
 
@@ -3694,7 +3694,7 @@ msgstr "プールコントラクトアドレスから自動生成された名前
 msgid "Avg"
 msgstr "平均"
 
-#: src/components/offers/NFTOfferViewer.tsx:635
+#: src/components/offers/NFTOfferViewer.tsx:639
 msgid "Back"
 msgstr "戻る"
 
@@ -3896,7 +3896,7 @@ msgstr "チャレンジのハッシュ値"
 msgid "Change"
 msgstr "変更する"
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:188
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:197
 msgid "Change default timing."
 msgstr ""
 
@@ -3905,11 +3905,11 @@ msgid "Change Log File Location"
 msgstr ""
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:290
-#: src/components/settings/SettingsPanel.tsx:120
+#: src/components/settings/SettingsPanel.tsx:121
 msgid "Change Passphrase"
 msgstr "パスフレーズを変更する"
 
-#: src/components/plotNFT/PlotNFTCard.tsx:336
+#: src/components/plotNFT/PlotNFTCard.tsx:337
 #: src/components/plotNFT/PlotNFTChangePool.tsx:109
 msgid "Change Pool"
 msgstr "プールの変更"
@@ -4009,7 +4009,7 @@ msgid "Claim assets sent to you automatically when the claw back time period exp
 msgstr ""
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:131
-#: src/components/plotNFT/PlotNFTCard.tsx:321
+#: src/components/plotNFT/PlotNFTCard.tsx:322
 msgid "Claim Rewards"
 msgstr "報酬を受け取る"
 
@@ -4068,7 +4068,7 @@ msgstr "各サービスを終了中"
 #~ msgid "Coin Id"
 #~ msgstr "Coin Id"
 
-#: src/components/vcs/VCCard.tsx:147
+#: src/components/vcs/VCCard.tsx:150
 msgid "Coin ID"
 msgstr ""
 
@@ -4141,7 +4141,7 @@ msgstr ""
 msgid "Confirm Passphrase"
 msgstr "パスフレーズを確認"
 
-#: src/components/plotNFT/PlotNFTCard.tsx:105
+#: src/components/plotNFT/PlotNFTCard.tsx:106
 msgid "Confirmation"
 msgstr "確認"
 
@@ -4196,8 +4196,8 @@ msgstr "接続状態:"
 msgid "Connection type"
 msgstr "接続の種類"
 
-#: src/components/addressbook/ContactAdd.tsx:343
-#: src/components/addressbook/ContactEdit.tsx:358
+#: src/components/addressbook/ContactAdd.tsx:345
+#: src/components/addressbook/ContactEdit.tsx:360
 msgid "Contact Name"
 msgstr ""
 
@@ -4301,7 +4301,7 @@ msgstr "NFTプロットを作成"
 #~ msgid "Create a spend bundle to mint multiple NFTs"
 #~ msgstr "Create a spend bundle to mint multiple NFTs"
 
-#: src/components/offers/NFTOfferEditor.tsx:718
+#: src/components/offers/NFTOfferEditor.tsx:722
 msgid "Create an NFT Offer"
 msgstr ""
 
@@ -4335,7 +4335,7 @@ msgstr ""
 #~ msgstr "Create new Remote Wallet"
 
 #: src/components/nfts/NFTContextualActions.tsx:152
-#: src/components/offers/NFTOfferEditor.tsx:439
+#: src/components/offers/NFTOfferEditor.tsx:443
 #: src/components/offers/OfferEditor.tsx:156
 #: src/components/offers/OfferManager.tsx:393
 #: src/components/offers2/CreateOfferBuilder.tsx:177
@@ -4388,16 +4388,16 @@ msgstr "セルフプールのためのNFTプロットを作成"
 msgid "Creation Date"
 msgstr "作成日時"
 
-#: src/components/offers/NFTOfferViewer.tsx:520
+#: src/components/offers/NFTOfferViewer.tsx:524
 msgid "Creator Fee ({0}%)"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:331
+#: src/components/offers/NFTOfferEditor.tsx:335
 msgid "Creator Fee ({royaltyPercentage}%)"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:334
-#: src/components/offers/NFTOfferViewer.tsx:523
+#: src/components/offers/NFTOfferEditor.tsx:338
+#: src/components/offers/NFTOfferViewer.tsx:527
 msgid "Creator royalty percentage seems high"
 msgstr ""
 
@@ -4410,8 +4410,8 @@ msgstr "認証情報"
 msgid "Currency code is not defined"
 msgstr "通貨コードが定義されていません"
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:121
-#: src/components/plotNFT/PlotNFTCard.tsx:155
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:122
+#: src/components/plotNFT/PlotNFTCard.tsx:156
 msgid "Current Difficulty"
 msgstr "現在の難易度"
 
@@ -4419,8 +4419,8 @@ msgstr "現在の難易度"
 msgid "Current Passphrase"
 msgstr "現在のパスフレーズ"
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:137
-#: src/components/plotNFT/PlotNFTCard.tsx:171
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:138
+#: src/components/plotNFT/PlotNFTCard.tsx:172
 msgid "Current Points Balance"
 msgstr "現在のポイントバランス"
 
@@ -4440,7 +4440,7 @@ msgstr ""
 msgid "Data Hash"
 msgstr ""
 
-#: src/components/offers2/DataLayerOfferViewer.tsx:149
+#: src/components/offers2/DataLayerOfferViewer.tsx:151
 msgid "Data Layer Offer"
 msgstr ""
 
@@ -4501,7 +4501,7 @@ msgstr "遅延時間"
 #: src/components/offers2/OfferIncomingTable.tsx:113
 #: src/components/plot/PlotAction.tsx:36
 #: src/components/plot/queue/PlotQueueActions.tsx:65
-#: src/components/plotNFT/PlotNFTCard.tsx:106
+#: src/components/plotNFT/PlotNFTCard.tsx:107
 #: src/hooks/useBlockchainNotifications.tsx:162
 msgid "Delete"
 msgstr ""
@@ -4527,11 +4527,11 @@ msgstr ""
 #~ msgid "Delete Plot"
 #~ msgstr "Delete Plot"
 
-#: src/components/plotNFT/PlotNFTCard.tsx:261
+#: src/components/plotNFT/PlotNFTCard.tsx:262
 msgid "Delete Unconfirmed Transactions"
 msgstr "承認待ちの取引を削除"
 
-#: src/components/vcs/VCCard.tsx:311
+#: src/components/vcs/VCCard.tsx:314
 msgid "Delete Verifiable Credential"
 msgstr ""
 
@@ -4543,7 +4543,7 @@ msgstr "鍵を削除中"
 msgid "Depending on your system configuration, you may find that an alternative plotter produces plots faster than the default Chia Proof of Space plotter. If unsure, use the default Chia Proof of Space plotter."
 msgstr "システム構成によっては、デフォルトの Chia Proof of Space プロッターよりも他のプロッターの方が高速にプロットを作成できる場合があります。よくわからない場合は、デフォルトの Chia Proof of Space プロッターを使用してください。"
 
-#: src/components/settings/SettingsPanel.tsx:167
+#: src/components/settings/SettingsPanel.tsx:168
 msgid "Derivation Index"
 msgstr ""
 
@@ -4612,7 +4612,7 @@ msgstr ""
 msgid "Difficulty"
 msgstr "難易度"
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:223
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:232
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:91
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:77
 #: src/components/settings/SettingsExpiringOffers.tsx:87
@@ -4799,8 +4799,8 @@ msgstr ""
 msgid "Edit Contact"
 msgstr ""
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:223
-#: src/components/plotNFT/PlotNFTCard.tsx:252
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:224
+#: src/components/plotNFT/PlotNFTCard.tsx:253
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:66
 msgid "Edit Payout Instructions"
 msgstr "支払い指示を編集"
@@ -4928,10 +4928,10 @@ msgstr "パスフレーズを入力してください:"
 
 #: src/components/helpers/ErrorMessage.tsx:14
 #: src/components/offers2/OfferDetails.tsx:42
-#: src/components/plot/PlotStatus.tsx:21
 #: src/components/plot/PlotStatus.tsx:22
-#: src/components/plot/queue/PlotQueueIndicator.tsx:23
-#: src/components/vcs/VCCard.tsx:272
+#: src/components/plot/PlotStatus.tsx:23
+#: src/components/plot/queue/PlotQueueIndicator.tsx:25
+#: src/components/vcs/VCCard.tsx:275
 msgid "Error"
 msgstr "エラー"
 
@@ -5009,7 +5009,7 @@ msgstr "最終ディレクトリを除外"
 msgid "Expected Total plots passing filter"
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:161
+#: src/components/vcs/VCCard.tsx:164
 msgid "Expiration"
 msgstr ""
 
@@ -5018,7 +5018,7 @@ msgstr ""
 #~ msgstr ""
 
 #: src/components/offers/OfferManager.tsx:170
-#: src/components/vcs/VCCard.tsx:166
+#: src/components/vcs/VCCard.tsx:169
 msgid "Expired"
 msgstr ""
 
@@ -5048,7 +5048,7 @@ msgstr ""
 msgid "Failed partials"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:583
+#: src/components/offers/NFTOfferEditor.tsx:587
 msgid "Failed to decode NFT identifier"
 msgstr ""
 
@@ -5089,11 +5089,11 @@ msgstr ""
 msgid "Farm Summary"
 msgstr ""
 
-#: src/components/plot/PlotStatus.tsx:29
+#: src/components/plot/PlotStatus.tsx:30
 msgid "Farmer is not connected"
 msgstr "農家が未接続"
 
-#: src/components/plot/PlotStatus.tsx:30
+#: src/components/plot/PlotStatus.tsx:31
 msgid "Farmer is not running"
 msgstr "農家が未実行"
 
@@ -5129,7 +5129,7 @@ msgstr "Farmer Reward Addressは空欄にできません。"
 msgid "Farmers earn block rewards and transaction fees by committing spare space to the network to help secure transactions. This is where your farm will be once you add a plot. <0>Learn more</0>"
 msgstr "農家は空いている容量をネットワークに提供することで取引の正確性を担保し、対価としてブロック報酬や取引手数料を得られます。耕地を追加したら、ここにあなたの畑が表示されます。<0>詳しく</0>"
 
-#: src/components/plot/PlotStatus.tsx:18
+#: src/components/plot/PlotStatus.tsx:19
 msgid "Farming"
 msgstr "耕作中"
 
@@ -5177,7 +5177,7 @@ msgstr ""
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:291
 #: src/components/nfts/NFTTransferAction.tsx:142
 #: src/components/offers/ConfirmOfferCancellation.tsx:109
-#: src/components/offers/NFTOfferViewer.tsx:617
+#: src/components/offers/NFTOfferViewer.tsx:621
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:158
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:122
 #: src/components/pool/PoolInfo.tsx:18
@@ -5186,7 +5186,7 @@ msgstr ""
 msgid "Fee"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:82
+#: src/components/offers/NFTOfferEditor.tsx:83
 #: src/components/offers/OfferEditorConditionsPanel.tsx:388
 msgid "Fee (Optional)"
 msgstr ""
@@ -5207,7 +5207,7 @@ msgstr "手数料"
 msgid "Fees Amount"
 msgstr "全手数料"
 
-#: src/components/offers/NFTOfferViewer.tsx:202
+#: src/components/offers/NFTOfferViewer.tsx:203
 #: src/components/offers/OfferSummary.tsx:168
 msgid "Fees included in offer:"
 msgstr ""
@@ -5283,7 +5283,7 @@ msgstr ""
 #~ msgid "Follow on Twitter"
 #~ msgstr "Follow on Twitter"
 
-#: src/components/offers2/DataLayerOfferViewer.tsx:99
+#: src/components/offers2/DataLayerOfferViewer.tsx:101
 msgid "For Store Update"
 msgstr ""
 
@@ -5758,7 +5758,7 @@ msgstr "進行中"
 #~ msgid "Include Wallet Metadata"
 #~ msgstr "Include Wallet Metadata"
 
-#: src/components/offers/NFTOfferEditor.tsx:87
+#: src/components/offers/NFTOfferEditor.tsx:88
 #: src/components/offers/OfferEditorConditionsPanel.tsx:394
 msgid "Including a fee in the offer can help expedite the transaction when the offer is accepted. The recommended minimum fee is 0.000005 XCH (5,000,000 mojos)"
 msgstr ""
@@ -5817,7 +5817,7 @@ msgid "Interval (in seconds) in which directories are scanned to refresh the lis
 msgstr ""
 
 #: src/components/signVerify/VerifyMessage.tsx:169
-#: src/components/vcs/VCCard.tsx:172
+#: src/components/vcs/VCCard.tsx:175
 msgid "Invalid"
 msgstr ""
 
@@ -5829,7 +5829,7 @@ msgstr ""
 #~ msgid "Invalid metadata url"
 #~ msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:581
+#: src/components/offers/NFTOfferEditor.tsx:585
 msgid "Invalid NFT identifier"
 msgstr ""
 
@@ -5878,11 +5878,11 @@ msgstr ""
 #~ msgid "Is notification visible to all paired fingerprints"
 #~ msgstr "Is notification visible to all paired fingerprints"
 
-#: src/components/vcs/VCCard.tsx:159
+#: src/components/vcs/VCCard.tsx:162
 msgid "Issued"
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:119
+#: src/components/vcs/VCCard.tsx:122
 msgid "Issuer DID"
 msgstr ""
 
@@ -5920,7 +5920,7 @@ msgstr "プールにてファーミングし、より安定した報酬でXCHを
 msgid "Join farming pools"
 msgstr "プールファーミングに参加する"
 
-#: src/components/plotNFT/PlotNFTCard.tsx:336
+#: src/components/plotNFT/PlotNFTCard.tsx:337
 msgid "Join Pool"
 msgstr "プールに参加"
 
@@ -6012,13 +6012,13 @@ msgstr ""
 msgid "Latest Block Challenges"
 msgstr "最近のブロックチャレンジ"
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:255
-#: src/components/plotNFT/PlotNFTCard.tsx:292
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:256
+#: src/components/plotNFT/PlotNFTCard.tsx:293
 msgid "Launcher Id"
 msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:63
-#: src/components/vcs/VCCard.tsx:132
+#: src/components/vcs/VCCard.tsx:135
 msgid "Launcher ID"
 msgstr ""
 
@@ -6275,7 +6275,7 @@ msgstr ""
 msgid "MiB Up/Down"
 msgstr "アップロード・ダウンロード [MiB]"
 
-#: src/components/settings/SettingsPanel.tsx:136
+#: src/components/settings/SettingsPanel.tsx:137
 msgid "Migrate Keyring"
 msgstr ""
 
@@ -6287,7 +6287,7 @@ msgstr ""
 msgid "Migration required"
 msgstr ""
 
-#: src/components/settings/SettingsPanel.tsx:90
+#: src/components/settings/SettingsPanel.tsx:91
 msgid "Migration required to support passphrase protection"
 msgstr ""
 
@@ -6399,7 +6399,7 @@ msgstr ""
 msgid "Multi-select"
 msgstr ""
 
-#: src/components/addressbook/AddressBookSideBar.tsx:160
+#: src/components/addressbook/AddressBookSideBar.tsx:167
 #: src/components/addressbook/MyContact.tsx:112
 msgid "My Contact Info"
 msgstr ""
@@ -6416,11 +6416,11 @@ msgstr ""
 #: src/components/addressbook/ContactAdd.tsx:47
 #: src/components/addressbook/ContactAdd.tsx:105
 #: src/components/addressbook/ContactAdd.tsx:163
-#: src/components/addressbook/ContactAdd.tsx:351
+#: src/components/addressbook/ContactAdd.tsx:353
 #: src/components/addressbook/ContactEdit.tsx:50
 #: src/components/addressbook/ContactEdit.tsx:108
 #: src/components/addressbook/ContactEdit.tsx:166
-#: src/components/addressbook/ContactEdit.tsx:366
+#: src/components/addressbook/ContactEdit.tsx:368
 msgid "Name"
 msgstr ""
 
@@ -6432,7 +6432,7 @@ msgstr ""
 msgid "Need some {currencyCode}?"
 msgstr ""
 
-#: src/components/offers/NFTOfferViewer.tsx:586
+#: src/components/offers/NFTOfferViewer.tsx:590
 msgid "Net Proceeds"
 msgstr ""
 
@@ -6440,7 +6440,7 @@ msgstr ""
 msgid "Netspace"
 msgstr ""
 
-#: src/components/offers/NFTOfferViewer.tsx:609
+#: src/components/offers/NFTOfferViewer.tsx:613
 #: src/components/offers2/OfferBuilderViewer.tsx:338
 msgid "Network Fee (Optional)"
 msgstr ""
@@ -6485,7 +6485,7 @@ msgstr ""
 #~ msgid "New Recovery DID List"
 #~ msgstr "New Recovery DID List"
 
-#: src/components/offers2/DataLayerOfferViewer.tsx:57
+#: src/components/offers2/DataLayerOfferViewer.tsx:59
 msgid "New Root"
 msgstr ""
 
@@ -6494,7 +6494,7 @@ msgstr ""
 msgid "Next"
 msgstr "次へ"
 
-#: src/components/offers/NFTOfferEditor.tsx:213
+#: src/components/offers/NFTOfferEditor.tsx:214
 #: src/components/offers2/OfferBuilderNFTSection.tsx:46
 #: src/components/settings/Settings.tsx:38
 #: src/components/settings/SettingsNFT.tsx:97
@@ -6520,7 +6520,7 @@ msgstr ""
 #~ msgid "NFT Coin Ids"
 #~ msgstr "NFT Coin Ids"
 
-#: src/components/offers/NFTOfferEditor.tsx:618
+#: src/components/offers/NFTOfferEditor.tsx:622
 msgid "NFT details not available"
 msgstr ""
 
@@ -6546,7 +6546,7 @@ msgstr ""
 msgid "NFT ID"
 msgstr "NFT ID"
 
-#: src/components/offers/NFTOfferEditor.tsx:215
+#: src/components/offers/NFTOfferEditor.tsx:216
 msgid "NFT Identifier"
 msgstr "NFT 識別子"
 
@@ -6724,8 +6724,8 @@ msgstr ""
 #: src/components/farm/card/FarmCardNotAvailable.tsx:22
 #: src/components/nfts/NFTMetadata.tsx:22
 #: src/components/offers2/OfferBuilderValue.tsx:73
-#: src/components/plot/PlotStatus.tsx:20
-#: src/components/plotNFT/PlotNFTCard.tsx:307
+#: src/components/plot/PlotStatus.tsx:21
+#: src/components/plotNFT/PlotNFTCard.tsx:308
 msgid "Not Available"
 msgstr "該当なし"
 
@@ -6805,8 +6805,8 @@ msgstr ""
 msgid "Number of plots"
 msgstr ""
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:106
-#: src/components/plotNFT/PlotNFTCard.tsx:140
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:107
+#: src/components/plotNFT/PlotNFTCard.tsx:141
 msgid "Number of Plots"
 msgstr ""
 
@@ -6857,7 +6857,7 @@ msgstr ""
 msgid "Offer Builder"
 msgstr "取引依頼ビルダー"
 
-#: src/components/offers/NFTOfferViewer.tsx:175
+#: src/components/offers/NFTOfferViewer.tsx:176
 #: src/components/offers2/OfferBuilderValue.tsx:217
 #: src/components/offers2/OfferBuilderViewer.tsx:403
 msgid "Offer cannot be accepted because you don't possess the requested assets"
@@ -6872,7 +6872,7 @@ msgstr ""
 msgid "Offer Details"
 msgstr ""
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:182
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:191
 msgid "Offer Expiration"
 msgstr ""
 
@@ -6889,7 +6889,7 @@ msgstr ""
 msgid "Offer has been accepted and is awaiting confirmation."
 msgstr ""
 
-#: src/components/offers2/OfferBuilderExpirationCountdown.tsx:31
+#: src/components/offers2/OfferBuilderExpirationCountdown.tsx:32
 msgid "Offer has expired"
 msgstr ""
 
@@ -6917,9 +6917,9 @@ msgstr "取引依頼管理"
 msgid "Offer Shared"
 msgstr ""
 
-#: src/components/offers2/OfferBuilderExpirationCountdown.tsx:16
-#: src/components/offers2/OfferBuilderExpirationCountdown.tsx:21
-#: src/components/offers2/OfferBuilderExpirationCountdown.tsx:26
+#: src/components/offers2/OfferBuilderExpirationCountdown.tsx:17
+#: src/components/offers2/OfferBuilderExpirationCountdown.tsx:22
+#: src/components/offers2/OfferBuilderExpirationCountdown.tsx:27
 msgid "Offer will expire in {0} {1}"
 msgstr ""
 
@@ -6932,7 +6932,7 @@ msgstr ""
 msgid "Offered"
 msgstr "差し出し内容"
 
-#: src/components/offers2/DataLayerOfferViewer.tsx:164
+#: src/components/offers2/DataLayerOfferViewer.tsx:166
 msgid "Offered Store Updates ({0})"
 msgstr ""
 
@@ -7137,7 +7137,7 @@ msgstr ""
 #: src/components/app/AppPassPrompt.tsx:138
 #: src/components/settings/RemovePassphrasePrompt.tsx:130
 #: src/components/settings/SetPassphrasePrompt.tsx:175
-#: src/components/settings/SettingsPanel.tsx:184
+#: src/components/settings/SettingsPanel.tsx:185
 msgid "Passphrase"
 msgstr ""
 
@@ -7153,19 +7153,19 @@ msgstr ""
 msgid "Passphrase Hint (Optional)"
 msgstr ""
 
-#: src/components/settings/SettingsPanel.tsx:61
+#: src/components/settings/SettingsPanel.tsx:62
 msgid "Passphrase protection has been disabled"
 msgstr ""
 
-#: src/components/settings/SettingsPanel.tsx:99
+#: src/components/settings/SettingsPanel.tsx:100
 msgid "Passphrase protection is disabled"
 msgstr ""
 
-#: src/components/settings/SettingsPanel.tsx:96
+#: src/components/settings/SettingsPanel.tsx:97
 msgid "Passphrase protection is enabled"
 msgstr ""
 
-#: src/components/settings/SettingsPanel.tsx:91
+#: src/components/settings/SettingsPanel.tsx:92
 msgid "Passphrase support requires migrating your keys to a new keyring"
 msgstr ""
 
@@ -7182,7 +7182,7 @@ msgstr ""
 msgid "Paste the address from WalletConnect below."
 msgstr ""
 
-#: src/components/plotNFT/PlotNFTCard.tsx:303
+#: src/components/plotNFT/PlotNFTCard.tsx:304
 msgid "Payout Address"
 msgstr "支払い先アドレス"
 
@@ -7215,7 +7215,7 @@ msgstr ""
 msgid "Pending Confirm"
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:191
+#: src/components/vcs/VCCard.tsx:194
 msgid "Pending removal"
 msgstr ""
 
@@ -7245,7 +7245,7 @@ msgstr ""
 msgid "Please enter a valid numeric fee"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:587
+#: src/components/offers/NFTOfferEditor.tsx:591
 msgid "Please enter an amount"
 msgstr ""
 
@@ -7261,7 +7261,7 @@ msgstr ""
 msgid "Please enter an amount for each row"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:579
+#: src/components/offers/NFTOfferEditor.tsx:583
 msgid "Please enter an NFT identifier"
 msgstr ""
 
@@ -7301,7 +7301,7 @@ msgstr ""
 msgid "Please select an asset for each token"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:585
+#: src/components/offers/NFTOfferEditor.tsx:589
 msgid "Please select an asset type"
 msgstr ""
 
@@ -7447,7 +7447,7 @@ msgid "Plotter"
 msgstr ""
 
 #: src/components/plot/PlotPlotting.tsx:45
-#: src/components/plot/queue/PlotQueueIndicator.tsx:35
+#: src/components/plot/queue/PlotQueueIndicator.tsx:37
 msgid "Plotting"
 msgstr "耕し中"
 
@@ -7467,18 +7467,18 @@ msgstr ""
 msgid "Plotting with bitfield enabled has about 30% less overall writes and is now almost always faster. You may see reduced memory requirements with bitfield plotting disabled. If your CPU design is from before 2010 you may have to disable bitfield plotting."
 msgstr "ビットフィールドを有効にして耕すと、書き込み量が30%ほと減少し、現状ではほとんどの場合速く完了します。ビットフィールドを無効にするとRAMの必要量が減る可能性があります。ご使用のCPUが2010年以前の物ですと、ビットフィールド無効しか使えない可能性があります。"
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:163
-#: src/components/plotNFT/PlotNFTCard.tsx:197
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:164
+#: src/components/plotNFT/PlotNFTCard.tsx:198
 msgid "Points Found in Last 24 Hours"
 msgstr ""
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:154
-#: src/components/plotNFT/PlotNFTCard.tsx:188
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:155
+#: src/components/plotNFT/PlotNFTCard.tsx:189
 msgid "Points Found Since Start"
 msgstr ""
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:172
-#: src/components/plotNFT/PlotNFTCard.tsx:206
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:173
+#: src/components/plotNFT/PlotNFTCard.tsx:207
 msgid "Points Successful in Last 24 Hours"
 msgstr ""
 
@@ -7547,8 +7547,8 @@ msgstr "プール報酬アドレスは空欄にできません。"
 msgid "Pool Reward Amount"
 msgstr "プール報酬額"
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:234
-#: src/components/plotNFT/PlotNFTCard.tsx:271
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:235
+#: src/components/plotNFT/PlotNFTCard.tsx:272
 #: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:69
 msgid "Pool:"
 msgstr "プール:"
@@ -7676,7 +7676,7 @@ msgstr ""
 msgid "Proof of Space Size"
 msgstr "空間証明の大きさ"
 
-#: src/components/vcs/VCCard.tsx:179
+#: src/components/vcs/VCCard.tsx:182
 msgid "Proofs"
 msgstr ""
 
@@ -7745,7 +7745,7 @@ msgstr ""
 msgid "Queue Name"
 msgstr "キュー名"
 
-#: src/components/plot/queue/PlotQueueIndicator.tsx:36
+#: src/components/plot/queue/PlotQueueIndicator.tsx:38
 msgid "Queued"
 msgstr "順番待ち"
 
@@ -7868,7 +7868,7 @@ msgstr "移行が成功した場合、古いキーリングから鍵を削除す
 
 #: src/components/settings/RemovePassphrasePrompt.tsx:112
 #: src/components/settings/RemovePassphrasePrompt.tsx:172
-#: src/components/settings/SettingsPanel.tsx:147
+#: src/components/settings/SettingsPanel.tsx:148
 msgid "Remove Passphrase"
 msgstr "パスフレーズを削除"
 
@@ -7876,12 +7876,12 @@ msgstr "パスフレーズを削除"
 #~ msgid "Remove Subscriptions"
 #~ msgstr "Remove Subscriptions"
 
-#: src/components/vcs/VCCard.tsx:209
-#: src/components/vcs/VCCard.tsx:301
+#: src/components/vcs/VCCard.tsx:212
+#: src/components/vcs/VCCard.tsx:304
 msgid "Remove Verifiable Credential"
 msgstr ""
 
-#: src/components/plot/queue/PlotQueueIndicator.tsx:37
+#: src/components/plot/queue/PlotQueueIndicator.tsx:39
 msgid "Removing"
 msgstr "削除中"
 
@@ -8003,17 +8003,17 @@ msgstr "要求内容"
 #~ msgid "Required Number of DIDs for Verification"
 #~ msgstr "Required Number of DIDs for Verification"
 
-#: src/components/offers2/DataLayerOfferViewer.tsx:86
+#: src/components/offers2/DataLayerOfferViewer.tsx:88
 msgid "Required Proofs"
 msgstr ""
 
-#: src/components/offers2/DataLayerOfferViewer.tsx:102
+#: src/components/offers2/DataLayerOfferViewer.tsx:104
 msgid "Requires Proof From Store"
 msgstr ""
 
 #: src/components/farm/FarmHealth.tsx:295
 #: src/components/farm/FarmHealth.tsx:357
-#: src/components/offers/NFTOfferEditor.tsx:436
+#: src/components/offers/NFTOfferEditor.tsx:440
 #: src/components/offers/OfferEditor.tsx:153
 #: src/components/settings/IpfsGatewayUrl.tsx:129
 #: src/components/settings/SettingsIntegration.tsx:222
@@ -8080,12 +8080,12 @@ msgstr ""
 msgid "Revocable"
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:209
-#: src/components/vcs/VCCard.tsx:311
+#: src/components/vcs/VCCard.tsx:212
+#: src/components/vcs/VCCard.tsx:314
 msgid "Revoke Verifiable Credential"
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:168
+#: src/components/vcs/VCCard.tsx:171
 msgid "Revoked"
 msgstr ""
 
@@ -8151,7 +8151,7 @@ msgstr "ヘッダーハッシュ値でブロックを検索"
 msgid "Search on Tail Database"
 msgstr ""
 
-#: src/components/addressbook/AddressBookSideBar.tsx:150
+#: src/components/addressbook/AddressBookSideBar.tsx:157
 #: src/components/nfts/gallery/NFTGallery.tsx:332
 msgid "Search..."
 msgstr ""
@@ -8166,7 +8166,7 @@ msgstr "2つ目の一時フォルダの場所"
 #~ msgid "Secure"
 #~ msgstr "Secure"
 
-#: src/components/settings/SettingsPanel.tsx:93
+#: src/components/settings/SettingsPanel.tsx:94
 msgid "Secure your keychain using a strong passphrase"
 msgstr "強力なパスフレーズを使用してキーチェーンを保護しましょう"
 
@@ -8304,7 +8304,7 @@ msgstr ""
 msgid "Set a default time frame for all outbound XCH transactions."
 msgstr ""
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:185
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:194
 msgid "Set a time after which this offer expires."
 msgstr ""
 
@@ -8318,7 +8318,7 @@ msgstr ""
 
 #: src/components/settings/SetPassphrasePrompt.tsx:156
 #: src/components/settings/SetPassphrasePrompt.tsx:271
-#: src/components/settings/SettingsPanel.tsx:153
+#: src/components/settings/SettingsPanel.tsx:154
 msgid "Set Passphrase"
 msgstr ""
 
@@ -8499,7 +8499,7 @@ msgstr ""
 #~ msgid "Something went wrong"
 #~ msgstr ""
 
-#: src/components/app/AppTestnetIndicator.tsx:47
+#: src/components/app/AppTestnetIndicator.tsx:49
 msgid "Sorry, you can't switch to mainnet by clicking here..."
 msgstr ""
 
@@ -8564,7 +8564,7 @@ msgstr ""
 msgid "Stale Partials"
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:176
+#: src/components/vcs/VCCard.tsx:179
 msgid "Standard Version Number"
 msgstr ""
 
@@ -8605,13 +8605,13 @@ msgstr "状態"
 #: src/components/offers/OfferManager.tsx:192
 #: src/components/plot/PlotHarvesterPlots.tsx:74
 #: src/components/plot/PlotPlotting.tsx:26
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:101
-#: src/components/plotNFT/PlotNFTCard.tsx:130
-#: src/components/vcs/VCCard.tsx:164
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:102
+#: src/components/plotNFT/PlotNFTCard.tsx:131
+#: src/components/vcs/VCCard.tsx:167
 msgid "Status"
 msgstr "状態"
 
-#: src/components/offers2/DataLayerOfferViewer.tsx:43
+#: src/components/offers2/DataLayerOfferViewer.tsx:45
 msgid "Store {0}"
 msgstr ""
 
@@ -8641,7 +8641,7 @@ msgstr ""
 #~ msgid "Store Id"
 #~ msgstr "Store Id"
 
-#: src/components/offers2/DataLayerOfferViewer.tsx:49
+#: src/components/offers2/DataLayerOfferViewer.tsx:51
 msgid "Store ID"
 msgstr ""
 
@@ -8668,7 +8668,7 @@ msgstr "提出"
 
 #: src/components/notification/NotificationSendDialog.tsx:144
 #: src/components/offers2/OfferBuilderViewer.tsx:274
-#: src/components/vcs/VCCard.tsx:278
+#: src/components/vcs/VCCard.tsx:281
 #: src/hooks/useAcceptOfferHook.tsx:98
 msgid "Success"
 msgstr ""
@@ -8702,7 +8702,7 @@ msgstr "同期完了"
 #: src/components/dashboard/DashboardOverview.tsx:269
 #: src/components/farm/FarmHealth.tsx:124
 #: src/components/farm/FarmHealth.tsx:171
-#: src/components/plot/PlotStatus.tsx:19
+#: src/components/plot/PlotStatus.tsx:20
 msgid "Syncing"
 msgstr "同期中"
 
@@ -8760,7 +8760,7 @@ msgstr ""
 msgid "The claw back time can be manually adjusted per transaction."
 msgstr ""
 
-#: src/components/settings/SettingsPanel.tsx:169
+#: src/components/settings/SettingsPanel.tsx:170
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
 msgstr ""
 
@@ -8779,7 +8779,7 @@ msgstr ""
 #~ msgid "The following commands are not allowed to bypass confirmation."
 #~ msgstr "The following commands are not allowed to bypass confirmation."
 
-#: src/components/offers2/DataLayerOfferViewer.tsx:90
+#: src/components/offers2/DataLayerOfferViewer.tsx:92
 msgid "The following values must be proven to exist in the specified stores before this offer can be accepted."
 msgstr ""
 
@@ -8816,7 +8816,7 @@ msgstr ""
 msgid "The minimum required size for mainnet is k=32"
 msgstr "メインネットで必要な最小サイズは k=32 です"
 
-#: src/components/offers/NFTOfferViewer.tsx:590
+#: src/components/offers/NFTOfferViewer.tsx:594
 msgid "The net proceeds include the asking price, minus any associated creator fees (if the NFT has royalty payments enabled)."
 msgstr ""
 
@@ -8885,19 +8885,19 @@ msgstr "耕地作成に使用する種。プール pk 及び耕地 pk に依存�
 msgid "The signature was made by the private key associated with the wallet address. The signer can be assumed to be the owner of the private key."
 msgstr ""
 
-#: src/components/offers/NFTOfferViewer.tsx:564
+#: src/components/offers/NFTOfferViewer.tsx:568
 msgid "The total amount offered includes the offered purchase price, plus the optional offer creation fee.<0/>If the NFT has royalty payments enabled, those creator fees will be paid from the offered purchase price."
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:397
+#: src/components/offers/NFTOfferEditor.tsx:401
 msgid "The total amount offered includes the price you're willing to pay for the NFT, plus the optional offer creation fee. One or more coins totalling at least the amount shown below will be deducted from your spendable balance upon offer creation.<0/>If the NFT has royalty payments enabled, those creator fees will be paid by the party that accepts the offer."
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:388
+#: src/components/offers/NFTOfferEditor.tsx:392
 msgid "The total amount requested includes the asking price, plus the associated creator fees (if the NFT has royalty payments enabled). Creator fees will be paid by the party that accepts the offer.<0/>The optional offer creation fee is not included in this total, and will be deducted from your spendable balance upon offer creation."
 msgstr ""
 
-#: src/components/offers/NFTOfferViewer.tsx:553
+#: src/components/offers/NFTOfferViewer.tsx:557
 msgid "The total amount requested includes the asking price, plus the associated creator fees (if the NFT has royalty payments enabled).{0}"
 msgstr ""
 
@@ -8929,11 +8929,11 @@ msgstr ""
 msgid "These plots are invalid, you might want to delete them."
 msgstr "これらの耕地には問題があるため、削除をご検討ください。"
 
-#: src/components/offers2/DataLayerOfferViewer.tsx:168
+#: src/components/offers2/DataLayerOfferViewer.tsx:170
 msgid "These stores will have their roots updated to the specified values."
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:362
+#: src/components/offers/NFTOfferEditor.tsx:366
 msgid "They will receive"
 msgstr ""
 
@@ -8949,8 +8949,8 @@ msgstr ""
 msgid "This Data Layer offer contains no store updates and cannot be accepted."
 msgstr ""
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:114
-#: src/components/plotNFT/PlotNFTCard.tsx:148
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:115
+#: src/components/plotNFT/PlotNFTCard.tsx:149
 msgid "This difficulty is an artifically lower difficulty than on the real network, and is used when farming, in order to find more proofs and send them to the pool. The more plots you have, the higher difficulty you will have. However, the difficulty does not affect rewards."
 msgstr ""
 
@@ -8986,8 +8986,8 @@ msgstr "これが農家がブロックを作成した日時です。時間証明
 msgid "This is the timestamp of the most recent transaction block."
 msgstr ""
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:131
-#: src/components/plotNFT/PlotNFTCard.tsx:165
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:132
+#: src/components/plotNFT/PlotNFTCard.tsx:166
 msgid "This is the total number of points this plotNFT has with this pool, since the last payout. The pool will reset the points after making a payout."
 msgstr ""
 
@@ -8996,8 +8996,8 @@ msgstr ""
 #~ msgid "This is the total number of points your farmer has found for this plot NFT. Each k32 plot will get around 10 points per day, so if you have 10TiB, should should expect around 1000 points per day, or 41 points per hour."
 #~ msgstr "This is the total number of points your farmer has found for this plot NFT. Each k32 plot will get around 10 points per day, so if you have 10TiB, you should expect around 1000 points per day, or 41 points per hour."
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:147
-#: src/components/plotNFT/PlotNFTCard.tsx:181
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:148
+#: src/components/plotNFT/PlotNFTCard.tsx:182
 msgid "This is the total number of points your farmer has found for this plot NFT. Each k32 plot will get around 20 points per day, so if you have 10TiB, should should expect around 2000 points per day, or 82 points per hour."
 msgstr ""
 
@@ -9005,12 +9005,12 @@ msgstr ""
 msgid "This node is fully caught up and validating the network"
 msgstr "このノードは先端に辿り着いて、ネットワークの検証に携わっています"
 
-#: src/components/offers/NFTOfferViewer.tsx:217
+#: src/components/offers/NFTOfferViewer.tsx:218
 #: src/components/offers/OfferSummary.tsx:183
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted."
 msgstr ""
 
-#: src/components/offers/NFTOfferViewer.tsx:212
+#: src/components/offers/NFTOfferViewer.tsx:213
 #: src/components/offers/OfferSummary.tsx:178
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted. You may specify an additional fee if you feel that the included fee is too small."
 msgstr ""
@@ -9031,7 +9031,7 @@ msgstr ""
 #~ msgid "This offer is no longer valid. To understand why, click <0>here</0> to learn more."
 #~ msgstr "This offer is no longer valid. To understand why, click <0>here</0> to learn more."
 
-#: src/components/offers2/DataLayerOfferViewer.tsx:152
+#: src/components/offers2/DataLayerOfferViewer.tsx:154
 msgid "This offer proposes updates to Data Layer store roots. Accepting it will transition the listed stores to new roots. Dependencies specify values that must be proven to exist in other stores before acceptance."
 msgstr ""
 
@@ -9051,7 +9051,7 @@ msgstr ""
 msgid "This offer will not expire"
 msgstr ""
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:268
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:269
 msgid "This plot NFT is assigned to a different key. You can still create plots for this plot NFT, but you can not make changes."
 msgstr ""
 
@@ -9135,13 +9135,13 @@ msgstr ""
 msgid "Total amount including royalties"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:382
-#: src/components/offers/NFTOfferViewer.tsx:547
+#: src/components/offers/NFTOfferEditor.tsx:386
+#: src/components/offers/NFTOfferViewer.tsx:551
 msgid "Total Amount Offered"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:380
-#: src/components/offers/NFTOfferViewer.tsx:543
+#: src/components/offers/NFTOfferEditor.tsx:384
+#: src/components/offers/NFTOfferViewer.tsx:547
 msgid "Total Amount Requested"
 msgstr ""
 
@@ -9258,7 +9258,7 @@ msgstr ""
 msgid "Transaction protection"
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:266
+#: src/components/vcs/VCCard.tsx:269
 msgid "Transaction sent to blockchain successfully."
 msgstr ""
 
@@ -9320,7 +9320,7 @@ msgstr ""
 msgid "Turn this off if you don't have any compressed plots to harvest"
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:163
+#: src/components/vcs/VCCard.tsx:166
 msgid "Type"
 msgstr ""
 
@@ -9332,15 +9332,15 @@ msgstr ""
 msgid "Types{0}"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:634
+#: src/components/offers/NFTOfferEditor.tsx:638
 msgid "Unable to create an offer for an NFT that you do not own."
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:643
+#: src/components/offers/NFTOfferEditor.tsx:647
 msgid "Unable to create an offer for an NFT with a creator royalty percentage greater than 100%"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:371
+#: src/components/offers/NFTOfferEditor.tsx:375
 msgid "Unable to create an offer where the net amount is negative"
 msgstr ""
 
@@ -9378,7 +9378,7 @@ msgstr ""
 msgid "Unavailable"
 msgstr ""
 
-#: src/components/plotNFT/PlotNFTCard.tsx:135
+#: src/components/plotNFT/PlotNFTCard.tsx:136
 msgid "Unclaimed Rewards"
 msgstr ""
 
@@ -9404,7 +9404,7 @@ msgstr ""
 msgid "Unknown Asset"
 msgstr ""
 
-#: src/components/offers/NFTOfferViewer.tsx:372
+#: src/components/offers/NFTOfferViewer.tsx:373
 #: src/components/offers/OfferSummaryRow.tsx:150
 #: src/components/offers/OfferSummaryRow.tsx:151
 #: src/util/resolveOfferInfo.tsx:66
@@ -9424,7 +9424,7 @@ msgstr ""
 msgid "Unnamed Contact"
 msgstr ""
 
-#: src/components/offers/NFTOfferViewer.tsx:144
+#: src/components/offers/NFTOfferViewer.tsx:145
 msgid "Unrecognized asset"
 msgstr ""
 
@@ -9494,7 +9494,7 @@ msgstr ""
 #~ msgstr "User Transaction Fees"
 
 #: src/components/signVerify/VerifyMessage.tsx:165
-#: src/components/vcs/VCCard.tsx:170
+#: src/components/vcs/VCCard.tsx:173
 msgid "Valid"
 msgstr ""
 
@@ -9518,7 +9518,7 @@ msgstr ""
 #~ msgid "Value"
 #~ msgstr "Value"
 
-#: src/components/offers2/DataLayerOfferViewer.tsx:105
+#: src/components/offers2/DataLayerOfferViewer.tsx:107
 msgid "Values to Prove"
 msgstr ""
 
@@ -9538,15 +9538,15 @@ msgstr ""
 msgid "Verifiable Credential already exists."
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:265
+#: src/components/vcs/VCCard.tsx:268
 msgid "Verifiable Credential Removed"
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:280
+#: src/components/vcs/VCCard.tsx:283
 msgid "Verifiable Credential Removed."
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:282
+#: src/components/vcs/VCCard.tsx:285
 msgid "Verifiable Credential Revoked."
 msgstr ""
 
@@ -9608,7 +9608,7 @@ msgstr ""
 msgid "View and analyze Chia log files"
 msgstr ""
 
-#: src/components/vcs/VCCard.tsx:198
+#: src/components/vcs/VCCard.tsx:201
 msgid "View Credential Data"
 msgstr ""
 
@@ -9647,7 +9647,7 @@ msgstr ""
 msgid "View on Spacescan.io"
 msgstr ""
 
-#: src/components/plotNFT/PlotNFTCard.tsx:242
+#: src/components/plotNFT/PlotNFTCard.tsx:243
 msgid "View Pool Login Link"
 msgstr ""
 
@@ -9681,8 +9681,8 @@ msgstr ""
 #~ msgstr ""
 
 #: src/components/farm/card/FarmCardNotAvailable.tsx:25
-#: src/components/plot/PlotStatus.tsx:27
 #: src/components/plot/PlotStatus.tsx:28
+#: src/components/plot/PlotStatus.tsx:29
 msgid "Wait for synchronization"
 msgstr "同期待ち"
 
@@ -9949,7 +9949,7 @@ msgstr ""
 #~ msgid "You can now connect to {0} in your browser."
 #~ msgstr "You can now connect to {0} in your browser."
 
-#: src/components/plotNFT/PlotNFTCard.tsx:351
+#: src/components/plotNFT/PlotNFTCard.tsx:352
 msgid "You can still create plots for this plot NFT, but you can not make changes until sync is complete."
 msgstr ""
 
@@ -10011,7 +10011,7 @@ msgstr ""
 msgid "You will offer"
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:360
+#: src/components/offers/NFTOfferEditor.tsx:364
 #: src/components/offers/NFTOfferViewer.tsx:480
 msgid "You will receive"
 msgstr ""
@@ -10050,11 +10050,11 @@ msgstr ""
 msgid "Your passphrase can be stored in your system's secure credential store. Chia will be able to access your keys without prompting for your passphrase."
 msgstr ""
 
-#: src/components/settings/SettingsPanel.tsx:52
+#: src/components/settings/SettingsPanel.tsx:53
 msgid "Your passphrase has been set"
 msgstr ""
 
-#: src/components/settings/SettingsPanel.tsx:43
+#: src/components/settings/SettingsPanel.tsx:44
 msgid "Your passphrase has been updated"
 msgstr ""
 

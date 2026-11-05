@@ -116,11 +116,11 @@ msgstr "클립보드에 복사"
 #~ msgid "Create a new private key"
 #~ msgstr "Create a new private key"
 
-#: src/screens/SelectKey/SelectKey.tsx:275
+#: src/screens/SelectKey/SelectKey.tsx:278
 msgid "Create a new wallet key"
 msgstr ""
 
-#: src/screens/SelectKey/SelectKey.tsx:267
+#: src/screens/SelectKey/SelectKey.tsx:270
 msgid "Create a new wallet key to get started with Chia."
 msgstr ""
 
@@ -279,7 +279,7 @@ msgstr ""
 msgid "Loading details"
 msgstr ""
 
-#: src/screens/SelectKey/SelectKey.tsx:237
+#: src/screens/SelectKey/SelectKey.tsx:240
 msgid "Loading keys"
 msgstr ""
 
@@ -338,7 +338,7 @@ msgstr "연결되지 않음"
 msgid "OK"
 msgstr "확인"
 
-#: src/screens/SelectKey/SelectKey.tsx:259
+#: src/screens/SelectKey/SelectKey.tsx:262
 msgid "Open a world of possibilities."
 msgstr ""
 
@@ -508,11 +508,11 @@ msgstr "거래가 아직 노드로 전송되지 않음"
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "거래가 전체 노드로 성공적으로 전송되었고 mempool에 포함되었습니다."
 
-#: src/screens/SelectKey/SelectKey.tsx:244
+#: src/screens/SelectKey/SelectKey.tsx:247
 msgid "Try Again"
 msgstr "다시 시도"
 
-#: src/screens/SelectKey/SelectKey.tsx:248
+#: src/screens/SelectKey/SelectKey.tsx:251
 msgid "Unable to load keys"
 msgstr ""
 
@@ -551,7 +551,7 @@ msgstr ""
 msgid "Wallet Fingerprint"
 msgstr ""
 
-#: src/screens/SelectKey/SelectKey.tsx:224
+#: src/screens/SelectKey/SelectKey.tsx:227
 msgid "Wallet Keys"
 msgstr ""
 

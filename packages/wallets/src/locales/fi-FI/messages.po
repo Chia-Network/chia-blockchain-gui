@@ -116,7 +116,7 @@ msgstr "Valtuutettu Lompakko"
 msgid "Authorized providers"
 msgstr "Valtuutetut palveluntarjoajat"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:235
+#: src/components/ClawbackClaimTransactionDialog.tsx:245
 msgid "Auto-claim transactions with this fee from now on."
 msgstr "Lunasta transaktiot automaattisesti tällä maksusummalla tästä lähtien."
 
@@ -157,7 +157,7 @@ msgid "Claim transaction"
 msgstr "Lunasta transaktio"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:139
-#: src/components/ClawbackClaimTransactionDialog.tsx:268
+#: src/components/ClawbackClaimTransactionDialog.tsx:278
 msgid "Claim Transaction"
 msgstr "Lunasta Transaktio"
 
@@ -177,7 +177,7 @@ msgstr "Takaisinvedon vanhentuminen"
 msgid "Claw back this transaction"
 msgstr "Takaisinvedä transaktio"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:268
+#: src/components/ClawbackClaimTransactionDialog.tsx:278
 msgid "Claw back Transaction"
 msgstr "Takaisinvedä transaktio"
 
@@ -209,8 +209,8 @@ msgstr "Vedetään takaisin..."
 #~ msgid "Click here to download an older version of the wallet"
 #~ msgstr "Click here to download an older version of the wallet"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:160
-#: src/components/ClawbackClaimTransactionDialog.tsx:257
+#: src/components/ClawbackClaimTransactionDialog.tsx:162
+#: src/components/ClawbackClaimTransactionDialog.tsx:267
 #: src/components/crCat/CrCatApprovePendingDialog.tsx:139
 msgid "Close"
 msgstr "Sulje"
@@ -316,7 +316,7 @@ msgstr "Farmi"
 msgid "Fee"
 msgstr "Veloitus"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:184
+#: src/components/ClawbackClaimTransactionDialog.tsx:194
 msgid "From:"
 msgstr "Lähettäjä:"
 
@@ -478,7 +478,7 @@ msgstr "Hyväksyntää odottava saldo"
 msgid "Pending Change"
 msgstr "Avoimet Vaihtorahat"
 
-#: src/components/WalletHistoryPending.tsx:63
+#: src/components/WalletHistoryPending.tsx:65
 msgid "Pending claw back transactions"
 msgstr "Takaisinvetotransaktiot kesken"
 
@@ -494,11 +494,11 @@ msgstr "Anna jonkin verran aikaa maksujen näkymiseen lohkoketjussa."
 msgid "Please enter a transaction fee to approve the above amount:"
 msgstr "Ole hyvä ja syötä siirtomaksu hyväksyäksesi yllä olevan summan:"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:215
+#: src/components/ClawbackClaimTransactionDialog.tsx:225
 msgid "Please enter a transaction fee to claim the above amount:"
 msgstr "Anna siirtomaksu lunastaaksesi yllä olevan summan:"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:217
+#: src/components/ClawbackClaimTransactionDialog.tsx:227
 msgid "Please enter a transaction fee to claw back the above amount:"
 msgstr "Anna siirtomaksu takaisinvetääkseksi yllä mainitun summan:"
 
@@ -710,7 +710,7 @@ msgstr "Nykyinen saldo + avoin saldo, eli tuleva saldo avointen transaktioiden j
 msgid "This token can be revoked by the issuer"
 msgstr "Liikkeeseenlaskija voi peruuttaa tämän tokenin"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:202
+#: src/components/ClawbackClaimTransactionDialog.tsx:212
 msgid "This transaction will be automatically claimed with a fee:"
 msgstr "Tämä tapahtuma lunastetaan automaattisesti maksulla:"
 
@@ -718,7 +718,7 @@ msgstr "Tämä tapahtuma lunastetaan automaattisesti maksulla:"
 #~ msgid "To"
 #~ msgstr "To"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:184
+#: src/components/ClawbackClaimTransactionDialog.tsx:194
 #: src/components/WalletHistory.tsx:197
 msgid "To:"
 msgstr "Vastaanottaja:"
@@ -747,11 +747,11 @@ msgstr "Transaktio on onnistuneesti lähetetty noodille ja sisällytetty mempool
 msgid "Transactions"
 msgstr "Transaktiot"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:241
+#: src/components/ClawbackClaimTransactionDialog.tsx:251
 msgid "Transactions will be claimed automatically when the Clawback time expires."
 msgstr "Transaktiot lunastetaan automaattisesti, kun takaisinvetoaika umpeutuu."
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:244
+#: src/components/ClawbackClaimTransactionDialog.tsx:254
 msgid "Transactions with values smaller than the fee will not be auto claimed."
 msgstr "Transaktioita, joiden arvo on pienempi kuin maksu, ei lunasteta automaattisesti."
 
@@ -776,7 +776,7 @@ msgstr "Lompakon Nimi"
 msgid "Wallet needs to be synced before approving transactions"
 msgstr "Lompakko on synkronissa ennen transaktioiden hyväksymistä"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:209
+#: src/components/ClawbackClaimTransactionDialog.tsx:219
 msgid "Wallet needs to be synced for claiming clawback transactions"
 msgstr "Lompakon on oltava synkronissa takaisinvetoa varten"
 
@@ -800,7 +800,7 @@ msgstr "Tervetuloa! Seuraavia muistisanoja käytetään lompakon varmuuskopioint
 msgid "Will be autoclaimed in "
 msgstr "Lunastetaan automaattisesti "
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:247
+#: src/components/ClawbackClaimTransactionDialog.tsx:257
 msgid "You can change the Clawback Auto Claim fee in Settings."
 msgstr "Voit muuttaa automaattista lunastusmaksua Asetuksista."
 

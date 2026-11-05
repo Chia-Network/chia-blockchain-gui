@@ -116,11 +116,11 @@ msgstr "Kopioi Leikepöydälle"
 #~ msgid "Create a new private key"
 #~ msgstr "Create a new private key"
 
-#: src/screens/SelectKey/SelectKey.tsx:275
+#: src/screens/SelectKey/SelectKey.tsx:278
 msgid "Create a new wallet key"
 msgstr "Luo uusi lompakon avain"
 
-#: src/screens/SelectKey/SelectKey.tsx:267
+#: src/screens/SelectKey/SelectKey.tsx:270
 msgid "Create a new wallet key to get started with Chia."
 msgstr "Luo uusi lompakon avain päästäksesi alkuun Chian kanssa."
 
@@ -279,7 +279,7 @@ msgstr "Todennäköisesti >5 minuutissa"
 msgid "Loading details"
 msgstr "Ladataan lisätietoja"
 
-#: src/screens/SelectKey/SelectKey.tsx:237
+#: src/screens/SelectKey/SelectKey.tsx:240
 msgid "Loading keys"
 msgstr "Ladataan avaimia"
 
@@ -338,7 +338,7 @@ msgstr "Ei yhteyttä"
 msgid "OK"
 msgstr "OK"
 
-#: src/screens/SelectKey/SelectKey.tsx:259
+#: src/screens/SelectKey/SelectKey.tsx:262
 msgid "Open a world of possibilities."
 msgstr "Avaa mahdollisuuksien maailma."
 
@@ -508,11 +508,11 @@ msgstr "Transaktioita ei ole vielä lähetetty noodiin"
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "Transaktio on onnistuneesti lähetetty noodille ja sisällytetty mempooliin."
 
-#: src/screens/SelectKey/SelectKey.tsx:244
+#: src/screens/SelectKey/SelectKey.tsx:247
 msgid "Try Again"
 msgstr "Yritä uudelleen"
 
-#: src/screens/SelectKey/SelectKey.tsx:248
+#: src/screens/SelectKey/SelectKey.tsx:251
 msgid "Unable to load keys"
 msgstr "Avaimia ei voi ladata"
 
@@ -551,7 +551,7 @@ msgstr "Lompakko {0}"
 msgid "Wallet Fingerprint"
 msgstr "Lompakon Sormenjälki"
 
-#: src/screens/SelectKey/SelectKey.tsx:224
+#: src/screens/SelectKey/SelectKey.tsx:227
 msgid "Wallet Keys"
 msgstr "Lompakon Avaimet"
 

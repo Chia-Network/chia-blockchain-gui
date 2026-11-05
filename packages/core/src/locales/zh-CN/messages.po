@@ -116,11 +116,11 @@ msgstr "复制到剪贴板"
 #~ msgid "Create a new private key"
 #~ msgstr "Create a new private key"
 
-#: src/screens/SelectKey/SelectKey.tsx:275
+#: src/screens/SelectKey/SelectKey.tsx:278
 msgid "Create a new wallet key"
 msgstr "新建钱包"
 
-#: src/screens/SelectKey/SelectKey.tsx:267
+#: src/screens/SelectKey/SelectKey.tsx:270
 msgid "Create a new wallet key to get started with Chia."
 msgstr "使用Chia，从新建一个钱包开始。"
 
@@ -279,7 +279,7 @@ msgstr "可能大于5分钟"
 msgid "Loading details"
 msgstr "正在加载详细信息"
 
-#: src/screens/SelectKey/SelectKey.tsx:237
+#: src/screens/SelectKey/SelectKey.tsx:240
 msgid "Loading keys"
 msgstr "正在载入密钥"
 
@@ -338,7 +338,7 @@ msgstr "未连接"
 msgid "OK"
 msgstr "确定"
 
-#: src/screens/SelectKey/SelectKey.tsx:259
+#: src/screens/SelectKey/SelectKey.tsx:262
 msgid "Open a world of possibilities."
 msgstr "打开无限可能的世界。"
 
@@ -508,11 +508,11 @@ msgstr "交易尚未发送到节点"
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "交易已成功发送到全节点，且已添加到内存池中。"
 
-#: src/screens/SelectKey/SelectKey.tsx:244
+#: src/screens/SelectKey/SelectKey.tsx:247
 msgid "Try Again"
 msgstr "请重试"
 
-#: src/screens/SelectKey/SelectKey.tsx:248
+#: src/screens/SelectKey/SelectKey.tsx:251
 msgid "Unable to load keys"
 msgstr "无法加载密钥"
 
@@ -551,7 +551,7 @@ msgstr "钱包 {0}"
 msgid "Wallet Fingerprint"
 msgstr "钱包指纹"
 
-#: src/screens/SelectKey/SelectKey.tsx:224
+#: src/screens/SelectKey/SelectKey.tsx:227
 msgid "Wallet Keys"
 msgstr "钱包密钥"
 

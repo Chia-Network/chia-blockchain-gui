@@ -116,11 +116,11 @@ msgstr "Skopírovať do schránky"
 #~ msgid "Create a new private key"
 #~ msgstr "Create a new private key"
 
-#: src/screens/SelectKey/SelectKey.tsx:275
+#: src/screens/SelectKey/SelectKey.tsx:278
 msgid "Create a new wallet key"
 msgstr "Vytvoriť nový kľúč peňaženky"
 
-#: src/screens/SelectKey/SelectKey.tsx:267
+#: src/screens/SelectKey/SelectKey.tsx:270
 msgid "Create a new wallet key to get started with Chia."
 msgstr "Ak chcete začať s Chia, vytvorte si nový kľúč k peňaženke."
 
@@ -279,7 +279,7 @@ msgstr "Pravdepodobne >5 minút"
 msgid "Loading details"
 msgstr "Načítavanie podrobností"
 
-#: src/screens/SelectKey/SelectKey.tsx:237
+#: src/screens/SelectKey/SelectKey.tsx:240
 msgid "Loading keys"
 msgstr "Načítavajú sa kľúče"
 
@@ -338,7 +338,7 @@ msgstr "Nepripojené"
 msgid "OK"
 msgstr "OK"
 
-#: src/screens/SelectKey/SelectKey.tsx:259
+#: src/screens/SelectKey/SelectKey.tsx:262
 msgid "Open a world of possibilities."
 msgstr "Otvorte svet možností."
 
@@ -508,11 +508,11 @@ msgstr "Transakcia ešte nebola odoslaná uzlu"
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "Transakcia bola úspešne odoslaná úplnému uzlu a zahrnutá do pamäťového fondu."
 
-#: src/screens/SelectKey/SelectKey.tsx:244
+#: src/screens/SelectKey/SelectKey.tsx:247
 msgid "Try Again"
 msgstr "Skúsiť znova"
 
-#: src/screens/SelectKey/SelectKey.tsx:248
+#: src/screens/SelectKey/SelectKey.tsx:251
 msgid "Unable to load keys"
 msgstr "Nepodarilo sa načítať kľúče"
 
@@ -551,7 +551,7 @@ msgstr "Peňaženka {0}"
 msgid "Wallet Fingerprint"
 msgstr "Odtlačok peňaženky"
 
-#: src/screens/SelectKey/SelectKey.tsx:224
+#: src/screens/SelectKey/SelectKey.tsx:227
 msgid "Wallet Keys"
 msgstr "Kľúče peňaženiek"
 

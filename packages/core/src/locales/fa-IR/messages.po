@@ -116,11 +116,11 @@ msgstr "کپی در حافظه"
 #~ msgid "Create a new private key"
 #~ msgstr "Create a new private key"
 
-#: src/screens/SelectKey/SelectKey.tsx:275
+#: src/screens/SelectKey/SelectKey.tsx:278
 msgid "Create a new wallet key"
 msgstr "ایجاد یک کلید کیف پول جدید"
 
-#: src/screens/SelectKey/SelectKey.tsx:267
+#: src/screens/SelectKey/SelectKey.tsx:270
 msgid "Create a new wallet key to get started with Chia."
 msgstr "برای شروع کار با چیا یک کلید کیف پول جدید ایجاد کنید."
 
@@ -281,7 +281,7 @@ msgstr "ممکن است بیشتر از 5 دقیقه باشد"
 msgid "Loading details"
 msgstr "در حال بارگیری جزئیات"
 
-#: src/screens/SelectKey/SelectKey.tsx:237
+#: src/screens/SelectKey/SelectKey.tsx:240
 msgid "Loading keys"
 msgstr "بارگذاری کلیدها"
 
@@ -340,7 +340,7 @@ msgstr "متضل نیست"
 msgid "OK"
 msgstr "قبول"
 
-#: src/screens/SelectKey/SelectKey.tsx:259
+#: src/screens/SelectKey/SelectKey.tsx:262
 msgid "Open a world of possibilities."
 msgstr "دنیایی از امکانات را باز کنید."
 
@@ -510,11 +510,11 @@ msgstr "تراکنش هنوز به نود ارسال نشده"
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "تراکنش به نودکامل منتقل شد و در حافظه استخر تراکنش قرار گرفت."
 
-#: src/screens/SelectKey/SelectKey.tsx:244
+#: src/screens/SelectKey/SelectKey.tsx:247
 msgid "Try Again"
 msgstr "مجدد تلاش کنید"
 
-#: src/screens/SelectKey/SelectKey.tsx:248
+#: src/screens/SelectKey/SelectKey.tsx:251
 msgid "Unable to load keys"
 msgstr "کلیدها بارگیری نمیشوند"
 
@@ -553,7 +553,7 @@ msgstr "کیف پول {0}"
 msgid "Wallet Fingerprint"
 msgstr "کلمات کد کیف پول"
 
-#: src/screens/SelectKey/SelectKey.tsx:224
+#: src/screens/SelectKey/SelectKey.tsx:227
 msgid "Wallet Keys"
 msgstr "کلیدهای کیف پول"
 

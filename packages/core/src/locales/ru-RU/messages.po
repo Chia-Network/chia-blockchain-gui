@@ -116,11 +116,11 @@ msgstr "Скопировать в буфер обмена"
 #~ msgid "Create a new private key"
 #~ msgstr "Create a new private key"
 
-#: src/screens/SelectKey/SelectKey.tsx:275
+#: src/screens/SelectKey/SelectKey.tsx:278
 msgid "Create a new wallet key"
 msgstr "Создать новый ключ кошелька"
 
-#: src/screens/SelectKey/SelectKey.tsx:267
+#: src/screens/SelectKey/SelectKey.tsx:270
 msgid "Create a new wallet key to get started with Chia."
 msgstr "Создайте новый ключ кошелька, чтобы начать с Chia."
 
@@ -279,7 +279,7 @@ msgstr ""
 msgid "Loading details"
 msgstr "Загрузка сведений"
 
-#: src/screens/SelectKey/SelectKey.tsx:237
+#: src/screens/SelectKey/SelectKey.tsx:240
 msgid "Loading keys"
 msgstr "Загрузка ключей"
 
@@ -338,7 +338,7 @@ msgstr "Нет подключения"
 msgid "OK"
 msgstr "ОК"
 
-#: src/screens/SelectKey/SelectKey.tsx:259
+#: src/screens/SelectKey/SelectKey.tsx:262
 msgid "Open a world of possibilities."
 msgstr ""
 
@@ -508,11 +508,11 @@ msgstr "Транзакция пока еще не была отправлена 
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "Транзакция успешно отправлена на полный узел и включена в мемпул."
 
-#: src/screens/SelectKey/SelectKey.tsx:244
+#: src/screens/SelectKey/SelectKey.tsx:247
 msgid "Try Again"
 msgstr "Попробовать снова"
 
-#: src/screens/SelectKey/SelectKey.tsx:248
+#: src/screens/SelectKey/SelectKey.tsx:251
 msgid "Unable to load keys"
 msgstr "Не удается загрузить ключи"
 
@@ -551,7 +551,7 @@ msgstr "Кошелёк {0}"
 msgid "Wallet Fingerprint"
 msgstr "Отпечаток кошелька"
 
-#: src/screens/SelectKey/SelectKey.tsx:224
+#: src/screens/SelectKey/SelectKey.tsx:227
 msgid "Wallet Keys"
 msgstr "Ключи кошелька"
 

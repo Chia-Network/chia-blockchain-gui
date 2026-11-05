@@ -116,11 +116,11 @@ msgstr "Kopiera till Urklipp"
 #~ msgid "Create a new private key"
 #~ msgstr "Create a new private key"
 
-#: src/screens/SelectKey/SelectKey.tsx:275
+#: src/screens/SelectKey/SelectKey.tsx:278
 msgid "Create a new wallet key"
 msgstr "Skapa en ny plånboksnyckel"
 
-#: src/screens/SelectKey/SelectKey.tsx:267
+#: src/screens/SelectKey/SelectKey.tsx:270
 msgid "Create a new wallet key to get started with Chia."
 msgstr "Skapa en ny plånboksnyckel för att komma igång med Chia."
 
@@ -279,7 +279,7 @@ msgstr "Troligen om >5 minuter"
 msgid "Loading details"
 msgstr "Läser in information"
 
-#: src/screens/SelectKey/SelectKey.tsx:237
+#: src/screens/SelectKey/SelectKey.tsx:240
 msgid "Loading keys"
 msgstr "Läser in nycklar"
 
@@ -338,7 +338,7 @@ msgstr "Inte ansluten"
 msgid "OK"
 msgstr "OK"
 
-#: src/screens/SelectKey/SelectKey.tsx:259
+#: src/screens/SelectKey/SelectKey.tsx:262
 msgid "Open a world of possibilities."
 msgstr "Öppna en värld av möjligheter."
 
@@ -508,11 +508,11 @@ msgstr "Transaktionen har inte skickats till noden ännu"
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "Transaktionen har skickats till en fullständig nod och inkluderats i mempoolen."
 
-#: src/screens/SelectKey/SelectKey.tsx:244
+#: src/screens/SelectKey/SelectKey.tsx:247
 msgid "Try Again"
 msgstr "Försök igen"
 
-#: src/screens/SelectKey/SelectKey.tsx:248
+#: src/screens/SelectKey/SelectKey.tsx:251
 msgid "Unable to load keys"
 msgstr "Det gick inte att läsa in nycklar"
 
@@ -551,7 +551,7 @@ msgstr "Plånbok {0}"
 msgid "Wallet Fingerprint"
 msgstr "Plånbokens fingeravtryck"
 
-#: src/screens/SelectKey/SelectKey.tsx:224
+#: src/screens/SelectKey/SelectKey.tsx:227
 msgid "Wallet Keys"
 msgstr "Plånboksnycklar"
 

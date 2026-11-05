@@ -116,7 +116,7 @@ msgstr "کیف پول مجاز شده برای پرداخت"
 msgid "Authorized providers"
 msgstr "ارائه دهندگان مجاز"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:235
+#: src/components/ClawbackClaimTransactionDialog.tsx:245
 msgid "Auto-claim transactions with this fee from now on."
 msgstr ".از این به بعد تراکنسهای بازگرداندن خودکار را با این کارمزد بگیرید"
 
@@ -157,7 +157,7 @@ msgid "Claim transaction"
 msgstr "تراکنش گرفتن"
 
 #: src/components/ClawbackClaimTransactionDialog.tsx:139
-#: src/components/ClawbackClaimTransactionDialog.tsx:268
+#: src/components/ClawbackClaimTransactionDialog.tsx:278
 msgid "Claim Transaction"
 msgstr "تراکنش بازگرداندن"
 
@@ -177,7 +177,7 @@ msgstr "انقضای پس گرفتن"
 msgid "Claw back this transaction"
 msgstr "بازکزداندن این تراکنش"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:268
+#: src/components/ClawbackClaimTransactionDialog.tsx:278
 msgid "Claw back Transaction"
 msgstr "بازکزداندن این تراکنش"
 
@@ -209,8 +209,8 @@ msgstr "...بازگرداندن"
 #~ msgid "Click here to download an older version of the wallet"
 #~ msgstr "Click here to download an older version of the wallet"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:160
-#: src/components/ClawbackClaimTransactionDialog.tsx:257
+#: src/components/ClawbackClaimTransactionDialog.tsx:162
+#: src/components/ClawbackClaimTransactionDialog.tsx:267
 #: src/components/crCat/CrCatApprovePendingDialog.tsx:139
 msgid "Close"
 msgstr "ببندید"
@@ -316,7 +316,7 @@ msgstr "فارم"
 msgid "Fee"
 msgstr "کارمزد"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:184
+#: src/components/ClawbackClaimTransactionDialog.tsx:194
 msgid "From:"
 msgstr ":از"
 
@@ -478,7 +478,7 @@ msgstr "موجودی معلق برای تأیید"
 msgid "Pending Change"
 msgstr "تغییر در حالت انتظار"
 
-#: src/components/WalletHistoryPending.tsx:63
+#: src/components/WalletHistoryPending.tsx:65
 msgid "Pending claw back transactions"
 msgstr "بازگرداندن تراکنشهای در انتظاز"
 
@@ -494,11 +494,11 @@ msgstr "لطفاً کمی زمان بگذارید تا پرداخت‌ها در 
 msgid "Please enter a transaction fee to approve the above amount:"
 msgstr "لطفاً برای تأیید مبلغ فوق، کارمزد تراکنش را وارد کنید:"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:215
+#: src/components/ClawbackClaimTransactionDialog.tsx:225
 msgid "Please enter a transaction fee to claim the above amount:"
 msgstr ":لطفاً یک کارمزد تراکنش برای گرفتن مبلغ بالا وارد کنید"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:217
+#: src/components/ClawbackClaimTransactionDialog.tsx:227
 msgid "Please enter a transaction fee to claw back the above amount:"
 msgstr ":لطفاً یک کارمزد تراکنش برای بازگرداندن مبلغ بالا وارد کنید"
 
@@ -710,7 +710,7 @@ msgstr "این کل موجودی + موجودی در انتظار است: نشا
 msgid "This token can be revoked by the issuer"
 msgstr "این توکن میتواند توسط صادرکننده لغو شود"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:202
+#: src/components/ClawbackClaimTransactionDialog.tsx:212
 msgid "This transaction will be automatically claimed with a fee:"
 msgstr ":این تراکنش به صورت خودکار با کارمزد گرفته میشود"
 
@@ -718,7 +718,7 @@ msgstr ":این تراکنش به صورت خودکار با کارمزد گرف
 #~ msgid "To"
 #~ msgstr "To"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:184
+#: src/components/ClawbackClaimTransactionDialog.tsx:194
 #: src/components/WalletHistory.tsx:197
 msgid "To:"
 msgstr ":به"
@@ -747,11 +747,11 @@ msgstr "تراکنش به نودکامل منتقل شد و در حافظه اس
 msgid "Transactions"
 msgstr "تراکنش ها"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:241
+#: src/components/ClawbackClaimTransactionDialog.tsx:251
 msgid "Transactions will be claimed automatically when the Clawback time expires."
 msgstr "پس از انقضای زمان بازگرداندن، تراکنش‌ها به‌طور خودکاربرگردانده میشوند."
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:244
+#: src/components/ClawbackClaimTransactionDialog.tsx:254
 msgid "Transactions with values smaller than the fee will not be auto claimed."
 msgstr "تراکنش‌هایی که مقادیر کارمزد کمتر دارند، به‌طور خودکار بازگردانده نمیشوند."
 
@@ -776,7 +776,7 @@ msgstr "نام کیف پول"
 msgid "Wallet needs to be synced before approving transactions"
 msgstr "قبل از تأیید تراکنش‌ها، کیف پول باید سینک شود"
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:209
+#: src/components/ClawbackClaimTransactionDialog.tsx:219
 msgid "Wallet needs to be synced for claiming clawback transactions"
 msgstr "کیف پول برای بازگزداندن تراکنش‌های مدعی پس گرفتن باید سینک شود"
 
@@ -800,7 +800,7 @@ msgstr "خوش آمدید. کلمات زیر برای پشتیبان گیری ک
 msgid "Will be autoclaimed in "
 msgstr "خودکار بازگردانده خواهد شد در "
 
-#: src/components/ClawbackClaimTransactionDialog.tsx:247
+#: src/components/ClawbackClaimTransactionDialog.tsx:257
 msgid "You can change the Clawback Auto Claim fee in Settings."
 msgstr ".میتوانید کارمزد گرفتن خودکار ادعای بازگرداندن را در تنظیمات تغییر دهید"
 

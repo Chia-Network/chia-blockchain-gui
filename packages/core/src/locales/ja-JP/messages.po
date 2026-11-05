@@ -116,11 +116,11 @@ msgstr "クリップボードにコピー"
 #~ msgid "Create a new private key"
 #~ msgstr "Create a new private key"
 
-#: src/screens/SelectKey/SelectKey.tsx:275
+#: src/screens/SelectKey/SelectKey.tsx:278
 msgid "Create a new wallet key"
 msgstr "ウォレット鍵を新規作成"
 
-#: src/screens/SelectKey/SelectKey.tsx:267
+#: src/screens/SelectKey/SelectKey.tsx:270
 msgid "Create a new wallet key to get started with Chia."
 msgstr "チアを使い始めるには新しいウォレット鍵を作成してください。"
 
@@ -279,7 +279,7 @@ msgstr "高確率で >5 分"
 msgid "Loading details"
 msgstr "詳細を読み込み中"
 
-#: src/screens/SelectKey/SelectKey.tsx:237
+#: src/screens/SelectKey/SelectKey.tsx:240
 msgid "Loading keys"
 msgstr "鍵を読み込み中"
 
@@ -338,7 +338,7 @@ msgstr "未接続"
 msgid "OK"
 msgstr "OK"
 
-#: src/screens/SelectKey/SelectKey.tsx:259
+#: src/screens/SelectKey/SelectKey.tsx:262
 msgid "Open a world of possibilities."
 msgstr "可能性に満ちた世界へようこそ。"
 
@@ -508,11 +508,11 @@ msgstr "取引内容はまだノードに送られていません"
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "取引内容はフルノードに送信され、 mempool に追加されました。"
 
-#: src/screens/SelectKey/SelectKey.tsx:244
+#: src/screens/SelectKey/SelectKey.tsx:247
 msgid "Try Again"
 msgstr "やり直す"
 
-#: src/screens/SelectKey/SelectKey.tsx:248
+#: src/screens/SelectKey/SelectKey.tsx:251
 msgid "Unable to load keys"
 msgstr "鍵の読み込みに失敗しました"
 
@@ -551,7 +551,7 @@ msgstr "ウォレット {0}"
 msgid "Wallet Fingerprint"
 msgstr "ウォレットの指紋"
 
-#: src/screens/SelectKey/SelectKey.tsx:224
+#: src/screens/SelectKey/SelectKey.tsx:227
 msgid "Wallet Keys"
 msgstr "ウォレットの鍵一覧"
 

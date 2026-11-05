@@ -116,11 +116,11 @@ msgstr "Copy to Clipboard"
 #~ msgid "Create a new private key"
 #~ msgstr "Create a new private key"
 
-#: src/screens/SelectKey/SelectKey.tsx:275
+#: src/screens/SelectKey/SelectKey.tsx:278
 msgid "Create a new wallet key"
 msgstr "Create a new wallet key"
 
-#: src/screens/SelectKey/SelectKey.tsx:267
+#: src/screens/SelectKey/SelectKey.tsx:270
 msgid "Create a new wallet key to get started with Chia."
 msgstr "Create a new wallet key to get started with Chia."
 
@@ -279,7 +279,7 @@ msgstr "Likely in >5 minutes"
 msgid "Loading details"
 msgstr "Loading details"
 
-#: src/screens/SelectKey/SelectKey.tsx:237
+#: src/screens/SelectKey/SelectKey.tsx:240
 msgid "Loading keys"
 msgstr "Loading keys"
 
@@ -338,7 +338,7 @@ msgstr "Not connected"
 msgid "OK"
 msgstr "OK"
 
-#: src/screens/SelectKey/SelectKey.tsx:259
+#: src/screens/SelectKey/SelectKey.tsx:262
 msgid "Open a world of possibilities."
 msgstr "Open a world of possibilities."
 
@@ -508,11 +508,11 @@ msgstr "Transaction has not been sent to node yet"
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "Transaction has successfully been sent to a full node and included in the mempool."
 
-#: src/screens/SelectKey/SelectKey.tsx:244
+#: src/screens/SelectKey/SelectKey.tsx:247
 msgid "Try Again"
 msgstr "Try Again"
 
-#: src/screens/SelectKey/SelectKey.tsx:248
+#: src/screens/SelectKey/SelectKey.tsx:251
 msgid "Unable to load keys"
 msgstr "Unable to load keys"
 
@@ -551,7 +551,7 @@ msgstr "Wallet {0}"
 msgid "Wallet Fingerprint"
 msgstr "Wallet Fingerprint"
 
-#: src/screens/SelectKey/SelectKey.tsx:224
+#: src/screens/SelectKey/SelectKey.tsx:227
 msgid "Wallet Keys"
 msgstr "Wallet Keys"
 

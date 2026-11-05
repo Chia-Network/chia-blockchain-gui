@@ -3216,7 +3216,7 @@ msgstr "{from} <0>lähetetään viesti</0>"
 #~ msgid "{key} ({0})"
 #~ msgstr ""
 
-#: src/components/offers/NFTOfferViewer.tsx:208
+#: src/components/offers/NFTOfferViewer.tsx:209
 #: src/components/offers/OfferSummary.tsx:174
 msgid "{makerFee, plural, one {mojo} other {mojos}}"
 msgstr "{makerFee, plural, one {mojo} other {mojoa}}"
@@ -3310,7 +3310,7 @@ msgstr ""
 msgid "Accept Data Layer Offer"
 msgstr ""
 
-#: src/components/offers/NFTOfferViewer.tsx:644
+#: src/components/offers/NFTOfferViewer.tsx:648
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:21
 #: src/components/offers2/OfferBuilderViewer.tsx:307
 #: src/components/offers2/OfferBuilderViewer.tsx:372
@@ -3358,8 +3358,8 @@ msgstr "Plottaa tiedosto"
 #: src/components/farm/FarmHero.tsx:37
 #: src/components/plot/add/PlotAddForm.tsx:254
 #: src/components/plot/overview/PlotOverviewHero.tsx:43
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:199
-#: src/components/plotNFT/PlotNFTCard.tsx:233
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:200
+#: src/components/plotNFT/PlotNFTCard.tsx:234
 msgid "Add a Plot"
 msgstr "Plottaa tiedosto"
 
@@ -3497,7 +3497,7 @@ msgstr "Vaihtoehtoinen tmpdir/tmpdir2"
 #~ msgid "Always Reject"
 #~ msgstr "Always Reject"
 
-#: src/components/offers/NFTOfferEditor.tsx:233
+#: src/components/offers/NFTOfferEditor.tsx:234
 #: src/components/offers/OfferEditorConditionsPanel.tsx:130
 #: src/components/offers2/OfferBuilderNFTRoyalties.tsx:121
 #: src/components/offers2/OfferBuilderWalletAmount.tsx:36
@@ -3508,7 +3508,7 @@ msgstr "Summa"
 msgid "Amount before adding royalties"
 msgstr "Summa ennen rojaltimaksujen lisäämistä"
 
-#: src/components/offers/NFTOfferEditor.tsx:592
+#: src/components/offers/NFTOfferEditor.tsx:596
 #: src/components/offers/OfferEditor.tsx:96
 msgid "Amount exceeds spendable balance"
 msgstr "Määrä ylittää käytettävissä olevan saldon"
@@ -3593,7 +3593,7 @@ msgstr "Oletko varma, että haluat tyhjentää NFT-välimuistin?"
 #~ msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
 #~ msgstr "Are you sure you want to delete the plot? The plot cannot be recovered."
 
-#: src/components/plotNFT/PlotNFTCard.tsx:114
+#: src/components/plotNFT/PlotNFTCard.tsx:115
 msgid "Are you sure you want to delete unconfirmed transactions?"
 msgstr "Haluatko varmasti poistaa nämä vahvistamattomat transaktiot?"
 
@@ -3613,11 +3613,11 @@ msgstr "Oletko varma, että haluat poistaa yhteystiedon pysyvästi? Kun yhteysti
 #~ msgid "Are you sure you want to quit?"
 #~ msgstr "Are you sure you want to quit?"
 
-#: src/components/vcs/VCCard.tsx:213
+#: src/components/vcs/VCCard.tsx:216
 msgid "Are you sure you want to remove"
 msgstr "Oletko varma, että haluat poistaa"
 
-#: src/components/vcs/VCCard.tsx:215
+#: src/components/vcs/VCCard.tsx:218
 msgid "Are you sure you want to revoke"
 msgstr "Oletko varma että haluat kumota"
 
@@ -3697,7 +3697,7 @@ msgstr "Automaattisesti luotu nimi poolin sopimusosoitteesta"
 msgid "Avg"
 msgstr "Keskim."
 
-#: src/components/offers/NFTOfferViewer.tsx:635
+#: src/components/offers/NFTOfferViewer.tsx:639
 msgid "Back"
 msgstr "Takaisin"
 
@@ -3899,7 +3899,7 @@ msgstr "Haastetiiviste"
 msgid "Change"
 msgstr "Vaihda"
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:188
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:197
 msgid "Change default timing."
 msgstr "Muuta oletusajastusta."
 
@@ -3908,11 +3908,11 @@ msgid "Change Log File Location"
 msgstr "Muuta Lokitiedoston Sijaintia"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:290
-#: src/components/settings/SettingsPanel.tsx:120
+#: src/components/settings/SettingsPanel.tsx:121
 msgid "Change Passphrase"
 msgstr "Vaihda salasana"
 
-#: src/components/plotNFT/PlotNFTCard.tsx:336
+#: src/components/plotNFT/PlotNFTCard.tsx:337
 #: src/components/plotNFT/PlotNFTChangePool.tsx:109
 msgid "Change Pool"
 msgstr "Vaihda Poolia"
@@ -4012,7 +4012,7 @@ msgid "Claim assets sent to you automatically when the claw back time period exp
 msgstr "Lunasta vastaanottamasi assetit automaattisesti kun takaisinvetoaika umpeutuu."
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:131
-#: src/components/plotNFT/PlotNFTCard.tsx:321
+#: src/components/plotNFT/PlotNFTCard.tsx:322
 msgid "Claim Rewards"
 msgstr "Lunasta Palkkiot"
 
@@ -4071,7 +4071,7 @@ msgstr "Suljetaan palveluja"
 #~ msgid "Coin Id"
 #~ msgstr "Coin Id"
 
-#: src/components/vcs/VCCard.tsx:147
+#: src/components/vcs/VCCard.tsx:150
 msgid "Coin ID"
 msgstr "Kolikon Tunniste"
 
@@ -4144,7 +4144,7 @@ msgstr "Vahvista NFT:n siirto"
 msgid "Confirm Passphrase"
 msgstr "Vahvista Salasana"
 
-#: src/components/plotNFT/PlotNFTCard.tsx:105
+#: src/components/plotNFT/PlotNFTCard.tsx:106
 msgid "Confirmation"
 msgstr "Vahvista"
 
@@ -4199,8 +4199,8 @@ msgstr "Yhteyden Tila:"
 msgid "Connection type"
 msgstr "Yhteystyyppi"
 
-#: src/components/addressbook/ContactAdd.tsx:343
-#: src/components/addressbook/ContactEdit.tsx:358
+#: src/components/addressbook/ContactAdd.tsx:345
+#: src/components/addressbook/ContactEdit.tsx:360
 msgid "Contact Name"
 msgstr "Yhteystiedon Nimi"
 
@@ -4304,7 +4304,7 @@ msgstr "Luo Plot NFT"
 #~ msgid "Create a spend bundle to mint multiple NFTs"
 #~ msgstr "Create a spend bundle to mint multiple NFTs"
 
-#: src/components/offers/NFTOfferEditor.tsx:718
+#: src/components/offers/NFTOfferEditor.tsx:722
 msgid "Create an NFT Offer"
 msgstr "Luo NFT-tarjous"
 
@@ -4338,7 +4338,7 @@ msgstr "Luo Vastatarjous"
 #~ msgstr "Create new Remote Wallet"
 
 #: src/components/nfts/NFTContextualActions.tsx:152
-#: src/components/offers/NFTOfferEditor.tsx:439
+#: src/components/offers/NFTOfferEditor.tsx:443
 #: src/components/offers/OfferEditor.tsx:156
 #: src/components/offers/OfferManager.tsx:393
 #: src/components/offers2/CreateOfferBuilder.tsx:177
@@ -4391,16 +4391,16 @@ msgstr "Luodaan Plot-NFT omaa poolausta varten"
 msgid "Creation Date"
 msgstr "Luontipäivämäärä"
 
-#: src/components/offers/NFTOfferViewer.tsx:520
+#: src/components/offers/NFTOfferViewer.tsx:524
 msgid "Creator Fee ({0}%)"
 msgstr "Tekijän maksu ({0}%)"
 
-#: src/components/offers/NFTOfferEditor.tsx:331
+#: src/components/offers/NFTOfferEditor.tsx:335
 msgid "Creator Fee ({royaltyPercentage}%)"
 msgstr "Tekijän rojaltimaksu ({royaltyPercentage}%)"
 
-#: src/components/offers/NFTOfferEditor.tsx:334
-#: src/components/offers/NFTOfferViewer.tsx:523
+#: src/components/offers/NFTOfferEditor.tsx:338
+#: src/components/offers/NFTOfferViewer.tsx:527
 msgid "Creator royalty percentage seems high"
 msgstr "Tekijän rojaltiprosentti vaikuttaa korkealta"
 
@@ -4413,8 +4413,8 @@ msgstr "Kredentiaalit"
 msgid "Currency code is not defined"
 msgstr "Valuutan koodia ei ole määritetty"
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:121
-#: src/components/plotNFT/PlotNFTCard.tsx:155
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:122
+#: src/components/plotNFT/PlotNFTCard.tsx:156
 msgid "Current Difficulty"
 msgstr "Tämänhetkinen Vaikeuskerroin"
 
@@ -4422,8 +4422,8 @@ msgstr "Tämänhetkinen Vaikeuskerroin"
 msgid "Current Passphrase"
 msgstr "Nykyinen Salasana"
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:137
-#: src/components/plotNFT/PlotNFTCard.tsx:171
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:138
+#: src/components/plotNFT/PlotNFTCard.tsx:172
 msgid "Current Points Balance"
 msgstr "Tämänhetkinen Pistesaldo"
 
@@ -4443,7 +4443,7 @@ msgstr "Dapp lähettää viestin"
 msgid "Data Hash"
 msgstr "Datan tiiviste"
 
-#: src/components/offers2/DataLayerOfferViewer.tsx:149
+#: src/components/offers2/DataLayerOfferViewer.tsx:151
 msgid "Data Layer Offer"
 msgstr ""
 
@@ -4504,7 +4504,7 @@ msgstr "Viive"
 #: src/components/offers2/OfferIncomingTable.tsx:113
 #: src/components/plot/PlotAction.tsx:36
 #: src/components/plot/queue/PlotQueueActions.tsx:65
-#: src/components/plotNFT/PlotNFTCard.tsx:106
+#: src/components/plotNFT/PlotNFTCard.tsx:107
 #: src/hooks/useBlockchainNotifications.tsx:162
 msgid "Delete"
 msgstr "Poista"
@@ -4530,11 +4530,11 @@ msgstr ""
 #~ msgid "Delete Plot"
 #~ msgstr "Delete Plot"
 
-#: src/components/plotNFT/PlotNFTCard.tsx:261
+#: src/components/plotNFT/PlotNFTCard.tsx:262
 msgid "Delete Unconfirmed Transactions"
 msgstr "Poista Vahvistamattomat Transaktiot"
 
-#: src/components/vcs/VCCard.tsx:311
+#: src/components/vcs/VCCard.tsx:314
 msgid "Delete Verifiable Credential"
 msgstr "Poista Todennettavat Kredentiaalit"
 
@@ -4546,7 +4546,7 @@ msgstr "Poistetaan avainta"
 msgid "Depending on your system configuration, you may find that an alternative plotter produces plots faster than the default Chia Proof of Space plotter. If unsure, use the default Chia Proof of Space plotter."
 msgstr "Riippuen järjestelmän kokoonpanosta, saatat huomata, että vaihtoehtoinen plotteri tuottaa plottitiedostoja nopeammin kuin Chia Proof of Space -plotteri. Jos olet epävarma, käytä oletusarvoista Chia Proof Space -plotteria."
 
-#: src/components/settings/SettingsPanel.tsx:167
+#: src/components/settings/SettingsPanel.tsx:168
 msgid "Derivation Index"
 msgstr "Derivaatioindeksi"
 
@@ -4615,7 +4615,7 @@ msgstr "DID"
 msgid "Difficulty"
 msgstr "Vaikeusaste"
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:223
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:232
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:91
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:77
 #: src/components/settings/SettingsExpiringOffers.tsx:87
@@ -4802,8 +4802,8 @@ msgstr ""
 msgid "Edit Contact"
 msgstr "Muokkaa Yhteystietoa"
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:223
-#: src/components/plotNFT/PlotNFTCard.tsx:252
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:224
+#: src/components/plotNFT/PlotNFTCard.tsx:253
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:66
 msgid "Edit Payout Instructions"
 msgstr "Muokkaa Maksuohjeita"
@@ -4931,10 +4931,10 @@ msgstr "Syötä salasana:"
 
 #: src/components/helpers/ErrorMessage.tsx:14
 #: src/components/offers2/OfferDetails.tsx:42
-#: src/components/plot/PlotStatus.tsx:21
 #: src/components/plot/PlotStatus.tsx:22
-#: src/components/plot/queue/PlotQueueIndicator.tsx:23
-#: src/components/vcs/VCCard.tsx:272
+#: src/components/plot/PlotStatus.tsx:23
+#: src/components/plot/queue/PlotQueueIndicator.tsx:25
+#: src/components/vcs/VCCard.tsx:275
 msgid "Error"
 msgstr "Virhe"
 
@@ -5012,7 +5012,7 @@ msgstr "Jätä pois lopullinen hakemisto"
 msgid "Expected Total plots passing filter"
 msgstr "Odotettavissa oleva filtterin läpäisevä plotittimäärä"
 
-#: src/components/vcs/VCCard.tsx:161
+#: src/components/vcs/VCCard.tsx:164
 msgid "Expiration"
 msgstr "Viimeinen voimassaolo"
 
@@ -5021,7 +5021,7 @@ msgstr "Viimeinen voimassaolo"
 #~ msgstr ""
 
 #: src/components/offers/OfferManager.tsx:170
-#: src/components/vcs/VCCard.tsx:166
+#: src/components/vcs/VCCard.tsx:169
 msgid "Expired"
 msgstr "Vanhentunut"
 
@@ -5051,7 +5051,7 @@ msgstr "Epäonnistuneet lataukset:"
 msgid "Failed partials"
 msgstr "Epäonnistuneet partiaalit"
 
-#: src/components/offers/NFTOfferEditor.tsx:583
+#: src/components/offers/NFTOfferEditor.tsx:587
 msgid "Failed to decode NFT identifier"
 msgstr "NFT-tunnisteen purkamiben epäonnistui"
 
@@ -5092,11 +5092,11 @@ msgstr "Farmin Kunto"
 msgid "Farm Summary"
 msgstr "Farmin Yhteenveto"
 
-#: src/components/plot/PlotStatus.tsx:29
+#: src/components/plot/PlotStatus.tsx:30
 msgid "Farmer is not connected"
 msgstr "Farmeri ei ole yhteydessä"
 
-#: src/components/plot/PlotStatus.tsx:30
+#: src/components/plot/PlotStatus.tsx:31
 msgid "Farmer is not running"
 msgstr "Farmari ei ole käynnissä"
 
@@ -5132,7 +5132,7 @@ msgstr "Farmarin Palkkio-osoite on pakollinen."
 msgid "Farmers earn block rewards and transaction fees by committing spare space to the network to help secure transactions. This is where your farm will be once you add a plot. <0>Learn more</0>"
 msgstr "Farmarit ansaitsevat lohkopalkkioita ja transaktioveloituksia varaamalla levytilaa vertaisverkolle ja vahvistamalla transaktioita. Farmisi näkyy täällä luotuasi plot-tiedoston. <0>Katso lisää</0>"
 
-#: src/components/plot/PlotStatus.tsx:18
+#: src/components/plot/PlotStatus.tsx:19
 msgid "Farming"
 msgstr "Farmi"
 
@@ -5180,7 +5180,7 @@ msgstr "Ominaisuudet jotka antavat digitaalisille asseteillesi enemmän suojaa j
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:291
 #: src/components/nfts/NFTTransferAction.tsx:142
 #: src/components/offers/ConfirmOfferCancellation.tsx:109
-#: src/components/offers/NFTOfferViewer.tsx:617
+#: src/components/offers/NFTOfferViewer.tsx:621
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:158
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:122
 #: src/components/pool/PoolInfo.tsx:18
@@ -5189,7 +5189,7 @@ msgstr "Ominaisuudet jotka antavat digitaalisille asseteillesi enemmän suojaa j
 msgid "Fee"
 msgstr "Veloitus"
 
-#: src/components/offers/NFTOfferEditor.tsx:82
+#: src/components/offers/NFTOfferEditor.tsx:83
 #: src/components/offers/OfferEditorConditionsPanel.tsx:388
 msgid "Fee (Optional)"
 msgstr "Transaktiomaksu (Valinnainen)"
@@ -5210,7 +5210,7 @@ msgstr "Maksut"
 msgid "Fees Amount"
 msgstr "Palkkiosumma"
 
-#: src/components/offers/NFTOfferViewer.tsx:202
+#: src/components/offers/NFTOfferViewer.tsx:203
 #: src/components/offers/OfferSummary.tsx:168
 msgid "Fees included in offer:"
 msgstr "Tarjouksen sisältämät transaktiomaksut:"
@@ -5286,7 +5286,7 @@ msgstr "Sovita kuvat kortteihin"
 #~ msgid "Follow on Twitter"
 #~ msgstr "Follow on Twitter"
 
-#: src/components/offers2/DataLayerOfferViewer.tsx:99
+#: src/components/offers2/DataLayerOfferViewer.tsx:101
 msgid "For Store Update"
 msgstr ""
 
@@ -5761,7 +5761,7 @@ msgstr "Käynnissä"
 #~ msgid "Include Wallet Metadata"
 #~ msgstr "Include Wallet Metadata"
 
-#: src/components/offers/NFTOfferEditor.tsx:87
+#: src/components/offers/NFTOfferEditor.tsx:88
 #: src/components/offers/OfferEditorConditionsPanel.tsx:394
 msgid "Including a fee in the offer can help expedite the transaction when the offer is accepted. The recommended minimum fee is 0.000005 XCH (5,000,000 mojos)"
 msgstr "Maksun sisällyttäminen tarjoukseen voi auttaa nopeuttamaan kauppaa, kun tarjous on hyväksytty. Suositeltu vähimmäismaksu on 0.00005 XCH (5.000,000 mojos)"
@@ -5824,7 +5824,7 @@ msgid "Interval (in seconds) in which directories are scanned to refresh the lis
 msgstr "Plottihakemistojen päivitysskannausaikaväli"
 
 #: src/components/signVerify/VerifyMessage.tsx:169
-#: src/components/vcs/VCCard.tsx:172
+#: src/components/vcs/VCCard.tsx:175
 msgid "Invalid"
 msgstr "Virheellinen"
 
@@ -5836,7 +5836,7 @@ msgstr "Virheellinen tiiviste"
 #~ msgid "Invalid metadata url"
 #~ msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:581
+#: src/components/offers/NFTOfferEditor.tsx:585
 msgid "Invalid NFT identifier"
 msgstr "Virheellinen NFT-tunniste"
 
@@ -5885,11 +5885,11 @@ msgstr ""
 #~ msgid "Is notification visible to all paired fingerprints"
 #~ msgstr "Is notification visible to all paired fingerprints"
 
-#: src/components/vcs/VCCard.tsx:159
+#: src/components/vcs/VCCard.tsx:162
 msgid "Issued"
 msgstr "Myönnetty"
 
-#: src/components/vcs/VCCard.tsx:119
+#: src/components/vcs/VCCard.tsx:122
 msgid "Issuer DID"
 msgstr "Myöntäjän DID"
 
@@ -5924,7 +5924,7 @@ msgstr "Liity pooliin ja saat tasaisen XCH-tuoton. Keskimääräinen tuotto on s
 msgid "Join farming pools"
 msgstr "Liity farmeripooleihin"
 
-#: src/components/plotNFT/PlotNFTCard.tsx:336
+#: src/components/plotNFT/PlotNFTCard.tsx:337
 msgid "Join Pool"
 msgstr "Liity Pooliin"
 
@@ -6016,13 +6016,13 @@ msgstr "Viimeisin Transaktiolohko"
 msgid "Latest Block Challenges"
 msgstr "Viimeisimmät Lohkohaasteet"
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:255
-#: src/components/plotNFT/PlotNFTCard.tsx:292
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:256
+#: src/components/plotNFT/PlotNFTCard.tsx:293
 msgid "Launcher Id"
 msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:63
-#: src/components/vcs/VCCard.tsx:132
+#: src/components/vcs/VCCard.tsx:135
 msgid "Launcher ID"
 msgstr "Käynnistimen Tunnus"
 
@@ -6279,7 +6279,7 @@ msgstr "Metatietojen URL {0}"
 msgid "MiB Up/Down"
 msgstr "MiB Lähetys/Lataus"
 
-#: src/components/settings/SettingsPanel.tsx:136
+#: src/components/settings/SettingsPanel.tsx:137
 msgid "Migrate Keyring"
 msgstr "Siirrä Avainrengas"
 
@@ -6291,7 +6291,7 @@ msgstr "Siirrä Avaimet"
 msgid "Migration required"
 msgstr "Siirto vaaditaan"
 
-#: src/components/settings/SettingsPanel.tsx:90
+#: src/components/settings/SettingsPanel.tsx:91
 msgid "Migration required to support passphrase protection"
 msgstr "Siirto vaaditaan salasanasuojaukseen"
 
@@ -6403,7 +6403,7 @@ msgstr "Siirrä profiiliin"
 msgid "Multi-select"
 msgstr "Monivalinta"
 
-#: src/components/addressbook/AddressBookSideBar.tsx:160
+#: src/components/addressbook/AddressBookSideBar.tsx:167
 #: src/components/addressbook/MyContact.tsx:112
 msgid "My Contact Info"
 msgstr "Omat Kontaktit"
@@ -6420,11 +6420,11 @@ msgstr "N/A"
 #: src/components/addressbook/ContactAdd.tsx:47
 #: src/components/addressbook/ContactAdd.tsx:105
 #: src/components/addressbook/ContactAdd.tsx:163
-#: src/components/addressbook/ContactAdd.tsx:351
+#: src/components/addressbook/ContactAdd.tsx:353
 #: src/components/addressbook/ContactEdit.tsx:50
 #: src/components/addressbook/ContactEdit.tsx:108
 #: src/components/addressbook/ContactEdit.tsx:166
-#: src/components/addressbook/ContactEdit.tsx:366
+#: src/components/addressbook/ContactEdit.tsx:368
 msgid "Name"
 msgstr "Nimi"
 
@@ -6436,7 +6436,7 @@ msgstr "Nimi"
 msgid "Need some {currencyCode}?"
 msgstr "Tarvitsetko {currencyCode}?"
 
-#: src/components/offers/NFTOfferViewer.tsx:586
+#: src/components/offers/NFTOfferViewer.tsx:590
 msgid "Net Proceeds"
 msgstr "Nettotuotot"
 
@@ -6444,7 +6444,7 @@ msgstr "Nettotuotot"
 msgid "Netspace"
 msgstr "Netspace"
 
-#: src/components/offers/NFTOfferViewer.tsx:609
+#: src/components/offers/NFTOfferViewer.tsx:613
 #: src/components/offers2/OfferBuilderViewer.tsx:338
 msgid "Network Fee (Optional)"
 msgstr "Transaktiomaksu (valinnainen)"
@@ -6489,7 +6489,7 @@ msgstr "Uusi Salasana"
 #~ msgid "New Recovery DID List"
 #~ msgstr "New Recovery DID List"
 
-#: src/components/offers2/DataLayerOfferViewer.tsx:57
+#: src/components/offers2/DataLayerOfferViewer.tsx:59
 msgid "New Root"
 msgstr ""
 
@@ -6498,7 +6498,7 @@ msgstr ""
 msgid "Next"
 msgstr "Seuraava"
 
-#: src/components/offers/NFTOfferEditor.tsx:213
+#: src/components/offers/NFTOfferEditor.tsx:214
 #: src/components/offers2/OfferBuilderNFTSection.tsx:46
 #: src/components/settings/Settings.tsx:38
 #: src/components/settings/SettingsNFT.tsx:97
@@ -6524,7 +6524,7 @@ msgstr "NFT-kolikon Tunniste"
 #~ msgid "NFT Coin Ids"
 #~ msgstr "NFT Coin Ids"
 
-#: src/components/offers/NFTOfferEditor.tsx:618
+#: src/components/offers/NFTOfferEditor.tsx:622
 msgid "NFT details not available"
 msgstr "NFT:n tietoja ei ole saatavilla"
 
@@ -6550,7 +6550,7 @@ msgstr "NFT:n haltijan osoite"
 msgid "NFT ID"
 msgstr "NFT ID"
 
-#: src/components/offers/NFTOfferEditor.tsx:215
+#: src/components/offers/NFTOfferEditor.tsx:216
 msgid "NFT Identifier"
 msgstr "NFT-tunniste (ID)"
 
@@ -6728,8 +6728,8 @@ msgstr "Ei Saatavilla"
 #: src/components/farm/card/FarmCardNotAvailable.tsx:22
 #: src/components/nfts/NFTMetadata.tsx:22
 #: src/components/offers2/OfferBuilderValue.tsx:73
-#: src/components/plot/PlotStatus.tsx:20
-#: src/components/plotNFT/PlotNFTCard.tsx:307
+#: src/components/plot/PlotStatus.tsx:21
+#: src/components/plotNFT/PlotNFTCard.tsx:308
 msgid "Not Available"
 msgstr "Ei Saatavilla"
 
@@ -6809,8 +6809,8 @@ msgstr "Vaiheen 3 ja 4 muistilohkojen (bucket) määrä"
 msgid "Number of plots"
 msgstr "Tonttien lukumäärä"
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:106
-#: src/components/plotNFT/PlotNFTCard.tsx:140
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:107
+#: src/components/plotNFT/PlotNFTCard.tsx:141
 msgid "Number of Plots"
 msgstr "Plottien Määrä"
 
@@ -6861,7 +6861,7 @@ msgstr "Varattu tila"
 msgid "Offer Builder"
 msgstr "Tarjousten Rakentaja"
 
-#: src/components/offers/NFTOfferViewer.tsx:175
+#: src/components/offers/NFTOfferViewer.tsx:176
 #: src/components/offers2/OfferBuilderValue.tsx:217
 #: src/components/offers2/OfferBuilderViewer.tsx:403
 msgid "Offer cannot be accepted because you don't possess the requested assets"
@@ -6876,7 +6876,7 @@ msgstr ""
 msgid "Offer Details"
 msgstr "Tarjouksen Tiedot"
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:182
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:191
 msgid "Offer Expiration"
 msgstr "Tarjouksen Vanheneminen"
 
@@ -6893,7 +6893,7 @@ msgstr "Tarjoustiedosto on liian suuri (> 1Mt)"
 msgid "Offer has been accepted and is awaiting confirmation."
 msgstr "Tarjous on hyväksytty ja odottaa vahvistusta."
 
-#: src/components/offers2/OfferBuilderExpirationCountdown.tsx:31
+#: src/components/offers2/OfferBuilderExpirationCountdown.tsx:32
 msgid "Offer has expired"
 msgstr "Tarjous on vanhentunut"
 
@@ -6921,9 +6921,9 @@ msgstr "Tarjousten Hallinta"
 msgid "Offer Shared"
 msgstr "Tarjous Jaettu"
 
-#: src/components/offers2/OfferBuilderExpirationCountdown.tsx:16
-#: src/components/offers2/OfferBuilderExpirationCountdown.tsx:21
-#: src/components/offers2/OfferBuilderExpirationCountdown.tsx:26
+#: src/components/offers2/OfferBuilderExpirationCountdown.tsx:17
+#: src/components/offers2/OfferBuilderExpirationCountdown.tsx:22
+#: src/components/offers2/OfferBuilderExpirationCountdown.tsx:27
 msgid "Offer will expire in {0} {1}"
 msgstr "Tarjous vanhenee {0} {1} kuluttua"
 
@@ -6936,7 +6936,7 @@ msgstr "Tarjous vanhenee {0} {1} kuluttua"
 msgid "Offered"
 msgstr "Tarjottu"
 
-#: src/components/offers2/DataLayerOfferViewer.tsx:164
+#: src/components/offers2/DataLayerOfferViewer.tsx:166
 msgid "Offered Store Updates ({0})"
 msgstr ""
 
@@ -7141,7 +7141,7 @@ msgstr "Onnistuneesti lähetetyt ja hyväksytyt partiaalit poolissa"
 #: src/components/app/AppPassPrompt.tsx:138
 #: src/components/settings/RemovePassphrasePrompt.tsx:130
 #: src/components/settings/SetPassphrasePrompt.tsx:175
-#: src/components/settings/SettingsPanel.tsx:184
+#: src/components/settings/SettingsPanel.tsx:185
 msgid "Passphrase"
 msgstr "Salasana"
 
@@ -7157,19 +7157,19 @@ msgstr "Salasanavihje"
 msgid "Passphrase Hint (Optional)"
 msgstr "Salasanavihje (vapaaehtoinen)"
 
-#: src/components/settings/SettingsPanel.tsx:61
+#: src/components/settings/SettingsPanel.tsx:62
 msgid "Passphrase protection has been disabled"
 msgstr "Salasanasuojaus on pois käytöstä"
 
-#: src/components/settings/SettingsPanel.tsx:99
+#: src/components/settings/SettingsPanel.tsx:100
 msgid "Passphrase protection is disabled"
 msgstr "Salasanasuojaus on pois käytöstä"
 
-#: src/components/settings/SettingsPanel.tsx:96
+#: src/components/settings/SettingsPanel.tsx:97
 msgid "Passphrase protection is enabled"
 msgstr "Salasanasuojaus on käytössä"
 
-#: src/components/settings/SettingsPanel.tsx:91
+#: src/components/settings/SettingsPanel.tsx:92
 msgid "Passphrase support requires migrating your keys to a new keyring"
 msgstr "Salasanatuki vaatii avainten siirtämistä uuteen avainrenkaaseen"
 
@@ -7186,7 +7186,7 @@ msgstr "Liitä Tarjoustiedot"
 msgid "Paste the address from WalletConnect below."
 msgstr "Liitä osoite WalletConnectista alla."
 
-#: src/components/plotNFT/PlotNFTCard.tsx:303
+#: src/components/plotNFT/PlotNFTCard.tsx:304
 msgid "Payout Address"
 msgstr "Maksun Osoite"
 
@@ -7219,7 +7219,7 @@ msgstr "Peruutus kesken"
 msgid "Pending Confirm"
 msgstr "Vahvistus kesken"
 
-#: src/components/vcs/VCCard.tsx:191
+#: src/components/vcs/VCCard.tsx:194
 msgid "Pending removal"
 msgstr "Odottaa poistamista"
 
@@ -7249,7 +7249,7 @@ msgstr "Syötä URI"
 msgid "Please enter a valid numeric fee"
 msgstr "Anna käypä numeerinen transaktiomaksu"
 
-#: src/components/offers/NFTOfferEditor.tsx:587
+#: src/components/offers/NFTOfferEditor.tsx:591
 msgid "Please enter an amount"
 msgstr "Syötä summa"
 
@@ -7265,7 +7265,7 @@ msgstr "Ole hyvä ja syötä summa {catName} tokenille"
 msgid "Please enter an amount for each row"
 msgstr "Ole hyvä ja syötä summa jokaiselle riville"
 
-#: src/components/offers/NFTOfferEditor.tsx:579
+#: src/components/offers/NFTOfferEditor.tsx:583
 msgid "Please enter an NFT identifier"
 msgstr "Anna NFT:n tunniste"
 
@@ -7305,7 +7305,7 @@ msgstr "Ole hyvä ja valitse assetti jokaiselle riville"
 msgid "Please select an asset for each token"
 msgstr "Ole hyvä ja valitse assetti jokaiselle tokenille"
 
-#: src/components/offers/NFTOfferEditor.tsx:585
+#: src/components/offers/NFTOfferEditor.tsx:589
 msgid "Please select an asset type"
 msgstr "Ole hyvä ja valitse assetin tyyppi"
 
@@ -7451,7 +7451,7 @@ msgid "Plotter"
 msgstr "Plotteri"
 
 #: src/components/plot/PlotPlotting.tsx:45
-#: src/components/plot/queue/PlotQueueIndicator.tsx:35
+#: src/components/plot/queue/PlotQueueIndicator.tsx:37
 msgid "Plotting"
 msgstr "Plotit"
 
@@ -7471,18 +7471,18 @@ msgstr "Plottaaminen Plot-NFT:tä varten mahdollistaa liitymisen pooliin. Voit v
 msgid "Plotting with bitfield enabled has about 30% less overall writes and is now almost always faster. You may see reduced memory requirements with bitfield plotting disabled. If your CPU design is from before 2010 you may have to disable bitfield plotting."
 msgstr "Bitfield-plottaaminen kirjoittaa 30% vähemmän levylle ja on lähes aina nopein tapa plotata, mutta ilman bitfieldiä saatat pärjätä vähemmällä RAM-muistilla. Jos CPU:si on tehty ennen vuotta 2010, voit joutua plottaamaan ilman bitfieldiä."
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:163
-#: src/components/plotNFT/PlotNFTCard.tsx:197
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:164
+#: src/components/plotNFT/PlotNFTCard.tsx:198
 msgid "Points Found in Last 24 Hours"
 msgstr "Pisteitä löytynyt viimeisen 24 tunnin aikana"
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:154
-#: src/components/plotNFT/PlotNFTCard.tsx:188
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:155
+#: src/components/plotNFT/PlotNFTCard.tsx:189
 msgid "Points Found Since Start"
 msgstr "Pisteitä Aloittamisen Jälkeen"
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:172
-#: src/components/plotNFT/PlotNFTCard.tsx:206
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:173
+#: src/components/plotNFT/PlotNFTCard.tsx:207
 msgid "Points Successful in Last 24 Hours"
 msgstr "Pisteitä onnistuneesti viimeisen 24 tunnin aikana"
 
@@ -7551,8 +7551,8 @@ msgstr "Poolin Palkkio-osoite on pakollinen."
 msgid "Pool Reward Amount"
 msgstr "Poolin Palkkiosumma"
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:234
-#: src/components/plotNFT/PlotNFTCard.tsx:271
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:235
+#: src/components/plotNFT/PlotNFTCard.tsx:272
 #: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:69
 msgid "Pool:"
 msgstr "Pooli:"
@@ -7680,7 +7680,7 @@ msgstr ""
 msgid "Proof of Space Size"
 msgstr "Tilatodisteavaruuden Koko"
 
-#: src/components/vcs/VCCard.tsx:179
+#: src/components/vcs/VCCard.tsx:182
 msgid "Proofs"
 msgstr "Todisteet"
 
@@ -7749,7 +7749,7 @@ msgstr "Ostoksen Yhteenveto"
 msgid "Queue Name"
 msgstr "Jonon Nimi"
 
-#: src/components/plot/queue/PlotQueueIndicator.tsx:36
+#: src/components/plot/queue/PlotQueueIndicator.tsx:38
 msgid "Queued"
 msgstr "Jonossa"
 
@@ -7872,7 +7872,7 @@ msgstr "Poista avaimet vanhasta avainrenkaasta onnistuneen siiron jälkeen"
 
 #: src/components/settings/RemovePassphrasePrompt.tsx:112
 #: src/components/settings/RemovePassphrasePrompt.tsx:172
-#: src/components/settings/SettingsPanel.tsx:147
+#: src/components/settings/SettingsPanel.tsx:148
 msgid "Remove Passphrase"
 msgstr "Poista Salasana"
 
@@ -7880,12 +7880,12 @@ msgstr "Poista Salasana"
 #~ msgid "Remove Subscriptions"
 #~ msgstr "Remove Subscriptions"
 
-#: src/components/vcs/VCCard.tsx:209
-#: src/components/vcs/VCCard.tsx:301
+#: src/components/vcs/VCCard.tsx:212
+#: src/components/vcs/VCCard.tsx:304
 msgid "Remove Verifiable Credential"
 msgstr "Poista Todennettava Käyttöoikeustieto"
 
-#: src/components/plot/queue/PlotQueueIndicator.tsx:37
+#: src/components/plot/queue/PlotQueueIndicator.tsx:39
 msgid "Removing"
 msgstr "Poistetaan"
 
@@ -8007,17 +8007,17 @@ msgstr "Pyydetään"
 #~ msgid "Required Number of DIDs for Verification"
 #~ msgstr "Required Number of DIDs for Verification"
 
-#: src/components/offers2/DataLayerOfferViewer.tsx:86
+#: src/components/offers2/DataLayerOfferViewer.tsx:88
 msgid "Required Proofs"
 msgstr ""
 
-#: src/components/offers2/DataLayerOfferViewer.tsx:102
+#: src/components/offers2/DataLayerOfferViewer.tsx:104
 msgid "Requires Proof From Store"
 msgstr "Edellyttää Todisteen Tallenustilasta"
 
 #: src/components/farm/FarmHealth.tsx:295
 #: src/components/farm/FarmHealth.tsx:357
-#: src/components/offers/NFTOfferEditor.tsx:436
+#: src/components/offers/NFTOfferEditor.tsx:440
 #: src/components/offers/OfferEditor.tsx:153
 #: src/components/settings/IpfsGatewayUrl.tsx:129
 #: src/components/settings/SettingsIntegration.tsx:222
@@ -8084,12 +8084,12 @@ msgstr "Uudelleensynkronointi pakottaa lataamaan transaktiotiedot lohkoketjusta 
 msgid "Revocable"
 msgstr "Peruutettava"
 
-#: src/components/vcs/VCCard.tsx:209
-#: src/components/vcs/VCCard.tsx:311
+#: src/components/vcs/VCCard.tsx:212
+#: src/components/vcs/VCCard.tsx:314
 msgid "Revoke Verifiable Credential"
 msgstr "Peruuta Todennettava Kredentiaali"
 
-#: src/components/vcs/VCCard.tsx:168
+#: src/components/vcs/VCCard.tsx:171
 msgid "Revoked"
 msgstr "Peruttu"
 
@@ -8155,7 +8155,7 @@ msgstr "Etsi lohko otsikon tiivisteellä"
 msgid "Search on Tail Database"
 msgstr "Etsi Tail-tietokannasta"
 
-#: src/components/addressbook/AddressBookSideBar.tsx:150
+#: src/components/addressbook/AddressBookSideBar.tsx:157
 #: src/components/nfts/gallery/NFTGallery.tsx:332
 msgid "Search..."
 msgstr "Etsi..."
@@ -8170,7 +8170,7 @@ msgstr "Toinen väliaikaishakemistosijainti"
 #~ msgid "Secure"
 #~ msgstr "Secure"
 
-#: src/components/settings/SettingsPanel.tsx:93
+#: src/components/settings/SettingsPanel.tsx:94
 msgid "Secure your keychain using a strong passphrase"
 msgstr "Suojaa avainrengas vahvalla salasanalla"
 
@@ -8308,7 +8308,7 @@ msgstr "Lähetä osoitteeseen"
 msgid "Set a default time frame for all outbound XCH transactions."
 msgstr "Aseta oletusaikaraja kaikille lähteville XCH-tapahtumille."
 
-#: src/components/offers2/OfferBuilderExpirationSection.tsx:185
+#: src/components/offers2/OfferBuilderExpirationSection.tsx:194
 msgid "Set a time after which this offer expires."
 msgstr "Aseta aika, jonka jälkeen tarjous vanhenee."
 
@@ -8322,7 +8322,7 @@ msgstr "Aseta aika, jonka jälkeen tarjous vanhenee."
 
 #: src/components/settings/SetPassphrasePrompt.tsx:156
 #: src/components/settings/SetPassphrasePrompt.tsx:271
-#: src/components/settings/SettingsPanel.tsx:153
+#: src/components/settings/SettingsPanel.tsx:154
 msgid "Set Passphrase"
 msgstr "Aseta Salasana"
 
@@ -8503,7 +8503,7 @@ msgstr "Yksinfarmaus"
 #~ msgid "Something went wrong"
 #~ msgstr ""
 
-#: src/components/app/AppTestnetIndicator.tsx:47
+#: src/components/app/AppTestnetIndicator.tsx:49
 msgid "Sorry, you can't switch to mainnet by clicking here..."
 msgstr "Pahoittelut, et voi vaihtaa mainnettiin klikkaamalla tästä..."
 
@@ -8568,7 +8568,7 @@ msgstr "Vanhentuneet partiaalit"
 msgid "Stale Partials"
 msgstr "Vanhentuneet partiaalit"
 
-#: src/components/vcs/VCCard.tsx:176
+#: src/components/vcs/VCCard.tsx:179
 msgid "Standard Version Number"
 msgstr "Vakioversionumero"
 
@@ -8609,13 +8609,13 @@ msgstr "Tila"
 #: src/components/offers/OfferManager.tsx:192
 #: src/components/plot/PlotHarvesterPlots.tsx:74
 #: src/components/plot/PlotPlotting.tsx:26
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:101
-#: src/components/plotNFT/PlotNFTCard.tsx:130
-#: src/components/vcs/VCCard.tsx:164
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:102
+#: src/components/plotNFT/PlotNFTCard.tsx:131
+#: src/components/vcs/VCCard.tsx:167
 msgid "Status"
 msgstr "Tila"
 
-#: src/components/offers2/DataLayerOfferViewer.tsx:43
+#: src/components/offers2/DataLayerOfferViewer.tsx:45
 msgid "Store {0}"
 msgstr "Tallennustila {0}"
 
@@ -8645,7 +8645,7 @@ msgstr "Säilytä ja lähetä XCH:itä"
 #~ msgid "Store Id"
 #~ msgstr "Store Id"
 
-#: src/components/offers2/DataLayerOfferViewer.tsx:49
+#: src/components/offers2/DataLayerOfferViewer.tsx:51
 msgid "Store ID"
 msgstr "Talkenustilan ID"
 
@@ -8672,7 +8672,7 @@ msgstr "Lähetä"
 
 #: src/components/notification/NotificationSendDialog.tsx:144
 #: src/components/offers2/OfferBuilderViewer.tsx:274
-#: src/components/vcs/VCCard.tsx:278
+#: src/components/vcs/VCCard.tsx:281
 #: src/hooks/useAcceptOfferHook.tsx:98
 msgid "Success"
 msgstr "Onnistui"
@@ -8706,7 +8706,7 @@ msgstr "Synkronissa"
 #: src/components/dashboard/DashboardOverview.tsx:269
 #: src/components/farm/FarmHealth.tsx:124
 #: src/components/farm/FarmHealth.tsx:171
-#: src/components/plot/PlotStatus.tsx:19
+#: src/components/plot/PlotStatus.tsx:20
 msgid "Syncing"
 msgstr "Synkronoi"
 
@@ -8764,7 +8764,7 @@ msgstr "Chia-sovellus ja sen palvelut käyttävät eri versioita. Jotkin toiminn
 msgid "The claw back time can be manually adjusted per transaction."
 msgstr "Takaisinvetoaika voidaan asettaa transaktiokohtaisesti"
 
-#: src/components/settings/SettingsPanel.tsx:169
+#: src/components/settings/SettingsPanel.tsx:170
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
 msgstr "Derivaatioindeksi asettaa lompakon osoitteiden määrän, jota lompakko skannaa lohkoketjusta. Tämä luku on yleensä suurempi, jos sinulla on paljon tapahtumia tai peruutettuja tarjouksia XCH-, CAT- tai NFT-kolikoille. Jos uskot, että saldo on väärä, nosta derivaatioindeksiä, mikä auttaa lompakkoa sisällyttämään puuttuvat kolikot saldoon."
 
@@ -8783,7 +8783,7 @@ msgstr "Kansio on RAM levyllä"
 #~ msgid "The following commands are not allowed to bypass confirmation."
 #~ msgstr "The following commands are not allowed to bypass confirmation."
 
-#: src/components/offers2/DataLayerOfferViewer.tsx:90
+#: src/components/offers2/DataLayerOfferViewer.tsx:92
 msgid "The following values must be proven to exist in the specified stores before this offer can be accepted."
 msgstr "Seuraavien arvojen on todennettavasti esiinnyttävä määritellyissä tallennustiloissa, ennen kuin tämä tarjous voidaan hyväksyä."
 
@@ -8820,7 +8820,7 @@ msgstr ""
 msgid "The minimum required size for mainnet is k=32"
 msgstr "Lohkoketjun hyväksymä minimiarvo on k=32"
 
-#: src/components/offers/NFTOfferViewer.tsx:590
+#: src/components/offers/NFTOfferViewer.tsx:594
 msgid "The net proceeds include the asking price, minus any associated creator fees (if the NFT has royalty payments enabled)."
 msgstr "Nettotuotot sisältävät pyyntöhinnan, josta on vähennetty mahdolliset rojaltit (jos NFT:llä on rojaltimaksut)."
 
@@ -8889,19 +8889,19 @@ msgstr "Siemenarvo plot-tiedostojen luontia varten. Riippuu poolin ja plotin jul
 msgid "The signature was made by the private key associated with the wallet address. The signer can be assumed to be the owner of the private key."
 msgstr "Allekirjoitus tehtiin lompakon osoitteeseen liittyvän yksityisen avaimen avulla. Allekirjoittajan voidaan katsoa olevan yksityisen avaimen omistaja."
 
-#: src/components/offers/NFTOfferViewer.tsx:564
+#: src/components/offers/NFTOfferViewer.tsx:568
 msgid "The total amount offered includes the offered purchase price, plus the optional offer creation fee.<0/>If the NFT has royalty payments enabled, those creator fees will be paid from the offered purchase price."
 msgstr "Tarjottu kokonaissumma sisältää tarjotun ostohinnan, johon on lisätty valinnainen tarjouksen transaktiomaksu. <0/>Jos NFT:ssä on rojaltimaksut, nämä maksetaan tarjotusta ostohinnasta."
 
-#: src/components/offers/NFTOfferEditor.tsx:397
+#: src/components/offers/NFTOfferEditor.tsx:401
 msgid "The total amount offered includes the price you're willing to pay for the NFT, plus the optional offer creation fee. One or more coins totalling at least the amount shown below will be deducted from your spendable balance upon offer creation.<0/>If the NFT has royalty payments enabled, those creator fees will be paid by the party that accepts the offer."
 msgstr "Tarjottu summa sisältää hinnan, jonka olet valmis maksamaan NFT:stä, sekä valinnaisen tarjouksen transaktiomaksun. Vähintään alla näkyvä määrä vähennetään käytettävissä olevasta saldosta tarjouksen luomisen yhteydessä. <0/>Jos NFT:ssa on rojaltimaksut, ne maksatetaan osapuolella, joka hyväksyy tarjouksen."
 
-#: src/components/offers/NFTOfferEditor.tsx:388
+#: src/components/offers/NFTOfferEditor.tsx:392
 msgid "The total amount requested includes the asking price, plus the associated creator fees (if the NFT has royalty payments enabled). Creator fees will be paid by the party that accepts the offer.<0/>The optional offer creation fee is not included in this total, and will be deducted from your spendable balance upon offer creation."
 msgstr "Pyydettyyn kokonaismäärään sisältyy pyyntihinta sekä siihen liittyvät rojaltit (jos NFT:ssa on rojaltimaksut). Luontipalkkiot maksatetaan osapuolella, joka hyväksyy tarjouksen. <0/>Valinnainen transaktio ei sisälly tähän kokonaissummaan, ja se vähennetään käytettävissä olevasta saldosta tarjouksen teon yhteydessä."
 
-#: src/components/offers/NFTOfferViewer.tsx:553
+#: src/components/offers/NFTOfferViewer.tsx:557
 msgid "The total amount requested includes the asking price, plus the associated creator fees (if the NFT has royalty payments enabled).{0}"
 msgstr "Pyydetty summa sisältää pyyntihinnan, sekä siihen liittyvät rojaltit (jos NFT:llä on rojaltimaksut).{0}"
 
@@ -8933,11 +8933,11 @@ msgstr "Nämä ovat ohjeet siitä, miten farmari haluaa saada maksun. Oletuksena
 msgid "These plots are invalid, you might want to delete them."
 msgstr "Näitä plot-tiedostoja ei löydy tai ne ovat viallisia."
 
-#: src/components/offers2/DataLayerOfferViewer.tsx:168
+#: src/components/offers2/DataLayerOfferViewer.tsx:170
 msgid "These stores will have their roots updated to the specified values."
 msgstr ""
 
-#: src/components/offers/NFTOfferEditor.tsx:362
+#: src/components/offers/NFTOfferEditor.tsx:366
 msgid "They will receive"
 msgstr "Vastaanottaja vastaanottaa"
 
@@ -8953,8 +8953,8 @@ msgstr ""
 msgid "This Data Layer offer contains no store updates and cannot be accepted."
 msgstr ""
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:114
-#: src/components/plotNFT/PlotNFTCard.tsx:148
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:115
+#: src/components/plotNFT/PlotNFTCard.tsx:149
 msgid "This difficulty is an artifically lower difficulty than on the real network, and is used when farming, in order to find more proofs and send them to the pool. The more plots you have, the higher difficulty you will have. However, the difficulty does not affect rewards."
 msgstr "Tämä vaikeuskerroin on keinotekoisesti pienempi kuin todellisessa verkossa, ja sitä käytetään lähettämään ylimääräisiä todisteita farmaroinnissa, jotta voit osoittaa että farmaroit jatkuvasti pooliin. Mitä enemmän plotteja sinulla on, sitä suurempi vaikeuskerroin. Vaikeuskerroin ei vaikuta palkintoihin."
 
@@ -8990,8 +8990,8 @@ msgstr "Ajankohta jolloin farmari on luonut lohkon. Aikatodiste viimeistelee loh
 msgid "This is the timestamp of the most recent transaction block."
 msgstr "Tämä on uusimman transaktiolohkon aikaleima."
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:131
-#: src/components/plotNFT/PlotNFTCard.tsx:165
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:132
+#: src/components/plotNFT/PlotNFTCard.tsx:166
 msgid "This is the total number of points this plotNFT has with this pool, since the last payout. The pool will reset the points after making a payout."
 msgstr "Tämä on Plot-NFT:n yhteispistemäärä edellisen maksun jälkeen. Pooli nollaa pisteet jokaisen maksun yhteydessä."
 
@@ -9000,8 +9000,8 @@ msgstr "Tämä on Plot-NFT:n yhteispistemäärä edellisen maksun jälkeen. Pool
 #~ msgid "This is the total number of points your farmer has found for this plot NFT. Each k32 plot will get around 10 points per day, so if you have 10TiB, should should expect around 1000 points per day, or 41 points per hour."
 #~ msgstr "This is the total number of points your farmer has found for this plot NFT. Each k32 plot will get around 10 points per day, so if you have 10TiB, you should expect around 1000 points per day, or 41 points per hour."
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:147
-#: src/components/plotNFT/PlotNFTCard.tsx:181
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:148
+#: src/components/plotNFT/PlotNFTCard.tsx:182
 msgid "This is the total number of points your farmer has found for this plot NFT. Each k32 plot will get around 20 points per day, so if you have 10TiB, should should expect around 2000 points per day, or 82 points per hour."
 msgstr "Tämä on kokonaispistemäärä jotka olet farmannut tälle Plot-NFT:lle. Jokainen k32-plotti tuottaa noin 20 pistettä päivässä, joten jos sinulla on 10TiB, pitäisi plottien tuottaa noin 2000 pistettä päivässä tai 82 pistettä tunnissa."
 
@@ -9009,12 +9009,12 @@ msgstr "Tämä on kokonaispistemäärä jotka olet farmannut tälle Plot-NFT:lle
 msgid "This node is fully caught up and validating the network"
 msgstr "Noodi on ajan tasalla ja todentaa lohkoketjuverkkoa"
 
-#: src/components/offers/NFTOfferViewer.tsx:217
+#: src/components/offers/NFTOfferViewer.tsx:218
 #: src/components/offers/OfferSummary.tsx:183
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted."
 msgstr "Tarjoukseen sisälletty sisällytetty maksu auttaa nopeuttamaan transaktiota kun tarjous on hyväksytty."
 
-#: src/components/offers/NFTOfferViewer.tsx:212
+#: src/components/offers/NFTOfferViewer.tsx:213
 #: src/components/offers/OfferSummary.tsx:178
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted. You may specify an additional fee if you feel that the included fee is too small."
 msgstr "Tarjoukseen sisällytetty maksu auttaa nopeuttamaan transktiota, kun tarjous on hyväksytty. Voit määrittää lisämaksun, jos sinusta tuntuu, että kyseinen maksu on liian pieni."
@@ -9035,7 +9035,7 @@ msgstr "Tämä tarjous ei ole enää voimassa, koska se on hyväksytty tai peruu
 #~ msgid "This offer is no longer valid. To understand why, click <0>here</0> to learn more."
 #~ msgstr "This offer is no longer valid. To understand why, click <0>here</0> to learn more."
 
-#: src/components/offers2/DataLayerOfferViewer.tsx:152
+#: src/components/offers2/DataLayerOfferViewer.tsx:154
 msgid "This offer proposes updates to Data Layer store roots. Accepting it will transition the listed stores to new roots. Dependencies specify values that must be proven to exist in other stores before acceptance."
 msgstr ""
 
@@ -9055,7 +9055,7 @@ msgstr "Tarjous vanhenee {displayDays} {displayDaysText}{hoursComma} {displayHou
 msgid "This offer will not expire"
 msgstr "Tämä tarjous ei vanhene"
 
-#: src/components/plotNFT/PlotExternalNFTCard.tsx:268
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:269
 msgid "This plot NFT is assigned to a different key. You can still create plots for this plot NFT, but you can not make changes."
 msgstr "Tämä Plot-NFT on määritetty eri avaimelle. Voit silti luoda plotteja tälle Plot-NFT:lle, mutta et voi tehdä muutoksia."
 
@@ -9139,13 +9139,13 @@ msgstr "Yhteensä"
 msgid "Total amount including royalties"
 msgstr "Yhteissuma, mukaan lukien rojaltit"
 
-#: src/components/offers/NFTOfferEditor.tsx:382
-#: src/components/offers/NFTOfferViewer.tsx:547
+#: src/components/offers/NFTOfferEditor.tsx:386
+#: src/components/offers/NFTOfferViewer.tsx:551
 msgid "Total Amount Offered"
 msgstr "Tarjottu Kokonaissumma"
 
-#: src/components/offers/NFTOfferEditor.tsx:380
-#: src/components/offers/NFTOfferViewer.tsx:543
+#: src/components/offers/NFTOfferEditor.tsx:384
+#: src/components/offers/NFTOfferViewer.tsx:547
 msgid "Total Amount Requested"
 msgstr "Pyydetty Kokonaissumma"
 
@@ -9262,7 +9262,7 @@ msgstr "Transaktiomaksu"
 msgid "Transaction protection"
 msgstr "Transaktion suojaus"
 
-#: src/components/vcs/VCCard.tsx:266
+#: src/components/vcs/VCCard.tsx:269
 msgid "Transaction sent to blockchain successfully."
 msgstr "Transaktio lähetetty lohkoketjuun onnistuneesti."
 
@@ -9324,7 +9324,7 @@ msgstr "Ota DataLayer palvelu käyttöön/pois päältä."
 msgid "Turn this off if you don't have any compressed plots to harvest"
 msgstr "Poista tämä käytöstä, jos sinulla ei ole puristettuja plotteja"
 
-#: src/components/vcs/VCCard.tsx:163
+#: src/components/vcs/VCCard.tsx:166
 msgid "Type"
 msgstr "Tyyppi"
 
@@ -9336,15 +9336,15 @@ msgstr "Tyyppi"
 msgid "Types{0}"
 msgstr "Tyypit{0}"
 
-#: src/components/offers/NFTOfferEditor.tsx:634
+#: src/components/offers/NFTOfferEditor.tsx:638
 msgid "Unable to create an offer for an NFT that you do not own."
 msgstr "Ei voida luoda tarjousta NFT:lle, jota et omista."
 
-#: src/components/offers/NFTOfferEditor.tsx:643
+#: src/components/offers/NFTOfferEditor.tsx:647
 msgid "Unable to create an offer for an NFT with a creator royalty percentage greater than 100%"
 msgstr "Ei voitu luoda tarjousta NFT:lle, jonka luojan rojaltiprosentti on suurempi kuin 100%"
 
-#: src/components/offers/NFTOfferEditor.tsx:371
+#: src/components/offers/NFTOfferEditor.tsx:375
 msgid "Unable to create an offer where the net amount is negative"
 msgstr "Tarjousta ei voi luoda, jos nettosumma on negatiivinen"
 
@@ -9382,7 +9382,7 @@ msgstr "Määrittelemättömät NFT:t"
 msgid "Unavailable"
 msgstr ""
 
-#: src/components/plotNFT/PlotNFTCard.tsx:135
+#: src/components/plotNFT/PlotNFTCard.tsx:136
 msgid "Unclaimed Rewards"
 msgstr "Lunastamattomat palkkiot"
 
@@ -9408,7 +9408,7 @@ msgstr "Tuntematon Sovellus"
 msgid "Unknown Asset"
 msgstr ""
 
-#: src/components/offers/NFTOfferViewer.tsx:372
+#: src/components/offers/NFTOfferViewer.tsx:373
 #: src/components/offers/OfferSummaryRow.tsx:150
 #: src/components/offers/OfferSummaryRow.tsx:151
 #: src/util/resolveOfferInfo.tsx:66
@@ -9428,7 +9428,7 @@ msgstr "Avaa Avainrengas"
 msgid "Unnamed Contact"
 msgstr "Nimetön Kontakti"
 
-#: src/components/offers/NFTOfferViewer.tsx:144
+#: src/components/offers/NFTOfferViewer.tsx:145
 msgid "Unrecognized asset"
 msgstr "Tunnistamaton assetti"
 
@@ -9498,7 +9498,7 @@ msgstr "Käytetään poolinplotin luomiseen."
 #~ msgstr "User Transaction Fees"
 
 #: src/components/signVerify/VerifyMessage.tsx:165
-#: src/components/vcs/VCCard.tsx:170
+#: src/components/vcs/VCCard.tsx:173
 msgid "Valid"
 msgstr "Validi"
 
@@ -9522,7 +9522,7 @@ msgstr "Kelvolliset partiaalit"
 #~ msgid "Value"
 #~ msgstr "Value"
 
-#: src/components/offers2/DataLayerOfferViewer.tsx:105
+#: src/components/offers2/DataLayerOfferViewer.tsx:107
 msgid "Values to Prove"
 msgstr "Todennettavat arvot"
 
@@ -9542,15 +9542,15 @@ msgstr "Todennettava Kredentiaali"
 msgid "Verifiable Credential already exists."
 msgstr "Todennettava kredentiaali on jo olemassa."
 
-#: src/components/vcs/VCCard.tsx:265
+#: src/components/vcs/VCCard.tsx:268
 msgid "Verifiable Credential Removed"
 msgstr "Todennettava Kredentiaali Poistettu"
 
-#: src/components/vcs/VCCard.tsx:280
+#: src/components/vcs/VCCard.tsx:283
 msgid "Verifiable Credential Removed."
 msgstr "Todennettava Kredentiaali Poistettu."
 
-#: src/components/vcs/VCCard.tsx:282
+#: src/components/vcs/VCCard.tsx:285
 msgid "Verifiable Credential Revoked."
 msgstr "Todennettava Kredentiaali Peruttu."
 
@@ -9612,7 +9612,7 @@ msgstr "Näytä Tarjous"
 msgid "View and analyze Chia log files"
 msgstr "Tarkastele ja analysoi Chia-lokitiedostoja"
 
-#: src/components/vcs/VCCard.tsx:198
+#: src/components/vcs/VCCard.tsx:201
 msgid "View Credential Data"
 msgstr "Näytä Kredentiaalitiedot"
 
@@ -9651,7 +9651,7 @@ msgstr "Näytä Offerpoolissa"
 msgid "View on Spacescan.io"
 msgstr "Näytä Spacescan.io:ssa"
 
-#: src/components/plotNFT/PlotNFTCard.tsx:242
+#: src/components/plotNFT/PlotNFTCard.tsx:243
 msgid "View Pool Login Link"
 msgstr "Näytä Poolin Kirjautumislinkki"
 
@@ -9685,8 +9685,8 @@ msgstr "Näkyvät ja piilotetut <0/>"
 #~ msgstr ""
 
 #: src/components/farm/card/FarmCardNotAvailable.tsx:25
-#: src/components/plot/PlotStatus.tsx:27
 #: src/components/plot/PlotStatus.tsx:28
+#: src/components/plot/PlotStatus.tsx:29
 msgid "Wait for synchronization"
 msgstr "Odota synkronointia"
 
@@ -9953,7 +9953,7 @@ msgstr "Voit muokata farmerin julkista avainta, poolin avainta tai poolisopimuks
 #~ msgid "You can now connect to {0} in your browser."
 #~ msgstr "You can now connect to {0} in your browser."
 
-#: src/components/plotNFT/PlotNFTCard.tsx:351
+#: src/components/plotNFT/PlotNFTCard.tsx:352
 msgid "You can still create plots for this plot NFT, but you can not make changes until sync is complete."
 msgstr "Voit silti luoda plotteja tälle Plot-NFT:lle, mutta et voi tehdä muutoksia ennen kuin synkronointi on valmis."
 
@@ -10015,7 +10015,7 @@ msgstr "Olet antamassa"
 msgid "You will offer"
 msgstr "Sinä tarjoat"
 
-#: src/components/offers/NFTOfferEditor.tsx:360
+#: src/components/offers/NFTOfferEditor.tsx:364
 #: src/components/offers/NFTOfferViewer.tsx:480
 msgid "You will receive"
 msgstr "Vastaanotat"
@@ -10054,11 +10054,11 @@ msgstr "Avainrenkaasi on lukittu"
 msgid "Your passphrase can be stored in your system's secure credential store. Chia will be able to access your keys without prompting for your passphrase."
 msgstr "Salasana voidaan tallentaa järjestelmäsi turvalliseen käyttöoikeussäilöön. Sovellus voi käyttää avaimia ilman että pyytää salasanaasi."
 
-#: src/components/settings/SettingsPanel.tsx:52
+#: src/components/settings/SettingsPanel.tsx:53
 msgid "Your passphrase has been set"
 msgstr "Salasanasi on asetettu"
 
-#: src/components/settings/SettingsPanel.tsx:43
+#: src/components/settings/SettingsPanel.tsx:44
 msgid "Your passphrase has been updated"
 msgstr "Salasanasi on päivitetty"
 
