@@ -17,14 +17,14 @@ export default function AspectRatio(props: Props) {
         display: 'flex',
 
         '&:before': {
-          paddingBottom: () => `${(1 / ratio) * 100}}%`,
-          content: '',
+          paddingBottom: () => `${(1 / ratio) * 100}%`,
+          content: '""',
           float: 'left',
         },
 
         '&:after': {
           display: 'table',
-          content: '',
+          content: '""',
           clear: 'both',
         },
       }}

@@ -47,6 +47,36 @@ type ChiaSurfacePalette = {
   frameBorder?: string;
   /** Fill for hand-built inputs, matching the theme's text fields. */
   field?: string;
+  /** Tinted section fill and its edge (offer builder headers, pending claw backs). */
+  panel?: string;
+  panelBorder?: string;
+  /** Page behind the logged-out, loading and error screens. */
+  hero?: string;
+  /** File drop zones. */
+  dropzone?: string;
+  /** Log output. */
+  console?: string;
+  /** Numbered step markers. */
+  stepIcon?: string;
+  /** Popovers drawn by hand (the emoji and color picker). */
+  raised?: string;
+};
+
+/**
+ * Text and icon colors for spots that used fixed palette values. Themes that leave one unset keep that value, so
+ * only the themes that define these change.
+ */
+type ChiaInkPalette = {
+  /** Secondary icons, help icons and quiet labels. */
+  muted?: string;
+  /** Menu and popover text. */
+  menu?: string;
+  console?: string;
+  onStepIcon?: string;
+  /** State text and indicators (see `getStateColors`). */
+  success?: string;
+  warning?: string;
+  error?: string;
 };
 
 declare module '@mui/material/styles' {
@@ -67,6 +97,7 @@ declare module '@mui/material/styles' {
     highlight?: ChiaPaletteColor;
     semantic?: ChiaSemanticPalette;
     surfaces?: ChiaSurfacePalette;
+    ink?: ChiaInkPalette;
     sidebarSelectedFill?: string | { light?: string; dark?: string; main?: string };
     sidebarText?: { light?: string; dark?: string; main?: string };
     /** When set, the current sidebar item gets an edge bar in this color instead of an outlined tile. */
@@ -79,6 +110,7 @@ declare module '@mui/material/styles' {
     highlight?: ChiaPaletteColor;
     semantic?: ChiaSemanticPalette;
     surfaces?: ChiaSurfacePalette;
+    ink?: ChiaInkPalette;
     sidebarSelectedFill?: string | { light?: string; dark?: string; main?: string };
     sidebarText?: { light?: string; dark?: string; main?: string };
     sidebarMarkCurrent?: string;

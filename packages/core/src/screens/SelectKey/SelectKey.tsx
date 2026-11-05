@@ -216,7 +216,10 @@ export default function SelectKey() {
       <Flex
         justifyContent="space-between"
         width="100%"
-        sx={{ borderBottom: `1px solid ${Color.Neutral[level]}`, paddingBottom: '30px' }}
+        sx={{
+          borderBottom: `1px solid ${theme.palette.surfaces?.panelBorder ?? Color.Neutral[level]}`,
+          paddingBottom: '30px',
+        }}
       >
         <Flex alignItems="left">
           <ThemedChiaBlack color="secondary" />

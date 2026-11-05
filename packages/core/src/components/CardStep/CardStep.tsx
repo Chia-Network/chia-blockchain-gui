@@ -17,7 +17,16 @@ export default function CardStep(props: Props) {
       return undefined;
     }
     return (
-      <Avatar aria-label="step" sx={{ width: '2rem', height: '2rem' }}>
+      <Avatar
+        aria-label="step"
+        sx={{
+          width: '2rem',
+          height: '2rem',
+          // Themes without a step color keep MUI's default avatar gray.
+          bgcolor: (theme) => theme.palette.surfaces?.stepIcon,
+          color: (theme) => theme.palette.ink?.onStepIcon,
+        }}
+      >
         {step}
       </Avatar>
     );

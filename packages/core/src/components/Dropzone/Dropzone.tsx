@@ -1,4 +1,5 @@
 import { Paper, CircularProgress } from '@mui/material';
+import type { Theme } from '@mui/material/styles';
 import React, { ReactNode } from 'react';
 import { useDropzone, DropzoneOptions } from 'react-dropzone';
 
@@ -10,7 +11,9 @@ function StyledPaper({ children }: { children: ReactNode | ChildrenRender }) {
   return (
     <Paper
       sx={{
-        backgroundColor: Color.Neutral[400],
+        backgroundColor: (theme: Theme) => theme.palette.surfaces?.dropzone ?? Color.Neutral[400],
+        border: (theme: Theme) =>
+          theme.palette.surfaces?.dropzone ? `1px dashed ${theme.palette.border.dark}` : undefined,
         padding: (theme) => `${theme.spacing(1)} ${theme.spacing(2)}`,
       }}
     >

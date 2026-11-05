@@ -2,7 +2,7 @@ import { Trans } from '@lingui/macro';
 import { Box } from '@mui/material';
 import React from 'react';
 
-import StateColor from '../../constants/StateColor';
+import { getStateColors } from '../../theme/semanticColors';
 import Amount, { AmountProps } from '../Amount';
 
 type FeeProps = AmountProps;
@@ -20,7 +20,7 @@ export default function Fee({ label = <Trans>Fee</Trans>, name = 'fee', ...props
 
         if (isHigh) {
           return (
-            <Box sx={{ color: () => StateColor.WARNING }}>
+            <Box sx={{ color: (theme) => getStateColors(theme.palette).warning }}>
               <Trans>Value seems high</Trans>
             </Box>
           );
@@ -28,7 +28,7 @@ export default function Fee({ label = <Trans>Fee</Trans>, name = 'fee', ...props
 
         if (isLow) {
           return (
-            <Box sx={{ color: () => StateColor.ERROR }}>
+            <Box sx={{ color: (theme) => getStateColors(theme.palette).error }}>
               <Trans>Incorrect value</Trans>
             </Box>
           );

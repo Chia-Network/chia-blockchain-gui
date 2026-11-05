@@ -112,7 +112,10 @@ export default function VCCard(props: {
     return (
       <Box
         sx={{
-          color: vcRecord?.vc?.launcherId && pendingRevoke[vcRecord.vc.launcherId] ? Color.Neutral[400] : 'inherit',
+          color:
+            vcRecord?.vc?.launcherId && pendingRevoke[vcRecord.vc.launcherId]
+              ? (theme.palette.ink?.muted ?? Color.Neutral[400])
+              : 'inherit',
         }}
       >
         {didString && (
@@ -340,7 +343,7 @@ export default function VCCard(props: {
           <IconButton onClick={() => setIsEditingTitle(true)} size="small" sx={{ padding: '4px' }}>
             <EditIcon
               style={{
-                color: isDark ? Color.Neutral[600] : Color.Neutral[400],
+                color: theme.palette.ink?.muted ?? (isDark ? Color.Neutral[600] : Color.Neutral[400]),
               }}
             />
           </IconButton>
@@ -374,7 +377,8 @@ export default function VCCard(props: {
       </Flex>
       <Box
         sx={{
-          background: theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[200],
+          background:
+            theme.palette.surfaces?.panel ?? (theme.palette.mode === 'dark' ? Color.Neutral[700] : Color.Neutral[200]),
           borderRadius: '15px',
           padding: '25px',
           '> div': {

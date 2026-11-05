@@ -11,11 +11,11 @@ import Flex from '../Flex';
 const { productName } = walletPackageJson;
 
 const FAQ = styled.a`
-  color: ${Color.Royal[300]};
+  color: ${({ theme }) => theme.palette.ink?.muted ?? Color.Royal[300]};
 `;
 
 const SendFeedback = styled.a`
-  color: ${Color.Royal[300]};
+  color: ${({ theme }) => theme.palette.ink?.muted ?? Color.Royal[300]};
 `;
 
 async function openFAQURL(): Promise<void> {

@@ -121,7 +121,10 @@ export default function OfferBuilderExpirationSection(props: OfferExpirationSect
           xs={12}
           item
           border={1}
-          borderColor={theme.palette.mode === 'light' ? Color.Neutral[300] : Color.Neutral[600]}
+          borderColor={
+            theme.palette.surfaces?.panelBorder ??
+            (theme.palette.mode === 'light' ? Color.Neutral[300] : Color.Neutral[600])
+          }
           borderRadius={2}
           overflow="hidden"
         >
@@ -155,7 +158,10 @@ export default function OfferBuilderExpirationSection(props: OfferExpirationSect
                   <Flex
                     height="32px"
                     width="32px"
-                    bgcolor={theme.palette.mode === 'light' ? Color.Neutral[200] : Color.Neutral[700]}
+                    bgcolor={
+                      theme.palette.surfaces?.panel ??
+                      (theme.palette.mode === 'light' ? Color.Neutral[200] : Color.Neutral[700])
+                    }
                     borderRadius="10px"
                     justifyContent="center"
                     alignItems="center"
@@ -173,7 +179,10 @@ export default function OfferBuilderExpirationSection(props: OfferExpirationSect
                 flexDirection="row"
                 justifyContent="space-between"
                 width="100%"
-                bgcolor={theme.palette.mode === 'light' ? Color.Neutral[200] : Color.Neutral[700]}
+                bgcolor={
+                  theme.palette.surfaces?.panel ??
+                  (theme.palette.mode === 'light' ? Color.Neutral[200] : Color.Neutral[700])
+                }
                 borderRadius="10px"
                 padding="1rem"
               >

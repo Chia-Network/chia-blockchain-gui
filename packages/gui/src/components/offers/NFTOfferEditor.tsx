@@ -12,7 +12,8 @@ import {
   Flex,
   Form,
   FormatLargeNumber,
-  StateColor,
+  getStateColors,
+  stateTextSx,
   TextField,
   Tooltip,
   TooltipIcon,
@@ -53,7 +54,7 @@ import { calculateNFTRoyalties } from './utils';
 /* ========================================================================== */
 
 const StyledWarningIcon = styled(WarningIcon)`
-  color: ${StateColor.WARNING};
+  color: ${({ theme }) => getStateColors(theme.palette).warning};
 `;
 
 /* ========================================================================== */
@@ -268,7 +269,6 @@ function NFTOfferConditionalsPanel(props: NFTOfferConditionalsPanelProps) {
   const offerElem = tab === NFTOfferExchangeType.NFTForToken ? nftElem : amountElem;
   const takerElem = tab === NFTOfferExchangeType.NFTForToken ? amountElem : nftElem;
   const showRoyaltyWarning = (royaltyPercentage ?? 0) >= 20;
-  const royaltyPercentageColor = showRoyaltyWarning ? StateColor.WARNING : 'textSecondary';
   const showNegativeAmountWarning = (nftSellerNetAmount ?? 0) < 0;
 
   function handleAmountChange(amountLocal: string) {
@@ -327,7 +327,11 @@ function NFTOfferConditionalsPanel(props: NFTOfferConditionalsPanelProps) {
             <Flex flexDirection="column" gap={2}>
               <Flex flexDirection="column" gap={0.5}>
                 <Flex flexDirection="row" alignItems="center" gap={1}>
-                  <Typography variant="body1" color={royaltyPercentageColor}>
+                  <Typography
+                    variant="body1"
+                    color="textSecondary"
+                    sx={showRoyaltyWarning ? stateTextSx.warning : undefined}
+                  >
                     <Trans>Creator Fee ({`${royaltyPercentage}%)`}</Trans>
                   </Typography>
                   {showRoyaltyWarning && (
@@ -362,12 +366,12 @@ function NFTOfferConditionalsPanel(props: NFTOfferConditionalsPanelProps) {
                       <Trans>They will receive</Trans>
                     )}
                   </Typography>
-                  <Typography variant="subtitle1" color={showNegativeAmountWarning ? StateColor.ERROR : 'inherit'}>
+                  <Typography variant="subtitle1" sx={showNegativeAmountWarning ? stateTextSx.error : undefined}>
                     <FormatLargeNumber value={new BigNumber(nftSellerNetAmount ?? 0)} />{' '}
                     {tokenWalletInfo.symbol ?? tokenWalletInfo.name ?? ''}
                   </Typography>
                   {showNegativeAmountWarning && (
-                    <Typography variant="body2" color={StateColor.ERROR}>
+                    <Typography variant="body2" sx={stateTextSx.error}>
                       <Trans>Unable to create an offer where the net amount is negative</Trans>
                     </Typography>
                   )}

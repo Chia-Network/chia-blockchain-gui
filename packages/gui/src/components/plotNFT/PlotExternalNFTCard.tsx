@@ -43,7 +43,8 @@ const StyledCardContent = styled(CardContent)`
 `;
 
 const StyledSyncingFooter = styled(CardContent)`
-  background-color: ${({ theme }) => (theme.palette.mode === 'dark' ? Color.Neutral[600] : Color.Neutral[50])};
+  background-color: ${({ theme }) =>
+    theme.palette.surfaces?.panel ?? (theme.palette.mode === 'dark' ? Color.Neutral[600] : Color.Neutral[50])};
   padding: 2rem 3rem;
   text-align: center;
   borer-top: 1px solid ${Color.Neutral[200]};

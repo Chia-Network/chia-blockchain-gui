@@ -1,6 +1,6 @@
 import { type Plot } from '@chia-network/api';
 import { useGetHarvesterPlotsValidQuery, useGetHarvesterQuery } from '@chia-network/api-react';
-import { Address, TableControlled, Flex, FormatBytes, Tooltip, StateColor } from '@chia-network/core';
+import { Address, TableControlled, Flex, FormatBytes, Tooltip, getStateColors } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Warning as WarningIcon } from '@mui/icons-material';
 import { Box, Typography } from '@mui/material';
@@ -11,7 +11,7 @@ import PlotAction from './PlotAction';
 import PlotStatus from './PlotStatus';
 
 const StyledWarningIcon = styled(WarningIcon)`
-  color: ${StateColor.WARNING};
+  color: ${({ theme }) => getStateColors(theme.palette).warning};
 `;
 
 const cols = [

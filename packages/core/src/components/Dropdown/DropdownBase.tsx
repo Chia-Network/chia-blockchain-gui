@@ -23,7 +23,7 @@ const StyledMenu = styled((props: MenuProps) => (
     borderRadius: 6,
     marginTop: theme.spacing(1),
     minWidth: 180,
-    color: theme.palette.mode === 'light' ? Color.Comet[700] : theme.palette.grey[300],
+    color: theme.palette.ink?.menu ?? (theme.palette.mode === 'light' ? Color.Comet[700] : theme.palette.grey[300]),
     boxShadow: `${Color.Neutral[50]} 0px 0px 0px 0px, ${alpha(
       Color.Neutral[900],
       theme.palette.mode === 'dark' ? 0.15 : 0.05,

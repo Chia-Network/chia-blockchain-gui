@@ -2,7 +2,7 @@ import { createTheme } from '@mui/material/styles';
 
 import Color from '../../../constants/Color';
 
-import { ChiaNetBrand as B, ChiaNetLight as T, ChiaNetStatus } from './brandColors';
+import { ChiaNetBrand as B, ChiaNetDark, ChiaNetLight as T, ChiaNetStatus } from './brandColors';
 import getChiaNetComponents from './components';
 import layout from './default';
 
@@ -76,6 +76,22 @@ export default createTheme({
       frame: T.card,
       frameBorder: T.hairline,
       field: T.field,
+      panel: T.hover,
+      panelBorder: T.hairline,
+      hero: T.ground,
+      dropzone: T.hover,
+      console: ChiaNetDark.ground,
+      stepIcon: T.primary,
+      raised: T.card,
+    },
+    ink: {
+      muted: T.muted,
+      menu: T.text,
+      console: B.white,
+      onStepIcon: T.onPrimary,
+      success: S.success,
+      warning: S.warning,
+      error: T.errorText,
     },
     // Light frame: the sidebar shares the card surface; the current item is a quiet fill, a green edge bar and a green icon.
     sidebarBackground: T.card,

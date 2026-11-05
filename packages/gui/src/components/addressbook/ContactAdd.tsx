@@ -325,10 +325,12 @@ export default function ContactAdd() {
                     textAlign: 'center',
                     borderRadius: '5px',
                     border: 1,
-                    borderColor: isDark ? Color.Neutral[400] : Color.Neutral[300],
+                    borderColor:
+                      theme.palette.surfaces?.panelBorder ?? (isDark ? Color.Neutral[400] : Color.Neutral[300]),
                     ':hover': {
                       cursor: 'pointer',
-                      backgroundColor: isDark ? Color.Neutral[400] : Color.Neutral[300],
+                      backgroundColor:
+                        theme.palette.surfaces?.panel ?? (isDark ? Color.Neutral[400] : Color.Neutral[300]),
                     },
                   }}
                   onClick={() => setShowEmojiPicker(true)}

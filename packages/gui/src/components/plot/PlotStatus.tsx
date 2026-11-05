@@ -1,18 +1,19 @@
-import { Flex, Indicator, StateColor, TooltipIcon } from '@chia-network/core';
+import { Flex, Indicator, TooltipIcon, getStateColors } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
+import { useTheme } from '@mui/material/styles';
 import React from 'react';
 
 import FarmerStatus from '../../constants/FarmerStatus';
 import useFarmerStatus from '../../hooks/useFarmerStatus';
 import type Plot from '../../types/Plot';
 
-const Color = {
-  [FarmerStatus.FARMING]: StateColor.SUCCESS,
-  [FarmerStatus.SYNCHING]: StateColor.WARNING,
-  [FarmerStatus.NOT_AVAILABLE]: StateColor.WARNING,
-  [FarmerStatus.NOT_CONNECTED]: StateColor.ERROR,
-  [FarmerStatus.NOT_RUNNING]: StateColor.ERROR,
-};
+const StateKey = {
+  [FarmerStatus.FARMING]: 'success',
+  [FarmerStatus.SYNCHING]: 'warning',
+  [FarmerStatus.NOT_AVAILABLE]: 'warning',
+  [FarmerStatus.NOT_CONNECTED]: 'error',
+  [FarmerStatus.NOT_RUNNING]: 'error',
+} as const;
 
 const Title = {
   [FarmerStatus.FARMING]: <Trans>Farming</Trans>,
@@ -37,7 +38,8 @@ type Props = {
 export default function PlotStatus(props: Props) {
   const { plot } = props;
   const { farmerStatus } = useFarmerStatus();
-  const color = Color[farmerStatus];
+  const theme = useTheme();
+  const color = getStateColors(theme.palette)[StateKey[farmerStatus]];
   const title = Title[farmerStatus];
   const description = Description[farmerStatus];
 

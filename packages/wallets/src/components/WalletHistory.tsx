@@ -9,7 +9,7 @@ import {
   AddressBookContext,
   Card,
   Flex,
-  StateColor,
+  getStateColors,
   TableControlled,
   useCurrencyCode,
   useSerializedNavigationState,
@@ -68,7 +68,7 @@ const StyledTableCellSmallRight = styled(StyledTableCellSmall)`
 `;
 
 const StyledWarning = styled(Box)`
-  color: ${StateColor.WARNING};
+  color: ${({ theme }) => getStateColors(theme.palette).warning};
 `;
 
 async function handleRowClick(

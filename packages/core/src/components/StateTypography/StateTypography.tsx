@@ -3,14 +3,14 @@ import React from 'react';
 import styled from 'styled-components';
 
 import State from '../../constants/State';
-import StateColor from '../../constants/StateColor';
+import { getStateColors } from '../../theme/semanticColors';
 
-const Color = {
-  [State.SUCCESS]: StateColor.SUCCESS,
-  [State.WARNING]: StateColor.WARNING,
-  [State.ERROR]: StateColor.ERROR,
-};
+const StateKey = {
+  [State.SUCCESS]: 'success',
+  [State.WARNING]: 'warning',
+  [State.ERROR]: 'error',
+} as const;
 
 export default styled(({ state, ...rest }) => <Typography {...rest} />)`
-  ${({ state }) => (state ? `color: ${Color[state]};` : '')}
+  ${({ state, theme }) => (state ? `color: ${getStateColors(theme.palette)[StateKey[state as State]]};` : '')}
 `;
