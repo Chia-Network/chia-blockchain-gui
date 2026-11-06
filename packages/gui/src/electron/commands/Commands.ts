@@ -291,14 +291,10 @@ export const Commands: Record<string, CommandSchema> = {
       {
         command: 'chia_cancelOffer',
         title: () => i18n._(/* i18n */ { id: 'Cancel Offer' }),
+        // secure: false cancels locally without an on-chain spend
         defaults: {
           secure: true,
         },
-        // override list of params to hide secure
-        params: [
-          { name: 'trade_id', label: () => i18n._(/* i18n */ { id: 'Trade Id' }), type: 'string' },
-          { name: 'fee', label: () => i18n._(/* i18n */ { id: 'Fee' }), type: 'bigint', humanize: 'mojo-to-xch' },
-        ],
       },
     ],
   },
