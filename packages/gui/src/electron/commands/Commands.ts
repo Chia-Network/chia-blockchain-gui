@@ -1718,6 +1718,12 @@ export const Commands: Record<string, CommandSchema> = {
         type: 'bool',
         isOptional: true,
       },
+      {
+        name: 'allow_missing',
+        label: () => i18n._(/* i18n */ { id: 'Allow Missing Coins' }),
+        type: 'bool',
+        isOptional: true,
+      },
     ],
     dapp: [
       {
