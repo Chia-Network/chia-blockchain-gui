@@ -115,7 +115,7 @@ export default function Pair(props: PairProps) {
       label: i18n._(/* i18n */ { id: 'Innocuous actions' }),
       description: i18n._(/* i18n */ { id: 'reads accounts, NFTs, and offers' }),
       commands: bypassableInnocuous,
-      defaultChecked: allSelected(bypassableInnocuous, bypass),
+      defaultChecked: isEdit ? allSelected(bypassableInnocuous, bypass) : bypassableInnocuous.length > 0,
     },
     {
       key: 'balance',

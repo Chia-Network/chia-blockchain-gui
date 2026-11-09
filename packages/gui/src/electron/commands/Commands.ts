@@ -552,7 +552,7 @@ export const Commands: Record<string, CommandSchema> = {
       },
       {
         command: 'chia_createNewRemoteWallet',
-        title: () => i18n._(/* i18n */ { id: 'Create new Remote Wallet' }),
+        title: () => i18n._(/* i18n */ { id: 'Create New Remote Wallet' }),
         message: () => i18n._(/* i18n */ { id: 'Please carefully review and confirm creating this remote wallet.' }),
         params: [
           { name: 'name', label: () => i18n._(/* i18n */ { id: 'Name' }), type: 'string', isOptional: true },
@@ -674,7 +674,7 @@ export const Commands: Record<string, CommandSchema> = {
     dapp: [
       {
         command: 'chia_spendClawbackCoins',
-        title: () => i18n._(/* i18n */ { id: 'Claw back or claim claw back transaction' }),
+        title: () => i18n._(/* i18n */ { id: 'Claw Back or Claim Claw Back Transaction' }),
         requiresSync: true,
       },
     ],
@@ -1075,7 +1075,7 @@ export const Commands: Record<string, CommandSchema> = {
     dapp: [
       {
         command: 'chia_spendVC',
-        title: () => i18n._(/* i18n */ { id: 'Add Proofs To Verifiable Credential' }),
+        title: () => i18n._(/* i18n */ { id: 'Add Proofs to Verifiable Credential' }),
       },
     ],
   },
@@ -1542,7 +1542,7 @@ export const Commands: Record<string, CommandSchema> = {
     dapp: [
       {
         command: 'chia_getPublicKey',
-        title: () => i18n._(/* i18n */ { id: 'Get public key' }),
+        title: () => i18n._(/* i18n */ { id: 'Get Public Key' }),
         message: () => i18n._(/* i18n */ { id: 'Requests a master public key from your wallet' }),
       },
     ],
@@ -1966,22 +1966,23 @@ export const Commands: Record<string, CommandSchema> = {
   },
 
   'chia_wallet.get_puzzle_and_solution': {
-    title: () => i18n._(/* i18n */ { id: 'Get puzzle and solution' }),
+    title: () => i18n._(/* i18n */ { id: 'Get Puzzle and Solution' }),
     message: () => i18n._(/* i18n */ { id: 'Fetches the puzzle reveal and solution for a spent coin (hex strings).' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Proceed' }),
     params: [{ name: 'coin_name', label: () => i18n._(/* i18n */ { id: 'Coin name' }), type: 'string' }],
     dapp: [
       {
         command: 'chia_getPuzzleAndSolution',
-        title: () => i18n._(/* i18n */ { id: 'Get puzzle and solution' }),
+        title: () => i18n._(/* i18n */ { id: 'Get Puzzle and Solution' }),
         message: () =>
           i18n._(/* i18n */ { id: 'Fetches the puzzle reveal and solution for a spent coin (hex strings).' }),
+        allowConfirmationBypass: true,
       },
     ],
   },
 
   'chia_wallet.get_all_offers': {
-    title: () => i18n._(/* i18n */ { id: 'Get all Offers' }),
+    title: () => i18n._(/* i18n */ { id: 'Get All Offers' }),
     message: () =>
       i18n._(/* i18n */ { id: 'Requests a complete listing of the offers associated with the current wallet key' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Proceed' }),
@@ -2026,7 +2027,7 @@ export const Commands: Record<string, CommandSchema> = {
     dapp: [
       {
         command: 'chia_getAllOffers',
-        title: () => i18n._(/* i18n */ { id: 'Get all Offers' }),
+        title: () => i18n._(/* i18n */ { id: 'Get All Offers' }),
         message: () =>
           i18n._(/* i18n */ { id: 'Requests a complete listing of the offers associated with the current wallet key' }),
         // Legacy `getAllOffers` zipped `tradeRecords` with `offers` (when
@@ -2360,14 +2361,14 @@ export const Commands: Record<string, CommandSchema> = {
   },
 
   'chia_wallet.vc_get_proofs_for_root': {
-    title: () => i18n._(/* i18n */ { id: 'Get Proofs For Root Hash' }),
+    title: () => i18n._(/* i18n */ { id: 'Get Proofs for Root Hash' }),
     message: () => i18n._(/* i18n */ { id: 'Requests the proofs for a specific root hash' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Proceed' }),
     params: [{ name: 'root', label: () => i18n._(/* i18n */ { id: 'Proofs Hash' }), type: 'string' }],
     dapp: [
       {
         command: 'chia_getProofsForRoot',
-        title: () => i18n._(/* i18n */ { id: 'Get Proofs For Root Hash' }),
+        title: () => i18n._(/* i18n */ { id: 'Get Proofs for Root Hash' }),
         allowConfirmationBypass: true,
       },
     ],
@@ -2442,7 +2443,7 @@ export const Commands: Record<string, CommandSchema> = {
   },
 
   'chia_data_layer.get_kv_diff': {
-    title: () => i18n._(/* i18n */ { id: 'Get Kv Diff' }),
+    title: () => i18n._(/* i18n */ { id: 'Get KV Diff' }),
     message: () => i18n._(/* i18n */ { id: 'Requests the diff between two hashes for a specific store' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Proceed' }),
     params: [
@@ -2465,7 +2466,7 @@ export const Commands: Record<string, CommandSchema> = {
     dapp: [
       {
         command: 'chia_getKvDiff',
-        title: () => i18n._(/* i18n */ { id: 'Get Kv Diff' }),
+        title: () => i18n._(/* i18n */ { id: 'Get KV Diff' }),
         allowConfirmationBypass: true,
       },
     ],
@@ -2593,7 +2594,7 @@ export const Commands: Record<string, CommandSchema> = {
   },
 
   'daemon.get_wallet_addresses': {
-    title: () => i18n._(/* i18n */ { id: 'Get wallet addresses for one or more wallet keys' }),
+    title: () => i18n._(/* i18n */ { id: 'Get Wallet Addresses for One or More Wallet Keys' }),
     message: () => i18n._(/* i18n */ { id: 'Requests the addresses for a specific wallet keys' }),
     confirmLabel: () => i18n._(/* i18n */ { id: 'Proceed' }),
     params: [
@@ -2625,7 +2626,7 @@ export const Commands: Record<string, CommandSchema> = {
     dapp: [
       {
         command: 'chia_getWalletAddresses',
-        title: () => i18n._(/* i18n */ { id: 'Get wallet addresses for one or more wallet keys' }),
+        title: () => i18n._(/* i18n */ { id: 'Get Wallet Addresses for One or More Wallet Keys' }),
         transform: (data) => data.wallet_addresses,
         allowConfirmationBypass: true,
       },
