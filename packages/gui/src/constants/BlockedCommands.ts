@@ -4,6 +4,7 @@ export default [
   'chia_wallet.create_new_wallet',
   'chia_wallet.send_transaction',
   'chia_wallet.create_signed_transaction',
+  'chia_wallet.create_fee_transaction',
 
   'chia_wallet.send_transaction_multi',
   'chia_wallet.push_transactions',
