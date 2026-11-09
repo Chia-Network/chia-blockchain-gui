@@ -19,56 +19,6 @@ msgstr ""
 "X-Crowdin-File-ID: 35\n"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:555
-msgid "Create New Remote Wallet"
-msgstr ""
-
-#. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:677
-msgid "Claw Back or Claim Claw Back Transaction"
-msgstr ""
-
-#. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1078
-msgid "Add Proofs to Verifiable Credential"
-msgstr ""
-
-#. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1545
-msgid "Get Public Key"
-msgstr ""
-
-#. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1969
-#: src/electron/commands/Commands.ts:1976
-msgid "Get Puzzle and Solution"
-msgstr ""
-
-#. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1985
-#: src/electron/commands/Commands.ts:2030
-msgid "Get All Offers"
-msgstr ""
-
-#. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2364
-#: src/electron/commands/Commands.ts:2371
-msgid "Get Proofs for Root Hash"
-msgstr ""
-
-#. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2446
-#: src/electron/commands/Commands.ts:2469
-msgid "Get KV Diff"
-msgstr ""
-
-#. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:2597
-#: src/electron/commands/Commands.ts:2629
-msgid "Get Wallet Addresses for One or More Wallet Keys"
-msgstr ""
-
-#. js-lingui-explicit-id
 #: src/components/nfts/NFTBurnDialog.tsx:133
 msgid "Do you want to burn {count} NFTs?"
 msgstr ""
@@ -701,6 +651,11 @@ msgid "Number of Backup Ids Needed"
 msgstr ""
 
 #. js-lingui-explicit-id
+#: src/electron/commands/Commands.ts:555
+msgid "Create New Remote Wallet"
+msgstr ""
+
+#. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:556
 msgid "Please carefully review and confirm creating this remote wallet."
 msgstr ""
@@ -896,6 +851,11 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:668
 msgid "Please carefully review and confirm this clawback spend."
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/commands/Commands.ts:677
+msgid "Claw Back or Claim Claw Back Transaction"
 msgstr ""
 
 #. js-lingui-explicit-id
@@ -1241,6 +1201,11 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1058
 msgid "Provider Inner Puzzle Hash"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/commands/Commands.ts:1078
+msgid "Add Proofs to Verifiable Credential"
 msgstr ""
 
 #. js-lingui-explicit-id
@@ -1720,6 +1685,11 @@ msgid "Share"
 msgstr "Поділитись"
 
 #. js-lingui-explicit-id
+#: src/electron/commands/Commands.ts:1545
+msgid "Get Public Key"
+msgstr ""
+
+#. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1546
 msgid "Requests a master public key from your wallet"
 msgstr ""
@@ -1971,6 +1941,12 @@ msgid "Use peak height"
 msgstr ""
 
 #. js-lingui-explicit-id
+#: src/electron/commands/Commands.ts:1969
+#: src/electron/commands/Commands.ts:1976
+msgid "Get Puzzle and Solution"
+msgstr ""
+
+#. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1970
 #: src/electron/commands/Commands.ts:1978
 msgid "Fetches the puzzle reveal and solution for a spent coin (hex strings)."
@@ -1979,6 +1955,12 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1972
 msgid "Coin name"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/commands/Commands.ts:1985
+#: src/electron/commands/Commands.ts:2030
+msgid "Get All Offers"
 msgstr ""
 
 #. js-lingui-explicit-id
@@ -2255,6 +2237,12 @@ msgid "Requests the verifiable credential for a specific launcher id"
 msgstr ""
 
 #. js-lingui-explicit-id
+#: src/electron/commands/Commands.ts:2364
+#: src/electron/commands/Commands.ts:2371
+msgid "Get Proofs for Root Hash"
+msgstr ""
+
+#. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2365
 msgid "Requests the proofs for a specific root hash"
 msgstr ""
@@ -2305,6 +2293,12 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2413
 msgid "Requests the values for a specific store"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/commands/Commands.ts:2446
+#: src/electron/commands/Commands.ts:2469
+msgid "Get KV Diff"
 msgstr ""
 
 #. js-lingui-explicit-id
@@ -2408,6 +2402,12 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2575
 msgid "Requests the value for a specific store and key"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/commands/Commands.ts:2597
+#: src/electron/commands/Commands.ts:2629
+msgid "Get Wallet Addresses for One or More Wallet Keys"
 msgstr ""
 
 #. js-lingui-explicit-id
