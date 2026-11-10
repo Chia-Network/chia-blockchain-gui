@@ -7,6 +7,34 @@ function serialize(value: unknown): string {
 }
 
 describe('parseDappParams', () => {
+  describe('coin-record missing-coin opt-in', () => {
+    it.each<[string, boolean]>([
+      ['allowMissing', true],
+      ['allowMissing', false],
+      ['allow_missing', true],
+      ['allow_missing', false],
+    ])('forwards %s=%s to the wallet RPC', (field, value) => {
+      expect(parseDappParams('chia_getCoinRecordsByNames', serialize({ names: ['abc'], [field]: value }))).toEqual({
+        names: ['abc'],
+        include_spent_coins: true,
+        allow_missing: value,
+      });
+    });
+
+    it('leaves missing-coin handling to the backend default when omitted', () => {
+      expect(parseDappParams('chia_getCoinRecordsByNames', serialize({ names: ['abc'] }))).toEqual({
+        names: ['abc'],
+        include_spent_coins: true,
+      });
+    });
+
+    it('rejects a non-boolean missing-coin opt-in', () => {
+      expect(() =>
+        parseDappParams('chia_getCoinRecordsByNames', serialize({ names: ['abc'], allowMissing: 'true' })),
+      ).toThrow('Invalid boolean value for argument allow_missing. Value: true');
+    });
+  });
+
   describe('parameter allowlist and defaults', () => {
     it('rejects unknown dapp commands before parsing params against a schema', () => {
       expect(() => parseDappParams('chia_unknownCommand', serialize({}))).toThrow(

@@ -96,6 +96,7 @@ export default class Wallet extends Service {
       startHeight?: number;
       endHeight?: number;
       includeSpentCoins?: boolean;
+      allowMissing?: boolean;
     } & AllowUnsyncedArg,
   ) {
     return this.command<{
