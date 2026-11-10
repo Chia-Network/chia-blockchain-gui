@@ -19,11 +19,6 @@ msgstr ""
 "X-Crowdin-File-ID: 35\n"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1723
-msgid "Allow Missing Coins"
-msgstr ""
-
-#. js-lingui-explicit-id
 #: src/components/nfts/NFTBurnDialog.tsx:133
 msgid "Do you want to burn {count} NFTs?"
 msgstr "确定销毁{count} 个NFT吗？"
@@ -1795,6 +1790,11 @@ msgstr "结束高度"
 #: src/electron/commands/Commands.ts:1711
 msgid "Include Spent Coins"
 msgstr "包括已使用硬币"
+
+#. js-lingui-explicit-id
+#: src/electron/commands/Commands.ts:1723
+msgid "Allow Missing Coins"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1741

@@ -19,11 +19,6 @@ msgstr ""
 "X-Crowdin-File-ID: 35\n"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1723
-msgid "Allow Missing Coins"
-msgstr ""
-
-#. js-lingui-explicit-id
 #: src/components/nfts/NFTBurnDialog.tsx:133
 msgid "Do you want to burn {count} NFTs?"
 msgstr "Chcete spáliť {count} NFT?"
@@ -1794,6 +1789,11 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1711
 msgid "Include Spent Coins"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/commands/Commands.ts:1723
+msgid "Allow Missing Coins"
 msgstr ""
 
 #. js-lingui-explicit-id
