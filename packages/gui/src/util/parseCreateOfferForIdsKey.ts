@@ -12,8 +12,7 @@ import removeHexPrefix from './removeHexPrefix';
  */
 
 export type ParsedCreateOfferForIdsKey =
-  | { type: 'walletId'; walletId: number }
-  | { type: 'assetHex'; normalizedHex: string };
+  { type: 'walletId'; walletId: number } | { type: 'assetHex'; normalizedHex: string };
 
 const UINT32_MAX = 4_294_967_295;
 

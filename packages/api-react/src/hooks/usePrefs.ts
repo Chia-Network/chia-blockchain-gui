@@ -5,13 +5,7 @@ import EventEmitter from '../utils/EventEmitter';
 const eventEmitter = new EventEmitter();
 
 export type Serializable =
-  | undefined
-  | number
-  | string
-  | null
-  | boolean
-  | { [k: string]: Serializable }
-  | Serializable[];
+  undefined | number | string | null | boolean | { [k: string]: Serializable } | Serializable[];
 
 function getPreferences(key: string) {
   const { preferences } = window as any;
