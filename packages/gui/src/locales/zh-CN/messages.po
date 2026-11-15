@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-10-11 00:08\n"
+"PO-Revision-Date: 2026-11-15 00:05\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -2716,12 +2716,9 @@ msgstr "为以下命令保存偏好吗？"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:725
-msgid ""
-"These commands will be executed without confirmation in the future:\n"
-"\n"
+msgid "These commands will be executed without confirmation in the future:\n\n"
 " {commands}"
-msgstr ""
-"这些命令将无需确认即可执行：\n"
+msgstr "这些命令将无需确认即可执行：\n"
 "{commands}"
 
 #. js-lingui-explicit-id
@@ -2864,57 +2861,57 @@ msgstr "检查更新..."
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:555
 #~ msgid "Create new Remote Wallet"
-#~ msgstr "新建远程钱包"
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:677
 #~ msgid "Claw back or claim claw back transaction"
-#~ msgstr "取消或确认可撤回交易"
+#~ msgstr "Claw back or claim claw back transaction"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1078
 #~ msgid "Add Proofs To Verifiable Credential"
-#~ msgstr "向可验证证件添加证明信息"
+#~ msgstr "Add Proofs To Verifiable Credential"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1545
 #~ msgid "Get public key"
-#~ msgstr "获取公钥"
+#~ msgstr "Get public key"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1969
 #: src/electron/commands/Commands.ts:1976
 #~ msgid "Get puzzle and solution"
-#~ msgstr "获取拼图和解决方案"
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1984
 #: src/electron/commands/Commands.ts:2029
 #~ msgid "Get all Offers"
-#~ msgstr "获取所有报价"
+#~ msgstr "Get all Offers"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2363
 #: src/electron/commands/Commands.ts:2370
 #~ msgid "Get Proofs For Root Hash"
-#~ msgstr "获取根哈希的证明"
+#~ msgstr "Get Proofs For Root Hash"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2445
 #: src/electron/commands/Commands.ts:2468
 #~ msgid "Get Kv Diff"
-#~ msgstr "获取Kv Diff"
+#~ msgstr "Get Kv Diff"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2596
 #: src/electron/commands/Commands.ts:2628
 #~ msgid "Get wallet addresses for one or more wallet keys"
-#~ msgstr "获取一个或多个钱包密钥的钱包地址"
+#~ msgstr "Get wallet addresses for one or more wallet keys"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:1394
 #~ msgid "Chia Blockchain Wiki"
-#~ msgstr "Chia区块链百科"
+#~ msgstr "Chia Blockchain Wiki"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:886
@@ -5843,20 +5840,16 @@ msgstr "正在初始化..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"可用资金不足，无法接受报价。请确保您的\n"
+msgstr "可用资金不足，无法接受报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
 #: src/components/offers/OfferEditor.tsx:127
 #: src/components/offers2/CreateOfferBuilder.tsx:145
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"可用的资金不足，无法创建报价。请确保您的\n"
+msgstr "可用的资金不足，无法创建报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
 #: src/components/farm/PoolingHealth.tsx:310
@@ -10125,3 +10118,4 @@ msgstr "可用余额必须大于1 mojo才能创建个人资料"
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "需确保钱包正在运行才能完成自动确认。"
+
