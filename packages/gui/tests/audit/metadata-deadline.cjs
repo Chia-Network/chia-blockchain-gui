@@ -444,7 +444,7 @@ test('preload forwards the bounded options to the registered main-process bundle
 test('write-open failure rejects rather than leaking a slot', async () =>
   withManager(async ({ manager, requests, dir }) => {
     const url = 'https://test.invalid/bad-write';
-    const file = crypto.createHash('md5').update(url).digest('hex') + '-chiacache.tmp';
+    const file = crypto.createHash('sha256').update(url).digest('hex') + '-chiacache.tmp';
     await fsp.mkdir(path.join(dir, file));
     await assert.rejects(manager.getContent(url, { maxDuration: 1000 }), /EISDIR|EACCES|EPERM/);
     assert.equal(requests[0].aborted, true);
