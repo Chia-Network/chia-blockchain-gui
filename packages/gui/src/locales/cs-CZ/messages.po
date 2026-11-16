@@ -19,18 +19,6 @@ msgstr ""
 "X-Crowdin-File-ID: 35\n"
 
 #. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1935
-#: src/electron/commands/Commands.ts:1942
-msgid "Get Fee Estimate"
-msgstr ""
-
-#. js-lingui-explicit-id
-#: src/electron/commands/Commands.ts:1936
-#: src/electron/commands/Commands.ts:1943
-msgid "Requests the current fee per cost estimate from the wallet"
-msgstr ""
-
-#. js-lingui-explicit-id
 #: src/components/nfts/NFTBurnDialog.tsx:133
 msgid "Do you want to burn {count} NFTs?"
 msgstr "Přejete si vypálit {count} NFT?"
@@ -1939,6 +1927,18 @@ msgstr ""
 #: src/electron/commands/Commands.ts:1920
 #: src/electron/commands/Commands.ts:1928
 msgid "Requests the number of full node peers currently connected to the wallet"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/commands/Commands.ts:1935
+#: src/electron/commands/Commands.ts:1942
+msgid "Get Fee Estimate"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/electron/commands/Commands.ts:1936
+#: src/electron/commands/Commands.ts:1943
+msgid "Requests the current fee per cost estimate from the wallet"
 msgstr ""
 
 #. js-lingui-explicit-id
