@@ -15,8 +15,7 @@ import { getGatewayHost, getIpfsPathFromAnyUrl, isIpfsUrl } from './ipfs';
 //   recorded the gateway (which gateway it was is not known, that one was
 //   used is).
 export type NFTSource =
-  | { kind: 'web'; host: string }
-  | { kind: 'ipfs'; host: string | undefined; ipfsPath: string; viaGateway: boolean };
+  { kind: 'web'; host: string } | { kind: 'ipfs'; host: string | undefined; ipfsPath: string; viaGateway: boolean };
 
 export default function getNFTSource(uri: string, cacheInfo?: CacheInfo): NFTSource | undefined {
   const ipfsPath = getIpfsPathFromAnyUrl(uri);
