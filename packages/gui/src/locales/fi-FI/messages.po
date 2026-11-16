@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-10-11 00:08\n"
+"PO-Revision-Date: 2026-11-15 00:05\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -2729,13 +2729,9 @@ msgstr "Haluatko tallentaa asetukset seuraaville komennoille?"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:725
-msgid ""
-"These commands will be executed without confirmation in the future:\n"
-"\n"
+msgid "These commands will be executed without confirmation in the future:\n\n"
 " {commands}"
-msgstr ""
-"Nämä komennot suoritetaan ilman vahvistusta tulevaisuudessa:\n"
-"\n"
+msgstr "Nämä komennot suoritetaan ilman vahvistusta tulevaisuudessa:\n\n"
 " {commands}"
 
 #. js-lingui-explicit-id
@@ -2878,22 +2874,22 @@ msgstr "Tarkista päivitykset..."
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:555
 #~ msgid "Create new Remote Wallet"
-#~ msgstr "Luo uusi etälompakko"
+#~ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:677
 #~ msgid "Claw back or claim claw back transaction"
-#~ msgstr "Takaisinvedä tai lunasta transaktio"
+#~ msgstr "Claw back or claim claw back transaction"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1078
 #~ msgid "Add Proofs To Verifiable Credential"
-#~ msgstr "Lisää Todisteet Todennettavaan Kredentiaaliin"
+#~ msgstr "Add Proofs To Verifiable Credential"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1545
 #~ msgid "Get public key"
-#~ msgstr "Hae julkinen avain"
+#~ msgstr "Get public key"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1969
@@ -2905,30 +2901,30 @@ msgstr "Tarkista päivitykset..."
 #: src/electron/commands/Commands.ts:1984
 #: src/electron/commands/Commands.ts:2029
 #~ msgid "Get all Offers"
-#~ msgstr "Hae kaikki tarjoukset"
+#~ msgstr "Get all Offers"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2363
 #: src/electron/commands/Commands.ts:2370
 #~ msgid "Get Proofs For Root Hash"
-#~ msgstr "Hae todisteet juuritiivisteelle"
+#~ msgstr "Get Proofs For Root Hash"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2445
 #: src/electron/commands/Commands.ts:2468
 #~ msgid "Get Kv Diff"
-#~ msgstr "Hae Avain-arvojen Erot"
+#~ msgstr "Get Kv Diff"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2596
 #: src/electron/commands/Commands.ts:2628
 #~ msgid "Get wallet addresses for one or more wallet keys"
-#~ msgstr "Hae lompakko-osoitteet yhdelle tai useammalle lompakon avaimelle"
+#~ msgstr "Get wallet addresses for one or more wallet keys"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:1394
 #~ msgid "Chia Blockchain Wiki"
-#~ msgstr "Chia Wiki"
+#~ msgstr "Chia Blockchain Wiki"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:886
@@ -5857,20 +5853,16 @@ msgstr "Alustetaan..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"Riittämätön määrä varoja tarjouksen hyväksymiseen. Varmista, että\n"
+msgstr "Riittämätön määrä varoja tarjouksen hyväksymiseen. Varmista, että\n"
 "käytettävissä oleva saldo riittää tarjouksen määrän kattamiseen."
 
 #: src/components/offers/OfferEditor.tsx:127
 #: src/components/offers2/CreateOfferBuilder.tsx:145
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"Riittämätön määrä varoja tarjouksen luomiseen. Varmista, että\n"
+msgstr "Riittämätön määrä varoja tarjouksen luomiseen. Varmista, että\n"
 "käytettävissä oleva saldo riittää tarjouksen määrän kattamiseen."
 
 #: src/components/farm/PoolingHealth.tsx:310
@@ -10139,3 +10131,4 @@ msgstr "Käytettävissä olevan saldon on oltava suurempi kuin 1 mojo luodaksesi
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "Lompakkosi on oltava käynnissä, jotta automaattinen lunastaminen toimii."
+

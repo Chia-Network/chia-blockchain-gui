@@ -8,7 +8,7 @@ msgstr ""
 "Language: en_US\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-10-11 00:08\n"
+"PO-Revision-Date: 2026-11-15 00:05\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -654,7 +654,7 @@ msgstr "Number of Backup Ids Needed"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:555
 msgid "Create New Remote Wallet"
-msgstr "Create New Remote Wallet"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:556
@@ -857,7 +857,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:677
 msgid "Claw Back or Claim Claw Back Transaction"
-msgstr "Claw Back or Claim Claw Back Transaction"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:684
@@ -1207,7 +1207,7 @@ msgstr "Provider Inner Puzzle Hash"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1078
 msgid "Add Proofs to Verifiable Credential"
-msgstr "Add Proofs to Verifiable Credential"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1084
@@ -1688,7 +1688,7 @@ msgstr "Share"
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1545
 msgid "Get Public Key"
-msgstr "Get Public Key"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1546
@@ -1795,7 +1795,7 @@ msgstr ""
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1723
 msgid "Allow Missing Coins"
-msgstr "Allow Missing Coins"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1741
@@ -1962,7 +1962,7 @@ msgstr ""
 #: src/electron/commands/Commands.ts:1989
 #: src/electron/commands/Commands.ts:1996
 msgid "Get Puzzle and Solution"
-msgstr "Get Puzzle and Solution"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1990
@@ -1979,7 +1979,7 @@ msgstr ""
 #: src/electron/commands/Commands.ts:2005
 #: src/electron/commands/Commands.ts:2050
 msgid "Get All Offers"
-msgstr "Get All Offers"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2007
@@ -2258,7 +2258,7 @@ msgstr ""
 #: src/electron/commands/Commands.ts:2384
 #: src/electron/commands/Commands.ts:2391
 msgid "Get Proofs for Root Hash"
-msgstr "Get Proofs for Root Hash"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2385
@@ -2317,7 +2317,7 @@ msgstr ""
 #: src/electron/commands/Commands.ts:2466
 #: src/electron/commands/Commands.ts:2489
 msgid "Get KV Diff"
-msgstr "Get KV Diff"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2467
@@ -2426,7 +2426,7 @@ msgstr ""
 #: src/electron/commands/Commands.ts:2617
 #: src/electron/commands/Commands.ts:2649
 msgid "Get Wallet Addresses for One or More Wallet Keys"
-msgstr "Get Wallet Addresses for One or More Wallet Keys"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2618
@@ -2729,9 +2729,7 @@ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:725
-msgid ""
-"These commands will be executed without confirmation in the future:\n"
-"\n"
+msgid "These commands will be executed without confirmation in the future:\n\n"
 " {commands}"
 msgstr ""
 
@@ -2814,7 +2812,7 @@ msgstr "Help"
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:1395
 msgid "Documentation"
-msgstr "Documentation"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:1401
@@ -5854,20 +5852,16 @@ msgstr "Initializing..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgstr "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 
 #: src/components/offers/OfferEditor.tsx:127
 #: src/components/offers2/CreateOfferBuilder.tsx:145
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgstr "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 
 #: src/components/farm/PoolingHealth.tsx:310
@@ -10136,3 +10130,4 @@ msgstr "Your spendable balance must be greater than 1 mojo to create a profile"
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "Your wallet is required to be running for auto claim to work."
+

@@ -8,7 +8,7 @@ msgstr ""
 "Language: fr_FR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-10-11 00:08\n"
+"PO-Revision-Date: 2026-11-15 00:05\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -2729,9 +2729,7 @@ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:725
-msgid ""
-"These commands will be executed without confirmation in the future:\n"
-"\n"
+msgid "These commands will be executed without confirmation in the future:\n\n"
 " {commands}"
 msgstr ""
 
@@ -2880,17 +2878,17 @@ msgstr "Vérification des mises à jour..."
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:677
 #~ msgid "Claw back or claim claw back transaction"
-#~ msgstr "Récupérer ou revendiquer la transaction récupérable"
+#~ msgstr "Claw back or claim claw back transaction"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1078
 #~ msgid "Add Proofs To Verifiable Credential"
-#~ msgstr "Ajouter des preuves au Certificat Vérifiable"
+#~ msgstr "Add Proofs To Verifiable Credential"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1545
 #~ msgid "Get public key"
-#~ msgstr ""
+#~ msgstr "Get public key"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1969
@@ -2902,30 +2900,30 @@ msgstr "Vérification des mises à jour..."
 #: src/electron/commands/Commands.ts:1984
 #: src/electron/commands/Commands.ts:2029
 #~ msgid "Get all Offers"
-#~ msgstr "Recevoir toutes les offres"
+#~ msgstr "Get all Offers"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2363
 #: src/electron/commands/Commands.ts:2370
 #~ msgid "Get Proofs For Root Hash"
-#~ msgstr "Obtenir les preuves pour le hash racine"
+#~ msgstr "Get Proofs For Root Hash"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2445
 #: src/electron/commands/Commands.ts:2468
 #~ msgid "Get Kv Diff"
-#~ msgstr ""
+#~ msgstr "Get Kv Diff"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:2596
 #: src/electron/commands/Commands.ts:2628
 #~ msgid "Get wallet addresses for one or more wallet keys"
-#~ msgstr ""
+#~ msgstr "Get wallet addresses for one or more wallet keys"
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:1394
 #~ msgid "Chia Blockchain Wiki"
-#~ msgstr "Wiki de la Blockchain Chia"
+#~ msgstr "Chia Blockchain Wiki"
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:886
@@ -5854,20 +5852,16 @@ msgstr "Initialisation..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"Fonds insuffisants pour accepter l'offre. Assurez-vous que votre \n"
+msgstr "Fonds insuffisants pour accepter l'offre. Assurez-vous que votre \n"
 "solde disponible est suffisant pour couvrir le montant de l'offre."
 
 #: src/components/offers/OfferEditor.tsx:127
 #: src/components/offers2/CreateOfferBuilder.tsx:145
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"Fonds insuffisants pour créer l'offre. Assurez-vous que votre \n"
+msgstr "Fonds insuffisants pour créer l'offre. Assurez-vous que votre \n"
 "solde disponible est suffisant pour couvrir le montant de l'offre."
 
 #: src/components/farm/PoolingHealth.tsx:310
@@ -10136,3 +10130,4 @@ msgstr "Votre solde dépensable doit être supérieur à 1 mojo pour créer un p
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:124
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "Votre portefeuille doit être synchronisé pour que la revendication automatique fonctionne."
+
