@@ -363,7 +363,7 @@ describe('CacheManager eviction', () => {
 
   it('starts the retry count over when a transient failure follows a settled one', async () => {
     const url = 'https://example.com/nft.png';
-    const urlHash = crypto.createHash('md5').update(url).digest('hex');
+    const urlHash = crypto.createHash('sha256').update(url).digest('hex');
     // a sidecar left by an earlier version, or by a failure that has since
     // become permanent: the count belongs to an unbroken run of transient
     // failures only
@@ -612,7 +612,7 @@ describe('CacheManager eviction', () => {
   it('does not keep re-requesting an ipfs failure whose sidecar predates gateway tracking', async () => {
     const url = 'ipfs://QmPK1s3pNYLi9ERiq3BDxKa4XosgWwFRQUydHUtz4YgpqB/img.png';
     // an ERROR sidecar written by a version that did not record the gateway
-    const urlHash = crypto.createHash('md5').update(url).digest('hex');
+    const urlHash = crypto.createHash('sha256').update(url).digest('hex');
     await fs.writeFile(
       path.join(cacheDirectory, `${urlHash}-chiacache-info`),
       JSON.stringify({ url, state: 'ERROR', error: 'HTTP error: 403', timestamp: Date.now() }),
@@ -1484,7 +1484,7 @@ describe('CacheManager eviction', () => {
 
   it('reports a sidecar that cannot be read by its error code, not its path', async () => {
     const url = 'https://example.com/nft.png';
-    const urlHash = crypto.createHash('md5').update(url).digest('hex');
+    const urlHash = crypto.createHash('sha256').update(url).digest('hex');
     // a directory where the sidecar should be makes readFile fail with EISDIR
     await fs.mkdir(path.join(cacheDirectory, `${urlHash}-chiacache-info`));
 
