@@ -1,7 +1,14 @@
 import BigNumber from 'bignumber.js';
 
 import FeeTxType from './FeeTxType';
-import { MINIMUM_FEE_EXPIRATION, NO_TARGET_TIME, findFeeOption, getFeeOptions, getMinimumFee } from './minimumFee';
+import {
+  MINIMUM_FEE_EXPIRATION,
+  NO_TARGET_TIME,
+  findFeeOption,
+  getFeeOptions,
+  getMinimumFee,
+  isMinimumFeeExpired,
+} from './minimumFee';
 
 const TARGET_TIMES = [60, 120, 300];
 const BEFORE_EXPIRATION = MINIMUM_FEE_EXPIRATION - 1;
@@ -66,11 +73,30 @@ describe('minimumFee', () => {
     });
   });
 
+  describe('#isMinimumFeeExpired', () => {
+    it('should expire at the expiration time', () => {
+      expect(isMinimumFeeExpired(MINIMUM_FEE_EXPIRATION - 1)).toBe(false);
+      expect(isMinimumFeeExpired(MINIMUM_FEE_EXPIRATION)).toBe(true);
+      expect(isMinimumFeeExpired(MINIMUM_FEE_EXPIRATION + 1)).toBe(true);
+    });
+  });
+
   describe('#getFeeOptions after the minimum fee expired', () => {
     const minimumFee = getMinimumFee(FeeTxType.walletSendXCH, 1, MINIMUM_FEE_EXPIRATION);
+    const defaultOptions = [
+      [1, '6000000'],
+      [2, '5000000'],
+      [5, '0'],
+    ];
 
-    it('should offer a zero fee without estimates', () => {
-      expect(toPlain(getFeeOptions(undefined, TARGET_TIMES, minimumFee))).toEqual([[NO_TARGET_TIME, '0']]);
+    it('should offer the default fees without estimates', () => {
+      expect(toPlain(getFeeOptions(undefined, TARGET_TIMES, minimumFee))).toEqual(defaultOptions);
+    });
+    it('should offer the default fees when every estimate is zero', () => {
+      expect(toPlain(getFeeOptions([0, 0, 0], TARGET_TIMES, minimumFee))).toEqual(defaultOptions);
+    });
+    it('should not scale the default fees for a bulk transaction', () => {
+      expect(toPlain(getFeeOptions([0, 0, 0], TARGET_TIMES, minimumFee, 25))).toEqual(defaultOptions);
     });
     it('should keep estimates as they are and end with a zero fee', () => {
       expect(toPlain(getFeeOptions([500, 300, 0], TARGET_TIMES, minimumFee))).toEqual([
@@ -84,6 +110,18 @@ describe('minimumFee', () => {
         [5, '200'],
         [NO_TARGET_TIME, '0'],
       ]);
+    });
+    it('should select the zero fee by default', () => {
+      const options = getFeeOptions(undefined, TARGET_TIMES, minimumFee);
+      expect(options.find((option) => option.estimate.eq(minimumFee))?.minutes).toBe(5);
+    });
+  });
+
+  describe('#getFeeOptions while the minimum fee applies', () => {
+    it('should not offer the default fees', () => {
+      const minimumFee = getMinimumFee(FeeTxType.walletSendXCH, 1, BEFORE_EXPIRATION);
+      expect(toPlain(getFeeOptions(undefined, TARGET_TIMES, minimumFee))).toEqual([[NO_TARGET_TIME, '37606840']]);
+      expect(toPlain(getFeeOptions([0, 0, 0], TARGET_TIMES, minimumFee))).toEqual([[1, '37606840']]);
     });
   });
 

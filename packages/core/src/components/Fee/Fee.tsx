@@ -8,6 +8,7 @@ import useLocale from '../../hooks/useLocale';
 import { getStateColors } from '../../theme/semanticColors';
 import mojoToChiaLocaleString from '../../utils/mojoToChiaLocaleString';
 import Amount, { AmountProps } from '../Amount';
+import { isMinimumFeeExpired } from '../EstimatedFee/minimumFee';
 
 import getFeeWarning from './getFeeWarning';
 
@@ -21,8 +22,13 @@ export default function Fee({ label = <Trans>Fee</Trans>, name = 'fee', minimumF
 
   return (
     <Amount label={label} name={name} {...props}>
-      {({ mojo }) => {
+      {({ value, mojo }) => {
         const warning = getFeeWarning(mojo, minimumFee);
+
+        // This value is below the minimum fee, so it is only recommended once the minimum expired.
+        if (!value && isMinimumFeeExpired()) {
+          return <Trans>Recommended value: 0.000005</Trans>;
+        }
 
         if (warning === 'high') {
           return (

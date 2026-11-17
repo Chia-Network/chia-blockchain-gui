@@ -9,6 +9,10 @@ export const MINIMUM_FEE_MOJOS_PER_COST = 4;
 // Full nodes stop applying the minimum from this time on.
 export const MINIMUM_FEE_EXPIRATION = 1_825_200_000;
 
+// Fees offered when the full node has no estimates. They predate the minimum fee, which replaces
+// them while it applies because it is higher, and they are offered again once it expires.
+const DEFAULT_ESTIMATES = [6_000_000, 5_000_000, 0];
+
 // Marks the option that is cheaper than every estimate, so it has no target time.
 export const NO_TARGET_TIME = -1;
 
@@ -34,8 +38,12 @@ export type FeeOption = {
 // Bulk actions put `count` spends of the same type into one transaction that pays a single fee.
 // Full nodes compare the expiration with the peak timestamp. The local clock stands in for it,
 // because wallet mode has no full node to ask.
+export function isMinimumFeeExpired(timestamp = Date.now() / 1000): boolean {
+  return timestamp >= MINIMUM_FEE_EXPIRATION;
+}
+
 export function getMinimumFee(txType: FeeTxType, count = 1, timestamp = Date.now() / 1000): BigNumber {
-  if (timestamp >= MINIMUM_FEE_EXPIRATION) {
+  if (isMinimumFeeExpired(timestamp)) {
     return new BigNumber(0);
   }
 
@@ -44,6 +52,7 @@ export function getMinimumFee(txType: FeeTxType, count = 1, timestamp = Date.now
 
 // Raises every estimate to the minimum fee, drops slower options that cost the same as a faster one
 // and always ends with the minimum fee. Estimates are priced for one spend, so they scale with `count`.
+// Without a minimum fee and without estimates it offers the default fees instead.
 export function getFeeOptions(
   estimates: (number | string | BigNumber)[] | undefined,
   targetTimes: number[],
@@ -51,9 +60,11 @@ export function getFeeOptions(
   count = 1,
 ): FeeOption[] {
   const options: FeeOption[] = [];
+  const scaledEstimates = (estimates ?? []).map((value) => new BigNumber(value).times(count));
+  const useDefaults = minimumFee.isZero() && scaledEstimates.every((estimate) => estimate.isZero());
 
-  (estimates ?? []).forEach((value, index) => {
-    const estimate = BigNumber.max(new BigNumber(value).times(count), minimumFee);
+  (useDefaults ? DEFAULT_ESTIMATES : scaledEstimates).forEach((value, index) => {
+    const estimate = BigNumber.max(value, minimumFee);
     if (!options.some((option) => option.estimate.eq(estimate))) {
       options.push({ minutes: targetTimes[index] / 60, estimate });
     }

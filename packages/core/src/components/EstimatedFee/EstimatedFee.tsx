@@ -235,7 +235,9 @@ export default function EstimatedFee(props: FeeProps) {
     if (formattedEstimates && inputType === 'dropdown') {
       // The minimum fee does not depend on the estimates, so it is applied before they load.
       // Otherwise a submit during the request would send an empty fee.
-      if (!defaultFee) {
+      // Without a minimum fee the default is zero, the same as an empty fee, so it waits for the
+      // estimates. The zero fee option is tied to a target time only after they loaded.
+      if (!defaultFee && (!isLoading || !minimumFee.isZero())) {
         const defaultVal = formattedEstimates.find((formattedEstimate) => formattedEstimate.estimate.eq(minimumFee));
         if (defaultVal) {
           setSelectedValue(defaultVal.formattedEstimate);
@@ -256,7 +258,7 @@ export default function EstimatedFee(props: FeeProps) {
         }
       }
     }
-  }, [formattedEstimates, minimumFee, name, selectedTime, setValue, defaultFee, inputType]);
+  }, [formattedEstimates, minimumFee, name, selectedTime, setValue, defaultFee, isLoading, inputType]);
 
   const handleSelectOpen = () => {
     setSelectOpen(true);
