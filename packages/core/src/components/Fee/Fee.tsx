@@ -1,24 +1,30 @@
 import { Trans } from '@lingui/macro';
 import { Box } from '@mui/material';
+import type BigNumber from 'bignumber.js';
 import React from 'react';
 
+import useCurrencyCode from '../../hooks/useCurrencyCode';
+import useLocale from '../../hooks/useLocale';
 import { getStateColors } from '../../theme/semanticColors';
+import mojoToChiaLocaleString from '../../utils/mojoToChiaLocaleString';
 import Amount, { AmountProps } from '../Amount';
 
-type FeeProps = AmountProps;
+import getFeeWarning from './getFeeWarning';
 
-export default function Fee({ label = <Trans>Fee</Trans>, name = 'fee', ...props }: FeeProps) {
+type FeeProps = AmountProps & {
+  minimumFee?: BigNumber; // in mojos, warns when the entered fee is lower
+};
+
+export default function Fee({ label = <Trans>Fee</Trans>, name = 'fee', minimumFee, ...props }: FeeProps) {
+  const [locale] = useLocale();
+  const currencyCode = useCurrencyCode();
+
   return (
     <Amount label={label} name={name} {...props}>
-      {({ value, mojo }) => {
-        const isHigh = mojo.gte('100000000000');
-        const isLow = mojo.gt('0') && mojo.lt('1');
+      {({ mojo }) => {
+        const warning = getFeeWarning(mojo, minimumFee);
 
-        if (!value) {
-          return <Trans>Recommended value: 0.000005</Trans>;
-        }
-
-        if (isHigh) {
+        if (warning === 'high') {
           return (
             <Box sx={{ color: (theme) => getStateColors(theme.palette).warning }}>
               <Trans>Value seems high</Trans>
@@ -26,10 +32,23 @@ export default function Fee({ label = <Trans>Fee</Trans>, name = 'fee', ...props
           );
         }
 
-        if (isLow) {
+        if (warning === 'incorrect') {
           return (
             <Box sx={{ color: (theme) => getStateColors(theme.palette).error }}>
               <Trans>Incorrect value</Trans>
+            </Box>
+          );
+        }
+
+        if (warning === 'belowMinimum' && minimumFee) {
+          const formattedMinimumFee = mojoToChiaLocaleString(minimumFee, locale);
+
+          return (
+            <Box sx={{ color: (theme) => getStateColors(theme.palette).warning }}>
+              <Trans>
+                Below the recommended minimum of {formattedMinimumFee} {currencyCode}. Your transaction may not be
+                confirmed.
+              </Trans>
             </Box>
           );
         }

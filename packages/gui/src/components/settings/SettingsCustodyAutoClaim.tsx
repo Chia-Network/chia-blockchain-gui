@@ -1,10 +1,23 @@
 import { useGetAutoClaimQuery, useSetAutoClaimMutation } from '@chia-network/api-react';
-import { Flex, SettingsText, Form, ButtonLoading, Fee, chiaToMojo, mojoToChia } from '@chia-network/core';
+import {
+  Flex,
+  SettingsText,
+  Form,
+  ButtonLoading,
+  Fee,
+  FeeTxType,
+  chiaToMojo,
+  getMinimumFee,
+  mojoToChia,
+} from '@chia-network/core';
 import { ConnectCheckmark } from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
 import { Box, Typography } from '@mui/material';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+
+// Auto claim sends the same transaction as a manual clawback claim.
+const AUTO_CLAIM_MINIMUM_FEE = getMinimumFee(FeeTxType.walletSendXCH);
 
 export default function SettingsCustodyAutoClaim(props) {
   const [setAutoClaim, { isLoading: isSetAutoClaimLoading }] = useSetAutoClaimMutation();
@@ -18,6 +31,7 @@ export default function SettingsCustodyAutoClaim(props) {
       fee: autoClaimFee,
     },
   });
+  const enteredFee = methods.watch('fee');
 
   async function handleSubmit({ fee }: { fee: number }) {
     const feeInMojos = chiaToMojo(fee);
@@ -57,6 +71,7 @@ export default function SettingsCustodyAutoClaim(props) {
               color="secondary"
               disabled={isSetAutoClaimLoading}
               label={<Trans>Transaction auto claim fee</Trans>}
+              minimumFee={Number(enteredFee) > 0 ? AUTO_CLAIM_MINIMUM_FEE : undefined}
               data-testid="SettingsCustodyAutoClaim-fee"
               fullWidth
               sx={{ width: '300px' }}

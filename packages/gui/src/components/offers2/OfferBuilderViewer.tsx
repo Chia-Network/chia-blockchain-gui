@@ -9,7 +9,8 @@ import {
 import {
   AlertDialog,
   ConfirmDialog,
-  Fee,
+  EstimatedFee,
+  FeeTxType,
   Flex,
   Button,
   ButtonLoading,
@@ -330,13 +331,14 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
             )}
             {canAcceptDl && (
               <Flex sx={{ maxWidth: 360 }}>
-                <Fee
+                <EstimatedFee
                   id="data-layer-offer-fee"
                   variant="filled"
                   name="fee"
                   color="secondary"
                   label={<Trans>Network Fee (Optional)</Trans>}
                   disabled={isAccepting || showInvalid || isExpired}
+                  txType={FeeTxType.acceptOffer}
                   fullWidth
                 />
               </Flex>
