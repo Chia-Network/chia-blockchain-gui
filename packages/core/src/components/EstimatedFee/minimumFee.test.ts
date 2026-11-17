@@ -16,6 +16,11 @@ describe('minimumFee', () => {
       expect(getMinimumFee(FeeTxType.spendCATtx).toFixed()).toBe('145528444');
       expect(getMinimumFee(FeeTxType.transferNFT).toFixed()).toBe('297542164');
     });
+    it('should scale with the number of spends in a bulk transaction', () => {
+      expect(getMinimumFee(FeeTxType.transferNFT, 1).toFixed()).toBe('297542164');
+      expect(getMinimumFee(FeeTxType.transferNFT, 25).toFixed()).toBe('7438554100');
+      expect(getMinimumFee(FeeTxType.assignDIDToNFT, 3).toFixed()).toBe('1386480072');
+    });
     it('should cover every transaction type', () => {
       Object.values(FeeTxType).forEach((txType) => {
         expect(getMinimumFee(txType).gt(0)).toBe(true);
@@ -50,6 +55,29 @@ describe('minimumFee', () => {
         [2, '300'],
         [5, '200'],
         [NO_TARGET_TIME, '100'],
+      ]);
+    });
+  });
+
+  describe('#getFeeOptions for a bulk transaction', () => {
+    const count = 25;
+    const minimumFee = getMinimumFee(FeeTxType.transferNFT, count);
+
+    it('should return the bulk minimum when estimates are below it', () => {
+      expect(toPlain(getFeeOptions([0, 0, 0], TARGET_TIMES, minimumFee, count))).toEqual([[1, '7438554100']]);
+    });
+    it('should scale estimates priced for one spend before comparing them to the minimum', () => {
+      // 400,000,000 for one NFT is above the single minimum and 25 times that is above the bulk one
+      expect(toPlain(getFeeOptions([400_000_000, 0, 0], TARGET_TIMES, minimumFee, count))).toEqual([
+        [1, '10000000000'],
+        [2, '7438554100'],
+      ]);
+    });
+    it('should not scale anything for a single spend', () => {
+      const singleMinimumFee = getMinimumFee(FeeTxType.transferNFT);
+      expect(toPlain(getFeeOptions([400_000_000, 0, 0], TARGET_TIMES, singleMinimumFee))).toEqual([
+        [1, '400000000'],
+        [2, '297542164'],
       ]);
     });
   });

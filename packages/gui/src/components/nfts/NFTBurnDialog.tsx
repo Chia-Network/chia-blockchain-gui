@@ -167,6 +167,7 @@ export default function NFTBurnDialog(props: NFTPreviewDialogProps) {
                 label={<Trans>Fee</Trans>}
                 disabled={isSubmitting}
                 txType={FeeTxType.transferNFT}
+                count={nfts.length}
                 fullWidth
               />
               <DialogActions>

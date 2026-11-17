@@ -27,21 +27,23 @@ export type FeeOption = {
   estimate: BigNumber;
 };
 
-export function getMinimumFee(txType: FeeTxType): BigNumber {
-  return new BigNumber(TX_COST_ESTIMATES[txType]).times(MINIMUM_FEE_MOJOS_PER_COST);
+// Bulk actions put `count` spends of the same type into one transaction that pays a single fee.
+export function getMinimumFee(txType: FeeTxType, count = 1): BigNumber {
+  return new BigNumber(TX_COST_ESTIMATES[txType]).times(count).times(MINIMUM_FEE_MOJOS_PER_COST);
 }
 
 // Raises every estimate to the minimum fee, drops slower options that cost the same as a faster one
-// and always ends with the minimum fee.
+// and always ends with the minimum fee. Estimates are priced for one spend, so they scale with `count`.
 export function getFeeOptions(
   estimates: (number | string | BigNumber)[] | undefined,
   targetTimes: number[],
   minimumFee: BigNumber,
+  count = 1,
 ): FeeOption[] {
   const options: FeeOption[] = [];
 
   (estimates ?? []).forEach((value, index) => {
-    const estimate = BigNumber.max(value, minimumFee);
+    const estimate = BigNumber.max(new BigNumber(value).times(count), minimumFee);
     if (!options.some((option) => option.estimate.eq(estimate))) {
       options.push({ minutes: targetTimes[index] / 60, estimate });
     }

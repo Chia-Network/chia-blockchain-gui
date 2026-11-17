@@ -169,11 +169,12 @@ function CountdownBar({ startTime, refreshSeconds }: { startTime: number; refres
 type FeeProps = {
   name: string;
   txType: FeeTxType;
+  count?: number; // number of spends of txType in the transaction, for bulk actions
   required?: boolean;
 };
 
 export default function EstimatedFee(props: FeeProps) {
-  const { name, txType, required, ...rest } = props;
+  const { name, txType, count = 1, required, ...rest } = props;
   const [mode] = useMode();
   const { setValue } = useFormContext();
   const [requestId, setRequestId] = useState<string | undefined>(undefined);
@@ -198,12 +199,12 @@ export default function EstimatedFee(props: FeeProps) {
   const [locale] = useLocale();
   const currencyCode = useCurrencyCode();
 
-  const minimumFee = useMemo(() => getMinimumFee(txType), [txType]);
+  const minimumFee = useMemo(() => getMinimumFee(txType, count), [txType, count]);
   const hasEstimates = !!ests?.estimates;
 
   const formattedEstimates: FormattedEstimate[] = useMemo(
     () =>
-      getFeeOptions(ests?.estimates, TARGET_TIMES, minimumFee).map(({ minutes, estimate }) => ({
+      getFeeOptions(ests?.estimates, TARGET_TIMES, minimumFee, count).map(({ minutes, estimate }) => ({
         minutes,
         timeDescription:
           minutes > 1
@@ -216,7 +217,7 @@ export default function EstimatedFee(props: FeeProps) {
         estimate,
         formattedEstimate: mojoToChiaLocaleString(estimate, locale),
       })),
-    [ests, hasEstimates, minimumFee, locale],
+    [ests, hasEstimates, minimumFee, count, locale],
   );
 
   useEffect(() => {
