@@ -2,7 +2,7 @@ import BigNumber from 'bignumber.js';
 
 import chiaToMojo from '../../utils/chiaToMojo';
 import FeeTxType from '../EstimatedFee/FeeTxType';
-import { getMinimumFee } from '../EstimatedFee/minimumFee';
+import { MINIMUM_FEE_EXPIRATION, getMinimumFee } from '../EstimatedFee/minimumFee';
 
 import getFeeWarning from './getFeeWarning';
 
@@ -23,8 +23,17 @@ describe('getFeeWarning', () => {
     });
   });
 
+  describe('after the minimum fee expired', () => {
+    const minimumFee = getMinimumFee(FeeTxType.walletSendXCH, 1, MINIMUM_FEE_EXPIRATION);
+
+    it('should not warn about an empty or zero fee', () => {
+      expect(getFeeWarning(chiaToMojo(''), minimumFee)).toBeUndefined();
+      expect(getFeeWarning(new BigNumber(0), minimumFee)).toBeUndefined();
+    });
+  });
+
   describe('with a minimum fee', () => {
-    const minimumFee = getMinimumFee(FeeTxType.walletSendXCH);
+    const minimumFee = getMinimumFee(FeeTxType.walletSendXCH, 1, MINIMUM_FEE_EXPIRATION - 1);
 
     it('should warn about an empty or zero fee', () => {
       expect(getFeeWarning(chiaToMojo(''), minimumFee)).toBe('belowMinimum');

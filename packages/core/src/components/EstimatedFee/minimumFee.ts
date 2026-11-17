@@ -5,6 +5,10 @@ import FeeTxType from './FeeTxType';
 // Mirrors DEFAULT_MINIMUM_BLOCK_FEE_PER_COST in chia-blockchain (chia/full_node/mempool_manager.py).
 export const MINIMUM_FEE_MOJOS_PER_COST = 4;
 
+// Mirrors MINIMUM_BLOCK_FEE_EXPIRATION in the same file, in seconds (2027-11-03 00:00:00 UTC).
+// Full nodes stop applying the minimum from this time on.
+export const MINIMUM_FEE_EXPIRATION = 1_825_200_000;
+
 // Marks the option that is cheaper than every estimate, so it has no target time.
 export const NO_TARGET_TIME = -1;
 
@@ -28,7 +32,13 @@ export type FeeOption = {
 };
 
 // Bulk actions put `count` spends of the same type into one transaction that pays a single fee.
-export function getMinimumFee(txType: FeeTxType, count = 1): BigNumber {
+// Full nodes compare the expiration with the peak timestamp. The local clock stands in for it,
+// because wallet mode has no full node to ask.
+export function getMinimumFee(txType: FeeTxType, count = 1, timestamp = Date.now() / 1000): BigNumber {
+  if (timestamp >= MINIMUM_FEE_EXPIRATION) {
+    return new BigNumber(0);
+  }
+
   return new BigNumber(TX_COST_ESTIMATES[txType]).times(count).times(MINIMUM_FEE_MOJOS_PER_COST);
 }
 

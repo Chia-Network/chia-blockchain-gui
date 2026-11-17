@@ -1,9 +1,10 @@
 import BigNumber from 'bignumber.js';
 
 import FeeTxType from './FeeTxType';
-import { NO_TARGET_TIME, findFeeOption, getFeeOptions, getMinimumFee } from './minimumFee';
+import { MINIMUM_FEE_EXPIRATION, NO_TARGET_TIME, findFeeOption, getFeeOptions, getMinimumFee } from './minimumFee';
 
 const TARGET_TIMES = [60, 120, 300];
+const BEFORE_EXPIRATION = MINIMUM_FEE_EXPIRATION - 1;
 
 function toPlain(options: { minutes: number; estimate: BigNumber }[]) {
   return options.map(({ minutes, estimate }) => [minutes, estimate.toFixed()]);
@@ -12,18 +13,24 @@ function toPlain(options: { minutes: number; estimate: BigNumber }[]) {
 describe('minimumFee', () => {
   describe('#getMinimumFee', () => {
     it('should be 4 mojos per CLVM cost', () => {
-      expect(getMinimumFee(FeeTxType.walletSendXCH).toFixed()).toBe('37606840');
-      expect(getMinimumFee(FeeTxType.spendCATtx).toFixed()).toBe('145528444');
-      expect(getMinimumFee(FeeTxType.transferNFT).toFixed()).toBe('297542164');
+      expect(getMinimumFee(FeeTxType.walletSendXCH, 1, BEFORE_EXPIRATION).toFixed()).toBe('37606840');
+      expect(getMinimumFee(FeeTxType.spendCATtx, 1, BEFORE_EXPIRATION).toFixed()).toBe('145528444');
+      expect(getMinimumFee(FeeTxType.transferNFT, 1, BEFORE_EXPIRATION).toFixed()).toBe('297542164');
     });
     it('should scale with the number of spends in a bulk transaction', () => {
-      expect(getMinimumFee(FeeTxType.transferNFT, 1).toFixed()).toBe('297542164');
-      expect(getMinimumFee(FeeTxType.transferNFT, 25).toFixed()).toBe('7438554100');
-      expect(getMinimumFee(FeeTxType.assignDIDToNFT, 3).toFixed()).toBe('1386480072');
+      expect(getMinimumFee(FeeTxType.transferNFT, 1, BEFORE_EXPIRATION).toFixed()).toBe('297542164');
+      expect(getMinimumFee(FeeTxType.transferNFT, 25, BEFORE_EXPIRATION).toFixed()).toBe('7438554100');
+      expect(getMinimumFee(FeeTxType.assignDIDToNFT, 3, BEFORE_EXPIRATION).toFixed()).toBe('1386480072');
+    });
+    it('should apply until the expiration and be zero from then on', () => {
+      expect(MINIMUM_FEE_EXPIRATION).toBe(Date.UTC(2027, 10, 3) / 1000);
+      expect(getMinimumFee(FeeTxType.walletSendXCH, 1, MINIMUM_FEE_EXPIRATION - 1).toFixed()).toBe('37606840');
+      expect(getMinimumFee(FeeTxType.walletSendXCH, 1, MINIMUM_FEE_EXPIRATION).toFixed()).toBe('0');
+      expect(getMinimumFee(FeeTxType.transferNFT, 25, MINIMUM_FEE_EXPIRATION + 1).toFixed()).toBe('0');
     });
     it('should cover every transaction type', () => {
       Object.values(FeeTxType).forEach((txType) => {
-        expect(getMinimumFee(txType).gt(0)).toBe(true);
+        expect(getMinimumFee(txType, 1, BEFORE_EXPIRATION).gt(0)).toBe(true);
       });
     });
   });
@@ -59,9 +66,30 @@ describe('minimumFee', () => {
     });
   });
 
+  describe('#getFeeOptions after the minimum fee expired', () => {
+    const minimumFee = getMinimumFee(FeeTxType.walletSendXCH, 1, MINIMUM_FEE_EXPIRATION);
+
+    it('should offer a zero fee without estimates', () => {
+      expect(toPlain(getFeeOptions(undefined, TARGET_TIMES, minimumFee))).toEqual([[NO_TARGET_TIME, '0']]);
+    });
+    it('should keep estimates as they are and end with a zero fee', () => {
+      expect(toPlain(getFeeOptions([500, 300, 0], TARGET_TIMES, minimumFee))).toEqual([
+        [1, '500'],
+        [2, '300'],
+        [5, '0'],
+      ]);
+      expect(toPlain(getFeeOptions([500, 300, 200], TARGET_TIMES, minimumFee))).toEqual([
+        [1, '500'],
+        [2, '300'],
+        [5, '200'],
+        [NO_TARGET_TIME, '0'],
+      ]);
+    });
+  });
+
   describe('#getFeeOptions for a bulk transaction', () => {
     const count = 25;
-    const minimumFee = getMinimumFee(FeeTxType.transferNFT, count);
+    const minimumFee = getMinimumFee(FeeTxType.transferNFT, count, BEFORE_EXPIRATION);
 
     it('should return the bulk minimum when estimates are below it', () => {
       expect(toPlain(getFeeOptions([0, 0, 0], TARGET_TIMES, minimumFee, count))).toEqual([[1, '7438554100']]);
@@ -74,7 +102,7 @@ describe('minimumFee', () => {
       ]);
     });
     it('should not scale anything for a single spend', () => {
-      const singleMinimumFee = getMinimumFee(FeeTxType.transferNFT);
+      const singleMinimumFee = getMinimumFee(FeeTxType.transferNFT, 1, BEFORE_EXPIRATION);
       expect(toPlain(getFeeOptions([400_000_000, 0, 0], TARGET_TIMES, singleMinimumFee))).toEqual([
         [1, '400000000'],
         [2, '297542164'],
