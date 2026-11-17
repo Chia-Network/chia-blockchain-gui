@@ -233,11 +233,14 @@ export default function EstimatedFee(props: FeeProps) {
 
   useEffect(() => {
     if (formattedEstimates && inputType === 'dropdown') {
-      if (!defaultFee && !isLoading) {
+      // The minimum fee does not depend on the estimates, so it is applied before they load.
+      // Otherwise a submit during the request would send an empty fee.
+      if (!defaultFee) {
         const defaultVal = formattedEstimates.find((formattedEstimate) => formattedEstimate.estimate.eq(minimumFee));
         if (defaultVal) {
           setSelectedValue(defaultVal.formattedEstimate);
           setSelectedTime(defaultVal.minutes);
+          setValue(name, mojoToChiaLocaleString(defaultVal.estimate, 'en-US'));
         }
         setDefaultFee(true);
       }
@@ -253,7 +256,7 @@ export default function EstimatedFee(props: FeeProps) {
         }
       }
     }
-  }, [formattedEstimates, minimumFee, name, selectedTime, setValue, defaultFee, isLoading, inputType]);
+  }, [formattedEstimates, minimumFee, name, selectedTime, setValue, defaultFee, inputType]);
 
   const handleSelectOpen = () => {
     setSelectOpen(true);

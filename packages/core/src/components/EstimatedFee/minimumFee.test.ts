@@ -97,6 +97,22 @@ describe('minimumFee', () => {
       const options = getFeeOptions([500, 300, 0], TARGET_TIMES, minimumFee);
       expect(findFeeOption(options, NO_TARGET_TIME)).toBe(options[2]);
     });
+    it('should keep the minimum fee selected once estimates load', () => {
+      // The minimum is selected before the first estimates arrive, when it is the only option.
+      const selected = getFeeOptions(undefined, TARGET_TIMES, minimumFee)[0];
+      expect(selected.minutes).toBe(NO_TARGET_TIME);
+
+      [
+        [0, 0, 0],
+        [50, 20, 0],
+        [500, 50, 0],
+        [500, 300, 0],
+        [500, 300, 200],
+      ].forEach((estimates) => {
+        const options = getFeeOptions(estimates, TARGET_TIMES, minimumFee);
+        expect(findFeeOption(options, selected.minutes)?.estimate.toFixed()).toBe('100');
+      });
+    });
     it('should fall back to the minimum fee when estimates are gone', () => {
       const options = getFeeOptions(undefined, TARGET_TIMES, minimumFee);
       expect(findFeeOption(options, 1)).toBe(options[0]);
