@@ -10,6 +10,7 @@ import {
   Typography,
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import type BigNumber from 'bignumber.js';
 import React, { useState, useEffect, useMemo } from 'react';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
 
@@ -22,13 +23,16 @@ import mojoToChiaLocaleString from '../../utils/mojoToChiaLocaleString';
 import Fee from '../Fee';
 import Flex from '../Flex';
 
+import FeeTxType from './FeeTxType';
+import { NO_TARGET_TIME, findFeeOption, getFeeOptions, getMinimumFee } from './minimumFee';
+
 const REFRESH_SECONDS = 30;
 const TARGET_TIMES = [60, 120, 300];
 
 type FormattedEstimate = {
   minutes: number;
   timeDescription: string;
-  estimate: number;
+  estimate: BigNumber;
   formattedEstimate: string;
 };
 
@@ -37,6 +41,7 @@ type SelectProps = MaterialSelectProps & {
   formattedEstimates: FormattedEstimate[];
   selectedValue: string;
   selectedTime: number;
+  hasEstimates: boolean;
   onTypeChange: (type: 'dropdown' | 'custom') => void;
   onTimeChange: (time: number) => void;
   onValueChange: (value: string) => void;
@@ -49,6 +54,7 @@ function Select(props: SelectProps) {
     formattedEstimates,
     selectedValue,
     selectedTime,
+    hasEstimates,
     onTypeChange,
     onTimeChange,
     onValueChange,
@@ -62,7 +68,8 @@ function Select(props: SelectProps) {
     setValue,
   } = useFormContext();
   const haveError = Object.keys(errors).length > 0;
-  const displayedTime = selectedTime === -1 ? t`(>5 min)` : t`(~${selectedTime} min)`;
+  const displayedTime =
+    selectedTime !== NO_TARGET_TIME ? t`(~${selectedTime} min)` : hasEstimates ? t`(>5 min)` : t`(minimum)`;
 
   return (
     <Controller
@@ -159,26 +166,15 @@ function CountdownBar({ startTime, refreshSeconds }: { startTime: number; refres
   );
 }
 
-export enum FeeTxType {
-  walletSendXCH = 'send_xch_transaction',
-  spendCATtx = 'cat_spend',
-  acceptOffer = 'take_offer',
-  cancelOffer = 'cancel_offer',
-  assignDIDToNFT = 'nft_set_nft_did',
-  transferNFT = 'nft_transfer_nft',
-  createPlotNFT = 'create_new_pool_wallet',
-  claimPoolingReward = 'pw_absorb_rewards',
-  createDID = 'create_new_did_wallet',
-}
-
 type FeeProps = {
   name: string;
   txType: FeeTxType;
+  count?: number; // number of spends of txType in the transaction, for bulk actions
   required?: boolean;
 };
 
 export default function EstimatedFee(props: FeeProps) {
-  const { name, txType, required, ...rest } = props;
+  const { name, txType, count = 1, required, ...rest } = props;
   const [mode] = useMode();
   const { setValue } = useFormContext();
   const [requestId, setRequestId] = useState<string | undefined>(undefined);
@@ -203,35 +199,26 @@ export default function EstimatedFee(props: FeeProps) {
   const [locale] = useLocale();
   const currencyCode = useCurrencyCode();
 
-  const formattedEstimates: FormattedEstimate[] = useMemo(() => {
-    const estimateList = ests?.estimates ?? [0, 0, 0];
-    const defaultValues = [6_000_000, 5_000_000, 0];
-    const allZeroes = estimateList.filter((value: number) => value !== 0).length === 0;
-    const estList = allZeroes // update estimate list to include a 0 fee entry if not already present
-      ? defaultValues.some((val) => val === 0)
-        ? defaultValues
-        : defaultValues.concat([0])
-      : estimateList.some((val) => val === 0)
-        ? estimateList
-        : estimateList.concat([0]);
+  const minimumFee = useMemo(() => getMinimumFee(txType, count), [txType, count]);
+  const hasEstimates = !!ests?.estimates;
 
-    return estList.map((estimate: number, i: number) => {
-      const formattedEstimate = mojoToChiaLocaleString(estimate, locale);
-      const minutes = i === 3 ? -1 : TARGET_TIMES[i] / 60; // -1 designates a conditionally-added fourth dropdown selection with 0 fee and >5 minutes
-
-      return {
+  const formattedEstimates: FormattedEstimate[] = useMemo(
+    () =>
+      getFeeOptions(ests?.estimates, TARGET_TIMES, minimumFee, count).map(({ minutes, estimate }) => ({
         minutes,
         timeDescription:
           minutes > 1
             ? t`Likely in ${minutes} minutes`
-            : minutes === -1
-              ? t`Likely in >5 minutes`
-              : t`Likely in ${TARGET_TIMES[i]} seconds`,
+            : minutes !== NO_TARGET_TIME
+              ? t`Likely in ${minutes * 60} seconds`
+              : hasEstimates
+                ? t`Likely in >5 minutes`
+                : t`Minimum fee`,
         estimate,
-        formattedEstimate,
-      };
-    });
-  }, [ests, locale]);
+        formattedEstimate: mojoToChiaLocaleString(estimate, locale),
+      })),
+    [ests, hasEstimates, minimumFee, count, locale],
+  );
 
   useEffect(() => {
     if (!isLoading) {
@@ -246,24 +233,32 @@ export default function EstimatedFee(props: FeeProps) {
 
   useEffect(() => {
     if (formattedEstimates && inputType === 'dropdown') {
-      if (!defaultFee && !isLoading) {
-        const defaultVal = formattedEstimates.find((formattedEstimate) => formattedEstimate.estimate === 0);
+      // The minimum fee does not depend on the estimates, so it is applied before they load.
+      // Otherwise a submit during the request would send an empty fee.
+      // Without a minimum fee the default is zero, the same as an empty fee, so it waits for the
+      // estimates. The zero fee option is tied to a target time only after they loaded.
+      if (!defaultFee && (!isLoading || !minimumFee.isZero())) {
+        const defaultVal = formattedEstimates.find((formattedEstimate) => formattedEstimate.estimate.eq(minimumFee));
         if (defaultVal) {
-          setSelectedValue(defaultVal.estimate);
+          setSelectedValue(defaultVal.formattedEstimate);
           setSelectedTime(defaultVal.minutes);
+          setValue(name, mojoToChiaLocaleString(defaultVal.estimate, 'en-US'));
         }
         setDefaultFee(true);
       }
       if (selectedTime) {
-        const estimate = formattedEstimates.find((formattedEstimate) => formattedEstimate.minutes === selectedTime);
+        const estimate = findFeeOption(formattedEstimates, selectedTime);
         if (estimate) {
           const xchFee = mojoToChiaLocaleString(estimate.estimate, 'en-US');
           setSelectedValue(estimate.formattedEstimate);
           setValue(name, xchFee);
+          if (estimate.minutes !== selectedTime) {
+            setSelectedTime(estimate.minutes);
+          }
         }
       }
     }
-  }, [formattedEstimates, name, selectedTime, setValue, defaultFee, isLoading, inputType]);
+  }, [formattedEstimates, minimumFee, name, selectedTime, setValue, defaultFee, isLoading, inputType]);
 
   const handleSelectOpen = () => {
     setSelectOpen(true);
@@ -291,6 +286,7 @@ export default function EstimatedFee(props: FeeProps) {
             formattedEstimates={formattedEstimates}
             selectedValue={selectedValue}
             selectedTime={selectedTime}
+            hasEstimates={hasEstimates}
             currencyCode={currencyCode}
             {...rest}
           >
@@ -342,6 +338,7 @@ export default function EstimatedFee(props: FeeProps) {
                 required={required}
                 autoFocus
                 color="secondary"
+                minimumFee={minimumFee}
                 dropdownAdornment={showDropdown}
               />
             </Flex>
@@ -375,6 +372,7 @@ export default function EstimatedFee(props: FeeProps) {
           fullWidth
           required={required}
           color="secondary"
+          minimumFee={minimumFee}
         />
       </FormControl>
     </Flex>

@@ -5,7 +5,8 @@ import {
   Button,
   ButtonLoading,
   Color,
-  Fee,
+  EstimatedFee,
+  FeeTxType,
   Flex,
   Form,
   FormatLargeNumber,
@@ -613,14 +614,15 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
                       <Trans>Network Fee (Optional)</Trans>
                     </Typography>
                     <Grid direction="column" xs={5} sm={5} md={5} lg={5} container>
-                      <Fee
+                      <EstimatedFee
                         id="filled-secondary"
                         variant="filled"
                         name="fee"
                         color="secondary"
                         label={<Trans>Fee</Trans>}
-                        defaultValue={1}
                         disabled={isAccepting}
+                        txType={FeeTxType.acceptOffer}
+                        fullWidth
                       />
                     </Grid>
                   </Flex>

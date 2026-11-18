@@ -142,6 +142,7 @@ export default function NFTTransferAction(props: NFTTransferActionProps) {
           label={<Trans>Fee</Trans>}
           disabled={isTransferNFTLoading}
           txType={FeeTxType.transferNFT}
+          count={nfts.length}
           fullWidth
         />
         <DialogActions>

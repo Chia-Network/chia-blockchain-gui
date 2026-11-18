@@ -291,6 +291,7 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
           label={<Trans>Fee</Trans>}
           disabled={isSetNFTDIDLoading}
           txType={FeeTxType.assignDIDToNFT}
+          count={nfts.length}
           fullWidth
         />
         <DialogActions>
