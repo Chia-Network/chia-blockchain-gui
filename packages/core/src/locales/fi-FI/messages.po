@@ -18,13 +18,17 @@ msgstr ""
 "X-Crowdin-File: /main/packages/core/src/locales/en-US/messages.po\n"
 "X-Crowdin-File-ID: 15\n"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:65
+#: src/components/EstimatedFee/EstimatedFee.tsx:72
 msgid "(>5 min)"
 msgstr "(>5 min)"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:65
+#: src/components/EstimatedFee/EstimatedFee.tsx:72
 msgid "(~{selectedTime} min)"
 msgstr "(~{selectedTime} min)"
+
+#: src/components/EstimatedFee/EstimatedFee.tsx:72
+msgid "(minimum)"
+msgstr ""
 
 #: src/components/Amount/Amount.tsx:87
 msgid "{0, plural, one {mojo} other {mojos}}"
@@ -67,6 +71,10 @@ msgstr "Oletko varma, että haluat jatkaa? Kirjoita tämän lompakon sormenjälk
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:173
 msgid "Back"
 msgstr "Takaisin"
+
+#: src/components/Fee/Fee.tsx:54
+msgid "Below the recommended minimum of {formattedMinimumFee} {currencyCode}. Your transaction may not be confirmed."
+msgstr ""
 
 #: src/components/ConfirmDialog/ConfirmDialog.tsx:32
 #: src/hooks/useKeyringMigrationPrompt.tsx:18
@@ -204,9 +212,9 @@ msgstr "Farmarin julkinen avain:"
 msgid "Farming"
 msgstr "Farmarointi"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:340
-#: src/components/EstimatedFee/EstimatedFee.tsx:374
-#: src/components/Fee/Fee.tsx:10
+#: src/components/EstimatedFee/EstimatedFee.tsx:336
+#: src/components/EstimatedFee/EstimatedFee.tsx:371
+#: src/components/Fee/Fee.tsx:19
 msgid "Fee"
 msgstr "Maksu"
 
@@ -247,7 +255,7 @@ msgstr "Tuo Olemassaoleva"
 #~ msgid "Import from Mnemonics (12 or 24 words)"
 #~ msgstr ""
 
-#: src/components/Fee/Fee.tsx:32
+#: src/components/Fee/Fee.tsx:44
 msgid "Incorrect value"
 msgstr "Virheellinen arvo"
 
@@ -263,15 +271,15 @@ msgstr "Viimeisin Versio:"
 msgid "Light"
 msgstr "Vaalea"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:229
+#: src/components/EstimatedFee/EstimatedFee.tsx:213
 msgid "Likely in {0} seconds"
 msgstr "Todennäköisesti {0} sekunnissa"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:226
+#: src/components/EstimatedFee/EstimatedFee.tsx:211
 msgid "Likely in {minutes} minutes"
 msgstr "Todennäköisesti {minutes} minuutissa"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:228
+#: src/components/EstimatedFee/EstimatedFee.tsx:215
 msgid "Likely in >5 minutes"
 msgstr "Todennäköisesti >5 minuutissa"
 
@@ -303,6 +311,10 @@ msgstr "Siirrä"
 #: src/hooks/useKeyringMigrationPrompt.tsx:16
 msgid "Migration required"
 msgstr "Siirto vaaditaan"
+
+#: src/components/EstimatedFee/EstimatedFee.tsx:216
+msgid "Minimum fee"
+msgstr ""
 
 #: src/components/Settings/SettingsApp.tsx:67
 msgid "Mode"
@@ -371,7 +383,7 @@ msgstr "Julkinen avain:"
 msgid "Random"
 msgstr "Satunnainen"
 
-#: src/components/Fee/Fee.tsx:18
+#: src/components/Fee/Fee.tsx:30
 msgid "Recommended value: 0.000005"
 msgstr "Suositeltu arvo: 0.000005"
 
@@ -533,7 +545,7 @@ msgstr "Tallentamattomia muutoksia"
 msgid "Using a passphrase is strongly recommended to protect your keys. Are you sure you want to disable passphrase protection?"
 msgstr "Salasanan asettaminen on erittäin suositeltavaa avaimien suojaamiseksi. Oletko varma, että haluat ohittaa salasanan asettamisen?"
 
-#: src/components/Fee/Fee.tsx:24
+#: src/components/Fee/Fee.tsx:36
 msgid "Value seems high"
 msgstr "Arvo vaikuttaa suurelta"
 

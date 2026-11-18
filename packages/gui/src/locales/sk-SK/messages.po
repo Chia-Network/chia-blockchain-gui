@@ -34,12 +34,12 @@ msgid "{count} NFTs failed to move."
 msgstr "{count} NFT sa nepodarilo presunúť."
 
 #. js-lingui-explicit-id
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:354
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:355
 msgid "Would you like to move {count} NFTs to a profile?"
 msgstr ""
 
 #. js-lingui-explicit-id
-#: src/components/nfts/NFTTransferAction.tsx:209
+#: src/components/nfts/NFTTransferAction.tsx:210
 msgid "Would you like to transfer {count} NFTs to a new owner?"
 msgstr ""
 
@@ -3279,7 +3279,7 @@ msgstr ""
 #~ msgid "{key} ({0})"
 #~ msgstr ""
 
-#: src/components/offers/NFTOfferViewer.tsx:209
+#: src/components/offers/NFTOfferViewer.tsx:210
 #: src/components/offers/OfferSummary.tsx:174
 msgid "{makerFee, plural, one {mojo} other {mojos}}"
 msgstr "{makerFee, plural, one {mojo} few {mojos} many {mojos} other {mojos}}"
@@ -3365,18 +3365,18 @@ msgstr "Odporúča sa hodnota {0}"
 #~ msgid "About Chia Blockchain"
 #~ msgstr "About Chia Blockchain"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:260
+#: src/components/offers2/OfferBuilderViewer.tsx:261
 msgid "Accept"
 msgstr ""
 
-#: src/components/offers2/OfferBuilderViewer.tsx:259
+#: src/components/offers2/OfferBuilderViewer.tsx:260
 msgid "Accept Data Layer Offer"
 msgstr ""
 
-#: src/components/offers/NFTOfferViewer.tsx:648
+#: src/components/offers/NFTOfferViewer.tsx:650
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:21
-#: src/components/offers2/OfferBuilderViewer.tsx:307
-#: src/components/offers2/OfferBuilderViewer.tsx:372
+#: src/components/offers2/OfferBuilderViewer.tsx:308
+#: src/components/offers2/OfferBuilderViewer.tsx:374
 msgid "Accept Offer"
 msgstr "Prijať ponuku"
 
@@ -3639,7 +3639,7 @@ msgstr ""
 #~ msgid "Approve"
 #~ msgstr "Approve"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:264
+#: src/components/offers2/OfferBuilderViewer.tsx:265
 msgid "Are you sure you want to accept this Data Layer offer?"
 msgstr ""
 
@@ -3744,11 +3744,11 @@ msgstr ""
 msgid "Auto claim incoming claw back transactions"
 msgstr ""
 
-#: src/components/settings/SettingsCustodyAutoClaim.tsx:134
+#: src/components/settings/SettingsCustodyAutoClaim.tsx:149
 msgid "Auto claim is disabled."
 msgstr ""
 
-#: src/components/settings/SettingsCustodyAutoClaim.tsx:119
+#: src/components/settings/SettingsCustodyAutoClaim.tsx:134
 msgid "Auto claim is enabled."
 msgstr ""
 
@@ -3760,7 +3760,7 @@ msgstr "Názov automaticky vygenerovaný z adresy zmluvy združenia"
 msgid "Avg"
 msgstr "Priemer"
 
-#: src/components/offers/NFTOfferViewer.tsx:639
+#: src/components/offers/NFTOfferViewer.tsx:641
 msgid "Back"
 msgstr "Späť"
 
@@ -3855,7 +3855,7 @@ msgid "Browse"
 msgstr "Vybrať"
 
 #: src/components/nfts/NFTBurnDialog.tsx:90
-#: src/components/nfts/NFTBurnDialog.tsx:185
+#: src/components/nfts/NFTBurnDialog.tsx:186
 #: src/components/nfts/NFTContextualActions.tsx:545
 msgid "Burn"
 msgstr "Spáliť"
@@ -3896,13 +3896,13 @@ msgstr "Veľkosť vyrovnávacej pamäte (GB)"
 #: src/components/farm/FarmManageFarmingRewards.tsx:163
 #: src/components/fullNode/FullNodeAddConnection.tsx:100
 #: src/components/nfts/MultipleDownloadDialog.tsx:119
-#: src/components/nfts/NFTBurnDialog.tsx:175
+#: src/components/nfts/NFTBurnDialog.tsx:176
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:49
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:24
 #: src/components/offers/OfferDataEntryDialog.tsx:58
 #: src/components/offers/OfferShareDialog.tsx:712
 #: src/components/offers2/CancelOfferList.tsx:146
-#: src/components/offers2/OfferBuilderViewer.tsx:261
+#: src/components/offers2/OfferBuilderViewer.tsx:262
 #: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:362
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:111
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:78
@@ -4106,8 +4106,8 @@ msgstr ""
 
 #: src/components/app/AppVersionWarning.tsx:57
 #: src/components/nfts/MultipleDownloadDialog.tsx:115
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:299
-#: src/components/nfts/NFTTransferAction.tsx:150
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:300
+#: src/components/nfts/NFTTransferAction.tsx:151
 #: src/components/notification/NotificationAnnouncementDialog.tsx:87
 #: src/components/notification/NotificationSendDialog.tsx:309
 #: src/components/offers/ConfirmOfferCancellation.tsx:126
@@ -4333,7 +4333,7 @@ msgstr ""
 msgid "Counter"
 msgstr ""
 
-#: src/components/offers2/OfferBuilderViewer.tsx:360
+#: src/components/offers2/OfferBuilderViewer.tsx:362
 msgid "Counter Offer"
 msgstr ""
 
@@ -4454,7 +4454,7 @@ msgstr "Vytváranie NFT poľa osobného združenia"
 msgid "Creation Date"
 msgstr "Dátum vytvorenia"
 
-#: src/components/offers/NFTOfferViewer.tsx:524
+#: src/components/offers/NFTOfferViewer.tsx:525
 msgid "Creator Fee ({0}%)"
 msgstr "Autorský poplatok ({0}%)"
 
@@ -4463,7 +4463,7 @@ msgid "Creator Fee ({royaltyPercentage}%)"
 msgstr "Autorský poplatok ({royaltyPercentage}%)"
 
 #: src/components/offers/NFTOfferEditor.tsx:338
-#: src/components/offers/NFTOfferViewer.tsx:527
+#: src/components/offers/NFTOfferViewer.tsx:528
 msgid "Creator royalty percentage seems high"
 msgstr "Percento autorských honorárov sa zdá byť vysoké"
 
@@ -4679,7 +4679,7 @@ msgid "Difficulty"
 msgstr "Zložitosť"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:232
-#: src/components/settings/SettingsCustodyAutoClaim.tsx:91
+#: src/components/settings/SettingsCustodyAutoClaim.tsx:106
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:77
 #: src/components/settings/SettingsExpiringOffers.tsx:87
 msgid "Disable"
@@ -4895,7 +4895,7 @@ msgstr "Oprávnené polia na jeden bod značenia"
 msgid "Emoji"
 msgstr "Emoji"
 
-#: src/components/settings/SettingsCustodyAutoClaim.tsx:75
+#: src/components/settings/SettingsCustodyAutoClaim.tsx:90
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:63
 #: src/components/settings/SettingsExpiringOffers.tsx:77
 msgid "Enable"
@@ -5243,7 +5243,7 @@ msgstr ""
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:291
 #: src/components/nfts/NFTTransferAction.tsx:142
 #: src/components/offers/ConfirmOfferCancellation.tsx:109
-#: src/components/offers/NFTOfferViewer.tsx:621
+#: src/components/offers/NFTOfferViewer.tsx:622
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:158
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:122
 #: src/components/pool/PoolInfo.tsx:18
@@ -5273,7 +5273,7 @@ msgstr "Poplatky"
 msgid "Fees Amount"
 msgstr "Výška poplatkov"
 
-#: src/components/offers/NFTOfferViewer.tsx:203
+#: src/components/offers/NFTOfferViewer.tsx:204
 #: src/components/offers/OfferSummary.tsx:168
 msgid "Fees included in offer:"
 msgstr "Poplatky zahrnuté v ponuke:"
@@ -5798,7 +5798,7 @@ msgstr ""
 msgid "Import"
 msgstr "Importovať"
 
-#: src/components/offers/NFTOfferViewer.tsx:485
+#: src/components/offers/NFTOfferViewer.tsx:486
 #: src/components/offers/OfferEditorConditionsPanel.tsx:292
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:28
 msgid "In exchange for"
@@ -6450,11 +6450,11 @@ msgstr "Viac pamäte mierne zvyšuje rýchlosť"
 msgid "more space"
 msgstr ""
 
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:302
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:303
 msgid "Move"
 msgstr ""
 
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:346
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:347
 msgid "Move NFT to Profile"
 msgstr "Presúť NFT do profilu"
 
@@ -6499,7 +6499,7 @@ msgstr ""
 msgid "Need some {currencyCode}?"
 msgstr ""
 
-#: src/components/offers/NFTOfferViewer.tsx:590
+#: src/components/offers/NFTOfferViewer.tsx:591
 msgid "Net Proceeds"
 msgstr "Čistý výnos"
 
@@ -6507,8 +6507,8 @@ msgstr "Čistý výnos"
 msgid "Netspace"
 msgstr ""
 
-#: src/components/offers/NFTOfferViewer.tsx:613
-#: src/components/offers2/OfferBuilderViewer.tsx:338
+#: src/components/offers/NFTOfferViewer.tsx:614
+#: src/components/offers2/OfferBuilderViewer.tsx:339
 msgid "Network Fee (Optional)"
 msgstr "Sieťový poplatok (nepovinné)"
 
@@ -6639,7 +6639,7 @@ msgstr "Čaká sa na presun NFT"
 msgid "NFT not specified"
 msgstr "Nie je špecifikované NFT"
 
-#: src/components/offers/NFTOfferViewer.tsx:500
+#: src/components/offers/NFTOfferViewer.tsx:501
 msgid "NFT Purchase Price"
 msgstr "Kúpna cena NFT"
 
@@ -6924,9 +6924,9 @@ msgstr ""
 msgid "Offer Builder"
 msgstr ""
 
-#: src/components/offers/NFTOfferViewer.tsx:176
+#: src/components/offers/NFTOfferViewer.tsx:177
 #: src/components/offers2/OfferBuilderValue.tsx:217
-#: src/components/offers2/OfferBuilderViewer.tsx:403
+#: src/components/offers2/OfferBuilderViewer.tsx:405
 msgid "Offer cannot be accepted because you don't possess the requested assets"
 msgstr "Ponuku nemožno prijať, pretože nevlastníte požadované aktíva"
 
@@ -6951,7 +6951,7 @@ msgstr ""
 msgid "Offer file is too large (> 1MB)"
 msgstr ""
 
-#: src/components/offers2/OfferBuilderViewer.tsx:275
+#: src/components/offers2/OfferBuilderViewer.tsx:276
 #: src/hooks/useAcceptOfferHook.tsx:99
 msgid "Offer has been accepted and is awaiting confirmation."
 msgstr "Ponuka bola prijatá a čaká na potvrdenie."
@@ -7056,7 +7056,7 @@ msgstr "Akonáhle prijmete túto ponuku, nebudete môcť transakciu zrušiť. Na
 msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer the NFT?"
 msgstr "Po spustení tohto prevodu už nebudete môcť transakciu zrušiť. Naozaj chcete previesť toto NFT?"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:407
+#: src/components/offers2/OfferBuilderViewer.tsx:409
 msgid "One or more unknown tokens are being offered. Be sure to verify that the asset IDs of the offered tokens match the asset IDs of the tokens you are expecting."
 msgstr ""
 
@@ -7396,8 +7396,8 @@ msgstr "Prosím, vyberte cieľový adresár"
 msgid "Please specify temporary directory"
 msgstr "Prosím, vyberte dočasný adresár"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:236
-#: src/components/offers2/OfferBuilderViewer.tsx:248
+#: src/components/offers2/OfferBuilderViewer.tsx:237
+#: src/components/offers2/OfferBuilderViewer.tsx:249
 msgid "Please wait for wallet synchronization"
 msgstr "Počkajte prosím na synchronizáciu peňaženky"
 
@@ -7779,7 +7779,7 @@ msgstr ""
 msgid "Public Key"
 msgstr ""
 
-#: src/components/offers/NFTOfferViewer.tsx:475
+#: src/components/offers/NFTOfferViewer.tsx:476
 msgid "Purchase Summary"
 msgstr "Súhrn nákupu"
 
@@ -8183,7 +8183,7 @@ msgstr "Spustí úplný uzol"
 #: src/components/addressbook/ContactEdit.tsx:297
 #: src/components/farm/FarmManageFarmingRewards.tsx:166
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:114
-#: src/components/settings/SettingsCustodyAutoClaim.tsx:75
+#: src/components/settings/SettingsCustodyAutoClaim.tsx:90
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:63
 #: src/components/settings/SettingsDerivationIndex.tsx:85
 #: src/components/settings/SettingsExpiringOffers.tsx:77
@@ -8734,7 +8734,7 @@ msgstr "Odoslať"
 #~ msgstr "Subscriptions"
 
 #: src/components/notification/NotificationSendDialog.tsx:144
-#: src/components/offers2/OfferBuilderViewer.tsx:274
+#: src/components/offers2/OfferBuilderViewer.tsx:275
 #: src/components/vcs/VCCard.tsx:281
 #: src/hooks/useAcceptOfferHook.tsx:98
 msgid "Success"
@@ -8883,7 +8883,7 @@ msgstr ""
 msgid "The minimum required size for mainnet is k=32"
 msgstr "Minimálna požadovaná veľkosť pre sieť mainnet je k = 32"
 
-#: src/components/offers/NFTOfferViewer.tsx:594
+#: src/components/offers/NFTOfferViewer.tsx:595
 msgid "The net proceeds include the asking price, minus any associated creator fees (if the NFT has royalty payments enabled)."
 msgstr "Čistý výnos zahŕňa požadovanú cenu mínus všetky súvisiace autorské poplatky (ak má NFT povolené licenčné poplatky)."
 
@@ -8952,7 +8952,7 @@ msgstr "Seed použitý na vytvorenie poľa. Závisí od PK združenia a PK poľa
 msgid "The signature was made by the private key associated with the wallet address. The signer can be assumed to be the owner of the private key."
 msgstr ""
 
-#: src/components/offers/NFTOfferViewer.tsx:568
+#: src/components/offers/NFTOfferViewer.tsx:569
 msgid "The total amount offered includes the offered purchase price, plus the optional offer creation fee.<0/>If the NFT has royalty payments enabled, those creator fees will be paid from the offered purchase price."
 msgstr "Celková ponúkaná suma zahŕňa ponúkanú kúpnu cenu plus voliteľný poplatok za vytvorenie ponuky.<0/>Ak má NFT povolené licenčné poplatky, tieto autorské poplatky budú zaplatené z ponúkanej kúpnej ceny."
 
@@ -8964,7 +8964,7 @@ msgstr "Celková ponúkaná suma zahŕňa cenu, ktorú ste ochotní zaplatiť za
 msgid "The total amount requested includes the asking price, plus the associated creator fees (if the NFT has royalty payments enabled). Creator fees will be paid by the party that accepts the offer.<0/>The optional offer creation fee is not included in this total, and will be deducted from your spendable balance upon offer creation."
 msgstr "Celková požadovaná suma zahŕňa požadovanú cenu plus súvisiace autorské poplatky (ak má NFT povolené licenčné poplatky). Autorské poplatky zaplatí strana, ktorá ponuku prijme.<0/>Voliteľný poplatok za vytvorenie ponuky nie je zahrnutý v tejto sume a bude odpočítaný z vášho disponibilného zostatku pri vytvorení ponuky."
 
-#: src/components/offers/NFTOfferViewer.tsx:557
+#: src/components/offers/NFTOfferViewer.tsx:558
 msgid "The total amount requested includes the asking price, plus the associated creator fees (if the NFT has royalty payments enabled).{0}"
 msgstr "Celková požadovaná suma zahŕňa požadovanú cenu plus súvisiace autorské poplatky (ak má NFT povolené licenčné poplatky).{0}"
 
@@ -9012,7 +9012,7 @@ msgstr "Toto umožňuje pridať adresár, ktorý obsahuje už vykreslené polia.
 msgid "This audio format cannot be played here"
 msgstr ""
 
-#: src/components/offers2/OfferBuilderViewer.tsx:314
+#: src/components/offers2/OfferBuilderViewer.tsx:315
 msgid "This Data Layer offer contains no store updates and cannot be accepted."
 msgstr ""
 
@@ -9072,24 +9072,24 @@ msgstr ""
 msgid "This node is fully caught up and validating the network"
 msgstr "Tento uzol je plne aktualizovaný a overuje sieť"
 
-#: src/components/offers/NFTOfferViewer.tsx:218
+#: src/components/offers/NFTOfferViewer.tsx:219
 #: src/components/offers/OfferSummary.tsx:183
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted."
 msgstr "Táto ponuka zahŕňa poplatok, ktorý pomáha urýchliť transakciu po prijatí ponuky."
 
-#: src/components/offers/NFTOfferViewer.tsx:213
+#: src/components/offers/NFTOfferViewer.tsx:214
 #: src/components/offers/OfferSummary.tsx:178
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted. You may specify an additional fee if you feel that the included fee is too small."
 msgstr "Táto ponuka zahŕňa poplatok, ktorý pomáha urýchliť transakciu po prijatí ponuky. Ak máte pocit, že zahrnutý poplatok je príliš nízky, môžete zadať dodatočný poplatok."
 
 #: src/components/offers/OfferHeader.tsx:63
-#: src/components/offers2/OfferBuilderViewer.tsx:395
+#: src/components/offers2/OfferBuilderViewer.tsx:397
 msgid "This offer has completed successfully"
 msgstr "Táto ponuka bola úspešne dokončená"
 
 #: src/components/offers/OfferHeader.tsx:46
-#: src/components/offers2/OfferBuilderViewer.tsx:319
-#: src/components/offers2/OfferBuilderViewer.tsx:382
+#: src/components/offers2/OfferBuilderViewer.tsx:320
+#: src/components/offers2/OfferBuilderViewer.tsx:384
 msgid "This offer is no longer valid because it was accepted or cancelled. Click <0>here</0> to learn more."
 msgstr ""
 
@@ -9102,7 +9102,7 @@ msgstr ""
 msgid "This offer proposes updates to Data Layer store roots. Accepting it will transition the listed stores to new roots. Dependencies specify values that must be proven to exist in other stores before acceptance."
 msgstr ""
 
-#: src/components/offers2/OfferBuilderViewer.tsx:399
+#: src/components/offers2/OfferBuilderViewer.tsx:401
 msgid "This offer was cancelled"
 msgstr ""
 
@@ -9203,12 +9203,12 @@ msgid "Total amount including royalties"
 msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:386
-#: src/components/offers/NFTOfferViewer.tsx:551
+#: src/components/offers/NFTOfferViewer.tsx:552
 msgid "Total Amount Offered"
 msgstr "Celková ponúkaná suma"
 
 #: src/components/offers/NFTOfferEditor.tsx:384
-#: src/components/offers/NFTOfferViewer.tsx:547
+#: src/components/offers/NFTOfferViewer.tsx:548
 msgid "Total Amount Requested"
 msgstr "Celková požadovaná suma"
 
@@ -9309,7 +9309,7 @@ msgstr "Dotknúť sa všetkých stránok vyrovnávacej pamäte pred spustením v
 msgid "Trade tokens"
 msgstr "Obchodovať s tokenmi"
 
-#: src/components/settings/SettingsCustodyAutoClaim.tsx:59
+#: src/components/settings/SettingsCustodyAutoClaim.tsx:73
 msgid "Transaction auto claim fee"
 msgstr ""
 
@@ -9341,11 +9341,11 @@ msgstr ""
 msgid "Transactions Filter Hash"
 msgstr "Hash filtra transakcií"
 
-#: src/components/settings/SettingsCustodyAutoClaim.tsx:127
+#: src/components/settings/SettingsCustodyAutoClaim.tsx:142
 msgid "Transactions less than the fee will not be auto claimed."
 msgstr ""
 
-#: src/components/nfts/NFTTransferAction.tsx:153
+#: src/components/nfts/NFTTransferAction.tsx:154
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:37
 msgid "Transfer"
 msgstr ""
@@ -9355,7 +9355,7 @@ msgstr ""
 #~ msgstr "Transfer DID"
 
 #: src/components/nfts/NFTContextualActions.tsx:200
-#: src/components/nfts/NFTTransferAction.tsx:201
+#: src/components/nfts/NFTTransferAction.tsx:202
 msgid "Transfer NFT"
 msgstr ""
 
@@ -9471,7 +9471,7 @@ msgstr ""
 msgid "Unknown Asset"
 msgstr ""
 
-#: src/components/offers/NFTOfferViewer.tsx:373
+#: src/components/offers/NFTOfferViewer.tsx:374
 #: src/components/offers/OfferSummaryRow.tsx:150
 #: src/components/offers/OfferSummaryRow.tsx:151
 #: src/util/resolveOfferInfo.tsx:66
@@ -9491,7 +9491,7 @@ msgstr "Odomknúť zväzok kľúčov"
 msgid "Unnamed Contact"
 msgstr ""
 
-#: src/components/offers/NFTOfferViewer.tsx:145
+#: src/components/offers/NFTOfferViewer.tsx:146
 msgid "Unrecognized asset"
 msgstr "Nerozpoznané aktívum"
 
@@ -9955,7 +9955,7 @@ msgstr ""
 #~ msgid "Would you like to move {count} NFTs to a profile?"
 #~ msgstr ""
 
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:356
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:357
 msgid "Would you like to move the specified NFT to a profile?"
 msgstr "Chcete presunúť zadaný NFT do profilu?"
 
@@ -9967,7 +9967,7 @@ msgstr "Chcete presunúť zadaný NFT do profilu?"
 #~ msgid "Would you like to transfer the specified NFT to a new owner"
 #~ msgstr ""
 
-#: src/components/nfts/NFTTransferAction.tsx:211
+#: src/components/nfts/NFTTransferAction.tsx:212
 msgid "Would you like to transfer the specified NFT to a new owner?"
 msgstr "Chcete previesť špecifikovaný NFT na nového vlastníka?"
 
@@ -10021,7 +10021,7 @@ msgid "You can still create plots for this plot NFT, but you can not make change
 msgstr "Stále môžete vytvárať polia pre tento NFT, ale nemôžete robiť zmeny, kým nie je dokončená synchronizácia."
 
 #: src/components/offers/OfferHeader.tsx:38
-#: src/components/offers2/OfferBuilderViewer.tsx:414
+#: src/components/offers2/OfferBuilderViewer.tsx:416
 msgid "You created this offer"
 msgstr "Túto ponuku ste vytvorili vy"
 
@@ -10079,7 +10079,7 @@ msgid "You will offer"
 msgstr "Ponúknete"
 
 #: src/components/offers/NFTOfferEditor.tsx:364
-#: src/components/offers/NFTOfferViewer.tsx:480
+#: src/components/offers/NFTOfferViewer.tsx:481
 msgid "You will receive"
 msgstr "Dostanete"
 
@@ -10133,6 +10133,6 @@ msgstr "Prehľad vašich združení"
 msgid "Your spendable balance must be greater than 1 mojo to create a profile"
 msgstr ""
 
-#: src/components/settings/SettingsCustodyAutoClaim.tsx:124
+#: src/components/settings/SettingsCustodyAutoClaim.tsx:139
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr ""

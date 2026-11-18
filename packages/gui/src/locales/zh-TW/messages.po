@@ -34,12 +34,12 @@ msgid "{count} NFTs failed to move."
 msgstr "{count} 個 NFT 移動失敗。"
 
 #. js-lingui-explicit-id
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:354
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:355
 msgid "Would you like to move {count} NFTs to a profile?"
 msgstr "您是否要將 {count} 個 NFT 移動到個人檔案？"
 
 #. js-lingui-explicit-id
-#: src/components/nfts/NFTTransferAction.tsx:209
+#: src/components/nfts/NFTTransferAction.tsx:210
 msgid "Would you like to transfer {count} NFTs to a new owner?"
 msgstr "您是否要將 {count} 個 NFT 轉移給新擁有者？"
 
@@ -3282,7 +3282,7 @@ msgstr "{from} <0>正在發送訊息</0>"
 #~ msgid "{key} ({0})"
 #~ msgstr ""
 
-#: src/components/offers/NFTOfferViewer.tsx:209
+#: src/components/offers/NFTOfferViewer.tsx:210
 #: src/components/offers/OfferSummary.tsx:174
 msgid "{makerFee, plural, one {mojo} other {mojos}}"
 msgstr "{makerFee, plural, one {mojo} other {mojos}}"
@@ -3368,18 +3368,18 @@ msgstr "推薦數值為{0}"
 #~ msgid "About Chia Blockchain"
 #~ msgstr "About Chia Blockchain"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:260
+#: src/components/offers2/OfferBuilderViewer.tsx:261
 msgid "Accept"
 msgstr ""
 
-#: src/components/offers2/OfferBuilderViewer.tsx:259
+#: src/components/offers2/OfferBuilderViewer.tsx:260
 msgid "Accept Data Layer Offer"
 msgstr ""
 
-#: src/components/offers/NFTOfferViewer.tsx:648
+#: src/components/offers/NFTOfferViewer.tsx:650
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:21
-#: src/components/offers2/OfferBuilderViewer.tsx:307
-#: src/components/offers2/OfferBuilderViewer.tsx:372
+#: src/components/offers2/OfferBuilderViewer.tsx:308
+#: src/components/offers2/OfferBuilderViewer.tsx:374
 msgid "Accept Offer"
 msgstr "接受報價單"
 
@@ -3642,7 +3642,7 @@ msgstr ""
 #~ msgid "Approve"
 #~ msgstr "Approve"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:264
+#: src/components/offers2/OfferBuilderViewer.tsx:265
 msgid "Are you sure you want to accept this Data Layer offer?"
 msgstr ""
 
@@ -3747,11 +3747,11 @@ msgstr "授權提供者"
 msgid "Auto claim incoming claw back transactions"
 msgstr "自動領取進來的回收交易"
 
-#: src/components/settings/SettingsCustodyAutoClaim.tsx:134
+#: src/components/settings/SettingsCustodyAutoClaim.tsx:149
 msgid "Auto claim is disabled."
 msgstr "自動領取已停用。"
 
-#: src/components/settings/SettingsCustodyAutoClaim.tsx:119
+#: src/components/settings/SettingsCustodyAutoClaim.tsx:134
 msgid "Auto claim is enabled."
 msgstr "自動領取已啟用。"
 
@@ -3763,7 +3763,7 @@ msgstr "從農會合約地址自動生成的名稱"
 msgid "Avg"
 msgstr "平均"
 
-#: src/components/offers/NFTOfferViewer.tsx:639
+#: src/components/offers/NFTOfferViewer.tsx:641
 msgid "Back"
 msgstr "返回"
 
@@ -3858,7 +3858,7 @@ msgid "Browse"
 msgstr "瀏覽"
 
 #: src/components/nfts/NFTBurnDialog.tsx:90
-#: src/components/nfts/NFTBurnDialog.tsx:185
+#: src/components/nfts/NFTBurnDialog.tsx:186
 #: src/components/nfts/NFTContextualActions.tsx:545
 msgid "Burn"
 msgstr "燒毀"
@@ -3899,13 +3899,13 @@ msgstr "快取大小（GB）"
 #: src/components/farm/FarmManageFarmingRewards.tsx:163
 #: src/components/fullNode/FullNodeAddConnection.tsx:100
 #: src/components/nfts/MultipleDownloadDialog.tsx:119
-#: src/components/nfts/NFTBurnDialog.tsx:175
+#: src/components/nfts/NFTBurnDialog.tsx:176
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:49
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:24
 #: src/components/offers/OfferDataEntryDialog.tsx:58
 #: src/components/offers/OfferShareDialog.tsx:712
 #: src/components/offers2/CancelOfferList.tsx:146
-#: src/components/offers2/OfferBuilderViewer.tsx:261
+#: src/components/offers2/OfferBuilderViewer.tsx:262
 #: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:362
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:111
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:78
@@ -4109,8 +4109,8 @@ msgstr "點擊刪除圖示僅會將目錄從此清單中移除，絕不會刪除
 
 #: src/components/app/AppVersionWarning.tsx:57
 #: src/components/nfts/MultipleDownloadDialog.tsx:115
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:299
-#: src/components/nfts/NFTTransferAction.tsx:150
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:300
+#: src/components/nfts/NFTTransferAction.tsx:151
 #: src/components/notification/NotificationAnnouncementDialog.tsx:87
 #: src/components/notification/NotificationSendDialog.tsx:309
 #: src/components/offers/ConfirmOfferCancellation.tsx:126
@@ -4336,7 +4336,7 @@ msgstr "無法解析報價數據"
 msgid "Counter"
 msgstr "反饋"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:360
+#: src/components/offers2/OfferBuilderViewer.tsx:362
 msgid "Counter Offer"
 msgstr "還價"
 
@@ -4457,7 +4457,7 @@ msgstr "正在為自力耕種建立 Plot NFT"
 msgid "Creation Date"
 msgstr "建立日期"
 
-#: src/components/offers/NFTOfferViewer.tsx:524
+#: src/components/offers/NFTOfferViewer.tsx:525
 msgid "Creator Fee ({0}%)"
 msgstr "創作者費用 ({0}%)"
 
@@ -4466,7 +4466,7 @@ msgid "Creator Fee ({royaltyPercentage}%)"
 msgstr "創作者費用 ({royaltyPercentage}%)"
 
 #: src/components/offers/NFTOfferEditor.tsx:338
-#: src/components/offers/NFTOfferViewer.tsx:527
+#: src/components/offers/NFTOfferViewer.tsx:528
 msgid "Creator royalty percentage seems high"
 msgstr "創作者版稅比例似乎過高"
 
@@ -4682,7 +4682,7 @@ msgid "Difficulty"
 msgstr "難度"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:232
-#: src/components/settings/SettingsCustodyAutoClaim.tsx:91
+#: src/components/settings/SettingsCustodyAutoClaim.tsx:106
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:77
 #: src/components/settings/SettingsExpiringOffers.tsx:87
 msgid "Disable"
@@ -4898,7 +4898,7 @@ msgstr "每個標牌點符合條件的耕地"
 msgid "Emoji"
 msgstr "表情符號"
 
-#: src/components/settings/SettingsCustodyAutoClaim.tsx:75
+#: src/components/settings/SettingsCustodyAutoClaim.tsx:90
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:63
 #: src/components/settings/SettingsExpiringOffers.tsx:77
 msgid "Enable"
@@ -5246,7 +5246,7 @@ msgstr "功能以提供更多保護和控制您的數位資產。"
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:291
 #: src/components/nfts/NFTTransferAction.tsx:142
 #: src/components/offers/ConfirmOfferCancellation.tsx:109
-#: src/components/offers/NFTOfferViewer.tsx:621
+#: src/components/offers/NFTOfferViewer.tsx:622
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:158
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:122
 #: src/components/pool/PoolInfo.tsx:18
@@ -5276,7 +5276,7 @@ msgstr "手續費"
 msgid "Fees Amount"
 msgstr "手續費金額"
 
-#: src/components/offers/NFTOfferViewer.tsx:203
+#: src/components/offers/NFTOfferViewer.tsx:204
 #: src/components/offers/OfferSummary.tsx:168
 msgid "Fees included in offer:"
 msgstr "報價中包含的費用："
@@ -5801,7 +5801,7 @@ msgstr "圖片將被縮放以填滿 NFT 卡片，並忽略它們的原始比例�
 msgid "Import"
 msgstr "匯入"
 
-#: src/components/offers/NFTOfferViewer.tsx:485
+#: src/components/offers/NFTOfferViewer.tsx:486
 #: src/components/offers/OfferEditorConditionsPanel.tsx:292
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:28
 msgid "In exchange for"
@@ -6453,11 +6453,11 @@ msgstr "較多記憶體會略微提升速度"
 msgid "more space"
 msgstr "更多空間"
 
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:302
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:303
 msgid "Move"
 msgstr "移動"
 
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:346
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:347
 msgid "Move NFT to Profile"
 msgstr "將 NFT 移動到個人檔案"
 
@@ -6502,7 +6502,7 @@ msgstr "名稱"
 msgid "Need some {currencyCode}?"
 msgstr "需要一些 {currencyCode} 嗎？"
 
-#: src/components/offers/NFTOfferViewer.tsx:590
+#: src/components/offers/NFTOfferViewer.tsx:591
 msgid "Net Proceeds"
 msgstr "淨收益"
 
@@ -6510,8 +6510,8 @@ msgstr "淨收益"
 msgid "Netspace"
 msgstr "網路空間 (Netspace)"
 
-#: src/components/offers/NFTOfferViewer.tsx:613
-#: src/components/offers2/OfferBuilderViewer.tsx:338
+#: src/components/offers/NFTOfferViewer.tsx:614
+#: src/components/offers2/OfferBuilderViewer.tsx:339
 msgid "Network Fee (Optional)"
 msgstr "網路費用 (可選)"
 
@@ -6642,7 +6642,7 @@ msgstr "NFT 移動處理中"
 msgid "NFT not specified"
 msgstr "未指定 NFT"
 
-#: src/components/offers/NFTOfferViewer.tsx:500
+#: src/components/offers/NFTOfferViewer.tsx:501
 msgid "NFT Purchase Price"
 msgstr "NFT 購買價格"
 
@@ -6927,9 +6927,9 @@ msgstr "佔用空間"
 msgid "Offer Builder"
 msgstr "報價生成器"
 
-#: src/components/offers/NFTOfferViewer.tsx:176
+#: src/components/offers/NFTOfferViewer.tsx:177
 #: src/components/offers2/OfferBuilderValue.tsx:217
-#: src/components/offers2/OfferBuilderViewer.tsx:403
+#: src/components/offers2/OfferBuilderViewer.tsx:405
 msgid "Offer cannot be accepted because you don't possess the requested assets"
 msgstr "無法接受報價，因為您不具備要求的資產"
 
@@ -6954,7 +6954,7 @@ msgstr "報價過期時間"
 msgid "Offer file is too large (> 1MB)"
 msgstr "報價檔案太大 (> 1MB)"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:275
+#: src/components/offers2/OfferBuilderViewer.tsx:276
 #: src/hooks/useAcceptOfferHook.tsx:99
 msgid "Offer has been accepted and is awaiting confirmation."
 msgstr "報價已接受，正在等待確認。"
@@ -7059,7 +7059,7 @@ msgstr "一旦您接受此報價，將無法取消交易。您確定要接受此
 msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer the NFT?"
 msgstr "一旦您發起此轉移，將無法取消交易。您確定要轉移此 NFT 嗎？"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:407
+#: src/components/offers2/OfferBuilderViewer.tsx:409
 msgid "One or more unknown tokens are being offered. Be sure to verify that the asset IDs of the offered tokens match the asset IDs of the tokens you are expecting."
 msgstr "正提供一個或多個未知代幣。請務必驗證所提供代幣的資產 ID 是否與您預期的代幣資產 ID 相符。"
 
@@ -7399,8 +7399,8 @@ msgstr "請指定最終目錄"
 msgid "Please specify temporary directory"
 msgstr "請指定臨時目錄"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:236
-#: src/components/offers2/OfferBuilderViewer.tsx:248
+#: src/components/offers2/OfferBuilderViewer.tsx:237
+#: src/components/offers2/OfferBuilderViewer.tsx:249
 msgid "Please wait for wallet synchronization"
 msgstr "請等待錢包同步完成"
 
@@ -7782,7 +7782,7 @@ msgstr "使用數位簽章證明或驗證對錢包地址、NFT 或 DID 的所有
 msgid "Public Key"
 msgstr "公鑰"
 
-#: src/components/offers/NFTOfferViewer.tsx:475
+#: src/components/offers/NFTOfferViewer.tsx:476
 msgid "Purchase Summary"
 msgstr "購買摘要"
 
@@ -8186,7 +8186,7 @@ msgstr "執行完整節點"
 #: src/components/addressbook/ContactEdit.tsx:297
 #: src/components/farm/FarmManageFarmingRewards.tsx:166
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:114
-#: src/components/settings/SettingsCustodyAutoClaim.tsx:75
+#: src/components/settings/SettingsCustodyAutoClaim.tsx:90
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:63
 #: src/components/settings/SettingsDerivationIndex.tsx:85
 #: src/components/settings/SettingsExpiringOffers.tsx:77
@@ -8737,7 +8737,7 @@ msgstr "提交"
 #~ msgstr "Subscriptions"
 
 #: src/components/notification/NotificationSendDialog.tsx:144
-#: src/components/offers2/OfferBuilderViewer.tsx:274
+#: src/components/offers2/OfferBuilderViewer.tsx:275
 #: src/components/vcs/VCCard.tsx:281
 #: src/hooks/useAcceptOfferHook.tsx:98
 msgid "Success"
@@ -8886,7 +8886,7 @@ msgstr ""
 msgid "The minimum required size for mainnet is k=32"
 msgstr "主網所需的最小大小為 k=32"
 
-#: src/components/offers/NFTOfferViewer.tsx:594
+#: src/components/offers/NFTOfferViewer.tsx:595
 msgid "The net proceeds include the asking price, minus any associated creator fees (if the NFT has royalty payments enabled)."
 msgstr "淨收益包括售價減去任何相關的創作者費用（如果 NFT 啟用了版稅付款）。"
 
@@ -8955,7 +8955,7 @@ msgstr "用於創建耕地的種子。這取決於農會公鑰和耕地公鑰。
 msgid "The signature was made by the private key associated with the wallet address. The signer can be assumed to be the owner of the private key."
 msgstr "該簽名是由與錢包地址關聯的私鑰製作的。可以假定簽名者是私鑰的擁有者。"
 
-#: src/components/offers/NFTOfferViewer.tsx:568
+#: src/components/offers/NFTOfferViewer.tsx:569
 msgid "The total amount offered includes the offered purchase price, plus the optional offer creation fee.<0/>If the NFT has royalty payments enabled, those creator fees will be paid from the offered purchase price."
 msgstr "總報價金額包含了報價的購買價格，加上選填的報價創建費用。<0/>如果NFT啟用了版稅付款，那麼創作者費用將從報價的購買價格中支付。"
 
@@ -8967,7 +8967,7 @@ msgstr "總報價金額包括您願意為NFT支付的價格，以及選填的報
 msgid "The total amount requested includes the asking price, plus the associated creator fees (if the NFT has royalty payments enabled). Creator fees will be paid by the party that accepts the offer.<0/>The optional offer creation fee is not included in this total, and will be deducted from your spendable balance upon offer creation."
 msgstr "總請求金額包括所要求的價格，以及相關的創作者費用（如果NFT啟用了版稅付款）。創作者費用將由接受報價的一方支付。<0/>選填的報價創建費用不包含在此總額中，並將在創建報價時從您的可用餘額中扣除。"
 
-#: src/components/offers/NFTOfferViewer.tsx:557
+#: src/components/offers/NFTOfferViewer.tsx:558
 msgid "The total amount requested includes the asking price, plus the associated creator fees (if the NFT has royalty payments enabled).{0}"
 msgstr "總請求金額包括所要求的價格，以及相關的創作者費用（如果NFT啟用了版稅付款）。{0}"
 
@@ -9015,7 +9015,7 @@ msgstr "這允許您添加一個包含耕地的目錄。如果您尚未創建任
 msgid "This audio format cannot be played here"
 msgstr ""
 
-#: src/components/offers2/OfferBuilderViewer.tsx:314
+#: src/components/offers2/OfferBuilderViewer.tsx:315
 msgid "This Data Layer offer contains no store updates and cannot be accepted."
 msgstr ""
 
@@ -9075,24 +9075,24 @@ msgstr "這是您的農夫為此 Plot NFT 找到的總積分。每個 k32 耕地
 msgid "This node is fully caught up and validating the network"
 msgstr "此節點已完全跟上進度並正在驗證網路"
 
-#: src/components/offers/NFTOfferViewer.tsx:218
+#: src/components/offers/NFTOfferViewer.tsx:219
 #: src/components/offers/OfferSummary.tsx:183
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted."
 msgstr "此報價包含手續費，有助於在接受報價時加快交易速度。"
 
-#: src/components/offers/NFTOfferViewer.tsx:213
+#: src/components/offers/NFTOfferViewer.tsx:214
 #: src/components/offers/OfferSummary.tsx:178
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted. You may specify an additional fee if you feel that the included fee is too small."
 msgstr "此報價包含手續費，有助於在接受報價時加快交易速度。如果您覺得包含的費用太低，可以指定額外的費用。"
 
 #: src/components/offers/OfferHeader.tsx:63
-#: src/components/offers2/OfferBuilderViewer.tsx:395
+#: src/components/offers2/OfferBuilderViewer.tsx:397
 msgid "This offer has completed successfully"
 msgstr "此報價已成功完成"
 
 #: src/components/offers/OfferHeader.tsx:46
-#: src/components/offers2/OfferBuilderViewer.tsx:319
-#: src/components/offers2/OfferBuilderViewer.tsx:382
+#: src/components/offers2/OfferBuilderViewer.tsx:320
+#: src/components/offers2/OfferBuilderViewer.tsx:384
 msgid "This offer is no longer valid because it was accepted or cancelled. Click <0>here</0> to learn more."
 msgstr "此報價已失效，因為它已被接受或取消。點擊 <0>這裡</0> 了解更多資訊。"
 
@@ -9105,7 +9105,7 @@ msgstr "此報價已失效，因為它已被接受或取消。點擊 <0>這裡</
 msgid "This offer proposes updates to Data Layer store roots. Accepting it will transition the listed stores to new roots. Dependencies specify values that must be proven to exist in other stores before acceptance."
 msgstr ""
 
-#: src/components/offers2/OfferBuilderViewer.tsx:399
+#: src/components/offers2/OfferBuilderViewer.tsx:401
 msgid "This offer was cancelled"
 msgstr "此報價已取消"
 
@@ -9206,12 +9206,12 @@ msgid "Total amount including royalties"
 msgstr "總金額（包括版稅）"
 
 #: src/components/offers/NFTOfferEditor.tsx:386
-#: src/components/offers/NFTOfferViewer.tsx:551
+#: src/components/offers/NFTOfferViewer.tsx:552
 msgid "Total Amount Offered"
 msgstr "總報價金額"
 
 #: src/components/offers/NFTOfferEditor.tsx:384
-#: src/components/offers/NFTOfferViewer.tsx:547
+#: src/components/offers/NFTOfferViewer.tsx:548
 msgid "Total Amount Requested"
 msgstr "總請求金額"
 
@@ -9312,7 +9312,7 @@ msgstr "在開始繪圖前，觸及所有分配的緩衝區分頁（Touch all pa
 msgid "Trade tokens"
 msgstr "交易代幣"
 
-#: src/components/settings/SettingsCustodyAutoClaim.tsx:59
+#: src/components/settings/SettingsCustodyAutoClaim.tsx:73
 msgid "Transaction auto claim fee"
 msgstr "交易自動領取費用"
 
@@ -9344,11 +9344,11 @@ msgstr "交易速度"
 msgid "Transactions Filter Hash"
 msgstr "交易過濾雜湊值"
 
-#: src/components/settings/SettingsCustodyAutoClaim.tsx:127
+#: src/components/settings/SettingsCustodyAutoClaim.tsx:142
 msgid "Transactions less than the fee will not be auto claimed."
 msgstr "低於費用的交易將不會自動索取。"
 
-#: src/components/nfts/NFTTransferAction.tsx:153
+#: src/components/nfts/NFTTransferAction.tsx:154
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:37
 msgid "Transfer"
 msgstr "轉移"
@@ -9358,7 +9358,7 @@ msgstr "轉移"
 #~ msgstr "Transfer DID"
 
 #: src/components/nfts/NFTContextualActions.tsx:200
-#: src/components/nfts/NFTTransferAction.tsx:201
+#: src/components/nfts/NFTTransferAction.tsx:202
 msgid "Transfer NFT"
 msgstr ""
 
@@ -9474,7 +9474,7 @@ msgstr "未知應用程式"
 msgid "Unknown Asset"
 msgstr ""
 
-#: src/components/offers/NFTOfferViewer.tsx:373
+#: src/components/offers/NFTOfferViewer.tsx:374
 #: src/components/offers/OfferSummaryRow.tsx:150
 #: src/components/offers/OfferSummaryRow.tsx:151
 #: src/util/resolveOfferInfo.tsx:66
@@ -9494,7 +9494,7 @@ msgstr "解鎖密鑰鏈"
 msgid "Unnamed Contact"
 msgstr "未命名聯絡人"
 
-#: src/components/offers/NFTOfferViewer.tsx:145
+#: src/components/offers/NFTOfferViewer.tsx:146
 msgid "Unrecognized asset"
 msgstr "無法識別的資產"
 
@@ -9958,7 +9958,7 @@ msgstr "繪圖時要使用的 CUDA 裝置"
 #~ msgid "Would you like to move {count} NFTs to a profile?"
 #~ msgstr ""
 
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:356
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:357
 msgid "Would you like to move the specified NFT to a profile?"
 msgstr "您是否要將指定的 NFT 移至個人檔案？"
 
@@ -9970,7 +9970,7 @@ msgstr "您是否要將指定的 NFT 移至個人檔案？"
 #~ msgid "Would you like to transfer the specified NFT to a new owner"
 #~ msgstr ""
 
-#: src/components/nfts/NFTTransferAction.tsx:211
+#: src/components/nfts/NFTTransferAction.tsx:212
 msgid "Would you like to transfer the specified NFT to a new owner?"
 msgstr "您是否要將指定的 NFT 轉移給新擁有者？"
 
@@ -10024,7 +10024,7 @@ msgid "You can still create plots for this plot NFT, but you can not make change
 msgstr "您仍然可以為此農場創建耕地，但在同步完成之前您不能進行更改。"
 
 #: src/components/offers/OfferHeader.tsx:38
-#: src/components/offers2/OfferBuilderViewer.tsx:414
+#: src/components/offers2/OfferBuilderViewer.tsx:416
 msgid "You created this offer"
 msgstr "您創建了這個報價"
 
@@ -10082,7 +10082,7 @@ msgid "You will offer"
 msgstr "您將提供"
 
 #: src/components/offers/NFTOfferEditor.tsx:364
-#: src/components/offers/NFTOfferViewer.tsx:480
+#: src/components/offers/NFTOfferViewer.tsx:481
 msgid "You will receive"
 msgstr "您將獲得"
 
@@ -10136,6 +10136,6 @@ msgstr "您的農場概觀"
 msgid "Your spendable balance must be greater than 1 mojo to create a profile"
 msgstr "您的可支配餘額必須大於1 mojo，才能建立個人檔案"
 
-#: src/components/settings/SettingsCustodyAutoClaim.tsx:124
+#: src/components/settings/SettingsCustodyAutoClaim.tsx:139
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "您的錢包需要運行才能自動索取"

@@ -18,13 +18,17 @@ msgstr ""
 "X-Crowdin-File: /main/packages/core/src/locales/en-US/messages.po\n"
 "X-Crowdin-File-ID: 15\n"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:65
+#: src/components/EstimatedFee/EstimatedFee.tsx:72
 msgid "(>5 min)"
 msgstr "(> 5 دقیقه)"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:65
+#: src/components/EstimatedFee/EstimatedFee.tsx:72
 msgid "(~{selectedTime} min)"
 msgstr "(~{selectedTime} min)"
+
+#: src/components/EstimatedFee/EstimatedFee.tsx:72
+msgid "(minimum)"
+msgstr ""
 
 #: src/components/Amount/Amount.tsx:87
 msgid "{0, plural, one {mojo} other {mojos}}"
@@ -67,6 +71,10 @@ msgstr "آیا مطمئن هستید که میخواهید ادامه دهید؟
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:173
 msgid "Back"
 msgstr "بازگشت"
+
+#: src/components/Fee/Fee.tsx:54
+msgid "Below the recommended minimum of {formattedMinimumFee} {currencyCode}. Your transaction may not be confirmed."
+msgstr ""
 
 #: src/components/ConfirmDialog/ConfirmDialog.tsx:32
 #: src/hooks/useKeyringMigrationPrompt.tsx:18
@@ -206,9 +214,9 @@ msgstr "کلید عمومی فارم کننده:"
 msgid "Farming"
 msgstr "درحال فارم"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:340
-#: src/components/EstimatedFee/EstimatedFee.tsx:374
-#: src/components/Fee/Fee.tsx:10
+#: src/components/EstimatedFee/EstimatedFee.tsx:336
+#: src/components/EstimatedFee/EstimatedFee.tsx:371
+#: src/components/Fee/Fee.tsx:19
 msgid "Fee"
 msgstr "کارمزد"
 
@@ -249,7 +257,7 @@ msgstr "وارد کردن انچه موجود است"
 #~ msgid "Import from Mnemonics (12 or 24 words)"
 #~ msgstr ""
 
-#: src/components/Fee/Fee.tsx:32
+#: src/components/Fee/Fee.tsx:44
 msgid "Incorrect value"
 msgstr "اطلاعات نادرست"
 
@@ -265,15 +273,15 @@ msgstr "آخرین نسخه:"
 msgid "Light"
 msgstr "روشن"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:229
+#: src/components/EstimatedFee/EstimatedFee.tsx:213
 msgid "Likely in {0} seconds"
 msgstr "احتمالاً در {0} ثانیه"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:226
+#: src/components/EstimatedFee/EstimatedFee.tsx:211
 msgid "Likely in {minutes} minutes"
 msgstr "{minutes} احتمالاً در"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:228
+#: src/components/EstimatedFee/EstimatedFee.tsx:215
 msgid "Likely in >5 minutes"
 msgstr "ممکن است بیشتر از 5 دقیقه باشد"
 
@@ -305,6 +313,10 @@ msgstr "انتقال"
 #: src/hooks/useKeyringMigrationPrompt.tsx:16
 msgid "Migration required"
 msgstr "نیاز به انتقال"
+
+#: src/components/EstimatedFee/EstimatedFee.tsx:216
+msgid "Minimum fee"
+msgstr ""
 
 #: src/components/Settings/SettingsApp.tsx:67
 msgid "Mode"
@@ -373,7 +385,7 @@ msgstr "کلید عمومی:"
 msgid "Random"
 msgstr "تصادفی"
 
-#: src/components/Fee/Fee.tsx:18
+#: src/components/Fee/Fee.tsx:30
 msgid "Recommended value: 0.000005"
 msgstr "مقدار پیشنهادی: 0.000005"
 
@@ -535,7 +547,7 @@ msgstr "تغییرات ذخیره نشده"
 msgid "Using a passphrase is strongly recommended to protect your keys. Are you sure you want to disable passphrase protection?"
 msgstr "تنظیم یک رمز ورود برای محافظت از کلیدهای شما اکیداً توصیه میشود. آیا مطمئن هستید که میخواهید از تنظبم رمز عبور صرفنظر کنید؟"
 
-#: src/components/Fee/Fee.tsx:24
+#: src/components/Fee/Fee.tsx:36
 msgid "Value seems high"
 msgstr "ارزش بالا به نظر میرسد"
 

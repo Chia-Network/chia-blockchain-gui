@@ -34,12 +34,12 @@ msgid "{count} NFTs failed to move."
 msgstr "{count} NFT:tä ei voitu siirtää"
 
 #. js-lingui-explicit-id
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:354
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:355
 msgid "Would you like to move {count} NFTs to a profile?"
 msgstr "Haluatko siirtää {count} NFT:tä profiiliin?"
 
 #. js-lingui-explicit-id
-#: src/components/nfts/NFTTransferAction.tsx:209
+#: src/components/nfts/NFTTransferAction.tsx:210
 msgid "Would you like to transfer {count} NFTs to a new owner?"
 msgstr "Haluatko siirtää {count} NFT:tä uudelle omistajalle?"
 
@@ -3282,7 +3282,7 @@ msgstr "{from} <0>lähetetään viesti</0>"
 #~ msgid "{key} ({0})"
 #~ msgstr ""
 
-#: src/components/offers/NFTOfferViewer.tsx:209
+#: src/components/offers/NFTOfferViewer.tsx:210
 #: src/components/offers/OfferSummary.tsx:174
 msgid "{makerFee, plural, one {mojo} other {mojos}}"
 msgstr "{makerFee, plural, one {mojo} other {mojoa}}"
@@ -3368,18 +3368,18 @@ msgstr "Arvoa {0} suositellaan"
 #~ msgid "About Chia Blockchain"
 #~ msgstr "About Chia Blockchain"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:260
+#: src/components/offers2/OfferBuilderViewer.tsx:261
 msgid "Accept"
 msgstr ""
 
-#: src/components/offers2/OfferBuilderViewer.tsx:259
+#: src/components/offers2/OfferBuilderViewer.tsx:260
 msgid "Accept Data Layer Offer"
 msgstr ""
 
-#: src/components/offers/NFTOfferViewer.tsx:648
+#: src/components/offers/NFTOfferViewer.tsx:650
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:21
-#: src/components/offers2/OfferBuilderViewer.tsx:307
-#: src/components/offers2/OfferBuilderViewer.tsx:372
+#: src/components/offers2/OfferBuilderViewer.tsx:308
+#: src/components/offers2/OfferBuilderViewer.tsx:374
 msgid "Accept Offer"
 msgstr "Hyväksy tarjous"
 
@@ -3642,7 +3642,7 @@ msgstr ""
 #~ msgid "Approve"
 #~ msgstr "Approve"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:264
+#: src/components/offers2/OfferBuilderViewer.tsx:265
 msgid "Are you sure you want to accept this Data Layer offer?"
 msgstr ""
 
@@ -3747,11 +3747,11 @@ msgstr "Valtuutetut palveluntarjoajat"
 msgid "Auto claim incoming claw back transactions"
 msgstr "Lunasta takaisinvedettävät transaktiot automaattisesti"
 
-#: src/components/settings/SettingsCustodyAutoClaim.tsx:134
+#: src/components/settings/SettingsCustodyAutoClaim.tsx:149
 msgid "Auto claim is disabled."
 msgstr "Automaattinen lunastus on pois päältä."
 
-#: src/components/settings/SettingsCustodyAutoClaim.tsx:119
+#: src/components/settings/SettingsCustodyAutoClaim.tsx:134
 msgid "Auto claim is enabled."
 msgstr "Automaattinen lunastus käytössä."
 
@@ -3763,7 +3763,7 @@ msgstr "Automaattisesti luotu nimi poolin sopimusosoitteesta"
 msgid "Avg"
 msgstr "Keskim."
 
-#: src/components/offers/NFTOfferViewer.tsx:639
+#: src/components/offers/NFTOfferViewer.tsx:641
 msgid "Back"
 msgstr "Takaisin"
 
@@ -3858,7 +3858,7 @@ msgid "Browse"
 msgstr "Selaa"
 
 #: src/components/nfts/NFTBurnDialog.tsx:90
-#: src/components/nfts/NFTBurnDialog.tsx:185
+#: src/components/nfts/NFTBurnDialog.tsx:186
 #: src/components/nfts/NFTContextualActions.tsx:545
 msgid "Burn"
 msgstr "Polta"
@@ -3899,13 +3899,13 @@ msgstr "Välimuistin koko (GB)"
 #: src/components/farm/FarmManageFarmingRewards.tsx:163
 #: src/components/fullNode/FullNodeAddConnection.tsx:100
 #: src/components/nfts/MultipleDownloadDialog.tsx:119
-#: src/components/nfts/NFTBurnDialog.tsx:175
+#: src/components/nfts/NFTBurnDialog.tsx:176
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:49
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:24
 #: src/components/offers/OfferDataEntryDialog.tsx:58
 #: src/components/offers/OfferShareDialog.tsx:712
 #: src/components/offers2/CancelOfferList.tsx:146
-#: src/components/offers2/OfferBuilderViewer.tsx:261
+#: src/components/offers2/OfferBuilderViewer.tsx:262
 #: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:362
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:111
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:78
@@ -4109,8 +4109,8 @@ msgstr "Poistokuvakkeen napsauttaminen poistaa vain hakemiston tästä listasta 
 
 #: src/components/app/AppVersionWarning.tsx:57
 #: src/components/nfts/MultipleDownloadDialog.tsx:115
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:299
-#: src/components/nfts/NFTTransferAction.tsx:150
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:300
+#: src/components/nfts/NFTTransferAction.tsx:151
 #: src/components/notification/NotificationAnnouncementDialog.tsx:87
 #: src/components/notification/NotificationSendDialog.tsx:309
 #: src/components/offers/ConfirmOfferCancellation.tsx:126
@@ -4336,7 +4336,7 @@ msgstr "Tarjoustietojen purkaminen ei onnistunut"
 msgid "Counter"
 msgstr "Vastaus"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:360
+#: src/components/offers2/OfferBuilderViewer.tsx:362
 msgid "Counter Offer"
 msgstr "Vastatarjous"
 
@@ -4457,7 +4457,7 @@ msgstr "Luodaan Plot-NFT omaa poolausta varten"
 msgid "Creation Date"
 msgstr "Luontipäivämäärä"
 
-#: src/components/offers/NFTOfferViewer.tsx:524
+#: src/components/offers/NFTOfferViewer.tsx:525
 msgid "Creator Fee ({0}%)"
 msgstr "Tekijän maksu ({0}%)"
 
@@ -4466,7 +4466,7 @@ msgid "Creator Fee ({royaltyPercentage}%)"
 msgstr "Tekijän rojaltimaksu ({royaltyPercentage}%)"
 
 #: src/components/offers/NFTOfferEditor.tsx:338
-#: src/components/offers/NFTOfferViewer.tsx:527
+#: src/components/offers/NFTOfferViewer.tsx:528
 msgid "Creator royalty percentage seems high"
 msgstr "Tekijän rojaltiprosentti vaikuttaa korkealta"
 
@@ -4682,7 +4682,7 @@ msgid "Difficulty"
 msgstr "Vaikeusaste"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:232
-#: src/components/settings/SettingsCustodyAutoClaim.tsx:91
+#: src/components/settings/SettingsCustodyAutoClaim.tsx:106
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:77
 #: src/components/settings/SettingsExpiringOffers.tsx:87
 msgid "Disable"
@@ -4898,7 +4898,7 @@ msgstr "Hyväksyty plotit kirjauspistettä kohti"
 msgid "Emoji"
 msgstr "Emoji"
 
-#: src/components/settings/SettingsCustodyAutoClaim.tsx:75
+#: src/components/settings/SettingsCustodyAutoClaim.tsx:90
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:63
 #: src/components/settings/SettingsExpiringOffers.tsx:77
 msgid "Enable"
@@ -5246,7 +5246,7 @@ msgstr "Ominaisuudet jotka antavat digitaalisille asseteillesi enemmän suojaa j
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:291
 #: src/components/nfts/NFTTransferAction.tsx:142
 #: src/components/offers/ConfirmOfferCancellation.tsx:109
-#: src/components/offers/NFTOfferViewer.tsx:621
+#: src/components/offers/NFTOfferViewer.tsx:622
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:158
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:122
 #: src/components/pool/PoolInfo.tsx:18
@@ -5276,7 +5276,7 @@ msgstr "Maksut"
 msgid "Fees Amount"
 msgstr "Palkkiosumma"
 
-#: src/components/offers/NFTOfferViewer.tsx:203
+#: src/components/offers/NFTOfferViewer.tsx:204
 #: src/components/offers/OfferSummary.tsx:168
 msgid "Fees included in offer:"
 msgstr "Tarjouksen sisältämät transaktiomaksut:"
@@ -5801,7 +5801,7 @@ msgstr "Kuvat skaalataan NFT-kortin täyttämiseksi ja niiden alkuperäiset mitt
 msgid "Import"
 msgstr "Tuo"
 
-#: src/components/offers/NFTOfferViewer.tsx:485
+#: src/components/offers/NFTOfferViewer.tsx:486
 #: src/components/offers/OfferEditorConditionsPanel.tsx:292
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:28
 msgid "In exchange for"
@@ -6453,11 +6453,11 @@ msgstr "Lisää muistia nopeuttaa hieman"
 msgid "more space"
 msgstr "lisää tilaa"
 
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:302
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:303
 msgid "Move"
 msgstr "Siirrä"
 
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:346
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:347
 msgid "Move NFT to Profile"
 msgstr "Siirrä NFT profiiliin"
 
@@ -6502,7 +6502,7 @@ msgstr "Nimi"
 msgid "Need some {currencyCode}?"
 msgstr "Tarvitsetko {currencyCode}?"
 
-#: src/components/offers/NFTOfferViewer.tsx:590
+#: src/components/offers/NFTOfferViewer.tsx:591
 msgid "Net Proceeds"
 msgstr "Nettotuotot"
 
@@ -6510,8 +6510,8 @@ msgstr "Nettotuotot"
 msgid "Netspace"
 msgstr "Netspace"
 
-#: src/components/offers/NFTOfferViewer.tsx:613
-#: src/components/offers2/OfferBuilderViewer.tsx:338
+#: src/components/offers/NFTOfferViewer.tsx:614
+#: src/components/offers2/OfferBuilderViewer.tsx:339
 msgid "Network Fee (Optional)"
 msgstr "Transaktiomaksu (valinnainen)"
 
@@ -6642,7 +6642,7 @@ msgstr "NFT-siirto odottaa"
 msgid "NFT not specified"
 msgstr "NFT:tä ei määritetty"
 
-#: src/components/offers/NFTOfferViewer.tsx:500
+#: src/components/offers/NFTOfferViewer.tsx:501
 msgid "NFT Purchase Price"
 msgstr "NFT-ostohinta"
 
@@ -6927,9 +6927,9 @@ msgstr "Varattu tila"
 msgid "Offer Builder"
 msgstr "Tarjousten Rakentaja"
 
-#: src/components/offers/NFTOfferViewer.tsx:176
+#: src/components/offers/NFTOfferViewer.tsx:177
 #: src/components/offers2/OfferBuilderValue.tsx:217
-#: src/components/offers2/OfferBuilderViewer.tsx:403
+#: src/components/offers2/OfferBuilderViewer.tsx:405
 msgid "Offer cannot be accepted because you don't possess the requested assets"
 msgstr "Tarjousta ei voida hyväksyä, koska sinulla ei ole pyydettyä assettia."
 
@@ -6954,7 +6954,7 @@ msgstr "Tarjouksen Päättymisaika"
 msgid "Offer file is too large (> 1MB)"
 msgstr "Tarjoustiedosto on liian suuri (> 1Mt)"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:275
+#: src/components/offers2/OfferBuilderViewer.tsx:276
 #: src/hooks/useAcceptOfferHook.tsx:99
 msgid "Offer has been accepted and is awaiting confirmation."
 msgstr "Tarjous on hyväksytty ja odottaa vahvistusta."
@@ -7059,7 +7059,7 @@ msgstr "Kun hyväksyt tämän tarjouksen, et voi peruuttaa transaktiota. Oletko 
 msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer the NFT?"
 msgstr "Kun aloitat siirron, et voi peruuttaa transaktiota. Oletko varma, että haluat siirtää NFT:n?"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:407
+#: src/components/offers2/OfferBuilderViewer.tsx:409
 msgid "One or more unknown tokens are being offered. Be sure to verify that the asset IDs of the offered tokens match the asset IDs of the tokens you are expecting."
 msgstr "Yhtä tai useampaa tuntematonta tokenia tarjotaan. Varmista, että tarjouttujen tokeneiden Asset ID:t (tunnisteet) täsmäävät tokeneihin, joita odotat vastaanottavasi."
 
@@ -7399,8 +7399,8 @@ msgstr "Valitse kohdehakemisto"
 msgid "Please specify temporary directory"
 msgstr "Valitse väliaikaishakemisto"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:236
-#: src/components/offers2/OfferBuilderViewer.tsx:248
+#: src/components/offers2/OfferBuilderViewer.tsx:237
+#: src/components/offers2/OfferBuilderViewer.tsx:249
 msgid "Please wait for wallet synchronization"
 msgstr "Ole hyvä ja odota lompakon synkronointia"
 
@@ -7782,7 +7782,7 @@ msgstr "Todista tai vahvista lompakon osoitteen, NFT:n tai DID:n hallinta digita
 msgid "Public Key"
 msgstr "Julkinen avain"
 
-#: src/components/offers/NFTOfferViewer.tsx:475
+#: src/components/offers/NFTOfferViewer.tsx:476
 msgid "Purchase Summary"
 msgstr "Ostoksen Yhteenveto"
 
@@ -8186,7 +8186,7 @@ msgstr "Ajaa koko noodia"
 #: src/components/addressbook/ContactEdit.tsx:297
 #: src/components/farm/FarmManageFarmingRewards.tsx:166
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:114
-#: src/components/settings/SettingsCustodyAutoClaim.tsx:75
+#: src/components/settings/SettingsCustodyAutoClaim.tsx:90
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:63
 #: src/components/settings/SettingsDerivationIndex.tsx:85
 #: src/components/settings/SettingsExpiringOffers.tsx:77
@@ -8737,7 +8737,7 @@ msgstr "Lähetä"
 #~ msgstr "Subscriptions"
 
 #: src/components/notification/NotificationSendDialog.tsx:144
-#: src/components/offers2/OfferBuilderViewer.tsx:274
+#: src/components/offers2/OfferBuilderViewer.tsx:275
 #: src/components/vcs/VCCard.tsx:281
 #: src/hooks/useAcceptOfferHook.tsx:98
 msgid "Success"
@@ -8886,7 +8886,7 @@ msgstr ""
 msgid "The minimum required size for mainnet is k=32"
 msgstr "Lohkoketjun hyväksymä minimiarvo on k=32"
 
-#: src/components/offers/NFTOfferViewer.tsx:594
+#: src/components/offers/NFTOfferViewer.tsx:595
 msgid "The net proceeds include the asking price, minus any associated creator fees (if the NFT has royalty payments enabled)."
 msgstr "Nettotuotot sisältävät pyyntöhinnan, josta on vähennetty mahdolliset rojaltit (jos NFT:llä on rojaltimaksut)."
 
@@ -8955,7 +8955,7 @@ msgstr "Siemenarvo plot-tiedostojen luontia varten. Riippuu poolin ja plotin jul
 msgid "The signature was made by the private key associated with the wallet address. The signer can be assumed to be the owner of the private key."
 msgstr "Allekirjoitus tehtiin lompakon osoitteeseen liittyvän yksityisen avaimen avulla. Allekirjoittajan voidaan katsoa olevan yksityisen avaimen omistaja."
 
-#: src/components/offers/NFTOfferViewer.tsx:568
+#: src/components/offers/NFTOfferViewer.tsx:569
 msgid "The total amount offered includes the offered purchase price, plus the optional offer creation fee.<0/>If the NFT has royalty payments enabled, those creator fees will be paid from the offered purchase price."
 msgstr "Tarjottu kokonaissumma sisältää tarjotun ostohinnan, johon on lisätty valinnainen tarjouksen transaktiomaksu. <0/>Jos NFT:ssä on rojaltimaksut, nämä maksetaan tarjotusta ostohinnasta."
 
@@ -8967,7 +8967,7 @@ msgstr "Tarjottu summa sisältää hinnan, jonka olet valmis maksamaan NFT:stä,
 msgid "The total amount requested includes the asking price, plus the associated creator fees (if the NFT has royalty payments enabled). Creator fees will be paid by the party that accepts the offer.<0/>The optional offer creation fee is not included in this total, and will be deducted from your spendable balance upon offer creation."
 msgstr "Pyydettyyn kokonaismäärään sisältyy pyyntihinta sekä siihen liittyvät rojaltit (jos NFT:ssa on rojaltimaksut). Luontipalkkiot maksatetaan osapuolella, joka hyväksyy tarjouksen. <0/>Valinnainen transaktio ei sisälly tähän kokonaissummaan, ja se vähennetään käytettävissä olevasta saldosta tarjouksen teon yhteydessä."
 
-#: src/components/offers/NFTOfferViewer.tsx:557
+#: src/components/offers/NFTOfferViewer.tsx:558
 msgid "The total amount requested includes the asking price, plus the associated creator fees (if the NFT has royalty payments enabled).{0}"
 msgstr "Pyydetty summa sisältää pyyntihinnan, sekä siihen liittyvät rojaltit (jos NFT:llä on rojaltimaksut).{0}"
 
@@ -9015,7 +9015,7 @@ msgstr "Lisää plottitiedostoja sisältävä kansio. Jos sinulla ei ole vielä 
 msgid "This audio format cannot be played here"
 msgstr ""
 
-#: src/components/offers2/OfferBuilderViewer.tsx:314
+#: src/components/offers2/OfferBuilderViewer.tsx:315
 msgid "This Data Layer offer contains no store updates and cannot be accepted."
 msgstr ""
 
@@ -9075,24 +9075,24 @@ msgstr "Tämä on kokonaispistemäärä jotka olet farmannut tälle Plot-NFT:lle
 msgid "This node is fully caught up and validating the network"
 msgstr "Noodi on ajan tasalla ja todentaa lohkoketjuverkkoa"
 
-#: src/components/offers/NFTOfferViewer.tsx:218
+#: src/components/offers/NFTOfferViewer.tsx:219
 #: src/components/offers/OfferSummary.tsx:183
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted."
 msgstr "Tarjoukseen sisälletty sisällytetty maksu auttaa nopeuttamaan transaktiota kun tarjous on hyväksytty."
 
-#: src/components/offers/NFTOfferViewer.tsx:213
+#: src/components/offers/NFTOfferViewer.tsx:214
 #: src/components/offers/OfferSummary.tsx:178
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted. You may specify an additional fee if you feel that the included fee is too small."
 msgstr "Tarjoukseen sisällytetty maksu auttaa nopeuttamaan transktiota, kun tarjous on hyväksytty. Voit määrittää lisämaksun, jos sinusta tuntuu, että kyseinen maksu on liian pieni."
 
 #: src/components/offers/OfferHeader.tsx:63
-#: src/components/offers2/OfferBuilderViewer.tsx:395
+#: src/components/offers2/OfferBuilderViewer.tsx:397
 msgid "This offer has completed successfully"
 msgstr "Tarjous on suljettu onnistuneesti"
 
 #: src/components/offers/OfferHeader.tsx:46
-#: src/components/offers2/OfferBuilderViewer.tsx:319
-#: src/components/offers2/OfferBuilderViewer.tsx:382
+#: src/components/offers2/OfferBuilderViewer.tsx:320
+#: src/components/offers2/OfferBuilderViewer.tsx:384
 msgid "This offer is no longer valid because it was accepted or cancelled. Click <0>here</0> to learn more."
 msgstr "Tämä tarjous ei ole enää voimassa, koska se on hyväksytty tai peruutettu. Lue lisää napsauttamalla <0>tästä</0>"
 
@@ -9105,7 +9105,7 @@ msgstr "Tämä tarjous ei ole enää voimassa, koska se on hyväksytty tai peruu
 msgid "This offer proposes updates to Data Layer store roots. Accepting it will transition the listed stores to new roots. Dependencies specify values that must be proven to exist in other stores before acceptance."
 msgstr ""
 
-#: src/components/offers2/OfferBuilderViewer.tsx:399
+#: src/components/offers2/OfferBuilderViewer.tsx:401
 msgid "This offer was cancelled"
 msgstr "Tämä tarjous peruutettiin"
 
@@ -9206,12 +9206,12 @@ msgid "Total amount including royalties"
 msgstr "Yhteissuma, mukaan lukien rojaltit"
 
 #: src/components/offers/NFTOfferEditor.tsx:386
-#: src/components/offers/NFTOfferViewer.tsx:551
+#: src/components/offers/NFTOfferViewer.tsx:552
 msgid "Total Amount Offered"
 msgstr "Tarjottu Kokonaissumma"
 
 #: src/components/offers/NFTOfferEditor.tsx:384
-#: src/components/offers/NFTOfferViewer.tsx:547
+#: src/components/offers/NFTOfferViewer.tsx:548
 msgid "Total Amount Requested"
 msgstr "Pyydetty Kokonaissumma"
 
@@ -9312,7 +9312,7 @@ msgstr "Kosketa puskurien allokoinnin kaikkia sivuja ennen kuin plottaus aloitet
 msgid "Trade tokens"
 msgstr "Treidaa tokeneita"
 
-#: src/components/settings/SettingsCustodyAutoClaim.tsx:59
+#: src/components/settings/SettingsCustodyAutoClaim.tsx:73
 msgid "Transaction auto claim fee"
 msgstr "Transaktion automaattilunastuksen maksu"
 
@@ -9344,11 +9344,11 @@ msgstr "Transaktion Nopeus"
 msgid "Transactions Filter Hash"
 msgstr "Transaktion Filtteritiiviste"
 
-#: src/components/settings/SettingsCustodyAutoClaim.tsx:127
+#: src/components/settings/SettingsCustodyAutoClaim.tsx:142
 msgid "Transactions less than the fee will not be auto claimed."
 msgstr "Transaktioita, joiden arvo on pienempi kuin maksu, ei lunasteta automaattisesti."
 
-#: src/components/nfts/NFTTransferAction.tsx:153
+#: src/components/nfts/NFTTransferAction.tsx:154
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:37
 msgid "Transfer"
 msgstr "Siirrä"
@@ -9358,7 +9358,7 @@ msgstr "Siirrä"
 #~ msgstr "Transfer DID"
 
 #: src/components/nfts/NFTContextualActions.tsx:200
-#: src/components/nfts/NFTTransferAction.tsx:201
+#: src/components/nfts/NFTTransferAction.tsx:202
 msgid "Transfer NFT"
 msgstr ""
 
@@ -9474,7 +9474,7 @@ msgstr "Tuntematon Sovellus"
 msgid "Unknown Asset"
 msgstr ""
 
-#: src/components/offers/NFTOfferViewer.tsx:373
+#: src/components/offers/NFTOfferViewer.tsx:374
 #: src/components/offers/OfferSummaryRow.tsx:150
 #: src/components/offers/OfferSummaryRow.tsx:151
 #: src/util/resolveOfferInfo.tsx:66
@@ -9494,7 +9494,7 @@ msgstr "Avaa Avainrengas"
 msgid "Unnamed Contact"
 msgstr "Nimetön Kontakti"
 
-#: src/components/offers/NFTOfferViewer.tsx:145
+#: src/components/offers/NFTOfferViewer.tsx:146
 msgid "Unrecognized asset"
 msgstr "Tunnistamaton assetti"
 
@@ -9958,7 +9958,7 @@ msgstr "Mitä CUDA-laitetta käytetään plottaamisessa"
 #~ msgid "Would you like to move {count} NFTs to a profile?"
 #~ msgstr ""
 
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:356
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:357
 msgid "Would you like to move the specified NFT to a profile?"
 msgstr "Haluatko siirtää NFT:n profiilille?"
 
@@ -9970,7 +9970,7 @@ msgstr "Haluatko siirtää NFT:n profiilille?"
 #~ msgid "Would you like to transfer the specified NFT to a new owner"
 #~ msgstr ""
 
-#: src/components/nfts/NFTTransferAction.tsx:211
+#: src/components/nfts/NFTTransferAction.tsx:212
 msgid "Would you like to transfer the specified NFT to a new owner?"
 msgstr "Haluatko siirtää NFT:n uudelle omistajalle?"
 
@@ -10024,7 +10024,7 @@ msgid "You can still create plots for this plot NFT, but you can not make change
 msgstr "Voit silti luoda plotteja tälle Plot-NFT:lle, mutta et voi tehdä muutoksia ennen kuin synkronointi on valmis."
 
 #: src/components/offers/OfferHeader.tsx:38
-#: src/components/offers2/OfferBuilderViewer.tsx:414
+#: src/components/offers2/OfferBuilderViewer.tsx:416
 msgid "You created this offer"
 msgstr "Loit tämän tarjouksen"
 
@@ -10082,7 +10082,7 @@ msgid "You will offer"
 msgstr "Sinä tarjoat"
 
 #: src/components/offers/NFTOfferEditor.tsx:364
-#: src/components/offers/NFTOfferViewer.tsx:480
+#: src/components/offers/NFTOfferViewer.tsx:481
 msgid "You will receive"
 msgstr "Vastaanotat"
 
@@ -10136,6 +10136,6 @@ msgstr "Poolin Yleiskatsaus"
 msgid "Your spendable balance must be greater than 1 mojo to create a profile"
 msgstr "Käytettävissä olevan saldon on oltava suurempi kuin 1 mojo luodaksesi profiilin"
 
-#: src/components/settings/SettingsCustodyAutoClaim.tsx:124
+#: src/components/settings/SettingsCustodyAutoClaim.tsx:139
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "Lompakkosi on oltava käynnissä, jotta automaattinen lunastaminen toimii."

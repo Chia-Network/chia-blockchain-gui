@@ -34,12 +34,12 @@ msgid "{count} NFTs failed to move."
 msgstr "{count} NFT n'ont pas pu être déplacés."
 
 #. js-lingui-explicit-id
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:354
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:355
 msgid "Would you like to move {count} NFTs to a profile?"
 msgstr "Voulez-vous transférer {count} NFT vers un profil ?"
 
 #. js-lingui-explicit-id
-#: src/components/nfts/NFTTransferAction.tsx:209
+#: src/components/nfts/NFTTransferAction.tsx:210
 msgid "Would you like to transfer {count} NFTs to a new owner?"
 msgstr "Voulez-vous transférer {count} NFT ?"
 
@@ -3279,7 +3279,7 @@ msgstr "{from} <0>envoi du message</0>"
 #~ msgid "{key} ({0})"
 #~ msgstr ""
 
-#: src/components/offers/NFTOfferViewer.tsx:209
+#: src/components/offers/NFTOfferViewer.tsx:210
 #: src/components/offers/OfferSummary.tsx:174
 msgid "{makerFee, plural, one {mojo} other {mojos}}"
 msgstr "{makerFee, plural, one {mojo} other {mojos}}"
@@ -3365,18 +3365,18 @@ msgstr "Une valeur de {0} est recommandée"
 #~ msgid "About Chia Blockchain"
 #~ msgstr "About Chia Blockchain"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:260
+#: src/components/offers2/OfferBuilderViewer.tsx:261
 msgid "Accept"
 msgstr ""
 
-#: src/components/offers2/OfferBuilderViewer.tsx:259
+#: src/components/offers2/OfferBuilderViewer.tsx:260
 msgid "Accept Data Layer Offer"
 msgstr ""
 
-#: src/components/offers/NFTOfferViewer.tsx:648
+#: src/components/offers/NFTOfferViewer.tsx:650
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:21
-#: src/components/offers2/OfferBuilderViewer.tsx:307
-#: src/components/offers2/OfferBuilderViewer.tsx:372
+#: src/components/offers2/OfferBuilderViewer.tsx:308
+#: src/components/offers2/OfferBuilderViewer.tsx:374
 msgid "Accept Offer"
 msgstr "Accepter l'Offre"
 
@@ -3639,7 +3639,7 @@ msgstr ""
 #~ msgid "Approve"
 #~ msgstr "Approve"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:264
+#: src/components/offers2/OfferBuilderViewer.tsx:265
 msgid "Are you sure you want to accept this Data Layer offer?"
 msgstr ""
 
@@ -3744,11 +3744,11 @@ msgstr "Fournisseurs autorisés"
 msgid "Auto claim incoming claw back transactions"
 msgstr "Revendication automatique des transactions récupérables entrantes"
 
-#: src/components/settings/SettingsCustodyAutoClaim.tsx:134
+#: src/components/settings/SettingsCustodyAutoClaim.tsx:149
 msgid "Auto claim is disabled."
 msgstr "La revendication automatique est désactivée."
 
-#: src/components/settings/SettingsCustodyAutoClaim.tsx:119
+#: src/components/settings/SettingsCustodyAutoClaim.tsx:134
 msgid "Auto claim is enabled."
 msgstr "La revendication automatique est activée."
 
@@ -3760,7 +3760,7 @@ msgstr "Nom généré automatiquement à partir de l'adresse du contrat de pool"
 msgid "Avg"
 msgstr "Moy"
 
-#: src/components/offers/NFTOfferViewer.tsx:639
+#: src/components/offers/NFTOfferViewer.tsx:641
 msgid "Back"
 msgstr "Retour"
 
@@ -3855,7 +3855,7 @@ msgid "Browse"
 msgstr "Parcourir"
 
 #: src/components/nfts/NFTBurnDialog.tsx:90
-#: src/components/nfts/NFTBurnDialog.tsx:185
+#: src/components/nfts/NFTBurnDialog.tsx:186
 #: src/components/nfts/NFTContextualActions.tsx:545
 msgid "Burn"
 msgstr "Brûler"
@@ -3896,13 +3896,13 @@ msgstr "Taille du cache (Go)"
 #: src/components/farm/FarmManageFarmingRewards.tsx:163
 #: src/components/fullNode/FullNodeAddConnection.tsx:100
 #: src/components/nfts/MultipleDownloadDialog.tsx:119
-#: src/components/nfts/NFTBurnDialog.tsx:175
+#: src/components/nfts/NFTBurnDialog.tsx:176
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:49
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:24
 #: src/components/offers/OfferDataEntryDialog.tsx:58
 #: src/components/offers/OfferShareDialog.tsx:712
 #: src/components/offers2/CancelOfferList.tsx:146
-#: src/components/offers2/OfferBuilderViewer.tsx:261
+#: src/components/offers2/OfferBuilderViewer.tsx:262
 #: src/components/offers2/OfferEditorCancelConflictingOffersDialog.tsx:362
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:111
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:78
@@ -4106,8 +4106,8 @@ msgstr ""
 
 #: src/components/app/AppVersionWarning.tsx:57
 #: src/components/nfts/MultipleDownloadDialog.tsx:115
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:299
-#: src/components/nfts/NFTTransferAction.tsx:150
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:300
+#: src/components/nfts/NFTTransferAction.tsx:151
 #: src/components/notification/NotificationAnnouncementDialog.tsx:87
 #: src/components/notification/NotificationSendDialog.tsx:309
 #: src/components/offers/ConfirmOfferCancellation.tsx:126
@@ -4333,7 +4333,7 @@ msgstr "Impossible de lire les données de l'offre"
 msgid "Counter"
 msgstr "Compteur"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:360
+#: src/components/offers2/OfferBuilderViewer.tsx:362
 msgid "Counter Offer"
 msgstr "Contre-Offre"
 
@@ -4454,7 +4454,7 @@ msgstr "Créer un NFT de parcelles pour culture en solo"
 msgid "Creation Date"
 msgstr "Date de création"
 
-#: src/components/offers/NFTOfferViewer.tsx:524
+#: src/components/offers/NFTOfferViewer.tsx:525
 msgid "Creator Fee ({0}%)"
 msgstr "Frais du créateur ({0}%)"
 
@@ -4463,7 +4463,7 @@ msgid "Creator Fee ({royaltyPercentage}%)"
 msgstr "Frais du créateur ({royaltyPercentage}%)"
 
 #: src/components/offers/NFTOfferEditor.tsx:338
-#: src/components/offers/NFTOfferViewer.tsx:527
+#: src/components/offers/NFTOfferViewer.tsx:528
 msgid "Creator royalty percentage seems high"
 msgstr "Les royalties du créateur sont élevées"
 
@@ -4679,7 +4679,7 @@ msgid "Difficulty"
 msgstr "Difficulté"
 
 #: src/components/offers2/OfferBuilderExpirationSection.tsx:232
-#: src/components/settings/SettingsCustodyAutoClaim.tsx:91
+#: src/components/settings/SettingsCustodyAutoClaim.tsx:106
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:77
 #: src/components/settings/SettingsExpiringOffers.tsx:87
 msgid "Disable"
@@ -4895,7 +4895,7 @@ msgstr ""
 msgid "Emoji"
 msgstr ""
 
-#: src/components/settings/SettingsCustodyAutoClaim.tsx:75
+#: src/components/settings/SettingsCustodyAutoClaim.tsx:90
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:63
 #: src/components/settings/SettingsExpiringOffers.tsx:77
 msgid "Enable"
@@ -5243,7 +5243,7 @@ msgstr "Fonctionnalités pour vous offrir plus de protection et de contrôle de 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:291
 #: src/components/nfts/NFTTransferAction.tsx:142
 #: src/components/offers/ConfirmOfferCancellation.tsx:109
-#: src/components/offers/NFTOfferViewer.tsx:621
+#: src/components/offers/NFTOfferViewer.tsx:622
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:158
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:122
 #: src/components/pool/PoolInfo.tsx:18
@@ -5273,7 +5273,7 @@ msgstr "Frais"
 msgid "Fees Amount"
 msgstr "Montant des frais"
 
-#: src/components/offers/NFTOfferViewer.tsx:203
+#: src/components/offers/NFTOfferViewer.tsx:204
 #: src/components/offers/OfferSummary.tsx:168
 msgid "Fees included in offer:"
 msgstr "Frais inclus dans l'offre :"
@@ -5798,7 +5798,7 @@ msgstr "Les images seront mises à l'échelle pour remplir le cadre du NFT et ig
 msgid "Import"
 msgstr "Importer"
 
-#: src/components/offers/NFTOfferViewer.tsx:485
+#: src/components/offers/NFTOfferViewer.tsx:486
 #: src/components/offers/OfferEditorConditionsPanel.tsx:292
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:28
 msgid "In exchange for"
@@ -6450,11 +6450,11 @@ msgstr "Plus de mémoire augmente légèrement la vitesse"
 msgid "more space"
 msgstr ""
 
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:302
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:303
 msgid "Move"
 msgstr ""
 
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:346
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:347
 msgid "Move NFT to Profile"
 msgstr "Transférer le NFT vers un Profil"
 
@@ -6499,7 +6499,7 @@ msgstr ""
 msgid "Need some {currencyCode}?"
 msgstr "Besoin de {currencyCode}?"
 
-#: src/components/offers/NFTOfferViewer.tsx:590
+#: src/components/offers/NFTOfferViewer.tsx:591
 msgid "Net Proceeds"
 msgstr "Revenus nets"
 
@@ -6507,8 +6507,8 @@ msgstr "Revenus nets"
 msgid "Netspace"
 msgstr ""
 
-#: src/components/offers/NFTOfferViewer.tsx:613
-#: src/components/offers2/OfferBuilderViewer.tsx:338
+#: src/components/offers/NFTOfferViewer.tsx:614
+#: src/components/offers2/OfferBuilderViewer.tsx:339
 msgid "Network Fee (Optional)"
 msgstr "Frais de réseau (Facultatif)"
 
@@ -6639,7 +6639,7 @@ msgstr "Transfert du NFT en attente"
 msgid "NFT not specified"
 msgstr "NFT non spécifié"
 
-#: src/components/offers/NFTOfferViewer.tsx:500
+#: src/components/offers/NFTOfferViewer.tsx:501
 msgid "NFT Purchase Price"
 msgstr "Prix d'achat du NFT"
 
@@ -6924,9 +6924,9 @@ msgstr "Espace occupé"
 msgid "Offer Builder"
 msgstr "Constructeur d'offres"
 
-#: src/components/offers/NFTOfferViewer.tsx:176
+#: src/components/offers/NFTOfferViewer.tsx:177
 #: src/components/offers2/OfferBuilderValue.tsx:217
-#: src/components/offers2/OfferBuilderViewer.tsx:403
+#: src/components/offers2/OfferBuilderViewer.tsx:405
 msgid "Offer cannot be accepted because you don't possess the requested assets"
 msgstr "L'offre ne peut pas être acceptée car vous ne possédez pas les actifs demandés"
 
@@ -6951,7 +6951,7 @@ msgstr ""
 msgid "Offer file is too large (> 1MB)"
 msgstr "Le fichier de l'offre est trop volumineux (> 1MB)"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:275
+#: src/components/offers2/OfferBuilderViewer.tsx:276
 #: src/hooks/useAcceptOfferHook.tsx:99
 msgid "Offer has been accepted and is awaiting confirmation."
 msgstr "L'offre a été acceptée et est en attente de confirmation."
@@ -7056,7 +7056,7 @@ msgstr "Une fois que vous aurez accepté cette offre, vous ne pourrez plus annul
 msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer the NFT?"
 msgstr "Une fois que vous aurez initié ce transfert, vous ne pourrez plus annuler la transaction. Êtes-vous sûr de vouloir transférer le NFT ?"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:407
+#: src/components/offers2/OfferBuilderViewer.tsx:409
 msgid "One or more unknown tokens are being offered. Be sure to verify that the asset IDs of the offered tokens match the asset IDs of the tokens you are expecting."
 msgstr "Un ou plusieurs jetons inconnus sont offerts. Veuillez vérifier que les identifiants d'actifs (Asset ID) des jetons ci-dessous correspondent à ceux des jetons que vous attendez."
 
@@ -7396,8 +7396,8 @@ msgstr "Merci d'indiquer un répertoire final"
 msgid "Please specify temporary directory"
 msgstr "Merci d'indiquer un répertoire temporaire"
 
-#: src/components/offers2/OfferBuilderViewer.tsx:236
-#: src/components/offers2/OfferBuilderViewer.tsx:248
+#: src/components/offers2/OfferBuilderViewer.tsx:237
+#: src/components/offers2/OfferBuilderViewer.tsx:249
 msgid "Please wait for wallet synchronization"
 msgstr "Veuillez attendre la synchronisation du portefeuille"
 
@@ -7779,7 +7779,7 @@ msgstr "Prouvez ou vérifiez la possession d'une adresse de portefeuille, de NFT
 msgid "Public Key"
 msgstr ""
 
-#: src/components/offers/NFTOfferViewer.tsx:475
+#: src/components/offers/NFTOfferViewer.tsx:476
 msgid "Purchase Summary"
 msgstr "Résumé de l'achat"
 
@@ -8183,7 +8183,7 @@ msgstr "Exécute le nœud complet"
 #: src/components/addressbook/ContactEdit.tsx:297
 #: src/components/farm/FarmManageFarmingRewards.tsx:166
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:114
-#: src/components/settings/SettingsCustodyAutoClaim.tsx:75
+#: src/components/settings/SettingsCustodyAutoClaim.tsx:90
 #: src/components/settings/SettingsCustodyClawbackOutgoing.tsx:63
 #: src/components/settings/SettingsDerivationIndex.tsx:85
 #: src/components/settings/SettingsExpiringOffers.tsx:77
@@ -8734,7 +8734,7 @@ msgstr "Envoyer"
 #~ msgstr "Subscriptions"
 
 #: src/components/notification/NotificationSendDialog.tsx:144
-#: src/components/offers2/OfferBuilderViewer.tsx:274
+#: src/components/offers2/OfferBuilderViewer.tsx:275
 #: src/components/vcs/VCCard.tsx:281
 #: src/hooks/useAcceptOfferHook.tsx:98
 msgid "Success"
@@ -8883,7 +8883,7 @@ msgstr ""
 msgid "The minimum required size for mainnet is k=32"
 msgstr "La taille minimum requise pour le mainnet est k=32"
 
-#: src/components/offers/NFTOfferViewer.tsx:594
+#: src/components/offers/NFTOfferViewer.tsx:595
 msgid "The net proceeds include the asking price, minus any associated creator fees (if the NFT has royalty payments enabled)."
 msgstr "Le revenu net est le prix demandé moins les royalties associées (si le NFT en comprend)."
 
@@ -8952,7 +8952,7 @@ msgstr "La graine utilisée pour créer le plot. Cela dépend du pk du pool et d
 msgid "The signature was made by the private key associated with the wallet address. The signer can be assumed to be the owner of the private key."
 msgstr "La signature a été faite par la clé privée associée à l'adresse du portefeuille. Le signataire peut être supposé comme étant le propriétaire de la clé privée."
 
-#: src/components/offers/NFTOfferViewer.tsx:568
+#: src/components/offers/NFTOfferViewer.tsx:569
 msgid "The total amount offered includes the offered purchase price, plus the optional offer creation fee.<0/>If the NFT has royalty payments enabled, those creator fees will be paid from the offered purchase price."
 msgstr "Le montant total offert comprend le prix d'achat offert, plus les frais de création de l'offre facultative. <0/>Si le NFT requiert le paiement de royalties, ces frais seront payés à partir du prix d'achat offert."
 
@@ -8964,7 +8964,7 @@ msgstr "Le montant total offert comprend le prix que vous êtes prêt à payer p
 msgid "The total amount requested includes the asking price, plus the associated creator fees (if the NFT has royalty payments enabled). Creator fees will be paid by the party that accepts the offer.<0/>The optional offer creation fee is not included in this total, and will be deducted from your spendable balance upon offer creation."
 msgstr "Le montant total demandé comprend le prix demandé, plus les frais de créateur associés (si la NFT a activé les royalties). Les frais de créateur seront payés par la partie qui accepte l'offre. <0/>Les frais de création d'offres optionnels ne sont pas inclus dans ce total, et seront déduits de votre solde dépensable lors de la création de l'offre."
 
-#: src/components/offers/NFTOfferViewer.tsx:557
+#: src/components/offers/NFTOfferViewer.tsx:558
 msgid "The total amount requested includes the asking price, plus the associated creator fees (if the NFT has royalty payments enabled).{0}"
 msgstr "Le montant total demandé est la somme du prix demandé et des royalties (si le NFT en comprend).{0}"
 
@@ -9012,7 +9012,7 @@ msgstr "Cela vous permet d’ajouter un répertoire contenant des parcelles. Si 
 msgid "This audio format cannot be played here"
 msgstr ""
 
-#: src/components/offers2/OfferBuilderViewer.tsx:314
+#: src/components/offers2/OfferBuilderViewer.tsx:315
 msgid "This Data Layer offer contains no store updates and cannot be accepted."
 msgstr ""
 
@@ -9072,24 +9072,24 @@ msgstr ""
 msgid "This node is fully caught up and validating the network"
 msgstr "Ce nœud est complètement à jour et valide le réseau"
 
-#: src/components/offers/NFTOfferViewer.tsx:218
+#: src/components/offers/NFTOfferViewer.tsx:219
 #: src/components/offers/OfferSummary.tsx:183
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted."
 msgstr "Cette offre inclue des frais pour accélérer la transaction lorsque l'offre est acceptée."
 
-#: src/components/offers/NFTOfferViewer.tsx:213
+#: src/components/offers/NFTOfferViewer.tsx:214
 #: src/components/offers/OfferSummary.tsx:178
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted. You may specify an additional fee if you feel that the included fee is too small."
 msgstr "Cette offre inclue des frais pour accélérer la transaction lorsque l'offre est acceptée. Vous pouvez rajouter des frais supplémentaires si vous pensez que les frais inclus sont trop faibles."
 
 #: src/components/offers/OfferHeader.tsx:63
-#: src/components/offers2/OfferBuilderViewer.tsx:395
+#: src/components/offers2/OfferBuilderViewer.tsx:397
 msgid "This offer has completed successfully"
 msgstr "Cette offre s'est terminée avec succès"
 
 #: src/components/offers/OfferHeader.tsx:46
-#: src/components/offers2/OfferBuilderViewer.tsx:319
-#: src/components/offers2/OfferBuilderViewer.tsx:382
+#: src/components/offers2/OfferBuilderViewer.tsx:320
+#: src/components/offers2/OfferBuilderViewer.tsx:384
 msgid "This offer is no longer valid because it was accepted or cancelled. Click <0>here</0> to learn more."
 msgstr ""
 
@@ -9102,7 +9102,7 @@ msgstr ""
 msgid "This offer proposes updates to Data Layer store roots. Accepting it will transition the listed stores to new roots. Dependencies specify values that must be proven to exist in other stores before acceptance."
 msgstr ""
 
-#: src/components/offers2/OfferBuilderViewer.tsx:399
+#: src/components/offers2/OfferBuilderViewer.tsx:401
 msgid "This offer was cancelled"
 msgstr "Cette offre a été annulée"
 
@@ -9203,12 +9203,12 @@ msgid "Total amount including royalties"
 msgstr "Montant total incluant les royalties"
 
 #: src/components/offers/NFTOfferEditor.tsx:386
-#: src/components/offers/NFTOfferViewer.tsx:551
+#: src/components/offers/NFTOfferViewer.tsx:552
 msgid "Total Amount Offered"
 msgstr "Montant total offert"
 
 #: src/components/offers/NFTOfferEditor.tsx:384
-#: src/components/offers/NFTOfferViewer.tsx:547
+#: src/components/offers/NFTOfferViewer.tsx:548
 msgid "Total Amount Requested"
 msgstr "Montant total demandé"
 
@@ -9309,7 +9309,7 @@ msgstr "Créer toutes les pages d'allocations tampon avant de commencer à trace
 msgid "Trade tokens"
 msgstr "Échanger des jetons"
 
-#: src/components/settings/SettingsCustodyAutoClaim.tsx:59
+#: src/components/settings/SettingsCustodyAutoClaim.tsx:73
 msgid "Transaction auto claim fee"
 msgstr "Frais de revendication automatique de la transaction"
 
@@ -9341,11 +9341,11 @@ msgstr "Vitesse de la transaction"
 msgid "Transactions Filter Hash"
 msgstr "Hash du filtre de transactions"
 
-#: src/components/settings/SettingsCustodyAutoClaim.tsx:127
+#: src/components/settings/SettingsCustodyAutoClaim.tsx:142
 msgid "Transactions less than the fee will not be auto claimed."
 msgstr "Les transactions inférieures aux frais ne seront pas automatiquement revendiquées."
 
-#: src/components/nfts/NFTTransferAction.tsx:153
+#: src/components/nfts/NFTTransferAction.tsx:154
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:37
 msgid "Transfer"
 msgstr ""
@@ -9355,7 +9355,7 @@ msgstr ""
 #~ msgstr "Transfer DID"
 
 #: src/components/nfts/NFTContextualActions.tsx:200
-#: src/components/nfts/NFTTransferAction.tsx:201
+#: src/components/nfts/NFTTransferAction.tsx:202
 msgid "Transfer NFT"
 msgstr ""
 
@@ -9471,7 +9471,7 @@ msgstr "Application inconnue"
 msgid "Unknown Asset"
 msgstr ""
 
-#: src/components/offers/NFTOfferViewer.tsx:373
+#: src/components/offers/NFTOfferViewer.tsx:374
 #: src/components/offers/OfferSummaryRow.tsx:150
 #: src/components/offers/OfferSummaryRow.tsx:151
 #: src/util/resolveOfferInfo.tsx:66
@@ -9491,7 +9491,7 @@ msgstr "Déverrouiller le trousseau"
 msgid "Unnamed Contact"
 msgstr ""
 
-#: src/components/offers/NFTOfferViewer.tsx:145
+#: src/components/offers/NFTOfferViewer.tsx:146
 msgid "Unrecognized asset"
 msgstr "Actif non reconnu"
 
@@ -9955,7 +9955,7 @@ msgstr ""
 #~ msgid "Would you like to move {count} NFTs to a profile?"
 #~ msgstr ""
 
-#: src/components/nfts/NFTMoveToProfileDialog.tsx:356
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:357
 msgid "Would you like to move the specified NFT to a profile?"
 msgstr "Voulez-vous transférer le NFT sélectionné vers un profil ?"
 
@@ -9967,7 +9967,7 @@ msgstr "Voulez-vous transférer le NFT sélectionné vers un profil ?"
 #~ msgid "Would you like to transfer the specified NFT to a new owner"
 #~ msgstr ""
 
-#: src/components/nfts/NFTTransferAction.tsx:211
+#: src/components/nfts/NFTTransferAction.tsx:212
 msgid "Would you like to transfer the specified NFT to a new owner?"
 msgstr "Voulez-vous transférer le NFT spécifié à un nouveau propriétaire ?"
 
@@ -10021,7 +10021,7 @@ msgid "You can still create plots for this plot NFT, but you can not make change
 msgstr "Vous pouvez toujours ajouter des parcelles à ce NFT de parcelles, mais vous ne pouvez pas effectuer de changements tant que la synchronisation n'est pas achevée."
 
 #: src/components/offers/OfferHeader.tsx:38
-#: src/components/offers2/OfferBuilderViewer.tsx:414
+#: src/components/offers2/OfferBuilderViewer.tsx:416
 msgid "You created this offer"
 msgstr "Vous avez créé cette offre"
 
@@ -10079,7 +10079,7 @@ msgid "You will offer"
 msgstr "Vous offrirez"
 
 #: src/components/offers/NFTOfferEditor.tsx:364
-#: src/components/offers/NFTOfferViewer.tsx:480
+#: src/components/offers/NFTOfferViewer.tsx:481
 msgid "You will receive"
 msgstr "Vous recevrez"
 
@@ -10133,6 +10133,6 @@ msgstr "Aperçu de votre pool"
 msgid "Your spendable balance must be greater than 1 mojo to create a profile"
 msgstr "Votre solde dépensable doit être supérieur à 1 mojo pour créer un profil"
 
-#: src/components/settings/SettingsCustodyAutoClaim.tsx:124
+#: src/components/settings/SettingsCustodyAutoClaim.tsx:139
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "Votre portefeuille doit être synchronisé pour que la revendication automatique fonctionne."
