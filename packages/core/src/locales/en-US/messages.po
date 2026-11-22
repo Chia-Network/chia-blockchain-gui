@@ -8,7 +8,7 @@ msgstr ""
 "Language: en_US\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-11-08 00:05\n"
+"PO-Revision-Date: 2026-11-22 00:05\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -28,7 +28,7 @@ msgstr "(~{selectedTime} min)"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:72
 msgid "(minimum)"
-msgstr "(minimum)"
+msgstr ""
 
 #: src/components/Amount/Amount.tsx:87
 msgid "{0, plural, one {mojo} other {mojos}}"
@@ -74,7 +74,7 @@ msgstr "Back"
 
 #: src/components/Fee/Fee.tsx:54
 msgid "Below the recommended minimum of {formattedMinimumFee} {currencyCode}. Your transaction may not be confirmed."
-msgstr "Below the recommended minimum of {formattedMinimumFee} {currencyCode}. Your transaction may not be confirmed."
+msgstr ""
 
 #: src/components/ConfirmDialog/ConfirmDialog.tsx:32
 #: src/hooks/useKeyringMigrationPrompt.tsx:18
@@ -314,7 +314,7 @@ msgstr "Migration required"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:216
 msgid "Minimum fee"
-msgstr "Minimum fee"
+msgstr ""
 
 #: src/components/Settings/SettingsApp.tsx:67
 msgid "Mode"
@@ -592,3 +592,4 @@ msgstr "Your Current Version:"
 #: src/hooks/useKeyringMigrationPrompt.tsx:21
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
+
