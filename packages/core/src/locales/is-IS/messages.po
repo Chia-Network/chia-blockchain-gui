@@ -8,7 +8,7 @@ msgstr ""
 "Language: is_IS\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-11-08 00:05\n"
+"PO-Revision-Date: 2026-11-22 00:05\n"
 "Last-Translator: \n"
 "Language-Team: Icelandic\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -18,12 +18,16 @@ msgstr ""
 "X-Crowdin-File: /main/packages/core/src/locales/en-US/messages.po\n"
 "X-Crowdin-File-ID: 15\n"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:65
+#: src/components/EstimatedFee/EstimatedFee.tsx:72
 msgid "(>5 min)"
 msgstr ""
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:65
+#: src/components/EstimatedFee/EstimatedFee.tsx:72
 msgid "(~{selectedTime} min)"
+msgstr ""
+
+#: src/components/EstimatedFee/EstimatedFee.tsx:72
+msgid "(minimum)"
 msgstr ""
 
 #: src/components/Amount/Amount.tsx:87
@@ -67,6 +71,10 @@ msgstr ""
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:173
 msgid "Back"
 msgstr "Til baka"
+
+#: src/components/Fee/Fee.tsx:54
+msgid "Below the recommended minimum of {formattedMinimumFee} {currencyCode}. Your transaction may not be confirmed."
+msgstr ""
 
 #: src/components/ConfirmDialog/ConfirmDialog.tsx:32
 #: src/hooks/useKeyringMigrationPrompt.tsx:18
@@ -204,9 +212,9 @@ msgstr "Farmer Almennings Lykill:"
 msgid "Farming"
 msgstr ""
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:340
-#: src/components/EstimatedFee/EstimatedFee.tsx:374
-#: src/components/Fee/Fee.tsx:10
+#: src/components/EstimatedFee/EstimatedFee.tsx:336
+#: src/components/EstimatedFee/EstimatedFee.tsx:371
+#: src/components/Fee/Fee.tsx:19
 msgid "Fee"
 msgstr ""
 
@@ -247,7 +255,7 @@ msgstr ""
 #~ msgid "Import from Mnemonics (12 or 24 words)"
 #~ msgstr ""
 
-#: src/components/Fee/Fee.tsx:32
+#: src/components/Fee/Fee.tsx:44
 msgid "Incorrect value"
 msgstr "Röng upphæð"
 
@@ -263,15 +271,15 @@ msgstr ""
 msgid "Light"
 msgstr ""
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:229
+#: src/components/EstimatedFee/EstimatedFee.tsx:213
 msgid "Likely in {0} seconds"
 msgstr ""
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:226
+#: src/components/EstimatedFee/EstimatedFee.tsx:211
 msgid "Likely in {minutes} minutes"
 msgstr ""
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:228
+#: src/components/EstimatedFee/EstimatedFee.tsx:215
 msgid "Likely in >5 minutes"
 msgstr ""
 
@@ -302,6 +310,10 @@ msgstr ""
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:16
 msgid "Migration required"
+msgstr ""
+
+#: src/components/EstimatedFee/EstimatedFee.tsx:216
+msgid "Minimum fee"
 msgstr ""
 
 #: src/components/Settings/SettingsApp.tsx:67
@@ -371,7 +383,7 @@ msgstr ""
 msgid "Random"
 msgstr ""
 
-#: src/components/Fee/Fee.tsx:18
+#: src/components/Fee/Fee.tsx:30
 msgid "Recommended value: 0.000005"
 msgstr ""
 
@@ -533,7 +545,7 @@ msgstr "Óvistaðar Breytingar"
 msgid "Using a passphrase is strongly recommended to protect your keys. Are you sure you want to disable passphrase protection?"
 msgstr ""
 
-#: src/components/Fee/Fee.tsx:24
+#: src/components/Fee/Fee.tsx:36
 msgid "Value seems high"
 msgstr "Upphæð virðist frekar há"
 

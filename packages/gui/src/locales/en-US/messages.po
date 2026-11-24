@@ -8,7 +8,7 @@ msgstr ""
 "Language: en_US\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-11-15 00:05\n"
+"PO-Revision-Date: 2026-11-22 00:05\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1933,13 +1933,13 @@ msgstr ""
 #: src/electron/commands/Commands.ts:1935
 #: src/electron/commands/Commands.ts:1942
 msgid "Get Fee Estimate"
-msgstr "Get Fee Estimate"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1936
 #: src/electron/commands/Commands.ts:1943
 msgid "Requests the current fee per cost estimate from the wallet"
-msgstr "Requests the current fee per cost estimate from the wallet"
+msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/commands/Commands.ts:1950
@@ -2729,9 +2729,7 @@ msgstr ""
 
 #. js-lingui-explicit-id
 #: src/electron/main.tsx:725
-msgid ""
-"These commands will be executed without confirmation in the future:\n"
-"\n"
+msgid "These commands will be executed without confirmation in the future:\n\n"
 " {commands}"
 msgstr ""
 
@@ -5854,20 +5852,16 @@ msgstr "Initializing..."
 #~ msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:108
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgstr "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 
 #: src/components/offers/OfferEditor.tsx:127
 #: src/components/offers2/CreateOfferBuilder.tsx:145
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgstr "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 
 #: src/components/farm/PoolingHealth.tsx:310
@@ -10136,3 +10130,4 @@ msgstr "Your spendable balance must be greater than 1 mojo to create a profile"
 #: src/components/settings/SettingsCustodyAutoClaim.tsx:139
 msgid "Your wallet is required to be running for auto claim to work."
 msgstr "Your wallet is required to be running for auto claim to work."
+
