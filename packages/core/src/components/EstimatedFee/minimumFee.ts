@@ -2,8 +2,8 @@ import BigNumber from 'bignumber.js';
 
 import FeeTxType from './FeeTxType';
 
-// Mirrors DEFAULT_MINIMUM_BLOCK_FEE_PER_COST in chia-blockchain (chia/full_node/mempool_manager.py).
-export const MINIMUM_FEE_MOJOS_PER_COST = 4;
+// Mirrors DEFAULT_MINIMUM_BLOCK_FEE_PER_COST in chia-blockchain (chia/full_node/mempool.py).
+export const MINIMUM_FEE_MOJOS_PER_COST = 5;
 
 // Mirrors MINIMUM_BLOCK_FEE_EXPIRATION in the same file, in seconds (2027-11-03 00:00:00 UTC).
 // Full nodes stop applying the minimum from this time on.
